@@ -1,0 +1,118 @@
+{
+  "questionNumber": 13,
+  "reviewerId": "orca-codex-exam-twin-source-identity-20261008",
+  "utc": "2026-10-08T12:17:23.689533+00:00",
+  "status": "confirmed",
+  "sourceCoreStatus": "passed",
+  "parentCorrection": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-q13-source-correction-r2/correction.json",
+    "sha256": "37fd1bbf852f0590f1dd424038c0de334a4611b11e7644116113c04a35cda199"
+  },
+  "copyReceipt": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-q13-source-correction-r2/copy-receipt.json",
+    "sha256": "47639eda6d9c4ac09735193c22505b419fd2ab81da89da5cd59c63a74c54b77e"
+  },
+  "oldImmutablePacket": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/questions.json",
+    "sha256": "b6b40385cee9146ce74792ce2ca9675b7b562eb27aa65005cb4706f52347820f"
+  },
+  "oldObservation": "정삼각형 ABC; D∈AB; BD=10√2, ∠BDC=105°; 음영 ADC.",
+  "correctedObservation": "정삼각형 ABC; D∈AB; BD=10√2, ∠ADC=105°; 음영 ADC. A,D,B는 한 직선 위에 있으므로 ∠BDC=75°.",
+  "oldDraftNotesPreserved": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/review_notes.json",
+    "sha256": "802a432b4fbf30fc2fd8051e1d2e8ae9cb77e2069c6ef70c7c63b0c4c65d82f7"
+  },
+  "newQuestionOnlyCopy": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/source-question-only/q13-hwp-BIN0001.png",
+    "sha256": "b3bdea2c2c60f38da8ddd4b535655d55fb37b20773e1e820c18b4a3fd49fa3db"
+  },
+  "directViews": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-q13-source-correction-r2/hwp-BIN0001.png",
+      "sha256": "b3bdea2c2c60f38da8ddd4b535655d55fb37b20773e1e820c18b4a3fd49fa3db",
+      "independentlyViewed": true,
+      "viewMethod": "view_image",
+      "reading": "Clean HWP bitmap visibly attaches the105° leader to the arc DA–DC inside shadedADC; original printed q13 retains the same arc/point order but handwriting partly overlays it; completed question-only crop agrees."
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-q13-source-correction-r2/original-page-03.webp",
+      "sha256": "1eb0576f84c3ea4a9870ab83a4cb03b63b963b5442a26031ff0ef7b10a172708",
+      "independentlyViewed": true,
+      "viewMethod": "view_image",
+      "reading": "Clean HWP bitmap visibly attaches the105° leader to the arc DA–DC inside shadedADC; original printed q13 retains the same arc/point order but handwriting partly overlays it; completed question-only crop agrees."
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q13-part1.png",
+      "sha256": "0fb005dad4537a3d646b063df299e39e5af788e6f1cb41302f22a6052fd66d7c",
+      "independentlyViewed": true,
+      "viewMethod": "view_image",
+      "reading": "Clean HWP bitmap visibly attaches the105° leader to the arc DA–DC inside shadedADC; original printed q13 retains the same arc/point order but handwriting partly overlays it; completed question-only crop agrees."
+    }
+  ],
+  "originalBindingsAsReportedByParentReceipt": {
+    "hwp": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경구중][3][25-2-중간][신사고] (완료).hwp",
+      "sha256": "af607b1968659af53200e316ad523fd280eeb3300e9fba02319cd365821978b7",
+      "bytes": 2228224,
+      "binStream": "BinData/BIN0001.png",
+      "streamRawSha256": "b3bdea2c2c60f38da8ddd4b535655d55fb37b20773e1e820c18b4a3fd49fa3db",
+      "decompressedPngSha256": "b3bdea2c2c60f38da8ddd4b535655d55fb37b20773e1e820c18b4a3fd49fa3db",
+      "recordBinding": {
+        "kind": "figure",
+        "binId": 1,
+        "source": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1574,
+          "inflatedByteOffset": 67145,
+          "tag": 85,
+          "level": 3,
+          "payloadSha256": "7ff5a9b28e74f01082ce3983c1afc85c0579902e9f99cd8eae62fb351eda8d29"
+        },
+        "controlSource": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1572,
+          "inflatedByteOffset": 66747,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "db1c0a8b321a30052d5cab1b72100591881d20cd3096c2995f8f2ac3e600cf8c"
+        },
+        "binStream": "BinData/BIN0001.png",
+        "binReferenceExists": true
+      }
+    },
+    "original": {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[경구중][3][25-2-중간](원본)(준희T).pdf",
+      "sha256": "dfb546f163728fc59e84d5a6357e5a7a9385d0b68fe26b82ab639dea8ba182a4",
+      "physicalPdfPage": 3,
+      "printedPage": 3,
+      "column": "left",
+      "printedQuestion": "객관식 13",
+      "render": "gyeonggu\\evidence\\original-scan-page-03.webp",
+      "renderSha256": "1eb0576f84c3ea4a9870ab83a4cb03b63b963b5442a26031ff0ef7b10a172708"
+    },
+    "completedCrop": {
+      "file": "gyeonggu\\packet\\images\\q13-part1.png",
+      "sha256": "0fb005dad4537a3d646b063df299e39e5af788e6f1cb41302f22a6052fd66d7c",
+      "page": 4,
+      "column": 0,
+      "bbox": [
+        55,
+        83,
+        375,
+        541.7060546875
+      ]
+    }
+  },
+  "independentReading": "The105° printed leader terminates at the arc bounded by DA andDC within ADC. A,D,B are collinear in the shown point order, so the other angleBDC is75°. This agrees with the frozen new candidate ADC105 condition.",
+  "sourceDeltaFinal": "Confirmed correctedsource ADC105, equilateralABC,D onAB,BD10√2, asksareaADC. FrozennewcandidateADC105 givesarea18√3 andasksBD withfeetE/F. The equilateral-angle/perpendicular/special-triangle/partial-area core is retained, with scale recovered by inverse area. No original numericalanswer was consulted or recomputed.",
+  "supersedesDraftSourceHoldOnly": true,
+  "answerExposureDisclosure": "The authorized original printed page03 contains handwritten workings and circled choices, incidentally visible during this source-only inspection, including neighboring questions. These are not cited, transcribed, tested or reused as new answers, solutions, grade permission or approval. The22 raw independent solves were committed c028 before author exposure; the22 exact-equivalence evidence was already written before this original-scan inspection.",
+  "newMathEvidenceBeforeThisView": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+    "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469"
+  },
+  "candidateStudentSolveBytesChanged": false,
+  "sourceBytesChanged": false,
+  "nativeRightsLoadingAuthority": false,
+  "reopenIf": "An actual HWP/PDF/original printed leader, arc endpoint or A-D-B point order contradicts the ADC reading, or a new corrected source/candidate digest differs from this bound evidence."
+}

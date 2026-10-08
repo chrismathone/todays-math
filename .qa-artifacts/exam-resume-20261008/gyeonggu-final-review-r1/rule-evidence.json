@@ -1,0 +1,969 @@
+{
+  "rules": [
+    {
+      "key": "3-2|삼각비|01",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 949,
+        "endLine1based": 982
+      },
+      "fullRuleBlock": "def(\"삼각비\", \"01\", \"삼각비의 값\", SEC.뜻, \"기본\", (rng) => {\n    const [p, q, r] = pick(rng, TRIPLES);\n    const mode = intBetween(rng, 0, 2);\n    // $\\angle B=90^\\circ$ — $\\overline{BC}$ 가 $\\angle A$ 의 대변, $\\overline{AB}$ 가 이웃변.\n    // mode 2($\\tan A=\\overline{BC}/\\overline{AB}$)는 진분수여야 하므로 대변을 짧게 고정한다.\n    const swap = mode === 2 ? false : rng() < 0.5;\n    const bc = swap ? q : p;\n    const ab = swap ? p : q;\n    const [num, den] = red(mode === 1 ? ab : bc, mode === 2 ? ab : r);\n    const asked = trigOf(mode, \"A\");\n    const ratio = [\n      `\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n      `\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n      `\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n    ][mode]!;\n    const raw = [\n      `\\\\dfrac{${bc}}{${r}}`,\n      `\\\\dfrac{${ab}}{${r}}`,\n      `\\\\dfrac{${bc}}{${ab}}`,\n    ][mode]!;\n    return {\n      content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$이고 $\\\\overline{AB}=${cm(ab)}$, $\\\\overline{BC}=${cm(bc)}$일 때, $${asked}$의 값을 구하시오.`,\n      answer: `$${frac(num, den)}$`,\n      solution: `피타고라스 정리에서 $\\\\overline{AC}=\\\\sqrt{${ab}^2+${bc}^2}=${r}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 $${asked}=${ratio}=${raw === frac(num, den) ? raw : `${raw}=${frac(num, den)}`}$이다.`,\n      facts: { ab, bc, ac: r, mode, num, den },\n      figureSpec: figRight({\n        vert: ab,\n        horz: bc,\n        dims: { AB: dimCm(ab), BC: dimCm(bc) },\n      }),\n    };\n  }),\n\n  ",
+      "blockSha256Utf8": "c0e75a148770e50d9f82a24908a4dd86b5dba9492dd606ebeefda512f8735acd",
+      "snapshotRecord": {
+        "registryPointer": "/entries/70",
+        "registry": {
+          "key": "3-2|삼각비|01",
+          "grade": "중3",
+          "unitSection": "삼각비의 뜻",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "01",
+          "rpmTitle": "삼각비의 값"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/83",
+            "record": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|01",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|02",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 982,
+        "endLine1based": 1023
+      },
+      "fullRuleBlock": "def(\n    \"삼각비\",\n    \"02\",\n    \"삼각비를 이용하여 삼각형의 변의 길이 구하기\",\n    SEC.뜻,\n    \"기본\",\n    (rng) =>\n      attempt(120, () => {\n        const [p, q, r] = pick(rng, TRIPLES);\n        const mode = intBetween(rng, 0, 2);\n        const t = intBetween(rng, 1, 4);\n        // $\\angle B=90^\\circ$ · $\\angle A$ 기준: 대변 $pt$, 이웃변 $qt$, 빗변 $rt$.\n        const opp = p * t;\n        const adj = q * t;\n        const hyp = r * t;\n        if (hyp > 80) return null;\n        const [gnum, gden] = red(mode === 1 ? q : p, mode === 2 ? q : r);\n        if (gnum >= gden) return null;\n        const given = mode === 2 ? adj : hyp;\n        const x = mode === 1 ? adj : opp;\n        const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;\n        const askSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;\n        const relation = [\n          `\\\\sin A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n          `\\\\cos A=\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n          `\\\\tan A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n        ][mode]!;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$이고 $${trigOf(mode, \"A\")}=${frac(gnum, gden)}$, $${givenSide}=${cm(given)}$일 때, $${askSide}$의 길이를 구하시오.`,\n          answer: `$${cm(x)}$`,\n          solution: `$${relation}$이다.\\n따라서 $${askSide}=${given}\\\\times${frac(gnum, gden)}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: { num: gnum, den: gden, given, x, mode },\n          figureSpec: figRight({\n            vert: adj,\n            horz: opp,\n            dims: mode === 2 ? { AB: dimCm(given) } : { CA: dimCm(given) },\n          }),\n        };\n      }),\n  ),\n\n  ",
+      "blockSha256Utf8": "4ad02252bd9a4bea063f8a4df95a2fe838851be9231d55de3f0352f17b5aa45a",
+      "snapshotRecord": {
+        "registryPointer": "/entries/71",
+        "registry": {
+          "key": "3-2|삼각비|02",
+          "grade": "중3",
+          "unitSection": "삼각비의 뜻",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "02",
+          "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/84",
+            "record": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|02",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|03",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1023,
+        "endLine1based": 1061
+      },
+      "fullRuleBlock": "def(\n    \"삼각비\",\n    \"03\",\n    \"한 삼각비의 값을 알 때 다른 삼각비의 값 구하기\",\n    SEC.뜻,\n    \"응용\",\n    (rng) =>\n      attempt(120, () => {\n        // 세 쌍을 **기약으로** 줄인다 — 안 그러면 발문의 `tan A=3/4` 와 해설의\n        // 「밑변 16, 높이 12」가 따로 논다(같은 값인데 학생은 딴 삼각형으로 읽는다).\n        const [p0, q0, r0] = pick(rng, TRIPLES);\n        const g0 = gcd(gcd(p0, q0), r0);\n        const [p, q, r] = [p0 / g0, q0 / g0, r0 / g0];\n        const given = intBetween(rng, 0, 2);\n        const want = intBetween(rng, 0, 2);\n        if (given === want) return null;\n        // $\\tan$ 은 «대변/이웃변»이라 진분수가 아니면 지면에서 대분수가 된다.\n        if ((given === 2 || want === 2) && p >= q) return null;\n        const pair = (fn: number): [number, number] =>\n          fn === 0 ? red(p, r) : fn === 1 ? red(q, r) : red(p, q);\n        const [gn, gd] = pair(given);\n        const [wn, wd] = pair(want);\n        const legText =\n          given === 0\n            ? `빗변의 길이가 $${r}$, 높이가 $${p}$인 직각삼각형에서 밑변의 길이는 $\\\\sqrt{${r}^2-${p}^2}=${q}$`\n            : given === 1\n              ? `빗변의 길이가 $${r}$, 밑변의 길이가 $${q}$인 직각삼각형에서 높이는 $\\\\sqrt{${r}^2-${q}^2}=${p}$`\n              : `밑변의 길이가 $${q}$, 높이가 $${p}$인 직각삼각형에서 빗변의 길이는 $\\\\sqrt{${p}^2+${q}^2}=${r}$`;\n        return {\n          content: `$0^\\\\circ<A<90^\\\\circ$인 $\\\\angle A$에 대하여 $${trigOf(given, \"A\")}=${frac(gn, gd)}$일 때, $${trigOf(want, \"A\")}$의 값을 구하시오.`,\n          answer: `$${frac(wn, wd)}$`,\n          solution: `$${trigOf(given, \"A\")}=${frac(gn, gd)}$이므로 ${legText}이다.\\n따라서 $${trigOf(want, \"A\")}=${frac(wn, wd)}$이다.`,\n          facts: { p, q, r, given, want, gnum: gn, gden: gd, num: wn, den: wd },\n          figureSpec: null,\n        };\n      }),\n  ),\n\n  ",
+      "blockSha256Utf8": "84b96cc58fd26a111a57dbc620a5c3d8f1f8753ce9b7281f2f47a158493d7fee",
+      "snapshotRecord": {
+        "registryPointer": "/entries/72",
+        "registry": {
+          "key": "3-2|삼각비|03",
+          "grade": "중3",
+          "unitSection": "삼각비의 뜻",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "03",
+          "rpmTitle": "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/85",
+            "record": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|03",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|04",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1061,
+        "endLine1based": 1101
+      },
+      "fullRuleBlock": "def(\"삼각비\", \"04\", \"직각삼각형의 닮음과 삼각비⑴\", SEC.뜻, \"응용\", (rng) =>\n    attempt(120, () => {\n      const [p, q, r] = pick(rng, TRIPLES);\n      const swap = rng() < 0.5;\n      const ab = swap ? q : p;\n      const ac = swap ? p : q;\n      const which = intBetween(rng, 0, 1);\n      const fn = intBetween(rng, 0, 2);\n      // $\\angle BAH=\\angle C$, $\\angle CAH=\\angle B$ — 닮음이 옮겨 주는 각이다.\n      // which 0 은 $\\angle C$(대변 $\\overline{AB}$), which 1 은 $\\angle B$(대변 $\\overline{AC}$).\n      const opp = which === 0 ? ab : ac;\n      const adj = which === 0 ? ac : ab;\n      if (fn === 2 && opp >= adj) return null;\n      const [num, den] =\n        fn === 2 ? red(opp, adj) : red(fn === 0 ? opp : adj, r);\n      const same = which === 0 ? `\\\\angle C` : `\\\\angle B`;\n      const oppName = which === 0 ? `\\\\overline{AB}` : `\\\\overline{AC}`;\n      const adjName = which === 0 ? `\\\\overline{AC}` : `\\\\overline{AB}`;\n      const ratio = [\n        `\\\\dfrac{${oppName}}{\\\\overline{BC}}`,\n        `\\\\dfrac{${adjName}}{\\\\overline{BC}}`,\n        `\\\\dfrac{${oppName}}{${adjName}}`,\n      ][fn]!;\n      const angName = which === 0 ? `\\\\angle BAH` : `\\\\angle CAH`;\n      return {\n        content: `$\\\\angle A=90^\\\\circ$인 직각삼각형 $ABC$에서 꼭짓점 $A$에서 빗변 $BC$에 내린 수선의 발을 $H$라 하자. $\\\\overline{AB}=${cm(ab)}$, $\\\\overline{AC}=${cm(ac)}$이고 $${angName}=x$일 때, $${trigOf(fn, \"x\")}$의 값을 구하시오.`,\n        answer: `$${frac(num, den)}$`,\n        solution: `직각삼각형 $ABH$와 직각삼각형 $CBA$는 닮은 도형이므로 $${angName}=${same}$이다.\\n피타고라스 정리에서 $\\\\overline{BC}=\\\\sqrt{${ab}^2+${ac}^2}=${r}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 $${trigOf(fn, \"x\")}=${trigOf(fn, same)}=${ratio}=${frac(num, den)}$이다.`,\n        facts: { ab, ac, bc: r, which, fn, num, den },\n        figureSpec: figAltitude({\n          ab,\n          ac,\n          dims: { AB: dimCm(ab), AC: dimCm(ac) },\n          angBAH: which === 0 ? \"x\" : undefined,\n          angCAH: which === 1 ? \"x\" : undefined,\n        }),\n      };\n    }),\n  ),\n\n  ",
+      "blockSha256Utf8": "432982272f257c17f7c671edae6489d6c58809b4845efe010cef6c5eec3d8347",
+      "snapshotRecord": {
+        "registryPointer": "/entries/73",
+        "registry": {
+          "key": "3-2|삼각비|04",
+          "grade": "중3",
+          "unitSection": "삼각비의 뜻",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "04",
+          "rpmTitle": "직각삼각형의 닮음과 삼각비⑴"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/86",
+            "record": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|04",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|05",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1101,
+        "endLine1based": 1143
+      },
+      "fullRuleBlock": "def(\"삼각비\", \"05\", \"직각삼각형의 닮음과 삼각비⑵\", SEC.뜻, \"심화하\", (rng) =>\n    attempt(120, () => {\n      const [p, q, r] = pick(rng, TRIPLES);\n      const swap = rng() < 0.5;\n      const ah = swap ? q : p;\n      const bh = swap ? p : q;\n      // 직각삼각형 $ABH$($\\angle AHB=90^\\circ$)에서 빗변은 $\\overline{AB}=r$.\n      // $\\angle B$ 의 대변은 $\\overline{AH}$, $\\angle BAH(=\\angle C)$ 의 대변은 $\\overline{BH}$.\n      const which = intBetween(rng, 0, 1);\n      const fn = intBetween(rng, 0, 2);\n      const opp = which === 0 ? ah : bh;\n      const adj = which === 0 ? bh : ah;\n      if (fn === 2 && opp >= adj) return null;\n      const [num, den] =\n        fn === 2 ? red(opp, adj) : red(fn === 0 ? opp : adj, r);\n      const target = which === 0 ? `B` : `C`;\n      const oppName = which === 0 ? `\\\\overline{AH}` : `\\\\overline{BH}`;\n      const adjName = which === 0 ? `\\\\overline{BH}` : `\\\\overline{AH}`;\n      const ratio = [\n        `\\\\dfrac{${oppName}}{\\\\overline{AB}}`,\n        `\\\\dfrac{${adjName}}{\\\\overline{AB}}`,\n        `\\\\dfrac{${oppName}}{${adjName}}`,\n      ][fn]!;\n      const lead =\n        which === 0\n          ? `직각삼각형 $ABH$에서 $\\\\angle AHB=90^\\\\circ$이다.`\n          : `직각삼각형 $ABH$와 직각삼각형 $CBA$는 닮은 도형이므로 $\\\\angle BAH=\\\\angle C$이다.`;\n      const named = which === 0 ? `\\\\angle B` : `\\\\angle BAH`;\n      return {\n        content: `$\\\\angle A=90^\\\\circ$인 직각삼각형 $ABC$에서 꼭짓점 $A$에서 빗변 $BC$에 내린 수선의 발을 $H$라 하자. $\\\\overline{AH}=${cm(ah)}$, $\\\\overline{BH}=${cm(bh)}$일 때, $${trigOf(fn, target)}$의 값을 구하시오.`,\n        answer: `$${frac(num, den)}$`,\n        solution: `${lead}\\n피타고라스 정리에서 $\\\\overline{AB}=\\\\sqrt{${ah}^2+${bh}^2}=${r}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 $${trigOf(fn, target)}=${trigOf(fn, named)}=${ratio}=${frac(num, den)}$이다.`,\n        facts: { ah, bh, ab: r, which, fn, num, den },\n        figureSpec: figAltitude({\n          ab: r,\n          ac: r2((ah * r) / bh),\n          dims: { AH: dimCm(ah), BH: dimCm(bh) },\n        }),\n      };\n    }),\n  ),\n\n  ",
+      "blockSha256Utf8": "a47518b9b208ed3e03f6c65e741db46ce772254b59ad9cd3d275939b4d22ca97",
+      "snapshotRecord": {
+        "registryPointer": "/entries/74",
+        "registry": {
+          "key": "3-2|삼각비|05",
+          "grade": "중3",
+          "unitSection": "삼각비의 뜻",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "05",
+          "rpmTitle": "직각삼각형의 닮음과 삼각비⑵"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/87",
+            "record": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|05",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|08",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1203,
+        "endLine1based": 1229
+      },
+      "fullRuleBlock": "def(\"삼각비\", \"08\", \"의 삼각비의 값\", SEC.값, \"기본\", (rng) =>\n    attempt(300, () => {\n      const angles = [30, 45, 60] as const;\n      const a1 = pick(rng, angles);\n      const a2 = pick(rng, angles);\n      const f1 = intBetween(rng, 0, 2);\n      const f2 = intBetween(rng, 0, 2);\n      if (a1 === a2 && f1 === f2) return null;\n      const op = intBetween(rng, 0, 3);\n      const v1 = exact(f1, a1);\n      const v2 = exact(f2, a2);\n      if (!v1 || !v2) return null;\n      const res = applyOp(op, v1, v2);\n      if (!res) return null;\n      if (res.r === 1 && res.d > 1 && Math.abs(res.n) >= res.d) return null;\n      const expr = `${trigText(f1, a1)} ${OP_TEXT[op]} ${trigText(f2, a2)}`;\n      return {\n        content: `$${expr}$의 값을 구하시오.`,\n        answer: `$${surdText(res)}$`,\n        solution: `$${trigText(f1, a1)}=${surdText(v1)}$, $${trigText(f2, a2)}=${surdText(v2)}$이다.\\n따라서 $${expr}=${surdText(v1)} ${OP_TEXT[op]} ${surdText(v2)}=${surdText(res)}$이다.`,\n        facts: { f1, a1, op, f2, a2, an: res.n, ar: res.r, ad: res.d },\n        figureSpec: null,\n      };\n    }),\n  ),\n\n  ",
+      "blockSha256Utf8": "9157b510062b01465dc5f170b63de2ba517d9d7484e4c0637a0d88298e8bb8e2",
+      "snapshotRecord": {
+        "registryPointer": "/entries/77",
+        "registry": {
+          "key": "3-2|삼각비|08",
+          "grade": "중3",
+          "unitSection": "삼각비의 값",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "08",
+          "rpmTitle": "의 삼각비의 값"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/71",
+            "record": {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|08",
+              "live_count": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|12",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1349,
+        "endLine1based": 1382
+      },
+      "fullRuleBlock": "def(\n    \"삼각비\",\n    \"12\",\n    \"사분원을 이용하여 삼각비의 값 구하기\",\n    SEC.값,\n    \"응용\",\n    (rng) => {\n      const ang = intBetween(rng, 25, 65);\n      const rad = ang * DEG;\n      const s100 = Math.round(Math.sin(rad) * 100);\n      const c100 = Math.round(Math.cos(rad) * 100);\n      const t100 = Math.round(Math.tan(rad) * 100);\n      const mode = intBetween(rng, 0, 4);\n      const parts = [[s100], [c100], [t100], [s100, c100], [c100, t100]][mode]!;\n      const x100 = parts.reduce((u, v) => u + v, 0);\n      const asked = [\n        `\\\\sin ${ang}^\\\\circ`,\n        `\\\\cos ${ang}^\\\\circ`,\n        `\\\\tan ${ang}^\\\\circ`,\n        `\\\\sin ${ang}^\\\\circ+\\\\cos ${ang}^\\\\circ`,\n        `\\\\cos ${ang}^\\\\circ+\\\\tan ${ang}^\\\\circ`,\n      ][mode]!;\n      const two = (v: number): string => (v / 100).toFixed(2);\n      return {\n        content: `반지름의 길이가 $1$인 사분원에서 $\\\\angle AOB=${ang}^\\\\circ$이다. 점 $B$에서 $\\\\overline{OA}$에 내린 수선의 발을 $H$라 하고, 점 $A$를 지나고 $\\\\overline{OA}$에 수직인 직선이 $\\\\overrightarrow{OB}$와 만나는 점을 $T$라 하자. $\\\\overline{BH}=${two(s100)}$, $\\\\overline{OH}=${two(c100)}$, $\\\\overline{AT}=${two(t100)}$일 때, $${asked}$의 값을 구하시오.`,\n        answer: `$${two(x100)}$`,\n        solution: `$\\\\overline{OB}=\\\\overline{OA}=1$이므로 $\\\\sin ${ang}^\\\\circ=\\\\dfrac{\\\\overline{BH}}{\\\\overline{OB}}=\\\\overline{BH}$, $\\\\cos ${ang}^\\\\circ=\\\\dfrac{\\\\overline{OH}}{\\\\overline{OB}}=\\\\overline{OH}$, $\\\\tan ${ang}^\\\\circ=\\\\dfrac{\\\\overline{AT}}{\\\\overline{OA}}=\\\\overline{AT}$이다.\\n따라서 $${asked}=${two(x100)}$이다.`,\n        facts: { ang, s100, c100, t100, mode, x100 },\n        figureSpec: figQuadrant({ ang }),\n      };\n    },\n  ),\n\n  ",
+      "blockSha256Utf8": "3765bd803880f25e4a0d84c7f5ee463d1ab10ceb36c4aceace2334e44e7a9b9a",
+      "snapshotRecord": {
+        "registryPointer": "/entries/81",
+        "registry": {
+          "key": "3-2|삼각비|12",
+          "grade": "중3",
+          "unitSection": "삼각비의 값",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "12",
+          "rpmTitle": "사분원을 이용하여 삼각비의 값 구하기"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/75",
+            "record": {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|12",
+              "live_count": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|14",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1410,
+        "endLine1based": 1436
+      },
+      "fullRuleBlock": "def(\"삼각비\", \"14\", \"삼각비의 값의 대소 관계\", SEC.값, \"응용\", (rng) => {\n    // $45^\\circ$ 부근은 두 값이 붙어 대소가 «학생이 아는 근거»로 안 갈린다 —\n    // 양쪽으로 떼어 놓는다($\\cos A$ 와 $\\tan A$ 는 $38.17^\\circ$ 부근에서 뒤집힌다).\n    const ang = rng() < 0.5 ? intBetween(rng, 10, 35) : intBetween(rng, 55, 80);\n    const rad = ang * DEG;\n    const vals = [Math.sin(rad), Math.cos(rad), Math.tan(rad)];\n    const mode = intBetween(rng, 0, 1);\n    let best = 0;\n    for (let i = 1; i < 3; i += 1) {\n      if (mode === 0 ? vals[i]! > vals[best]! : vals[i]! < vals[best]!)\n        best = i;\n    }\n    const word = mode === 0 ? \"가장 큰\" : \"가장 작은\";\n    const reason =\n      ang < 45\n        ? `$0^\\\\circ<A<45^\\\\circ$이면 $\\\\sin A<\\\\tan A<\\\\cos A$이다.`\n        : `$45^\\\\circ<A<90^\\\\circ$이면 $\\\\cos A<\\\\sin A<\\\\tan A$이다.`;\n    return {\n      content: `$\\\\sin ${ang}^\\\\circ$, $\\\\cos ${ang}^\\\\circ$, $\\\\tan ${ang}^\\\\circ$ 중에서 그 값이 ${word} 것을 구하시오.`,\n      answer: `$${trigText(best, ang)}$`,\n      solution: `${reason}\\n$${ang}^\\\\circ$는 그 범위에 있으므로 ${word} 것은 $${trigText(best, ang)}$이다.`,\n      facts: { ang, mode, pick: best },\n      figureSpec: null,\n    };\n  }),\n\n  ",
+      "blockSha256Utf8": "05c811b7a5b4b6c31a85b0c16bcbde69f931434306bf3edf72360db316429db7",
+      "snapshotRecord": {
+        "registryPointer": "/entries/83",
+        "registry": {
+          "key": "3-2|삼각비|14",
+          "grade": "중3",
+          "unitSection": "삼각비의 값",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "14",
+          "rpmTitle": "삼각비의 값의 대소 관계"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/78",
+            "record": {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|14",
+              "live_count": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|15",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1436,
+        "endLine1based": 1526
+      },
+      "fullRuleBlock": "def(\n    \"삼각비\",\n    \"15\",\n    \"삼각비의 값의 대소 관계를 이용한 식의 계산\",\n    SEC.값,\n    \"심화하\",\n    (rng) => {\n      const mode = intBetween(rng, 0, 4);\n      const spec = [\n        {\n          lo: 0,\n          hi: 45,\n          expr: `\\\\sqrt{(\\\\sin A-\\\\cos A)^2}+\\\\sqrt{(\\\\sin A+\\\\cos A)^2}`,\n          c0: 0,\n          cs: 0,\n          cc: 2,\n          ct: 0,\n          why: `$0^\\\\circ<A<45^\\\\circ$이면 $\\\\sin A<\\\\cos A$이므로 $\\\\sqrt{(\\\\sin A-\\\\cos A)^2}=\\\\cos A-\\\\sin A$이고, $\\\\sin A+\\\\cos A>0$이므로 $\\\\sqrt{(\\\\sin A+\\\\cos A)^2}=\\\\sin A+\\\\cos A$이다.`,\n        },\n        {\n          lo: 45,\n          hi: 90,\n          expr: `\\\\sqrt{(\\\\sin A-\\\\cos A)^2}+\\\\sqrt{(\\\\sin A+\\\\cos A)^2}`,\n          c0: 0,\n          cs: 2,\n          cc: 0,\n          ct: 0,\n          why: `$45^\\\\circ<A<90^\\\\circ$이면 $\\\\cos A<\\\\sin A$이므로 $\\\\sqrt{(\\\\sin A-\\\\cos A)^2}=\\\\sin A-\\\\cos A$이고, $\\\\sin A+\\\\cos A>0$이므로 $\\\\sqrt{(\\\\sin A+\\\\cos A)^2}=\\\\sin A+\\\\cos A$이다.`,\n        },\n        {\n          lo: 0,\n          hi: 45,\n          expr: `\\\\sqrt{(\\\\tan A-1)^2}-\\\\sqrt{(1-\\\\tan A)^2}`,\n          c0: 0,\n          cs: 0,\n          cc: 0,\n          ct: 0,\n          why: `$0^\\\\circ<A<45^\\\\circ$이면 $\\\\tan A<1$이므로 $\\\\sqrt{(\\\\tan A-1)^2}=1-\\\\tan A$이고 $\\\\sqrt{(1-\\\\tan A)^2}=1-\\\\tan A$이다.`,\n        },\n        {\n          lo: 0,\n          hi: 90,\n          expr: `\\\\sqrt{(1-\\\\sin A)^2}+\\\\sqrt{(\\\\sin A-1)^2}`,\n          c0: 2,\n          cs: -2,\n          cc: 0,\n          ct: 0,\n          why: `$0^\\\\circ<A<90^\\\\circ$이면 $\\\\sin A<1$이므로 두 근호 안의 식은 모두 $(1-\\\\sin A)^2$과 같다.`,\n        },\n        {\n          lo: 45,\n          hi: 90,\n          expr: `\\\\sqrt{(\\\\cos A-\\\\sin A)^2}-\\\\sqrt{(\\\\cos A+\\\\sin A)^2}`,\n          c0: 0,\n          cs: 0,\n          cc: -2,\n          ct: 0,\n          why: `$45^\\\\circ<A<90^\\\\circ$이면 $\\\\cos A<\\\\sin A$이므로 $\\\\sqrt{(\\\\cos A-\\\\sin A)^2}=\\\\sin A-\\\\cos A$이고, $\\\\cos A+\\\\sin A>0$이므로 $\\\\sqrt{(\\\\cos A+\\\\sin A)^2}=\\\\cos A+\\\\sin A$이다.`,\n        },\n      ][mode]!;\n      const terms: string[] = [];\n      if (spec.c0 !== 0) terms.push(`${spec.c0}`);\n      const push = (c: number, t: string): void => {\n        if (c === 0) return;\n        const mag = Math.abs(c) === 1 ? \"\" : `${Math.abs(c)}`;\n        const sign = c < 0 ? \"-\" : terms.length > 0 ? \"+\" : \"\";\n        terms.push(`${sign}${mag}${t}`);\n      };\n      push(spec.cs, `\\\\sin A`);\n      push(spec.cc, `\\\\cos A`);\n      push(spec.ct, `\\\\tan A`);\n      const ansText = terms.length === 0 ? \"0\" : terms.join(\"\");\n      return {\n        content: `$${spec.lo}^\\\\circ<A<${spec.hi}^\\\\circ$일 때, $${spec.expr}$을 간단히 하시오.`,\n        answer: `$${ansText}$`,\n        solution: `${spec.why}\\n따라서 $${spec.expr}=${ansText}$이다.`,\n        facts: {\n          mode,\n          lo: spec.lo,\n          hi: spec.hi,\n          c0: spec.c0,\n          cs: spec.cs,\n          cc: spec.cc,\n          ct: spec.ct,\n        },\n        figureSpec: null,\n      };\n    },\n  ),\n\n  ",
+      "blockSha256Utf8": "ee66f0efcb4a1345654c3bd193cb583be87179e5ad7b11bb4fda01f3f6030502",
+      "snapshotRecord": {
+        "registryPointer": "/entries/84",
+        "registry": {
+          "key": "3-2|삼각비|15",
+          "grade": "중3",
+          "unitSection": "삼각비의 값",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "15",
+          "rpmTitle": "삼각비의 값의 대소 관계를 이용한 식의 계산"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/79",
+            "record": {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|15",
+              "live_count": 9
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|16",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1526,
+        "endLine1based": 1575
+      },
+      "fullRuleBlock": "def(\n    \"삼각비\",\n    \"16\",\n    \"삼각비의 표를 이용하여 삼각비의 값 구하기\",\n    SEC.값,\n    \"기본\",\n    (rng) => {\n      const b = intBetween(rng, 30, 58);\n      const fn = intBetween(rng, 0, 2);\n      const table = [0, 1, 2].map((i) => tableValue(fn, b + i));\n      const mode = intBetween(rng, 0, 2);\n      const rows = [0, 1, 2]\n        .map((i) => `$${trigText(fn, b + i)}=${table[i]!.toFixed(4)}$`)\n        .join(\", \");\n      const head = `삼각비의 표에서 ${rows}이다.`;\n      if (mode === 0) {\n        return {\n          // 소수 넷째 자리까지 적으므로 마지막에 읽는 숫자는 만 배 한 정수의 끝 자리다.\n          content: `${head} 이때 $${FN_NAMES[fn]} x=${table[2]!.toFixed(4)}$${eulReul(Math.round(table[2]! * 10000))} 만족시키는 $x$의 크기를 구하시오.`,\n          answer: `$${b + 2}^\\\\circ$`,\n          solution: `표에서 값이 $${table[2]!.toFixed(4)}$인 각을 찾으면 $${b + 2}^\\\\circ$이다.\\n따라서 $x=${b + 2}^\\\\circ$이다.`,\n          facts: { b, fn, mode, target: b + 2, val: table[2]! },\n          figureSpec: null,\n        };\n      }\n      if (mode === 1) {\n        const sum = Number((table[0]! + table[2]!).toFixed(4));\n        return {\n          content: `${head} 이때 $${trigText(fn, b)}+${trigText(fn, b + 2)}$의 값을 구하시오.`,\n          answer: `$${sum.toFixed(4)}$`,\n          solution: `표에서 $${trigText(fn, b)}=${table[0]!.toFixed(4)}$, $${trigText(fn, b + 2)}=${table[2]!.toFixed(4)}$이다.\\n따라서 구하는 값은 $${table[0]!.toFixed(4)}+${table[2]!.toFixed(4)}=${sum.toFixed(4)}$이다.`,\n          facts: { b, fn, mode, target: b, val: sum },\n          figureSpec: null,\n        };\n      }\n      // 차 — 큰 값에서 작은 값을 뺀다($\\cos$ 는 각이 커질수록 작아진다).\n      const hi = fn === 1 ? b : b + 2;\n      const lo = fn === 1 ? b + 2 : b;\n      const diff = Number((tableValue(fn, hi) - tableValue(fn, lo)).toFixed(4));\n      return {\n        content: `${head} 이때 $${trigText(fn, hi)}-${trigText(fn, lo)}$의 값을 구하시오.`,\n        answer: `$${diff.toFixed(4)}$`,\n        solution: `표에서 $${trigText(fn, hi)}=${tableValue(fn, hi).toFixed(4)}$, $${trigText(fn, lo)}=${tableValue(fn, lo).toFixed(4)}$이다.\\n따라서 구하는 값은 $${tableValue(fn, hi).toFixed(4)}-${tableValue(fn, lo).toFixed(4)}=${diff.toFixed(4)}$이다.`,\n        facts: { b, fn, mode, target: hi, val: diff },\n        figureSpec: null,\n      };\n    },\n  ),\n\n  ",
+      "blockSha256Utf8": "c710ba871add365b9b1b8e79f316291981669d93e90a304959bd543766d53113",
+      "snapshotRecord": {
+        "registryPointer": "/entries/85",
+        "registry": {
+          "key": "3-2|삼각비|16",
+          "grade": "중3",
+          "unitSection": "삼각비의 값",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "16",
+          "rpmTitle": "삼각비의 표를 이용하여 삼각비의 값 구하기"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/80",
+            "record": {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|16",
+              "live_count": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|18",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1614,
+        "endLine1based": 1682
+      },
+      "fullRuleBlock": "def(\n    \"삼각비\",\n    \"18\",\n    \"의 삼각비의 값을 이용하여 다른 삼각비의 값 구하기\",\n    SEC.값,\n    \"심화하\",\n    (rng) => {\n      const a = pick(\n        rng,\n        Array.from({ length: 51 }, (_, i) => i + 20).filter((v) => v !== 45),\n      );\n      const sv = tableValue(0, a);\n      const cv = tableValue(1, a);\n      const mode = intBetween(rng, 0, 2);\n      const co = 90 - a;\n      const asked = [\n        `\\\\cos ${co}^\\\\circ`,\n        `\\\\sin ${co}^\\\\circ`,\n        `\\\\sin ${co}^\\\\circ+\\\\cos ${co}^\\\\circ`,\n      ][mode]!;\n      const val = [sv, cv, Number((sv + cv).toFixed(4))][mode]!;\n      const candidates = [\n        [cv, 1 - sv, 1 - cv, 1, (sv + cv) / 2, Math.abs(sv - cv), sv * cv],\n        [sv, 1 - cv, 1 - sv, 1, (sv + cv) / 2, Math.abs(sv - cv), sv * cv],\n        [sv, cv, Math.abs(sv - cv), 1, 2 * sv, 2 * cv],\n      ][mode]!;\n      // 실제 보기에 적는 네 자리 값으로 중복을 가른다. 후보 순서대로 골라\n      // 난수를 더 쓰지 않고, 모자라면 공용 파생기의 기존 경로를 남긴다.\n      const seen = new Set([val.toFixed(4)]);\n      const distractors: string[] = [];\n      for (const candidate of candidates) {\n        const shown = candidate.toFixed(4);\n        if (Number(shown) <= 0 || seen.has(shown)) continue;\n        seen.add(shown);\n        distractors.push(`$${shown}$`);\n        if (distractors.length === 4) break;\n      }\n      const why = [\n        `$\\\\cos ${co}^\\\\circ=\\\\cos(90^\\\\circ-${a}^\\\\circ)=\\\\sin ${a}^\\\\circ$이다.`,\n        `$\\\\sin ${co}^\\\\circ=\\\\sin(90^\\\\circ-${a}^\\\\circ)=\\\\cos ${a}^\\\\circ$이다.`,\n        `$\\\\sin ${co}^\\\\circ=\\\\cos ${a}^\\\\circ$이고 $\\\\cos ${co}^\\\\circ=\\\\sin ${a}^\\\\circ$이다.`,\n      ][mode]!;\n      return {\n        content: `삼각비의 표에서 $\\\\sin ${a}^\\\\circ=${sv.toFixed(4)}$, $\\\\cos ${a}^\\\\circ=${cv.toFixed(4)}$일 때, $${asked}$의 값을 구하시오.`,\n        answer: `$${val.toFixed(4)}$`,\n        solution: `${why}\\n따라서 $${asked}=${val.toFixed(4)}$이다.`,\n        facts: { a, sv, cv, mode, val },\n        figureSpec: null,\n        ...(distractors.length === 4 ? { distractors } : {}),\n      };\n    },\n  ),\n\n  /**\n   * **19 — 여각의 삼각비** (2026-08-29 추가, RPM 삼각비 01~18 다음 번호).\n   *\n   * 기존 일곱(뜻)의 시작과 끝:\n   *   01 두 변 → 삼각비 · 02 삼각비+한 변 → 다른 변\n   *   **03 한 삼각비 → 같은 각의 다른 삼각비** · 04·05 수선의 발 → 삼각비\n   *   06 직선의 기울기 → 삼각비 · 07 직육면체 대각선 → 삼각비\n   *\n   * **「한 각의 삼각비 → 여각의 삼각비」가 없다.** 03 은 같은 각에서 끝나고,\n   * 08~18(삼각비의 값)의 18 은 **표의 특수각**에서 여각을 쓴다. 뜻 단원에서\n   * 비로 정의한 일반각의 여각이 비어 있었다.\n   *\n   * 답이 발문과 같은 수가 되는 자리(예: $\\\\sin A$ → $\\\\cos(90^\\\\circ-A)$)는\n   * 항등식이 답을 말해 버리므로 버린다.\n   */\n  ",
+      "blockSha256Utf8": "b907301dfcb096be887333ee4d6f3af0438b6f574542e0d8f87b50ad4c875b42",
+      "snapshotRecord": {
+        "registryPointer": "/entries/87",
+        "registry": {
+          "key": "3-2|삼각비|18",
+          "grade": "중3",
+          "unitSection": "삼각비의 값",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "18",
+          "rpmTitle": "의 삼각비의 값을 이용하여 다른 삼각비의 값 구하기"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/82",
+            "record": {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|18",
+              "live_count": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비|20",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1750,
+        "endLine1based": 1810
+      },
+      "fullRuleBlock": "def(\n    \"삼각비\",\n    \"20\",\n    \"두 삼각비의 값을 이용한 식의 계산\",\n    SEC.뜻,\n    \"연산\",\n    (rng) =>\n      attempt(120, () => {\n        const [p0, q0, r0] = pick(rng, TRIPLES);\n        const g0 = gcd(gcd(p0, q0), r0);\n        const u = p0 / g0;\n        const v = q0 / g0;\n        const w = r0 / g0;\n        if (u >= v) return null;\n        const mode = intBetween(rng, 0, 2);\n        const sinTex = frac(u, w);\n        const cosTex = frac(v, w);\n        const [num, den] =\n          mode === 0\n            ? red(u * v, w * w)\n            : mode === 1\n              ? red(u, v)\n              : red(u * u, v * w);\n        if (num >= den) return null;\n        // 밑단이므로 답이 커지면 안 된다 — $\\dfrac{420}{1369}$ 은 연산이 아니다.\n        if (den > 300) return null;\n        const asked =\n          mode === 0\n            ? \"\\\\sin A\\\\times\\\\cos A\"\n            : mode === 1\n              ? \"\\\\sin A\\\\div\\\\cos A\"\n              : \"\\\\sin A\\\\times\\\\tan A\";\n        const [tn, td] = red(u, v);\n        const work =\n          mode === 0\n            ? `$${asked}=${sinTex}\\\\times${cosTex}=${frac(num, den)}$이다.`\n            : mode === 1\n              ? `$${asked}=${sinTex}\\\\div${cosTex}=${frac(num, den)}$이다.`\n              : `$\\\\tan A=\\\\sin A\\\\div\\\\cos A=${sinTex}\\\\div${cosTex}=${frac(tn, td)}$이다.\\n` +\n                `$${asked}=${sinTex}\\\\times${frac(tn, td)}=${frac(num, den)}$이다.`;\n        return {\n          content: `$0^\\\\circ<A<90^\\\\circ$인 $\\\\angle A$에 대하여 $\\\\sin A=${sinTex}$, $\\\\cos A=${cosTex}$일 때, $${asked}$의 값을 구하시오.`,\n          answer: `$${frac(num, den)}$`,\n          solution: `${work}\\n따라서 구하는 값은 $${frac(num, den)}$이다.`,\n          facts: nums({ u, v, w, mode, num, den }),\n          figureSpec: null,\n        };\n      }),\n  ),\n\n  /**\n   * **21 — 삼각비를 이용하여 직각삼각형의 넓이 구하기** (기본).\n   *\n   * 02(삼각비 → 변의 길이)에서 **한 걸음 더** 간다: 구한 변으로 **넓이**를 낸다.\n   * 이 소단원의 여덟은 전부 「삼각비의 값」 아니면 「변의 길이」에서 끝났다 —\n   * 넓이로 끝나는 자리가 비어 있었다.\n   *\n   * ⚠️ 「삼각비의 활용」 08(삼각형의 넓이)과 다르다. 그쪽은 $\\dfrac12ab\\sin C$ 로\n   *    **끼인각**을 쓰고, 여기는 직각삼각형에서 두 변을 구해 곱한다. 소단원도 다르다.\n   */\n  ",
+      "blockSha256Utf8": "b36bc2753d09016a2bb79af214d79aaa6ad5b89aa3bf154d89edc1c31abd10ca",
+      "snapshotRecord": {
+        "registryPointer": "/entries/89",
+        "registry": {
+          "key": "3-2|삼각비|20",
+          "grade": "중3",
+          "unitSection": "삼각비의 뜻",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "20",
+          "rpmTitle": "두 삼각비의 값을 이용한 식의 계산"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/91",
+            "record": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|20",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비의 활용|01",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1867,
+        "endLine1based": 1928
+      },
+      "fullRuleBlock": "def(\n    \"삼각비의 활용\",\n    \"01\",\n    \"직각삼각형의 변의 길이 구하기\",\n    SEC.활용,\n    \"기본\",\n    (rng) =>\n      attempt<Body>(200, () => {\n        const theta = pick(rng, [30, 45, 60] as const);\n        const g = pick(rng, [4, 6, 8, 10, 12, 16, 20] as const);\n        const mode = intBetween(rng, 0, 1);\n        const sinT = exact(0, theta)!;\n        const cosT = exact(1, theta)!;\n        const adj = surdMul(surd(g, 1, 1), cosT);\n        const opp = surdMul(surd(g, 1, 1), sinT);\n        if (mode === 0) {\n          // (넓이) $=\\dfrac{1}{2}\\times\\overline{AB}\\times\\overline{BC}$\n          const area = surdMul(surdMul(adj, opp), surd(1, 1, 2));\n          if (area.d !== 1) return null;\n          return {\n            content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$, $\\\\angle A=${theta}^\\\\circ$이고 $\\\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.`,\n            answer: `$${cm2(surdText(area))}$`,\n            solution: `$\\\\overline{AB}=${g}\\\\times\\\\cos ${theta}^\\\\circ=${surdText(adj)}\\\\,(\\\\mathrm{cm})$, $\\\\overline{BC}=${g}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(opp)}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 (넓이)$=\\\\dfrac{1}{2}\\\\times${surdText(adj)}\\\\times${surdText(opp)}=${surdText(area)}\\\\,(\\\\mathrm{cm}^2)$이다.`,\n            facts: nums({ theta, given: g, mode, an: area.n, ar: area.r }),\n            figureSpec: figRight({\n              vert: surdValue(adj),\n              horz: surdValue(opp),\n              angA: `${theta}°`,\n              dims: { CA: dimCm(g) },\n            }),\n          };\n        }\n        // 둘레 — 유리항과 무리항을 따로 모은다($45^\\circ$ 는 둘 다 $\\sqrt{2}$ 라 합쳐진다).\n        let c0 = g;\n        let irr: Surd = { n: 0, r: 1, d: 1 };\n        for (const s of [adj, opp]) {\n          if (s.r === 1) {\n            c0 += s.n / s.d;\n            continue;\n          }\n          const t = surdAdd(irr, s);\n          if (!t) return null;\n          irr = t;\n        }\n        if (!Number.isInteger(c0)) return null;\n        if (irr.n === 0 || irr.d !== 1) return null;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$, $\\\\angle A=${theta}^\\\\circ$이고 $\\\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 둘레의 길이를 구하시오.`,\n          answer: `$${lenText(c0, irr.n, irr.r, \"cm\")}$`,\n          solution: `$\\\\overline{AB}=${g}\\\\times\\\\cos ${theta}^\\\\circ=${surdText(adj)}\\\\,(\\\\mathrm{cm})$, $\\\\overline{BC}=${g}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(opp)}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 (둘레)$=${g}+${surdText(adj)}+${surdText(opp)}=${binomText(c0, irr.n, irr.r)}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: nums({ theta, given: g, mode, c0, c1: irr.n, root: irr.r }),\n          figureSpec: figRight({\n            vert: surdValue(adj),\n            horz: surdValue(opp),\n            angA: `${theta}°`,\n            dims: { CA: dimCm(g) },\n          }),\n        };\n      }),\n  ),\n\n  ",
+      "blockSha256Utf8": "f3af5bfa99cdefa2ac525761803290941301d83e16ee65eb1c816d15f6d4982c",
+      "snapshotRecord": {
+        "registryPointer": "/entries/91",
+        "registry": {
+          "key": "3-2|삼각비의 활용|01",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "01",
+          "rpmTitle": "직각삼각형의 변의 길이 구하기"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/25",
+            "record": {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|01",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비의 활용|02",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1928,
+        "endLine1based": 1968
+      },
+      "fullRuleBlock": "def(\n    \"삼각비의 활용\",\n    \"02\",\n    \"입체도형에서 직각삼각형의 변의 길이의 활용\",\n    SEC.활용,\n    \"응용\",\n    (rng) =>\n      attempt(200, () => {\n        const theta = pick(rng, [30, 45, 60] as const);\n        const mode = intBetween(rng, 0, 2);\n        const base = pick(rng, [3, 4, 6, 8, 9, 12] as const);\n        const tanT = exact(2, theta)!;\n        const cosT = exact(1, theta)!;\n        const bs = surd(base, 1, 1);\n        const res = mode === 1 ? surdDiv(bs, cosT) : surdMul(bs, tanT);\n        if (res.d !== 1 || res.n > 90) return null;\n        const scene = [\n          {\n            content: `밑면이 한 변의 길이가 $${cm(2 * base)}$인 정사각형이고 옆면과 밑면이 이루는 각의 크기가 $${theta}^\\\\circ$인 정사각뿔이 있다. 이 정사각뿔의 높이를 구하시오.`,\n            solution: `밑면의 한 변의 중점과 밑면의 중심 사이의 거리는 $${base}\\\\,\\\\mathrm{cm}$이다.\\n높이를 $h\\\\,\\\\mathrm{cm}$라 하면 $\\\\tan ${theta}^\\\\circ=\\\\dfrac{h}{${base}}$이다.\\n따라서 $h=${base}\\\\times${surdText(tanT)}=${surdText(res)}$이므로 높이는 $${cm(surdText(res))}$이다.`,\n          },\n          {\n            content: `밑면의 반지름의 길이가 $${cm(base)}$이고 모선과 밑면이 이루는 각의 크기가 $${theta}^\\\\circ$인 원뿔이 있다. 이 원뿔의 모선의 길이를 구하시오.`,\n            solution: `모선의 길이를 $l\\\\,\\\\mathrm{cm}$라 하면 밑면의 반지름과 모선이 이루는 직각삼각형에서 $\\\\cos ${theta}^\\\\circ=\\\\dfrac{${base}}{l}$이다.\\n따라서 $l=\\\\dfrac{${base}}{${surdText(cosT)}}=${surdText(res)}$이므로 모선의 길이는 $${cm(surdText(res))}$이다.`,\n          },\n          {\n            content: `밑면의 반지름의 길이가 $${cm(base)}$이고 모선과 밑면이 이루는 각의 크기가 $${theta}^\\\\circ$인 원뿔이 있다. 이 원뿔의 높이를 구하시오.`,\n            solution: `높이를 $h\\\\,\\\\mathrm{cm}$라 하면 밑면의 반지름과 높이가 이루는 직각삼각형에서 $\\\\tan ${theta}^\\\\circ=\\\\dfrac{h}{${base}}$이다.\\n따라서 $h=${base}\\\\times${surdText(tanT)}=${surdText(res)}$이므로 높이는 $${cm(surdText(res))}$이다.`,\n          },\n        ][mode]!;\n        return {\n          content: scene.content,\n          answer: `$${cm(surdText(res))}$`,\n          solution: scene.solution,\n          facts: { theta, base, mode, an: res.n, ar: res.r },\n          figureSpec: null,\n        };\n      }),\n  ),\n\n  ",
+      "blockSha256Utf8": "ff17aafe1f1ede0116bc859efa7959efc385d8865042a1e501c86e0e4a800392",
+      "snapshotRecord": {
+        "registryPointer": "/entries/92",
+        "registry": {
+          "key": "3-2|삼각비의 활용|02",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "02",
+          "rpmTitle": "입체도형에서 직각삼각형의 변의 길이의 활용"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/26",
+            "record": {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|02",
+              "live_count": 22
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비의 활용|03",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 1968,
+        "endLine1based": 2029
+      },
+      "fullRuleBlock": "def(\n    \"삼각비의 활용\",\n    \"03\",\n    \"실생활에서 직각삼각형의 변의 길이의 활용 ⑴\",\n    SEC.활용,\n    \"응용\",\n    (rng) =>\n      attempt(200, () => {\n        const theta = pick(rng, [30, 45, 60] as const);\n        const d = pick(rng, [6, 8, 9, 10, 12, 15, 18, 20] as const);\n        const mode = intBetween(rng, 0, 2);\n        const sinT = exact(0, theta)!;\n        const cosT = exact(1, theta)!;\n        const tanT = exact(2, theta)!;\n        const ds = surd(d, 1, 1);\n        const res =\n          mode === 0\n            ? surdMul(ds, tanT)\n            : mode === 1\n              ? surdDiv(ds, cosT)\n              : surdMul(ds, sinT);\n        if (res.d !== 1 || res.n > 90) return null;\n        const height =\n          mode === 2\n            ? surdValue(res)\n            : mode === 0\n              ? surdValue(res)\n              : d * Math.tan(theta * DEG);\n        const ground = mode === 2 ? d * Math.cos(theta * DEG) : d;\n        const scene = [\n          {\n            content: `지면에 수직으로 서 있는 나무의 밑동에서 $${d}\\\\,\\\\mathrm{m}$ 떨어진 지점에서 나무의 꼭대기를 올려본각의 크기가 $${theta}^\\\\circ$이었다. 이 나무의 높이를 구하시오.`,\n            solution: `나무의 높이를 $h\\\\,\\\\mathrm{m}$라 하면 $\\\\tan ${theta}^\\\\circ=\\\\dfrac{h}{${d}}$이다.\\n따라서 $h=${d}\\\\times\\\\tan ${theta}^\\\\circ=${surdText(res)}$이므로 나무의 높이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"BC\",\n          },\n          {\n            content: `벽에 사다리를 기대어 놓았더니 사다리가 지면과 이루는 각의 크기가 $${theta}^\\\\circ$이고, 사다리의 아래 끝이 벽에서 $${d}\\\\,\\\\mathrm{m}$ 떨어져 있었다. 이 사다리의 길이를 구하시오.`,\n            solution: `사다리의 길이를 $l\\\\,\\\\mathrm{m}$라 하면 $\\\\cos ${theta}^\\\\circ=\\\\dfrac{${d}}{l}$이다.\\n따라서 $l=\\\\dfrac{${d}}{${surdText(cosT)}}=${surdText(res)}$이므로 사다리의 길이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"BC\",\n          },\n          {\n            content: `길이가 $${d}\\\\,\\\\mathrm{m}$인 실을 모두 풀어 연을 날렸더니 실이 지면과 이루는 각의 크기가 $${theta}^\\\\circ$이었다. 실이 팽팽하다고 할 때, 지면에서 연까지의 높이를 구하시오.`,\n            solution: `연까지의 높이를 $h\\\\,\\\\mathrm{m}$라 하면 $\\\\sin ${theta}^\\\\circ=\\\\dfrac{h}{${d}}$이다.\\n따라서 $h=${d}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(res)}$이므로 연까지의 높이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"CA\",\n          },\n        ][mode]!;\n        return {\n          content: scene.content,\n          answer: `$${surdText(res)}\\\\,\\\\mathrm{m}$`,\n          solution: scene.solution,\n          facts: { theta, d, mode, an: res.n, ar: res.r },\n          figureSpec: figRight({\n            vert: r2(height),\n            horz: r2(ground),\n            angC: `${theta}°`,\n            dims: { [scene.dimKey]: `${d} m` },\n          }),\n        };\n      }),\n  ),\n\n  ",
+      "blockSha256Utf8": "c217ffdf91356c6de7d285a90acdc9b1010c3a38bf6320af4032e0751414703d",
+      "snapshotRecord": {
+        "registryPointer": "/entries/93",
+        "registry": {
+          "key": "3-2|삼각비의 활용|03",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "03",
+          "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/27",
+            "record": {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|03",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비의 활용|05",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 2084,
+        "endLine1based": 2194
+      },
+      "fullRuleBlock": "def(\n    \"삼각비의 활용\",\n    \"05\",\n    \"일반 삼각형의 변의 길이 구하기 한 변의 길이와 그 양 끝 각의 크기를 아는 경우\",\n    SEC.활용,\n    \"응용\",\n    (rng) => {\n      const k = intBetween(rng, 1, 6);\n      const cfg = pick(rng, [\n        // $[\\angle B, \\angle C]$ 와 $\\overline{BC}=k(c_0+c_1\\sqrt{root})$,\n        // 그때의 $\\overline{AB}=k\\cdot abC\\sqrt{abR}$, $\\overline{AC}=k\\cdot acC\\sqrt{acR}$.\n        {\n          id: 0,\n          b: 30,\n          c: 45,\n          c0: 1,\n          c1: 1,\n          root: 3,\n          hC: 1,\n          abC: 2,\n          abR: 1,\n          acC: 1,\n          acR: 2,\n        },\n        {\n          id: 1,\n          b: 45,\n          c: 60,\n          c0: 3,\n          c1: 1,\n          root: 3,\n          hC: 3,\n          abC: 3,\n          abR: 2,\n          acC: 2,\n          acR: 3,\n        },\n        {\n          id: 2,\n          b: 30,\n          c: 60,\n          c0: 0,\n          c1: 4,\n          root: 3,\n          hC: 3,\n          abC: 6,\n          abR: 1,\n          acC: 2,\n          acR: 3,\n        },\n        {\n          id: 3,\n          b: 45,\n          c: 45,\n          c0: 2,\n          c1: 0,\n          root: 1,\n          hC: 1,\n          abC: 1,\n          abR: 2,\n          acC: 1,\n          acR: 2,\n        },\n      ] as const);\n      const ask = intBetween(rng, 0, 1);\n      const bcC0 = cfg.c0 * k;\n      const bcC1 = cfg.c1 * k;\n      const bcText = binomText(bcC0, bcC1, cfg.root);\n      const bcVal = bcC0 + bcC1 * Math.sqrt(cfg.root);\n      const res = surd(\n        (ask === 0 ? cfg.abC : cfg.acC) * k,\n        ask === 0 ? cfg.abR : cfg.acR,\n        1,\n      );\n      const angA = 180 - cfg.b - cfg.c;\n      const askName = ask === 0 ? `\\\\overline{AB}` : `\\\\overline{AC}`;\n      // 직각삼각형 $ABH$ 에서 \\sin B = AH/AB 이므로 구하는 변은\n      // «높이 ÷ 그 각의 sin» 이다. `hVal` 은 그 높이(정수).\n      const nearAng = ask === 0 ? cfg.b : cfg.c;\n      const hVal = cfg.hC * k;\n      const paren = bcC0 !== 0 && bcC1 !== 0 ? `(${bcText})` : bcText;\n      return {\n        content: `삼각형 $ABC$에서 $\\\\overline{BC}=${cm(paren)}$, $\\\\angle B=${cfg.b}^\\\\circ$, $\\\\angle C=${cfg.c}^\\\\circ$일 때, $${askName}$의 길이를 구하시오.`,\n        answer: `$${cm(surdText(res))}$`,\n        solution: `$\\\\angle A=180^\\\\circ-${cfg.b}^\\\\circ-${cfg.c}^\\\\circ=${angA}^\\\\circ$이다.\\n꼭짓점 $A$에서 $\\\\overline{BC}$에 내린 수선의 발을 $H$라 하고 $\\\\overline{AH}=h\\\\,\\\\mathrm{cm}$라 하면 $\\\\overline{BH}=\\\\dfrac{h}{\\\\tan ${cfg.b}^\\\\circ}$, $\\\\overline{CH}=\\\\dfrac{h}{\\\\tan ${cfg.c}^\\\\circ}$이다.\\n$\\\\overline{BH}+\\\\overline{CH}=\\\\overline{BC}$에 대입해 풀면 $h=${hVal}$이다.\\n직각삼각형 $A${ask === 0 ? \"B\" : \"C\"}H$에서 $\\\\sin ${nearAng}^\\\\circ=\\\\dfrac{h}{${askName}}$이므로 $${askName}=\\\\dfrac{${hVal}}{${surdText(exact(0, nearAng)!)}}=${surdText(res)}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: {\n          config: cfg.id,\n          k,\n          ask,\n          angB: cfg.b,\n          angC: cfg.c,\n          bcC0,\n          bcC1,\n          bcRoot: cfg.root,\n          h: hVal,\n          an: res.n,\n          ar: res.r,\n        },\n        // 원장님 지적 2026-08-25 — 이 유형은 **길이 표시가 하나도 없었다**\n        // (`J30503-A05-002`: 발문이 $\\overline{BC}$ 를 말하는데 그림엔 각뿐).\n        figureSpec: figTwoAngles({\n          bc: bcVal,\n          angB: cfg.b,\n          angC: cfg.c,\n          dims: { BC: dimCm(paren) },\n        }),\n      };\n    },\n  ),\n\n  ",
+      "blockSha256Utf8": "33b11135ff85bb25123edbd096444a7ce0a755604fd4cea3aac5ac3ec6f66f04",
+      "snapshotRecord": {
+        "registryPointer": "/entries/95",
+        "registry": {
+          "key": "3-2|삼각비의 활용|05",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "05",
+          "rpmTitle": "일반 삼각형의 변의 길이 구하기 한 변의 길이와 그 양 끝 각의 크기를 아는 경우"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/29",
+            "record": {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|05",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비의 활용|06",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 2194,
+        "endLine1based": 2227
+      },
+      "fullRuleBlock": "def(\n    \"삼각비의 활용\",\n    \"06\",\n    \"삼각형의 높이 구하기 주어진 각이 모두 예각인 경우\",\n    SEC.활용,\n    \"심화하\",\n    (rng) => {\n      const k = intBetween(rng, 1, 6);\n      const cfg = pick(rng, [\n        { b: 45, c: 60, mul: 2, c0: 3, c1: -1, root: 3 },\n        { b: 30, c: 45, mul: 2, c0: -1, c1: 1, root: 3 },\n        { b: 30, c: 60, mul: 4, c0: 0, c1: 1, root: 3 },\n        { b: 45, c: 45, mul: 2, c0: 1, c1: 0, root: 1 },\n      ] as const);\n      const bc = cfg.mul * k;\n      const c0 = cfg.c0 * k;\n      const c1 = cfg.c1 * k;\n      return {\n        content: `삼각형 $ABC$에서 $\\\\overline{BC}=${cm(bc)}$, $\\\\angle B=${cfg.b}^\\\\circ$, $\\\\angle C=${cfg.c}^\\\\circ$이다. 꼭짓점 $A$에서 $\\\\overline{BC}$에 내린 수선의 발을 $H$라 할 때, $\\\\overline{AH}$의 길이를 구하시오.`,\n        answer: `$${lenText(c0, c1, cfg.root, \"cm\")}$`,\n        solution: `$\\\\overline{AH}=h\\\\,\\\\mathrm{cm}$라 하면 $\\\\overline{BH}=\\\\dfrac{h}{\\\\tan ${cfg.b}^\\\\circ}$, $\\\\overline{CH}=\\\\dfrac{h}{\\\\tan ${cfg.c}^\\\\circ}$이다.\\n$\\\\overline{BH}+\\\\overline{CH}=\\\\overline{BC}$이므로 $\\\\dfrac{h}{\\\\tan ${cfg.b}^\\\\circ}+\\\\dfrac{h}{\\\\tan ${cfg.c}^\\\\circ}=${bc}$이다.\\n이 식을 풀면 $h=${binomText(c0, c1, cfg.root)}$이므로 $\\\\overline{AH}=${lenText(c0, c1, cfg.root, \"cm\")}$이다.`,\n        facts: { angB: cfg.b, angC: cfg.c, bc, c0, c1, root: cfg.root },\n        figureSpec: figTwoAngles({\n          bc,\n          angB: cfg.b,\n          angC: cfg.c,\n          foot: true,\n          dims: { BC: dimCm(bc) },\n        }),\n      };\n    },\n  ),\n\n  ",
+      "blockSha256Utf8": "64e97ca2be935fb23fae01230160ae079e4693d06dc5546052aece4fd5045d29",
+      "snapshotRecord": {
+        "registryPointer": "/entries/96",
+        "registry": {
+          "key": "3-2|삼각비의 활용|06",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "06",
+          "rpmTitle": "삼각형의 높이 구하기 주어진 각이 모두 예각인 경우"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/30",
+            "record": {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|06",
+              "live_count": 20
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|삼각비의 활용|08",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 2266,
+        "endLine1based": 2275
+      },
+      "fullRuleBlock": "def(\n    \"삼각비의 활용\",\n    \"08\",\n    \"삼각형의 넓이 예각이 주어진 경우\",\n    SEC.활용,\n    \"응용\",\n    (rng) => triangleArea(rng, [30, 45, 60]),\n  ),\n\n  ",
+      "blockSha256Utf8": "7c20fcedac1882a11e044056f2e5c392a8d2bca5cfe14f81d34346820eed8e72",
+      "snapshotRecord": {
+        "registryPointer": "/entries/98",
+        "registry": {
+          "key": "3-2|삼각비의 활용|08",
+          "grade": "중3",
+          "unitSection": "삼각비의 활용",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비의 활용",
+          "rpmType": "08",
+          "rpmTitle": "삼각형의 넓이 예각이 주어진 경우"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/32",
+            "record": {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|08",
+              "live_count": 24
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "triangleArea-helper",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "startLine1based": 880,
+        "endLine1based": 932
+      },
+      "fullRuleBlock": "function triangleArea(rng: Rng, angles: readonly number[]): Body {\n  return attempt(200, () => {\n    const ang = pick(rng, angles);\n    const a = intBetween(rng, 3, 16);\n    const b = intBetween(rng, 3, 16);\n    const sinT = exact(0, ang > 90 ? 180 - ang : ang)!;\n    const area = surdMul(surdMul(surd(a * b, 1, 1), sinT), surd(1, 1, 2));\n    if (area.d !== 1) return null;\n    // 짧은 $\\overline{AB}$ 에 치수를 달면 엔진이 변과 겹쳐 던진다\n    // (J30503-A09, 적재 씨앗 20260827 v0: 4cm/16cm @120° → 맞춘 뒤 39px).\n    const ax = a * Math.cos(ang * DEG);\n    const raw: Record<string, XY> = {\n      B: [0, 0],\n      C: [b, 0],\n      A: [ax, a * Math.sin(ang * DEG)],\n    };\n    if (fittedSidePx(raw, \"A\", \"B\") < MIN_DIM_SIDE_PX) return null;\n    // 끼인각 B 가 예각이어도 $a\\cos B > b$ 이면 C 가 둔각이라 C 가 AB 밑에\n    // 붙는다. 그때 AB 치수 곡선은 안쪽·바깥쪽 모두 변과 겹친다\n    // (활용 08, 15cm/8cm @30° — 맞춘 뒤 AB 는 203px 로 **긴데** 던진다).\n    if (ax > b + 1e-6) return null;\n    const mode = intBetween(rng, 0, 1);\n    const shrink =\n      ang > 90 ? `\\\\sin(180^\\\\circ-${ang}^\\\\circ)` : `\\\\sin ${ang}^\\\\circ`;\n    const rule = `(삼각형의 넓이)$=\\\\dfrac{1}{2}\\\\times\\\\overline{AB}\\\\times\\\\overline{BC}\\\\times${shrink}$`;\n    if (mode === 0) {\n      return {\n        content: `삼각형 $ABC$에서 $\\\\overline{AB}=${cm(a)}$, $\\\\overline{BC}=${cm(b)}$, $\\\\angle B=${ang}^\\\\circ$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,\n        answer: `$${cm2(surdText(area))}$`,\n        solution: `${rule}이다.\\n따라서 넓이는 $\\\\dfrac{1}{2}\\\\times${a}\\\\times${b}\\\\times${surdText(sinT)}=${surdText(area)}\\\\,(\\\\mathrm{cm}^2)$이다.`,\n        facts: { a, b, ang, mode, an: area.n, ar: area.r },\n        figureSpec: figTwoSides({\n          ab: a,\n          bc: b,\n          angB: ang,\n          dims: { AB: dimCm(a), BC: dimCm(b) },\n        }),\n      };\n    }\n    return {\n      content: `삼각형 $ABC$에서 $\\\\overline{AB}=${cm(a)}$, $\\\\angle B=${ang}^\\\\circ$이고 넓이가 $${cm2(surdText(area))}$일 때, $\\\\overline{BC}$의 길이를 구하시오.`,\n      answer: `$${cm(b)}$`,\n      solution: `${rule}이다.\\n$\\\\dfrac{1}{2}\\\\times${a}\\\\times\\\\overline{BC}\\\\times${surdText(sinT)}=${surdText(area)}$이므로 $\\\\overline{BC}=${b}\\\\,(\\\\mathrm{cm})$이다.`,\n      facts: { a, b, ang, mode, an: area.n, ar: area.r },\n      figureSpec: figTwoSides({\n        ab: a,\n        bc: b,\n        angB: ang,\n        dims: { AB: dimCm(a) },\n      }),\n    };\n  });\n}"
+    },
+    {
+      "key": "3-2|원과 직선|07",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "startLine1based": 891,
+        "endLine1based": 925
+      },
+      "fullRuleBlock": "def(\"07\", \"원의 접선과 반지름\", \"기본\", (rng): Body => {\n    const mode = pick(rng, [0, 1, 2, 3] as const);\n    if (mode === 3) {\n      const r = intBetween(rng, 3, 10);\n      const po = 2 * r;\n      return {\n        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 접선의 접점을 $A$라 하자. 원 $O$의 반지름의 길이가 ${cm(r)}이고 $\\\\angle APO=30^\\\\circ$일 때, $\\\\overline{OP}$의 길이를 구하시오.`,\n        answer: cm(po),\n        solution: `접선은 접점을 지나는 반지름과 수직이므로 $\\\\angle OAP=90^\\\\circ$이다.\\n직각삼각형 $OAP$에서 $\\\\overline{OA}=\\\\overline{OP}\\\\sin 30^\\\\circ$이므로 $\\\\overline{OP}=2\\\\overline{OA}=2\\\\times${r}=${po}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { mode, r, po, x: po },\n        figureSpec: figTangentRadius({ ratio: 2, deg30: true }),\n      };\n    }\n    const [pa, r, po] = pick(rng, T7);\n    const x = [pa, r, po][mode]!;\n    const contents = [\n      `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 접선의 접점을 $A$라 하자. 원 $O$의 반지름의 길이가 ${cm(r)}이고 $\\\\overline{OP}=${po}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{PA}$의 길이를 구하시오.`,\n      `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 접선의 접점을 $A$라 하자. $\\\\overline{PA}=${pa}\\\\,\\\\mathrm{cm}$, $\\\\overline{OP}=${po}\\\\,\\\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.`,\n      `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 접선의 접점을 $A$라 하자. 원 $O$의 반지름의 길이가 ${cm(r)}이고 $\\\\overline{PA}=${pa}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{OP}$의 길이를 구하시오.`,\n    ];\n    const works = [\n      `$\\\\overline{PA}=\\\\sqrt{${po}^2-${r}^2}=${pa}\\\\,(\\\\mathrm{cm})$`,\n      `$\\\\overline{OA}=\\\\sqrt{${po}^2-${pa}^2}=${r}\\\\,(\\\\mathrm{cm})$`,\n      `$\\\\overline{OP}=\\\\sqrt{${pa}^2+${r}^2}=${po}\\\\,(\\\\mathrm{cm})$`,\n    ];\n    return {\n      content: contents[mode]!,\n      answer: cm(x),\n      solution: `접선은 접점을 지나는 반지름과 수직이므로 $\\\\angle OAP=90^\\\\circ$이다.\\n직각삼각형 $OAP$에서 피타고라스 정리에 의하여 ${works[mode]!}이다.`,\n      facts: { mode, pa, r, po, x },\n      figureSpec: figTangentRadius({ ratio: po / r, deg30: false }),\n    };\n  }),\n\n  ",
+      "blockSha256Utf8": "a0bc2354bb7ae87dcc0fd2ba3328bd8844467d74f53db45ff9028d1aa5d80b24",
+      "snapshotRecord": {
+        "registryPointer": "/entries/20",
+        "registry": {
+          "key": "3-2|원과 직선|07",
+          "grade": "중3",
+          "unitSection": "원의 접선",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "07",
+          "rpmTitle": "원의 접선과 반지름"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/140",
+            "record": {
+              "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+              "family_key": "mid:3-2|원과 직선|07",
+              "live_count": 46
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|원과 직선|08",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "startLine1based": 925,
+        "endLine1based": 972
+      },
+      "fullRuleBlock": "def(\n    \"08\",\n    \"원의 접선과 반지름 중심이 같은 원이 주어진 경우\",\n    \"응용\",\n    (rng): Body => {\n      const mode = pick(rng, [0, 1, 2, 3] as const);\n      const [h, rs, rb] = pick(rng, T8);\n      const ab = 2 * h;\n      const fig = figConcentric({ rb, rs, h });\n      if (mode === 0) {\n        return {\n          content: `중심이 같은 두 원의 반지름의 길이가 각각 ${cm(rb)}, ${cm(rs)}이다. 작은 원에 접하는 직선이 큰 원과 만나는 두 점을 각각 $A$, $B$라 할 때, $\\\\overline{AB}$의 길이를 구하시오.`,\n          answer: cm(ab),\n          solution: `접점을 $H$라 하면 $\\\\overline{OH}\\\\perp\\\\overline{AB}$이므로 $H$는 $\\\\overline{AB}$의 중점이다.\\n직각삼각형 $OAH$에서 $\\\\overline{AH}=\\\\sqrt{${rb}^2-${rs}^2}=${h}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 $\\\\overline{AB}=2\\\\overline{AH}=${ab}\\\\,\\\\mathrm{cm}$이다.`,\n          facts: { mode, h, rs, rb, ab, x: ab },\n          figureSpec: fig,\n        };\n      }\n      if (mode === 1) {\n        return {\n          content: `중심이 같은 두 원에서 큰 원의 현 $AB$는 작은 원의 접선이고 점 $H$는 그 접점이다. 큰 원의 반지름의 길이가 ${cm(rb)}이고 $\\\\overline{AB}=${ab}\\\\,\\\\mathrm{cm}$일 때, 작은 원의 반지름의 길이를 구하시오.`,\n          answer: cm(rs),\n          solution: `$\\\\overline{OH}\\\\perp\\\\overline{AB}$이므로 $\\\\overline{AH}=\\\\dfrac{1}{2}\\\\overline{AB}=${h}\\\\,(\\\\mathrm{cm})$이다.\\n직각삼각형 $OAH$에서 $\\\\overline{OH}=\\\\sqrt{${rb}^2-${h}^2}=${rs}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: { mode, h, rs, rb, ab, x: rs },\n          figureSpec: fig,\n        };\n      }\n      if (mode === 2) {\n        return {\n          content: `중심이 같은 두 원에서 큰 원의 현 $AB$는 작은 원의 접선이고 점 $H$는 그 접점이다. 작은 원의 반지름의 길이가 ${cm(rs)}이고 $\\\\overline{AB}=${ab}\\\\,\\\\mathrm{cm}$일 때, 큰 원의 반지름의 길이를 구하시오.`,\n          answer: cm(rb),\n          solution: `$\\\\overline{OH}\\\\perp\\\\overline{AB}$이므로 $\\\\overline{AH}=\\\\dfrac{1}{2}\\\\overline{AB}=${h}\\\\,(\\\\mathrm{cm})$이다.\\n직각삼각형 $OAH$에서 $\\\\overline{OA}=\\\\sqrt{${h}^2+${rs}^2}=${rb}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: { mode, h, rs, rb, ab, x: rb },\n          figureSpec: fig,\n        };\n      }\n      const area = h * h;\n      return {\n        content: `중심이 같은 두 원에서 큰 원의 현 $AB$가 작은 원에 접한다. $\\\\overline{AB}=${ab}\\\\,\\\\mathrm{cm}$일 때, 두 원 사이에 낀 부분의 넓이를 구하시오.`,\n        answer: `$${area}\\\\pi\\\\,\\\\mathrm{cm}^2$`,\n        solution: `큰 원과 작은 원의 반지름의 길이를 각각 $R\\\\,\\\\mathrm{cm}$, $r\\\\,\\\\mathrm{cm}$라 하고 접점을 $H$라 하면 $\\\\overline{AH}=\\\\dfrac{1}{2}\\\\overline{AB}=${h}\\\\,(\\\\mathrm{cm})$이다.\\n직각삼각형 $OAH$에서 $R^2-r^2=\\\\overline{AH}^2=${area}$이다.\\n따라서 구하는 넓이는 $\\\\pi R^2-\\\\pi r^2=${area}\\\\pi\\\\,(\\\\mathrm{cm}^2)$이다.`,\n        facts: { mode, h, rs, rb, ab, x: area },\n        figureSpec: fig,\n      };\n    },\n  ),\n\n  ",
+      "blockSha256Utf8": "f01d10104ef2a9be48659d3f7429c649d4d53c19514bf333d34fb8a61a527fe4",
+      "snapshotRecord": {
+        "registryPointer": "/entries/21",
+        "registry": {
+          "key": "3-2|원과 직선|08",
+          "grade": "중3",
+          "unitSection": "원의 접선",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "08",
+          "rpmTitle": "원의 접선과 반지름 중심이 같은 원이 주어진 경우"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/141",
+            "record": {
+              "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+              "family_key": "mid:3-2|원과 직선|08",
+              "live_count": 48
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|원과 직선|09",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "startLine1based": 972,
+        "endLine1based": 1040
+      },
+      "fullRuleBlock": "def(\"09\", \"원의 접선의 성질\", \"응용\", (rng): Body => {\n    const mode = pick(rng, [0, 1, 2, 3, 4] as const);\n    if (mode === 0 || mode === 1) {\n      const p = 2 * intBetween(rng, 15, 35);\n      const x = mode === 0 ? 180 - p : (180 - p) / 2;\n      const ask =\n        mode === 0\n          ? `$\\\\angle AOB$의 크기를 구하시오.`\n          : `$\\\\angle PAB$의 크기를 구하시오.`;\n      const tail =\n        mode === 0\n          ? `접선은 접점을 지나는 반지름과 수직이므로 $\\\\angle PAO=\\\\angle PBO=90^\\\\circ$이다.\\n사각형 $APBO$의 내각의 크기의 합에서 $\\\\angle AOB=360^\\\\circ-90^\\\\circ-90^\\\\circ-${p}^\\\\circ=${x}^\\\\circ$이다.`\n          : `$\\\\overline{PA}=\\\\overline{PB}$이므로 삼각형 $PAB$는 이등변삼각형이다.\\n따라서 $\\\\angle PAB=\\\\dfrac{1}{2}\\\\times(180^\\\\circ-${p}^\\\\circ)=${x}^\\\\circ$이다.`;\n      return {\n        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\\\angle APB=${p}^\\\\circ$일 때, ${ask}`,\n        answer: `$${x}^\\\\circ$`,\n        solution: tail,\n        facts: { mode, p, x },\n        figureSpec: figTwoTangents({\n          p,\n          labelP: `${p}°`,\n          labelO: mode === 0 ? \"x\" : undefined,\n          labelA: mode === 1 ? \"x\" : undefined,\n          chord: mode === 1,\n          right90: mode === 0,\n        }),\n      };\n    }\n    if (mode === 2) {\n      const l = intBetween(rng, 3, 15);\n      return {\n        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\\\overline{PA}=${l}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{PB}$의 길이를 구하시오.`,\n        answer: cm(l),\n        solution: `원 밖의 한 점에서 그 원에 그은 두 접선의 길이는 같다.\\n따라서 $\\\\overline{PB}=\\\\overline{PA}=${l}\\\\,\\\\mathrm{cm}$이다.`,\n        facts: { mode, l, x: l },\n        figureSpec: figTwoTangents({ p: 44, chord: false, right90: true }),\n      };\n    }\n    if (mode === 3) {\n      const l = intBetween(rng, 4, 14);\n      return {\n        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\\\overline{PA}=${l}\\\\,\\\\mathrm{cm}$, $\\\\angle APB=60^\\\\circ$일 때, 현 $AB$의 길이를 구하시오.`,\n        answer: cm(l),\n        solution: `$\\\\overline{PA}=\\\\overline{PB}$이고 $\\\\angle APB=60^\\\\circ$이므로 삼각형 $PAB$는 정삼각형이다.\\n따라서 $\\\\overline{AB}=\\\\overline{PA}=${l}\\\\,\\\\mathrm{cm}$이다.`,\n        facts: { mode, l, p: 60, x: l },\n        figureSpec: figTwoTangents({\n          p: 60,\n          labelP: \"60°\",\n          chord: true,\n          right90: false,\n        }),\n      };\n    }\n    const r = intBetween(rng, 3, 9);\n    return {\n      content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\\\angle AOB=120^\\\\circ$, $\\\\overline{OA}=${r}\\\\,\\\\mathrm{cm}$일 때, 현 $AB$의 길이를 구하시오.`,\n      answer: `$${r}\\\\sqrt{3}\\\\,\\\\mathrm{cm}$`,\n      solution: `삼각형 $OAB$는 $\\\\overline{OA}=\\\\overline{OB}$인 이등변삼각형이다.\\n$O$에서 $\\\\overline{AB}$에 내린 수선의 발을 $M$이라 하면 $\\\\angle AOM=60^\\\\circ$이므로 $\\\\overline{AM}=${r}\\\\sin 60^\\\\circ=\\\\dfrac{${r}\\\\sqrt{3}}{2}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 $\\\\overline{AB}=2\\\\overline{AM}=${r}\\\\sqrt{3}\\\\,\\\\mathrm{cm}$이다.`,\n      facts: { mode, r, aob: 120, x: r },\n      figureSpec: figTwoTangents({\n        p: 60,\n        labelO: \"120°\",\n        chord: true,\n        right90: false,\n      }),\n    };\n  }),\n\n  ",
+      "blockSha256Utf8": "cf53ffe07c52d2627562704c03dd3632f88205c39db2fc99f9b808f8305b9054",
+      "snapshotRecord": {
+        "registryPointer": "/entries/22",
+        "registry": {
+          "key": "3-2|원과 직선|09",
+          "grade": "중3",
+          "unitSection": "원의 접선",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "09",
+          "rpmTitle": "원의 접선의 성질"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/142",
+            "record": {
+              "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+              "family_key": "mid:3-2|원과 직선|09",
+              "live_count": 46
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|원과 직선|10",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "startLine1based": 1040,
+        "endLine1based": 1081
+      },
+      "fullRuleBlock": "def(\"10\", \"원의 접선의 성질의 응용\", \"응용\", (rng): Body => {\n    const mode = pick(rng, [0, 1, 2, 3, 4] as const);\n    if (mode === 3) {\n      const [r, ae, oa] = pick(rng, T10);\n      const per = 2 * ae;\n      return {\n        content: `점 $A$에서 원 $O$에 그은 두 접선의 접점을 각각 $D$, $E$라 하고, 원 $O$에 접하는 직선이 $\\\\overline{AD}$, $\\\\overline{AE}$와 만나는 점을 각각 $B$, $C$라 하자. $\\\\overline{OA}=${oa}\\\\,\\\\mathrm{cm}$, $\\\\overline{OE}=${r}\\\\,\\\\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,\n        answer: cm(per),\n        solution: `$\\\\angle OEA=90^\\\\circ$이므로 직각삼각형 $OAE$에서 $\\\\overline{AE}=\\\\sqrt{${oa}^2-${r}^2}=${ae}\\\\,(\\\\mathrm{cm})$이다.\\n접선의 길이가 같으므로 $\\\\overline{BD}=\\\\overline{BF}$, $\\\\overline{CE}=\\\\overline{CF}$이다. ($F$는 $\\\\overline{BC}$의 접점)\\n따라서 삼각형 $ABC$의 둘레의 길이는 $\\\\overline{AD}+\\\\overline{AE}=2\\\\times${ae}=${per}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { mode, r, ae, oa, x: per },\n        figureSpec: figTangentTri({\n          ratio: oa / r,\n          showRadius: true,\n          label60: false,\n        }),\n      };\n    }\n    if (mode === 4) {\n      const r = intBetween(rng, 3, 8);\n      const coef = 2 * r;\n      return {\n        content: `점 $A$에서 원 $O$에 그은 두 접선의 접점을 각각 $D$, $E$라 하고, 원 $O$에 접하는 직선이 $\\\\overline{AD}$, $\\\\overline{AE}$와 만나는 점을 각각 $B$, $C$라 하자. $\\\\angle EAD=60^\\\\circ$, $\\\\overline{OE}=${r}\\\\,\\\\mathrm{cm}$일 때, 삼각형 $ABC$의 둘레의 길이를 구하시오.`,\n        answer: `$${coef}\\\\sqrt{3}\\\\,\\\\mathrm{cm}$`,\n        solution: `$\\\\overline{OA}$는 $\\\\angle EAD$를 이등분하므로 $\\\\angle OAE=30^\\\\circ$이고 $\\\\angle OEA=90^\\\\circ$이다.\\n직각삼각형 $OAE$에서 $\\\\overline{AE}=\\\\dfrac{${r}}{\\\\tan 30^\\\\circ}=${r}\\\\sqrt{3}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 삼각형 $ABC$의 둘레의 길이는 $2\\\\overline{AE}=${coef}\\\\sqrt{3}\\\\,\\\\mathrm{cm}$이다.`,\n        facts: { mode, r, x: coef },\n        figureSpec: figTangentTri({\n          ratio: 2,\n          showRadius: true,\n          label60: true,\n        }),\n      };\n    }\n    return attempt(80, () => {\n      const ad = intBetween(rng, 9, 16);\n      const b1 = intBetween(rng, 2, 7);\n      const c1 = intBetween(rng, 2, 7);\n      if (ad <= b1 + c1 + 2) return null; // 삼각형이 눌린다\n      return m10Body(mode, ad, b1, c1);\n    });\n  }),\n\n  ",
+      "blockSha256Utf8": "888b98a7d951f0f34a332ce21fda971d58f223557215b871d8cb9cac000e0568",
+      "snapshotRecord": {
+        "registryPointer": "/entries/23",
+        "registry": {
+          "key": "3-2|원과 직선|10",
+          "grade": "중3",
+          "unitSection": "원의 접선",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "10",
+          "rpmTitle": "원의 접선의 성질의 응용"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/143",
+            "record": {
+              "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+              "family_key": "mid:3-2|원과 직선|10",
+              "live_count": 48
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|원과 직선|11",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "startLine1based": 1081,
+        "endLine1based": 1136
+      },
+      "fullRuleBlock": "def(\"11\", \"반원에서의 접선\", \"심화하\", (rng): Body => {\n    const mode = pick(rng, [0, 1, 2, 3, 4] as const);\n    const [a, b, r] = pick(rng, T11);\n    const ab = 2 * r;\n    const cd = a + b;\n    const fig = figSemicircleTan({ a, b, r });\n    const head = `$\\\\overline{AB}$는 반원 $O$의 지름이고 $\\\\overline{AD}$, $\\\\overline{BC}$, $\\\\overline{CD}$는 반원 $O$의 접선이다. (점 $E$는 $\\\\overline{CD}$의 접점)`;\n    if (mode === 0) {\n      return {\n        content: `${head} $\\\\overline{AD}=${a}\\\\,\\\\mathrm{cm}$, $\\\\overline{BC}=${b}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{AB}$의 길이를 구하시오.`,\n        answer: cm(ab),\n        solution: `접선의 길이가 같으므로 $\\\\overline{DE}=\\\\overline{DA}=${a}\\\\,\\\\mathrm{cm}$, $\\\\overline{CE}=\\\\overline{CB}=${b}\\\\,\\\\mathrm{cm}$, 즉 $\\\\overline{CD}=${cd}\\\\,\\\\mathrm{cm}$이다.\\n$D$에서 $\\\\overline{BC}$ 또는 그 연장선에 내린 수선의 발을 $H$라 하면 $\\\\overline{AB}=\\\\overline{DH}=\\\\sqrt{${cd}^2-${Math.abs(a - b)}^2}=${ab}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { mode, a, b, r, x: ab },\n        figureSpec: fig,\n      };\n    }\n    if (mode === 1) {\n      const per = ab + 2 * cd;\n      return {\n        content: `${head} $\\\\overline{AD}=${a}\\\\,\\\\mathrm{cm}$, $\\\\overline{BC}=${b}\\\\,\\\\mathrm{cm}$일 때, 사각형 $ABCD$의 둘레의 길이를 구하시오.`,\n        answer: cm(per),\n        solution: `$\\\\overline{CD}=\\\\overline{DE}+\\\\overline{EC}=\\\\overline{DA}+\\\\overline{CB}=${cd}\\\\,(\\\\mathrm{cm})$이고, $\\\\overline{AB}=\\\\sqrt{${cd}^2-${Math.abs(a - b)}^2}=${ab}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 둘레의 길이는 $${ab}+${b}+${cd}+${a}=${per}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { mode, a, b, r, x: per },\n        figureSpec: fig,\n      };\n    }\n    if (mode === 2) {\n      const area = cd * r;\n      return {\n        content: `${head} $\\\\overline{AD}=${a}\\\\,\\\\mathrm{cm}$, $\\\\overline{BC}=${b}\\\\,\\\\mathrm{cm}$일 때, 사각형 $ABCD$의 넓이를 구하시오.`,\n        answer: `$${area}\\\\,\\\\mathrm{cm}^2$`,\n        solution: `$\\\\overline{AD}\\\\parallel\\\\overline{BC}$이고 $\\\\overline{AB}=\\\\sqrt{(${a}+${b})^2-${Math.abs(a - b)}^2}=${ab}\\\\,(\\\\mathrm{cm})$이다.\\n사다리꼴 $ABCD$의 넓이는 $\\\\dfrac{1}{2}\\\\times(${a}+${b})\\\\times${ab}=${area}\\\\,(\\\\mathrm{cm}^2)$이다.`,\n        facts: { mode, a, b, r, x: area },\n        figureSpec: fig,\n      };\n    }\n    if (mode === 3) {\n      return {\n        content: `${head} $\\\\overline{AB}=${ab}\\\\,\\\\mathrm{cm}$, $\\\\overline{AD}=${a}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{BC}$의 길이를 구하시오.`,\n        answer: cm(b),\n        solution: `$\\\\overline{BC}=x\\\\,\\\\mathrm{cm}$라 하면 $\\\\overline{CD}=\\\\overline{DE}+\\\\overline{EC}=(${a}+x)\\\\,\\\\mathrm{cm}$이다.\\n$D$에서 $\\\\overline{BC}$ 또는 그 연장선에 내린 수선을 그으면 $(${a}+x)^2=(${a}-x)^2+${ab}^2$이므로 $${4 * a}x=${ab * ab}$, 즉 $x=${b}$이다.`,\n        facts: { mode, a, b, r, x: b },\n        figureSpec: fig,\n      };\n    }\n    const area = (cd * r) / 2;\n    return {\n      content: `${head} $\\\\overline{AD}=${a}\\\\,\\\\mathrm{cm}$, $\\\\overline{BC}=${b}\\\\,\\\\mathrm{cm}$일 때, 삼각형 $DOC$의 넓이를 구하시오.`,\n      answer: `$${area}\\\\,\\\\mathrm{cm}^2$`,\n      solution: `$\\\\overline{CD}=\\\\overline{DA}+\\\\overline{CB}=${cd}\\\\,(\\\\mathrm{cm})$이고, 반원의 반지름은 $\\\\overline{AB}=\\\\sqrt{${cd}^2-${Math.abs(a - b)}^2}=${ab}\\\\,(\\\\mathrm{cm})$에서 $${r}\\\\,\\\\mathrm{cm}$이다.\\n$\\\\overline{OE}\\\\perp\\\\overline{CD}$이고 $\\\\overline{OE}=${r}\\\\,\\\\mathrm{cm}$이므로 삼각형 $DOC$의 넓이는 $\\\\dfrac{1}{2}\\\\times${cd}\\\\times${r}=${area}\\\\,(\\\\mathrm{cm}^2)$이다.`,\n      facts: { mode, a, b, r, x: area },\n      figureSpec: fig,\n    };\n  }),\n\n  ",
+      "blockSha256Utf8": "4c51d89773119d04017de2ac0ffdc39e5d01a7ede1f685a212788c3fa8ff79d4",
+      "snapshotRecord": {
+        "registryPointer": "/entries/24",
+        "registry": {
+          "key": "3-2|원과 직선|11",
+          "grade": "중3",
+          "unitSection": "원의 접선",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "11",
+          "rpmTitle": "반원에서의 접선"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/144",
+            "record": {
+              "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+              "family_key": "mid:3-2|원과 직선|11",
+              "live_count": 46
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|원과 직선|16",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "startLine1based": 1433,
+        "endLine1based": 1531
+      },
+      "fullRuleBlock": "def(\"16\", \"원에 외접하는 사각형의 응용\", \"심화하\", (rng): Body => {\n    const mode = pick(rng, [0, 1, 2, 3, 4] as const);\n    if (mode === 3) {\n      const [r, tD, tC] = pick(rng, T16T);\n      const cd = tD + tC;\n      const sub = pick(rng, [0, 1] as const);\n      const x = sub === 0 ? (2 * r + cd) * r : 2 * (2 * r + cd);\n      const ask = sub === 0 ? \"넓이\" : \"둘레의 길이\";\n      const unitTail = sub === 0 ? \"\\\\mathrm{cm}^2\" : \"\\\\mathrm{cm}\";\n      const work =\n        sub === 0\n          ? `넓이는 $\\\\dfrac{1}{2}\\\\times(\\\\overline{AD}+\\\\overline{BC})\\\\times\\\\overline{AB}=\\\\dfrac{1}{2}\\\\times${2 * r + cd}\\\\times${2 * r}=${x}\\\\,(\\\\mathrm{cm}^2)$이다.`\n          : `둘레의 길이는 $\\\\overline{AB}+\\\\overline{CD}+(\\\\overline{AD}+\\\\overline{BC})=${2 * r}+${cd}+${2 * r + cd}=${x}\\\\,(\\\\mathrm{cm})$이다.`;\n      return {\n        content: `반지름의 길이가 ${cm(r)}인 원 $O$에 외접하는 사다리꼴 $ABCD$에서 $\\\\angle A=\\\\angle B=90^\\\\circ$이고 $\\\\overline{CD}=${cd}\\\\,\\\\mathrm{cm}$일 때, 사다리꼴 $ABCD$의 ${ask}를 구하시오.`,\n        answer: `$${x}\\\\,${unitTail}$`,\n        solution: `$\\\\angle A=\\\\angle B=90^\\\\circ$이므로 $\\\\overline{AB}=2\\\\times${r}=${2 * r}\\\\,(\\\\mathrm{cm})$이다.\\n외접하는 사각형의 성질에서 $\\\\overline{AD}+\\\\overline{BC}=\\\\overline{AB}+\\\\overline{CD}=${2 * r}+${cd}=${2 * r + cd}\\\\,(\\\\mathrm{cm})$이다.\\n${work}`,\n        facts: { mode, sub, r, tD, tC, cd, x },\n        figureSpec: figTrapTan({ r, tD, tC }),\n      };\n    }\n    const [w, t, d] = pick(rng, T16);\n    const L = (w + t + d) / 2;\n    const head = `원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자.`;\n    if (mode === 0) {\n      return {\n        content: `${head} $\\\\overline{CD}=${w}\\\\,\\\\mathrm{cm}$, $\\\\overline{DE}=${d}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{AD}$의 길이를 구하시오.`,\n        answer: cm(L),\n        solution: `직각삼각형 $DEC$에서 $\\\\overline{CE}=\\\\sqrt{${d}^2-${w}^2}=${t}\\\\,(\\\\mathrm{cm})$이다.\\n원 $O$는 사각형 $ABED$의 네 변에 모두 접하므로 $\\\\overline{AB}+\\\\overline{DE}=\\\\overline{AD}+\\\\overline{BE}$이다.\\n$\\\\overline{BE}=\\\\overline{AD}-${t}\\\\,(\\\\mathrm{cm})$이므로 $${w}+${d}=2\\\\overline{AD}-${t}$, 즉 $\\\\overline{AD}=${L}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { mode, w, t, d, L, x: L },\n        figureSpec: figRectTan({ w, t, L, labelGH: false }),\n      };\n    }\n    if (mode === 1) {\n      const x = (d - t) / 2;\n      return {\n        content: `${head} 점 $G$는 변 $BC$ 위의 접점이다. $\\\\overline{AB}=${w}\\\\,\\\\mathrm{cm}$, $\\\\overline{AD}=${L}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{GE}$의 길이를 구하시오.`,\n        answer: cm(x),\n        solution: `$\\\\overline{CE}=e\\\\,\\\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $${w}+\\\\overline{DE}=${L}+(${L}-e)$, 즉 $\\\\overline{DE}=(${2 * L - w}-e)\\\\,\\\\mathrm{cm}$이다.\\n직각삼각형 $DEC$에서 $(${2 * L - w}-e)^2=e^2+${w}^2$을 풀면 $e=${t}$이다.\\n$\\\\overline{BG}=\\\\dfrac{1}{2}\\\\times${w}=${w / 2}\\\\,(\\\\mathrm{cm})$이므로 $\\\\overline{GE}=(${L}-${t})-${w / 2}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { mode, w, t, d, L, x },\n        figureSpec: figRectTan({ w, t, L, labelGH: true }),\n      };\n    }\n    if (mode === 2) {\n      const x = 2 * L;\n      return {\n        content: `${head} $\\\\overline{AB}=${w}\\\\,\\\\mathrm{cm}$, $\\\\overline{AD}=${L}\\\\,\\\\mathrm{cm}$일 때, 삼각형 $DEC$의 둘레의 길이를 구하시오.`,\n        answer: cm(x),\n        solution: `$\\\\overline{CE}=e\\\\,\\\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\\\overline{DE}=(${2 * L - w}-e)\\\\,\\\\mathrm{cm}$이다.\\n직각삼각형 $DEC$에서 $(${2 * L - w}-e)^2=e^2+${w}^2$을 풀면 $e=${t}$, $\\\\overline{DE}=${d}\\\\,\\\\mathrm{cm}$이다.\\n따라서 둘레의 길이는 $${w}+${t}+${d}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { mode, w, t, d, L, x },\n        figureSpec: figRectTan({ w, t, L, labelGH: false }),\n      };\n    }\n    const x = L - t;\n    return {\n      content: `${head} $\\\\overline{AB}=${w}\\\\,\\\\mathrm{cm}$, $\\\\overline{AD}=${L}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{BE}$의 길이를 구하시오.`,\n      answer: cm(x),\n      solution: `$\\\\overline{CE}=e\\\\,\\\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\\\overline{DE}=(${2 * L - w}-e)\\\\,\\\\mathrm{cm}$이다.\\n직각삼각형 $DEC$에서 $(${2 * L - w}-e)^2=e^2+${w}^2$을 풀면 $e=${t}$이다.\\n따라서 $\\\\overline{BE}=${L}-${t}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n      facts: { mode, w, t, d, L, x },\n      figureSpec: figRectTan({ w, t, L, labelGH: false }),\n    };\n  }),\n];\n\n// ── 유형 10 의 길이 갈래 본문 (모드 0·1·2 공용) ────────\n\nfunction m10Body(mode: 0 | 1 | 2, ad: number, b1: number, c1: number): Body {\n  const ab = ad - b1;\n  const ac = ad - c1;\n  const bc = b1 + c1;\n  const head = `점 $A$에서 원 $O$에 그은 두 접선의 접점을 각각 $D$, $E$라 하고, 원 $O$에 접하는 직선이 $\\\\overline{AD}$, $\\\\overline{AE}$와 만나는 점을 각각 $B$, $C$($\\\\overline{BC}$의 접점은 $F$)라 하자.`;\n  const fig = figTangentTri({ ratio: 2.2, showRadius: false, label60: false });\n  if (mode === 0) {\n    return {\n      content: `${head} $\\\\overline{AB}=${ab}\\\\,\\\\mathrm{cm}$, $\\\\overline{AC}=${ac}\\\\,\\\\mathrm{cm}$, $\\\\overline{BC}=${bc}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{AD}$의 길이를 구하시오.`,\n      answer: cm(ad),\n      solution: `$\\\\overline{BD}=\\\\overline{BF}$, $\\\\overline{CE}=\\\\overline{CF}$이므로 삼각형 $ABC$의 둘레의 길이는 $\\\\overline{AD}+\\\\overline{AE}=2\\\\overline{AD}$이다.\\n따라서 $\\\\overline{AD}=\\\\dfrac{1}{2}\\\\times(${ab}+${ac}+${bc})=${ad}\\\\,(\\\\mathrm{cm})$이다.`,\n      facts: { mode, ad, ab, ac, bc, x: ad },\n      figureSpec: fig,\n    };\n  }\n  if (mode === 1) {\n    return {\n      content: `${head} $\\\\overline{AB}=${ab}\\\\,\\\\mathrm{cm}$, $\\\\overline{AD}=${ad}\\\\,\\\\mathrm{cm}$, $\\\\overline{BC}=${bc}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{CE}$의 길이를 구하시오.`,\n      answer: cm(c1),\n      solution: `$\\\\overline{BD}=\\\\overline{AD}-\\\\overline{AB}=${ad}-${ab}=${b1}\\\\,(\\\\mathrm{cm})$이고 $\\\\overline{BF}=\\\\overline{BD}=${b1}\\\\,\\\\mathrm{cm}$이다.\\n$\\\\overline{CF}=\\\\overline{BC}-\\\\overline{BF}=${bc}-${b1}=${c1}\\\\,(\\\\mathrm{cm})$이므로 $\\\\overline{CE}=\\\\overline{CF}=${c1}\\\\,\\\\mathrm{cm}$이다.`,\n      facts: { mode, ad, ab, bc, x: c1 },\n      figureSpec: fig,\n    };\n  }\n  return {\n    content: `${head} $\\\\overline{AB}=${ab}\\\\,\\\\mathrm{cm}$, $\\\\overline{AC}=${ac}\\\\,\\\\mathrm{cm}$, $\\\\overline{AD}=${ad}\\\\,\\\\mathrm{cm}$일 때, $\\\\overline{BC}$의 길이를 구하시오.`,\n    answer: cm(bc),\n    solution: `$\\\\overline{BF}=\\\\overline{BD}=${ad}-${ab}=${b1}\\\\,(\\\\mathrm{cm})$이고 $\\\\overline{CF}=\\\\overline{CE}=\\\\overline{AE}-\\\\overline{AC}=${ad}-${ac}=${c1}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 $\\\\overline{BC}=${b1}+${c1}=${bc}\\\\,(\\\\mathrm{cm})$이다.`,\n    facts: { mode, ad, ab, ac, x: bc },\n    figureSpec: fig,\n  };\n}\n",
+      "blockSha256Utf8": "d4fb2943af0d08cca13fa30bafa5178f7ad8e34a8ced4f24630d601755937cae",
+      "snapshotRecord": {
+        "registryPointer": "/entries/29",
+        "registry": {
+          "key": "3-2|원과 직선|16",
+          "grade": "중3",
+          "unitSection": "원의 접선",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "16",
+          "rpmTitle": "원에 외접하는 사각형의 응용"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/150",
+            "record": {
+              "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+              "family_key": "mid:3-2|원과 직선|16",
+              "live_count": 42
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "T11-parameter-pool",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "startLine1based": 753
+      },
+      "fullRuleBlock": "const T11 = [\n  [9, 4, 6],\n  [4, 9, 6],\n  [8, 2, 4],\n  [2, 8, 4],\n  [12, 3, 6],\n  [3, 12, 6],\n] as const;"
+    },
+    {
+      "key": "3-2|원과 직선|01",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3.ts",
+        "sha256": "aebe6db83ef404352029de1bbbd4607733fcb2a6ca4345dfd59109795d9d69e3",
+        "startLine1based": 124,
+        "endLine1based": 142
+      },
+      "fullRuleBlock": "def(\"원과 직선\", \"01\", \"현의 수직이등분선⑴\", SEC.현, \"기본\", (rng) => {\n    const [l1, l2, r] = pick(rng, TRIPLES);\n    const [d, h] = pick(rng, [\n      [l1, l2],\n      [l2, l1],\n    ] as const);\n    const ab = 2 * h;\n    return {\n      content: `반지름의 길이가 $${r}\\\\,\\\\mathrm{cm}$인 원 $O$의 중심에서 현 $AB$에 내린 수선의 발을 $M$이라 하자. $\\\\overline{OM}=${d}\\\\,\\\\mathrm{cm}$일 때, 현 $AB$의 길이를 구하시오.`,\n      answer: `$${ab}\\\\,\\\\mathrm{cm}$`,\n      solution: `$\\\\overline{OM}\\\\perp\\\\overline{AB}$이므로 $M$은 $\\\\overline{AB}$의 중점이다.\\n직각삼각형 $OAM$에서 $\\\\overline{AM}=\\\\sqrt{${r}^2-${d}^2}=${h}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 $\\\\overline{AB}=2\\\\overline{AM}=${ab}\\\\,\\\\mathrm{cm}$이다.`,\n      facts: { r, d, h, ab },\n      // 발문이 준 것은 $\\overline{OM}$ 뿐이다 — 반지름은 글로만 말하고,\n      // $\\overline{AB}$ 는 **묻는 값**이라 그림에 적으면 답을 알려 준다(09 §2.2 ①).\n      figureSpec: withDims(figChordPerp({ r, d, h }), { OM: dimCm(d) }),\n    };\n  }),\n\n  ",
+      "blockSha256Utf8": "c8f93f5f40825af454f5694540acec7dda4e189883bebc10ed02bfc3694bcc17",
+      "snapshotRecord": {
+        "registryPointer": "/entries/0",
+        "registry": {
+          "key": "3-2|원과 직선|01",
+          "grade": "중3",
+          "unitSection": "원과 현",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "01",
+          "rpmTitle": "현의 수직이등분선⑴"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/108",
+            "record": {
+              "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+              "family_key": "mid:3-2|원과 직선|01",
+              "live_count": 16
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|원과 직선|02",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3.ts",
+        "sha256": "aebe6db83ef404352029de1bbbd4607733fcb2a6ca4345dfd59109795d9d69e3",
+        "startLine1based": 142,
+        "endLine1based": 161
+      },
+      "fullRuleBlock": "def(\"원과 직선\", \"02\", \"현의 수직이등분선⑵\", SEC.현, \"응용\", (rng) => {\n    const [l1, l2, r] = pick(rng, TRIPLES);\n    const [d, h] = pick(rng, [\n      [l1, l2],\n      [l2, l1],\n    ] as const);\n    const ab = 2 * h;\n    return {\n      content: `원 $O$의 중심에서 현 $AB$에 내린 수선의 발을 $M$이라 하자. $\\\\overline{AB}=${ab}\\\\,\\\\mathrm{cm}$, $\\\\overline{OM}=${d}\\\\,\\\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.`,\n      answer: `$${r}\\\\,\\\\mathrm{cm}$`,\n      solution: `$\\\\overline{OM}\\\\perp\\\\overline{AB}$이므로 $\\\\overline{AM}=\\\\dfrac{1}{2}\\\\overline{AB}=${h}\\\\,(\\\\mathrm{cm})$이다.\\n직각삼각형 $OAM$에서 $\\\\overline{OA}=\\\\sqrt{${h}^2+${d}^2}=${r}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 반지름의 길이는 $${r}\\\\,\\\\mathrm{cm}$이다.`,\n      facts: { ab, h, d, r },\n      // ⚠️ $\\overline{AB}$ 는 **현**이라 치수 곡선이 원과 부딪힌다 — 엔진이 던진다\n      //    (실측 `circle_crossings=1`). 원장님 확정 2026-08-25 「지름은 치수선이\n      //    너저분해지니까 빼고」와 같은 자리다: **원을 가로지르는 선에는 안 단다.**\n      figureSpec: withDims(figChordPerp({ r, d, h }), { OM: dimCm(d) }),\n    };\n  }),\n\n  ",
+      "blockSha256Utf8": "0dc5b2fde85091ca975f439f2fdcd45471464f8d4def626ba667074434cef0bc",
+      "snapshotRecord": {
+        "registryPointer": "/entries/1",
+        "registry": {
+          "key": "3-2|원과 직선|02",
+          "grade": "중3",
+          "unitSection": "원과 현",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "02",
+          "rpmTitle": "현의 수직이등분선⑵"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/109",
+            "record": {
+              "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+              "family_key": "mid:3-2|원과 직선|02",
+              "live_count": 16
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|원과 직선|06",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3.ts",
+        "sha256": "aebe6db83ef404352029de1bbbd4607733fcb2a6ca4345dfd59109795d9d69e3",
+        "startLine1based": 225,
+        "endLine1based": 245
+      },
+      "fullRuleBlock": "def(\n    \"원과 직선\",\n    \"06\",\n    \"현의 길이 삼각형이 주어진 경우\",\n    SEC.현,\n    \"응용\",\n    (rng) => {\n      const a = 2 * intBetween(rng, 20, 40);\n      const x = (180 - a) / 2;\n      return {\n        content: `원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\\\overline{OM}=\\\\overline{ON}$이고 $\\\\angle BAC=${a}^\\\\circ$일 때, $\\\\angle ABC$의 크기를 구하시오.`,\n        answer: `$${x}^\\\\circ$`,\n        solution: `$\\\\overline{OM}=\\\\overline{ON}$이므로 $\\\\overline{AB}=\\\\overline{AC}$이다.\\n삼각형 $ABC$는 이등변삼각형이므로 $\\\\angle ABC=\\\\dfrac{1}{2}\\\\times(180^\\\\circ-${a}^\\\\circ)=${x}^\\\\circ$이다.`,\n        facts: { a, x },\n        figureSpec: figInscribedIso({ a }),\n      };\n    },\n  ),\n\n  // ── 원주각 (우리 단원: 원주각) ───────────────────────\n  ",
+      "blockSha256Utf8": "2298332c8441b4cba557d608021f066b0a8e0737195192f864bd9fe51fc001ce",
+      "snapshotRecord": {
+        "registryPointer": "/entries/5",
+        "registry": {
+          "key": "3-2|원과 직선|06",
+          "grade": "중3",
+          "unitSection": "원과 현",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "06",
+          "rpmTitle": "현의 길이 삼각형이 주어진 경우"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/113",
+            "record": {
+              "unit_id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+              "family_key": "mid:3-2|원과 직선|06",
+              "live_count": 16
+            }
+          }
+        ]
+      }
+    },
+    {
+      "key": "3-2|원주각|03",
+      "source": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3.ts",
+        "sha256": "aebe6db83ef404352029de1bbbd4607733fcb2a6ca4345dfd59109795d9d69e3",
+        "startLine1based": 295,
+        "endLine1based": 315
+      },
+      "fullRuleBlock": "def(\n    \"원주각\",\n    \"03\",\n    \"원주각과 중심각의 크기 두 접선이 주어진 경우\",\n    SEC.원주각,\n    \"심화하\",\n    (rng) => {\n      const p = 2 * intBetween(rng, 20, 36);\n      const aob = 180 - p;\n      const x = aob / 2;\n      return {\n        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\\\angle APB=${p}^\\\\circ$일 때, 긴 호 $AB$ 위의 점 $C$에 대하여 $\\\\angle ACB$의 크기를 구하시오.`,\n        answer: `$${x}^\\\\circ$`,\n        solution: `접선은 접점을 지나는 반지름과 수직이므로 $\\\\overline{OA}\\\\perp\\\\overline{PA}$, $\\\\overline{OB}\\\\perp\\\\overline{PB}$이다.\\n사각형 $APBO$의 내각의 크기의 합에서 $\\\\angle AOB=360^\\\\circ-90^\\\\circ-90^\\\\circ-${p}^\\\\circ=${aob}^\\\\circ$이다.\\n따라서 $\\\\angle ACB=\\\\dfrac{1}{2}\\\\angle AOB=${x}^\\\\circ$이다.`,\n        facts: { p, aob, x },\n        figureSpec: figTangentPair({ p }),\n      };\n    },\n  ),\n\n  ",
+      "blockSha256Utf8": "202df91c6996c0c27584a797c32c94d4e8c2900dc024ade2287eb40742e2fb37",
+      "snapshotRecord": {
+        "registryPointer": "/entries/8",
+        "registry": {
+          "key": "3-2|원주각|03",
+          "grade": "중3",
+          "unitSection": "원주각",
+          "rpmBook": "3-2",
+          "rpmMinor": "원주각",
+          "rpmType": "03",
+          "rpmTitle": "원주각과 중심각의 크기 두 접선이 주어진 경우"
+        },
+        "liveMatches": [
+          {
+            "pointer": "/liveFamilies/251",
+            "record": {
+              "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+              "family_key": "mid:3-2|원주각|03",
+              "live_count": 28
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+      "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+      "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3.ts",
+      "sha256": "aebe6db83ef404352029de1bbbd4607733fcb2a6ca4345dfd59109795d9d69e3"
+    }
+  ],
+  "seed": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+    "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+    "startLine1based": 2943,
+    "endLine1based": 2987,
+    "text": "    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수 y=ax^2+bx+c의 그래프\",\n    orderIndex: 479,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수의 최댓값과 최솟값\",\n    orderIndex: 480,\n  },\n  // ── 5. 삼각비 ──\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  },\n  // ── 6. 원의 성질 ──\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원과 현\",\n    orderIndex: 484,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원의 접선\",\n    orderIndex: 485,\n  },\n  { grade: \"중3\", chapter: \"6. 원의 성질\", section: \"원주각\", orderIndex: 486 },\n  {"
+  },
+  "snapshotScope": "Read-only parent capture302 families; no reviewer DB read/current DB claim."
+}

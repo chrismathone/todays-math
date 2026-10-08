@@ -1,0 +1,1578 @@
+{
+  "schema": "independent-exam-final-review.v1",
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q02",
+  "status": "pending",
+  "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645",
+  "candidateDigest": "b8fedf7eef0a9a9d041e9d78f6c8c7101f3d8c581fa12d9e116843dcc0384b1a",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "0389dbeb997f7d520bbdf1ad948a21de60072f7baed0ab1d6093eb195938640c",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-source-identity-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "answerCorrect": {
+      "status": "passed",
+      "basis": [
+        {
+          "role": "BC",
+          "unit": "cm",
+          "rawPartKey": "㉠ BC",
+          "rawTextUnchanged": "6√2 cm",
+          "parsedRawExact": "6*sqrt(2)",
+          "authorPrintedExact": "6*sqrt(2)",
+          "freshCalculationExact": "6*sqrt(2)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        },
+        {
+          "role": "CA",
+          "unit": "cm",
+          "rawPartKey": "㉡ CA",
+          "rawTextUnchanged": "8√2 cm",
+          "parsedRawExact": "8*sqrt(2)",
+          "authorPrintedExact": "8*sqrt(2)",
+          "freshCalculationExact": "8*sqrt(2)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "extraRequiredRelationship": null
+    },
+    "solutionCorrect": {
+      "status": "passed",
+      "basis": "From sinA=BC/AB=3/5 and AB=10√2, BC=6√2; CA²=200−72=128, so CA=8√2. The author selects the positive root and preserves the BC,CA order.",
+      "freshAuthoredRouteCalculations": [
+        {
+          "claim": "Pythagoras",
+          "left": "200",
+          "right": "200",
+          "difference": "0",
+          "passed": true
+        }
+      ],
+      "authoredSolutionSha256Utf8": "53da148fad91895adad6b213e243929345f37f97a29dce92a28c5825d9f190f6",
+      "authorFrozenFile": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/candidates/q02/q02.json",
+        "sha256": "fc62c4423ac051fb3b1d1a0aac506aded25d91e5e95134796949a7a239679157"
+      }
+    },
+    "existenceUniqueness": {
+      "status": "passed",
+      "basis": "Positive legs, hypotenuse squared200, sinA strictly between0 and1. All five ordered pairs checked; only② satisfies both the given sine definition and Pythagoras.",
+      "preExposureDetailedChecks": {
+        "actualCodeChecks": [
+          {
+            "condition": "definition and Pythagoras",
+            "passed": true,
+            "calculation": {
+              "sidesSquared": "200"
+            }
+          },
+          {
+            "condition": "positive acute-angle triangle",
+            "passed": true,
+            "calculation": [
+              "6*sqrt(2)",
+              "8*sqrt(2)"
+            ]
+          }
+        ],
+        "supplementalExactCoordinateWitness": null,
+        "uniqueRequestedAnswer": true,
+        "wholeConfigurationMustBeUnique": false,
+        "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+      },
+      "freshCalculationProof": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+        "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469",
+        "pointer": "/results/1"
+      }
+    },
+    "choicesCorrect": {
+      "status": "passed",
+      "basis": "All five actual printed alternatives checked as exact expressions/ordered tuples/strict intervals; exactly one satisfies every requested value.",
+      "actualChoices": [
+        {
+          "index1based": 1,
+          "text": "$8\\sqrt{2}$, $6\\sqrt{2}$",
+          "values": [
+            "8*sqrt(2)",
+            "6*sqrt(2)"
+          ],
+          "differences": [
+            "2*sqrt(2)",
+            "-2*sqrt(2)"
+          ],
+          "allRequestedPartsMatch": false
+        },
+        {
+          "index1based": 2,
+          "text": "$6\\sqrt{2}$, $8\\sqrt{2}$",
+          "values": [
+            "6*sqrt(2)",
+            "8*sqrt(2)"
+          ],
+          "differences": [
+            "0",
+            "0"
+          ],
+          "allRequestedPartsMatch": true
+        },
+        {
+          "index1based": 3,
+          "text": "$6$, $8$",
+          "values": [
+            "6",
+            "8"
+          ],
+          "differences": [
+            "6 - 6*sqrt(2)",
+            "8 - 8*sqrt(2)"
+          ],
+          "allRequestedPartsMatch": false
+        },
+        {
+          "index1based": 4,
+          "text": "$6\\sqrt{2}$, $4\\sqrt{2}$",
+          "values": [
+            "6*sqrt(2)",
+            "4*sqrt(2)"
+          ],
+          "differences": [
+            "0",
+            "-4*sqrt(2)"
+          ],
+          "allRequestedPartsMatch": false
+        },
+        {
+          "index1based": 5,
+          "text": "$3\\sqrt{2}$, $8\\sqrt{2}$",
+          "values": [
+            "3*sqrt(2)",
+            "8*sqrt(2)"
+          ],
+          "differences": [
+            "-3*sqrt(2)",
+            "0"
+          ],
+          "allRequestedPartsMatch": false
+        }
+      ],
+      "preExposureChoiceChecks": {
+        "allChoices": [
+          {
+            "index1based": 1,
+            "studentChoice": "$8\\sqrt{2}$, $6\\sqrt{2}$",
+            "parsedValues": [
+              "8*sqrt(2)",
+              "6*sqrt(2)"
+            ],
+            "matchesEachRequestedPart": [
+              false,
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "positiveLegs": true,
+              "hypotenuseSquared200": true,
+              "sineBC_AB_3over5": false
+            },
+            "differencesFromIndependentRequestedValues": [
+              "2*sqrt(2)",
+              "-2*sqrt(2)"
+            ]
+          },
+          {
+            "index1based": 2,
+            "studentChoice": "$6\\sqrt{2}$, $8\\sqrt{2}$",
+            "parsedValues": [
+              "6*sqrt(2)",
+              "8*sqrt(2)"
+            ],
+            "matchesEachRequestedPart": [
+              true,
+              true
+            ],
+            "matches": true,
+            "domainAndGivenConditionChecks": {
+              "positiveLegs": true,
+              "hypotenuseSquared200": true,
+              "sineBC_AB_3over5": true
+            },
+            "differencesFromIndependentRequestedValues": [
+              "0",
+              "0"
+            ]
+          },
+          {
+            "index1based": 3,
+            "studentChoice": "$6$, $8$",
+            "parsedValues": [
+              "6",
+              "8"
+            ],
+            "matchesEachRequestedPart": [
+              false,
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "positiveLegs": true,
+              "hypotenuseSquared200": false,
+              "sineBC_AB_3over5": false
+            },
+            "differencesFromIndependentRequestedValues": [
+              "6 - 6*sqrt(2)",
+              "8 - 8*sqrt(2)"
+            ]
+          },
+          {
+            "index1based": 4,
+            "studentChoice": "$6\\sqrt{2}$, $4\\sqrt{2}$",
+            "parsedValues": [
+              "6*sqrt(2)",
+              "4*sqrt(2)"
+            ],
+            "matchesEachRequestedPart": [
+              true,
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "positiveLegs": true,
+              "hypotenuseSquared200": false,
+              "sineBC_AB_3over5": true
+            },
+            "differencesFromIndependentRequestedValues": [
+              "0",
+              "-4*sqrt(2)"
+            ]
+          },
+          {
+            "index1based": 5,
+            "studentChoice": "$3\\sqrt{2}$, $8\\sqrt{2}$",
+            "parsedValues": [
+              "3*sqrt(2)",
+              "8*sqrt(2)"
+            ],
+            "matchesEachRequestedPart": [
+              false,
+              true
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "positiveLegs": true,
+              "hypotenuseSquared200": false,
+              "sineBC_AB_3over5": false
+            },
+            "differencesFromIndependentRequestedValues": [
+              "-3*sqrt(2)",
+              "0"
+            ]
+          }
+        ],
+        "matchingIndices1based": [
+          2
+        ],
+        "exactlyOneChoice": true,
+        "basis": "Parsed actual copied student choices; no author/original key"
+      }
+    },
+    "figureConsistent": {
+      "status": "passed",
+      "basis": {
+        "questionNumber": 2,
+        "figures": [],
+        "status": "passed",
+        "noFigureNeeded": true,
+        "figurePixelMeasurementsUsedAsMathOracle": false
+      },
+      "actualRenderedViews": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q02-student.png",
+          "sha256": "f8417be4f88215f4d08ec903037b72b1dba5b86c0b5084007e3eae7fad124a05",
+          "questionNumber": 2,
+          "role": "student",
+          "pixels": [
+            530,
+            782
+          ],
+          "viewed": true,
+          "html": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q02-author.html",
+            "sha256": "11bffa7c4dd69fd67c0c5874c043f360f7a13d2ab9c74ca2cd4f37ef15c9ae52"
+          },
+          "inspection": "Student RGB pane exactly equals directly inspected authored-layout prefix (independently compared all pixels); q01-q04 also inspected separately earlier.",
+          "claimLimit": "Local authored PNG layout only; standalone physical70mm/55mm SVG previews retained from immutable blind stage. No production UI or complete printed paper approval."
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q02-author.png",
+          "sha256": "50523fc832e1569e780184c8c874d1a5e67392256024d4dee3baf0f7c0d38f80",
+          "questionNumber": 2,
+          "role": "author",
+          "pixels": [
+            530,
+            1216
+          ],
+          "viewed": true,
+          "html": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q02-author.html",
+            "sha256": "11bffa7c4dd69fd67c0c5874c043f360f7a13d2ab9c74ca2cd4f37ef15c9ae52"
+          },
+          "inspection": "Direct view_image of authored student+solution layout on2026-10-08",
+          "claimLimit": "Local authored PNG layout only; standalone physical70mm/55mm SVG previews retained from immutable blind stage. No production UI or complete printed paper approval."
+        }
+      ],
+      "physicalStandaloneViewsBeforeExposure": [],
+      "pixelOracle": false
+    },
+    "sameCoreConceptAndProcedure": {
+      "status": "passed",
+      "evidence": "Source gives actual hypotenuse6√5 and sinA2/3, asking CA. New table supplies hypotenuse10√2 and sinA3/5, requesting both actual legs. Length recovery from a ratio plus Pythagoras is retained; recording the intermediate leg and recovered leg changes the structure.",
+      "sourceQuestionRecord": {
+        "file": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/questions.json",
+          "sha256": "b6b40385cee9146ce74792ce2ca9675b7b562eb27aa65005cb4706f52347820f"
+        },
+        "pointer": "/questions/1",
+        "number": 2,
+        "canonicalQuestionOnlyRecordSha256": "9148769aa3c4324ade3b2fb576aef406ad5f933292f5b1c1719469fbb2fdac59"
+      },
+      "sourceJoinRow": {
+        "questionNumber": 2,
+        "originalQuestionId": "2025-gyeonggu-3-2-mid-2",
+        "finalSourceContentDigest": "6514cfd78b1fba2197b5bb416ac525dd0b2f48dfde1006266a33d200016f2781",
+        "provisionalQuestionDigest": "3b8efbbf5ec6ffbffd4faf914a22beffc945deb43cfc09f3ff53e5f55d9aeef1",
+        "finalQuestionDigest": "5b023b6acf986dc9fe974a816e9b5df0b8092dd57e07fd3ce0f68ab1ed8b6778",
+        "changedOriginalTextFields": [],
+        "sourceImageLocations": {
+          "prior": [
+            {
+              "file": "gyeonggu\\packet\\images\\q02-part1.png",
+              "sha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+              "page": 1,
+              "column": 0,
+              "bbox": [
+                55,
+                545.1838989257812,
+                375,
+                943
+              ]
+            }
+          ],
+          "final": [
+            {
+              "file": "images/q02-part1.png",
+              "sha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+              "page": 1,
+              "column": 0,
+              "bbox": [
+                55,
+                545.1838989257812,
+                375,
+                943
+              ]
+            }
+          ]
+        },
+        "cropComparison": {
+          "questionNumber": 2,
+          "oldPath": ".qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/evidence/source-provisional/images/q02-part1.png",
+          "oldSha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+          "newPath": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q02-part1.png",
+          "newSha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+          "oldBBox": [
+            55,
+            545.1838989257812,
+            375,
+            943
+          ],
+          "newBBox": [
+            55,
+            545.1838989257812,
+            375,
+            943
+          ],
+          "oldPixels": [
+            640,
+            796
+          ],
+          "newPixels": [
+            640,
+            796
+          ],
+          "sameBytes": true,
+          "oldRGBIsExactContainedWindow": true,
+          "oldWindowOffsetPixels": [
+            0,
+            0
+          ],
+          "comparisonIsContentPermission": false
+        },
+        "originalScore": 3,
+        "finalSourceHolds": [
+          "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+          "source_custody_rights_permission_pending",
+          "canonical_text_product_render_review_pending"
+        ],
+        "sourceCandidateMeaningReview": {
+          "decision": "student source statement,choices and sharedcontext unchanged; original crop RGB fully contained in final crop",
+          "visualInspection": "unchanged captured crop",
+          "notGradeOrRightsApproval": true
+        },
+        "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q02",
+        "authorCandidate": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q02\\q02.json",
+          "sha256": "fc62c4423ac051fb3b1d1a0aac506aded25d91e5e95134796949a7a239679157"
+        },
+        "candidateDigest": "b8fedf7eef0a9a9d041e9d78f6c8c7101f3d8c581fa12d9e116843dcc0384b1a",
+        "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645",
+        "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "newScore": 3,
+        "authorSourceSnapshotPreserved": true,
+        "sourceSnapshotRelation": "exact captured provisional input; effective final source joined separately",
+        "sourceMathLiteralAccuracyHold": null
+      },
+      "originalAnswerAgreementUsed": false,
+      "scope": "Concept/procedure and deliberate input/target/structure/context change from question-only source; native/custody/rights are separate."
+    },
+    "distinctPresentation": {
+      "status": "passed",
+      "basis": "Source gives actual hypotenuse6√5 and sinA2/3, asking CA. New table supplies hypotenuse10√2 and sinA3/5, requesting both actual legs. Length recovery from a ratio plus Pythagoras is retained; recording the intermediate leg and recovered leg changes the structure.",
+      "criterion": "Necessary inverse/input-target or response-structure/context change; not just changed numbers/letters."
+    },
+    "naturalKorean": {
+      "status": "passed",
+      "basis": "빗변, 두 직각변 and BC,CA table labels distinguish sides and units; a figure is unnecessary because C is explicitly right.",
+      "fullAuthoredStudentAndSolutionReviewed": true
+    },
+    "curriculumAppropriate": {
+      "status": "passed",
+      "basis": "This is a side-length task, not a same-angle ratio-to-ratio assessment. No cosA or tanA target/identity appears. Radical arithmetic is middle3 semester1 prerequisite; two actual lengths use9수04-16/17/18.",
+      "exactStandards": [
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 892,
+            "offset": 219292,
+            "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictions": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 908,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 909,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 911,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 916,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 917,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "allSevenSurfacesReviewBelow": true
+    },
+    "allStudentSurfacesInScope": {
+      "status": "passed",
+      "basis": "Each actual new student surface, including the full authored solution and required prerequisites, was individually checked below."
+    },
+    "unitFamilyFit": {
+      "status": "pending",
+      "unitStatus": "passed",
+      "actualUnit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "frozenAssignmentStatus": "pending",
+      "frozenFamilyKey": null,
+      "ruleComparison": "Live 삼각비02 directly recovers one length from a ratio and another length;03 instead assesses transfer to a different same-angle ratio and carries2015 restriction risk. Candidate's two-leg radical records/Pythagorean second target exceed02's actual one-target branches. Missing exact multipart branch is distinct from03's purpose mismatch.",
+      "actualRulesInspected": [
+        {
+          "key": "3-2|삼각비|02",
+          "source": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 982,
+            "endLine1based": 1023
+          },
+          "blockSha256Utf8": "4ad02252bd9a4bea063f8a4df95a2fe838851be9231d55de3f0352f17b5aa45a",
+          "registryAndLive": {
+            "registryPointer": "/entries/71",
+            "registry": {
+              "key": "3-2|삼각비|02",
+              "grade": "중3",
+              "unitSection": "삼각비의 뜻",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비",
+              "rpmType": "02",
+              "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+            },
+            "liveMatches": [
+              {
+                "pointer": "/liveFamilies/84",
+                "record": {
+                  "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                  "family_key": "mid:3-2|삼각비|02",
+                  "live_count": 24
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "3-2|삼각비|03",
+          "source": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 1023,
+            "endLine1based": 1061
+          },
+          "blockSha256Utf8": "84b96cc58fd26a111a57dbc620a5c3d8f1f8753ce9b7281f2f47a158493d7fee",
+          "registryAndLive": {
+            "registryPointer": "/entries/72",
+            "registry": {
+              "key": "3-2|삼각비|03",
+              "grade": "중3",
+              "unitSection": "삼각비의 뜻",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비",
+              "rpmType": "03",
+              "rpmTitle": "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기"
+            },
+            "liveMatches": [
+              {
+                "pointer": "/liveFamilies/85",
+                "record": {
+                  "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                  "family_key": "mid:3-2|삼각비|03",
+                  "live_count": 24
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "currentSeed": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+        "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "startLine1based": 2943,
+        "endLine1based": 2987,
+        "text": "    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수 y=ax^2+bx+c의 그래프\",\n    orderIndex: 479,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수의 최댓값과 최솟값\",\n    orderIndex: 480,\n  },\n  // ── 5. 삼각비 ──\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  },\n  // ── 6. 원의 성질 ──\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원과 현\",\n    orderIndex: 484,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원의 접선\",\n    orderIndex: 485,\n  },\n  { grade: \"중3\", chapter: \"6. 원의 성질\", section: \"원주각\", orderIndex: 486 },\n  {"
+      },
+      "snapshotBank": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+        "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+      },
+      "snapshotRegistry": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+        "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1"
+      },
+      "snapshotCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "liveDatabaseReadByVerifier": false,
+      "currentDatabaseAssertion": false,
+      "dbAssignmentPromoted": false,
+      "schoolOrModelConfidenceIsAllowance": false,
+      "reopenCriteria": "Bind an actual declared family to this exact input/target/method/representation, including required inverse/multipart/parameter support; review changed classification/rule evidence. No automatic promotion from a title or shared concept."
+    },
+    "scoreAppropriate": {
+      "status": "passed",
+      "sourcePrintedParentScore": 3.0,
+      "newParentScore": 3,
+      "newSubScores": [],
+      "parentAndChildNotDoubleCounted": true,
+      "basis": "3 points fits the two short length calculations with familiar radical simplification."
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "This is a side-length task, not a same-angle ratio-to-ratio assessment. No cosA or tanA target/identity appears. Radical arithmetic is middle3 semester1 prerequisite; two actual lengths use9수04-16/17/18.",
+      "conditionsReviewed": "Positive legs, hypotenuse squared200, sinA strictly between0 and1. All five ordered pairs checked; only② satisfies both the given sine definition and Pythagoras.",
+      "actualContentSha256Utf8": "3fb2b6ab6035d8db44477ea5c4da14c2e9ae0eb1dd4b481c52a650b686bc4adb",
+      "standards": [
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 892,
+            "offset": 219292,
+            "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": {
+        "status": "passed",
+        "basis": "All five actual printed alternatives checked as exact expressions/ordered tuples/strict intervals; exactly one satisfies every requested value.",
+        "actualChoices": [
+          {
+            "index1based": 1,
+            "text": "$8\\sqrt{2}$, $6\\sqrt{2}$",
+            "values": [
+              "8*sqrt(2)",
+              "6*sqrt(2)"
+            ],
+            "differences": [
+              "2*sqrt(2)",
+              "-2*sqrt(2)"
+            ],
+            "allRequestedPartsMatch": false
+          },
+          {
+            "index1based": 2,
+            "text": "$6\\sqrt{2}$, $8\\sqrt{2}$",
+            "values": [
+              "6*sqrt(2)",
+              "8*sqrt(2)"
+            ],
+            "differences": [
+              "0",
+              "0"
+            ],
+            "allRequestedPartsMatch": true
+          },
+          {
+            "index1based": 3,
+            "text": "$6$, $8$",
+            "values": [
+              "6",
+              "8"
+            ],
+            "differences": [
+              "6 - 6*sqrt(2)",
+              "8 - 8*sqrt(2)"
+            ],
+            "allRequestedPartsMatch": false
+          },
+          {
+            "index1based": 4,
+            "text": "$6\\sqrt{2}$, $4\\sqrt{2}$",
+            "values": [
+              "6*sqrt(2)",
+              "4*sqrt(2)"
+            ],
+            "differences": [
+              "0",
+              "-4*sqrt(2)"
+            ],
+            "allRequestedPartsMatch": false
+          },
+          {
+            "index1based": 5,
+            "text": "$3\\sqrt{2}$, $8\\sqrt{2}$",
+            "values": [
+              "3*sqrt(2)",
+              "8*sqrt(2)"
+            ],
+            "differences": [
+              "-3*sqrt(2)",
+              "0"
+            ],
+            "allRequestedPartsMatch": false
+          }
+        ],
+        "preExposureChoiceChecks": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$8\\sqrt{2}$, $6\\sqrt{2}$",
+              "parsedValues": [
+                "8*sqrt(2)",
+                "6*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": true,
+                "sineBC_AB_3over5": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "2*sqrt(2)",
+                "-2*sqrt(2)"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$6\\sqrt{2}$, $8\\sqrt{2}$",
+              "parsedValues": [
+                "6*sqrt(2)",
+                "8*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": true,
+                "sineBC_AB_3over5": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "0"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$6$, $8$",
+              "parsedValues": [
+                "6",
+                "8"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": false,
+                "sineBC_AB_3over5": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "6 - 6*sqrt(2)",
+                "8 - 8*sqrt(2)"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$6\\sqrt{2}$, $4\\sqrt{2}$",
+              "parsedValues": [
+                "6*sqrt(2)",
+                "4*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": false,
+                "sineBC_AB_3over5": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "-4*sqrt(2)"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$3\\sqrt{2}$, $8\\sqrt{2}$",
+              "parsedValues": [
+                "3*sqrt(2)",
+                "8*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                true
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": false,
+                "sineBC_AB_3over5": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-3*sqrt(2)",
+                "0"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            2
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        }
+      },
+      "noOutsideGradeDistractorNotation": true
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": {
+        "questionNumber": 2,
+        "figures": [],
+        "status": "passed",
+        "noFigureNeeded": true,
+        "figurePixelMeasurementsUsedAsMathOracle": false
+      },
+      "tableCheck": "Actual tables/figure labels fix ordinary lengths,angles ororderedrecords; no graph/vector/formula prerequisite is hidden.",
+      "simpleGeometryLimit": "기본 is plausible: one multiplication by3/5 and one positive radical recovery; table makes requested roles explicit.",
+      "actualRenderedPanesInspected": true
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Actual marks are ordinary point/segment/right-angle/radical/acute sin-cos-tan notation. Degree105/120 labels are geometric angles, not out-of-range trig evaluations. Unit meanings are bound to the roles below.",
+      "roleUnitMap": [
+        {
+          "role": "BC",
+          "unit": "cm",
+          "rawPartKey": "㉠ BC",
+          "rawTextUnchanged": "6√2 cm",
+          "parsedRawExact": "6*sqrt(2)",
+          "authorPrintedExact": "6*sqrt(2)",
+          "freshCalculationExact": "6*sqrt(2)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        },
+        {
+          "role": "CA",
+          "unit": "cm",
+          "rawPartKey": "㉡ CA",
+          "rawTextUnchanged": "8√2 cm",
+          "parsedRawExact": "8*sqrt(2)",
+          "authorPrintedExact": "8*sqrt(2)",
+          "freshCalculationExact": "8*sqrt(2)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "specificBasis": "This is a side-length task, not a same-angle ratio-to-ratio assessment. No cosA or tanA target/identity appears. Radical arithmetic is middle3 semester1 prerequisite; two actual lengths use9수04-16/17/18."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": [
+        {
+          "role": "BC",
+          "unit": "cm",
+          "rawPartKey": "㉠ BC",
+          "rawTextUnchanged": "6√2 cm",
+          "parsedRawExact": "6*sqrt(2)",
+          "authorPrintedExact": "6*sqrt(2)",
+          "freshCalculationExact": "6*sqrt(2)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        },
+        {
+          "role": "CA",
+          "unit": "cm",
+          "rawPartKey": "㉡ CA",
+          "rawTextUnchanged": "8√2 cm",
+          "parsedRawExact": "8*sqrt(2)",
+          "authorPrintedExact": "8*sqrt(2)",
+          "freshCalculationExact": "8*sqrt(2)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "requiredQ22Proof": null,
+      "rawAnswerUnedited": "②: ㉠ 6√2, ㉡ 8√2 (각 길이의 단위 cm)",
+      "formattingOnlyMismatchIsNotGradeFailure": true
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "From sinA=BC/AB=3/5 and AB=10√2, BC=6√2; CA²=200−72=128, so CA=8√2. The author selects the positive root and preserves the BC,CA order.",
+      "fullNewAuthoredSolution": "$\\sin A=\\frac{\\overline{\\mathrm{BC}}}{\\overline{\\mathrm{AB}}}=\\frac35$이므로 $\\overline{\\mathrm{BC}}=10\\sqrt2\\times\\frac35=6\\sqrt2\\,\\mathrm{cm}$이다.\n피타고라스 정리에 의하여 $\\overline{\\mathrm{CA}}^2=(10\\sqrt2)^2-(6\\sqrt2)^2=200-72=128$이다. 양의 길이를 택하면 $\\overline{\\mathrm{CA}}=8\\sqrt2\\,\\mathrm{cm}$이다.\n두 직각변의 기록은 $6\\sqrt2$, $8\\sqrt2$이므로 정답은 ②이다.",
+      "fullAuthoredSolutionReviewedForForbiddenProcedure": true,
+      "curricularApplication": "This is a side-length task, not a same-angle ratio-to-ratio assessment. No cosA or tanA target/identity appears. Radical arithmetic is middle3 semester1 prerequisite; two actual lengths use9수04-16/17/18.",
+      "restrictions": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 908,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 909,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 911,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 916,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 917,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        }
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "This is a side-length task, not a same-angle ratio-to-ratio assessment. No cosA or tanA target/identity appears. Radical arithmetic is middle3 semester1 prerequisite; two actual lengths use9수04-16/17/18.",
+      "officialStandards": [
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 892,
+            "offset": 219292,
+            "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedEvidence": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2384,
+          "endLine1based": 2389,
+          "text": "  {\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 풀이\",\n    orderIndex: 376,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2483,
+          "endLine1based": 2511,
+          "text": "  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"평행선\", orderIndex: 393 },\n  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"작도\", orderIndex: 394 },\n  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"합동\", orderIndex: 395 },\n  // ── 6. 평면도형 ──\n  { grade: \"중1\", chapter: \"6. 평면도형\", section: \"다각형\", orderIndex: 396 },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"삼각형의 내각과 외각\",\n    orderIndex: 397,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"다각형의 내각과 외각\",\n    orderIndex: 398,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"원과 부채꼴\",\n    orderIndex: 399,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"부채꼴의 호의 길이와 넓이\",\n    orderIndex: 400,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2527,
+          "endLine1based": 2532,
+          "text": "  {\n    grade: \"중1\",\n    chapter: \"7. 입체도형\",\n    section: \"뿔의 겉넓이와 부피\",\n    orderIndex: 405,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2745,
+          "endLine1based": 2756,
+          "text": "  {\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"이등변삼각형의 성질\",\n    orderIndex: 446,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"직각삼각형의 합동\",\n    orderIndex: 447,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2799,
+          "endLine1based": 2811,
+          "text": "  // ── 6. 도형의 닮음 ──\n  {\n    grade: \"중2\",\n    chapter: \"6. 도형의 닮음\",\n    section: \"닮은 도형\",\n    orderIndex: 455,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"6. 도형의 닮음\",\n    section: \"삼각형의 닮음 조건\",\n    orderIndex: 456,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2849,
+          "endLine1based": 2861,
+          "text": "  // ── 8. 피타고라스 정리 ──\n  {\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리\",\n    orderIndex: 463,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리의 활용\",\n    orderIndex: 464,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2896,
+          "text": "  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"무리수와 실수\",\n    orderIndex: 470,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"근호를 포함한 식의 계산\",\n    orderIndex: 471,\n  },"
+        }
+      ],
+      "addedStepLimit": "Any extra ordinary arithmetic/linear-equation/root step is explicitly checked as an earlier-or-middle3 prerequisite; shared school name/family presence does not authorize a forbidden assessed relation.",
+      "outsideGradeMethodRequired": false
+    }
+  },
+  "dimensions": {
+    "math": "passed",
+    "existenceAndRequestedUniqueness": "passed",
+    "allSeven2015Surfaces": "passed",
+    "sourceCore": "passed",
+    "substantiveDelta": "passed",
+    "korean": "passed",
+    "score": "passed",
+    "actualUnit": "passed",
+    "exactLiveFamily": "pending",
+    "objectiveDifficulty": "passed_task_analysis",
+    "formattingOnlyComparator": "pending",
+    "rights": "pending",
+    "nativeProvenance": "pending",
+    "loading": "pending"
+  },
+  "objectiveDifficulty": {
+    "status": "passed",
+    "proposal": "기본",
+    "basis": "기본 is plausible: one multiplication by3/5 and one positive radical recovery; table makes requested roles explicit.",
+    "registryDescriptorIsObjectiveProof": false,
+    "measuredStudentFacilityClaim": false
+  },
+  "answerEquivalence": {
+    "status": "passed",
+    "evidence": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+      "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469",
+      "pointer": "/results/1"
+    },
+    "currentLiteralComparatorMatches": false,
+    "contractEvidence": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/contract-bindings-r2.json",
+      "sha256": "dffff53926e5f9140a009b5cff39b8aabe111365edd518173350bd52078dee8b"
+    },
+    "typedConstantsHelperIsApproval": false,
+    "rawAnswerRewritten": false
+  },
+  "officialScope": {
+    "basis": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/curriculum-surface-basis.json",
+      "sha256": "fa183df33400ce8f167eda3be05d6ac0d40fed433aff8e1e6431a96022cdf252"
+    },
+    "identifiedMaterial2025MathProvisionUnknown": [],
+    "2027Middle3Republication": "requiresnew2022-specificreview",
+    "unrelatedWholePolicyCompletenessGate": false
+  },
+  "frozenInputBinding": {
+    "questionNumber": 2,
+    "providedDigests": {
+      "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645",
+      "candidateDigest": "b8fedf7eef0a9a9d041e9d78f6c8c7101f3d8c581fa12d9e116843dcc0384b1a",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "0389dbeb997f7d520bbdf1ad948a21de60072f7baed0ab1d6093eb195938640c"
+    },
+    "rawBlindFile": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q02.json",
+      "sha256": "71199eecd9ad07d09663bdddc4ae4d2101b7f8856bf53d1ff770a96555e5e430"
+    },
+    "rootCanonicalRawCopy": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/blind/solve/q02.json",
+      "sha256": "71199eecd9ad07d09663bdddc4ae4d2101b7f8856bf53d1ff770a96555e5e430"
+    },
+    "authorFrozenFile": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/candidates/q02/q02.json",
+      "sha256": "fc62c4423ac051fb3b1d1a0aac506aded25d91e5e95134796949a7a239679157"
+    },
+    "authorFreezeEntry": {
+      "questionNumber": 2,
+      "candidateDigest": "b8fedf7eef0a9a9d041e9d78f6c8c7101f3d8c581fa12d9e116843dcc0384b1a",
+      "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "candidatePackageOnlyPathChanges": [],
+    "candidateContentSolutionMetadataUnchangedByPackaging": true,
+    "finalSourceQuestionOnly": {
+      "number": 2,
+      "stem": "$\\angle \\mathrm{C}=90°$인 $\\triangle \\mathrm{ABC}$에서 $\\sin \\,A=\\frac{2}{3}$이고 $\\overline{AB}=6\\sqrt{5}$일 때, $\\overline{CA}$의 길이는? [$3$점]",
+      "choices": [
+        "$\\sqrt{5}$",
+        "$\\sqrt{13}$",
+        "$4\\sqrt{5}$",
+        "$10$",
+        "$25$"
+      ],
+      "hwpScriptStem": "$ANGLE  rm C=90°$인 $TRIANGLE rmABC$에서 $sin`A= 2over3$이고 $rmbarAB = 6sqrt { 5}$일 때, $rmbarCA$의 길이는? [$3$점]",
+      "hwpScriptChoices": [
+        "$sqrt { 5} $",
+        "$sqrt { 13} $",
+        "$4sqrt { 5} $",
+        "$10$",
+        "$25$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "sin의 정의에서 양수 직각삼각형의 해당 변을 구한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "6514cfd78b1fba2197b5bb416ac525dd0b2f48dfde1006266a33d200016f2781",
+      "sourceQuestionId": "2025-gyeonggu-3-2-mid-2",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q02-part1.png",
+          "sha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            545.1838989257812,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 410,
+        "inflatedByteOffset": 15718,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "4968500df4d89ba9d8869f22c1321f6b9074f2bdf1fda811c346138c10a4c05c"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            545.1838989257812,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    "finalSourceJoinRow": {
+      "questionNumber": 2,
+      "originalQuestionId": "2025-gyeonggu-3-2-mid-2",
+      "finalSourceContentDigest": "6514cfd78b1fba2197b5bb416ac525dd0b2f48dfde1006266a33d200016f2781",
+      "provisionalQuestionDigest": "3b8efbbf5ec6ffbffd4faf914a22beffc945deb43cfc09f3ff53e5f55d9aeef1",
+      "finalQuestionDigest": "5b023b6acf986dc9fe974a816e9b5df0b8092dd57e07fd3ce0f68ab1ed8b6778",
+      "changedOriginalTextFields": [],
+      "sourceImageLocations": {
+        "prior": [
+          {
+            "file": "gyeonggu\\packet\\images\\q02-part1.png",
+            "sha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+            "page": 1,
+            "column": 0,
+            "bbox": [
+              55,
+              545.1838989257812,
+              375,
+              943
+            ]
+          }
+        ],
+        "final": [
+          {
+            "file": "images/q02-part1.png",
+            "sha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+            "page": 1,
+            "column": 0,
+            "bbox": [
+              55,
+              545.1838989257812,
+              375,
+              943
+            ]
+          }
+        ]
+      },
+      "cropComparison": {
+        "questionNumber": 2,
+        "oldPath": ".qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/evidence/source-provisional/images/q02-part1.png",
+        "oldSha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+        "newPath": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q02-part1.png",
+        "newSha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+        "oldBBox": [
+          55,
+          545.1838989257812,
+          375,
+          943
+        ],
+        "newBBox": [
+          55,
+          545.1838989257812,
+          375,
+          943
+        ],
+        "oldPixels": [
+          640,
+          796
+        ],
+        "newPixels": [
+          640,
+          796
+        ],
+        "sameBytes": true,
+        "oldRGBIsExactContainedWindow": true,
+        "oldWindowOffsetPixels": [
+          0,
+          0
+        ],
+        "comparisonIsContentPermission": false
+      },
+      "originalScore": 3,
+      "finalSourceHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sourceCandidateMeaningReview": {
+        "decision": "student source statement,choices and sharedcontext unchanged; original crop RGB fully contained in final crop",
+        "visualInspection": "unchanged captured crop",
+        "notGradeOrRightsApproval": true
+      },
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q02",
+      "authorCandidate": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q02\\q02.json",
+        "sha256": "fc62c4423ac051fb3b1d1a0aac506aded25d91e5e95134796949a7a239679157"
+      },
+      "candidateDigest": "b8fedf7eef0a9a9d041e9d78f6c8c7101f3d8c581fa12d9e116843dcc0384b1a",
+      "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "newScore": 3,
+      "authorSourceSnapshotPreserved": true,
+      "sourceSnapshotRelation": "exact captured provisional input; effective final source joined separately",
+      "sourceMathLiteralAccuracyHold": null
+    },
+    "newScore": 3,
+    "sourceOriginalScore": 3.0,
+    "authorAssignment": {
+      "status": "pending",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unitSection": "삼각비의 뜻",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 481,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비|02",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "02",
+            "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+          },
+          {
+            "key": "3-2|삼각비|03",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "03",
+            "rpmTitle": "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기"
+          }
+        ],
+        "fullRuleComparison": "02는 비로 바로 구하는 한 변만 묻고 03은 길이 없이 다른 비를 묻는다. 두 실제 변을 구하고 피타고라스를 거치는 기록형은 둘 중 어느 규칙도 전부 지지하지 않는다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "difficultyProposal": "기본",
+    "figures": [],
+    "studentPaneExactlyEqualsPrefixOfAuthorLayout": true,
+    "originalAnswerOrSolutionUsed": false
+  },
+  "blindIndependence": {
+    "rawCommit": "c02838323307f69648124f837285503a53e99bd3",
+    "authorFreezeCommit": "bf8b132fb1e78bbdb8f1b6e55e1db99d1321147d",
+    "rawBlindSolve": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q02.json",
+      "sha256": "71199eecd9ad07d09663bdddc4ae4d2101b7f8856bf53d1ff770a96555e5e430"
+    },
+    "rootByteExactCanonicalCopy": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/blind/solve/q02.json",
+      "sha256": "71199eecd9ad07d09663bdddc4ae4d2101b7f8856bf53d1ff770a96555e5e430"
+    },
+    "priorSourceFamiliarityDisclosed": true,
+    "originalScanAnnotationsIncidentallySeenDuringAuthorizedQ13SourceInspection": true,
+    "originalKeysOrHandwritingUsedToApprove": false,
+    "otherSolverUsed": false,
+    "disclosure": "The authorized original printed page03 contains handwritten workings and circled choices, incidentally visible during this source-only inspection, including neighboring questions. These are not cited, transcribed, tested or reused as new answers, solutions, grade permission or approval. The22 raw independent solves were committed c028 before author exposure; the22 exact-equivalence evidence was already written before this original-scan inspection."
+  },
+  "heldReasons": [
+    {
+      "dimension": "exactLiveFamily",
+      "basis": "Live 삼각비02 directly recovers one length from a ratio and another length;03 instead assesses transfer to a different same-angle ratio and carries2015 restriction risk. Candidate's two-leg radical records/Pythagorean second target exceed02's actual one-target branches. Missing exact multipart branch is distinct from03's purpose mismatch.",
+      "reopenCriteria": "Bind an actual declared family to this exact input/target/method/representation, including required inverse/multipart/parameter support; review changed classification/rule evidence. No automatic promotion from a title or shared concept."
+    }
+  ],
+  "separateNonReviewHolds": [
+    "Current literal formatting comparator does not match detailed raw answers; Root may consume exact role/unit/value evidence without editing raw bytes.",
+    "Rights/custody/publisher authorization and native provenance have no approval from this contentreview. No DB/loading authority."
+  ],
+  "inferenceApiCalls": 0,
+  "dbReads": 0,
+  "dbWrites": 0,
+  "loadApproved": false
+}

@@ -1,0 +1,1638 @@
+{
+  "schema": "independent-exam-final-review.v1",
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q12",
+  "status": "pending",
+  "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203",
+  "candidateDigest": "26997964081ec452c9e59f5c763b7d1c5fa3d942e8ea6d3f8a59e0ed4ac4eb73",
+  "assetDigest": "a236a826ba15723108757c058aad183f0401b4786960e6b272188dda8aaaa17a",
+  "solveDigest": "5b84eec0ae49c409b6390fb0ebe376a525824d6fbf1abcff1bd0d97a5a5703e2",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-source-identity-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "answerCorrect": {
+      "status": "passed",
+      "basis": [
+        {
+          "role": "BC",
+          "unit": "cm",
+          "rawPartKey": "BC",
+          "rawTextUnchanged": "6+2√3 cm",
+          "parsedRawExact": "2*sqrt(3) + 6",
+          "authorPrintedExact": "2*sqrt(3) + 6",
+          "freshCalculationExact": "2*sqrt(3) + 6",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "extraRequiredRelationship": null
+    },
+    "solutionCorrect": {
+      "status": "passed",
+      "basis": "Known height6 gives BH=6/tan60=2√3 and HC=6/tan45=6. H insideBC means add, so BC6+2√3. Author correctly avoids subtracting same-side observation distances.",
+      "freshAuthoredRouteCalculations": [],
+      "authoredSolutionSha256Utf8": "30e45b5adad63db6503e5da44f46492db5d7d2fa5acbb3dd1c65ec83d31283d6",
+      "authorFrozenFile": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/candidates/q12/q12.json",
+        "sha256": "7252904b13203394eb0a2ca42f0abe8a0c70ca930f04859d1ef4a6a0d7d18d09"
+      }
+    },
+    "existenceUniqueness": {
+      "status": "passed",
+      "basis": "Both parts positive andH strictly internal; angles60/45 acute. All five length choices checked; only② equals the sum. Source final crop also shows an interior foot, so context delta does not silently change side placement.",
+      "preExposureDetailedChecks": {
+        "actualCodeChecks": [
+          {
+            "condition": "both feet lengths positive and H internal",
+            "passed": true,
+            "calculation": "2*sqrt(3) + 6"
+          }
+        ],
+        "supplementalExactCoordinateWitness": null,
+        "uniqueRequestedAnswer": true,
+        "wholeConfigurationMustBeUnique": false,
+        "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+      },
+      "freshCalculationProof": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+        "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469",
+        "pointer": "/results/11"
+      }
+    },
+    "choicesCorrect": {
+      "status": "passed",
+      "basis": "All five actual printed alternatives checked as exact expressions/ordered tuples/strict intervals; exactly one satisfies every requested value.",
+      "actualChoices": [
+        {
+          "index1based": 1,
+          "text": "$6-2\\sqrt3\\,\\mathrm{cm}$",
+          "values": [
+            "6 - 2*sqrt(3)"
+          ],
+          "differences": [
+            "-4*sqrt(3)"
+          ],
+          "allRequestedPartsMatch": false
+        },
+        {
+          "index1based": 2,
+          "text": "$6+2\\sqrt3\\,\\mathrm{cm}$",
+          "values": [
+            "2*sqrt(3) + 6"
+          ],
+          "differences": [
+            "0"
+          ],
+          "allRequestedPartsMatch": true
+        },
+        {
+          "index1based": 3,
+          "text": "$6\\sqrt3\\,\\mathrm{cm}$",
+          "values": [
+            "6*sqrt(3)"
+          ],
+          "differences": [
+            "-6 + 4*sqrt(3)"
+          ],
+          "allRequestedPartsMatch": false
+        },
+        {
+          "index1based": 4,
+          "text": "$12\\,\\mathrm{cm}$",
+          "values": [
+            "12"
+          ],
+          "differences": [
+            "6 - 2*sqrt(3)"
+          ],
+          "allRequestedPartsMatch": false
+        },
+        {
+          "index1based": 5,
+          "text": "$2+6\\sqrt3\\,\\mathrm{cm}$",
+          "values": [
+            "2 + 6*sqrt(3)"
+          ],
+          "differences": [
+            "-4 + 4*sqrt(3)"
+          ],
+          "allRequestedPartsMatch": false
+        }
+      ],
+      "preExposureChoiceChecks": {
+        "allChoices": [
+          {
+            "index1based": 1,
+            "studentChoice": "$6-2\\sqrt3\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "6 - 2*sqrt(3)"
+            ],
+            "matchesEachRequestedPart": [
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "baseSumGreaterThanHC6": false
+            },
+            "differencesFromIndependentRequestedValues": [
+              "-4*sqrt(3)"
+            ]
+          },
+          {
+            "index1based": 2,
+            "studentChoice": "$6+2\\sqrt3\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "2*sqrt(3) + 6"
+            ],
+            "matchesEachRequestedPart": [
+              true
+            ],
+            "matches": true,
+            "domainAndGivenConditionChecks": {
+              "baseSumGreaterThanHC6": true
+            },
+            "differencesFromIndependentRequestedValues": [
+              "0"
+            ]
+          },
+          {
+            "index1based": 3,
+            "studentChoice": "$6\\sqrt3\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "6*sqrt(3)"
+            ],
+            "matchesEachRequestedPart": [
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "baseSumGreaterThanHC6": true
+            },
+            "differencesFromIndependentRequestedValues": [
+              "-6 + 4*sqrt(3)"
+            ]
+          },
+          {
+            "index1based": 4,
+            "studentChoice": "$12\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "12"
+            ],
+            "matchesEachRequestedPart": [
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "baseSumGreaterThanHC6": true
+            },
+            "differencesFromIndependentRequestedValues": [
+              "6 - 2*sqrt(3)"
+            ]
+          },
+          {
+            "index1based": 5,
+            "studentChoice": "$2+6\\sqrt3\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "2 + 6*sqrt(3)"
+            ],
+            "matchesEachRequestedPart": [
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "baseSumGreaterThanHC6": true
+            },
+            "differencesFromIndependentRequestedValues": [
+              "-4 + 4*sqrt(3)"
+            ]
+          }
+        ],
+        "matchingIndices1based": [
+          2
+        ],
+        "exactlyOneChoice": true,
+        "basis": "Parsed actual copied student choices; no author/original key"
+      }
+    },
+    "figureConsistent": {
+      "status": "passed",
+      "basis": {
+        "questionNumber": 12,
+        "figures": [
+          {
+            "spec": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q12/figure-1.spec.json",
+              "sha256": "3ec103a2953a58e0a04ae0d5b38398309925dabe823d94a48bbd008f4d2bb774"
+            },
+            "svg": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q12/figure-1.svg",
+              "sha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329"
+            },
+            "intendedWidthMm": 70,
+            "rawCoordinateSemanticsChecks": [
+              {
+                "condition": "angle_H right angle",
+                "computed": 90.0,
+                "required": 90,
+                "passed": true
+              },
+              {
+                "condition": "angle_B degree annotation",
+                "computed": 60.00000000000001,
+                "required": 60,
+                "passed": true
+              },
+              {
+                "condition": "angle_C degree annotation",
+                "computed": 45.00000000000001,
+                "required": 45,
+                "passed": true
+              },
+              {
+                "condition": "H lies on BC",
+                "computed": 0.0,
+                "required": 0,
+                "passed": true
+              },
+              {
+                "condition": "H internal to BC",
+                "segmentFraction": 0.3660254037844386,
+                "passed": true
+              }
+            ],
+            "svgIdenticalToPreExposureViewedFigure": true,
+            "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+          }
+        ],
+        "status": "passed",
+        "noFigureNeeded": false,
+        "figurePixelMeasurementsUsedAsMathOracle": false
+      },
+      "actualRenderedViews": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q12-student.png",
+          "sha256": "42b08e6be8a691d0909bf1216cad0abae36dfa4b7db0b43ed7ed9a604afb8951",
+          "questionNumber": 12,
+          "role": "student",
+          "pixels": [
+            530,
+            1000
+          ],
+          "viewed": true,
+          "html": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q12-author.html",
+            "sha256": "609ca8f9102d49c2729ba729942b85f7183e2f490807989cc99c3600b89cc4ce"
+          },
+          "inspection": "Student RGB pane exactly equals directly inspected authored-layout prefix (independently compared all pixels); q01-q04 also inspected separately earlier.",
+          "claimLimit": "Local authored PNG layout only; standalone physical70mm/55mm SVG previews retained from immutable blind stage. No production UI or complete printed paper approval."
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q12-author.png",
+          "sha256": "6948e5a2383cb66a4e91ab928988c0f37be2bc5eb233aaf2fbc4538ba2eb29bf",
+          "questionNumber": 12,
+          "role": "author",
+          "pixels": [
+            530,
+            1394
+          ],
+          "viewed": true,
+          "html": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q12-author.html",
+            "sha256": "609ca8f9102d49c2729ba729942b85f7183e2f490807989cc99c3600b89cc4ce"
+          },
+          "inspection": "Direct view_image of authored student+solution layout on2026-10-08",
+          "claimLimit": "Local authored PNG layout only; standalone physical70mm/55mm SVG previews retained from immutable blind stage. No production UI or complete printed paper approval."
+        }
+      ],
+      "physicalStandaloneViewsBeforeExposure": [
+        {
+          "questionNumber": 12,
+          "svg": "figures/q12-1.svg",
+          "svgSha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329",
+          "intendedWidthMm": 70,
+          "renderedPdfWidthMm": 70.00000161064996,
+          "renderedHeightMm": 52.55339135461494,
+          "viewBox": [
+            0,
+            0,
+            249.104,
+            187.018
+          ],
+          "png": "blind/rendered/q12-1-300dpi.png",
+          "pngSha256": "2c424cd12967d63225b0f1809d8b79c1fd902b2218e625a8625bb1e540652aa6",
+          "pdf": "blind/rendered/q12-1-300dpi.pdf",
+          "pdfSha256": "a86ec8d4b567321d8888bb04e68d517359d6a47a977bab8af4d7a566c269530b",
+          "svgTextLabels": [],
+          "mathematicalOracle": false,
+          "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+          "visualInspection": "direct view_image completed on 2026-10-08",
+          "observation": "H internalBC, AH vertical;60 atB and45 atC; right mark atH readable.",
+          "labelsReadableAtSpecifiedPhysicalWidth": true,
+          "pixelMeasurementsUsedToSolve": false,
+          "physicalPrintProductionApproval": false
+        }
+      ],
+      "pixelOracle": false
+    },
+    "sameCoreConceptAndProcedure": {
+      "status": "passed",
+      "evidence": "Source has tower/height foot betweenB,C, BC10 with60/45 angles and asks height. Candidate specifies support height6 and asks ground spanBC. Same two right-triangle sum method; known/unknown length directions are reversed.",
+      "sourceQuestionRecord": {
+        "file": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/questions.json",
+          "sha256": "b6b40385cee9146ce74792ce2ca9675b7b562eb27aa65005cb4706f52347820f"
+        },
+        "pointer": "/questions/11",
+        "number": 12,
+        "canonicalQuestionOnlyRecordSha256": "9d3caa16bf625df75142afd05913b13b8f3a8b1b8b4469f7d07d27cabf5fad6f"
+      },
+      "sourceJoinRow": {
+        "questionNumber": 12,
+        "originalQuestionId": "2025-gyeonggu-3-2-mid-12",
+        "finalSourceContentDigest": "da0bf580983132615f541608a0a8b21392ac9fab09c02333225f1842a39d575d",
+        "provisionalQuestionDigest": "5dcd300555f1f3d575dd3da55395ecf81c7d618fd50a08bbf1b9685119c68f7a",
+        "finalQuestionDigest": "e6fe0c06ad944e37974e9fadd4fb7cc748863525bc5bbb51bb1a56c8b59edf0c",
+        "changedOriginalTextFields": [],
+        "sourceImageLocations": {
+          "prior": [
+            {
+              "file": "gyeonggu\\packet\\images\\q12-part1.png",
+              "sha256": "ff1506630016138dce1166b2eea1472cf2eff382ea37fd9980189ff34754a8b4",
+              "page": 3,
+              "column": 1,
+              "bbox": [
+                380,
+                560.959716796875,
+                688,
+                943
+              ]
+            }
+          ],
+          "final": [
+            {
+              "file": "images/q12-part1.png",
+              "sha256": "3c56d0d1f1ce2f78864e26c00be7baf7277e2976c3d3918caaf8fc94704a8501",
+              "page": 3,
+              "column": 1,
+              "bbox": [
+                370,
+                560.959716796875,
+                688,
+                943
+              ]
+            }
+          ]
+        },
+        "cropComparison": {
+          "questionNumber": 12,
+          "oldPath": ".qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/evidence/source-provisional/images/q12-part1.png",
+          "oldSha256": "ff1506630016138dce1166b2eea1472cf2eff382ea37fd9980189ff34754a8b4",
+          "newPath": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q12-part1.png",
+          "newSha256": "3c56d0d1f1ce2f78864e26c00be7baf7277e2976c3d3918caaf8fc94704a8501",
+          "oldBBox": [
+            380,
+            560.959716796875,
+            688,
+            943
+          ],
+          "newBBox": [
+            370,
+            560.959716796875,
+            688,
+            943
+          ],
+          "oldPixels": [
+            616,
+            765
+          ],
+          "newPixels": [
+            636,
+            765
+          ],
+          "sameBytes": false,
+          "oldRGBIsExactContainedWindow": true,
+          "oldWindowOffsetPixels": [
+            20,
+            0
+          ],
+          "comparisonIsContentPermission": false
+        },
+        "originalScore": 4,
+        "finalSourceHolds": [
+          "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+          "source_custody_rights_permission_pending",
+          "canonical_text_product_render_review_pending"
+        ],
+        "sourceCandidateMeaningReview": {
+          "decision": "student source statement,choices and sharedcontext unchanged; original crop RGB fully contained in final crop",
+          "visualInspection": "Root viewed final expanded crop; only restored left margin, no altered inner question or mathematical givens",
+          "notGradeOrRightsApproval": true
+        },
+        "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q12",
+        "authorCandidate": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q12\\q12.json",
+          "sha256": "7252904b13203394eb0a2ca42f0abe8a0c70ca930f04859d1ef4a6a0d7d18d09"
+        },
+        "candidateDigest": "a7c5cb9b6a585b0d26b7724d995efc561b7aec9d93a6624d3144c3a48c07d800",
+        "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203",
+        "assetDigest": "a236a826ba15723108757c058aad183f0401b4786960e6b272188dda8aaaa17a",
+        "newScore": 4,
+        "authorSourceSnapshotPreserved": true,
+        "sourceSnapshotRelation": "exact captured provisional input; effective final source joined separately",
+        "sourceMathLiteralAccuracyHold": null
+      },
+      "originalAnswerAgreementUsed": false,
+      "scope": "Concept/procedure and deliberate input/target/structure/context change from question-only source; native/custody/rights are separate."
+    },
+    "distinctPresentation": {
+      "status": "passed",
+      "basis": "Source has tower/height foot betweenB,C, BC10 with60/45 angles and asks height. Candidate specifies support height6 and asks ground spanBC. Same two right-triangle sum method; known/unknown length directions are reversed.",
+      "criterion": "Necessary inverse/input-target or response-structure/context change; not just changed numbers/letters."
+    },
+    "naturalKorean": {
+      "status": "passed",
+      "basis": "H insideBC, vertical rod and each support's ground angle are explicit. '각각60°,45°' aligns AB/AC in order.",
+      "fullAuthoredStudentAndSolutionReviewed": true
+    },
+    "curriculumAppropriate": {
+      "status": "passed",
+      "basis": "Tangent definitions in two plane right triangles and positive length addition suffice. No reciprocal identity notation, law of sines or exterior-foot assumption is required.",
+      "exactStandards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 892,
+            "offset": 219292,
+            "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictions": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 908,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 909,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 911,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 916,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 917,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "allSevenSurfacesReviewBelow": true
+    },
+    "allStudentSurfacesInScope": {
+      "status": "passed",
+      "basis": "Each actual new student surface, including the full authored solution and required prerequisites, was individually checked below."
+    },
+    "unitFamilyFit": {
+      "status": "pending",
+      "unitStatus": "passed",
+      "actualUnit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "frozenAssignmentStatus": "pending",
+      "frozenFamilyKey": null,
+      "ruleComparison": "활용03's tree/ladder/kite branches contain one observation triangle;06 gives base/angles and asksheight. Candidate has knownheight and two-sided inverse base sum. Nearby purpose partly overlaps06, but a full inverse branch is unassigned.",
+      "actualRulesInspected": [
+        {
+          "key": "3-2|삼각비의 활용|03",
+          "source": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 1968,
+            "endLine1based": 2029
+          },
+          "blockSha256Utf8": "c217ffdf91356c6de7d285a90acdc9b1010c3a38bf6320af4032e0751414703d",
+          "registryAndLive": {
+            "registryPointer": "/entries/93",
+            "registry": {
+              "key": "3-2|삼각비의 활용|03",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "03",
+              "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+            },
+            "liveMatches": [
+              {
+                "pointer": "/liveFamilies/27",
+                "record": {
+                  "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                  "family_key": "mid:3-2|삼각비의 활용|03",
+                  "live_count": 24
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "3-2|삼각비의 활용|06",
+          "source": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 2194,
+            "endLine1based": 2227
+          },
+          "blockSha256Utf8": "64e97ca2be935fb23fae01230160ae079e4693d06dc5546052aece4fd5045d29",
+          "registryAndLive": {
+            "registryPointer": "/entries/96",
+            "registry": {
+              "key": "3-2|삼각비의 활용|06",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "06",
+              "rpmTitle": "삼각형의 높이 구하기 주어진 각이 모두 예각인 경우"
+            },
+            "liveMatches": [
+              {
+                "pointer": "/liveFamilies/30",
+                "record": {
+                  "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                  "family_key": "mid:3-2|삼각비의 활용|06",
+                  "live_count": 20
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "currentSeed": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+        "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "startLine1based": 2943,
+        "endLine1based": 2987,
+        "text": "    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수 y=ax^2+bx+c의 그래프\",\n    orderIndex: 479,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수의 최댓값과 최솟값\",\n    orderIndex: 480,\n  },\n  // ── 5. 삼각비 ──\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  },\n  // ── 6. 원의 성질 ──\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원과 현\",\n    orderIndex: 484,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원의 접선\",\n    orderIndex: 485,\n  },\n  { grade: \"중3\", chapter: \"6. 원의 성질\", section: \"원주각\", orderIndex: 486 },\n  {"
+      },
+      "snapshotBank": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+        "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+      },
+      "snapshotRegistry": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+        "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1"
+      },
+      "snapshotCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "liveDatabaseReadByVerifier": false,
+      "currentDatabaseAssertion": false,
+      "dbAssignmentPromoted": false,
+      "schoolOrModelConfidenceIsAllowance": false,
+      "reopenCriteria": "Bind an actual declared family to this exact input/target/method/representation, including required inverse/multipart/parameter support; review changed classification/rule evidence. No automatic promotion from a title or shared concept."
+    },
+    "scoreAppropriate": {
+      "status": "passed",
+      "sourcePrintedParentScore": 4.0,
+      "newParentScore": 4,
+      "newSubScores": [],
+      "parentAndChildNotDoubleCounted": true,
+      "basis": "4 points is appropriate for two recovered base parts and combined span."
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "Tangent definitions in two plane right triangles and positive length addition suffice. No reciprocal identity notation, law of sines or exterior-foot assumption is required.",
+      "conditionsReviewed": "Both parts positive andH strictly internal; angles60/45 acute. All five length choices checked; only② equals the sum. Source final crop also shows an interior foot, so context delta does not silently change side placement.",
+      "actualContentSha256Utf8": "c6b0501ed482e1d395616c8bb4efa50ea8ac20655b65c8409c19629ff32d1e8b",
+      "standards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 892,
+            "offset": 219292,
+            "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": {
+        "status": "passed",
+        "basis": "All five actual printed alternatives checked as exact expressions/ordered tuples/strict intervals; exactly one satisfies every requested value.",
+        "actualChoices": [
+          {
+            "index1based": 1,
+            "text": "$6-2\\sqrt3\\,\\mathrm{cm}$",
+            "values": [
+              "6 - 2*sqrt(3)"
+            ],
+            "differences": [
+              "-4*sqrt(3)"
+            ],
+            "allRequestedPartsMatch": false
+          },
+          {
+            "index1based": 2,
+            "text": "$6+2\\sqrt3\\,\\mathrm{cm}$",
+            "values": [
+              "2*sqrt(3) + 6"
+            ],
+            "differences": [
+              "0"
+            ],
+            "allRequestedPartsMatch": true
+          },
+          {
+            "index1based": 3,
+            "text": "$6\\sqrt3\\,\\mathrm{cm}$",
+            "values": [
+              "6*sqrt(3)"
+            ],
+            "differences": [
+              "-6 + 4*sqrt(3)"
+            ],
+            "allRequestedPartsMatch": false
+          },
+          {
+            "index1based": 4,
+            "text": "$12\\,\\mathrm{cm}$",
+            "values": [
+              "12"
+            ],
+            "differences": [
+              "6 - 2*sqrt(3)"
+            ],
+            "allRequestedPartsMatch": false
+          },
+          {
+            "index1based": 5,
+            "text": "$2+6\\sqrt3\\,\\mathrm{cm}$",
+            "values": [
+              "2 + 6*sqrt(3)"
+            ],
+            "differences": [
+              "-4 + 4*sqrt(3)"
+            ],
+            "allRequestedPartsMatch": false
+          }
+        ],
+        "preExposureChoiceChecks": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$6-2\\sqrt3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "6 - 2*sqrt(3)"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-4*sqrt(3)"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$6+2\\sqrt3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "2*sqrt(3) + 6"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$6\\sqrt3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "6*sqrt(3)"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-6 + 4*sqrt(3)"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$12\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "12"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "6 - 2*sqrt(3)"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$2+6\\sqrt3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "2 + 6*sqrt(3)"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-4 + 4*sqrt(3)"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            2
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        }
+      },
+      "noOutsideGradeDistractorNotation": true
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": {
+        "questionNumber": 12,
+        "figures": [
+          {
+            "spec": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q12/figure-1.spec.json",
+              "sha256": "3ec103a2953a58e0a04ae0d5b38398309925dabe823d94a48bbd008f4d2bb774"
+            },
+            "svg": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q12/figure-1.svg",
+              "sha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329"
+            },
+            "intendedWidthMm": 70,
+            "rawCoordinateSemanticsChecks": [
+              {
+                "condition": "angle_H right angle",
+                "computed": 90.0,
+                "required": 90,
+                "passed": true
+              },
+              {
+                "condition": "angle_B degree annotation",
+                "computed": 60.00000000000001,
+                "required": 60,
+                "passed": true
+              },
+              {
+                "condition": "angle_C degree annotation",
+                "computed": 45.00000000000001,
+                "required": 45,
+                "passed": true
+              },
+              {
+                "condition": "H lies on BC",
+                "computed": 0.0,
+                "required": 0,
+                "passed": true
+              },
+              {
+                "condition": "H internal to BC",
+                "segmentFraction": 0.3660254037844386,
+                "passed": true
+              }
+            ],
+            "svgIdenticalToPreExposureViewedFigure": true,
+            "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+          }
+        ],
+        "status": "passed",
+        "noFigureNeeded": false,
+        "figurePixelMeasurementsUsedAsMathOracle": false
+      },
+      "tableCheck": "Actual tables/figure labels fix ordinary lengths,angles ororderedrecords; no graph/vector/formula prerequisite is hidden.",
+      "simpleGeometryLimit": "응용: two definitions and correct interior-foot sum in a support context.",
+      "actualRenderedPanesInspected": true
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Actual marks are ordinary point/segment/right-angle/radical/acute sin-cos-tan notation. Degree105/120 labels are geometric angles, not out-of-range trig evaluations. Unit meanings are bound to the roles below.",
+      "roleUnitMap": [
+        {
+          "role": "BC",
+          "unit": "cm",
+          "rawPartKey": "BC",
+          "rawTextUnchanged": "6+2√3 cm",
+          "parsedRawExact": "2*sqrt(3) + 6",
+          "authorPrintedExact": "2*sqrt(3) + 6",
+          "freshCalculationExact": "2*sqrt(3) + 6",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "specificBasis": "Tangent definitions in two plane right triangles and positive length addition suffice. No reciprocal identity notation, law of sines or exterior-foot assumption is required."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": [
+        {
+          "role": "BC",
+          "unit": "cm",
+          "rawPartKey": "BC",
+          "rawTextUnchanged": "6+2√3 cm",
+          "parsedRawExact": "2*sqrt(3) + 6",
+          "authorPrintedExact": "2*sqrt(3) + 6",
+          "freshCalculationExact": "2*sqrt(3) + 6",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "requiredQ22Proof": null,
+      "rawAnswerUnedited": "②: 6+2√3 cm",
+      "formattingOnlyMismatchIsNotGradeFailure": true
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Known height6 gives BH=6/tan60=2√3 and HC=6/tan45=6. H insideBC means add, so BC6+2√3. Author correctly avoids subtracting same-side observation distances.",
+      "fullNewAuthoredSolution": "직각삼각형 $\\mathrm{ABH}$에서 $\\tan60^\\circ=\\frac6{\\overline{\\mathrm{BH}}}=\\sqrt3$이므로 $\\overline{\\mathrm{BH}}=2\\sqrt3\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{ACH}$에서는 $\\tan45^\\circ=\\frac6{\\overline{\\mathrm{CH}}}=1$이므로 $\\overline{\\mathrm{CH}}=6\\,\\mathrm{cm}$이다.\n$\\mathrm{H}$가 두 점 사이에 있으므로 $\\overline{\\mathrm{BC}}=\\overline{\\mathrm{BH}}+\\overline{\\mathrm{HC}}=6+2\\sqrt3\\,\\mathrm{cm}$이다. 정답은 ②이다.",
+      "fullAuthoredSolutionReviewedForForbiddenProcedure": true,
+      "curricularApplication": "Tangent definitions in two plane right triangles and positive length addition suffice. No reciprocal identity notation, law of sines or exterior-foot assumption is required.",
+      "restrictions": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 908,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 909,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 911,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 916,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 917,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        }
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "Tangent definitions in two plane right triangles and positive length addition suffice. No reciprocal identity notation, law of sines or exterior-foot assumption is required.",
+      "officialStandards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 892,
+            "offset": 219292,
+            "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedEvidence": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2384,
+          "endLine1based": 2389,
+          "text": "  {\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 풀이\",\n    orderIndex: 376,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2483,
+          "endLine1based": 2511,
+          "text": "  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"평행선\", orderIndex: 393 },\n  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"작도\", orderIndex: 394 },\n  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"합동\", orderIndex: 395 },\n  // ── 6. 평면도형 ──\n  { grade: \"중1\", chapter: \"6. 평면도형\", section: \"다각형\", orderIndex: 396 },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"삼각형의 내각과 외각\",\n    orderIndex: 397,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"다각형의 내각과 외각\",\n    orderIndex: 398,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"원과 부채꼴\",\n    orderIndex: 399,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"부채꼴의 호의 길이와 넓이\",\n    orderIndex: 400,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2527,
+          "endLine1based": 2532,
+          "text": "  {\n    grade: \"중1\",\n    chapter: \"7. 입체도형\",\n    section: \"뿔의 겉넓이와 부피\",\n    orderIndex: 405,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2745,
+          "endLine1based": 2756,
+          "text": "  {\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"이등변삼각형의 성질\",\n    orderIndex: 446,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"직각삼각형의 합동\",\n    orderIndex: 447,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2799,
+          "endLine1based": 2811,
+          "text": "  // ── 6. 도형의 닮음 ──\n  {\n    grade: \"중2\",\n    chapter: \"6. 도형의 닮음\",\n    section: \"닮은 도형\",\n    orderIndex: 455,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"6. 도형의 닮음\",\n    section: \"삼각형의 닮음 조건\",\n    orderIndex: 456,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2849,
+          "endLine1based": 2861,
+          "text": "  // ── 8. 피타고라스 정리 ──\n  {\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리\",\n    orderIndex: 463,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리의 활용\",\n    orderIndex: 464,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2896,
+          "text": "  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"무리수와 실수\",\n    orderIndex: 470,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"근호를 포함한 식의 계산\",\n    orderIndex: 471,\n  },"
+        }
+      ],
+      "addedStepLimit": "Any extra ordinary arithmetic/linear-equation/root step is explicitly checked as an earlier-or-middle3 prerequisite; shared school name/family presence does not authorize a forbidden assessed relation.",
+      "outsideGradeMethodRequired": false
+    }
+  },
+  "dimensions": {
+    "math": "passed",
+    "existenceAndRequestedUniqueness": "passed",
+    "allSeven2015Surfaces": "passed",
+    "sourceCore": "passed",
+    "substantiveDelta": "passed",
+    "korean": "passed",
+    "score": "passed",
+    "actualUnit": "passed",
+    "exactLiveFamily": "pending",
+    "objectiveDifficulty": "passed_task_analysis",
+    "formattingOnlyComparator": "pending",
+    "rights": "pending",
+    "nativeProvenance": "pending",
+    "loading": "pending"
+  },
+  "objectiveDifficulty": {
+    "status": "passed",
+    "proposal": "응용",
+    "basis": "응용: two definitions and correct interior-foot sum in a support context.",
+    "registryDescriptorIsObjectiveProof": false,
+    "measuredStudentFacilityClaim": false
+  },
+  "answerEquivalence": {
+    "status": "passed",
+    "evidence": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+      "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469",
+      "pointer": "/results/11"
+    },
+    "currentLiteralComparatorMatches": false,
+    "contractEvidence": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/contract-bindings-r2.json",
+      "sha256": "dffff53926e5f9140a009b5cff39b8aabe111365edd518173350bd52078dee8b"
+    },
+    "typedConstantsHelperIsApproval": false,
+    "rawAnswerRewritten": false
+  },
+  "officialScope": {
+    "basis": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/curriculum-surface-basis.json",
+      "sha256": "fa183df33400ce8f167eda3be05d6ac0d40fed433aff8e1e6431a96022cdf252"
+    },
+    "identifiedMaterial2025MathProvisionUnknown": [],
+    "2027Middle3Republication": "requiresnew2022-specificreview",
+    "unrelatedWholePolicyCompletenessGate": false
+  },
+  "frozenInputBinding": {
+    "questionNumber": 12,
+    "providedDigests": {
+      "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203",
+      "candidateDigest": "26997964081ec452c9e59f5c763b7d1c5fa3d942e8ea6d3f8a59e0ed4ac4eb73",
+      "assetDigest": "a236a826ba15723108757c058aad183f0401b4786960e6b272188dda8aaaa17a",
+      "solveDigest": "5b84eec0ae49c409b6390fb0ebe376a525824d6fbf1abcff1bd0d97a5a5703e2"
+    },
+    "rawBlindFile": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q12.json",
+      "sha256": "bee6be062315378f18a4b6b2d36e9e0e83face37c8ac57970df552dbb25925a4"
+    },
+    "rootCanonicalRawCopy": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/blind/solve/q12.json",
+      "sha256": "bee6be062315378f18a4b6b2d36e9e0e83face37c8ac57970df552dbb25925a4"
+    },
+    "authorFrozenFile": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/candidates/q12/q12.json",
+      "sha256": "7252904b13203394eb0a2ca42f0abe8a0c70ca930f04859d1ef4a6a0d7d18d09"
+    },
+    "authorFreezeEntry": {
+      "questionNumber": 12,
+      "candidateDigest": "a7c5cb9b6a585b0d26b7724d995efc561b7aec9d93a6624d3144c3a48c07d800",
+      "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203",
+      "assetDigest": "a236a826ba15723108757c058aad183f0401b4786960e6b272188dda8aaaa17a"
+    },
+    "candidatePackageOnlyPathChanges": [
+      {
+        "pointer": "/figureArtifacts/0/specPath",
+        "author": "stem-1.spec.json",
+        "package": "figure-1.spec.json"
+      },
+      {
+        "pointer": "/figureArtifacts/0/svgPath",
+        "author": "stem-1.svg",
+        "package": "figure-1.svg"
+      }
+    ],
+    "candidateContentSolutionMetadataUnchangedByPackaging": true,
+    "finalSourceQuestionOnly": {
+      "number": 12,
+      "stem": "그림과 같이 두 지점 $\\mathrm{B},~C$에서 탑의 꼭대기 $\\mathrm{A}$를 올려본 각의 크기가 각각 $60°,~45°$일 때, 이 탑의 높이는? \n[$4$점]",
+      "choices": [
+        "$5\\sqrt{3}(\\mathrm{m})$",
+        "$10\\sqrt{3}(\\mathrm{m})$",
+        "$5\\sqrt{3}-5(\\mathrm{m})$",
+        "$15-5\\sqrt{3}(\\mathrm{m})$",
+        "$30-10\\sqrt{3}(\\mathrm{m})$"
+      ],
+      "hwpScriptStem": "그림과 같이 두 지점 $rmB, ~C $에서 탑의 꼭대기 $rmA$를 올려본 각의 크기가 각각 $60°,~45°$일 때, 이 탑의 높이는? \n[$4$점]",
+      "hwpScriptChoices": [
+        "$5sqrt { 3} (rmm )$",
+        "$10sqrt { 3} (rmm )$",
+        "$5sqrt { 3}-5 (rmm )$",
+        "$15-5sqrt { 3} (rmm )$",
+        "$30-10sqrt { 3} (rmm )$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "BC=10m; 탑 A를 올려본 B,C 각은 60°,45°.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "두 관측점과 탑 발에서 생긴 직각삼각형의 높이 관계를 연결한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "da0bf580983132615f541608a0a8b21392ac9fab09c02333225f1842a39d575d",
+      "sourceQuestionId": "2025-gyeonggu-3-2-mid-12",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q12-part1.png",
+          "sha256": "3c56d0d1f1ce2f78864e26c00be7baf7277e2976c3d3918caaf8fc94704a8501",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            560.959716796875,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1478,
+        "inflatedByteOffset": 62378,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "84816351de0d6f245e4ced25c675f046e7dfad98afbce9b4e3d02b2e1b3b45a0"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            560.959716796875,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    "finalSourceJoinRow": {
+      "questionNumber": 12,
+      "originalQuestionId": "2025-gyeonggu-3-2-mid-12",
+      "finalSourceContentDigest": "da0bf580983132615f541608a0a8b21392ac9fab09c02333225f1842a39d575d",
+      "provisionalQuestionDigest": "5dcd300555f1f3d575dd3da55395ecf81c7d618fd50a08bbf1b9685119c68f7a",
+      "finalQuestionDigest": "e6fe0c06ad944e37974e9fadd4fb7cc748863525bc5bbb51bb1a56c8b59edf0c",
+      "changedOriginalTextFields": [],
+      "sourceImageLocations": {
+        "prior": [
+          {
+            "file": "gyeonggu\\packet\\images\\q12-part1.png",
+            "sha256": "ff1506630016138dce1166b2eea1472cf2eff382ea37fd9980189ff34754a8b4",
+            "page": 3,
+            "column": 1,
+            "bbox": [
+              380,
+              560.959716796875,
+              688,
+              943
+            ]
+          }
+        ],
+        "final": [
+          {
+            "file": "images/q12-part1.png",
+            "sha256": "3c56d0d1f1ce2f78864e26c00be7baf7277e2976c3d3918caaf8fc94704a8501",
+            "page": 3,
+            "column": 1,
+            "bbox": [
+              370,
+              560.959716796875,
+              688,
+              943
+            ]
+          }
+        ]
+      },
+      "cropComparison": {
+        "questionNumber": 12,
+        "oldPath": ".qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/evidence/source-provisional/images/q12-part1.png",
+        "oldSha256": "ff1506630016138dce1166b2eea1472cf2eff382ea37fd9980189ff34754a8b4",
+        "newPath": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q12-part1.png",
+        "newSha256": "3c56d0d1f1ce2f78864e26c00be7baf7277e2976c3d3918caaf8fc94704a8501",
+        "oldBBox": [
+          380,
+          560.959716796875,
+          688,
+          943
+        ],
+        "newBBox": [
+          370,
+          560.959716796875,
+          688,
+          943
+        ],
+        "oldPixels": [
+          616,
+          765
+        ],
+        "newPixels": [
+          636,
+          765
+        ],
+        "sameBytes": false,
+        "oldRGBIsExactContainedWindow": true,
+        "oldWindowOffsetPixels": [
+          20,
+          0
+        ],
+        "comparisonIsContentPermission": false
+      },
+      "originalScore": 4,
+      "finalSourceHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sourceCandidateMeaningReview": {
+        "decision": "student source statement,choices and sharedcontext unchanged; original crop RGB fully contained in final crop",
+        "visualInspection": "Root viewed final expanded crop; only restored left margin, no altered inner question or mathematical givens",
+        "notGradeOrRightsApproval": true
+      },
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q12",
+      "authorCandidate": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q12\\q12.json",
+        "sha256": "7252904b13203394eb0a2ca42f0abe8a0c70ca930f04859d1ef4a6a0d7d18d09"
+      },
+      "candidateDigest": "a7c5cb9b6a585b0d26b7724d995efc561b7aec9d93a6624d3144c3a48c07d800",
+      "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203",
+      "assetDigest": "a236a826ba15723108757c058aad183f0401b4786960e6b272188dda8aaaa17a",
+      "newScore": 4,
+      "authorSourceSnapshotPreserved": true,
+      "sourceSnapshotRelation": "exact captured provisional input; effective final source joined separately",
+      "sourceMathLiteralAccuracyHold": null
+    },
+    "newScore": 4,
+    "sourceOriginalScore": 4.0,
+    "authorAssignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unitSection": "삼각비의 활용",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 483,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비의 활용|03",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "03",
+            "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+          },
+          {
+            "key": "3-2|삼각비의 활용|06",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "06",
+            "rpmTitle": "삼각형의 높이 구하기 주어진 각이 모두 예각인 경우"
+          }
+        ],
+        "fullRuleComparison": "활용03은 한 관측점/나무·사다리·연의 단일 직각삼각형이다.06은 주어진 밑변에서 높이. 새 문항은 높이에서 양쪽60/45도 밑변합을 복구한다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "difficultyProposal": "응용",
+    "figures": [
+      {
+        "role": "stem",
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q12/figure-1.spec.json",
+          "sha256": "3ec103a2953a58e0a04ae0d5b38398309925dabe823d94a48bbd008f4d2bb774"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q12/figure-1.svg",
+          "sha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329"
+        },
+        "intendedWidthMm": 70,
+        "specContent": {
+          "version": 2,
+          "theme": "exam-thin",
+          "style": {
+            "font_size": 18,
+            "angle_font_size": 17,
+            "angle_radius": 16,
+            "angle_label_distance": 26,
+            "padding": 22,
+            "show_points": false
+          },
+          "points": {
+            "H": [
+              0.0,
+              0.0
+            ],
+            "A": [
+              0.0,
+              -108.0
+            ],
+            "B": [
+              -62.35382907247958,
+              0.0
+            ],
+            "C": [
+              108.0,
+              0.0
+            ]
+          },
+          "segments": {
+            "AB": [
+              "A",
+              "B"
+            ],
+            "AC": [
+              "A",
+              "C"
+            ],
+            "BC": [
+              "B",
+              "C"
+            ],
+            "AH": {
+              "points": [
+                "A",
+                "H"
+              ],
+              "dash": "4 3"
+            }
+          },
+          "labels": {
+            "H": "H",
+            "A": "A",
+            "B": "B",
+            "C": "C"
+          },
+          "angles": {
+            "angle_H": {
+              "vertex": "H",
+              "points": [
+                "A",
+                "C"
+              ],
+              "right": true,
+              "radius": 8
+            },
+            "angle_B": {
+              "vertex": "B",
+              "points": [
+                "A",
+                "H"
+              ],
+              "label": "$60^\\circ$"
+            },
+            "angle_C": {
+              "vertex": "C",
+              "points": [
+                "H",
+                "A"
+              ],
+              "label": "$45^\\circ$"
+            }
+          }
+        },
+        "sameAsPreExposureStudentSvg": true
+      }
+    ],
+    "studentPaneExactlyEqualsPrefixOfAuthorLayout": true,
+    "originalAnswerOrSolutionUsed": false
+  },
+  "blindIndependence": {
+    "rawCommit": "c02838323307f69648124f837285503a53e99bd3",
+    "authorFreezeCommit": "bf8b132fb1e78bbdb8f1b6e55e1db99d1321147d",
+    "rawBlindSolve": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q12.json",
+      "sha256": "bee6be062315378f18a4b6b2d36e9e0e83face37c8ac57970df552dbb25925a4"
+    },
+    "rootByteExactCanonicalCopy": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/blind/solve/q12.json",
+      "sha256": "bee6be062315378f18a4b6b2d36e9e0e83face37c8ac57970df552dbb25925a4"
+    },
+    "priorSourceFamiliarityDisclosed": true,
+    "originalScanAnnotationsIncidentallySeenDuringAuthorizedQ13SourceInspection": true,
+    "originalKeysOrHandwritingUsedToApprove": false,
+    "otherSolverUsed": false,
+    "disclosure": "The authorized original printed page03 contains handwritten workings and circled choices, incidentally visible during this source-only inspection, including neighboring questions. These are not cited, transcribed, tested or reused as new answers, solutions, grade permission or approval. The22 raw independent solves were committed c028 before author exposure; the22 exact-equivalence evidence was already written before this original-scan inspection."
+  },
+  "heldReasons": [
+    {
+      "dimension": "exactLiveFamily",
+      "basis": "활용03's tree/ladder/kite branches contain one observation triangle;06 gives base/angles and asksheight. Candidate has knownheight and two-sided inverse base sum. Nearby purpose partly overlaps06, but a full inverse branch is unassigned.",
+      "reopenCriteria": "Bind an actual declared family to this exact input/target/method/representation, including required inverse/multipart/parameter support; review changed classification/rule evidence. No automatic promotion from a title or shared concept."
+    }
+  ],
+  "separateNonReviewHolds": [
+    "Current literal formatting comparator does not match detailed raw answers; Root may consume exact role/unit/value evidence without editing raw bytes.",
+    "Rights/custody/publisher authorization and native provenance have no approval from this contentreview. No DB/loading authority."
+  ],
+  "inferenceApiCalls": 0,
+  "dbReads": 0,
+  "dbWrites": 0,
+  "loadApproved": false
+}

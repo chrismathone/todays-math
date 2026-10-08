@@ -1,0 +1,1725 @@
+{
+  "schema": "independent-exam-final-review.v1",
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q16",
+  "status": "pending",
+  "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f",
+  "candidateDigest": "098ab641f23e1acc249dbb0f9d52cb1e9f4d1f720fb974b4152412a0b18ea23a",
+  "assetDigest": "e4610b5fb5c6fdf78471c1d708dd011d4cdebb5d7ae5bf5c7717c17d0b98140b",
+  "solveDigest": "5416c2d5208d09d4bcf0f88611abaf00c5248dc4650a923b3c7828e1c4d53c76",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-source-identity-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "answerCorrect": {
+      "status": "passed",
+      "basis": [
+        {
+          "role": "BP",
+          "unit": "cm",
+          "rawPartKey": "BP",
+          "rawTextUnchanged": "2 cm",
+          "parsedRawExact": "2",
+          "authorPrintedExact": "2",
+          "freshCalculationExact": "2",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "extraRequiredRelationship": null
+    },
+    "solutionCorrect": {
+      "status": "passed",
+      "basis": "Tangent radiusOA⊥AP; area24=(1/2)8AP yieldsAP6. OP=√(64+36)=10, OB8, soBP2. Author uses O-B-P order to subtract the radius.",
+      "freshAuthoredRouteCalculations": [
+        {
+          "claim": "triangle area",
+          "left": "24",
+          "right": "24",
+          "difference": "0",
+          "passed": true
+        }
+      ],
+      "authoredSolutionSha256Utf8": "7d4068e7ff7fb077758082f66e1512c6c592c10ca9954b90e03f1f55d8a261e6",
+      "authorFrozenFile": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/candidates/q16/q16.json",
+        "sha256": "c864051b55dff67a2a8d476908505779acaece3c0274e34855f562f18a5cdc1d"
+      }
+    },
+    "existenceUniqueness": {
+      "status": "passed",
+      "basis": "P outside:OP10>8; positiveBP2 andAP6. Exact tangent witness and O/B/P collinearity valid. All five proposedoutside lengths checked against Pythagoras and givenarea.",
+      "preExposureDetailedChecks": {
+        "actualCodeChecks": [
+          {
+            "condition": "external P and O-B-P ordering",
+            "passed": true,
+            "calculation": {
+              "OP": "10",
+              "BP": "2"
+            }
+          }
+        ],
+        "supplementalExactCoordinateWitness": {
+          "points": {
+            "O": [
+              0,
+              0
+            ],
+            "P": [
+              10,
+              0
+            ],
+            "B": [
+              8,
+              0
+            ],
+            "A": [
+              "32/5",
+              "24/5"
+            ]
+          },
+          "relations": [
+            {
+              "relation": "perpendicular",
+              "points": [
+                "O",
+                "A",
+                "P",
+                "A"
+              ],
+              "calculated": "0",
+              "required": 0,
+              "passed": true
+            },
+            {
+              "relation": "lengthSquared",
+              "points": [
+                "O",
+                "A"
+              ],
+              "calculated": "64",
+              "required": 64,
+              "passed": true
+            },
+            {
+              "relation": "lengthSquared",
+              "points": [
+                "P",
+                "A"
+              ],
+              "calculated": "36",
+              "required": 36,
+              "passed": true
+            },
+            {
+              "relation": "collinear",
+              "points": [
+                "O",
+                "B",
+                "P"
+              ],
+              "calculated": "0",
+              "required": 0,
+              "passed": true
+            }
+          ],
+          "method": "Independent exact coordinate witness; supplemental validation only"
+        },
+        "uniqueRequestedAnswer": true,
+        "wholeConfigurationMustBeUnique": false,
+        "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+      },
+      "freshCalculationProof": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+        "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469",
+        "pointer": "/results/15"
+      }
+    },
+    "choicesCorrect": {
+      "status": "passed",
+      "basis": "All five actual printed alternatives checked as exact expressions/ordered tuples/strict intervals; exactly one satisfies every requested value.",
+      "actualChoices": [
+        {
+          "index1based": 1,
+          "text": "$1\\,\\mathrm{cm}$",
+          "values": [
+            "1"
+          ],
+          "differences": [
+            "-1"
+          ],
+          "allRequestedPartsMatch": false
+        },
+        {
+          "index1based": 2,
+          "text": "$2\\,\\mathrm{cm}$",
+          "values": [
+            "2"
+          ],
+          "differences": [
+            "0"
+          ],
+          "allRequestedPartsMatch": true
+        },
+        {
+          "index1based": 3,
+          "text": "$3\\,\\mathrm{cm}$",
+          "values": [
+            "3"
+          ],
+          "differences": [
+            "1"
+          ],
+          "allRequestedPartsMatch": false
+        },
+        {
+          "index1based": 4,
+          "text": "$4\\,\\mathrm{cm}$",
+          "values": [
+            "4"
+          ],
+          "differences": [
+            "2"
+          ],
+          "allRequestedPartsMatch": false
+        },
+        {
+          "index1based": 5,
+          "text": "$6\\,\\mathrm{cm}$",
+          "values": [
+            "6"
+          ],
+          "differences": [
+            "4"
+          ],
+          "allRequestedPartsMatch": false
+        }
+      ],
+      "preExposureChoiceChecks": {
+        "allChoices": [
+          {
+            "index1based": 1,
+            "studentChoice": "$1\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "1"
+            ],
+            "matchesEachRequestedPart": [
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "outsideSegmentPositive": true,
+              "givenRadiusAndAreaTriangle": false
+            },
+            "differencesFromIndependentRequestedValues": [
+              "-1"
+            ]
+          },
+          {
+            "index1based": 2,
+            "studentChoice": "$2\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "2"
+            ],
+            "matchesEachRequestedPart": [
+              true
+            ],
+            "matches": true,
+            "domainAndGivenConditionChecks": {
+              "outsideSegmentPositive": true,
+              "givenRadiusAndAreaTriangle": true
+            },
+            "differencesFromIndependentRequestedValues": [
+              "0"
+            ]
+          },
+          {
+            "index1based": 3,
+            "studentChoice": "$3\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "3"
+            ],
+            "matchesEachRequestedPart": [
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "outsideSegmentPositive": true,
+              "givenRadiusAndAreaTriangle": false
+            },
+            "differencesFromIndependentRequestedValues": [
+              "1"
+            ]
+          },
+          {
+            "index1based": 4,
+            "studentChoice": "$4\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "4"
+            ],
+            "matchesEachRequestedPart": [
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "outsideSegmentPositive": true,
+              "givenRadiusAndAreaTriangle": false
+            },
+            "differencesFromIndependentRequestedValues": [
+              "2"
+            ]
+          },
+          {
+            "index1based": 5,
+            "studentChoice": "$6\\,\\mathrm{cm}$",
+            "parsedValues": [
+              "6"
+            ],
+            "matchesEachRequestedPart": [
+              false
+            ],
+            "matches": false,
+            "domainAndGivenConditionChecks": {
+              "outsideSegmentPositive": true,
+              "givenRadiusAndAreaTriangle": false
+            },
+            "differencesFromIndependentRequestedValues": [
+              "4"
+            ]
+          }
+        ],
+        "matchingIndices1based": [
+          2
+        ],
+        "exactlyOneChoice": true,
+        "basis": "Parsed actual copied student choices; no author/original key"
+      }
+    },
+    "figureConsistent": {
+      "status": "passed",
+      "basis": {
+        "questionNumber": 16,
+        "figures": [
+          {
+            "spec": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q16/figure-1.spec.json",
+              "sha256": "45d73b8804d456ecd263bf8f5072cdcce64ad591e4b1badd4d09fc74077790f2"
+            },
+            "svg": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q16/figure-1.svg",
+              "sha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e"
+            },
+            "intendedWidthMm": 70,
+            "rawCoordinateSemanticsChecks": [
+              {
+                "condition": "angle_A right angle",
+                "computed": 90.0,
+                "required": 90,
+                "passed": true
+              },
+              {
+                "condition": "A on circle",
+                "computed": 80.0,
+                "required": 80,
+                "passed": true
+              },
+              {
+                "condition": "B on circle",
+                "computed": 80.0,
+                "required": 80,
+                "passed": true
+              },
+              {
+                "condition": "B lies on OP",
+                "computed": 0.0,
+                "required": 0,
+                "passed": true
+              },
+              {
+                "condition": "B internal to OP",
+                "segmentFraction": 0.8,
+                "passed": true
+              },
+              {
+                "condition": "OA/OP=8/10",
+                "computed": 0.8,
+                "required": 0.8,
+                "passed": true
+              }
+            ],
+            "svgIdenticalToPreExposureViewedFigure": true,
+            "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+          }
+        ],
+        "status": "passed",
+        "noFigureNeeded": false,
+        "figurePixelMeasurementsUsedAsMathOracle": false
+      },
+      "actualRenderedViews": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q16-student.png",
+          "sha256": "0fa05a096731cb6687bf3d1e8ef70ebe6b1a54bc1f3ea1ed7d73b5dee4f03e8b",
+          "questionNumber": 16,
+          "role": "student",
+          "pixels": [
+            530,
+            1096
+          ],
+          "viewed": true,
+          "html": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q16-author.html",
+            "sha256": "de687eb3cfe1bf18cd68e584533da4c46d3551d30c4ec851a3b3d439f6ae1f93"
+          },
+          "inspection": "Student RGB pane exactly equals directly inspected authored-layout prefix (independently compared all pixels); q01-q04 also inspected separately earlier.",
+          "claimLimit": "Local authored PNG layout only; standalone physical70mm/55mm SVG previews retained from immutable blind stage. No production UI or complete printed paper approval."
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q16-author.png",
+          "sha256": "b5bf3f43071c3da2495300899afe447422afee12772d20ace8ababfecd817e9f",
+          "questionNumber": 16,
+          "role": "author",
+          "pixels": [
+            530,
+            1530
+          ],
+          "viewed": true,
+          "html": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q16-author.html",
+            "sha256": "de687eb3cfe1bf18cd68e584533da4c46d3551d30c4ec851a3b3d439f6ae1f93"
+          },
+          "inspection": "Direct view_image of authored student+solution layout on2026-10-08",
+          "claimLimit": "Local authored PNG layout only; standalone physical70mm/55mm SVG previews retained from immutable blind stage. No production UI or complete printed paper approval."
+        }
+      ],
+      "physicalStandaloneViewsBeforeExposure": [
+        {
+          "questionNumber": 16,
+          "svg": "figures/q16-1.svg",
+          "svgSha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e",
+          "intendedWidthMm": 70,
+          "renderedPdfWidthMm": 70.00000161064996,
+          "renderedHeightMm": 59.55317557712411,
+          "viewBox": [
+            0,
+            0,
+            242.019,
+            205.9
+          ],
+          "png": "blind/rendered/q16-1-300dpi.png",
+          "pngSha256": "e1037243e360b20f0dc43b761688074cc4044b0e01adc67b7fe98259be877725",
+          "pdf": "blind/rendered/q16-1-300dpi.pdf",
+          "pdfSha256": "481b18c7e08d7cae2506b7ecc2d6fd8cadc436f1bed3630b3388d3141b017de9",
+          "svgTextLabels": [],
+          "mathematicalOracle": false,
+          "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+          "visualInspection": "direct view_image completed on 2026-10-08",
+          "observation": "O-P line intersects circle atB and radiusOA is perpendicular tangentAP. B label is displaced below the intersection; student stem explicitly states O,B,P in order. No radius/length read from pixels.",
+          "labelsReadableAtSpecifiedPhysicalWidth": true,
+          "pixelMeasurementsUsedToSolve": false,
+          "physicalPrintProductionApproval": false
+        }
+      ],
+      "pixelOracle": false
+    },
+    "sameCoreConceptAndProcedure": {
+      "status": "passed",
+      "evidence": "Source radius5/outsideBP6 asks areaOAP. Candidate radius8/area24 recoversoutsideBP. Same tangent-right-triangle and ordinary area; inverse given/target route is substantive.",
+      "sourceQuestionRecord": {
+        "file": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/questions.json",
+          "sha256": "b6b40385cee9146ce74792ce2ca9675b7b562eb27aa65005cb4706f52347820f"
+        },
+        "pointer": "/questions/15",
+        "number": 16,
+        "canonicalQuestionOnlyRecordSha256": "d74abfd1734ef67b8b1fba768a68060cab180007e1cad72128f314ef20ad397b"
+      },
+      "sourceJoinRow": {
+        "questionNumber": 16,
+        "originalQuestionId": "2025-gyeonggu-3-2-mid-16",
+        "finalSourceContentDigest": "04654903ce1c4b6fab91175e5266902de4dffe9ce40aba6156b0ee8129dc00f0",
+        "provisionalQuestionDigest": "a28cb411cd6591bc875349f04dc0ab5bdcc2bf65c0e1234518b99ad4752827d1",
+        "finalQuestionDigest": "4be5de47067bd254fc5311ef649387986114e76424fc178e5433081dffe8048e",
+        "changedOriginalTextFields": [],
+        "sourceImageLocations": {
+          "prior": [
+            {
+              "file": "gyeonggu\\packet\\images\\q16-part1.png",
+              "sha256": "41f5d86afd8d81dd7e612334556ec3f852050f41a77beec3eac154fc6d878cff",
+              "page": 4,
+              "column": 1,
+              "bbox": [
+                380,
+                542.7896728515625,
+                688,
+                943
+              ]
+            }
+          ],
+          "final": [
+            {
+              "file": "images/q16-part1.png",
+              "sha256": "0024de57a08a4ff77e5919d3e93a0f1c1e45f56e677a330de2389341b29decfb",
+              "page": 4,
+              "column": 1,
+              "bbox": [
+                370,
+                542.7896728515625,
+                688,
+                943
+              ]
+            }
+          ]
+        },
+        "cropComparison": {
+          "questionNumber": 16,
+          "oldPath": ".qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/evidence/source-provisional/images/q16-part1.png",
+          "oldSha256": "41f5d86afd8d81dd7e612334556ec3f852050f41a77beec3eac154fc6d878cff",
+          "newPath": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q16-part1.png",
+          "newSha256": "0024de57a08a4ff77e5919d3e93a0f1c1e45f56e677a330de2389341b29decfb",
+          "oldBBox": [
+            380,
+            542.7896728515625,
+            688,
+            943
+          ],
+          "newBBox": [
+            370,
+            542.7896728515625,
+            688,
+            943
+          ],
+          "oldPixels": [
+            616,
+            801
+          ],
+          "newPixels": [
+            636,
+            801
+          ],
+          "sameBytes": false,
+          "oldRGBIsExactContainedWindow": true,
+          "oldWindowOffsetPixels": [
+            20,
+            0
+          ],
+          "comparisonIsContentPermission": false
+        },
+        "originalScore": 3,
+        "finalSourceHolds": [
+          "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+          "source_custody_rights_permission_pending",
+          "canonical_text_product_render_review_pending"
+        ],
+        "sourceCandidateMeaningReview": {
+          "decision": "student source statement,choices and sharedcontext unchanged; original crop RGB fully contained in final crop",
+          "visualInspection": "Root viewed final expanded crop; only restored left margin, no altered inner question or mathematical givens",
+          "notGradeOrRightsApproval": true
+        },
+        "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q16",
+        "authorCandidate": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q16\\q16.json",
+          "sha256": "c864051b55dff67a2a8d476908505779acaece3c0274e34855f562f18a5cdc1d"
+        },
+        "candidateDigest": "3d02e59ee4a88c19cd425e01c0d325f6806a3b9cadd9c0d2447668883989540f",
+        "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f",
+        "assetDigest": "e4610b5fb5c6fdf78471c1d708dd011d4cdebb5d7ae5bf5c7717c17d0b98140b",
+        "newScore": 3,
+        "authorSourceSnapshotPreserved": true,
+        "sourceSnapshotRelation": "exact captured provisional input; effective final source joined separately",
+        "sourceMathLiteralAccuracyHold": null
+      },
+      "originalAnswerAgreementUsed": false,
+      "scope": "Concept/procedure and deliberate input/target/structure/context change from question-only source; native/custody/rights are separate."
+    },
+    "distinctPresentation": {
+      "status": "passed",
+      "basis": "Source radius5/outsideBP6 asks areaOAP. Candidate radius8/area24 recoversoutsideBP. Same tangent-right-triangle and ordinary area; inverse given/target route is substantive.",
+      "criterion": "Necessary inverse/input-target or response-structure/context change; not just changed numbers/letters."
+    },
+    "naturalKorean": {
+      "status": "passed",
+      "basis": "O,B,P in this order is explicit; B's label is below the diagram intersection but the ordered stem and geometry fix it. No inference from label pixels is required.",
+      "fullAuthoredStudentAndSolutionReviewed": true
+    },
+    "curriculumAppropriate": {
+      "status": "passed",
+      "basis": "Ordinary area inversion, tangent-radius perpendicularity, Pythagoras and positive subtraction suffice. No tangent-secant power product or circle proportionality.",
+      "exactStandards": [
+        {
+          "id": "6수03-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3441,
+            "paragraph1based": 739,
+            "offset": 176959,
+            "text": "[6수03-07]\u001e여러 가지 둥근 물체의 원주와 지름을 측정하는 활동을 통하여 원주율을 이해한다. \r"
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictions": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 908,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 909,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 911,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 916,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 917,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "allSevenSurfacesReviewBelow": true
+    },
+    "allStudentSurfacesInScope": {
+      "status": "passed",
+      "basis": "Each actual new student surface, including the full authored solution and required prerequisites, was individually checked below."
+    },
+    "unitFamilyFit": {
+      "status": "pending",
+      "unitStatus": "passed",
+      "actualUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "frozenAssignmentStatus": "pending",
+      "frozenFamilyKey": null,
+      "ruleComparison": "원과직선07 has length-given right-triangle branches and radius+30°→OP. Candidate's area-driven recovery and external radius-subtracted target are absent from the whole branch, despite shared tangent-right-triangle purpose.",
+      "actualRulesInspected": [
+        {
+          "key": "3-2|원과 직선|07",
+          "source": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+            "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+            "startLine1based": 891,
+            "endLine1based": 925
+          },
+          "blockSha256Utf8": "a0bc2354bb7ae87dcc0fd2ba3328bd8844467d74f53db45ff9028d1aa5d80b24",
+          "registryAndLive": {
+            "registryPointer": "/entries/20",
+            "registry": {
+              "key": "3-2|원과 직선|07",
+              "grade": "중3",
+              "unitSection": "원의 접선",
+              "rpmBook": "3-2",
+              "rpmMinor": "원과 직선",
+              "rpmType": "07",
+              "rpmTitle": "원의 접선과 반지름"
+            },
+            "liveMatches": [
+              {
+                "pointer": "/liveFamilies/140",
+                "record": {
+                  "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+                  "family_key": "mid:3-2|원과 직선|07",
+                  "live_count": 46
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "currentSeed": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+        "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "startLine1based": 2943,
+        "endLine1based": 2987,
+        "text": "    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수 y=ax^2+bx+c의 그래프\",\n    orderIndex: 479,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수의 최댓값과 최솟값\",\n    orderIndex: 480,\n  },\n  // ── 5. 삼각비 ──\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  },\n  // ── 6. 원의 성질 ──\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원과 현\",\n    orderIndex: 484,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원의 접선\",\n    orderIndex: 485,\n  },\n  { grade: \"중3\", chapter: \"6. 원의 성질\", section: \"원주각\", orderIndex: 486 },\n  {"
+      },
+      "snapshotBank": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+        "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+      },
+      "snapshotRegistry": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+        "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1"
+      },
+      "snapshotCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "liveDatabaseReadByVerifier": false,
+      "currentDatabaseAssertion": false,
+      "dbAssignmentPromoted": false,
+      "schoolOrModelConfidenceIsAllowance": false,
+      "reopenCriteria": "Bind an actual declared family to this exact input/target/method/representation, including required inverse/multipart/parameter support; review changed classification/rule evidence. No automatic promotion from a title or shared concept."
+    },
+    "scoreAppropriate": {
+      "status": "passed",
+      "sourcePrintedParentScore": 3.0,
+      "newParentScore": 3,
+      "newSubScores": [],
+      "parentAndChildNotDoubleCounted": true,
+      "basis": "3 points is appropriate for these short steps."
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "Ordinary area inversion, tangent-radius perpendicularity, Pythagoras and positive subtraction suffice. No tangent-secant power product or circle proportionality.",
+      "conditionsReviewed": "P outside:OP10>8; positiveBP2 andAP6. Exact tangent witness and O/B/P collinearity valid. All five proposedoutside lengths checked against Pythagoras and givenarea.",
+      "actualContentSha256Utf8": "2e47d6cb0ae2304f953f2c4909d1cd3ff01c837e2b4211a15112db9bd77fc68b",
+      "standards": [
+        {
+          "id": "6수03-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3441,
+            "paragraph1based": 739,
+            "offset": 176959,
+            "text": "[6수03-07]\u001e여러 가지 둥근 물체의 원주와 지름을 측정하는 활동을 통하여 원주율을 이해한다. \r"
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": {
+        "status": "passed",
+        "basis": "All five actual printed alternatives checked as exact expressions/ordered tuples/strict intervals; exactly one satisfies every requested value.",
+        "actualChoices": [
+          {
+            "index1based": 1,
+            "text": "$1\\,\\mathrm{cm}$",
+            "values": [
+              "1"
+            ],
+            "differences": [
+              "-1"
+            ],
+            "allRequestedPartsMatch": false
+          },
+          {
+            "index1based": 2,
+            "text": "$2\\,\\mathrm{cm}$",
+            "values": [
+              "2"
+            ],
+            "differences": [
+              "0"
+            ],
+            "allRequestedPartsMatch": true
+          },
+          {
+            "index1based": 3,
+            "text": "$3\\,\\mathrm{cm}$",
+            "values": [
+              "3"
+            ],
+            "differences": [
+              "1"
+            ],
+            "allRequestedPartsMatch": false
+          },
+          {
+            "index1based": 4,
+            "text": "$4\\,\\mathrm{cm}$",
+            "values": [
+              "4"
+            ],
+            "differences": [
+              "2"
+            ],
+            "allRequestedPartsMatch": false
+          },
+          {
+            "index1based": 5,
+            "text": "$6\\,\\mathrm{cm}$",
+            "values": [
+              "6"
+            ],
+            "differences": [
+              "4"
+            ],
+            "allRequestedPartsMatch": false
+          }
+        ],
+        "preExposureChoiceChecks": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$1\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "1"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-1"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$2\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "2"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "3"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "1"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$4\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "4"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "2"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$6\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "6"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "4"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            2
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        }
+      },
+      "noOutsideGradeDistractorNotation": true
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": {
+        "questionNumber": 16,
+        "figures": [
+          {
+            "spec": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q16/figure-1.spec.json",
+              "sha256": "45d73b8804d456ecd263bf8f5072cdcce64ad591e4b1badd4d09fc74077790f2"
+            },
+            "svg": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q16/figure-1.svg",
+              "sha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e"
+            },
+            "intendedWidthMm": 70,
+            "rawCoordinateSemanticsChecks": [
+              {
+                "condition": "angle_A right angle",
+                "computed": 90.0,
+                "required": 90,
+                "passed": true
+              },
+              {
+                "condition": "A on circle",
+                "computed": 80.0,
+                "required": 80,
+                "passed": true
+              },
+              {
+                "condition": "B on circle",
+                "computed": 80.0,
+                "required": 80,
+                "passed": true
+              },
+              {
+                "condition": "B lies on OP",
+                "computed": 0.0,
+                "required": 0,
+                "passed": true
+              },
+              {
+                "condition": "B internal to OP",
+                "segmentFraction": 0.8,
+                "passed": true
+              },
+              {
+                "condition": "OA/OP=8/10",
+                "computed": 0.8,
+                "required": 0.8,
+                "passed": true
+              }
+            ],
+            "svgIdenticalToPreExposureViewedFigure": true,
+            "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+          }
+        ],
+        "status": "passed",
+        "noFigureNeeded": false,
+        "figurePixelMeasurementsUsedAsMathOracle": false
+      },
+      "tableCheck": "Actual tables/figure labels fix ordinary lengths,angles ororderedrecords; no graph/vector/formula prerequisite is hidden.",
+      "simpleGeometryLimit": "기본: area inversion creates6-8-10 triangle then one subtraction; angle is not independently solved.",
+      "actualRenderedPanesInspected": true
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Actual marks are ordinary point/segment/right-angle/radical/acute sin-cos-tan notation. Degree105/120 labels are geometric angles, not out-of-range trig evaluations. Unit meanings are bound to the roles below.",
+      "roleUnitMap": [
+        {
+          "role": "BP",
+          "unit": "cm",
+          "rawPartKey": "BP",
+          "rawTextUnchanged": "2 cm",
+          "parsedRawExact": "2",
+          "authorPrintedExact": "2",
+          "freshCalculationExact": "2",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "specificBasis": "Ordinary area inversion, tangent-radius perpendicularity, Pythagoras and positive subtraction suffice. No tangent-secant power product or circle proportionality."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": [
+        {
+          "role": "BP",
+          "unit": "cm",
+          "rawPartKey": "BP",
+          "rawTextUnchanged": "2 cm",
+          "parsedRawExact": "2",
+          "authorPrintedExact": "2",
+          "freshCalculationExact": "2",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "requiredQ22Proof": null,
+      "rawAnswerUnedited": "②: BP=2 cm",
+      "formattingOnlyMismatchIsNotGradeFailure": true
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Tangent radiusOA⊥AP; area24=(1/2)8AP yieldsAP6. OP=√(64+36)=10, OB8, soBP2. Author uses O-B-P order to subtract the radius.",
+      "fullNewAuthoredSolution": "접점에 그은 반지름은 접선에 수직이므로 $\\angle\\mathrm{OAP}=90^\\circ$이다.\n삼각형의 넓이에서 $\\frac12\\times8\\times\\overline{\\mathrm{AP}}=24$이므로 $\\overline{\\mathrm{AP}}=6\\,\\mathrm{cm}$이다.\n피타고라스 정리에 의하여 $\\overline{\\mathrm{OP}}=\\sqrt{8^2+6^2}=10\\,\\mathrm{cm}$이다. $\\overline{\\mathrm{OB}}=8\\,\\mathrm{cm}$이므로 $\\overline{\\mathrm{BP}}=10-8=2\\,\\mathrm{cm}$이고 정답은 ②이다.",
+      "fullAuthoredSolutionReviewedForForbiddenProcedure": true,
+      "curricularApplication": "Ordinary area inversion, tangent-radius perpendicularity, Pythagoras and positive subtraction suffice. No tangent-secant power product or circle proportionality.",
+      "restrictions": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 908,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 909,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 911,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 916,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 917,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        }
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "Ordinary area inversion, tangent-radius perpendicularity, Pythagoras and positive subtraction suffice. No tangent-secant power product or circle proportionality.",
+      "officialStandards": [
+        {
+          "id": "6수03-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3441,
+            "paragraph1based": 739,
+            "offset": 176959,
+            "text": "[6수03-07]\u001e여러 가지 둥근 물체의 원주와 지름을 측정하는 활동을 통하여 원주율을 이해한다. \r"
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedEvidence": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2384,
+          "endLine1based": 2389,
+          "text": "  {\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 풀이\",\n    orderIndex: 376,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2483,
+          "endLine1based": 2511,
+          "text": "  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"평행선\", orderIndex: 393 },\n  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"작도\", orderIndex: 394 },\n  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"합동\", orderIndex: 395 },\n  // ── 6. 평면도형 ──\n  { grade: \"중1\", chapter: \"6. 평면도형\", section: \"다각형\", orderIndex: 396 },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"삼각형의 내각과 외각\",\n    orderIndex: 397,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"다각형의 내각과 외각\",\n    orderIndex: 398,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"원과 부채꼴\",\n    orderIndex: 399,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"부채꼴의 호의 길이와 넓이\",\n    orderIndex: 400,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2527,
+          "endLine1based": 2532,
+          "text": "  {\n    grade: \"중1\",\n    chapter: \"7. 입체도형\",\n    section: \"뿔의 겉넓이와 부피\",\n    orderIndex: 405,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2745,
+          "endLine1based": 2756,
+          "text": "  {\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"이등변삼각형의 성질\",\n    orderIndex: 446,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"직각삼각형의 합동\",\n    orderIndex: 447,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2799,
+          "endLine1based": 2811,
+          "text": "  // ── 6. 도형의 닮음 ──\n  {\n    grade: \"중2\",\n    chapter: \"6. 도형의 닮음\",\n    section: \"닮은 도형\",\n    orderIndex: 455,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"6. 도형의 닮음\",\n    section: \"삼각형의 닮음 조건\",\n    orderIndex: 456,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2849,
+          "endLine1based": 2861,
+          "text": "  // ── 8. 피타고라스 정리 ──\n  {\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리\",\n    orderIndex: 463,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리의 활용\",\n    orderIndex: 464,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2896,
+          "text": "  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"무리수와 실수\",\n    orderIndex: 470,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"근호를 포함한 식의 계산\",\n    orderIndex: 471,\n  },"
+        }
+      ],
+      "addedStepLimit": "Any extra ordinary arithmetic/linear-equation/root step is explicitly checked as an earlier-or-middle3 prerequisite; shared school name/family presence does not authorize a forbidden assessed relation.",
+      "outsideGradeMethodRequired": false
+    }
+  },
+  "dimensions": {
+    "math": "passed",
+    "existenceAndRequestedUniqueness": "passed",
+    "allSeven2015Surfaces": "passed",
+    "sourceCore": "passed",
+    "substantiveDelta": "passed",
+    "korean": "passed",
+    "score": "passed",
+    "actualUnit": "passed",
+    "exactLiveFamily": "pending",
+    "objectiveDifficulty": "passed_task_analysis",
+    "formattingOnlyComparator": "pending",
+    "rights": "pending",
+    "nativeProvenance": "pending",
+    "loading": "pending"
+  },
+  "objectiveDifficulty": {
+    "status": "passed",
+    "proposal": "기본",
+    "basis": "기본: area inversion creates6-8-10 triangle then one subtraction; angle is not independently solved.",
+    "registryDescriptorIsObjectiveProof": false,
+    "measuredStudentFacilityClaim": false
+  },
+  "answerEquivalence": {
+    "status": "passed",
+    "evidence": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+      "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469",
+      "pointer": "/results/15"
+    },
+    "currentLiteralComparatorMatches": false,
+    "contractEvidence": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/contract-bindings-r2.json",
+      "sha256": "dffff53926e5f9140a009b5cff39b8aabe111365edd518173350bd52078dee8b"
+    },
+    "typedConstantsHelperIsApproval": false,
+    "rawAnswerRewritten": false
+  },
+  "officialScope": {
+    "basis": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/curriculum-surface-basis.json",
+      "sha256": "fa183df33400ce8f167eda3be05d6ac0d40fed433aff8e1e6431a96022cdf252"
+    },
+    "identifiedMaterial2025MathProvisionUnknown": [],
+    "2027Middle3Republication": "requiresnew2022-specificreview",
+    "unrelatedWholePolicyCompletenessGate": false
+  },
+  "frozenInputBinding": {
+    "questionNumber": 16,
+    "providedDigests": {
+      "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f",
+      "candidateDigest": "098ab641f23e1acc249dbb0f9d52cb1e9f4d1f720fb974b4152412a0b18ea23a",
+      "assetDigest": "e4610b5fb5c6fdf78471c1d708dd011d4cdebb5d7ae5bf5c7717c17d0b98140b",
+      "solveDigest": "5416c2d5208d09d4bcf0f88611abaf00c5248dc4650a923b3c7828e1c4d53c76"
+    },
+    "rawBlindFile": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q16.json",
+      "sha256": "16fdcf3539737bc65d878ee03a94baa1a5da885b2ff9ed16009d44a407a0e865"
+    },
+    "rootCanonicalRawCopy": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/blind/solve/q16.json",
+      "sha256": "16fdcf3539737bc65d878ee03a94baa1a5da885b2ff9ed16009d44a407a0e865"
+    },
+    "authorFrozenFile": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/candidates/q16/q16.json",
+      "sha256": "c864051b55dff67a2a8d476908505779acaece3c0274e34855f562f18a5cdc1d"
+    },
+    "authorFreezeEntry": {
+      "questionNumber": 16,
+      "candidateDigest": "3d02e59ee4a88c19cd425e01c0d325f6806a3b9cadd9c0d2447668883989540f",
+      "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f",
+      "assetDigest": "e4610b5fb5c6fdf78471c1d708dd011d4cdebb5d7ae5bf5c7717c17d0b98140b"
+    },
+    "candidatePackageOnlyPathChanges": [
+      {
+        "pointer": "/figureArtifacts/0/specPath",
+        "author": "stem-1.spec.json",
+        "package": "figure-1.spec.json"
+      },
+      {
+        "pointer": "/figureArtifacts/0/svgPath",
+        "author": "stem-1.svg",
+        "package": "figure-1.svg"
+      }
+    ],
+    "candidateContentSolutionMetadataUnchangedByPackaging": true,
+    "finalSourceQuestionOnly": {
+      "number": 16,
+      "stem": "점 $\\mathrm{A}$는 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 접선의 접점이다. $\\triangle \\mathrm{OAP}$의 넓이는? [$3$점]",
+      "choices": [
+        "$10\\sqrt{6}(\\mathrm{c}m^{2})$",
+        "$11\\sqrt{6}(\\mathrm{c}m^{2})$",
+        "$12\\sqrt{6}(\\mathrm{c}m^{2})$",
+        "$13\\sqrt{6}(\\mathrm{c}m^{2})$",
+        "$14\\sqrt{6}(\\mathrm{c}m^{2})$"
+      ],
+      "hwpScriptStem": "점 $rmA$는 점 $rmP$에서 원 $rmO\r\n$에 그은 접선의 접점이다. $TRIANGLE rmOAP $의 넓이는? [$3$점]",
+      "hwpScriptChoices": [
+        "$10 sqrt { 6} (rmcm^2 )$",
+        "$11 sqrt { 6} (rmcm^2 )$",
+        "$12sqrt { 6} (rmcm^2 )$",
+        "$13sqrt { 6} (rmcm^2 )$",
+        "$14 sqrt { 6} (rmcm^2 )$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "OA=5cm, BP=6cm; O,B,P 공선; PA 접선.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "원의 현·접선·원주각",
+        "coreMethodCandidate": "접점의 직각과 반지름/외부점의 직각삼각형으로 넓이를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-19",
+            "officialStatement": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "04654903ce1c4b6fab91175e5266902de4dffe9ce40aba6156b0ee8129dc00f0",
+      "sourceQuestionId": "2025-gyeonggu-3-2-mid-16",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q16-part1.png",
+          "sha256": "0024de57a08a4ff77e5919d3e93a0f1c1e45f56e677a330de2389341b29decfb",
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            542.7896728515625,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1795,
+        "inflatedByteOffset": 77280,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "893ae9c9ff0a0ab12aabb7bfa0823bf03bd72b7fe3ac5504e1f557416227818f"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            542.7896728515625,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    "finalSourceJoinRow": {
+      "questionNumber": 16,
+      "originalQuestionId": "2025-gyeonggu-3-2-mid-16",
+      "finalSourceContentDigest": "04654903ce1c4b6fab91175e5266902de4dffe9ce40aba6156b0ee8129dc00f0",
+      "provisionalQuestionDigest": "a28cb411cd6591bc875349f04dc0ab5bdcc2bf65c0e1234518b99ad4752827d1",
+      "finalQuestionDigest": "4be5de47067bd254fc5311ef649387986114e76424fc178e5433081dffe8048e",
+      "changedOriginalTextFields": [],
+      "sourceImageLocations": {
+        "prior": [
+          {
+            "file": "gyeonggu\\packet\\images\\q16-part1.png",
+            "sha256": "41f5d86afd8d81dd7e612334556ec3f852050f41a77beec3eac154fc6d878cff",
+            "page": 4,
+            "column": 1,
+            "bbox": [
+              380,
+              542.7896728515625,
+              688,
+              943
+            ]
+          }
+        ],
+        "final": [
+          {
+            "file": "images/q16-part1.png",
+            "sha256": "0024de57a08a4ff77e5919d3e93a0f1c1e45f56e677a330de2389341b29decfb",
+            "page": 4,
+            "column": 1,
+            "bbox": [
+              370,
+              542.7896728515625,
+              688,
+              943
+            ]
+          }
+        ]
+      },
+      "cropComparison": {
+        "questionNumber": 16,
+        "oldPath": ".qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/evidence/source-provisional/images/q16-part1.png",
+        "oldSha256": "41f5d86afd8d81dd7e612334556ec3f852050f41a77beec3eac154fc6d878cff",
+        "newPath": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q16-part1.png",
+        "newSha256": "0024de57a08a4ff77e5919d3e93a0f1c1e45f56e677a330de2389341b29decfb",
+        "oldBBox": [
+          380,
+          542.7896728515625,
+          688,
+          943
+        ],
+        "newBBox": [
+          370,
+          542.7896728515625,
+          688,
+          943
+        ],
+        "oldPixels": [
+          616,
+          801
+        ],
+        "newPixels": [
+          636,
+          801
+        ],
+        "sameBytes": false,
+        "oldRGBIsExactContainedWindow": true,
+        "oldWindowOffsetPixels": [
+          20,
+          0
+        ],
+        "comparisonIsContentPermission": false
+      },
+      "originalScore": 3,
+      "finalSourceHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sourceCandidateMeaningReview": {
+        "decision": "student source statement,choices and sharedcontext unchanged; original crop RGB fully contained in final crop",
+        "visualInspection": "Root viewed final expanded crop; only restored left margin, no altered inner question or mathematical givens",
+        "notGradeOrRightsApproval": true
+      },
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q16",
+      "authorCandidate": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q16\\q16.json",
+        "sha256": "c864051b55dff67a2a8d476908505779acaece3c0274e34855f562f18a5cdc1d"
+      },
+      "candidateDigest": "3d02e59ee4a88c19cd425e01c0d325f6806a3b9cadd9c0d2447668883989540f",
+      "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f",
+      "assetDigest": "e4610b5fb5c6fdf78471c1d708dd011d4cdebb5d7ae5bf5c7717c17d0b98140b",
+      "newScore": 3,
+      "authorSourceSnapshotPreserved": true,
+      "sourceSnapshotRelation": "exact captured provisional input; effective final source joined separately",
+      "sourceMathLiteralAccuracyHold": null
+    },
+    "newScore": 3,
+    "sourceOriginalScore": 3.0,
+    "authorAssignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "unitSection": "원의 접선",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 485,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|원과 직선|07",
+            "grade": "중3",
+            "unitSection": "원의 접선",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "07",
+            "rpmTitle": "원의 접선과 반지름"
+          }
+        ],
+        "fullRuleComparison": "07은 두 직각삼각형 길이나30도 조건으로 한 길이. 새 넓이로 접선 길이를 복구하고 원밖 구간을 구하는 전체 조건이 없다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "difficultyProposal": "기본",
+    "figures": [
+      {
+        "role": "stem",
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q16/figure-1.spec.json",
+          "sha256": "45d73b8804d456ecd263bf8f5072cdcce64ad591e4b1badd4d09fc74077790f2"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q16/figure-1.svg",
+          "sha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e"
+        },
+        "intendedWidthMm": 70,
+        "specContent": {
+          "version": 2,
+          "theme": "exam-thin",
+          "style": {
+            "font_size": 18,
+            "angle_font_size": 17,
+            "angle_radius": 16,
+            "angle_label_distance": 26,
+            "padding": 22,
+            "show_points": true,
+            "point_radius": 1.6
+          },
+          "points": {
+            "O": [
+              0.0,
+              0.0
+            ],
+            "P": [
+              100.0,
+              0.0
+            ],
+            "B": [
+              80.0,
+              0.0
+            ],
+            "A": [
+              64.0,
+              -48.0
+            ]
+          },
+          "segments": {
+            "OP": [
+              "O",
+              "P"
+            ],
+            "OA": [
+              "O",
+              "A"
+            ],
+            "AP": [
+              "A",
+              "P"
+            ]
+          },
+          "labels": {
+            "O": "O",
+            "P": "P",
+            "A": "A",
+            "B": {
+              "text": "B",
+              "dx": 7,
+              "dy": 23
+            }
+          },
+          "circles": {
+            "c": {
+              "center": "O",
+              "radius": 80
+            }
+          },
+          "angles": {
+            "angle_A": {
+              "vertex": "A",
+              "points": [
+                "O",
+                "P"
+              ],
+              "right": true,
+              "radius": 8
+            }
+          }
+        },
+        "sameAsPreExposureStudentSvg": true
+      }
+    ],
+    "studentPaneExactlyEqualsPrefixOfAuthorLayout": true,
+    "originalAnswerOrSolutionUsed": false
+  },
+  "blindIndependence": {
+    "rawCommit": "c02838323307f69648124f837285503a53e99bd3",
+    "authorFreezeCommit": "bf8b132fb1e78bbdb8f1b6e55e1db99d1321147d",
+    "rawBlindSolve": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q16.json",
+      "sha256": "16fdcf3539737bc65d878ee03a94baa1a5da885b2ff9ed16009d44a407a0e865"
+    },
+    "rootByteExactCanonicalCopy": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/blind/solve/q16.json",
+      "sha256": "16fdcf3539737bc65d878ee03a94baa1a5da885b2ff9ed16009d44a407a0e865"
+    },
+    "priorSourceFamiliarityDisclosed": true,
+    "originalScanAnnotationsIncidentallySeenDuringAuthorizedQ13SourceInspection": true,
+    "originalKeysOrHandwritingUsedToApprove": false,
+    "otherSolverUsed": false,
+    "disclosure": "The authorized original printed page03 contains handwritten workings and circled choices, incidentally visible during this source-only inspection, including neighboring questions. These are not cited, transcribed, tested or reused as new answers, solutions, grade permission or approval. The22 raw independent solves were committed c028 before author exposure; the22 exact-equivalence evidence was already written before this original-scan inspection."
+  },
+  "heldReasons": [
+    {
+      "dimension": "exactLiveFamily",
+      "basis": "원과직선07 has length-given right-triangle branches and radius+30°→OP. Candidate's area-driven recovery and external radius-subtracted target are absent from the whole branch, despite shared tangent-right-triangle purpose.",
+      "reopenCriteria": "Bind an actual declared family to this exact input/target/method/representation, including required inverse/multipart/parameter support; review changed classification/rule evidence. No automatic promotion from a title or shared concept."
+    }
+  ],
+  "separateNonReviewHolds": [
+    "Current literal formatting comparator does not match detailed raw answers; Root may consume exact role/unit/value evidence without editing raw bytes.",
+    "Rights/custody/publisher authorization and native provenance have no approval from this contentreview. No DB/loading authority."
+  ],
+  "inferenceApiCalls": 0,
+  "dbReads": 0,
+  "dbWrites": 0,
+  "loadApproved": false
+}
