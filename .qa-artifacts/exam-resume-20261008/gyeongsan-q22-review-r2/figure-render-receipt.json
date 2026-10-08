@@ -1,0 +1,30 @@
+{
+  "inputSvg": {
+    "path": "blind/figures/q22-1.svg",
+    "sha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111"
+  },
+  "png": {
+    "path": "figures-view/q22-1-70mm.png",
+    "sha256": "8780daad77993d4d10eb787287c30673f4c2f894400d35a6189256b327cbd5a9"
+  },
+  "intendedWidthMm": 70,
+  "actualSvgWidthMm": 69.998828125,
+  "actualCssBounds": {
+    "x": 0,
+    "y": 0,
+    "width": 264.5625,
+    "height": 244.03125
+  },
+  "deviceScaleFactor": 2,
+  "method": "Existing local headless Playwright displays only supplied student SVG at70mm; no new math drawing or PDF",
+  "priorAttempt": {
+    "library": "installed cairosvg Python module",
+    "result": "cairo shared library absent; no render or input writes before failure; no install attempted"
+  },
+  "networkRequests": [],
+  "coordinatesOrPixelsUsedAsMathematicalOracle": false,
+  "actualViewImageInspectionPending": false,
+  "noSourceFigureOrOriginalSolutionRead": true,
+  "directViewImageCompleted": true,
+  "observations": "All O,Q,S,T,U and alpha,beta labels and both right-angle marks legible. Beta is at T between TU/TQ; O-Q-T collinearity and O-S-U order visible. Q and U are on the drawn quadrant. No pixel-derived angle or length used."
+}

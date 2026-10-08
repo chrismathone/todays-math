@@ -1,0 +1,84 @@
+{
+  "scope": "gyeongsan-q22-review-r2 blind raw before new answer exposure",
+  "files": [
+    {
+      "path": "access-disclosure.json",
+      "sha256": "64d6463665b9c74726e77b7c15227b9f6e2906b328c0d4fb6bef36d9539b946b"
+    },
+    {
+      "path": "blind/blind-manifest.json",
+      "sha256": "c4d07c05691a639250882dac780dbb8b9ed9eccc0db5b8a34a0e42019d0c254e"
+    },
+    {
+      "path": "blind/figures/q22-1.svg",
+      "sha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111"
+    },
+    {
+      "path": "blind/SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    {
+      "path": "blind/student-problems.json",
+      "sha256": "970403506c97e1a108ee4e5570e67e0605667fb25b7d2a8decfa0cc6519ad09b"
+    },
+    {
+      "path": "BLIND-SOLVE.md",
+      "sha256": "5df92ebec80a7b645e4c01b3187e6d196f50447159213caa28f53174156d021d"
+    },
+    {
+      "path": "calculate.py",
+      "sha256": "242bd74e7f930c45d94830b327689a9f36783f27ac487565bae0be96c546385d"
+    },
+    {
+      "path": "figure-render-receipt.json",
+      "sha256": "b22c696f1230102d847875b3b950c11519c93d855eab62a6dfb826463550661f"
+    },
+    {
+      "path": "figures-view/q22-1-70mm.png",
+      "sha256": "8780daad77993d4d10eb787287c30673f4c2f894400d35a6189256b327cbd5a9"
+    },
+    {
+      "path": "input-receipt.json",
+      "sha256": "b64b3f0248139acb1afdb594f9ce56f81439da5006da50957a82d719af21eb64"
+    },
+    {
+      "path": "instruction-receipt.json",
+      "sha256": "fecad05fe66579bc84f2f96d34852e20a5286d3e96ed92c33396aa10b7f4f502"
+    },
+    {
+      "path": "prepare.py",
+      "sha256": "16ac9d78046395dcaec913e83e624ff29763d851b5b31886b87d86c3c59f383e"
+    },
+    {
+      "path": "preservation-baseline.json",
+      "sha256": "52eb0b48cc6705f50e0964d188c7c5602b678a4d8384a8d553a24bcfdfa77661"
+    },
+    {
+      "path": "proofs/q22-exact-calculations.json",
+      "sha256": "039173db38d246f9cc1ced0617b4360507da95f5bdf03657e77eff3c23e148e1"
+    },
+    {
+      "path": "raw-output-hashes.json",
+      "sha256": "e1b28978b52f7983d27374a46a1c659907e8533835a32db0bf906cba08527a10"
+    },
+    {
+      "path": "render_figure.mjs",
+      "sha256": "5ddf23fb0cf258c6602fcee58298bc0e5f759013031e2f335a2406dfade741d7"
+    },
+    {
+      "path": "solve/q22.json",
+      "sha256": "c59e4b8e2d3a0d9751c4ddf753e7f7410f74f3f4becaea4bef6343c800547104"
+    },
+    {
+      "path": "validate.py",
+      "sha256": "7934e9e5cff597ec6d67cd4ac5c465e52d50df59eeb532d05948d3692ab3a12e"
+    },
+    {
+      "path": "validation-before-commit.json",
+      "sha256": "a7ec73652c0fbc49b4d9874f4278730fd3e4b5757954801aa810c8eeec3ff727"
+    }
+  ],
+  "rawFrozenOnCommit": true,
+  "exposureBeforeRawCommit": false,
+  "rawAnswerReformattingAfterExposureForbidden": true
+}
