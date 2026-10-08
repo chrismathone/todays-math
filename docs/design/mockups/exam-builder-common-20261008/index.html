@@ -13,13 +13,21 @@
         font-display: swap;
       }
       :root {
-        --ink: #172b4d;
-        --muted: #596c86;
-        --blue: #3159df;
-        --line: #dde3ec;
-        --soft: #edf2ff;
-        --bg: #f4f6fa;
-        --nav: #14243d;
+        --learn-ink: #172b4d;
+        --learn-muted: #596c86;
+        --learn-accent: #3159df;
+        --learn-track: #dde3ec;
+        --learn-soft: #edf2ff;
+        --learn-bg: #f4f6fa;
+        --learn-nav: #14243d;
+        --learn-surface: #fff;
+        --ink: var(--learn-ink);
+        --muted: var(--learn-muted);
+        --blue: var(--learn-accent);
+        --line: var(--learn-track);
+        --soft: var(--learn-soft);
+        --bg: var(--learn-bg);
+        --nav: var(--learn-nav);
       }
       * {
         box-sizing: border-box;
@@ -107,7 +115,7 @@
         flex-wrap: wrap;
         flex-shrink: 0;
       }
-      .subjects span {
+      .subjects a {
         background: white;
         border: 1px solid var(--line);
         padding: 5px 10px;
@@ -445,7 +453,7 @@
         .thumbnail {
           aspect-ratio: 16/10;
         }
-        .subjects span {
+        .subjects a {
           padding: 4px 9px;
         }
         .note {
@@ -460,6 +468,30 @@
           transition: none !important;
           scroll-behavior: auto !important;
         }
+      }
+      .scope-preview {
+        margin: 16px 0;
+        border: 1px solid var(--learn-track);
+        border-radius: 12px;
+        background: var(--learn-surface);
+        padding: 16px 20px;
+      }
+      .scope-preview summary {
+        min-height: 44px;
+        padding: 12px 0;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .scope-preview p {
+        margin: 8px 0 16px;
+        color: var(--learn-muted);
+        font-size: 14px;
+      }
+      .scope-preview img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
       }
     </style>
   </head>
@@ -478,9 +510,9 @@
             기능을 어떤 순서와 화면에 놓을지 비교해 보세요.
           </p>
         </div>
-        <div class="subjects" aria-label="공통 포맷을 적용할 과목">
-          <span>수학</span><span>영어</span><span>국어</span><span>과학</span
-          ><span>사회</span>
+        <div class="subjects" aria-label="제품 진입 맥락별 시안 링크">
+          <a href="?subject=math">오늘의 수학에서 진입한 시안 ↗</a>
+          <a href="?subject=english">오늘의 영어에서 진입한 시안 ↗</a>
         </div>
       </div>
       <div class="principle">
@@ -489,14 +521,30 @@
           <p>범위 선택 → 문항 구성·수정 → 출력</p>
         </div>
         <div>
-          <strong>과목별로 바뀌는 것</strong>
-          <p>범위 이름 · 지문·문항 내용 · 필요한 자료</p>
+          <strong>진입한 과목 그대로</strong>
+          <p>과목을 다시 고르지 않습니다. 화면과 조작 방식만 공통입니다.</p>
         </div>
         <div>
-          <strong>모두 눌러볼 수 있는 시안</strong>
-          <p>예시 데이터로 동작하며 실제 계정에 저장하지 않습니다.</p>
+          <strong>큰 범위도 접어서 탐색</strong>
+          <p>
+            학년·자료 필터 → 단원·차시 검색 → 선택 요약. 수학 735개 차시를
+            담았습니다.
+          </p>
         </div>
       </div>
+      <details class="scope-preview">
+        <summary>
+          모든 안에 적용한 범위 선택창 보기 · 학년 → 대단원 → 차시
+        </summary>
+        <p>
+          검색과 단원별 선택을 사용하고, 선택한 범위는 별도 목록에서
+          확인·해제합니다. 아래는 수백 개를 선택한 상태의 화면입니다.
+        </p>
+        <img
+          src="previews/scope.png"
+          alt="수학 735개 차시를 탐색하고 선택한 범위를 페이지로 나눠 보여주는 범위 선택창"
+        />
+      </details>
       <div class="cards" id="cards"></div>
       <div class="note">
         <strong>추천 출발점은 A의 단계 구분 + C의 문항 편집입니다.</strong>
@@ -531,13 +579,19 @@
           ></iframe>
         </div>
         <p class="foot">
-          시안 안의 과목을 바꾸고 문항을 구성해 보세요. PC / 모바일은 미리보기
-          폭을 바꿉니다. 실서비스의 자동 출제·저장·인쇄 계약은 시안 선택 후
-          연결합니다.
+          ‘범위 변경’을 눌러 긴 단원 목록을 검색·선택해 보세요. 수학 목록은
+          저장소의 교육과정이며, 영어 자료는 탐색 구조를 비교하기 위한
+          예시입니다. 문항 편집 체험은 ‘시안 문항’에만 연결되며 실제 계정에는
+          저장하지 않습니다.
         </p>
       </section>
     </main>
     <script>
+      const context =
+        new URLSearchParams(location.search).get("subject") === "english"
+          ? "english"
+          : "math";
+      const inContext = (file) => `${file}?subject=${context}`;
       const concepts = [
         {
           id: "A",
@@ -590,10 +644,10 @@
         concepts
           .map(
             (c) =>
-              `<article class="card"><a class="thumbnail" href="${c.file}" aria-label="${c.id} ${c.title} 시안 열기"><img src="${c.image}" alt="${c.id}안 ${c.title} 실제 시안 화면"><span class="thumb-tag">실제 시안 화면</span></a><div class="card-body"><div class="title-row"><span class="letter">${c.id}</span><h2>${c.title}</h2></div><p>${c.desc}</p><div class="flow">${c.flow}</div><div class="fit"><b>잘 맞는 작업</b>${c.fit}</div><div class="card-actions"><button data-preview="${c.id}">${c.id}안 눌러보기</button><a href="${c.file}" target="_blank" rel="noopener">새 창 ↗</a></div></div></article>`,
+              `<article class="card"><a class="thumbnail" href="${inContext(c.file)}" aria-label="${c.id} ${c.title} 시안 열기"><img src="${c.image}" alt="${c.id}안 ${c.title} 실제 시안 화면"><span class="thumb-tag">수학 진입 예시</span></a><div class="card-body"><div class="title-row"><span class="letter">${c.id}</span><h2>${c.title}</h2></div><p>${c.desc}</p><div class="flow">${c.flow}</div><div class="fit"><b>잘 맞는 작업</b>${c.fit}</div><div class="card-actions"><button data-preview="${c.id}">${c.id}안 눌러보기</button><a href="${inContext(c.file)}" target="_blank" rel="noopener">새 창 ↗</a></div></div></article>`,
           )
           .join("") +
-        `<aside class="shared"><h2>다섯 안의 공통 약속</h2><ul><li><b>과목이 바뀌어도 같은 조작</b><span>교체 · 추가 · 삭제 · 순서 · 출력</span></li><li><b>구성된 문항이 화면의 중심</b><span>문항 탐색은 추가·교체할 때 열기</span></li><li><b>부족한 문항 수를 그대로 안내</b><span>범위나 난이도를 몰래 넓히지 않기</span></li><li><b>초안 수정에는 되돌리기</b><span>변경한 내용과 현재 문항 수를 확인</span></li></ul></aside>`;
+        `<aside class="shared"><h2>다섯 안의 공통 약속</h2><ul><li><b>기존 과목 맥락 유지</b><span>교체 · 추가 · 삭제 · 순서 · 출력</span></li><li><b>선택 범위만 간결하게 표시</b><span>전체 단원 목록은 범위 선택창에서 탐색</span></li><li><b>부족한 문항 수를 그대로 안내</b><span>범위나 난이도를 몰래 넓히지 않기</span></li><li><b>초안 수정에는 되돌리기</b><span>변경한 내용과 현재 문항 수를 확인</span></li></ul></aside>`;
       document.getElementById("tabs").innerHTML = concepts
         .map(
           (c) =>
@@ -605,10 +659,10 @@
         if (!c) return;
         document.getElementById("viewer").hidden = false;
         document.getElementById("viewer-title").textContent =
-          `${c.id} · ${c.title}`;
+          `${context === "english" ? "오늘의 영어" : "오늘의 수학"} / ${c.id} · ${c.title}`;
         document.getElementById("viewer-description").textContent = c.desc;
-        document.getElementById("full-link").href = c.file;
-        document.getElementById("prototype").src = c.file;
+        document.getElementById("full-link").href = inContext(c.file);
+        document.getElementById("prototype").src = inContext(c.file);
         document.getElementById("prototype").title =
           `${c.id} ${c.title} 인터랙티브 시안`;
         document
@@ -618,13 +672,11 @@
           );
         history.replaceState(null, "", "#" + id);
         if (scroll)
-          document
-            .getElementById("viewer")
-            .scrollIntoView({
-              behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
-                ? "instant"
-                : "smooth",
-            });
+          document.getElementById("viewer").scrollIntoView({
+            behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+              ? "instant"
+              : "smooth",
+          });
       }
       document
         .querySelectorAll("[data-preview]")
