@@ -1,0 +1,234 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q12",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "수평 바닥의 두 점 $\\mathrm{B,C}$ 사이에 삼각형 지지틀을 설치한다. $\\mathrm{H}$는 선분 $\\mathrm{BC}$의 내부에 있고, 수직 막대 $\\mathrm{AH}$의 길이는 $6\\,\\mathrm{cm}$이다. 두 지지대 $\\mathrm{AB}$와 $\\mathrm{AC}$는 바닥과 각각 $60^\\circ$, $45^\\circ$를 이룬다.\n지지틀의 바닥 부분 $\\overline{\\mathrm{BC}}$의 길이는?",
+  "choices": [
+    "$6-2\\sqrt3\\,\\mathrm{cm}$",
+    "$6+2\\sqrt3\\,\\mathrm{cm}$",
+    "$6\\sqrt3\\,\\mathrm{cm}$",
+    "$12\\,\\mathrm{cm}$",
+    "$2+6\\sqrt3\\,\\mathrm{cm}$"
+  ],
+  "answer": "②",
+  "solution": "직각삼각형 $\\mathrm{ABH}$에서 $\\tan60^\\circ=\\frac6{\\overline{\\mathrm{BH}}}=\\sqrt3$이므로 $\\overline{\\mathrm{BH}}=2\\sqrt3\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{ACH}$에서는 $\\tan45^\\circ=\\frac6{\\overline{\\mathrm{CH}}}=1$이므로 $\\overline{\\mathrm{CH}}=6\\,\\mathrm{cm}$이다.\n$\\mathrm{H}$가 두 점 사이에 있으므로 $\\overline{\\mathrm{BC}}=\\overline{\\mathrm{BH}}+\\overline{\\mathrm{HC}}=6+2\\sqrt3\\,\\mathrm{cm}$이다. 정답은 ②이다.",
+  "score": 4.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "AH": 6,
+      "HInsideBC": true,
+      "ABGroundAngle": 60,
+      "ACGroundAngle": 45,
+      "unit": "cm"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q12.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "context",
+      "inverse-target"
+    ],
+    "before": "양쪽 관측점 사이 거리로 탑의높이를 구한다.",
+    "after": "높이가정해진 지지틀의바닥전체길이를 역으로구한다.",
+    "sharedConcept": "높이를 공유하는 두 직각삼각형의tan",
+    "sharedProcedure": "각각 높이/밑변의 비를 세우고 수평 두 길이를 합한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-18",
+      "9수04-17",
+      "9수01-10"
+    ],
+    "allowedProcedure": "각각 높이/밑변의 비를 세우고 수평 두 길이를 합한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "탑 사진 대신 수학 관계가 완결된 벡터 지지틀을 새로 그린다. H는BC내부임을 명시한다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": []
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 1개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "각각 높이/밑변의 비를 세우고 수평 두 길이를 합한다.",
+      "risk": "탑 사진 대신 수학 관계가 완결된 벡터 지지틀을 새로 그린다. H는BC내부임을 명시한다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-18",
+          "text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 12,
+    "sourceContentSha256": "fb64458e99860ba36f8ef87c0767d41d018b4717222efaa2e74c04ab7a0eb895",
+    "sourceDigest": "174a265c9bd801981edc565db256660928c05cb0a68fea962b2c9f9ba4e9a8a9",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/11",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q12-part1.png",
+        "sha256": "ff1506630016138dce1166b2eea1472cf2eff382ea37fd9980189ff34754a8b4",
+        "page": 3,
+        "column": 1
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4.0,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unitSection": "삼각비의 활용",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 483,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비의 활용|03",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "03",
+            "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+          },
+          {
+            "key": "3-2|삼각비의 활용|06",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "06",
+            "rpmTitle": "삼각형의 높이 구하기 주어진 각이 모두 예각인 경우"
+          }
+        ],
+        "fullRuleComparison": "활용03은 한 관측점/나무·사다리·연의 단일 직각삼각형이다.06은 주어진 밑변에서 높이. 새 문항은 높이에서 양쪽60/45도 밑변합을 복구한다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

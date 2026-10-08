@@ -1,0 +1,1233 @@
+{
+  "version": "source-only-r1",
+  "examId": "2025-gyeonggu-3-2-mid",
+  "instructions": "Reference questions only. Original answer/solution/endnote areas are withheld. Do not infer a correct choice from source metadata. Holds must be cleared before twin authoring.",
+  "questions": [
+    {
+      "number": 1,
+      "stem": "$\\triangle \\mathrm{ABC}$에 대한 삼각비로 옳은 것은? [$3$점]",
+      "choices": [
+        "$\\sin \\,A=\\frac{5}{3}$",
+        "$\\cos \\,A=\\frac{3}{5}$",
+        "$\\tan \\,A=\\frac{4}{3}$",
+        "$\\sin \\,B=\\frac{4}{5}$",
+        "$\\tan \\,B=\\frac{3}{4}$"
+      ],
+      "hwpScriptStem": "$TRIANGLE rmABC$에 대한 삼각비로 옳은 것은? [$3$점]",
+      "hwpScriptChoices": [
+        "$sin`A= 5over3$",
+        "$cos`A = 3over5 $",
+        "$tan`A= 4over3$",
+        "$sin`B= 4over5$",
+        "$tan`B= 3over4$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 33
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q01-part1.png",
+          "sha256": "12f1929523c73cf5aea523ecc318ee618e0fe3097fdd18c05d00e83484189eed",
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            99,
+            375,
+            547.4618530273438
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "b73b57526206047c5982cdfbacfaffe39348cfee23eed4af802a16b66a4c371a",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 2,
+      "stem": "$\\angle \\mathrm{C}=90°$인 $\\triangle \\mathrm{ABC}$에서 $\\sin \\,A=\\frac{2}{3}$이고 $\\overline{AB}=6\\sqrt{5}$일 때, $\\overline{CA}$의 길이는? [$3$점]",
+      "choices": [
+        "$\\sqrt{5}$",
+        "$\\sqrt{13}$",
+        "$4\\sqrt{5}$",
+        "$10$",
+        "$25$"
+      ],
+      "hwpScriptStem": "$ANGLE  rm C=90°$인 $TRIANGLE rmABC$에서 $sin`A= 2over3$이고 $rmbarAB = 6sqrt { 5}$일 때, $rmbarCA$의 길이는? [$3$점]",
+      "hwpScriptChoices": [
+        "$sqrt { 5} $",
+        "$sqrt { 13} $",
+        "$4sqrt { 5} $",
+        "$10$",
+        "$25$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 99
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q02-part1.png",
+          "sha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            545.1838989257812,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "7ed714cc792f8d49028b8d7da4c62c38663989e6158a97ab8cc054a5fc495cfc",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 3,
+      "stem": "$\\triangle \\mathrm{ABC}$에서, $\\tan \\,A\\times \\mathrm{\\sin }\\,\\mathit{B}$의 값은? [$3$점]",
+      "choices": [
+        "$\\frac{\\sqrt{3}}{6}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{\\sqrt{3}}{2}$",
+        "$\\frac{3}{2}$",
+        "$2\\sqrt{3}$"
+      ],
+      "hwpScriptStem": "$TRIANGLE rmABC$에서, $tan`A TIMESrmsin` it B $의 값은? [$3$점]",
+      "hwpScriptChoices": [
+        "$sqrt { 3} over6$",
+        "$1over2$",
+        "$sqrt { 3} over2$",
+        "$3over2$",
+        "$2sqrt { 3} $"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 51
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q03-part1.png",
+          "sha256": "53eb1868eb71156ab2acbb41a3cd418321e60120192f3c73f7014ebe48578d2a",
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            380,
+            99,
+            688.0,
+            530.7940673828125
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "4dba2baa588e03e9911afad37e3cdb6e3a1172159d8b1e4888fbe1cb3f69251b",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 4,
+      "stem": "그림에서 $\\triangle \\mathrm{ABC}$는 $\\angle \\mathrm{BAC}=90$°이고 $\\overline{AD}$⊥$\\overline{BC}$이다. $\\cos \\,x°+\\cos \\,y°\\,$의 값은? [$3$점]",
+      "choices": [
+        "$\\sqrt{13}$",
+        "$2\\sqrt{13}$",
+        "$\\frac{5\\sqrt{13}}{13}$",
+        "$\\frac{15\\sqrt{13}}{13}$",
+        "$\\frac{17\\sqrt{13}}{13}$"
+      ],
+      "hwpScriptStem": "그림에서 $TRIANGLE rmABC$는 $anglerm BAC=90$°이고 $rmbarAD $⊥$rmbarBC $이다. $cos`x°+cos`y°`$의 값은? [$3$점]",
+      "hwpScriptChoices": [
+        "$sqrt { 13} $",
+        "$2sqrt { 13} $",
+        "${5sqrt { 13}}over13 $",
+        "${15sqrt { 13}}over13 $",
+        "${17sqrt { 13}}over13 $"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 90
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q04-part1.png",
+          "sha256": "f7293864a07fa0f15a0f4ffce3c4dbc7c16a81ad26d32f5b127eff22c7587eb4",
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            380,
+            528.170654296875,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "000aae5cbc6eaf69b0164b19014ce6d97306fefec3c971fa9bb2cbe81bb7d5e1",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 5,
+      "stem": "<보기>의 삼각비의 값을 그 크기가 작은 것부터 차례대로 나열한 것은? [$3$점]\n\n<보기>\n\nㄱ. $\\sin \\,30°$   ㄴ. $\\cos \\,30°$    ㄷ. $\\cos \\,80°$  ㄹ. $\\tan \\,50°$\n\n°",
+      "choices": [
+        "ㄱ, ㄴ, ㄷ, ㄹ",
+        "ㄱ, ㄷ, ㄴ, ㄹ",
+        "ㄴ, ㄷ, ㄹ, ㄱ",
+        "ㄷ, ㄹ, ㄱ, ㄴ",
+        "ㄷ, ㄱ, ㄴ, ㄹ"
+      ],
+      "hwpScriptStem": "<보기>의 삼각비의 값을 그 크기가 작은 것부터 차례대로 나열한 것은? [$3$점]\n\n<보기>\n\nㄱ. $sin`30°$   ㄴ. $cos`30°$    ㄷ. $cos`80°$  ㄹ. $tan`50°$\n\n°",
+      "hwpScriptChoices": [
+        "ㄱ, ㄴ, ㄷ, ㄹ",
+        "ㄱ, ㄷ, ㄴ, ㄹ",
+        "ㄴ, ㄷ, ㄹ, ㄱ",
+        "ㄷ, ㄹ, ㄱ, ㄴ",
+        "ㄷ, ㄱ, ㄴ, ㄹ"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 40
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q05-part1.png",
+          "sha256": "46f1cbf7536d8b199b4b7430180784fd86a21ca4928e7697cf7ed54676637235",
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            429.10870361328125
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "1b3ee70e38af14983c41fbe65edf056d3b209c385b735bab09901383c46a5ae9",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 6,
+      "stem": "아래 그림과 같이 반지름의 길이가 $1$인 사분원에서 $\\overline{OC}=0.5446$일 때, $\\overline{AD}$의 길이는? [$3$점]\n각도\n\n$\\sin$\n\n$\\cos$\n\n$\\tan$\n\n $32°$\n\n$0.5229$\n\n$0.8480$\n\n$0.6249$\n\n $33°$\n\n$0.5446$\n\n$0.8387$\n\n$0.6494$\n\n $56°$\n\n$0.8290$\n\n$0.5592$\n\n$1.4826$\n\n $57°$\n\n$0.8387$\n\n$0.5446$\n\n$1.5399$",
+      "choices": [
+        "$0.6249$",
+        "$0.6494$",
+        "$1.3833$",
+        "$1.4826$",
+        "$1.5399$"
+      ],
+      "hwpScriptStem": "아래 그림과 같이 반지름의 길이가 $1$인 사분원에서 $rmbarOC =0.5446 $일 때, $rmbarAD $의 길이는? [$3$점]\n각도\n\n$sin$\n\n$cos$\n\n$tan$\n\n $32°$\n\n$0.5229$\n\n$0.8480$\n\n$0.6249$\n\n $33°$\n\n$0.5446$\n\n$0.8387$\n\n$0.6494$\n\n $56°$\n\n$0.8290$\n\n$0.5592$\n\n$1.4826$\n\n $57°$\n\n$0.8387$\n\n$0.5446$\n\n$1.5399$",
+      "hwpScriptChoices": [
+        "$0.6249$",
+        "$0.6494$",
+        "$1.3833$",
+        "$1.4826$",
+        "$1.5399$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 70
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q06-part1.png",
+          "sha256": "924f55f30aa928945d401eb5fcb16700813cf15d4d51f15e7ff70dbd2a93d2d8",
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            435.10870361328125,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "dedbc4731498ebd936f4d5ab091278fc9287bd8453f0decfa5690e80f1f4d105",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 7,
+      "stem": "<보기>에서 옳은 것만을 있는 대로 고른 것은? [$3$점]\n\n<보기>\n\nㄱ. $\\sin \\,30°$$\\times \\,\\sin \\,45°$$=\\sqrt{2}$\n\nㄴ. $\\tan \\,30°$$\\times \\,\\sin \\,60°$$=\\frac{1}{2}$\n\nㄷ. $\\sin \\,45°$$\\div \\,\\cos \\,60°$$-\\tan \\,45°$$=\\sqrt{2}-1$",
+      "choices": [
+        "ㄴ",
+        "ㄷ",
+        "ㄱ, ㄴ",
+        "ㄱ, ㄷ",
+        "ㄴ, ㄷ"
+      ],
+      "hwpScriptStem": "<보기>에서 옳은 것만을 있는 대로 고른 것은? [$3$점]\n\n<보기>\n\nㄱ. $sin`30°$$TIMES `sin`45°$$=sqrt { 2}$\n\nㄴ. $tan`30°$$TIMES `sin`60°$$= 1over2$\n\nㄷ. $sin`45°$$DIVIDE `cos`60°$$-tan`45°$$=sqrt { 2}-1$",
+      "hwpScriptChoices": [
+        "ㄴ",
+        "ㄷ",
+        "ㄱ, ㄴ",
+        "ㄱ, ㄷ",
+        "ㄴ, ㄷ"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 27
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q07-part1.png",
+          "sha256": "25177c74942dd227dcfb9872d07edd552491f33be52c8e896ad4aa850c455dce",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            380,
+            83,
+            688.0,
+            421.1944885253906
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "1a543b925c7325977782cbce43614cf16860f469432bdfb84e286a5850ee64d3",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 8,
+      "stem": "삼각형 $\\mathrm{ABC}$에서 $\\overline{AH}$의 길이를 삼각비로 나타낸 것은? [$4$점]",
+      "choices": [
+        "$8(\\tan \\,40°+1)$",
+        "$8(\\tan \\,50°+1)$",
+        "$\\frac{8}{\\tan 40^\\circ +1}$",
+        "$\\frac{8}{\\tan 50^\\circ +1}$",
+        "$\\frac{8}{\\tan 40^\\circ +\\tan \\,50^\\circ}$"
+      ],
+      "hwpScriptStem": "삼각형 $rmABC $에서 $rmbarAH $의 길이를 삼각비로 나타낸 것은? [$4$점]",
+      "hwpScriptChoices": [
+        "$8(tan`40°+1)$",
+        "$8(tan`50°+1)$",
+        "$8over{tan40 DEG +1$",
+        "$8over{tan50 DEG +1$",
+        "$8over{tan40 DEG +tan`50 DEG$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 44
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q08-part1.png",
+          "sha256": "7ab067d55381f8ecbf7ffda3190a2de7b1ff67442f68ebe4b4f81329d7a879dc",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            380,
+            418.177978515625,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "7acbe1392f4cb0dc7db370af06bf3b91234332ac1e61325aff3aeb34eb55ba5c",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 9,
+      "stem": "직각삼각형 $\\mathrm{ABC}$에서 $\\angle \\mathrm{A}$의 이등분선과 변 $\\mathrm{B}C$의 교점이 $\\mathrm{D}$일 때, $\\tan x$의 값은? [$4$점]",
+      "choices": [
+        "$\\frac{3}{2}$",
+        "$2$",
+        "$\\sqrt{3}$",
+        "$\\frac{3\\sqrt{10}}{5}$",
+        "$\\frac{6\\sqrt{2}}{5}$"
+      ],
+      "hwpScriptStem": "직각삼각형 $rmABC $에서 $anglermA$의 이등분선과 변 $rmBC$의 교점이 $rmD$일 때, $tanx$의 값은? [$4$점]",
+      "hwpScriptChoices": [
+        "$3over2$",
+        "$2$",
+        "$sqrt { 3} $",
+        "$3sqrt {10 }}over5$",
+        "$6sqrt {2 }}over5$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 71
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q09-part1.png",
+          "sha256": "9cc7bd85ab9683fd184c4b0e758a670879acec60111885d1e0901667d177e23e",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            557.7742919921875
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "a3dd9b222fae6c88c25abe96a919830f0a46360faa5f3a85ad17ac458e02a138",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 10,
+      "stem": "직사각형 $\\mathrm{ABCD}$에서 $\\sin \\,15°$의 값은? [$4$점]",
+      "choices": [
+        "$\\sqrt{3}-1$",
+        "$2-\\sqrt{3}$",
+        "$\\frac{3-\\sqrt{2}}{2}$",
+        "$\\frac{\\sqrt{6}-\\sqrt{2}}{4}$",
+        "$\\frac{3-\\sqrt{3}}{6}$"
+      ],
+      "hwpScriptStem": "직사각형 $rmABCD$에서 $sin`15°$의 값은? [$4$점]",
+      "hwpScriptChoices": [
+        "$sqrt { 3} -1$",
+        "$2- sqrt { 3}$",
+        "${3- sqrt { 2} }over 2$",
+        "${sqrt { 6} - sqrt { 2} }over 4$",
+        "${3 - sqrt { 3} }over 6$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 31
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q10-part1.png",
+          "sha256": "db0b2484e6ef0db67b0a082b91a67cb07a7dea8d6d57f38b648ec5a39b4cd019",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            563.7742919921875,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "503d2934643ab2152ce091dd6a2570c34f635ea0dc658cd4d296f3ef98a08060",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 11,
+      "stem": "그림의 사각뿔은 밑면이 정사각형이고, 옆면은 모두 합동인 이등변삼각형이다. 꼭짓점 $\\mathrm{O}$에서 밑면에 내린 수선의 발을 $\\mathrm{H}$라 할 때, $\\angle \\mathrm{OAH}=60°$이다. 이 사각뿔의 부피는? [$4$점]",
+      "choices": [
+        "$\\frac{4\\sqrt{2}}{3}(\\mathrm{c}m^{3})$",
+        "$\\frac{4\\sqrt{3}}{3}(\\mathrm{c}m^{3})$",
+        "$\\frac{4\\sqrt{6}}{3}(\\mathrm{c}m^{3})$",
+        "$4\\sqrt{3}(\\mathrm{c}m^{3})$",
+        "$4\\sqrt{6}(\\mathrm{c}m^{3})$"
+      ],
+      "hwpScriptStem": "그림의 사각뿔은 밑면이 정사각형이고, 옆면은 모두 합동인 이등변삼각형이다. 꼭짓점 $rmO$에서 밑면에 내린 수선의 발을 $rmH$라 할 때, $ANGLE  rm OAH=60°$이다. 이 사각뿔의 부피는? [$4$점]",
+      "hwpScriptChoices": [
+        "${4 sqrt { 2}} over3 (rmcm^3 )$",
+        "${4 sqrt { 3}} over3 (rmcm^3 )$",
+        "${4 sqrt { 6}} over3 (rmcm^3 )$",
+        "${4 sqrt { 3}} (rmcm^3 )$",
+        "${4 sqrt { 6}} (rmcm^3 )$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 115
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q11-part1.png",
+          "sha256": "71b9954c271c442d427d508740a0ce9ac46192f415e7a6d99ee21141c3ef9413",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            380,
+            83,
+            688.0,
+            555.0162963867188
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "8088fe4c6ffaf745c80f79173a7fa37c289c57fc842492d10ac5a76bc4d952ca",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 12,
+      "stem": "그림과 같이 두 지점 $\\mathrm{B},~C$에서 탑의 꼭대기 $\\mathrm{A}$를 올려본 각의 크기가 각각 $60°,~45°$일 때, 이 탑의 높이는? \n[$4$점]",
+      "choices": [
+        "$5\\sqrt{3}(\\mathrm{m})$",
+        "$10\\sqrt{3}(\\mathrm{m})$",
+        "$5\\sqrt{3}-5(\\mathrm{m})$",
+        "$15-5\\sqrt{3}(\\mathrm{m})$",
+        "$30-10\\sqrt{3}(\\mathrm{m})$"
+      ],
+      "hwpScriptStem": "그림과 같이 두 지점 $rmB, ~C $에서 탑의 꼭대기 $rmA$를 올려본 각의 크기가 각각 $60°,~45°$일 때, 이 탑의 높이는? \n[$4$점]",
+      "hwpScriptChoices": [
+        "$5sqrt { 3} (rmm )$",
+        "$10sqrt { 3} (rmm )$",
+        "$5sqrt { 3}-5 (rmm )$",
+        "$15-5sqrt { 3} (rmm )$",
+        "$30-10sqrt { 3} (rmm )$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 79
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q12-part1.png",
+          "sha256": "ff1506630016138dce1166b2eea1472cf2eff382ea37fd9980189ff34754a8b4",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            380,
+            560.959716796875,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "174a265c9bd801981edc565db256660928c05cb0a68fea962b2c9f9ba4e9a8a9",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 13,
+      "stem": "정삼각형 $\\mathrm{ABC}$에서 삼각형 $\\mathrm{ADC}$의 넓이는? [$5$점]",
+      "choices": [
+        "$25\\sqrt{3}$",
+        "$50\\sqrt{3}$",
+        "$\\frac{25\\sqrt{3}}{2}$",
+        "$\\frac{25\\sqrt{3}}{3}$",
+        "$\\frac{25\\sqrt{3}}{4}$"
+      ],
+      "hwpScriptStem": "정삼각형 $rmABC$에서 삼각형 $rmADC$의 넓이는? [$5$점]",
+      "hwpScriptChoices": [
+        "$25 sqrt { 3}$",
+        "$50 sqrt { 3}$",
+        "${25 sqrt { 3}} over 2$",
+        "${25 sqrt { 3}} over 3$",
+        "${25 sqrt { 3}} over 4$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$5$점]",
+          "value": 5.0,
+          "parentTotalMarked": false,
+          "textOffset": 33
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q13-part1.png",
+          "sha256": "0fb005dad4537a3d646b063df299e39e5af788e6f1cb41302f22a6052fd66d7c",
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            541.7060546875
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "eb84ed7c528231e2d5ee6eb4f81a4f3f0b19fc6d0e0279bf580d21ac195354fd",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 14,
+      "stem": "원 $\\mathrm{O}$에서 현 $\\mathrm{A}B$에 내린 수선의 발을 $\\mathrm{M}$이라 할 때, $\\overline{AB}$의 길이는? [$3$점]",
+      "choices": [
+        "$2\\sqrt{5}(\\mathrm{c}m)$",
+        "$2\\sqrt{10}(\\mathrm{c}m)$",
+        "$3\\sqrt{5}(\\mathrm{c}m)$",
+        "$3\\sqrt{10}(\\mathrm{c}m)$",
+        "$4\\sqrt{5}(\\mathrm{c}m)$"
+      ],
+      "hwpScriptStem": "원 $rmO$에서 현 $rmAB$에 내린 수선의 발을 $rmM$이라 할 때, $rmbarAB $의 길이는? [$3$점]",
+      "hwpScriptChoices": [
+        "$2sqrt { 5} (rmcm )$",
+        "$2sqrt { 10} (rmcm )$",
+        "$3sqrt { 5} (rmcm )$",
+        "$3sqrt { 10} (rmcm )$",
+        "$4sqrt { 5} (rmcm )$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 60
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q14-part1.png",
+          "sha256": "4511334cbef12453c49826ba004a4990bcae4b2c45da33ea5555729aae5d1b9e",
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            547.7060546875,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "07d6633a3bd6c4d7f6a2af0ca54e835933c18231264585ad73ac1d28ee463185",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 15,
+      "stem": "원 $\\mathrm{O}$의 중심에서 두 현 $\\mathrm{A}B,~AC$에 이르는 거리가 같다. $\\angle \\mathrm{B}$의 크기는? [$3$점]",
+      "choices": [
+        "$64°$",
+        "$65°$",
+        "$66°$",
+        "$67°$",
+        "$68°$"
+      ],
+      "hwpScriptStem": "원 $rmO$의 중심에서 두 현 $rmAB,~AC $에 이르는 거리가 같다. $ANGLErm B $의 크기는? [$3$점]",
+      "hwpScriptChoices": [
+        "$64°$",
+        "$65°$",
+        "$66°$",
+        "$67°$",
+        "$68°$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 62
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q15-part1.png",
+          "sha256": "92bca909dce33444ae24ef3ffd036209c0dd221b9e5c0875d92da8d09e627ea4",
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            380,
+            83,
+            688.0,
+            536.7896728515625
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "2047e5d43bd583b4b7db80656509ae34796b19e3bb3993f51d6da5434f2bfb08",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 16,
+      "stem": "점 $\\mathrm{A}$는 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 접선의 접점이다. $\\triangle \\mathrm{OAP}$의 넓이는? [$3$점]",
+      "choices": [
+        "$10\\sqrt{6}(\\mathrm{c}m^{2})$",
+        "$11\\sqrt{6}(\\mathrm{c}m^{2})$",
+        "$12\\sqrt{6}(\\mathrm{c}m^{2})$",
+        "$13\\sqrt{6}(\\mathrm{c}m^{2})$",
+        "$14\\sqrt{6}(\\mathrm{c}m^{2})$"
+      ],
+      "hwpScriptStem": "점 $rmA$는 점 $rmP$에서 원 $rmO\r\n$에 그은 접선의 접점이다. $TRIANGLE rmOAP $의 넓이는? [$3$점]",
+      "hwpScriptChoices": [
+        "$10 sqrt { 6} (rmcm^2 )$",
+        "$11 sqrt { 6} (rmcm^2 )$",
+        "$12sqrt { 6} (rmcm^2 )$",
+        "$13sqrt { 6} (rmcm^2 )$",
+        "$14 sqrt { 6} (rmcm^2 )$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 67
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q16-part1.png",
+          "sha256": "41f5d86afd8d81dd7e612334556ec3f852050f41a77beec3eac154fc6d878cff",
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            380,
+            542.7896728515625,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "f20246d99f0c3e2d9a915ca6e1d29e19e4d7a6bd825f11058504b6e0c82ad7c3",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 17,
+      "stem": "동심원에서 큰 원의 현 $\\mathrm{A}B$가 작은 원과 점 $\\mathrm{H}$에서 접할 때 색칠한 부분의 넓이는? [$3$점]",
+      "choices": [
+        "$6\\pi$",
+        "$12\\pi$",
+        "$36\\pi$",
+        "$72\\pi$",
+        "$144\\pi$"
+      ],
+      "hwpScriptStem": "동심원에서 큰 원의 현 $rmAB$가 작은 원과 점 $rmH$에서 접할 때 색칠한 부분의 넓이는? [$3$점]",
+      "hwpScriptChoices": [
+        "$6pi$",
+        "$12pi$",
+        "$36pi$",
+        "$72pi$",
+        "$144pi$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 55
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q17-part1.png",
+          "sha256": "4632e5a32555e807edd2f0c8a99141e7c505a06fbea8b0b8245d41de1dd32d72",
+          "page": 5,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "7a883cfbfc7776b7146bad82bc076e4184e6c3e4c4bbd7997974e30f71398081",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 18,
+      "stem": "$\\overline{BC}$는 반원 $\\mathrm{O}$의 지름이고, $\\overline{AB},~\\overline{AD},~\\overline{CD}$는 반원 $\\mathrm{O}$의 접선이다. $\\overline{BC}$의 길이는? [$3$점]",
+      "choices": [
+        "$11$",
+        "$4\\sqrt{7}$",
+        "$3\\sqrt{17}$",
+        "$5\\sqrt{11}$",
+        "$\\sqrt{117}$"
+      ],
+      "hwpScriptStem": "$rmbarBC$는 반원 $rmO$의 지름이고, $rmbarAB ,~ rmbarAD ,~rmbarCD$는 반원 $rmO$의 접선이다. $rmbarBC $의 길이는? [$3$점]",
+      "hwpScriptChoices": [
+        "$11$",
+        "$4sqrt { 7}$",
+        "$3sqrt { 17}$",
+        "$5sqrt { 11}$",
+        "$sqrt { 117} $"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 92
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q18-part1.png",
+          "sha256": "9003f1abaf82428e164f8200154c324a66dba47a3e82214316f6438f6252a992",
+          "page": 5,
+          "column": 1,
+          "bbox": [
+            380,
+            83,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "40a051a9b95c3dd2a820d120408c204681d6ad0db5b55021ff4961c997216b01",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 19,
+      "stem": "$\\overline{BC}$는 반원 $\\mathrm{O}$의 지름이고, $\\overline{AB},~\\overline{AE},~\\overline{CE}$는 각각 점 $\\mathrm{B},~F,~C$에서 반원 $\\mathrm{O}$에 접할 때, 정사각형 $\\mathrm{ABCD}$의 한 변의 길이는? [$4$점]",
+      "choices": [
+        "$4.4$",
+        "$4.6$",
+        "$4.8$",
+        "$5.2$",
+        "$5.4$"
+      ],
+      "hwpScriptStem": "$rmbarBC$는 반원 $rmO$의 지름이고, $rmbarAB ,~ rmbarAE ,~rmbarCE$는 각각 점 $rmB,~F,~C $에서 반원 $rmO$에 접할 때, 정사각형 $rmABCD $의 한 변의 길이는? [$4$점]",
+      "hwpScriptChoices": [
+        "$4.4$",
+        "$4.6$",
+        "$4.8$",
+        "$5.2$",
+        "$5.4$"
+      ],
+      "scoreOccurrences": [
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 121
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q19-part1.png",
+          "sha256": "3a790f496210e36577a74028b48fd14011c1505bcdeb9f88ccc70fb72586f4d2",
+          "page": 6,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "38ecdedb7b1cafb5a4c3161bfb67a47cae104d068606fdf4ac5dcbdcf9adf3a0",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 20,
+      "stem": "[서술형 $1$] 그림과 같이 반지름의 길이가 $1$인 사분원을 보고, 물음에 답하시오. [총 $7$점]\n\n⑴ $\\sin x$를 나타내는 선분을 구하시오. [$2$점]\n⑵ $\\cos x$를 나타내는 선분을 구하시오. [$2$점]\n⑶ $\\tan x\\times \\mathrm{\\tan }\\mathit{z}$의 값을 구하시오(선분이 아님). [$3$점]",
+      "choices": [],
+      "hwpScriptStem": "[서술형 ${1}$] 그림과 같이 반지름의 길이가 $1$인 사분원을 보고, 물음에 답하시오. [총 $7$점]\n\n⑴ $sinx$를 나타내는 선분을 구하시오. [$2$점]\n⑵ $cosx$를 나타내는 선분을 구하시오. [$2$점]\n⑶ $tanx TIMESrm tan it z$의 값을 구하시오(선분이 아님). [$3$점]",
+      "hwpScriptChoices": [],
+      "scoreOccurrences": [
+        {
+          "printed": "[총 $7$점]",
+          "value": 7.0,
+          "parentTotalMarked": true,
+          "textOffset": 52
+        },
+        {
+          "printed": "[$2$점]",
+          "value": 2.0,
+          "parentTotalMarked": false,
+          "textOffset": 87
+        },
+        {
+          "printed": "[$2$점]",
+          "value": 2.0,
+          "parentTotalMarked": false,
+          "textOffset": 119
+        },
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 170
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q20-part1.png",
+          "sha256": "060735c873ba35a345a837157959a014352ea8bf605f8bb106cae4c76c5557cb",
+          "page": 6,
+          "column": 1,
+          "bbox": [
+            380,
+            83,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "7932693a4e8ac93ec455c41e7e57a942addc17a22046dbe35b3ce19f870e2d80",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 21,
+      "stem": "[서술형 $2$] 그림을 보고, 물음에 답하시오. [총 $10$점]\n\n⑴ $\\angle \\mathrm{APB}$의 크기를 구하시오. [$2$점]\n⑵ $\\overline{BD}$의 길이를 구하시오. [$2$점]\n⑶ $\\overline{AC}$의 길이를 구하시오. [$2$점]\n⑷ $\\triangle \\mathrm{APB}$의 넓이를 구하시오. [$4$점]",
+      "choices": [],
+      "hwpScriptStem": "[서술형 $2$] 그림을 보고, 물음에 답하시오. [총 $10$점]\n\n⑴ $anglerm APB$의 크기를 구하시오. [$2$점]\n⑵ $rmbarBD $의 길이를 구하시오. [$2$점]\n⑶ $rmbarAC $의 길이를 구하시오. [$2$점]\n⑷ $triangle rmAPB$의 넓이를 구하시오. [$4$점]",
+      "hwpScriptChoices": [],
+      "scoreOccurrences": [
+        {
+          "printed": "[총 $10$점]",
+          "value": 10.0,
+          "parentTotalMarked": true,
+          "textOffset": 28
+        },
+        {
+          "printed": "[$2$점]",
+          "value": 2.0,
+          "parentTotalMarked": false,
+          "textOffset": 66
+        },
+        {
+          "printed": "[$2$점]",
+          "value": 2.0,
+          "parentTotalMarked": false,
+          "textOffset": 97
+        },
+        {
+          "printed": "[$2$점]",
+          "value": 2.0,
+          "parentTotalMarked": false,
+          "textOffset": 128
+        },
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 165
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q21-part1.png",
+          "sha256": "719ea0e35cb526cabc65a926032b3da029cb016df586f1a763f7b47bdcfb58ae",
+          "page": 7,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "c6a17b6aab0dfd5c71a48285193e7d962f1741b3056936e5e41bb9cf9a7b98cd",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 22,
+      "stem": "[서술형 $3$] $\\vec{\\mathrm{A}P},~\\vec{\\mathrm{A}Q},~\\overline{\\mathrm{B}C}$는 원 $\\mathrm{O}$의 접선이고 세 점 $\\mathrm{P},~Q,~D$는 접점이다. $\\angle \\mathrm{BAC}=60°$, $\\overline{OA}=4$일 때, 물음에 답하시오. [총 $8$점]\n\n⑴ 원 $\\mathrm{O}$의 반지름의 길이를 구하시오. [$2$점]\n⑵ $\\overline{AP}$의 길이를 구하시오. [$2$점]\n⑶ $\\triangle \\mathrm{ABC}$의 둘레의 길이를 구하시오. [$4$점]",
+      "choices": [],
+      "hwpScriptStem": "[서술형 $3$] $vec{rmAP},~vec{rmAQ},~bar{rmBC}$는 원 $rmO$의 접선이고 세 점 $rmP,~ Q,~D $는 접점이다. $ANGLE  rm BAC=60°$, $rmbarOA =4 $일 때, 물음에 답하시오. [총 $8$점]\n\n⑴ 원 $rmO$의 반지름의 길이를 구하시오. [$2$점]\n⑵ $rmbarAP$의 길이를 구하시오. [$2$점]\n⑶ $triangle rmABC$의 둘레의 길이를 구하시오. [$4$점]",
+      "hwpScriptChoices": [],
+      "scoreOccurrences": [
+        {
+          "printed": "[총 $8$점]",
+          "value": 8.0,
+          "parentTotalMarked": true,
+          "textOffset": 133
+        },
+        {
+          "printed": "[$2$점]",
+          "value": 2.0,
+          "parentTotalMarked": false,
+          "textOffset": 169
+        },
+        {
+          "printed": "[$2$점]",
+          "value": 2.0,
+          "parentTotalMarked": false,
+          "textOffset": 199
+        },
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 240
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q22-part1.png",
+          "sha256": "a7f9e73573627d7cd1148a4a498cc6be59e9ca7bc163577cb9f775f6493711ee",
+          "page": 7,
+          "column": 1,
+          "bbox": [
+            380,
+            83,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "b6d8e8e62157ca9f1c64c27af33da052abc5970a045de7c97685f99d06799984",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    },
+    {
+      "number": 23,
+      "stem": "[서술형 $4$] 원 밖의 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 두 접선의 접점을 각각 $\\mathrm{A},~B$라 하자. $\\angle \\mathrm{APB}:\\angle \\mathrm{AOB}=1:2$ 일 때, 물음에 답하시오. [총 $10$점]\n\n⑴ $\\angle \\mathrm{AOB}$의 크기를 구하시오. [$3$점]\n⑵ $\\overline{OP}$의 길이를 구하시오. [$3$점]\n⑶ 색칠한 부분의 넓이를 구하시오. [$4$점]",
+      "choices": [],
+      "hwpScriptStem": "[서술형 $4$] 원 밖의 점 $rmP$에서 원 $rmO$에 그은 두 접선의 접점을 각각 $rmA,~B $라 하자. $anglermAPB:anglermAOB = 1:2$ 일 때, 물음에 답하시오. [총 $10$점]\n\n⑴ $anglermAOB$의 크기를 구하시오. [$3$점]\n⑵ $rmbarOP$의 길이를 구하시오. [$3$점]\n⑶ 색칠한 부분의 넓이를 구하시오. [$4$점]",
+      "hwpScriptChoices": [],
+      "scoreOccurrences": [
+        {
+          "printed": "[총 $10$점]",
+          "value": 10.0,
+          "parentTotalMarked": true,
+          "textOffset": 110
+        },
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 147
+        },
+        {
+          "printed": "[$3$점]",
+          "value": 3.0,
+          "parentTotalMarked": false,
+          "textOffset": 177
+        },
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 204
+        }
+      ],
+      "images": [
+        {
+          "file": "gyeonggu\\packet\\images\\q23-part1.png",
+          "sha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+          "page": 8,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "sharedContext": null,
+      "sourceDigest": "128553617c62065fd20a903cabfbcbee7e9ae017766add14ad71553b589b1f62",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expected2015": true,
+        "appliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "sourceSchoolIsNotPermission": true
+      },
+      "status": "reference_content_pending_review"
+    }
+  ]
+}

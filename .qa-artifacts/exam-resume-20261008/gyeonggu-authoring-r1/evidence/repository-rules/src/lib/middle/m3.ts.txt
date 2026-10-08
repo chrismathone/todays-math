@@ -1,0 +1,559 @@
+/**
+ * 중3 「원의 성질」 — RPM 3-2 «원과 직선»(현 유형 01~06) + «원주각»(10유형 전량).
+ *
+ * 병렬 세션 소유 모듈 — 이 파일과 `m3*.ts` 는 중3 세션만 만진다
+ * (docs/planning/tracks/middle-engine-parallel-20260823.md 파일 소유권 규칙).
+ *
+ * 우리 단원(DB 실측 2026-08-23): 「원과 현」(보유 0건) · 「원주각」.
+ * 유형 번호·제목은 `scripts/rpm/rpm-type-catalog.json` 3-2 색인 그대로다.
+ *
+ * ## 생성 규칙 — 정답을 먼저 뽑고 발문을 역산한다 (m1LinearApply 와 동일 계약)
+ *
+ * 현 유형의 길이는 피타고라스 세 쌍에서 뽑아 답이 항상 정수다(접힌 원만 $r\sqrt{3}$ —
+ * 중3 근호 표현). 각 유형은 정수 각을 먼저 뽑고 조건을 역산한다. `facts` 에 발문의
+ * 원 수치를 남겨 테스트가 조건식을 **독립 재계산**한다. 숫자는 전부 `$...$` 안.
+ *
+ * ## 그림 (FigureSpec v2 — 실증 완료 도형만, 09 §2)
+ *
+ * 원의 현 · 원주각·중심각 · 원의 접선 도형만 쓴다(`m3Figures.ts`). 그림 없이
+ * 성립하는 유형(원과 직선 04 접힌 원 — 접힌 호는 v2 에 없다 · 원주각 07~09 —
+ * 호 강조 표시가 v2 에 없다)은 발문을 그림 없이 완결되게 썼다.
+ *
+ * ## 보류 목록 (이 세션이 만들지 않은 것)
+ *
+ * - 3-2|원과 직선|07~16 — 2차 물결 세션 2A-중3접선이 `m3Tangent.ts` 로 냈다
+ *   (2026-08-23, 아래 spread). 더 이상 보류가 아니다.
+ * - 3-2|상자그림과 산점도 전체 — 보류. 계층 B 그림(FigureSpec v2 밖, 09 §2).
+ */
+import { intBetween, pick } from "../elementary/rng";
+import { dimCm, withDims } from "./figureDims";
+import type { Rng } from "../elementary/types";
+
+import {
+  figArcHeight,
+  figChordCross,
+  figChordPerp,
+  figDiameterCross,
+  figInscribedCentral,
+  figInscribedIso,
+  figSemicircle,
+  figTangentPair,
+  figTriSine,
+  figTwoChords,
+} from "./m3Figures";
+import { M3_ANGLE_APPLY } from "./m3AngleApply";
+import { M3_FUNC } from "./m3Func";
+import { M3_POLY } from "./m3Poly";
+import { M3_QUAD } from "./m3Quad";
+import { M3_ROOT } from "./m3Root";
+import { M3_STAT2 } from "./m3Stat2";
+import { M3_TANGENT_TYPES } from "./m3Tangent";
+import { M3_TRIG } from "./m3Trig";
+import type { MidProblem, TypeEntry } from "./types";
+
+const GRADE = "중3";
+const BOOK = "3-2";
+const MINOR_LINE = "원과 직선";
+const MINOR_ANGLE = "원주각";
+
+/** 우리 Unit.section 정확한 이름 (DB 실측 2026-08-23) */
+const SEC = {
+  현: "원과 현",
+  원주각: "원주각",
+} as const;
+
+/** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다(조용히 기본값 금지). */
+function attempt<T>(tries: number, f: () => T | null): T {
+  for (let i = 0; i < tries; i += 1) {
+    const v = f();
+    if (v !== null) return v;
+  }
+  throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
+}
+
+/** 피타고라스 세 쌍 [짧은 변, 긴 변, 빗변] — 현 길이 계산이 전부 정수가 된다. */
+const TRIPLES = [
+  [3, 4, 5],
+  [6, 8, 10],
+  [5, 12, 13],
+  [9, 12, 15],
+  [8, 15, 17],
+  [12, 16, 20],
+  [7, 24, 25],
+  [15, 20, 25],
+  [10, 24, 26],
+  [20, 21, 29],
+] as const;
+
+type Body = Pick<
+  MidProblem,
+  "content" | "answer" | "solution" | "facts" | "figureSpec"
+>;
+
+function def(
+  minor: string,
+  rpmType: string,
+  rpmTitle: string,
+  unitSection: string,
+  difficulty: MidProblem["difficulty"],
+  gen: (rng: Rng) => Body,
+): TypeEntry {
+  return {
+    key: `${BOOK}|${minor}|${rpmType}`,
+    grade: GRADE,
+    unitSection,
+    rpmBook: BOOK,
+    rpmMinor: minor,
+    rpmType,
+    rpmTitle,
+    handler: (rng) => ({
+      grade: GRADE,
+      unitSection,
+      rpmBook: BOOK,
+      rpmMinor: minor,
+      rpmType,
+      rpmTitle,
+      difficulty,
+      ...gen(rng),
+    }),
+  };
+}
+
+export const M3_TYPES: TypeEntry[] = [
+  // ── 원과 직선 (우리 단원: 원과 현) ───────────────────
+  def("원과 직선", "01", "현의 수직이등분선⑴", SEC.현, "기본", (rng) => {
+    const [l1, l2, r] = pick(rng, TRIPLES);
+    const [d, h] = pick(rng, [
+      [l1, l2],
+      [l2, l1],
+    ] as const);
+    const ab = 2 * h;
+    return {
+      content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 원 $O$의 중심에서 현 $AB$에 내린 수선의 발을 $M$이라 하자. $\\overline{OM}=${d}\\,\\mathrm{cm}$일 때, 현 $AB$의 길이를 구하시오.`,
+      answer: `$${ab}\\,\\mathrm{cm}$`,
+      solution: `$\\overline{OM}\\perp\\overline{AB}$이므로 $M$은 $\\overline{AB}$의 중점이다.\n직각삼각형 $OAM$에서 $\\overline{AM}=\\sqrt{${r}^2-${d}^2}=${h}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{AB}=2\\overline{AM}=${ab}\\,\\mathrm{cm}$이다.`,
+      facts: { r, d, h, ab },
+      // 발문이 준 것은 $\overline{OM}$ 뿐이다 — 반지름은 글로만 말하고,
+      // $\overline{AB}$ 는 **묻는 값**이라 그림에 적으면 답을 알려 준다(09 §2.2 ①).
+      figureSpec: withDims(figChordPerp({ r, d, h }), { OM: dimCm(d) }),
+    };
+  }),
+
+  def("원과 직선", "02", "현의 수직이등분선⑵", SEC.현, "응용", (rng) => {
+    const [l1, l2, r] = pick(rng, TRIPLES);
+    const [d, h] = pick(rng, [
+      [l1, l2],
+      [l2, l1],
+    ] as const);
+    const ab = 2 * h;
+    return {
+      content: `원 $O$의 중심에서 현 $AB$에 내린 수선의 발을 $M$이라 하자. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{OM}=${d}\\,\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.`,
+      answer: `$${r}\\,\\mathrm{cm}$`,
+      solution: `$\\overline{OM}\\perp\\overline{AB}$이므로 $\\overline{AM}=\\dfrac{1}{2}\\overline{AB}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{OA}=\\sqrt{${h}^2+${d}^2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 반지름의 길이는 $${r}\\,\\mathrm{cm}$이다.`,
+      facts: { ab, h, d, r },
+      // ⚠️ $\overline{AB}$ 는 **현**이라 치수 곡선이 원과 부딪힌다 — 엔진이 던진다
+      //    (실측 `circle_crossings=1`). 원장님 확정 2026-08-25 「지름은 치수선이
+      //    너저분해지니까 빼고」와 같은 자리다: **원을 가로지르는 선에는 안 단다.**
+      figureSpec: withDims(figChordPerp({ r, d, h }), { OM: dimCm(d) }),
+    };
+  }),
+
+  def(
+    "원과 직선",
+    "03",
+    "현의 수직이등분선 원의 일부분이 주어진 경우",
+    SEC.현,
+    "심화하",
+    (rng) => {
+      const [d, h, r] = pick(rng, TRIPLES);
+      const c = r - d;
+      const ab = 2 * h;
+      return {
+        content: `원 $O$ 위의 두 점 $A$, $B$에 대하여 현 $AB$의 중점을 $M$, 짧은 호 $AB$의 중점을 $C$라 하자. $\\overline{AB}=${ab}\\,\\mathrm{cm}$, $\\overline{CM}=${c}\\,\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.`,
+        answer: `$${r}\\,\\mathrm{cm}$`,
+        solution: `세 점 $O$, $M$, $C$는 한 직선 위에 있고 $\\overline{OM}\\perp\\overline{AB}$이다.\n반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{OM}=(r-${c})\\,\\mathrm{cm}$, $\\overline{AM}=${h}\\,\\mathrm{cm}$이다.\n직각삼각형 $OAM$에서 $r^2=${h}^2+(r-${c})^2$을 풀면 $r=${r}$이다.\n따라서 반지름의 길이는 $${r}\\,\\mathrm{cm}$이다.`,
+        facts: { ab, h, c, r },
+        // ⚠️ 치수를 하나도 안 단다. $\overline{AB}$ 는 현이고, $\overline{CM}$ 은
+        //    「활꼴의 높이」라 원장님이 허용한 갈래로 보였는데 **끝점 $C$ 가 원 위**다 —
+        //    치수 곡선이 원둘레와 부딪혀 씨앗 14개 중 8개가 던졌다(실측).
+        //    가르는 축은 「높이냐」가 아니라 **「끝점이 원 위인가」**였다.
+        figureSpec: figArcHeight({ r, c, h }),
+      };
+    },
+  ),
+
+  def(
+    "원과 직선",
+    "04",
+    "현의 수직이등분선 원이 접힌 경우",
+    SEC.현,
+    "심화하",
+    (rng) => {
+      // 접힌 호 그림은 FigureSpec v2 에 없다(09 §1) — 발문이 그림 없이 완결된다.
+      const om = intBetween(rng, 2, 9);
+      const r = 2 * om;
+      const coef = r;
+      return {
+        content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 원 모양의 종이를 현 $AB$를 접는 선으로 하여 접었더니, 접힌 호 $AB$가 원의 중심 $O$를 지났다. 현 $AB$의 길이를 구하시오.`,
+        answer: `$${coef}\\sqrt{3}\\,\\mathrm{cm}$`,
+        solution: `중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면, 접힌 호가 $O$를 지나므로 $\\overline{OM}=\\dfrac{1}{2}\\times${r}=${om}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{AM}=\\sqrt{${r}^2-${om}^2}=${om}\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 $\\overline{AB}=2\\overline{AM}=${coef}\\sqrt{3}\\,\\mathrm{cm}$이다.`,
+        facts: { r, om, coef },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  def("원과 직선", "05", "현의 길이", SEC.현, "응용", (rng) => {
+    // 두 현 그림이라 d < h 로 고정 — d/r 가 1 에 가까우면 현이 가장자리에 붙어
+    // 그림이 읽기 어렵다 (2026-08-23 미리보기 육안).
+    const [d, h, r] = pick(rng, TRIPLES);
+    const cd = 2 * h;
+    return {
+      content: `원 $O$의 두 현 $AB$, $CD$에 대하여 중심 $O$에서 두 현에 내린 수선의 발을 각각 $M$, $N$이라 하자. 원 $O$의 반지름의 길이는 $${r}\\,\\mathrm{cm}$이고 $\\overline{OM}=\\overline{ON}=${d}\\,\\mathrm{cm}$일 때, 현 $CD$의 길이를 구하시오.`,
+      answer: `$${cd}\\,\\mathrm{cm}$`,
+      solution: `직각삼각형 $ODN$에서 $\\overline{DN}=\\sqrt{${r}^2-${d}^2}=${h}\\,(\\mathrm{cm})$이다.\n$N$은 $\\overline{CD}$의 중점이므로 $\\overline{CD}=2\\overline{DN}=${cd}\\,\\mathrm{cm}$이다.`,
+      facts: { r, d, h, cd },
+      // ⚠️ 치수를 안 단다. 두 현이 «중심에서 같은 거리»라 $\overline{OM}$ 을 적고
+      //    싶은데, 씨앗 14개 중 **3개가 던진다** — 치수 곡선이 다른 현을 가로지른다.
+      //    `side` 를 좌·우로 못 박아도 같은 3개가 던졌다(둘 다 실측).
+      //    **한 씨앗에서 되는 것은 근거가 아니다** — 안 되는 씨앗에서는 그림이
+      //    통째로 사라진다. 못 가르는 것은 **안 다는 쪽**으로 둔다(원장님 2026-08-25).
+      figureSpec: figTwoChords({ r, d }),
+    };
+  }),
+
+  def(
+    "원과 직선",
+    "06",
+    "현의 길이 삼각형이 주어진 경우",
+    SEC.현,
+    "응용",
+    (rng) => {
+      const a = 2 * intBetween(rng, 20, 40);
+      const x = (180 - a) / 2;
+      return {
+        content: `원 $O$에 내접하는 삼각형 $ABC$에 대하여 중심 $O$에서 두 현 $AB$, $AC$에 내린 수선의 발을 각각 $M$, $N$이라 하자. $\\overline{OM}=\\overline{ON}$이고 $\\angle BAC=${a}^\\circ$일 때, $\\angle ABC$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `$\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n삼각형 $ABC$는 이등변삼각형이므로 $\\angle ABC=\\dfrac{1}{2}\\times(180^\\circ-${a}^\\circ)=${x}^\\circ$이다.`,
+        facts: { a, x },
+        figureSpec: figInscribedIso({ a }),
+      };
+    },
+  ),
+
+  // ── 원주각 (우리 단원: 원주각) ───────────────────────
+  def("원주각", "01", "원주각과 중심각의 크기 ⑴", SEC.원주각, "기본", (rng) => {
+    const a = intBetween(rng, 20, 80);
+    const c = 2 * a;
+    const mode = pick(rng, [0, 1] as const);
+    const x = mode === 0 ? a : c;
+    if (mode === 0) {
+      return {
+        content: `원 $O$ 위의 두 점 $A$, $B$에 대하여 $\\angle AOB=${c}^\\circ$일 때, 호 $AB$에 대한 원주각 $\\angle APB$의 크기를 구하시오.`,
+        answer: `$${a}^\\circ$`,
+        solution: `원주각의 크기는 같은 호에 대한 중심각의 크기의 $\\dfrac{1}{2}$이다.\n따라서 $\\angle APB=\\dfrac{1}{2}\\times${c}^\\circ=${a}^\\circ$이다.`,
+        facts: { a, c, x, mode },
+        figureSpec: figInscribedCentral({
+          c,
+          minor: false,
+          labelO: `${c}°`,
+          labelP: "x",
+        }),
+      };
+    }
+    return {
+      content: `원 $O$ 위의 점 $P$에 대하여 호 $AB$에 대한 원주각 $\\angle APB=${a}^\\circ$일 때, 중심각 $\\angle AOB$의 크기를 구하시오.`,
+      answer: `$${c}^\\circ$`,
+      solution: `중심각의 크기는 같은 호에 대한 원주각의 크기의 $2$배이다.\n따라서 $\\angle AOB=2\\times${a}^\\circ=${c}^\\circ$이다.`,
+      facts: { a, c, x, mode },
+      figureSpec: figInscribedCentral({
+        c,
+        minor: false,
+        labelO: "x",
+        labelP: `${a}°`,
+      }),
+    };
+  }),
+
+  def("원주각", "02", "원주각과 중심각의 크기 ⑵", SEC.원주각, "응용", (rng) => {
+    const c = 2 * intBetween(rng, 50, 80);
+    const x = 180 - c / 2;
+    return {
+      content: `원 $O$ 위의 두 점 $A$, $B$에 대하여 $\\angle AOB=${c}^\\circ$이고, 점 $P$는 짧은 호 $AB$ 위의 점이다. $\\angle APB$의 크기를 구하시오.`,
+      answer: `$${x}^\\circ$`,
+      solution: `점 $P$가 짧은 호 $AB$ 위에 있으므로 $\\angle APB$는 긴 호 $AB$에 대한 원주각이다.\n긴 호 $AB$에 대한 중심각의 크기는 $360^\\circ-${c}^\\circ=${360 - c}^\\circ$이다.\n따라서 $\\angle APB=\\dfrac{1}{2}\\times${360 - c}^\\circ=${x}^\\circ$이다.`,
+      facts: { c, x },
+      figureSpec: figInscribedCentral({
+        c,
+        minor: true,
+        labelO: `${c}°`,
+        labelP: "x",
+      }),
+    };
+  }),
+
+  def(
+    "원주각",
+    "03",
+    "원주각과 중심각의 크기 두 접선이 주어진 경우",
+    SEC.원주각,
+    "심화하",
+    (rng) => {
+      const p = 2 * intBetween(rng, 20, 36);
+      const aob = 180 - p;
+      const x = aob / 2;
+      return {
+        content: `원 $O$ 밖의 한 점 $P$에서 원 $O$에 그은 두 접선의 접점을 각각 $A$, $B$라 하자. $\\angle APB=${p}^\\circ$일 때, 긴 호 $AB$ 위의 점 $C$에 대하여 $\\angle ACB$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `접선은 접점을 지나는 반지름과 수직이므로 $\\overline{OA}\\perp\\overline{PA}$, $\\overline{OB}\\perp\\overline{PB}$이다.\n사각형 $APBO$의 내각의 크기의 합에서 $\\angle AOB=360^\\circ-90^\\circ-90^\\circ-${p}^\\circ=${aob}^\\circ$이다.\n따라서 $\\angle ACB=\\dfrac{1}{2}\\angle AOB=${x}^\\circ$이다.`,
+        facts: { p, aob, x },
+        figureSpec: figTangentPair({ p }),
+      };
+    },
+  ),
+
+  def("원주각", "04", "원주각의 성질", SEC.원주각, "응용", (rng) => {
+    const a = intBetween(rng, 20, 40);
+    const x = intBetween(rng, 25, 50);
+    const p = a + x;
+    return {
+      content: `원 위에 네 점 $A$, $B$, $C$, $D$가 이 순서대로 있고, 두 현 $AC$와 $BD$는 원 안의 점 $P$에서 만난다. $\\angle ABD=${a}^\\circ$, $\\angle BPC=${p}^\\circ$일 때, $\\angle BDC$의 크기를 구하시오.`,
+      answer: `$${x}^\\circ$`,
+      solution: `삼각형 $ABP$에서 $\\angle BPC$는 꼭짓점 $P$에서의 외각이므로 $\\angle BAC=${p}^\\circ-${a}^\\circ=${x}^\\circ$이다.\n$\\angle BDC$와 $\\angle BAC$는 호 $BC$에 대한 원주각이므로 $\\angle BDC=\\angle BAC=${x}^\\circ$이다.`,
+      facts: { a, p, x },
+      figureSpec: figChordCross({ a, x, p }),
+    };
+  }),
+
+  def(
+    "원주각",
+    "05",
+    "반원에 대한 원주각의 크기",
+    SEC.원주각,
+    "기본",
+    (rng) => {
+      const a = intBetween(rng, 20, 70);
+      const x = 90 - a;
+      return {
+        content: `$\\overline{AB}$는 원 $O$의 지름이고 점 $C$는 원 $O$ 위의 점이다. $\\angle CAB=${a}^\\circ$일 때, $\\angle CBA$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ACB=90^\\circ$이다.\n삼각형 $ABC$에서 $\\angle CBA=180^\\circ-90^\\circ-${a}^\\circ=${x}^\\circ$이다.`,
+        facts: { a, x },
+        figureSpec: figSemicircle({ a }),
+      };
+    },
+  ),
+
+  def(
+    "원주각",
+    "06",
+    "원주각의 성질과 삼각비의 값",
+    SEC.원주각,
+    "심화하",
+    (rng) => {
+      const [bc, r, num, den] = pick(rng, [
+        [6, 5, 3, 5],
+        [8, 5, 4, 5],
+        [10, 13, 5, 13],
+        [24, 13, 12, 13],
+        [6, 6, 1, 2],
+        [30, 17, 15, 17],
+        [16, 17, 8, 17],
+        [14, 25, 7, 25],
+      ] as const);
+      return {
+        content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 원 $O$에 내접하는 삼각형 $ABC$에서 $\\overline{BC}=${bc}\\,\\mathrm{cm}$일 때, $\\sin A$의 값을 구하시오.`,
+        answer: `$\\dfrac{${num}}{${den}}$`,
+        solution: `지름 $BA'$을 그으면 $\\overline{BA'}$이 지름이므로 $\\angle BCA'=90^\\circ$이고, $\\angle BA'C$와 $\\angle BAC$는 호 $BC$에 대한 원주각이므로 $\\angle BA'C=\\angle A$이다.\n직각삼각형 $A'BC$에서 $\\sin A=\\sin A'=\\dfrac{\\overline{BC}}{\\overline{BA'}}=\\dfrac{${bc}}{${2 * r}}=\\dfrac{${num}}{${den}}$이다.`,
+        facts: { r, bc, num, den },
+        // ⚠️ $\overline{BC}$ 는 **현**이다. 씨앗 하나로는 그려져서 달 뻔했는데,
+        //    14개로 넓히니 **6개가 던졌다**(원둘레와 부딪힘). 한 씨앗으로 판단하면
+        //    「되는 줄 알고」 넣고 나머지 씨앗에서 그림이 통째로 사라진다.
+        figureSpec: figTriSine({ bc, r }),
+      };
+    },
+  ),
+
+  def("원주각", "07", "원주각의 크기와 호의 길이⑴", SEC.원주각, "응용", (rng) =>
+    // 호 강조 표시는 FigureSpec v2 에 없다(09 §1) — 발문이 그림 없이 완결된다.
+    attempt(80, () => {
+      const m = intBetween(rng, 2, 6);
+      const n = intBetween(rng, 2, 9);
+      if (n === m) return null;
+      const t = intBetween(rng, 4, 14);
+      const a = m * t;
+      const x = n * t;
+      if (a > 88 || x > 88) return null;
+      return {
+        content: `원 $O$ 위의 네 점 $A$, $B$, $C$, $D$에 대하여 호 $AB$의 길이는 $${m}\\,\\mathrm{cm}$, 호 $CD$의 길이는 $${n}\\,\\mathrm{cm}$이다. 호 $AB$에 대한 원주각의 크기가 $${a}^\\circ$일 때, 호 $CD$에 대한 원주각의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `한 원에서 원주각의 크기는 호의 길이에 정비례한다.\n호 $CD$에 대한 원주각의 크기를 $x^\\circ$라 하면 $${m} : ${n} = ${a} : x$이므로 $x=${x}$이다.\n따라서 구하는 원주각의 크기는 $${x}^\\circ$이다.`,
+        facts: { m, n, a, x },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  def(
+    "원주각",
+    "08",
+    "원주각의 크기와 호의 길이⑵",
+    SEC.원주각,
+    "응용",
+    (rng) => {
+      const [p, q, r] = pick(rng, [
+        [1, 2, 3],
+        [2, 3, 4],
+        [3, 4, 5],
+        [1, 3, 5],
+        [2, 3, 5],
+        [4, 5, 6],
+      ] as const);
+      const s = p + q + r;
+      // 묻는 각을 돌린다 — ∠A·∠B·∠C 는 각각 호 BC(q)·호 CA(r)·호 AB(p) 의 원주각.
+      const target = pick(rng, [0, 1, 2] as const);
+      const arc = [q, r, p][target]!;
+      const name = ["A", "B", "C"][target]!;
+      const x = (180 * arc) / s;
+      return {
+        content: `삼각형 $ABC$가 원 $O$에 내접하고, 호 $AB$, 호 $BC$, 호 $CA$의 길이의 비가 $${p} : ${q} : ${r}$일 때, $\\angle ${name}$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `$\\angle A$, $\\angle B$, $\\angle C$는 각각 호 $BC$, 호 $CA$, 호 $AB$에 대한 원주각이므로 세 각의 크기의 비는 호의 길이의 비와 같다.\n$\\angle ${name}=180^\\circ\\times\\dfrac{${arc}}{${p}+${q}+${r}}=${x}^\\circ$이다.`,
+        facts: { p, q, r, target, x },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  def(
+    "원주각",
+    "09",
+    "원주각의 크기와 호의 길이⑶",
+    SEC.원주각,
+    "심화하",
+    (rng) =>
+      attempt(80, () => {
+        const pool = [4, 5, 6, 9, 10, 12] as const;
+        const m = pick(rng, pool);
+        const n = pick(rng, pool);
+        if (m === n) return null;
+        const u = 180 / m;
+        const v = 180 / n;
+        const x = u + v;
+        return {
+          content: `원 위에 네 점 $A$, $B$, $C$, $D$가 이 순서대로 있고, 두 현 $AC$와 $BD$는 원 안의 점 $P$에서 만난다. 호 $AB$의 길이는 원주의 $\\dfrac{1}{${m}}$, 호 $CD$의 길이는 원주의 $\\dfrac{1}{${n}}$일 때, $\\angle APB$의 크기를 구하시오.`,
+          answer: `$${x}^\\circ$`,
+          solution: `호 $AB$에 대한 원주각 $\\angle ADB=\\dfrac{1}{2}\\times360^\\circ\\times\\dfrac{1}{${m}}=${u}^\\circ$이고, 호 $CD$에 대한 원주각 $\\angle DAC=\\dfrac{1}{2}\\times360^\\circ\\times\\dfrac{1}{${n}}=${v}^\\circ$이다.\n삼각형 $APD$에서 $\\angle APB$는 꼭짓점 $P$에서의 외각이므로 $\\angle APB=${u}^\\circ+${v}^\\circ=${x}^\\circ$이다.`,
+          facts: { m, n, x },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  def(
+    "원주각",
+    "10",
+    "반원에 대한 원주각의 크기의 응용",
+    SEC.원주각,
+    "심화하",
+    (rng) => {
+      const a = intBetween(rng, 15, 40);
+      const x = 90 + a;
+      return {
+        content: `$\\overline{AB}$는 원 $O$의 지름이고, 원 위에 네 점 $A$, $D$, $C$, $B$가 이 순서대로 있다. 두 현 $AC$와 $BD$는 점 $P$에서 만나고 $\\angle CAD=${a}^\\circ$일 때, $\\angle APB$의 크기를 구하시오.`,
+        answer: `$${x}^\\circ$`,
+        solution: `$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ADB=90^\\circ$이다.\n삼각형 $APD$에서 $\\angle APD=180^\\circ-90^\\circ-${a}^\\circ=${90 - a}^\\circ$이다.\n따라서 $\\angle APB=180^\\circ-${90 - a}^\\circ=${x}^\\circ$이다.`,
+        facts: { a, x },
+        figureSpec: figDiameterCross({ a }),
+      };
+    },
+  ),
+  /*
+   * 17A~20A — 원과 현을 $10$유형으로 채운다 (갈래 A, 2026-08-27).
+   * 01 기본 · 02·05·06 응용 · 03·04 심화라 **밑단(`연산`)이 없었다**(D-106).
+   *
+   * 피타고라스 세 쌍의 **세 방향**을 나눠 가진다 — 01 은 $(r,d)\to L$,
+   * 02 는 $(L,d)\to r$, 19A 는 $(r,L)\to d$ 다. 20A 는 거기에 넓이를 한 단계 얹는다.
+   * 그림은 달지 않는다 — 발문이 치수를 다 말하고, 02·03 이 현·활꼴에 치수를
+   * 달다가 원둘레와 부딪힌 자리다(위 주석).
+   */
+  def("원과 직선", "17A", "현의 수직이등분", SEC.현, "연산", (rng) => {
+    const half = intBetween(rng, 3, 20);
+    return {
+      content: `원 $O$의 중심에서 현 $AB$에 내린 수선의 발을 $M$이라 하자. $\\overline{AM}=${half}\\,\\mathrm{cm}$일 때, 현 $AB$의 길이를 구하시오.`,
+      answer: `$${2 * half}\\,\\mathrm{cm}$`,
+      solution: `원의 중심에서 현에 내린 수선은 그 현을 이등분하므로 $M$은 $\\overline{AB}$의 중점이다.\n따라서 $\\overline{AB}=2\\overline{AM}=2\\times${half}=${2 * half}\\,(\\mathrm{cm})$이다.`,
+      facts: { half, ab: 2 * half },
+      figureSpec: null,
+    };
+  }),
+
+  def(
+    "원과 직선",
+    "18A",
+    "중심에서 같은 거리에 있는 두 현",
+    SEC.현,
+    "기본",
+    (rng) => {
+      const ab = 2 * intBetween(rng, 3, 20);
+      const dist = intBetween(rng, 2, 12);
+      return {
+        content: `원 $O$의 중심에서 두 현 $AB$, $CD$에 이르는 거리가 모두 $${dist}\\,\\mathrm{cm}$로 같다. $\\overline{AB}=${ab}\\,\\mathrm{cm}$일 때, $\\overline{CD}$의 길이를 구하시오.`,
+        answer: `$${ab}\\,\\mathrm{cm}$`,
+        solution: `한 원에서 중심으로부터 같은 거리에 있는 두 현의 길이는 서로 같다.\n따라서 $\\overline{CD}=\\overline{AB}=${ab}\\,\\mathrm{cm}$이다.`,
+        facts: { ab, dist },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  def("원과 직선", "19A", "중심에서 현까지의 거리", SEC.현, "응용", (rng) => {
+    const [l1, l2, r] = pick(rng, TRIPLES);
+    const [d, h] = pick(rng, [
+      [l1, l2],
+      [l2, l1],
+    ] as const);
+    return {
+      content: `반지름의 길이가 $${r}\\,\\mathrm{cm}$인 원 $O$에서 현 $AB$의 길이가 $${2 * h}\\,\\mathrm{cm}$일 때, 원의 중심 $O$에서 현 $AB$까지의 거리를 구하시오.`,
+      answer: `$${d}\\,\\mathrm{cm}$`,
+      solution: `중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times${2 * h}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{OM}=\\sqrt{${r}^2-${h}^2}=${d}\\,(\\mathrm{cm})$이다.`,
+      facts: { r, h, d, ab: 2 * h },
+      figureSpec: null,
+    };
+  }),
+
+  def(
+    "원과 직선",
+    "20A",
+    "현으로 원의 넓이 구하기",
+    SEC.현,
+    "심화하",
+    (rng) => {
+      const [l1, l2, r] = pick(rng, TRIPLES);
+      const [d, h] = pick(rng, [
+        [l1, l2],
+        [l2, l1],
+      ] as const);
+      return {
+        content: `원 $O$의 중심에서 현 $AB$에 이르는 거리가 $${d}\\,\\mathrm{cm}$이고 $\\overline{AB}=${2 * h}\\,\\mathrm{cm}$일 때, 원 $O$의 넓이를 구하시오.`,
+        answer: `$${r * r}\\pi\\,\\mathrm{cm}^2$`,
+        solution: `중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times${2 * h}=${h}\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 반지름의 길이는 $\\overline{OA}=\\sqrt{${h}^2+${d}^2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 원 $O$의 넓이는 $\\pi\\times${r}^2=${r * r}\\pi\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { d, h, r, area: r * r },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  ...M3_TANGENT_TYPES,
+  ...M3_POLY,
+  ...M3_TRIG,
+  ...M3_ROOT,
+  ...M3_QUAD,
+  ...M3_ANGLE_APPLY,
+  ...M3_FUNC,
+  ...M3_STAT2,
+];
+
+// 브리프 계약 5: 유형 키의 중단원 이름은 RPM 색인 그대로 — 여기 상수로 고정해
+// 테스트가 실측 리터럴로 잠근다.
+export const M3_MINORS = [MINOR_LINE, MINOR_ANGLE] as const;

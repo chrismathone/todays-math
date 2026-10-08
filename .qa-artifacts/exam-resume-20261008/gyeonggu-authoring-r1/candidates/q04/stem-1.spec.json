@@ -1,0 +1,88 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "angle_label_distance": 26,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "Q": [
+      0.0,
+      0.0
+    ],
+    "R": [
+      182.0,
+      0.0
+    ],
+    "P": [
+      26.923076923076923,
+      -64.61538461538461
+    ],
+    "M": [
+      26.923076923076923,
+      0.0
+    ]
+  },
+  "segments": {
+    "QP": [
+      "Q",
+      "P"
+    ],
+    "PR": [
+      "P",
+      "R"
+    ],
+    "QR": [
+      "Q",
+      "R"
+    ],
+    "PM": {
+      "points": [
+        "P",
+        "M"
+      ],
+      "dash": "4 3"
+    }
+  },
+  "labels": {
+    "Q": "Q",
+    "R": "R",
+    "P": "P",
+    "M": "M"
+  },
+  "angles": {
+    "angle_M": {
+      "vertex": "M",
+      "points": [
+        "P",
+        "R"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_t": {
+      "vertex": "P",
+      "points": [
+        "Q",
+        "M"
+      ],
+      "label": "$\\theta$",
+      "radius": 20,
+      "label_distance": 32
+    },
+    "angle_p": {
+      "vertex": "P",
+      "points": [
+        "M",
+        "R"
+      ],
+      "label": "$\\phi$",
+      "radius": 20,
+      "label_distance": 32
+    }
+  }
+}

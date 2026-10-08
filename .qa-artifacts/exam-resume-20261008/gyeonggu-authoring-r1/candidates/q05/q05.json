@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q05",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "다음 네 카드를 값의 크기에 따라 수직선 위에 놓았다. 양 끝에 놓인 카드 두 장을 치운 뒤, 남은 두 카드 중 큰 값에서 작은 값을 빼서 기록하려고 한다.\n\n| 카드 | 가 | 나 | 다 | 라 |\n| --- | --- | --- | --- | --- |\n| 삼각비 | $\\sin30^\\circ$ | $\\cos30^\\circ$ | $\\cos75^\\circ$ | $\\tan55^\\circ$ |\n\n남은 두 카드의 값의 차는?",
+  "choices": [
+    "$\\frac{\\sqrt3+1}{2}$",
+    "$\\sqrt3-1$",
+    "$\\frac{\\sqrt3-1}{2}$",
+    "$\\frac{\\sqrt3-\\sqrt2}{2}$",
+    "$\\frac{\\sqrt2-1}{2}$"
+  ],
+  "answer": "③",
+  "solution": "$\\sin30^\\circ=\\frac12$, $\\cos30^\\circ=\\frac{\\sqrt3}{2}$이므로 카드 가의 값은 카드 나보다 작고, 둘 다 $1$보다 작다.\n$0^\\circ$보다 크고 $90^\\circ$보다 작은 각의 범위에서 각이 커지면 cos의 값은 작아진다. 따라서 $\\cos75^\\circ<\\cos60^\\circ=\\frac12$이다. 또 이 범위에서 각이 커지면 tan의 값은 커지므로 $\\tan55^\\circ>\\tan45^\\circ=1$이다.\n따라서 네 카드의 순서는 다, 가, 나, 라이다. 양 끝의 다, 라를 치우면 가, 나가 남는다. 남은 값의 차는 $\\frac{\\sqrt3}{2}-\\frac12=\\frac{\\sqrt3-1}{2}$이므로 정답은 ③이다.",
+  "score": 3.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "cards": {
+        "가": "sin30",
+        "나": "cos30",
+        "다": "cos75",
+        "라": "tan55"
+      },
+      "organization": "remove minimum and maximum; subtract smaller remaining value from larger"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q05.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "네 삼각비 값 전체를 작은 것부터 나열한다.",
+    "after": "수직선의 두 끝값을 제거하고 가운데 남은 두 특수값의 차를 계산하는 기록으로 재조직한다.",
+    "sharedConcept": "0~90도 삼각비의 값과 대소 비교",
+    "sharedProcedure": "30/45/60도 값으로 기준을 정하고 같은 삼각비 cos/tan의 각도별 크기를 비교한 뒤 남은 특수각 두 값의 차를 계산한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수01-09",
+      "9수01-10"
+    ],
+    "allowedProcedure": "30/45/60도 값으로 기준을 정하고 같은 삼각비 cos/tan의 각도별 크기를 비교한 뒤 남은 특수각 두 값의 차를 계산한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "같은 함수의 예각 범위 값의 크기 비교이다. 서로 다른 삼각비 사이의 관계식이나 일반 삼각함수 그래프는 쓰지 않는다. 비교 범위·표현 변화의 충분성은 독립 검토 대상이다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": [
+      "예각에서 같은 함수의 값 크기 비교가2015중3 학생 방법으로 정당하고, 극값제거/두특수값차가 충분한 구조 변경인지 독립 확인 필요."
+    ]
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 0개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "30/45/60도 값으로 기준을 정하고 같은 삼각비 cos/tan의 각도별 크기를 비교한 뒤 남은 특수각 두 값의 차를 계산한다.",
+      "risk": "같은 함수의 예각 범위 값의 크기 비교이다. 서로 다른 삼각비 사이의 관계식이나 일반 삼각함수 그래프는 쓰지 않는다. 비교 범위·표현 변화의 충분성은 독립 검토 대상이다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-09",
+          "text": "실수의 대소 관계를 판단할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 5,
+    "sourceContentSha256": "3c11710a59a743824737433fc97a7980acd1914f492faaa9c0a9e48239e59c05",
+    "sourceDigest": "1b3ee70e38af14983c41fbe65edf056d3b209c385b735bab09901383c46a5ae9",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/4",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q05-part1.png",
+        "sha256": "46f1cbf7536d8b199b4b7430180784fd86a21ca4928e7697cf7ed54676637235",
+        "page": 2,
+        "column": 0
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 3.0,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "unitSection": "삼각비의 값",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 482,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비|14",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "14",
+            "rpmTitle": "삼각비의 값의 대소 관계"
+          },
+          {
+            "key": "3-2|삼각비|15",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "15",
+            "rpmTitle": "삼각비의 값의 대소 관계를 이용한 식의 계산"
+          },
+          {
+            "key": "3-2|삼각비|16",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "16",
+            "rpmTitle": "삼각비의 표를 이용하여 삼각비의 값 구하기"
+          }
+        ],
+        "fullRuleComparison": "14는 같은 각의 sin/cos/tan 중 하나의 극값,15는 일반각의 근호/부호 식,16은 표의 단일값 조회이다. 새 문항은 서로 다른 네 각의 값 비교→양 끝 카드 제거→남은30도 특수값의 정확한 차를 구한다. 어떤 규칙도 새 입력/목표/전체 순서를 모두 지지하지 않는다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

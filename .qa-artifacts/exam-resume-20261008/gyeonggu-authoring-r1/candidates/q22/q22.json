@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 22,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q22",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "원 밖의 점 $\\mathrm{A}$를 지나는 두 직선은 원 $\\mathrm{O}$에 각각 점 $\\mathrm{P,Q}$에서 접한다. 점 $\\mathrm{C}$는 선분 $\\mathrm{AP}$의 내부에, 점 $\\mathrm{B}$는 선분 $\\mathrm{AQ}$의 내부에 있다. 선분 $\\mathrm{BC}$도 이 원에 점 $\\mathrm{D}$에서 접하며 D는 선분 BC의 내부에 있다.\n$\\angle\\mathrm{PAQ}=60^\\circ$이고 삼각형 $\\mathrm{ABC}$의 둘레는 $6\\sqrt3\\,\\mathrm{cm}$이다. 다음을 구하고 풀이를 쓰시오.\n⑴ 둘레와 $\\overline{\\mathrm{AP}}$의 관계를 설명하고 $\\overline{\\mathrm{AP}}$의 길이를 구하시오. [4점]\n⑵ 원의 반지름의 길이. [2점]\n⑶ $\\overline{\\mathrm{AO}}$의 길이. [2점]",
+  "choices": [],
+  "answer": "⑴ 둘레 $=2\\overline{\\mathrm{AP}}$, $\\overline{\\mathrm{AP}}=3\\sqrt3\\,\\mathrm{cm}$ ⑵ $3\\,\\mathrm{cm}$ ⑶ $6\\,\\mathrm{cm}$",
+  "solution": "⑴ 같은 점에서 그은 접선의 길이는 같다. 따라서 $\\overline{\\mathrm{CP}}=\\overline{\\mathrm{CD}}$, $\\overline{\\mathrm{BQ}}=\\overline{\\mathrm{BD}}$, $\\overline{\\mathrm{AP}}=\\overline{\\mathrm{AQ}}$이다.\n주어진 점의 순서에 의하여 $\\overline{\\mathrm{AP}}=\\overline{\\mathrm{AC}}+\\overline{\\mathrm{CP}}$, $\\overline{\\mathrm{AQ}}=\\overline{\\mathrm{AB}}+\\overline{\\mathrm{BQ}}$, $\\overline{\\mathrm{BC}}=\\overline{\\mathrm{CD}}+\\overline{\\mathrm{DB}}$이다. 이를 합하면 삼각형의 둘레는 $\\overline{\\mathrm{AP}}+\\overline{\\mathrm{AQ}}=2\\overline{\\mathrm{AP}}$이다. 따라서 $\\overline{\\mathrm{AP}}=3\\sqrt3\\,\\mathrm{cm}$이다.\n⑵ 접점 P, Q에서 반지름은 접선에 수직이다. 두 직각삼각형 AOP와 AOQ는 빗변 AO가 공통이고 반지름 OP와 OQ가 같으므로 합동이다. 따라서 $\\angle\\mathrm{PAO}=30^\\circ$이다. $\\tan30^\\circ=\\frac{\\overline{\\mathrm{OP}}}{\\overline{\\mathrm{AP}}}$이므로 반지름은 $3\\sqrt3\\times\\frac{\\sqrt3}{3}=3\\,\\mathrm{cm}$이다.\n⑶ $\\cos30^\\circ=\\frac{\\overline{\\mathrm{AP}}}{\\overline{\\mathrm{AO}}}=\\frac{\\sqrt3}{2}$이므로 $\\overline{\\mathrm{AO}}=3\\sqrt3\\div\\frac{\\sqrt3}{2}=6\\,\\mathrm{cm}$이다.",
+  "score": 8.0,
+  "questionType": "서술형",
+  "facts": {
+    "givens": {
+      "perimeterABC": "6sqrt(3)",
+      "PAQdeg": 60,
+      "pointOrders": [
+        [
+          "A",
+          "C",
+          "P"
+        ],
+        [
+          "A",
+          "B",
+          "Q"
+        ]
+      ],
+      "tangencies": {
+        "AP": "P",
+        "AQ": "Q",
+        "BC": "D"
+      },
+      "DInsideBC": true,
+      "unit": "cm"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q22.json",
+    "subpartScores": [
+      4,
+      2,
+      2
+    ]
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "AP/AQ의반직선접선과주어진AO로반지름·접선길이·삼각형둘레를구한다.",
+    "after": "벡터같이변환된화살표를제거하고접선직선/점순서를명시하며둘레를입력으로접선·반지름·AO를역산한다.",
+    "sharedConcept": "두접선길이,접점직각과30도직각삼각형",
+    "sharedProcedure": "접선길이합으로둘레관계→합동으로각이등분→tan/cos30의직각삼각형길이."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-17",
+      "9수04-04"
+    ],
+    "allowedProcedure": "접선길이합으로둘레관계→합동으로각이등분→tan/cos30의직각삼각형길이.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "원본화살표는그림에서반직선이다. 새학생면은직선/선분을말로정의하며벡터연산이없다. A,C,P와A,B,Q순서및D의내부조건이필수다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": []
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "서술형이므로 choices=[]이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 1개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "접선길이합으로둘레관계→합동으로각이등분→tan/cos30의직각삼각형길이.",
+      "risk": "원본화살표는그림에서반직선이다. 새학생면은직선/선분을말로정의하며벡터연산이없다. A,C,P와A,B,Q순서및D의내부조건이필수다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-19",
+          "text": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-04",
+          "text": "삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 22,
+    "sourceContentSha256": "c8e0c1e9d909a07d08c04e13eb45c6d4126a482562b7ea362d3e650672984624",
+    "sourceDigest": "b6d8e8e62157ca9f1c64c27af33da052abc5970a045de7c97685f99d06799984",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/21",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q22-part1.png",
+        "sha256": "a7f9e73573627d7cd1148a4a498cc6be59e9ca7bc163577cb9f775f6493711ee",
+        "page": 7,
+        "column": 1
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "서술형",
+    "score": 8.0,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "서술형",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "unitSection": "원의 접선",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 485,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|원과 직선|10",
+            "grade": "중3",
+            "unitSection": "원의 접선",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "10",
+            "rpmTitle": "원의 접선의 성질의 응용"
+          }
+        ],
+        "fullRuleComparison": "10 mode4는 반지름/60도로 둘레를 구한다. 새 둘레→접선길이 증명→반지름→AO 역산과 서술형 세부분은 전체규칙에 없다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

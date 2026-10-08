@@ -1,0 +1,285 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 13,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q13",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "정삼각형 $\\mathrm{ABC}$에서 점 $\\mathrm{D}$는 선분 $\\mathrm{AB}$의 내부에 있다. $\\angle\\mathrm{ADC}=105^\\circ$이고 삼각형 $\\mathrm{ADC}$의 넓이는 $18\\sqrt3\\,\\mathrm{cm}^2$이다.\n그림의 $\\mathrm{E}$는 $\\mathrm{D}$에서 $\\mathrm{BC}$에 내린 수선의 발, $\\mathrm{F}$는 $\\mathrm{C}$에서 직선 $\\mathrm{AB}$에 내린 수선의 발이다.\n이 넓이 기록을 만족하는 $\\overline{\\mathrm{BD}}$의 길이는?",
+  "choices": [
+    "$6\\,\\mathrm{cm}$",
+    "$6\\sqrt2\\,\\mathrm{cm}$",
+    "$9\\,\\mathrm{cm}$",
+    "$12\\,\\mathrm{cm}$",
+    "$12\\sqrt2\\,\\mathrm{cm}$"
+  ],
+  "answer": "④",
+  "solution": "$\\angle\\mathrm{BDC}=180^\\circ-105^\\circ=75^\\circ$이고 $\\angle\\mathrm{DBC}=60^\\circ$이므로 $\\angle\\mathrm{BCD}=45^\\circ$이다.\n$\\overline{\\mathrm{BD}}=t\\,\\mathrm{cm}$라 하자. 직각삼각형 $\\mathrm{BDE}$에서 $\\overline{\\mathrm{BE}}=\\frac t2$, $\\overline{\\mathrm{DE}}=\\frac{t\\sqrt3}{2}$이다. 직각삼각형 $\\mathrm{CDE}$의 C각이 $45^\\circ$이므로 $\\overline{\\mathrm{EC}}=\\overline{\\mathrm{DE}}$이다.\n따라서 $\\overline{\\mathrm{BC}}=\\overline{\\mathrm{AB}}=\\frac{t(1+\\sqrt3)}2$이고, $\\overline{\\mathrm{AD}}=\\frac{t(\\sqrt3-1)}2$이다.\n직각삼각형 $\\mathrm{BCF}$에서 $\\overline{\\mathrm{CF}}=\\overline{\\mathrm{BC}}\\sin60^\\circ=\\frac{t\\sqrt3(1+\\sqrt3)}4$이다.\n삼각형 $\\mathrm{ADC}$는 밑변을 $\\mathrm{AD}$, 그 직선에 대한 높이를 $\\mathrm{CF}$로 보아 넓이를 구한다. 따라서 $\\frac12\\times\\frac{t(\\sqrt3-1)}2\\times\\frac{t\\sqrt3(1+\\sqrt3)}4=\\frac{t^2\\sqrt3}{8}$이다.\n이 값이 $18\\sqrt3$이므로 $t^2=144$이다. 양의 길이 $t=12$를 택하므로 정답은 ④이다.",
+  "score": 5.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "shape": "equilateral ABC",
+      "DInsideAB": true,
+      "ADCdeg": 105,
+      "areaADC": "18sqrt(3)",
+      "E": "foot D to BC",
+      "F": "foot C to line AB",
+      "unit": "cm,cm^2"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q13.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "정삼각형변위의점과105도 조건, BD길이로부분넓이를구한다.",
+    "after": "부분넓이를주고BD를복구하는역목표이며필요한두수선발을명시한다.",
+    "sharedConcept": "특수각 직각삼각형의 높이와 부분삼각형넓이",
+    "sharedProcedure": "각의합→60/45도직각삼각형→밑변분할→직선에대한높이→삼각형넓이→양의실근."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-18",
+      "9수04-17",
+      "6수03-06",
+      "9수01-10",
+      "9수02-13",
+      "9수04-05"
+    ],
+    "allowedProcedure": "각의합→60/45도직각삼각형→밑변분할→직선에대한높이→삼각형넓이→양의실근.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "두 수선은 이미 제시했다. F는AD밖의직선상 높이의 발이며 sin105/사인넓이공식/사인법칙을 쓰지 않는다. 독립 전체범위·복잡도 검수는 아직 필요하다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": [
+      "공식 no_complex_geometry_measurement 제한에 비추어 두 수선발을 모두 제공한 부분넓이 역산의 전체 복잡도/5점 검수 필요."
+    ]
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 1개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "각의합→60/45도직각삼각형→밑변분할→직선에대한높이→삼각형넓이→양의실근.",
+      "risk": "두 수선은 이미 제시했다. F는AD밖의직선상 높이의 발이며 sin105/사인넓이공식/사인법칙을 쓰지 않는다. 독립 전체범위·복잡도 검수는 아직 필요하다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-18",
+          "text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "6수03-06",
+          "text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-13",
+          "text": "이차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-05",
+          "text": "다각형의 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 13,
+    "sourceContentSha256": "1a1b1c2a6ee3916a5cdb6c0faf4f5ca048dadd3df35dcabc985b8a57c4a473fa",
+    "sourceDigest": "eb84ed7c528231e2d5ee6eb4f81a4f3f0b19fc6d0e0279bf580d21ac195354fd",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/12",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q13-part1.png",
+        "sha256": "0fb005dad4537a3d646b063df299e39e5af788e6f1cb41302f22a6052fd66d7c",
+        "page": 4,
+        "column": 0
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 5.0,
+    "difficultyProposal": "심화하",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unitSection": "삼각비의 활용",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 483,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비의 활용|05",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "05",
+            "rpmTitle": "일반 삼각형의 변의 길이 구하기 한 변의 길이와 그 양 끝 각의 크기를 아는 경우"
+          },
+          {
+            "key": "3-2|삼각비의 활용|08",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "08",
+            "rpmTitle": "삼각형의 넓이 예각이 주어진 경우"
+          }
+        ],
+        "fullRuleComparison": "05/08의 조건은 새 정삼각형 위D의105도와 주어진 부분넓이에서BD를 역산하는 전체 절차가 아니다. 수선 두 개/밑변 바깥 높이/양의 실근을 포함한 난도 검토가 필요하다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

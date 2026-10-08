@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 15,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q15",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "원 $\\mathrm{O}$의 두 현 $\\mathrm{AB}$, $\\mathrm{AC}$에 중심에서 내린 수선의 발은 각각 $\\mathrm{M,N}$이다. $\\overline{\\mathrm{OM}}=\\overline{\\mathrm{ON}}$이다.\n삼각형 $\\mathrm{ABC}$의 두 각을 다음과 같이 기록했다.\n\n| 각 | 기록 |\n| --- | --- |\n| $\\angle\\mathrm{ABC}$ | $(x+28)^\\circ$ |\n| $\\angle\\mathrm{BCA}$ | $(2x-2)^\\circ$ |\n\n이 기록을 만족하는 $x$와 $\\angle\\mathrm{BAC}$의 크기를 차례로 바르게 짝지은 것은?",
+  "choices": [
+    "$30$, $58^\\circ$",
+    "$32$, $60^\\circ$",
+    "$28$, $68^\\circ$",
+    "$30$, $64^\\circ$",
+    "$30$, $116^\\circ$"
+  ],
+  "answer": "④",
+  "solution": "같은 원에서 중심과의 거리가 같은 두 현의 길이는 같으므로 $\\overline{\\mathrm{AB}}=\\overline{\\mathrm{AC}}$이다. 따라서 삼각형의 B각과 C각은 같다.\n$x+28=2x-2$이므로 $x=30$이고 두 각은 각각 $58^\\circ$이다.\n삼각형의 세 각의 합을 이용하면 $\\angle\\mathrm{BAC}=180^\\circ-58^\\circ-58^\\circ=64^\\circ$이다. 정답은 ④이다.",
+  "score": 3.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "OMequalsON": true,
+      "M": "foot O to AB",
+      "N": "foot O to AC",
+      "angleB": "x+28",
+      "angleC": "2x-2",
+      "angleUnit": "degree"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q15.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "같은거리의현과꼭짓점52도로밑각한개를구한다.",
+    "after": "두밑각의일차식기록을일치시켜매개변수와꼭짓점각을함께복구한다.",
+    "sharedConcept": "중심거리같은현과이등변삼각형",
+    "sharedProcedure": "같은거리→같은현→같은밑각→일차식일치→삼각형각의합."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-19",
+      "9수02-05",
+      "9수04-10",
+      "9수04-05"
+    ],
+    "allowedProcedure": "같은거리→같은현→같은밑각→일차식일치→삼각형각의합.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "범일의 이미 작성한같은거리현문항을숫자만바꿔복제하지않고,두각의일차식일치와매개변수기록을새로사용한다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": []
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 1개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "같은거리→같은현→같은밑각→일차식일치→삼각형각의합.",
+      "risk": "범일의 이미 작성한같은거리현문항을숫자만바꿔복제하지않고,두각의일차식일치와매개변수기록을새로사용한다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-19",
+          "text": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-05",
+          "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-10",
+          "text": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-05",
+          "text": "다각형의 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 15,
+    "sourceContentSha256": "ba054b18d2ddffc2ba48b58b0b9f8cde9fdb5fa730a5a19a29138901c8fa1cc0",
+    "sourceDigest": "2047e5d43bd583b4b7db80656509ae34796b19e3bb3993f51d6da5434f2bfb08",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/14",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q15-part1.png",
+        "sha256": "92bca909dce33444ae24ef3ffd036209c0dd221b9e5c0875d92da8d09e627ea4",
+        "page": 4,
+        "column": 1
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 3.0,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "unitSection": "원과 현",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 484,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|원과 직선|06",
+            "grade": "중3",
+            "unitSection": "원과 현",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "06",
+            "rpmTitle": "현의 길이 삼각형이 주어진 경우"
+          }
+        ],
+        "fullRuleComparison": "06은 꼭짓점각을 수치로 주어 밑각을 구한다. 새 문항은 두 밑각의 일차식을 맞추어 x와꼭짓점각을 함께 구한다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

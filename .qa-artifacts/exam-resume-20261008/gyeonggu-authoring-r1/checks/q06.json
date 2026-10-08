@@ -1,0 +1,43 @@
+{
+  "questionNumber": 6,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "deterministic-author-recomputation",
+  "independentVerification": false,
+  "status": "author-check-passed",
+  "candidateFileSha256": "e8dd72f59abaa134c45ab1390d7a261e966e4f54f162533e5d27572c08a607e1",
+  "targets": [
+    "1607/2500",
+    "383/500"
+  ],
+  "evidence": {
+    "rowAngle": 40,
+    "AD": "8391/10000",
+    "roundingTolerance": "0.00005",
+    "notExactLengthAssertion": true
+  },
+  "choices": {
+    "choiceCount": 5,
+    "distinctValuesOrRecords": true,
+    "exactlyOneCorrect": true,
+    "correctIndex": 5,
+    "actualDisplayedChoicesSha256": "d3720e35c74feee11327ec9877efc42abac35d39db6197e7c89b037d41c5824d"
+  },
+  "assetGeometry": [
+    {
+      "check": "right-angle",
+      "name": "angle_H",
+      "normalizedDot": 0.0
+    },
+    {
+      "check": "right-angle",
+      "name": "angle_A",
+      "normalizedDot": 0.0
+    },
+    {
+      "specSha256": "fd8e3a9f4e6701292b9db0067ba1cac1eb582538fe68627d46c6cf2de805cb10",
+      "figureGeometry": "actual new givens, angle labels, circle points, side conditions and applicable area/perimeter agree",
+      "floatingGeometryTolerance": "1e-8; q06 given rounding tolerance0.00005"
+    }
+  ],
+  "limitations": "저자 검사이다. 원문 정답/해설을 읽지 않았고 독립 풀이/교육과정/분류/권리 승인으로 사용할 수 없다."
+}

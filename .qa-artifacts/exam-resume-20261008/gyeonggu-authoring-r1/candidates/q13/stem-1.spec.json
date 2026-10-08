@@ -1,0 +1,133 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "angle_label_distance": 26,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "B": [
+      0.0,
+      0.0
+    ],
+    "C": [
+      163.92304845413264,
+      0.0
+    ],
+    "A": [
+      81.96152422706632,
+      -141.96152422706632
+    ],
+    "D": [
+      60.0,
+      -103.92304845413264
+    ],
+    "E": [
+      60.0,
+      0.0
+    ],
+    "F": [
+      40.98076211353316,
+      -70.98076211353316
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "BC": [
+      "B",
+      "C"
+    ],
+    "CA": [
+      "C",
+      "A"
+    ],
+    "DC": [
+      "D",
+      "C"
+    ],
+    "DE": {
+      "points": [
+        "D",
+        "E"
+      ],
+      "dash": "4 3"
+    },
+    "CF": {
+      "points": [
+        "C",
+        "F"
+      ],
+      "dash": "4 3"
+    }
+  },
+  "labels": {
+    "B": "B",
+    "C": "C",
+    "A": "A",
+    "D": "D",
+    "E": "E",
+    "F": "F"
+  },
+  "angles": {
+    "angle_E": {
+      "vertex": "E",
+      "points": [
+        "D",
+        "C"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_F": {
+      "vertex": "F",
+      "points": [
+        "A",
+        "C"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_D": {
+      "vertex": "D",
+      "points": [
+        "A",
+        "C"
+      ],
+      "label": "$105^\\circ$",
+      "radius": 18,
+      "label_distance": 30
+    }
+  },
+  "regions": {
+    "area": {
+      "boundary": [
+        {
+          "seg": [
+            "A",
+            "D"
+          ]
+        },
+        {
+          "seg": [
+            "D",
+            "C"
+          ]
+        },
+        {
+          "seg": [
+            "C",
+            "A"
+          ]
+        }
+      ],
+      "fill": "#eeeeee"
+    }
+  }
+}

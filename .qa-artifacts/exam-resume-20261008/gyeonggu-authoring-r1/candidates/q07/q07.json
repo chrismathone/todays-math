@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 7,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q07",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "세 계산식의 결과를 다음 기록표에 적으려고 한다.\n\n| 기록 | 계산식 | 계산 결과 |\n| --- | --- | --- |\n| 가 | $\\sin60^\\circ\\times\\cos30^\\circ$ | ㉠ |\n| 나 | $\\tan45^\\circ\\times\\sin30^\\circ$ | ㉡ |\n| 다 | $\\sin45^\\circ\\div\\cos60^\\circ-\\tan30^\\circ$ | ㉢ |\n\n㉠, ㉡, ㉢에 들어갈 값을 차례로 바르게 짝지은 것은?",
+  "choices": [
+    "$\\frac34$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+    "$\\frac{\\sqrt3}{2}$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+    "$\\frac34$, $1$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+    "$\\frac34$, $\\frac12$, $\\sqrt2-\\sqrt3$",
+    "$\\frac12$, $\\frac34$, $\\sqrt2-\\frac{\\sqrt3}{3}$"
+  ],
+  "answer": "①",
+  "solution": "특수각의 값을 각각 대입한다.\n가: $\\frac{\\sqrt3}{2}\\times\\frac{\\sqrt3}{2}=\\frac34$.\n나: $1\\times\\frac12=\\frac12$.\n다: $\\frac{\\sqrt2}{2}\\div\\frac12-\\frac{\\sqrt3}{3}=\\sqrt2-\\frac{\\sqrt3}{3}$.\n따라서 세 기록은 $\\frac34$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$이고 정답은 ①이다.",
+  "score": 3.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "records": [
+        "sin60*cos30",
+        "tan45*sin30",
+        "sin45/cos60-tan30"
+      ]
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q07.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "세 특수각 계산 등식의 참인 항목을 고른다.",
+    "after": "결과가 없는 계산 기록표를 세 값의 순서 있는 기록으로 완성한다.",
+    "sharedConcept": "주어진 특수각 상수의 사칙계산",
+    "sharedProcedure": "30/45/60도의 개별 값을 직접 대입하고 곱셈/나눗셈/뺄셈을 계산한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수01-10"
+    ],
+    "allowedProcedure": "30/45/60도의 개별 값을 직접 대입하고 곱셈/나눗셈/뺄셈을 계산한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "경구q07은 유한 특수각의 수치 계산이다. 범일q07의 일반 관계식 보류와 다른 문항이며 그 보류는 바꾸지 않는다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": []
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 0개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "30/45/60도의 개별 값을 직접 대입하고 곱셈/나눗셈/뺄셈을 계산한다.",
+      "risk": "경구q07은 유한 특수각의 수치 계산이다. 범일q07의 일반 관계식 보류와 다른 문항이며 그 보류는 바꾸지 않는다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 7,
+    "sourceContentSha256": "c747bf4e281fb61b4e2add5ff0e6f013ad82dd42cd8c2f15bf313555cc28461f",
+    "sourceDigest": "1a543b925c7325977782cbce43614cf16860f469432bdfb84e286a5850ee64d3",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/6",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q07-part1.png",
+        "sha256": "25177c74942dd227dcfb9872d07edd552491f33be52c8e896ad4aa850c455dce",
+        "page": 2,
+        "column": 1
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 3.0,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "unitSection": "삼각비의 값",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 482,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비|08",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "08",
+            "rpmTitle": "의 삼각비의 값"
+          }
+        ],
+        "fullRuleComparison": "08은 두 특수값의 한 연산이다. 새 문항의 세 계산 기록, 특히 세 항의 나눗셈-뺄셈과 세 값 조합은 단일 규칙의 전체 범위를 넘는다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

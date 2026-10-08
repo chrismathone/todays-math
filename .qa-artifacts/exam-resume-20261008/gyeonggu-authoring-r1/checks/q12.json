@@ -1,0 +1,37 @@
+{
+  "questionNumber": 12,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "deterministic-author-recomputation",
+  "independentVerification": false,
+  "status": "author-check-passed",
+  "candidateFileSha256": "7252904b13203394eb0a2ca42f0abe8a0c70ca930f04859d1ef4a6a0d7d18d09",
+  "targets": [
+    "2*sqrt(3) + 6"
+  ],
+  "evidence": {
+    "BH": "2*sqrt(3)",
+    "CH": 6,
+    "AH": 6,
+    "HInterior": true
+  },
+  "choices": {
+    "choiceCount": 5,
+    "distinctValuesOrRecords": true,
+    "exactlyOneCorrect": true,
+    "correctIndex": 2,
+    "actualDisplayedChoicesSha256": "bd433d1505162a83c330bd2e39e7f418ebf52c010ab969fc4801defe762ed855"
+  },
+  "assetGeometry": [
+    {
+      "check": "right-angle",
+      "name": "angle_H",
+      "normalizedDot": 0.0
+    },
+    {
+      "specSha256": "3ec103a2953a58e0a04ae0d5b38398309925dabe823d94a48bbd008f4d2bb774",
+      "figureGeometry": "actual new givens, angle labels, circle points, side conditions and applicable area/perimeter agree",
+      "floatingGeometryTolerance": "1e-8; q06 given rounding tolerance0.00005"
+    }
+  ],
+  "limitations": "저자 검사이다. 원문 정답/해설을 읽지 않았고 독립 풀이/교육과정/분류/권리 승인으로 사용할 수 없다."
+}

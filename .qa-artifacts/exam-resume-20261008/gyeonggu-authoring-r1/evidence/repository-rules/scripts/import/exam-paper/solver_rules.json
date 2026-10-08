@@ -1,0 +1,30 @@
+{
+  "_why": "풀이자 지시서(SOLVER-BRIEF.md)와 채점기(grade_solutions.py)가 **이 파일 하나**에서 목록을 가져온다. 한쪽만 늘리면 시키는 쪽과 세는 쪽이 갈린다(2026-09-13 원장님 — 근과 계수의 관계·행렬을 더하며). 항목을 더하면 둘 다 바뀐다.",
+  "forbiddenMethods": [
+    { "name": "코사인 법칙", "pattern": "코사인\\s*법칙|제\\s*2\\s*코사인" },
+    { "name": "사인 법칙", "pattern": "사인\\s*법칙" },
+    { "name": "헤론 공식", "pattern": "헤론" },
+    { "name": "근과 계수의 관계", "pattern": "근과\\s*계수의\\s*관계" },
+    { "name": "벡터", "pattern": "벡터" },
+    { "name": "삼각함수 덧셈정리", "pattern": "덧셈\\s*정리" },
+    { "name": "미분", "pattern": "미분" },
+    { "name": "적분", "pattern": "적분" },
+    { "name": "로그", "pattern": "로그" },
+    { "name": "행렬", "pattern": "행렬" },
+    { "name": "라디안", "pattern": "라디안" }
+  ],
+  "forbiddenShapes": [
+    {
+      "name": "코사인 법칙 모양",
+      "why": "이름을 안 대고 식만 쓴 코사인 법칙. 분자 안에 \\sqrt{3}·^{2} 같은 중괄호가 있으므로 [^{}] 로 막으면 못 잡는다(눈금이 잡았다) — 길이로 묶는다.",
+      "pattern": "\\\\cos[^=$]{0,15}=\\s*\\\\frac\\{.{0,80}?\\^\\{?2\\}?.{0,80}?\\+.{0,80}?-.{0,80}?\\}\\{\\s*2",
+      "probeHit": "$\\cos x=\\frac{2^{2}+(\\sqrt{3})^{2}-(\\sqrt{3})^{2}}{2\\times 2\\times\\sqrt{3}}$",
+      "probeMiss": "$\\cos x^\\circ=\\frac{1}{\\sqrt{3}}$"
+    }
+  ],
+  "_allowedCommandsWhy": "2026-09-13 검수에서 therefore·div·overset·frown·alpha 가 «목록 밖» 으로 8건 걸렸는데 전부 멀쩡했다. 그래서 목록을 넓히고, 목록 밖 명령은 **문지기가 아니라 경고**로만 쓴다 — 지면에서 깨지는지는 적재기의 제품 렌더러 검사가 이미 막는다.",
+  "allowedCommands": ["frac", "sqrt", "overline", "angle", "triangle", "sin", "cos", "tan", "circ", "times", "div", "cdot", "pm", "le", "ge", "neq", "pi", "parallel", "perp", "therefore", "alpha", "theta", "overset", "frown"],
+  "commandListIsWarningOnly": true,
+  "sentences": { "min": 3, "max": 7, "maxJudge": 9 },
+  "judgeQuestion": "옳지\\s*않은\\s*것|옳은\\s*것"
+}

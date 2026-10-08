@@ -1,0 +1,37 @@
+{
+  "questionNumber": 17,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "deterministic-author-recomputation",
+  "independentVerification": false,
+  "status": "author-check-passed",
+  "candidateFileSha256": "38304b1310ecb86a6978888e2061ba2bc050995a8e29c55d4dbd262bd9af7bbc",
+  "targets": [
+    "14"
+  ],
+  "evidence": {
+    "halfChord": "7",
+    "radiiNotUnique": true,
+    "chordUnique": true,
+    "identity": "pi(R^2-r^2)=49pi and AH^2=R^2-r^2"
+  },
+  "choices": {
+    "choiceCount": 5,
+    "distinctValuesOrRecords": true,
+    "exactlyOneCorrect": true,
+    "correctIndex": 4,
+    "actualDisplayedChoicesSha256": "0815ef4800c550ab9694d29df4438307a80ecbc699cc79ad0aa07799791d439c"
+  },
+  "assetGeometry": [
+    {
+      "check": "right-angle",
+      "name": "angle_H",
+      "normalizedDot": 0.0
+    },
+    {
+      "specSha256": "8f0605be9920598e7b43de57d474e66b678b53decaf43797a0a01ea9d3eaf7d7",
+      "figureGeometry": "actual new givens, angle labels, circle points, side conditions and applicable area/perimeter agree",
+      "floatingGeometryTolerance": "1e-8; q06 given rounding tolerance0.00005"
+    }
+  ],
+  "limitations": "저자 검사이다. 원문 정답/해설을 읽지 않았고 독립 풀이/교육과정/분류/권리 승인으로 사용할 수 없다."
+}
