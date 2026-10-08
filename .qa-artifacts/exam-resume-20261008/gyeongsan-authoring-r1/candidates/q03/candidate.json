@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q03",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "이차함수의 평행이동 기록에서 원래 식의 계수가 지워졌다.\n\n| 이동 전 | 이동 후 |\n| --- | --- |\n| $y=ax(x-4)+x^2$ | $y=-2(x+1)^2+3$ |\n\n이동 전 그래프를 평행이동하여 이동 후 그래프와 완전히 겹치게 할 수 있다고 한다. 상수 $a$는?",
+  "choices": [
+    "$-4$",
+    "$-3$",
+    "$-2$",
+    "$-1$",
+    "$1$"
+  ],
+  "answer": "②",
+  "solution": "이동 전 식을 전개하면 $y=(a+1)x^2-4ax$이다. 평행이동을 해도 이차항의 계수는 변하지 않는다. 이동 후 식의 이차항 계수가 $-2$이므로 $a+1=-2$, 즉 $a=-3$이다.\n\n이때 이동 전 식은 $y=-2x^2+12x=-2(x-3)^2+18$이다. 이 그래프를 왼쪽으로 $4$, 아래로 $15$만큼 평행이동하면 $y=-2(x+1)^2+3$이 되므로 실제로 겹칠 수 있다. 정답은 ②이다.",
+  "score": 3,
+  "questionType": "객관식",
+  "facts": {
+    "answerValue": -3,
+    "leading": -2,
+    "beforeVertex": [
+      3,
+      18
+    ],
+    "afterVertex": [
+      -1,
+      3
+    ],
+    "shift": [
+      -4,
+      -15
+    ]
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target"
+    ],
+    "before": "y=2x²와 평행이동으로 겹치는 함수를 전개된/곱 형태의 다섯 보기에서 찾는다.",
+    "after": "이동 전후 두 식의 기록으로 원래 곱 형태 식에서 지워진 계수를 복구한다.",
+    "sharedConcept": "이차항 계수는 평행이동에서 보존된다.",
+    "sharedProcedure": "곱 형태를 전개하여 이차항 계수를 비교하고, 구한 식을 완전제곱으로 나타내 실제 평행이동을 확인한다.",
+    "objectiveDifficulty": "곱 형태에서 이차항을 찾는 원문의 핵심에 단순 계수 역산을 연결했다. 3점을 유지한다.",
+    "scoreDelta": {
+      "source": 3,
+      "authored": 3,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10"
+    ],
+    "allowedProcedure": "곱 형태를 전개하여 이차항 계수를 비교하고, 구한 식을 완전제곱으로 나타내 실제 평행이동을 확인한다.",
+    "forbiddenAvoided": [
+      "일반 이차함수 최적화",
+      "미분",
+      "근과 계수의 관계",
+      "일반 포물선/직선 교점 이론"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "두 식 사이의 평행이동 관계를 역으로 읽는 중3 문제이다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 계수를 대입해 이차항이 -2인지 검사한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 이동 전/후 두 열의 표이며 원문 함수 선택을 재사용하지 않았다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·좌표·도 또는 식의 표기는 실제 학생 풀이에 쓰는 중학교 수학 표기만 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "유일한 보기 하나를 고르는 객관식 답 형식이며, 값·부호·조건이 코드 계산과 맞는다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "전개, a+1=-2, 완전제곱과 이동량을 제시한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중2 단항식×다항식·일차방정식, 중3 이차함수 이동"
+      }
+    },
+    "gradeBasis": "다항식 전개와 포물선 평행이동이다. 좌표축 교점의 일반 이론이나 근과 계수 관계를 쓰지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-3",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 3,
+    "sourceContentSha256": "c890235169998a1bd168e66bbc3c55ab13bb505f7668b02fd92653fb76f056d6",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 3,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "y=2x²와 평행이동으로 겹치는 함수를 전개된/곱 형태의 다섯 보기에서 찾는다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 3,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "평행이동의 계수 보존은 중3의 정당한 개념이지만, 곱 형태의 미지 이차항 계수 복구와 현행 live family의 정확한 subtype은 확인 전 null로 둔다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-09",
+        "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-10",
+        "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "a93435986c20fa222f4a9c9bdbc2b6fa6242f334fafcffed2f692f22e997f7b5",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

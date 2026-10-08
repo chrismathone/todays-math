@@ -1,0 +1,3424 @@
+{
+  "version": "question-only-source-r1",
+  "examId": "2025-gyeongsan-3-2-mid",
+  "inventoryExamId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+  "school": "경산중",
+  "identityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+  "counts": {
+    "parentQuestions": 25,
+    "multipleChoiceParents": 25,
+    "writtenParents": 0,
+    "subquestionsInsideParents": 0,
+    "leafQuestions": 25,
+    "questionContentVerified": 25,
+    "hwpPdfAllQuestionComponentsMatched": 25,
+    "selectedPairParentScoreSum": 100.0,
+    "originalReferenceParentScoreSum": 100.0,
+    "legacyHwpAnswerExtractionScoreSum": 100.0,
+    "legacyPdfBodyExtractionScoreSum": 97.0,
+    "entireExamPairCertified": 0,
+    "fullGradeApproved": 0,
+    "rightsApproved": 0,
+    "verifiedTwins": 0,
+    "newTwinsAuthored": 0
+  },
+  "sourceFiles": [
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경산중][3][25-2-중간][동아강] (완료).hwp",
+      "sha256": "87990ec925d1ef8f19e7364099a8285a6d525d22facbc6bd8fe3e7804c600a98",
+      "bytes": 1562624
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경산중][3][25-2-중간][동아강] (완료).PDF",
+      "sha256": "2db4e2abc14cc8f1f2f044110d4c7fe3d79a70475711770c52f0526be9337553",
+      "bytes": 14808591
+    }
+  ],
+  "sourceOnly": true,
+  "distributionBoundary": "Only this packet directory. Never distribute evidence scans, endnotes, old answers/solutions, old drafts or whole PDFs to authoring workers.",
+  "authoringRequirements": "Structural/context/expression/inverse target changes with same concept/core method; numeric-only insufficient. New figures/answers/solutions/metadata/independent verification must be created separately after holds. Highest gate: legal middle3/2015 method and prerequisites; unclear hold, no legal method reject.",
+  "originalCorrectChoiceAndSolutionWithheld": true,
+  "questions": [
+    {
+      "number": 1,
+      "stem": "이차함수의 그래프에 대한 설명으로 가장 적절한 것은? \n[$4$점]\n\n<보기>\n\n(가) $y=-2x^{2}$   (나) $y=-x^{2}$\n\n(다) $y=-\\frac{1}{3}x^{2}$   (라) $y=\\frac{1}{3}x^{2}+1$",
+      "choices": [
+        "(라)는 위로 볼록한 포물선이다.",
+        "폭이 가장 넓은 그래프는 (가)이다.",
+        "각 그래프의 축의 방정식은 $x=0$이다.",
+        "모두 원점을 꼭짓점으로 하는 포물선이다.",
+        "(다)와 (라)는 $x$축에 대하여 서로 대칭이다."
+      ],
+      "hwpScriptStem": "이차함수의 그래프에 대한 설명으로 가장 적절한 것은? \n[$4$점]\n\n<보기>\n\n(가) $y=-2x ^{2}$   (나) $y=-x ^{2}$\n\n(다) $y=- {1} over {3} x ^{2}$   (라) $y= {1} over {3} x ^{2} +1$",
+      "hwpScriptChoices": [
+        "(라)는 위로 볼록한 포물선이다.",
+        "폭이 가장 넓은 그래프는 (가)이다.",
+        "각 그래프의 축의 방정식은 $x=0$이다.",
+        "모두 원점을 꼭짓점으로 하는 포물선이다.",
+        "(다)와 (라)는 $x$축에 대하여 서로 대칭이다."
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "y=ax²의 계수 부호/크기와 개형 및 대칭축을 비교한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "56c36a8b956791033e075af3de7764e756c2b2ac76f1aff214b360db6fb24e33",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-1",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q01-part1.png",
+          "sha256": "6c486e3a8104aa0c8f0a10cf966763f5598944945bd20451c3596d393a37adc7",
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            99,
+            375,
+            527.7962646484375
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 329,
+        "inflatedByteOffset": 12135,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "41a3c8432e48c988ecc47d679cd8ace34f06ac9937420a29fade22b696766500"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            99,
+            375,
+            527.7962646484375
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "stem": "이차함수 $y=-\\frac{1}{2}x^{2}-5$에 대한 설명 중 가장 적절한 것은? [$4$점]",
+      "choices": [
+        "모든 사분면을 지난다.",
+        "$x$축보다 항상 아래쪽에 있다.",
+        "$y=\\frac{1}{2}x^{2}-5$의 그래프와 $x$축에 서로 대칭이다.",
+        "$x<0$일 때, $x$의 값이 증가하면 $y$의 값은 감소한다.",
+        "$y=-\\frac{1}{2}x^{2}$의 그래프를 $x$축의 방향으로 $-5$만큼 평행이동한 것이다."
+      ],
+      "hwpScriptStem": "이차함수 $y=- {1} over {2} x ^{2} -5$에 대한 설명 중 가장 적절한 것은? [$4$점]",
+      "hwpScriptChoices": [
+        "모든 사분면을 지난다.",
+        "$x$축보다 항상 아래쪽에 있다.",
+        "$y= {1} over {2} x ^{2} -5$의 그래프와 $x$축에 서로 대칭이다.",
+        "$x<0$일 때, $x$의 값이 증가하면 $y$의 값은 감소한다.",
+        "$y=- {1} over {2} x ^{2}$의 그래프를 $x$축의 방향으로 $-5$만큼 평행이동한 것이다."
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "y=ax²+q의 축과 꼭짓점, 이동 방향을 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "90bc15ab1d0a124d2bca4eff254062cb1080c8f56ac19d4dd3420430acc4f90c",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-2",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q02-part1.png",
+          "sha256": "6cbf56e62b74fb9554839f510ebea11b5b3803a53dca268d5bc50c3465433fca",
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            527.7695922851562,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 478,
+        "inflatedByteOffset": 17588,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "3fa47e6159e36ed47fe7fa62dc8136c425d2afa9a4552865ce8bd75292f30354"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            527.7695922851562,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "stem": "이차함수의 그래프 중에서 $y=2x^{2}$의 그래프를 평행이동하여 완전히 겹치는 것은? [$3$점]",
+      "choices": [
+        "$y=-\\frac{1}{2}x^{2}$",
+        "$y=-2x^{2}$",
+        "$y=\\frac{1}{2}\\left( x-1\\right) ^{2}$",
+        "$y=2x\\left( 5+x\\right)$",
+        "$y=2x\\left( x+1\\right) +x^{2}$"
+      ],
+      "hwpScriptStem": "이차함수의 그래프 중에서 $y=2x ^{2}$의 그래프를 평행이동하여 완전히 겹치는 것은? [$3$점]",
+      "hwpScriptChoices": [
+        "$y=- {1} over {2} x ^{2}$",
+        "$y=-2x ^{2}$",
+        "$y= {1} over {2} LEFT ( x-1 RIGHT ) ^{2}$",
+        "$y=2x LEFT ( 5+x RIGHT )$",
+        "$y=2x LEFT ( x+1 RIGHT ) +x ^{2}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "평행이동으로 유지되는 이차항 계수를 비교한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "c890235169998a1bd168e66bbc3c55ab13bb505f7668b02fd92653fb76f056d6",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-3",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q03-part1.png",
+          "sha256": "494307e87d43710ab075d37e310e0e6f2eab5b047b3bebcbcf4d40129bb95e1c",
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            370,
+            99,
+            688.0,
+            523.8391723632812
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 574,
+        "inflatedByteOffset": 21726,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "be67bee2ccd4fc5ef05888324a5eea2b2e7fbd1eaa621bd4e731722a08a9c878"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            370,
+            99,
+            688.0,
+            523.8391723632812
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "stem": "이차함수 중 그래프의 축이 가장 오른쪽에 있는 것은? \n[$3$점]",
+      "choices": [
+        "$y=3x^{2}$",
+        "$y=-x^{2}+1$",
+        "$y=\\frac{1}{2}\\left( x+2\\right) ^{2}$",
+        "$y=2\\left( x-1\\right) ^{2}+3$",
+        "$y=\\frac{1}{2}\\left( x-2\\right) ^{2}+4$"
+      ],
+      "hwpScriptStem": "이차함수 중 그래프의 축이 가장 오른쪽에 있는 것은? \n[$3$점]",
+      "hwpScriptChoices": [
+        "$y=3x ^{2}$",
+        "$y=-x ^{2} +1$",
+        "$y= {1} over {2} LEFT ( x+2 RIGHT ) ^{2}$",
+        "$y=2 LEFT ( x-1 RIGHT ) ^{2} +3$",
+        "$y= {1} over {2} LEFT ( x-2 RIGHT ) ^{2} +4$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "꼭짓점형에서 축의 x좌표를 읽어 비교한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "93d870d55dd9fecde9dc6d6aba844ce71c82416c810682501cb2da76a3cd4739",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-4",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q04-part1.png",
+          "sha256": "73f215cf465400de8f3f9892ba48fc4a3fa91f305f5eddb0dba2d9430511e500",
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            370,
+            529.8391723632812,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 666,
+        "inflatedByteOffset": 25196,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "39c68f05885bdd4389ec652852f755bfdbd102631cede50a7c7a190b1e2ee5bc"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            370,
+            529.8391723632812,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "stem": "다음 조건을 모두 만족하는 이차함수 식은? [$4$점]\n\n(가) $x$축에 접한다.\n\n(나) 축의 방정식은 $x=-1$이다.\n\n(다) $y$축과의 교점의 좌표는 $\\left( 0,~\\frac{1}{2}\\right)$이다.",
+      "choices": [
+        "$y=\\frac{1}{2}\\left( x+1\\right) ^{2}$",
+        "$y=-\\frac{1}{2}\\left( x+1\\right) ^{2}$",
+        "$y=\\frac{1}{2}\\left( x-1\\right) ^{2}$",
+        "$y=\\frac{1}{2}x^{2}+1$",
+        "$y=\\frac{1}{2}x^{2}+\\frac{1}{2}$"
+      ],
+      "hwpScriptStem": "다음 조건을 모두 만족하는 이차함수 식은? [$4$점]\n\n(가) $x$축에 접한다.\n\n(나) 축의 방정식은 $x=-1$이다.\n\n(다) $y$축과의 교점의 좌표는 $LEFT ( 0,~ {1} over {2} RIGHT )$이다.",
+      "hwpScriptChoices": [
+        "$y= {1} over {2} LEFT ( x+1 RIGHT ) ^{2}$",
+        "$y=- {1} over {2} LEFT ( x+1 RIGHT ) ^{2}$",
+        "$y= {1} over {2} LEFT ( x-1 RIGHT ) ^{2}$",
+        "$y= {1} over {2} x ^{2} +1$",
+        "$y= {1} over {2} x ^{2} + {1} over {2}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "x축 접촉과 축 및 y절편 조건을 꼭짓점형에 대입한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "c7696bfcfde5a6816f6e06f89eb3e807df007d2b63445172a75402919dcd7917",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-5",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q05-part1.png",
+          "sha256": "58a2a7d4890f0e30fd3580c8b2b0e1e75412cf650141030b52ed3641c5fc0fa0",
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            485.347412109375
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 751,
+        "inflatedByteOffset": 28396,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "3dc1243717a303803d56904b765b4c5c009fc0ac4b578d3456ee18b99e1af86a"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            485.347412109375
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "stem": "이차함수 $y=\\left( x-k\\right) ^{2}+2k+1$의 그래프의 꼭짓점이 직선 $y=-2x+5$ 위에 있을 때, 상수 $k$의 값은? [$4$점]",
+      "choices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+      ],
+      "hwpScriptStem": "이차함수 $y= LEFT ( x-k RIGHT ) ^{2} +2k+1$의 그래프의 꼭짓점이 직선 $y=-2x+5$ 위에 있을 때, 상수 $k$의 값은? [$4$점]",
+      "hwpScriptChoices": [
+        "$1$",
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "매개변수로 나타낸 꼭짓점을 주어진 직선식에 대입한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "97c308d328df8b57c8935750b62056a0a89b34105fa84b9d4bc2ae170b6e82c8",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-6",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q06-part1.png",
+          "sha256": "e35214918afca8a1b0ca09bc73ae1a4a902d2350a3c9706898ecfcb4b05d5c43",
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            490.5997314453125,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 894,
+        "inflatedByteOffset": 34237,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "ca6e1b6811ae82a1a71c000d699ab973b0103bd0fca453e9cd3ac9918a94d6ca"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            490.5997314453125,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "stem": "일차함수 $y=ax+b$의 그래프가 아래 그림과 같을 때, 이차함수 $y=-\\left( x-a\\right) ^{2}-b$의 그래프의 꼭짓점이 위치하는 사분면은? (단, $a,~b$는 상수) [$4$점]",
+      "choices": [
+        "제$1$사분면",
+        "제$2$사분면",
+        "제$3$사분면",
+        "제$4$사분면",
+        "어느 사분면에도 속하지 않는다."
+      ],
+      "hwpScriptStem": "일차함수 $y=ax+b$의 그래프가 아래 그림과 같을 때, 이차함수 $y=- LEFT ( x-a RIGHT ) ^{2} -b$의 그래프의 꼭짓점이 위치하는 사분면은? (단, $a,~b$는 상수) [$4$점]",
+      "hwpScriptChoices": [
+        "제$1$사분면",
+        "제$2$사분면",
+        "제$3$사분면",
+        "제$4$사분면",
+        "어느 사분면에도 속하지 않는다."
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "일차함수 그래프: 양의 기울기, 양의 y절편.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "일차함수의 기울기/절편 부호에서 이차함수 꼭짓점의 사분면을 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "9d6ef537b275816f5049d4f7dcea31767c98b1e1685d8b9aec047497127b571b",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-7",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q07-part1.png",
+          "sha256": "72e11b48b7bd108689ad15464b6f7603725146384103054da8c11de37c99dfe7",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            481.2704162597656
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 945,
+        "inflatedByteOffset": 36819,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "5ae36649ca2f6ae08febb5cb2f0fb63a69e6bf537f50e22640f18d47da7ebf83"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            481.2704162597656
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "stem": "이차함수 $y=-\\frac{1}{3}\\left( x+p\\right) ^{2}+1$의 그래프에서 $x$의 값이 증가할 때, $y$의 값도 증가하는 $x$의 값의 범위가 $x<\\frac{1}{2}$이다. 이때 상수 $p$의 값은? [$3$점]",
+      "choices": [
+        "$-\\frac{1}{2}$",
+        "$-1$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{4}{3}$"
+      ],
+      "hwpScriptStem": "이차함수 $y=- {1} over {3} LEFT ( x+p RIGHT ) ^{2} +1$의 그래프에서 $x$의 값이 증가할 때, $y$의 값도 증가하는 $x$의 값의 범위가 $x< {1} over {2}$이다. 이때 상수 $p$의 값은? [$3$점]",
+      "hwpScriptChoices": [
+        "$- {1} over {2}$",
+        "$-1$",
+        "${1} over {2}$",
+        "$1$",
+        "${4} over {3}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "아래로 열린 포물선의 증가 구간과 대칭축을 연결한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "93709cc24c2bc9351824f9f548eef1f2382bb85dc630c538183506640fcd8842",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-8",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q08-part1.png",
+          "sha256": "b8b1709833a93ffd1c8c7d7bc071430f2b791dd339f4e130e0955ab1338f92c4",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            481.3636169433594,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1022,
+        "inflatedByteOffset": 40506,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "5c43b540433c1be6ae1c3499940f0401bcedc9e8330ba5a15c2897bda80519a6"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            481.3636169433594,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "stem": "이차함수 $y=2\\left( x-5\\right) ^{2}+2$의 그래프의 꼭짓점이 원점에 오도록 하려면 이 그래프를 $x$축의 방향으로 $p$만큼, $y$축의 방향으로 $q$만큼 평행이동해야 한다. 이때, $pq$의 값은? \n[$4$점]",
+      "choices": [
+        "$-10$",
+        "$-7$",
+        "$7$",
+        "$10$",
+        "$14$"
+      ],
+      "hwpScriptStem": "이차함수 $y=2 LEFT ( x-5 RIGHT ) ^{2} +2$의 그래프의 꼭짓점이 원점에 오도록 하려면 이 그래프를 $x$축의 방향으로 $p$만큼, $y$축의 방향으로 $q$만큼 평행이동해야 한다. 이때, $pq$의 값은? \n[$4$점]",
+      "hwpScriptChoices": [
+        "$-10$",
+        "$-7$",
+        "$7$",
+        "$10$",
+        "$14$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "꼭짓점 좌표에서 원점까지의 두 이동량의 부호를 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "68e133d63444d750e6abebb82393363bf97842901db1d760f17adbca4a7b1054",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-9",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q09-part1.png",
+          "sha256": "4f8dd9d66769f13db8ab78ac3331d02d87c81eea03eb3412328492c7344e6d46",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            485.8270568847656
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1115,
+        "inflatedByteOffset": 44650,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "14d2fd8b6792f0fd105ab5898f75b17ef9078bcff5c62a231259496efdc82d80"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            485.8270568847656
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "stem": "이차함수 $y=ax^{2}+bx+c$의 그래프가 그림과 같을 때, 옳은 것은? (단, $a,~b,~c$는 상수) [$5$점]",
+      "choices": [
+        "$\\frac{c}{b}>0$",
+        "$abc<0$",
+        "$a-b+c>0$",
+        "$a+b+c>0$",
+        "$a-2b+4c<0$"
+      ],
+      "hwpScriptStem": "이차함수 $y=ax ^{2} +bx+c$의 그래프가 그림과 같을 때, 옳은 것은? (단, $a,~b,~c$는 상수) [$5$점]",
+      "hwpScriptChoices": [
+        "${c} over {b} >0$",
+        "$abc<0$",
+        "$a-b+c>0$",
+        "$a+b+c>0$",
+        "$a-2b+4c<0$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 5.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 5.0,
+        "referenceParentScore": 5.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "아래로 열린 포물선; 꼭짓점 (-1,3), y절편 1; A,B는 x절편.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "그래프의 개형/꼭짓점/절편에서 계수 조합의 부호를 판정한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "계수의 부호 주장/보기 전부와 근과 계수 관계 사용 금지 점검.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "3d4b6858cfeae92d26a9ced5e3056d0ed1ae350ae73e1ef89643e8d43d8c7784",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-10",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q10-part1.png",
+          "sha256": "946b21b26bee2c3985979aa3afeb587fd55f984a383855365cb12a6ad41759b7",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            491.0793762207031,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1218,
+        "inflatedByteOffset": 48788,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "982e64ec094ae2b4548a364df3456a106b9274daa8aa11246f55381e5c56923b"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            491.0793762207031,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "stem": "이차함수 $y=kx^{2}-4kx+4k+10$의 그래프가 모든 사분면을 지날 때, $k$값의 범위는? [$5$점]",
+      "choices": [
+        "$k>-\\frac{5}{2}$",
+        "$k<\\frac{5}{2}$",
+        "$0<k<\\frac{5}{2}$",
+        "$-\\frac{5}{2}\\leq k\\leq 0$",
+        "$-\\frac{5}{2}<k<0$"
+      ],
+      "hwpScriptStem": "이차함수 $y=kx ^{2} -4kx+4k+10$의 그래프가 모든 사분면을 지날 때, $k$값의 범위는? [$5$점]",
+      "hwpScriptChoices": [
+        "$k>- {5} over {2}$",
+        "$k< {5} over {2}$",
+        "$0<k< {5} over {2}$",
+        "$- {5} over {2} LEQ k LEQ 0$",
+        "$- {5} over {2} <k<0$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 5.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 5.0,
+        "referenceParentScore": 5.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "꼭짓점형의 개형과 축/절편으로 각 사분면 존재 조건을 점검한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "모든 사분면의 존재 및 k=0 제외, 복잡한 함수 활용 제한 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "670a3f3f93d320be6bffc4fdc69002305be6a84c6a36ce369475e0da7e725ed4",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-11",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q11-part1.png",
+          "sha256": "89d9f3e544f4d4d2874545d83db57aa9bb118424ce32d964455509aa1ad611bc",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            476.47393798828125
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1301,
+        "inflatedByteOffset": 52475,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "05c5556c6a93c1777b9e330990a48c0a9c66846cd387b41e36cf6ecde7fa5e8a"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            476.47393798828125
+          ]
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "stem": "이차함수 $y=-x^{2}+x+2$의 그래프에서 $\\overline{BC}\\mathit{=}3$이고 $y$축과 만나는 점을 $\\mathrm{A}$라고 하자. 직선 $l$은 점 $\\mathrm{A}$를 지나고 $△\\mathrm{ABC}$의 넓이를 이등분한다고 할 때, 직선 $l$을 나타내는 방정식은? [$5$점]",
+      "choices": [
+        "$4x-y+2=0$",
+        "$4x+y-2=0$",
+        "$x-2y+4=0$",
+        "$x-y-2=0$",
+        "$x+y-2=0$"
+      ],
+      "hwpScriptStem": "이차함수 $y=-x ^{2} +x+2$의 그래프에서 $rm {bar{BC}} it =3$이고 $y$축과 만나는 점을 $rm A it$라고 하자. 직선 $l$은 점 $rm A it$를 지나고 $△ rm ABC it$의 넓이를 이등분한다고 할 때, 직선 $l$을 나타내는 방정식은? [$5$점]",
+      "hwpScriptChoices": [
+        "$4x-y+2=0$",
+        "$4x+y-2=0$",
+        "$x-2y+4=0$",
+        "$x-y-2=0$",
+        "$x+y-2=0$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 5.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 5.0,
+        "referenceParentScore": 5.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "y=-x²+x+2; BC=3; A는 y절편; l은 A를 지나 넓이 이등분.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "이차함수",
+        "coreMethodCandidate": "포물선의 축/절편과 같은 높이 삼각형의 넓이 이등분점을 이용한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수03-09",
+            "officialStatement": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          },
+          {
+            "code": "9수03-10",
+            "officialStatement": "이차함수의 그래프의 성질을 이해한다.",
+            "pdfPage": 36,
+            "printedPage": 32,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "중선/이등분과 함수 교점 연결의 선수학습 및 복잡성 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "2fc0b7c94d7c305089f381a96982fae896b126d5461303006bbae692f6ee4a25",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-12",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "unlabelled_bitmap_marks_not_extra_mathematical_givens_rebuild_from_explicit_conditions",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q12-part1.png",
+          "sha256": "307d06d60529ee695b7d390c9bc9c378ba06fb3ec724b97a3e71e61ffabb0472",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            474.9126281738281,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1389,
+        "inflatedByteOffset": 56241,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "b3294f6cca1484b460c111f6edf30c1b2069d932086c667de5cf6a0d1142bfc6"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            474.9126281738281,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "stem": "아래 직각삼각형 $\\mathrm{ABC}$에서 $\\cos A$의 값은? [$3$점]",
+      "choices": [
+        "$\\frac{2}{3}$",
+        "$\\frac{\\sqrt{5}}{3}$",
+        "$\\frac{\\sqrt{5}}{2}$",
+        "$\\frac{3}{2}$",
+        "$\\sqrt{5}$"
+      ],
+      "hwpScriptStem": "아래 직각삼각형 $rm ABC it$에서 $cos  A $의 값은? [$3$점]",
+      "hwpScriptChoices": [
+        "${2} over {3}$",
+        "${sqrt {5}} over {3}$",
+        "${sqrt {5}} over {2}$",
+        "${3} over {2}$",
+        "$sqrt {5}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "C 직각; AB=3, AC=2, BC=√5; [3점] 지면 확인.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "직각삼각형에서 cos의 인접변/빗변 대응을 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "6bdb93fc858a191c0db0e4569df8515960db109a29cd9c74bced9d7b2ce3991e",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-13",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q13-part1.png",
+          "sha256": "2a379c79da79bfe76e40df74d03852c46cd8ec8d35f20f84c4cc25d14821ffda",
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            576.960205078125
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1466,
+        "inflatedByteOffset": 60296,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "1d53b17aa776a7152e8d98b99d5b6f72c21cffeef933a39e3029a30a511d2e57"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            576.960205078125
+          ]
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "stem": "$\\angle \\mathrm{A}\\mathit{=}90°$인 직각삼각형에서 옳은 것은? [$4$점]",
+      "choices": [
+        "$\\sin B=\\frac{\\sqrt{5}}{5}$",
+        "$\\cos B\\,=\\,\\frac{2\\sqrt{5}}{5}$",
+        "$\\tan B\\mathit{=}\\frac{1}{2}$",
+        "$\\sin C\\,=\\,\\frac{\\sqrt{5}}{5}$",
+        "$\\cos C\\,=\\frac{\\sqrt{5}}{4}$"
+      ],
+      "hwpScriptStem": "$ANGLE  rm A it =90°$인 직각삼각형에서 옳은 것은? [$4$점]",
+      "hwpScriptChoices": [
+        "$sin  B= {sqrt {5}} over {5}$",
+        "$cos  B`=` {2 sqrt {5}} over {5}$",
+        "$tan B it = {1} over {2}$",
+        "$sin C`=` {sqrt {5}} over {5}$",
+        "$cos  C`= {sqrt {5}} over {4}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "A 직각; AB=2, AC=4.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "직각삼각형의 두 예각에서 sin/cos/tan의 해당 변을 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "34487df4cbb2507d6fca54b99bfa825874c5b8e808976c441be7bf2eb83025cd",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-14",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q14-part1.png",
+          "sha256": "c6f70b7e1c640ad65c5e37540cad1a418a6e1cca395103271d6618ae1d886073",
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            582.960205078125,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1561,
+        "inflatedByteOffset": 64245,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "35a0f6f0c9dd6208e2ce1580db8a38ff88eee45449ffa128ddcbd888ddbacd54"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            582.960205078125,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "stem": "이차방정식 $16x^{2}-24x+9=0$의 한 근을 $\\tan A$라 할 때, $\\sin A-\\cos A$의 값은? (단, $0°<A<90°$) [$4$점]",
+      "choices": [
+        "$-\\frac{4}{5}$",
+        "$-\\frac{1}{5}$",
+        "$\\frac{3}{5}$",
+        "$\\frac{4}{5}$",
+        "$\\frac{7}{5}$"
+      ],
+      "hwpScriptStem": "이차방정식 $16x ^{2} -24x+9=0$의 한 근을 $tan A $라 할 때, $sin  A  -cos  A $의 값은? (단, $0°< A  <90°$) [$4$점]",
+      "hwpScriptChoices": [
+        "$- {4} over {5}$",
+        "$- {1} over {5}$",
+        "${3} over {5}$",
+        "${4} over {5}$",
+        "${7} over {5}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "이차방정식의 근을 길이비로 해석하고 직각삼각형을 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "삼각비 사이 관계 금지와 길이비 직각삼각형 풀이의 적법성 별도 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "22dbd1dd08ffa7856d73314479f8abe2fb23b5a02483b6fc2742421e8e9e5774",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-15",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q15-part1.png",
+          "sha256": "2f94d9545ca2e867719773b2389f8a37d469b1ef4fa3a5e3eca0568538975a2c",
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            334.25830078125
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1636,
+        "inflatedByteOffset": 67822,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "ad78dae1666ce391f3c464b9253f1ee717252287897519000233365e721521de"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            334.25830078125
+          ]
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "stem": "$3\\,\\sin \\,60°\\times \\,\\tan \\,45°\\div \\,\\cos \\,30°-\\sin \\,90°$의 값은? [$3$점]",
+      "choices": [
+        "$0$",
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{3}{2}$",
+        "$2$"
+      ],
+      "hwpScriptStem": "$3`sin`60° TIMES  `tan`45° DIVIDE  `cos`30°-sin`90°$의 값은? [$3$점]",
+      "hwpScriptChoices": [
+        "$0$",
+        "${1} over {2}$",
+        "$1$",
+        "${3} over {2}$",
+        "$2$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "특수각 및 90도의 삼각비를 대입하여 주어진 산식을 계산한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "722b9396285b9e4bde59bf83e1da173e92821bb6a531d0fc212b8174bf524f81",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-16",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q16-part1.png",
+          "sha256": "7a917f06df40d2c3145beed7654829797992b391d3027b295cec70ad4eed2bfe",
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            340.25830078125,
+            688.0,
+            578.2792358398438
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1704,
+        "inflatedByteOffset": 70854,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "dafccd9efed24e265c273150a2b109421d299a6a49d7a3a644e6ca7ac9f7f7bb"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            340.25830078125,
+            688.0,
+            578.2792358398438
+          ]
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "stem": "$\\angle \\mathrm{C}\\mathit{=}90°$인 $△\\mathrm{ABC}$에서 $\\overline{AB}\\mathit{\\perp }\\overline{CD}$이고 $\\overline{AC}\\mathit{=}8\\mathrm{cm}$, $\\overline{BC}\\mathit{=}6\\mathrm{cm}$일 때, $\\cos x-\\sin y$의 값은? [$4$점]",
+      "choices": [
+        "$-\\frac{4}{5}$",
+        "$-\\frac{3}{5}$",
+        "$0$",
+        "$\\frac{3}{5}$",
+        "$\\frac{4}{5}$"
+      ],
+      "hwpScriptStem": "$ANGLE  rm C it =90°$인 $△ rm ABC it$에서 $rm {bar{AB}} it BOT  {bar{ rm CD}} it$이고 $rm {bar{AC}} it =8 rm cm$, $rm {bar{BC}} it =6 rm cm$일 때, $cosx-siny$의 값은? [$4$점]",
+      "hwpScriptChoices": [
+        "$- {4} over {5}$",
+        "$- {3} over {5}$",
+        "$0$",
+        "${3} over {5}$",
+        "${4} over {5}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "C 직각; AC=8cm, BC=6cm; CD⊥AB; x,y 각.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "빗변에 내린 수선과 두 예각의 대응을 직각삼각형으로 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "62879fae83d546aac6d545703e8aefea4de814b331d7a774a4e1ad9a46f78c29",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-17",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q17-part1.png",
+          "sha256": "a18280540b4015aa55ecc68c6e25c642c35aac70e241ca1440a802e18a3f66ab",
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            576.0012817382812,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1769,
+        "inflatedByteOffset": 73612,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "ea8b79fe91242fd6d5bda979b012e7f88d3fcbfed9b35f2c3a1cc5c9faf90cac"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            576.0012817382812,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "stem": "삼각형의 세 내각의 크기의 비가 $1:2:3$이고 세 각 중 두 번째로 큰 각의 크기를 $\\mathrm{A}$라 할 때, $\\frac{\\cos A}{\\sin A}+\\tan A$의 값은? [$4$점]",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$1$",
+        "$\\frac{4\\sqrt{3}}{3}$",
+        "$2$",
+        "$\\frac{5}{2}$"
+      ],
+      "hwpScriptStem": "삼각형의 세 내각의 크기의 비가 $1:2:3$이고 세 각 중 두 번째로 큰 각의 크기를 $rm A it$라 할 때, ${cos  A } over {sin A } +tan A $의 값은? [$4$점]",
+      "hwpScriptChoices": [
+        "${1} over {2}$",
+        "$1$",
+        "${4 sqrt {3}} over {3}$",
+        "$2$",
+        "${5} over {2}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "세 내각의 비와 내각 합으로 특수각의 삼각비를 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "2caf1ec80ca04794a94a4593dc0972648cfb808e13ce6f8c263a79c01cfd8dd9",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-18",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q18-part1.png",
+          "sha256": "c14afb0e48ad076927488b85b389c970e37ae1e4654c6d7fad4b7d5ade3c625f",
+          "page": 5,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            467.84027099609375
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1842,
+        "inflatedByteOffset": 77693,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "d7f88f346641de11857d05ed9401afd5a4c629d293d3ec5076eb9c7d0af914ee"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 5,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            467.84027099609375
+          ]
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "stem": "아래 그림에서 $\\angle \\mathrm{ABC}\\mathit{=}90°$, $\\angle \\mathrm{CAB}\\mathit{=}30°$, $\\overline{BC}\\mathit{=}6$, $\\overline{AE}\\mathit{=}\\overline{BE}$이고, $□\\mathrm{DEBF}$는 직사각형이다. 이때, $\\overline{CD}$의 길이는? [$5$점]",
+      "choices": [
+        "$9\\sqrt{2}$",
+        "$3\\sqrt{6}$",
+        "$4\\sqrt{2}+3\\sqrt{6}$",
+        "$3\\left( \\sqrt{6}-\\sqrt{2}\\right)$",
+        "$3\\left( \\sqrt{2}+\\sqrt{6}\\right)$"
+      ],
+      "hwpScriptStem": "아래 그림에서 $ANGLE  rm ABC it =90°$, $ANGLE  rm CAB it =30°$, $rm {bar{BC}} it =6$, $rm {bar{AE}} it = rm {bar{BE}} it$이고, $□ rm DEBF it$는 직사각형이다. 이때, $rm {bar{CD}} it$의 길이는? [$5$점]",
+      "hwpScriptChoices": [
+        "$9 sqrt {2}$",
+        "$3 sqrt {6}$",
+        "$4 sqrt {2} +3 sqrt {6}$",
+        "$3 LEFT ( sqrt {6} - sqrt {2} RIGHT )$",
+        "$3 LEFT ( sqrt {2} + sqrt {6} RIGHT )$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 5.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 5.0,
+        "referenceParentScore": 5.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "∠B=90°, ∠CAB=30°, BC=6; AE=BE; DEBF 직사각형.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "같은 길이와 직사각형 조건을 이용하여 30도 삼각형의 부분 길이를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "f4462e8b8b08193b04420254fb7a0145443a7cfefee9d193a6130c8f6d927c37",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-19",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q19-part1.png",
+          "sha256": "85828cb4f20f08d866972553cd2ca66b3362b5010797a89cb6a3e3084f7b610c",
+          "page": 5,
+          "column": 0,
+          "bbox": [
+            55,
+            466.2789611816406,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1923,
+        "inflatedByteOffset": 81149,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "754645efcc93eef159cf2d1f0d114b4029a14646f5fec1b895cce9a58bbd83ea"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 5,
+          "column": 0,
+          "bbox": [
+            55,
+            466.2789611816406,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "stem": "그림과 같이 반지름의 길이가 $1$인 원 $\\mathrm{C}$는 $x$축과 점 $\\mathrm{A}$에서 접하고, 원점 $\\mathrm{O}$를 지나면서 $x$축의 양의 방향과 이루는 각의 크기가 $60°$인 직선 $l$과 점 $\\mathrm{B}$에서 접한다. 이때, 두 점 $\\mathrm{A},~\\mathrm{B}$를 지나는 직선의 방정식이 $y=ax+b$일 때, $a\\times b$의 값은? (단, 점 $\\mathrm{B}$는 제$1$사분면 위의 점) [$5$점]",
+      "choices": [
+        "$-3\\sqrt{3}$",
+        "$-2\\sqrt{3}$",
+        "$-3$",
+        "$-\\sqrt{3}$",
+        "$-1$"
+      ],
+      "hwpScriptStem": "그림과 같이 반지름의 길이가 $1$인 원 $rm C it$는 $x$축과 점 $rm A it$에서 접하고, 원점 $rm O it$를 지나면서 $x$축의 양의 방향과 이루는 각의 크기가 $60°$인 직선 $l$과 점 $rm B it$에서 접한다. 이때, 두 점 $rm A,~ rm B it$를 지나는 직선의 방정식이 $y=ax+b$일 때, $a TIMES b$의 값은? (단, 점 $rm B it$는 제$1$사분면 위의 점) [$5$점]",
+      "hwpScriptChoices": [
+        "$-3 sqrt {3}$",
+        "$-2 sqrt {3}$",
+        "$-3$",
+        "$- sqrt {3}$",
+        "$-1$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 5.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 5.0,
+        "referenceParentScore": 5.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "반지름 1; x축 접점 A; 원점의 60° 직선 접점 B, B는 제1사분면.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "접점의 수직 반지름과 60도 직각삼각형을 이용하여 접선식을 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "원-좌표-직선 결합과 접선식 선수학습/복잡성 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "a464def1311cc3fdcf508e46b65fca7e6d23679f506facbf70fedeaf73197658",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-20",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q20-part1.png",
+          "sha256": "d41edb1ea71e08cbaedc5e08a7828d731c964b5bc81cacec69882485089ed70c",
+          "page": 5,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            527.9161987304688
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2017,
+        "inflatedByteOffset": 86322,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "b2cfcf47ac9c0bbab11ebb4f64cc7268ec3c5c2a6cd5e720307272ab6b3fce28"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 5,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            527.9161987304688
+          ]
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "stem": "$\\sin 35°+\\tan 35°$의 값은? [$3$점]",
+      "choices": [
+        "$1$",
+        "$1.2738$",
+        "$1.3928$",
+        "$1.5194$",
+        "$2$"
+      ],
+      "hwpScriptStem": "$sin35°+tan35°$의 값은? [$3$점]",
+      "hwpScriptChoices": [
+        "$1$",
+        "$1.2738$",
+        "$1.3928$",
+        "$1.5194$",
+        "$2$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "단위 사분원, 35°; 길이 0.7002,0.5736,0.8192; 접선 포함.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "사분원에 표시된 수선/접선 길이를 이용하여 두 비의 값을 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "4576aa18787502f1284182f0ee2338773f3d9e319f36b27bf42c90d08261d44a",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-21",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q21-part1.png",
+          "sha256": "c65cd5504624636af7bade592f6e2b113b319cf313e4f6302696da251ed04b48",
+          "page": 5,
+          "column": 1,
+          "bbox": [
+            370,
+            533.9161987304688,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2118,
+        "inflatedByteOffset": 91529,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "92db8b2c6937c9386157b0b14d75df44b0e9b3305e9f944dc7429e693403dc56"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 5,
+          "column": 1,
+          "bbox": [
+            370,
+            533.9161987304688,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "stem": "반지름의 길이가 $1$인 사분원에서 옳은 것은? [$4$점]",
+      "choices": [
+        "$\\sin x=\\overline{DE}$",
+        "$\\tan x=\\overline{BC}$",
+        "$\\sin y=\\overline{BC}$",
+        "$\\cos z=\\overline{BC}$",
+        "$\\tan z=\\overline{DE}$"
+      ],
+      "hwpScriptStem": "반지름의 길이가 $1$인 사분원에서 옳은 것은? [$4$점]",
+      "hwpScriptChoices": [
+        "$sinx= rm {bar{DE}} it$",
+        "$tanx= rm {bar{BC}} it$",
+        "$siny= rm {bar{BC}} it$",
+        "$cosz= rm {bar{BC}} it$",
+        "$tanz= rm {bar{DE}} it$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "반지름 1 사분원; A,F,E,D,B,C 점과 x,y,z 각 대응.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "사분원 안의 점/수선/접선에서 각과 해당 선분의 대응을 비교한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "392220d015d572d27b2784214b0935d38440d4686945c0442a0409a3484e14d0",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-22",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q22-part1.png",
+          "sha256": "c7797cf295e4b5b0d07d3b63433995720b07fd6ba96e0ef0f36541273a9a89f9",
+          "page": 6,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            570.0053100585938
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2202,
+        "inflatedByteOffset": 95016,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "9c1555df5b4d6e307cf492eb061a397645e07c0404c3d4ecb4916b9400b63543"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 6,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            570.0053100585938
+          ]
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "stem": "아래 그림과 같이 간격이 $100\\mathrm{m}$인 두 건물 $\\mathrm{A},~\\mathrm{B}$가 있다. $\\mathrm{A}$건물 옥상에서 $\\mathrm{B}$건물을 올려다본 각도는 $60°$이고, 내려다본 각도는 $45°$일 때,$\\mathrm{A}$건물의 높이와 $\\mathrm{B}$건물의 높이의 합은? [$4$점]",
+      "choices": [
+        "$100\\left( 1+\\sqrt{3}\\right)$",
+        "$100\\left( 2+\\sqrt{3}\\right)$",
+        "$100\\left( \\sqrt{2}+\\sqrt{3}\\right)$",
+        "$150\\left( 1+\\sqrt{2}\\right)$",
+        "$200\\left( 2+\\sqrt{3}\\right)$"
+      ],
+      "hwpScriptStem": "아래 그림과 같이 간격이 $100 rm m$인 두 건물 $rm A,~ rm B it$가 있다. $rm A it$건물 옥상에서 $rm B it$건물을 올려다본 각도는 $60°$이고, 내려다본 각도는 $45°$일 때,$RM  A$건물의 높이와 $rm B it$건물의 높이의 합은? [$4$점]",
+      "hwpScriptChoices": [
+        "$100 LEFT ( 1+ sqrt {3} RIGHT )$",
+        "$100 LEFT ( 2+ sqrt {3} RIGHT )$",
+        "$100 LEFT ( sqrt {2} + sqrt {3} RIGHT )$",
+        "$150 LEFT ( 1+ sqrt {2} RIGHT )$",
+        "$200 LEFT ( 2+ sqrt {3} RIGHT )$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "수평 거리 100m; A 옥상에서 B를 올려봄 60°, 내려봄 45°; 목표는 두 건물 높이의 합.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "두 건물 사이 수평 거리와 올려봄/내려봄 각으로 두 높이의 합을 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "fa8cc2e911c7c2e5715fcd1d2bb52166499020bee2e577fd3e58fc2aa75ae30e",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-23",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "historical_key_independent_solver_disagreement_pending_new_independent_solve",
+        "unlabelled_bitmap_marks_not_extra_mathematical_givens_rebuild_from_explicit_conditions"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q23-part1.png",
+          "sha256": "ceb8f2fb46ae28cf8581ce4424d57b97c1552ed38ff695bb28509e0f3a980baf",
+          "page": 6,
+          "column": 0,
+          "bbox": [
+            55,
+            576.0053100585938,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2298,
+        "inflatedByteOffset": 99309,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "618b7fe248e946982b2a77c146a910d3a566e04f2fbd970a71ef40409653432b"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 6,
+          "column": 0,
+          "bbox": [
+            55,
+            576.0053100585938,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "stem": "직각삼각형 $\\mathrm{ABC}$와 $\\mathrm{DBC}$에서 $\\overline{CD}\\mathit{=}20$, $\\angle \\mathrm{ACB}\\mathit{=}45°$, $\\angle \\mathrm{D}\\mathit{=}60°\\,$일 때, $△\\mathrm{EBC}$의 넓이는? [$5$점]",
+      "choices": [
+        "$300\\left( \\sqrt{3}+1\\right)$",
+        "$300\\left( \\sqrt{3}-\\sqrt{2}\\right)$",
+        "$300\\left( \\sqrt{3}-1\\right)$",
+        "$300\\left( 2-\\sqrt{3}\\right)$",
+        "$300\\left( 3-\\sqrt{3}\\right)$"
+      ],
+      "hwpScriptStem": "직각삼각형 $rm ABC it$와 $rm DBC it$에서 $rm {bar{CD}} it =20$, $ANGLE  rm ACB it =45°$, $ANGLE  rm D it =60°`$일 때, $△ rm EBC it$의 넓이는? [$5$점]",
+      "hwpScriptChoices": [
+        "$300 LEFT ( sqrt {3} +1 RIGHT )$",
+        "$300 LEFT ( sqrt {3} - sqrt {2} RIGHT )$",
+        "$300 LEFT ( sqrt {3} -1 RIGHT )$",
+        "$300 LEFT ( 2- sqrt {3} RIGHT )$",
+        "$300 LEFT ( 3- sqrt {3} RIGHT )$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 5.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 5.0,
+        "referenceParentScore": 5.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "ABC/DBC 직각삼각형; CD=20; ∠ACB=45°, ∠D=60°; 음영 EBC.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "두 직각삼각형의 특수각과 교점을 이용하여 겹친 삼각형의 넓이를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "겹친 도형과 각/수선 관계의 복잡성 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "f4c7757a1069051518ac5b7701563c8cf881da3d7117fde9add36645d2ee40db",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-24",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q24-part1.png",
+          "sha256": "7462cc173e1726dab64ccde2be855ee70ca60807fdd7fc5781f64223cca91fd0",
+          "page": 6,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            578.9986572265625
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2375,
+        "inflatedByteOffset": 103708,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "a4a1ce7c07984df447b5f5cfb5b31e31b05168f36e2227c4e88088e1760807e0"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 6,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            578.9986572265625
+          ]
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "stem": "폭이 $5\\mathrm{cm}$인 직사각형 모양의 종이를 다음 그림과 같이 $\\overline{AB}$를 접는 선으로 하여 접었다. $\\overline{AB}\\mathit{=}10\\mathrm{cm}$일 때, $△\\mathrm{ABC}$의 넓이는? [$4$점]",
+      "choices": [
+        "$\\frac{13\\sqrt{3}}{3}$",
+        "$\\frac{16\\sqrt{3}}{3}$",
+        "$\\frac{19\\sqrt{3}}{3}$",
+        "$\\frac{22\\sqrt{3}}{3}$",
+        "$\\frac{25\\sqrt{3}}{3}$"
+      ],
+      "hwpScriptStem": "폭이 $5 rm cm$인 직사각형 모양의 종이를 다음 그림과 같이 $rm {bar{AB}} it$를 접는 선으로 하여 접었다. $rm {bar{AB}} it =10 rm cm$일 때, $△ rm ABC it$의 넓이는? [$4$점]",
+      "hwpScriptChoices": [
+        "${13 sqrt {3}} over {3}$",
+        "${16 sqrt {3}} over {3}$",
+        "${19 sqrt {3}} over {3}$",
+        "${22 sqrt {3}} over {3}$",
+        "${25 sqrt {3}} over {3}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "직사각형 종이 폭 5cm; AB 접는 선 10cm; 목표 △ABC 넓이.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "접기 전후 같은 길이와 직각삼각형을 이용하여 부분 넓이를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "접기 도형 해석으로 새로운 작도/증명 선수 요구가 없는지 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "e39eb1b0a237f729d2833d73fcfdb1a54f39798d69a1f689afa566fa5056c8fb",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-25",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q25-part1.png",
+          "sha256": "a0970aa4920818c7707548d3985395c4670a4f6fc5cec1cb3a0a4fe185de5dd2",
+          "page": 6,
+          "column": 1,
+          "bbox": [
+            370,
+            584.9986572265625,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2478,
+        "inflatedByteOffset": 108759,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "bd52621991f8a0407577933a6a08b929f266f81ed3333d0b0370f49721e8d5ea"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 6,
+          "column": 1,
+          "bbox": [
+            370,
+            584.9986572265625,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    }
+  ]
+}

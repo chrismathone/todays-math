@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "sourceQuestionId": "2025-gyeongsan-3-2-mid-23",
+  "sourceContentDigest": "fa8cc2e911c7c2e5715fcd1d2bb52166499020bee2e577fd3e58fc2aa75ae30e",
+  "referenceImageSha256": "ceb8f2fb46ae28cf8581ce4424d57b97c1552ed38ff695bb28509e0f3a980baf",
+  "sourceSemanticsOnly": true,
+  "originalKeyOrSolutionRead": false,
+  "input": {
+    "horizontalDistance": 100,
+    "upAngle": 60,
+    "downAngle": 45,
+    "eyeAboveRoofA": 0
+  },
+  "roles": {
+    "observationPoint": "A의 옥상 관측 지점",
+    "lookDownEndpoint": "B의 지면 밑점",
+    "lookUpEndpoint": "B의 꼭대기",
+    "requested": "A와 B 건물 높이의 합"
+  },
+  "generalRelation": "hA=d*tan(down)-e; hB=d*tan(down)+d*tan(up); hA+hB=2*d*tan(down)+d*tan(up)-e",
+  "sourceObservationModel": "관측 지점은 A 옥상의 높이이다. 별도 눈높이 길이는 주어지지 않아 픽셀에서 추가하지 않았다.",
+  "results": {
+    "observationElevation": 99.99999999999999,
+    "heightA": 99.99999999999999,
+    "heightB": 273.20508075688764,
+    "heightSum": 373.20508075688764,
+    "exactHeightSum": "100*(2+sqrt(3))"
+  },
+  "checks": {
+    "positiveLengths": true,
+    "observationElevationContributesToBothHeights": true,
+    "notJustHeightDifference": true,
+    "anglesWithin0To90": true
+  },
+  "historicalKeyConflict": "still separate held; this is a new code derivation of source roles, not original-key approval",
+  "authoringBoundary": "새 twin은 관측 지점의 높이 역할·공통 수평 지면·내려본 끝점을 명시하고 별도 새 수치로 다시 계산한다.",
+  "independentApproval": false,
+  "directUseAllowed": false,
+  "semanticsDigest": "e8a9794ad680f51b6f89403fd17e570c9be10e793b52cd2fcf276f2deb5e4b60",
+  "calculationScriptSha256": "498492ea450ae4e8d1746632a99d7444757d1c0463dc2dbf3f7884a48d0b65cf"
+}

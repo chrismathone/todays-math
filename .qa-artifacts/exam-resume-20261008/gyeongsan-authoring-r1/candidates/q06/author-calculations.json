@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 6,
+  "sourceQuestionDigest": "97c308d328df8b57c8935750b62056a0a89b34105fa84b9d4bc2ae170b6e82c8",
+  "variantDigest": "a3547e0475d54864f5c2e106d7589cb8fa22d7ba764bb08011f321e6255c888f",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 1,
+  "facts": {
+    "t": 2,
+    "vertex": [
+      2,
+      4
+    ],
+    "linearCoefficient": 5,
+    "linearConstant": 10
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "point": [
+        -2,
+        4
+      ],
+      "vertexRecord": false,
+      "lineRecord": false,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "point": [
+        2,
+        4
+      ],
+      "vertexRecord": true,
+      "lineRecord": true,
+      "correct": true
+    },
+    {
+      "index": 3,
+      "point": [
+        2,
+        -4
+      ],
+      "vertexRecord": false,
+      "lineRecord": false,
+      "correct": false
+    },
+    {
+      "index": 4,
+      "point": [
+        4,
+        2
+      ],
+      "vertexRecord": false,
+      "lineRecord": false,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "point": [
+        2,
+        8
+      ],
+      "vertexRecord": false,
+      "lineRecord": false,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "t의 계수 5는 0이 아니므로 t와 꼭짓점 좌표가 유일하다.",
+      "passed": true
+    }
+  ]
+}
