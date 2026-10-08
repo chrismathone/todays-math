@@ -3,8 +3,8 @@
   inset: 0;
   z-index: 1500;
   overflow: auto;
-  background: #eceee9;
-  color: #233b31;
+  background: var(--learn-bg, #f4f6fa);
+  color: var(--learn-ink, #172b4d);
   font-family: inherit;
   outline: none;
 }
@@ -13,7 +13,7 @@
   top: 0;
   z-index: 2;
   background: #fff;
-  border-bottom: 1px solid #dbe2dc;
+  border-bottom: 1px solid var(--learn-track, #dde3ec);
   padding: 18px 32px;
   box-shadow: 0 3px 15px #24362c0a;
 }
@@ -30,17 +30,18 @@
 .heading h2 span {
   font-size: 12px;
   font-weight: 400;
-  color: #75847b;
+  color: var(--learn-muted, #596c86);
   margin-left: 12px;
 }
 .preview button,
 .preview select {
   font: inherit;
-  border: 1px solid #dce4dd;
+  border: 1px solid var(--learn-control, #b8c4d6);
   background: #fff;
-  border-radius: 6px;
+  border-radius: var(--control-radius, 8px);
+  min-height: var(--control-height, 44px);
   padding: 9px 13px;
-  font-size: 12px;
+  font-size: var(--text-body, 14px);
   color: inherit;
 }
 .preview button {
@@ -51,9 +52,9 @@
   cursor: default;
 }
 .preview button.primary {
-  background: #205b47;
+  background: var(--learn-accent, #3159df);
   color: #fff;
-  border-color: #205b47;
+  border-color: var(--learn-accent, #3159df);
 }
 .options {
   display: flex;
@@ -66,23 +67,23 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  color: #677e70;
-  font-size: 11px;
+  color: var(--learn-muted, #596c86);
+  font-size: var(--text-caption, 12px);
 }
 .options select {
   max-width: 390px;
 }
 .notices {
-  font-size: 11px;
+  font-size: var(--text-caption, 12px);
   line-height: 1.7;
-  color: #6b736a;
+  color: var(--learn-muted, #596c86);
   margin-top: 10px;
 }
 .notices p {
   margin: 4px 0;
 }
 .notices [role="alert"] {
-  color: #a23829;
+  color: var(--learn-danger, #b42318);
 }
 .notices label {
   display: flex;
@@ -103,7 +104,7 @@
 .preview button:focus-visible,
 .preview select:focus-visible,
 .preview input:focus-visible {
-  outline: 3px solid #8cbba3;
+  outline: 3px solid var(--learn-focus, #82a1ff);
   outline-offset: 3px;
 }
 @media (max-width: 700px) {
@@ -117,10 +118,10 @@
   .heading h2 {
     order: -1;
     width: 100%;
-    font-size: 17px;
+    font-size: var(--text-section, 18px);
   }
   .heading h2 span {
-    font-size: 11px;
+    font-size: var(--text-caption, 12px);
   }
   .options {
     flex-wrap: wrap;
@@ -137,7 +138,7 @@
     margin: 20px;
   }
   .notices {
-    font-size: 11px;
+    font-size: var(--text-caption, 12px);
   }
 }
 @media print {

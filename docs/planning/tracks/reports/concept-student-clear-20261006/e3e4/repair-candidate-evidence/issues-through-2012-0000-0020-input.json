@@ -1,0 +1,1208 @@
+[
+  {
+    "id": "e3-1-1-1-xc1",
+    "sourceIndex": 339,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 339,
+      "sourceFingerprint": "44557d362981e7e621154b8975f93898aac3008489fe09967f3b0d9887cd4b05",
+      "part": "e3plus",
+      "id": "e3-1-1-1-xc1",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "백의 자리",
+      "kind": "정의",
+      "level": "하",
+      "definition": "세 자리 수에서 맨 왼쪽 자리를 {백의 자리}라 하고, 그 숫자는 $100$이 몇 개인지 나타낸다.",
+      "example": {
+        "prompt": "$472$의 백의 자리 숫자를 쓰시오.",
+        "answer": "$4$"
+      },
+      "studentC": "세 자리 수에서 맨 왼쪽 자리를 □라 하고, 그 숫자는 $100$이 몇 개인지 나타낸다.",
+      "answers": [
+        "백의 자리"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-1-xc1",
+      "proposalFingerprint": "4e1eafd6b9dd0da54a73c3ac8c5e8601b0852ac035379260e85d65eb231d53e2",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "bPrompt": "세 자리 수 $472$에서 숫자 $4$, $7$, $2$는 각각 어느 자리 숫자이고 얼마를 나타내는지 쓰세요.",
+      "bAnswer": "$4$는 백의 자리 숫자로 $400$, $7$은 십의 자리 숫자로 $70$, $2$는 일의 자리 숫자로 $2$를 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "백·십·일의 자리 이름"
+          ]
+        },
+        {
+          "anyOf": [
+            "$400$, $70$, $2$"
+          ]
+        }
+      ],
+      "bGoal": "세 자리 수에서 각 자리의 이름과 나타내는 값",
+      "bReason": "원문 예시 수 $472$로 세 자리를 한 번에 묻는다(십·일의 자리 항목은 이 질문으로 대신함)",
+      "cDecision": "keep",
+      "cReason": "'맨 왼쪽', '$100$이 몇 개'라는 단서가 보여 자리 이름 하나로 답이 정해짐",
+      "cSlotEquivalents": [],
+      "answerNotes": "'백'만 써도 허용"
+    },
+    "currentCMarkedSentence": "세 자리 수에서 맨 왼쪽 자리를 {백의 자리}라 하고, 그 숫자는 $100$이 몇 개인지 나타낸다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "백의 자리",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "자리 이름과 값을 각각 대응시키는 질문은 분명하나 채점 기준은 4→백·400, 7→십·70, 2→일·2의 대응을 확인해야 한다.",
+      "c": "맨 왼쪽이라는 위치와 백 묶음의 뜻으로 백의 자리를 확인한다."
+    }
+  },
+  {
+    "id": "e3-1-1-1-xc6",
+    "sourceIndex": 344,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 344,
+      "sourceFingerprint": "b46d3013976c6f679b28f8075a87644e7c8974f32095fa18b0d63092e58c450c",
+      "part": "e3plus",
+      "id": "e3-1-1-1-xc6",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "받아올림이 없는 덧셈",
+      "kind": "성질",
+      "level": "하",
+      "definition": "같은 자리 숫자끼리의 합이 모두 {$10$보다 작으면} 받아올림 없이 그 합을 그대로 적는다.",
+      "studentC": "같은 자리 숫자끼리의 합이 모두 □ 받아올림 없이 그 합을 그대로 적는다.",
+      "answers": [
+        "$10$보다 작으면"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-1-xc6",
+      "proposalFingerprint": "db89ee3e141b55d6c19d69a329c63c3b72a066d909beaf6a7eea93ac17460653",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$213+145$를 계산할 때에는 받아올림이 필요 없습니다. 그 까닭을 각 자리 숫자끼리의 합을 써서 설명하세요.",
+      "bAnswer": "일의 자리 $3+5=8$, 십의 자리 $1+4=5$, 백의 자리 $2+1=3$으로 모든 자리의 합이 $10$보다 작기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 자리 숫자끼리의 합을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 자리의 합이 $10$보다 작다"
+          ]
+        }
+      ],
+      "bGoal": "받아올림이 없는 덧셈의 조건 설명",
+      "bReason": "실제 식에서 자리별 합을 확인하게 하여 조건을 스스로 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '$10$보다 작으면'은 조건 구절 전체를 복원하게 함. 기준이 되는 수만 묻도록 줄임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'$9$'는 오답($9$보다 작으면 합이 $9$인 경우가 빠짐)"
+    },
+    "currentCMarkedSentence": "같은 자리 숫자끼리의 합이 모두 {$10$}보다 작으면 받아올림 없이 그 합을 그대로 적는다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$10$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "각 자리의 실제 합을 쓰라고 했으므로 기준에 8·5·3과 모두 10 미만이라는 연결이 필요하다.",
+      "c": "모든 자리 합이 10 미만일 때라는 받아올림 경계가 명확하다."
+    }
+  },
+  {
+    "id": "e3-1-1-1-xc8",
+    "sourceIndex": 346,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 346,
+      "sourceFingerprint": "e3467210e381527afc95a3a5611b6f492c416b6bff73a62fc415f2192c78a058",
+      "part": "e3plus",
+      "id": "e3-1-1-1-xc8",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "받아올림이 한 번 있는 덧셈",
+      "kind": "성질",
+      "level": "하",
+      "definition": "받아올린 수까지 더했을 때 세 자리 가운데 {한 자리}에서만 합이 $10$ 이상이면 받아올림이 한 번 있다.",
+      "studentC": "받아올린 수까지 더했을 때 세 자리 가운데 □에서만 합이 $10$ 이상이면 받아올림이 한 번 있다.",
+      "answers": [
+        "한 자리"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-1-xc8",
+      "proposalFingerprint": "47aaafb23cce57498b9af45ad6e7a3a20d67544cfc830450f1e7a2779ac888e6",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$237+145$를 계산할 때 받아올림이 몇 번 있는지 쓰고, 각 자리의 합을 써서 그렇게 센 까닭을 설명하세요.",
+      "bAnswer": "한 번이다. 일의 자리 $7+5=12$만 $10$보다 크고, 십의 자리 $3+4+1=8$과 백의 자리 $2+1=3$은 $10$보다 작기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "받아올림 한 번"
+          ]
+        },
+        {
+          "anyOf": [
+            "합이 $10$이거나 $10$보다 큰 자리가 한 곳뿐"
+          ]
+        }
+      ],
+      "bGoal": "받아올림이 한 번인 까닭을 자리별 합으로 설명",
+      "bReason": "실제 식에서 자리별 합을 확인하여 횟수를 세게 함",
+      "cDecision": "rewrite",
+      "cReason": "받아올림 횟수를 먼저 말하지 않고 실제 식에서 판단한다.",
+      "cSlotEquivalents": [
+        [
+          "$1$",
+          "하나"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "$237+145$를 계산할 때 받아올림은 {한} 번 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "한",
+        "equivalents": [
+          "$1$",
+          "하나"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "횟수와 실제 자리 합을 요구하지만 기준은 횟수와 일반 경계뿐이므로 12·8·3을 반영해야 한다.",
+      "c": "237+145의 받아올림 횟수 한 번을 계산하여 넣는다."
+    }
+  },
+  {
+    "id": "e3-1-1-1-xc16",
+    "sourceIndex": 354,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 354,
+      "sourceFingerprint": "71f8e971284413893089b114d212bc65e428fe61ce151583f36ba74a7b18548f",
+      "part": "e3plus",
+      "id": "e3-1-1-1-xc16",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "받아올림이 생기는 까닭",
+      "kind": "성질",
+      "level": "중",
+      "definition": "한 자리에는 숫자를 {$9$까지만} 쓸 수 있어서 $10$이 모이면 윗자리로 올린다.",
+      "studentC": "한 자리에는 숫자를 □ 쓸 수 있어서 $10$이 모이면 윗자리로 올린다.",
+      "answers": [
+        "$9$까지만"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-1-xc16",
+      "proposalFingerprint": "44009735c1302c6c313942070b85be1f4eb2a149143a36dd989316cca38ba7cc",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "일의 자리 숫자끼리 더한 합이 $13$일 때, 일의 자리에 $13$을 그대로 쓰지 않고 윗자리로 받아올림하는 까닭을 쓰세요.",
+      "bAnswer": "한 자리에는 $0$부터 $9$까지의 숫자 하나만 쓸 수 있고, 일 $10$개는 십 $1$개와 같으므로 $10$은 십의 자리로 올리고 $3$만 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 자리에는 숫자 하나($9$까지)만 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$개는 윗자리 $1$개와 같다"
+          ]
+        }
+      ],
+      "bGoal": "받아올림이 생기는 까닭 설명",
+      "bReason": "합이 $13$인 구체 상황으로 이유를 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '$9$까지만'은 조사까지 맞춰 써야 하는 구절임. 수만 쓰도록 줄임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'$10$'은 오답"
+    },
+    "currentCMarkedSentence": "한 자리에는 $0$부터 {$9$}까지의 숫자 하나만 쓸 수 있어서 $10$이 모이면 윗자리로 올린다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$9$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "받아올림의 까닭을 묻는데 숫자 하나 제한과 10개 교환을 독립 필수로 두어 충분한 설명을 과하게 거절할 수 있다; 완결된 이유의 대안 범위를 재검토한다.",
+      "c": "한 자리에 쓰는 숫자 0~9의 경계를 확인한다."
+    }
+  },
+  {
+    "id": "e3-1-1-1-xc17",
+    "sourceIndex": 355,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 355,
+      "sourceFingerprint": "c7bc118d36bccd8a5337f38eefb91cda429d9a8b6ae9ce0cecc77408900d227f",
+      "part": "e3plus",
+      "id": "e3-1-1-1-xc17",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "받아올림이 있는 자리 찾기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "아래에서 받아올린 수까지 더한 그 자리의 합이 {$10$ 이상}인 자리에서 받아올림이 생긴다.",
+      "studentC": "아래에서 받아올린 수까지 더한 그 자리의 합이 □인 자리에서 받아올림이 생긴다.",
+      "answers": [
+        "$10$ 이상"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-1-xc17",
+      "proposalFingerprint": "bc7efb5cf80b2ad5b755e641907b0134e4e3832f86da81315f03306e63e9e8cf",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$356+272$에서 받아올림이 생기는 자리를 찾아 쓰고, 각 자리의 합을 써서 어떻게 찾았는지 설명하세요.",
+      "bAnswer": "십의 자리이다. 일의 자리 $6+2=8$, 십의 자리 $5+7=12$, 백의 자리 $3+2+1=6$이므로 합이 $10$보다 큰 십의 자리에서 받아올림이 생긴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "십의 자리"
+          ]
+        },
+        {
+          "anyOf": [
+            "합이 $10$이거나 $10$보다 큰 자리"
+          ]
+        }
+      ],
+      "bGoal": "받아올림이 생기는 자리를 찾는 방법",
+      "bReason": "십의 자리에서만 받아올림이 있는 식으로 찾는 기준을 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '$10$ 이상'의 '이상'은 초5에서 배우는 말이라 초3이 쓰기 어려움. 기준 수만 쓰게 함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'$9$'는 오답"
+    },
+    "currentCMarkedSentence": "아랫자리에서 받아올린 수까지 더한 합이 {$10$}이거나 그보다 큰 자리에서 받아올림이 생긴다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$10$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "십 자리와 10 경계뿐 아니라 요청한 실제 자리 합 8·12·6도 기준에 반영해야 한다.",
+      "c": "받아올린 수를 포함한 합과 10의 경계가 명확하다."
+    }
+  },
+  {
+    "id": "e3-1-1-1-xc18",
+    "sourceIndex": 356,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 356,
+      "sourceFingerprint": "5f64c16ebd30b12c4e26ed2c0d8aa951d6d45f116363b15cdb9799180259fb08",
+      "part": "e3plus",
+      "id": "e3-1-1-1-xc18",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "수 모형으로 더하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "수 모형으로 더할 때 일 모형 $10$개는 {십 모형 $1$개}로 바꾼다.",
+      "studentC": "수 모형으로 더할 때 일 모형 $10$개는 □로 바꾼다.",
+      "answers": [
+        "십 모형 $1$개"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-1-xc18",
+      "proposalFingerprint": "78334d2c2ea2722d918815d688ce30c95db23b838dbbd2035c8c601239e29298",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "수 모형으로 $237+145$를 더했더니 일 모형이 $12$개가 되었습니다. 일 모형 $12$개를 어떻게 바꾸어 놓는지 쓰고, 이것이 세로셈에서 무엇을 하는 것과 같은지 쓰세요.",
+      "bAnswer": "일 모형 $10$개를 십 모형 $1$개로 바꾸고 일 모형 $2$개를 남긴다. 세로셈에서 일의 자리에서 십의 자리로 $1$을 받아올림하는 것과 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일 모형 $10$개를 십 모형 $1$개로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "받아올림과 같다"
+          ]
+        }
+      ],
+      "bGoal": "수 모형 바꾸기와 받아올림의 연결",
+      "bReason": "모형 조작을 세로셈의 받아올림과 이어 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '십 모형 $1$개'는 이름과 개수를 한꺼번에 쓰는 구절임. 모형 이름만 묻도록 줄임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'백'은 오답"
+    },
+    "currentCMarkedSentence": "수 모형으로 더할 때 일 모형 $10$개는 {십} 모형 $1$개로 바꾼다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "십",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "12개를 바꾼 결과이므로 십 1개뿐 아니라 남는 일 2개도 기준에 포함해야 한다.",
+      "c": "일 10개를 십 1개로 바꾸는 수 모형 교환을 확인한다."
+    }
+  },
+  {
+    "id": "e3-1-1-1-xc22",
+    "sourceIndex": 360,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 360,
+      "sourceFingerprint": "3ac2aa6d9ceb1dbc4ba24980264aacf8f31cfa4682d261ca51c36f8942f65c60",
+      "part": "e3plus",
+      "id": "e3-1-1-1-xc22",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "받아올림하지 않고 합을 그대로 쓰는 잘못",
+      "kind": "성질",
+      "level": "상",
+      "definition": "일의 자리나 십의 자리의 합이 $10$ 이상인데 받아올림하지 않고 자리마다의 합을 이어 쓰면 {윗자리 숫자들의 자리가 밀려} 잘못된 수가 된다.",
+      "example": {
+        "prompt": "$258+126$을 $3714$라고 쓰면 실제 합보다 훨씬 큰 까닭은?",
+        "answer": "윗자리 숫자가 밀려서"
+      },
+      "studentC": "일의 자리나 십의 자리의 합이 $10$ 이상인데 받아올림하지 않고 자리마다의 합을 이어 쓰면 □ 잘못된 수가 된다.",
+      "answers": [
+        "윗자리 숫자들의 자리가 밀려"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-1-xc22",
+      "proposalFingerprint": "462890176f4d0a8f474b68fe081806ac2c18ee69b25af7a99f5e185da0929863",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$258+126$을 계산하면서 백의 자리 합 $3$, 십의 자리 합 $7$, 일의 자리 합 $14$를 차례로 이어 써서 $3714$라고 답했습니다. 무엇을 잘못했는지 쓰고, 바르게 계산한 합을 쓰세요.",
+      "bAnswer": "일의 자리 합 $14$에서 $10$을 십의 자리로 받아올림하지 않고 그대로 써서 앞의 숫자들이 한 자리씩 밀렸다. 바른 합은 $384$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일의 자리 합 $14$를 받아올림하지 않고 그대로 이어 썼다.",
+            "받아올림을 빠뜨렸다."
+          ]
+        },
+        {
+          "anyOf": [
+            "바른 합은 $384$이다."
+          ]
+        }
+      ],
+      "bGoal": "받아올림 없이 합을 이어 쓴 오류 분석",
+      "bReason": "원문 예시의 틀린 답 $3714$로 오류의 원인과 고친 답을 묻는다",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '윗자리 숫자들의 자리가 밀려'는 초3이 떠올릴 수 없는 긴 구절임. 원문 예시로 자릿수와 바른 합을 묻는다",
+      "cSlotEquivalents": [],
+      "answerNotes": "첫 빈칸은 '$4$'도 정답"
+    },
+    "currentCMarkedSentence": "$258+126$에서 일의 자리의 합 $14$를 받아올림하지 않고 자리마다의 합을 그대로 이어 쓰면 $3714$처럼 {네} 자리 수가 되어 틀린다. 받아올림하여 바르게 계산한 합은 {$384$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "네",
+        "equivalents": []
+      },
+      {
+        "expected": "$384$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "받아올림 누락과 바른 합 384를 묻는 B는 적절하다.",
+      "c": "3714의 네 자리 수 세기는 오류 원인과 무관한 쉬운 빈칸이므로 그 빈칸을 빼고 바른 합 또는 교환을 묻도록 수정한다."
+    }
+  },
+  {
+    "id": "e3-1-1-1-xc23",
+    "sourceIndex": 361,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 361,
+      "sourceFingerprint": "3d99e9851f963ce5641fad5f1b7d497c5a50b0d2cf25be2bc126a641c33a831d",
+      "part": "e3plus",
+      "id": "e3-1-1-1-xc23",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "합이 세 자리 수로 남는 경우",
+      "kind": "성질",
+      "level": "상",
+      "definition": "백의 자리 숫자끼리의 합이 {$8$ 이하}이면 받아올림이 있어도 합은 세 자리 수이다.",
+      "studentC": "백의 자리 숫자끼리의 합이 □이면 받아올림이 있어도 합은 세 자리 수이다.",
+      "answers": [
+        "$8$ 이하"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-1-xc23",
+      "proposalFingerprint": "9dbd9ecff1bc181446d6bf15b22b460854ab88f70c9f56daf5d494217f356625",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$356+472$와 $356+772$ 중 합이 세 자리 수인 것을 끝까지 계산하지 않고 백의 자리 숫자만 보고 찾으려고 합니다. 어느 것인지 쓰고 까닭을 설명하세요.",
+      "bAnswer": "$356+472$이다. 백의 자리 숫자끼리의 합이 $3+4=7$이라서 받아올린 $1$을 더해도 $8$이므로 세 자리 수이다. $356+772$는 $3+7=10$이라 네 자리 수가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "백의 자리 숫자끼리의 합이 $8$이거나 $8$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "받아올린 $1$을 더해도 $10$이 안 된다"
+          ]
+        }
+      ],
+      "bGoal": "백의 자리 숫자의 합으로 합의 자릿수 판단하기",
+      "bReason": "백의 자리 합이 $7$인 식과 $10$인 식을 견주어 판단 기준을 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '$8$ 이하'의 '이하'는 초5 용어이고 조건 전체를 가림. 조건을 풀어 보여 주고 이유가 되는 계산을 묻는다",
+      "cSlotEquivalents": [],
+      "answerNotes": "'$10$'은 오답"
+    },
+    "currentCMarkedSentence": "백의 자리 숫자끼리의 합이 $8$이거나 $8$보다 작으면, 십의 자리에서 $1$을 받아올려도 백의 자리 합은 가장 커야 $8+1=$ {$9$}이므로 합은 세 자리 수이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$9$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "두 식 중 선택을 요구하므로 356+472의 선택과 백 합 7에 최대 1을 더해도 10 미만이라는 실제 근거를 기준에 넣어야 한다.",
+      "c": "백 합 8에 최대 1을 더한 9라는 경계가 세 자리 유지와 연결된다."
+    }
+  },
+  {
+    "id": "e3-1-1-1-xc26",
+    "sourceIndex": 364,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 364,
+      "sourceFingerprint": "ee752ada84b3fcea04f187d03123eb36dd79f2e5696e646c7e2affc618b507d6",
+      "part": "e3plus",
+      "id": "e3-1-1-1-xc26",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-1 받아올림이 없는, 한 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "세 수의 덧셈",
+      "kind": "방법",
+      "level": "상",
+      "definition": "세 수를 더할 때에는 두 수를 먼저 더하고 그 합에 {나머지 한 수}를 더한다.",
+      "studentC": "세 수를 더할 때에는 두 수를 먼저 더하고 그 합에 □를 더한다.",
+      "answers": [
+        "나머지 한 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-1-xc26",
+      "proposalFingerprint": "276405d42eae3d5448357dc61ead58923f6589b2e8f91c1ef85e96507e906259",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$125+240+310$을 한꺼번에 더하지 않고 두 번에 나누어 계산하려고 합니다. 계산하는 차례를 식과 함께 쓰세요.",
+      "bAnswer": "$125+240=365$를 먼저 구하고, 그 합에 나머지 수를 더해 $365+310=675$를 구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수를 먼저 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 합에 나머지 수를 더한다"
+          ]
+        }
+      ],
+      "bGoal": "세 수의 덧셈 순서 설명",
+      "bReason": "받아올림 부담이 적은 세 수로 계산 차례를 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "입력 345 복사를 없애고 중간 합과 전체 합을 계산한다.",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "$120+230+345$는 앞의 두 수를 먼저 더한 {$350$}에 나머지 수 $345$를 더하여 {$695$}로 구할 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$350$",
+        "equivalents": []
+      },
+      {
+        "expected": "$695$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "두 단계 식을 요구하므로 실제 식을 기준에 넣되 세 수 중 어느 두 수를 먼저 더하는 올바른 순서도 허용해야 한다.",
+      "c": "앞의 두 수라는 순서를 명시하여 중간 합 350과 전체 695가 분명하다."
+    }
+  },
+  {
+    "id": "e3-1-1-2-xc1",
+    "sourceIndex": 366,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 366,
+      "sourceFingerprint": "aa71589a67f158160b75da49ae68a1da0fb8c525b787885038f2c5ae7282c28b",
+      "part": "e3plus",
+      "id": "e3-1-1-2-xc1",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "받아올림이 두 번 있는 덧셈",
+      "kind": "성질",
+      "level": "하",
+      "definition": "받아올린 수까지 더했을 때 세 자리 가운데 {두 자리}에서 합이 $10$ 이상이 되면 받아올림이 두 번 있다.",
+      "example": {
+        "prompt": "$365+278$에서 받아올림이 두 번인 까닭은?",
+        "answer": "두 자리의 합만 $10$ 이상이라서"
+      },
+      "studentC": "받아올린 수까지 더했을 때 세 자리 가운데 □에서 합이 $10$ 이상이 되면 받아올림이 두 번 있다.",
+      "answers": [
+        "두 자리"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-2-xc1",
+      "proposalFingerprint": "a46e5938b4faf5569d75c9e5f95831fcd25dfcb8c64f5f4a02e10f34e8c8ee8a",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$365+278$을 계산할 때 받아올림이 몇 번 있는지 쓰고, 각 자리의 합을 써서 까닭을 설명하세요.",
+      "bAnswer": "두 번이다. 일의 자리 $5+8=13$과 십의 자리 $6+7+1=14$에서는 받아올림이 있고, 백의 자리 $3+2+1=6$에서는 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "받아올림 두 번"
+          ]
+        },
+        {
+          "anyOf": [
+            "받아올린 수까지 더한 합이 $10$을 넘는 자리가 두 곳"
+          ]
+        }
+      ],
+      "bGoal": "받아올림이 두 번인 까닭을 자리별 합으로 설명",
+      "bReason": "원문 예시 식으로 받아올린 수까지 더해 확인하게 함",
+      "cDecision": "rewrite",
+      "cReason": "두 자리 조건을 먼저 주지 않고 식에서 받아올림 횟수를 찾는다.",
+      "cSlotEquivalents": [
+        [
+          "$2$"
+        ]
+      ],
+      "coreAfter": "받아올린 수까지 더했을 때 세 자리 가운데 {두 자리}에서만 합이 $10$이거나 $10$보다 크면 받아올림이 두 번 있다.",
+      "coreReason": "두 자리라는 원래 표적을 보존하며 그 두 자리에서만이라는 조건과10 경계를 쉽게 명시한다."
+    },
+    "currentCMarkedSentence": "$365+278$을 계산할 때 받아올림은 {두} 번 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "두",
+        "equivalents": [
+          "$2$"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "횟수와 자리별 합을 모두 요구하므로 실제 13·14·6을 채점 기준에서 확인해야 한다.",
+      "c": "365+278의 두 번을 계산하며 일반 정의의 두 자리에서만이라는 조건도 옳다."
+    }
+  },
+  {
+    "id": "e3-1-1-2-xc2",
+    "sourceIndex": 367,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 367,
+      "sourceFingerprint": "3bb48d112a3ffb69f44cb45e83897164e814d2e0d8acdb82d1abd9cda8820377",
+      "part": "e3plus",
+      "id": "e3-1-1-2-xc2",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "받아올림이 세 번 있는 덧셈",
+      "kind": "성질",
+      "level": "하",
+      "definition": "일, 십, 백의 자리 {모두}에서 합이 $10$ 이상이 되면 받아올림이 세 번 있다.",
+      "example": {
+        "prompt": "$789+645$에서 백의 자리에서 올린 $1$은 얼마를 나타내며, 왜 그런가?",
+        "answer": "$1000$ — 백 $10$개라서"
+      },
+      "studentC": "일, 십, 백의 자리 □에서 합이 $10$ 이상이 되면 받아올림이 세 번 있다.",
+      "answers": [
+        "모두"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-2-xc2",
+      "proposalFingerprint": "39c8404f88b99148914ba13985532e4ac60be8c4db6d28110a17b2577b40bdcc",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$789+645$를 계산할 때 받아올림이 몇 번 있는지 쓰고, 각 자리의 합을 써서 까닭을 설명하세요.",
+      "bAnswer": "세 번이다. 일의 자리 $9+5=14$, 십의 자리 $8+4+1=13$, 백의 자리 $7+6+1=14$로 세 자리 모두 합이 $10$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "받아올림 세 번"
+          ]
+        },
+        {
+          "anyOf": [
+            "일·십·백의 자리 모두 합이 $10$을 넘는다"
+          ]
+        }
+      ],
+      "bGoal": "받아올림이 세 번인 까닭을 자리별 합으로 설명",
+      "bReason": "원문 예시 식으로 세 자리 모두를 확인하게 함",
+      "cDecision": "rewrite",
+      "cReason": "이상과 모두의 문법 복원을 없애고 실제 식에서 세 자리의 받아올림을 확인한다.",
+      "cSlotEquivalents": [
+        [
+          "$3$"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "$789+645$를 계산할 때 받아올림은 {세} 번 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "세",
+        "equivalents": [
+          "$3$"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "세 번의 까닭을 각 자리 합으로 쓰라고 했으므로 실제 14·13·14를 기준에 반영해야 한다.",
+      "c": "789+645의 받아올림 세 번을 직접 계산한다."
+    }
+  },
+  {
+    "id": "e3-1-1-2-xc10",
+    "sourceIndex": 374,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 374,
+      "sourceFingerprint": "61995f1382f993661ca19b74e1813d5cc3a0582e57dc8838decfea957d259446",
+      "part": "e3plus",
+      "id": "e3-1-1-2-xc10",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "받아올림이 이어지는 덧셈",
+      "kind": "방법",
+      "level": "중",
+      "definition": "아랫자리에서 올린 $1$을 더해 다시 $10$ 이상이 되면 윗자리로 {다시 올린다}.",
+      "studentC": "아랫자리에서 올린 $1$을 더해 다시 $10$ 이상이 되면 윗자리로 □.",
+      "answers": [
+        "다시 올린다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-2-xc10",
+      "proposalFingerprint": "a55927431a3aefd586865250c16c5dc7cd6be7571b1c709a492fde6abf991fe4",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$386+247$을 계산할 때 일의 자리에서 올린 $1$을 십의 자리에 더하면 십의 자리의 합은 얼마가 되는지 쓰고, 그다음에 어떻게 해야 하는지 설명하세요.",
+      "bAnswer": "$8+4+1=13$이 된다. 다시 $10$을 넘으므로 십의 자리에 $3$을 쓰고 백의 자리로 $1$을 또 올린다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "십의 자리 합 $13$"
+          ]
+        },
+        {
+          "anyOf": [
+            "백의 자리로 다시 $1$을 올린다"
+          ]
+        }
+      ],
+      "bGoal": "받아올림이 이어지는 덧셈의 계산 방법",
+      "bReason": "올린 수를 더한 뒤 다시 올리는 과정을 실제 식으로 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "문장 끝 '다시 올린다'를 통째로 복원하게 하는 빈칸임. 실제 식으로 올린 수를 더한 합과 올리는 자리를 묻는다",
+      "cSlotEquivalents": [],
+      "answerNotes": "첫 빈칸에 '$11$'은 올린 $1$을 빠뜨린 오답"
+    },
+    "currentCMarkedSentence": "$457+268$에서 일의 자리의 합은 $15$라서 $1$을 올린다. 십의 자리는 $5+6$에 올린 $1$을 더해 {$12$}가 되므로 {백}의 자리로 다시 $1$을 올린다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$12$",
+        "equivalents": []
+      },
+      {
+        "expected": "백",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "십 합 13과 백으로 올린 1은 맞으나 그다음 처리에는 십에 남기는 3도 기준에 필요하다.",
+      "c": "457+268에서 올린 1을 포함한 12와 다음 백 자리를 계산한다."
+    }
+  },
+  {
+    "id": "e3-1-1-2-xc23",
+    "sourceIndex": 387,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 387,
+      "sourceFingerprint": "4ddbcb65743a183bd489bd68a5e755680c788038f7af93c5fe3df97109a88449",
+      "part": "e3plus",
+      "id": "e3-1-1-2-xc23",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "합이 가장 작게 되는 덧셈 만들기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "$0$이 없는 숫자 카드 여섯 장을 한 번씩 써서 두 세 자리 수의 합을 가장 작게 하려면 {작은 숫자부터 두 장씩} 백, 십, 일의 자리에 놓는다.",
+      "studentC": "$0$이 없는 숫자 카드 여섯 장을 한 번씩 써서 두 세 자리 수의 합을 가장 작게 하려면 □ 백, 십, 일의 자리에 놓는다.",
+      "answers": [
+        "작은 숫자부터 두 장씩"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-2-xc23",
+      "proposalFingerprint": "347da9854b6bbab850602978ae260074f65420cd654406d79b3b62887d0ce57d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "숫자 카드 $1$, $2$, $3$, $4$, $5$, $6$을 한 번씩 써서 세 자리 수 두 개를 만들어 더하려고 합니다. 합을 가장 작게 하려면 백, 십, 일의 자리에 각각 어떤 숫자를 놓아야 하는지 쓰고, 그 까닭을 쓰세요.",
+      "bAnswer": "백의 자리에 $1$과 $2$, 십의 자리에 $3$과 $4$, 일의 자리에 $5$와 $6$을 놓는다. 높은 자리의 숫자일수록 큰 값을 나타내므로 작은 숫자부터 높은 자리에 놓아야 합이 작아진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 숫자부터 두 장씩 백, 십, 일의 자리에"
+          ]
+        },
+        {
+          "anyOf": [
+            "높은 자리일수록 값이 크다"
+          ]
+        }
+      ],
+      "bGoal": "합을 가장 작게 만드는 숫자 배치와 이유",
+      "bReason": "카드 숫자를 정해 주어 배치와 이유를 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "작은 카드라는 방법을 미리 주지 않는다. 두 카드는 한 답으로 받아 순서를 바꾼 답도 허용한다.",
+      "cSlotEquivalents": [
+        [
+          "$2$와 $1$",
+          "$1$, $2$",
+          "$2$, $1$"
+        ]
+      ]
+    },
+    "currentCMarkedSentence": "숫자 카드 $1$, $2$, $3$, $4$, $5$, $6$을 한 번씩 써서 세 자리 수 두 개를 만든다. 두 수의 합을 가장 작게 하려면 백의 자리에 놓는 두 숫자는 {$1$과 $2$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$1$과 $2$",
+        "equivalents": [
+          "$2$와 $1$",
+          "$1$, $2$",
+          "$2$, $1$"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "백·십·일에 각각 놓을 카드도 요청하므로 기준에서 1·2, 3·4, 5·6의 실제 배치를 확인해야 한다.",
+      "c": "백 자리에 놓는 두 숫자 1·2의 순서 대안도 허용한다."
+    }
+  },
+  {
+    "id": "e3-1-1-2-xc27",
+    "sourceIndex": 391,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 391,
+      "sourceFingerprint": "790ac51563b309114f838768188b30cf9b82372f63b061ffb20d781f71409a83",
+      "part": "e3plus",
+      "id": "e3-1-1-2-xc27",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-2 받아올림이 두 번, 세 번 있는 (세 자리 수)+(세 자리 수)",
+      "term": "받아올림이 세 번이 되는 조건",
+      "kind": "성질",
+      "level": "상",
+      "definition": "받아올림이 세 번 있으려면 일의 자리 숫자끼리의 합부터 {$10$ 이상}이어야 한다.",
+      "studentC": "받아올림이 세 번 있으려면 일의 자리 숫자끼리의 합부터 □이어야 한다.",
+      "answers": [
+        "$10$ 이상"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-2-xc27",
+      "proposalFingerprint": "4ed18dbc7be21346cd195f32a18dae72abf34e4a45b4dc1876b804071722deaf",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$541+788$은 십의 자리와 백의 자리에서 받아올림이 있지만 받아올림이 세 번은 아닙니다. 그 까닭을 일의 자리의 합을 써서 설명하세요.",
+      "bAnswer": "일의 자리가 $1+8=9$로 $10$보다 작아 받아올림이 없기 때문이다. 세 번이 되려면 일의 자리부터 합이 $10$이거나 $10$보다 커야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일의 자리 합이 $10$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "일의 자리에서 받아올림이 없으면 세 번이 될 수 없다"
+          ]
+        }
+      ],
+      "bGoal": "받아올림이 세 번이 되기 위한 일의 자리 조건",
+      "bReason": "일의 자리만 조건을 채우지 못하는 식으로 필요한 조건을 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '$10$ 이상'의 '이상'은 초3이 쓰기 어려운 말임. 기준 수만 쓰게 함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'$9$'는 오답"
+    },
+    "currentCMarkedSentence": "받아올림이 세 번 있으려면 먼저 일의 자리 숫자끼리의 합이 {$10$}이거나 그보다 커야 한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$10$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "일의 자리의 합을 쓰라고 했으므로 실제 1+8=9를 기준에 포함해야 한다.",
+      "c": "세 번을 위해 일의 자리부터 10 이상이어야 한다는 필요조건은 옳다."
+    }
+  },
+  {
+    "id": "e3-1-1-3-xc12",
+    "sourceIndex": 402,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 402,
+      "sourceFingerprint": "09daddee11ffe6117f9a4628892b687f71b546a6739bd2c2482125a72779b604",
+      "part": "e3plus",
+      "id": "e3-1-1-3-xc12",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+      "term": "덧셈으로 뺄셈 확인하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "뺄셈의 답에 {빼는 수}를 더해 처음 수가 나오면 바르게 뺀 것이다.",
+      "studentC": "뺄셈의 답에 □를 더해 처음 수가 나오면 바르게 뺀 것이다.",
+      "answers": [
+        "빼는 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-3-xc12",
+      "proposalFingerprint": "915777775e8855f2a254f383348e620906f26fab52304ce13c17d5bc98205b67",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$463-127$을 계산해 $336$이 나왔습니다. 덧셈으로 이 답이 맞는지 확인하는 방법을 식과 함께 설명해 보세요.",
+      "bAnswer": "답 $336$에 뺀 수 $127$을 더한다. $336+127=463$으로 처음 수가 나오므로 바르게 계산한 것이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "답에 뺀 수 $127$을 더함"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 수 $463$이 나오는지 확인"
+          ]
+        }
+      ],
+      "bGoal": "뺄셈 결과를 덧셈으로 검산하는 방법 설명",
+      "bReason": "수 이름만으로 된 원문을 실제 식 검산으로 자립시킴",
+      "cDecision": "rewrite",
+      "cReason": "'답에 □를 더해'는 '빼는 수'라는 숨은 수 이름 복원이라 실제 계산식의 수를 쓰게 고침",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "$463-127=336$이 맞는지 확인하려면 $336$에 {$127$}을 더해 {$463$}이 나오는지 본다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$127$",
+        "equivalents": []
+      },
+      {
+        "expected": "$463$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "덧셈 확인을 식과 함께 요청하므로 336+127=463 또는 바른 피연산자를 쓴 동등한 식을 기준에 명시해야 한다.",
+      "c": "답에 더할 뺀 수 127과 확인할 처음 수 463의 역할이 명확하다."
+    }
+  },
+  {
+    "id": "e3-1-1-4-xc16",
+    "sourceIndex": 431,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 431,
+      "sourceFingerprint": "ab97b4115a3ac456baa681a03591ff343a3cfe74787d3ff965c2ce4be7026a7c",
+      "part": "e3plus",
+      "id": "e3-1-1-4-xc16",
+      "section": "초3::1-1 덧셈과 뺄셈::1-1-4 받아내림이 두 번 있는 (세 자리 수)-(세 자리 수)",
+      "term": "몇백에서 $1$을 뺄 때 바뀌는 자리",
+      "kind": "성질",
+      "level": "중",
+      "definition": "몇백에서 $1$을 빼면 백 하나를 풀어야 하므로 {백, 십, 일의 자리 숫자가 모두} 바뀐다.",
+      "example": {
+        "prompt": "$500-1$에서 백의 자리 숫자도 바뀌는 까닭은?",
+        "answer": "십의 자리도 $0$이라 백을 풀어서"
+      },
+      "studentC": "몇백에서 $1$을 빼면 백 하나를 풀어야 하므로 □ 바뀐다.",
+      "answers": [
+        "백, 십, 일의 자리 숫자가 모두"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-1-4-xc16",
+      "proposalFingerprint": "1fdf7e79e047df0db65ee0a2abd7f235cdebef5613c3f6e87e3f1203bd18a335",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$500-1$을 계산하면 일의 자리뿐 아니라 백의 자리 숫자도 바뀝니다. 그 까닭을 설명해 보세요.",
+      "bAnswer": "일의 자리 $0$에서 $1$을 뺄 수 없는데 십의 자리도 $0$이라 받아내릴 수 없다. 그래서 백 $1$개를 풀어야 하므로 백의 자리가 $4$로 바뀐다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "십의 자리도 $0$이라 받아내릴 수 없음"
+          ]
+        },
+        {
+          "anyOf": [
+            "백 $1$개를 풀어야 함"
+          ]
+        }
+      ],
+      "bGoal": "몇백에서 1을 뺄 때 백의 자리까지 바뀌는 까닭 설명",
+      "bReason": "원문 예제 500-1의 까닭을 그대로 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "답이 '백, 십, 일의 자리 숫자가 모두'라는 긴 구절이라 계산값과 한 낱말로 줄임",
+      "cSlotEquivalents": [],
+      "answerNotes": "모두, 전부, 다 허용"
+    },
+    "currentCMarkedSentence": "$500-1$을 계산하면 {$499$}이다. 이처럼 몇백에서 $1$을 빼면 세 자리의 숫자가 {모두} 바뀐다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$499$",
+        "equivalents": []
+      },
+      {
+        "expected": "모두",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "500의 일·십 0 때문에 백까지 풀어야 한다는 B 이유는 적절하다.",
+      "c": "몇백에 100도 포함되면 100-1=99에서 세 자리 표현이 사라진다; 일반화 대신 500 또는 200 이상 조건으로 세 자리 숫자 변화의 범위를 분명히 한다."
+    }
+  },
+  {
+    "id": "e3-1-2-1-xc10",
+    "sourceIndex": 452,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 452,
+      "sourceFingerprint": "6bc5be98745a8493e6cdf7269093db66c5e8db3bfce3292ecd84c6e66c098809",
+      "part": "e3plus",
+      "id": "e3-1-2-1-xc10",
+      "section": "초3::1-2 평면도형::1-2-1 선분, 반직선, 직선",
+      "term": "반직선이 뻗는 쪽",
+      "kind": "성질",
+      "level": "중",
+      "definition": "반직선은 시작점에서 {한쪽}으로만 끝없이 뻗는다.",
+      "studentC": "반직선은 시작점에서 □으로만 끝없이 뻗는다.",
+      "answers": [
+        "한쪽"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-1-xc10",
+      "proposalFingerprint": "54d6e08d6f98eb3599cd957f4c2e00c81bdb73b2ae58813de4b712911a0ca306",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "반직선이 어떤 선인지, 시작점과 뻗는 쪽을 넣어 설명해 보세요.",
+      "bAnswer": "한 점에서 시작하여 한쪽으로만 끝없이 늘인 곧은 선이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 점에서 시작"
+          ]
+        },
+        {
+          "anyOf": [
+            "한쪽으로 끝없이 뻗음"
+          ]
+        }
+      ],
+      "bGoal": "반직선의 뜻을 시작점과 방향으로 설명",
+      "bReason": "보통 이름 '반직선'의 뜻을 두 가지 성질로 좁혀 묻게 함",
+      "cDecision": "keep",
+      "cReason": "'□으로만 끝없이'의 답이 '한쪽' 한 낱말로 분명함",
+      "cSlotEquivalents": [],
+      "answerNotes": "한쪽, 한 방향 허용. 양쪽은 오답"
+    },
+    "currentCMarkedSentence": "반직선은 시작점에서 {한쪽}으로만 끝없이 뻗는다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "한쪽",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "반직선의 뜻에는 한 시작점·한쪽 무한 연장뿐 아니라 곧은 선임도 필요하므로 곧다는 의미를 기준에 넣는다.",
+      "c": "한쪽으로만 뻗는 방향을 확인한다."
+    }
+  },
+  {
+    "id": "e3-1-2-1-xc19",
+    "sourceIndex": 460,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 460,
+      "sourceFingerprint": "1789a54169389692cc3c8d538d44a73567f39740a11027e16d0be9bbcaadcefc",
+      "part": "e3plus",
+      "id": "e3-1-2-1-xc19",
+      "section": "초3::1-2 평면도형::1-2-1 선분, 반직선, 직선",
+      "term": "한 직선 위의 점들로 만드는 선분",
+      "kind": "성질",
+      "level": "상",
+      "definition": "한 직선 위에 세 점이 있을 때, 가운데 점을 사이에 둔 양 끝의 {두 점}을 끝점으로 하는 선분도 만들 수 있다.",
+      "example": {
+        "prompt": "한 직선 위에 점 ㄱ, ㄴ, ㄷ이 차례로 있을 때 선분 ㄱㄷ도 선분인 까닭은?",
+        "answer": "두 끝점 사이를 곧게 이어서"
+      },
+      "studentC": "한 직선 위에 세 점이 있을 때, 가운데 점을 사이에 둔 양 끝의 □을 끝점으로 하는 선분도 만들 수 있다.",
+      "answers": [
+        "두 점"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-1-xc19",
+      "proposalFingerprint": "57db6fad41259c7cdf442fe47a4311c009ecf0459b8fc476d8da96364a1d4bbd",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "한 직선 위에 점 ㄱ, ㄴ, ㄷ이 차례로 있습니다. 이 점들을 끝점으로 하는 선분을 모두 쓰고, 빠뜨리기 쉬운 선분이 무엇인지 설명해 보세요.",
+      "bAnswer": "선분 ㄱㄴ, 선분 ㄴㄷ, 선분 ㄱㄷ이다. 가운데 점 ㄴ을 지나는 선분 ㄱㄷ도 두 끝점 ㄱ과 ㄷ을 곧게 이은 선분이므로 빠뜨리지 않아야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "선분 ㄱㄴ, ㄴㄷ, ㄱㄷ"
+          ]
+        },
+        {
+          "anyOf": [
+            "선분 ㄱㄷ도 선분임"
+          ]
+        }
+      ],
+      "bGoal": "한 직선 위 세 점으로 만드는 선분을 빠짐없이 찾기",
+      "bReason": "원문 예제의 점 배치를 써서 선분 찾기와 빠뜨리기 쉬운 것을 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "'양 끝의 □을 끝점으로'는 답 '두 점'이 무엇을 가리키는지 흐려 점 이름과 개수를 쓰게 함",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "한 직선 위에 점 ㄱ, ㄴ, ㄷ이 차례로 찍힌 그림",
+      "answerNotes": "ㄱㄷ, ㄷㄱ 모두 정답"
+    },
+    "currentCMarkedSentence": "한 직선 위에 점 ㄱ, ㄴ, ㄷ이 차례로 있으면 선분 ㄱㄴ, 선분 ㄴㄷ, 선분 {ㄱㄷ}으로 선분이 모두 {$3$}개이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "ㄱㄷ",
+        "equivalents": []
+      },
+      {
+        "expected": "$3$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "가운데 점을 지나도 ㄱㄷ이 선분인 이유와 세 선분 목록이 분명하다.",
+      "c": "ㄱㄷ과 ㄷㄱ은 같은 선분 이름이므로 역순도 슬롯 대안으로 허용해야 한다."
+    }
+  },
+  {
+    "id": "e3-1-2-1-xc21",
+    "sourceIndex": 462,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 462,
+      "sourceFingerprint": "12299ddd61fc3a09319efabd984837ddd5fdbd3e6e6a8551bbd389cfd746c922",
+      "part": "e3plus",
+      "id": "e3-1-2-1-xc21",
+      "section": "초3::1-2 평면도형::1-2-1 선분, 반직선, 직선",
+      "term": "직선의 여러 이름",
+      "kind": "성질",
+      "level": "상",
+      "definition": "직선 위의 {어느 두 점}으로도 이름을 붙일 수 있어 한 직선을 여러 이름으로 부를 수 있다.",
+      "studentC": "직선 위의 □으로도 이름을 붙일 수 있어 한 직선을 여러 이름으로 부를 수 있다.",
+      "answers": [
+        "어느 두 점"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-1-xc21",
+      "proposalFingerprint": "941e60077b130b944d84852b4e6720111af471261177844e894a79bed08b6044",
+      "learningRole": "naming",
+      "bDecision": "rewrite",
+      "bPrompt": "한 직선 위에 점 ㄱ, ㄴ, ㄷ이 있습니다. 이 직선을 직선 ㄱㄴ이라고도 하고 직선 ㄴㄷ이라고도 부를 수 있는 까닭을 설명해 보세요.",
+      "bAnswer": "직선은 양쪽으로 끝없이 뻗어 있어서, 그 위의 어느 두 점을 골라도 그 두 점을 지나는 같은 직선이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직선 위의 어느 두 점을 골라도 같은 직선"
+          ]
+        }
+      ],
+      "bGoal": "한 직선에 여러 이름을 붙일 수 있는 까닭 설명",
+      "bReason": "세 점을 정해 두 이름을 직접 비교하게 함",
+      "cDecision": "rewrite",
+      "cReason": "'직선 위의 □으로도'는 답 '어느 두 점'이 모호해 남은 점 짝의 이름을 쓰게 함",
+      "cSlotEquivalents": [],
+      "answerNotes": "ㄱㄷ, ㄷㄱ 정답. ㄴㄱ, ㄷㄴ도 같은 직선의 이름이므로 틀렸다고 하지 않음"
+    },
+    "currentCMarkedSentence": "한 직선 위에 점 ㄱ, ㄴ, ㄷ이 있으면 이 직선을 직선 ㄱㄴ이라고도, 직선 ㄴㄷ이라고도, 직선 {ㄱㄷ}이라고도 부를 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "ㄱㄷ",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "직선 위 어느 두 점을 택해도 같은 직선이라는 B 이유는 적절하다.",
+      "c": "다른 이름의 빈칸에 ㄱㄷ만 고정할 수 없고 역순·이미 쓴 두 점도 문장상 가능하다; 다른 두 점 쌍의 범위를 명시하거나 C를 제외한다."
+    }
+  },
+  {
+    "id": "e3-1-2-2-xc2",
+    "sourceIndex": 466,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 466,
+      "sourceFingerprint": "efe02975f883f1d99b6eeaf1a18fd1c674795362be2ebcf799665631b1df96b1",
+      "part": "e3plus",
+      "id": "e3-1-2-2-xc2",
+      "section": "초3::1-2 평면도형::1-2-2 각, 직각 알아보기",
+      "term": "각의 변 읽기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "각 ㄱㄴㄷ의 두 변은 꼭짓점 ㄴ을 앞에 두어 {변 ㄴㄱ}, {변 ㄴㄷ}으로 읽는다.",
+      "studentC": "각 ㄱㄴㄷ의 두 변은 꼭짓점 ㄴ을 앞에 두어 □, □으로 읽는다.",
+      "answers": [
+        "변 ㄴㄱ",
+        "변 ㄴㄷ"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-2-xc2",
+      "proposalFingerprint": "46b43fb1f3f1a6698932efbf82ecb08817ee402aef1f76b22ac1ac678bacae43",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": null,
+      "bReason": "변을 꼭짓점부터 읽는 규칙 적용뿐임",
+      "cDecision": "keep",
+      "cReason": "각 이름과 '꼭짓점 ㄴ을 앞에'라는 조건이 있어 두 변 이름을 정할 수 있음",
+      "cSlotEquivalents": [],
+      "exclusionReason": "단순 이름 읽기이고, 변의 뜻은 e3-1-2-2-xc11에서 묻음",
+      "answerNotes": "순서는 상관없음. 변 ㄱㄴ, 변 ㄷㄴ은 '꼭짓점을 앞에' 조건에 맞지 않음"
+    },
+    "currentCMarkedSentence": "각 ㄱㄴㄷ의 두 변은 꼭짓점 ㄴ을 앞에 두어 {변 ㄴㄱ}, {변 ㄴㄷ}으로 읽는다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "변 ㄴㄱ",
+        "equivalents": []
+      },
+      {
+        "expected": "변 ㄴㄷ",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "변의 뜻 설명은 475에 있어 읽기만의 B를 제외한다.",
+      "c": "두 변의 나열 순서는 자유인데 슬롯 답은 고정됐다; 첫 변을 주고 나머지 한 변만 묻는 문장으로 바꾸는 편이 명확하다."
+    }
+  }
+]

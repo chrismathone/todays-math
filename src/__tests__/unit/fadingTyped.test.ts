@@ -44,6 +44,16 @@ const TWIN = conceptOf([
   "높이가 같으면 넓이가 {같다}.",
   "넓이는 밑변과 {높이}의 곱의 반이다.",
 ]);
+/** 완전제곱식에 더하는 같은 수 — 분수의 표시만 다른, 검토한 은행의 두 표기. */
+const EQUIVALENT_SQUARE = [
+  "$(b/2)^2$",
+  "$\\left(\\frac{b}{2}\\right)^2$",
+] as const;
+/** 근호 인수가 한 토큰인 2 — 중괄호 유무와 관계없이 √2를 2로 나눈 같은 수. */
+const EQUIVALENT_RADICAL = [
+  "$\\frac{\\sqrt{2}}{2}$",
+  "$\\frac{\\sqrt2}{2}$",
+] as const;
 const targetOf = (concept: FadingConcept, text: string, nth = 0) =>
   fadingTargets(concept).filter((t) => t.text === text)[nth]!;
 
@@ -91,6 +101,62 @@ describe("쓴 답을 견주는 열쇠", () => {
     same("$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$", "(1-a/b)*c/d");
     same("$0\\le x\\le\\frac{l}{v}$", "0<=x<=l/v");
     same("$360^\\circ\\times\\frac{r}{l}$", "360도 x r/l");
+  });
+
+  it("TeX 인수는 중괄호 없이 한 글자나 명령으로도 쓴다 — 현재 은행의 짧은 분수", () => {
+    same("$\\frac{d}{2}$", "$\\frac d2$", "d/2");
+    same("$\\frac{x}{a}$", "$\\frac xa$", "x/a");
+    same("$\\frac{1}{a}$", "$\\frac1a$", "1/a");
+    same("$\\frac{1}{3}$", "$\\frac13$", "1/3");
+    same("$\\frac{h}{\\tan x}$", "$\\frac h{\\tan x}$", "h/(tan x)");
+    same(EQUIVALENT_RADICAL[0], EQUIVALENT_RADICAL[1], "(루트2)/2");
+    same("$\\frac{a}{b}$", "$\\dfrac ab$", "$\\tfrac a{b}$", "$\\frac\ta\nb$");
+  });
+
+  it("인수 안의 명령도 끝까지 읽되 다음 인수·첨자·항을 삼키지 않는다", () => {
+    same("$\\frac{\\sqrt{2}}{a}$", "$\\frac\\sqrt2a$", "(루트2)/a");
+    same("$\\sqrt{\\frac{1}{2}}$", "$\\sqrt\\frac12$", "루트(1/2)");
+    same("$\\frac{\\frac{1}{2}}{3}$", "$\\frac\\frac123$", "(1/2)/3");
+    same("$\\frac{\\pi}{2}$", "$\\frac\\pi2$", "파이/2");
+    same("$\\frac{\\tan}{2}$", "$\\frac\\tan2$", "tan/2");
+    same("$\\frac{a}{b}^2$", "$\\frac ab^2$", "a/b제곱");
+    same("$\\frac{1}{2}a$", "$\\frac12a$", "1/2a");
+    same("$2\\frac{1}{3}$", "$2\\frac13$", "2과1/3");
+    same("$\\frac{1}{\\sqrt{2}}$", "$\\frac1\\sqrt2$", "1/(루트2)");
+    expect(typedKey("$\\frac ab^2$")).not.toBe(typedKey("$\\frac a{b^2}$"));
+    expect(typedKey("$\\frac12a$")).not.toBe(typedKey("$\\frac1{2+a}$"));
+    expect(typedKey("$\\frac{12}{3}$")).not.toBe(typedKey("$\\frac12$"));
+  });
+
+  it("모르는 명령·불완전한 인수·지원하지 않는 근호 지수는 그대로 남는다", () => {
+    for (const text of [
+      "$\\frac d$",
+      "$\\frac{d}{2$",
+      "$\\frac d}$",
+      "$\\frac\\unknown2a$",
+      "$\\fraction12$",
+      "$\\constructor12$",
+      "$\\sqrt[3]{2}$",
+    ])
+      expect(typedKey(text), text).toContain("\\");
+    expect(typedKey("$\\frac d$")).not.toBe(typedKey("d/2"));
+    expect(typedKey("$\\sqrt[3]{2}$")).not.toBe(typedKey("루트2"));
+  });
+
+  it("검토한 두 완전제곱 표기는 같고 부호·분모·제곱의 범위는 구별한다", () => {
+    same(EQUIVALENT_SQUARE[0], EQUIVALENT_SQUARE[1], "(b/2)제곱");
+    const distinct = [
+      EQUIVALENT_SQUARE[0],
+      "$(b/3)^2$",
+      "$(2/b)^2$",
+      "$-(b/2)^2$",
+      "$b/2^2$",
+      "$(b/2)^3$",
+      // 대수 계산·약분은 이 규칙의 범위가 아니다.
+      "$b^2/4$",
+      "$(b+b)/4$",
+    ].map(typedKey);
+    expect(new Set(distinct).size).toBe(distinct.length);
   });
 
   it("작업실의 한컴 낱말로 쓴 수식도 같게 본다 — root · over · bar · deg · neq · bot …", () => {
@@ -200,6 +266,32 @@ describe("쓴 답 하나의 결과 — 맞음 · 틀림 · 모름", () => {
     );
   });
 
+  it.each([EQUIVALENT_SQUARE, EQUIVALENT_RADICAL])(
+    "%s의 같은 표기는 두 빈칸 모두 맞음이고 다른 열쇠의 답·함정은 틀림이다",
+    (first, second) => {
+      const concept = conceptOf([
+        `첫째 수는 {${first}}이다.`,
+        `둘째 수는 {${second}}이다.`,
+        "다른 수는 {$(b/3)^2$}이다.",
+      ]);
+      const traps = [{ text: "$(2/b)^2$" }];
+      for (const form of [first, second]) {
+        const target = targetOf(concept, form);
+        for (const equivalent of [first, second])
+          expect(
+            fadingTypedOutcome(concept, target.id, equivalent, traps),
+          ).toBe("correct");
+        for (const wrong of ["$(b/3)^2$", "$(2/b)^2$"])
+          expect(fadingTypedOutcome(concept, target.id, wrong, traps)).toBe(
+            "wrong",
+          );
+        expect(fadingTypedOutcome(concept, target.id, "b^2/4", traps)).toBe(
+          "unknown",
+        );
+      }
+    },
+  );
+
   it("견줄 글자가 없는 글 · 너무 긴 글 · 없는 빈칸은 받지 않는다", () => {
     const hyp = targetOf(CONCEPT, "빗변").id;
     expect(() => fadingTypedOutcome(CONCEPT, hyp, "   ")).toThrow();
@@ -252,7 +344,7 @@ describe("쓴 답 — 은행 전체", () => {
     return buildFadingConcepts(CONCEPT_BLANK_BANK.concepts, FADING_GROUPS);
   };
 
-  it("모든 답에 열쇠가 있고, 한 개념 안에서 서로 다른 답 · 함정은 열쇠도 다르며, 상한 안에 든다", async () => {
+  it("모든 답에 열쇠가 있고 상한 안에 들며, 겹친 표기는 검토한 같은 답뿐이다", async () => {
     const concepts = await load();
     expect(concepts.length).toBeGreaterThan(2000);
     const strict = (text: string) => text.trim().replace(/\s+/g, " ");
@@ -276,19 +368,25 @@ describe("쓴 답 — 은행 전체", () => {
       }
     }
     expect(empty).toEqual([]);
-    expect(merged).toEqual([]);
+    // (b/2)의 제곱 · √2/2. 새 겹침을 무조건 허용하지 않고 검토한 두 쌍만 잠근다.
+    expect(merged).toEqual([
+      `m3-03-01-c8: ${EQUIVALENT_SQUARE[0]} ↔ ${EQUIVALENT_SQUARE[1]}`,
+      `m3-05-02-c1: ${EQUIVALENT_RADICAL[0]} ↔ ${EQUIVALENT_RADICAL[1]}`,
+    ]);
     expect(long).toEqual([]);
   }, 120_000);
 
-  it("은행의 글을 그대로 쓰면 언제나 맞음이고, 그 개념의 다른 답(글이 다른 것)을 쓰면 언제나 틀림이다 — 진짜 틀림은 «모름»으로 빠지지 않는다", async () => {
+  it("은행의 글·같은 열쇠의 표기는 맞음이고 다른 열쇠의 답·함정은 틀림이다 — 진짜 틀림은 «모름»으로 빠지지 않는다", async () => {
     const concepts = await load();
     const notCorrect: string[] = [];
     const notWrong: string[] = [];
     let pairs = 0;
+    let equivalentPairs = 0;
     for (const concept of concepts) {
       const traps = fadingTrapsFor(concept);
       const targets = fadingTargets(concept);
       for (const target of targets) {
+        const targetKey = typedKey(target.text);
         if (
           fadingTypedOutcome(concept, target.id, target.text, traps) !==
           "correct"
@@ -303,13 +401,21 @@ describe("쓴 답 — 은행 전체", () => {
             target.text.trim().replace(/\s+/g, " ")
           )
             continue;
-          pairs++;
-          if (fadingTypedOutcome(concept, target.id, other, traps) !== "wrong")
-            notWrong.push(`${target.id}: ${target.text} ← ${other}`);
+          const outcome = fadingTypedOutcome(concept, target.id, other, traps);
+          if (typedKey(other) === targetKey) {
+            equivalentPairs++;
+            if (outcome !== "correct")
+              notCorrect.push(`${target.id}: ${target.text} ← ${other}`);
+          } else {
+            pairs++;
+            if (outcome !== "wrong")
+              notWrong.push(`${target.id}: ${target.text} ← ${other}`);
+          }
         }
       }
     }
     expect(pairs).toBeGreaterThan(50_000);
+    expect(equivalentPairs).toBe(4);
     expect(notCorrect).toEqual([]);
     expect(notWrong).toEqual([]);
   }, 120_000);

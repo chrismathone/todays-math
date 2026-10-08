@@ -1,0 +1,533 @@
+{
+  "sourceCommit": "13bf05dce",
+  "scope": "Actual assembled learning definitions read by Codex; capture alone is not adoption.",
+  "rows": [
+    {
+      "id": "e5-1-3-2-c2",
+      "sourceIndex": 33,
+      "sourceFingerprint": "660955080b1b3487c30355006dc7bfa52f4dc3f3621117a8d6b5e819ff5919af",
+      "proposalFingerprint": "91e7b1795e594d7179bce04eaef5ea4bac17889c74e72fbe924214bf34932d1c",
+      "proposed": true,
+      "definition": "대응 관계를 나타낸 식에서 기호는 정해진 한 수만을 뜻하지 않고, 그 기호가 나타내는 양이 될 수 있는 {여러 수}를 나타낸다.",
+      "definitionFingerprint": "25cb9c325780302fcb7c2e4efe15be7dfa464bc68920909a44e78c62b06ae744",
+      "visibleLength": 69,
+      "targets": [
+        "여러 수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-5-c3",
+      "sourceIndex": 51,
+      "sourceFingerprint": "3e8b9917f8edd1b748d47fb589dd471026621e2a6d79d4228e6d984fa3ec3a6a",
+      "proposalFingerprint": "0bc4b7ac7df071e348f23fecc235563c3fe9899eb0f6fe5dbb0e503a2b2000f2",
+      "proposed": true,
+      "definition": "분모와 분자에 같은 자연수를 곱해 분모를 {$10,\\ 100,\\ 1000$} 같은 수로 만들 수 있으면, 소수 자리값을 이용해 그 분수를 소수로 나타낼 수 있다.",
+      "definitionFingerprint": "ce487fd3c588cce4ab5cec787e2094121a338f9c8d40e878de9a12628eca6f27",
+      "visibleLength": 82,
+      "targets": [
+        "$10,\\ 100,\\ 1000$"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-2-c4",
+      "sourceIndex": 69,
+      "sourceFingerprint": "fc651dee1e4f14cb5573a12d3032afa9916c5d9157f086f94e918ef1f5a0c150",
+      "proposalFingerprint": "7fd9fbc21209e3e71df6fed564ed6b8eeb5bb5f8c80d3390397719c9e662124a",
+      "proposed": true,
+      "definition": "직사각형을 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 채우면, {한 줄에 놓인 개수}에 {줄 수}를 곱한 값이 전체 정사각형의 개수이다.",
+      "definitionFingerprint": "4d9ac762cbba25ac76300e7ad8bd241634cac286c8013087bc4be8d0917a2ae4",
+      "visibleLength": 70,
+      "targets": [
+        "한 줄에 놓인 개수",
+        "줄 수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-3-c5",
+      "sourceIndex": 74,
+      "sourceFingerprint": "a3c0c467ee58b237b0d9f8d7d31e80c3099f423e51e85eb642ca7b48608958e7",
+      "proposalFingerprint": "39e9579e2d0b0ca052555f349f284ba874b7c5fd96a1cf817933fd1d4d7f3f3c",
+      "proposed": true,
+      "definition": "정사각형의 한 변의 길이를 $10$배로 하면 {가로와 세로가 함께} $10$배가 되어, 넓이는 $10$배의 $10$배인 $100$배가 된다.",
+      "definitionFingerprint": "10ceced3a5ed6150890e9263b15a1f9e145430af85570eb174b72985c0b34e71",
+      "visibleLength": 66,
+      "targets": [
+        "가로와 세로가 함께"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-4-c2",
+      "sourceIndex": 76,
+      "sourceFingerprint": "bbc7308a24402c83131167933c1d97bba0f94c95c0d2806be18c52cee826f8db",
+      "proposalFingerprint": "f9b026754fc854298d14a35e108b7f81d8c191d3bc3a920ced810b52b2839bc0",
+      "proposed": true,
+      "definition": "높이는 밑변의 맞은편 변이나 꼭짓점에서 밑변에 {수직}으로 그은 선분의 길이이다. 필요한 경우 밑변을 늘인 선까지 잰다.",
+      "definitionFingerprint": "52eeeb0d626200880fd2a42a621772f3bd050327d91abf4f5a90f69b430dfc6d",
+      "visibleLength": 65,
+      "targets": [
+        "수직"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-5-c6",
+      "sourceIndex": 85,
+      "sourceFingerprint": "35d6ad118620e152edff4acd6476b1d615146fcf44467d899a87d73080691aad",
+      "proposalFingerprint": "aac7a357ce5a1bced986308121a551b6cb3225adec9d1d03683e69650036b798",
+      "proposed": true,
+      "definition": "사다리꼴에서 평행한 두 밑변 사이에 밑변과 {수직}인 선분을 그으면, 그 선분의 길이가 높이이다.",
+      "definitionFingerprint": "4e83618c80bd288df11b6d702e6b49bf137dc00c26103ed508f008db6b29b37f",
+      "visibleLength": 52,
+      "targets": [
+        "수직"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-6-5-c8",
+      "sourceIndex": 87,
+      "sourceFingerprint": "ed1536bff49857070615ac58e9aec6d21ef8751a2446bd5f2b0147084d0870c6",
+      "proposalFingerprint": "8c65276dd94068ae2bd95f39c668da4f7ef5baa9537e8dc8d9a0b17aeccb841f",
+      "proposed": true,
+      "definition": "모양과 크기가 같은 사다리꼴 $2$개 중 하나를 반 바퀴 돌려 평행하지 않은 한 변끼리 맞대면 평행사변형이 된다. 그 밑변은 사다리꼴의 {윗변과 아랫변의 합}이다.",
+      "definitionFingerprint": "8bcf511e409e671304c2494c63c664a14d8e0415cadf3f3fe3b346b7c993b5c1",
+      "visibleLength": 87,
+      "targets": [
+        "윗변과 아랫변의 합"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-2-c3",
+      "sourceIndex": 93,
+      "sourceFingerprint": "602dba1ec42991cd05b99b987aeae039b6a06bece8e1cc690e5c4dbcba5be51c",
+      "proposalFingerprint": "5aa2ca7e9bef82f560d09b426f99893eb6a3940e56e3d76bd955aac00e405d56",
+      "proposed": true,
+      "definition": "이상과 이하는 기준이 되는 수를 범위에 포함하지만, 초과와 미만은 그 수를 {제외한다}.",
+      "definitionFingerprint": "2dcd8dced604debb109c56c304cc1b4a95bebbfb30018f60594979cfb3a2dcc2",
+      "visibleLength": 47,
+      "targets": [
+        "제외한다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-1-6-c3",
+      "sourceIndex": 105,
+      "sourceFingerprint": "953f5d189c15d1939d4357b5c9ea9260414b30837d989258e2f3a6fa19cd7735",
+      "proposalFingerprint": "a78276cd7568f4b3ac57d50835c7f24cb39c0fe96265a8c88087103ad0137e1a",
+      "proposed": true,
+      "definition": "같은 자리까지 반올림해 같은 값이 되는 수는, 그 값에서 나타낸 자리 단위의 {절반을 뺀 수} 이상이고 절반을 더한 수 미만이다. 십의 자리면 $5$, 백의 자리면 $50$을 빼고 더한다.",
+      "definitionFingerprint": "e8c45e90442f057c49d6bd54d42f81a821daee55ec1f77d3d3f8cc520463c405",
+      "visibleLength": 99,
+      "targets": [
+        "절반을 뺀 수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-3-1-c3",
+      "sourceIndex": 120,
+      "sourceFingerprint": "34549219d1344fad9eb03f2434e8ba9958d635e97f9d55d21fcbfe35dfe54cb8",
+      "proposalFingerprint": "4372a83b7d197f946f08a072c72d260e40fad8f1d6d4f7c8e2b1231f30e6cc0e",
+      "proposed": true,
+      "definition": "넓이가 같아도 포개었을 때 완전히 겹치지 않으면 {합동이 아니다}. 넓이가 같다는 것만으로 합동이라고 할 수 없다.",
+      "definitionFingerprint": "9868d75534945970796fad768b80278b80290fc4c70e41aea87eb45abff9cc90",
+      "visibleLength": 62,
+      "targets": [
+        "합동이 아니다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-3-c2",
+      "sourceIndex": 147,
+      "sourceFingerprint": "9889ea8761a8636617b9173cfb71d7aef1dda7fa245c602b19db3b788094ca29",
+      "proposalFingerprint": "9a1c0121a412db241ae30f5e4aff8870e4754e48f93982038a1960d272f9667b",
+      "proposed": true,
+      "definition": "자연수에 $1$보다 작은 소수를 곱할 때에는 그 소수를 {분수}로 고쳐 자연수의 몇 분의 몇인지 구할 수 있다.",
+      "definitionFingerprint": "a6b0138570e870d068e925005fa0f5e3686ac5e4e7cd8f13537aabd64651194d",
+      "visibleLength": 58,
+      "targets": [
+        "분수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-5-c1",
+      "sourceIndex": 152,
+      "sourceFingerprint": "db78362cec22b237b9cb59d2da8da7509a19a1a64238518035f9f28bbd34e466",
+      "proposalFingerprint": "2d5179a37d7e64749303e4f2d97c3424fd343507c75bc26edbff34936ca91a0f",
+      "proposed": true,
+      "definition": "소수끼리 곱할 때는 자연수처럼 곱한 다음, 두 수의 소수점 아래 자리 수를 {합한 만큼} 오른쪽에서 세어 소수점을 찍는다.",
+      "definitionFingerprint": "460a7ba17141008c632ba9b638b5843e10eb3fc4223fa0c483038ca44b09a5e2",
+      "visibleLength": 66,
+      "targets": [
+        "합한 만큼"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-6-c1",
+      "sourceIndex": 182,
+      "sourceFingerprint": "77002e27dc45101252ee8dd4ebba896437ceb595f5541348656a859190768036",
+      "proposalFingerprint": "a855ba6348ce0f9be263c5149b2435ec1de1b216b6f085ac9aa331eca5c68200",
+      "proposed": true,
+      "definition": "직육면체의 일부 모서리를 잘라 여섯 면이 이어진 채로 평면 위에 펼친 그림이 {직육면체의 전개도}이다.",
+      "definitionFingerprint": "2bdd18f2b6e2ece1e48d06792bef98f75baf6b865e4dc731676ea0d86cf3a415",
+      "visibleLength": 55,
+      "targets": [
+        "직육면체의 전개도"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-1-2-c1",
+      "sourceIndex": 200,
+      "sourceFingerprint": "86c84811cbafc21faaf125af788f78997d906e3731a35a632728ad76a6d1b454",
+      "proposalFingerprint": "1835ab170ec33700107feba08aa7e25f34599e3e94aa19e11605eda587cb188e",
+      "proposed": true,
+      "definition": "어떤 양을 똑같이 나눌 때, 한 몫이 처음 양에서 차지하는 부분을 분수로 나타낼 수 있다. 이 분수의 분자는 {$1$}이고, 분모는 {똑같이 나눈 부분의 수}이다.",
+      "definitionFingerprint": "9279bfcf05a39d0843672b3d8b63a0ea28507ade8e6db2238991dd2ddecaa530",
+      "visibleLength": 85,
+      "targets": [
+        "$1$",
+        "똑같이 나눈 부분의 수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-2-1-c1",
+      "sourceIndex": 206,
+      "sourceFingerprint": "7d5ce161ad3667e8f7f74783fbb907b3dd7bd8d7b68ff32f6aa2c6c6df1efdef",
+      "proposalFingerprint": "340994ba324beb5e80f73c90f156685a8864305d61f53f766e14fc3d35c8d5f8",
+      "proposed": true,
+      "definition": "각기둥은 서로 평행하고 합동인 두 다각형 면이 있고, 나머지 면이 모두 {직사각형}인 입체도형이다.",
+      "definitionFingerprint": "3a350d24830d39f305e2d7d54ece91dc4fe7e52400ec4274f3ba3992546dc759",
+      "visibleLength": 53,
+      "targets": [
+        "직사각형"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-2-4-c2",
+      "sourceIndex": 219,
+      "sourceFingerprint": "7b170784d046815bc4d94e27c523cc786bfd15cecd0dd8c024ac2ca404d0c170",
+      "proposalFingerprint": "813e8ba73b7416745d243918c7991eb0c32affb49ba67f239deeed3ad021593f",
+      "proposed": true,
+      "definition": "각뿔에서 꼭대기 점에 닿지 않는 다각형 모양의 면 $1$개를 {밑면}이라 한다.",
+      "definitionFingerprint": "c8a8a3ed0511f7d4b6c072def3f4ce6ca249d0de671f08fc99df06e60d8110c6",
+      "visibleLength": 40,
+      "targets": [
+        "밑면"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-3-2-c1",
+      "sourceIndex": 231,
+      "sourceFingerprint": "fb052653bdae4729b2061b50fa941694a54a7d1afc25c5ad1bed4ccffe45aea3",
+      "proposalFingerprint": "6a2c4e8a6e4a1d6e76cfe61e52bad3b582da0a8bcaa170ca1ca111442612cd50",
+      "proposed": false,
+      "definition": "$0$보다 큰 수를 {그보다 큰 수}로 나누면 몫은 $1$보다 작다.",
+      "definitionFingerprint": "bbccd81ee135dbbad9cbb5f0f42fa55b855f65ca11ee7f10c11ff2fc9cd7874b",
+      "visibleLength": 32,
+      "targets": [
+        "그보다 큰 수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-4-c1",
+      "sourceIndex": 331,
+      "sourceFingerprint": "ed7bfaa77423161673822332a7031c2bba6f599543e0cef94897af917c10b1d9",
+      "proposalFingerprint": "38a3d7b26937a09c15729039a69c39eec667d3ede83dbafd0ce3c543429d9465",
+      "proposed": true,
+      "definition": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 {쌓기나무의 개수}이다.",
+      "definitionFingerprint": "9221bf140703936c1e77bab5582e7b8b2577054cfd1de21ddac970f64cfc5dfe",
+      "visibleLength": 41,
+      "targets": [
+        "쌓기나무의 개수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-5-c3",
+      "sourceIndex": 336,
+      "sourceFingerprint": "ecc0ef3cc46c16d0a70d7f64bc0cc9d6688f20f87f639b5ced28db0764c9dcff",
+      "proposalFingerprint": "0faafe8f6b81cb7edc673709124722d31d97d02a8f88da633d8c5ddf54f6081e",
+      "proposed": true,
+      "definition": "공중에 뜬 쌓기나무 없이 쌓으면, 위층에 쌓기나무가 놓인 모든 자리에는 {바로 아래층의 쌓기나무}가 있어야 한다.",
+      "definitionFingerprint": "4f6527342907d9222eff0b576299c0d0b1af1664d159d94df15ca8a2d0606f00",
+      "visibleLength": 61,
+      "targets": [
+        "바로 아래층의 쌓기나무"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-5-4-c1",
+      "sourceIndex": 371,
+      "sourceFingerprint": "d1eb95f007b08f525fd8c424c904ef9145825541ce721239b0eaa7d383f0331d",
+      "proposalFingerprint": "e1631c3de9f34b57fd899057b23188ae54063a0475b97b1d1759f9708e8ab1c1",
+      "proposed": true,
+      "definition": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 옮겨 붙여도 {넓이는 변하지 않는다}.",
+      "definitionFingerprint": "187e251010aeafe7fb9b8fb9b7f3df3a14ae08a0b25bfda1c052a31ae3609bbd",
+      "visibleLength": 44,
+      "targets": [
+        "넓이는 변하지 않는다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-2-6-xc2",
+      "sourceIndex": 604,
+      "sourceFingerprint": "d8ee92f87ae6beac824939416d0c682ec62a553390cd178eb67913e306887965",
+      "proposalFingerprint": "7299cfbe0b4fba8d5a544c13c4b447da64e573cd92a2014f8afe2c96605bd88a",
+      "proposed": true,
+      "definition": "두 수 각각을 $1$보다 큰 자연수 두 개의 곱으로 더 나타낼 수 없을 때까지 쪼갠다. 두 곱셈식에 {함께 있는 수}는 같은 수끼리 짝지어 한 쌍마다 한 번 곱하고, 짝 없이 남은 수도 모두 곱하면 최소공배수이다.",
+      "definitionFingerprint": "f39bcf1ce1898f2845846303378e5108e6dc3e3313046213fd227b6f3a906d5d",
+      "visibleLength": 115,
+      "targets": [
+        "함께 있는 수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-2-6-xc15",
+      "sourceIndex": 617,
+      "sourceFingerprint": "e7c328237ef87f93d2ef437740cac4b6b8137df1f23d11415a9fabf861efccf5",
+      "proposalFingerprint": "872382ca2346bbcb072e02fff97d6f6233ee519e1b2dd4b9d8f8a3640e008ecf",
+      "proposed": true,
+      "definition": "두 수 중 큰 수에 $1$, $2$, $3$, …을 차례로 곱해 가며 작은 수로 처음 나누어떨어지는 수를 찾으면, 그 수가 두 수의 {최소공배수}이다.",
+      "definitionFingerprint": "a8d732d1a7fbc0dd2db0cf6c797399d344f85b353860b8506dda5efae7307d2e",
+      "visibleLength": 76,
+      "targets": [
+        "최소공배수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-2-6-xc21",
+      "sourceIndex": 623,
+      "sourceFingerprint": "c2e0b02d7c2a41e837e060fa384b59aa9ce2400c414cb7497a45b828d8164309",
+      "proposalFingerprint": "fc279b5ce515a3a5253afb8b2cf5827336c389ee15489193c9c5e0e075f59c0f",
+      "proposed": true,
+      "definition": "두 수 각각을 $1$보다 큰 자연수 두 개의 곱으로 더 나타낼 수 없을 때까지 쪼갠다. 최소공배수의 곱셈식에 있는 수가 한쪽 식에 없으면 {다른 쪽 식에 들어 있어야} 한다.",
+      "definitionFingerprint": "5dc9aecb1989f13c91d3da3f9b213f748d7f4b9a84c714da1f3c29f7152a1261",
+      "visibleLength": 93,
+      "targets": [
+        "다른 쪽 식에 들어 있어야"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-2-6-xc22",
+      "sourceIndex": 624,
+      "sourceFingerprint": "073a7ed209c75c6dd0d9c197624285aab52fb76b6fd638caac98733a3897c003",
+      "proposalFingerprint": "cc7ff961a5427ed937cec9dd86486c773994ba47087926eebe46c21eca69a802",
+      "proposed": true,
+      "definition": "어떤 수를 두 수로 각각 나눴을 때, (나누는 수)$-$(나머지)가 두 번 모두 같으면, 어떤 수에 그 차를 더한 수는 {두 수의 공배수}이다.",
+      "definitionFingerprint": "de651449847a50bab396c81a155179a8e5bff9a495f72713b079e8591a64d24c",
+      "visibleLength": 76,
+      "targets": [
+        "두 수의 공배수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-2-xc6",
+      "sourceIndex": 658,
+      "sourceFingerprint": "7fc0fed9e5cb8d1c5d7ecf0cf26b50e3a3cda38b3d31e9c039f6717fb9253639",
+      "proposalFingerprint": "72aec9b0d418d9537bead3d9af78d012876e2b6765f5ed18aefdcc6d3e43f3e6",
+      "proposed": true,
+      "definition": "대응 관계를 나타낸 식의 한 기호에 수를 넣으면, 그 기호가 나타내는 양의 {값이 정해진다}. 그 값을 사용해 다른 양의 값도 구할 수 있다.",
+      "definitionFingerprint": "565af75369d0b3c3741dac0660bab97b58714b262ad5bbb39882cf43fc946e79",
+      "visibleLength": 77,
+      "targets": [
+        "값이 정해진다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-3-xc2",
+      "sourceIndex": 678,
+      "sourceFingerprint": "feeece432061fdbfea643a39b1f73f0c5818ae51fce90b3b2e337d705b75fbb9",
+      "proposalFingerprint": "67e57647115ac84942328dca96fcd1f7aad01462863a286ceef1c00b6d51e590",
+      "proposed": true,
+      "definition": "두 사람은 해마다 한 살씩 나이를 먹는다. 나이가 적은 사람의 나이에 {나이 차}를 더하면 나이가 많은 사람의 나이가 되고, 이 차이는 해가 지나도 변하지 않는다.",
+      "definitionFingerprint": "34c2b6ef84bad65b152c06823353feb0a28ab377b8f0c35b5c7d9ed035753e9d",
+      "visibleLength": 89,
+      "targets": [
+        "나이 차"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-3-xc4",
+      "sourceIndex": 680,
+      "sourceFingerprint": "86b48cf512fb9e5e2374a287f3a1c2ad88ae6c3728e502a38f08a4d243d3877f",
+      "proposalFingerprint": "0699b938e3be8740110e7f1722196a0ff7683ff42f7819e9639e8414282ee96b",
+      "proposed": true,
+      "definition": "상자나 묶음 하나에 든 수가 모두 같을 때, 전체 수를 {하나에 든 수로 나누면} 상자나 묶음의 수가 된다.",
+      "definitionFingerprint": "b8e5441e081b21460a8c23358db8edd5351f6a5ef6af15f0273c7960e4c296a4",
+      "visibleLength": 58,
+      "targets": [
+        "하나에 든 수로 나누면"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-3-xc12",
+      "sourceIndex": 687,
+      "sourceFingerprint": "a39a64372382b2f397ba55330852d4b7f48936252af209a3697ad2d4d26e0b1d",
+      "proposalFingerprint": "aad1485cab1cc5687601c299fe81c49ba3dcb413fa724b9a0c431e14e19a80d8",
+      "proposed": true,
+      "definition": "두 도시의 날짜가 같고 시각을 $0$시부터 $24$시 전까지로 나타낼 때, 표시된 시각이 더 이른 도시의 시각은 다른 도시의 시각에서 {시간 차를 뺀} 시각이다.",
+      "definitionFingerprint": "f236e2ffc657ade93a88ef9d31654616a7b4f77f530298cea32f617756a756e3",
+      "visibleLength": 84,
+      "targets": [
+        "시간 차를 뺀"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-3-3-xc16",
+      "sourceIndex": 690,
+      "sourceFingerprint": "afe2f1adeeff9d2db47ccf77e272b85d09059393c7507fdd3521660c0bb33f84",
+      "proposalFingerprint": "d4e9f04406d88335cab40a35288a64ce908ee5fc21e2861fcee46204fafb8c58",
+      "proposed": true,
+      "definition": "한 양이 $1$ 늘 때마다 다른 양이 늘어나는 수가 {일정하지 않으면}, 두 양의 관계를 같은 수를 곱하는 식 하나로 나타낼 수 없다.",
+      "definitionFingerprint": "faaeb0855c7027f7df40ac3aa2a900a9f268ef1bae1bd8d5842cffae7e01d972",
+      "visibleLength": 71,
+      "targets": [
+        "일정하지 않으면"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-1-xc18",
+      "sourceIndex": 714,
+      "sourceFingerprint": "7e5e959e0a702918482ea299bf4bfe203a0ee5fd9358b6d93d56b95b6b42bde1",
+      "proposalFingerprint": "0e001438aca55aa49865162618a5ac048473c19398c477d6e624e29b9e9ded22",
+      "proposed": true,
+      "definition": "분모와 분자에 $1$보다 큰 자연수를 똑같이 곱하면 조각 하나는 작아지고 조각 수는 같은 배만큼 늘어난다. 그래서 분수가 나타내는 {양은 변하지 않는다}.",
+      "definitionFingerprint": "8c241ab12d777aee11de25ac347fc9d626e0b387b43c20c8959b35ac4faf3c54",
+      "visibleLength": 82,
+      "targets": [
+        "양은 변하지 않는다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-1-xc19",
+      "sourceIndex": 715,
+      "sourceFingerprint": "3c1eb78764a21183ba01d65c8b151f888e666640c2196d6b2dcbcc94783cfc4a",
+      "proposalFingerprint": "0df34da3351178a54a510cce43ffe98ff55ee2c383915f562f28cd85ff08acdb",
+      "proposed": true,
+      "definition": "분모와 분자를 같은 자연수배로 하여 크기가 같은 분수를 만들면, 분모와 분자의 차도 처음 차의 {같은 배}가 된다.",
+      "definitionFingerprint": "b67694929755ab2c94e957e3b674a92addbffe560c49b6921fa9ab9e7dbbd990",
+      "visibleLength": 62,
+      "targets": [
+        "같은 배"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-2-xc3",
+      "sourceIndex": 724,
+      "sourceFingerprint": "81b5ebdf9dcfcc08e8b6596e5c3bc82aba56912d67e9ffde737bd5210df42c10",
+      "proposalFingerprint": "3dbf97405f699eded81121253e88bb1215481b58513fe2b06254c43217f413d7",
+      "proposed": true,
+      "definition": "분모와 분자의 공약수가 {$1$ 하나}밖에 없으면 기약분수이다.",
+      "definitionFingerprint": "605d3476d25e94f1d334af4a98468029375008c573a28f112c2fc1eb5ba09f03",
+      "visibleLength": 31,
+      "targets": [
+        "$1$ 하나"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-2-xc9",
+      "sourceIndex": 730,
+      "sourceFingerprint": "39a9af36878efc247c55e019622ac620abc8eafd394ae2eb7379ce21881773b6",
+      "proposalFingerprint": "9a6589189f857a7e47cdabfda52fac325057c3bed14637cf84a763b3fe443504",
+      "proposed": true,
+      "definition": "어떤 분수를 약분할 때 쓸 수 있는 수는 분모와 분자의 {공약수} 가운데 $1$보다 큰 수이다.",
+      "definitionFingerprint": "02ec869c04a3f7cee20a27560f6749de5e111cc75c578fddadd4d56d20243d16",
+      "visibleLength": 49,
+      "targets": [
+        "공약수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-2-xc21",
+      "sourceIndex": 742,
+      "sourceFingerprint": "52016e2271358d79840764287decaf4c4bc899db8b79b68f3f87d59d75338061",
+      "proposalFingerprint": "c0697b8d0d0ac5c93c99b82d7be03256b6fcd7391f3eda289451572cab93546b",
+      "proposed": true,
+      "definition": "기약분수의 분모와 분자를 같은 자연수배로 하여 약분 전의 분수를 만들면, 두 수의 합도 기약분수의 분모와 분자 합의 {같은 배}가 된다.",
+      "definitionFingerprint": "a309ccee9a04488137d4a9269c2e0c19d9f1cdb0f598010c9f3f33f351c6c038",
+      "visibleLength": 74,
+      "targets": [
+        "같은 배"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-4-3-xc9",
+      "sourceIndex": 756,
+      "sourceFingerprint": "b526574e66d98af7e494347f56d559bcc0b99cc874400c936a522768ce675540",
+      "proposalFingerprint": "98d7a541fe87d403baf1785f8f42367bf8e4d00efe326ad2a24017b082f8e3f6",
+      "proposed": true,
+      "definition": "두 분모의 곱은 공통분모로 쓸 수 있다. 최소공배수를 쓰면 공통분모가 두 분모의 곱보다 {작거나 같다}.",
+      "definitionFingerprint": "65da6b2fe2f88f209176a6e5732cc38034c4a8c5885e5cc8ee0c5b930eab98fd",
+      "visibleLength": 56,
+      "targets": [
+        "작거나 같다"
+      ],
+      "valid": true,
+      "issues": []
+    }
+  ]
+}

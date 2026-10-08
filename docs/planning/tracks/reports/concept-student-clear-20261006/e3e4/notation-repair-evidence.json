@@ -1,0 +1,12 @@
+[
+  {
+    "id": "e4-2-1-4-c2",
+    "sourceIndex": 270,
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "자연수 부분 $3-1=2$와 분수 부분 $\\frac{7}{6}-\\frac{5}{6}=\\frac{2}{6}$을 구하여 $2\\frac{2}{6}$이다.",
+    "after": "자연수 부분 $3-1=2$와 분수 부분 $\\frac{7}{6}-\\frac{5}{6}=\\frac{2}{6}$를 구하여 $2\\frac{2}{6}$이다.",
+    "reason": "마지막 분수2/6은 육분의이로 읽으므로 목적격 조사 를이 맞다; 수식과 계산 의미는 바꾸지 않았다.",
+    "inputProposalFingerprint": "c82fbb2292a9e71766453be4ea20b72cbeab8428fd1e9b248890b101ded2b519",
+    "isReleaseApproval": false
+  }
+]

@@ -1,0 +1,2470 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:41:27.704Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-02-xc24",
+        "section": "중1::6. 평면도형::삼각형의 내각과 외각",
+        "term": "문자로 놓은 외각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 외각과, 그 꼭짓점이 아닌 두 꼭짓점의 내각이 문자로 주어지면 외각을 두 내각의 {합}과 같게 놓아 {방정식}을 세운다.",
+        "example": {
+          "prompt": "삼각형의 한 외각이 $(3x+10)^\\circ$, 이웃하지 않는 두 내각이 $(x+20)^\\circ$, $50^\\circ$이면 $x$는?",
+          "answer": "$30$"
+        },
+        "studentC": "한 외각과, 그 꼭짓점이 아닌 두 꼭짓점의 내각이 문자로 주어지면 외각을 두 내각의 □과 같게 놓아 □을 세운다.",
+        "answers": [
+          "합",
+          "방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-02-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 한 외각의 크기가 $(3x+10)^\\circ$이고, 그 외각과 이웃하지 않는 두 내각의 크기가 $(x+20)^\\circ$, $50^\\circ$일 때, $x$의 값을 구하는 식을 세우고 푸시오.",
+        "bAnswer": "외각의 크기는 이웃하지 않는 두 내각의 크기의 합과 같으므로 $3x+10=(x+20)+50$이다. $2x=60$이므로 $x=30$이다.",
+        "bGoal": "외각의 성질로 방정식 세워 풀기",
+        "bReason": "문자식이 있어야 식을 세울 수 있어 구체적인 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3x+10=(x+20)+50$",
+              "외각을 이웃하지 않는 두 내각의 합과 같게 놓는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=30$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 한 외각과, 그 외각과 이웃하지 않는 두 내각의 크기가 문자를 포함한 식으로 주어지면, 외각의 크기를 두 내각의 크기의 {합}과 같게 놓아 {방정식}을 세운다.",
+        "cAnswers": [
+          "합",
+          "방정식"
+        ],
+        "cReason": "삼각형이라는 대상이 문장에 없어 '한 외각'이 무엇의 외각인지 몰랐다.",
+        "studentLabel": "문자로 주어진 삼각형의 외각",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "외각을 두 내각의 합과 같게 놓기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1772,
+        "part": "m1plus",
+        "sourceFingerprint": "089142f41695d9e91b900719871475e7cc3944459f06d7adb218defd22cd87cb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1772
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형의 한 외각과, 그 외각과 이웃하지 않는 두 내각의 크기가 문자를 포함한 식으로 주어지면, 외각의 크기를 두 내각의 크기의 {합}과 같게 놓아 {방정식}을 세운다.",
+        "cSlotAnswers": [
+          "합",
+          "방정식"
+        ],
+        "cStudentSentence": "삼각형의 한 외각과, 그 외각과 이웃하지 않는 두 내각의 크기가 문자를 포함한 식으로 주어지면, 외각의 크기를 두 내각의 크기의 □과 같게 놓아 □을 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "방정식",
+            "equivalentAnswers": [
+              "방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "방정식"
+          ]
+        ],
+        "proposalFingerprint": "06175014de891929d97e0d65d32bc4ee56e52a3d71ac668db0944a0c614d4fa5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-02-xc25",
+        "section": "중1::6. 평면도형::삼각형의 내각과 외각",
+        "term": "$\\triangle ABC$에서 $\\angle B$, $\\angle C$의 외각의 이등분선이 만나는 점 $Q$와 $\\angle BQC$",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\triangle ABC$에서 $\\angle B$, $\\angle C$의 외각의 이등분선이 점 $Q$에서 만나면 {$\\angle BQC=90^\\circ-\\frac{1}{2}\\angle A$}이다.",
+        "example": {
+          "prompt": "$\\triangle ABC$에서 $\\angle B$, $\\angle C$의 외각의 이등분선이 점 $Q$에서 만나고 $\\angle A=40^\\circ$이면 $\\angle BQC$는?",
+          "answer": "$70^\\circ$"
+        },
+        "studentC": "$\\triangle ABC$에서 $\\angle B$, $\\angle C$의 외각의 이등분선이 점 $Q$에서 만나면 □이다.",
+        "answers": [
+          "$\\angle BQC=90^\\circ-\\frac{1}{2}\\angle A$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-02-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\angle B$의 외각의 이등분선과 $\\angle C$의 외각의 이등분선이 점 $Q$에서 만난다. $\\angle BQC$의 크기를 $\\angle A$로 나타내고 까닭을 설명하시오.",
+        "bAnswer": "$\\angle BQC=90^\\circ-\\frac{1}{2}\\angle A$이다. $\\angle QBC=\\frac{1}{2}(180^\\circ-\\angle B)$, $\\angle QCB=\\frac{1}{2}(180^\\circ-\\angle C)$이므로 $\\triangle QBC$에서 $\\angle BQC=180^\\circ-\\angle QBC-\\angle QCB=\\frac{1}{2}(\\angle B+\\angle C)=\\frac{1}{2}(180^\\circ-\\angle A)=90^\\circ-\\frac{1}{2}\\angle A$이다.",
+        "bGoal": "두 외각의 이등분선이 만드는 각 나타내기",
+        "bReason": "긴 제목을 조건으로 풀고 식과 까닭을 모두 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle BQC=90^\\circ-\\frac{1}{2}\\angle A$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle QBC=\\frac{1}{2}(180^\\circ-\\angle B)$",
+              "$\\angle QBC$와 $\\angle QCB$는 외각의 절반이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle QBC$의 세 내각의 합이 $180^\\circ$이다",
+              "$\\angle BQC=\\frac{1}{2}(\\angle B+\\angle C)$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$에서 $\\angle B$, $\\angle C$의 외각의 이등분선이 점 $Q$에서 만나면 $\\angle BQC$의 크기는 {$90^\\circ$}에서 $\\angle A$의 크기의 {$\\frac{1}{2}$}을 뺀 것과 같다.",
+        "cAnswers": [
+          "$90^\\circ$",
+          "$\\frac{1}{2}$"
+        ],
+        "cReason": "등식 전체가 한 칸이라 무엇을 쓸지 알 수 없어 핵심 값 두 개로 나눴다.",
+        "learningRole": "reason",
+        "roleReason": "외각 이등분선의 교점이 만드는 각의 식",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1773,
+        "part": "m1plus",
+        "sourceFingerprint": "3e91b74a98362f578c0d0e0d55e5c1b692d08d03dc4fa744ec022b2d3cf80e1f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1773
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\triangle ABC$에서 $\\angle B$, $\\angle C$의 외각의 이등분선이 점 $Q$에서 만나면 $\\angle BQC$의 크기는 {$90^\\circ$}에서 $\\angle A$의 크기의 {$\\frac{1}{2}$}을 뺀 것과 같다.",
+        "cSlotAnswers": [
+          "$90^\\circ$",
+          "$\\frac{1}{2}$"
+        ],
+        "cStudentSentence": "$\\triangle ABC$에서 $\\angle B$, $\\angle C$의 외각의 이등분선이 점 $Q$에서 만나면 $\\angle BQC$의 크기는 □에서 $\\angle A$의 크기의 □을 뺀 것과 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$90^\\circ$",
+            "equivalentAnswers": [
+              "$90^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{2}$",
+              "절반",
+              "반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{1}{2}$",
+            "accept": [
+              "절반",
+              "반"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$90^\\circ$"
+          ],
+          [
+            "$\\frac{1}{2}$",
+            "절반",
+            "반"
+          ]
+        ],
+        "proposalFingerprint": "a35dbb421a04c07bcddc6642348d3065bf276177707746be67169dc1406bafb3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc1",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "오각형의 내각의 합",
+        "kind": "성질",
+        "level": "하",
+        "definition": "오각형은 꼭짓점 하나에서 뻗은 대각선으로 삼각형 {$3$}개로 나뉘어 내각의 합이 {$540^\\circ$}이다.",
+        "example": {
+          "prompt": "육각형은 꼭짓점 하나에서 뻗은 대각선으로 삼각형 몇 개로 나뉘는가?",
+          "answer": "$4$개"
+        },
+        "studentC": "오각형은 꼭짓점 하나에서 뻗은 대각선으로 삼각형 □개로 나뉘어 내각의 합이 □이다.",
+        "answers": [
+          "$3$",
+          "$540^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c3의 공식에 $n=5$를 넣은 값이라 서술형으로는 같은 내용이다.",
+        "cDecision": "keep",
+        "cReason": "삼각형의 개수와 합을 직접 계산해 채우는 짧은 빈칸이다.",
+        "exclusionReason": "B 제외: c3($n$각형의 내각의 합과 까닭)의 특정 수치 사례라 서술형 목표가 겹친다.",
+        "learningRole": "application",
+        "roleReason": "공식을 오각형에 적용한 값",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1774,
+        "part": "m1plus",
+        "sourceFingerprint": "70a3d039167297f759d6b6203079d0810186a5cfac62fbdc99856d54a31eed40",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1774
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "오각형은 꼭짓점 하나에서 뻗은 대각선으로 삼각형 □개로 나뉘어 내각의 합이 □이다.",
+        "cFrozenDefinition": "오각형은 꼭짓점 하나에서 뻗은 대각선으로 삼각형 {$3$}개로 나뉘어 내각의 합이 {$540^\\circ$}이다.",
+        "cFrozenAnswers": [
+          "$3$",
+          "$540^\\circ$"
+        ],
+        "cMarkedSentence": "오각형은 꼭짓점 하나에서 뻗은 대각선으로 삼각형 {$3$}개로 나뉘어 내각의 합이 {$540^\\circ$}이다.",
+        "cSlotAnswers": [
+          "$3$",
+          "$540^\\circ$"
+        ],
+        "cStudentSentence": "오각형은 꼭짓점 하나에서 뻗은 대각선으로 삼각형 □개로 나뉘어 내각의 합이 □이다.",
+        "cAnswers": [
+          "$3$",
+          "$540^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$540^\\circ$",
+            "equivalentAnswers": [
+              "$540^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$540^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "8af1e6025d3ef641a41bb74660134d1259cbeac6ff0562399c8f0606c0142707"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc2",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "변이 늘 때의 내각의 합",
+        "kind": "성질",
+        "level": "하",
+        "definition": "변이 하나 늘면 나뉜 삼각형도 하나 늘어 내각의 합은 {$180^\\circ$}씩 {커진다}.",
+        "example": {
+          "prompt": "칠각형의 내각의 합은 육각형보다 몇 도 큰가?",
+          "answer": "$180^\\circ$"
+        },
+        "studentC": "변이 하나 늘면 나뉜 삼각형도 하나 늘어 내각의 합은 □씩 □.",
+        "answers": [
+          "$180^\\circ$",
+          "커진다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형의 변의 수가 $1$만큼 늘어날 때 내각의 크기의 합은 어떻게 변하는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "$180^\\circ$만큼 커진다. 변이 하나 늘면 한 꼭짓점에서 그은 대각선으로 나뉘는 삼각형이 하나 더 생기기 때문이다.",
+        "bGoal": "변의 수와 내각의 합의 변화 관계 설명하기",
+        "bReason": "'변이 늘 때'를 변 $1$개 증가로 정하고 변화량과 까닭을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$만큼 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나뉘는 삼각형이 하나 늘어난다",
+              "$180^\\circ\\times(n-1)-180^\\circ\\times(n-2)=180^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "다각형의 변이 하나 늘어나면 한 꼭짓점에서 그은 대각선으로 나뉘는 삼각형도 {하나} 늘어나므로, 내각의 크기의 합은 {$180^\\circ$}만큼 커진다.",
+        "cAnswers": [
+          "하나",
+          "$180^\\circ$"
+        ],
+        "cReason": "다각형이라는 대상과 '나뉜 삼각형'이 어떻게 나뉜 것인지가 없었다.",
+        "learningRole": "reason",
+        "roleReason": "변 하나에 $180^\\circ$씩 느는 까닭",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1775,
+        "part": "m1plus",
+        "sourceFingerprint": "bc4238451a8848cc18cd6d7e9762f269f16ce839238c550233ae5ad56110ded7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1775
+        },
+        "directReview": null,
+        "cMarkedSentence": "다각형의 변이 하나 늘어나면 한 꼭짓점에서 그은 대각선으로 나뉘는 삼각형도 {하나} 늘어나므로, 내각의 크기의 합은 {$180^\\circ$}만큼 커진다.",
+        "cSlotAnswers": [
+          "하나",
+          "$180^\\circ$"
+        ],
+        "cStudentSentence": "다각형의 변이 하나 늘어나면 한 꼭짓점에서 그은 대각선으로 나뉘는 삼각형도 □ 늘어나므로, 내각의 크기의 합은 □만큼 커진다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "하나",
+            "equivalentAnswers": [
+              "하나",
+              "$1$개",
+              "한 개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "하나",
+            "accept": [
+              "$1$개",
+              "한 개"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "하나",
+            "$1$개",
+            "한 개"
+          ],
+          [
+            "$180^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "534e2b1e8174bb59253724adb55ccdd8da8d8ca008dddf0f68c5a72330892d6d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc3",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "정다각형의 외각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정다각형은 내각의 크기가 모두 {같으므로} 외각의 크기도 모두 {같다}.",
+        "example": {
+          "prompt": "정오각형의 다섯 외각을 모두 더하면?",
+          "answer": "$360^\\circ$"
+        },
+        "studentC": "정다각형은 내각의 크기가 모두 □ 외각의 크기도 모두 □.",
+        "answers": [
+          "같으므로",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "정다각형의 외각의 크기가 모두 같은 까닭을 내각을 이용해 설명하시오.",
+        "bAnswer": "정다각형은 내각의 크기가 모두 같고, 외각은 $180^\\circ$에서 그 꼭짓점의 내각을 뺀 크기이므로 외각의 크기도 모두 같다.",
+        "bGoal": "정다각형의 외각이 같은 근거 말하기",
+        "bReason": "사실 확인이 아니라 내각과 연결한 까닭을 묻도록 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "내각의 크기가 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "외각은 $180^\\circ$에서 내각을 뺀 크기이다",
+              "한 꼭짓점에서 내각과 외각의 합이 $180^\\circ$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정다각형은 내각의 크기가 모두 같고, 한 꼭짓점에서 내각과 외각의 합이 {$180^\\circ$}이므로 외각의 크기도 모두 {같다}.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "같다"
+        ],
+        "cReason": "두 빈칸이 사실상 같은 낱말이라 근거가 되는 값을 묻게 바꿨다.",
+        "learningRole": "reason",
+        "roleReason": "외각이 모두 같은 까닭",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1776,
+        "part": "m1plus",
+        "sourceFingerprint": "255edd4c9310136858d50fcdba718537e819f04cc48bd416c21b1b99945c13a1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1776
+        },
+        "directReview": null,
+        "cMarkedSentence": "정다각형은 내각의 크기가 모두 같고, 한 꼭짓점에서 내각과 외각의 합이 {$180^\\circ$}이므로 외각의 크기도 모두 {같다}.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "같다"
+        ],
+        "cStudentSentence": "정다각형은 내각의 크기가 모두 같고, 한 꼭짓점에서 내각과 외각의 합이 □이므로 외각의 크기도 모두 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "1b899446d812a384a3993a7bfa103e7f5142a51993791adaf810716e90beb7da"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc4",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "나머지 외각 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "다른 외각을 모두 알면 {$360^\\circ$}에서 그 합을 {빼서} 나머지 외각을 구한다.",
+        "example": {
+          "prompt": "사각형의 세 외각이 $80^\\circ$, $90^\\circ$, $100^\\circ$이면 나머지 외각은?",
+          "answer": "$90^\\circ$"
+        },
+        "studentC": "다른 외각을 모두 알면 □에서 그 합을 □ 나머지 외각을 구한다.",
+        "answers": [
+          "$360^\\circ$",
+          "빼서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형의 네 외각 가운데 세 외각의 크기가 $80^\\circ$, $90^\\circ$, $100^\\circ$일 때, 나머지 한 외각의 크기를 구하는 방법을 설명하고 그 값을 쓰시오.",
+        "bAnswer": "외각의 크기의 합 $360^\\circ$에서 세 외각의 합을 뺀다. $360^\\circ-(80^\\circ+90^\\circ+100^\\circ)=90^\\circ$이다.",
+        "bGoal": "외각의 합으로 나머지 외각 구하기",
+        "bReason": "어느 다각형의 어떤 외각인지 구체적인 예로 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ$에서 세 외각의 합을 뺀다",
+              "$360^\\circ-270^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "다각형에서 한 외각을 뺀 나머지 외각의 크기를 모두 알면, {$360^\\circ$}에서 그 {합}을 빼서 남은 한 외각의 크기를 구한다.",
+        "cAnswers": [
+          "$360^\\circ$",
+          "합"
+        ],
+        "cReason": "'다른 외각'이 무엇에 대한 다른 것인지와 다각형이라는 대상이 없었다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$360^\\circ$에서 빼어 외각 구하기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1777,
+        "part": "m1plus",
+        "sourceFingerprint": "9659c685eb7b89842afe46f20224a38b9af30305cddeeaa9f1f81c39ff7934ec",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1777
+        },
+        "directReview": null,
+        "cMarkedSentence": "다각형에서 한 외각을 뺀 나머지 외각의 크기를 모두 알면, {$360^\\circ$}에서 그 {합}을 빼서 남은 한 외각의 크기를 구한다.",
+        "cSlotAnswers": [
+          "$360^\\circ$",
+          "합"
+        ],
+        "cStudentSentence": "다각형에서 한 외각을 뺀 나머지 외각의 크기를 모두 알면, □에서 그 □을 빼서 남은 한 외각의 크기를 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$360^\\circ$"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "4cf64b265d19bf0033d9b927a8ee1230bedccdf638a9144e7be537e96175d5a9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc5",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "사각형의 나머지 내각",
+        "kind": "방법",
+        "level": "하",
+        "definition": "사각형은 네 내각의 합이 {$360^\\circ$}이므로 세 내각을 알면 {나머지} 하나를 구할 수 있다.",
+        "example": {
+          "prompt": "사각형의 세 내각이 $70^\\circ$, $100^\\circ$, $110^\\circ$이면 나머지 내각은?",
+          "answer": "$80^\\circ$"
+        },
+        "studentC": "사각형은 네 내각의 합이 □이므로 세 내각을 알면 □ 하나를 구할 수 있다.",
+        "answers": [
+          "$360^\\circ$",
+          "나머지"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형의 세 내각의 크기가 $70^\\circ$, $100^\\circ$, $110^\\circ$일 때, 나머지 한 내각의 크기를 구하는 방법을 설명하고 그 값을 쓰시오.",
+        "bAnswer": "사각형의 네 내각의 합은 $360^\\circ$이므로 $360^\\circ-(70^\\circ+100^\\circ+110^\\circ)=80^\\circ$이다.",
+        "bGoal": "사각형의 내각의 합으로 나머지 내각 구하기",
+        "bReason": "구체적인 세 각을 주어 합과 뺄셈 과정을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 내각의 합은 $360^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$80^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "사각형은 네 내각의 크기의 합이 {$360^\\circ$}이므로, 세 내각을 알면 이 값에서 세 내각의 {합}을 빼서 나머지 한 내각을 구한다.",
+        "cAnswers": [
+          "$360^\\circ$",
+          "합"
+        ],
+        "cReason": "'나머지' 칸은 수학 내용이 아닌 채움말이라 계산 단계를 묻게 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$360^\\circ$에서 빼어 내각 구하기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1778,
+        "part": "m1plus",
+        "sourceFingerprint": "dadb361f9ffcd476461cb5f0f7f13213d24aabf38ac42a167682628fa1d8fb87",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1778
+        },
+        "directReview": null,
+        "cMarkedSentence": "사각형은 네 내각의 크기의 합이 {$360^\\circ$}이므로, 세 내각을 알면 이 값에서 세 내각의 {합}을 빼서 나머지 한 내각을 구한다.",
+        "cSlotAnswers": [
+          "$360^\\circ$",
+          "합"
+        ],
+        "cStudentSentence": "사각형은 네 내각의 크기의 합이 □이므로, 세 내각을 알면 이 값에서 세 내각의 □을 빼서 나머지 한 내각을 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$360^\\circ$"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "7306ff52d145795d1aa38c92f2449fbf6e44482b3ef76789fb737c6ca7ba23bb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc6",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "정삼각형 · 정사각형 · 정육각형의 한 내각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정삼각형, 정사각형, 정육각형의 한 내각은 차례로 $60^\\circ$, {$90^\\circ$}, {$120^\\circ$}이다.",
+        "example": {
+          "prompt": "정삼각형의 한 외각은?",
+          "answer": "$120^\\circ$"
+        },
+        "studentC": "정삼각형, 정사각형, 정육각형의 한 내각은 차례로 $60^\\circ$, □, □이다.",
+        "answers": [
+          "$90^\\circ$",
+          "$120^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "세 값의 나열은 서술할 관계가 없고 방법은 c4가 다룬다.",
+        "cDecision": "keep",
+        "cReason": "첫 값을 보여 주고 나머지를 계산해 채우는 짧은 빈칸이다.",
+        "exclusionReason": "B 제외: 세 정다각형의 한 내각 수치 암기라 서술형에 맞지 않고 구하는 방법은 c4와 겹친다.",
+        "learningRole": "application",
+        "roleReason": "한 내각 공식을 세 도형에 적용한 값",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1779,
+        "part": "m1plus",
+        "sourceFingerprint": "7da3f9520cf35d4703ecaba9db4701c67f8b26b8cb462fb547a3c2fd73aca6a4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1779
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "정삼각형, 정사각형, 정육각형의 한 내각은 차례로 $60^\\circ$, □, □이다.",
+        "cFrozenDefinition": "정삼각형, 정사각형, 정육각형의 한 내각은 차례로 $60^\\circ$, {$90^\\circ$}, {$120^\\circ$}이다.",
+        "cFrozenAnswers": [
+          "$90^\\circ$",
+          "$120^\\circ$"
+        ],
+        "cMarkedSentence": "정삼각형, 정사각형, 정육각형의 한 내각은 차례로 $60^\\circ$, {$90^\\circ$}, {$120^\\circ$}이다.",
+        "cSlotAnswers": [
+          "$90^\\circ$",
+          "$120^\\circ$"
+        ],
+        "cStudentSentence": "정삼각형, 정사각형, 정육각형의 한 내각은 차례로 $60^\\circ$, □, □이다.",
+        "cAnswers": [
+          "$90^\\circ$",
+          "$120^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$90^\\circ$",
+            "equivalentAnswers": [
+              "$90^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$120^\\circ$",
+            "equivalentAnswers": [
+              "$120^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$90^\\circ$"
+          ],
+          [
+            "$120^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "70bcd16ffd173c5bcaa55c08ea5236fbc37c4139b7cd1572cda46becae352b73"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc7",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "내각이 클수록 작은 외각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 꼭짓점의 내각과 외각은 합이 $180^\\circ$로 정해져 있어, 내각이 클수록 외각은 {작아진다}.",
+        "example": {
+          "prompt": "정다각형의 한 내각이 $150^\\circ$이면 한 외각은?",
+          "answer": "$30^\\circ$"
+        },
+        "studentC": "한 꼭짓점의 내각과 외각은 합이 $180^\\circ$로 정해져 있어, 내각이 클수록 외각은 □.",
+        "answers": [
+          "작아진다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형의 한 꼭짓점에서 내각이 커지면 그 꼭짓점의 외각의 크기는 어떻게 변하는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "작아진다. 한 꼭짓점에서 내각과 외각의 합이 $180^\\circ$로 일정하므로 내각이 커진 만큼 외각이 줄어든다.",
+        "bGoal": "내각과 외각의 크기 변화 관계 설명하기",
+        "bReason": "같은 꼭짓점의 두 각임을 밝히고 변화 방향과 까닭을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "외각은 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "내각과 외각의 합이 $180^\\circ$로 일정하다",
+              "외각은 $180^\\circ$에서 내각을 뺀 크기이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "근거가 앞에 있고 결론 한 낱말만 묻는 분명한 문장이다.",
+        "learningRole": "reason",
+        "roleReason": "내각이 클수록 외각이 작은 까닭",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1780,
+        "part": "m1plus",
+        "sourceFingerprint": "798778809ae60e8f2a0653ba8dd1f6572adc3b69ee4884ce4a6808fae73a0298",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1780
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 꼭짓점의 내각과 외각은 합이 $180^\\circ$로 정해져 있어, 내각이 클수록 외각은 □.",
+        "cFrozenDefinition": "한 꼭짓점의 내각과 외각은 합이 $180^\\circ$로 정해져 있어, 내각이 클수록 외각은 {작아진다}.",
+        "cFrozenAnswers": [
+          "작아진다"
+        ],
+        "cMarkedSentence": "한 꼭짓점의 내각과 외각은 합이 $180^\\circ$로 정해져 있어, 내각이 클수록 외각은 {작아진다}.",
+        "cSlotAnswers": [
+          "작아진다"
+        ],
+        "cStudentSentence": "한 꼭짓점의 내각과 외각은 합이 $180^\\circ$로 정해져 있어, 내각이 클수록 외각은 □.",
+        "cAnswers": [
+          "작아진다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작아진다",
+            "equivalentAnswers": [
+              "작아진다",
+              "줄어든다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작아진다",
+            "accept": [
+              "줄어든다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작아진다",
+            "줄어든다"
+          ]
+        ],
+        "proposalFingerprint": "bea2c7a93d58c7222cd4676ccd15b26d581e084a9dcd03d02a97f14c4af2d903"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc8",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "외각에서 내각으로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "정다각형의 한 내각은 {$180^\\circ$}에서 한 외각을 {빼서} 구할 수도 있다.",
+        "example": {
+          "prompt": "한 외각이 $20^\\circ$인 정다각형의 한 내각은?",
+          "answer": "$160^\\circ$"
+        },
+        "studentC": "정다각형의 한 내각은 □에서 한 외각을 □ 구할 수도 있다.",
+        "answers": [
+          "$180^\\circ$",
+          "빼서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "한 외각의 크기가 $20^\\circ$인 정다각형의 한 내각의 크기를, 변의 수를 구하지 않고 구하는 방법을 설명하고 그 값을 쓰시오.",
+        "bAnswer": "한 꼭짓점에서 내각과 외각의 합이 $180^\\circ$이므로 $180^\\circ-20^\\circ=160^\\circ$이다.",
+        "bGoal": "한 외각에서 한 내각 바로 구하기",
+        "bReason": "'외각에서 내각으로'가 뜻하는 계산을 구체적인 예로 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$에서 한 외각을 뺀다",
+              "내각과 외각의 합이 $180^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$160^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "대상과 뺄셈 절차가 분명한 짧은 두 칸 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$180^\\circ$에서 외각을 빼기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1781,
+        "part": "m1plus",
+        "sourceFingerprint": "7fc109a28bf0286f257a15d43aeb92b7a9983048adf3b25c1bb6fa1cbec1e127",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1781
+        },
+        "directReview": null,
+        "cFrozenSentence": "정다각형의 한 내각은 □에서 한 외각을 □ 구할 수도 있다.",
+        "cFrozenDefinition": "정다각형의 한 내각은 {$180^\\circ$}에서 한 외각을 {빼서} 구할 수도 있다.",
+        "cFrozenAnswers": [
+          "$180^\\circ$",
+          "빼서"
+        ],
+        "cMarkedSentence": "정다각형의 한 내각은 {$180^\\circ$}에서 한 외각을 {빼서} 구할 수도 있다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "빼서"
+        ],
+        "cStudentSentence": "정다각형의 한 내각은 □에서 한 외각을 □ 구할 수도 있다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "빼서"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빼서",
+            "equivalentAnswers": [
+              "빼서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "빼서"
+          ]
+        ],
+        "proposalFingerprint": "51b994093365efe11d6d651598f1f9048eeba53a774c393e65e4b49e7bd8ffb6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc9",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "안쪽 한 점으로 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "다각형 안의 한 점과 꼭짓점을 모두 이으면 삼각형이 $n$개 생기고, 가운데에 모인 {$360^\\circ$}를 {빼면} 내각의 합이 된다.",
+        "example": {
+          "prompt": "오각형 안의 한 점과 꼭짓점을 이어 나눈 삼각형은 몇 개?",
+          "answer": "$5$개"
+        },
+        "studentC": "다각형 안의 한 점과 꼭짓점을 모두 이으면 삼각형이 $n$개 생기고, 가운데에 모인 □를 □ 내각의 합이 된다.",
+        "answers": [
+          "$360^\\circ$",
+          "빼면"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "오각형 안쪽의 한 점과 모든 꼭짓점을 선분으로 이어 삼각형으로 나누었다. 이 방법으로 오각형의 내각의 크기의 합을 구하는 과정을 설명하시오.",
+        "bAnswer": "삼각형이 $5$개 생기므로 이들의 내각의 합은 $180^\\circ\\times 5=900^\\circ$이다. 여기서 안쪽 점 둘레에 모인 각 $360^\\circ$를 빼면 $900^\\circ-360^\\circ=540^\\circ$이다.",
+        "bGoal": "안쪽 한 점으로 나누어 내각의 합 구하기",
+        "bReason": "문자 $n$ 대신 오각형으로 정해 삼각형의 수와 빼는 각을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형이 $5$개 생긴다",
+              "$180^\\circ\\times 5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "안쪽 점에 모인 $360^\\circ$를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$540^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$n$각형 안쪽의 한 점과 모든 꼭짓점을 이으면 삼각형이 {$n$}개 생긴다. 이 삼각형들의 내각을 모두 더한 값에서 안쪽 점에 모인 각 {$360^\\circ$}를 빼면 $n$각형의 내각의 합이 된다.",
+        "cAnswers": [
+          "$n$",
+          "$360^\\circ$"
+        ],
+        "cReason": "'다각형'이라 하고 $n$을 쓰며 무엇에서 빼는지도 빠져 있었다.",
+        "coreAfter": "$n$각형 안의 한 점과 각 꼭짓점을 모두 이으면 삼각형이 $n$개 생기고, 이 삼각형들의 내각의 합 $180^\\circ\\times n$에서 가운데에 모인 {$360^\\circ$}를 {빼면} $n$각형의 내각의 합이 된다.",
+        "coreReason": "원문은 $n$이 무엇인지 밝히지 않았고, 무엇에서 $360^\\circ$를 빼는지도 생략했다.",
+        "studentLabel": "안쪽 한 점으로 나누어 내각의 합 구하기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "안쪽 점으로 나누는 다른 방법",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1782,
+        "part": "m1plus",
+        "sourceFingerprint": "35bea320c04848b15f95def6898e687a56b1ccb50c91da0ad410e51c3331d29c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1782
+        },
+        "directReview": null,
+        "coreBeforeRepair": "$n$각형 안의 한 점과 꼭짓점을 모두 이으면 삼각형이 $n$개 생기고, 이 삼각형들의 내각의 합 $180^\\circ\\times n$에서 가운데에 모인 $360^\\circ$를 빼면 내각의 합이 된다.",
+        "coreRepairReason": "현재안에서 빠진 원본 핵심어 {$360^\\circ$}, {빼면} 표지를 되살렸다. $n$각형과 $180^\\circ\\times n$을 밝힌 교정 내용은 유지했다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "$n$각형 안쪽의 한 점과 모든 꼭짓점을 이으면 삼각형이 {$n$}개 생긴다. 이 삼각형들의 내각을 모두 더한 값에서 안쪽 점에 모인 각 {$360^\\circ$}를 빼면 $n$각형의 내각의 합이 된다.",
+        "cSlotAnswers": [
+          "$n$",
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "$n$각형 안쪽의 한 점과 모든 꼭짓점을 이으면 삼각형이 □개 생긴다. 이 삼각형들의 내각을 모두 더한 값에서 안쪽 점에 모인 각 □를 빼면 $n$각형의 내각의 합이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n$",
+            "equivalentAnswers": [
+              "$n$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n$"
+          ],
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "f53da0a1f14634cb425599551d533e54fe6aa8ab1b7b262b700ac9c21c8677c5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc10",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "내각의 합으로 다각형 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "내각의 합이 $S$이면 $180^\\circ\\times(n-2)=S$에서 {$n$}을 구해 {$n$각형}으로 답한다.",
+        "example": {
+          "prompt": "내각의 합이 $1080^\\circ$인 다각형은?",
+          "answer": "팔각형"
+        },
+        "studentC": "내각의 합이 $S$이면 $180^\\circ\\times(n-2)=S$에서 □을 구해 □으로 답한다.",
+        "answers": [
+          "$n$",
+          "$n$각형"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "내각의 크기의 합이 $1080^\\circ$인 다각형이 몇 각형인지, 식을 세워 구하는 과정을 설명하시오.",
+        "bAnswer": "$n$각형이라 하면 $180^\\circ\\times(n-2)=1080^\\circ$이므로 $n-2=6$, $n=8$이다. 팔각형이다.",
+        "bGoal": "내각의 합에서 변의 수 거꾸로 구하기",
+        "bReason": "문자 $S$ 대신 구체적인 합을 주어 식과 결론을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ\\times(n-2)=1080^\\circ$",
+              "$1080^\\circ\\div 180^\\circ=6$에 $2$를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "팔각형",
+              "$n=8$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "내각의 크기의 합이 $S$인 다각형을 찾을 때는, 그 다각형을 $n$각형이라 하고 {$180^\\circ\\times(n-2)$}$=S$로 놓아 $n$의 값을 구한다.",
+        "cAnswers": [
+          "$180^\\circ\\times(n-2)$"
+        ],
+        "cReason": "원래 빈칸 '$n$', '$n$각형'은 바로 앞 식에 보여 묻는 것이 없었다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "공식을 방정식으로 놓고 $n$ 구하기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1783,
+        "part": "m1plus",
+        "sourceFingerprint": "feb9c997284cc8dcdfd044a0ab2120cbdc3642b2925b170ce27af75460f45dd1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1783
+        },
+        "directReview": null,
+        "cMarkedSentence": "내각의 크기의 합이 $S$인 다각형을 찾을 때는, 그 다각형을 $n$각형이라 하고 {$180^\\circ\\times(n-2)$}$=S$로 놓아 $n$의 값을 구한다.",
+        "cSlotAnswers": [
+          "$180^\\circ\\times(n-2)$"
+        ],
+        "cStudentSentence": "내각의 크기의 합이 $S$인 다각형을 찾을 때는, 그 다각형을 $n$각형이라 하고 □$=S$로 놓아 $n$의 값을 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ\\times(n-2)$",
+            "equivalentAnswers": [
+              "$180^\\circ\\times(n-2)$",
+              "$180^\\circ(n-2)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$180^\\circ\\times(n-2)$",
+            "accept": [
+              "$180^\\circ(n-2)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ\\times(n-2)$",
+            "$180^\\circ(n-2)$"
+          ]
+        ],
+        "proposalFingerprint": "35c3e141f31cbc6f51e26cb459cf44e2dfbb04d3aa3625144a46457e0e237210"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc11",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "한 내각으로 정다각형 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정다각형의 한 내각을 알면 {$180^\\circ$}에서 빼서 한 외각을 구하고, {$360^\\circ$}를 그 외각으로 나눈다.",
+        "example": {
+          "prompt": "한 내각이 $144^\\circ$인 정다각형은?",
+          "answer": "정십각형"
+        },
+        "studentC": "정다각형의 한 내각을 알면 □에서 빼서 한 외각을 구하고, □를 그 외각으로 나눈다.",
+        "answers": [
+          "$180^\\circ$",
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "한 내각의 크기가 $144^\\circ$인 정다각형이 정몇각형인지, 한 외각을 이용해 구하는 과정을 설명하시오.",
+        "bAnswer": "한 외각은 $180^\\circ-144^\\circ=36^\\circ$이고, 외각의 합이 $360^\\circ$이므로 $360^\\circ\\div 36^\\circ=10$이다. 정십각형이다.",
+        "bGoal": "한 내각에서 외각을 거쳐 변의 수 구하기",
+        "bReason": "구체적인 내각을 주고 외각을 거치는 두 단계를 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 외각은 $36^\\circ$",
+              "$180^\\circ-144^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$360^\\circ$를 한 외각으로 나눈다",
+              "$360^\\circ\\div 36^\\circ=10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정십각형"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 단계에 쓰이는 서로 다른 값을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "내각→외각→변의 수 순서",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1784,
+        "part": "m1plus",
+        "sourceFingerprint": "7b204bebf1bbfef506907a5703ad518a47012faea5a0276a9b3112d1bd3284df",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1784
+        },
+        "directReview": null,
+        "cFrozenSentence": "정다각형의 한 내각을 알면 □에서 빼서 한 외각을 구하고, □를 그 외각으로 나눈다.",
+        "cFrozenDefinition": "정다각형의 한 내각을 알면 {$180^\\circ$}에서 빼서 한 외각을 구하고, {$360^\\circ$}를 그 외각으로 나눈다.",
+        "cFrozenAnswers": [
+          "$180^\\circ$",
+          "$360^\\circ$"
+        ],
+        "cMarkedSentence": "정다각형의 한 내각을 알면 {$180^\\circ$}에서 빼서 한 외각을 구하고, {$360^\\circ$}를 그 외각으로 나눈다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "정다각형의 한 내각을 알면 □에서 빼서 한 외각을 구하고, □를 그 외각으로 나눈다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "$360^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "289d77f2c80db77df909e314febbd6713ab3294caf8ff7d06c742918f67fe911"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc12",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "한 내각과 한 외각의 비가 $a:b$인 정다각형",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정다각형의 한 내각과 한 외각의 비가 $a:b$이면 한 외각은 {$180^\\circ$}를 비의 합으로 나누어 {$b$}배 한 크기이다.",
+        "example": {
+          "prompt": "한 내각과 한 외각의 비가 $3:1$인 정다각형은?",
+          "answer": "정팔각형"
+        },
+        "studentC": "정다각형의 한 내각과 한 외각의 비가 $a:b$이면 한 외각은 □를 비의 합으로 나누어 □배 한 크기이다.",
+        "answers": [
+          "$180^\\circ$",
+          "$b$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "한 내각과 한 외각의 크기의 비가 $3:1$인 정다각형이 정몇각형인지 구하는 과정을 설명하시오.",
+        "bAnswer": "한 내각과 한 외각의 합이 $180^\\circ$이므로 한 외각은 $180^\\circ\\times\\frac{1}{4}=45^\\circ$이다. $360^\\circ\\div 45^\\circ=8$이므로 정팔각형이다.",
+        "bGoal": "내각과 외각의 비로 정다각형 찾기",
+        "bReason": "문자 $a:b$ 대신 구체적인 비를 주어 외각과 변의 수를 구하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 내각과 한 외각의 합이 $180^\\circ$이다",
+              "$180^\\circ$를 비 $3:1$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 외각은 $45^\\circ$",
+              "한 내각은 $135^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정팔각형"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정다각형의 한 내각과 한 외각의 크기의 비가 $a:b$이면, 두 각의 합 {$180^\\circ$}를 {$a+b$}로 나눈 값에 $b$를 곱한 것이 한 외각의 크기이다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "$a+b$"
+        ],
+        "cReason": "'비의 합'과 '□배'가 무엇을 뜻하는지 흐려 식의 구성 요소를 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$180^\\circ$를 비로 나누어 외각 구하기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1785,
+        "part": "m1plus",
+        "sourceFingerprint": "726716f81a37931a2eb2936a7fdcb4e69d05498daf377b3d2a3f35a49988e708",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1785
+        },
+        "directReview": null,
+        "cMarkedSentence": "정다각형의 한 내각과 한 외각의 크기의 비가 $a:b$이면, 두 각의 합 {$180^\\circ$}를 {$a+b$}로 나눈 값에 $b$를 곱한 것이 한 외각의 크기이다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "$a+b$"
+        ],
+        "cStudentSentence": "정다각형의 한 내각과 한 외각의 크기의 비가 $a:b$이면, 두 각의 합 □를 □로 나눈 값에 $b$를 곱한 것이 한 외각의 크기이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a+b$",
+            "equivalentAnswers": [
+              "$a+b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "$a+b$"
+          ]
+        ],
+        "proposalFingerprint": "fe8f3854648fa391701c751d9636075a9dd3b3782a8a25641d9e5518c1827154"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc13",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "정$n$각형의 한 내각 식",
+        "kind": "공식",
+        "level": "중",
+        "definition": "정$n$각형의 한 내각의 크기는 {$\\frac{180^\\circ\\times(n-2)}{n}$}로 나타낸다.",
+        "example": {
+          "prompt": "정십이각형의 한 내각은?",
+          "answer": "$150^\\circ$"
+        },
+        "studentC": "정$n$각형의 한 내각의 크기는 □로 나타낸다.",
+        "answers": [
+          "$\\frac{180^\\circ\\times(n-2)}{n}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c4가 같은 식을 방법과 근거로 이미 서술하게 한다.",
+        "cDecision": "keep",
+        "cReason": "정$n$각형이라는 조건 아래 식 하나를 쓰는 분명한 빈칸이다.",
+        "exclusionReason": "B 제외: c4(정다각형의 한 내각 구하는 방법)와 같은 식을 묻는 서술형이라 목표가 겹친다.",
+        "learningRole": "definition",
+        "roleReason": "한 내각을 나타내는 식",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1786,
+        "part": "m1plus",
+        "sourceFingerprint": "4f7cb347383ea1270c8f76de63923829673be685952e5d7ac8a80c3cc8da5d84",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1786
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "정$n$각형의 한 내각의 크기는 □로 나타낸다.",
+        "cFrozenDefinition": "정$n$각형의 한 내각의 크기는 {$\\frac{180^\\circ\\times(n-2)}{n}$}로 나타낸다.",
+        "cFrozenAnswers": [
+          "$\\frac{180^\\circ\\times(n-2)}{n}$"
+        ],
+        "cMarkedSentence": "정$n$각형의 한 내각의 크기는 {$\\frac{180^\\circ\\times(n-2)}{n}$}로 나타낸다.",
+        "cSlotAnswers": [
+          "$\\frac{180^\\circ\\times(n-2)}{n}$"
+        ],
+        "cStudentSentence": "정$n$각형의 한 내각의 크기는 □로 나타낸다.",
+        "cAnswers": [
+          "$\\frac{180^\\circ\\times(n-2)}{n}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{180^\\circ\\times(n-2)}{n}$",
+            "equivalentAnswers": [
+              "$\\frac{180^\\circ\\times(n-2)}{n}$",
+              "$\\frac{180^\\circ(n-2)}{n}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{180^\\circ\\times(n-2)}{n}$",
+            "accept": [
+              "$\\frac{180^\\circ(n-2)}{n}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{180^\\circ\\times(n-2)}{n}$",
+            "$\\frac{180^\\circ(n-2)}{n}$"
+          ]
+        ],
+        "proposalFingerprint": "6112f23063c927a1127e1660d6eb9043884ae448b8c2a8347577e588cf182721"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc14",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "내각의 합과 외각의 합 견주기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "사각형은 내각의 합과 외각의 합이 모두 {$360^\\circ$}로 같고, 오각형부터는 {내각}의 합이 더 크다.",
+        "example": {
+          "prompt": "내각의 합과 외각의 합이 같은 다각형은?",
+          "answer": "사각형"
+        },
+        "studentC": "사각형은 내각의 합과 외각의 합이 모두 □로 같고, 오각형부터는 □의 합이 더 크다.",
+        "answers": [
+          "$360^\\circ$",
+          "내각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "내각의 크기의 합과 외각의 크기의 합이 같은 다각형은 무엇인지 쓰고, 변이 그보다 많은 다각형에서는 어느 쪽 합이 더 큰지 까닭과 함께 쓰시오.",
+        "bAnswer": "사각형이다. 사각형의 내각의 합은 $180^\\circ\\times 2=360^\\circ$로 외각의 합과 같다. 변이 더 많으면 내각의 합은 $540^\\circ$ 이상으로 커지지만 외각의 합은 $360^\\circ$ 그대로이므로 내각의 합이 더 크다.",
+        "bGoal": "내각의 합과 외각의 합 비교하기",
+        "bReason": "'견주기'를 같은 경우와 더 큰 경우의 두 물음으로 나누어 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "내각의 합이 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "외각의 합은 $360^\\circ$로 변하지 않는다",
+              "내각의 합은 변이 늘수록 커진다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "같은 값과 더 큰 쪽을 묻는 짧은 비교 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "두 합의 크기 비교와 까닭",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1787,
+        "part": "m1plus",
+        "sourceFingerprint": "ca271d6f99bd577655a972920aa647f56b98d0cc7ffb7f1e29a90391e52c2dd2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1787
+        },
+        "directReview": null,
+        "cFrozenSentence": "사각형은 내각의 합과 외각의 합이 모두 □로 같고, 오각형부터는 □의 합이 더 크다.",
+        "cFrozenDefinition": "사각형은 내각의 합과 외각의 합이 모두 {$360^\\circ$}로 같고, 오각형부터는 {내각}의 합이 더 크다.",
+        "cFrozenAnswers": [
+          "$360^\\circ$",
+          "내각"
+        ],
+        "cMarkedSentence": "사각형은 내각의 합과 외각의 합이 모두 {$360^\\circ$}로 같고, 오각형부터는 {내각}의 합이 더 크다.",
+        "cSlotAnswers": [
+          "$360^\\circ$",
+          "내각"
+        ],
+        "cStudentSentence": "사각형은 내각의 합과 외각의 합이 모두 □로 같고, 오각형부터는 □의 합이 더 크다.",
+        "cAnswers": [
+          "$360^\\circ$",
+          "내각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "내각",
+            "equivalentAnswers": [
+              "내각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$360^\\circ$"
+          ],
+          [
+            "내각"
+          ]
+        ],
+        "proposalFingerprint": "b13edb18b4df03e638d6fac112b042132bd1d7efaccb98335597e1a784b9e6ea"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc15",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "문자로 놓은 외각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "외각이 문자로 주어지면 모든 외각의 합을 {$360^\\circ$}와 같게 놓아 {방정식}을 푼다.",
+        "example": {
+          "prompt": "오각형의 외각이 $x^\\circ$, $2x^\\circ$, $70^\\circ$, $80^\\circ$, $90^\\circ$이면 $x$는?",
+          "answer": "$40$"
+        },
+        "studentC": "외각이 문자로 주어지면 모든 외각의 합을 □와 같게 놓아 □을 푼다.",
+        "answers": [
+          "$360^\\circ$",
+          "방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "오각형의 다섯 외각의 크기가 $x^\\circ$, $2x^\\circ$, $70^\\circ$, $80^\\circ$, $90^\\circ$일 때, $x$의 값을 구하는 식을 세우고 푸시오.",
+        "bAnswer": "외각의 크기의 합이 $360^\\circ$이므로 $x+2x+70+80+90=360$이다. $3x=120$이므로 $x=40$이다.",
+        "bGoal": "외각의 합으로 방정식 세워 풀기",
+        "bReason": "문자식이 있어야 식을 세울 수 있어 구체적인 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+2x+70+80+90=360$",
+              "외각의 합을 $360$과 같게 놓는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=40$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "다각형의 외각의 크기가 문자를 포함한 식으로 주어지면, 모든 외각의 {합}을 {$360^\\circ$}와 같게 놓은 방정식을 풀어 문자의 값을 구한다.",
+        "cAnswers": [
+          "합",
+          "$360^\\circ$"
+        ],
+        "cReason": "다각형이라는 대상이 없고 '방정식' 칸은 수학 내용을 묻지 못했다.",
+        "studentLabel": "문자로 주어진 다각형의 외각",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "외각의 합을 $360^\\circ$로 놓는 식 세우기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1788,
+        "part": "m1plus",
+        "sourceFingerprint": "e5215ed7f0dcdf1133777cacbf0ac5eb1d172f3e2f51667fa73188ad677349f4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1788
+        },
+        "directReview": null,
+        "cMarkedSentence": "다각형의 외각의 크기가 문자를 포함한 식으로 주어지면, 모든 외각의 {합}을 {$360^\\circ$}와 같게 놓은 방정식을 풀어 문자의 값을 구한다.",
+        "cSlotAnswers": [
+          "합",
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "다각형의 외각의 크기가 문자를 포함한 식으로 주어지면, 모든 외각의 □을 □와 같게 놓은 방정식을 풀어 문자의 값을 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "d58007e8380219f03b170bf23ec91594cec1ce3fa302e2b045d5c35aaae2930b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc16",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "내각의 합에서 대각선으로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "내각의 합에서 변의 수를 구한 뒤 {$\\frac{n(n-3)}{2}$}로 {대각선}의 개수를 구한다.",
+        "example": {
+          "prompt": "내각의 합이 $1800^\\circ$인 다각형의 대각선은 몇 개?",
+          "answer": "$54$개"
+        },
+        "studentC": "내각의 합에서 변의 수를 구한 뒤 □로 □의 개수를 구한다.",
+        "answers": [
+          "$\\frac{n(n-3)}{2}$",
+          "대각선"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "내각의 크기의 합이 $1800^\\circ$인 다각형의 대각선의 개수를 구하는 과정을 두 단계로 설명하시오.",
+        "bAnswer": "먼저 $180^\\circ\\times(n-2)=1800^\\circ$에서 $n=12$를 구한다. 다음으로 대각선의 개수 $\\frac{n(n-3)}{2}$에 넣어 $\\frac{12\\times 9}{2}=54$개이다.",
+        "bGoal": "내각의 합에서 변의 수를 거쳐 대각선 수 구하기",
+        "bReason": "두 공식을 잇는 순서를 구체적인 합으로 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$n=12$",
+              "십이각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{n(n-3)}{2}$에 대입한다",
+              "$\\frac{12\\times 9}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$54$개"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "내각의 크기의 합이 주어진 다각형의 대각선의 개수는, 먼저 내각의 합에서 변의 수 $n$을 구한 뒤 {$\\frac{n(n-3)}{2}$}에 대입해 구한다.",
+        "cAnswers": [
+          "$\\frac{n(n-3)}{2}$"
+        ],
+        "cReason": "$n$이 무엇인지 밝히지 않은 채 식을 쓰게 해 뜻을 보탰다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "두 공식을 이어 쓰는 순서",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1789,
+        "part": "m1plus",
+        "sourceFingerprint": "ff9904ef8db35b6f010fe379498860bf02a80d22b54a5e87b1d80dd44faca4d9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1789
+        },
+        "directReview": null,
+        "cMarkedSentence": "내각의 크기의 합이 주어진 다각형의 대각선의 개수는, 먼저 내각의 합에서 변의 수 $n$을 구한 뒤 {$\\frac{n(n-3)}{2}$}에 대입해 구한다.",
+        "cSlotAnswers": [
+          "$\\frac{n(n-3)}{2}$"
+        ],
+        "cStudentSentence": "내각의 크기의 합이 주어진 다각형의 대각선의 개수는, 먼저 내각의 합에서 변의 수 $n$을 구한 뒤 □에 대입해 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{n(n-3)}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{n(n-3)}{2}$",
+              "$n(n-3)\\div 2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{n(n-3)}{2}$",
+            "accept": [
+              "$n(n-3)\\div 2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{n(n-3)}{2}$",
+            "$n(n-3)\\div 2$"
+          ]
+        ],
+        "proposalFingerprint": "365580992ad4e0f1c27bcdb5b22d0281c304b045049a2d5af90ba239a42d610b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc17",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "외각이 자연수인 정다각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정$n$각형의 한 외각 $\\frac{360^\\circ}{n}$이 자연수가 되려면 $n$은 {$360$}의 {약수}여야 한다.",
+        "example": {
+          "prompt": "한 외각이 $24^\\circ$인 정다각형은?",
+          "answer": "정십오각형"
+        },
+        "studentC": "정$n$각형의 한 외각 $\\frac{360^\\circ}{n}$이 자연수가 되려면 $n$은 □의 □여야 한다.",
+        "answers": [
+          "$360$",
+          "약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "정$n$각형의 한 외각의 크기를 도($^\\circ$)로 나타낸 수가 자연수이려면 $n$이 어떤 수여야 하는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "$n$은 $3$ 이상인 $360$의 약수여야 한다. 한 외각의 크기가 $\\frac{360^\\circ}{n}$이므로 $360$이 $n$으로 나누어떨어져야 하기 때문이다.",
+        "bGoal": "한 외각이 자연수일 조건을 약수로 설명하기",
+        "bReason": "'자연수'가 도로 나타낸 수를 뜻함을 밝히고 조건과 까닭을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$n$은 $360$의 약수이다",
+              "$360$이 $n$으로 나누어떨어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 외각의 크기는 $\\frac{360^\\circ}{n}$이다",
+              "$360^\\circ$를 $n$으로 나눈다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정$n$각형의 한 외각의 크기 $\\frac{360^\\circ}{n}$를 도($^\\circ$)로 나타낸 수가 자연수이려면 $n$은 $3$ 이상이면서 $360$의 {약수}여야 한다.",
+        "cAnswers": [
+          "약수"
+        ],
+        "cReason": "바로 앞 분수에 $360$이 보여 첫 빈칸이 드러났고 각을 자연수라 한 표현이 흐렸다.",
+        "coreAfter": "정$n$각형의 한 외각의 크기는 $\\frac{360^\\circ}{n}$이다. $\\frac{360}{n}$이 자연수가 되려면 $n$은 $3$ 이상인 {$360$}의 {약수}여야 한다.",
+        "coreReason": "각의 크기 자체를 자연수라 한 표현을 고치고, $n$이 $3$ 이상이라는 조건을 보탰다.",
+        "learningRole": "reason",
+        "roleReason": "$n$이 $360$의 약수여야 하는 까닭",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1790,
+        "part": "m1plus",
+        "sourceFingerprint": "2079a22d0261be4db9b3f7d6e5e0956aa1dbfbe42bab580db4df900fbce47b86",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1790
+        },
+        "directReview": null,
+        "coreBeforeRepair": "정$n$각형의 한 외각의 크기 $\\frac{360^\\circ}{n}$를 도로 나타낸 수가 자연수가 되려면 $n$은 $3$ 이상인 $360$의 약수여야 한다.",
+        "coreRepairReason": "현재안에서 빠진 원본 핵심어 {$360$}, {약수} 표지를 되살렸다. '도로 나타낸 수'를 $\\frac{360}{n}$이라는 식으로 바꾸어 쉽게 했다. $3$ 이상 조건은 유지했다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "정$n$각형의 한 외각의 크기 $\\frac{360^\\circ}{n}$를 도($^\\circ$)로 나타낸 수가 자연수이려면 $n$은 $3$ 이상이면서 $360$의 {약수}여야 한다.",
+        "cSlotAnswers": [
+          "약수"
+        ],
+        "cStudentSentence": "정$n$각형의 한 외각의 크기 $\\frac{360^\\circ}{n}$를 도($^\\circ$)로 나타낸 수가 자연수이려면 $n$은 $3$ 이상이면서 $360$의 □여야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약수",
+            "equivalentAnswers": [
+              "약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약수"
+          ]
+        ],
+        "proposalFingerprint": "08b703b854dccc1107a7c3f3d3559cc8677dd61c4cdcdd6c73ec058316f34237"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc18",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "내각의 합이 외각의 합의 $k$배인 $n$각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "내각의 합이 외각의 합의 $k$배이면 $180^\\circ\\times(n-2)=360^\\circ\\times k$에서 {$n=2k+2$}이다.",
+        "example": {
+          "prompt": "내각의 합이 외각의 합의 $4$배인 다각형은?",
+          "answer": "십각형"
+        },
+        "studentC": "내각의 합이 외각의 합의 $k$배이면 $180^\\circ\\times(n-2)=360^\\circ\\times k$에서 □이다.",
+        "answers": [
+          "$n=2k+2$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "내각의 크기의 합이 외각의 크기의 합의 $4$배인 다각형이 몇 각형인지, 식을 세워 구하시오.",
+        "bAnswer": "$n$각형이라 하면 $180^\\circ\\times(n-2)=360^\\circ\\times 4$이므로 $n-2=8$, $n=10$이다. 십각형이다.",
+        "bGoal": "내각의 합과 외각의 합의 배 관계로 다각형 찾기",
+        "bReason": "문자 $k$ 대신 구체적인 배수를 주어 식과 결론을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ\\times(n-2)=360^\\circ\\times 4$",
+              "내각의 합이 $1440^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "십각형",
+              "$n=10$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$n$각형의 내각의 크기의 합이 외각의 크기의 합의 $k$배이면 $180^\\circ\\times(n-2)=${$360^\\circ$}$\\times k$이므로 $n=${$2k+2$}이다.",
+        "cAnswers": [
+          "$360^\\circ$",
+          "$2k+2$"
+        ],
+        "cReason": "$n$이 무엇인지 없었고 등식 전체 대신 핵심 값과 결과만 비웠다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "두 합의 배 관계를 식으로 놓기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1791,
+        "part": "m1plus",
+        "sourceFingerprint": "d48e39a2b1257d9a06dd78694bb6162d37026a03c6c4ccab658a2baeeced8bbe",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1791
+        },
+        "directReview": null,
+        "cMarkedSentence": "$n$각형의 내각의 크기의 합이 외각의 크기의 합의 $k$배이면 $180^\\circ\\times(n-2)=${$360^\\circ$}$\\times k$이므로 $n=${$2k+2$}이다.",
+        "cSlotAnswers": [
+          "$360^\\circ$",
+          "$2k+2$"
+        ],
+        "cStudentSentence": "$n$각형의 내각의 크기의 합이 외각의 크기의 합의 $k$배이면 $180^\\circ\\times(n-2)=$□$\\times k$이므로 $n=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2k+2$",
+            "equivalentAnswers": [
+              "$2k+2$",
+              "$2(k+1)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$2k+2$",
+            "accept": [
+              "$2(k+1)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$360^\\circ$"
+          ],
+          [
+            "$2k+2$",
+            "$2(k+1)$"
+          ]
+        ],
+        "proposalFingerprint": "3df39795e907bf28f64e97f553269615adc29275560eb406ffc7c3c29157db4d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc19",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "한 점에 모인 정다각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 꼭짓점에 모인 정다각형들의 내각의 합이 {$360^\\circ$}이면 그 꼭짓점의 둘레를 빈틈없이 {채울} 수 있다.",
+        "example": {
+          "prompt": "정육각형 몇 개가 한 점에 모이면 빈틈이 없는가?",
+          "answer": "$3$개"
+        },
+        "studentC": "한 꼭짓점에 모인 정다각형들의 내각의 합이 □이면 그 꼭짓점의 둘레를 빈틈없이 □ 수 있다.",
+        "answers": [
+          "$360^\\circ$",
+          "채울"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "정육각형 여러 개를 한 점에 꼭짓점이 모이도록 겹치지 않게 놓을 때, 그 점의 둘레를 빈틈없이 채우려면 몇 개가 필요한지 까닭과 함께 쓰시오.",
+        "bAnswer": "$3$개이다. 정육각형의 한 내각이 $120^\\circ$이고, 한 점에 모인 내각의 합이 $360^\\circ$가 되어야 빈틈이 없으므로 $360^\\circ\\div 120^\\circ=3$이다.",
+        "bGoal": "한 점 둘레를 채우는 조건 적용하기",
+        "bReason": "'한 점에 모인'의 상황을 정육각형으로 정해 개수와 조건을 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 점에 모인 내각의 합이 $360^\\circ$이다",
+              "$360^\\circ\\div 120^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "여러 개의 정다각형을 한 점에 꼭짓점이 모이도록 겹치지 않게 놓을 때, 그 점에 모인 내각의 크기의 합이 {$360^\\circ$}이면 그 점의 둘레가 빈틈없이 채워진다.",
+        "cAnswers": [
+          "$360^\\circ$"
+        ],
+        "cReason": "'채울' 칸은 채움말이고 정다각형이 놓인 모습이 문장에 없었다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "한 점 둘레 $360^\\circ$ 조건의 적용",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1792,
+        "part": "m1plus",
+        "sourceFingerprint": "cecffbd4cc22fe216f0195187f8f9078f6aa6cb3bc8cce05b160a937ceaecbfe",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1792
+        },
+        "directReview": null,
+        "cMarkedSentence": "여러 개의 정다각형을 한 점에 꼭짓점이 모이도록 겹치지 않게 놓을 때, 그 점에 모인 내각의 크기의 합이 {$360^\\circ$}이면 그 점의 둘레가 빈틈없이 채워진다.",
+        "cSlotAnswers": [
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "여러 개의 정다각형을 한 점에 꼭짓점이 모이도록 겹치지 않게 놓을 때, 그 점에 모인 내각의 크기의 합이 □이면 그 점의 둘레가 빈틈없이 채워진다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "38315e376fd1505999b66aa2744e0128b96ca32a49196e07b0a02d892feffa9a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc20",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "한 가지 정다각형으로 덮기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 가지 정다각형만으로 평면을 빈틈없이 덮을 수 있는 것은 정삼각형, 정사각형, {정육각형} 셋뿐이다. 한 내각이 {$360^\\circ$}의 약수여야 한다.",
+        "example": {
+          "prompt": "정팔각형만으로 평면을 덮을 수 있는가?",
+          "answer": "없다"
+        },
+        "studentC": "한 가지 정다각형만으로 평면을 빈틈없이 덮을 수 있는 것은 정삼각형, 정사각형, □ 셋뿐이다. 한 내각이 □의 약수여야 한다.",
+        "answers": [
+          "정육각형",
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "한 가지 정다각형만으로 평면을 빈틈없이 겹치지 않게 덮으려면 한 내각의 크기가 어떤 조건을 만족해야 하는지 쓰고, 그 조건에 맞는 정다각형을 모두 쓰시오.",
+        "bAnswer": "한 점에 모인 내각의 합이 $360^\\circ$가 되어야 하므로 한 내각의 크기가 $360^\\circ$의 약수여야 한다. 이에 맞는 것은 정삼각형($60^\\circ$), 정사각형($90^\\circ$), 정육각형($120^\\circ$)이다.",
+        "bGoal": "평면을 덮는 정다각형의 조건과 종류 말하기",
+        "bReason": "조건과 해당 도형을 함께 답하도록 범위를 정하고 도형 이름은 숨겼다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 내각의 크기가 $360^\\circ$의 약수이다",
+              "$360^\\circ$가 한 내각으로 나누어떨어진다",
+              "한 점에 모인 내각의 합이 $360^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형, 정사각형, 정육각형"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "남은 도형 하나와 기준 값을 묻는 분명한 두 칸 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "평면을 덮을 수 있는 조건",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1793,
+        "part": "m1plus",
+        "sourceFingerprint": "1041ad4d73cbac59bcfc4285ef1843e28f6d7ebe4a4103efe6a2f2de8c60c977",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1793
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 가지 정다각형만으로 평면을 빈틈없이 덮을 수 있는 것은 정삼각형, 정사각형, □ 셋뿐이다. 한 내각이 □의 약수여야 한다.",
+        "cFrozenDefinition": "한 가지 정다각형만으로 평면을 빈틈없이 덮을 수 있는 것은 정삼각형, 정사각형, {정육각형} 셋뿐이다. 한 내각이 {$360^\\circ$}의 약수여야 한다.",
+        "cFrozenAnswers": [
+          "정육각형",
+          "$360^\\circ$"
+        ],
+        "cMarkedSentence": "한 가지 정다각형만으로 평면을 빈틈없이 덮을 수 있는 것은 정삼각형, 정사각형, {정육각형} 셋뿐이다. 한 내각이 {$360^\\circ$}의 약수여야 한다.",
+        "cSlotAnswers": [
+          "정육각형",
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "한 가지 정다각형만으로 평면을 빈틈없이 덮을 수 있는 것은 정삼각형, 정사각형, □ 셋뿐이다. 한 내각이 □의 약수여야 한다.",
+        "cAnswers": [
+          "정육각형",
+          "$360^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정육각형",
+            "equivalentAnswers": [
+              "정육각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정육각형"
+          ],
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "a70b0db0613ec07345301b6dbe9b781cc11283054ec04cda3447210df714e8e6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc21",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "외각으로 바꾸어 내각 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "내각과 외각이 섞여 주어지면 꼭짓점마다 내각과 외각의 합 {$180^\\circ$}를 써서 모르는 {내각}으로 바꾼다.",
+        "example": {
+          "prompt": "사각형의 세 외각이 $70^\\circ$, $85^\\circ$, $95^\\circ$일 때 나머지 꼭짓점의 내각은?",
+          "answer": "$70^\\circ$"
+        },
+        "studentC": "내각과 외각이 섞여 주어지면 꼭짓점마다 내각과 외각의 합 □를 써서 모르는 □으로 바꾼다.",
+        "answers": [
+          "$180^\\circ$",
+          "내각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형의 세 꼭짓점의 외각의 크기가 $70^\\circ$, $85^\\circ$, $95^\\circ$일 때, 나머지 한 꼭짓점의 내각의 크기를 구하는 과정을 설명하시오.",
+        "bAnswer": "외각의 합이 $360^\\circ$이므로 나머지 꼭짓점의 외각은 $360^\\circ-(70^\\circ+85^\\circ+95^\\circ)=110^\\circ$이다. 한 꼭짓점에서 내각과 외각의 합이 $180^\\circ$이므로 내각은 $180^\\circ-110^\\circ=70^\\circ$이다.",
+        "bGoal": "외각과 내각을 바꾸어 가며 각 구하기",
+        "bReason": "외각과 내각이 섞인 상황을 구체적인 사각형으로 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 외각은 $110^\\circ$",
+              "세 외각을 내각 $110^\\circ$, $95^\\circ$, $85^\\circ$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 꼭짓점에서 내각과 외각의 합이 $180^\\circ$이다",
+              "$180^\\circ$에서 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$70^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "다각형에서 내각과 외각이 섞여 주어지면, 한 꼭짓점에서 내각과 외각의 합이 {$180^\\circ$}임을 이용해 모두 내각이나 모두 외각으로 바꾼 뒤 합의 성질을 쓴다.",
+        "cAnswers": [
+          "$180^\\circ$"
+        ],
+        "cReason": "'모르는 내각으로 바꾼다'가 무엇을 무엇으로 바꾸는지 알 수 없었다.",
+        "coreAfter": "다각형에서 내각과 외각이 섞여 주어지면, 한 꼭짓점에서 내각과 외각의 합이 {$180^\\circ$}임을 써서 모두 외각으로 바꾸고, 외각의 합 $360^\\circ$로 모르는 외각을 구한 뒤 {내각}으로 바꾼다.",
+        "coreReason": "원문은 바꾸는 대상과 방향이 흐려, 제목 '외각으로 바꾸어 내각 구하기'와 어긋났다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "내각과 외각을 한 종류로 맞추기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1794,
+        "part": "m1plus",
+        "sourceFingerprint": "c99f11a9df3f3e12d12d450a2d3eabe4c1e3071dec6196d852fe1eb8727ef31a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1794
+        },
+        "directReview": null,
+        "coreBeforeRepair": "다각형에서 내각과 외각이 섞여 주어지면 한 꼭짓점에서 내각과 외각의 합이 $180^\\circ$임을 써서 모두 내각이나 모두 외각으로 바꾼 뒤, 내각의 합이나 외각의 합을 이용한다.",
+        "coreRepairReason": "빠진 표지를 복구했다. 원본 핵심어 {$180^\\circ$}, {내각}을 유지했다. 현재안의 '내각이나 외각' 양갈래를 제목대로 정리했다. 외각으로 바꾸고, 외각의 합으로 구하고, 다시 내각으로 바꾸는 순서를 밝혔다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "다각형에서 내각과 외각이 섞여 주어지면, 한 꼭짓점에서 내각과 외각의 합이 {$180^\\circ$}임을 이용해 모두 내각이나 모두 외각으로 바꾼 뒤 합의 성질을 쓴다.",
+        "cSlotAnswers": [
+          "$180^\\circ$"
+        ],
+        "cStudentSentence": "다각형에서 내각과 외각이 섞여 주어지면, 한 꼭짓점에서 내각과 외각의 합이 □임을 이용해 모두 내각이나 모두 외각으로 바꾼 뒤 합의 성질을 쓴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "7304f2b8916b7097e85e9b66301ee7c5b304f31f5f7b7dabb222791441371321"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc22",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "맞붙은 두 정다각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 정다각형이 겹치지 않게 한 변을 함께하면 그 꼭짓점에서 두 한 내각을 {더한} 뒤 {$360^\\circ$}에서 빼서 바깥쪽 각을 구한다.",
+        "example": {
+          "prompt": "정육각형과 정사각형이 겹치지 않게 한 변을 함께할 때 한 꼭짓점의 바깥쪽 각은?",
+          "answer": "$150^\\circ$"
+        },
+        "studentC": "두 정다각형이 겹치지 않게 한 변을 함께하면 그 꼭짓점에서 두 한 내각을 □ 뒤 □에서 빼서 바깥쪽 각을 구한다.",
+        "answers": [
+          "더한",
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "정육각형과 정사각형이 겹치지 않게 한 변을 공유하고 있다. 공유한 변의 한 끝 점에서 두 도형의 내각을 뺀 바깥쪽 각의 크기를 구하는 과정을 설명하시오.",
+        "bAnswer": "그 점에 정육각형의 한 내각 $120^\\circ$와 정사각형의 한 내각 $90^\\circ$가 모이므로 합은 $210^\\circ$이다. 한 점 둘레는 $360^\\circ$이므로 바깥쪽 각은 $360^\\circ-210^\\circ=150^\\circ$이다.",
+        "bGoal": "맞붙은 두 정다각형의 바깥쪽 각 구하기",
+        "bReason": "그림이 없어 두 도형과 각의 위치를 말로 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 내각의 합은 $210^\\circ$",
+              "$120^\\circ+90^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$360^\\circ$에서 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$150^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 정다각형이 겹치지 않게 한 변을 공유하면, 공유한 변의 한 끝 점에서 두 정다각형의 한 내각의 크기를 {더한} 값을 {$360^\\circ$}에서 빼서 바깥쪽에 남는 각의 크기를 구한다.",
+        "cAnswers": [
+          "더한",
+          "$360^\\circ$"
+        ],
+        "cReason": "'그 꼭짓점'이 어디인지 없고 '두 한 내각'이라는 표현이 어색했다.",
+        "studentLabel": "한 변을 공유한 두 정다각형의 바깥쪽 각",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "두 내각을 더해 $360^\\circ$에서 빼기",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1795,
+        "part": "m1plus",
+        "sourceFingerprint": "7ec1181d6b268f0b0ba9e0839180487966b7aee70d409e2dae35d8d9de079995",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1795
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 정다각형이 겹치지 않게 한 변을 공유하면, 공유한 변의 한 끝 점에서 두 정다각형의 한 내각의 크기를 {더한} 값을 {$360^\\circ$}에서 빼서 바깥쪽에 남는 각의 크기를 구한다.",
+        "cSlotAnswers": [
+          "더한",
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "두 정다각형이 겹치지 않게 한 변을 공유하면, 공유한 변의 한 끝 점에서 두 정다각형의 한 내각의 크기를 □ 값을 □에서 빼서 바깥쪽에 남는 각의 크기를 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "더한",
+            "equivalentAnswers": [
+              "더한",
+              "합한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더한",
+            "accept": [
+              "합한"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "더한",
+            "합한"
+          ],
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "4f7cf28a661cedc3574747e9021b92a573da93f46809fda9f1db3579d94da44e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-06-03-xc23",
+        "section": "중1::6. 평면도형::다각형의 내각과 외각",
+        "term": "변이 많은 정다각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변의 수가 늘수록 정다각형의 한 외각은 {작아지고} 한 내각은 {$180^\\circ$}에 가까워진다.",
+        "example": {
+          "prompt": "한 내각이 $170^\\circ$인 정다각형은?",
+          "answer": "정삼십육각형"
+        },
+        "studentC": "변의 수가 늘수록 정다각형의 한 외각은 □ 한 내각은 □에 가까워진다.",
+        "answers": [
+          "작아지고",
+          "$180^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-03-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "정다각형의 변의 수가 늘어날수록 한 외각과 한 내각의 크기는 각각 어떻게 변하는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "한 외각은 $\\frac{360^\\circ}{n}$이므로 변의 수 $n$이 커질수록 작아진다. 한 내각은 $180^\\circ$에서 한 외각을 뺀 크기이므로 커지면서 $180^\\circ$에 가까워진다.",
+        "bGoal": "변의 수에 따른 외각과 내각의 변화 설명하기",
+        "bReason": "두 각의 변화 방향과 까닭을 모두 답하도록 범위를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 외각은 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 내각은 커진다",
+              "한 내각은 $180^\\circ$에 가까워진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 외각은 $360^\\circ$를 변의 수로 나눈 크기이다",
+              "한 내각은 $180^\\circ$에서 한 외각을 뺀 크기이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "변화 방향과 가까워지는 값을 묻는 짧고 분명한 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "변이 늘 때 두 각의 변화",
+        "authorBatch": 18,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1796,
+        "part": "m1plus",
+        "sourceFingerprint": "22b815831a8746221b454595822fd3c01aed6425b5bb595c46376fdc7b0d2687",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1796
+        },
+        "directReview": null,
+        "cFrozenSentence": "변의 수가 늘수록 정다각형의 한 외각은 □ 한 내각은 □에 가까워진다.",
+        "cFrozenDefinition": "변의 수가 늘수록 정다각형의 한 외각은 {작아지고} 한 내각은 {$180^\\circ$}에 가까워진다.",
+        "cFrozenAnswers": [
+          "작아지고",
+          "$180^\\circ$"
+        ],
+        "cMarkedSentence": "변의 수가 늘수록 정다각형의 한 외각은 {작아지고} 한 내각은 {$180^\\circ$}에 가까워진다.",
+        "cSlotAnswers": [
+          "작아지고",
+          "$180^\\circ$"
+        ],
+        "cStudentSentence": "변의 수가 늘수록 정다각형의 한 외각은 □ 한 내각은 □에 가까워진다.",
+        "cAnswers": [
+          "작아지고",
+          "$180^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작아지고",
+            "equivalentAnswers": [
+              "작아지고",
+              "줄어들고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작아지고",
+            "accept": [
+              "줄어들고"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작아지고",
+            "줄어들고"
+          ],
+          [
+            "$180^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "a590df848d3fd42063dc1e3cfd7df40ca4dff8419a1ed47e0c9f06e45ee1c1ef"
+      }
+    }
+  ]
+}

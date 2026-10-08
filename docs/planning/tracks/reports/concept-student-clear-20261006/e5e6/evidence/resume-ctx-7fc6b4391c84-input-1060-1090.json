@@ -1,0 +1,2979 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:12:17.896755+00:00",
+  "rows": [
+    {
+      "id": "e5-2-1-1-xc18",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "‘$6$ 이상’을 ‘$6$보다 크다’로 바꾸어 말하면 두 말의 범위가 어떻게 달라지는지 설명하고, ‘$6$ 이상’을 ‘이상’이라는 말 없이 바르게 바꾸어 말하시오.",
+      "bAnswer": "‘$6$보다 크다’고 하면 $6$이 빠진다. ‘$6$ 이상’은 ‘$6$과 같거나 $6$보다 크다’로 말해야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "‘$6$보다 크다’에는 $6$이 들어가지 않는다",
+            "$6$이 빠진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$과 같거나 크다",
+            "$6$이거나 $6$보다 크다",
+            "$6$보다 크거나 같다"
+          ]
+        }
+      ],
+      "bGoal": "‘이상’과 ‘보다 크다’의 차이가 기준 수 포함 여부임을 설명한다.",
+      "bReason": "막연한 ‘안 되는 까닭’ 대신 두 표현의 범위 차이와 바른 표현을 지정해 물었다.",
+      "cDecision": "keep",
+      "cAfter": "‘이상’은 ‘{같거나 크다}’, ‘이하’는 ‘같거나 작다’로 바꾸어 말할 수 있다.",
+      "cReason": "이하의 풀이말이 함께 있어 이상의 풀이말을 짧게 떠올려 쓸 수 있다.",
+      "exampleNeeded": false,
+      "synonymNotes": "‘크거나 같다’는 ‘같거나 크다’와 같은 답으로 인정해야 한다.",
+      "sourceIndex": 1060,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc18",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "이상 · 이하를 말로 바꾸기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "‘이상’은 ‘{같거나 크다}’, ‘이하’는 ‘같거나 작다’로 바꾸어 말할 수 있다.",
+        "example": {
+          "prompt": "‘$6$ 이상’을 ‘$6$보다 크다’로 바꾸면 안 되는 까닭은?",
+          "answer": "$6$이 빠져서"
+        },
+        "studentC": "‘이상’은 ‘□’, ‘이하’는 ‘같거나 작다’로 바꾸어 말할 수 있다.",
+        "answers": [
+          "같거나 크다"
+        ]
+      },
+      "sourceFingerprint": "61abcadb6d77ad7d39043bc09deb9ca7cb8633557d914a91c6dbd93d8f7547c9",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cFrozenDefinition": "‘이상’은 ‘{같거나 크다}’, ‘이하’는 ‘같거나 작다’로 바꾸어 말할 수 있다.",
+      "cFrozenStudentSentence": "‘이상’은 ‘□’, ‘이하’는 ‘같거나 작다’로 바꾸어 말할 수 있다.",
+      "cProposedAnswers": [
+        "같거나 크다"
+      ],
+      "cStudentAfter": "‘이상’은 ‘□’, ‘이하’는 ‘같거나 작다’로 바꾸어 말할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같거나 크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "‘이상’은 ‘{같거나 크다}’, ‘이하’는 ‘같거나 작다’로 바꾸어 말할 수 있다.",
+      "cStudentSentence": "‘이상’은 ‘□’, ‘이하’는 ‘같거나 작다’로 바꾸어 말할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "같거나 크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$6$ 이상’을 ‘$6$보다 크다’로 바꾸어 말하면 두 말의 범위가 어떻게 달라지는지 설명하고, ‘$6$ 이상’을 ‘이상’이라는 말 없이 바르게 바꾸어 말하시오.",
+        "answer": "‘$6$보다 크다’고 하면 $6$이 빠진다. ‘$6$ 이상’은 ‘$6$과 같거나 $6$보다 크다’로 말해야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "‘$6$보다 크다’에는 $6$이 들어가지 않는다",
+              "$6$이 빠진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$과 같거나 크다",
+              "$6$이거나 $6$보다 크다",
+              "$6$보다 크거나 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘이상’은 ‘{같거나 크다}’, ‘이하’는 ‘같거나 작다’로 바꾸어 말할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "같거나 크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0e139fae669fb1ad9c03e19be48d017f2fc82b1b6300ab9b420453051c8b4417",
+      "questionRevision": "planning-e5e6-20261006-0e139fae669f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc20",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "수직선에서 $4$와 $9$에 색칠한 점(●)이 있고, 두 점 사이만 선으로 이어져 있다. 이 그림이 나타내는 수의 범위를 ‘이상’, ‘이하’를 써서 말하고, $4$와 $9$의 점이 색칠되어 있는 것이 무엇을 뜻하는지 쓰시오.",
+      "bAnswer": "$4$ 이상 $9$ 이하인 수이다. 점이 색칠된 것은 $4$와 $9$가 범위에 들어간다는 뜻이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$ 이상 $9$ 이하"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$와 $9$가 범위에 들어간다",
+            "두 끝 수를 포함한다"
+          ]
+        }
+      ],
+      "bGoal": "수직선 그림을 읽어 이상·이하로 범위를 말한다.",
+      "bReason": "그림 없이도 풀 수 있도록 점의 위치와 선의 모양을 글로 적어 주었다.",
+      "cDecision": "revise",
+      "cAfter": "수직선에서 $4$와 $9$에 색칠한 점(●)이 있고 두 점 사이만 선으로 이어져 있으면 {$4$} {이상} {$9$} {이하}인 수의 범위이다.",
+      "cReason": "‘그 사이만’은 외울 낱말이 아니어서 그림 설명을 읽고 범위를 말로 옮기게 했다.",
+      "exampleNeeded": false,
+      "exampleReason": "글로 풀 수 있으나, 4와 9에 ●를 찍고 그 사이를 이은 수직선 그림을 붙이면 더 좋다.",
+      "sourceIndex": 1061,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc20",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "두 점이 색칠되고 사이가 이어진 수직선",
+        "kind": "방법",
+        "level": "상",
+        "definition": "수직선에서 두 점이 모두 색칠되어 있고 {그 사이만} 이어져 있으면 작은 수 이상 큰 수 이하인 범위이다.",
+        "studentC": "수직선에서 두 점이 모두 색칠되어 있고 □ 이어져 있으면 작은 수 이상 큰 수 이하인 범위이다.",
+        "answers": [
+          "그 사이만"
+        ]
+      },
+      "sourceFingerprint": "50b266922deb0f4ea191a9bc0b0cd86f55a844d6a1fdb31dab90e5ba5c81760a",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "이상",
+        "$9$",
+        "이하"
+      ],
+      "cStudentAfter": "수직선에서 $4$와 $9$에 색칠한 점(●)이 있고 두 점 사이만 선으로 이어져 있으면 □ □ □ □인 수의 범위이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "이상"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "이하"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "수직선에서 $4$와 $9$에 색칠한 점(●)이 있고 두 점 사이만 선으로 이어져 있으면 {$4$} {이상} {$9$} {이하}인 수의 범위이다.",
+      "cStudentSentence": "수직선에서 $4$와 $9$에 색칠한 점(●)이 있고 두 점 사이만 선으로 이어져 있으면 □ □ □ □인 수의 범위이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "이상",
+          "equivalents": []
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        },
+        {
+          "key": "이하",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "수직선에서 $4$와 $9$에 색칠한 점(●)이 있고, 두 점 사이만 선으로 이어져 있다. 이 그림이 나타내는 수의 범위를 ‘이상’, ‘이하’를 써서 말하고, $4$와 $9$의 점이 색칠되어 있는 것이 무엇을 뜻하는지 쓰시오.",
+        "answer": "$4$ 이상 $9$ 이하인 수이다. 점이 색칠된 것은 $4$와 $9$가 범위에 들어간다는 뜻이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$ 이상 $9$ 이하"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$와 $9$가 범위에 들어간다",
+              "두 끝 수를 포함한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수직선에서 $4$와 $9$에 색칠한 점(●)이 있고 두 점 사이만 선으로 이어져 있으면 {$4$} {이상} {$9$} {이하}인 수의 범위이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "이상"
+          ],
+          [
+            "$9$"
+          ],
+          [
+            "이하"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "916d69b70a6f4c188ecc82511341c187cbb79ba88b78737bfa70b269ae014fec",
+      "questionRevision": "planning-e5e6-20261006-916d69b70a6f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "어떤 놀이 기구는 ‘$8$세 이상이고 키 $130\\,\\mathrm{cm}$ 이상’인 사람만 탈 수 있다. $9$세이고 키가 $128\\,\\mathrm{cm}$인 아이가 탈 수 있는지 쓰고, 나이 조건과 키 조건을 각각 확인하여 까닭을 설명하시오.",
+      "bAnswer": "탈 수 없다. $9$세는 $8$세 이상이라 나이 조건에는 맞지만, $128\\,\\mathrm{cm}$는 $130\\,\\mathrm{cm}$보다 작아 키 조건에 맞지 않는다. 두 조건에 모두 맞아야 탈 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "탈 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나이 조건에는 맞는다",
+            "$9$세는 $8$세 이상이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "키 조건에 맞지 않는다",
+            "$128\\,\\mathrm{cm}$는 $130\\,\\mathrm{cm}$ 이상이 아니다"
+          ]
+        }
+      ],
+      "bGoal": "두 조건을 각각 확인해 둘 다 맞을 때만 범위에 든다고 판단한다.",
+      "bReason": "원문 예의 예/아니요 답에 조건별 확인을 요구해 판단 과정을 드러나게 했다.",
+      "cDecision": "revise",
+      "cAfter": "‘$8$세 이상이고 키 $130$ $\\mathrm{cm}$ 이상’인 사람만 타는 놀이 기구에서, $9$세이고 키가 $128$ $\\mathrm{cm}$인 아이는 {키} 조건에 맞지 않아 탈 수 {없다}.",
+      "cReason": "‘각 조건을 따로’라는 구절 대신 실제 상황에서 어긋난 조건과 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1062,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc22",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "조건이 둘인 생활 문제",
+        "kind": "방법",
+        "level": "상",
+        "definition": "나이와 키처럼 조건이 둘이면 {각 조건을 따로} 확인한 뒤 둘 다 맞는 사람만 고른다.",
+        "example": {
+          "prompt": "$8$세 이상, 키 $130\\,\\mathrm{cm}$ 이상만 탈 때 $9$세이고 키가 $128\\,\\mathrm{cm}$인 아이는 탈 수 있는가?",
+          "answer": "아니다"
+        },
+        "studentC": "나이와 키처럼 조건이 둘이면 □ 확인한 뒤 둘 다 맞는 사람만 고른다.",
+        "answers": [
+          "각 조건을 따로"
+        ]
+      },
+      "sourceFingerprint": "3562766ada2f8e9840044f9c83f52f5cbd2c9869af730752d87e630fcd46be8e",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cProposedAnswers": [
+        "키",
+        "없다"
+      ],
+      "cStudentAfter": "‘$8$세 이상이고 키 $130$ $\\mathrm{cm}$ 이상’인 사람만 타는 놀이 기구에서, $9$세이고 키가 $128$ $\\mathrm{cm}$인 아이는 □ 조건에 맞지 않아 탈 수 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "키"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "‘$8$세 이상이고 키 $130$ $\\mathrm{cm}$ 이상’인 사람만 타는 놀이 기구에서, $9$세이고 키가 $128$ $\\mathrm{cm}$인 아이는 {키} 조건에 맞지 않아 탈 수 {없다}.",
+      "cStudentSentence": "‘$8$세 이상이고 키 $130$ $\\mathrm{cm}$ 이상’인 사람만 타는 놀이 기구에서, $9$세이고 키가 $128$ $\\mathrm{cm}$인 아이는 □ 조건에 맞지 않아 탈 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "키",
+          "equivalents": []
+        },
+        {
+          "key": "없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 놀이 기구는 ‘$8$세 이상이고 키 $130\\,\\mathrm{cm}$ 이상’인 사람만 탈 수 있다. $9$세이고 키가 $128\\,\\mathrm{cm}$인 아이가 탈 수 있는지 쓰고, 나이 조건과 키 조건을 각각 확인하여 까닭을 설명하시오.",
+        "answer": "탈 수 없다. $9$세는 $8$세 이상이라 나이 조건에는 맞지만, $128\\,\\mathrm{cm}$는 $130\\,\\mathrm{cm}$보다 작아 키 조건에 맞지 않는다. 두 조건에 모두 맞아야 탈 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "탈 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나이 조건에는 맞는다",
+              "$9$세는 $8$세 이상이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "키 조건에 맞지 않는다",
+              "$128\\,\\mathrm{cm}$는 $130\\,\\mathrm{cm}$ 이상이 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘$8$세 이상이고 키 $130$ $\\mathrm{cm}$ 이상’인 사람만 타는 놀이 기구에서, $9$세이고 키가 $128$ $\\mathrm{cm}$인 아이는 {키} 조건에 맞지 않아 탈 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "키"
+          ],
+          [
+            "없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c3b06d7e2895168f919f2d4877175bc495f24778e8450a8689b1524ed6e82a67",
+      "questionRevision": "planning-e5e6-20261006-c3b06d7e2895",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc24",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "‘사과가 적어도 $3$개 있어야 한다’는 조건을 ‘이상’과 ‘이하’ 중 알맞은 말을 써서 나타내시오. 그리고 사과가 $3$개일 때와 $2$개일 때 각각 이 조건에 맞는지 쓰시오.",
+      "bAnswer": "$3$개 이상이다. $3$개일 때는 조건에 맞고, $2$개일 때는 맞지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$개 이상"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$개는 조건에 맞는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$개는 조건에 맞지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "‘적어도’라는 생활 표현을 이상으로 옮기고 경계를 판단한다.",
+      "bReason": "낱말 바꾸기에 그치지 않도록 경계와 그 아래 개수를 함께 확인하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "‘적어도 그만큼은 되어야 한다’는 조건은 {이상}으로 나타낸다.",
+      "cReason": "‘적어도 그만큼은 되어야 한다’는 뜻풀이에서 ‘이상’을 고르는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1063,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc24",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "‘적어도’를 이상으로",
+        "kind": "성질",
+        "level": "상",
+        "definition": "‘적어도 그만큼은 되어야 한다’는 조건은 {이상}으로 나타낸다.",
+        "example": {
+          "prompt": "‘적어도 $3$개’를 이상, 이하로 바꾸면?",
+          "answer": "$3$개 이상"
+        },
+        "studentC": "‘적어도 그만큼은 되어야 한다’는 조건은 □으로 나타낸다.",
+        "answers": [
+          "이상"
+        ]
+      },
+      "sourceFingerprint": "ce9f413249401126fd9d7ff212a270e7832e9afc94d4557b1225ce3596a56658",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cFrozenDefinition": "‘적어도 그만큼은 되어야 한다’는 조건은 {이상}으로 나타낸다.",
+      "cFrozenStudentSentence": "‘적어도 그만큼은 되어야 한다’는 조건은 □으로 나타낸다.",
+      "cProposedAnswers": [
+        "이상"
+      ],
+      "cStudentAfter": "‘적어도 그만큼은 되어야 한다’는 조건은 □으로 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "이상"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "‘적어도 그만큼은 되어야 한다’는 조건은 {이상}으로 나타낸다.",
+      "cStudentSentence": "‘적어도 그만큼은 되어야 한다’는 조건은 □으로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "이상",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘사과가 적어도 $3$개 있어야 한다’는 조건을 ‘이상’과 ‘이하’ 중 알맞은 말을 써서 나타내시오. 그리고 사과가 $3$개일 때와 $2$개일 때 각각 이 조건에 맞는지 쓰시오.",
+        "answer": "$3$개 이상이다. $3$개일 때는 조건에 맞고, $2$개일 때는 맞지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개 이상"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$개는 조건에 맞는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$개는 조건에 맞지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘적어도 그만큼은 되어야 한다’는 조건은 {이상}으로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "이상"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ff9221fb53e4b8570c64b880afe1ebd989967cfc5ae4bf589b3f40dde7e1ca0d",
+      "questionRevision": "planning-e5e6-20261006-ff9221fb53e4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-1-xc25",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "‘한 모둠은 많아야 $5$명이다’는 조건을 ‘이상’과 ‘이하’ 중 알맞은 말을 써서 나타내시오. 그리고 모둠 인원이 $5$명일 때와 $6$명일 때 각각 이 조건에 맞는지 쓰시오.",
+      "bAnswer": "$5$명 이하이다. $5$명일 때는 조건에 맞고, $6$명일 때는 맞지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$명 이하"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$명은 조건에 맞는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$명은 조건에 맞지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "‘많아야’라는 생활 표현을 이하로 옮기고 경계를 판단한다.",
+      "bReason": "‘많아야’는 뜻을 헷갈리기 쉬워 경계와 그 위 인원을 함께 판단하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "‘많아도 그 값을 넘지 않는다’는 조건은 {이하}로 나타낸다.",
+      "cReason": "‘그 값을 넘지 않는다’는 풀이가 있어 ‘이하’를 분명히 답할 수 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1064,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc25",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "‘많아야’를 이하로",
+        "kind": "성질",
+        "level": "상",
+        "definition": "‘많아도 그 값을 넘지 않는다’는 조건은 {이하}로 나타낸다.",
+        "example": {
+          "prompt": "‘많아야 $5$명’을 이상, 이하로 바꾸면?",
+          "answer": "$5$명 이하"
+        },
+        "studentC": "‘많아도 그 값을 넘지 않는다’는 조건은 □로 나타낸다.",
+        "answers": [
+          "이하"
+        ]
+      },
+      "sourceFingerprint": "e75e7b9c7b540ee17f5bd04665b719b16b06279d937ff3ea8448f7fd246a1380",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "cFrozenDefinition": "‘많아도 그 값을 넘지 않는다’는 조건은 {이하}로 나타낸다.",
+      "cFrozenStudentSentence": "‘많아도 그 값을 넘지 않는다’는 조건은 □로 나타낸다.",
+      "cProposedAnswers": [
+        "이하"
+      ],
+      "cStudentAfter": "‘많아도 그 값을 넘지 않는다’는 조건은 □로 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "이하"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "‘많아도 그 값을 넘지 않는다’는 조건은 {이하}로 나타낸다.",
+      "cStudentSentence": "‘많아도 그 값을 넘지 않는다’는 조건은 □로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "이하",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘한 모둠은 많아야 $5$명이다’는 조건을 ‘이상’과 ‘이하’ 중 알맞은 말을 써서 나타내시오. 그리고 모둠 인원이 $5$명일 때와 $6$명일 때 각각 이 조건에 맞는지 쓰시오.",
+        "answer": "$5$명 이하이다. $5$명일 때는 조건에 맞고, $6$명일 때는 맞지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5$명 이하"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$명은 조건에 맞는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$명은 조건에 맞지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘많아도 그 값을 넘지 않는다’는 조건은 {이하}로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "이하"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f9c20c0f0de57fe1c5de1df6794566def2d7628f92203e43aae90c1e0dbdb9a8",
+      "questionRevision": "planning-e5e6-20261006-f9c20c0f0de5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "‘어떤 수 초과인 수’를 수직선에 나타낼 때 기준 수의 자리에 어떤 점을 찍고 어느 쪽으로 선을 긋는지 쓰고, 점을 그렇게 찍는 까닭을 설명하시오.",
+      "bAnswer": "기준 수의 자리에 색칠하지 않은 점($\\bigcirc$)을 찍고 오른쪽으로 선을 긋는다. 기준 수는 범위에 들어가지 않기 때문에 점을 색칠하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "색칠하지 않은 점을 찍는다",
+            "빈 점을 찍는다",
+            "$\\bigcirc$로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "오른쪽으로 선을 긋는다",
+            "큰 수 쪽으로 선을 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "기준 수가 범위에 들어가지 않기 때문이다"
+          ]
+        }
+      ],
+      "bGoal": "초과를 수직선에 나타내는 방법을 기준 수가 빠지는 것과 연결한다.",
+      "bReason": "점 모양과 방향만 묻지 않고 빈 점을 찍는 까닭까지 지정해 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$5$ 초과인 수를 수직선에 나타낼 때, $5$의 자리에는 속을 {색칠하지 않은} 점을 찍고 {오른쪽}으로 선을 긋는다.",
+      "cReason": "‘빈 점’은 교과서마다 부르는 말이 달라 한 낱말을 강요하기 어려우므로 뜻이 드러나는 표현과 방향을 함께 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "색칠하지 않은",
+            "칠하지 않은",
+            "비운",
+            "빈"
+          ]
+        },
+        {
+          "anyOf": [
+            "오른쪽"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1065,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc3",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "초과를 수직선에 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "초과는 기준 수에 {빈 점}을 찍고 오른쪽으로 선을 긋는다.",
+        "studentC": "초과는 기준 수에 □을 찍고 오른쪽으로 선을 긋는다.",
+        "answers": [
+          "빈 점"
+        ]
+      },
+      "sourceFingerprint": "dd6b511d33cc852db09baecd03c3ff76a6e67819a8f109dfd2e588c1d9dd5b6a",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "색칠하지 않은",
+        "오른쪽"
+      ],
+      "cStudentAfter": "$5$ 초과인 수를 수직선에 나타낼 때, $5$의 자리에는 속을 □ 점을 찍고 □으로 선을 긋는다.",
+      "cMarkedSentence": "$5$ 초과인 수를 수직선에 나타낼 때, $5$의 자리에는 속을 {색칠하지 않은} 점을 찍고 {오른쪽}으로 선을 긋는다.",
+      "cStudentSentence": "$5$ 초과인 수를 수직선에 나타낼 때, $5$의 자리에는 속을 □ 점을 찍고 □으로 선을 긋는다.",
+      "cSlotAnswers": [
+        {
+          "key": "색칠하지 않은",
+          "equivalents": [
+            "칠하지 않은",
+            "비운",
+            "빈"
+          ]
+        },
+        {
+          "key": "오른쪽",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘어떤 수 초과인 수’를 수직선에 나타낼 때 기준 수의 자리에 어떤 점을 찍고 어느 쪽으로 선을 긋는지 쓰고, 점을 그렇게 찍는 까닭을 설명하시오.",
+        "answer": "기준 수의 자리에 색칠하지 않은 점($\\bigcirc$)을 찍고 오른쪽으로 선을 긋는다. 기준 수는 범위에 들어가지 않기 때문에 점을 색칠하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "색칠하지 않은 점을 찍는다",
+              "빈 점을 찍는다",
+              "$\\bigcirc$로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽으로 선을 긋는다",
+              "큰 수 쪽으로 선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준 수가 범위에 들어가지 않기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5$ 초과인 수를 수직선에 나타낼 때, $5$의 자리에는 속을 {색칠하지 않은} 점을 찍고 {오른쪽}으로 선을 긋는다.",
+        "acceptedAnswers": [
+          [
+            "색칠하지 않은",
+            "칠하지 않은",
+            "비운",
+            "빈"
+          ],
+          [
+            "오른쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "aff56fee763cfd8ac8240a38283e6b0ef502293acd527596b64fb1ca2b07eafe",
+      "questionRevision": "planning-e5e6-20261006-aff56fee763c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "‘어떤 수 미만인 수’를 수직선에 나타낼 때 선을 기준 수의 어느 쪽으로 긋는지 쓰고, 수직선에서 수의 크기가 놓이는 방향과 관련지어 까닭을 설명하시오.",
+      "bAnswer": "기준 수의 왼쪽으로 긋는다. 수직선에서는 왼쪽으로 갈수록 수가 작아지고, 미만은 기준 수보다 작은 수이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "왼쪽으로 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "수직선에서 왼쪽으로 갈수록 수가 작다",
+            "기준 수보다 작은 수는 기준 수의 왼쪽에 있다"
+          ]
+        }
+      ],
+      "bGoal": "미만의 선 방향을 수직선에서 수의 크기 순서로 설명한다.",
+      "bReason": "초과 행과 겹치지 않도록 점 모양이 아닌 방향의 까닭에 초점을 두었다.",
+      "cDecision": "keep",
+      "cAfter": "미만은 기준 수에 빈 점을 찍고 {왼쪽}으로 선을 긋는다.",
+      "cReason": "빈 점 조건이 문장에 주어져 있고 방향 한 낱말(왼쪽)만 묻는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1066,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc4",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "미만을 수직선에 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "미만은 기준 수에 빈 점을 찍고 {왼쪽}으로 선을 긋는다.",
+        "studentC": "미만은 기준 수에 빈 점을 찍고 □으로 선을 긋는다.",
+        "answers": [
+          "왼쪽"
+        ]
+      },
+      "sourceFingerprint": "645f9005b437712d24e8f8fedf075d68db0ee049a5e31b8365fb6ba01834a458",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cFrozenDefinition": "미만은 기준 수에 빈 점을 찍고 {왼쪽}으로 선을 긋는다.",
+      "cFrozenStudentSentence": "미만은 기준 수에 빈 점을 찍고 □으로 선을 긋는다.",
+      "cProposedAnswers": [
+        "왼쪽"
+      ],
+      "cStudentAfter": "미만은 기준 수에 빈 점을 찍고 □으로 선을 긋는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "왼쪽"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "미만은 기준 수에 빈 점을 찍고 {왼쪽}으로 선을 긋는다.",
+      "cStudentSentence": "미만은 기준 수에 빈 점을 찍고 □으로 선을 긋는다.",
+      "cSlotAnswers": [
+        {
+          "key": "왼쪽",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘어떤 수 미만인 수’를 수직선에 나타낼 때 선을 기준 수의 어느 쪽으로 긋는지 쓰고, 수직선에서 수의 크기가 놓이는 방향과 관련지어 까닭을 설명하시오.",
+        "answer": "기준 수의 왼쪽으로 긋는다. 수직선에서는 왼쪽으로 갈수록 수가 작아지고, 미만은 기준 수보다 작은 수이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "왼쪽으로 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수직선에서 왼쪽으로 갈수록 수가 작다",
+              "기준 수보다 작은 수는 기준 수의 왼쪽에 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "미만은 기준 수에 빈 점을 찍고 {왼쪽}으로 선을 긋는다.",
+        "acceptedAnswers": [
+          [
+            "왼쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "262bd4378f9a5be06f267283f12477496f6eca1cc2920207039dadeb96cfdfbe",
+      "questionRevision": "planning-e5e6-20261006-262bd4378f9a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "‘$5\\,\\mathrm{kg}$ 초과 시 추가 요금’이라는 안내가 있다. 무게가 정확히 $5\\,\\mathrm{kg}$인 짐은 추가 요금을 내는지 쓰고, 초과의 뜻을 써서 까닭을 설명하시오.",
+      "bAnswer": "내지 않는다. 초과는 기준보다 큰 경우만 해당하는데 $5$는 $5$보다 크지 않기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "추가 요금을 내지 않는다",
+            "추가 요금이 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$는 $5$보다 크지 않다",
+            "초과에는 기준과 같은 값이 들어가지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "생활 안내문의 ‘초과’에서 기준과 같은 값이 해당하지 않음을 판단한다.",
+      "bReason": "원문 예시를 살려 실제 상황의 판단과 까닭을 한 번에 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "‘$5\\,\\mathrm{kg}$ 초과 시 추가 요금’일 때, 무게가 $4.9\\,\\mathrm{kg}$, $5\\,\\mathrm{kg}$, $5.1\\,\\mathrm{kg}$인 짐 중 추가 요금을 내는 것은 {$5.1$}$\\,\\mathrm{kg}$인 짐뿐이다.",
+      "cReason": "‘꼭 같을 때는’은 외워서 쓰기 어려운 임의 구절이라 실제 무게를 판별하는 값으로 바꿨다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5.1$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1067,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc5",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "‘초과’로 정한 안내문",
+        "kind": "방법",
+        "level": "하",
+        "definition": "‘몇 초과’로 정한 조건은 기준 값과 {꼭 같을 때는} 해당하지 않는다.",
+        "example": {
+          "prompt": "‘$5\\,\\mathrm{kg}$ 초과 시 추가 요금’인데 $5\\,\\mathrm{kg}$ 짐은 추가 요금이 없는 까닭은?",
+          "answer": "$5$는 $5$보다 크지 않아서"
+        },
+        "studentC": "‘몇 초과’로 정한 조건은 기준 값과 □ 해당하지 않는다.",
+        "answers": [
+          "꼭 같을 때는"
+        ]
+      },
+      "sourceFingerprint": "963bf5b1caacb27fa0091ddcb62b12cea74bf43488a10388c31d6b79e2110acc",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$5.1$"
+      ],
+      "cStudentAfter": "‘$5\\,\\mathrm{kg}$ 초과 시 추가 요금’일 때, 무게가 $4.9\\,\\mathrm{kg}$, $5\\,\\mathrm{kg}$, $5.1\\,\\mathrm{kg}$인 짐 중 추가 요금을 내는 것은 □$\\,\\mathrm{kg}$인 짐뿐이다.",
+      "cMarkedSentence": "‘$5\\,\\mathrm{kg}$ 초과 시 추가 요금’일 때, 무게가 $4.9\\,\\mathrm{kg}$, $5\\,\\mathrm{kg}$, $5.1\\,\\mathrm{kg}$인 짐 중 추가 요금을 내는 것은 {$5.1$}$\\,\\mathrm{kg}$인 짐뿐이다.",
+      "cStudentSentence": "‘$5\\,\\mathrm{kg}$ 초과 시 추가 요금’일 때, 무게가 $4.9\\,\\mathrm{kg}$, $5\\,\\mathrm{kg}$, $5.1\\,\\mathrm{kg}$인 짐 중 추가 요금을 내는 것은 □$\\,\\mathrm{kg}$인 짐뿐이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5.1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$5\\,\\mathrm{kg}$ 초과 시 추가 요금’이라는 안내가 있다. 무게가 정확히 $5\\,\\mathrm{kg}$인 짐은 추가 요금을 내는지 쓰고, 초과의 뜻을 써서 까닭을 설명하시오.",
+        "answer": "내지 않는다. 초과는 기준보다 큰 경우만 해당하는데 $5$는 $5$보다 크지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "추가 요금을 내지 않는다",
+              "추가 요금이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$는 $5$보다 크지 않다",
+              "초과에는 기준과 같은 값이 들어가지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘$5\\,\\mathrm{kg}$ 초과 시 추가 요금’일 때, 무게가 $4.9\\,\\mathrm{kg}$, $5\\,\\mathrm{kg}$, $5.1\\,\\mathrm{kg}$인 짐 중 추가 요금을 내는 것은 {$5.1$}$\\,\\mathrm{kg}$인 짐뿐이다.",
+        "acceptedAnswers": [
+          [
+            "$5.1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "85612240df7698cfe62acbef815913e0d0f1895c2236aa464b6ed29ffc318ede",
+      "questionRevision": "planning-e5e6-20261006-85612240df76",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc7",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "초과와 미만에서 기준 수가 빠진다는 사실을 확인한다.",
+      "bReason": "c1·c2의 뜻과 c3의 분류에서 이미 같은 내용을 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "‘들어가지 않는다’ 빈칸은 c3의 수정 C와 같은 지식을 다시 묻는 중복이다.",
+      "exclusionReason": "c1, c2, c3과 내용이 같아 B·C 모두 제외한다. 대체 ID는 e5-2-1-2-c3이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1068,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc7",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "빠지는 기준 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "초과와 미만에서는 기준 수가 범위에 {들어가지 않는다}.",
+        "studentC": "초과와 미만에서는 기준 수가 범위에 □.",
+        "answers": [
+          "들어가지 않는다"
+        ]
+      },
+      "sourceFingerprint": "e0d68af97624d43a6b4d05dab748490500fbac4c5df442c76cbbfd3c4e51defd",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c1, c2, c3과 내용이 같아 B·C 모두 제외한다. 대체 ID는 e5-2-1-2-c3이다.",
+        "cloze": "c1, c2, c3과 내용이 같아 B·C 모두 제외한다. 대체 ID는 e5-2-1-2-c3이다."
+      },
+      "proposalFingerprint": "671dd80914631116950a60f63332b284620dfe722c23a6ec6546e46583015b8a",
+      "questionRevision": "planning-e5e6-20261006-671dd8091463",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "한 친구가 ‘$3$ 미만인 수는 $1$과 $2$뿐이다.’라고 말했다. 이 말이 맞는지 판단하고, 미만의 뜻을 써서 까닭을 예와 함께 설명하시오.",
+      "bAnswer": "맞지 않다. $3$ 미만인 수는 $3$보다 작은 모든 수이므로 $2.9$나 $0.5$ 같은 소수(분수)도 들어간다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "맞지 않다",
+            "틀렸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$보다 작은 소수도 $3$ 미만인 수이다",
+            "$3$보다 작은 분수도 $3$ 미만인 수이다",
+            "자연수가 아니어도 $3$보다 작으면 들어간다",
+            "$2.9$처럼 $3$보다 작은 자연수 아닌 수를 예로 든다"
+          ]
+        }
+      ],
+      "bGoal": "범위에 자연수뿐 아니라 소수·분수도 들어감을 안다.",
+      "bReason": "자연수만 떠올리는 흔한 오해를 판단하게 하여 원문 성질을 드러냈다.",
+      "cDecision": "revise",
+      "cAfter": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 {작은} 수이므로 $3$ 미만인 수이다.",
+      "cReason": "원문은 $2.9$를 보고 ‘소수’라고 이름만 붙이면 되어 범위 판단이 필요 없었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작은"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1069,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc8",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "미만인 수와 소수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$3$ 미만인 수에는 $2.9$ 같은 {소수}도 들어간다.",
+        "studentC": "$3$ 미만인 수에는 $2.9$ 같은 □도 들어간다.",
+        "answers": [
+          "소수"
+        ]
+      },
+      "sourceFingerprint": "985d4feba141e8cde885b59ead3bc9a4a68d5f02cf7197e70fd2c53487cc3411",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "작은"
+      ],
+      "cStudentAfter": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 □ 수이므로 $3$ 미만인 수이다.",
+      "cMarkedSentence": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 {작은} 수이므로 $3$ 미만인 수이다.",
+      "cStudentSentence": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 □ 수이므로 $3$ 미만인 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "작은",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 친구가 ‘$3$ 미만인 수는 $1$과 $2$뿐이다.’라고 말했다. 이 말이 맞는지 판단하고, 미만의 뜻을 써서 까닭을 예와 함께 설명하시오.",
+        "answer": "맞지 않다. $3$ 미만인 수는 $3$보다 작은 모든 수이므로 $2.9$나 $0.5$ 같은 소수(분수)도 들어간다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "맞지 않다",
+              "틀렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$보다 작은 소수도 $3$ 미만인 수이다",
+              "$3$보다 작은 분수도 $3$ 미만인 수이다",
+              "자연수가 아니어도 $3$보다 작으면 들어간다",
+              "$2.9$처럼 $3$보다 작은 자연수 아닌 수를 예로 든다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 {작은} 수이므로 $3$ 미만인 수이다.",
+        "acceptedAnswers": [
+          [
+            "작은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b64d22d493ab8549e4c603c56f6f62eb4c0e0388b37cb606d93b0d7d02d96218",
+      "questionRevision": "planning-e5e6-20261006-b64d22d493ab",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc9",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "‘$10$ 초과 $15$ 미만인 수’처럼 두 수를 써서 범위를 나타낼 때, 두 기준 수 $10$과 $15$가 범위에 들어가는지 설명하고, 이 범위의 자연수를 모두 쓰시오.",
+      "bAnswer": "$10$과 $15$는 둘 다 들어가지 않고 그 사이의 수만 들어간다. 자연수는 $11$, $12$, $13$, $14$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$과 $15$는 모두 들어가지 않는다",
+            "두 기준 수는 모두 빠진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$, $12$, $13$, $14$"
+          ]
+        }
+      ],
+      "bGoal": "초과와 미만을 함께 쓴 범위에서 두 끝 수가 모두 빠짐을 안다.",
+      "bReason": "‘작은 수 초과 큰 수 미만’이라는 추상적 표현 대신 구체적 범위로 일반 관계를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$10$ 초과 $15$ 미만인 자연수 중 가장 작은 수는 {$11$}이고 가장 큰 수는 {$14$}이다.",
+      "cReason": "‘두 기준 수를 모두 뺀’이라는 긴 구절 대신 양 끝 수가 빠진 결과를 값으로 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$11$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1070,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc9",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "초과와 미만을 함께 쓰기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "작은 수 초과 큰 수 미만으로 쓰면 {두 기준 수를 모두 뺀} 그 사이의 수가 범위이다.",
+        "studentC": "작은 수 초과 큰 수 미만으로 쓰면 □ 그 사이의 수가 범위이다.",
+        "answers": [
+          "두 기준 수를 모두 뺀"
+        ]
+      },
+      "sourceFingerprint": "31a9616e333f3af231a0d9988e883f678c05acd8edd90a374b29808d51d3a85d",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$11$",
+        "$14$"
+      ],
+      "cStudentAfter": "$10$ 초과 $15$ 미만인 자연수 중 가장 작은 수는 □이고 가장 큰 수는 □이다.",
+      "cMarkedSentence": "$10$ 초과 $15$ 미만인 자연수 중 가장 작은 수는 {$11$}이고 가장 큰 수는 {$14$}이다.",
+      "cStudentSentence": "$10$ 초과 $15$ 미만인 자연수 중 가장 작은 수는 □이고 가장 큰 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$11$",
+          "equivalents": []
+        },
+        {
+          "key": "$14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$10$ 초과 $15$ 미만인 수’처럼 두 수를 써서 범위를 나타낼 때, 두 기준 수 $10$과 $15$가 범위에 들어가는지 설명하고, 이 범위의 자연수를 모두 쓰시오.",
+        "answer": "$10$과 $15$는 둘 다 들어가지 않고 그 사이의 수만 들어간다. 자연수는 $11$, $12$, $13$, $14$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$과 $15$는 모두 들어가지 않는다",
+              "두 기준 수는 모두 빠진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11$, $12$, $13$, $14$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10$ 초과 $15$ 미만인 자연수 중 가장 작은 수는 {$11$}이고 가장 큰 수는 {$14$}이다.",
+        "acceptedAnswers": [
+          [
+            "$11$"
+          ],
+          [
+            "$14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d14df88ffd4a57b46543282f4e973fefb482b893360e2a991d55daf3a212148a",
+      "questionRevision": "planning-e5e6-20261006-d14df88ffd4a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc10",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "이상과 초과를 기준 수 포함 여부로 구별한다.",
+      "bReason": "c3의 B가 네 낱말을 포함 여부로 분류하므로 같은 서술을 다시 요구하게 된다.",
+      "cDecision": "keep",
+      "cAfter": "‘$5$ 이상’은 $5$를 넣고 ‘$5$ 초과’는 $5$를 {뺀다}.",
+      "cReason": "같은 기준 수 $5$로 이상과 초과를 맞대어 비교하는 짧은 문장이라 C로 유용하다.",
+      "exclusionReason": "B만 제외한다. 대체 ID는 e5-2-1-2-c3이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "‘뺀다’, ‘넣지 않는다’, ‘포함하지 않는다’는 같은 뜻으로 인정한다.",
+      "sourceIndex": 1071,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc10",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "이상과 초과 가르기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "‘$5$ 이상’은 $5$를 넣고 ‘$5$ 초과’는 $5$를 {뺀다}.",
+        "studentC": "‘$5$ 이상’은 $5$를 넣고 ‘$5$ 초과’는 $5$를 □.",
+        "answers": [
+          "뺀다"
+        ]
+      },
+      "sourceFingerprint": "e45eeb7e983bad23f7e786c2f6530f3d041f957c1d5841e25848577214fd0ca0",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cFrozenDefinition": "‘$5$ 이상’은 $5$를 넣고 ‘$5$ 초과’는 $5$를 {뺀다}.",
+      "cFrozenStudentSentence": "‘$5$ 이상’은 $5$를 넣고 ‘$5$ 초과’는 $5$를 □.",
+      "cProposedAnswers": [
+        "뺀다"
+      ],
+      "cStudentAfter": "‘$5$ 이상’은 $5$를 넣고 ‘$5$ 초과’는 $5$를 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "뺀다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "‘$5$ 이상’은 $5$를 넣고 ‘$5$ 초과’는 $5$를 {뺀다}.",
+      "cStudentSentence": "‘$5$ 이상’은 $5$를 넣고 ‘$5$ 초과’는 $5$를 □.",
+      "cSlotAnswers": [
+        {
+          "key": "뺀다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "‘$5$ 이상’은 $5$를 넣고 ‘$5$ 초과’는 $5$를 {뺀다}.",
+        "acceptedAnswers": [
+          [
+            "뺀다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체 ID는 e5-2-1-2-c3이다."
+      },
+      "proposalFingerprint": "3ad7d4f9a8fb66333b02dfde546c7f7e98a6b1c3c8ab6b0a3bed31f2d4a38e2b",
+      "questionRevision": "planning-e5e6-20261006-3ad7d4f9a8fb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc11",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "이하와 미만을 기준 수 포함 여부로 구별한다.",
+      "bReason": "c3의 B와 같은 분류를 다시 서술하게 되어 B의 가치가 낮다.",
+      "cDecision": "keep",
+      "cAfter": "‘$5$ 이하’는 $5$를 넣고 ‘$5$ 미만’은 $5$를 {뺀다}.",
+      "cReason": "$5$ 이하와 $5$ 미만을 한 문장에서 대비하고 답이 짧아 빠르게 확인하기 좋다.",
+      "exclusionReason": "B만 제외한다. 대체 ID는 e5-2-1-2-c3이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "‘뺀다’, ‘넣지 않는다’, ‘포함하지 않는다’는 같은 뜻으로 인정한다.",
+      "sourceIndex": 1072,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc11",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "이하와 미만 가르기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "‘$5$ 이하’는 $5$를 넣고 ‘$5$ 미만’은 $5$를 {뺀다}.",
+        "studentC": "‘$5$ 이하’는 $5$를 넣고 ‘$5$ 미만’은 $5$를 □.",
+        "answers": [
+          "뺀다"
+        ]
+      },
+      "sourceFingerprint": "6cc2792a667186f682f1432919cae85614d1902b7fd82e97e731fe8e88552199",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cFrozenDefinition": "‘$5$ 이하’는 $5$를 넣고 ‘$5$ 미만’은 $5$를 {뺀다}.",
+      "cFrozenStudentSentence": "‘$5$ 이하’는 $5$를 넣고 ‘$5$ 미만’은 $5$를 □.",
+      "cProposedAnswers": [
+        "뺀다"
+      ],
+      "cStudentAfter": "‘$5$ 이하’는 $5$를 넣고 ‘$5$ 미만’은 $5$를 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "뺀다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "‘$5$ 이하’는 $5$를 넣고 ‘$5$ 미만’은 $5$를 {뺀다}.",
+      "cStudentSentence": "‘$5$ 이하’는 $5$를 넣고 ‘$5$ 미만’은 $5$를 □.",
+      "cSlotAnswers": [
+        {
+          "key": "뺀다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "‘$5$ 이하’는 $5$를 넣고 ‘$5$ 미만’은 $5$를 {뺀다}.",
+        "acceptedAnswers": [
+          [
+            "뺀다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체 ID는 e5-2-1-2-c3이다."
+      },
+      "proposalFingerprint": "856a82a319663a43baba88124f130a89b700226d0fc1cf47390a1497ee308fd8",
+      "questionRevision": "planning-e5e6-20261006-856a82a31966",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "서로 다른 두 자연수 중 작은 수 초과, 큰 수 미만인 자연수의 개수는 두 수의 차와 어떤 관계가 있는지 쓰고, $3$ 초과 $9$ 미만인 자연수를 세어 확인하시오.",
+      "bAnswer": "개수는 두 수의 차보다 $1$ 작다. $3$ 초과 $9$ 미만인 자연수는 $4, 5, 6, 7, 8$의 $5$개이고, $9-3=6$보다 $1$ 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "개수는 두 수의 차보다 $1$ 작다",
+            "개수는 큰 수에서 작은 수를 빼고 $1$을 더 뺀 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$ 초과 $9$ 미만인 자연수는 $5$개이다",
+            "$4$, $5$, $6$, $7$, $8$"
+          ]
+        }
+      ],
+      "bGoal": "두 끝이 빠진 범위의 자연수 개수와 두 수의 차의 관계를 예로 확인한다.",
+      "bReason": "관계를 질문에 미리 말하지 않고 학생이 찾은 뒤 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$3$ 초과 $9$ 미만인 자연수는 $4, 5, 6, 7, 8$로 {$5$}개이고, 이는 두 기준 수의 차 $9-3=6$보다 {$1$}만큼 작다.",
+      "cReason": "예 없이 ‘$1$개 적다’만 채우면 무엇과 비교하는지 알기 어려워 실제 범위를 제시했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1073,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc12",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "초과와 미만 사이의 자연수 개수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "작은 자연수 초과 큰 자연수 미만인 범위에 든 자연수는 두 수의 차보다 {$1$개 적다}.",
+        "studentC": "작은 자연수 초과 큰 자연수 미만인 범위에 든 자연수는 두 수의 차보다 □.",
+        "answers": [
+          "$1$개 적다"
+        ]
+      },
+      "sourceFingerprint": "fa8979fa69a17a41f229d587fa3dc7bb3ed1ccde52052f34f2bfe6f73e39fcc1",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$1$"
+      ],
+      "cStudentAfter": "$3$ 초과 $9$ 미만인 자연수는 $4, 5, 6, 7, 8$로 □개이고, 이는 두 기준 수의 차 $9-3=6$보다 □만큼 작다.",
+      "cMarkedSentence": "$3$ 초과 $9$ 미만인 자연수는 $4, 5, 6, 7, 8$로 {$5$}개이고, 이는 두 기준 수의 차 $9-3=6$보다 {$1$}만큼 작다.",
+      "cStudentSentence": "$3$ 초과 $9$ 미만인 자연수는 $4, 5, 6, 7, 8$로 □개이고, 이는 두 기준 수의 차 $9-3=6$보다 □만큼 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 다른 두 자연수 중 작은 수 초과, 큰 수 미만인 자연수의 개수는 두 수의 차와 어떤 관계가 있는지 쓰고, $3$ 초과 $9$ 미만인 자연수를 세어 확인하시오.",
+        "answer": "개수는 두 수의 차보다 $1$ 작다. $3$ 초과 $9$ 미만인 자연수는 $4, 5, 6, 7, 8$의 $5$개이고, $9-3=6$보다 $1$ 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "개수는 두 수의 차보다 $1$ 작다",
+              "개수는 큰 수에서 작은 수를 빼고 $1$을 더 뺀 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$ 초과 $9$ 미만인 자연수는 $5$개이다",
+              "$4$, $5$, $6$, $7$, $8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3$ 초과 $9$ 미만인 자연수는 $4, 5, 6, 7, 8$로 {$5$}개이고, 이는 두 기준 수의 차 $9-3=6$보다 {$1$}만큼 작다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f8891ae41f7fb994a2dff99b9b786cbc59a80c141f1a9e12f60d3ef96adecd44",
+      "questionRevision": "planning-e5e6-20261006-f8891ae41f7f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc15",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자연수만 생각할 때 ‘$6$ 초과인 자연수’를 ‘이상’을 써서 나타내고, 기준 수를 그렇게 바꾸어도 같은 범위가 되는 까닭을 설명하시오.",
+      "bAnswer": "$7$ 이상인 자연수. $6$보다 큰 자연수 중 가장 작은 수가 $7$이므로 둘 다 $7, 8, 9, \\cdots$로 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7$ 이상인 자연수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$보다 큰 가장 작은 자연수가 $7$이다",
+            "$6$ 다음 자연수가 $7$이다",
+            "두 범위 모두 $7$, $8$, $9$, …이다"
+          ]
+        }
+      ],
+      "bGoal": "자연수에서 초과를 $1$ 큰 수 이상으로 바꿀 수 있음을 까닭과 함께 안다.",
+      "bReason": "편집용 제목 대신 구체적 범위를 바꾸어 쓰게 하고 같은 범위인 근거를 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "$6$ 초과인 자연수는 $7, 8, 9, \\cdots$이므로 {$7$} 이상인 자연수와 같다.",
+      "cReason": "‘기준 수보다 $1$ 큰 수 이상’은 외우기 어려운 긴 구절이라 실제 수로 바꾸어 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1074,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc15",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "자연수에서 초과를 이상으로",
+        "kind": "성질",
+        "level": "중",
+        "definition": "기준 수가 자연수일 때, 그 수 초과인 자연수는 {기준 수보다 $1$ 큰 수 이상}인 자연수와 같다.",
+        "studentC": "기준 수가 자연수일 때, 그 수 초과인 자연수는 □인 자연수와 같다.",
+        "answers": [
+          "기준 수보다 $1$ 큰 수 이상"
+        ]
+      },
+      "sourceFingerprint": "dfd772c44380e2245dc11179cd3ce24761950e6bc1b1d4aa89bf723c5d5e6b72",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$7$"
+      ],
+      "cStudentAfter": "$6$ 초과인 자연수는 $7, 8, 9, \\cdots$이므로 □ 이상인 자연수와 같다.",
+      "cMarkedSentence": "$6$ 초과인 자연수는 $7, 8, 9, \\cdots$이므로 {$7$} 이상인 자연수와 같다.",
+      "cStudentSentence": "$6$ 초과인 자연수는 $7, 8, 9, \\cdots$이므로 □ 이상인 자연수와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수만 생각할 때 ‘$6$ 초과인 자연수’를 ‘이상’을 써서 나타내고, 기준 수를 그렇게 바꾸어도 같은 범위가 되는 까닭을 설명하시오.",
+        "answer": "$7$ 이상인 자연수. $6$보다 큰 자연수 중 가장 작은 수가 $7$이므로 둘 다 $7, 8, 9, \\cdots$로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$7$ 이상인 자연수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$보다 큰 가장 작은 자연수가 $7$이다",
+              "$6$ 다음 자연수가 $7$이다",
+              "두 범위 모두 $7$, $8$, $9$, …이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6$ 초과인 자연수는 $7, 8, 9, \\cdots$이므로 {$7$} 이상인 자연수와 같다.",
+        "acceptedAnswers": [
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ef559f0bf8fc431766d4983b82f0f0ef33db7762865817385c74bd83ae72d726",
+      "questionRevision": "planning-e5e6-20261006-ef559f0bf8fc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자연수만 생각할 때 ‘$10$ 미만인 자연수’를 ‘이하’를 써서 나타내고, 기준 수를 그렇게 바꾸어도 같은 범위가 되는 까닭을 설명하시오.",
+      "bAnswer": "$9$ 이하인 자연수. $10$보다 작은 자연수 중 가장 큰 수가 $9$이므로 둘 다 $1$부터 $9$까지로 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$9$ 이하인 자연수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$보다 작은 가장 큰 자연수가 $9$이다",
+            "$10$ 바로 앞 자연수가 $9$이다",
+            "두 범위 모두 $1$부터 $9$까지이다"
+          ]
+        }
+      ],
+      "bGoal": "자연수에서 미만을 $1$ 작은 수 이하로 바꿀 수 있음을 까닭과 함께 안다.",
+      "bReason": "xc15와 방향이 반대인 경우를 다른 수로 물어 가장 큰 수를 근거로 삼게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$10$ 미만인 자연수는 $1, 2, \\cdots, 9$이므로 {$9$} 이하인 자연수와 같다.",
+      "cReason": "‘기준 수보다 $1$ 작은 수 이하’라는 긴 빈칸을 실제 수 하나로 줄였다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1075,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc16",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "자연수에서 미만을 이하로",
+        "kind": "성질",
+        "level": "중",
+        "definition": "기준 수가 자연수일 때, 그 수 미만인 자연수는 {기준 수보다 $1$ 작은 수 이하}인 자연수와 같다.",
+        "studentC": "기준 수가 자연수일 때, 그 수 미만인 자연수는 □인 자연수와 같다.",
+        "answers": [
+          "기준 수보다 $1$ 작은 수 이하"
+        ]
+      },
+      "sourceFingerprint": "247be91a91675f6183e1ba7dc160b289060b5e23c34c148e2d82fc0904de1cf9",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$9$"
+      ],
+      "cStudentAfter": "$10$ 미만인 자연수는 $1, 2, \\cdots, 9$이므로 □ 이하인 자연수와 같다.",
+      "cMarkedSentence": "$10$ 미만인 자연수는 $1, 2, \\cdots, 9$이므로 {$9$} 이하인 자연수와 같다.",
+      "cStudentSentence": "$10$ 미만인 자연수는 $1, 2, \\cdots, 9$이므로 □ 이하인 자연수와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수만 생각할 때 ‘$10$ 미만인 자연수’를 ‘이하’를 써서 나타내고, 기준 수를 그렇게 바꾸어도 같은 범위가 되는 까닭을 설명하시오.",
+        "answer": "$9$ 이하인 자연수. $10$보다 작은 자연수 중 가장 큰 수가 $9$이므로 둘 다 $1$부터 $9$까지로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$9$ 이하인 자연수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$보다 작은 가장 큰 자연수가 $9$이다",
+              "$10$ 바로 앞 자연수가 $9$이다",
+              "두 범위 모두 $1$부터 $9$까지이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10$ 미만인 자연수는 $1, 2, \\cdots, 9$이므로 {$9$} 이하인 자연수와 같다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f026833c8791f282c34a6c3af1d6d574980007a74fd61be017966642c9336959",
+      "questionRevision": "planning-e5e6-20261006-f026833c8791",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc17",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "‘$3$ 이상 $7$ 미만인 수’를 수직선에 나타낼 때 $3$과 $7$의 자리에 각각 어떤 점을 찍는지 쓰고, 두 점이 다른 까닭을 설명하시오.",
+      "bAnswer": "$3$에는 색칠한 점(●), $7$에는 색칠하지 않은 점($\\bigcirc$)을 찍고 두 점 사이를 선으로 잇는다. $3$은 범위에 들어가고 $7$은 들어가지 않기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$에는 색칠한 점을 찍는다",
+            "$3$은 ●로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$에는 색칠하지 않은 점을 찍는다",
+            "$7$은 $\\bigcirc$로 나타낸다",
+            "$7$에는 빈 점을 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$은 범위에 들어가고 $7$은 들어가지 않는다",
+            "이상은 기준 수를 포함하고 미만은 포함하지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "이상과 미만이 섞인 범위에서 끝점의 표시를 포함 여부로 정한다.",
+      "bReason": "‘섞인 범위’라는 말 대신 실제 범위를 주어 글만으로 답할 수 있게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$3$ 이상 $7$ 미만인 수를 수직선에 나타낼 때, 색칠한 점(●)은 {$3$}의 자리에, 색칠하지 않은 점($\\bigcirc$)은 {$7$}의 자리에 찍는다.",
+      "cReason": "‘범위에 드는 기준 수에만’은 통째로 떠올리기 어려운 구절이라 어느 수에 어느 점인지 값으로 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1076,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc17",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "섞인 범위를 수직선에",
+        "kind": "방법",
+        "level": "중",
+        "definition": "이상 · 이하와 초과 · 미만이 섞인 범위는 수직선에서 {범위에 드는 기준 수에만} 색칠한 점을 찍는다.",
+        "studentC": "이상 · 이하와 초과 · 미만이 섞인 범위는 수직선에서 □ 색칠한 점을 찍는다.",
+        "answers": [
+          "범위에 드는 기준 수에만"
+        ]
+      },
+      "sourceFingerprint": "b312d7fff00a7731e2f233ac559de00f8ae8c0bef83d3b969b7f2ea8d4648b9e",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$7$"
+      ],
+      "cStudentAfter": "$3$ 이상 $7$ 미만인 수를 수직선에 나타낼 때, 색칠한 점(●)은 □의 자리에, 색칠하지 않은 점($\\bigcirc$)은 □의 자리에 찍는다.",
+      "cMarkedSentence": "$3$ 이상 $7$ 미만인 수를 수직선에 나타낼 때, 색칠한 점(●)은 {$3$}의 자리에, 색칠하지 않은 점($\\bigcirc$)은 {$7$}의 자리에 찍는다.",
+      "cStudentSentence": "$3$ 이상 $7$ 미만인 수를 수직선에 나타낼 때, 색칠한 점(●)은 □의 자리에, 색칠하지 않은 점($\\bigcirc$)은 □의 자리에 찍는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$3$ 이상 $7$ 미만인 수’를 수직선에 나타낼 때 $3$과 $7$의 자리에 각각 어떤 점을 찍는지 쓰고, 두 점이 다른 까닭을 설명하시오.",
+        "answer": "$3$에는 색칠한 점(●), $7$에는 색칠하지 않은 점($\\bigcirc$)을 찍고 두 점 사이를 선으로 잇는다. $3$은 범위에 들어가고 $7$은 들어가지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$에는 색칠한 점을 찍는다",
+              "$3$은 ●로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$에는 색칠하지 않은 점을 찍는다",
+              "$7$은 $\\bigcirc$로 나타낸다",
+              "$7$에는 빈 점을 찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$은 범위에 들어가고 $7$은 들어가지 않는다",
+              "이상은 기준 수를 포함하고 미만은 포함하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3$ 이상 $7$ 미만인 수를 수직선에 나타낼 때, 색칠한 점(●)은 {$3$}의 자리에, 색칠하지 않은 점($\\bigcirc$)은 {$7$}의 자리에 찍는다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3ab13cef4da709dbcce86b7b5f1172b5c18f6b6fb4aa6b3389c940a663486a47",
+      "questionRevision": "planning-e5e6-20261006-3ab13cef4da7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "‘$10$ 초과 $20$ 이하인 수’와 ‘$10$ 초과 $20$ 미만인 수’는 범위에 드는 수가 어떻게 다른지, 이하와 미만의 뜻을 써서 설명하시오.",
+      "bAnswer": "$20$ 하나만 다르다. 이하는 $20$을 포함하고 미만은 $20$을 포함하지 않으므로 앞의 범위에만 $20$이 들어간다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$20$이 앞의 범위에는 들어가고 뒤의 범위에는 들어가지 않는다",
+            "두 범위는 $20$ 하나만 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이하는 기준 수를 포함하고 미만은 포함하지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "초과와 이하를 함께 쓴 범위에서 끝 수마다 포함 여부가 다름을 안다.",
+      "bReason": "원문 예시의 두 범위를 비교하게 하여 큰 기준 수의 포함 여부를 드러냈다.",
+      "cDecision": "revise",
+      "cAfter": "$10$ 초과 $20$ 이하인 수의 범위에 $10$과 $20$ 중 {$10$}은 들어가지 않고 {$20$}은 들어간다.",
+      "cReason": "‘작은 기준 수’, ‘큰 기준 수’는 편집용 표현이므로 실제 수로 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1077,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc19",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "초과와 이하를 함께 쓰기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "작은 수 초과 큰 수 이하로 쓰면 {작은 기준 수}는 빠지고 {큰 기준 수}는 들어간다.",
+        "example": {
+          "prompt": "‘$10$ 초과 $20$ 이하’와 ‘$10$ 초과 $20$ 미만’에 드는 수가 $20$ 하나만 다른 까닭은?",
+          "answer": "이하는 $20$을 넣고 미만은 빼서"
+        },
+        "studentC": "작은 수 초과 큰 수 이하로 쓰면 □는 빠지고 □는 들어간다.",
+        "answers": [
+          "작은 기준 수",
+          "큰 기준 수"
+        ]
+      },
+      "sourceFingerprint": "5c19a137741510b0abd3023b66a0192b210df2ffc2afb920998884e8dc601ded",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$20$"
+      ],
+      "cStudentAfter": "$10$ 초과 $20$ 이하인 수의 범위에 $10$과 $20$ 중 □은 들어가지 않고 □은 들어간다.",
+      "cMarkedSentence": "$10$ 초과 $20$ 이하인 수의 범위에 $10$과 $20$ 중 {$10$}은 들어가지 않고 {$20$}은 들어간다.",
+      "cStudentSentence": "$10$ 초과 $20$ 이하인 수의 범위에 $10$과 $20$ 중 □은 들어가지 않고 □은 들어간다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$10$ 초과 $20$ 이하인 수’와 ‘$10$ 초과 $20$ 미만인 수’는 범위에 드는 수가 어떻게 다른지, 이하와 미만의 뜻을 써서 설명하시오.",
+        "answer": "$20$ 하나만 다르다. 이하는 $20$을 포함하고 미만은 $20$을 포함하지 않으므로 앞의 범위에만 $20$이 들어간다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$20$이 앞의 범위에는 들어가고 뒤의 범위에는 들어가지 않는다",
+              "두 범위는 $20$ 하나만 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이하는 기준 수를 포함하고 미만은 포함하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10$ 초과 $20$ 이하인 수의 범위에 $10$과 $20$ 중 {$10$}은 들어가지 않고 {$20$}은 들어간다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "663cb81af2a75a4ceb3502b9a9e99eabd149dfdb0cb7b560dcdfa128c531d333",
+      "questionRevision": "planning-e5e6-20261006-663cb81af2a7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "몸무게를 ‘$30$ 이상 $35$ 이하’, ‘$35$ 이상 $40$ 이하’의 두 구간으로 나누면 $35$에서 어떤 문제가 생기는지 쓰고, 이를 ‘이상’과 ‘미만’으로 고쳐 나누면 $35$가 어느 구간에 들어가는지 설명하시오.",
+      "bAnswer": "$35$가 두 구간에 모두 들어가 겹친다. ‘$30$ 이상 $35$ 미만’, ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘$35$ 이상 $40$ 미만’ 구간에만 들어간다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$35$가 두 구간에 모두 들어간다",
+            "$35$에서 두 구간이 겹친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "고치면 $35$는 ‘$35$ 이상 $40$ 미만’ 구간에만 들어간다",
+            "고치면 $35$는 뒤의 구간에만 들어간다"
+          ]
+        }
+      ],
+      "bGoal": "구간을 이상·미만으로 나누면 경계의 수가 한 구간에만 속함을 이해한다.",
+      "bReason": "겹치는 잘못된 나눔과 비교하게 하여 이상·미만으로 나누는 까닭이 드러나게 했다.",
+      "cDecision": "revise",
+      "cAfter": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘{$35$} 이상 {$40$} 미만’인 구간에만 들어간다.",
+      "cReason": "‘한 구간에만’은 어느 구간인지 판단하지 않아도 채울 수 있어 속하는 구간을 고르게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$35$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1078,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc20",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "겹치지 않게 구간 나누기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "‘$30$ 이상 $35$ 미만’, ‘$35$ 이상 $40$ 미만’처럼 나누면 경계의 수가 {한 구간에만} 들어간다.",
+        "studentC": "‘$30$ 이상 $35$ 미만’, ‘$35$ 이상 $40$ 미만’처럼 나누면 경계의 수가 □ 들어간다.",
+        "answers": [
+          "한 구간에만"
+        ]
+      },
+      "sourceFingerprint": "e32eb8a02b2d6030541477f915e8779cb62930e126dc677997c71a50c135cf50",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$35$",
+        "$40$"
+      ],
+      "cStudentAfter": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘□ 이상 □ 미만’인 구간에만 들어간다.",
+      "cMarkedSentence": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘{$35$} 이상 {$40$} 미만’인 구간에만 들어간다.",
+      "cStudentSentence": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘□ 이상 □ 미만’인 구간에만 들어간다.",
+      "cSlotAnswers": [
+        {
+          "key": "$35$",
+          "equivalents": []
+        },
+        {
+          "key": "$40$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "몸무게를 ‘$30$ 이상 $35$ 이하’, ‘$35$ 이상 $40$ 이하’의 두 구간으로 나누면 $35$에서 어떤 문제가 생기는지 쓰고, 이를 ‘이상’과 ‘미만’으로 고쳐 나누면 $35$가 어느 구간에 들어가는지 설명하시오.",
+        "answer": "$35$가 두 구간에 모두 들어가 겹친다. ‘$30$ 이상 $35$ 미만’, ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘$35$ 이상 $40$ 미만’ 구간에만 들어간다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$35$가 두 구간에 모두 들어간다",
+              "$35$에서 두 구간이 겹친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "고치면 $35$는 ‘$35$ 이상 $40$ 미만’ 구간에만 들어간다",
+              "고치면 $35$는 뒤의 구간에만 들어간다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘{$35$} 이상 {$40$} 미만’인 구간에만 들어간다.",
+        "acceptedAnswers": [
+          [
+            "$35$"
+          ],
+          [
+            "$40$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1c05bcb4d7234ba576c3b077d4309cd30149f51b35b6c6e9090c17c37557c352",
+      "questionRevision": "planning-e5e6-20261006-1c05bcb4d723",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "놀이 기구 안내문에 ‘키가 $120\\,\\mathrm{cm}$를 넘는 사람만 탈 수 있습니다.’라고 쓰여 있다. 이 조건을 이상, 이하, 초과, 미만 중 알맞은 말로 나타내고, 키가 정확히 $120\\,\\mathrm{cm}$인 사람은 탈 수 있는지 쓰시오.",
+      "bAnswer": "키가 $120\\,\\mathrm{cm}$ 초과인 사람. 정확히 $120\\,\\mathrm{cm}$인 사람은 탈 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$120\\,\\mathrm{cm}$ 초과"
+          ]
+        },
+        {
+          "anyOf": [
+            "$120\\,\\mathrm{cm}$인 사람은 탈 수 없다"
+          ]
+        }
+      ],
+      "bGoal": "‘넘는다’는 생활 표현을 초과로 옮기고 기준 값을 판단한다.",
+      "bReason": "낱말만 바꾸는 물음에 기준 값 판단을 더해 뜻을 이해했는지 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "‘그 값을 넘으면’이라는 조건은 {초과}로 나타낸다.",
+      "cReason": "‘넘으면’을 범위 낱말 하나(초과)로 옮기는 짧은 문장이라 그대로 쓸 수 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1079,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc21",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "‘넘으면’을 초과로",
+        "kind": "성질",
+        "level": "상",
+        "definition": "‘그 값을 넘으면’이라는 조건은 {초과}로 나타낸다.",
+        "example": {
+          "prompt": "‘$100$을 넘는 수’를 초과, 미만으로 바꾸면?",
+          "answer": "$100$ 초과인 수"
+        },
+        "studentC": "‘그 값을 넘으면’이라는 조건은 □로 나타낸다.",
+        "answers": [
+          "초과"
+        ]
+      },
+      "sourceFingerprint": "da5c017aa6b1ae41a88e5c9d4406e003b6d58c2751de31adbf1fc3880843f511",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cFrozenDefinition": "‘그 값을 넘으면’이라는 조건은 {초과}로 나타낸다.",
+      "cFrozenStudentSentence": "‘그 값을 넘으면’이라는 조건은 □로 나타낸다.",
+      "cProposedAnswers": [
+        "초과"
+      ],
+      "cStudentAfter": "‘그 값을 넘으면’이라는 조건은 □로 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "초과"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "‘그 값을 넘으면’이라는 조건은 {초과}로 나타낸다.",
+      "cStudentSentence": "‘그 값을 넘으면’이라는 조건은 □로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "초과",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "놀이 기구 안내문에 ‘키가 $120\\,\\mathrm{cm}$를 넘는 사람만 탈 수 있습니다.’라고 쓰여 있다. 이 조건을 이상, 이하, 초과, 미만 중 알맞은 말로 나타내고, 키가 정확히 $120\\,\\mathrm{cm}$인 사람은 탈 수 있는지 쓰시오.",
+        "answer": "키가 $120\\,\\mathrm{cm}$ 초과인 사람. 정확히 $120\\,\\mathrm{cm}$인 사람은 탈 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$120\\,\\mathrm{cm}$ 초과"
+            ]
+          },
+          {
+            "anyOf": [
+              "$120\\,\\mathrm{cm}$인 사람은 탈 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘그 값을 넘으면’이라는 조건은 {초과}로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "초과"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6b1f167dede0ec9d0651eaf155a54f85a217a70d364b6158a54471d1e306b7a6",
+      "questionRevision": "planning-e5e6-20261006-6b1f167dede0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "‘$60$점에 못 미치면 다시 시험을 봅니다.’라는 규칙이 있다. 이 조건을 이상, 이하, 초과, 미만 중 알맞은 말로 나타내고, 정확히 $60$점인 학생은 다시 시험을 보는지 쓰시오.",
+      "bAnswer": "$60$점 미만. 정확히 $60$점인 학생은 다시 시험을 보지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$60$점 미만"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$점인 학생은 다시 시험을 보지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "‘못 미친다’는 생활 표현을 미만으로 옮기고 기준 값을 판단한다.",
+      "bReason": "원문 예시의 $60$점 상황을 살려 낱말 바꾸기와 경계값 판단을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "‘그 값에 못 미치면’이라는 조건은 {미만}으로 나타낸다.",
+      "cReason": "‘못 미치면’을 미만 한 낱말로 답하는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1080,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc22",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "‘못 미치면’을 미만으로",
+        "kind": "성질",
+        "level": "상",
+        "definition": "‘그 값에 못 미치면’이라는 조건은 {미만}으로 나타낸다.",
+        "example": {
+          "prompt": "‘$60$점에 못 미치는 점수’를 초과, 미만으로 바꾸면?",
+          "answer": "$60$점 미만"
+        },
+        "studentC": "‘그 값에 못 미치면’이라는 조건은 □으로 나타낸다.",
+        "answers": [
+          "미만"
+        ]
+      },
+      "sourceFingerprint": "7555d3e8ea05a066c11d792f80e31744ec9aa68fbf494461ad1da3c59b159e28",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cFrozenDefinition": "‘그 값에 못 미치면’이라는 조건은 {미만}으로 나타낸다.",
+      "cFrozenStudentSentence": "‘그 값에 못 미치면’이라는 조건은 □으로 나타낸다.",
+      "cProposedAnswers": [
+        "미만"
+      ],
+      "cStudentAfter": "‘그 값에 못 미치면’이라는 조건은 □으로 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "미만"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "‘그 값에 못 미치면’이라는 조건은 {미만}으로 나타낸다.",
+      "cStudentSentence": "‘그 값에 못 미치면’이라는 조건은 □으로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "미만",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$60$점에 못 미치면 다시 시험을 봅니다.’라는 규칙이 있다. 이 조건을 이상, 이하, 초과, 미만 중 알맞은 말로 나타내고, 정확히 $60$점인 학생은 다시 시험을 보는지 쓰시오.",
+        "answer": "$60$점 미만. 정확히 $60$점인 학생은 다시 시험을 보지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$60$점 미만"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60$점인 학생은 다시 시험을 보지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘그 값에 못 미치면’이라는 조건은 {미만}으로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "미만"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2926f292e156e6697a2ca2ea57b590f974df76766bbd0cf38b753294f84b5cd0",
+      "questionRevision": "planning-e5e6-20261006-2926f292e156",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "한 학생이 ‘$4$ 초과 $8$ 미만인 자연수’를 $4, 5, 6, 7, 8$이라고 썼다. 무엇이 잘못되었는지 초과와 미만의 뜻을 써서 설명하고 바르게 고치시오.",
+      "bAnswer": "초과와 미만은 기준 수를 포함하지 않으므로 $4$와 $8$은 빼야 한다. 바른 답은 $5, 6, 7$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$와 $8$은 범위에 들어가지 않는다",
+            "기준 수 $4$와 $8$을 넣은 것이 잘못이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$, $6$, $7$"
+          ]
+        }
+      ],
+      "bGoal": "기준 수를 범위에 넣는 흔한 실수를 찾아 고친다.",
+      "bReason": "‘잘못’이라는 이름을 묻지 않고 실제 틀린 답을 주어 진단하고 고치게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$4$ 초과 $8$ 미만인 자연수를 $4, 5, 6, 7, 8$이라고 쓰면 잘못이다. 범위에 들어가지 않는 {$4$}와 {$8$}을 빼야 한다.",
+      "cReason": "원문 빈칸 ‘기준 수를 넣은’은 문장 앞부분을 되풀이하는 말이라 배우는 것이 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$",
+            "$4$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "synonymNotes": "C의 두 빈칸은 순서가 바뀌어도 정답이다.",
+      "sourceIndex": 1081,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc23",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "기준 수를 넣는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$4$ 초과 $8$ 미만인 자연수에 $4$나 $8$을 넣으면 {기준 수를 넣은} 잘못이다.",
+        "studentC": "$4$ 초과 $8$ 미만인 자연수에 $4$나 $8$을 넣으면 □ 잘못이다.",
+        "answers": [
+          "기준 수를 넣은"
+        ]
+      },
+      "sourceFingerprint": "0c2c5c4231db72444e701153771ef613ec8eb9174d721c7006f4d8d237cf4643",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$8$"
+      ],
+      "cStudentAfter": "$4$ 초과 $8$ 미만인 자연수를 $4, 5, 6, 7, 8$이라고 쓰면 잘못이다. 범위에 들어가지 않는 □와 □을 빼야 한다.",
+      "cMarkedSentence": "$4$ 초과 $8$ 미만인 자연수를 $4, 5, 6, 7, 8$이라고 쓰면 잘못이다. 범위에 들어가지 않는 {$4$}와 {$8$}을 빼야 한다.",
+      "cStudentSentence": "$4$ 초과 $8$ 미만인 자연수를 $4, 5, 6, 7, 8$이라고 쓰면 잘못이다. 범위에 들어가지 않는 □와 □을 빼야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": [
+            "$8$"
+          ]
+        },
+        {
+          "key": "$8$",
+          "equivalents": [
+            "$4$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 학생이 ‘$4$ 초과 $8$ 미만인 자연수’를 $4, 5, 6, 7, 8$이라고 썼다. 무엇이 잘못되었는지 초과와 미만의 뜻을 써서 설명하고 바르게 고치시오.",
+        "answer": "초과와 미만은 기준 수를 포함하지 않으므로 $4$와 $8$은 빼야 한다. 바른 답은 $5, 6, 7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$와 $8$은 범위에 들어가지 않는다",
+              "기준 수 $4$와 $8$을 넣은 것이 잘못이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$, $6$, $7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4$ 초과 $8$ 미만인 자연수를 $4, 5, 6, 7, 8$이라고 쓰면 잘못이다. 범위에 들어가지 않는 {$4$}와 {$8$}을 빼야 한다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "$8$"
+          ],
+          [
+            "$8$",
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8f5df64edf0a11ad973ba1ff1e8d87452cadec172a6d79cf5bb659acaf7fb504",
+      "questionRevision": "planning-e5e6-20261006-8f5df64edf0a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "‘$4.5$ 초과인 자연수’와 ‘$4.5$ 이상인 자연수’는 같은 수들인지 다른 수들인지 쓰고, 그 까닭을 기준 수 $4.5$와 관련지어 설명하시오.",
+      "bAnswer": "같다. $4.5$는 자연수가 아니어서 $4.5$를 포함하든 안 하든 자연수는 똑같이 $5, 6, 7, \\cdots$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 수들이다",
+            "둘 다 $5$, $6$, $7$, …이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4.5$는 자연수가 아니다",
+            "$4.5$와 같은 자연수가 없다",
+            "$4.5$를 포함하든 안 하든 자연수는 달라지지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "기준 수가 자연수가 아니면 자연수 범위에서 초과와 이상이 같아짐을 설명한다.",
+      "bReason": "추상적 일반 문장을 구체적 기준 수 $4.5$로 바꾸어 학생이 직접 따져 볼 수 있게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$4.5$는 자연수가 아니므로 $4.5$ 초과인 자연수와 $4.5$ 이상인 자연수는 모두 {$5$}부터 시작하는 같은 수들이다.",
+      "cReason": "‘기준 수와 같은 자연수가 없어’는 외워 쓰기 어려운 긴 이유 구절이라 값으로 확인하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1082,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc26",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "기준 수가 자연수가 아닐 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "기준 수가 자연수가 아니면 {기준 수와 같은 자연수가 없어}, 자연수만 볼 때 초과와 이상, 미만과 이하가 각각 같은 범위가 된다.",
+        "studentC": "기준 수가 자연수가 아니면 □, 자연수만 볼 때 초과와 이상, 미만과 이하가 각각 같은 범위가 된다.",
+        "answers": [
+          "기준 수와 같은 자연수가 없어"
+        ]
+      },
+      "sourceFingerprint": "e3df0b722fde8c2e941b44800fadc72afbf1d17b1e1c6281f73847a1b7a31246",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$5$"
+      ],
+      "cStudentAfter": "$4.5$는 자연수가 아니므로 $4.5$ 초과인 자연수와 $4.5$ 이상인 자연수는 모두 □부터 시작하는 같은 수들이다.",
+      "cMarkedSentence": "$4.5$는 자연수가 아니므로 $4.5$ 초과인 자연수와 $4.5$ 이상인 자연수는 모두 {$5$}부터 시작하는 같은 수들이다.",
+      "cStudentSentence": "$4.5$는 자연수가 아니므로 $4.5$ 초과인 자연수와 $4.5$ 이상인 자연수는 모두 □부터 시작하는 같은 수들이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$4.5$ 초과인 자연수’와 ‘$4.5$ 이상인 자연수’는 같은 수들인지 다른 수들인지 쓰고, 그 까닭을 기준 수 $4.5$와 관련지어 설명하시오.",
+        "answer": "같다. $4.5$는 자연수가 아니어서 $4.5$를 포함하든 안 하든 자연수는 똑같이 $5, 6, 7, \\cdots$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 수들이다",
+              "둘 다 $5$, $6$, $7$, …이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4.5$는 자연수가 아니다",
+              "$4.5$와 같은 자연수가 없다",
+              "$4.5$를 포함하든 안 하든 자연수는 달라지지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4.5$는 자연수가 아니므로 $4.5$ 초과인 자연수와 $4.5$ 이상인 자연수는 모두 {$5$}부터 시작하는 같은 수들이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "63a099e22c4e7dabe40076ba376a78f683096124822c6962fc62bc8bd82846f2",
+      "questionRevision": "planning-e5e6-20261006-63a099e22c4e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc27",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "‘$5$ 초과 $6$ 미만인 수’ 중에 자연수가 있는지 쓰고 그 까닭을 설명하시오. 또 이 범위에 드는 수를 하나 쓰시오.",
+      "bAnswer": "자연수는 없다. $5$와 $6$은 범위에 들어가지 않고 둘 사이에는 다른 자연수가 없기 때문이다. $5.5$ 같은 소수는 이 범위에 든다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수는 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$와 $6$은 빠지고 그 사이에 자연수가 없다",
+            "$5$ 다음 자연수가 $6$인데 $6$은 들어가지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5.5$처럼 $5$보다 크고 $6$보다 작은 수를 하나 쓴다"
+          ]
+        }
+      ],
+      "bGoal": "이웃한 두 자연수 사이 범위에 자연수는 없어도 소수는 있음을 안다.",
+      "bReason": "원문 예시 범위를 써서 자연수가 없는 까닭과 범위가 비어 있지 않음을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$5$ 초과 $6$ 미만인 수 중 자연수는 {$0$}개이다. 그러나 $5.5$ 같은 소수는 이 범위에 들어간다.",
+      "cReason": "‘자연수가 없지만’이라는 구절 빈칸은 뒤의 ‘소수는 들어간다’에서 뒤집어 추측할 수 있어 개수로 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1083,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc27",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "이웃한 두 자연수 사이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이웃한 두 자연수를 기준으로 한 초과 · 미만 범위에는 {자연수가 없지만} 소수는 들어간다.",
+        "example": {
+          "prompt": "‘$5$ 초과 $6$ 미만’에 자연수가 하나도 없는 까닭은?",
+          "answer": "$5$, $6$은 빠지고 $5$ 다음이 $6$이라서"
+        },
+        "studentC": "이웃한 두 자연수를 기준으로 한 초과 · 미만 범위에는 □ 소수는 들어간다.",
+        "answers": [
+          "자연수가 없지만"
+        ]
+      },
+      "sourceFingerprint": "402cea6e381818ac3859d685a30d61f71565e5a8a37aa4ff9d33c76186ba61a7",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "$5$ 초과 $6$ 미만인 수 중 자연수는 □개이다. 그러나 $5.5$ 같은 소수는 이 범위에 들어간다.",
+      "cMarkedSentence": "$5$ 초과 $6$ 미만인 수 중 자연수는 {$0$}개이다. 그러나 $5.5$ 같은 소수는 이 범위에 들어간다.",
+      "cStudentSentence": "$5$ 초과 $6$ 미만인 수 중 자연수는 □개이다. 그러나 $5.5$ 같은 소수는 이 범위에 들어간다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$5$ 초과 $6$ 미만인 수’ 중에 자연수가 있는지 쓰고 그 까닭을 설명하시오. 또 이 범위에 드는 수를 하나 쓰시오.",
+        "answer": "자연수는 없다. $5$와 $6$은 범위에 들어가지 않고 둘 사이에는 다른 자연수가 없기 때문이다. $5.5$ 같은 소수는 이 범위에 든다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수는 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$와 $6$은 빠지고 그 사이에 자연수가 없다",
+              "$5$ 다음 자연수가 $6$인데 $6$은 들어가지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5.5$처럼 $5$보다 크고 $6$보다 작은 수를 하나 쓴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5$ 초과 $6$ 미만인 수 중 자연수는 {$0$}개이다. 그러나 $5.5$ 같은 소수는 이 범위에 들어간다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c25cfe24016fae01a1dba6922b9e2737b13a6dfcd5d8b1c2d410baf664901495",
+      "questionRevision": "planning-e5e6-20261006-c25cfe24016f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-3-xc1",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "수직선에 그린 선과 끝점으로 범위를 읽는다.",
+      "bReason": "굵은 선이 범위라는 그리기 약속뿐이고, 끝점의 뜻은 c1에서 묻는다.",
+      "exclusionReason": "B는 c1과 중복되고 그림 없이는 묻기 어려워 제외한다(대체: e5-2-1-3-c1).",
+      "cDecision": "revise",
+      "cAfter": "수직선에서 $3$에 ●, $7$에 $\\bigcirc$를 그리고 두 점 사이를 선으로 이으면 $3$ {이상} $7$ {미만}인 수의 범위를 나타낸다.",
+      "cReason": "'굵은 선'이라는 표현을 외우는 빈칸보다, 말로 설명한 그림을 범위로 읽는 편이 쓸모 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1084,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-3-xc1",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-3 수의 범위를 알고 문제 해결하기",
+        "term": "수직선에서 범위 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "수직선에 그은 {굵은 선}이 범위이고, 끝점의 모양으로 경계가 들어가는지 안다.",
+        "studentC": "수직선에 그은 □이 범위이고, 끝점의 모양으로 경계가 들어가는지 안다.",
+        "answers": [
+          "굵은 선"
+        ]
+      },
+      "sourceFingerprint": "98b86e5f57ac46304e9fafc32c407c4240dc9da363d1ec93bf9beafaa051bc78",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "cProposedAnswers": [
+        "이상",
+        "미만"
+      ],
+      "cStudentAfter": "수직선에서 $3$에 ●, $7$에 $\\bigcirc$를 그리고 두 점 사이를 선으로 이으면 $3$ □ $7$ □인 수의 범위를 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "이상"
+          ]
+        },
+        {
+          "anyOf": [
+            "미만"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "수직선에서 $3$에 ●, $7$에 $\\bigcirc$를 그리고 두 점 사이를 선으로 이으면 $3$ {이상} $7$ {미만}인 수의 범위를 나타낸다.",
+      "cStudentSentence": "수직선에서 $3$에 ●, $7$에 $\\bigcirc$를 그리고 두 점 사이를 선으로 이으면 $3$ □ $7$ □인 수의 범위를 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "이상",
+          "equivalents": []
+        },
+        {
+          "key": "미만",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "수직선에서 $3$에 ●, $7$에 $\\bigcirc$를 그리고 두 점 사이를 선으로 이으면 $3$ {이상} $7$ {미만}인 수의 범위를 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "이상"
+          ],
+          [
+            "미만"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c1과 중복되고 그림 없이는 묻기 어려워 제외한다(대체: e5-2-1-3-c1)."
+      },
+      "proposalFingerprint": "728e3d3f4107abf1b6494133ef78bad77fd66d9dd399d56ae83835880f37fff1",
+      "questionRevision": "planning-e5e6-20261006-728e3d3f4107",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-3-xc2",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "색칠한 끝점이 그 수를 포함한다는 것을 안다.",
+      "bReason": "색칠한 점의 뜻은 c1의 ● 설명과 같은 내용이다.",
+      "exclusionReason": "B는 c1과 중복이라 제외한다(대체: e5-2-1-3-c1).",
+      "cDecision": "revise",
+      "cAfter": "수직선에서 $5$에 색칠한 점(●)을 그리고 오른쪽으로 선을 그으면 $5$ {이상}인 수를 나타낸다.",
+      "cReason": "'범위에 들어간다'는 긴 구절 대신 점의 뜻을 범위 낱말로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1085,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-3-xc2",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-3 수의 범위를 알고 문제 해결하기",
+        "term": "색칠한 점의 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "수직선 끝의 색칠한 점은 그 수가 {범위에 들어간다}는 뜻이다.",
+        "studentC": "수직선 끝의 색칠한 점은 그 수가 □는 뜻이다.",
+        "answers": [
+          "범위에 들어간다"
+        ]
+      },
+      "sourceFingerprint": "c980cafba792406dc450f30a42a069351bc394675878dec593d2286fb5fbddf8",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "cProposedAnswers": [
+        "이상"
+      ],
+      "cStudentAfter": "수직선에서 $5$에 색칠한 점(●)을 그리고 오른쪽으로 선을 그으면 $5$ □인 수를 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "이상"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "수직선에서 $5$에 색칠한 점(●)을 그리고 오른쪽으로 선을 그으면 $5$ {이상}인 수를 나타낸다.",
+      "cStudentSentence": "수직선에서 $5$에 색칠한 점(●)을 그리고 오른쪽으로 선을 그으면 $5$ □인 수를 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "이상",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "수직선에서 $5$에 색칠한 점(●)을 그리고 오른쪽으로 선을 그으면 $5$ {이상}인 수를 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "이상"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c1과 중복이라 제외한다(대체: e5-2-1-3-c1)."
+      },
+      "proposalFingerprint": "30ea545bcc616deffabe18a7b9e1c73a512835ca79efbd569c5897aa5d070904",
+      "questionRevision": "planning-e5e6-20261006-30ea545bcc61",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-3-xc3",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "빈 끝점이 그 수를 포함하지 않는다는 것을 안다.",
+      "bReason": "빈 점의 뜻은 c1의 ○ 설명과 같은 내용이다.",
+      "exclusionReason": "B는 c1과 중복이라 제외한다(대체: e5-2-1-3-c1).",
+      "cDecision": "revise",
+      "cAfter": "수직선에서 $5$에 빈 점($\\bigcirc$)을 그리고 왼쪽으로 선을 그으면 $5$ {미만}인 수를 나타낸다.",
+      "cReason": "xc2와 짝이 되게 방향을 바꿔 빈 점을 '미만'으로 읽게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1086,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-3-xc3",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-3 수의 범위를 알고 문제 해결하기",
+        "term": "빈 점의 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "수직선 끝의 빈 점은 그 수가 {범위에 들어가지 않는다}는 뜻이다.",
+        "studentC": "수직선 끝의 빈 점은 그 수가 □는 뜻이다.",
+        "answers": [
+          "범위에 들어가지 않는다"
+        ]
+      },
+      "sourceFingerprint": "7c13aee24ce5127d46f4321c2454e00c80e172669a8a5a9016c05e122a25d979",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "cProposedAnswers": [
+        "미만"
+      ],
+      "cStudentAfter": "수직선에서 $5$에 빈 점($\\bigcirc$)을 그리고 왼쪽으로 선을 그으면 $5$ □인 수를 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "미만"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "수직선에서 $5$에 빈 점($\\bigcirc$)을 그리고 왼쪽으로 선을 그으면 $5$ {미만}인 수를 나타낸다.",
+      "cStudentSentence": "수직선에서 $5$에 빈 점($\\bigcirc$)을 그리고 왼쪽으로 선을 그으면 $5$ □인 수를 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "미만",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "수직선에서 $5$에 빈 점($\\bigcirc$)을 그리고 왼쪽으로 선을 그으면 $5$ {미만}인 수를 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "미만"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c1과 중복이라 제외한다(대체: e5-2-1-3-c1)."
+      },
+      "proposalFingerprint": "855a0c16ece388c0f2065634a9035f9f0c4a4a930ec9a369d2287af9b2856a3a",
+      "questionRevision": "planning-e5e6-20261006-855a0c16ece3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-3-xc4",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "입장료가 '$8$세 미만 무료, $8$세 이상 $13$세 미만 $500$원, $13$세 이상 $1000$원'이다. $13$세인 사람의 입장료는 얼마인지 쓰고, $500$원이 아닌 까닭을 설명하시오.",
+      "bAnswer": "$1000$원이다. '$13$세 미만'에는 $13$세가 들어가지 않고 '$13$세 이상'에는 $13$세가 들어가기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1000$원"
+          ]
+        },
+        {
+          "anyOf": [
+            "$13$세 미만에는 $13$세가 들어가지 않는다",
+            "$13$세는 $13$세 이상에 든다"
+          ]
+        }
+      ],
+      "bGoal": "요금표에서 기준 나이와 같은 나이가 어느 범위에 드는지 판단한다.",
+      "bReason": "원문 예의 $10$세는 범위 한가운데라 판단할 것이 적어 기준 나이인 $13$세로 바꿨다.",
+      "cDecision": "revise",
+      "cAfter": "입장료가 '$8$세 이상 $13$세 미만 $500$원, $13$세 이상 $1000$원'일 때 $10$세의 입장료는 {$500$}원이고 $13$세의 입장료는 {$1000$}원이다.",
+      "cReason": "'어느 범위에 드는지'는 외울 말이 아니어서 실제 요금표에서 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1087,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-3-xc4",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-3 수의 범위를 알고 문제 해결하기",
+        "term": "요금표 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "요금표의 범위를 읽고 자기 나이가 {어느 범위에 드는지} 찾는다.",
+        "example": {
+          "prompt": "‘$8$세 이상 $13$세 미만 $500$원’일 때 $10$세의 요금은?",
+          "answer": "$500$원"
+        },
+        "studentC": "요금표의 범위를 읽고 자기 나이가 □ 찾는다.",
+        "answers": [
+          "어느 범위에 드는지"
+        ]
+      },
+      "sourceFingerprint": "d2f0609b9ed05c8c6c02892cc234e205081ee1312c5f193e52499e6cab5dd705",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "cProposedAnswers": [
+        "$500$",
+        "$1000$"
+      ],
+      "cStudentAfter": "입장료가 '$8$세 이상 $13$세 미만 $500$원, $13$세 이상 $1000$원'일 때 $10$세의 입장료는 □원이고 $13$세의 입장료는 □원이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$500$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1000$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "입장료가 '$8$세 이상 $13$세 미만 $500$원, $13$세 이상 $1000$원'일 때 $10$세의 입장료는 {$500$}원이고 $13$세의 입장료는 {$1000$}원이다.",
+      "cStudentSentence": "입장료가 '$8$세 이상 $13$세 미만 $500$원, $13$세 이상 $1000$원'일 때 $10$세의 입장료는 □원이고 $13$세의 입장료는 □원이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$500$",
+          "equivalents": []
+        },
+        {
+          "key": "$1000$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "입장료가 '$8$세 미만 무료, $8$세 이상 $13$세 미만 $500$원, $13$세 이상 $1000$원'이다. $13$세인 사람의 입장료는 얼마인지 쓰고, $500$원이 아닌 까닭을 설명하시오.",
+        "answer": "$1000$원이다. '$13$세 미만'에는 $13$세가 들어가지 않고 '$13$세 이상'에는 $13$세가 들어가기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1000$원"
+            ]
+          },
+          {
+            "anyOf": [
+              "$13$세 미만에는 $13$세가 들어가지 않는다",
+              "$13$세는 $13$세 이상에 든다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "입장료가 '$8$세 이상 $13$세 미만 $500$원, $13$세 이상 $1000$원'일 때 $10$세의 입장료는 {$500$}원이고 $13$세의 입장료는 {$1000$}원이다.",
+        "acceptedAnswers": [
+          [
+            "$500$"
+          ],
+          [
+            "$1000$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f9d16860382b3016989e669a35c9a391f5e848dbc32038840f3505daa8a6a01c",
+      "questionRevision": "planning-e5e6-20261006-f9d16860382b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-3-xc5",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "여러 수 가운데 범위에 드는 수를 고른다.",
+      "bReason": "'경계와 견준다'는 행동 안내일 뿐이고, 기준 수 판단은 xc16에서 설명하게 한다.",
+      "exclusionReason": "B는 단순히 고르기만 하는 문항이고 핵심 판단이 xc16과 겹쳐 제외한다(대체: e5-2-1-3-xc16).",
+      "cDecision": "revise",
+      "cAfter": "$2$, $3$, $5$, $8$ 가운데 $3$ 이상 $8$ 미만인 수를 작은 수부터 쓰면 {$3$}, {$5$}이다.",
+      "cReason": "'견준다'는 낯선 말을 외우는 대신 기준 수 $3$과 $8$이 섞인 보기에서 직접 고르게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1088,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-3-xc5",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-3 수의 범위를 알고 문제 해결하기",
+        "term": "범위에 드는 수 고르기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "여러 수 중 범위에 드는 수를 고를 때는 수마다 {경계와 견준다}.",
+        "example": {
+          "prompt": "$2$, $5$, $8$ 중 $3$ 이상 $8$ 미만인 수는?",
+          "answer": "$5$"
+        },
+        "studentC": "여러 수 중 범위에 드는 수를 고를 때는 수마다 □.",
+        "answers": [
+          "경계와 견준다"
+        ]
+      },
+      "sourceFingerprint": "30c90bb9c903f696c1bc16750aee4adeed99fc71755f70d262d26fc1856acf4c",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$5$"
+      ],
+      "cStudentAfter": "$2$, $3$, $5$, $8$ 가운데 $3$ 이상 $8$ 미만인 수를 작은 수부터 쓰면 □, □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2$, $3$, $5$, $8$ 가운데 $3$ 이상 $8$ 미만인 수를 작은 수부터 쓰면 {$3$}, {$5$}이다.",
+      "cStudentSentence": "$2$, $3$, $5$, $8$ 가운데 $3$ 이상 $8$ 미만인 수를 작은 수부터 쓰면 □, □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$2$, $3$, $5$, $8$ 가운데 $3$ 이상 $8$ 미만인 수를 작은 수부터 쓰면 {$3$}, {$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단순히 고르기만 하는 문항이고 핵심 판단이 xc16과 겹쳐 제외한다(대체: e5-2-1-3-xc16)."
+      },
+      "proposalFingerprint": "49f3c6acf36b64b31741ec4b0975e849a4c5de52127a60e802bba6348bc9f744",
+      "questionRevision": "planning-e5e6-20261006-49f3c6acf36b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-3-xc6",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "'$4$ 초과 $9$ 이하인 수'를 수직선에 나타내려고 한다. $4$와 $9$에 각각 어떤 모양의 점을 그리고, 선은 어디에 긋는지 설명하시오.",
+      "bAnswer": "$4$에는 $\\bigcirc$(빈 점), $9$에는 ●(색칠한 점)를 그리고, $4$와 $9$ 사이를 선으로 잇는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$에는 $\\bigcirc$를 그린다",
+            "$4$에는 빈 점을 그린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$에는 ●를 그린다",
+            "$9$에는 색칠한 점을 그린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$와 $9$ 사이에 선을 긋는다",
+            "두 점 사이를 잇는다"
+          ]
+        }
+      ],
+      "bGoal": "범위를 수직선에 나타낼 때 점 모양과 선의 위치를 정한다.",
+      "bReason": "순서를 외우게 하기보다 실제 범위에서 점과 선을 정하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "'$6$ 초과인 수'를 수직선에 나타낼 때는 $6$에 {$\\bigcirc$}를 그리고 $6$의 {오른쪽}으로 선을 긋는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\bigcirc$",
+            "빈 점",
+            "색칠하지 않은 점"
+          ]
+        },
+        {
+          "anyOf": [
+            "오른쪽",
+            "큰 쪽"
+          ]
+        }
+      ],
+      "cReason": "'범위의 방향'은 뜻이 흐려서 구체적인 범위에서 점 모양과 방향을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1089,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-3-xc6",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-3 수의 범위를 알고 문제 해결하기",
+        "term": "수직선에 나타내는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "경계의 수를 찾고, 점의 모양을 정한 뒤, {범위의 방향}으로 선을 긋는다.",
+        "studentC": "경계의 수를 찾고, 점의 모양을 정한 뒤, □으로 선을 긋는다.",
+        "answers": [
+          "범위의 방향"
+        ]
+      },
+      "sourceFingerprint": "3e76afe0c5317e36a81bd4a1df7bde17e77b471cd1e26ffb7c660c78b338f2eb",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "cProposedAnswers": [
+        "$\\bigcirc$",
+        "오른쪽"
+      ],
+      "cStudentAfter": "'$6$ 초과인 수'를 수직선에 나타낼 때는 $6$에 □를 그리고 $6$의 □으로 선을 긋는다.",
+      "cMarkedSentence": "'$6$ 초과인 수'를 수직선에 나타낼 때는 $6$에 {$\\bigcirc$}를 그리고 $6$의 {오른쪽}으로 선을 긋는다.",
+      "cStudentSentence": "'$6$ 초과인 수'를 수직선에 나타낼 때는 $6$에 □를 그리고 $6$의 □으로 선을 긋는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\bigcirc$",
+          "equivalents": [
+            "빈 점",
+            "색칠하지 않은 점"
+          ]
+        },
+        {
+          "key": "오른쪽",
+          "equivalents": [
+            "큰 쪽"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "'$4$ 초과 $9$ 이하인 수'를 수직선에 나타내려고 한다. $4$와 $9$에 각각 어떤 모양의 점을 그리고, 선은 어디에 긋는지 설명하시오.",
+        "answer": "$4$에는 $\\bigcirc$(빈 점), $9$에는 ●(색칠한 점)를 그리고, $4$와 $9$ 사이를 선으로 잇는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$에는 $\\bigcirc$를 그린다",
+              "$4$에는 빈 점을 그린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$에는 ●를 그린다",
+              "$9$에는 색칠한 점을 그린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$와 $9$ 사이에 선을 긋는다",
+              "두 점 사이를 잇는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "'$6$ 초과인 수'를 수직선에 나타낼 때는 $6$에 {$\\bigcirc$}를 그리고 $6$의 {오른쪽}으로 선을 긋는다.",
+        "acceptedAnswers": [
+          [
+            "$\\bigcirc$",
+            "빈 점",
+            "색칠하지 않은 점"
+          ],
+          [
+            "오른쪽",
+            "큰 쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "63cdabdc04708092f4583f54dccd1914e5fe517c4276a61e89b732858d4ed989",
+      "questionRevision": "planning-e5e6-20261006-63cdabdc0470",
+      "requiresIndependentReview": true
+    }
+  ]
+}

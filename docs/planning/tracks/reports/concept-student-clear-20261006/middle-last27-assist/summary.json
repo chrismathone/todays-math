@@ -1,0 +1,34 @@
+{
+  "status": "Settled bounded correction handoff; no independent approval or activation",
+  "taskId": "task_c687f2c40ea2",
+  "dispatchId": "ctx_b868a7c064eb",
+  "count": {
+    "ids": 27,
+    "bChanged": 17,
+    "cChanged": 27,
+    "coreChanged": 5,
+    "bRestored": [
+      "m2-01-02-xc14",
+      "m2-04-06-xc6",
+      "m2-05-08-xc10"
+    ],
+    "cRestored": [
+      "m3-05-02-c2"
+    ],
+    "bExcluded": [
+      "m1-03-05-xc24",
+      "m2-01-06-xc10",
+      "m2-05-01-xc6"
+    ]
+  },
+  "unresolvedOwnCorrectionIssues": [],
+  "knownExternalIssue": [
+    {
+      "id": "m2-01-01-xc20",
+      "field": "example.prompt",
+      "rule": "수식 뒤 조사",
+      "what": "$\\frac{3}{2\\times a}$가"
+    }
+  ],
+  "remaining": "Root verifies/adopts these exact candidate rows and reruns actual independent Claude checks; activation remains Root-owned."
+}

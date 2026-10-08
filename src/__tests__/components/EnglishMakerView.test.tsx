@@ -606,7 +606,7 @@ describe("원문 복원", () => {
 });
 
 describe("API 직접 생성", () => {
-  it("503 이면 상태 줄이 «연결 대기»가 되고 단추가 잠긴다", async () => {
+  it("503 후 입력을 유지한 채 같은 화면에서 연결을 다시 시도할 수 있다", async () => {
     fetchMock.mockResolvedValue(
       jsonResponse(
         {
@@ -626,12 +626,19 @@ describe("API 직접 생성", () => {
       fireEvent.click(button("원문·문항 생성"));
     });
     expect(screen.getByRole("status")).toHaveTextContent("연결 대기");
-    expect(button("원문·문항 생성")).toBeDisabled();
+    expect(button("원문·문항 생성")).not.toBeDisabled();
     expect(screen.getByRole("alert")).toHaveTextContent(
       "AI 연결이 설정되지 않았습니다.",
     );
     expect(onSaved).not.toHaveBeenCalled();
     expect(screen.queryByRole("button", { name: "다시 저장" })).toBeNull();
+    await act(async () => {
+      fireEvent.click(button("원문·문항 생성"));
+    });
+    expect(fetchMock).toHaveBeenCalledTimes(2);
+    expect(fetchMock.mock.calls[1]?.[1]?.body).toBe(
+      fetchMock.mock.calls[0]?.[1]?.body,
+    );
   });
 
   it("200 결과를 먼저 보여주고 명시적 초안 저장 후 onSaved — 상태 줄은 «AI 연결됨»", async () => {
@@ -845,6 +852,52 @@ describe("AI 제작 — 저장 전 검토와 비동기 보호", () => {
     grade: "중3" as const,
   };
   const props = { materials, onSaved, onNotice };
+
+  it("생성 전 입력도 새로고침 시 보호한다", () => {
+    setup(exam, false);
+    const clean = new Event("beforeunload", { cancelable: true });
+    window.dispatchEvent(clean);
+    expect(clean.defaultPrevented).toBe(false);
+    fillTopic();
+    const dirty = new Event("beforeunload", { cancelable: true });
+    window.dispatchEvent(dirty);
+    expect(dirty.defaultPrevented).toBe(true);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("저장 실패 후에도 결과와 교사 수정은 명시적인 폐기 확인 전까지 보존한다", async () => {
+    fetchMock
+      .mockResolvedValueOnce(generated())
+      .mockResolvedValueOnce(
+        jsonResponse({ error: { message: "저장 응답이 끊겼습니다." } }, 503),
+      );
+    setup(exam, false);
+    await generate();
+    fireEvent.click(button("교사 수정"));
+    fireEvent.change(screen.getByLabelText("초안 제목"), {
+      target: { value: "교사가 수정한 제목" },
+    });
+    await act(async () => {
+      fireEvent.click(button("초안 저장"));
+    });
+    const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
+    try {
+      fireEvent.click(button("결과 버리기"));
+      expect(confirm).toHaveBeenCalledWith(
+        "저장하지 않은 제작 결과를 버리시겠습니까?",
+      );
+      expect(screen.getByLabelText("초안 제목")).toHaveValue(
+        "교사가 수정한 제목",
+      );
+      expect(button("다시 저장")).toBeInTheDocument();
+      expect(fetchMock).toHaveBeenCalledTimes(2);
+      confirm.mockReturnValue(true);
+      fireEvent.click(button("결과 버리기"));
+      expect(screen.queryByLabelText("초안 제목")).toBeNull();
+    } finally {
+      confirm.mockRestore();
+    }
+  });
 
   it("생성만으로 저장하지 않고 원문·보기·정답·해설·근거를 보여준다", async () => {
     fetchMock.mockResolvedValueOnce(generated());

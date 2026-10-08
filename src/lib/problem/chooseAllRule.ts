@@ -128,6 +128,36 @@ export function instructionTail(content: string, tailLen = 22): string {
 }
 
 /**
+ * «옳은 것을 **모두 고른 것**» — 「모두」가 꾸미는 것은 **고른 조합**이다(2026-10-08 엔진 보강 0단계).
+ *
+ * «…모두 고른 것은?» 은 «고른»(U+B978)이 «고르»(U+B974)를 품지 않아 원래 안 걸렸다.
+ * 새던 것은 «…모두 고른 것을 **고르시오**» — 뒤의 «고르» 앞에 이 «모두»가 있어 «모두 고르기»로 읽혔다.
+ * 그래서 이 구절을 **지운 뒤에** 아래 순서 규칙을 댄다(지운 뒤에도 진짜 «모두 고르시오»가 남으면 잡는다).
+ */
+const COMBO_PICK_PHRASE = /(?:모두|모든)\s*(?:바르게\s*)?고른\s*것/g;
+
+/** 보기 낱말 하나가 ㄱㄴㄷ 꼴 «이름표»인가 — `ㄱ` · `㉠` · `(가)`. */
+const COMBO_LABEL = /^(?:[ㄱ-ㅎ]|[㉠-㉭]|\([가-하]\))$/;
+
+/**
+ * 보기 줄(둘 이상)이 **전부** ㄱㄴㄷ 이름표의 조합인가 — `① ㄱ, ㄴ` · `② ㉠` · `③ (가), (다)`.
+ *
+ * 보기 하나가 조합 하나이므로 정답은 그 번호 **하나**다. 발문이 «모두 고르면?» 이어도 그렇다
+ * (교과서에 이 꼴이 섞여 있다). 하나라도 진술 · 식이면 조합형이 아니다 — 전부여야 한다.
+ */
+function choicesAreLabelCombos(content: string): boolean {
+  const lines = content.split("\n").filter(isChoiceLine);
+  if (lines.length < 2) return false;
+  return lines.every((line) => {
+    const body = [...line.trimStart()].slice(1).join("").trim();
+    const parts = body
+      .split(/\s*[,、·]\s*|\s+(?:와|과)\s+|\s+/)
+      .filter((s) => s.length > 0);
+    return parts.length > 0 && parts.every((p) => COMBO_LABEL.test(p));
+  });
+}
+
+/**
  * 🔴 **판정** — 「보기에서 여럿을 고르라」는 발문인가.
  *
  * 열쇠를 **낱말 「모두」로 잡지 않는다.** 「모두 몇 개인지 구하시오」가 같이 걸리고
@@ -139,9 +169,14 @@ export function instructionTail(content: string, tailLen = 22): string {
  *
  * ㉢ 이 핵심이다. 「모두 고르시오」라고 써 놓고 보기가 없으면 그건 다른 부류다.
  * 낱말 둘만으로는 그것을 못 가른다.
+ *
+ * ㉣ **ㄱㄴㄷ 조합형은 뺀다** — 보기가 전부 이름표 조합이거나(`choicesAreLabelCombos`),
+ *    «모두»가 «고른 것»(조합)을 꾸미면(`COMBO_PICK_PHRASE`) 고르는 것은 조합 **하나**다.
  */
 export function isChooseAll(content: string): boolean {
-  const stem = stemOf(content);
+  // ㄱㄴㄷ **조합형**은 보기 하나가 조합 하나다 — 정답이 하나라 이 부류가 아니다(아래 둘).
+  if (choicesAreLabelCombos(content)) return false;
+  const stem = stemOf(content).replace(COMBO_PICK_PHRASE, "▦");
   if (!/고르/.test(stem)) return false;
   if (!/모두|모든/.test(stem)) return false;
   // 「모두」가 「고르」보다 뒤에 있으면 다른 문장이다 — 앞에 와야 「모두 고르라」다.

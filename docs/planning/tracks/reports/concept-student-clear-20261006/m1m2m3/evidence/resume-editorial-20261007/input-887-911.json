@@ -1,0 +1,2555 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:33:26.731Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-03-c1",
+        "section": "중3::6. 원의 성질::원주각",
+        "term": "원주각",
+        "kind": "정의",
+        "level": "하",
+        "definition": "호 $AB$ 위에 있지 않은 원 위의 점 $P$에서 $A$, $B$로 그은 두 {현}이 이루는 $\\angle APB$가 호 $AB$에 대한 원주각이다 — 꼭짓점이 {원 위}에 있다.",
+        "studentC": "호 $AB$ 위에 있지 않은 원 위의 점 $P$에서 $A$, $B$로 그은 두 □이 이루는 $\\angle APB$가 호 $AB$에 대한 원주각이다 — 꼭짓점이 □에 있다.",
+        "answers": [
+          "현",
+          "원 위"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-03-c1",
+        "learningRole": "definition",
+        "roleReason": "원주각의 꼭짓점 위치와 두 변",
+        "bDecision": "rewrite",
+        "bPrompt": "원 위의 두 점 $A$, $B$가 있다. 호 $AB$에 대한 원주각은 어떤 각인가? 꼭짓점이 놓이는 곳과 두 변이 무엇인지 밝혀 설명하시오.",
+        "bAnswer": "호 $AB$ 위에 있지 않은 원 위의 점 $P$가 꼭짓점이다. 두 현 $PA$, $PB$가 두 변이 되어 이루는 $\\angle APB$가 호 $AB$에 대한 원주각이다.",
+        "bGoal": "원주각의 뜻 설명",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점이 호 $AB$ 위에 있지 않은 원 위의 점이다",
+              "꼭짓점이 호 $AB$가 아닌 나머지 호 위에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변이 꼭짓점에서 $A$, $B$로 그은 두 현이다",
+              "두 변이 현 $PA$, $PB$이다"
+            ]
+          }
+        ],
+        "bReason": "호 $AB$를 주어 꼭짓점과 두 변을 답하도록 특정했다.",
+        "cDecision": "keep",
+        "cReason": "현과 원 위라는 두 빈칸이 정의의 핵심 조건을 짧게 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 887,
+        "part": "m3",
+        "sourceFingerprint": "025ba5c25fbd4d55c87a00b58324c05b61d16863940a07a3a2b5c9f4650b0f9d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 887
+        },
+        "directReview": null,
+        "cFrozenSentence": "호 $AB$ 위에 있지 않은 원 위의 점 $P$에서 $A$, $B$로 그은 두 □이 이루는 $\\angle APB$가 호 $AB$에 대한 원주각이다 — 꼭짓점이 □에 있다.",
+        "cFrozenDefinition": "호 $AB$ 위에 있지 않은 원 위의 점 $P$에서 $A$, $B$로 그은 두 {현}이 이루는 $\\angle APB$가 호 $AB$에 대한 원주각이다 — 꼭짓점이 {원 위}에 있다.",
+        "cFrozenAnswers": [
+          "현",
+          "원 위"
+        ],
+        "cMarkedSentence": "호 $AB$ 위에 있지 않은 원 위의 점 $P$에서 $A$, $B$로 그은 두 {현}이 이루는 $\\angle APB$가 호 $AB$에 대한 원주각이다 — 꼭짓점이 {원 위}에 있다.",
+        "cSlotAnswers": [
+          "현",
+          "원 위"
+        ],
+        "cStudentSentence": "호 $AB$ 위에 있지 않은 원 위의 점 $P$에서 $A$, $B$로 그은 두 □이 이루는 $\\angle APB$가 호 $AB$에 대한 원주각이다 — 꼭짓점이 □에 있다.",
+        "cAnswers": [
+          "현",
+          "원 위"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "현",
+            "equivalentAnswers": [
+              "현"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "원 위",
+            "equivalentAnswers": [
+              "원 위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "현"
+          ],
+          [
+            "원 위"
+          ]
+        ],
+        "proposalFingerprint": "ceeedffe76d4033a180477b7637f447605ecedc55a7321a2bc4b87a70cc841b0"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-03-c2",
+        "section": "중3::6. 원의 성질::원주각",
+        "term": "원주각에 대한 호",
+        "kind": "정의",
+        "level": "하",
+        "definition": "원주각의 두 변이 원과 다시 만나는 두 점을 {양 끝}으로 하는 호 가운데 원주각의 꼭짓점을 {포함하지 않는} 쪽이 그 원주각에 대한 호이다.",
+        "example": {
+          "prompt": "원주각 $\\angle APB$에 대한 호는 두 호 $AB$ 가운데 어느 쪽인가?",
+          "answer": "점 $P$를 포함하지 않는 쪽"
+        },
+        "studentC": "원주각의 두 변이 원과 다시 만나는 두 점을 □으로 하는 호 가운데 원주각의 꼭짓점을 □ 쪽이 그 원주각에 대한 호이다.",
+        "answers": [
+          "양 끝",
+          "포함하지 않는"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-03-c2",
+        "learningRole": "definition",
+        "roleReason": "원주각에 대한 호를 고르는 기준",
+        "bDecision": "rewrite",
+        "bPrompt": "원 위의 세 점 $A$, $B$, $P$로 원주각 $\\angle APB$를 만들었다. 두 점 $A$, $B$는 원을 두 호로 나눈다. 이 중 $\\angle APB$에 대한 호는 어느 쪽인가?",
+        "bAnswer": "두 호 $AB$ 가운데 점 $P$를 포함하지 않는 쪽이다.",
+        "bGoal": "원주각에 대한 호 식별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "점 $P$를 포함하지 않는 호",
+              "꼭짓점 $P$가 없는 쪽의 호"
+            ]
+          }
+        ],
+        "bReason": "두 호 가운데 하나를 고르는 기준이 핵심이므로 $\\angle APB$로 상황을 정했다.",
+        "cDecision": "keep",
+        "cReason": "양 끝과 포함하지 않는이라는 두 빈칸이 호를 고르는 기준을 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 888,
+        "part": "m3",
+        "sourceFingerprint": "1e70ee9503840553f27bb3801239ffc9706cb12bcbf9bc4a452fef48c6706d27",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 888
+        },
+        "directReview": null,
+        "cFrozenSentence": "원주각의 두 변이 원과 다시 만나는 두 점을 □으로 하는 호 가운데 원주각의 꼭짓점을 □ 쪽이 그 원주각에 대한 호이다.",
+        "cFrozenDefinition": "원주각의 두 변이 원과 다시 만나는 두 점을 {양 끝}으로 하는 호 가운데 원주각의 꼭짓점을 {포함하지 않는} 쪽이 그 원주각에 대한 호이다.",
+        "cFrozenAnswers": [
+          "양 끝",
+          "포함하지 않는"
+        ],
+        "cMarkedSentence": "원주각의 두 변이 원과 다시 만나는 두 점을 {양 끝}으로 하는 호 가운데 원주각의 꼭짓점을 {포함하지 않는} 쪽이 그 원주각에 대한 호이다.",
+        "cSlotAnswers": [
+          "양 끝",
+          "포함하지 않는"
+        ],
+        "cStudentSentence": "원주각의 두 변이 원과 다시 만나는 두 점을 □으로 하는 호 가운데 원주각의 꼭짓점을 □ 쪽이 그 원주각에 대한 호이다.",
+        "cAnswers": [
+          "양 끝",
+          "포함하지 않는"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양 끝",
+            "equivalentAnswers": [
+              "양 끝"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "포함하지 않는",
+            "equivalentAnswers": [
+              "포함하지 않는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양 끝"
+          ],
+          [
+            "포함하지 않는"
+          ]
+        ],
+        "proposalFingerprint": "72166572453b154c2def53d35b82bb6cacd0b80c0e3dd1867348f9f76145147e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-03-c3",
+        "section": "중3::6. 원의 성질::원주각",
+        "term": "원주각과 중심각의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원주각은 같은 호를 바라보는 {중심각}의 {절반} 크기이다.",
+        "studentC": "원주각은 같은 호를 바라보는 □의 □ 크기이다.",
+        "answers": [
+          "중심각",
+          "절반"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-03-c3",
+        "learningRole": "definition",
+        "roleReason": "같은 호의 원주각과 중심각의 크기 관계",
+        "bDecision": "rewrite",
+        "bPrompt": "원 $O$에서 같은 호 $AB$에 대한 원주각 $\\angle APB$와 중심각 $\\angle AOB$의 크기 사이에는 어떤 관계가 있는가?",
+        "bAnswer": "$\\angle APB=\\frac{1}{2}\\angle AOB$이다. 즉 원주각은 중심각의 절반이다.",
+        "bGoal": "원주각과 중심각의 관계",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle APB=\\frac{1}{2}\\angle AOB$",
+              "$\\angle AOB=2\\angle APB$",
+              "원주각은 같은 호에 대한 중심각의 절반이다"
+            ]
+          }
+        ],
+        "bReason": "같은 호와 기호 $O$, $P$를 명시해 두 각의 관계를 묻도록 했다.",
+        "cDecision": "keep",
+        "cReason": "중심각과 절반이라는 두 빈칸이 관계를 간결하게 확인한다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 889,
+        "part": "m3",
+        "sourceFingerprint": "ad5cd36a8550048b853a054de9fabc54f988f02f70fcf610500e622e521791a0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 889
+        },
+        "directReview": null,
+        "cFrozenSentence": "원주각은 같은 호를 바라보는 □의 □ 크기이다.",
+        "cFrozenDefinition": "원주각은 같은 호를 바라보는 {중심각}의 {절반} 크기이다.",
+        "cFrozenAnswers": [
+          "중심각",
+          "절반"
+        ],
+        "cMarkedSentence": "원주각은 같은 호를 바라보는 {중심각}의 {절반} 크기이다.",
+        "cSlotAnswers": [
+          "중심각",
+          "절반"
+        ],
+        "cStudentSentence": "원주각은 같은 호를 바라보는 □의 □ 크기이다.",
+        "cAnswers": [
+          "중심각",
+          "절반"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중심각",
+            "equivalentAnswers": [
+              "중심각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "반",
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "반",
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "중심각"
+          ],
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "6a8eb9907b29b257a7d763bb5f789f608b0e915010cca23a83f8ad821a9d53b6"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-03-c4",
+        "section": "중3::6. 원의 성질::원주각",
+        "term": "원주각의 성질",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 호를 바라보는 원주각은 꼭짓점이 어디에 있든 크기가 모두 {같고}, 반원을 바라보는 원주각은 {$90^\\circ$}이다.",
+        "studentC": "같은 호를 바라보는 원주각은 꼭짓점이 어디에 있든 크기가 모두 □, 반원을 바라보는 원주각은 □이다.",
+        "answers": [
+          "같고",
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-03-c4",
+        "learningRole": "reason",
+        "roleReason": "같은 호의 원주각이 모두 같은 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "한 원에서 호 $AB$ 위에 있지 않은 원 위의 서로 다른 두 점 $P$, $Q$를 잡아 $\\angle APB$와 $\\angle AQB$를 만들었다. 두 각의 크기는 어떤 관계인가? 그 까닭도 쓰시오.",
+        "bAnswer": "두 각의 크기는 같다. 두 각 모두 같은 호 $AB$에 대한 원주각이어서 그 호에 대한 중심각의 절반이기 때문이다.",
+        "bGoal": "같은 호의 원주각이 같음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle APB=\\angle AQB$",
+              "두 각의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘 다 같은 호 $AB$에 대한 중심각의 절반이다",
+              "둘 다 같은 중심각 $\\angle AOB$의 $\\frac{1}{2}$이다"
+            ]
+          }
+        ],
+        "bReason": "반원에 대한 $90^\\circ$는 xc6에서 묻고, 여기서는 두 점 $P$, $Q$로 같은 호의 원주각 비교만 특정했다.",
+        "cDecision": "keep",
+        "cReason": "같고와 $90^\\circ$라는 두 빈칸이 성질 두 가지를 짧게 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 890,
+        "part": "m3",
+        "sourceFingerprint": "59a7fabcbf56ecfba3812411fb052281d9404ba0357929e6506bcd543b20b930",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 890
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 호를 바라보는 원주각은 꼭짓점이 어디에 있든 크기가 모두 □, 반원을 바라보는 원주각은 □이다.",
+        "cFrozenDefinition": "같은 호를 바라보는 원주각은 꼭짓점이 어디에 있든 크기가 모두 {같고}, 반원을 바라보는 원주각은 {$90^\\circ$}이다.",
+        "cFrozenAnswers": [
+          "같고",
+          "$90^\\circ$"
+        ],
+        "cMarkedSentence": "같은 호를 바라보는 원주각은 꼭짓점이 어디에 있든 크기가 모두 {같고}, 반원을 바라보는 원주각은 {$90^\\circ$}이다.",
+        "cSlotAnswers": [
+          "같고",
+          "$90^\\circ$"
+        ],
+        "cStudentSentence": "같은 호를 바라보는 원주각은 꼭짓점이 어디에 있든 크기가 모두 □, 반원을 바라보는 원주각은 □이다.",
+        "cAnswers": [
+          "같고",
+          "$90^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같고",
+            "equivalentAnswers": [
+              "같고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$90^\\circ$",
+            "equivalentAnswers": [
+              "$90^\\circ$",
+              "직각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$90^\\circ$",
+            "accept": [
+              "직각"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "같고"
+          ],
+          [
+            "$90^\\circ$",
+            "직각"
+          ]
+        ],
+        "proposalFingerprint": "d3a93e4d6ef754e82eb30dfc1886a8de3d737da885dc565c0917880d5bcf221e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-03-c5",
+        "section": "중3::6. 원의 성질::원주각",
+        "term": "원주각의 크기와 호의 길이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 원에서 길이가 같은 호를 바라보는 원주각은 크기가 {같고}, 원주각의 크기는 호의 길이에 {정비례}한다.",
+        "studentC": "한 원에서 길이가 같은 호를 바라보는 원주각은 크기가 □, 원주각의 크기는 호의 길이에 □한다.",
+        "answers": [
+          "같고",
+          "정비례"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-03-c5",
+        "learningRole": "definition",
+        "roleReason": "호의 길이와 원주각의 정비례 관계",
+        "bDecision": "rewrite",
+        "bPrompt": "한 원에서 호의 길이와 그 호에 대한 원주각의 크기는 어떤 관계인가? 길이가 같은 두 호, 그리고 길이가 $2$배인 호에 대한 원주각은 각각 어떻게 되는지 포함하여 쓰시오.",
+        "bAnswer": "원주각의 크기는 호의 길이에 정비례한다. 길이가 같은 호에 대한 원주각은 크기가 같다. 호의 길이가 $2$배이면 원주각도 $2$배이다.",
+        "bGoal": "호의 길이와 원주각의 비례",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원주각의 크기는 호의 길이에 정비례한다",
+              "호의 길이가 $2$배이면 원주각도 $2$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이가 같은 호에 대한 원주각은 크기가 같다"
+            ]
+          }
+        ],
+        "bReason": "정비례라는 관계 이름만으로는 막연하므로 같은 길이와 $2$배인 경우를 범위로 넣었다.",
+        "cDecision": "keep",
+        "cReason": "같고와 정비례라는 두 빈칸이 관계를 분명히 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 891,
+        "part": "m3",
+        "sourceFingerprint": "65d93c07262fad331551d150e55bb7b5073754007c80a114ab30d4ea3f3b5b91",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 891
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 원에서 길이가 같은 호를 바라보는 원주각은 크기가 □, 원주각의 크기는 호의 길이에 □한다.",
+        "cFrozenDefinition": "한 원에서 길이가 같은 호를 바라보는 원주각은 크기가 {같고}, 원주각의 크기는 호의 길이에 {정비례}한다.",
+        "cFrozenAnswers": [
+          "같고",
+          "정비례"
+        ],
+        "cMarkedSentence": "한 원에서 길이가 같은 호를 바라보는 원주각은 크기가 {같고}, 원주각의 크기는 호의 길이에 {정비례}한다.",
+        "cSlotAnswers": [
+          "같고",
+          "정비례"
+        ],
+        "cStudentSentence": "한 원에서 길이가 같은 호를 바라보는 원주각은 크기가 □, 원주각의 크기는 호의 길이에 □한다.",
+        "cAnswers": [
+          "같고",
+          "정비례"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같고",
+            "equivalentAnswers": [
+              "같고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정비례",
+            "equivalentAnswers": [
+              "정비례",
+              "비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "정비례",
+            "accept": [
+              "비례"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같고"
+          ],
+          [
+            "정비례",
+            "비례"
+          ]
+        ],
+        "proposalFingerprint": "b48fece9af078e92b0d3249972cf10e7f07249539d0fb02743e32ed645431b01"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-03-c6",
+        "section": "중3::6. 원의 성질::원주각",
+        "term": "원주각이 중심각의 절반인 까닭",
+        "kind": "정리",
+        "level": "상",
+        "definition": "원주각이 같은 호에 대한 중심각의 절반임을 보일 때, 원주각의 꼭짓점을 지나는 지름을 긋고 중심과 호의 양 끝점을 잇는다. 한 변이 지름 위에 있으면 두 변이 반지름인 {이등변삼각형}의 외각 성질을 쓰고, 나머지는 두 원주각을 더하거나 빼서 보인다.",
+        "studentC": "원주각이 같은 호에 대한 중심각의 절반임을 보일 때, 원주각의 꼭짓점을 지나는 지름을 긋고 중심과 호의 양 끝점을 잇는다. 한 변이 지름 위에 있으면 두 변이 반지름인 □의 외각 성질을 쓰고, 나머지는 두 원주각을 더하거나 빼서 보인다.",
+        "answers": [
+          "이등변삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-03-c6",
+        "learningRole": "reason",
+        "roleReason": "중심이 원주각 안에 있을 때의 증명",
+        "bDecision": "rewrite",
+        "bPrompt": "원 $O$에서 호 $AB$에 대한 원주각 $\\angle APB$의 안쪽에 중심 $O$가 있다. 점 $P$를 지나는 지름 $PQ$를 그어 $\\angle APB=\\frac{1}{2}\\angle AOB$임을 보이는 과정을 쓰시오. (한 변이 지름인 원주각은 그 호에 대한 중심각의 절반이라는 사실을 써도 된다.)",
+        "bAnswer": "$\\angle APB=\\angle APQ+\\angle QPB$이다. 각각 한 변이 지름이므로 $\\angle APQ=\\frac{1}{2}\\angle AOQ$, $\\angle QPB=\\frac{1}{2}\\angle QOB$이다. 두 식을 더하면 $\\angle APB=\\frac{1}{2}(\\angle AOQ+\\angle QOB)=\\frac{1}{2}\\angle AOB$이다.",
+        "bGoal": "중심이 안쪽인 경우의 증명",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle APB=\\angle APQ+\\angle QPB$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle APQ=\\frac{1}{2}\\angle AOQ$이고 $\\angle QPB=\\frac{1}{2}\\angle QOB$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle AOQ+\\angle QOB=\\angle AOB$이므로 합이 $\\frac{1}{2}\\angle AOB$이다"
+            ]
+          }
+        ],
+        "bReason": "증명 전체는 길어서 중심이 안쪽인 경우로 한정했다. 지름인 경우는 xc17, 바깥인 경우는 xc13에 나눴다.",
+        "cDecision": "keep",
+        "cReason": "이등변삼각형 빈칸이 증명의 핵심 도구를 묻고, 문장이 경우 구분을 밝힌다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 892,
+        "part": "m3",
+        "sourceFingerprint": "1f3f11e92b9b2805f25118f2947994250fd442339be893c35ab22b6cec05cb78",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 892
+        },
+        "directReview": null,
+        "cFrozenSentence": "원주각이 같은 호에 대한 중심각의 절반임을 보일 때, 원주각의 꼭짓점을 지나는 지름을 긋고 중심과 호의 양 끝점을 잇는다. 한 변이 지름 위에 있으면 두 변이 반지름인 □의 외각 성질을 쓰고, 나머지는 두 원주각을 더하거나 빼서 보인다.",
+        "cFrozenDefinition": "원주각이 같은 호에 대한 중심각의 절반임을 보일 때, 원주각의 꼭짓점을 지나는 지름을 긋고 중심과 호의 양 끝점을 잇는다. 한 변이 지름 위에 있으면 두 변이 반지름인 {이등변삼각형}의 외각 성질을 쓰고, 나머지는 두 원주각을 더하거나 빼서 보인다.",
+        "cFrozenAnswers": [
+          "이등변삼각형"
+        ],
+        "cMarkedSentence": "원주각이 같은 호에 대한 중심각의 절반임을 보일 때, 원주각의 꼭짓점을 지나는 지름을 긋고 중심과 호의 양 끝점을 잇는다. 한 변이 지름 위에 있으면 두 변이 반지름인 {이등변삼각형}의 외각 성질을 쓰고, 나머지는 두 원주각을 더하거나 빼서 보인다.",
+        "cSlotAnswers": [
+          "이등변삼각형"
+        ],
+        "cStudentSentence": "원주각이 같은 호에 대한 중심각의 절반임을 보일 때, 원주각의 꼭짓점을 지나는 지름을 긋고 중심과 호의 양 끝점을 잇는다. 한 변이 지름 위에 있으면 두 변이 반지름인 □의 외각 성질을 쓰고, 나머지는 두 원주각을 더하거나 빼서 보인다.",
+        "cAnswers": [
+          "이등변삼각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이등변삼각형",
+            "equivalentAnswers": [
+              "이등변삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이등변삼각형"
+          ]
+        ],
+        "proposalFingerprint": "94f71c7da803f9b11de4f733f0e9d0f3cd20551de444599119688a22ee3f2cce"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-04-c1",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "원에 내접하는 사각형",
+        "kind": "정의",
+        "level": "하",
+        "definition": "네 꼭짓점이 모두 한 원 위에 있는 사각형을 그 원에 {내접}하는 사각형이라 하고, 그 원을 사각형의 {외접원}이라 한다.",
+        "studentC": "네 꼭짓점이 모두 한 원 위에 있는 사각형을 그 원에 □하는 사각형이라 하고, 그 원을 사각형의 □이라 한다.",
+        "answers": [
+          "내접",
+          "외접원"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-c1",
+        "learningRole": "definition",
+        "roleReason": "내접하는 사각형과 외접원의 뜻",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형 $ABCD$가 원 $O$에 내접한다는 것은 무슨 뜻인가? 또 이때 원 $O$를 사각형 $ABCD$의 무엇이라 하는가?",
+        "bAnswer": "네 꼭짓점 $A$, $B$, $C$, $D$가 모두 원 $O$ 위에 있다는 뜻이다. 이때 원 $O$를 사각형 $ABCD$의 외접원이라 한다.",
+        "bGoal": "내접 사각형과 외접원의 뜻",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 꼭짓점이 모두 원 $O$ 위에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "외접원"
+            ]
+          }
+        ],
+        "bReason": "내접의 뜻과 그 원의 이름을 사각형 $ABCD$와 원 $O$로 나눠 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "내접과 외접원이라는 두 용어 빈칸이 정의를 짧게 확인한다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 893,
+        "part": "m3",
+        "sourceFingerprint": "8158597480657bd0d766bf3cc745d0467344ed0323d2d9ce8ae6a27a89e5dffa",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 893
+        },
+        "directReview": null,
+        "cFrozenSentence": "네 꼭짓점이 모두 한 원 위에 있는 사각형을 그 원에 □하는 사각형이라 하고, 그 원을 사각형의 □이라 한다.",
+        "cFrozenDefinition": "네 꼭짓점이 모두 한 원 위에 있는 사각형을 그 원에 {내접}하는 사각형이라 하고, 그 원을 사각형의 {외접원}이라 한다.",
+        "cFrozenAnswers": [
+          "내접",
+          "외접원"
+        ],
+        "cMarkedSentence": "네 꼭짓점이 모두 한 원 위에 있는 사각형을 그 원에 {내접}하는 사각형이라 하고, 그 원을 사각형의 {외접원}이라 한다.",
+        "cSlotAnswers": [
+          "내접",
+          "외접원"
+        ],
+        "cStudentSentence": "네 꼭짓점이 모두 한 원 위에 있는 사각형을 그 원에 □하는 사각형이라 하고, 그 원을 사각형의 □이라 한다.",
+        "cAnswers": [
+          "내접",
+          "외접원"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "내접",
+            "equivalentAnswers": [
+              "내접"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "외접원",
+            "equivalentAnswers": [
+              "외접원"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "내접"
+          ],
+          [
+            "외접원"
+          ]
+        ],
+        "proposalFingerprint": "4f726ae6ffa43ecd4f45a161f164715d23bbb49f8c5e984e06641e5c93a18482"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-04-c2",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "원에 내접하는 사각형의 성질",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원에 내접하는 사각형은 마주 보는 두 각을 더하면 {$180^\\circ$}가 된다 — 두 각이 바라보는 호를 합치면 {원 전체}이다.",
+        "studentC": "원에 내접하는 사각형은 마주 보는 두 각을 더하면 □가 된다 — 두 각이 바라보는 호를 합치면 □이다.",
+        "answers": [
+          "$180^\\circ$",
+          "원 전체"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-c2",
+        "learningRole": "reason",
+        "roleReason": "내접 사각형의 대각의 합이 $180^\\circ$인 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "원에 내접하는 사각형 $ABCD$에서 $\\angle A+\\angle C$의 크기를 구하시오. 또 두 각이 바라보는 호를 이용해 까닭을 쓰시오.",
+        "bAnswer": "$\\angle A+\\angle C=180^\\circ$이다. $\\angle A$는 호 $BCD$에 대한 원주각이고, $\\angle C$는 호 $DAB$에 대한 원주각이다. 두 호를 합치면 원 전체라 중심각의 합이 $360^\\circ$이므로, 두 원주각의 합은 그 절반이다.",
+        "bGoal": "대각의 합과 그 근거",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각이 바라보는 호를 합치면 원 전체이다",
+              "두 호의 중심각의 합이 $360^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원주각은 중심각의 절반이므로 합이 $360^\\circ$의 절반이다"
+            ]
+          }
+        ],
+        "bReason": "대각 한 쌍을 $\\angle A$, $\\angle C$로 정해 합과 호에 의한 근거를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "$180^\\circ$와 원 전체라는 두 빈칸이 결론과 근거를 짧게 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 894,
+        "part": "m3",
+        "sourceFingerprint": "1753f74eb95a2d5b09fce073500a30f1fec6701a2f580487a8aa022712598b89",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 894
+        },
+        "directReview": null,
+        "cFrozenSentence": "원에 내접하는 사각형은 마주 보는 두 각을 더하면 □가 된다 — 두 각이 바라보는 호를 합치면 □이다.",
+        "cFrozenDefinition": "원에 내접하는 사각형은 마주 보는 두 각을 더하면 {$180^\\circ$}가 된다 — 두 각이 바라보는 호를 합치면 {원 전체}이다.",
+        "cFrozenAnswers": [
+          "$180^\\circ$",
+          "원 전체"
+        ],
+        "cMarkedSentence": "원에 내접하는 사각형은 마주 보는 두 각을 더하면 {$180^\\circ$}가 된다 — 두 각이 바라보는 호를 합치면 {원 전체}이다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "원 전체"
+        ],
+        "cStudentSentence": "원에 내접하는 사각형은 마주 보는 두 각을 더하면 □가 된다 — 두 각이 바라보는 호를 합치면 □이다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "원 전체"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "원 전체",
+            "equivalentAnswers": [
+              "원 전체"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "원 전체"
+          ]
+        ],
+        "proposalFingerprint": "c3eaae72af5c8573c6a3ffb1efa6bc5d8d44cd4d0c61203f0ce7a8937d1c50c9"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-04-c3",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "내접하는 사각형의 외각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원에 내접하는 사각형의 한 {외각}은, 그 외각과 이웃한 내각의 맞은편 {내각}과 크기가 같다.",
+        "studentC": "원에 내접하는 사각형의 한 □은, 그 외각과 이웃한 내각의 맞은편 □과 크기가 같다.",
+        "answers": [
+          "외각",
+          "내각"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-c3",
+        "learningRole": "reason",
+        "roleReason": "외각이 맞은편 내각과 같은 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "원에 내접하는 사각형 $ABCD$에서 변 $BC$를 $C$ 쪽으로 늘인 직선 위에 점 $E$를 잡았다. 외각 $\\angle DCE$와 크기가 같은 사각형의 내각을 쓰고 까닭을 쓰시오.",
+        "bAnswer": "$\\angle A$($\\angle BAD$)이다. $\\angle DCE=180^\\circ-\\angle BCD$이고, 대각의 합이 $180^\\circ$이므로 $\\angle A=180^\\circ-\\angle BCD$이기 때문이다.",
+        "bGoal": "내접 사각형의 외각 성질",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle A$",
+              "$\\angle BAD$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle DCE$와 $\\angle A$가 모두 $180^\\circ-\\angle BCD$이다",
+              "$\\angle DCE+\\angle BCD=180^\\circ$이고 $\\angle A+\\angle BCD=180^\\circ$이다"
+            ]
+          }
+        ],
+        "bReason": "이웃한 내각의 맞은편이라는 말은 그림 없이 알기 어려워 점 $E$로 외각을 정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "원에 내접하는 사각형 $ABCD$에서 변 $BC$를 $C$ 쪽으로 늘인 직선 위의 점 $E$를 잡는다. 이때 외각 $\\angle DCE$는 {$\\angle BAD$}와 크기가 같다. 두 각 모두 $180^\\circ$에서 {$\\angle BCD$}를 뺀 크기이기 때문이다.",
+        "cAnswers": [
+          "$\\angle BAD$",
+          "$\\angle BCD$"
+        ],
+        "cReason": "원문은 그 외각이라는 구절에서 첫 답 외각이 드러나서, 점을 정해 맞은편 각을 찾게 했다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 895,
+        "part": "m3",
+        "sourceFingerprint": "ca83d69985b93071dcc0834ef7cf0e174e878263a05680e256b694b35b2ac87d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 895
+        },
+        "directReview": null,
+        "cMarkedSentence": "원에 내접하는 사각형 $ABCD$에서 변 $BC$를 $C$ 쪽으로 늘인 직선 위의 점 $E$를 잡는다. 이때 외각 $\\angle DCE$는 {$\\angle BAD$}와 크기가 같다. 두 각 모두 $180^\\circ$에서 {$\\angle BCD$}를 뺀 크기이기 때문이다.",
+        "cSlotAnswers": [
+          "$\\angle BAD$",
+          "$\\angle BCD$"
+        ],
+        "cStudentSentence": "원에 내접하는 사각형 $ABCD$에서 변 $BC$를 $C$ 쪽으로 늘인 직선 위의 점 $E$를 잡는다. 이때 외각 $\\angle DCE$는 □와 크기가 같다. 두 각 모두 $180^\\circ$에서 □를 뺀 크기이기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\angle BAD$",
+            "equivalentAnswers": [
+              "$\\angle BAD$",
+              "$\\angle A$",
+              "$\\angle DAB$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\angle BCD$",
+            "equivalentAnswers": [
+              "$\\angle BCD$",
+              "$\\angle C$",
+              "$\\angle DCB$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\angle BAD$",
+            "accept": [
+              "$\\angle A$",
+              "$\\angle DAB$"
+            ]
+          },
+          {
+            "answer": "$\\angle BCD$",
+            "accept": [
+              "$\\angle C$",
+              "$\\angle DCB$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\angle BAD$",
+            "$\\angle A$",
+            "$\\angle DAB$"
+          ],
+          [
+            "$\\angle BCD$",
+            "$\\angle C$",
+            "$\\angle DCB$"
+          ]
+        ],
+        "proposalFingerprint": "6192d120296acf0049738378401f19c9314a8732bc873e192bf6f48948e340e4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-04-c4",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "네 점이 한 원 위에 있을 조건",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 점 $C$, $D$가 직선 $AB$에 대해 {같은 쪽}에 있고 $\\angle ACB$와 $\\angle ADB$의 크기가 {같으면} $A$, $B$, $C$, $D$ 네 점은 같은 원 위에 놓인다.",
+        "studentC": "두 점 $C$, $D$가 직선 $AB$에 대해 □에 있고 $\\angle ACB$와 $\\angle ADB$의 크기가 □ $A$, $B$, $C$, $D$ 네 점은 같은 원 위에 놓인다.",
+        "answers": [
+          "같은 쪽",
+          "같으면"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-c4",
+        "learningRole": "definition",
+        "roleReason": "네 점이 한 원 위에 있을 두 조건",
+        "bDecision": "rewrite",
+        "bPrompt": "네 점 $A$, $B$, $C$, $D$가 한 원 위에 있다고 $\\angle ACB$와 $\\angle ADB$를 이용해 판단하려면 어떤 두 조건이 필요한가?",
+        "bAnswer": "두 점 $C$, $D$가 직선 $AB$에 대하여 같은 쪽에 있어야 한다. 그리고 $\\angle ACB=\\angle ADB$이어야 한다.",
+        "bGoal": "한 원 위에 있을 조건",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$C$, $D$가 직선 $AB$에 대하여 같은 쪽에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle ACB=\\angle ADB$"
+            ]
+          }
+        ],
+        "bReason": "원주각 성질의 역이므로 위치 조건과 각 조건을 모두 답하게 특정했다.",
+        "cDecision": "keep",
+        "cReason": "같은 쪽과 같으면이라는 두 빈칸이 빠뜨리기 쉬운 조건을 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 896,
+        "part": "m3",
+        "sourceFingerprint": "87f1ebf97c53a45442f52fd3c39ab4f1c116f73e9302a8ace489b0c4c4bc4ac9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 896
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 점 $C$, $D$가 직선 $AB$에 대해 □에 있고 $\\angle ACB$와 $\\angle ADB$의 크기가 □ $A$, $B$, $C$, $D$ 네 점은 같은 원 위에 놓인다.",
+        "cFrozenDefinition": "두 점 $C$, $D$가 직선 $AB$에 대해 {같은 쪽}에 있고 $\\angle ACB$와 $\\angle ADB$의 크기가 {같으면} $A$, $B$, $C$, $D$ 네 점은 같은 원 위에 놓인다.",
+        "cFrozenAnswers": [
+          "같은 쪽",
+          "같으면"
+        ],
+        "cMarkedSentence": "두 점 $C$, $D$가 직선 $AB$에 대해 {같은 쪽}에 있고 $\\angle ACB$와 $\\angle ADB$의 크기가 {같으면} $A$, $B$, $C$, $D$ 네 점은 같은 원 위에 놓인다.",
+        "cSlotAnswers": [
+          "같은 쪽",
+          "같으면"
+        ],
+        "cStudentSentence": "두 점 $C$, $D$가 직선 $AB$에 대해 □에 있고 $\\angle ACB$와 $\\angle ADB$의 크기가 □ $A$, $B$, $C$, $D$ 네 점은 같은 원 위에 놓인다.",
+        "cAnswers": [
+          "같은 쪽",
+          "같으면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 쪽",
+            "equivalentAnswers": [
+              "같은 쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같으면",
+            "equivalentAnswers": [
+              "같으면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은 쪽"
+          ],
+          [
+            "같으면"
+          ]
+        ],
+        "proposalFingerprint": "28d57c58df26cb43c0f79655877ce354f9e50212e9e456be184e6daa4107136d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-04-c5",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "접선과 현이 이루는 각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "접점에서 그은 {현}과 접선 사이의 각은, 그 각 안쪽에 놓인 {호}를 바라보는 {원주각}과 크기가 같다.",
+        "studentC": "접점에서 그은 □과 접선 사이의 각은, 그 각 안쪽에 놓인 □를 바라보는 □과 크기가 같다.",
+        "answers": [
+          "현",
+          "호",
+          "원주각"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-c5",
+        "learningRole": "application",
+        "roleReason": "접선과 현이 이루는 각과 같은 원주각 찾기",
+        "bDecision": "rewrite",
+        "bPrompt": "원 위의 점 $A$에서 그은 접선 위에 점 $T$가 있고, 현 $AB$와 접선이 $\\angle TAB$를 이룬다. 점 $C$는 $\\angle TAB$의 안쪽에 있는 호 $AB$ 위에 있지 않은 원 위의 점이다. $\\angle TAB$와 크기가 같은 각을 세 점 $A$, $B$, $C$로 쓰고, 어떤 성질 때문인지 쓰시오.",
+        "bAnswer": "$\\angle ACB$이다. 접선과 현이 이루는 각은 그 각의 안쪽에 놓인 호에 대한 원주각과 크기가 같기 때문이다.",
+        "bGoal": "접선과 현이 이루는 각의 성질",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle ACB$",
+              "$\\angle BCA$"
+            ]
+          },
+          {
+            "anyOf": [
+              "접선과 현이 이루는 각은 그 각 안쪽의 호에 대한 원주각과 같다"
+            ]
+          }
+        ],
+        "bReason": "그림이 없어 접점, 접선 위의 점 $T$, 원주각의 꼭짓점 $C$의 위치를 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "현, 호, 원주각이라는 세 빈칸이 성질의 세 요소를 짧게 확인한다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 897,
+        "part": "m3",
+        "sourceFingerprint": "11e3c914a6b264d0d7e6166a36a88417311740880a27a5552493579a294a728a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 897
+        },
+        "directReview": null,
+        "cFrozenSentence": "접점에서 그은 □과 접선 사이의 각은, 그 각 안쪽에 놓인 □를 바라보는 □과 크기가 같다.",
+        "cFrozenDefinition": "접점에서 그은 {현}과 접선 사이의 각은, 그 각 안쪽에 놓인 {호}를 바라보는 {원주각}과 크기가 같다.",
+        "cFrozenAnswers": [
+          "현",
+          "호",
+          "원주각"
+        ],
+        "cMarkedSentence": "접점에서 그은 {현}과 접선 사이의 각은, 그 각 안쪽에 놓인 {호}를 바라보는 {원주각}과 크기가 같다.",
+        "cSlotAnswers": [
+          "현",
+          "호",
+          "원주각"
+        ],
+        "cStudentSentence": "접점에서 그은 □과 접선 사이의 각은, 그 각 안쪽에 놓인 □를 바라보는 □과 크기가 같다.",
+        "cAnswers": [
+          "현",
+          "호",
+          "원주각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "현",
+            "equivalentAnswers": [
+              "현"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "호",
+            "equivalentAnswers": [
+              "호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "원주각",
+            "equivalentAnswers": [
+              "원주각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "현"
+          ],
+          [
+            "호"
+          ],
+          [
+            "원주각"
+          ]
+        ],
+        "proposalFingerprint": "da3e28c61af31f9e98adc502be421d0d46c647fff840535532eccf97b1cfd891"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-04-c6",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "사각형이 원에 내접하기 위한 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "마주 보는 두 각의 합이 {$180^\\circ$}이거나, 한 {외각}이 이웃한 내각의 맞은편 내각과 같은 사각형은 네 꼭짓점이 한 원 위에 있다.",
+        "studentC": "마주 보는 두 각의 합이 □이거나, 한 □이 이웃한 내각의 맞은편 내각과 같은 사각형은 네 꼭짓점이 한 원 위에 있다.",
+        "answers": [
+          "$180^\\circ$",
+          "외각"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-c6",
+        "learningRole": "definition",
+        "roleReason": "사각형이 원에 내접할 판정 조건",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형 $ABCD$가 원에 내접한다고 판단할 수 있는 각에 대한 조건을 두 가지 쓰시오.",
+        "bAnswer": "첫째, 한 쌍의 대각의 합이 $180^\\circ$이다(예: $\\angle A+\\angle C=180^\\circ$). 둘째, 한 외각의 크기가 그 외각과 이웃한 내각의 대각의 크기와 같다.",
+        "bGoal": "내접 판정 조건",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 쌍의 대각의 합이 $180^\\circ$이다",
+              "$\\angle A+\\angle C=180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 외각이 그와 이웃한 내각의 대각과 같다"
+            ]
+          }
+        ],
+        "bReason": "c2와 c3 성질의 역을 판정 조건으로 묻도록 각에 대한 조건으로 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "$180^\\circ$와 외각이라는 두 빈칸이 두 판정 조건을 짧게 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 898,
+        "part": "m3",
+        "sourceFingerprint": "1517d4200083edfb6cff0d057f129885ea48976262966b743acb70fd3d40c8e6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 898
+        },
+        "directReview": null,
+        "cFrozenSentence": "마주 보는 두 각의 합이 □이거나, 한 □이 이웃한 내각의 맞은편 내각과 같은 사각형은 네 꼭짓점이 한 원 위에 있다.",
+        "cFrozenDefinition": "마주 보는 두 각의 합이 {$180^\\circ$}이거나, 한 {외각}이 이웃한 내각의 맞은편 내각과 같은 사각형은 네 꼭짓점이 한 원 위에 있다.",
+        "cFrozenAnswers": [
+          "$180^\\circ$",
+          "외각"
+        ],
+        "cMarkedSentence": "마주 보는 두 각의 합이 {$180^\\circ$}이거나, 한 {외각}이 이웃한 내각의 맞은편 내각과 같은 사각형은 네 꼭짓점이 한 원 위에 있다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "외각"
+        ],
+        "cStudentSentence": "마주 보는 두 각의 합이 □이거나, 한 □이 이웃한 내각의 맞은편 내각과 같은 사각형은 네 꼭짓점이 한 원 위에 있다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "외각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "외각",
+            "equivalentAnswers": [
+              "외각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "외각"
+          ]
+        ],
+        "proposalFingerprint": "f2dca5ce7441f092b59b0dd5bcaf9dc39a5130bfba4d77a9cafd19fc959cfdd3"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-04-c7",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "두 원에서 접선과 현이 이루는 각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 점 $T$에서 접하는 두 원에 $T$를 지나는 두 직선을 그어, 첫째 직선이 두 원과 다시 만나는 점을 $A$, $C$, 둘째 직선이 만나는 점을 같은 차례로 $B$, $D$라 하면 현 $AB$와 $CD$는 {평행}하다 — {엇각}이나 동위각이 같다.",
+        "studentC": "한 점 $T$에서 접하는 두 원에 $T$를 지나는 두 직선을 그어, 첫째 직선이 두 원과 다시 만나는 점을 $A$, $C$, 둘째 직선이 만나는 점을 같은 차례로 $B$, $D$라 하면 현 $AB$와 $CD$는 □하다 — □이나 동위각이 같다.",
+        "answers": [
+          "평행",
+          "엇각"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-c7",
+        "learningRole": "reason",
+        "roleReason": "접하는 두 원에서 현이 평행한 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "두 원이 점 $T$에서 서로 바깥으로 접한다. $T$를 지나는 한 직선이 두 원과 다시 만나는 점을 $A$, $C$라 하고, 다른 직선이 두 원과 다시 만나는 점을 $B$, $D$라 하자. 단, $A$와 $B$는 같은 원 위에 있다. $T$에서의 공통인 접선을 이용하여 $\\overline{AB}\\parallel\\overline{CD}$인 까닭을 쓰시오.",
+        "bAnswer": "공통인 접선을 $l$이라 하자. 접선과 현이 이루는 각의 성질에 따라, $l$과 현 $TA$가 이루는 각은 $\\angle TBA$와 같고, $l$과 현 $TC$가 이루는 각은 $\\angle TDC$와 같다. 이 두 각은 맞꼭지각이라 크기가 같으므로 $\\angle TBA=\\angle TDC$이다. 이 두 각은 직선 $BD$에 대한 엇각이므로 $\\overline{AB}\\parallel\\overline{CD}$이다.",
+        "bGoal": "접선과 현의 각으로 평행 보이기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "접선과 현이 이루는 각이 각각 $\\angle TBA$, $\\angle TDC$와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$T$에서 두 각이 맞꼭지각이라 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle TBA=\\angle TDC$가 엇각이므로 평행이다"
+            ]
+          }
+        ],
+        "bReason": "점의 배치가 복잡해 바깥으로 접하는 경우로 한정하고, 공통접선을 근거로 지정했다.",
+        "cDecision": "keep",
+        "cReason": "점 배치가 문장에 있고 평행과 엇각이라는 빈칸이 결론과 근거를 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 899,
+        "part": "m3",
+        "sourceFingerprint": "0a75f8637a6003e16fdec04d10d4ad976f2d2d23e53825649a5714f8684ecfef",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 899
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 점 $T$에서 접하는 두 원에 $T$를 지나는 두 직선을 그어, 첫째 직선이 두 원과 다시 만나는 점을 $A$, $C$, 둘째 직선이 만나는 점을 같은 차례로 $B$, $D$라 하면 현 $AB$와 $CD$는 □하다 — □이나 동위각이 같다.",
+        "cFrozenDefinition": "한 점 $T$에서 접하는 두 원에 $T$를 지나는 두 직선을 그어, 첫째 직선이 두 원과 다시 만나는 점을 $A$, $C$, 둘째 직선이 만나는 점을 같은 차례로 $B$, $D$라 하면 현 $AB$와 $CD$는 {평행}하다 — {엇각}이나 동위각이 같다.",
+        "cFrozenAnswers": [
+          "평행",
+          "엇각"
+        ],
+        "cMarkedSentence": "한 점 $T$에서 접하는 두 원에 $T$를 지나는 두 직선을 그어, 첫째 직선이 두 원과 다시 만나는 점을 $A$, $C$, 둘째 직선이 만나는 점을 같은 차례로 $B$, $D$라 하면 현 $AB$와 $CD$는 {평행}하다 — {엇각}이나 동위각이 같다.",
+        "cSlotAnswers": [
+          "평행",
+          "엇각"
+        ],
+        "cStudentSentence": "한 점 $T$에서 접하는 두 원에 $T$를 지나는 두 직선을 그어, 첫째 직선이 두 원과 다시 만나는 점을 $A$, $C$, 둘째 직선이 만나는 점을 같은 차례로 $B$, $D$라 하면 현 $AB$와 $CD$는 □하다 — □이나 동위각이 같다.",
+        "cAnswers": [
+          "평행",
+          "엇각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "엇각",
+            "equivalentAnswers": [
+              "엇각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평행"
+          ],
+          [
+            "엇각"
+          ]
+        ],
+        "proposalFingerprint": "572f6791647386938bc87338ffcaf806a320b933ebf513542dac8cc7c8fc6e56"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-01-c3",
+        "section": "중3::7. 통계::대푯값과 산포도",
+        "term": "산포도",
+        "kind": "정의",
+        "level": "하",
+        "definition": "자료가 평균에서 얼마나 {멀리 퍼져} 있는지를 수 하나로 나타낸 것이 산포도이고, {분산}과 표준편차가 대표적이다.",
+        "studentC": "자료가 평균에서 얼마나 □ 있는지를 수 하나로 나타낸 것이 산포도이고, □과 표준편차가 대표적이다.",
+        "answers": [
+          "멀리 퍼져",
+          "분산"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-01-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "산포도는 자료의 어떤 정도를 하나의 수로 나타낸 것인지 쓰고, 중학교에서 배우는 대표적인 산포도를 모두 쓰시오.",
+        "bAnswer": "자료의 변량이 평균을 중심으로 흩어져 있는 정도를 하나의 수로 나타낸 것이다. 대표적인 산포도는 분산과 표준편차이다.",
+        "bGoal": "산포도의 뜻과 종류 말하기",
+        "bReason": "제목만으로는 무엇을 답할지 모르므로 '나타내는 정도'와 '종류'를 묻도록 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "흩어진 정도",
+              "퍼진 정도",
+              "평균에서 떨어져 있는 정도"
+            ]
+          },
+          {
+            "anyOf": [
+              "분산"
+            ]
+          },
+          {
+            "anyOf": [
+              "표준편차"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "뜻과 대표 예를 하나씩 묻는 짧고 분명한 정의 빈칸임",
+        "learningRole": "definition",
+        "roleReason": "흩어진 정도를 나타내는 값의 뜻",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 900,
+        "part": "m3",
+        "sourceFingerprint": "b4a62846efbbd9d2c98a46be5edc6e65e1dc187b57c6f50c90f6c6d57a3576e3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 900
+        },
+        "directReview": null,
+        "cFrozenSentence": "자료가 평균에서 얼마나 □ 있는지를 수 하나로 나타낸 것이 산포도이고, □과 표준편차가 대표적이다.",
+        "cFrozenDefinition": "자료가 평균에서 얼마나 {멀리 퍼져} 있는지를 수 하나로 나타낸 것이 산포도이고, {분산}과 표준편차가 대표적이다.",
+        "cFrozenAnswers": [
+          "멀리 퍼져",
+          "분산"
+        ],
+        "cMarkedSentence": "자료가 평균에서 얼마나 {멀리 퍼져} 있는지를 수 하나로 나타낸 것이 산포도이고, {분산}과 표준편차가 대표적이다.",
+        "cSlotAnswers": [
+          "멀리 퍼져",
+          "분산"
+        ],
+        "cStudentSentence": "자료가 평균에서 얼마나 □ 있는지를 수 하나로 나타낸 것이 산포도이고, □과 표준편차가 대표적이다.",
+        "cAnswers": [
+          "멀리 퍼져",
+          "분산"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "멀리 퍼져",
+            "equivalentAnswers": [
+              "멀리 퍼져",
+              "흩어져",
+              "퍼져"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "분산",
+            "equivalentAnswers": [
+              "분산"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "멀리 퍼져",
+            "accept": [
+              "흩어져",
+              "퍼져"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "멀리 퍼져",
+            "흩어져",
+            "퍼져"
+          ],
+          [
+            "분산"
+          ]
+        ],
+        "proposalFingerprint": "d95f2feb7515f1e7c8c0df4618f68cd101b28511503e7c64a07958e85781f9bb"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-01-c4",
+        "section": "중3::7. 통계::대푯값과 산포도",
+        "term": "편차",
+        "kind": "정의",
+        "level": "하",
+        "definition": "변량이 {평균}보다 얼마나 크거나 작은지를 나타내는 (변량) $-$ (평균)이 편차이고, 편차의 합은 늘 {$0$}이다.",
+        "studentC": "변량이 □보다 얼마나 크거나 작은지를 나타내는 (변량) $-$ (평균)이 편차이고, 편차의 합은 늘 □이다.",
+        "answers": [
+          "평균",
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-01-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변량의 편차를 구하는 식을 쓰고, 한 자료의 편차를 모두 더하면 얼마가 되는지 쓰시오.",
+        "bAnswer": "(편차) $=$ (변량) $-$ (평균)이고, 한 자료의 편차를 모두 더하면 항상 $0$이다.",
+        "bGoal": "편차의 정의와 편차의 합",
+        "bReason": "편차의 식과 합이 $0$이라는 성질을 각각 답하도록 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(변량) $-$ (평균)",
+              "변량에서 평균을 뺀 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "변량에서 {평균}을 뺀 값을 편차라 하고, 한 자료의 편차를 모두 더하면 늘 {$0$}이다.",
+        "cAnswers": [
+          "평균",
+          "$0$"
+        ],
+        "cReason": "원문은 같은 문장의 '(변량) $-$ (평균)'에서 첫 답을 그대로 베낄 수 있음",
+        "learningRole": "definition",
+        "roleReason": "변량 $-$ 평균으로 정한 편차",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 901,
+        "part": "m3",
+        "sourceFingerprint": "272d69368bb295037a4c10531544c8663aac9dcd495a277ac1836063a2cc2a15",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 901
+        },
+        "directReview": null,
+        "cMarkedSentence": "변량에서 {평균}을 뺀 값을 편차라 하고, 한 자료의 편차를 모두 더하면 늘 {$0$}이다.",
+        "cSlotAnswers": [
+          "평균",
+          "$0$"
+        ],
+        "cStudentSentence": "변량에서 □을 뺀 값을 편차라 하고, 한 자료의 편차를 모두 더하면 늘 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평균",
+            "equivalentAnswers": [
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평균"
+          ],
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "10f2eac14e33748264c74726387fa0fb9bfcc526a13730555c891226f5c30eb3"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-01-c6",
+        "section": "중3::7. 통계::대푯값과 산포도",
+        "term": "분산",
+        "kind": "정의",
+        "level": "중",
+        "definition": "편차를 {제곱}한 값들의 {평균}이 분산이다.",
+        "studentC": "편차를 □한 값들의 □이 분산이다.",
+        "answers": [
+          "제곱",
+          "평균"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-01-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "편차를 이용하여 자료의 분산을 구하는 방법을 쓰시오.",
+        "bAnswer": "각 변량의 편차를 제곱하고, 그 값들의 평균을 구한다. 즉 (분산) $=$ (편차의 제곱의 합) $\\div$ (변량의 개수)이다.",
+        "bGoal": "분산의 정의",
+        "bReason": "분산을 편차와의 관계로 정의하도록 '편차를 이용하여'를 명시함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "편차를 제곱",
+              "편차의 제곱"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균",
+              "변량의 개수로 나눈다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "제곱과 평균 두 단계를 정확히 짚는 짧은 정의 빈칸임",
+        "learningRole": "definition",
+        "roleReason": "편차의 제곱의 평균인 분산",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 902,
+        "part": "m3",
+        "sourceFingerprint": "60a2b36854d393d5a98d3d20a4d4af67402a13b8de47b5f2db1ffbe1cb8facde",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 902
+        },
+        "directReview": null,
+        "cFrozenSentence": "편차를 □한 값들의 □이 분산이다.",
+        "cFrozenDefinition": "편차를 {제곱}한 값들의 {평균}이 분산이다.",
+        "cFrozenAnswers": [
+          "제곱",
+          "평균"
+        ],
+        "cMarkedSentence": "편차를 {제곱}한 값들의 {평균}이 분산이다.",
+        "cSlotAnswers": [
+          "제곱",
+          "평균"
+        ],
+        "cStudentSentence": "편차를 □한 값들의 □이 분산이다.",
+        "cAnswers": [
+          "제곱",
+          "평균"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평균",
+            "equivalentAnswers": [
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱"
+          ],
+          [
+            "평균"
+          ]
+        ],
+        "proposalFingerprint": "62613b275243beb621992d9d2071509b013c226a0852b05cfb801bbfc1b90e39"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-01-c7",
+        "section": "중3::7. 통계::대푯값과 산포도",
+        "term": "표준편차",
+        "kind": "정의",
+        "level": "중",
+        "definition": "표준편차는 {분산}의 {제곱근} 가운데 음수가 아닌 쪽이며, 변량과 단위가 같다.",
+        "studentC": "표준편차는 □의 □ 가운데 음수가 아닌 쪽이며, 변량과 단위가 같다.",
+        "answers": [
+          "분산",
+          "제곱근"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-01-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "표준편차는 분산과 어떤 관계인지 쓰고, 분산이 $9$인 자료의 표준편차를 구하시오.",
+        "bAnswer": "표준편차는 분산의 제곱근 중 음수가 아닌 것이다. 분산이 $9$이면 표준편차는 $3$이다.",
+        "bGoal": "표준편차와 분산의 관계",
+        "bReason": "분산과의 관계를 묻고 음수가 아닌 제곱근을 고르는지 수치로 확인함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분산의 음이 아닌 제곱근",
+              "분산의 양의 제곱근",
+              "$\\sqrt{(\\text{분산})}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "분산과 제곱근 두 핵심어를 묻고 음수 조건은 보여 주는 적절한 빈칸임",
+        "learningRole": "definition",
+        "roleReason": "분산의 음이 아닌 제곱근",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 903,
+        "part": "m3",
+        "sourceFingerprint": "5ca6435d8a592ed2aa7d92e9e1b926b84bab697960b85b5818b4e4438c205420",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 903
+        },
+        "directReview": null,
+        "cFrozenSentence": "표준편차는 □의 □ 가운데 음수가 아닌 쪽이며, 변량과 단위가 같다.",
+        "cFrozenDefinition": "표준편차는 {분산}의 {제곱근} 가운데 음수가 아닌 쪽이며, 변량과 단위가 같다.",
+        "cFrozenAnswers": [
+          "분산",
+          "제곱근"
+        ],
+        "cMarkedSentence": "표준편차는 {분산}의 {제곱근} 가운데 음수가 아닌 쪽이며, 변량과 단위가 같다.",
+        "cSlotAnswers": [
+          "분산",
+          "제곱근"
+        ],
+        "cStudentSentence": "표준편차는 □의 □ 가운데 음수가 아닌 쪽이며, 변량과 단위가 같다.",
+        "cAnswers": [
+          "분산",
+          "제곱근"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분산",
+            "equivalentAnswers": [
+              "분산"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱근",
+            "equivalentAnswers": [
+              "제곱근"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분산"
+          ],
+          [
+            "제곱근"
+          ]
+        ],
+        "proposalFingerprint": "574e6b51c4eb7ebc6bfd3eb207c6b8adc91114ff244a231086176a05b357accb"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-01-c8",
+        "section": "중3::7. 통계::대푯값과 산포도",
+        "term": "분산과 표준편차를 이용한 자료의 분석",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분산이나 표준편차가 {작을수록} 변량이 평균 가까이 모여 있어 자료가 {고르다}.",
+        "studentC": "분산이나 표준편차가 □ 변량이 평균 가까이 모여 있어 자료가 □.",
+        "answers": [
+          "작을수록",
+          "고르다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-01-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "평균이 같은 두 반의 수학 점수에서 $A$반의 표준편차는 $4$점, $B$반의 표준편차는 $9$점이다. 점수가 더 고르게 분포한 반을 쓰고, 그 이유를 쓰시오.",
+        "bAnswer": "$A$반이다. 표준편차가 작을수록 변량이 평균 가까이 모여 있어 자료가 고르기 때문이다.",
+        "bGoal": "표준편차로 자료의 고른 정도 비교",
+        "bReason": "성질 제목을 실제 두 자료 비교 상황으로 바꾸어 해석을 요구함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$A$반"
+            ]
+          },
+          {
+            "anyOf": [
+              "표준편차가 작을수록 평균 가까이 모인다",
+              "표준편차가 작으면 덜 흩어져 있다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "작을수록과 고르다의 관계를 짚는 짧은 비교 빈칸으로 분명함",
+        "studentLabel": "표준편차와 자료의 고른 정도",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "표준편차 크기로 고른 정도 판단",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 904,
+        "part": "m3",
+        "sourceFingerprint": "a55a1a4aa048b098ddc4ecb334de8cb99944005234ce83e63298021d8de5b61c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 904
+        },
+        "directReview": null,
+        "cFrozenSentence": "분산이나 표준편차가 □ 변량이 평균 가까이 모여 있어 자료가 □.",
+        "cFrozenDefinition": "분산이나 표준편차가 {작을수록} 변량이 평균 가까이 모여 있어 자료가 {고르다}.",
+        "cFrozenAnswers": [
+          "작을수록",
+          "고르다"
+        ],
+        "cMarkedSentence": "분산이나 표준편차가 {작을수록} 변량이 평균 가까이 모여 있어 자료가 {고르다}.",
+        "cSlotAnswers": [
+          "작을수록",
+          "고르다"
+        ],
+        "cStudentSentence": "분산이나 표준편차가 □ 변량이 평균 가까이 모여 있어 자료가 □.",
+        "cAnswers": [
+          "작을수록",
+          "고르다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작을수록",
+            "equivalentAnswers": [
+              "작을수록",
+              "작으면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "고르다",
+            "equivalentAnswers": [
+              "고르다",
+              "고르게 분포한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작을수록",
+            "accept": [
+              "작으면"
+            ]
+          },
+          {
+            "answer": "고르다",
+            "accept": [
+              "고르게 분포한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작을수록",
+            "작으면"
+          ],
+          [
+            "고르다",
+            "고르게 분포한다"
+          ]
+        ],
+        "proposalFingerprint": "6852a27e3fe4f8f0fb6bcdee8dc541795c9760db066726dc4e2be8053ee26c04"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-01-c9",
+        "section": "중3::7. 통계::대푯값과 산포도",
+        "term": "편차를 제곱하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "편차는 양수와 음수가 서로 지워져 합이 {$0$}이 되므로, {제곱}해서 모두 $0$ 이상으로 만든 뒤 평균을 낸다.",
+        "studentC": "편차는 양수와 음수가 서로 지워져 합이 □이 되므로, □해서 모두 $0$ 이상으로 만든 뒤 평균을 낸다.",
+        "answers": [
+          "$0$",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-01-c9",
+        "bDecision": "rewrite",
+        "bPrompt": "분산을 구할 때 편차를 그대로 평균 내지 않고 제곱한 뒤 평균을 내는 이유를 쓰시오.",
+        "bAnswer": "편차는 양수와 음수가 서로 지워져 합이 항상 $0$이 되므로 그대로는 흩어진 정도를 나타낼 수 없다. 제곱하면 모두 $0$ 이상이 되어 지워지지 않는다.",
+        "bGoal": "편차를 제곱하는 이유 설명",
+        "bReason": "'까닭' 제목을 편차 평균과 제곱 평균을 대비하는 이유 질문으로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "편차의 합이 항상 $0$",
+              "양수와 음수가 지워진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "제곱하면 $0$ 이상이 된다",
+              "제곱하면 음수가 없어진다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "합이 $0$이라는 원인과 제곱이라는 해결을 함께 묻는 좋은 빈칸임",
+        "learningRole": "reason",
+        "roleReason": "편차 합이 $0$이라 제곱함",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 905,
+        "part": "m3",
+        "sourceFingerprint": "f1a5dbc00aba90e44798e2393cf4f029fc5917e6cd9c5cc1ba3c60292e0afeed",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 905
+        },
+        "directReview": null,
+        "cFrozenSentence": "편차는 양수와 음수가 서로 지워져 합이 □이 되므로, □해서 모두 $0$ 이상으로 만든 뒤 평균을 낸다.",
+        "cFrozenDefinition": "편차는 양수와 음수가 서로 지워져 합이 {$0$}이 되므로, {제곱}해서 모두 $0$ 이상으로 만든 뒤 평균을 낸다.",
+        "cFrozenAnswers": [
+          "$0$",
+          "제곱"
+        ],
+        "cMarkedSentence": "편차는 양수와 음수가 서로 지워져 합이 {$0$}이 되므로, {제곱}해서 모두 $0$ 이상으로 만든 뒤 평균을 낸다.",
+        "cSlotAnswers": [
+          "$0$",
+          "제곱"
+        ],
+        "cStudentSentence": "편차는 양수와 음수가 서로 지워져 합이 □이 되므로, □해서 모두 $0$ 이상으로 만든 뒤 평균을 낸다.",
+        "cAnswers": [
+          "$0$",
+          "제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "제곱"
+          ]
+        ],
+        "proposalFingerprint": "eb82bad861fbf94cc7519ef37eb857a3433988c82036ad1ddcfe95c123d14287"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-01-c10",
+        "section": "중3::7. 통계::대푯값과 산포도",
+        "term": "변화된 변량에 대한 평균, 분산, 표준편차의 변화",
+        "kind": "공식",
+        "level": "상",
+        "definition": "모든 변량에 같은 수를 더하면 평균은 {그 수만큼 변하고} 분산과 표준편차는 그대로이다 — 모든 변량을 $a$배 하면 분산은 {$a^2$}배, 표준편차는 {$|a|$}배가 된다.",
+        "studentC": "모든 변량에 같은 수를 더하면 평균은 □ 분산과 표준편차는 그대로이다 — 모든 변량을 $a$배 하면 분산은 □배, 표준편차는 □배가 된다.",
+        "answers": [
+          "그 수만큼 변하고",
+          "$a^2$",
+          "$|a|$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-01-c10",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 자료의 평균이 $m$, 분산이 $V$, 표준편차가 $s$이다. ($1$) 모든 변량에 $b$를 더한 자료의 평균, 분산, 표준편차 ($2$) 모든 변량에 $a$를 곱한 자료의 분산, 표준편차를 각각 $m$, $V$, $s$를 써서 나타내시오.",
+        "bAnswer": "($1$) 평균 $m+b$, 분산 $V$, 표준편차 $s$ ($2$) 분산 $a^2V$, 표준편차 $|a|s$",
+        "bGoal": "변량 변환에 따른 평균·분산·표준편차 변화",
+        "bReason": "더하기와 곱하기 두 변환을 기호로 구분해 변화를 각각 쓰게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평균 $m+b$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분산 $V$, 표준편차 $s$로 그대로",
+              "분산과 표준편차는 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분산 $a^2V$"
+            ]
+          },
+          {
+            "anyOf": [
+              "표준편차 $|a|s$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "모든 변량에 같은 수 $b$를 더하면 평균에도 {$b$}가 더해지고 분산과 표준편차는 그대로이다. 모든 변량을 $a$배 하면 분산은 {$a^2$}배, 표준편차는 {$|a|$}배가 된다.",
+        "cAnswers": [
+          "$b$",
+          "$a^2$",
+          "$|a|$"
+        ],
+        "cReason": "'그 수만큼 변하고'라는 구절 빈칸이 어색해 더한 수를 $b$로 이름 붙임",
+        "studentLabel": "변량을 바꿀 때 평균·분산·표준편차",
+        "learningRole": "procedure",
+        "roleReason": "변환 뒤 값을 규칙으로 구함",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 906,
+        "part": "m3",
+        "sourceFingerprint": "3b112e6febaa9248a18060682d609765c3eb6342040a6b5d2ef3068bffca3521",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 906
+        },
+        "directReview": null,
+        "cMarkedSentence": "모든 변량에 같은 수 $b$를 더하면 평균에도 {$b$}가 더해지고 분산과 표준편차는 그대로이다. 모든 변량을 $a$배 하면 분산은 {$a^2$}배, 표준편차는 {$|a|$}배가 된다.",
+        "cSlotAnswers": [
+          "$b$",
+          "$a^2$",
+          "$|a|$"
+        ],
+        "cStudentSentence": "모든 변량에 같은 수 $b$를 더하면 평균에도 □가 더해지고 분산과 표준편차는 그대로이다. 모든 변량을 $a$배 하면 분산은 □배, 표준편차는 □배가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$b$",
+            "equivalentAnswers": [
+              "$b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a^2$",
+            "equivalentAnswers": [
+              "$a^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$|a|$",
+            "equivalentAnswers": [
+              "$|a|$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$b$"
+          ],
+          [
+            "$a^2$"
+          ],
+          [
+            "$|a|$"
+          ]
+        ],
+        "proposalFingerprint": "d7bfdf830fc4a9f0ae2c644033013c313519764159c46cbefcce356841d1d2b8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-02-c1",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "산점도",
+        "kind": "정의",
+        "level": "하",
+        "definition": "두 변량 $x$, $y$의 값을 짝지은 {순서쌍}을 좌표평면에 {점}으로 찍어 나타낸 그림이 산점도이다.",
+        "studentC": "두 변량 $x$, $y$의 값을 짝지은 □을 좌표평면에 □으로 찍어 나타낸 그림이 산점도이다.",
+        "answers": [
+          "순서쌍",
+          "점"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "두 변량 $x$, $y$에 대한 산점도는 무엇을 어디에 어떻게 나타낸 그림인지 쓰시오.",
+        "bAnswer": "두 변량의 값을 짝지은 순서쌍 $(x,\\ y)$를 좌표평면 위에 점으로 나타낸 그림이다.",
+        "bGoal": "산점도의 정의",
+        "bReason": "무엇을, 어디에, 어떻게 세 요소를 답하도록 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "순서쌍",
+              "두 값을 짝지어",
+              "$(x,\\ y)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "좌표평면에 점으로"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "순서쌍과 점이라는 정의의 핵심 두 낱말을 짧게 묻는 빈칸임",
+        "learningRole": "definition",
+        "roleReason": "순서쌍을 점으로 나타낸 그림",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 907,
+        "part": "m3",
+        "sourceFingerprint": "013516c1bf41c383ef9b2b8347533fc390c6a2cf3af35d5cbdb327e1560bd346",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 907
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 변량 $x$, $y$의 값을 짝지은 □을 좌표평면에 □으로 찍어 나타낸 그림이 산점도이다.",
+        "cFrozenDefinition": "두 변량 $x$, $y$의 값을 짝지은 {순서쌍}을 좌표평면에 {점}으로 찍어 나타낸 그림이 산점도이다.",
+        "cFrozenAnswers": [
+          "순서쌍",
+          "점"
+        ],
+        "cMarkedSentence": "두 변량 $x$, $y$의 값을 짝지은 {순서쌍}을 좌표평면에 {점}으로 찍어 나타낸 그림이 산점도이다.",
+        "cSlotAnswers": [
+          "순서쌍",
+          "점"
+        ],
+        "cStudentSentence": "두 변량 $x$, $y$의 값을 짝지은 □을 좌표평면에 □으로 찍어 나타낸 그림이 산점도이다.",
+        "cAnswers": [
+          "순서쌍",
+          "점"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "순서쌍",
+            "equivalentAnswers": [
+              "순서쌍",
+              "$(x,\\ y)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "점",
+            "equivalentAnswers": [
+              "점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "순서쌍",
+            "accept": [
+              "$(x,\\ y)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "순서쌍",
+            "$(x,\\ y)$"
+          ],
+          [
+            "점"
+          ]
+        ],
+        "proposalFingerprint": "924aa950733a87690d9b29c7e8bda1eabcb501ab05c6e91690b0da2bba4578ec"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-02-c2",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "상관관계",
+        "kind": "정의",
+        "level": "하",
+        "definition": "두 변량 가운데 한쪽이 변할 때 다른 쪽도 일정한 {경향}으로 변하는 관계를 {상관관계}라 한다.",
+        "studentC": "두 변량 가운데 한쪽이 변할 때 다른 쪽도 일정한 □으로 변하는 관계를 □라 한다.",
+        "answers": [
+          "경향",
+          "상관관계"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "두 변량 사이에 상관관계가 있다는 것은 무슨 뜻인지 쓰시오.",
+        "bAnswer": "한 변량이 변할 때 다른 변량도 대체로 일정한 경향을 가지고 변하는 관계가 있다는 뜻이다.",
+        "bGoal": "상관관계의 정의",
+        "bReason": "제목을 '관계가 있다'는 뜻을 설명하는 정의 질문으로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한쪽이 변할 때 다른 쪽도 변한다",
+              "함께 변한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "일정한 경향",
+              "대체로 일정하게"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "경향과 용어 이름을 묻는 짧은 정의 빈칸으로 분명함",
+        "learningRole": "definition",
+        "roleReason": "일정한 경향으로 함께 변하는 관계",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 908,
+        "part": "m3",
+        "sourceFingerprint": "d4e02ebbe1565b115c313473e0a1fb681b7f1ffd6bdf46d5235d728f0b6ce0ae",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 908
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 변량 가운데 한쪽이 변할 때 다른 쪽도 일정한 □으로 변하는 관계를 □라 한다.",
+        "cFrozenDefinition": "두 변량 가운데 한쪽이 변할 때 다른 쪽도 일정한 {경향}으로 변하는 관계를 {상관관계}라 한다.",
+        "cFrozenAnswers": [
+          "경향",
+          "상관관계"
+        ],
+        "cMarkedSentence": "두 변량 가운데 한쪽이 변할 때 다른 쪽도 일정한 {경향}으로 변하는 관계를 {상관관계}라 한다.",
+        "cSlotAnswers": [
+          "경향",
+          "상관관계"
+        ],
+        "cStudentSentence": "두 변량 가운데 한쪽이 변할 때 다른 쪽도 일정한 □으로 변하는 관계를 □라 한다.",
+        "cAnswers": [
+          "경향",
+          "상관관계"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "경향",
+            "equivalentAnswers": [
+              "경향"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "상관관계",
+            "equivalentAnswers": [
+              "상관관계"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "경향"
+          ],
+          [
+            "상관관계"
+          ]
+        ],
+        "proposalFingerprint": "5da145a0d73a89c049d166b2a18be62bbdbc90c76c3104a76d22f9b91022893c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-02-c3",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "양의 상관관계",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$x$가 커질수록 $y$도 대체로 {커지는} 관계가 양의 상관관계이고, 산점도의 점들이 {오른쪽 위}로 향한다.",
+        "studentC": "$x$가 커질수록 $y$도 대체로 □ 관계가 양의 상관관계이고, 산점도의 점들이 □로 향한다.",
+        "answers": [
+          "커지는",
+          "오른쪽 위"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "두 변량 $x$, $y$ 사이에 양의 상관관계가 있다는 것은 무슨 뜻인지 쓰고, 이때 산점도의 점들이 어느 방향으로 향하는지 쓰시오.",
+        "bAnswer": "$x$가 커질수록 $y$도 대체로 커지는 관계이며, 산점도의 점들이 오른쪽 위로 향한다.",
+        "bGoal": "양의 상관관계의 뜻과 산점도 모양",
+        "bReason": "변화 방향과 산점도 방향 두 가지를 답하게 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$가 커질수록 $y$도 대체로 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽 위"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "변화 방향과 점의 방향을 대응시키는 짧은 빈칸임",
+        "learningRole": "definition",
+        "roleReason": "함께 커지는 관계와 오른쪽 위",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 909,
+        "part": "m3",
+        "sourceFingerprint": "6fd9aedefd5d2a3016c1fcad606c9dcd4e3f9604275317487ddc68b40eda740b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 909
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x$가 커질수록 $y$도 대체로 □ 관계가 양의 상관관계이고, 산점도의 점들이 □로 향한다.",
+        "cFrozenDefinition": "$x$가 커질수록 $y$도 대체로 {커지는} 관계가 양의 상관관계이고, 산점도의 점들이 {오른쪽 위}로 향한다.",
+        "cFrozenAnswers": [
+          "커지는",
+          "오른쪽 위"
+        ],
+        "cMarkedSentence": "$x$가 커질수록 $y$도 대체로 {커지는} 관계가 양의 상관관계이고, 산점도의 점들이 {오른쪽 위}로 향한다.",
+        "cSlotAnswers": [
+          "커지는",
+          "오른쪽 위"
+        ],
+        "cStudentSentence": "$x$가 커질수록 $y$도 대체로 □ 관계가 양의 상관관계이고, 산점도의 점들이 □로 향한다.",
+        "cAnswers": [
+          "커지는",
+          "오른쪽 위"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "커지는",
+            "equivalentAnswers": [
+              "커지는",
+              "증가하는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "오른쪽 위",
+            "equivalentAnswers": [
+              "오른쪽 위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "커지는",
+            "accept": [
+              "증가하는"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "커지는",
+            "증가하는"
+          ],
+          [
+            "오른쪽 위"
+          ]
+        ],
+        "proposalFingerprint": "3cda19ce219aac812802b876e2fd48df7b45dd46a9e0d8686f0b21cb5d905a9d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-02-c4",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "음의 상관관계",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$x$가 커질수록 $y$는 대체로 {작아지는} 관계가 음의 상관관계이고, 산점도의 점들이 {오른쪽 아래}로 향한다.",
+        "studentC": "$x$가 커질수록 $y$는 대체로 □ 관계가 음의 상관관계이고, 산점도의 점들이 □로 향한다.",
+        "answers": [
+          "작아지는",
+          "오른쪽 아래"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "두 변량 $x$, $y$ 사이에 음의 상관관계가 있다는 것은 무슨 뜻인지 쓰고, 이때 산점도의 점들이 어느 방향으로 향하는지 쓰시오.",
+        "bAnswer": "$x$가 커질수록 $y$는 대체로 작아지는 관계이며, 산점도의 점들이 오른쪽 아래로 향한다.",
+        "bGoal": "음의 상관관계의 뜻과 산점도 모양",
+        "bReason": "변화 방향과 산점도 방향 두 가지를 답하게 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$가 커질수록 $y$는 대체로 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽 아래"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "변화 방향과 점의 방향을 대응시키는 짧은 빈칸임",
+        "learningRole": "definition",
+        "roleReason": "반대로 변하는 관계와 오른쪽 아래",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 910,
+        "part": "m3",
+        "sourceFingerprint": "f9c1e8c656b1127be339bfa97a8e2d82d03c40d5361b0d666677f3bfd2d0a379",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 910
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x$가 커질수록 $y$는 대체로 □ 관계가 음의 상관관계이고, 산점도의 점들이 □로 향한다.",
+        "cFrozenDefinition": "$x$가 커질수록 $y$는 대체로 {작아지는} 관계가 음의 상관관계이고, 산점도의 점들이 {오른쪽 아래}로 향한다.",
+        "cFrozenAnswers": [
+          "작아지는",
+          "오른쪽 아래"
+        ],
+        "cMarkedSentence": "$x$가 커질수록 $y$는 대체로 {작아지는} 관계가 음의 상관관계이고, 산점도의 점들이 {오른쪽 아래}로 향한다.",
+        "cSlotAnswers": [
+          "작아지는",
+          "오른쪽 아래"
+        ],
+        "cStudentSentence": "$x$가 커질수록 $y$는 대체로 □ 관계가 음의 상관관계이고, 산점도의 점들이 □로 향한다.",
+        "cAnswers": [
+          "작아지는",
+          "오른쪽 아래"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작아지는",
+            "equivalentAnswers": [
+              "작아지는",
+              "감소하는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "오른쪽 아래",
+            "equivalentAnswers": [
+              "오른쪽 아래"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작아지는",
+            "accept": [
+              "감소하는"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작아지는",
+            "감소하는"
+          ],
+          [
+            "오른쪽 아래"
+          ]
+        ],
+        "proposalFingerprint": "c9820ec3683d7338e68d26ca302857946103a61bb369027ee74e05b370d645ca"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-02-c5",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "상관관계가 없다",
+        "kind": "정의",
+        "level": "중",
+        "definition": "$x$가 커져도 $y$가 커지는지 작아지는지 {뚜렷하지 않으면} 상관관계가 없다 — 점들이 고루 흩어지거나 축에 {평행}하게 늘어선다.",
+        "studentC": "$x$가 커져도 $y$가 커지는지 작아지는지 □ 상관관계가 없다 — 점들이 고루 흩어지거나 축에 □하게 늘어선다.",
+        "answers": [
+          "뚜렷하지 않으면",
+          "평행"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "산점도를 보고 두 변량 $x$, $y$ 사이에 상관관계가 없다고 판단하는 경우를 쓰고, 그때 점들이 놓이는 모양을 쓰시오.",
+        "bAnswer": "$x$가 커질 때 $y$가 커지는지 작아지는지 뚜렷한 경향이 없으면 상관관계가 없다. 점들이 고루 흩어져 있거나 $x$축 또는 $y$축에 평행하게 늘어선다.",
+        "bGoal": "상관관계가 없는 경우 판단",
+        "bReason": "판단 기준과 점의 모양을 나누어 묻도록 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "커지거나 작아지는 경향이 뚜렷하지 않다",
+              "일정한 경향이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "고루 흩어진다",
+              "축에 평행하게 늘어선다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "판단 조건과 모양 하나를 묻는 분명한 빈칸임",
+        "learningRole": "definition",
+        "roleReason": "뚜렷한 경향이 없는 관계",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 911,
+        "part": "m3",
+        "sourceFingerprint": "4fe4dbf491c370bd4ab6fb58bd377970ec4e594c8c2c167c1c4d3590fe26141b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 911
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x$가 커져도 $y$가 커지는지 작아지는지 □ 상관관계가 없다 — 점들이 고루 흩어지거나 축에 □하게 늘어선다.",
+        "cFrozenDefinition": "$x$가 커져도 $y$가 커지는지 작아지는지 {뚜렷하지 않으면} 상관관계가 없다 — 점들이 고루 흩어지거나 축에 {평행}하게 늘어선다.",
+        "cFrozenAnswers": [
+          "뚜렷하지 않으면",
+          "평행"
+        ],
+        "cMarkedSentence": "$x$가 커져도 $y$가 커지는지 작아지는지 {뚜렷하지 않으면} 상관관계가 없다 — 점들이 고루 흩어지거나 축에 {평행}하게 늘어선다.",
+        "cSlotAnswers": [
+          "뚜렷하지 않으면",
+          "평행"
+        ],
+        "cStudentSentence": "$x$가 커져도 $y$가 커지는지 작아지는지 □ 상관관계가 없다 — 점들이 고루 흩어지거나 축에 □하게 늘어선다.",
+        "cAnswers": [
+          "뚜렷하지 않으면",
+          "평행"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "뚜렷하지 않으면",
+            "equivalentAnswers": [
+              "뚜렷하지 않으면",
+              "분명하지 않으면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "뚜렷하지 않으면",
+            "accept": [
+              "분명하지 않으면"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "뚜렷하지 않으면",
+            "분명하지 않으면"
+          ],
+          [
+            "평행"
+          ]
+        ],
+        "proposalFingerprint": "c5ed82c6400d2e387bf86f1dce3959f938663b95bba2e607861440887f11222a"
+      }
+    }
+  ]
+}

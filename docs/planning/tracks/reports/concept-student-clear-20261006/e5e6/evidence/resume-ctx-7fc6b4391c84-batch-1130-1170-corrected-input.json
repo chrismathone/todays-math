@@ -1,0 +1,987 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-1-5-xc10",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "같은 수도 버림하는 자리에 따라 값이 달라짐을 계산으로 확인한다.",
+      "bReason": "버림할자리만바꿔세번계산하는문항은c1의자리규칙설명과중복되어B에서는제외하고C계산은유지한다.",
+      "cDecision": "revise",
+      "cAfter": "$6789$를 버림하여 십의 자리까지 나타내면 {$6780$}, 백의 자리까지 나타내면 {$6700$}, 천의 자리까지 나타내면 {$6000$}이다.",
+      "cReason": "원문 답 '결과가 달라질 수 있다'는 긴 메타 문장이라 자리별 값을 직접 구하게 했다.",
+      "exclusionReason": "B는 자명한 내용이라 값 계산만 남으며, 이 계산은 C에서 다룬다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1130-1170.json",
+      "codexFinalAmendedFromFingerprint": "82f971469043d644326ac81fde110f987afe6946624d1fc9d8fb27c7db2f7635",
+      "sourceIndex": 1131,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-5-xc10",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-5 버림 알아보기",
+        "term": "버림하는 자리에 따라 다른 값",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 수라도 버림하는 자리에 따라 {결과가 달라질 수 있다}.",
+        "example": {
+          "prompt": "$6789$를 버림하여 십의 자리, 백의 자리까지 차례로 나타내면?",
+          "answer": "$6780,\\ 6700$"
+        },
+        "studentC": "같은 수라도 버림하는 자리에 따라 □.",
+        "answers": [
+          "결과가 달라질 수 있다"
+        ]
+      },
+      "sourceFingerprint": "8772425ed621ed820c493dab2f0ef2e510a452c7f46164079c380c495fac532a",
+      "draftEvidence": "evidence/section-030-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$6780$",
+        "$6700$",
+        "$6000$"
+      ],
+      "cStudentAfter": "$6789$를 버림하여 십의 자리까지 나타내면 □, 백의 자리까지 나타내면 □, 천의 자리까지 나타내면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6780$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6700$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6000$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$6789$를 버림하여 십의 자리까지 나타내면 {$6780$}, 백의 자리까지 나타내면 {$6700$}, 천의 자리까지 나타내면 {$6000$}이다.",
+      "cStudentSentence": "$6789$를 버림하여 십의 자리까지 나타내면 □, 백의 자리까지 나타내면 □, 천의 자리까지 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6780$",
+          "equivalents": []
+        },
+        {
+          "key": "$6700$",
+          "equivalents": []
+        },
+        {
+          "key": "$6000$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$6789$를 버림하여 십의 자리까지 나타내면 {$6780$}, 백의 자리까지 나타내면 {$6700$}, 천의 자리까지 나타내면 {$6000$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6780$"
+          ],
+          [
+            "$6700$"
+          ],
+          [
+            "$6000$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 내용이라 값 계산만 남으며, 이 계산은 C에서 다룬다."
+      },
+      "proposalFingerprint": "82f971469043d644326ac81fde110f987afe6946624d1fc9d8fb27c7db2f7635",
+      "questionRevision": "planning-e5e6-20261006-82f971469043",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-5-xc14",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "물건을 정해진 개수씩 묶어 묶음 수를 구할 때, 올림을 쓸지 버림을 쓸지는 남는 물건을 어떻게 하느냐에 따라 달라집니다. 각각 어떤 경우인지 쓰고, 사과 $43$개를 $10$개씩 상자에 담을 때 ㉠ 모두 담는 데 필요한 최소 상자 수와 ㉡ 꽉 찬 상자 수를 구하세요.",
+      "bAnswer": "남는 물건까지 모두 담아야 하면 올림을 쓰고, 남는 물건을 세지 않고 꽉 찬 묶음만 세면 버림을 쓴다. ㉠ $5$상자, ㉡ $4$상자이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남는 물건도 모두 담아야 하면 올림",
+            "남는 것까지 포함해야 하면 올림"
+          ]
+        },
+        {
+          "anyOf": [
+            "남는 물건을 세지 않으면 버림",
+            "꽉 찬 묶음만 세면 버림"
+          ]
+        },
+        {
+          "anyOf": [
+            "㉠ $5$상자"
+          ]
+        },
+        {
+          "anyOf": [
+            "㉡ $4$상자"
+          ]
+        }
+      ],
+      "bGoal": "남는 양의 처리에 따라 올림과 버림을 구별해 고른다.",
+      "bReason": "두 방법을 가르는 기준을 학생이 말하게 하고 한 상황에서 두 답을 비교하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "사과 $43$개를 한 상자에 $10$개까지 담을 때, 모두 담는 데 필요한 최소 상자는 {$5$}개이고 이때는 {올림}을 쓴다. $10$개씩 꽉 찬 상자만 세면 {$4$}개이고 이때는 {버림}을 쓴다.",
+      "cReason": "원문은 긴 구절 두 개를 연달아 외워 써야 해서 상황별 값과 방법 이름으로 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1130-1170.json",
+      "codexFinalAmendedFromFingerprint": "154ada0654cbf7df01066d6ab003fb781d311855afd072c2d04b0ac0bc26c9ca",
+      "sourceIndex": 1133,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-5-xc14",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-5 버림 알아보기",
+        "term": "버림과 올림 고르기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "묶음 수를 정할 때는 남는 양을 {버려도 되는지} {모두 담아야 하는지}에 따라 버림과 올림 가운데 하나를 고른다.",
+        "studentC": "묶음 수를 정할 때는 남는 양을 □ □에 따라 버림과 올림 가운데 하나를 고른다.",
+        "answers": [
+          "버려도 되는지",
+          "모두 담아야 하는지"
+        ]
+      },
+      "sourceFingerprint": "3e39f736a656dbcd249c7ad6d98cdbd441043ac42ffd9571ef0d4f8d1de69e6f",
+      "draftEvidence": "evidence/section-030-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$5$",
+        "올림",
+        "$4$",
+        "버림"
+      ],
+      "cStudentAfter": "사과 $43$개를 한 상자에 $10$개까지 담을 때, 모두 담는 데 필요한 최소 상자는 □개이고 이때는 □을 쓴다. $10$개씩 꽉 찬 상자만 세면 □개이고 이때는 □을 쓴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "올림"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "버림"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "사과 $43$개를 한 상자에 $10$개까지 담을 때, 모두 담는 데 필요한 최소 상자는 {$5$}개이고 이때는 {올림}을 쓴다. $10$개씩 꽉 찬 상자만 세면 {$4$}개이고 이때는 {버림}을 쓴다.",
+      "cStudentSentence": "사과 $43$개를 한 상자에 $10$개까지 담을 때, 모두 담는 데 필요한 최소 상자는 □개이고 이때는 □을 쓴다. $10$개씩 꽉 찬 상자만 세면 □개이고 이때는 □을 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "올림",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "버림",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "물건을 정해진 개수씩 묶어 묶음 수를 구할 때, 올림을 쓸지 버림을 쓸지는 남는 물건을 어떻게 하느냐에 따라 달라집니다. 각각 어떤 경우인지 쓰고, 사과 $43$개를 $10$개씩 상자에 담을 때 ㉠ 모두 담는 데 필요한 최소 상자 수와 ㉡ 꽉 찬 상자 수를 구하세요.",
+        "answer": "남는 물건까지 모두 담아야 하면 올림을 쓰고, 남는 물건을 세지 않고 꽉 찬 묶음만 세면 버림을 쓴다. ㉠ $5$상자, ㉡ $4$상자이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "남는 물건도 모두 담아야 하면 올림",
+              "남는 것까지 포함해야 하면 올림"
+            ]
+          },
+          {
+            "anyOf": [
+              "남는 물건을 세지 않으면 버림",
+              "꽉 찬 묶음만 세면 버림"
+            ]
+          },
+          {
+            "anyOf": [
+              "㉠ $5$상자"
+            ]
+          },
+          {
+            "anyOf": [
+              "㉡ $4$상자"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사과 $43$개를 한 상자에 $10$개까지 담을 때, 모두 담는 데 필요한 최소 상자는 {$5$}개이고 이때는 {올림}을 쓴다. $10$개씩 꽉 찬 상자만 세면 {$4$}개이고 이때는 {버림}을 쓴다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "올림"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "버림"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e6c75fb70b1f54f26387c40785d180b44bb51599df2458f44cc16aee51af0eef",
+      "questionRevision": "planning-e5e6-20261006-e6c75fb70b1f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-5-xc17",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "길이가 $250\\,\\mathrm{cm}$인 리본으로 $30\\,\\mathrm{cm}$짜리 고리를 만듭니다. 만들 수 있는 고리의 수를 나눗셈으로 구할 때 몫과 나머지를 각각 어떻게 다루는지 까닭과 함께 쓰고, 고리의 수를 구하세요.",
+      "bAnswer": "몫만 개수로 세고 나머지는 버린다. 나머지로는 고리 한 개를 만들 수 없기 때문이다. $250\\div30=8\\cdots10$이므로 $8$개 만들 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫만 개수로 센다",
+            "나머지는 버린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나머지로는 한 개를 만들 수 없다",
+            "남는 $10\\,\\mathrm{cm}$는 $30\\,\\mathrm{cm}$가 안 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$개"
+          ]
+        }
+      ],
+      "bGoal": "만들 수 있는 개수는 몫만 세고 나머지를 버림을 설명한다.",
+      "bReason": "계산값만 묻지 않고 몫과 나머지의 처리와 까닭을 함께 물었다.",
+      "cDecision": "revise",
+      "cAfter": "리본 $250$ $\\mathrm{cm}$를 $30$ $\\mathrm{cm}$씩 잘라 같은 길이의 리본을 최대 몇 개 만들 수 있는지 구하려면, $250÷30$의 자연수 몫인 {$8$}을 개수로 센다. 남은 $10$ $\\mathrm{cm}$로는 한 개를 더 만들 수 없다.",
+      "cReason": "재료라는막연한대상을리본과한개길이로정하고완성품최대개수를자연수몫으로세는목표를유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1130-1170.json",
+      "codexFinalAmendedFromFingerprint": "8915a041b8803dfe630df8bb0e11ab7d8adae27d821ea81322db1e46466c4841",
+      "sourceIndex": 1136,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-5-xc17",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-5 버림 알아보기",
+        "term": "만들 수 있는 개수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "재료로 만들 수 있는 개수는 나눗셈의 {몫}만 세고 나머지는 버린다.",
+        "example": {
+          "prompt": "리본 $250\\,\\mathrm{cm}$로 $30\\,\\mathrm{cm}$짜리 고리를 몇 개 만들 수 있는가?",
+          "answer": "$8$개"
+        },
+        "studentC": "재료로 만들 수 있는 개수는 나눗셈의 □만 세고 나머지는 버린다.",
+        "answers": [
+          "몫"
+        ]
+      },
+      "sourceFingerprint": "c696604da843e0e1a716579774352ac79b58fb39906a8105a9b4a3975a91d7b1",
+      "draftEvidence": "evidence/section-030-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$8$"
+      ],
+      "cStudentAfter": "리본 $250$ $\\mathrm{cm}$를 $30$ $\\mathrm{cm}$씩 잘라 같은 길이의 리본을 최대 몇 개 만들 수 있는지 구하려면, $250÷30$의 자연수 몫인 □을 개수로 센다. 남은 $10$ $\\mathrm{cm}$로는 한 개를 더 만들 수 없다.",
+      "cMarkedSentence": "리본 $250$ $\\mathrm{cm}$를 $30$ $\\mathrm{cm}$씩 잘라 같은 길이의 리본을 최대 몇 개 만들 수 있는지 구하려면, $250÷30$의 자연수 몫인 {$8$}을 개수로 센다. 남은 $10$ $\\mathrm{cm}$로는 한 개를 더 만들 수 없다.",
+      "cStudentSentence": "리본 $250$ $\\mathrm{cm}$를 $30$ $\\mathrm{cm}$씩 잘라 같은 길이의 리본을 최대 몇 개 만들 수 있는지 구하려면, $250÷30$의 자연수 몫인 □을 개수로 센다. 남은 $10$ $\\mathrm{cm}$로는 한 개를 더 만들 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "길이가 $250\\,\\mathrm{cm}$인 리본으로 $30\\,\\mathrm{cm}$짜리 고리를 만듭니다. 만들 수 있는 고리의 수를 나눗셈으로 구할 때 몫과 나머지를 각각 어떻게 다루는지 까닭과 함께 쓰고, 고리의 수를 구하세요.",
+        "answer": "몫만 개수로 세고 나머지는 버린다. 나머지로는 고리 한 개를 만들 수 없기 때문이다. $250\\div30=8\\cdots10$이므로 $8$개 만들 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫만 개수로 센다",
+              "나머지는 버린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지로는 한 개를 만들 수 없다",
+              "남는 $10\\,\\mathrm{cm}$는 $30\\,\\mathrm{cm}$가 안 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "리본 $250$ $\\mathrm{cm}$를 $30$ $\\mathrm{cm}$씩 잘라 같은 길이의 리본을 최대 몇 개 만들 수 있는지 구하려면, $250÷30$의 자연수 몫인 {$8$}을 개수로 센다. 남은 $10$ $\\mathrm{cm}$로는 한 개를 더 만들 수 없다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "743e2d0cf8aa207a8149c8ef5c8007c445a0615dd818f149b2a0e599f5ed3f12",
+      "questionRevision": "planning-e5e6-20261006-743e2d0cf8aa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-5-xc19",
+      "learningRole": "reason",
+      "coreAfter": "자연수를 같은 자리까지 버림해 같은 값이 되면, 원래 수는 {그 값 이상}이고 그 값에 한 단위를 더한 수 미만이다. 한 단위는 십의 자리 $10$, 백의 자리 $100$이다.",
+      "coreReason": "'나타낸 자리의 한 단위를 더한 수'는 초5 학생이 읽어 내기 어려운 표현이다.",
+      "bDecision": "revise",
+      "bPrompt": "어떤 자연수를 버림하여 백의 자리까지 나타내었더니 $300$이 되었습니다. 처음 수가 될 수 있는 수의 범위를 쓰고, 그 범위에서 가장 작은 수와 가장 큰 수를 써서 까닭을 설명하세요.",
+      "bAnswer": "$300$ 이상 $400$ 미만이다($300$ 이상 $399$ 이하). 가장 작은 수는 버릴 것이 없는 $300$이고 가장 큰 수는 $399$이다. $400$은 버림하면 $400$이 되므로 들어가지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$300$ 이상 $400$ 미만",
+            "$300$ 이상 $399$ 이하",
+            "$300$부터 $399$까지"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 작은 수 $300$, 가장 큰 수 $399$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$300$은그대로이고$399$까지는백의자리가$3$이지만$400$부터는버림해도$400$이되어범위에서빠진다"
+          ]
+        }
+      ],
+      "bGoal": "버림한 값이 같은 자연수의 범위를 이상과 미만으로 나타낸다.",
+      "bReason": "추상적인 일반 문장 대신 구체적인 값의 범위와 양 끝 수를 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "자연수를 버림하여 백의 자리까지 나타내면 $300$이 되는 수의 범위를 두 자연수를 써서 나타내면, {$300$} 이상 {$400$} 미만이다.",
+      "cReason": "원문은 '한 단위를 더한 수'가 어렵고 답 '그 값 이상'도 모호해 구체적인 경계값을 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "그 값 이상이라는 원문 표적과 하한 포함·상한 제외를 유지한다.1만큼 큰 수라는 혼동 대신 해당 자리 단위10·100을 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1130-1170.json",
+      "codexFinalAmendedFromFingerprint": "ed129014c65b25f275a54c3827cb71d73500b73a5dd7a528c48802d087517656",
+      "sourceIndex": 1137,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-5-xc19",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-5 버림 알아보기",
+        "term": "버림한 값이 같은 자연수의 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자연수를 같은 자리까지 버림하여 같은 값이 되면, 처음 수는 {그 값 이상}, 그 값에 나타낸 자리의 한 단위를 더한 수 미만이다.",
+        "studentC": "자연수를 같은 자리까지 버림하여 같은 값이 되면, 처음 수는 □, 그 값에 나타낸 자리의 한 단위를 더한 수 미만이다.",
+        "answers": [
+          "그 값 이상"
+        ]
+      },
+      "sourceFingerprint": "99ab83083eb452948d2d5b1e8ccbc7eb8f80ad4178a082ad46333d3634f387e9",
+      "draftEvidence": "evidence/section-030-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$300$",
+        "$400$"
+      ],
+      "cStudentAfter": "자연수를 버림하여 백의 자리까지 나타내면 $300$이 되는 수의 범위를 두 자연수를 써서 나타내면, □ 이상 □ 미만이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$300$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$400$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자연수를 버림하여 백의 자리까지 나타내면 $300$이 되는 수의 범위를 두 자연수를 써서 나타내면, {$300$} 이상 {$400$} 미만이다.",
+      "cStudentSentence": "자연수를 버림하여 백의 자리까지 나타내면 $300$이 되는 수의 범위를 두 자연수를 써서 나타내면, □ 이상 □ 미만이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$300$",
+          "equivalents": []
+        },
+        {
+          "key": "$400$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 자연수를 버림하여 백의 자리까지 나타내었더니 $300$이 되었습니다. 처음 수가 될 수 있는 수의 범위를 쓰고, 그 범위에서 가장 작은 수와 가장 큰 수를 써서 까닭을 설명하세요.",
+        "answer": "$300$ 이상 $400$ 미만이다($300$ 이상 $399$ 이하). 가장 작은 수는 버릴 것이 없는 $300$이고 가장 큰 수는 $399$이다. $400$은 버림하면 $400$이 되므로 들어가지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$300$ 이상 $400$ 미만",
+              "$300$ 이상 $399$ 이하",
+              "$300$부터 $399$까지"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 수 $300$, 가장 큰 수 $399$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$300$은그대로이고$399$까지는백의자리가$3$이지만$400$부터는버림해도$400$이되어범위에서빠진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자연수를 버림하여 백의 자리까지 나타내면 $300$이 되는 수의 범위를 두 자연수를 써서 나타내면, {$300$} 이상 {$400$} 미만이다.",
+        "acceptedAnswers": [
+          [
+            "$300$"
+          ],
+          [
+            "$400$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ee74d8059ffda77c505884f32b715622c50c66e97552e517d63cf37d3aa7a2d1",
+      "questionRevision": "planning-e5e6-20261006-ee74d8059ffd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-6-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$1349$를 반올림하여 백의 자리까지 나타낼 때, 일의 자리 숫자 $9$를 다른 숫자로 바꾸면 결과가 달라지는지 말하고, 그 까닭을 설명하시오.",
+      "bAnswer": "달라지지 않는다. 백의 자리까지 반올림할 때는 십의 자리 숫자 $4$만 보므로, 일의 자리가 무엇이든 버려서 $1300$이 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "달라지지 않는다",
+            "항상 $1300$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "십의 자리 숫자만 보기 때문이다",
+            "바로 아래 자리 숫자 하나만 보기 때문이다",
+            "일의 자리가 무엇이든 $1350$ 미만이기 때문이다"
+          ]
+        }
+      ],
+      "bGoal": "반올림은 나타낼 자리 바로 아래 숫자 하나만으로 정해짐을 이해한다.",
+      "bReason": "원문 예의 $1349$를 써서 더 아래 자리가 결과에 영향을 주지 않음을 묻고, 두 번 반올림하는 오류는 xc25로 넘겼다.",
+      "cDecision": "revise",
+      "cAfter": "$1349$를 반올림하여 백의 자리까지 나타낼 때는 {십}의 자리 숫자 {$4$}만 보므로 결과는 {$1300$}이다.",
+      "cReason": "원문은 두 내용이 한 문장에 섞이고 빈칸이 긴 구절이라, 볼 자리·숫자·결과로 좁혔다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "십"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1300$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1130-1170.json",
+      "codexFinalAmendedFromFingerprint": "d965159251663df2e23b8c80fb02b6c843d7befa09961fe282053ead14cf6d59",
+      "sourceIndex": 1153,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-6-xc16",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-6 반올림 알아보기와 어림의 활용",
+        "term": "바로 아래 숫자만 보기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "반올림은 나타낼 자리 {바로 아래 숫자 하나만} 보고 정하며, 아래 자리부터 차례로 반올림해 올라가면 결과가 달라질 수 있다.",
+        "example": {
+          "prompt": "$1349$에서 일의 자리 숫자를 바꾸어도 백의 자리까지 반올림한 값이 같은 까닭은?",
+          "answer": "늘 $1350$ 미만이라서"
+        },
+        "studentC": "반올림은 나타낼 자리 □ 보고 정하며, 아래 자리부터 차례로 반올림해 올라가면 결과가 달라질 수 있다.",
+        "answers": [
+          "바로 아래 숫자 하나만"
+        ]
+      },
+      "sourceFingerprint": "d0ac20a910ec8c9fb76386fc12b9c65d40f485aa0ba97eb7ee18bda0c59d6d3b",
+      "draftEvidence": "evidence/section-031-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "십",
+        "$4$",
+        "$1300$"
+      ],
+      "cStudentAfter": "$1349$를 반올림하여 백의 자리까지 나타낼 때는 □의 자리 숫자 □만 보므로 결과는 □이다.",
+      "cMarkedSentence": "$1349$를 반올림하여 백의 자리까지 나타낼 때는 {십}의 자리 숫자 {$4$}만 보므로 결과는 {$1300$}이다.",
+      "cStudentSentence": "$1349$를 반올림하여 백의 자리까지 나타낼 때는 □의 자리 숫자 □만 보므로 결과는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "십",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$1300$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1349$를 반올림하여 백의 자리까지 나타낼 때, 일의 자리 숫자 $9$를 다른 숫자로 바꾸면 결과가 달라지는지 말하고, 그 까닭을 설명하시오.",
+        "answer": "달라지지 않는다. 백의 자리까지 반올림할 때는 십의 자리 숫자 $4$만 보므로, 일의 자리가 무엇이든 버려서 $1300$이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "달라지지 않는다",
+              "항상 $1300$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "십의 자리 숫자만 보기 때문이다",
+              "바로 아래 자리 숫자 하나만 보기 때문이다",
+              "일의 자리가 무엇이든 $1350$ 미만이기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1349$를 반올림하여 백의 자리까지 나타낼 때는 {십}의 자리 숫자 {$4$}만 보므로 결과는 {$1300$}이다.",
+        "acceptedAnswers": [
+          [
+            "십"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "$1300$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9c62f49a33a1ce129e0c06f1477c910e09d488e730b878ec9bb8accfbca31712",
+      "questionRevision": "planning-e5e6-20261006-9c62f49a33a1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-6-xc17",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "반올림한 수는 처음 수보다 항상 큽니까? 어떤 때 처음 수보다 커지고 어떤 때 작아지는지, 십의 자리까지 반올림하는 예를 하나씩 들어 설명하시오.",
+      "bAnswer": "항상 크지는 않다. 바로 아래 숫자가 $5$ 이상이면 올려서 커진다(예: $47→50$). 그 숫자가 $5$ 미만이고 버려지는 수가 있으면 작아진다(예: $42→40$). 아래 숫자가 모두 $0$이면 그대로이다(예: $40→40$).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 크지는 않다",
+            "작아질 수도 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "올리면 커진다는 설명과 맞는 예",
+            "바로 아래 숫자가 $5$ 이상이면 커진다는 설명과 맞는 예"
+          ]
+        },
+        {
+          "anyOf": [
+            "바로아래숫자가$5$미만이고버려지는수가있으면작아진다는설명과맞는예"
+          ]
+        }
+      ],
+      "bGoal": "반올림 결과가 처음 수보다 커지는 경우와 작아지는 경우를 구분한다.",
+      "bReason": "'클 수도 작을 수도'라는 결론을 말해 주지 않고 조건과 예를 학생이 대게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$47$을 반올림하여 십의 자리까지 나타내면 $50$으로 처음 수보다 {크고}, $42$는 $40$으로 처음 수보다 {작다}.",
+      "cReason": "원문 빈칸 '클 수도 작을 수도'는 구절 암기라 두 수의 비교로 바꿨다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크고",
+            "커지고"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "작아진다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "synonymNotes": "B에서 '같을 수도 있다'는 덧붙여도 되지만 필수는 아니다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1130-1170.json",
+      "codexFinalAmendedFromFingerprint": "9d701e97cc4c06c66f8d95a976db8cd92cfa78e6b3433324740b4fb19a41f96d",
+      "sourceIndex": 1154,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-6-xc17",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-6 반올림 알아보기와 어림의 활용",
+        "term": "반올림한 수의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "반올림한 수는 처음 수보다 {클 수도 작을 수도} 있다.",
+        "studentC": "반올림한 수는 처음 수보다 □ 있다.",
+        "answers": [
+          "클 수도 작을 수도"
+        ]
+      },
+      "sourceFingerprint": "12fdf997a6c50b2b9faee9ecb5adddc307c8fd06fdb51045f3a9b3780b71debd",
+      "draftEvidence": "evidence/section-031-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "크고",
+        "작다"
+      ],
+      "cStudentAfter": "$47$을 반올림하여 십의 자리까지 나타내면 $50$으로 처음 수보다 □, $42$는 $40$으로 처음 수보다 □.",
+      "cMarkedSentence": "$47$을 반올림하여 십의 자리까지 나타내면 $50$으로 처음 수보다 {크고}, $42$는 $40$으로 처음 수보다 {작다}.",
+      "cStudentSentence": "$47$을 반올림하여 십의 자리까지 나타내면 $50$으로 처음 수보다 □, $42$는 $40$으로 처음 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크고",
+          "equivalents": [
+            "커지고"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "작아진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "반올림한 수는 처음 수보다 항상 큽니까? 어떤 때 처음 수보다 커지고 어떤 때 작아지는지, 십의 자리까지 반올림하는 예를 하나씩 들어 설명하시오.",
+        "answer": "항상 크지는 않다. 바로 아래 숫자가 $5$ 이상이면 올려서 커진다(예: $47→50$). 그 숫자가 $5$ 미만이고 버려지는 수가 있으면 작아진다(예: $42→40$). 아래 숫자가 모두 $0$이면 그대로이다(예: $40→40$).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 크지는 않다",
+              "작아질 수도 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "올리면 커진다는 설명과 맞는 예",
+              "바로 아래 숫자가 $5$ 이상이면 커진다는 설명과 맞는 예"
+            ]
+          },
+          {
+            "anyOf": [
+              "바로아래숫자가$5$미만이고버려지는수가있으면작아진다는설명과맞는예"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$47$을 반올림하여 십의 자리까지 나타내면 $50$으로 처음 수보다 {크고}, $42$는 $40$으로 처음 수보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "크고",
+            "커지고"
+          ],
+          [
+            "작다",
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7abc84495aa9f64542274a70d4b56c34097710800d6efc2510fbcf7d6c8dd9e0",
+      "questionRevision": "planning-e5e6-20261006-7abc84495aa9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-1-xc1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "분수에 자연수를 곱한다는 것은 무슨 뜻인지 덧셈과 관련지어 설명하고, $\\frac{2}{7}\\times3$을 덧셈식으로 나타내어 답을 구하세요.",
+      "bAnswer": "그 분수를 자연수만큼 여러 번 더한다는 뜻이다. $\\frac{2}{7}\\times3=\\frac{2}{7}+\\frac{2}{7}+\\frac{2}{7}=\\frac{6}{7}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은분수를자연수만큼여러번더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{7} + \\frac{2}{7} + \\frac{2}{7}$이라는덧셈식"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{6}{7}$"
+          ]
+        }
+      ],
+      "bGoal": "분수와 자연수의 곱을 같은 분수의 반복 덧셈으로 이해한다.",
+      "bReason": "뜻을 덧셈과 연결해 묻고 예 식으로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{7}\\times3$은 $\\frac{2}{7}$를 {$3$}번 {더한} 것과 같다.",
+      "cReason": "'자연수만큼 거듭 더하는'이라는 긴 구절 대신 횟수와 연산을 짧게 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "더한",
+            "더하는",
+            "덧셈한"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1130-1170.json",
+      "codexFinalAmendedFromFingerprint": "7f6dfb14727c73786ba1ed8e94ef31d24e4b469267ef39d1e7dcfb9a7477321c",
+      "sourceIndex": 1162,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-1-xc1",
+        "section": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
+        "term": "분수와 자연수의 곱의 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "분수에 자연수를 곱하는 것은 그 분수를 {자연수만큼 거듭 더하는} 것이다.",
+        "studentC": "분수에 자연수를 곱하는 것은 그 분수를 □ 것이다.",
+        "answers": [
+          "자연수만큼 거듭 더하는"
+        ]
+      },
+      "sourceFingerprint": "95455e004f21f6e95ddf5ee133e74992e118221748aa84e2108b7a5551b37064",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "더한"
+      ],
+      "cStudentAfter": "$\\frac{2}{7}\\times3$은 $\\frac{2}{7}$를 □번 □ 것과 같다.",
+      "cMarkedSentence": "$\\frac{2}{7}\\times3$은 $\\frac{2}{7}$를 {$3$}번 {더한} 것과 같다.",
+      "cStudentSentence": "$\\frac{2}{7}\\times3$은 $\\frac{2}{7}$를 □번 □ 것과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "더한",
+          "equivalents": [
+            "더하는",
+            "덧셈한"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수에 자연수를 곱한다는 것은 무슨 뜻인지 덧셈과 관련지어 설명하고, $\\frac{2}{7}\\times3$을 덧셈식으로 나타내어 답을 구하세요.",
+        "answer": "그 분수를 자연수만큼 여러 번 더한다는 뜻이다. $\\frac{2}{7}\\times3=\\frac{2}{7}+\\frac{2}{7}+\\frac{2}{7}=\\frac{6}{7}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은분수를자연수만큼여러번더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{7} + \\frac{2}{7} + \\frac{2}{7}$이라는덧셈식"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{6}{7}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{7}\\times3$은 $\\frac{2}{7}$를 {$3$}번 {더한} 것과 같다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "더한",
+            "더하는",
+            "덧셈한"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fa4eb1283a548ee97db4985cfb081eff8ab434ee151a28ba0d55a8f355610233",
+      "questionRevision": "planning-e5e6-20261006-fa4eb1283a54",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-1-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$5/6×4$를 계산하여 분수 부분을 기약분수로 한 대분수로 나타내려고 합니다. 계산 과정을 차례대로 쓰세요.",
+      "bAnswer": "분자에 곱하면 $\\frac{20}{6}$, 약분하면 $\\frac{10}{3}$, 대분수로 바꾸면 $3\\frac{1}{3}$ (먼저 $6$과 $4$를 $2$로 약분해도 된다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{20}{6}$을 $\\frac{10}{3}$으로 약분한다",
+            "분모 $6$과 곱하는 수 $4$를 $2$로 미리 약분한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$ $\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "곱하기, 약분, 대분수로 바꾸기를 한 계산에서 차례로 수행한다.",
+      "bReason": "차례를 말로 외우게 하지 않고 실제 계산 과정을 쓰게 했으며 미리 약분하는 풀이도 인정한다.",
+      "cDecision": "revise",
+      "cAfter": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 {약분하고}, 가분수는 필요에 따라 대분수로 바꾼다.",
+      "cReason": "곱한 뒤 약분하고 대분수로 바꾸는 흐름에서 빠진 단계를 짧은 낱말로 묻는다.",
+      "synonymNotes": "'약분하고'와 '약분'은 같은 답으로 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1130-1170.json",
+      "codexFinalAmendedFromFingerprint": "b59c0ddb48a7ae6ed162133b23cd95731a201f19f25c7b367d7a292f39c50964",
+      "sourceIndex": 1169,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-1-xc10",
+        "section": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
+        "term": "분수와 자연수 곱셈의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분수와 자연수의 곱셈은 곱하고, {약분하고}, 필요하면 대분수로 바꾸는 차례로 한다.",
+        "studentC": "분수와 자연수의 곱셈은 곱하고, □, 필요하면 대분수로 바꾸는 차례로 한다.",
+        "answers": [
+          "약분하고"
+        ]
+      },
+      "sourceFingerprint": "7a4fc95a60d3e94da78ed1f7a6455bcbab4288ebe74ea45c0349a183e17a375a",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "약분하고"
+      ],
+      "cStudentAfter": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 □, 가분수는 필요에 따라 대분수로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약분하고"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 {약분하고}, 가분수는 필요에 따라 대분수로 바꾼다.",
+      "cStudentSentence": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 □, 가분수는 필요에 따라 대분수로 바꾼다.",
+      "cSlotAnswers": [
+        {
+          "key": "약분하고",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$5/6×4$를 계산하여 분수 부분을 기약분수로 한 대분수로 나타내려고 합니다. 계산 과정을 차례대로 쓰세요.",
+        "answer": "분자에 곱하면 $\\frac{20}{6}$, 약분하면 $\\frac{10}{3}$, 대분수로 바꾸면 $3\\frac{1}{3}$ (먼저 $6$과 $4$를 $2$로 약분해도 된다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{20}{6}$을 $\\frac{10}{3}$으로 약분한다",
+              "분모 $6$과 곱하는 수 $4$를 $2$로 미리 약분한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$ $\\frac{1}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 {약분하고}, 가분수는 필요에 따라 대분수로 바꾼다.",
+        "acceptedAnswers": [
+          [
+            "약분하고"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a8953dfb756fab5865d2ccd6b573ffcac29393ae47c394aec721d849bc04288e",
+      "questionRevision": "planning-e5e6-20261006-a8953dfb756f",
+      "requiresIndependentReview": true
+    }
+  ]
+}

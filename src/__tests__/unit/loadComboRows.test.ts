@@ -46,7 +46,7 @@ describe("[결합형 적재] 엔진에만 살던 여섯이 지면으로 나간�
   it("🔴 `externalId` 가 **검사기가 찾는 모양**이다 — 규칙을 옮겨 적지 않고 그 함수로 묻는다", () => {
     const frags = loadedFragments(rows.map((r) => r.externalId));
     // 유형 목록은 비운다 — 이 시험이 묻는 것은 **결합형** 쪽뿐이다.
-    const left = unloaded(frags, [], defs as never);
+    const left = unloaded(frags, [], defs as never, []);
     expect(
       left.map((e) => e.key),
       "적재기가 넣었는데 검사기는 «안 나갔다»고 한다 — externalId 모양이 갈렸다",
@@ -55,7 +55,7 @@ describe("[결합형 적재] 엔진에만 살던 여섯이 지면으로 나간�
 
   it("음성 대조 — 빈 적재본이면 여섯이 **전부** «안 나갔다» 로 잡힌다", () => {
     // 이것이 없으면 위 검사가 「늘 통과」인지 알 수 없다.
-    const left = unloaded(loadedFragments([]), [], defs as never);
+    const left = unloaded(loadedFragments([]), [], defs as never, []);
     expect(left.map((e) => e.key).sort()).toEqual(defs.map((d) => d.id).sort());
   });
 

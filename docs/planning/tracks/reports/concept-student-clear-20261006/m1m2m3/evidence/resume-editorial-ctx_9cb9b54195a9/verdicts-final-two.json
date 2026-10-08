@@ -1,0 +1,31 @@
+{
+  "label": "final-two",
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-final-two.json",
+  "changes": [
+    {
+      "id": "m3-04-01-xc5",
+      "cAfter": "$a\\ne0$일 때 $y=ax^2$과 $y=-ax^2$의 그래프는 두 좌표축 중 {$x$축}에 대하여 서로 {대칭}이다.",
+      "cReason": "원점대칭도참이므로답의범위를두좌표축중하나로정한다."
+    },
+    {
+      "id": "m3-04-02-xc7",
+      "bAnswer": "일반형의 $y$절편은 $c$이고, 표준형의 꼭짓점은 $(p,q)$이다. $y$절편은 $y$축과 만나는 점의 $y$좌표를 뜻한다."
+    }
+  ],
+  "notes": [
+    {
+      "id": "m3-04-01-xc5",
+      "b": "기본x축대칭의일반화중복B제외를유지한다.",
+      "c": "원점대칭이라는다른옳은답을배제하려좌표축중하나를묻는범위를명시한다."
+    },
+    {
+      "id": "m3-04-02-xc7",
+      "b": "절편값c를점자체로표현하지않고꼭짓점좌표와구별한다.",
+      "c": "일반형의y축교점(0,c)와표준형꼭짓점(p,q)를묻는다."
+    }
+  ],
+  "rereadIds": [
+    "m3-04-01-xc5",
+    "m3-04-02-xc7"
+  ]
+}

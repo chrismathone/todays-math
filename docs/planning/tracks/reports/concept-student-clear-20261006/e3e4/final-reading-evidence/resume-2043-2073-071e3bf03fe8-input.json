@@ -1,0 +1,2714 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2043,
+  "end": 2073,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2043,
+        "sourceFingerprint": "d4730e31bc793faa505048c8e84334c0ae33d9e0107571c314eba612d72a2bcb",
+        "part": "e4plus",
+        "id": "e4-1-6-3-xc25",
+        "section": "초4::1-6 규칙 찾기::1-6-3 계산식에서 규칙 찾기",
+        "term": "$1$부터 홀수를 차례로 더한 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$1+3=4$, $1+3+5=9$처럼 $1$부터 홀수를 차례로 더한 합은 {같은 수를 두 번 곱한} 수이다.",
+        "studentC": "$1+3=4$, $1+3+5=9$처럼 $1$부터 홀수를 차례로 더한 합은 □ 수이다.",
+        "answers": [
+          "같은 수를 두 번 곱한"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2043,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-3 계산식에서 규칙 찾기",
+        "sourceFingerprint": "d4730e31bc793faa505048c8e84334c0ae33d9e0107571c314eba612d72a2bcb",
+        "proposalFingerprint": "10c1afcfb35c9ff621a1b2c2950faf64821debb35aa8913086d2af993b256778",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-3-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$1+3=4$, $1+3+5=9$이다. $1+3+5+7$의 합을 규칙으로 구하고, 어떤 규칙인지 쓰시오.",
+        "bAnswer": "$16$. 더한 홀수의 개수 $4$를 두 번 곱한 $4\\times4$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$16$"
+            ]
+          },
+          {
+            "anyOf": [
+              "더한 홀수 개수를 두 번 곱한다",
+              "$4\\times4$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "홀수 합의 규칙 적용",
+        "bReason": "개수를 두 번 곱하는 규칙을 적용",
+        "cDecision": "rewrite",
+        "cAfter": "$1+3=2\\times2$, $1+3+5=3\\times3$처럼 $1$부터 홀수를 $4$개 더하면 합은 $4\\times${$4$}$=16$이다.",
+        "cReason": "긴 구절 빈칸을 식 속 숫자 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$1$부터 홀수를 차례로 더한 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1+3=2\\times2$, $1+3+5=3\\times3$처럼 $1$부터 홀수를 $4$개 더하면 합은 $4\\times${$4$}$=16$이다.",
+        "cStudentSentence": "$1+3=2\\times2$, $1+3+5=3\\times3$처럼 $1$부터 홀수를 $4$개 더하면 합은 $4\\times$□$=16$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1+3=4$, $1+3+5=9$이다. $1+3+5+7$의 합을 규칙으로 구하고, 어떤 규칙인지 쓰시오.",
+          "answer": "$16$. 더한 홀수의 개수 $4$를 두 번 곱한 $4\\times4$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$16$"
+              ]
+            },
+            {
+              "anyOf": [
+                "더한 홀수 개수를 두 번 곱한다",
+                "$4\\times4$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1+3=2\\times2$, $1+3+5=3\\times3$처럼 $1$부터 홀수를 $4$개 더하면 합은 $4\\times${$4$}$=16$이다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2044,
+        "sourceFingerprint": "d2e63cca53a27a9b5781321ea10ad5e42b1bc77f92390b8cfd216069d18139d7",
+        "part": "e4plus",
+        "id": "e4-1-6-3-xc27",
+        "section": "초4::1-6 규칙 찾기::1-6-3 계산식에서 규칙 찾기",
+        "term": "나누어지는 수가 몇 배가 되는 나눗셈식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누는 수가 같고 나누어떨어질 때, 나누어지는 수가 몇 배가 되면 {몫도 같은 배}가 된다.",
+        "example": {
+          "prompt": "$100\\div4=25$일 때 $200\\div4$의 몫이 $50$인 까닭은?",
+          "answer": "나눌 양이 $2$배가 되어서"
+        },
+        "studentC": "나누는 수가 같고 나누어떨어질 때, 나누어지는 수가 몇 배가 되면 □가 된다.",
+        "answers": [
+          "몫도 같은 배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2044,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-3 계산식에서 규칙 찾기",
+        "sourceFingerprint": "d2e63cca53a27a9b5781321ea10ad5e42b1bc77f92390b8cfd216069d18139d7",
+        "proposalFingerprint": "884fb0e034c1aab48c04267081b87fda0cc1a22f38c0e29e675d791d122a7583",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-3-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "$100\\div4=25$일 때 $200\\div4$의 몫은 얼마이며, 계산하지 않고 아는 까닭은?",
+        "bAnswer": "$50$. 나누어지는 수가 $2$배가 되어 몫도 $2$배가 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$50$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 수가 $2$배라 몫도 $2$배"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "나누어지는 수의 배와 몫",
+        "bReason": "같은 배로 몫이 변함을 이유로 확인",
+        "cDecision": "keep",
+        "cReason": "'몫도 같은 배'가 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "몫도 몇 배"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "나누어지는 수가 몇 배가 되는 나눗셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "나누는 수가 같고 나누어떨어질 때, 나누어지는 수가 몇 배가 되면 {몫도 같은 배}가 된다.",
+        "cStudentSentence": "나누는 수가 같고 나누어떨어질 때, 나누어지는 수가 몇 배가 되면 □가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "몫도 같은 배",
+            "equivalents": [
+              "몫도 몇 배"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "나누는 수가 같고 나누어떨어질 때, 나누어지는 수가 몇 배가 되면 □가 된다.",
+          "answers": [
+            "몫도 같은 배"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$100\\div4=25$일 때 $200\\div4$의 몫은 얼마이며, 계산하지 않고 아는 까닭은?",
+          "answer": "$50$. 나누어지는 수가 $2$배가 되어 몫도 $2$배가 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$50$"
+              ]
+            },
+            {
+              "anyOf": [
+                "나누어지는 수가 $2$배라 몫도 $2$배"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "나누는 수가 같고 나누어떨어질 때, 나누어지는 수가 몇 배가 되면 {몫도 같은 배}가 된다.",
+          "acceptedAnswers": [
+            [
+              "몫도 같은 배",
+              "몫도 몇 배"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2045,
+        "sourceFingerprint": "e43cd344f866ba08b5c55116faa68b39537ac13ad5b5e1ede771b57eec957789",
+        "part": "e4plus",
+        "id": "e4-1-6-3-xc28",
+        "section": "초4::1-6 규칙 찾기::1-6-3 계산식에서 규칙 찾기",
+        "term": "곱하는 수가 몇 배가 되는 곱셈식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "곱해지는 수가 같을 때 곱하는 수가 몇 배가 되면 {곱도 같은 배}가 된다.",
+        "example": {
+          "prompt": "$37\\times3=111$일 때 $37\\times6$이 $222$인 까닭은?",
+          "answer": "묶음 수가 $2$배가 되어서"
+        },
+        "studentC": "곱해지는 수가 같을 때 곱하는 수가 몇 배가 되면 □가 된다.",
+        "answers": [
+          "곱도 같은 배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2045,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-3 계산식에서 규칙 찾기",
+        "sourceFingerprint": "e43cd344f866ba08b5c55116faa68b39537ac13ad5b5e1ede771b57eec957789",
+        "proposalFingerprint": "b98f34435366a954e6c6fecfd5cdbe58f894df8e7f7dd71923dde87e3d7e84e7",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "$37\\times3=111$일 때 $37\\times6$은 얼마이며, 계산하지 않고 아는 까닭은?",
+        "bAnswer": "$222$. 곱하는 수 $3$이 $2$배가 되어 곱도 $2$배가 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$222$"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱하는 수가 $2$배라 곱도 $2$배"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "곱하는 수의 배와 곱",
+        "bReason": "같은 배로 곱이 변함을 이유로 확인",
+        "cDecision": "keep",
+        "cReason": "'곱도 같은 배'가 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "곱도 몇 배"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "곱하는 수가 몇 배가 되는 곱셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "곱해지는 수가 같을 때 곱하는 수가 몇 배가 되면 {곱도 같은 배}가 된다.",
+        "cStudentSentence": "곱해지는 수가 같을 때 곱하는 수가 몇 배가 되면 □가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "곱도 같은 배",
+            "equivalents": [
+              "곱도 몇 배"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "곱해지는 수가 같을 때 곱하는 수가 몇 배가 되면 □가 된다.",
+          "answers": [
+            "곱도 같은 배"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$37\\times3=111$일 때 $37\\times6$은 얼마이며, 계산하지 않고 아는 까닭은?",
+          "answer": "$222$. 곱하는 수 $3$이 $2$배가 되어 곱도 $2$배가 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$222$"
+              ]
+            },
+            {
+              "anyOf": [
+                "곱하는 수가 $2$배라 곱도 $2$배"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "곱해지는 수가 같을 때 곱하는 수가 몇 배가 되면 {곱도 같은 배}가 된다.",
+          "acceptedAnswers": [
+            [
+              "곱도 같은 배",
+              "곱도 몇 배"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2046,
+        "sourceFingerprint": "d33a17a29979082ae52842a91af99a5180d27460b8e6421f925620aae271415d",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc1",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "합이 그대로인 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "덧셈식에서 한 수에서 덜어 낸 만큼을 다른 수에 보태면 {한쪽에서 다른 쪽으로 옮긴 것}이어서 합이 그대로이다.",
+        "example": {
+          "prompt": "$1+9$를 $2+8$로 바꾸어도 합이 같은 까닭은?",
+          "answer": "$9$에서 $1$을 옮겨 준 것이라서"
+        },
+        "studentC": "덧셈식에서 한 수에서 덜어 낸 만큼을 다른 수에 보태면 □이어서 합이 그대로이다.",
+        "answers": [
+          "한쪽에서 다른 쪽으로 옮긴 것"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2046,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "d33a17a29979082ae52842a91af99a5180d27460b8e6421f925620aae271415d",
+        "proposalFingerprint": "92562338082df1b26653be00895aee5f1c8f4d5d399b8f53d429e731c8c964b3",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$1+9$를 $2+8$로 바꾸어도 합이 같은 까닭은?",
+        "bAnswer": "$9$에서 $1$을 덜어 내 $1$에 보탠 것이어서 합이 그대로이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한쪽에서 덜어 다른 쪽에 보탠 것",
+              "$9$에서 $1$을 옮겼다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "합이 그대로인 까닭",
+        "bReason": "덜어 낸 만큼 보태므로 합이 같음을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$1+9$를 $2+8$로 바꾸면 $9$에서 덜어 낸 {$1$}을 $1$에 보탠 것이므로 합이 그대로이다.",
+        "cReason": "긴 구절 빈칸을 식에서 보이는 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "합이 그대로인 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1+9$를 $2+8$로 바꾸면 $9$에서 덜어 낸 {$1$}을 $1$에 보탠 것이므로 합이 그대로이다.",
+        "cStudentSentence": "$1+9$를 $2+8$로 바꾸면 $9$에서 덜어 낸 □을 $1$에 보탠 것이므로 합이 그대로이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1+9$를 $2+8$로 바꾸어도 합이 같은 까닭은?",
+          "answer": "$9$에서 $1$을 덜어 내 $1$에 보탠 것이어서 합이 그대로이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한쪽에서 덜어 다른 쪽에 보탠 것",
+                "$9$에서 $1$을 옮겼다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1+9$를 $2+8$로 바꾸면 $9$에서 덜어 낸 {$1$}을 $1$에 보탠 것이므로 합이 그대로이다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2047,
+        "sourceFingerprint": "d0a41d8d80776fe9a5543ddeeb75fc4a1594136ba93fafd4acff03916d0272c2",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc2",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "차가 그대로인 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "뺄셈식에서 두 수가 똑같이 커지면 {늘어난 만큼을 다시 덜어 내므로} 차가 그대로이다.",
+        "example": {
+          "prompt": "$10-5$와 $11-6$의 차가 같은 까닭은?",
+          "answer": "$1$ 늘린 만큼 $1$ 더 빼서"
+        },
+        "studentC": "뺄셈식에서 두 수가 똑같이 커지면 □ 차가 그대로이다.",
+        "answers": [
+          "늘어난 만큼을 다시 덜어 내므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2047,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "d0a41d8d80776fe9a5543ddeeb75fc4a1594136ba93fafd4acff03916d0272c2",
+        "proposalFingerprint": "ea9f8b6a9e3151a9d2bff038b03ef7d801315c2e098f8b581b4e1613164d9e38",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$10-5$와 $11-6$의 차가 같은 까닭은?",
+        "bAnswer": "빼어지는 수가 $1$ 늘어난 만큼 빼는 수도 $1$ 늘어서 차가 그대로이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수가 똑같이 $1$ 늘었다",
+              "늘린 만큼 더 뺐다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차가 그대로인 까닭",
+        "bReason": "똑같이 늘면 차가 그대로인 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$10-5$와 $11-6$처럼 두 수가 똑같이 $1$씩 커지면 늘어난 {$1$}을 다시 덜어 내므로 차가 그대로이다.",
+        "cReason": "긴 구절 빈칸을 구체 식과 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차가 그대로인 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$10-5$와 $11-6$처럼 두 수가 똑같이 $1$씩 커지면 늘어난 {$1$}을 다시 덜어 내므로 차가 그대로이다.",
+        "cStudentSentence": "$10-5$와 $11-6$처럼 두 수가 똑같이 $1$씩 커지면 늘어난 □을 다시 덜어 내므로 차가 그대로이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$10-5$와 $11-6$의 차가 같은 까닭은?",
+          "answer": "빼어지는 수가 $1$ 늘어난 만큼 빼는 수도 $1$ 늘어서 차가 그대로이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 수가 똑같이 $1$ 늘었다",
+                "늘린 만큼 더 뺐다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$10-5$와 $11-6$처럼 두 수가 똑같이 $1$씩 커지면 늘어난 {$1$}을 다시 덜어 내므로 차가 그대로이다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2048,
+        "sourceFingerprint": "77a908cb854cfcfe3df03ab081c8338ccd7bce04f915a135d3bc0bc46879dd74",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc3",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "곱이 그대로인 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "곱셈식에서 한 수를 몇 배 하고 다른 수를 같은 수로 나누면 {묶음 수가 늘어난 만큼} 묶음이 {작아져} 곱이 그대로이다.",
+        "example": {
+          "prompt": "$2\\times12$와 $4\\times6$의 곱이 같은 까닭은?",
+          "answer": "$12$씩 묶음을 반으로 갈라서"
+        },
+        "studentC": "곱셈식에서 한 수를 몇 배 하고 다른 수를 같은 수로 나누면 □ 묶음이 □ 곱이 그대로이다.",
+        "answers": [
+          "묶음 수가 늘어난 만큼",
+          "작아져"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2048,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "77a908cb854cfcfe3df03ab081c8338ccd7bce04f915a135d3bc0bc46879dd74",
+        "proposalFingerprint": "33e05b1d641c70a9852f2dd78713da07c0222cbdd92d09282e309e837032d2db",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\times12$와 $4\\times6$의 곱이 같은 까닭은?",
+        "bAnswer": "$12$씩 $2$묶음을 $6$씩 $4$묶음으로 나누어 묶음 수가 $2$배가 된 만큼 한 묶음이 반으로 줄기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "묶음 수가 $2$배가 되었다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 묶음이 반으로 줄었다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "곱이 그대로인 까닭",
+        "bReason": "묶음 수 늘고 한 묶음 준 관계 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\times12$를 $4\\times6$으로 바꾸면 묶음 수가 $2$배가 된 만큼 한 묶음의 수는 $12$에서 {$6$}으로 작아져 곱이 그대로이다.",
+        "cReason": "긴 구절 두 빈칸을 숫자 빈칸 하나로 줄임",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "곱이 그대로인 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2\\times12$를 $4\\times6$으로 바꾸면 묶음 수가 $2$배가 된 만큼 한 묶음의 수는 $12$에서 {$6$}으로 작아져 곱이 그대로이다.",
+        "cStudentSentence": "$2\\times12$를 $4\\times6$으로 바꾸면 묶음 수가 $2$배가 된 만큼 한 묶음의 수는 $12$에서 □으로 작아져 곱이 그대로이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2\\times12$와 $4\\times6$의 곱이 같은 까닭은?",
+          "answer": "$12$씩 $2$묶음을 $6$씩 $4$묶음으로 나누어 묶음 수가 $2$배가 된 만큼 한 묶음이 반으로 줄기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "묶음 수가 $2$배가 되었다"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 묶음이 반으로 줄었다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2\\times12$를 $4\\times6$으로 바꾸면 묶음 수가 $2$배가 된 만큼 한 묶음의 수는 $12$에서 {$6$}으로 작아져 곱이 그대로이다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2049,
+        "sourceFingerprint": "c51a2ba79928de715ef9c1414736123dc66b33f6672f42407f5d9aa58034f943",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc4",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "몫이 같은 나눗셈식",
+        "kind": "성질",
+        "level": "하",
+        "definition": "나누어지는 수가 언제나 나누는 수의 {같은 배}이면 그 나눗셈식들의 몫은 서로 같다.",
+        "example": {
+          "prompt": "$6\\div3$, $8\\div4$, $10\\div5$의 몫이 모두 같은 까닭은?",
+          "answer": "모두 나누는 수의 $2$배를 나눠서"
+        },
+        "studentC": "나누어지는 수가 언제나 나누는 수의 □이면 그 나눗셈식들의 몫은 서로 같다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2049,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "c51a2ba79928de715ef9c1414736123dc66b33f6672f42407f5d9aa58034f943",
+        "proposalFingerprint": "5202d6adf8b54a7c87429282ccedd02933bdf2317459acdb644f0b60387f4a0b",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$6\\div3$, $8\\div4$, $10\\div5$의 몫이 모두 같은 까닭은?",
+        "bAnswer": "나누어지는 수가 모두 나누는 수의 $2$배여서 몫이 모두 $2$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수가 나누는 수의 $2$배",
+              "모두 같은 배"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "몫이 같은 까닭",
+        "bReason": "나누는 수의 같은 배라는 공통점 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$6\\div3$, $8\\div4$, $10\\div5$는 나누어지는 수가 모두 나누는 수의 {$2$}배이므로 몫이 모두 같다.",
+        "cReason": "'같은 배'를 구체 식과 숫자로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "몫이 같은 나눗셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$6\\div3$, $8\\div4$, $10\\div5$는 나누어지는 수가 모두 나누는 수의 {$2$}배이므로 몫이 모두 같다.",
+        "cStudentSentence": "$6\\div3$, $8\\div4$, $10\\div5$는 나누어지는 수가 모두 나누는 수의 □배이므로 몫이 모두 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$6\\div3$, $8\\div4$, $10\\div5$의 몫이 모두 같은 까닭은?",
+          "answer": "나누어지는 수가 모두 나누는 수의 $2$배여서 몫이 모두 $2$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나누어지는 수가 나누는 수의 $2$배",
+                "모두 같은 배"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$6\\div3$, $8\\div4$, $10\\div5$는 나누어지는 수가 모두 나누는 수의 {$2$}배이므로 몫이 모두 같다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2050,
+        "sourceFingerprint": "c22b05cfcb59b195a9cc21c21cdffd4a861488789c5ce28d68df6937a923d139",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc5",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "결과가 같은 식 만들기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "결과가 같은 계산식을 여러 개 만들 때는 한 수를 바꾼 뒤 {결과가 그대로이도록} 다른 수를 맞춘다.",
+        "studentC": "결과가 같은 계산식을 여러 개 만들 때는 한 수를 바꾼 뒤 □ 다른 수를 맞춘다.",
+        "answers": [
+          "결과가 그대로이도록"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2050,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "c22b05cfcb59b195a9cc21c21cdffd4a861488789c5ce28d68df6937a923d139",
+        "proposalFingerprint": "09c3cf14536a12e3e010771ce3592440c74e915072755f4ad72af0df9ced2598",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "합이 같은 식 만들기",
+        "bReason": "xc19의 빈칸 구하기와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "합이 $10$인 식을 만들 때 $3+7$에서 $3$을 $4$로 바꾸면 $7$을 {$6$}으로 맞춘다.",
+        "cReason": "숨은 구절 빈칸을 구체 계산 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "exclusionReason": "한 수를 바꾸고 다른 수를 맞춘다는 방법이 xc19와 같다",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "결과가 같은 식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "합이 $10$인 식을 만들 때 $3+7$에서 $3$을 $4$로 바꾸면 $7$을 {$6$}으로 맞춘다.",
+        "cStudentSentence": "합이 $10$인 식을 만들 때 $3+7$에서 $3$을 $4$로 바꾸면 $7$을 □으로 맞춘다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "합이 $10$인 식을 만들 때 $3+7$에서 $3$을 $4$로 바꾸면 $7$을 {$6$}으로 맞춘다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc19의 빈칸 구하기와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2051,
+        "sourceFingerprint": "c8b0d049e8304bf0c362b287b5e18367fd8f1f41bc5e6ae42656779556d48906",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc6",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "합을 지키며 앞의 수를 $1$ 키울 때 뒤의 수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "합이 $10$인 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 {$1$ 작아진다}.",
+        "studentC": "합이 $10$인 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 □.",
+        "answers": [
+          "$1$ 작아진다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2051,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "c8b0d049e8304bf0c362b287b5e18367fd8f1f41bc5e6ae42656779556d48906",
+        "proposalFingerprint": "7df5c7ab44d7ea88448518041c7a41ff43f1ba04c3ebc22779c987cc172620eb",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "합 $10$에서 뒤의 수 변화",
+        "bReason": "짧은 수 변화 확인이라 설명 목표 없음",
+        "cDecision": "keep",
+        "cReason": "조건이 분명한 짧은 변화 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$1$ 줄어든다"
+          ]
+        ],
+        "exclusionReason": "합이 일정할 때 뒤의 수가 $1$ 작아진다는 단순 관계이고 xc19와 겹친다",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합을 지키며 앞의 수를 $1$ 키울 때 뒤의 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "합이 $10$인 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 {$1$ 작아진다}.",
+        "cStudentSentence": "합이 $10$인 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$ 작아진다",
+            "equivalents": [
+              "$1$ 줄어든다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "합이 $10$인 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 □.",
+          "answers": [
+            "$1$ 작아진다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "합이 $10$인 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 {$1$ 작아진다}.",
+          "acceptedAnswers": [
+            [
+              "$1$ 작아진다",
+              "$1$ 줄어든다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "짧은 수 변화 확인이라 설명 목표 없음"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2052,
+        "sourceFingerprint": "f7543e6adf03b1b8de1b160a033354e6421e1c8303123c2f7c1eb6af717308dc",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc7",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "차를 지키며 앞의 수를 $1$ 키울 때 뒤의 수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "차가 $5$인 뺄셈식에서 앞의 수가 $1$ 커지면 뒤의 수도 {$1$ 커진다}.",
+        "studentC": "차가 $5$인 뺄셈식에서 앞의 수가 $1$ 커지면 뒤의 수도 □.",
+        "answers": [
+          "$1$ 커진다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2052,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "f7543e6adf03b1b8de1b160a033354e6421e1c8303123c2f7c1eb6af717308dc",
+        "proposalFingerprint": "13e65902ffc733c0ac70b5f0db8cafe73750638f9384abc8e6800f433d442929",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "차 $5$에서 뒤의 수 변화",
+        "bReason": "짧은 수 변화 확인이라 설명 목표 없음",
+        "cDecision": "keep",
+        "cReason": "조건이 분명한 짧은 변화 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$1$ 늘어난다",
+            "$1$ 증가한다"
+          ]
+        ],
+        "exclusionReason": "차가 일정할 때 뒤의 수가 $1$ 커진다는 단순 관계이고 xc2와 겹친다",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차를 지키며 앞의 수를 $1$ 키울 때 뒤의 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "차가 $5$인 뺄셈식에서 앞의 수가 $1$ 커지면 뒤의 수도 {$1$ 커진다}.",
+        "cStudentSentence": "차가 $5$인 뺄셈식에서 앞의 수가 $1$ 커지면 뒤의 수도 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$ 커진다",
+            "equivalents": [
+              "$1$ 늘어난다",
+              "$1$ 증가한다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "차가 $5$인 뺄셈식에서 앞의 수가 $1$ 커지면 뒤의 수도 □.",
+          "answers": [
+            "$1$ 커진다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "차가 $5$인 뺄셈식에서 앞의 수가 $1$ 커지면 뒤의 수도 {$1$ 커진다}.",
+          "acceptedAnswers": [
+            [
+              "$1$ 커진다",
+              "$1$ 늘어난다",
+              "$1$ 증가한다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "짧은 수 변화 확인이라 설명 목표 없음"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2053,
+        "sourceFingerprint": "4c6ab2d0b2435a45b4c7c8ccd5f9f1734e1105357f873e79f40c69c99ebe5161",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc8",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "곱을 지키며 앞의 수를 $2$배 할 때 뒤의 수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 {$2$로 나눈다}.",
+        "studentC": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 □.",
+        "answers": [
+          "$2$로 나눈다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2053,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "4c6ab2d0b2435a45b4c7c8ccd5f9f1734e1105357f873e79f40c69c99ebe5161",
+        "proposalFingerprint": "5e719756f225c701b0b2b7b607a431efac524fc49fd541bda4364ab48eb6452c",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$3\\times8=24$에서 앞의 수 $3$을 $2$배인 $6$으로 바꾸어 곱을 $24$로 지키려면 뒤의 수는 얼마이며, 어떻게 구하는가?",
+        "bAnswer": "$4$. 앞의 수가 $2$배가 되었으므로 $8$을 $2$로 나눈다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$로 나눈다",
+              "반으로 줄인다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "곱을 지키는 뒤의 수",
+        "bReason": "곱 유지하며 반대로 나누는 방법 확인",
+        "cDecision": "keep",
+        "cReason": "곱셈식 조건이 분명한 짧은 계산 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "반으로 줄인다",
+            "$2$로 나누어야 한다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "곱을 지키며 앞의 수를 $2$배 할 때 뒤의 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 {$2$로 나눈다}.",
+        "cStudentSentence": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$로 나눈다",
+            "equivalents": [
+              "반으로 줄인다",
+              "$2$로 나누어야 한다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 □.",
+          "answers": [
+            "$2$로 나눈다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3\\times8=24$에서 앞의 수 $3$을 $2$배인 $6$으로 바꾸어 곱을 $24$로 지키려면 뒤의 수는 얼마이며, 어떻게 구하는가?",
+          "answer": "$4$. 앞의 수가 $2$배가 되었으므로 $8$을 $2$로 나눈다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$2$로 나눈다",
+                "반으로 줄인다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "곱이 $24$인 곱셈식에서 앞의 수를 $2$배 하면 뒤의 수는 {$2$로 나눈다}.",
+          "acceptedAnswers": [
+            [
+              "$2$로 나눈다",
+              "반으로 줄인다",
+              "$2$로 나누어야 한다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2054,
+        "sourceFingerprint": "2e598a68b1a6e9e6f899edcaa4fc1354c5eb43cb7f2e267c148b7869f0cb2ff4",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc10",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "수 배열에서 계산식 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "수 배열표에서 이웃한 두 수의 차가 일정하면 뺄셈식으로 그 규칙을 나타낼 수 있다. 수 배열 $3$, $7$, $11$, $15$에서 이웃한 두 수는 큰 수에서 작은 수를 뺀 차가 {$4$}로 일정하다.",
+        "studentC": "수 배열표에서 이웃한 두 수의 차가 일정하면 뺄셈식으로 그 규칙을 나타낼 수 있다. 수 배열 $3$, $7$, $11$, $15$에서 이웃한 두 수는 큰 수에서 작은 수를 뺀 차가 □로 일정하다.",
+        "answers": [
+          "$4$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2054,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "2e598a68b1a6e9e6f899edcaa4fc1354c5eb43cb7f2e267c148b7869f0cb2ff4",
+        "proposalFingerprint": "521ce9eef4ee1688b82f1bb660633d971a39d049fab9e0f86a25ec9ea37f144e",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "수 배열 $3$, $7$, $11$, $15$에서 이웃한 두 수의 차를 뺄셈식으로 나타내고, 알 수 있는 규칙을 쓰시오.",
+        "bAnswer": "$7-3=4$, $11-7=4$, $15-11=4$이므로 차가 $4$로 일정하다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "차가 $4$로 일정하다",
+              "$4$씩 커진다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "수 배열에서 차의 규칙",
+        "bReason": "이웃한 두 수의 차로 규칙을 확인",
+        "cDecision": "keep",
+        "cReason": "차 숫자를 묻는 선명한 계산 빈칸이라 유지",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "수 배열에서 계산식 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수 배열표에서 이웃한 두 수의 차가 일정하면 뺄셈식으로 그 규칙을 나타낼 수 있다. 수 배열 $3$, $7$, $11$, $15$에서 이웃한 두 수는 큰 수에서 작은 수를 뺀 차가 {$4$}로 일정하다.",
+        "cStudentSentence": "수 배열표에서 이웃한 두 수의 차가 일정하면 뺄셈식으로 그 규칙을 나타낼 수 있다. 수 배열 $3$, $7$, $11$, $15$에서 이웃한 두 수는 큰 수에서 작은 수를 뺀 차가 □로 일정하다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "수 배열표에서 이웃한 두 수의 차가 일정하면 뺄셈식으로 그 규칙을 나타낼 수 있다. 수 배열 $3$, $7$, $11$, $15$에서 이웃한 두 수는 큰 수에서 작은 수를 뺀 차가 □로 일정하다.",
+          "answers": [
+            "$4$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "수 배열 $3$, $7$, $11$, $15$에서 이웃한 두 수의 차를 뺄셈식으로 나타내고, 알 수 있는 규칙을 쓰시오.",
+          "answer": "$7-3=4$, $11-7=4$, $15-11=4$이므로 차가 $4$로 일정하다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "차가 $4$로 일정하다",
+                "$4$씩 커진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수 배열표에서 이웃한 두 수의 차가 일정하면 뺄셈식으로 그 규칙을 나타낼 수 있다. 수 배열 $3$, $7$, $11$, $15$에서 이웃한 두 수는 큰 수에서 작은 수를 뺀 차가 {$4$}로 일정하다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2055,
+        "sourceFingerprint": "3eaa98f92e4ccb47b24837d7e64ec4a5467170512761032bcbe1cf7df567d0e1",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc14",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "몫이 같은 식 만들기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "나눗셈식의 두 수에 {$0$이 아닌 같은 수를 곱하거나}, 두 수를 나누어떨어지게 같은 수로 나누어도 몫은 그대로이다.",
+        "example": {
+          "prompt": "$40\\div8$과 $20\\div4$의 몫이 같은 까닭은?",
+          "answer": "전체와 한 묶음이 함께 반이라서"
+        },
+        "studentC": "나눗셈식의 두 수에 □, 두 수를 나누어떨어지게 같은 수로 나누어도 몫은 그대로이다.",
+        "answers": [
+          "$0$이 아닌 같은 수를 곱하거나"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2055,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "3eaa98f92e4ccb47b24837d7e64ec4a5467170512761032bcbe1cf7df567d0e1",
+        "proposalFingerprint": "faca7c6492a934e64109d8a899ebee415acc5e1fc4c0f8774b20b5333e247eb4",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "몫이 같은 식 만들기",
+        "bReason": "1-6-3 xc13의 몫이 그대로와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "$40\\div8=5$에서 두 수를 똑같이 반으로 나눈 $20\\div4$의 몫은 {$5$}로 같다.",
+        "cReason": "문법이 어색한 긴 빈칸을 숫자 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "exclusionReason": "두 수에 같은 수를 곱하거나 나누어도 몫이 같다는 내용이 xc13과 같다",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몫이 같은 식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$40\\div8=5$에서 두 수를 똑같이 반으로 나눈 $20\\div4$의 몫은 {$5$}로 같다.",
+        "cStudentSentence": "$40\\div8=5$에서 두 수를 똑같이 반으로 나눈 $20\\div4$의 몫은 □로 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$40\\div8=5$에서 두 수를 똑같이 반으로 나눈 $20\\div4$의 몫은 {$5$}로 같다.",
+          "acceptedAnswers": [
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "1-6-3 xc13의 몫이 그대로와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2056,
+        "sourceFingerprint": "6b547fe7f003c33ae83cd3d59f986244c2cbf51e1914fc8967e95691a64ebf33",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc15",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "계산하지 않고 결과 알기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "결과가 일정한 계산식 배열에서는 {앞 식의 결과를 알면} 계산하지 않고도 다음 식의 결과를 안다.",
+        "studentC": "결과가 일정한 계산식 배열에서는 □ 계산하지 않고도 다음 식의 결과를 안다.",
+        "answers": [
+          "앞 식의 결과를 알면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2056,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "6b547fe7f003c33ae83cd3d59f986244c2cbf51e1914fc8967e95691a64ebf33",
+        "proposalFingerprint": "3bf32ebf31a0c99331e45afa030ff4c4376342a6e393e5dade2a2115ba65858c",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "결과가 일정한 배열 $3+7$, $4+6$, $5+5$에서 $3+7=10$이다. $5+5$의 결과는 얼마이며, 계산하지 않고 어떻게 아는가?",
+        "bAnswer": "$10$. 결과가 일정한 배열이므로 앞 식의 결과와 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과가 일정하다",
+              "앞 식의 결과와 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "계산 없이 결과 알기",
+        "bReason": "일정한 결과를 이용하는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$3+7$, $4+6$, $5+5$처럼 합이 일정한 배열에서 $3+7=10$이면 계산하지 않고도 $4+6$의 합이 {$10$}임을 안다.",
+        "cReason": "긴 구절 빈칸을 구체 식과 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "계산하지 않고 결과 알기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3+7$, $4+6$, $5+5$처럼 합이 일정한 배열에서 $3+7=10$이면 계산하지 않고도 $4+6$의 합이 {$10$}임을 안다.",
+        "cStudentSentence": "$3+7$, $4+6$, $5+5$처럼 합이 일정한 배열에서 $3+7=10$이면 계산하지 않고도 $4+6$의 합이 □임을 안다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$10$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "결과가 일정한 배열 $3+7$, $4+6$, $5+5$에서 $3+7=10$이다. $5+5$의 결과는 얼마이며, 계산하지 않고 어떻게 아는가?",
+          "answer": "$10$. 결과가 일정한 배열이므로 앞 식의 결과와 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$10$"
+              ]
+            },
+            {
+              "anyOf": [
+                "결과가 일정하다",
+                "앞 식의 결과와 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$3+7$, $4+6$, $5+5$처럼 합이 일정한 배열에서 $3+7=10$이면 계산하지 않고도 $4+6$의 합이 {$10$}임을 안다.",
+          "acceptedAnswers": [
+            [
+              "$10$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2057,
+        "sourceFingerprint": "037b1e2a7b98b1605119f7aeb8d11fabe522708f44347527458d101ee361d84b",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc16",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "합이 일정한 규칙을 말로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "합이 일정한 덧셈식은 한 수가 커진 만큼 {다른 수가 작아진다}고 말할 수 있다.",
+        "studentC": "합이 일정한 덧셈식은 한 수가 커진 만큼 □고 말할 수 있다.",
+        "answers": [
+          "다른 수가 작아진다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2057,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "037b1e2a7b98b1605119f7aeb8d11fabe522708f44347527458d101ee361d84b",
+        "proposalFingerprint": "c5612bed0235a2ce5b0e067efbf3b4d362f6927d79db3f0724ec65c4a9fa683a",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "합이 일정한 규칙 말하기",
+        "bReason": "xc19와 같은 변화 짝짓기 목표",
+        "cDecision": "rewrite",
+        "cAfter": "합이 일정한 덧셈식은 한 수가 커진 만큼 다른 수가 {작아진다}고 말할 수 있다.",
+        "cReason": "긴 서술어 빈칸을 짧은 낱말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "줄어든다"
+          ]
+        ],
+        "exclusionReason": "한 수가 커진 만큼 다른 수가 작아진다는 점이 xc19와 같다",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합이 일정한 규칙을 말로",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "합이 일정한 덧셈식은 한 수가 커진 만큼 다른 수가 {작아진다}고 말할 수 있다.",
+        "cStudentSentence": "합이 일정한 덧셈식은 한 수가 커진 만큼 다른 수가 □고 말할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아진다",
+            "equivalents": [
+              "줄어든다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "합이 일정한 덧셈식은 한 수가 커진 만큼 다른 수가 {작아진다}고 말할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "작아진다",
+              "줄어든다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc19와 같은 변화 짝짓기 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2058,
+        "sourceFingerprint": "0ffb6cb9730b78245be68ba9c20b0cbfded079ff96a39f93e237fa046c05891b",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc17",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "결과가 일정하지 않은 덧셈식 배열",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수가 모두 커지는 덧셈식 배열은 합이 그대로가 아니라 {두 수가 커진 만큼을 합한 만큼씩} 커진다.",
+        "example": {
+          "prompt": "$12+21$, $13+31$, $14+41$의 합이 $11$씩 커지는 까닭은?",
+          "answer": "두 수가 각각 $1$, $10$씩 커져서"
+        },
+        "studentC": "두 수가 모두 커지는 덧셈식 배열은 합이 그대로가 아니라 □ 커진다.",
+        "answers": [
+          "두 수가 커진 만큼을 합한 만큼씩"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2058,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "0ffb6cb9730b78245be68ba9c20b0cbfded079ff96a39f93e237fa046c05891b",
+        "proposalFingerprint": "64eede893a2787f5531f26255f7a0df7ce1c4fd17855ad8761aac1e6b8ebfba9",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$12+21$, $13+31$, $14+41$의 합이 몇씩 커지는지 구하고, 그 까닭을 쓰시오.",
+        "bAnswer": "$11$씩 커진다. 앞의 수가 $1$, 뒤의 수가 $10$씩 커져 $1+10=11$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$11$씩"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수가 커진 만큼을 합한다",
+              "$1+10=11$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "두 수가 커질 때 합의 변화",
+        "bReason": "커진 두 양을 합치는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$12+21$, $13+31$, $14+41$처럼 앞의 수는 $1$씩, 뒤의 수는 $10$씩 커지면 합은 {$11$}씩 커진다.",
+        "cReason": "긴 구절 빈칸을 구체 식과 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "결과가 일정하지 않은 덧셈식 배열",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$12+21$, $13+31$, $14+41$처럼 앞의 수는 $1$씩, 뒤의 수는 $10$씩 커지면 합은 {$11$}씩 커진다.",
+        "cStudentSentence": "$12+21$, $13+31$, $14+41$처럼 앞의 수는 $1$씩, 뒤의 수는 $10$씩 커지면 합은 □씩 커진다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$11$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$12+21$, $13+31$, $14+41$의 합이 몇씩 커지는지 구하고, 그 까닭을 쓰시오.",
+          "answer": "$11$씩 커진다. 앞의 수가 $1$, 뒤의 수가 $10$씩 커져 $1+10=11$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$11$씩"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 수가 커진 만큼을 합한다",
+                "$1+10=11$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$12+21$, $13+31$, $14+41$처럼 앞의 수는 $1$씩, 뒤의 수는 $10$씩 커지면 합은 {$11$}씩 커진다.",
+          "acceptedAnswers": [
+            [
+              "$11$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2059,
+        "sourceFingerprint": "88e2fd2cc00c34370928e1e4e771c45010b19feed569c41e1e2d8f10d2b36459",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc18",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "$11$을 곱하는 곱셈식 배열",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$11\\times2=22$, $11\\times3=33$처럼 곱하는 수가 $1$씩 커지면 곱은 {$11$씩} 커진다.",
+        "studentC": "$11\\times2=22$, $11\\times3=33$처럼 곱하는 수가 $1$씩 커지면 곱은 □ 커진다.",
+        "answers": [
+          "$11$씩"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2059,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "88e2fd2cc00c34370928e1e4e771c45010b19feed569c41e1e2d8f10d2b36459",
+        "proposalFingerprint": "ac506da74e696bdb3a4d409e8cad1b0dd337f6021a3518ce93b31fa4729a52f5",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$11\\times2=22$, $11\\times3=33$처럼 곱하는 수가 $1$ 커질 때 곱은 몇씩 커지며, 그 까닭은?",
+        "bAnswer": "$11$씩 커진다. 곱하는 수가 $1$ 커지면 $11$이 한 번 더 더해지기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$11$씩"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11$이 한 번 더 더해진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "곱이 $11$씩 커지는 까닭",
+        "bReason": "묶음이 하나 늘어 곱이 커지는 이유",
+        "cDecision": "keep",
+        "cReason": "식이 주어진 짧은 숫자 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$11$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$11$을 곱하는 곱셈식 배열",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$11\\times2=22$, $11\\times3=33$처럼 곱하는 수가 $1$씩 커지면 곱은 {$11$씩} 커진다.",
+        "cStudentSentence": "$11\\times2=22$, $11\\times3=33$처럼 곱하는 수가 $1$씩 커지면 곱은 □ 커진다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$11$씩",
+            "equivalents": [
+              "$11$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$11\\times2=22$, $11\\times3=33$처럼 곱하는 수가 $1$씩 커지면 곱은 □ 커진다.",
+          "answers": [
+            "$11$씩"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$11\\times2=22$, $11\\times3=33$처럼 곱하는 수가 $1$ 커질 때 곱은 몇씩 커지며, 그 까닭은?",
+          "answer": "$11$씩 커진다. 곱하는 수가 $1$ 커지면 $11$이 한 번 더 더해지기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$11$씩"
+              ]
+            },
+            {
+              "anyOf": [
+                "$11$이 한 번 더 더해진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$11\\times2=22$, $11\\times3=33$처럼 곱하는 수가 $1$씩 커지면 곱은 {$11$씩} 커진다.",
+          "acceptedAnswers": [
+            [
+              "$11$씩",
+              "$11$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2060,
+        "sourceFingerprint": "bbf99a361853081aa365a8262c770dac93e77067aed3ccfe220e96512faaab60",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc19",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "합이 같은 식으로 빈칸 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합이 같은 두 덧셈식에서는 한 수가 얼마나 달라졌는지 보고 {다른 수를 반대로 그만큼} 바꾸어 빈칸을 구한다.",
+        "example": {
+          "prompt": "$248+352=600$일 때 $250+\\square=600$의 $\\square$가 $350$인 까닭은?",
+          "answer": "$2$ 커진 만큼 $2$ 줄여서"
+        },
+        "studentC": "합이 같은 두 덧셈식에서는 한 수가 얼마나 달라졌는지 보고 □ 바꾸어 빈칸을 구한다.",
+        "answers": [
+          "다른 수를 반대로 그만큼"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2060,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "bbf99a361853081aa365a8262c770dac93e77067aed3ccfe220e96512faaab60",
+        "proposalFingerprint": "c1c2d598e273f1e9f5e62dd2bcd8b62ba619691e2da411775d666261136d342c",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$248+352=600$일 때 $250+\\square=600$이다. $\\square$에 알맞은 수를 구하고, 계산하지 않고 구하는 방법을 쓰시오.",
+        "bAnswer": "$350$. $248$이 $250$으로 $2$ 커졌으므로 $352$를 $2$ 줄인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$350$"
+            ]
+          },
+          {
+            "anyOf": [
+              "커진 만큼 다른 수를 줄인다",
+              "$352$에서 $2$를 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "합 유지하며 빈칸 구하기",
+        "bReason": "변화량을 반대로 적용하는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$248+352=600$에서 앞의 수를 $250$으로 $2$ 키우면 합이 $600$이 되도록 뒤의 수는 $352$보다 $2$ 작은 {$350$}으로 바꾼다.",
+        "cReason": "긴 구절 빈칸을 계산 결과 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합이 같은 식으로 빈칸 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$248+352=600$에서 앞의 수를 $250$으로 $2$ 키우면 합이 $600$이 되도록 뒤의 수는 $352$보다 $2$ 작은 {$350$}으로 바꾼다.",
+        "cStudentSentence": "$248+352=600$에서 앞의 수를 $250$으로 $2$ 키우면 합이 $600$이 되도록 뒤의 수는 $352$보다 $2$ 작은 □으로 바꾼다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$350$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$248+352=600$일 때 $250+\\square=600$이다. $\\square$에 알맞은 수를 구하고, 계산하지 않고 구하는 방법을 쓰시오.",
+          "answer": "$350$. $248$이 $250$으로 $2$ 커졌으므로 $352$를 $2$ 줄인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$350$"
+              ]
+            },
+            {
+              "anyOf": [
+                "커진 만큼 다른 수를 줄인다",
+                "$352$에서 $2$를 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$248+352=600$에서 앞의 수를 $250$으로 $2$ 키우면 합이 $600$이 되도록 뒤의 수는 $352$보다 $2$ 작은 {$350$}으로 바꾼다.",
+          "acceptedAnswers": [
+            [
+              "$350$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2061,
+        "sourceFingerprint": "69123a20a1cabd2af28d35475903474929f5d89d7ae6cd9e1d6e12853d4ec83c",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc20",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "받아내림을 피하는 뺄셈식",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$1000-385$는 $999-384$와 차가 {같아} 받아내림 없이 계산할 수 있다.",
+        "studentC": "$1000-385$는 $999-384$와 차가 □ 받아내림 없이 계산할 수 있다.",
+        "answers": [
+          "같아"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2061,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "69123a20a1cabd2af28d35475903474929f5d89d7ae6cd9e1d6e12853d4ec83c",
+        "proposalFingerprint": "a36695413852e710b72e840576e063ee40b1ef0ad0b875b095e59b19d26f5039",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$1000-385$를 $999-384$로 바꾸면 받아내림 없이 계산할 수 있다. 차를 구하고 두 식의 차가 같은 까닭을 쓰시오.",
+        "bAnswer": "$615$. 두 수에서 똑같이 $1$씩 빼서 차가 변하지 않는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$615$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수에서 똑같이 $1$씩 줄었다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "받아내림 피하는 뺄셈",
+        "bReason": "차 유지 성질을 계산에 쓰는지 확인",
+        "cDecision": "keep",
+        "cReason": "짧은 비교 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "같다",
+            "똑같아"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "받아내림을 피하는 뺄셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1000-385$는 $999-384$와 차가 {같아} 받아내림 없이 계산할 수 있다.",
+        "cStudentSentence": "$1000-385$는 $999-384$와 차가 □ 받아내림 없이 계산할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같아",
+            "equivalents": [
+              "같다",
+              "똑같아"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$1000-385$는 $999-384$와 차가 □ 받아내림 없이 계산할 수 있다.",
+          "answers": [
+            "같아"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1000-385$를 $999-384$로 바꾸면 받아내림 없이 계산할 수 있다. 차를 구하고 두 식의 차가 같은 까닭을 쓰시오.",
+          "answer": "$615$. 두 수에서 똑같이 $1$씩 빼서 차가 변하지 않는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$615$"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 수에서 똑같이 $1$씩 줄었다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1000-385$는 $999-384$와 차가 {같아} 받아내림 없이 계산할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "같아",
+              "같다",
+              "똑같아"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2062,
+        "sourceFingerprint": "0a0c97f16475c7880d572499f86e6fe84c6ad9a297d7e8520108afe09fb048a6",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc21",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "계산하기 쉬운 곱셈식으로 바꾸기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "곱셈식의 한 수를 $2$배 하고 다른 수를 반으로 하면 곱이 같으므로 {계산하기 쉬운 수}가 되게 바꿀 수 있다.",
+        "example": {
+          "prompt": "$25\\times16$을 $50\\times8$로 바꾸어 계산해도 되는 까닭은?",
+          "answer": "$2$배 하고 반으로 해 곱이 같아서"
+        },
+        "studentC": "곱셈식의 한 수를 $2$배 하고 다른 수를 반으로 하면 곱이 같으므로 □가 되게 바꿀 수 있다.",
+        "answers": [
+          "계산하기 쉬운 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2062,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "0a0c97f16475c7880d572499f86e6fe84c6ad9a297d7e8520108afe09fb048a6",
+        "proposalFingerprint": "9c6861d7ebbea9d24f57cfa7f12ee004ab97d1b22a5291e7ac10ac8d7e564920",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$25\\times16$을 $50\\times8$로 바꾸어 계산해도 되는 까닭과 곱을 쓰시오.",
+        "bAnswer": "$400$. 한 수를 $2$배 하고 다른 수를 반으로 해 곱이 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$400$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 수를 $2$배 하고 다른 수를 반으로 해 곱이 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "쉬운 곱셈식으로 바꾸기",
+        "bReason": "곱이 같은 이유와 계산을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$25\\times16$에서 $25$를 $2$배 하고 $16$을 반으로 하면 곱이 같은 $50\\times${$8$}로 바꾸어 계산하기 쉽다.",
+        "cReason": "'□가 되게' 빈칸을 구체 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "계산하기 쉬운 곱셈식으로 바꾸기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$25\\times16$에서 $25$를 $2$배 하고 $16$을 반으로 하면 곱이 같은 $50\\times${$8$}로 바꾸어 계산하기 쉽다.",
+        "cStudentSentence": "$25\\times16$에서 $25$를 $2$배 하고 $16$을 반으로 하면 곱이 같은 $50\\times$□로 바꾸어 계산하기 쉽다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$8$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$25\\times16$을 $50\\times8$로 바꾸어 계산해도 되는 까닭과 곱을 쓰시오.",
+          "answer": "$400$. 한 수를 $2$배 하고 다른 수를 반으로 해 곱이 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$400$"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 수를 $2$배 하고 다른 수를 반으로 해 곱이 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$25\\times16$에서 $25$를 $2$배 하고 $16$을 반으로 하면 곱이 같은 $50\\times${$8$}로 바꾸어 계산하기 쉽다.",
+          "acceptedAnswers": [
+            [
+              "$8$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2063,
+        "sourceFingerprint": "4f9ea134fada6a5fbc58c04614caf0f427d54c72df7544fa919d5e73e4168150",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc22",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "규칙에 맞지 않는 식 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "결과가 일정한 계산식 배열에서 규칙에 맞지 않는 식은 한 수가 달라진 만큼 다른 수가 {알맞게 달라지지 않은} 식이다.",
+        "example": {
+          "prompt": "합이 같아야 하는 배열 $7+3$, $8+2$, $9+0$에서 셋째 식이 규칙에 맞지 않는 까닭은?",
+          "answer": "$1$만 줄어야 하는데 $2$ 줄어서"
+        },
+        "studentC": "결과가 일정한 계산식 배열에서 규칙에 맞지 않는 식은 한 수가 달라진 만큼 다른 수가 □ 식이다.",
+        "answers": [
+          "알맞게 달라지지 않은"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2063,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "4f9ea134fada6a5fbc58c04614caf0f427d54c72df7544fa919d5e73e4168150",
+        "proposalFingerprint": "2d967fd0b90ec641b484c703691767fa10aea9a615ffb5a77132c4064bf1e2ac",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "합이 같아야 하는 배열 $7+3$, $8+2$, $9+0$에서 규칙에 맞지 않는 식은 어느 것이며, 까닭은?",
+        "bAnswer": "셋째 식. 앞의 수가 $1$ 커지면 뒤의 수는 $1$만 줄어야 하는데 $2$ 줄었기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "셋째 식"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$만 줄어야 하는데 $2$ 줄었다",
+              "합이 $10$이 되지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "규칙에 안 맞는 식 찾기",
+        "bReason": "달라진 만큼 맞는지 비교",
+        "cDecision": "rewrite",
+        "cAfter": "합이 같아야 하는 $7+3$, $8+2$, $9+0$에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ 작아져야 하므로 셋째 식은 $9+${$1$}이 되어야 한다.",
+        "cReason": "긴 구절 빈칸을 구체 식 속 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "규칙에 맞지 않는 식 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "합이 같아야 하는 $7+3$, $8+2$, $9+0$에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ 작아져야 하므로 셋째 식은 $9+${$1$}이 되어야 한다.",
+        "cStudentSentence": "합이 같아야 하는 $7+3$, $8+2$, $9+0$에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ 작아져야 하므로 셋째 식은 $9+$□이 되어야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "합이 같아야 하는 배열 $7+3$, $8+2$, $9+0$에서 규칙에 맞지 않는 식은 어느 것이며, 까닭은?",
+          "answer": "셋째 식. 앞의 수가 $1$ 커지면 뒤의 수는 $1$만 줄어야 하는데 $2$ 줄었기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "셋째 식"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1$만 줄어야 하는데 $2$ 줄었다",
+                "합이 $10$이 되지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "합이 같아야 하는 $7+3$, $8+2$, $9+0$에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ 작아져야 하므로 셋째 식은 $9+${$1$}이 되어야 한다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2064,
+        "sourceFingerprint": "df3ec6a5df18ec9f3d7dd76504c2ade88a4f64c56c789496f138470791731ca4",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc23",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "모든 자리가 $9$인 수에 $1$ 더하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "모든 자리가 $9$인 수에 $1$을 더하면 {자리마다 받아올림이 이어져} $1$ 뒤에 $0$만 있는 수가 된다.",
+        "example": {
+          "prompt": "$999+1$이 $1000$인 까닭은?",
+          "answer": "세 자리에서 모두 받아올려서"
+        },
+        "studentC": "모든 자리가 $9$인 수에 $1$을 더하면 □ $1$ 뒤에 $0$만 있는 수가 된다.",
+        "answers": [
+          "자리마다 받아올림이 이어져"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2064,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "df3ec6a5df18ec9f3d7dd76504c2ade88a4f64c56c789496f138470791731ca4",
+        "proposalFingerprint": "3c897433dfcfeca251c3337be49a02c149a06de33f7f2a55c0f6bce98c2a9aa2",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$999+1$이 $1000$인 까닭은?",
+        "bAnswer": "일, 십, 백의 자리에서 차례로 받아올림이 일어나 $1$ 뒤에 $0$이 세 개 있는 수가 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자리마다 받아올림이 이어진다",
+              "차례로 받아올림한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$999+1$의 받아올림",
+        "bReason": "받아올림이 이어지는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$999+1$은 일, 십, 백의 자리에서 차례로 {받아올림}이 있어 $1000$이 된다.",
+        "cReason": "긴 구절 빈칸을 익숙한 낱말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "받아올림이 이어져"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "모든 자리가 $9$인 수에 $1$ 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$999+1$은 일, 십, 백의 자리에서 차례로 {받아올림}이 있어 $1000$이 된다.",
+        "cStudentSentence": "$999+1$은 일, 십, 백의 자리에서 차례로 □이 있어 $1000$이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "받아올림",
+            "equivalents": [
+              "받아올림이 이어져"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$999+1$이 $1000$인 까닭은?",
+          "answer": "일, 십, 백의 자리에서 차례로 받아올림이 일어나 $1$ 뒤에 $0$이 세 개 있는 수가 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "자리마다 받아올림이 이어진다",
+                "차례로 받아올림한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$999+1$은 일, 십, 백의 자리에서 차례로 {받아올림}이 있어 $1000$이 된다.",
+          "acceptedAnswers": [
+            [
+              "받아올림",
+              "받아올림이 이어져"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2065,
+        "sourceFingerprint": "3ab0261c645fff8ee82cad15687d64ce90ad287e9a8b7f9b787d6e1c7a245268",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc25",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "두 자리 수에 $101$ 곱하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 자리 수에 $101$을 곱하면 {그 수의 $100$배와 그 수를 더한} 것이어서 같은 수가 두 번 이어진다.",
+        "example": {
+          "prompt": "$23\\times101$이 $2323$인 까닭은?",
+          "answer": "$23$의 $100$배에 $23$을 더해서"
+        },
+        "studentC": "두 자리 수에 $101$을 곱하면 □ 것이어서 같은 수가 두 번 이어진다.",
+        "answers": [
+          "그 수의 $100$배와 그 수를 더한"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2065,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "3ab0261c645fff8ee82cad15687d64ce90ad287e9a8b7f9b787d6e1c7a245268",
+        "proposalFingerprint": "b06f704f29ff4e2cde6cf753513f92821686bb980cdd4ebec87064a6a60a45b5",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$23\\times101$의 곱은 얼마이며, 곱에서 어떤 규칙이 보이는지와 그 까닭을 쓰시오.",
+        "bAnswer": "$2323$. $23$이 두 번 이어진다. $23\\times100=2300$에 $23$을 더하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2323$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$23$의 $100$배에 $23$을 더한다",
+              "$2300+23$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$101$ 곱하기의 규칙",
+        "bReason": "$100$배와 원래 수를 더하는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$23\\times101$은 $23$의 $100$배인 $2300$에 {$23$}을 더한 $2323$이다.",
+        "cReason": "긴 구절 빈칸을 구체 계산 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 자리 수에 $101$ 곱하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$23\\times101$은 $23$의 $100$배인 $2300$에 {$23$}을 더한 $2323$이다.",
+        "cStudentSentence": "$23\\times101$은 $23$의 $100$배인 $2300$에 □을 더한 $2323$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$23$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$23\\times101$의 곱은 얼마이며, 곱에서 어떤 규칙이 보이는지와 그 까닭을 쓰시오.",
+          "answer": "$2323$. $23$이 두 번 이어진다. $23\\times100=2300$에 $23$을 더하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2323$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$23$의 $100$배에 $23$을 더한다",
+                "$2300+23$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$23\\times101$은 $23$의 $100$배인 $2300$에 {$23$}을 더한 $2323$이다.",
+          "acceptedAnswers": [
+            [
+              "$23$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2066,
+        "sourceFingerprint": "640e47192dd36aa67222c3eaedbb6c785382c9dc8c4c7712e822847c3458be19",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc26",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "합이 $50$인 덧셈식 배열 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합이 $50$인 덧셈식 배열은 앞의 수를 $1$씩 키우고 뒤의 수를 {$1$씩 줄여} 만든다.",
+        "studentC": "합이 $50$인 덧셈식 배열은 앞의 수를 $1$씩 키우고 뒤의 수를 □ 만든다.",
+        "answers": [
+          "$1$씩 줄여"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2066,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "640e47192dd36aa67222c3eaedbb6c785382c9dc8c4c7712e822847c3458be19",
+        "proposalFingerprint": "9d8b1a079e9b8e602f95f944e951d55a5bcbb37dc9d8e6e9d1a9400d3801a43d",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc26",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "합 $50$ 덧셈식 배열",
+        "bReason": "xc19와 같은 변화 짝짓기 목표",
+        "cDecision": "keep",
+        "cReason": "조건이 분명한 짧은 서술 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$1$씩 작아지게",
+            "$1$씩 빼서"
+          ]
+        ],
+        "exclusionReason": "한 수를 키우고 다른 수를 줄인다는 목표가 xc6, xc19와 같다",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합이 $50$인 덧셈식 배열 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "합이 $50$인 덧셈식 배열은 앞의 수를 $1$씩 키우고 뒤의 수를 {$1$씩 줄여} 만든다.",
+        "cStudentSentence": "합이 $50$인 덧셈식 배열은 앞의 수를 $1$씩 키우고 뒤의 수를 □ 만든다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$씩 줄여",
+            "equivalents": [
+              "$1$씩 작아지게",
+              "$1$씩 빼서"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "합이 $50$인 덧셈식 배열은 앞의 수를 $1$씩 키우고 뒤의 수를 □ 만든다.",
+          "answers": [
+            "$1$씩 줄여"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "합이 $50$인 덧셈식 배열은 앞의 수를 $1$씩 키우고 뒤의 수를 {$1$씩 줄여} 만든다.",
+          "acceptedAnswers": [
+            [
+              "$1$씩 줄여",
+              "$1$씩 작아지게",
+              "$1$씩 빼서"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc19와 같은 변화 짝짓기 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2067,
+        "sourceFingerprint": "c88c4c9b79e96d3f2de5c054ae9e1579a50c518d18a027ddabba22352956bd2c",
+        "part": "e4plus",
+        "id": "e4-1-6-4-xc28",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "term": "올라갔다 내려오며 더한 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$1$부터 어떤 수까지 올라갔다가 다시 $1$까지 내려오며 더한 합은 {가운데 수를 두 번 곱한} 수이다.",
+        "example": {
+          "prompt": "$1+2+3+2+1$이 $3\\times3$과 같은 까닭은?",
+          "answer": "$3$씩 세 묶음으로 짝지어져서"
+        },
+        "studentC": "$1$부터 어떤 수까지 올라갔다가 다시 $1$까지 내려오며 더한 합은 □ 수이다.",
+        "answers": [
+          "가운데 수를 두 번 곱한"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2067,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-4 규칙적인 계산식 찾기",
+        "sourceFingerprint": "c88c4c9b79e96d3f2de5c054ae9e1579a50c518d18a027ddabba22352956bd2c",
+        "proposalFingerprint": "c26dd6ee98cd722d98b6d7c03a8c9b205f56b048e0b929596dcff54dd6fdc59c",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-4-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "$1+2+3+2+1$의 합을 구하고, 이 합이 가운데 수를 두 번 곱한 수와 같은 까닭을 쓰시오.",
+        "bAnswer": "$9$. $3$씩 세 묶음으로 짝지어져 $3\\times3$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$씩 세 묶음",
+              "짝지으면 $3\\times3$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "올라갔다 내려오는 합",
+        "bReason": "묶어 가운데 수를 두 번 곱하는 이유",
+        "cDecision": "rewrite",
+        "cAfter": "$1+2+3+4+3+2+1$의 합은 가운데 수 $4$를 두 번 곱한 {$16$}이다.",
+        "cReason": "긴 구절 빈칸을 구체 식과 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "올라갔다 내려오며 더한 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1+2+3+4+3+2+1$의 합은 가운데 수 $4$를 두 번 곱한 {$16$}이다.",
+        "cStudentSentence": "$1+2+3+4+3+2+1$의 합은 가운데 수 $4$를 두 번 곱한 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$16$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1+2+3+2+1$의 합을 구하고, 이 합이 가운데 수를 두 번 곱한 수와 같은 까닭을 쓰시오.",
+          "answer": "$9$. $3$씩 세 묶음으로 짝지어져 $3\\times3$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$9$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3$씩 세 묶음",
+                "짝지으면 $3\\times3$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1+2+3+4+3+2+1$의 합은 가운데 수 $4$를 두 번 곱한 {$16$}이다.",
+          "acceptedAnswers": [
+            [
+              "$16$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2068,
+        "sourceFingerprint": "41668349c7a387aff8e23966843364e118be009327065e8388761b794d734bf6",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc1",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "등호가 있는 식 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "등호가 있는 식은 왼쪽부터 읽고, 등호는 {~와 같다}로 읽는다.",
+        "example": {
+          "prompt": "$3+4=7$을 읽으면?",
+          "answer": "$3$ 더하기 $4$는 $7$과 같다"
+        },
+        "studentC": "등호가 있는 식은 왼쪽부터 읽고, 등호는 □로 읽는다.",
+        "answers": [
+          "~와 같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2068,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "41668349c7a387aff8e23966843364e118be009327065e8388761b794d734bf6",
+        "proposalFingerprint": "5b819274bf0506d3f85a1ca1b61ec2005a1dbed50d768e868ef81f4ed30c5eec",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "등호 읽기",
+        "bReason": "기호를 읽는 단순 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$3+4=7$은 $3$ 더하기 $4$는 $7$과 {같다}라고 읽는다.",
+        "cReason": "'~와 같다'를 예시 식으로 짧게 바꿈",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "exclusionReason": "기호 읽기 방법이고 설명할 의미·이유 목표가 없다",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "등호가 있는 식 읽기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3+4=7$은 $3$ 더하기 $4$는 $7$과 {같다}라고 읽는다.",
+        "cStudentSentence": "$3+4=7$은 $3$ 더하기 $4$는 $7$과 □라고 읽는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$3+4=7$은 $3$ 더하기 $4$는 $7$과 {같다}라고 읽는다.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "기호를 읽는 단순 확인"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2069,
+        "sourceFingerprint": "ede8ecfb9fc8ad723e164bbbaecd948dfb333fe3d47dd9b07b5c2f41593b82c8",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc2",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "등호 양쪽에 오는 것",
+        "kind": "성질",
+        "level": "하",
+        "definition": "등호 양쪽에는 {수}나 {식}이 올 수 있다.",
+        "studentC": "등호 양쪽에는 □나 □이 올 수 있다.",
+        "answers": [
+          "수",
+          "식"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2069,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "ede8ecfb9fc8ad723e164bbbaecd948dfb333fe3d47dd9b07b5c2f41593b82c8",
+        "proposalFingerprint": "b9fd55e0ef3eadbc21e6361c30c5e84a49a60dac84c02fd86a55e19108e2a382",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "등호 양쪽에 오는 것",
+        "bReason": "xc5와 같은 양쪽 모양 목록",
+        "cDecision": "rewrite",
+        "cAfter": "등호 양쪽에는 $10$ 같은 {수}나 $4+6$ 같은 {식}이 올 수 있다.",
+        "cReason": "수와 식 순서가 불분명해 예를 붙임",
+        "cSlotEquivalents": [
+          [
+            "숫자"
+          ],
+          [
+            "계산식"
+          ]
+        ],
+        "exclusionReason": "등호 양쪽에 수나 식이 올 수 있다는 목록이고 xc5와 같다",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "등호 양쪽에 오는 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "등호 양쪽에는 $10$ 같은 {수}나 $4+6$ 같은 {식}이 올 수 있다.",
+        "cStudentSentence": "등호 양쪽에는 $10$ 같은 □나 $4+6$ 같은 □이 올 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수",
+            "equivalents": [
+              "숫자"
+            ]
+          },
+          {
+            "expected": "식",
+            "equivalents": [
+              "계산식"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "등호 양쪽에는 $10$ 같은 {수}나 $4+6$ 같은 {식}이 올 수 있다.",
+          "acceptedAnswers": [
+            [
+              "수",
+              "숫자"
+            ],
+            [
+              "식",
+              "계산식"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc5와 같은 양쪽 모양 목록"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2070,
+        "sourceFingerprint": "80174dc51854e1aa60152aea0f34878e8953d4f83cadf5ea0bad4c7e320e63be",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc3",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "크기가 같은 두 양 잇기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "크기가 같은 두 양은 {등호}로 이어 하나의 식으로 나타낸다.",
+        "studentC": "크기가 같은 두 양은 □로 이어 하나의 식으로 나타낸다.",
+        "answers": [
+          "등호"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2070,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "80174dc51854e1aa60152aea0f34878e8953d4f83cadf5ea0bad4c7e320e63be",
+        "proposalFingerprint": "8d5dae3a686c5e7d2135c53c642c19c5cc2b57d31708aee979a494b4e519c698",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$2+3$과 $5$는 크기가 같다. 이 두 양을 하나의 식으로 나타내고 어떤 기호로 이었는지 쓰시오.",
+        "bAnswer": "$2+3=5$. 등호($=$)로 이었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2+3=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "등호",
+              "$=$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 두 양을 등호로 잇기",
+        "bReason": "같은 양을 한 식으로 쓰는지 확인",
+        "cDecision": "keep",
+        "cReason": "짧고 익숙한 기호 이름 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$=$",
+            "등호($=$)"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "크기가 같은 두 양 잇기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "크기가 같은 두 양은 {등호}로 이어 하나의 식으로 나타낸다.",
+        "cStudentSentence": "크기가 같은 두 양은 □로 이어 하나의 식으로 나타낸다.",
+        "cSlotAnswers": [
+          {
+            "expected": "등호",
+            "equivalents": [
+              "$=$",
+              "등호($=$)"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "크기가 같은 두 양은 □로 이어 하나의 식으로 나타낸다.",
+          "answers": [
+            "등호"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$2+3$과 $5$는 크기가 같다. 이 두 양을 하나의 식으로 나타내고 어떤 기호로 이었는지 쓰시오.",
+          "answer": "$2+3=5$. 등호($=$)로 이었다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2+3=5$"
+              ]
+            },
+            {
+              "anyOf": [
+                "등호",
+                "$=$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "크기가 같은 두 양은 {등호}로 이어 하나의 식으로 나타낸다.",
+          "acceptedAnswers": [
+            [
+              "등호",
+              "$=$",
+              "등호($=$)"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2071,
+        "sourceFingerprint": "ce2e43f62d4dedbf2d61c37863c89691d28014397cfca64517e8b17583ddac17",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc4",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "등호에서 계산식이 올 수 있는 자리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$10=4+6$처럼 등호의 {오른쪽}에 계산식이 와도 된다.",
+        "studentC": "$10=4+6$처럼 등호의 □에 계산식이 와도 된다.",
+        "answers": [
+          "오른쪽"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2071,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "ce2e43f62d4dedbf2d61c37863c89691d28014397cfca64517e8b17583ddac17",
+        "proposalFingerprint": "5a04c2520503eabb4150c8907a12b079be63d79582d11b9914d684e660e2880a",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "등호 오른쪽의 계산식",
+        "bReason": "자리 위치만 묻는 단순 확인",
+        "cDecision": "keep",
+        "cReason": "예시가 있어 위치 빈칸이 분명해 유지",
+        "cSlotEquivalents": [
+          [
+            "오른편"
+          ]
+        ],
+        "exclusionReason": "계산식이 등호 오른쪽에도 올 수 있다는 위치 확인이고 xc5와 겹친다",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "등호에서 계산식이 올 수 있는 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$10=4+6$처럼 등호의 {오른쪽}에 계산식이 와도 된다.",
+        "cStudentSentence": "$10=4+6$처럼 등호의 □에 계산식이 와도 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "오른쪽",
+            "equivalents": [
+              "오른편"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$10=4+6$처럼 등호의 □에 계산식이 와도 된다.",
+          "answers": [
+            "오른쪽"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$10=4+6$처럼 등호의 {오른쪽}에 계산식이 와도 된다.",
+          "acceptedAnswers": [
+            [
+              "오른쪽",
+              "오른편"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "자리 위치만 묻는 단순 확인"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2072,
+        "sourceFingerprint": "a00fd5c3531f6c4beffc7ff6be81b349406ea75153407a1830a5eadf015a1dfa",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc5",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "등호 양쪽에 함께 올 수 있는 것",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$2+5=3+4$처럼 등호 양쪽에 {계산식}이 함께 올 수 있다.",
+        "studentC": "$2+5=3+4$처럼 등호 양쪽에 □이 함께 올 수 있다.",
+        "answers": [
+          "계산식"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2072,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "a00fd5c3531f6c4beffc7ff6be81b349406ea75153407a1830a5eadf015a1dfa",
+        "proposalFingerprint": "5fd8846b5637c87834f0df0fd7081b1420d69925d24c4253202aea1599ccaaa0",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$2+5=3+4$처럼 등호 양쪽에 계산식이 있을 때, 바른 식인지 어떻게 확인하는가?",
+        "bAnswer": "양쪽을 각각 계산해 $7$과 $7$로 값이 같은지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양쪽을 각각 계산해 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$로 같다",
+              "값이 같다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "양쪽 식의 값 비교",
+        "bReason": "양쪽 값이 같은지 확인하는 방법",
+        "cDecision": "keep",
+        "cReason": "예시가 있는 익숙한 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "식",
+            "수식"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "등호 양쪽에 함께 올 수 있는 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2+5=3+4$처럼 등호 양쪽에 {계산식}이 함께 올 수 있다.",
+        "cStudentSentence": "$2+5=3+4$처럼 등호 양쪽에 □이 함께 올 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "계산식",
+            "equivalents": [
+              "식",
+              "수식"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$2+5=3+4$처럼 등호 양쪽에 □이 함께 올 수 있다.",
+          "answers": [
+            "계산식"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$2+5=3+4$처럼 등호 양쪽에 계산식이 있을 때, 바른 식인지 어떻게 확인하는가?",
+          "answer": "양쪽을 각각 계산해 $7$과 $7$로 값이 같은지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "양쪽을 각각 계산해 비교한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$7$로 같다",
+                "값이 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2+5=3+4$처럼 등호 양쪽에 {계산식}이 함께 올 수 있다.",
+          "acceptedAnswers": [
+            [
+              "계산식",
+              "식",
+              "수식"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

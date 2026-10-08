@@ -1,0 +1,852 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-e5e6-final-1960-1980-input.json",
+  "rows": [
+    {
+      "id": "e6-1-4-4-xc25",
+      "sourceIndex": 1960,
+      "proposalFingerprint": "fd46424bc425e279b85424651c70852ce7231481ef3d9ae92f941831dc7b6a8d",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "설탕물 $100\\,\\mathrm{g}$에 설탕 $20\\,\\mathrm{g}$이 든 것과 설탕물 $200\\,\\mathrm{g}$에 설탕 $10\\,\\mathrm{g}$이 든 것을 섞었다. 섞은 설탕물의 비율에서 기준량과 비교하는 양은 각각 무엇인지 쓰고 비율도 구하시오.",
+        "answer": "기준량은 합친 설탕물 전체 양 $300\\,\\mathrm{g}$, 비교하는 양은 그 안의 설탕 전체 양 $30\\,\\mathrm{g}$이다. 비율은 $30\\div300=0.1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준량은 합친 설탕물 전체 양 $300\\,\\mathrm{g}$",
+              "기준량 $300\\,\\mathrm{g}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교하는 양은 설탕 전체 양 $30\\,\\mathrm{g}$",
+              "비교하는 양 $30\\,\\mathrm{g}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$",
+              "$\\frac{1}{10}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "설탕물 $100\\,\\mathrm{g}$에 설탕 $20\\,\\mathrm{g}$, 설탕물 $200\\,\\mathrm{g}$에 설탕 $10\\,\\mathrm{g}$을 섞으면 기준량은 {$300\\,\\mathrm{g}$}, 비교하는 양은 {$30\\,\\mathrm{g}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$300\\,\\mathrm{g}$",
+            "$300$"
+          ],
+          [
+            "$30\\,\\mathrm{g}$",
+            "$30$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 비율을 평균내지 않고 전체끼리 구하는 관계를 구체적 값으로 묻는다.",
+      "cReason": "긴 구절 두 개를 외우게 하지 않고 합친 값을 직접 구하게 한다."
+    },
+    {
+      "id": "e6-1-4-4-xc26",
+      "sourceIndex": 1961,
+      "proposalFingerprint": "dfa7bdee1c9a61b8499c2eb2e89817d8e946af40bfb916ce2b7a7bf253a3a0a3",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "e6-1-4-4-xc23 및 xc11과 중복되어 제외하며 대체 ID는 xc23이다.",
+        "cloze": "e6-1-4-4-xc23 및 xc11과 중복되어 제외하며 대체 ID는 xc23이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc23의 두 마을 비교와 xc11이 같은 오류를 더 구체적으로 다룬다.",
+      "cReason": "'인구만'은 앞 문장에서 쉽게 짐작되는 낱말이라 가치가 낮다."
+    },
+    {
+      "id": "e6-1-4-4-xc27",
+      "sourceIndex": 1962,
+      "proposalFingerprint": "e4ef0fe8bc45277ab77c9c20aee39bf92c76d8e22fbe1b7624c751270afc1f37",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "걸린 시간과 간 거리가 달라도 빠르기가 같을 수 있는 까닭을 설명하시오. $2$시간에 $90\\,\\mathrm{km}$를 간 경우와 $3$시간에 $135\\,\\mathrm{km}$를 간 경우의 비율도 구하시오.",
+        "answer": "시간에 대한 거리의 비율이 같으면 한 시간에 평균 간 거리가 같아 빠르기가 같다. $90\\div2=45$, $135\\div3=45$로 둘 다 $45$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "시간에 대한 거리의 비율이 같다",
+              "한 시간에 평균 간 거리가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘 다 $45$",
+              "$45\\,\\mathrm{km}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$2$시간에 $90\\,\\mathrm{km}$, $3$시간에 $135\\,\\mathrm{km}$를 간 두 경우의 비율은 모두 {$45$}이므로 빠르기가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$45$",
+            "$45\\,\\mathrm{km}$"
+          ],
+          [
+            "같다",
+            "똑같다",
+            "동일하다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "시간과 거리가 달라도 시간당 거리가 같을 수 있음을 예로 보인다.",
+      "cReason": "긴 빈칸과 어색한 문장을 구체적 비율 계산과 비교 낱말로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-5-xc4",
+      "sourceIndex": 1963,
+      "proposalFingerprint": "626157cfcf2294877af360853547e687d29d8414831ee8ac8bab0dfe95342aff",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "백분율 $45\\%$를 분수로 나타내고, 백분율을 이렇게 바로 분수로 나타낼 수 있는 까닭을 기준량으로 설명하시오.",
+        "answer": "$\\frac{45}{100}$이다. 백분율은 기준량을 $100$으로 본 비율이므로 분모가 $100$인 분수로 나타낼 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{45}{100}$",
+              "$\\frac{9}{20}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "백분율은 기준량을 $100$으로 본 비율이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "백분율은 {분모가 $100$인 분수}로 바로 나타낼 수 있다. 기준량을 $100$으로 본 비율이기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "분모가 $100$인 분수"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단순 변환이 아니라 기준량 $100$ 때문임을 함께 요구한다.",
+      "cReason": "분모가 $100$인 분수라는 핵심 표현 하나를 묻고 뒤 문장이 정답 낱말을 그대로 주지 않아 유지한다."
+    },
+    {
+      "id": "e6-1-4-5-xc5",
+      "sourceIndex": 1964,
+      "proposalFingerprint": "62e0623fe627d37a9c088889c7958572df6fffe22b0d0b8accbe044d853a5609",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$100\\%$는 비율로 얼마인지 쓰고, 이때 비교하는 양은 기준량과 어떤 관계인지 설명하시오.",
+        "answer": "비율 $1$과 같다. 비교하는 양이 기준량 전체와 같다는 뜻이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율 $1$",
+              "$1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교하는 양이 기준량과 같다",
+              "기준량 전체를 뜻한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$100\\%$는 비율 {$1$}과 같아 기준량 전체를 뜻한다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "숫자 하나 암기가 아니라 양의 관계까지 요구한다.",
+      "cReason": "비율 $1$이라는 짧은 값 하나를 묻는 분명한 문장이다."
+    },
+    {
+      "id": "e6-1-4-5-xc6",
+      "sourceIndex": 1965,
+      "proposalFingerprint": "4b11a05b8321a1685148c38f81fb95dd9bfdfcdc0285ace83cfbecd3a751c1a1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$50\\%$는 기준량의 얼마인지 분수로 쓰고, 기준량이 $80$일 때 비교하는 양은 얼마인지 구하시오.",
+        "answer": "기준량의 $\\frac{1}{2}$(절반)이다. $80$의 $\\frac{1}{2}$은 $40$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "절반",
+              "반"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$50\\%$는 비율로 $\\frac{50}{100}$이므로 기준량의 {$\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$",
+            "절반",
+            "반",
+            "$0.5$배"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 의미를 먼저 묻고 예의 값 $40$으로 확인한다.",
+      "cReason": "첫 초안은 수식 안의 분자 한 칸에 빈칸을 넣어 기존 C 계약이 읽지 못했다. 같은 뜻의 분수 전체를 답하게 하여 절반·반 등의 참 동의어도 허용한다."
+    },
+    {
+      "id": "e6-1-4-5-xc7",
+      "sourceIndex": 1966,
+      "proposalFingerprint": "8a35b09c835ba8d07370de9292a82b5667ef8228bdcabfe24b0e98b4d8f87fee",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "비 $3:4$를 백분율로 나타낼 때 기준량은 어느 수이고 백분율은 얼마인지 쓰시오. 또 일반적으로 비를 백분율로 나타낼 때 기준량은 비의 어느 쪽 양인지 설명하시오.",
+        "answer": "기준량은 $4$이고 $75\\%$이다. 비에서 뒤에 오는 양이 기준량이다. $3+4$를 기준량으로 삼으면 안 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준량은 $4$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$75\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비의 뒤에 오는 양이 기준량이다",
+              "뒤의 항이 기준량이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비를 백분율로 나타낼 때는 {비의 뒤에 오는 양}을 기준량으로 삼는다.",
+        "acceptedAnswers": [
+          [
+            "비의 뒤에 오는 양"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원문 예를 질문에 넣어 $3+4$로 잘못 보는 오개념을 함께 다룬다.",
+      "cReason": "비의 뒤에 오는 양이 기준량이라는 핵심 한 가지를 묻는다."
+    },
+    {
+      "id": "e6-1-4-5-xc8",
+      "sourceIndex": 1967,
+      "proposalFingerprint": "122abf411febd8da4701b9074c6e4d800385bf828250c23087dc08faf46e8759",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$1\\%$는 기준량을 어떻게 나눈 것 중 어느 만큼인지 쓰고, 기준량이 $200$일 때 $1\\%$에 해당하는 양을 구하시오.",
+        "answer": "기준량을 $100$으로 똑같이 나눈 것 중 하나만큼이다. $200\\div100=2$이므로 $2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준량을 $100$으로 똑같이 나눈다",
+              "기준량을 $100$등분한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그중 하나",
+              "한 개만큼",
+              "$1$개만큼"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$1\\%$는 기준량을 $100$으로 똑같이 나눈 것 중 {하나}만큼이다.",
+        "acceptedAnswers": [
+          [
+            "하나"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$100$등분과 하나라는 뜻을 모두 묻고 예 $2$로 확인한다.",
+      "cReason": "기준량을 $100$으로 똑같이 나눈 것 중 하나라는 직관적 정의라 짧고 유용하다."
+    },
+    {
+      "id": "e6-1-4-5-xc9",
+      "sourceIndex": 1968,
+      "proposalFingerprint": "b2f1e60b4af7b63671a0e1f8c04fd089ed0dc5a80f51e795fd4777e7d1a22875",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "분수로 나타낸 비율 $\\frac{7}{20}$을 분모를 이용해 백분율로 나타내는 방법을 설명하고 값을 구하시오.",
+        "answer": "분모 $20$에 $5$를 곱해 분모를 $100$으로 만들고 분자에도 $5$를 곱해 $\\frac{35}{100}$로 고친다. $100$ 가운데 $35$라는 뜻이므로 $35\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모를 $100$으로 고친다",
+              "분모가 $100$인 분수로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자가 백분율의 수이다",
+              "$100$ 가운데 분자만큼이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35\\%$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\frac{3}{25}$의 분모 $25$를 $100$으로 만들려면 분자 $3$에도 {$4$}를 곱해야 하므로 $\\frac{3}{25}$은 {$12$}$\\%$이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원문 예를 활용해 방법과 읽는 이유를 함께 묻는다.",
+      "cReason": "xc4와 겹치는 낱말 빈칸 대신 분모를 고치는 실제 과정을 묻는다."
+    },
+    {
+      "id": "e6-1-4-5-xc11",
+      "sourceIndex": 1969,
+      "proposalFingerprint": "17980af1a048f5c0aba2368e41ff573da853c9ae038422e102c56399b4d46faa",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "한 전체를 겹치지 않게 여러 부분으로 나누었을 때 부분들의 백분율을 모두 더하면 얼마인지 쓰고 까닭을 설명하시오. 어떤 반 학생 중 안경 쓴 학생이 $40\\%$이면 안경 쓰지 않은 학생은 몇 $\\%$인지도 구하시오.",
+        "answer": "$100\\%$이다. 모든 부분을 합치면 기준량 전체가 되기 때문이다. 안경 쓰지 않은 학생은 $100-40=60$이므로 $60\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "부분을 모두 합치면 기준량 전체가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60\\%$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "같은 전체를 겹치지 않게 여러 부분으로 나눈 백분율을 모두 더하면 {$100\\%$}이다.",
+        "acceptedAnswers": [
+          [
+            "$100\\%$",
+            "$100$ 퍼센트"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "합과 까닭, 나머지 구하기를 연결해 묻는다.",
+      "cReason": "원문에 빠진 겹치지 않는다는 조건을 보충한다."
+    },
+    {
+      "id": "e6-1-4-5-xc12",
+      "sourceIndex": 1970,
+      "proposalFingerprint": "0274e7244464eefb373fd930cf6facf425ae2df2a8fa70e2707831ebb8c1494d",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "비율 $0.6$을 $60\\%$로 나타내면 숫자가 $100$배가 된다. 이때 실제 비교하는 양과 기준량은 달라지는지 쓰고 까닭을 설명하시오.",
+        "answer": "달라지지 않는다. 같은 양을 기준량 $100$으로 보고 다르게 나타낸 것이어서 숫자만 바뀐다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "변하지 않는다",
+              "달라지지 않는다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 양을 다르게 나타낸 것이다",
+              "기준량을 $100$으로 보고 나타낸 표현이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비율을 백분율로 나타내어 $\\%$ 앞의 숫자가 $100$배가 되어도, 실제 비교하는 양과 기준량은 {변하지 않는다}.",
+        "acceptedAnswers": [
+          [
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "숫자와 실제 양을 혼동하는 오개념을 직접 겨냥한다.",
+      "cReason": "숫자는 $100$배가 되어도 실제 양은 그대로라는 결론을 묻는 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-4-5-xc13",
+      "sourceIndex": 1971,
+      "proposalFingerprint": "396ac522a003661a62190b6ca5189b8ffcac48b148f9b8c4429ffdfda5371972",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "백분율 $35\\%$를 기준량을 $1$로 본 비율로 나타내는 방법을 쓰고, 그렇게 하는 까닭과 값을 소수로 구하시오.",
+        "answer": "$\\%$ 앞의 수를 $100$으로 나눈다. 기준량을 $100$에서 $1$로 줄여 보면 비교하는 양도 $100$분의 $1$이 되기 때문이다. $35\\div100=0.35$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100$으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준량을 $100$에서 $1$로 보면 비교하는 양도 같은 비로 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.35$",
+              "$\\frac{35}{100}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "백분율 $80\\%$를 비율로 나타내려면 $\\%$ 앞의 수 $80$을 {$100$}으로 나누므로 비율은 {$0.8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ],
+          [
+            "$0.8$",
+            "$\\frac{4}{5}$",
+            "$\\frac{80}{100}$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방법과 까닭, 값을 모두 묻는다.",
+      "cReason": "긴 구절 대신 실제 계산 과정과 값을 묻고 여러 동치 표현을 허용한다."
+    },
+    {
+      "id": "e6-1-4-5-xc14",
+      "sourceIndex": 1972,
+      "proposalFingerprint": "64319d629c264b3a9b1f7f65d7547e3715ce6e887ccf92348b1ea1e6ab9f6c44",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "비율이 $0$ 이상 $0.01$ 미만이면 백분율의 범위는 어떻게 되는지 쓰고, 비율 $0.003$은 몇 $\\%$인지 구하시오.",
+        "answer": "$0\\%$ 이상 $1\\%$ 미만이다. $0.003\\times100=0.3$이므로 $0.3\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0\\%$ 이상 $1\\%$ 미만"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.3\\%$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비율이 $0$ 이상 $0.01$ 미만이면 백분율은 {$0\\%$ 이상 $1\\%$ 미만}이다.",
+        "acceptedAnswers": [
+          [
+            "$0\\%$ 이상 $1\\%$ 미만"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "범위와 구체적 예를 함께 묻는다.",
+      "cReason": "비율의 범위가 백분율 범위로 이어짐을 묻는 분명한 문장이며 조건도 완결된다."
+    },
+    {
+      "id": "e6-1-4-5-xc15",
+      "sourceIndex": 1973,
+      "proposalFingerprint": "f2c61cb5aa92faf96f7fc4457527ed49d0f997c9254bd45bd8e312c1dfc61d0e",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비교하는 양과 기준량에 $0$보다 큰 같은 수를 각각 곱하면 백분율이 어떻게 되는지 쓰고 까닭을 설명하시오. 비교하는 양 $5$와 기준량 $20$에 각각 $3$을 곱한 경우의 백분율도 구하시오.",
+        "answer": "백분율은 변하지 않는다. 두 양의 비율이 같기 때문이다. $\\frac{15}{60}=\\frac{5}{20}=25\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "변하지 않는다",
+              "같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25\\%$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비교하는 양 $5$와 기준량 $20$에 각각 $3$을 곱한 $15$와 $60$의 백분율은 {$25\\%$}이고, 처음과 같다.",
+        "acceptedAnswers": [
+          [
+            "$25\\%$",
+            "$25$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 관계와 예의 정확한 답을 함께 요구한다.",
+      "cReason": "긴 조건 구절 암기 대신 실제 수로 같은 백분율을 확인하게 한다."
+    },
+    {
+      "id": "e6-1-4-5-xc16",
+      "sourceIndex": 1974,
+      "proposalFingerprint": "4c0bbd22c491db9c60a0cfc49ad87c4d09650ce317d5bcb208d8b93e15a77038",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "exclude",
+      "B": {
+        "prompt": "비교하는 양이 $30$으로 같을 때 기준량이 $50$인 경우와 $200$인 경우의 백분율을 각각 구하고, 백분율을 말할 때 무엇을 함께 밝혀야 하는지 설명하시오.",
+        "answer": "기준량이 $50$이면 $60\\%$, $200$이면 $15\\%$이다. 백분율은 기준량에 따라 달라지므로 기준량을 함께 밝혀야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$60\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준량을 함께 밝혀야 한다",
+              "기준량에 따라 달라진다"
+            ]
+          }
+        ]
+      },
+      "C": null,
+      "exclusions": {
+        "cloze": "기준량이 중요하다는 추상 메타 문장이며 대체 문항은 e6-1-4-5-xc21이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "추상적인 메타 문장을 비교 예와 연결해 묻는다.",
+      "cReason": "백분율도 비율이라는 짧은 낱말 빈칸으로 가치가 낮고 xc21과 중복된다."
+    },
+    {
+      "id": "e6-1-4-5-xc17",
+      "sourceIndex": 1975,
+      "proposalFingerprint": "bbc878134381dec16d0db8eaca274e619f7c40bd3156877063e3d4729ca67218",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "두 비율을 백분율로 나타내어 크기를 비교할 때 무엇을 보면 되는지 까닭과 함께 쓰시오. $\\frac{3}{5}$과 $\\frac{5}{8}$ 중 어느 비율이 더 큰지도 구하시오.",
+        "answer": "기준량을 모두 $100$으로 본 것이므로 백분율의 수가 큰 쪽이 더 크다. $60\\%$와 $62.5\\%$이므로 $\\frac{5}{8}$가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "백분율의 수가 큰 쪽이 더 큰 비율이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준량이 모두 $100$으로 같아졌다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{8}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\frac{3}{5}$은 $60\\%$, $\\frac{5}{8}$는 $62.5\\%$이므로 더 큰 비율은 {$\\frac{5}{8}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{5}{8}$",
+            "$0.625$",
+            "$62.5\\%$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비교 방법과 까닭, 구체 예 결론을 모두 묻는다.",
+      "cReason": "긴 설명 구절 대신 백분율로 바꿔 실제 비교하는 활동을 묻는다."
+    },
+    {
+      "id": "e6-1-4-5-xc19",
+      "sourceIndex": 1976,
+      "proposalFingerprint": "424f569209ac4232848843e37c17638d2ff5a4c9606c9c44cb432f9dc645a6e9",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "나중 양이 처음 양보다 클 때, 처음 양에 대한 나중 양의 백분율에서 $100\\%$를 뺀 값은 무엇을 나타내는지 까닭과 함께 쓰시오. 처음 양이 $50$, 나중 양이 $65$일 때 두 값을 구하시오.",
+        "answer": "늘어난 양의 백분율이다. 처음 양이 $100\\%$이므로 이를 빼면 늘어난 부분이 남는다. 나중 양은 $130\\%$이고 늘어난 양은 $30\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "늘어난 양의 백분율"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 양이 $100\\%$이다",
+              "기준량이 처음 양이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$130\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30\\%$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "처음 양이 $50$, 나중 양이 $65$일 때 나중 양은 처음 양의 $130\\%$이고, $130\\%-100\\%=30\\%$는 {늘어난 양}의 백분율이다.",
+        "acceptedAnswers": [
+          [
+            "늘어난 양",
+            "증가한 양",
+            "더 많아진 양"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "처음 양을 기준으로 둔 관계를 예의 정확한 값으로 확인한다.",
+      "cReason": "실제 수를 제시해 맥락 없는 낱말 빈칸을 이해 가능한 문장으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-5-xc20",
+      "sourceIndex": 1977,
+      "proposalFingerprint": "7c2bbe8572196c65a98e7e77cc8cc04372ebc49af2b07ff99216cc9a9b7c46cb",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비교하는 양이 $30$이고 백분율이 $20\\%$일 때, $1\\%$에 해당하는 양을 이용해 기준량을 구하는 방법을 설명하고 값을 쓰시오.",
+        "answer": "$30\\div20=1.5$가 $1\\%$에 해당하는 양이다. 기준량은 $100\\%$에 해당하는 양이므로 $1.5\\times100=150$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 양을 $\\%$ 앞의 수로 나눈 값이 $1\\%$에 해당하는 양이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 값에 $100$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$150$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비교하는 양 $30$이 $20\\%$일 때, $30\\div20=1.5$는 {$1\\%$}에 해당하는 양이고, 기준량은 $1.5\\times100=$ {$150$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1\\%$",
+            "일 퍼센트"
+          ],
+          [
+            "$150$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방법을 단계로 묻고 값 $150$으로 확인한다.",
+      "cReason": "수를 넣어 두 빈칸의 의미를 분명하게 한다."
+    },
+    {
+      "id": "e6-1-4-5-xc21",
+      "sourceIndex": 1978,
+      "proposalFingerprint": "ee7b6b94f2d2674d18a5df2f74a4b4e0a7afd628ba37ffcadfc46fd3f1418a7f",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$A$반은 학생 $20$명 중 $50\\%$, $B$반은 학생 $100$명 중 $30\\%$가 안경을 쓴다. 안경 쓴 학생 수는 어느 반이 더 많은지 구하고, 백분율이 더 작은 쪽이 학생 수는 더 많을 수 있는 까닭을 설명하시오.",
+        "answer": "$A$반은 $10$명, $B$반은 $30$명이므로 $B$반이 더 많다. 백분율은 기준량에 대한 비율이어서 기준량이 다르면 백분율이 작아도 양은 더 클 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$B$반이 더 많다",
+              "$B$반 $30$명, $A$반 $10$명"
+            ]
+          },
+          {
+            "anyOf": [
+              "백분율은 기준량에 대한 비율이다",
+              "기준량이 다르기 때문이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$A$반은 $20$명 중 $50\\%$, $B$반은 $100$명 중 $30\\%$일 때, 백분율이 더 큰 반은 {$A$}반이고 해당하는 학생 수가 더 많은 반은 {$B$}반이다.",
+        "acceptedAnswers": [
+          [
+            "$A$",
+            "$A$반"
+          ],
+          [
+            "$B$",
+            "$B$반"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "예를 질문에 넣어 정확한 답과 일반 이유를 함께 묻는다.",
+      "cReason": "더 작을 수도라는 애매한 빈칸 대신 구체적 두 반으로 확인하게 한다."
+    },
+    {
+      "id": "e6-1-4-5-xc22",
+      "sourceIndex": 1979,
+      "proposalFingerprint": "a07a1b9fa409d7c820060f87505ef6dad89ec6fc873cd11983ca05658e03f837",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "같은 $200$명에 대한 두 백분율이 $45\\%$와 $30\\%$일 때 두 경우의 사람 수의 차를 $1\\%$에 해당하는 사람 수를 이용해 구하는 방법을 쓰고 값을 구하시오. 두 기준량이 같아야 하는 까닭도 설명하시오.",
+        "answer": "$200$명의 $1\\%$는 $2$명이고 백분율의 수의 차는 $15$이므로 $2\\times15=30$명이다. 기준량이 같아야 $1\\%$에 해당하는 양이 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\%$에 해당하는 사람 수에 백분율의 수의 차를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30$명"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준량이 같아야 $1\\%$에 해당하는 양이 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "같은 $200$명에 대한 $45\\%$와 $30\\%$의 사람 수 차이는 $200$명의 $1\\%$인 {$2$}명에 $45-30=15$를 곱한 {$30$}명이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$30$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방법, 값, 조건의 이유를 모두 요구한다.",
+      "cReason": "같으면 한 단어 대신 실제 계산 과정을 묻는다."
+    }
+  ]
+}

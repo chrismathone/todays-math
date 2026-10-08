@@ -1,0 +1,175 @@
+{
+  "reader": "Codex direct actual normalized B/C/all answers/all criteria/generalDefinition rereading in tool output, no independent approval",
+  "readAt": "2026-10-07T11:31:58.908Z",
+  "candidateArtifact": {
+    "path": "candidates-160-180-v2.json",
+    "byteSha256": "60eb89300f3030550f8466d8df0c82d52b2db85bd262cbaab2119df92e34d821"
+  },
+  "actualOutput": {
+    "path": "after-160-180-v2.txt",
+    "byteSha256": "b6582fc1d78b57dca41db06a764738e9f61eaabdcea0795bee5001d4d0b3d52c",
+    "truncated": false
+  },
+  "rows": [
+    {
+      "originalDisputeIndex": 160,
+      "id": "m1-03-08-xc16",
+      "candidateFingerprint": "280abc34feb54cea74b452ef9dfb1d94968208367644b86ef1b90edcf3e41858",
+      "candidateNormalizedHash": "923fe21ce48b8d79c75301dd1baac77dd4fa1ef484b92860518949edb7d813d5",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 '아니므로'는 연결 표현만 복원한다. 해 자체를 구하는 빈칸으로 바꾸고 자연수 적합성 설명은 보존한다. B와 분수 표기가 아닌 값으로 판단하는 일반 설명은 타당하다."
+    },
+    {
+      "originalDisputeIndex": 161,
+      "id": "m2-03-05-xc13",
+      "candidateFingerprint": "1ca0738d015c4502bcfe69b88916691e5e4388ce0eda1ffa776aa3ab052e8993",
+      "candidateNormalizedHash": "e5905adccd622b19ea5e1624b2d1125bca4963ba84571abcacb8c390e109e568",
+      "verdict": "candidate-text-reread",
+      "reason": "'먼저 정수 계수로 고친다'라는 열린 범위를 실제 양변 연산으로 고정한다. 동치식 비교와 해의 개수 판단을 묻는다. B와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 162,
+      "id": "m2-03-06-xc2",
+      "candidateFingerprint": "876d456e0cc828ed67763f6786df205e354485f0500366daf1b28e6ee4ca222f",
+      "candidateNormalizedHash": "dd36c9bf0595695618b5aa58d61ed0f27713c574dcf0e9e6557e3504cc6baebc",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 후속 문장이 두 키 '조건', '식'을 노출한다. 합과 차를 각각 식으로 옮기는 구체 문항으로 고정한다. 독립된 조건의 필요성을 설명하는 B와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 163,
+      "id": "m2-03-07-xc9",
+      "candidateFingerprint": "f91649bfb968faee0b55297939625076db4a37d58f97ddc109e1cfb9c0ecd39c",
+      "candidateNormalizedHash": "0c2e07761b4764d9ef883d032296a004c736ce0075541c565f4ee8ab031572ef",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 '두 경우/식'은 범위가 열려 있다. B와 같은 구매 조건을 각각 방정식으로 옮겨 빈칸의 수학적 대상을 명확히 한다. 일반 설명을 숫자 사례로 바꾸지 않는다."
+    },
+    {
+      "originalDisputeIndex": 164,
+      "id": "m1-04-01-xc9",
+      "candidateFingerprint": "5eab9af3e5e1e502649a90518b0488f3df2a7943f1b5e473d9ef78b7eaaef9d7",
+      "candidateNormalizedHash": "1dda65ea1c85971503404232409fa31b98b503d04e752164687964eef7599d14",
+      "verdict": "candidate-text-reread",
+      "reason": "B 둘째 기준의 'y좌표를 알 수 없다'만으로는 여러 점이 가능한 이유가 생략될 수 있다. 가능한 y좌표가 여럿이라는 의미를 기준으로 명시한다. C와 일반 설명은 이미 좌표 두 개의 필요성을 묻고 타당하다."
+    },
+    {
+      "originalDisputeIndex": 165,
+      "id": "m1-04-01-xc15",
+      "candidateFingerprint": "e144236a19d7c4a26fcd7ea71bc8dd64585c322e33d431fb1668f71fe59c396b",
+      "candidateNormalizedHash": "9d84589a5d485626a1f7b4229cb4b7dd49c1cb4e2b3851570f704f9c456fc58c",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 '방정식' 자리는 식·등식 등에도 열려 있다. 축 위 조건의 수치와 그 조건에서 얻는 a를 묻는다. 후보 재독에서 뒤 식의 0 노출을 확인하여 해당 식은 인쇄하지 않도록 정리했다. B와 일반 설명의 일반 방법은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 166,
+      "id": "m2-03-07-xc23",
+      "candidateFingerprint": "dda4c2bfa437c1847e7628d8cda2ffd2735a73a0969e752418aebc3481916a8f",
+      "candidateNormalizedHash": "7e036612dcb029ed0f2a7fa635f68910f7e203138f7d32c6f219a92b2ac2eb13",
+      "verdict": "candidate-text-reread",
+      "reason": "B 이유 기준에 기준 양의 크기가 전체 증가율에 반영된다는 관계를 명시한다. C의 문법 조각은 두 집단의 증가 인원 합과 전체 증가율 계산으로 바꾼다. 일반 성질은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 167,
+      "id": "m1-04-01-xc19",
+      "candidateFingerprint": "4a4aedfb544637837ed86aaf6bc4cd3b55c1b73e9f7d81636870cc586298e5f1",
+      "candidateNormalizedHash": "fbaa7221b34676ad0c95b2c18d1673c761862bab39595c55a268dc31ede96184",
+      "verdict": "candidate-text-reread",
+      "reason": "학생 문장에는 '평균'도 나누는 수 2도 인쇄되지 않는다. '두 값을 더해 □로 나눈 값'은 평균 계산을 확인하는 수학적 조건이며 첫 빈칸은 그 정식 이름이다. 두 답이 같은 개념의 이름과 계산법이라는 이유만으로 답 노출로 볼 수 없고, 공식 이름·수치 해석은 유지하라는 지시에 부합한다. B의 좌표와 평균 기준 및 일반 설명도 타당하다."
+    },
+    {
+      "originalDisputeIndex": 168,
+      "id": "m1-04-01-xc7",
+      "candidateFingerprint": "a3ff73bd62e6a69f1a31bb0f95b9998bdc6856bf6e640cd71a4bbe8a4cd313f0",
+      "candidateNormalizedHash": "11309586f79c125810bf648373b0b84841ccae6bd6d1ad40b70bcec4a7b13e98",
+      "verdict": "candidate-text-reread",
+      "reason": "'가로 위치가 같고 세로 위치만 다르다'는 x좌표·y좌표의 수치 조건을 실제 위치로 해석한 이유이다. y축 평행이라는 첫 기준과 함께 쓰면 수학적으로 충분하며 같은 세로선이라는 단어만 필수로 만들 필요가 없다. 이 사례의 x좌표는 양수 2이므로 두 점의 y축 거리 대안도 타당하다. C와 일반 설명은 축 위 예외까지 유지한다."
+    },
+    {
+      "originalDisputeIndex": 169,
+      "id": "m2-03-08-xc9",
+      "candidateFingerprint": "257126765a9dcfd1be7bd29d295fa68f461a5e75c5b9e4ac2ddad7ae57902718",
+      "candidateNormalizedHash": "186d529e6c44a81e4c022f27ca196bb4b6eb5ac71f99c5d79450c8918efce4ed",
+      "verdict": "candidate-text-reread",
+      "reason": "C에서 어떤 따로 한 경우인지 제시되지 않아 답이 열린다. 일의 전체량을 1로 정하고 함께 일하는 날 수와 차례로 일하는 날 수를 주어 두 식을 고정한다. B와 일반 방법은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 170,
+      "id": "m2-03-09-xc14",
+      "candidateFingerprint": "76541041ab4e8e563779c0f8e9a158fd2e2a55a801ba58871225eae3c67010f7",
+      "candidateNormalizedHash": "0d9bfc96ea86ab32646c9122a6beabf5b0f394b50d93e4f98b6bbe9445569661",
+      "verdict": "candidate-text-reread",
+      "reason": "'양/더한'의 일반 어휘 복원을 영양소 양과 식품 질량의 관계를 실제 식으로 세우는 빈칸으로 바꾼다. 단순히 쉬워서 제외하지 않고 평가 대상을 명확하게 한다. 기존 B 형식 제외와 일반 설명은 그대로 둔다."
+    },
+    {
+      "originalDisputeIndex": 171,
+      "id": "m1-04-03-xc1",
+      "candidateFingerprint": "ac180a5b18861d471e3206b0c05db911245f4dd34ee530da72fe2b1f8c7fda2b",
+      "candidateNormalizedHash": "232fa08cad637874c377e8313f03fa0013eb920a8feb1dedb6788dde327025e6",
+      "verdict": "candidate-text-reread",
+      "reason": "'가로축과 세로축'이라는 짝 복원에서 벗어나 그래프 해석 전에 확인할 정보 자체를 묻는다. B와 일반 설명은 축이 나타내는 양을 확인하는 이유를 타당하게 설명한다."
+    },
+    {
+      "originalDisputeIndex": 172,
+      "id": "m1-04-03-xc3",
+      "candidateFingerprint": "24aa0cae9816787025b40ccd9ba3efd11e4c32a1525a3b55e02bddbd81558867",
+      "candidateNormalizedHash": "d399cb3a2aa5a4cfcdcfc255251f5c5e261e25325bf05f9202187d8b8bee41b9",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 물음에 y의 값이라는 목적이 이미 나와 y좌표 복원만 남는다. 좌표를 실제 대응 값으로 읽는 결과를 묻는다. B의 순서와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 173,
+      "id": "m2-03-09-xc21",
+      "candidateFingerprint": "30a23e2cfb2a2710921f7a489d572594d3eeb040291d4495259a0d464c09d058",
+      "candidateNormalizedHash": "fd0f10fc77edc556aaceed970e4d96f013fabf8e66b2a4a32bfe1c59454db2d5",
+      "verdict": "candidate-text-reread",
+      "reason": "C 첫 키가 뒤 문장에 그대로 나오는 노출을 제거한다. 증발 뒤 남는 소금과 혼합 뒤 총 소금을 계산하게 한다. B와 물만 증발할 때 보존되는 양에 관한 일반 설명은 그대로 둔다."
+    },
+    {
+      "originalDisputeIndex": 174,
+      "id": "m2-04-03-xc2",
+      "candidateFingerprint": "220772e9198def635c636f1855bd5daf3462f99a0aa7740ff4280b02b8afdcd1",
+      "candidateNormalizedHash": "606533ff692c57ae0164b08c08249d41d8a5e58ca303583eb3a4ef8397a80829",
+      "verdict": "candidate-text-reread",
+      "reason": "B 계산 방법이 필수 기준인데 물음은 값과 음수 표기만 요구한다. 방법 설명 요구를 물음에 명시해 기준과 일치시킨다. C와 일반 설명은 정확하다."
+    },
+    {
+      "originalDisputeIndex": 175,
+      "id": "m1-04-03-xc10",
+      "candidateFingerprint": "40d24152eb8164410edb5aba110af8a0d1137de1d5449c03997075f444519db7",
+      "candidateNormalizedHash": "7ad91248c1c8e2e60d3b258277c74a5a6987fa11bae63fc093695ebf369c8810",
+      "verdict": "candidate-text-reread",
+      "reason": "'많이/빠르게' 자리는 둘 다 크게로 읽힐 수 있다. 같은 시간에 이동한 거리가 다른 두 구간을 구체적으로 주고 더 빠른 구간을 선택하게 한다. B와 증가·감소 모두 변화량 크기로 비교하는 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 176,
+      "id": "m2-04-04-xc8",
+      "candidateFingerprint": "9b3a3f8ac0e1b62e474a26c8a9df5242e7c643be6b6d38e42f00ba18db1bd878",
+      "candidateNormalizedHash": "609b4fdcb82a5c7a4c0c927b9136553b561d8e6e08e83279ce083de23228471d",
+      "verdict": "candidate-text-reread",
+      "reason": "같은 snapshot의 key는 C pass이므로 독립 지적 전체를 실패로 바꾸지 않는다. 다만 blind의 열린 서술 범위 지적에 맞춰 그래프의 '모양'을 묻고 일차함수의 a≠0을 명시한다. 직선이라는 쉬운 정식 이름은 유효한 평가로 유지한다. B 제외와 일반 설명은 보존한다."
+    },
+    {
+      "originalDisputeIndex": 177,
+      "id": "m1-04-04-xc12",
+      "candidateFingerprint": "7c446490dde22c9a5251a6ae014136df9e58c5622e2efb44378a90961ba950b3",
+      "candidateNormalizedHash": "71c065205aa36eae43463348e9bb38681c01a3d78f1125b2dfe9fa19c7a10d45",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 key 응답은 B·C pass이다. 한 칸에 사분면 두 번호를 묶어 쓰는 형식은 계약상 허용되며 2,4와 4,2를 모두 인정해 나열 순서를 고정하지 않는다. 학생이 두 번호를 한 칸에 쓰는 데 모순이 없어 blind의 '칸 하나/답 두 개' 지적은 거짓양성이다. B의 음수 기울기 해석과 일반 설명도 유지한다."
+    },
+    {
+      "originalDisputeIndex": 178,
+      "id": "m1-04-04-xc13",
+      "candidateFingerprint": "7d34ded53743ca281aa1e970f85163b4838821ac02d8fa73e05bf01086b3aecd",
+      "candidateNormalizedHash": "e299aeffea049389638502129ddb19653fb8bbe01a14e996595888b7a243b345",
+      "verdict": "candidate-text-reread",
+      "reason": "key는 현재 C pass이지만 blind가 지적한 '같은지'는 문법 조각으로도 복원된다. 대입 결과의 값과 그래프 위 여부를 묻도록 좁힌다. B의 확인 방법과 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 179,
+      "id": "m2-04-05-xc19",
+      "candidateFingerprint": "eb167d07426992aafee8f07618fad2884cbfb3064cf06fd627d9246816fe1ad2",
+      "candidateNormalizedHash": "5ce4b06ccc9337dbcd065c691a5194157efc9bc2bb1a8bcf7e144811f7cb3180",
+      "verdict": "candidate-text-reread",
+      "reason": "'이 단원에서 다룬 세 가지'가 보이지 않아 다른 정당한 조합을 막는다. 세 정보 묶음을 물음 자체에 제시해 각각의 식을 구하게 하고 두 점의 좌표 조건도 명시적으로 묻는다. C의 모호한 정보 나열은 두 점으로 계수 결정하기로 바꾼다. 원래 일반 설명과 역할은 유지한다."
+    }
+  ]
+}

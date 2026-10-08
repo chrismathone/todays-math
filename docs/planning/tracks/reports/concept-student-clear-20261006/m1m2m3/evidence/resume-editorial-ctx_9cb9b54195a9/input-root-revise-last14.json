@@ -1,0 +1,1207 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:52:57.294Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-03-xc24",
+        "section": "중2::7. 닮음의 활용::평행선 사이의 선분의 길이의 비",
+        "term": "비가 같다는 사실의 한계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 직선의 조각 비가 같다는 사실만으로 임의의 세 직선이 {모두 평행}하다고 결론 낼 수는 없다.",
+        "studentC": "두 직선의 조각 비가 같다는 사실만으로 임의의 세 직선이 □하다고 결론 낼 수는 없다.",
+        "answers": [
+          "모두 평행"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-03-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "세 직선 $l$, $m$, $n$을 두 직선 $p$, $q$가 가로지른다. $p$는 세 직선과 차례로 점 $A$, $B$, $C$에서, $q$는 차례로 점 $D$, $E$, $F$에서 만나고 $\\overline{AB}:\\overline{BC}=\\overline{DE}:\\overline{EF}$이다. 이것만으로 $l$, $m$, $n$이 모두 평행하다고 할 수 있는지 쓰고 그 까닭을 쓰시오.",
+        "bAnswer": "할 수 없다. 예를 들어 서로 평행한 $p$, $q$ 위에 $\\overline{AB}=\\overline{BC}=1$, $\\overline{DE}=\\overline{EF}=2$가 되도록 점을 잡으면 비는 $1:1$로 같다. 그런데 직선 $AD$와 $BE$가 평행하다면 $ABED$가 평행사변형이 되어 $\\overline{AB}=\\overline{DE}$여야 하므로, 두 직선은 평행하지 않다.",
+        "bGoal": "평행선 비례 성질의 역이 성립하지 않음",
+        "bReason": "성질의 '한계'가 무엇인지 드러나도록 조건과 결론을 나누고, 반례로 판단하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "할 수 없다",
+              "모두 평행하다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비가 같아도 세 직선이 평행하지 않은 예를 들 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "함부로 내릴 수 없는 결론이 무엇인지 한 빈칸으로 묻는다.",
+        "learningRole": "reason",
+        "roleReason": "비가 같다는 것만으로 평행을 결론 낼 수 없음",
+        "authorBatch": 47,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3061,
+        "part": "m2plus",
+        "sourceFingerprint": "9b9eab640f72acd0b11919b25eaa4760e27bb177bfeaf66815bf1fe030720644",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3061
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 직선의 조각 비가 같다는 사실만으로 임의의 세 직선이 □하다고 결론 낼 수는 없다.",
+        "cFrozenDefinition": "두 직선의 조각 비가 같다는 사실만으로 임의의 세 직선이 {모두 평행}하다고 결론 낼 수는 없다.",
+        "cFrozenAnswers": [
+          "모두 평행"
+        ],
+        "cMarkedSentence": "두 직선의 조각 비가 같다는 사실만으로 임의의 세 직선이 {모두 평행}하다고 결론 낼 수는 없다.",
+        "cSlotAnswers": [
+          "모두 평행"
+        ],
+        "cStudentSentence": "두 직선의 조각 비가 같다는 사실만으로 임의의 세 직선이 □하다고 결론 낼 수는 없다.",
+        "cAnswers": [
+          "모두 평행"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모두 평행",
+            "equivalentAnswers": [
+              "모두 평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모두 평행"
+          ]
+        ],
+        "proposalFingerprint": "d685371ba64e6ab4038f1e622663552bfcf439b6c948ab245c6f82b2f875d7fd"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-04-xc11",
+        "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+        "term": "같은 꼭짓점의 각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 중점과 공통 꼭짓점으로 만든 작은 삼각형은 원래 삼각형과 두 변의 비가 같고 그 {끼인각}을 공유한다.",
+        "studentC": "두 중점과 공통 꼭짓점으로 만든 작은 삼각형은 원래 삼각형과 두 변의 비가 같고 그 □을 공유한다.",
+        "answers": [
+          "끼인각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-04-xc11",
+        "learningRole": "reason",
+        "roleReason": "두 변의 비가 같고 끼인각이 공통이라 SAS 닮음이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 할 때, $\\triangle AMN$과 $\\triangle ABC$가 어떤 닮음 조건으로 닮음인지 쓰고, 그 조건에 해당하는 변의 비와 각을 쓰시오.",
+        "bAnswer": "$\\mathrm{SAS}$ 닮음이다. $\\overline{AM}:\\overline{AB}=\\overline{AN}:\\overline{AC}=1:2$이고, 끼인각 $\\angle A$가 공통이다.",
+        "bGoal": "중점 삼각형의 닮음 근거",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\mathrm{SAS}$ 닮음"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AM}:\\overline{AB}=\\overline{AN}:\\overline{AC}$",
+              "두 변의 비가 $1:2$로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle A$가 공통이다",
+              "끼인각이 같다"
+            ]
+          }
+        ],
+        "bReason": "'같은 꼭짓점의 각'이 무엇에 쓰이는지 닮음 조건으로 특정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 $M$, $N$이라 하면 $\\triangle AMN$과 $\\triangle ABC$는 두 변의 길이의 비가 같고 그 {끼인각}인 $\\angle A$가 공통이므로 {$\\mathrm{SAS}$} 닮음이다.",
+        "cAnswers": [
+          "끼인각",
+          "$\\mathrm{SAS}$"
+        ],
+        "cReason": "'두 중점과 공통 꼭짓점'이 지칭이 모호하고 메타적이라 기호로 바꿨다.",
+        "studentLabel": "중점으로 만든 작은 삼각형의 닮음 조건",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3073,
+        "part": "m2plus",
+        "sourceFingerprint": "02b485d8c55ed16f5e2c110c9fb1fe40b093def6f92798fe84d654c14d9754a8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3073
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 $M$, $N$이라 하면 $\\triangle AMN$과 $\\triangle ABC$는 두 변의 길이의 비가 같고 그 {끼인각}인 $\\angle A$가 공통이므로 {$\\mathrm{SAS}$} 닮음이다.",
+        "cSlotAnswers": [
+          "끼인각",
+          "$\\mathrm{SAS}$"
+        ],
+        "cStudentSentence": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 $M$, $N$이라 하면 $\\triangle AMN$과 $\\triangle ABC$는 두 변의 길이의 비가 같고 그 □인 $\\angle A$가 공통이므로 □ 닮음이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "끼인각",
+            "equivalentAnswers": [
+              "끼인각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\mathrm{SAS}$",
+            "equivalentAnswers": [
+              "$\\mathrm{SAS}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "끼인각"
+          ],
+          [
+            "$\\mathrm{SAS}$"
+          ]
+        ],
+        "proposalFingerprint": "bea620cc711cbf3a4c8a9f3e4981374b72bf47e438b3906cbe118fa71ffc9d80"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-04-xc21",
+        "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+        "term": "중점 사각형의 둘레",
+        "kind": "공식",
+        "level": "상",
+        "definition": "볼록사각형의 네 중점을 차례로 이은 도형의 둘레는 원래 사각형의 두 {대각선 길이의 합}과 같다.",
+        "studentC": "볼록사각형의 네 중점을 차례로 이은 도형의 둘레는 원래 사각형의 두 □과 같다.",
+        "answers": [
+          "대각선 길이의 합"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-04-xc21",
+        "learningRole": "application",
+        "roleReason": "중점 사각형의 둘레는 두 대각선 길이의 합이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "볼록사각형 $ABCD$의 네 변의 중점을 차례로 이어 만든 사각형의 둘레를 대각선 $\\overline{AC}$, $\\overline{BD}$의 길이로 나타내고 이유를 쓰시오.",
+        "bAnswer": "$\\overline{AC}+\\overline{BD}$이다. 마주 보는 두 변은 각각 $\\frac{1}{2}\\overline{AC}$이고 나머지 두 변은 각각 $\\frac{1}{2}\\overline{BD}$이므로, 둘레는 $\\overline{AC}+\\overline{BD}$이다.",
+        "bGoal": "중점 사각형의 둘레를 대각선으로 표현",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AC}+\\overline{BD}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 변이 대각선의 $\\frac{1}{2}$이다",
+              "두 변은 $\\frac{1}{2}\\overline{AC}$, 두 변은 $\\frac{1}{2}\\overline{BD}$"
+            ]
+          }
+        ],
+        "bReason": "대각선의 이름을 주어 둘레를 식으로 나타내게 했다.",
+        "cDecision": "keep",
+        "cReason": "원래 사각형의 두 대각선이라는 지칭이 분명한 짧은 빈칸이다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3083,
+        "part": "m2plus",
+        "sourceFingerprint": "c6e027dd3ca3af7b0503968f1cd611bfe6393f08874d895a19ebd577ad7b7a44",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3083
+        },
+        "directReview": null,
+        "cFrozenSentence": "볼록사각형의 네 중점을 차례로 이은 도형의 둘레는 원래 사각형의 두 □과 같다.",
+        "cFrozenDefinition": "볼록사각형의 네 중점을 차례로 이은 도형의 둘레는 원래 사각형의 두 {대각선 길이의 합}과 같다.",
+        "cFrozenAnswers": [
+          "대각선 길이의 합"
+        ],
+        "cMarkedSentence": "볼록사각형의 네 중점을 차례로 이은 도형의 둘레는 원래 사각형의 두 {대각선 길이의 합}과 같다.",
+        "cSlotAnswers": [
+          "대각선 길이의 합"
+        ],
+        "cStudentSentence": "볼록사각형의 네 중점을 차례로 이은 도형의 둘레는 원래 사각형의 두 □과 같다.",
+        "cAnswers": [
+          "대각선 길이의 합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대각선 길이의 합",
+            "equivalentAnswers": [
+              "대각선 길이의 합",
+              "대각선의 길이의 합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "대각선 길이의 합",
+            "accept": [
+              "대각선의 길이의 합"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대각선 길이의 합",
+            "대각선의 길이의 합"
+          ]
+        ],
+        "proposalFingerprint": "50fe58a1a056875b5b85d2587d074c414156125c998a34614260ef14575a8450"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-04-xc22",
+        "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+        "term": "직사각형 안의 중점 사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형에 그은 대각선은 어느 쪽이나 길이가 같으므로 네 중점을 이은 사각형의 네 변도 같아 {마름모}가 된다.",
+        "studentC": "직사각형에 그은 대각선은 어느 쪽이나 길이가 같으므로 네 중점을 이은 사각형의 네 변도 같아 □가 된다.",
+        "answers": [
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-04-xc22",
+        "learningRole": "application",
+        "roleReason": "직사각형의 대각선 길이가 같아 중점 사각형은 마름모이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형 $ABCD$의 네 변의 중점을 차례로 이어 만든 사각형은 어떤 사각형인지 쓰고, 직사각형의 대각선의 성질을 이용하여 이유를 쓰시오.",
+        "bAnswer": "마름모이다. 중점 사각형의 각 변은 $\\frac{1}{2}\\overline{AC}$ 또는 $\\frac{1}{2}\\overline{BD}$인데, 직사각형은 $\\overline{AC}=\\overline{BD}$이므로 네 변의 길이가 모두 같다.",
+        "bGoal": "직사각형의 중점 사각형 판별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마름모"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선의 길이가 같아 네 변의 길이가 같다",
+              "$\\overline{AC}=\\overline{BD}$이므로 네 변이 모두 같다"
+            ]
+          }
+        ],
+        "bReason": "어떤 대각선 성질이 결론으로 이어지는지 이유를 함께 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "근거와 결론이 분명하고 도형 이름 빈칸이 유용하다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3084,
+        "part": "m2plus",
+        "sourceFingerprint": "b40ac05a56b5a006848f55b7cff53a3e7b7e36a70e6ee7f1a4c2f024f3bb5bca",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3084
+        },
+        "directReview": null,
+        "cFrozenSentence": "직사각형에 그은 대각선은 어느 쪽이나 길이가 같으므로 네 중점을 이은 사각형의 네 변도 같아 □가 된다.",
+        "cFrozenDefinition": "직사각형에 그은 대각선은 어느 쪽이나 길이가 같으므로 네 중점을 이은 사각형의 네 변도 같아 {마름모}가 된다.",
+        "cFrozenAnswers": [
+          "마름모"
+        ],
+        "cMarkedSentence": "직사각형에 그은 대각선은 어느 쪽이나 길이가 같으므로 네 중점을 이은 사각형의 네 변도 같아 {마름모}가 된다.",
+        "cSlotAnswers": [
+          "마름모"
+        ],
+        "cStudentSentence": "직사각형에 그은 대각선은 어느 쪽이나 길이가 같으므로 네 중점을 이은 사각형의 네 변도 같아 □가 된다.",
+        "cAnswers": [
+          "마름모"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "마름모",
+            "equivalentAnswers": [
+              "마름모"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "마름모"
+          ]
+        ],
+        "proposalFingerprint": "e48a5b450daa7b144df93ddf45971c9314003062d421cc56d5299c68c3306187"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-04-xc23",
+        "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+        "term": "마름모 안의 중점 사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "마름모의 대각선은 수직이므로 네 중점을 이은 사각형의 이웃한 변도 수직이어서 {직사각형}이 된다.",
+        "studentC": "마름모의 대각선은 수직이므로 네 중점을 이은 사각형의 이웃한 변도 수직이어서 □이 된다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-04-xc23",
+        "learningRole": "application",
+        "roleReason": "마름모의 대각선이 수직이라 중점 사각형은 직사각형이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모 $ABCD$의 네 변의 중점을 차례로 이어 만든 사각형은 어떤 사각형인지 쓰고, 마름모의 대각선의 성질을 이용하여 이유를 쓰시오.",
+        "bAnswer": "직사각형이다. 중점 사각형의 변은 각각 $\\overline{AC}$ 또는 $\\overline{BD}$에 평행한데, 마름모는 $\\overline{AC}\\perp\\overline{BD}$이므로 이웃한 두 변이 수직이다.",
+        "bGoal": "마름모의 중점 사각형 판별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선이 수직이라 이웃한 변이 수직이다",
+              "$\\overline{AC}\\perp\\overline{BD}$이므로 한 내각이 직각이다"
+            ]
+          }
+        ],
+        "bReason": "수직이라는 대각선 성질이 변의 수직으로 이어지는 이유를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "근거와 결론이 분명한 도형 이름 빈칸이라 유지한다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3085,
+        "part": "m2plus",
+        "sourceFingerprint": "b66e0bb2586e265dcd0b1645d890e8e61b1321b34c0b4c3c116765f6fc0cf08a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3085
+        },
+        "directReview": null,
+        "cFrozenSentence": "마름모의 대각선은 수직이므로 네 중점을 이은 사각형의 이웃한 변도 수직이어서 □이 된다.",
+        "cFrozenDefinition": "마름모의 대각선은 수직이므로 네 중점을 이은 사각형의 이웃한 변도 수직이어서 {직사각형}이 된다.",
+        "cFrozenAnswers": [
+          "직사각형"
+        ],
+        "cMarkedSentence": "마름모의 대각선은 수직이므로 네 중점을 이은 사각형의 이웃한 변도 수직이어서 {직사각형}이 된다.",
+        "cSlotAnswers": [
+          "직사각형"
+        ],
+        "cStudentSentence": "마름모의 대각선은 수직이므로 네 중점을 이은 사각형의 이웃한 변도 수직이어서 □이 된다.",
+        "cAnswers": [
+          "직사각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직사각형",
+            "equivalentAnswers": [
+              "직사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ],
+        "proposalFingerprint": "5045dd3bc345a9ce7b5c5f264a93bfd07ecdaaf8a3099b1e408e00213401551f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-05-xc3",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "중선과 각의 이등분선의 기준",
+        "kind": "정의",
+        "level": "하",
+        "definition": "중선은 맞은편 {변}을 반으로 나누는 점으로 향하고 각의 이등분선은 꼭짓점의 {각}을 반으로 나눈다.",
+        "studentC": "중선은 맞은편 □을 반으로 나누는 점으로 향하고 각의 이등분선은 꼭짓점의 □을 반으로 나눈다.",
+        "answers": [
+          "변",
+          "각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-xc3",
+        "learningRole": "definition",
+        "roleReason": "중선은 변을, 각의 이등분선은 각을 이등분한다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 꼭짓점 $A$에서 그은 중선이 $\\overline{BC}$와 만나는 점을 $D$, $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $E$라 할 때, 점 $D$와 점 $E$가 각각 만족하는 조건을 기호로 쓰시오.",
+        "bAnswer": "$\\overline{BD}=\\overline{DC}$, $\\angle BAE=\\angle EAC$",
+        "bGoal": "중선과 각의 이등분선의 구별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}=\\overline{DC}$",
+              "$D$는 $\\overline{BC}$의 중점"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle BAE=\\angle EAC$"
+            ]
+          }
+        ],
+        "bReason": "질문의 '이등분'을 베껴 쓰는 것을 막으려고 기호 조건으로 묻는다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형에서 한 꼭짓점에서 그은 중선은 맞은편 {변}을 이등분하는 점을 지나고, 그 꼭짓점에서 그은 각의 이등분선은 그 꼭짓점의 내각을 이등분한다.",
+        "cAnswers": [
+          "변"
+        ],
+        "cReason": "둘째 답 '각'이 '각의 이등분선'에서 그대로 보여 그 빈칸을 없앴다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3090,
+        "part": "m2plus",
+        "sourceFingerprint": "93c86f7bf4cfba0a8f5131c8135ec9468fd42460d6f5c84269447f6718f8dbce",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3090
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형에서 한 꼭짓점에서 그은 중선은 맞은편 {변}을 이등분하는 점을 지나고, 그 꼭짓점에서 그은 각의 이등분선은 그 꼭짓점의 내각을 이등분한다.",
+        "cSlotAnswers": [
+          "변"
+        ],
+        "cStudentSentence": "삼각형에서 한 꼭짓점에서 그은 중선은 맞은편 □을 이등분하는 점을 지나고, 그 꼭짓점에서 그은 각의 이등분선은 그 꼭짓점의 내각을 이등분한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변",
+            "equivalentAnswers": [
+              "변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변"
+          ]
+        ],
+        "proposalFingerprint": "469d6854c38f0dfd79b1d85cff64a4ed8428182388ceb9ce47dc6480cdccc141"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-05-xc5",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "무게중심을 찾는 두 선",
+        "kind": "방법",
+        "level": "하",
+        "definition": "삼각형에서 서로 다른 중선 {두 개}만 그어도 그 교점으로 무게중심을 찾을 수 있다.",
+        "studentC": "삼각형에서 서로 다른 중선 □만 그어도 그 교점으로 무게중심을 찾을 수 있다.",
+        "answers": [
+          "두 개"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-xc5",
+        "learningRole": "reason",
+        "roleReason": "세 중선이 한 점에서 만나므로 두 중선의 교점으로 충분하다.",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 무게중심을 찾을 때 세 중선을 모두 긋지 않아도 되는 이유를 쓰시오.",
+        "bAnswer": "세 중선은 항상 한 점에서 만나므로, 서로 다른 두 중선의 교점이 곧 무게중심이기 때문이다.",
+        "bGoal": "두 중선으로 무게중심을 찾는 이유",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 중선은 한 점에서 만난다",
+              "세 번째 중선도 같은 점을 지난다"
+            ]
+          }
+        ],
+        "bReason": "개수를 묻지 않고 두 중선으로 충분한 이유를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "짧고 분명한 절차 빈칸이라 유지한다.",
+        "studentLabel": "두 중선으로 무게중심 찾기",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3092,
+        "part": "m2plus",
+        "sourceFingerprint": "f2c0febca7f7b2523727543fc56ce788ca8bbadced44f734e208c2855bab26a6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3092
+        },
+        "directReview": null,
+        "cFrozenSentence": "삼각형에서 서로 다른 중선 □만 그어도 그 교점으로 무게중심을 찾을 수 있다.",
+        "cFrozenDefinition": "삼각형에서 서로 다른 중선 {두 개}만 그어도 그 교점으로 무게중심을 찾을 수 있다.",
+        "cFrozenAnswers": [
+          "두 개"
+        ],
+        "cMarkedSentence": "삼각형에서 서로 다른 중선 {두 개}만 그어도 그 교점으로 무게중심을 찾을 수 있다.",
+        "cSlotAnswers": [
+          "두 개"
+        ],
+        "cStudentSentence": "삼각형에서 서로 다른 중선 □만 그어도 그 교점으로 무게중심을 찾을 수 있다.",
+        "cAnswers": [
+          "두 개"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두 개",
+            "equivalentAnswers": [
+              "두 개",
+              "$2$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "두 개",
+            "accept": [
+              "$2$개"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "두 개",
+            "$2$개"
+          ]
+        ],
+        "proposalFingerprint": "b5cd5a01926fe79685ea5ca2604f0e21f2e367757ab3c4dfa06e94d51497d58a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-05-xc6",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "무게중심의 내부 위치",
+        "kind": "성질",
+        "level": "하",
+        "definition": "삼각형의 모양이 달라져도 무게중심은 삼각형의 {안쪽}에 놓인다.",
+        "studentC": "삼각형의 모양이 달라져도 무게중심은 삼각형의 □에 놓인다.",
+        "answers": [
+          "안쪽"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-xc6",
+        "learningRole": "reason",
+        "roleReason": "무게중심은 중선 위 두 끝점 사이에 있어 항상 내부에 있다.",
+        "bDecision": "rewrite",
+        "bPrompt": "둔각삼각형을 포함한 모든 삼각형에서 무게중심은 삼각형의 안쪽, 변 위, 바깥쪽 중 어디에 있는지 쓰고 그 이유를 쓰시오.",
+        "bAnswer": "항상 안쪽에 있다. 무게중심은 꼭짓점과 맞은편 변의 중점을 이은 중선 위에서 두 끝점 사이에 있고, 이 중선은 삼각형 안을 지나기 때문이다.",
+        "bGoal": "무게중심의 위치",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "안쪽",
+              "내부"
+            ]
+          },
+          {
+            "anyOf": [
+              "중선 위 두 끝점 사이에 있다",
+              "중선이 삼각형 안을 지난다"
+            ]
+          }
+        ],
+        "bReason": "외심과 달리 둔각삼각형에서도 내부에 있음을 이유와 함께 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "모양이 달라져도 위치가 같다는 비교가 분명한 짧은 빈칸이다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3093,
+        "part": "m2plus",
+        "sourceFingerprint": "7ce1617d81e7c0bee69ddb6731a970b87ebd89e8c0fab32415cbb6fe3980ad90",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3093
+        },
+        "directReview": null,
+        "cFrozenSentence": "삼각형의 모양이 달라져도 무게중심은 삼각형의 □에 놓인다.",
+        "cFrozenDefinition": "삼각형의 모양이 달라져도 무게중심은 삼각형의 {안쪽}에 놓인다.",
+        "cFrozenAnswers": [
+          "안쪽"
+        ],
+        "cMarkedSentence": "삼각형의 모양이 달라져도 무게중심은 삼각형의 {안쪽}에 놓인다.",
+        "cSlotAnswers": [
+          "안쪽"
+        ],
+        "cStudentSentence": "삼각형의 모양이 달라져도 무게중심은 삼각형의 □에 놓인다.",
+        "cAnswers": [
+          "안쪽"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "안쪽",
+            "equivalentAnswers": [
+              "안쪽",
+              "내부",
+              "안"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "안쪽",
+            "accept": [
+              "내부",
+              "안"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "안쪽",
+            "내부",
+            "안"
+          ]
+        ],
+        "proposalFingerprint": "97f6ac9bb0f1160ec5e4c6cfa45433319c131396e35e05e3da9209dd1d284dc1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-05-xc14",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "같은 중선 안에서 비 비교",
+        "kind": "방법",
+        "level": "중",
+        "definition": "무게중심이 중선을 $2:1$로 나눈다는 성질은 {같은 중선}의 꼭짓점 쪽 조각과 변의 중점 쪽 조각을 견준 것이라, 서로 다른 중선의 조각끼리 {섞어} 쓰지 않는다.",
+        "studentC": "무게중심이 중선을 $2:1$로 나눈다는 성질은 □의 꼭짓점 쪽 조각과 변의 중점 쪽 조각을 견준 것이라, 서로 다른 중선의 조각끼리 □ 쓰지 않는다.",
+        "answers": [
+          "같은 중선",
+          "섞어"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-xc14",
+        "learningRole": "reason",
+        "roleReason": "$2:1$은 같은 중선 위의 두 조각에만 쓴다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 무게중심을 $G$, $\\overline{BC}$와 $\\overline{CA}$의 중점을 각각 $D$, $E$라 하자. 어떤 학생이 $\\overline{AG}:\\overline{GE}=2:1$이라고 썼다. 이 식을 무게중심의 성질로 쓸 수 없는 이유를 쓰고, 성질로 바르게 쓸 수 있는 비 하나를 쓰시오.",
+        "bAnswer": "$\\overline{AG}$는 중선 $\\overline{AD}$의 조각이고 $\\overline{GE}$는 중선 $\\overline{BE}$의 조각이므로, 서로 다른 중선의 조각이다. 바른 예는 $\\overline{AG}:\\overline{GD}=2:1$ 또는 $\\overline{BG}:\\overline{GE}=2:1$이다.",
+        "bGoal": "$2:1$ 성질의 적용 범위",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 다른 중선의 조각이다",
+              "같은 중선 위가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AG}:\\overline{GD}=2:1$",
+              "$\\overline{BG}:\\overline{GE}=2:1$"
+            ]
+          }
+        ],
+        "bReason": "섞어 쓰는 오류를 구체적인 식으로 보여 줘야 판단할 수 있다.",
+        "cDecision": "rewrite",
+        "cAfter": "무게중심이 중선을 $2:1$로 나눈다는 것은 {같은 중선} 위의 꼭짓점 쪽 조각과 변의 중점 쪽 조각을 비교한 것이므로, 두 중선에서 한 조각씩 골라 이 비를 쓰면 안 된다.",
+        "cAnswers": [
+          "같은 중선"
+        ],
+        "cReason": "'서로 다른 중선'이 첫 답을 암시하고 '섞어' 빈칸이 약해 하나로 줄였다.",
+        "exampleNeeded": true,
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3101,
+        "part": "m2plus",
+        "sourceFingerprint": "65246125835a4962a4c2055ebc96ed5143d383f82972d3c4df766e627b197044",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3101
+        },
+        "directReview": null,
+        "cMarkedSentence": "무게중심이 중선을 $2:1$로 나눈다는 것은 {같은 중선} 위의 꼭짓점 쪽 조각과 변의 중점 쪽 조각을 비교한 것이므로, 두 중선에서 한 조각씩 골라 이 비를 쓰면 안 된다.",
+        "cSlotAnswers": [
+          "같은 중선"
+        ],
+        "cStudentSentence": "무게중심이 중선을 $2:1$로 나눈다는 것은 □ 위의 꼭짓점 쪽 조각과 변의 중점 쪽 조각을 비교한 것이므로, 두 중선에서 한 조각씩 골라 이 비를 쓰면 안 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 중선",
+            "equivalentAnswers": [
+              "같은 중선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은 중선"
+          ]
+        ],
+        "proposalFingerprint": "5e78a4e3795ff6d6347ab900f6a2edd7816cd2eef2fb2b316c64616d8f148100"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-05-xc18",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "무게중심에서 변까지의 높이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "무게중심에서 한 변까지의 거리는 그 변을 밑변으로 삼은 원래 삼각형 높이의 {삼분의 일}이다.",
+        "studentC": "무게중심에서 한 변까지의 거리는 그 변을 밑변으로 삼은 원래 삼각형 높이의 □이다.",
+        "answers": [
+          "삼분의 일"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-xc18",
+        "learningRole": "reason",
+        "roleReason": "$\\overline{GD}=\\frac{1}{3}\\overline{AD}$이므로 변까지의 거리도 $\\frac{1}{3}$이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 무게중심 $G$에서 직선 $BC$까지의 거리는, 꼭짓점 $A$에서 직선 $BC$까지의 거리(높이)의 몇 배인지 쓰고 이유를 쓰시오.",
+        "bAnswer": "$\\frac{1}{3}$배이다. $\\triangle GBC$의 넓이는 $\\triangle ABC$의 넓이의 $\\frac{1}{3}$이고 두 삼각형의 밑변 $\\overline{BC}$가 같으므로, 높이도 $\\frac{1}{3}$이다.",
+        "bGoal": "무게중심에서 변까지의 거리",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle GBC$의 넓이가 $\\frac{1}{3}$이고 밑변이 같다",
+              "$\\overline{GD}=\\frac{1}{3}\\overline{AD}$이므로 거리도 $\\frac{1}{3}$이다"
+            ]
+          }
+        ],
+        "bReason": "어느 두 거리를 비교하는지 꼭짓점과 변을 지정했다.",
+        "cDecision": "keep",
+        "cReason": "어느 변의 높이와 비교하는지 문장에 분명히 드러난다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3105,
+        "part": "m2plus",
+        "sourceFingerprint": "b7fab7215a614c788ef3696baea4f3df07d693e7ef9e9493cff21eac204d679f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3105
+        },
+        "directReview": null,
+        "cFrozenSentence": "무게중심에서 한 변까지의 거리는 그 변을 밑변으로 삼은 원래 삼각형 높이의 □이다.",
+        "cFrozenDefinition": "무게중심에서 한 변까지의 거리는 그 변을 밑변으로 삼은 원래 삼각형 높이의 {삼분의 일}이다.",
+        "cFrozenAnswers": [
+          "삼분의 일"
+        ],
+        "cMarkedSentence": "무게중심에서 한 변까지의 거리는 그 변을 밑변으로 삼은 원래 삼각형 높이의 {삼분의 일}이다.",
+        "cSlotAnswers": [
+          "삼분의 일"
+        ],
+        "cStudentSentence": "무게중심에서 한 변까지의 거리는 그 변을 밑변으로 삼은 원래 삼각형 높이의 □이다.",
+        "cAnswers": [
+          "삼분의 일"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "삼분의 일",
+            "equivalentAnswers": [
+              "삼분의 일",
+              "$\\frac{1}{3}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "삼분의 일",
+            "accept": [
+              "$\\frac{1}{3}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "삼분의 일",
+            "$\\frac{1}{3}$"
+          ]
+        ],
+        "proposalFingerprint": "2de3ac3e42d27854ea418ae382e2a46616411ccdfd679e8722639e809513b952"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-05-xc19",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "중선 위의 넓이 비",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\triangle ABC$의 중선 $\\overline{AD}$ 위에 무게중심 $G$가 있으면 $\\triangle ABG$와 $\\triangle GBD$의 넓이 비는 {$2:1$}이다.",
+        "studentC": "$\\triangle ABC$의 중선 $\\overline{AD}$ 위에 무게중심 $G$가 있으면 $\\triangle ABG$와 $\\triangle GBD$의 넓이 비는 □이다.",
+        "answers": [
+          "$2:1$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-xc19",
+        "learningRole": "application",
+        "roleReason": "높이가 같은 두 삼각형의 넓이 비는 밑변의 비 $2:1$이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 무게중심을 $G$, $\\overline{BC}$의 중점을 $D$라 할 때, $\\triangle ABG$와 $\\triangle GBD$의 넓이의 비를 쓰고 이유를 쓰시오.",
+        "bAnswer": "$2:1$이다. 두 삼각형은 밑변 $\\overline{AG}$, $\\overline{GD}$가 같은 직선 위에 있고, 꼭짓점 $B$에서 그 직선까지의 높이가 같으므로 넓이의 비는 $\\overline{AG}:\\overline{GD}=2:1$이다.",
+        "bGoal": "무게중심과 넓이의 비",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2:1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 같아 넓이의 비는 밑변의 비이다",
+              "$\\overline{AG}:\\overline{GD}=2:1$을 이용한다",
+              "각각 전체의 $\\frac{1}{3}$, $\\frac{1}{6}$이다"
+            ]
+          }
+        ],
+        "bReason": "두 삼각형을 기호로 지정하고 비의 근거까지 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "기호로 대상이 분명한 짧은 비 빈칸이라 유지한다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3106,
+        "part": "m2plus",
+        "sourceFingerprint": "439c98d00de95aaa1698424f632b33b2d696d6406cbbb5ee15915a28106c30ac",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3106
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\triangle ABC$의 중선 $\\overline{AD}$ 위에 무게중심 $G$가 있으면 $\\triangle ABG$와 $\\triangle GBD$의 넓이 비는 □이다.",
+        "cFrozenDefinition": "$\\triangle ABC$의 중선 $\\overline{AD}$ 위에 무게중심 $G$가 있으면 $\\triangle ABG$와 $\\triangle GBD$의 넓이 비는 {$2:1$}이다.",
+        "cFrozenAnswers": [
+          "$2:1$"
+        ],
+        "cMarkedSentence": "$\\triangle ABC$의 중선 $\\overline{AD}$ 위에 무게중심 $G$가 있으면 $\\triangle ABG$와 $\\triangle GBD$의 넓이 비는 {$2:1$}이다.",
+        "cSlotAnswers": [
+          "$2:1$"
+        ],
+        "cStudentSentence": "$\\triangle ABC$의 중선 $\\overline{AD}$ 위에 무게중심 $G$가 있으면 $\\triangle ABG$와 $\\triangle GBD$의 넓이 비는 □이다.",
+        "cAnswers": [
+          "$2:1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2:1$",
+            "equivalentAnswers": [
+              "$2:1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2:1$"
+          ]
+        ],
+        "proposalFingerprint": "9bb795720dbb4d21ea5aa83a61d06ce76f2aaa8dddf9b2ee6498dd4f7a949821"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-05-xc20",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "넓이로 무게중심 판별",
+        "kind": "성질",
+        "level": "상",
+        "definition": "삼각형 내부의 점과 {세 꼭짓점}을 이어 생긴 세 삼각형의 넓이가 모두 같으면 그 점은 무게중심이다.",
+        "studentC": "삼각형 내부의 점과 □을 이어 생긴 세 삼각형의 넓이가 모두 같으면 그 점은 무게중심이다.",
+        "answers": [
+          "세 꼭짓점"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-xc20",
+        "learningRole": "naming",
+        "roleReason": "세 삼각형의 넓이가 같게 하는 내부의 점은 무게중심이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 내부의 점 $P$에 대하여 $\\triangle PAB$, $\\triangle PBC$, $\\triangle PCA$의 넓이가 모두 같을 때, 점 $P$는 $\\triangle ABC$의 무엇인지 쓰시오.",
+        "bAnswer": "무게중심",
+        "bGoal": "넓이 조건으로 무게중심 판별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "무게중심"
+            ]
+          }
+        ],
+        "bReason": "c6의 역 방향으로, 넓이 조건에서 점의 이름을 판단하게 했다.",
+        "cDecision": "keep",
+        "cReason": "결론은 보이고 조건 대상만 묻는 짧은 빈칸이라 유지한다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3107,
+        "part": "m2plus",
+        "sourceFingerprint": "90e2566d15334bc51d3af4a8fbd0cb7cee2e92b2f53a99bef7078974b18413f9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3107
+        },
+        "directReview": null,
+        "cFrozenSentence": "삼각형 내부의 점과 □을 이어 생긴 세 삼각형의 넓이가 모두 같으면 그 점은 무게중심이다.",
+        "cFrozenDefinition": "삼각형 내부의 점과 {세 꼭짓점}을 이어 생긴 세 삼각형의 넓이가 모두 같으면 그 점은 무게중심이다.",
+        "cFrozenAnswers": [
+          "세 꼭짓점"
+        ],
+        "cMarkedSentence": "삼각형 내부의 점과 {세 꼭짓점}을 이어 생긴 세 삼각형의 넓이가 모두 같으면 그 점은 무게중심이다.",
+        "cSlotAnswers": [
+          "세 꼭짓점"
+        ],
+        "cStudentSentence": "삼각형 내부의 점과 □을 이어 생긴 세 삼각형의 넓이가 모두 같으면 그 점은 무게중심이다.",
+        "cAnswers": [
+          "세 꼭짓점"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "세 꼭짓점",
+            "equivalentAnswers": [
+              "세 꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "세 꼭짓점"
+          ]
+        ],
+        "proposalFingerprint": "310e956a7491437a66db8625e4ed6367829473fc880d73a1fd611e6e9f6e2c0b"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-05-xc22",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "길이 비를 보이는 보조선",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 중선의 끝인 변의 중점을 연결하면 밑변과 평행하고 길이가 절반인 선분이 생겨 {닮음}으로 무게중심의 길이 비를 보일 수 있다.",
+        "studentC": "두 중선의 끝인 변의 중점을 연결하면 밑변과 평행하고 길이가 절반인 선분이 생겨 □으로 무게중심의 길이 비를 보일 수 있다.",
+        "answers": [
+          "닮음"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-xc22",
+        "learningRole": "reason",
+        "roleReason": "중점 연결 선분과 닮음으로 $2:1$을 증명한다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\overline{BC}$, $\\overline{CA}$의 중점을 각각 $D$, $E$라 하고 중선 $\\overline{AD}$, $\\overline{BE}$의 교점을 $G$라 하자. 선분 $DE$를 그어 $\\overline{AG}:\\overline{GD}=2:1$임을 보이는 방법을 쓰시오.",
+        "bAnswer": "$\\triangle CAB$에서 $D$, $E$는 두 변의 중점이므로 $\\overline{DE}\\parallel\\overline{AB}$, $\\overline{DE}=\\frac{1}{2}\\overline{AB}$이다. 평행선의 엇각과 맞꼭지각으로 $\\triangle GAB\\sim\\triangle GDE$($\\mathrm{AA}$ 닮음)이고 닮음비가 $\\overline{AB}:\\overline{DE}=2:1$이므로 $\\overline{AG}:\\overline{GD}=2:1$이다.",
+        "bGoal": "무게중심 $2:1$의 증명",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{DE}\\parallel\\overline{AB}$이고 $\\overline{DE}=\\frac{1}{2}\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle GAB\\sim\\triangle GDE$"
+            ]
+          },
+          {
+            "anyOf": [
+              "닮음비 $2:1$이므로 $\\overline{AG}:\\overline{GD}=2:1$"
+            ]
+          }
+        ],
+        "bReason": "'보조선'이 어느 선분인지 점의 이름으로 특정해 증명 흐름을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형에서 두 중선이 맞은편 변과 만나는 두 중점을 이으면 남은 한 변과 평행하고 길이가 그 변의 절반인 선분이 생기므로, 두 삼각형의 {닮음}을 이용해 무게중심이 중선을 {$2:1$}로 나눔을 보일 수 있다.",
+        "cAnswers": [
+          "닮음",
+          "$2:1$"
+        ],
+        "cReason": "'밑변'이 어느 변인지 모호해 남은 한 변으로 밝혔다.",
+        "studentLabel": "무게중심 $2:1$을 보이는 보조선",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3109,
+        "part": "m2plus",
+        "sourceFingerprint": "b7a72e83a03618a5021e95490ae0602ace945c1ddaa7b1750eb1aee17efd4597",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3109
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형에서 두 중선이 맞은편 변과 만나는 두 중점을 이으면 남은 한 변과 평행하고 길이가 그 변의 절반인 선분이 생기므로, 두 삼각형의 {닮음}을 이용해 무게중심이 중선을 {$2:1$}로 나눔을 보일 수 있다.",
+        "cSlotAnswers": [
+          "닮음",
+          "$2:1$"
+        ],
+        "cStudentSentence": "삼각형에서 두 중선이 맞은편 변과 만나는 두 중점을 이으면 남은 한 변과 평행하고 길이가 그 변의 절반인 선분이 생기므로, 두 삼각형의 □을 이용해 무게중심이 중선을 □로 나눔을 보일 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "닮음",
+            "equivalentAnswers": [
+              "닮음"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2:1$",
+            "equivalentAnswers": [
+              "$2:1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "닮음"
+          ],
+          [
+            "$2:1$"
+          ]
+        ],
+        "proposalFingerprint": "f3b87b92dcdec994c17d433cece7e020b3758f0fb1e6c8deff65eae54e33f44b"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-07-05-xc23",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "합동과 같은 넓이 구별",
+        "kind": "성질",
+        "level": "상",
+        "definition": "세 중선이 나눈 여섯 삼각형은 넓이가 같아도 {변과 각}까지 같다는 합동을 뜻하지는 않는다.",
+        "studentC": "세 중선이 나눈 여섯 삼각형은 넓이가 같아도 □까지 같다는 합동을 뜻하지는 않는다.",
+        "answers": [
+          "변과 각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-xc23",
+        "learningRole": "reason",
+        "roleReason": "넓이가 같다고 해서 합동은 아니다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에 세 중선을 그어 생긴 여섯 개의 작은 삼각형은 넓이가 모두 같다. 이 여섯 삼각형이 항상 서로 합동이라고 할 수 있는지 쓰고 이유를 쓰시오.",
+        "bAnswer": "항상 합동이라고 할 수는 없다. 합동은 대응하는 변의 길이와 각의 크기가 모두 같아야 하는데, 작은 삼각형들은 원래 삼각형의 서로 다른 변의 절반을 한 변으로 가지므로 세 변의 길이가 다르면 변의 길이가 달라질 수 있다.",
+        "bGoal": "넓이가 같음과 합동의 구별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "항상 합동은 아니다",
+              "합동이라고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이가 같아도 변의 길이나 각의 크기가 다를 수 있다",
+              "합동은 변과 각이 같아야 한다"
+            ]
+          }
+        ],
+        "bReason": "넓이가 같다는 사실을 주고 합동 여부를 판단하게 하여 개념을 구별시킨다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 중선이 나눈 여섯 삼각형은 {넓이}가 모두 같지만, 대응하는 변의 길이와 각의 크기가 모두 같아야 하는 {합동}이라고는 할 수 없다.",
+        "cAnswers": [
+          "넓이",
+          "합동"
+        ],
+        "cReason": "답 '변과 각'이 어색한 단어 빈칸이라 넓이와 합동을 대비하게 고쳤다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3110,
+        "part": "m2plus",
+        "sourceFingerprint": "606c221309591a62f80364a7f58d904f109b6829d37dec37759dfe3f868e2e9f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3110
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형의 세 중선이 나눈 여섯 삼각형은 {넓이}가 모두 같지만, 대응하는 변의 길이와 각의 크기가 모두 같아야 하는 {합동}이라고는 할 수 없다.",
+        "cSlotAnswers": [
+          "넓이",
+          "합동"
+        ],
+        "cStudentSentence": "삼각형의 세 중선이 나눈 여섯 삼각형은 □가 모두 같지만, 대응하는 변의 길이와 각의 크기가 모두 같아야 하는 □이라고는 할 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "넓이",
+            "equivalentAnswers": [
+              "넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "넓이"
+          ],
+          [
+            "합동"
+          ]
+        ],
+        "proposalFingerprint": "4eb184dc5950fd5254a4fe6988fdd4114c658c17e1633b712ad5d95748103207"
+      }
+    }
+  ]
+}

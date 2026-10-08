@@ -1,0 +1,19 @@
+{
+  "method": "Exact existing per-ID direct-core reason copied; no new reason or general definition authored.",
+  "rows": [
+    {
+      "id": "e6-2-1-1-c1",
+      "copiedField": "coreTargetReason",
+      "copiedReason": "분자라는 원문 표적과 진분수·가분수 표현 및0 아닌 제수 조건은 보존한다. 배 관계·조각의개수라는 추상어 대신 분수 나눗셈의 몫을 구하는 일반 방법을 직접 말한다.",
+      "sourceEvidence": "codex-core-editorial.json",
+      "generalDefinitionUnchanged": "진분수나 가분수로 나타낸 두 분수의 분모가 같고 나누는 분수가 $0$이 아니면, 두 분수의 {분자}끼리 나누어 몫을 구한다."
+    },
+    {
+      "id": "e6-2-1-1-xc17",
+      "copiedField": "coreTargetReason",
+      "copiedReason": "통분이라는 원문 표적과0 아닌 제수 조건을 보존한다. 조각의크기라는 추가 비유 없이 분모를 같게 만드는 과정의 실제 완료 조건으로 일반 이유를 설명한다.",
+      "sourceEvidence": "codex-core-editorial.json",
+      "generalDefinitionUnchanged": "분모가 같고 나누는 분수가 $0$이 아닌 두 분수의 나눗셈에서는, 두 분수의 분모가 이미 같으므로 {통분} 과정을 생략할 수 있다."
+    }
+  ]
+}

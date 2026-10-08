@@ -1,0 +1,1235 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-middle-final-3000-3030-input.json",
+  "rows": [
+    {
+      "id": "m2-07-01-xc7",
+      "sourceIndex": 3000,
+      "proposalFingerprint": "d8f4f0f14e9d2d6173b64de31d762b22eb1b3736c6c6c0193a09f31ee0622ccc",
+      "normalizedHash": "917eecf9784329d492cd806e3a6e487ba4558a03cd7c38b98f5f8b5db59b4228",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "$\\angle A$가 공통이라는 내용은 c1의 B에서 닮음의 근거로 이미 쓰게 된다."
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$일 때, $\\triangle ADE$와 $\\triangle ABC$가 같이 쓰는 각은 변 $BC$와 마주 보는 꼭짓점의 각인 {$\\angle A$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\angle A$",
+            "$\\angle BAC$",
+            "$\\angle DAE$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$\\angle A$가 공통이라는 내용은 c1의 B에서 닮음의 근거로 이미 쓰게 된다.",
+      "cReason": "마주 보는, 각 같은 낱말 빈칸은 그림 없이 뜻이 흐려 공통인 각을 직접 쓰게 했다."
+    },
+    {
+      "id": "m2-07-01-xc8",
+      "sourceIndex": 3001,
+      "proposalFingerprint": "2d914d91617705bf57139f3ffb908cfe2faacd7dbaeff83ed4ccf8a2cdb9b182",
+      "normalizedHash": "65b3e8c61031141128ed146fb73c503d6eb278248a311768524bdac79a3e98f2",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "평행선이 만든 닮음이 $\\mathrm{AA}$라는 것은 c1의 B 답 그대로다."
+      },
+      "C": {
+        "sentence": "삼각형의 한 변에 평행한 직선이 다른 두 변과 만나 생긴 작은 삼각형과 처음 삼각형은 공통인 각과 동위각의 크기가 각각 같아 {$\\mathrm{AA}$} 닮음이다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{AA}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "평행선이 만든 닮음이 $\\mathrm{AA}$라는 것은 c1의 B 답 그대로다.",
+      "cReason": "평행선이 만든 두 삼각형이 무엇인지 문장에 없어 상황과 근거를 넣었다."
+    },
+    {
+      "id": "m2-07-01-xc9",
+      "sourceIndex": 3002,
+      "proposalFingerprint": "995ba463e3fc94d3713853686a9b764dd55f2f03add86f8a90ecd903598bd244",
+      "normalizedHash": "ef1eeca71fe8b7c45b06e6ede4621cc75e260ef11c9e755d2cb8c907622b5c84",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}:\\overline{DB}=3:2$, $\\overline{AC}=10$일 때 $\\overline{AE}$의 길이를 구하고, 구한 방법을 쓰시오.",
+        "answer": "$\\overline{AE}:\\overline{EC}=\\overline{AD}:\\overline{DB}=3:2$이므로 $\\overline{AC}$를 $3:2$로 나누면 $\\overline{AE}=10\\times\\dfrac{3}{5}=6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AE}:\\overline{EC}=3:2$",
+              "$\\overline{AE}:\\overline{AC}=3:5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AE}=6$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$이고 $\\overline{AD}:\\overline{DB}=3:2$이면 $\\overline{AE}:\\overline{EC}=$ {$3:2$}이므로 $\\overline{AE}$의 길이는 $\\overline{AC}$의 길이의 {$\\dfrac{3}{5}$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$3:2$"
+          ],
+          [
+            "$\\dfrac{3}{5}$",
+            "$0.6$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "전체를 비로 나눈다는 방법은 변 전체의 길이가 주어져야 해 볼 수 있어 예를 넣었다.",
+      "cReason": "비, 나누어 같은 낱말 빈칸은 방법을 아는지 드러내지 못해 조각의 비와 전체에 대한 배수를 묻게 했다."
+    },
+    {
+      "id": "m2-07-01-xc10",
+      "sourceIndex": 3003,
+      "proposalFingerprint": "dc9a98da529ad99fc495385e541c96d47e44fa2be6f5feb765efa190eca0aeda",
+      "normalizedHash": "fc3f541c79426b04d59076fc9034bd9e152a6f3a0b83baef3739687e143876c0",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 변 $BA$와 변 $CA$를 점 $A$를 지나도록 늘인 연장선 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}:\\overline{AB}$와 같은 비를 모두 쓰고, $\\overline{AD}$와 짝지은 선분이 $\\overline{AC}$가 아니라 $\\overline{AB}$인 까닭을 쓰시오.",
+        "answer": "$\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}=\\overline{DE}:\\overline{BC}$이다. $\\triangle ADE\\backsim\\triangle ABC$에서 $D$와 $B$가 대응하여 $\\overline{AD}$의 대응변이 한 직선 위에 있는 $\\overline{AB}$이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AE}:\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{DE}:\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AD}$의 대응변이 $\\overline{AB}$이다",
+              "$\\overline{AD}$와 $\\overline{AB}$가 한 직선 위에 있는 대응변이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$에서 변 $BA$, $CA$를 점 $A$를 지나도록 늘인 연장선 위에 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$일 때, 비례식은 한 직선 위에 있는 선분끼리 짝지어 $\\overline{AD}:$ {$\\overline{AB}$} $=\\overline{AE}:$ {$\\overline{AC}$}로 세운다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{AB}$",
+            "$\\overline{BA}$"
+          ],
+          [
+            "$\\overline{AC}$",
+            "$\\overline{CA}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c4가 닮음의 까닭을 묻는 것과 구별되게 비례식의 짝을 정하는 방법을 묻도록 했다.",
+      "cReason": "꼭짓점 너머, 평행선까지의 길이 같은 표현이 어느 선분인지 알기 어려워 점 이름으로 짝을 쓰게 했다."
+    },
+    {
+      "id": "m2-07-01-xc11",
+      "sourceIndex": 3004,
+      "proposalFingerprint": "43ced0528ccc7c8dbd0191d147f4cde97a63a90b74cb7cb464fb345cc06bd003",
+      "normalizedHash": "e1d090df84ed5f4ce8c196dd293c6a5708872347630b668cff606eae8b4f911f",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}=6$, $\\overline{DB}=4$, $\\overline{AE}=9$일 때 $\\overline{EC}=x$로 놓고 비례식을 세워 $x$의 값을 구하시오. 비례식을 풀 때 쓴 성질도 쓰시오.",
+        "answer": "$6:4=9:x$이다. 비례식에서 외항의 곱과 내항의 곱이 같으므로 $6x=36$, $x=6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6:4=9:x$",
+              "$6:9=4:x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "외항의 곱과 내항의 곱이 같다",
+              "$6x=4\\times9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=6$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\overline{AD}:\\overline{DB}=\\overline{AE}:\\overline{EC}$에서 {내항}의 곱과 {외항}의 곱이 같음을 써서 모르는 길이를 구한다.",
+        "acceptedAnswers": [
+          [
+            "내항"
+          ],
+          [
+            "외항"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "미지수 구하기는 실제 길이가 있어야 풀이 과정을 쓸 수 있어 수를 넣었다.",
+      "cReason": "비례식이 기호로 주어져 있고 내항과 외항을 순서 없이 쓰는 분명한 빈칸이다."
+    },
+    {
+      "id": "m2-07-01-xc12",
+      "sourceIndex": 3005,
+      "proposalFingerprint": "b407b56e03232eaf643cd2e03a07739263f0b1ed4ea306a7e2c3f314c9ea1b62",
+      "normalizedHash": "2ae1c01b8561d1d112391fc8c5b793dc85c7fd1716b3bdd3ac9ef53e4df7c1fc",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}:\\overline{DB}=m:n$일 때 $\\overline{DE}:\\overline{BC}$를 $m$, $n$으로 나타내고 그렇게 되는 과정을 쓰시오.",
+        "answer": "$\\overline{AB}=\\overline{AD}+\\overline{DB}$이므로 $\\overline{AD}:\\overline{AB}=m:(m+n)$이다. $\\overline{DE}:\\overline{BC}$는 닮음비 $\\overline{AD}:\\overline{AB}$와 같으므로 $m:(m+n)$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{DE}:\\overline{BC}=m:(m+n)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AD}:\\overline{AB}=m:(m+n)$",
+              "$\\overline{AB}$는 $\\overline{AD}$와 $\\overline{DB}$의 합이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$이고 $\\overline{AD}:\\overline{DB}=m:n$이면 $\\overline{DE}:\\overline{BC}=m:$ {$(m+n)$}이다.",
+        "acceptedAnswers": [
+          [
+            "$(m+n)$",
+            "$m+n$",
+            "$(n+m)$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c6이 두 비를 가려내는 것과 구별되게 조각의 비에서 닮음비를 만드는 과정을 문자로 묻도록 했다.",
+      "cReason": "조건이 기호로 모두 주어져 있고 식 하나만 채우는 분명한 빈칸이다."
+    },
+    {
+      "id": "m2-07-01-xc13",
+      "sourceIndex": 3006,
+      "proposalFingerprint": "3480073abbb0f9d885e2b3b8bc966617307791e9bf9d01e153b8ae683bb084d4",
+      "normalizedHash": "2ed1ca6c8ec98d7edb40721e0f3749bc4f912e2f2e82bc4e3e43798ab02855ed",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$ 위에 꼭짓점 $A$에서 가까운 차례로 점 $D$, $F$가 있고 변 $AC$ 위에 $A$에서 가까운 차례로 점 $E$, $G$가 있으며 $\\overline{DE}\\parallel\\overline{FG}\\parallel\\overline{BC}$이다. $\\overline{AD}=2$, $\\overline{DF}=2$, $\\overline{FB}=4$, $\\overline{BC}=12$일 때 $\\overline{DE}$와 $\\overline{FG}$의 길이를 구하고, 각각 어떤 비를 썼는지 쓰시오.",
+        "answer": "$\\overline{AB}=8$이다. $\\overline{DE}:\\overline{BC}=\\overline{AD}:\\overline{AB}=2:8$이므로 $\\overline{DE}=3$이고, $\\overline{FG}:\\overline{BC}=\\overline{AF}:\\overline{AB}=4:8$이므로 $\\overline{FG}=6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{DE}=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{FG}=6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점 $A$에서 잰 비 $\\overline{AD}:\\overline{AB}$, $\\overline{AF}:\\overline{AB}$를 쓴다",
+              "$\\overline{DE}:\\overline{FG}=\\overline{AD}:\\overline{AF}$를 쓴다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $AB$ 위의 점 $D$, $F$와 변 $AC$ 위의 점 $E$, $G$에 대해 $\\overline{DE}\\parallel\\overline{FG}\\parallel\\overline{BC}$이면 $\\overline{DE}:\\overline{BC}=\\overline{AD}:$ {$\\overline{AB}$}이고 $\\overline{FG}:\\overline{BC}=$ {$\\overline{AF}$} $:\\overline{AB}$이다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{AB}$",
+            "$\\overline{BA}$"
+          ],
+          [
+            "$\\overline{AF}$",
+            "$\\overline{FA}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "여럿이라는 상황은 점의 순서와 길이가 있어야 다룰 수 있어 구체 예를 넣었다.",
+      "cReason": "꼭짓점 $A$에서 잰 비가 어느 선분의 비인지 없고 비 한 낱말만 물어 실제 선분을 쓰게 했다."
+    },
+    {
+      "id": "m2-07-01-xc14",
+      "sourceIndex": 3007,
+      "proposalFingerprint": "33873910264ec362b4efef68e5a3520743aab991507416445114369f1ad9eb10",
+      "normalizedHash": "07576230a8b270a0ac6dfab523055c3a2a65b253999928f5a68e3361b4dcae97",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$ 위에 $\\overline{AD}=4$, $\\overline{DB}=6$인 점 $D$가 있고 변 $AC$ 위에 $\\overline{AE}=5$, $\\overline{EC}=8$인 점 $E$가 있다. $\\overline{DE}$와 $\\overline{BC}$가 평행한지 판단하고 그 까닭을 쓰시오.",
+        "answer": "평행하지 않다. $\\overline{AD}:\\overline{DB}=4:6=2:3$이고 $\\overline{AE}:\\overline{EC}=5:8$로 두 비가 다르기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AD}:\\overline{DB}=2:3$과 $\\overline{AE}:\\overline{EC}=5:8$이 다르다",
+              "$\\overline{AD}:\\overline{AB}=4:10$과 $\\overline{AE}:\\overline{AC}=5:13$이 다르다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{AD}:\\overline{DB}$와 $\\overline{AE}:\\overline{EC}$가 다르면 $\\overline{DE}$와 $\\overline{BC}$는 {평행하지 않다}.",
+        "acceptedAnswers": [
+          [
+            "평행하지 않다",
+            "평행이 아니다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "평행이 아님을 보이려면 실제 비를 견주어야 해 두 비가 다른 예를 넣었다.",
+      "cReason": "조건인 다르면과 결론의 않다가 함께 가려져 있어 결론 하나만 묻도록 했다."
+    },
+    {
+      "id": "m2-07-01-xc16",
+      "sourceIndex": 3008,
+      "proposalFingerprint": "3254ef9db15985ea37857c1416bb966a28c75f153d3910db305ca6bf6f626ff8",
+      "normalizedHash": "4daf2067f09c59ecfee40904432dfb9a2024c2ccae7ed4998adb24ae2a8efaf9",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 꼭짓점이 아닌 점 $D$, $E$가 각각 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. 사각형 $DBCE$는 어떤 사각형인지 쓰고 그렇게 판단한 까닭을 쓰시오.",
+        "answer": "사다리꼴이다. 마주 보는 한 쌍의 변 $DE$와 $BC$가 평행한 사각형이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사다리꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 한 쌍의 변이 평행한 사각형이다",
+              "한 쌍의 대변 $DE$, $BC$가 평행하다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 $\\overline{AB}$, $\\overline{AC}$ 안쪽에 $D$, $E$를 각각 잡아 $\\overline{DE}$를 $\\overline{BC}$와 나란하게 그으면 남은 사각형 $DBCE$는 {사다리꼴}이다.",
+        "acceptedAnswers": [
+          [
+            "사다리꼴"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어느 사각형인지 꼭짓점 이름으로 밝히고 이름과 판단 근거를 함께 묻도록 했다.",
+      "cReason": "점의 위치와 사각형 이름이 문장에 있고 도형 이름 하나만 묻는다."
+    },
+    {
+      "id": "m2-07-01-xc17",
+      "sourceIndex": 3009,
+      "proposalFingerprint": "853c6602e005431a9951c6fdeeac4ec7ab233edf818121cf65759c82ebe5b6b0",
+      "normalizedHash": "8a7934524121e492459a100d96435da14c1176c9916be6a128862591557bbd8d",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\overline{AB}\\parallel\\overline{CD}$이고 선분 $AD$와 선분 $BC$가 점 $O$에서 만난다. $\\overline{OA}:\\overline{OD}$와 같은 비를 모두 쓰고 그 까닭을 쓰시오. 또 $\\overline{OA}=3$, $\\overline{OD}=5$, $\\overline{AB}=6$일 때 $\\overline{DC}$의 길이를 구하시오.",
+        "answer": "$\\overline{OA}:\\overline{OD}=\\overline{OB}:\\overline{OC}=\\overline{AB}:\\overline{DC}$이다. $\\triangle OAB\\backsim\\triangle ODC$($\\mathrm{AA}$ 닮음)의 대응변의 비이기 때문이다. $3:5=6:\\overline{DC}$에서 $\\overline{DC}=10$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{OB}:\\overline{OC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}:\\overline{DC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle OAB$와 $\\triangle ODC$가 닮음이라 대응변의 비가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{DC}=10$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\overline{AB}\\parallel\\overline{CD}$이고 선분 $AD$와 선분 $BC$가 점 $O$에서 만나면 $\\overline{OA}:\\overline{OD}=\\overline{OB}:$ {$\\overline{OC}$} $=\\overline{AB}:$ {$\\overline{DC}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{OC}$",
+            "$\\overline{CO}$"
+          ],
+          [
+            "$\\overline{DC}$",
+            "$\\overline{CD}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "모래시계 꼴이라는 별명만으로는 그림을 알 수 없어 평행한 선분과 교점을 밝혔다.",
+      "cReason": "교점이 엇갈려 이은 선분을 나눈 두 조각이라는 말이 그림 없이는 읽기 어려워 기호로 바꾸었다."
+    },
+    {
+      "id": "m2-07-01-xc18",
+      "sourceIndex": 3010,
+      "proposalFingerprint": "6706ab5edaf7086591c35fac6d53cff0feda0db0e1ade7052bd710ff8227095e",
+      "normalizedHash": "4e7f50b0af9949eb816c37ed4ee17fd956d71a2d6c0e0498d2e92c35518ac3df",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$, $AC$, $BC$ 위에 각각 점 $D$, $E$, $F$가 있고 $\\overline{DE}\\parallel\\overline{BC}$, $\\overline{EF}\\parallel\\overline{AB}$이다. 사각형 $DBFE$는 어떤 사각형인지 까닭과 함께 쓰고, $\\overline{DE}$와 길이가 같은 선분을 쓰시오.",
+        "answer": "평행사변형이다. $\\overline{DE}\\parallel\\overline{BF}$, $\\overline{EF}\\parallel\\overline{DB}$로 두 쌍의 대변이 각각 평행하기 때문이다. 평행사변형의 대변의 길이는 같으므로 $\\overline{DE}=\\overline{BF}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행사변형"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 쌍의 대변이 각각 평행하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{DE}=\\overline{BF}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $AB$, $AC$, $BC$ 위에 점 $D$, $E$, $F$가 있고 $\\overline{DE}\\parallel\\overline{BC}$, $\\overline{EF}\\parallel\\overline{AB}$이면 사각형 $DBFE$는 {평행사변형}이므로 $\\overline{DE}=$ {$\\overline{BF}$}이다.",
+        "acceptedAnswers": [
+          [
+            "평행사변형"
+          ],
+          [
+            "$\\overline{BF}$",
+            "$\\overline{FB}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어느 점에서 어느 변에 평행하게 그었는지 밝혀 사각형과 길이가 같은 선분을 찾게 했다.",
+      "cReason": "맞은편 변 위의 조각이 어느 선분인지 알 수 없어 점 이름을 붙이고 선분을 쓰게 했다."
+    },
+    {
+      "id": "m2-07-01-xc19",
+      "sourceIndex": 3011,
+      "proposalFingerprint": "e0bb68e4ed51e9003c6240de90e7000e8bf6a22fab60ba65bfe3c484327fee90",
+      "normalizedHash": "da12de7c38fb1f3862665755473e198045d6aa55d0e97cf0a599a1a9d93dd68e",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\overline{AB}=6$, $\\overline{BC}=9$인 $\\triangle ABC$가 있다. 변 $AB$ 위의 점 $D$, 변 $BC$ 위의 점 $F$, 변 $CA$ 위의 점 $E$에 대해 사각형 $DBFE$가 마름모일 때, 마름모의 한 변의 길이를 $x$로 놓고 비례식을 세워 $x$의 값을 구하시오.",
+        "answer": "$\\overline{DE}\\parallel\\overline{BC}$이므로 $\\triangle ADE\\backsim\\triangle ABC$이다. $\\overline{AD}=6-x$, $\\overline{DE}=x$이므로 $(6-x):6=x:9$이고, $9(6-x)=6x$에서 $x=\\dfrac{18}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$(6-x):6=x:9$",
+              "$(9-x):9=x:6$",
+              "$x:(6-x)=(9-x):x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=\\dfrac{18}{5}$",
+              "$x=3.6$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형 안의 마름모는 네 변의 길이가 같아 한 변을 {미지수}로 놓고, 대변이 평행해 생기는 닮은 삼각형의 대응변으로 {비례식}을 세운다.",
+        "acceptedAnswers": [
+          [
+            "미지수",
+            "$x$"
+          ],
+          [
+            "비례식"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "마름모의 꼭짓점이 어느 변 위에 있는지와 변의 길이가 있어야 식을 세울 수 있어 예를 넣었다.",
+      "cReason": "미지수로 놓고 비례식을 세운다는 순서가 분명히 읽히는 방법 문장이다."
+    },
+    {
+      "id": "m2-07-01-xc20",
+      "sourceIndex": 3012,
+      "proposalFingerprint": "faedde71a5e3b2d5e89f5107e069a984b83e4ee456d861c369558b1d91e50ff8",
+      "normalizedHash": "1c281b1dfbf245f7b567da948126e50f596bfe9b1d3125006d865064669fd546",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$, $BC$ 위에 각각 점 $D$, $F$가 있고 $\\overline{DF}\\parallel\\overline{AC}$이다. $\\overline{BD}:\\overline{DA}$와 같은 비를 변 $BC$ 위의 두 선분으로 나타내고, 이때 기준이 되는 꼭짓점이 $A$가 아니라 $B$인 까닭을 쓰시오.",
+        "answer": "$\\overline{BD}:\\overline{DA}=\\overline{BF}:\\overline{FC}$이다. 평행한 변 $AC$와 마주 보는 꼭짓점이 $B$이고, 닮은 두 삼각형 $\\triangle DBF$와 $\\triangle ABC$가 꼭짓점 $B$를 같이 쓰기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}:\\overline{DA}=\\overline{BF}:\\overline{FC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$B$가 평행한 변 $AC$와 마주 보는 꼭짓점이다",
+              "$\\triangle DBF$와 $\\triangle ABC$가 $\\angle B$를 공통으로 가진다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $AB$, $BC$ 위의 점 $D$, $F$에 대해 $\\overline{DF}\\parallel\\overline{AC}$이면, 변 $AC$와 마주 보는 꼭짓점 {$B$} 쪽 조각부터 써서 $\\overline{BD}:\\overline{DA}=\\overline{BF}:$ {$\\overline{FC}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$B$"
+          ],
+          [
+            "$\\overline{FC}$",
+            "$\\overline{CF}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "셋째 변이라는 말 대신 평행한 변을 $AC$로 정해 기준 꼭짓점이 바뀌는 점을 묻도록 했다.",
+      "cReason": "평행선과 선분의 비라는 말이 가리키는 내용이 문장에 없어 점 이름과 비례식을 넣었다."
+    },
+    {
+      "id": "m2-07-01-xc21",
+      "sourceIndex": 3013,
+      "proposalFingerprint": "212943148a5d6f4f7a287e9458ac7bdc9dcd19cc09b16b7a8fbd23267e5c61e8",
+      "normalizedHash": "9421b45f821d085462b417eec671f8af344ce147b0625749ec9dff5659455518",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$, $AC$의 내부에 각각 점 $D$, $E$가 있고 $\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}$이다. $\\overline{DE}\\parallel\\overline{BC}$임을 삼각형의 닮음을 이용해 설명하시오.",
+        "answer": "$\\angle A$가 공통이고 그 각을 낀 두 쌍의 변의 길이의 비가 같으므로 $\\triangle ADE\\backsim\\triangle ABC$($\\mathrm{SAS}$ 닮음)이다. 대응각 $\\angle ADE=\\angle ABC$가 동위각으로 같으므로 $\\overline{DE}\\parallel\\overline{BC}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle A$가 공통이고 끼인 두 쌍의 변의 비가 같아 $\\triangle ADE\\backsim\\triangle ABC$($\\mathrm{SAS}$ 닮음)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle ADE=\\angle ABC$로 동위각의 크기가 같아 평행하다",
+              "$\\angle AED=\\angle ACB$로 동위각의 크기가 같아 평행하다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $AB$, $AC$의 내부에 각각 점 $D$, $E$가 있고 $\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}$이면 $\\triangle ADE\\backsim\\triangle ABC$({$\\mathrm{SAS}$} 닮음)이어서 $\\overline{DE}\\parallel\\overline{BC}$이다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{SAS}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c5가 조건을 묻는 것과 구별되게 그 조건에서 평행이 나오는 까닭을 묻도록 했다.",
+      "cReason": "조건과 결론이 기호로 모두 보이고 닮음 조건의 이름만 묻는다."
+    },
+    {
+      "id": "m2-07-01-xc22",
+      "sourceIndex": 3014,
+      "proposalFingerprint": "c9244e3c73062553403d138bd7d5bc2aaaf93b3af8ffcae378dbe139f8a21e21",
+      "normalizedHash": "ce35c3bcaa1128625e0490c9dc291b6aabb70d5808fd9fca4bc7ee193e337310",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$를 $4$등분한 점을 꼭짓점 $A$에서 가까운 차례로 $P$, $Q$, $R$라 하고, 각 점에서 변 $BC$에 평행한 선분을 변 $AC$까지 그었다. $\\overline{BC}=12$일 때 세 선분의 길이를 $A$에서 가까운 차례로 구하고, 길이가 어떤 규칙으로 변하는지 쓰시오.",
+        "answer": "$\\overline{AP}:\\overline{AB}=1:4$, $\\overline{AQ}:\\overline{AB}=2:4$, $\\overline{AR}:\\overline{AB}=3:4$이므로 길이는 차례로 $3$, $6$, $9$이다. $\\overline{BC}$의 $\\dfrac{1}{4}$배, $\\dfrac{2}{4}$배, $\\dfrac{3}{4}$배로 $3$씩 일정하게 늘어난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$, $6$, $9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$씩 일정하게 늘어난다",
+              "밑변의 $\\dfrac{1}{4}$배, $\\dfrac{2}{4}$배, $\\dfrac{3}{4}$배이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 꼭짓점에서 밑변으로 이어지는 한 변을 $n$등분한 점마다 밑변에 평행한 선분을 다른 변까지 그으면, 그 길이는 꼭짓점 쪽부터 차례로 밑변의 길이의 $\\dfrac{1}{n}$배, {$\\dfrac{2}{n}$}배, {$\\dfrac{3}{n}$}배, …가 되어 같은 간격으로 늘어난다.",
+        "acceptedAnswers": [
+          [
+            "$\\dfrac{2}{n}$"
+          ],
+          [
+            "$\\dfrac{3}{n}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$n$등분의 규칙은 실제로 길이를 구해 보아야 드러나 $4$등분의 예를 넣었다.",
+      "cReason": "같은 간격이라는 답이 임의의 표현이라 규칙을 이어 쓰는 빈칸으로 바꾸었다."
+    },
+    {
+      "id": "m2-07-01-xc24",
+      "sourceIndex": 3015,
+      "proposalFingerprint": "4e6c360c3762ce089f0d0d1b15426fc99a2ca36cb67a3a2b89b23e78cd9b51cf",
+      "normalizedHash": "f8f54ad5cbce5ea89227b82a55dc2e803dbf5bf1a35d6726af0e83555eee0419",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AB}:\\overline{AC}=3:4$일 때 밑변 쪽 조각의 비 $\\overline{DB}:\\overline{EC}$를 구하고 그 까닭을 쓰시오.",
+        "answer": "$3:4$이다. $\\overline{DE}$가 두 변을 같은 비로 나누므로 $\\overline{DB}:\\overline{AB}=\\overline{EC}:\\overline{AC}$이고, 따라서 $\\overline{DB}:\\overline{EC}=\\overline{AB}:\\overline{AC}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{DB}:\\overline{EC}=3:4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{DB}:\\overline{AB}=\\overline{EC}:\\overline{AC}$",
+              "두 변이 같은 비로 나뉘어 남은 조각이 각 변의 같은 배이다",
+              "$\\overline{AD}:\\overline{DB}=\\overline{AE}:\\overline{EC}$에서 $\\overline{DB}:\\overline{EC}=\\overline{AD}:\\overline{AE}=\\overline{AB}:\\overline{AC}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$이면 밑변 쪽 조각의 비 $\\overline{DB}:\\overline{EC}$는 원래 두 변의 비 {$\\overline{AB}$} $:$ {$\\overline{AC}$}와 같다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{AB}$",
+            "$\\overline{BA}$"
+          ],
+          [
+            "$\\overline{AC}$",
+            "$\\overline{CA}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "남은 조각이 어느 선분인지 밝히고 두 변의 비를 주어 관계와 까닭을 묻도록 했다.",
+      "cReason": "밑변 쪽에 남은 조각이 어느 선분인지 알 수 없고 같다는 빈칸이 뻔해 선분 이름을 쓰게 했다."
+    },
+    {
+      "id": "m2-07-02-xc2",
+      "sourceIndex": 3016,
+      "proposalFingerprint": "6323379ee1a081ae726baa5d4aa05c0d70c95842b341bf55e80c577c873c7814",
+      "normalizedHash": "aabef455804b97153f703bc9d8a27431fc6eb67a8e5e20feeaca2ce86d9075e0",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle PQR$에서 $\\angle P$의 이등분선이 변 $QR$와 점 $S$에서 만난다. $\\overline{QS}:\\overline{SR}$를 두 변의 길이의 비로 나타내고, 각 조각을 어느 변과 짝지었는지 그 기준을 쓰시오.",
+        "answer": "$\\overline{QS}:\\overline{SR}=\\overline{PQ}:\\overline{PR}$이다. $\\overline{QS}$는 점 $Q$를 함께 가진 $\\overline{PQ}$와, $\\overline{SR}$는 점 $R$를 함께 가진 $\\overline{PR}$와 짝짓는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{PQ}:\\overline{PR}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각과 같은 끝 점을 가진 변끼리 짝짓는다",
+              "$\\overline{QS}$는 점 $Q$에서 만나는 $\\overline{PQ}$와 짝짓는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 $D$에서 만나면, 조각 $\\overline{BD}$는 점 $B$를 함께 가진 변 {$\\overline{AB}$}와, 조각 $\\overline{DC}$는 점 $C$를 함께 가진 변 {$\\overline{AC}$}와 짝을 지어 비례식을 세운다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{AB}$",
+            "$\\overline{BA}$"
+          ],
+          [
+            "$\\overline{AC}$",
+            "$\\overline{CA}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$ABC$ 예시는 c2와 같아서, 다른 문자로 바꿔 짝짓는 기준 자체를 묻게 했다.",
+      "cReason": "'맞닿은 변', '차례'는 가리키는 대상이 없어 실제 변 이름으로 짝짓게 바꿨다."
+    },
+    {
+      "id": "m2-07-02-xc3",
+      "sourceIndex": 3017,
+      "proposalFingerprint": "fa3f287bab96d8cdb4d37fbe4aa946c53244d124298eaa01b965926c60134481",
+      "normalizedHash": "2b53964f7d68012d64b01f62f4d0fbab6f8b6086465eccd66eb4c081705efe06",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}=\\overline{AC}$이고 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $D$에서 만난다. 내각의 이등분선의 성질을 이용하여 $\\overline{BD}$와 $\\overline{DC}$의 길이 관계를 쓰고, 점 $D$가 $\\overline{BC}$의 어떤 점인지 쓰시오.",
+        "answer": "$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}=1:1$이므로 $\\overline{BD}=\\overline{DC}$이고, $D$는 $\\overline{BC}$의 중점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}=1:1$",
+              "두 변이 같아 조각의 비가 $1:1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BD}=\\overline{DC}$",
+              "$D$는 $\\overline{BC}$의 중점"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\overline{AB}=\\overline{AC}$이면 $\\angle A$의 이등분선은 $\\overline{BC}$를 {이등분}한다.",
+        "acceptedAnswers": [
+          [
+            "이등분"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "제목이 결론을 미리 말하므로, 일반 성질에서 $1:1$을 끌어내도록 이유와 결론을 함께 물었다.",
+      "cReason": "조건은 보이고 결론 '이등분'만 숨긴 짧은 빈칸이다."
+    },
+    {
+      "id": "m2-07-02-xc4",
+      "sourceIndex": 3018,
+      "proposalFingerprint": "5823fa170fe44222c2965db6b172f6bd542fdf14e0b342b17eeebfa3235d90ba",
+      "normalizedHash": "645220dfead1fa3cbeeb2456b46fbb166a039a93edf0af6758304f1605e4208d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "exclude",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 변 $BC$와 점 $D$에서 만난다. $\\overline{AB}=6$, $\\overline{AC}=3$, $\\overline{BC}=6$일 때 $\\overline{BC}$를 어떤 비로 나누는지 쓰고 $\\overline{BD}$의 길이를 구하시오.",
+        "answer": "$\\overline{BD}:\\overline{DC}=6:3=2:1$이므로 $\\overline{BC}=6$을 $2:1$로 나누어 $\\overline{BD}=4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2:1$",
+              "$6:3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BD}=4$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "excluded": "동사만 바꾼 '비/나누어' 빈칸이라 c2 문장과 겹친다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'비로 나누어'만으로는 계산할 상황이 없어, 세 변의 길이를 주고 비와 조각을 함께 물었다.",
+      "cReason": "동사만 바꾼 '비/나누어' 빈칸이라 c2 문장과 겹친다."
+    },
+    {
+      "id": "m2-07-02-xc6",
+      "sourceIndex": 3019,
+      "proposalFingerprint": "7be942cc87ca98ae9757b4932a654851cb6f8a746a7df2a004cb121bb1ed6725",
+      "normalizedHash": "8a11f217538905d3bc9ec0ebf7d88528d7b141fe35dc4cda15d1e69fc35eea78",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}>\\overline{AC}$이고 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $D$에서 만난다. $\\overline{BD}$와 $\\overline{DC}$ 중 어느 것이 더 긴지 쓰고 그 까닭을 쓰시오.",
+        "answer": "$\\overline{BD}$가 더 길다. $\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}$이고 $\\overline{AB}>\\overline{AC}$이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}$가 더 길다",
+              "$\\overline{BD}>\\overline{DC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}$",
+              "조각의 비가 두 변의 비와 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 $D$에서 만나고 $\\overline{AB}>\\overline{AC}$이면, 두 조각 중 더 긴 것은 {$\\overline{BD}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{BD}$",
+            "$\\overline{DB}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어느 변이 긴지를 기호로 주어, '긴 변 쪽'이 가리키는 조각을 특정했다.",
+      "cReason": "'긴…길다'는 '짧은…짧다'로 채워도 참이 되므로, 조건은 보이고 결론만 숨겼다."
+    },
+    {
+      "id": "m2-07-02-xc7",
+      "sourceIndex": 3020,
+      "proposalFingerprint": "dc278a4bd40a4a621d74c73184c27df54aba35f0ed074dd779c5c0988e02d210",
+      "normalizedHash": "798d96de802fc2d680b9632fde61fd4036f6ff8f24b8deda439a13592e1c85d3",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\angle XOY$의 이등분선 위의 한 점 $P$에서 두 변 $OX$, $OY$에 내린 수선의 발을 각각 $Q$, $R$라 하자. $\\overline{PQ}$와 $\\overline{PR}$의 길이를 비교하고, 두 직각삼각형 $POQ$, $POR$를 이용해 까닭을 쓰시오.",
+        "answer": "$\\overline{PQ}=\\overline{PR}$이다. $\\triangle POQ$와 $\\triangle POR$는 빗변 $\\overline{OP}$를 함께 가지고 $\\angle POQ=\\angle POR$이므로 $\\mathrm{RHA}$ 합동이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{PQ}=\\overline{PR}$",
+              "두 변까지의 거리가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{RHA}$ 합동",
+              "빗변이 공통이고 한 예각의 크기가 같아 합동"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "각의 이등분선 위의 어느 점에서 재어도 그 각의 두 변까지 거리가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'거리'가 수선의 길이임을 밝히고 점 이름을 정해, 합동으로 이유를 쓰게 했다.",
+      "cReason": "결론 '같다' 하나만 숨긴 짧고 분명한 성질 문장이다."
+    },
+    {
+      "id": "m2-07-02-xc8",
+      "sourceIndex": 3021,
+      "proposalFingerprint": "9999ea79b267b5a274aa60da9befb8ac37b69a3e9ef8c42fa43c616afd8d3547",
+      "normalizedHash": "2f3cf23d4bba44cc6ffa129f8bdcfef1ea12b2f90fe0c86c1b07815e02c02380",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "어느 쪽이 넓은지 판단하는 것은 c3의 넓이의 비와 xc6의 크기 비교를 합친 것이다."
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 $D$에서 만날 때, $\\overline{AB}>\\overline{AC}$이면 $\\triangle ABD$와 $\\triangle ADC$ 중 넓이가 더 큰 것은 {$\\triangle ABD$}이고, $\\overline{AB}=\\overline{AC}$이면 두 넓이는 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\triangle ABD$",
+            "$\\triangle ADB$",
+            "$\\triangle BAD$"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어느 쪽이 넓은지 판단하는 것은 c3의 넓이의 비와 xc6의 크기 비교를 합친 것이다.",
+      "cReason": "'긴…넓다'는 '짧은…좁다'로 채워도 참이 되므로, 조건은 기호로 보이고 결론만 물었다."
+    },
+    {
+      "id": "m2-07-02-xc9",
+      "sourceIndex": 3022,
+      "proposalFingerprint": "aade010856ce8ef91f07a14e893d7010d343e16200ec28a9aa3682bc849072a3",
+      "normalizedHash": "2264b759f43a9dd28224a4e7de0275b49d23874edb938892b6e0818a59569f65",
+      "learningRole": "naming",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "삼각형의 세 내각의 이등분선은 한 점에서 만난다. 이 점의 이름을 쓰고, 이 점에서 세 변까지의 거리 사이에 어떤 관계가 있는지 쓰시오.",
+        "answer": "내심이다. 내심에서 세 변까지의 거리는 모두 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "내심"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변까지의 거리가 모두 같다",
+              "내접원의 중심이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "세 꼭짓점에서 각을 반으로 나눈 세 선이 모두 지나는 점이 {내심}이다.",
+        "acceptedAnswers": [
+          [
+            "내심"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'세 선'이 무엇인지 세 내각의 이등분선으로 밝히고, 이름과 거리 관계를 함께 물었다.",
+      "cReason": "세 선의 뜻이 문장 안에 있고, 이름 하나만 묻는 분명한 빈칸이다."
+    },
+    {
+      "id": "m2-07-02-xc10",
+      "sourceIndex": 3023,
+      "proposalFingerprint": "a5aabc21cb2dee09b8c7ebb43120c82e77e0b6e86941081e9748a4a2f61ac2de",
+      "normalizedHash": "cc3e9e6e7e0e7ce247c0734031b4f93a275c629562bb7b0de984d1edc4f419c6",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 길이가 $7$인 $\\overline{BC}$와 점 $D$에서 만난다. $\\overline{AB}=4$, $\\overline{AC}=3$이고 $\\overline{BD}=x$라 할 때, $x$에 대한 비례식을 세워 $x$의 값을 구하시오.",
+        "answer": "$\\overline{DC}=7-x$이므로 $x:(7-x)=4:3$이다. $3x=4(7-x)$에서 $x=4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$x:(7-x)=4:3$",
+              "$3x=4(7-x)$",
+              "$(7-x):x=3:4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=4$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "이등분선이 나눈 대변의 한 조각의 길이를 $x$로 놓으면 다른 조각은 대변 전체의 길이에서 $x$를 {뺀} 것이다. 두 조각의 비를 각을 낀 {두 변}의 길이의 비와 같다고 놓아 $x$를 구한다.",
+        "acceptedAnswers": [
+          [
+            "뺀"
+          ],
+          [
+            "두 변"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원래 예는 $7-x$라는 식 하나만 물어서, 두 변의 길이를 더해 비례식 세우기까지 묻게 했다.",
+      "cReason": "'뺀'과 '두 변'이 미지수 설정과 비례식 세우기 두 단계를 각각 묻는다."
+    },
+    {
+      "id": "m2-07-02-xc11",
+      "sourceIndex": 3024,
+      "proposalFingerprint": "0848d8dcfdbdc66875f4083c824e0bb7e4ce49f89265a6ab6f53bd57f1504beb",
+      "normalizedHash": "ed251bb6eb99f93d75c5adbf44e4c8af2dbbec6fe66aef3d4950e5179b584911",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 내각을 낀 두 변의 길이가 $a$, $b$이고 그 각의 대변의 길이가 $l$이다. 그 각의 이등분선이 나눈 대변의 두 조각 중 길이가 $a$인 변 쪽 조각의 길이를 $a$, $b$, $l$로 나타내고 그 까닭을 쓰시오.",
+        "answer": "$\\frac{a}{a+b}l$이다. 두 조각의 비가 $a:b$이므로, 대변 전체를 $a+b$로 볼 때 그중 $a$만큼이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{a}{a+b}l$",
+              "$\\frac{al}{a+b}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 조각의 비가 $a:b$",
+              "전체 $a+b$ 중 $a$만큼"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 내각을 낀 두 변의 길이가 $a$, $b$일 때, 그 각의 이등분선이 나눈 대변의 두 조각 가운데 길이가 $a$인 변 쪽 조각은 대변 전체의 {$\\frac{a}{a+b}$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{a}{a+b}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "숫자 예 하나로 줄이지 않고 대변의 길이를 $l$로 두어, 일반식과 그 근거를 묻게 했다.",
+      "cReason": "조건 $a$, $b$가 문장에 모두 있고, 일반식 하나를 묻는 빈칸이다."
+    },
+    {
+      "id": "m2-07-02-xc12",
+      "sourceIndex": 3025,
+      "proposalFingerprint": "052e4d15676923f65fbfab889c276cb789ba09ae02ad878505e7d98d251203c6",
+      "normalizedHash": "ece0b12670c60b662315195f300328d117e924f4f22b97c1d07331ad1fcdba38",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $D$에서 만난다. $\\overline{AB}$, $\\overline{AC}$를 각각 $\\triangle ABD$, $\\triangle ADC$의 밑변으로 볼 때 두 삼각형의 높이가 같은 까닭을 쓰고, 이로부터 넓이의 비를 쓰시오.",
+        "answer": "$D$는 $\\angle A$의 이등분선 위의 점이므로 $D$에서 두 변 $\\overline{AB}$, $\\overline{AC}$까지의 거리가 같다. 따라서 넓이의 비는 $\\overline{AB}:\\overline{AC}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$D$에서 $\\overline{AB}$, $\\overline{AC}$까지의 거리가 같다",
+              "이등분선 위의 점은 각의 두 변까지 거리가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}:\\overline{AC}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "이등분선과 대변의 교점에서 각의 두 변까지의 거리는 {같다}. 그래서 각을 낀 두 변을 {밑변}으로 보면 나뉜 두 삼각형은 높이가 같아, 넓이의 비가 두 변의 길이의 비와 같다.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ],
+          [
+            "밑변"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어떤 밑변과 높이인지 지정해, 이등분선 위의 점의 거리 성질을 근거로 쓰게 했다.",
+      "cReason": "거리가 같다는 것과 밑변 선택이라는 두 근거를 정확히 빈칸으로 묻는다."
+    },
+    {
+      "id": "m2-07-02-xc13",
+      "sourceIndex": 3026,
+      "proposalFingerprint": "8fb7de5803d5ffd4a9df11414b31bdea58778ed3e2a1c81a2fd4119f061cffdd",
+      "normalizedHash": "87d8f3365cdc204e7ea6f1ab4160989f606824d8b3a4f9ef6523bfadb850672b",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $BC$ 위에 점 $D$가 있다. $\\overline{AD}$가 각의 이등분선이 아니어도 된다. $\\triangle ABD$와 $\\triangle ADC$의 넓이의 비를 선분의 길이의 비로 나타내고 그 까닭을 쓰시오.",
+        "answer": "$\\overline{BD}:\\overline{DC}$이다. 두 삼각형은 꼭짓점 $A$에서 직선 $BC$까지의 높이가 같아서 넓이의 비가 밑변의 비와 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}:\\overline{DC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점 $A$에서 $\\overline{BC}$까지의 높이가 같다",
+              "높이가 같아 넓이가 밑변에 비례한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 한 꼭짓점과 마주 보는 변 위의 점을 이어 나눈 두 삼각형은 그 꼭짓점에서 잰 높이가 같다. 그래서 넓이의 비는 나뉜 변의 {두 조각}의 길이의 {비}와 같다.",
+        "acceptedAnswers": [
+          [
+            "두 조각"
+          ],
+          [
+            "비"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "이등분선과 상관없는 일반 성질임을 조건에 밝혀 c3과 구별했다.",
+      "cReason": "높이라는 근거는 보이고 두 조각과 비만 묻는 짧은 빈칸이다."
+    },
+    {
+      "id": "m2-07-02-xc14",
+      "sourceIndex": 3027,
+      "proposalFingerprint": "a8259c4fcc4e2775509c2a2fe02a89ddc2d727553eb518f743e0d4c044a9774c",
+      "normalizedHash": "e71f151588533ad03ac2ced86b4dcbed4dd3a9faafc507a042ec40e2263bf1a0",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $D$에서 만난다. 넓이의 비 $\\triangle ABD:\\triangle ADC$를 ($1$) $\\overline{BD}$, $\\overline{DC}$를 밑변으로 볼 때, ($2$) $\\overline{AB}$, $\\overline{AC}$를 밑변으로 볼 때 각각 나타내고, 두 결과에서 얻는 비례식을 쓰시오.",
+        "answer": "($1$) $\\overline{BD}:\\overline{DC}$ ($2$) $\\overline{AB}:\\overline{AC}$ 따라서 $\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "($1$) $\\overline{BD}:\\overline{DC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "($2$) $\\overline{AB}:\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\angle A$의 이등분선이 $\\overline{BC}$와 $D$에서 만날 때, 넓이의 비 $\\triangle ABD:\\triangle ADC$는 꼭짓점 $A$에서의 높이가 같으므로 {$\\overline{BD}:\\overline{DC}$}이고, $D$에서 $\\angle A$의 두 변까지의 거리가 같으므로 {$\\overline{AB}:\\overline{AC}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{BD}:\\overline{DC}$"
+          ],
+          [
+            "$\\overline{AB}:\\overline{AC}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'맞대기'가 무엇과 무엇을 맞대는지 알 수 있도록, 두 가지 밑변을 명시해 증명 흐름을 정했다.",
+      "cReason": "'같다고', '나온다'는 동사 빈칸이라, 넓이의 비를 나타내는 두 표현을 직접 묻게 바꿨다."
+    },
+    {
+      "id": "m2-07-02-xc15",
+      "sourceIndex": 3028,
+      "proposalFingerprint": "c7fbe9afece1e5ae15168470cc77cdef1befe3556292c7798f09a2aef94c09cc",
+      "normalizedHash": "d7a2678132df8154592005267565b9e7b781b42706da24a904612d5cc0bb5902",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "exclude",
+      "B": {
+        "prompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 $\\overline{CA}=6$, $\\overline{CB}=8$, $\\overline{AB}=10$이다. $\\angle C$의 이등분선이 빗변 $AB$와 점 $D$에서 만날 때 $\\overline{AD}$의 길이를 구하시오.",
+        "answer": "$\\overline{AD}:\\overline{DB}=\\overline{CA}:\\overline{CB}=6:8=3:4$이므로 $\\overline{AD}=10\\times\\frac{3}{7}=\\frac{30}{7}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AD}:\\overline{DB}=3:4$",
+              "$\\overline{AD}:\\overline{DB}=6:8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AD}=\\frac{30}{7}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "excluded": "c2 문장을 직각삼각형에 그대로 옮긴 '비' 한 칸이라 새로 평가하는 것이 없다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어느 변이 $6$인지 모호해서, 직각인 꼭짓점과 변 이름을 정하고 구할 조각을 지정했다.",
+      "cReason": "c2 문장을 직각삼각형에 그대로 옮긴 '비' 한 칸이라 새로 평가하는 것이 없다."
+    },
+    {
+      "id": "m2-07-02-xc16",
+      "sourceIndex": 3029,
+      "proposalFingerprint": "b58fd8564a77e64fba7a03e266c7cda1bbfd10bd56c34170f79375340223f9e9",
+      "normalizedHash": "3b0e888f65fd70dd7bd5e98dde51a00cf9794e1f65b469802858757dfeeb121b",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "넓이가 $21$인 $\\triangle ABC$에서 $\\overline{AB}=8$, $\\overline{AC}=6$이고 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $D$에서 만난다. 전체 넓이를 어떤 비로 나누는지 쓰고 $\\triangle ABD$의 넓이를 구하시오.",
+        "answer": "$\\triangle ABD:\\triangle ADC=8:6=4:3$이므로 $\\triangle ABD$의 넓이는 $21\\times\\frac{4}{7}=12$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4:3$",
+              "$8:6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\angle A$의 이등분선이 $\\overline{BC}$와 $D$에서 만나면, $\\triangle ABC$의 넓이를 $\\angle A$를 낀 두 변의 길이의 비 {$\\overline{AB}:\\overline{AC}$}로 나누어 $\\triangle ABD$와 $\\triangle ADC$의 넓이를 구한다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{AB}:\\overline{AC}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'두 변의 비로 나누어'가 무엇을 나누는지 보이도록, 넓이와 두 변을 주고 비와 결과를 함께 물었다.",
+      "cReason": "'두 변'이 어느 변인지와 '□로 □'의 동사 빈칸이 모호해서, 나누는 비를 기호로 묻게 했다."
+    }
+  ]
+}

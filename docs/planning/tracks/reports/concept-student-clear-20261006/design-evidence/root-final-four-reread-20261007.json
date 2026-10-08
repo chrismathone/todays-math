@@ -1,0 +1,1390 @@
+{
+  "status": "Root actually reread the normalized final questions then applied them; fresh independent consensus pending",
+  "count": 4,
+  "rows": [
+    {
+      "id": "m1-01-01-xc10",
+      "scope": "middle",
+      "reason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+      "beforeRaw": {
+        "id": "m1-01-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+        "bAnswer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+        "bGoal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "bReason": "분자·분모 각각의 거듭제곱도 같은 값이지만, 이 문항은 분수 전체를 밑으로 쓰는 표기 목표임을 실제 질문에 밝힌다.",
+        "cDecision": "keep",
+        "cReason": "상황(같은 분수를 거듭 곱함)과 빈칸의 역할(무엇으로 묶는지)이 분명하고 답이 한 단어이다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\left(\\frac{2}{3}\\right)^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 전체를 괄호로 묶어 밑으로 쓴다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "naming",
+        "roleReason": "분수 전체를 괄호로 밑 표기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 934,
+        "part": "m1plus",
+        "sourceFingerprint": "9444e5697a2e46743f0f76d77ed3776897eb0c7fa8ff5c7c8fe57c43e1ce8f95",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 934
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+        "cFrozenDefinition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+        "cFrozenAnswers": [
+          "괄호"
+        ],
+        "cMarkedSentence": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+        "cSlotAnswers": [
+          "괄호"
+        ],
+        "cStudentSentence": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+        "cAnswers": [
+          "괄호"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ]
+        ],
+        "proposalFingerprint": "eb78821893a5263734fd83be2b579be4ae235fddd9d30b1ff590579031ca2ffb"
+      },
+      "before": {
+        "id": "m1-01-01-xc10",
+        "grade": "중1",
+        "source": {
+          "id": "m1-01-01-xc10",
+          "section": "중1::1. 소인수분해::소수와 거듭제곱",
+          "term": "밑이 분수인 거듭제곱",
+          "kind": "방법",
+          "level": "중",
+          "definition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+          "example": {
+            "prompt": "$\\frac{2}{3}\\times\\frac{2}{3}\\times\\frac{2}{3}$를 거듭제곱으로 쓰면?",
+            "answer": "$\\left(\\frac{2}{3}\\right)^3$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+          "answer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\left(\\frac{2}{3}\\right)^3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 전체를 괄호로 묶어 밑으로 쓴다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+          "acceptedAnswers": [
+            [
+              "괄호"
+            ]
+          ]
+        },
+        "goal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "b601f86cac0fa7526ee16386ffbb4c2f22d363b58fcaad7e8e520559ec8b0ffa"
+      },
+      "proposedRaw": {
+        "id": "m1-01-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+        "bAnswer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+        "bGoal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "bReason": "분자·분모 각각의 거듭제곱도 같은 값이지만, 이 문항은 분수 전체를 밑으로 쓰는 표기 목표임을 실제 질문에 밝힌다.",
+        "cDecision": "rewrite",
+        "cReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\left(\\frac{2}{3}\\right)^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 전체를 괄호로 묶어 밑으로 쓴다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "naming",
+        "roleReason": "분수 전체를 괄호로 밑 표기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 934,
+        "part": "m1plus",
+        "sourceFingerprint": "9444e5697a2e46743f0f76d77ed3776897eb0c7fa8ff5c7c8fe57c43e1ce8f95",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 934
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+        "cFrozenDefinition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+        "cFrozenAnswers": [
+          "괄호"
+        ],
+        "cMarkedSentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$을 계산하면 {$\\frac{2}{27}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{8}{27}$",
+          "$\\frac{2}{27}$"
+        ],
+        "cStudentSentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 □, $\\frac{2}{3^3}$을 계산하면 □이다.",
+        "cAnswers": [
+          "$\\frac{8}{27}$",
+          "$\\frac{2}{27}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{8}{27}$",
+            "equivalentAnswers": [
+              "$\\frac{8}{27}$"
+            ]
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{2}{27}$",
+            "equivalentAnswers": [
+              "$\\frac{2}{27}$"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{8}{27}$"
+          ],
+          [
+            "$\\frac{2}{27}$"
+          ]
+        ],
+        "proposalFingerprint": "21173e42d40dd71abb39398f22cadff30b6a98e485fa0f875e8714ccb2404335",
+        "bQuestion": {
+          "prompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+          "answer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\left(\\frac{2}{3}\\right)^3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 전체를 괄호로 묶어 밑으로 쓴다"
+              ]
+            }
+          ]
+        },
+        "cAfter": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$을 계산하면 {$\\frac{2}{27}$}이다.",
+        "clozeQuestion": {
+          "sentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$을 계산하면 {$\\frac{2}{27}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{8}{27}$"
+            ],
+            [
+              "$\\frac{2}{27}$"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m1-01-01-xc10",
+          "sourceIndex": 934,
+          "proposalFingerprint": "21173e42d40dd71abb39398f22cadff30b6a98e485fa0f875e8714ccb2404335",
+          "learningRole": "naming",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T14:05:39.882Z",
+          "bReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+          "cReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m1-01-01-xc10",
+        "grade": "중1",
+        "source": {
+          "id": "m1-01-01-xc10",
+          "section": "중1::1. 소인수분해::소수와 거듭제곱",
+          "term": "밑이 분수인 거듭제곱",
+          "kind": "방법",
+          "level": "중",
+          "definition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+          "example": {
+            "prompt": "$\\frac{2}{3}\\times\\frac{2}{3}\\times\\frac{2}{3}$를 거듭제곱으로 쓰면?",
+            "answer": "$\\left(\\frac{2}{3}\\right)^3$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+          "answer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\left(\\frac{2}{3}\\right)^3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 전체를 괄호로 묶어 밑으로 쓴다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$을 계산하면 {$\\frac{2}{27}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{8}{27}$"
+            ],
+            [
+              "$\\frac{2}{27}$"
+            ]
+          ]
+        },
+        "goal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "404ba406fdd56088e8182e0e358ff4ed40c972b1497d834024acbdec2ecdb047"
+      },
+      "direct": {
+        "id": "m1-01-01-xc10",
+        "sourceIndex": 934,
+        "proposalFingerprint": "21173e42d40dd71abb39398f22cadff30b6a98e485fa0f875e8714ccb2404335",
+        "learningRole": "naming",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T14:05:39.882Z",
+        "bReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+        "cReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m1-01-01-xc10",
+        "grade": "중1",
+        "source": {
+          "id": "m1-01-01-xc10",
+          "section": "중1::1. 소인수분해::소수와 거듭제곱",
+          "term": "밑이 분수인 거듭제곱",
+          "kind": "방법",
+          "level": "중",
+          "definition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+          "example": {
+            "prompt": "$\\frac{2}{3}\\times\\frac{2}{3}\\times\\frac{2}{3}$를 거듭제곱으로 쓰면?",
+            "answer": "$\\left(\\frac{2}{3}\\right)^3$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+          "answer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\left(\\frac{2}{3}\\right)^3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 전체를 괄호로 묶어 밑으로 쓴다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$을 계산하면 {$\\frac{2}{27}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{8}{27}$"
+            ],
+            [
+              "$\\frac{2}{27}$"
+            ]
+          ]
+        },
+        "goal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "404ba406fdd56088e8182e0e358ff4ed40c972b1497d834024acbdec2ecdb047"
+      }
+    },
+    {
+      "id": "m2-01-01-xc20",
+      "scope": "middle",
+      "reason": "물음이 요구한 유한소수 여부의 까닭을 필수 의미로 삼고, 약분 결과 숫자만 적는 답을 이유의 동의 대안으로 인정하지 않는다.",
+      "beforeRaw": {
+        "id": "m2-01-01-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{2\\times a}$이 유한소수가 되게 하는 한 자리 자연수 $a$를 찾으려고 한다. $a=6$은 되고 $a=9$는 안 되는 까닭을 각각 설명하시오.",
+        "bAnswer": "$a=6$이면 $\\frac{3}{12}=\\frac{1}{4}$로 약분되어 분모의 소인수가 $2$뿐이므로 유한소수이다. $a=9$이면 $\\frac{3}{18}=\\frac{1}{6}$이고 약분해도 분모에 소인수 $3$이 남으므로 유한소수가 아니다.",
+        "bGoal": "분모에 미지수가 있을 때 약분 뒤의 분모로 판정하기",
+        "bReason": "미지수가 놓인 식과 비교할 두 값을 제시해 약분 뒤 판정을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a=6$이면 $\\frac{1}{4}$이 된다",
+              "$a=6$이면 약분 뒤 분모의 소인수가 $2$뿐이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=9$이면 $\\frac{1}{6}$이 된다",
+              "$a=9$이면 약분해도 분모에 $3$이 남는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 {$2$}, {$5$}뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+        "cAnswers": [
+          "$2$",
+          "$5$"
+        ],
+        "cReason": "정수로 약분되어 분모1이 되는 경우도 포함하고 두 소인수의 답 순서를 명시한다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "미지수 값 판정",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2140,
+        "part": "m2plus",
+        "sourceFingerprint": "84e7464bbc8ce55912c95c5e24a85de2fad2e145bd09e3ee910d22fdb711a89a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2140
+        },
+        "directReview": null,
+        "cMarkedSentence": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 {$2$}, {$5$}뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+        "cSlotAnswers": [
+          "$2$",
+          "$5$"
+        ],
+        "cStudentSentence": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 □, □뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$5$",
+            "equivalentAnswers": [
+              "$5$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ]
+        ],
+        "proposalFingerprint": "826efccf0b5537f8335885d41efeffc66fec4714daca6bf29c4539bc5e578a3e",
+        "coreAfter": "분모의 자연수 값에 따라 유한소수가 되는지 판단하려면 먼저 {약분}한다. 기약분수의 분모가 {$1$}이거나 소인수가 $2$ 또는 $5$뿐인지 확인한다.",
+        "coreReason": "미지수는 자연수이며 약분 뒤 분모1인 정수도 유한소수로 나타낼 수 있다."
+      },
+      "before": {
+        "id": "m2-01-01-xc20",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-01-xc20",
+          "section": "중2::1. 수와 식::유리수와 소수",
+          "term": "분모에 미지수가 있을 때",
+          "kind": "방법",
+          "level": "상",
+          "definition": "분모에 미지수가 있으면 {약분}한 뒤의 분모가 {$2$와 $5$}만으로 이루어지게 하는 값을 모두 찾는다.",
+          "example": {
+            "prompt": "$\\frac{3}{2\\times a}$가 유한소수인 한 자리 자연수 $a$",
+            "answer": "$1$, $2$, $3$, $4$, $5$, $6$, $8$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{3}{2\\times a}$이 유한소수가 되게 하는 한 자리 자연수 $a$를 찾으려고 한다. $a=6$은 되고 $a=9$는 안 되는 까닭을 각각 설명하시오.",
+          "answer": "$a=6$이면 $\\frac{3}{12}=\\frac{1}{4}$로 약분되어 분모의 소인수가 $2$뿐이므로 유한소수이다. $a=9$이면 $\\frac{3}{18}=\\frac{1}{6}$이고 약분해도 분모에 소인수 $3$이 남으므로 유한소수가 아니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$a=6$이면 $\\frac{1}{4}$이 된다",
+                "$a=6$이면 약분 뒤 분모의 소인수가 $2$뿐이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$a=9$이면 $\\frac{1}{6}$이 된다",
+                "$a=9$이면 약분해도 분모에 $3$이 남는다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 {$2$}, {$5$}뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ],
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "goal": "분모에 미지수가 있을 때 약분 뒤의 분모로 판정하기",
+        "coreAfter": "분모의 자연수 값에 따라 유한소수가 되는지 판단하려면 먼저 {약분}한다. 기약분수의 분모가 {$1$}이거나 소인수가 $2$ 또는 $5$뿐인지 확인한다.",
+        "coreReason": "미지수는 자연수이며 약분 뒤 분모1인 정수도 유한소수로 나타낼 수 있다.",
+        "hash": "f2e18457dffa41df633e4294ddd3cb2a367c46d2fb6c41618fb9b96133d10c21"
+      },
+      "proposedRaw": {
+        "id": "m2-01-01-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{2\\times a}$이 유한소수가 되게 하는 한 자리 자연수 $a$를 찾으려고 한다. $a=6$은 되고 $a=9$는 안 되는 까닭을 각각 설명하시오.",
+        "bAnswer": "$a=6$이면 $\\frac{3}{12}=\\frac{1}{4}$로 약분되어 분모의 소인수가 $2$뿐이므로 유한소수이다. $a=9$이면 $\\frac{3}{18}=\\frac{1}{6}$이고 약분해도 분모에 소인수 $3$이 남으므로 유한소수가 아니다.",
+        "bGoal": "분모에 미지수가 있을 때 약분 뒤의 분모로 판정하기",
+        "bReason": "미지수가 놓인 식과 비교할 두 값을 제시해 약분 뒤 판정을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a=6$일 때 약분한 분모의 소인수가 $2$뿐이므로 유한소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=9$일 때 약분한 분모에 소인수 $3$이 남으므로 유한소수가 아니다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 {$2$}, {$5$}뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+        "cAnswers": [
+          "$2$",
+          "$5$"
+        ],
+        "cReason": "정수로 약분되어 분모1이 되는 경우도 포함하고 두 소인수의 답 순서를 명시한다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "미지수 값 판정",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2140,
+        "part": "m2plus",
+        "sourceFingerprint": "84e7464bbc8ce55912c95c5e24a85de2fad2e145bd09e3ee910d22fdb711a89a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2140
+        },
+        "directReview": null,
+        "cMarkedSentence": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 {$2$}, {$5$}뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+        "cSlotAnswers": [
+          "$2$",
+          "$5$"
+        ],
+        "cStudentSentence": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 □, □뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$5$",
+            "equivalentAnswers": [
+              "$5$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ]
+        ],
+        "proposalFingerprint": "d9ac20d5760cf1710d279df72b4473aa31a19f0398a1ae7fc8ec97e9b5ee314a",
+        "coreAfter": "분모의 자연수 값에 따라 유한소수가 되는지 판단하려면 먼저 {약분}한다. 기약분수의 분모가 {$1$}이거나 소인수가 $2$ 또는 $5$뿐인지 확인한다.",
+        "coreReason": "미지수는 자연수이며 약분 뒤 분모1인 정수도 유한소수로 나타낼 수 있다.",
+        "bQuestion": {
+          "prompt": "$\\frac{3}{2\\times a}$이 유한소수가 되게 하는 한 자리 자연수 $a$를 찾으려고 한다. $a=6$은 되고 $a=9$는 안 되는 까닭을 각각 설명하시오.",
+          "answer": "$a=6$이면 $\\frac{3}{12}=\\frac{1}{4}$로 약분되어 분모의 소인수가 $2$뿐이므로 유한소수이다. $a=9$이면 $\\frac{3}{18}=\\frac{1}{6}$이고 약분해도 분모에 소인수 $3$이 남으므로 유한소수가 아니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$a=6$일 때 약분한 분모의 소인수가 $2$뿐이므로 유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$a=9$일 때 약분한 분모에 소인수 $3$이 남으므로 유한소수가 아니다"
+              ]
+            }
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-01-01-xc20",
+          "sourceIndex": 2140,
+          "proposalFingerprint": "d9ac20d5760cf1710d279df72b4473aa31a19f0398a1ae7fc8ec97e9b5ee314a",
+          "learningRole": "application",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T14:05:39.893Z",
+          "bReason": "물음이 요구한 유한소수 여부의 까닭을 필수 의미로 삼고, 약분 결과 숫자만 적는 답을 이유의 동의 대안으로 인정하지 않는다.",
+          "cReason": "물음이 요구한 유한소수 여부의 까닭을 필수 의미로 삼고, 약분 결과 숫자만 적는 답을 이유의 동의 대안으로 인정하지 않는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-01-01-xc20",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-01-xc20",
+          "section": "중2::1. 수와 식::유리수와 소수",
+          "term": "분모에 미지수가 있을 때",
+          "kind": "방법",
+          "level": "상",
+          "definition": "분모에 미지수가 있으면 {약분}한 뒤의 분모가 {$2$와 $5$}만으로 이루어지게 하는 값을 모두 찾는다.",
+          "example": {
+            "prompt": "$\\frac{3}{2\\times a}$가 유한소수인 한 자리 자연수 $a$",
+            "answer": "$1$, $2$, $3$, $4$, $5$, $6$, $8$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{3}{2\\times a}$이 유한소수가 되게 하는 한 자리 자연수 $a$를 찾으려고 한다. $a=6$은 되고 $a=9$는 안 되는 까닭을 각각 설명하시오.",
+          "answer": "$a=6$이면 $\\frac{3}{12}=\\frac{1}{4}$로 약분되어 분모의 소인수가 $2$뿐이므로 유한소수이다. $a=9$이면 $\\frac{3}{18}=\\frac{1}{6}$이고 약분해도 분모에 소인수 $3$이 남으므로 유한소수가 아니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$a=6$일 때 약분한 분모의 소인수가 $2$뿐이므로 유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$a=9$일 때 약분한 분모에 소인수 $3$이 남으므로 유한소수가 아니다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 {$2$}, {$5$}뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ],
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "goal": "분모에 미지수가 있을 때 약분 뒤의 분모로 판정하기",
+        "coreAfter": "분모의 자연수 값에 따라 유한소수가 되는지 판단하려면 먼저 {약분}한다. 기약분수의 분모가 {$1$}이거나 소인수가 $2$ 또는 $5$뿐인지 확인한다.",
+        "coreReason": "미지수는 자연수이며 약분 뒤 분모1인 정수도 유한소수로 나타낼 수 있다.",
+        "hash": "a6c59a6d5879beb2fdcd55443dd01ee8dafc81bca913d7b119ef8ad95de3dee9"
+      },
+      "direct": {
+        "id": "m2-01-01-xc20",
+        "sourceIndex": 2140,
+        "proposalFingerprint": "d9ac20d5760cf1710d279df72b4473aa31a19f0398a1ae7fc8ec97e9b5ee314a",
+        "learningRole": "application",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T14:05:39.893Z",
+        "bReason": "물음이 요구한 유한소수 여부의 까닭을 필수 의미로 삼고, 약분 결과 숫자만 적는 답을 이유의 동의 대안으로 인정하지 않는다.",
+        "cReason": "물음이 요구한 유한소수 여부의 까닭을 필수 의미로 삼고, 약분 결과 숫자만 적는 답을 이유의 동의 대안으로 인정하지 않는다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m2-01-01-xc20",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-01-xc20",
+          "section": "중2::1. 수와 식::유리수와 소수",
+          "term": "분모에 미지수가 있을 때",
+          "kind": "방법",
+          "level": "상",
+          "definition": "분모에 미지수가 있으면 {약분}한 뒤의 분모가 {$2$와 $5$}만으로 이루어지게 하는 값을 모두 찾는다.",
+          "example": {
+            "prompt": "$\\frac{3}{2\\times a}$가 유한소수인 한 자리 자연수 $a$",
+            "answer": "$1$, $2$, $3$, $4$, $5$, $6$, $8$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{3}{2\\times a}$이 유한소수가 되게 하는 한 자리 자연수 $a$를 찾으려고 한다. $a=6$은 되고 $a=9$는 안 되는 까닭을 각각 설명하시오.",
+          "answer": "$a=6$이면 $\\frac{3}{12}=\\frac{1}{4}$로 약분되어 분모의 소인수가 $2$뿐이므로 유한소수이다. $a=9$이면 $\\frac{3}{18}=\\frac{1}{6}$이고 약분해도 분모에 소인수 $3$이 남으므로 유한소수가 아니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$a=6$일 때 약분한 분모의 소인수가 $2$뿐이므로 유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$a=9$일 때 약분한 분모에 소인수 $3$이 남으므로 유한소수가 아니다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 {$2$}, {$5$}뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ],
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "goal": "분모에 미지수가 있을 때 약분 뒤의 분모로 판정하기",
+        "coreAfter": "분모의 자연수 값에 따라 유한소수가 되는지 판단하려면 먼저 {약분}한다. 기약분수의 분모가 {$1$}이거나 소인수가 $2$ 또는 $5$뿐인지 확인한다.",
+        "coreReason": "미지수는 자연수이며 약분 뒤 분모1인 정수도 유한소수로 나타낼 수 있다.",
+        "hash": "a6c59a6d5879beb2fdcd55443dd01ee8dafc81bca913d7b119ef8ad95de3dee9"
+      }
+    },
+    {
+      "id": "m2-01-01-xc24",
+      "scope": "middle",
+      "reason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+      "beforeRaw": {
+        "id": "m2-01-01-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+        "bAnswer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+        "bGoal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "bReason": "과정을 요구했으므로0.75라는 답만으로 이유 기준을 통과하지 않도록 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "유한소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac56\\times\\frac9{10}=\\frac34$으로 약분되며 분모의 소인수는$2$뿐이다",
+              "$\\frac56\\times\\frac9{10}=\\frac34=0.75$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "판정 대상이 문장에 있고 절차의 핵심 낱말 두 개를 물음.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "곱을 약분해 판정하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2144,
+        "part": "m2plus",
+        "sourceFingerprint": "2038aaa8400b3e2f45a36796f31507a39b854267833c2e7d381e3a25f4348a32",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2144
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+        "cFrozenDefinition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+        "cFrozenAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cMarkedSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+        "cSlotAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cStudentSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+        "cAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "Direct reread after notation repair"
+          },
+          {
+            "index": 1,
+            "answer": "기약분수",
+            "equivalentAnswers": [
+              "기약분수"
+            ],
+            "equivalenceReview": "Direct reread after notation repair"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약분"
+          ],
+          [
+            "기약분수"
+          ]
+        ],
+        "proposalFingerprint": "54fed90ac47e0bf72f80fcdb7fad27f6438b2b4f65d14b5057b06a816f7b1d2d"
+      },
+      "before": {
+        "id": "m2-01-01-xc24",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-01-xc24",
+          "section": "중2::1. 수와 식::유리수와 소수",
+          "term": "두 분수의 곱의 판정",
+          "kind": "방법",
+          "level": "상",
+          "definition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+          "example": {
+            "prompt": "$\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인가?",
+            "answer": "된다 ($\\frac{3}{4}$)"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+          "answer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac56\\times\\frac9{10}=\\frac34$으로 약분되며 분모의 소인수는$2$뿐이다",
+                "$\\frac56\\times\\frac9{10}=\\frac34=0.75$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+          "acceptedAnswers": [
+            [
+              "약분"
+            ],
+            [
+              "기약분수"
+            ]
+          ]
+        },
+        "goal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "84854afd6086a450fe8e7892078bff38226b4baf7af63674bc82065682f02c9c"
+      },
+      "proposedRaw": {
+        "id": "m2-01-01-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+        "bAnswer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+        "bGoal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "bReason": "과정을 요구했으므로0.75라는 답만으로 이유 기준을 통과하지 않도록 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "유한소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$로 약분되며 분모의 소인수는 $2$뿐이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "곱을 약분해 판정하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2144,
+        "part": "m2plus",
+        "sourceFingerprint": "2038aaa8400b3e2f45a36796f31507a39b854267833c2e7d381e3a25f4348a32",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2144
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+        "cFrozenDefinition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+        "cFrozenAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cMarkedSentence": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{3}{4}$"
+        ],
+        "cStudentSentence": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 □이다.",
+        "cAnswers": [
+          "$\\frac{3}{4}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{3}{4}$",
+            "equivalentAnswers": [
+              "$\\frac{3}{4}$"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{3}{4}$"
+          ]
+        ],
+        "proposalFingerprint": "c9139dba2ea8b25091c4f1317bb2d0279923a9df95b44ca18518eef31026ca8f",
+        "bQuestion": {
+          "prompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+          "answer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$로 약분되며 분모의 소인수는 $2$뿐이다"
+              ]
+            }
+          ]
+        },
+        "cAfter": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+        "clozeQuestion": {
+          "sentence": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{3}{4}$"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-01-01-xc24",
+          "sourceIndex": 2144,
+          "proposalFingerprint": "c9139dba2ea8b25091c4f1317bb2d0279923a9df95b44ca18518eef31026ca8f",
+          "learningRole": "application",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T14:05:39.895Z",
+          "bReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+          "cReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-01-01-xc24",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-01-xc24",
+          "section": "중2::1. 수와 식::유리수와 소수",
+          "term": "두 분수의 곱의 판정",
+          "kind": "방법",
+          "level": "상",
+          "definition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+          "example": {
+            "prompt": "$\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인가?",
+            "answer": "된다 ($\\frac{3}{4}$)"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+          "answer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$로 약분되며 분모의 소인수는 $2$뿐이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{3}{4}$"
+            ]
+          ]
+        },
+        "goal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "67461a8395f9a80b95ddb9c9958b23930ccd9a898a37a422c7ab533fb2296ab9"
+      },
+      "direct": {
+        "id": "m2-01-01-xc24",
+        "sourceIndex": 2144,
+        "proposalFingerprint": "c9139dba2ea8b25091c4f1317bb2d0279923a9df95b44ca18518eef31026ca8f",
+        "learningRole": "application",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T14:05:39.895Z",
+        "bReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+        "cReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m2-01-01-xc24",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-01-xc24",
+          "section": "중2::1. 수와 식::유리수와 소수",
+          "term": "두 분수의 곱의 판정",
+          "kind": "방법",
+          "level": "상",
+          "definition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+          "example": {
+            "prompt": "$\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인가?",
+            "answer": "된다 ($\\frac{3}{4}$)"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+          "answer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$로 약분되며 분모의 소인수는 $2$뿐이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{3}{4}$"
+            ]
+          ]
+        },
+        "goal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "67461a8395f9a80b95ddb9c9958b23930ccd9a898a37a422c7ab533fb2296ab9"
+      }
+    },
+    {
+      "id": "m2-01-02-xc25",
+      "scope": "middle",
+      "reason": "한 자리 분자의 앞에 0을 붙이는 핵심 예를 물음에서 제거한다. 분자가 두 자리·한 자리인 두 실제 분수를 직접 순환소수로 나타내고 주의점을 설명하게 한다.",
+      "beforeRaw": {
+        "id": "m2-01-02-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{99}=0.\\dot{0}\\dot{1}$이다. $\\frac{23}{99}$과 $\\frac{7}{99}$을 각각 점을 찍어 순환소수로 나타내고, 분자가 한 자리 수일 때 주의할 점을 쓰시오.",
+        "bAnswer": "$\\frac{23}{99}=0.\\dot{2}\\dot{3}$, $\\frac{7}{99}=0.\\dot{0}\\dot{7}$이다. 분자를 두 자리로 쓴 숫자가 되풀이되므로, 한 자리 수는 앞에 $0$을 붙여 $07$로 생각한다.",
+        "bGoal": "분모가 $99$인 분수의 순환소수 꼴 알기",
+        "bReason": "두 자리·한 자리 분자를 대비시켜 주의점까지 답하도록 범위를 정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.\\dot{2}\\dot{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.\\dot{0}\\dot{7}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자를 두 자리로 맞추어 앞에 $0$을 붙인다",
+              "$7$은 $07$로 생각한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "반복묶음07이나 완성된소수를 미리 보여 주지 않고 분모99의 두 자리 규칙을 적용하게 한다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "분모 $99$인 분수의 표기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2169,
+        "part": "m2plus",
+        "sourceFingerprint": "7286d7f3d2669734c9934ae720ab1f8c7450a1959dc451f147bd46e2b9cd8ef0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2169
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다.",
+        "cSlotAnswers": [
+          "$07$"
+        ],
+        "cStudentSentence": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 □이라는 두 숫자 묶음이 되풀이된다.",
+        "cAnswers": [
+          "$07$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$07$",
+            "equivalentAnswers": [
+              "$07$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$07$"
+          ]
+        ],
+        "proposalFingerprint": "983b4af19a3c8e58e00aee55fa5a07bf3cadfac4e2e6cc779ac83fc5efd767f0",
+        "cAfter": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다."
+      },
+      "before": {
+        "id": "m2-01-02-xc25",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-02-xc25",
+          "section": "중2::1. 수와 식::순환소수",
+          "term": "분모가 $99$인 분수",
+          "kind": "성질",
+          "level": "상",
+          "definition": "$\\frac{n}{99}$($n$은 $1$부터 $98$까지의 자연수)는 $n$을 {두 자리}로 쓴 숫자가 되풀이되는 소수가 된다.",
+          "example": {
+            "prompt": "$\\frac{7}{99}$을 순환소수로 쓰면?",
+            "answer": "$0.\\dot{0}\\dot{7}$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{1}{99}=0.\\dot{0}\\dot{1}$이다. $\\frac{23}{99}$과 $\\frac{7}{99}$을 각각 점을 찍어 순환소수로 나타내고, 분자가 한 자리 수일 때 주의할 점을 쓰시오.",
+          "answer": "$\\frac{23}{99}=0.\\dot{2}\\dot{3}$, $\\frac{7}{99}=0.\\dot{0}\\dot{7}$이다. 분자를 두 자리로 쓴 숫자가 되풀이되므로, 한 자리 수는 앞에 $0$을 붙여 $07$로 생각한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.\\dot{2}\\dot{3}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.\\dot{0}\\dot{7}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자를 두 자리로 맞추어 앞에 $0$을 붙인다",
+                "$7$은 $07$로 생각한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다.",
+          "acceptedAnswers": [
+            [
+              "$07$"
+            ]
+          ]
+        },
+        "goal": "분모가 $99$인 분수의 순환소수 꼴 알기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "34551d1d0391a44f92ea86a95f84885fb56757ba9c3c5c52644c1cb39a0ee233"
+      },
+      "proposedRaw": {
+        "id": "m2-01-02-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{23}{99}$과 $\\frac{7}{99}$을 각각 점을 찍어 순환소수로 나타내고, 분자가 한 자리 수일 때 주의할 점을 쓰시오.",
+        "bAnswer": "$\\frac{23}{99}=0.\\dot{2}\\dot{3}$, $\\frac{7}{99}=0.\\dot{0}\\dot{7}$이다. 분자를 두 자리로 쓴 숫자가 되풀이되므로, 한 자리 수는 앞에 $0$을 붙여 $07$로 생각한다.",
+        "bGoal": "분모가 $99$인 분수의 순환소수 꼴 알기",
+        "bReason": "한 자리 분자의 앞에 0을 붙이는 핵심 예를 물음에서 제거한다. 분자가 두 자리·한 자리인 두 실제 분수를 직접 순환소수로 나타내고 주의점을 설명하게 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.\\dot{2}\\dot{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.\\dot{0}\\dot{7}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자를 두 자리로 맞추어 앞에 $0$을 붙인다",
+              "$7$은 $07$로 생각한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "반복묶음07이나 완성된소수를 미리 보여 주지 않고 분모99의 두 자리 규칙을 적용하게 한다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "분모 $99$인 분수의 표기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2169,
+        "part": "m2plus",
+        "sourceFingerprint": "7286d7f3d2669734c9934ae720ab1f8c7450a1959dc451f147bd46e2b9cd8ef0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2169
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다.",
+        "cSlotAnswers": [
+          "$07$"
+        ],
+        "cStudentSentence": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 □이라는 두 숫자 묶음이 되풀이된다.",
+        "cAnswers": [
+          "$07$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$07$",
+            "equivalentAnswers": [
+              "$07$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$07$"
+          ]
+        ],
+        "proposalFingerprint": "1c83a24678ba3d916a7acae1f6b34ef1c09e352a6b7540f6058fba20f806b8ae",
+        "cAfter": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다.",
+        "bQuestion": {
+          "prompt": "$\\frac{23}{99}$과 $\\frac{7}{99}$을 각각 점을 찍어 순환소수로 나타내고, 분자가 한 자리 수일 때 주의할 점을 쓰시오.",
+          "answer": "$\\frac{23}{99}=0.\\dot{2}\\dot{3}$, $\\frac{7}{99}=0.\\dot{0}\\dot{7}$이다. 분자를 두 자리로 쓴 숫자가 되풀이되므로, 한 자리 수는 앞에 $0$을 붙여 $07$로 생각한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.\\dot{2}\\dot{3}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.\\dot{0}\\dot{7}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자를 두 자리로 맞추어 앞에 $0$을 붙인다",
+                "$7$은 $07$로 생각한다"
+              ]
+            }
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-01-02-xc25",
+          "sourceIndex": 2169,
+          "proposalFingerprint": "1c83a24678ba3d916a7acae1f6b34ef1c09e352a6b7540f6058fba20f806b8ae",
+          "learningRole": "application",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T14:05:39.897Z",
+          "bReason": "한 자리 분자의 앞에 0을 붙이는 핵심 예를 물음에서 제거한다. 분자가 두 자리·한 자리인 두 실제 분수를 직접 순환소수로 나타내고 주의점을 설명하게 한다.",
+          "cReason": "한 자리 분자의 앞에 0을 붙이는 핵심 예를 물음에서 제거한다. 분자가 두 자리·한 자리인 두 실제 분수를 직접 순환소수로 나타내고 주의점을 설명하게 한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-01-02-xc25",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-02-xc25",
+          "section": "중2::1. 수와 식::순환소수",
+          "term": "분모가 $99$인 분수",
+          "kind": "성질",
+          "level": "상",
+          "definition": "$\\frac{n}{99}$($n$은 $1$부터 $98$까지의 자연수)는 $n$을 {두 자리}로 쓴 숫자가 되풀이되는 소수가 된다.",
+          "example": {
+            "prompt": "$\\frac{7}{99}$을 순환소수로 쓰면?",
+            "answer": "$0.\\dot{0}\\dot{7}$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{23}{99}$과 $\\frac{7}{99}$을 각각 점을 찍어 순환소수로 나타내고, 분자가 한 자리 수일 때 주의할 점을 쓰시오.",
+          "answer": "$\\frac{23}{99}=0.\\dot{2}\\dot{3}$, $\\frac{7}{99}=0.\\dot{0}\\dot{7}$이다. 분자를 두 자리로 쓴 숫자가 되풀이되므로, 한 자리 수는 앞에 $0$을 붙여 $07$로 생각한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.\\dot{2}\\dot{3}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.\\dot{0}\\dot{7}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자를 두 자리로 맞추어 앞에 $0$을 붙인다",
+                "$7$은 $07$로 생각한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다.",
+          "acceptedAnswers": [
+            [
+              "$07$"
+            ]
+          ]
+        },
+        "goal": "분모가 $99$인 분수의 순환소수 꼴 알기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "78ff65c43217ee9a5aa3963bcff7f4b767431a0ffe4e87ed8f83c4fff2fa6b52"
+      },
+      "direct": {
+        "id": "m2-01-02-xc25",
+        "sourceIndex": 2169,
+        "proposalFingerprint": "1c83a24678ba3d916a7acae1f6b34ef1c09e352a6b7540f6058fba20f806b8ae",
+        "learningRole": "application",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T14:05:39.897Z",
+        "bReason": "한 자리 분자의 앞에 0을 붙이는 핵심 예를 물음에서 제거한다. 분자가 두 자리·한 자리인 두 실제 분수를 직접 순환소수로 나타내고 주의점을 설명하게 한다.",
+        "cReason": "한 자리 분자의 앞에 0을 붙이는 핵심 예를 물음에서 제거한다. 분자가 두 자리·한 자리인 두 실제 분수를 직접 순환소수로 나타내고 주의점을 설명하게 한다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m2-01-02-xc25",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-02-xc25",
+          "section": "중2::1. 수와 식::순환소수",
+          "term": "분모가 $99$인 분수",
+          "kind": "성질",
+          "level": "상",
+          "definition": "$\\frac{n}{99}$($n$은 $1$부터 $98$까지의 자연수)는 $n$을 {두 자리}로 쓴 숫자가 되풀이되는 소수가 된다.",
+          "example": {
+            "prompt": "$\\frac{7}{99}$을 순환소수로 쓰면?",
+            "answer": "$0.\\dot{0}\\dot{7}$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{23}{99}$과 $\\frac{7}{99}$을 각각 점을 찍어 순환소수로 나타내고, 분자가 한 자리 수일 때 주의할 점을 쓰시오.",
+          "answer": "$\\frac{23}{99}=0.\\dot{2}\\dot{3}$, $\\frac{7}{99}=0.\\dot{0}\\dot{7}$이다. 분자를 두 자리로 쓴 숫자가 되풀이되므로, 한 자리 수는 앞에 $0$을 붙여 $07$로 생각한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.\\dot{2}\\dot{3}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.\\dot{0}\\dot{7}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자를 두 자리로 맞추어 앞에 $0$을 붙인다",
+                "$7$은 $07$로 생각한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다.",
+          "acceptedAnswers": [
+            [
+              "$07$"
+            ]
+          ]
+        },
+        "goal": "분모가 $99$인 분수의 순환소수 꼴 알기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "78ff65c43217ee9a5aa3963bcff7f4b767431a0ffe4e87ed8f83c4fff2fa6b52"
+      }
+    }
+  ]
+}

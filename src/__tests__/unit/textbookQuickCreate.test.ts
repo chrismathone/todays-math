@@ -21,6 +21,9 @@ import type { TextbookDb, TextbookSql } from "@/lib/textbook/server/sql";
 import { getEditionDetail } from "@/lib/textbook/server/editions";
 import { putAsset, linkEditionAssets } from "@/lib/textbook/server/blobs";
 import { getSection } from "@/lib/textbook/server/sections";
+import { conceptIndex } from "@/lib/textbook/server/quickCreate/context";
+import { QUESTION_REVISION } from "@/lib/concept-blank/questions";
+import { validateTextbookReferences } from "@/lib/textbook/references";
 import { assembleExchange } from "@/lib/textbook/server/exchange";
 import { createTextbookRenderModel } from "@/lib/textbook/render/model";
 import {
@@ -1098,6 +1101,137 @@ describe("quick create component composition", () => {
   });
 });
 describe("quick create failure and idempotency", () => {
+  it("freezes current question payloads and preserves all explanations when a form excludes a core entry", async () => {
+    const entries = conceptIndex.get(seedKey(e3[0]))!;
+    const before = entries.map((entry) => ({
+      entry,
+      value: structuredClone(entry),
+    }));
+    try {
+      for (const entry of entries) {
+        entry.questionRevision = QUESTION_REVISION;
+        entry.bQuestion = {
+          prompt: "낱개 $10$개를 십 묶음으로 바꾸면 몇 묶음인가요?",
+          answer: "십 한 묶음이다.",
+          requiredIdeas: [{ anyOf: ["십 묶음 하나"] }],
+        };
+        entry.clozeQuestion = {
+          sentence: "낱개 $20$개를 십 묶음으로 바꾸면 {$2$}묶음이다.",
+          acceptedAnswers: [["$2$"]],
+        };
+      }
+      entries[0].bQuestion = null;
+      entries[0].questionExclusions = {
+        term: "검증용: B에서 제외하고 C에서 확인한다.",
+      };
+      const result = await createQuickTextbook(
+        db,
+        actor,
+        input({
+          endUnitId: ids.get(seedKey(e3[0]))!,
+          components: components({
+            concepts: true,
+            termRecall: true,
+            clozeRecall: true,
+            preparation: true,
+          }),
+        }),
+        deps,
+      );
+      const exchange = await assembleExchange(db, result.book.draftEditionId!, {
+        exportedAt: new Date().toISOString(),
+      });
+      const concept = exchange.conceptIntegration!.concepts[0];
+      expect(concept.frozen!.entries.map((row) => row.payload.id)).toEqual(
+        entries.map((row) => row.id),
+      );
+      expect(
+        concept
+          .frozen!.selection.filter((row) => row.entryId === entries[0].id)
+          .map((row) => row.form),
+      ).toEqual(["cloze"]);
+      expect(concept.frozen!.entries[1]).toMatchObject({
+        payload: { bQuestion: entries[1].bQuestion },
+      });
+      for (const { value } of before)
+        expect(concept.body.definition).toContain(
+          value.definition.replace(/[{}]/g, ""),
+        );
+      const student = createTextbookRenderModel(exchange, "student");
+      const question = student.sections
+        .flatMap((section) => section.blocks)
+        .find(
+          (block) => block.kind === "recall" && Boolean(block.questionRows),
+        )!;
+      expect(JSON.stringify(question)).toContain("몇 묶음인가요?");
+      expect(JSON.stringify(question)).not.toContain("십 한 묶음이다");
+      expect(JSON.stringify(question)).not.toContain("십 묶음 하나");
+      const preparation = student.sections
+        .flatMap((section) => section.blocks)
+        .filter(
+          (block) =>
+            block.kind === "recall" &&
+            block.semantic?.activity === "preparation",
+        );
+      expect(
+        preparation.every(
+          (block) => block.kind === "recall" && Boolean(block.questionRows),
+        ),
+      ).toBe(true);
+      expect(JSON.stringify(preparation)).not.toContain("십 한 묶음이다");
+      expect(preparation.length).toBeGreaterThan(0);
+      const changed = structuredClone(exchange);
+      const edited = changed.units
+        .flatMap((unit) => unit.sections)
+        .flatMap((section) => section.blocks)
+        .find((block) => block.semantic?.node?.kind === "conceptQuestions")!;
+      if (edited.semantic?.node?.kind !== "conceptQuestions")
+        throw new Error("Missing question fixture");
+      edited.semantic.node.questions[0].question.answer =
+        "고정된 참고 답과 다른 내용";
+      expect(
+        validateTextbookReferences(changed).map((issue) => issue.code),
+      ).toContain("QUESTION_FROZEN");
+      const missingKey = seedKey(e3[1]);
+      const missingEntries = conceptIndex.get(missingKey)!;
+      conceptIndex.delete(missingKey);
+      try {
+        const practice = await createQuickTextbook(
+          db,
+          actor,
+          input({
+            components: components({ practice: true, learningGuide: true }),
+          }),
+          deps,
+        );
+        expect(practice.conceptCount).toBe(0);
+        expect(practice.problemCount).toBeGreaterThan(0);
+        await expect(
+          createQuickTextbook(
+            db,
+            actor,
+            input({
+              components: components({ termRecall: true, learningGuide: true }),
+            }),
+            deps,
+          ),
+        ).rejects.toThrow("서로 다른 질문 판");
+      } finally {
+        conceptIndex.set(missingKey, missingEntries);
+      }
+    } finally {
+      for (const { entry, value } of before) {
+        for (const field of [
+          "questionRevision",
+          "bQuestion",
+          "clozeQuestion",
+          "questionExclusions",
+        ] as const)
+          delete entry[field];
+        Object.assign(entry, value);
+      }
+    }
+  });
   it("scopes the idempotency receipt to its authenticated owner", async () => {
     const body = input();
     const first = await createQuickTextbook(db, actor, body, deps);

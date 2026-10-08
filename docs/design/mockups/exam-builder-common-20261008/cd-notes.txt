@@ -1,0 +1,51 @@
+Exam builder C/D prototypes — 2026-10-08
+
+Files
+- c-paper.html: compact scope setup, then a paper editing surface with contextual
+  question actions and a separate question navigator / output inspector.
+- d-blueprint.html: unit allocation table, then grouped unit sections with
+  contextual question actions and unit reordering; output settings below.
+
+Shared behavior
+- First entry and every subject change require explicit "시험지 구성".
+- Five subjects: 수학, 영어, 국어, 과학, 사회; 3 meaningful units and 4 authored
+  questions per unit, totaling 60 examples in each standalone file.
+- Identical operation labels across subjects; no production bank data, API,
+  generated network content, storage, CDN or external runtime dependencies.
+- Locally authored Korean and English passages remain attached to their units.
+  The paper repeats a passage when reordered questions create separate runs.
+- Add defaults to the configured scope; the candidate selector explicitly allows
+  choosing another unit or all units. Replacement uses the same unit.
+- Composition, replacement, addition, deletion, question reordering, D unit
+  reordering, title edits, print settings and undo operate on in-memory arrays.
+- A4 browser print styles hide editing controls and include answers only when
+  requested. Screen preview is continuous; actual pagination belongs to print.
+- Local Pretendard: ../../../../public/fonts/PretendardVariable.woff2.
+- index.html belongs to the coordinator and is intentionally not created here.
+
+Validation
+- Read AGENTS.md, DESIGN.md and the menu implementation map.
+- The worktree has no local node_modules; read installed Next server/client and
+  CSS guides from C:/Creative/testautocreator/node_modules/next/dist/docs.
+  These artifacts are plain HTML, with no Next integration.
+- Chromium through C:/Creative/testautocreator/node_modules/playwright.
+- For both variants and all 5 subjects: explicit composition, truthful counts,
+  replacement and undo, addition, deletion and undo, reorder and undo, escaped
+  editable title, output preview, answers, solution space, print invocation.
+- D unit reorder/undo; C insufficient scope; candidate scope restriction and
+  explicit broadening; deleting every item and restoring it; print-only DOM.
+- Widths 1440, 390 and 320: all subjects, candidate dialogs and output preview;
+  no document overflow or browser page errors. Final initial and composed states
+  checked at all 3 widths; visible buttons are at least 44px high and the local
+  Pretendard font loads.
+- Inspected desktop C/D, mobile C/D, passage grouping and 320px preview captures.
+- Functional report and screenshots (local, not committed):
+  C:/Users/user/AppData/Local/Temp/exam-cd-evidence/
+- Reproducible local validation scripts (not committed):
+  C:/Users/user/AppData/Local/Temp/exam-cd-functional.cjs
+  C:/Users/user/AppData/Local/Temp/exam-cd-final.cjs
+
+Scope limits
+- No real save, API integration, account permissions or official achievement
+  standard alignment is claimed. No physical printer was used.
+- The coordinator will merge the branch and verify the shared gallery link.

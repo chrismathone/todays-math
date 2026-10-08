@@ -1,0 +1,1166 @@
+{
+  "sourceCommit": "13bf05dce",
+  "validator": "Existing read-only shared blankSentenceSchema, visibleLength, blankKeywords and notationFaults",
+  "count": 88,
+  "invalidCount": 0,
+  "isEditorialApproval": false,
+  "rows": [
+    {
+      "id": "e4-2-4-2-c3",
+      "sourceIndex": 307,
+      "proposalFingerprint": "04e5ce887a64d4cf2cc2d34b4013da77f1bc9fd3dd6aa69a83edc70418a1fa11",
+      "coreAfter": "한 직선과 평행한 직선은 떨어진 거리를 바꾸어 가며 {끝없이} 그을 수 있다. 같은 평면에서 한 직선에 수직인 서로 다른 두 직선은 서로 {평행}하다.",
+      "visibleLength": 80,
+      "keys": [
+        "끝없이",
+        "평행"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-4-4-c1",
+      "sourceIndex": 310,
+      "proposalFingerprint": "d2e8e24706d000d35cc63c4720dbd4e1492aa653cca5d44b541450b68b483b47",
+      "coreAfter": "마주 보는 변 중에서 평행한 변이 {한 쌍이라도} 있는 사각형을 사다리꼴이라 한다.",
+      "visibleLength": 44,
+      "keys": [
+        "한 쌍이라도"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-5-1-c2",
+      "sourceIndex": 321,
+      "proposalFingerprint": "1f795250f1a7e3deaf82d7ea2ef1f4fc9ea293106e42eef381ebd93b96df7cc1",
+      "coreAfter": "시간을 왼쪽부터 순서대로 나타낸 꺾은선그래프에서 선이 오른쪽 위로 올라가면 수량이 {늘고}, 오른쪽 아래로 내려가면 {준다}.",
+      "visibleLength": 66,
+      "keys": [
+        "늘고",
+        "준다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-5-3-c1",
+      "sourceIndex": 324,
+      "proposalFingerprint": "1f6e5b5c743d13afb0a7863e07426407c46962ef4c37936c33d39c5cc7044353",
+      "coreAfter": "꺾은선그래프를 그릴 때에는 가로 눈금(순서)과 세로 눈금(수량)이 {만나는 자리}에 점을 찍는다.",
+      "visibleLength": 52,
+      "keys": [
+        "만나는 자리"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-6-1-c1",
+      "sourceIndex": 326,
+      "proposalFingerprint": "d22b1598bc396c3db2e0f5dd1763cbc60d1f9e7866b7b30128e746580be182ca",
+      "coreAfter": "선분으로만 둘러싸인 도형을 {다각형}이라 한다.",
+      "visibleLength": 24,
+      "keys": [
+        "다각형"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-1-2-xc1",
+      "sourceIndex": 366,
+      "proposalFingerprint": "667b5798ad115fce56a39f0103a16846a590669c72c9c676927d0f37c99c2a99",
+      "coreAfter": "받아올린 수까지 더했을 때 세 자리 가운데 {두 자리}에서만 합이 $10$이거나 $10$보다 크면 받아올림이 두 번 있다.",
+      "visibleLength": 62,
+      "keys": [
+        "두 자리"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-1-3-xc25",
+      "sourceIndex": 415,
+      "proposalFingerprint": "d8fc453de88c10680c8760edee7e9e7b2c601499aec34d12a1dcda8c4c4371ed",
+      "coreAfter": "세 자리 수에서 더 작은 세 자리 수를 빼고 큰 수의 십의 자리 숫자는 $0$이 아니라고 하자. 일의 자리로 $1$을 내려 준 뒤 남은 십의 자리 숫자에서 빼는 수의 십의 자리 숫자를 뺄 수 있으면 받아내림은 {한} 번뿐이다.",
+      "visibleLength": 120,
+      "keys": [
+        "한"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-1-4-xc4",
+      "sourceIndex": 421,
+      "proposalFingerprint": "c5c6d2f09dd3bce7b90988a83051fc71f5bf00e0e972473df7d16eb5988ef7ad",
+      "coreAfter": "빗금과 그 위에 적은 바뀐 숫자는 {윗자리 $1$을 풀어} {아랫자리 $10$}으로 바꾼 것을 나타낸다.",
+      "visibleLength": 50,
+      "keys": [
+        "윗자리 $1$을 풀어",
+        "아랫자리 $10$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-1-4-xc7",
+      "sourceIndex": 424,
+      "proposalFingerprint": "a2e3bf5083b83e5c701e4f7ffc04ce6706676d21af0842e3e1b242f4a0015d0c",
+      "coreAfter": "일의 자리에서 뺄 수 없어 십의 자리에서 받아내리면 일의 자리 위의 숫자에 {$10$}을 더한 뒤 뺀다.",
+      "visibleLength": 54,
+      "keys": [
+        "$10$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-1-4-xc14",
+      "sourceIndex": 430,
+      "proposalFingerprint": "261ab6301626734f54a3326eb0b71e13edf31f32c1bf01a96b42fb6035fce831",
+      "coreAfter": "세 자리 수의 뺄셈에서 처음 수의 십의 자리 숫자가 $0$이 아닐 때, 일의 자리로 $1$을 내려 준 뒤 십의 자리에 남은 숫자가 빼는 수의 십의 자리 숫자보다 {작으면} 십의 자리에서도 받아내림이 필요하다.",
+      "visibleLength": 110,
+      "keys": [
+        "작으면"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-1-4-xc21",
+      "sourceIndex": 436,
+      "proposalFingerprint": "ed77ee1bf637d0a9a346d95b409af08b95737c556881afc0490b46a9c859e416",
+      "coreAfter": "일의 자리로 $1$을 내어 준 뒤 십의 자리 숫자를 $1$ 줄이지 않으면 차가 바른 값보다 {$10$ 크게} 나온다.",
+      "visibleLength": 57,
+      "keys": [
+        "$10$ 크게"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-2-3-xc21",
+      "sourceIndex": 509,
+      "proposalFingerprint": "116eaea882871adee0c2585df914e61dd563cca4b630cbeae5f95269ca9b56cd",
+      "coreAfter": "삼각형의 한 변 양 끝에서 모두 직각으로 변을 세우면 {두 변이 만나지 않으므로} 삼각형의 직각은 많아야 하나이다.",
+      "visibleLength": 62,
+      "keys": [
+        "두 변이 만나지 않으므로"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-3-1-xc9",
+      "sourceIndex": 572,
+      "proposalFingerprint": "a153ba41e26ae53e4c72779648156b728b0e4c4178dc644d42fb41a8d3ff409e",
+      "coreAfter": "나눈 뒤 한 사람(또는 한 묶음)이 가진 개수가 모두 {같은지} 세어 보면 똑같이 나누었는지 알 수 있다.",
+      "visibleLength": 57,
+      "keys": [
+        "같은지"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-3-1-xc13",
+      "sourceIndex": 576,
+      "proposalFingerprint": "9eafc0adc1c2184b55dfb0826fc06acef29a4a0b0fc83e84003924008acbca77",
+      "coreAfter": "전체를 몇 개씩 남김없이 묶었을 때 생긴 묶음의 수로 전체를 똑같이 나누면, 한 묶음은 {처음 묶은 개수}와 같다. 예: $24$개를 $6$개씩 묶으면 $4$묶음이고, $24$개를 $4$묶음으로 나누면 한 묶음은 $6$개이다.",
+      "visibleLength": 112,
+      "keys": [
+        "처음 묶은 개수"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-3-2-xc17",
+      "sourceIndex": 598,
+      "proposalFingerprint": "3148594c955167adbfd517bcea66793e761d3cf67b384a5645462c46af5d00ee",
+      "coreAfter": "나누어떨어지는 나눗셈에서 나눌 전체의 수가 $0$이 아니면, 전체의 수는 나누는 수나 몫보다 {크거나 같다}. 예: $24\\div6=4$에서 $24$는 $6$과 $4$보다 크고, $8\\div1=8$에서는 몫과 같다.",
+      "visibleLength": 100,
+      "keys": [
+        "크거나 같다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-3-2-xc19",
+      "sourceIndex": 600,
+      "proposalFingerprint": "0910ed782cf7c1f6ec6d0c89309f2149fa9841866aed8b095eb4228883d720e4",
+      "coreAfter": "곱하는 두 수가 모두 $0$이 아닐 때, {곱셈}으로 두 수의 곱을 구할 수 있다. 그 곱을 곱한 수 하나로 {나눗셈}하면 다른 수를 구할 수 있다.",
+      "visibleLength": 77,
+      "keys": [
+        "곱셈",
+        "나눗셈"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-3-2-xc24",
+      "sourceIndex": 604,
+      "proposalFingerprint": "bdb1f41c36d76df2d1ae8a81a7caf7c657247f658ae89ca3e1f74e25f9462e73",
+      "coreAfter": "{같은 수}를 서로 다른 $0$이 아닌 수와 각각 곱하고, 각 곱을 그 서로 다른 수로 나누면 {몫이 같다}. 예: $4\\times3=12$, $4\\times4=16$에서 $12\\div3=4$, $16\\div4=4$이다.",
+      "visibleLength": 93,
+      "keys": [
+        "같은 수",
+        "몫이 같다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-3-4-xc18",
+      "sourceIndex": 626,
+      "proposalFingerprint": "3f54a7e315071cb5480134e993692dafb8fdddedde9e6d15c4672837d0b1364d",
+      "coreAfter": "곱셈구구로 구한 몫은 나누는 수와 곱해 {나눌 전체의 수}가 나오는지 다시 본다. 예: $56\\div8=7$이면 $8\\times7=56$인지 확인한다.",
+      "visibleLength": 70,
+      "keys": [
+        "나눌 전체의 수"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-4-1-xc3",
+      "sourceIndex": 632,
+      "proposalFingerprint": "21c4d6029587f1282bd959de5a6bde91ef3e99e62ca42eaaa7fee8929ead7a31",
+      "coreAfter": "몇십에 수를 곱할 때 십 모형의 개수는 십의 자리 숫자와 곱하는 수의 {곱}이다. 예: $30\\times2$는 십 모형 $3$개씩 $2$묶음이므로 십 모형이 $6$개이다.",
+      "visibleLength": 80,
+      "keys": [
+        "곱"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-4-1-xc5",
+      "sourceIndex": 634,
+      "proposalFingerprint": "6ceafcd01cf7238d756b0be96948c4f79124d1f7bcd549d0d1fb6a31eb84f5ab",
+      "coreAfter": "몇십에 수를 곱할 때에는 십의 자리 숫자와 곱하는 수의 {곱}을 구한 뒤 끝에 $0$을 하나 붙인다. 예: $70\\times4$는 $7\\times4=28$에 $0$을 붙여 $280$이다.",
+      "visibleLength": 82,
+      "keys": [
+        "곱"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-4-2-xc19",
+      "sourceIndex": 657,
+      "proposalFingerprint": "7b92cae88837be2e6d684cffd8c74a63b62381f15a293033ea70a569c0c9e559",
+      "coreAfter": "어느 자리의 숫자와 곱하는 수의 곱이 {$10$이거나 $10$보다 크면} 그 자리에서 올림이 생긴다.",
+      "visibleLength": 50,
+      "keys": [
+        "$10$이거나 $10$보다 크면"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-4-5-xc14",
+      "sourceIndex": 703,
+      "proposalFingerprint": "830b3356f482eb6b72d6f186bf94de6a1c027edde6829f345670caf8ef3d49cb",
+      "coreAfter": "일의 자리 곱이 $10$이거나 $10$보다 크고, 십의 자리 곱에 올린 수를 더한 값도 {$10$이거나 $10$보다 크면} 올림을 두 번 한다.",
+      "visibleLength": 70,
+      "keys": [
+        "$10$이거나 $10$보다 크면"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-4-5-xc19",
+      "sourceIndex": 706,
+      "proposalFingerprint": "b397749e00e37883682de535658961757d399e6591ba0ddd5bd6274634ac1cf3",
+      "coreAfter": "십의 자리 곱이 $10$보다 작아도 일의 자리에서 {올린 수를 더해} $10$이거나 $10$보다 커지면 백의 자리로 올린다.",
+      "visibleLength": 61,
+      "keys": [
+        "올린 수를 더해"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-1-xc14",
+      "sourceIndex": 723,
+      "proposalFingerprint": "088e76ba6e27aa85b60d7424d0d2fcad2f818a79a5cbb45336432b78bfbf002e",
+      "coreAfter": "$1\\,\\mathrm{cm}$는 $1\\,\\mathrm{mm}$의 {$10$배}인 길이이다.",
+      "visibleLength": 20,
+      "keys": [
+        "$10$배"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-2-xc16",
+      "sourceIndex": 740,
+      "proposalFingerprint": "711b8df6a90d196a8ca9b673447566db2c6b2813b4b41bd4bf7b511871e6d63d",
+      "coreAfter": "$\\mathrm{m}$끼리 더해 $1000\\,\\mathrm{m}$이거나 $1000\\,\\mathrm{m}$보다 길면 그중 $1000\\,\\mathrm{m}$를 {$1\\,\\mathrm{km}$}로 바꾼다.",
+      "visibleLength": 46,
+      "keys": [
+        "$1\\,\\mathrm{km}$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-2-xc17",
+      "sourceIndex": 741,
+      "proposalFingerprint": "1cb79a8ef7a0671f2e812100a074fd44abd6d8af6ccbb7a8d848cdc8ce51642a",
+      "coreAfter": "$1\\,\\mathrm{km}$는 $1\\,\\mathrm{m}$의 {$1000$배}인 길이이다.",
+      "visibleLength": 21,
+      "keys": [
+        "$1000$배"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-2-xc20",
+      "sourceIndex": 743,
+      "proposalFingerprint": "579686f09d089aff1bfa1dd9904185573960d15c645736af08237308f5028439",
+      "coreAfter": "긴 거리에서 짧은 거리를 뺄 때 $\\mathrm{m}$끼리 뺄 수 없으면 {$1\\,\\mathrm{km}$를 $1000\\,\\mathrm{m}$로 바꾸어} 뺀다.",
+      "visibleLength": 49,
+      "keys": [
+        "$1\\,\\mathrm{km}$를 $1000\\,\\mathrm{m}$로 바꾸어"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-2-xc22",
+      "sourceIndex": 745,
+      "proposalFingerprint": "468a403a2ddb6fabb058812e0989e8b81f999ce7d33a3e767b6b4dd028f703ad",
+      "coreAfter": "$0$이 아닌 같은 거리를 더 큰 단위로 나타내면 {수가 작아진다}. 예: $3000\\,\\mathrm{m}$는 $3\\,\\mathrm{km}$이다.",
+      "visibleLength": 51,
+      "keys": [
+        "수가 작아진다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-4-xc12",
+      "sourceIndex": 779,
+      "proposalFingerprint": "fbc74033ca2dd90bbd4d6470e4f1bf466b58f27c3f2588f403fb20468ae357d2",
+      "coreAfter": "$1$분은 $1$초의 {$60$배}인 시간이다.",
+      "visibleLength": 18,
+      "keys": [
+        "$60$배"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-5-xc4",
+      "sourceIndex": 790,
+      "proposalFingerprint": "3a7caa3b90203cb88b9a9dced501023cbee57a3350b133176b739591a36a7213",
+      "coreAfter": "시간을 더할 때 초의 합과 분의 합이 모두 {$60$보다 작으면} 받아올리지 않고 그대로 쓴다.",
+      "visibleLength": 49,
+      "keys": [
+        "$60$보다 작으면"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-5-xc8",
+      "sourceIndex": 793,
+      "proposalFingerprint": "d0332cd6f55e451939104be1b2a4b88907edb3d1e5333767eaf70fdf9ca951e8",
+      "coreAfter": "시간의 덧셈을 세로로 할 때에는 시는 시끼리, 분은 분끼리, 초는 초끼리 {위아래로 줄을 맞추어} 쓴다.",
+      "visibleLength": 56,
+      "keys": [
+        "위아래로 줄을 맞추어"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-5-xc11",
+      "sourceIndex": 795,
+      "proposalFingerprint": "7a0e2223c7443aee10d9fdf1c5c23e62b6d7385893cbefd3eae1e06c72555b55",
+      "coreAfter": "더한 분이 $60$분이거나 $60$분보다 많으면 그중 {$60$분을 $1$시간}으로 바꾼다.",
+      "visibleLength": 41,
+      "keys": [
+        "$60$분을 $1$시간"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-5-xc15",
+      "sourceIndex": 797,
+      "proposalFingerprint": "1040b67e7dd15b5cacd7133af6369ef1599191ded22c9ef220ebdd3e448b61fd",
+      "coreAfter": "시각에 시간을 더해 분이 $60$분이거나 $60$분보다 많아지면 $60$분을 시간으로 바꾸는데, $60$분마다 시각이 {$1$}시간씩 더 지나간다.",
+      "visibleLength": 70,
+      "keys": [
+        "$1$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-6-xc2",
+      "sourceIndex": 803,
+      "proposalFingerprint": "9c0e9d79d9a07ef6587decc0e94cb774d6cade5b21f9b36cdaf1385f999557b0",
+      "coreAfter": "같은 단위끼리 {뺄 수 있으면} 더 큰 단위를 바꾸지 않고 그대로 뺀다. 예: 초끼리 뺄 수 있으면 $1$분을 $60$초로 바꾸지 않는다.",
+      "visibleLength": 71,
+      "keys": [
+        "뺄 수 있으면"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-5-6-xc8",
+      "sourceIndex": 807,
+      "proposalFingerprint": "5635b19847352d5b51bab6a228935f9c31fb92a11dce443c777119c5101a7521",
+      "coreAfter": "시간의 뺄셈을 세로로 쓸 때에는 시는 시끼리, 분은 분끼리, 초는 초끼리 {위아래로 맞추어} 쓴 뒤 뺀다.",
+      "visibleLength": 57,
+      "keys": [
+        "위아래로 맞추어"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-6-1-xc2",
+      "sourceIndex": 820,
+      "proposalFingerprint": "abb69bd9f89667e44411fdc27e33fbdc5716c9e587d9a38c4bfbf57e9be496ae",
+      "coreAfter": "한 전체를 똑같이 나누려면 나눈 각 부분의 {크기}가 같아야 한다. 모양과 크기가 같아 서로 꼭 겹치는 조각은 같은 크기임을 확인할 수 있지만, 같은 크기의 조각이 반드시 같은 모양일 필요는 없다.",
+      "visibleLength": 108,
+      "keys": [
+        "크기"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-6-1-xc27",
+      "sourceIndex": 839,
+      "proposalFingerprint": "eb621ca068204c75bc2c538cc5e5a7aa9f8b3b102a948a9288d70e9286bc3bb3",
+      "coreAfter": "직사각형의 긴 변을 같은 길이씩 셋으로 나누고, 나눈 곳마다 짧은 변과 나란하게 끝까지 자르면 {똑같이 셋으로} 나뉜다.",
+      "visibleLength": 65,
+      "keys": [
+        "똑같이 셋으로"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-6-2-xc22",
+      "sourceIndex": 853,
+      "proposalFingerprint": "742bc63317d385c156114940ac5f421157e3cfd05a5f31be5bb2125654fd7486",
+      "coreAfter": "크기가 다른 조각을 작은 조각과 같은 크기로 남김없이 나눌 수 있을 때, 그 크기로 {다시 나누어} 전체 조각 수를 세면 한 조각을 분수로 나타낼 수 있다.",
+      "visibleLength": 85,
+      "keys": [
+        "다시 나누어"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-1-6-5-xc17",
+      "sourceIndex": 902,
+      "proposalFingerprint": "ca4bf5dbee168dd7bf94ffda821b12dc1866fac16f2f9c24461d65b29ed42fa1",
+      "coreAfter": "$\\frac{1}{7}$, $\\frac{2}{7}$, $\\frac{3}{7}$처럼 분자가 $1$이거나 $1$보다 크고 분모가 $7$인 분수 가운데 $\\frac{1}{7}$이 {가장 작다}.",
+      "visibleLength": 53,
+      "keys": [
+        "가장 작다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-1-1-xc5",
+      "sourceIndex": 938,
+      "proposalFingerprint": "91b867dc8bef896d1432151e4c088479cc9a1b46bd318c5e881d8bfbcbb33b77",
+      "coreAfter": "몇백에 수를 곱할 때에는 {백이 몇 개인지} 보고 그 개수에 곱하는 수를 곱해 구한다. 예: $300\\times2$는 백이 $3\\times2=6$(개)이므로 $600$이다.",
+      "visibleLength": 78,
+      "keys": [
+        "백이 몇 개인지"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-1-1-xc13",
+      "sourceIndex": 944,
+      "proposalFingerprint": "9f9fc5e386e7f2f1c3e45c12c44557108eb80c33ec26e26dee8a509fdd23586c",
+      "coreAfter": "일의 자리가 $0$인 세 자리 수는 {십이 몇 개인지}로 보고 곱한 뒤, 그 곱만큼 십이 있는 수로 쓴다. 예: $230\\times3$은 십이 $23\\times3=69$(개)이므로 $690$이다.",
+      "visibleLength": 89,
+      "keys": [
+        "십이 몇 개인지"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-1-2-xc4",
+      "sourceIndex": 955,
+      "proposalFingerprint": "955d154e0b22d5520096f106a966181fa2f6858fe21aaacb47931ffe63d9ff8e",
+      "coreAfter": "백의 자리 곱에 올린 수를 더한 값이 {$10$이거나 $10$보다 크면} 곱은 네 자리 수가 된다.",
+      "visibleLength": 49,
+      "keys": [
+        "$10$이거나 $10$보다 크면"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-1-2-xc10",
+      "sourceIndex": 957,
+      "proposalFingerprint": "a23fa51b1fb2678a9df8956fa2a88533958de5fb30bbb19ed57a195ae13dc95c",
+      "coreAfter": "어느 자리에서 올림이 있는지는 그 자리의 곱에 {아랫자리에서 올린 수}를 더한 값이 {$10$이거나 $10$보다 큰지}로 안다.",
+      "visibleLength": 63,
+      "keys": [
+        "아랫자리에서 올린 수",
+        "$10$이거나 $10$보다 큰지"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-1-2-xc24",
+      "sourceIndex": 963,
+      "proposalFingerprint": "1d60dab1093b401cbad517062d140ee95f722b76b00a22141dc77cb41deb20f6",
+      "coreAfter": "백의 자리 숫자와 곱하는 수의 곱이 {$10$이거나 $10$보다 크면} 곱에는 반드시 천의 자리가 생긴다.",
+      "visibleLength": 53,
+      "keys": [
+        "$10$이거나 $10$보다 크면"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-2-1-xc2",
+      "sourceIndex": 993,
+      "proposalFingerprint": "9888b3b0d4998e8e44e0154bc879977e5babad623a48a1d9c5ffa757d7dd2ee3",
+      "coreAfter": "십의 묶음 수를 남김없이 나눌 수 있을 때, 몇십을 몇으로 나누는 것은 {십의 묶음을 똑같이 나누어} 한 묶음에 십이 몇 개인지 보는 것이다. 예: $60\\div3$은 십 $2$개씩이므로 $20$이다.",
+      "visibleLength": 101,
+      "keys": [
+        "십의 묶음을 똑같이 나누어"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-2-1-xc9",
+      "sourceIndex": 999,
+      "proposalFingerprint": "dc181e17bdfb415f9a55661b3ff0481eebd30fcd884e09b4120d53f378af243a",
+      "coreAfter": "몫의 십의 자리 숫자는 {십의 묶음을 나눈 몫}으로, 한 묶음에 십이 몇 개씩인지 나타낸다. 예: $84\\div4=21$에서 $2$는 십이 $2$개인 $20$을 나타낸다.",
+      "visibleLength": 82,
+      "keys": [
+        "십의 묶음을 나눈 몫"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-2-1-xc20",
+      "sourceIndex": 1004,
+      "proposalFingerprint": "794cfe65376f1dfb3f48dc516db7778cdb4c6dc96e48432e18bc091dcab4c195",
+      "coreAfter": "두 자리 수를 한 자리 수로 나눌 때 십의 자리 숫자가 나누는 수와 같거나 나누는 수보다 크면 몫은 {두} 자리 수이다.",
+      "visibleLength": 65,
+      "keys": [
+        "두"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-2-2-xc11",
+      "sourceIndex": 1014,
+      "proposalFingerprint": "1d89226e4d8444f90ff664000488c5723e76735cc7ed3111ec1615ccac8d885b",
+      "coreAfter": "나누어떨어지는 나눗셈에서 나누는 수에 곱할 수를 $10$, $20$처럼 두 개 정한다. 나눌 수가 두 곱 {사이에} 있으면 몫은 앞서 정한 두 수 {사이에} 있다. 예: $75\\div5$에서 $75$가 $50$과 $100$ 사이이므로 몫은 $10$과 $20$ 사이이다.",
+      "visibleLength": 127,
+      "keys": [
+        "사이에",
+        "사이에"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-2-4-xc2",
+      "sourceIndex": 1031,
+      "proposalFingerprint": "654c966bbde9bc232e5209577e5f66f95f46d13bf7e11cd066330aa304b06710",
+      "coreAfter": "세 자리 수를 한 자리 수로 나눌 때 백의 자리 숫자가 나누는 수와 같거나 나누는 수보다 크면 몫은 {세} 자리 수이다.",
+      "visibleLength": 65,
+      "keys": [
+        "세"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-2-4-xc8",
+      "sourceIndex": 1035,
+      "proposalFingerprint": "6e1e5b04bd270d337bd517bdc41ae0c40f2e2ed98d353a6c26e797681e61956b",
+      "coreAfter": "백의 묶음 수가 나누는 수로 남김없이 나누어지는 몇백을 몇으로 나눌 때는 {백의 묶음을 나누어} 한 묶음에 백이 몇 개인지 본다. 예: $800\\div4$는 백 $8$개를 $4$로 나누어 백 $2$개씩이므로 $200$이다.",
+      "visibleLength": 109,
+      "keys": [
+        "백의 묶음을 나누어"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-3-2-xc23",
+      "sourceIndex": 1084,
+      "proposalFingerprint": "93fa12d46cd5c01f9cc0aa665061e68bc86efd537a8cf7b4f79c11005a5d54b2",
+      "coreAfter": "두 원의 크기를 비교할 때 한 원은 반지름으로, 다른 원은 지름으로 주어지면 둘 다 {반지름}으로 또는 둘 다 {지름}으로 바꾸어 비교한다.",
+      "visibleLength": 74,
+      "keys": [
+        "반지름",
+        "지름"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-4-4-xc1",
+      "sourceIndex": 1138,
+      "proposalFingerprint": "feba6423a406b0328e9f9d3f9c49ded22058f5b0181a029015aa4a07f78f27c8",
+      "coreAfter": "$\\frac{2}{5}$, $\\frac{4}{7}$처럼 분자가 분모보다 작은 분수는 모두 {진분수}이다.",
+      "visibleLength": 34,
+      "keys": [
+        "진분수"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-4-5-xc5",
+      "sourceIndex": 1156,
+      "proposalFingerprint": "82db8d33882a2a57bb411b9b087e415ae5b7d6c4ab224947b18227dc7fec335f",
+      "coreAfter": "대분수는 $1$이거나 $1$보다 큰 자연수에 진분수가 더해진 수이므로 $1$보다 {크다}.",
+      "visibleLength": 42,
+      "keys": [
+        "크다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-5-2-xc15",
+      "sourceIndex": 1217,
+      "proposalFingerprint": "48ca4a5d2e6a46f9f7214d439c15ebbef29e251bf8ca2cee816a87451adc5b51",
+      "coreAfter": "같은 들이씩 나눈 눈금에서 이웃한 큰 눈금의 들이 {차}를 두 눈금 사이의 {칸 수}로 나누면 한 칸의 들이를 구한다.",
+      "visibleLength": 62,
+      "keys": [
+        "차",
+        "칸 수"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-5-3-xc12",
+      "sourceIndex": 1229,
+      "proposalFingerprint": "4b066344b4a69a7d71f09d4a3cbab6d23d04b74650c23e50ed0a18bc01bd6859",
+      "coreAfter": "들이의 뺄셈에서 $\\mathrm{mL}$끼리 뺄 수 없으면 $1\\,\\mathrm{L}$를 $1000\\,\\mathrm{mL}$로 바꾸어 뺀다. 이때 처음 들이의 $\\mathrm{L}$의 수는 {$1$ 작아진다}.",
+      "visibleLength": 65,
+      "keys": [
+        "$1$ 작아진다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-5-4-xc13",
+      "sourceIndex": 1246,
+      "proposalFingerprint": "1cf843b705448288363625819f22f41c9a33d416f58df1e447bdad49d5ff6fef",
+      "coreAfter": "양팔저울 양쪽에 물건 가와 나를 하나씩 올렸을 때 수평이고, 나가 다보다 무거우면 가도 다보다 {무겁다}.",
+      "visibleLength": 57,
+      "keys": [
+        "무겁다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-5-4-xc19",
+      "sourceIndex": 1252,
+      "proposalFingerprint": "7fae786eeb9855ed27a2c1df11577f2300bb1ac7a8bf834e12c4cf3d616a5cb1",
+      "coreAfter": "무게가 있는 물건 가와 나를 양팔저울 한쪽에, 물건 다를 다른 쪽에 올려 수평이면 다는 가보다 {무겁다}.",
+      "visibleLength": 57,
+      "keys": [
+        "무겁다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-5-5-xc13",
+      "sourceIndex": 1267,
+      "proposalFingerprint": "3c465f783e8d1e79fc6b86076e351493a50288feecc169fe55818ed2ee3b20ac",
+      "coreAfter": "같은 무게씩 나눈 저울 눈금에서 이웃한 큰 눈금의 무게 {차}를 두 눈금 사이의 {칸 수}로 나누면 한 칸의 무게를 구한다.",
+      "visibleLength": 65,
+      "keys": [
+        "차",
+        "칸 수"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-5-6-xc11",
+      "sourceIndex": 1282,
+      "proposalFingerprint": "0ea08e6165c4ef2aecb8b279af7685ff370aff91cb46f4272d14e19dff8d37a6",
+      "coreAfter": "무게의 뺄셈에서 $\\mathrm{g}$끼리 뺄 수 없으면 $1\\,\\mathrm{kg}$을 $1000\\,\\mathrm{g}$으로 바꾸어 뺀다. 이때 처음 무게의 $\\mathrm{kg}$의 수는 {$1$ 작아진다}.",
+      "visibleLength": 66,
+      "keys": [
+        "$1$ 작아진다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e3-2-6-1-xc18",
+      "sourceIndex": 1299,
+      "proposalFingerprint": "ca9024c03bbcde00d21b9e3316647aa9de339b9fdc9f4bb8d570f7fa2a72529e",
+      "coreAfter": "작은 그림이 나타내는 수는 $1$이 아닐 수 있으므로, 그래프에 적힌 {설명을 보고} 확인해야 한다.",
+      "visibleLength": 52,
+      "keys": [
+        "설명을 보고"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-1-1-xc12",
+      "sourceIndex": 1334,
+      "proposalFingerprint": "92c2615281fb349a396bf2553268d917e3feeb68738585c21b37e2ba6c11c044",
+      "coreAfter": "$10000$이 $8000$보다 $2000$ 큰 수이면, $8000$은 $10000$보다 $2000$ 작은 수이다. 이처럼 얼마 큰 수와 얼마 작은 수는 {같은 차이}를 반대쪽에서 말한 것이다.",
+      "visibleLength": 94,
+      "keys": [
+        "같은 차이"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-1-1-xc19",
+      "sourceIndex": 1340,
+      "proposalFingerprint": "e50f7aaf3dc2c35f038ea3c8004348f21630eacc8a518fe2464ba1f412bfc835",
+      "coreAfter": "같은 만을 한 묶음의 크기가 원래의 $\\frac{1}{10}$이 되게 묶으면 묶음의 수는 {$10$배}로 많아진다. 예: $1000$씩 묶으면 $10$묶음, $100$씩 묶으면 $100$묶음이다.",
+      "visibleLength": 86,
+      "keys": [
+        "$10$배"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-1-2-xc24",
+      "sourceIndex": 1369,
+      "proposalFingerprint": "0e3d0779df68c31d99cd6538212abd678941ee641722aaf7479a87a8b5fdfba3",
+      "coreAfter": "바꿀 자리의 숫자가 $9$가 아니면 그 숫자를 $1$ 크게 바꿀 수 있다. 수는 {그 자리에서 $1$이 나타내는 수만큼} 커지고 다른 자리의 값은 그대로이다. 예: 천의 자리라면 $1000$만큼 커진다.",
+      "visibleLength": 103,
+      "keys": [
+        "그 자리에서 $1$이 나타내는 수만큼"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-1-2-xc27",
+      "sourceIndex": 1372,
+      "proposalFingerprint": "764bb9b9d00e5a094fd27f7c787692620132a21d372788b8783ffcf005b47185",
+      "coreAfter": "자릿값 표의 각 칸 숫자에 {그 자리에서 $1$이 나타내는 수}를 곱해 모두 더하면 원래 수가 된다. 만의 칸에서는 $10000$, 천의 칸에서는 $1000$을 곱한다.",
+      "visibleLength": 86,
+      "keys": [
+        "그 자리에서 $1$이 나타내는 수"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-1-3-xc2",
+      "sourceIndex": 1375,
+      "proposalFingerprint": "66e836f6d44116d727cce77244bcb9851e4969c1cc36f974a70adb7308539b80",
+      "coreAfter": "만이 한 개라도 있는 수에서 만의 개수를 나타내는 부분의 오른쪽에는 {천, 백, 십, 일의 네 자리}가 있다. 그래서 자릿수가 {$4$}만큼 더 많다. 예: 만이 $40$개인 $400000$은 $40$보다 네 자리가 더 있다.",
+      "visibleLength": 114,
+      "keys": [
+        "천, 백, 십, 일의 네 자리",
+        "$4$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-1-3-xc11",
+      "sourceIndex": 1384,
+      "proposalFingerprint": "8b09464070c6add870a076c084b29ffc0326ba9bdb1b68d0c1923080e635c686",
+      "coreAfter": "삼백이만처럼 몇백몇만인 수는 만이 몇백몇 개인 수이다. 몇십만에 해당하는 묶음이 없으므로 {십만의 자리}와 만보다 작은 네 자리에 {$0$}을 쓴다.",
+      "visibleLength": 77,
+      "keys": [
+        "십만의 자리",
+        "$0$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-1-7-xc8",
+      "sourceIndex": 1475,
+      "proposalFingerprint": "10d075a0099de48a38c52ce33f7713de24a0d0d6817bc3fca340fd1c7c746872",
+      "coreAfter": "만, 억, 조 가운데 서로 다른 단위로 나타낸 두 수에서 단위 앞의 수가 모두 $1$부터 $9999$까지의 수이면 {큰 단위}가 붙은 수가 더 크다.",
+      "visibleLength": 77,
+      "keys": [
+        "큰 단위"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-2-1-xc18",
+      "sourceIndex": 1511,
+      "proposalFingerprint": "75c3b55d83e12f892f33155f1ecdebe6a74fd641c695ef9a30464e304d12d23d",
+      "coreAfter": "문을 위에서 볼 때, 닫혀 있던 문을 점점 더 열면 닫힌 문짝의 자리와 열린 문짝 사이의 각은 {점점 커진다}.",
+      "visibleLength": 60,
+      "keys": [
+        "점점 커진다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-2-2-xc11",
+      "sourceIndex": 1530,
+      "proposalFingerprint": "1553e3990cdc3fd7bb54e5a3bbad9be8eeaf8ff3a11899b28742c23605a662d6",
+      "coreAfter": "각도기의 같은 자리에 나란히 적힌 안쪽 눈금과 바깥쪽 눈금을 더하면 언제나 {$180$}이다.",
+      "visibleLength": 48,
+      "keys": [
+        "$180$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-2-5-xc3",
+      "sourceIndex": 1598,
+      "proposalFingerprint": "ebd61bf77c29f1a17af78cb950ca4659554c3ff95fd8701658a80147563711cf",
+      "coreAfter": "삼각형에는 꼭짓점이 세 개 있으므로 각의 수도 {세 개}이다.",
+      "visibleLength": 32,
+      "keys": [
+        "세 개"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-2-5-xc25",
+      "sourceIndex": 1619,
+      "proposalFingerprint": "acec33aaf3297594928e15e9fe25d8326b7c7d678bc964faa852479ff5c8e351",
+      "coreAfter": "삼각형의 세 각을 잘라 꼭짓점을 맞추고 겹치지 않게 이어 붙이면 일직선이 된다. 그래서 삼각형의 세 각의 크기의 합은 {$180^\\circ$}이다.",
+      "visibleLength": 73,
+      "keys": [
+        "$180^\\circ$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-2-6-xc13",
+      "sourceIndex": 1634,
+      "proposalFingerprint": "1ac75ea0d31ced50b7e4f033164d317367a5852f0038665c40e3f676cd70bebf",
+      "coreAfter": "사각형의 두 각을 알고 나머지 두 각이 같으면 {$360^\\circ$에서 아는 두 각을 뺀} 값을 {둘로 나눈다}.",
+      "visibleLength": 53,
+      "keys": [
+        "$360^\\circ$에서 아는 두 각을 뺀",
+        "둘로 나눈다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-2-6-xc18",
+      "sourceIndex": 1639,
+      "proposalFingerprint": "c4f3fd9bfecab07fe18c024bfebed4644686892268604c5e0e2633ad2abe9a2d",
+      "coreAfter": "사각형의 네 각을 재어 더한 값이 {$360^\\circ$}와 크게 다르면 잘못 잰 각이 있는지 살핀다.",
+      "visibleLength": 48,
+      "keys": [
+        "$360^\\circ$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-2-6-xc20",
+      "sourceIndex": 1641,
+      "proposalFingerprint": "e289d08482bb3cbeb28dd61340862aa2836ce87366ca54d93f88f46e813e9b3e",
+      "coreAfter": "사각형 안의 한 점과 네 꼭짓점을 이어 안쪽을 겹치지 않게 삼각형 네 개로 나누면, $180^\\circ\\times4$에서 가운데 점에 모인 {$360^\\circ$}를 뺀다. 남은 값이 사각형의 네 각의 합이다.",
+      "visibleLength": 96,
+      "keys": [
+        "$360^\\circ$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-2-6-xc27",
+      "sourceIndex": 1646,
+      "proposalFingerprint": "7cce1eaebf9fe5a7446e755fde414381f722f2fdc0007452a637da7719aaeaa8",
+      "coreAfter": "사각형 안쪽을 삼각형 두 개로 나누면 삼각형 한 개보다 {삼각형 하나를 더} 모은 셈이다. 그래서 사각형의 네 각의 합은 삼각형의 세 각의 합보다 $180^\\circ$ 크다.",
+      "visibleLength": 88,
+      "keys": [
+        "삼각형 하나를 더"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-3-1-xc12",
+      "sourceIndex": 1657,
+      "proposalFingerprint": "3c0de4f8c71b2d646557fdfad0e2f26b027ca5b90fba376903f2ff80bc86c92a",
+      "coreAfter": "$0$이 아닌 두 수의 끝의 $0$을 뗀 뒤 곱한 값이 $0$으로 끝나면, 곱의 끝의 $0$은 두 수 끝의 $0$을 합한 것보다 {더 많다}. 예: $500\\times20$은 $5\\times2=10$이므로 곱 $10000$의 끝의 $0$이 $4$개이다.",
+      "visibleLength": 109,
+      "keys": [
+        "더 많다"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-3-1-xc17",
+      "sourceIndex": 1661,
+      "proposalFingerprint": "4ebf60f1320459e190d0e77395a61e3b57f6d44ce7d3fada9b59227ba372bc1b",
+      "coreAfter": "$0$보다 큰 수에 $30$을 곱할 때 $3$만 곱하고 $0$을 붙이지 않으면 바른 곱보다 작은 값이 나온다. 바른 곱은 그 값의 {$10$배}이다.",
+      "visibleLength": 71,
+      "keys": [
+        "$10$배"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-3-1-xc22",
+      "sourceIndex": 1663,
+      "proposalFingerprint": "d2b12ef71bf0e7d509496689e51c501a486394d1357db0229d7ea8d0274b662f",
+      "coreAfter": "곱해지는 수가 같은 두 곱의 차는 곱해지는 수에 {곱하는 수의 차}를 곱한 것과 같다. 예: $312\\times50$은 $312\\times30$보다 $312\\times20$만큼 크다.",
+      "visibleLength": 79,
+      "keys": [
+        "곱하는 수의 차"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-3-2-xc19",
+      "sourceIndex": 1681,
+      "proposalFingerprint": "bbe0437e0671d26de93fc45afba59ef6981c80df23eab2b09cbcf5578742a03d",
+      "coreAfter": "$123\\times24$에서 $123\\times2$를 한 자리 왼쪽으로 옮기지 않고 더하면, 더해야 할 $2460$ 대신 $246$을 더한 셈이다. $2460$은 $246$의 {$10$배}이다.",
+      "visibleLength": 82,
+      "keys": [
+        "$10$배"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-4-3-xc26",
+      "sourceIndex": 1864,
+      "proposalFingerprint": "66caaefc73653a895338f61e3f2ad272528981758263d209f16995ccf57963ac",
+      "coreAfter": "종이에 쓴 글자의 옆에 위아래 방향으로 선을 긋고, 그 선 위에 거울을 똑바로 세운다. 거울에 비친 글자는 그 선을 따라 {왼쪽이나 오른쪽}으로 뒤집은 모양이다.",
+      "visibleLength": 88,
+      "keys": [
+        "왼쪽이나 오른쪽"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-1-6-2-xc17",
+      "sourceIndex": 2012,
+      "proposalFingerprint": "1568a58c4fbb14a49025914b01555df7691b008a2fcf41a338036c4fff1af81e",
+      "coreAfter": "가운데 $1$개에서 시작해 단계마다 위, 아래, 왼쪽, 오른쪽 끝에 하나씩 더 놓으면 도형이 {$4$}개씩 늘어난다.",
+      "visibleLength": 59,
+      "keys": [
+        "$4$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-3-1-xc5",
+      "sourceIndex": 2293,
+      "proposalFingerprint": "44415c2e8575a90c45c977ce3fa1095dbfc419aa840e1a0c063c764c394b9933",
+      "coreAfter": "분모가 $100$인 분수의 분자는 {$0.01$}이 몇 개인지를 나타낸다. 이 분수는 소수점 아래 둘째 자리까지 써서 나타낼 수 있다.",
+      "visibleLength": 69,
+      "keys": [
+        "$0.01$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-3-1-xc15",
+      "sourceIndex": 2298,
+      "proposalFingerprint": "d37050bf24241f8f2e2e611b35231ff736064960fc3a4eece73262fd1ca1068f",
+      "coreAfter": "$1$, $0.1$, $0.01$의 개수가 각각 {$9$개를 넘지 않으면} 그 개수를 해당 자리의 숫자로 써서 소수를 만든다.",
+      "visibleLength": 60,
+      "keys": [
+        "$9$개를 넘지 않으면"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-4-1-xc24",
+      "sourceIndex": 2442,
+      "proposalFingerprint": "a251abe7006767d36b2272e9a9abae3dbce8054f6e754b88faa178aee06e4bd7",
+      "coreAfter": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 선을 그어 두 각으로 나누면, 그 두 각의 크기의 합은 {$90^\\circ$}이다.",
+      "visibleLength": 63,
+      "keys": [
+        "$90^\\circ$"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-4-2-xc4",
+      "sourceIndex": 2449,
+      "proposalFingerprint": "bcb747e144c651d79cea26d08a0b2f8151ee75a55c602795397f0d7295874996",
+      "coreAfter": "한 삼각자의 한 변을 직선에 맞추고, 다른 삼각자를 그 삼각자의 다른 변에 붙여 고정한다. 처음 삼각자를 고정한 삼각자에 붙인 채 {밀어 옮긴} 뒤, 처음 직선에 맞춘 변을 따라 그으면 평행선이 된다.",
+      "visibleLength": 110,
+      "keys": [
+        "밀어 옮긴"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-4-2-xc11",
+      "sourceIndex": 2456,
+      "proposalFingerprint": "72dd264b7c6ccb67405ebf7808d87cafd191c0820ed684be5d6ea6800e4d3b12",
+      "coreAfter": "모눈종이에서 한 선분을 늘인 직선 밖의 점을 지나는 평행한 선분은, 원래 선분과 같은 방향으로 가로 칸 수와 세로 칸 수를 각각 {똑같이} 하여 긋는다.",
+      "visibleLength": 83,
+      "keys": [
+        "똑같이"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-4-3-xc4",
+      "sourceIndex": 2475,
+      "proposalFingerprint": "7479ec69072f7561971079827a45075da4f47625472715d0f53c7348698a73cd",
+      "coreAfter": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+      "visibleLength": 46,
+      "keys": [
+        "길이"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    },
+    {
+      "id": "e4-2-4-5-xc28",
+      "sourceIndex": 2540,
+      "proposalFingerprint": "7ddaca7d99dd320f97ddbdcc339e2ff1f1f484b438b123a3490aa38ba20df6bf",
+      "coreAfter": "평행사변형의 세 각의 합을 알면 $360^\\circ$에서 빼서 남은 각을 구한다. 맞은편 각은 같고 이웃한 각은 그 각과 더해 $180^\\circ$이므로 {네 각의 크기를 모두} 구할 수 있다.",
+      "visibleLength": 92,
+      "keys": [
+        "네 각의 크기를 모두"
+      ],
+      "contractValid": true,
+      "issues": [],
+      "notationFaults": []
+    }
+  ]
+}

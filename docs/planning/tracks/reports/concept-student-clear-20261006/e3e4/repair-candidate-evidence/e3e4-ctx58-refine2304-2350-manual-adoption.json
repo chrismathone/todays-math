@@ -1,0 +1,379 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-3-1-xc26",
+      "sourceIndex": 2304,
+      "beforeProposal": {
+        "sourceIndex": 2304,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+        "sourceFingerprint": "388dc601b4ccd396d2e73ab106c7c3f8cedd1a3d30e3195c5909f28c86a9afdf",
+        "proposalFingerprint": "60113415cab48f46b4363d9017789978ec9a0fce8fb56c2b4b87da7b1b849ea0",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-1-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$은 $0.001$이 몇 개 모인 수인지 쓰시오. $0.001$을 $10$개씩 모으고, 그렇게 만든 수를 다시 $10$개씩 모으는 과정을 $1$이 될 때까지 차례로 설명하시오.",
+        "bAnswer": "$1000$개. $0.001$이 $10$개면 $0.01$, $0.01$이 $10$개면 $0.1$, $0.1$이 $10$개면 $1$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1000$개",
+              "천 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$개씩 모여 $0.01$, $0.1$, $1$이 된다",
+              "$10\\times10\\times10$"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "$1$과 $0.001$의 개수 관계",
+        "bReason": "$10$개씩 모으는 과정으로 $1000$개 이해",
+        "cDecision": "keep",
+        "cReason": "$1000$개를 쓰는 짧은 관계 빈칸",
+        "cSlotEquivalents": [
+          [
+            "천 개"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$1$과 $0.001$의 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1$은 $0.001$이 {$1000$개}인 수이다.",
+        "cStudentSentence": "$1$은 $0.001$이 □인 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1000$개",
+            "equivalents": [
+              "천 개"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$1$은 $0.001$이 □인 수이다.",
+          "answers": [
+            "$1000$개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1$은 $0.001$이 몇 개 모인 수인지 쓰시오. $0.001$을 $10$개씩 모으고, 그렇게 만든 수를 다시 $10$개씩 모으는 과정을 $1$이 될 때까지 차례로 설명하시오.",
+          "answer": "$1000$개. $0.001$이 $10$개면 $0.01$, $0.01$이 $10$개면 $0.1$, $0.1$이 $10$개면 $1$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1000$개",
+                "천 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$10$개씩 모여 $0.01$, $0.1$, $1$이 된다",
+                "$10\\times10\\times10$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1$은 $0.001$이 {$1000$개}인 수이다.",
+          "acceptedAnswers": [
+            [
+              "$1000$개",
+              "천 개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1000$개",
+              "천 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.001$을 $10$개씩 모으면 $0.01$, 이를 다시 $10$개씩 모으면 $0.1$, 다시 $10$개씩 모으면 $1$이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-3-xc13",
+      "sourceIndex": 2335,
+      "beforeProposal": {
+        "sourceIndex": 2335,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "aa4b9adca2ac934a32db229b0127d945c452ff738bcf53acc2e622d0638ba82f",
+        "proposalFingerprint": "bd1ee71f25f40024958020f74a62d80b4987adfb61b97ad3e3a9060dfee9f4c7",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$27$의 $\\frac{1}{10}$을 구하고, $2$가 일의 자리로 가는 까닭을 쓰시오.",
+        "bAnswer": "$2.7$. $20$의 $\\frac{1}{10}$이 $2$이므로 $2$가 일의 자리로 간다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$의 $\\frac{1}{10}$은 $2$",
+              "각 숫자의 값이 $\\frac{1}{10}$이 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$\\frac{1}{10}$로 한 자리 내려감",
+        "bReason": "자리 이동을 숫자 값의 변화로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$27$의 $\\frac{1}{10}$은 $2.7$이다. $27$의 숫자 $2$가 나타내는 $20$의 $\\frac{1}{10}$이 {$2$}가 되어, 이 숫자는 일의 자리에 놓인다.",
+        "cReason": "문장 복원을 짧은 분수 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "십분의 일로 하면 숫자가 내려간다",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$27$의 $\\frac{1}{10}$은 $2.7$이다. $27$의 숫자 $2$가 나타내는 $20$의 $\\frac{1}{10}$이 {$2$}가 되어, 이 숫자는 일의 자리에 놓인다.",
+        "cStudentSentence": "$27$의 $\\frac{1}{10}$은 $2.7$이다. $27$의 숫자 $2$가 나타내는 $20$의 $\\frac{1}{10}$이 □가 되어, 이 숫자는 일의 자리에 놓인다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$27$의 $\\frac{1}{10}$을 구하고, $2$가 일의 자리로 가는 까닭을 쓰시오.",
+          "answer": "$2.7$. $20$의 $\\frac{1}{10}$이 $2$이므로 $2$가 일의 자리로 간다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$20$의 $\\frac{1}{10}$은 $2$",
+                "각 숫자의 값이 $\\frac{1}{10}$이 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$27$의 $\\frac{1}{10}$은 $2.7$이다. $27$의 숫자 $2$가 나타내는 $20$의 $\\frac{1}{10}$이 {$2$}가 되어, 이 숫자는 일의 자리에 놓인다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$27$의 $\\frac{1}{10}$을 구할 때, 십의 자리 숫자 $2$가 나타내는 $20$은 {$2$}가 된다. 그래서 이 숫자는 일의 자리에 놓인다.",
+        "cReason": "구한 수 $2.7$을 먼저 보여 주지 않고 십의 자리 값 $20$이 십분의 일로 줄어드는 변화를 묻는다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-3-xc26",
+      "sourceIndex": 2345,
+      "beforeProposal": {
+        "sourceIndex": 2345,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "30580bb9a9503d30ee0bccb887f918c0fc25b3aee3b54ec5c2156a444752c333",
+        "proposalFingerprint": "83d532647c2176e62173c35060d8a15d313012402073f0d0a18f513a4793e758",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "$4.8$은 $0.048$의 몇 배인지 쓰고, 그 까닭을 각 숫자의 값으로 쓰시오.",
+        "bAnswer": "$100$배. $0.048$의 각 숫자가 나타내는 값이 모두 $100$배가 되면 $4.8$이 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$100$배",
+              "백 배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$의 값은 $0.04$에서 $4$로, $8$의 값은 $0.008$에서 $0.8$로 모두 $100$배가 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "숫자 값 배수로 전체 배수",
+        "bReason": "전체 수와 자리값의 배수를 연결",
+        "cDecision": "rewrite",
+        "cAfter": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+        "cReason": "'같은' 한 낱말로 빈칸 범위를 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "몇 배인지 알아보기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+        "cStudentSentence": "각 숫자가 나타내는 값이 모두 □ 배가 되면 전체 수도 그 배가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4.8$은 $0.048$의 몇 배인지 쓰고, 그 까닭을 각 숫자의 값으로 쓰시오.",
+          "answer": "$100$배. $0.048$의 각 숫자가 나타내는 값이 모두 $100$배가 되면 $4.8$이 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$100$배",
+                "백 배"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4$의 값은 $0.04$에서 $4$로, $8$의 값은 $0.008$에서 $0.8$로 모두 $100$배가 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "bAnswer": "$100$배이다. $4$가 나타내는 값은 $0.04$에서 $4$로, $8$이 나타내는 값은 $0.008$에서 $0.8$로 모두 $100$배가 되었다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-4-xc7",
+      "sourceIndex": 2350,
+      "beforeProposal": {
+        "sourceIndex": 2350,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "7e3507ed8ff3525093162a0d80879e7551de733eb54db545a5975d8219a55868",
+        "proposalFingerprint": "923995ffc0621892bca0572604aa1c39e9f9102209937fa6ddd9fe353697b288",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.1$을 한 칸으로 한 모눈에서 $0.3+0.4$를 어떻게 색칠해 구하는지 쓰고, 합을 쓰시오.",
+        "bAnswer": "$3$칸을 색칠하고 겹치지 않게 $4$칸을 더 색칠하면 모두 $7$칸이므로 $0.7$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$칸을 색칠한 뒤 겹치지 않게 $4$칸을 더 칠해 모두 $7$칸을 센다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈 그림으로 소수 덧셈",
+        "bReason": "겹치지 않게 칠하는 이유를 활용",
+        "cDecision": "rewrite",
+        "cAfter": "$0.1$을 한 칸으로 한 모눈에서 $0.3$은 $3$칸, $0.4$는 $4$칸을 색칠하므로 합은 색칠한 칸이 모두 {$7$}칸인 수이다.",
+        "cReason": "'겹치지 않게' 구절 대신 계산 빈칸으로",
+        "cSlotEquivalents": [
+          [
+            "일곱"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈 그림으로 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.1$을 한 칸으로 한 모눈에서 $0.3$은 $3$칸, $0.4$는 $4$칸을 색칠하므로 합은 색칠한 칸이 모두 {$7$}칸인 수이다.",
+        "cStudentSentence": "$0.1$을 한 칸으로 한 모눈에서 $0.3$은 $3$칸, $0.4$는 $4$칸을 색칠하므로 합은 색칠한 칸이 모두 □칸인 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$7$",
+            "equivalents": [
+              "일곱"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.1$을 한 칸으로 한 모눈에서 $0.3+0.4$를 어떻게 색칠해 구하는지 쓰고, 합을 쓰시오.",
+          "answer": "$3$칸을 색칠하고 겹치지 않게 $4$칸을 더 색칠하면 모두 $7$칸이므로 $0.7$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3$칸을 색칠한 뒤 겹치지 않게 $4$칸을 더 칠해 모두 $7$칸을 센다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.1$을 한 칸으로 한 모눈에서 $0.3$은 $3$칸, $0.4$는 $4$칸을 색칠하므로 합은 색칠한 칸이 모두 {$7$}칸인 수이다.",
+          "acceptedAnswers": [
+            [
+              "$7$",
+              "일곱"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$0.1$을 한 칸으로 한 모눈에서 $0.3$은 $3$칸을 색칠한다. 겹치지 않게 $0.4$만큼 $4$칸을 더 색칠하면 모두 {$7$}칸이다.",
+        "cReason": "색칠한 칸을 합칠 때 겹치지 않는다는 조건을 명시하고 합한 칸 수를 구하게 한다."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

@@ -1,0 +1,645 @@
+{
+  "rows": [
+    {
+      "id": "e6-1-6-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "입체의 부피는 그 입체의 무엇을 나타내는 크기인가?",
+      "bAnswer": "입체가 차지하는 공간의 크기이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "입체가 차지하는 공간의 크기",
+            "입체가 공간을 얼마만큼 차지하는지 나타내는 크기"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "부피가 길이나 넓이가 아니라 공간의 크기임을 안다.",
+      "bReason": "원문은 정의 문장이므로 무엇을 나타내는지 묻는 질문으로 바꾼다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "입체가 차지하는 것이 공간이라는 핵심 낱말 하나만 묻는 짧은 정의라 유지한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "가로와 세로가 각각 같은 두 직육면체의 부피를 비교하려면 무엇을 비교하면 되는가? 또 어느 쪽의 부피가 더 큰지 말하시오.",
+      "bAnswer": "높이를 비교한다. 높이가 큰 쪽의 부피가 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "높이를 비교한다",
+            "높이만 비교하면 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이가 큰 쪽이 부피가 더 크다",
+            "더 높은 쪽의 부피가 더 크다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "밑면의 가로·세로가 같을 때 높이로 부피를 비교한다.",
+      "bReason": "조건(가로·세로 같음)을 질문에 두고 비교 기준과 결과를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "가로·세로가 같다는 조건이 문장에 있어 높이가 큰 쪽이라는 답이 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "높이가 큰 쪽, 더 높은 쪽 모두 정답이다."
+    },
+    {
+      "id": "e6-1-6-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "부피를 재는 기본 단위로 모든 모서리가 $1\\,\\mathrm{cm}$인 작은 정육면체 한 개의 부피를 어떻게 쓰고, 어떻게 읽는가?",
+      "bAnswer": "$1\\,\\mathrm{cm}^3$라 쓰고 $1$ 세제곱센티미터라고 읽는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{cm}^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$ 세제곱센티미터",
+            "일 세제곱센티미터"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "bGoal": "단위 부피의 기호와 읽는 법을 연결한다.",
+      "bReason": "정육면체가 단위가 되는 약속과 표기를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "단위 정육면체의 조건이 명확하고 빈칸이 단위 하나라 짧고 유용하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-c4",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 부피를 구하려면 밑면에서 알아야 하는 값과 그 밖에 알아야 하는 길이는 각각 무엇이며, 이 둘로 어떻게 계산하는가?",
+      "bAnswer": "밑면의 넓이와 높이를 알아야 하고, 밑면의 넓이에 높이를 곱한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 넓이",
+            "바닥 면의 넓이"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱한다",
+            "곱해서 구한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "밑면의 넓이에 높이를 곱하는 부피 구하는 방법을 말한다.",
+      "bReason": "공식 이름을 직접 주지 않고 필요한 두 양과 계산을 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "두 빈칸이 공식의 핵심 대상이고 각각 답이 하나로 정해진다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-c5",
+      "bDecision": "revise",
+      "bPrompt": "한 모서리의 길이가 $4\\,\\mathrm{cm}$인 정육면체의 부피를 가로·세로·높이 사이의 관계를 이용해 구하는 방법을 설명하고, 부피를 구하시오.",
+      "bAnswer": "정육면체는 가로·세로·높이가 모두 같으므로 한 모서리의 길이를 세 번 곱한다. $4\\times4\\times4=64$이므로 부피는 $64\\,\\mathrm{cm}^3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로·세로·높이가 모두 같다",
+            "세 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 모서리의 길이를 세 번 곱한다",
+            "같은 수를 세 번 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$64\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "세 길이가 같다는 성질로 정육면체 부피를 구한다.",
+      "bReason": "일반 방법을 먼저 묻고 예의 값을 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "세 길이가 같다는 조건에서 세 번 곱한다는 결론이 이어지는 짧은 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-c6",
+      "bDecision": "revise",
+      "bPrompt": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채운다. 층으로 나누어 쌓기나무를 세는 방법을 설명하고, 한 층의 개수와 층 수가 직육면체의 각각 어느 값에서 나오는지 말해 부피를 구하시오.",
+      "bAnswer": "한 층에 $5\\times3=15$개이고 층 수는 높이인 $4$층이다. 한 층의 개수는 밑면의 넓이를 나타내는 수이고 층 수는 높이를 나타내는 수이다. $15\\times4=60$이므로 부피는 $60\\,\\mathrm{cm}^3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 층의 개수는 밑면의 넓이를 나타내는 수와 같다",
+            "한 층에 $15$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "층 수는 높이를 나타내는 수와 같다",
+            "$4$층"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "밑면의 넓이와 높이를 곱하는 까닭을 쌓기나무 층으로 설명한다.",
+      "bReason": "공식의 이유를 구체적 수치와 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체를 $1\\,\\mathrm{cm}^3$ 쌓기나무로 빈틈없이 채우면 한 층에 $5\\times3=$ {$15$}개씩 {$4$}층이므로 부피는 $15\\times4=$ {$60$}$\\,\\mathrm{cm}^3$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 암기 대신 실제 수로 층별 세기를 확인하게 한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc1",
+      "bDecision": "revise",
+      "bPrompt": "모양이 다른 두 상자를 크기가 같은 쌓기나무로 각각 빈틈없이 채웠다. 어느 상자의 부피가 더 큰지 어떻게 알 수 있는지 설명하시오.",
+      "bAnswer": "들어간 쌓기나무의 개수를 비교한다. 개수가 더 많은 상자의 부피가 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓기나무의 개수를 비교한다",
+            "들어간 쌓기나무 수를 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "개수가 더 많은 쪽의 부피가 더 크다",
+            "더 많이 들어가는 쪽이 더 크다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "같은 크기의 단위로 채워 부피를 비교한다.",
+      "bReason": "비교 방법과 판단 결과를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "같은 쌓기나무로 채운다는 조건 아래 개수로 비교한다는 간단한 방법 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "$\\mathrm{cm}^3$의 읽는 법을 안다.",
+      "bReason": "읽기 암기 하나라 설명 질문 가치가 낮고 c3 B가 읽기까지 묻는다.",
+      "exclusionReason": "단위 읽기는 e6-1-6-2-c3 B에 포함되어 중복이다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "짧은 낱말 확인이고 읽는 소리 표기가 정확하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "일 세제곱센티미터도 같은 읽기이다."
+    },
+    {
+      "id": "e6-1-6-2-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "가로·세로·높이를 곱해 부피를 구한다.",
+      "bReason": "c4와 c6이 같은 공식을 더 깊게 묻는다.",
+      "exclusionReason": "c4 B와 중복이다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "가로·세로와 함께 곱할 길이가 높이임을 확인하는 짧은 공식 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "모서리가 $1\\,\\mathrm{cm}$인 쌓기나무 $24$개로 상자를 빈틈없이 채웠다. 이 상자의 부피를 구하고, 그렇게 되는 까닭을 말하시오.",
+      "bAnswer": "$24\\,\\mathrm{cm}^3$이다. 쌓기나무 한 개의 부피가 $1\\,\\mathrm{cm}^3$이므로 쌓기나무 수만큼 $\\mathrm{cm}^3$가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$24\\,\\mathrm{cm}^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "쌓기나무 한 개의 부피가 $1\\,\\mathrm{cm}^3$이므로",
+            "개수만큼 $\\mathrm{cm}^3$가 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "단위 부피의 개수가 부피의 수가 됨을 안다.",
+      "bReason": "값만 묻지 않고 단위 정육면체와 개수의 관계를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "빈틈없이 채웠다는 조건이 있고 빈칸이 쌓기나무의 수 하나로 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "한 층의 부피 수와 밑면 넓이 수가 같음을 안다.",
+      "bReason": "c6 B가 한 층의 개수와 밑면의 넓이 관계를 이미 묻는다.",
+      "exclusionReason": "e6-1-6-2-c6 B와 중복이다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "높이 $1\\,\\mathrm{cm}$ 한 층이라는 조건이 명확하고 밑면의 넓이라는 답이 하나이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "부피 단위의 표기를 안다.",
+      "bReason": "작은 3을 쓰는 표기 암기라 설명할 개념이 없다.",
+      "exclusionReason": "표기 암기만 요구하여 B 가치가 낮고 C로 충분하다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "단위 표기 확인용 짧은 빈칸이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 부피와 밑면의 넓이를 알 때 높이를 어떻게 구하는가? 그렇게 구하는 까닭을 한 층의 부피와 관련해 말하고, 부피 $60\\,\\mathrm{cm}^3$, 밑면의 넓이 $15\\,\\mathrm{cm}^2$일 때 높이를 구하시오.",
+      "bAnswer": "부피를 밑면의 넓이로 나눈다. 한 층의 부피가 몇 번 쌓였는지 구하는 것이기 때문이다. $60\\div15=4$이므로 높이는 $4\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부피를 밑면의 넓이로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 층의 부피가 몇 번 쌓였는지 구한다",
+            "층 수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "부피 공식을 거꾸로 써서 높이를 구한다.",
+      "bReason": "나눗셈의 의미를 층 수로 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "부피÷밑면의 넓이가 높이라는 결과 하나만 묻고 뒤 문장이 의미를 보충한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 부피와 겉넓이는 각각 무엇의 크기를 나타내는가? 또 두 값을 나타내는 단위는 어떻게 다른지 말하시오.",
+      "bAnswer": "부피는 차지하는 공간의 크기이고, 겉넓이는 겉면 전체의 넓이이다. 부피는 $\\mathrm{cm}^3$, 겉넓이는 $\\mathrm{cm}^2$ 같은 단위로 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부피는 차지하는 공간의 크기이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "겉넓이는 겉면 전체의 넓이이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "부피는 $\\mathrm{cm}^3$, 겉넓이는 $\\mathrm{cm}^2$ 단위를 쓴다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "부피와 겉넓이의 뜻과 단위를 구별한다.",
+      "bReason": "두 개념의 혼동이 흔해 뜻과 단위를 짝지어 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "부피와 대비해 겉넓이의 뜻을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "겉면 전체의 넓이도 정답이다."
+    },
+    {
+      "id": "e6-1-6-2-xc13",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "겉보기 대신 같은 단위로 재어 비교한다.",
+      "bReason": "xc1이 같은 쌓기나무로 부피를 비교하는 방법을 이미 묻는다.",
+      "exclusionReason": "e6-1-6-2-xc1과 중복이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '비교하기 어려워'는 표현이 다양해 정답이 흔들리고 xc1과 중복이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc14",
+      "bDecision": "revise",
+      "bPrompt": "가로 $2\\,\\mathrm{m}$, 세로 $50\\,\\mathrm{cm}$, 높이 $40\\,\\mathrm{cm}$인 직육면체의 부피를 $\\mathrm{cm}^3$로 구하려면 곱하기 전에 무엇을 해야 하는가? 이렇게 하여 부피를 구하시오.",
+      "bAnswer": "세 길이를 모두 $\\mathrm{cm}$로 고친다. $2\\,\\mathrm{m}=200\\,\\mathrm{cm}$이므로 $200\\times50\\times40=400000$, 부피는 $400000\\,\\mathrm{cm}^3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "길이를 모두 같은 단위로 맞춘다",
+            "모두 $\\mathrm{cm}$로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$400000\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "길이 단위를 통일한 뒤 부피를 구한다.",
+      "bReason": "단위가 섞인 상황에서 처리 순서를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "세 모서리의 길이 단위가 다르면 곱하기 전에 길이를 모두 {같은 단위}로 고친다. 부피를 $\\mathrm{cm}^3$로 구하려면 모든 길이를 {$\\mathrm{cm}$} 단위로 맞춘다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은 단위",
+            "같은 길이 단위",
+            "하나의 단위"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\mathrm{cm}$",
+            "센티미터"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 두 개의 짧은 빈칸으로 바꾼다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc15",
+      "bDecision": "revise",
+      "bPrompt": "높이가 같은 두 직육면체 중 부피가 더 큰 쪽은 어느 쪽인가? 부피를 구하는 방법과 관련해 그 까닭을 말하시오.",
+      "bAnswer": "밑면의 넓이가 더 넓은 쪽이다. 부피는 밑면의 넓이에 높이를 곱하는데 높이가 같으므로 밑면의 넓이가 클수록 부피가 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 넓이가 더 넓은 쪽이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이가 같으므로 밑면의 넓이에 따라 부피가 정해진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "높이가 같을 때 밑면의 넓이로 부피를 비교한다.",
+      "bReason": "c2와 비슷하지만 같은 조건이 높이이므로 별도로 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "높이가 같다는 조건이 있어 밑면의 넓이라는 답이 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc16",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 한 모서리 길이를 $2$배로 하면 가로·세로·높이가 각각 어떻게 되고 부피는 몇 배가 되는가? 한 모서리 길이를 $3$배로 하면 부피는 몇 배가 되는지도 구하시오.",
+      "bAnswer": "가로·세로·높이가 모두 $2$배가 되어 부피는 $2\\times2\\times2=8$배이다. $3$배로 하면 $3\\times3\\times3=27$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "세 길이가 모두 같은 배수로 변한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$27$배"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "모서리 길이의 배수를 세 번 곱한 만큼 부피가 변함을 안다.",
+      "bReason": "일반 관계를 두 가지 예로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 한 모서리 길이를 $2$배로 하면 가로·세로·높이가 모두 $2$배가 되어 부피는 {$8$}배가 된다. 한 모서리 길이를 $3$배로 하면 부피는 {$27$}배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$27$"
+          ]
+        }
+      ],
+      "cReason": "추상 구절 대신 구체적 배수로 바꿔 이해하기 쉽게 한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc17",
+      "bDecision": "revise",
+      "bPrompt": "가로·세로·높이가 $4\\,\\mathrm{cm}$, $3\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$인 직육면체와 $6\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$인 직육면체의 부피를 각각 구하고, 부피가 같으면 모양도 같다고 할 수 있는지 말하시오.",
+      "bAnswer": "두 부피는 $24\\,\\mathrm{cm}^3$로 같다. 그러나 가로·세로·높이가 달라 모양은 같지 않다. 부피가 같아도 모양이 같다고 할 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 부피는 모두 $24\\,\\mathrm{cm}^3$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "부피가 같아도 모양이 같다고 할 수 없다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "세 길이의 곱이 같으면 모양이 달라도 부피가 같음을 안다.",
+      "bReason": "반례가 되는 두 직육면체를 주어 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "곱이 같으면 부피가 같다는 조건과 모양이 같지 않다는 뒤 문장을 함께 이해하게 한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "직육면체 두 개를 빈틈없이 붙여 한 입체를 만들었다. 이 입체의 부피를 구하는 방법을 말하고, 두 직육면체의 부피가 $12\\,\\mathrm{cm}^3$, $8\\,\\mathrm{cm}^3$일 때 부피를 구하시오.",
+      "bAnswer": "두 직육면체의 부피를 더한다. $12+8=20$이므로 $20\\,\\mathrm{cm}^3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 부피를 더한다",
+            "합을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "붙인 입체의 부피를 부분의 합으로 구한다.",
+      "bReason": "붙여도 부피가 겹치지 않아 합이 되는 상황을 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "붙인 입체의 부피와 합을 잇는 간단한 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "합, 더한 값 모두 정답이다."
+    },
+    {
+      "id": "e6-1-6-2-xc20",
+      "bDecision": "revise",
+      "bPrompt": "큰 직육면체에서 작은 직육면체 모양을 잘라 낸 입체의 부피를 구하는 방법을 말하시오. 큰 직육면체의 부피가 $30\\,\\mathrm{cm}^3$, 잘라 낸 부분의 부피가 $8\\,\\mathrm{cm}^3$이면 남은 입체의 부피를 구하시오.",
+      "bAnswer": "큰 직육면체의 부피에서 잘라 낸 부분의 부피를 뺀다. $30-8=22$이므로 $22\\,\\mathrm{cm}^3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 부피에서 작은 부피를 뺀다",
+            "두 부피의 차를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22\\,\\mathrm{cm}^3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "잘라 낸 입체의 부피를 뺄셈으로 구한다.",
+      "bReason": "덧셈 방법인 xc19와 대비되는 뺄셈 상황이다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "차라는 낱말 하나로 잘라 낸 입체의 부피 방법을 확인한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "차, 뺀 값 모두 정답이다."
+    },
+    {
+      "id": "e6-1-6-2-xc21",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 가로와 세로는 그대로 두고 높이만 $3$배로 하면 부피는 어떻게 되는가? 부피를 구하는 방법을 이용해 그 까닭을 설명하시오.",
+      "bAnswer": "부피도 $3$배가 된다. 부피는 밑면의 넓이에 높이를 곱하는데 밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부피도 $3$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "한 길이만 배로 변할 때 부피가 같은 배로 변함을 설명한다.",
+      "bReason": "곱셈에서 한 수만 배가 되면 곱도 배가 되는 관계를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "무엇이 $3$배가 되는지 묻는 짧은 결과 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc22",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 부피가 $27\\,\\mathrm{cm}^3$일 때 한 모서리의 길이를 구하는 방법을 설명하고 길이를 구하시오.",
+      "bAnswer": "같은 수를 세 번 곱해 $27$이 되는 수를 찾는다. $3\\times3\\times3=27$이므로 한 모서리의 길이는 $3\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 수를 세 번 곱해 부피가 되는 수를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "세 번 곱한 값이 부피라는 관계를 거꾸로 이용한다.",
+      "bReason": "방법과 예의 답을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "한 모서리의 길이를 $3$번 곱한 값이 정육면체의 부피이다. 부피가 $64\\,\\mathrm{cm}^3$인 정육면체의 한 모서리 길이는 {$4$}$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 $3$은 c5와 중복이라 적용 문제로 바꾼다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-1-6-2-xc23",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "쌓기나무로 셀 때의 조건을 안다.",
+      "bReason": "xc1이 같은 크기를, xc6이 빈틈없이 채우는 조건을 이미 다룬다.",
+      "exclusionReason": "e6-1-6-2-xc1, e6-1-6-2-xc6과 중복이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '크기가 같은 쌓기나무'가 xc1과 중복이고 표현이 길다.",
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "그림 없이 글로 모두 설명할 수 있어 도형이 꼭 필요한 문항은 없다. 중복되는 xc2, xc5, xc7, xc8, xc13, xc23은 B를 제외했고 xc13, xc23은 C도 제외했다."
+  ]
+}

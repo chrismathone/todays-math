@@ -1,0 +1,38 @@
+{
+  "label": "negative-new-1138",
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1138.json",
+  "changes": [
+    {
+      "id": "m1-03-08-xc5",
+      "cAfter": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 그 수가 $12$인지 확인하려고 한다. $12$에 $7$을 더한 값은 {$19$}이므로 $12$는 이 문제의 답이 {아니다}.",
+      "cAcceptedAnswers": [
+        [
+          "$19$"
+        ],
+        [
+          "아니다"
+        ]
+      ],
+      "cReason": "검산 대상을 부르는 열린 낱말 대신 처음 문제의 조건에 후보 값을 넣어 계산하고 답인지 판단한다. B와 일반적인 답 확인 방법은 보존한다.",
+      "exampleNeeded": true
+    }
+  ],
+  "notes": [
+    {
+      "id": "m1-03-08-xc5",
+      "b": "13을 원래 문제의 조건에 넣어13+7=20인지 실제로 확인하도록 질문과 기준이 맞는다.",
+      "c": "보이는 문장·조건을 옮기는 칸 대신12+7=19이므로 원래 조건20에 맞지 않는다는 검산을 수행한다."
+    }
+  ],
+  "rereadIds": [
+    "m1-03-08-xc5"
+  ],
+  "additionalFindingDispositions": [
+    {
+      "id": "m1-03-08-xc5",
+      "decision": "amend",
+      "reason": "열린 낱말 복원을 구체적인 원래 조건 검산으로 바꿔 계산과 판단을 요구한다.",
+      "captureEvidence": "evidence/negative-new-1138-ctx_9cb9b54195a9/capture.json"
+    }
+  ]
+}

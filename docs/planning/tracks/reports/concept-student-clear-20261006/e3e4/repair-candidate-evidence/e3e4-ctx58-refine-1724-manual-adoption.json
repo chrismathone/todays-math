@@ -1,0 +1,107 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-1-3-4-xc18",
+      "sourceIndex": 1724,
+      "beforeProposal": {
+        "sourceIndex": 1724,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-4 몇십으로 나누기",
+        "sourceFingerprint": "6f0a0e20e5339dbebeb57b47c2b2f62f7e5edc8d4beaafdccff9bb0e91eb2f32",
+        "proposalFingerprint": "1138e7ed0d8baf9870f8885544a7dac4def885508ce1f6c71373589a14e08ac3",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$130\\div40$과 $130\\div60$의 몫을 각각 구하시오. 나머지가 있으면 남겨 두고 몫은 자연수로 구합니다. 같은 자연수를 나눌 때 나누는 자연수가 커지면 몫은 언제나 작아지는지, 그대로일 수도 있는지 쓰시오.",
+        "bAnswer": "$130\\div40$의 몫은 $3$, $130\\div60$의 몫은 $2$로 이 예에서는 몫이 작아졌다. 일반적으로 같은 수를 나눌 때 나누는 수가 커지면 몫은 작아지거나 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$130\\div40$의 몫은 $3$이고 $130\\div60$의 몫은 $2$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수가 커지면 몫은 작아지거나 같다",
+              "나누는 수가 커지면 몫은 커지지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "나누는 수와 몫의 크기 관계",
+        "bReason": "이 예에서 몫이 작아진 것과 일반 관계인 작아지거나 같음을 구분하고, 엄격한 작아짐만 일반 답으로 받지 않게 함",
+        "cDecision": "keep",
+        "cReason": "비교 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "커지지 않는다",
+            "작아지거나 같아진다"
+          ]
+        ],
+        "cAfter": "나머지를 남겨 두고 몫을 자연수로 구할 때, 같은 자연수를 더 큰 자연수로 나누면 몫은 {작아지거나 같다}.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "나누는 수가 커질 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 수를 나눌 때 나누는 수가 커지면 몫은 {작아지거나 같다}.",
+        "cStudentSentence": "같은 수를 나눌 때 나누는 수가 커지면 몫은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아지거나 같다",
+            "equivalents": [
+              "커지지 않는다",
+              "작아지거나 같아진다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 수를 나눌 때 나누는 수가 커지면 몫은 □.",
+          "answers": [
+            "작아지거나 같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$130\\div40$과 $130\\div60$의 몫을 각각 구하시오. 나머지가 있으면 남겨 두고 몫은 자연수로 구합니다. 같은 자연수를 나눌 때 나누는 자연수가 커지면 몫은 언제나 작아지는지, 그대로일 수도 있는지 쓰시오.",
+          "answer": "$130\\div40$의 몫은 $3$, $130\\div60$의 몫은 $2$로 이 예에서는 몫이 작아졌다. 일반적으로 같은 수를 나눌 때 나누는 수가 커지면 몫은 작아지거나 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$130\\div40$의 몫은 $3$이고 $130\\div60$의 몫은 $2$이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "나누는 수가 커지면 몫은 작아지거나 같다",
+                "나누는 수가 커지면 몫은 커지지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 수를 나눌 때 나누는 수가 커지면 몫은 {작아지거나 같다}.",
+          "acceptedAnswers": [
+            [
+              "작아지거나 같다",
+              "커지지 않는다",
+              "작아지거나 같아진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "bPrompt": "$130\\div40$과 $130\\div60$의 몫을 각각 구하시오. 나머지가 있으면 남겨 두고 몫은 일의 자리까지 구합니다. 같은 자연수를 나눌 때 나누는 자연수가 커지면 몫은 언제나 작아지는지, 그대로일 수도 있는지 쓰시오.",
+        "cDecision": "rewrite",
+        "cAfter": "몫을 일의 자리까지 구하고 나머지는 남겨 둘 때, 같은 자연수를 더 큰 자연수로 나누면 몫은 {작아지거나 같다}."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

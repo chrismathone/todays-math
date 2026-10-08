@@ -1,0 +1,18 @@
+{
+  "reader": "Root Codex direct reading of every current target slot and original OX source in eight draft groups",
+  "inputFile": "trap-reread-input-20261007.json",
+  "inputSha256": "26be8b43b2a91ab9448856d77750f576c02a4705226cec98d330f03b0150d3b1",
+  "status": "Provisional current-draft reading; requires independent Claude and final content hash recheck",
+  "studentRecordsWritten": false,
+  "trapTableWritten": false,
+  "rows": [
+    {"id":"e3-1-5-5-c1","trap":"시간","decision":"candidate-retain-after-independent-review","reason":"시·분·초를 모아 더하는 단위 기준에 시간만 넣으면 단위 정렬을 설명하지 못한다. 시계의 어느 한 때는 시간이라는 대체는 시각과 기간을 혼동한다. 초·분의 합60경계에 시간이라는 말은 수치 비교가 아니며 시각+시간=시간은 종류가 틀리다. 마지막 명제의 한 칸을 바꾸면 기존 OX 문장이 그대로 나온다."},
+    {"id":"e3-1-1-3-xc23","trap":"커진다","decision":"candidate-retain-after-independent-review","reason":"가장 큰 수를 고르는 자리·어림한 차·받아내림 횟수·작은 수에 더할 양에 커진다라는 술어를 쓰면 요구한 대상이나 방법을 답하지 않는다. 같은 수에서 더 많이 빼면 차가 커진다는 마지막 명제 대체는 수학적으로 거짓이고 기존 OX와 같다."},
+    {"id":"e3-1-5-5-xc7","trap":"$100$분","decision":"candidate-retain-after-independent-review","reason":"아무 시간이 제시되지 않은 시간+시간의 일반 결과는 기간이라는 종류이며100분이라고 정할 수 없다. 시·분·초를 위아래 맞추는 자리에도100분은 정렬 방법이 아니다.1시간=100분은 거짓이고 기존 OX로 직접 유도된다."},
+    {"id":"e5-2-1-6-c3","trap":"한 단위보다 클 수 있다","decision":"candidate-exclude-from-current-table","reason":"반올림 구간의 아래 경계에는 절반을 뺀 수가 필요하고, 어림 방법·반 단위 이하인 차·버스 자리 부족에도 이 말은 맞지 않는다. 다만 현재 원래 수·자리 단위·절반 경계로 고친 문장에서 한 칸만 바꿔도 기존 OX의 실제 값·나타낸 자리 문장을 그대로 만들 수 없다. 수학적으로 거짓이라는 판정만으로 새 출처 대응을 만들어내지 않는다."},
+    {"id":"e5-2-4-3-c2","trap":"$\\frac{1}{25}$","decision":"hold-for-independent-meaning-review","reason":"0.25배·0.2배 자리에는 각각1/4·1/5가 필요하여1/25는 틀리고, 곱의 대소를 나타내는 크다 자리에도 비율값은 맞지 않는다. 새 첫 명제는 소수를 분수로 고친다는 종류를 묻는 자리다. 특정 소수0.04에는1/25가 동치 값이므로 구체 수와 분수라는 종류를 구별할 때 학생이 대안으로 주장할 여지가 없는지 독립 검토가 필요하다. 원래 OX는0.25배 명제에서 여전히 직접 유도된다. 지문만 갱신하지 않는다."},
+    {"id":"e5-2-4-4-c2","trap":"작아진다","decision":"candidate-exclude-from-current-table","reason":"분모로 나눈 값·소수 부분의 곱·곱의 대략적인 크기·증가한 배의 자리에 감소 술어는 필요한 값이나 대상을 나타내지 않는다. 양의 같은 자연수에 곱하는 수가 커질 때 곱이 작아진다는 대체도 거짓이다. 그러나0보다 큰 조건과 클수록·더 커진다로 고친 명제의 한 칸만 바꿔 기존 OX 문장을 정확히 만들 수 없어 현재 표의 출처 조건을 충족하지 않는다."},
+    {"id":"e6-2-3-4-c1","trap":"$0$을 적어 칸으로 그린다","decision":"candidate-retain-after-independent-review","reason":"한 칸의 쌓기나무 개수·한 층·최고 층·가려진 쌓기나무라는 대상 자리에는 이 그리기 동작을 답으로 넣을 수 없다. 쌓기나무가 있는 자리만 나타내는 위에서 본 모양이라는 이 자료의 표현 규칙에서 빈 자리를0인 칸으로 그린다는 마지막 대체는 원래 OX와 같은 거짓 문장이다. 다른 격자 표현 전체를 금지한다는 주장으로 확대하지 않는다."},
+    {"id":"e6-2-5-4-xc23","trap":"$4$배","decision":"candidate-retain-after-independent-review","reason":"반지름이 일정하게 늘 때 넓이 증가량은 점점 커지는 것이며 매번4배가 되는 규칙이 아니다. 원주×반지름을4배 하면 넓이와 다르고, 두 반원이 원 하나인 도형 분할에 원4개를 더할 수도 없다. 넓이4배인 원의 반지름4배라는 마지막 대체는 거짓이며 기존 OX 그대로 나온다."}
+  ]
+}

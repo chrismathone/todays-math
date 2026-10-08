@@ -1,0 +1,175 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-6-2-xc5",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "목표 평균에 개수를 곱해 필요한 합을 구하는 내용이다.",
+      "bReason": "c1의 (평균)$\\times$(개수)와 같은 관계라서 B로 다시 물으면 중복이다.",
+      "cDecision": "revise",
+      "cAfter": "시험을 $5$번 본 점수의 평균이 $80$점이 되려면 점수의 합은 {$400$}점이어야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$400$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '개수를 곱하면'은 서술어 구절이라 어색하므로 목표 평균 상황의 식과 값으로 바꾸었다.",
+      "exclusionReason": "B는 e5-2-6-2-c1과 같은 관계를 묻게 되어 중복이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-slots-1570-1610.json",
+      "codexFinalAmendedFromFingerprint": "772fd55fb238bd4477b4d9c99b582c349337360b8e9e5027912c105ebfcdd294",
+      "sourceIndex": 1591,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc5",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "목표 평균과 필요한 합",
+        "kind": "방법",
+        "level": "하",
+        "definition": "목표 평균에 {개수를 곱하면} 필요한 합을 알 수 있다.",
+        "studentC": "목표 평균에 □ 필요한 합을 알 수 있다.",
+        "answers": [
+          "개수를 곱하면"
+        ]
+      },
+      "sourceFingerprint": "80669ee823fb52192f2bd219021b98c6accaa3a9af0917486d4d144d24f99967",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$400$"
+      ],
+      "cStudentAfter": "시험을 $5$번 본 점수의 평균이 $80$점이 되려면 점수의 합은 □점이어야 한다.",
+      "cMarkedSentence": "시험을 $5$번 본 점수의 평균이 $80$점이 되려면 점수의 합은 {$400$}점이어야 한다.",
+      "cStudentSentence": "시험을 $5$번 본 점수의 평균이 $80$점이 되려면 점수의 합은 □점이어야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$400$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "시험을 $5$번 본 점수의 평균이 $80$점이 되려면 점수의 합은 {$400$}점이어야 한다.",
+        "acceptedAnswers": [
+          [
+            "$400$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-6-2-c1과 같은 관계를 묻게 되어 중복이다."
+      },
+      "proposalFingerprint": "be3ccafd151130f68aec9f60e97a210ac0abcbe2c3b55d99ab5d68cb768c4817",
+      "questionRevision": "planning-e5e6-20261006-be3ccafd1511",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-2-xc11",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "지금까지 기록의 평균을 알 때, 새 기록 하나를 더해 전체 평균이 목표한 값이 되게 하려면 새 기록을 어떻게 구하는지 설명하시오. 또 $3$번의 평균이 $80$점일 때 $4$번의 평균이 $85$점이 되려면 $4$번째 점수는 몇 점이어야 하는지 구하시오.",
+      "bAnswer": "목표 평균에 전체 횟수를 곱해 필요한 합을 구하고, 지금까지의 합을 뺀다. 예에서 필요한 합은 $85\\times4=340$점, 지금까지의 합은 $80\\times3=240$점이므로 $4$번째 점수는 $100$점이다. (앞의 $3$번이 $5$점씩 모두 $15$점 모자라므로 $85+15=100$점으로 구해도 된다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "목표 평균에 전체 횟수를 곱한 합에서 지금까지의 합을 뺀다",
+            "앞 기록들이 목표 평균에 모자란 양을 모두 더한 만큼을 목표 평균에 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$점",
+            "$100$"
+          ]
+        }
+      ],
+      "bGoal": "목표 평균을 만들 새 기록을 합 또는 모자란 양으로 구한다.",
+      "bReason": "원문의 '모자란 양의 합'은 맥락 없이 어렵기 때문에 일반 방법을 묻고 구체적인 예를 붙였으며 두 풀이를 모두 인정한다.",
+      "cDecision": "revise",
+      "cAfter": "$4$번 본 시험의 평균이 $70$점일 때, $5$번의 평균을 $72$점으로 올리려면 $5$번째 시험에서 {$80$}점을 받아야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$80$"
+          ]
+        }
+      ],
+      "cReason": "원문은 추상적인 긴 문장에 구절 빈칸이라 실제 점수로 모자란 양의 합과 새 기록을 구하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-slots-1570-1610.json",
+      "codexFinalAmendedFromFingerprint": "46393c42b9dbef31a124fe979841ff104de83681ecf2fdd5136b9346f6b3b80c",
+      "sourceIndex": 1594,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-2-xc11",
+        "section": "초5::2-6 평균과 가능성::2-6-2 평균을 이용하여 문제해결하기",
+        "term": "평균을 올리는 새 기록",
+        "kind": "방법",
+        "level": "중",
+        "definition": "새 기록 하나로 평균을 목표까지 올리려면, 앞 기록을 지금 평균으로 고르게 했을 때 목표에 {모자란 양의 합}만큼 새 기록이 목표 평균보다 커야 한다.",
+        "studentC": "새 기록 하나로 평균을 목표까지 올리려면, 앞 기록을 지금 평균으로 고르게 했을 때 목표에 □만큼 새 기록이 목표 평균보다 커야 한다.",
+        "answers": [
+          "모자란 양의 합"
+        ]
+      },
+      "sourceFingerprint": "da48d04516e06f5ad241cee5c76ab509740b93252a172e6ebb5445da6cbd93ee",
+      "draftEvidence": "evidence/section-054-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$80$"
+      ],
+      "cStudentAfter": "$4$번 본 시험의 평균이 $70$점일 때, $5$번의 평균을 $72$점으로 올리려면 $5$번째 시험에서 □점을 받아야 한다.",
+      "cMarkedSentence": "$4$번 본 시험의 평균이 $70$점일 때, $5$번의 평균을 $72$점으로 올리려면 $5$번째 시험에서 {$80$}점을 받아야 한다.",
+      "cStudentSentence": "$4$번 본 시험의 평균이 $70$점일 때, $5$번의 평균을 $72$점으로 올리려면 $5$번째 시험에서 □점을 받아야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$80$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "지금까지 기록의 평균을 알 때, 새 기록 하나를 더해 전체 평균이 목표한 값이 되게 하려면 새 기록을 어떻게 구하는지 설명하시오. 또 $3$번의 평균이 $80$점일 때 $4$번의 평균이 $85$점이 되려면 $4$번째 점수는 몇 점이어야 하는지 구하시오.",
+        "answer": "목표 평균에 전체 횟수를 곱해 필요한 합을 구하고, 지금까지의 합을 뺀다. 예에서 필요한 합은 $85\\times4=340$점, 지금까지의 합은 $80\\times3=240$점이므로 $4$번째 점수는 $100$점이다. (앞의 $3$번이 $5$점씩 모두 $15$점 모자라므로 $85+15=100$점으로 구해도 된다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "목표 평균에 전체 횟수를 곱한 합에서 지금까지의 합을 뺀다",
+              "앞 기록들이 목표 평균에 모자란 양을 모두 더한 만큼을 목표 평균에 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100$점",
+              "$100$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4$번 본 시험의 평균이 $70$점일 때, $5$번의 평균을 $72$점으로 올리려면 $5$번째 시험에서 {$80$}점을 받아야 한다.",
+        "acceptedAnswers": [
+          [
+            "$80$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "579834975056bb958c955afb564e6f9074274b9441bc4ef670f5d211f98331a8",
+      "questionRevision": "planning-e5e6-20261006-579834975056",
+      "requiresIndependentReview": true
+    }
+  ]
+}

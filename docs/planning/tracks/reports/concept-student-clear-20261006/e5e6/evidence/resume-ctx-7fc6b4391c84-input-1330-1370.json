@@ -1,0 +1,3856 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:39:45.886350+00:00",
+  "rows": [
+    {
+      "id": "e5-2-3-4-xc19",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 한 직선 위에 있지 않은 두 대응변은 서로 어떤 위치 관계에 있습니까? 두 변을 길게 늘였을 때 만나는지를 넣어 설명하시오.",
+      "bAnswer": "서로 평행하다. 두 변을 아무리 늘여도 만나지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 평행하다",
+            "길게 늘여도 서로 만나지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "대응변끼리는 길이가 같을 뿐 아니라 평행함을 안다.",
+      "bReason": "'한 직선 위에 있지 않은'이라는 조건을 지키고 평행을 스스로 말하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+      "cReason": "한 직선 위에 놓이는 경우를 뺀 조건이 정확하고 답이 초4에서 배운 낱말이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'서로 평행'과 함께 '평행'도 인정.",
+      "sourceIndex": 1330,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc19",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "대응변끼리의 평행",
+        "kind": "성질",
+        "level": "상",
+        "definition": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+        "studentC": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 □하다.",
+        "answers": [
+          "서로 평행"
+        ]
+      },
+      "sourceFingerprint": "8c399b1c67cdb3672f31f20e72048ca181dbdb9c65599c58bcee866a0fe8b273",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+      "cFrozenStudentSentence": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 □하다.",
+      "cProposedAnswers": [
+        "서로 평행"
+      ],
+      "cStudentAfter": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 □하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "서로 평행"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+      "cStudentSentence": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 □하다.",
+      "cSlotAnswers": [
+        {
+          "key": "서로 평행",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "점대칭도형에서 한 직선 위에 있지 않은 두 대응변은 서로 어떤 위치 관계에 있습니까? 두 변을 길게 늘였을 때 만나는지를 넣어 설명하시오.",
+        "answer": "서로 평행하다. 두 변을 아무리 늘여도 만나지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 평행하다",
+              "길게 늘여도 서로 만나지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "점대칭도형의 대응변끼리는 한 직선 위에 놓이지 않으면 {서로 평행}하다.",
+        "acceptedAnswers": [
+          [
+            "서로 평행"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bdea6e9042173ad2bfb3bcd6fe2f5a9b94694360fd6c60e340373f744398d1df",
+      "questionRevision": "planning-e5e6-20261006-bdea6e904217",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc20",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대칭의 중심이 표시되어 있지 않을 때, 대응점을 이용하여 대칭의 중심을 찾는 방법을 설명하시오.",
+      "bAnswer": "대응점끼리 이은 선분을 두 개 그어 두 선분이 만나는 점을 찾는다. (대응점끼리 이은 선분 하나의 한가운데 점을 찾아도 된다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대응점끼리 이은 두 선분이 만나는 점을 찾는다",
+            "대응점끼리 이은 선분의 한가운데 점을 찾는다"
+          ]
+        }
+      ],
+      "bGoal": "대응점을 이은 선분으로 대칭의 중심을 찾는 방법을 말한다.",
+      "bReason": "두 선분의 교점과 한 선분의 한가운데가 모두 옳은 방법이라 둘 다 인정한다.",
+      "cDecision": "keep",
+      "cAfter": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+      "cReason": "'한 직선 위에 있지 않은 두 쌍'이라는 조건이 있어 답이 짧게 정해진다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'만나는 점'과 함께 '만나는 곳', '서로 만나는 점'도 인정.",
+      "sourceIndex": 1331,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc20",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "대칭의 중심 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+        "studentC": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 □이 대칭의 중심이다.",
+        "answers": [
+          "만나는 점"
+        ]
+      },
+      "sourceFingerprint": "e227a7a142bb41421fd87b9a0290d6e1bede5d5d0981f9f0ecaa522ef0d2a324",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+      "cFrozenStudentSentence": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 □이 대칭의 중심이다.",
+      "cProposedAnswers": [
+        "만나는 점"
+      ],
+      "cStudentAfter": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 □이 대칭의 중심이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "만나는 점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+      "cStudentSentence": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 □이 대칭의 중심이다.",
+      "cSlotAnswers": [
+        {
+          "key": "만나는 점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "점대칭도형에서 대칭의 중심이 표시되어 있지 않을 때, 대응점을 이용하여 대칭의 중심을 찾는 방법을 설명하시오.",
+        "answer": "대응점끼리 이은 선분을 두 개 그어 두 선분이 만나는 점을 찾는다. (대응점끼리 이은 선분 하나의 한가운데 점을 찾아도 된다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대응점끼리 이은 두 선분이 만나는 점을 찾는다",
+              "대응점끼리 이은 선분의 한가운데 점을 찾는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 직선 위에 있지 않은 대응점 두 쌍을 각각 이은 두 선분이 {만나는 점}이 대칭의 중심이다.",
+        "acceptedAnswers": [
+          [
+            "만나는 점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e17123d4428fd6d41dbad34d9765766d467a16bb44c98760e78bcd2ef9ad0a02",
+      "questionRevision": "planning-e5e6-20261006-e17123d4428f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형을 대칭의 중심을 지나는 직선으로 자르면, 나누어진 두 부분의 넓이는 어떤 관계입니까? 넓이가 $24\\,\\mathrm{cm} ^2$인 평행사변형을 대칭의 중심을 지나는 직선으로 잘랐을 때 한 부분의 넓이도 구하시오.",
+      "bAnswer": "두 부분의 넓이는 서로 같다. 한 부분의 넓이는 $24 \\div 2 = 12$ ($\\mathrm{cm} ^2$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 부분의 넓이가 서로 같다",
+            "넓이가 반씩 나누어진다",
+            "두 부분의 모양과 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\,\\mathrm{cm} ^2$"
+          ]
+        }
+      ],
+      "bGoal": "대칭의 중심을 지나는 직선이 넓이를 반으로 나눔을 말하고 적용한다.",
+      "bReason": "넓이 관계를 묻고 평행사변형으로 값을 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "대칭의 중심을 지나는 직선은 점대칭도형을 {넓이}가 같은 두 부분으로 나눈다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "넓이",
+            "크기"
+          ]
+        }
+      ],
+      "cReason": "'넓이가 같은 두 부분'이라는 긴 구절 대신 핵심 낱말만 비웠다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1332,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc21",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "중심을 지나는 직선과 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대칭의 중심을 지나는 직선은 점대칭도형을 {넓이가 같은 두 부분}으로 나눈다.",
+        "studentC": "대칭의 중심을 지나는 직선은 점대칭도형을 □으로 나눈다.",
+        "answers": [
+          "넓이가 같은 두 부분"
+        ]
+      },
+      "sourceFingerprint": "db65cb7a4aeac700eae613591cd7e5c0b6bd42fabe041ad3dbdddae680724057",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [
+        "넓이"
+      ],
+      "cStudentAfter": "대칭의 중심을 지나는 직선은 점대칭도형을 □가 같은 두 부분으로 나눈다.",
+      "cMarkedSentence": "대칭의 중심을 지나는 직선은 점대칭도형을 {넓이}가 같은 두 부분으로 나눈다.",
+      "cStudentSentence": "대칭의 중심을 지나는 직선은 점대칭도형을 □가 같은 두 부분으로 나눈다.",
+      "cSlotAnswers": [
+        {
+          "key": "넓이",
+          "equivalents": [
+            "크기"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "점대칭도형을 대칭의 중심을 지나는 직선으로 자르면, 나누어진 두 부분의 넓이는 어떤 관계입니까? 넓이가 $24\\,\\mathrm{cm} ^2$인 평행사변형을 대칭의 중심을 지나는 직선으로 잘랐을 때 한 부분의 넓이도 구하시오.",
+        "answer": "두 부분의 넓이는 서로 같다. 한 부분의 넓이는 $24 \\div 2 = 12$ ($\\mathrm{cm} ^2$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 부분의 넓이가 서로 같다",
+              "넓이가 반씩 나누어진다",
+              "두 부분의 모양과 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\,\\mathrm{cm} ^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대칭의 중심을 지나는 직선은 점대칭도형을 {넓이}가 같은 두 부분으로 나눈다.",
+        "acceptedAnswers": [
+          [
+            "넓이",
+            "크기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d317e33349b7989f82d229893e4dbabcbc52fa0652ae4a9addfa2afbacdcef96",
+      "questionRevision": "planning-e5e6-20261006-d317e33349b7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형인 육각형은 이웃한 세 변의 길이만 알아도 둘레를 구할 수 있습니다. 대응변의 어떤 성질 때문인지 설명하고, 이웃한 세 변의 길이가 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$일 때 둘레를 구하시오.",
+      "bAnswer": "대응변의 길이가 서로 같아 나머지 세 변도 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$이다. 둘레는 ($3 + 4 + 5$)$\\times 2 = 24$ ($\\mathrm{cm}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대응변의 길이가 서로 같다",
+            "나머지 세 변의 길이가 주어진 세 변과 각각 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "대응변의 길이가 같다는 성질로 둘레 구하는 방법을 설명한다.",
+      "bReason": "공식 암기가 아니라 근거가 되는 성질과 실제 계산을 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형인 육각형에서 이웃한 세 변의 길이가 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$이면 둘레는 ($3 + 4 + 5$)$\\times${$2$}$=${$24$} ($\\mathrm{cm}$)이다.",
+      "cReason": "'이웃한 세 변의 합의 두 배'는 통째로 외울 구절이라 실제 식의 짧은 값으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1333,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc22",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "점대칭인 육각형의 둘레",
+        "kind": "방법",
+        "level": "상",
+        "definition": "점대칭인 육각형의 둘레는 {이웃한 세 변의 합의 두 배}이다.",
+        "studentC": "점대칭인 육각형의 둘레는 □이다.",
+        "answers": [
+          "이웃한 세 변의 합의 두 배"
+        ]
+      },
+      "sourceFingerprint": "83a5cd30555f52153045fcfabaa5b42e441fac5af9154acf388ef00f78c9e33f",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$24$"
+      ],
+      "cStudentAfter": "점대칭도형인 육각형에서 이웃한 세 변의 길이가 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$이면 둘레는 ($3 + 4 + 5$)$\\times$□$=$□ ($\\mathrm{cm}$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "점대칭도형인 육각형에서 이웃한 세 변의 길이가 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$이면 둘레는 ($3 + 4 + 5$)$\\times${$2$}$=${$24$} ($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "점대칭도형인 육각형에서 이웃한 세 변의 길이가 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$이면 둘레는 ($3 + 4 + 5$)$\\times$□$=$□ ($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "점대칭도형인 육각형은 이웃한 세 변의 길이만 알아도 둘레를 구할 수 있습니다. 대응변의 어떤 성질 때문인지 설명하고, 이웃한 세 변의 길이가 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$일 때 둘레를 구하시오.",
+        "answer": "대응변의 길이가 서로 같아 나머지 세 변도 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$이다. 둘레는 ($3 + 4 + 5$)$\\times 2 = 24$ ($\\mathrm{cm}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대응변의 길이가 서로 같다",
+              "나머지 세 변의 길이가 주어진 세 변과 각각 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "점대칭도형인 육각형에서 이웃한 세 변의 길이가 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$이면 둘레는 ($3 + 4 + 5$)$\\times${$2$}$=${$24$} ($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "57cae236e82ae25fdd484dea71f0d071b61517b0693aad5ee55b0238dd270f97",
+      "questionRevision": "planning-e5e6-20261006-57cae236e82a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 도형을 한 점을 중심으로 한 바퀴 돌렸더니 처음 도형과 완전히 겹쳤습니다. 이것만으로 점대칭도형이라고 할 수 있는지 답하고, 그 까닭을 돌리는 양과 관련지어 설명하시오.",
+      "bAnswer": "할 수 없다. 한 바퀴 돌리면 어떤 도형이든 처음과 겹치므로, 반 바퀴($180 ^\\circ$) 돌렸을 때 겹쳐야 점대칭도형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점대칭도형이라고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 바퀴 돌리면 모든 도형이 처음 도형과 겹친다",
+            "반 바퀴($180 ^\\circ$) 돌렸을 때 겹쳐야 점대칭도형이다"
+          ]
+        }
+      ],
+      "bGoal": "점대칭의 기준이 한 바퀴가 아니라 반 바퀴임을 까닭과 함께 구별한다.",
+      "bReason": "흔한 오개념을 상황으로 주고 판단과 까닭의 범위를 정했다.",
+      "cDecision": "keep",
+      "cAfter": "점대칭인지는 {반 바퀴}로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+      "cReason": "한 바퀴와 대비해 판단 기준이 되는 회전량을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'반 바퀴'와 함께 '180°', '180도'도 인정.",
+      "sourceIndex": 1334,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc23",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "반 바퀴와 한 바퀴",
+        "kind": "성질",
+        "level": "상",
+        "definition": "점대칭인지는 {반 바퀴}로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+        "studentC": "점대칭인지는 □로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+        "answers": [
+          "반 바퀴"
+        ]
+      },
+      "sourceFingerprint": "619e3fb01dc80ded2701651fa3de196ce000848fcb0428d216d83246a2e5ff11",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "점대칭인지는 {반 바퀴}로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+      "cFrozenStudentSentence": "점대칭인지는 □로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+      "cProposedAnswers": [
+        "반 바퀴"
+      ],
+      "cStudentAfter": "점대칭인지는 □로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "반 바퀴"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "점대칭인지는 {반 바퀴}로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+      "cStudentSentence": "점대칭인지는 □로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+      "cSlotAnswers": [
+        {
+          "key": "반 바퀴",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 도형을 한 점을 중심으로 한 바퀴 돌렸더니 처음 도형과 완전히 겹쳤습니다. 이것만으로 점대칭도형이라고 할 수 있는지 답하고, 그 까닭을 돌리는 양과 관련지어 설명하시오.",
+        "answer": "할 수 없다. 한 바퀴 돌리면 어떤 도형이든 처음과 겹치므로, 반 바퀴($180 ^\\circ$) 돌렸을 때 겹쳐야 점대칭도형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "점대칭도형이라고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 바퀴 돌리면 모든 도형이 처음 도형과 겹친다",
+              "반 바퀴($180 ^\\circ$) 돌렸을 때 겹쳐야 점대칭도형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "점대칭인지는 {반 바퀴}로 가리며, 한 바퀴 돌려 겹치는 것은 모든 도형이 그렇다.",
+        "acceptedAnswers": [
+          [
+            "반 바퀴"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9c0303060bbb1c0e80cfa63d9c61a9d1996b38a4bf13e4ab4e114dc457efb2ed",
+      "questionRevision": "planning-e5e6-20261006-9c0303060bbb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc1",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "같은 소수에 곱하는 자연수가 $1$ 커지면 곱은 얼마만큼 커지는지 쓰고, $0.7\\times5$와 $0.7\\times6$의 값을 구해 확인하시오.",
+      "bAnswer": "곱은 그 소수만큼 커진다. $0.7\\times5=3.5$, $0.7\\times6=4.2$이고 차는 $0.7$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱해지는 소수만큼 커진다",
+            "그 소수를 한 번 더 더한 만큼 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.5$와 $4.2$",
+            "$4.2-3.5=0.7$"
+          ]
+        }
+      ],
+      "bGoal": "곱하는 수가 $1$ 늘면 소수를 한 번 더 더한 것임을 안다.",
+      "bReason": "늘어나는 양을 답으로 남겨 두고 두 곱의 차로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.7\\times6$은 $0.7\\times5$보다 {$0.7$}만큼 크다.",
+      "cReason": "'그 소수만큼'은 가리키는 대상이 모호해 실제 두 식의 차를 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.7$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1335,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc1",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱하는 수가 하나 늘 때",
+        "kind": "정의",
+        "level": "하",
+        "definition": "같은 소수에 곱하는 자연수가 $1$ 커지면 곱은 {그 소수만큼} 커진다.",
+        "studentC": "같은 소수에 곱하는 자연수가 $1$ 커지면 곱은 □ 커진다.",
+        "answers": [
+          "그 소수만큼"
+        ]
+      },
+      "sourceFingerprint": "ed89a8dd214432c65740bf97285c13328f82bec9cd6e2619988a6c6a0796428c",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$0.7$"
+      ],
+      "cStudentAfter": "$0.7\\times6$은 $0.7\\times5$보다 □만큼 크다.",
+      "cMarkedSentence": "$0.7\\times6$은 $0.7\\times5$보다 {$0.7$}만큼 크다.",
+      "cStudentSentence": "$0.7\\times6$은 $0.7\\times5$보다 □만큼 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 소수에 곱하는 자연수가 $1$ 커지면 곱은 얼마만큼 커지는지 쓰고, $0.7\\times5$와 $0.7\\times6$의 값을 구해 확인하시오.",
+        "answer": "곱은 그 소수만큼 커진다. $0.7\\times5=3.5$, $0.7\\times6=4.2$이고 차는 $0.7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱해지는 소수만큼 커진다",
+              "그 소수를 한 번 더 더한 만큼 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.5$와 $4.2$",
+              "$4.2-3.5=0.7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.7\\times6$은 $0.7\\times5$보다 {$0.7$}만큼 크다.",
+        "acceptedAnswers": [
+          [
+            "$0.7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f1c833e66a8de7fe7ab42ef6c393a1f28b7231ce292bff214e95b02733b6f02d",
+      "questionRevision": "planning-e5e6-20261006-f1c833e66a8d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "소수 한 자리 수를 분수로 고쳐서 자연수와 곱하는 방법을 설명하고, $0.7\\times3$을 그 방법으로 계산하시오.",
+      "bAnswer": "소수 한 자리 수를 분모가 $10$인 분수로 고친 뒤 분자에 자연수를 곱하고 다시 소수로 쓴다. $0.7\\times3=\\frac{7}{10}\\times3=\\frac{21}{10}=2.1$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 $10$인 분수로 고친다",
+            "$0.7=\\frac{7}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.1$",
+            "$\\frac{21}{10}$"
+          ]
+        }
+      ],
+      "bGoal": "소수 한 자리 수를 분모 $10$인 분수로 고쳐 곱하는 절차를 설명한다.",
+      "bReason": "분모를 질문에서 밝히지 않고 방법을 묻고, 원문 예의 $0.7$을 계산 예로 썼다.",
+      "cDecision": "revise",
+      "cAfter": "$0.7$을 분모가 {$10$}인 분수로 고치면 $\\frac{7}{10}$이므로 $0.7\\times3=\\frac{7}{10}\\times3=\\frac{21}{10}$이고, 소수로 나타내면 {$2.1$}이다.",
+      "cReason": "'분모가 $10$인 분수' 구절 대신 분모와 계산 결과를 짧게 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.1$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1336,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc4",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "소수 한 자리 수를 분수로 고쳐 곱하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 한 자리 수는 {분모가 $10$인 분수}로 고쳐 자연수를 곱할 수 있다.",
+        "example": {
+          "prompt": "$0.7$과 $\\frac{7}{10}$이 같은 크기인 까닭은?",
+          "answer": "둘 다 $0.1$이 $7$개"
+        },
+        "studentC": "소수 한 자리 수는 □로 고쳐 자연수를 곱할 수 있다.",
+        "answers": [
+          "분모가 $10$인 분수"
+        ]
+      },
+      "sourceFingerprint": "fc311076c5709afb9b04efb41757594011ae6b6f62bc6baf498fb6958efbf2a5",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$2.1$"
+      ],
+      "cStudentAfter": "$0.7$을 분모가 □인 분수로 고치면 $\\frac{7}{10}$이므로 $0.7\\times3=\\frac{7}{10}\\times3=\\frac{21}{10}$이고, 소수로 나타내면 □이다.",
+      "cMarkedSentence": "$0.7$을 분모가 {$10$}인 분수로 고치면 $\\frac{7}{10}$이므로 $0.7\\times3=\\frac{7}{10}\\times3=\\frac{21}{10}$이고, 소수로 나타내면 {$2.1$}이다.",
+      "cStudentSentence": "$0.7$을 분모가 □인 분수로 고치면 $\\frac{7}{10}$이므로 $0.7\\times3=\\frac{7}{10}\\times3=\\frac{21}{10}$이고, 소수로 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$2.1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 한 자리 수를 분수로 고쳐서 자연수와 곱하는 방법을 설명하고, $0.7\\times3$을 그 방법으로 계산하시오.",
+        "answer": "소수 한 자리 수를 분모가 $10$인 분수로 고친 뒤 분자에 자연수를 곱하고 다시 소수로 쓴다. $0.7\\times3=\\frac{7}{10}\\times3=\\frac{21}{10}=2.1$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 $10$인 분수로 고친다",
+              "$0.7=\\frac{7}{10}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.1$",
+              "$\\frac{21}{10}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.7$을 분모가 {$10$}인 분수로 고치면 $\\frac{7}{10}$이므로 $0.7\\times3=\\frac{7}{10}\\times3=\\frac{21}{10}$이고, 소수로 나타내면 {$2.1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$2.1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "62168c22d6017fedbc68c1c193bf1bb1be56bd5a35c372b1bdc0315abe47b33b",
+      "questionRevision": "planning-e5e6-20261006-62168c22d601",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc7",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수끼리 곱한 뒤 $10$으로 나누어 곱을 구하는 절차를 안다.",
+      "bReason": "절차는 c2, $10$배 관계의 까닭은 xc26의 B와 겹쳐 따로 서술형으로 물을 가치가 낮다.",
+      "cDecision": "revise",
+      "cAfter": "$0.8\\times7$은 $8\\times7=56$을 {$10$}으로 나눈 값이므로 {$5.6$}이다.",
+      "cReason": "'소수점을 떼어 얻은 자연수'라는 긴 설명을 실제 식으로 바꾸어 나누는 수와 값을 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5.6$"
+          ]
+        }
+      ],
+      "exclusionReason": "B만 제외: e5-2-4-1-c2, e5-2-4-1-xc26의 B와 중복.",
+      "exampleNeeded": false,
+      "sourceIndex": 1337,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc7",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "소수 한 자리 수와 자연수의 곱",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 한 자리 수와 자연수의 곱은 소수점을 떼어 얻은 자연수와 곱하는 자연수를 곱한 값을 {$10$으로 나눈} 값이다.",
+        "studentC": "소수 한 자리 수와 자연수의 곱은 소수점을 떼어 얻은 자연수와 곱하는 자연수를 곱한 값을 □ 값이다.",
+        "answers": [
+          "$10$으로 나눈"
+        ]
+      },
+      "sourceFingerprint": "5f61d4762b682efb0237f8735be1cf245793cae5c3b01e3d96113f19b2372957",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$5.6$"
+      ],
+      "cStudentAfter": "$0.8\\times7$은 $8\\times7=56$을 □으로 나눈 값이므로 □이다.",
+      "cMarkedSentence": "$0.8\\times7$은 $8\\times7=56$을 {$10$}으로 나눈 값이므로 {$5.6$}이다.",
+      "cStudentSentence": "$0.8\\times7$은 $8\\times7=56$을 □으로 나눈 값이므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$5.6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0.8\\times7$은 $8\\times7=56$을 {$10$}으로 나눈 값이므로 {$5.6$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$5.6$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: e5-2-4-1-c2, e5-2-4-1-xc26의 B와 중복."
+      },
+      "proposalFingerprint": "c73997183280e07cdb9797d596ad7873af20f77014733e171dc751fcc10f9c6a",
+      "questionRevision": "planning-e5e6-20261006-c73997183280",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc8",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "소수에 자연수를 곱한 값을 수직선에서 뛰어 세어 찾는 방법을 설명하고, $0.3\\times4$는 어떤 수에 도착하는지 쓰시오.",
+      "bAnswer": "$0$에서 시작하여 그 소수만큼씩 자연수 번 오른쪽으로 뛴다. $0.3$씩 $4$번 뛰면 $1.2$에 도착한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0$에서 그 소수만큼씩 자연수 번 뛴다",
+            "$0$에서 $0.3$씩 $4$번 뛴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.2$"
+          ]
+        }
+      ],
+      "bGoal": "소수×자연수를 수직선의 같은 간격 뛰어 세기로 나타낸다.",
+      "bReason": "그림 없이도 시작점, 뛰는 크기, 횟수를 말로 설명할 수 있어 예와 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "수직선에서 $0$부터 $0.3$씩 오른쪽으로 {$4$}번 뛰면 $0.3\\times4$의 값인 {$1.2$}에 도착한다.",
+      "cReason": "'자연수 번'은 어색한 답이라 구체적인 횟수와 도착한 수로 바꿨다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.2$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1338,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc8",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "소수의 곱셈과 수직선",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수에 자연수를 곱한 값은 수직선에서 $0$부터 그 소수만큼씩 {자연수 번} 오른쪽으로 뛰어 간 곳의 수이다.",
+        "studentC": "소수에 자연수를 곱한 값은 수직선에서 $0$부터 그 소수만큼씩 □ 오른쪽으로 뛰어 간 곳의 수이다.",
+        "answers": [
+          "자연수 번"
+        ]
+      },
+      "sourceFingerprint": "66a11acdc62645098fcddad4a00dddf72efa4ffc268fac63a886ad826b7317b9",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$1.2$"
+      ],
+      "cStudentAfter": "수직선에서 $0$부터 $0.3$씩 오른쪽으로 □번 뛰면 $0.3\\times4$의 값인 □에 도착한다.",
+      "cMarkedSentence": "수직선에서 $0$부터 $0.3$씩 오른쪽으로 {$4$}번 뛰면 $0.3\\times4$의 값인 {$1.2$}에 도착한다.",
+      "cStudentSentence": "수직선에서 $0$부터 $0.3$씩 오른쪽으로 □번 뛰면 $0.3\\times4$의 값인 □에 도착한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$1.2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수에 자연수를 곱한 값을 수직선에서 뛰어 세어 찾는 방법을 설명하고, $0.3\\times4$는 어떤 수에 도착하는지 쓰시오.",
+        "answer": "$0$에서 시작하여 그 소수만큼씩 자연수 번 오른쪽으로 뛴다. $0.3$씩 $4$번 뛰면 $1.2$에 도착한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0$에서 그 소수만큼씩 자연수 번 뛴다",
+              "$0$에서 $0.3$씩 $4$번 뛴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수직선에서 $0$부터 $0.3$씩 오른쪽으로 {$4$}번 뛰면 $0.3\\times4$의 값인 {$1.2$}에 도착한다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$1.2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "204a8823c17c59f05e971f5b85274261a5c92c539b05c69c9170bc48e4300910",
+      "questionRevision": "planning-e5e6-20261006-204a8823c17c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc11",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0.15\\times4$를 계산하면 $0.60$이 나옵니다. 이 값을 더 간단한 소수로 나타내고, 두 소수의 크기가 같은 까닭을 설명하시오.",
+      "bAnswer": "$0.6$으로 나타낸다. $0.60$은 $0.01$이 $60$개이고 $0.6$도 $0.1$이 $6$개, 곧 $0.01$이 $60$개라서 크기가 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.01$이 $60$개인 것과 $0.1$이 $6$개인 것은 같다",
+            "$\\frac{60}{100}=\\frac{6}{10}$",
+            "소수점 아래 끝자리의 $0$은 크기를 바꾸지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "곱의 소수점 아래 끝자리 $0$을 지워도 크기가 같음을 설명한다.",
+      "bReason": "'지운다'는 행동만이 아니라 $0.60$과 $0.6$이 같은 까닭까지 묻도록 예를 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "$0.15\\times4=0.60$이고, 소수점 아래 끝자리의 $0$을 지워 나타내면 {$0.6$}이다.",
+      "cReason": "'지워서'는 '생략하여' 등 표현이 여럿이라 지운 결과의 수를 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.6$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1339,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc11",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱의 끝자리 $0$",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수의 곱에서 소수점 아래 끝자리의 $0$은 크기를 바꾸지 않으므로 {지워서} 나타낸다.",
+        "studentC": "소수의 곱에서 소수점 아래 끝자리의 $0$은 크기를 바꾸지 않으므로 □ 나타낸다.",
+        "answers": [
+          "지워서"
+        ]
+      },
+      "sourceFingerprint": "c1caedd9fb077f8febdf884570b1a49f58dcbf8a8e860a34b040d0933726b7d9",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$0.6$"
+      ],
+      "cStudentAfter": "$0.15\\times4=0.60$이고, 소수점 아래 끝자리의 $0$을 지워 나타내면 □이다.",
+      "cMarkedSentence": "$0.15\\times4=0.60$이고, 소수점 아래 끝자리의 $0$을 지워 나타내면 {$0.6$}이다.",
+      "cStudentSentence": "$0.15\\times4=0.60$이고, 소수점 아래 끝자리의 $0$을 지워 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.15\\times4$를 계산하면 $0.60$이 나옵니다. 이 값을 더 간단한 소수로 나타내고, 두 소수의 크기가 같은 까닭을 설명하시오.",
+        "answer": "$0.6$으로 나타낸다. $0.60$은 $0.01$이 $60$개이고 $0.6$도 $0.1$이 $6$개, 곧 $0.01$이 $60$개라서 크기가 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.01$이 $60$개인 것과 $0.1$이 $6$개인 것은 같다",
+              "$\\frac{60}{100}=\\frac{6}{10}$",
+              "소수점 아래 끝자리의 $0$은 크기를 바꾸지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.15\\times4=0.60$이고, 소수점 아래 끝자리의 $0$을 지워 나타내면 {$0.6$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0.6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "345e4a16fcc425d04ddcceebcbea92e27597bc64cb63585de4a1eec7e792f6e4",
+      "questionRevision": "planning-e5e6-20261006-345e4a16fcc4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0.5$에 어떤 자연수를 곱할 때 곱이 자연수가 되는지 쓰고, 그 까닭을 $0.5+0.5$의 값을 이용하여 설명하시오.",
+      "bAnswer": "짝수를 곱할 때이다. $0.5+0.5=1$이므로 $0.5$를 짝수 번 더하면 두 개씩 $1$로 묶여 남는 것이 없다. 예: $0.5\\times6=3$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "짝수를 곱할 때",
+            "$2$의 배수를 곱할 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5$ 두 개가 $1$이 되어 둘씩 묶인다",
+            "$0.5+0.5=1$이므로 짝수 번이면 남는 $0.5$가 없다"
+          ]
+        }
+      ],
+      "bGoal": "$0.5$ 두 개가 $1$임을 이용해 곱이 자연수가 되는 조건을 설명한다.",
+      "bReason": "조건(짝수)을 질문에서 숨기고 둘씩 묶는 근거를 설명하도록 좁혔다.",
+      "cDecision": "keep",
+      "cAfter": "$0.5$를 {짝수 번} 더하면 $0.5$ 두 개씩 $1$로 묶여 곱이 자연수가 된다.",
+      "cReason": "묶음 근거가 문장에 있고 답이 '짝수 번'으로 짧고 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'짝수', '$2$의 배수 번'도 같은 답으로 인정.",
+      "sourceIndex": 1340,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc12",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "$0.5$를 짝수 번 더한 곱",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0.5$를 {짝수 번} 더하면 $0.5$ 두 개씩 $1$로 묶여 곱이 자연수가 된다.",
+        "studentC": "$0.5$를 □ 더하면 $0.5$ 두 개씩 $1$로 묶여 곱이 자연수가 된다.",
+        "answers": [
+          "짝수 번"
+        ]
+      },
+      "sourceFingerprint": "389c40dbd956e115de96b1bb5ae7e1a1ba443e532718b0e83a0551c07032dbaa",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cFrozenDefinition": "$0.5$를 {짝수 번} 더하면 $0.5$ 두 개씩 $1$로 묶여 곱이 자연수가 된다.",
+      "cFrozenStudentSentence": "$0.5$를 □ 더하면 $0.5$ 두 개씩 $1$로 묶여 곱이 자연수가 된다.",
+      "cProposedAnswers": [
+        "짝수 번"
+      ],
+      "cStudentAfter": "$0.5$를 □ 더하면 $0.5$ 두 개씩 $1$로 묶여 곱이 자연수가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "짝수 번"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0.5$를 {짝수 번} 더하면 $0.5$ 두 개씩 $1$로 묶여 곱이 자연수가 된다.",
+      "cStudentSentence": "$0.5$를 □ 더하면 $0.5$ 두 개씩 $1$로 묶여 곱이 자연수가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "짝수 번",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.5$에 어떤 자연수를 곱할 때 곱이 자연수가 되는지 쓰고, 그 까닭을 $0.5+0.5$의 값을 이용하여 설명하시오.",
+        "answer": "짝수를 곱할 때이다. $0.5+0.5=1$이므로 $0.5$를 짝수 번 더하면 두 개씩 $1$로 묶여 남는 것이 없다. 예: $0.5\\times6=3$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "짝수를 곱할 때",
+              "$2$의 배수를 곱할 때"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5$ 두 개가 $1$이 되어 둘씩 묶인다",
+              "$0.5+0.5=1$이므로 짝수 번이면 남는 $0.5$가 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.5$를 {짝수 번} 더하면 $0.5$ 두 개씩 $1$로 묶여 곱이 자연수가 된다.",
+        "acceptedAnswers": [
+          [
+            "짝수 번"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cd9c7f892a297a12c0af581db2c35df1348e4dd546d778c1d90fe799b707f6d4",
+      "questionRevision": "planning-e5e6-20261006-cd9c7f892a29",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc16",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "곱하는 자연수가 커지면 곱도 커짐을 안다.",
+      "bReason": "xc1이 '얼마만큼 커지는지'까지 물어 이 성질을 포함하므로 따로 서술할 내용이 없다.",
+      "cDecision": "keep",
+      "cAfter": "같은 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+      "cReason": "'같은 소수'라는 조건이 있는 짧은 크기 비교 문장이고 답 '커진다'가 분명하다.",
+      "exclusionReason": "B만 제외: e5-2-4-1-xc1의 B와 중복.",
+      "exampleNeeded": false,
+      "synonymNotes": "'커집니다', '늘어난다' 인정.",
+      "sourceIndex": 1341,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc16",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱하는 자연수가 커질 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+        "studentC": "같은 소수에 곱하는 자연수가 커지면 곱도 □.",
+        "answers": [
+          "커진다"
+        ]
+      },
+      "sourceFingerprint": "41b2173c5743709b1c7bb099f6ea8e24f9ffc664c34d98d2459f146ebf92c88b",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cFrozenDefinition": "같은 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+      "cFrozenStudentSentence": "같은 소수에 곱하는 자연수가 커지면 곱도 □.",
+      "cProposedAnswers": [
+        "커진다"
+      ],
+      "cStudentAfter": "같은 소수에 곱하는 자연수가 커지면 곱도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "커진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "같은 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+      "cStudentSentence": "같은 소수에 곱하는 자연수가 커지면 곱도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "커진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "같은 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: e5-2-4-1-xc1의 B와 중복."
+      },
+      "proposalFingerprint": "614aaaa03512602bdd8750b71c03a0b728db21c5daaadcbed97b771f6f84e0cd",
+      "questionRevision": "planning-e5e6-20261006-614aaaa03512",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc17",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "같은 소수의 거듭 더하기를 곱셈식으로 나타낸다.",
+      "bReason": "c1이 곱셈과 거듭 더하기의 관계를 양방향으로 물어 같은 답이 반복된다.",
+      "cDecision": "revise",
+      "cAfter": "$0.4+0.4+0.4+0.4+0.4$를 곱셈식으로 나타내면 $0.4\\times$ {$5$} 이다.",
+      "cReason": "'곱셈식'이라는 낱말만 채우는 것보다 덧셈식을 실제 곱셈식으로 바꾸는 것이 유용하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "exclusionReason": "B만 제외: e5-2-4-1-c1의 B와 중복.",
+      "exampleNeeded": false,
+      "sourceIndex": 1342,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc17",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "덧셈 대신 곱셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "같은 소수를 여러 번 더할 때는 {곱셈식}으로 간단히 나타낸다.",
+        "studentC": "같은 소수를 여러 번 더할 때는 □으로 간단히 나타낸다.",
+        "answers": [
+          "곱셈식"
+        ]
+      },
+      "sourceFingerprint": "6219b6303b9f00e570be9b23f6ed4882409a42b5c777a18004f00e816d9f9722",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$5$"
+      ],
+      "cStudentAfter": "$0.4+0.4+0.4+0.4+0.4$를 곱셈식으로 나타내면 $0.4\\times$ □ 이다.",
+      "cMarkedSentence": "$0.4+0.4+0.4+0.4+0.4$를 곱셈식으로 나타내면 $0.4\\times$ {$5$} 이다.",
+      "cStudentSentence": "$0.4+0.4+0.4+0.4+0.4$를 곱셈식으로 나타내면 $0.4\\times$ □ 이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0.4+0.4+0.4+0.4+0.4$를 곱셈식으로 나타내면 $0.4\\times$ {$5$} 이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: e5-2-4-1-c1의 B와 중복."
+      },
+      "proposalFingerprint": "cd18af55761c5e5a6fca1378947d99a381e066d605efefb2edc3d59c4ee3a5c2",
+      "questionRevision": "planning-e5e6-20261006-cd18af55761c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc18",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0.23\\times4$를 구하려고 $23\\times4=92$를 계산했습니다. 여기서 $92$는 무엇이 $92$개라는 뜻인지 쓰고, $0.23\\times4$의 값을 소수로 나타내시오.",
+      "bAnswer": "$0.23$은 $0.01$이 $23$개이므로 $92$는 $0.01$이 $92$개라는 뜻이다. 따라서 $0.23\\times4=0.92$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.01$이 $92$개",
+            "$\\frac{1}{100}$이 $92$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.92$"
+          ]
+        }
+      ],
+      "bGoal": "자연수끼리 곱한 값이 어떤 단위의 개수인지로 소수점 위치를 정한다.",
+      "bReason": "'가장 작은 자리 단위가 모인 개수'가 어려운 말이라 소수 두 자리 예에서 $0.01$의 개수로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0.23$은 $0.01$이 $23$개이므로 $0.23\\times4$는 $0.01$이 {$92$}개이고, 값은 {$0.92$}이다.",
+      "cReason": "'모인 개수'는 문맥 없이 떠올리기 어려워 실제 개수와 소수점을 찍은 값을 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$92$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.92$"
+          ]
+        }
+      ],
+      "coreAfter": "소수와 자연수를 곱할 때, 소수점을 떼고 자연수처럼 곱한 값은 그 소수의 마지막 자리 단위($0.1$, $0.01$ 등)의 {개수}를 나타낸다. 그 단위에 맞게 소수점을 찍는다.",
+      "coreReason": "'가장 작은 자리 단위가 모인 개수'는 초5 학생에게 불명확한 표현이라 $0.1$, $0.01$의 개수로 풀어 썼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "모인 개수라는 원문 표적을 단위의 개수로 분명히 한다. 소수×자연수라는 조건과 마지막 자리 단위의 예를 명시해 소수 두 개의 곱의 단위와 혼동하지 않는다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1343,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc18",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱의 소수점 자리",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수점을 떼어 자연수끼리 곱한 값은 곱해지는 소수의 가장 작은 자리 단위가 {모인 개수}이므로, 그 단위에 맞게 소수점을 찍는다.",
+        "studentC": "소수점을 떼어 자연수끼리 곱한 값은 곱해지는 소수의 가장 작은 자리 단위가 □이므로, 그 단위에 맞게 소수점을 찍는다.",
+        "answers": [
+          "모인 개수"
+        ]
+      },
+      "sourceFingerprint": "93c2bed30bc9fda140b771e1d265424c2fa795da3bb7dccd666e32fba2adb859",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$92$",
+        "$0.92$"
+      ],
+      "cStudentAfter": "$0.23$은 $0.01$이 $23$개이므로 $0.23\\times4$는 $0.01$이 □개이고, 값은 □이다.",
+      "cMarkedSentence": "$0.23$은 $0.01$이 $23$개이므로 $0.23\\times4$는 $0.01$이 {$92$}개이고, 값은 {$0.92$}이다.",
+      "cStudentSentence": "$0.23$은 $0.01$이 $23$개이므로 $0.23\\times4$는 $0.01$이 □개이고, 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$92$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.92$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.23\\times4$를 구하려고 $23\\times4=92$를 계산했습니다. 여기서 $92$는 무엇이 $92$개라는 뜻인지 쓰고, $0.23\\times4$의 값을 소수로 나타내시오.",
+        "answer": "$0.23$은 $0.01$이 $23$개이므로 $92$는 $0.01$이 $92$개라는 뜻이다. 따라서 $0.23\\times4=0.92$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.01$이 $92$개",
+              "$\\frac{1}{100}$이 $92$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.92$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.23$은 $0.01$이 $23$개이므로 $0.23\\times4$는 $0.01$이 {$92$}개이고, 값은 {$0.92$}이다.",
+        "acceptedAnswers": [
+          [
+            "$92$"
+          ],
+          [
+            "$0.92$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "311c3ea52f081360efcc299215970564dbadd32c1af8bb7554bd9490dd707b8a",
+      "questionRevision": "planning-e5e6-20261006-311c3ea52f08",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0.25$를 분수로 나타내면 $\\frac{1}{4}$입니다. $0.25$에 어떤 자연수를 곱하면 $1$이 되는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "$4$를 곱하면 된다. $\\frac{1}{4}$은 $1$을 똑같이 $4$로 나눈 것 중 하나이므로 $4$개를 모으면 $1$이 된다. $0.25\\times4=1$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$이 $4$개이면 $1$이다",
+            "$\\frac{1}{4}\\times4=1$",
+            "$0.25$를 $4$번 더하면 $1$이다"
+          ]
+        }
+      ],
+      "bGoal": "단위분수와 같은 소수에 그 분모를 곱하면 $1$이 됨을 설명한다.",
+      "bReason": "'단위분수로 고칠 수 있는 소수'가 추상적이라 초5에게 익숙한 $0.25=\\frac{1}{4}$로 좁혀 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0.2=\\frac{1}{5}$이므로 $0.2\\times$ {$5$} $=1$이고, $0.25=\\frac{1}{4}$이므로 $0.25\\times$ {$4$} $=1$이다.",
+      "cReason": "'분모' 낱말 하나보다 두 식에서 곱하는 수를 찾는 것이 관계를 더 잘 확인한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1344,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc19",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱이 $1$이 되는 소수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "단위분수로 고칠 수 있는 소수에 그 단위분수의 {분모}를 곱하면 곱이 $1$이다.",
+        "example": {
+          "prompt": "$0.125\\times8$이 $1$인 까닭은?",
+          "answer": "$0.125=\\frac{1}{8}$이라서"
+        },
+        "studentC": "단위분수로 고칠 수 있는 소수에 그 단위분수의 □를 곱하면 곱이 $1$이다.",
+        "answers": [
+          "분모"
+        ]
+      },
+      "sourceFingerprint": "f4ecb5d563eb1e3220b8b4020957e28ab52c4b52d7eadef1380bdc70de415cea",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$4$"
+      ],
+      "cStudentAfter": "$0.2=\\frac{1}{5}$이므로 $0.2\\times$ □ $=1$이고, $0.25=\\frac{1}{4}$이므로 $0.25\\times$ □ $=1$이다.",
+      "cMarkedSentence": "$0.2=\\frac{1}{5}$이므로 $0.2\\times$ {$5$} $=1$이고, $0.25=\\frac{1}{4}$이므로 $0.25\\times$ {$4$} $=1$이다.",
+      "cStudentSentence": "$0.2=\\frac{1}{5}$이므로 $0.2\\times$ □ $=1$이고, $0.25=\\frac{1}{4}$이므로 $0.25\\times$ □ $=1$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.25$를 분수로 나타내면 $\\frac{1}{4}$입니다. $0.25$에 어떤 자연수를 곱하면 $1$이 되는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "$4$를 곱하면 된다. $\\frac{1}{4}$은 $1$을 똑같이 $4$로 나눈 것 중 하나이므로 $4$개를 모으면 $1$이 된다. $0.25\\times4=1$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$이 $4$개이면 $1$이다",
+              "$\\frac{1}{4}\\times4=1$",
+              "$0.25$를 $4$번 더하면 $1$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.2=\\frac{1}{5}$이므로 $0.2\\times$ {$5$} $=1$이고, $0.25=\\frac{1}{4}$이므로 $0.25\\times$ {$4$} $=1$이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "036b61b7082bb9b9f0aed3337602a39c69d4be3d9f19295d7ec82e59381fce7d",
+      "questionRevision": "planning-e5e6-20261006-036b61b7082b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$0.62\\times8$을 계산한 답이 $4.96$과 $49.6$ 중 어느 것인지 어림으로 확인하려고 합니다. 어떻게 어림하는지 설명하고 알맞은 답을 고르시오.",
+      "bAnswer": "$0.62$를 $0.6$으로 보면 $0.6\\times8=4.8$이므로 곱은 $4.8$에 가까운 $4.96$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.62$를 $0.6$쯤으로 보고 $0.6\\times8=4.8$로 어림한다",
+            "$1$보다 작은 수에 $8$을 곱했으므로 곱은 $8$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4.96$"
+          ]
+        }
+      ],
+      "bGoal": "어림한 곱과 견주어 소수점 위치가 맞는지 판단한다.",
+      "bReason": "원문 예 $0.62\\times8$을 살려 소수점 위치가 다른 두 답 중에서 고르는 판단으로 만들었다.",
+      "cDecision": "revise",
+      "cAfter": "$0.62\\times8$을 $0.6\\times8=$ {$4.8$} 로 어림하면, 계산한 답은 $4.96$과 $49.6$ 중 {$4.96$}이 알맞다.",
+      "cReason": "'어림한 곱'이라는 구절 대신 실제 어림값과 그에 맞는 답을 고르게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4.8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4.96$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1345,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc21",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "어림으로 소수점 확인하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수와 자연수의 곱을 구한 뒤 {어림한 곱}과 견주면 소수점을 바르게 찍었는지 알 수 있다.",
+        "example": {
+          "prompt": "$0.62\\times8$을 어림할 때 $0.62$를 $0.6$으로 보는 까닭은?",
+          "answer": "가깝고 계산하기 쉬워서"
+        },
+        "studentC": "소수와 자연수의 곱을 구한 뒤 □과 견주면 소수점을 바르게 찍었는지 알 수 있다.",
+        "answers": [
+          "어림한 곱"
+        ]
+      },
+      "sourceFingerprint": "eb217501300fb0cb66ac305f8b8c9c7f4b8492839003c18ec9d3aba9639f744d",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$4.8$",
+        "$4.96$"
+      ],
+      "cStudentAfter": "$0.62\\times8$을 $0.6\\times8=$ □ 로 어림하면, 계산한 답은 $4.96$과 $49.6$ 중 □이 알맞다.",
+      "cMarkedSentence": "$0.62\\times8$을 $0.6\\times8=$ {$4.8$} 로 어림하면, 계산한 답은 $4.96$과 $49.6$ 중 {$4.96$}이 알맞다.",
+      "cStudentSentence": "$0.62\\times8$을 $0.6\\times8=$ □ 로 어림하면, 계산한 답은 $4.96$과 $49.6$ 중 □이 알맞다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4.8$",
+          "equivalents": []
+        },
+        {
+          "key": "$4.96$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.62\\times8$을 계산한 답이 $4.96$과 $49.6$ 중 어느 것인지 어림으로 확인하려고 합니다. 어떻게 어림하는지 설명하고 알맞은 답을 고르시오.",
+        "answer": "$0.62$를 $0.6$으로 보면 $0.6\\times8=4.8$이므로 곱은 $4.8$에 가까운 $4.96$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.62$를 $0.6$쯤으로 보고 $0.6\\times8=4.8$로 어림한다",
+              "$1$보다 작은 수에 $8$을 곱했으므로 곱은 $8$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4.96$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.62\\times8$을 $0.6\\times8=$ {$4.8$} 로 어림하면, 계산한 답은 $4.96$과 $49.6$ 중 {$4.96$}이 알맞다.",
+        "acceptedAnswers": [
+          [
+            "$4.8$"
+          ],
+          [
+            "$4.96$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3f4816ce36df0e249d6553888bc89f63539eafba6471064a88b343598b92c538",
+      "questionRevision": "planning-e5e6-20261006-3f4816ce36df",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "소수와 자연수를 곱할 때 두 수의 순서를 바꾸면 곱이 달라지는지 쓰고, $0.4\\times3=1.2$임을 이용하여 $3\\times0.4$의 값을 구하시오.",
+      "bAnswer": "순서를 바꾸어도 곱은 같다. 따라서 $3\\times0.4=1.2$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "순서를 바꾸어도 곱은 같다",
+            "곱은 달라지지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.2$"
+          ]
+        }
+      ],
+      "bGoal": "소수와 자연수의 곱에서도 순서를 바꾸면 곱이 같음을 이용한다.",
+      "bReason": "(자연수)×(소수)는 이 소단원보다 뒤에 나오므로 직접 계산 대신 주어진 곱을 이용하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.4\\times3=1.2$이므로 곱하는 순서를 바꾼 $3\\times0.4$의 값은 {$1.2$}이다.",
+      "cReason": "'순서를 바꾸어도'라는 구절 대신 성질을 적용한 값을 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1.2$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1346,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc22",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱셈의 순서 바꾸기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수와 자연수를 곱할 때 두 수의 {순서를 바꾸어도} 곱이 같다.",
+        "studentC": "소수와 자연수를 곱할 때 두 수의 □ 곱이 같다.",
+        "answers": [
+          "순서를 바꾸어도"
+        ]
+      },
+      "sourceFingerprint": "f775f472343d40d8894145395a9ee39fa0bc5f4e9ddee5874d649468dadfa9ef",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$1.2$"
+      ],
+      "cStudentAfter": "$0.4\\times3=1.2$이므로 곱하는 순서를 바꾼 $3\\times0.4$의 값은 □이다.",
+      "cMarkedSentence": "$0.4\\times3=1.2$이므로 곱하는 순서를 바꾼 $3\\times0.4$의 값은 {$1.2$}이다.",
+      "cStudentSentence": "$0.4\\times3=1.2$이므로 곱하는 순서를 바꾼 $3\\times0.4$의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1.2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수와 자연수를 곱할 때 두 수의 순서를 바꾸면 곱이 달라지는지 쓰고, $0.4\\times3=1.2$임을 이용하여 $3\\times0.4$의 값을 구하시오.",
+        "answer": "순서를 바꾸어도 곱은 같다. 따라서 $3\\times0.4=1.2$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "순서를 바꾸어도 곱은 같다",
+              "곱은 달라지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.4\\times3=1.2$이므로 곱하는 순서를 바꾼 $3\\times0.4$의 값은 {$1.2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1.2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8f25e12b0217bca1e935ecc0f8376b6895f02a7f4b05cd9d1422dbb12c70b759",
+      "questionRevision": "planning-e5e6-20261006-8f25e12b0217",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc23",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "길이가 $0.35\\,\\mathrm{m}$인 끈 $4$개를 이은 길이를 $\\mathrm{cm}$ 단위로 바꾸어 구하는 방법을 설명하고, 답을 $\\mathrm{m}$ 단위로 쓰시오.",
+      "bAnswer": "$0.35\\,\\mathrm{m}=35\\,\\mathrm{cm}$로 바꾸어 $35\\times4=140(\\mathrm{cm})$를 구하고, 다시 $\\mathrm{m}$로 고치면 $1.4\\,\\mathrm{m}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$35\\,\\mathrm{cm}$로 바꾸어 $35\\times4=140(\\mathrm{cm})$를 구한다",
+            "$\\mathrm{cm}$로 바꾸어 자연수끼리 곱한 뒤 $\\mathrm{m}$로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.4\\,\\mathrm{m}$",
+            "$1.40\\,\\mathrm{m}$"
+          ]
+        }
+      ],
+      "bGoal": "단위를 바꾸어 자연수 곱셈으로 계산한 뒤 처음 단위로 되돌린다.",
+      "bReason": "원문 예의 $0.35\\,\\mathrm{m}=35\\,\\mathrm{cm}$를 살려 바꾸기, 곱하기, 되돌리기를 모두 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.35\\,\\mathrm{m}$는 {$35$} $\\mathrm{cm}$이므로 $0.35\\,\\mathrm{m}$의 $4$배는 $35\\times4=140(\\mathrm{cm})$이고, 이것은 {$1.4$} $\\mathrm{m}$이다.",
+      "cReason": "'자연수끼리 곱한'이라는 구절 대신 단위를 바꾼 값과 되돌린 값을 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$35$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.4$",
+            "$1.40$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1347,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc23",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "단위를 바꾸어 곱하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수로 나타낸 길이를 작은 단위로 바꾸어 자연수가 되면, {자연수끼리 곱한} 뒤 처음 단위로 다시 나타내도 된다.",
+        "example": {
+          "prompt": "$0.35\\,\\mathrm{m}$를 $35\\,\\mathrm{cm}$로 바꾸어 곱해도 되는 까닭은?",
+          "answer": "단위만 바꾼 같은 길이"
+        },
+        "studentC": "소수로 나타낸 길이를 작은 단위로 바꾸어 자연수가 되면, □ 뒤 처음 단위로 다시 나타내도 된다.",
+        "answers": [
+          "자연수끼리 곱한"
+        ]
+      },
+      "sourceFingerprint": "30f9eedb4ba3faaee519618a855791054f97a7c0ddf4e6a77e73588865124308",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$35$",
+        "$1.4$"
+      ],
+      "cStudentAfter": "$0.35\\,\\mathrm{m}$는 □ $\\mathrm{cm}$이므로 $0.35\\,\\mathrm{m}$의 $4$배는 $35\\times4=140(\\mathrm{cm})$이고, 이것은 □ $\\mathrm{m}$이다.",
+      "cMarkedSentence": "$0.35\\,\\mathrm{m}$는 {$35$} $\\mathrm{cm}$이므로 $0.35\\,\\mathrm{m}$의 $4$배는 $35\\times4=140(\\mathrm{cm})$이고, 이것은 {$1.4$} $\\mathrm{m}$이다.",
+      "cStudentSentence": "$0.35\\,\\mathrm{m}$는 □ $\\mathrm{cm}$이므로 $0.35\\,\\mathrm{m}$의 $4$배는 $35\\times4=140(\\mathrm{cm})$이고, 이것은 □ $\\mathrm{m}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$35$",
+          "equivalents": []
+        },
+        {
+          "key": "$1.4$",
+          "equivalents": [
+            "$1.40$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "길이가 $0.35\\,\\mathrm{m}$인 끈 $4$개를 이은 길이를 $\\mathrm{cm}$ 단위로 바꾸어 구하는 방법을 설명하고, 답을 $\\mathrm{m}$ 단위로 쓰시오.",
+        "answer": "$0.35\\,\\mathrm{m}=35\\,\\mathrm{cm}$로 바꾸어 $35\\times4=140(\\mathrm{cm})$를 구하고, 다시 $\\mathrm{m}$로 고치면 $1.4\\,\\mathrm{m}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$35\\,\\mathrm{cm}$로 바꾸어 $35\\times4=140(\\mathrm{cm})$를 구한다",
+              "$\\mathrm{cm}$로 바꾸어 자연수끼리 곱한 뒤 $\\mathrm{m}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.4\\,\\mathrm{m}$",
+              "$1.40\\,\\mathrm{m}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.35\\,\\mathrm{m}$는 {$35$} $\\mathrm{cm}$이므로 $0.35\\,\\mathrm{m}$의 $4$배는 $35\\times4=140(\\mathrm{cm})$이고, 이것은 {$1.4$} $\\mathrm{m}$이다.",
+        "acceptedAnswers": [
+          [
+            "$35$"
+          ],
+          [
+            "$1.4$",
+            "$1.40$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "71ecb645b6a360f0f770096dd801f126fa752096d04da3c3060b46e8c108908f",
+      "questionRevision": "planning-e5e6-20261006-71ecb645b6a3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc24",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$1$보다 작은 소수에 자연수를 곱한 값과 그 자연수 중 어느 쪽이 더 큰지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "자연수가 더 크다(곱이 더 작다). $1$을 그 자연수만큼 더하면 그 자연수가 되는데, $1$보다 작은 수를 같은 횟수만큼 더하므로 더 작다. 예: $0.9\\times7=6.3$은 $7$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수가 더 크다",
+            "곱이 그 자연수보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$보다 작은 수를 같은 횟수만큼 더하므로 $1$을 더한 것보다 작다",
+            "$1$배보다 적게 곱한 셈이므로 그 자연수보다 작다"
+          ]
+        }
+      ],
+      "bGoal": "$1$보다 작은 소수와 자연수의 곱이 그 자연수보다 작은 까닭을 설명한다.",
+      "bReason": "제목 '곱의 일의 자리 어림'이 내용과 맞지 않아, 정의문이 말하는 크기 비교와 근거를 직접 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$1$보다 작은 소수에 자연수를 곱하면 곱은 그 자연수보다 {작다}.",
+      "cReason": "비교 대상까지 빈칸에 넣으면 답이 길어지므로 '작다'만 비워 분명한 비교 문장으로 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "작습니다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1348,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc24",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱의 일의 자리 어림",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$1$보다 작은 소수에 자연수를 곱하면 곱은 {그 자연수보다 작다}.",
+        "studentC": "$1$보다 작은 소수에 자연수를 곱하면 곱은 □.",
+        "answers": [
+          "그 자연수보다 작다"
+        ]
+      },
+      "sourceFingerprint": "e4ae2b1ba256a0b56616266126f1110a97f0e58a8211bd86ee6013c6d546d918",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "$1$보다 작은 소수에 자연수를 곱하면 곱은 그 자연수보다 □.",
+      "cMarkedSentence": "$1$보다 작은 소수에 자연수를 곱하면 곱은 그 자연수보다 {작다}.",
+      "cStudentSentence": "$1$보다 작은 소수에 자연수를 곱하면 곱은 그 자연수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "작습니다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$보다 작은 소수에 자연수를 곱한 값과 그 자연수 중 어느 쪽이 더 큰지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "자연수가 더 크다(곱이 더 작다). $1$을 그 자연수만큼 더하면 그 자연수가 되는데, $1$보다 작은 수를 같은 횟수만큼 더하므로 더 작다. 예: $0.9\\times7=6.3$은 $7$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수가 더 크다",
+              "곱이 그 자연수보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$보다 작은 수를 같은 횟수만큼 더하므로 $1$을 더한 것보다 작다",
+              "$1$배보다 적게 곱한 셈이므로 그 자연수보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$보다 작은 소수에 자연수를 곱하면 곱은 그 자연수보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "작습니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "55d28279c6f24924e5ab867433e6f853ec5086d1478e8f1ee6453da89f7fc65d",
+      "questionRevision": "planning-e5e6-20261006-55d28279c6f2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0.37\\times5$를 계산하면서 소수점을 빠뜨려 $37\\times5=185$라고 답했습니다. $185$는 바른 곱의 몇 배인지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "$100$배이다. $37$은 $0.37$의 $100$배이므로 같은 수 $5$를 곱한 값도 $100$배가 된다. 바른 곱은 $1.85$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$37$이 $0.37$의 $100$배이므로 곱도 $100$배이다",
+            "바른 곱 $1.85$의 $100$배가 $185$이다"
+          ]
+        }
+      ],
+      "bGoal": "소수점을 빠뜨린 곱이 바른 곱의 몇 배인지와 그 까닭을 안다.",
+      "bReason": "배수를 질문에서 말하지 않고 소수 두 자리 예로 까닭을 설명하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "소수에 자연수를 곱하면서 소수점을 빠뜨리면 소수 한 자리 수일 때는 바른 곱의 {$10$배}, 소수 두 자리 수일 때는 {$100$배}가 된다.",
+      "cReason": "소수 한 자리와 두 자리 조건이 문장에 나뉘어 있고 답 $10$배, $100$배가 짧고 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1349,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc26",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "소수점을 빠뜨린 곱은 바른 곱의 몇 배인가",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수에 자연수를 곱하면서 소수점을 빠뜨리면 소수 한 자리 수일 때는 바른 곱의 {$10$배}, 소수 두 자리 수일 때는 {$100$배}가 된다.",
+        "studentC": "소수에 자연수를 곱하면서 소수점을 빠뜨리면 소수 한 자리 수일 때는 바른 곱의 □, 소수 두 자리 수일 때는 □가 된다.",
+        "answers": [
+          "$10$배",
+          "$100$배"
+        ]
+      },
+      "sourceFingerprint": "f727f362bb7b4357c034e35f02ae8913d6fcc02d823b054259785545f9d26889",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cFrozenDefinition": "소수에 자연수를 곱하면서 소수점을 빠뜨리면 소수 한 자리 수일 때는 바른 곱의 {$10$배}, 소수 두 자리 수일 때는 {$100$배}가 된다.",
+      "cFrozenStudentSentence": "소수에 자연수를 곱하면서 소수점을 빠뜨리면 소수 한 자리 수일 때는 바른 곱의 □, 소수 두 자리 수일 때는 □가 된다.",
+      "cProposedAnswers": [
+        "$10$배",
+        "$100$배"
+      ],
+      "cStudentAfter": "소수에 자연수를 곱하면서 소수점을 빠뜨리면 소수 한 자리 수일 때는 바른 곱의 □, 소수 두 자리 수일 때는 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수에 자연수를 곱하면서 소수점을 빠뜨리면 소수 한 자리 수일 때는 바른 곱의 {$10$배}, 소수 두 자리 수일 때는 {$100$배}가 된다.",
+      "cStudentSentence": "소수에 자연수를 곱하면서 소수점을 빠뜨리면 소수 한 자리 수일 때는 바른 곱의 □, 소수 두 자리 수일 때는 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$배",
+          "equivalents": []
+        },
+        {
+          "key": "$100$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.37\\times5$를 계산하면서 소수점을 빠뜨려 $37\\times5=185$라고 답했습니다. $185$는 바른 곱의 몇 배인지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "$100$배이다. $37$은 $0.37$의 $100$배이므로 같은 수 $5$를 곱한 값도 $100$배가 된다. 바른 곱은 $1.85$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$37$이 $0.37$의 $100$배이므로 곱도 $100$배이다",
+              "바른 곱 $1.85$의 $100$배가 $185$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수에 자연수를 곱하면서 소수점을 빠뜨리면 소수 한 자리 수일 때는 바른 곱의 {$10$배}, 소수 두 자리 수일 때는 {$100$배}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$10$배"
+          ],
+          [
+            "$100$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6cc9be9468db562c9ad875465dd54101ac129aed89a4054e591ba3dfffc1e786",
+      "questionRevision": "planning-e5e6-20261006-6cc9be9468db",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc27",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0.3\\times7$과 $0.7\\times3$의 곱이 같은지 쓰고, 그 까닭을 두 곱이 각각 $0.1$이 몇 개인지로 설명하시오.",
+      "bAnswer": "같다. $0.3\\times7$은 $0.1$이 $3\\times7=21$개, $0.7\\times3$은 $0.1$이 $7\\times3=21$개이므로 둘 다 $2.1$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 곱은 같다",
+            "둘 다 $2.1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘 다 $0.1$이 $21$개이다",
+            "$3\\times7$과 $7\\times3$이 같아 $0.1$의 개수가 같다"
+          ]
+        }
+      ],
+      "bGoal": "숫자를 맞바꾼 두 곱이 같은 까닭을 $0.1$의 개수로 설명한다.",
+      "bReason": "원문의 일반 진술은 읽기 어려워 구체적인 두 식으로 바꾸고 $0.1$의 개수라는 근거를 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.3\\times7$은 $0.1$이 $3\\times7=21$(개)이고 $0.7\\times3$은 $0.1$이 $7\\times3=$ {$21$} (개)이므로 두 곱은 모두 {$2.1$}이다.",
+      "cReason": "원문은 조건이 길고 답 '곱이 같다'가 자명해 실제 식의 개수와 값을 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$21$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.1$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1350,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc27",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "숫자를 맞바꾼 두 곱",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$1$부터 $9$까지의 두 자연수를 하나는 소수 한 자리 수의 숫자로, 하나는 곱하는 수로 쓰면 둘을 맞바꾸어도 {곱이 같다}.",
+        "studentC": "$1$부터 $9$까지의 두 자연수를 하나는 소수 한 자리 수의 숫자로, 하나는 곱하는 수로 쓰면 둘을 맞바꾸어도 □.",
+        "answers": [
+          "곱이 같다"
+        ]
+      },
+      "sourceFingerprint": "cc825c61e9167ffa3f2109fdae8c00eb565fb3db4407743252a86b9f2a285801",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "cProposedAnswers": [
+        "$21$",
+        "$2.1$"
+      ],
+      "cStudentAfter": "$0.3\\times7$은 $0.1$이 $3\\times7=21$(개)이고 $0.7\\times3$은 $0.1$이 $7\\times3=$ □ (개)이므로 두 곱은 모두 □이다.",
+      "cMarkedSentence": "$0.3\\times7$은 $0.1$이 $3\\times7=21$(개)이고 $0.7\\times3$은 $0.1$이 $7\\times3=$ {$21$} (개)이므로 두 곱은 모두 {$2.1$}이다.",
+      "cStudentSentence": "$0.3\\times7$은 $0.1$이 $3\\times7=21$(개)이고 $0.7\\times3$은 $0.1$이 $7\\times3=$ □ (개)이므로 두 곱은 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$21$",
+          "equivalents": []
+        },
+        {
+          "key": "$2.1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.3\\times7$과 $0.7\\times3$의 곱이 같은지 쓰고, 그 까닭을 두 곱이 각각 $0.1$이 몇 개인지로 설명하시오.",
+        "answer": "같다. $0.3\\times7$은 $0.1$이 $3\\times7=21$개, $0.7\\times3$은 $0.1$이 $7\\times3=21$개이므로 둘 다 $2.1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 곱은 같다",
+              "둘 다 $2.1$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘 다 $0.1$이 $21$개이다",
+              "$3\\times7$과 $7\\times3$이 같아 $0.1$의 개수가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.3\\times7$은 $0.1$이 $3\\times7=21$(개)이고 $0.7\\times3$은 $0.1$이 $7\\times3=$ {$21$} (개)이므로 두 곱은 모두 {$2.1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$21$"
+          ],
+          [
+            "$2.1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f84f6e03ba73558967a3858e71721797a201d10cfc4fdeb1c8a6471e6fbdd9a8",
+      "questionRevision": "planning-e5e6-20261006-f84f6e03ba73",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc1",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "같은 소수를 거듭 더한 합과 곱셈의 관계를 안다.",
+      "bReason": "c1의 B가 묶음의 뜻과 덧셈식을 이미 함께 묻고 있어 같은 내용이 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "$1.6+1.6+1.6+1.6$은 $1.6$에 {$4$}를 곱한 값과 같으므로 {$6.4$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6.4$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '더한 횟수'는 표현이 여러 가지로 갈릴 수 있어, 덧셈식을 곱셈으로 바꾸는 수와 값을 쓰게 했다.",
+      "exclusionReason": "B 제외: c1과 중복(대체 ID e5-2-4-2-c1).",
+      "exampleNeeded": false,
+      "sourceIndex": 1351,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc1",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "같은 수 거듭 더하기",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$1$보다 큰 소수를 거듭 더한 합은 그 소수에 {더한 횟수}를 곱한 값과 같다.",
+        "studentC": "$1$보다 큰 소수를 거듭 더한 합은 그 소수에 □를 곱한 값과 같다.",
+        "answers": [
+          "더한 횟수"
+        ]
+      },
+      "sourceFingerprint": "29c0bd5109b254e800ededed4863f9fbe1aaa3c9300d4134a4312a9b888a066b",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$6.4$"
+      ],
+      "cStudentAfter": "$1.6+1.6+1.6+1.6$은 $1.6$에 □를 곱한 값과 같으므로 □이다.",
+      "cMarkedSentence": "$1.6+1.6+1.6+1.6$은 $1.6$에 {$4$}를 곱한 값과 같으므로 {$6.4$}이다.",
+      "cStudentSentence": "$1.6+1.6+1.6+1.6$은 $1.6$에 □를 곱한 값과 같으므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$6.4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1.6+1.6+1.6+1.6$은 $1.6$에 {$4$}를 곱한 값과 같으므로 {$6.4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$6.4$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: c1과 중복(대체 ID e5-2-4-2-c1)."
+      },
+      "proposalFingerprint": "c320dbb96f61ea5248d421311a4363f7ba249937a62d45cbb74143b5379208e3",
+      "questionRevision": "planning-e5e6-20261006-c320dbb96f61",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$2.3\\times4$를 $8.3$이라고 계산한 친구가 있다. 어느 부분의 계산이 빠졌는지 설명하고, 바르게 계산한 값을 구하시오.",
+      "bAnswer": "자연수 부분 $2$에만 $4$를 곱하고 소수 부분 $0.3$에는 $4$를 곱하지 않았다. $2\\times4=8$, $0.3\\times4=1.2$이므로 $2.3\\times4=9.2$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수 부분 $0.3$에 $4$를 곱하지 않았다",
+            "자연수 부분 $2$에만 $4$를 곱했다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9.2$"
+          ]
+        }
+      ],
+      "bGoal": "자연수 부분에만 곱하는 오류를 찾아 소수 부분에도 곱해야 함을 설명한다.",
+      "bReason": "c2와 방법은 같지만 원문은 흔한 오류를 경계하는 문장이므로, 잘못된 계산을 고치는 문제로 구별했다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '소수 부분에도'는 앞 구절을 뒤집어 말한 것일 뿐이고, 각 부분의 곱을 쓰는 연습은 c2의 C가 이미 다룬다.",
+      "exclusionReason": "C 제외: c2의 C와 중복(대체 ID e5-2-4-2-c2).",
+      "exampleNeeded": false,
+      "sourceIndex": 1352,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc5",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "자연수 부분과 소수 부분",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$1$보다 큰 소수에 자연수를 곱할 때 자연수 부분에만 곱하지 않고 {소수 부분에도} 곱해야 한다.",
+        "studentC": "$1$보다 큰 소수에 자연수를 곱할 때 자연수 부분에만 곱하지 않고 □ 곱해야 한다.",
+        "answers": [
+          "소수 부분에도"
+        ]
+      },
+      "sourceFingerprint": "b056181f6548b5cc95e7de0e049811f74317d6482607776cbb22bca5e163f757",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "$2.3\\times4$를 $8.3$이라고 계산한 친구가 있다. 어느 부분의 계산이 빠졌는지 설명하고, 바르게 계산한 값을 구하시오.",
+        "answer": "자연수 부분 $2$에만 $4$를 곱하고 소수 부분 $0.3$에는 $4$를 곱하지 않았다. $2\\times4=8$, $0.3\\times4=1.2$이므로 $2.3\\times4=9.2$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수 부분 $0.3$에 $4$를 곱하지 않았다",
+              "자연수 부분 $2$에만 $4$를 곱했다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9.2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C 제외: c2의 C와 중복(대체 ID e5-2-4-2-c2)."
+      },
+      "proposalFingerprint": "81142cd48794ae3e4476d6751e5b0f42a1709e72c6a7fd2f050edfd3c2397738",
+      "questionRevision": "planning-e5e6-20261006-81142cd48794",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "소수 한 자리 수에 자연수를 곱할 때, 소수점을 없애고 자연수처럼 계산한 곱은 원래 곱의 몇 배인지 까닭과 함께 설명하고, $36\\times4=144$를 이용해 $3.6\\times4$를 구하시오.",
+      "bAnswer": "소수 한 자리 수의 소수점을 없애면 원래 수의 $10$배가 되므로 자연수처럼 계산한 곱도 원래 곱의 $10$배이다. 따라서 원래 곱은 $144$의 $\\frac{1}{10}$인 $14.4$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수점을 없앤 수는 원래 소수의 $10$배이다",
+            "$36$은 $3.6$의 $10$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수처럼 계산한 곱은 원래 곱의 $10$배이다",
+            "원래 곱은 자연수처럼 계산한 곱의 $\\frac{1}{10}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14.4$"
+          ]
+        }
+      ],
+      "bGoal": "자연수처럼 계산한 곱과 원래 곱 사이의 10배 관계로 소수점 위치를 정하는 까닭을 설명한다.",
+      "bReason": "소수점을 찍는 규칙만이 아니라 10배와 10분의 1 관계를 설명해야 하는 핵심 성질이라 까닭과 예를 함께 물었다.",
+      "cDecision": "keep",
+      "cAfter": "소수 한 자리 수의 소수점을 없애면 원래 수의 {$10$배}가 되므로, 자연수처럼 계산한 곱의 {$\\frac{1}{10}$}이 원래 곱이다.",
+      "cReason": "두 빈칸이 10배와 10분의 1이라는 짧고 뚜렷한 관계를 묻고, '소수 한 자리 수'라는 조건도 문장에 들어 있다.",
+      "exampleNeeded": false,
+      "synonymNotes": "둘째 빈칸은 $\\frac{1}{10}$과 $0.1$배가 같은 뜻이다.",
+      "sourceIndex": 1353,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc6",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "소수 한 자리 수와 자연수의 곱의 소수점 위치",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수 한 자리 수의 소수점을 없애면 원래 수의 {$10$배}가 되므로, 자연수처럼 계산한 곱의 {$\\frac{1}{10}$}이 원래 곱이다.",
+        "studentC": "소수 한 자리 수의 소수점을 없애면 원래 수의 □가 되므로, 자연수처럼 계산한 곱의 □이 원래 곱이다.",
+        "answers": [
+          "$10$배",
+          "$\\frac{1}{10}$"
+        ]
+      },
+      "sourceFingerprint": "6aaf60518c2448410b1981cb07b80edbeab3dabe9c5e4f4f28258b79e8652be4",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cFrozenDefinition": "소수 한 자리 수의 소수점을 없애면 원래 수의 {$10$배}가 되므로, 자연수처럼 계산한 곱의 {$\\frac{1}{10}$}이 원래 곱이다.",
+      "cFrozenStudentSentence": "소수 한 자리 수의 소수점을 없애면 원래 수의 □가 되므로, 자연수처럼 계산한 곱의 □이 원래 곱이다.",
+      "cProposedAnswers": [
+        "$10$배",
+        "$\\frac{1}{10}$"
+      ],
+      "cStudentAfter": "소수 한 자리 수의 소수점을 없애면 원래 수의 □가 되므로, 자연수처럼 계산한 곱의 □이 원래 곱이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{10}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수 한 자리 수의 소수점을 없애면 원래 수의 {$10$배}가 되므로, 자연수처럼 계산한 곱의 {$\\frac{1}{10}$}이 원래 곱이다.",
+      "cStudentSentence": "소수 한 자리 수의 소수점을 없애면 원래 수의 □가 되므로, 자연수처럼 계산한 곱의 □이 원래 곱이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$배",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{10}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 한 자리 수에 자연수를 곱할 때, 소수점을 없애고 자연수처럼 계산한 곱은 원래 곱의 몇 배인지 까닭과 함께 설명하고, $36\\times4=144$를 이용해 $3.6\\times4$를 구하시오.",
+        "answer": "소수 한 자리 수의 소수점을 없애면 원래 수의 $10$배가 되므로 자연수처럼 계산한 곱도 원래 곱의 $10$배이다. 따라서 원래 곱은 $144$의 $\\frac{1}{10}$인 $14.4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수점을 없앤 수는 원래 소수의 $10$배이다",
+              "$36$은 $3.6$의 $10$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수처럼 계산한 곱은 원래 곱의 $10$배이다",
+              "원래 곱은 자연수처럼 계산한 곱의 $\\frac{1}{10}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$14.4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 한 자리 수의 소수점을 없애면 원래 수의 {$10$배}가 되므로, 자연수처럼 계산한 곱의 {$\\frac{1}{10}$}이 원래 곱이다.",
+        "acceptedAnswers": [
+          [
+            "$10$배"
+          ],
+          [
+            "$\\frac{1}{10}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c3655dae3e914650bb959ce9d1d8d5be62ff32704727164df930982e0ff553a8",
+      "questionRevision": "planning-e5e6-20261006-c3655dae3e91",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc7",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$1$보다 큰 소수에 자연수를 곱한 값은 곱한 자연수보다 큰지 작은지 쓰고, 그 까닭을 자연수에 $1$을 곱한 값과 비교하여 설명하시오.",
+      "bAnswer": "곱한 자연수보다 크다. 자연수에 $1$을 곱하면 그 자연수 그대로인데, $1$보다 큰 수를 곱하면 그보다 커지기 때문이다. 예를 들어 $1.5\\times4=6$은 $4$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 곱한 자연수보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수에 $1$을 곱하면 그 자연수와 같고 $1$보다 큰 수를 곱하면 더 커진다",
+            "자연수의 $1$배보다 많은 양이므로 그 자연수보다 크다"
+          ]
+        }
+      ],
+      "bGoal": "1보다 큰 소수를 곱하면 곱이 곱한 자연수보다 커지는 까닭을 1배와 비교해 설명한다.",
+      "bReason": "원문은 결론만 있어, 1을 곱한 값과 견주어 까닭을 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1$보다 큰 소수에 자연수를 곱하면 곱은 곱한 자연수보다 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다",
+            "커진다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '그 자연수보다'는 비교 대상을 가리키는 구절이라 답하기 어색해서, 크기 비교의 결과를 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1354,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc7",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "곱과 곱하는 자연수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1$보다 큰 소수에 자연수를 곱하면 곱은 {그 자연수보다} 크다.",
+        "studentC": "$1$보다 큰 소수에 자연수를 곱하면 곱은 □ 크다.",
+        "answers": [
+          "그 자연수보다"
+        ]
+      },
+      "sourceFingerprint": "40cf6b7b738cc09eb73caff74e0c6d9cf9d7cb848f5e4ac34626034ab1039e36",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "$1$보다 큰 소수에 자연수를 곱하면 곱은 곱한 자연수보다 □.",
+      "cMarkedSentence": "$1$보다 큰 소수에 자연수를 곱하면 곱은 곱한 자연수보다 {크다}.",
+      "cStudentSentence": "$1$보다 큰 소수에 자연수를 곱하면 곱은 곱한 자연수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": [
+            "커진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$보다 큰 소수에 자연수를 곱한 값은 곱한 자연수보다 큰지 작은지 쓰고, 그 까닭을 자연수에 $1$을 곱한 값과 비교하여 설명하시오.",
+        "answer": "곱한 자연수보다 크다. 자연수에 $1$을 곱하면 그 자연수 그대로인데, $1$보다 큰 수를 곱하면 그보다 커지기 때문이다. 예를 들어 $1.5\\times4=6$은 $4$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 곱한 자연수보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수에 $1$을 곱하면 그 자연수와 같고 $1$보다 큰 수를 곱하면 더 커진다",
+              "자연수의 $1$배보다 많은 양이므로 그 자연수보다 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$보다 큰 소수에 자연수를 곱하면 곱은 곱한 자연수보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다",
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3514bb7afb7cdf38e67bd3e9bc5fc06c1529ec19793355de50d7e667adaf14c9",
+      "questionRevision": "planning-e5e6-20261006-3514bb7afb7c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc13",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "곱을 거듭 더하기로 확인할 수 있음을 안다.",
+      "bReason": "거듭 더하기와 곱의 관계는 c1의 B가 이미 묻고 있고, '확인할 수 있다'는 내용만으로는 새로 물을 것이 없다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '확인할 수'는 수학 내용이 아닌 문장 끝맺음이고, 거듭 더하기를 곱셈으로 바꾸는 연습은 xc1의 C가 다룬다.",
+      "exclusionReason": "B·C 모두 중복이고 빈칸이 사소함(B 대체 e5-2-4-2-c1, C 대체 e5-2-4-2-xc1).",
+      "exampleNeeded": false,
+      "sourceIndex": 1355,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc13",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "덧셈으로 확인",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수와 $2$ 이상인 자연수의 곱은 같은 소수를 그 자연수 번 거듭 더해 {확인할 수} 있다. $1$을 곱하면 그 소수 그대로이다.",
+        "studentC": "소수와 $2$ 이상인 자연수의 곱은 같은 소수를 그 자연수 번 거듭 더해 □ 있다. $1$을 곱하면 그 소수 그대로이다.",
+        "answers": [
+          "확인할 수"
+        ]
+      },
+      "sourceFingerprint": "e0416c38f6963167a3ad3c23dada1faabb661cff07dbe156018f53f121fa2e8e",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 모두 중복이고 빈칸이 사소함(B 대체 e5-2-4-2-c1, C 대체 e5-2-4-2-xc1).",
+        "cloze": "B·C 모두 중복이고 빈칸이 사소함(B 대체 e5-2-4-2-c1, C 대체 e5-2-4-2-xc1)."
+      },
+      "proposalFingerprint": "24e1c518815aa105f60abda360caf4728fb4421939058d3e6cb6c7503048e88f",
+      "questionRevision": "planning-e5e6-20261006-24e1c518815a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$1$보다 큰 소수에 자연수를 곱한 값이 자연수가 되려면 소수 부분에 그 자연수를 곱한 값이 어떤 수여야 하는지 쓰고, $2.5\\times4$를 자연수 부분과 소수 부분으로 나누어 계산해 확인하시오.",
+      "bAnswer": "소수 부분에 곱한 값이 자연수여야 한다. $2\\times4=8$, $0.5\\times4=2$로 소수 부분의 곱이 자연수이므로 $2.5\\times4=8+2=10$도 자연수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수 부분에 곱한 값이 자연수여야 한다",
+            "소수 부분의 곱에 소수점 아래 수가 남지 않아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5\\times4=2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "bGoal": "소수 부분의 곱이 자연수일 때 전체 곱도 자연수가 됨을 부분 곱으로 설명한다.",
+      "bReason": "원문 성질을 조건을 묻는 질문으로 바꾸고, 부분 곱으로 확인하는 예를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=${$2$}가 자연수이므로 $2.5\\times4=${$10$}도 자연수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '소수 부분의 곱'은 편집용 구절이라, 실제 식에서 소수 부분의 곱과 전체 곱을 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1356,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc14",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "곱이 자연수인 소수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$1$보다 큰 소수에 자연수를 곱할 때 {소수 부분의 곱}이 자연수가 되면 곱도 자연수가 된다.",
+        "studentC": "$1$보다 큰 소수에 자연수를 곱할 때 □이 자연수가 되면 곱도 자연수가 된다.",
+        "answers": [
+          "소수 부분의 곱"
+        ]
+      },
+      "sourceFingerprint": "a74dd4c4f53e30828c8a95519bdc3b3bd7a99242b2e037b00d0095f270470847",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$10$"
+      ],
+      "cStudentAfter": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=$□가 자연수이므로 $2.5\\times4=$□도 자연수이다.",
+      "cMarkedSentence": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=${$2$}가 자연수이므로 $2.5\\times4=${$10$}도 자연수이다.",
+      "cStudentSentence": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=$□가 자연수이므로 $2.5\\times4=$□도 자연수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$보다 큰 소수에 자연수를 곱한 값이 자연수가 되려면 소수 부분에 그 자연수를 곱한 값이 어떤 수여야 하는지 쓰고, $2.5\\times4$를 자연수 부분과 소수 부분으로 나누어 계산해 확인하시오.",
+        "answer": "소수 부분에 곱한 값이 자연수여야 한다. $2\\times4=8$, $0.5\\times4=2$로 소수 부분의 곱이 자연수이므로 $2.5\\times4=8+2=10$도 자연수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수 부분에 곱한 값이 자연수여야 한다",
+              "소수 부분의 곱에 소수점 아래 수가 남지 않아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5\\times4=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.5\\times4$에서 소수 부분의 곱 $0.5\\times4=${$2$}가 자연수이므로 $2.5\\times4=${$10$}도 자연수이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b70a5b0cda900f33bd5869ab28f0f328092368f80b212df7d42b1840547fa8be",
+      "questionRevision": "planning-e5e6-20261006-b70a5b0cda90",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc15",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "가로가 소수이고 세로가 자연수인 직사각형의 넓이를 구하는 방법을 쓰고, 가로가 $3.5\\,\\mathrm{m}$, 세로가 $4\\,\\mathrm{m}$인 직사각형의 넓이를 구하시오.",
+      "bAnswer": "변의 길이가 소수여도 가로와 세로를 곱해 구한다. $3.5\\times4=14$이므로 넓이는 $14\\,\\mathrm{m}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로와 세로를 곱한다",
+            "$3.5\\times4$를 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14\\,\\mathrm{m}^2$",
+            "$14$ 제곱미터"
+          ]
+        }
+      ],
+      "bGoal": "변의 길이가 소수여도 직사각형의 넓이를 가로와 세로의 곱으로 구한다.",
+      "bReason": "익숙한 넓이 구하는 방법을 소수 길이에 쓰는 문제라, 방법과 실제 넓이를 함께 물었다.",
+      "cDecision": "keep",
+      "cAfter": "가로가 소수, 세로가 자연수인 직사각형의 넓이도 {(가로)$\\times$(세로)}로 구한다.",
+      "cReason": "가로가 소수여도 넓이 구하는 방법이 그대로라는 점을 짧은 식 하나로 묻는 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "가로$\\times$세로, (세로)$\\times$(가로)는 같은 답으로 인정한다.",
+      "sourceIndex": 1357,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc15",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "소수가 든 직사각형의 넓이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "가로가 소수, 세로가 자연수인 직사각형의 넓이도 {(가로)$\\times$(세로)}로 구한다.",
+        "studentC": "가로가 소수, 세로가 자연수인 직사각형의 넓이도 □로 구한다.",
+        "answers": [
+          "(가로)$\\times$(세로)"
+        ]
+      },
+      "sourceFingerprint": "f804bdf803b679d6d947f5425207a10bac3eb2b3248ecaf2e1ea33920d7532bc",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cFrozenDefinition": "가로가 소수, 세로가 자연수인 직사각형의 넓이도 {(가로)$\\times$(세로)}로 구한다.",
+      "cFrozenStudentSentence": "가로가 소수, 세로가 자연수인 직사각형의 넓이도 □로 구한다.",
+      "cProposedAnswers": [
+        "(가로)$\\times$(세로)"
+      ],
+      "cStudentAfter": "가로가 소수, 세로가 자연수인 직사각형의 넓이도 □로 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "(가로)$\\times$(세로)"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로가 소수, 세로가 자연수인 직사각형의 넓이도 {(가로)$\\times$(세로)}로 구한다.",
+      "cStudentSentence": "가로가 소수, 세로가 자연수인 직사각형의 넓이도 □로 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "(가로)$\\times$(세로)",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로가 소수이고 세로가 자연수인 직사각형의 넓이를 구하는 방법을 쓰고, 가로가 $3.5\\,\\mathrm{m}$, 세로가 $4\\,\\mathrm{m}$인 직사각형의 넓이를 구하시오.",
+        "answer": "변의 길이가 소수여도 가로와 세로를 곱해 구한다. $3.5\\times4=14$이므로 넓이는 $14\\,\\mathrm{m}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로와 세로를 곱한다",
+              "$3.5\\times4$를 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$14\\,\\mathrm{m}^2$",
+              "$14$ 제곱미터"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로가 소수, 세로가 자연수인 직사각형의 넓이도 {(가로)$\\times$(세로)}로 구한다.",
+        "acceptedAnswers": [
+          [
+            "(가로)$\\times$(세로)"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "588df3d1399739ae8ba228e1e3309c1132f7c8ad57add2a50baf01f53ddce9d0",
+      "questionRevision": "planning-e5e6-20261006-588df3d13997",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc17",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "곱해지는 소수는 그대로 두고 곱하는 자연수만 $2$배로 하면 곱은 어떻게 달라지는지 쓰고, $1.2\\times3=3.6$을 이용해 $1.2\\times6$을 구하시오.",
+      "bAnswer": "곱도 $2$배가 된다. $6$은 $3$의 $2$배이므로 $1.2\\times6=3.6\\times2=7.2$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱도 $2$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7.2$"
+          ]
+        }
+      ],
+      "bGoal": "곱하는 수가 2배가 되면 곱도 2배가 되는 관계를 써서 곱을 구한다.",
+      "bReason": "원문 성질을 질문으로 바꾸되 결론을 미리 말하지 않고, 아는 곱을 이용하는 예를 붙였다.",
+      "cDecision": "keep",
+      "cAfter": "곱해지는 소수가 같을 때 곱하는 자연수가 $2$배가 되면 {곱}도 $2$배가 된다.",
+      "cReason": "'곱해지는 소수가 같을 때'라는 조건이 문장에 있고, 2배가 되는 대상을 짧은 낱말로 답한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "곱, 곱한 값, 계산 결과는 같은 뜻이다.",
+      "sourceIndex": 1358,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc17",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "곱하는 자연수가 $2$배가 될 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "곱해지는 소수가 같을 때 곱하는 자연수가 $2$배가 되면 {곱}도 $2$배가 된다.",
+        "studentC": "곱해지는 소수가 같을 때 곱하는 자연수가 $2$배가 되면 □도 $2$배가 된다.",
+        "answers": [
+          "곱"
+        ]
+      },
+      "sourceFingerprint": "e86f76a58a346cacd8fb55fe67b6690795dac8176e40c59cee85410b8c868416",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cFrozenDefinition": "곱해지는 소수가 같을 때 곱하는 자연수가 $2$배가 되면 {곱}도 $2$배가 된다.",
+      "cFrozenStudentSentence": "곱해지는 소수가 같을 때 곱하는 자연수가 $2$배가 되면 □도 $2$배가 된다.",
+      "cProposedAnswers": [
+        "곱"
+      ],
+      "cStudentAfter": "곱해지는 소수가 같을 때 곱하는 자연수가 $2$배가 되면 □도 $2$배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "곱해지는 소수가 같을 때 곱하는 자연수가 $2$배가 되면 {곱}도 $2$배가 된다.",
+      "cStudentSentence": "곱해지는 소수가 같을 때 곱하는 자연수가 $2$배가 되면 □도 $2$배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "곱해지는 소수는 그대로 두고 곱하는 자연수만 $2$배로 하면 곱은 어떻게 달라지는지 쓰고, $1.2\\times3=3.6$을 이용해 $1.2\\times6$을 구하시오.",
+        "answer": "곱도 $2$배가 된다. $6$은 $3$의 $2$배이므로 $1.2\\times6=3.6\\times2=7.2$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱도 $2$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7.2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "곱해지는 소수가 같을 때 곱하는 자연수가 $2$배가 되면 {곱}도 $2$배가 된다.",
+        "acceptedAnswers": [
+          [
+            "곱"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "08f4a147f26158236ed95fd3f2e21cc25578d22a9412e28c7b6733d1ef3f0b02",
+      "questionRevision": "planning-e5e6-20261006-08f4a147f261",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc23",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "소수를 그보다 조금 큰 자연수로 바꾸어 곱했을 때 원래 곱을 구하려면 무엇을 빼야 하는지 설명하고, $3\\times4=12$를 이용해 $2.9\\times4$를 구하시오.",
+      "bAnswer": "바꾼 자연수와 원래 소수의 차에 같은 자연수를 곱한 값을 뺀다. $3$은 $2.9$보다 $0.1$ 크므로 $0.1\\times4=0.4$를 빼면 $2.9\\times4=12-0.4=11.6$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수와 원래 소수의 차에 같은 자연수를 곱한 값을 뺀다",
+            "$0.1\\times4=0.4$를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11.6$"
+          ]
+        }
+      ],
+      "bGoal": "가까운 자연수로 곱한 뒤 더 곱해진 만큼을 빼서 원래 곱을 구한다.",
+      "bReason": "원문의 '늘려 잡은 양'은 학생이 모르는 말이라, 빼야 할 것을 직접 묻고 수로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$2.9\\times4$는 $3\\times4=12$에서 $0.1\\times4=${$0.4$}를 뺀 {$11.6$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11.6$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '늘려 잡은 양'은 지어낸 말이어서 답할 수 없으므로, 실제 식에서 뺄 값과 결과를 쓰게 했다.",
+      "coreAfter": "소수와 자연수를 곱할 때 소수를 큰 자연수로 바꿔 계산했다면, 바꾼 수와 원래 소수의 {차}에도 소수에 곱하던 자연수를 곱한다. 그 값을 바꿔 계산한 곱에서 빼면 원래 곱이다.",
+      "coreReason": "'늘려 잡은 양'은 교과서에 없는 말이어서 '자연수와 원래 소수의 차'로 풀어 썼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "늘려 잡은 양이라는 임의 구절을 바꾼 수와 소수의 차로 밝힌다. 두 자연수의 역할을 구별하여 원래 곱하던 자연수가 어느 수인지 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1359,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc23",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "가까운 자연수로 곱하고 빼기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수를 그보다 조금 큰 자연수로 바꾸어 곱했다면, {늘려 잡은 양}에도 같은 자연수를 곱해 빼면 원래 곱이 된다.",
+        "studentC": "소수를 그보다 조금 큰 자연수로 바꾸어 곱했다면, □에도 같은 자연수를 곱해 빼면 원래 곱이 된다.",
+        "answers": [
+          "늘려 잡은 양"
+        ]
+      },
+      "sourceFingerprint": "f70e21d4e4a403ef6bfae0335b183b931b7851a90ca1135c1389e1dad03a2b22",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$0.4$",
+        "$11.6$"
+      ],
+      "cStudentAfter": "$2.9\\times4$는 $3\\times4=12$에서 $0.1\\times4=$□를 뺀 □이다.",
+      "cMarkedSentence": "$2.9\\times4$는 $3\\times4=12$에서 $0.1\\times4=${$0.4$}를 뺀 {$11.6$}이다.",
+      "cStudentSentence": "$2.9\\times4$는 $3\\times4=12$에서 $0.1\\times4=$□를 뺀 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.4$",
+          "equivalents": []
+        },
+        {
+          "key": "$11.6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수를 그보다 조금 큰 자연수로 바꾸어 곱했을 때 원래 곱을 구하려면 무엇을 빼야 하는지 설명하고, $3\\times4=12$를 이용해 $2.9\\times4$를 구하시오.",
+        "answer": "바꾼 자연수와 원래 소수의 차에 같은 자연수를 곱한 값을 뺀다. $3$은 $2.9$보다 $0.1$ 크므로 $0.1\\times4=0.4$를 빼면 $2.9\\times4=12-0.4=11.6$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수와 원래 소수의 차에 같은 자연수를 곱한 값을 뺀다",
+              "$0.1\\times4=0.4$를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11.6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.9\\times4$는 $3\\times4=12$에서 $0.1\\times4=${$0.4$}를 뺀 {$11.6$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0.4$"
+          ],
+          [
+            "$11.6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9ec825f65ee289cc05fccd807d829707d1283c2dbf00215580ddf6737b6b4536",
+      "questionRevision": "planning-e5e6-20261006-9ec825f65ee2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc24",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "곱해지는 소수를 반으로 줄이고 곱하는 자연수를 $2$배로 늘리면 곱은 어떻게 되는지 쓰고, $2.4\\times5$와 $1.2\\times10$을 각각 계산하여 확인하시오.",
+      "bAnswer": "곱은 변하지 않는다. $2.4\\times5=12$, $1.2\\times10=12$로 두 곱이 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 같다",
+            "곱은 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 식의 값이 모두 $12$이다"
+          ]
+        }
+      ],
+      "bGoal": "한 수를 반으로, 다른 수를 2배로 바꾸어도 곱이 같음을 계산으로 확인한다.",
+      "bReason": "제목 '같은 곱의 다른 식'은 답을 알려 주므로 쓰지 않고, 곱의 변화를 묻고 두 식을 계산해 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$2.4\\times5$에서 $2.4$를 반으로 줄이고 $5$를 $2$배로 늘린 식 $1.2\\times${$10$}의 곱은 $2.4\\times5$의 곱과 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "같습니다"
+          ]
+        }
+      ],
+      "cReason": "원문은 문장 끝 전체가 빈칸이라 답의 범위가 모호해서, 바뀐 수와 비교 결과로 좁혔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1360,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc24",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "같은 곱의 다른 식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "곱해지는 소수를 반으로 줄이고 곱하는 자연수를 $2$배로 늘리면 {곱이 같다}.",
+        "studentC": "곱해지는 소수를 반으로 줄이고 곱하는 자연수를 $2$배로 늘리면 □.",
+        "answers": [
+          "곱이 같다"
+        ]
+      },
+      "sourceFingerprint": "8863cb3b96a13c0f8e3f7d7649e33a5603e8053b16a0ddde88dc5407d4e39b8d",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "같다"
+      ],
+      "cStudentAfter": "$2.4\\times5$에서 $2.4$를 반으로 줄이고 $5$를 $2$배로 늘린 식 $1.2\\times$□의 곱은 $2.4\\times5$의 곱과 □.",
+      "cMarkedSentence": "$2.4\\times5$에서 $2.4$를 반으로 줄이고 $5$를 $2$배로 늘린 식 $1.2\\times${$10$}의 곱은 $2.4\\times5$의 곱과 {같다}.",
+      "cStudentSentence": "$2.4\\times5$에서 $2.4$를 반으로 줄이고 $5$를 $2$배로 늘린 식 $1.2\\times$□의 곱은 $2.4\\times5$의 곱과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "같습니다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "곱해지는 소수를 반으로 줄이고 곱하는 자연수를 $2$배로 늘리면 곱은 어떻게 되는지 쓰고, $2.4\\times5$와 $1.2\\times10$을 각각 계산하여 확인하시오.",
+        "answer": "곱은 변하지 않는다. $2.4\\times5=12$, $1.2\\times10=12$로 두 곱이 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 같다",
+              "곱은 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 식의 값이 모두 $12$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.4\\times5$에서 $2.4$를 반으로 줄이고 $5$를 $2$배로 늘린 식 $1.2\\times${$10$}의 곱은 $2.4\\times5$의 곱과 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "같다",
+            "같습니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "321780a452e76c07c03a451e0c0c09b35fcb48b48cedf5b7f9ebd81b3e6b4bc6",
+      "questionRevision": "planning-e5e6-20261006-321780a452e7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc25",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "소수 두 자리 수에 자연수를 곱한 값은 소수 몇 자리 수가 되는지, 자리 수가 줄어드는 때는 언제인지 설명하고, $1.25\\times3$과 $1.25\\times4$를 계산하여 확인하시오.",
+      "bAnswer": "보통 소수 두 자리 수가 되지만, 곱의 소수 끝자리가 $0$이면 그 $0$을 지워 자리 수가 줄어든다. $1.25\\times3=3.75$는 소수 두 자리 수이고, $1.25\\times4=5.00$은 끝의 $0$을 지워 $5$가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "보통 소수 두 자리 수가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱의 소수 끝자리가 $0$이면 $0$을 지워 자리 수가 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.75$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$",
+            "$5.00$"
+          ]
+        }
+      ],
+      "bGoal": "곱의 소수 자리 수가 보통 그대로이고 끝자리가 0이면 줄어듦을 예로 확인한다.",
+      "bReason": "원문 성질에는 두 경우가 섞여 있어, 각 경우를 보여 주는 계산 두 개로 구별하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1.25\\times3=${$3.75$}는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 {$2.5$}로 쓴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3.75$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.5$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '두 자리 수'는 바로 앞의 '소수 두 자리 수'를 베끼면 되므로, 두 경우의 실제 곱을 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1361,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc25",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "곱의 소수 자리 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수 두 자리 수에 자연수를 곱한 값은 소수 {두 자리 수}이거나 끝의 $0$이 지워져 더 짧아진다.",
+        "studentC": "소수 두 자리 수에 자연수를 곱한 값은 소수 □이거나 끝의 $0$이 지워져 더 짧아진다.",
+        "answers": [
+          "두 자리 수"
+        ]
+      },
+      "sourceFingerprint": "abf8fe3b838ac7dbaff493d790991a4424b233a624039693bf5597f33e6bab3f",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cProposedAnswers": [
+        "$3.75$",
+        "$2.5$"
+      ],
+      "cStudentAfter": "$1.25\\times3=$□는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 □로 쓴다.",
+      "cMarkedSentence": "$1.25\\times3=${$3.75$}는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 {$2.5$}로 쓴다.",
+      "cStudentSentence": "$1.25\\times3=$□는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 □로 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3.75$",
+          "equivalents": []
+        },
+        {
+          "key": "$2.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 두 자리 수에 자연수를 곱한 값은 소수 몇 자리 수가 되는지, 자리 수가 줄어드는 때는 언제인지 설명하고, $1.25\\times3$과 $1.25\\times4$를 계산하여 확인하시오.",
+        "answer": "보통 소수 두 자리 수가 되지만, 곱의 소수 끝자리가 $0$이면 그 $0$을 지워 자리 수가 줄어든다. $1.25\\times3=3.75$는 소수 두 자리 수이고, $1.25\\times4=5.00$은 끝의 $0$을 지워 $5$가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "보통 소수 두 자리 수가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱의 소수 끝자리가 $0$이면 $0$을 지워 자리 수가 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.75$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$",
+              "$5.00$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.25\\times3=${$3.75$}는 소수 두 자리 수이고, $1.25\\times2=2.50$은 끝의 $0$을 지워 {$2.5$}로 쓴다.",
+        "acceptedAnswers": [
+          [
+            "$3.75$"
+          ],
+          [
+            "$2.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3d34cdba02d4794d8af169da00465fd2942bb34c97fcde825bbf1f1cb7aa6f8e",
+      "questionRevision": "planning-e5e6-20261006-3d34cdba02d4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-2-xc26",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "2 이상의 자연수를 곱하면 곱이 처음 소수보다 커짐을 안다.",
+      "bReason": "자연수의 곱셈에서 이미 아는 자명한 사실이고, 곱의 크기를 비교하는 까닭은 xc7의 B가 묻고 있어 따로 물을 가치가 낮다.",
+      "cDecision": "revise",
+      "cAfter": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 {같고}, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같고",
+            "같으며"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다",
+            "커진다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '처음 소수보다'는 답하기 어색한 구절이라, '$2$ 이상'이라는 조건이 왜 붙는지 드러나게 $1$을 곱한 경우와 견주도록 했다.",
+      "exclusionReason": "B 제외: 자명한 사실이고 xc7과 중복(대체 ID e5-2-4-2-xc7).",
+      "exampleNeeded": false,
+      "sourceIndex": 1362,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-2-xc26",
+        "section": "초5::2-4 소수의 곱셈::2-4-2 (1보다 큰 소수)×(자연수)의 계산",
+        "term": "곱과 처음 소수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$1$보다 큰 소수에 $2$ 이상의 자연수를 곱하면 곱은 {처음 소수보다} 크다.",
+        "studentC": "$1$보다 큰 소수에 $2$ 이상의 자연수를 곱하면 곱은 □ 크다.",
+        "answers": [
+          "처음 소수보다"
+        ]
+      },
+      "sourceFingerprint": "453f3ac5ad63bbf572bf1e90af4fe5c116b1d0559a83355103a288155d84e073",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "cProposedAnswers": [
+        "같고",
+        "크다"
+      ],
+      "cStudentAfter": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 □, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 □.",
+      "cMarkedSentence": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 {같고}, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 {크다}.",
+      "cStudentSentence": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 □, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같고",
+          "equivalents": [
+            "같으며"
+          ]
+        },
+        {
+          "key": "크다",
+          "equivalents": [
+            "커진다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1$보다 큰 소수에 $1$을 곱하면 곱은 처음 소수와 {같고}, $2$ 이상의 자연수를 곱하면 곱은 처음 소수보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "같고",
+            "같으며"
+          ],
+          [
+            "크다",
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 자명한 사실이고 xc7과 중복(대체 ID e5-2-4-2-xc7)."
+      },
+      "proposalFingerprint": "660a28809948f937ff9636e7b0656348fd6c35b8185d9604addfa7dbe4e177c8",
+      "questionRevision": "planning-e5e6-20261006-660a28809948",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc3",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$7\\times4=28$을 이용해 $7\\times0.4$를 구하는 방법을 쓰고, 그렇게 해도 되는 까닭을 $0.4$와 $4$의 관계로 설명하시오.",
+      "bAnswer": "$28$을 $10$으로 나누어 $2.8$을 구한다. $0.4$는 $4$의 $\\frac{1}{10}$이므로 곱도 $28$의 $\\frac{1}{10}$이 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$28$을 $10$으로 나눈다",
+            "$28$의 $\\frac{1}{10}$을 구한다",
+            "$28$에서 소수점을 왼쪽으로 한 칸 옮긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.4$는 $4$의 $\\frac{1}{10}$이다",
+            "$0.4$는 $4$를 $10$으로 나눈 수이다",
+            "$0.4=\\frac{4}{10}$이다"
+          ]
+        }
+      ],
+      "bGoal": "자연수끼리 곱한 뒤 $10$으로 나누는 까닭을 $0.4$와 $4$의 관계로 설명한다.",
+      "bReason": "편집용 제목이 방법을 그대로 말해 주므로 실제 식을 주고 방법과 근거를 학생이 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$7\\times4=28$이고 $0.4$는 $4$의 $\\frac{1}{10}$이므로, $7\\times0.4$는 $28$을 {$10$}으로 나눈 {$2.8$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.8$"
+          ]
+        }
+      ],
+      "cReason": "'소수점을 뗀 수'라는 말이 맥락 없이 어렵고 답이 '$10$으로 나눈'이라는 구절이라 실제 식에서 수로 답하게 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1363,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc3",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "자연수끼리 곱하고 $10$으로 나누기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자연수에 소수 한 자리 수를 곱한 값은 자연수와 소수점을 뗀 수를 곱한 값을 {$10$으로 나눈} 값이다.",
+        "example": {
+          "prompt": "$7\\times0.4$에서 $28$을 $10$으로 나누는 까닭은?",
+          "answer": "$7$의 $\\frac{4}{10}$라서"
+        },
+        "studentC": "자연수에 소수 한 자리 수를 곱한 값은 자연수와 소수점을 뗀 수를 곱한 값을 □ 값이다.",
+        "answers": [
+          "$10$으로 나눈"
+        ]
+      },
+      "sourceFingerprint": "0c3dce054c85d23ec4a8e65c440dbb41f8b8e68fa8b18b0ee3c53539f2cb3369",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$2.8$"
+      ],
+      "cStudentAfter": "$7\\times4=28$이고 $0.4$는 $4$의 $\\frac{1}{10}$이므로, $7\\times0.4$는 $28$을 □으로 나눈 □이다.",
+      "cMarkedSentence": "$7\\times4=28$이고 $0.4$는 $4$의 $\\frac{1}{10}$이므로, $7\\times0.4$는 $28$을 {$10$}으로 나눈 {$2.8$}이다.",
+      "cStudentSentence": "$7\\times4=28$이고 $0.4$는 $4$의 $\\frac{1}{10}$이므로, $7\\times0.4$는 $28$을 □으로 나눈 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$2.8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$7\\times4=28$을 이용해 $7\\times0.4$를 구하는 방법을 쓰고, 그렇게 해도 되는 까닭을 $0.4$와 $4$의 관계로 설명하시오.",
+        "answer": "$28$을 $10$으로 나누어 $2.8$을 구한다. $0.4$는 $4$의 $\\frac{1}{10}$이므로 곱도 $28$의 $\\frac{1}{10}$이 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$28$을 $10$으로 나눈다",
+              "$28$의 $\\frac{1}{10}$을 구한다",
+              "$28$에서 소수점을 왼쪽으로 한 칸 옮긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.4$는 $4$의 $\\frac{1}{10}$이다",
+              "$0.4$는 $4$를 $10$으로 나눈 수이다",
+              "$0.4=\\frac{4}{10}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$7\\times4=28$이고 $0.4$는 $4$의 $\\frac{1}{10}$이므로, $7\\times0.4$는 $28$을 {$10$}으로 나눈 {$2.8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$2.8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "601fd12dfe53de5c9863996758ef07c0de847f0ec7079d235c270a4f57e99e0c",
+      "questionRevision": "planning-e5e6-20261006-601fd12dfe53",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc4",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "곱하는 순서를 바꾸어도 곱이 같음을 확인한다.",
+      "bReason": "자연수 곱셈에서 이미 아는 성질이고 '같다' 한마디로 끝나 서술할 내용이 없다.",
+      "exclusionReason": "B는 한 낱말 답으로 끝나는 자명한 성질이라 서술형 가치가 낮다. 같은 내용은 이 행의 C로 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+      "cReason": "자연수와 소수의 곱에서 순서를 바꾼 두 곱의 관계를 한 낱말로 묻는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1364,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc4",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "곱하는 순서 바꾸기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+        "studentC": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "eb1257f47d0151013e18abe0e93e8526d084a289031620ac102bb138fe02a834",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cFrozenDefinition": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+      "cFrozenStudentSentence": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+      "cStudentSentence": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "자연수에 소수를 곱한 값은 그 소수에 자연수를 곱한 값과 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 한 낱말 답으로 끝나는 자명한 성질이라 서술형 가치가 낮다. 같은 내용은 이 행의 C로 확인한다."
+      },
+      "proposalFingerprint": "a81fa7155b4ea6ce95fdb6b9b2be0c0f03630f2710c10d9c2c22be89c03f4b3d",
+      "questionRevision": "planning-e5e6-20261006-a81fa7155b4e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc5",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "(자연수)$\\times$(소수)를 '자연수의 소수 배'로 읽는다.",
+      "bReason": "식을 '배'로 바꿔 읽는 것뿐이라 설명할 관계가 없고, 배의 뜻은 c1에서 묻는다.",
+      "exclusionReason": "B는 식을 읽는 표현만 묻게 되어 가치가 낮다. 대체: e5-2-4-3-c1.",
+      "cDecision": "revise",
+      "cAfter": "$12$의 $0.3$배를 곱셈식으로 나타내면 {$12\\times0.3$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12\\times0.3$",
+            "$0.3\\times12$"
+          ]
+        }
+      ],
+      "cReason": "원문 답 '소수 배'는 어색한 편집용 표현이라 '배'를 곱셈식으로 옮기는 실제 문장으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1365,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc5",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "(자연수)$\\times$(소수)의 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "자연수에 소수를 곱한 것은 그 자연수의 {소수 배}를 뜻한다.",
+        "example": {
+          "prompt": "$10\\times0.5$를 ‘배’를 넣어 읽으면?",
+          "answer": "$10$의 $0.5$배"
+        },
+        "studentC": "자연수에 소수를 곱한 것은 그 자연수의 □를 뜻한다.",
+        "answers": [
+          "소수 배"
+        ]
+      },
+      "sourceFingerprint": "abd12467aff1da441541915570733c3265115a299fc83fc1bb9cccc4ec75e68d",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cProposedAnswers": [
+        "$12\\times0.3$"
+      ],
+      "cStudentAfter": "$12$의 $0.3$배를 곱셈식으로 나타내면 □이다.",
+      "cMarkedSentence": "$12$의 $0.3$배를 곱셈식으로 나타내면 {$12\\times0.3$}이다.",
+      "cStudentSentence": "$12$의 $0.3$배를 곱셈식으로 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12\\times0.3$",
+          "equivalents": [
+            "$0.3\\times12$"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$12$의 $0.3$배를 곱셈식으로 나타내면 {$12\\times0.3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$12\\times0.3$",
+            "$0.3\\times12$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 식을 읽는 표현만 묻게 되어 가치가 낮다. 대체: e5-2-4-3-c1."
+      },
+      "proposalFingerprint": "6f3e655e28e803b0310037358a1eca89f95da14af4d435453ccdeddc5fcc15fd",
+      "questionRevision": "planning-e5e6-20261006-6f3e655e28e8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수의 $0.5$배는 그 수의 얼마만큼인지 쓰고, $0.5$를 분수로 고쳐 그 까닭을 설명하시오. 또 $14$의 $0.5$배를 구하시오.",
+      "bAnswer": "그 수의 절반이다. $0.5=\\frac{5}{10}=\\frac{1}{2}$이기 때문이다. $14$의 $0.5$배는 $7$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 수의 절반",
+            "그 수의 $\\frac{1}{2}$",
+            "그 수를 $2$로 나눈 값"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5=\\frac{1}{2}$",
+            "$0.5=\\frac{5}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "bGoal": "$0.5$배가 절반인 까닭을 $0.5=\\frac{1}{2}$로 설명하고 적용한다.",
+      "bReason": "제목이 '절반'이라는 답을 드러내므로 질문에서는 결론을 감추고 분수로 고친 근거까지 묻게 했다.",
+      "cDecision": "keep",
+      "cAfter": "어떤 수의 $0.5$배는 그 수의 {절반}이다.",
+      "cReason": "$0.5$배와 절반의 관계를 낱말 하나로 묻는, 짧고 쓸모 있는 문장이다.",
+      "synonymNotes": "C 답 '절반'과 함께 '반', '$\\frac{1}{2}$'도 같은 답으로 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1366,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc6",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "$0.5$배와 절반",
+        "kind": "성질",
+        "level": "하",
+        "definition": "어떤 수의 $0.5$배는 그 수의 {절반}이다.",
+        "studentC": "어떤 수의 $0.5$배는 그 수의 □이다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "sourceFingerprint": "daedf3480b22beb7cbb9e0e89b0ceac2868c1d2ccc7d9ddc04ccdc9a93705fff",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cFrozenDefinition": "어떤 수의 $0.5$배는 그 수의 {절반}이다.",
+      "cFrozenStudentSentence": "어떤 수의 $0.5$배는 그 수의 □이다.",
+      "cProposedAnswers": [
+        "절반"
+      ],
+      "cStudentAfter": "어떤 수의 $0.5$배는 그 수의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "절반"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어떤 수의 $0.5$배는 그 수의 {절반}이다.",
+      "cStudentSentence": "어떤 수의 $0.5$배는 그 수의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "절반",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수의 $0.5$배는 그 수의 얼마만큼인지 쓰고, $0.5$를 분수로 고쳐 그 까닭을 설명하시오. 또 $14$의 $0.5$배를 구하시오.",
+        "answer": "그 수의 절반이다. $0.5=\\frac{5}{10}=\\frac{1}{2}$이기 때문이다. $14$의 $0.5$배는 $7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 수의 절반",
+              "그 수의 $\\frac{1}{2}$",
+              "그 수를 $2$로 나눈 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5=\\frac{1}{2}$",
+              "$0.5=\\frac{5}{10}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 수의 $0.5$배는 그 수의 {절반}이다.",
+        "acceptedAnswers": [
+          [
+            "절반"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d9e22f983e84e928d4749e289ffbc0fd408e4f9fb7675bf3c32d4ac03f9987a6",
+      "questionRevision": "planning-e5e6-20261006-d9e22f983e84",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면, 곱은 곱한 그 소수보다 큰지 작은지 쓰고, 그 까닭을 그 소수를 몇 번 더한 것인지로 설명하시오.",
+      "bAnswer": "곱은 그 소수보다 크다. 그 소수를 $2$번 이상 더한 값이기 때문이다. 예: $3\\times0.4=0.4+0.4+0.4=1.2$로 $0.4$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 그 소수보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 소수를 $2$번 이상 더한 값이다",
+            "그 소수를 자연수만큼 여러 번 더한 값이다",
+            "그 소수의 $2$배 이상이다"
+          ]
+        }
+      ],
+      "bGoal": "곱이 곱하는 소수보다 큰 까닭을 같은 소수를 여러 번 더한 것으로 설명한다.",
+      "bReason": "원래 수와의 비교(c3)와 헷갈리기 쉬워 비교 대상이 '곱한 소수'임을 질문에 밝혔다.",
+      "cDecision": "keep",
+      "cAfter": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 곱은 그 소수보다 {크다}.",
+      "cReason": "'$2$ 이상인 자연수', '$0$보다 크고 $1$보다 작은 소수'라는 조건이 다 있고 비교 대상도 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1367,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc8",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "곱과 곱하는 소수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 곱은 그 소수보다 {크다}.",
+        "studentC": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 곱은 그 소수보다 □.",
+        "answers": [
+          "크다"
+        ]
+      },
+      "sourceFingerprint": "b801743aa2702970686d5557676df1da51507ee31342ea9e973bf34c5369a645",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cFrozenDefinition": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 곱은 그 소수보다 {크다}.",
+      "cFrozenStudentSentence": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 곱은 그 소수보다 □.",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 곱은 그 소수보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 곱은 그 소수보다 {크다}.",
+      "cStudentSentence": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 곱은 그 소수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면, 곱은 곱한 그 소수보다 큰지 작은지 쓰고, 그 까닭을 그 소수를 몇 번 더한 것인지로 설명하시오.",
+        "answer": "곱은 그 소수보다 크다. 그 소수를 $2$번 이상 더한 값이기 때문이다. 예: $3\\times0.4=0.4+0.4+0.4=1.2$로 $0.4$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 그 소수보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 소수를 $2$번 이상 더한 값이다",
+              "그 소수를 자연수만큼 여러 번 더한 값이다",
+              "그 소수의 $2$배 이상이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2$ 이상인 자연수에 $0$보다 크고 $1$보다 작은 소수를 곱하면 곱은 그 소수보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "83773460a0764ed74318871fae1e5d45c4f986f303b992910677444de390b0a5",
+      "questionRevision": "planning-e5e6-20261006-83773460a076",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc11",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수의 $0.25$배는 그 수의 몇 분의 몇인지 가장 간단한 분수로 쓰고, $0.25$를 분수로 고쳐 그 까닭을 설명하시오. 또 $12$의 $0.25$배를 구하시오.",
+      "bAnswer": "그 수의 $\\frac{1}{4}$이다. $0.25=\\frac{25}{100}=\\frac{1}{4}$이기 때문이다. $12$의 $0.25$배는 $3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 수의 $\\frac{1}{4}$",
+            "그 수를 $4$로 나눈 값"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.25=\\frac{25}{100}=\\frac{1}{4}$",
+            "$\\frac{25}{100}$를 약분하면 $\\frac{1}{4}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "bGoal": "$0.25$배가 $\\frac{1}{4}$인 까닭을 약분으로 설명하고 적용한다.",
+      "bReason": "$\\frac{25}{100}$를 약분해야 해서 $0.5$배와 다른 사고가 필요하므로 따로 B로 남겼다.",
+      "cDecision": "keep",
+      "cAfter": "어떤 수의 $0.25$배는 그 수의 {$\\frac{1}{4}$}이다.",
+      "cReason": "$0.25$배를 분수로 답하는 짧은 문장으로, 답이 수 하나로 분명하다.",
+      "synonymNotes": "C 답 '$\\frac{1}{4}$'과 '사분의 일'은 같은 답이다. '$\\frac{25}{100}$'는 값은 같지만 문항이 뜻하는 간단한 분수는 아니다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1368,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc11",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "$0.25$배와 사분의 일",
+        "kind": "성질",
+        "level": "중",
+        "definition": "어떤 수의 $0.25$배는 그 수의 {$\\frac{1}{4}$}이다.",
+        "studentC": "어떤 수의 $0.25$배는 그 수의 □이다.",
+        "answers": [
+          "$\\frac{1}{4}$"
+        ]
+      },
+      "sourceFingerprint": "832b75cc3904c79df00aeba7c56209a2c102974131765f92d1a2beaf10afc044",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cFrozenDefinition": "어떤 수의 $0.25$배는 그 수의 {$\\frac{1}{4}$}이다.",
+      "cFrozenStudentSentence": "어떤 수의 $0.25$배는 그 수의 □이다.",
+      "cProposedAnswers": [
+        "$\\frac{1}{4}$"
+      ],
+      "cStudentAfter": "어떤 수의 $0.25$배는 그 수의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어떤 수의 $0.25$배는 그 수의 {$\\frac{1}{4}$}이다.",
+      "cStudentSentence": "어떤 수의 $0.25$배는 그 수의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수의 $0.25$배는 그 수의 몇 분의 몇인지 가장 간단한 분수로 쓰고, $0.25$를 분수로 고쳐 그 까닭을 설명하시오. 또 $12$의 $0.25$배를 구하시오.",
+        "answer": "그 수의 $\\frac{1}{4}$이다. $0.25=\\frac{25}{100}=\\frac{1}{4}$이기 때문이다. $12$의 $0.25$배는 $3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 수의 $\\frac{1}{4}$",
+              "그 수를 $4$로 나눈 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.25=\\frac{25}{100}=\\frac{1}{4}$",
+              "$\\frac{25}{100}$를 약분하면 $\\frac{1}{4}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 수의 $0.25$배는 그 수의 {$\\frac{1}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d779de6a2390a7e5c0b6fd548be3e402ebd31df778d492b861642929772d81e8",
+      "questionRevision": "planning-e5e6-20261006-d779de6a2390",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-3-xc12",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "$0.2$배가 그 수의 $\\frac{1}{5}$임을 안다.",
+      "bReason": "xc6·xc11과 같은 구조(소수를 분수로 고쳐 약분)라 서술형으로 한 번 더 물을 내용이 없다.",
+      "exclusionReason": "B는 수만 바뀐 중복이다. 대체: e5-2-4-3-xc11. 이 행은 C로 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "어떤 수의 $0.2$배는 그 수의 {$\\frac{1}{5}$}이다.",
+      "cReason": "$0.2$배를 분수 하나로 답하는 짧고 분명한 문장이다.",
+      "synonymNotes": "C 답 '$\\frac{1}{5}$'과 '오분의 일'은 같은 답이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1369,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-3-xc12",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "term": "$0.2$배와 오분의 일",
+        "kind": "성질",
+        "level": "중",
+        "definition": "어떤 수의 $0.2$배는 그 수의 {$\\frac{1}{5}$}이다.",
+        "studentC": "어떤 수의 $0.2$배는 그 수의 □이다.",
+        "answers": [
+          "$\\frac{1}{5}$"
+        ]
+      },
+      "sourceFingerprint": "889fc3d6e3242803999400d094cd8057edbae51de93f4f772e63ab676aebf285",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "cFrozenDefinition": "어떤 수의 $0.2$배는 그 수의 {$\\frac{1}{5}$}이다.",
+      "cFrozenStudentSentence": "어떤 수의 $0.2$배는 그 수의 □이다.",
+      "cProposedAnswers": [
+        "$\\frac{1}{5}$"
+      ],
+      "cStudentAfter": "어떤 수의 $0.2$배는 그 수의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{5}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어떤 수의 $0.2$배는 그 수의 {$\\frac{1}{5}$}이다.",
+      "cStudentSentence": "어떤 수의 $0.2$배는 그 수의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{5}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "어떤 수의 $0.2$배는 그 수의 {$\\frac{1}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 수만 바뀐 중복이다. 대체: e5-2-4-3-xc11. 이 행은 C로 확인한다."
+      },
+      "proposalFingerprint": "458b050a23f22db2cb93a62183e100faae9d6073feda982a2d5e264e797b5a2b",
+      "questionRevision": "planning-e5e6-20261006-458b050a23f2",
+      "requiresIndependentReview": true
+    }
+  ]
+}

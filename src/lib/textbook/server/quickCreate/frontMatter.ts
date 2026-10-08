@@ -5,11 +5,26 @@ import {
   selectedLearningGuide,
   writingActivity,
 } from "../quickCreateRecovery";
-import type { QuickCreateAssembly } from "./context";
+import { conceptIndex, keyOf, type QuickCreateAssembly } from "./context";
+import { reviewedQuestionMode } from "@/lib/concept-blank/questions";
+import { invalid } from "../errors";
+import { wantsConceptFamily } from "./conceptRecall";
 
 /** Learning guide, plan and question log, filed under their own outline unit. */
 export function appendFrontMatter(ctx: QuickCreateAssembly): void {
   const { components, units, outline, addSection } = ctx;
+  const questionModes = new Set(
+    wantsConceptFamily(components)
+      ? units.flatMap((unit) => {
+          const entries = conceptIndex.get(keyOf(unit)) ?? [];
+          return entries.length ? [reviewedQuestionMode(entries)] : [];
+        })
+      : [],
+  );
+  if (questionModes.size > 1)
+    throw invalid(
+      "서로 다른 질문 판의 단원을 한 자동 교재로 만들 수 없습니다.",
+    );
   if (
     components.learningGuide ||
     components.learningPlan ||
@@ -29,7 +44,7 @@ export function appendFrontMatter(ctx: QuickCreateAssembly): void {
       addSection(
         "학습 안내",
         "auto-learning-guide",
-        selectedLearningGuide(components),
+        selectedLearningGuide(components, questionModes.has(true)),
       );
     if (components.learningPlan) {
       const blocks = [];

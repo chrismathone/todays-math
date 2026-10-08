@@ -1,0 +1,879 @@
+{
+  "capturedAt": "2026-10-07T11:47:01.652Z",
+  "auditByteSha256": "06ba871039c97dbabd3be800892a089f94b965f62fa37ddfaddb85fbd1e6157e",
+  "disclosure": "Read-only related IDs used to verify exclusion claims; not assigned review IDs or writable audit scope.",
+  "rows": [
+    {
+      "id": "m1-05-03-xc9",
+      "raw": {
+        "id": "m1-05-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "공간에서 두 직선이 만나지 않을 때 가능한 위치 관계를 모두 쓰고, 두 경우를 '한 평면 위에 있는지'로 구별하시오.",
+        "bAnswer": "평행하거나 꼬인 위치에 있다. 한 평면 위에 있으면 평행하고, 한 평면 위에 있지 않으면 꼬인 위치이다.",
+        "bGoal": "만나지 않는 두 직선을 평행과 꼬인 위치로 구별하기",
+        "bReason": "두 경우의 나열에 그치지 않도록 '한 평면'이라는 구별 기준을 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼬인 위치에 있을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행한 두 직선은 한 평면 위에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼬인 위치에 있는 두 직선은 한 평면 위에 있지 않다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "만나지 않는 두 경우의 이름을 나란히 묻는 짧은 빈칸이다.",
+        "learningRole": "definition",
+        "roleReason": "만나지 않는 두 직선의 두 경우",
+        "authorBatch": 15,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1625,
+        "part": "m1plus",
+        "sourceFingerprint": "d53a6976de8b4fa76f1252dfa1af38aaefba676f7f3f3311e9750f2c28b2ff6a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1625
+        },
+        "directReview": null,
+        "cFrozenSentence": "공간에서 만나지 않는 두 직선은 □하거나 □에 있다.",
+        "cFrozenDefinition": "공간에서 만나지 않는 두 직선은 {평행}하거나 {꼬인 위치}에 있다.",
+        "cFrozenAnswers": [
+          "평행",
+          "꼬인 위치"
+        ],
+        "cMarkedSentence": "공간에서 만나지 않는 두 직선은 {평행}하거나 {꼬인 위치}에 있다.",
+        "cSlotAnswers": [
+          "평행",
+          "꼬인 위치"
+        ],
+        "cStudentSentence": "공간에서 만나지 않는 두 직선은 □하거나 □에 있다.",
+        "cAnswers": [
+          "평행",
+          "꼬인 위치"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "꼬인 위치",
+            "equivalentAnswers": [
+              "꼬인 위치"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평행"
+          ],
+          [
+            "꼬인 위치"
+          ]
+        ],
+        "proposalFingerprint": "b7c12832ae09ecd0f6e2aa7eb30433d7a30343b3d864cab39c23fe7e1aca02dc"
+      },
+      "normalized": {
+        "id": "m1-05-03-xc9",
+        "grade": "중1",
+        "source": {
+          "id": "m1-05-03-xc9",
+          "section": "중1::5. 기본 도형::두 직선의 위치 관계",
+          "term": "공간에서 만나지 않는 두 직선",
+          "kind": "성질",
+          "level": "중",
+          "definition": "공간에서 만나지 않는 두 직선은 {평행}하거나 {꼬인 위치}에 있다.",
+          "example": {
+            "prompt": "공간에서 만나지도 평행하지도 않은 두 직선의 관계는?",
+            "answer": "꼬인 위치"
+          }
+        },
+        "B": {
+          "prompt": "공간에서 두 직선이 만나지 않을 때 가능한 위치 관계를 모두 쓰고, 두 경우를 '한 평면 위에 있는지'로 구별하시오.",
+          "answer": "평행하거나 꼬인 위치에 있다. 한 평면 위에 있으면 평행하고, 한 평면 위에 있지 않으면 꼬인 위치이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "꼬인 위치에 있을 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행한 두 직선은 한 평면 위에 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "꼬인 위치에 있는 두 직선은 한 평면 위에 있지 않다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "공간에서 만나지 않는 두 직선은 {평행}하거나 {꼬인 위치}에 있다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ],
+            [
+              "꼬인 위치"
+            ]
+          ]
+        },
+        "goal": "만나지 않는 두 직선을 평행과 꼬인 위치로 구별하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "c59e75d514b73d81c71e3f5ffdae5e4fc4f7566921f9217600d1510a959ebb95"
+      }
+    },
+    {
+      "id": "m1-05-03-c5",
+      "raw": {
+        "id": "m1-05-03-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "공간에서 두 직선의 위치 관계를 빠짐없이 쓰고, 그중 두 직선이 한 평면 위에 있지 않은 경우는 어느 것인지 밝히시오.",
+        "bAnswer": "한 점에서 만난다, 평행하다, 일치한다, 꼬인 위치에 있다. 이 중 꼬인 위치에 있는 두 직선만 한 평면 위에 있지 않다.",
+        "bGoal": "공간에서 두 직선의 위치 관계를 분류하고 꼬인 위치의 특징 짚기",
+        "bReason": "네 경우의 나열과 '한 평면 위에 있지 않은 경우' 판별을 한 질문에 묶었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 점에서 만난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "일치한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼬인 위치에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼬인 위치에 있는 두 직선만 한 평면 위에 있지 않다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'마지막 경우'가 바로 앞 빈칸을 가리켜 문장 안에서 뜻이 통한다.",
+        "learningRole": "definition",
+        "roleReason": "공간의 두 직선 네 가지 경우",
+        "authorBatch": 15,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 210,
+        "part": "m1",
+        "sourceFingerprint": "3bec4e9fe4600ddecfb1c436e54c9eda37eef40c52879d420ef24af887138e9b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 210
+        },
+        "directReview": null,
+        "cFrozenSentence": "공간에서 두 직선은 한 점에서 만나거나, 평행하거나, 일치하거나, □에 있다. 마지막 경우의 두 직선은 □ 위에 있지 않다.",
+        "cFrozenDefinition": "공간에서 두 직선은 한 점에서 만나거나, 평행하거나, 일치하거나, {꼬인 위치}에 있다. 마지막 경우의 두 직선은 {한 평면} 위에 있지 않다.",
+        "cFrozenAnswers": [
+          "꼬인 위치",
+          "한 평면"
+        ],
+        "cMarkedSentence": "공간에서 두 직선은 한 점에서 만나거나, 평행하거나, 일치하거나, {꼬인 위치}에 있다. 마지막 경우의 두 직선은 {한 평면} 위에 있지 않다.",
+        "cSlotAnswers": [
+          "꼬인 위치",
+          "한 평면"
+        ],
+        "cStudentSentence": "공간에서 두 직선은 한 점에서 만나거나, 평행하거나, 일치하거나, □에 있다. 마지막 경우의 두 직선은 □ 위에 있지 않다.",
+        "cAnswers": [
+          "꼬인 위치",
+          "한 평면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "꼬인 위치",
+            "equivalentAnswers": [
+              "꼬인 위치"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "한 평면",
+            "equivalentAnswers": [
+              "한 평면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "꼬인 위치"
+          ],
+          [
+            "한 평면"
+          ]
+        ],
+        "proposalFingerprint": "c246340289872944911de906448b073f2396ae2e8dc3babda78bee33c69cada3"
+      },
+      "normalized": {
+        "id": "m1-05-03-c5",
+        "grade": "중1",
+        "source": {
+          "id": "m1-05-03-c5",
+          "section": "중1::5. 기본 도형::두 직선의 위치 관계",
+          "term": "공간에서 두 직선의 위치 관계",
+          "kind": "성질",
+          "level": "상",
+          "definition": "공간에서 두 직선은 한 점에서 만나거나, 평행하거나, 일치하거나, {꼬인 위치}에 있다. 마지막 경우의 두 직선은 {한 평면} 위에 있지 않다."
+        },
+        "B": {
+          "prompt": "공간에서 두 직선의 위치 관계를 빠짐없이 쓰고, 그중 두 직선이 한 평면 위에 있지 않은 경우는 어느 것인지 밝히시오.",
+          "answer": "한 점에서 만난다, 평행하다, 일치한다, 꼬인 위치에 있다. 이 중 꼬인 위치에 있는 두 직선만 한 평면 위에 있지 않다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 점에서 만난다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행하다"
+              ]
+            },
+            {
+              "anyOf": [
+                "일치한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "꼬인 위치에 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "꼬인 위치에 있는 두 직선만 한 평면 위에 있지 않다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "공간에서 두 직선은 한 점에서 만나거나, 평행하거나, 일치하거나, {꼬인 위치}에 있다. 마지막 경우의 두 직선은 {한 평면} 위에 있지 않다.",
+          "acceptedAnswers": [
+            [
+              "꼬인 위치"
+            ],
+            [
+              "한 평면"
+            ]
+          ]
+        },
+        "goal": "공간에서 두 직선의 위치 관계를 분류하고 꼬인 위치의 특징 짚기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "f18cafc7521f8ba86a4e589256a31a8add0aec623801bf2bebffb0431310d353"
+      }
+    },
+    {
+      "id": "m1-05-03-c6",
+      "raw": {
+        "id": "m1-05-03-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "공간에서 평면이 하나로 정해지는 조건 네 가지를 점과 직선을 이용해 쓰시오.",
+        "bAnswer": "한 직선 위에 있지 않은 세 점, 한 직선과 그 직선 밖의 한 점, 한 점에서 만나는 두 직선, 평행한 두 직선.",
+        "bGoal": "평면을 하나로 정하는 네 조건 나열하기",
+        "bReason": "점과 직선으로 답하라는 형식과 네 가지라는 범위를 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 직선 위에 있지 않은 세 점"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 직선과 그 직선 밖의 한 점"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 점에서 만나는 두 직선",
+              "만나는 두 직선"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행한 두 직선"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "네 조건의 핵심어 세 개만 가려 조건 사이의 차이를 떠올리게 한다.",
+        "learningRole": "definition",
+        "roleReason": "평면 결정 조건 네 가지",
+        "authorBatch": 15,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 211,
+        "part": "m1",
+        "sourceFingerprint": "203c7dee42473feb67edbea8992b77ba1eab69d963370b410b21d90b2f5206b2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 211
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 직선 위에 있지 않은 □, 한 직선과 그 밖의 □, 만나는 두 직선, □ 두 직선은 각각 평면을 하나로 정한다.",
+        "cFrozenDefinition": "한 직선 위에 있지 않은 {세 점}, 한 직선과 그 밖의 {한 점}, 만나는 두 직선, {평행한} 두 직선은 각각 평면을 하나로 정한다.",
+        "cFrozenAnswers": [
+          "세 점",
+          "한 점",
+          "평행한"
+        ],
+        "cMarkedSentence": "한 직선 위에 있지 않은 {세 점}, 한 직선과 그 밖의 {한 점}, 만나는 두 직선, {평행한} 두 직선은 각각 평면을 하나로 정한다.",
+        "cSlotAnswers": [
+          "세 점",
+          "한 점",
+          "평행한"
+        ],
+        "cStudentSentence": "한 직선 위에 있지 않은 □, 한 직선과 그 밖의 □, 만나는 두 직선, □ 두 직선은 각각 평면을 하나로 정한다.",
+        "cAnswers": [
+          "세 점",
+          "한 점",
+          "평행한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "세 점",
+            "equivalentAnswers": [
+              "세 점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "한 점",
+            "equivalentAnswers": [
+              "한 점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "평행한",
+            "equivalentAnswers": [
+              "평행한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "세 점"
+          ],
+          [
+            "한 점"
+          ],
+          [
+            "평행한"
+          ]
+        ],
+        "proposalFingerprint": "d43925b07d2a877eb9bdafd0a57918615f0a8874b8baa6c5b751940083ab1146"
+      },
+      "normalized": {
+        "id": "m1-05-03-c6",
+        "grade": "중1",
+        "source": {
+          "id": "m1-05-03-c6",
+          "section": "중1::5. 기본 도형::두 직선의 위치 관계",
+          "term": "평면이 하나로 정해질 조건",
+          "kind": "성질",
+          "level": "상",
+          "definition": "한 직선 위에 있지 않은 {세 점}, 한 직선과 그 밖의 {한 점}, 만나는 두 직선, {평행한} 두 직선은 각각 평면을 하나로 정한다."
+        },
+        "B": {
+          "prompt": "공간에서 평면이 하나로 정해지는 조건 네 가지를 점과 직선을 이용해 쓰시오.",
+          "answer": "한 직선 위에 있지 않은 세 점, 한 직선과 그 직선 밖의 한 점, 한 점에서 만나는 두 직선, 평행한 두 직선.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 직선 위에 있지 않은 세 점"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 직선과 그 직선 밖의 한 점"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 점에서 만나는 두 직선",
+                "만나는 두 직선"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행한 두 직선"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "한 직선 위에 있지 않은 {세 점}, 한 직선과 그 밖의 {한 점}, 만나는 두 직선, {평행한} 두 직선은 각각 평면을 하나로 정한다.",
+          "acceptedAnswers": [
+            [
+              "세 점"
+            ],
+            [
+              "한 점"
+            ],
+            [
+              "평행한"
+            ]
+          ]
+        },
+        "goal": "평면을 하나로 정하는 네 조건 나열하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "761d7f0841f13a6f0f5aadf568b5e48448734f2da64664c4c80d5ee8354aa9c0"
+      }
+    },
+    {
+      "id": "m1-05-04-xc13",
+      "raw": {
+        "id": "m1-05-04-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "직육면체의 모서리 $12$개를 한 면에 대하여 '그 면에 포함된다', '그 면과 평행하다', '그 면과 한 점에서 만난다'로 나눌 때, 각 경우의 모서리가 몇 개씩인지 쓰고 각각 어디에 있는 모서리인지 설명하시오.",
+        "bAnswer": "포함되는 모서리는 그 면의 네 변으로 $4$개, 평행한 모서리는 마주 보는 면의 네 변으로 $4$개, 한 점에서 만나는 모서리는 두 면을 잇는(그 면에 수직인) 모서리로 $4$개이다.",
+        "bGoal": "한 면에 대한 모서리 $12$개의 위치 관계 분류하기",
+        "bReason": "세 분류를 질문에 밝히고 개수는 감춰 위치와 함께 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "포함되는 모서리는 그 면의 변 $4$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행한 모서리는 마주 보는 면의 변 $4$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 점에서 만나는 모서리는 그 면에 수직인 모서리 $4$개이다",
+              "한 점에서 만나는 모서리는 두 면을 잇는 모서리 $4$개이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직육면체에서 한 면에 대하여 모서리 $12$개는 그 면에 {포함}되는 것, 그 면과 {평행}한 것, 그 면과 {한 점}에서 만나는 것으로 $4$개씩 나뉜다.",
+        "cAnswers": [
+          "포함",
+          "평행",
+          "한 점"
+        ],
+        "cReason": "두 빈칸의 답이 문장에 보이는 '$4$개'와 같아 수치를 베끼는 빈칸이었다.",
+        "learningRole": "procedure",
+        "roleReason": "한 면을 기준으로 모서리 나누기",
+        "authorBatch": 15,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1653,
+        "part": "m1plus",
+        "sourceFingerprint": "b9bf444b5a55481209075588af1d1afd5f6e2f1d333e0ece82ed42977c9499ce",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1653
+        },
+        "directReview": null,
+        "cMarkedSentence": "직육면체에서 한 면에 대하여 모서리 $12$개는 그 면에 {포함}되는 것, 그 면과 {평행}한 것, 그 면과 {한 점}에서 만나는 것으로 $4$개씩 나뉜다.",
+        "cSlotAnswers": [
+          "포함",
+          "평행",
+          "한 점"
+        ],
+        "cStudentSentence": "직육면체에서 한 면에 대하여 모서리 $12$개는 그 면에 □되는 것, 그 면과 □한 것, 그 면과 □에서 만나는 것으로 $4$개씩 나뉜다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "포함",
+            "equivalentAnswers": [
+              "포함"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "한 점",
+            "equivalentAnswers": [
+              "한 점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "포함"
+          ],
+          [
+            "평행"
+          ],
+          [
+            "한 점"
+          ]
+        ],
+        "proposalFingerprint": "131f907087db1f5d75378be424f19e5f4b727080ac5c09ea4a32a12d73a93ff8"
+      },
+      "normalized": {
+        "id": "m1-05-04-xc13",
+        "grade": "중1",
+        "source": {
+          "id": "m1-05-04-xc13",
+          "section": "중1::5. 기본 도형::공간에서 평면의 위치 관계",
+          "term": "직육면체의 한 면에 대한 모서리 나누기",
+          "kind": "방법",
+          "level": "중",
+          "definition": "직육면체에서 한 면에 대하여 $12$개 모서리는 포함 {$4$개}, 평행 $4$개, 한 점에서 만남 {$4$개}로 나뉜다.",
+          "example": {
+            "prompt": "직육면체에서 한 면에 포함된 모서리는 몇 개?",
+            "answer": "$4$개"
+          }
+        },
+        "B": {
+          "prompt": "직육면체의 모서리 $12$개를 한 면에 대하여 '그 면에 포함된다', '그 면과 평행하다', '그 면과 한 점에서 만난다'로 나눌 때, 각 경우의 모서리가 몇 개씩인지 쓰고 각각 어디에 있는 모서리인지 설명하시오.",
+          "answer": "포함되는 모서리는 그 면의 네 변으로 $4$개, 평행한 모서리는 마주 보는 면의 네 변으로 $4$개, 한 점에서 만나는 모서리는 두 면을 잇는(그 면에 수직인) 모서리로 $4$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "포함되는 모서리는 그 면의 변 $4$개이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행한 모서리는 마주 보는 면의 변 $4$개이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 점에서 만나는 모서리는 그 면에 수직인 모서리 $4$개이다",
+                "한 점에서 만나는 모서리는 두 면을 잇는 모서리 $4$개이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "직육면체에서 한 면에 대하여 모서리 $12$개는 그 면에 {포함}되는 것, 그 면과 {평행}한 것, 그 면과 {한 점}에서 만나는 것으로 $4$개씩 나뉜다.",
+          "acceptedAnswers": [
+            [
+              "포함"
+            ],
+            [
+              "평행"
+            ],
+            [
+              "한 점"
+            ]
+          ]
+        },
+        "goal": "한 면에 대한 모서리 $12$개의 위치 관계 분류하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "1df29a884a62845e22b724251baa0d601a5d5b2843087f71ee574a18ba2fabe1"
+      }
+    },
+    {
+      "id": "m2-05-03-xc13",
+      "raw": {
+        "id": "m2-05-03-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "원의 넓이 공식에 값을 넣는 계산이라, 외심과 관련된 핵심은 c5에 이미 있다.",
+        "cDecision": "keep",
+        "cReason": "'외심에서 꼭짓점까지 $r$'을 반지름으로 읽어야 답할 수 있는 짧은 식 빈칸이다.",
+        "exclusionReason": "B 제외: 원의 넓이 공식에 대입하는 단순 계산이며, 거리를 반지름으로 보는 목표는 c5 B와 겹친다.",
+        "learningRole": "application",
+        "roleReason": "외심 거리로 넓이 식 세우기",
+        "authorBatch": 42,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2834,
+        "part": "m2plus",
+        "sourceFingerprint": "5a308a2057d8355f1c11bf36fc11a09698d2237985f317b4cee7543838fdf443",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2834
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "외심에서 꼭짓점까지의 거리가 $r$이면 외접원의 넓이는 □이다.",
+        "cFrozenDefinition": "외심에서 꼭짓점까지의 거리가 $r$이면 외접원의 넓이는 {$\\pi r^2$}이다.",
+        "cFrozenAnswers": [
+          "$\\pi r^2$"
+        ],
+        "cMarkedSentence": "외심에서 꼭짓점까지의 거리가 $r$이면 외접원의 넓이는 {$\\pi r^2$}이다.",
+        "cSlotAnswers": [
+          "$\\pi r^2$"
+        ],
+        "cStudentSentence": "외심에서 꼭짓점까지의 거리가 $r$이면 외접원의 넓이는 □이다.",
+        "cAnswers": [
+          "$\\pi r^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\pi r^2$",
+            "equivalentAnswers": [
+              "$\\pi r^2$",
+              "$r^2\\pi$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\pi r^2$",
+            "accept": [
+              "$r^2\\pi$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\pi r^2$",
+            "$r^2\\pi$"
+          ]
+        ],
+        "proposalFingerprint": "8d91c232cb77bb6040cfffd9b05bc2615c0915c8e59e643e8b729212902ef072"
+      },
+      "normalized": {
+        "id": "m2-05-03-xc13",
+        "grade": "중2",
+        "source": {
+          "id": "m2-05-03-xc13",
+          "section": "중2::5. 도형의 성질::삼각형의 외심",
+          "term": "외심에서 꼭짓점까지 $r$일 때 외접원의 넓이",
+          "kind": "공식",
+          "level": "중",
+          "definition": "외심에서 꼭짓점까지의 거리가 $r$이면 외접원의 넓이는 {$\\pi r^2$}이다.",
+          "example": {
+            "prompt": "외심에서 꼭짓점까지의 거리가 $4$일 때 외접원의 넓이",
+            "answer": "$16\\pi$"
+          }
+        },
+        "B": {
+          "excluded": "원의 넓이 공식에 값을 넣는 계산이라, 외심과 관련된 핵심은 c5에 이미 있다."
+        },
+        "C": {
+          "sentence": "외심에서 꼭짓점까지의 거리가 $r$이면 외접원의 넓이는 {$\\pi r^2$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\pi r^2$",
+              "$r^2\\pi$"
+            ]
+          ]
+        },
+        "goal": "application",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "17466068d48cf4be7d382f1efcb531003878953f4c1ddd799cd54e504a010848"
+      }
+    },
+    {
+      "id": "m1-07-06-c4",
+      "raw": {
+        "id": "m1-07-06-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $r$인 구를 중심을 지나는 평면으로 잘라 만든 반구의 부피와 겉넓이를 각각 식으로 쓰고, 반구의 겉넓이가 구의 겉넓이의 절반보다 큰 까닭을 설명하시오.",
+        "bAnswer": "부피는 구의 부피의 절반인 $\\frac{2}{3}\\pi r^3$이다. 겉넓이는 둥근 면의 넓이 $2\\pi r^2$에 잘린 단면인 원의 넓이 $\\pi r^2$을 더한 $3\\pi r^2$이다. 단면인 원이 더해지므로 구의 겉넓이의 절반보다 크다.",
+        "bGoal": "반구의 부피와 겉넓이에서 단면 처리",
+        "bReason": "r의 식을 쓰라는 요구에서 절반이라는 말만 쓴 답은 충분하지 않아 부피 식의 실제 동치를 허용한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "부피는 $\\frac{2}{3}\\pi r^3$",
+              "부피는 $\\frac12\\times\\frac43\\pi r^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉넓이는 $3\\pi r^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "잘린 단면인 원의 넓이 $\\pi r^2$을 더하기 때문이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "반구의 부피는 반지름이 같은 구의 부피의 {절반}이다. 반구의 겉넓이는 둥근 면의 넓이에 잘린 단면인 {원}의 넓이를 더한 값이다.",
+        "cAnswers": [
+          "절반",
+          "원"
+        ],
+        "cReason": "첫 빈칸의 답 '절반'이 뒤의 '겉넓이의 절반'에 그대로 나와 문장을 고침.",
+        "learningRole": "procedure",
+        "roleReason": "반구의 부피는 절반, 겉넓이는 단면 더하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 321,
+        "part": "m1",
+        "sourceFingerprint": "c9d788efa37ea1880b181d3541db62ffa6e2baaaece1e65aacd0689b57d337cb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 321
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-07-06-c4"
+        },
+        "cMarkedSentence": "반구의 부피는 반지름이 같은 구의 부피의 {절반}이다. 반구의 겉넓이는 둥근 면의 넓이에 잘린 단면인 {원}의 넓이를 더한 값이다.",
+        "cSlotAnswers": [
+          "절반",
+          "원"
+        ],
+        "cStudentSentence": "반구의 부피는 반지름이 같은 구의 부피의 □이다. 반구의 겉넓이는 둥근 면의 넓이에 잘린 단면인 □의 넓이를 더한 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "$\\frac{1}{2}$",
+              "반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "원",
+            "equivalentAnswers": [
+              "원"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "$\\frac{1}{2}$",
+              "반"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "절반",
+            "$\\frac{1}{2}$",
+            "반"
+          ],
+          [
+            "원"
+          ]
+        ],
+        "proposalFingerprint": "e15519b2e7681f1a6255fabd1c84f049d487de44a721c30b8276fd1672ff173a"
+      },
+      "normalized": {
+        "id": "m1-07-06-c4",
+        "grade": "중1",
+        "source": {
+          "id": "m1-07-06-c4",
+          "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+          "term": "반구의 겉넓이와 부피",
+          "kind": "방법",
+          "level": "중",
+          "definition": "반구의 부피는 구의 {절반}이고, 반구의 겉넓이는 구의 겉넓이의 절반에 {단면인 원}의 넓이를 더한 값이다.",
+          "example": {
+            "prompt": "반지름의 길이가 $3$인 반구의 겉넓이",
+            "answer": "$27\\pi$"
+          }
+        },
+        "B": {
+          "prompt": "반지름의 길이가 $r$인 구를 중심을 지나는 평면으로 잘라 만든 반구의 부피와 겉넓이를 각각 식으로 쓰고, 반구의 겉넓이가 구의 겉넓이의 절반보다 큰 까닭을 설명하시오.",
+          "answer": "부피는 구의 부피의 절반인 $\\frac{2}{3}\\pi r^3$이다. 겉넓이는 둥근 면의 넓이 $2\\pi r^2$에 잘린 단면인 원의 넓이 $\\pi r^2$을 더한 $3\\pi r^2$이다. 단면인 원이 더해지므로 구의 겉넓이의 절반보다 크다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "부피는 $\\frac{2}{3}\\pi r^3$",
+                "부피는 $\\frac12\\times\\frac43\\pi r^3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "겉넓이는 $3\\pi r^2$"
+              ]
+            },
+            {
+              "anyOf": [
+                "잘린 단면인 원의 넓이 $\\pi r^2$을 더하기 때문이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "반구의 부피는 반지름이 같은 구의 부피의 {절반}이다. 반구의 겉넓이는 둥근 면의 넓이에 잘린 단면인 {원}의 넓이를 더한 값이다.",
+          "acceptedAnswers": [
+            [
+              "절반",
+              "$\\frac{1}{2}$",
+              "반"
+            ],
+            [
+              "원"
+            ]
+          ]
+        },
+        "goal": "반구의 부피와 겉넓이에서 단면 처리",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "162f83be5891bcf3e3b9c8fb66c1b94a4f219b57f7e80fc2a98d96e44ef5564a"
+      }
+    }
+  ]
+}

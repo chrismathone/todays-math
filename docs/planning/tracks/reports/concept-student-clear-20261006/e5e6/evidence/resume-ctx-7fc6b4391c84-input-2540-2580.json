@@ -1,0 +1,3357 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T09:11:12.189358+00:00",
+  "rows": [
+    {
+      "id": "e6-2-5-4-xc16",
+      "bDecision": "revise",
+      "bPrompt": "원의 넓이를 알 때 반지름을 구하는 방법을 설명하세요. 원주율이 $3.14$이고 넓이가 $78.5\\,\\mathrm{cm^2}$인 원의 반지름도 구하세요.",
+      "bAnswer": "넓이를 원주율로 나누면 (반지름)$\\times$(반지름)이 되고, 같은 수를 두 번 곱해 그 값이 되는 수가 반지름입니다. $78.5\\div3.14=25$이고 $5\\times5=25$이므로 $5\\,\\mathrm{cm}$입니다.",
+      "bGoal": "넓이 공식을 거꾸로 이용해 반지름을 구한다.",
+      "bReason": "역방향 풀이 과정을 설명하게 한다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이를 원주율로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 수를 두 번 곱해 그 값이 되는 수를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\,\\mathrm{cm}$",
+            "$5$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "원의 넓이를 원주율로 나눈 값이 $25$이면, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 {$5$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$",
+            "$5\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cReason": "긴 식 구절 대신 실제 수로 같은 수를 두 번 곱해 반지름을 찾게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2540,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc16",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "넓이로 반지름 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "넓이를 원주율로 나누면 {(반지름)$\\times$(반지름)}이 되어, 같은 수를 두 번 곱해 그 값이 되는 수가 반지름이다.",
+        "studentC": "넓이를 원주율로 나누면 □이 되어, 같은 수를 두 번 곱해 그 값이 되는 수가 반지름이다.",
+        "answers": [
+          "(반지름)$\\times$(반지름)"
+        ]
+      },
+      "sourceFingerprint": "ba66f60ddb9eb7ef1d107af032962d2081a28a86c24970ceb5b933ef012ba1e3",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cProposedAnswers": [
+        "$5$"
+      ],
+      "cStudentAfter": "원의 넓이를 원주율로 나눈 값이 $25$이면, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 □이다.",
+      "cMarkedSentence": "원의 넓이를 원주율로 나눈 값이 $25$이면, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 {$5$}이다.",
+      "cStudentSentence": "원의 넓이를 원주율로 나눈 값이 $25$이면, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": [
+            "$5\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 넓이를 알 때 반지름을 구하는 방법을 설명하세요. 원주율이 $3.14$이고 넓이가 $78.5\\,\\mathrm{cm^2}$인 원의 반지름도 구하세요.",
+        "answer": "넓이를 원주율로 나누면 (반지름)$\\times$(반지름)이 되고, 같은 수를 두 번 곱해 그 값이 되는 수가 반지름입니다. $78.5\\div3.14=25$이고 $5\\times5=25$이므로 $5\\,\\mathrm{cm}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이를 원주율로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 수를 두 번 곱해 그 값이 되는 수를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$",
+              "$5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 넓이를 원주율로 나눈 값이 $25$이면, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 {$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$",
+            "$5\\,\\mathrm{cm}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "496e8b45569443546b1f77c9d66ad1d1abcf3b6dcac5ffc4047f0c4668ce4129",
+      "questionRevision": "planning-e5e6-20261006-496e8b455694",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc18",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "조각을 잘게 할수록 직사각형에 가까워짐을 안다.",
+      "bReason": "c3의 직사각형 질문에 포함되고 그림 없이 한 낱말만 묻게 된다.",
+      "learningRole": "naming",
+      "bRequiredIdeas": [],
+      "cDecision": "keep",
+      "cAfter": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+      "cReason": "조각을 번갈아 붙이면 직사각형에 가까워진다는 짧은 낱말 확인이라 유지한다.",
+      "exclusionReason": "B는 c3과 중복이다. 대체 ID: e6-2-5-4-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 2541,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc18",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "잘게 자를수록 가까워지는 모양",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+        "studentC": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 □에 가까워진다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "21a6cd211fdc60bf46a92b89c9120ea7a066d235cbd460a9f7665466ac6e4c5f",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cFrozenDefinition": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+      "cFrozenStudentSentence": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 □에 가까워진다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 □에 가까워진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+      "cStudentSentence": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 □에 가까워진다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c3과 중복이다. 대체 ID: e6-2-5-4-c3"
+      },
+      "proposalFingerprint": "cbdcc855c47098da2ccd65304eb8258305d16f9b363a6c30c9e38518922c8f14",
+      "questionRevision": "planning-e5e6-20261006-cbdcc855c470",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc19",
+      "bDecision": "revise",
+      "bPrompt": "중심이 같은 큰 원 안에서 작은 원을 빼낸 고리 모양이 있습니다. 이 고리 모양의 넓이는 어떻게 구하나요? 큰 원의 반지름이 $5\\,\\mathrm{cm}$, 작은 원의 반지름이 $3\\,\\mathrm{cm}$일 때 원주율 $3.14$로 넓이도 구하세요.",
+      "bAnswer": "큰 원의 넓이에서 작은 원의 넓이를 뺍니다. $3.14\\times5\\times5-3.14\\times3\\times3=78.5-28.26=50.24\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "고리 모양 넓이를 두 원의 넓이의 차로 구한다.",
+      "bReason": "글로 모양을 설명할 수 있어 그림 없이 방법과 값을 묻는다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 원의 넓이에서 작은 원의 넓이를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$50.24\\,\\mathrm{cm^2}$",
+            "$50.24$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) {$-$} (작은 원의 넓이)로 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$-$",
+            "빼기",
+            "뺀다"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 계산 기호 한 칸으로 줄이고 모양 조건을 글로 밝혔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2542,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc19",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "고리 모양의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "고리 모양의 넓이는 큰 원의 넓이에서 {작은 원의 넓이를 뺀} 값이다.",
+        "studentC": "고리 모양의 넓이는 큰 원의 넓이에서 □ 값이다.",
+        "answers": [
+          "작은 원의 넓이를 뺀"
+        ]
+      },
+      "sourceFingerprint": "ec29b2eb637638d1a560b9063ea6fd97f703922e920c93cab28811098001980c",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cProposedAnswers": [
+        "$-$"
+      ],
+      "cStudentAfter": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) □ (작은 원의 넓이)로 구한다.",
+      "cMarkedSentence": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) {$-$} (작은 원의 넓이)로 구한다.",
+      "cStudentSentence": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) □ (작은 원의 넓이)로 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$-$",
+          "equivalents": [
+            "빼기",
+            "뺀다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "중심이 같은 큰 원 안에서 작은 원을 빼낸 고리 모양이 있습니다. 이 고리 모양의 넓이는 어떻게 구하나요? 큰 원의 반지름이 $5\\,\\mathrm{cm}$, 작은 원의 반지름이 $3\\,\\mathrm{cm}$일 때 원주율 $3.14$로 넓이도 구하세요.",
+        "answer": "큰 원의 넓이에서 작은 원의 넓이를 뺍니다. $3.14\\times5\\times5-3.14\\times3\\times3=78.5-28.26=50.24\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 원의 넓이에서 작은 원의 넓이를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50.24\\,\\mathrm{cm^2}$",
+              "$50.24$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) {$-$} (작은 원의 넓이)로 구한다.",
+        "acceptedAnswers": [
+          [
+            "$-$",
+            "빼기",
+            "뺀다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "87f781a961d26510ab531e700ec75a094b5412d689fcce1909b068d2ac8d8696",
+      "questionRevision": "planning-e5e6-20261006-87f781a961d2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc20",
+      "bDecision": "revise",
+      "bPrompt": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 비교해 어떠한가요? 까닭도 말하세요.",
+      "bAnswer": "같습니다. 반원 하나는 그 원의 넓이의 절반이므로 두 개를 더하면 원 하나의 넓이가 됩니다.",
+      "bGoal": "반원 두 개가 원 하나와 같은 넓이임을 이해한다.",
+      "bReason": "반원이 원의 절반이라는 관계를 까닭으로 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원의 넓이와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "반원 하나는 원의 절반이다",
+            "두 반원을 합치면 원 하나가 된다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 {같다}.",
+      "cReason": "지름이 같다는 조건이 문장에 있고 같다/다르다 비교가 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2543,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc20",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "반원 두 개와 원 하나",
+        "kind": "성질",
+        "level": "상",
+        "definition": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 {같다}.",
+        "studentC": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "37e62ea3d1eeef3dcfbde7fe4d8a978fa0784517efab401e452db57cf8d8b233",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cFrozenDefinition": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 {같다}.",
+      "cFrozenStudentSentence": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 {같다}.",
+      "cStudentSentence": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 비교해 어떠한가요? 까닭도 말하세요.",
+        "answer": "같습니다. 반원 하나는 그 원의 넓이의 절반이므로 두 개를 더하면 원 하나의 넓이가 됩니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원의 넓이와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반원 하나는 원의 절반이다",
+              "두 반원을 합치면 원 하나가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "지름이 같은 반원 두 개의 넓이를 더하면 그 지름을 가진 원의 넓이와 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "638ef05055c6bae4ff2e591cd04bdd7604e3821abd49e20ffa2846a16bcf4945",
+      "questionRevision": "planning-e5e6-20261006-638ef05055c6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc21",
+      "bDecision": "revise",
+      "bPrompt": "큰 원의 지름 위에 작은 원 두 개가 한 줄로 꼭 맞게 놓여 있어 두 작은 원의 지름의 합이 큰 원의 지름과 같습니다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 큰가요, 작은가요? 작은 원의 반지름이 $3\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$일 때를 예로 들어 설명하세요.",
+      "bAnswer": "작습니다. 큰 원의 반지름은 $5\\,\\mathrm{cm}$이고 (반지름)$\\times$(반지름)은 $25$인데, 작은 두 원은 $3\\times3+2\\times2=13$이어서 $13<25$입니다.",
+      "bGoal": "지름의 합이 같아도 넓이의 합은 더 작음을 수로 확인한다.",
+      "bReason": "그림 없이 글로 조건을 밝히고 예로 비교 이유를 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 두 원의 넓이의 합이 더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$13<25$",
+            "$9+4<25$",
+            "큰 원의 반지름이 $5\\,\\mathrm{cm}$이다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "더 작다",
+            "적다"
+          ]
+        }
+      ],
+      "cReason": "'나란히 꼭 맞으면'의 조건을 분명히 하고 비교만 묻는다.",
+      "exampleNeeded": false,
+      "coreAfter": "작은 두 원의 지름의 합이 큰 원의 지름과 같으면, 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+      "coreReason": "작은 원의 배치 조건이 모호해서 지름의 합 조건을 분명히 한다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "작다라는 원문 비교를 보존한다. 나란히 꼭 맞는다는 모호한 배치 대신 지름 합의 정확한 조건으로 같은 일반 넓이 관계를 설명한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 2544,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc21",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "작은 원 둘과 큰 원 하나의 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "큰 원의 지름 위에 작은 두 원이 나란히 꼭 맞으면, 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+        "studentC": "큰 원의 지름 위에 작은 두 원이 나란히 꼭 맞으면, 작은 두 원의 넓이의 합은 큰 원의 넓이보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "626342b8ebdc52ebd0b7a7f0e66da79f5a15f26395e7dabc787d26c24d7f5f23",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 □.",
+      "cMarkedSentence": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+      "cStudentSentence": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다",
+            "적다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "큰 원의 지름 위에 작은 원 두 개가 한 줄로 꼭 맞게 놓여 있어 두 작은 원의 지름의 합이 큰 원의 지름과 같습니다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 큰가요, 작은가요? 작은 원의 반지름이 $3\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$일 때를 예로 들어 설명하세요.",
+        "answer": "작습니다. 큰 원의 반지름은 $5\\,\\mathrm{cm}$이고 (반지름)$\\times$(반지름)은 $25$인데, 작은 두 원은 $3\\times3+2\\times2=13$이어서 $13<25$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "작은 두 원의 넓이의 합이 더 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$13<25$",
+              "$9+4<25$",
+              "큰 원의 반지름이 $5\\,\\mathrm{cm}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "더 작다",
+            "적다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "078a5f6171c58719ee4e10653cb5860f23915bb198df7672849c46073c57abc1",
+      "questionRevision": "planning-e5e6-20261006-078a5f6171c5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc23",
+      "bDecision": "revise",
+      "bPrompt": "원의 반지름이 $1\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$, $3\\,\\mathrm{cm}$로 $1\\,\\mathrm{cm}$씩 늘 때 원의 넓이가 늘어나는 양은 어떻게 변하나요? 원주율 $3.14$로 $1\\,\\mathrm{cm}$에서 $2\\,\\mathrm{cm}$일 때와 $2\\,\\mathrm{cm}$에서 $3\\,\\mathrm{cm}$일 때의 늘어난 넓이를 비교하세요.",
+      "bAnswer": "점점 커집니다. $3.14\\times4-3.14\\times1=9.42\\,\\mathrm{cm^2}$, $3.14\\times9-3.14\\times4=15.7\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "반지름이 같은 양씩 늘어도 넓이는 일정하게 늘지 않음을 안다.",
+      "bReason": "넓이가 반지름에 정비례하지 않음을 값으로 비교한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "늘어나는 넓이가 점점 커진다",
+            "늘어나는 양이 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9.42\\,\\mathrm{cm^2}$",
+            "$9.42$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15.7\\,\\mathrm{cm^2}$",
+            "$15.7$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때, 원의 넓이가 늘어나는 양은 점점 {커진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "커진다",
+            "많아진다",
+            "늘어난다"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 늘어나는 양의 방향을 묻고 같은 뜻의 말을 허용한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2545,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc23",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "반지름이 늘 때 느는 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때 원의 넓이가 느는 양은 {점점 커진다}.",
+        "studentC": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때 원의 넓이가 느는 양은 □.",
+        "answers": [
+          "점점 커진다"
+        ]
+      },
+      "sourceFingerprint": "1443ae99f43aca993c7eb3d7233abf496d713e994e7758d9db3c70a72ccb188f",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cProposedAnswers": [
+        "커진다"
+      ],
+      "cStudentAfter": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때, 원의 넓이가 늘어나는 양은 점점 □.",
+      "cMarkedSentence": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때, 원의 넓이가 늘어나는 양은 점점 {커진다}.",
+      "cStudentSentence": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때, 원의 넓이가 늘어나는 양은 점점 □.",
+      "cSlotAnswers": [
+        {
+          "key": "커진다",
+          "equivalents": [
+            "많아진다",
+            "늘어난다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 반지름이 $1\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$, $3\\,\\mathrm{cm}$로 $1\\,\\mathrm{cm}$씩 늘 때 원의 넓이가 늘어나는 양은 어떻게 변하나요? 원주율 $3.14$로 $1\\,\\mathrm{cm}$에서 $2\\,\\mathrm{cm}$일 때와 $2\\,\\mathrm{cm}$에서 $3\\,\\mathrm{cm}$일 때의 늘어난 넓이를 비교하세요.",
+        "answer": "점점 커집니다. $3.14\\times4-3.14\\times1=9.42\\,\\mathrm{cm^2}$, $3.14\\times9-3.14\\times4=15.7\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "늘어나는 넓이가 점점 커진다",
+              "늘어나는 양이 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9.42\\,\\mathrm{cm^2}$",
+              "$9.42$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15.7\\,\\mathrm{cm^2}$",
+              "$15.7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때, 원의 넓이가 늘어나는 양은 점점 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "커진다",
+            "많아진다",
+            "늘어난다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6a7173565dbd805210b4d9512413e8c62b0eab34d04cce46478b9a91fe3a7de5",
+      "questionRevision": "planning-e5e6-20261006-6a7173565dbd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc24",
+      "bDecision": "revise",
+      "bPrompt": "원주와 반지름을 알 때 원의 넓이를 구하는 방법을 설명하세요. 원주가 $18.84\\,\\mathrm{cm}$, 반지름이 $3\\,\\mathrm{cm}$인 원의 넓이도 구하세요.",
+      "bAnswer": "원주와 반지름을 곱한 뒤 $2$로 나눕니다. $18.84\\times3\\div2=28.26\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "(원주의 절반)×(반지름)과 같은 식으로 넓이를 구한다.",
+      "bReason": "c3의 직사각형에서 나온 식을 원주와 반지름으로 적용한다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주와 반지름을 곱한 뒤 $2$로 나눈다",
+            "원주의 절반에 반지름을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$28.26\\,\\mathrm{cm^2}$",
+            "$28.26$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "원의 넓이는 (원주)$\\times$(반지름)을 {$2$}로 나눈 값이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "'반으로 나눈'이라는 긴 구절 대신 나누는 수를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2546,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc24",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "원주와 반지름으로 넓이 구하기",
+        "kind": "공식",
+        "level": "상",
+        "definition": "원의 넓이는 원주와 반지름을 곱해 {반으로 나눈} 값과 같다.",
+        "studentC": "원의 넓이는 원주와 반지름을 곱해 □ 값과 같다.",
+        "answers": [
+          "반으로 나눈"
+        ]
+      },
+      "sourceFingerprint": "cdf8ebff6e00c2a93a0ff8a12ed9b1cf3a746cdd0146ad6d17666b6da3435f77",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "원의 넓이는 (원주)$\\times$(반지름)을 □로 나눈 값이다.",
+      "cMarkedSentence": "원의 넓이는 (원주)$\\times$(반지름)을 {$2$}로 나눈 값이다.",
+      "cStudentSentence": "원의 넓이는 (원주)$\\times$(반지름)을 □로 나눈 값이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원주와 반지름을 알 때 원의 넓이를 구하는 방법을 설명하세요. 원주가 $18.84\\,\\mathrm{cm}$, 반지름이 $3\\,\\mathrm{cm}$인 원의 넓이도 구하세요.",
+        "answer": "원주와 반지름을 곱한 뒤 $2$로 나눕니다. $18.84\\times3\\div2=28.26\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주와 반지름을 곱한 뒤 $2$로 나눈다",
+              "원주의 절반에 반지름을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$28.26\\,\\mathrm{cm^2}$",
+              "$28.26$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 넓이는 (원주)$\\times$(반지름)을 {$2$}로 나눈 값이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cdf182d6977efd3fbe5ea5e39594e3c24e7ed9f700f455093a7993a5685a4587",
+      "questionRevision": "planning-e5e6-20261006-cdf182d6977e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc25",
+      "bDecision": "revise",
+      "bPrompt": "가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 세로 변 양쪽에, 지름이 $6\\,\\mathrm{cm}$인 반원을 하나씩 붙인 모양이 있습니다. 이 모양의 넓이를 구하는 방법을 설명하고 원주율 $3.14$로 넓이를 구하세요.",
+      "bAnswer": "직사각형의 넓이에 두 반원을 합친 원 하나의 넓이를 더합니다. $10\\times6+3.14\\times3\\times3=60+28.26=88.26\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "붙인 두 반원을 합쳐 원 하나로 보고 넓이를 구한다.",
+      "bReason": "조건을 글로 모두 밝혀 그림 없이 풀 수 있다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직사각형의 넓이에 원 하나의 넓이를 더한다",
+            "직사각형과 두 반원을 합친 원의 넓이를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$88.26\\,\\mathrm{cm^2}$",
+            "$88.26$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "직사각형 양쪽에 지름이 같은 반원을 하나씩 붙인 모양에서, 두 반원을 합치면 {원} 한 개가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원",
+            "원 하나",
+            "한 개의 원"
+          ]
+        }
+      ],
+      "cReason": "긴 답 대신 두 반원이 합쳐져 원이 된다는 핵심을 묻는다.",
+      "exampleNeeded": false,
+      "coreAfter": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙인 모양의 넓이는, 직사각형의 넓이에 {원 하나의 넓이}를 더한 값이다.",
+      "coreReason": "반원의 지름이 직사각형의 어느 변인지 분명하지 않아 조건을 보완한다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "원 하나의 넓이라는 원문 표적을 보존한다. 지름으로 정한 두 변과 바깥쪽 부착을 명시하여 내부에 겹친 반원을 포함하지 않게 한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 2547,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc25",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "운동장 모양의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형 양쪽에 지름이 같은 반원을 붙인 모양의 넓이는 직사각형의 넓이에 {원 하나의 넓이}를 더한 값이다.",
+        "studentC": "직사각형 양쪽에 지름이 같은 반원을 붙인 모양의 넓이는 직사각형의 넓이에 □를 더한 값이다.",
+        "answers": [
+          "원 하나의 넓이"
+        ]
+      },
+      "sourceFingerprint": "648625387d39f9ff3a17af6f55298299aedad6db7e9f4d1cae419f43f3b4e080",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "원"
+      ],
+      "cStudentAfter": "직사각형 양쪽에 지름이 같은 반원을 하나씩 붙인 모양에서, 두 반원을 합치면 □ 한 개가 된다.",
+      "cMarkedSentence": "직사각형 양쪽에 지름이 같은 반원을 하나씩 붙인 모양에서, 두 반원을 합치면 {원} 한 개가 된다.",
+      "cStudentSentence": "직사각형 양쪽에 지름이 같은 반원을 하나씩 붙인 모양에서, 두 반원을 합치면 □ 한 개가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "원",
+          "equivalents": [
+            "원 하나",
+            "한 개의 원"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 세로 변 양쪽에, 지름이 $6\\,\\mathrm{cm}$인 반원을 하나씩 붙인 모양이 있습니다. 이 모양의 넓이를 구하는 방법을 설명하고 원주율 $3.14$로 넓이를 구하세요.",
+        "answer": "직사각형의 넓이에 두 반원을 합친 원 하나의 넓이를 더합니다. $10\\times6+3.14\\times3\\times3=60+28.26=88.26\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형의 넓이에 원 하나의 넓이를 더한다",
+              "직사각형과 두 반원을 합친 원의 넓이를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$88.26\\,\\mathrm{cm^2}$",
+              "$88.26$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형 양쪽에 지름이 같은 반원을 하나씩 붙인 모양에서, 두 반원을 합치면 {원} 한 개가 된다.",
+        "acceptedAnswers": [
+          [
+            "원",
+            "원 하나",
+            "한 개의 원"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6d70f25d57e4b4a1c9eb540780b48f519d61a237c222d1fe553ae00de24e12e8",
+      "questionRevision": "planning-e5e6-20261006-6d70f25d57e4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc27",
+      "bDecision": "revise",
+      "bPrompt": "원의 넓이가 $4$배가 되려면 반지름은 몇 배가 되어야 하나요? 넓이를 구하는 식을 이용해 까닭을 설명하세요.",
+      "bAnswer": "$2$배가 되어야 합니다. 반지름을 두 번 곱하므로 $2\\times2=4$배가 됩니다.",
+      "bGoal": "넓이 배수에서 반지름 배수를 거꾸로 생각한다.",
+      "bReason": "xc14의 반대 방향으로 두 번 곱한다는 구조를 확인한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "반지름을 두 번 곱하므로 $2\\times2=4$이다",
+            "같은 수를 두 번 곱해 $4$가 되는 수가 $2$이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": "넓이가 $4$배인 원의 반지름은 {$2$배}이다.",
+      "cReason": "넓이 $4$배일 때 반지름 $2$배라는 명확한 배수 관계다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2548,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc27",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "넓이가 $4$배인 원의 반지름",
+        "kind": "성질",
+        "level": "상",
+        "definition": "넓이가 $4$배인 원의 반지름은 {$2$배}이다.",
+        "studentC": "넓이가 $4$배인 원의 반지름은 □이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "sourceFingerprint": "6f6da60b9b92daa0c58897e67a4f3d6d07313e6cb68a81738ffe3b40e21f2620",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cFrozenDefinition": "넓이가 $4$배인 원의 반지름은 {$2$배}이다.",
+      "cFrozenStudentSentence": "넓이가 $4$배인 원의 반지름은 □이다.",
+      "cProposedAnswers": [
+        "$2$배"
+      ],
+      "cStudentAfter": "넓이가 $4$배인 원의 반지름은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "넓이가 $4$배인 원의 반지름은 {$2$배}이다.",
+      "cStudentSentence": "넓이가 $4$배인 원의 반지름은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 넓이가 $4$배가 되려면 반지름은 몇 배가 되어야 하나요? 넓이를 구하는 식을 이용해 까닭을 설명하세요.",
+        "answer": "$2$배가 되어야 합니다. 반지름을 두 번 곱하므로 $2\\times2=4$배가 됩니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "반지름을 두 번 곱하므로 $2\\times2=4$이다",
+              "같은 수를 두 번 곱해 $4$가 되는 수가 $2$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 $4$배인 원의 반지름은 {$2$배}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0552b206087ffc31ad416ddc965b58e746417a73a83fae5cfd96f080a01bd2d4",
+      "questionRevision": "planning-e5e6-20261006-0552b206087f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "밑면의 개수를 안다.",
+      "bReason": "개수 한 가지를 묻는 자명한 조각이라 독립된 B 가치가 낮다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "exclusionReason": "B 제외: 밑면 개수는 e6-2-6-1-xc13에서 원기둥·각기둥 공통점으로 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "원기둥에는 밑면이 {$2$개} 있다.",
+      "cReason": "밑면이 몇 개인지 짧게 묻는 사실 빈칸이라 그대로 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2549,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc1",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "원기둥의 밑면 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥에는 밑면이 {$2$개} 있다.",
+        "studentC": "원기둥에는 밑면이 □ 있다.",
+        "answers": [
+          "$2$개"
+        ]
+      },
+      "sourceFingerprint": "89d2fabfbe890972f5751519e4dde2d4493e6bae7dfba87c4e728a56ed955653",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "원기둥에는 밑면이 {$2$개} 있다.",
+      "cFrozenStudentSentence": "원기둥에는 밑면이 □ 있다.",
+      "cProposedAnswers": [
+        "$2$개"
+      ],
+      "cStudentAfter": "원기둥에는 밑면이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥에는 밑면이 {$2$개} 있다.",
+      "cStudentSentence": "원기둥에는 밑면이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원기둥에는 밑면이 {$2$개} 있다.",
+        "acceptedAnswers": [
+          [
+            "$2$개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 밑면 개수는 e6-2-6-1-xc13에서 원기둥·각기둥 공통점으로 묻는다."
+      },
+      "proposalFingerprint": "6e87c4e87d1bea6f301a7a32af79779ceb34f4bd338a7970b06728c265032d2f",
+      "questionRevision": "planning-e5e6-20261006-6e87c4e87d1b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "밑면의 모양이 원임을 안다.",
+      "bReason": "c1과 c2에서 이미 밑면의 모양을 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "exclusionReason": "B·C 제외: 밑면 모양은 e6-2-6-1-c1(B)과 e6-2-6-1-c2(C)에서 다룬다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c2 수정 C와 같은 '원'을 묻는 중복이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2550,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc2",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "밑면의 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 두 밑면은 모양이 {원}이다.",
+        "studentC": "원기둥의 두 밑면은 모양이 □이다.",
+        "answers": [
+          "원"
+        ]
+      },
+      "sourceFingerprint": "7c64315c70b2fa370904dd67aafdc2b6b7219cbf41409d7b5f5decbde08ef10b",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 제외: 밑면 모양은 e6-2-6-1-c1(B)과 e6-2-6-1-c2(C)에서 다룬다.",
+        "cloze": "B·C 제외: 밑면 모양은 e6-2-6-1-c1(B)과 e6-2-6-1-c2(C)에서 다룬다."
+      },
+      "proposalFingerprint": "a6688ea412b8f857125a4ea2070c4f3a287451c6eed0aea22d71f5a949048505",
+      "questionRevision": "planning-e5e6-20261006-a6688ea412b8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "두 밑면의 크기가 같음을 안다.",
+      "bReason": "c1 B에서 크기 조건을 이미 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "exclusionReason": "B 제외: 크기 조건은 e6-2-6-1-c1이 대체한다.",
+      "cDecision": "keep",
+      "cAfter": "원기둥의 두 밑면은 크기가 {같다}.",
+      "cReason": "두 밑면의 크기 관계를 '같다'로 짧게 묻는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2551,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc3",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "두 밑면의 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 두 밑면은 크기가 {같다}.",
+        "studentC": "원기둥의 두 밑면은 크기가 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "704aeeb4fa4f35f328002e06b89a9184a9b4f499e4cdcb6513213103d4d51d01",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "원기둥의 두 밑면은 크기가 {같다}.",
+      "cFrozenStudentSentence": "원기둥의 두 밑면은 크기가 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "원기둥의 두 밑면은 크기가 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥의 두 밑면은 크기가 {같다}.",
+      "cStudentSentence": "원기둥의 두 밑면은 크기가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원기둥의 두 밑면은 크기가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 크기 조건은 e6-2-6-1-c1이 대체한다."
+      },
+      "proposalFingerprint": "aa1da2f91f37af89b58412ae4bbe1caff880bffe05d45ddb6561e5ed650142e8",
+      "questionRevision": "planning-e5e6-20261006-aa1da2f91f37",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "두 밑면이 평행함을 안다.",
+      "bReason": "c1 B에서 위치 관계를 이미 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "exclusionReason": "B 제외: 두 밑면의 위치 관계는 e6-2-6-1-c1이 대체한다.",
+      "cDecision": "keep",
+      "cAfter": "원기둥의 두 밑면은 서로 {평행}하다.",
+      "cReason": "'서로 평행하다'는 초5 용어를 한 낱말로 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2552,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc4",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "두 밑면의 위치",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 두 밑면은 서로 {평행}하다.",
+        "studentC": "원기둥의 두 밑면은 서로 □하다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "sourceFingerprint": "b9281a7e50c28fcfe6c04b0b74880d7b7a01f976fe04fff407356b7dbb20e904",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "원기둥의 두 밑면은 서로 {평행}하다.",
+      "cFrozenStudentSentence": "원기둥의 두 밑면은 서로 □하다.",
+      "cProposedAnswers": [
+        "평행"
+      ],
+      "cStudentAfter": "원기둥의 두 밑면은 서로 □하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평행"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥의 두 밑면은 서로 {평행}하다.",
+      "cStudentSentence": "원기둥의 두 밑면은 서로 □하다.",
+      "cSlotAnswers": [
+        {
+          "key": "평행",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원기둥의 두 밑면은 서로 {평행}하다.",
+        "acceptedAnswers": [
+          [
+            "평행"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 두 밑면의 위치 관계는 e6-2-6-1-c1이 대체한다."
+      },
+      "proposalFingerprint": "855d4e5218acc32d318908463952b5e9643333375a5850e589fb210c0a1eda06",
+      "questionRevision": "planning-e5e6-20261006-855d4e5218ac",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "옆면이 굽은 면임을 안다.",
+      "bReason": "c3와 같은 내용이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "exclusionReason": "B·C 제외: 옆면이 굽은 면이라는 내용은 e6-2-6-1-c3와 중복이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c3의 C와 같은 답 '굽은 면'을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2553,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc5",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "옆면의 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 옆면은 평평하지 않고 {굽은 면}이다.",
+        "studentC": "원기둥의 옆면은 평평하지 않고 □이다.",
+        "answers": [
+          "굽은 면"
+        ]
+      },
+      "sourceFingerprint": "5abff432e68205a3618bdf96a89158389049979586b3cee209ea0399a2e5c3da",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 제외: 옆면이 굽은 면이라는 내용은 e6-2-6-1-c3와 중복이다.",
+        "cloze": "B·C 제외: 옆면이 굽은 면이라는 내용은 e6-2-6-1-c3와 중복이다."
+      },
+      "proposalFingerprint": "edad03d9dfaf361938c1addff159184f87e3e34a60a1caff45f657037ef1c478",
+      "questionRevision": "planning-e5e6-20261006-edad03d9dfaf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc6",
+      "bDecision": "revise",
+      "bPrompt": "원기둥을 옆으로 눕혀 바닥에 놓고 밀면 굴러갈까요? 옆면의 모양과 관련지어 설명하시오.",
+      "bAnswer": "굴러간다. 옆면이 굽은 면이라 바닥에 닿는 부분이 계속 이어서 바뀌며 구를 수 있기 때문이다.",
+      "bGoal": "옆면의 굽은 모양과 구르는 성질을 연결한다.",
+      "bReason": "결과와 이유(옆면의 모양)를 함께 묻는 이유 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "굴러간다",
+            "구른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면이 굽은 면이다",
+            "옆면이 둥글다",
+            "옆면이 평평하지 않다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "원기둥을 옆으로 눕히면 옆면이 {굽은 면}이므로 바닥에서 굴러간다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "굽은 면",
+            "둥근 면"
+          ]
+        }
+      ],
+      "cReason": "'굴러간다' 같은 서술어를 맞히게 하는 대신 원인이 되는 면의 종류를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2554,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc6",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "굴러가는 원기둥",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥을 옆으로 눕히면 굽은 옆면 때문에 {굴러간다}.",
+        "studentC": "원기둥을 옆으로 눕히면 굽은 옆면 때문에 □.",
+        "answers": [
+          "굴러간다"
+        ]
+      },
+      "sourceFingerprint": "096a584832e7707004881a84e69d230ddb225310922fb835ea89479dc8a1a2b3",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cProposedAnswers": [
+        "굽은 면"
+      ],
+      "cStudentAfter": "원기둥을 옆으로 눕히면 옆면이 □이므로 바닥에서 굴러간다.",
+      "cMarkedSentence": "원기둥을 옆으로 눕히면 옆면이 {굽은 면}이므로 바닥에서 굴러간다.",
+      "cStudentSentence": "원기둥을 옆으로 눕히면 옆면이 □이므로 바닥에서 굴러간다.",
+      "cSlotAnswers": [
+        {
+          "key": "굽은 면",
+          "equivalents": [
+            "둥근 면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥을 옆으로 눕혀 바닥에 놓고 밀면 굴러갈까요? 옆면의 모양과 관련지어 설명하시오.",
+        "answer": "굴러간다. 옆면이 굽은 면이라 바닥에 닿는 부분이 계속 이어서 바뀌며 구를 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "굴러간다",
+              "구른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면이 굽은 면이다",
+              "옆면이 둥글다",
+              "옆면이 평평하지 않다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥을 옆으로 눕히면 옆면이 {굽은 면}이므로 바닥에서 굴러간다.",
+        "acceptedAnswers": [
+          [
+            "굽은 면",
+            "둥근 면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6d009a5bccad83b2afe07ebc80f23ca49845e59f97e29c51efee1f21da8b0be4",
+      "questionRevision": "planning-e5e6-20261006-6d009a5bccad",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc7",
+      "bDecision": "revise",
+      "bPrompt": "원기둥에는 꼭짓점이 있나요? 각기둥의 꼭짓점이 어떻게 생기는지와 비교해 이유를 설명하시오.",
+      "bAnswer": "없다. 각기둥의 꼭짓점은 곧은 모서리끼리 뾰족하게 만나는 점인데, 원기둥은 테두리가 굽은 선(원)이라 뾰족하게 만나는 점이 없다.",
+      "bGoal": "꼭짓점이 생기는 조건으로 원기둥에 꼭짓점이 없는 이유를 설명한다.",
+      "bReason": "꼭짓점 유무만이 아니라 생기는 조건을 비교하는 이유 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭짓점이 없다",
+            "없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "테두리가 굽은 선이라 뾰족하게 만나는 곳이 없다",
+            "곧은 모서리가 만나는 점이 없다",
+            "원이라 뾰족한 곳이 없다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "원기둥에는 각기둥과 달리 {꼭짓점}이 없다.",
+      "cReason": "각기둥과 비교하는 문맥이 있어 '꼭짓점'을 낱말로 묻는 짧은 문장으로 적절하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2555,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc7",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "원기둥에 없는 점",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥에는 각기둥과 달리 {꼭짓점}이 없다.",
+        "studentC": "원기둥에는 각기둥과 달리 □이 없다.",
+        "answers": [
+          "꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "17248f59c2b1d0bb360be60009da865d248fa401ff1d5509dc6d595d2388910d",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "원기둥에는 각기둥과 달리 {꼭짓점}이 없다.",
+      "cFrozenStudentSentence": "원기둥에는 각기둥과 달리 □이 없다.",
+      "cProposedAnswers": [
+        "꼭짓점"
+      ],
+      "cStudentAfter": "원기둥에는 각기둥과 달리 □이 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꼭짓점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥에는 각기둥과 달리 {꼭짓점}이 없다.",
+      "cStudentSentence": "원기둥에는 각기둥과 달리 □이 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "꼭짓점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥에는 꼭짓점이 있나요? 각기둥의 꼭짓점이 어떻게 생기는지와 비교해 이유를 설명하시오.",
+        "answer": "없다. 각기둥의 꼭짓점은 곧은 모서리끼리 뾰족하게 만나는 점인데, 원기둥은 테두리가 굽은 선(원)이라 뾰족하게 만나는 점이 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점이 없다",
+              "없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "테두리가 굽은 선이라 뾰족하게 만나는 곳이 없다",
+              "곧은 모서리가 만나는 점이 없다",
+              "원이라 뾰족한 곳이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥에는 각기둥과 달리 {꼭짓점}이 없다.",
+        "acceptedAnswers": [
+          [
+            "꼭짓점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f5eeb23ddd553dfacec69acefa7a0abc27ab22295e9ddc23bc6280369f0e94b0",
+      "questionRevision": "planning-e5e6-20261006-f5eeb23ddd55",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc8",
+      "bDecision": "revise",
+      "bPrompt": "원기둥의 높이를 밑면에 수직으로 잴 때, 재는 위치를 바꾸면 길이가 달라지나요? 두 밑면의 위치 관계로 설명하시오.",
+      "bAnswer": "달라지지 않는다. 두 밑면이 서로 평행해서 어디서 수직으로 재어도 길이가 같다.",
+      "bGoal": "높이가 위치와 관계없이 일정한 까닭을 밑면의 평행으로 설명한다.",
+      "bReason": "높이 재는 방법(c4)과 달리 일정한 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "길이가 같다",
+            "달라지지 않는다",
+            "변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 밑면이 평행하다",
+            "밑면이 서로 평행하기 때문"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "원기둥의 높이를 밑면에 수직으로 잴 때 재는 곳이 달라져도 길이는 {같다}. 이는 두 밑면이 서로 {평행}하기 때문이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다",
+            "변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 '밑면에 수직으로'를 외우게 하는 빈칸을 줄이고 결과와 이유 두 가지만 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2556,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc8",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "어디서 재도 같은 높이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 두 밑면 사이를 {밑면에 수직으로} 재면 어느 곳에서 재어도 길이가 {같다}.",
+        "studentC": "원기둥의 두 밑면 사이를 □ 재면 어느 곳에서 재어도 길이가 □.",
+        "answers": [
+          "밑면에 수직으로",
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "167e8f3b5c4cda34ba4e396e74711e330616abaf5b61f484ace007b022edf8cd",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cProposedAnswers": [
+        "같다",
+        "평행"
+      ],
+      "cStudentAfter": "원기둥의 높이를 밑면에 수직으로 잴 때 재는 곳이 달라져도 길이는 □. 이는 두 밑면이 서로 □하기 때문이다.",
+      "cMarkedSentence": "원기둥의 높이를 밑면에 수직으로 잴 때 재는 곳이 달라져도 길이는 {같다}. 이는 두 밑면이 서로 {평행}하기 때문이다.",
+      "cStudentSentence": "원기둥의 높이를 밑면에 수직으로 잴 때 재는 곳이 달라져도 길이는 □. 이는 두 밑면이 서로 □하기 때문이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다",
+            "변하지 않는다"
+          ]
+        },
+        {
+          "key": "평행",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥의 높이를 밑면에 수직으로 잴 때, 재는 위치를 바꾸면 길이가 달라지나요? 두 밑면의 위치 관계로 설명하시오.",
+        "answer": "달라지지 않는다. 두 밑면이 서로 평행해서 어디서 수직으로 재어도 길이가 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 같다",
+              "달라지지 않는다",
+              "변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑면이 평행하다",
+              "밑면이 서로 평행하기 때문"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 높이를 밑면에 수직으로 잴 때 재는 곳이 달라져도 길이는 {같다}. 이는 두 밑면이 서로 {평행}하기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다",
+            "변하지 않는다"
+          ],
+          [
+            "평행"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fa4978a8a30a80ed2c2916dfb0fc5d9160e609ec6ac567963d9b85c002c176c1",
+      "questionRevision": "planning-e5e6-20261006-fa4978a8a30a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc9",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원기둥을 위에서 볼 때와 앞에서 볼 때 보이는 모양은 각각 무엇인가요?",
+      "bAnswer": "위에서 보면 원이고, 앞에서 보면 직사각형이다.",
+      "bGoal": "위·앞에서 본 원기둥의 모양을 구별한다.",
+      "bReason": "문장만으로 시점이 정해져 있어 그림 없이 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위에서 보면 원",
+            "위에서는 원"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞에서 보면 직사각형",
+            "앞에서는 직사각형"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원기둥을 위에서 보면 원이고, 앞에서 보면 {직사각형}이다.",
+      "cReason": "앞에서 본 모양 '직사각형'을 묻는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2557,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc9",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "위와 앞에서 본 원기둥",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원기둥을 위에서 보면 원이고, 앞에서 보면 {직사각형}이다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원기둥을 위에서 보면 원이고, 앞에서 보면 □이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "b808ba7f9f381917c3bfc1f1a40e440dd7296f4e11d2b1f8734ba9b0d30625dc",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원기둥을 위에서 보면 원이고, 앞에서 보면 {직사각형}이다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원기둥을 위에서 보면 원이고, 앞에서 보면 □이다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원기둥을 위에서 보면 원이고, 앞에서 보면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원기둥을 위에서 보면 원이고, 앞에서 보면 {직사각형}이다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원기둥을 위에서 보면 원이고, 앞에서 보면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원기둥을 위에서 볼 때와 앞에서 볼 때 보이는 모양은 각각 무엇인가요?",
+        "answer": "위에서 보면 원이고, 앞에서 보면 직사각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위에서 보면 원",
+              "위에서는 원"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞에서 보면 직사각형",
+              "앞에서는 직사각형"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원기둥을 위에서 보면 원이고, 앞에서 보면 {직사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1b54c6a1f42cd12219a9e67293007e570ff038923d8cce7d1bd5b57fea92e965",
+      "questionRevision": "planning-e5e6-20261006-1b54c6a1f42c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc10",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양이 정사각형이 되려면, 밑면의 지름과 높이는 어떤 관계여야 하나요? 그 이유도 설명하시오.",
+      "bAnswer": "지름과 높이가 같아야 한다. 앞에서 본 직사각형의 가로는 지름, 세로는 높이이므로 둘이 같아야 가로와 세로가 같은 정사각형이 된다.",
+      "bGoal": "정사각형이 되는 조건을 가로·세로 관계로 설명한다.",
+      "bReason": "xc11의 가로·세로 대응을 이용해 정사각형 조건을 추론하는 적용 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름과 높이가 같다",
+            "지름$=$높이"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로가 지름이고 세로가 높이라서 가로와 세로가 같아진다",
+            "정사각형은 가로와 세로가 같기 때문"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원기둥의 밑면의 지름과 높이가 같으면, 앞에서 본 모양은 {정사각형}이다.",
+      "cReason": "지름과 높이가 같다는 조건에서 '정사각형'을 고르는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2558,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc10",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "밑면의 지름과 높이가 같은 원기둥",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원기둥의 밑면의 지름과 높이가 같으면, 앞에서 본 모양은 {정사각형}이다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원기둥의 밑면의 지름과 높이가 같으면, 앞에서 본 모양은 □이다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "sourceFingerprint": "645945fbdf45c353854326f0260673a48254e9c75f5f46717ef440e96f15ffaa",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원기둥의 밑면의 지름과 높이가 같으면, 앞에서 본 모양은 {정사각형}이다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원기둥의 밑면의 지름과 높이가 같으면, 앞에서 본 모양은 □이다.",
+      "cProposedAnswers": [
+        "정사각형"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원기둥의 밑면의 지름과 높이가 같으면, 앞에서 본 모양은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원기둥의 밑면의 지름과 높이가 같으면, 앞에서 본 모양은 {정사각형}이다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원기둥의 밑면의 지름과 높이가 같으면, 앞에서 본 모양은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양이 정사각형이 되려면, 밑면의 지름과 높이는 어떤 관계여야 하나요? 그 이유도 설명하시오.",
+        "answer": "지름과 높이가 같아야 한다. 앞에서 본 직사각형의 가로는 지름, 세로는 높이이므로 둘이 같아야 가로와 세로가 같은 정사각형이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "지름과 높이가 같다",
+              "지름$=$높이"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로가 지름이고 세로가 높이라서 가로와 세로가 같아진다",
+              "정사각형은 가로와 세로가 같기 때문"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원기둥의 밑면의 지름과 높이가 같으면, 앞에서 본 모양은 {정사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "정사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0c73d6dee1e934640d0302e63f58f9efd617d33fcf45934fbb7497b266247049",
+      "questionRevision": "planning-e5e6-20261006-0c73d6dee1e9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc11",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 보면 직사각형이 보입니다. 이 직사각형의 가로와 세로는 각각 원기둥의 어느 길이와 같은가요?",
+      "bAnswer": "가로는 밑면의 지름과 같고, 세로는 원기둥의 높이와 같다.",
+      "bGoal": "앞에서 본 직사각형의 가로·세로를 원기둥의 길이와 대응시킨다.",
+      "bReason": "xc12의 세로까지 함께 묻는 대응 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로는 지름",
+            "가로$=$밑면의 지름"
+          ]
+        },
+        {
+          "anyOf": [
+            "세로는 높이",
+            "세로$=$원기둥의 높이"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 가로는 밑면의 {지름}과 같다.",
+      "cReason": "앞에서 본 가로가 밑면의 '지름'과 같음을 묻는 짧은 낱말 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2559,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc11",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "앞에서 본 직사각형의 가로",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 가로는 밑면의 {지름}과 같다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 가로는 밑면의 □과 같다.",
+        "answers": [
+          "지름"
+        ]
+      },
+      "sourceFingerprint": "bff0db8fcd6fb513339c5f5613e50acaf1b3aa99fc8a843e8ca23144bb31f49c",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 가로는 밑면의 {지름}과 같다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 가로는 밑면의 □과 같다.",
+      "cProposedAnswers": [
+        "지름"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 가로는 밑면의 □과 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "지름"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 가로는 밑면의 {지름}과 같다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 가로는 밑면의 □과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "지름",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 보면 직사각형이 보입니다. 이 직사각형의 가로와 세로는 각각 원기둥의 어느 길이와 같은가요?",
+        "answer": "가로는 밑면의 지름과 같고, 세로는 원기둥의 높이와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로는 지름",
+              "가로$=$밑면의 지름"
+            ]
+          },
+          {
+            "anyOf": [
+              "세로는 높이",
+              "세로$=$원기둥의 높이"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 가로는 밑면의 {지름}과 같다.",
+        "acceptedAnswers": [
+          [
+            "지름"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4c17f8955102a20a15fb1cffcad77dc6d4b87e2698bce8a167458a5a47d18f98",
+      "questionRevision": "planning-e5e6-20261006-4c17f8955102",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc12",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "앞에서 본 직사각형의 세로가 높이와 같음을 안다.",
+      "bReason": "xc11 B가 가로와 세로를 함께 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "exclusionReason": "B 제외: 가로·세로 대응은 e6-2-6-1-xc11이 대체한다.",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 세로는 원기둥의 {높이}와 같다.",
+      "cReason": "세로가 원기둥의 '높이'와 같음을 묻는 짧고 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2560,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc12",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "앞에서 본 직사각형의 세로",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 세로는 원기둥의 {높이}와 같다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 세로는 원기둥의 □와 같다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "sourceFingerprint": "a96c8e232c5aaf0f0203b7f92487d17bf1c955891b6f329d4fde87175cd1a2e2",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 세로는 원기둥의 {높이}와 같다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 세로는 원기둥의 □와 같다.",
+      "cProposedAnswers": [
+        "높이"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 세로는 원기둥의 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "높이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 세로는 원기둥의 {높이}와 같다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 세로는 원기둥의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "높이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 직사각형의 세로는 원기둥의 {높이}와 같다.",
+        "acceptedAnswers": [
+          [
+            "높이"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 가로·세로 대응은 e6-2-6-1-xc11이 대체한다."
+      },
+      "proposalFingerprint": "f9259426f3d7cb2aa58909ac28a5e3035d2c1c389f5dd287372573512f6217ca",
+      "questionRevision": "planning-e5e6-20261006-f9259426f3d7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc13",
+      "bDecision": "revise",
+      "bPrompt": "원기둥과 각기둥은 밑면이 각각 몇 개이고, 두 밑면은 서로 어떤 위치 관계인가요?",
+      "bAnswer": "둘 다 밑면이 $2$개이고, 두 밑면이 서로 평행하다.",
+      "bGoal": "원기둥과 각기둥의 공통 구조를 안다.",
+      "bReason": "공통점을 묻는 비교 문항으로 xc1·xc4의 개수·평행을 대체한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$개",
+            "두 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행하다",
+            "서로 평행"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "원기둥과 각기둥은 모두 밑면이 {$2$개}이고 두 밑면이 서로 평행하다.",
+      "cReason": "공통점인 밑면 개수를 묻는 짧은 문장으로 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2561,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc13",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "원기둥과 각기둥의 같은 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥과 각기둥은 모두 밑면이 {$2$개}이고 두 밑면이 서로 평행하다.",
+        "studentC": "원기둥과 각기둥은 모두 밑면이 □이고 두 밑면이 서로 평행하다.",
+        "answers": [
+          "$2$개"
+        ]
+      },
+      "sourceFingerprint": "d3358ea8189f3fcd1ae8af862563cc9e66e082b8b57558049e92f3888a4fbaea",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "원기둥과 각기둥은 모두 밑면이 {$2$개}이고 두 밑면이 서로 평행하다.",
+      "cFrozenStudentSentence": "원기둥과 각기둥은 모두 밑면이 □이고 두 밑면이 서로 평행하다.",
+      "cProposedAnswers": [
+        "$2$개"
+      ],
+      "cStudentAfter": "원기둥과 각기둥은 모두 밑면이 □이고 두 밑면이 서로 평행하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥과 각기둥은 모두 밑면이 {$2$개}이고 두 밑면이 서로 평행하다.",
+      "cStudentSentence": "원기둥과 각기둥은 모두 밑면이 □이고 두 밑면이 서로 평행하다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥과 각기둥은 밑면이 각각 몇 개이고, 두 밑면은 서로 어떤 위치 관계인가요?",
+        "answer": "둘 다 밑면이 $2$개이고, 두 밑면이 서로 평행하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행하다",
+              "서로 평행"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥과 각기둥은 모두 밑면이 {$2$개}이고 두 밑면이 서로 평행하다.",
+        "acceptedAnswers": [
+          [
+            "$2$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bddded5cb4db403d10446cf530daf7827f32a9b0d1fe3abf574669243b274cb1",
+      "questionRevision": "planning-e5e6-20261006-bddded5cb4db",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "각기둥의 옆면이 직사각형임을 안다.",
+      "bReason": "c5 B가 밑면·옆면 차이를 이미 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "exclusionReason": "B 제외: 각기둥과 원기둥의 옆면 비교는 e6-2-6-1-c5가 대체한다.",
+      "cDecision": "keep",
+      "cAfter": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 {직사각형}이다.",
+      "cReason": "각기둥 옆면의 모양 '직사각형'을 묻는 짧은 비교 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2562,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc14",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "원기둥과 각기둥의 다른 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 {직사각형}이다.",
+        "studentC": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 □이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "205e423bb580ba14b0b71ee37026b9317f974c11b3a91869cf73ea496a9f14ee",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 {직사각형}이다.",
+      "cFrozenStudentSentence": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 □이다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 {직사각형}이다.",
+      "cStudentSentence": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 {직사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 각기둥과 원기둥의 옆면 비교는 e6-2-6-1-c5가 대체한다."
+      },
+      "proposalFingerprint": "11cd7d13f6054eac2e4d19b1ce2fb46e0a236f78f84f757f007e5cd46ff9560f",
+      "questionRevision": "planning-e5e6-20261006-11cd7d13f605",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "원기둥에서 옆면과 밑면이 만나는 테두리는 어떤 모양인가요? 밑면의 모양과 관련지어 이유를 설명하시오.",
+      "bAnswer": "원 모양이다. 밑면이 원이라서 그 둘레가 옆면과 만나는 테두리가 되기 때문이다.",
+      "bGoal": "만나는 테두리가 밑면의 둘레임을 안다.",
+      "bReason": "모양만 묻지 않고 밑면과의 관계로 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원 모양",
+            "원"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면이 원이다",
+            "밑면의 둘레이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "원기둥의 옆면과 밑면이 만나는 테두리는 {원} 모양이다.",
+      "cReason": "테두리 모양 '원'을 묻는 짧은 문장으로 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2563,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc16",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "옆면과 밑면이 만나는 곳",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥의 옆면과 밑면이 만나는 테두리는 {원} 모양이다.",
+        "studentC": "원기둥의 옆면과 밑면이 만나는 테두리는 □ 모양이다.",
+        "answers": [
+          "원"
+        ]
+      },
+      "sourceFingerprint": "05ec80b7a51db43e63588f22dd602072cecf7371f3916a91db0add2c7c2c8e15",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "원기둥의 옆면과 밑면이 만나는 테두리는 {원} 모양이다.",
+      "cFrozenStudentSentence": "원기둥의 옆면과 밑면이 만나는 테두리는 □ 모양이다.",
+      "cProposedAnswers": [
+        "원"
+      ],
+      "cStudentAfter": "원기둥의 옆면과 밑면이 만나는 테두리는 □ 모양이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥의 옆면과 밑면이 만나는 테두리는 {원} 모양이다.",
+      "cStudentSentence": "원기둥의 옆면과 밑면이 만나는 테두리는 □ 모양이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥에서 옆면과 밑면이 만나는 테두리는 어떤 모양인가요? 밑면의 모양과 관련지어 이유를 설명하시오.",
+        "answer": "원 모양이다. 밑면이 원이라서 그 둘레가 옆면과 만나는 테두리가 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원 모양",
+              "원"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면이 원이다",
+              "밑면의 둘레이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 옆면과 밑면이 만나는 테두리는 {원} 모양이다.",
+        "acceptedAnswers": [
+          [
+            "원"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "29475536cb217b3eb9707fdee9efca5289c3499123a7e7aa2ff99eaf808f454d",
+      "questionRevision": "planning-e5e6-20261006-29475536cb21",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "위쪽 원이 아래쪽 원보다 큰 컵 모양의 입체는 원기둥인가요? 원기둥의 두 밑면 조건과 비교해 설명하시오.",
+      "bAnswer": "원기둥이 아니다. 원기둥은 두 밑면의 크기가 같아야 하는데 이 입체는 위아래 원의 크기가 다르기 때문이다.",
+      "bGoal": "밑면 조건으로 원기둥이 아닌 입체를 가려낸다.",
+      "bReason": "판단과 근거를 함께 묻는 적용 문항이며 글만으로 상황이 완전하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원기둥이 아니다",
+            "아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 밑면의 크기가 달라서",
+            "원기둥은 밑면 크기가 같아야 한다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "원기둥이 되려면 두 밑면의 크기가 반드시 {같아}야 한다. 위아래 원의 크기가 다른 컵 모양은 원기둥이 {아니다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같아",
+            "똑같아"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다",
+            "아닙니다"
+          ]
+        }
+      ],
+      "cReason": "원문은 '원기둥이 아니다'라는 문장 전체를 빈칸으로 삼아 모호하므로, 조건과 판단을 나누어 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2564,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc21",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "원기둥이 아닌 입체 가려내기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "위아래 원의 크기가 다른 컵 모양은 두 밑면의 크기가 달라 {원기둥이 아니다}.",
+        "studentC": "위아래 원의 크기가 다른 컵 모양은 두 밑면의 크기가 달라 □.",
+        "answers": [
+          "원기둥이 아니다"
+        ]
+      },
+      "sourceFingerprint": "1908788b13b334bc42a65ee72be8b547dbbfc53f4db773391704bfe7fdba1351",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cProposedAnswers": [
+        "같아",
+        "아니다"
+      ],
+      "cStudentAfter": "원기둥이 되려면 두 밑면의 크기가 반드시 □야 한다. 위아래 원의 크기가 다른 컵 모양은 원기둥이 □.",
+      "cMarkedSentence": "원기둥이 되려면 두 밑면의 크기가 반드시 {같아}야 한다. 위아래 원의 크기가 다른 컵 모양은 원기둥이 {아니다}.",
+      "cStudentSentence": "원기둥이 되려면 두 밑면의 크기가 반드시 □야 한다. 위아래 원의 크기가 다른 컵 모양은 원기둥이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같아",
+          "equivalents": [
+            "똑같아"
+          ]
+        },
+        {
+          "key": "아니다",
+          "equivalents": [
+            "아닙니다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위쪽 원이 아래쪽 원보다 큰 컵 모양의 입체는 원기둥인가요? 원기둥의 두 밑면 조건과 비교해 설명하시오.",
+        "answer": "원기둥이 아니다. 원기둥은 두 밑면의 크기가 같아야 하는데 이 입체는 위아래 원의 크기가 다르기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원기둥이 아니다",
+              "아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑면의 크기가 달라서",
+              "원기둥은 밑면 크기가 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥이 되려면 두 밑면의 크기가 반드시 {같아}야 한다. 위아래 원의 크기가 다른 컵 모양은 원기둥이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "같아",
+            "똑같아"
+          ],
+          [
+            "아니다",
+            "아닙니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c7892ec455b24bdb6894d5cd460f1fd2ffadd67ae27d2b745658fff44f3732be",
+      "questionRevision": "planning-e5e6-20261006-c7892ec455b2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc22",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 같은가요? 밑면의 모양과 관련지어 이유를 설명하시오.",
+      "bAnswer": "같다. 밑면이 원이라 어느 쪽에서 봐도 가로 길이가 지름으로 같고 세로는 높이이므로 같은 직사각형이 보이기 때문이다.",
+      "bGoal": "밑면이 원이라는 점으로 어느 방향에서도 같은 모양이 보임을 설명한다.",
+      "bReason": "예/아니오 판단에 그치지 않고 밑면의 모양과 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면이 원이라 어느 방향에서도 지름이 같다",
+            "원이라서 폭이 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 {같다}.",
+      "cReason": "앞과 옆에서 본 모양의 관계를 '같다'로 짧게 묻는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2565,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc22",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "앞과 옆에서 본 모양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 {같다}.",
+        "studentC": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "4d113295577f7bc02b4390ae6ae52826200cbe1de7846c21e65a28694480c882",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 {같다}.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 {같다}.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 같은가요? 밑면의 모양과 관련지어 이유를 설명하시오.",
+        "answer": "같다. 밑면이 원이라 어느 쪽에서 봐도 가로 길이가 지름으로 같고 세로는 높이이므로 같은 직사각형이 보이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같다",
+              "똑같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면이 원이라 어느 방향에서도 지름이 같다",
+              "원이라서 폭이 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원기둥을 앞에서 본 모양과 옆에서 본 모양은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "300bc5bf686e283a6a781b8c0f62c5fc7538f93f979f379047db909194f9219c",
+      "questionRevision": "planning-e5e6-20261006-300bc5bf686e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "전개도의 원이 두 개임을 확인한다.",
+      "bReason": "c1에서 이미 원 두 개를 묻고 있어 별도 문항의 가치가 낮다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c1과 같은 내용의 개수 확인이라 중복이다.",
+      "exclusionReason": "e6-2-6-2-c1과 중복이다. 대체 ID: e6-2-6-2-c1",
+      "exampleNeeded": false,
+      "sourceIndex": 2566,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc1",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "원기둥의 전개도에 있는 원의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 전개도에는 크기가 같은 원이 {$2$개} 있다.",
+        "studentC": "원기둥의 전개도에는 크기가 같은 원이 □ 있다.",
+        "answers": [
+          "$2$개"
+        ]
+      },
+      "sourceFingerprint": "b94a67c7dec84cbee7115047f1ed50b13b5e221e36476f321b41ad0897b4c552",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e6-2-6-2-c1과 중복이다. 대체 ID: e6-2-6-2-c1",
+        "cloze": "e6-2-6-2-c1과 중복이다. 대체 ID: e6-2-6-2-c1"
+      },
+      "proposalFingerprint": "0be28b75291289d395ecdae154940ef03b7f6d74ea4bebfcad2124bb09aff039",
+      "questionRevision": "planning-e5e6-20261006-0be28b752912",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "옆면이 직사각형임을 확인한다.",
+      "bReason": "c1의 직사각형 답과 겹치고 단순 이름 확인에 그친다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c1에서 직사각형을 이미 묻는다.",
+      "exclusionReason": "e6-2-6-2-c1과 중복이다. 대체 ID: e6-2-6-2-c1",
+      "exampleNeeded": false,
+      "sourceIndex": 2567,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc2",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "전개도의 옆면 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 전개도에서 옆면은 {직사각형} 모양이다.",
+        "studentC": "원기둥의 전개도에서 옆면은 □ 모양이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "8499d2df8bebb4ee2a37790faae3e1a141dbbbfdc306b17071b42c5057d2bf82",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e6-2-6-2-c1과 중복이다. 대체 ID: e6-2-6-2-c1",
+        "cloze": "e6-2-6-2-c1과 중복이다. 대체 ID: e6-2-6-2-c1"
+      },
+      "proposalFingerprint": "d7f8fd62d6888df95de4d7b4d325ddbd1568a0fb2832fab731735a870709432e",
+      "questionRevision": "planning-e5e6-20261006-d7f8fd62d688",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "두 밑면 사이를 잇는 변이 높이와 같음을 안다.",
+      "bReason": "c3과 같은 관계를 표현만 바꿔 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c3 C와 같은 답(높이)을 묻는 중복이다.",
+      "exclusionReason": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 2568,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc3",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "옆면에서 두 밑면 사이를 잇는 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 전개도에서 옆면의 두 밑면 사이를 잇는 변은 길이가 원기둥의 {높이}와 같다.",
+        "studentC": "원기둥의 전개도에서 옆면의 두 밑면 사이를 잇는 변은 길이가 원기둥의 □와 같다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "sourceFingerprint": "501caeb1db32c494ced2c49fe1788bd9a2134d9402c5eabb66b28411615f3181",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3",
+        "cloze": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3"
+      },
+      "proposalFingerprint": "1263acc8c7ae200d25f39f7ebb5efc47fbb7be2da3849d0dc9b5c9bb270fbbea",
+      "questionRevision": "planning-e5e6-20261006-1263acc8c7ae",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "밑면과 맞닿는 변이 밑면 둘레와 같음을 안다.",
+      "bReason": "c2와 같은 성질이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c2 C와 답이 같은 중복이다.",
+      "exclusionReason": "e6-2-6-2-c2와 중복이다. 대체 ID: e6-2-6-2-c2",
+      "exampleNeeded": false,
+      "sourceIndex": 2569,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc4",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "옆면에서 밑면과 맞닿는 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 전개도에서 옆면의 밑면과 맞닿는 변은 길이가 {밑면의 둘레}와 같다.",
+        "studentC": "원기둥의 전개도에서 옆면의 밑면과 맞닿는 변은 길이가 □와 같다.",
+        "answers": [
+          "밑면의 둘레"
+        ]
+      },
+      "sourceFingerprint": "5ac976c353a1c3629245f3b5a2d8ff8ae01f2c3ea01004e63d24b9474ce9847d",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e6-2-6-2-c2와 중복이다. 대체 ID: e6-2-6-2-c2",
+        "cloze": "e6-2-6-2-c2와 중복이다. 대체 ID: e6-2-6-2-c2"
+      },
+      "proposalFingerprint": "fb3291a6a0462765ad84cc27cb189e35f6b08e5bef7d7c166400687ae86215a2",
+      "questionRevision": "planning-e5e6-20261006-fb3291a6a046",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "원기둥 전개도를 접은 입체의 이름을 말하는 원문 목표를 검토한다.",
+      "bReason": "질문 안의 원기둥이라는 이름을 답으로 되풀이할 뿐, 옆면·밑면의 모양이나 길이 관계를 설명할 목표가 없다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'원기둥의 전개도를 접으면 다시 □'는 앞의 원기둥을 그대로 옮겨 쓰면 된다.",
+      "exclusionReason": "B와 C에서만 제외. e6-2-6-2-c1의 원 두 개와 직사각형, c2·c3의 펼친 옆면 길이 관계로 원기둥 전개도 이해를 확인한다. 원문·ID는 보존한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexRubricReview": "Direct deletion and copying review: only requested mathematical meanings are required; alternatives are separate strings.",
+      "sourceIndex": 2570,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc5",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "전개도를 접으면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 전개도를 접으면 다시 {원기둥}이 된다.",
+        "studentC": "원기둥의 전개도를 접으면 다시 □이 된다.",
+        "answers": [
+          "원기둥"
+        ]
+      },
+      "sourceFingerprint": "9a908adb309daa9001caacd140df9006959efd1b26a6fa2842a5a748b9e095d6",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B와 C에서만 제외. e6-2-6-2-c1의 원 두 개와 직사각형, c2·c3의 펼친 옆면 길이 관계로 원기둥 전개도 이해를 확인한다. 원문·ID는 보존한다.",
+        "cloze": "B와 C에서만 제외. e6-2-6-2-c1의 원 두 개와 직사각형, c2·c3의 펼친 옆면 길이 관계로 원기둥 전개도 이해를 확인한다. 원문·ID는 보존한다."
+      },
+      "proposalFingerprint": "5d48e0a7831187f98d070f6bde60bddb45de8c741e02959358a8e26326e51172",
+      "questionRevision": "planning-e5e6-20261006-5d48e0a78311",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "원기둥의 전개도에서 두 원은 옆면 직사각형의 어느 변들에 붙어야 하나요?",
+      "bAnswer": "밑면 둘레와 길이가 같은, 서로 마주 보는 두 변에 원을 하나씩 붙인다.",
+      "bGoal": "두 밑면이 옆면의 마주 보는 변에 하나씩 붙는 배치를 안다.",
+      "bReason": "전개도를 그리거나 판별할 때 쓰는 위치 관계를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 마주 보는 두 변",
+            "맞은편 변",
+            "반대쪽 두 변"
+          ]
+        },
+        {
+          "anyOf": [
+            "하나씩",
+            "변마다 한 개씩",
+            "각 변에 원 하나"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "원기둥의 전개도에서 두 원은 옆면의 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+      "cReason": "원이 옆면의 마주 보는 두 변에 하나씩 붙는다는 배치 조건을 묻는다.",
+      "synonymNotes": "마주 보는, 맞은편, 반대쪽은 같은 뜻으로 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2571,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc6",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "두 원이 붙는 자리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 전개도에서 두 원은 옆면의 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+        "studentC": "원기둥의 전개도에서 두 원은 옆면의 □ 두 변에 하나씩 붙는다.",
+        "answers": [
+          "서로 마주 보는"
+        ]
+      },
+      "sourceFingerprint": "d1f139ab4cba723e164d1bf5c6489d41a4e79a6d4f14dfd35776fb6954be1ffb",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cFrozenDefinition": "원기둥의 전개도에서 두 원은 옆면의 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+      "cFrozenStudentSentence": "원기둥의 전개도에서 두 원은 옆면의 □ 두 변에 하나씩 붙는다.",
+      "cProposedAnswers": [
+        "서로 마주 보는"
+      ],
+      "cStudentAfter": "원기둥의 전개도에서 두 원은 옆면의 □ 두 변에 하나씩 붙는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "서로 마주 보는"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥의 전개도에서 두 원은 옆면의 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+      "cStudentSentence": "원기둥의 전개도에서 두 원은 옆면의 □ 두 변에 하나씩 붙는다.",
+      "cSlotAnswers": [
+        {
+          "key": "서로 마주 보는",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥의 전개도에서 두 원은 옆면 직사각형의 어느 변들에 붙어야 하나요?",
+        "answer": "밑면 둘레와 길이가 같은, 서로 마주 보는 두 변에 원을 하나씩 붙인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 마주 보는 두 변",
+              "맞은편 변",
+              "반대쪽 두 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "하나씩",
+              "변마다 한 개씩",
+              "각 변에 원 하나"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 전개도에서 두 원은 옆면의 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+        "acceptedAnswers": [
+          [
+            "서로 마주 보는"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7b8bfdc984726afa6696fb1373ac80379421864e7c455274e43233e1ad3c3517",
+      "questionRevision": "planning-e5e6-20261006-7b8bfdc98472",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "자른 선의 길이가 높이와 같음을 안다.",
+      "bReason": "높이 방향 변을 묻는 c3과 같은 내용이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c3 C와 같은 답(높이)을 묻는다.",
+      "exclusionReason": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 2572,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc7",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "자른 선의 길이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "옆면을 자른 곧은 선의 길이는 원기둥의 {높이}와 같다.",
+        "studentC": "옆면을 자른 곧은 선의 길이는 원기둥의 □와 같다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "sourceFingerprint": "bedd45250119c2a16a20617cf0f4b8ae2f3784a2f49096f362265c49337d62e7",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3",
+        "cloze": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3"
+      },
+      "proposalFingerprint": "e4ca1f073eeefa559b55a3ffb2fabadc5145551c21870490beabe4e42bebf94f",
+      "questionRevision": "planning-e5e6-20261006-e4ca1f073eee",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc8",
+      "bDecision": "revise",
+      "bPrompt": "전개도에서 옆면의 두 변에 붙인 두 원의 크기가 서로 다르면 원기둥의 전개도가 될 수 있나요? 까닭도 쓰시오.",
+      "bAnswer": "될 수 없다. 원기둥의 두 밑면은 크기가 같기 때문이다.",
+      "bGoal": "원기둥의 두 밑면은 크기가 같다는 조건으로 전개도를 판별한다.",
+      "bReason": "예/아니오 판단에 근거를 붙여 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "될 수 없다",
+            "아니다",
+            "원기둥의 전개도가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 밑면은 크기가 같다",
+            "두 밑면이 합동이다",
+            "두 밑면은 똑같은 원이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "원기둥의 두 밑면은 크기가 서로 {같다}. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 {아니다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다",
+            "합동이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다",
+            "될 수 없다"
+          ]
+        }
+      ],
+      "cReason": "원 크기가 같아야 한다는 이유와 판정 결과를 두 빈칸으로 나누고 동치 표현을 허용한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2573,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc8",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "크기가 다른 두 원",
+        "kind": "성질",
+        "level": "하",
+        "definition": "전개도에 밑면으로 붙인 두 원의 크기가 다르면 원기둥의 전개도가 {아니다}.",
+        "studentC": "전개도에 밑면으로 붙인 두 원의 크기가 다르면 원기둥의 전개도가 □.",
+        "answers": [
+          "아니다"
+        ]
+      },
+      "sourceFingerprint": "c1b9009c68ee2213900220d0b7df448d137bb076be42be6c63f2a4af1c7006d6",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cProposedAnswers": [
+        "같다",
+        "아니다"
+      ],
+      "cStudentAfter": "원기둥의 두 밑면은 크기가 서로 □. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 □.",
+      "cMarkedSentence": "원기둥의 두 밑면은 크기가 서로 {같다}. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 {아니다}.",
+      "cStudentSentence": "원기둥의 두 밑면은 크기가 서로 □. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다",
+            "합동이다"
+          ]
+        },
+        {
+          "key": "아니다",
+          "equivalents": [
+            "될 수 없다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전개도에서 옆면의 두 변에 붙인 두 원의 크기가 서로 다르면 원기둥의 전개도가 될 수 있나요? 까닭도 쓰시오.",
+        "answer": "될 수 없다. 원기둥의 두 밑면은 크기가 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "될 수 없다",
+              "아니다",
+              "원기둥의 전개도가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑면은 크기가 같다",
+              "두 밑면이 합동이다",
+              "두 밑면은 똑같은 원이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 두 밑면은 크기가 서로 {같다}. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다",
+            "합동이다"
+          ],
+          [
+            "아니다",
+            "될 수 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4d1b9195d318c73e1348a122c2a180bacd23fdc6a0b64f5235784529868692cf",
+      "questionRevision": "planning-e5e6-20261006-4d1b9195d318",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc13",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "원과 맞닿지 않는 변이 높이와 같음을 안다.",
+      "bReason": "c3과 같은 관계의 다른 표현이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c3 C와 답이 같다.",
+      "exclusionReason": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 2574,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc13",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "원과 맞닿지 않는 두 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "옆면 직사각형에서 원과 맞닿지 않는 두 변의 길이는 원기둥의 {높이}이다.",
+        "studentC": "옆면 직사각형에서 원과 맞닿지 않는 두 변의 길이는 원기둥의 □이다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "sourceFingerprint": "023f1e6a4d5224c45ad91f54e00eeb77bd2d8244aa46f7562b14952ca9019699",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3",
+        "cloze": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3"
+      },
+      "proposalFingerprint": "77529aa94cf5cc1e998a58838948fda657033ce3e1297dd2fbd04a9ad98bea15",
+      "questionRevision": "planning-e5e6-20261006-77529aa94cf5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc14",
+      "bDecision": "revise",
+      "bPrompt": "전개도에서 두 원을 옆면 직사각형의 같은 변에 붙이면 접었을 때 원기둥이 되지 않습니다. 접으면 어떤 모양이 되는지 설명하시오.",
+      "bAnswer": "두 밑면이 같은 쪽에 겹치고 반대쪽은 뚫려 있어 원기둥이 되지 않는다.",
+      "bGoal": "원이 마주 보는 변에 붙지 않으면 왜 틀린 전개도인지 접는 상상으로 설명한다.",
+      "bReason": "xc6의 위치 규칙을 반대로 확인해 접었을 때의 결과를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 원이 한쪽에서 겹친다",
+            "밑면이 겹친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "반대쪽이 뚫려 있다",
+            "한쪽 끝은 막히지 않는다",
+            "반대쪽에 밑면이 없다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 {밑면이 겹쳐} 원기둥이 되지 않는다.",
+      "cReason": "같은 변에 붙이면 밑면이 겹친다는 결과를 묻는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2575,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc14",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "두 원이 같은 쪽에 있으면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 {밑면이 겹쳐} 원기둥이 되지 않는다.",
+        "studentC": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 □ 원기둥이 되지 않는다.",
+        "answers": [
+          "밑면이 겹쳐"
+        ]
+      },
+      "sourceFingerprint": "ac3a44005e44187af20ea0bd2530fcfc8feed40bc1d3cfe68d639dd96d8d8170",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cFrozenDefinition": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 {밑면이 겹쳐} 원기둥이 되지 않는다.",
+      "cFrozenStudentSentence": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 □ 원기둥이 되지 않는다.",
+      "cProposedAnswers": [
+        "밑면이 겹쳐"
+      ],
+      "cStudentAfter": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 □ 원기둥이 되지 않는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면이 겹쳐"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 {밑면이 겹쳐} 원기둥이 되지 않는다.",
+      "cStudentSentence": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 □ 원기둥이 되지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면이 겹쳐",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전개도에서 두 원을 옆면 직사각형의 같은 변에 붙이면 접었을 때 원기둥이 되지 않습니다. 접으면 어떤 모양이 되는지 설명하시오.",
+        "answer": "두 밑면이 같은 쪽에 겹치고 반대쪽은 뚫려 있어 원기둥이 되지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 원이 한쪽에서 겹친다",
+              "밑면이 겹친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반대쪽이 뚫려 있다",
+              "한쪽 끝은 막히지 않는다",
+              "반대쪽에 밑면이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 {밑면이 겹쳐} 원기둥이 되지 않는다.",
+        "acceptedAnswers": [
+          [
+            "밑면이 겹쳐"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "abd4a381eb44b8289a9f951ef0080e0f25ab3f856d6a47236447be64bf778497",
+      "questionRevision": "planning-e5e6-20261006-abd4a381eb44",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc16",
+      "bDecision": "revise",
+      "bPrompt": "원기둥의 전개도에서 옆면이 정사각형이 되려면 원기둥의 어떤 두 길이가 같아야 하나요?",
+      "bAnswer": "밑면의 둘레와 높이가 같아야 한다.",
+      "bGoal": "옆면의 가로·세로가 각각 무엇인지 이용해 정사각형이 되는 조건을 안다.",
+      "bReason": "옆면의 두 변의 정체를 연결하는 적용 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 둘레",
+            "원주",
+            "밑면 원의 둘레"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이",
+            "원기둥의 높이"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "원기둥에서 밑면의 {둘레}와 높이가 같으면 전개도의 옆면은 정사각형이 된다.",
+      "cReason": "밑면 둘레와 높이가 같을 때 정사각형이 된다는 조건을 한 칸으로 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2576,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc16",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "옆면이 정사각형인 전개도",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥에서 밑면의 {둘레}와 높이가 같으면 전개도의 옆면은 정사각형이 된다.",
+        "studentC": "원기둥에서 밑면의 □와 높이가 같으면 전개도의 옆면은 정사각형이 된다.",
+        "answers": [
+          "둘레"
+        ]
+      },
+      "sourceFingerprint": "681064e316508fd541db4520cc3876e0eac683e86ca0d2e4884448975b2d00ea",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cFrozenDefinition": "원기둥에서 밑면의 {둘레}와 높이가 같으면 전개도의 옆면은 정사각형이 된다.",
+      "cFrozenStudentSentence": "원기둥에서 밑면의 □와 높이가 같으면 전개도의 옆면은 정사각형이 된다.",
+      "cProposedAnswers": [
+        "둘레"
+      ],
+      "cStudentAfter": "원기둥에서 밑면의 □와 높이가 같으면 전개도의 옆면은 정사각형이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "둘레"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥에서 밑면의 {둘레}와 높이가 같으면 전개도의 옆면은 정사각형이 된다.",
+      "cStudentSentence": "원기둥에서 밑면의 □와 높이가 같으면 전개도의 옆면은 정사각형이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "둘레",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥의 전개도에서 옆면이 정사각형이 되려면 원기둥의 어떤 두 길이가 같아야 하나요?",
+        "answer": "밑면의 둘레와 높이가 같아야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 둘레",
+              "원주",
+              "밑면 원의 둘레"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이",
+              "원기둥의 높이"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥에서 밑면의 {둘레}와 높이가 같으면 전개도의 옆면은 정사각형이 된다.",
+        "acceptedAnswers": [
+          [
+            "둘레"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b8ae22b3a2157887bea65e66aad264fe73830e87ecc5f42afeacdafcb476b879",
+      "questionRevision": "planning-e5e6-20261006-b8ae22b3a215",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc18",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "옆면의 변 길이로 원기둥의 높이를 알아낸다.",
+      "bReason": "c3과 같은 성질에 $9$를 그대로 옮기는 사소한 적용이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 구절 답이고 뒤 문장에서 $9\\,\\mathrm{cm}$ 로 답이 드러나 중복 가치가 낮다.",
+      "exclusionReason": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 2577,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc18",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "전개도로 높이 알아내기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "전개도로 만든 원기둥의 높이는 옆면에서 {두 밑면 사이를 잇는 변}의 길이와 같다. 그 변이 $9\\,\\mathrm{cm}$이면 높이도 $9\\,\\mathrm{cm}$이다.",
+        "studentC": "전개도로 만든 원기둥의 높이는 옆면에서 □의 길이와 같다. 그 변이 $9\\,\\mathrm{cm}$이면 높이도 $9\\,\\mathrm{cm}$이다.",
+        "answers": [
+          "두 밑면 사이를 잇는 변"
+        ]
+      },
+      "sourceFingerprint": "de47700e86dc35716aa5a0edd33a85f483ca62609de9218fb916dff2dd8c16e4",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3",
+        "cloze": "e6-2-6-2-c3과 중복이다. 대체 ID: e6-2-6-2-c3"
+      },
+      "proposalFingerprint": "2ba01501a9ad250ec7dd3ccdb31df2464c333704f9dfcee3d0cda2c6366bc688",
+      "questionRevision": "planning-e5e6-20261006-2ba01501a9ad",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc24",
+      "bDecision": "revise",
+      "bPrompt": "가로가 $12\\,\\mathrm{cm}$, 세로가 $5\\,\\mathrm{cm}$인 직사각형을 원기둥의 옆면으로 씁니다. 가로를 밑면 둘레로 할 때와 세로를 밑면 둘레로 할 때 만들어지는 원기둥은 같은가요? 높이는 각각 얼마인가요?",
+      "bAnswer": "서로 다른 원기둥이다. 가로를 밑면 둘레로 하면 높이는 $5\\,\\mathrm{cm}$, 세로를 밑면 둘레로 하면 높이는 $12\\,\\mathrm{cm}$이다.",
+      "bGoal": "같은 직사각형도 밑면 둘레로 쓰는 변에 따라 다른 원기둥이 됨을 안다.",
+      "bReason": "예를 질문에 담아 일반 관계와 구체 높이를 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다르다",
+            "서로 다른 원기둥이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로를 둘레로 하면 높이 $5\\,\\mathrm{cm}$",
+            "높이 $5\\,\\mathrm{cm}$ 와 $12\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "세로를 둘레로 하면 높이 $12\\,\\mathrm{cm}$",
+            "높이 $12\\,\\mathrm{cm}$ 와 $5\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+      "cReason": "어느 변을 밑면 둘레로 쓰느냐에 따라 원기둥이 달라진다는 핵심을 짧게 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2578,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc24",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "가로와 세로를 바꾸어 만든 원기둥",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+        "studentC": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 □이 만들어진다.",
+        "answers": [
+          "다른 원기둥"
+        ]
+      },
+      "sourceFingerprint": "1dba0b1f79f99ef91fa5cff75118f799519c5bc51941c27e9409c15521912e4b",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cFrozenDefinition": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+      "cFrozenStudentSentence": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 □이 만들어진다.",
+      "cProposedAnswers": [
+        "다른 원기둥"
+      ],
+      "cStudentAfter": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 □이 만들어진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다른 원기둥"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+      "cStudentSentence": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 □이 만들어진다.",
+      "cSlotAnswers": [
+        {
+          "key": "다른 원기둥",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로가 $12\\,\\mathrm{cm}$, 세로가 $5\\,\\mathrm{cm}$인 직사각형을 원기둥의 옆면으로 씁니다. 가로를 밑면 둘레로 할 때와 세로를 밑면 둘레로 할 때 만들어지는 원기둥은 같은가요? 높이는 각각 얼마인가요?",
+        "answer": "서로 다른 원기둥이다. 가로를 밑면 둘레로 하면 높이는 $5\\,\\mathrm{cm}$, 세로를 밑면 둘레로 하면 높이는 $12\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "다르다",
+              "서로 다른 원기둥이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로를 둘레로 하면 높이 $5\\,\\mathrm{cm}$",
+              "높이 $5\\,\\mathrm{cm}$ 와 $12\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "세로를 둘레로 하면 높이 $12\\,\\mathrm{cm}$",
+              "높이 $12\\,\\mathrm{cm}$ 와 $5\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+        "acceptedAnswers": [
+          [
+            "다른 원기둥"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b5e9d0421c2cd8368e0917ba7250606e632bb3822660bf92ba6b79b4b8f8d3f9",
+      "questionRevision": "planning-e5e6-20261006-b5e9d0421c2c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc25",
+      "bDecision": "revise",
+      "bPrompt": "원기둥의 옆면에서 밑면과 맞닿는 변의 길이는 밑면의 지름에 어떤 수를 곱해 구하나요? 그 까닭도 쓰시오.",
+      "bAnswer": "원주율을 곱한다. 그 변의 길이는 밑면의 둘레(원주)와 같고, 원주는 지름 $\\times$ 원주율이기 때문이다.",
+      "bGoal": "옆면 변 길이, 밑면 둘레, 지름, 원주율의 관계를 연결한다.",
+      "bReason": "c2에서 배운 관계를 지름과 원주율로 한 단계 확장해 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주율",
+            "원주율을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 변이 밑면의 둘레와 같다",
+            "변의 길이가 원주와 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 {원주율}배이다.",
+      "cReason": "변 길이가 지름의 원주율배라는 연결을 한 칸으로 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2579,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc25",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "옆면의 밑면과 맞닿는 변과 밑면 지름",
+        "kind": "성질",
+        "level": "상",
+        "definition": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 {원주율}배이다.",
+        "studentC": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 □배이다.",
+        "answers": [
+          "원주율"
+        ]
+      },
+      "sourceFingerprint": "d2816ce1abc15051722f41708b80b99f0981021ac392385820f64901bd982d8d",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cFrozenDefinition": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 {원주율}배이다.",
+      "cFrozenStudentSentence": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 □배이다.",
+      "cProposedAnswers": [
+        "원주율"
+      ],
+      "cStudentAfter": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 □배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원주율"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 {원주율}배이다.",
+      "cStudentSentence": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원주율",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥의 옆면에서 밑면과 맞닿는 변의 길이는 밑면의 지름에 어떤 수를 곱해 구하나요? 그 까닭도 쓰시오.",
+        "answer": "원주율을 곱한다. 그 변의 길이는 밑면의 둘레(원주)와 같고, 원주는 지름 $\\times$ 원주율이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주율",
+              "원주율을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 변이 밑면의 둘레와 같다",
+              "변의 길이가 원주와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 {원주율}배이다.",
+        "acceptedAnswers": [
+          [
+            "원주율"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ff24ddf8954bf25f61cbc7c2e471c55302be0f79bd194463b1eae93074439a26",
+      "questionRevision": "planning-e5e6-20261006-ff24ddf8954b",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,2514 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:06:50.900Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc9",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "모서리 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정다면체의 모서리 수는 면의 수와 한 면의 변의 수를 곱해 {$2$}로 나눈다. 모서리 하나를 두 면이 함께 쓰기 때문이다.",
+        "example": {
+          "prompt": "정사면체의 모서리 수를 면의 수와 한 면의 변의 수로 구하면?",
+          "answer": "$6$개"
+        },
+        "studentC": "정다면체의 모서리 수는 면의 수와 한 면의 변의 수를 곱해 □로 나눈다. 모서리 하나를 두 면이 함께 쓰기 때문이다.",
+        "answers": [
+          "$2$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "정다면체의 모서리의 개수를 면의 개수와 한 면의 변의 개수로 구하는 방법을 쓰고, 그렇게 계산하는 이유를 설명하시오. 또 이 방법으로 정육면체의 모서리의 개수를 구하시오.",
+        "bAnswer": "(면의 개수)$\\times$(한 면의 변의 개수)를 $2$로 나눈다. 한 모서리는 두 면의 변이 겹친 것이어서 곱한 값에는 모서리가 두 번씩 세어지기 때문이다. 정육면체는 $6\\times 4\\div 2=12$개이다.",
+        "bGoal": "정다면체의 모서리 수 세는 방법과 근거",
+        "bReason": "무엇으로 세는지와 이유, 적용 대상을 질문에 모두 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "면의 개수와 한 면의 변의 개수를 곱해 $2$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 모서리를 두 면이 함께 쓴다",
+              "모서리가 두 번씩 세어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$개",
+              "$6\\times 4\\div 2=12$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정다면체의 모서리 수는 면의 수와 한 면의 변의 수를 곱한 뒤 {$2$}로 나누어 구한다. 한 모서리가 이웃한 면들의 변으로 겹쳐 세어지기 때문이다.",
+        "cAnswers": [
+          "$2$"
+        ],
+        "cReason": "뒤 문장의 '두 면'이 빈칸 답 $2$를 그대로 알려 줌.",
+        "exampleNeeded": true,
+        "studentLabel": "정다면체의 모서리 수 세기",
+        "learningRole": "procedure",
+        "roleReason": "면과 변의 수로 모서리 세기",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1872,
+        "part": "m1plus",
+        "sourceFingerprint": "5e5f6df27ea4694672722ee4f1beccaa714a18bf8d5481ec0b9633c9f66361d3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1872
+        },
+        "directReview": null,
+        "cMarkedSentence": "정다면체의 모서리 수는 면의 수와 한 면의 변의 수를 곱한 뒤 {$2$}로 나누어 구한다. 한 모서리가 이웃한 면들의 변으로 겹쳐 세어지기 때문이다.",
+        "cSlotAnswers": [
+          "$2$"
+        ],
+        "cStudentSentence": "정다면체의 모서리 수는 면의 수와 한 면의 변의 수를 곱한 뒤 □로 나누어 구한다. 한 모서리가 이웃한 면들의 변으로 겹쳐 세어지기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "90e2bfaacc5781b082136db16d2e374f1b707b59224814ae4b83e72da15cded6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc10",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "꼭짓점 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정다면체의 꼭짓점 수는 면의 수와 한 면의 꼭짓점 수를 곱해, 한 꼭짓점에 모인 면의 수로 {나눈다}. 각 꼭짓점을 그 면의 수만큼 중복해서 세기 때문이다.",
+        "example": {
+          "prompt": "정이십면체의 꼭짓점은?",
+          "answer": "$12$개"
+        },
+        "studentC": "정다면체의 꼭짓점 수는 면의 수와 한 면의 꼭짓점 수를 곱해, 한 꼭짓점에 모인 면의 수로 □. 각 꼭짓점을 그 면의 수만큼 중복해서 세기 때문이다.",
+        "answers": [
+          "나눈다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "정다면체의 꼭짓점의 개수를 면의 개수, 한 면의 꼭짓점의 개수, 한 꼭짓점에 모인 면의 개수로 구하는 방법과 이유를 쓰시오. 또 정삼각형 $8$개로 둘러싸이고 한 꼭짓점에 면이 $4$개 모이는 정팔면체의 꼭짓점의 개수를 구하시오.",
+        "bAnswer": "(면의 개수)$\\times$(한 면의 꼭짓점의 개수)를 한 꼭짓점에 모인 면의 개수로 나눈다. 꼭짓점 하나가 거기에 모인 면의 개수만큼 겹쳐 세어지기 때문이다. 정팔면체는 $8\\times 3\\div 4=6$개이다.",
+        "bGoal": "정다면체의 꼭짓점 수 세는 방법과 근거",
+        "bReason": "세 가지 수의 쓰임과 이유를 묻고 계산에 필요한 정팔면체의 정보를 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "곱한 값을 한 꼭짓점에 모인 면의 개수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점 하나가 모인 면의 개수만큼 겹쳐 세어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$개",
+              "$8\\times 3\\div 4=6$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "곱한 뒤의 연산을 고르게 하고 이유가 뒤따라 분명한 문장.",
+        "exampleNeeded": true,
+        "studentLabel": "정다면체의 꼭짓점 수 세기",
+        "learningRole": "procedure",
+        "roleReason": "겹쳐 센 꼭짓점을 나누어 세기",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1873,
+        "part": "m1plus",
+        "sourceFingerprint": "52f14816181850200b6bdd90ccd1ec15e328ce29451598a43e3a7f877ff9e63e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1873
+        },
+        "directReview": null,
+        "cFrozenSentence": "정다면체의 꼭짓점 수는 면의 수와 한 면의 꼭짓점 수를 곱해, 한 꼭짓점에 모인 면의 수로 □. 각 꼭짓점을 그 면의 수만큼 중복해서 세기 때문이다.",
+        "cFrozenDefinition": "정다면체의 꼭짓점 수는 면의 수와 한 면의 꼭짓점 수를 곱해, 한 꼭짓점에 모인 면의 수로 {나눈다}. 각 꼭짓점을 그 면의 수만큼 중복해서 세기 때문이다.",
+        "cFrozenAnswers": [
+          "나눈다"
+        ],
+        "cMarkedSentence": "정다면체의 꼭짓점 수는 면의 수와 한 면의 꼭짓점 수를 곱해, 한 꼭짓점에 모인 면의 수로 {나눈다}. 각 꼭짓점을 그 면의 수만큼 중복해서 세기 때문이다.",
+        "cSlotAnswers": [
+          "나눈다"
+        ],
+        "cStudentSentence": "정다면체의 꼭짓점 수는 면의 수와 한 면의 꼭짓점 수를 곱해, 한 꼭짓점에 모인 면의 수로 □. 각 꼭짓점을 그 면의 수만큼 중복해서 세기 때문이다.",
+        "cAnswers": [
+          "나눈다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나눈다",
+            "equivalentAnswers": [
+              "나눈다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나눈다"
+          ]
+        ],
+        "proposalFingerprint": "67f9391e3901fed7ad5e5c7507930214fe2fde633083c4b2d6755844adcf9748"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc11",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정육면체와 정팔면체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정육면체와 정팔면체는 모서리가 $12$개로 같고, 면과 {꼭짓점}의 개수가 서로 {바뀌어} 있다.",
+        "example": {
+          "prompt": "정팔면체의 꼭짓점 수와 같은 것은 정육면체의 무엇의 수?",
+          "answer": "면"
+        },
+        "studentC": "정육면체와 정팔면체는 모서리가 $12$개로 같고, 면과 □의 개수가 서로 □ 있다.",
+        "answers": [
+          "꼭짓점",
+          "바뀌어"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "정육면체와 정팔면체의 면, 꼭짓점, 모서리의 개수를 각각 쓰고, 두 도형의 개수를 비교하여 알 수 있는 관계를 설명하시오.",
+        "bAnswer": "정육면체는 면 $6$개, 꼭짓점 $8$개, 모서리 $12$개이고, 정팔면체는 면 $8$개, 꼭짓점 $6$개, 모서리 $12$개이다. 모서리의 개수는 같고, 면과 꼭짓점의 개수는 서로 맞바뀌어 있다.",
+        "bGoal": "정육면체와 정팔면체의 개수 관계",
+        "bReason": "두 도형의 무엇을 비교하는지 세 개수로 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정육면체는 면 $6$개, 꼭짓점 $8$개, 모서리 $12$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "정팔면체는 면 $8$개, 꼭짓점 $6$개, 모서리 $12$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "면과 꼭짓점의 개수가 서로 바뀌어 있다",
+              "한 도형의 면의 개수가 다른 도형의 꼭짓점의 개수와 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정육면체와 정팔면체는 모서리가 $12$개로 같다. 또 정육면체의 면의 개수 $6$은 정팔면체의 {꼭짓점}의 개수와 같고, 정육면체의 꼭짓점의 개수 {$8$}은 정팔면체의 면의 개수와 같다.",
+        "cAnswers": [
+          "꼭짓점",
+          "$8$"
+        ],
+        "cReason": "'서로 바뀌어 있다'가 무엇과 무엇이 같다는 뜻인지 드러나지 않음.",
+        "learningRole": "definition",
+        "roleReason": "면과 꼭짓점 개수가 맞바뀌는 관계",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1874,
+        "part": "m1plus",
+        "sourceFingerprint": "b7186e48192731f38cdcf13e75e7550efc331ec60e40f423795e5c25025b228f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1874
+        },
+        "directReview": null,
+        "cMarkedSentence": "정육면체와 정팔면체는 모서리가 $12$개로 같다. 또 정육면체의 면의 개수 $6$은 정팔면체의 {꼭짓점}의 개수와 같고, 정육면체의 꼭짓점의 개수 {$8$}은 정팔면체의 면의 개수와 같다.",
+        "cSlotAnswers": [
+          "꼭짓점",
+          "$8$"
+        ],
+        "cStudentSentence": "정육면체와 정팔면체는 모서리가 $12$개로 같다. 또 정육면체의 면의 개수 $6$은 정팔면체의 □의 개수와 같고, 정육면체의 꼭짓점의 개수 □은 정팔면체의 면의 개수와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$8$",
+            "equivalentAnswers": [
+              "$8$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "꼭짓점"
+          ],
+          [
+            "$8$"
+          ]
+        ],
+        "proposalFingerprint": "32ae113c7e6dc2ba3bb575f36ca57e3d61e3edfe1eb06c932e26b1945f3559dd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc12",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정십이면체와 정이십면체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정십이면체와 정이십면체도 모서리가 {$30$}개로 같고, 면과 꼭짓점의 개수가 {서로 바뀐다}.",
+        "example": {
+          "prompt": "정이십면체의 면의 수와 같은 것은 정십이면체의 무엇의 수?",
+          "answer": "꼭짓점"
+        },
+        "studentC": "정십이면체와 정이십면체도 모서리가 □개로 같고, 면과 꼭짓점의 개수가 □.",
+        "answers": [
+          "$30$",
+          "서로 바뀐다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "정십이면체와 정이십면체의 면, 꼭짓점, 모서리의 개수를 각각 쓰고, 두 도형의 개수를 비교하여 알 수 있는 관계를 설명하시오.",
+        "bAnswer": "정십이면체는 면 $12$개, 꼭짓점 $20$개, 모서리 $30$개이고, 정이십면체는 면 $20$개, 꼭짓점 $12$개, 모서리 $30$개이다. 모서리의 개수는 같고, 면과 꼭짓점의 개수는 서로 맞바뀌어 있다.",
+        "bGoal": "정십이면체와 정이십면체의 개수 관계",
+        "bReason": "'도'로 이어지던 문장을 떼어 두 도형과 비교할 개수를 직접 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정십이면체는 면 $12$개, 꼭짓점 $20$개, 모서리 $30$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "정이십면체는 면 $20$개, 꼭짓점 $12$개, 모서리 $30$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "면과 꼭짓점의 개수가 서로 바뀌어 있다",
+              "한 도형의 면의 개수가 다른 도형의 꼭짓점의 개수와 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정십이면체와 정이십면체는 모서리가 {$30$}개로 같다. 또 정십이면체의 면의 개수 $12$는 정이십면체의 {꼭짓점}의 개수와 같고, 정십이면체의 꼭짓점의 개수 {$20$}은 정이십면체의 면의 개수와 같다.",
+        "cAnswers": [
+          "$30$",
+          "꼭짓점",
+          "$20$"
+        ],
+        "cReason": "'도'가 앞 문항을 가리키고 '서로 바뀐다' 전체가 빈칸이라 뜻이 모호함.",
+        "learningRole": "definition",
+        "roleReason": "면과 꼭짓점 개수가 맞바뀌는 관계",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1875,
+        "part": "m1plus",
+        "sourceFingerprint": "73e58d80d8fb0972de4ce1d11d202be120c1b97d6d54c58ff4ae2df4d62918bd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1875
+        },
+        "directReview": null,
+        "cMarkedSentence": "정십이면체와 정이십면체는 모서리가 {$30$}개로 같다. 또 정십이면체의 면의 개수 $12$는 정이십면체의 {꼭짓점}의 개수와 같고, 정십이면체의 꼭짓점의 개수 {$20$}은 정이십면체의 면의 개수와 같다.",
+        "cSlotAnswers": [
+          "$30$",
+          "꼭짓점",
+          "$20$"
+        ],
+        "cStudentSentence": "정십이면체와 정이십면체는 모서리가 □개로 같다. 또 정십이면체의 면의 개수 $12$는 정이십면체의 □의 개수와 같고, 정십이면체의 꼭짓점의 개수 □은 정이십면체의 면의 개수와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$30$",
+            "equivalentAnswers": [
+              "$30$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$20$",
+            "equivalentAnswers": [
+              "$20$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$30$"
+          ],
+          [
+            "꼭짓점"
+          ],
+          [
+            "$20$"
+          ]
+        ],
+        "proposalFingerprint": "d2dc2d90008b21f13335f5e72b91875bd410acbfba38639c8d2b34aa194d493f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc13",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정사면체의 면과 꼭짓점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사면체는 면과 꼭짓점이 모두 {$4$}개로 개수가 {같다}.",
+        "example": {
+          "prompt": "정사면체의 모서리는?",
+          "answer": "$6$개"
+        },
+        "studentC": "정사면체는 면과 꼭짓점이 모두 □개로 개수가 □.",
+        "answers": [
+          "$4$",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "면과 꼭짓점이 $4$개씩이라는 수치 하나뿐이라 서술할 내용이 없음.",
+        "cDecision": "keep",
+        "cReason": "면과 꼭짓점의 개수가 같음을 확인하는 짧은 비교 빈칸.",
+        "exclusionReason": "B 제외: 정사면체의 수치 하나를 적는 암기 형식이며 m1-07-02-xc20 B의 정사면체 내용과 중복됨.",
+        "learningRole": "definition",
+        "roleReason": "정사면체의 면과 꼭짓점 개수",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1876,
+        "part": "m1plus",
+        "sourceFingerprint": "c2db06db8d92a172aa9bc5bf60ea3da77952eaa0abeb33bf05c1625687e3c719",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1876
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "정사면체는 면과 꼭짓점이 모두 □개로 개수가 □.",
+        "cFrozenDefinition": "정사면체는 면과 꼭짓점이 모두 {$4$}개로 개수가 {같다}.",
+        "cFrozenAnswers": [
+          "$4$",
+          "같다"
+        ],
+        "cMarkedSentence": "정사면체는 면과 꼭짓점이 모두 {$4$}개로 개수가 {같다}.",
+        "cSlotAnswers": [
+          "$4$",
+          "같다"
+        ],
+        "cStudentSentence": "정사면체는 면과 꼭짓점이 모두 □개로 개수가 □.",
+        "cAnswers": [
+          "$4$",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "f6f1c66a2c64cd932c4f595864ed80f4f3db3d70f5ccad9b9d97ec44d7b20fde"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc14",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정사면체의 전개도",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사면체의 전개도는 정삼각형 {$4$}개로 이루어지며, 큰 정삼각형의 세 변의 {중점}을 이은 모양이 그 가운데 하나이다.",
+        "example": {
+          "prompt": "정팔면체의 전개도에 있는 정삼각형은 몇 개?",
+          "answer": "$8$개"
+        },
+        "studentC": "정사면체의 전개도는 정삼각형 □개로 이루어지며, 큰 정삼각형의 세 변의 □을 이은 모양이 그 가운데 하나이다.",
+        "answers": [
+          "$4$",
+          "중점"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "정사면체의 전개도는 어떤 다각형 몇 개로 이루어지는지 쓰고, 큰 정삼각형 하나를 나누어 정사면체의 전개도를 만드는 방법을 설명하시오.",
+        "bAnswer": "정삼각형 $4$개로 이루어진다. 큰 정삼각형의 세 변의 중점을 이으면 합동인 작은 정삼각형 $4$개로 나뉘어 전개도가 된다.",
+        "bGoal": "정사면체의 전개도 구성",
+        "bReason": "전개도의 구성과 만드는 방법 중 무엇을 답하는지 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형 $4$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "큰 정삼각형의 세 변의 중점을 잇는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "면의 개수와 만드는 점을 묻는 분명한 빈칸.",
+        "learningRole": "definition",
+        "roleReason": "정사면체의 전개도 모양",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1877,
+        "part": "m1plus",
+        "sourceFingerprint": "daa17c6f5bbc2147d1bacf3c5e21c60856563cf1d58c496ef96c3529aa8de615",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1877
+        },
+        "directReview": null,
+        "cFrozenSentence": "정사면체의 전개도는 정삼각형 □개로 이루어지며, 큰 정삼각형의 세 변의 □을 이은 모양이 그 가운데 하나이다.",
+        "cFrozenDefinition": "정사면체의 전개도는 정삼각형 {$4$}개로 이루어지며, 큰 정삼각형의 세 변의 {중점}을 이은 모양이 그 가운데 하나이다.",
+        "cFrozenAnswers": [
+          "$4$",
+          "중점"
+        ],
+        "cMarkedSentence": "정사면체의 전개도는 정삼각형 {$4$}개로 이루어지며, 큰 정삼각형의 세 변의 {중점}을 이은 모양이 그 가운데 하나이다.",
+        "cSlotAnswers": [
+          "$4$",
+          "중점"
+        ],
+        "cStudentSentence": "정사면체의 전개도는 정삼각형 □개로 이루어지며, 큰 정삼각형의 세 변의 □을 이은 모양이 그 가운데 하나이다.",
+        "cAnswers": [
+          "$4$",
+          "중점"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중점",
+            "equivalentAnswers": [
+              "중점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "중점"
+          ]
+        ],
+        "proposalFingerprint": "e7631ab83281cc9dbc383de83d89dbff6b0d4b6dd6cb3cc3f68908daf02d1702"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc15",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정사면체 · 정육면체의 한 꼭짓점에 모인 각의 합",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 꼭짓점에 모인 면의 각을 더하면 정사면체는 {$180^\\circ$}, 정육면체는 {$270^\\circ$}이다.",
+        "example": {
+          "prompt": "정팔면체의 한 꼭짓점에 모인 면의 각을 더하면 몇 도?",
+          "answer": "$240^\\circ$"
+        },
+        "studentC": "한 꼭짓점에 모인 면의 각을 더하면 정사면체는 □, 정육면체는 □이다.",
+        "answers": [
+          "$180^\\circ$",
+          "$270^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "정사면체, 정육면체, 정팔면체에서 한 꼭짓점에 모인 각의 크기의 합을 각각 식을 세워 구하시오.",
+        "bAnswer": "정사면체는 $60^\\circ\\times 3=180^\\circ$, 정육면체는 $90^\\circ\\times 3=270^\\circ$, 정팔면체는 $60^\\circ\\times 4=240^\\circ$이다.",
+        "bGoal": "한 꼭짓점에 모인 각의 합 계산하기",
+        "bReason": "어느 도형의 합을 구하는지 지정하고 식으로 구하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정사면체는 $180^\\circ$",
+              "$60^\\circ\\times 3=180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정육면체는 $270^\\circ$",
+              "$90^\\circ\\times 3=270^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정팔면체는 $240^\\circ$",
+              "$60^\\circ\\times 4=240^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 도형의 각의 합을 계산해 채우는 짧은 계산 빈칸.",
+        "learningRole": "application",
+        "roleReason": "내각과 모인 면의 수로 각의 합 계산",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1878,
+        "part": "m1plus",
+        "sourceFingerprint": "f35f62af5ece246b139079c03df2d888af8746edc38e01f83b8e170c8aec1589",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1878
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 꼭짓점에 모인 면의 각을 더하면 정사면체는 □, 정육면체는 □이다.",
+        "cFrozenDefinition": "한 꼭짓점에 모인 면의 각을 더하면 정사면체는 {$180^\\circ$}, 정육면체는 {$270^\\circ$}이다.",
+        "cFrozenAnswers": [
+          "$180^\\circ$",
+          "$270^\\circ$"
+        ],
+        "cMarkedSentence": "한 꼭짓점에 모인 면의 각을 더하면 정사면체는 {$180^\\circ$}, 정육면체는 {$270^\\circ$}이다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "$270^\\circ$"
+        ],
+        "cStudentSentence": "한 꼭짓점에 모인 면의 각을 더하면 정사면체는 □, 정육면체는 □이다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "$270^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$270^\\circ$",
+            "equivalentAnswers": [
+              "$270^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "$270^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "6ec75546dbe5cae450796280e309c01f97792a271adb37a747a432157e467fe0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc16",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "면이 정삼각형인 것이 셋인 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$, $4$, $5$개 모인 {세} 가지이고, $6$개가 모이면 {$360^\\circ$}가 되어 입체가 되지 않는다.",
+        "example": {
+          "prompt": "면이 정삼각형이고 한 꼭짓점에 면이 $5$개 모이는 것은?",
+          "answer": "정이십면체"
+        },
+        "studentC": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$, $4$, $5$개 모인 □ 가지이고, $6$개가 모이면 □가 되어 입체가 되지 않는다.",
+        "answers": [
+          "세",
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "면이 정삼각형인 정다면체에서 한 꼭짓점에 정삼각형이 $6$개 모일 수 없는 이유를 각의 크기로 설명하고, 한 꼭짓점에 모일 수 있는 정삼각형의 개수와 그때의 정다면체의 이름을 모두 쓰시오.",
+        "bAnswer": "정삼각형의 한 내각은 $60^\\circ$이므로 $6$개가 모이면 $60^\\circ\\times 6=360^\\circ$가 되어 평면이 되고 입체도형이 되지 않는다. 모일 수 있는 개수는 $3$개(정사면체), $4$개(정팔면체), $5$개(정이십면체)이다.",
+        "bGoal": "면이 정삼각형인 정다면체가 세 가지인 까닭",
+        "bReason": "안 되는 경우의 이유와 되는 경우의 이름을 나누어 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$개가 모이면 각의 크기의 합이 $360^\\circ$가 된다",
+              "$60^\\circ\\times 6=360^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$개 모이면 정사면체"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$개 모이면 정팔면체"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$개 모이면 정이십면체"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$개, $4$개, {$5$}개 모이는 세 가지뿐이다. $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 {$360^\\circ$}가 되어 입체가 되지 않는다.",
+        "cAnswers": [
+          "$5$",
+          "$360^\\circ$"
+        ],
+        "cReason": "'세'는 앞의 수를 세면 나오고 무엇이 $360^\\circ$가 되는지 빠져 있음.",
+        "coreAfter": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$, $4$, $5$개 모인 {세} 가지이다. $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 $60^\\circ\\times6=$ {$360^\\circ$}가 되어 입체가 되지 않는다.",
+        "coreReason": "무엇이 $360^\\circ$가 되는지 주어가 빠져 있어 보충했다.",
+        "studentLabel": "면이 정삼각형인 정다면체가 세 가지인 까닭",
+        "learningRole": "reason",
+        "roleReason": "정삼각형이 $6$개 모일 수 없는 까닭",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1879,
+        "part": "m1plus",
+        "sourceFingerprint": "41c7bea31ea111bbd644d847d321dab3e27b78fa63e32ccd7386919c1bfe9582",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1879
+        },
+        "directReview": null,
+        "coreBeforeRepair": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$, $4$, $5$개 모인 {세} 가지이고, $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 {$360^\\circ$}가 되어 입체가 되지 않는다.",
+        "coreRepairReason": "원본 핵심어 {세}, {$360^\\circ$}를 유지했다. 정삼각형 한 각 $60^\\circ$에서 $360^\\circ$가 나오는 계산을 보여 주어 근거를 분명히 했다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$개, $4$개, {$5$}개 모이는 세 가지뿐이다. $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 {$360^\\circ$}가 되어 입체가 되지 않는다.",
+        "cSlotAnswers": [
+          "$5$",
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$개, $4$개, □개 모이는 세 가지뿐이다. $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 □가 되어 입체가 되지 않는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$5$",
+            "equivalentAnswers": [
+              "$5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "19d1a50cd6ad5d807d5c2508c21c532e38925bd7c9d35f59c09d266df9128bb8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc17",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정십이면체의 꼭짓점 셈",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 {$3$}으로 나눈 {$20$}개이다.",
+        "example": {
+          "prompt": "정삼각형 $8$개의 꼭짓점 $24$개를 한 꼭짓점에 모인 면의 수 $4$로 나누어 정팔면체의 꼭짓점 수를 구하면?",
+          "answer": "$6$개"
+        },
+        "studentC": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 □으로 나눈 □개이다.",
+        "answers": [
+          "$3$",
+          "$20$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "정십이면체는 정오각형 $12$개로 둘러싸여 있고 한 꼭짓점에 면이 $3$개씩 모인다. 이를 이용하여 정십이면체의 꼭짓점의 개수를 구하는 과정을 쓰시오.",
+        "bAnswer": "정오각형 $12$개의 꼭짓점은 $12\\times 5=60$개인데, 꼭짓점 하나가 $3$개의 면에 겹쳐 세어졌으므로 $60\\div 3=20$개이다.",
+        "bGoal": "정십이면체의 꼭짓점 수 구하기",
+        "bReason": "계산에 필요한 면의 모양·개수와 모인 면의 수를 질문에 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$12\\times 5=60$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60\\div 3=20$",
+              "$20$개"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "나누는 수와 결과를 채우는 짧은 계산 빈칸.",
+        "learningRole": "application",
+        "roleReason": "정십이면체에 꼭짓점 세는 방법 적용",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1880,
+        "part": "m1plus",
+        "sourceFingerprint": "334f2d2e23b0b7e64048c305789a7f2c2204916585c34241f87f0d8e17fb7827",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1880
+        },
+        "directReview": null,
+        "cFrozenSentence": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 □으로 나눈 □개이다.",
+        "cFrozenDefinition": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 {$3$}으로 나눈 {$20$}개이다.",
+        "cFrozenAnswers": [
+          "$3$",
+          "$20$"
+        ],
+        "cMarkedSentence": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 {$3$}으로 나눈 {$20$}개이다.",
+        "cSlotAnswers": [
+          "$3$",
+          "$20$"
+        ],
+        "cStudentSentence": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 □으로 나눈 □개이다.",
+        "cAnswers": [
+          "$3$",
+          "$20$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$20$",
+            "equivalentAnswers": [
+              "$20$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$20$"
+          ]
+        ],
+        "proposalFingerprint": "4059dc6741aecd8597dafb014d916375b2a89d7686eb166cc973ffb2c16d6af0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc18",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정이십면체의 모서리 셈",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 {$2$}로 나눈 {$30$}개이다.",
+        "example": {
+          "prompt": "정오각형 $12$개의 변 $60$개를 $2$로 나누어 정십이면체의 모서리 수를 구하면?",
+          "answer": "$30$개"
+        },
+        "studentC": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 □로 나눈 □개이다.",
+        "answers": [
+          "$2$",
+          "$30$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "정이십면체는 정삼각형 $20$개로 둘러싸여 있다. 이를 이용하여 정이십면체의 모서리의 개수를 구하는 과정을 쓰시오.",
+        "bAnswer": "정삼각형 $20$개의 변은 $20\\times 3=60$개인데, 모서리 하나가 두 면의 변으로 두 번 세어졌으므로 $60\\div 2=30$개이다.",
+        "bGoal": "정이십면체의 모서리 수 구하기",
+        "bReason": "계산에 필요한 면의 모양과 개수를 질문에 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$20\\times 3=60$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60\\div 2=30$",
+              "$30$개"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "나누는 수와 결과를 채우는 짧은 계산 빈칸.",
+        "learningRole": "application",
+        "roleReason": "정이십면체에 모서리 세는 방법 적용",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1881,
+        "part": "m1plus",
+        "sourceFingerprint": "7fc66efb6a1a9a0d75bfd150de9f6fdc4a1b4a28418cc1a9c25afd9725fa3749",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1881
+        },
+        "directReview": null,
+        "cFrozenSentence": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 □로 나눈 □개이다.",
+        "cFrozenDefinition": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 {$2$}로 나눈 {$30$}개이다.",
+        "cFrozenAnswers": [
+          "$2$",
+          "$30$"
+        ],
+        "cMarkedSentence": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 {$2$}로 나눈 {$30$}개이다.",
+        "cSlotAnswers": [
+          "$2$",
+          "$30$"
+        ],
+        "cStudentSentence": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 □로 나눈 □개이다.",
+        "cAnswers": [
+          "$2$",
+          "$30$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$30$",
+            "equivalentAnswers": [
+              "$30$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$30$"
+          ]
+        ],
+        "proposalFingerprint": "4f72baa1d4dafc91800d2003802fc59160ca32c1ed6987f651cd3a842a823b83"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc19",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정육면체의 각 면의 중심을 이은 도형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정육면체의 이웃한 두 면의 중심끼리 모두 이으면 {정팔면체}가 된다.",
+        "example": {
+          "prompt": "정팔면체의 각 면의 중심을 이으면?",
+          "answer": "정육면체"
+        },
+        "studentC": "정육면체의 이웃한 두 면의 중심끼리 모두 이으면 □가 된다.",
+        "answers": [
+          "정팔면체"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "정육면체의 각 면의 중심을 꼭짓점으로 하는 정다면체의 이름을 쓰고, 그 정다면체의 꼭짓점의 개수가 정육면체의 무엇의 개수와 같은지 설명하시오.",
+        "bAnswer": "정팔면체이다. 정육면체의 면마다 중심이 하나씩 있으므로 새 도형의 꼭짓점의 개수는 정육면체의 면의 개수와 같은 $6$개이다.",
+        "bGoal": "정육면체의 면의 중심으로 만든 도형",
+        "bReason": "어떤 도형이 생기는지와 개수의 대응까지 묻도록 범위를 정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정팔면체"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 개수가 정육면체의 면의 개수와 같다",
+              "꼭짓점이 $6$개이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "만드는 방법이 문장에 있어 생기는 도형 이름만 채우면 됨.",
+        "learningRole": "definition",
+        "roleReason": "면의 중심을 이어 생기는 정팔면체",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1882,
+        "part": "m1plus",
+        "sourceFingerprint": "205d946b3be280e4f968d03bd792a9b3308b97989bc2f69e0e8b92a21f2ee4b8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1882
+        },
+        "directReview": null,
+        "cFrozenSentence": "정육면체의 이웃한 두 면의 중심끼리 모두 이으면 □가 된다.",
+        "cFrozenDefinition": "정육면체의 이웃한 두 면의 중심끼리 모두 이으면 {정팔면체}가 된다.",
+        "cFrozenAnswers": [
+          "정팔면체"
+        ],
+        "cMarkedSentence": "정육면체의 이웃한 두 면의 중심끼리 모두 이으면 {정팔면체}가 된다.",
+        "cSlotAnswers": [
+          "정팔면체"
+        ],
+        "cStudentSentence": "정육면체의 이웃한 두 면의 중심끼리 모두 이으면 □가 된다.",
+        "cAnswers": [
+          "정팔면체"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정팔면체",
+            "equivalentAnswers": [
+              "정팔면체"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정팔면체"
+          ]
+        ],
+        "proposalFingerprint": "f5e34acab35f91b0b2553644ae954a278b777dd4c9a4f1121aa76c9ebce5e42f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc20",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "짝이 되는 정다면체",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정십이면체와 정이십면체도 이웃한 두 면의 {중심}끼리 이으면 다른 쪽이 되는 짝이고, 정사면체는 {자기 자신}과 짝이다.",
+        "example": {
+          "prompt": "정사면체의 면의 중심을 이으면?",
+          "answer": "정사면체"
+        },
+        "studentC": "정십이면체와 정이십면체도 이웃한 두 면의 □끼리 이으면 다른 쪽이 되는 짝이고, 정사면체는 □과 짝이다.",
+        "answers": [
+          "중심",
+          "자기 자신"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "정십이면체, 정이십면체, 정사면체에서 각 면의 중심을 꼭짓점으로 하는 정다면체의 이름을 각각 쓰고, 정십이면체의 경우를 면의 개수와 꼭짓점의 개수로 설명하시오.",
+        "bAnswer": "차례로 정이십면체, 정십이면체, 정사면체이다. 정십이면체는 면이 $12$개이므로 새 도형의 꼭짓점이 $12$개이고, 꼭짓점이 $12$개인 정다면체는 정이십면체이다.",
+        "bGoal": "면의 중심으로 만든 정다면체 짝 알기",
+        "bReason": "'짝'이라는 말 대신 어떻게 만든 도형인지 질문에 직접 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정십이면체에서는 정이십면체가 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정이십면체에서는 정십이면체가 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정사면체에서는 정사면체가 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "면이 $12$개이므로 새 도형의 꼭짓점이 $12$개이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정십이면체의 각 면의 {중심}을 꼭짓점으로 하는 입체도형은 {정이십면체}이고, 정이십면체에서 같은 방법으로 만들면 정십이면체이다. 정사면체에서는 다시 {정사면체}가 된다.",
+        "cAnswers": [
+          "중심",
+          "정이십면체",
+          "정사면체"
+        ],
+        "cReason": "'도', '다른 쪽', '자기 자신과 짝'이 앞 문항 없이는 뜻을 알 수 없음.",
+        "coreAfter": "정십이면체의 이웃한 두 면의 {중심}끼리 모두 이으면 정이십면체가 되고, 정이십면체에서 같은 방법으로 이으면 정십이면체가 된다. 정사면체에서 같은 방법으로 이으면 다시 {정사면체}가 된다.",
+        "coreReason": "'짝', '다른 쪽', '자기 자신'이 중학교 $1$학년에게 뜻이 불명확함.",
+        "studentLabel": "면의 중심을 이어 만든 정다면체",
+        "learningRole": "definition",
+        "roleReason": "면의 중심으로 서로 만들어지는 정다면체",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1883,
+        "part": "m1plus",
+        "sourceFingerprint": "02b203ce05887c6910ac9eee8724b6851cf2555b70a9453a6a523ca6c147c618",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1883
+        },
+        "directReview": null,
+        "coreBeforeRepair": "정십이면체의 이웃한 두 면의 {중심}끼리 모두 이으면 정이십면체가 되고, 정이십면체에서 같은 방법으로 이으면 정십이면체가 된다. 정사면체에서 같은 방법으로 이으면 다시 {정사면체}가 된다.",
+        "coreRepairReason": "형식과 의미가 이미 좋아 그대로 보존함. 원래 핵심어 {중심}은 유지했고, 뜻이 모호한 {자기 자신}은 실제 결과 도형인 {정사면체}로 바꿈. 두 쌍이 서로 바뀐다는 원래의 '짝' 관계도 양방향 문장으로 모두 남김.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "정십이면체의 각 면의 {중심}을 꼭짓점으로 하는 입체도형은 {정이십면체}이고, 정이십면체에서 같은 방법으로 만들면 정십이면체이다. 정사면체에서는 다시 {정사면체}가 된다.",
+        "cSlotAnswers": [
+          "중심",
+          "정이십면체",
+          "정사면체"
+        ],
+        "cStudentSentence": "정십이면체의 각 면의 □을 꼭짓점으로 하는 입체도형은 □이고, 정이십면체에서 같은 방법으로 만들면 정십이면체이다. 정사면체에서는 다시 □가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중심",
+            "equivalentAnswers": [
+              "중심"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정이십면체",
+            "equivalentAnswers": [
+              "정이십면체"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "정사면체",
+            "equivalentAnswers": [
+              "정사면체"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중심"
+          ],
+          [
+            "정이십면체"
+          ],
+          [
+            "정사면체"
+          ]
+        ],
+        "proposalFingerprint": "0679cd17ead99d30773b48d3fa252278caf7587d85cfca30ade1bedb10732a74"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc21",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정육면체의 모서리를 자르기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정육면체에서 한 꼭짓점에 모인 세 모서리의 다른 끝점 셋을 지나게 자르면 단면은 {정삼각형}이고, 잘려 나간 것은 {삼각뿔}이다.",
+        "example": {
+          "prompt": "정육면체의 한 꼭짓점에 모인 세 모서리의 다른 끝점 셋을 지나게 자른 단면의 세 변은 정육면체의 무엇인가?",
+          "answer": "면의 대각선"
+        },
+        "studentC": "정육면체에서 한 꼭짓점에 모인 세 모서리의 다른 끝점 셋을 지나게 자르면 단면은 □이고, 잘려 나간 것은 □이다.",
+        "answers": [
+          "정삼각형",
+          "삼각뿔"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "정육면체에서 꼭짓점 $A$와 모서리로 이어진 세 꼭짓점을 $B$, $D$, $E$라 하자. 세 점 $B$, $D$, $E$를 지나는 평면으로 자를 때, 단면인 삼각형 $BDE$가 어떤 삼각형인지 이유와 함께 쓰고, 꼭짓점 $A$ 쪽으로 잘려 나간 입체도형의 이름을 쓰시오.",
+        "bAnswer": "선분 $BD$, $DE$, $EB$는 모두 합동인 정사각형 면의 대각선이어서 길이가 같으므로 삼각형 $BDE$는 정삼각형이다. 잘려 나간 입체도형은 삼각뿔이다.",
+        "bGoal": "정육면체의 세 꼭짓점을 지나는 단면",
+        "bReason": "그림이 없어 자르는 세 점을 꼭짓점 이름으로 지정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변이 모두 합동인 정사각형의 대각선이다",
+              "세 변의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "삼각뿔"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "자르는 위치가 문장에 설명되어 단면과 잘린 도형을 채울 수 있음.",
+        "studentLabel": "정육면체를 세 꼭짓점을 지나게 자른 단면",
+        "learningRole": "application",
+        "roleReason": "정육면체의 단면 모양 판단",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1884,
+        "part": "m1plus",
+        "sourceFingerprint": "75381e49657ad938e2496f3120b6d37dc7fe0f37c8b76b47767de335c23be60d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1884
+        },
+        "directReview": null,
+        "cFrozenSentence": "정육면체에서 한 꼭짓점에 모인 세 모서리의 다른 끝점 셋을 지나게 자르면 단면은 □이고, 잘려 나간 것은 □이다.",
+        "cFrozenDefinition": "정육면체에서 한 꼭짓점에 모인 세 모서리의 다른 끝점 셋을 지나게 자르면 단면은 {정삼각형}이고, 잘려 나간 것은 {삼각뿔}이다.",
+        "cFrozenAnswers": [
+          "정삼각형",
+          "삼각뿔"
+        ],
+        "cMarkedSentence": "정육면체에서 한 꼭짓점에 모인 세 모서리의 다른 끝점 셋을 지나게 자르면 단면은 {정삼각형}이고, 잘려 나간 것은 {삼각뿔}이다.",
+        "cSlotAnswers": [
+          "정삼각형",
+          "삼각뿔"
+        ],
+        "cStudentSentence": "정육면체에서 한 꼭짓점에 모인 세 모서리의 다른 끝점 셋을 지나게 자르면 단면은 □이고, 잘려 나간 것은 □이다.",
+        "cAnswers": [
+          "정삼각형",
+          "삼각뿔"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정삼각형",
+            "equivalentAnswers": [
+              "정삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "삼각뿔",
+            "equivalentAnswers": [
+              "삼각뿔"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정삼각형"
+          ],
+          [
+            "삼각뿔"
+          ]
+        ],
+        "proposalFingerprint": "0797c98c249c45b87cde28f6bd26537260072476b6412727e5d6d11734b0900b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc22",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "개수 사이의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정다면체에서 면의 수와 한 면의 변의 수의 곱은 모서리 수의 {$2$배}이고, 꼭짓점 수와 한 꼭짓점에 모인 면의 수의 {곱}과도 같다.",
+        "example": {
+          "prompt": "정육면체에서 면의 수와 한 면의 변의 수의 곱은 얼마인가?",
+          "answer": "$24$"
+        },
+        "studentC": "정다면체에서 면의 수와 한 면의 변의 수의 곱은 모서리 수의 □이고, 꼭짓점 수와 한 꼭짓점에 모인 면의 수의 □과도 같다.",
+        "answers": [
+          "$2$배",
+          "곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "정육면체에서 (면의 개수)$\\times$(한 면의 변의 개수), (모서리의 개수)$\\times 2$, (꼭짓점의 개수)$\\times$(한 꼭짓점에 모인 면의 개수)를 각각 계산하고, 세 값의 관계와 그 이유를 설명하시오.",
+        "bAnswer": "$6\\times 4=24$, $12\\times 2=24$, $8\\times 3=24$로 세 값이 모두 같다. 모든 면의 변을 다 세면 모서리 하나가 두 번씩, 꼭짓점 하나가 모인 면의 개수만큼 세어지기 때문이다.",
+        "bGoal": "정다면체의 개수 사이의 관계와 근거",
+        "bReason": "어떤 개수 사이의 관계인지 세 곱을 지정하고 정육면체로 확인하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 값이 모두 $24$이다",
+              "세 값이 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리 하나가 두 면에서 두 번 세어진다",
+              "꼭짓점 하나가 모인 면의 개수만큼 세어진다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정다면체에서 면의 수와 한 면의 변의 수의 곱은 모서리 수의 {$2$}배이고, 꼭짓점 수에 한 꼭짓점에 모인 {면}의 수를 곱한 값과도 같다.",
+        "cAnswers": [
+          "$2$",
+          "면"
+        ],
+        "cReason": "빈칸 답 '곱'이 앞 구절에 그대로 나와 베껴 쓸 수 있음.",
+        "exampleNeeded": true,
+        "studentLabel": "정다면체의 면 · 모서리 · 꼭짓점 개수 사이의 관계",
+        "learningRole": "reason",
+        "roleReason": "세 곱이 같아지는 까닭",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1885,
+        "part": "m1plus",
+        "sourceFingerprint": "ede5c7e18f95b25a8da25d4c2bc16770bc624d6114080743a168a9cd401bd7f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1885
+        },
+        "directReview": null,
+        "cMarkedSentence": "정다면체에서 면의 수와 한 면의 변의 수의 곱은 모서리 수의 {$2$}배이고, 꼭짓점 수에 한 꼭짓점에 모인 {면}의 수를 곱한 값과도 같다.",
+        "cSlotAnswers": [
+          "$2$",
+          "면"
+        ],
+        "cStudentSentence": "정다면체에서 면의 수와 한 면의 변의 수의 곱은 모서리 수의 □배이고, 꼭짓점 수에 한 꼭짓점에 모인 □의 수를 곱한 값과도 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "면",
+            "equivalentAnswers": [
+              "면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "면"
+          ]
+        ],
+        "proposalFingerprint": "b5d9a19e6e4bca70ec12f656780856f3cdad06f22a8fa50ebe26475cad1c9bd6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc23",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "모서리 길이의 합",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 모서리가 $a$인 정다면체의 모서리 길이의 합은 모서리 수에 {$a$}를 {곱한} 값이다.",
+        "example": {
+          "prompt": "한 모서리가 $3$인 정팔면체의 모서리 길이의 합은?",
+          "answer": "$36$"
+        },
+        "studentC": "한 모서리가 $a$인 정다면체의 모서리 길이의 합은 모서리 수에 □를 □ 값이다.",
+        "answers": [
+          "$a$",
+          "곱한"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "한 모서리의 길이가 $a$인 정다면체에서 모든 모서리의 길이의 합을 구하는 방법과 그렇게 구할 수 있는 이유를 쓰고, 정팔면체의 경우를 $a$를 사용한 식으로 나타내시오.",
+        "bAnswer": "정다면체는 모든 모서리의 길이가 같으므로 (모서리의 개수)$\\times a$로 구한다. 정팔면체는 모서리가 $12$개이므로 $12a$이다.",
+        "bGoal": "정다면체의 모서리 길이의 합 구하기",
+        "bReason": "$a$가 한 모서리의 길이임을 밝히고 곱셈이 되는 이유까지 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모서리의 개수에 $a$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모든 모서리의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12a$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정다면체의 모서리는 길이가 모두 {같다}. 따라서 한 모서리의 길이가 $a$이면 모든 모서리의 길이의 합은 $a$에 {모서리}의 개수를 곱한 값이다.",
+        "cAnswers": [
+          "같다",
+          "모서리"
+        ],
+        "cReason": "빈칸 답 $a$가 문장 앞에 그대로 있어 베껴 쓰게 됨.",
+        "coreAfter": "한 모서리의 길이가 $a$인 정다면체의 모든 모서리의 길이의 합은 모서리 수에 {$a$}를 {곱한} 값이다.",
+        "coreReason": "'한 모서리가 $a$'는 $a$가 길이임을 밝히지 않은 표현임.",
+        "exampleNeeded": true,
+        "studentLabel": "정다면체의 모서리 길이의 합",
+        "learningRole": "procedure",
+        "roleReason": "모서리 수와 한 모서리 길이의 곱",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1886,
+        "part": "m1plus",
+        "sourceFingerprint": "cfd18f6c44eb257e12ce656916ea5d37ae8c13478958a3e1bbaa04e6c168b86c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1886
+        },
+        "directReview": null,
+        "coreBeforeRepair": "한 모서리의 길이가 $a$인 정다면체의 모든 모서리의 길이의 합은 모서리 수에 {$a$}를 {곱한} 값이다.",
+        "coreRepairReason": "이미 좋아 그대로 보존함. 원래 핵심어 {$a$}, {곱한}을 유지했고, $a$가 모서리의 길이라는 점만 밝힘.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "정다면체의 모서리는 길이가 모두 {같다}. 따라서 한 모서리의 길이가 $a$이면 모든 모서리의 길이의 합은 $a$에 {모서리}의 개수를 곱한 값이다.",
+        "cSlotAnswers": [
+          "같다",
+          "모서리"
+        ],
+        "cStudentSentence": "정다면체의 모서리는 길이가 모두 □. 따라서 한 모서리의 길이가 $a$이면 모든 모서리의 길이의 합은 $a$에 □의 개수를 곱한 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "모서리",
+            "equivalentAnswers": [
+              "모서리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ],
+          [
+            "모서리"
+          ]
+        ],
+        "proposalFingerprint": "75a7a9ff9c9815cc66f95edb93d36795eb712fdc93fccd1fecdbb9dff6c6ed53"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-02-xc24",
+        "section": "중1::7. 입체도형::정다면체",
+        "term": "정다면체의 겉넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 {면의 수}를 곱한다.",
+        "example": {
+          "prompt": "한 면의 넓이가 $5$인 정이십면체의 겉넓이는?",
+          "answer": "$100$"
+        },
+        "studentC": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 □를 곱한다.",
+        "answers": [
+          "면의 수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-02-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "한 면의 넓이가 $S$인 정이십면체의 겉넓이를 $S$를 사용한 식으로 나타내고, 그렇게 구할 수 있는 이유를 설명하시오.",
+        "bAnswer": "정다면체의 면은 모두 합동이어서 넓이가 같으므로 겉넓이는 (한 면의 넓이)$\\times$(면의 개수)이다. 정이십면체는 면이 $20$개이므로 $20S$이다.",
+        "bGoal": "정다면체의 겉넓이 구하기",
+        "bReason": "일반 방법을 정이십면체의 식으로 나타내고 근거를 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$20S$"
+            ]
+          },
+          {
+            "anyOf": [
+              "면이 모두 합동이라 넓이가 같다",
+              "한 면의 넓이에 면의 개수를 곱한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "이유가 문장에 있고 곱하는 대상만 묻는 분명한 빈칸.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "한 면의 넓이와 면의 수의 곱",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1887,
+        "part": "m1plus",
+        "sourceFingerprint": "03773db382c9d22e1fb0053e6c93b668d10193e856a700a5a9fe1b9c0a8f87c2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1887
+        },
+        "directReview": null,
+        "cFrozenSentence": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 □를 곱한다.",
+        "cFrozenDefinition": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 {면의 수}를 곱한다.",
+        "cFrozenAnswers": [
+          "면의 수"
+        ],
+        "cMarkedSentence": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 {면의 수}를 곱한다.",
+        "cSlotAnswers": [
+          "면의 수"
+        ],
+        "cStudentSentence": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 □를 곱한다.",
+        "cAnswers": [
+          "면의 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "면의 수",
+            "equivalentAnswers": [
+              "면의 수",
+              "면의 개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "면의 수",
+            "accept": [
+              "면의 개수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "면의 수",
+            "면의 개수"
+          ]
+        ],
+        "proposalFingerprint": "0bfff7b2d464a53fa35336b2adb47b624342562a1a314a75a4e00e9c8abf74d3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc1",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "원뿔대 만들기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 각이 직각인 {사다리꼴}을 두 직각 사이의 변을 축으로 돌리면 {원뿔대}가 된다.",
+        "example": {
+          "prompt": "원뿔대의 두 밑면의 모양은?",
+          "answer": "원"
+        },
+        "studentC": "두 각이 직각인 □을 두 직각 사이의 변을 축으로 돌리면 □가 된다.",
+        "answers": [
+          "사다리꼴",
+          "원뿔대"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "원뿔대를 회전체로 만들려면 어떤 평면도형을 어느 변을 축으로 한 바퀴 돌려야 하는가?",
+        "bAnswer": "두 각이 직각인 사다리꼴을, 두 직각 사이에 있는 변(윗변과 아랫변에 수직인 변)을 축으로 한 바퀴 돌린다.",
+        "bGoal": "원뿔대를 만드는 평면도형과 축 말하기",
+        "bReason": "사다리꼴의 조건과 축이 되는 변을 함께 답하도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 각이 직각인 사다리꼴",
+              "한 변이 윗변과 아랫변에 수직인 사다리꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 직각 사이의 변을 축으로 한다",
+              "윗변과 아랫변에 수직인 변을 축으로 한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "도형의 조건과 축이 문장에 있어 두 빈칸의 답이 정해진다.",
+        "learningRole": "definition",
+        "roleReason": "원뿔대를 만드는 도형과 축",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1888,
+        "part": "m1plus",
+        "sourceFingerprint": "1ebeff0ead0678962fa32df86440ae7adbfdcf6c87bc79fd366bb1cc8714cf70",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1888
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 각이 직각인 □을 두 직각 사이의 변을 축으로 돌리면 □가 된다.",
+        "cFrozenDefinition": "두 각이 직각인 {사다리꼴}을 두 직각 사이의 변을 축으로 돌리면 {원뿔대}가 된다.",
+        "cFrozenAnswers": [
+          "사다리꼴",
+          "원뿔대"
+        ],
+        "cMarkedSentence": "두 각이 직각인 {사다리꼴}을 두 직각 사이의 변을 축으로 돌리면 {원뿔대}가 된다.",
+        "cSlotAnswers": [
+          "사다리꼴",
+          "원뿔대"
+        ],
+        "cStudentSentence": "두 각이 직각인 □을 두 직각 사이의 변을 축으로 돌리면 □가 된다.",
+        "cAnswers": [
+          "사다리꼴",
+          "원뿔대"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "사다리꼴",
+            "equivalentAnswers": [
+              "사다리꼴"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "원뿔대",
+            "equivalentAnswers": [
+              "원뿔대"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "사다리꼴"
+          ],
+          [
+            "원뿔대"
+          ]
+        ],
+        "proposalFingerprint": "58c558ca7e78f4797a85e9f8114e2b5a36a91c472d7f160f66bb7a3a1c0e298d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc2",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "원기둥의 두 밑면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 두 밑면은 크기가 같은 {원}이고 서로 {평행}하다.",
+        "example": {
+          "prompt": "원기둥의 옆면을 이루는 선분의 이름은?",
+          "answer": "모선"
+        },
+        "studentC": "원기둥의 두 밑면은 크기가 같은 □이고 서로 □하다.",
+        "answers": [
+          "원",
+          "평행"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "원기둥의 두 밑면은 어떤 도형인가? 두 밑면의 크기와 놓인 위치 사이의 관계도 쓰시오.",
+        "bAnswer": "두 밑면은 모두 원이고, 크기가 같으며(합동) 서로 평행하다.",
+        "bGoal": "원기둥의 두 밑면의 모양과 관계 말하기",
+        "bReason": "모양, 크기, 위치 관계의 세 가지를 답할 범위로 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면은 원이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "크기가 같다",
+              "합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 평행하다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "짧은 문장에서 모양과 위치 관계를 하나씩 묻는다.",
+        "learningRole": "definition",
+        "roleReason": "원기둥 밑면의 모양과 관계",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1889,
+        "part": "m1plus",
+        "sourceFingerprint": "adffeab9a1446e6c3e00cc2f5740b7f4442c4e9b088adac365612d3c6eeea72a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1889
+        },
+        "directReview": null,
+        "cFrozenSentence": "원기둥의 두 밑면은 크기가 같은 □이고 서로 □하다.",
+        "cFrozenDefinition": "원기둥의 두 밑면은 크기가 같은 {원}이고 서로 {평행}하다.",
+        "cFrozenAnswers": [
+          "원",
+          "평행"
+        ],
+        "cMarkedSentence": "원기둥의 두 밑면은 크기가 같은 {원}이고 서로 {평행}하다.",
+        "cSlotAnswers": [
+          "원",
+          "평행"
+        ],
+        "cStudentSentence": "원기둥의 두 밑면은 크기가 같은 □이고 서로 □하다.",
+        "cAnswers": [
+          "원",
+          "평행"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "원",
+            "equivalentAnswers": [
+              "원"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "원"
+          ],
+          [
+            "평행"
+          ]
+        ],
+        "proposalFingerprint": "a73765a90fc3ed00ed25132e75491d405106f4af094115538eb1cb7f7dca80cd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc3",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "회전체가 아닌 입체",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥이나 각뿔처럼 겉이 모두 {평평한} 면인 입체는 {회전체}가 아니다.",
+        "example": {
+          "prompt": "사각뿔은 회전체인가?",
+          "answer": "아니다"
+        },
+        "studentC": "각기둥이나 각뿔처럼 겉이 모두 □ 면인 입체는 □가 아니다.",
+        "answers": [
+          "평평한",
+          "회전체"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "사각기둥과 원기둥 가운데 회전체가 아닌 것은 무엇인가? 그렇게 판단한 까닭도 쓰시오.",
+        "bAnswer": "사각기둥이다. 사각기둥은 평평한 다각형 면으로만 둘러싸여 있어 평면도형을 한 직선을 축으로 돌려 만들 수 없다. 회전체라면 회전축에 수직인 단면이 원이어야 한다.",
+        "bGoal": "다면체가 회전체가 아닌 까닭 설명하기",
+        "bReason": "일반 진술만으로는 답할 거리가 없어 두 입체를 비교하는 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사각기둥이 회전체가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평평한 다각형 면으로만 둘러싸여 돌려서 만들 수 없다",
+              "회전축에 수직인 단면이 원이 되지 않는다",
+              "옆면이 굽은 면이 아니다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "각기둥이나 각뿔처럼 겉이 모두 {평평한} 면으로 둘러싸인 입체는, 평면도형을 한 직선을 축으로 돌려 만들 수 없으므로 {회전체}가 아니다.",
+        "cAnswers": [
+          "평평한",
+          "회전체"
+        ],
+        "cReason": "둘째 빈칸은 제목 없이는 무엇이 아닌지 알 단서가 없었다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "다면체가 회전체가 아닌 까닭",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1890,
+        "part": "m1plus",
+        "sourceFingerprint": "15e21b0b22d888e9628bde2da6df0950d66db82f3a17217adb8bccf0f59ff27b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1890
+        },
+        "directReview": null,
+        "cMarkedSentence": "각기둥이나 각뿔처럼 겉이 모두 {평평한} 면으로 둘러싸인 입체는, 평면도형을 한 직선을 축으로 돌려 만들 수 없으므로 {회전체}가 아니다.",
+        "cSlotAnswers": [
+          "평평한",
+          "회전체"
+        ],
+        "cStudentSentence": "각기둥이나 각뿔처럼 겉이 모두 □ 면으로 둘러싸인 입체는, 평면도형을 한 직선을 축으로 돌려 만들 수 없으므로 □가 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평평한",
+            "equivalentAnswers": [
+              "평평한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "회전체",
+            "equivalentAnswers": [
+              "회전체"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평평한"
+          ],
+          [
+            "회전체"
+          ]
+        ],
+        "proposalFingerprint": "60dd0d50549832bde8b8d5a294cb2f0e61711e14d4024c188edace3d5739e595"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc4",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "원뿔의 모선",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원뿔의 모선은 모두 {꼭짓점}을 지나고, 길이가 모두 {같다}.",
+        "example": {
+          "prompt": "원뿔의 모선은 몇 개 그을 수 있는가?",
+          "answer": "끝없이 많다"
+        },
+        "studentC": "원뿔의 모선은 모두 □을 지나고, 길이가 모두 □.",
+        "answers": [
+          "꼭짓점",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "원뿔의 옆면 위에 모선을 여러 개 그었다. 이 모선들이 모두 지나는 점은 어디이며, 모선들의 길이는 서로 어떤 관계인가?",
+        "bAnswer": "모든 모선은 원뿔의 꼭짓점을 지나고, 길이가 모두 같다.",
+        "bGoal": "원뿔의 모선의 공통 성질 말하기",
+        "bReason": "지나는 점과 길이 관계의 두 가지를 답하도록 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모두 원뿔의 꼭짓점을 지난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이가 모두 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "주어가 분명하고 점과 길이 관계를 짧게 묻는다.",
+        "learningRole": "definition",
+        "roleReason": "원뿔 모선의 성질",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1891,
+        "part": "m1plus",
+        "sourceFingerprint": "b48ee015d4ba0dc797e4601264472352de1e435bedcd52bf1692fdc52632dc49",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1891
+        },
+        "directReview": null,
+        "cFrozenSentence": "원뿔의 모선은 모두 □을 지나고, 길이가 모두 □.",
+        "cFrozenDefinition": "원뿔의 모선은 모두 {꼭짓점}을 지나고, 길이가 모두 {같다}.",
+        "cFrozenAnswers": [
+          "꼭짓점",
+          "같다"
+        ],
+        "cMarkedSentence": "원뿔의 모선은 모두 {꼭짓점}을 지나고, 길이가 모두 {같다}.",
+        "cSlotAnswers": [
+          "꼭짓점",
+          "같다"
+        ],
+        "cStudentSentence": "원뿔의 모선은 모두 □을 지나고, 길이가 모두 □.",
+        "cAnswers": [
+          "꼭짓점",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점",
+              "원뿔의 꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "꼭짓점",
+            "accept": [
+              "원뿔의 꼭짓점"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "꼭짓점",
+            "원뿔의 꼭짓점"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "03be036d9a868d8142f68f68c8304fc29a7b3bb7105c919dacb2fb87fa1dd811"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc5",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "구의 중심과 반지름",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구를 만든 반원의 중심이 구의 {중심}이 되고, 반원의 반지름이 구의 {반지름}이 된다.",
+        "example": {
+          "prompt": "구의 회전축은 어느 점을 지나는가?",
+          "answer": "구의 중심"
+        },
+        "studentC": "구를 만든 반원의 중심이 구의 □이 되고, 반원의 반지름이 구의 □이 된다.",
+        "answers": [
+          "중심",
+          "반지름"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "반원과 구의 이름 대응만 남는 조각이라 서술할 내용이 없다.",
+        "cDecision": "rewrite",
+        "cAfter": "반원을 지름을 축으로 한 바퀴 돌려 구를 만들면, 반원의 지름의 {중점}이 구의 {중심}이 되고, 구의 반지름은 반원의 반지름과 길이가 같다.",
+        "cAnswers": [
+          "중점",
+          "중심"
+        ],
+        "cReason": "원래 두 빈칸은 바로 앞의 '중심', '반지름'을 그대로 베끼면 되는 답이었다.",
+        "exclusionReason": "B 제외: 구 만들기(m1-07-03-c3) 서술과 목표가 겹치고, 같은 낱말을 대응시키는 것만 남아 B 형식에 맞지 않는다.",
+        "learningRole": "naming",
+        "roleReason": "반원과 구의 중심·반지름 대응",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1892,
+        "part": "m1plus",
+        "sourceFingerprint": "b93060ed0005e8bab365aaf5e46c11e20204763009268ae06f5bee404f74f4b0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1892
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "반원을 지름을 축으로 한 바퀴 돌려 구를 만들면, 반원의 지름의 {중점}이 구의 {중심}이 되고, 구의 반지름은 반원의 반지름과 길이가 같다.",
+        "cSlotAnswers": [
+          "중점",
+          "중심"
+        ],
+        "cStudentSentence": "반원을 지름을 축으로 한 바퀴 돌려 구를 만들면, 반원의 지름의 □이 구의 □이 되고, 구의 반지름은 반원의 반지름과 길이가 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중점",
+            "equivalentAnswers": [
+              "중점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중심",
+            "equivalentAnswers": [
+              "중심"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중점"
+          ],
+          [
+            "중심"
+          ]
+        ],
+        "proposalFingerprint": "1824a0ffe69b51dba923a5e6bec59f18cbad4f8ae3b022ef1c4a4ac166a0dcf0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc6",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "원을 돌려 만든 구",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원을 지름을 축으로 돌려도 {구}가 되며, 반원을 돌린 것과 {같은} 입체이다.",
+        "example": {
+          "prompt": "반원을 지름을 축으로 돌리면?",
+          "answer": "구"
+        },
+        "studentC": "원을 지름을 축으로 돌려도 □가 되며, 반원을 돌린 것과 □ 입체이다.",
+        "answers": [
+          "구",
+          "같은"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "원을 그 지름을 축으로 한 바퀴 돌리면 어떤 입체가 되는가? 이것이 반원을 지름을 축으로 돌린 입체와 같은 까닭도 쓰시오.",
+        "bAnswer": "구가 된다. 지름이 원을 합동인 두 반원으로 나누고, 두 반원이 각각 한 바퀴 돌면서 똑같은 구를 만들기 때문이다.",
+        "bGoal": "원을 돌려도 구가 되는 까닭 설명하기",
+        "bReason": "결과만 물으면 구 정의와 겹쳐 반원과 같아지는 까닭까지 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지름이 원을 두 반원으로 나누고 각 반원이 같은 구를 만든다",
+              "원이 지름에 대하여 대칭이라 한쪽 반원만 돌려도 같은 입체가 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "원을 그 지름을 축으로 한 바퀴 돌려 생기는 입체는 {구}이고, 이것은 지름이 같은 {반원}을 지름을 축으로 돌려 만든 입체와 같다.",
+        "cAnswers": [
+          "구",
+          "반원"
+        ],
+        "cReason": "둘째 빈칸 '같은'은 수학 내용이 없는 낱말이라 반원을 묻도록 바꿨다.",
+        "learningRole": "reason",
+        "roleReason": "원과 반원이 같은 구를 만드는 까닭",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1893,
+        "part": "m1plus",
+        "sourceFingerprint": "53db3edd31163ee79357e3c5b262d0c7f2ce33c99fa92c4a70243927db6d7929",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1893
+        },
+        "directReview": null,
+        "cMarkedSentence": "원을 그 지름을 축으로 한 바퀴 돌려 생기는 입체는 {구}이고, 이것은 지름이 같은 {반원}을 지름을 축으로 돌려 만든 입체와 같다.",
+        "cSlotAnswers": [
+          "구",
+          "반원"
+        ],
+        "cStudentSentence": "원을 그 지름을 축으로 한 바퀴 돌려 생기는 입체는 □이고, 이것은 지름이 같은 □을 지름을 축으로 돌려 만든 입체와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "구",
+            "equivalentAnswers": [
+              "구"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반원",
+            "equivalentAnswers": [
+              "반원"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "구"
+          ],
+          [
+            "반원"
+          ]
+        ],
+        "proposalFingerprint": "9bbb639c309d291756545b467168dafb2bfc08edd305570e113dc528da87d3fb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc7",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "가운데가 빈 회전체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평면도형이 회전축에서 떨어져 있으면 돌린 입체의 가운데가 {비어} {구멍}이 생긴다.",
+        "example": {
+          "prompt": "직사각형 밖에서 그 한 변과 평행한 직선을 축으로 돌리면?",
+          "answer": "가운데가 빈 원기둥"
+        },
+        "studentC": "평면도형이 회전축에서 떨어져 있으면 돌린 입체의 가운데가 □ □이 생긴다.",
+        "answers": [
+          "비어",
+          "구멍"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형을, 그 바깥에 있고 직사각형의 한 변과 평행한 직선을 축으로 한 바퀴 돌렸다. 이 입체는 직사각형의 한 변을 축으로 돌린 원기둥과 무엇이 다른가? 그 까닭도 쓰시오.",
+        "bAnswer": "가운데가 원기둥 모양으로 비어 구멍이 뚫린 입체가 된다. 직사각형이 축에서 떨어져 있어 축 둘레는 직사각형이 지나가지 않기 때문이다.",
+        "bGoal": "도형이 축에서 떨어지면 속이 비는 까닭 설명하기",
+        "bReason": "일반 진술을 직사각형 예로 구체화해 차이와 까닭을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가운데가 비어 있다",
+              "가운데에 구멍이 뚫린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직사각형이 축에서 떨어져 있어 축 둘레는 도형이 지나가지 않는다",
+              "축과 도형 사이의 틈이 돌면서 빈 부분이 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "평면도형이 회전축과 만나지 않고 떨어져 있으면, 한 바퀴 돌려 생긴 회전체는 가운데에 {구멍}이 뚫린 모양이 된다.",
+        "cAnswers": [
+          "구멍"
+        ],
+        "cReason": "잇닿은 두 빈칸 '비어', '구멍'은 같은 뜻을 두 번 묻고 문장이 어색했다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "속이 빈 회전체가 생기는 까닭",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1894,
+        "part": "m1plus",
+        "sourceFingerprint": "c0d4acf98e265ede231250b3227139a8954c7ef484b3b6065ff96f22c7d643b1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1894
+        },
+        "directReview": null,
+        "cMarkedSentence": "평면도형이 회전축과 만나지 않고 떨어져 있으면, 한 바퀴 돌려 생긴 회전체는 가운데에 {구멍}이 뚫린 모양이 된다.",
+        "cSlotAnswers": [
+          "구멍"
+        ],
+        "cStudentSentence": "평면도형이 회전축과 만나지 않고 떨어져 있으면, 한 바퀴 돌려 생긴 회전체는 가운데에 □이 뚫린 모양이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "구멍",
+            "equivalentAnswers": [
+              "구멍"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "구멍"
+          ]
+        ],
+        "proposalFingerprint": "8219f2172400f62b8e4ca778f1c2bdff1c4653c1bdb34b28672c64d54fc5a02f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc8",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "어느 변을 축으로 하느냐",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직각삼각형은 직각을 낀 두 변 가운데 {어느} 변을 축으로 돌리느냐에 따라 높이와 {밑면의 반지름}이 바뀐 원뿔이 된다.",
+        "example": {
+          "prompt": "밑변 $3$, 높이 $4$인 직각삼각형을 밑변을 축으로 돌린 원뿔의 높이는?",
+          "answer": "$3$"
+        },
+        "studentC": "직각삼각형은 직각을 낀 두 변 가운데 □ 변을 축으로 돌리느냐에 따라 높이와 □이 바뀐 원뿔이 된다.",
+        "answers": [
+          "어느",
+          "밑면의 반지름"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "직각을 낀 두 변의 길이가 $3$, $4$인 직각삼각형을 길이가 $3$인 변을 축으로 한 바퀴 돌릴 때와 길이가 $4$인 변을 축으로 돌릴 때, 생기는 두 원뿔의 높이와 밑면의 반지름을 각각 구하시오. 또 축으로 삼은 변과 나머지 한 변이 원뿔에서 각각 무엇이 되는지 쓰시오.",
+        "bAnswer": "길이가 $3$인 변을 축으로 하면 높이 $3$, 밑면의 반지름 $4$이고, 길이가 $4$인 변을 축으로 하면 높이 $4$, 밑면의 반지름 $3$이다. 축으로 삼은 변이 원뿔의 높이가 되고 나머지 한 변이 밑면의 반지름이 된다.",
+        "bGoal": "축이 되는 변에 따라 원뿔의 높이와 반지름 정하기",
+        "bReason": "제목이 물음 조각이라 두 축을 비교하는 구체 예로 바꿨다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "길이 $3$인 변이 축이면 높이 $3$, 반지름 $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이 $4$인 변이 축이면 높이 $4$, 반지름 $3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "축으로 삼은 변이 높이, 나머지 변이 밑면의 반지름이 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직각삼각형을 직각을 낀 두 변 가운데 한 변을 축으로 돌려 원뿔을 만들면, 축으로 삼은 변의 길이가 원뿔의 {높이}가 되고 나머지 한 변의 길이가 {밑면의 반지름}이 된다.",
+        "cAnswers": [
+          "높이",
+          "밑면의 반지름"
+        ],
+        "cReason": "빈칸 '어느'는 수학 내용이 없어 변과 원뿔 요소의 대응을 묻게 했다.",
+        "studentLabel": "축으로 삼는 변에 따라 달라지는 원뿔",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "축 선택에 따른 원뿔의 높이·반지름",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1895,
+        "part": "m1plus",
+        "sourceFingerprint": "8be491a140158537daae64eb61d932fb1f579b733cc1771f98e2ea6fa069c4d5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1895
+        },
+        "directReview": null,
+        "cMarkedSentence": "직각삼각형을 직각을 낀 두 변 가운데 한 변을 축으로 돌려 원뿔을 만들면, 축으로 삼은 변의 길이가 원뿔의 {높이}가 되고 나머지 한 변의 길이가 {밑면의 반지름}이 된다.",
+        "cSlotAnswers": [
+          "높이",
+          "밑면의 반지름"
+        ],
+        "cStudentSentence": "직각삼각형을 직각을 낀 두 변 가운데 한 변을 축으로 돌려 원뿔을 만들면, 축으로 삼은 변의 길이가 원뿔의 □가 되고 나머지 한 변의 길이가 □이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "밑면의 반지름",
+            "equivalentAnswers": [
+              "밑면의 반지름",
+              "밑면의 반지름의 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "밑면의 반지름",
+            "accept": [
+              "밑면의 반지름의 길이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "높이"
+          ],
+          [
+            "밑면의 반지름",
+            "밑면의 반지름의 길이"
+          ]
+        ],
+        "proposalFingerprint": "cbe482d4bec1b2962388d1e6f9432f5ba02b20c923cad7113a91ee153aa8a745"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc9",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "원기둥의 축 단면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥을 회전축을 포함하는 평면으로 자르면 단면은 {직사각형}이고, 그 가로는 밑면의 {지름}이다.",
+        "example": {
+          "prompt": "반지름 $2$, 높이 $5$인 원기둥을 회전축을 포함하는 평면으로 자른 단면의 넓이는?",
+          "answer": "$20$"
+        },
+        "studentC": "원기둥을 회전축을 포함하는 평면으로 자르면 단면은 □이고, 그 가로는 밑면의 □이다.",
+        "answers": [
+          "직사각형",
+          "지름"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면의 반지름이 $r$, 높이가 $h$인 원기둥을 회전축을 포함하는 평면으로 잘랐다. 단면은 어떤 도형이며, 이웃한 두 변의 길이는 각각 얼마인가?",
+        "bAnswer": "단면은 직사각형이고, 이웃한 두 변의 길이는 밑면의 지름 $2r$와 높이 $h$이다.",
+        "bGoal": "원기둥의 축 단면 모양과 변의 길이 말하기",
+        "bReason": "'축 단면'은 교과서에 없는 말이라 자르는 방법과 기호를 질문에 풀어 썼다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 변은 $2r$",
+              "한 변은 밑면의 지름"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 한 변은 $h$",
+              "다른 한 변은 원기둥의 높이"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "원기둥을 회전축을 포함하는 평면으로 자르면 단면은 {직사각형}이고, 이 단면에서 밑면 위에 놓인 변의 길이는 밑면의 {지름}과 같다.",
+        "cAnswers": [
+          "직사각형",
+          "지름"
+        ],
+        "cReason": "'그 가로'가 어느 변인지 그림 없이는 정해지지 않는다.",
+        "studentLabel": "원기둥을 회전축을 포함하게 자른 단면",
+        "learningRole": "definition",
+        "roleReason": "원기둥 축 단면의 모양과 변",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1896,
+        "part": "m1plus",
+        "sourceFingerprint": "1e1312af165799937b620f505db4a146811aaf87c4e104f56c46bb53062c78ea",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1896
+        },
+        "directReview": null,
+        "cMarkedSentence": "원기둥을 회전축을 포함하는 평면으로 자르면 단면은 {직사각형}이고, 이 단면에서 밑면 위에 놓인 변의 길이는 밑면의 {지름}과 같다.",
+        "cSlotAnswers": [
+          "직사각형",
+          "지름"
+        ],
+        "cStudentSentence": "원기둥을 회전축을 포함하는 평면으로 자르면 단면은 □이고, 이 단면에서 밑면 위에 놓인 변의 길이는 밑면의 □과 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직사각형",
+            "equivalentAnswers": [
+              "직사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "지름",
+            "equivalentAnswers": [
+              "지름",
+              "지름의 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "지름",
+            "accept": [
+              "지름의 길이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직사각형"
+          ],
+          [
+            "지름",
+            "지름의 길이"
+          ]
+        ],
+        "proposalFingerprint": "90423ea42d916e8a43a2943b25556b3a2ea87f6e22be866a80a248ef1000c786"
+      }
+    }
+  ]
+}

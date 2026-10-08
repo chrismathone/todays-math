@@ -1,0 +1,768 @@
+{
+  "rows": [
+    {
+      "id": "e5-1-4-2-c1",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자를 같은 공약수로 나눈다",
+            "분모와 분자를 같은 수로 함께 나누어 간단하게 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공약수",
+            "공통인 약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "약분"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-c2",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자의 공약수가 $1$뿐이다",
+            "분모와 분자를 함께 나눌 수 있는 수가 $1$뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{8}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "기약분수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-c3",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자의 최대공약수로 나눈다",
+            "분모와 분자를 가장 큰 공약수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "최대공약수",
+            "가장 큰 공약수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc1",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bReason": "c1의 B가 약분의 뜻과 나누는 방법을 이미 묻고 있어 같은 답이 반복된다.",
+      "exclusionReason": "B 제외: e5-1-4-2-c1 B로 대체한다.",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc2",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분해도 분수의 크기는 처음 분수와 같다",
+            "약분해도 분수의 크기는 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크기가 같다",
+            "같다",
+            "크기가 변하지 않는다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc3",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bReason": "c2의 B가 공약수로 기약분수를 설명하고 가려내게 하므로 같은 판단이 반복된다.",
+      "exclusionReason": "B 제외: e5-1-4-2-c2 B로 대체한다.",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "없는",
+            "없다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc4",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bReason": "사선과 작은 몫을 쓰는 것은 표기 습관이라 글로 설명할 수학적 관계가 없다.",
+      "exclusionReason": "B 제외: 표기 행동이라 개념 평가 가치가 낮다.",
+      "bRequiredIdeas": []
+    },
+    {
+      "id": "e5-1-4-2-xc5",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{6}{8}$",
+            "처음 분수와 같은 $\\frac{6}{8}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$로 나누면 분모와 분자가 변하지 않아 간단해지지 않는다",
+            "$1$로 나누어도 수가 그대로여서 약분하는 효과가 없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$보다 큰",
+            "$1$이 아닌",
+            "$1$을 뺀"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc6",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분한 뒤에도 분모와 분자에 $1$보다 큰 공약수가 남아 있을 때",
+            "약분한 분수의 분모와 분자에 $1$이 아닌 공약수가 있을 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{6}{8}$은 공약수 $2$가 있어 다시 약분할 수 있다",
+            "$6$과 $8$이 모두 $2$로 나누어지므로 다시 약분할 수 있다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "있다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc7",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bReason": "기약분수의 뜻과 고르기는 c2의 B에서 이미 묻고 있어 예만 바뀐 반복이다.",
+      "exclusionReason": "B 제외: e5-1-4-2-c2 B로 대체한다.",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "㉡",
+            "$\\frac{3}{5}$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc8",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$의 약수는 $1$뿐이라 분자와 분모의 공약수도 $1$뿐이다",
+            "분자가 $1$이면 분모와 함께 나눌 수 있는 수는 $1$뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "더 약분할 수 없다",
+            "약분할 수 없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc9",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자의 공약수 가운데 $1$을 뺀 수",
+            "분모와 분자의 $1$보다 큰 공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$, $4$",
+            "$4$, $2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$",
+            "$4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc10",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자의 공약수 중 $1$보다 큰 수의 개수와 같다",
+            "분모와 분자의 공약수 가운데 $1$을 뺀 수의 개수와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{6}{9}$, $\\frac{4}{6}$, $\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc11",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bReason": "xc2의 B가 약분 전후의 크기 관계를 이미 묻고 있어 답이 겹친다.",
+      "exclusionReason": "B 제외: e5-1-4-2-xc2 B로 대체한다.",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같고",
+            "변하지 않고"
+          ]
+        },
+        {
+          "anyOf": [
+            "작아진다",
+            "줄어든다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc12",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자가 모두 짝수이면 기약분수가 될 수 없다",
+            "분모와 분자가 모두 짝수인 분수는 기약분수가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모와 분자가 모두 $2$로 나누어지므로 공약수 $2$가 있다",
+            "$2$가 분모와 분자의 공약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{14}{20}$는 기약분수가 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc13",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bReason": "xc6의 B가 약분한 뒤 공약수가 남으면 더 약분할 수 있음을 이미 묻고 있다.",
+      "exclusionReason": "B 제외: e5-1-4-2-xc6 B로 대체한다.",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc14",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$와 $5$, $7$과 $8$, $9$와 $10$의 공약수는 모두 $1$뿐이다",
+            "세 분수 모두 분모와 분자의 공약수가 $1$뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "세 분수 모두 기약분수이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "기약분수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc15",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자가 분모의 배수이다",
+            "분모가 분자의 약수이다",
+            "분자를 분모로 나누면 나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc16",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 방법으로 얻은 기약분수는 서로 같다",
+            "약분하는 방법이 달라도 기약분수는 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 방법 모두 $\\frac{2}{3}$이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc17",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bReason": "'알아보기 쉽다'는 느낌을 말하는 문장이라 맞고 틀림을 가릴 수학적 답이 없다.",
+      "exclusionReason": "B 제외: 추상적인 평가 문장이다.",
+      "bRequiredIdeas": []
+    },
+    {
+      "id": "e5-1-4-2-xc18",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자를 같은 수로 나누어야 분수의 크기가 변하지 않는다",
+            "분모와 분자를 서로 다른 수로 나누면 분수의 크기가 달라진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc19",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "더 약분할 수 없다",
+            "최대공약수로 나눈 분수는 기약분수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눈 뒤 분모와 분자의 공약수가 $1$뿐이다",
+            "나눈 뒤 분모와 분자를 함께 나눌 수 있는 수는 $1$뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{18}{24}$을 $6$으로 나눈 $\\frac{3}{4}$에서 $3$과 $4$의 공약수가 $1$뿐이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$뿐",
+            "$1$",
+            "$1$ 하나"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc20",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기약분수의 분모와 분자에 같은 수를 곱한다",
+            "기약분수의 분모와 분자에 $1$보다 큰 같은 자연수를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{10}{15}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc21",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자의 합도 곱한 수만큼 곱해져 같은 배가 된다",
+            "분모와 분자에 같은 수를 곱하면 합도 그 수를 곱한 값이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{15}{25}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc22",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모의 공약수가 $1$뿐이다",
+            "분자와 분모를 함께 나눌 수 있는 수가 $1$뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{8}$, $\\frac{3}{8}$, $\\frac{5}{8}$, $\\frac{7}{8}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "$5$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc24",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모를 $60$으로 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$시간이 $60$분이기 때문이다",
+            "$1$시간은 $60$분이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$시간"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc25",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분한 분수의 분모와 분자에 나눈 수를 다시 곱해 처음 분수가 되는지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{4}$는 틀렸다",
+            "$\\frac{2}{4}$에 $7$을 곱하면 $\\frac{14}{28}$이므로 $\\frac{14}{21}$이 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱해",
+            "곱하여"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc26",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분수를 각각 기약분수로 나타내어 같은지 비교한다",
+            "두 분수를 약분해 같은 기약분수가 되는지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘 다 $\\frac{2}{3}$이므로 크기가 같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-4-2-xc27",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bReason": "xc16의 B가 방법이 달라도 기약분수가 같음을 이미 확인하게 하므로 같은 결론이다.",
+      "exclusionReason": "B 제외: e5-1-4-2-xc16 B로 대체한다.",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "하나뿐",
+            "하나",
+            "한 개",
+            "$1$개"
+          ]
+        }
+      ]
+    }
+  ]
+}

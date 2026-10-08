@@ -1,0 +1,408 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T06:11:23.273Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc1",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "소수의 약수의 개수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수는 약수가 정확히 {$2$개}인 자연수이다.",
+        "example": {
+          "prompt": "$13$의 약수를 모두 쓰면?",
+          "answer": "$1$, $13$"
+        },
+        "studentC": "소수는 약수가 정확히 □인 자연수이다.",
+        "answers": [
+          "$2$개"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "소수의 약수가 $1$과 자기 자신으로 $2$개임을 확인한다.",
+        "bReason": "소수의 약수가 $2$개라는 내용은 소수의 정의 질문(m1-01-01-c1)과 약수의 개수로 나누는 질문(m1-01-01-xc12)의 답에 그대로 들어 있다. 서술형으로 한 번 더 물으면 같은 답을 되풀이하게 된다.",
+        "cDecision": "keep",
+        "cReason": "소수의 정확한 약수 수를 묻고 같은 수량 두 개의 다른 표기만 인정한다.",
+        "exclusionReason": "B 제외: 서술형 B 형식에서 m1-01-01-c1(소수의 정의)과 m1-01-01-xc12(약수의 개수로 나누기)의 질문·답과 겹친다. C는 제외하지 않고 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "약수가 정확히 2개",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 925,
+        "part": "m1plus",
+        "sourceFingerprint": "3ed31310190b66a0d9a18a740b97bd47a16af3e1427400e904c5f890fa1f3f16",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 925
+        },
+        "directReview": null,
+        "cFrozenSentence": "소수는 약수가 정확히 □인 자연수이다.",
+        "cFrozenDefinition": "소수는 약수가 정확히 {$2$개}인 자연수이다.",
+        "cFrozenAnswers": [
+          "$2$개"
+        ],
+        "cMarkedSentence": "소수는 약수가 정확히 {$2$개}인 자연수이다.",
+        "cSlotAnswers": [
+          "$2$개"
+        ],
+        "cStudentSentence": "소수는 약수가 정확히 □인 자연수이다.",
+        "cAnswers": [
+          "$2$개"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$개",
+            "equivalentAnswers": [
+              "$2$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$개",
+            "두 개",
+            "2개"
+          ]
+        ],
+        "proposalFingerprint": "460e2c4efae47d870a1fe5fcc60f251312deb2290b9262590f416f371d465fd2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc7",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "소수인지 알아보는 방법",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 {약수}가 있는지 작은 {소수}부터 나누어 본다.",
+        "example": {
+          "prompt": "$91$은 소수인가?",
+          "answer": "아니다($91=7\\times13$)"
+        },
+        "studentC": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 □가 있는지 작은 □부터 나누어 본다.",
+        "answers": [
+          "약수",
+          "소수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$91$이 소수인지 알아보려고 한다. 작은 소수부터 차례로 나누어 볼 때, $91$을 나누어떨어지게 하는 소수를 찾기까지 확인한 소수를 쓰시오. 그 결과를 이용하여 $91$이 소수인지 판단하고 이유를 쓰시오.",
+        "bAnswer": "$1$과 자기 자신이 아닌 약수가 있는지 작은 소수 $2$, $3$, $5$, $7$, …의 차례로 나누어 본다. $91=7\\times13$으로 $7$로 나누어떨어지므로 $91$은 소수가 아니다(합성수이다).",
+        "bGoal": "작은 소수부터 나누어 보아 소수인지 판단하는 방법을 쓰고 실제로 적용한다.",
+        "bReason": "작은 소수로 확인하는 원문의 효율적 판정 방법을 질문에 명시하여 다른 나눗셈 방법을 설명했다는 이유만으로 오답 처리하지 않도록 범위를 정한다.",
+        "cDecision": "keep",
+        "cReason": "대상('$1$보다 큰 자연수')과 목적이 문장에 있고, 무엇이 있는지와 무엇으로 나누는지를 묻는 두 빈칸이 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "2, 3, 5, 7의 차례로 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "91은 7로 나누어떨어진다",
+              "91=7×13이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "91은 소수가 아니라 합성수이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "작은 소수부터 나눠 보기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 931,
+        "part": "m1plus",
+        "sourceFingerprint": "e168cb941ae6e0b24c38892c799ce7af45d8bfa23424be7cddb0e15d2ad652ed",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 931
+        },
+        "directReview": null,
+        "cFrozenSentence": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 □가 있는지 작은 □부터 나누어 본다.",
+        "cFrozenDefinition": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 {약수}가 있는지 작은 {소수}부터 나누어 본다.",
+        "cFrozenAnswers": [
+          "약수",
+          "소수"
+        ],
+        "cMarkedSentence": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 {약수}가 있는지 작은 {소수}부터 나누어 본다.",
+        "cSlotAnswers": [
+          "약수",
+          "소수"
+        ],
+        "cStudentSentence": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 □가 있는지 작은 □부터 나누어 본다.",
+        "cAnswers": [
+          "약수",
+          "소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약수",
+            "equivalentAnswers": [
+              "약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약수"
+          ],
+          [
+            "소수"
+          ]
+        ],
+        "proposalFingerprint": "3ddcf98c941038738cefa7ba5e61ca714b797c5c43d0595fbcdb8fcdbb7f2b3b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc15",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "거리가 같은 두 점",
+        "kind": "방법",
+        "level": "상",
+        "definition": "수직선에서 어떤 점으로부터 거리가 양수 $a$인 점은 그 점의 오른쪽과 왼쪽에 {하나씩}, 모두 {두 개}이다.",
+        "example": {
+          "prompt": "$-1$에서 거리가 $4$인 점이 나타내는 수는?",
+          "answer": "$3$, $-5$"
+        },
+        "studentC": "수직선에서 어떤 점으로부터 거리가 양수 $a$인 점은 그 점의 오른쪽과 왼쪽에 □, 모두 □이다.",
+        "answers": [
+          "하나씩",
+          "두 개"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "수직선에서 $-1$을 나타내는 점으로부터의 거리가 $4$인 점은 몇 개인지 쓰고, 각 점이 나타내는 수를 구하시오. 또 왜 그 개수가 되는지 쓰시오.",
+        "bAnswer": "두 개이다. $-1$에서 오른쪽으로 $4$만큼 간 점은 $3$, 왼쪽으로 $4$만큼 간 점은 $-5$를 나타낸다. 한 점에서 같은 거리에 있는 점은 오른쪽과 왼쪽에 하나씩 있기 때문이다.",
+        "bGoal": "수직선에서 한 점으로부터 거리가 같은 점이 양쪽에 하나씩 두 개임을 알고 구한다.",
+        "bReason": "제목만으로는 기준점과 거리가 없어 답할 수 없다. 기준점 $-1$과 거리 $4$를 주고 개수, 수, 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "수직선에서 어떤 점으로부터의 거리가 양수 $a$인 점은 그 점의 오른쪽과 왼쪽에 {하나씩}, 모두 {두 개}이다.",
+        "cAnswers": [
+          "하나씩",
+          "두 개"
+        ],
+        "cReason": "순서없는오른쪽·왼쪽두슬롯을그대로교환하지않게위치를제시하고각방향한점·총두점의수량을묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$과 $-5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 거리에 있는 점이 오른쪽과 왼쪽에 하나씩 있기 때문"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "양쪽에 하나씩 두 점 찾기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1058,
+        "part": "m1plus",
+        "sourceFingerprint": "c93abadc4255b566ea72ee43c0bc35e6715b8c3ca5001d22caadce42df4ca300",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1058
+        },
+        "directReview": null,
+        "cMarkedSentence": "수직선에서 어떤 점으로부터의 거리가 양수 $a$인 점은 그 점의 오른쪽과 왼쪽에 {하나씩}, 모두 {두 개}이다.",
+        "cSlotAnswers": [
+          "하나씩",
+          "두 개"
+        ],
+        "cStudentSentence": "수직선에서 어떤 점으로부터의 거리가 양수 $a$인 점은 그 점의 오른쪽과 왼쪽에 □, 모두 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "하나씩",
+            "equivalentAnswers": [
+              "하나씩",
+              "각각 하나씩"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "두 개",
+            "equivalentAnswers": [
+              "두 개",
+              "$2$개",
+              "2개"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "하나씩",
+            "각각 하나씩"
+          ],
+          [
+            "두 개",
+            "$2$개",
+            "2개"
+          ]
+        ],
+        "proposalFingerprint": "76a55249fce616de04f6fb214fb0f22cf1704bfbc8681f200594e265251eef02"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc16",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "기약분수로 정수 판정",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분모가 양수인 기약분수로 나타냈을 때 분모가 {$1$}이면 정수이고, $1$이 아니면 {정수가 아닌 유리수}이다. 약분하기 전의 분모만 보면 잘못 가른다.",
+        "example": {
+          "prompt": "$-\\frac{14}{7}$, $\\frac{14}{4}$ 가운데 정수는?",
+          "answer": "$-\\frac{14}{7}$"
+        },
+        "studentC": "분모가 양수인 기약분수로 나타냈을 때 분모가 □이면 정수이고, $1$이 아니면 □이다. 약분하기 전의 분모만 보면 잘못 가른다.",
+        "answers": [
+          "$1$",
+          "정수가 아닌 유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$-\\frac{14}{7}$와 $\\frac{14}{4}$ 가운데 정수인 것을 고르려고 한다. 각 수를 분모가 양수인 기약분수로 나타내어 판단하는 방법을 설명하고, 약분하기 전의 분모만 보고 판단하면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "$-\\frac{14}{7}=-\\frac21=-2$는 기약분수의 분모가 $1$이므로 정수이다. $\\frac{14}{4}=\\frac72$은 분모가 $1$이 아니므로 정수가 아닌 유리수이다. 약분 전 분모가 $1$이 아니어도 약분 후에는 $1$이 될 수 있으므로 먼저 약분해야 한다.",
+        "bGoal": "기약분수로 고쳐 분모가 $1$인지로 정수 여부를 판정한다.",
+        "bReason": "약분한두번째분수는이분의칠로읽으므로받침칠에맞는은으로고치며수학값과판정이유를보존한다.",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 유리수를 분모가 양수인 기약분수로 나타냈을 때 분모가 {$1$}이면 정수이고, 그렇지 않으면 정수가 아닌 유리수이다. 따라서 {약분}하기 전의 분모만 보고 판단하면 안 된다.",
+        "cAnswers": [
+          "$1$",
+          "약분"
+        ],
+        "cReason": "원문은 첫 빈칸의 답 '$1$'이 바로 뒤 '$1$이 아니면'에 그대로 나와 베껴 쓸 수 있다. 그 부분을 '그렇지 않으면'으로 바꾸고 주의할 점의 핵심어를 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-\\frac{14}{7}=-2$로 기약분수의 분모가 $1$이므로 정수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{14}{4}=\\frac{7}{2}$로 기약분수의 분모가 $1$이 아니므로 정수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약분 후 분모가 $1$이 될 수 있으므로 먼저 약분해야 한다",
+              "약분 전의 분모만으로는 약분 후 정수가 되는 수를 잘못 판단한다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "기약분수 분모로 정수 판정",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "notationReason": "칠분의 십사는 와, 이분의 칠은 은으로 읽으며 정수 분류와 약분 값은 그대로이다.",
+        "sourceIndex": 1059,
+        "part": "m1plus",
+        "sourceFingerprint": "a8ad678029e005dbdce46b5a27b4d3863c019078bb48a7ebfdf401d40200ee97",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1059
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-02-01-xc16"
+        },
+        "cMarkedSentence": "어떤 유리수를 분모가 양수인 기약분수로 나타냈을 때 분모가 {$1$}이면 정수이고, 그렇지 않으면 정수가 아닌 유리수이다. 따라서 {약분}하기 전의 분모만 보고 판단하면 안 된다.",
+        "cSlotAnswers": [
+          "$1$",
+          "약분"
+        ],
+        "cStudentSentence": "어떤 유리수를 분모가 양수인 기약분수로 나타냈을 때 분모가 □이면 정수이고, 그렇지 않으면 정수가 아닌 유리수이다. 따라서 □하기 전의 분모만 보고 판단하면 안 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "약분"
+          ]
+        ],
+        "proposalFingerprint": "4e266fefbe7f3163da192b187926c073dc9004484b75eba8ee39174d3a3e36dc"
+      }
+    }
+  ]
+}

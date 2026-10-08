@@ -1,0 +1,1888 @@
+{
+  "status": "Current seven accepted authored trap groups for actual per-slot rereading; not activation or approval",
+  "generalDefinitionsHashAtCapture": "6b18dc84ee06561159087fbdddd54c7aa23003d990cc0a741ac6067c9f627545",
+  "groups": [
+    {
+      "id": "e3-1-2-3-c3",
+      "beforeDigest": "622d2eff",
+      "afterDigest": "bfa7ee4f",
+      "before": {
+        "id": "e3-1-2-3-c3",
+        "section": "초3::1-2 평면도형::1-2-3 직각삼각형 알아보기",
+        "level": "상",
+        "ordinal": 1,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e3-1-2-3-c3",
+            "term": "직각삼각형의 방향",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "직각삼각형을 돌려 놓아도 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-c3#1",
+                  "text": "각의 크기는 같으므로",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 여전히 직각삼각형이다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-2-3-xc19",
+            "term": "직각삼각형을 직각삼각형 둘로 나누기",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "직각인 꼭짓점에서 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-xc19#1",
+                  "text": "마주 보는 변에 직각으로",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 선을 그으면 작은 직각삼각형 $2$개가 생긴다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-2-3-xc20",
+            "term": "삼각형을 만들 수 없는 세 점",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "세 점이 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-xc20#1",
+                  "text": "한 직선 위",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "에 있으면 삼각형을 만들 수 없다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-2-3-xc21",
+            "term": "삼각형의 직각은 하나",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "삼각형의 한 변 양 끝에서 모두 직각으로 변을 세우면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-xc21#1",
+                  "text": "두 변이 만나지 않으므로",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 직각은 하나만 있을 수 있다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-2-3-xc22",
+            "term": "접어서 생긴 두 직각삼각형",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "정사각형을 마주 보는 꼭짓점끼리 맞추어 접어 생긴 두 직각삼각형은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-xc22#1",
+                  "text": "크기와 모양이 같다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "id": "e3-1-2-3-c3",
+        "section": "초3::1-2 평면도형::1-2-3 직각삼각형 알아보기",
+        "level": "상",
+        "ordinal": 1,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e3-1-2-3-c3",
+            "term": "직각삼각형의 방향",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "직각삼각형을 돌려 놓아도 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-c3#1",
+                  "text": "각의 크기는 같으므로",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 여전히 직각삼각형이다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-2-3-xc19",
+            "term": "직각삼각형을 직각삼각형 둘로 나누기",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "직각인 꼭짓점에서 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-xc19#1",
+                  "text": "마주 보는 변에 직각으로",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 선을 그으면 작은 직각삼각형 $2$개가 생긴다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-2-3-xc20",
+            "term": "삼각형을 만들 수 없는 세 점",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "세 점이 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-xc20#1",
+                  "text": "한 직선 위",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "에 있으면 삼각형을 만들 수 없다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-2-3-xc21",
+            "term": "삼각형의 직각은 하나",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "삼각형의 한 변 양 끝에서 모두 직각으로 변을 세우면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-xc21#1",
+                  "text": "두 변이 만나지 않으므로",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 삼각형의 직각은 많아야 하나이다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-2-3-xc22",
+            "term": "접어서 생긴 두 직각삼각형",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "정사각형을 마주 보는 꼭짓점끼리 맞추어 접어 생긴 두 직각삼각형은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-2-3-xc22#1",
+                  "text": "크기와 모양이 같다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          }
+        ]
+      },
+      "traps": [
+        {
+          "key": "e3-1-2-3-c3|크기가 다르다",
+          "conceptId": "e3-1-2-3-c3",
+          "text": "크기가 다르다",
+          "ox": "e3-1-2-3-xo26",
+          "authored": {
+            "targetId": "e3-1-2-3-xc22#1",
+            "why": "접으면 꼭 겹치므로 크기와 모양이 같다."
+          },
+          "digest": "bfa7ee4f",
+          "slots": [
+            {
+              "targetId": "e3-1-2-3-c3#1",
+              "canonicalAnswer": "각의 크기는 같으므로",
+              "propositionId": "e3-1-2-3-c3",
+              "text": "직각삼각형을 돌려 놓아도 크기가 다르다 여전히 직각삼각형이다."
+            },
+            {
+              "targetId": "e3-1-2-3-xc19#1",
+              "canonicalAnswer": "마주 보는 변에 직각으로",
+              "propositionId": "e3-1-2-3-xc19",
+              "text": "직각인 꼭짓점에서 크기가 다르다 선을 그으면 작은 직각삼각형 $2$개가 생긴다."
+            },
+            {
+              "targetId": "e3-1-2-3-xc20#1",
+              "canonicalAnswer": "한 직선 위",
+              "propositionId": "e3-1-2-3-xc20",
+              "text": "세 점이 크기가 다르다에 있으면 삼각형을 만들 수 없다."
+            },
+            {
+              "targetId": "e3-1-2-3-xc21#1",
+              "canonicalAnswer": "두 변이 만나지 않으므로",
+              "propositionId": "e3-1-2-3-xc21",
+              "text": "삼각형의 한 변 양 끝에서 모두 직각으로 변을 세우면 크기가 다르다 삼각형의 직각은 많아야 하나이다."
+            },
+            {
+              "targetId": "e3-1-2-3-xc22#1",
+              "canonicalAnswer": "크기와 모양이 같다",
+              "propositionId": "e3-1-2-3-xc22",
+              "text": "정사각형을 마주 보는 꼭짓점끼리 맞추어 접어 생긴 두 직각삼각형은 크기가 다르다."
+            }
+          ],
+          "source": {
+            "id": "e3-1-2-3-xo26",
+            "section": "초3::1-2 평면도형::1-2-3 직각삼각형 알아보기",
+            "level": "상",
+            "statement": "정사각형을 마주 보는 꼭짓점끼리 맞추어 접어 생긴 두 직각삼각형은 크기가 다르다.",
+            "answer": false,
+            "why": "접으면 꼭 겹치므로 크기와 모양이 같다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "e3-1-5-5-c1",
+      "beforeDigest": "5917258e",
+      "afterDigest": "ad2078ab",
+      "before": {
+        "id": "e3-1-5-5-c1",
+        "section": "초3::1-5 길이와 시간::1-5-5 시간의 덧셈",
+        "level": "하",
+        "ordinal": 1,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e3-1-5-5-c1",
+            "term": "시간끼리 더하기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시간을 더할 때에는 시·분·초를 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-c1#1",
+                  "text": "같은 단위끼리",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 모아 더한다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc1",
+            "term": "시각과 시간",
+            "kind": "정의",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시계가 가리키는 어느 한 때는 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc1#1",
+                  "text": "시각",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이고, 두 때 사이의 길이는 시간이다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc4",
+            "term": "받아올림이 없는 시간의 덧셈",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "초의 합도 분의 합도 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc4#1",
+                  "text": "$60$보다 작으면",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 윗단위로 받아올리지 않고 그대로 쓴다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc6",
+            "term": "시각과 시간의 합",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시각에 시간을 더하면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc6#1",
+                  "text": "시각",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이 된다."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "id": "e3-1-5-5-c1",
+        "section": "초3::1-5 길이와 시간::1-5-5 시간의 덧셈",
+        "level": "하",
+        "ordinal": 1,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e3-1-5-5-c1",
+            "term": "시간끼리 더하기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시간을 더할 때에는 시·분·초를 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-c1#1",
+                  "text": "같은 단위끼리",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 모아 더한다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc1",
+            "term": "시각과 시간",
+            "kind": "정의",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시계가 가리키는 어느 한 때는 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc1#1",
+                  "text": "시각",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이고, 두 때 사이의 길이는 시간이다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc4",
+            "term": "받아올림이 없는 시간의 덧셈",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시간을 더할 때 초의 합과 분의 합이 모두 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc4#1",
+                  "text": "$60$보다 작으면",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 받아올리지 않고 그대로 쓴다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc6",
+            "term": "시각과 시간의 합",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시각에 시간을 더하면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc6#1",
+                  "text": "시각",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이 된다."
+              }
+            ]
+          }
+        ]
+      },
+      "traps": [
+        {
+          "key": "e3-1-5-5-c1|시간",
+          "conceptId": "e3-1-5-5-c1",
+          "text": "시간",
+          "ox": "e3-1-5-5-xo4",
+          "authored": {
+            "targetId": "e3-1-5-5-xc6#1",
+            "why": "시각에 시간을 더하면 시각이 된다."
+          },
+          "digest": "ad2078ab",
+          "slots": [
+            {
+              "targetId": "e3-1-5-5-c1#1",
+              "canonicalAnswer": "같은 단위끼리",
+              "propositionId": "e3-1-5-5-c1",
+              "text": "시간을 더할 때에는 시·분·초를 시간 모아 더한다."
+            },
+            {
+              "targetId": "e3-1-5-5-xc1#1",
+              "canonicalAnswer": "시각",
+              "propositionId": "e3-1-5-5-xc1",
+              "text": "시계가 가리키는 어느 한 때는 시간이고, 두 때 사이의 길이는 시간이다."
+            },
+            {
+              "targetId": "e3-1-5-5-xc4#1",
+              "canonicalAnswer": "$60$보다 작으면",
+              "propositionId": "e3-1-5-5-xc4",
+              "text": "시간을 더할 때 초의 합과 분의 합이 모두 시간 받아올리지 않고 그대로 쓴다."
+            },
+            {
+              "targetId": "e3-1-5-5-xc6#1",
+              "canonicalAnswer": "시각",
+              "propositionId": "e3-1-5-5-xc6",
+              "text": "시각에 시간을 더하면 시간이 된다."
+            }
+          ],
+          "source": {
+            "id": "e3-1-5-5-xo4",
+            "section": "초3::1-5 길이와 시간::1-5-5 시간의 덧셈",
+            "level": "하",
+            "statement": "시각에 시간을 더하면 시간이 된다.",
+            "answer": false,
+            "why": "시각에 시간을 더하면 시각이 된다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "e3-1-1-3-xc23",
+      "beforeDigest": "9fb9b25e",
+      "afterDigest": "a534d8e6",
+      "before": {
+        "id": "e3-1-1-3-xc23",
+        "section": "초3::1-1 덧셈과 뺄셈::1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+        "level": "상",
+        "ordinal": 2,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e3-1-1-3-xc23",
+            "term": "차가 가장 큰 뺄셈 만들기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "숫자 카드 세 장을 한 번씩 써서 만들 수 있는 세 자리 수 가운데 두 수를 골라 차를 가장 크게 하려면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc23#1",
+                  "text": "가장 큰 수",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "에서 가장 작은 수를 뺀다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-1-3-xc24",
+            "term": "어림으로 차 살피기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "계산한 차가 몇백으로 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc24#1",
+                  "text": "어림한 차",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "와 크게 다르면 다시 계산해 본다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-1-3-xc25",
+            "term": "받아내림이 한 번뿐인지 미리 알기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "세 자리 수끼리 뺄 때 빼어지는 수가 더 크고 빼어지는 수의 십의 자리 숫자가 $0$이 아니라고 하자. 일의 자리로 $1$을 내려 준 뒤 남은 십의 자리 숫자가 빼는 수의 십의 자리 숫자보다 작지 않으면 받아내림은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc25#1",
+                  "text": "한",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 번뿐이다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-1-3-xc26",
+            "term": "더해 가며 차 구하기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "두 수의 차는 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc26#1",
+                  "text": "작은 수에 얼마를 더하면",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 큰 수가 되는지를 생각해도 구할 수 있다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-1-3-xc27",
+            "term": "빼는 수와 차의 크기",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "같은 수에서 뺄 때 빼는 수가 클수록 차는 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc27#1",
+                  "text": "작아진다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "id": "e3-1-1-3-xc23",
+        "section": "초3::1-1 덧셈과 뺄셈::1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+        "level": "상",
+        "ordinal": 2,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e3-1-1-3-xc23",
+            "term": "차가 가장 큰 뺄셈 만들기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "숫자 카드 세 장을 한 번씩 써서 만들 수 있는 세 자리 수 가운데 두 수를 골라 차를 가장 크게 하려면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc23#1",
+                  "text": "가장 큰 수",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "에서 가장 작은 수를 뺀다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-1-3-xc24",
+            "term": "어림으로 차 살피기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "계산한 차가 몇백으로 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc24#1",
+                  "text": "어림한 차",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "와 크게 다르면 다시 계산해 본다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-1-3-xc25",
+            "term": "받아내림이 한 번뿐인지 미리 알기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "세 자리 수에서 더 작은 세 자리 수를 빼고 큰 수의 십의 자리 숫자는 $0$이 아니라고 하자. 일의 자리로 $1$을 내려 준 뒤 남은 십의 자리 숫자에서 빼는 수의 십의 자리 숫자를 뺄 수 있으면 받아내림은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc25#1",
+                  "text": "한",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 번뿐이다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-1-3-xc26",
+            "term": "더해 가며 차 구하기",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "두 수의 차는 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc26#1",
+                  "text": "작은 수에 얼마를 더하면",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 큰 수가 되는지를 생각해도 구할 수 있다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-1-3-xc27",
+            "term": "빼는 수와 차의 크기",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "같은 수에서 뺄 때 빼는 수가 클수록 차는 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-1-3-xc27#1",
+                  "text": "작아진다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          }
+        ]
+      },
+      "traps": [
+        {
+          "key": "e3-1-1-3-xc23|커진다",
+          "conceptId": "e3-1-1-3-xc23",
+          "text": "커진다",
+          "ox": "e3-1-1-3-xo25",
+          "authored": {
+            "targetId": "e3-1-1-3-xc27#1",
+            "why": "많이 뺄수록 남는 수가 작아진다."
+          },
+          "digest": "a534d8e6",
+          "slots": [
+            {
+              "targetId": "e3-1-1-3-xc23#1",
+              "canonicalAnswer": "가장 큰 수",
+              "propositionId": "e3-1-1-3-xc23",
+              "text": "숫자 카드 세 장을 한 번씩 써서 만들 수 있는 세 자리 수 가운데 두 수를 골라 차를 가장 크게 하려면 커진다에서 가장 작은 수를 뺀다."
+            },
+            {
+              "targetId": "e3-1-1-3-xc24#1",
+              "canonicalAnswer": "어림한 차",
+              "propositionId": "e3-1-1-3-xc24",
+              "text": "계산한 차가 몇백으로 커진다와 크게 다르면 다시 계산해 본다."
+            },
+            {
+              "targetId": "e3-1-1-3-xc25#1",
+              "canonicalAnswer": "한",
+              "propositionId": "e3-1-1-3-xc25",
+              "text": "세 자리 수에서 더 작은 세 자리 수를 빼고 큰 수의 십의 자리 숫자는 $0$이 아니라고 하자. 일의 자리로 $1$을 내려 준 뒤 남은 십의 자리 숫자에서 빼는 수의 십의 자리 숫자를 뺄 수 있으면 받아내림은 커진다 번뿐이다."
+            },
+            {
+              "targetId": "e3-1-1-3-xc26#1",
+              "canonicalAnswer": "작은 수에 얼마를 더하면",
+              "propositionId": "e3-1-1-3-xc26",
+              "text": "두 수의 차는 커진다 큰 수가 되는지를 생각해도 구할 수 있다."
+            },
+            {
+              "targetId": "e3-1-1-3-xc27#1",
+              "canonicalAnswer": "작아진다",
+              "propositionId": "e3-1-1-3-xc27",
+              "text": "같은 수에서 뺄 때 빼는 수가 클수록 차는 커진다."
+            }
+          ],
+          "source": {
+            "id": "e3-1-1-3-xo25",
+            "section": "초3::1-1 덧셈과 뺄셈::1-1-3 받아내림이 없는, 한 번 있는 (세 자리 수)-(세 자리 수)",
+            "level": "상",
+            "statement": "같은 수에서 뺄 때 빼는 수가 클수록 차는 커진다.",
+            "answer": false,
+            "why": "많이 뺄수록 남는 수가 작아진다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "e3-1-5-5-xc7",
+      "beforeDigest": "69ed9fca",
+      "afterDigest": "b06809d5",
+      "before": {
+        "id": "e3-1-5-5-xc7",
+        "section": "초3::1-5 길이와 시간::1-5-5 시간의 덧셈",
+        "level": "하",
+        "ordinal": 2,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e3-1-5-5-xc7",
+            "term": "시간과 시간의 합",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시간에 시간을 더하면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc7#1",
+                  "text": "시간",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이 된다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc8",
+            "term": "세로로 쓰는 시간의 덧셈",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시간의 덧셈을 세로로 할 때에는 시, 분, 초를 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc8#1",
+                  "text": "같은 줄",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "에 맞추어 쓴다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc9",
+            "term": "$1$시간과 분",
+            "kind": "단위",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "$1$시간은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc9#1",
+                  "text": "$60$분",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "id": "e3-1-5-5-xc7",
+        "section": "초3::1-5 길이와 시간::1-5-5 시간의 덧셈",
+        "level": "하",
+        "ordinal": 2,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e3-1-5-5-xc7",
+            "term": "시간과 시간의 합",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시간에 시간을 더하면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc7#1",
+                  "text": "시간",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이 된다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc8",
+            "term": "세로로 쓰는 시간의 덧셈",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "시간의 덧셈을 세로로 할 때에는 시는 시끼리, 분은 분끼리, 초는 초끼리 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc8#1",
+                  "text": "위아래로 줄을 맞추어",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 쓴다."
+              }
+            ]
+          },
+          {
+            "id": "e3-1-5-5-xc9",
+            "term": "$1$시간과 분",
+            "kind": "단위",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "$1$시간은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e3-1-5-5-xc9#1",
+                  "text": "$60$분",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          }
+        ]
+      },
+      "traps": [
+        {
+          "key": "e3-1-5-5-xc7|$100$분",
+          "conceptId": "e3-1-5-5-xc7",
+          "text": "$100$분",
+          "ox": "e3-1-5-5-xo7",
+          "authored": {
+            "targetId": "e3-1-5-5-xc9#1",
+            "why": "$1$시간은 $60$분이다."
+          },
+          "digest": "b06809d5",
+          "slots": [
+            {
+              "targetId": "e3-1-5-5-xc7#1",
+              "canonicalAnswer": "시간",
+              "propositionId": "e3-1-5-5-xc7",
+              "text": "시간에 시간을 더하면 $100$분이 된다."
+            },
+            {
+              "targetId": "e3-1-5-5-xc8#1",
+              "canonicalAnswer": "위아래로 줄을 맞추어",
+              "propositionId": "e3-1-5-5-xc8",
+              "text": "시간의 덧셈을 세로로 할 때에는 시는 시끼리, 분은 분끼리, 초는 초끼리 $100$분 쓴다."
+            },
+            {
+              "targetId": "e3-1-5-5-xc9#1",
+              "canonicalAnswer": "$60$분",
+              "propositionId": "e3-1-5-5-xc9",
+              "text": "$1$시간은 $100$분이다."
+            }
+          ],
+          "source": {
+            "id": "e3-1-5-5-xo7",
+            "section": "초3::1-5 길이와 시간::1-5-5 시간의 덧셈",
+            "level": "하",
+            "statement": "$1$시간은 $100$분이다.",
+            "answer": false,
+            "why": "$1$시간은 $60$분이다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "e5-2-4-3-c2",
+      "beforeDigest": "133c49d3",
+      "afterDigest": "41b79599",
+      "before": {
+        "id": "e5-2-4-3-c2",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "level": "중",
+        "ordinal": 1,
+        "siblings": 1,
+        "propositions": [
+          {
+            "id": "e5-2-4-3-c2",
+            "term": "자연수와 작은 소수의 곱",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "작은 소수를 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e5-2-4-3-c2#1",
+                  "text": "분수",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "로 고쳐 자연수의 몇 분의 몇인지 구할 수 있다."
+              }
+            ]
+          },
+          {
+            "id": "e5-2-4-3-xc11",
+            "term": "$0.25$배와 사분의 일",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "어떤 수의 $0.25$배는 그 수의 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e5-2-4-3-xc11#1",
+                  "text": "$\\frac{1}{4}$",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          },
+          {
+            "id": "e5-2-4-3-xc12",
+            "term": "$0.2$배와 오분의 일",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "어떤 수의 $0.2$배는 그 수의 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e5-2-4-3-xc12#1",
+                  "text": "$\\frac{1}{5}$",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          },
+          {
+            "id": "e5-2-4-3-xc13",
+            "term": "곱하는 소수가 클수록",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "같은 자연수에 곱하는 소수가 클수록 곱도 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e5-2-4-3-xc13#1",
+                  "text": "크다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "id": "e5-2-4-3-c2",
+        "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+        "level": "중",
+        "ordinal": 1,
+        "siblings": 1,
+        "propositions": [
+          {
+            "id": "e5-2-4-3-c2",
+            "term": "자연수와 작은 소수의 곱",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "자연수에 $1$보다 작은 소수를 곱할 때에는 그 소수를 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e5-2-4-3-c2#1",
+                  "text": "분수",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "로 고쳐 자연수의 몇 분의 몇인지 구할 수 있다."
+              }
+            ]
+          },
+          {
+            "id": "e5-2-4-3-xc11",
+            "term": "$0.25$배와 사분의 일",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "어떤 수의 $0.25$배는 그 수의 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e5-2-4-3-xc11#1",
+                  "text": "$\\frac{1}{4}$",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          },
+          {
+            "id": "e5-2-4-3-xc12",
+            "term": "$0.2$배와 오분의 일",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "어떤 수의 $0.2$배는 그 수의 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e5-2-4-3-xc12#1",
+                  "text": "$\\frac{1}{5}$",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          },
+          {
+            "id": "e5-2-4-3-xc13",
+            "term": "곱하는 소수가 클수록",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "같은 자연수에 곱하는 소수가 클수록 곱도 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e5-2-4-3-xc13#1",
+                  "text": "크다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          }
+        ]
+      },
+      "traps": [
+        {
+          "key": "e5-2-4-3-c2|$\\frac{1}{25}$",
+          "conceptId": "e5-2-4-3-c2",
+          "text": "$\\frac{1}{25}$",
+          "ox": "e5-2-4-3-xo12",
+          "authored": {
+            "targetId": "e5-2-4-3-xc11#1",
+            "why": "$\\frac{25}{100}=\\frac{1}{4}$이다."
+          },
+          "digest": "41b79599",
+          "slots": [
+            {
+              "targetId": "e5-2-4-3-c2#1",
+              "canonicalAnswer": "분수",
+              "propositionId": "e5-2-4-3-c2",
+              "text": "자연수에 $1$보다 작은 소수를 곱할 때에는 그 소수를 $\\frac{1}{25}$로 고쳐 자연수의 몇 분의 몇인지 구할 수 있다."
+            },
+            {
+              "targetId": "e5-2-4-3-xc11#1",
+              "canonicalAnswer": "$\\frac{1}{4}$",
+              "propositionId": "e5-2-4-3-xc11",
+              "text": "어떤 수의 $0.25$배는 그 수의 $\\frac{1}{25}$이다."
+            },
+            {
+              "targetId": "e5-2-4-3-xc12#1",
+              "canonicalAnswer": "$\\frac{1}{5}$",
+              "propositionId": "e5-2-4-3-xc12",
+              "text": "어떤 수의 $0.2$배는 그 수의 $\\frac{1}{25}$이다."
+            },
+            {
+              "targetId": "e5-2-4-3-xc13#1",
+              "canonicalAnswer": "크다",
+              "propositionId": "e5-2-4-3-xc13",
+              "text": "같은 자연수에 곱하는 소수가 클수록 곱도 $\\frac{1}{25}$."
+            }
+          ],
+          "source": {
+            "id": "e5-2-4-3-xo12",
+            "section": "초5::2-4 소수의 곱셈::2-4-3 (자연수)×(1보다 작은 소수)의 계산",
+            "level": "중",
+            "statement": "어떤 수의 $0.25$배는 그 수의 $\\frac{1}{25}$이다.",
+            "answer": false,
+            "why": "$\\frac{25}{100}=\\frac{1}{4}$이다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "e6-2-3-4-c1",
+      "beforeDigest": "569b0cc7",
+      "afterDigest": "addc8394",
+      "before": {
+        "id": "e6-2-3-4-c1",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "level": "하",
+        "ordinal": 1,
+        "siblings": 1,
+        "propositions": [
+          {
+            "id": "e6-2-3-4-c1",
+            "term": "위에서 본 모양의 수",
+            "kind": "정의",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "위에서 본 칸에 적힌 수는 그 자리에서 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-c1#1",
+                  "text": "쌓아 올린 블록의 개수",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-3-4-xc2",
+            "term": "$1$이 적힌 칸",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "$1$이 적힌 칸에는 쌓기나무가 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-xc2#1",
+                  "text": "한 층",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "만 있다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-3-4-xc3",
+            "term": "가장 큰 수와 높이",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "위에서 본 모양에 적힌 가장 큰 수가 쌓은 모양의 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-xc3#1",
+                  "text": "가장 높은 층",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-3-4-xc4",
+            "term": "수를 쓴 그림의 쓸모",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "위에서 본 모양에 수를 쓰면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-xc4#1",
+                  "text": "가려진 쌓기나무",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "까지 빠짐없이 알 수 있다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-3-4-xc9",
+            "term": "쌓기나무가 없는 자리",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "쌓기나무가 없는 자리는 위에서 본 모양에 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-xc9#1",
+                  "text": "칸이 없다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "id": "e6-2-3-4-c1",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "level": "하",
+        "ordinal": 1,
+        "siblings": 1,
+        "propositions": [
+          {
+            "id": "e6-2-3-4-c1",
+            "term": "위에서 본 모양의 수",
+            "kind": "정의",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-c1#1",
+                  "text": "쌓기나무의 개수",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-3-4-xc2",
+            "term": "$1$이 적힌 칸",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "$1$이 적힌 칸에는 쌓기나무가 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-xc2#1",
+                  "text": "한 층",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "만 있다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-3-4-xc3",
+            "term": "가장 큰 수와 높이",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "위에서 본 모양에 적힌 가장 큰 수가 쌓은 모양의 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-xc3#1",
+                  "text": "가장 높은 층",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-3-4-xc4",
+            "term": "수를 쓴 그림의 쓸모",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "위에서 본 모양에 수를 쓰면 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-xc4#1",
+                  "text": "가려진 쌓기나무",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "까지 빠짐없이 알 수 있다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-3-4-xc9",
+            "term": "쌓기나무가 없는 자리",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "쌓기나무가 없는 자리는 위에서 본 모양에 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-3-4-xc9#1",
+                  "text": "칸이 없다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          }
+        ]
+      },
+      "traps": [
+        {
+          "key": "e6-2-3-4-c1|$0$을 적어 칸으로 그린다",
+          "conceptId": "e6-2-3-4-c1",
+          "text": "$0$을 적어 칸으로 그린다",
+          "ox": "e6-2-3-4-xo19",
+          "authored": {
+            "targetId": "e6-2-3-4-xc9#1",
+            "why": "쌓기나무가 없는 자리는 칸을 그리지 않는다."
+          },
+          "digest": "addc8394",
+          "slots": [
+            {
+              "targetId": "e6-2-3-4-c1#1",
+              "canonicalAnswer": "쌓기나무의 개수",
+              "propositionId": "e6-2-3-4-c1",
+              "text": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 $0$을 적어 칸으로 그린다이다."
+            },
+            {
+              "targetId": "e6-2-3-4-xc2#1",
+              "canonicalAnswer": "한 층",
+              "propositionId": "e6-2-3-4-xc2",
+              "text": "$1$이 적힌 칸에는 쌓기나무가 $0$을 적어 칸으로 그린다만 있다."
+            },
+            {
+              "targetId": "e6-2-3-4-xc3#1",
+              "canonicalAnswer": "가장 높은 층",
+              "propositionId": "e6-2-3-4-xc3",
+              "text": "위에서 본 모양에 적힌 가장 큰 수가 쌓은 모양의 $0$을 적어 칸으로 그린다다."
+            },
+            {
+              "targetId": "e6-2-3-4-xc4#1",
+              "canonicalAnswer": "가려진 쌓기나무",
+              "propositionId": "e6-2-3-4-xc4",
+              "text": "위에서 본 모양에 수를 쓰면 $0$을 적어 칸으로 그린다까지 빠짐없이 알 수 있다."
+            },
+            {
+              "targetId": "e6-2-3-4-xc9#1",
+              "canonicalAnswer": "칸이 없다",
+              "propositionId": "e6-2-3-4-xc9",
+              "text": "쌓기나무가 없는 자리는 위에서 본 모양에 $0$을 적어 칸으로 그린다."
+            }
+          ],
+          "source": {
+            "id": "e6-2-3-4-xo19",
+            "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+            "level": "중",
+            "statement": "쌓기나무가 없는 자리는 위에서 본 모양에 $0$을 적어 칸으로 그린다.",
+            "answer": false,
+            "why": "쌓기나무가 없는 자리는 칸을 그리지 않는다."
+          }
+        }
+      ]
+    },
+    {
+      "id": "e6-2-5-4-xc23",
+      "beforeDigest": "9298fb1f",
+      "afterDigest": "254bfe31",
+      "before": {
+        "id": "e6-2-5-4-xc23",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "level": "상",
+        "ordinal": 2,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e6-2-5-4-xc23",
+            "term": "반지름이 늘 때 느는 넓이",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때 원의 넓이가 느는 양은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-5-4-xc23#1",
+                  "text": "점점 커진다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-5-4-xc24",
+            "term": "원주와 반지름으로 넓이 구하기",
+            "kind": "공식",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "원의 넓이는 원주와 반지름을 곱해 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-5-4-xc24#1",
+                  "text": "반으로 나눈",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 값과 같다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-5-4-xc25",
+            "term": "운동장 모양의 넓이",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "직사각형 양쪽에 지름이 같은 반원을 붙인 모양의 넓이는 직사각형의 넓이에 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-5-4-xc25#1",
+                  "text": "원 하나의 넓이",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "를 더한 값이다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-5-4-xc27",
+            "term": "넓이가 $4$배인 원의 반지름",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "넓이가 $4$배인 원의 반지름은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-5-4-xc27#1",
+                  "text": "$2$배",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          }
+        ]
+      },
+      "after": {
+        "id": "e6-2-5-4-xc23",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "level": "상",
+        "ordinal": 2,
+        "siblings": 2,
+        "propositions": [
+          {
+            "id": "e6-2-5-4-xc23",
+            "term": "반지름이 늘 때 느는 넓이",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때 원의 넓이가 느는 양은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-5-4-xc23#1",
+                  "text": "점점 커진다",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-5-4-xc24",
+            "term": "원주와 반지름으로 넓이 구하기",
+            "kind": "공식",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "원의 넓이는 원주와 반지름을 곱해 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-5-4-xc24#1",
+                  "text": "반으로 나눈",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": " 값과 같다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-5-4-xc25",
+            "term": "운동장 모양의 넓이",
+            "kind": "방법",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙인 모양의 넓이는, 직사각형의 넓이에 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-5-4-xc25#1",
+                  "text": "원 하나의 넓이",
+                  "tier": "text"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "를 더한 값이다."
+              }
+            ]
+          },
+          {
+            "id": "e6-2-5-4-xc27",
+            "term": "넓이가 $4$배인 원의 반지름",
+            "kind": "성질",
+            "pieces": [
+              {
+                "kind": "text",
+                "text": "넓이가 $4$배인 원의 반지름은 "
+              },
+              {
+                "kind": "target",
+                "target": {
+                  "id": "e6-2-5-4-xc27#1",
+                  "text": "$2$배",
+                  "tier": "math"
+                }
+              },
+              {
+                "kind": "text",
+                "text": "이다."
+              }
+            ]
+          }
+        ]
+      },
+      "traps": [
+        {
+          "key": "e6-2-5-4-xc23|$4$배",
+          "conceptId": "e6-2-5-4-xc23",
+          "text": "$4$배",
+          "ox": "e6-2-5-4-xo25",
+          "authored": {
+            "targetId": "e6-2-5-4-xc27#1",
+            "why": "$2\\times2=4$이므로 $2$배이다."
+          },
+          "digest": "254bfe31",
+          "slots": [
+            {
+              "targetId": "e6-2-5-4-xc23#1",
+              "canonicalAnswer": "점점 커진다",
+              "propositionId": "e6-2-5-4-xc23",
+              "text": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때 원의 넓이가 느는 양은 $4$배."
+            },
+            {
+              "targetId": "e6-2-5-4-xc24#1",
+              "canonicalAnswer": "반으로 나눈",
+              "propositionId": "e6-2-5-4-xc24",
+              "text": "원의 넓이는 원주와 반지름을 곱해 $4$배 값과 같다."
+            },
+            {
+              "targetId": "e6-2-5-4-xc25#1",
+              "canonicalAnswer": "원 하나의 넓이",
+              "propositionId": "e6-2-5-4-xc25",
+              "text": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙인 모양의 넓이는, 직사각형의 넓이에 $4$배를 더한 값이다."
+            },
+            {
+              "targetId": "e6-2-5-4-xc27#1",
+              "canonicalAnswer": "$2$배",
+              "propositionId": "e6-2-5-4-xc27",
+              "text": "넓이가 $4$배인 원의 반지름은 $4$배이다."
+            }
+          ],
+          "source": {
+            "id": "e6-2-5-4-xo25",
+            "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+            "level": "상",
+            "statement": "넓이가 $4$배인 원의 반지름은 $4$배이다.",
+            "answer": false,
+            "why": "$2\\times2=4$이므로 $2$배이다."
+          }
+        }
+      ]
+    }
+  ]
+}

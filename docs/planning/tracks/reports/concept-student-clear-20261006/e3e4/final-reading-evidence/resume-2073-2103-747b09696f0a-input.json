@@ -1,0 +1,2932 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2073,
+  "end": 2103,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2073,
+        "sourceFingerprint": "e0ab37067b3f3b519d8349fb7bb6d53b1d2d19bb27404fe04f0705e8085cfcc7",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc6",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "값이 다를 때",
+        "kind": "성질",
+        "level": "하",
+        "definition": "양쪽의 값이 다르면 그 사이에는 등호를 {쓸 수 없다}.",
+        "studentC": "양쪽의 값이 다르면 그 사이에는 등호를 □.",
+        "answers": [
+          "쓸 수 없다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2073,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "e0ab37067b3f3b519d8349fb7bb6d53b1d2d19bb27404fe04f0705e8085cfcc7",
+        "proposalFingerprint": "5e54bbc167905e3b33f65b2093a8925a1d26cec005abbe3f9462e2c439d95d10",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$3+4$와 $9$ 사이에 등호를 쓸 수 있는가? 까닭과 함께 답하시오.",
+        "bAnswer": "쓸 수 없다. $3+4=7$로 $9$와 값이 다르기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "쓸 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값이 다르다",
+              "$7$과 $9$가 다르다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "값이 다르면 등호 불가",
+        "bReason": "값을 비교해 등호 가능성 판단",
+        "cDecision": "keep",
+        "cReason": "짧은 서술 빈칸이라 유지, 동의 표현 허용",
+        "cSlotEquivalents": [
+          [
+            "쓰면 안 된다",
+            "쓰지 않는다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "값이 다를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "양쪽의 값이 다르면 그 사이에는 등호를 {쓸 수 없다}.",
+        "cStudentSentence": "양쪽의 값이 다르면 그 사이에는 등호를 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "쓸 수 없다",
+            "equivalents": [
+              "쓰면 안 된다",
+              "쓰지 않는다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "양쪽의 값이 다르면 그 사이에는 등호를 □.",
+          "answers": [
+            "쓸 수 없다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3+4$와 $9$ 사이에 등호를 쓸 수 있는가? 까닭과 함께 답하시오.",
+          "answer": "쓸 수 없다. $3+4=7$로 $9$와 값이 다르기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "쓸 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "값이 다르다",
+                "$7$과 $9$가 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "양쪽의 값이 다르면 그 사이에는 등호를 {쓸 수 없다}.",
+          "acceptedAnswers": [
+            [
+              "쓸 수 없다",
+              "쓰면 안 된다",
+              "쓰지 않는다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2074,
+        "sourceFingerprint": "4b61fc89ae56aa6eca88a2d47cd4976e1e87fc4f3fb4536d4ac33cba27e542bc",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc7",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "서로 다른 셈의 식 잇기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$3\\times2=3+3$처럼 서로 다른 셈의 식도 값이 같으면 {등호}로 잇는다.",
+        "studentC": "$3\\times2=3+3$처럼 서로 다른 셈의 식도 값이 같으면 □로 잇는다.",
+        "answers": [
+          "등호"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2074,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "4b61fc89ae56aa6eca88a2d47cd4976e1e87fc4f3fb4536d4ac33cba27e542bc",
+        "proposalFingerprint": "b479cee8c1b971d3101634f54c937c3a0053aebb2d77f43566827ba374074685",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "다른 셈의 식 잇기",
+        "bReason": "xc3의 같은 양 잇기와 같은 목표",
+        "cDecision": "keep",
+        "cReason": "예시가 있는 짧은 기호 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$=$",
+            "등호($=$)"
+          ]
+        ],
+        "exclusionReason": "값이 같으면 등호로 잇는다는 내용이 xc3과 같다",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "서로 다른 셈의 식 잇기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3\\times2=3+3$처럼 서로 다른 셈의 식도 값이 같으면 {등호}로 잇는다.",
+        "cStudentSentence": "$3\\times2=3+3$처럼 서로 다른 셈의 식도 값이 같으면 □로 잇는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "등호",
+            "equivalents": [
+              "$=$",
+              "등호($=$)"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$3\\times2=3+3$처럼 서로 다른 셈의 식도 값이 같으면 □로 잇는다.",
+          "answers": [
+            "등호"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$3\\times2=3+3$처럼 서로 다른 셈의 식도 값이 같으면 {등호}로 잇는다.",
+          "acceptedAnswers": [
+            [
+              "등호",
+              "$=$",
+              "등호($=$)"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc3의 같은 양 잇기와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2075,
+        "sourceFingerprint": "538d707cf265143d7ddec86ff03c1f76ead2ac9cea8d61069321a2308540ee5f",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc8",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "바른 식",
+        "kind": "정의",
+        "level": "하",
+        "definition": "등호 양쪽의 값이 같은 식을 {바른 식}이라 한다.",
+        "studentC": "등호 양쪽의 값이 같은 식을 □이라 한다.",
+        "answers": [
+          "바른 식"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2075,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "538d707cf265143d7ddec86ff03c1f76ead2ac9cea8d61069321a2308540ee5f",
+        "proposalFingerprint": "78be550525a26fd58b3383e90f3918832ff10a7293061c84023004bdbd1d664b",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$4+5=9$와 $4+5=10$ 중 등호 양쪽의 값이 같은 바른 식은 어느 것이며, 까닭은?",
+        "bAnswer": "$4+5=9$. 양쪽 값이 $9$로 같고 다른 식은 $9$와 $10$이 다르기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4+5=9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "양쪽 값이 같다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "바른 식 가리기",
+        "bReason": "양쪽 값이 같은지로 판단하는지 확인",
+        "cDecision": "keep",
+        "cReason": "짧은 용어 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "바른식"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "바른 식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "등호 양쪽의 값이 같은 식을 {바른 식}이라 한다.",
+        "cStudentSentence": "등호 양쪽의 값이 같은 식을 □이라 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "바른 식",
+            "equivalents": [
+              "바른식"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "등호 양쪽의 값이 같은 식을 □이라 한다.",
+          "answers": [
+            "바른 식"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$4+5=9$와 $4+5=10$ 중 등호 양쪽의 값이 같은 바른 식은 어느 것이며, 까닭은?",
+          "answer": "$4+5=9$. 양쪽 값이 $9$로 같고 다른 식은 $9$와 $10$이 다르기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4+5=9$"
+              ]
+            },
+            {
+              "anyOf": [
+                "양쪽 값이 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "등호 양쪽의 값이 같은 식을 {바른 식}이라 한다.",
+          "acceptedAnswers": [
+            [
+              "바른 식",
+              "바른식"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2076,
+        "sourceFingerprint": "45d04b9d1fbd00c32a2cf159dbac437624817e0c264298f4da3d4c267ff7274d",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc9",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "같은 양을 나타내는 여러 식",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$5+5$와 같은 양을 나타내는 식은 $2\\times5$처럼 {여러 가지}이다.",
+        "studentC": "$5+5$와 같은 양을 나타내는 식은 $2\\times5$처럼 □이다.",
+        "answers": [
+          "여러 가지"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2076,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "45d04b9d1fbd00c32a2cf159dbac437624817e0c264298f4da3d4c267ff7274d",
+        "proposalFingerprint": "8b6c440244d63986e3d68df2099bff28dc298cb77c0c38f3c9e8507e76bbd049",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$5+5$와 같은 양을 나타내는 식을 곱셈식 하나와 뺄셈식 하나로 쓰시오.",
+        "bAnswer": "예: $2\\times5$, $15-5$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "값이 $10$인 곱셈식",
+              "$2\\times5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "값이 $10$인 뺄셈식",
+              "$15-5$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 양의 여러 식",
+        "bReason": "같은 값을 여러 식으로 쓰는지 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$5+5$와 같은 양을 $2\\times5$나 $20\\div2$처럼 여러 식으로 나타낼 수 있고 값은 모두 {$10$}이다.",
+        "cReason": "'여러 가지' 빈칸이 모호해 값 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "answerNotes": "값이 $10$이면 다른 식도 정답",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 양을 나타내는 여러 식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5+5$와 같은 양을 $2\\times5$나 $20\\div2$처럼 여러 식으로 나타낼 수 있고 값은 모두 {$10$}이다.",
+        "cStudentSentence": "$5+5$와 같은 양을 $2\\times5$나 $20\\div2$처럼 여러 식으로 나타낼 수 있고 값은 모두 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$10$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5+5$와 같은 양을 나타내는 식을 곱셈식 하나와 뺄셈식 하나로 쓰시오.",
+          "answer": "예: $2\\times5$, $15-5$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "값이 $10$인 곱셈식",
+                "$2\\times5$"
+              ]
+            },
+            {
+              "anyOf": [
+                "값이 $10$인 뺄셈식",
+                "$15-5$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5+5$와 같은 양을 $2\\times5$나 $20\\div2$처럼 여러 식으로 나타낼 수 있고 값은 모두 {$10$}이다.",
+          "acceptedAnswers": [
+            [
+              "$10$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2077,
+        "sourceFingerprint": "28249c38b3dd0fc1d0e4a5a69ed2fda90efea37d6ebc8550efd033c433c0732d",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc10",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "같음의 관계를 나타내는 등호",
+        "kind": "성질",
+        "level": "중",
+        "definition": "등호는 계산 결과를 쓰라는 신호가 아니라 양쪽이 {같다}는 관계를 나타낸다.",
+        "studentC": "등호는 계산 결과를 쓰라는 신호가 아니라 양쪽이 □는 관계를 나타낸다.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2077,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "28249c38b3dd0fc1d0e4a5a69ed2fda90efea37d6ebc8550efd033c433c0732d",
+        "proposalFingerprint": "aafa58606945e935244e0e485ac155bb37e0ff30ec45d337e4daefd5ff591638",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$3+4=7$에서 등호($=$)는 '계산 결과를 쓴다' 말고 어떤 뜻인지 쓰시오.",
+        "bAnswer": "$3+4$와 $7$이 같은 크기라는 관계를 나타낸다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양쪽이 같다",
+              "두 값이 같은 크기"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "등호의 같음 관계",
+        "bReason": "계산 신호로만 보는 오개념 교정",
+        "cDecision": "keep",
+        "cReason": "의미 낱말 하나를 묻는 문장이라 유지",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같음의 관계를 나타내는 등호",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "등호는 계산 결과를 쓰라는 신호가 아니라 양쪽이 {같다}는 관계를 나타낸다.",
+        "cStudentSentence": "등호는 계산 결과를 쓰라는 신호가 아니라 양쪽이 □는 관계를 나타낸다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "등호는 계산 결과를 쓰라는 신호가 아니라 양쪽이 □는 관계를 나타낸다.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3+4=7$에서 등호($=$)는 '계산 결과를 쓴다' 말고 어떤 뜻인지 쓰시오.",
+          "answer": "$3+4$와 $7$이 같은 크기라는 관계를 나타낸다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "양쪽이 같다",
+                "두 값이 같은 크기"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "등호는 계산 결과를 쓰라는 신호가 아니라 양쪽이 {같다}는 관계를 나타낸다.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2078,
+        "sourceFingerprint": "35191ea9f494c770e2ea514059b192a575f10aa42629ecbbf9cdea013c8a06ee",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc11",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "빈칸이 있는 등식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "등호가 있는 식의 빈칸에는 {양쪽의 값을 같게 하는} 수가 들어간다.",
+        "example": {
+          "prompt": "$8+5=\\square+6$의 $\\square$에 왼쪽 값 $13$을 넣으면 안 되는 까닭은?",
+          "answer": "$\\square+6$이 $13$이어야 해서"
+        },
+        "studentC": "등호가 있는 식의 빈칸에는 □ 수가 들어간다.",
+        "answers": [
+          "양쪽의 값을 같게 하는"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2078,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "35191ea9f494c770e2ea514059b192a575f10aa42629ecbbf9cdea013c8a06ee",
+        "proposalFingerprint": "d005d5f2f4fa74aec8ec9b4ef9f329ff121013f6adbba6ab45b84a18d8d8b99f",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$8+5=\\square+6$에서 $\\square$에 알맞은 수를 구하고, $\\square$에 $13$을 넣으면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "$7$. $\\square+6$이 $13$이어야 양쪽이 같으므로 $13$을 넣으면 $19$가 되어 달라진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "양쪽의 값이 같아야 한다",
+              "$\\square+6$이 $13$이어야 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "빈칸의 양쪽 값 맞추기",
+        "bReason": "왼쪽 값을 그대로 쓰는 오류를 교정",
+        "cDecision": "rewrite",
+        "cAfter": "등호가 있는 식의 빈칸에는 양쪽의 값이 {같아지는} 수가 들어간다.",
+        "cReason": "긴 구절 빈칸을 짧은 서술어로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "같게 되는",
+            "같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빈칸이 있는 등식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "등호가 있는 식의 빈칸에는 양쪽의 값이 {같아지는} 수가 들어간다.",
+        "cStudentSentence": "등호가 있는 식의 빈칸에는 양쪽의 값이 □ 수가 들어간다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같아지는",
+            "equivalents": [
+              "같게 되는",
+              "같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$8+5=\\square+6$에서 $\\square$에 알맞은 수를 구하고, $\\square$에 $13$을 넣으면 안 되는 까닭을 쓰시오.",
+          "answer": "$7$. $\\square+6$이 $13$이어야 양쪽이 같으므로 $13$을 넣으면 $19$가 되어 달라진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "양쪽의 값이 같아야 한다",
+                "$\\square+6$이 $13$이어야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "등호가 있는 식의 빈칸에는 양쪽의 값이 {같아지는} 수가 들어간다.",
+          "acceptedAnswers": [
+            [
+              "같아지는",
+              "같게 되는",
+              "같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2079,
+        "sourceFingerprint": "1262bacaffdd5601bfe6938afb6ad93a680123555c7cbe4464c436b1fb8e6b9c",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc12",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "계산하지 않고 빈칸 구하기 — 덧셈식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "합이 같은 두 덧셈식에서 한 수가 커지면 다른 수는 {그만큼 작아져야} 등호가 성립한다.",
+        "studentC": "합이 같은 두 덧셈식에서 한 수가 커지면 다른 수는 □ 등호가 성립한다.",
+        "answers": [
+          "그만큼 작아져야"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2079,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "1262bacaffdd5601bfe6938afb6ad93a680123555c7cbe4464c436b1fb8e6b9c",
+        "proposalFingerprint": "d96022aa84447c8d0c83d6849a31f64cbdbb724bfef30b5d907a607c87ec9d9b",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$6+9=7+\\square$에서 $\\square$에 알맞은 수를 계산하지 않고 구하시오.",
+        "bAnswer": "$8$. $6$이 $1$ 커졌으니 $9$를 $1$ 줄인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "커진 만큼 다른 수를 줄인다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "덧셈식 빈칸 구하기",
+        "bReason": "변화량을 반대로 적용해 구하는지 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$6+9=7+8$처럼 합이 같은 두 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ {작아져야} 등호가 성립한다.",
+        "cReason": "긴 구절 빈칸을 예시 식과 짧은 서술어로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "줄어야",
+            "작아진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "계산하지 않고 빈칸 구하기 — 덧셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$6+9=7+8$처럼 합이 같은 두 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ {작아져야} 등호가 성립한다.",
+        "cStudentSentence": "$6+9=7+8$처럼 합이 같은 두 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ □ 등호가 성립한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아져야",
+            "equivalents": [
+              "줄어야",
+              "작아진다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$6+9=7+\\square$에서 $\\square$에 알맞은 수를 계산하지 않고 구하시오.",
+          "answer": "$8$. $6$이 $1$ 커졌으니 $9$를 $1$ 줄인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$8$"
+              ]
+            },
+            {
+              "anyOf": [
+                "커진 만큼 다른 수를 줄인다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$6+9=7+8$처럼 합이 같은 두 덧셈식에서 앞의 수가 $1$ 커지면 뒤의 수는 $1$ {작아져야} 등호가 성립한다.",
+          "acceptedAnswers": [
+            [
+              "작아져야",
+              "줄어야",
+              "작아진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2080,
+        "sourceFingerprint": "6373dcb805c01c226b9a3ecc8b2cbb219874d4914aedbecd8156a9f70e1b5fbc",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc13",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "계산하지 않고 빈칸 구하기 — 뺄셈식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "차가 같은 두 뺄셈식에서 빼어지는 수가 커지면 빼는 수도 {그만큼 커져야} 등호가 성립한다.",
+        "example": {
+          "prompt": "$15-7=16-\\square$에서 $\\square$가 $7$보다 $1$ 큰 까닭은?",
+          "answer": "늘어난 $1$을 더 빼야 해서"
+        },
+        "studentC": "차가 같은 두 뺄셈식에서 빼어지는 수가 커지면 빼는 수도 □ 등호가 성립한다.",
+        "answers": [
+          "그만큼 커져야"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2080,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "6373dcb805c01c226b9a3ecc8b2cbb219874d4914aedbecd8156a9f70e1b5fbc",
+        "proposalFingerprint": "dab42c3e10176e106aba747d4b2be603944b308c70de07437b84b51805413b6c",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$15-7=16-\\square$에서 $\\square$에 알맞은 수를 구하고, 계산하지 않고 구하는 방법을 쓰시오.",
+        "bAnswer": "$8$. $15$가 $16$으로 $1$ 커졌으니 빼는 수 $7$도 $1$ 커져야 차가 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "늘어난 만큼 더 뺀다",
+              "빼는 수도 $1$ 커진다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "뺄셈식 빈칸 구하기",
+        "bReason": "차를 지키려 빼는 수도 키우는지 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$15-7=16-8$처럼 차가 같은 두 뺄셈식에서 빼어지는 수가 $1$ 커지면 빼는 수도 $1$ {커져야} 등호가 성립한다.",
+        "cReason": "긴 구절 빈칸을 예시 식과 짧은 서술어로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "늘어나야"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "계산하지 않고 빈칸 구하기 — 뺄셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$15-7=16-8$처럼 차가 같은 두 뺄셈식에서 빼어지는 수가 $1$ 커지면 빼는 수도 $1$ {커져야} 등호가 성립한다.",
+        "cStudentSentence": "$15-7=16-8$처럼 차가 같은 두 뺄셈식에서 빼어지는 수가 $1$ 커지면 빼는 수도 $1$ □ 등호가 성립한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "커져야",
+            "equivalents": [
+              "늘어나야"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$15-7=16-\\square$에서 $\\square$에 알맞은 수를 구하고, 계산하지 않고 구하는 방법을 쓰시오.",
+          "answer": "$8$. $15$가 $16$으로 $1$ 커졌으니 빼는 수 $7$도 $1$ 커져야 차가 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$8$"
+              ]
+            },
+            {
+              "anyOf": [
+                "늘어난 만큼 더 뺀다",
+                "빼는 수도 $1$ 커진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$15-7=16-8$처럼 차가 같은 두 뺄셈식에서 빼어지는 수가 $1$ 커지면 빼는 수도 $1$ {커져야} 등호가 성립한다.",
+          "acceptedAnswers": [
+            [
+              "커져야",
+              "늘어나야"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2081,
+        "sourceFingerprint": "7d26c595f3ce25690ed54741134fb5225098a7e40b2742e12887677bbe6c6012",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc14",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "계산하지 않고 빈칸 구하기 — 곱셈식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$6\\times8$에서 $6$을 $2$배 한 $12$로 바꿀 때 곱이 그대로이려면 $8$을 {$2$}로 나눈 수로 바꾸어야 한다.",
+        "example": {
+          "prompt": "$4\\times6=8\\times\\square$에서 $\\square$가 $6$의 반인 까닭은?",
+          "answer": "$4$가 $2$배가 되어서"
+        },
+        "studentC": "$6\\times8$에서 $6$을 $2$배 한 $12$로 바꿀 때 곱이 그대로이려면 $8$을 □로 나눈 수로 바꾸어야 한다.",
+        "answers": [
+          "$2$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2081,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "7d26c595f3ce25690ed54741134fb5225098a7e40b2742e12887677bbe6c6012",
+        "proposalFingerprint": "b4378db15512bd6b88f715ee980b3dd6bf43bf31044cd38a4713a612391dccf3",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$4\\times6=8\\times\\square$에서 $\\square$에 알맞은 수를 구하고, 계산하지 않고 구하는 방법을 쓰시오.",
+        "bAnswer": "$3$. $4$가 $8$로 $2$배가 되었으니 $6$을 $2$로 나눈다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$로 나눈다",
+              "$6$의 반"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "곱셈식 빈칸 구하기",
+        "bReason": "한 수 $2$배면 다른 수를 나누는 방법 확인",
+        "cDecision": "keep",
+        "cReason": "숫자 하나를 묻는 선명한 계산 빈칸이라 유지",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "계산하지 않고 빈칸 구하기 — 곱셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$6\\times8$에서 $6$을 $2$배 한 $12$로 바꿀 때 곱이 그대로이려면 $8$을 {$2$}로 나눈 수로 바꾸어야 한다.",
+        "cStudentSentence": "$6\\times8$에서 $6$을 $2$배 한 $12$로 바꿀 때 곱이 그대로이려면 $8$을 □로 나눈 수로 바꾸어야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$6\\times8$에서 $6$을 $2$배 한 $12$로 바꿀 때 곱이 그대로이려면 $8$을 □로 나눈 수로 바꾸어야 한다.",
+          "answers": [
+            "$2$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$4\\times6=8\\times\\square$에서 $\\square$에 알맞은 수를 구하고, 계산하지 않고 구하는 방법을 쓰시오.",
+          "answer": "$3$. $4$가 $8$로 $2$배가 되었으니 $6$을 $2$로 나눈다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$2$로 나눈다",
+                "$6$의 반"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$6\\times8$에서 $6$을 $2$배 한 $12$로 바꿀 때 곱이 그대로이려면 $8$을 {$2$}로 나눈 수로 바꾸어야 한다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2082,
+        "sourceFingerprint": "6dff2d485a1f66a875500ed7d60af1ae74b9b92449a68b548bc15a872c043295",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc15",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "계산하지 않고 빈칸 구하기 — 나눗셈식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 {같은 배}가 되어야 한다.",
+        "studentC": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 □가 되어야 한다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2082,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "6dff2d485a1f66a875500ed7d60af1ae74b9b92449a68b548bc15a872c043295",
+        "proposalFingerprint": "ead3c386a927edc6e90a002dd7530e1649632d8323ed6ffac5ba934a3541df95",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$12\\div3=\\square\\div6$에서 $\\square$에 알맞은 수를 구하고, 어떻게 아는지 쓰시오.",
+        "bAnswer": "$24$. 나누는 수가 $3$에서 $6$으로 $2$배가 되었으므로 $12$도 $2$배 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$24$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수가 $2$배라 나누어지는 수도 $2$배"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "나눗셈식 빈칸 구하기",
+        "bReason": "몫을 지키려 같은 배로 맞추는지 확인",
+        "cDecision": "keep",
+        "cReason": "'같은 배'가 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "똑같은 배"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "계산하지 않고 빈칸 구하기 — 나눗셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 {같은 배}가 되어야 한다.",
+        "cStudentSentence": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 □가 되어야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 배",
+            "equivalents": [
+              "똑같은 배"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 □가 되어야 한다.",
+          "answers": [
+            "같은 배"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$12\\div3=\\square\\div6$에서 $\\square$에 알맞은 수를 구하고, 어떻게 아는지 쓰시오.",
+          "answer": "$24$. 나누는 수가 $3$에서 $6$으로 $2$배가 되었으므로 $12$도 $2$배 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$24$"
+              ]
+            },
+            {
+              "anyOf": [
+                "나누는 수가 $2$배라 나누어지는 수도 $2$배"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 {같은 배}가 되어야 한다.",
+          "acceptedAnswers": [
+            [
+              "같은 배",
+              "똑같은 배"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2083,
+        "sourceFingerprint": "9354be1971c48174c7047581a96d224e1c68b2665d82b4f1958cab14c8a8294d",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc17",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "등호 양쪽 바꾸기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$7=3+4$와 $3+4=7$은 {같은 뜻}이다.",
+        "studentC": "$7=3+4$와 $3+4=7$은 □이다.",
+        "answers": [
+          "같은 뜻"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2083,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "9354be1971c48174c7047581a96d224e1c68b2665d82b4f1958cab14c8a8294d",
+        "proposalFingerprint": "10119396f74b5af9dd80cb20c38cfd5df93c9bcb68a39d982c1179c1a619f485",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "등호 양쪽 바꾸기",
+        "bReason": "xc10의 같음 관계와 같은 목표",
+        "cDecision": "keep",
+        "cReason": "예시가 있는 짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "같은 의미",
+            "똑같은 뜻"
+          ]
+        ],
+        "exclusionReason": "등호가 양쪽이 같다는 관계라서 순서를 바꿔도 같다는 내용이 xc10과 같다",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "등호 양쪽 바꾸기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$7=3+4$와 $3+4=7$은 {같은 뜻}이다.",
+        "cStudentSentence": "$7=3+4$와 $3+4=7$은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 뜻",
+            "equivalents": [
+              "같은 의미",
+              "똑같은 뜻"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$7=3+4$와 $3+4=7$은 □이다.",
+          "answers": [
+            "같은 뜻"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$7=3+4$와 $3+4=7$은 {같은 뜻}이다.",
+          "acceptedAnswers": [
+            [
+              "같은 뜻",
+              "같은 의미",
+              "똑같은 뜻"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc10의 같음 관계와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2084,
+        "sourceFingerprint": "18ab9e3596952878478d711fe3d4770cf110dc007ca922dcbbe8162057a7c65e",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc18",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "금액이 같은 두 동전 묶음",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 동전 묶음의 금액을 등호로 이으면 동전 개수가 아니라 {전체 금액이 같음}을 나타낸다.",
+        "example": {
+          "prompt": "$100\\times3=50\\times6$의 등호가 동전 개수가 같다는 뜻이 아닌 까닭은?",
+          "answer": "개수는 $3$개와 $6$개로 달라서"
+        },
+        "studentC": "두 동전 묶음의 금액을 등호로 이으면 동전 개수가 아니라 □을 나타낸다.",
+        "answers": [
+          "전체 금액이 같음"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2084,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "18ab9e3596952878478d711fe3d4770cf110dc007ca922dcbbe8162057a7c65e",
+        "proposalFingerprint": "ee0e5a55fac979355d8dc40532160ec0c8913f27b1ae8575fb31808818d40125",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$100\\times3=50\\times6$에서 양쪽이 같은 것은 동전 개수인가 전체 금액인가? 까닭도 쓰시오.",
+        "bAnswer": "전체 금액이다. 동전 개수는 $3$개와 $6$개로 다르고 금액은 모두 $300$원이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "전체 금액이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수는 $3$개와 $6$개로 다르다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "같은 것이 금액임을 설명",
+        "bReason": "등호가 가리키는 같은 대상을 구분",
+        "cDecision": "rewrite",
+        "cAfter": "$100\\times3=50\\times6$의 등호는 동전 개수가 아니라 전체 {금액}이 같다는 뜻이다.",
+        "cReason": "긴 구절 빈칸을 짧은 낱말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "돈",
+            "값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "금액이 같은 두 동전 묶음",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$100\\times3=50\\times6$의 등호는 동전 개수가 아니라 전체 {금액}이 같다는 뜻이다.",
+        "cStudentSentence": "$100\\times3=50\\times6$의 등호는 동전 개수가 아니라 전체 □이 같다는 뜻이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "금액",
+            "equivalents": [
+              "돈",
+              "값"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$100\\times3=50\\times6$에서 양쪽이 같은 것은 동전 개수인가 전체 금액인가? 까닭도 쓰시오.",
+          "answer": "전체 금액이다. 동전 개수는 $3$개와 $6$개로 다르고 금액은 모두 $300$원이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "전체 금액이 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "개수는 $3$개와 $6$개로 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$100\\times3=50\\times6$의 등호는 동전 개수가 아니라 전체 {금액}이 같다는 뜻이다.",
+          "acceptedAnswers": [
+            [
+              "금액",
+              "돈",
+              "값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2085,
+        "sourceFingerprint": "fb6c0a2eccefd6ce905d60d09d035f36f18d108181f72e4f98599b14c3d38796",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc19",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "등호와 저울",
+        "kind": "성질",
+        "level": "상",
+        "definition": "등호가 있는 {바른 식}은 양쪽 접시의 무게가 같아 {수평}을 이룬 저울과 같다.",
+        "studentC": "등호가 있는 □은 양쪽 접시의 무게가 같아 □을 이룬 저울과 같다.",
+        "answers": [
+          "바른 식",
+          "수평"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2085,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "fb6c0a2eccefd6ce905d60d09d035f36f18d108181f72e4f98599b14c3d38796",
+        "proposalFingerprint": "9268178cc37481fc555e1f620c3aa40f235a8ea037a1622ab803f3a5fbbdb2cf",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "저울 양쪽 접시에 $3+4$와 $7$만큼 무게를 올렸다. 저울이 어떻게 되며, 식으로는 어떻게 나타내는가?",
+        "bAnswer": "수평을 이룬다. $3+4=7$로 양쪽이 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수평",
+              "평형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3+4=7$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "등호와 저울 연결",
+        "bReason": "양쪽이 같으면 수평임을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "등호가 있는 바른 식은 양쪽 접시의 무게가 같아 {수평}을 이룬 저울과 같다.",
+        "cReason": "앞 빈칸의 대상이 불분명해 '수평'만 남김",
+        "cSlotEquivalents": [
+          [
+            "평형",
+            "균형"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "등호와 저울",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "등호가 있는 바른 식은 양쪽 접시의 무게가 같아 {수평}을 이룬 저울과 같다.",
+        "cStudentSentence": "등호가 있는 바른 식은 양쪽 접시의 무게가 같아 □을 이룬 저울과 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수평",
+            "equivalents": [
+              "평형",
+              "균형"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "저울 양쪽 접시에 $3+4$와 $7$만큼 무게를 올렸다. 저울이 어떻게 되며, 식으로는 어떻게 나타내는가?",
+          "answer": "수평을 이룬다. $3+4=7$로 양쪽이 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "수평",
+                "평형"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3+4=7$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "등호가 있는 바른 식은 양쪽 접시의 무게가 같아 {수평}을 이룬 저울과 같다.",
+          "acceptedAnswers": [
+            [
+              "수평",
+              "평형",
+              "균형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2086,
+        "sourceFingerprint": "85995c6205d74ee2ce72947ab1afcf63a2b8f35234924873bbf54fbc5b1cb559",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc20",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "양쪽에 같은 수를 더하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "바른 식의 양쪽에 같은 수를 더해도 {바른 식}이다.",
+        "studentC": "바른 식의 양쪽에 같은 수를 더해도 □이다.",
+        "answers": [
+          "바른 식"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2086,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "85995c6205d74ee2ce72947ab1afcf63a2b8f35234924873bbf54fbc5b1cb559",
+        "proposalFingerprint": "8b02138487e53f8123fcfdf6803bc0a26e2ca433e59629ff0905cf9fa501ac89",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$3+4=7$의 양쪽에 $2$를 더한 식을 쓰고, 여전히 바른 식인지 말하시오.",
+        "bAnswer": "$3+4+2=7+2$이고 양쪽이 모두 $9$이므로 바른 식이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바른 식이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같던 두 양에 같은 수를 더했다",
+              "양쪽이 모두 $9$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "양쪽에 같은 수 더하기",
+        "bReason": "같은 수를 더해도 같음이 유지됨 확인",
+        "cDecision": "keep",
+        "cReason": "짧은 용어 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "등식",
+            "바른식"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "양쪽에 같은 수를 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "바른 식의 양쪽에 같은 수를 더해도 {바른 식}이다.",
+        "cStudentSentence": "바른 식의 양쪽에 같은 수를 더해도 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "바른 식",
+            "equivalents": [
+              "등식",
+              "바른식"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "바른 식의 양쪽에 같은 수를 더해도 □이다.",
+          "answers": [
+            "바른 식"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3+4=7$의 양쪽에 $2$를 더한 식을 쓰고, 여전히 바른 식인지 말하시오.",
+          "answer": "$3+4+2=7+2$이고 양쪽이 모두 $9$이므로 바른 식이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "바른 식이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같던 두 양에 같은 수를 더했다",
+                "양쪽이 모두 $9$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "바른 식의 양쪽에 같은 수를 더해도 {바른 식}이다.",
+          "acceptedAnswers": [
+            [
+              "바른 식",
+              "등식",
+              "바른식"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2087,
+        "sourceFingerprint": "d90d6c522b56798c3b435200b5344e994109cd131239a308dd1e335ce1269b4b",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc21",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "양쪽에서 같은 수를 빼기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "바른 식의 양쪽 값에서 뺄 수 있는 같은 수를 빼면 {남은 값이 같아} 여전히 바른 식이다.",
+        "example": {
+          "prompt": "$10=6+4$의 양쪽에서 $4$를 빼도 바른 식인 까닭은?",
+          "answer": "같던 두 양에서 똑같이 덜어서"
+        },
+        "studentC": "바른 식의 양쪽 값에서 뺄 수 있는 같은 수를 빼면 □ 여전히 바른 식이다.",
+        "answers": [
+          "남은 값이 같아"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2087,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "d90d6c522b56798c3b435200b5344e994109cd131239a308dd1e335ce1269b4b",
+        "proposalFingerprint": "24c7cfb5a3a76e65a1f608a490d16193305b2cc3d12d85f5428727058373ac29",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$10=6+4$의 양쪽에서 $4$를 빼도 바른 식인지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "바른 식이다. 같던 두 양에서 똑같이 $4$를 덜어 양쪽이 모두 $6$이 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바른 식이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같던 두 양에서 똑같이 덜었다",
+              "양쪽이 모두 $6$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "양쪽에서 같은 수 빼기",
+        "bReason": "같은 양을 덜어도 같음이 유지됨 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$10=6+4$의 양쪽에서 똑같이 $4$를 빼면 양쪽 값이 모두 {$6$}이 되어 여전히 바른 식이다.",
+        "cReason": "긴 구절 빈칸을 구체 식과 숫자로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "양쪽에서 같은 수를 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$10=6+4$의 양쪽에서 똑같이 $4$를 빼면 양쪽 값이 모두 {$6$}이 되어 여전히 바른 식이다.",
+        "cStudentSentence": "$10=6+4$의 양쪽에서 똑같이 $4$를 빼면 양쪽 값이 모두 □이 되어 여전히 바른 식이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$10=6+4$의 양쪽에서 $4$를 빼도 바른 식인지 쓰고, 그 까닭을 설명하시오.",
+          "answer": "바른 식이다. 같던 두 양에서 똑같이 $4$를 덜어 양쪽이 모두 $6$이 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "바른 식이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같던 두 양에서 똑같이 덜었다",
+                "양쪽이 모두 $6$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$10=6+4$의 양쪽에서 똑같이 $4$를 빼면 양쪽 값이 모두 {$6$}이 되어 여전히 바른 식이다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2088,
+        "sourceFingerprint": "13aa8539d936e5dc8cf0630a13ce4e896200e18193d98cf21b451cf73bc4c7eb",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc22",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "계산을 이어 쓴 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$40+20=60-10=50$은 $40+20$과 $50$이 다르므로 등호를 {잘못 쓴} 것이다.",
+        "studentC": "$40+20=60-10=50$은 $40+20$과 $50$이 다르므로 등호를 □ 것이다.",
+        "answers": [
+          "잘못 쓴"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2088,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "13aa8539d936e5dc8cf0630a13ce4e896200e18193d98cf21b451cf73bc4c7eb",
+        "proposalFingerprint": "6b773d9cdb17404d46b5c8fa0c492ea3f671e8ed17d7f3a5c4bc05fac5b1b89d",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$40+20=60-10=50$처럼 쓰면 왜 잘못인지 설명하고, 바르게 고쳐 쓰시오.",
+        "bAnswer": "$40+20=60$이고 $50$과 같지 않아 등호를 잘못 썼다. $40+20=60$, $60-10=50$처럼 나누어 쓴다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$40+20$과 $50$이 다르다",
+              "$40+20$은 $60$"
+            ]
+          },
+          {
+            "anyOf": [
+              "식을 나누어 쓴다",
+              "$40+20=60$, $60-10=50$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "계산 이어 쓴 등호 오류",
+        "bReason": "등호는 양쪽이 같을 때만 쓰는 이유",
+        "cDecision": "keep",
+        "cReason": "식 조건이 분명한 짧은 서술 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "틀리게 쓴",
+            "잘못 사용한"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "계산을 이어 쓴 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$40+20=60-10=50$은 $40+20$과 $50$이 다르므로 등호를 {잘못 쓴} 것이다.",
+        "cStudentSentence": "$40+20=60-10=50$은 $40+20$과 $50$이 다르므로 등호를 □ 것이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "잘못 쓴",
+            "equivalents": [
+              "틀리게 쓴",
+              "잘못 사용한"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$40+20=60-10=50$은 $40+20$과 $50$이 다르므로 등호를 □ 것이다.",
+          "answers": [
+            "잘못 쓴"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$40+20=60-10=50$처럼 쓰면 왜 잘못인지 설명하고, 바르게 고쳐 쓰시오.",
+          "answer": "$40+20=60$이고 $50$과 같지 않아 등호를 잘못 썼다. $40+20=60$, $60-10=50$처럼 나누어 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$40+20$과 $50$이 다르다",
+                "$40+20$은 $60$"
+              ]
+            },
+            {
+              "anyOf": [
+                "식을 나누어 쓴다",
+                "$40+20=60$, $60-10=50$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$40+20=60-10=50$은 $40+20$과 $50$이 다르므로 등호를 {잘못 쓴} 것이다.",
+          "acceptedAnswers": [
+            [
+              "잘못 쓴",
+              "틀리게 쓴",
+              "잘못 사용한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2089,
+        "sourceFingerprint": "248ffd1b321ca8a4d14f1a578fc259afd9847ee239f36d3b6aaed7072ddcb2d2",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc23",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "같은 수를 두 번 더한 식",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 수를 두 번 더한 값이 주어지면 그 수는 {주어진 값을 똑같이 둘로 나눈} 수이다.",
+        "example": {
+          "prompt": "$\\square+\\square=12$에서 같은 수 $\\square$가 $6$인 까닭은?",
+          "answer": "$12$를 똑같이 둘로 나눠서"
+        },
+        "studentC": "같은 수를 두 번 더한 값이 주어지면 그 수는 □ 수이다.",
+        "answers": [
+          "주어진 값을 똑같이 둘로 나눈"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2089,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "248ffd1b321ca8a4d14f1a578fc259afd9847ee239f36d3b6aaed7072ddcb2d2",
+        "proposalFingerprint": "1460e9801ce044050513a0a42101702523594a96e5737dd76daaeaf852463654",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\square+\\square=12$에서 같은 수 $\\square$를 구하고, 방법을 쓰시오.",
+        "bAnswer": "$6$. $12$를 똑같이 둘로 나눈다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$를 똑같이 둘로 나눈다",
+              "$12\\div2$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "같은 수를 두 번 더한 값",
+        "bReason": "같은 수 두 개는 반이라는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "같은 수를 두 번 더해 $12$가 되면 그 수는 $12$를 똑같이 둘로 나눈 {$6$}이다.",
+        "cReason": "긴 구절 빈칸을 숫자 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 수를 두 번 더한 식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 수를 두 번 더해 $12$가 되면 그 수는 $12$를 똑같이 둘로 나눈 {$6$}이다.",
+        "cStudentSentence": "같은 수를 두 번 더해 $12$가 되면 그 수는 $12$를 똑같이 둘로 나눈 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\square+\\square=12$에서 같은 수 $\\square$를 구하고, 방법을 쓰시오.",
+          "answer": "$6$. $12$를 똑같이 둘로 나눈다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$12$를 똑같이 둘로 나눈다",
+                "$12\\div2$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 수를 두 번 더해 $12$가 되면 그 수는 $12$를 똑같이 둘로 나눈 {$6$}이다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2090,
+        "sourceFingerprint": "15a438a999f154dfa5f1c709bae606d061a427fc0fa9f102e22329d0113367e5",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc27",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "어떤 수를 넣어도 바른 식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\square\\times4=\\square+\\square+\\square+\\square$처럼 양쪽이 {같은 계산을 다르게 쓴 것}이면 $\\square$에 어떤 수를 넣어도 바른 식이다.",
+        "example": {
+          "prompt": "$\\square\\times4=\\square+\\square+\\square+\\square$가 어떤 수에서도 바른 식인 까닭은?",
+          "answer": "네 번 더한 것이 네 배라서"
+        },
+        "studentC": "$\\square\\times4=\\square+\\square+\\square+\\square$처럼 양쪽이 □이면 $\\square$에 어떤 수를 넣어도 바른 식이다.",
+        "answers": [
+          "같은 계산을 다르게 쓴 것"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2090,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "15a438a999f154dfa5f1c709bae606d061a427fc0fa9f102e22329d0113367e5",
+        "proposalFingerprint": "8e146619ae5d136104cfc2a83131eaed3b70799dfb8f06e2f9ba43610d8e4039",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\square\\times4=\\square+\\square+\\square+\\square$에서 $\\square$에 같은 수를 넣을 때 어떤 수를 넣어도 바른 식인 까닭을 쓰시오.",
+        "bAnswer": "같은 수를 네 번 더한 것이 그 수의 $4$배와 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 번 더한 것이 $4$배와 같다",
+              "같은 계산을 다르게 쓴 것"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "어떤 수도 바른 식인 까닭",
+        "bReason": "곱셈과 반복 덧셈이 같음을 이유로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수를 $4$번 더한 식과 그 수에 $4$를 곱한 식은 어떤 수를 넣어도 값이 {같다}.",
+        "cReason": "□ 기호 중복과 긴 구절 빈칸을 없앰",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "어떤 수를 넣어도 바른 식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수를 $4$번 더한 식과 그 수에 $4$를 곱한 식은 어떤 수를 넣어도 값이 {같다}.",
+        "cStudentSentence": "어떤 수를 $4$번 더한 식과 그 수에 $4$를 곱한 식은 어떤 수를 넣어도 값이 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\square\\times4=\\square+\\square+\\square+\\square$에서 $\\square$에 같은 수를 넣을 때 어떤 수를 넣어도 바른 식인 까닭을 쓰시오.",
+          "answer": "같은 수를 네 번 더한 것이 그 수의 $4$배와 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 번 더한 것이 $4$배와 같다",
+                "같은 계산을 다르게 쓴 것"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수를 $4$번 더한 식과 그 수에 $4$를 곱한 식은 어떤 수를 넣어도 값이 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2091,
+        "sourceFingerprint": "2cef9ff2b303edf060b76e21a9be39e0fc14c6e0a33314dfde17ef99a7437366",
+        "part": "e4plus",
+        "id": "e4-1-6-5-xc28",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "term": "등호를 쓸 수 없을 때의 기호",
+        "kind": "방법",
+        "level": "상",
+        "definition": "양쪽 크기가 다를 때는 등호 대신 {$>$나 $<$}를 쓴다.",
+        "studentC": "양쪽 크기가 다를 때는 등호 대신 □를 쓴다.",
+        "answers": [
+          "$>$나 $<$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2091,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "2cef9ff2b303edf060b76e21a9be39e0fc14c6e0a33314dfde17ef99a7437366",
+        "proposalFingerprint": "84323c948bba743d4b2d1d030c5119ed0cf8a7f45bfc3b0ae6ec479bb97ad6bf",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "$6+5$와 $10$의 크기를 비교해 식으로 나타내고, 등호를 쓸 수 없는 까닭을 쓰시오.",
+        "bAnswer": "$6+5>10$. $6+5=11$로 $10$과 값이 다르기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6+5>10$",
+              "$10<6+5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "값이 다르다",
+              "$11$과 $10$이 다르다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "등호 대신 부등호",
+        "bReason": "값이 다를 때 알맞은 기호를 고르는지 확인",
+        "cDecision": "keep",
+        "cReason": "기호 빈칸이 짧아 유지, 부등호 이름 허용",
+        "cSlotEquivalents": [
+          [
+            "부등호"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "등호를 쓸 수 없을 때의 기호",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "양쪽 크기가 다를 때는 등호 대신 {$>$나 $<$}를 쓴다.",
+        "cStudentSentence": "양쪽 크기가 다를 때는 등호 대신 □를 쓴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$>$나 $<$",
+            "equivalents": [
+              "부등호"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "양쪽 크기가 다를 때는 등호 대신 □를 쓴다.",
+          "answers": [
+            "$>$나 $<$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$6+5$와 $10$의 크기를 비교해 식으로 나타내고, 등호를 쓸 수 없는 까닭을 쓰시오.",
+          "answer": "$6+5>10$. $6+5=11$로 $10$과 값이 다르기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6+5>10$",
+                "$10<6+5$"
+              ]
+            },
+            {
+              "anyOf": [
+                "값이 다르다",
+                "$11$과 $10$이 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "양쪽 크기가 다를 때는 등호 대신 {$>$나 $<$}를 쓴다.",
+          "acceptedAnswers": [
+            [
+              "$>$나 $<$",
+              "부등호"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2092,
+        "sourceFingerprint": "afb27380720a751c0d24385c64570aaf001025ff16de0111a4070d47f7f613ab",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc1",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "진분수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "분모보다 분자가 작은 분수를 {진분수}라 한다.",
+        "studentC": "분모보다 분자가 작은 분수를 □라 한다.",
+        "answers": [
+          "진분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2092,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "afb27380720a751c0d24385c64570aaf001025ff16de0111a4070d47f7f613ab",
+        "proposalFingerprint": "06737585614e75de09c9edf03dd30b6051b965a8660db368dfac32f1a1cfa512",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{5}$, $\\frac{5}{5}$, $\\frac{7}{5}$ 중 진분수를 고르고, 기준을 쓰시오.",
+        "bAnswer": "$\\frac{3}{5}$. 분자 $3$이 분모 $5$보다 작기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{5}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모보다 분자가 작다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "진분수 가려내기",
+        "bReason": "분자와 분모를 비교하는 기준 확인",
+        "cDecision": "keep",
+        "cReason": "짧은 용어 빈칸이라 그대로 유지",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "진분수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모보다 분자가 작은 분수를 {진분수}라 한다.",
+        "cStudentSentence": "분모보다 분자가 작은 분수를 □라 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "진분수",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모보다 분자가 작은 분수를 □라 한다.",
+          "answers": [
+            "진분수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{3}{5}$, $\\frac{5}{5}$, $\\frac{7}{5}$ 중 진분수를 고르고, 기준을 쓰시오.",
+          "answer": "$\\frac{3}{5}$. 분자 $3$이 분모 $5$보다 작기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{3}{5}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분모보다 분자가 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모보다 분자가 작은 분수를 {진분수}라 한다.",
+          "acceptedAnswers": [
+            [
+              "진분수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2093,
+        "sourceFingerprint": "6ad5f7b6110e9a2c18796a11c774167b9a8351e5de1d2e5222af08d83f9c3a7b",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc2",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "분자가 나타내는 것",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분수의 분자는 분모가 같은 {단위분수의 개수}를 나타낸다.",
+        "example": {
+          "prompt": "$\\frac{3}{7}$이 $\\frac{1}{7}$의 $3$개인 까닭은?",
+          "answer": "분자 $3$이 조각의 수라서"
+        },
+        "studentC": "분수의 분자는 분모가 같은 □를 나타낸다.",
+        "answers": [
+          "단위분수의 개수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2093,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "6ad5f7b6110e9a2c18796a11c774167b9a8351e5de1d2e5222af08d83f9c3a7b",
+        "proposalFingerprint": "251608d8f2b2c5cd92ff02a3dede1d360d05ecc83d5d96f000f6be3f9179f7c3",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{7}$은 $\\frac{1}{7}$의 몇 개인지 쓰고, 분자가 무엇을 나타내기 때문인지 쓰시오.",
+        "bAnswer": "$3$개. 분자 $3$이 $\\frac{1}{7}$ 조각의 개수를 나타내기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자가 조각의 개수를 나타낸다",
+              "분자는 단위분수의 개수"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분자가 나타내는 뜻",
+        "bReason": "분자가 단위분수 개수임을 이유로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{3}{7}$은 $\\frac{1}{7}$이 {$3$}개인 수이다.",
+        "cReason": "추상적인 '단위분수의 개수'를 구체 숫자로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분자가 나타내는 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{3}{7}$은 $\\frac{1}{7}$이 {$3$}개인 수이다.",
+        "cStudentSentence": "$\\frac{3}{7}$은 $\\frac{1}{7}$이 □개인 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{3}{7}$은 $\\frac{1}{7}$의 몇 개인지 쓰고, 분자가 무엇을 나타내기 때문인지 쓰시오.",
+          "answer": "$3$개. 분자 $3$이 $\\frac{1}{7}$ 조각의 개수를 나타내기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자가 조각의 개수를 나타낸다",
+                "분자는 단위분수의 개수"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{3}{7}$은 $\\frac{1}{7}$이 {$3$}개인 수이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2094,
+        "sourceFingerprint": "050cbd7482384e919a2fa14550dce0929f8ea185e2b273f45d5d0afa61c5c714",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc4",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "분모끼리는 더하지 않기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분모가 같은 분수를 더할 때 분모끼리는 {더하지 않는다}.",
+        "studentC": "분모가 같은 분수를 더할 때 분모끼리는 □.",
+        "answers": [
+          "더하지 않는다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2094,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "050cbd7482384e919a2fa14550dce0929f8ea185e2b273f45d5d0afa61c5c714",
+        "proposalFingerprint": "68acbb78d40db47bae07575f0d91e424f6e226b148d62a416c41f8290d828da8",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{7}+\\frac{3}{7}$의 합을 구하고, 합의 분모를 $14$로 하면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "$\\frac{5}{7}$. $\\frac{1}{7}$ 조각 크기는 그대로이고 조각의 수만 더하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{5}{7}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 조각 크기라 그대로",
+              "분자끼리만 더한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분모를 더하지 않는 까닭",
+        "bReason": "조각 크기와 개수를 구분해 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{2}{7}+\\frac{3}{7}$의 합에서 분모는 $7+7=14$가 아니라 {$7$}이다.",
+        "cReason": "'더하지 않는다'를 구체 식과 숫자로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "일곱"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모끼리는 더하지 않기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{2}{7}+\\frac{3}{7}$의 합에서 분모는 $7+7=14$가 아니라 {$7$}이다.",
+        "cStudentSentence": "$\\frac{2}{7}+\\frac{3}{7}$의 합에서 분모는 $7+7=14$가 아니라 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$7$",
+            "equivalents": [
+              "일곱"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{2}{7}+\\frac{3}{7}$의 합을 구하고, 합의 분모를 $14$로 하면 안 되는 까닭을 쓰시오.",
+          "answer": "$\\frac{5}{7}$. $\\frac{1}{7}$ 조각 크기는 그대로이고 조각의 수만 더하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{5}{7}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분모는 조각 크기라 그대로",
+                "분자끼리만 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{2}{7}+\\frac{3}{7}$의 합에서 분모는 $7+7=14$가 아니라 {$7$}이다.",
+          "acceptedAnswers": [
+            [
+              "$7$",
+              "일곱"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2095,
+        "sourceFingerprint": "311dbd6d9ae197ce0f847eac79594199e1f47bccc133f0dee1dc51e22dcc1398",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc5",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "그림으로 더하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "같은 크기의 전체 그림을 필요한 만큼 준비해 각각 분모만큼 똑같이 나누고, 두 분수만큼 겹치지 않게 색칠하면 {색칠한 칸 수의 합}이 합의 분자가 된다.",
+        "studentC": "같은 크기의 전체 그림을 필요한 만큼 준비해 각각 분모만큼 똑같이 나누고, 두 분수만큼 겹치지 않게 색칠하면 □이 합의 분자가 된다.",
+        "answers": [
+          "색칠한 칸 수의 합"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2095,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "311dbd6d9ae197ce0f847eac79594199e1f47bccc133f0dee1dc51e22dcc1398",
+        "proposalFingerprint": "fbd5baf305f97b00d3237e38e59ae2c655c6632005a9616e6db95740523bd5ef",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 크기의 그림 $2$개를 각각 $5$칸으로 똑같이 나누어 $\\frac{2}{5}$와 $\\frac{1}{5}$만큼 색칠했다. 합은 얼마이며 그림에서 어떻게 알 수 있는가?",
+        "bAnswer": "$\\frac{3}{5}$. 색칠한 칸을 합하면 $2+1=3$칸이고 한 칸이 $\\frac{1}{5}$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{5}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "색칠한 칸 수를 합한다",
+              "$2+1=3$칸"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "그림으로 분수 더하기",
+        "bReason": "색칠한 칸 수를 합해 분자를 구하는 방법",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{2}{5}+\\frac{1}{5}$을 그림으로 나타내면 색칠한 칸이 $2$칸과 $1$칸이므로 합의 분자는 $2+1=${$3$}이다.",
+        "cReason": "긴 구절 빈칸을 구체 계산 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "exampleNeeded": "같은 크기의 그림 두 개를 각각 $5$칸으로 나누고 $2$칸, $1$칸 색칠한 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "그림으로 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{2}{5}+\\frac{1}{5}$을 그림으로 나타내면 색칠한 칸이 $2$칸과 $1$칸이므로 합의 분자는 $2+1=${$3$}이다.",
+        "cStudentSentence": "$\\frac{2}{5}+\\frac{1}{5}$을 그림으로 나타내면 색칠한 칸이 $2$칸과 $1$칸이므로 합의 분자는 $2+1=$□이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 크기의 그림 $2$개를 각각 $5$칸으로 똑같이 나누어 $\\frac{2}{5}$와 $\\frac{1}{5}$만큼 색칠했다. 합은 얼마이며 그림에서 어떻게 알 수 있는가?",
+          "answer": "$\\frac{3}{5}$. 색칠한 칸을 합하면 $2+1=3$칸이고 한 칸이 $\\frac{1}{5}$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{3}{5}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "색칠한 칸 수를 합한다",
+                "$2+1=3$칸"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{2}{5}+\\frac{1}{5}$을 그림으로 나타내면 색칠한 칸이 $2$칸과 $1$칸이므로 합의 분자는 $2+1=${$3$}이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2096,
+        "sourceFingerprint": "5de2c2093aa77fca3a03ddb24d184bcd7a25db955872d96e5cae54d4310777e4",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc6",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "합이 $1$이 되는 두 진분수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$\\frac{3}{5}+\\frac{2}{5}$처럼 분모가 같은 두 진분수는 {분자의 합이 분모와 같으면} 합이 $1$이다.",
+        "studentC": "$\\frac{3}{5}+\\frac{2}{5}$처럼 분모가 같은 두 진분수는 □ 합이 $1$이다.",
+        "answers": [
+          "분자의 합이 분모와 같으면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2096,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "5de2c2093aa77fca3a03ddb24d184bcd7a25db955872d96e5cae54d4310777e4",
+        "proposalFingerprint": "43443b434a4a4d0a2886a74ad26644a25d4e4e3c3f59a02c47ea60c6d7fe0d9d",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{5}+\\frac{2}{5}$의 합을 구하고, 그 값이 되는 까닭을 쓰시오.",
+        "bAnswer": "$1$. 분자의 합 $3+2=5$가 분모 $5$와 같아 $\\frac{5}{5}=1$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자의 합이 분모와 같다",
+              "$\\frac{5}{5}=1$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "합이 $1$이 되는 까닭",
+        "bReason": "분자 합이 분모와 같으면 $1$임을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{3}{5}+\\frac{2}{5}$에서 분자의 합이 $3+2=5$로 분모와 같으므로 합은 {$1$}이다.",
+        "cReason": "긴 구절 빈칸을 구체 계산 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "일"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "합이 $1$이 되는 두 진분수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{3}{5}+\\frac{2}{5}$에서 분자의 합이 $3+2=5$로 분모와 같으므로 합은 {$1$}이다.",
+        "cStudentSentence": "$\\frac{3}{5}+\\frac{2}{5}$에서 분자의 합이 $3+2=5$로 분모와 같으므로 합은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": [
+              "일"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{3}{5}+\\frac{2}{5}$의 합을 구하고, 그 값이 되는 까닭을 쓰시오.",
+          "answer": "$1$. 분자의 합 $3+2=5$가 분모 $5$와 같아 $\\frac{5}{5}=1$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분자의 합이 분모와 같다",
+                "$\\frac{5}{5}=1$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{3}{5}+\\frac{2}{5}$에서 분자의 합이 $3+2=5$로 분모와 같으므로 합은 {$1$}이다.",
+          "acceptedAnswers": [
+            [
+              "$1$",
+              "일"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2097,
+        "sourceFingerprint": "70799a221dbf575f161e154aed6e20b3811e173743daaba3e1f3c1858c0f0188",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc7",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "수직선에서 더하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 칸이 더할 분수와 분모가 같은 단위분수인 수직선에서는 {오른쪽}으로 {더하는 분수의 분자만큼} 칸을 간다.",
+        "example": {
+          "prompt": "$\\frac{2}{6}$에 $\\frac{3}{6}$을 더할 때 $\\frac{1}{6}$짜리 $3$칸을 가는 까닭은?",
+          "answer": "$\\frac{3}{6}$이 $\\frac{1}{6}$의 $3$개라서"
+        },
+        "studentC": "한 칸이 더할 분수와 분모가 같은 단위분수인 수직선에서는 □으로 □ 칸을 간다.",
+        "answers": [
+          "오른쪽",
+          "더하는 분수의 분자만큼"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2097,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "70799a221dbf575f161e154aed6e20b3811e173743daaba3e1f3c1858c0f0188",
+        "proposalFingerprint": "157247c63ce6452ebbe5617a2e3c962b1baaa1f9df8dff0846685fc7318d9e0c",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "수직선에서 한 칸이 $\\frac{1}{6}$이다. $\\frac{2}{6}$에 $\\frac{3}{6}$을 더하려면 어느 쪽으로 몇 칸 가며, 도착하는 수는 얼마인가?",
+        "bAnswer": "오른쪽으로 $3$칸 간다. $\\frac{3}{6}$이 $\\frac{1}{6}$의 $3$개이므로 $\\frac{5}{6}$에 도착한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽으로 $3$칸"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{6}$이 $\\frac{1}{6}$의 $3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "수직선에서 분수 더하기",
+        "bReason": "방향과 칸 수를 정하는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "수직선에서 $\\frac{2}{6}$에 $\\frac{3}{6}$을 더하려면 한 칸이 $\\frac{1}{6}$이므로 {오른쪽}으로 {$3$}칸 간다.",
+        "cReason": "긴 구절 빈칸을 방향과 숫자로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "오른편"
+          ],
+          []
+        ],
+        "exampleNeeded": "한 칸이 $\\frac{1}{6}$인 수직선과 $\\frac{2}{6}$의 위치",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "수직선에서 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수직선에서 $\\frac{2}{6}$에 $\\frac{3}{6}$을 더하려면 한 칸이 $\\frac{1}{6}$이므로 {오른쪽}으로 {$3$}칸 간다.",
+        "cStudentSentence": "수직선에서 $\\frac{2}{6}$에 $\\frac{3}{6}$을 더하려면 한 칸이 $\\frac{1}{6}$이므로 □으로 □칸 간다.",
+        "cSlotAnswers": [
+          {
+            "expected": "오른쪽",
+            "equivalents": [
+              "오른편"
+            ]
+          },
+          {
+            "expected": "$3$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "수직선에서 한 칸이 $\\frac{1}{6}$이다. $\\frac{2}{6}$에 $\\frac{3}{6}$을 더하려면 어느 쪽으로 몇 칸 가며, 도착하는 수는 얼마인가?",
+          "answer": "오른쪽으로 $3$칸 간다. $\\frac{3}{6}$이 $\\frac{1}{6}$의 $3$개이므로 $\\frac{5}{6}$에 도착한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "오른쪽으로 $3$칸"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{3}{6}$이 $\\frac{1}{6}$의 $3$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{5}{6}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수직선에서 $\\frac{2}{6}$에 $\\frac{3}{6}$을 더하려면 한 칸이 $\\frac{1}{6}$이므로 {오른쪽}으로 {$3$}칸 간다.",
+          "acceptedAnswers": [
+            [
+              "오른쪽",
+              "오른편"
+            ],
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2098,
+        "sourceFingerprint": "bd2b8d3d59d87b1618aba3f7d96ec74fda207b1a82017a2889f71b2281793938",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc9",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$를 더한 합에 붙이는 것",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$처럼 단위가 있는 분수를 더한 합에도 {단위}를 붙인다.",
+        "studentC": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$처럼 단위가 있는 분수를 더한 합에도 □를 붙인다.",
+        "answers": [
+          "단위"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2098,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "bd2b8d3d59d87b1618aba3f7d96ec74fda207b1a82017a2889f71b2281793938",
+        "proposalFingerprint": "1b2c397fc5406cf1863c63f3293ccfae2b3ffd77fdf945f180f6a6f4aa6b5176",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$를 더한 합을 단위까지 써서 구하시오.",
+        "bAnswer": "$\\frac{7}{8}\\,\\mathrm{L}$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{7}{8}\\,\\mathrm{L}$",
+              "$\\frac{7}{8}$ 리터"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "단위 붙여 합 쓰기",
+        "bReason": "합에도 단위를 붙이는지 확인",
+        "cDecision": "keep",
+        "cReason": "짧고 익숙한 단위 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$\\mathrm{L}$",
+            "리터"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$를 더한 합에 붙이는 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$처럼 단위가 있는 분수를 더한 합에도 {단위}를 붙인다.",
+        "cStudentSentence": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$처럼 단위가 있는 분수를 더한 합에도 □를 붙인다.",
+        "cSlotAnswers": [
+          {
+            "expected": "단위",
+            "equivalents": [
+              "$\\mathrm{L}$",
+              "리터"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$처럼 단위가 있는 분수를 더한 합에도 □를 붙인다.",
+          "answers": [
+            "단위"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$를 더한 합을 단위까지 써서 구하시오.",
+          "answer": "$\\frac{7}{8}\\,\\mathrm{L}$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{7}{8}\\,\\mathrm{L}$",
+                "$\\frac{7}{8}$ 리터"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{3}{8}\\,\\mathrm{L}$와 $\\frac{4}{8}\\,\\mathrm{L}$처럼 단위가 있는 분수를 더한 합에도 {단위}를 붙인다.",
+          "acceptedAnswers": [
+            [
+              "단위",
+              "$\\mathrm{L}$",
+              "리터"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2099,
+        "sourceFingerprint": "bb6c8ba315af8c6d7af0686c4a766a182325c4ba2ccb5f7a75a225568dbd0c42",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc10",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "두 진분수의 합이 $1$보다 클 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 진분수의 합이 $1$보다 크면 합은 $2$보다 작으므로 {$1$과 남은 진분수}로 이루어진 대분수로 나타낼 수 있다.",
+        "studentC": "두 진분수의 합이 $1$보다 크면 합은 $2$보다 작으므로 □로 이루어진 대분수로 나타낼 수 있다.",
+        "answers": [
+          "$1$과 남은 진분수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2099,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "bb6c8ba315af8c6d7af0686c4a766a182325c4ba2ccb5f7a75a225568dbd0c42",
+        "proposalFingerprint": "ea1749ca5c67cb46e8aa5cfa58852f8a1856834aac4bdb6f609f11b8d24ea80e",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{4}+\\frac{2}{4}$의 합을 대분수로 나타내고, 방법을 쓰시오.",
+        "bAnswer": "$1\\frac{1}{4}$. $\\frac{5}{4}$를 $\\frac{4}{4}=1$과 남은 $\\frac{1}{4}$로 나눈다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\frac{1}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{4}=1$과 $\\frac{1}{4}$",
+              "$1$과 남은 진분수"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$1$보다 큰 합을 대분수로",
+        "bReason": "합을 $1$과 진분수로 나누는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{3}{4}+\\frac{2}{4}=\\frac{5}{4}$는 $1$보다 크므로 $1$과 남은 진분수 {$\\frac{1}{4}$}로 이루어진 대분수로 나타낼 수 있다.",
+        "cReason": "긴 구절 빈칸을 구체 분수 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 진분수의 합이 $1$보다 클 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{3}{4}+\\frac{2}{4}=\\frac{5}{4}$는 $1$보다 크므로 $1$과 남은 진분수 {$\\frac{1}{4}$}로 이루어진 대분수로 나타낼 수 있다.",
+        "cStudentSentence": "$\\frac{3}{4}+\\frac{2}{4}=\\frac{5}{4}$는 $1$보다 크므로 $1$과 남은 진분수 □로 이루어진 대분수로 나타낼 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$\\frac{1}{4}$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{3}{4}+\\frac{2}{4}$의 합을 대분수로 나타내고, 방법을 쓰시오.",
+          "answer": "$1\\frac{1}{4}$. $\\frac{5}{4}$를 $\\frac{4}{4}=1$과 남은 $\\frac{1}{4}$로 나눈다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1\\frac{1}{4}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{4}{4}=1$과 $\\frac{1}{4}$",
+                "$1$과 남은 진분수"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{3}{4}+\\frac{2}{4}=\\frac{5}{4}$는 $1$보다 크므로 $1$과 남은 진분수 {$\\frac{1}{4}$}로 이루어진 대분수로 나타낼 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{1}{4}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2100,
+        "sourceFingerprint": "9b65549f8d6eace7d6fad0dc5eeef5720297a24023a454b93c5bd811ed83eea9",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc11",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "가분수를 자연수나 대분수로 나타내기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모만큼의 조각이 모이면 {$1$}이 되므로, 가분수에서 그만큼씩 떼어 자연수로 쓰고 남은 조각이 있으면 분수로 쓴다.",
+        "example": {
+          "prompt": "$\\frac{9}{6}$에서 $\\frac{6}{6}$을 떼어 $1$로 쓰는 까닭은?",
+          "answer": "여섯 조각이 전체 하나라서"
+        },
+        "studentC": "분모만큼의 조각이 모이면 □이 되므로, 가분수에서 그만큼씩 떼어 자연수로 쓰고 남은 조각이 있으면 분수로 쓴다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2100,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "9b65549f8d6eace7d6fad0dc5eeef5720297a24023a454b93c5bd811ed83eea9",
+        "proposalFingerprint": "ede48db2c77bc4db0544d8ac4dad23dfcd2f4acaaf0772d829355014e34f249c",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{9}{6}$에서 $\\frac{6}{6}$을 떼어 자연수 $1$로 쓰는 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{1}{6}$짜리 조각 $6$개가 모이면 전체 $1$이 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모만큼(여섯 개)의 조각이 모이면 $1$이 된다",
+              "$\\frac{6}{6}=1$이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가분수에서 $1$을 떼는 까닭",
+        "bReason": "조각 $6$개가 전체 $1$이라는 의미를 확인",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 $1$ 하나만 묻는 짧은 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가분수를 자연수나 대분수로 나타내기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모만큼의 조각이 모이면 {$1$}이 되므로, 가분수에서 그만큼씩 떼어 자연수로 쓰고 남은 조각이 있으면 분수로 쓴다.",
+        "cStudentSentence": "분모만큼의 조각이 모이면 □이 되므로, 가분수에서 그만큼씩 떼어 자연수로 쓰고 남은 조각이 있으면 분수로 쓴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모만큼의 조각이 모이면 □이 되므로, 가분수에서 그만큼씩 떼어 자연수로 쓰고 남은 조각이 있으면 분수로 쓴다.",
+          "answers": [
+            "$1$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$\\frac{9}{6}$에서 $\\frac{6}{6}$을 떼어 자연수 $1$로 쓰는 까닭을 설명하시오.",
+          "answer": "$\\frac{1}{6}$짜리 조각 $6$개가 모이면 전체 $1$이 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분모만큼(여섯 개)의 조각이 모이면 $1$이 된다",
+                "$\\frac{6}{6}=1$이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모만큼의 조각이 모이면 {$1$}이 되므로, 가분수에서 그만큼씩 떼어 자연수로 쓰고 남은 조각이 있으면 분수로 쓴다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2101,
+        "sourceFingerprint": "fba8696f17f433692880b654203d8d650e33ba3c2bcd2b8480c4b160f3e9dc7b",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc12",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "분자끼리 더할 수 있는 조건",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분자끼리 더하는 방법은 두 분수의 {분모가 같을 때} 쓸 수 있다.",
+        "studentC": "분자끼리 더하는 방법은 두 분수의 □ 쓸 수 있다.",
+        "answers": [
+          "분모가 같을 때"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2101,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "fba8696f17f433692880b654203d8d650e33ba3c2bcd2b8480c4b160f3e9dc7b",
+        "proposalFingerprint": "2e44b21435113ce4b72a1c7b9d9bfe57924d0766276d49a301ce9075e411a6e3",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "두 분수를 분자끼리만 더해서 계산해도 되는 경우는 어떤 때인지 쓰시오.",
+        "bAnswer": "두 분수의 분모가 같을 때이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 같을 때",
+              "분모가 같다",
+              "조각의 크기가 같을 때"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "분자끼리 더하는 조건",
+        "bReason": "분모가 같다는 조건을 직접 묻는 질문",
+        "cDecision": "rewrite",
+        "cAfter": "분자끼리 더하는 방법은 두 분수의 {분모}가 같을 때 쓸 수 있다.",
+        "cReason": "조건 구절 전체 대신 '분모' 한 낱말 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분자끼리 더할 수 있는 조건",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분자끼리 더하는 방법은 두 분수의 {분모}가 같을 때 쓸 수 있다.",
+        "cStudentSentence": "분자끼리 더하는 방법은 두 분수의 □가 같을 때 쓸 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "분모",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "두 분수를 분자끼리만 더해서 계산해도 되는 경우는 어떤 때인지 쓰시오.",
+          "answer": "두 분수의 분모가 같을 때이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분모가 같을 때",
+                "분모가 같다",
+                "조각의 크기가 같을 때"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분자끼리 더하는 방법은 두 분수의 {분모}가 같을 때 쓸 수 있다.",
+          "acceptedAnswers": [
+            [
+              "분모"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2102,
+        "sourceFingerprint": "b4b30c438090802af652606ecba909352682651ca0b0817d77b87fb470bbcad5",
+        "part": "e4plus",
+        "id": "e4-2-1-1-xc13",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "term": "분모까지 더하는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$\\frac{1}{6}+\\frac{4}{6}$를 $\\frac{5}{12}$로 계산하면 {분모까지 더한} 잘못이다.",
+        "studentC": "$\\frac{1}{6}+\\frac{4}{6}$를 $\\frac{5}{12}$로 계산하면 □ 잘못이다.",
+        "answers": [
+          "분모까지 더한"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2102,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-1 진분수의 덧셈",
+        "sourceFingerprint": "b4b30c438090802af652606ecba909352682651ca0b0817d77b87fb470bbcad5",
+        "proposalFingerprint": "a4a1e53d1aa63cf62269566a87b3b246acb3a2fd9468c85aff5e233bbf2375bf",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-1-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{6}+\\frac{4}{6}$를 $\\frac{5}{12}$라고 계산했다. 잘못된 점을 쓰고 바르게 계산한 값을 구하시오.",
+        "bAnswer": "분모 $6$과 $6$까지 더해 $12$로 썼다. 분모는 그대로 두어야 하므로 $\\frac{5}{6}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모까지 더했다",
+              "분모끼리도 더했다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 그대로 두고 $\\frac{5}{6}$",
+              "$\\frac{5}{6}$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분모를 더한 오류 진단",
+        "bReason": "오류 원인과 바른 값을 함께 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{1}{6}+\\frac{4}{6}$를 $\\frac{5}{12}$로 계산하면 분자와 함께 {분모}까지 더한 잘못이다.",
+        "cReason": "'분모까지 더한' 구절을 한 낱말 빈칸으로 줄여 명확화",
+        "cSlotEquivalents": [
+          [
+            "분모를"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모까지 더하는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{1}{6}+\\frac{4}{6}$를 $\\frac{5}{12}$로 계산하면 분자와 함께 {분모}까지 더한 잘못이다.",
+        "cStudentSentence": "$\\frac{1}{6}+\\frac{4}{6}$를 $\\frac{5}{12}$로 계산하면 분자와 함께 □까지 더한 잘못이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "분모",
+            "equivalents": [
+              "분모를"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{1}{6}+\\frac{4}{6}$를 $\\frac{5}{12}$라고 계산했다. 잘못된 점을 쓰고 바르게 계산한 값을 구하시오.",
+          "answer": "분모 $6$과 $6$까지 더해 $12$로 썼다. 분모는 그대로 두어야 하므로 $\\frac{5}{6}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "분모까지 더했다",
+                "분모끼리도 더했다"
+              ]
+            },
+            {
+              "anyOf": [
+                "분모는 그대로 두고 $\\frac{5}{6}$",
+                "$\\frac{5}{6}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$\\frac{1}{6}+\\frac{4}{6}$를 $\\frac{5}{12}$로 계산하면 분자와 함께 {분모}까지 더한 잘못이다.",
+          "acceptedAnswers": [
+            [
+              "분모",
+              "분모를"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

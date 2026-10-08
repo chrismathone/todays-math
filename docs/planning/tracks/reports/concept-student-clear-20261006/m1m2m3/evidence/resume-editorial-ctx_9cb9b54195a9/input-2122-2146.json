@@ -1,0 +1,2468 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:42:48.241Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc2",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "정수도 유리수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 {유리수}이다.",
+        "example": {
+          "prompt": "$-4$를 분모가 $1$인 분수로 쓰면?",
+          "answer": "$-\\frac{4}{1}$"
+        },
+        "studentC": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 □이다.",
+        "answers": [
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "정수는 모두 유리수이다. 그 까닭을 $-4$를 예로 들어, 유리수의 뜻(분자와 분모가 정수이고 분모가 $0$이 아닌 분수로 쓸 수 있는 수)에 맞추어 설명하시오.",
+        "bAnswer": "$-4=\\frac{-4}{1}$처럼 정수는 분모가 $1$인 분수로 쓸 수 있기 때문이다.",
+        "bGoal": "정수가 유리수인 까닭 설명하기",
+        "bReason": "구체적인 정수와 유리수의 뜻을 제시해 까닭을 묻는 질문으로 바꿈.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-4=\\frac{-4}{1}$로 쓸 수 있다",
+              "분모가 $1$인 분수로 쓸 수 있다",
+              "$-\\frac{8}{2}$처럼 분자와 분모가 정수인 분수로 쓸 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "근거가 문장에 있고 결론 하나만 묻는 분명한 빈칸임.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "정수가 유리수인 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2122,
+        "part": "m2plus",
+        "sourceFingerprint": "45dadd3aae43ae753c3bd7a8127041a5a3f718163a9d18d091258687bfe97552",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2122
+        },
+        "directReview": null,
+        "cFrozenSentence": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 □이다.",
+        "cFrozenDefinition": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 {유리수}이다.",
+        "cFrozenAnswers": [
+          "유리수"
+        ],
+        "cMarkedSentence": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 {유리수}이다.",
+        "cSlotAnswers": [
+          "유리수"
+        ],
+        "cStudentSentence": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 □이다.",
+        "cAnswers": [
+          "유리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "c486e60f8d891fd1b5dfcd5c627cc49e91ee241169a1742b2db7f982cfb0cacb"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc3",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "기약분수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "분자와 분모의 공약수가 {$1$}뿐이어서 더 약분되지 않는 분수를 {기약분수}라 한다.",
+        "example": {
+          "prompt": "$\\frac{12}{18}$를 기약분수로 고치면?",
+          "answer": "$\\frac{2}{3}$"
+        },
+        "studentC": "분자와 분모의 공약수가 □뿐이어서 더 약분되지 않는 분수를 □라 한다.",
+        "answers": [
+          "$1$",
+          "기약분수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "기약분수는 어떤 분수인가? 분자와 분모 사이의 관계로 설명하시오.",
+        "bAnswer": "분자와 분모의 공약수가 $1$뿐이어서 더 이상 약분되지 않는 분수이다. 예: $\\frac{2}{3}$",
+        "bGoal": "기약분수의 뜻 말하기",
+        "bReason": "분자와 분모의 관계로 답하도록 초점을 정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분자와 분모의 공약수가 $1$뿐이다",
+              "더 이상 약분되지 않는다",
+              "분자와 분모가 서로소이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "수 하나와 용어 하나를 묻는 짧은 정의 빈칸임.",
+        "learningRole": "definition",
+        "roleReason": "기약분수의 뜻",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2123,
+        "part": "m2plus",
+        "sourceFingerprint": "9738e572b4169826bc88d23ea687d6d29755a583be0945d26864c8d8c3645199",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2123
+        },
+        "directReview": null,
+        "cFrozenSentence": "분자와 분모의 공약수가 □뿐이어서 더 약분되지 않는 분수를 □라 한다.",
+        "cFrozenDefinition": "분자와 분모의 공약수가 {$1$}뿐이어서 더 약분되지 않는 분수를 {기약분수}라 한다.",
+        "cFrozenAnswers": [
+          "$1$",
+          "기약분수"
+        ],
+        "cMarkedSentence": "분자와 분모의 공약수가 {$1$}뿐이어서 더 약분되지 않는 분수를 {기약분수}라 한다.",
+        "cSlotAnswers": [
+          "$1$",
+          "기약분수"
+        ],
+        "cStudentSentence": "분자와 분모의 공약수가 □뿐이어서 더 약분되지 않는 분수를 □라 한다.",
+        "cAnswers": [
+          "$1$",
+          "기약분수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "기약분수",
+            "equivalentAnswers": [
+              "기약분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "기약분수"
+          ]
+        ],
+        "proposalFingerprint": "9112ee8377bafef6457259eebf344abdbe4af4cf796b6dae8f8a2825dc55d3db"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc4",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "소수의 두 갈래",
+        "kind": "정의",
+        "level": "하",
+        "definition": "소수는 소수점 아래 숫자가 끝나는 {유한소수}와 끝없이 이어지는 {무한소수}로 나뉜다.",
+        "example": {
+          "prompt": "$1.25$는 어느 쪽인가?",
+          "answer": "유한소수"
+        },
+        "studentC": "소수는 소수점 아래 숫자가 끝나는 □와 끝없이 이어지는 □로 나뉜다.",
+        "answers": [
+          "유한소수",
+          "무한소수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "유한소수(c2)와 무한소수(c3)의 정의를 한 문장에 합친 것뿐임.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-01-c2, m2-01-01-c3의 정의 질문과 목표가 중복됨.",
+        "cDecision": "keep",
+        "cReason": "두 용어를 대비해 채우는 짧은 비교 빈칸으로 쓸 만함.",
+        "learningRole": "naming",
+        "roleReason": "소수의 두 종류 이름",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2124,
+        "part": "m2plus",
+        "sourceFingerprint": "8de4ea802a704290cbd7b9bbb3d825514a3eb166ea1116e9ba8e4d1ee5a7559d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2124
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "소수는 소수점 아래 숫자가 끝나는 □와 끝없이 이어지는 □로 나뉜다.",
+        "cFrozenDefinition": "소수는 소수점 아래 숫자가 끝나는 {유한소수}와 끝없이 이어지는 {무한소수}로 나뉜다.",
+        "cFrozenAnswers": [
+          "유한소수",
+          "무한소수"
+        ],
+        "cMarkedSentence": "소수는 소수점 아래 숫자가 끝나는 {유한소수}와 끝없이 이어지는 {무한소수}로 나뉜다.",
+        "cSlotAnswers": [
+          "유한소수",
+          "무한소수"
+        ],
+        "cStudentSentence": "소수는 소수점 아래 숫자가 끝나는 □와 끝없이 이어지는 □로 나뉜다.",
+        "cAnswers": [
+          "유한소수",
+          "무한소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "무한소수",
+            "equivalentAnswers": [
+              "무한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유한소수"
+          ],
+          [
+            "무한소수"
+          ]
+        ],
+        "proposalFingerprint": "a452a1aad34b05741e6da1a3bd11d60098f5016ccf93e5ca42c9b09ed292d918"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc5",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "유한소수를 분수로 고치기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "유한소수는 분모가 $10$, $100$, $1000$처럼 {$10$의 거듭제곱}인 {분수}로 고쳐 쓸 수 있다.",
+        "example": {
+          "prompt": "$0.6$을 기약분수로 고치면?",
+          "answer": "$\\frac{3}{5}$"
+        },
+        "studentC": "유한소수는 분모가 $10$, $100$, $1000$처럼 □인 □로 고쳐 쓸 수 있다.",
+        "answers": [
+          "$10$의 거듭제곱",
+          "분수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "유한소수 $0.37$을 분수로 고칠 때 분모를 어떻게 정하는지 설명하고, 분수로 쓰시오.",
+        "bAnswer": "소수점 아래가 두 자리이므로 분모를 $100$으로 하여 $\\frac{37}{100}$로 쓴다. 이처럼 유한소수는 소수점 아래 자리 수에 맞추어 분모가 $10$, $100$, $1000$, $\\cdots$인 분수로 고친다.",
+        "bGoal": "유한소수를 분모가 $10$의 거듭제곱인 분수로 고치기",
+        "bReason": "분모를 정하는 기준을 구체적인 소수로 묻도록 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수점 아래 자리 수에 맞추어 분모를 $10$의 거듭제곱으로 한다",
+              "소수점 아래 두 자리이므로 분모는 $100$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{37}{100}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "예시 분모가 주어져 있어 묶는 말을 떠올리는 빈칸으로 적절함.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "소수를 분수로 고치는 방법",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2125,
+        "part": "m2plus",
+        "sourceFingerprint": "f394dcff1d33fe243ab690d36df7efb1d10209660903694806bae9ee4f0a5b0e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2125
+        },
+        "directReview": null,
+        "cFrozenSentence": "유한소수는 분모가 $10$, $100$, $1000$처럼 □인 □로 고쳐 쓸 수 있다.",
+        "cFrozenDefinition": "유한소수는 분모가 $10$, $100$, $1000$처럼 {$10$의 거듭제곱}인 {분수}로 고쳐 쓸 수 있다.",
+        "cFrozenAnswers": [
+          "$10$의 거듭제곱",
+          "분수"
+        ],
+        "cMarkedSentence": "유한소수는 분모가 $10$, $100$, $1000$처럼 {$10$의 거듭제곱}인 {분수}로 고쳐 쓸 수 있다.",
+        "cSlotAnswers": [
+          "$10$의 거듭제곱",
+          "분수"
+        ],
+        "cStudentSentence": "유한소수는 분모가 $10$, $100$, $1000$처럼 □인 □로 고쳐 쓸 수 있다.",
+        "cAnswers": [
+          "$10$의 거듭제곱",
+          "분수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10$의 거듭제곱",
+            "equivalentAnswers": [
+              "$10$의 거듭제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$10$의 거듭제곱"
+          ],
+          [
+            "분수"
+          ]
+        ],
+        "proposalFingerprint": "487e61da206001912d5317535694ac8ed416b6e8ef805f036d0c667f38eb9fcd"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc6",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "유한소수는 유리수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "유한소수는 모두 {분수}로 고칠 수 있으므로 {유리수}이다.",
+        "example": {
+          "prompt": "$0.37$을 분수로 쓰면?",
+          "answer": "$\\frac{37}{100}$"
+        },
+        "studentC": "유한소수는 모두 □로 고칠 수 있으므로 □이다.",
+        "answers": [
+          "분수",
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "유한소수는 모두 유리수이다. 그 까닭을, 유한소수를 어떤 분수로 고칠 수 있는지 밝혀 설명하시오.",
+        "bAnswer": "유한소수는 $0.37=\\frac{37}{100}$처럼 분모가 $10$의 거듭제곱인 분수로 고칠 수 있다. 분자와 분모가 정수이고 분모가 $0$이 아닌 분수이므로 유리수이다.",
+        "bGoal": "유한소수가 유리수인 까닭 설명하기",
+        "bReason": "어떤 분수로 고쳐지는지를 근거로 요구하도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 $10$의 거듭제곱인 분수로 고칠 수 있다",
+              "$0.37=\\frac{37}{100}$처럼 분모가 $10$, $100$, $\\cdots$인 분수로 쓸 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "근거와 결론을 낱말 하나씩으로 묻는 짧은 빈칸임.",
+        "learningRole": "reason",
+        "roleReason": "유한소수가 유리수인 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2126,
+        "part": "m2plus",
+        "sourceFingerprint": "69dfbfa588bd31b2d53aa159dc5123c6d8dc1fa3d8df01e65c68fabcaf70108c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2126
+        },
+        "directReview": null,
+        "cFrozenSentence": "유한소수는 모두 □로 고칠 수 있으므로 □이다.",
+        "cFrozenDefinition": "유한소수는 모두 {분수}로 고칠 수 있으므로 {유리수}이다.",
+        "cFrozenAnswers": [
+          "분수",
+          "유리수"
+        ],
+        "cMarkedSentence": "유한소수는 모두 {분수}로 고칠 수 있으므로 {유리수}이다.",
+        "cSlotAnswers": [
+          "분수",
+          "유리수"
+        ],
+        "cStudentSentence": "유한소수는 모두 □로 고칠 수 있으므로 □이다.",
+        "cAnswers": [
+          "분수",
+          "유리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분수"
+          ],
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "670c535ada0fb10d29cb238e484345534232953b9754dc0fb1f70f61dc6b6ecf"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc7",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "분모의 소인수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "분모를 {소인수분해}했을 때 곱으로 나타나는 소수들을 분모의 {소인수}라 한다.",
+        "example": {
+          "prompt": "$\\frac{1}{12}$의 분모의 소인수는?",
+          "answer": "$2$, $3$"
+        },
+        "studentC": "분모를 □했을 때 곱으로 나타나는 소수들을 분모의 □라 한다.",
+        "answers": [
+          "소인수분해",
+          "소인수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "분수 $\\frac{1}{12}$에서 '분모의 소인수'는 무엇을 가리키는가? 구하는 방법을 말하고 모두 구하시오.",
+        "bAnswer": "분모 $12$를 소인수분해한 $12=2^2\\times3$에서 곱해져 있는 소수 $2$와 $3$이다.",
+        "bGoal": "분모의 소인수를 소인수분해로 찾기",
+        "bReason": "구체적인 분수에서 가리키는 대상과 구하는 방법을 묻도록 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모를 소인수분해한다",
+              "$12=2^2\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$와 $3$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분모를 $12=2^2\\times3$처럼 {소인수분해}했을 때 곱해져 있는 소수(약수가 $1$과 자기 자신뿐인 수) $2$, $3$을 분모의 {소인수}라 한다.",
+        "cAnswers": [
+          "소인수분해",
+          "소인수"
+        ],
+        "cReason": "'소수들'이 $0.5$ 같은 소수로 읽힐 수 있어 예와 뜻을 붙임.",
+        "coreAfter": "분모를 {소인수분해}했을 때 곱해져 있는 소수($1$보다 큰 자연수 중 약수가 $1$과 자기 자신뿐인 수)들을 분모의 {소인수}라 한다.",
+        "coreReason": "이 단원에서는 '소수'가 $0.5$ 같은 소수와 헷갈려 뜻을 괄호로 밝힘.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "분모의 소인수의 뜻",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2127,
+        "part": "m2plus",
+        "sourceFingerprint": "d3e6733ce524f7a3182cf53407908d622ba614365d5cb8e9e17a6c785130c463",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2127
+        },
+        "directReview": null,
+        "coreBeforeRepair": "분모를 소인수분해했을 때 곱해져 있는 소수(약수가 $1$과 자기 자신뿐인 자연수)들을 분모의 소인수라 한다.",
+        "coreRepairReason": "표지가 없어서 원래 핵심어 {소인수분해}, {소인수}를 되살림. 괄호 속 소수의 정의는 $1$이 포함되는 오류를 막도록 '$1$보다 큰 자연수'로 고침.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "분모를 $12=2^2\\times3$처럼 {소인수분해}했을 때 곱해져 있는 소수(약수가 $1$과 자기 자신뿐인 수) $2$, $3$을 분모의 {소인수}라 한다.",
+        "cSlotAnswers": [
+          "소인수분해",
+          "소인수"
+        ],
+        "cStudentSentence": "분모를 $12=2^2\\times3$처럼 □했을 때 곱해져 있는 소수(약수가 $1$과 자기 자신뿐인 수) $2$, $3$을 분모의 □라 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소인수분해",
+            "equivalentAnswers": [
+              "소인수분해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소인수",
+            "equivalentAnswers": [
+              "소인수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소인수분해"
+          ],
+          [
+            "소인수"
+          ]
+        ],
+        "proposalFingerprint": "c32fdcdeb39bb6e0e3e0311e15d57fc9b707c9b77859b6ec1d549995d6414a0c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc8",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "$10$의 소인수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$10=2\\times5$이므로 $10$의 거듭제곱을 이루는 소인수는 {$2$}와 {$5$}뿐이다.",
+        "example": {
+          "prompt": "$1000$을 소인수분해하면?",
+          "answer": "$2^3\\times5^3$"
+        },
+        "studentC": "$10=2\\times5$이므로 $10$의 거듭제곱을 이루는 소인수는 □와 □뿐이다.",
+        "answers": [
+          "$2$",
+          "$5$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$10=2\\times5$라는 한 단계 사실로, 까닭 설명(xc17)의 중간 단계임.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-01-xc17(분모에 $2$와 $5$만 있어야 하는 까닭)의 일부 단계와 중복되는 조각 항목임.",
+        "cDecision": "rewrite",
+        "cAfter": "$10$의 거듭제곱 $10$, $100$, $1000$, $\\cdots$을 소인수분해하면 소인수는 언제나 {$2$}와 {$5$}뿐이다.",
+        "cAnswers": [
+          "$2$",
+          "$5$"
+        ],
+        "cReason": "문장 앞의 $10=2\\times5$에서 답을 그대로 베낄 수 있었음.",
+        "learningRole": "reason",
+        "roleReason": "$10$의 거듭제곱의 소인수",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2128,
+        "part": "m2plus",
+        "sourceFingerprint": "7aec0d60d5f466535dce706f399e26e747c1ca2d336ae144446171e4d68c99d3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2128
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$10$의 거듭제곱 $10$, $100$, $1000$, $\\cdots$을 소인수분해하면 소인수는 언제나 {$2$}와 {$5$}뿐이다.",
+        "cSlotAnswers": [
+          "$2$",
+          "$5$"
+        ],
+        "cStudentSentence": "$10$의 거듭제곱 $10$, $100$, $1000$, $\\cdots$을 소인수분해하면 소인수는 언제나 □와 □뿐이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$5$",
+            "equivalentAnswers": [
+              "$5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ]
+        ],
+        "proposalFingerprint": "67a202dea392ade721fde851a544be9278203be23631f2e755f1c193cded2940"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc9",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "분모에 $3$이 남는 분수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "기약분수의 분모에 $3$, $7$처럼 $2$와 $5$가 아닌 {소인수}가 있으면 {유한소수}로 나타낼 수 없다.",
+        "example": {
+          "prompt": "$\\frac{1}{3}$은 유한소수인가?",
+          "answer": "아니다"
+        },
+        "studentC": "기약분수의 분모에 $3$, $7$처럼 $2$와 $5$가 아닌 □가 있으면 □로 나타낼 수 없다.",
+        "answers": [
+          "소인수",
+          "유한소수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "기약분수 $\\frac{5}{12}$는 유한소수로 나타낼 수 없다. 분모를 보고 그렇게 판단할 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$12=2^2\\times3$이므로 분모에 $2$와 $5$가 아닌 소인수 $3$이 있다. 그래서 분모를 $10$의 거듭제곱으로 고칠 수 없어 유한소수가 되지 않는다.",
+        "bGoal": "분모의 소인수로 유한소수가 아님을 판단하기",
+        "bReason": "제목의 '$3$이 남는'이 가리키는 상황을 구체적인 기약분수로 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모에 소인수 $3$이 있다",
+              "분모에 $2$와 $5$가 아닌 소인수가 있다",
+              "$12=2^2\\times3$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "예시 소인수와 기약분수 조건이 있어 문장만으로 상황이 분명함.",
+        "studentLabel": "유한소수로 나타낼 수 없는 분수",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "분모 소인수로 판정하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2129,
+        "part": "m2plus",
+        "sourceFingerprint": "bb4d440854a5ecb0deec8726e2602e06eb991f64a2e8618f69a3e21ca4a4b1e2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2129
+        },
+        "directReview": null,
+        "cFrozenSentence": "기약분수의 분모에 $3$, $7$처럼 $2$와 $5$가 아닌 □가 있으면 □로 나타낼 수 없다.",
+        "cFrozenDefinition": "기약분수의 분모에 $3$, $7$처럼 $2$와 $5$가 아닌 {소인수}가 있으면 {유한소수}로 나타낼 수 없다.",
+        "cFrozenAnswers": [
+          "소인수",
+          "유한소수"
+        ],
+        "cMarkedSentence": "기약분수의 분모에 $3$, $7$처럼 $2$와 $5$가 아닌 {소인수}가 있으면 {유한소수}로 나타낼 수 없다.",
+        "cSlotAnswers": [
+          "소인수",
+          "유한소수"
+        ],
+        "cStudentSentence": "기약분수의 분모에 $3$, $7$처럼 $2$와 $5$가 아닌 □가 있으면 □로 나타낼 수 없다.",
+        "cAnswers": [
+          "소인수",
+          "유한소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소인수",
+            "equivalentAnswers": [
+              "소인수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소인수"
+          ],
+          [
+            "유한소수"
+          ]
+        ],
+        "proposalFingerprint": "daecb4fdaffa488252340b28854e118a15660672a4542aa35eefe4b35961d037"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc10",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "약분한 뒤에 판정하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모에 $3$이 있어도 {약분}하면 사라질 수 있으므로, 먼저 {기약분수}로 고친 다음 분모를 본다.",
+        "example": {
+          "prompt": "$\\frac{9}{30}$는 유한소수인가?",
+          "answer": "된다 ($\\frac{3}{10}$)"
+        },
+        "studentC": "분모에 $3$이 있어도 □하면 사라질 수 있으므로, 먼저 □로 고친 다음 분모를 본다.",
+        "answers": [
+          "약분",
+          "기약분수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{9}{30}$의 분모 $30=2\\times3\\times5$에는 소인수 $3$이 있다. 그런데도 $\\frac{9}{30}$가 유한소수가 되는 까닭을 설명하고, 이 예에서 알 수 있는 판정할 때의 주의점을 쓰시오.",
+        "bAnswer": "약분하면 $\\frac{3}{10}$이 되어 분모의 $3$이 사라지고 소인수가 $2$와 $5$뿐이기 때문이다. 그래서 반드시 기약분수로 고친 다음에 분모의 소인수를 보아야 한다.",
+        "bGoal": "약분한 뒤 판정해야 하는 까닭 설명하기",
+        "bReason": "약분 전후가 달라지는 예로 까닭과 주의점을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "약분하면 $\\frac{3}{10}$이 된다",
+              "약분하면 분모의 $3$이 사라진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기약분수로 고친 뒤 분모를 본다",
+              "먼저 약분하고 판정한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{9}{30}$처럼 분모에 소인수 $3$이 있어도 {약분}하면 사라질 수 있으므로, 유한소수인지 판정할 때는 먼저 {기약분수}로 고친 다음 분모의 소인수를 본다.",
+        "cAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cReason": "문장에 유한소수 판정이라는 목적이 없어 상황을 알 수 없었음.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "약분 뒤 판정하는 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2130,
+        "part": "m2plus",
+        "sourceFingerprint": "322cfc6f7294531df945ffc0f2e47c24357ff574b2d22a6b48eff958def13727",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2130
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\frac{9}{30}$처럼 분모에 소인수 $3$이 있어도 {약분}하면 사라질 수 있으므로, 유한소수인지 판정할 때는 먼저 {기약분수}로 고친 다음 분모의 소인수를 본다.",
+        "cSlotAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cStudentSentence": "$\\frac{9}{30}$처럼 분모에 소인수 $3$이 있어도 □하면 사라질 수 있으므로, 유한소수인지 판정할 때는 먼저 □로 고친 다음 분모의 소인수를 본다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "기약분수",
+            "equivalentAnswers": [
+              "기약분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약분"
+          ],
+          [
+            "기약분수"
+          ]
+        ],
+        "proposalFingerprint": "ec27d38bfadb41f799ba66f35765e11d0a3dc36eb7257d9f3d044abd7a458bc3"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc11",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "유한소수가 되게 곱하는 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "기약분수의 분모에 $2$와 $5$ 말고 다른 소인수가 남으면, 분모에서 $2$와 $5$를 뺀 나머지 부분의 {배수}를 곱해야 그 부분이 모두 {약분}되어 유한소수가 된다.",
+        "example": {
+          "prompt": "$\\frac{1}{14}\\times a$가 유한소수인 가장 작은 자연수 $a$",
+          "answer": "$7$"
+        },
+        "studentC": "기약분수의 분모에 $2$와 $5$ 말고 다른 소인수가 남으면, 분모에서 $2$와 $5$를 뺀 나머지 부분의 □를 곱해야 그 부분이 모두 □되어 유한소수가 된다.",
+        "answers": [
+          "배수",
+          "약분"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{14}\\times a$가 유한소수가 되려면 자연수 $a$는 어떤 수여야 하는가? 까닭과 함께 쓰고, 가장 작은 $a$를 구하시오.",
+        "bAnswer": "$14=2\\times7$이므로 분모의 $7$이 약분되어 없어져야 한다. 따라서 $a$는 $7$의 배수여야 하고, 가장 작은 $a$는 $7$이다.",
+        "bGoal": "유한소수가 되도록 곱하는 수의 조건 찾기",
+        "bReason": "곱하는 대상과 구할 범위(조건, 가장 작은 값)를 구체적인 식으로 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모의 $7$이 약분되어야 한다",
+              "$2$와 $5$가 아닌 소인수 $7$을 없애야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$는 $7$의 배수"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 $a$는 $7$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "기약분수 $\\frac{1}{2\\times7}$처럼 분모에 $2$와 $5$가 아닌 소인수가 있으면, 그 소인수들의 곱(여기서는 $7$)의 {배수}를 곱해야 그 소인수가 모두 {약분}되어 유한소수가 된다.",
+        "cAnswers": [
+          "배수",
+          "약분"
+        ],
+        "cReason": "'$2$와 $5$를 뺀 나머지 부분'이 뺄셈처럼 읽혀 예로 가리키는 대상을 밝힘.",
+        "coreAfter": "기약분수의 분모에 $2$와 $5$ 말고 다른 소인수가 있으면, 분모를 소인수분해한 식에서 $2$와 $5$의 거듭제곱을 제외한 나머지 부분의 {배수}를 분수에 곱해야 그 부분이 모두 {약분}되어 유한소수가 된다.",
+        "coreReason": "'$2$와 $5$를 뺀'이 뺄셈으로 읽힐 수 있어 소인수분해에서 제외한다는 뜻으로 고침.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "곱하는 수의 조건 구하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2131,
+        "part": "m2plus",
+        "sourceFingerprint": "904a70889d5595cab5983d09b0ecdfa9c447a99d10d09aa58b76ab32d1c47339",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2131
+        },
+        "directReview": null,
+        "coreBeforeRepair": "기약분수의 분모에 $2$와 $5$ 말고 다른 소인수가 있으면, 분모를 소인수분해한 식에서 $2$와 $5$를 제외한 나머지 소인수들의 곱의 배수를 곱해야 그 소인수들이 모두 약분되어 유한소수가 된다.",
+        "coreRepairReason": "표지가 없어서 원래 핵심어 {배수}, {약분}을 되살림. '소인수들의 곱'으로 쓰면 $3^2$처럼 지수가 있을 때 지수가 빠지므로, '거듭제곱을 제외한 나머지 부분'으로 원래 뜻을 지킴. 곱하는 대상이 분수라는 점도 밝힘.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "기약분수 $\\frac{1}{2\\times7}$처럼 분모에 $2$와 $5$가 아닌 소인수가 있으면, 그 소인수들의 곱(여기서는 $7$)의 {배수}를 곱해야 그 소인수가 모두 {약분}되어 유한소수가 된다.",
+        "cSlotAnswers": [
+          "배수",
+          "약분"
+        ],
+        "cStudentSentence": "기약분수 $\\frac{1}{2\\times7}$처럼 분모에 $2$와 $5$가 아닌 소인수가 있으면, 그 소인수들의 곱(여기서는 $7$)의 □를 곱해야 그 소인수가 모두 □되어 유한소수가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "배수",
+            "equivalentAnswers": [
+              "배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "약분"
+          ]
+        ],
+        "proposalFingerprint": "82e9764b540bcfcf2e0c574cd63ccc0e8aca26afb25afac2c499d5f486f42d0f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc12",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "소수점 아래 자리의 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 $2^m\\times5^n$ 꼴($1$은 아니다)인 기약분수는 소수점 아래 {$m$과 $n$ 중 큰 수}째 자리에서 끝난다.",
+        "example": {
+          "prompt": "$\\frac{3}{2^3\\times5}$은 소수점 아래 몇째 자리에서 끝나는가?",
+          "answer": "셋째 자리"
+        },
+        "studentC": "분모가 $2^m\\times5^n$ 꼴($1$은 아니다)인 기약분수는 소수점 아래 □째 자리에서 끝난다.",
+        "answers": [
+          "$m$과 $n$ 중 큰 수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "기약분수 $\\frac{3}{2^3\\times5}$을 소수로 고치면 소수점 아래 몇째 자리에서 끝나는가? 분모를 $10$의 거듭제곱으로 고쳐서 까닭을 설명하시오.",
+        "bAnswer": "분자와 분모에 $5^2$을 곱하면 $\\frac{75}{2^3\\times5^3}=\\frac{75}{1000}=0.075$이므로 소수점 아래 셋째 자리에서 끝난다. $2$의 지수 $3$과 $5$의 지수 $1$ 중 큰 쪽에 맞추어 분모가 $10^3$이 되기 때문이다.",
+        "bGoal": "분모의 지수로 소수점 아래 자리의 수 알아내기",
+        "bReason": "어떤 분수의 자리의 수인지와 설명 방법을 예로 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "셋째 자리",
+              "소수점 아래 $3$자리"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모가 $1000$이 된다",
+              "$\\frac{75}{1000}$",
+              "지수가 큰 쪽인 $3$에 맞춘다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "기약분수의 분모가 $2^m\\times5^n$($m$, $n$은 자연수)이면, 이 분수를 소수로 고쳤을 때 소수점 아래 자리의 수는 $m$과 $n$ 중 {큰} 수와 같다.",
+        "cAnswers": [
+          "큰"
+        ],
+        "cReason": "빈칸 답이 '$m$과 $n$ 중 큰 수'라는 긴 구절이라 핵심 낱말만 남김.",
+        "coreAfter": "기약분수의 분모를 소인수분해했을 때 소인수가 $2$, $5$뿐이면 이 분수는 소수점 아래 {$2$의 지수와 $5$의 지수 중 큰 수}째 자리에서 끝난다. 한 소인수만 있으면 그 {지수}째 자리에서 끝난다.",
+        "coreReason": "중2는 지수 $0$을 배우지 않아 $2^m\\times5^n$ 꼴에서 한 소인수가 없는 경우가 불분명함.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "지수로 자리의 수 구하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2132,
+        "part": "m2plus",
+        "sourceFingerprint": "abaff2a6e41aa84173a478fc94d58e4a0270a76013bbe53248e14c824c8e24b4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2132
+        },
+        "directReview": null,
+        "coreBeforeRepair": "기약분수의 분모를 소인수분해했을 때 소인수가 $2$와 $5$뿐이고 $2$의 지수와 $5$의 지수 중 큰 수가 $k$이면(한 소인수만 있으면 그 지수가 $k$), 이 분수는 소수점 아래 $k$째 자리에서 끝난다.",
+        "coreRepairReason": "표지가 없어서 추가함. 원래 핵심어 '$m$과 $n$ 중 큰 수'를 {$2$의 지수와 $5$의 지수 중 큰 수}로 이어받음. 한 소인수만 있을 때의 {지수}도 표지로 함. 분모가 $1$인 경우는 소인수가 없으므로 자연스럽게 빠짐.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "기약분수의 분모가 $2^m\\times5^n$($m$, $n$은 자연수)이면, 이 분수를 소수로 고쳤을 때 소수점 아래 자리의 수는 $m$과 $n$ 중 {큰} 수와 같다.",
+        "cSlotAnswers": [
+          "큰"
+        ],
+        "cStudentSentence": "기약분수의 분모가 $2^m\\times5^n$($m$, $n$은 자연수)이면, 이 분수를 소수로 고쳤을 때 소수점 아래 자리의 수는 $m$과 $n$ 중 □ 수와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰",
+              "더 큰"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "큰",
+            "accept": [
+              "더 큰"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "큰",
+            "더 큰"
+          ]
+        ],
+        "proposalFingerprint": "9036d22b9adf23a60338411b81a129095a3733c3f82fb187bceec7e6ec8ae6b1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc13",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "정수가 아닌 유리수",
+        "kind": "정의",
+        "level": "중",
+        "definition": "분수로 쓸 수 있지만 {정수}가 되지 않는 수를 {정수가 아닌 유리수}라 한다.",
+        "example": {
+          "prompt": "$-\\frac{6}{3}$은 정수가 아닌 유리수인가?",
+          "answer": "아니다 ($-2$)"
+        },
+        "studentC": "분수로 쓸 수 있지만 □가 되지 않는 수를 □라 한다.",
+        "answers": [
+          "정수",
+          "정수가 아닌 유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$-\\frac{6}{3}$과 $\\frac{2}{3}$ 중 '정수가 아닌 유리수'는 어느 것인가? 두 수를 각각 그렇게 판단한 까닭을 쓰시오.",
+        "bAnswer": "$\\frac{2}{3}$이다. $-\\frac{6}{3}=-2$는 정수이고, $\\frac{2}{3}$는 유리수이지만 약분해도 정수가 되지 않는다.",
+        "bGoal": "분수 꼴의 수가 정수인지 아닌지 구분하기",
+        "bReason": "분수 꼴이지만 정수인 수와 대비시켜 뜻을 확인하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2}{3}$가 정수가 아닌 유리수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-\\frac{6}{3}=-2$는 정수이다",
+              "$-\\frac{6}{3}$은 약분하면 정수가 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분자와 분모가 정수인 분수(분모는 $0$이 아님)로 쓸 수 있지만, $\\frac{2}{3}$, $-\\frac{3}{2}$처럼 약분해도 분모가 $1$이 되지 않는 수를 {정수}가 아닌 {유리수}라 한다.",
+        "cAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cReason": "둘째 빈칸 답에 첫 빈칸 답 '정수'가 그대로 들어 있어 빈칸을 나눔.",
+        "coreAfter": "유리수 가운데 {정수}가 아닌 수를 {정수가 아닌 유리수}라 한다. 분수 꼴로 쓰여 있어도 약분하면 정수가 되는 수는 여기에 들지 않는다.",
+        "coreReason": "'분수로 쓸 수 있지만'에 분자·분모 조건이 없어 유리수 가운데라는 범위를 밝힘.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "정수가 아닌 유리수의 뜻",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2133,
+        "part": "m2plus",
+        "sourceFingerprint": "30f82c4f5ddb503625486b1a55f2b9435beb53324edfd221e1e7e08ee60eb7ef",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2133
+        },
+        "directReview": null,
+        "coreBeforeRepair": "유리수 가운데 정수가 아닌 수를 정수가 아닌 유리수라 한다. 분수 꼴이어도 $-\\frac{6}{3}=-2$처럼 약분하여 정수가 되는 수는 여기에 들지 않는다.",
+        "coreRepairReason": "표지가 없어서 원래 핵심어 {정수}, {정수가 아닌 유리수}를 되살림. 예 문제의 답인 $-\\frac{6}{3}=-2$를 그대로 쓰지 않고, 약분하면 정수가 되는 경우라는 일반 설명으로 바꿈.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "분자와 분모가 정수인 분수(분모는 $0$이 아님)로 쓸 수 있지만, $\\frac{2}{3}$, $-\\frac{3}{2}$처럼 약분해도 분모가 $1$이 되지 않는 수를 {정수}가 아닌 {유리수}라 한다.",
+        "cSlotAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cStudentSentence": "분자와 분모가 정수인 분수(분모는 $0$이 아님)로 쓸 수 있지만, $\\frac{2}{3}$, $-\\frac{3}{2}$처럼 약분해도 분모가 $1$이 되지 않는 수를 □가 아닌 □라 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ],
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "dc6d24b0bef53565d52a203906a055555db43a09cd50b87877e07bad3081cac0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc14",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "유리수의 분류",
+        "kind": "성질",
+        "level": "중",
+        "definition": "유리수는 {정수}와 {정수가 아닌 유리수}로 나뉘고, 정수는 다시 양의 정수, $0$, 음의 정수로 나뉜다.",
+        "example": {
+          "prompt": "$0$은 어디에 드는가?",
+          "answer": "정수"
+        },
+        "studentC": "유리수는 □와 □로 나뉘고, 정수는 다시 양의 정수, $0$, 음의 정수로 나뉜다.",
+        "answers": [
+          "정수",
+          "정수가 아닌 유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "유리수 전체를 분류하려고 한다. 유리수를 먼저 두 종류로 나누고, 그중 정수를 다시 나누어 쓰시오.",
+        "bAnswer": "유리수는 정수와 정수가 아닌 유리수로 나뉘고, 정수는 양의 정수(자연수), $0$, 음의 정수로 나뉜다.",
+        "bGoal": "유리수의 분류 체계 말하기",
+        "bReason": "어느 단계까지 나누어야 하는지 범위를 질문에 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정수가 아닌 유리수"
+            ]
+          },
+          {
+            "anyOf": [
+              "양의 정수",
+              "자연수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "음의 정수"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "유리수는 정수와 {정수가 아닌 유리수}로 나뉘고, 정수는 다시 {양의 정수}, $0$, {음의 정수}로 나뉜다.",
+        "cAnswers": [
+          "정수가 아닌 유리수",
+          "양의 정수",
+          "음의 정수"
+        ],
+        "cReason": "첫 빈칸 답 '정수'가 바로 뒤 '정수는 다시'에 그대로 보였음.",
+        "learningRole": "definition",
+        "roleReason": "유리수 분류 체계",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2134,
+        "part": "m2plus",
+        "sourceFingerprint": "9f543fe419e68f6ae4b3cbb9479f57b137a0bcce3e0acb215caf95d4f71d8ed8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2134
+        },
+        "directReview": null,
+        "cMarkedSentence": "유리수는 정수와 {정수가 아닌 유리수}로 나뉘고, 정수는 다시 {양의 정수}, $0$, {음의 정수}로 나뉜다.",
+        "cSlotAnswers": [
+          "정수가 아닌 유리수",
+          "양의 정수",
+          "음의 정수"
+        ],
+        "cStudentSentence": "유리수는 정수와 □로 나뉘고, 정수는 다시 □, $0$, □로 나뉜다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수가 아닌 유리수",
+            "equivalentAnswers": [
+              "정수가 아닌 유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "양의 정수",
+            "equivalentAnswers": [
+              "양의 정수",
+              "자연수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "음의 정수",
+            "equivalentAnswers": [
+              "음의 정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "양의 정수",
+            "accept": [
+              "자연수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수가 아닌 유리수"
+          ],
+          [
+            "양의 정수",
+            "자연수"
+          ],
+          [
+            "음의 정수"
+          ]
+        ],
+        "proposalFingerprint": "2865f301c59839d9f9180d4dc30d04388f15d4e3a330f35f3f99af766d6ca5fb"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc15",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "유한소수를 기약분수로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "유한소수를 분수로 고친 뒤 {약분}하면 분모의 소인수로는 {$2$}나 {$5$}만 남는다.",
+        "example": {
+          "prompt": "$0.125$를 기약분수로 고치면?",
+          "answer": "$\\frac{1}{8}$"
+        },
+        "studentC": "유한소수를 분수로 고친 뒤 □하면 분모의 소인수로는 □나 □만 남는다.",
+        "answers": [
+          "약분",
+          "$2$",
+          "$5$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "유한소수 $0.125$를 기약분수로 고치는 과정을 쓰고, 그 기약분수의 분모의 소인수를 구하시오.",
+        "bAnswer": "$0.125=\\frac{125}{1000}=\\frac{1}{8}$이고, 분모 $8=2^3$의 소인수는 $2$뿐이다.",
+        "bGoal": "유한소수를 기약분수로 고치고 분모의 소인수 확인하기",
+        "bReason": "고치는 과정과 분모의 소인수까지 답할 범위를 예로 정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{8}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모의 소인수는 $2$뿐이다",
+              "$8=2^3$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "방법과 결과가 한 문장에 이어지고 빈칸이 핵심 세 개임.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "분수로 고친 뒤 약분하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2135,
+        "part": "m2plus",
+        "sourceFingerprint": "8fef102c963888eef037d2c0201cfb844f76d4365d9ef424a04a78ae3f180ad1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2135
+        },
+        "directReview": null,
+        "cFrozenSentence": "유한소수를 분수로 고친 뒤 □하면 분모의 소인수로는 □나 □만 남는다.",
+        "cFrozenDefinition": "유한소수를 분수로 고친 뒤 {약분}하면 분모의 소인수로는 {$2$}나 {$5$}만 남는다.",
+        "cFrozenAnswers": [
+          "약분",
+          "$2$",
+          "$5$"
+        ],
+        "cMarkedSentence": "유한소수를 분수로 고친 뒤 {약분}하면 분모의 소인수로는 {$2$}나 {$5$}만 남는다.",
+        "cSlotAnswers": [
+          "약분",
+          "$2$",
+          "$5$"
+        ],
+        "cStudentSentence": "유한소수를 분수로 고친 뒤 □하면 분모의 소인수로는 □나 □만 남는다.",
+        "cAnswers": [
+          "약분",
+          "$2$",
+          "$5$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$5$",
+            "equivalentAnswers": [
+              "$5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약분"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ]
+        ],
+        "proposalFingerprint": "df48706abdee666b1c4deca6c90ac8942455ee142e6cc0755e34f4b6e6d3d0ce"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc16",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "$2$와 $5$의 지수 맞추기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모의 소인수가 $2$와 $5$뿐이면 두 소인수의 {지수가 같아지도록} 모자란 쪽을 분자와 분모에 똑같이 곱해 분모를 $10$의 거듭제곱으로 만든다.",
+        "example": {
+          "prompt": "$\\frac{1}{2\\times5}$의 분모를 $10$의 거듭제곱으로 만들 때 아무것도 곱하지 않아도 되는 까닭은?",
+          "answer": "$2$와 $5$의 지수가 이미 같아서"
+        },
+        "studentC": "분모의 소인수가 $2$와 $5$뿐이면 두 소인수의 □ 모자란 쪽을 분자와 분모에 똑같이 곱해 분모를 $10$의 거듭제곱으로 만든다.",
+        "answers": [
+          "지수가 같아지도록"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "기약분수 $\\frac{9}{2\\times5^2}$의 분모를 $10$의 거듭제곱으로 만들려면 분자와 분모에 어떤 수를 곱해야 하는가? 분모의 $2$와 $5$의 지수를 비교하여 그 수를 정하는 방법을 설명하시오.",
+        "bAnswer": "$2$의 지수는 $1$, $5$의 지수는 $2$이므로 지수가 같아지도록 모자란 $2$를 분자와 분모에 한 번 곱한다. $\\frac{9\\times2}{2^2\\times5^2}=\\frac{18}{100}$",
+        "bGoal": "$2$와 $5$의 지수를 맞추어 분모를 $10$의 거듭제곱으로 만들기",
+        "bReason": "지수가 다른 구체적인 분모로 곱할 수를 정하는 방법을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$를 곱한다",
+              "분자와 분모에 $2$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$와 $5$의 지수가 같아지게 한다",
+              "분모를 $2^2\\times5^2$으로 만든다",
+              "$2$가 하나 모자란다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분모의 소인수가 $2$와 $5$뿐이면 두 소인수의 {지수}가 같아지도록 모자란 쪽을 {분자}와 분모에 똑같이 곱해 분모를 {$10$의 거듭제곱}으로 만든다.",
+        "cAnswers": [
+          "지수",
+          "분자",
+          "$10$의 거듭제곱"
+        ],
+        "cReason": "빈칸 답이 '지수가 같아지도록'이라는 긴 구절이어서 핵심 낱말로 나눔.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "지수를 맞추어 곱하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2136,
+        "part": "m2plus",
+        "sourceFingerprint": "2fd107f3db642c4da25802efa74b1a38c8d45990e71596122b8c38be0cbc757c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2136
+        },
+        "directReview": null,
+        "cMarkedSentence": "분모의 소인수가 $2$와 $5$뿐이면 두 소인수의 {지수}가 같아지도록 모자란 쪽을 {분자}와 분모에 똑같이 곱해 분모를 {$10$의 거듭제곱}으로 만든다.",
+        "cSlotAnswers": [
+          "지수",
+          "분자",
+          "$10$의 거듭제곱"
+        ],
+        "cStudentSentence": "분모의 소인수가 $2$와 $5$뿐이면 두 소인수의 □가 같아지도록 모자란 쪽을 □와 분모에 똑같이 곱해 분모를 □으로 만든다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지수",
+            "equivalentAnswers": [
+              "지수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "분자",
+            "equivalentAnswers": [
+              "분자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$10$의 거듭제곱",
+            "equivalentAnswers": [
+              "$10$의 거듭제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지수"
+          ],
+          [
+            "분자"
+          ],
+          [
+            "$10$의 거듭제곱"
+          ]
+        ],
+        "proposalFingerprint": "f381e4e56cf22083b303da18326c007bc59419a7cc2cef73b69f04c9414d86bb"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc17",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "분모에 $2$와 $5$만 있어야 하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "유한소수는 분모가 $10$의 거듭제곱인 분수이고 그 분모의 소인수는 {$2$}와 {$5$}뿐이므로, 기약분수의 분모에 {다른 소인수}가 있으면 안 된다.",
+        "studentC": "유한소수는 분모가 $10$의 거듭제곱인 분수이고 그 분모의 소인수는 □와 □뿐이므로, 기약분수의 분모에 □가 있으면 안 된다.",
+        "answers": [
+          "$2$",
+          "$5$",
+          "다른 소인수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "유한소수로 나타낼 수 있는 기약분수의 분모에는 $2$와 $5$가 아닌 소인수가 있을 수 없다. 그 까닭을, 유한소수를 분모가 어떤 수인 분수로 쓸 수 있는지에서 출발하여 설명하시오.",
+        "bAnswer": "유한소수는 분모가 $10$의 거듭제곱인 분수로 쓸 수 있다. $10=2\\times5$이므로 그 분모의 소인수는 $2$와 $5$뿐이고, 약분해도 새로운 소인수는 생기지 않으므로 기약분수의 분모에도 $2$와 $5$ 말고는 소인수가 없다.",
+        "bGoal": "분모의 소인수가 $2$와 $5$뿐이어야 하는 까닭 설명하기",
+        "bReason": "설명의 출발점을 정해 주고 어떤 결론의 까닭인지 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "유한소수는 분모가 $10$의 거듭제곱인 분수로 쓸 수 있다",
+              "유한소수는 분모가 $10$, $100$, $1000$ 같은 분수로 고쳐진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$의 거듭제곱의 소인수는 $2$와 $5$뿐이다",
+              "$10=2\\times5$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "유한소수는 분모가 {$10$의 거듭제곱}인 분수로 쓸 수 있고 그 분모의 소인수는 $2$와 $5$뿐이므로, 약분해서 얻은 기약분수의 분모에도 $2$와 $5$가 아닌 {소인수}는 나타날 수 없다.",
+        "cAnswers": [
+          "$10$의 거듭제곱",
+          "소인수"
+        ],
+        "cReason": "'다른 소인수'가 무엇과 다른지 모호해 '$2$와 $5$가 아닌'으로 밝힘.",
+        "learningRole": "reason",
+        "roleReason": "$2$와 $5$만 있어야 하는 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2137,
+        "part": "m2plus",
+        "sourceFingerprint": "885b860e59477db5465d3dc107c051d5a28550959d368e66b28ce8daf8a0705f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2137
+        },
+        "directReview": null,
+        "cMarkedSentence": "유한소수는 분모가 {$10$의 거듭제곱}인 분수로 쓸 수 있고 그 분모의 소인수는 $2$와 $5$뿐이므로, 약분해서 얻은 기약분수의 분모에도 $2$와 $5$가 아닌 {소인수}는 나타날 수 없다.",
+        "cSlotAnswers": [
+          "$10$의 거듭제곱",
+          "소인수"
+        ],
+        "cStudentSentence": "유한소수는 분모가 □인 분수로 쓸 수 있고 그 분모의 소인수는 $2$와 $5$뿐이므로, 약분해서 얻은 기약분수의 분모에도 $2$와 $5$가 아닌 □는 나타날 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10$의 거듭제곱",
+            "equivalentAnswers": [
+              "$10$의 거듭제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소인수",
+            "equivalentAnswers": [
+              "소인수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$10$의 거듭제곱"
+          ],
+          [
+            "소인수"
+          ]
+        ],
+        "proposalFingerprint": "45a92cad543ada244350783b267eb8c27ed2d8f43ca8698328286fb1017205b9"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc18",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "분자에 숨은 약분",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분모에 $3$이나 $7$이 보여도 분자가 그 수의 {배수}이면 {약분}되어 유한소수가 될 수 있다.",
+        "example": {
+          "prompt": "$\\frac{21}{2\\times7}$은 유한소수인가?",
+          "answer": "된다 ($\\frac{3}{2}=1.5$)"
+        },
+        "studentC": "분모에 $3$이나 $7$이 보여도 분자가 그 수의 □이면 □되어 유한소수가 될 수 있다.",
+        "answers": [
+          "배수",
+          "약분"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc18",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "약분하면 분모의 소인수가 사라진다는 내용이 xc10과 같음.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-01-xc10(약분한 뒤에 판정하기)의 까닭 질문과 목표가 중복됨.",
+        "cDecision": "keep",
+        "cReason": "'그 수'가 문장 안의 $3$이나 $7$을 가리켜 분명하고 빈칸이 짧음.",
+        "learningRole": "reason",
+        "roleReason": "분자와 약분되는 경우",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2138,
+        "part": "m2plus",
+        "sourceFingerprint": "177a06eacb69de6561975a08bdb66c1d7b37dc29eda6681a1fb1a86810bd211d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2138
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "분모에 $3$이나 $7$이 보여도 분자가 그 수의 □이면 □되어 유한소수가 될 수 있다.",
+        "cFrozenDefinition": "분모에 $3$이나 $7$이 보여도 분자가 그 수의 {배수}이면 {약분}되어 유한소수가 될 수 있다.",
+        "cFrozenAnswers": [
+          "배수",
+          "약분"
+        ],
+        "cMarkedSentence": "분모에 $3$이나 $7$이 보여도 분자가 그 수의 {배수}이면 {약분}되어 유한소수가 될 수 있다.",
+        "cSlotAnswers": [
+          "배수",
+          "약분"
+        ],
+        "cStudentSentence": "분모에 $3$이나 $7$이 보여도 분자가 그 수의 □이면 □되어 유한소수가 될 수 있다.",
+        "cAnswers": [
+          "배수",
+          "약분"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "배수",
+            "equivalentAnswers": [
+              "배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "약분"
+          ]
+        ],
+        "proposalFingerprint": "a2adeb5c238e9764346ab7aa85dad0b829b9b210a094ce246ad9798675240f5f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc19",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "유한소수가 되게 하는 분자의 조건",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분자와 분모가 자연수인 분수에서 분모의 소인수분해에 $2$와 $5$가 아닌 부분이 있으면, 분자가 그 부분의 {배수}이어야 {약분}되어 유한소수가 된다.",
+        "example": {
+          "prompt": "자연수 $a$에 대하여 $\\frac{a}{2\\times3\\times5}$가 유한소수이려면 $a$가 $3$의 배수여야 하는 까닭은?",
+          "answer": "분모의 $3$이 약분되어야 해서"
+        },
+        "studentC": "분자와 분모가 자연수인 분수에서 분모의 소인수분해에 $2$와 $5$가 아닌 부분이 있으면, 분자가 그 부분의 □이어야 □되어 유한소수가 된다.",
+        "answers": [
+          "배수",
+          "약분"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "곱하는 수 $a$가 곧 분자가 되므로 xc11과 같은 조건을 묻게 됨.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-01-xc11(유한소수가 되게 곱하는 수)의 조건 질문과 목표가 중복됨.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{a}{2\\times3\\times5}$($a$는 자연수)처럼 분모에 $2$와 $5$가 아닌 소인수 $3$이 있으면, 분자 $a$가 $3$의 {배수}이어야 그 $3$이 {약분}되어 유한소수가 된다.",
+        "cAnswers": [
+          "배수",
+          "약분"
+        ],
+        "cReason": "'소인수분해에 $2$와 $5$가 아닌 부분'이 어려워 구체적인 예로 가리킴.",
+        "learningRole": "application",
+        "roleReason": "분자의 조건 찾기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2139,
+        "part": "m2plus",
+        "sourceFingerprint": "d410b5d534cf868a26136423c40e02f725297be99922cc8f36c000866e888441",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2139
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$\\frac{a}{2\\times3\\times5}$($a$는 자연수)처럼 분모에 $2$와 $5$가 아닌 소인수 $3$이 있으면, 분자 $a$가 $3$의 {배수}이어야 그 $3$이 {약분}되어 유한소수가 된다.",
+        "cSlotAnswers": [
+          "배수",
+          "약분"
+        ],
+        "cStudentSentence": "$\\frac{a}{2\\times3\\times5}$($a$는 자연수)처럼 분모에 $2$와 $5$가 아닌 소인수 $3$이 있으면, 분자 $a$가 $3$의 □이어야 그 $3$이 □되어 유한소수가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "배수",
+            "equivalentAnswers": [
+              "배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "약분"
+          ]
+        ],
+        "proposalFingerprint": "8215130c3a5f45abcad16810623a3b9db34d5362e2306b823ed4fd1671794321"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc20",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "분모에 미지수가 있을 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분모에 미지수가 있으면 {약분}한 뒤의 분모가 {$2$와 $5$}만으로 이루어지게 하는 값을 모두 찾는다.",
+        "example": {
+          "prompt": "$\\frac{3}{2\\times a}$가 유한소수인 한 자리 자연수 $a$",
+          "answer": "$1$, $2$, $3$, $4$, $5$, $6$, $8$"
+        },
+        "studentC": "분모에 미지수가 있으면 □한 뒤의 분모가 □만으로 이루어지게 하는 값을 모두 찾는다.",
+        "answers": [
+          "약분",
+          "$2$와 $5$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{3}{2\\times a}$가 유한소수가 되게 하는 한 자리 자연수 $a$를 찾으려고 한다. $a=6$은 되고 $a=9$는 안 되는 까닭을 각각 설명하시오.",
+        "bAnswer": "$a=6$이면 $\\frac{3}{12}=\\frac{1}{4}$로 약분되어 분모의 소인수가 $2$뿐이므로 유한소수이다. $a=9$이면 $\\frac{3}{18}=\\frac{1}{6}$이고 약분해도 분모에 소인수 $3$이 남으므로 유한소수가 아니다.",
+        "bGoal": "분모에 미지수가 있을 때 약분 뒤의 분모로 판정하기",
+        "bReason": "미지수가 놓인 식과 비교할 두 값을 제시해 약분 뒤 판정을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a=6$이면 $\\frac{1}{4}$이 된다",
+              "$a=6$이면 약분 뒤 분모의 소인수가 $2$뿐이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=9$이면 $\\frac{1}{6}$이 된다",
+              "$a=9$이면 약분해도 분모에 $3$이 남는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분모에 미지수가 있는 분수가 유한소수가 되려면, {약분}한 뒤 분모의 소인수가 {$2$}나 {$5$}뿐이 되게 하는 미지수의 값을 모두 찾는다.",
+        "cAnswers": [
+          "약분",
+          "$2$",
+          "$5$"
+        ],
+        "cReason": "문장에 유한소수가 되게 한다는 목적이 없어 상황을 알 수 없었음.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "미지수 값 판정",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2140,
+        "part": "m2plus",
+        "sourceFingerprint": "84e7464bbc8ce55912c95c5e24a85de2fad2e145bd09e3ee910d22fdb711a89a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2140
+        },
+        "directReview": null,
+        "cMarkedSentence": "분모에 미지수가 있는 분수가 유한소수가 되려면, {약분}한 뒤 분모의 소인수가 {$2$}나 {$5$}뿐이 되게 하는 미지수의 값을 모두 찾는다.",
+        "cSlotAnswers": [
+          "약분",
+          "$2$",
+          "$5$"
+        ],
+        "cStudentSentence": "분모에 미지수가 있는 분수가 유한소수가 되려면, □한 뒤 분모의 소인수가 □나 □뿐이 되게 하는 미지수의 값을 모두 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$5$",
+            "equivalentAnswers": [
+              "$5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약분"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ]
+        ],
+        "proposalFingerprint": "25081fa24b1be2fb0bea1d76b0933c0c9c92c0446b624135274e5cd0252e32c5"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc21",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "두 분수를 함께 유한소수로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분자가 같은 자연수인 두 분수가 모두 유한소수이려면, 분자는 각 분모의 소인수분해에서 $2$와 $5$가 아닌 부분의 {공배수}이어야 한다.",
+        "example": {
+          "prompt": "자연수 $a$에 대하여 $\\frac{a}{6}$와 $\\frac{a}{14}$가 모두 유한소수이려면 $a$가 $21$의 배수여야 하는 까닭은?",
+          "answer": "$3$과 $7$이 모두 약분되어야 해서"
+        },
+        "studentC": "분자가 같은 자연수인 두 분수가 모두 유한소수이려면, 분자는 각 분모의 소인수분해에서 $2$와 $5$가 아닌 부분의 □이어야 한다.",
+        "answers": [
+          "공배수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "자연수 $a$에 대하여 $\\frac{a}{6}$와 $\\frac{a}{14}$가 모두 유한소수가 되려면 $a$는 어떤 수여야 하는가? 까닭과 함께 쓰고, 가장 작은 $a$를 구하시오.",
+        "bAnswer": "$6=2\\times3$, $14=2\\times7$이므로 $a$가 분모의 $3$과 $7$을 모두 약분해야 한다. 따라서 $a$는 $3$과 $7$의 공배수, 곧 $21$의 배수이고 가장 작은 $a$는 $21$이다.",
+        "bGoal": "두 분수가 함께 유한소수가 되는 분자의 조건 찾기",
+        "bReason": "두 분수와 구할 범위(조건, 가장 작은 값)를 구체적으로 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$과 $7$이 모두 약분되어야 한다",
+              "$a$는 $3$의 배수이면서 $7$의 배수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$는 $21$의 배수",
+              "$a$는 $3$과 $7$의 공배수"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 $a$는 $21$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분자가 같은 자연수 $a$인 두 분수 $\\frac{a}{6}$, $\\frac{a}{14}$가 모두 유한소수이려면, $a$는 각 분모에 있는 $2$와 $5$가 아닌 소인수 $3$과 $7$의 {공배수}이어야 한다.",
+        "cAnswers": [
+          "공배수"
+        ],
+        "cReason": "'각 분모의 소인수분해에서 $2$와 $5$가 아닌 부분'이 어려워 예로 밝힘.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "공배수 조건 찾기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2141,
+        "part": "m2plus",
+        "sourceFingerprint": "9915af3909d157c21c0251ca44c854a7b718064d8f4e71003f480f7582ae7239",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2141
+        },
+        "directReview": null,
+        "cMarkedSentence": "분자가 같은 자연수 $a$인 두 분수 $\\frac{a}{6}$, $\\frac{a}{14}$가 모두 유한소수이려면, $a$는 각 분모에 있는 $2$와 $5$가 아닌 소인수 $3$과 $7$의 {공배수}이어야 한다.",
+        "cSlotAnswers": [
+          "공배수"
+        ],
+        "cStudentSentence": "분자가 같은 자연수 $a$인 두 분수 $\\frac{a}{6}$, $\\frac{a}{14}$가 모두 유한소수이려면, $a$는 각 분모에 있는 $2$와 $5$가 아닌 소인수 $3$과 $7$의 □이어야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공배수",
+            "equivalentAnswers": [
+              "공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공배수"
+          ]
+        ],
+        "proposalFingerprint": "9224b748177b7ad344bae99e76c581ef450695dba92640fb7a76b6e9dbc0f30a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc22",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "유리수와 유한소수의 포함 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "유한소수는 모두 {유리수}이지만, 유리수가 모두 {유한소수}인 것은 아니다.",
+        "example": {
+          "prompt": "유리수이지만 유한소수가 아닌 수의 예",
+          "answer": "$\\frac{1}{3}$"
+        },
+        "studentC": "유한소수는 모두 □이지만, 유리수가 모두 □인 것은 아니다.",
+        "answers": [
+          "유리수",
+          "유한소수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "'유한소수는 모두 유리수이다'와 '유리수는 모두 유한소수이다' 중 옳은 것을 고르고, 옳지 않은 쪽은 예를 하나 들어 설명하시오.",
+        "bAnswer": "'유한소수는 모두 유리수이다'가 옳다. $\\frac{1}{3}=0.333\\cdots$은 유리수이지만 유한소수가 아니므로 '유리수는 모두 유한소수이다'는 옳지 않다.",
+        "bGoal": "유한소수와 유리수의 포함 관계를 예로 설명하기",
+        "bReason": "포함 관계를 두 문장의 참·거짓과 반례로 묻도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "'유한소수는 모두 유리수이다'가 옳다",
+              "유한소수는 모두 유리수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$은 유리수이지만 유한소수가 아니다",
+              "$0.333\\cdots$처럼 유한소수가 아닌 유리수가 있다",
+              "$\\frac{1}{6}$, $\\frac{2}{7}$처럼 유한소수가 아닌 유리수의 예를 든다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 용어의 포함 방향을 대비하는 짧은 비교 빈칸임.",
+        "learningRole": "reason",
+        "roleReason": "포함 관계와 반례",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2142,
+        "part": "m2plus",
+        "sourceFingerprint": "e240f19eb0a4cac9d19e8344f0737fd6bd327588105bbe7580751655077ffcd8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2142
+        },
+        "directReview": null,
+        "cFrozenSentence": "유한소수는 모두 □이지만, 유리수가 모두 □인 것은 아니다.",
+        "cFrozenDefinition": "유한소수는 모두 {유리수}이지만, 유리수가 모두 {유한소수}인 것은 아니다.",
+        "cFrozenAnswers": [
+          "유리수",
+          "유한소수"
+        ],
+        "cMarkedSentence": "유한소수는 모두 {유리수}이지만, 유리수가 모두 {유한소수}인 것은 아니다.",
+        "cSlotAnswers": [
+          "유리수",
+          "유한소수"
+        ],
+        "cStudentSentence": "유한소수는 모두 □이지만, 유리수가 모두 □인 것은 아니다.",
+        "cAnswers": [
+          "유리수",
+          "유한소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수"
+          ],
+          [
+            "유한소수"
+          ]
+        ],
+        "proposalFingerprint": "24b03f7c92f99d9d4c2b3e751bbf4f5ad3034ecc46a8fb0a280a8c34ae9d8410"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc23",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "나눗셈이 끝나는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분모의 소인수가 $2$와 $5$뿐이면 분자에 $10$을 몇 번 곱한 수가 분모로 {나누어떨어지므로} 나눗셈이 {끝난다}.",
+        "example": {
+          "prompt": "$1\\div8$은 소수점 아래 몇째 자리에서 끝나는가?",
+          "answer": "셋째 자리"
+        },
+        "studentC": "분모의 소인수가 $2$와 $5$뿐이면 분자에 $10$을 몇 번 곱한 수가 분모로 □ 나눗셈이 □.",
+        "answers": [
+          "나누어떨어지므로",
+          "끝난다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\div8$을 계산하면 $0.125$에서 나눗셈이 끝난다. $8=2^3$이고 $1000=2^3\\times5^3$임을 이용하여, 나눗셈이 소수점 아래 셋째 자리에서 끝나는 까닭을 설명하시오.",
+        "bAnswer": "$1$에 $10$을 세 번 곱한 $1000$은 $8$로 나누어떨어진다($1000\\div8=125$). 그래서 셋째 자리에서 나머지가 $0$이 되어 나눗셈이 끝난다.",
+        "bGoal": "분모의 소인수가 $2$와 $5$뿐일 때 나눗셈이 끝나는 까닭 설명하기",
+        "bReason": "어떤 나눗셈이 왜 끝나는지를 구체적인 계산과 근거로 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1000$이 $8$로 나누어떨어진다",
+              "$1000\\div8=125$",
+              "$10$을 세 번 곱하면 $8$의 배수가 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분모의 소인수가 $2$와 $5$뿐이면 분자에 {$10$}을 알맞은 횟수만큼 곱한 수가 분모로 {나누어떨어지므로}, 분자를 분모로 나누는 나눗셈은 나머지가 {$0$}이 되어 끝난다.",
+        "cAnswers": [
+          "$10$",
+          "나누어떨어지므로",
+          "$0$"
+        ],
+        "cReason": "'끝난다' 같은 서술어 빈칸 대신 핵심 수와 관계를 묻게 함.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "나눗셈이 끝나는 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2143,
+        "part": "m2plus",
+        "sourceFingerprint": "616f8e27387d593c1849b0da1f52b41689c8f68c1b36b47686c6b4ed7770a3f9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2143
+        },
+        "directReview": null,
+        "cMarkedSentence": "분모의 소인수가 $2$와 $5$뿐이면 분자에 {$10$}을 알맞은 횟수만큼 곱한 수가 분모로 {나누어떨어지므로}, 분자를 분모로 나누는 나눗셈은 나머지가 {$0$}이 되어 끝난다.",
+        "cSlotAnswers": [
+          "$10$",
+          "나누어떨어지므로",
+          "$0$"
+        ],
+        "cStudentSentence": "분모의 소인수가 $2$와 $5$뿐이면 분자에 □을 알맞은 횟수만큼 곱한 수가 분모로 □, 분자를 분모로 나누는 나눗셈은 나머지가 □이 되어 끝난다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10$",
+            "equivalentAnswers": [
+              "$10$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "나누어떨어지므로",
+            "equivalentAnswers": [
+              "나누어떨어지므로",
+              "나누어떨어져서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "나누어떨어지므로",
+            "accept": [
+              "나누어떨어져서"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "나누어떨어지므로",
+            "나누어떨어져서"
+          ],
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "d0e6aa9fc1e14643ebe01581d37d3da765db437f28ec828f591081b608029be8"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc24",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "두 분수의 곱의 판정",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+        "example": {
+          "prompt": "$\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인가?",
+          "answer": "된다 ($\\frac{3}{4}$)"
+        },
+        "studentC": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+        "answers": [
+          "약분",
+          "기약분수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+        "bAnswer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+        "bGoal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "bReason": "곱하기 전과 판정이 달라지는 구체적인 곱을 제시해 과정을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "유한소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약분하면 $\\frac{3}{4}$이 된다",
+              "곱한 뒤 분모의 $3$이 약분된다",
+              "$0.75$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "판정 대상이 문장에 있고 절차의 핵심 낱말 두 개를 물음.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "곱을 약분해 판정하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2144,
+        "part": "m2plus",
+        "sourceFingerprint": "2038aaa8400b3e2f45a36796f31507a39b854267833c2e7d381e3a25f4348a32",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2144
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+        "cFrozenDefinition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+        "cFrozenAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cMarkedSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+        "cSlotAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cStudentSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+        "cAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "기약분수",
+            "equivalentAnswers": [
+              "기약분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약분"
+          ],
+          [
+            "기약분수"
+          ]
+        ],
+        "proposalFingerprint": "ed25ac399ea415ccd1717621adf58d4f0b39d16d60b67a0af0a79bf4845934c2"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc1",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환마디가 한 자리일 때의 점",
+        "kind": "방법",
+        "level": "하",
+        "definition": "순환마디가 숫자 하나이면 그 숫자 {위에만} {점}을 하나 찍는다.",
+        "example": {
+          "prompt": "$0.777\\cdots$을 점을 찍어 쓰면?",
+          "answer": "$0.\\dot{7}$"
+        },
+        "studentC": "순환마디가 숫자 하나이면 그 숫자 □ □을 하나 찍는다.",
+        "answers": [
+          "위에만",
+          "점"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "점 표기 규칙 중 한 자리 경우만 떼어 낸 조각임.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-c3(순환소수의 표현)의 점 찍는 규칙 질문과 중복되는 하위 경우임.",
+        "cDecision": "rewrite",
+        "cAfter": "$0.777\\cdots$처럼 {순환마디}가 숫자 하나이면 그 숫자 위에만 {점}을 하나 찍어 $0.\\dot{7}$로 쓴다.",
+        "cAnswers": [
+          "순환마디",
+          "점"
+        ],
+        "cReason": "'위에만'이라는 조사 붙은 빈칸이 어색해 핵심 낱말로 바꿈.",
+        "learningRole": "procedure",
+        "roleReason": "한 자리 마디의 점 표기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2145,
+        "part": "m2plus",
+        "sourceFingerprint": "a9b2d68587d3792b8b1d42733e939e65b17fcfb4102d2c10da0d10cb271d8c9f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2145
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$0.777\\cdots$처럼 {순환마디}가 숫자 하나이면 그 숫자 위에만 {점}을 하나 찍어 $0.\\dot{7}$로 쓴다.",
+        "cSlotAnswers": [
+          "순환마디",
+          "점"
+        ],
+        "cStudentSentence": "$0.777\\cdots$처럼 □가 숫자 하나이면 그 숫자 위에만 □을 하나 찍어 $0.\\dot{7}$로 쓴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "순환마디",
+            "equivalentAnswers": [
+              "순환마디"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "점",
+            "equivalentAnswers": [
+              "점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "순환마디"
+          ],
+          [
+            "점"
+          ]
+        ],
+        "proposalFingerprint": "106137388393fa41ae7c1a3591bd0deee9b9abf009c1847070226132fdf1358e"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc2",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환마디가 두 자리일 때의 점",
+        "kind": "방법",
+        "level": "하",
+        "definition": "순환마디가 두 자리이면 두 숫자 {모두} 위에 점을 찍는다.",
+        "example": {
+          "prompt": "$0.4545\\cdots$를 점을 찍어 쓰면?",
+          "answer": "$0.\\dot{4}\\dot{5}$"
+        },
+        "studentC": "순환마디가 두 자리이면 두 숫자 □ 위에 점을 찍는다.",
+        "answers": [
+          "모두"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "점 표기 규칙 중 두 자리 경우만 떼어 낸 조각임.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-c3(순환소수의 표현)의 점 찍는 규칙 질문과 중복되는 하위 경우임.",
+        "cDecision": "rewrite",
+        "cAfter": "$0.4545\\cdots$처럼 순환마디가 두 자리이면 두 숫자 {모두} 위에 {점}을 찍어 $0.\\dot{4}\\dot{5}$로 쓴다.",
+        "cAnswers": [
+          "모두",
+          "점"
+        ],
+        "cReason": "'모두' 하나만 묻던 빈칸에 예와 핵심 낱말을 더함.",
+        "learningRole": "procedure",
+        "roleReason": "두 자리 마디의 점 표기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2146,
+        "part": "m2plus",
+        "sourceFingerprint": "7f08ee5f462e4d7cfbd7430d1db1d3f3436e0f28e622780ec93dd54d5a1f6abc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2146
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$0.4545\\cdots$처럼 순환마디가 두 자리이면 두 숫자 {모두} 위에 {점}을 찍어 $0.\\dot{4}\\dot{5}$로 쓴다.",
+        "cSlotAnswers": [
+          "모두",
+          "점"
+        ],
+        "cStudentSentence": "$0.4545\\cdots$처럼 순환마디가 두 자리이면 두 숫자 □ 위에 □을 찍어 $0.\\dot{4}\\dot{5}$로 쓴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모두",
+            "equivalentAnswers": [
+              "모두",
+              "각각",
+              "둘 다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "점",
+            "equivalentAnswers": [
+              "점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모두",
+            "accept": [
+              "각각",
+              "둘 다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모두",
+            "각각",
+            "둘 다"
+          ],
+          [
+            "점"
+          ]
+        ],
+        "proposalFingerprint": "ce7279c950632ac53422e498062235ec44d6c59a8728f73625292cfdc3da082c"
+      }
+    }
+  ]
+}

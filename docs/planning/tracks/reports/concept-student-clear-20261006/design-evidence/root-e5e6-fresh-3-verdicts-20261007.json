@@ -1,0 +1,927 @@
+{
+  "status": "Root actual reread and application of three corrections; fresh independent consensus and activation pending",
+  "count": 3,
+  "changed": 3,
+  "retained": 0,
+  "all2621DirectEvidenceValid": true,
+  "rows": [
+    {
+      "id": "e5-1-1-1-xc8",
+      "sourceIndex": 400,
+      "beforeRaw": {
+        "id": "e5-1-1-1-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "괄호가 여는 것과 닫는 것이 짝을 이루어 쓰인다는 표기 약속.",
+        "bReason": "여는 괄호와 닫는 괄호의 짝이라는 표기 약속만 확인하는 B보다 e5-1-1-1-c5의 B가 괄호의 역할과 실제 식의 우선 계산 부분을 함께 묻는다. 이 B는 표기 약속만 되풀이하므로 제외하고 C에서 짝을 확인한다.",
+        "cDecision": "revise",
+        "cAfter": "하나의 식을 괄호로 묶으려면 여는 괄호 하나와 닫는 괄호 하나가 필요합니다. 쓰는 괄호 기호는 모두 {$2$}개입니다.",
+        "cReason": "괄호의짝을부르는여러동의낱말대신괄호기호의개수를숫자로정해물으며같은범위의기본약속을확인한다.",
+        "exclusionReason": "B 제외. 대체는 e5-1-1-1-c5이다.",
+        "exampleNeeded": false,
+        "learningRole": "definition",
+        "bRequiredIdeas": [],
+        "rubricEvidence": "evidence/section-000-rubric.json",
+        "sourceIndex": 400,
+        "grade": "e5",
+        "part": "e5plus",
+        "source": {
+          "part": "e5plus",
+          "id": "e5-1-1-1-xc8",
+          "section": "초5::1-1 자연수의 혼합 계산::1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+          "term": "괄호의 짝",
+          "kind": "정의",
+          "level": "하",
+          "definition": "여는 괄호와 닫는 괄호는 {한 쌍}으로 쓰여 그 사이의 식을 하나로 묶는다.",
+          "studentC": "여는 괄호와 닫는 괄호는 □으로 쓰여 그 사이의 식을 하나로 묶는다.",
+          "answers": [
+            "한 쌍"
+          ]
+        },
+        "sourceFingerprint": "cfe2ce1b74e759c3d0e9f0e8a2b050bc1ce742b1a5c2e3e781bd36f0076264dd",
+        "draftEvidence": "evidence/section-000-draft.json",
+        "cProposedAnswers": [
+          "한 쌍"
+        ],
+        "cStudentAfter": "여는 괄호와 닫는 괄호는 □으로 쓰여 그 사이의 식을 하나로 묶는다.",
+        "cMarkedSentence": "하나의 식을 괄호로 묶으려면 여는 괄호 하나와 닫는 괄호 하나가 필요합니다. 쓰는 괄호 기호는 모두 {$2$}개입니다.",
+        "cStudentSentence": "하나의 식을 괄호로 묶으려면 여는 괄호 하나와 닫는 괄호 하나가 필요합니다. 쓰는 괄호 기호는 모두 □개입니다.",
+        "cSlotAnswers": [
+          "$2$"
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "하나의 식을 괄호로 묶으려면 여는 괄호 하나와 닫는 괄호 하나가 필요합니다. 쓰는 괄호 기호는 모두 {$2$}개입니다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "여는 괄호와 닫는 괄호의 짝이라는 표기 약속만 확인하는 B보다 e5-1-1-1-c5의 B가 괄호의 역할과 실제 식의 우선 계산 부분을 함께 묻는다. 이 B는 표기 약속만 되풀이하므로 제외하고 C에서 짝을 확인한다."
+        },
+        "proposalFingerprint": "5d5753e2144ce2781f1790c1130c43a86160de7ffef7718df55bc637ac6124cd",
+        "questionRevision": "planning-e5e6-20261007-3d6695dc81f5",
+        "requiresIndependentReview": true,
+        "codexFinalEditorial": {
+          "id": "e5-1-1-1-xc8",
+          "bVerdict": "adopt",
+          "cVerdict": "adopt",
+          "reason": "괄호의 두 표지가 한 쌍이라는 약속은 c5의 역할 질문과 구분되므로 C를 복원한다. B는 역할·적용을 묻는 c5보다 표기 확인 한 가지로 좁다는 제외 근거를 쓴다.",
+          "reader": "Codex direct reading; root dispute resolution 20261007",
+          "sourceIndex": 400,
+          "proposalFingerprintReviewed": "3d6695dc81f5da52843bf47f4486074580378c798a3a1c9158a9bd276ae4a305",
+          "inputEvidence": "evidence/root-disputes-20261007/after-batch-025.json",
+          "learningRole": "definition",
+          "bSourceDecision": "exclude",
+          "cSourceDecision": "revise",
+          "bSourceReason": "여는 괄호와 닫는 괄호의 짝이라는 표기 약속만 확인하는 B보다 e5-1-1-1-c5의 B가 괄호의 역할과 실제 식의 우선 계산 부분을 함께 묻는다. 이 B는 표기 약속만 되풀이하므로 제외하고 C에서 짝을 확인한다.",
+          "cSourceReason": "괄호의 두 표지가 한 쌍이라는 약속은 c5의 역할 질문과 구분되므로 C를 복원한다. B는 역할·적용을 묻는 c5보다 표기 확인 한 가지로 좁다는 제외 근거를 쓴다.",
+          "recordedAfterDirectReading": "2026-10-07T10:43:09.021792+00:00",
+          "inputSha256": "bb153acadd7dfdc7af586669cae27c8cc8405356bf052387c4d9db0595457b1e",
+          "normalizedHashReviewed": "4393b992b377b1b95bbd6139542e7b29d8b0bc701efa2b47c840c646bdf19a62",
+          "independentApproval": false,
+          "disputeEvidence": "evidence/root-disputes-20261007/manual-reread-ledger.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ]
+        ],
+        "rootDisputeAmendment": {
+          "dispatchId": "ctx_006010d1494b",
+          "beforeNormalizedHash": "14764414579414a3925266302dde6ffb275d29137bd4551f45f234c38eaadd92",
+          "decisionEvidence": "evidence/root-disputes-20261007/decisions-025.json",
+          "independentApproval": false
+        }
+      },
+      "beforeNormalizedHash": "0d15623ce535c667b0d9e05901ecc2dbc5e71c764f7fdcbed9734ca693183148",
+      "proposedRawRow": {
+        "id": "e5-1-1-1-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "괄호가 여는 것과 닫는 것이 짝을 이루어 쓰인다는 표기 약속.",
+        "bReason": "여는 괄호와 닫는 괄호의 짝이라는 표기 약속만 확인하는 B보다 e5-1-1-1-c5의 B가 괄호의 역할과 실제 식의 우선 계산 부분을 함께 묻는다. 이 B는 표기 약속만 되풀이하므로 제외하고 C에서 짝을 확인한다.",
+        "cDecision": "revise",
+        "cAfter": "괄호 하나가 빠진 식 $3\\times(8-5$에서 괄호의 짝을 맞추려면, 식의 맨 끝에 {$)$} 기호를 써야 합니다.",
+        "cReason": "괄호짝의명칭이나기호개수를세는문장대신괄호하나가빠진실제식에필요한닫는기호를쓰게한다. 식을계산하라고묻지않고기호를요구한다.",
+        "exclusionReason": "B 제외. 대체는 e5-1-1-1-c5이다.",
+        "exampleNeeded": false,
+        "learningRole": "definition",
+        "bRequiredIdeas": [],
+        "rubricEvidence": "evidence/section-000-rubric.json",
+        "sourceIndex": 400,
+        "grade": "e5",
+        "part": "e5plus",
+        "source": {
+          "part": "e5plus",
+          "id": "e5-1-1-1-xc8",
+          "section": "초5::1-1 자연수의 혼합 계산::1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+          "term": "괄호의 짝",
+          "kind": "정의",
+          "level": "하",
+          "definition": "여는 괄호와 닫는 괄호는 {한 쌍}으로 쓰여 그 사이의 식을 하나로 묶는다.",
+          "studentC": "여는 괄호와 닫는 괄호는 □으로 쓰여 그 사이의 식을 하나로 묶는다.",
+          "answers": [
+            "한 쌍"
+          ]
+        },
+        "sourceFingerprint": "cfe2ce1b74e759c3d0e9f0e8a2b050bc1ce742b1a5c2e3e781bd36f0076264dd",
+        "draftEvidence": "evidence/section-000-draft.json",
+        "cProposedAnswers": [
+          "한 쌍"
+        ],
+        "cStudentAfter": "여는 괄호와 닫는 괄호는 □으로 쓰여 그 사이의 식을 하나로 묶는다.",
+        "cMarkedSentence": "괄호 하나가 빠진 식 $3\\times(8-5$에서 괄호의 짝을 맞추려면, 식의 맨 끝에 {$)$} 기호를 써야 합니다.",
+        "cStudentSentence": "괄호 하나가 빠진 식 $3\\times(8-5$에서 괄호의 짝을 맞추려면, 식의 맨 끝에 □ 기호를 써야 합니다.",
+        "cSlotAnswers": [
+          "$)$"
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "괄호 하나가 빠진 식 $3\\times(8-5$에서 괄호의 짝을 맞추려면, 식의 맨 끝에 {$)$} 기호를 써야 합니다.",
+          "acceptedAnswers": [
+            [
+              "$)$",
+              ")"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "여는 괄호와 닫는 괄호의 짝이라는 표기 약속만 확인하는 B보다 e5-1-1-1-c5의 B가 괄호의 역할과 실제 식의 우선 계산 부분을 함께 묻는다. 이 B는 표기 약속만 되풀이하므로 제외하고 C에서 짝을 확인한다."
+        },
+        "proposalFingerprint": "e8f1a87d7b2ef9cacad93be220afe61ba9becfe11633b9c676d327ef33896dbc",
+        "questionRevision": "planning-e5e6-20261007-3d6695dc81f5",
+        "requiresIndependentReview": true,
+        "codexFinalEditorial": {
+          "id": "e5-1-1-1-xc8",
+          "bVerdict": "adopt",
+          "cVerdict": "adopt",
+          "reason": "괄호의 두 표지가 한 쌍이라는 약속은 c5의 역할 질문과 구분되므로 C를 복원한다. B는 역할·적용을 묻는 c5보다 표기 확인 한 가지로 좁다는 제외 근거를 쓴다.",
+          "reader": "Codex direct reading; root dispute resolution 20261007",
+          "sourceIndex": 400,
+          "proposalFingerprintReviewed": "3d6695dc81f5da52843bf47f4486074580378c798a3a1c9158a9bd276ae4a305",
+          "inputEvidence": "evidence/root-disputes-20261007/after-batch-025.json",
+          "learningRole": "definition",
+          "bSourceDecision": "exclude",
+          "cSourceDecision": "revise",
+          "bSourceReason": "여는 괄호와 닫는 괄호의 짝이라는 표기 약속만 확인하는 B보다 e5-1-1-1-c5의 B가 괄호의 역할과 실제 식의 우선 계산 부분을 함께 묻는다. 이 B는 표기 약속만 되풀이하므로 제외하고 C에서 짝을 확인한다.",
+          "cSourceReason": "괄호의 두 표지가 한 쌍이라는 약속은 c5의 역할 질문과 구분되므로 C를 복원한다. B는 역할·적용을 묻는 c5보다 표기 확인 한 가지로 좁다는 제외 근거를 쓴다.",
+          "recordedAfterDirectReading": "2026-10-07T10:43:09.021792+00:00",
+          "inputSha256": "bb153acadd7dfdc7af586669cae27c8cc8405356bf052387c4d9db0595457b1e",
+          "normalizedHashReviewed": "4393b992b377b1b95bbd6139542e7b29d8b0bc701efa2b47c840c646bdf19a62",
+          "independentApproval": false,
+          "disputeEvidence": "evidence/root-disputes-20261007/manual-reread-ledger.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "$)$",
+            ")"
+          ]
+        ],
+        "rootDisputeAmendment": {
+          "dispatchId": "ctx_006010d1494b",
+          "beforeNormalizedHash": "14764414579414a3925266302dde6ffb275d29137bd4551f45f234c38eaadd92",
+          "decisionEvidence": "evidence/root-disputes-20261007/decisions-025.json",
+          "independentApproval": false
+        }
+      },
+      "after": {
+        "id": "e5-1-1-1-xc8",
+        "grade": "초5",
+        "source": {
+          "id": "e5-1-1-1-xc8",
+          "section": "초5::1-1 자연수의 혼합 계산::1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+          "term": "괄호의 짝",
+          "kind": "정의",
+          "level": "하",
+          "definition": "여는 괄호와 닫는 괄호는 {한 쌍}으로 쓰여 그 사이의 식을 하나로 묶는다."
+        },
+        "B": {
+          "excluded": "여는 괄호와 닫는 괄호의 짝이라는 표기 약속만 확인하는 B보다 e5-1-1-1-c5의 B가 괄호의 역할과 실제 식의 우선 계산 부분을 함께 묻는다. 이 B는 표기 약속만 되풀이하므로 제외하고 C에서 짝을 확인한다."
+        },
+        "C": {
+          "sentence": "괄호 하나가 빠진 식 $3\\times(8-5$에서 괄호의 짝을 맞추려면, 식의 맨 끝에 {$)$} 기호를 써야 합니다.",
+          "acceptedAnswers": [
+            [
+              "$)$",
+              ")"
+            ]
+          ]
+        },
+        "goal": "괄호가 여는 것과 닫는 것이 짝을 이루어 쓰인다는 표기 약속.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "e390512055f7142ca264517c56b0aad9508f34faeb2fd3fbc4b87144c102b78c"
+      },
+      "reason": "괄호짝의명칭이나기호개수를세는문장대신괄호하나가빠진실제식에필요한닫는기호를쓰게한다. 식을계산하라고묻지않고기호를요구한다.",
+      "changed": true,
+      "actualNormalizedAfter": {
+        "id": "e5-1-1-1-xc8",
+        "grade": "초5",
+        "source": {
+          "id": "e5-1-1-1-xc8",
+          "section": "초5::1-1 자연수의 혼합 계산::1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+          "term": "괄호의 짝",
+          "kind": "정의",
+          "level": "하",
+          "definition": "여는 괄호와 닫는 괄호는 {한 쌍}으로 쓰여 그 사이의 식을 하나로 묶는다."
+        },
+        "B": {
+          "excluded": "여는 괄호와 닫는 괄호의 짝이라는 표기 약속만 확인하는 B보다 e5-1-1-1-c5의 B가 괄호의 역할과 실제 식의 우선 계산 부분을 함께 묻는다. 이 B는 표기 약속만 되풀이하므로 제외하고 C에서 짝을 확인한다."
+        },
+        "C": {
+          "sentence": "괄호 하나가 빠진 식 $3\\times(8-5$에서 괄호의 짝을 맞추려면, 식의 맨 끝에 {$)$} 기호를 써야 합니다.",
+          "acceptedAnswers": [
+            [
+              "$)$",
+              ")"
+            ]
+          ]
+        },
+        "goal": "괄호가 여는 것과 닫는 것이 짝을 이루어 쓰인다는 표기 약속.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "e390512055f7142ca264517c56b0aad9508f34faeb2fd3fbc4b87144c102b78c"
+      },
+      "direct": {
+        "id": "e5-1-1-1-xc8",
+        "sourceIndex": 400,
+        "proposalFingerprintReviewed": "e8f1a87d7b2ef9cacad93be220afe61ba9becfe11633b9c676d327ef33896dbc",
+        "reader": "Root Codex actual source/feedback and normalized final question rereading",
+        "learningRole": "definition",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "bSourceDecision": "exclude",
+        "cSourceDecision": "revise",
+        "reason": "괄호짝의명칭이나기호개수를세는문장대신괄호하나가빠진실제식에필요한닫는기호를쓰게한다. 식을계산하라고묻지않고기호를요구한다.",
+        "inputEvidence": "../design-evidence/root-e5e6-fresh-3-proposals-20261007.json",
+        "recordedAfterDirectReading": "2026-10-07T11:58:54.014Z",
+        "isIndependentApproval": false
+      },
+      "recordedAfterActualNormalizedQuestionReading": true,
+      "isIndependentApproval": false
+    },
+    {
+      "id": "e5-2-5-4-xc10",
+      "sourceIndex": 1503,
+      "beforeRaw": {
+        "id": "e5-2-5-4-xc10",
+        "learningRole": "procedure",
+        "bDecision": "revise",
+        "bPrompt": "직육면체의 가로 방향 모서리 네 개를 겨냥도에 그릴 때, 네 선의 방향과 길이를 각각 어떻게 맞추어 그리는지 쓰세요.",
+        "bAnswer": "네 선을 서로 평행하게 그리고, 길이도 서로 같게 그린다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 평행하게 그린다",
+              "나란하게 그린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이를 서로 같게 그린다",
+              "같은 길이로 그린다"
+            ]
+          }
+        ],
+        "bGoal": "평행한 모서리는 겨냥도에서도 평행하고 같은 길이로 그림을 말한다.",
+        "bReason": "입체에서가로방향인모서리를겨냥도에그릴때의관계를묻고C도같은방향모서리의길이보존을확인한다. 평행이란말의반복만으로그린다는오해를줄인다.",
+        "cDecision": "revise",
+        "cAfter": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들의 길이는 서로 {같다}.",
+        "cAcceptedAnswers": [
+          [
+            "같다",
+            "똑같다"
+          ]
+        ],
+        "cReason": "입체에서가로방향인모서리를겨냥도에그릴때의관계를묻고C도같은방향모서리의길이보존을확인한다. 평행이란말의반복만으로그린다는오해를줄인다.",
+        "exampleNeeded": false,
+        "sourceIndex": 1503,
+        "grade": "e5",
+        "part": "e5plus",
+        "source": {
+          "part": "e5plus",
+          "id": "e5-2-5-4-xc10",
+          "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+          "term": "평행한 모서리는 평행하게",
+          "kind": "방법",
+          "level": "중",
+          "definition": "겨냥도에서는 {실제로 평행한 모서리}를 평행하게 그린다.",
+          "studentC": "겨냥도에서는 □를 평행하게 그린다.",
+          "answers": [
+            "실제로 평행한 모서리"
+          ]
+        },
+        "sourceFingerprint": "cb4bf775f3e35090b6dde53059b22c4bb22344e874ef8dd0add9f99a5336b2d0",
+        "draftEvidence": "evidence/section-050-draft.json",
+        "cProposedAnswers": [
+          "평행"
+        ],
+        "cStudentAfter": "직육면체에서 서로 평행한 모서리는 겨냥도에서도 서로 □하게 그린다.",
+        "cMarkedSentence": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들의 길이는 서로 {같다}.",
+        "cStudentSentence": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들의 길이는 서로 □.",
+        "cSlotAnswers": [
+          "같다"
+        ],
+        "bQuestion": {
+          "prompt": "직육면체의 가로 방향 모서리 네 개를 겨냥도에 그릴 때, 네 선의 방향과 길이를 각각 어떻게 맞추어 그리는지 쓰세요.",
+          "answer": "네 선을 서로 평행하게 그리고, 길이도 서로 같게 그린다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 평행하게 그린다",
+                "나란하게 그린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "길이를 서로 같게 그린다",
+                "같은 길이로 그린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들의 길이는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "proposalFingerprint": "859ee74f333d5c3004a6ee675653ca543de6ce3f046cccc26efac2d9c9f2b9bd",
+        "questionRevision": "planning-e5e6-20261006-51fdf4e931da",
+        "requiresIndependentReview": true,
+        "codexFinalEditorial": {
+          "id": "e5-2-5-4-xc10",
+          "bVerdict": "adopt",
+          "cVerdict": "adopt",
+          "reason": "실제 입체의 평행 관계가 겨냥도에서도 보존되는지를 묻는다. 평행이라는 이름 반복은 대상이 입체 모서리에서 도면 선분으로 바뀐 불변관계의 적용이므로 유효하다.",
+          "reader": "Codex direct reading of current before-normalized B/C and original blind/key; retained unchanged with individual reason",
+          "sourceIndex": 1503,
+          "proposalFingerprintReviewed": "51fdf4e931daac03c057eae11c321d322ce04eae73919f4be6c406249261dbd7",
+          "inputEvidence": "evidence/root-disputes-20261007/before-batch-125.json",
+          "learningRole": "procedure",
+          "bSourceDecision": "revise",
+          "cSourceDecision": "revise",
+          "bSourceReason": "xc10(방향)과 xc13(길이)을 한 물음으로 묶어 그리는 규칙 전체를 묻게 했다.",
+          "cSourceReason": "원문 빈칸 '실제로 평행한 모서리'는 긴 구절이라 핵심 낱말 '평행'만 묻도록 바꾸었다.",
+          "recordedAfterDirectReading": "2026-10-07T10:43:09.021792+00:00",
+          "inputSha256": "ad888d392fb4171aa2ef7254a4c9f699cee2a0bd053b8e2028c66b8d3005b52b",
+          "normalizedHashReviewed": "2ee0593712bf7adedca49569a75f01290fafeee44fe1b860689803f38e77cb46",
+          "independentApproval": false,
+          "disputeEvidence": "evidence/root-disputes-20261007/manual-reread-ledger.json"
+        }
+      },
+      "beforeNormalizedHash": "e930633694e267a595efa152c2fba4a4b01a3e4fe500a35cef188d7bd1bbabd5",
+      "proposedRawRow": {
+        "id": "e5-2-5-4-xc10",
+        "learningRole": "procedure",
+        "bDecision": "revise",
+        "bPrompt": "직육면체의 가로 방향 모서리 네 개를 겨냥도에 그리면서, 그 선들이 서로 만나게 그렸습니다. 이 방법이 바른지 판단하고, 실제 직육면체의 모서리 관계를 이용하여 까닭을 설명하세요.",
+        "bAnswer": "바르지 않습니다. 실제 직육면체에서 가로 방향 모서리는 서로 평행하므로, 겨냥도에서도 그 선들을 서로 평행하게 그려야 합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바르지 않다",
+              "잘못 그렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "실제로 서로 평행한 모서리이므로 겨냥도에서도 서로 평행하게 그려야 한다"
+            ]
+          }
+        ],
+        "bGoal": "평행한 모서리는 겨냥도에서도 평행하고 같은 길이로 그림을 말한다.",
+        "bReason": "길이보존으로목표가확장되지않게원문평행관계의보존에맞춘다. 가로방향모서리선을만나게그린오류판정과평행개념을확인한다.",
+        "cDecision": "revise",
+        "cAfter": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들은 서로 {평행}해야 한다.",
+        "cAcceptedAnswers": [
+          [
+            "평행",
+            "나란"
+          ]
+        ],
+        "cReason": "길이보존으로목표가확장되지않게원문평행관계의보존에맞춘다. 가로방향모서리선을만나게그린오류판정과평행개념을확인한다.",
+        "exampleNeeded": false,
+        "sourceIndex": 1503,
+        "grade": "e5",
+        "part": "e5plus",
+        "source": {
+          "part": "e5plus",
+          "id": "e5-2-5-4-xc10",
+          "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+          "term": "평행한 모서리는 평행하게",
+          "kind": "방법",
+          "level": "중",
+          "definition": "겨냥도에서는 {실제로 평행한 모서리}를 평행하게 그린다.",
+          "studentC": "겨냥도에서는 □를 평행하게 그린다.",
+          "answers": [
+            "실제로 평행한 모서리"
+          ]
+        },
+        "sourceFingerprint": "cb4bf775f3e35090b6dde53059b22c4bb22344e874ef8dd0add9f99a5336b2d0",
+        "draftEvidence": "evidence/section-050-draft.json",
+        "cProposedAnswers": [
+          "평행"
+        ],
+        "cStudentAfter": "직육면체에서 서로 평행한 모서리는 겨냥도에서도 서로 □하게 그린다.",
+        "cMarkedSentence": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들은 서로 {평행}해야 한다.",
+        "cStudentSentence": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들은 서로 □해야 한다.",
+        "cSlotAnswers": [
+          "평행"
+        ],
+        "bQuestion": {
+          "prompt": "직육면체의 가로 방향 모서리 네 개를 겨냥도에 그리면서, 그 선들이 서로 만나게 그렸습니다. 이 방법이 바른지 판단하고, 실제 직육면체의 모서리 관계를 이용하여 까닭을 설명하세요.",
+          "answer": "바르지 않습니다. 실제 직육면체에서 가로 방향 모서리는 서로 평행하므로, 겨냥도에서도 그 선들을 서로 평행하게 그려야 합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "바르지 않다",
+                "잘못 그렸다"
+              ]
+            },
+            {
+              "anyOf": [
+                "실제로 서로 평행한 모서리이므로 겨냥도에서도 서로 평행하게 그려야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들은 서로 {평행}해야 한다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "proposalFingerprint": "8b4451b71eafb271071b570ecbaacc4fb5931741c769a33a0590e31981f96cb1",
+        "questionRevision": "planning-e5e6-20261006-51fdf4e931da",
+        "requiresIndependentReview": true,
+        "codexFinalEditorial": {
+          "id": "e5-2-5-4-xc10",
+          "bVerdict": "adopt",
+          "cVerdict": "adopt",
+          "reason": "실제 입체의 평행 관계가 겨냥도에서도 보존되는지를 묻는다. 평행이라는 이름 반복은 대상이 입체 모서리에서 도면 선분으로 바뀐 불변관계의 적용이므로 유효하다.",
+          "reader": "Codex direct reading of current before-normalized B/C and original blind/key; retained unchanged with individual reason",
+          "sourceIndex": 1503,
+          "proposalFingerprintReviewed": "51fdf4e931daac03c057eae11c321d322ce04eae73919f4be6c406249261dbd7",
+          "inputEvidence": "evidence/root-disputes-20261007/before-batch-125.json",
+          "learningRole": "procedure",
+          "bSourceDecision": "revise",
+          "cSourceDecision": "revise",
+          "bSourceReason": "xc10(방향)과 xc13(길이)을 한 물음으로 묶어 그리는 규칙 전체를 묻게 했다.",
+          "cSourceReason": "원문 빈칸 '실제로 평행한 모서리'는 긴 구절이라 핵심 낱말 '평행'만 묻도록 바꾸었다.",
+          "recordedAfterDirectReading": "2026-10-07T10:43:09.021792+00:00",
+          "inputSha256": "ad888d392fb4171aa2ef7254a4c9f699cee2a0bd053b8e2028c66b8d3005b52b",
+          "normalizedHashReviewed": "2ee0593712bf7adedca49569a75f01290fafeee44fe1b860689803f38e77cb46",
+          "independentApproval": false,
+          "disputeEvidence": "evidence/root-disputes-20261007/manual-reread-ledger.json"
+        }
+      },
+      "after": {
+        "id": "e5-2-5-4-xc10",
+        "grade": "초5",
+        "source": {
+          "id": "e5-2-5-4-xc10",
+          "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+          "term": "평행한 모서리는 평행하게",
+          "kind": "방법",
+          "level": "중",
+          "definition": "겨냥도에서는 {실제로 평행한 모서리}를 평행하게 그린다."
+        },
+        "B": {
+          "prompt": "직육면체의 가로 방향 모서리 네 개를 겨냥도에 그리면서, 그 선들이 서로 만나게 그렸습니다. 이 방법이 바른지 판단하고, 실제 직육면체의 모서리 관계를 이용하여 까닭을 설명하세요.",
+          "answer": "바르지 않습니다. 실제 직육면체에서 가로 방향 모서리는 서로 평행하므로, 겨냥도에서도 그 선들을 서로 평행하게 그려야 합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "바르지 않다",
+                "잘못 그렸다"
+              ]
+            },
+            {
+              "anyOf": [
+                "실제로 서로 평행한 모서리이므로 겨냥도에서도 서로 평행하게 그려야 한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들은 서로 {평행}해야 한다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "goal": "평행한 모서리는 겨냥도에서도 평행하고 같은 길이로 그림을 말한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "1e8e8a64431d1ecda47e757048a3720e6c87507a487e891a786288f09600bb21"
+      },
+      "reason": "길이보존으로목표가확장되지않게원문평행관계의보존에맞춘다. 가로방향모서리선을만나게그린오류판정과평행개념을확인한다.",
+      "changed": true,
+      "actualNormalizedAfter": {
+        "id": "e5-2-5-4-xc10",
+        "grade": "초5",
+        "source": {
+          "id": "e5-2-5-4-xc10",
+          "section": "초5::2-5 직육면체::2-5-4 직육면체의 겨냥도",
+          "term": "평행한 모서리는 평행하게",
+          "kind": "방법",
+          "level": "중",
+          "definition": "겨냥도에서는 {실제로 평행한 모서리}를 평행하게 그린다."
+        },
+        "B": {
+          "prompt": "직육면체의 가로 방향 모서리 네 개를 겨냥도에 그리면서, 그 선들이 서로 만나게 그렸습니다. 이 방법이 바른지 판단하고, 실제 직육면체의 모서리 관계를 이용하여 까닭을 설명하세요.",
+          "answer": "바르지 않습니다. 실제 직육면체에서 가로 방향 모서리는 서로 평행하므로, 겨냥도에서도 그 선들을 서로 평행하게 그려야 합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "바르지 않다",
+                "잘못 그렸다"
+              ]
+            },
+            {
+              "anyOf": [
+                "실제로 서로 평행한 모서리이므로 겨냥도에서도 서로 평행하게 그려야 한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "직육면체의 겨냥도에서 가로 방향 모서리 네 개를 나타내는 선들은 서로 {평행}해야 한다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "goal": "평행한 모서리는 겨냥도에서도 평행하고 같은 길이로 그림을 말한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "1e8e8a64431d1ecda47e757048a3720e6c87507a487e891a786288f09600bb21"
+      },
+      "direct": {
+        "id": "e5-2-5-4-xc10",
+        "sourceIndex": 1503,
+        "proposalFingerprintReviewed": "8b4451b71eafb271071b570ecbaacc4fb5931741c769a33a0590e31981f96cb1",
+        "reader": "Root Codex actual source/feedback and normalized final question rereading",
+        "learningRole": "procedure",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "reason": "길이보존으로목표가확장되지않게원문평행관계의보존에맞춘다. 가로방향모서리선을만나게그린오류판정과평행개념을확인한다.",
+        "inputEvidence": "../design-evidence/root-e5e6-fresh-3-proposals-20261007.json",
+        "recordedAfterDirectReading": "2026-10-07T11:58:54.019Z",
+        "isIndependentApproval": false
+      },
+      "recordedAfterActualNormalizedQuestionReading": true,
+      "isIndependentApproval": false
+    },
+    {
+      "id": "e6-2-3-1-xc21",
+      "sourceIndex": 2314,
+      "beforeRaw": {
+        "id": "e6-2-3-1-xc21",
+        "bDecision": "revise",
+        "bPrompt": "쌓기나무로 쌓은 모양에 위·앞·뒤·왼쪽·오른쪽에서 보아도 보이지 않는 쌓기나무가 있습니다. 한 학생은 이 쌓기나무에 바로 붙은 자리들이 모두 다른 쌓기나무로 채워져야 한다고 했습니다. 반드시 그래야 하는지 쓰고, 그 방향에서 멀리 있는 다른 쌓기나무도 가릴 수 있는지 생각하여 까닭을 설명하세요.",
+        "bAnswer": "반드시 바로 붙은 자리들이 모두 채워져야 하는 것은 아닙니다. 각 방향에서 볼 때 그 방향의 앞쪽에 있는 다른 쌓기나무가 가리면 보이지 않으며, 가리는 쌓기나무가 바로 붙어 있을 필요는 없습니다.",
+        "bGoal": "어느 방향에서도 보이지 않는 쌓기나무의 위치를 설명한다.",
+        "bReason": "서로바로이웃한자리가모두채워져야한다는과도한조건을학생이판정하고,멀리있는다른블록도가릴수있다는이유를직접말하게한다. 보이지않는위치찾기그림을없이요구하지않는다.",
+        "learningRole": "definition",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바로 붙은 자리들이 모두 채워져야 하는 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "멀리 떨어져 있어도 보는 방향 앞에 있는 다른 쌓기나무가 가릴 수 있다",
+              "가리는 쌓기나무가 반드시 바로 붙어 있을 필요는 없다"
+            ]
+          }
+        ],
+        "coreAfter": "위, 앞, 뒤, 왼쪽, 오른쪽에서 보아도 안 보이는 쌓기나무는, 각 방향에서 다른 쌓기나무가 {가리고 있다}.",
+        "coreReason": "'어느 방향'의 범위가 불분명하다. 아래쪽은 바닥이라 보이지 않으므로 방향을 위, 앞, 뒤, 옆으로 분명히 했다.",
+        "cDecision": "exclude",
+        "cAfter": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 {가리고} 있다.",
+        "cAcceptedAnswers": [
+          {
+            "anyOf": [
+              "가리고",
+              "막고"
+            ]
+          }
+        ],
+        "cReason": "현재 자료에는 특정 쌓기 모양이나 각 방향에서 본 그림이 없어, 어느 방향에서도 보이지 않는 위치·개수를 하나로 정해 묻기 어렵다. 가리고/막고라는 동사만 복원하는 C는 제외하며, 각 방향에서 다른 쌓기나무가 가린다는 공간적 까닭은 이 항목의 B에서 설명한다.",
+        "exampleNeeded": false,
+        "editorialOwner": "Codex",
+        "coreTargetReason": "둘러싸여라는 원문 표적은 바로 옆에 맞닿은 나무를 뜻하는 것으로 오독된다. 멀리 있는 나무가 시야를 가릴 수도 있으므로 다섯 관찰 방향과 가림이라는 실제 일반 조건으로 고친다.",
+        "coreTargetEvidence": "codex-core-editorial.json",
+        "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+        "codexFinalAmendedFromFingerprint": "ca72e27799328774aae0a200c9e11108458eb0fe315281d3f62f182a4041cf17",
+        "sourceIndex": 2314,
+        "grade": "e6",
+        "part": "e6plus",
+        "source": {
+          "part": "e6plus",
+          "id": "e6-2-3-1-xc21",
+          "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+          "term": "어느 쪽에서도 안 보이는 쌓기나무",
+          "kind": "성질",
+          "level": "상",
+          "definition": "어느 방향에서도 보이지 않는 쌓기나무는 다른 쌓기나무에 {둘러싸여} 있다.",
+          "studentC": "어느 방향에서도 보이지 않는 쌓기나무는 다른 쌓기나무에 □ 있다.",
+          "answers": [
+            "둘러싸여"
+          ]
+        },
+        "sourceFingerprint": "922a5f15fceca4d28a596b96de1fc992a6055c42307e885250c9eb40e257dd6b",
+        "draftEvidence": "evidence/section-093-draft.json",
+        "codexOverrideEvidence": "codex-overrides.json",
+        "cProposedAnswers": [
+          "가리고"
+        ],
+        "cStudentAfter": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 □ 있다.",
+        "cMarkedSentence": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 {가리고} 있다.",
+        "cStudentSentence": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 □ 있다.",
+        "cSlotAnswers": [
+          {
+            "key": "가리고",
+            "equivalents": [
+              "막고"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "쌓기나무로 쌓은 모양에 위·앞·뒤·왼쪽·오른쪽에서 보아도 보이지 않는 쌓기나무가 있습니다. 한 학생은 이 쌓기나무에 바로 붙은 자리들이 모두 다른 쌓기나무로 채워져야 한다고 했습니다. 반드시 그래야 하는지 쓰고, 그 방향에서 멀리 있는 다른 쌓기나무도 가릴 수 있는지 생각하여 까닭을 설명하세요.",
+          "answer": "반드시 바로 붙은 자리들이 모두 채워져야 하는 것은 아닙니다. 각 방향에서 볼 때 그 방향의 앞쪽에 있는 다른 쌓기나무가 가리면 보이지 않으며, 가리는 쌓기나무가 바로 붙어 있을 필요는 없습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "바로 붙은 자리들이 모두 채워져야 하는 것은 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "멀리 떨어져 있어도 보는 방향 앞에 있는 다른 쌓기나무가 가릴 수 있다",
+                "가리는 쌓기나무가 반드시 바로 붙어 있을 필요는 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "현재 자료에는 특정 쌓기 모양이나 각 방향에서 본 그림이 없어, 어느 방향에서도 보이지 않는 위치·개수를 하나로 정해 묻기 어렵다. 가리고/막고라는 동사만 복원하는 C는 제외하며, 각 방향에서 다른 쌓기나무가 가린다는 공간적 까닭은 이 항목의 B에서 설명한다."
+        },
+        "proposalFingerprint": "58b7dd190adaf979d6e502720fbffd31e16b95ba11ff36c8325952c0a8bb8b68",
+        "questionRevision": "planning-e5e6-20261006-6a529d588366",
+        "requiresIndependentReview": true,
+        "codexFinalEditorial": {
+          "id": "e6-2-3-1-xc21",
+          "bVerdict": "adopt",
+          "cVerdict": "adopt",
+          "reason": "각 방향에서 보이지 않으므로 그 방향의 다른 쌓기나무가 시선을 가린다는 관계를 묻는다. 바로 붙어 있다는 것은 일반적으로 필수나 참이 아니며 가리고와 막고는 같은 관계의 동치 표현이다. 원문의 모호함을 고친 현재 일반설명도 보존한다.",
+          "reader": "Codex direct reading of current before-normalized B/C and original blind/key; retained unchanged with individual reason",
+          "sourceIndex": 2314,
+          "proposalFingerprintReviewed": "6a529d5883660fb112246149283dae1cd3efce8a3c80da4a4418dc3096d00808",
+          "inputEvidence": "evidence/root-disputes-20261007/before-batch-200.json",
+          "learningRole": "definition",
+          "bSourceDecision": "revise",
+          "cSourceDecision": "revise",
+          "bSourceReason": "바로 이웃한 모든 자리가 막혀 있다는 잘못된 필요조건을 없애고 각 방향의 시야가 가려진다는 원리를 묻는다.",
+          "cSourceReason": "둘러싸여 있다는 물리적 접촉의 오해 대신 시야를 가리는 관계를 짧은 말로 확인한다.",
+          "recordedAfterDirectReading": "2026-10-07T10:43:09.021792+00:00",
+          "inputSha256": "e774d87bb97559143fbe03718480514a2237100b8ae4186ef124202440417bb1",
+          "normalizedHashReviewed": "b524d0abddd8616c6268846e5a1d38b7981bd23b99317f2397cce7252b90ecac",
+          "independentApproval": false,
+          "disputeEvidence": "evidence/root-disputes-20261007/manual-reread-ledger.json"
+        }
+      },
+      "beforeNormalizedHash": "d5efd3bb02c4ed0f8d0a7e36e0c701f03b96481c608242ba8592de4607bfe9e7",
+      "proposedRawRow": {
+        "id": "e6-2-3-1-xc21",
+        "bDecision": "revise",
+        "bPrompt": "쌓기나무가 공중에 뜨지 않도록 바닥이나 아래 쌓기나무 위에 쌓았습니다. 어떤 쌓기나무가 위에서 보이지 않으려면 바로 위 칸에 다른 쌓기나무가 있어야 하나요? 앞에서 보이지 않는 경우에도 반드시 바로 앞 칸에 다른 쌓기나무가 있어야 하나요? 두 경우를 나누어 까닭과 함께 쓰세요.",
+        "bAnswer": "위에서 보이지 않으려면 바로 위 칸에도 쌓기나무가 있어야 합니다. 위에 쌓은 쌓기나무를 아래에서 받쳐야 하기 때문입니다. 앞에서 보이지 않을 때에는 반드시 바로 앞 칸이 채워질 필요는 없습니다. 같은 높이에서 앞쪽에 있는 다른 쌓기나무가 가리면, 둘 사이가 떨어져 있어도 보이지 않을 수 있습니다.",
+        "bGoal": "어느 방향에서도 보이지 않는 쌓기나무의 위치를 설명한다.",
+        "bReason": "공중에뜨지않는쌓기에서위쪽가림에는바로윗칸이필요하지만수평시선은떨어진블록도가릴수있음을방향별로구별한다. 특정모양그림없이도판정할수있는조건을직접명시한다.",
+        "learningRole": "definition",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "위에서 보이지 않으면 바로 위 칸에 쌓기나무가 있어야 하며 위에 쌓은 것을 아래에서 받쳐야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞에서 보이지 않는다고 바로 앞 칸이 채워질 필요는 없으며 떨어져 있는 앞쪽 쌓기나무도 가릴 수 있다"
+            ]
+          }
+        ],
+        "coreAfter": "위, 앞, 뒤, 왼쪽, 오른쪽에서 보아도 안 보이는 쌓기나무는, 각 방향에서 다른 쌓기나무가 {가리고 있다}.",
+        "coreReason": "'어느 방향'의 범위가 불분명하다. 아래쪽은 바닥이라 보이지 않으므로 방향을 위, 앞, 뒤, 옆으로 분명히 했다.",
+        "cDecision": "exclude",
+        "cAfter": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 {가리고} 있다.",
+        "cAcceptedAnswers": [
+          {
+            "anyOf": [
+              "가리고",
+              "막고"
+            ]
+          }
+        ],
+        "cReason": "현재 자료에는 특정 쌓기 모양이나 각 방향에서 본 그림이 없어, 어느 방향에서도 보이지 않는 위치·개수를 하나로 정해 묻기 어렵다. 가리고/막고라는 동사만 복원하는 C는 제외하며, 각 방향에서 다른 쌓기나무가 가린다는 공간적 까닭은 이 항목의 B에서 설명한다.",
+        "exampleNeeded": false,
+        "editorialOwner": "Codex",
+        "coreTargetReason": "둘러싸여라는 원문 표적은 바로 옆에 맞닿은 나무를 뜻하는 것으로 오독된다. 멀리 있는 나무가 시야를 가릴 수도 있으므로 다섯 관찰 방향과 가림이라는 실제 일반 조건으로 고친다.",
+        "coreTargetEvidence": "codex-core-editorial.json",
+        "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2300-patch.json",
+        "codexFinalAmendedFromFingerprint": "ca72e27799328774aae0a200c9e11108458eb0fe315281d3f62f182a4041cf17",
+        "sourceIndex": 2314,
+        "grade": "e6",
+        "part": "e6plus",
+        "source": {
+          "part": "e6plus",
+          "id": "e6-2-3-1-xc21",
+          "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+          "term": "어느 쪽에서도 안 보이는 쌓기나무",
+          "kind": "성질",
+          "level": "상",
+          "definition": "어느 방향에서도 보이지 않는 쌓기나무는 다른 쌓기나무에 {둘러싸여} 있다.",
+          "studentC": "어느 방향에서도 보이지 않는 쌓기나무는 다른 쌓기나무에 □ 있다.",
+          "answers": [
+            "둘러싸여"
+          ]
+        },
+        "sourceFingerprint": "922a5f15fceca4d28a596b96de1fc992a6055c42307e885250c9eb40e257dd6b",
+        "draftEvidence": "evidence/section-093-draft.json",
+        "codexOverrideEvidence": "codex-overrides.json",
+        "cProposedAnswers": [
+          "가리고"
+        ],
+        "cStudentAfter": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 □ 있다.",
+        "cMarkedSentence": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 {가리고} 있다.",
+        "cStudentSentence": "쌓기나무로 쌓은 모양에서 위, 앞, 뒤, 왼쪽, 오른쪽 어느 방향에서도 보이지 않는 쌓기나무는 각 방향에서 다른 쌓기나무가 □ 있다.",
+        "cSlotAnswers": [
+          {
+            "key": "가리고",
+            "equivalents": [
+              "막고"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "쌓기나무가 공중에 뜨지 않도록 바닥이나 아래 쌓기나무 위에 쌓았습니다. 어떤 쌓기나무가 위에서 보이지 않으려면 바로 위 칸에 다른 쌓기나무가 있어야 하나요? 앞에서 보이지 않는 경우에도 반드시 바로 앞 칸에 다른 쌓기나무가 있어야 하나요? 두 경우를 나누어 까닭과 함께 쓰세요.",
+          "answer": "위에서 보이지 않으려면 바로 위 칸에도 쌓기나무가 있어야 합니다. 위에 쌓은 쌓기나무를 아래에서 받쳐야 하기 때문입니다. 앞에서 보이지 않을 때에는 반드시 바로 앞 칸이 채워질 필요는 없습니다. 같은 높이에서 앞쪽에 있는 다른 쌓기나무가 가리면, 둘 사이가 떨어져 있어도 보이지 않을 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "위에서 보이지 않으면 바로 위 칸에 쌓기나무가 있어야 하며 위에 쌓은 것을 아래에서 받쳐야 한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "앞에서 보이지 않는다고 바로 앞 칸이 채워질 필요는 없으며 떨어져 있는 앞쪽 쌓기나무도 가릴 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "현재 자료에는 특정 쌓기 모양이나 각 방향에서 본 그림이 없어, 어느 방향에서도 보이지 않는 위치·개수를 하나로 정해 묻기 어렵다. 가리고/막고라는 동사만 복원하는 C는 제외하며, 각 방향에서 다른 쌓기나무가 가린다는 공간적 까닭은 이 항목의 B에서 설명한다."
+        },
+        "proposalFingerprint": "d20a689e661f173ed76d427611b968a5cb188b5a12f0129ee699868845822ebe",
+        "questionRevision": "planning-e5e6-20261006-6a529d588366",
+        "requiresIndependentReview": true,
+        "codexFinalEditorial": {
+          "id": "e6-2-3-1-xc21",
+          "bVerdict": "adopt",
+          "cVerdict": "adopt",
+          "reason": "각 방향에서 보이지 않으므로 그 방향의 다른 쌓기나무가 시선을 가린다는 관계를 묻는다. 바로 붙어 있다는 것은 일반적으로 필수나 참이 아니며 가리고와 막고는 같은 관계의 동치 표현이다. 원문의 모호함을 고친 현재 일반설명도 보존한다.",
+          "reader": "Codex direct reading of current before-normalized B/C and original blind/key; retained unchanged with individual reason",
+          "sourceIndex": 2314,
+          "proposalFingerprintReviewed": "6a529d5883660fb112246149283dae1cd3efce8a3c80da4a4418dc3096d00808",
+          "inputEvidence": "evidence/root-disputes-20261007/before-batch-200.json",
+          "learningRole": "definition",
+          "bSourceDecision": "revise",
+          "cSourceDecision": "revise",
+          "bSourceReason": "바로 이웃한 모든 자리가 막혀 있다는 잘못된 필요조건을 없애고 각 방향의 시야가 가려진다는 원리를 묻는다.",
+          "cSourceReason": "둘러싸여 있다는 물리적 접촉의 오해 대신 시야를 가리는 관계를 짧은 말로 확인한다.",
+          "recordedAfterDirectReading": "2026-10-07T10:43:09.021792+00:00",
+          "inputSha256": "e774d87bb97559143fbe03718480514a2237100b8ae4186ef124202440417bb1",
+          "normalizedHashReviewed": "b524d0abddd8616c6268846e5a1d38b7981bd23b99317f2397cce7252b90ecac",
+          "independentApproval": false,
+          "disputeEvidence": "evidence/root-disputes-20261007/manual-reread-ledger.json"
+        }
+      },
+      "after": {
+        "id": "e6-2-3-1-xc21",
+        "grade": "초6",
+        "source": {
+          "id": "e6-2-3-1-xc21",
+          "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+          "term": "어느 쪽에서도 안 보이는 쌓기나무",
+          "kind": "성질",
+          "level": "상",
+          "definition": "어느 방향에서도 보이지 않는 쌓기나무는 다른 쌓기나무에 {둘러싸여} 있다."
+        },
+        "B": {
+          "prompt": "쌓기나무가 공중에 뜨지 않도록 바닥이나 아래 쌓기나무 위에 쌓았습니다. 어떤 쌓기나무가 위에서 보이지 않으려면 바로 위 칸에 다른 쌓기나무가 있어야 하나요? 앞에서 보이지 않는 경우에도 반드시 바로 앞 칸에 다른 쌓기나무가 있어야 하나요? 두 경우를 나누어 까닭과 함께 쓰세요.",
+          "answer": "위에서 보이지 않으려면 바로 위 칸에도 쌓기나무가 있어야 합니다. 위에 쌓은 쌓기나무를 아래에서 받쳐야 하기 때문입니다. 앞에서 보이지 않을 때에는 반드시 바로 앞 칸이 채워질 필요는 없습니다. 같은 높이에서 앞쪽에 있는 다른 쌓기나무가 가리면, 둘 사이가 떨어져 있어도 보이지 않을 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "위에서 보이지 않으면 바로 위 칸에 쌓기나무가 있어야 하며 위에 쌓은 것을 아래에서 받쳐야 한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "앞에서 보이지 않는다고 바로 앞 칸이 채워질 필요는 없으며 떨어져 있는 앞쪽 쌓기나무도 가릴 수 있다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "현재 자료에는 특정 쌓기 모양이나 각 방향에서 본 그림이 없어, 어느 방향에서도 보이지 않는 위치·개수를 하나로 정해 묻기 어렵다. 가리고/막고라는 동사만 복원하는 C는 제외하며, 각 방향에서 다른 쌓기나무가 가린다는 공간적 까닭은 이 항목의 B에서 설명한다."
+        },
+        "goal": "어느 방향에서도 보이지 않는 쌓기나무의 위치를 설명한다.",
+        "coreAfter": "위, 앞, 뒤, 왼쪽, 오른쪽에서 보아도 안 보이는 쌓기나무는, 각 방향에서 다른 쌓기나무가 {가리고 있다}.",
+        "coreReason": "'어느 방향'의 범위가 불분명하다. 아래쪽은 바닥이라 보이지 않으므로 방향을 위, 앞, 뒤, 옆으로 분명히 했다.",
+        "hash": "70cd985c34a61a8194d624660584aa51e9ec9f863e2676d4aaf51fa9703529f3"
+      },
+      "reason": "공중에뜨지않는쌓기에서위쪽가림에는바로윗칸이필요하지만수평시선은떨어진블록도가릴수있음을방향별로구별한다. 특정모양그림없이도판정할수있는조건을직접명시한다.",
+      "changed": true,
+      "actualNormalizedAfter": {
+        "id": "e6-2-3-1-xc21",
+        "grade": "초6",
+        "source": {
+          "id": "e6-2-3-1-xc21",
+          "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+          "term": "어느 쪽에서도 안 보이는 쌓기나무",
+          "kind": "성질",
+          "level": "상",
+          "definition": "어느 방향에서도 보이지 않는 쌓기나무는 다른 쌓기나무에 {둘러싸여} 있다."
+        },
+        "B": {
+          "prompt": "쌓기나무가 공중에 뜨지 않도록 바닥이나 아래 쌓기나무 위에 쌓았습니다. 어떤 쌓기나무가 위에서 보이지 않으려면 바로 위 칸에 다른 쌓기나무가 있어야 하나요? 앞에서 보이지 않는 경우에도 반드시 바로 앞 칸에 다른 쌓기나무가 있어야 하나요? 두 경우를 나누어 까닭과 함께 쓰세요.",
+          "answer": "위에서 보이지 않으려면 바로 위 칸에도 쌓기나무가 있어야 합니다. 위에 쌓은 쌓기나무를 아래에서 받쳐야 하기 때문입니다. 앞에서 보이지 않을 때에는 반드시 바로 앞 칸이 채워질 필요는 없습니다. 같은 높이에서 앞쪽에 있는 다른 쌓기나무가 가리면, 둘 사이가 떨어져 있어도 보이지 않을 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "위에서 보이지 않으면 바로 위 칸에 쌓기나무가 있어야 하며 위에 쌓은 것을 아래에서 받쳐야 한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "앞에서 보이지 않는다고 바로 앞 칸이 채워질 필요는 없으며 떨어져 있는 앞쪽 쌓기나무도 가릴 수 있다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "현재 자료에는 특정 쌓기 모양이나 각 방향에서 본 그림이 없어, 어느 방향에서도 보이지 않는 위치·개수를 하나로 정해 묻기 어렵다. 가리고/막고라는 동사만 복원하는 C는 제외하며, 각 방향에서 다른 쌓기나무가 가린다는 공간적 까닭은 이 항목의 B에서 설명한다."
+        },
+        "goal": "어느 방향에서도 보이지 않는 쌓기나무의 위치를 설명한다.",
+        "coreAfter": "위, 앞, 뒤, 왼쪽, 오른쪽에서 보아도 안 보이는 쌓기나무는, 각 방향에서 다른 쌓기나무가 {가리고 있다}.",
+        "coreReason": "'어느 방향'의 범위가 불분명하다. 아래쪽은 바닥이라 보이지 않으므로 방향을 위, 앞, 뒤, 옆으로 분명히 했다.",
+        "hash": "70cd985c34a61a8194d624660584aa51e9ec9f863e2676d4aaf51fa9703529f3"
+      },
+      "direct": {
+        "id": "e6-2-3-1-xc21",
+        "sourceIndex": 2314,
+        "proposalFingerprintReviewed": "d20a689e661f173ed76d427611b968a5cb188b5a12f0129ee699868845822ebe",
+        "reader": "Root Codex actual source/feedback and normalized final question rereading",
+        "learningRole": "definition",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "exclude",
+        "reason": "공중에뜨지않는쌓기에서위쪽가림에는바로윗칸이필요하지만수평시선은떨어진블록도가릴수있음을방향별로구별한다. 특정모양그림없이도판정할수있는조건을직접명시한다.",
+        "inputEvidence": "../design-evidence/root-e5e6-fresh-3-proposals-20261007.json",
+        "recordedAfterDirectReading": "2026-10-07T11:58:54.023Z",
+        "isIndependentApproval": false
+      },
+      "recordedAfterActualNormalizedQuestionReading": true,
+      "isIndependentApproval": false
+    }
+  ]
+}

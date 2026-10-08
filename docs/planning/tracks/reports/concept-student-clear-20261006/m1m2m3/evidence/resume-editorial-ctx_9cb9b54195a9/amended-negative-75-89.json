@@ -1,0 +1,1144 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-75-89.json",
+  "changes": [
+    {
+      "id": "m2-01-05-xc12",
+      "cAfter": "거듭제곱끼리 곱할 때 $4=2^2$, $8=2^3$처럼 수를 같은 {밑}의 거듭제곱으로 바꾸면 지수법칙을 쓸 수 있다.",
+      "cAcceptedAnswers": [
+        [
+          "밑"
+        ]
+      ],
+      "cReason": "범위가 넓은 쓸 수 있다 칸은 없애고 거듭제곱을 맞추는 기준인 밑을 묻는다."
+    },
+    {
+      "id": "m3-06-03-xc22",
+      "cAfter": "지름 $AB$와 원 위의 다른 점 $P$가 만드는 삼각형에서 $\\angle APB$는 반원에 대한 원주각이므로 {직각}이다. 따라서 $\\overline{AB}$를 {빗변}으로 하여 피타고라스 정리를 쓸 수 있다.",
+      "cAcceptedAnswers": [
+        [
+          "직각",
+          "$90^\\circ$"
+        ],
+        [
+          "빗변"
+        ]
+      ],
+      "cReason": "긴 설명 이름의 복원 칸은 없애고 원주각의 크기와 피타고라스 정리에서 변의 역할을 묻는다."
+    },
+    {
+      "id": "m3-06-03-xc23",
+      "cAfter": "원 위의 세 점 $A$, $B$, $P$에 대하여 $\\angle APB=90^\\circ$이면 선분 $AB$는 그 원의 {지름}이다.",
+      "cAcceptedAnswers": [
+        [
+          "지름"
+        ]
+      ],
+      "cReason": "거꾸로라는 설명 방식의 어휘 칸을 없애고 실제 원에서 선분의 역할을 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc3",
+      "cAfter": "접선과 현이 이루는 각의 꼭짓점은 {접점}이다.",
+      "cAcceptedAnswers": [
+        [
+          "접점"
+        ]
+      ],
+      "cReason": "앞에서 이미 이름을 말한 현을 반복하는 칸은 없애고 두 선이 만나는 점의 이름을 확인한다."
+    },
+    {
+      "id": "m3-06-04-xc10",
+      "cAfter": "$\\triangle ABC$의 외접원에서 점 $A$의 접선과 현 $AB$가 이루는 각 중, 안쪽에 놓인 호 $AB$가 점 $C$를 포함하지 않는 각은 {$\\angle ACB$}와 크기가 같다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\angle ACB$",
+          "$\\angle BCA$",
+          "$\\angle C$"
+        ]
+      ],
+      "cReason": "각 안쪽에 놓인 호와 C의 위치로 대상 각을 고르고 호라는 이름 칸은 없앤다."
+    },
+    {
+      "id": "m2-05-08-c4",
+      "cAfter": "등변사다리꼴의 두 대각선은 길이가 서로 {같다}.",
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "cReason": "같은 길이의 두 옆변도 들어가던 첫 칸을 없애고 대각선 길이의 관계를 명확히 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc18",
+      "cAfter": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 한다. $\\angle PAB$, $\\angle PBA$와 크기가 같은 원주각 $\\angle ACB$를 만들려면, 점 $C$를 두 호 $AB$ 중 {큰} 호 위에 잡는다.",
+      "cAcceptedAnswers": [
+        [
+          "큰"
+        ]
+      ],
+      "cReason": "밑각이라는 이름의 범위를 묻지 않고 구체적인 두 각과 원주각의 꼭짓점을 놓을 호의 선택을 묻는다."
+    },
+    {
+      "id": "m2-07-06-c1",
+      "cAfter": "닮은 두 평면도형의 둘레의 길이의 비는 닮음비와 {같다}.",
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "cReason": "대응변·높이·대각선도 가능했던 대상 칸을 없애고 둘레의 비를 닮음비와 비교한다."
+    },
+    {
+      "id": "m1-03-04-xc23",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "방정식이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "문자의 값에 따라 참과 거짓이 달라지므로 방정식이다",
+            "항등식은 어느 값을 넣어도 참이어야 하는데 이 등식은 그렇지 않다"
+          ]
+        }
+      ],
+      "bReason": "문항에 주어진 참·거짓 사실을 정의와 연결해야 하며 편집 메모와 단순 사실 반복을 필수 기준에서 제거한다."
+    },
+    {
+      "id": "m3-01-02-c7",
+      "bPrompt": "실수 $-2$, $\\frac{1}{3}$, $\\sqrt{2}$를 정수, 정수가 아닌 유리수, 무리수로 나누고 각 수를 그렇게 나눈 까닭을 쓰시오.",
+      "bAnswer": "$-2$는 자연수에 음의 부호를 붙인 수이므로 정수이다. $\\frac{1}{3}$은 정수끼리의 분수로 나타나지만 정수는 아니므로 정수가 아닌 유리수이다. $\\sqrt{2}$는 정수끼리의 분수로 나타낼 수 없으므로 무리수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음의 정수 -2는 자연수에 음의 부호를 붙인 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$은 분수로 나타낼 수 있지만 정수는 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt{2}$는 정수끼리의 분수로 나타낼 수 없는 무리수이다"
+          ]
+        }
+      ],
+      "bGoal": "실수를 정수·정수가 아닌 유리수·무리수로 분류하기",
+      "bReason": "분류 기준을 주고 실제 수를 분류하게 하여 여러 가능한 분류 방식을 임의로 오답 처리하지 않는다.",
+      "cAfter": "실수는 유리수와 {무리수}로 나뉘며, 유리수에는 정수와 정수가 아닌 유리수가 있다.",
+      "cAcceptedAnswers": [
+        [
+          "무리수"
+        ]
+      ],
+      "cReason": "정수가 아닌 유리수라는 긴 표현을 새 이름처럼 복원하게 하지 않고 두 단계 분류에서 표준 이름 하나를 확인한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-01-05-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$4^3\\times8^2$을 $2$의 거듭제곱 하나로 나타내고 풀이 과정을 쓰시오.",
+      "bAnswer": "$4=2^2$, $8=2^3$이므로 $4^3\\times8^2=(2^2)^3\\times(2^3)^2=2^6\\times2^6=2^{12}$",
+      "bGoal": "수를 같은 밑의 거듭제곱으로 고쳐 지수법칙 쓰기",
+      "bReason": "밑을 고치는 방법을 실제 식 $4^3\\times8^2$에서 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4=2^2$, $8=2^3$으로 고친다",
+            "$4^3=2^6$, $8^2=2^6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2^{12}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "범위가 넓은 쓸 수 있다 칸은 없애고 거듭제곱을 맞추는 기준인 밑을 묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "밑을 통일하는 방법",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2229,
+      "part": "m2plus",
+      "sourceFingerprint": "fd80e3c86084c9290b49a123cee6677e5a03a4376d02b41f593d202831a5ea30",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2229
+      },
+      "directReview": null,
+      "cMarkedSentence": "거듭제곱끼리 곱할 때 $4=2^2$, $8=2^3$처럼 수를 같은 {밑}의 거듭제곱으로 바꾸면 지수법칙을 쓸 수 있다.",
+      "cSlotAnswers": [
+        "밑"
+      ],
+      "cStudentSentence": "거듭제곱끼리 곱할 때 $4=2^2$, $8=2^3$처럼 수를 같은 □의 거듭제곱으로 바꾸면 지수법칙을 쓸 수 있다.",
+      "cAnswers": [
+        "밑"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "밑",
+          "equivalentAnswers": [
+            "밑"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "밑"
+        ]
+      ],
+      "proposalFingerprint": "cf237b6b6671b525e37962c65ac32facaa0bda5f29b8f23836dc7f2fd4e39fcf",
+      "cAfter": "거듭제곱끼리 곱할 때 $4=2^2$, $8=2^3$처럼 수를 같은 {밑}의 거듭제곱으로 바꾸면 지수법칙을 쓸 수 있다."
+    },
+    {
+      "id": "m1-03-02-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "다항식은 차수에 따라 이름을 붙인다. 차수가 $1$인 다항식과 차수가 $2$인 다항식의 이름을 각각 쓰고, $4-x^2$은 몇 차식인지 까닭과 함께 답하시오.",
+      "bAnswer": "차수가 $1$이면 일차식, $2$이면 이차식이다. $4-x^2$은 차수가 가장 높은 항 $-x^2$의 차수가 $2$이므로 이차식이다.",
+      "bGoal": "다항식을 차수에 따라 일차식, 이차식으로 부른다.",
+      "bReason": "제목은 이름 붙이는 방법이 있다는 것만 말해, 차수별 이름과 구체 식에 적용하기로 범위를 정했다.",
+      "cDecision": "rewrite",
+      "cAfter": "다항식은 차수에 따라 이름을 붙인다. 차수가 $1$이면 일차식, 차수가 $2$이면 {이차식}이라 한다.",
+      "cAnswers": [
+        "이차식"
+      ],
+      "cReason": "원문은 두 빈칸의 답이 모두 '이차식'이라 같은 것을 두 번 쓰게 한다. 빈칸을 하나로 줄이고 차수와 이름의 대응이 보이게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 5,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차수가 $1$이면 일차식, $2$이면 이차식"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4-x^2$은 이차식"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 차수가 가장 높은 항 $-x^2$의 차수가 $2$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "naming",
+      "roleReason": "차수 2면 이차식이라 부름",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1201,
+      "part": "m1plus",
+      "sourceFingerprint": "b19a0eba950aff282bb94d7d1005d7975e96ef4f948dcb64a4cbd82d06d8daa4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1201
+      },
+      "directReview": null,
+      "cMarkedSentence": "다항식은 차수에 따라 이름을 붙인다. 차수가 $1$이면 일차식, 차수가 $2$이면 {이차식}이라 한다.",
+      "cSlotAnswers": [
+        "이차식"
+      ],
+      "cStudentSentence": "다항식은 차수에 따라 이름을 붙인다. 차수가 $1$이면 일차식, 차수가 $2$이면 □이라 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "이차식",
+          "equivalentAnswers": [
+            "이차식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "이차식"
+        ]
+      ],
+      "proposalFingerprint": "bae95456361a4618890e4110bd3d2a1991c1aa94c9828a17b3e84d188e758dcf"
+    },
+    {
+      "id": "m1-03-03-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "$4x\\times(-3)$을 계산하고, 단항식에 수를 곱할 때 수와 문자를 각각 어떻게 처리하는지 쓰시오.",
+      "bAnswer": "수끼리 곱한 $4\\times(-3)=-12$를 계수로 쓰고 문자 $x$는 그대로 써서 $-12x$이다.",
+      "bGoal": "단항식과 수의 곱셈에서 수끼리 곱해 계수로 쓴다.",
+      "bReason": "제목 '단항식과 수의 곱'은 계산 대상이 없다. 음수를 곱하는 원문 예시를 넣고 수와 문자의 처리를 나누어 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "'수끼리 곱해 □로 쓰고 문자는 그대로'에서 수가 놓이는 자리의 이름인 계수가 답으로 정해진다. 단항식과 계수는 중1에서 배운 용어다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-12x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "수끼리 곱해 계수로 쓰고 문자는 그대로 씀"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "수끼리 곱해 계수로 쓰기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1205,
+      "part": "m1plus",
+      "sourceFingerprint": "51a2d2364d6f0677d5e037b79e99c86753027992e9c97da8b43724cfd96daef3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1205
+      },
+      "directReview": null,
+      "cFrozenSentence": "단항식에 수를 곱할 때는 수끼리 곱해 □로 쓰고 문자는 그대로 쓴다.",
+      "cFrozenDefinition": "단항식에 수를 곱할 때는 수끼리 곱해 {계수}로 쓰고 문자는 그대로 쓴다.",
+      "cFrozenAnswers": [
+        "계수"
+      ],
+      "cMarkedSentence": "단항식에 수를 곱할 때는 수끼리 곱해 {계수}로 쓰고 문자는 그대로 쓴다.",
+      "cSlotAnswers": [
+        "계수"
+      ],
+      "cStudentSentence": "단항식에 수를 곱할 때는 수끼리 곱해 □로 쓰고 문자는 그대로 쓴다.",
+      "cAnswers": [
+        "계수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "계수",
+          "equivalentAnswers": [
+            "계수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "계수"
+        ]
+      ],
+      "proposalFingerprint": "0ddb91ebdcb1065d9ca67d84bb4c1816412679deeb5b0d6f1f45bf2f1cac0dba"
+    },
+    {
+      "id": "m3-06-03-xc22",
+      "learningRole": "application",
+      "roleReason": "지름이 빗변인 직각삼각형에 피타고라스 정리 적용",
+      "bDecision": "rewrite",
+      "bPrompt": "원의 지름 $AB$와 원 위의 다른 점 $P$로 $\\triangle APB$를 만들었다. $\\overline{AP}$, $\\overline{BP}$, $\\overline{AB}$의 길이 사이의 관계식을 쓰고 그 까닭을 쓰시오.",
+      "bAnswer": "$\\overline{AP}^2+\\overline{BP}^2=\\overline{AB}^2$이다. $\\angle APB$는 반원에 대한 원주각이라 $90^\\circ$이다. 따라서 $\\overline{AB}$가 빗변인 직각삼각형에서 피타고라스 정리를 쓸 수 있다.",
+      "bGoal": "원주각과 피타고라스 정리 연결",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{AP}^2+\\overline{BP}^2=\\overline{AB}^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\angle APB=90^\\circ$(반원에 대한 원주각)이다"
+          ]
+        }
+      ],
+      "bReason": "계산 하나로 줄이지 않고, 일반 관계식과 직각의 근거를 함께 묻게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "긴 설명 이름의 복원 칸은 없애고 원주각의 크기와 피타고라스 정리에서 변의 역할을 묻는다.",
+      "authorBatch": 61,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3641,
+      "part": "m3plus",
+      "sourceFingerprint": "2e6648fa63dfb2dfefe0e855ea1ecc317981439ef84985c59cc3fcc5a437a87b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3641
+      },
+      "directReview": null,
+      "cMarkedSentence": "지름 $AB$와 원 위의 다른 점 $P$가 만드는 삼각형에서 $\\angle APB$는 반원에 대한 원주각이므로 {직각}이다. 따라서 $\\overline{AB}$를 {빗변}으로 하여 피타고라스 정리를 쓸 수 있다.",
+      "cSlotAnswers": [
+        "직각",
+        "빗변"
+      ],
+      "cStudentSentence": "지름 $AB$와 원 위의 다른 점 $P$가 만드는 삼각형에서 $\\angle APB$는 반원에 대한 원주각이므로 □이다. 따라서 $\\overline{AB}$를 □으로 하여 피타고라스 정리를 쓸 수 있다.",
+      "cAnswers": [
+        "직각",
+        "빗변"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "직각",
+          "equivalentAnswers": [
+            "직각",
+            "$90^\\circ$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "빗변",
+          "equivalentAnswers": [
+            "빗변"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "직각",
+          "accept": [
+            "$90^\\circ$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "직각",
+          "$90^\\circ$"
+        ],
+        [
+          "빗변"
+        ]
+      ],
+      "proposalFingerprint": "e89ce0128a43d4ea7556c1ee2895983bad964fbc64570b07a048d2e41af79eaf",
+      "cAfter": "지름 $AB$와 원 위의 다른 점 $P$가 만드는 삼각형에서 $\\angle APB$는 반원에 대한 원주각이므로 {직각}이다. 따라서 $\\overline{AB}$를 {빗변}으로 하여 피타고라스 정리를 쓸 수 있다."
+    },
+    {
+      "id": "m3-06-03-xc23",
+      "learningRole": "reason",
+      "roleReason": "$90^\\circ$인 원주각의 현이 지름인 까닭",
+      "bDecision": "rewrite",
+      "bPrompt": "원 $O$ 위의 세 점 $A$, $B$, $P$에 대하여 $\\angle APB=90^\\circ$이다. 선분 $AB$는 이 원에서 어떤 선분인가? 중심각을 이용해 까닭도 쓰시오.",
+      "bAnswer": "선분 $AB$는 지름이다. 호 $AB$에 대한 중심각 $\\angle AOB$는 원주각의 $2$배인 $180^\\circ$이므로 $A$, $O$, $B$가 한 직선 위에 있다. 즉 $\\overline{AB}$는 중심을 지난다.",
+      "bGoal": "반원 성질의 역",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름"
+          ]
+        },
+        {
+          "anyOf": [
+            "중심각이 $180^\\circ$이다",
+            "$A$, $O$, $B$가 한 직선 위에 있다"
+          ]
+        }
+      ],
+      "bReason": "반원 성질의 역이므로 선분의 이름을 묻고 중심각 $180^\\circ$ 근거를 요구했다.",
+      "cDecision": "rewrite",
+      "cReason": "거꾸로라는 설명 방식의 어휘 칸을 없애고 실제 원에서 선분의 역할을 묻는다.",
+      "authorBatch": 61,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3642,
+      "part": "m3plus",
+      "sourceFingerprint": "3e8c6fe8b5c9fa11564945835a209e6ee3a94382310b73655a1df4e41320c939",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3642
+      },
+      "directReview": null,
+      "cMarkedSentence": "원 위의 세 점 $A$, $B$, $P$에 대하여 $\\angle APB=90^\\circ$이면 선분 $AB$는 그 원의 {지름}이다.",
+      "cSlotAnswers": [
+        "지름"
+      ],
+      "cStudentSentence": "원 위의 세 점 $A$, $B$, $P$에 대하여 $\\angle APB=90^\\circ$이면 선분 $AB$는 그 원의 □이다.",
+      "cAnswers": [
+        "지름"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "지름",
+          "equivalentAnswers": [
+            "지름"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "거꾸로",
+          "accept": [
+            "반대로",
+            "역으로"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "지름"
+        ]
+      ],
+      "proposalFingerprint": "8bf787755ded171c71f121fb676815ed4dabea3b0deba075421fbb71c9b5c586",
+      "cAfter": "원 위의 세 점 $A$, $B$, $P$에 대하여 $\\angle APB=90^\\circ$이면 선분 $AB$는 그 원의 {지름}이다."
+    },
+    {
+      "id": "m3-06-04-xc3",
+      "learningRole": "naming",
+      "roleReason": "접선과 현이 이루는 각의 꼭짓점과 변",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "꼭짓점과 변의 이름만 묻는 조각 정의로, c5 B의 상황에 포함된다.",
+      "cDecision": "rewrite",
+      "cReason": "앞에서 이미 이름을 말한 현을 반복하는 칸은 없애고 두 선이 만나는 점의 이름을 확인한다.",
+      "exclusionReason": "B 제외: 꼭짓점은 접점, 변은 접선과 현이라는 이름 조각으로 c5 B의 설정과 중복된다.",
+      "authorBatch": 61,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3645,
+      "part": "m3plus",
+      "sourceFingerprint": "37f51d2f51054a2101c5d6a87eb8e7161114608ff7f813a1dda48da316b6e5df",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3645
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "접선과 현이 이루는 각의 꼭짓점은 {접점}이다.",
+      "cSlotAnswers": [
+        "접점"
+      ],
+      "cStudentSentence": "접선과 현이 이루는 각의 꼭짓점은 □이다.",
+      "cAnswers": [
+        "접점"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "접점",
+          "equivalentAnswers": [
+            "접점"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "접점"
+        ]
+      ],
+      "proposalFingerprint": "ea4c972253ccf7d492e306fb653fa10571a44dada50b7802281bc449128922aa",
+      "cAfter": "접선과 현이 이루는 각의 꼭짓점은 {접점}이다."
+    },
+    {
+      "id": "m3-06-04-xc10",
+      "learningRole": "application",
+      "roleReason": "외접원에서 접선과 현의 각을 $\\angle ACB$로 찾기",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "c5 B가 이미 같은 $\\angle ACB$ 찾기를 묻는다.",
+      "cDecision": "rewrite",
+      "cReason": "각 안쪽에 놓인 호와 C의 위치로 대상 각을 고르고 호라는 이름 칸은 없앤다.",
+      "exclusionReason": "B 제외: $\\triangle ABC$의 외접원에서 접선과 현의 각과 같은 $\\angle ACB$를 찾는 c5 B와 상황이 같다.",
+      "authorBatch": 61,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3650,
+      "part": "m3plus",
+      "sourceFingerprint": "1a74dc629b1e9e06d761c8686609b5e49115acb632de9d264b46dff31defe5f8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3650
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$\\triangle ABC$의 외접원에서 점 $A$의 접선과 현 $AB$가 이루는 각 중, 안쪽에 놓인 호 $AB$가 점 $C$를 포함하지 않는 각은 {$\\angle ACB$}와 크기가 같다.",
+      "cSlotAnswers": [
+        "$\\angle ACB$"
+      ],
+      "cStudentSentence": "$\\triangle ABC$의 외접원에서 점 $A$의 접선과 현 $AB$가 이루는 각 중, 안쪽에 놓인 호 $AB$가 점 $C$를 포함하지 않는 각은 □와 크기가 같다.",
+      "cAnswers": [
+        "$\\angle ACB$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\angle ACB$",
+          "equivalentAnswers": [
+            "$\\angle ACB$",
+            "$\\angle BCA$",
+            "$\\angle C$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\angle ACB$",
+          "accept": [
+            "$\\angle BCA$",
+            "$\\angle C$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\angle ACB$",
+          "$\\angle BCA$",
+          "$\\angle C$"
+        ]
+      ],
+      "proposalFingerprint": "d76429a60bc1539fb4ac1ff68c748f6a70bdb3e3bc25e27bd32f79771c06edad",
+      "cAfter": "$\\triangle ABC$의 외접원에서 점 $A$의 접선과 현 $AB$가 이루는 각 중, 안쪽에 놓인 호 $AB$가 점 $C$를 포함하지 않는 각은 {$\\angle ACB$}와 크기가 같다."
+    },
+    {
+      "id": "m2-05-08-c4",
+      "learningRole": "reason",
+      "roleReason": "합동으로 대각선 길이가 같음 설명",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 두 대각선 $\\overline{AC}$, $\\overline{DB}$의 길이 사이의 관계를 쓰고, 그 까닭을 $\\triangle ABC$와 $\\triangle DCB$를 비교하여 설명하시오.",
+      "bAnswer": "$\\overline{AC}=\\overline{DB}$. $\\overline{AB}=\\overline{DC}$, $\\angle ABC=\\angle DCB$, $\\overline{BC}$는 공통이므로 $\\triangle ABC\\equiv\\triangle DCB$($\\mathrm{SAS}$ 합동)이다.",
+      "bGoal": "등변사다리꼴 대각선 성질 설명하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$AC=DB$",
+            "두 대각선의 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$AB=DC$, $\\angle ABC=\\angle DCB$이고 $BC$가 공통이므로 두 삼각형이 합동이다"
+          ]
+        }
+      ],
+      "bReason": "SAS라는 이름만으로 이유를 대신하지 않고 실제 두 변과 끼인각의 일치로 합동을 설명하게 한다.",
+      "cDecision": "rewrite",
+      "cReason": "같은 길이의 두 옆변도 들어가던 첫 칸을 없애고 대각선 길이의 관계를 명확히 묻는다.",
+      "authorBatch": 44,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 638,
+      "part": "m2",
+      "sourceFingerprint": "16c3c492de660f8826de924632ee9641d41f4d88115fb1e808158f841c4ee34f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 638
+      },
+      "directReview": null,
+      "cMarkedSentence": "등변사다리꼴의 두 대각선은 길이가 서로 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "등변사다리꼴의 두 대각선은 길이가 서로 □.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "7ba2e0ffac5e44e7214b4aa68152f6ee37d6bbcfc4e867b538f3d7a81d587aca",
+      "cAfter": "등변사다리꼴의 두 대각선은 길이가 서로 {같다}."
+    },
+    {
+      "id": "m3-06-04-xc18",
+      "learningRole": "reason",
+      "roleReason": "두 접선이 만든 삼각형의 밑각과 원주각",
+      "bDecision": "rewrite",
+      "bPrompt": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하고, 두 호 $AB$ 가운데 큰 호 위에 점 $C$를 잡는다. $\\angle PAB$, $\\angle PBA$와 크기가 같은 원주각을 쓰고 까닭을 쓰시오.",
+      "bAnswer": "둘 다 $\\angle ACB$와 같다. $\\angle PAB$는 접선 $PA$와 현 $AB$가 이루는 각이므로 그 안쪽의 작은 호 $AB$에 대한 원주각 $\\angle ACB$와 같다. $\\angle PBA$도 같은 까닭으로 $\\angle ACB$와 같다.",
+      "bGoal": "두 접선과 원주각의 관계",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\angle ACB$"
+          ]
+        },
+        {
+          "anyOf": [
+            "접선과 현이 이루는 각은 그 안쪽의 작은 호에 대한 원주각과 같다"
+          ]
+        }
+      ],
+      "bReason": "예시처럼 접점과 큰 호 위의 점 $C$를 정해 두 밑각과 같은 원주각을 찾게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "밑각이라는 이름의 범위를 묻지 않고 구체적인 두 각과 원주각의 꼭짓점을 놓을 호의 선택을 묻는다.",
+      "authorBatch": 61,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3657,
+      "part": "m3plus",
+      "sourceFingerprint": "0b849831ed12756fa7d012966a5ec9377379b4021ad79724a110f684afae5618",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3657
+      },
+      "directReview": null,
+      "cMarkedSentence": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 한다. $\\angle PAB$, $\\angle PBA$와 크기가 같은 원주각 $\\angle ACB$를 만들려면, 점 $C$를 두 호 $AB$ 중 {큰} 호 위에 잡는다.",
+      "cSlotAnswers": [
+        "큰"
+      ],
+      "cStudentSentence": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 한다. $\\angle PAB$, $\\angle PBA$와 크기가 같은 원주각 $\\angle ACB$를 만들려면, 점 $C$를 두 호 $AB$ 중 □ 호 위에 잡는다.",
+      "cAnswers": [
+        "큰"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "큰"
+        ]
+      ],
+      "proposalFingerprint": "7110dc8cc0b582c5ff7715c123e16b1ef42c893a5ec571e86ce28ceb09b632e3",
+      "cAfter": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 한다. $\\angle PAB$, $\\angle PBA$와 크기가 같은 원주각 $\\angle ACB$를 만들려면, 점 $C$를 두 호 $AB$ 중 {큰} 호 위에 잡는다."
+    },
+    {
+      "id": "m2-07-06-c1",
+      "learningRole": "reason",
+      "roleReason": "대응변이 모두 같은 비이므로 그 합인 둘레의 비도 닮음비와 같다",
+      "bDecision": "rewrite",
+      "bPrompt": "닮음비가 $m:n$인 두 평면도형에서 둘레의 길이의 비는 무엇인가? 그렇게 되는 까닭도 쓰시오.",
+      "bAnswer": "$m:n$이며 닮음비와 같다. 대응하는 변의 길이가 모두 $m:n$이므로, 그 길이들을 모두 더한 둘레의 길이의 비도 $m:n$이다.",
+      "bGoal": "둘레의 비가 닮음비와 같은 까닭 이해",
+      "bReason": "변비 일정 또는 둘레가 합이라는 단독 사실이 아니라 두 사실을 연결한 이유를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$m:n$",
+            "닮음비와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대응하는 모든 변이 같은 비로 변하므로 그 길이의 합인 둘레도 같은 비로 변한다",
+            "둘레는 변 길이의 합이고 모든 대응변의 길이비가 m:n이라 둘레의 비도 m:n이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "대응변·높이·대각선도 가능했던 대상 칸을 없애고 둘레의 비를 닮음비와 비교한다.",
+      "authorBatch": 49,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 698,
+      "part": "m2",
+      "sourceFingerprint": "518d094e49df46b7af7d1ba574acead65aa6f5ab5521b65624907e374fc9ee96",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 698
+      },
+      "directReview": null,
+      "cMarkedSentence": "닮은 두 평면도형의 둘레의 길이의 비는 닮음비와 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "닮은 두 평면도형의 둘레의 길이의 비는 닮음비와 □.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "c668c4110acc660aab9ec9644106d5f5d58460fa3f0555876440a559663ed072",
+      "cAfter": "닮은 두 평면도형의 둘레의 길이의 비는 닮음비와 {같다}."
+    },
+    {
+      "id": "m3-01-01-c9",
+      "bDecision": "rewrite",
+      "bPrompt": "두 양수 $a$, $b$에 대하여 $a<b$일 때 $\\sqrt{a}$와 $\\sqrt{b}$의 대소 관계를 쓰고, 넓이가 $a$, $b$인 두 정사각형의 한 변의 길이를 이용하여 이유를 설명하시오.",
+      "bAnswer": "$\\sqrt{a}<\\sqrt{b}$. 넓이가 $a$, $b$인 정사각형의 한 변의 길이는 $\\sqrt{a}$, $\\sqrt{b}$이고, 넓이가 큰 정사각형이 한 변의 길이도 길기 때문이다.",
+      "bGoal": "양의 제곱근의 대소 관계",
+      "bReason": "어떤 제곱근끼리의 대소인지 없어 두 양수의 양의 제곱근으로 한정하고 이유의 근거를 줌.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a<b$이면 $\\sqrt{a}<\\sqrt{b}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이가 클수록 정사각형의 한 변이 길다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 양수 $a$, $b$에서 $a<b$이면 $\\sqrt a$ { $<$ } $\\sqrt b$이다.",
+      "cAnswers": [
+        "$<$"
+      ],
+      "cReason": "한 문장에서 같은 증가 관계를 두 번 답하게 하지 않고 유용한 제곱근 비교 한 칸을 유지한다.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "넓이 크면 변도 길다",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 756,
+      "part": "m3",
+      "sourceFingerprint": "9d6894e8fd634493874d1778e17e37bca6e9b19ab976773f83ce3507dae1e45a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 756
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 양수 $a$, $b$에서 $a<b$이면 $\\sqrt a$ { $<$ } $\\sqrt b$이다.",
+      "cSlotAnswers": [
+        "$<$"
+      ],
+      "cStudentSentence": "두 양수 $a$, $b$에서 $a<b$이면 $\\sqrt a$ □ $\\sqrt b$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$<$",
+          "equivalentAnswers": [
+            "$<$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$<$"
+        ]
+      ],
+      "proposalFingerprint": "d2eae2b3cc37d0e7b2a21864b421ed75e208cccb4bdac4e7c25e3f583f4b17ca"
+    },
+    {
+      "id": "m1-03-04-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "등식 $2x=x$는 $x=0$을 넣으면 참이고 $x=1$을 넣으면 거짓이다. 이 등식은 항등식인가, 방정식인가? 그 이유를 쓰시오.",
+      "bAnswer": "방정식이다. 거짓이 되는 값이 하나라도 있으면 항등식이 아니고, $x$의 값에 따라 참도 되고 거짓도 되므로 방정식이다.",
+      "bGoal": "거짓이 되는 값을 하나 찾아 항등식이 아님을 보인다.",
+      "bReason": "문항에 주어진 참·거짓 사실을 정의와 연결해야 하며 편집 메모와 단순 사실 반복을 필수 기준에서 제거한다.",
+      "cDecision": "rewrite",
+      "cAfter": "등식의 문자에 수를 넣어 보아 거짓이 되는 경우가 하나라도 있으면 그 등식은 {항등식}이 아니다.",
+      "cAnswers": [
+        "항등식"
+      ],
+      "cReason": "원문은 조건의 낱말 '하나라도'와 결론 '아니다'를 함께 가려 문장의 뼈대가 사라진다. 조건은 모두 보이게 두고 결론의 용어만 빈칸으로 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "방정식이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "문자의 값에 따라 참과 거짓이 달라지므로 방정식이다",
+            "항등식은 어느 값을 넣어도 참이어야 하는데 이 등식은 그렇지 않다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "reason",
+      "roleReason": "거짓 하나면 항등식 아님",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1247,
+      "part": "m1plus",
+      "sourceFingerprint": "983fde9277ca7049e4ff0e7b48bdfd8439ab416dc4c10a7b4fb1a0ffe1d3692f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1247
+      },
+      "directReview": null,
+      "cMarkedSentence": "등식의 문자에 수를 넣어 보아 거짓이 되는 경우가 하나라도 있으면 그 등식은 {항등식}이 아니다.",
+      "cSlotAnswers": [
+        "항등식"
+      ],
+      "cStudentSentence": "등식의 문자에 수를 넣어 보아 거짓이 되는 경우가 하나라도 있으면 그 등식은 □이 아니다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "항등식",
+          "equivalentAnswers": [
+            "항등식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "항등식"
+        ]
+      ],
+      "proposalFingerprint": "38913605e4e18a91fc69236b10a7a207bd641e95d958c9ba8e1f7648787e2c42"
+    },
+    {
+      "id": "m3-01-02-c7",
+      "bDecision": "rewrite",
+      "bPrompt": "실수 $-2$, $\\frac{1}{3}$, $\\sqrt{2}$를 정수, 정수가 아닌 유리수, 무리수로 나누고 각 수를 그렇게 나눈 까닭을 쓰시오.",
+      "bAnswer": "$-2$는 자연수에 음의 부호를 붙인 수이므로 정수이다. $\\frac{1}{3}$은 정수끼리의 분수로 나타나지만 정수는 아니므로 정수가 아닌 유리수이다. $\\sqrt{2}$는 정수끼리의 분수로 나타낼 수 없으므로 무리수이다.",
+      "bGoal": "실수를 정수·정수가 아닌 유리수·무리수로 분류하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음의 정수 -2는 자연수에 음의 부호를 붙인 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$은 분수로 나타낼 수 있지만 정수는 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt{2}$는 정수끼리의 분수로 나타낼 수 없는 무리수이다"
+          ]
+        }
+      ],
+      "bReason": "분류 기준을 주고 실제 수를 분류하게 하여 여러 가능한 분류 방식을 임의로 오답 처리하지 않는다.",
+      "cDecision": "rewrite",
+      "cReason": "정수가 아닌 유리수라는 긴 표현을 새 이름처럼 복원하게 하지 않고 두 단계 분류에서 표준 이름 하나를 확인한다.",
+      "learningRole": "definition",
+      "roleReason": "실수 분류표에서 유리수의 하위 분류",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 764,
+      "part": "m3",
+      "sourceFingerprint": "e64b710981e7b5b3c3220220c7213b0d1acb32710390393d8373632a38edc4b3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 764
+      },
+      "directReview": null,
+      "cMarkedSentence": "실수는 유리수와 {무리수}로 나뉘며, 유리수에는 정수와 정수가 아닌 유리수가 있다.",
+      "cSlotAnswers": [
+        "무리수"
+      ],
+      "cStudentSentence": "실수는 유리수와 □로 나뉘며, 유리수에는 정수와 정수가 아닌 유리수가 있다.",
+      "cAnswers": [
+        "무리수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "무리수",
+          "equivalentAnswers": [
+            "무리수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "무리수"
+        ]
+      ],
+      "proposalFingerprint": "520cce01878b922e5dc7d522e0474596db532fa48b8b85fe56569936c4c8708d",
+      "cAfter": "실수는 유리수와 {무리수}로 나뉘며, 유리수에는 정수와 정수가 아닌 유리수가 있다."
+    },
+    {
+      "id": "m3-01-02-c8",
+      "bDecision": "rewrite",
+      "bPrompt": "두 실수 $a$, $b$의 크기를 $a-b$를 이용해 비교하려고 한다. $a-b$가 양수일 때, $0$일 때, 음수일 때 $a$와 $b$의 대소 관계를 각각 쓰시오.",
+      "bAnswer": "$a-b>0$이면 $a>b$, $a-b=0$이면 $a=b$, $a-b<0$이면 $a<b$이다.",
+      "bGoal": "차의 부호로 두 실수의 대소 판정하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a-b>0$이면 $a>b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a-b=0$이면 $a=b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a-b<0$이면 $a<b$"
+          ]
+        }
+      ],
+      "bReason": "차의 세 가지 부호별 결론을 묻도록 기호 $a$, $b$와 경우를 명시했다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 실수 $a$, $b$에 대해 $a-b>0$이면 $a$ {$>$} $b$이고, $a-b=0$이면 $a$ {$=$} $b$이며, $a-b<0$이면 $a$ {$<$} $b$이다.",
+      "cAnswers": [
+        "$>$",
+        "$=$",
+        "$<$"
+      ],
+      "cReason": "양수이면 a가 크다·음수이면 b가 크다의 두 참인 조합이 생기는 연동 빈칸을 실제 세 부호별 비교로 바꾼다.",
+      "learningRole": "procedure",
+      "roleReason": "$a-b$의 부호로 대소를 정하는 절차",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 765,
+      "part": "m3",
+      "sourceFingerprint": "d3c4c3d0bc7e803d386b3c422cd7919812b18be74a04e9ad22e7049ea66f3d3d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 765
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 실수 $a$, $b$에 대해 $a-b>0$이면 $a$ {$>$} $b$이고, $a-b=0$이면 $a$ {$=$} $b$이며, $a-b<0$이면 $a$ {$<$} $b$이다.",
+      "cSlotAnswers": [
+        "$>$",
+        "$=$",
+        "$<$"
+      ],
+      "cStudentSentence": "두 실수 $a$, $b$에 대해 $a-b>0$이면 $a$ □ $b$이고, $a-b=0$이면 $a$ □ $b$이며, $a-b<0$이면 $a$ □ $b$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$>$",
+          "equivalentAnswers": [
+            "$>$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$=$",
+          "equivalentAnswers": [
+            "$=$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$<$",
+          "equivalentAnswers": [
+            "$<$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$>$"
+        ],
+        [
+          "$=$"
+        ],
+        [
+          "$<$"
+        ]
+      ],
+      "proposalFingerprint": "df7293cbd6bc1bbe75a7908256fdcc6b3e67ce560590e1db0a86983827781736"
+    },
+    {
+      "id": "m3-01-02-c9",
+      "bDecision": "rewrite",
+      "bPrompt": "제곱근표에서 어떤 수를 찾으면 그 수에 대한 어떤 값을 알 수 있는지 쓰시오. 보통 표에 있는 값이 어떤 방식으로 나타낸 값인지도 쓰시오.",
+      "bAnswer": "그 수의 양의 제곱근을 알 수 있다. 보통 소수 몇째 자리까지 나타낸 어림값이다. 다만 $4$의 양의 제곱근 $2$처럼 정확한 값이 표에 나타나는 경우도 있다.",
+      "bGoal": "제곱근표가 주는 값의 뜻 알기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양의 제곱근"
+          ]
+        },
+        {
+          "anyOf": [
+            "보통 소수 몇째 자리까지 나타낸 어림값이다"
+          ]
+        }
+      ],
+      "bReason": "제곱수의 양의 제곱근은 정확히 표시할 수 있으므로 모든 표의 값이 정확한 값과 다르다고 단정하지 않는다.",
+      "cDecision": "keep",
+      "cReason": "수의 범위는 지면에 주고 핵심인 '양의 제곱근'만 비워 유지한다.",
+      "learningRole": "definition",
+      "roleReason": "양의 제곱근의 어림값을 모은 표",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 766,
+      "part": "m3",
+      "sourceFingerprint": "790085cceadb074e35b2564afc7f1232c03a467d0360cf910ec1cca9c3847fed",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 766
+      },
+      "directReview": null,
+      "cFrozenSentence": "$1.00$부터 $99.9$까지의 수에 대해 □의 어림값을 찾아볼 수 있게 늘어놓은 표가 제곱근표이다.",
+      "cFrozenDefinition": "$1.00$부터 $99.9$까지의 수에 대해 {양의 제곱근}의 어림값을 찾아볼 수 있게 늘어놓은 표가 제곱근표이다.",
+      "cFrozenAnswers": [
+        "양의 제곱근"
+      ],
+      "cMarkedSentence": "$1.00$부터 $99.9$까지의 수에 대해 {양의 제곱근}의 어림값을 찾아볼 수 있게 늘어놓은 표가 제곱근표이다.",
+      "cSlotAnswers": [
+        "양의 제곱근"
+      ],
+      "cStudentSentence": "$1.00$부터 $99.9$까지의 수에 대해 □의 어림값을 찾아볼 수 있게 늘어놓은 표가 제곱근표이다.",
+      "cAnswers": [
+        "양의 제곱근"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양의 제곱근",
+          "equivalentAnswers": [
+            "양의 제곱근"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양의 제곱근"
+        ]
+      ],
+      "proposalFingerprint": "a037665eea8cc0d1727a411ceccd0ea54f1d1bc0b086ecced9c191a934dee9af"
+    }
+  ]
+}

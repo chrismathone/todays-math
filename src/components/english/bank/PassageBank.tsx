@@ -119,7 +119,7 @@ export default function PassageBank({
   };
   return (
     <>
-      <div className={b.actions}>
+      <div className={b.toolbar}>
         <button
           type="button"
           className={w.primaryButton}
@@ -224,7 +224,12 @@ export default function PassageBank({
         </p>
       )}
       <div className={b.layout}>
-        <section aria-label="지문 목록" className={s.card}>
+        <section
+          aria-label="지문 목록"
+          aria-busy={list.status === "loading"}
+          className={b.catalog}
+        >
+          <h2 className={b.listHeading}>지문 목록</h2>
           {list.status === "loading" ? (
             <BankLoading />
           ) : list.status === "error" ? (
@@ -234,8 +239,11 @@ export default function PassageBank({
             />
           ) : (
             <>
+              <p role="status" className={b.resultCount}>
+                이 페이지 {list.data.data.length}개
+              </p>
               {list.data.data.length ? (
-                <ul className={b.list}>
+                <ul className={b.list} aria-label="지문 검색 결과" tabIndex={0}>
                   {list.data.data.map((item) => (
                     <li key={item.id}>
                       <button
@@ -263,8 +271,13 @@ export default function PassageBank({
                 </ul>
               ) : (
                 <p className={b.note}>
-                  조건에 맞는 지문이 없습니다. 새 지문을 등록하거나 검색 조건을
-                  바꿔 주세요.
+                  {filter.q ||
+                  filter.grade ||
+                  filter.source ||
+                  filter.archived === "true" ||
+                  cursors.length > 1
+                    ? "조건에 맞는 지문이 없습니다. 검색 조건을 바꿔 주세요."
+                    : "보관 중인 지문이 없습니다. 지문을 등록하세요."}
                 </p>
               )}
               <BankPagination

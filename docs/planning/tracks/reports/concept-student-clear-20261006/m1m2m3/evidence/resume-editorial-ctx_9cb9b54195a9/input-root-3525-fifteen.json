@@ -1,0 +1,1479 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:45:28.316Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc7",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "기준각이 바뀌면 바뀌는 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직각삼각형에서 기준각을 다른 예각으로 바꾸면 {높이와 밑변}이 서로 바뀐다 — 높이는 기준각과 {마주 보는 변}이기 때문이다.",
+        "example": {
+          "prompt": "$\\angle C=90^\\circ$인 삼각형 $ABC$에서 기준각을 $A$에서 $B$로 바꾸면 높이는 어느 변이 되는가?",
+          "answer": "$\\overline{AC}$"
+        },
+        "studentC": "직각삼각형에서 기준각을 다른 예각으로 바꾸면 □이 서로 바뀐다 — 높이는 기준각과 □이기 때문이다.",
+        "answers": [
+          "높이와 밑변",
+          "마주 보는 변"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 기준각을 $\\angle A$에서 $\\angle B$로 바꾸면 높이와 밑변은 각각 어느 변이 되는지 쓰고, 그렇게 바뀌는 까닭을 쓰시오.",
+        "bAnswer": "$\\angle B$가 기준이면 높이는 $\\overline{AC}$, 밑변은 $\\overline{BC}$이다. 높이는 기준각과 마주 보는 변이므로 기준각이 바뀌면 높이와 밑변이 서로 바뀐다.",
+        "bGoal": "기준각에 따라 바뀌는 높이와 밑변",
+        "bReason": "그림이 없어 직각과 두 기준각의 위치를 정하고 바뀐 변과 이유를 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "높이는 $\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변은 $\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 기준각과 마주 보는 변"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "바뀌는 대상과 그 근거를 채우는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "마주 보는 변이 기준각 따라 바뀜",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3525,
+        "part": "m3plus",
+        "sourceFingerprint": "7eb4125c21ec93fc28527244ca2a958c179576061e73a858bb21f7b41eed7491",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3525
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형에서 기준각을 다른 예각으로 바꾸면 □이 서로 바뀐다 — 높이는 기준각과 □이기 때문이다.",
+        "cFrozenDefinition": "직각삼각형에서 기준각을 다른 예각으로 바꾸면 {높이와 밑변}이 서로 바뀐다 — 높이는 기준각과 {마주 보는 변}이기 때문이다.",
+        "cFrozenAnswers": [
+          "높이와 밑변",
+          "마주 보는 변"
+        ],
+        "cMarkedSentence": "직각삼각형에서 기준각을 다른 예각으로 바꾸면 {높이와 밑변}이 서로 바뀐다 — 높이는 기준각과 {마주 보는 변}이기 때문이다.",
+        "cSlotAnswers": [
+          "높이와 밑변",
+          "마주 보는 변"
+        ],
+        "cStudentSentence": "직각삼각형에서 기준각을 다른 예각으로 바꾸면 □이 서로 바뀐다 — 높이는 기준각과 □이기 때문이다.",
+        "cAnswers": [
+          "높이와 밑변",
+          "마주 보는 변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "높이와 밑변",
+            "equivalentAnswers": [
+              "높이와 밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "마주 보는 변",
+            "equivalentAnswers": [
+              "마주 보는 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "높이와 밑변"
+          ],
+          [
+            "마주 보는 변"
+          ]
+        ],
+        "proposalFingerprint": "86367a61153022eaf050247290cce69c774b3978896b37671412078c35155d24"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc8",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "사인과 코사인 값의 범위",
+        "kind": "성질",
+        "level": "중",
+        "definition": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 {$1$}보다 {작다}.",
+        "studentC": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 □보다 □.",
+        "answers": [
+          "$1$",
+          "작다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 어떤 범위에 있는지 부등호로 쓰고, 그 까닭을 빗변과 관련지어 쓰시오.",
+        "bAnswer": "$0<\\sin A<1$, $0<\\cos A<1$이다. 두 값의 분모인 빗변이 가장 긴 변이라 분자가 분모보다 짧은 양수이기 때문이다.",
+        "bGoal": "사인·코사인 값의 범위",
+        "bReason": "범위를 부등호로, 근거를 빗변의 길이로 답하도록 형태를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0<\\sin A<1$, $0<\\cos A<1$",
+              "$0$보다 크고 $1$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "빗변이 가장 길다",
+              "분자가 분모보다 작다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "근거가 문장 앞에 있어 $1$과 '작다'를 추론하는 짧은 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "빗변이 가장 길어 $1$보다 작음",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3526,
+        "part": "m3plus",
+        "sourceFingerprint": "2a178e034261a29aec9907ad54dcb6fd056386379752664c095741e5185f2ff2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3526
+        },
+        "directReview": null,
+        "cFrozenSentence": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 □보다 □.",
+        "cFrozenDefinition": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 {$1$}보다 {작다}.",
+        "cFrozenAnswers": [
+          "$1$",
+          "작다"
+        ],
+        "cMarkedSentence": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 {$1$}보다 {작다}.",
+        "cSlotAnswers": [
+          "$1$",
+          "작다"
+        ],
+        "cStudentSentence": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 □보다 □.",
+        "cAnswers": [
+          "$1$",
+          "작다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작다",
+            "equivalentAnswers": [
+              "작다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "작다"
+          ]
+        ],
+        "proposalFingerprint": "4ccc2261162ccedb6b7b40f07b4b10942e6fa4e7c008164b710ec5765a2e8e06"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc9",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "$1$보다 클 수 있는 탄젠트",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$\\tan A$는 높이를 밑변으로 나눈 값이라 높이가 밑변보다 길면 {$1$}보다 {크다}.",
+        "studentC": "$\\tan A$는 높이를 밑변으로 나눈 값이라 높이가 밑변보다 길면 □보다 □.",
+        "answers": [
+          "$1$",
+          "크다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "예각 $A$에 대하여 $\\tan A$의 값이 $1$보다 클 수 있는지 답하고, 클 수 있다면 어떤 경우인지 높이와 밑변의 길이를 비교하여 쓰시오.",
+        "bAnswer": "클 수 있다. $\\tan A$는 높이를 밑변으로 나눈 값이므로 높이가 밑변보다 길면 $1$보다 크다.",
+        "bGoal": "탄젠트 값의 범위가 사인·코사인과 다른 점",
+        "bReason": "가능 여부와 조건을 함께 답하게 해 결론을 미리 주지 않았다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "클 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 밑변보다 길 때",
+              "높이>밑변"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 보이고 $1$과 '크다'를 채우는 짧은 비교 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "빗변을 안 써서 $1$보다 클 수 있음",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3527,
+        "part": "m3plus",
+        "sourceFingerprint": "9edcfeb2504777735bd30c07fa01a67bdd5f20fcea45af5906dafb1d2d1b1f96",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3527
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\tan A$는 높이를 밑변으로 나눈 값이라 높이가 밑변보다 길면 □보다 □.",
+        "cFrozenDefinition": "$\\tan A$는 높이를 밑변으로 나눈 값이라 높이가 밑변보다 길면 {$1$}보다 {크다}.",
+        "cFrozenAnswers": [
+          "$1$",
+          "크다"
+        ],
+        "cMarkedSentence": "$\\tan A$는 높이를 밑변으로 나눈 값이라 높이가 밑변보다 길면 {$1$}보다 {크다}.",
+        "cSlotAnswers": [
+          "$1$",
+          "크다"
+        ],
+        "cStudentSentence": "$\\tan A$는 높이를 밑변으로 나눈 값이라 높이가 밑변보다 길면 □보다 □.",
+        "cAnswers": [
+          "$1$",
+          "크다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크다",
+            "equivalentAnswers": [
+              "크다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "크다"
+          ]
+        ],
+        "proposalFingerprint": "15cea151f78d05d229f87d33c48e868548919b77803b4d006fc4df1139a4f5b4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc10",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "삼각비를 구하는 데 필요한 변",
+        "kind": "방법",
+        "level": "중",
+        "definition": "구하려는 삼각비에 쓰이는 {두 변}의 길이를 알면 나머지 변은 필요 없다 — 필요한 변의 길이가 빠졌을 때 {피타고라스 정리}로 구한다.",
+        "studentC": "구하려는 삼각비에 쓰이는 □의 길이를 알면 나머지 변은 필요 없다 — 필요한 변의 길이가 빠졌을 때 □로 구한다.",
+        "answers": [
+          "두 변",
+          "피타고라스 정리"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 $\\cos A$를 구하려고 한다. 어떤 변들의 길이가 꼭 필요하며, 그중 하나가 주어지지 않았다면 어떻게 구하는가?",
+        "bAnswer": "빗변과 밑변($\\angle A$에 붙은 빗변이 아닌 변)의 길이가 필요하고 높이는 필요 없다. 둘 중 하나가 빠졌으면 나머지 두 변의 길이로 피타고라스 정리를 써서 구한다.",
+        "bGoal": "삼각비에 필요한 변 고르기",
+        "bReason": "구할 삼각비를 정해 필요한 두 변과 빠진 변을 구하는 방법을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빗변과 밑변",
+              "빗변과 $\\angle A$에 붙은 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "피타고라스 정리"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'두 변'과 '피타고라스 정리'를 채우는 빈칸이 분명하다.",
+        "learningRole": "procedure",
+        "roleReason": "필요한 두 변 확인 후 빠지면 피타고라스",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3528,
+        "part": "m3plus",
+        "sourceFingerprint": "211ce4c1ee8ff5781608e351f381fd9c9fe586451c473c5288ac5e37db011d1e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3528
+        },
+        "directReview": null,
+        "cFrozenSentence": "구하려는 삼각비에 쓰이는 □의 길이를 알면 나머지 변은 필요 없다 — 필요한 변의 길이가 빠졌을 때 □로 구한다.",
+        "cFrozenDefinition": "구하려는 삼각비에 쓰이는 {두 변}의 길이를 알면 나머지 변은 필요 없다 — 필요한 변의 길이가 빠졌을 때 {피타고라스 정리}로 구한다.",
+        "cFrozenAnswers": [
+          "두 변",
+          "피타고라스 정리"
+        ],
+        "cMarkedSentence": "구하려는 삼각비에 쓰이는 {두 변}의 길이를 알면 나머지 변은 필요 없다 — 필요한 변의 길이가 빠졌을 때 {피타고라스 정리}로 구한다.",
+        "cSlotAnswers": [
+          "두 변",
+          "피타고라스 정리"
+        ],
+        "cStudentSentence": "구하려는 삼각비에 쓰이는 □의 길이를 알면 나머지 변은 필요 없다 — 필요한 변의 길이가 빠졌을 때 □로 구한다.",
+        "cAnswers": [
+          "두 변",
+          "피타고라스 정리"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두 변",
+            "equivalentAnswers": [
+              "두 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "피타고라스 정리",
+            "equivalentAnswers": [
+              "피타고라스 정리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "두 변"
+          ],
+          [
+            "피타고라스 정리"
+          ]
+        ],
+        "proposalFingerprint": "df03b064330e82e06ff6bb574192d7b6b4f9b2ac3770e9c0abd29ede6f79aeda"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc11",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "단위가 없는 삼각비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "삼각비는 두 길이의 비이므로 {단위}가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 {같다}.",
+        "studentC": "삼각비는 두 길이의 비이므로 □가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 □.",
+        "answers": [
+          "단위",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 직각삼각형의 변의 길이를 $\\mathrm{cm}$로 재어 구한 $\\sin A$와 $\\mathrm{mm}$로 재어 구한 $\\sin A$는 어떤 관계인지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "같다. 삼각비는 두 길이의 비라서 단위를 바꾸면 분자와 분모가 똑같이 $10$배가 되어 값이 변하지 않는다. 그래서 삼각비는 단위가 없는 수이다.",
+        "bGoal": "삼각비가 단위와 무관한 까닭",
+        "bReason": "단위를 바꾸는 구체 상황을 주어 비라서 값이 같음을 설명하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 길이의 비",
+              "분자와 분모가 똑같이 $10$배"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'단위'와 '같다'를 채우는 짧은 빈칸으로 근거가 앞에 있다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "비이므로 단위가 없음",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3529,
+        "part": "m3plus",
+        "sourceFingerprint": "3e7ec0eed36649c8e37fedac28f8d180ee3209ae6249207b92cb145e7286b008",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3529
+        },
+        "directReview": null,
+        "cFrozenSentence": "삼각비는 두 길이의 비이므로 □가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 □.",
+        "cFrozenDefinition": "삼각비는 두 길이의 비이므로 {단위}가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 {같다}.",
+        "cFrozenAnswers": [
+          "단위",
+          "같다"
+        ],
+        "cMarkedSentence": "삼각비는 두 길이의 비이므로 {단위}가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 {같다}.",
+        "cSlotAnswers": [
+          "단위",
+          "같다"
+        ],
+        "cStudentSentence": "삼각비는 두 길이의 비이므로 □가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 □.",
+        "cAnswers": [
+          "단위",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "단위",
+            "equivalentAnswers": [
+              "단위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "단위"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "e8d910271ee59f9fdc9b861d0f7a2b9e8935401b58e9d32d5c19c9cf305d779d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc12",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "삼각비로 변의 길이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "사인은 높이를 빗변으로 나눈 값이므로, 사인의 값에 {빗변}의 길이를 곱하면 {높이}가 된다.",
+        "example": {
+          "prompt": "사인의 값에 빗변의 길이를 곱하면 높이가 되는 까닭은?",
+          "answer": "높이를 빗변으로 나눈 값이라서"
+        },
+        "studentC": "사인은 높이를 빗변으로 나눈 값이므로, 사인의 값에 □의 길이를 곱하면 □가 된다.",
+        "answers": [
+          "빗변",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 $\\sin A$의 값과 빗변의 길이를 알 때 높이를 구하는 방법을 쓰고, 그 방법이 맞는 까닭을 사인의 뜻으로 쓰시오.",
+        "bAnswer": "높이는 (빗변의 길이)$\\times\\sin A$이다. $\\sin A$는 높이를 빗변으로 나눈 값이므로 여기에 빗변의 길이를 곱하면 높이가 된다.",
+        "bGoal": "사인으로 높이 구하기",
+        "bReason": "주어진 값과 구할 변을 정해 곱셈 방법과 그 근거를 함께 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빗변의 길이에 $\\sin A$를 곱한다",
+              "높이$=$빗변$\\times\\sin A$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sin A$는 높이를 빗변으로 나눈 값"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "앞 절의 뜻에서 곱할 변과 결과를 골라내는 짧은 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "사인에 빗변을 곱해 높이 구하기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3530,
+        "part": "m3plus",
+        "sourceFingerprint": "63cf7c5dbdfbc4d87639de006c0dee9b539b120ef4ac7f0b88a642c6ab90d59a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3530
+        },
+        "directReview": null,
+        "cFrozenSentence": "사인은 높이를 빗변으로 나눈 값이므로, 사인의 값에 □의 길이를 곱하면 □가 된다.",
+        "cFrozenDefinition": "사인은 높이를 빗변으로 나눈 값이므로, 사인의 값에 {빗변}의 길이를 곱하면 {높이}가 된다.",
+        "cFrozenAnswers": [
+          "빗변",
+          "높이"
+        ],
+        "cMarkedSentence": "사인은 높이를 빗변으로 나눈 값이므로, 사인의 값에 {빗변}의 길이를 곱하면 {높이}가 된다.",
+        "cSlotAnswers": [
+          "빗변",
+          "높이"
+        ],
+        "cStudentSentence": "사인은 높이를 빗변으로 나눈 값이므로, 사인의 값에 □의 길이를 곱하면 □가 된다.",
+        "cAnswers": [
+          "빗변",
+          "높이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "b8b8b29edc0d280a38b6d3737fd04f65c8f0a54070067f7a84e67788c422bc05"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc14",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "도형 속에서 직각삼각형 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "도형에서 삼각비를 구할 때는 구하는 각을 한 예각으로 하는 {직각삼각형}을 찾는다 — 직사각형에서는 {대각선}이 그 빗변이 된다.",
+        "example": {
+          "prompt": "직사각형의 대각선이 가로와 이루는 각의 코사인을 구할 때 빗변이 되는 것은?",
+          "answer": "대각선 — 직각과 마주 봐서"
+        },
+        "studentC": "도형에서 삼각비를 구할 때는 구하는 각을 한 예각으로 하는 □을 찾는다 — 직사각형에서는 □이 그 빗변이 된다.",
+        "answers": [
+          "직각삼각형",
+          "대각선"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\overline{AB}=4$, $\\overline{BC}=3$인 직사각형 $ABCD$에서 $\\angle BAC$의 코사인을 구하려고 한다. 사용할 직각삼각형과 그 빗변을 쓰고 $\\cos(\\angle BAC)$의 값을 구하시오.",
+        "bAnswer": "$\\angle B=90^\\circ$인 직각삼각형 $ABC$를 쓰고, 빗변은 대각선 $\\overline{AC}$이다. $\\overline{AC}=5$이므로 $\\cos(\\angle BAC)=\\frac{4}{5}$이다.",
+        "bGoal": "도형 속 직각삼각형을 찾아 삼각비 구하기",
+        "bReason": "그림이 없어 꼭짓점 순서와 변의 길이를 주고 대각선이 빗변임을 찾게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형 $ABC$",
+              "$\\triangle ABC$"
+            ]
+          },
+          {
+            "anyOf": [
+              "빗변은 대각선 $\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{5}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "찾을 도형과 직사각형에서의 빗변을 채우는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "대각선을 빗변으로 하는 삼각형 찾기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3531,
+        "part": "m3plus",
+        "sourceFingerprint": "f4b64b71f254e7f70c680fad2a6b2b12c3fcc180f1276fbd16dc145fee0176b2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3531
+        },
+        "directReview": null,
+        "cFrozenSentence": "도형에서 삼각비를 구할 때는 구하는 각을 한 예각으로 하는 □을 찾는다 — 직사각형에서는 □이 그 빗변이 된다.",
+        "cFrozenDefinition": "도형에서 삼각비를 구할 때는 구하는 각을 한 예각으로 하는 {직각삼각형}을 찾는다 — 직사각형에서는 {대각선}이 그 빗변이 된다.",
+        "cFrozenAnswers": [
+          "직각삼각형",
+          "대각선"
+        ],
+        "cMarkedSentence": "도형에서 삼각비를 구할 때는 구하는 각을 한 예각으로 하는 {직각삼각형}을 찾는다 — 직사각형에서는 {대각선}이 그 빗변이 된다.",
+        "cSlotAnswers": [
+          "직각삼각형",
+          "대각선"
+        ],
+        "cStudentSentence": "도형에서 삼각비를 구할 때는 구하는 각을 한 예각으로 하는 □을 찾는다 — 직사각형에서는 □이 그 빗변이 된다.",
+        "cAnswers": [
+          "직각삼각형",
+          "대각선"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직각삼각형",
+            "equivalentAnswers": [
+              "직각삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대각선",
+            "equivalentAnswers": [
+              "대각선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직각삼각형"
+          ],
+          [
+            "대각선"
+          ]
+        ],
+        "proposalFingerprint": "23168f43da0df7b426d4b86b9dbc8e8adb3bed643d57f34a05452993223c5310"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc18",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "이등변삼각형의 밑각의 삼각비",
+        "kind": "방법",
+        "level": "상",
+        "definition": "이등변삼각형의 꼭짓점에서 밑변에 수선을 그으면 밑변이 {이등분}되어 밑각의 삼각비를 구할 {직각삼각형}이 생긴다.",
+        "studentC": "이등변삼각형의 꼭짓점에서 밑변에 수선을 그으면 밑변이 □되어 밑각의 삼각비를 구할 □이 생긴다.",
+        "answers": [
+          "이등분",
+          "직각삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\overline{AB}=\\overline{AC}=5$, $\\overline{BC}=6$인 이등변삼각형 $ABC$에서 꼭짓점 $A$에서 밑변 $BC$에 수선 $\\overline{AH}$를 그었다. 이때 $\\overline{BH}$의 길이와 생기는 직각삼각형을 쓰고, $\\cos B$의 값을 구하시오.",
+        "bAnswer": "수선이 밑변을 이등분하므로 $\\overline{BH}=3$이고, $\\angle AHB=90^\\circ$인 직각삼각형 $ABH$가 생긴다. $\\cos B=\\frac{\\overline{BH}}{\\overline{AB}}=\\frac{3}{5}$이다.",
+        "bGoal": "이등변삼각형에서 수선으로 밑각의 삼각비 구하기",
+        "bReason": "그림이 없어 변의 길이와 수선의 위치를 주고 이등분과 직각삼각형을 찾게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BH}=3$",
+              "밑변이 이등분된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각삼각형 $ABH$",
+              "$\\triangle ABH$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\cos B=\\frac{3}{5}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "수선의 결과를 하나씩 채우는 짧은 빈칸으로 조건이 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "수선으로 직각삼각형 만들기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3535,
+        "part": "m3plus",
+        "sourceFingerprint": "9ab36f2c98a1ca452c1d316a14d97f9a2bcbe569772202989a7e4abe5327b825",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3535
+        },
+        "directReview": null,
+        "cFrozenSentence": "이등변삼각형의 꼭짓점에서 밑변에 수선을 그으면 밑변이 □되어 밑각의 삼각비를 구할 □이 생긴다.",
+        "cFrozenDefinition": "이등변삼각형의 꼭짓점에서 밑변에 수선을 그으면 밑변이 {이등분}되어 밑각의 삼각비를 구할 {직각삼각형}이 생긴다.",
+        "cFrozenAnswers": [
+          "이등분",
+          "직각삼각형"
+        ],
+        "cMarkedSentence": "이등변삼각형의 꼭짓점에서 밑변에 수선을 그으면 밑변이 {이등분}되어 밑각의 삼각비를 구할 {직각삼각형}이 생긴다.",
+        "cSlotAnswers": [
+          "이등분",
+          "직각삼각형"
+        ],
+        "cStudentSentence": "이등변삼각형의 꼭짓점에서 밑변에 수선을 그으면 밑변이 □되어 밑각의 삼각비를 구할 □이 생긴다.",
+        "cAnswers": [
+          "이등분",
+          "직각삼각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이등분",
+            "equivalentAnswers": [
+              "이등분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "직각삼각형",
+            "equivalentAnswers": [
+              "직각삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이등분"
+          ],
+          [
+            "직각삼각형"
+          ]
+        ],
+        "proposalFingerprint": "9ed884f9a09eda068a05e84424455f65a6910d07a3d9bd354c1286943410f736"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc19",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "직육면체의 대각선과 삼각비",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직육면체의 대각선과 밑면의 대각선이 이루는 각의 삼각비는 밑면의 {대각선}과 {높이}로 만든 직각삼각형에서 구한다.",
+        "studentC": "직육면체의 대각선과 밑면의 대각선이 이루는 각의 삼각비는 밑면의 □과 □로 만든 직각삼각형에서 구한다.",
+        "answers": [
+          "대각선",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면이 $\\square ABCD$, 윗면이 $\\square EFGH$이고 점 $E$, $F$, $G$, $H$가 각각 $A$, $B$, $C$, $D$ 바로 위에 있는 직육면체에서 $\\overline{AB}=4$, $\\overline{BC}=3$, $\\overline{CG}=12$이다. $\\angle GAC$의 탄젠트를 구할 때 쓰는 직각삼각형과 그 직각의 위치를 쓰고, $\\tan(\\angle GAC)$의 값을 구하시오.",
+        "bAnswer": "$\\angle ACG=90^\\circ$인 직각삼각형 $ACG$를 쓴다. 밑면의 대각선 $\\overline{AC}=5$, 높이 $\\overline{CG}=12$이므로 $\\tan(\\angle GAC)=\\frac{12}{5}$이다.",
+        "bGoal": "입체도형에서 직각삼각형을 찾아 삼각비 구하기",
+        "bReason": "그림이 없어 꼭짓점의 위치와 세 모서리를 정하고 밑면 대각선과 높이를 찾게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형 $ACG$",
+              "$\\triangle ACG$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle ACG=90^\\circ$",
+              "직각은 $C$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{12}{5}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직육면체의 대각선과 밑면의 대각선이 이루는 각의 삼각비는 이 두 대각선과 직육면체의 {높이}로 만든 {직각삼각형}에서 구한다.",
+        "cAnswers": [
+          "높이",
+          "직각삼각형"
+        ],
+        "cReason": "첫 빈칸 답 '대각선'이 앞에 그대로 보여 높이와 도형을 비우도록 고쳤다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "두 대각선과 높이로 직각삼각형 찾기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3536,
+        "part": "m3plus",
+        "sourceFingerprint": "227a1b15e5bc13297e04c9e0b2149528b3ee41d33b4cb6f28dbb2032226863d8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3536
+        },
+        "directReview": null,
+        "cMarkedSentence": "직육면체의 대각선과 밑면의 대각선이 이루는 각의 삼각비는 이 두 대각선과 직육면체의 {높이}로 만든 {직각삼각형}에서 구한다.",
+        "cSlotAnswers": [
+          "높이",
+          "직각삼각형"
+        ],
+        "cStudentSentence": "직육면체의 대각선과 밑면의 대각선이 이루는 각의 삼각비는 이 두 대각선과 직육면체의 □로 만든 □에서 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "직각삼각형",
+            "equivalentAnswers": [
+              "직각삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "높이"
+          ],
+          [
+            "직각삼각형"
+          ]
+        ],
+        "proposalFingerprint": "357927880eca2e14769999f1a6f164b9f170339ed54a7d11018ee0b734b4e34c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc21",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "기준각을 잘못 고르는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\angle B$의 사인을 $\\angle A$의 높이로 구하는 것은 잘못이다 — 기준각과 {마주 보는} 변을 다시 골라야 한다.",
+        "studentC": "$\\angle B$의 사인을 $\\angle A$의 높이로 구하는 것은 잘못이다 — 기준각과 □ 변을 다시 골라야 한다.",
+        "answers": [
+          "마주 보는"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "기준각이 바뀌면 높이가 달라지는 까닭은 xc7이 같은 삼각형으로 묻는다.",
+        "cDecision": "keep",
+        "cReason": "잘못의 상황이 문장에 있고 '마주 보는' 한 칸만 채우는 빈칸이다.",
+        "exclusionReason": "B 제외: xc7의 '높이는 기준각과 마주 보는 변' 질문을 오류 형태로 되풀이하는 목표 중복이다.",
+        "studentLabel": "기준각을 잘못 고른 경우",
+        "learningRole": "reason",
+        "roleReason": "기준각에 맞는 마주 보는 변 다시 고르기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3538,
+        "part": "m3plus",
+        "sourceFingerprint": "b706131d7748f4b7ba7880e1944a7d75451560576caf6a7348ab2a027fafa067",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3538
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$\\angle B$의 사인을 $\\angle A$의 높이로 구하는 것은 잘못이다 — 기준각과 □ 변을 다시 골라야 한다.",
+        "cFrozenDefinition": "$\\angle B$의 사인을 $\\angle A$의 높이로 구하는 것은 잘못이다 — 기준각과 {마주 보는} 변을 다시 골라야 한다.",
+        "cFrozenAnswers": [
+          "마주 보는"
+        ],
+        "cMarkedSentence": "$\\angle B$의 사인을 $\\angle A$의 높이로 구하는 것은 잘못이다 — 기준각과 {마주 보는} 변을 다시 골라야 한다.",
+        "cSlotAnswers": [
+          "마주 보는"
+        ],
+        "cStudentSentence": "$\\angle B$의 사인을 $\\angle A$의 높이로 구하는 것은 잘못이다 — 기준각과 □ 변을 다시 골라야 한다.",
+        "cAnswers": [
+          "마주 보는"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "마주 보는",
+            "equivalentAnswers": [
+              "마주 보는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "마주 보는"
+          ]
+        ],
+        "proposalFingerprint": "7845993c27783ba96d1b335492968903f2925f2be7de6c02d7215327e89ba0d2"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc2",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "$\\cos 45^\\circ$",
+        "kind": "공식",
+        "level": "하",
+        "definition": "$\\cos 45^\\circ$는 $\\sin 45^\\circ$와 같은 {$\\frac{\\sqrt{2}}{2}$}이다 — 직각이등변삼각형이라 높이와 밑변이 {같다}.",
+        "studentC": "$\\cos 45^\\circ$는 $\\sin 45^\\circ$와 같은 □이다 — 직각이등변삼각형이라 높이와 밑변이 □.",
+        "answers": [
+          "$\\frac{\\sqrt{2}}{2}$",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "한 예각이 $45^\\circ$이고 직각을 낀 두 변의 길이가 모두 $1$인 직각삼각형에서 빗변의 길이를 구해 $\\cos 45^\\circ$의 값을 구하고, 이 값이 $\\sin 45^\\circ$와 같은 까닭을 설명해 보세요.",
+        "bAnswer": "빗변은 $\\sqrt{2}$이므로 $\\cos 45^\\circ=\\frac{1}{\\sqrt{2}}=\\frac{\\sqrt{2}}{2}$이다. 직각이등변삼각형이라 높이와 밑변의 길이가 같으므로 둘을 빗변으로 나눈 $\\sin 45^\\circ$와 $\\cos 45^\\circ$가 같다.",
+        "bGoal": "$\\cos 45^\\circ$의 값과 $\\sin 45^\\circ$와 같은 까닭 알기",
+        "bReason": "기호뿐인 제목이라 값을 얻는 삼각형과 사인과의 비교를 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\cos 45^\\circ=\\frac{\\sqrt{2}}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이와 밑변의 길이가 같아 사인과 코사인이 같음"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "값 하나와 두 변의 비교 결과를 묻는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "높이=밑변이라 사인과 같음",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3540,
+        "part": "m3plus",
+        "sourceFingerprint": "9de48596640fe8094f4cb244fa40b9f04a12151dcf48ba81b8218fc6bbe8b9bb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3540
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\cos 45^\\circ$는 $\\sin 45^\\circ$와 같은 □이다 — 직각이등변삼각형이라 높이와 밑변이 □.",
+        "cFrozenDefinition": "$\\cos 45^\\circ$는 $\\sin 45^\\circ$와 같은 {$\\frac{\\sqrt{2}}{2}$}이다 — 직각이등변삼각형이라 높이와 밑변이 {같다}.",
+        "cFrozenAnswers": [
+          "$\\frac{\\sqrt{2}}{2}$",
+          "같다"
+        ],
+        "cMarkedSentence": "$\\cos 45^\\circ$는 $\\sin 45^\\circ$와 같은 {$\\frac{\\sqrt{2}}{2}$}이다 — 직각이등변삼각형이라 높이와 밑변이 {같다}.",
+        "cSlotAnswers": [
+          "$\\frac{\\sqrt{2}}{2}$",
+          "같다"
+        ],
+        "cStudentSentence": "$\\cos 45^\\circ$는 $\\sin 45^\\circ$와 같은 □이다 — 직각이등변삼각형이라 높이와 밑변이 □.",
+        "cAnswers": [
+          "$\\frac{\\sqrt{2}}{2}$",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{\\sqrt{2}}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{\\sqrt{2}}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{\\sqrt{2}}{2}$"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "f1905ee867ef3aee0cc06a22c4ac5636f00d43a866bcb26a603cd68379e05715"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc5",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "$\\cos 30^\\circ$와 $\\sin 60^\\circ$의 값",
+        "kind": "공식",
+        "level": "하",
+        "definition": "$\\cos 30^\\circ$와 $\\sin 60^\\circ$는 같은 값 {$\\frac{\\sqrt{3}}{2}$}이다 — 정삼각형을 반으로 자른 삼각형의 {같은} 두 변의 비이다.",
+        "studentC": "$\\cos 30^\\circ$와 $\\sin 60^\\circ$는 같은 값 □이다 — 정삼각형을 반으로 자른 삼각형의 □ 두 변의 비이다.",
+        "answers": [
+          "$\\frac{\\sqrt{3}}{2}$",
+          "같은"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형을 반으로 자른 직각삼각형의 두 예각은 $30^\\circ$, $60^\\circ$이다. 이 삼각형에서 $\\cos 30^\\circ$와 $\\sin 60^\\circ$가 각각 어느 변을 어느 변으로 나눈 값인지 밝히고 두 값을 비교해 보세요.",
+        "bAnswer": "$\\cos 30^\\circ$는 $30^\\circ$에 붙은 직각을 낀 변을 빗변으로 나눈 값이고, $\\sin 60^\\circ$는 $60^\\circ$와 마주 보는 변을 빗변으로 나눈 값이다. 이 두 변은 같은 변이므로 두 값은 같고, 그 값은 $\\frac{\\sqrt{3}}{2}$이다.",
+        "bGoal": "$\\cos 30^\\circ=\\sin 60^\\circ$인 까닭 설명하기",
+        "bReason": "값 계산을 묻지 않은 질문에 정확한 수치 sqrt3/2를 강요하던 기준을 없앤다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 값 모두 같은 변을 빗변으로 나눈 값이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 값은 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\cos 30^\\circ$와 $\\sin 60^\\circ$는 같은 값 {$\\frac{\\sqrt{3}}{2}$}이다 — 정삼각형을 반으로 자른 삼각형에서 $30^\\circ$에 붙은 직각을 낀 변은 $60^\\circ$와 {마주 보는} 변이고, 두 값 모두 이 변을 {빗변}으로 나눈 것이다.",
+        "cAnswers": [
+          "$\\frac{\\sqrt{3}}{2}$",
+          "마주 보는",
+          "빗변"
+        ],
+        "cReason": "둘째 빈칸 '같은'이 앞의 '같은 값'에 드러나 있고 어느 두 변인지도 없었다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "같은 변을 빗변으로 나눔",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3543,
+        "part": "m3plus",
+        "sourceFingerprint": "999399238bd6a727e6170a1eb4828310f38a37f8ce64c9e146bac30dd03e9a62",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3543
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-05-02-xc5"
+        },
+        "cMarkedSentence": "$\\cos 30^\\circ$와 $\\sin 60^\\circ$는 같은 값 {$\\frac{\\sqrt{3}}{2}$}이다 — 정삼각형을 반으로 자른 삼각형에서 $30^\\circ$에 붙은 직각을 낀 변은 $60^\\circ$와 {마주 보는} 변이고, 두 값 모두 이 변을 {빗변}으로 나눈 것이다.",
+        "cSlotAnswers": [
+          "$\\frac{\\sqrt{3}}{2}$",
+          "마주 보는",
+          "빗변"
+        ],
+        "cStudentSentence": "$\\cos 30^\\circ$와 $\\sin 60^\\circ$는 같은 값 □이다 — 정삼각형을 반으로 자른 삼각형에서 $30^\\circ$에 붙은 직각을 낀 변은 $60^\\circ$와 □ 변이고, 두 값 모두 이 변을 □으로 나눈 것이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{\\sqrt{3}}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{\\sqrt{3}}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "마주 보는",
+            "equivalentAnswers": [
+              "마주 보는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          [
+            "마주 보는"
+          ],
+          [
+            "빗변"
+          ]
+        ],
+        "proposalFingerprint": "8d474987695535f1c61fea4242d9d3706bc29b8e59f1a3feea2e140680b698b1"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc6",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "삼각비의 표의 값이 어림값인 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "삼각비의 값은 대부분 {무리수}라서, 삼각비의 표에는 소수점 아래 넷째 자리까지 {반올림한 어림값}을 싣는다.",
+        "studentC": "삼각비의 값은 대부분 □라서, 삼각비의 표에는 소수점 아래 넷째 자리까지 □을 싣는다.",
+        "answers": [
+          "무리수",
+          "반올림한 어림값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각비의 표에 실린 값이 대부분 참값이 아니라 어림값인 까닭을 설명하고, 표의 값은 소수점 아래 몇째 자리까지 나타낸 것인지 말해 보세요.",
+        "bAnswer": "삼각비의 값은 대부분 무리수라서 소수로 끝까지 쓸 수 없다. 그래서 반올림하여 소수점 아래 넷째 자리까지 나타낸 어림값을 싣는다.",
+        "bGoal": "삼각비의 표의 값이 어림값인 까닭 알기",
+        "bReason": "까닭과 함께 표가 값을 나타내는 자릿수까지 답하도록 범위를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "삼각비의 값은 대부분 무리수"
+            ]
+          },
+          {
+            "anyOf": [
+              "반올림해 소수점 아래 넷째 자리까지 나타냄"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각비의 값은 대부분 {무리수}라서, 삼각비의 표에는 {반올림}하여 소수점 아래 넷째 자리까지 나타낸 {어림값}을 싣는다.",
+        "cAnswers": [
+          "무리수",
+          "반올림",
+          "어림값"
+        ],
+        "cReason": "'반올림한 어림값'이 한 빈칸이라 길어 두 낱말로 나누었다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "대부분 무리수라 반올림",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3544,
+        "part": "m3plus",
+        "sourceFingerprint": "381ded48cc80b40225d01b446b578e9ee35e55c7b32cec8a94910eb306c02929",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3544
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각비의 값은 대부분 {무리수}라서, 삼각비의 표에는 {반올림}하여 소수점 아래 넷째 자리까지 나타낸 {어림값}을 싣는다.",
+        "cSlotAnswers": [
+          "무리수",
+          "반올림",
+          "어림값"
+        ],
+        "cStudentSentence": "삼각비의 값은 대부분 □라서, 삼각비의 표에는 □하여 소수점 아래 넷째 자리까지 나타낸 □을 싣는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "무리수",
+            "equivalentAnswers": [
+              "무리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반올림",
+            "equivalentAnswers": [
+              "반올림"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "어림값",
+            "equivalentAnswers": [
+              "어림값",
+              "근삿값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "어림값",
+            "accept": [
+              "근삿값"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "무리수"
+          ],
+          [
+            "반올림"
+          ],
+          [
+            "어림값",
+            "근삿값"
+          ]
+        ],
+        "proposalFingerprint": "5c92fed4d174959ecc7867935d4accf4b8263dbf38024d8bf0408f127013842e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc10",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "삼각비의 값으로 각 찾기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "예각에서는 각이 다르면 삼각비의 값도 다르므로, 삼각비의 값을 알면 그 {각}을 {하나로} 정할 수 있다.",
+        "example": {
+          "prompt": "$\\sin x=\\frac{\\sqrt{3}}{2}$인 예각 $x$가 $60^\\circ$ 하나뿐인 까닭은?",
+          "answer": "예각에서 사인은 커지기만 해서"
+        },
+        "studentC": "예각에서는 각이 다르면 삼각비의 값도 다르므로, 삼각비의 값을 알면 그 □을 □ 정할 수 있다.",
+        "answers": [
+          "각",
+          "하나로"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\sin x=\\frac{\\sqrt{3}}{2}$인 예각 $x$의 크기를 구하고, 그런 예각이 하나뿐인 까닭을 설명해 보세요.",
+        "bAnswer": "$x=60^\\circ$이다. 예각에서는 각이 커질수록 사인의 값이 커지기만 하므로 각이 다르면 사인의 값도 다르다. 그래서 같은 값을 갖는 예각은 하나뿐이다.",
+        "bGoal": "삼각비의 값으로 예각이 하나로 정해짐을 알기",
+        "bReason": "일반 진술만으로는 답하기 어려워 $\\sin x=\\frac{\\sqrt{3}}{2}$인 경우로 물었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=60^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "예각에서는 각이 다르면 사인의 값도 달라 하나뿐임"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "예각에서는 각의 크기가 다르면 삼각비의 값도 {다르다}. 그래서 예각 $x$의 삼각비의 값을 알면 $x$의 크기를 {하나}로 정할 수 있다.",
+        "cAnswers": [
+          "다르다",
+          "하나"
+        ],
+        "cReason": "빈칸 '각'은 앞의 '각이 다르면'에 나와 있고 '하나로'는 조사까지 포함돼 모호했다.",
+        "exampleNeeded": true,
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "예각마다 값이 달라 각이 유일",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3547,
+        "part": "m3plus",
+        "sourceFingerprint": "3c0f0a6cef01964e9ca64d28437a3684f876668ec26bdd2a77c199ac1150c97d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3547
+        },
+        "directReview": null,
+        "cMarkedSentence": "예각에서는 각의 크기가 다르면 삼각비의 값도 {다르다}. 그래서 예각 $x$의 삼각비의 값을 알면 $x$의 크기를 {하나}로 정할 수 있다.",
+        "cSlotAnswers": [
+          "다르다",
+          "하나"
+        ],
+        "cStudentSentence": "예각에서는 각의 크기가 다르면 삼각비의 값도 □. 그래서 예각 $x$의 삼각비의 값을 알면 $x$의 크기를 □로 정할 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다르다",
+            "equivalentAnswers": [
+              "다르다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "하나",
+            "equivalentAnswers": [
+              "하나"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다르다"
+          ],
+          [
+            "하나"
+          ]
+        ],
+        "proposalFingerprint": "50d782521e45d764dfdf1f8ec4328a0b1ccbc4598423b4a5dfb2a628ee404def"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc12",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "$45^\\circ$를 경계로 한 탄젠트",
+        "kind": "성질",
+        "level": "중",
+        "definition": "예각 $x$에서 $x<45^\\circ$이면 $\\tan x<1$이고, $x>45^\\circ$이면 {$\\tan x>1$}이다 — {$45^\\circ$}에서 높이와 밑변이 같다.",
+        "studentC": "예각 $x$에서 $x<45^\\circ$이면 $\\tan x<1$이고, $x>45^\\circ$이면 □이다 — □에서 높이와 밑변이 같다.",
+        "answers": [
+          "$\\tan x>1$",
+          "$45^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "예각 $x$에 대하여 $x<45^\\circ$일 때와 $x>45^\\circ$일 때 $\\tan x$의 값을 각각 $1$과 비교하고, $45^\\circ$가 경계가 되는 까닭을 설명해 보세요.",
+        "bAnswer": "$x<45^\\circ$이면 $\\tan x<1$, $x>45^\\circ$이면 $\\tan x>1$이다. $45^\\circ$일 때 높이와 밑변의 길이가 같아 $\\tan 45^\\circ=1$이고, 각이 커질수록 탄젠트의 값이 커지기 때문이다.",
+        "bGoal": "$45^\\circ$를 기준으로 탄젠트와 $1$의 대소 알기",
+        "bReason": "'경계'가 무엇의 경계인지 없어 $1$과의 대소 비교임을 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x<45^\\circ$이면 $\\tan x<1$, $x>45^\\circ$이면 $\\tan x>1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\tan 45^\\circ=1$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "예각 $x$에서 $x<45^\\circ$이면 $\\tan x<1$이고, $x>45^\\circ$이면 {$\\tan x>1$}이다 — 한 예각이 $45^\\circ$인 직각삼각형에서는 높이와 밑변의 길이가 {같아} $\\tan 45^\\circ=1$이기 때문이다.",
+        "cAnswers": [
+          "$\\tan x>1$",
+          "같아"
+        ],
+        "cReason": "둘째 빈칸 $45^\\circ$가 같은 문장에 두 번 나와 그대로 베끼게 된다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "$45^\\circ$에서 높이=밑변이 경계",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3549,
+        "part": "m3plus",
+        "sourceFingerprint": "c9539895646d805c15396e9f6fda986c014417e567103d3bb2120f3c982372f2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3549
+        },
+        "directReview": null,
+        "cMarkedSentence": "예각 $x$에서 $x<45^\\circ$이면 $\\tan x<1$이고, $x>45^\\circ$이면 {$\\tan x>1$}이다 — 한 예각이 $45^\\circ$인 직각삼각형에서는 높이와 밑변의 길이가 {같아} $\\tan 45^\\circ=1$이기 때문이다.",
+        "cSlotAnswers": [
+          "$\\tan x>1$",
+          "같아"
+        ],
+        "cStudentSentence": "예각 $x$에서 $x<45^\\circ$이면 $\\tan x<1$이고, $x>45^\\circ$이면 □이다 — 한 예각이 $45^\\circ$인 직각삼각형에서는 높이와 밑변의 길이가 □ $\\tan 45^\\circ=1$이기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\tan x>1$",
+            "equivalentAnswers": [
+              "$\\tan x>1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같아",
+            "equivalentAnswers": [
+              "같아"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\tan x>1$"
+          ],
+          [
+            "같아"
+          ]
+        ],
+        "proposalFingerprint": "65fe91ab6cabbbe4ae1501c3111e1e8c6fa1d566a30a301b6072a2d544ad9f2c"
+      }
+    }
+  ]
+}

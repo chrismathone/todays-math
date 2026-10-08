@@ -1,0 +1,2489 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:17:03.667Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-05-xc17",
+        "section": "중1::7. 입체도형::뿔의 겉넓이와 부피",
+        "term": "전개도로 밑면의 반지름 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원뿔의 전개도에서 부채꼴의 {호의 길이}를 $2\\pi$로 나누면 밑면의 {반지름}이 나온다.",
+        "example": {
+          "prompt": "호의 길이가 $8\\pi$인 부채꼴로 만든 원뿔의 밑면의 반지름은?",
+          "answer": "$4$"
+        },
+        "studentC": "원뿔의 전개도에서 부채꼴의 □를 $2\\pi$로 나누면 밑면의 □이 나온다.",
+        "answers": [
+          "호의 길이",
+          "반지름"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-05-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "원뿔의 전개도에서 옆면인 부채꼴의 호의 길이가 $8\\pi$일 때, 밑면의 반지름의 길이를 구하는 방법을 까닭과 함께 설명하고 값을 구하시오.",
+        "bAnswer": "부채꼴의 호의 길이는 밑면인 원의 둘레의 길이와 같다. 밑면의 반지름의 길이를 $r$라 하면 $2\\pi r=8\\pi$이므로 $r=4$이다.",
+        "bGoal": "호의 길이와 밑면의 둘레가 같음을 이용해 반지름 구하기",
+        "bReason": "전개도의 어느 길이를 쓰는지 호의 길이를 주어 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "부채꼴의 호의 길이는 밑면의 둘레의 길이와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\pi r=8\\pi$이므로 $r=4$",
+              "$4$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "나누는 값 $2\\pi$가 보이고 시작 길이와 결과 길이를 묻는 빈칸이 분명함.",
+        "studentLabel": "원뿔의 전개도로 밑면의 반지름 구하기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "호의 길이를 $2\\pi$로 나누어 반지름 구하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1947,
+        "part": "m1plus",
+        "sourceFingerprint": "03308b4c295f30533fbf52c2067cefd1043a39971eca6f6ebf2e3551b08058aa",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1947
+        },
+        "directReview": null,
+        "cFrozenSentence": "원뿔의 전개도에서 부채꼴의 □를 $2\\pi$로 나누면 밑면의 □이 나온다.",
+        "cFrozenDefinition": "원뿔의 전개도에서 부채꼴의 {호의 길이}를 $2\\pi$로 나누면 밑면의 {반지름}이 나온다.",
+        "cFrozenAnswers": [
+          "호의 길이",
+          "반지름"
+        ],
+        "cMarkedSentence": "원뿔의 전개도에서 부채꼴의 {호의 길이}를 $2\\pi$로 나누면 밑면의 {반지름}이 나온다.",
+        "cSlotAnswers": [
+          "호의 길이",
+          "반지름"
+        ],
+        "cStudentSentence": "원뿔의 전개도에서 부채꼴의 □를 $2\\pi$로 나누면 밑면의 □이 나온다.",
+        "cAnswers": [
+          "호의 길이",
+          "반지름"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "호의 길이",
+            "equivalentAnswers": [
+              "호의 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반지름",
+            "equivalentAnswers": [
+              "반지름",
+              "반지름의 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "반지름",
+            "accept": [
+              "반지름의 길이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "호의 길이"
+          ],
+          [
+            "반지름",
+            "반지름의 길이"
+          ]
+        ],
+        "proposalFingerprint": "e77ea4b5dfc6e0e05bf056748d33bd6e0f7399146a2de9e8a8af5a2ffa4bc371"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-05-xc18",
+        "section": "중1::7. 입체도형::뿔의 겉넓이와 부피",
+        "term": "겉넓이로 모선 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원뿔의 겉넓이 $\\pi r^2+\\pi rl$에서 반지름을 알면 {모선}에 대한 {일차방정식}을 풀어 $l$을 구한다.",
+        "example": {
+          "prompt": "반지름 $3$, 겉넓이 $33\\pi$이면 모선은?",
+          "answer": "$8$"
+        },
+        "studentC": "원뿔의 겉넓이 $\\pi r^2+\\pi rl$에서 반지름을 알면 □에 대한 □을 풀어 $l$을 구한다.",
+        "answers": [
+          "모선",
+          "일차방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-05-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면의 반지름의 길이가 $3$, 겉넓이가 $33\\pi$인 원뿔의 모선의 길이 $l$을 구하는 과정을 식을 세워 설명하시오.",
+        "bAnswer": "겉넓이는 밑넓이와 옆넓이의 합이므로 $\\pi\\times3^2+\\pi\\times3\\times l=33\\pi$이다. $9\\pi+3\\pi l=33\\pi$에서 $3\\pi l=24\\pi$이므로 $l=8$이다.",
+        "bGoal": "겉넓이 식으로 일차방정식을 세워 모선의 길이 구하기",
+        "bReason": "반지름과 겉넓이의 값을 주어 방정식을 세우는 과정이 드러나게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9\\pi+3\\pi l=33\\pi$",
+              "겉넓이에서 밑넓이 $9\\pi$를 빼면 옆넓이 $24\\pi$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$l=8$",
+              "모선의 길이는 $8$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "밑면의 반지름의 길이가 $r$, 모선의 길이가 $l$인 원뿔의 겉넓이는 밑넓이 {$\\pi r^2$}과 옆넓이 {$\\pi rl$}의 합이다. 겉넓이와 $r$의 값을 알면 이 합이 겉넓이와 같다는 {일차방정식}을 풀어 $l$을 구한다.",
+        "cAnswers": [
+          "$\\pi r^2$",
+          "$\\pi rl$",
+          "일차방정식"
+        ],
+        "cReason": "$r$, $l$의 뜻이 없고 '모선에 대한'이라는 표현이 어려워 식의 두 부분을 묻게 함.",
+        "studentLabel": "원뿔의 겉넓이로 모선의 길이 구하기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "겉넓이 식으로 방정식을 세워 모선 구하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1948,
+        "part": "m1plus",
+        "sourceFingerprint": "4edf9c59b1a14e9f19628ed87deb3f929ce956c4c1cac4d286ae6e9b0160e84a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1948
+        },
+        "directReview": null,
+        "cMarkedSentence": "밑면의 반지름의 길이가 $r$, 모선의 길이가 $l$인 원뿔의 겉넓이는 밑넓이 {$\\pi r^2$}과 옆넓이 {$\\pi rl$}의 합이다. 겉넓이와 $r$의 값을 알면 이 합이 겉넓이와 같다는 {일차방정식}을 풀어 $l$을 구한다.",
+        "cSlotAnswers": [
+          "$\\pi r^2$",
+          "$\\pi rl$",
+          "일차방정식"
+        ],
+        "cStudentSentence": "밑면의 반지름의 길이가 $r$, 모선의 길이가 $l$인 원뿔의 겉넓이는 밑넓이 □과 옆넓이 □의 합이다. 겉넓이와 $r$의 값을 알면 이 합이 겉넓이와 같다는 □을 풀어 $l$을 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\pi r^2$",
+            "equivalentAnswers": [
+              "$\\pi r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\pi rl$",
+            "equivalentAnswers": [
+              "$\\pi rl$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "일차방정식",
+            "equivalentAnswers": [
+              "일차방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\pi r^2$"
+          ],
+          [
+            "$\\pi rl$"
+          ],
+          [
+            "일차방정식"
+          ]
+        ],
+        "proposalFingerprint": "6c1ca2b14b07931edd049e4071785a548eb0c920f3172cf657a8907cab475941"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-05-xc19",
+        "section": "중1::7. 입체도형::뿔의 겉넓이와 부피",
+        "term": "원뿔대의 부피와 겉넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원뿔대의 부피는 큰 원뿔의 부피에서 작은 원뿔의 부피를 {빼고}, 겉넓이는 두 밑넓이와 옆넓이를 {모두} 더한다.",
+        "example": {
+          "prompt": "큰 원뿔의 부피 $96\\pi$, 작은 원뿔의 부피 $12\\pi$이면 원뿔대의 부피는?",
+          "answer": "$84\\pi$"
+        },
+        "studentC": "원뿔대의 부피는 큰 원뿔의 부피에서 작은 원뿔의 부피를 □, 겉넓이는 두 밑넓이와 옆넓이를 □ 더한다.",
+        "answers": [
+          "빼고",
+          "모두"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-05-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "뿔대의 부피와 겉넓이 구하는 방법을 원뿔대로 다시 합쳐 쓴 내용임.",
+        "cDecision": "rewrite",
+        "cAfter": "원뿔대의 부피는 큰 원뿔의 부피에서 작은 원뿔의 부피를 {뺀} 값이고, 겉넓이는 크기가 다른 {두} 밑면의 넓이와 {옆넓이}를 모두 더한 값이다.",
+        "cAnswers": [
+          "뺀",
+          "두",
+          "옆넓이"
+        ],
+        "cReason": "'모두'는 내용이 없는 빈칸이라 밑면의 개수와 옆넓이를 묻도록 옮김.",
+        "exclusionReason": "B 제외: m1-07-05-c4(뿔대의 겉넓이), m1-07-05-c6(뿔대의 부피)을 합친 목표 중복.",
+        "learningRole": "procedure",
+        "roleReason": "원뿔대의 부피는 빼고 겉넓이는 더하는 구별",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1949,
+        "part": "m1plus",
+        "sourceFingerprint": "77ed583b27cb4d639335712492d6be98ff40762ea5df6988cd74a3b6d5d6f762",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1949
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "원뿔대의 부피는 큰 원뿔의 부피에서 작은 원뿔의 부피를 {뺀} 값이고, 겉넓이는 크기가 다른 {두} 밑면의 넓이와 {옆넓이}를 모두 더한 값이다.",
+        "cSlotAnswers": [
+          "뺀",
+          "두",
+          "옆넓이"
+        ],
+        "cStudentSentence": "원뿔대의 부피는 큰 원뿔의 부피에서 작은 원뿔의 부피를 □ 값이고, 겉넓이는 크기가 다른 □ 밑면의 넓이와 □를 모두 더한 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "뺀",
+            "equivalentAnswers": [
+              "뺀"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "두",
+            "equivalentAnswers": [
+              "두"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "옆넓이",
+            "equivalentAnswers": [
+              "옆넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "뺀"
+          ],
+          [
+            "두"
+          ],
+          [
+            "옆넓이"
+          ]
+        ],
+        "proposalFingerprint": "3ab69114311f490173879fa8b65e1cfa3eb4ce3be8fef02b7d2f4042afab2b60"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-05-xc20",
+        "section": "중1::7. 입체도형::뿔의 겉넓이와 부피",
+        "term": "정육면체를 여섯 사각뿔로",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정육면체는 가운데 한 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 {$6$}개로 {나눌} 수 있다.",
+        "example": {
+          "prompt": "한 모서리 $6$인 정육면체를 가운데 한 점을 꼭짓점으로 하는 합동인 사각뿔 $6$개로 나눌 때 하나의 부피는?",
+          "answer": "$36$"
+        },
+        "studentC": "정육면체는 가운데 한 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 □개로 □ 수 있다.",
+        "answers": [
+          "$6$",
+          "나눌"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-05-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "한 모서리의 길이가 $a$인 정육면체를, 정육면체의 한가운데 점을 공통인 꼭짓점으로 하고 정육면체의 각 면을 밑면으로 하는 사각뿔들로 나누었다. 사각뿔은 모두 몇 개이고 서로 어떤 관계인지 쓰고, 사각뿔 하나의 부피를 $a$로 나타내시오.",
+        "bAnswer": "정육면체의 면이 $6$개이므로 사각뿔은 $6$개이고 모두 합동이다. 따라서 하나의 부피는 정육면체의 부피 $a^3$의 $\\frac{1}{6}$인 $\\frac{1}{6}a^3$이다.",
+        "bGoal": "정육면체를 합동인 사각뿔로 나누어 부피 구하기",
+        "bReason": "제목의 '여섯'이 답을 알려 주므로 이름을 고치고 개수와 부피를 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합동인 사각뿔 $6$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{6}a^3$",
+              "정육면체의 부피의 $\\frac{1}{6}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정육면체는 가운데 한 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 {$6$}개로 나눌 수 있으므로, 사각뿔 하나의 부피는 정육면체의 부피의 {$\\frac{1}{6}$}이다.",
+        "cAnswers": [
+          "$6$",
+          "$\\frac{1}{6}$"
+        ],
+        "cReason": "'나눌'은 묻는 내용이 없는 빈칸이라 사각뿔 하나의 부피 관계로 바꿈.",
+        "studentLabel": "정육면체를 사각뿔로 나누기",
+        "learningRole": "application",
+        "roleReason": "정육면체 분할로 사각뿔 하나의 부피 알기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1950,
+        "part": "m1plus",
+        "sourceFingerprint": "7f44bee274ac6bf885d20985f1f33f54f65c41a18ed941073eb1e7f32f5bf479",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1950
+        },
+        "directReview": null,
+        "cMarkedSentence": "정육면체는 가운데 한 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 {$6$}개로 나눌 수 있으므로, 사각뿔 하나의 부피는 정육면체의 부피의 {$\\frac{1}{6}$}이다.",
+        "cSlotAnswers": [
+          "$6$",
+          "$\\frac{1}{6}$"
+        ],
+        "cStudentSentence": "정육면체는 가운데 한 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 □개로 나눌 수 있으므로, 사각뿔 하나의 부피는 정육면체의 부피의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$6$",
+            "equivalentAnswers": [
+              "$6$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{6}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{6}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$\\frac{1}{6}$"
+          ]
+        ],
+        "proposalFingerprint": "3aa4e3f753f8d3dca9ea6bcd363360abc5932bad7ffe50b5bdf5de00543482b4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-05-xc21",
+        "section": "중1::7. 입체도형::뿔의 겉넓이와 부피",
+        "term": "돌려 만든 원뿔의 부피",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직각삼각형을 직각을 낀 한 변을 축으로 돌린 원뿔은 축이 된 변이 {높이}, 다른 변이 밑면의 {반지름}이다.",
+        "example": {
+          "prompt": "밑변 $6$, 높이 $2$인 직각삼각형을 밑변을 축으로 돌린 원뿔의 부피는?",
+          "answer": "$8\\pi$"
+        },
+        "studentC": "직각삼각형을 직각을 낀 한 변을 축으로 돌린 원뿔은 축이 된 변이 □, 다른 변이 밑면의 □이다.",
+        "answers": [
+          "높이",
+          "반지름"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-05-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "직각을 낀 두 변의 길이가 $6$과 $2$인 직각삼각형을 길이가 $6$인 변을 축으로 하여 한 바퀴 돌렸다. 이때 생기는 입체도형의 이름을 쓰고, 두 변이 각각 그 입체도형의 무엇이 되는지 밝혀 부피를 구하시오.",
+        "bAnswer": "원뿔이 생긴다. 축이 된 길이 $6$인 변이 높이, 길이 $2$인 변이 밑면의 반지름이 된다. 따라서 부피는 $\\frac{1}{3}\\times\\pi\\times2^2\\times6=8\\pi$이다.",
+        "bGoal": "회전시킨 직각삼각형의 변과 원뿔의 높이·반지름 대응",
+        "bReason": "그림이 없어 두 변의 길이와 축이 되는 변을 밝힌 상황으로 바꿈.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원뿔"
+            ]
+          },
+          {
+            "anyOf": [
+              "축이 된 변이 높이이고 다른 한 변이 밑면의 반지름이다",
+              "높이가 $6$, 밑면의 반지름의 길이가 $2$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}\\times\\pi\\times2^2\\times6=8\\pi$",
+              "$8\\pi$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직각삼각형을 직각을 낀 한 변을 축으로 하여 한 바퀴 돌리면 원뿔이 된다. 이때 축이 된 변의 길이가 원뿔의 {높이}, 직각을 낀 다른 한 변의 길이가 밑면의 {반지름}이다.",
+        "cAnswers": [
+          "높이",
+          "반지름"
+        ],
+        "cReason": "'다른 변'이 가장 긴 변으로도 읽혀 직각을 낀 다른 한 변임을 밝힘.",
+        "coreAfter": "직각삼각형을 직각을 낀 한 변을 축으로 돌린 원뿔은 축이 된 변이 {높이}, 직각을 낀 다른 한 변이 밑면의 {반지름}이다.",
+        "coreReason": "'다른 변'이 직각을 낀 변인지 가장 긴 변인지 구별되지 않음.",
+        "studentLabel": "직각삼각형을 돌려 만든 원뿔의 부피",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "회전시킨 변을 원뿔의 높이와 반지름에 대응",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1951,
+        "part": "m1plus",
+        "sourceFingerprint": "eaf8fb79c7d702717b893c2561bf585d64adf51047091c0b7c6ec00278a02e85",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1951
+        },
+        "directReview": null,
+        "coreBeforeRepair": "직각삼각형을 직각을 낀 한 변을 축으로 돌린 원뿔은 축이 된 변이 {높이}, 직각을 낀 다른 한 변이 밑면의 {반지름}이다.",
+        "coreRepairReason": "이미 좋아 그대로 보존함. 원래 핵심어 {높이}, {반지름}을 유지했고, '다른 변'을 직각을 낀 변으로 한정함.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "직각삼각형을 직각을 낀 한 변을 축으로 하여 한 바퀴 돌리면 원뿔이 된다. 이때 축이 된 변의 길이가 원뿔의 {높이}, 직각을 낀 다른 한 변의 길이가 밑면의 {반지름}이다.",
+        "cSlotAnswers": [
+          "높이",
+          "반지름"
+        ],
+        "cStudentSentence": "직각삼각형을 직각을 낀 한 변을 축으로 하여 한 바퀴 돌리면 원뿔이 된다. 이때 축이 된 변의 길이가 원뿔의 □, 직각을 낀 다른 한 변의 길이가 밑면의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반지름",
+            "equivalentAnswers": [
+              "반지름"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "높이"
+          ],
+          [
+            "반지름"
+          ]
+        ],
+        "proposalFingerprint": "569f382bdc2abe25bd6525d3505ad56dc3798ed35fd6e47456f401d21987d1ac"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-05-xc22",
+        "section": "중1::7. 입체도형::뿔의 겉넓이와 부피",
+        "term": "빗변을 축으로 돌린 입체의 부피",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직각삼각형을 빗변을 축으로 돌린 입체의 부피는 두 원뿔의 부피의 {합}이고, 두 원뿔의 밑면의 반지름은 빗변에 내린 {수선}의 길이이다.",
+        "example": {
+          "prompt": "빗변이 $5$, 빗변에 내린 수선이 $\\frac{12}{5}$인 직각삼각형을 빗변을 축으로 돌린 입체의 부피는?",
+          "answer": "$\\frac{48}{5}\\pi$"
+        },
+        "studentC": "직각삼각형을 빗변을 축으로 돌린 입체의 부피는 두 원뿔의 부피의 □이고, 두 원뿔의 밑면의 반지름은 빗변에 내린 □의 길이이다.",
+        "answers": [
+          "합",
+          "수선"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-05-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형 $ABC$에서 $\\angle C=90^\\circ$이고, 직각과 마주 보는 변 $AB$의 길이는 $5$이다. 꼭짓점 $C$에서 변 $AB$에 내린 수선의 발을 $H$라 하면 $\\overline{CH}=\\frac{12}{5}$이다. 이 삼각형을 직선 $AB$를 축으로 하여 한 바퀴 돌릴 때 생기는 입체도형이 어떤 도형들로 이루어지는지 설명하고 부피를 구하시오.",
+        "bAnswer": "두 원뿔을 밑면끼리 붙인 모양이 된다. 두 원뿔의 밑면의 반지름의 길이는 모두 $\\overline{CH}=\\frac{12}{5}$이고, 두 원뿔의 높이 $\\overline{AH}$, $\\overline{BH}$의 합은 $\\overline{AB}=5$이다. 따라서 부피는 $\\frac{1}{3}\\pi\\times\\left(\\frac{12}{5}\\right)^2\\times5=\\frac{48}{5}\\pi$이다.",
+        "bGoal": "가장 긴 변을 축으로 돌린 입체를 두 원뿔로 나누어 부피 구하기",
+        "bReason": "그림이 없어 점의 이름, 직각의 위치, 수선의 길이를 질문에 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 원뿔을 밑면끼리 붙인 모양이다",
+              "두 원뿔의 부피의 합이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 원뿔의 밑면의 반지름의 길이는 $\\overline{CH}=\\frac{12}{5}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{48}{5}\\pi$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직각삼각형을 빗변(직각과 마주 보는 변)을 축으로 하여 한 바퀴 돌린 입체의 부피는 두 원뿔의 부피의 {합}이고, 두 원뿔의 밑면의 반지름은 직각인 꼭짓점에서 빗변에 내린 {수선}의 길이이다.",
+        "cAnswers": [
+          "합",
+          "수선"
+        ],
+        "cReason": "중$1$에게 낯선 '빗변'의 뜻을 덧붙이고 수선을 내리는 점을 밝힘.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "두 원뿔로 나누어 회전체의 부피 구하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1952,
+        "part": "m1plus",
+        "sourceFingerprint": "be44ad6d0c6f33a4920ea1eae8c865386913185f9d3592e77f9fad358db63e49",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1952
+        },
+        "directReview": null,
+        "cMarkedSentence": "직각삼각형을 빗변(직각과 마주 보는 변)을 축으로 하여 한 바퀴 돌린 입체의 부피는 두 원뿔의 부피의 {합}이고, 두 원뿔의 밑면의 반지름은 직각인 꼭짓점에서 빗변에 내린 {수선}의 길이이다.",
+        "cSlotAnswers": [
+          "합",
+          "수선"
+        ],
+        "cStudentSentence": "직각삼각형을 빗변(직각과 마주 보는 변)을 축으로 하여 한 바퀴 돌린 입체의 부피는 두 원뿔의 부피의 □이고, 두 원뿔의 밑면의 반지름은 직각인 꼭짓점에서 빗변에 내린 □의 길이이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "수선",
+            "equivalentAnswers": [
+              "수선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "수선"
+          ]
+        ],
+        "proposalFingerprint": "0c7abc15e481ba9f7970d474dba8d26c39c66e0670fe19759d2f5565d6584a00"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-05-xc23",
+        "section": "중1::7. 입체도형::뿔의 겉넓이와 부피",
+        "term": "원뿔에 가득 찬 물을 밑넓이, 높이가 같은 원기둥에 붓기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원뿔 모양 그릇에 가득 찬 물을 밑넓이와 높이가 같은 원기둥 그릇에 부으면 물의 {높이}는 원기둥 높이의 {$\\frac{1}{3}$}이 된다.",
+        "example": {
+          "prompt": "원뿔 그릇에 가득 찬 물을 밑넓이가 같고 높이가 $12$로 같은 원기둥 그릇에 부으면 물의 높이는?",
+          "answer": "$4$"
+        },
+        "studentC": "원뿔 모양 그릇에 가득 찬 물을 밑넓이와 높이가 같은 원기둥 그릇에 부으면 물의 □는 원기둥 높이의 □이 된다.",
+        "answers": [
+          "높이",
+          "$\\frac{1}{3}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-05-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "원뿔 모양 그릇에 물을 가득 채운 뒤, 밑넓이와 높이가 이 원뿔과 같은 원기둥 모양 그릇에 모두 부었다. 물의 높이는 원기둥의 높이의 몇 배가 되는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{1}{3}$배가 된다. 물의 부피는 원뿔의 부피이고 이는 원기둥의 부피의 $\\frac{1}{3}$이다. 원기둥에서는 밑넓이가 일정하므로 부피가 $\\frac{1}{3}$이면 높이도 $\\frac{1}{3}$이다.",
+        "bGoal": "원뿔과 원기둥의 부피 관계를 물의 높이로 해석",
+        "bReason": "두 그릇의 조건을 밝히고 높이의 비와 그 까닭을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$배",
+              "원기둥의 높이의 $\\frac{1}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "원뿔의 부피는 원기둥의 부피의 $\\frac{1}{3}$이다",
+              "물의 부피가 원기둥의 부피의 $\\frac{1}{3}$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "원뿔 모양 그릇에 가득 찬 물을 밑넓이와 높이가 같은 원기둥 모양 그릇에 모두 부으면 물의 높이는 원기둥의 높이의 {$\\frac{1}{3}$}이 된다.",
+        "cAnswers": [
+          "$\\frac{1}{3}$"
+        ],
+        "cReason": "첫 빈칸의 답 '높이'가 바로 뒤 '원기둥 높이'에 그대로 나와 빈칸을 하나로 줄임.",
+        "learningRole": "application",
+        "roleReason": "부피의 $\\frac{1}{3}$ 관계를 물의 높이에 적용",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1953,
+        "part": "m1plus",
+        "sourceFingerprint": "131490ccf93d2528053f025201c7e7d86bc19834fe27fdc8735347a01832a04e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1953
+        },
+        "directReview": null,
+        "cMarkedSentence": "원뿔 모양 그릇에 가득 찬 물을 밑넓이와 높이가 같은 원기둥 모양 그릇에 모두 부으면 물의 높이는 원기둥의 높이의 {$\\frac{1}{3}$}이 된다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{3}$"
+        ],
+        "cStudentSentence": "원뿔 모양 그릇에 가득 찬 물을 밑넓이와 높이가 같은 원기둥 모양 그릇에 모두 부으면 물의 높이는 원기둥의 높이의 □이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{3}$",
+              "$\\frac{1}{3}$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{1}{3}$",
+            "accept": [
+              "$\\frac{1}{3}$배"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{3}$배"
+          ]
+        ],
+        "proposalFingerprint": "1e4aa9bcd316a9278ed716eca03aa8676e843908b22e966d2f0fbe39d4afc11c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-05-xc24",
+        "section": "중1::7. 입체도형::뿔의 겉넓이와 부피",
+        "term": "밑면 모양과 뿔의 부피",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑넓이와 높이가 같으면 각뿔과 원뿔의 부피는 밑면의 모양과 관계없이 {같다}.",
+        "example": {
+          "prompt": "밑넓이 $9\\pi$, 높이 $4$인 원뿔과 부피가 같고 높이가 $4$인 각뿔의 밑넓이는?",
+          "answer": "$9\\pi$"
+        },
+        "studentC": "밑넓이와 높이가 같으면 각뿔과 원뿔의 부피는 밑면의 모양과 관계없이 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-05-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "밑넓이와 높이가 각각 같은 각뿔과 원뿔의 부피를 비교하고, 밑면의 모양이 달라도 그렇게 되는 까닭을 설명하시오.",
+        "bAnswer": "두 부피는 같다. 뿔의 부피는 $\\frac{1}{3}\\times$(밑넓이)$\\times$(높이)로, 밑면의 모양이 아니라 밑넓이와 높이로 정해지기 때문이다.",
+        "bGoal": "뿔의 부피가 밑넓이와 높이로만 정해짐을 설명",
+        "bReason": "비교할 두 뿔의 조건을 밝히고 모양과 무관한 까닭을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 부피는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "뿔의 부피는 밑넓이와 높이로 정해진다",
+              "$\\frac{1}{3}\\times$(밑넓이)$\\times$(높이)"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건과 비교 대상이 모두 문장에 있어 결론 한 낱말을 묻는 빈칸으로 분명함.",
+        "learningRole": "reason",
+        "roleReason": "밑면의 모양과 무관하게 부피가 같은 까닭",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1954,
+        "part": "m1plus",
+        "sourceFingerprint": "e8313de96df421c7e321e0c81e5b330704a784ab7a1897c56c45c2c93f096249",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1954
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑넓이와 높이가 같으면 각뿔과 원뿔의 부피는 밑면의 모양과 관계없이 □.",
+        "cFrozenDefinition": "밑넓이와 높이가 같으면 각뿔과 원뿔의 부피는 밑면의 모양과 관계없이 {같다}.",
+        "cFrozenAnswers": [
+          "같다"
+        ],
+        "cMarkedSentence": "밑넓이와 높이가 같으면 각뿔과 원뿔의 부피는 밑면의 모양과 관계없이 {같다}.",
+        "cSlotAnswers": [
+          "같다"
+        ],
+        "cStudentSentence": "밑넓이와 높이가 같으면 각뿔과 원뿔의 부피는 밑면의 모양과 관계없이 □.",
+        "cAnswers": [
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "b1edc37c3a6bc0d1beb31ed892cd7853e4a67c1ded0472536369d204b0d194c8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc1",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "지름으로 구의 겉넓이",
+        "kind": "방법",
+        "level": "하",
+        "definition": "구의 지름이 주어지면 그 {절반}을 반지름 $r$로 하여, 구의 겉넓이 공식 {$4\\pi r^2$}에 넣는다.",
+        "example": {
+          "prompt": "지름이 $4$인 구의 겉넓이는?",
+          "answer": "$16\\pi$"
+        },
+        "studentC": "구의 지름이 주어지면 그 □을 반지름 $r$로 하여, 구의 겉넓이 공식 □에 넣는다.",
+        "answers": [
+          "절반",
+          "$4\\pi r^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "지름의 길이가 $4$인 구의 겉넓이를 구하는 과정을 설명하시오. 지름의 길이를 겉넓이를 구하는 식에 그대로 넣으면 안 되는 까닭도 쓰시오.",
+        "bAnswer": "구의 겉넓이를 구하는 식 $4\\pi r^2$의 $r$는 반지름의 길이이므로 먼저 지름의 절반인 $2$를 구한다. 겉넓이는 $4\\pi\\times2^2=16\\pi$이다.",
+        "bGoal": "지름을 반지름으로 바꾸어 겉넓이 구하기",
+        "bReason": "지름을 그대로 넣는 실수를 짚도록 구체적인 값과 까닭을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "반지름의 길이는 지름의 절반인 $2$이다",
+              "식의 $r$는 반지름의 길이이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\pi\\times2^2=16\\pi$",
+              "$16\\pi$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "지름을 절반으로 바꾸는 단계와 넣을 식을 차례로 묻는 빈칸이 분명함.",
+        "studentLabel": "지름이 주어진 구의 겉넓이",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "지름을 반지름으로 바꾼 뒤 식에 넣기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1955,
+        "part": "m1plus",
+        "sourceFingerprint": "cf3c305b6b936d6e7d23b714834b49e4f8ffa77c0afe192092d300eef729c2a9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1955
+        },
+        "directReview": null,
+        "cFrozenSentence": "구의 지름이 주어지면 그 □을 반지름 $r$로 하여, 구의 겉넓이 공식 □에 넣는다.",
+        "cFrozenDefinition": "구의 지름이 주어지면 그 {절반}을 반지름 $r$로 하여, 구의 겉넓이 공식 {$4\\pi r^2$}에 넣는다.",
+        "cFrozenAnswers": [
+          "절반",
+          "$4\\pi r^2$"
+        ],
+        "cMarkedSentence": "구의 지름이 주어지면 그 {절반}을 반지름 $r$로 하여, 구의 겉넓이 공식 {$4\\pi r^2$}에 넣는다.",
+        "cSlotAnswers": [
+          "절반",
+          "$4\\pi r^2$"
+        ],
+        "cStudentSentence": "구의 지름이 주어지면 그 □을 반지름 $r$로 하여, 구의 겉넓이 공식 □에 넣는다.",
+        "cAnswers": [
+          "절반",
+          "$4\\pi r^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "$\\frac{1}{2}$",
+              "반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$4\\pi r^2$",
+            "equivalentAnswers": [
+              "$4\\pi r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "$\\frac{1}{2}$",
+              "반"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "절반",
+            "$\\frac{1}{2}$",
+            "반"
+          ],
+          [
+            "$4\\pi r^2$"
+          ]
+        ],
+        "proposalFingerprint": "cfa49b35f57d17d4351a23c009a9b44c252b11d690345050794455fab432462d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc2",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "구의 겉넓이와 단면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구의 겉넓이는 구를 반으로 잘랐을 때 생기는 {원}의 넓이의 {$4$배}이다.",
+        "example": {
+          "prompt": "구를 반으로 자른 단면의 넓이가 $9\\pi$일 때 구의 겉넓이는?",
+          "answer": "$36\\pi$"
+        },
+        "studentC": "구의 겉넓이는 구를 반으로 잘랐을 때 생기는 □의 넓이의 □이다.",
+        "answers": [
+          "원",
+          "$4$배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "구를 중심을 지나는 평면으로 자른 단면의 넓이가 $9\\pi$이다. 이 구의 겉넓이를 구하고, 단면의 넓이와 구의 겉넓이 사이의 관계를 까닭과 함께 설명하시오.",
+        "bAnswer": "겉넓이는 $36\\pi$이다. 중심을 지나게 자른 단면은 반지름의 길이가 구와 같은 원이므로 넓이가 $\\pi r^2$이고, 구의 겉넓이 $4\\pi r^2$은 그 $4$배이기 때문이다.",
+        "bGoal": "중심을 지나는 단면의 넓이로 구의 겉넓이 구하기",
+        "bReason": "어떤 단면인지 밝히고 반지름을 구하지 않고 쓰는 관계를 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$36\\pi$"
+            ]
+          },
+          {
+            "anyOf": [
+              "단면은 반지름의 길이가 구와 같은 원이다",
+              "겉넓이는 단면의 넓이의 $4$배이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "구의 겉넓이는 구를 중심을 지나는 평면으로 잘랐을 때 생기는 단면인 {원}의 넓이의 {$4$}배이다.",
+        "cAnswers": [
+          "원",
+          "$4$"
+        ],
+        "cReason": "'반으로 잘랐을 때 생기는 □'에 단면·반구도 들어갈 수 있어 단면의 모양을 묻게 좁힘.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "단면인 원의 넓이의 $4$배 관계 적용",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1956,
+        "part": "m1plus",
+        "sourceFingerprint": "3f7db163d4a080ef01288ea994c8ea683d2726f03da13f5e139b4a0699e6d83e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1956
+        },
+        "directReview": null,
+        "cMarkedSentence": "구의 겉넓이는 구를 중심을 지나는 평면으로 잘랐을 때 생기는 단면인 {원}의 넓이의 {$4$}배이다.",
+        "cSlotAnswers": [
+          "원",
+          "$4$"
+        ],
+        "cStudentSentence": "구의 겉넓이는 구를 중심을 지나는 평면으로 잘랐을 때 생기는 단면인 □의 넓이의 □배이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "원",
+            "equivalentAnswers": [
+              "원"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "원"
+          ],
+          [
+            "$4$"
+          ]
+        ],
+        "proposalFingerprint": "c5d045c94fe558e424499be8a678437b4725625c7c3d0836c0c2f9f0085ab3d3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc3",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "반구의 부피",
+        "kind": "공식",
+        "level": "하",
+        "definition": "반지름이 $r$인 반구의 부피는 {$\\frac{2}{3}\\pi r^3$}이다.",
+        "example": {
+          "prompt": "반지름 $3$인 반구의 부피는?",
+          "answer": "$18\\pi$"
+        },
+        "studentC": "반지름이 $r$인 반구의 부피는 □이다.",
+        "answers": [
+          "$\\frac{2}{3}\\pi r^3$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "반구의 부피 식은 반구의 겉넓이와 부피 문항의 답에 그대로 들어 있음.",
+        "cDecision": "keep",
+        "cReason": "$r$의 뜻이 문장에 있고 식 하나를 묻는 분명한 빈칸임.",
+        "exclusionReason": "B 제외: m1-07-06-c4(반구의 겉넓이와 부피)와 목표가 같은 서술형 중복.",
+        "learningRole": "definition",
+        "roleReason": "반구의 부피를 $r$로 나타낸 식",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1957,
+        "part": "m1plus",
+        "sourceFingerprint": "1aa41488f0dff8905dabf173a556079f41a19065691a040660b6599323fd8cfc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1957
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "반지름이 $r$인 반구의 부피는 □이다.",
+        "cFrozenDefinition": "반지름이 $r$인 반구의 부피는 {$\\frac{2}{3}\\pi r^3$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{2}{3}\\pi r^3$"
+        ],
+        "cMarkedSentence": "반지름이 $r$인 반구의 부피는 {$\\frac{2}{3}\\pi r^3$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{2}{3}\\pi r^3$"
+        ],
+        "cStudentSentence": "반지름이 $r$인 반구의 부피는 □이다.",
+        "cAnswers": [
+          "$\\frac{2}{3}\\pi r^3$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{2}{3}\\pi r^3$",
+            "equivalentAnswers": [
+              "$\\frac{2}{3}\\pi r^3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{2}{3}\\pi r^3$"
+          ]
+        ],
+        "proposalFingerprint": "243c562ed136e911b8fa0d048c33f325bf32710ccf28b34c085910be048226a1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc4",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "구의 부피 계산 순서",
+        "kind": "방법",
+        "level": "하",
+        "definition": "구의 부피는 반지름을 {세 번} 곱한 뒤 {$\\frac{4}{3}\\pi$}를 곱한다.",
+        "example": {
+          "prompt": "반지름 $2$인 구의 부피는?",
+          "answer": "$\\frac{32}{3}\\pi$"
+        },
+        "studentC": "구의 부피는 반지름을 □ 곱한 뒤 □를 곱한다.",
+        "answers": [
+          "세 번",
+          "$\\frac{4}{3}\\pi$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "구의 부피 식을 말로 풀어 쓴 계산 순서라 구의 부피 문항과 답이 같음.",
+        "cDecision": "keep",
+        "cReason": "세 번 곱한 뒤 $\\frac{4}{3}\\pi$를 곱하는 순서를 묻는 짧은 빈칸이라 유지함.",
+        "exclusionReason": "B 제외: m1-07-06-c2(구의 부피)와 목표가 같은 서술형 중복.",
+        "learningRole": "procedure",
+        "roleReason": "구의 부피를 계산하는 곱셈 순서",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1958,
+        "part": "m1plus",
+        "sourceFingerprint": "16ef892cff9e83bef31c84795e9fae62cf365e4337d0dca7aa61d5d34fb0baf2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1958
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "구의 부피는 반지름을 □ 곱한 뒤 □를 곱한다.",
+        "cFrozenDefinition": "구의 부피는 반지름을 {세 번} 곱한 뒤 {$\\frac{4}{3}\\pi$}를 곱한다.",
+        "cFrozenAnswers": [
+          "세 번",
+          "$\\frac{4}{3}\\pi$"
+        ],
+        "cMarkedSentence": "구의 부피는 반지름을 {세 번} 곱한 뒤 {$\\frac{4}{3}\\pi$}를 곱한다.",
+        "cSlotAnswers": [
+          "세 번",
+          "$\\frac{4}{3}\\pi$"
+        ],
+        "cStudentSentence": "구의 부피는 반지름을 □ 곱한 뒤 □를 곱한다.",
+        "cAnswers": [
+          "세 번",
+          "$\\frac{4}{3}\\pi$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "세 번",
+            "equivalentAnswers": [
+              "세 번"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{4}{3}\\pi$",
+            "equivalentAnswers": [
+              "$\\frac{4}{3}\\pi$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "세 번"
+          ],
+          [
+            "$\\frac{4}{3}\\pi$"
+          ]
+        ],
+        "proposalFingerprint": "b81e9556b0cfdc30f9240d40d34204a7a3175b81d4fc149948eb7c6b2d9b7f6f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc5",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "반구의 둥근 면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "반구의 둥근 겉면의 넓이는 구의 겉넓이의 {절반}인 {$2\\pi r^2$}이다.",
+        "example": {
+          "prompt": "반지름 $5$인 반구의 둥근 면의 넓이는?",
+          "answer": "$50\\pi$"
+        },
+        "studentC": "반구의 둥근 겉면의 넓이는 구의 겉넓이의 □인 □이다.",
+        "answers": [
+          "절반",
+          "$2\\pi r^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "둥근 면의 넓이는 반구의 겉넓이를 구하는 과정의 한 조각임.",
+        "cDecision": "rewrite",
+        "cAfter": "반지름의 길이가 $r$인 반구의 둥근 면의 넓이는 반지름이 같은 구의 겉넓이의 {절반}인 {$2\\pi r^2$}이다.",
+        "cAnswers": [
+          "절반",
+          "$2\\pi r^2$"
+        ],
+        "cReason": "답에 쓰이는 $r$가 무엇인지 문장에 없어 반지름의 길이임을 밝힘.",
+        "coreAfter": "반지름의 길이가 $r$인 반구의 둥근 겉면의 넓이는 반지름이 같은 구의 겉넓이의 {절반}인 {$2\\pi r^2$}이다.",
+        "coreReason": "$2\\pi r^2$의 $r$가 무엇을 뜻하는지 설명에 없음.",
+        "exclusionReason": "B 제외: m1-07-06-c4(반구의 겉넓이와 부피)의 한 단계만 떼어 낸 조각 제목.",
+        "learningRole": "definition",
+        "roleReason": "반구의 둥근 면의 넓이 식",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1959,
+        "part": "m1plus",
+        "sourceFingerprint": "1600598d9b43b15eec06f4c51f606dc7a2bcb15cb460bcf4a881d75819aecee8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1959
+        },
+        "directReview": null,
+        "coreBeforeRepair": "반지름의 길이가 $r$인 반구의 둥근 겉면의 넓이는 반지름이 같은 구의 겉넓이의 {절반}인 {$2\\pi r^2$}이다.",
+        "coreRepairReason": "이미 좋아 그대로 보존함. 원래 핵심어 {절반}, {$2\\pi r^2$}를 유지했고, $r$가 반지름의 길이임을 밝힘.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "반지름의 길이가 $r$인 반구의 둥근 면의 넓이는 반지름이 같은 구의 겉넓이의 {절반}인 {$2\\pi r^2$}이다.",
+        "cSlotAnswers": [
+          "절반",
+          "$2\\pi r^2$"
+        ],
+        "cStudentSentence": "반지름의 길이가 $r$인 반구의 둥근 면의 넓이는 반지름이 같은 구의 겉넓이의 □인 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "$\\frac{1}{2}$",
+              "반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2\\pi r^2$",
+            "equivalentAnswers": [
+              "$2\\pi r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "$\\frac{1}{2}$",
+              "반"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "절반",
+            "$\\frac{1}{2}$",
+            "반"
+          ],
+          [
+            "$2\\pi r^2$"
+          ]
+        ],
+        "proposalFingerprint": "744e8b5921b8e84592facfc269e6cbe35346c21a6417ac7dfce22829dd7f4db9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc6",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "구의 겉넓이와 부피의 단위",
+        "kind": "단위",
+        "level": "하",
+        "definition": "구의 겉넓이에는 {$\\mathrm{cm}^2$}, 부피에는 {$\\mathrm{cm}^3$} 같은 단위를 붙인다.",
+        "example": {
+          "prompt": "반지름 $3\\,\\mathrm{cm}$인 구의 겉넓이는?",
+          "answer": "$36\\pi\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "구의 겉넓이에는 □, 부피에는 □ 같은 단위를 붙인다.",
+        "answers": [
+          "$\\mathrm{cm}^2$",
+          "$\\mathrm{cm}^3$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "길이의 단위가 $\\mathrm{cm}$일 때 구의 겉넓이와 부피에 붙이는 단위를 각각 쓰고, 두 단위가 서로 다른 까닭을 설명하시오.",
+        "bAnswer": "겉넓이에는 $\\mathrm{cm}^2$, 부피에는 $\\mathrm{cm}^3$를 붙인다. 겉넓이는 길이를 두 번 곱한 넓이이고 부피는 길이를 세 번 곱한 양이기 때문이다.",
+        "bGoal": "겉넓이와 부피의 단위 구별",
+        "bReason": "길이의 단위를 $\\mathrm{cm}$로 정해 주고 단위가 다른 까닭을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "겉넓이의 단위는 $\\mathrm{cm}^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "부피의 단위는 $\\mathrm{cm}^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이는 길이를 두 번, 부피는 길이를 세 번 곱한 양이다",
+              "겉넓이는 넓이이고 부피는 공간의 크기이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "반지름의 길이를 $\\mathrm{cm}$로 잴 때, 구의 겉넓이의 단위는 {$\\mathrm{cm}^2$}, 부피의 단위는 {$\\mathrm{cm}^3$}이다.",
+        "cAnswers": [
+          "$\\mathrm{cm}^2$",
+          "$\\mathrm{cm}^3$"
+        ],
+        "cReason": "길이의 단위가 없으면 $\\mathrm{m}^2$ 등도 답이 되므로 기준 단위를 밝힘.",
+        "learningRole": "naming",
+        "roleReason": "겉넓이와 부피에 붙이는 단위",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1960,
+        "part": "m1plus",
+        "sourceFingerprint": "e12cff99d5f13c2b917b9618782d11a06b537a37eb979e03ab28544d2b3611ff",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1960
+        },
+        "directReview": null,
+        "cMarkedSentence": "반지름의 길이를 $\\mathrm{cm}$로 잴 때, 구의 겉넓이의 단위는 {$\\mathrm{cm}^2$}, 부피의 단위는 {$\\mathrm{cm}^3$}이다.",
+        "cSlotAnswers": [
+          "$\\mathrm{cm}^2$",
+          "$\\mathrm{cm}^3$"
+        ],
+        "cStudentSentence": "반지름의 길이를 $\\mathrm{cm}$로 잴 때, 구의 겉넓이의 단위는 □, 부피의 단위는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\mathrm{cm}^2$",
+            "equivalentAnswers": [
+              "$\\mathrm{cm}^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\mathrm{cm}^3$",
+            "equivalentAnswers": [
+              "$\\mathrm{cm}^3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\mathrm{cm}^2$"
+          ],
+          [
+            "$\\mathrm{cm}^3$"
+          ]
+        ],
+        "proposalFingerprint": "6263d2e5ae36c226f37d5885401ed465452debff827a19da95e6a36cadc4d72d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc7",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "반구의 겉넓이",
+        "kind": "공식",
+        "level": "하",
+        "definition": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 {$3\\pi r^2$}이다.",
+        "example": {
+          "prompt": "반지름 $2$인 반구의 겉넓이는?",
+          "answer": "$12\\pi$"
+        },
+        "studentC": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 □이다.",
+        "answers": [
+          "$3\\pi r^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "둥근 면과 단면을 더하는 내용이 반구의 겉넓이와 부피 문항의 답과 같음.",
+        "cDecision": "keep",
+        "cReason": "두 넓이를 더해 식을 완성하는 짧은 계산 빈칸이라 유지함.",
+        "exclusionReason": "B 제외: m1-07-06-c4(반구의 겉넓이와 부피)와 목표가 같은 서술형 중복.",
+        "learningRole": "definition",
+        "roleReason": "반구의 겉넓이를 $r$로 나타낸 식",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1961,
+        "part": "m1plus",
+        "sourceFingerprint": "23c0aeaa6238f10846a4dd8103208a2343565aa8316330791b6dddc67fde803f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1961
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 □이다.",
+        "cFrozenDefinition": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 {$3\\pi r^2$}이다.",
+        "cFrozenAnswers": [
+          "$3\\pi r^2$"
+        ],
+        "cMarkedSentence": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 {$3\\pi r^2$}이다.",
+        "cSlotAnswers": [
+          "$3\\pi r^2$"
+        ],
+        "cStudentSentence": "반지름이 $r$인 반구의 겉넓이는 둥근 면 $2\\pi r^2$에 단면 $\\pi r^2$을 더한 □이다.",
+        "cAnswers": [
+          "$3\\pi r^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3\\pi r^2$",
+            "equivalentAnswers": [
+              "$3\\pi r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3\\pi r^2$"
+          ]
+        ],
+        "proposalFingerprint": "2430222aa382fc4d6c7168c88fdcde8f80cd4b0b0e752af6a646885c809a3fc0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc8",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "꼭 맞는 원기둥의 옆넓이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구가 꼭 맞게 들어가는 원기둥의 옆넓이는 구의 겉넓이와 {같다}.",
+        "example": {
+          "prompt": "반지름 $3$인 구가 꼭 맞는 원기둥의 옆넓이는?",
+          "answer": "$36\\pi$"
+        },
+        "studentC": "구가 꼭 맞게 들어가는 원기둥의 옆넓이는 구의 겉넓이와 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $r$인 구가 꼭 맞게 들어가는 원기둥은 밑면의 반지름의 길이가 $r$, 높이가 $2r$이다. 이 원기둥의 옆넓이와 구의 겉넓이를 각각 식으로 구하여 비교하시오.",
+        "bAnswer": "원기둥의 옆넓이는 (밑면의 둘레)$\\times$(높이)$=2\\pi r\\times2r=4\\pi r^2$이고, 구의 겉넓이도 $4\\pi r^2$이므로 두 넓이는 같다.",
+        "bGoal": "꼭 맞는 원기둥의 옆넓이와 구의 겉넓이 비교",
+        "bReason": "원기둥의 크기를 밝히고 두 넓이를 식으로 견주게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원기둥의 옆넓이는 $2\\pi r\\times2r=4\\pi r^2$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "구의 겉넓이와 같다",
+              "두 넓이는 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "반지름의 길이가 $r$인 구가 꼭 맞게 들어가는 원기둥(밑면의 반지름 $r$, 높이 $2r$)의 옆넓이는 {$4\\pi r^2$}으로, 구의 겉넓이와 {같다}.",
+        "cAnswers": [
+          "$4\\pi r^2$",
+          "같다"
+        ],
+        "cReason": "원기둥의 크기를 밝히고 옆넓이의 식도 함께 묻도록 보완함.",
+        "studentLabel": "구가 꼭 맞게 들어가는 원기둥의 옆넓이",
+        "learningRole": "reason",
+        "roleReason": "원기둥의 옆넓이와 구의 겉넓이가 같은 까닭",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1962,
+        "part": "m1plus",
+        "sourceFingerprint": "b52d2e8671603c82bd1e797928da1a277b3b7f70082704c05e43394edc569f71",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1962
+        },
+        "directReview": null,
+        "cMarkedSentence": "반지름의 길이가 $r$인 구가 꼭 맞게 들어가는 원기둥(밑면의 반지름 $r$, 높이 $2r$)의 옆넓이는 {$4\\pi r^2$}으로, 구의 겉넓이와 {같다}.",
+        "cSlotAnswers": [
+          "$4\\pi r^2$",
+          "같다"
+        ],
+        "cStudentSentence": "반지름의 길이가 $r$인 구가 꼭 맞게 들어가는 원기둥(밑면의 반지름 $r$, 높이 $2r$)의 옆넓이는 □으로, 구의 겉넓이와 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4\\pi r^2$",
+            "equivalentAnswers": [
+              "$4\\pi r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$4\\pi r^2$"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "5c70bf800bae1d0ab2716bb8ce894c6901451bb6f1cbad89a408fb88ca557f12"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc9",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "구가 꼭 맞게 들어가는 원기둥의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "반지름이 $r$인 구가 꼭 맞게 들어가는 원기둥은 밑면의 반지름이 {$r$}, 높이가 {$2r$}이다.",
+        "example": {
+          "prompt": "반지름 $5$인 구가 꼭 맞는 원기둥의 높이는?",
+          "answer": "$10$"
+        },
+        "studentC": "반지름이 $r$인 구가 꼭 맞게 들어가는 원기둥은 밑면의 반지름이 □, 높이가 □이다.",
+        "answers": [
+          "$r$",
+          "$2r$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $r$인 구가 원기둥의 두 밑면과 옆면에 모두 닿도록 꼭 맞게 들어 있다. 이 원기둥의 밑면의 반지름의 길이와 높이를 $r$로 나타내고 까닭을 설명하시오.",
+        "bAnswer": "밑면의 반지름의 길이는 $r$, 높이는 $2r$이다. 구가 옆면에 닿으므로 밑면의 반지름이 구의 반지름과 같고, 두 밑면에 닿으므로 높이가 구의 지름과 같다.",
+        "bGoal": "구가 꼭 맞는 원기둥의 반지름과 높이",
+        "bReason": "'꼭 맞게'의 뜻을 면에 닿는 조건으로 밝히고 두 길이를 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 반지름의 길이는 $r$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 $2r$"
+            ]
+          },
+          {
+            "anyOf": [
+              "구가 옆면에 닿으므로 밑면의 반지름이 구의 반지름과 같다",
+              "구가 두 밑면에 닿으므로 높이가 구의 지름과 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "구의 반지름 $r$가 주어져 있고 원기둥의 두 길이를 묻는 빈칸이 분명함.",
+        "learningRole": "definition",
+        "roleReason": "구가 꼭 맞는 원기둥의 크기 조건",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1963,
+        "part": "m1plus",
+        "sourceFingerprint": "7df67ee277adf8ac51eb091ac65653dad6f29b8e434c4cddc3b30b08826e4233",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1963
+        },
+        "directReview": null,
+        "cFrozenSentence": "반지름이 $r$인 구가 꼭 맞게 들어가는 원기둥은 밑면의 반지름이 □, 높이가 □이다.",
+        "cFrozenDefinition": "반지름이 $r$인 구가 꼭 맞게 들어가는 원기둥은 밑면의 반지름이 {$r$}, 높이가 {$2r$}이다.",
+        "cFrozenAnswers": [
+          "$r$",
+          "$2r$"
+        ],
+        "cMarkedSentence": "반지름이 $r$인 구가 꼭 맞게 들어가는 원기둥은 밑면의 반지름이 {$r$}, 높이가 {$2r$}이다.",
+        "cSlotAnswers": [
+          "$r$",
+          "$2r$"
+        ],
+        "cStudentSentence": "반지름이 $r$인 구가 꼭 맞게 들어가는 원기둥은 밑면의 반지름이 □, 높이가 □이다.",
+        "cAnswers": [
+          "$r$",
+          "$2r$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$r$",
+            "equivalentAnswers": [
+              "$r$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2r$",
+            "equivalentAnswers": [
+              "$2r$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$r$"
+          ],
+          [
+            "$2r$"
+          ]
+        ],
+        "proposalFingerprint": "8a7afebb05856ce30bce9653ca1d93aaf44040f588094080765d1c8cbef37d3b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc10",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "겉넓이로 반지름 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "구의 겉넓이를 {$4\\pi$}로 나누면 반지름을 두 번 곱한 값이 나오고, 여기서 {반지름}을 찾는다.",
+        "example": {
+          "prompt": "겉넓이가 $64\\pi$인 구의 반지름은?",
+          "answer": "$4$"
+        },
+        "studentC": "구의 겉넓이를 □로 나누면 반지름을 두 번 곱한 값이 나오고, 여기서 □을 찾는다.",
+        "answers": [
+          "$4\\pi$",
+          "반지름"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "겉넓이가 $64\\pi$인 구의 반지름의 길이를 구하는 과정을 구의 겉넓이를 구하는 식을 써서 설명하시오.",
+        "bAnswer": "반지름의 길이를 $r$라 하면 $4\\pi r^2=64\\pi$이므로 양변을 $4\\pi$로 나누어 $r^2=16$이다. 두 번 곱해 $16$이 되는 양수는 $4$이므로 $r=4$이다.",
+        "bGoal": "겉넓이 식을 거꾸로 풀어 반지름 구하기",
+        "bReason": "구체적인 겉넓이를 주어 $4\\pi$로 나누고 수를 찾는 과정이 드러나게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4\\pi r^2=64\\pi$에서 $r^2=16$",
+              "$64\\pi\\div4\\pi=16$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$r=4$",
+              "반지름의 길이는 $4$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "구의 겉넓이를 {$4\\pi$}로 나누면 반지름의 길이를 {두} 번 곱한 값이 나온다. 이 값을 보고 반지름의 길이를 찾는다.",
+        "cAnswers": [
+          "$4\\pi$",
+          "두"
+        ],
+        "cReason": "둘째 빈칸의 답 '반지름'이 바로 앞에 나와 곱한 횟수를 묻도록 바꿈.",
+        "studentLabel": "구의 겉넓이로 반지름 구하기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "겉넓이를 $4\\pi$로 나누어 반지름 찾기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1964,
+        "part": "m1plus",
+        "sourceFingerprint": "127727de8432b8c1768e48d6e9226d8d399c063c8ec072bf5471ec8a30ea81cb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1964
+        },
+        "directReview": null,
+        "cMarkedSentence": "구의 겉넓이를 {$4\\pi$}로 나누면 반지름의 길이를 {두} 번 곱한 값이 나온다. 이 값을 보고 반지름의 길이를 찾는다.",
+        "cSlotAnswers": [
+          "$4\\pi$",
+          "두"
+        ],
+        "cStudentSentence": "구의 겉넓이를 □로 나누면 반지름의 길이를 □ 번 곱한 값이 나온다. 이 값을 보고 반지름의 길이를 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4\\pi$",
+            "equivalentAnswers": [
+              "$4\\pi$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "두",
+            "equivalentAnswers": [
+              "두",
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "두",
+            "accept": [
+              "$2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$4\\pi$"
+          ],
+          [
+            "두",
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "1a77592eeb45265c845aae5f036925b59d26ba317d306f43bdd9e4357e313493"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc11",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "부피로 반지름 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "구의 부피에 $\\frac{3}{4}$을 곱하고 $\\pi$로 나누면 반지름을 {세 번} 곱한 값이 되어 {반지름}을 찾는다.",
+        "example": {
+          "prompt": "부피가 $36\\pi$인 구의 반지름은?",
+          "answer": "$3$"
+        },
+        "studentC": "구의 부피에 $\\frac{3}{4}$을 곱하고 $\\pi$로 나누면 반지름을 □ 곱한 값이 되어 □을 찾는다.",
+        "answers": [
+          "세 번",
+          "반지름"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "부피가 $36\\pi$인 구의 반지름의 길이를 구하는 과정을 구의 부피를 구하는 식을 써서 설명하시오.",
+        "bAnswer": "반지름의 길이를 $r$라 하면 $\\frac{4}{3}\\pi r^3=36\\pi$이므로 $r^3=36\\times\\frac{3}{4}=27$이다. 세 번 곱해 $27$이 되는 수는 $3$이므로 $r=3$이다.",
+        "bGoal": "부피 식을 거꾸로 풀어 반지름 구하기",
+        "bReason": "구체적인 부피를 주어 $\\frac{3}{4}$을 곱하고 수를 찾는 과정이 드러나게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{4}{3}\\pi r^3=36\\pi$에서 $r^3=27$",
+              "$36\\times\\frac{3}{4}=27$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$r=3$",
+              "반지름의 길이는 $3$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "구의 부피에 {$\\frac{3}{4}$}을 곱하고 $\\pi$로 나누면 반지름의 길이를 {세} 번 곱한 값이 나온다. 이 값을 보고 반지름의 길이를 찾는다.",
+        "cAnswers": [
+          "$\\frac{3}{4}$",
+          "세"
+        ],
+        "cReason": "둘째 빈칸의 답 '반지름'이 바로 앞에 나와 곱하는 수와 횟수를 묻도록 바꿈.",
+        "studentLabel": "구의 부피로 반지름 구하기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "부피에서 $r^3$의 값을 구해 반지름 찾기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1965,
+        "part": "m1plus",
+        "sourceFingerprint": "5c53c8e2de38283512bbeef2891db662ed8725d9e358a37ce3624f524b4c75a9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1965
+        },
+        "directReview": null,
+        "cMarkedSentence": "구의 부피에 {$\\frac{3}{4}$}을 곱하고 $\\pi$로 나누면 반지름의 길이를 {세} 번 곱한 값이 나온다. 이 값을 보고 반지름의 길이를 찾는다.",
+        "cSlotAnswers": [
+          "$\\frac{3}{4}$",
+          "세"
+        ],
+        "cStudentSentence": "구의 부피에 □을 곱하고 $\\pi$로 나누면 반지름의 길이를 □ 번 곱한 값이 나온다. 이 값을 보고 반지름의 길이를 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{3}{4}$",
+            "equivalentAnswers": [
+              "$\\frac{3}{4}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "세",
+            "equivalentAnswers": [
+              "세",
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "세",
+            "accept": [
+              "$3$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{3}{4}$"
+          ],
+          [
+            "세",
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "38d7b2d6fc70ecf9506891c3373c282483c8722eacd4b1c70f103eb128ffcf35"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc12",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "구와 원뿔의 부피",
+        "kind": "성질",
+        "level": "중",
+        "definition": "구가 꼭 맞는 원기둥에 꼭 맞게 넣은 원뿔의 부피는 구의 부피의 {절반}이다.",
+        "example": {
+          "prompt": "구가 꼭 맞는 원기둥에 꼭 맞게 넣은 원뿔에서 구의 부피가 $36\\pi$이면 원뿔의 부피는?",
+          "answer": "$18\\pi$"
+        },
+        "studentC": "구가 꼭 맞는 원기둥에 꼭 맞게 넣은 원뿔의 부피는 구의 부피의 □이다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc12",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "원뿔이 구의 절반이라는 내용은 부피의 비 $1:2:3$에서 바로 읽히는 결과임.",
+        "cDecision": "rewrite",
+        "cAfter": "반지름의 길이가 $r$인 구가 꼭 맞게 들어가는 원기둥(밑면의 반지름 $r$, 높이 $2r$)과 밑면과 높이가 같은 원뿔의 부피는 그 구의 부피의 {절반}이다.",
+        "cAnswers": [
+          "절반"
+        ],
+        "cReason": "'꼭 맞게 넣은 원뿔'이 어떤 원뿔인지 알 수 없어 원기둥과 원뿔의 크기 조건을 밝힘.",
+        "exclusionReason": "B 제외: m1-07-06-c5(원뿔·구·원기둥의 부피의 비)와 목표가 같은 서술형 중복.",
+        "learningRole": "application",
+        "roleReason": "부피의 비에서 원뿔과 구의 관계 읽기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1966,
+        "part": "m1plus",
+        "sourceFingerprint": "8dd13d2ba8af1117d01e8d0fcc3ad29d8d562837a7524e1aaa0611afa82960a2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1966
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "반지름의 길이가 $r$인 구가 꼭 맞게 들어가는 원기둥(밑면의 반지름 $r$, 높이 $2r$)과 밑면과 높이가 같은 원뿔의 부피는 그 구의 부피의 {절반}이다.",
+        "cSlotAnswers": [
+          "절반"
+        ],
+        "cStudentSentence": "반지름의 길이가 $r$인 구가 꼭 맞게 들어가는 원기둥(밑면의 반지름 $r$, 높이 $2r$)과 밑면과 높이가 같은 원뿔의 부피는 그 구의 부피의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "$\\frac{1}{2}$",
+              "반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "$\\frac{1}{2}$",
+              "반"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "절반",
+            "$\\frac{1}{2}$",
+            "반"
+          ]
+        ],
+        "proposalFingerprint": "ea24368833b21b899306603152f77f944cd44a0cbeb0148d09d55181a7c845da"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc13",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "반구와 그 반구가 꼭 맞게 들어가는 원기둥의 부피",
+        "kind": "성질",
+        "level": "중",
+        "definition": "반구의 부피는 밑면의 반지름과 높이가 모두 그 반구의 반지름과 같은 원기둥의 부피의 {$\\frac{2}{3}$}이다. 구와 그 구가 꼭 맞게 들어가는 원기둥을 함께 {반}으로 자른 것이기 때문이다.",
+        "example": {
+          "prompt": "반구가 꼭 맞게 들어가는 원기둥에서 반구가 차지하는 몫은?",
+          "answer": "$\\frac{2}{3}$"
+        },
+        "studentC": "반구의 부피는 밑면의 반지름과 높이가 모두 그 반구의 반지름과 같은 원기둥의 부피의 □이다. 구와 그 구가 꼭 맞게 들어가는 원기둥을 함께 □으로 자른 것이기 때문이다.",
+        "answers": [
+          "$\\frac{2}{3}$",
+          "반"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $r$인 반구와, 밑면의 반지름의 길이와 높이가 모두 $r$인 원기둥이 있다. 반구의 부피가 이 원기둥의 부피의 몇 배인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{2}{3}$배이다. 반구의 부피는 $\\frac{2}{3}\\pi r^3$이고 원기둥의 부피는 $\\pi r^2\\times r=\\pi r^3$이기 때문이다. 구와 그 구가 꼭 맞게 들어가는 원기둥을 함께 반으로 자른 것으로 보아도 같다.",
+        "bGoal": "반구와 꼭 맞는 원기둥의 부피 비교",
+        "bReason": "원기둥의 반지름과 높이를 $r$로 밝히고 배수와 까닭을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2}{3}$배",
+              "$\\frac{2}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "반구의 부피는 $\\frac{2}{3}\\pi r^3$, 원기둥의 부피는 $\\pi r^3$이다",
+              "구와 그 구가 꼭 맞게 들어가는 원기둥을 함께 반으로 자른 것이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "원기둥의 크기가 말로 밝혀져 있고 분수와 그 까닭을 잇는 두 빈칸이 분명함.",
+        "learningRole": "reason",
+        "roleReason": "반구가 원기둥의 $\\frac{2}{3}$인 까닭",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1967,
+        "part": "m1plus",
+        "sourceFingerprint": "a84afe8c6582dbeb7998cacddccb6b60f64f74a8db4ef60dc8d3706881e6530d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1967
+        },
+        "directReview": null,
+        "cFrozenSentence": "반구의 부피는 밑면의 반지름과 높이가 모두 그 반구의 반지름과 같은 원기둥의 부피의 □이다. 구와 그 구가 꼭 맞게 들어가는 원기둥을 함께 □으로 자른 것이기 때문이다.",
+        "cFrozenDefinition": "반구의 부피는 밑면의 반지름과 높이가 모두 그 반구의 반지름과 같은 원기둥의 부피의 {$\\frac{2}{3}$}이다. 구와 그 구가 꼭 맞게 들어가는 원기둥을 함께 {반}으로 자른 것이기 때문이다.",
+        "cFrozenAnswers": [
+          "$\\frac{2}{3}$",
+          "반"
+        ],
+        "cMarkedSentence": "반구의 부피는 밑면의 반지름과 높이가 모두 그 반구의 반지름과 같은 원기둥의 부피의 {$\\frac{2}{3}$}이다. 구와 그 구가 꼭 맞게 들어가는 원기둥을 함께 {반}으로 자른 것이기 때문이다.",
+        "cSlotAnswers": [
+          "$\\frac{2}{3}$",
+          "반"
+        ],
+        "cStudentSentence": "반구의 부피는 밑면의 반지름과 높이가 모두 그 반구의 반지름과 같은 원기둥의 부피의 □이다. 구와 그 구가 꼭 맞게 들어가는 원기둥을 함께 □으로 자른 것이기 때문이다.",
+        "cAnswers": [
+          "$\\frac{2}{3}$",
+          "반"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{2}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{2}{3}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반",
+            "equivalentAnswers": [
+              "반",
+              "절반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "반",
+            "accept": [
+              "절반"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{2}{3}$"
+          ],
+          [
+            "반",
+            "절반"
+          ]
+        ],
+        "proposalFingerprint": "2f97736ffaabbc10c2524bdad0ed6a7d370fcfddde3f6078e441bc2c7de86786"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc14",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "사분의 일 구",
+        "kind": "방법",
+        "level": "중",
+        "definition": "중심을 지나고 서로 수직인 두 평면으로 잘라 낸 구의 $\\frac{1}{4}$ 조각의 부피는 구의 {$\\frac{1}{4}$}이고, 겉넓이에는 잘린 {반원} 두 개를 더한다.",
+        "example": {
+          "prompt": "반지름 $3$인 구의 $\\frac{1}{4}$ 조각의 부피는?",
+          "answer": "$9\\pi$"
+        },
+        "studentC": "중심을 지나고 서로 수직인 두 평면으로 잘라 낸 구의 $\\frac{1}{4}$ 조각의 부피는 구의 □이고, 겉넓이에는 잘린 □ 두 개를 더한다.",
+        "answers": [
+          "$\\frac{1}{4}$",
+          "반원"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $r$인 구를 중심을 지나고 서로 수직인 두 평면으로 잘라 똑같은 네 조각으로 나누었다. 한 조각의 부피와 겉넓이를 각각 $r$로 나타내고, 겉넓이가 어떤 면들의 넓이의 합인지 설명하시오.",
+        "bAnswer": "부피는 구의 부피의 $\\frac{1}{4}$인 $\\frac{1}{3}\\pi r^3$이다. 겉넓이는 둥근 면의 넓이 $\\frac{1}{4}\\times4\\pi r^2=\\pi r^2$에 잘린 면인 반원 $2$개의 넓이 $2\\times\\frac{1}{2}\\pi r^2=\\pi r^2$을 더한 $2\\pi r^2$이다.",
+        "bGoal": "구의 조각의 부피와 겉넓이에서 잘린 면 처리",
+        "bReason": "자르는 방법과 조각의 수를 밝히고 겉넓이를 이루는 면을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "부피는 $\\frac{1}{3}\\pi r^3$",
+              "구의 부피의 $\\frac{1}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "둥근 면의 넓이에 반원 $2$개의 넓이를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉넓이는 $2\\pi r^2$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "반지름의 길이가 $r$인 구를 중심을 지나고 서로 수직인 두 평면으로 잘라 똑같은 조각 $4$개로 나눌 때, 한 조각의 부피는 구의 부피의 {$\\frac{1}{4}$}이고, 한 조각의 겉넓이는 둥근 면의 넓이에 잘린 면인 {반원} {$2$}개의 넓이를 더한 값이다.",
+        "cAnswers": [
+          "$\\frac{1}{4}$",
+          "반원",
+          "$2$"
+        ],
+        "cReason": "문장에 '$\\frac{1}{4}$ 조각'이 그대로 있어 답을 베끼게 되므로 조각 수로 바꿔 씀.",
+        "studentLabel": "구를 똑같이 네 조각으로 자른 한 조각",
+        "learningRole": "application",
+        "roleReason": "잘린 구 조각의 부피와 겉넓이 구하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1968,
+        "part": "m1plus",
+        "sourceFingerprint": "c2ebfce003083cd97ee1744ec4340eaf80d5f35f179c1ffc42b4661f6e4e94ea",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1968
+        },
+        "directReview": null,
+        "cMarkedSentence": "반지름의 길이가 $r$인 구를 중심을 지나고 서로 수직인 두 평면으로 잘라 똑같은 조각 $4$개로 나눌 때, 한 조각의 부피는 구의 부피의 {$\\frac{1}{4}$}이고, 한 조각의 겉넓이는 둥근 면의 넓이에 잘린 면인 {반원} {$2$}개의 넓이를 더한 값이다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{4}$",
+          "반원",
+          "$2$"
+        ],
+        "cStudentSentence": "반지름의 길이가 $r$인 구를 중심을 지나고 서로 수직인 두 평면으로 잘라 똑같은 조각 $4$개로 나눌 때, 한 조각의 부피는 구의 부피의 □이고, 한 조각의 겉넓이는 둥근 면의 넓이에 잘린 면인 □ □개의 넓이를 더한 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{4}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{4}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반원",
+            "equivalentAnswers": [
+              "반원"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{4}$"
+          ],
+          [
+            "반원"
+          ],
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "a1ffbaa6534620cf232b58e29b33e01d99dc960b7d6cc167bbe8fd279274b06c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc15",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "상자에 넣은 공",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정육면체 상자에 꼭 맞는 구의 반지름은 한 모서리의 {절반}이므로, 빈 곳의 부피는 상자의 부피에서 {구}의 부피를 뺀다.",
+        "example": {
+          "prompt": "한 모서리 $4$인 상자에 꼭 맞는 구를 넣었을 때 빈 곳의 부피는?",
+          "answer": "$64-\\frac{32}{3}\\pi$"
+        },
+        "studentC": "정육면체 상자에 꼭 맞는 구의 반지름은 한 모서리의 □이므로, 빈 곳의 부피는 상자의 부피에서 □의 부피를 뺀다.",
+        "answers": [
+          "절반",
+          "구"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "한 모서리의 길이가 $4$인 정육면체 모양의 상자에 여섯 면에 모두 닿는 구를 넣었다. 구의 반지름의 길이를 까닭과 함께 쓰고, 상자 안에서 구가 차지하지 않는 부분의 부피를 구하시오.",
+        "bAnswer": "구가 마주 보는 두 면에 모두 닿으므로 구의 지름의 길이는 모서리의 길이 $4$와 같고 반지름의 길이는 $2$이다. 빈 부분의 부피는 상자의 부피에서 구의 부피를 뺀 $4^3-\\frac{4}{3}\\pi\\times2^3=64-\\frac{32}{3}\\pi$이다.",
+        "bGoal": "정육면체에 꼭 맞는 구의 반지름과 빈 곳의 부피",
+        "bReason": "'꼭 맞는'을 여섯 면에 닿는 조건으로 밝히고 구체적인 길이를 줌.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구의 지름의 길이가 모서리의 길이 $4$와 같다",
+              "반지름의 길이는 $2$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "상자의 부피에서 구의 부피를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$64-\\frac{32}{3}\\pi$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정육면체 모양 상자의 여섯 면에 모두 닿는 구의 지름은 상자의 한 {모서리}의 길이와 같으므로 반지름은 그 {절반}이다. 상자 안의 빈 곳의 부피는 상자의 부피에서 구의 부피를 {뺀} 값이다.",
+        "cAnswers": [
+          "모서리",
+          "절반",
+          "뺀"
+        ],
+        "cReason": "둘째 빈칸의 답 '구'가 문장 앞에 그대로 있어 지름과 모서리의 관계를 묻게 함.",
+        "studentLabel": "정육면체 상자에 꼭 맞는 구",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "상자에서 구를 뺀 빈 곳의 부피 구하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1969,
+        "part": "m1plus",
+        "sourceFingerprint": "38bf8c7b9460b7ab320c3e78867b38925046991c4b8c2c0478179268b78e5a06",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1969
+        },
+        "directReview": null,
+        "cMarkedSentence": "정육면체 모양 상자의 여섯 면에 모두 닿는 구의 지름은 상자의 한 {모서리}의 길이와 같으므로 반지름은 그 {절반}이다. 상자 안의 빈 곳의 부피는 상자의 부피에서 구의 부피를 {뺀} 값이다.",
+        "cSlotAnswers": [
+          "모서리",
+          "절반",
+          "뺀"
+        ],
+        "cStudentSentence": "정육면체 모양 상자의 여섯 면에 모두 닿는 구의 지름은 상자의 한 □의 길이와 같으므로 반지름은 그 □이다. 상자 안의 빈 곳의 부피는 상자의 부피에서 구의 부피를 □ 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모서리",
+            "equivalentAnswers": [
+              "모서리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "$\\frac{1}{2}$",
+              "반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "뺀",
+            "equivalentAnswers": [
+              "뺀"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "$\\frac{1}{2}$",
+              "반"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "모서리"
+          ],
+          [
+            "절반",
+            "$\\frac{1}{2}$",
+            "반"
+          ],
+          [
+            "뺀"
+          ]
+        ],
+        "proposalFingerprint": "7a1c63fdd58644a753d21c6e0968d1e343dbc1217b91bfffbf2531cbf073894c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc16",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "반지름의 비가 $a:b$인 두 구",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 구의 반지름의 비가 $a:b$이면 겉넓이의 비는 {$a^2:b^2$}, 부피의 비는 {$a^3:b^3$}이다.",
+        "example": {
+          "prompt": "두 구의 반지름의 비가 $1:2$이면 부피의 비는?",
+          "answer": "$1:8$"
+        },
+        "studentC": "두 구의 반지름의 비가 $a:b$이면 겉넓이의 비는 □, 부피의 비는 □이다.",
+        "answers": [
+          "$a^2:b^2$",
+          "$a^3:b^3$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "반지름이 $k$배일 때의 배율을 비 $a:b$로 바꿔 쓴 같은 결론임.",
+        "cDecision": "keep",
+        "cReason": "반지름의 비가 주어져 있고 겉넓이와 부피의 비를 구별해 쓰는 빈칸이 분명함.",
+        "exclusionReason": "B 제외: m1-07-06-c6(반지름이 $k$배가 된 구)과 까닭·결론이 같은 서술형 중복.",
+        "learningRole": "reason",
+        "roleReason": "반지름의 비와 겉넓이·부피의 비의 관계",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1970,
+        "part": "m1plus",
+        "sourceFingerprint": "5660b541e5fdd7379a7c0d7fd7ea8662adc67481a5c15863b00cfea35511825d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1970
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "두 구의 반지름의 비가 $a:b$이면 겉넓이의 비는 □, 부피의 비는 □이다.",
+        "cFrozenDefinition": "두 구의 반지름의 비가 $a:b$이면 겉넓이의 비는 {$a^2:b^2$}, 부피의 비는 {$a^3:b^3$}이다.",
+        "cFrozenAnswers": [
+          "$a^2:b^2$",
+          "$a^3:b^3$"
+        ],
+        "cMarkedSentence": "두 구의 반지름의 비가 $a:b$이면 겉넓이의 비는 {$a^2:b^2$}, 부피의 비는 {$a^3:b^3$}이다.",
+        "cSlotAnswers": [
+          "$a^2:b^2$",
+          "$a^3:b^3$"
+        ],
+        "cStudentSentence": "두 구의 반지름의 비가 $a:b$이면 겉넓이의 비는 □, 부피의 비는 □이다.",
+        "cAnswers": [
+          "$a^2:b^2$",
+          "$a^3:b^3$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a^2:b^2$",
+            "equivalentAnswers": [
+              "$a^2:b^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a^3:b^3$",
+            "equivalentAnswers": [
+              "$a^3:b^3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a^2:b^2$"
+          ],
+          [
+            "$a^3:b^3$"
+          ]
+        ],
+        "proposalFingerprint": "bd4531bebf4eda9c6f280e6da8cf9e1f5d2bfb247f6cada89e2147e662a3eb77"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc17",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "녹여서 작은 구 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "큰 구를 녹여 같은 크기의 작은 구를 남김없이 만들면 {부피의 합}은 그대로이므로, 개수는 큰 구의 부피를 작은 구 하나의 {부피}로 나눈 값이다.",
+        "example": {
+          "prompt": "반지름 $6$인 구로 반지름 $2$인 구를 몇 개 만들 수 있는가?",
+          "answer": "$27$개"
+        },
+        "studentC": "큰 구를 녹여 같은 크기의 작은 구를 남김없이 만들면 □은 그대로이므로, 개수는 큰 구의 부피를 작은 구 하나의 □로 나눈 값이다.",
+        "answers": [
+          "부피의 합",
+          "부피"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $6$인 쇠구슬 $1$개를 녹여 반지름의 길이가 $2$인 쇠구슬을 남김없이 만들려고 한다. 몇 개를 만들 수 있는지 구하는 방법을 까닭과 함께 설명하고 값을 구하시오.",
+        "bAnswer": "녹여도 전체 부피는 변하지 않으므로 큰 구의 부피를 작은 구 하나의 부피로 나눈다. $\\frac{4}{3}\\pi\\times6^3\\div\\left(\\frac{4}{3}\\pi\\times2^3\\right)=216\\div8=27$이므로 $27$개이다.",
+        "bGoal": "부피가 변하지 않음을 이용해 작은 구의 개수 구하기",
+        "bReason": "두 구의 반지름을 주고 부피가 그대로라는 까닭까지 답하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "녹여도 전체 부피는 변하지 않는다",
+              "작은 구들의 부피의 합이 큰 구의 부피와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$27$개"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "큰 구 하나를 녹여 같은 크기의 작은 구를 남김없이 만들면 작은 구들의 부피의 합은 큰 구의 부피와 {같다}. 따라서 작은 구의 개수는 큰 구의 부피를 작은 구 하나의 부피로 {나눈} 값이다.",
+        "cAnswers": [
+          "같다",
+          "나눈"
+        ],
+        "cReason": "둘째 빈칸의 답 '부피'가 바로 앞에 그대로 있어 관계와 계산을 묻게 바꿈.",
+        "studentLabel": "구를 녹여 작은 구 만들기",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "부피가 그대로임을 이용한 개수 구하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1971,
+        "part": "m1plus",
+        "sourceFingerprint": "43fa7af78731980b176f7aa62f26b8ad7b12f64127d6af91c754a894e35322f0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1971
+        },
+        "directReview": null,
+        "cMarkedSentence": "큰 구 하나를 녹여 같은 크기의 작은 구를 남김없이 만들면 작은 구들의 부피의 합은 큰 구의 부피와 {같다}. 따라서 작은 구의 개수는 큰 구의 부피를 작은 구 하나의 부피로 {나눈} 값이다.",
+        "cSlotAnswers": [
+          "같다",
+          "나눈"
+        ],
+        "cStudentSentence": "큰 구 하나를 녹여 같은 크기의 작은 구를 남김없이 만들면 작은 구들의 부피의 합은 큰 구의 부피와 □. 따라서 작은 구의 개수는 큰 구의 부피를 작은 구 하나의 부피로 □ 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "나눈",
+            "equivalentAnswers": [
+              "나눈"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ],
+          [
+            "나눈"
+          ]
+        ],
+        "proposalFingerprint": "a6d3d5d4b33abb381ab40ebf0dd7c68f64853e6d59cdb086ba0814cf25884bb3"
+      }
+    }
+  ]
+}

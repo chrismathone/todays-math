@@ -1,0 +1,3408 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T05:17:41.543105+00:00",
+  "rows": [
+    {
+      "id": "e5-1-1-2-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "괄호가 있으면 곱셈보다 괄호 안을 먼저 계산한다는 규칙 확인.",
+      "bReason": "xc11의 B가 같은 내용을 더 넓게 다룬다.",
+      "studentLabel": "괄호가 있는 식의 차례",
+      "cDecision": "keep",
+      "cAfter": "괄호가 있으면 곱셈보다도 {괄호 속 계산}을 앞서 한다.",
+      "cReason": "괄호가 곱셈보다 앞선다는 규칙을 한 문장으로 확인하는 유일한 행이다. '곱셈보다도'라는 비교 조건이 분명하고 답이 짧다.",
+      "exclusionReason": "B 제외: xc11과 중복",
+      "exampleNeeded": false,
+      "synonymNotes": "'괄호 속 계산', '괄호 안', '괄호 안의 계산', '괄호 속'은 모두 같은 답이다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "괄호 속 계산",
+            "괄호 안",
+            "괄호 안의 계산",
+            "괄호 속"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 420,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc3",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "괄호가 곱셈보다 먼저",
+        "kind": "방법",
+        "level": "하",
+        "definition": "괄호가 있으면 곱셈보다도 {괄호 속 계산}을 앞서 한다.",
+        "example": {
+          "prompt": "$(5+3)\\times4$에서 $5$와 $3$은 각각 몇 번씩 더해지는가?",
+          "answer": "합을 네 번 더하므로 각각 네 번씩"
+        },
+        "studentC": "괄호가 있으면 곱셈보다도 □을 앞서 한다.",
+        "answers": [
+          "괄호 속 계산"
+        ]
+      },
+      "sourceFingerprint": "55b3af184ce997e2be26f2713f9465f66c17ea768f2767924862a45ddc0b1e1c",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cFrozenDefinition": "괄호가 있으면 곱셈보다도 {괄호 속 계산}을 앞서 한다.",
+      "cFrozenStudentSentence": "괄호가 있으면 곱셈보다도 □을 앞서 한다.",
+      "cProposedAnswers": [
+        "괄호 속 계산"
+      ],
+      "cStudentAfter": "괄호가 있으면 곱셈보다도 □을 앞서 한다.",
+      "cMarkedSentence": "괄호가 있으면 곱셈보다도 {괄호 속 계산}을 앞서 한다.",
+      "cStudentSentence": "괄호가 있으면 곱셈보다도 □을 앞서 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "괄호 속 계산",
+          "equivalents": [
+            "괄호 안",
+            "괄호 안의 계산",
+            "괄호 속"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "괄호가 있으면 곱셈보다도 {괄호 속 계산}을 앞서 한다.",
+        "acceptedAnswers": [
+          [
+            "괄호 속 계산",
+            "괄호 안",
+            "괄호 안의 계산",
+            "괄호 속"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc11과 중복"
+      },
+      "proposalFingerprint": "e9a759ef6645c3e215a5ebcabe406f3cabad9ca72ab2d6ccc2d025c34690d822",
+      "questionRevision": "planning-e5e6-20261006-e9a759ef6645",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "식에서 곱셈 부분이 하나의 수가 되어 더해지거나 빼어진다는 점을 확인.",
+      "bReason": "'한 덩어리'는 비유 표현이고 규칙은 c1과 같다.",
+      "studentLabel": "곱셈 부분을 수로 바꾸기",
+      "cDecision": "revise",
+      "cAfter": "$18-2\\times6+1$에서 $18$에서 빼는 수는 $2$가 아니라 $2\\times6$을 계산한 {$12$}이다. 그래서 식의 값은 {$7$}이다.",
+      "cReason": "빈칸 답 '한 덩어리'는 외울 이유가 없는 임의 표현이다. 원문 예의 핵심인 '곱 전체가 빼는 양'을 실제 수로 답하게 했다.",
+      "exclusionReason": "B 제외: c1·xc13과 중복",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 421,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc4",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "곱셈 부분 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "괄호 없이 덧셈, 뺄셈과 곱셈이 섞인 식에서 $\\times$ 앞뒤의 두 수가 먼저 계산할 {한 덩어리}이다.",
+        "example": {
+          "prompt": "$18-2\\times6+1$에서 $2\\times6$은 더하는 양인가, 빼는 양인가?",
+          "answer": "빼는 양 — $2$씩 여섯 묶음"
+        },
+        "studentC": "괄호 없이 덧셈, 뺄셈과 곱셈이 섞인 식에서 $\\times$ 앞뒤의 두 수가 먼저 계산할 □이다.",
+        "answers": [
+          "한 덩어리"
+        ]
+      },
+      "sourceFingerprint": "f4f0f63a772bd9b46c8193ef97582b97ffee5f6dd0a3cb85e15f05ce13662849",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$7$"
+      ],
+      "cStudentAfter": "$18-2\\times6+1$에서 $18$에서 빼는 수는 $2$가 아니라 $2\\times6$을 계산한 □이다. 그래서 식의 값은 □이다.",
+      "cMarkedSentence": "$18-2\\times6+1$에서 $18$에서 빼는 수는 $2$가 아니라 $2\\times6$을 계산한 {$12$}이다. 그래서 식의 값은 {$7$}이다.",
+      "cStudentSentence": "$18-2\\times6+1$에서 $18$에서 빼는 수는 $2$가 아니라 $2\\times6$을 계산한 □이다. 그래서 식의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$18-2\\times6+1$에서 $18$에서 빼는 수는 $2$가 아니라 $2\\times6$을 계산한 {$12$}이다. 그래서 식의 값은 {$7$}이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: c1·xc13과 중복"
+      },
+      "proposalFingerprint": "e325fd5fa8958766d01abc89eb4cafc471900ce99be1fc329f6712a5d1067e3e",
+      "questionRevision": "planning-e5e6-20261006-e325fd5fa895",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "식에서 나눗셈 부분을 찾아 먼저 계산한다(xc2와 같은 목표).",
+      "bReason": "xc2와 목표가 같고 c2와 답이 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'하나의 수'는 내용 없는 메타 표현이다. 식으로 바꾸면 xc2와 같은 문장이 되어 추가 학습 가치가 없다.",
+      "exclusionReason": "B 제외: c2·xc2와 중복",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 422,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc5",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "나눗셈 부분 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "괄호 없이 덧셈, 뺄셈과 나눗셈 한 곳이 섞인 식에서 $\\div$ 앞뒤의 두 수를 먼저 묶어 {하나의 수}로 바꾼다.",
+        "example": {
+          "prompt": "$7+24\\div8$에서 먼저 하나의 수로 바꾸는 부분은?",
+          "answer": "$24\\div8$"
+        },
+        "studentC": "괄호 없이 덧셈, 뺄셈과 나눗셈 한 곳이 섞인 식에서 $\\div$ 앞뒤의 두 수를 먼저 묶어 □로 바꾼다.",
+        "answers": [
+          "하나의 수"
+        ]
+      },
+      "sourceFingerprint": "d507bbe32d9b6e622a282795ce77e8c7819b7fe0e3635c84eb2fda84f8fa1eb8",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B 제외: c2·xc2와 중복",
+        "cloze": "B 제외: c2·xc2와 중복"
+      },
+      "proposalFingerprint": "ece945a16134e01ff5c08dcc72e1772d3d31ef9c0ed4eeec2a22adcf3b837d38",
+      "questionRevision": "planning-e5e6-20261006-ece945a16134",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "괄호 없는 식에서 곱셈을 먼저 계산한 뒤 덧셈과 뺄셈이 남으면 어떤 차례로 계산하는지 쓰시오. 또 $30-4\\times5+2$를 계산하고, 곱셈 뒤에 $20+2$를 먼저 더하면 어떤 잘못된 값이 나오는지 쓰시오.",
+      "bAnswer": "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다. $4\\times5=20$, $30-20=10$, $10+2=12$이다. $20+2$를 먼저 더하면 $30-22=8$이 되어, 더해야 할 $2$까지 빼게 된다.",
+      "bGoal": "곱셈·나눗셈 뒤에 남은 덧셈·뺄셈을 앞에서부터 계산하고, 차례를 바꾸면 값이 달라짐을 확인한다.",
+      "bReason": "원문 예의 '$20+2$를 먼저 더하면 안 되는 까닭'을 살렸다. 막연한 '왜' 대신 잘못된 값을 구해 비교하게 했다.",
+      "studentLabel": "남은 덧셈과 뺄셈의 차례",
+      "cDecision": "keep",
+      "cAfter": "곱셈이나 나눗셈을 끝낸 뒤 괄호 없이 남은 덧셈과 뺄셈은 {앞에서부터} 계산한다.",
+      "cReason": "곱셈·나눗셈을 마친 뒤의 차례를 묻는 문장으로 c1, c2에 없는 내용이다. '괄호 없이 남은' 조건이 있고 답이 짧다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'앞에서부터', '앞에서부터 차례로', '왼쪽부터'는 모두 정답이다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다",
+            "남은 덧셈과 뺄셈은 왼쪽부터 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$",
+            "$30-20+2=12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$",
+            "$30-22=8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "앞에서부터",
+            "앞에서부터 차례로",
+            "왼쪽부터"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 423,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc6",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "남은 덧셈과 뺄셈의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "곱셈이나 나눗셈을 끝낸 뒤 괄호 없이 남은 덧셈과 뺄셈은 {앞에서부터} 계산한다.",
+        "example": {
+          "prompt": "$30-4\\times5+2$에서 곱셈 뒤에 $20+2$를 먼저 더하면 안 되는 까닭은?",
+          "answer": "더할 $2$까지 빼게 되어서"
+        },
+        "studentC": "곱셈이나 나눗셈을 끝낸 뒤 괄호 없이 남은 덧셈과 뺄셈은 □ 계산한다.",
+        "answers": [
+          "앞에서부터"
+        ]
+      },
+      "sourceFingerprint": "35bb795ffe60e90c20e2d9446d3c455078310a909e1681704549660611cf6e53",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cFrozenDefinition": "곱셈이나 나눗셈을 끝낸 뒤 괄호 없이 남은 덧셈과 뺄셈은 {앞에서부터} 계산한다.",
+      "cFrozenStudentSentence": "곱셈이나 나눗셈을 끝낸 뒤 괄호 없이 남은 덧셈과 뺄셈은 □ 계산한다.",
+      "cProposedAnswers": [
+        "앞에서부터"
+      ],
+      "cStudentAfter": "곱셈이나 나눗셈을 끝낸 뒤 괄호 없이 남은 덧셈과 뺄셈은 □ 계산한다.",
+      "cMarkedSentence": "곱셈이나 나눗셈을 끝낸 뒤 괄호 없이 남은 덧셈과 뺄셈은 {앞에서부터} 계산한다.",
+      "cStudentSentence": "곱셈이나 나눗셈을 끝낸 뒤 괄호 없이 남은 덧셈과 뺄셈은 □ 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "앞에서부터",
+          "equivalents": [
+            "앞에서부터 차례로",
+            "왼쪽부터"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호 없는 식에서 곱셈을 먼저 계산한 뒤 덧셈과 뺄셈이 남으면 어떤 차례로 계산하는지 쓰시오. 또 $30-4\\times5+2$를 계산하고, 곱셈 뒤에 $20+2$를 먼저 더하면 어떤 잘못된 값이 나오는지 쓰시오.",
+        "answer": "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다. $4\\times5=20$, $30-20=10$, $10+2=12$이다. $20+2$를 먼저 더하면 $30-22=8$이 되어, 더해야 할 $2$까지 빼게 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다",
+              "남은 덧셈과 뺄셈은 왼쪽부터 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$",
+              "$30-20+2=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$",
+              "$30-22=8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "곱셈이나 나눗셈을 끝낸 뒤 괄호 없이 남은 덧셈과 뺄셈은 {앞에서부터} 계산한다.",
+        "acceptedAnswers": [
+          [
+            "앞에서부터",
+            "앞에서부터 차례로",
+            "왼쪽부터"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5f15bf259927b0e1d06b85f884a7d4bcc7494b48b345f6bd58899cffc7ea99c2",
+      "questionRevision": "planning-e5e6-20261006-5f15bf259927",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "계산 차례에 번호를 붙일 때 곱셈이 첫 번째임을 확인.",
+      "bReason": "번호를 붙이는 행동만 묻고 c1과 같은 규칙이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'곱셈 부분에 첫 번호'는 c1을 말만 바꾼 것이다. 번호 매기기는 그림 없이는 지면에서 답할 것이 남지 않는다.",
+      "exclusionReason": "B 제외: c1과 중복",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 424,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc7",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "곱셈이 섞인 식의 차례 번호",
+        "kind": "방법",
+        "level": "하",
+        "definition": "괄호 없이 덧셈, 뺄셈과 곱셈이 섞인 식에 차례 번호를 매길 때는 {곱셈 부분}에 첫 번호를 붙인다.",
+        "studentC": "괄호 없이 덧셈, 뺄셈과 곱셈이 섞인 식에 차례 번호를 매길 때는 □에 첫 번호를 붙인다.",
+        "answers": [
+          "곱셈 부분"
+        ]
+      },
+      "sourceFingerprint": "73fd6144cc4318f953bfa7e14525fe1dd60c9fce746e62f425429348882e2824",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B 제외: c1과 중복",
+        "cloze": "B 제외: c1과 중복"
+      },
+      "proposalFingerprint": "c79d32f85e5b59783b30a25c798a09f7fe892f52740373d412a66e1f0c3bc533",
+      "questionRevision": "planning-e5e6-20261006-c79d32f85e5b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "같은 값의 물건 여러 개와 다른 물건의 값을 (곱셈)+(수)로 나타낸다.",
+      "bReason": "c3의 B와 식의 구조가 같다.",
+      "studentLabel": "물건값을 식으로 나타내기",
+      "cDecision": "revise",
+      "cAfter": "$300$원짜리 지우개 $4$개와 $500$원짜리 자 $1$개의 값은 $300$ {$\\times$} $4$ {$+$} $500$으로 구하고, 모두 {$1700$}원이다.",
+      "cReason": "원문은 일반론이라 '곱셈'을 짐작으로 채우기 쉽다. 원문 예의 상황에서 연산 기호와 값을 직접 채우게 했다.",
+      "exclusionReason": "B 제외: c3·xc22와 중복",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\times$",
+            "곱셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$+$",
+            "덧셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1700$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 425,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc8",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "물건값을 식으로 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "같은 값의 물건 여러 개의 값은 {곱셈}으로 나타내고, 다른 물건값과 합칠 때는 덧셈을 쓴다.",
+        "example": {
+          "prompt": "$300$원짜리 $4$개와 $500$원짜리 $1$개의 값을 식으로 쓰시오.",
+          "answer": "$300\\times4+500$"
+        },
+        "studentC": "같은 값의 물건 여러 개의 값은 □으로 나타내고, 다른 물건값과 합칠 때는 덧셈을 쓴다.",
+        "answers": [
+          "곱셈"
+        ]
+      },
+      "sourceFingerprint": "dcb69c996d5e94ee51510ea08fd671f6dc8e2e1ecd9ad016a4cc96bf4550e5ce",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$\\times$",
+        "$+$",
+        "$1700$"
+      ],
+      "cStudentAfter": "$300$원짜리 지우개 $4$개와 $500$원짜리 자 $1$개의 값은 $300$ □ $4$ □ $500$으로 구하고, 모두 □원이다.",
+      "cMarkedSentence": "$300$원짜리 지우개 $4$개와 $500$원짜리 자 $1$개의 값은 $300$ {$\\times$} $4$ {$+$} $500$으로 구하고, 모두 {$1700$}원이다.",
+      "cStudentSentence": "$300$원짜리 지우개 $4$개와 $500$원짜리 자 $1$개의 값은 $300$ □ $4$ □ $500$으로 구하고, 모두 □원이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\times$",
+          "equivalents": [
+            "곱셈"
+          ]
+        },
+        {
+          "key": "$+$",
+          "equivalents": [
+            "덧셈"
+          ]
+        },
+        {
+          "key": "$1700$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$300$원짜리 지우개 $4$개와 $500$원짜리 자 $1$개의 값은 $300$ {$\\times$} $4$ {$+$} $500$으로 구하고, 모두 {$1700$}원이다.",
+        "acceptedAnswers": [
+          [
+            "$\\times$",
+            "곱셈"
+          ],
+          [
+            "$+$",
+            "덧셈"
+          ],
+          [
+            "$1700$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: c3·xc22와 중복"
+      },
+      "proposalFingerprint": "a234d9ce53dfab3935a9cc0b67f412fb5bc693a5b69f6534e427f6f0b9171a78",
+      "questionRevision": "planning-e5e6-20261006-a234d9ce53df",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "똑같이 나눈 한 사람 몫에 다른 양을 더하는 상황을 (나눗셈)+(수)로 나타낸다.",
+      "bReason": "xc23의 B가 같은 식 세우기를 묻는다.",
+      "studentLabel": "나눈 몫에 더하는 식",
+      "cDecision": "revise",
+      "cAfter": "사탕 $15$개를 $3$명이 똑같이 나눈 한 사람 몫에 $2$개를 더한 수는 $15$ {$\\div$} $3$ {$+$} $2$로 구하고, 값은 {$7$}이다.",
+      "cReason": "빈칸 답 '나눗셈으로 나타낸 몫'은 길고 임의적인 구절이다. '한 몫'도 '한 사람 몫'으로 풀고 기호와 값을 답하게 했다.",
+      "exclusionReason": "B 제외: xc23과 중복",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\div$",
+            "나눗셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$+$",
+            "덧셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 426,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc9",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "나눈 몫에 더하는 식",
+        "kind": "방법",
+        "level": "하",
+        "definition": "똑같이 나눈 한 몫에 다른 양을 더할 때는 {나눗셈으로 나타낸 몫}에 더할 양을 덧셈으로 잇는다.",
+        "example": {
+          "prompt": "$15$개를 $3$명이 똑같이 나눈 한 몫에 $2$개를 더한 수를 구하는 식은?",
+          "answer": "$15\\div3+2$"
+        },
+        "studentC": "똑같이 나눈 한 몫에 다른 양을 더할 때는 □에 더할 양을 덧셈으로 잇는다.",
+        "answers": [
+          "나눗셈으로 나타낸 몫"
+        ]
+      },
+      "sourceFingerprint": "d8d2d06558fd752746419ebba89694813536f2c2cf04d95ca823b729e5d7c99b",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$\\div$",
+        "$+$",
+        "$7$"
+      ],
+      "cStudentAfter": "사탕 $15$개를 $3$명이 똑같이 나눈 한 사람 몫에 $2$개를 더한 수는 $15$ □ $3$ □ $2$로 구하고, 값은 □이다.",
+      "cMarkedSentence": "사탕 $15$개를 $3$명이 똑같이 나눈 한 사람 몫에 $2$개를 더한 수는 $15$ {$\\div$} $3$ {$+$} $2$로 구하고, 값은 {$7$}이다.",
+      "cStudentSentence": "사탕 $15$개를 $3$명이 똑같이 나눈 한 사람 몫에 $2$개를 더한 수는 $15$ □ $3$ □ $2$로 구하고, 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\div$",
+          "equivalents": [
+            "나눗셈"
+          ]
+        },
+        {
+          "key": "$+$",
+          "equivalents": [
+            "덧셈"
+          ]
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "사탕 $15$개를 $3$명이 똑같이 나눈 한 사람 몫에 $2$개를 더한 수는 $15$ {$\\div$} $3$ {$+$} $2$로 구하고, 값은 {$7$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\div$",
+            "나눗셈"
+          ],
+          [
+            "$+$",
+            "덧셈"
+          ],
+          [
+            "$7$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc23과 중복"
+      },
+      "proposalFingerprint": "483bc7129e0c0f90caf0ab4f8215a4cfbeb5b794765b719cabc56b17385f5c3f",
+      "questionRevision": "planning-e5e6-20261006-483bc7129e0c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc10",
+      "bDecision": "revise",
+      "bPrompt": "덧셈과 곱셈이 섞인 식을 말로 설명할 때는 어떤 수를 몇 배 하고 무엇을 더하는지가 드러나야 한다. $5\\times3+4$와 $5+3\\times4$를 각각 이런 말로 설명하고 값을 구하시오.",
+      "bAnswer": "$5\\times3+4$는 '$5$의 $3$배에 $4$를 더한다'이고 값은 $19$이다. $5+3\\times4$는 '$5$에 $3$의 $4$배를 더한다'이고 값은 $17$이다.",
+      "bGoal": "곱셈이 섞인 식을 계산 차례가 드러나는 말로 옮기고, 수는 같아도 뜻이 다른 두 식을 구별한다.",
+      "bReason": "원문 예는 식 하나만 읽는다. 같은 수로 된 두 식을 견주게 해서 '몇 배 하는 수'가 무엇인지 말해야 하는 이유가 드러나게 했다.",
+      "studentLabel": "식을 말로 설명하기",
+      "cDecision": "revise",
+      "cAfter": "'$4$의 $3$배에 $2$를 더한 수'를 식으로 쓰면 {$4\\times3+2$}이고, '$4$에 $3$의 $2$배를 더한 수'를 식으로 쓰면 {$4+3\\times2$}이다.",
+      "cReason": "빈칸 답 '어느 수를 몇 배 하는지'는 외울 필요가 없는 긴 구절이다. 말을 식으로 옮기는 짧은 답으로 바꿔 B(식을 말로)와 방향을 달리했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "B는 '$5$를 $3$번 더한 값에 $4$를 더한다'도 정답이다. C는 $2+4\\times3$, $3\\times2+4$처럼 값과 뜻이 같은 식도 인정한다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5\\times3+4$는 $5$의 $3$배에 $4$를 더한다",
+            "$5\\times3+4$는 $5$를 $3$번 더한 값에 $4$를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5+3\\times4$는 $5$에 $3$의 $4$배를 더한다",
+            "$5+3\\times4$는 $5$에 $3$을 $4$번 더한 값을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$19$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$17$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4\\times3+2$",
+            "$3\\times4+2$",
+            "$2+4\\times3$",
+            "$2+3\\times4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4+3\\times2$",
+            "$4+2\\times3$",
+            "$3\\times2+4$",
+            "$2\\times3+4$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 427,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc10",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "곱셈이 섞인 식을 말로 설명하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "곱셈이 섞인 식을 말로 설명할 때는 {어느 수를 몇 배 하는지}와 어느 양을 더하거나 빼는지가 드러나게 말한다.",
+        "example": {
+          "prompt": "$4\\times3+2$를 말로 설명하시오.",
+          "answer": "$4$를 세 번 더한 값에 $2$를 더한다"
+        },
+        "studentC": "곱셈이 섞인 식을 말로 설명할 때는 □와 어느 양을 더하거나 빼는지가 드러나게 말한다.",
+        "answers": [
+          "어느 수를 몇 배 하는지"
+        ]
+      },
+      "sourceFingerprint": "e598539577e898527011c6840e7a21aa46a44d3ad5db89f081f8aa56d3c32741",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$4\\times3+2$",
+        "$4+3\\times2$"
+      ],
+      "cStudentAfter": "'$4$의 $3$배에 $2$를 더한 수'를 식으로 쓰면 □이고, '$4$에 $3$의 $2$배를 더한 수'를 식으로 쓰면 □이다.",
+      "cMarkedSentence": "'$4$의 $3$배에 $2$를 더한 수'를 식으로 쓰면 {$4\\times3+2$}이고, '$4$에 $3$의 $2$배를 더한 수'를 식으로 쓰면 {$4+3\\times2$}이다.",
+      "cStudentSentence": "'$4$의 $3$배에 $2$를 더한 수'를 식으로 쓰면 □이고, '$4$에 $3$의 $2$배를 더한 수'를 식으로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4\\times3+2$",
+          "equivalents": [
+            "$3\\times4+2$",
+            "$2+4\\times3$",
+            "$2+3\\times4$"
+          ]
+        },
+        {
+          "key": "$4+3\\times2$",
+          "equivalents": [
+            "$4+2\\times3$",
+            "$3\\times2+4$",
+            "$2\\times3+4$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "덧셈과 곱셈이 섞인 식을 말로 설명할 때는 어떤 수를 몇 배 하고 무엇을 더하는지가 드러나야 한다. $5\\times3+4$와 $5+3\\times4$를 각각 이런 말로 설명하고 값을 구하시오.",
+        "answer": "$5\\times3+4$는 '$5$의 $3$배에 $4$를 더한다'이고 값은 $19$이다. $5+3\\times4$는 '$5$에 $3$의 $4$배를 더한다'이고 값은 $17$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5\\times3+4$는 $5$의 $3$배에 $4$를 더한다",
+              "$5\\times3+4$는 $5$를 $3$번 더한 값에 $4$를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5+3\\times4$는 $5$에 $3$의 $4$배를 더한다",
+              "$5+3\\times4$는 $5$에 $3$을 $4$번 더한 값을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$19$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$17$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "'$4$의 $3$배에 $2$를 더한 수'를 식으로 쓰면 {$4\\times3+2$}이고, '$4$에 $3$의 $2$배를 더한 수'를 식으로 쓰면 {$4+3\\times2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4\\times3+2$",
+            "$3\\times4+2$",
+            "$2+4\\times3$",
+            "$2+3\\times4$"
+          ],
+          [
+            "$4+3\\times2$",
+            "$4+2\\times3$",
+            "$3\\times2+4$",
+            "$2\\times3+4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1db0ccbbf1a294ed1655b980615bf1f25d45cc320c8134d1fae63ec5a68ce74d",
+      "questionRevision": "planning-e5e6-20261006-1db0ccbbf1a2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "덧셈과 곱셈이 섞인 식에서 덧셈 부분을 괄호로 묶으면 계산 차례와 곱해지는 수가 어떻게 달라지는지 설명하시오. $2+6\\times4$와 $(2+6)\\times4$에서 $4$를 곱하는 수를 각각 말하고 두 식의 값을 구하시오.",
+      "bAnswer": "괄호가 없으면 곱셈을 먼저 하고, 덧셈을 괄호로 묶으면 덧셈을 먼저 하므로 곱해지는 수가 달라진다. $2+6\\times4$에서 $4$를 곱하는 수는 $6$이고 값은 $2+24=26$이다. $(2+6)\\times4$에서 $4$를 곱하는 수는 $2+6=8$이고 값은 $32$이다.",
+      "bGoal": "괄호가 계산 차례를 바꾸어 곱해지는 수와 식의 값을 바꾼다는 점을 두 식의 비교로 설명한다.",
+      "bReason": "원문 예의 비교(곱하는 수가 각각 무엇인가)를 일반 관계와 함께 묻도록 넓혔다. xc3과 xc25의 서술 내용도 여기서 함께 다룬다.",
+      "studentLabel": "괄호가 곱셈의 차례를 바꿀 때",
+      "cDecision": "revise",
+      "cAfter": "$3+4\\times5$에서 $5$를 곱하는 수는 {$4$}이고, $(3+4)\\times5$에서 $5$를 곱하는 수는 {$7$}이다.",
+      "cReason": "빈칸 답 '덧셈이 먼저'는 문장 조각이라 표현이 조금만 달라도 틀리게 된다. 원문 예의 비교를 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "둘째 빈칸은 '$7$', '$3+4$'를 모두 인정한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호가 없으면 곱셈을 먼저 하고 덧셈을 괄호로 묶으면 덧셈을 먼저 하므로 곱해지는 수가 달라진다",
+            "덧셈을 괄호로 묶으면 그 합에 곱하게 되어 곱해지는 수가 달라진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2+6\\times4$에서 곱하는 수는 $6$이다",
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(2+6)\\times4$에서 곱하는 수는 $8$이다",
+            "$8$",
+            "$2+6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$26$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$32$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$",
+            "$3+4$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 428,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc11",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "괄호가 곱셈의 차례를 바꿀 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "덧셈과 곱셈이 섞인 식에서 덧셈 부분을 괄호로 묶으면 {덧셈이 먼저}가 되어 곱하는 대상이 달라진다.",
+        "example": {
+          "prompt": "$3+4\\times5$와 $(3+4)\\times5$에서 $5$를 곱하는 수는 각각 무엇인가?",
+          "answer": "$4$와 $7$"
+        },
+        "studentC": "덧셈과 곱셈이 섞인 식에서 덧셈 부분을 괄호로 묶으면 □가 되어 곱하는 대상이 달라진다.",
+        "answers": [
+          "덧셈이 먼저"
+        ]
+      },
+      "sourceFingerprint": "28da2bbed2e20d27b9a9f039a2069a903f8ec6475f8239cf650915a51aeeca46",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$7$"
+      ],
+      "cStudentAfter": "$3+4\\times5$에서 $5$를 곱하는 수는 □이고, $(3+4)\\times5$에서 $5$를 곱하는 수는 □이다.",
+      "cMarkedSentence": "$3+4\\times5$에서 $5$를 곱하는 수는 {$4$}이고, $(3+4)\\times5$에서 $5$를 곱하는 수는 {$7$}이다.",
+      "cStudentSentence": "$3+4\\times5$에서 $5$를 곱하는 수는 □이고, $(3+4)\\times5$에서 $5$를 곱하는 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": [
+            "$3+4$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "덧셈과 곱셈이 섞인 식에서 덧셈 부분을 괄호로 묶으면 계산 차례와 곱해지는 수가 어떻게 달라지는지 설명하시오. $2+6\\times4$와 $(2+6)\\times4$에서 $4$를 곱하는 수를 각각 말하고 두 식의 값을 구하시오.",
+        "answer": "괄호가 없으면 곱셈을 먼저 하고, 덧셈을 괄호로 묶으면 덧셈을 먼저 하므로 곱해지는 수가 달라진다. $2+6\\times4$에서 $4$를 곱하는 수는 $6$이고 값은 $2+24=26$이다. $(2+6)\\times4$에서 $4$를 곱하는 수는 $2+6=8$이고 값은 $32$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호가 없으면 곱셈을 먼저 하고 덧셈을 괄호로 묶으면 덧셈을 먼저 하므로 곱해지는 수가 달라진다",
+              "덧셈을 괄호로 묶으면 그 합에 곱하게 되어 곱해지는 수가 달라진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2+6\\times4$에서 곱하는 수는 $6$이다",
+              "$6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(2+6)\\times4$에서 곱하는 수는 $8$이다",
+              "$8$",
+              "$2+6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$26$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$32$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3+4\\times5$에서 $5$를 곱하는 수는 {$4$}이고, $(3+4)\\times5$에서 $5$를 곱하는 수는 {$7$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$7$",
+            "$3+4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ee7c13202f7f37ddf5dfc673f69c94c6a85e2486c68bb104955c5e981c3e7602",
+      "questionRevision": "planning-e5e6-20261006-ee7c13202f7f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "두 수의 합을 어떤 수로 나누는 계산을 하나의 식으로 쓸 때 괄호가 있는 식과 없는 식은 무엇이 다른지 설명하시오. $20+10\\div5$와 $(20+10)\\div5$에서 $5$로 나누는 수를 각각 말하고 두 식의 값을 구하시오.",
+      "bAnswer": "괄호가 없으면 나눗셈을 먼저 하므로 나눗셈 바로 앞의 수만 나누고, 합을 괄호로 묶으면 합 전체를 나눈다. $20+10\\div5$는 $10$만 나누어 $20+2=22$이다. $(20+10)\\div5$는 $30$을 나누어 $6$이다.",
+      "bGoal": "합(또는 차) 전체를 나누려면 괄호가 필요하고, 괄호가 없으면 바로 앞의 수만 나눈다는 점을 구별한다.",
+      "bReason": "제목 '나눗셈 앞의 괄호'로는 묻는 내용을 알 수 없다. 두 식에서 나누어지는 수를 견주도록 범위를 정했다.",
+      "studentLabel": "합을 나눌 때의 괄호",
+      "cDecision": "revise",
+      "cAfter": "$18+6\\div3$에서 $3$으로 나누는 수는 {$6$}뿐이다. $18$과 $6$의 합을 $3$으로 나누려면 식을 {$(18+6)\\div3$}으로 써야 한다.",
+      "cReason": "빈칸 답이 긴 구절이고, 바로 뒤의 '괄호가 없으면'이 답을 알려 준다. 원문 예의 식으로 수와 식을 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호가 없으면 나눗셈 바로 앞의 수만 나누고 합 전체를 나누려면 괄호로 묶어야 한다",
+            "합을 괄호로 묶으면 합 전체를 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20+10\\div5$에서 나누는 수는 $10$이다",
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(20+10)\\div5$에서 나누는 수는 $30$이다",
+            "$30$",
+            "$20+10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(18+6)\\div3$",
+            "$(6+18)\\div3$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 429,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc12",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "나눗셈 앞의 괄호",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수의 합이나 차를 나누려면 {합이나 차를 괄호로 묶어야} 하며, 괄호가 없으면 나눗셈 바로 앞의 수만 나누게 된다.",
+        "example": {
+          "prompt": "$18+6\\div3$에서 $3$으로 나누는 수는?",
+          "answer": "$6$뿐이다"
+        },
+        "studentC": "두 수의 합이나 차를 나누려면 □ 하며, 괄호가 없으면 나눗셈 바로 앞의 수만 나누게 된다.",
+        "answers": [
+          "합이나 차를 괄호로 묶어야"
+        ]
+      },
+      "sourceFingerprint": "82f7e2ea3cb2037af95a87497f369e2a57776d12c01961f85fe8597b94a6c5ef",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$(18+6)\\div3$"
+      ],
+      "cStudentAfter": "$18+6\\div3$에서 $3$으로 나누는 수는 □뿐이다. $18$과 $6$의 합을 $3$으로 나누려면 식을 □으로 써야 한다.",
+      "cMarkedSentence": "$18+6\\div3$에서 $3$으로 나누는 수는 {$6$}뿐이다. $18$과 $6$의 합을 $3$으로 나누려면 식을 {$(18+6)\\div3$}으로 써야 한다.",
+      "cStudentSentence": "$18+6\\div3$에서 $3$으로 나누는 수는 □뿐이다. $18$과 $6$의 합을 $3$으로 나누려면 식을 □으로 써야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$(18+6)\\div3$",
+          "equivalents": [
+            "$(6+18)\\div3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수의 합을 어떤 수로 나누는 계산을 하나의 식으로 쓸 때 괄호가 있는 식과 없는 식은 무엇이 다른지 설명하시오. $20+10\\div5$와 $(20+10)\\div5$에서 $5$로 나누는 수를 각각 말하고 두 식의 값을 구하시오.",
+        "answer": "괄호가 없으면 나눗셈을 먼저 하므로 나눗셈 바로 앞의 수만 나누고, 합을 괄호로 묶으면 합 전체를 나눈다. $20+10\\div5$는 $10$만 나누어 $20+2=22$이다. $(20+10)\\div5$는 $30$을 나누어 $6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호가 없으면 나눗셈 바로 앞의 수만 나누고 합 전체를 나누려면 괄호로 묶어야 한다",
+              "합을 괄호로 묶으면 합 전체를 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20+10\\div5$에서 나누는 수는 $10$이다",
+              "$10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(20+10)\\div5$에서 나누는 수는 $30$이다",
+              "$30$",
+              "$20+10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$22$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$18+6\\div3$에서 $3$으로 나누는 수는 {$6$}뿐이다. $18$과 $6$의 합을 $3$으로 나누려면 식을 {$(18+6)\\div3$}으로 써야 한다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$(18+6)\\div3$",
+            "$(6+18)\\div3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b0763a5ecb25496a7500226134edafb2eadb04cde1886218feda00475d135349",
+      "questionRevision": "planning-e5e6-20261006-b0763a5ecb25",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc13",
+      "bDecision": "revise",
+      "bPrompt": "괄호가 없는 식에서 뺄셈 뒤에 곱셈이 있을 때 앞의 뺄셈부터 계산하면 어떤 잘못이 생기는지 설명하시오. $12-2\\times4$를 앞에서부터 계산한 값과 바르게 계산한 값을 구하고, 앞에서부터 계산한 것이 어떤 식을 계산한 것과 같은지 괄호를 써서 나타내시오.",
+      "bAnswer": "앞의 뺄셈부터 하면 곱하지 않아야 할 앞의 수까지 곱하게 되어 다른 식의 값이 나온다. 앞에서부터 계산하면 $10\\times4=40$이고, 이것은 $(12-2)\\times4$를 계산한 것이다. 바른 값은 $12-8=4$이다.",
+      "bGoal": "곱셈을 뒤로 미루면 괄호가 있는 다른 식을 계산한 셈이 된다는 점을 잘못된 값과 바른 값으로 확인한다.",
+      "bReason": "원문 예는 식 하나만 답하게 한다. 잘못된 값, 바른 값, 같은 뜻의 괄호 식을 함께 답하게 해 잘못의 내용이 드러나게 했다.",
+      "studentLabel": "앞에서부터 계산하는 잘못",
+      "cDecision": "revise",
+      "cAfter": "$10-2\\times3$을 앞에서부터 차례로 계산하면 {$(10-2)\\times3$}을 계산한 것이 되어 $24$가 나온다. 곱셈을 먼저 한 바른 값은 {$4$}이다.",
+      "cReason": "빈칸 답 '앞의 수까지 곱하는'은 임의의 긴 구절이다. 원문 예의 식으로 괄호 식과 바른 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞의 뺄셈부터 하면 곱하지 않아야 할 앞의 수까지 곱하게 된다",
+            "앞의 수까지 곱하는 다른 식을 계산한 것이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40$",
+            "$(12-2)\\times4=40$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "$12-8=4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(12-2)\\times4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$(10-2)\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 430,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc13",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "곱셈을 뒤로 미루는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "괄호 없이 덧셈이나 뺄셈 뒤에 곱셈이 오는 식에서 앞의 덧셈·뺄셈부터 하면, {앞의 수까지 곱하는} 다른 식을 계산한 것이 된다.",
+        "example": {
+          "prompt": "$10-2\\times3$을 앞에서부터 계산하면 어떤 식을 계산한 셈인가?",
+          "answer": "$(10-2)\\times3$"
+        },
+        "studentC": "괄호 없이 덧셈이나 뺄셈 뒤에 곱셈이 오는 식에서 앞의 덧셈·뺄셈부터 하면, □ 다른 식을 계산한 것이 된다.",
+        "answers": [
+          "앞의 수까지 곱하는"
+        ]
+      },
+      "sourceFingerprint": "624518433fcd1357e77628bba141febaf2b1440474296dad05d4a6a5e4eeb7b0",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$(10-2)\\times3$",
+        "$4$"
+      ],
+      "cStudentAfter": "$10-2\\times3$을 앞에서부터 차례로 계산하면 □을 계산한 것이 되어 $24$가 나온다. 곱셈을 먼저 한 바른 값은 □이다.",
+      "cMarkedSentence": "$10-2\\times3$을 앞에서부터 차례로 계산하면 {$(10-2)\\times3$}을 계산한 것이 되어 $24$가 나온다. 곱셈을 먼저 한 바른 값은 {$4$}이다.",
+      "cStudentSentence": "$10-2\\times3$을 앞에서부터 차례로 계산하면 □을 계산한 것이 되어 $24$가 나온다. 곱셈을 먼저 한 바른 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$(10-2)\\times3$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호가 없는 식에서 뺄셈 뒤에 곱셈이 있을 때 앞의 뺄셈부터 계산하면 어떤 잘못이 생기는지 설명하시오. $12-2\\times4$를 앞에서부터 계산한 값과 바르게 계산한 값을 구하고, 앞에서부터 계산한 것이 어떤 식을 계산한 것과 같은지 괄호를 써서 나타내시오.",
+        "answer": "앞의 뺄셈부터 하면 곱하지 않아야 할 앞의 수까지 곱하게 되어 다른 식의 값이 나온다. 앞에서부터 계산하면 $10\\times4=40$이고, 이것은 $(12-2)\\times4$를 계산한 것이다. 바른 값은 $12-8=4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞의 뺄셈부터 하면 곱하지 않아야 할 앞의 수까지 곱하게 된다",
+              "앞의 수까지 곱하는 다른 식을 계산한 것이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40$",
+              "$(12-2)\\times4=40$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$",
+              "$12-8=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(12-2)\\times4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10-2\\times3$을 앞에서부터 차례로 계산하면 {$(10-2)\\times3$}을 계산한 것이 되어 $24$가 나온다. 곱셈을 먼저 한 바른 값은 {$4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$(10-2)\\times3$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b5363745c5d5446f4f008483bfe1873dc58872ab26f924479bd784a8b35c5cb8",
+      "questionRevision": "planning-e5e6-20261006-b5363745c5d5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc14",
+      "bDecision": "revise",
+      "bPrompt": "괄호 없이 덧셈과 나눗셈이 섞인 식에서 나눗셈을 먼저 계산하는 까닭을, 나눗셈 부분이 나타내는 양으로 설명하시오. $20+12\\div4$에서 $12\\div4$가 나타내는 양과 식의 값을 쓰고, $20+12$를 먼저 더하면 어떤 식을 계산한 것이 되는지 쓰시오.",
+      "bAnswer": "나눗셈 부분은 똑같이 나눈 것 중 하나의 양을 나타내는 하나의 수이므로 그 값을 먼저 구해야 더할 수 있다. $12\\div4$는 $12$를 $4$로 똑같이 나눈 것 중 하나인 $3$이고 식의 값은 $20+3=23$이다. $20+12$를 먼저 더하면 $20$까지 $4$로 나누는 $(20+12)\\div4$를 계산한 것이 된다.",
+      "bGoal": "나눗셈 부분이 하나의 양(몫)을 나타낸다는 뜻으로 나눗셈을 먼저 하는 까닭을 설명한다.",
+      "bReason": "'까닭'을 막연히 묻지 않고, 나눗셈 부분이 나타내는 양을 근거로 쓰도록 지정했다.",
+      "studentLabel": "나눗셈을 먼저 하는 까닭",
+      "cDecision": "revise",
+      "cAfter": "$16+8\\div4$에서 $8\\div4$는 $8$을 $4$묶음으로 똑같이 나눈 한 묶음의 수를 나타낸다. 그래서 이 식에서 $16$에 더하는 수는 $8$이 아니라 {$2$}이고, 식의 값은 {$18$}이다.",
+      "cReason": "'한 몫'은 초5 학생에게 어색한 말이고 빈칸으로 외울 가치가 낮다. '한 묶음의 수'로 풀어 쓰고 실제 더하는 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나눗셈 부분은 똑같이 나눈 한 묶음의 양을 나타내는 하나의 수이므로 먼저 계산한다",
+            "나눗셈 부분은 하나의 수라서 먼저 구한 뒤 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\div4$는 $12$를 $4$로 똑같이 나눈 한 묶음의 양인 $3$이다",
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$23$",
+            "$20+3=23$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(20+12)\\div4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 431,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc14",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "나눗셈을 먼저 하는 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "괄호 없이 덧셈·뺄셈과 섞인 나눗셈 부분은 똑같이 나눈 {한 몫}을 나타내는 하나의 수이므로 먼저 계산한다.",
+        "example": {
+          "prompt": "$16+8\\div4$에서 $8\\div4$가 나타내는 양은?",
+          "answer": "$8$을 넷으로 똑같이 나눈 한 몫"
+        },
+        "studentC": "괄호 없이 덧셈·뺄셈과 섞인 나눗셈 부분은 똑같이 나눈 □을 나타내는 하나의 수이므로 먼저 계산한다.",
+        "answers": [
+          "한 몫"
+        ]
+      },
+      "sourceFingerprint": "e02cee9dff4b937762af21420506000830ef66611293651f879c170e45e33078",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$18$"
+      ],
+      "cStudentAfter": "$16+8\\div4$에서 $8\\div4$는 $8$을 $4$묶음으로 똑같이 나눈 한 묶음의 수를 나타낸다. 그래서 이 식에서 $16$에 더하는 수는 $8$이 아니라 □이고, 식의 값은 □이다.",
+      "cMarkedSentence": "$16+8\\div4$에서 $8\\div4$는 $8$을 $4$묶음으로 똑같이 나눈 한 묶음의 수를 나타낸다. 그래서 이 식에서 $16$에 더하는 수는 $8$이 아니라 {$2$}이고, 식의 값은 {$18$}이다.",
+      "cStudentSentence": "$16+8\\div4$에서 $8\\div4$는 $8$을 $4$묶음으로 똑같이 나눈 한 묶음의 수를 나타낸다. 그래서 이 식에서 $16$에 더하는 수는 $8$이 아니라 □이고, 식의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호 없이 덧셈과 나눗셈이 섞인 식에서 나눗셈을 먼저 계산하는 까닭을, 나눗셈 부분이 나타내는 양으로 설명하시오. $20+12\\div4$에서 $12\\div4$가 나타내는 양과 식의 값을 쓰고, $20+12$를 먼저 더하면 어떤 식을 계산한 것이 되는지 쓰시오.",
+        "answer": "나눗셈 부분은 똑같이 나눈 것 중 하나의 양을 나타내는 하나의 수이므로 그 값을 먼저 구해야 더할 수 있다. $12\\div4$는 $12$를 $4$로 똑같이 나눈 것 중 하나인 $3$이고 식의 값은 $20+3=23$이다. $20+12$를 먼저 더하면 $20$까지 $4$로 나누는 $(20+12)\\div4$를 계산한 것이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나눗셈 부분은 똑같이 나눈 한 묶음의 양을 나타내는 하나의 수이므로 먼저 계산한다",
+              "나눗셈 부분은 하나의 수라서 먼저 구한 뒤 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\div4$는 $12$를 $4$로 똑같이 나눈 한 묶음의 양인 $3$이다",
+              "$3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$23$",
+              "$20+3=23$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(20+12)\\div4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$16+8\\div4$에서 $8\\div4$는 $8$을 $4$묶음으로 똑같이 나눈 한 묶음의 수를 나타낸다. 그래서 이 식에서 $16$에 더하는 수는 $8$이 아니라 {$2$}이고, 식의 값은 {$18$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ba927e657b7c50f106e2c4debc515fe0358b0abacad250ef1eb63312d6afede4",
+      "questionRevision": "planning-e5e6-20261006-ba927e657b7c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc15",
+      "bDecision": "revise",
+      "bPrompt": "괄호 없이 두 곱셈을 더하거나 빼는 식은 어떤 차례로 계산하는지 설명하고, $6\\times5-4\\times3$을 그 차례대로 계산하시오.",
+      "bAnswer": "두 곱셈을 각각 먼저 계산해 두 수로 만든 다음 더하거나 뺀다. $6\\times5=30$, $4\\times3=12$이므로 $30-12=18$이다.",
+      "bGoal": "곱셈이 두 군데 있는 식에서 두 곱을 각각 구한 뒤 더하거나 뺀다.",
+      "bReason": "원문 예는 덧셈만 다룬다. 뺄셈 식을 예로 써서 앞에서부터 $6\\times5-4$를 계산하는 잘못이 드러나게 했다.",
+      "studentLabel": "곱셈이 두 곳에 있는 식",
+      "cDecision": "revise",
+      "cAfter": "$3\\times4+5\\times2$는 두 곱셈을 각각 먼저 계산하여 {$12$} $+$ {$10$}으로 바꾼 다음 더하므로 값은 {$22$}이다.",
+      "cReason": "빈칸 답 '두 곱을 먼저'는 줄표 뒤 설명에 기대는 구절이다. 원문 예의 식을 실제로 계산하는 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 곱셈을 각각 먼저 계산한 뒤 더하거나 뺀다",
+            "곱셈을 모두 먼저 계산하고 나서 덧셈이나 뺄셈을 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$",
+            "$30-12=18$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 432,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc15",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "곱셈이 두 곳에 있을 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "괄호 없이 두 곱을 더하거나 빼는 식에서는 {두 곱을 먼저} 구한다 — 각각의 곱이 더하거나 빼는 하나의 양이다.",
+        "example": {
+          "prompt": "$3\\times4+5\\times2$에서 더하는 두 양은 각각 무엇인가?",
+          "answer": "$3$씩 $4$묶음인 양과 $5$씩 $2$묶음인 양"
+        },
+        "studentC": "괄호 없이 두 곱을 더하거나 빼는 식에서는 □ 구한다 — 각각의 곱이 더하거나 빼는 하나의 양이다.",
+        "answers": [
+          "두 곱을 먼저"
+        ]
+      },
+      "sourceFingerprint": "2473ff66d94f1f9e9590f4b295639e077425cc4055f02bd46742eb4c6ee47412",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$10$",
+        "$22$"
+      ],
+      "cStudentAfter": "$3\\times4+5\\times2$는 두 곱셈을 각각 먼저 계산하여 □ $+$ □으로 바꾼 다음 더하므로 값은 □이다.",
+      "cMarkedSentence": "$3\\times4+5\\times2$는 두 곱셈을 각각 먼저 계산하여 {$12$} $+$ {$10$}으로 바꾼 다음 더하므로 값은 {$22$}이다.",
+      "cStudentSentence": "$3\\times4+5\\times2$는 두 곱셈을 각각 먼저 계산하여 □ $+$ □으로 바꾼 다음 더하므로 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$22$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호 없이 두 곱셈을 더하거나 빼는 식은 어떤 차례로 계산하는지 설명하고, $6\\times5-4\\times3$을 그 차례대로 계산하시오.",
+        "answer": "두 곱셈을 각각 먼저 계산해 두 수로 만든 다음 더하거나 뺀다. $6\\times5=30$, $4\\times3=12$이므로 $30-12=18$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 곱셈을 각각 먼저 계산한 뒤 더하거나 뺀다",
+              "곱셈을 모두 먼저 계산하고 나서 덧셈이나 뺄셈을 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$",
+              "$30-12=18$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\times4+5\\times2$는 두 곱셈을 각각 먼저 계산하여 {$12$} $+$ {$10$}으로 바꾼 다음 더하므로 값은 {$22$}이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$10$"
+          ],
+          [
+            "$22$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3da40d484f0db21af1145e107c34bfa27612ac7f8cb89f156db2e90d62479421",
+      "questionRevision": "planning-e5e6-20261006-3da40d484f0d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc16",
+      "bDecision": "revise",
+      "bPrompt": "괄호 안에 덧셈과 곱셈이 함께 있는 식은 어떤 차례로 계산하는지 설명하고, $50-(6+4\\times5)$를 그 차례대로 계산하시오.",
+      "bAnswer": "괄호 안을 먼저 계산하는데, 괄호 안에서도 곱셈을 덧셈보다 먼저 한다. $4\\times5=20$, $6+20=26$, $50-26=24$이다.",
+      "bGoal": "괄호 안에서도 곱셈 먼저의 규칙이 그대로 적용됨을 설명하고 세 단계로 계산한다.",
+      "bReason": "원문 예는 '빼는 양을 말로 설명'이라 답의 범위가 넓다. 계산 차례를 말하고 단계별 값을 쓰도록 좁혔다.",
+      "studentLabel": "괄호 안에 곱셈이 있는 식",
+      "cDecision": "revise",
+      "cAfter": "괄호 안에 덧셈과 곱셈이 함께 있으면 괄호 안에서도 {곱셈}을 먼저 계산한다. 그래서 $40-(2+3\\times4)$의 값은 {$26$}이다.",
+      "cReason": "규칙 문장은 유용하지만 '곱셈을 먼저'는 표현이 여러 가지라 한 낱말 빈칸으로 줄였다. 원문 예의 식의 값을 덧붙여 적용까지 확인한다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호 안을 먼저 계산하고 괄호 안에서도 곱셈을 덧셈보다 먼저 한다",
+            "괄호 안에서도 곱셈을 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$",
+            "$50-26=24$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱셈",
+            "곱셈을 먼저"
+          ]
+        },
+        {
+          "anyOf": [
+            "$26$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 433,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc16",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "괄호 안에 곱셈이 있을 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "괄호 안에 곱셈과 덧셈이 함께 있으면 괄호 안에서도 {곱셈을 먼저} 한다.",
+        "example": {
+          "prompt": "$40-(2+3\\times4)$에서 $40$에서 빼는 양을 말로 설명하시오.",
+          "answer": "$3$씩 네 묶음인 양에 $2$를 더한 전체"
+        },
+        "studentC": "괄호 안에 곱셈과 덧셈이 함께 있으면 괄호 안에서도 □ 한다.",
+        "answers": [
+          "곱셈을 먼저"
+        ]
+      },
+      "sourceFingerprint": "3c7a090e6637c8073b5bf7caaf7027b2ef56ab12dbc9b0c4db76c27c31807b41",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "곱셈",
+        "$26$"
+      ],
+      "cStudentAfter": "괄호 안에 덧셈과 곱셈이 함께 있으면 괄호 안에서도 □을 먼저 계산한다. 그래서 $40-(2+3\\times4)$의 값은 □이다.",
+      "cMarkedSentence": "괄호 안에 덧셈과 곱셈이 함께 있으면 괄호 안에서도 {곱셈}을 먼저 계산한다. 그래서 $40-(2+3\\times4)$의 값은 {$26$}이다.",
+      "cStudentSentence": "괄호 안에 덧셈과 곱셈이 함께 있으면 괄호 안에서도 □을 먼저 계산한다. 그래서 $40-(2+3\\times4)$의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱셈",
+          "equivalents": [
+            "곱셈을 먼저"
+          ]
+        },
+        {
+          "key": "$26$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호 안에 덧셈과 곱셈이 함께 있는 식은 어떤 차례로 계산하는지 설명하고, $50-(6+4\\times5)$를 그 차례대로 계산하시오.",
+        "answer": "괄호 안을 먼저 계산하는데, 괄호 안에서도 곱셈을 덧셈보다 먼저 한다. $4\\times5=20$, $6+20=26$, $50-26=24$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호 안을 먼저 계산하고 괄호 안에서도 곱셈을 덧셈보다 먼저 한다",
+              "괄호 안에서도 곱셈을 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$",
+              "$50-26=24$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "괄호 안에 덧셈과 곱셈이 함께 있으면 괄호 안에서도 {곱셈}을 먼저 계산한다. 그래서 $40-(2+3\\times4)$의 값은 {$26$}이다.",
+        "acceptedAnswers": [
+          [
+            "곱셈",
+            "곱셈을 먼저"
+          ],
+          [
+            "$26$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a0e116f410313d2bd456f6ca289fa19898e7dc7033c76f0f0e32b121fa30d485",
+      "questionRevision": "planning-e5e6-20261006-a0e116f41031",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc17",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "곱셈과 나눗셈 모두 덧셈·뺄셈보다 먼저 한다는 공통점 확인.",
+      "bReason": "c1과 c2를 합쳐 되풀이한 문장이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답 '그 부분을 먼저'는 가리키는 대상이 불분명한 메타 표현이다. 예도 없어 학생이 무엇을 써야 할지 알 수 없다.",
+      "exclusionReason": "B 제외: c1·c2와 중복",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 434,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc17",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "곱셈이든 나눗셈이든 같은 차례",
+        "kind": "성질",
+        "level": "중",
+        "definition": "괄호가 없으면 덧셈·뺄셈과 함께 있는 것이 곱셈이든 나눗셈이든 {그 부분을 먼저} 계산하는 차례는 같다.",
+        "studentC": "괄호가 없으면 덧셈·뺄셈과 함께 있는 것이 곱셈이든 나눗셈이든 □ 계산하는 차례는 같다.",
+        "answers": [
+          "그 부분을 먼저"
+        ]
+      },
+      "sourceFingerprint": "2e6304843312fd48e0bb5446cea252b57b1b690fd3e125a4752a55cde6f5b8ca",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B 제외: c1·c2와 중복",
+        "cloze": "B 제외: c1·c2와 중복"
+      },
+      "proposalFingerprint": "062ee44242228484f2e3b3f1620c0e55d27162712bfb1770b708bf0039052a2b",
+      "questionRevision": "planning-e5e6-20261006-062ee4424222",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc18",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "합이나 차에 수를 곱하는 식을 괄호를 써서 세운다.",
+      "bReason": "xc21의 B가 같은 내용을 더 넓게 묻는다.",
+      "studentLabel": "차에 곱하는 식 세우기",
+      "cDecision": "revise",
+      "cAfter": "$12$에서 $4$를 뺀 차에 $3$을 곱하는 식은 {$(12-4)\\times3$}이고, 값은 {$24$}이다.",
+      "cReason": "원문 문장은 xc21 C와 답(괄호)이 같다. 정의에 있는 '차'의 경우를 실제 식으로 세우게 바꿔 xc21(합)과 겹치지 않게 했다.",
+      "exclusionReason": "B 제외: xc21과 중복",
+      "exampleNeeded": false,
+      "synonymNotes": "$3\\times(12-4)$도 정답이다. 괄호 없는 $12-4\\times3$은 값이 $0$으로 다른 식이다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$(12-4)\\times3$",
+            "$3\\times(12-4)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 435,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc18",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "합이나 차에 곱할 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 수의 합이나 차에 어떤 수를 곱하려면 합이나 차를 {괄호로 묶어야} 한다.",
+        "example": {
+          "prompt": "$7$과 $5$의 합에 $3$을 곱하는 식은?",
+          "answer": "$(7+5)\\times3$"
+        },
+        "studentC": "두 수의 합이나 차에 어떤 수를 곱하려면 합이나 차를 □ 한다.",
+        "answers": [
+          "괄호로 묶어야"
+        ]
+      },
+      "sourceFingerprint": "60018d4e33dfa1f78454924de50e33c2fb162f01a9a66f4c62fdc2b66018a26f",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$(12-4)\\times3$",
+        "$24$"
+      ],
+      "cStudentAfter": "$12$에서 $4$를 뺀 차에 $3$을 곱하는 식은 □이고, 값은 □이다.",
+      "cMarkedSentence": "$12$에서 $4$를 뺀 차에 $3$을 곱하는 식은 {$(12-4)\\times3$}이고, 값은 {$24$}이다.",
+      "cStudentSentence": "$12$에서 $4$를 뺀 차에 $3$을 곱하는 식은 □이고, 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$(12-4)\\times3$",
+          "equivalents": [
+            "$3\\times(12-4)$"
+          ]
+        },
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$12$에서 $4$를 뺀 차에 $3$을 곱하는 식은 {$(12-4)\\times3$}이고, 값은 {$24$}이다.",
+        "acceptedAnswers": [
+          [
+            "$(12-4)\\times3$",
+            "$3\\times(12-4)$"
+          ],
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc21과 중복"
+      },
+      "proposalFingerprint": "a357bd466e44f08d4939fe3ce934cb57ae880cda13ee9affe6c47e0b0c9a1026",
+      "questionRevision": "planning-e5e6-20261006-a357bd466e44",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "괄호 없이 덧셈과 곱셈이 섞인 식에서 곱셈을 먼저 계산하는 까닭을, 곱셈을 같은 수를 여러 번 더하는 덧셈으로 바꾸어 설명하시오. $5+2\\times3$을 덧셈만 있는 식으로 쓰고 값을 구하며, $5+2$를 먼저 더하면 무엇이 달라지는지도 쓰시오.",
+      "bAnswer": "곱셈 부분은 같은 수를 여러 번 더한 양을 나타내는 하나의 수이므로 먼저 구한다. $5+2\\times3=5+2+2+2=11$이다. $5+2$를 먼저 더하면 $7\\times3=7+7+7=21$이 되어 $5$까지 세 번 더하게 된다.",
+      "bGoal": "곱셈을 같은 수의 덧셈으로 풀어, 곱셈 부분이 하나의 양이라 먼저 계산한다는 까닭을 설명한다.",
+      "bReason": "원문 예는 덧셈식만 쓰게 한다. 까닭을 '곱셈을 덧셈으로 바꾸어' 설명하도록 지정하고 잘못 계산한 경우와 견주게 했다.",
+      "studentLabel": "곱셈을 먼저 하는 까닭",
+      "cDecision": "revise",
+      "cAfter": "$2+3\\times4$에서 $3\\times4$는 $3$을 {$4$}번 더한 것이므로, 식 전체를 덧셈만 있는 식으로 쓰면 {$2+3+3+3+3$}이다.",
+      "cReason": "빈칸 답 '한 덩어리'는 수학 용어가 아닌 비유다. 원문 예의 덧셈식 풀어 쓰기를 직접 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈 부분은 같은 수를 여러 번 더한 양을 나타내는 하나의 수이므로 먼저 계산한다",
+            "곱셈을 같은 수의 덧셈으로 바꾸면 곱셈 부분이 하나의 양이 되어 먼저 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5+2+2+2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5+2$를 먼저 더하면 $(5+2)\\times3=21$이 되어 $5$까지 세 번 더하게 된다",
+            "$5$까지 세 번 더하게 되어 값이 $21$로 달라진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2+3+3+3+3$",
+            "$3+3+3+3+2$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 436,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc19",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "곱셈을 먼저 하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "괄호 없이 덧셈·뺄셈과 섞인 곱셈 부분은 같은 수를 여러 번 더한 양을 나타내는 {한 덩어리}의 수이므로 먼저 계산한다.",
+        "example": {
+          "prompt": "$2+3\\times4$에서 $3\\times4$를 $3$의 덧셈으로 풀어, 식 전체를 덧셈만 있는 식으로 쓰시오.",
+          "answer": "$2+3+3+3+3$"
+        },
+        "studentC": "괄호 없이 덧셈·뺄셈과 섞인 곱셈 부분은 같은 수를 여러 번 더한 양을 나타내는 □의 수이므로 먼저 계산한다.",
+        "answers": [
+          "한 덩어리"
+        ]
+      },
+      "sourceFingerprint": "b6d02e5648daf680952d6c10f092dba93c7b475b34956b6246a2c958f35e17af",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$2+3+3+3+3$"
+      ],
+      "cStudentAfter": "$2+3\\times4$에서 $3\\times4$는 $3$을 □번 더한 것이므로, 식 전체를 덧셈만 있는 식으로 쓰면 □이다.",
+      "cMarkedSentence": "$2+3\\times4$에서 $3\\times4$는 $3$을 {$4$}번 더한 것이므로, 식 전체를 덧셈만 있는 식으로 쓰면 {$2+3+3+3+3$}이다.",
+      "cStudentSentence": "$2+3\\times4$에서 $3\\times4$는 $3$을 □번 더한 것이므로, 식 전체를 덧셈만 있는 식으로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$2+3+3+3+3$",
+          "equivalents": [
+            "$3+3+3+3+2$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호 없이 덧셈과 곱셈이 섞인 식에서 곱셈을 먼저 계산하는 까닭을, 곱셈을 같은 수를 여러 번 더하는 덧셈으로 바꾸어 설명하시오. $5+2\\times3$을 덧셈만 있는 식으로 쓰고 값을 구하며, $5+2$를 먼저 더하면 무엇이 달라지는지도 쓰시오.",
+        "answer": "곱셈 부분은 같은 수를 여러 번 더한 양을 나타내는 하나의 수이므로 먼저 구한다. $5+2\\times3=5+2+2+2=11$이다. $5+2$를 먼저 더하면 $7\\times3=7+7+7=21$이 되어 $5$까지 세 번 더하게 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱셈 부분은 같은 수를 여러 번 더한 양을 나타내는 하나의 수이므로 먼저 계산한다",
+              "곱셈을 같은 수의 덧셈으로 바꾸면 곱셈 부분이 하나의 양이 되어 먼저 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5+2+2+2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5+2$를 먼저 더하면 $(5+2)\\times3=21$이 되어 $5$까지 세 번 더하게 된다",
+              "$5$까지 세 번 더하게 되어 값이 $21$로 달라진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2+3\\times4$에서 $3\\times4$는 $3$을 {$4$}번 더한 것이므로, 식 전체를 덧셈만 있는 식으로 쓰면 {$2+3+3+3+3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$2+3+3+3+3$",
+            "$3+3+3+3+2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ed093214a7091c32451cd1993b69885153badc429e58df3d38f04f6c8567b7be",
+      "questionRevision": "planning-e5e6-20261006-ed093214a709",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc20",
+      "bDecision": "revise",
+      "bPrompt": "덧셈과 곱셈이 섞인 식에서 괄호를 지워도 값이 달라지지 않는 것은 괄호가 어느 부분을 묶고 있을 때인지 계산 차례로 설명하시오. $9+(2\\times6)$과 $(9+2)\\times6$에서 각각 괄호를 지우면 값이 달라지는지 계산하여 답하시오.",
+      "bAnswer": "괄호가 곱셈 부분만 묶고 있을 때는 괄호가 없어도 곱셈을 먼저 하므로 값이 같다. $9+(2\\times6)=21$이고 괄호를 지운 $9+2\\times6$도 $21$로 같다. $(9+2)\\times6=66$은 괄호를 지우면 $9+2\\times6=21$이 되어 달라진다.",
+      "bGoal": "곱셈만 묶은 괄호는 계산 차례를 바꾸지 않아 없어도 되고, 덧셈을 묶은 괄호는 꼭 필요함을 구별한다.",
+      "bReason": "원문 예는 결론(지워도 된다)을 질문에 미리 준다. 두 경우를 견주어 학생이 직접 판단하고 까닭을 계산 차례로 쓰게 했다.",
+      "studentLabel": "지워도 되는 괄호",
+      "cDecision": "revise",
+      "cAfter": "$5+(3\\times4)$와 $5+3\\times4$는 둘 다 {곱셈}을 먼저 계산하므로 값이 둘 다 {$17$}이다.",
+      "cReason": "빈칸 답 '값이 같다'는 '된다', '결과가 같다' 등 표현이 갈린다. 까닭이 되는 낱말과 값을 답하게 바꿨다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈 부분만 묶은 괄호는 괄호가 없어도 곱셈을 먼저 하므로 지워도 값이 같다",
+            "곱셈만 묶은 괄호는 계산 차례를 바꾸지 않으므로 지워도 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9+(2\\times6)=21$이고 괄호를 지운 $9+2\\times6$도 $21$이다",
+            "$21$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(9+2)\\times6=66$이고 괄호를 지우면 $21$이 되어 값이 달라진다",
+            "$66$과 $21$로 달라진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱셈",
+            "곱셈을 먼저"
+          ]
+        },
+        {
+          "anyOf": [
+            "$17$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 437,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc20",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "없어도 되는 곱셈 괄호",
+        "kind": "성질",
+        "level": "상",
+        "definition": "덧셈 · 뺄셈과 곱셈만 있는 식에서 곱셈 부분만 묶은 괄호는 지워도 {값이 같다}.",
+        "example": {
+          "prompt": "$5+(3\\times4)$의 괄호를 지워도 되는 까닭은?",
+          "answer": "괄호가 없어도 곱셈을 먼저 한다"
+        },
+        "studentC": "덧셈 · 뺄셈과 곱셈만 있는 식에서 곱셈 부분만 묶은 괄호는 지워도 □.",
+        "answers": [
+          "값이 같다"
+        ]
+      },
+      "sourceFingerprint": "f6294f9d46848394fd0beccdc28d8ba24ab8ad8c64aa62abd2bbbe68dfc6389a",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "곱셈",
+        "$17$"
+      ],
+      "cStudentAfter": "$5+(3\\times4)$와 $5+3\\times4$는 둘 다 □을 먼저 계산하므로 값이 둘 다 □이다.",
+      "cMarkedSentence": "$5+(3\\times4)$와 $5+3\\times4$는 둘 다 {곱셈}을 먼저 계산하므로 값이 둘 다 {$17$}이다.",
+      "cStudentSentence": "$5+(3\\times4)$와 $5+3\\times4$는 둘 다 □을 먼저 계산하므로 값이 둘 다 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱셈",
+          "equivalents": [
+            "곱셈을 먼저"
+          ]
+        },
+        {
+          "key": "$17$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "덧셈과 곱셈이 섞인 식에서 괄호를 지워도 값이 달라지지 않는 것은 괄호가 어느 부분을 묶고 있을 때인지 계산 차례로 설명하시오. $9+(2\\times6)$과 $(9+2)\\times6$에서 각각 괄호를 지우면 값이 달라지는지 계산하여 답하시오.",
+        "answer": "괄호가 곱셈 부분만 묶고 있을 때는 괄호가 없어도 곱셈을 먼저 하므로 값이 같다. $9+(2\\times6)=21$이고 괄호를 지운 $9+2\\times6$도 $21$로 같다. $(9+2)\\times6=66$은 괄호를 지우면 $9+2\\times6=21$이 되어 달라진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱셈 부분만 묶은 괄호는 괄호가 없어도 곱셈을 먼저 하므로 지워도 값이 같다",
+              "곱셈만 묶은 괄호는 계산 차례를 바꾸지 않으므로 지워도 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9+(2\\times6)=21$이고 괄호를 지운 $9+2\\times6$도 $21$이다",
+              "$21$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(9+2)\\times6=66$이고 괄호를 지우면 $21$이 되어 값이 달라진다",
+              "$66$과 $21$로 달라진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5+(3\\times4)$와 $5+3\\times4$는 둘 다 {곱셈}을 먼저 계산하므로 값이 둘 다 {$17$}이다.",
+        "acceptedAnswers": [
+          [
+            "곱셈",
+            "곱셈을 먼저"
+          ],
+          [
+            "$17$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b3c0b5dad9a75756a5acdac69b135506e1acc22d738702fe310ea479faeb31f8",
+      "questionRevision": "planning-e5e6-20261006-b3c0b5dad9a7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc21",
+      "bDecision": "revise",
+      "bPrompt": "두 수의 합에 어떤 수를 곱하는 계산을 하나의 식으로 쓸 때 합에 무엇을 해 주어야 하는지와 그 까닭을 계산 차례로 설명하시오. '$2$와 $6$의 합의 $5$배'를 바른 식으로 쓰고 값을 구하며, $2+6\\times5$로 쓰면 값이 얼마가 되는지도 쓰시오.",
+      "bAnswer": "합을 괄호로 묶어야 한다. 괄호가 없으면 곱셈을 먼저 하게 되어 뒤의 수에만 곱해지기 때문이다. 바른 식은 $(2+6)\\times5=40$이다. $2+6\\times5$로 쓰면 $6\\times5$를 먼저 계산해 $2+30=32$가 된다.",
+      "bGoal": "덧셈을 곱셈보다 먼저 하려면 괄호가 꼭 필요한 까닭을 바른 식과 잘못 쓴 식의 값으로 설명한다.",
+      "bReason": "원문 예의 '쓰면 안 되는 까닭'에 바른 식과 두 값을 함께 요구해 답의 범위를 분명히 했다. xc18의 식 세우기도 여기서 다룬다.",
+      "studentLabel": "합에 곱할 때 필요한 괄호",
+      "cDecision": "keep",
+      "cAfter": "덧셈과 곱셈이 섞인 식에서 덧셈을 곱셈보다 먼저 하려면 덧셈 부분을 {괄호}로 묶어야 한다.",
+      "cReason": "'덧셈을 곱셈보다 먼저 하려면'이라는 목적과 '덧셈 부분을 묶는다'는 조건이 분명하다. 답이 한 낱말이고 문장 안에 드러나 있지 않다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'괄호', '( )', '소괄호'는 모두 정답이다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합을 괄호로 묶어야 한다",
+            "합에 괄호를 써야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 없으면 곱셈을 먼저 하게 되어 뒤의 수에만 곱해진다",
+            "괄호가 없으면 $6\\times5$를 먼저 계산하게 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(2+6)\\times5=40$",
+            "$(2+6)\\times5$",
+            "$5\\times(2+6)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$32$",
+            "$2+6\\times5=32$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "괄호",
+            "소괄호"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 438,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc21",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "꼭 있어야 하는 덧셈 괄호",
+        "kind": "성질",
+        "level": "상",
+        "definition": "덧셈과 곱셈이 섞인 식에서 덧셈을 곱셈보다 먼저 하려면 덧셈 부분을 {괄호}로 묶어야 한다.",
+        "example": {
+          "prompt": "$2$와 $6$의 합을 다섯 배 하는 식을 $2+6\\times5$로 쓰면 안 되는 까닭은?",
+          "answer": "$6\\times5$를 먼저 계산하게 되어서"
+        },
+        "studentC": "덧셈과 곱셈이 섞인 식에서 덧셈을 곱셈보다 먼저 하려면 덧셈 부분을 □로 묶어야 한다.",
+        "answers": [
+          "괄호"
+        ]
+      },
+      "sourceFingerprint": "fb1eaf5681f63e9d71645b06576d7ff7432333fc4371811eb3306fc89422fe4c",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cFrozenDefinition": "덧셈과 곱셈이 섞인 식에서 덧셈을 곱셈보다 먼저 하려면 덧셈 부분을 {괄호}로 묶어야 한다.",
+      "cFrozenStudentSentence": "덧셈과 곱셈이 섞인 식에서 덧셈을 곱셈보다 먼저 하려면 덧셈 부분을 □로 묶어야 한다.",
+      "cProposedAnswers": [
+        "괄호"
+      ],
+      "cStudentAfter": "덧셈과 곱셈이 섞인 식에서 덧셈을 곱셈보다 먼저 하려면 덧셈 부분을 □로 묶어야 한다.",
+      "cMarkedSentence": "덧셈과 곱셈이 섞인 식에서 덧셈을 곱셈보다 먼저 하려면 덧셈 부분을 {괄호}로 묶어야 한다.",
+      "cStudentSentence": "덧셈과 곱셈이 섞인 식에서 덧셈을 곱셈보다 먼저 하려면 덧셈 부분을 □로 묶어야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "괄호",
+          "equivalents": [
+            "소괄호"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수의 합에 어떤 수를 곱하는 계산을 하나의 식으로 쓸 때 합에 무엇을 해 주어야 하는지와 그 까닭을 계산 차례로 설명하시오. '$2$와 $6$의 합의 $5$배'를 바른 식으로 쓰고 값을 구하며, $2+6\\times5$로 쓰면 값이 얼마가 되는지도 쓰시오.",
+        "answer": "합을 괄호로 묶어야 한다. 괄호가 없으면 곱셈을 먼저 하게 되어 뒤의 수에만 곱해지기 때문이다. 바른 식은 $(2+6)\\times5=40$이다. $2+6\\times5$로 쓰면 $6\\times5$를 먼저 계산해 $2+30=32$가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "합을 괄호로 묶어야 한다",
+              "합에 괄호를 써야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "괄호가 없으면 곱셈을 먼저 하게 되어 뒤의 수에만 곱해진다",
+              "괄호가 없으면 $6\\times5$를 먼저 계산하게 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(2+6)\\times5=40$",
+              "$(2+6)\\times5$",
+              "$5\\times(2+6)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$32$",
+              "$2+6\\times5=32$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "덧셈과 곱셈이 섞인 식에서 덧셈을 곱셈보다 먼저 하려면 덧셈 부분을 {괄호}로 묶어야 한다.",
+        "acceptedAnswers": [
+          [
+            "괄호",
+            "소괄호"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "875a2e4358f6cad8aa643013bf3b6af5ce729f97f6d3aa57e62ee1b08a20b988",
+      "questionRevision": "planning-e5e6-20261006-875a2e4358f6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc22",
+      "bDecision": "revise",
+      "bPrompt": "돈을 내고 값이 같은 물건을 여러 개 샀을 때 거스름돈을 하나의 식으로 나타내는 방법과 계산 차례를 설명하시오. $10000$원을 내고 $1500$원짜리 공책 $4$권을 샀을 때의 식을 쓰고 거스름돈을 구하시오.",
+      "bAnswer": "낸 돈에서 물건값 전체를 빼야 하므로, 물건값을 (한 개의 값)$\\times$(개수)로 나타내어 낸 돈에서 빼는 식을 쓰고 곱셈을 먼저 계산한다. $10000-1500\\times4=10000-6000=4000$(원)이다.",
+      "bGoal": "거스름돈 상황을 (수)−(곱셈)의 식으로 세우고 곱셈부터 계산한다.",
+      "bReason": "원문 예는 식만 묻는다. 식을 그렇게 세우는 방법과 계산 차례를 함께 설명하게 했다.",
+      "studentLabel": "거스름돈 식 세우기",
+      "cDecision": "revise",
+      "cAfter": "$5000$원을 내고 $800$원짜리 공책 $4$권을 샀을 때 거스름돈을 구하는 식은 $5000$ {$-$} $800$ {$\\times$} $4$이고, 거스름돈은 {$1800$}원이다.",
+      "cReason": "원문 '물건값이 곱셈으로 나오면'은 어색하고 답 구절도 임의적이다. 원문 예의 상황에서 기호와 값을 채우게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "물건값 전체를 한 개의 값과 개수의 곱으로 나타내어 낸 돈에서 뺀다",
+            "낸 돈에서 (한 개의 값)$\\times$(개수)를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈을 먼저 계산한다",
+            "물건값을 먼저 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10000-1500\\times4$",
+            "$10000-4\\times1500$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4000$원",
+            "$4000$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$-$",
+            "뺄셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\times$",
+            "곱셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1800$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 439,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc22",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "거스름돈 식 세우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "낸 돈에서 물건값을 뺄 때 물건값이 곱셈으로 나오면 {곱셈을 먼저} 한다.",
+        "example": {
+          "prompt": "$5000$원을 내고 $800$원짜리 $4$개를 산 거스름돈을 구하는 식은?",
+          "answer": "$5000-800\\times4$"
+        },
+        "studentC": "낸 돈에서 물건값을 뺄 때 물건값이 곱셈으로 나오면 □ 한다.",
+        "answers": [
+          "곱셈을 먼저"
+        ]
+      },
+      "sourceFingerprint": "b1f20f8941a9c1212efb7cd91b48685ce1c8d851f81c8cfc21b5f069d38ed27d",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$-$",
+        "$\\times$",
+        "$1800$"
+      ],
+      "cStudentAfter": "$5000$원을 내고 $800$원짜리 공책 $4$권을 샀을 때 거스름돈을 구하는 식은 $5000$ □ $800$ □ $4$이고, 거스름돈은 □원이다.",
+      "cMarkedSentence": "$5000$원을 내고 $800$원짜리 공책 $4$권을 샀을 때 거스름돈을 구하는 식은 $5000$ {$-$} $800$ {$\\times$} $4$이고, 거스름돈은 {$1800$}원이다.",
+      "cStudentSentence": "$5000$원을 내고 $800$원짜리 공책 $4$권을 샀을 때 거스름돈을 구하는 식은 $5000$ □ $800$ □ $4$이고, 거스름돈은 □원이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$-$",
+          "equivalents": [
+            "뺄셈"
+          ]
+        },
+        {
+          "key": "$\\times$",
+          "equivalents": [
+            "곱셈"
+          ]
+        },
+        {
+          "key": "$1800$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "돈을 내고 값이 같은 물건을 여러 개 샀을 때 거스름돈을 하나의 식으로 나타내는 방법과 계산 차례를 설명하시오. $10000$원을 내고 $1500$원짜리 공책 $4$권을 샀을 때의 식을 쓰고 거스름돈을 구하시오.",
+        "answer": "낸 돈에서 물건값 전체를 빼야 하므로, 물건값을 (한 개의 값)$\\times$(개수)로 나타내어 낸 돈에서 빼는 식을 쓰고 곱셈을 먼저 계산한다. $10000-1500\\times4=10000-6000=4000$(원)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "물건값 전체를 한 개의 값과 개수의 곱으로 나타내어 낸 돈에서 뺀다",
+              "낸 돈에서 (한 개의 값)$\\times$(개수)를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱셈을 먼저 계산한다",
+              "물건값을 먼저 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10000-1500\\times4$",
+              "$10000-4\\times1500$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4000$원",
+              "$4000$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5000$원을 내고 $800$원짜리 공책 $4$권을 샀을 때 거스름돈을 구하는 식은 $5000$ {$-$} $800$ {$\\times$} $4$이고, 거스름돈은 {$1800$}원이다.",
+        "acceptedAnswers": [
+          [
+            "$-$",
+            "뺄셈"
+          ],
+          [
+            "$\\times$",
+            "곱셈"
+          ],
+          [
+            "$1800$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7ae2dc5199f871e4000f642ed6edc3ec493e7a4616b9b66c39c583ecf7ad65ab",
+      "questionRevision": "planning-e5e6-20261006-7ae2dc5199f8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc23",
+      "bDecision": "revise",
+      "bPrompt": "처음 가지고 있던 양에, 다른 양을 똑같이 나눈 한 사람 몫을 더한 수를 하나의 식으로 나타내는 방법과 계산 차례를 설명하시오. 딱지 $9$장을 가진 지호가 딱지 $28$장을 $4$명이 똑같이 나눈 한 사람 몫을 더 받았을 때의 식을 쓰고 지호의 딱지 수를 구하시오.",
+      "bAnswer": "처음 가진 양에 (나눌 양)$\\div$(사람 수)를 더하는 식을 쓰고, 나눗셈이 뒤에 있어도 나눗셈을 먼저 계산한다. $9+28\\div4$에서 $28\\div4=7$을 먼저 구하면 $9+7=16$(장)이다.",
+      "bGoal": "가진 양에 나누어 받은 몫을 더하는 상황을 (수)+(나눗셈)으로 세우고, 뒤에 있는 나눗셈부터 계산한다.",
+      "bReason": "원문 예의 구조를 유지했다. '한 몫'을 '한 사람 몫'으로 풀고 계산 차례까지 답하게 했다. xc9의 식 세우기도 여기서 다룬다.",
+      "studentLabel": "가진 양에 나눈 몫 더하기",
+      "cDecision": "revise",
+      "cAfter": "구슬 $12$개를 가진 수아가 구슬 $35$개를 $5$명이 똑같이 나눈 한 사람 몫을 더 받았다. 수아의 구슬 수를 구하는 식 $12+35\\div5$에서 먼저 계산하는 부분은 {$35\\div5$}이고, 수아의 구슬은 모두 {$19$}개이다.",
+      "cReason": "원문은 상황 없이 '그 몫을 먼저'만 물어 무엇을 가리키는지 알기 어렵다. 원문 예의 상황과 식을 지면에 넣고 먼저 계산할 부분과 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 가진 양에 (나눌 양)$\\div$(사람 수)를 더하는 식으로 나타낸다",
+            "처음 가진 양에 한 사람 몫을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눗셈을 먼저 계산한다",
+            "나눗셈이 뒤에 있어도 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9+28\\div4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16$장",
+            "$16$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$35\\div5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$19$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 440,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc23",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "가진 양에 나누어 받은 몫 더하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "처음 가진 양에 새로 나누어 받은 몫을 더할 때는 그 몫을 {먼저} 구한다.",
+        "example": {
+          "prompt": "구슬 $12$개를 가진 수아가 구슬 $35$개를 $5$명이 똑같이 나눈 몫을 받았다. 수아의 구슬 수를 구하는 식은?",
+          "answer": "$12+35\\div5$"
+        },
+        "studentC": "처음 가진 양에 새로 나누어 받은 몫을 더할 때는 그 몫을 □ 구한다.",
+        "answers": [
+          "먼저"
+        ]
+      },
+      "sourceFingerprint": "520e783ca2b0f429b79ff63a77bbe506b17e2850571954c712ee1cbfdf25fdf8",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$35\\div5$",
+        "$19$"
+      ],
+      "cStudentAfter": "구슬 $12$개를 가진 수아가 구슬 $35$개를 $5$명이 똑같이 나눈 한 사람 몫을 더 받았다. 수아의 구슬 수를 구하는 식 $12+35\\div5$에서 먼저 계산하는 부분은 □이고, 수아의 구슬은 모두 □개이다.",
+      "cMarkedSentence": "구슬 $12$개를 가진 수아가 구슬 $35$개를 $5$명이 똑같이 나눈 한 사람 몫을 더 받았다. 수아의 구슬 수를 구하는 식 $12+35\\div5$에서 먼저 계산하는 부분은 {$35\\div5$}이고, 수아의 구슬은 모두 {$19$}개이다.",
+      "cStudentSentence": "구슬 $12$개를 가진 수아가 구슬 $35$개를 $5$명이 똑같이 나눈 한 사람 몫을 더 받았다. 수아의 구슬 수를 구하는 식 $12+35\\div5$에서 먼저 계산하는 부분은 □이고, 수아의 구슬은 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$35\\div5$",
+          "equivalents": []
+        },
+        {
+          "key": "$19$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "처음 가지고 있던 양에, 다른 양을 똑같이 나눈 한 사람 몫을 더한 수를 하나의 식으로 나타내는 방법과 계산 차례를 설명하시오. 딱지 $9$장을 가진 지호가 딱지 $28$장을 $4$명이 똑같이 나눈 한 사람 몫을 더 받았을 때의 식을 쓰고 지호의 딱지 수를 구하시오.",
+        "answer": "처음 가진 양에 (나눌 양)$\\div$(사람 수)를 더하는 식을 쓰고, 나눗셈이 뒤에 있어도 나눗셈을 먼저 계산한다. $9+28\\div4$에서 $28\\div4=7$을 먼저 구하면 $9+7=16$(장)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 가진 양에 (나눌 양)$\\div$(사람 수)를 더하는 식으로 나타낸다",
+              "처음 가진 양에 한 사람 몫을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눗셈을 먼저 계산한다",
+              "나눗셈이 뒤에 있어도 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9+28\\div4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$16$장",
+              "$16$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "구슬 $12$개를 가진 수아가 구슬 $35$개를 $5$명이 똑같이 나눈 한 사람 몫을 더 받았다. 수아의 구슬 수를 구하는 식 $12+35\\div5$에서 먼저 계산하는 부분은 {$35\\div5$}이고, 수아의 구슬은 모두 {$19$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$35\\div5$"
+          ],
+          [
+            "$19$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "12db63e036485e82f815e892bc7a1e558cf27fa1408a34ef3681f6ce37efacd6",
+      "questionRevision": "planning-e5e6-20261006-12db63e03648",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc24",
+      "bDecision": "revise",
+      "bPrompt": "(몇)$\\times$(몇)에서 어떤 수를 빼는 식은 어떤 상황을 나타내는지 설명하고, $7\\times4-6$으로 답을 구할 수 있는 문제 상황을 하나 만들어 값을 구하시오.",
+      "bAnswer": "같은 수만큼씩 여러 묶음인 전체에서 얼마를 덜어 내고 남은 양을 구하는 상황이다. 예: 한 봉지에 $7$개씩 $4$봉지인 사탕에서 $6$개를 먹고 남은 수. $7\\times4=28$, $28-6=22$(개)이다.",
+      "bGoal": "(곱셈)−(수) 꼴의 식을 묶음 전체에서 덜어 내는 상황과 연결하고 스스로 상황을 만든다.",
+      "bReason": "제목 '상황 떠올리기'를 살려 식에서 상황을 만드는 방향으로 묻고, 곱셈 부분의 뜻을 설명하게 했다.",
+      "studentLabel": "식에 알맞은 상황",
+      "cDecision": "revise",
+      "cAfter": "한 접시에 $8$개씩 $3$접시인 귤에서 $5$개를 먹고 남은 수를 $8\\times3-5$로 구할 때, $8\\times3$은 먹기 전 귤의 수 {$24$}개를 나타내고, 남은 귤은 {$19$}개이다.",
+      "cReason": "빈칸 답 '같은 수만큼씩 여러 묶음'은 길어서 외우게 할 구절이 아니다. 원문 예의 상황에서 곱셈 부분의 뜻과 값을 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "B의 상황은 '같은 수씩 여러 묶음에서 덜어 내기' 구조이면 소재가 달라도 정답이다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 수만큼씩 여러 묶음인 전체에서 얼마를 덜어 내고 남은 양을 구하는 상황이다",
+            "같은 수씩 여러 묶음인 양에서 일부를 빼는 상황이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$씩 $4$묶음인 양에서 $6$을 덜어 내는 문제 상황을 만든다",
+            "$7\\times4$를 묶음 전체의 양으로 하고 $6$을 덜어 내는 상황이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$",
+            "$28-6=22$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$19$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 441,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc24",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "식에 알맞은 상황 떠올리기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "(몇)$\\times$(몇)에서 수를 빼는 식은 {같은 수만큼씩 여러 묶음}인 전체에서 얼마를 덜어 내는 상황을 나타낸다.",
+        "example": {
+          "prompt": "한 접시에 $8$개씩 $3$접시인 귤에서 $5$개를 먹고 남은 수를 $8\\times3-5$로 구한다. $8\\times3$이 나타내는 것은?",
+          "answer": "먹기 전 귤 전체의 수"
+        },
+        "studentC": "(몇)$\\times$(몇)에서 수를 빼는 식은 □인 전체에서 얼마를 덜어 내는 상황을 나타낸다.",
+        "answers": [
+          "같은 수만큼씩 여러 묶음"
+        ]
+      },
+      "sourceFingerprint": "2b752907f0a26200574a9bf550b8bfad535bf2476cc21d9ade88369cffbb4bc1",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$24$",
+        "$19$"
+      ],
+      "cStudentAfter": "한 접시에 $8$개씩 $3$접시인 귤에서 $5$개를 먹고 남은 수를 $8\\times3-5$로 구할 때, $8\\times3$은 먹기 전 귤의 수 □개를 나타내고, 남은 귤은 □개이다.",
+      "cMarkedSentence": "한 접시에 $8$개씩 $3$접시인 귤에서 $5$개를 먹고 남은 수를 $8\\times3-5$로 구할 때, $8\\times3$은 먹기 전 귤의 수 {$24$}개를 나타내고, 남은 귤은 {$19$}개이다.",
+      "cStudentSentence": "한 접시에 $8$개씩 $3$접시인 귤에서 $5$개를 먹고 남은 수를 $8\\times3-5$로 구할 때, $8\\times3$은 먹기 전 귤의 수 □개를 나타내고, 남은 귤은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$19$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "(몇)$\\times$(몇)에서 어떤 수를 빼는 식은 어떤 상황을 나타내는지 설명하고, $7\\times4-6$으로 답을 구할 수 있는 문제 상황을 하나 만들어 값을 구하시오.",
+        "answer": "같은 수만큼씩 여러 묶음인 전체에서 얼마를 덜어 내고 남은 양을 구하는 상황이다. 예: 한 봉지에 $7$개씩 $4$봉지인 사탕에서 $6$개를 먹고 남은 수. $7\\times4=28$, $28-6=22$(개)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 수만큼씩 여러 묶음인 전체에서 얼마를 덜어 내고 남은 양을 구하는 상황이다",
+              "같은 수씩 여러 묶음인 양에서 일부를 빼는 상황이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$씩 $4$묶음인 양에서 $6$을 덜어 내는 문제 상황을 만든다",
+              "$7\\times4$를 묶음 전체의 양으로 하고 $6$을 덜어 내는 상황이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$22$",
+              "$28-6=22$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 접시에 $8$개씩 $3$접시인 귤에서 $5$개를 먹고 남은 수를 $8\\times3-5$로 구할 때, $8\\times3$은 먹기 전 귤의 수 {$24$}개를 나타내고, 남은 귤은 {$19$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "$19$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "03451559e8bd9a909eae3ec03a7082230d6f22fc70c3e10b7dbc74b05c607af1",
+      "questionRevision": "planning-e5e6-20261006-03451559e8bd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc25",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "수와 기호가 같아도 괄호가 있고 없음에 따라 값이 달라질 수 있음을 확인.",
+      "bReason": "두 식의 비교는 xc11의 B와 같다.",
+      "studentLabel": "괄호가 있을 때와 없을 때의 값",
+      "cDecision": "revise",
+      "cAfter": "$6\\times(4+1)$의 값은 {$30$}이고 $6\\times4+1$의 값은 {$25$}이다. 수와 기호가 같아도 괄호가 있으면 계산 차례가 달라져 값이 달라질 수 있다.",
+      "cReason": "빈칸 답 '차례가 바뀌어'는 문장 조각이고 '유무'는 초5에게 어려운 말이다. 원문 예의 두 식의 값을 직접 구해 견주게 했다.",
+      "exclusionReason": "B 제외: xc11·xc26과 중복",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 442,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc25",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "괄호의 유무로 달라지는 값",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 수와 기호로도 괄호의 유무에 따라 곱셈과 덧셈의 {차례가 바뀌어} 값이 달라질 수 있다.",
+        "example": {
+          "prompt": "$6\\times(4+1)$이 $6\\times4+1$보다 큰 까닭은?",
+          "answer": "$6\\times4$에 앞은 $6$, 뒤는 $1$을 더해서"
+        },
+        "studentC": "같은 수와 기호로도 괄호의 유무에 따라 곱셈과 덧셈의 □ 값이 달라질 수 있다.",
+        "answers": [
+          "차례가 바뀌어"
+        ]
+      },
+      "sourceFingerprint": "f6e29358f09747ca99301c9e72625e3623f87816348b92f950fe4c3c3b676187",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$30$",
+        "$25$"
+      ],
+      "cStudentAfter": "$6\\times(4+1)$의 값은 □이고 $6\\times4+1$의 값은 □이다. 수와 기호가 같아도 괄호가 있으면 계산 차례가 달라져 값이 달라질 수 있다.",
+      "cMarkedSentence": "$6\\times(4+1)$의 값은 {$30$}이고 $6\\times4+1$의 값은 {$25$}이다. 수와 기호가 같아도 괄호가 있으면 계산 차례가 달라져 값이 달라질 수 있다.",
+      "cStudentSentence": "$6\\times(4+1)$의 값은 □이고 $6\\times4+1$의 값은 □이다. 수와 기호가 같아도 괄호가 있으면 계산 차례가 달라져 값이 달라질 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": []
+        },
+        {
+          "key": "$25$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$6\\times(4+1)$의 값은 {$30$}이고 $6\\times4+1$의 값은 {$25$}이다. 수와 기호가 같아도 괄호가 있으면 계산 차례가 달라져 값이 달라질 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ],
+          [
+            "$25$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc11·xc26과 중복"
+      },
+      "proposalFingerprint": "330792469cdf0c3eaab697025a2c8ca4613add31f534040cec2355265e19bd5b",
+      "questionRevision": "planning-e5e6-20261006-330792469cdf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc26",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수에 두 수의 합을 곱한 값과, 그 수를 두 수에 각각 곱한 값 사이에는 어떤 관계가 있는지 설명하시오. $7\\times(10+3)$을 $7$을 $10$과 $3$에 각각 곱하는 괄호 없는 식으로 바꾸어 쓰고, 두 식의 값을 각각 계산해 견주시오.",
+      "bAnswer": "어떤 수에 두 수의 합을 곱한 값은 그 수를 두 수에 각각 곱해서 더한 값과 같다. $7\\times(10+3)=7\\times13=91$이고, $7\\times10+7\\times3=70+21=91$로 같다. $7$을 $13$번 더한 것은 $10$번 더한 것과 $3$번 더한 것을 합한 것이기 때문이다.",
+      "bGoal": "합에 곱하는 것과 각각 곱해 더하는 것이 같음을 두 식의 계산으로 확인하고 설명한다.",
+      "bReason": "원문 예는 식 바꾸기만 묻는다. 관계를 미리 알려 주지 않고 두 값을 계산해 학생이 관계를 말하게 했다.",
+      "studentLabel": "곱셈을 나누어 계산하기",
+      "cDecision": "revise",
+      "cAfter": "$6\\times(10+2)$의 값은 $6\\times10$과 $6\\times2$를 {더한} 값과 같다. 그래서 $60+$ {$12$} $=$ {$72$}이다.",
+      "cReason": "원문은 '어떤 수', '두 수'만 있는 추상 문장이라 떠올리기 어렵다. 원문 예의 수를 넣어 관계 낱말과 계산값을 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'더한', '합한'은 같은 답이다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어떤 수에 두 수의 합을 곱한 값은 그 수를 두 수에 각각 곱해 더한 값과 같다",
+            "합에 곱한 값과 각각 곱해서 더한 값은 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7\\times10+7\\times3$",
+            "$7\\times3+7\\times10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7\\times(10+3)=91$이고 $7\\times10+7\\times3=91$로 같다",
+            "두 식의 값은 모두 $91$이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더한",
+            "합한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$72$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 443,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc26",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "곱셈을 나누어 계산하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어떤 수에 두 수의 합을 곱한 값은 그 수를 두 수에 각각 곱해 {더한 값}과 같다.",
+        "example": {
+          "prompt": "$6\\times(10+2)$를 $6$을 $10$과 $2$에 각각 곱하는 괄호 없는 식으로 쓰면?",
+          "answer": "$6\\times10+6\\times2$"
+        },
+        "studentC": "어떤 수에 두 수의 합을 곱한 값은 그 수를 두 수에 각각 곱해 □과 같다.",
+        "answers": [
+          "더한 값"
+        ]
+      },
+      "sourceFingerprint": "a18fba7e9a2f4ef793185e83be5435206cb0d4aff07fb69ec5b0f8b29a8e86e7",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "더한",
+        "$12$",
+        "$72$"
+      ],
+      "cStudentAfter": "$6\\times(10+2)$의 값은 $6\\times10$과 $6\\times2$를 □ 값과 같다. 그래서 $60+$ □ $=$ □이다.",
+      "cMarkedSentence": "$6\\times(10+2)$의 값은 $6\\times10$과 $6\\times2$를 {더한} 값과 같다. 그래서 $60+$ {$12$} $=$ {$72$}이다.",
+      "cStudentSentence": "$6\\times(10+2)$의 값은 $6\\times10$과 $6\\times2$를 □ 값과 같다. 그래서 $60+$ □ $=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "더한",
+          "equivalents": [
+            "합한"
+          ]
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$72$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수에 두 수의 합을 곱한 값과, 그 수를 두 수에 각각 곱한 값 사이에는 어떤 관계가 있는지 설명하시오. $7\\times(10+3)$을 $7$을 $10$과 $3$에 각각 곱하는 괄호 없는 식으로 바꾸어 쓰고, 두 식의 값을 각각 계산해 견주시오.",
+        "answer": "어떤 수에 두 수의 합을 곱한 값은 그 수를 두 수에 각각 곱해서 더한 값과 같다. $7\\times(10+3)=7\\times13=91$이고, $7\\times10+7\\times3=70+21=91$로 같다. $7$을 $13$번 더한 것은 $10$번 더한 것과 $3$번 더한 것을 합한 것이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어떤 수에 두 수의 합을 곱한 값은 그 수를 두 수에 각각 곱해 더한 값과 같다",
+              "합에 곱한 값과 각각 곱해서 더한 값은 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7\\times10+7\\times3$",
+              "$7\\times3+7\\times10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7\\times(10+3)=91$이고 $7\\times10+7\\times3=91$로 같다",
+              "두 식의 값은 모두 $91$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6\\times(10+2)$의 값은 $6\\times10$과 $6\\times2$를 {더한} 값과 같다. 그래서 $60+$ {$12$} $=$ {$72$}이다.",
+        "acceptedAnswers": [
+          [
+            "더한",
+            "합한"
+          ],
+          [
+            "$12$"
+          ],
+          [
+            "$72$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7ce33bd33eef6994b9d305fa9c32e87ba74adb2c928c2df515e5e036cc97c3ce",
+      "questionRevision": "planning-e5e6-20261006-7ce33bd33eef",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-2-xc27",
+      "bDecision": "revise",
+      "bPrompt": "덧셈과 곱셈이 섞인 식을 계산한 답이 맞는지 수를 가까운 몇십이나 몇백으로 바꾸어 살피는 방법을 설명하시오. $52+3\\times98$의 값을 어림하고, 어떤 학생의 답이 $5390$이었다면 계산 차례를 어떻게 잘못했는지 쓰시오.",
+      "bAnswer": "수를 가까운 몇십, 몇백으로 바꾸어 바른 차례로 대강 계산해 보고, 답이 그 값과 크게 다르면 차례를 다시 살핀다. $52+3\\times98$은 $50+3\\times100=350$쯤이다(실제 값 $346$). $5390$은 $52+3$을 먼저 더해 $55\\times98$을 계산한 값이다.",
+      "bGoal": "어림한 값과 견주어 계산 차례의 잘못(덧셈을 먼저 한 경우)을 찾아낸다.",
+      "bReason": "원문 예의 구조를 유지하되 어림 방법을 풀어 쓰고, 잘못된 답을 실제 값($55\\times98=5390$)으로 주어 원인을 확인할 수 있게 했다.",
+      "studentLabel": "어림으로 계산 차례 확인하기",
+      "cDecision": "revise",
+      "cAfter": "$98+3\\times49$는 $100+3\\times50$으로 생각하면 약 {$250$}이다. 계산한 값이 $5000$쯤 나왔다면 {$98+3$}을 먼저 계산한 잘못이다.",
+      "cReason": "빈칸 답 '크게 다를 수 있어'는 정해진 답이라 하기 어려운 구절이다. 원문 예의 식으로 어림값과 잘못 계산한 부분을 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "둘째 빈칸은 '$98+3$', '덧셈', '앞의 덧셈'을 모두 인정한다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수를 가까운 몇십이나 몇백으로 바꾸어 바른 차례로 대강 계산한 값과 견주어 크게 다르면 계산 차례를 다시 살핀다",
+            "어림한 값과 크게 다르면 계산 차례가 잘못되었다고 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$350$쯤",
+            "$352$쯤",
+            "약 $350$",
+            "$346$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$52+3$을 먼저 더하고 $98$을 곱했다",
+            "$55\\times98$을 계산했다",
+            "덧셈을 먼저 했다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$250$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$98+3$",
+            "덧셈",
+            "앞의 덧셈"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 444,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-2-xc27",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "어림으로 계산 순서 확인하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "곱셈을 먼저 한 값과 앞에서부터 계산한 값은 {크게 다를 수 있어} 어림으로 답을 살핀다.",
+        "example": {
+          "prompt": "$98+3\\times49$를 어림하면 $250$쯤이다. $5000$쯤이 나왔다면 계산 차례를 어떻게 잘못했겠는가?",
+          "answer": "$98+3$을 먼저 더했다"
+        },
+        "studentC": "곱셈을 먼저 한 값과 앞에서부터 계산한 값은 □ 어림으로 답을 살핀다.",
+        "answers": [
+          "크게 다를 수 있어"
+        ]
+      },
+      "sourceFingerprint": "d5ccc5db04e72193bca44b708860865988eb1fb03b025ff88edd9aa2d84f9926",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$250$",
+        "$98+3$"
+      ],
+      "cStudentAfter": "$98+3\\times49$는 $100+3\\times50$으로 생각하면 약 □이다. 계산한 값이 $5000$쯤 나왔다면 □을 먼저 계산한 잘못이다.",
+      "cMarkedSentence": "$98+3\\times49$는 $100+3\\times50$으로 생각하면 약 {$250$}이다. 계산한 값이 $5000$쯤 나왔다면 {$98+3$}을 먼저 계산한 잘못이다.",
+      "cStudentSentence": "$98+3\\times49$는 $100+3\\times50$으로 생각하면 약 □이다. 계산한 값이 $5000$쯤 나왔다면 □을 먼저 계산한 잘못이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$250$",
+          "equivalents": []
+        },
+        {
+          "key": "$98+3$",
+          "equivalents": [
+            "덧셈",
+            "앞의 덧셈"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "덧셈과 곱셈이 섞인 식을 계산한 답이 맞는지 수를 가까운 몇십이나 몇백으로 바꾸어 살피는 방법을 설명하시오. $52+3\\times98$의 값을 어림하고, 어떤 학생의 답이 $5390$이었다면 계산 차례를 어떻게 잘못했는지 쓰시오.",
+        "answer": "수를 가까운 몇십, 몇백으로 바꾸어 바른 차례로 대강 계산해 보고, 답이 그 값과 크게 다르면 차례를 다시 살핀다. $52+3\\times98$은 $50+3\\times100=350$쯤이다(실제 값 $346$). $5390$은 $52+3$을 먼저 더해 $55\\times98$을 계산한 값이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수를 가까운 몇십이나 몇백으로 바꾸어 바른 차례로 대강 계산한 값과 견주어 크게 다르면 계산 차례를 다시 살핀다",
+              "어림한 값과 크게 다르면 계산 차례가 잘못되었다고 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$350$쯤",
+              "$352$쯤",
+              "약 $350$",
+              "$346$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$52+3$을 먼저 더하고 $98$을 곱했다",
+              "$55\\times98$을 계산했다",
+              "덧셈을 먼저 했다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$98+3\\times49$는 $100+3\\times50$으로 생각하면 약 {$250$}이다. 계산한 값이 $5000$쯤 나왔다면 {$98+3$}을 먼저 계산한 잘못이다.",
+        "acceptedAnswers": [
+          [
+            "$250$"
+          ],
+          [
+            "$98+3$",
+            "덧셈",
+            "앞의 덧셈"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6118cd4de85f60a3a52a28eb2f7afbcb6b503760730bc002848af128785c7385",
+      "questionRevision": "planning-e5e6-20261006-6118cd4de85f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-3-xc1",
+      "bDecision": "revise",
+      "bPrompt": "괄호가 없는 식 $10+8\\div2\\times3$에서 $10$에 더해지는 수는 식의 어느 부분을 계산한 값인지 말하고, 그렇게 되는 까닭을 계산 차례로 설명한 뒤 식의 값을 구하시오.",
+      "bAnswer": "$8\\div2\\times3$을 계산한 값 $12$가 $10$에 더해진다. 괄호가 없으면 곱셈과 나눗셈을 덧셈보다 먼저 하므로 $8\\div2=4$, $4\\times3=12$를 먼저 구하고 $10+12=22$를 계산한다. 값은 $22$이다.",
+      "bGoal": "덧셈 뒤에 나눗셈·곱셈이 이어질 때 더해지는 수가 무엇인지를 계산 차례와 연결해 설명한다.",
+      "bReason": "규칙 자체는 c1과 같다. 원 예시의 '10에 더하는 양' 관점을 살려, 더해지는 수가 무엇인지 설명하는 물음으로 구별한다.",
+      "studentLabel": "덧셈 뒤에 오는 나눗셈과 곱셈",
+      "cDecision": "revise",
+      "cAfter": "$10+8\\div2\\times3$에서 $10$에 더하는 수는 $8\\div2\\times3$을 계산한 {$12$}이고, 식의 값은 {$22$}이다.",
+      "cReason": "원문 빈칸은 c1과 낱말까지 같은 중복이다. 같은 규칙을 구체적인 식에 적용하는 계산 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "exampleReason": "원 예시 식을 그대로 썼다.",
+      "synonymNotes": "수 답이라 동의어 없음. 앞에서부터 계산한 $27$은 오답.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$에 더해지는 수는 $8\\div2\\times3$을 계산한 값 $12$이다",
+            "더해지는 수는 $12$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 없으면 곱셈과 나눗셈을 덧셈보다 먼저 계산하기 때문이다",
+            "곱셈·나눗셈이 덧셈보다 먼저라서 $8\\div2\\times3$을 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "sourceIndex": 445,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-3-xc1",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+        "term": "네 가지 계산의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "괄호 없이 네 가지 계산이 섞인 식은 {곱셈과 나눗셈}을 덧셈과 뺄셈보다 먼저 한다.",
+        "example": {
+          "prompt": "$10+8\\div2\\times3$에서 $10$에 더하는 양은 무엇인가?",
+          "answer": "$8$을 둘로 나눈 한 몫의 $3$배"
+        },
+        "studentC": "괄호 없이 네 가지 계산이 섞인 식은 □을 덧셈과 뺄셈보다 먼저 한다.",
+        "answers": [
+          "곱셈과 나눗셈"
+        ]
+      },
+      "sourceFingerprint": "8b7d11043bd0d5e0004b81e8c72cf62298027cd297f491c4b34ca33a46d38840",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$22$"
+      ],
+      "cStudentAfter": "$10+8\\div2\\times3$에서 $10$에 더하는 수는 $8\\div2\\times3$을 계산한 □이고, 식의 값은 □이다.",
+      "cMarkedSentence": "$10+8\\div2\\times3$에서 $10$에 더하는 수는 $8\\div2\\times3$을 계산한 {$12$}이고, 식의 값은 {$22$}이다.",
+      "cStudentSentence": "$10+8\\div2\\times3$에서 $10$에 더하는 수는 $8\\div2\\times3$을 계산한 □이고, 식의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$22$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호가 없는 식 $10+8\\div2\\times3$에서 $10$에 더해지는 수는 식의 어느 부분을 계산한 값인지 말하고, 그렇게 되는 까닭을 계산 차례로 설명한 뒤 식의 값을 구하시오.",
+        "answer": "$8\\div2\\times3$을 계산한 값 $12$가 $10$에 더해진다. 괄호가 없으면 곱셈과 나눗셈을 덧셈보다 먼저 하므로 $8\\div2=4$, $4\\times3=12$를 먼저 구하고 $10+12=22$를 계산한다. 값은 $22$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$에 더해지는 수는 $8\\div2\\times3$을 계산한 값 $12$이다",
+              "더해지는 수는 $12$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "괄호가 없으면 곱셈과 나눗셈을 덧셈보다 먼저 계산하기 때문이다",
+              "곱셈·나눗셈이 덧셈보다 먼저라서 $8\\div2\\times3$을 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$22$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10+8\\div2\\times3$에서 $10$에 더하는 수는 $8\\div2\\times3$을 계산한 {$12$}이고, 식의 값은 {$22$}이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$22$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cf965aec2558643a24a42791f7f1cefb25ef099c25aed5a30c915dccfc7ac2d4",
+      "questionRevision": "planning-e5e6-20261006-cf965aec2558",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-3-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "괄호 안, 곱셈·나눗셈, 덧셈·뺄셈의 세 단계 차례를 말한다(c2에서 다룸).",
+      "bReason": "c2가 같은 세 단계 차례를 식 적용과 함께 묻는 중복이다.",
+      "cDecision": "revise",
+      "cAfter": "덧셈, 뺄셈, 곱셈, 나눗셈과 괄호가 섞여 있는 식은 괄호 안, 곱셈과 나눗셈, {덧셈과 뺄셈}의 차례로 계산한다.",
+      "cReason": "원문에는 무엇을 계산하는 차례인지 주어가 없다. 대상 식만 보태고 마지막 단계를 묻는 빈칸은 유지한다. c1·c2와 빈칸 위치가 달라 요약용으로 가치가 있다.",
+      "exclusionReason": "B 제외: c2와 답이 같은 중복.",
+      "exampleNeeded": false,
+      "synonymNotes": "'덧셈·뺄셈', '뺄셈과 덧셈', '+와 -' 인정.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "덧셈과 뺄셈",
+            "덧셈·뺄셈",
+            "뺄셈과 덧셈",
+            "$+$와 $-$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "sourceIndex": 446,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-3-xc2",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+        "term": "계산 차례의 세 단계",
+        "kind": "방법",
+        "level": "하",
+        "definition": "괄호 안, 곱셈과 나눗셈, {덧셈과 뺄셈}의 차례로 계산한다.",
+        "studentC": "괄호 안, 곱셈과 나눗셈, □의 차례로 계산한다.",
+        "answers": [
+          "덧셈과 뺄셈"
+        ]
+      },
+      "sourceFingerprint": "a937772aa37d375f087303467ab769301b9333f9ab70079032261888d3b3a590",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "cProposedAnswers": [
+        "덧셈과 뺄셈"
+      ],
+      "cStudentAfter": "덧셈, 뺄셈, 곱셈, 나눗셈과 괄호가 섞여 있는 식은 괄호 안, 곱셈과 나눗셈, □의 차례로 계산한다.",
+      "cMarkedSentence": "덧셈, 뺄셈, 곱셈, 나눗셈과 괄호가 섞여 있는 식은 괄호 안, 곱셈과 나눗셈, {덧셈과 뺄셈}의 차례로 계산한다.",
+      "cStudentSentence": "덧셈, 뺄셈, 곱셈, 나눗셈과 괄호가 섞여 있는 식은 괄호 안, 곱셈과 나눗셈, □의 차례로 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "덧셈과 뺄셈",
+          "equivalents": [
+            "덧셈·뺄셈",
+            "뺄셈과 덧셈",
+            "$+$와 $-$"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "덧셈, 뺄셈, 곱셈, 나눗셈과 괄호가 섞여 있는 식은 괄호 안, 곱셈과 나눗셈, {덧셈과 뺄셈}의 차례로 계산한다.",
+        "acceptedAnswers": [
+          [
+            "덧셈과 뺄셈",
+            "덧셈·뺄셈",
+            "뺄셈과 덧셈",
+            "$+$와 $-$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: c2와 답이 같은 중복."
+      },
+      "proposalFingerprint": "0b1ccb4ffc0eca36ec611ec89a3ff1be9785b32f0f15c5f05a16078438876078",
+      "questionRevision": "planning-e5e6-20261006-0b1ccb4ffc0e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-3-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "곱셈과 나눗셈끼리는 앞에서부터 계산함을 안다(c3에서 다룸).",
+      "bReason": "c3와 규칙·답이 같은 중복이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "수정한 c3의 빈칸 문장과 조건(괄호 없음, 곱셈·나눗셈이 이어짐)도 답도 같다. 식으로 바꾸면 xc18과 겹친다.",
+      "exclusionReason": "B·C 모두 c3와 중복.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "sourceIndex": 447,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-3-xc3",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+        "term": "곱셈과 나눗셈끼리의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "괄호 없이 곱셈과 나눗셈이 이어져 있으면 그 둘끼리는 {앞에서부터} 계산한다.",
+        "studentC": "괄호 없이 곱셈과 나눗셈이 이어져 있으면 그 둘끼리는 □ 계산한다.",
+        "answers": [
+          "앞에서부터"
+        ]
+      },
+      "sourceFingerprint": "d6d7171de9bd7e8f125540a718996dbdc8b3d8e061eb46c0ec69d34b9d9b2862",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 모두 c3와 중복.",
+        "cloze": "B·C 모두 c3와 중복."
+      },
+      "proposalFingerprint": "8172d18d63996c7e4cd268d663a3b2dfe0fbae93833a003fd9188571bdd80973",
+      "questionRevision": "planning-e5e6-20261006-8172d18d6399",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-3-xc4",
+      "bDecision": "revise",
+      "bPrompt": "곱셈과 나눗셈을 먼저 계산한 뒤 괄호 없이 덧셈과 뺄셈만 남으면 어느 쪽부터 계산하는지 쓰고, $20-3\\times4+6\\div2$를 계산하시오. 또 곱셈과 나눗셈을 마친 뒤 $12+3$을 먼저 더하면 값이 어떻게 달라지는지 쓰시오.",
+      "bAnswer": "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다. $3\\times4=12$, $6\\div2=3$이므로 $20-12+3=8+3=11$이다. $12+3$을 먼저 더하면 $20-15=5$가 되어, 더해야 할 $3$을 뺀 셈이 되므로 틀린다.",
+      "bGoal": "곱셈·나눗셈 뒤에 남은 덧셈·뺄셈은 앞에서부터 계산함을 알고, 뒤부터 묶으면 값이 달라짐을 확인한다.",
+      "bReason": "원 예시(6÷2의 몫은 더하는 양)를 살려, 뺄셈 뒤의 덧셈을 먼저 묶는 흔한 오류와 값을 비교하게 한다.",
+      "studentLabel": "남은 덧셈과 뺄셈의 차례",
+      "cDecision": "keep",
+      "cAfter": "곱셈과 나눗셈을 마친 뒤 괄호 없이 남은 덧셈과 뺄셈끼리도 {앞에서부터} 계산한다.",
+      "cReason": "'곱셈과 나눗셈을 마친 뒤', '괄호 없이 남은 덧셈과 뺄셈'이라는 조건과 대상이 문장 안에 다 있고 답도 짧은 방향 낱말이어서 그대로 둔다.",
+      "exampleNeeded": false,
+      "exampleReason": "원 예시 식을 bPrompt에 넣었다.",
+      "synonymNotes": "'앞에서부터', '왼쪽부터', '앞에서부터 차례로' 인정.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다",
+            "왼쪽부터 차례로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12+3$을 먼저 더하면 $20-15=5$가 되어 값이 달라진다",
+            "먼저 더하면 $5$가 되어 $11$과 다르다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "앞에서부터",
+            "왼쪽부터",
+            "앞에서부터 차례로"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "sourceIndex": 448,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-3-xc4",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+        "term": "남은 덧셈과 뺄셈끼리의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "곱셈과 나눗셈을 마친 뒤 괄호 없이 남은 덧셈과 뺄셈끼리도 {앞에서부터} 계산한다.",
+        "example": {
+          "prompt": "$20-3\\times4+6\\div2$에서 $6\\div2$의 몫은 더하는 양인가, 빼는 양인가?",
+          "answer": "더하는 양 — 앞이 $+$라서"
+        },
+        "studentC": "곱셈과 나눗셈을 마친 뒤 괄호 없이 남은 덧셈과 뺄셈끼리도 □ 계산한다.",
+        "answers": [
+          "앞에서부터"
+        ]
+      },
+      "sourceFingerprint": "adc8fee924219d88814656959157e0bdd2d38730bf866fc257d43a5717893f00",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "cFrozenDefinition": "곱셈과 나눗셈을 마친 뒤 괄호 없이 남은 덧셈과 뺄셈끼리도 {앞에서부터} 계산한다.",
+      "cFrozenStudentSentence": "곱셈과 나눗셈을 마친 뒤 괄호 없이 남은 덧셈과 뺄셈끼리도 □ 계산한다.",
+      "cProposedAnswers": [
+        "앞에서부터"
+      ],
+      "cStudentAfter": "곱셈과 나눗셈을 마친 뒤 괄호 없이 남은 덧셈과 뺄셈끼리도 □ 계산한다.",
+      "cMarkedSentence": "곱셈과 나눗셈을 마친 뒤 괄호 없이 남은 덧셈과 뺄셈끼리도 {앞에서부터} 계산한다.",
+      "cStudentSentence": "곱셈과 나눗셈을 마친 뒤 괄호 없이 남은 덧셈과 뺄셈끼리도 □ 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "앞에서부터",
+          "equivalents": [
+            "왼쪽부터",
+            "앞에서부터 차례로"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "곱셈과 나눗셈을 먼저 계산한 뒤 괄호 없이 덧셈과 뺄셈만 남으면 어느 쪽부터 계산하는지 쓰고, $20-3\\times4+6\\div2$를 계산하시오. 또 곱셈과 나눗셈을 마친 뒤 $12+3$을 먼저 더하면 값이 어떻게 달라지는지 쓰시오.",
+        "answer": "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다. $3\\times4=12$, $6\\div2=3$이므로 $20-12+3=8+3=11$이다. $12+3$을 먼저 더하면 $20-15=5$가 되어, 더해야 할 $3$을 뺀 셈이 되므로 틀린다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다",
+              "왼쪽부터 차례로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12+3$을 먼저 더하면 $20-15=5$가 되어 값이 달라진다",
+              "먼저 더하면 $5$가 되어 $11$과 다르다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "곱셈과 나눗셈을 마친 뒤 괄호 없이 남은 덧셈과 뺄셈끼리도 {앞에서부터} 계산한다.",
+        "acceptedAnswers": [
+          [
+            "앞에서부터",
+            "왼쪽부터",
+            "앞에서부터 차례로"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a4a40bd05eb8037e3fef357729a7258a6c89d3b8549505a2e66607d7a0d2f542",
+      "questionRevision": "planning-e5e6-20261006-a4a40bd05eb8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-1-3-xc5",
+      "bDecision": "revise",
+      "bPrompt": "식에 괄호 ( )가 있을 때 괄호 안을 계산한 결과는 나머지 계산에서 어떻게 쓰이는지 설명하고, $(8+4)\\div3\\times2$에서 $3$으로 나누어지는 수와 식의 값을 구하시오.",
+      "bAnswer": "괄호 안을 먼저 계산한 결과가 하나의 수가 되어 나머지 계산에 쓰인다. $8+4=12$가 $3$으로 나누어지는 수이고, $12\\div3=4$, $4\\times2=8$이므로 값은 $8$이다.",
+      "bGoal": "괄호 안 전체가 하나의 수로 다음 계산의 대상이 됨을 설명한다.",
+      "bReason": "'괄호 안을 하나의 수로'는 편집용 제목이다. 원 예시의 관점(괄호 전체가 3으로 나눌 대상)을 물음으로 옮긴다.",
+      "studentLabel": "괄호 안의 계산 결과",
+      "cDecision": "revise",
+      "cAfter": "$(8+4)\\div3\\times2$에서 $3$으로 나누는 수는 괄호 안 $8+4$를 계산한 {$12$}이고, 식의 값은 {$8$}이다.",
+      "cReason": "빈칸 '먼저 계산해'는 문장 일부를 외워야 하는 구절이고 c2와 겹친다. 괄호 안이 하나의 수가 되는 것을 식에서 확인하게 한다.",
+      "exampleNeeded": false,
+      "exampleReason": "원 예시 식을 썼다.",
+      "synonymNotes": "수 답이라 동의어 없음.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호 안을 먼저 계산한 결과가 하나의 수가 되어 나머지 계산에 쓰인다",
+            "괄호 안의 계산 결과를 하나의 수로 보고 나머지를 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$",
+            "$8+4$를 계산한 $12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-002-rubric.json",
+      "sourceIndex": 449,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-1-3-xc5",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-3 덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있는 식",
+        "term": "괄호 안을 하나의 수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "괄호 안을 {먼저 계산해} 하나의 수로 바꾼 뒤 나머지 계산을 한다.",
+        "example": {
+          "prompt": "$(8+4)\\div3\\times2$에서 괄호 안 전체는 어떤 계산의 대상인가?",
+          "answer": "$3$으로 나눌 전체 양이다"
+        },
+        "studentC": "괄호 안을 □ 하나의 수로 바꾼 뒤 나머지 계산을 한다.",
+        "answers": [
+          "먼저 계산해"
+        ]
+      },
+      "sourceFingerprint": "6e4dcf4e03bc75cbd66853924b10948999fd20d82b050793f3797a03a2872986",
+      "draftEvidence": "evidence/section-002-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$8$"
+      ],
+      "cStudentAfter": "$(8+4)\\div3\\times2$에서 $3$으로 나누는 수는 괄호 안 $8+4$를 계산한 □이고, 식의 값은 □이다.",
+      "cMarkedSentence": "$(8+4)\\div3\\times2$에서 $3$으로 나누는 수는 괄호 안 $8+4$를 계산한 {$12$}이고, 식의 값은 {$8$}이다.",
+      "cStudentSentence": "$(8+4)\\div3\\times2$에서 $3$으로 나누는 수는 괄호 안 $8+4$를 계산한 □이고, 식의 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "식에 괄호 ( )가 있을 때 괄호 안을 계산한 결과는 나머지 계산에서 어떻게 쓰이는지 설명하고, $(8+4)\\div3\\times2$에서 $3$으로 나누어지는 수와 식의 값을 구하시오.",
+        "answer": "괄호 안을 먼저 계산한 결과가 하나의 수가 되어 나머지 계산에 쓰인다. $8+4=12$가 $3$으로 나누어지는 수이고, $12\\div3=4$, $4\\times2=8$이므로 값은 $8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호 안을 먼저 계산한 결과가 하나의 수가 되어 나머지 계산에 쓰인다",
+              "괄호 안의 계산 결과를 하나의 수로 보고 나머지를 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$",
+              "$8+4$를 계산한 $12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$(8+4)\\div3\\times2$에서 $3$으로 나누는 수는 괄호 안 $8+4$를 계산한 {$12$}이고, 식의 값은 {$8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "23b61c4afe060cc74f7741fae4970be51153a94f6c96d2fdcf94cfc57f6d1fb6",
+      "questionRevision": "planning-e5e6-20261006-23b61c4afe06",
+      "requiresIndependentReview": true
+    }
+  ]
+}

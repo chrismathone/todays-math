@@ -1,0 +1,543 @@
+{
+  "status": "Explicit proposals awaiting Root actual normalized after-reading; no source activation or independent approval",
+  "inputSha256": "d560346139ae124e3462ae96c29c67261e675ea30d1e7e4598a8013e332279ce",
+  "rows": [
+    {
+      "id": "e3-1-6-1-xc2",
+      "sourceIndex": 820,
+      "beforeRaw": {
+        "sourceIndex": 820,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "f8cabdfd4fa275168ba59be4df1f0ced74e51176238730cbb1b73974b6f5bd81",
+        "proposalFingerprint": "c092c90b63b2b6bd8d1c8176b56a70f8891438ce45f82eee7709be375e9c88c2",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있으며, 세 부분 중에는 모양이 다른 부분도 있습니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+        "bAnswer": "세 부분의 크기는 같습니다. 모두 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 부분의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같다"
+            ]
+          }
+        ],
+        "bGoal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "bReason": "세개조각의모양이모두서로다르다는불가능할수있는조건을없애고모양이다른부분도있다는성립가능한조건을준다. 같은크기칸의개수가같으므로각부분크기가같다는수학적비교는유지한다.",
+        "cDecision": "rewrite",
+        "cReason": "세개조각의모양이모두서로다르다는불가능할수있는조건을없애고모양이다른부분도있다는성립가능한조건을준다. 같은크기칸의개수가같으므로각부분크기가같다는수학적비교는유지한다.",
+        "answerNotes": "같은 크기의 칸을 각각 세 개 포함한다는 조건으로 부분 크기를 비교한다. 서로 다른 모양도 등분일 수 있다는 일반 설명은 보존한다.",
+        "cAfter": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 {같다}.",
+        "coreAfter": null,
+        "coreReason": null,
+        "exampleNeeded": "같은 칸 아홉 개를 각각 세 칸인 서로 다른 세 모양으로 나눈 그림은 선택 설명 자료다. B/C는 칸의 크기와 개수를 문장으로 제시하므로 보이지 않는 그림을 가리키지 않는다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "똑같이 나눈 조각의 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 {같다}.",
+        "cStudentSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 □.",
+        "cSlotEquivalents": [
+          [
+            "같습니다",
+            "같아요"
+          ]
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "같습니다",
+              "같아요"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있으며, 세 부분 중에는 모양이 다른 부분도 있습니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+          "answer": "세 부분의 크기는 같습니다. 모두 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 부분의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "같습니다",
+              "같아요"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc2",
+          "sourceIndex": 820,
+          "proposalFingerprint": "c092c90b63b2b6bd8d1c8176b56a70f8891438ce45f82eee7709be375e9c88c2",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:28:06.222Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "세개조각의모양이모두서로다르다는불가능할수있는조건을없애고모양이다른부분도있다는성립가능한조건을준다. 같은크기칸의개수가같으므로각부분크기가같다는수학적비교는유지한다.",
+          "cReason": "세개조각의모양이모두서로다르다는불가능할수있는조건을없애고모양이다른부분도있다는성립가능한조건을준다. 같은크기칸의개수가같으므로각부분크기가같다는수학적비교는유지한다.",
+          "issues": [],
+          "isIndependentApproval": false,
+          "isReleaseApproval": false,
+          "inputEvidence": "../design-evidence/root-e3e4-last-two-proposals-20261007.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "같다",
+            "같습니다",
+            "같아요"
+          ]
+        ]
+      },
+      "beforeNormalizedHash": "35c29f229134abe53a8e34e66b20c016477f166022b2f083a7a6f202c463abd1",
+      "proposedRawRow": {
+        "sourceIndex": 820,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "f8cabdfd4fa275168ba59be4df1f0ced74e51176238730cbb1b73974b6f5bd81",
+        "proposalFingerprint": "3d01de7795d27baec872983ee4d06378e0e4e958dcd20907841a44d993ad21ae",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "색종이 한 장을 세 조각으로 나누었습니다. 세 조각을 차례로 포개 보니 두 조각은 테두리가 완전히 맞았지만, 나머지 한 조각은 벗어나는 부분이 있었습니다. 이 색종이를 똑같이 나누었다고 할 수 있나요? 포개 본 결과를 이용하여 까닭도 설명하세요.",
+        "bAnswer": "똑같이 나누었다고 할 수 없습니다. 나머지 한 조각은 포갰을 때 꼭 겹치지 않으므로, 세 조각의 모양과 크기가 모두 같은 것은 아니기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "똑같이 나누었다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 조각이 포갰을 때 꼭 겹치지 않아 세 조각의 모양과 크기가 모두 같지는 않다",
+              "나머지 한 조각의 모양이나 크기가 다르다"
+            ]
+          }
+        ],
+        "bGoal": "조각을 포개어 모양과 크기가 모두 같은지 확인하여 똑같이 나누었는지 판정한다.",
+        "bReason": "B는원문의포개보기기준으로모양과크기가모두같은지판정한다. C의같은칸개수에따른크기비교는그대로유지하며별도모양관찰과같은크기의뜻을혼동하지않는다.",
+        "cDecision": "rewrite",
+        "cReason": "세개조각의모양이모두서로다르다는불가능할수있는조건을없애고모양이다른부분도있다는성립가능한조건을준다. 같은크기칸의개수가같으므로각부분크기가같다는수학적비교는유지한다.",
+        "answerNotes": "같은 크기의 칸을 각각 세 개 포함한다는 조건으로 부분 크기를 비교한다. 서로 다른 모양도 등분일 수 있다는 일반 설명은 보존한다.",
+        "cAfter": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 {같다}.",
+        "coreAfter": null,
+        "coreReason": null,
+        "exampleNeeded": "같은 칸 아홉 개를 각각 세 칸인 서로 다른 세 모양으로 나눈 그림은 선택 설명 자료다. B/C는 칸의 크기와 개수를 문장으로 제시하므로 보이지 않는 그림을 가리키지 않는다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "똑같이 나눈 조각의 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 {같다}.",
+        "cStudentSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 □.",
+        "cSlotEquivalents": [
+          [
+            "같습니다",
+            "같아요"
+          ]
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "같습니다",
+              "같아요"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "색종이 한 장을 세 조각으로 나누었습니다. 세 조각을 차례로 포개 보니 두 조각은 테두리가 완전히 맞았지만, 나머지 한 조각은 벗어나는 부분이 있었습니다. 이 색종이를 똑같이 나누었다고 할 수 있나요? 포개 본 결과를 이용하여 까닭도 설명하세요.",
+          "answer": "똑같이 나누었다고 할 수 없습니다. 나머지 한 조각은 포갰을 때 꼭 겹치지 않으므로, 세 조각의 모양과 크기가 모두 같은 것은 아니기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "똑같이 나누었다고 할 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 조각이 포갰을 때 꼭 겹치지 않아 세 조각의 모양과 크기가 모두 같지는 않다",
+                "나머지 한 조각의 모양이나 크기가 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "같습니다",
+              "같아요"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc2",
+          "sourceIndex": 820,
+          "proposalFingerprint": "c092c90b63b2b6bd8d1c8176b56a70f8891438ce45f82eee7709be375e9c88c2",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:28:06.222Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "세개조각의모양이모두서로다르다는불가능할수있는조건을없애고모양이다른부분도있다는성립가능한조건을준다. 같은크기칸의개수가같으므로각부분크기가같다는수학적비교는유지한다.",
+          "cReason": "세개조각의모양이모두서로다르다는불가능할수있는조건을없애고모양이다른부분도있다는성립가능한조건을준다. 같은크기칸의개수가같으므로각부분크기가같다는수학적비교는유지한다.",
+          "issues": [],
+          "isIndependentApproval": false,
+          "isReleaseApproval": false,
+          "inputEvidence": "../design-evidence/root-e3e4-last-two-proposals-20261007.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "같다",
+            "같습니다",
+            "같아요"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e3-1-6-1-xc2",
+        "grade": "초3",
+        "source": {
+          "id": "e3-1-6-1-xc2",
+          "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+          "term": "똑같이 나눈 조각의 모양",
+          "kind": "성질",
+          "level": "하",
+          "definition": "똑같이 나눈 조각은 모양과 {크기}가 같아 서로 포개면 꼭 겹친다."
+        },
+        "B": {
+          "prompt": "색종이 한 장을 세 조각으로 나누었습니다. 세 조각을 차례로 포개 보니 두 조각은 테두리가 완전히 맞았지만, 나머지 한 조각은 벗어나는 부분이 있었습니다. 이 색종이를 똑같이 나누었다고 할 수 있나요? 포개 본 결과를 이용하여 까닭도 설명하세요.",
+          "answer": "똑같이 나누었다고 할 수 없습니다. 나머지 한 조각은 포갰을 때 꼭 겹치지 않으므로, 세 조각의 모양과 크기가 모두 같은 것은 아니기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "똑같이 나누었다고 할 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 조각이 포갰을 때 꼭 겹치지 않아 세 조각의 모양과 크기가 모두 같지는 않다",
+                "나머지 한 조각의 모양이나 크기가 다르다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양이 다른 부분도 있습니다. 세 부분의 크기는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "같습니다",
+              "같아요"
+            ]
+          ]
+        },
+        "goal": "조각을 포개어 모양과 크기가 모두 같은지 확인하여 똑같이 나누었는지 판정한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "acbf1b6116b21e1f6e7ae9bc7fd28c743db2fa31894de1eb62edad024c3d9e21"
+      },
+      "reason": "B는원문의포개보기기준으로모양과크기가모두같은지판정한다. C의같은칸개수에따른크기비교는그대로유지하며별도모양관찰과같은크기의뜻을혼동하지않는다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-5-3-xc20",
+      "sourceIndex": 2663,
+      "beforeRaw": {
+        "sourceIndex": 2663,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+        "proposalFingerprint": "d3c9c83c81c1c25dfc2a00b75198adac98433508496876369c0cc61abb3ab116",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "지난 한 주의 기온을 매일 재어 꺾은선그래프로 그렸습니다. 다음 날은 아직 기온을 재지 않았지만 예상한 점을 추가하려고 합니다. 조사한 점과 구별하는 표시 방법 하나를 쓰고, 그 표시가 무엇을 뜻하는지도 설명하세요.",
+        "bAnswer": "예상한 점 옆에 예상값이라고 쓰면, 아직 재어 본 값이 아니라 예상한 값이라는 뜻을 알 수 있습니다. 또는 다른 색이나 점선으로 표시하고 그 색이나 점선이 예상값을 뜻한다고 설명할 수 있습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "실제 조사한 점과 눈에 띄게 다른 표시(글, 색, 점 모양, 점선 등)를 하나 제시하고, 그 표시가 아직 재지 않고 예상한 값임을 뜻한다고 설명한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "예상값과 관측값 구별",
+        "bReason": "속빈점이나다른점모양등타당한표시방법도허용하는같은의미의기준으로일반화한다. B는표시방법과아직재지않고예상했다는뜻을함께설명하게하고C는조사값과예상값을상황으로구별한다.",
+        "cDecision": "rewrite",
+        "cReason": "B에실제측정과다음날예상점상황을주고표시방법과그뜻설명을함께요청한다. C는관측여부를두분명한범주로구별하게하여열린낱말복원을피한다.",
+        "cSlotEquivalents": [
+          [
+            "예상값",
+            "예측한 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "예상값과 관측값 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+        "cStudentSentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 □입니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "예상한 값",
+            "equivalents": [
+              "예상값",
+              "예측한 값"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+          "answers": [
+            "예상한 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "지난 한 주의 기온을 매일 재어 꺾은선그래프로 그렸습니다. 다음 날은 아직 기온을 재지 않았지만 예상한 점을 추가하려고 합니다. 조사한 점과 구별하는 표시 방법 하나를 쓰고, 그 표시가 무엇을 뜻하는지도 설명하세요.",
+          "answer": "예상한 점 옆에 예상값이라고 쓰면, 아직 재어 본 값이 아니라 예상한 값이라는 뜻을 알 수 있습니다. 또는 다른 색이나 점선으로 표시하고 그 색이나 점선이 예상값을 뜻한다고 설명할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "실제 조사한 점과 눈에 띄게 다른 표시(글, 색, 점 모양, 점선 등)를 하나 제시하고, 그 표시가 아직 재지 않고 예상한 값임을 뜻한다고 설명한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "cloze": "아직 조사하지 않은 값이라는 조건에서 예상값·예측값·조사하지 않은 값 등의 낱말을 채우는 C는 답 범위를 명확하게 좁히기 어렵다. 이 항목의 B에서 예상값이라고 쓰거나 다른 색·점선과 설명을 함께 사용하여 실제 조사값과 구별하는 방법을 설명한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc20",
+          "sourceIndex": 2663,
+          "proposalFingerprint": "d3c9c83c81c1c25dfc2a00b75198adac98433508496876369c0cc61abb3ab116",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:28:06.225Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "속빈점이나다른점모양등타당한표시방법도허용하는같은의미의기준으로일반화한다. B는표시방법과아직재지않고예상했다는뜻을함께설명하게하고C는조사값과예상값을상황으로구별한다.",
+          "cReason": "속빈점이나다른점모양등타당한표시방법도허용하는같은의미의기준으로일반화한다. B는표시방법과아직재지않고예상했다는뜻을함께설명하게하고C는조사값과예상값을상황으로구별한다.",
+          "issues": [],
+          "isIndependentApproval": false,
+          "isReleaseApproval": false,
+          "inputEvidence": "../design-evidence/root-e3e4-last-two-proposals-20261007.json"
+        },
+        "cAfter": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+        "cAcceptedAnswers": [
+          [
+            "예상한 값",
+            "예상값",
+            "예측한 값"
+          ]
+        ]
+      },
+      "beforeNormalizedHash": "a34fc059651355c52f7d6569092d46b586cf3c08247033449b0157c4e8b9f5b3",
+      "proposedRawRow": {
+        "sourceIndex": 2663,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+        "proposalFingerprint": "44144acba9ee441e2504b7d24a8fd4d5c97ac17f9d37e88188772c2a88a1445d",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+        "bAnswer": "다음 날의 기온도 실제로 재어 본 값이라고 오해할 수 있습니다. 예상한 점에 예상값이라고 쓰거나, 다른 색·다른 점 모양·점선으로 표시하고 그것이 예상값을 뜻한다고 설명합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "예상값이라고 쓰거나, 조사한 점과 다른 색·점 모양·점선 등을 사용하고 예상값임을 알 수 있게 설명한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "실제 측정값과 예상값을 같은 표시로 나타낼 때의 오해를 설명하고 구별 방법을 제안한다.",
+        "bReason": "표시이름의뜻을되풀이하는대신예상점을측정점처럼그렸을때생기는오해와구별방법을서로다른기준으로묻는다.",
+        "cDecision": "rewrite",
+        "cReason": "B에실제측정과다음날예상점상황을주고표시방법과그뜻설명을함께요청한다. C는관측여부를두분명한범주로구별하게하여열린낱말복원을피한다.",
+        "cSlotEquivalents": [
+          [
+            "예상값",
+            "예측한 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "예상값과 관측값 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+        "cStudentSentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 □입니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "예상한 값",
+            "equivalents": [
+              "예상값",
+              "예측한 값"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+          "answers": [
+            "예상한 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+          "answer": "다음 날의 기온도 실제로 재어 본 값이라고 오해할 수 있습니다. 예상한 점에 예상값이라고 쓰거나, 다른 색·다른 점 모양·점선으로 표시하고 그것이 예상값을 뜻한다고 설명합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "예상값이라고 쓰거나, 조사한 점과 다른 색·점 모양·점선 등을 사용하고 예상값임을 알 수 있게 설명한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "cloze": "아직 조사하지 않은 값이라는 조건에서 예상값·예측값·조사하지 않은 값 등의 낱말을 채우는 C는 답 범위를 명확하게 좁히기 어렵다. 이 항목의 B에서 예상값이라고 쓰거나 다른 색·점선과 설명을 함께 사용하여 실제 조사값과 구별하는 방법을 설명한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc20",
+          "sourceIndex": 2663,
+          "proposalFingerprint": "d3c9c83c81c1c25dfc2a00b75198adac98433508496876369c0cc61abb3ab116",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:28:06.225Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "속빈점이나다른점모양등타당한표시방법도허용하는같은의미의기준으로일반화한다. B는표시방법과아직재지않고예상했다는뜻을함께설명하게하고C는조사값과예상값을상황으로구별한다.",
+          "cReason": "속빈점이나다른점모양등타당한표시방법도허용하는같은의미의기준으로일반화한다. B는표시방법과아직재지않고예상했다는뜻을함께설명하게하고C는조사값과예상값을상황으로구별한다.",
+          "issues": [],
+          "isIndependentApproval": false,
+          "isReleaseApproval": false,
+          "inputEvidence": "../design-evidence/root-e3e4-last-two-proposals-20261007.json"
+        },
+        "cAfter": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+        "cAcceptedAnswers": [
+          [
+            "예상한 값",
+            "예상값",
+            "예측한 값"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-5-3-xc20",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-5-3-xc20",
+          "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+          "term": "예상값과 관측값 구별",
+          "kind": "방법",
+          "level": "상",
+          "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다."
+        },
+        "B": {
+          "prompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+          "answer": "다음 날의 기온도 실제로 재어 본 값이라고 오해할 수 있습니다. 예상한 점에 예상값이라고 쓰거나, 다른 색·다른 점 모양·점선으로 표시하고 그것이 예상값을 뜻한다고 설명합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "예상값이라고 쓰거나, 조사한 점과 다른 색·점 모양·점선 등을 사용하고 예상값임을 알 수 있게 설명한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "goal": "실제 측정값과 예상값을 같은 표시로 나타낼 때의 오해를 설명하고 구별 방법을 제안한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "64625bcd396a06df4491a4662c2542965afda9f35683469502ff15adf56132fb"
+      },
+      "reason": "표시이름의뜻을되풀이하는대신예상점을측정점처럼그렸을때생기는오해와구별방법을서로다른기준으로묻는다.",
+      "changed": true
+    }
+  ]
+}

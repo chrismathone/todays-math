@@ -1,0 +1,2344 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:07:55.986Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc5",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "유리수인 소수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "{유한소수}와 {순환소수}는 모두 분수로 쓸 수 있으므로 유리수이다.",
+        "example": {
+          "prompt": "$0.\\dot{6}$은 유리수인가?",
+          "answer": "유리수이다"
+        },
+        "studentC": "□와 □는 모두 분수로 쓸 수 있으므로 유리수이다.",
+        "answers": [
+          "유한소수",
+          "순환소수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "소수의 분류(c2)의 앞 절반만 되풀이하는 항목임",
+        "cDecision": "rewrite",
+        "cAfter": "소수 가운데 {유한소수}와 {순환소수}는 모두 분수로 나타낼 수 있으므로 유리수이다.",
+        "cAnswers": [
+          "유한소수",
+          "순환소수"
+        ],
+        "cReason": "문장이 빈칸으로 시작해 '정수', '분수' 등도 답이 될 수 있어 범위(소수 가운데)를 밝힘",
+        "exclusionReason": "B 제외: m2-01-04-c2(소수의 분류)의 일부를 떼어 낸 조각 제목으로 목표 중복.",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "유한·순환소수는 분수 꼴 유리수",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 2197,
+        "part": "m2plus",
+        "sourceFingerprint": "b5e36094f8d869e5b9b759be89e2244fa30d2d8371910a134f830e1461c9f626",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2197
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "소수 가운데 {유한소수}와 {순환소수}는 모두 분수로 나타낼 수 있으므로 유리수이다.",
+        "cSlotAnswers": [
+          "유한소수",
+          "순환소수"
+        ],
+        "cStudentSentence": "소수 가운데 □와 □는 모두 분수로 나타낼 수 있으므로 유리수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "순환소수",
+            "equivalentAnswers": [
+              "순환소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유한소수"
+          ],
+          [
+            "순환소수"
+          ]
+        ],
+        "proposalFingerprint": "1d9f80e94e88a35a0f6a2d4cf21a824005b878b180f30a46687a0b671f9f8776"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc6",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "유리수가 아닌 소수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수점 아래가 끝없이 이어지면서 {순환하지 않는} 소수는 분수로 쓸 수 {없다}.",
+        "example": {
+          "prompt": "$\\pi$를 분수로 쓸 수 있는가?",
+          "answer": "없다"
+        },
+        "studentC": "소수점 아래가 끝없이 이어지면서 □ 소수는 분수로 쓸 수 □.",
+        "answers": [
+          "순환하지 않는",
+          "없다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "소수의 분류(c2)의 뒤 절반만 되풀이하는 항목임",
+        "cDecision": "rewrite",
+        "cReason": "순환하는/있다도 참이던 조건·결론 동시 빈칸에서 조건을 고정해 나타낼 수 있는지 묻는다.",
+        "exclusionReason": "B 제외: m2-01-04-c2(소수의 분류)의 일부를 떼어 낸 조각 제목으로 목표 중복.",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "순환 않는 무한소수는 분수 불가",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "cAfter": "소수점 아래가 끝없이 이어지면서 순환하지 않는 소수는 분수로 나타낼 수 {없다}.",
+        "cAnswers": [
+          "없다"
+        ],
+        "sourceIndex": 2198,
+        "part": "m2plus",
+        "sourceFingerprint": "3f2fef65db4b575eae32c086281d4b962a0ed9e56ecce318462643a42a4c5be9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2198
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-01-04-xc6"
+        },
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "소수점 아래가 끝없이 이어지면서 순환하지 않는 소수는 분수로 나타낼 수 {없다}.",
+        "cSlotAnswers": [
+          "없다"
+        ],
+        "cStudentSentence": "소수점 아래가 끝없이 이어지면서 순환하지 않는 소수는 분수로 나타낼 수 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "33bda01fba8b1e3efbdd2391aa45ff9b89328670c8d186d2ddfa9e3df91aeb85"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc7",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "계산 결과를 나타내는 법",
+        "kind": "방법",
+        "level": "하",
+        "definition": "순환소수가 든 식의 계산 결과는 분수로 나타낼 수 있다. 약분하여 분자와 분모가 서로소가 되게 한 분수를 {기약분수}라 한다. 결과가 정수일 수도 있으며, 소수로 쓰면 유한소수 또는 순환소수가 된다.",
+        "example": {
+          "prompt": "$\\frac{1}{3}$을 순환소수로 쓰면?",
+          "answer": "$0.\\dot{3}$"
+        },
+        "studentC": "순환소수가 든 식의 계산 결과는 분수로 나타낼 수 있다. 약분하여 분자와 분모가 서로소가 되게 한 분수를 □라 한다. 결과가 정수일 수도 있으며, 소수로 쓰면 유한소수 또는 순환소수가 된다.",
+        "answers": [
+          "기약분수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "분수·정수·소수 표현을 한데 묶은 막연한 제목이고 xc16, xc18, xc22와 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "분자와 분모가 서로소가 되도록 약분한 분수를 {기약분수}라 한다.",
+        "cAnswers": [
+          "기약분수"
+        ],
+        "cReason": "분수를 다른 자리에서 복사하던 칸은 없애고 필요한 정식 명칭만 정의 조건으로 묻는다.",
+        "exclusionReason": "B 제외: 여러 사실을 묶은 조각 제목이며 m2-01-04-xc16, xc18, xc22와 목표가 중복됨.",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "naming",
+        "roleReason": "서로소로 약분한 분수가 기약분수",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 2199,
+        "part": "m2plus",
+        "sourceFingerprint": "c9193bc5beeadccfe48e6f326eba5a82cc6ce9b1c773e7d15d6c2f0182bb7b06",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2199
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-01-04-xc7"
+        },
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "분자와 분모가 서로소가 되도록 약분한 분수를 {기약분수}라 한다.",
+        "cSlotAnswers": [
+          "기약분수"
+        ],
+        "cStudentSentence": "분자와 분모가 서로소가 되도록 약분한 분수를 □라 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "기약분수",
+            "equivalentAnswers": [
+              "기약분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "기약분수"
+          ]
+        ],
+        "proposalFingerprint": "fe101bf0e16233565c272287f9442427735d5b42c38408a097444e5c9d596104"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc8",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "같은 값으로 바꾸어 쓰기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "식 속의 순환소수를 같은 값의 {분수}로 {바꾸어} 써도 식의 값은 변하지 않는다.",
+        "studentC": "식 속의 순환소수를 같은 값의 □로 □ 써도 식의 값은 변하지 않는다.",
+        "answers": [
+          "분수",
+          "바꾸어"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c3의 '분수로 고쳐 계산'이 성립하는 전제를 되풀이할 뿐임",
+        "cDecision": "exclude",
+        "cReason": "'바꾸어'는 내용 없는 빈칸이고 '분수'는 c3 빈칸과 똑같음",
+        "exclusionReason": "B 제외: m2-01-04-c3의 전제를 다시 말한 조각 제목으로 목표 중복. C 제외: 빈칸 '분수'는 c3와 같은 낱말 빈칸의 중복이고 '바꾸어'는 개념을 묻지 못함.",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "같은 값이라 식의 값이 안 변함",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 2200,
+        "part": "m2plus",
+        "sourceFingerprint": "002a28a43c1bbd8eed9e1dff6da4cef4ed015a0fb34b4b5334fac282824587e1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2200
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc9",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "순환소수로 나누기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "순환소수로 나눌 때는 그 순환소수를 분수로 고친 뒤 {역수}를 {곱한다}.",
+        "example": {
+          "prompt": "$2\\div0.\\dot{6}$의 값",
+          "answer": "$3$"
+        },
+        "studentC": "순환소수로 나눌 때는 그 순환소수를 분수로 고친 뒤 □를 □.",
+        "answers": [
+          "역수",
+          "곱한다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\div0.\\dot{6}$을 계산하는 과정을 쓰고 값을 구하시오.",
+        "bAnswer": "$0.\\dot{6}=\\frac{6}{9}=\\frac{2}{3}$로 고친 뒤 그 역수를 곱한다. $2\\div\\frac{2}{3}=2\\times\\frac{3}{2}=3$",
+        "bGoal": "순환소수로 나눌 때 분수의 역수를 곱해 계산하기",
+        "bReason": "약분 전 분수와 식으로 나타낸 역수 곱도 맞는 과정으로 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.\\dot{6}=\\frac{2}{3}$",
+              "$0.\\dot{6}=\\frac{6}{9}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "역수를 곱한다",
+              "$2\\times\\frac{3}{2}$",
+              "$2\\times\\frac{9}{6}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "무엇을 어떻게 하는지 열려 있던 두 칸을 나눗셈을 곱셈으로 바꾸는 대상 하나로 한정한다.",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분수로 고쳐 역수를 곱함",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "cAfter": "순환소수로 나누는 계산을 곱셈으로 바꾸려면, 나누는 소수를 분수로 나타낸 뒤 그 분수의 {역수}를 곱한다.",
+        "cAnswers": [
+          "역수"
+        ],
+        "sourceIndex": 2201,
+        "part": "m2plus",
+        "sourceFingerprint": "64f9455ab36109fb8eb820118d69a063b9cc7ef89ccbe7aee1d668298644109d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2201
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-01-04-xc9"
+        },
+        "cMarkedSentence": "순환소수로 나누는 계산을 곱셈으로 바꾸려면, 나누는 소수를 분수로 나타낸 뒤 그 분수의 {역수}를 곱한다.",
+        "cSlotAnswers": [
+          "역수"
+        ],
+        "cStudentSentence": "순환소수로 나누는 계산을 곱셈으로 바꾸려면, 나누는 소수를 분수로 나타낸 뒤 그 분수의 □를 곱한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "역수",
+            "equivalentAnswers": [
+              "역수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "역수"
+          ]
+        ],
+        "proposalFingerprint": "0f9de95ddc49af590f89662eba5fee43a9bac63624d65e37e4f20d5af26f24b2"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc10",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "순환마디가 다른 두 수의 덧셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "순환마디의 길이가 다른 두 순환소수는 각각 분수로 고친 뒤 {통분}하여 더한다.",
+        "example": {
+          "prompt": "$0.\\dot{3}+0.\\dot{1}\\dot{2}$를 기약분수로",
+          "answer": "$\\frac{5}{11}$"
+        },
+        "studentC": "순환마디의 길이가 다른 두 순환소수는 각각 분수로 고친 뒤 □하여 더한다.",
+        "answers": [
+          "통분"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "순환마디의 길이가 다른 $0.\\dot{3}$과 $0.\\dot{1}\\dot{2}$를 더하는 과정을 쓰고, 합을 기약분수로 구하시오.",
+        "bAnswer": "각각 분수로 고치면 $\\frac{3}{9}=\\frac{1}{3}$, $\\frac{12}{99}=\\frac{4}{33}$이다. 분모가 다르므로 통분하여 $\\frac{11}{33}+\\frac{4}{33}=\\frac{15}{33}=\\frac{5}{11}$이다.",
+        "bGoal": "분모가 다른 경우 통분하여 순환소수의 합 구하기",
+        "bReason": "통분이 필요한 상황이 드러나도록 순환마디 길이가 다른 두 수를 줌",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각각 분수로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "통분하여 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{11}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "상황이 문장에 다 있고 핵심 낱말 '통분' 하나만 묻는 빈칸임",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분수로 고친 뒤 통분해 더함",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 2202,
+        "part": "m2plus",
+        "sourceFingerprint": "5d0b5108026adb2f0dbb7879ad2239c29cf9b8ff214c1f66f98d96ef7392951e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2202
+        },
+        "directReview": null,
+        "cFrozenSentence": "순환마디의 길이가 다른 두 순환소수는 각각 분수로 고친 뒤 □하여 더한다.",
+        "cFrozenDefinition": "순환마디의 길이가 다른 두 순환소수는 각각 분수로 고친 뒤 {통분}하여 더한다.",
+        "cFrozenAnswers": [
+          "통분"
+        ],
+        "cMarkedSentence": "순환마디의 길이가 다른 두 순환소수는 각각 분수로 고친 뒤 {통분}하여 더한다.",
+        "cSlotAnswers": [
+          "통분"
+        ],
+        "cStudentSentence": "순환마디의 길이가 다른 두 순환소수는 각각 분수로 고친 뒤 □하여 더한다.",
+        "cAnswers": [
+          "통분"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "통분",
+            "equivalentAnswers": [
+              "통분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "통분"
+          ]
+        ],
+        "proposalFingerprint": "1f0edfe1b0ab25ad126b7780e2cc6e45bd61dfff06179c831f2006ca93af99e6"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc11",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "계수가 순환소수인 방정식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "계수가 순환소수인 방정식은 계수를 {분수}로 고친 뒤 {양변}에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+        "example": {
+          "prompt": "$0.\\dot{2}x=4$의 해",
+          "answer": "$x=18$"
+        },
+        "studentC": "계수가 순환소수인 방정식은 계수를 □로 고친 뒤 □에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+        "answers": [
+          "분수",
+          "양변"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식 $0.\\dot{2}x=4$를 푸는 과정을 쓰고 해를 구하시오.",
+        "bAnswer": "$0.\\dot{2}=\\frac{2}{9}$이므로 $\\frac{2}{9}x=4$이다. 양변에 $\\frac{9}{2}$를 곱하면 $x=18$이다.",
+        "bGoal": "순환소수 계수를 분수로 고쳐 방정식 풀기",
+        "bReason": "풀이 과정을 쓰게 하려고 구체적인 방정식을 제시함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "계수를 $\\frac{2}{9}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변에 같은 수를 곱하거나 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=18$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "계수를 분수로, 양변에 같은 수라는 두 단계를 묻는 분명한 빈칸임",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "계수를 분수로 고쳐 양변 계산",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 2203,
+        "part": "m2plus",
+        "sourceFingerprint": "d1ea3cb88db83991f73df35fdb63c52731fb1db6e8bb60914108233fa9c8c20d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2203
+        },
+        "directReview": null,
+        "cFrozenSentence": "계수가 순환소수인 방정식은 계수를 □로 고친 뒤 □에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+        "cFrozenDefinition": "계수가 순환소수인 방정식은 계수를 {분수}로 고친 뒤 {양변}에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+        "cFrozenAnswers": [
+          "분수",
+          "양변"
+        ],
+        "cMarkedSentence": "계수가 순환소수인 방정식은 계수를 {분수}로 고친 뒤 {양변}에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+        "cSlotAnswers": [
+          "분수",
+          "양변"
+        ],
+        "cStudentSentence": "계수가 순환소수인 방정식은 계수를 □로 고친 뒤 □에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+        "cAnswers": [
+          "분수",
+          "양변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "양변",
+            "equivalentAnswers": [
+              "양변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분수"
+          ],
+          [
+            "양변"
+          ]
+        ],
+        "proposalFingerprint": "33147902fadc26a283bec83a48d749468f7d532cffe8a1dcf2e06c4af5eeaba9"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc12",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "순환소수와 유한소수의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "양의 순환소수는 그것을 어느 자리에서 끊은 유한소수보다 {크다}. 끊은 자리 뒤에도 끝없이 이어지는 {뒷자리}가 있기 때문이다.",
+        "example": {
+          "prompt": "$0.3$과 $0.\\dot{3}$ 중 큰 수",
+          "answer": "$0.\\dot{3}$"
+        },
+        "studentC": "양의 순환소수는 그것을 어느 자리에서 끊은 유한소수보다 □. 끊은 자리 뒤에도 끝없이 이어지는 □가 있기 때문이다.",
+        "answers": [
+          "크다",
+          "뒷자리"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.3$과 $0.\\dot{3}$ 중 어느 수가 더 큰지 쓰고, 그 까닭을 소수점 아래 숫자를 써서 설명하시오.",
+        "bAnswer": "$0.\\dot{3}$이 더 크다. $0.\\dot{3}=0.333\\cdots$이고 $0.3=0.300\\cdots$이므로 소수 둘째 자리에서 $3>0$이다. 순환소수는 끊은 자리 뒤에도 숫자가 끝없이 이어지기 때문이다.",
+        "bGoal": "순환소수가 그것을 끊은 유한소수보다 큰 까닭 설명하기",
+        "bReason": "자리 숫자 비교로 설명한 맞는 답도 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.\\dot{3}$이 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 둘째 자리에서 $3>0$이다",
+              "$0.\\dot{3}$은 끊은 자리 뒤에도 $3$이 계속 이어진다",
+              "$0.\\dot{3}=0.333\\cdots$은 $0.3$보다 $0.0333\\cdots$만큼 크다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "양의 순환소수는 그것을 어느 자리에서 끊어 만든 유한소수보다 {크다}. 예를 들어 $0.\\dot{3}$과 $0.33$ 중 큰 수는 {$0.\\dot{3}$}이다.",
+        "cAnswers": [
+          "크다",
+          "$0.\\dot{3}$"
+        ],
+        "cReason": "'뒷자리'는 추측하기 어려운 임의의 낱말이라 적용 예 빈칸으로 바꿈",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "끊은 뒤에도 뒷자리가 남음",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2204,
+        "part": "m2plus",
+        "sourceFingerprint": "586a064fc92e865f4e86872b98648f6092f626c572feddee5ff9396bcb28b74f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2204
+        },
+        "directReview": null,
+        "cMarkedSentence": "양의 순환소수는 그것을 어느 자리에서 끊어 만든 유한소수보다 {크다}. 예를 들어 $0.\\dot{3}$과 $0.33$ 중 큰 수는 {$0.\\dot{3}$}이다.",
+        "cSlotAnswers": [
+          "크다",
+          "$0.\\dot{3}$"
+        ],
+        "cStudentSentence": "양의 순환소수는 그것을 어느 자리에서 끊어 만든 유한소수보다 □. 예를 들어 $0.\\dot{3}$과 $0.33$ 중 큰 수는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "크다",
+            "equivalentAnswers": [
+              "크다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0.\\dot{3}$",
+            "equivalentAnswers": [
+              "$0.\\dot{3}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "크다"
+          ],
+          [
+            "$0.\\dot{3}$"
+          ]
+        ],
+        "proposalFingerprint": "bc9acc86287b3d3eef7033cdb0889d682ecfb1b1af38dd1617f1e1489f636cbe"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc13",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "자리마다 견주는 비교",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정수 부분이 같은 두 양의 소수는 소수점 아래 첫째 자리부터 차례로 견주다가 처음 {다른 자리}에서 숫자가 큰 쪽이 {크다}.",
+        "example": {
+          "prompt": "$0.1\\dot{2}$와 $0.\\dot{1}\\dot{2}$ 중 큰 수",
+          "answer": "$0.1\\dot{2}$"
+        },
+        "studentC": "정수 부분이 같은 두 양의 소수는 소수점 아래 첫째 자리부터 차례로 견주다가 처음 □에서 숫자가 큰 쪽이 □.",
+        "answers": [
+          "다른 자리",
+          "크다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.1\\dot{2}$와 $0.\\dot{1}\\dot{2}$의 소수점 아래 숫자를 풀어 써서 크기를 비교하시오. 몇째 자리에서 어떻게 판단했는지도 쓰시오.",
+        "bAnswer": "$0.1\\dot{2}=0.1222\\cdots$, $0.\\dot{1}\\dot{2}=0.1212\\cdots$이다. 첫째, 둘째 자리는 같고 처음으로 다른 소수 셋째 자리에서 $2>1$이므로 $0.1\\dot{2}$가 더 크다.",
+        "bGoal": "처음으로 다른 자리의 숫자로 소수의 크기 비교하기",
+        "bReason": "질문 낱말 복사가 아닌 실제 전개와 자리 판단을 요구",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.1222\\cdots$와 $0.1212\\cdots$로 풀어 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 셋째 자리에서 $2>1$이다",
+              "처음으로 다른 셋째 자리의 숫자를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1\\dot{2}$가 크다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "같은 값의 다른 소수 표기를 비교하는 예외를 피하도록 값이 서로 다르다는 조건을 밝힌다.",
+        "coreAfter": "정수 부분이 같고 값이 서로 다른 두 양의 소수는 소수점 아래 첫째 자리부터 차례로 비교하다가 처음 {다른 자리}에서 숫자가 큰 쪽이 {크다}.",
+        "coreReason": "같은 값을 달리 나타낸 $0.4999\\cdots$와 $0.5$에는 적용되지 않도록 서로 다른 값이라는 조건을 명시한다.",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "처음 다른 자리 숫자 비교",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "cAfter": "정수 부분이 같고 값이 서로 다른 두 양의 소수는 소수점 아래 첫째 자리부터 차례로 비교한다. 처음 {다른 자리}에서 숫자가 큰 쪽의 값이 {크다}.",
+        "cAnswers": [
+          "다른 자리",
+          "크다"
+        ],
+        "directReviewNote": "원문과 coreAfter만 달라지는 C keep을 그대로 승인하지 않고, 실제 C의 범위도 직접 맞췄다.",
+        "sourceIndex": 2205,
+        "part": "m2plus",
+        "sourceFingerprint": "ebd06d8c1f6d648f7bd3c134341972c785042e575d0093cb105d13e071839266",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2205
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-01-04-xc13"
+        },
+        "coreBeforeRepair": "정수 부분이 같고 값이 서로 다른 두 양의 소수는 소수점 아래 첫째 자리부터 차례로 비교하다가 처음 {다른 자리}에서 숫자가 큰 쪽이 {크다}.",
+        "coreRepairReason": "coreAfter는 이미 좋아 그대로 보존함. 원래 핵심어 {다른 자리}, {크다}도 유지함. coreReason의 깨진 수식 '$0.4999cdots$'만 '$0.4999\\cdots$'로 바로잡음.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "정수 부분이 같고 값이 서로 다른 두 양의 소수는 소수점 아래 첫째 자리부터 차례로 비교한다. 처음 {다른 자리}에서 숫자가 큰 쪽의 값이 {크다}.",
+        "cSlotAnswers": [
+          "다른 자리",
+          "크다"
+        ],
+        "cStudentSentence": "정수 부분이 같고 값이 서로 다른 두 양의 소수는 소수점 아래 첫째 자리부터 차례로 비교한다. 처음 □에서 숫자가 큰 쪽의 값이 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다른 자리",
+            "equivalentAnswers": [
+              "다른 자리",
+              "달라지는 자리",
+              "숫자가 다른 자리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크다",
+            "equivalentAnswers": [
+              "크다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "다른 자리",
+            "accept": [
+              "달라지는 자리",
+              "숫자가 다른 자리"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다른 자리",
+            "달라지는 자리",
+            "숫자가 다른 자리"
+          ],
+          [
+            "크다"
+          ]
+        ],
+        "proposalFingerprint": "44e727a5ff0b4c92687f0d197164d8f689dbba437e0cd1dc6b0e1d81ad8ddc29"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc14",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "분수로 고쳐 비교하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "풀어 써서 견주기 어려우면 두 수를 {분수}로 고쳐 {통분}한 뒤 분자를 견준다.",
+        "example": {
+          "prompt": "$0.\\dot{2}\\dot{7}$과 $\\frac{1}{4}$ 중 큰 수",
+          "answer": "$0.\\dot{2}\\dot{7}$"
+        },
+        "studentC": "풀어 써서 견주기 어려우면 두 수를 □로 고쳐 □한 뒤 분자를 견준다.",
+        "answers": [
+          "분수",
+          "통분"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.\\dot{2}\\dot{7}$과 $\\frac{1}{4}$의 크기를 분수로 고쳐 비교하는 과정을 쓰고, 큰 수를 밝히시오.",
+        "bAnswer": "$0.\\dot{2}\\dot{7}=\\frac{27}{99}=\\frac{3}{11}$이다. 통분하면 $\\frac{3}{11}=\\frac{12}{44}$, $\\frac{1}{4}=\\frac{11}{44}$이고 분자가 $12>11$이므로 $0.\\dot{2}\\dot{7}$이 크다.",
+        "bGoal": "분수로 고쳐 통분해 크기 비교하기",
+        "bReason": "약분하지 않은 동치 분수와 다른 공통분모도 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.\\dot{2}\\dot{7}=\\frac{27}{99}$",
+              "$0.\\dot{2}\\dot{7}=\\frac{3}{11}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{12}{44}>\\frac{11}{44}$",
+              "$\\frac{108}{396}>\\frac{99}{396}$",
+              "분모를 같게 한 뒤 분자의 크기를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.\\dot{2}\\dot{7}$이 크다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "순환소수가 있는 두 수의 크기를 소수점 아래 숫자로 비교하기 어려우면, 두 수를 {분수}로 고쳐 {통분}한 뒤 분자를 비교한다.",
+        "cAnswers": [
+          "분수",
+          "통분"
+        ],
+        "cReason": "'풀어 써서 견주기'가 무엇을 가리키는지 숨은 제목 없이는 알 수 없어 상황을 밝힘",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분수로 고쳐 통분 비교",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2206,
+        "part": "m2plus",
+        "sourceFingerprint": "81631aa7dfbbdb69f8e1f319a1bf5d56febb0c66b40769eb4970cd30622da38b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2206
+        },
+        "directReview": null,
+        "cMarkedSentence": "순환소수가 있는 두 수의 크기를 소수점 아래 숫자로 비교하기 어려우면, 두 수를 {분수}로 고쳐 {통분}한 뒤 분자를 비교한다.",
+        "cSlotAnswers": [
+          "분수",
+          "통분"
+        ],
+        "cStudentSentence": "순환소수가 있는 두 수의 크기를 소수점 아래 숫자로 비교하기 어려우면, 두 수를 □로 고쳐 □한 뒤 분자를 비교한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "통분",
+            "equivalentAnswers": [
+              "통분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분수"
+          ],
+          [
+            "통분"
+          ]
+        ],
+        "proposalFingerprint": "8e6152304b4ef12f196b1369bbe8ec0a5f202507ca92d7340fbda9fcd4fd2aa9"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc15",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "순환소수의 곱셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "순환소수끼리 곱할 때는 각각 분수로 고친 뒤 {분자끼리}의 곱을 새 분자로, {분모끼리}의 곱을 새 분모로 삼는다.",
+        "example": {
+          "prompt": "$0.\\dot{3}\\times0.\\dot{6}$을 분수로",
+          "answer": "$\\frac{2}{9}$"
+        },
+        "studentC": "순환소수끼리 곱할 때는 각각 분수로 고친 뒤 □의 곱을 새 분자로, □의 곱을 새 분모로 삼는다.",
+        "answers": [
+          "분자끼리",
+          "분모끼리"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c3의 방법에서 연산만 곱셈으로 바꾼 것이고 곱셈의 핵심은 xc23이 다룸",
+        "cDecision": "rewrite",
+        "cAfter": "$0.\\dot{3}\\times0.\\dot{6}$은 각각 분수로 고쳐 $\\frac{1}{3}\\times${$\\frac{2}{3}$}$=${$\\frac{2}{9}$}로 계산한다.",
+        "cAnswers": [
+          "$\\frac{2}{3}$",
+          "$\\frac{2}{9}$"
+        ],
+        "cReason": "'새 분자로', '새 분모로'가 답을 그대로 알려 주어 계산 빈칸으로 바꿈",
+        "exclusionReason": "B 제외: m2-01-04-c3와 방법이 같고 m2-01-04-xc23(자리끼리 곱하는 잘못)과 목표가 겹치는 반복 제목.",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분수로 고쳐 분자·분모 곱함",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2207,
+        "part": "m2plus",
+        "sourceFingerprint": "3448ea21668ef56f461b93cb4a4e5d2397525ab522871d5b14750abb4e849d5c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2207
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$0.\\dot{3}\\times0.\\dot{6}$은 각각 분수로 고쳐 $\\frac{1}{3}\\times${$\\frac{2}{3}$}$=${$\\frac{2}{9}$}로 계산한다.",
+        "cSlotAnswers": [
+          "$\\frac{2}{3}$",
+          "$\\frac{2}{9}$"
+        ],
+        "cStudentSentence": "$0.\\dot{3}\\times0.\\dot{6}$은 각각 분수로 고쳐 $\\frac{1}{3}\\times$□$=$□로 계산한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{2}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{2}{3}$",
+              "$\\frac{6}{9}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{2}{9}$",
+            "equivalentAnswers": [
+              "$\\frac{2}{9}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{2}{3}$",
+            "accept": [
+              "$\\frac{6}{9}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{2}{3}$",
+            "$\\frac{6}{9}$"
+          ],
+          [
+            "$\\frac{2}{9}$"
+          ]
+        ],
+        "proposalFingerprint": "51137fb810450e4b95187f888347758d912a4b3e85927b87bc14559da0f5c63d"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc16",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "계산 결과를 다시 순환소수로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분수로 계산한 결과를 기약분수로 고쳤을 때 분모에 {$2$와 $5$가 아닌 소인수}가 있으면 결과를 순환소수로 다시 쓸 수 있다.",
+        "example": {
+          "prompt": "$\\frac{5}{12}$를 순환소수로 쓰면?",
+          "answer": "$0.41\\dot{6}$"
+        },
+        "studentC": "분수로 계산한 결과를 기약분수로 고쳤을 때 분모에 □가 있으면 결과를 순환소수로 다시 쓸 수 있다.",
+        "answers": [
+          "$2$와 $5$가 아닌 소인수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "순환소수가 든 식을 계산한 결과가 $\\frac{5}{12}$로 나왔다. 이 수를 순환소수로 나타낼 수 있는지 분모의 소인수로 판단하고, 순환소수로 쓰시오.",
+        "bAnswer": "$12=2^2\\times3$으로 분모에 $2$와 $5$가 아닌 소인수 $3$이 있으므로 순환소수로 나타낼 수 있다. $5\\div12=0.41666\\cdots=0.41\\dot{6}$",
+        "bGoal": "기약분수의 분모로 순환소수가 되는지 판단하고 고치기",
+        "bReason": "판단 기준과 대상 수가 없어 $\\frac{5}{12}$와 '분모의 소인수'라는 범위를 줌",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모에 $2$와 $5$가 아닌 소인수 $3$이 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.41\\dot{6}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "계산 결과를 기약분수로 고쳤을 때 분모에 $2$와 $5$가 아닌 소인수가 있으면 그 결과는 {순환소수}로 쓸 수 있다. 예를 들어 $\\frac{5}{12}$는 분모에 소인수 {$3$}이 있으므로 $0.41\\dot{6}$으로 쓸 수 있다.",
+        "cAnswers": [
+          "순환소수",
+          "$3$"
+        ],
+        "cReason": "긴 구 하나가 통째로 빈칸이라 결론 낱말과 확인용 예로 나눔",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분모 소인수로 순환 판정",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2208,
+        "part": "m2plus",
+        "sourceFingerprint": "ff81a8215006a8dd00ecfae77ea07c1d4787a4ff73d8bdc2fc0eed77f221fb98",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2208
+        },
+        "directReview": null,
+        "cMarkedSentence": "계산 결과를 기약분수로 고쳤을 때 분모에 $2$와 $5$가 아닌 소인수가 있으면 그 결과는 {순환소수}로 쓸 수 있다. 예를 들어 $\\frac{5}{12}$는 분모에 소인수 {$3$}이 있으므로 $0.41\\dot{6}$으로 쓸 수 있다.",
+        "cSlotAnswers": [
+          "순환소수",
+          "$3$"
+        ],
+        "cStudentSentence": "계산 결과를 기약분수로 고쳤을 때 분모에 $2$와 $5$가 아닌 소인수가 있으면 그 결과는 □로 쓸 수 있다. 예를 들어 $\\frac{5}{12}$는 분모에 소인수 □이 있으므로 $0.41\\dot{6}$으로 쓸 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "순환소수",
+            "equivalentAnswers": [
+              "순환소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "순환소수"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "31bf5bd178c545635fd1ea427086d8d965d59214ca3de47c374dcd3ab7195b0c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc17",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "순환소수를 대입한 식의 값",
+        "kind": "방법",
+        "level": "중",
+        "definition": "문자에 순환소수를 대입할 때도 먼저 {분수}로 고쳐 넣으면 {계산}이 쉬워진다.",
+        "example": {
+          "prompt": "$x=0.\\dot{3}$일 때 $3x+1$의 값",
+          "answer": "$2$"
+        },
+        "studentC": "문자에 순환소수를 대입할 때도 먼저 □로 고쳐 넣으면 □이 쉬워진다.",
+        "answers": [
+          "분수",
+          "계산"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c3의 방법에 대입만 더한 응용이라 새로 묻는 개념이 없음",
+        "cDecision": "rewrite",
+        "cAfter": "$x=0.\\dot{3}$일 때 $3x+1$의 값은, $x$를 분수 {$\\frac{1}{3}$}로 고쳐 대입하면 {$2$}이다.",
+        "cAnswers": [
+          "$\\frac{1}{3}$",
+          "$2$"
+        ],
+        "cReason": "빈칸 '계산'은 내용 없는 낱말이라 짧은 대입 계산 빈칸으로 바꿈",
+        "exclusionReason": "B 제외: m2-01-04-c3(분수로 고쳐 계산)의 단순 응용으로 목표가 중복되는 제목.",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분수로 고쳐 대입",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2209,
+        "part": "m2plus",
+        "sourceFingerprint": "cb766a2f7bed42ad5e60b8e8718048dab535329447334436e54ac34858ae8b1f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2209
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$x=0.\\dot{3}$일 때 $3x+1$의 값은, $x$를 분수 {$\\frac{1}{3}$}로 고쳐 대입하면 {$2$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{3}$",
+          "$2$"
+        ],
+        "cStudentSentence": "$x=0.\\dot{3}$일 때 $3x+1$의 값은, $x$를 분수 □로 고쳐 대입하면 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{3}$",
+              "$\\frac{3}{9}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{1}{3}$",
+            "accept": [
+              "$\\frac{3}{9}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{3}$",
+            "$\\frac{3}{9}$"
+          ],
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "49aa2322385691604d987256fd58338f3f330b99bba77897786f6c20b33aab61"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc18",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "결과가 유한소수가 되는 계산",
+        "kind": "성질",
+        "level": "상",
+        "definition": "순환소수끼리 계산해도 결과의 기약분수의 분모에 소인수가 {$2$, $5$만} 남으면 유한소수가 된다.",
+        "example": {
+          "prompt": "$0.\\dot{3}+0.1\\dot{6}$의 값",
+          "answer": "$0.5$"
+        },
+        "studentC": "순환소수끼리 계산해도 결과의 기약분수의 분모에 소인수가 □ 남으면 유한소수가 된다.",
+        "answers": [
+          "$2$, $5$만"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.\\dot{3}+0.1\\dot{6}$을 계산하고, 순환소수끼리 더했는데도 결과가 유한소수가 되는 까닭을 기약분수의 분모로 설명하시오.",
+        "bAnswer": "$0.\\dot{3}+0.1\\dot{6}=\\frac{1}{3}+\\frac{1}{6}=\\frac{1}{2}=0.5$이다. 결과를 기약분수로 나타내면 분모 $2$의 소인수가 $2$뿐이므로 유한소수가 된다.",
+        "bGoal": "순환소수의 계산 결과가 유한소수가 되는 조건 알기",
+        "bReason": "어떤 계산인지 없어 실제 예를 주고 설명 근거(기약분수의 분모)를 지정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{2}=0.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "기약분수의 분모의 소인수가 $2$나 $5$뿐이면 유한소수"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "순환소수끼리 계산해도 결과를 기약분수로 나타냈을 때 분모의 소인수가 $2$나 $5$뿐이면 그 결과는 {유한소수}이다. 예를 들어 $0.\\dot{3}+0.1\\dot{6}=\\frac{1}{3}+\\frac{1}{6}=${$\\frac{1}{2}$}$=0.5$이다.",
+        "cAnswers": [
+          "유한소수",
+          "$\\frac{1}{2}$"
+        ],
+        "cReason": "'$2$, $5$만'이라는 구 빈칸이 어색해 결론 낱말과 예의 계산으로 바꿈",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "분모 소인수가 2, 5뿐",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2210,
+        "part": "m2plus",
+        "sourceFingerprint": "be55a46431b448949c0f566668319874d38d0c00ce7c92529b3d44ad85d9d5cf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2210
+        },
+        "directReview": null,
+        "cMarkedSentence": "순환소수끼리 계산해도 결과를 기약분수로 나타냈을 때 분모의 소인수가 $2$나 $5$뿐이면 그 결과는 {유한소수}이다. 예를 들어 $0.\\dot{3}+0.1\\dot{6}=\\frac{1}{3}+\\frac{1}{6}=${$\\frac{1}{2}$}$=0.5$이다.",
+        "cSlotAnswers": [
+          "유한소수",
+          "$\\frac{1}{2}$"
+        ],
+        "cStudentSentence": "순환소수끼리 계산해도 결과를 기약분수로 나타냈을 때 분모의 소인수가 $2$나 $5$뿐이면 그 결과는 □이다. 예를 들어 $0.\\dot{3}+0.1\\dot{6}=\\frac{1}{3}+\\frac{1}{6}=$□$=0.5$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유한소수"
+          ],
+          [
+            "$\\frac{1}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "b4ffd97b44a042cc5c6d28c49b4f87f141a7c85d1f6b927344e7fb50871d4d6a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc19",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "세 수 이상의 대소 비교",
+        "kind": "방법",
+        "level": "상",
+        "definition": "여러 순환소수는 모두 같은 자리까지 {풀어 써서} 나란히 놓고 {앞자리}부터 견준다.",
+        "example": {
+          "prompt": "$0.\\dot{5}$, $0.5\\dot{4}$, $0.\\dot{5}\\dot{4}$ 중 가장 큰 수",
+          "answer": "$0.\\dot{5}$"
+        },
+        "studentC": "여러 순환소수는 모두 같은 자리까지 □ 나란히 놓고 □부터 견준다.",
+        "answers": [
+          "풀어 써서",
+          "앞자리"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.\\dot{5}$, $0.5\\dot{4}$, $0.\\dot{5}\\dot{4}$를 큰 수부터 차례로 쓰고, 어떻게 비교했는지 설명하시오.",
+        "bAnswer": "같은 자리까지 풀어 쓰면 $0.5555\\cdots$, $0.5444\\cdots$, $0.5454\\cdots$이다. 첫째 자리는 모두 $5$이고 둘째 자리에서 $5>4$, 나머지 두 수는 셋째 자리에서 $5>4$이므로 $0.\\dot{5}>0.\\dot{5}\\dot{4}>0.5\\dot{4}$이다.",
+        "bGoal": "여러 순환소수를 풀어 써서 크기 순서 정하기",
+        "bReason": "비교 방법을 자유롭게 묻는 문항이라 분수 풀이도 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.5555\\cdots$, $0.5444\\cdots$, $0.5454\\cdots$로 풀어 써서 앞자리부터 자리별로 비교한다",
+              "세 수를 분수로 고쳐 통분한 뒤 분자를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.\\dot{5}>0.\\dot{5}\\dot{4}>0.5\\dot{4}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "여러 순환소수의 크기를 비교할 때는 순환마디를 되풀이해 모두 같은 자리까지 쓴 뒤 {앞자리}부터 차례로 비교한다. $0.\\dot{5}$, $0.5\\dot{4}$, $0.\\dot{5}\\dot{4}$ 중 가장 큰 수는 {$0.\\dot{5}$}이다.",
+        "cAnswers": [
+          "앞자리",
+          "$0.\\dot{5}$"
+        ],
+        "cReason": "크기 비교라는 목적이 문장에 없고 '풀어 써서'는 맞히기 어려운 빈칸임",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "같은 자리까지 풀어 비교",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2211,
+        "part": "m2plus",
+        "sourceFingerprint": "1ef3e1e8abb36d09a0d794f1947b0ff4f758cb67edf087fe13ad4a323f79093b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2211
+        },
+        "directReview": null,
+        "cMarkedSentence": "여러 순환소수의 크기를 비교할 때는 순환마디를 되풀이해 모두 같은 자리까지 쓴 뒤 {앞자리}부터 차례로 비교한다. $0.\\dot{5}$, $0.5\\dot{4}$, $0.\\dot{5}\\dot{4}$ 중 가장 큰 수는 {$0.\\dot{5}$}이다.",
+        "cSlotAnswers": [
+          "앞자리",
+          "$0.\\dot{5}$"
+        ],
+        "cStudentSentence": "여러 순환소수의 크기를 비교할 때는 순환마디를 되풀이해 모두 같은 자리까지 쓴 뒤 □부터 차례로 비교한다. $0.\\dot{5}$, $0.5\\dot{4}$, $0.\\dot{5}\\dot{4}$ 중 가장 큰 수는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "앞자리",
+            "equivalentAnswers": [
+              "앞자리",
+              "소수 첫째 자리",
+              "높은 자리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0.\\dot{5}$",
+            "equivalentAnswers": [
+              "$0.\\dot{5}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "앞자리",
+            "accept": [
+              "소수 첫째 자리",
+              "높은 자리"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "앞자리",
+            "소수 첫째 자리",
+            "높은 자리"
+          ],
+          [
+            "$0.\\dot{5}$"
+          ]
+        ],
+        "proposalFingerprint": "7a529dfcf43aecc5f0d28451a0c2159920e473596355369dfdbc07c4571f86c3"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc20",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "순환소수가 경계인 범위",
+        "kind": "방법",
+        "level": "상",
+        "definition": "순환소수가 섞인 범위는 경계를 {분수}로 고쳐 {통분}한 뒤 생각한다.",
+        "example": {
+          "prompt": "$\\frac{x}{9}$가 $0.\\dot{2}$보다 크고 $0.\\dot{5}$보다 작은 자연수 $x$",
+          "answer": "$3$, $4$"
+        },
+        "studentC": "순환소수가 섞인 범위는 경계를 □로 고쳐 □한 뒤 생각한다.",
+        "answers": [
+          "분수",
+          "통분"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{x}{9}$가 $0.\\dot{2}$보다 크고 $0.\\dot{5}$보다 작을 때, 자연수 $x$를 모두 구하는 과정을 쓰시오.",
+        "bAnswer": "$0.\\dot{2}=\\frac{2}{9}$, $0.\\dot{5}=\\frac{5}{9}$이므로 $\\frac{2}{9}<\\frac{x}{9}<\\frac{5}{9}$이다. 분모가 같으니 분자를 비교하면 $2<x<5$이고, 자연수 $x$는 $3$, $4$이다.",
+        "bGoal": "순환소수를 분수로 고쳐 범위 안의 수 구하기",
+        "bReason": "'경계인 범위'라는 말이 어려워 실제 범위 문제를 주고 과정을 쓰게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 순환소수를 분수로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모를 같게 하여 분자를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=3$, $4$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수가 두 순환소수 사이에 있는 범위를 구할 때는, 두 순환소수를 {분수}로 고쳐 분모가 같아지도록 {통분}한 뒤 분자를 비교한다.",
+        "cAnswers": [
+          "분수",
+          "통분"
+        ],
+        "cReason": "'경계'는 중학생에게 낯선 말이고 '생각한다'로 끝나 무엇을 하는지 모호함",
+        "exampleNeeded": true,
+        "studentLabel": "두 순환소수 사이에 있는 수 구하기",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "경계를 분수로 통분",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2212,
+        "part": "m2plus",
+        "sourceFingerprint": "a912c8831f92161543ec78d771cc1b9f20de278a7a48f807c8b25eda32b6af8b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2212
+        },
+        "directReview": null,
+        "cMarkedSentence": "어떤 수가 두 순환소수 사이에 있는 범위를 구할 때는, 두 순환소수를 {분수}로 고쳐 분모가 같아지도록 {통분}한 뒤 분자를 비교한다.",
+        "cSlotAnswers": [
+          "분수",
+          "통분"
+        ],
+        "cStudentSentence": "어떤 수가 두 순환소수 사이에 있는 범위를 구할 때는, 두 순환소수를 □로 고쳐 분모가 같아지도록 □한 뒤 분자를 비교한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "통분",
+            "equivalentAnswers": [
+              "통분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분수"
+          ],
+          [
+            "통분"
+          ]
+        ],
+        "proposalFingerprint": "a0cfd7b5c6164785953f14894be250556264c75470357d36c26d527331f43a8a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc21",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "순환소수 $0.\\dot{a}$의 역수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0.\\dot{a}=\\frac{a}{9}$($a$는 $1$부터 $8$까지)이므로 그 역수는 {$\\frac{9}{a}$}이다.",
+        "example": {
+          "prompt": "$0.\\dot{3}$의 역수",
+          "answer": "$3$"
+        },
+        "studentC": "$0.\\dot{a}=\\frac{a}{9}$($a$는 $1$부터 $8$까지)이므로 그 역수는 □이다.",
+        "answers": [
+          "$\\frac{9}{a}$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$a$가 $1$부터 $8$까지의 자연수일 때 $0.\\dot{a}$의 역수를 $a$를 써서 나타내고, 이를 이용해 $0.\\dot{3}$의 역수를 구하시오.",
+        "bAnswer": "$0.\\dot{a}=\\frac{a}{9}$이므로 역수는 $\\frac{9}{a}$이다. 따라서 $0.\\dot{3}$의 역수는 $\\frac{9}{3}=3$이다.",
+        "bGoal": "순환소수를 분수로 고쳐 역수 구하기",
+        "bReason": "$a$의 조건과 답의 꼴이 제목에 없어 밝히고 구체 예를 함께 물음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.\\dot{a}=\\frac{a}{9}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "역수는 $\\frac{9}{a}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$a$의 조건과 근거 식이 문장에 있고 결론 하나만 묻는 분명한 빈칸임",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "a/9의 역수 9/a",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2213,
+        "part": "m2plus",
+        "sourceFingerprint": "c50a61b4da43b90ebd74cccbf05880f8b2c0947099e74b220fd5a2091c0d4909",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2213
+        },
+        "directReview": null,
+        "cFrozenSentence": "$0.\\dot{a}=\\frac{a}{9}$($a$는 $1$부터 $8$까지)이므로 그 역수는 □이다.",
+        "cFrozenDefinition": "$0.\\dot{a}=\\frac{a}{9}$($a$는 $1$부터 $8$까지)이므로 그 역수는 {$\\frac{9}{a}$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{9}{a}$"
+        ],
+        "cMarkedSentence": "$0.\\dot{a}=\\frac{a}{9}$($a$는 $1$부터 $8$까지)이므로 그 역수는 {$\\frac{9}{a}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{9}{a}$"
+        ],
+        "cStudentSentence": "$0.\\dot{a}=\\frac{a}{9}$($a$는 $1$부터 $8$까지)이므로 그 역수는 □이다.",
+        "cAnswers": [
+          "$\\frac{9}{a}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{9}{a}$",
+            "equivalentAnswers": [
+              "$\\frac{9}{a}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{9}{a}$"
+          ]
+        ],
+        "proposalFingerprint": "dc75ba0679e28013c1b1661cbeb08c343426165a9a7be54b40230f5332198c85"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc22",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "순환소수끼리 계산한 결과",
+        "kind": "성질",
+        "level": "상",
+        "definition": "순환소수끼리 더하고 빼고 곱하고 나눈 결과도 분수로 쓸 수 있으므로 {유리수}이다.",
+        "example": {
+          "prompt": "$0.\\dot{2}\\times0.\\dot{3}$을 분수로",
+          "answer": "$\\frac{2}{27}$"
+        },
+        "studentC": "순환소수끼리 더하고 빼고 곱하고 나눈 결과도 분수로 쓸 수 있으므로 □이다.",
+        "answers": [
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "순환소수끼리 더하거나 빼거나 곱하거나 나눈 결과는 항상 유리수인가? 그렇게 판단하는 까닭을 쓰시오.",
+        "bAnswer": "항상 유리수이다. 순환소수는 모두 분수로 고칠 수 있고, 분수끼리 더하고 빼고 곱하고 나눈 결과도 분수로 나타낼 수 있기 때문이다.",
+        "bGoal": "순환소수의 사칙계산 결과가 유리수임을 설명하기",
+        "bReason": "'결과'의 무엇을 묻는지 없어 유리수 여부와 까닭으로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "결과는 유리수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "순환소수는 분수로 고칠 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수끼리의 계산 결과도 분수이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "근거(분수로 쓸 수 있음)가 문장에 있고 결론 낱말 하나만 묻는 빈칸임",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "분수 계산 결과도 분수",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2214,
+        "part": "m2plus",
+        "sourceFingerprint": "5be479fc798e8d75ae1f25de392964f9214ca852c6a1362de7ffb6b537b0dcf0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2214
+        },
+        "directReview": null,
+        "cFrozenSentence": "순환소수끼리 더하고 빼고 곱하고 나눈 결과도 분수로 쓸 수 있으므로 □이다.",
+        "cFrozenDefinition": "순환소수끼리 더하고 빼고 곱하고 나눈 결과도 분수로 쓸 수 있으므로 {유리수}이다.",
+        "cFrozenAnswers": [
+          "유리수"
+        ],
+        "cMarkedSentence": "순환소수끼리 더하고 빼고 곱하고 나눈 결과도 분수로 쓸 수 있으므로 {유리수}이다.",
+        "cSlotAnswers": [
+          "유리수"
+        ],
+        "cStudentSentence": "순환소수끼리 더하고 빼고 곱하고 나눈 결과도 분수로 쓸 수 있으므로 □이다.",
+        "cAnswers": [
+          "유리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "ccd6aa694b8672e972f85015b6128ee18912dd39018cf04ed1501a98ff3ae71c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc23",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "자리끼리 곱하는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "순환소수끼리의 곱을 순환마디의 숫자끼리 곱해 구하는 것은 {잘못}이다. {분수}로 고치면 분자뿐 아니라 분모도 곱해지기 때문이다.",
+        "example": {
+          "prompt": "$0.\\dot{2}\\times0.\\dot{4}$가 $0.\\dot{8}$이 아닌 까닭은?",
+          "answer": "분모도 곱해져 $\\frac{8}{81}$이라서"
+        },
+        "studentC": "순환소수끼리의 곱을 순환마디의 숫자끼리 곱해 구하는 것은 □이다. □로 고치면 분자뿐 아니라 분모도 곱해지기 때문이다.",
+        "answers": [
+          "잘못",
+          "분수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.\\dot{2}\\times0.\\dot{4}$를 순환마디의 숫자끼리 곱해 $0.\\dot{8}$이라고 계산하면 왜 틀리는지 분수로 고쳐 설명하고, 바른 값을 구하시오.",
+        "bAnswer": "$0.\\dot{2}\\times0.\\dot{4}=\\frac{2}{9}\\times\\frac{4}{9}=\\frac{8}{81}$이다. 분자뿐 아니라 분모끼리도 곱해지므로 $0.\\dot{8}=\\frac{8}{9}$과 같지 않다.",
+        "bGoal": "순환소수의 곱을 숫자끼리 곱하면 안 되는 까닭 설명하기",
+        "bReason": "어떤 잘못인지 보이도록 $0.\\dot{8}$이라는 오답 상황을 구체적으로 제시함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2}{9}\\times\\frac{4}{9}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모끼리도 곱해진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{8}{81}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$0.\\dot{2}\\times0.\\dot{4}$를 순환마디의 숫자끼리 곱해 $0.\\dot{8}$이라 하면 틀린다. 분수로 고치면 $\\frac{2}{9}\\times\\frac{4}{9}$로 {분모}끼리도 곱해져 {$\\frac{8}{81}$}이 되기 때문이다.",
+        "cAnswers": [
+          "분모",
+          "$\\frac{8}{81}$"
+        ],
+        "cReason": "빈칸 '잘못'은 개념을 묻지 못해 틀리는 까닭의 핵심과 바른 값을 묻게 바꿈",
+        "exampleNeeded": true,
+        "studentLabel": "순환마디의 숫자끼리 곱하면 안 되는 까닭",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "분모끼리도 곱해짐",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2215,
+        "part": "m2plus",
+        "sourceFingerprint": "d124ba7e20087fce7380a4660478424ebd13e1021dce1d4139fbedc74c187ca4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2215
+        },
+        "directReview": null,
+        "cMarkedSentence": "$0.\\dot{2}\\times0.\\dot{4}$를 순환마디의 숫자끼리 곱해 $0.\\dot{8}$이라 하면 틀린다. 분수로 고치면 $\\frac{2}{9}\\times\\frac{4}{9}$로 {분모}끼리도 곱해져 {$\\frac{8}{81}$}이 되기 때문이다.",
+        "cSlotAnswers": [
+          "분모",
+          "$\\frac{8}{81}$"
+        ],
+        "cStudentSentence": "$0.\\dot{2}\\times0.\\dot{4}$를 순환마디의 숫자끼리 곱해 $0.\\dot{8}$이라 하면 틀린다. 분수로 고치면 $\\frac{2}{9}\\times\\frac{4}{9}$로 □끼리도 곱해져 □이 되기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분모",
+            "equivalentAnswers": [
+              "분모"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{8}{81}$",
+            "equivalentAnswers": [
+              "$\\frac{8}{81}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분모"
+          ],
+          [
+            "$\\frac{8}{81}$"
+          ]
+        ],
+        "proposalFingerprint": "5b095e776ebb295dd95a381ef345e3f3817a587753c1b062904c35d3035b6a59"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc24",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "분모를 $99$로 맞춘 비교",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$0.\\dot{a}\\dot{b}$와 분수를 견줄 때, 그 분수의 분모가 $99$의 약수이면 분모를 {$99$}로 맞추어 {분자}만 견주면 된다.",
+        "example": {
+          "prompt": "$0.\\dot{3}\\dot{2}$와 $\\frac{1}{3}$ 중 큰 수",
+          "answer": "$\\frac{1}{3}$"
+        },
+        "studentC": "$0.\\dot{a}\\dot{b}$와 분수를 견줄 때, 그 분수의 분모가 $99$의 약수이면 분모를 □로 맞추어 □만 견주면 된다.",
+        "answers": [
+          "$99$",
+          "분자"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "분수로 고쳐 통분해 비교하는 xc14와 수만 다른 같은 방법임",
+        "cDecision": "rewrite",
+        "cAfter": "$0.\\dot{3}\\dot{2}$와 $\\frac{1}{3}$의 크기를 비교할 때, $0.\\dot{3}\\dot{2}=\\frac{32}{99}$이므로 $\\frac{1}{3}$도 분모를 $99$로 맞추어 {$\\frac{33}{99}$}으로 고친 뒤 {분자}만 비교한다.",
+        "cAnswers": [
+          "$\\frac{33}{99}$",
+          "분자"
+        ],
+        "cReason": "답 $99$가 '$99$의 약수'에 그대로 나오고 $a$, $b$의 뜻이 없어 구체 예로 바꿈",
+        "exclusionReason": "B 제외: m2-01-04-xc14(분수로 고쳐 비교하기)와 방법이 같고 분모만 $99$로 정한 반복 제목.",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분모 99로 맞춰 분자 비교",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2216,
+        "part": "m2plus",
+        "sourceFingerprint": "cd94e3b1f42eebed29a4d39246eca689314c66b7236af2c2182d66dc24fce707",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2216
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$0.\\dot{3}\\dot{2}$와 $\\frac{1}{3}$의 크기를 비교할 때, $0.\\dot{3}\\dot{2}=\\frac{32}{99}$이므로 $\\frac{1}{3}$도 분모를 $99$로 맞추어 {$\\frac{33}{99}$}으로 고친 뒤 {분자}만 비교한다.",
+        "cSlotAnswers": [
+          "$\\frac{33}{99}$",
+          "분자"
+        ],
+        "cStudentSentence": "$0.\\dot{3}\\dot{2}$와 $\\frac{1}{3}$의 크기를 비교할 때, $0.\\dot{3}\\dot{2}=\\frac{32}{99}$이므로 $\\frac{1}{3}$도 분모를 $99$로 맞추어 □으로 고친 뒤 □만 비교한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{33}{99}$",
+            "equivalentAnswers": [
+              "$\\frac{33}{99}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "분자",
+            "equivalentAnswers": [
+              "분자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{33}{99}$"
+          ],
+          [
+            "분자"
+          ]
+        ],
+        "proposalFingerprint": "046a28059b7edea6beec3003b9b55102ba11d2af63e0f80a5f71d14a775adec7"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc25",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "방정식의 해를 순환소수로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "방정식의 해를 순환소수로 답할 때는 분수로 구한 해를 다시 {나눗셈}하여 {순환소수}로 고친다.",
+        "example": {
+          "prompt": "$0.\\dot{3}x+0.\\dot{1}=1$의 해를 순환소수로",
+          "answer": "$2.\\dot{6}$"
+        },
+        "studentC": "방정식의 해를 순환소수로 답할 때는 분수로 구한 해를 다시 □하여 □로 고친다.",
+        "answers": [
+          "나눗셈",
+          "순환소수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "방정식 $0.\\dot{3}x+0.\\dot{1}=1$의 해를 구하고, 그 해를 순환소수로 나타내는 과정을 쓰시오.",
+        "bAnswer": "$\\frac{1}{3}x+\\frac{1}{9}=1$의 양변에 $9$를 곱하면 $3x+1=9$이므로 $x=\\frac{8}{3}$이다. $8\\div3=2.666\\cdots$이므로 $x=2.\\dot{6}$이다.",
+        "bGoal": "분수로 구한 해를 나눗셈으로 순환소수로 고치기",
+        "bReason": "나눗셈 대신 동치 변환으로 고친 맞는 답도 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{3}x+\\frac{1}{9}=1$에서 $x=\\frac{8}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\div3=2.666\\cdots$",
+              "$\\frac{8}{3}=2+\\frac{2}{3}=2+0.\\dot{6}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=2.\\dot{6}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "방정식의 해를 분수로 구한 뒤 순환소수로 답하려면, 그 분수의 분자를 분모로 {나누어} 소수로 고친다. 예를 들어 해가 $x=\\frac{8}{3}$이면 $x=${$2.\\dot{6}$}이다.",
+        "cAnswers": [
+          "나누어",
+          "$2.\\dot{6}$"
+        ],
+        "cReason": "둘째 답 '순환소수'가 문장 앞에 그대로 있어 베끼게 되므로 예의 결과를 묻게 바꿈",
+        "exampleNeeded": true,
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분수 해를 소수로 변환",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2217,
+        "part": "m2plus",
+        "sourceFingerprint": "fc25be44f2ee8cd14f807ba76e024f367d067fa00277b5677b334ebcf3593b09",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2217
+        },
+        "directReview": null,
+        "cMarkedSentence": "방정식의 해를 분수로 구한 뒤 순환소수로 답하려면, 그 분수의 분자를 분모로 {나누어} 소수로 고친다. 예를 들어 해가 $x=\\frac{8}{3}$이면 $x=${$2.\\dot{6}$}이다.",
+        "cSlotAnswers": [
+          "나누어",
+          "$2.\\dot{6}$"
+        ],
+        "cStudentSentence": "방정식의 해를 분수로 구한 뒤 순환소수로 답하려면, 그 분수의 분자를 분모로 □ 소수로 고친다. 예를 들어 해가 $x=\\frac{8}{3}$이면 $x=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나누어",
+            "equivalentAnswers": [
+              "나누어"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2.\\dot{6}$",
+            "equivalentAnswers": [
+              "$2.\\dot{6}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나누어"
+          ],
+          [
+            "$2.\\dot{6}$"
+          ]
+        ],
+        "proposalFingerprint": "715638142efecf8df5e246264097c56265639f53421ee0c845d31ba2c43c96c6"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-04-xc26",
+        "section": "중2::1. 수와 식::순환소수를 포함한 식의 계산",
+        "term": "순환소수 자료의 평균",
+        "kind": "방법",
+        "level": "상",
+        "definition": "순환소수가 섞인 자료의 평균도 각 값을 {분수}로 고쳐 {합}을 구한 뒤 개수로 나눈다.",
+        "example": {
+          "prompt": "$0.\\dot{7}$과 $0.\\dot{1}$의 평균",
+          "answer": "$\\frac{4}{9}$"
+        },
+        "studentC": "순환소수가 섞인 자료의 평균도 각 값을 □로 고쳐 □을 구한 뒤 개수로 나눈다.",
+        "answers": [
+          "분수",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-04-xc26",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c3의 덧셈에 개수로 나누기만 더한 응용이라 새 개념이 없음",
+        "cDecision": "keep",
+        "cReason": "평균 구하는 순서(분수로 고침, 합, 개수로 나눔)가 분명한 짧은 빈칸임",
+        "exclusionReason": "B 제외: m2-01-04-c3(분수로 고쳐 계산)의 단순 응용으로 목표가 중복되는 제목.",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분수로 고쳐 합을 나눔",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2218,
+        "part": "m2plus",
+        "sourceFingerprint": "50086bb514df0e817c2bf5f9ac7ebb408717b765ba285ccb08a3ae613beb7293",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2218
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "순환소수가 섞인 자료의 평균도 각 값을 □로 고쳐 □을 구한 뒤 개수로 나눈다.",
+        "cFrozenDefinition": "순환소수가 섞인 자료의 평균도 각 값을 {분수}로 고쳐 {합}을 구한 뒤 개수로 나눈다.",
+        "cFrozenAnswers": [
+          "분수",
+          "합"
+        ],
+        "cMarkedSentence": "순환소수가 섞인 자료의 평균도 각 값을 {분수}로 고쳐 {합}을 구한 뒤 개수로 나눈다.",
+        "cSlotAnswers": [
+          "분수",
+          "합"
+        ],
+        "cStudentSentence": "순환소수가 섞인 자료의 평균도 각 값을 □로 고쳐 □을 구한 뒤 개수로 나눈다.",
+        "cAnswers": [
+          "분수",
+          "합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분수"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "a04e38b35c1f19edb32bf2206991630f2c86525345e3c56c74431999423866f7"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-05-xc2",
+        "section": "중2::1. 수와 식::지수법칙",
+        "term": "거듭제곱 읽기",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$a^n$은 {$a$의 $n$제곱}이라 읽는다. 지수가 $2$이면 {제곱}, $3$이면 세제곱이라 읽는다.",
+        "example": {
+          "prompt": "$3^4$을 읽으면?",
+          "answer": "$3$의 네제곱"
+        },
+        "studentC": "$a^n$은 □이라 읽는다. 지수가 $2$이면 □, $3$이면 세제곱이라 읽는다.",
+        "answers": [
+          "$a$의 $n$제곱",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-05-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$3^4$, $5^2$, $7^3$을 각각 어떻게 읽는지 쓰시오.",
+        "bAnswer": "$3$의 네제곱, $5$의 제곱, $7$의 세제곱",
+        "bGoal": "거듭제곱을 바르게 읽기",
+        "bReason": "읽는 법은 구체적인 수가 있어야 답할 수 있어 지수가 $4$, $2$, $3$인 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$의 네제곱"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$의 제곱"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$의 세제곱"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "일반형 읽기와 '제곱'이라는 이름을 묻는 짧은 빈칸이라 유지한다.",
+        "exampleNeeded": true,
+        "learningRole": "naming",
+        "roleReason": "거듭제곱 읽는 법",
+        "authorBatch": 28,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2219,
+        "part": "m2plus",
+        "sourceFingerprint": "3b60b9f9a9f76e2731d9f443583e4fff3fbe39406b0cd1da8af6dc39a8652a96",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2219
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a^n$은 □이라 읽는다. 지수가 $2$이면 □, $3$이면 세제곱이라 읽는다.",
+        "cFrozenDefinition": "$a^n$은 {$a$의 $n$제곱}이라 읽는다. 지수가 $2$이면 {제곱}, $3$이면 세제곱이라 읽는다.",
+        "cFrozenAnswers": [
+          "$a$의 $n$제곱",
+          "제곱"
+        ],
+        "cMarkedSentence": "$a^n$은 {$a$의 $n$제곱}이라 읽는다. 지수가 $2$이면 {제곱}, $3$이면 세제곱이라 읽는다.",
+        "cSlotAnswers": [
+          "$a$의 $n$제곱",
+          "제곱"
+        ],
+        "cStudentSentence": "$a^n$은 □이라 읽는다. 지수가 $2$이면 □, $3$이면 세제곱이라 읽는다.",
+        "cAnswers": [
+          "$a$의 $n$제곱",
+          "제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a$의 $n$제곱",
+            "equivalentAnswers": [
+              "$a$의 $n$제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a$의 $n$제곱"
+          ],
+          [
+            "제곱"
+          ]
+        ],
+        "proposalFingerprint": "2ea6780a936d04ba4e5acb67ba5682b5236c23eab5377f809c624f63c2b573f4"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-05-xc3",
+        "section": "중2::1. 수와 식::지수법칙",
+        "term": "지수가 $1$인 거듭제곱",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$a^1$은 $a$를 한 번 쓴 것이므로 그냥 {$a$}로 쓰고 지수 {$1$}은 생략한다.",
+        "example": {
+          "prompt": "$a\\times a^3$을 거듭제곱으로",
+          "answer": "$a^4$"
+        },
+        "studentC": "$a^1$은 $a$를 한 번 쓴 것이므로 그냥 □로 쓰고 지수 □은 생략한다.",
+        "answers": [
+          "$a$",
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-05-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$a\\times a^3$을 거듭제곱 하나로 나타내시오. 이때 지수가 쓰여 있지 않은 $a$의 지수를 얼마로 보았는지도 쓰시오.",
+        "bAnswer": "$a$는 $a^1$과 같으므로 지수를 $1$로 본다. $a\\times a^3=a^{1+3}=a^4$",
+        "bGoal": "생략된 지수 $1$을 알고 계산에 쓰기",
+        "bReason": "성질만 외우지 않도록 $a\\times a^3$ 계산에서 숨은 지수를 밝히게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a^4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$의 지수는 $1$이다",
+              "$a=a^1$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "지수가 쓰여 있지 않은 $a$는 지수가 {$1$}인 거듭제곱과 같다. 이 지수는 보통 {생략}한다.",
+        "cAnswers": [
+          "$1$",
+          "생략"
+        ],
+        "cReason": "문장 속 $a^1$과 '$a$를 한 번'이 두 답을 그대로 보여 주어 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "생략된 지수 $1$의 처리",
+        "authorBatch": 28,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2220,
+        "part": "m2plus",
+        "sourceFingerprint": "16fa20228309415463de56039f2a396ce101a7f16be853ff06c8c4a21dcaa6c5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2220
+        },
+        "directReview": null,
+        "cMarkedSentence": "지수가 쓰여 있지 않은 $a$는 지수가 {$1$}인 거듭제곱과 같다. 이 지수는 보통 {생략}한다.",
+        "cSlotAnswers": [
+          "$1$",
+          "생략"
+        ],
+        "cStudentSentence": "지수가 쓰여 있지 않은 $a$는 지수가 □인 거듭제곱과 같다. 이 지수는 보통 □한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "생략",
+            "equivalentAnswers": [
+              "생략"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "생략"
+          ]
+        ],
+        "proposalFingerprint": "6e0a7f0730af2b51d04a02cac400149c15ab6210362754ea64c75507a71a9909"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-05-xc4",
+        "section": "중2::1. 수와 식::지수법칙",
+        "term": "밑이 다른 거듭제곱의 곱",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$x^2\\times y^3$처럼 {밑}이 다르면 지수끼리 {더할 수 없고} 그대로 이어 쓴다.",
+        "example": {
+          "prompt": "$a^2\\times b^3$을 간단히",
+          "answer": "$a^2b^3$"
+        },
+        "studentC": "$x^2\\times y^3$처럼 □이 다르면 지수끼리 □ 그대로 이어 쓴다.",
+        "answers": [
+          "밑",
+          "더할 수 없고"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-05-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$a^2\\times b^3$을 간단히 나타내고, $a^2\\times a^3$과 달리 지수 $2$와 $3$을 더하면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "$a^2b^3$이다. 밑이 $a$와 $b$로 달라서 같은 것을 $5$번 곱한 것이 아니기 때문이다.",
+        "bGoal": "밑이 다르면 지수를 더할 수 없음을 설명하기",
+        "bReason": "밑이 같은 경우와 대비하도록 $a^2\\times a^3$과 $a^2\\times b^3$을 함께 제시했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a^2b^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑이 서로 다르다",
+              "같은 문자를 거듭 곱한 것이 아니다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$x^2\\times y^3$처럼 {밑}이 다르면 지수끼리 {더할} 수 없고 $x^2y^3$으로 그대로 이어 쓴다.",
+        "cAnswers": [
+          "밑",
+          "더할"
+        ],
+        "cReason": "'더할 수 없고'는 구절 전체가 빈칸이라 핵심 낱말만 남기고 결과식을 보였다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "밑이 다를 때 지수법칙을 못 쓰는 까닭",
+        "authorBatch": 28,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2221,
+        "part": "m2plus",
+        "sourceFingerprint": "d041e3f0bf2ae6f8d7a9bc39305f4d0ade2bf04f3ee883be8ac4d1bfccffc13a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2221
+        },
+        "directReview": null,
+        "cMarkedSentence": "$x^2\\times y^3$처럼 {밑}이 다르면 지수끼리 {더할} 수 없고 $x^2y^3$으로 그대로 이어 쓴다.",
+        "cSlotAnswers": [
+          "밑",
+          "더할"
+        ],
+        "cStudentSentence": "$x^2\\times y^3$처럼 □이 다르면 지수끼리 □ 수 없고 $x^2y^3$으로 그대로 이어 쓴다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑",
+            "equivalentAnswers": [
+              "밑"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더할",
+            "equivalentAnswers": [
+              "더할"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑"
+          ],
+          [
+            "더할"
+          ]
+        ],
+        "proposalFingerprint": "fd31f53406b45d89325cf12e9a345c72bea8165e0c4d3dc1e76c5a2e94add5d5"
+      }
+    }
+  ]
+}

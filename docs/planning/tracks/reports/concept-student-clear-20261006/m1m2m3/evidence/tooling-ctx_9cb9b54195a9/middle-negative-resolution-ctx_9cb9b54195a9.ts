@@ -1,0 +1,20 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {normalizeProposal} from 'C:/Users/user/orca/workspaces/todays-math/student-clear-integration-20261006/scripts/qa/concept-blank/student-clear/proposals';
+const root='C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3';
+const read=(p:string)=>JSON.parse(fs.readFileSync(root+'/'+p,'utf8')),snapshotPath='evidence/negative-current-ctx_9cb9b54195a9.json',snap=read(snapshotPath),a=read('audit.json'),l=read('final-editorial.json');
+const baseline=JSON.parse(fs.readFileSync('D:/tmp/concept-student-clear-20261006/baseline.json','utf8')),sources=new Map(Object.values(baseline.parts).flatMap((p:any)=>p.concepts).map((r:any)=>[r.id,r]));
+const rel='evidence/resume-editorial-ctx_9cb9b54195a9',batches=fs.readdirSync(root+'/'+rel).filter(n=>n.startsWith('verdicts-')).map(n=>{const v=read(rel+'/'+n),input=JSON.parse(fs.readFileSync(v.input,'utf8')),af=rel+'/amended-'+v.label+'.json';return{verdict:v,path:rel+'/'+n,input,after:fs.existsSync(root+'/'+af)?read(af):{rows:input.rows.map((r:any)=>r.proposal)},afterPath:af};});
+const rows=snap.current.map((s:any,index:number)=>{
+ const found=batches.flatMap(b=>(b.verdict.independentFindingDispositions??[]).filter((d:any)=>d.id===s.id).map((d:any)=>({b,d})));
+ if(found.length>1)throw Error('Multiple adjudications '+s.id);
+ if(!found.length)return {index,id:s.id,sourceIndex:s.sourceIndex,reviewedNormalizedHash:s.review.reviewedHash,status:'pending',owner:index>=100?'Root reserved disjoint follow-up':'primary'};
+ const {b,d}=found[0],initial=b.input.rows.find((r:any)=>r.proposal.id===s.id)?.proposal,after=b.after.rows.find((r:any)=>r.id===s.id),current=a.rows.find((r:any)=>r.id===s.id),ledger=l.rows.find((r:any)=>r.id===s.id);
+ if(initial?.proposalFingerprint!==s.raw.proposalFingerprint||!after||ledger?.proposalFingerprint!==current?.proposalFingerprint||ledger.learningRole!==current.learningRole)throw Error('Reading binding mismatch '+s.id);
+ const later=batches.filter(t=>t.path!==b.path&&t.verdict.notes.some((n:any)=>n.id===s.id)).map(t=>({evidence:t.path,before:t.input.rows.find((r:any)=>r.proposal.id===s.id).proposal.proposalFingerprint,after:t.after.rows.find((r:any)=>r.id===s.id).proposalFingerprint}));
+ return{index,id:s.id,sourceIndex:s.sourceIndex,reviewedNormalizedHash:s.review.reviewedHash,status:'resolved',decision:d.decision,reason:d.reason,originalRawFingerprint:s.raw.proposalFingerprint,firstResolutionFingerprint:after.proposalFingerprint,currentRawFingerprint:current.proposalFingerprint,currentNormalizedHash:normalizeProposal(current,sources.get(s.id) as any).hash,dispositionEvidence:b.path,originalInputEvidence:rel+'/'+path.basename(b.verdict.input),amendedEvidence:b.afterPath,rootEvidence:d.rootEvidence??b.verdict.rootEvidence??null,laterRecordedReadings:later,currentReader:ledger.reader,currentReadAt:ledger.readAt,currentInputEvidence:ledger.inputEvidence};
+});
+const result={generatedAt:new Date().toISOString(),sourceCommit:a.sourceCommit,snapshot:snapshotPath,snapshotSha256:createHash('sha256').update(fs.readFileSync(root+'/'+snapshotPath)).digest('hex'),scopeCount:rows.length,resolved:rows.filter((r:any)=>r.status==='resolved').length,pending:rows.filter((r:any)=>r.status==='pending').length,amended:rows.filter((r:any)=>r.decision==='amend').length,retainedWithReason:rows.filter((r:any)=>r.decision==='retain-with-reason').length,staleNotApplied:snap.stale,disclosure:'Per-ID decisions are copied only from actual recorded direct-reading verdicts; this summary performs evidence binding, not semantic adjudication. Retention means a stated disagreement with a finding, not independent approval.',rows};
+fs.writeFileSync(root+'/negative-resolution-ctx_9cb9b54195a9.json',JSON.stringify(result,null,2)+'\n');
+console.log(JSON.stringify({resolved:result.resolved,pending:result.pending,amended:result.amended,retained:result.retainedWithReason,stale:snap.stale.length}));

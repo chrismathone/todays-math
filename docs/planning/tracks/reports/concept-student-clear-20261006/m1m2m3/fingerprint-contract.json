@@ -1,0 +1,21 @@
+{
+  "algorithm": "SHA-256 of UTF-8 JSON.stringify object, in stated field order; undefined values are omitted and null values retained",
+  "fields": [
+    "bDecision",
+    "bPrompt",
+    "bAnswer",
+    "bRequiredIdeas",
+    "cDecision",
+    "cMarkedSentence",
+    "cAcceptedAnswers",
+    "coreAfter"
+  ],
+  "writer": "D:/tmp/concept-student-clear-20261006/middle-student-publish.mjs",
+  "function": "source.entries.flatMap callback; proposal.proposalFingerprint assignment",
+  "sourceFingerprint": "SHA-256 UTF-8 JSON.stringify original entry with original key order",
+  "scope": "Question and learning-definition content; editorial role/reasons are separately recorded, this hash is not independent approval",
+  "example": {
+    "id": "m1-01-01-c1",
+    "proposalFingerprint": "d205911baafa60354564e1683348a66a6feca235c44731957c215f30a260ac64"
+  }
+}

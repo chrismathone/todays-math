@@ -1,6 +1,7 @@
 import katex from "katex";
 import {
   type ConceptBlankBank,
+  blankKeywords,
   splitBlankSentence,
 } from "@/contracts/conceptBlank.contract";
 import {
@@ -80,13 +81,48 @@ export function notationFaults(
 /** 은행 한 묶음의 모든 글 칸을 잰다. */
 export function bankNotationFaults(bank: ConceptBlankBank): NotationFault[] {
   const out: NotationFault[] = [];
-  const scan = (id: string, field: string, raw: string, sentence = false) => {
-    for (const f of notationFaults(raw, sentence))
+  const scan = (
+    id: string,
+    field: string,
+    raw: string,
+    sentence = false,
+    inputAlias = false,
+  ) => {
+    for (const f of notationFaults(raw, sentence)) {
+      // Student input can name the same polygon with a numeral. Keep that reviewed
+      // alternative; the displayed canonical answer and all authored prose still
+      // use the standard name. This does not exempt math or KaTeX errors.
+      if (inputAlias && f.rule === "아라비아 도형 이름") continue;
       out.push({ id, field, ...f });
+    }
   };
   for (const c of bank.concepts) {
     scan(c.id, "term", c.term);
     scan(c.id, "definition", c.definition, true);
+    if (c.bQuestion) {
+      scan(c.id, "bQuestion.prompt", c.bQuestion.prompt);
+      scan(c.id, "bQuestion.answer", c.bQuestion.answer);
+      c.bQuestion.requiredIdeas.forEach((idea, i) =>
+        idea.anyOf.forEach((text, j) =>
+          scan(c.id, `bQuestion.requiredIdeas.${i}.${j}`, text),
+        ),
+      );
+    }
+    if (c.clozeQuestion) {
+      scan(c.id, "clozeQuestion.sentence", c.clozeQuestion.sentence, true);
+      const canonical = blankKeywords(c.clozeQuestion.sentence);
+      c.clozeQuestion.acceptedAnswers.forEach((answers, i) =>
+        answers.forEach((text, j) =>
+          scan(
+            c.id,
+            `clozeQuestion.acceptedAnswers.${i}.${j}`,
+            text,
+            false,
+            text !== canonical[i],
+          ),
+        ),
+      );
+    }
     if (c.example) {
       scan(c.id, "example.prompt", c.example.prompt);
       scan(c.id, "example.answer", c.example.answer);

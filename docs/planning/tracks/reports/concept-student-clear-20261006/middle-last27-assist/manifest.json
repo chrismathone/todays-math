@@ -1,0 +1,134 @@
+{
+  "status": "SHA-256 byte manifest; manifest excludes itself to avoid circular hashing",
+  "taskId": "task_c687f2c40ea2",
+  "dispatchId": "ctx_b868a7c064eb",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "author.cjs",
+      "bytes": 31847,
+      "sha256": "0e77cb451435062e473813d23cc287690a8074859ec87bcc0b24419ec391d4b1"
+    },
+    {
+      "path": "build.ts",
+      "bytes": 7963,
+      "sha256": "306033362fe9364395a7d698e70d738c128bc3bc0baf24d94a52986e58263b98"
+    },
+    {
+      "path": "candidate-normalized.json",
+      "bytes": 54378,
+      "sha256": "46868512ee3e518db5d4783e9c3aae5950ea429dac3b99a2f87877496da5c32d"
+    },
+    {
+      "path": "candidate-raw.json",
+      "bytes": 97520,
+      "sha256": "d1b1e79470b40c257ca579ead5a96522a15a912e60e5521f0e65915b33f01b4a"
+    },
+    {
+      "path": "decisions.json",
+      "bytes": 45041,
+      "sha256": "fa8ac3fd107084891754f701e3a68d688a937542eb86c7f07d9d6b575870cc85"
+    },
+    {
+      "path": "evidence/after-reading.txt",
+      "bytes": 34063,
+      "sha256": "62a2ebe55137c7afc85c3a87592c440b3a036040bbd5145b799606e9a3a2af40"
+    },
+    {
+      "path": "evidence/before-normalized.json",
+      "bytes": 50924,
+      "sha256": "a09af4ef6fe08ebb56d4379d36dfe6374e4cd9be3767fae0e8e313a01909bb04"
+    },
+    {
+      "path": "evidence/before-reading.txt",
+      "bytes": 31224,
+      "sha256": "bd04c87ad07b2fb6df5e7a953e15bad6952e0a67f476f9cc16f72f1de9b85003"
+    },
+    {
+      "path": "evidence/current-editorial.json",
+      "bytes": 31777,
+      "sha256": "2ec163bd181f6ecdf616db78a427bae1267e4bd717943a80970692e23f927059"
+    },
+    {
+      "path": "evidence/current-raw.json",
+      "bytes": 93641,
+      "sha256": "eebc26076b10822230cf8d8806cdf4c04614d7124f43ad8d11175c228fa089c3"
+    },
+    {
+      "path": "evidence/input.json",
+      "bytes": 72771,
+      "sha256": "b3134542e304352c598b4aace56761c191ccfc5f222ede50eaf1b799f7593738"
+    },
+    {
+      "path": "evidence/inputs.json",
+      "bytes": 2754,
+      "sha256": "ed7a5c2795353a328a1df90207f67fd1b5bb4dd06112bb75145f4a8e2df784c5"
+    },
+    {
+      "path": "evidence/matching-candidates.json",
+      "bytes": 18511,
+      "sha256": "d3d59dfa7bf2ef3978ef89f4218f3cab6ec1925fbb94008d110a686e4204515c"
+    },
+    {
+      "path": "evidence/source-entries.json",
+      "bytes": 17439,
+      "sha256": "735b5dc3fd3c8f277defff07d716cf4bb35dbbac9c1a43c3908af18d413c5b20"
+    },
+    {
+      "path": "evidence/source-evidence-entries.json",
+      "bytes": 18697,
+      "sha256": "bfb8f1371af8a7e9a94d2649f86bbe79bfa3377b9d6aeeb8d3d1b9a67df8d166"
+    },
+    {
+      "path": "final-reading-ledger.json",
+      "bytes": 62284,
+      "sha256": "8a82bbcee7015102505e20a5372f5619f866b4e479dd57f190db10447c8c21b9"
+    },
+    {
+      "path": "finalize.cjs",
+      "bytes": 8414,
+      "sha256": "83f0d45b84302e9a2ed796bfcaf6f8804eae9a24ad8c0b151689f3d56eaab413"
+    },
+    {
+      "path": "fingerprints.json",
+      "bytes": 16083,
+      "sha256": "a687a3ee7120ef7bc860181f804bb1895b635c4667774bba03296499398ab331"
+    },
+    {
+      "path": "handoff.txt",
+      "bytes": 5372,
+      "sha256": "1fa201dd6887f4e197a8e6fb90d0607c581d84f8197c241e36779c0d2f46cce1"
+    },
+    {
+      "path": "record-reading.cjs",
+      "bytes": 9766,
+      "sha256": "a13235f413713995c8f4fa4112fbd2455d623de20353e0009ccd50186f3925eb"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 851,
+      "sha256": "1376160e2c08d6b99d33687ad271cac70e2c8f34341f2d4ca56b8488b3f8c1c0"
+    },
+    {
+      "path": "validation.json",
+      "bytes": 19070,
+      "sha256": "58ce8fabaf549f24c48146d9b53943964a3dea49e3b247bdeb4a358e30ba7f71"
+    },
+    {
+      "path": "verify-index.cjs",
+      "bytes": 1422,
+      "sha256": "9885f771a6e5812f080090417fdb77e00412bfdf9ad00ea4b3555ad387b9f0b9"
+    }
+  ],
+  "externalHelperFiles": [
+    {
+      "path": "D:/tmp/concept-student-clear-20261006/middle-last27-ctx_b868a7c064eb-capture.py",
+      "bytes": 2616,
+      "sha256": "4cd08b3a1588d70750bd29a420891e82138cdcbb066a799286f86852607e96f8"
+    }
+  ]
+}

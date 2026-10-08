@@ -1,0 +1,1508 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T06:03:12.552Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-05-c7",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "평행사변형과 무게중심",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 그 꼭짓점을 지나지 않는 대각선을 {삼등분}한다. 교점이 삼각형의 {무게중심}이기 때문이다.",
+        "studentC": "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 그 꼭짓점을 지나지 않는 대각선을 □한다. 교점이 삼각형의 □이기 때문이다.",
+        "answers": [
+          "삼등분",
+          "무게중심"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-c7",
+        "learningRole": "application",
+        "roleReason": "평행사변형의 대각선을 무게중심 두 개가 삼등분한다.",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형 $ABCD$에서 $\\overline{BC}$, $\\overline{CD}$의 중점을 각각 $M$, $N$이라 하고, $\\overline{AM}$, $\\overline{AN}$이 대각선 $\\overline{BD}$와 만나는 점을 각각 $P$, $Q$라 하자. $\\overline{BP}$, $\\overline{PQ}$, $\\overline{QD}$의 길이 관계를 쓰고 이유를 쓰시오.",
+        "bAnswer": "$\\overline{BP}=\\overline{PQ}=\\overline{QD}$이다. 두 대각선의 교점 $O$는 $\\overline{AC}$, $\\overline{BD}$의 중점이므로 $\\triangle ABC$에서 $\\overline{AM}$, $\\overline{BO}$는 중선이고 $P$는 무게중심이다. 따라서 $\\overline{BP}=\\frac{2}{3}\\overline{BO}=\\frac{1}{3}\\overline{BD}$이다. 같은 방법으로 $Q$는 $\\triangle ACD$의 무게중심이므로 $\\overline{QD}=\\frac{1}{3}\\overline{BD}$이고, $\\overline{PQ}=\\frac{1}{3}\\overline{BD}$이다.",
+        "bGoal": "평행사변형에서 무게중심 찾기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$BP=PQ=QD$",
+              "대각선 BD를 삼등분한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선의 교점 $O$는 $AC$, $BD$의 중점이므로 $P$와 $Q$가 각각 $\\triangle ABC$, $\\triangle ACD$의 무게중심이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$BP=\\frac23BO=\\frac13BD$, $DQ=\\frac23DO=\\frac13BD$이다",
+              "두 무게중심이 각 중선을 꼭짓점 쪽에서 2:1로 나누고 BO=DO이므로 BP와 DQ가 모두 BD의 1/3이다"
+            ]
+          }
+        ],
+        "bReason": "꼭짓점과 중점, 대각선을 모두 지정해 그림 없이 상황을 재현했다.",
+        "cDecision": "rewrite",
+        "cReason": "어느 삼각형의 무게중심인지 숨겨 놓은 이유 빈칸 대신 실제 중점·교점을 주고 대각선 삼등분 관계를 확인한다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 697,
+        "part": "m2",
+        "sourceFingerprint": "9f7742eed98bb1665918030127e9b0a124ee74ab097df7dce78dd5ca9b6d5c8b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 697
+        },
+        "directReview": null,
+        "cMarkedSentence": "평행사변형 $ABCD$에서 $BC$, $CD$의 중점을 각각 $M$, $N$이라 하자. $AM$, $AN$과 대각선 $BD$의 교점을 각각 $P$, $Q$라 하면 $BP:PQ:QD=$ {$1:1:1$}이다.",
+        "cSlotAnswers": [
+          "$1:1:1$"
+        ],
+        "cStudentSentence": "평행사변형 $ABCD$에서 $BC$, $CD$의 중점을 각각 $M$, $N$이라 하자. $AM$, $AN$과 대각선 $BD$의 교점을 각각 $P$, $Q$라 하면 $BP:PQ:QD=$ □이다.",
+        "cAnswers": [
+          "$1:1:1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1:1:1$",
+            "equivalentAnswers": [
+              "$1:1:1$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1:1:1$"
+          ]
+        ],
+        "proposalFingerprint": "427c5abfd1c1c4ee60251a3bdae0fd108205c1df571c4fdf32db9488a5514029",
+        "cAfter": "평행사변형 $ABCD$에서 $BC$, $CD$의 중점을 각각 $M$, $N$이라 하자. $AM$, $AN$과 대각선 $BD$의 교점을 각각 $P$, $Q$라 하면 $BP:PQ:QD=$ {$1:1:1$}이다.",
+        "exampleNeeded": true
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-01-02-c1",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "유리수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "분자와 분모가 모두 {정수}인 {분수}로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+        "studentC": "분자와 분모가 모두 □인 □로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+        "answers": [
+          "정수",
+          "분수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "분수와 관련지어 유리수의 뜻을 쓰시오. 분자와 분모가 각각 어떤 수여야 하는지와 분모에 대한 제한까지 밝히시오.",
+        "bAnswer": "분자와 분모가 모두 정수이고 분모가 $0$이 아닌 분수로 나타낼 수 있는 수이다.",
+        "bGoal": "분수 꼴로 유리수의 뜻 말하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분자와 분모가 모두 정수이고 분모가 0이 아닌 분수로 나타낼 수 있는 수이다",
+              "정수 $a$, $b$에 대하여 $b\\ne0$인 $\\frac ab$로 나타낼 수 있는 수이다"
+            ]
+          }
+        ],
+        "bReason": "분자·분모의 종류만 말하는 답이 아니라 그 분수로 나타낼 수 있다는 유리수의 핵심 정의를 확인한다.",
+        "cDecision": "keep",
+        "cReason": "정수·분수 두 빈칸과 분모 조건이 모두 보이는 짧은 정의라 유지한다.",
+        "learningRole": "definition",
+        "roleReason": "정수끼리의 분수 꼴이라는 유리수의 뜻",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 758,
+        "part": "m3",
+        "sourceFingerprint": "b35ac9b0f9b9940b81149803c4a1da3090922f62f086e4f656efe45e61d3b719",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 758
+        },
+        "directReview": null,
+        "cFrozenSentence": "분자와 분모가 모두 □인 □로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+        "cFrozenDefinition": "분자와 분모가 모두 {정수}인 {분수}로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+        "cFrozenAnswers": [
+          "정수",
+          "분수"
+        ],
+        "cMarkedSentence": "분자와 분모가 모두 {정수}인 {분수}로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+        "cSlotAnswers": [
+          "정수",
+          "분수"
+        ],
+        "cStudentSentence": "분자와 분모가 모두 □인 □로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+        "cAnswers": [
+          "정수",
+          "분수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ],
+          [
+            "분수"
+          ]
+        ],
+        "proposalFingerprint": "b6173b74cb6ad69a6bccdae3a6a2d0b1c3cdb274c22a04e1e3a7faf5891c0e1e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-01-03-c4",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "분모의 유리화",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 {유리수}로 바꾸는 일을 분모의 유리화라 한다.",
+        "studentC": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 □로 바꾸는 일을 분모의 유리화라 한다.",
+        "answers": [
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "분모에 근호가 있는 분수에서 '분모의 유리화'가 무엇인지 쓰고, $\\frac{1}{\\sqrt{5}}$의 분모를 유리화하시오.",
+        "bAnswer": "분자와 분모에 같은 $0$이 아닌 수를 곱해 분모를 유리수로 바꾸는 것이다. $\\frac{1}{\\sqrt{5}}=\\frac{\\sqrt{5}}{5}$",
+        "bGoal": "분모의 유리화의 뜻과 실행",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분자와 분모에 같은 0이 아닌 수를 곱해 분모를 유리수로 바꾸는 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{\\sqrt5}{5}$"
+            ]
+          }
+        ],
+        "bReason": "분수값을 유지하는 같은 영이 아닌 수의 곱셈 조건을 유리화 정의에 함께 요구한다.",
+        "cDecision": "keep",
+        "cReason": "목표인 '유리수' 한 칸이 정의의 핵심이라 유지한다.",
+        "learningRole": "definition",
+        "roleReason": "분모를 유리수로 바꾸는 유리화의 뜻",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 771,
+        "part": "m3",
+        "sourceFingerprint": "57924710a47c75f8b3b7844435dc38b6bc3583e03da1ad56090bd3c3d29430fc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 771
+        },
+        "directReview": null,
+        "cFrozenSentence": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 □로 바꾸는 일을 분모의 유리화라 한다.",
+        "cFrozenDefinition": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 {유리수}로 바꾸는 일을 분모의 유리화라 한다.",
+        "cFrozenAnswers": [
+          "유리수"
+        ],
+        "cMarkedSentence": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 {유리수}로 바꾸는 일을 분모의 유리화라 한다.",
+        "cSlotAnswers": [
+          "유리수"
+        ],
+        "cStudentSentence": "분모에 근호가 있는 분수에서 분자와 분모에 같은 $0$이 아닌 수를 곱해, 분모를 □로 바꾸는 일을 분모의 유리화라 한다.",
+        "cAnswers": [
+          "유리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "e81c57b920cab3ffaab52797c36e360f21abeccd589cdacd61e9f9b02d8fc30e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c5",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "완전제곱식",
+        "kind": "정의",
+        "level": "중",
+        "definition": "어떤 다항식을 {제곱}한 꼴이거나 그런 식에 {상수}가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "studentC": "어떤 다항식을 □한 꼴이거나 그런 식에 □가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "answers": [
+          "제곱",
+          "상수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c5",
+        "learningRole": "definition",
+        "roleReason": "제곱한 꼴 또는 그 상수배",
+        "bDecision": "rewrite",
+        "bPrompt": "완전제곱식이란 어떤 식인지 설명하고 예를 두 개 드시오. 그중 하나는 $1$이 아닌 상수가 곱해진 예로 쓰시오.",
+        "bAnswer": "어떤 다항식을 제곱한 꼴이거나 그런 식에 상수가 곱해진 식이다. 예: $(x+3)^2$, $2(a-b)^2$",
+        "bGoal": "완전제곱식의 뜻",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다항식을 제곱한 꼴 또는 그 식에 상수가 곱해진 꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "완전제곱식의 타당한 예 두 개를 쓰며 그중 하나는 1이 아닌 상수가 곱해진 꼴이다"
+            ]
+          }
+        ],
+        "bReason": "정의만 쓰고 요청한 두 예를 빠뜨리는 답을 통과시키지 않는다. 타당한 다른 다항식 제곱 예도 허용한다.",
+        "cDecision": "keep",
+        "cReason": "제곱과 상수를 묻는 빈칸에 예가 있어 분명하다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 788,
+        "part": "m3",
+        "sourceFingerprint": "6e04c37a992b47850b9a305f3195840a3ee2613a572d9363855869cf3b01e39b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 788
+        },
+        "directReview": null,
+        "cFrozenSentence": "어떤 다항식을 □한 꼴이거나 그런 식에 □가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "cFrozenDefinition": "어떤 다항식을 {제곱}한 꼴이거나 그런 식에 {상수}가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "cFrozenAnswers": [
+          "제곱",
+          "상수"
+        ],
+        "cMarkedSentence": "어떤 다항식을 {제곱}한 꼴이거나 그런 식에 {상수}가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "cSlotAnswers": [
+          "제곱",
+          "상수"
+        ],
+        "cStudentSentence": "어떤 다항식을 □한 꼴이거나 그런 식에 □가 곱해진 식이 완전제곱식이다 — $(x+3)^2$, $2(a-b)^2$.",
+        "cAnswers": [
+          "제곱",
+          "상수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "상수",
+            "equivalentAnswers": [
+              "상수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱"
+          ],
+          [
+            "상수"
+          ]
+        ],
+        "proposalFingerprint": "e7404ff14caad68d396f706c537e78f1cf3bf806674e004c0036a676ffef815b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c1",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "이차방정식",
+        "kind": "정의",
+        "level": "하",
+        "definition": "항을 모두 {좌변}으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 {$0$이 아닌} 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "studentC": "항을 모두 □으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 □ 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "answers": [
+          "좌변",
+          "$0$이 아닌"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 방정식을 $x$에 대한 이차방정식이라 하는지, 모든 항을 한쪽으로 옮겨 정리한 꼴과 계수의 조건을 들어 설명하시오.",
+        "bAnswer": "모든 항을 좌변으로 옮겨 정리했을 때 $ax^2+bx+c=0$ ($a$, $b$, $c$는 상수, $a\\ne 0$) 꼴이 되는 방정식이다.",
+        "bGoal": "이차방정식의 뜻",
+        "bReason": "질문에서 계수의 조건을 요청했으므로 x² 계수 영이 아닌 조건과 세 계수의 상수 조건을 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$ax^2+bx+c=0$",
+              "x에 대한 이차식=0"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a\\ne0$",
+              "$x^2$의 계수가 $0$이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "a, b, c는 x와 관계없는 상수이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "정리 방향과 계수 조건을 묻는 분명한 정의 빈칸",
+        "learningRole": "definition",
+        "roleReason": "$ax^2+bx+c=0$, $a\\ne 0$ 꼴의 방정식",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 798,
+        "part": "m3",
+        "sourceFingerprint": "db5092c9ae8ffa21cac8b6b5e8a8df571f66aa5784d4ea637c12f4c0c257717e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 798
+        },
+        "directReview": null,
+        "cFrozenSentence": "항을 모두 □으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 □ 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "cFrozenDefinition": "항을 모두 {좌변}으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 {$0$이 아닌} 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "cFrozenAnswers": [
+          "좌변",
+          "$0$이 아닌"
+        ],
+        "cMarkedSentence": "항을 모두 {좌변}으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 {$0$이 아닌} 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "cSlotAnswers": [
+          "좌변",
+          "$0$이 아닌"
+        ],
+        "cStudentSentence": "항을 모두 □으로 모아 정리하면 $ax^2+bx+c=0$ ($a$는 □ 수) 꼴이 되는 방정식이 이차방정식이다.",
+        "cAnswers": [
+          "좌변",
+          "$0$이 아닌"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "좌변",
+            "equivalentAnswers": [
+              "좌변",
+              "왼쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0$이 아닌",
+            "equivalentAnswers": [
+              "$0$이 아닌"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "좌변",
+            "accept": [
+              "왼쪽"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "좌변",
+            "왼쪽"
+          ],
+          [
+            "$0$이 아닌"
+          ]
+        ],
+        "proposalFingerprint": "6db3d26c7abf36fa593a1c789302d15e38b31302fb50614cb4c2eab6b611e5b2"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-03-c2",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "문제의 뜻에 맞는 해",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이차방정식의 해가 둘이어도 길이 · 사람 수처럼 {양수}나 {자연수}여야 하는 조건에 맞는 것만 답이 된다.",
+        "studentC": "이차방정식의 해가 둘이어도 길이 · 사람 수처럼 □나 □여야 하는 조건에 맞는 것만 답이 된다.",
+        "answers": [
+          "양수",
+          "자연수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 직사각형의 가로의 길이를 $x$ $\\mathrm{cm}$로 놓고 세운 이차방정식의 해가 $x=-6$ 또는 $x=4$였다. 답이 되는 값을 고르고, 이차방정식의 해가 둘이어도 답이 하나만 될 수 있는 까닭을 쓰시오.",
+        "bAnswer": "답은 $x=4$이다. 길이는 양수여야 하므로 $-6$은 문제의 뜻에 맞지 않는다. 방정식의 해 가운데 문제의 조건에 맞는 것만 답이 된다.",
+        "bGoal": "해 가운데 문제의 뜻에 맞는 것 고르기",
+        "bReason": "고른 값을 필수로 넣고, 겹치는 두 까닭은 하나로 묶음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=4$",
+              "답은 $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이는 양수여야 하므로 -6은 답이 될 수 없다",
+              "길이는 음수가 될 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "이차방정식의 해가 둘이어도 문제의 조건에 맞는 해만 답이 된다. 길이는 {양수}여야 하고, 사람이 적어도 한 명 있다는 문제에서 사람 수는 {자연수}여야 한다.",
+        "cAnswers": [
+          "양수",
+          "자연수"
+        ],
+        "cReason": "두 빈칸이 길이·사람 수 중 어느 쪽 조건인지 정해지지 않았다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "조건 맞는 해만 답으로",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 814,
+        "part": "m3",
+        "sourceFingerprint": "6b349b75ac4ae1625cb44b9fae51ea83503f76ee92a2d8194099d9069fe9cf2e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 814
+        },
+        "directReview": null,
+        "cMarkedSentence": "이차방정식의 해가 둘이어도 문제의 조건에 맞는 해만 답이 된다. 길이는 {양수}여야 하고, 사람이 적어도 한 명 있다는 문제에서 사람 수는 {자연수}여야 한다.",
+        "cSlotAnswers": [
+          "양수",
+          "자연수"
+        ],
+        "cStudentSentence": "이차방정식의 해가 둘이어도 문제의 조건에 맞는 해만 답이 된다. 길이는 □여야 하고, 사람이 적어도 한 명 있다는 문제에서 사람 수는 □여야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "자연수",
+            "equivalentAnswers": [
+              "자연수"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "자연수"
+          ]
+        ],
+        "proposalFingerprint": "075f588446ed1197b16d11ef117a428fbe13e3a7d1253ac9bff7b0b9391295f5",
+        "coreAfter": "이차방정식의 해가 둘이어도 문제의 조건에 맞는 해만 답이 된다. 길이는 {양수}여야 한다. 사람이 적어도 한 명 있다는 조건이 주어졌다면 사람 수는 {자연수}여야 한다.",
+        "coreReason": "사람 수가 0일 수도 있으므로 자연수만 가능하다는 말에는 적어도 한 명이라는 문제 조건을 명시한다."
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-03-c3",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "연속하는 수 나타내기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "연속하는 두 자연수는 $x$, {$x+1$}로, 연속하는 두 짝수(또는 두 홀수)는 $x$, {$x+2$}로 놓는다.",
+        "studentC": "연속하는 두 자연수는 $x$, □로, 연속하는 두 짝수(또는 두 홀수)는 $x$, □로 놓는다.",
+        "answers": [
+          "$x+1$",
+          "$x+2$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "미지수 $x$를 써서 ① 연속하는 두 자연수, ② 연속하는 두 짝수, ③ 연속하는 두 홀수를 각각 나타내시오. 각 경우 $x$가 어떤 수여야 하는지도 함께 쓰고, ②와 ③의 두 수의 차가 같은 까닭을 쓰시오.",
+        "bAnswer": "① $x$가 자연수일 때 $x$, $x+1$ ② $x$가 짝수일 때 $x$, $x+2$ ③ $x$가 홀수일 때 $x$, $x+2$이다. 이웃한 짝수끼리도 이웃한 홀수끼리도 차가 $2$이다.",
+        "bGoal": "연속하는 수를 미지수로 나타내기",
+        "bReason": "동치인 다른 놓기도 허용",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "연속하는 자연수의 타당한 두 식과 x에 대한 자연수 조건을 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "x가 짝수일 때 x, x+2",
+              "x가 정수일 때 2x, 2x+2"
+            ]
+          },
+          {
+            "anyOf": [
+              "x가 홀수일 때 x, x+2",
+              "x가 정수일 때 2x+1, 2x+3"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 짝수끼리도 홀수끼리도 차가 2이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "경우와 기준이 문장에 있고 식 빈칸이 짧고 분명하다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "연속한 수를 x로 놓기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 815,
+        "part": "m3",
+        "sourceFingerprint": "78b01b1445ad02503947f628508b0dd7413c818e0dcaee609e4838741d00df0e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 815
+        },
+        "directReview": null,
+        "cMarkedSentence": "연속하는 두 자연수의 작은 수를 $x$라 하면 큰 수는 {$x+1$}이다. 연속하는 두 짝수 또는 두 홀수의 작은 수를 $x$라 하면 큰 수는 {$x+2$}이다.",
+        "cSlotAnswers": [
+          "$x+1$",
+          "$x+2$"
+        ],
+        "cStudentSentence": "연속하는 두 자연수의 작은 수를 $x$라 하면 큰 수는 □이다. 연속하는 두 짝수 또는 두 홀수의 작은 수를 $x$라 하면 큰 수는 □이다.",
+        "cAnswers": [
+          "$x+1$",
+          "$x+2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x+1$",
+            "equivalentAnswers": [
+              "$x+1$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x+2$",
+            "equivalentAnswers": [
+              "$x+2$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x+1$"
+          ],
+          [
+            "$x+2$"
+          ]
+        ],
+        "proposalFingerprint": "d59d2ba72a77eb23c544e5dc430459dbfdb54c084526c7107c5222896eef0660",
+        "cAfter": "연속하는 두 자연수의 작은 수를 $x$라 하면 큰 수는 {$x+1$}이다. 연속하는 두 짝수 또는 두 홀수의 작은 수를 $x$라 하면 큰 수는 {$x+2$}이다.",
+        "coreAfter": "연속하는 두 자연수의 작은 수를 $x$라 하면 큰 수는 {$x+1$}이다. 연속하는 두 짝수 또는 두 홀수의 작은 수를 $x$라 하면 큰 수는 {$x+2$}이다.",
+        "coreReason": "x가 작은 수인지 큰 수인지와 어떤 수의 범주인지 밝혀 x-1·x-2도 참이 되는 응답 모호함을 없앤다."
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-03-c5",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "넓이에 관한 활용",
+        "kind": "방법",
+        "level": "상",
+        "definition": "변을 늘이거나 길을 내는 문제는 바뀐 가로와 세로를 {$x$의 식}으로 나타낸 다음, 둘을 곱한 것이 {넓이}와 같다는 식을 세운다.",
+        "studentC": "변을 늘이거나 길을 내는 문제는 바뀐 가로와 세로를 □으로 나타낸 다음, 둘을 곱한 것이 □와 같다는 식을 세운다.",
+        "answers": [
+          "$x$의 식",
+          "넓이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$인 직사각형의 가로와 세로를 똑같이 $x$ $\\mathrm{cm}$씩 늘였더니 넓이가 $48$ $\\mathrm{cm}$$^2$가 되었다. $x$를 구하는 방정식을 세우고, 어떤 순서로 세웠는지 쓰시오.",
+        "bAnswer": "늘인 뒤의 가로는 $(6+x)$ $\\mathrm{cm}$, 세로는 $(4+x)$ $\\mathrm{cm}$이다. 둘의 곱이 넓이이므로 $(6+x)(4+x)=48$이다.",
+        "bGoal": "바뀐 변을 식으로 나타내 넓이 방정식 세우기",
+        "bReason": "구체 직사각형의 방정식을 요청했으므로 일반 방법만 말하는 답 대신 실제 두 길이 식과 48의 방정식을 요구한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "늘인 가로는 6+x, 세로는 4+x이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘의 곱이 넓이이므로 (6+x)(4+x)=48로 세운다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직사각형의 변을 $x$만큼 늘이거나 폭이 $x$인 길을 내는 문제는, 바뀐 가로와 세로를 각각 $x$를 쓴 {식}으로 나타낸 다음 둘의 {곱}이 주어진 넓이와 같다는 방정식을 세운다.",
+        "cAnswers": [
+          "식",
+          "곱"
+        ],
+        "cReason": "도형이 무엇인지와 $x$의 뜻이 문장에 없어 덧붙였다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "바뀐 변의 곱을 넓이로",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 817,
+        "part": "m3",
+        "sourceFingerprint": "f53381a2489e5d3fab888d18ab4d1891c4494c8907a70c6be7a25ad9f639a420",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 817
+        },
+        "directReview": null,
+        "cMarkedSentence": "직사각형의 변을 $x$만큼 늘이거나 폭이 $x$인 길을 내는 문제는, 바뀐 가로와 세로를 각각 $x$를 쓴 {식}으로 나타낸 다음 둘의 {곱}이 주어진 넓이와 같다는 방정식을 세운다.",
+        "cSlotAnswers": [
+          "식",
+          "곱"
+        ],
+        "cStudentSentence": "직사각형의 변을 $x$만큼 늘이거나 폭이 $x$인 길을 내는 문제는, 바뀐 가로와 세로를 각각 $x$를 쓴 □으로 나타낸 다음 둘의 □이 주어진 넓이와 같다는 방정식을 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "식",
+            "equivalentAnswers": [
+              "식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "식"
+          ],
+          [
+            "곱"
+          ]
+        ],
+        "proposalFingerprint": "fbdb12b0e8ecfe9baffdff7546e9c36256b2dd72c2408cd69e1ced4db4f1025d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-02-c6",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "$a$, $b$, $c$의 부호와 그래프",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$a$는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}.",
+        "studentC": "$a$는 볼록한 □을, $c$는 □과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 □.",
+        "answers": [
+          "방향",
+          "$y$축",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-c6",
+        "learningRole": "application",
+        "roleReason": "$a$, $c$의 역할과 축 위치로 $a$, $b$ 부호 관계",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=ax^2+bx+c$의 그래프에서 볼록한 방향을 정하는 계수와 $y$축과 만나는 점을 정하는 계수를 각각 쓰시오. 또 축 $x=-\\frac{b}{2a}$가 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호는 어떤 관계인지 까닭과 함께 쓰시오.",
+        "bAnswer": "볼록한 방향은 $a$가, $y$축과 만나는 점은 $c$가 정한다. 축이 왼쪽이면 $-\\frac{b}{2a}<0$, 곧 $\\frac{b}{a}>0$이므로 $a$와 $b$의 부호가 같다.",
+        "bGoal": "계수의 부호와 그래프 정보",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "볼록한 방향은 a의 부호가 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "y축과 만나는 점은 c가 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "축이 왼쪽이면 -b/(2a)<0이어서 b/a>0이고, 양수인 몫의 분자·분모 a와 b의 부호가 같다"
+            ]
+          }
+        ],
+        "bReason": "왼쪽이라는 주어진 사실을 식으로 되풀이하는 것만이 아니라 양수인 비가 두 계수의 같은 부호를 뜻하는 이유를 연결한다.",
+        "cDecision": "rewrite",
+        "cAfter": "$y=ax^2+bx+c$의 그래프에서 $a$의 부호는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}.",
+        "cAnswers": [
+          "방향",
+          "$y$축",
+          "같다"
+        ],
+        "cReason": "원문에 $a$, $b$, $c$가 어느 식의 계수인지 없어 함수식을 넣었다.",
+        "coreAfter": "$y=ax^2+bx+c$의 그래프에서 $a$는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}.",
+        "coreReason": "학습 설명에 $a$, $b$, $c$가 속한 함수식이 없어 지칭 대상이 불명확하다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 839,
+        "part": "m3",
+        "sourceFingerprint": "c0b632420735da3bbb14d69d518d26e040f5d63d7a67b9a12852fb8014f99131",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 839
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=ax^2+bx+c$의 그래프에서 $a$의 부호는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}.",
+        "cSlotAnswers": [
+          "방향",
+          "$y$축",
+          "같다"
+        ],
+        "cStudentSentence": "$y=ax^2+bx+c$의 그래프에서 $a$의 부호는 볼록한 □을, $c$는 □과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "방향",
+            "equivalentAnswers": [
+              "방향"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y$축",
+            "equivalentAnswers": [
+              "$y$축"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "방향"
+          ],
+          [
+            "$y$축"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "2d1f5e9cbab2841c594a6c396b431c917c6d5a90abc84210ee5b9d5614955287"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-03-c6",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "최댓값 · 최솟값의 활용",
+        "kind": "방법",
+        "level": "상",
+        "definition": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 {최솟값}, 위로 볼록하면 {최댓값}을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "studentC": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 □, 위로 볼록하면 □을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "answers": [
+          "최솟값",
+          "최댓값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 문제에서 $x$가 될 수 있는 값은 $0$, $1$, $2$뿐이고, 구하려는 양은 $y=(x-3)^2$이다. 꼭짓점의 함숫값을 최솟값으로 바로 쓸 수 없는 까닭을 쓰고, 이 문제에서 실제 가능한 최솟값을 구하시오.",
+        "bAnswer": "꼭짓점은 $(3,0)$이지만 $x=3$이 될 수 없어 함숫값 $0$이 실제로 나오지 않는다. 가능한 $x=0,1,2$를 대입한 값은 각각 $9,4,1$이므로 실제 최솟값은 $1$이다.",
+        "bGoal": "활용 문제에서 꼭짓점 사용 조건 확인",
+        "bReason": "가능한 값이라는 말만 되풀이하지 않고 제한된 세 x값의 실제 예로 꼭짓점 사용 전 조건 확인을 설명한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점의 x=3은 허용된 값이 아니어서 함숫값 0이 실제로 나오지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가능한 x=0,1,2에서 함숫값을 비교하여 최솟값 1을 얻는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "사용 조건과 볼록 방향이 모두 보여 최솟값·최댓값 대응이 분명하다.",
+        "learningRole": "procedure",
+        "roleReason": "꼭짓점의 $x$가 가능한지 확인 후 판단",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 846,
+        "part": "m3",
+        "sourceFingerprint": "7c588bb06b283a1ac5e52fb712b097593daa7aea3ec16212f70ab6ccf6e83457",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 846
+        },
+        "directReview": null,
+        "cFrozenSentence": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 □, 위로 볼록하면 □을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "cFrozenDefinition": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 {최솟값}, 위로 볼록하면 {최댓값}을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "cFrozenAnswers": [
+          "최솟값",
+          "최댓값"
+        ],
+        "cMarkedSentence": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 {최솟값}, 위로 볼록하면 {최댓값}을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "cSlotAnswers": [
+          "최솟값",
+          "최댓값"
+        ],
+        "cStudentSentence": "변하는 양을 $x$의 이차함수로 나타내면, 꼭짓점의 $x$값이 문제에서 실제로 될 수 있는 값일 때 그래프가 아래로 볼록하면 꼭짓점에서 □, 위로 볼록하면 □을 찾는다. 그렇지 않으면 $x$가 될 수 있는 값들에서 함숫값을 비교한다.",
+        "cAnswers": [
+          "최솟값",
+          "최댓값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최솟값",
+            "equivalentAnswers": [
+              "최솟값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최댓값",
+            "equivalentAnswers": [
+              "최댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최솟값"
+          ],
+          [
+            "최댓값"
+          ]
+        ],
+        "proposalFingerprint": "e00238faab0b81c014a0308f5aa8eb9eecc093c24802f7c79d341fc41ac5b9a4",
+        "exampleNeeded": true
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c7",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "특수한 각의 삼각비를 얻는 도형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$45^\\circ$의 값은 {정사각형}을 대각선으로 자른 삼각형에서, $30^\\circ$ · $60^\\circ$의 값은 {정삼각형}을 반으로 자른 삼각형에서 얻는다.",
+        "studentC": "$45^\\circ$의 값은 □을 대각선으로 자른 삼각형에서, $30^\\circ$ · $60^\\circ$의 값은 □을 반으로 자른 삼각형에서 얻는다.",
+        "answers": [
+          "정사각형",
+          "정삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "$45^\\circ$의 삼각비의 값과 $30^\\circ$, $60^\\circ$의 삼각비의 값은 각각 어떤 도형을 어떻게 잘라 만든 직각삼각형에서 구할 수 있는지 설명해 보세요.",
+        "bAnswer": "$45^\\circ$는 정사각형을 대각선으로 잘라 생기는 직각이등변삼각형에서 구한다. $30^\\circ$, $60^\\circ$는 정삼각형을 한 꼭짓점에서 맞은편 변에 그은 수선으로 반으로 잘라 생기는 직각삼각형에서 구한다.",
+        "bGoal": "특수한 각의 삼각비가 나오는 도형 알기",
+        "bReason": "'도형'이 무엇을 뜻하는지 불분명해 각별로 도형과 자르는 방법을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "45도는 정사각형을 대각선으로 잘라 생기는 직각이등변삼각형에서 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "30도·60도는 정삼각형의 한 꼭짓점에서 맞은편 변에 내린 수선으로 반으로 잘라 생기는 직각삼각형에서 구한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "도형 이름 두 개만 묻고 자르는 방법이 단서로 남아 있다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "정사각형·정삼각형 잘라 구함",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 861,
+        "part": "m3",
+        "sourceFingerprint": "917c11c237e7992059f8afe21c7eaa3c47c068bb9d93df744c8b92ab94c6a76b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 861
+        },
+        "directReview": null,
+        "cMarkedSentence": "$45^\\circ$의 삼각비는 {정사각형}을 대각선으로 잘라 만든 직각삼각형에서 구한다. $30^\\circ$, $60^\\circ$의 삼각비는 {정삼각형}의 한 꼭짓점에서 맞은편 변에 내린 수선으로 반으로 잘라 만든 직각삼각형에서 구한다.",
+        "cSlotAnswers": [
+          "정사각형",
+          "정삼각형"
+        ],
+        "cStudentSentence": "$45^\\circ$의 삼각비는 □을 대각선으로 잘라 만든 직각삼각형에서 구한다. $30^\\circ$, $60^\\circ$의 삼각비는 □의 한 꼭짓점에서 맞은편 변에 내린 수선으로 반으로 잘라 만든 직각삼각형에서 구한다.",
+        "cAnswers": [
+          "정사각형",
+          "정삼각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정사각형",
+            "equivalentAnswers": [
+              "정사각형"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정삼각형",
+            "equivalentAnswers": [
+              "정삼각형"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정사각형"
+          ],
+          [
+            "정삼각형"
+          ]
+        ],
+        "proposalFingerprint": "13dcf5562a93a9316f07331bf4e45f21879b9c180448789119c8851ae2fd7407",
+        "cAfter": "$45^\\circ$의 삼각비는 {정사각형}을 대각선으로 잘라 만든 직각삼각형에서 구한다. $30^\\circ$, $60^\\circ$의 삼각비는 {정삼각형}의 한 꼭짓점에서 맞은편 변에 내린 수선으로 반으로 잘라 만든 직각삼각형에서 구한다.",
+        "coreAfter": "$45^\\circ$의 삼각비는 {정사각형}을 대각선으로 잘라 만든 직각이등변삼각형에서 구한다. $30^\\circ$, $60^\\circ$의 삼각비는 {정삼각형}의 한 꼭짓점에서 맞은편 변에 내린 수선으로 반으로 잘라 만든 직각삼각형에서 구한다.",
+        "coreReason": "임의로 반으로 자른 도형이 아닌 직각삼각형을 만드는 꼭짓점·수선의 정확한 절단 조건을 설명한다."
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c9",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "각의 크기에 따른 삼각비의 값의 변화",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각이 $0^\\circ$에서 $90^\\circ$까지 커지면 사인은 $0$에서 $1$로 {커지고} 코사인은 $1$에서 $0$으로 {작아진다} — 탄젠트는 $0$에서 시작해 각이 $90^\\circ$에 가까워질수록 끝없이 {커진다}.",
+        "studentC": "각이 $0^\\circ$에서 $90^\\circ$까지 커지면 사인은 $0$에서 $1$로 □ 코사인은 $1$에서 $0$으로 □ — 탄젠트는 $0$에서 시작해 각이 $90^\\circ$에 가까워질수록 끝없이 □.",
+        "answers": [
+          "커지고",
+          "작아진다",
+          "커진다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c9",
+        "bDecision": "rewrite",
+        "bPrompt": "각의 크기가 $0^\\circ$에서 $90^\\circ$까지 커질 때 사인, 코사인, 탄젠트의 값이 각각 어떻게 변하는지 설명하시오. 사인과 코사인은 어떤 값에서 어떤 값으로 변하는지 쓰고, $90^\\circ$에서 값을 정할 수 없는 삼각비가 있으면 그것도 쓰시오.",
+        "bAnswer": "사인의 값은 $0$에서 $1$로 커지고, 코사인의 값은 $1$에서 $0$으로 작아진다. 탄젠트의 값은 $0$에서 시작해 각이 $90^\\circ$에 가까워질수록 끝없이 커지며, $\\tan 90^\\circ$는 정할 수 없다.",
+        "bGoal": "각의 크기에 따른 삼각비의 증가·감소 알기",
+        "bReason": "0~90도 변화의 응답에 탄젠트의 끝점값이 없음을 포함해 90도에서도 값이 있는 것으로 오해하지 않도록 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사인은 0에서 1로 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "코사인은 1에서 0으로 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "탄젠트는 0에서 시작해 각이 90도에 가까워질수록 끝없이 커지고, 90도의 값은 정할 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "시작값과 끝값이 주어져 커지는지 작아지는지만 고르는 비교 빈칸이다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "각 커질 때 삼각비 증감",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 863,
+        "part": "m3",
+        "sourceFingerprint": "bbf509d62bdcc96010a7a07d937e56b174c190e8088a72c064988e0ad522fa54",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 863
+        },
+        "directReview": null,
+        "cFrozenSentence": "각이 $0^\\circ$에서 $90^\\circ$까지 커지면 사인은 $0$에서 $1$로 □ 코사인은 $1$에서 $0$으로 □ — 탄젠트는 $0$에서 시작해 각이 $90^\\circ$에 가까워질수록 끝없이 □.",
+        "cFrozenDefinition": "각이 $0^\\circ$에서 $90^\\circ$까지 커지면 사인은 $0$에서 $1$로 {커지고} 코사인은 $1$에서 $0$으로 {작아진다} — 탄젠트는 $0$에서 시작해 각이 $90^\\circ$에 가까워질수록 끝없이 {커진다}.",
+        "cFrozenAnswers": [
+          "커지고",
+          "작아진다",
+          "커진다"
+        ],
+        "cMarkedSentence": "각이 $0^\\circ$에서 $90^\\circ$까지 커지면 사인은 $0$에서 $1$로 {커지고} 코사인은 $1$에서 $0$으로 {작아진다} — 탄젠트는 $0$에서 시작해 각이 $90^\\circ$에 가까워질수록 끝없이 {커진다}.",
+        "cSlotAnswers": [
+          "커지고",
+          "작아진다",
+          "커진다"
+        ],
+        "cStudentSentence": "각이 $0^\\circ$에서 $90^\\circ$까지 커지면 사인은 $0$에서 $1$로 □ 코사인은 $1$에서 $0$으로 □ — 탄젠트는 $0$에서 시작해 각이 $90^\\circ$에 가까워질수록 끝없이 □.",
+        "cAnswers": [
+          "커지고",
+          "작아진다",
+          "커진다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "커지고",
+            "equivalentAnswers": [
+              "커지고",
+              "증가하고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작아진다",
+            "equivalentAnswers": [
+              "작아진다",
+              "감소한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "커진다",
+            "equivalentAnswers": [
+              "커진다",
+              "증가한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "커지고",
+            "accept": [
+              "증가하고"
+            ]
+          },
+          {
+            "answer": "작아진다",
+            "accept": [
+              "감소한다"
+            ]
+          },
+          {
+            "answer": "커진다",
+            "accept": [
+              "증가한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "커지고",
+            "증가하고"
+          ],
+          [
+            "작아진다",
+            "감소한다"
+          ],
+          [
+            "커진다",
+            "증가한다"
+          ]
+        ],
+        "proposalFingerprint": "61d52cdbfb437bd831d343f982c688f167c24c06577940ba907af2063fff052d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-01-c5",
+        "section": "중3::6. 원의 성질::원과 현",
+        "term": "현의 길이의 성질",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 원의 두 현이 중심에서 떨어진 {거리}가 서로 같으면 두 현의 {길이}도 같다.",
+        "studentC": "같은 원의 두 현이 중심에서 떨어진 □가 서로 같으면 두 현의 □도 같다.",
+        "answers": [
+          "거리",
+          "길이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-01-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "한 원에서 두 현 $AB$, $CD$가 원의 중심에서 떨어진 거리가 서로 같다. 두 현의 길이는 어떤 관계인가? 그 까닭도 쓰시오.",
+        "bAnswer": "$\\overline{AB}=\\overline{CD}$이다. 중심에서 각 현에 수선을 그으면 빗변(반지름)과 한 변(거리)이 같은 직각삼각형이 생겨 두 현의 절반이 같고, 따라서 현의 길이도 같다.",
+        "bGoal": "거리가 같은 두 현의 길이 관계와 근거",
+        "bReason": "두 현의 절반이 같다는 결론만을 이유로 인정하지 않고 반지름·거리의 합동 또는 같은 피타고라스 길이를 연결한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$AB=CD$",
+              "두 현의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심에서 현에 내린 수선과 반지름으로 만든 두 직각삼각형은 빗변인 반지름과 한 변인 거리가 같아 합동이며, 현을 이등분한 길이도 같다",
+              "반지름 r와 같은 중심 거리 d를 쓰면 두 현의 길이가 모두 2√(r²-d²)이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건 '거리'와 결론 '길이'를 각각 묻는 분명한 문장이다.",
+        "learningRole": "reason",
+        "roleReason": "중심까지 거리가 같으면 현의 길이가 같은 이유",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 876,
+        "part": "m3",
+        "sourceFingerprint": "2d877688c35ae829d5609c38626a3dea956fea4e5ec6ea1fa19123ffa8762079",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 876
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 원의 두 현이 중심에서 떨어진 □가 서로 같으면 두 현의 □도 같다.",
+        "cFrozenDefinition": "같은 원의 두 현이 중심에서 떨어진 {거리}가 서로 같으면 두 현의 {길이}도 같다.",
+        "cFrozenAnswers": [
+          "거리",
+          "길이"
+        ],
+        "cMarkedSentence": "같은 원의 두 현이 중심에서 떨어진 {거리}가 서로 같으면 두 현의 {길이}도 같다.",
+        "cSlotAnswers": [
+          "거리",
+          "길이"
+        ],
+        "cStudentSentence": "같은 원의 두 현이 중심에서 떨어진 □가 서로 같으면 두 현의 □도 같다.",
+        "cAnswers": [
+          "거리",
+          "길이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "거리",
+            "equivalentAnswers": [
+              "거리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "길이",
+            "equivalentAnswers": [
+              "길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "거리"
+          ],
+          [
+            "길이"
+          ]
+        ],
+        "proposalFingerprint": "4b4cc83a491545fa8f52ffbe7261b182c1f54e2686c5bd62dc4ead2bffab1da4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-06-01-c6",
+        "section": "중3::6. 원의 성질::원과 현",
+        "term": "길이가 같은 두 현",
+        "kind": "성질",
+        "level": "상",
+        "definition": "거꾸로, 한 원에서 {길이}가 같은 두 현은 원의 중심에서 같은 {거리}만큼 떨어져 있다.",
+        "studentC": "거꾸로, 한 원에서 □가 같은 두 현은 원의 중심에서 같은 □만큼 떨어져 있다.",
+        "answers": [
+          "길이",
+          "거리"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-01-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "한 원에서 길이가 같은 두 현이 있다. 원의 중심에서 두 현까지의 거리는 어떤 관계인가? 그 까닭도 쓰시오.",
+        "bAnswer": "거리가 같다. 두 현의 절반이 같고 빗변인 반지름도 같으므로, 중심에서 내린 수선을 한 변으로 하는 두 직각삼각형이 $\\mathrm{RHS}$ 합동이 되어 수선의 길이가 같다.",
+        "bGoal": "길이가 같은 두 현의 거리 관계와 근거",
+        "bReason": "RHS라는 이름만 쓰는 답이 아니라 실제 현의 절반·반지름·수선의 관계를 설명하게 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "중심까지의 거리가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 현을 반으로 나눈 길이와 빗변인 반지름이 같아 두 직각삼각형이 합동이므로 수선 길이가 같다",
+              "반지름 r와 같은 현길이 l을 쓰면 중심에서 두 현까지 거리가 모두 √(r²-(l/2)²)이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "한 원에서 {길이}가 같은 두 현은 원의 중심에서 같은 {거리}만큼 떨어져 있다.",
+        "cAnswers": [
+          "길이",
+          "거리"
+        ],
+        "cReason": "'거꾸로'가 무엇의 역인지 지면에 없어 이를 빼고 문장만 남겼다.",
+        "learningRole": "reason",
+        "roleReason": "길이가 같은 두 현은 중심에서 거리가 같은 성질",
+        "coreAfter": "‘중심에서 거리가 같은 두 현은 길이가 같다’를 거꾸로 하면, 한 원에서 {길이}가 같은 두 현은 원의 중심에서 같은 {거리}만큼 떨어져 있다.",
+        "coreReason": "'거꾸로'의 대상이 설명 안에 없어 앞 성질을 밝혔다.",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 877,
+        "part": "m3",
+        "sourceFingerprint": "b921ce24bbf5b9e98109555d81b9e501ae4b3d581b6c6dbfb8ff32978b1b9c80",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 877
+        },
+        "directReview": null,
+        "cMarkedSentence": "한 원에서 {길이}가 같은 두 현은 원의 중심에서 같은 {거리}만큼 떨어져 있다.",
+        "cSlotAnswers": [
+          "길이",
+          "거리"
+        ],
+        "cStudentSentence": "한 원에서 □가 같은 두 현은 원의 중심에서 같은 □만큼 떨어져 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "길이",
+            "equivalentAnswers": [
+              "길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "거리",
+            "equivalentAnswers": [
+              "거리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "길이"
+          ],
+          [
+            "거리"
+          ]
+        ],
+        "proposalFingerprint": "9f22928d6b5864c0950127151d4c1305f27c86021948ca07e9fba4f43ce28527"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-01-xc12",
+        "section": "중1::2. 정수와 유리수::정수와 유리수",
+        "term": "자연수 · 정수 · 유리수의 포함 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자연수는 모두 {정수}에, 정수는 모두 {유리수}에 들어 있다.",
+        "example": {
+          "prompt": "$5$는 자연수, 정수, 유리수 가운데 어디에 드는가?",
+          "answer": "셋 모두"
+        },
+        "studentC": "자연수는 모두 □에, 정수는 모두 □에 들어 있다.",
+        "answers": [
+          "정수",
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-01-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "자연수와 정수 사이, 정수와 유리수 사이의 포함 관계를 각각 문장으로 쓰시오. 또 $5$와 $-\\frac12$는 각각 자연수, 정수, 유리수 가운데 어디에 속하는지 모두 쓰시오.",
+        "bAnswer": "자연수는 모두 정수이다. 정수는 모두 유리수이다. $5$는 자연수, 정수, 유리수 모두에 속하고, $-\\frac{1}{2}$는 유리수에만 속한다.",
+        "bGoal": "자연수, 정수, 유리수의 포함 관계를 말하고 수가 속하는 범위를 판단한다.",
+        "bReason": "'자연수는 모두 유리수이다'처럼 맞지만 모범답과 다른 문장 조합이 나올 수 있어, 어떤 두 관계를 묻는지 밝힘.",
+        "cDecision": "keep",
+        "cReason": "세 수 집합의 포함 순서를 짧게 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자연수는 모두 정수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정수는 모두 유리수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$는 자연수, 정수, 유리수 모두에 속한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-\\frac{1}{2}$는 유리수에만 속한다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "definition",
+        "roleReason": "자연수는 정수, 정수는 유리수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "notationReason": "수학 도형이 아닌 자리표시 ○○·△△는 쓰지 않고 두 실제 포함 관계와 분류 요구를 그대로 둔다.",
+        "sourceIndex": 1055,
+        "part": "m1plus",
+        "sourceFingerprint": "3755009534dbaafa74ea7382a865c0570a15f62ec35b16415c90846f313af89e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1055
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-02-01-xc12"
+        },
+        "cFrozenSentence": "자연수는 모두 □에, 정수는 모두 □에 들어 있다.",
+        "cFrozenDefinition": "자연수는 모두 {정수}에, 정수는 모두 {유리수}에 들어 있다.",
+        "cFrozenAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cMarkedSentence": "자연수는 모두 {정수}에, 정수는 모두 {유리수}에 들어 있다.",
+        "cSlotAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cStudentSentence": "자연수는 모두 □에, 정수는 모두 □에 들어 있다.",
+        "cAnswers": [
+          "정수",
+          "유리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ],
+          [
+            "유리수"
+          ]
+        ],
+        "proposalFingerprint": "9656090e4e6aebb4732788beebef7b6edcc4bf520e6a2015c6faff5d249aa988"
+      }
+    }
+  ]
+}

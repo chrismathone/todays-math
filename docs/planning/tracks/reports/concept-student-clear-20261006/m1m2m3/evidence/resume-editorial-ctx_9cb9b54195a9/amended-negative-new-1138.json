@@ -1,0 +1,99 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1138.json",
+  "changes": [
+    {
+      "id": "m1-03-08-xc5",
+      "cAfter": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 그 수가 $12$인지 확인하려고 한다. $12$에 $7$을 더한 값은 {$19$}이므로 $12$는 이 문제의 답이 {아니다}.",
+      "cAcceptedAnswers": [
+        [
+          "$19$"
+        ],
+        [
+          "아니다"
+        ]
+      ],
+      "cReason": "검산 대상을 부르는 열린 낱말 대신 처음 문제의 조건에 후보 값을 넣어 계산하고 답인지 판단한다. B와 일반적인 답 확인 방법은 보존한다.",
+      "exampleNeeded": true
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-03-08-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 어떤 수를 $13$이라고 구했다. 이 답이 맞는지 확인하려면 $13$을 어디에 넣어 보아야 하는지 쓰고, 실제로 확인하시오.",
+      "bAnswer": "구한 값 $13$을 문제의 문장에 넣어 본다. $13$에 $7$을 더하면 $20$이 되어 문제의 조건에 맞으므로 답이 맞다.",
+      "bGoal": "구한 값을 문제의 문장에 넣어 조건에 맞는지 확인한다.",
+      "bReason": "방정식자체가문장조건을잘못옮겼을수있으므로원래문제조건에넣어확인한다는기준을분명하게한다. 이구체문제의정확한식을허용하는것이수학적으로틀리지는않지만교육목표를장부에명시한다.",
+      "cDecision": "rewrite",
+      "cAfter": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 그 수가 $12$인지 확인하려고 한다. $12$에 $7$을 더한 값은 {$19$}이므로 $12$는 이 문제의 답이 {아니다}.",
+      "cAnswers": [
+        "$19$",
+        "아니다"
+      ],
+      "cReason": "검산 대상을 부르는 열린 낱말 대신 처음 문제의 조건에 후보 값을 넣어 계산하고 답인지 판단한다. B와 일반적인 답 확인 방법은 보존한다.",
+      "exampleNeeded": true,
+      "authorBatch": 8,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구한 값 $13$을 처음 문제의 문장에 넣어 조건이 맞는지 확인한다",
+            "어떤 수에 $7$을 더하면 $20$이라는 원래 조건에 $13$을 넣어 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$13+7=20$으로 조건에 맞으므로 답이 맞다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "procedure",
+      "roleReason": "구한 값을 문장에 넣어 확인",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1325,
+      "part": "m1plus",
+      "sourceFingerprint": "83e7e634161735b00be378d2c85d062da4a74ee8656f1336471d92333e9332d7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1325
+      },
+      "directReview": null,
+      "cMarkedSentence": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 그 수가 $12$인지 확인하려고 한다. $12$에 $7$을 더한 값은 {$19$}이므로 $12$는 이 문제의 답이 {아니다}.",
+      "cSlotAnswers": [
+        "$19$",
+        "아니다"
+      ],
+      "cStudentSentence": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 그 수가 $12$인지 확인하려고 한다. $12$에 $7$을 더한 값은 □이므로 $12$는 이 문제의 답이 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$19$",
+          "equivalentAnswers": [
+            "$19$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "아니다",
+          "equivalentAnswers": [
+            "아니다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$19$"
+        ],
+        [
+          "아니다"
+        ]
+      ],
+      "proposalFingerprint": "21d61feb339f221ce1d381afada85f394aa14fd601f157e628c5a9342dd9b289"
+    }
+  ]
+}

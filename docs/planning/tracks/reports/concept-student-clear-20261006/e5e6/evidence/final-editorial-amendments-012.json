@@ -1,0 +1,774 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-06T15:59:37.950868+00:00",
+  "scope": "Current amended questions captured for direct reading; not an editorial verdict.",
+  "rows": [
+    {
+      "id": "e5-2-3-2-c1",
+      "sourceIndex": 121,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "서로 합동인 두 도형에서 대응점은 어떤 점을 말하는지 설명하시오.",
+        "answer": "서로 합동인 두 도형을 완전히 포개었을 때 서로 겹치는 두 점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 도형을 완전히 포개었을 때 서로 겹치는 두 점"
+            ]
+          }
+        ]
+      },
+      "bGoal": "대응점을 '포개었을 때 겹치는 점'으로 설명한다.",
+      "bReason": "일반 대응점 정의를 묻는데 꼭짓점만으로 좁히던 모범답을 점으로 고친다. C의 겹치는 꼭짓점은 그 정의의 실제 대상이므로 유지한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 꼭짓점을 {대응점}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "대응점"
+          ]
+        ]
+      },
+      "cStudentSentence": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 꼭짓점을 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응점",
+          "equivalents": []
+        }
+      ],
+      "cReason": "원문 답 '꼭짓점의 짝'은 외우기 힘든 임의 구절이라 용어 이름을 답하게 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "56d3818163960633e73f30b04a62ddda38e28bada90b0db64162162936bc21d8",
+      "proposalFingerprint": "fc540094a575aee350f81b0a752c9c98d01d4526d8bae2d874c415b318497376",
+      "questionRevision": "planning-e5e6-20261006-fc540094a575",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-3-2-c5",
+      "sourceIndex": 125,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "서로 합동인 두 도형 중 하나가 돌아가 있을 때, 놓인 위치만 보고 짝을 정하면 틀릴 수 있다. 무엇을 비교하거나 어떻게 포개어서 대응하는 부분을 찾을 수 있는지 설명하시오.",
+        "answer": "변의 길이와 각의 크기가 맞는지 비교하고 꼭짓점이 이어진 순서도 맞게 짝짓는다. 한 도형을 돌려 다른 도형과 완전히 포갠 뒤 겹치는 부분을 찾아도 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "변의 길이와 각의 크기를 비교하고 꼭짓점이 이어진 순서도 맞게 짝짓는다",
+              "한 도형을 돌려 완전히 포개고 그때 서로 겹치는 부분을 찾는다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "돌아간 도형에서 위치가 아닌 길이·각도로 대응을 찾는다.",
+      "bReason": "길이나 각 하나만 같다고 대응을 정할 수는 없다. 연결 순서까지 맞추는 방법과 실제 완전한 포갬이라는 두 유효한 방법을 질문과 기준에 함께 허용한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "합동인 두 도형 중 하나가 돌아가 있으면, 변의 {길이}와 각의 {크기}가 맞는지 비교하고 꼭짓점이 이어진 순서도 맞게 짝짓는다.",
+        "acceptedAnswers": [
+          [
+            "길이"
+          ],
+          [
+            "크기"
+          ]
+        ]
+      },
+      "cStudentSentence": "합동인 두 도형 중 하나가 돌아가 있으면, 변의 □와 각의 □가 맞는지 비교하고 꼭짓점이 이어진 순서도 맞게 짝짓는다.",
+      "cSlotAnswers": [
+        {
+          "key": "길이",
+          "equivalents": []
+        },
+        {
+          "key": "크기",
+          "equivalents": []
+        }
+      ],
+      "cReason": "길이·각이 같은 부분만 고르면 연결 순서가 틀릴 수 있다. 두 짧은 대상 이름을 보존하고 이어진 순서 확인을 명시한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "f2f990b18347f657761ed3e4b651d83733ef37e5ec5b104d92c283442696d81a",
+      "proposalFingerprint": "01bb02fa797b20dd2c7fcb968eec1800b387cfc55597999b561d04fa198578e2",
+      "questionRevision": "planning-e5e6-20261006-01bb02fa797b",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-3-3-c4",
+      "sourceIndex": 129,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bQuestion": null,
+      "bGoal": "대응변의 뜻은 C에서 용어로 확인한다.",
+      "bReason": "공통 접기 동작은 e5-2-3-3-c3 B가 설명하고 변·각의 성질과 까닭은 e5-2-3-3-c7 B가 묻는다. 대응변 이름의 독립 정의는 이 행 C에 온전히 남겨 두며 다른 종류의 이름과 동의어로 합치지 않는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "선대칭도형을 대칭축을 따라 접었을 때 겹치는 변을 {대응변}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "대응변"
+          ]
+        ]
+      },
+      "cStudentSentence": "선대칭도형을 대칭축을 따라 접었을 때 겹치는 변을 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응변",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'변의 짝' 대신 실제로 써야 할 용어를 빈칸으로 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "B: 같은 접기 동작의 정의 서술은 e5-2-3-3-c3, 대응변·대응각 성질의 설명은 e5-2-3-3-c7 B가 확인한다. 본 행 C의대응변 정의와 학습 설명·ID는 보존한다.",
+      "questionExclusions": {
+        "term": "B: 같은 접기 동작의 정의 서술은 e5-2-3-3-c3, 대응변·대응각 성질의 설명은 e5-2-3-3-c7 B가 확인한다. 본 행 C의대응변 정의와 학습 설명·ID는 보존한다."
+      },
+      "sourceFingerprint": "6ec93b41f2977c924198588405ce07e81e5e055249200becc896424f6b783d47",
+      "proposalFingerprint": "86f2bbddc7f1263310ac54189a7f9632d3c03cade7ccb6d42764c0513557a943",
+      "questionRevision": "planning-e5e6-20261006-86f2bbddc7f1",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-3-3-c5",
+      "sourceIndex": 130,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bQuestion": null,
+      "bGoal": "대응각의 뜻은 C에서 용어로 확인한다.",
+      "bReason": "공통 접기 동작은 e5-2-3-3-c3 B가 설명하고 변·각의 성질과 까닭은 e5-2-3-3-c7 B가 묻는다. 대응각 이름의 독립 정의는 이 행 C에 온전히 남겨 두며 다른 종류의 이름과 동의어로 합치지 않는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "선대칭도형을 대칭축을 따라 접었을 때 겹치는 각을 {대응각}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "대응각"
+          ]
+        ]
+      },
+      "cStudentSentence": "선대칭도형을 대칭축을 따라 접었을 때 겹치는 각을 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응각",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'각의 짝' 대신 실제로 써야 할 용어를 빈칸으로 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "B: 같은 접기 동작의 정의 서술은 e5-2-3-3-c3, 대응변·대응각 성질의 설명은 e5-2-3-3-c7 B가 확인한다. 본 행 C의대응각 정의와 학습 설명·ID는 보존한다.",
+      "questionExclusions": {
+        "term": "B: 같은 접기 동작의 정의 서술은 e5-2-3-3-c3, 대응변·대응각 성질의 설명은 e5-2-3-3-c7 B가 확인한다. 본 행 C의대응각 정의와 학습 설명·ID는 보존한다."
+      },
+      "sourceFingerprint": "589f0184764a551a4f8cae70aab21847abf74f55e3c35b6151d9a46710aa5b9f",
+      "proposalFingerprint": "b7ba6b00756d979fd80f49aae1ff76c6cef8efc8dcfea1ce7c7b512edbf49c04",
+      "questionRevision": "planning-e5e6-20261006-b7ba6b00756d",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-3-4-c1",
+      "sourceIndex": 133,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "점대칭도형은 어떤 도형입니까? 도형을 어떻게 움직였을 때 어떻게 되는 도형인지 설명하시오.",
+        "answer": "한 점을 중심으로 $180 ^\\circ$(반 바퀴) 돌렸을 때 처음 도형과 완전히 겹치는 도형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 점을 중심으로 반 바퀴 돌린다",
+              "한 점을 중심으로 $180^\\circ$ 돌린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 도형과 완전히 겹친다",
+              "처음 도형과 꼭 맞게 포개어진다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "돌리는 양과 겹침이라는 점대칭도형의 두 조건을 스스로 말한다.",
+      "bReason": "회전의 양뿐 아니라 한 점을 중심으로 하는 동작임을 기준에서 명시한다. 완전한 겹침이라는 다른 조건과 정식 점대칭 뜻을 함께 확인한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "점대칭도형은 한 점을 중심으로 {반 바퀴} 돌렸을 때 처음 도형과 완전히 {겹치는} 도형이다.",
+        "acceptedAnswers": [
+          [
+            "반 바퀴",
+            "$180 ^\\circ$",
+            "$180$도"
+          ],
+          [
+            "겹치는",
+            "포개어지는"
+          ]
+        ]
+      },
+      "cStudentSentence": "점대칭도형은 한 점을 중심으로 □ 돌렸을 때 처음 도형과 완전히 □ 도형이다.",
+      "cSlotAnswers": [
+        {
+          "key": "반 바퀴",
+          "equivalents": [
+            "$180 ^\\circ$",
+            "$180$도"
+          ]
+        },
+        {
+          "key": "겹치는",
+          "equivalents": [
+            "포개어지는"
+          ]
+        }
+      ],
+      "cReason": "원문은 '겹치는'만 비워 핵심 조건인 돌리는 양을 확인하지 못한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "8e9ba7f64a1fc7ca75104af93c71933561caa572f8b57855daa666a5bf7fa1f2",
+      "proposalFingerprint": "be75febf6636374904b5f3ae430efd9030a34e048adb1847026566063541e7e6",
+      "questionRevision": "planning-e5e6-20261006-be75febf6636",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-3-4-c3",
+      "sourceIndex": 135,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "점대칭도형에서 대응점, 대응변, 대응각은 각각 무엇을 말합니까? 도형을 어떻게 움직였을 때의 점, 변, 각인지 설명하시오.",
+        "answer": "대칭의 중심을 중심으로 $180 ^\\circ$ 돌렸을 때 겹치는 점이 대응점, 겹치는 변이 대응변, 겹치는 각이 대응각이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대칭의 중심을 중심으로 반 바퀴 돌린다",
+              "대칭의 중심을 중심으로 $180^\\circ$ 돌린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "돌렸을 때 겹치는 점이 대응점이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "돌렸을 때 겹치는 변이 대응변이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "돌렸을 때 겹치는 각이 대응각이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "대응점·대응변·대응각을 반 바퀴 돌려 겹치는 부분으로 한꺼번에 설명한다.",
+      "bReason": "각각 무엇인지 묻는 세 이름을 한 묶음의 낱말 포함으로 채점하지 않는다. 회전 동작과 점·변·각의 올바른 이름 연결을 각 독립 의미로 둔다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "점대칭도형을 대칭의 중심을 중심으로 $180 ^\\circ$ 돌렸을 때 겹치는 점을 {대응점}, 겹치는 변을 {대응변}, 겹치는 각을 {대응각}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "대응점"
+          ],
+          [
+            "대응변"
+          ],
+          [
+            "대응각"
+          ]
+        ]
+      },
+      "cStudentSentence": "점대칭도형을 대칭의 중심을 중심으로 $180 ^\\circ$ 돌렸을 때 겹치는 점을 □, 겹치는 변을 □, 겹치는 각을 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응점",
+          "equivalents": []
+        },
+        {
+          "key": "대응변",
+          "equivalents": []
+        },
+        {
+          "key": "대응각",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'점의 짝'은 외울 낱말이 아니므로 세 용어 이름을 답하게 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ad87620b8fd78576467215d5aa54c08b768aaf14ae2265e41bd20a9a5b8c1fe4",
+      "proposalFingerprint": "24fabc32b2c7687ca9ea8667255a6f7509c486f5c4bebffd7120a5ff229b5953",
+      "questionRevision": "planning-e5e6-20261006-24fabc32b2c7",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-3-4-c4",
+      "sourceIndex": 136,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bQuestion": null,
+      "bGoal": "대응변의 뜻은 c3에서 함께 확인한다.",
+      "bReason": "e5-2-3-4-c3 B가 같은 반 바퀴 동작과대응변 정의를 명시적으로 함께 묻는다.",
+      "cDecision": "exclude",
+      "clozeQuestion": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "cReason": "e5-2-3-4-c3 C가 회전 조건을 완전히 제시하고대응변 이름의 별도 슬롯을 가진다. 이 행의 임의 구절을 추가로 외울 필요가 없다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "B·C: e5-2-3-4-c3의 실제 질문에서대응변 정의·이름을 이미 함께 확인한다. 서로 다른 이름을 동의어로 합치는 것이 아니며 일반 정의·ID는 보존한다.",
+      "questionExclusions": {
+        "term": "B·C: e5-2-3-4-c3의 실제 질문에서대응변 정의·이름을 이미 함께 확인한다. 서로 다른 이름을 동의어로 합치는 것이 아니며 일반 정의·ID는 보존한다.",
+        "cloze": "B·C: e5-2-3-4-c3의 실제 질문에서대응변 정의·이름을 이미 함께 확인한다. 서로 다른 이름을 동의어로 합치는 것이 아니며 일반 정의·ID는 보존한다."
+      },
+      "sourceFingerprint": "5b1a8c4f6cdb10d4b4982e62c63feef712263eab00c195bd59de534c0c40ce53",
+      "proposalFingerprint": "e665963cb4885e5866fd107a1be497af8a15c9dada65b03e4bf97a8c2d27107e",
+      "questionRevision": "planning-e5e6-20261006-e665963cb488",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-3-4-c5",
+      "sourceIndex": 137,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bQuestion": null,
+      "bGoal": "대응각의 뜻은 c3에서 함께 확인한다.",
+      "bReason": "e5-2-3-4-c3 B가 같은 반 바퀴 동작과대응각 정의를 명시적으로 함께 묻는다.",
+      "cDecision": "exclude",
+      "clozeQuestion": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "cReason": "e5-2-3-4-c3 C가 회전 조건을 완전히 제시하고대응각 이름의 별도 슬롯을 가진다. 이 행의 임의 구절을 추가로 외울 필요가 없다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "B·C: e5-2-3-4-c3의 실제 질문에서대응각 정의·이름을 이미 함께 확인한다. 서로 다른 이름을 동의어로 합치는 것이 아니며 일반 정의·ID는 보존한다.",
+      "questionExclusions": {
+        "term": "B·C: e5-2-3-4-c3의 실제 질문에서대응각 정의·이름을 이미 함께 확인한다. 서로 다른 이름을 동의어로 합치는 것이 아니며 일반 정의·ID는 보존한다.",
+        "cloze": "B·C: e5-2-3-4-c3의 실제 질문에서대응각 정의·이름을 이미 함께 확인한다. 서로 다른 이름을 동의어로 합치는 것이 아니며 일반 정의·ID는 보존한다."
+      },
+      "sourceFingerprint": "07e8001ecf1289bb62d83c6bb12114d36e0eb1f5c09da1417a9f9a12275bff68",
+      "proposalFingerprint": "1226c7e0791093555ff536d0b628a5f637b3dac087ec5eab18d29a1b46c2ee3d",
+      "questionRevision": "planning-e5e6-20261006-1226c7e07910",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-3-4-c6",
+      "sourceIndex": 138,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "점대칭도형에서 대응점끼리 이은 선분과 대칭의 중심은 어떤 관계입니까? 대응점 ㄱ과 ㄹ을 이은 선분의 길이가 $10\\,\\mathrm{cm}$일 때, 점 ㄱ에서 대칭의 중심까지의 거리도 구하시오.",
+        "answer": "대칭의 중심은 대응점끼리 이은 선분을 똑같이 둘로 나눈다(선분의 한가운데에 있다). 점 ㄱ에서 대칭의 중심까지의 거리는 $5\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대칭의 중심은 대응점끼리 이은 선분의 한가운데에 있다",
+              "대칭의 중심이 그 선분을 똑같이 둘로 나눈다",
+              "두 대응점에서 대칭의 중심까지의 거리가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "대칭의 중심이 대응점을 이은 선분을 이등분함을 말하고 길이에 적용한다.",
+      "bReason": "'성질'이라는 제목만으로는 어떤 성질인지 알 수 없어 대상을 밝혔다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "점대칭도형의 대응점 두 점 사이의 거리가 $12\\,\\mathrm{cm}$일 때, 한 대응점에서 대칭의 중심까지의 거리는 {$6$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "cStudentSentence": "점대칭도형의 대응점 두 점 사이의 거리가 $12\\,\\mathrm{cm}$일 때, 한 대응점에서 대칭의 중심까지의 거리는 □$\\,\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "선분의어디라는 자리는 위·가운데 등으로도 답할 수 있어 목표가 불분명했다. 대응점 거리의 절반이라는 성질을 실제12cm와6cm로 확인한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "9d75f8d1d7e205dbe328350399938f6e618a094fcce8811ce3daba57446ed20c",
+      "proposalFingerprint": "6e75777213d2b7c79b37576947c6b5d590c6a860e905b1ff9ba80e10ed5d6600",
+      "questionRevision": "planning-e5e6-20261006-6e75777213d2",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-4-1-c1",
+      "sourceIndex": 140,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "소수에 자연수를 곱하는 것은 어떤 덧셈과 같은지 설명하고, $0.3\\times4$를 덧셈식으로 나타내어 값을 구하시오.",
+        "answer": "그 소수를 곱하는 자연수만큼 여러 번 더하는 것과 같다. $0.3\\times4=0.3+0.3+0.3+0.3=1.2$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수를 자연수만큼 여러 번 더한다",
+              "같은 소수를 곱하는 수의 횟수만큼 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.3+0.3+0.3+0.3$",
+              "$0.3$을 $4$번 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.2$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "소수×자연수를 같은 소수의 거듭 더하기로 설명한다.",
+      "bReason": "제목 '같은 양 여러 번 더하기'는 편집용이라 곱셈과 덧셈의 관계를 직접 묻고 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$0.3\\times4$를 덧셈으로 쓰면 $0.3+0.3+0.3+0.3$이고, 그 값은 {$1.2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1.2$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$0.3\\times4$를 덧셈으로 쓰면 $0.3+0.3+0.3+0.3$이고, 그 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1.2$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "곱하는 수4를 다시 쓰는 슬롯을 제거하고 반복 덧셈 표현과 실제 합을 묻는 유용한 계산을 유지한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "765ad8eb25a526903222dbfd361ff8c35d4c74afd7f4ab48df6dbd30c9d2c865",
+      "proposalFingerprint": "d8e75f44f2a1be22db9ccb2a81f1cd138956b4de78963dcbed5c69ff5e884219",
+      "questionRevision": "planning-e5e6-20261006-d8e75f44f2a1",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-4-1-c3",
+      "sourceIndex": 142,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$1$보다 작은 소수에 자연수를 곱한 값은 항상 $1$보다 작은지 쓰고, 곱셈식을 하나 들어 설명하시오.",
+        "answer": "항상 $1$보다 작은 것은 아니다. 예를 들어 $0.4\\times3=1.2$로 $1$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 $1$보다 작지는 않다",
+              "$1$보다 커질 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.4\\times3=1.2$",
+              "$1$보다 작은 소수와 자연수의 곱이 $1$보다 큰 올바른 곱셈식"
+            ]
+          }
+        ]
+      },
+      "bGoal": "작은 소수도 여러 번 더하면 $1$을 넘을 수 있음을 예로 판단한다.",
+      "bReason": "결론을 알려 주지 않고 '항상 작은가'를 판단하게 하여 반례를 스스로 찾게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$0.4\\times2=0.8$은 $1$보다 {작다}. $0.4\\times3=1.2$는 $1$보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "더 작다"
+          ],
+          [
+            "크다",
+            "더 크다"
+          ]
+        ]
+      },
+      "cStudentSentence": "$0.4\\times2=0.8$은 $1$보다 □. $0.4\\times3=1.2$는 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다"
+          ]
+        },
+        {
+          "key": "크다",
+          "equivalents": [
+            "더 크다"
+          ]
+        }
+      ],
+      "cReason": "작다를 쉼표 앞 연결 자리나 크고를 문장 끝에 넣는 대안은 문법에 맞지 않는다. 유용한 두 비교를 각각 완결 문장으로 나누어 실제 들어맞는 대안을 인정한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "51855ace0552181d176d598ba6ebab5b19907e0c702b0f963fbefc3a748992ea",
+      "proposalFingerprint": "ebc2e8b976910339eb95d945b71530850f4366713ace374dc1ebedd43117538b",
+      "questionRevision": "planning-e5e6-20261006-ebc2e8b97691",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-4-2-c1",
+      "sourceIndex": 143,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$1$보다 큰 소수에 자연수를 곱한 식은 어떤 크기의 묶음이 몇 개 있다는 뜻인지 설명하고, $2.4\\times3$을 덧셈식으로 나타내어 값을 구하시오.",
+        "answer": "크기가 그 소수인 묶음이 곱한 자연수만큼 있다는 뜻이다. $2.4\\times3=2.4+2.4+2.4=7.2$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 그 소수인 묶음이 곱한 자연수의 개수만큼 있다",
+              "그 소수를 곱한 자연수만큼 거듭 더한 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.4+2.4+2.4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7.2$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "소수에 자연수를 곱한 식을 같은 크기의 묶음이 여러 개인 것으로 해석하고 덧셈식으로 옮긴다.",
+      "bReason": "제목 '소수 묶음으로 보는 곱'은 편집용 이름이라, 묶음의 크기와 개수를 직접 묻고 예를 붙였다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "한 병에 물이 $2.4\\,\\mathrm{L}$씩 들어 있다. 같은 물 $3$병을 합치면 모두 {$7.2$}$\\,\\mathrm{L}$이다.",
+        "acceptedAnswers": [
+          [
+            "$7.2$"
+          ]
+        ]
+      },
+      "cStudentSentence": "한 병에 물이 $2.4\\,\\mathrm{L}$씩 들어 있다. 같은 물 $3$병을 합치면 모두 □$\\,\\mathrm{L}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7.2$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "묶음의 대상 없이 주어진2.4·3만 옮기는 문장을 실제 한 병의 물 양과 세 병의 전체 양을 구하는 상황으로 바꾼다. 소수량의 같은 묶음을 더한다는 원래 뜻을 보존한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "1325d89bdf08e462259f32163d1f356df80c799b64d29aec47696be86eabfa8c",
+      "proposalFingerprint": "04b7af82436f879c16bb1340813eaba990a953faf2d58952f1780d565671a1e5",
+      "questionRevision": "planning-e5e6-20261006-04b7af82436f",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-4-2-c3",
+      "sourceIndex": 145,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$4.7$ 바로 앞과 바로 뒤의 자연수를 각각 $6$배하면 $4.7\\times6$이 들어갈 범위를 어림할 수 있다. 두 경계값을 구하고, $4.7$과 두 자연수의 크기를 비교하여 그 범위가 맞는 까닭을 설명하시오.",
+        "answer": "두 자연수는 $4$와 $5$이므로 경계값은 $4\\times6=24$, $5\\times6=30$이다. $4.7$은 $4$보다 크고 $5$보다 작으므로 같은 $6$배를 한 값도 $24$보다 크고 $30$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 경계값은 $24$와 $30$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4.7$이 $4$와 $5$ 사이이고 같은 $6$배를 하면 두 곱 사이에 있다",
+              "$4<4.7<5$이므로 $4\\times6<4.7\\times6<5\\times6$이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "이웃한 두 자연수의 곱으로 정한 어림 범위와 그 범위가 맞는 까닭을 설명한다.",
+      "bReason": "어떤두자연수사이라는 질문에는28과29 등 여러 다른 정답이 있다. 원래 목표인 이웃한 자연수4·5를 각각6배한 경계값과 순서가 유지되는 이유로 응답 범위를 정한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$4.7$은 $4$와 $5$ 사이에 있으므로 $4.7\\times6$은 $4\\times6=${$24$}보다 크고 $5\\times6=${$30$}보다 작다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "$30$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$4.7$은 $4$와 $5$ 사이에 있으므로 $4.7\\times6$은 $4\\times6=$□보다 크고 $5\\times6=$□보다 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$30$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "원문 빈칸 '두 자연수에 각각 곱한 값'은 외워 쓰기 어려운 긴 구절이라, 실제 범위의 두 값을 쓰게 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "d43cd2a1047cc2a9732e934aa055463eea3d855a86115cce564913ebda7adb82",
+      "proposalFingerprint": "31a5bb17c5c91ac4da166514c990fcc31a56b5394047052a6e0d08dfc1f12735",
+      "questionRevision": "planning-e5e6-20261006-31a5bb17c5c9",
+      "draftEvidence": "evidence/section-041-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-4-3-c2",
+      "sourceIndex": 147,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "자연수에 $1$보다 작은 소수를 곱할 때 소수를 분수로 고쳐 계산하는 방법을 설명하고, 그 방법으로 $6\\times0.3$을 구하시오.",
+        "answer": "소수를 분수로 고친 뒤 자연수와 분수의 곱셈으로 계산한다. $6\\times0.3=6\\times\\frac{3}{10}=\\frac{18}{10}=1.8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.3$을 $\\frac{3}{10}$으로 고쳐 자연수에 곱한다",
+              "$6\\times\\frac{3}{10}$으로 계산한다",
+              "$6$의 $\\frac{3}{10}$을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.8$",
+              "$\\frac{18}{10}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "소수를 분수로 고쳐 (자연수)$\\times$(분수)로 계산하는 절차를 설명한다.",
+      "bReason": "일반 소수를 모두 분모10으로 만들 수는 없다. 분수로 고쳐 곱한다는 일반 방법과 실제0.3의분모10 예를 구별한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$6\\times0.3$은 $0.3$을 분수로 고쳐 $6\\times${$\\frac{3}{10}$}$=${$1.8$}로 계산할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{10}$",
+            "$\\frac{6}{20}$"
+          ],
+          [
+            "$1.8$",
+            "$1\\frac{4}{5}$",
+            "$\\frac{9}{5}$",
+            "$\\frac{18}{10}$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$6\\times0.3$은 $0.3$을 분수로 고쳐 $6\\times$□$=$□로 계산할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{10}$",
+          "equivalents": [
+            "$\\frac{6}{20}$"
+          ]
+        },
+        {
+          "key": "$1.8$",
+          "equivalents": [
+            "$1\\frac{4}{5}$",
+            "$\\frac{9}{5}$",
+            "$\\frac{18}{10}$"
+          ]
+        }
+      ],
+      "cReason": "분수로 바꾼다는 답 형태와1.8의 유효한 같은 값들은 유지한다. 기약분수나소수만 요구하지 않은 결과 슬롯에는 직접 계산한18/10도 인정한다.",
+      "coreAfter": "자연수에 $1$보다 작은 소수를 곱할 때에는 그 소수를 {분수}로 고쳐 자연수의 몇 분의 몇인지 구할 수 있다.",
+      "coreReason": "'작은 소수'는 기준이 없는 표현이라 '$1$보다 작은 소수'로 조건을 분명히 했다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "9889ea8761a8636617b9173cfb71d7aef1dda7fa245c602b19db3b788094ca29",
+      "proposalFingerprint": "7c3cb84485574103a8807a36eb57005403517542f46f370d296cb721f6f0a3c7",
+      "questionRevision": "planning-e5e6-20261006-7c3cb8448557",
+      "draftEvidence": "evidence/section-042-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    }
+  ]
+}

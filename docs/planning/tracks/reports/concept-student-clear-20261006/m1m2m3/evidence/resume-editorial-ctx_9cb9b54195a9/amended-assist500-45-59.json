@@ -1,0 +1,1489 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-assist500-45-59.json",
+  "changes": [
+    {
+      "id": "m2-04-01-xc13",
+      "cDecision": "rewrite",
+      "cAfter": "$y=\\frac{6}{x}$($x\\ne0$)은 함수이지만 $x$가 {분모}에 있으므로 {일차함수}는 아니다.",
+      "cMarkedSentence": "$y=\\frac{6}{x}$($x\\ne0$)은 함수이지만 $x$가 {분모}에 있으므로 {일차함수}는 아니다.",
+      "cAcceptedAnswers": [
+        [
+          "분모"
+        ],
+        [
+          "일차함수"
+        ]
+      ],
+      "coreAfter": "$y=\\frac{6}{x}$($x\\ne0$)은 함수이지만 $x$가 {분모}에 있으므로 {일차함수}는 아니다.",
+      "coreReason": "x=0에서정의되지않으므로범위를물음과일반설명모두에밝힌다.",
+      "cReason": "C에서도함수가정의되는범위x≠0을명시한다."
+    },
+    {
+      "id": "m2-04-01-xc15",
+      "bDecision": "rewrite",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(나)가 함수"
+          ]
+        },
+        {
+          "anyOf": [
+            "(가)는 $y=1,2,3,6$으로 여러 값이 대응한다",
+            "$6$의 약수는 $1,2,3,6$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "(나)는 $y=4$ 하나"
+          ]
+        }
+      ],
+      "bPrompt": "자연수 $x$에 대하여 (가) $x$의 약수 $y$, (나) $x$의 약수의 개수 $y$ 가운데 $y$가 $x$의 함수인 것을 고르고, $x=6$일 때 $y$의 값을 각각 써서 까닭을 설명하시오.",
+      "bAnswer": "(나)이다. $x=6$일 때 (가)는 $y=1,\\ 2,\\ 3,\\ 6$으로 네 개가 정해져 함수가 아니고, (나)는 $y=4$ 하나로 정해진다.",
+      "bReason": "약수/개수판별은맞지만x6의약수모두쓰라고한요구가여러개라는기준에빠져추가한다."
+    },
+    {
+      "id": "m2-04-01-xc17",
+      "cDecision": "rewrite",
+      "cAfter": "$y=ax^2+bx+c$로 정리된 식이 $x$에 대한 일차함수가 되려면 $x^2$의 계수 $a$는 {$0$}이고, $x$의 계수 $b$는 {$0$이 아니어야} 한다.",
+      "cMarkedSentence": "$y=ax^2+bx+c$로 정리된 식이 $x$에 대한 일차함수가 되려면 $x^2$의 계수 $a$는 {$0$}이고, $x$의 계수 $b$는 {$0$이 아니어야} 한다.",
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "$0$이 아니어야"
+        ]
+      ],
+      "coreAfter": "$y=ax^2+bx+c$로 정리된 식이 $x$에 대한 일차함수가 되려면 $x^2$의 계수 $a$는 {$0$}이고, $x$의 계수 $b$는 {$0$이 아니어야} 한다.",
+      "coreReason": "조건이성립하는이차이하다항식의형태를명시한다.",
+      "cReason": "임의문자계수식은x³등이남을수있어정리한y=ax²+bx+c범위로C를한정한다."
+    },
+    {
+      "id": "m2-04-02-xc12",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bAnswer": "$-\\frac{b}{a}=b$이고 $b\\ne0$이므로 $a=-1$이다. $b=0$이면 $a\\ne0$인 어떤 값에서도 두 절편이 모두 $0$이므로 $a$를 하나로 정할 수 없다.",
+      "cAfter": "$y=ax+b$($a\\ne0$)의 두 절편이 같은 $0$이 아닌 수이면 $-\\frac{b}{a}=b$에서 {$a=-1$}이다. $b=0$이면 두 절편이 모두 {$0$}이라 $a$는 하나로 정해지지 않는다.",
+      "cMarkedSentence": "$y=ax+b$($a\\ne0$)의 두 절편이 같은 $0$이 아닌 수이면 $-\\frac{b}{a}=b$에서 {$a=-1$}이다. $b=0$이면 두 절편이 모두 {$0$}이라 $a$는 하나로 정해지지 않는다.",
+      "cAcceptedAnswers": [
+        [
+          "$a=-1$"
+        ],
+        [
+          "$0$"
+        ]
+      ],
+      "coreAfter": "$y=ax+b$($a\\ne0$)의 두 절편이 같은 $0$이 아닌 수이면 $-\\frac{b}{a}=b$에서 {$a=-1$}이다. $b=0$이면 두 절편이 모두 {$0$}이라 $a$는 하나로 정해지지 않는다.",
+      "coreReason": "두절편공식이성립하는a≠0범위를명시한다.",
+      "bPrompt": "일차함수 $y=ax+b$의 $x$절편과 $y$절편이 같고 그 값이 $0$이 아니다. $a$의 값을 과정과 함께 구하시오. 또 $b=0$일 때는 왜 $a$의 값이 정해지지 않는지 쓰시오.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-\\frac{b}{a}=b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$b=0$이면 두 절편이 모두 $0$이라 $a$는 정해지지 않음"
+          ]
+        }
+      ],
+      "bReason": "b≠0일때a-1이맞지만b0에서어떤a든이라는참고답은a≠0범위를명시한다.",
+      "cReason": "두절편을정의하는일차함수의a≠0조건을문장에넣는다."
+    },
+    {
+      "id": "m2-04-02-xc21",
+      "bDecision": "rewrite",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 점 $(m,\\ 0)$, $(0,\\ n)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "기울기가 양수"
+          ]
+        },
+        {
+          "anyOf": [
+            "오른쪽 위로 향함"
+          ]
+        },
+        {
+          "anyOf": [
+            "기울기 $-n/m$에서 $m>0$, $n<0$이므로 양수이다",
+            "$(0,n)$에서 $(m,0)$으로 가면 $x$와 $y$가 함께 증가한다"
+          ]
+        }
+      ],
+      "bPrompt": "$x$절편이 $m$, $y$절편이 $n$인 일차함수의 그래프에서 $m>0$, $n<0$이다. 그래프가 지나는 두 축 위의 점을 쓰고, 기울기의 부호와 그래프가 향하는 방향을 까닭과 함께 쓰시오.",
+      "bAnswer": "$(m,\\ 0)$, $(0,\\ n)$을 지난다. 기울기는 $\\frac{0-n}{m-0}=-\\frac{n}{m}$이고 $m>0$, $n<0$이므로 양수이다. 따라서 그래프는 오른쪽 위로 향한다.",
+      "bReason": "두점/부호/방향은맞지만까닭요구가판정기준에없어-n/m양수또는증가관계를추가한다.",
+      "cAcceptedAnswers": [
+        [
+          "양수"
+        ],
+        [
+          "오른쪽 위"
+        ]
+      ]
+    },
+    {
+      "id": "m2-04-04-xc9",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bPrompt": "같은 눈금의 좌표평면에서 일차함수 $y=\\frac{1}{3}x$와 $y=-3x$의 그래프 중 더 가파른 것을 고르시오. 기울기의 부호와 절댓값이 각각 무엇을 알려 주는지 이용하여 까닭도 쓰시오.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y=-3x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "부호는 그래프가 향하는 방향을 알려 준다",
+            "양수는 오른쪽 위, 음수는 오른쪽 아래 방향이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가파른 정도는 절댓값으로 비교하고 $|-3|>1/3$이다",
+            "같은 $x$ 증가량에 $y=-3x$의 변화량 절댓값이 더 크다"
+          ]
+        }
+      ],
+      "cAfter": "같은 눈금의 좌표평면에서 기울기의 부호는 그래프가 향하는 {방향}을, 절댓값은 {가파른 정도}를 알려 준다. 두 정보는 따로 읽는다.",
+      "cMarkedSentence": "같은 눈금의 좌표평면에서 기울기의 부호는 그래프가 향하는 {방향}을, 절댓값은 {가파른 정도}를 알려 준다. 두 정보는 따로 읽는다.",
+      "cAcceptedAnswers": [
+        [
+          "방향"
+        ],
+        [
+          "가파른 정도"
+        ]
+      ],
+      "coreAfter": "같은 눈금의 좌표평면에서 기울기의 부호는 그래프가 향하는 {방향}을, 절댓값은 {가파른 정도}를 알려 준다. 두 정보는 따로 읽는다.",
+      "coreReason": "다른축눈금이면시각적경사를그대로비교할수없어같은눈금조건을명시한다.",
+      "bAnswer": "$y=-3x$이다. 부호는 방향만 알려 주고 가파른 정도는 절댓값으로 비교하는데, $|-3|=3>\\frac{1}{3}$이기 때문이다.",
+      "bReason": "더가파름비교에는같은눈금조건이필요하고물음의부호가알려주는방향도기준에넣는다.",
+      "cReason": "가파름비교는좌표축눈금비에의존하므로같은눈금조건을명시한다."
+    },
+    {
+      "id": "m2-04-04-xc17",
+      "cDecision": "rewrite",
+      "cAfter": "$y=ax$의 그래프는 원점을 지나므로 $a>0$이면 {제$1$, $3$사분면}만, $a<0$이면 {제$2$, $4$사분면}만 지난다.",
+      "cMarkedSentence": "$y=ax$의 그래프는 원점을 지나므로 $a>0$이면 {제$1$, $3$사분면}만, $a<0$이면 {제$2$, $4$사분면}만 지난다.",
+      "cAcceptedAnswers": [
+        [
+          "제$1$, $3$사분면",
+          "제$3$, $1$사분면",
+          "제1사분면과 제3사분면"
+        ],
+        [
+          "제$2$, $4$사분면",
+          "제$4$, $2$사분면",
+          "제2사분면과 제4사분면"
+        ]
+      ],
+      "cReason": "사분면두개나열은순서교환도맞아각쌍전체를키로묶어역순을인정한다."
+    },
+    {
+      "id": "m2-04-05-xc10",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bAnswer": "$q-ap$이다. 점 $(p,q)$가 $y=ax+b$ 위에 있으므로 $q=ap+b$이고, 이를 정리하면 $b=q-ap$이다. 또는 $x$의 변화량이 $-p$이므로 $y$의 변화량은 $-ap$라서 $x=0$일 때 $y=q-ap$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$q-ap$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$q=ap+b$에서 $b=q-ap$",
+            "$x$의 변화량은 $-p$이고 $y$의 변화량은 $-ap$이다"
+          ]
+        }
+      ],
+      "cAfter": "기울기가 $a$인 직선이 점 $(p,\\ q)$를 지나면 $q=ap+b$가 성립하므로, $y$절편 $b$는 {$q-ap$}이다.",
+      "cMarkedSentence": "기울기가 $a$인 직선이 점 $(p,\\ q)$를 지나면 $q=ap+b$가 성립하므로, $y$절편 $b$는 {$q-ap$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$q-ap$",
+          "$-ap+q$"
+        ]
+      ],
+      "coreAfter": "기울기가 $a$인 직선이 점 $(p,\\ q)$를 지나면 $q=ap+b$가 성립하므로, $y$절편 $b$는 {$q-ap$}이다.",
+      "coreReason": "부호가음수인경우에도성립하는좌표대입관계로설명한다.",
+      "bPrompt": "기울기가 $a$인 직선이 점 $(p,\\ q)$를 지날 때, 이 직선의 $y$절편을 $a$, $p$, $q$로 나타내고 그렇게 되는 까닭을 쓰시오.",
+      "bReason": "q-ap는맞지만p또는a음수일때항상줄어든다고할수없어대입/부호변화량으로설명한다.",
+      "cReason": "x가p에서0으로갈때y변화량은-ap이지항상감소는아니므로중립식으로고친다."
+    },
+    {
+      "id": "m2-04-05-xc21",
+      "cDecision": "rewrite",
+      "cAfter": "점 $(p,\\ q)$를 $y=ax+b$에 대입할 때 앞의 수 $p$는 {$x$좌표}, 뒤의 수 $q$는 {$y$좌표}이므로 $x=p$, $y=q$를 넣는다.",
+      "cMarkedSentence": "점 $(p,\\ q)$를 $y=ax+b$에 대입할 때 앞의 수 $p$는 {$x$좌표}, 뒤의 수 $q$는 {$y$좌표}이므로 $x=p$, $y=q$를 넣는다.",
+      "cAcceptedAnswers": [
+        [
+          "$x$좌표"
+        ],
+        [
+          "$y$좌표"
+        ]
+      ],
+      "cReason": "x좌표와y좌표를바꿨다는열거는반대순서도맞아각자리역할로문장을고친다."
+    },
+    {
+      "id": "m2-04-06-xc1",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 상황의 시작부터 지난 시간을 $x$라 하고 $y$가 $x$의 일차함수라면, 시작할 때의 $y$의 값은 그래프의 {$y$절편}이다.",
+      "cMarkedSentence": "어떤 상황의 시작부터 지난 시간을 $x$라 하고 $y$가 $x$의 일차함수라면, $x=0$일 때의 {처음 값}이 그 함수의 {$y$절편}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$y$절편"
+        ]
+      ],
+      "coreAfter": "어떤 상황의 시작부터 지난 시간을 $x$라 하고 $y$가 $x$의 일차함수라면, $x=0$일 때의 {처음 값}이 그 함수의 {$y$절편}이다.",
+      "coreReason": "처음값이라는물리적해석은x=0을시작으로정한경우의내용이다.",
+      "cReason": "처음값이라는막연한빈칸은빼고시간의원점에해당하는y절편을묻는다.",
+      "bReason": "처음 값이 $y$절편이라는 해석을 m2-04-06-c2 B에서 이미 묻는다."
+    },
+    {
+      "id": "m2-04-06-xc6",
+      "cDecision": "rewrite",
+      "cAfter": "양초가 일정한 속도로 타는 동안 남은 길이는 시간에 대해 {줄어드는} 일차함수로 나타낼 수 있고 기울기는 {음수}이다.",
+      "cMarkedSentence": "양초가 일정한 속도로 타는 동안 남은 길이는 시간에 대해 {줄어드는} 일차함수로 나타낼 수 있고 기울기는 {음수}이다.",
+      "cAcceptedAnswers": [
+        [
+          "줄어드는",
+          "감소하는"
+        ],
+        [
+          "음수"
+        ]
+      ],
+      "coreAfter": "양초가 일정한 속도로 타는 동안 남은 길이는 시간에 대해 {줄어드는} 일차함수로 나타낼 수 있고 기울기는 {음수}이다.",
+      "coreReason": "다탄뒤음수길이가나오는범위로선형식을확장하지않는다.",
+      "cReason": "타는동안만일차식인양초길이를다탄뒤까지부정길이로설명하지않게범위를넣는다.",
+      "bReason": "양초 길이 식과 감소는 m2-04-06-c4 B에서 다룬다."
+    },
+    {
+      "id": "m2-04-06-xc13",
+      "cDecision": "rewrite",
+      "cAfter": "불을 붙인 뒤 지난 시간을 $x$라 할 때, 양초의 남은 길이가 {$0$}이 되는 $x$의 값이 양초가 {다 타는} 데 걸리는 시간이다.",
+      "cMarkedSentence": "불을 붙인 뒤 지난 시간을 $x$라 할 때, 양초의 남은 길이가 {$0$}이 되는 $x$의 값이 양초가 {다 타는} 데 걸리는 시간이다.",
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "다 타는"
+        ]
+      ],
+      "coreAfter": "불을 붙인 뒤 지난 시간을 $x$라 할 때, 양초의 남은 길이가 {$0$}이 되는 $x$의 값이 양초가 {다 타는} 데 걸리는 시간이다.",
+      "coreReason": "x의의미를문장안에직접밝힌다.",
+      "cReason": "x가무엇인지제목밖에도분명히불붙인뒤시간으로명시한다."
+    },
+    {
+      "id": "m2-04-06-xc17",
+      "cDecision": "rewrite",
+      "cAfter": "추의 질량이 $x\\,\\mathrm{g}$일 때 용수철의 전체 길이는 $(20+2x)\\,\\mathrm{cm}$이다. 이 식이 길이 $40\\,\\mathrm{cm}$까지 적용된다면 $x$의 범위는 {$0\\le x\\le10$}이다.",
+      "cMarkedSentence": "추의 질량을 $x\\,\\mathrm{g}$, 용수철의 전체 길이를 $y\\,\\mathrm{cm}$라 하자. 길이를 최대 $40\\,\\mathrm{cm}$까지 나타내는 일차식은 $x\\ge0$, $y\\le40$인 {$x$의 범위}에서만 상황에 맞는 {의미}를 가진다.",
+      "cAcceptedAnswers": [
+        [
+          "$0\\le x\\le10$",
+          "$0\\le x$이고 $x\\le10$"
+        ]
+      ],
+      "coreAfter": "추의 질량을 $x\\,\\mathrm{g}$, 용수철의 전체 길이를 $y\\,\\mathrm{cm}$라 하자. 길이를 최대 $40\\,\\mathrm{cm}$까지 나타내는 일차식은 $x\\ge0$, $y\\le40$인 {$x$의 범위}에서만 상황에 맞는 {의미}를 가진다.",
+      "coreReason": "40cm를증가분으로오해하거나x,y를제목에서찾지않도록물리량을밝힌다.",
+      "cReason": "범위·의미라는막연한말대신길이상한과질량하한에서실제적용범위를구한다.",
+      "bReason": "$y$의 상한으로 $x$의 범위를 구하는 형식이 m2-04-06-xc15 B와 같다."
+    },
+    {
+      "id": "m2-04-07-xc1",
+      "cDecision": "rewrite",
+      "cAfter": "시속 $a\\,\\mathrm{km}$($a>0$)의 일정한 속력으로 $x$시간 가면 간 거리는 {$ax$}$\\,\\mathrm{km}$이다.",
+      "cMarkedSentence": "시속 $a\\,\\mathrm{km}$($a>0$)의 일정한 속력으로 $x$시간 가면 간 거리는 {$ax\\,\\mathrm{km}$}로 $x$의 {일차함수}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$ax$",
+          "$a\\times x$",
+          "$xa$"
+        ]
+      ],
+      "cReason": "거리계산을짧게유지하고단위를칸밖에둔다. 일차함수와정비례는동의어가아니므로두분류를허용하는B에서다룬다."
+    },
+    {
+      "id": "m2-04-07-xc2",
+      "cDecision": "rewrite",
+      "cAfter": "목적지까지 시속 $v\\,\\mathrm{km}$($v>0$)의 일정한 속력으로 갈 때, $x$시간 뒤 남은 거리를 $y\\,\\mathrm{km}$라 하면 도착할 때까지 이 일차함수의 기울기는 {$-v$}이다.",
+      "cMarkedSentence": "목적지까지 시속 $v\\,\\mathrm{km}$($v>0$)로 갈 때 $x$시간 뒤 남은 거리를 $y\\,\\mathrm{km}$라 하면, 도착할 때까지 기울기는 {속력}의 수치 $v$와 절댓값이 같은 {음수}인 $-v$이다.",
+      "cAcceptedAnswers": [
+        [
+          "$-v$"
+        ]
+      ],
+      "coreAfter": "목적지까지 시속 $v\\,\\mathrm{km}$($v>0$)로 갈 때 $x$시간 뒤 남은 거리를 $y\\,\\mathrm{km}$라 하면, 도착할 때까지 기울기는 {속력}의 수치 $v$와 절댓값이 같은 {음수}인 $-v$이다.",
+      "coreReason": "분속/시속및거리단위변경시기울기수치가달라지는혼동을막는다.",
+      "cReason": "기울기값을미리보여주는음수빈칸대신변수와단위를정의하고기울기값을직접묻는다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-04-01-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$y=\\frac{6}{x}$($x\\ne0$)에서 $y$는 $x$의 함수인가? 또 일차함수인가? 각각 까닭을 쓰시오.",
+      "bAnswer": "함수이다. $x$의 값마다 $y$의 값이 하나씩 정해지기 때문이다. 일차함수는 아니다. $x$가 분모에 있어 $y=ax+b$ 꼴이 아니기 때문이다.",
+      "bGoal": "함수와 일차함수 구분하기",
+      "bReason": "한 식에 대해 함수 여부와 일차함수 여부를 따로 답하게 관계를 특정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "함수이다($x$마다 $y$가 하나)"
+          ]
+        },
+        {
+          "anyOf": [
+            "일차함수가 아니다($x$가 분모에 있음)"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "C에서도함수가정의되는범위x≠0을명시한다.",
+      "exampleNeeded": true,
+      "authorBatch": 38,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "x가 분모에 있음",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2652,
+      "part": "m2plus",
+      "sourceFingerprint": "ab1e45805a7a27aafb68af23dc023d94f8875ec8350476c5487e6c0b0e786433",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2652
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y=\\frac{6}{x}$($x\\ne0$)은 함수이지만 $x$가 {분모}에 있으므로 {일차함수}는 아니다.",
+      "cSlotAnswers": [
+        "분모",
+        "일차함수"
+      ],
+      "cStudentSentence": "$y=\\frac{6}{x}$($x\\ne0$)은 함수이지만 $x$가 □에 있으므로 □는 아니다.",
+      "cAnswers": [
+        "분모",
+        "일차함수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분모",
+          "equivalentAnswers": [
+            "분모"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "일차함수",
+          "equivalentAnswers": [
+            "일차함수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분모"
+        ],
+        [
+          "일차함수"
+        ]
+      ],
+      "proposalFingerprint": "db93f883297cc78b3fb8a3c6550e4e3f0a7182afce2ca30d8166bb22cae8e290",
+      "cAfter": "$y=\\frac{6}{x}$($x\\ne0$)은 함수이지만 $x$가 {분모}에 있으므로 {일차함수}는 아니다.",
+      "coreAfter": "$y=\\frac{6}{x}$($x\\ne0$)은 함수이지만 $x$가 {분모}에 있으므로 {일차함수}는 아니다.",
+      "coreReason": "x=0에서정의되지않으므로범위를물음과일반설명모두에밝힌다."
+    },
+    {
+      "id": "m2-04-01-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "자연수 $x$에 대하여 (가) $x$의 약수 $y$, (나) $x$의 약수의 개수 $y$ 가운데 $y$가 $x$의 함수인 것을 고르고, $x=6$일 때 $y$의 값을 각각 써서 까닭을 설명하시오.",
+      "bAnswer": "(나)이다. $x=6$일 때 (가)는 $y=1,\\ 2,\\ 3,\\ 6$으로 네 개가 정해져 함수가 아니고, (나)는 $y=4$ 하나로 정해진다.",
+      "bGoal": "약수와 약수의 개수를 함수 관점에서 구분하기",
+      "bReason": "약수/개수판별은맞지만x6의약수모두쓰라고한요구가여러개라는기준에빠져추가한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(나)가 함수"
+          ]
+        },
+        {
+          "anyOf": [
+            "(가)는 $y=1,2,3,6$으로 여러 값이 대응한다",
+            "$6$의 약수는 $1,2,3,6$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "(나)는 $y=4$ 하나"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "두 관계를 짧게 대비하는 문장이고 빈칸이 구분의 핵심을 묻는다.",
+      "studentLabel": "약수와 약수의 개수 구분하기",
+      "exampleNeeded": true,
+      "authorBatch": 38,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "약수는 여럿, 개수는 하나",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2654,
+      "part": "m2plus",
+      "sourceFingerprint": "e68fa16cc022cb9a92339143cfbd6ce882ab8f84cc43a72a6c42df86f8e8493b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2654
+      },
+      "directReview": null,
+      "cFrozenSentence": "자연수 $x$의 약수 $y$는 함수가 □, 약수의 □ $y$는 함수이다.",
+      "cFrozenDefinition": "자연수 $x$의 약수 $y$는 함수가 {아니지만}, 약수의 {개수} $y$는 함수이다.",
+      "cFrozenAnswers": [
+        "아니지만",
+        "개수"
+      ],
+      "cMarkedSentence": "자연수 $x$의 약수 $y$는 함수가 {아니지만}, 약수의 {개수} $y$는 함수이다.",
+      "cSlotAnswers": [
+        "아니지만",
+        "개수"
+      ],
+      "cStudentSentence": "자연수 $x$의 약수 $y$는 함수가 □, 약수의 □ $y$는 함수이다.",
+      "cAnswers": [
+        "아니지만",
+        "개수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "아니지만",
+          "equivalentAnswers": [
+            "아니지만",
+            "아니고",
+            "아니며"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "개수",
+          "equivalentAnswers": [
+            "개수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "아니지만",
+          "accept": [
+            "아니고",
+            "아니며"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "아니지만",
+          "아니고",
+          "아니며"
+        ],
+        [
+          "개수"
+        ]
+      ],
+      "proposalFingerprint": "edaa847d985b66bd3e8bd99d35aec20b82088a8b8405e1e4e01ac5358883dd36"
+    },
+    {
+      "id": "m2-04-01-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$y=ax^2+(b-1)x+3$이 $x$에 대한 일차함수가 되려면 상수 $a$, $b$는 각각 어떤 조건을 만족해야 하는가? 까닭도 쓰시오.",
+      "bAnswer": "$a=0$이고 $b\\ne1$이다. $x^2$의 항이 없어야 하므로 $a=0$이고, $x$의 계수 $b-1$이 $0$이 아니어야 $y=(x$에 대한 일차식$)$ 꼴이 되기 때문이다.",
+      "bGoal": "문자 계수가 있는 식의 일차함수 조건 구하기",
+      "bReason": "$x^2$의 계수와 $x$의 계수 조건이 모두 필요한 구체 식을 제시함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x^2$의 계수가 $0$($a=0$)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$의 계수가 $0$이 아님($b\\ne1$)"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "임의문자계수식은x³등이남을수있어정리한y=ax²+bx+c범위로C를한정한다.",
+      "studentLabel": "계수에 문자가 있는 식이 일차함수일 조건",
+      "exampleNeeded": true,
+      "authorBatch": 38,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "application",
+      "roleReason": "문자 계수의 일차 조건",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2656,
+      "part": "m2plus",
+      "sourceFingerprint": "f7215e602eaef1c54f51755920ad807b1670f3fe0e49722aa5c9389cb57c0a39",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2656
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y=ax^2+bx+c$로 정리된 식이 $x$에 대한 일차함수가 되려면 $x^2$의 계수 $a$는 {$0$}이고, $x$의 계수 $b$는 {$0$이 아니어야} 한다.",
+      "cSlotAnswers": [
+        "$0$",
+        "$0$이 아니어야"
+      ],
+      "cStudentSentence": "$y=ax^2+bx+c$로 정리된 식이 $x$에 대한 일차함수가 되려면 $x^2$의 계수 $a$는 □이고, $x$의 계수 $b$는 □ 한다.",
+      "cAnswers": [
+        "$0$",
+        "$0$이 아니어야"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$이 아니어야",
+          "equivalentAnswers": [
+            "$0$이 아니어야"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "$0$이 아니어야"
+        ]
+      ],
+      "proposalFingerprint": "415bed43aca4bf02939588b0e36215e077585bfbec8eaf00c45cfde9e9b763b8",
+      "cAfter": "$y=ax^2+bx+c$로 정리된 식이 $x$에 대한 일차함수가 되려면 $x^2$의 계수 $a$는 {$0$}이고, $x$의 계수 $b$는 {$0$이 아니어야} 한다.",
+      "coreAfter": "$y=ax^2+bx+c$로 정리된 식이 $x$에 대한 일차함수가 되려면 $x^2$의 계수 $a$는 {$0$}이고, $x$의 계수 $b$는 {$0$이 아니어야} 한다.",
+      "coreReason": "조건이성립하는이차이하다항식의형태를명시한다."
+    },
+    {
+      "id": "m2-04-02-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "일차함수 $y=ax+b$의 $x$절편과 $y$절편이 같고 그 값이 $0$이 아니다. $a$의 값을 과정과 함께 구하시오. 또 $b=0$일 때는 왜 $a$의 값이 정해지지 않는지 쓰시오.",
+      "bAnswer": "$-\\frac{b}{a}=b$이고 $b\\ne0$이므로 $a=-1$이다. $b=0$이면 $a\\ne0$인 어떤 값에서도 두 절편이 모두 $0$이므로 $a$를 하나로 정할 수 없다.",
+      "bGoal": "두 절편이 같을 조건 구하기",
+      "bReason": "b≠0일때a-1이맞지만b0에서어떤a든이라는참고답은a≠0범위를명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-\\frac{b}{a}=b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$b=0$이면 두 절편이 모두 $0$이라 $a$는 정해지지 않음"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "두절편을정의하는일차함수의a≠0조건을문장에넣는다.",
+      "authorBatch": 38,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "-b/a=b에서 a=-1",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2669,
+      "part": "m2plus",
+      "sourceFingerprint": "ca520202640748a445c38f6792b8e75d03aa4faa1be6ac53bd6d06a3b7f443b7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2669
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y=ax+b$($a\\ne0$)의 두 절편이 같은 $0$이 아닌 수이면 $-\\frac{b}{a}=b$에서 {$a=-1$}이다. $b=0$이면 두 절편이 모두 {$0$}이라 $a$는 하나로 정해지지 않는다.",
+      "cSlotAnswers": [
+        "$a=-1$",
+        "$0$"
+      ],
+      "cStudentSentence": "$y=ax+b$($a\\ne0$)의 두 절편이 같은 $0$이 아닌 수이면 $-\\frac{b}{a}=b$에서 □이다. $b=0$이면 두 절편이 모두 □이라 $a$는 하나로 정해지지 않는다.",
+      "cAnswers": [
+        "$a=-1$",
+        "$0$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a=-1$",
+          "equivalentAnswers": [
+            "$a=-1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a=-1$"
+        ],
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "fc1fcbb8a17933bb240cd20375dd9a394de11cbee4ce12c5f17630df568c61b4",
+      "cAfter": "$y=ax+b$($a\\ne0$)의 두 절편이 같은 $0$이 아닌 수이면 $-\\frac{b}{a}=b$에서 {$a=-1$}이다. $b=0$이면 두 절편이 모두 {$0$}이라 $a$는 하나로 정해지지 않는다.",
+      "coreAfter": "$y=ax+b$($a\\ne0$)의 두 절편이 같은 $0$이 아닌 수이면 $-\\frac{b}{a}=b$에서 {$a=-1$}이다. $b=0$이면 두 절편이 모두 {$0$}이라 $a$는 하나로 정해지지 않는다.",
+      "coreReason": "두절편공식이성립하는a≠0범위를명시한다."
+    },
+    {
+      "id": "m2-04-02-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$x$절편이 $m$, $y$절편이 $n$인 일차함수의 그래프에서 $m>0$, $n<0$이다. 그래프가 지나는 두 축 위의 점을 쓰고, 기울기의 부호와 그래프가 향하는 방향을 까닭과 함께 쓰시오.",
+      "bAnswer": "$(m,\\ 0)$, $(0,\\ n)$을 지난다. 기울기는 $\\frac{0-n}{m-0}=-\\frac{n}{m}$이고 $m>0$, $n<0$이므로 양수이다. 따라서 그래프는 오른쪽 위로 향한다.",
+      "bGoal": "절편의 부호로 기울기의 부호 판단하기",
+      "bReason": "두점/부호/방향은맞지만까닭요구가판정기준에없어-n/m양수또는증가관계를추가한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 점 $(m,\\ 0)$, $(0,\\ n)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "기울기가 양수"
+          ]
+        },
+        {
+          "anyOf": [
+            "오른쪽 위로 향함"
+          ]
+        },
+        {
+          "anyOf": [
+            "기울기 $-n/m$에서 $m>0$, $n<0$이므로 양수이다",
+            "$(0,n)$에서 $(m,0)$으로 가면 $x$와 $y$가 함께 증가한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$x$절편 $m$이 양수, $y$절편 $n$이 음수이면 그래프는 두 점 $(m,\\ 0)$, $(0,\\ n)$을 지나므로 기울기가 {양수}이고 {오른쪽 위}로 향하는 직선이다.",
+      "cAnswers": [
+        "양수",
+        "오른쪽 위"
+      ],
+      "cReason": "$m$, $n$이 무엇인지 밝히지 않아 두 점이 왜 나오는지 알 수 없다.",
+      "coreAfter": "$x$절편 $m$이 양수, $y$절편 $n$이 음수이면 그래프는 두 점 $(m,\\ 0)$, $(0,\\ n)$을 지나므로 기울기 $-\\frac{n}{m}$이 {양수}이고, 그래프는 {오른쪽 위}로 향한다.",
+      "coreReason": "원래 설명에 $m$, $n$이 각각 $x$절편, $y$절편이라는 말이 없어 학생이 기호의 뜻을 알 수 없다.",
+      "authorBatch": 38,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "기울기 -n/m이 양수",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2674,
+      "part": "m2plus",
+      "sourceFingerprint": "3ed7b97bd0664c5c7fb33040e2e32b503a59fc7ce3c7dc422498317c982a9d4c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2674
+      },
+      "directReview": null,
+      "coreBeforeRepair": "$x$절편 $m$이 양수, $y$절편 $n$이 음수이면 그래프는 두 점 $(m,\\ 0)$, $(0,\\ n)$을 지나므로 기울기 $-\\frac{n}{m}$이 {양수}이고, 그래프는 {오른쪽 위}로 향한다.",
+      "coreRepairReason": "기울기 $\\frac{n-0}{0-m}=-\\frac{n}{m}$ 계산이 맞고 원본 핵심어 {양수}, {오른쪽 위}가 있어 그대로 보존했다.",
+      "coreRepairEvidence": "core-repair/core-003",
+      "cMarkedSentence": "$x$절편 $m$이 양수, $y$절편 $n$이 음수이면 그래프는 두 점 $(m,\\ 0)$, $(0,\\ n)$을 지나므로 기울기가 {양수}이고 {오른쪽 위}로 향하는 직선이다.",
+      "cSlotAnswers": [
+        "양수",
+        "오른쪽 위"
+      ],
+      "cStudentSentence": "$x$절편 $m$이 양수, $y$절편 $n$이 음수이면 그래프는 두 점 $(m,\\ 0)$, $(0,\\ n)$을 지나므로 기울기가 □이고 □로 향하는 직선이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "오른쪽 위",
+          "equivalentAnswers": [
+            "오른쪽 위"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "양수",
+          "accept": [
+            "$0$보다 크다",
+            "양"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "양수"
+        ],
+        [
+          "오른쪽 위"
+        ]
+      ],
+      "proposalFingerprint": "872be30f74627e8a743378ed5b2a3b0460b9229d4e2613759b8d10f1177b5f62"
+    },
+    {
+      "id": "m2-04-04-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 눈금의 좌표평면에서 일차함수 $y=\\frac{1}{3}x$와 $y=-3x$의 그래프 중 더 가파른 것을 고르시오. 기울기의 부호와 절댓값이 각각 무엇을 알려 주는지 이용하여 까닭도 쓰시오.",
+      "bAnswer": "$y=-3x$이다. 부호는 방향만 알려 주고 가파른 정도는 절댓값으로 비교하는데, $|-3|=3>\\frac{1}{3}$이기 때문이다.",
+      "bGoal": "부호와 절댓값을 구분해 가파름 비교",
+      "bReason": "더가파름비교에는같은눈금조건이필요하고물음의부호가알려주는방향도기준에넣는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y=-3x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "부호는 그래프가 향하는 방향을 알려 준다",
+            "양수는 오른쪽 위, 음수는 오른쪽 아래 방향이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가파른 정도는 절댓값으로 비교하고 $|-3|>1/3$이다",
+            "같은 $x$ 증가량에 $y=-3x$의 변화량 절댓값이 더 크다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "가파름비교는좌표축눈금비에의존하므로같은눈금조건을명시한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "부호와 절댓값을 나눠 가파름 비교",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2696,
+      "part": "m2plus",
+      "sourceFingerprint": "1fdfcb91ccdf6016df3c9f7f571489fa5725e93056583add511755be18441ae8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2696
+      },
+      "directReview": null,
+      "cMarkedSentence": "같은 눈금의 좌표평면에서 기울기의 부호는 그래프가 향하는 {방향}을, 절댓값은 {가파른 정도}를 알려 준다. 두 정보는 따로 읽는다.",
+      "cSlotAnswers": [
+        "방향",
+        "가파른 정도"
+      ],
+      "cStudentSentence": "같은 눈금의 좌표평면에서 기울기의 부호는 그래프가 향하는 □을, 절댓값은 □를 알려 준다. 두 정보는 따로 읽는다.",
+      "cAnswers": [
+        "방향",
+        "가파른 정도"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "방향",
+          "equivalentAnswers": [
+            "방향"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "가파른 정도",
+          "equivalentAnswers": [
+            "가파른 정도"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "방향"
+        ],
+        [
+          "가파른 정도"
+        ]
+      ],
+      "proposalFingerprint": "5a27f66cfaf6d1d634ce0027268a3ec07317ad7b238b62d96b0bc05bc1bcd22c",
+      "cAfter": "같은 눈금의 좌표평면에서 기울기의 부호는 그래프가 향하는 {방향}을, 절댓값은 {가파른 정도}를 알려 준다. 두 정보는 따로 읽는다.",
+      "coreAfter": "같은 눈금의 좌표평면에서 기울기의 부호는 그래프가 향하는 {방향}을, 절댓값은 {가파른 정도}를 알려 준다. 두 정보는 따로 읽는다.",
+      "coreReason": "다른축눈금이면시각적경사를그대로비교할수없어같은눈금조건을명시한다."
+    },
+    {
+      "id": "m2-04-04-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "일차함수 $y=ax$의 그래프가 지나는 사분면을 $a>0$일 때와 $a<0$일 때로 나누어 쓰시오.",
+      "bAnswer": "원점을 지나므로 $a>0$이면 제$1$, $3$사분면만, $a<0$이면 제$2$, $4$사분면만 지난다.",
+      "bGoal": "원점을 지나는 직선의 사분면",
+      "bReason": "$b=0$인 경우를 두 부호로 나누어 답하게 범위를 정했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a>0$이면 제$1$, $3$사분면"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a<0$이면 제$2$, $4$사분면"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$y=ax$의 그래프는 원점을 지나므로 $a>0$이면 {제$1$, $3$사분면}만, $a<0$이면 {제$2$, $4$사분면}만 지난다.",
+      "cAnswers": [
+        "제$1$, $3$사분면",
+        "제$2$, $4$사분면"
+      ],
+      "cReason": "사분면두개나열은순서교환도맞아각쌍전체를키로묶어역순을인정한다.",
+      "learningRole": "definition",
+      "roleReason": "$y=ax$의 부호별 사분면",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2701,
+      "part": "m2plus",
+      "sourceFingerprint": "cffd9e84ef936407d8db02cd96434cd6c53607a7fb058f7b00a0a5fb09551cf9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2701
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y=ax$의 그래프는 원점을 지나므로 $a>0$이면 {제$1$, $3$사분면}만, $a<0$이면 {제$2$, $4$사분면}만 지난다.",
+      "cSlotAnswers": [
+        "제$1$, $3$사분면",
+        "제$2$, $4$사분면"
+      ],
+      "cStudentSentence": "$y=ax$의 그래프는 원점을 지나므로 $a>0$이면 □만, $a<0$이면 □만 지난다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "제$1$, $3$사분면",
+          "equivalentAnswers": [
+            "제$1$, $3$사분면",
+            "제$3$, $1$사분면",
+            "제1사분면과 제3사분면"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "제$2$, $4$사분면",
+          "equivalentAnswers": [
+            "제$2$, $4$사분면",
+            "제$4$, $2$사분면",
+            "제2사분면과 제4사분면"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "제$1$, $3$사분면",
+          "제$3$, $1$사분면",
+          "제1사분면과 제3사분면"
+        ],
+        [
+          "제$2$, $4$사분면",
+          "제$4$, $2$사분면",
+          "제2사분면과 제4사분면"
+        ]
+      ],
+      "proposalFingerprint": "5414022ef50820d619b577b79160538cb6df1d63d2e9bb82c7d49544bbc10301"
+    },
+    {
+      "id": "m2-04-05-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "기울기가 $a$인 직선이 점 $(p,\\ q)$를 지날 때, 이 직선의 $y$절편을 $a$, $p$, $q$로 나타내고 그렇게 되는 까닭을 쓰시오.",
+      "bAnswer": "$q-ap$이다. 점 $(p,q)$가 $y=ax+b$ 위에 있으므로 $q=ap+b$이고, 이를 정리하면 $b=q-ap$이다. 또는 $x$의 변화량이 $-p$이므로 $y$의 변화량은 $-ap$라서 $x=0$일 때 $y=q-ap$이다.",
+      "bGoal": "한 점과 기울기로 $y$절편 일반식 유도",
+      "bReason": "q-ap는맞지만p또는a음수일때항상줄어든다고할수없어대입/부호변화량으로설명한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$q-ap$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$q=ap+b$에서 $b=q-ap$",
+            "$x$의 변화량은 $-p$이고 $y$의 변화량은 $-ap$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "x가p에서0으로갈때y변화량은-ap이지항상감소는아니므로중립식으로고친다.",
+      "learningRole": "reason",
+      "roleReason": "$y$절편이 $q-ap$인 까닭",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2711,
+      "part": "m2plus",
+      "sourceFingerprint": "301261a0288a6eb24d15a6cb0664bc7b406d7e590dd5fead69465cc4fb30cbb1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2711
+      },
+      "directReview": null,
+      "cMarkedSentence": "기울기가 $a$인 직선이 점 $(p,\\ q)$를 지나면 $q=ap+b$가 성립하므로, $y$절편 $b$는 {$q-ap$}이다.",
+      "cSlotAnswers": [
+        "$q-ap$"
+      ],
+      "cStudentSentence": "기울기가 $a$인 직선이 점 $(p,\\ q)$를 지나면 $q=ap+b$가 성립하므로, $y$절편 $b$는 □이다.",
+      "cAnswers": [
+        "$q-ap$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$q-ap$",
+          "equivalentAnswers": [
+            "$q-ap$",
+            "$-ap+q$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$q-ap$",
+          "accept": [
+            "$-ap+q$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$q-ap$",
+          "$-ap+q$"
+        ]
+      ],
+      "proposalFingerprint": "a8bd52636f08b78b43e53b534d941289c3c585bd5664d4ff7b4e0c986c76d016",
+      "cAfter": "기울기가 $a$인 직선이 점 $(p,\\ q)$를 지나면 $q=ap+b$가 성립하므로, $y$절편 $b$는 {$q-ap$}이다.",
+      "coreAfter": "기울기가 $a$인 직선이 점 $(p,\\ q)$를 지나면 $q=ap+b$가 성립하므로, $y$절편 $b$는 {$q-ap$}이다.",
+      "coreReason": "부호가음수인경우에도성립하는좌표대입관계로설명한다."
+    },
+    {
+      "id": "m2-04-05-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "기울기가 $2$이고 점 $(3,\\ 1)$을 지나는 직선의 식을 구하려고 $y=2x+b$에 $x=1$, $y=3$을 대입했다. 어떤 잘못인지 쓰고, 바른 식을 구하시오.",
+      "bAnswer": "$x$좌표와 $y$좌표를 바꿔 넣은 잘못이다. $x=3$, $y=1$을 대입하면 $1=6+b$, $b=-5$이므로 $y=2x-5$이다.",
+      "bGoal": "좌표 대입 오류 진단",
+      "bReason": "좌표를 바꿔 넣은 실제 풀이를 주어 오류와 바른 식을 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$좌표와 $y$좌표를 바꿔 넣었다",
+            "$x=3$, $y=1$을 넣어야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y=2x-5$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "x좌표와y좌표를바꿨다는열거는반대순서도맞아각자리역할로문장을고친다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "$x$, $y$ 자리를 바꾼 오류",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2716,
+      "part": "m2plus",
+      "sourceFingerprint": "e16ce99dab61e7ad675f34674ed34e54ec1e4772a33e03069524628f7aa3b139",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2716
+      },
+      "directReview": null,
+      "cMarkedSentence": "점 $(p,\\ q)$를 $y=ax+b$에 대입할 때 앞의 수 $p$는 {$x$좌표}, 뒤의 수 $q$는 {$y$좌표}이므로 $x=p$, $y=q$를 넣는다.",
+      "cSlotAnswers": [
+        "$x$좌표",
+        "$y$좌표"
+      ],
+      "cStudentSentence": "점 $(p,\\ q)$를 $y=ax+b$에 대입할 때 앞의 수 $p$는 □, 뒤의 수 $q$는 □이므로 $x=p$, $y=q$를 넣는다.",
+      "cAnswers": [
+        "$x$좌표",
+        "$y$좌표"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x$좌표",
+          "equivalentAnswers": [
+            "$x$좌표"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$y$좌표",
+          "equivalentAnswers": [
+            "$y$좌표"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$x$좌표"
+        ],
+        [
+          "$y$좌표"
+        ]
+      ],
+      "proposalFingerprint": "0c114ba116757e91a1701208cfdcc16df03b6e9b7d34d9a6893629006f603c74",
+      "cAfter": "점 $(p,\\ q)$를 $y=ax+b$에 대입할 때 앞의 수 $p$는 {$x$좌표}, 뒤의 수 $q$는 {$y$좌표}이므로 $x=p$, $y=q$를 넣는다."
+    },
+    {
+      "id": "m2-04-06-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "처음 값이 $y$절편이라는 해석을 m2-04-06-c2 B에서 이미 묻는다.",
+      "cDecision": "rewrite",
+      "cReason": "처음값이라는막연한빈칸은빼고시간의원점에해당하는y절편을묻는다.",
+      "exclusionReason": "B 제외: 처음 값=$y$절편 해석이 m2-04-06-c2 B와 목표가 중복된다.",
+      "learningRole": "naming",
+      "roleReason": "처음 값을 $y$절편으로 봄",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2718,
+      "part": "m2plus",
+      "sourceFingerprint": "ed1ed0cb4d752ec0244321f69ee0be36a9b436b90c4db24d9e5491d0c33105f8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2718
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "어떤 상황의 시작부터 지난 시간을 $x$라 하고 $y$가 $x$의 일차함수라면, 시작할 때의 $y$의 값은 그래프의 {$y$절편}이다.",
+      "cSlotAnswers": [
+        "$y$절편"
+      ],
+      "cStudentSentence": "어떤 상황의 시작부터 지난 시간을 $x$라 하고 $y$가 $x$의 일차함수라면, 시작할 때의 $y$의 값은 그래프의 □이다.",
+      "cAnswers": [
+        "$y$절편"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$y$절편",
+          "equivalentAnswers": [
+            "$y$절편"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$y$절편"
+        ]
+      ],
+      "proposalFingerprint": "c279c24d023806a5019b66e7f64549c0abc091075792b61bf3bd68fa5694ba17",
+      "cAfter": "어떤 상황의 시작부터 지난 시간을 $x$라 하고 $y$가 $x$의 일차함수라면, 시작할 때의 $y$의 값은 그래프의 {$y$절편}이다.",
+      "coreAfter": "어떤 상황의 시작부터 지난 시간을 $x$라 하고 $y$가 $x$의 일차함수라면, $x=0$일 때의 {처음 값}이 그 함수의 {$y$절편}이다.",
+      "coreReason": "처음값이라는물리적해석은x=0을시작으로정한경우의내용이다."
+    },
+    {
+      "id": "m2-04-06-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "양초 길이 식과 감소는 m2-04-06-c4 B에서 다룬다.",
+      "cDecision": "rewrite",
+      "cReason": "타는동안만일차식인양초길이를다탄뒤까지부정길이로설명하지않게범위를넣는다.",
+      "exclusionReason": "B 제외: 타는 양초 식을 묻는 m2-04-06-c4 B와 목표가 중복된다.",
+      "learningRole": "application",
+      "roleReason": "양초 길이 감소→음수 기울기",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2721,
+      "part": "m2plus",
+      "sourceFingerprint": "06e937feaa79c04861fe0bfc7649e5857d961f77184e2d0241be213354a43121",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2721
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "양초가 일정한 속도로 타는 동안 남은 길이는 시간에 대해 {줄어드는} 일차함수로 나타낼 수 있고 기울기는 {음수}이다.",
+      "cSlotAnswers": [
+        "줄어드는",
+        "음수"
+      ],
+      "cStudentSentence": "양초가 일정한 속도로 타는 동안 남은 길이는 시간에 대해 □ 일차함수로 나타낼 수 있고 기울기는 □이다.",
+      "cAnswers": [
+        "줄어드는",
+        "음수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "줄어드는",
+          "equivalentAnswers": [
+            "줄어드는",
+            "감소하는"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "줄어드는",
+          "감소하는"
+        ],
+        [
+          "음수"
+        ]
+      ],
+      "proposalFingerprint": "70b5ef078bf6e97f24ed6c23ec91c6f84e66e2cee9a03cc0a721123596ae8b5f",
+      "cAfter": "양초가 일정한 속도로 타는 동안 남은 길이는 시간에 대해 {줄어드는} 일차함수로 나타낼 수 있고 기울기는 {음수}이다.",
+      "coreAfter": "양초가 일정한 속도로 타는 동안 남은 길이는 시간에 대해 {줄어드는} 일차함수로 나타낼 수 있고 기울기는 {음수}이다.",
+      "coreReason": "다탄뒤음수길이가나오는범위로선형식을확장하지않는다."
+    },
+    {
+      "id": "m2-04-06-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "불을 붙인 지 $x$분 뒤 양초의 길이를 $y\\,\\mathrm{cm}$라 하면 $y=24-3x$이다. 양초가 다 타는 데 걸리는 시간을 구하는 방법을 쓰고 답을 구하시오.",
+      "bAnswer": "길이 $y$가 $0$이 될 때이므로 $0=24-3x$를 풀면 $x=8$, 곧 $8$분이다.",
+      "bGoal": "다 타는 시간을 $y=0$으로 구하기",
+      "bReason": "식을 주어 '다 탄다'를 $y=0$으로 바꾸는 과정을 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y=0$",
+            "길이가 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$분",
+            "$x=8$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "x가무엇인지제목밖에도분명히불붙인뒤시간으로명시한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "$y=0$이 되는 $x$ 구하기",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2727,
+      "part": "m2plus",
+      "sourceFingerprint": "8944ad9b3e4565d0ceb059bd8b1625f8b7561d0bb339133d0684182ae5a90bdf",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2727
+      },
+      "directReview": null,
+      "cMarkedSentence": "불을 붙인 뒤 지난 시간을 $x$라 할 때, 양초의 남은 길이가 {$0$}이 되는 $x$의 값이 양초가 {다 타는} 데 걸리는 시간이다.",
+      "cSlotAnswers": [
+        "$0$",
+        "다 타는"
+      ],
+      "cStudentSentence": "불을 붙인 뒤 지난 시간을 $x$라 할 때, 양초의 남은 길이가 □이 되는 $x$의 값이 양초가 □ 데 걸리는 시간이다.",
+      "cAnswers": [
+        "$0$",
+        "다 타는"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "다 타는",
+          "equivalentAnswers": [
+            "다 타는"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "다 타는"
+        ]
+      ],
+      "proposalFingerprint": "a78eaa56ec1c71f7d2355e4c7ea89ff4a565285126a082ea0aa1d47d8cf9f63a",
+      "cAfter": "불을 붙인 뒤 지난 시간을 $x$라 할 때, 양초의 남은 길이가 {$0$}이 되는 $x$의 값이 양초가 {다 타는} 데 걸리는 시간이다.",
+      "coreAfter": "불을 붙인 뒤 지난 시간을 $x$라 할 때, 양초의 남은 길이가 {$0$}이 되는 $x$의 값이 양초가 {다 타는} 데 걸리는 시간이다.",
+      "coreReason": "x의의미를문장안에직접밝힌다."
+    },
+    {
+      "id": "m2-04-06-xc17",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "$y$의 상한으로 $x$의 범위를 구하는 형식이 m2-04-06-xc15 B와 같다.",
+      "cDecision": "rewrite",
+      "cReason": "범위·의미라는막연한말대신길이상한과질량하한에서실제적용범위를구한다.",
+      "exclusionReason": "B 제외: '$y$의 한계→$x$의 범위' 형식이 m2-04-06-xc15 B와 중복된다.",
+      "learningRole": "application",
+      "roleReason": "늘어나는 한계로 범위 제한",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2731,
+      "part": "m2plus",
+      "sourceFingerprint": "619e2375bc0d7e991aa132eefca08fd877b44cf9758037fc041b5e6bc38bc0d5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2731
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "추의 질량이 $x\\,\\mathrm{g}$일 때 용수철의 전체 길이는 $(20+2x)\\,\\mathrm{cm}$이다. 이 식이 길이 $40\\,\\mathrm{cm}$까지 적용된다면 $x$의 범위는 {$0\\le x\\le10$}이다.",
+      "cSlotAnswers": [
+        "$0\\le x\\le10$"
+      ],
+      "cStudentSentence": "추의 질량이 $x\\,\\mathrm{g}$일 때 용수철의 전체 길이는 $(20+2x)\\,\\mathrm{cm}$이다. 이 식이 길이 $40\\,\\mathrm{cm}$까지 적용된다면 $x$의 범위는 □이다.",
+      "cAnswers": [
+        "$0\\le x\\le10$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0\\le x\\le10$",
+          "equivalentAnswers": [
+            "$0\\le x\\le10$",
+            "$0\\le x$이고 $x\\le10$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0\\le x\\le10$",
+          "$0\\le x$이고 $x\\le10$"
+        ]
+      ],
+      "proposalFingerprint": "406ba6c43ac5bd40dcd14967641d3717d35991e66346401a82fc61db1cd307c3",
+      "cAfter": "추의 질량이 $x\\,\\mathrm{g}$일 때 용수철의 전체 길이는 $(20+2x)\\,\\mathrm{cm}$이다. 이 식이 길이 $40\\,\\mathrm{cm}$까지 적용된다면 $x$의 범위는 {$0\\le x\\le10$}이다.",
+      "coreAfter": "추의 질량을 $x\\,\\mathrm{g}$, 용수철의 전체 길이를 $y\\,\\mathrm{cm}$라 하자. 길이를 최대 $40\\,\\mathrm{cm}$까지 나타내는 일차식은 $x\\ge0$, $y\\le40$인 {$x$의 범위}에서만 상황에 맞는 {의미}를 가진다.",
+      "coreReason": "40cm를증가분으로오해하거나x,y를제목에서찾지않도록물리량을밝힌다."
+    },
+    {
+      "id": "m2-04-07-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "시속 $a\\,\\mathrm{km}$($a>0$)의 일정한 속력으로 $x$시간 동안 간 거리를 $y\\,\\mathrm{km}$라 하자. $y$를 $x$의 식으로 나타내고, $y$는 $x$의 어떤 함수인지 쓰시오.",
+      "bAnswer": "$y=ax$이고, $a\\ne0$이므로 $y$는 $x$의 일차함수이다. (정비례 관계이기도 하다.)",
+      "bGoal": "간 거리를 시간의 일차함수로 나타내기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y=ax$"
+          ]
+        },
+        {
+          "anyOf": [
+            "일차함수",
+            "정비례"
+          ]
+        }
+      ],
+      "bReason": "속력을 문자 $a$로 두어 거리 식과 함수의 종류를 함께 확인한다.",
+      "cDecision": "rewrite",
+      "cReason": "거리계산을짧게유지하고단위를칸밖에둔다. 일차함수와정비례는동의어가아니므로두분류를허용하는B에서다룬다.",
+      "learningRole": "procedure",
+      "roleReason": "속력 × 시간으로 거리 식 세우기",
+      "authorBatch": 40,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2736,
+      "part": "m2plus",
+      "sourceFingerprint": "7abe547d75018c6491905ecc578f8f987b6f52bd67496e7474ae3c495c1385a4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2736
+      },
+      "directReview": null,
+      "cMarkedSentence": "시속 $a\\,\\mathrm{km}$($a>0$)의 일정한 속력으로 $x$시간 가면 간 거리는 {$ax$}$\\,\\mathrm{km}$이다.",
+      "cSlotAnswers": [
+        "$ax$"
+      ],
+      "cStudentSentence": "시속 $a\\,\\mathrm{km}$($a>0$)의 일정한 속력으로 $x$시간 가면 간 거리는 □$\\,\\mathrm{km}$이다.",
+      "cAnswers": [
+        "$ax$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$ax$",
+          "equivalentAnswers": [
+            "$ax$",
+            "$a\\times x$",
+            "$xa$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$ax\\,\\mathrm{km}$",
+          "accept": [
+            "$ax$",
+            "$a\\times x\\,\\mathrm{km}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$ax$",
+          "$a\\times x$",
+          "$xa$"
+        ]
+      ],
+      "proposalFingerprint": "ae7807a95c40543443ff921c5ed7fa100c18909f9d40da57edaa708425b92616",
+      "cAfter": "시속 $a\\,\\mathrm{km}$($a>0$)의 일정한 속력으로 $x$시간 가면 간 거리는 {$ax$}$\\,\\mathrm{km}$이다."
+    },
+    {
+      "id": "m2-04-07-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "목적지까지 시속 $v\\,\\mathrm{km}$($v>0$)의 일정한 속력으로 갈 때, $x$시간 뒤 남은 거리 $y\\,\\mathrm{km}$를 나타내는 일차함수의 기울기는 얼마인지 쓰고, 기울기의 부호가 그렇게 되는 까닭을 쓰시오.",
+      "bAnswer": "기울기는 $-v$이다. $1$시간이 지날 때마다 남은 거리가 $v\\,\\mathrm{km}$씩 줄어들기 때문이다.",
+      "bGoal": "남은 거리 식의 기울기가 음수인 까닭 설명",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-v$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$시간마다 남은 거리가 $v$씩 줄어든다",
+            "시간이 지날수록 남은 거리가 줄어든다"
+          ]
+        }
+      ],
+      "bReason": "속력과 기울기의 부호 관계를 문자 $v$로 일반화해 까닭까지 묻는다.",
+      "cDecision": "rewrite",
+      "cReason": "기울기값을미리보여주는음수빈칸대신변수와단위를정의하고기울기값을직접묻는다.",
+      "learningRole": "reason",
+      "roleReason": "남은 거리가 줄어드는 만큼 기울기가 음수",
+      "authorBatch": 40,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2737,
+      "part": "m2plus",
+      "sourceFingerprint": "4def97107f7ba6f3f2e378ef4dec386fda45adde26d56c99af14f16ae94ce412",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2737
+      },
+      "directReview": null,
+      "cMarkedSentence": "목적지까지 시속 $v\\,\\mathrm{km}$($v>0$)의 일정한 속력으로 갈 때, $x$시간 뒤 남은 거리를 $y\\,\\mathrm{km}$라 하면 도착할 때까지 이 일차함수의 기울기는 {$-v$}이다.",
+      "cSlotAnswers": [
+        "$-v$"
+      ],
+      "cStudentSentence": "목적지까지 시속 $v\\,\\mathrm{km}$($v>0$)의 일정한 속력으로 갈 때, $x$시간 뒤 남은 거리를 $y\\,\\mathrm{km}$라 하면 도착할 때까지 이 일차함수의 기울기는 □이다.",
+      "cAnswers": [
+        "$-v$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-v$",
+          "equivalentAnswers": [
+            "$-v$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-v$"
+        ]
+      ],
+      "proposalFingerprint": "bd2e6cb8531197d25bc5abd56ad8d44e21098c7e371784e880d10a655affbd88",
+      "cAfter": "목적지까지 시속 $v\\,\\mathrm{km}$($v>0$)의 일정한 속력으로 갈 때, $x$시간 뒤 남은 거리를 $y\\,\\mathrm{km}$라 하면 도착할 때까지 이 일차함수의 기울기는 {$-v$}이다.",
+      "coreAfter": "목적지까지 시속 $v\\,\\mathrm{km}$($v>0$)로 갈 때 $x$시간 뒤 남은 거리를 $y\\,\\mathrm{km}$라 하면, 도착할 때까지 기울기는 {속력}의 수치 $v$와 절댓값이 같은 {음수}인 $-v$이다.",
+      "coreReason": "분속/시속및거리단위변경시기울기수치가달라지는혼동을막는다."
+    }
+  ]
+}

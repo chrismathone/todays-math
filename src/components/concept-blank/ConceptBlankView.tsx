@@ -96,6 +96,9 @@ const ZERO: LevelCounts = { 하: 0, 중: 0, 상: 0 };
 type Stock = StockCounts;
 const EMPTY_STOCK: Stock = {
   concepts: { 하: 0, 중: 0, 상: 0 },
+  term: { 하: 0, 중: 0, 상: 0 },
+  cloze: { 하: 0, 중: 0, 상: 0 },
+  map: { 하: 0, 중: 0, 상: 0 },
   recall: { 하: 0, 중: 0, 상: 0 },
   ox: { 하: 0, 중: 0, 상: 0 },
   apply: { 하: 0, 중: 0, 상: 0 },
@@ -103,7 +106,8 @@ const EMPTY_STOCK: Stock = {
   total: 0,
 };
 /** `recall` — 개념 가운데 A(완전 백지)에 실을 수 있는 것(사례 문항을 뺀 수 · 26 §10). */
-type StockKind = "concepts" | "recall" | "ox" | "apply" | "figures";
+type StockKind =
+  "concepts" | "term" | "cloze" | "map" | "recall" | "ox" | "apply" | "figures";
 type Row = "main" | "extra";
 
 const LETTER: Record<ConceptBlankForm, string> = {
@@ -124,14 +128,14 @@ const ROWS: Record<
 > = {
   recall: { main: { label: "개념 수", stock: "recall" } },
   term: {
-    main: { label: "용어", stock: "concepts" },
+    main: { label: "질문", stock: "term" },
     extra: { label: "○×", stock: "ox" },
   },
   cloze: {
-    main: { label: "문장", stock: "concepts" },
+    main: { label: "문장", stock: "cloze" },
     extra: { label: "적용", stock: "apply" },
   },
-  map: { main: { label: "개념 수", stock: "concepts" } },
+  map: { main: { label: "개념 수", stock: "map" } },
   figure: { main: { label: "그림", stock: "figures" } },
 };
 
@@ -465,6 +469,9 @@ export default function ConceptBlankView({
     };
     return {
       concepts: total("concepts"),
+      term: total("term"),
+      cloze: total("cloze"),
+      map: total("map"),
       recall: total("recall"),
       ox: total("ox"),
       apply: total("apply"),

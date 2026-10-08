@@ -69,8 +69,29 @@ def _is_display(line: str) -> bool:
     return bool(line.strip()) and not _MATH.sub("", line).strip()
 
 
-def join_wrapped(text: str, corpus: Corpus) -> str:
-    """줄 끝에서 끊긴 글을 잇는다. 보기 · 소문항 · 식만 선 줄 · 짧은 줄 · 문장이 끝난 줄은 그대로 둔다."""
+def width(line: str) -> int:
+    """줄의 폭(반각 글자 수로 어림) — 한글은 둘, 수식은 명령 이름과 묶음 기호를 뺀 글자 수.
+    수식이 긴 줄은 «보이는 글자»로 세면 짧아 보인다(«등식 §가 §에 대한 항등식일» 은 16자지만 한 단을 다 채운 줄이다)."""
+    total = 0
+    for piece in re.split(r"(\$[^$]*\$)", line):
+        if piece.startswith("$") and piece.endswith("$") and len(piece) >= 2:
+            total += len(re.sub(r"\\[a-zA-Z]+|[{}^_$\\\s]", "", piece))
+        else:
+            total += sum(2 if "가" <= ch <= "힣" else 1 for ch in piece)
+    return total
+
+
+#: 폭이 이보다 좁은 줄은 한 단을 못 채운 줄이다 — 줄바꿈이 뜻이 있다
+WRAP_MIN_WIDTH = 34
+
+
+def join_wrapped(text: str, corpus: Corpus, *, by_width: bool = False, choice_guard: bool = True) -> str:
+    """줄 끝에서 끊긴 글을 잇는다. 보기 · 소문항 · 식만 선 줄 · 짧은 줄 · 문장이 끝난 줄은 그대로 둔다.
+
+    `by_width` — 짧은 줄인지를 «보이는 글자 수» 대신 «폭»으로 잰다(수식이 긴 줄을 놓치지 않는다).
+    `choice_guard` — 보기 번호로 시작하는 짧은 줄 뒤는 잇지 않는다(본문의 보기). 풀이에서는 끈다:
+    풀이의 «① 정사면체와 정팔면체는 면의 모양이 정삼각형 / 으로 같다» 는 한 문장이다.
+    기본값은 처음 지은 그대로다 — 검토자가 본 본문(`prepare.py`)이 바뀌지 않게."""
     out: list[str] = []
     for raw in text.split("\n"):
         line = raw.rstrip()
@@ -85,8 +106,8 @@ def join_wrapped(text: str, corpus: Corpus) -> str:
             or _is_display(line)
             or _is_display(previous)
             or _SENTENCE_END.search(visible(previous))
-            or len(visible(previous)) < WRAP_MIN
-            or (previous[:1] in CIRCLED and len(visible(previous)) < 40)
+            or (width(previous) < WRAP_MIN_WIDTH if by_width else len(visible(previous)) < WRAP_MIN)
+            or (choice_guard and previous[:1] in CIRCLED and len(visible(previous)) < 40)
         ):
             out.append(line)
             continue

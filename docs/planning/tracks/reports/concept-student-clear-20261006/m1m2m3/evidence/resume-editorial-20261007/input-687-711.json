@@ -1,0 +1,2389 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:07:17.655Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-04-c2",
+        "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+        "term": "삼각형의 두 변의 중점을 연결한 선분의 성질",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 변의 중점끼리 이으면 그 선분은 셋째 변과 {평행}하며, 길이가 셋째 변의 {절반}이 된다.",
+        "example": {
+          "prompt": "삼각형의 한 변의 길이가 $10$일 때 나머지 두 변의 중점을 이은 선분의 길이",
+          "answer": "$5$"
+        },
+        "studentC": "두 변의 중점끼리 이으면 그 선분은 셋째 변과 □하며, 길이가 셋째 변의 □이 된다.",
+        "answers": [
+          "평행",
+          "절반"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-04-c2",
+        "learningRole": "definition",
+        "roleReason": "중점 연결 선분은 셋째 변과 평행하고 길이가 그 절반이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 할 때, $\\overline{MN}$과 $\\overline{BC}$ 사이의 위치 관계와 길이 관계를 쓰시오.",
+        "bAnswer": "$\\overline{MN}\\parallel\\overline{BC}$이고, $\\overline{MN}=\\frac{1}{2}\\overline{BC}$이다.",
+        "bGoal": "중점 연결 선분의 평행·길이 관계",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{MN}\\parallel\\overline{BC}$",
+              "$\\overline{MN}$과 $\\overline{BC}$는 평행하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{MN}=\\frac{1}{2}\\overline{BC}$",
+              "$\\overline{BC}=2\\overline{MN}$",
+              "$\\overline{MN}$은 $\\overline{BC}$의 절반이다"
+            ]
+          }
+        ],
+        "bReason": "구체적인 삼각형에서 어떤 두 선분의 위치와 길이를 비교하는지 특정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 변의 중점을 이은 선분은 나머지 한 변과 {평행}하고, 그 길이는 나머지 한 변의 길이의 {절반}이다.",
+        "cAnswers": [
+          "평행",
+          "절반"
+        ],
+        "cReason": "원문에 '삼각형'이 없어 어느 도형의 두 변인지 알 수 없으므로 보완했다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 687,
+        "part": "m2",
+        "sourceFingerprint": "11a72c096b0bc91235dd515191849c1563ae2cddda68f576eaca7ca4816cf4c0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 687
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형의 두 변의 중점을 이은 선분은 나머지 한 변과 {평행}하고, 그 길이는 나머지 한 변의 길이의 {절반}이다.",
+        "cSlotAnswers": [
+          "평행",
+          "절반"
+        ],
+        "cStudentSentence": "삼각형의 두 변의 중점을 이은 선분은 나머지 한 변과 □하고, 그 길이는 나머지 한 변의 길이의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "반",
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "반",
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "평행"
+          ],
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "6eba14aa12fecdf93b29b2752c909f530e1fe84cb4b9bcdbb3cbae69f1919bad"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-04-c3",
+        "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+        "term": "한 변의 중점을 지나는 평행선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 변의 중점을 지나 다른 한 변에 {평행}하게 그은 직선은 나머지 변의 {중점}을 지난다.",
+        "studentC": "한 변의 중점을 지나 다른 한 변에 □하게 그은 직선은 나머지 변의 □을 지난다.",
+        "answers": [
+          "평행",
+          "중점"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-04-c3",
+        "learningRole": "definition",
+        "roleReason": "중점을 지나는 평행선은 나머지 변의 중점을 지난다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\overline{AB}$의 중점 $M$을 지나고 $\\overline{BC}$에 평행한 직선이 $\\overline{AC}$와 만나는 점을 $N$이라 할 때, 점 $N$은 $\\overline{AC}$ 위의 어떤 점인지 쓰시오.",
+        "bAnswer": "$N$은 $\\overline{AC}$의 중점이다. 즉 $\\overline{AN}=\\overline{NC}$이다.",
+        "bGoal": "평행선이 지나는 점 판단",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AC}$의 중점",
+              "$\\overline{AN}=\\overline{NC}$"
+            ]
+          }
+        ],
+        "bReason": "조건(중점, 평행)은 제시하고, 결론인 교점의 위치만 묻도록 특정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형에서 한 변의 중점을 지나고 다른 한 변에 평행한 직선은 나머지 한 변을 {이등분}한다.",
+        "cAnswers": [
+          "이등분"
+        ],
+        "cReason": "원문은 삼각형이 빠져 있고 조건 '평행'과 결론 '중점'을 함께 숨겨, 결론만 묻도록 고쳤다.",
+        "coreAfter": "삼각형에서 한 변의 중점을 지나 다른 한 변에 {평행}하게 그은 직선은 나머지 한 변의 {중점}을 지난다.",
+        "coreReason": "학습 설명에도 '삼각형'이 없어 어떤 변들을 가리키는지 불명확하다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 688,
+        "part": "m2",
+        "sourceFingerprint": "70973fb03404dd107892c4a8ea99fcc61fe17937dc1da865bf5df03ad3c07cc8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 688
+        },
+        "directReview": null,
+        "coreBeforeRepair": "삼각형에서 한 변의 중점을 지나 다른 한 변에 {평행}하게 그은 직선은 나머지 한 변의 {중점}을 지난다.",
+        "coreRepairReason": "'삼각형에서'와 '나머지 한 변'을 넣어 대상 도형과 변을 분명히 했다. 원본 핵심어 {평행}, {중점}은 그대로 두었다. 형식이 이미 좋아 보존한다.",
+        "coreRepairEvidence": "core-repair/core-005",
+        "cMarkedSentence": "삼각형에서 한 변의 중점을 지나고 다른 한 변에 평행한 직선은 나머지 한 변을 {이등분}한다.",
+        "cSlotAnswers": [
+          "이등분"
+        ],
+        "cStudentSentence": "삼각형에서 한 변의 중점을 지나고 다른 한 변에 평행한 직선은 나머지 한 변을 □한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이등분",
+            "equivalentAnswers": [
+              "이등분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이등분"
+          ]
+        ],
+        "proposalFingerprint": "cf1d628e900d7e62c00578bcd575754c9c99d5c7dd70b1f5550b17466612deff"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-04-c4",
+        "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+        "term": "사다리꼴의 두 변의 중점을 연결한 선분의 성질",
+        "kind": "성질",
+        "level": "상",
+        "definition": "사다리꼴에서 평행하지 않은 두 변의 중점을 이은 선분은 두 밑변과 {평행}하고, 길이는 두 밑변의 길이의 {합의 절반}이다.",
+        "example": {
+          "prompt": "밑변이 $4$, $10$인 사다리꼴에서 두 옆변의 중점을 이은 선분",
+          "answer": "$7$"
+        },
+        "studentC": "사다리꼴에서 평행하지 않은 두 변의 중점을 이은 선분은 두 밑변과 □하고, 길이는 두 밑변의 길이의 □이다.",
+        "answers": [
+          "평행",
+          "합의 절반"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-04-c4",
+        "learningRole": "definition",
+        "roleReason": "옆변 중점 선분은 밑변과 평행하고 길이는 두 밑변 합의 절반이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 두 옆변 $\\overline{AB}$, $\\overline{DC}$의 중점을 각각 $M$, $N$이라 할 때, $\\overline{MN}$과 두 밑변의 위치 관계를 쓰고 $\\overline{MN}$의 길이를 $\\overline{AD}$, $\\overline{BC}$로 나타내시오.",
+        "bAnswer": "$\\overline{MN}\\parallel\\overline{AD}$, $\\overline{MN}\\parallel\\overline{BC}$이고, $\\overline{MN}=\\frac{1}{2}(\\overline{AD}+\\overline{BC})$이다.",
+        "bGoal": "사다리꼴 중점 선분의 평행·길이",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{MN}$은 두 밑변과 평행하다",
+              "$\\overline{MN}\\parallel\\overline{AD}\\parallel\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{MN}=\\frac{1}{2}(\\overline{AD}+\\overline{BC})$",
+              "두 밑변의 길이의 합의 절반"
+            ]
+          }
+        ],
+        "bReason": "평행한 변의 쌍과 옆변을 기호로 정해 두 관계를 식으로 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "평행하지 않은 두 변과 밑변이 명시되어 있어 두 빈칸이 분명하다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 689,
+        "part": "m2",
+        "sourceFingerprint": "9a77cdcb18ff5d65b8cec0b6eac9964c0db9c11146017ffe27e1967c41304d7c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 689
+        },
+        "directReview": null,
+        "cFrozenSentence": "사다리꼴에서 평행하지 않은 두 변의 중점을 이은 선분은 두 밑변과 □하고, 길이는 두 밑변의 길이의 □이다.",
+        "cFrozenDefinition": "사다리꼴에서 평행하지 않은 두 변의 중점을 이은 선분은 두 밑변과 {평행}하고, 길이는 두 밑변의 길이의 {합의 절반}이다.",
+        "cFrozenAnswers": [
+          "평행",
+          "합의 절반"
+        ],
+        "cMarkedSentence": "사다리꼴에서 평행하지 않은 두 변의 중점을 이은 선분은 두 밑변과 {평행}하고, 길이는 두 밑변의 길이의 {합의 절반}이다.",
+        "cSlotAnswers": [
+          "평행",
+          "합의 절반"
+        ],
+        "cStudentSentence": "사다리꼴에서 평행하지 않은 두 변의 중점을 이은 선분은 두 밑변과 □하고, 길이는 두 밑변의 길이의 □이다.",
+        "cAnswers": [
+          "평행",
+          "합의 절반"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합의 절반",
+            "equivalentAnswers": [
+              "합의 절반",
+              "합의 반",
+              "합의 $\\frac{1}{2}$",
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "합의 절반",
+            "accept": [
+              "합의 반",
+              "합의 $\\frac{1}{2}$",
+              "평균"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "평행"
+          ],
+          [
+            "합의 절반",
+            "합의 반",
+            "합의 $\\frac{1}{2}$",
+            "평균"
+          ]
+        ],
+        "proposalFingerprint": "d7799dfe5e76282138db8f5e9a1a155df2ceee12731bca50f9e0dd1f59792556"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-04-c5",
+        "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+        "term": "세 변의 중점을 이어 만든 삼각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "세 변의 중점을 이어 만든 삼각형의 둘레의 길이는 처음 삼각형의 {절반}이고, 처음 삼각형은 {합동}인 네 삼각형으로 나뉜다.",
+        "studentC": "세 변의 중점을 이어 만든 삼각형의 둘레의 길이는 처음 삼각형의 □이고, 처음 삼각형은 □인 네 삼각형으로 나뉜다.",
+        "answers": [
+          "절반",
+          "합동"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-04-c5",
+        "learningRole": "application",
+        "roleReason": "중점 삼각형의 둘레는 절반이고 처음 삼각형은 합동인 네 삼각형으로 나뉜다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 세 변 $\\overline{AB}$, $\\overline{BC}$, $\\overline{CA}$의 중점을 각각 $D$, $E$, $F$라 하고 세 점을 서로 이었다. $\\triangle DEF$의 둘레와 $\\triangle ABC$의 둘레의 관계를 쓰고, $\\triangle ABC$가 어떤 삼각형들로 나뉘는지 쓰시오.",
+        "bAnswer": "$\\triangle DEF$의 둘레는 $\\triangle ABC$의 둘레의 $\\frac{1}{2}$이다. $\\triangle ABC$는 서로 합동인 네 삼각형 $\\triangle ADF$, $\\triangle DBE$, $\\triangle FEC$, $\\triangle EFD$로 나뉜다.",
+        "bGoal": "중점 삼각형의 둘레와 분할",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘레가 $\\frac{1}{2}$이다",
+              "둘레가 절반이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 합동인 네 삼각형",
+              "합동인 삼각형 $4$개"
+            ]
+          }
+        ],
+        "bReason": "점의 이름을 정하고, 개수는 말하지 않은 채 둘레와 분할 관계를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "'처음 삼각형'이라는 지칭이 분명하고 두 빈칸이 핵심 결론이다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 690,
+        "part": "m2",
+        "sourceFingerprint": "3bd83df9f1dafb866283097b6c7fe74294d9353e8f04755eb4b4167789921421",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 690
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 변의 중점을 이어 만든 삼각형의 둘레의 길이는 처음 삼각형의 □이고, 처음 삼각형은 □인 네 삼각형으로 나뉜다.",
+        "cFrozenDefinition": "세 변의 중점을 이어 만든 삼각형의 둘레의 길이는 처음 삼각형의 {절반}이고, 처음 삼각형은 {합동}인 네 삼각형으로 나뉜다.",
+        "cFrozenAnswers": [
+          "절반",
+          "합동"
+        ],
+        "cMarkedSentence": "세 변의 중점을 이어 만든 삼각형의 둘레의 길이는 처음 삼각형의 {절반}이고, 처음 삼각형은 {합동}인 네 삼각형으로 나뉜다.",
+        "cSlotAnswers": [
+          "절반",
+          "합동"
+        ],
+        "cStudentSentence": "세 변의 중점을 이어 만든 삼각형의 둘레의 길이는 처음 삼각형의 □이고, 처음 삼각형은 □인 네 삼각형으로 나뉜다.",
+        "cAnswers": [
+          "절반",
+          "합동"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "반",
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "반",
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "합동"
+          ]
+        ],
+        "proposalFingerprint": "ede97434eebc6303f981bbdf2fff75ce228d8ab30196bc31b64b3e4c1d9b891c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-05-c1",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "중선",
+        "kind": "정의",
+        "level": "하",
+        "definition": "삼각형의 꼭짓점 하나와 그 맞은편 변의 {중점}을 이은 선분이 {중선}이다.",
+        "studentC": "삼각형의 꼭짓점 하나와 그 맞은편 변의 □을 이은 선분이 □이다.",
+        "answers": [
+          "중점",
+          "중선"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-c1",
+        "learningRole": "definition",
+        "roleReason": "중선은 꼭짓점과 맞은편 변의 중점을 이은 선분이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 중선은 어떤 두 점을 이은 선분인지 쓰시오.",
+        "bAnswer": "삼각형의 한 꼭짓점과 그 꼭짓점의 맞은편 변의 중점을 이은 선분이다.",
+        "bGoal": "중선의 정의",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 꼭짓점"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞은편 변의 중점",
+              "대변의 중점"
+            ]
+          }
+        ],
+        "bReason": "중선의 두 끝점이 무엇인지 답하도록 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "정의 문장이 완결되어 있고 두 빈칸이 핵심이라 유지한다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 691,
+        "part": "m2",
+        "sourceFingerprint": "b726ed7f53e7abab5a20f767f6dc55ee496d336535fb8cccf9e290dbcb07f0e2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 691
+        },
+        "directReview": null,
+        "cFrozenSentence": "삼각형의 꼭짓점 하나와 그 맞은편 변의 □을 이은 선분이 □이다.",
+        "cFrozenDefinition": "삼각형의 꼭짓점 하나와 그 맞은편 변의 {중점}을 이은 선분이 {중선}이다.",
+        "cFrozenAnswers": [
+          "중점",
+          "중선"
+        ],
+        "cMarkedSentence": "삼각형의 꼭짓점 하나와 그 맞은편 변의 {중점}을 이은 선분이 {중선}이다.",
+        "cSlotAnswers": [
+          "중점",
+          "중선"
+        ],
+        "cStudentSentence": "삼각형의 꼭짓점 하나와 그 맞은편 변의 □을 이은 선분이 □이다.",
+        "cAnswers": [
+          "중점",
+          "중선"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중점",
+            "equivalentAnswers": [
+              "중점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중선",
+            "equivalentAnswers": [
+              "중선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중점"
+          ],
+          [
+            "중선"
+          ]
+        ],
+        "proposalFingerprint": "44602000ec553aa28a49d002175ce594bac3fa1609110f63f37a6ca555caf396"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-05-c2",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "무게중심",
+        "kind": "정의",
+        "level": "하",
+        "definition": "삼각형의 세 중선이 만나는 한 점을 그 삼각형의 {무게중심}이라 한다.",
+        "studentC": "삼각형의 세 중선이 만나는 한 점을 그 삼각형의 □이라 한다.",
+        "answers": [
+          "무게중심"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-c2",
+        "learningRole": "definition",
+        "roleReason": "세 중선의 교점이 무게중심이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 무게중심은 어떤 선들이 만나는 점인지 쓰시오.",
+        "bAnswer": "삼각형의 세 중선이 만나는 점이다.",
+        "bGoal": "무게중심의 정의",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 중선",
+              "중선"
+            ]
+          }
+        ],
+        "bReason": "용어 이름이 아니라 어떤 선의 교점인지 묻도록 바꿨다.",
+        "cDecision": "keep",
+        "cReason": "정의를 주고 용어를 묻는 짧은 이름 빈칸이라 유지한다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 692,
+        "part": "m2",
+        "sourceFingerprint": "8b917c6463b67ce50720c4d119a76772d816a9ded9573ebce93fbf0071c6a8e9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 692
+        },
+        "directReview": null,
+        "cFrozenSentence": "삼각형의 세 중선이 만나는 한 점을 그 삼각형의 □이라 한다.",
+        "cFrozenDefinition": "삼각형의 세 중선이 만나는 한 점을 그 삼각형의 {무게중심}이라 한다.",
+        "cFrozenAnswers": [
+          "무게중심"
+        ],
+        "cMarkedSentence": "삼각형의 세 중선이 만나는 한 점을 그 삼각형의 {무게중심}이라 한다.",
+        "cSlotAnswers": [
+          "무게중심"
+        ],
+        "cStudentSentence": "삼각형의 세 중선이 만나는 한 점을 그 삼각형의 □이라 한다.",
+        "cAnswers": [
+          "무게중심"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "무게중심",
+            "equivalentAnswers": [
+              "무게중심"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "무게중심"
+          ]
+        ],
+        "proposalFingerprint": "eb1cec874b39a9f054bd861f415501164ee02c4f77236032ae36e09a45fca3a4"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-05-c3",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "세 중선의 교점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "삼각형의 세 중선이 만나는 점의 개수는 {$1$}이다.",
+        "studentC": "삼각형의 세 중선이 만나는 점의 개수는 □이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-c3",
+        "learningRole": "definition",
+        "roleReason": "세 중선은 항상 한 점에서 만난다.",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "한 점에서 만난다는 사실은 c2 정의와 xc5 이유 질문에서 다룬다.",
+        "cDecision": "keep",
+        "cReason": "세 중선이 한 점에서 만난다는 사실을 묻는 짧은 수 빈칸이다.",
+        "exclusionReason": "B 제외: c2·xc5와 목표가 중복된다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 693,
+        "part": "m2",
+        "sourceFingerprint": "6c53acdfbebc8454503069f6e44ce3da85299b4329ca88b0b4fafa1b69d1553a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 693
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "삼각형의 세 중선이 만나는 점의 개수는 □이다.",
+        "cFrozenDefinition": "삼각형의 세 중선이 만나는 점의 개수는 {$1$}이다.",
+        "cFrozenAnswers": [
+          "$1$"
+        ],
+        "cMarkedSentence": "삼각형의 세 중선이 만나는 점의 개수는 {$1$}이다.",
+        "cSlotAnswers": [
+          "$1$"
+        ],
+        "cStudentSentence": "삼각형의 세 중선이 만나는 점의 개수는 □이다.",
+        "cAnswers": [
+          "$1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "7d4ea1e37eab032fc5ff1ce11030093bf1ae68aa56a3318d4269d07f87d3f663"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-05-c4",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "삼각형의 중선의 성질",
+        "kind": "성질",
+        "level": "중",
+        "definition": "중선을 하나 그으면 삼각형이 {넓이}가 같은 {두 삼각형}으로 갈린다. 밑변의 길이와 높이가 같기 때문이다.",
+        "studentC": "중선을 하나 그으면 삼각형이 □가 같은 □으로 갈린다. 밑변의 길이와 높이가 같기 때문이다.",
+        "answers": [
+          "넓이",
+          "두 삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-c4",
+        "learningRole": "reason",
+        "roleReason": "중선은 밑변과 높이가 같은 두 삼각형으로 넓이를 이등분한다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\overline{BC}$의 중점을 $M$이라 할 때, $\\triangle ABM$과 $\\triangle AMC$의 넓이 관계를 쓰고 그 이유를 쓰시오.",
+        "bAnswer": "넓이가 같다. $\\overline{BM}=\\overline{MC}$로 밑변의 길이가 같고, 꼭짓점 $A$에서 $\\overline{BC}$까지의 높이가 같기 때문이다.",
+        "bGoal": "중선이 넓이를 이등분하는 이유",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변의 길이가 같다",
+              "$\\overline{BM}=\\overline{MC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 같다"
+            ]
+          }
+        ],
+        "bReason": "두 삼각형을 기호로 정해 넓이 관계와 그 근거를 함께 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형에 중선을 하나 그으면 삼각형은 {넓이}가 같은 두 삼각형으로 나뉜다. 두 삼각형의 밑변의 길이와 높이가 각각 같기 때문이다.",
+        "cAnswers": [
+          "넓이"
+        ],
+        "cReason": "'두 삼각형'을 빈칸으로 둔 어색한 단어 빈칸을 없애고 넓이만 묻는다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 694,
+        "part": "m2",
+        "sourceFingerprint": "37d2f4c2db78b2751888c70d3a39b156b2c0b01ecb6647c3ed968fae0e569d32",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 694
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형에 중선을 하나 그으면 삼각형은 {넓이}가 같은 두 삼각형으로 나뉜다. 두 삼각형의 밑변의 길이와 높이가 각각 같기 때문이다.",
+        "cSlotAnswers": [
+          "넓이"
+        ],
+        "cStudentSentence": "삼각형에 중선을 하나 그으면 삼각형은 □가 같은 두 삼각형으로 나뉜다. 두 삼각형의 밑변의 길이와 높이가 각각 같기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "넓이",
+            "equivalentAnswers": [
+              "넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "넓이"
+          ]
+        ],
+        "proposalFingerprint": "39786e08bc06dd4314e88cdd8f92e9a8d96e4ae377edc7c4cefc33392d9d514a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-05-c5",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "삼각형의 무게중심의 성질",
+        "kind": "성질",
+        "level": "중",
+        "definition": "무게중심은 각 중선을 {꼭짓점} 쪽에서부터 {$2:1$}로 나눈다.",
+        "example": {
+          "prompt": "길이 $9$인 중선에서 꼭짓점부터 무게중심까지의 길이",
+          "answer": "$6$"
+        },
+        "studentC": "무게중심은 각 중선을 □ 쪽에서부터 □로 나눈다.",
+        "answers": [
+          "꼭짓점",
+          "$2:1$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-c5",
+        "learningRole": "definition",
+        "roleReason": "무게중심은 중선을 꼭짓점 쪽부터 $2:1$로 나눈다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 무게중심을 $G$, $\\overline{BC}$의 중점을 $D$라 하면 $G$는 중선 $\\overline{AD}$ 위에 있다. $\\overline{AG}:\\overline{GD}$를 쓰시오.",
+        "bAnswer": "$\\overline{AG}:\\overline{GD}=2:1$",
+        "bGoal": "무게중심이 중선을 나누는 비",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2:1$"
+            ]
+          }
+        ],
+        "bReason": "비의 순서를 정하려고 점의 이름과 순서를 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "방향(꼭짓점 쪽)과 비를 묻는 핵심 빈칸이라 유지한다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 695,
+        "part": "m2",
+        "sourceFingerprint": "1132d34f7bf6b841f1e64fbea2676af9cbc75c84f86a3ca633786a3b293b0832",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 695
+        },
+        "directReview": null,
+        "cFrozenSentence": "무게중심은 각 중선을 □ 쪽에서부터 □로 나눈다.",
+        "cFrozenDefinition": "무게중심은 각 중선을 {꼭짓점} 쪽에서부터 {$2:1$}로 나눈다.",
+        "cFrozenAnswers": [
+          "꼭짓점",
+          "$2:1$"
+        ],
+        "cMarkedSentence": "무게중심은 각 중선을 {꼭짓점} 쪽에서부터 {$2:1$}로 나눈다.",
+        "cSlotAnswers": [
+          "꼭짓점",
+          "$2:1$"
+        ],
+        "cStudentSentence": "무게중심은 각 중선을 □ 쪽에서부터 □로 나눈다.",
+        "cAnswers": [
+          "꼭짓점",
+          "$2:1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2:1$",
+            "equivalentAnswers": [
+              "$2:1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "꼭짓점"
+          ],
+          [
+            "$2:1$"
+          ]
+        ],
+        "proposalFingerprint": "e56d40096c96b665d6bbdcb3b3ef9ec0b8c857ca14b0bc9a3b9f285566268161"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-05-c6",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "삼각형의 무게중심과 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "세 중선은 삼각형을 넓이가 같은 {여섯} 삼각형으로 나누고, 무게중심과 세 꼭짓점을 이으면 넓이가 같은 {세} 삼각형이 된다.",
+        "studentC": "세 중선은 삼각형을 넓이가 같은 □ 삼각형으로 나누고, 무게중심과 세 꼭짓점을 이으면 넓이가 같은 □ 삼각형이 된다.",
+        "answers": [
+          "여섯",
+          "세"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-c6",
+        "learningRole": "application",
+        "roleReason": "세 중선은 넓이가 같은 여섯 삼각형을 만들고, 무게중심과 꼭짓점을 이으면 세 등분이 된다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에 세 중선을 모두 그으면 몇 개의 작은 삼각형으로 나뉘며, 그 넓이들은 어떤 관계인지 쓰시오. 또 무게중심 $G$에 대하여 $\\triangle GAB$, $\\triangle GBC$, $\\triangle GCA$의 넓이 관계를 쓰시오.",
+        "bAnswer": "넓이가 모두 같은 $6$개의 삼각형으로 나뉜다(각각 $\\triangle ABC$의 $\\frac{1}{6}$). $\\triangle GAB$, $\\triangle GBC$, $\\triangle GCA$의 넓이도 모두 같다(각각 $\\triangle ABC$의 $\\frac{1}{3}$).",
+        "bGoal": "중선·무게중심에 의한 넓이 분할",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 같은 $6$개",
+              "여섯 삼각형의 넓이가 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 삼각형의 넓이가 같다",
+              "각각 $\\frac{1}{3}$"
+            ]
+          }
+        ],
+        "bReason": "두 가지 분할을 삼각형 이름으로 구분하여 각각의 넓이 관계를 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 중선은 삼각형을 넓이가 같은 {$6$}개의 삼각형으로 나누고, 무게중심과 세 꼭짓점을 이어 생긴 세 삼각형의 넓이는 각각 처음 삼각형의 넓이의 {$\\frac{1}{3}$}이다.",
+        "cAnswers": [
+          "$6$",
+          "$\\frac{1}{3}$"
+        ],
+        "cReason": "둘째 답 '세'가 '세 꼭짓점'에서 노출되어 넓이 비로 바꿨다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 696,
+        "part": "m2",
+        "sourceFingerprint": "0f779517646c909c1f7cc3d61913aee3c233ba66ca87c49369c1d17369ef55db",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 696
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형의 세 중선은 삼각형을 넓이가 같은 {$6$}개의 삼각형으로 나누고, 무게중심과 세 꼭짓점을 이어 생긴 세 삼각형의 넓이는 각각 처음 삼각형의 넓이의 {$\\frac{1}{3}$}이다.",
+        "cSlotAnswers": [
+          "$6$",
+          "$\\frac{1}{3}$"
+        ],
+        "cStudentSentence": "삼각형의 세 중선은 삼각형을 넓이가 같은 □개의 삼각형으로 나누고, 무게중심과 세 꼭짓점을 이어 생긴 세 삼각형의 넓이는 각각 처음 삼각형의 넓이의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$6$",
+            "equivalentAnswers": [
+              "$6$",
+              "여섯"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{3}$",
+              "삼분의 일"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$6$",
+            "accept": [
+              "여섯"
+            ]
+          },
+          {
+            "answer": "$\\frac{1}{3}$",
+            "accept": [
+              "삼분의 일"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$6$",
+            "여섯"
+          ],
+          [
+            "$\\frac{1}{3}$",
+            "삼분의 일"
+          ]
+        ],
+        "proposalFingerprint": "576814e4fb549e232547e3d7c3ccf31a38af20b18ec846a0dc265d54362cf758"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-05-c7",
+        "section": "중2::7. 닮음의 활용::삼각형의 무게중심",
+        "term": "평행사변형과 무게중심",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 그 꼭짓점을 지나지 않는 대각선을 {삼등분}한다. 교점이 삼각형의 {무게중심}이기 때문이다.",
+        "studentC": "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 그 꼭짓점을 지나지 않는 대각선을 □한다. 교점이 삼각형의 □이기 때문이다.",
+        "answers": [
+          "삼등분",
+          "무게중심"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-05-c7",
+        "learningRole": "application",
+        "roleReason": "평행사변형의 대각선을 무게중심 두 개가 삼등분한다.",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형 $ABCD$에서 $\\overline{BC}$, $\\overline{CD}$의 중점을 각각 $M$, $N$이라 하고, $\\overline{AM}$, $\\overline{AN}$이 대각선 $\\overline{BD}$와 만나는 점을 각각 $P$, $Q$라 하자. $\\overline{BP}$, $\\overline{PQ}$, $\\overline{QD}$의 길이 관계를 쓰고 이유를 쓰시오.",
+        "bAnswer": "$\\overline{BP}=\\overline{PQ}=\\overline{QD}$이다. 두 대각선의 교점 $O$는 $\\overline{AC}$, $\\overline{BD}$의 중점이므로 $\\triangle ABC$에서 $\\overline{AM}$, $\\overline{BO}$는 중선이고 $P$는 무게중심이다. 따라서 $\\overline{BP}=\\frac{2}{3}\\overline{BO}=\\frac{1}{3}\\overline{BD}$이다. 같은 방법으로 $Q$는 $\\triangle ACD$의 무게중심이므로 $\\overline{QD}=\\frac{1}{3}\\overline{BD}$이고, $\\overline{PQ}=\\frac{1}{3}\\overline{BD}$이다.",
+        "bGoal": "평행사변형에서 무게중심 찾기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BP}=\\overline{PQ}=\\overline{QD}$",
+              "대각선 $\\overline{BD}$를 삼등분한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$P$는 $\\triangle ABC$의 무게중심",
+              "$Q$는 $\\triangle ACD$의 무게중심",
+              "$P$, $Q$가 무게중심이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BP}=\\frac{2}{3}\\overline{BO}$",
+              "무게중심이 중선을 $2:1$로 나눈다"
+            ]
+          }
+        ],
+        "bReason": "꼭짓점과 중점, 대각선을 모두 지정해 그림 없이 상황을 재현했다.",
+        "cDecision": "keep",
+        "cReason": "꼭짓점, 마주 보는 두 변, 대각선이 문장에 명시되어 있어 유지한다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 697,
+        "part": "m2",
+        "sourceFingerprint": "9f7742eed98bb1665918030127e9b0a124ee74ab097df7dce78dd5ca9b6d5c8b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 697
+        },
+        "directReview": null,
+        "cFrozenSentence": "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 그 꼭짓점을 지나지 않는 대각선을 □한다. 교점이 삼각형의 □이기 때문이다.",
+        "cFrozenDefinition": "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 그 꼭짓점을 지나지 않는 대각선을 {삼등분}한다. 교점이 삼각형의 {무게중심}이기 때문이다.",
+        "cFrozenAnswers": [
+          "삼등분",
+          "무게중심"
+        ],
+        "cMarkedSentence": "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 그 꼭짓점을 지나지 않는 대각선을 {삼등분}한다. 교점이 삼각형의 {무게중심}이기 때문이다.",
+        "cSlotAnswers": [
+          "삼등분",
+          "무게중심"
+        ],
+        "cStudentSentence": "평행사변형에서 한 꼭짓점과 마주 보는 두 변의 중점을 각각 이으면, 그 두 선분은 그 꼭짓점을 지나지 않는 대각선을 □한다. 교점이 삼각형의 □이기 때문이다.",
+        "cAnswers": [
+          "삼등분",
+          "무게중심"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "삼등분",
+            "equivalentAnswers": [
+              "삼등분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "무게중심",
+            "equivalentAnswers": [
+              "무게중심"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "삼등분"
+          ],
+          [
+            "무게중심"
+          ]
+        ],
+        "proposalFingerprint": "1330ba66d6def30c4467bb50ce915cde6a0a51f6ee49e4188e02e3d34fbca2c1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-06-c1",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "닮은 두 평면도형의 둘레의 길이의 비",
+        "kind": "성질",
+        "level": "하",
+        "definition": "닮음비가 $m:n$인 두 평면도형에서 {둘레}의 길이의 비는 닮음비와 {같다}.",
+        "example": {
+          "prompt": "닮음비 $2:3$인 두 삼각형의 둘레의 길이의 비",
+          "answer": "$2:3$"
+        },
+        "studentC": "닮음비가 $m:n$인 두 평면도형에서 □의 길이의 비는 닮음비와 □.",
+        "answers": [
+          "둘레",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-c1",
+        "learningRole": "reason",
+        "roleReason": "대응변이 모두 같은 비이므로 그 합인 둘레의 비도 닮음비와 같다",
+        "bDecision": "rewrite",
+        "bPrompt": "닮음비가 $m:n$인 두 평면도형에서 둘레의 길이의 비는 무엇인가? 그렇게 되는 까닭도 쓰시오.",
+        "bAnswer": "$m:n$이며 닮음비와 같다. 대응하는 변의 길이가 모두 $m:n$이므로, 그 길이들을 모두 더한 둘레의 길이의 비도 $m:n$이다.",
+        "bGoal": "둘레의 비가 닮음비와 같은 까닭 이해",
+        "bReason": "둘레 비의 값과 근거인 대응변 길이의 합을 함께 묻도록 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$m:n$",
+              "닮음비와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응하는 변의 길이가 모두 같은 비이다",
+              "둘레는 대응하는 변의 길이를 모두 더한 것이다",
+              "각 변이 같은 배수로 바뀌므로 합도 같은 배수로 바뀐다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건 $m:n$이 분명하고 '둘레'와 '같다'를 묻는 두 빈칸이 짧다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 698,
+        "part": "m2",
+        "sourceFingerprint": "518d094e49df46b7af7d1ba574acead65aa6f5ab5521b65624907e374fc9ee96",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 698
+        },
+        "directReview": null,
+        "cFrozenSentence": "닮음비가 $m:n$인 두 평면도형에서 □의 길이의 비는 닮음비와 □.",
+        "cFrozenDefinition": "닮음비가 $m:n$인 두 평면도형에서 {둘레}의 길이의 비는 닮음비와 {같다}.",
+        "cFrozenAnswers": [
+          "둘레",
+          "같다"
+        ],
+        "cMarkedSentence": "닮음비가 $m:n$인 두 평면도형에서 {둘레}의 길이의 비는 닮음비와 {같다}.",
+        "cSlotAnswers": [
+          "둘레",
+          "같다"
+        ],
+        "cStudentSentence": "닮음비가 $m:n$인 두 평면도형에서 □의 길이의 비는 닮음비와 □.",
+        "cAnswers": [
+          "둘레",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "둘레",
+            "equivalentAnswers": [
+              "둘레"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "둘레"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "cd8ccd5bb0c8184c58ba2f95c0756abaa416d038a00135eab7e3ec4f450364e6"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-06-c2",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "축도",
+        "kind": "정의",
+        "level": "하",
+        "definition": "실제 도형을 {일정한 비율}로 줄여서 그린 그림을 {축도}라 한다.",
+        "studentC": "실제 도형을 □로 줄여서 그린 그림을 □라 한다.",
+        "answers": [
+          "일정한 비율",
+          "축도"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-c2",
+        "learningRole": "definition",
+        "roleReason": "실제 도형을 일정한 비율로 줄인 그림이 축도이다",
+        "bDecision": "rewrite",
+        "bPrompt": "축도란 어떤 그림인가? 실제 도형의 길이를 어떻게 바꾸어 그린 것인지 드러나게 쓰시오.",
+        "bAnswer": "실제 도형의 모든 길이를 일정한 비율로 줄여서 그린 그림이다.",
+        "bGoal": "축도의 뜻 이해",
+        "bReason": "축도를 그릴 때 길이를 어떤 비율로 줄이는지를 답 범위로 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일정한 비율로 줄여서 그린 그림",
+              "모든 길이를 같은 비율로 줄인 그림"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'일정한 비율'과 이름 '축도'를 묻는 짧은 정의 빈칸이라 유지한다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 699,
+        "part": "m2",
+        "sourceFingerprint": "bd48775574f36333a8736c6b18beb7c19abfc6c689ec67f3b4eb4250993667d2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 699
+        },
+        "directReview": null,
+        "cFrozenSentence": "실제 도형을 □로 줄여서 그린 그림을 □라 한다.",
+        "cFrozenDefinition": "실제 도형을 {일정한 비율}로 줄여서 그린 그림을 {축도}라 한다.",
+        "cFrozenAnswers": [
+          "일정한 비율",
+          "축도"
+        ],
+        "cMarkedSentence": "실제 도형을 {일정한 비율}로 줄여서 그린 그림을 {축도}라 한다.",
+        "cSlotAnswers": [
+          "일정한 비율",
+          "축도"
+        ],
+        "cStudentSentence": "실제 도형을 □로 줄여서 그린 그림을 □라 한다.",
+        "cAnswers": [
+          "일정한 비율",
+          "축도"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "일정한 비율",
+            "equivalentAnswers": [
+              "일정한 비율",
+              "같은 비율"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "축도",
+            "equivalentAnswers": [
+              "축도"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "일정한 비율",
+            "accept": [
+              "같은 비율"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "일정한 비율",
+            "같은 비율"
+          ],
+          [
+            "축도"
+          ]
+        ],
+        "proposalFingerprint": "a2d18510a22c68c52b271c9eed6886ed4c73a2cfbaee56c0e3134306ab9c2c71"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-06-c3",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "축척",
+        "kind": "정의",
+        "level": "하",
+        "definition": "축도에서의 길이를 {실제 길이}로 나눈 비율이 {축척}이다.",
+        "example": {
+          "prompt": "실제 $100\\,\\mathrm{m}$를 $1\\,\\mathrm{cm}$로 그린 축도의 축척",
+          "answer": "$\\frac{1}{10000}$"
+        },
+        "studentC": "축도에서의 길이를 □로 나눈 비율이 □이다.",
+        "answers": [
+          "실제 길이",
+          "축척"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-c3",
+        "learningRole": "definition",
+        "roleReason": "축도의 길이를 실제 길이로 나눈 비율이 축척이다",
+        "bDecision": "rewrite",
+        "bPrompt": "축척은 어떤 길이를 어떤 길이로 나눈 비율인가? 또 실제 거리 $100\\,\\mathrm{m}$를 $1\\,\\mathrm{cm}$로 그린 지도의 축척을 구하시오.",
+        "bAnswer": "축척은 (축도에서의 길이)$\\div$(실제 길이)이며 두 길이의 단위를 같게 맞춰 나눈다. $100\\,\\mathrm{m}=10000\\,\\mathrm{cm}$이므로 축척은 $\\frac{1}{10000}$이다.",
+        "bGoal": "축척의 뜻과 구하는 방법 이해",
+        "bReason": "나누는 순서와 단위 맞춤을 확인하도록 구체 지도 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "축도에서의 길이를 실제 길이로 나눈다",
+              "축도의 길이 $\\div$ 실제 길이"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{10000}$",
+              "$1:10000$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "나누는 순서인 '실제 길이'와 이름 '축척'을 묻는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 700,
+        "part": "m2",
+        "sourceFingerprint": "38ab0c98bf7308e5fe5cd65eb2e610ae5ed4c889791dfaa58dab005f53814319",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 700
+        },
+        "directReview": null,
+        "cFrozenSentence": "축도에서의 길이를 □로 나눈 비율이 □이다.",
+        "cFrozenDefinition": "축도에서의 길이를 {실제 길이}로 나눈 비율이 {축척}이다.",
+        "cFrozenAnswers": [
+          "실제 길이",
+          "축척"
+        ],
+        "cMarkedSentence": "축도에서의 길이를 {실제 길이}로 나눈 비율이 {축척}이다.",
+        "cSlotAnswers": [
+          "실제 길이",
+          "축척"
+        ],
+        "cStudentSentence": "축도에서의 길이를 □로 나눈 비율이 □이다.",
+        "cAnswers": [
+          "실제 길이",
+          "축척"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "실제 길이",
+            "equivalentAnswers": [
+              "실제 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "축척",
+            "equivalentAnswers": [
+              "축척"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "실제 길이"
+          ],
+          [
+            "축척"
+          ]
+        ],
+        "proposalFingerprint": "3d9dab0d2c23937fc7c0eddd89c5501988408ae43f4bd9784931369d82a47453"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-06-c4",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "닮은 두 평면도형의 넓이의 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "닮음비가 $m:n$인 두 평면도형의 {넓이}의 비는 닮음비의 {제곱}인 $m^2:n^2$이다.",
+        "example": {
+          "prompt": "닮음비 $2:3$인 두 삼각형의 넓이의 비",
+          "answer": "$4:9$"
+        },
+        "studentC": "닮음비가 $m:n$인 두 평면도형의 □의 비는 닮음비의 □인 $m^2:n^2$이다.",
+        "answers": [
+          "넓이",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-c4",
+        "learningRole": "definition",
+        "roleReason": "닮은 평면도형의 넓이의 비는 닮음비의 제곱이다",
+        "bDecision": "rewrite",
+        "bPrompt": "닮음비가 $m:n$인 두 평면도형의 넓이의 비를 $m$, $n$을 써서 나타내고, 닮음비와 어떤 관계인지 쓰시오.",
+        "bAnswer": "$m^2:n^2$이다. 즉 넓이의 비는 닮음비의 제곱이다.",
+        "bGoal": "닮은 평면도형의 넓이의 비 알기",
+        "bReason": "기호 $m$, $n$을 밝혀 넓이 비와 닮음비의 관계를 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$m^2:n^2$",
+              "닮음비의 제곱"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "닮음비가 $m:n$인 두 평면도형의 넓이의 비는 {$m^2:n^2$}이다.",
+        "cAnswers": [
+          "$m^2:n^2$"
+        ],
+        "cReason": "원문은 뒤의 $m^2:n^2$가 '제곱' 빈칸 답을 드러내므로 결과 비를 빈칸으로 했다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 701,
+        "part": "m2",
+        "sourceFingerprint": "697a7c22ee4cfb988a4da05dfc21982bd8e8584bc6758e489a17343231585558",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 701
+        },
+        "directReview": null,
+        "cMarkedSentence": "닮음비가 $m:n$인 두 평면도형의 넓이의 비는 {$m^2:n^2$}이다.",
+        "cSlotAnswers": [
+          "$m^2:n^2$"
+        ],
+        "cStudentSentence": "닮음비가 $m:n$인 두 평면도형의 넓이의 비는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$m^2:n^2$",
+            "equivalentAnswers": [
+              "$m^2:n^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$m^2:n^2$"
+          ]
+        ],
+        "proposalFingerprint": "f4ac3875e7b663cf551671aaa7cd896a28b9430b2515c388609556c00f699528"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-06-c5",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "닮은 두 입체도형의 겉넓이의 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "닮음비가 $m:n$인 두 입체도형의 {겉넓이}의 비는 닮음비의 {제곱}인 $m^2:n^2$이다.",
+        "studentC": "닮음비가 $m:n$인 두 입체도형의 □의 비는 닮음비의 □인 $m^2:n^2$이다.",
+        "answers": [
+          "겉넓이",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-c5",
+        "learningRole": "definition",
+        "roleReason": "닮은 입체도형의 겉넓이의 비는 닮음비의 제곱이다",
+        "bDecision": "rewrite",
+        "bPrompt": "닮음비가 $m:n$인 두 입체도형의 겉넓이의 비를 $m$, $n$을 써서 나타내시오.",
+        "bAnswer": "$m^2:n^2$이며 닮음비의 제곱이다.",
+        "bGoal": "닮은 입체도형의 겉넓이의 비 알기",
+        "bReason": "입체에서도 겉넓이는 제곱 관계임을 $m$, $n$으로 묻도록 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$m^2:n^2$",
+              "닮음비의 제곱"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "닮음비가 $m:n$인 두 입체도형의 겉넓이의 비는 {$m^2:n^2$}이다.",
+        "cAnswers": [
+          "$m^2:n^2$"
+        ],
+        "cReason": "뒤의 $m^2:n^2$가 '제곱' 답을 보여 주어 결과 비를 빈칸으로 바꿨다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 702,
+        "part": "m2",
+        "sourceFingerprint": "6b5094d99f3678c5e2522ec26c10e3e74ab6066e55c1c930ba2b97ce6d0cb647",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 702
+        },
+        "directReview": null,
+        "cMarkedSentence": "닮음비가 $m:n$인 두 입체도형의 겉넓이의 비는 {$m^2:n^2$}이다.",
+        "cSlotAnswers": [
+          "$m^2:n^2$"
+        ],
+        "cStudentSentence": "닮음비가 $m:n$인 두 입체도형의 겉넓이의 비는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$m^2:n^2$",
+            "equivalentAnswers": [
+              "$m^2:n^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$m^2:n^2$"
+          ]
+        ],
+        "proposalFingerprint": "8714ef5d7e26c6fa631de0f361be6c9714d10bc411a904810e08f2b3837e3726"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-06-c6",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "닮은 두 입체도형의 부피의 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "닮음비가 $m:n$인 두 입체도형의 {부피}의 비는 닮음비의 {세제곱}인 $m^3:n^3$이다.",
+        "example": {
+          "prompt": "닮음비 $1:2$인 두 정육면체의 부피의 비",
+          "answer": "$1:8$"
+        },
+        "studentC": "닮음비가 $m:n$인 두 입체도형의 □의 비는 닮음비의 □인 $m^3:n^3$이다.",
+        "answers": [
+          "부피",
+          "세제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-c6",
+        "learningRole": "definition",
+        "roleReason": "닮은 입체도형의 부피의 비는 닮음비의 세제곱이다",
+        "bDecision": "rewrite",
+        "bPrompt": "닮음비가 $m:n$인 두 입체도형의 부피의 비를 $m$, $n$을 써서 나타내시오.",
+        "bAnswer": "$m^3:n^3$이며 닮음비의 세제곱이다.",
+        "bGoal": "닮은 입체도형의 부피의 비 알기",
+        "bReason": "부피는 세제곱 관계임을 겉넓이와 구별해 묻도록 기호를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$m^3:n^3$",
+              "닮음비의 세제곱"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "닮음비가 $m:n$인 두 입체도형의 부피의 비는 {$m^3:n^3$}이다.",
+        "cAnswers": [
+          "$m^3:n^3$"
+        ],
+        "cReason": "뒤의 $m^3:n^3$가 '세제곱' 답을 드러내 결과 비를 빈칸으로 했다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 703,
+        "part": "m2",
+        "sourceFingerprint": "e32ebbeffc005669179e6782db9dfefb2bf11326836a6870bc857b2fe5be9985",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 703
+        },
+        "directReview": null,
+        "cMarkedSentence": "닮음비가 $m:n$인 두 입체도형의 부피의 비는 {$m^3:n^3$}이다.",
+        "cSlotAnswers": [
+          "$m^3:n^3$"
+        ],
+        "cStudentSentence": "닮음비가 $m:n$인 두 입체도형의 부피의 비는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$m^3:n^3$",
+            "equivalentAnswers": [
+              "$m^3:n^3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$m^3:n^3$"
+          ]
+        ],
+        "proposalFingerprint": "c279387a5cd9e11a388bbd03f20253ab6ce0282e08ce25e891be8ea591e86942"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-06-c7",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "축척과 실제 거리",
+        "kind": "공식",
+        "level": "상",
+        "definition": "실제 길이는 축도에서의 길이를 {축척}으로 {나눈} 값이고, 계산할 때는 길이의 {단위}를 맞춘다.",
+        "example": {
+          "prompt": "축척 $\\frac{1}{5000}$인 지도에서 $4\\,\\mathrm{cm}$인 거리의 실제 길이",
+          "answer": "$200\\,\\mathrm{m}$"
+        },
+        "studentC": "실제 길이는 축도에서의 길이를 □으로 □ 값이고, 계산할 때는 길이의 □를 맞춘다.",
+        "answers": [
+          "축척",
+          "나눈",
+          "단위"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-c7",
+        "learningRole": "procedure",
+        "roleReason": "축도 길이를 축척으로 나누고 단위를 맞춰 실제 길이를 구한다",
+        "bDecision": "rewrite",
+        "bPrompt": "축척과 지도 위의 길이를 알 때 실제 길이를 구하는 방법을 쓰시오. 그 방법으로 축척이 $\\frac{1}{5000}$인 지도에서 $4\\,\\mathrm{cm}$인 거리의 실제 길이를 $\\mathrm{m}$ 단위로 구하시오.",
+        "bAnswer": "실제 길이는 (지도 위의 길이)$\\div$(축척)이다. $4\\div\\frac{1}{5000}=20000\\,(\\mathrm{cm})$이고 $20000\\,\\mathrm{cm}=200\\,\\mathrm{m}$이다.",
+        "bGoal": "축척으로 실제 거리 구하기",
+        "bReason": "나누는 방법과 단위 바꾸기를 함께 확인하도록 지도 예와 답 단위를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "지도 위의 길이를 축척으로 나눈다",
+              "지도 위의 길이에 축척의 분모를 곱한다",
+              "$4\\times5000$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$200\\,\\mathrm{m}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "축척·나눈·단위 세 빈칸이 계산 순서를 짧게 확인한다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 704,
+        "part": "m2",
+        "sourceFingerprint": "0e888c5704595af436061a7c0dfee69294a50b56ac197d1cbb252032f7f4470a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 704
+        },
+        "directReview": null,
+        "cFrozenSentence": "실제 길이는 축도에서의 길이를 □으로 □ 값이고, 계산할 때는 길이의 □를 맞춘다.",
+        "cFrozenDefinition": "실제 길이는 축도에서의 길이를 {축척}으로 {나눈} 값이고, 계산할 때는 길이의 {단위}를 맞춘다.",
+        "cFrozenAnswers": [
+          "축척",
+          "나눈",
+          "단위"
+        ],
+        "cMarkedSentence": "실제 길이는 축도에서의 길이를 {축척}으로 {나눈} 값이고, 계산할 때는 길이의 {단위}를 맞춘다.",
+        "cSlotAnswers": [
+          "축척",
+          "나눈",
+          "단위"
+        ],
+        "cStudentSentence": "실제 길이는 축도에서의 길이를 □으로 □ 값이고, 계산할 때는 길이의 □를 맞춘다.",
+        "cAnswers": [
+          "축척",
+          "나눈",
+          "단위"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "축척",
+            "equivalentAnswers": [
+              "축척"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "나눈",
+            "equivalentAnswers": [
+              "나눈",
+              "나누어 준"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "단위",
+            "equivalentAnswers": [
+              "단위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "나눈",
+            "accept": [
+              "나누어 준"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "축척"
+          ],
+          [
+            "나눈",
+            "나누어 준"
+          ],
+          [
+            "단위"
+          ]
+        ],
+        "proposalFingerprint": "e059b72c12e13ae32d5128644094e0a831057ffa08c7ebce059eff7332a3704e"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-06-c8",
+        "section": "중2::7. 닮음의 활용::닮은 도형의 넓이의 비와 부피의 비",
+        "term": "넓이의 비가 제곱인 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "닮은 두 평면도형에서는 서로 수직인 {두 방향}의 길이가 모두 같은 비율로 바뀌어, 길이가 $k$배가 되면 넓이는 {$k$의 제곱} 배가 된다.",
+        "studentC": "닮은 두 평면도형에서는 서로 수직인 □의 길이가 모두 같은 비율로 바뀌어, 길이가 $k$배가 되면 넓이는 □ 배가 된다.",
+        "answers": [
+          "두 방향",
+          "$k$의 제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-06-c8",
+        "learningRole": "reason",
+        "roleReason": "수직인 두 방향이 모두 $k$배가 되어 넓이는 $k^2$배",
+        "bDecision": "rewrite",
+        "bPrompt": "가로가 $a$, 세로가 $b$인 직사각형의 가로와 세로를 모두 $k$배 하여 닮은 직사각형을 만들었다. 새 직사각형의 넓이는 처음 넓이의 몇 배인가? 그 까닭을 쓰시오.",
+        "bAnswer": "$k^2$배이다. 넓이는 가로$\\times$세로인데 가로와 세로의 두 방향이 모두 $k$배가 되어 $ka\\times kb=k^2ab$이기 때문이다.",
+        "bGoal": "넓이 비가 제곱이 되는 까닭 설명",
+        "bReason": "까닭을 식으로 보일 수 있게 직사각형 예와 배율 $k$를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$k^2$배",
+              "$k$의 제곱 배"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로와 세로가 모두 $k$배가 된다",
+              "두 방향의 길이가 모두 $k$배가 된다",
+              "$ka\\times kb=k^2ab$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'두 방향'과 '$k$의 제곱'이 까닭과 결론을 나눠 묻는 적절한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 705,
+        "part": "m2",
+        "sourceFingerprint": "69edf37fe3c0f55de396b9313afe95ea5f70740d35dbcf714b0c01efb22bcba6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 705
+        },
+        "directReview": null,
+        "cFrozenSentence": "닮은 두 평면도형에서는 서로 수직인 □의 길이가 모두 같은 비율로 바뀌어, 길이가 $k$배가 되면 넓이는 □ 배가 된다.",
+        "cFrozenDefinition": "닮은 두 평면도형에서는 서로 수직인 {두 방향}의 길이가 모두 같은 비율로 바뀌어, 길이가 $k$배가 되면 넓이는 {$k$의 제곱} 배가 된다.",
+        "cFrozenAnswers": [
+          "두 방향",
+          "$k$의 제곱"
+        ],
+        "cMarkedSentence": "닮은 두 평면도형에서는 서로 수직인 {두 방향}의 길이가 모두 같은 비율로 바뀌어, 길이가 $k$배가 되면 넓이는 {$k$의 제곱} 배가 된다.",
+        "cSlotAnswers": [
+          "두 방향",
+          "$k$의 제곱"
+        ],
+        "cStudentSentence": "닮은 두 평면도형에서는 서로 수직인 □의 길이가 모두 같은 비율로 바뀌어, 길이가 $k$배가 되면 넓이는 □ 배가 된다.",
+        "cAnswers": [
+          "두 방향",
+          "$k$의 제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두 방향",
+            "equivalentAnswers": [
+              "두 방향"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$k$의 제곱",
+            "equivalentAnswers": [
+              "$k$의 제곱",
+              "$k^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$k$의 제곱",
+            "accept": [
+              "$k^2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "두 방향"
+          ],
+          [
+            "$k$의 제곱",
+            "$k^2$"
+          ]
+        ],
+        "proposalFingerprint": "abbbdcb18f61e96988ceccdd4671d572a8fe61c5858b23c2695af2dd50884b30"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c1",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "피타고라스 정리",
+        "kind": "정리",
+        "level": "하",
+        "definition": "직각삼각형의 빗변이 아닌 두 변에서 길이의 제곱을 구해 더하면 {빗변}의 길이의 {제곱}이 된다. 식으로는 $a^2+b^2=c^2$이다.",
+        "example": {
+          "prompt": "직각을 낀 두 변이 $3$, $4$일 때 빗변의 길이",
+          "answer": "$5$"
+        },
+        "studentC": "직각삼각형의 빗변이 아닌 두 변에서 길이의 제곱을 구해 더하면 □의 길이의 □이 된다. 식으로는 $a^2+b^2=c^2$이다.",
+        "answers": [
+          "빗변",
+          "제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c1",
+        "learningRole": "definition",
+        "roleReason": "직각을 낀 두 변의 제곱의 합이 빗변의 제곱과 같다",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 직각을 낀 두 변의 길이를 $a$, $b$, 빗변의 길이를 $c$라 할 때, 세 길이 사이에 항상 성립하는 관계를 식으로 쓰시오.",
+        "bAnswer": "$a^2+b^2=c^2$",
+        "bGoal": "피타고라스 정리의 식 알기",
+        "bReason": "어느 문자가 빗변인지 정해 주어 관계식을 정확히 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a^2+b^2=c^2$",
+              "$c^2=a^2+b^2$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직각삼각형에서 직각을 낀 두 변의 길이를 $a$, $b$, {빗변}의 길이를 $c$라 하면 $a^2+b^2=${$c^2$}이다.",
+        "cAnswers": [
+          "빗변",
+          "$c^2$"
+        ],
+        "cReason": "원문 식의 $c$가 무엇인지 없고 $c^2$가 '제곱' 답을 미리 보여 고쳤다.",
+        "coreAfter": "직각삼각형에서 직각을 낀 두 변의 길이를 각각 제곱하여 더하면 {빗변}의 길이의 {제곱}과 같다. 직각을 낀 두 변의 길이를 $a$, $b$, 빗변의 길이를 $c$라 하면 $a^2+b^2=c^2$이다.",
+        "coreReason": "식의 $a$, $b$, $c$가 어느 변인지 밝혀지지 않아 학생이 식을 쓸 수 없다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 706,
+        "part": "m2",
+        "sourceFingerprint": "ba7b9163e891325e0d11d978713b7854945336c68a74b6a1537c72a7bedfe02c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 706
+        },
+        "directReview": null,
+        "coreBeforeRepair": "직각삼각형에서 직각을 낀 두 변의 길이를 각각 제곱하여 더하면 {빗변}의 길이의 {제곱}과 같다. 직각을 낀 두 변의 길이를 $a$, $b$, 빗변의 길이를 $c$라 하면 $a^2+b^2=c^2$이다.",
+        "coreRepairReason": "$a$, $b$, $c$가 각각 어느 변인지 정의했다. '빗변이 아닌 두 변'은 표준 표현인 '직각을 낀 두 변'으로 바꾸었다. 원본 핵심어 {빗변}, {제곱}과 일반 식은 보존했다.",
+        "coreRepairEvidence": "core-repair/core-005",
+        "cMarkedSentence": "직각삼각형에서 직각을 낀 두 변의 길이를 $a$, $b$, {빗변}의 길이를 $c$라 하면 $a^2+b^2=${$c^2$}이다.",
+        "cSlotAnswers": [
+          "빗변",
+          "$c^2$"
+        ],
+        "cStudentSentence": "직각삼각형에서 직각을 낀 두 변의 길이를 $a$, $b$, □의 길이를 $c$라 하면 $a^2+b^2=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$c^2$",
+            "equivalentAnswers": [
+              "$c^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "$c^2$"
+          ]
+        ],
+        "proposalFingerprint": "e62044c231a9e07df5b1cb9f1bc3a51f97ce6d2e70919aee909ded11c531acfe"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c2",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "직각을 낀 두 변",
+        "kind": "정의",
+        "level": "하",
+        "definition": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 {직각을 낀 두 변}이라 하고, 나머지 가장 긴 변이 {빗변}이다.",
+        "studentC": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 □이라 하고, 나머지 가장 긴 변이 □이다.",
+        "answers": [
+          "직각을 낀 두 변",
+          "빗변"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c2",
+        "learningRole": "naming",
+        "roleReason": "직각을 이루는 두 변과 빗변의 이름",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 직각을 이루는 두 변과 나머지 한 변을 각각 무엇이라고 부르는가?",
+        "bAnswer": "직각을 이루는 두 변은 직각을 낀 두 변이고, 나머지 한 변은 빗변이다.",
+        "bGoal": "직각삼각형의 변 이름 구별",
+        "bReason": "두 종류의 변 이름을 각각 답하도록 대상 변을 나누어 물었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 두 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "빗변"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 이름을 위치 설명과 함께 묻는 짧은 정의 빈칸이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 707,
+        "part": "m2",
+        "sourceFingerprint": "c21bbf26cc0d4b422c17d35d2ce499220d52039887e62ff2db867bd3b64e5632",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 707
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 □이라 하고, 나머지 가장 긴 변이 □이다.",
+        "cFrozenDefinition": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 {직각을 낀 두 변}이라 하고, 나머지 가장 긴 변이 {빗변}이다.",
+        "cFrozenAnswers": [
+          "직각을 낀 두 변",
+          "빗변"
+        ],
+        "cMarkedSentence": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 {직각을 낀 두 변}이라 하고, 나머지 가장 긴 변이 {빗변}이다.",
+        "cSlotAnswers": [
+          "직각을 낀 두 변",
+          "빗변"
+        ],
+        "cStudentSentence": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 □이라 하고, 나머지 가장 긴 변이 □이다.",
+        "cAnswers": [
+          "직각을 낀 두 변",
+          "빗변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직각을 낀 두 변",
+            "equivalentAnswers": [
+              "직각을 낀 두 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직각을 낀 두 변"
+          ],
+          [
+            "빗변"
+          ]
+        ],
+        "proposalFingerprint": "5645264ebe7f8dfef01d7f6a24a9ea436de84489a57c2de944f286123b732bb1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c3",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "피타고라스 수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "피타고라스 정리의 식 $a^2+b^2=c^2$을 만족하는 {세 자연수}의 짝에 {피타고라스 수}라는 이름을 붙인다.",
+        "example": {
+          "prompt": "$3$, $4$와 짝이 되는 피타고라스 수",
+          "answer": "$5$"
+        },
+        "studentC": "피타고라스 정리의 식 $a^2+b^2=c^2$을 만족하는 □의 짝에 □라는 이름을 붙인다.",
+        "answers": [
+          "세 자연수",
+          "피타고라스 수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c3",
+        "learningRole": "definition",
+        "roleReason": "$a^2+b^2=c^2$을 만족하는 세 자연수가 피타고라스 수",
+        "bDecision": "rewrite",
+        "bPrompt": "피타고라스 수란 어떤 세 수를 말하는가? 또 $3$, $4$, $5$가 피타고라스 수인지 식으로 확인하시오.",
+        "bAnswer": "$a^2+b^2=c^2$을 만족하는 세 자연수 $a$, $b$, $c$이다. $3^2+4^2=9+16=25=5^2$이므로 $3$, $4$, $5$는 피타고라스 수이다.",
+        "bGoal": "피타고라스 수의 뜻과 확인",
+        "bReason": "자연수 조건과 확인 방법을 함께 보이도록 $3$, $4$, $5$ 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a^2+b^2=c^2$을 만족하는 세 자연수",
+              "두 수의 제곱의 합이 나머지 수의 제곱과 같은 세 자연수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3^2+4^2=5^2$",
+              "$9+16=25$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$a^2+b^2=c^2$을 만족하는 {세 자연수} $a$, $b$, $c$를 {피타고라스 수}라고 한다.",
+        "cAnswers": [
+          "세 자연수",
+          "피타고라스 수"
+        ],
+        "cReason": "앞의 '피타고라스 정리의 식'이 이름 빈칸 답을 거의 드러내 지웠다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 708,
+        "part": "m2",
+        "sourceFingerprint": "7c635615dcdd3d670a95a3ee976f8139adabfdb1b88a12b3902a0fbfab79c84a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 708
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a^2+b^2=c^2$을 만족하는 {세 자연수} $a$, $b$, $c$를 {피타고라스 수}라고 한다.",
+        "cSlotAnswers": [
+          "세 자연수",
+          "피타고라스 수"
+        ],
+        "cStudentSentence": "$a^2+b^2=c^2$을 만족하는 □ $a$, $b$, $c$를 □라고 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "세 자연수",
+            "equivalentAnswers": [
+              "세 자연수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "피타고라스 수",
+            "equivalentAnswers": [
+              "피타고라스 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "세 자연수"
+          ],
+          [
+            "피타고라스 수"
+          ]
+        ],
+        "proposalFingerprint": "74b670d570a9e2ed37cc5c5fd69c04381edea5d201dce92e49794781f6ef3b51"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c4",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "직각을 낀 한 변의 길이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직각을 낀 한 변의 길이를 구할 때는 빗변의 길이의 제곱에서 다른 한 변의 길이의 제곱을 {뺀} 다음, 제곱해서 그 값이 되는 {양수}를 찾는다.",
+        "example": {
+          "prompt": "빗변 $13$, 한 변 $5$일 때 나머지 변의 길이",
+          "answer": "$12$"
+        },
+        "studentC": "직각을 낀 한 변의 길이를 구할 때는 빗변의 길이의 제곱에서 다른 한 변의 길이의 제곱을 □ 다음, 제곱해서 그 값이 되는 □를 찾는다.",
+        "answers": [
+          "뺀",
+          "양수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c4",
+        "learningRole": "procedure",
+        "roleReason": "빗변 제곱에서 다른 변 제곱을 빼고 양수를 찾는다",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 빗변의 길이가 $13$이고 직각을 낀 한 변의 길이가 $5$이다. 나머지 한 변의 길이를 구하는 과정과 답을 쓰시오.",
+        "bAnswer": "$13^2-5^2=169-25=144$이고, 제곱하여 $144$가 되는 양수는 $12$이므로 나머지 한 변의 길이는 $12$이다.",
+        "bGoal": "직각을 낀 한 변의 길이 구하기",
+        "bReason": "빼는 순서와 양수 선택이 드러나도록 빗변과 한 변을 지정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$13^2-5^2=144$",
+              "$169-25=144$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'뺀'과 '양수' 두 빈칸이 절차의 핵심 두 단계를 짧게 묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 709,
+        "part": "m2",
+        "sourceFingerprint": "9d89808769c80d5e4c4e91b76e0db949e040ac1c6a6d14f12d4eccdbf70fdb97",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 709
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각을 낀 한 변의 길이를 구할 때는 빗변의 길이의 제곱에서 다른 한 변의 길이의 제곱을 □ 다음, 제곱해서 그 값이 되는 □를 찾는다.",
+        "cFrozenDefinition": "직각을 낀 한 변의 길이를 구할 때는 빗변의 길이의 제곱에서 다른 한 변의 길이의 제곱을 {뺀} 다음, 제곱해서 그 값이 되는 {양수}를 찾는다.",
+        "cFrozenAnswers": [
+          "뺀",
+          "양수"
+        ],
+        "cMarkedSentence": "직각을 낀 한 변의 길이를 구할 때는 빗변의 길이의 제곱에서 다른 한 변의 길이의 제곱을 {뺀} 다음, 제곱해서 그 값이 되는 {양수}를 찾는다.",
+        "cSlotAnswers": [
+          "뺀",
+          "양수"
+        ],
+        "cStudentSentence": "직각을 낀 한 변의 길이를 구할 때는 빗변의 길이의 제곱에서 다른 한 변의 길이의 제곱을 □ 다음, 제곱해서 그 값이 되는 □를 찾는다.",
+        "cAnswers": [
+          "뺀",
+          "양수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "뺀",
+            "equivalentAnswers": [
+              "뺀"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "뺀"
+          ],
+          [
+            "양수"
+          ]
+        ],
+        "proposalFingerprint": "78d94c91adeef97d5b9fa6de70abbef84dfbf7f2ddef398e378cb1602f70b23c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c5",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "직각삼각형이 되기 위한 조건",
+        "kind": "성질",
+        "level": "중",
+        "definition": "세 변의 길이가 $a,\\ b,\\ c$인 삼각형에서 $a^2+b^2=c^2$이면, 이 삼각형은 길이가 $c$인 변을 {빗변}으로 하는 {직각삼각형}이다.",
+        "example": {
+          "prompt": "세 변이 $5$, $12$, $13$인 삼각형은 직각삼각형인가?",
+          "answer": "직각삼각형이다"
+        },
+        "studentC": "세 변의 길이가 $a,\\ b,\\ c$인 삼각형에서 $a^2+b^2=c^2$이면, 이 삼각형은 길이가 $c$인 변을 □으로 하는 □이다.",
+        "answers": [
+          "빗변",
+          "직각삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c5",
+        "learningRole": "definition",
+        "roleReason": "$a^2+b^2=c^2$이면 $c$를 빗변으로 하는 직각삼각형",
+        "bDecision": "rewrite",
+        "bPrompt": "세 변의 길이가 $a$, $b$, $c$인 삼각형에서 $a^2+b^2=c^2$이 성립한다. 이 삼각형은 어떤 삼각형이고, 어느 변이 빗변인가?",
+        "bAnswer": "길이가 $c$인 변을 빗변으로 하는 직각삼각형이다.",
+        "bGoal": "직각삼각형이 되는 조건 이해",
+        "bReason": "정리의 역에서 삼각형 종류와 빗변 위치를 나누어 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이가 $c$인 변이 빗변",
+              "$c$가 빗변"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건식이 제시되고 '빗변'과 '직각삼각형'만 묻는 분명한 빈칸이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 710,
+        "part": "m2",
+        "sourceFingerprint": "389b43acddcd32a0f995712f19883c2c75c91d3342beef2e0a8865596355593d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 710
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 변의 길이가 $a,\\ b,\\ c$인 삼각형에서 $a^2+b^2=c^2$이면, 이 삼각형은 길이가 $c$인 변을 □으로 하는 □이다.",
+        "cFrozenDefinition": "세 변의 길이가 $a,\\ b,\\ c$인 삼각형에서 $a^2+b^2=c^2$이면, 이 삼각형은 길이가 $c$인 변을 {빗변}으로 하는 {직각삼각형}이다.",
+        "cFrozenAnswers": [
+          "빗변",
+          "직각삼각형"
+        ],
+        "cMarkedSentence": "세 변의 길이가 $a,\\ b,\\ c$인 삼각형에서 $a^2+b^2=c^2$이면, 이 삼각형은 길이가 $c$인 변을 {빗변}으로 하는 {직각삼각형}이다.",
+        "cSlotAnswers": [
+          "빗변",
+          "직각삼각형"
+        ],
+        "cStudentSentence": "세 변의 길이가 $a,\\ b,\\ c$인 삼각형에서 $a^2+b^2=c^2$이면, 이 삼각형은 길이가 $c$인 변을 □으로 하는 □이다.",
+        "cAnswers": [
+          "빗변",
+          "직각삼각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "직각삼각형",
+            "equivalentAnswers": [
+              "직각삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "직각삼각형"
+          ]
+        ],
+        "proposalFingerprint": "efe3651943668266ab3b31a01def57254bf5520bf3d5f8aff91945ca034a72d5"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c6",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "유클리드의 방법",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직각삼각형의 세 변 위에 {정사각형}을 그리고, 작은 두 정사각형의 {넓이}의 합이 빗변 위 정사각형의 넓이와 같음을 보이는 증명이다.",
+        "studentC": "직각삼각형의 세 변 위에 □을 그리고, 작은 두 정사각형의 □의 합이 빗변 위 정사각형의 넓이와 같음을 보이는 증명이다.",
+        "answers": [
+          "정사각형",
+          "넓이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c6",
+        "learningRole": "reason",
+        "roleReason": "세 변 위 정사각형 넓이로 정리를 증명",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle \\mathrm{C}=90^\\circ$인 직각삼각형 $\\mathrm{ABC}$의 세 변 $\\overline{\\mathrm{BC}}$, $\\overline{\\mathrm{CA}}$, $\\overline{\\mathrm{AB}}$를 각각 한 변으로 하는 정사각형을 삼각형 바깥쪽에 그렸다. 유클리드의 방법은 세 정사각형의 넓이 사이의 어떤 관계를 보여 피타고라스 정리를 증명하는가?",
+        "bAnswer": "$\\overline{\\mathrm{BC}}$, $\\overline{\\mathrm{CA}}$ 위의 두 정사각형의 넓이의 합이 빗변 $\\overline{\\mathrm{AB}}$ 위의 정사각형의 넓이와 같음을 보인다. 따라서 $\\overline{\\mathrm{BC}}^2+\\overline{\\mathrm{CA}}^2=\\overline{\\mathrm{AB}}^2$이다.",
+        "bGoal": "유클리드 증명의 핵심 넓이 관계 이해",
+        "bReason": "그림 없이도 알도록 직각 위치와 세 정사각형의 위치를 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 두 변 위 정사각형 넓이의 합이 빗변 위 정사각형 넓이와 같다",
+              "$\\overline{\\mathrm{BC}}$, $\\overline{\\mathrm{CA}}$ 위 넓이의 합이 $\\overline{\\mathrm{AB}}$ 위 넓이와 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직각삼각형의 세 변을 각각 한 변으로 하는 {정사각형}을 그리고, 직각을 낀 두 변 위 두 도형의 넓이의 합이 {빗변} 위 도형의 넓이와 같음을 보이는 증명이다.",
+        "cAnswers": [
+          "정사각형",
+          "빗변"
+        ],
+        "cReason": "원문 '작은 두 정사각형'과 '넓이와'가 두 빈칸 답을 미리 보여 주었다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 711,
+        "part": "m2",
+        "sourceFingerprint": "cd136107201a0df7c4452662a7428a38e9df8b7f426a836ddeeea84e6463467c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 711
+        },
+        "directReview": null,
+        "cMarkedSentence": "직각삼각형의 세 변을 각각 한 변으로 하는 {정사각형}을 그리고, 직각을 낀 두 변 위 두 도형의 넓이의 합이 {빗변} 위 도형의 넓이와 같음을 보이는 증명이다.",
+        "cSlotAnswers": [
+          "정사각형",
+          "빗변"
+        ],
+        "cStudentSentence": "직각삼각형의 세 변을 각각 한 변으로 하는 □을 그리고, 직각을 낀 두 변 위 두 도형의 넓이의 합이 □ 위 도형의 넓이와 같음을 보이는 증명이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정사각형",
+            "equivalentAnswers": [
+              "정사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정사각형"
+          ],
+          [
+            "빗변"
+          ]
+        ],
+        "proposalFingerprint": "73a625323443b86cc296b27b3d3700daeb4bb1e74e4700038494fc13f69ba590"
+      }
+    }
+  ]
+}

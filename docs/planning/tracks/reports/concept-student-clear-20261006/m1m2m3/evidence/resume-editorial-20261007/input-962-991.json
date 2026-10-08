@@ -1,0 +1,2882 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:47:12.841Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc16",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "약수의 개수 공식의 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "서로 다른 소수 $a$, $b$에 대하여 $a^m$의 약수와 $b^n$의 약수에서 하나씩 골라 {짝지어 곱하면} $a^m\\times b^n$의 약수가 빠짐없이 한 번씩 나오므로, 약수의 개수는 두 개수의 {곱}이다.",
+        "example": {
+          "prompt": "$2^3\\times3^2$의 약수의 개수를 $4\\times3$으로 셀 때 $4$와 $3$은 각각 무엇의 개수인가?",
+          "answer": "$2^3$의 약수, $3^2$의 약수"
+        },
+        "studentC": "서로 다른 소수 $a$, $b$에 대하여 $a^m$의 약수와 $b^n$의 약수에서 하나씩 골라 □ $a^m\\times b^n$의 약수가 빠짐없이 한 번씩 나오므로, 약수의 개수는 두 개수의 □이다.",
+        "answers": [
+          "짝지어 곱하면",
+          "곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^3\\times3^2$의 약수의 개수를 $4\\times3=12$로 셉니다. 여기서 $4$와 $3$은 각각 무엇의 개수인지 쓰고, 왜 두 수를 곱하면 되는지 설명하세요.",
+        "bAnswer": "$4$는 $2^3$의 약수 $1$, $2$, $4$, $8$의 개수이고, $3$은 $3^2$의 약수 $1$, $3$, $9$의 개수이다. 두 쪽에서 하나씩 골라 곱하면 $2^3\\times3^2$의 약수가 빠짐없이 한 번씩 나오므로 개수는 $4\\times3$이다.",
+        "bGoal": "약수의 개수 공식에서 곱하는 까닭을 '하나씩 골라 곱하기'로 설명한다.",
+        "bReason": "제목 '약수의 개수 공식의 까닭'은 어느 공식인지 지면에 없다. 구체적인 계산 $4\\times3$을 보여 주고 각 수의 뜻과 곱하는 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "서로 다른 소수 $a$, $b$에 대하여 $a^m$의 약수와 $b^n$의 약수에서 하나씩 골라 곱하면 $a^m\\times b^n$의 약수가 빠짐없이 한 번씩 나오므로, 약수의 개수는 두 개수의 곱이다. 예를 들어 $2^3\\times3^2$의 약수의 개수 $4\\times3$에서 $4$는 {$2^3$}의 약수의 개수, $3$은 {$3^2$}의 약수의 개수이다.",
+        "cAnswers": [
+          "$2^3$",
+          "$3^2$"
+        ],
+        "cReason": "원문 빈칸 '짝지어 곱하면'은 길고 임의로 끊은 말이며, 둘째 빈칸 '곱'은 앞의 '곱하면'에서 짐작된다. 일반 문장은 모두 보여 주고, 까닭을 이해했는지 확인하는 예로 빈칸을 옮겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$는 $2^3$의 약수($1$, $2$, $4$, $8$)의 개수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$은 $3^2$의 약수($1$, $3$, $9$)의 개수"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 쪽에서 하나씩 골라 곱하면 약수가 빠짐없이 한 번씩 나오므로 개수는 두 수의 곱이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "하나씩 골라 곱해 빠짐없이",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 962,
+        "part": "m1plus",
+        "sourceFingerprint": "a4ba59b3ccaaca9681b9230eda41fba4a9502fe95be4e7ab5950b8d5e12fdaca",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 962
+        },
+        "directReview": null,
+        "cMarkedSentence": "서로 다른 소수 $a$, $b$에 대하여 $a^m$의 약수와 $b^n$의 약수에서 하나씩 골라 곱하면 $a^m\\times b^n$의 약수가 빠짐없이 한 번씩 나오므로, 약수의 개수는 두 개수의 곱이다. 예를 들어 $2^3\\times3^2$의 약수의 개수 $4\\times3$에서 $4$는 {$2^3$}의 약수의 개수, $3$은 {$3^2$}의 약수의 개수이다.",
+        "cSlotAnswers": [
+          "$2^3$",
+          "$3^2$"
+        ],
+        "cStudentSentence": "서로 다른 소수 $a$, $b$에 대하여 $a^m$의 약수와 $b^n$의 약수에서 하나씩 골라 곱하면 $a^m\\times b^n$의 약수가 빠짐없이 한 번씩 나오므로, 약수의 개수는 두 개수의 곱이다. 예를 들어 $2^3\\times3^2$의 약수의 개수 $4\\times3$에서 $4$는 □의 약수의 개수, $3$은 □의 약수의 개수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2^3$",
+            "equivalentAnswers": [
+              "$2^3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3^2$",
+            "equivalentAnswers": [
+              "$3^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2^3$"
+          ],
+          [
+            "$3^2$"
+          ]
+        ],
+        "proposalFingerprint": "d1527088544bb19d684b267f7a90b19b06b3d47a2f15d23ad7b295d8dbb62292"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc17",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "약수의 개수로 지수 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "약수의 개수를 알면 각 지수에 {$1$을 더한} 수의 {곱}이 그 개수가 되도록 지수를 정한다.",
+        "example": {
+          "prompt": "$2^a\\times5^2$의 약수가 $12$개일 때 $a$의 값은?",
+          "answer": "$3$"
+        },
+        "studentC": "약수의 개수를 알면 각 지수에 □ 수의 □이 그 개수가 되도록 지수를 정한다.",
+        "answers": [
+          "$1$을 더한",
+          "곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^a\\times5^2$의 약수가 $12$개일 때 자연수 $a$의 값을 구하세요. 약수의 개수를 구하는 방법을 어떻게 썼는지 설명하세요.",
+        "bAnswer": "약수의 개수는 각 지수에 $1$을 더한 수의 곱이므로 $(a+1)\\times(2+1)=12$이다. $a+1=4$이므로 $a=3$이다.",
+        "bGoal": "약수의 개수 공식을 거꾸로 써서 모르는 지수를 구한다.",
+        "bReason": "제목 '약수의 개수로 지수 구하기'에는 식과 개수가 없다. 구체적인 식과 약수의 개수를 주고 풀이의 근거를 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "약수의 개수를 알 때는 각 지수에 $1$을 더한 수의 {곱}이 그 개수가 되도록 지수를 정한다. 예를 들어 $2^a\\times5^2$의 약수가 $12$개이면 $(a+1)\\times3=12$이므로 $a=${$3$}이다.",
+        "cAnswers": [
+          "곱",
+          "$3$"
+        ],
+        "cReason": "원문은 어떤 식의 지수인지 없는 추상적인 문장이고, 빈칸이 약수의 개수 공식(c6)의 빈칸과 똑같다. 식을 넣은 예를 붙여 거꾸로 구하는 과정을 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "약수의 개수는 각 지수에 $1$을 더한 수의 곱: $(a+1)\\times(2+1)=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a+1=4$이므로 $a=3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "개수 식을 거꾸로 풀기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 963,
+        "part": "m1plus",
+        "sourceFingerprint": "4ead08e8fbf915796a222f23edfe92137940f097004761fdda793b0686da800b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 963
+        },
+        "directReview": null,
+        "cMarkedSentence": "약수의 개수를 알 때는 각 지수에 $1$을 더한 수의 {곱}이 그 개수가 되도록 지수를 정한다. 예를 들어 $2^a\\times5^2$의 약수가 $12$개이면 $(a+1)\\times3=12$이므로 $a=${$3$}이다.",
+        "cSlotAnswers": [
+          "곱",
+          "$3$"
+        ],
+        "cStudentSentence": "약수의 개수를 알 때는 각 지수에 $1$을 더한 수의 □이 그 개수가 되도록 지수를 정한다. 예를 들어 $2^a\\times5^2$의 약수가 $12$개이면 $(a+1)\\times3=12$이므로 $a=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "e076bb66bcad8f194e80f3cd11abe6bc85673d58ea3c3bdde33b6bbe68201cf4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc18",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "약수의 개수가 홀수인 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "약수의 개수가 홀수인 자연수는 모든 소인수의 지수가 {짝수}인 수, 곧 {제곱인 수}이다.",
+        "example": {
+          "prompt": "$1$부터 $30$까지에서 약수가 홀수 개인 수는 몇 개?",
+          "answer": "$5$개"
+        },
+        "studentC": "약수의 개수가 홀수인 자연수는 모든 소인수의 지수가 □인 수, 곧 □이다.",
+        "answers": [
+          "짝수",
+          "제곱인 수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "약수의 개수가 홀수인 자연수는 어떤 수인지 쓰고, 약수의 개수를 구하는 방법과 연결하여 까닭을 설명하세요. $1$부터 $30$까지에서 그런 수를 모두 쓰세요.",
+        "bAnswer": "어떤 자연수의 제곱인 수이다. 약수의 개수는 각 지수에 $1$을 더한 수의 곱인데, 이 곱이 홀수이려면 더한 수가 모두 홀수, 곧 지수가 모두 짝수여야 한다. $1$부터 $30$까지에서는 $1$, $4$, $9$, $16$, $25$이다.",
+        "bGoal": "약수의 개수가 홀수인 수가 제곱인 수임을 지수의 짝홀로 설명한다.",
+        "bReason": "제목은 대상만 말하고 그 수가 무엇인지, 까닭을 쓰는지 없다. 어떤 수인지와 까닭, 범위 안의 예를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "조건(약수의 개수가 홀수)이 문장에 있고, 지수의 성질과 수의 이름을 차례로 묻는 두 빈칸이 '곧'으로 이어져 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "어떤 자연수의 제곱인 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 지수에 $1$을 더한 수의 곱이 홀수이려면 더한 수가 모두 홀수, 곧 지수가 모두 짝수여야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$, $4$, $9$, $16$, $25$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "지수가 모두 짝수여야 홀수 개",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 964,
+        "part": "m1plus",
+        "sourceFingerprint": "1e2a40ccb9bdd3fa95a0c45ebf55d7ec3082c0fcfc60aa6b598092885731df50",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 964
+        },
+        "directReview": null,
+        "cFrozenSentence": "약수의 개수가 홀수인 자연수는 모든 소인수의 지수가 □인 수, 곧 □이다.",
+        "cFrozenDefinition": "약수의 개수가 홀수인 자연수는 모든 소인수의 지수가 {짝수}인 수, 곧 {제곱인 수}이다.",
+        "cFrozenAnswers": [
+          "짝수",
+          "제곱인 수"
+        ],
+        "cMarkedSentence": "약수의 개수가 홀수인 자연수는 모든 소인수의 지수가 {짝수}인 수, 곧 {제곱인 수}이다.",
+        "cSlotAnswers": [
+          "짝수",
+          "제곱인 수"
+        ],
+        "cStudentSentence": "약수의 개수가 홀수인 자연수는 모든 소인수의 지수가 □인 수, 곧 □이다.",
+        "cAnswers": [
+          "짝수",
+          "제곱인 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "짝수",
+            "equivalentAnswers": [
+              "짝수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱인 수",
+            "equivalentAnswers": [
+              "제곱인 수",
+              "제곱수",
+              "어떤 자연수의 제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "제곱인 수",
+            "accept": [
+              "제곱수",
+              "어떤 자연수의 제곱"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "짝수"
+          ],
+          [
+            "제곱인 수",
+            "제곱수",
+            "어떤 자연수의 제곱"
+          ]
+        ],
+        "proposalFingerprint": "41d902cfbd091d907dea6cbfdef6ef0d9e6a98afdadd80856f9cfa20bff8f86a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc19",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "약수가 $4$개인 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "약수가 $4$개인 자연수는 {서로 다른 두 소수}의 곱이거나 어떤 소수의 {세제곱}이다.",
+        "example": {
+          "prompt": "$30$보다 작은 수 가운데 약수가 $4$개인 가장 큰 수는?",
+          "answer": "$27$"
+        },
+        "studentC": "약수가 $4$개인 자연수는 □의 곱이거나 어떤 소수의 □이다.",
+        "answers": [
+          "서로 다른 두 소수",
+          "세제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "약수가 정확히 $4$개인 자연수는 소인수분해했을 때 어떤 두 가지 꼴인지 쓰고, 약수의 개수를 구하는 방법으로 까닭을 설명하세요. 각 꼴의 예도 하나씩 드세요.",
+        "bAnswer": "서로 다른 두 소수의 곱이거나 어떤 소수의 세제곱이다. 약수의 개수 $4$는 $(1+1)\\times(1+1)$ 또는 $3+1$로만 나타나기 때문이다. 예: $6=2\\times3$, $8=2^3$.",
+        "bGoal": "약수가 $4$개인 수의 두 가지 꼴을 약수의 개수 공식으로 찾아낸다.",
+        "bReason": "제목 '약수가 $4$개인 수'는 예를 찾는지 꼴을 묻는지 알 수 없다. 소인수분해한 꼴 두 가지와 까닭을 묻는 것으로 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "조건이 분명하고 두 빈칸이 각각 '무엇의 곱', '소수의 몇 제곱'을 묻는다는 것이 문장 구조에서 드러난다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 다른 두 소수의 곱"
+            ]
+          },
+          {
+            "anyOf": [
+              "어떤 소수의 세제곱"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$는 $(1+1)\\times(1+1)$ 또는 $3+1$로만 나타나기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 꼴의 예 하나씩(예: $6=2\\times3$, $8=2^3$; 옳은 다른 예 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "4를 지수+1의 곱으로 가름",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 965,
+        "part": "m1plus",
+        "sourceFingerprint": "8919e6c63261d36e2a7acfac0e791ac5b3dc4082e0ae1144b0a09706cd9e5ebc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 965
+        },
+        "directReview": null,
+        "cFrozenSentence": "약수가 $4$개인 자연수는 □의 곱이거나 어떤 소수의 □이다.",
+        "cFrozenDefinition": "약수가 $4$개인 자연수는 {서로 다른 두 소수}의 곱이거나 어떤 소수의 {세제곱}이다.",
+        "cFrozenAnswers": [
+          "서로 다른 두 소수",
+          "세제곱"
+        ],
+        "cMarkedSentence": "약수가 $4$개인 자연수는 {서로 다른 두 소수}의 곱이거나 어떤 소수의 {세제곱}이다.",
+        "cSlotAnswers": [
+          "서로 다른 두 소수",
+          "세제곱"
+        ],
+        "cStudentSentence": "약수가 $4$개인 자연수는 □의 곱이거나 어떤 소수의 □이다.",
+        "cAnswers": [
+          "서로 다른 두 소수",
+          "세제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "서로 다른 두 소수",
+            "equivalentAnswers": [
+              "서로 다른 두 소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "세제곱",
+            "equivalentAnswers": [
+              "세제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "서로 다른 두 소수"
+          ],
+          [
+            "세제곱"
+          ]
+        ],
+        "proposalFingerprint": "9e96e0586f2aaca4a883acfdcd6782fa863f8e9f86af7ebc94c39ffb0b7e02a2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc20",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "세제곱인 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어떤 자연수의 세제곱인 수를 소인수분해하면 모든 지수가 {$3$의 배수}이다.",
+        "example": {
+          "prompt": "$2^2\\times3$에 곱해 세제곱인 수를 만드는 가장 작은 자연수는?",
+          "answer": "$18$"
+        },
+        "studentC": "어떤 자연수의 세제곱인 수를 소인수분해하면 모든 지수가 □이다.",
+        "answers": [
+          "$3$의 배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$216=6^3$처럼 어떤 자연수의 세제곱인 수를 소인수분해하면 지수에 어떤 공통점이 있는지 쓰세요. 이를 이용해 $2^2\\times3$에 곱하여 어떤 자연수의 세제곱이 되게 하는 가장 작은 자연수를 구하세요.",
+        "bAnswer": "모든 지수가 $3$의 배수이다($216=2^3\\times3^3$). $2^2\\times3$에 $2\\times3^2=18$을 곱하면 $2^3\\times3^3=216=6^3$이 된다.",
+        "bGoal": "세제곱인 수는 지수가 모두 $3$의 배수임을 알고, 곱해서 세제곱인 수를 만든다.",
+        "bReason": "제목 '세제곱인 수'는 무엇의 세제곱인지, 어떤 성질을 묻는지 없다. 예를 하나 보여 주고 지수의 공통점과 활용을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "대상과 살펴볼 것(지수)이 문장에 있고 답이 '$3$의 배수'로 정해진다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모든 소인수의 지수가 $3$의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱하는 가장 작은 자연수는 $2\\times3^2=18$($2^3\\times3^3=6^3$)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "지수가 모두 3의 배수",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 966,
+        "part": "m1plus",
+        "sourceFingerprint": "f95c16244f9b3f9c08b6a42a638b2d9a17c770cbdda7d43d77e05b468932d3d4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 966
+        },
+        "directReview": null,
+        "cFrozenSentence": "어떤 자연수의 세제곱인 수를 소인수분해하면 모든 지수가 □이다.",
+        "cFrozenDefinition": "어떤 자연수의 세제곱인 수를 소인수분해하면 모든 지수가 {$3$의 배수}이다.",
+        "cFrozenAnswers": [
+          "$3$의 배수"
+        ],
+        "cMarkedSentence": "어떤 자연수의 세제곱인 수를 소인수분해하면 모든 지수가 {$3$의 배수}이다.",
+        "cSlotAnswers": [
+          "$3$의 배수"
+        ],
+        "cStudentSentence": "어떤 자연수의 세제곱인 수를 소인수분해하면 모든 지수가 □이다.",
+        "cAnswers": [
+          "$3$의 배수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$의 배수",
+            "equivalentAnswers": [
+              "$3$의 배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3$의 배수"
+          ]
+        ],
+        "proposalFingerprint": "77330891c4b8e0e87661e4f06cd5589d03ec42dfe4dc7b561f084ce7c5199a45"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc21",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "어떤 수의 배수인 약수의 개수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$A$가 $6$의 배수일 때 $A$의 약수 가운데 $6$의 배수의 개수는 $A\\div6$의 {약수의 개수}와 같다. 그 약수마다 $6$을 {곱하면} 되기 때문이다.",
+        "example": {
+          "prompt": "$2^3\\times3^2$의 약수 가운데 $6$의 배수의 개수는?",
+          "answer": "$6$개"
+        },
+        "studentC": "$A$가 $6$의 배수일 때 $A$의 약수 가운데 $6$의 배수의 개수는 $A\\div6$의 □와 같다. 그 약수마다 $6$을 □ 되기 때문이다.",
+        "answers": [
+          "약수의 개수",
+          "곱하면"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$72=2^3\\times3^2$의 약수 가운데 $6$의 배수는 모두 몇 개인지 구하세요. $72\\div6$의 약수를 이용하는 방법으로 구하고, 그 방법이 왜 맞는지 설명하세요.",
+        "bAnswer": "$72\\div6=12=2^2\\times3$이고 $12$의 약수는 $(2+1)\\times(1+1)=6$개이다. $72$의 약수이면서 $6$의 배수인 수는 $12$의 약수 $1$, $2$, $3$, $4$, $6$, $12$에 각각 $6$을 곱한 $6$, $12$, $18$, $24$, $36$, $72$이므로 $6$개이다.",
+        "bGoal": "약수 가운데 어떤 수의 배수인 것의 개수를 몫의 약수의 개수로 구한다.",
+        "bReason": "제목 '어떤 수의 배수인 약수의 개수'는 '어떤 수'가 정해져 있지 않아 읽어도 상황을 알 수 없다. $72$와 $6$을 정해 주고 방법과 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$A$가 $6$의 배수일 때, $A\\div6$의 약수 하나하나에 $6$을 {곱하면} $A$의 약수 가운데 $6$의 배수가 빠짐없이 나온다. 그래서 $A$의 약수 가운데 $6$의 배수의 개수는 $A\\div6$의 약수의 개수와 같고, $A=72$이면 {$6$}개이다.",
+        "cAnswers": [
+          "곱하면",
+          "$6$"
+        ],
+        "cReason": "원문 둘째 문장의 '그 약수마다'는 어느 수의 약수인지 가리키는 대상이 모호하고, '곱하면 되기 때문이다'는 무엇이 된다는 것인지 없다. 까닭을 먼저 완전한 문장으로 쓰고 적용 예를 묻게 했다.",
+        "studentLabel": "약수 가운데 $6$의 배수의 개수",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$72\\div6=12$이고 $12$의 약수는 $6$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$72$의 약수이면서 $6$의 배수인 수는 $12$의 약수마다 $6$을 곱한 수이다(둘이 하나씩 짝지어진다)"
+            ]
+          },
+          {
+            "anyOf": [
+              "답: $6$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "몫의 약수 개수로 세기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 967,
+        "part": "m1plus",
+        "sourceFingerprint": "46dbbefffc1bbb85fb2da92547bd1bee7cc1c1b937b00e2fee87071cca86dcdc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 967
+        },
+        "directReview": null,
+        "cMarkedSentence": "$A$가 $6$의 배수일 때, $A\\div6$의 약수 하나하나에 $6$을 {곱하면} $A$의 약수 가운데 $6$의 배수가 빠짐없이 나온다. 그래서 $A$의 약수 가운데 $6$의 배수의 개수는 $A\\div6$의 약수의 개수와 같고, $A=72$이면 {$6$}개이다.",
+        "cSlotAnswers": [
+          "곱하면",
+          "$6$"
+        ],
+        "cStudentSentence": "$A$가 $6$의 배수일 때, $A\\div6$의 약수 하나하나에 $6$을 □ $A$의 약수 가운데 $6$의 배수가 빠짐없이 나온다. 그래서 $A$의 약수 가운데 $6$의 배수의 개수는 $A\\div6$의 약수의 개수와 같고, $A=72$이면 □개이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱하면",
+            "equivalentAnswers": [
+              "곱하면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$6$",
+            "equivalentAnswers": [
+              "$6$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱하면"
+          ],
+          [
+            "$6$"
+          ]
+        ],
+        "proposalFingerprint": "15cfed5f74232d1a118a63e453c470679da75eb780add938104050dd7d480b61"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc22",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "연속한 수의 곱의 소인수분해",
+        "kind": "방법",
+        "level": "상",
+        "definition": "연속한 수의 곱은 수마다 {소인수분해}한 뒤, 같은 소인수가 모두 몇 번 곱해졌는지 {세어} 거듭제곱으로 쓴다.",
+        "example": {
+          "prompt": "$1\\times2\\times3\\times4\\times5\\times6$을 소인수분해하면?",
+          "answer": "$2^4\\times3^2\\times5$"
+        },
+        "studentC": "연속한 수의 곱은 수마다 □한 뒤, 같은 소인수가 모두 몇 번 곱해졌는지 □ 거듭제곱으로 쓴다.",
+        "answers": [
+          "소인수분해",
+          "세어"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\times2\\times3\\times4\\times5\\times6$을, 곱셈을 끝까지 계산하지 않고 소인수분해하는 방법을 설명하고 결과를 쓰세요.",
+        "bAnswer": "곱해진 수를 하나씩 소인수분해하면 $2$, $3$, $2^2$, $5$, $2\\times3$이다. 같은 소인수가 곱해진 횟수를 세면 $2$는 $4$번, $3$은 $2$번, $5$는 $1$번이므로 $2^4\\times3^2\\times5$이다.",
+        "bGoal": "여러 수의 곱을 수마다 소인수분해하고 소인수의 횟수를 모아 정리한다.",
+        "bReason": "제목 '연속한 수의 곱의 소인수분해'에는 어떤 곱인지 없다. 구체적인 곱과 '곱을 다 계산하지 않고'라는 조건을 주었다.",
+        "cDecision": "rewrite",
+        "cAfter": "$1\\times2\\times3\\times4\\times5\\times6$처럼 연속한 자연수의 곱을 소인수들의 곱으로 나타낼 때는, 곱을 다 계산하지 않고 곱해진 수를 하나씩 {소인수분해}한 뒤 같은 소인수가 모두 몇 번 곱해졌는지 세어 거듭제곱으로 쓴다. 이 식에서 $2$는 모두 {$4$}번 곱해져 있다.",
+        "cAnswers": [
+          "소인수분해",
+          "$4$"
+        ],
+        "cReason": "원문은 무엇을 하려는 것인지 목적이 없고, 둘째 빈칸 '세어'는 임의로 가린 서술어이다. 예시 식과 목적을 넣고, 세는 과정을 직접 해 보는 빈칸으로 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "곱해진 수를 하나씩 소인수분해한다: $2$, $3$, $2^2$, $5$, $2\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 소인수가 곱해진 횟수를 센다: $2$는 $4$번, $3$은 $2$번, $5$는 $1$번"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^4\\times3^2\\times5$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "수마다 분해 후 횟수 모으기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 968,
+        "part": "m1plus",
+        "sourceFingerprint": "2904245c2406c73e44c83b9ac07c6a6b8f58b22a837e378df3cc6968b0c30768",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 968
+        },
+        "directReview": null,
+        "cMarkedSentence": "$1\\times2\\times3\\times4\\times5\\times6$처럼 연속한 자연수의 곱을 소인수들의 곱으로 나타낼 때는, 곱을 다 계산하지 않고 곱해진 수를 하나씩 {소인수분해}한 뒤 같은 소인수가 모두 몇 번 곱해졌는지 세어 거듭제곱으로 쓴다. 이 식에서 $2$는 모두 {$4$}번 곱해져 있다.",
+        "cSlotAnswers": [
+          "소인수분해",
+          "$4$"
+        ],
+        "cStudentSentence": "$1\\times2\\times3\\times4\\times5\\times6$처럼 연속한 자연수의 곱을 소인수들의 곱으로 나타낼 때는, 곱을 다 계산하지 않고 곱해진 수를 하나씩 □한 뒤 같은 소인수가 모두 몇 번 곱해졌는지 세어 거듭제곱으로 쓴다. 이 식에서 $2$는 모두 □번 곱해져 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소인수분해",
+            "equivalentAnswers": [
+              "소인수분해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소인수분해"
+          ],
+          [
+            "$4$"
+          ]
+        ],
+        "proposalFingerprint": "7c391bd6871f1f1d0aef75528eb947591ef1bfe5e677b0d350242575099f6692"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc23",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "곱의 끝자리 $0$의 개수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "곱의 끝에 붙는 $0$의 개수는 소인수 $2$와 $5$를 한 쌍씩 묶은 {쌍의 수}와 같다.",
+        "example": {
+          "prompt": "$2^5\\times5^3$의 끝에 붙는 $0$은 몇 개?",
+          "answer": "$3$개"
+        },
+        "studentC": "곱의 끝에 붙는 $0$의 개수는 소인수 $2$와 $5$를 한 쌍씩 묶은 □와 같다.",
+        "answers": [
+          "쌍의 수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^5\\times5^3$을 계산한 수의 끝에 $0$이 연속으로 몇 개 붙는지, 곱을 직접 계산하지 않고 구하는 방법을 설명하고 그 개수를 쓰세요.",
+        "bAnswer": "$2\\times5=10$이므로 소인수 $2$와 $5$를 한 쌍 묶을 때마다 끝에 $0$이 하나 붙는다. $2$는 $5$개, $5$는 $3$개이므로 $3$쌍을 묶을 수 있고 $2^5\\times5^3=2^2\\times10^3=4000$이다. $0$은 $3$개이다.",
+        "bGoal": "끝에 붙는 $0$의 개수를 소인수 $2$와 $5$의 쌍의 수로 구한다.",
+        "bReason": "모범답이 개수($3$개)까지 답하므로 질문에서도 개수를 쓰도록 분명히 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\times5=${$10$}이므로, 자연수를 소인수분해했을 때 그 수의 끝에 연속으로 붙는 $0$의 개수는 소인수 $2$와 $5$를 한 쌍씩 묶은 쌍의 수와 같다. 예를 들어 $2^5\\times5^3$의 끝에는 $0$이 {$3$}개 붙는다.",
+        "cAnswers": [
+          "$10$",
+          "$3$"
+        ],
+        "cReason": "원문 빈칸 '쌍의 수'는 바로 앞의 '한 쌍씩'에서 베낄 수 있고 낱말도 어색하다. 까닭($2\\times5=10$)과 적용 예를 묻는 빈칸으로 바꾸고 원래 문장은 모두 보여 주었다.",
+        "studentLabel": "곱의 끝에 연속으로 붙는 $0$의 개수",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2\\times5=10$이므로 소인수 $2$와 $5$ 한 쌍마다 끝에 $0$이 하나 붙는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 $5$개, $5$는 $3$개이므로 $3$쌍을 묶을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$은 $3$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "2와 5 한 쌍이 10 하나",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 969,
+        "part": "m1plus",
+        "sourceFingerprint": "da088f49f8502bb39f43371eeccce6f69525e9a181f63838d2194909e3bd50a3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 969
+        },
+        "directReview": null,
+        "cMarkedSentence": "$2\\times5=${$10$}이므로, 자연수를 소인수분해했을 때 그 수의 끝에 연속으로 붙는 $0$의 개수는 소인수 $2$와 $5$를 한 쌍씩 묶은 쌍의 수와 같다. 예를 들어 $2^5\\times5^3$의 끝에는 $0$이 {$3$}개 붙는다.",
+        "cSlotAnswers": [
+          "$10$",
+          "$3$"
+        ],
+        "cStudentSentence": "$2\\times5=$□이므로, 자연수를 소인수분해했을 때 그 수의 끝에 연속으로 붙는 $0$의 개수는 소인수 $2$와 $5$를 한 쌍씩 묶은 쌍의 수와 같다. 예를 들어 $2^5\\times5^3$의 끝에는 $0$이 □개 붙는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10$",
+            "equivalentAnswers": [
+              "$10$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "cb9a7e14650ab43a19bba4c8c0d9556138203582a8f85e9ec00a1de8436dbb53"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc1",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공약수 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 수의 약수를 각각 모두 쓴 뒤 양쪽에 {함께} 있는 수를 고르면 {공약수}이다.",
+        "example": {
+          "prompt": "$12$와 $16$의 공약수를 모두 쓰면?",
+          "answer": "$1$, $2$, $4$"
+        },
+        "studentC": "두 수의 약수를 각각 모두 쓴 뒤 양쪽에 □ 있는 수를 고르면 □이다.",
+        "answers": [
+          "함께",
+          "공약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 약수를 각각 나열해서 공약수를 찾는 방법을 설명하고, 그 방법으로 $12$와 $16$의 공약수를 모두 구하시오.",
+        "bAnswer": "두 수의 약수를 각각 모두 쓴 뒤 양쪽에 모두 들어 있는 수를 고른다. $12$의 약수는 $1, 2, 3, 4, 6, 12$, $16$의 약수는 $1, 2, 4, 8, 16$이므로 공약수는 $1, 2, 4$이다.",
+        "bGoal": "약수를 나열해 공약수를 찾는 절차를 말하고 실행할 수 있다.",
+        "bReason": "제목 '공약수 구하기'는 어떤 방법인지 밝히지 않는다. 소인수분해가 아닌 약수 나열 방법임을 질문에 적고 구할 두 수를 주었다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 자연수의 약수를 각각 모두 쓴 뒤 양쪽에 모두 들어 있는 수를 고르면 두 수의 {공약수}를 구할 수 있다.",
+        "cAnswers": [
+          "공약수"
+        ],
+        "cReason": "원문의 '함께'는 '모두', '같이', '공통으로'도 들어가는 임의 낱말이다. 둘째 빈칸도 숨은 제목 없이는 무엇을 구하는 절차인지 알 수 없었다. 절차의 결과인 용어 하나만 묻게 했다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 약수를 각각 모두 쓰고 양쪽에 모두 있는 수를 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$의 약수 $1$, $2$, $3$, $4$, $6$, $12$와 $16$의 약수 $1$, $2$, $4$, $8$, $16$"
+            ]
+          },
+          {
+            "anyOf": [
+              "공약수: $1$, $2$, $4$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "약수 나열해 공통인 것 고름",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 970,
+        "part": "m1plus",
+        "sourceFingerprint": "ccf5bf93b2f057410d635745aa2640d65fc256a38d595c3a68870e6d322e9425",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 970
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 자연수의 약수를 각각 모두 쓴 뒤 양쪽에 모두 들어 있는 수를 고르면 두 수의 {공약수}를 구할 수 있다.",
+        "cSlotAnswers": [
+          "공약수"
+        ],
+        "cStudentSentence": "두 자연수의 약수를 각각 모두 쓴 뒤 양쪽에 모두 들어 있는 수를 고르면 두 수의 □를 구할 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공약수",
+            "equivalentAnswers": [
+              "공약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공약수"
+          ]
+        ],
+        "proposalFingerprint": "a38906ad9155c573e64b2153e4437e3f1af3f6e9aed4763b5b5a2c69cb5e17eb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc2",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "모든 수의 공약수 $1$",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1$은 모든 자연수의 {약수}이므로 어떤 두 수에도 공약수로 들어 있다.",
+        "example": {
+          "prompt": "$7$과 $10$의 공약수는?",
+          "answer": "$1$"
+        },
+        "studentC": "$1$은 모든 자연수의 □이므로 어떤 두 수에도 공약수로 들어 있다.",
+        "answers": [
+          "약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 두 자연수를 골라도 그 두 수의 공약수에 반드시 들어 있는 수가 하나 있다. 그 수가 무엇인지 쓰고 까닭을 설명하시오. 또 $7$과 $10$의 공약수를 모두 구하시오.",
+        "bAnswer": "$1$이다. $1$은 모든 자연수의 약수이므로 어떤 두 수에서도 공통인 약수가 된다. $7$의 약수는 $1, 7$, $10$의 약수는 $1, 2, 5, 10$이므로 공약수는 $1$뿐이다.",
+        "bGoal": "$1$이 모든 자연수의 약수여서 항상 공약수가 됨을 설명할 수 있다.",
+        "bReason": "원제목에 답 $1$이 이미 적혀 있다. 학생용 이름을 바꾸고, 수와 까닭을 스스로 쓰게 했다. 공약수가 $1$뿐인 쌍을 확인 예로 넣었다.",
+        "cDecision": "keep",
+        "cReason": "빈칸이 까닭에 해당하는 낱말 '약수' 하나이고 문장이 짧아 중1이 그대로 읽고 답할 수 있다.",
+        "studentLabel": "어느 두 수에나 있는 공약수",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그 수는 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$은 모든 자연수의 약수이기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$과 $10$의 공약수: $1$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "1은 모든 수의 약수",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 971,
+        "part": "m1plus",
+        "sourceFingerprint": "5eaec6ef4cea316f71c49a04fd69da80896bba590f34696526d718fb2ae79f6d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 971
+        },
+        "directReview": null,
+        "cFrozenSentence": "$1$은 모든 자연수의 □이므로 어떤 두 수에도 공약수로 들어 있다.",
+        "cFrozenDefinition": "$1$은 모든 자연수의 {약수}이므로 어떤 두 수에도 공약수로 들어 있다.",
+        "cFrozenAnswers": [
+          "약수"
+        ],
+        "cMarkedSentence": "$1$은 모든 자연수의 {약수}이므로 어떤 두 수에도 공약수로 들어 있다.",
+        "cSlotAnswers": [
+          "약수"
+        ],
+        "cStudentSentence": "$1$은 모든 자연수의 □이므로 어떤 두 수에도 공약수로 들어 있다.",
+        "cAnswers": [
+          "약수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약수",
+            "equivalentAnswers": [
+              "약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약수"
+          ]
+        ],
+        "proposalFingerprint": "c281cb1e92feedca33aac7220eca46f42846803439f24584269dcbed80272511"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc3",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "나눗셈으로 최대공약수 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 수를 $1$보다 큰 {공약수}로 나누기를 두 몫이 {서로소}가 될 때까지 되풀이하고, 나눈 수들을 모두 {곱한다}.",
+        "example": {
+          "prompt": "$18$과 $30$의 최대공약수는?",
+          "answer": "$6$"
+        },
+        "studentC": "두 수를 $1$보다 큰 □로 나누기를 두 몫이 □가 될 때까지 되풀이하고, 나눈 수들을 모두 □.",
+        "answers": [
+          "공약수",
+          "서로소",
+          "곱한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수를 나란히 쓰고 공약수로 계속 나누어 최대공약수를 구하는 방법이 있다. 어떤 수로, 언제까지 나누는지와 마지막에 무엇을 곱하는지 설명하시오. 그 방법으로 $18$과 $30$의 최대공약수를 구하시오.",
+        "bAnswer": "두 수를 $1$보다 큰 공약수로 나누는 일을 두 몫이 서로소가 될 때까지 되풀이하고, 나누는 데 쓴 공약수를 모두 곱한다. $18$, $30$을 $2$로 나누면 $9$, $15$이고, 다시 $3$으로 나누면 $3$, $5$로 서로소이다. 따라서 최대공약수는 $2\\times3=6$이다.",
+        "bGoal": "공약수로 나누는 방법의 멈추는 조건과 곱하는 대상을 알고 최대공약수를 구할 수 있다.",
+        "bReason": "제목만으로는 '나눗셈'이 무엇을 가리키는지 알 수 없다. 나누는 수, 멈추는 때, 곱하는 수의 세 가지를 답하도록 범위를 정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 자연수를 $1$보다 큰 공약수로 나누기를 두 몫이 {서로소}가 될 때까지 되풀이하면, 나누는 데 쓴 공약수들의 {곱}이 두 수의 최대공약수이다.",
+        "cAnswers": [
+          "서로소",
+          "곱"
+        ],
+        "cReason": "원문에는 이 절차로 무엇을 얻는지(최대공약수)가 없어 제목 없이는 상황을 모른다. 빈칸 셋 가운데 '곱한다'는 서술어 끝맺음일 뿐이다. 결과를 문장에 밝히고 멈추는 조건과 곱이라는 두 핵심만 남겼다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$보다 큰 공약수로 나누기를 두 몫이 서로소가 될 때까지 되풀이한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 데 쓴 공약수를 모두 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$과 $30$의 최대공약수: $6$(예: $2$, $3$으로 차례로 나누어 $2\\times3$; 나누는 순서가 달라도 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "공약수로 나눠 서로소까지",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 972,
+        "part": "m1plus",
+        "sourceFingerprint": "2e51284eef5202396ed3fc1e183d4d45b8dee83b10d399444f07e3fe40380369",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 972
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 자연수를 $1$보다 큰 공약수로 나누기를 두 몫이 {서로소}가 될 때까지 되풀이하면, 나누는 데 쓴 공약수들의 {곱}이 두 수의 최대공약수이다.",
+        "cSlotAnswers": [
+          "서로소",
+          "곱"
+        ],
+        "cStudentSentence": "두 자연수를 $1$보다 큰 공약수로 나누기를 두 몫이 □가 될 때까지 되풀이하면, 나누는 데 쓴 공약수들의 □이 두 수의 최대공약수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "서로소",
+            "equivalentAnswers": [
+              "서로소"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "서로소"
+          ],
+          [
+            "곱"
+          ]
+        ],
+        "proposalFingerprint": "7dac998331a7375b9b492ca0bb7b9118593931436d5080f620ae6a4675faa061"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc4",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "세 수의 공약수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "세 수의 약수 가운데 {세 수 모두}에 공통인 것을 세 수의 공약수라 한다.",
+        "example": {
+          "prompt": "$6$, $9$, $12$의 공약수를 모두 쓰면?",
+          "answer": "$1$, $3$"
+        },
+        "studentC": "세 수의 약수 가운데 □에 공통인 것을 세 수의 공약수라 한다.",
+        "answers": [
+          "세 수 모두"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "세 자연수의 '공약수'란 어떤 수를 말하는지 쓰고, $6$, $9$, $12$의 공약수를 모두 구하시오. 또 $2$가 이 세 수의 공약수가 아닌 까닭을 쓰시오.",
+        "bAnswer": "세 수 모두의 약수인 수, 곧 세 수 모두에 공통인 약수를 세 수의 공약수라 한다. $6$의 약수는 $1, 2, 3, 6$, $9$의 약수는 $1, 3, 9$, $12$의 약수는 $1, 2, 3, 4, 6, 12$이므로 공약수는 $1, 3$이다. $2$는 $6$과 $12$의 약수이지만 $9$의 약수가 아니어서 세 수의 공약수가 아니다.",
+        "bGoal": "세 수의 공약수는 세 수 모두의 약수여야 함을 알고 구할 수 있다.",
+        "bReason": "제목만으로는 두 수의 경우와 무엇이 다른지 묻는지 알 수 없다. 두 수에만 공통인 약수 $2$를 따로 물어 '세 수 모두'라는 조건을 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "세 자연수 가운데 두 수에만 공통인 약수는 세 수의 공약수가 아니다. 세 수 {모두}의 약수인 수만 세 수의 공약수이다.",
+        "cAnswers": [
+          "모두"
+        ],
+        "cReason": "원문 빈칸 '세 수 모두'는 구 전체를 그대로 써야 해서 채점이 흔들린다. 앞 문장에 대비 상황을 주고 핵심 낱말 하나만 묻게 했다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 수 모두의 약수인 수(세 수 모두에 공통인 약수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$, $9$, $12$의 공약수: $1$, $3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 $9$의 약수가 아니므로 세 수의 공약수가 아니다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "세 수 모두의 약수",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 973,
+        "part": "m1plus",
+        "sourceFingerprint": "9a0a750ccf9a37fe0bfa5799f80eeb54170b39b14741e63e5f8acdd6b1619e23",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 973
+        },
+        "directReview": null,
+        "cMarkedSentence": "세 자연수 가운데 두 수에만 공통인 약수는 세 수의 공약수가 아니다. 세 수 {모두}의 약수인 수만 세 수의 공약수이다.",
+        "cSlotAnswers": [
+          "모두"
+        ],
+        "cStudentSentence": "세 자연수 가운데 두 수에만 공통인 약수는 세 수의 공약수가 아니다. 세 수 □의 약수인 수만 세 수의 공약수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모두",
+            "equivalentAnswers": [
+              "모두",
+              "전부"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모두",
+            "accept": [
+              "전부"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모두",
+            "전부"
+          ]
+        ],
+        "proposalFingerprint": "0c44d9cfffb8bf42d41975aee352ba4c4fd6cd7aedcec92e7fad85d64a6bea90"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc5",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "서로소 알아보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 수의 최대공약수를 구해 {$1$}이면 두 수는 서로소이다.",
+        "example": {
+          "prompt": "$9$와 $16$은 서로소인가?",
+          "answer": "서로소이다"
+        },
+        "studentC": "두 수의 최대공약수를 구해 □이면 두 수는 서로소이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "최대공약수가 $1$인지로 서로소 여부를 판별할 수 있다.",
+        "bReason": "이 방법은 서로소의 정의를 그대로 적용하는 것이라, m1-01-03-c4의 서술형과 묻는 내용이 겹친다. 서로소가 아닌 쌍을 함께 주는 변형안만 남겨 둔다.",
+        "cDecision": "keep",
+        "cReason": "c4의 빈칸은 용어 이름이고 여기 빈칸은 조건값 $1$이라 서로 반대 방향이다. 문장이 짧고 답이 하나로 정해져 유지한다.",
+        "exclusionReason": "B 제외: m1-01-03-c4(서로소의 정의와 판단)와 같은 내용을 '방법' 형식으로 되풀이한 서술형 중복이다. C 빈칸은 유지한다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "최대공약수가 1인지 확인",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 974,
+        "part": "m1plus",
+        "sourceFingerprint": "deeb411c0ec11551d2bab37381722c738ca36baf4b2b7c523358985a98a4c6c9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 974
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수의 최대공약수를 구해 □이면 두 수는 서로소이다.",
+        "cFrozenDefinition": "두 수의 최대공약수를 구해 {$1$}이면 두 수는 서로소이다.",
+        "cFrozenAnswers": [
+          "$1$"
+        ],
+        "cMarkedSentence": "두 수의 최대공약수를 구해 {$1$}이면 두 수는 서로소이다.",
+        "cSlotAnswers": [
+          "$1$"
+        ],
+        "cStudentSentence": "두 수의 최대공약수를 구해 □이면 두 수는 서로소이다.",
+        "cAnswers": [
+          "$1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "075dca20633e47252165cf9661171febd6a0e65c1a9f13bb6f1c26e8537eaab6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc6",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공약수의 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 수의 공약수는 두 수 가운데 {작은 수}보다 클 수 없다.",
+        "example": {
+          "prompt": "$8$과 $20$의 공약수 가운데 가장 큰 것은?",
+          "answer": "$4$"
+        },
+        "studentC": "두 수의 공약수는 두 수 가운데 □보다 클 수 없다.",
+        "answers": [
+          "작은 수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 공약수는 두 수 가운데 어느 수보다 클 수 없는지 쓰고, 그 까닭을 약수의 크기와 관련지어 설명하시오. $8$과 $20$의 공약수를 모두 써서 확인하시오.",
+        "bAnswer": "두 수 가운데 작은 수보다 클 수 없다. 공약수는 작은 수의 약수이기도 한데, 어떤 수의 약수는 그 수보다 클 수 없기 때문이다. $8$과 $20$의 공약수는 $1, 2, 4$로 모두 $8$보다 크지 않다.",
+        "bGoal": "공약수의 크기가 작은 수를 넘지 못함을 까닭과 함께 설명할 수 있다.",
+        "bReason": "제목 '공약수의 크기'는 무엇과 견주는지 밝히지 않는다. 견주는 대상(두 수 가운데 한 수)과 까닭을 묻는 질문으로 바꾸었다.",
+        "cDecision": "keep",
+        "cReason": "'두 수 가운데 □보다 클 수 없다'는 한 문장 비교이고 답이 '작은 수'로 정해진다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수 가운데 작은 수보다 클 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "공약수는 작은 수의 약수이고, 약수는 그 수보다 클 수 없기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$과 $20$의 공약수 $1$, $2$, $4$는 모두 $8$보다 크지 않다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "약수는 그 수보다 클 수 없음",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 975,
+        "part": "m1plus",
+        "sourceFingerprint": "8daee36f870836a79b2014f6ba110bbc029f4f8312ee1e643d3af6d16c9967b3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 975
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수의 공약수는 두 수 가운데 □보다 클 수 없다.",
+        "cFrozenDefinition": "두 수의 공약수는 두 수 가운데 {작은 수}보다 클 수 없다.",
+        "cFrozenAnswers": [
+          "작은 수"
+        ],
+        "cMarkedSentence": "두 수의 공약수는 두 수 가운데 {작은 수}보다 클 수 없다.",
+        "cSlotAnswers": [
+          "작은 수"
+        ],
+        "cStudentSentence": "두 수의 공약수는 두 수 가운데 □보다 클 수 없다.",
+        "cAnswers": [
+          "작은 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작은 수",
+            "equivalentAnswers": [
+              "작은 수",
+              "더 작은 수",
+              "작은 쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작은 수",
+            "accept": [
+              "더 작은 수",
+              "작은 쪽"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작은 수",
+            "더 작은 수",
+            "작은 쪽"
+          ]
+        ],
+        "proposalFingerprint": "89f3d1ec20ba5e610f517e9c9377fd3477142ad485bb884cb4d1a4ea35980bb2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc7",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공약수와 최대공약수의 차이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "공약수는 공통인 약수 {모두}이고, 최대공약수는 그 가운데 {가장 큰} 하나이다.",
+        "example": {
+          "prompt": "$10$과 $15$의 공약수와 최대공약수는?",
+          "answer": "공약수 $1$, $5$ · 최대공약수 $5$"
+        },
+        "studentC": "공약수는 공통인 약수 □이고, 최대공약수는 그 가운데 □ 하나이다.",
+        "answers": [
+          "모두",
+          "가장 큰"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 '공약수'와 '최대공약수'는 어떻게 다른지 설명하고, $10$과 $15$의 공약수와 최대공약수를 각각 쓰시오.",
+        "bAnswer": "공약수는 두 수에 공통인 약수 전부를 말하고, 최대공약수는 그 가운데 가장 큰 수 하나를 말한다. $10$과 $15$의 공약수는 $1, 5$이고 최대공약수는 $5$이다.",
+        "bGoal": "공약수(여러 개일 수 있음)와 최대공약수(하나)를 구별할 수 있다.",
+        "bReason": "제목이 '차이'라고만 해서 무엇을 기준으로 견주는지 없다. 두 용어의 뜻을 견주어 쓰고 같은 두 수에서 각각 구하도록 했다.",
+        "cDecision": "exclude",
+        "cReason": "'공통'은 c1에서, '가장 큰'은 c2에서 이미 같은 빈칸으로 묻는다. '모두'는 '전부', '들'도 들어가는 임의 낱말이다.",
+        "exclusionReason": "C 제외: m1-01-03-c1과 m1-01-03-c2의 정의 빈칸을 한 문장에 합친 중복이다. 차이 비교는 B 서술형으로만 다룬다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "공약수: 두 수에 공통인 약수 모두"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수: 공약수 가운데 가장 큰 수 하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$과 $15$의 공약수는 $1$, $5$이고 최대공약수는 $5$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "공통 약수 전부와 그중 최대",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 976,
+        "part": "m1plus",
+        "sourceFingerprint": "50f3e47d0e9645deaf1063f442311916affe6f548797f6405cf3955014f3423b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 976
+        },
+        "directReview": null,
+        "proposalFingerprint": "dff168f6f049ddc0a65a01d6892d733e867213a4036a010067dc7d9790ef5ed5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc8",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공통인 소인수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 {공통인 소인수}라 한다.",
+        "example": {
+          "prompt": "$2^2\\times3$과 $2\\times5$의 공통인 소인수는?",
+          "answer": "$2$"
+        },
+        "studentC": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 □라 한다.",
+        "answers": [
+          "공통인 소인수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수를 소인수분해했을 때 '공통인 소인수'란 어떤 수를 말하는지 쓰고, $2^2\\times3$과 $2\\times5$의 공통인 소인수를 구하시오.",
+        "bAnswer": "두 수의 소인수분해에 모두 나오는 소인수를 공통인 소인수라 한다. $2^2\\times3$의 소인수는 $2, 3$, $2\\times5$의 소인수는 $2, 5$이므로 공통인 소인수는 $2$이다.",
+        "bGoal": "소인수분해 꼴에서 공통인 소인수를 찾을 수 있다.",
+        "bReason": "제목은 낱말뿐이라 뜻을 묻는지 찾으라는지 알 수 없다. 지수가 달라도 같은 소수이면 공통임을 볼 수 있는 예와 함께 뜻을 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "'양쪽에 모두 나오는 소수'라는 설명이 분명하고, 교과서에서 쓰는 말 '공통인 소인수'를 답하게 한다. 줄인 표현만 같은 답으로 인정한다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 소인수분해에 모두 나오는 소인수(소수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^2\\times3$과 $2\\times5$의 공통인 소인수: $2$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "양쪽에 모두 나오는 소수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 977,
+        "part": "m1plus",
+        "sourceFingerprint": "de2e090543a19667e4fae0edde1ea8a188cec32fcbe75c2b79592d826c33e2a5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 977
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 □라 한다.",
+        "cFrozenDefinition": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 {공통인 소인수}라 한다.",
+        "cFrozenAnswers": [
+          "공통인 소인수"
+        ],
+        "cMarkedSentence": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 {공통인 소인수}라 한다.",
+        "cSlotAnswers": [
+          "공통인 소인수"
+        ],
+        "cStudentSentence": "두 수를 소인수분해했을 때 양쪽에 모두 나오는 소수를 □라 한다.",
+        "cAnswers": [
+          "공통인 소인수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공통인 소인수",
+            "equivalentAnswers": [
+              "공통인 소인수",
+              "공통 소인수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "공통인 소인수",
+            "accept": [
+              "공통 소인수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공통인 소인수",
+            "공통 소인수"
+          ]
+        ],
+        "proposalFingerprint": "58b99b118765a5de1c35eaba193a942e43145d2b43d1782fb78f926f06c5c1ec"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc9",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "작은 수가 큰 수의 약수일 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수 가운데 작은 수가 큰 수의 약수이면 {최대공약수}는 작은 수 자신이다.",
+        "example": {
+          "prompt": "$6$과 $24$의 최대공약수는?",
+          "answer": "$6$"
+        },
+        "studentC": "두 수 가운데 작은 수가 큰 수의 약수이면 □는 작은 수 자신이다.",
+        "answers": [
+          "최대공약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수 가운데 작은 수가 큰 수의 약수일 때, 두 수의 최대공약수는 어떤 수가 되는지 쓰고 그 까닭을 설명하시오. $6$과 $24$로 확인하시오.",
+        "bAnswer": "최대공약수는 작은 수 자신이다. 작은 수는 자기 자신의 약수이면서 큰 수의 약수이므로 공약수이고, 공약수는 작은 수보다 클 수 없으므로 가장 큰 공약수가 된다. $6$은 $24$의 약수이므로 $6$과 $24$의 최대공약수는 $6$이다.",
+        "bGoal": "한 수가 다른 수의 약수일 때 최대공약수를 바로 말하고 까닭을 설명할 수 있다.",
+        "bReason": "제목은 조건만 있고 무엇을 묻는지 없다. 그 조건에서 최대공약수가 무엇인지와 까닭을 묻는 질문으로 완성했다.",
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 다 보이고 빈칸은 용어 하나이다. '공약수'를 넣으면 틀린 문장이 되므로 답이 '최대공약수'로 정해진다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최대공약수는 작은 수 자신이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "작은 수는 두 수 모두의 약수(공약수)이고, 공약수는 작은 수보다 클 수 없기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$은 $24$의 약수이므로 최대공약수는 $6$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "약수 관계면 작은 수가 최대공약수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 978,
+        "part": "m1plus",
+        "sourceFingerprint": "514040126428a179b9bd199bc7e49df2559a64aed4e22f713047ab1dc1958c0d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 978
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수 가운데 작은 수가 큰 수의 약수이면 □는 작은 수 자신이다.",
+        "cFrozenDefinition": "두 수 가운데 작은 수가 큰 수의 약수이면 {최대공약수}는 작은 수 자신이다.",
+        "cFrozenAnswers": [
+          "최대공약수"
+        ],
+        "cMarkedSentence": "두 수 가운데 작은 수가 큰 수의 약수이면 {최대공약수}는 작은 수 자신이다.",
+        "cSlotAnswers": [
+          "최대공약수"
+        ],
+        "cStudentSentence": "두 수 가운데 작은 수가 큰 수의 약수이면 □는 작은 수 자신이다.",
+        "cAnswers": [
+          "최대공약수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최대공약수",
+            "equivalentAnswers": [
+              "최대공약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최대공약수"
+          ]
+        ],
+        "proposalFingerprint": "475f785b41df2d8b87ef91ab6197d07e1f3d2395bb2ce1ea8c9c429c6aff7a02"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc10",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "서로소와 소수의 구별",
+        "kind": "성질",
+        "level": "중",
+        "definition": "서로소는 {두 수 사이}의 관계이고, 소수는 {한 수}의 성질이다. 합성수끼리도 서로소일 수 있다.",
+        "example": {
+          "prompt": "$4$와 $9$는 서로소인가?",
+          "answer": "서로소이다"
+        },
+        "studentC": "서로소는 □의 관계이고, 소수는 □의 성질이다. 합성수끼리도 서로소일 수 있다.",
+        "answers": [
+          "두 수 사이",
+          "한 수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "'소수'와 '서로소'는 이름이 비슷하지만 뜻이 다르다. 각각 수 몇 개에 대해 쓰는 말인지 밝혀 두 말의 뜻을 견주어 설명하시오. 또 소수가 아닌 두 수 $4$와 $9$가 서로소인지 판단하시오.",
+        "bAnswer": "소수는 수 하나에 대한 말로, $1$보다 큰 자연수 가운데 약수가 $1$과 자기 자신뿐인 수이다. 서로소는 두 수 사이의 관계로, 두 수의 최대공약수가 $1$이라는 뜻이다. $4$와 $9$는 둘 다 합성수이지만 공약수가 $1$뿐이므로 서로소이다.",
+        "bGoal": "소수(한 수의 성질)와 서로소(두 수의 관계)를 구별하고 합성수끼리도 서로소일 수 있음을 안다.",
+        "bReason": "약수가 2개뿐, 공약수가 1뿐 같은 동치 표현을 대안으로 인정",
+        "cDecision": "rewrite",
+        "cAfter": "소수는 수 하나의 성질이지만, 서로소는 두 수의 {최대공약수}가 $1$이라는 두 수 사이의 관계이다. 그래서 $4$와 $9$처럼 {합성수}끼리도 서로소일 수 있다.",
+        "cAnswers": [
+          "최대공약수",
+          "합성수"
+        ],
+        "cReason": "원문 빈칸 '두 수 사이', '한 수'는 정해진 용어가 아니고, '관계', '성질'이라는 말만으로는 중1이 무엇을 채울지 알기 어렵다. 구별의 내용은 문장에 두고 수학 용어 두 개를 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수는 수 하나에 대한 말로, $1$보다 큰 자연수 가운데 약수가 $1$과 자기 자신뿐인 수",
+              "소수는 수 하나에 대한 말로, 약수가 $2$개뿐인 자연수"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로소는 두 수 사이의 관계로, 두 수의 최대공약수가 $1$이라는 뜻",
+              "서로소는 두 수 사이의 관계로, 두 수의 공약수가 $1$뿐이라는 뜻"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$와 $9$는 공약수가 $1$뿐이므로 서로소이다",
+              "$4$와 $9$는 최대공약수가 $1$이므로 서로소이다",
+              "$4=2^2$, $9=3^2$으로 공통인 소인수가 없으므로 서로소이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "한 수의 성질과 두 수의 관계",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 979,
+        "part": "m1plus",
+        "sourceFingerprint": "bb325dad16ec6b75d3bc233a484300d2bb75edab9ea49837ca31640393696326",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 979
+        },
+        "directReview": null,
+        "cMarkedSentence": "소수는 수 하나의 성질이지만, 서로소는 두 수의 {최대공약수}가 $1$이라는 두 수 사이의 관계이다. 그래서 $4$와 $9$처럼 {합성수}끼리도 서로소일 수 있다.",
+        "cSlotAnswers": [
+          "최대공약수",
+          "합성수"
+        ],
+        "cStudentSentence": "소수는 수 하나의 성질이지만, 서로소는 두 수의 □가 $1$이라는 두 수 사이의 관계이다. 그래서 $4$와 $9$처럼 □끼리도 서로소일 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최대공약수",
+            "equivalentAnswers": [
+              "최대공약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합성수",
+            "equivalentAnswers": [
+              "합성수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최대공약수"
+          ],
+          [
+            "합성수"
+          ]
+        ],
+        "proposalFingerprint": "c0bb5f85aa50da2078363460797e3ee8a1fd0d054ff002ec486c6d8f605511c1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc11",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "연속한 두 자연수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "연속한 두 자연수는 언제나 {서로소}이다.",
+        "example": {
+          "prompt": "$35$와 $36$의 최대공약수는?",
+          "answer": "$1$"
+        },
+        "studentC": "연속한 두 자연수는 언제나 □이다.",
+        "answers": [
+          "서로소"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$35$와 $36$처럼 연속한 두 자연수의 최대공약수는 항상 얼마인지 쓰고, 이런 두 수의 관계를 무엇이라 하는지 쓰시오. $35$와 $36$을 소인수분해하여 확인하시오.",
+        "bAnswer": "연속한 두 자연수의 최대공약수는 항상 $1$이고, 두 수는 서로소이다. $35=5\\times7$, $36=2^2\\times3^2$으로 공통인 소인수가 없으므로 최대공약수는 $1$이다.",
+        "bGoal": "연속한 두 자연수가 언제나 서로소임을 알고 예로 확인할 수 있다.",
+        "bReason": "제목 '연속한 두 자연수'는 대상만 있고 물음이 없다. 최대공약수의 값과 관계의 이름을 답하도록 정하고 '연속한'의 뜻이 보이는 예를 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "$8$과 $9$처럼 연속한 두 자연수는 최대공약수가 항상 $1$이므로 언제나 {서로소}이다.",
+        "cAnswers": [
+          "서로소"
+        ],
+        "cReason": "원문 '언제나 □이다'는 '홀수와 짝수', '차가 $1$'처럼 다른 말도 들어가 답의 범위가 모호하다. 최대공약수 이야기임을 문장에 밝혔다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최대공약수는 항상 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수는 서로소이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35=5\\times7$, $36=2^2\\times3^2$으로 공통인 소인수가 없다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "application",
+        "roleReason": "연속한 두 수는 최대공약수 1",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 980,
+        "part": "m1plus",
+        "sourceFingerprint": "3bb7c27a2ee8914ed619754eb3296866a7aecf23f9d0ddfb01852852d0f3fbfd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 980
+        },
+        "directReview": null,
+        "cMarkedSentence": "$8$과 $9$처럼 연속한 두 자연수는 최대공약수가 항상 $1$이므로 언제나 {서로소}이다.",
+        "cSlotAnswers": [
+          "서로소"
+        ],
+        "cStudentSentence": "$8$과 $9$처럼 연속한 두 자연수는 최대공약수가 항상 $1$이므로 언제나 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "서로소",
+            "equivalentAnswers": [
+              "서로소"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "서로소"
+          ]
+        ],
+        "proposalFingerprint": "c838b93e6bb247c19a9e4ffe6996086ea6b11eff862cf93b3d8a52b887e6d8c5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc12",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "지수가 다를 때 고르는 쪽",
+        "kind": "방법",
+        "level": "중",
+        "definition": "공통인 소인수의 지수가 서로 다르면 최대공약수에는 {작은} 지수를 택한다. 두 수를 모두 {나누어떨어지게} 해야 하기 때문이다.",
+        "example": {
+          "prompt": "$2^4\\times3$과 $2^2\\times3^3$의 최대공약수는?",
+          "answer": "$2^2\\times3$"
+        },
+        "studentC": "공통인 소인수의 지수가 서로 다르면 최대공약수에는 □ 지수를 택한다. 두 수를 모두 □ 해야 하기 때문이다.",
+        "answers": [
+          "작은",
+          "나누어떨어지게"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "두 수를 소인수분해했더니 공통인 소인수의 지수가 서로 달랐다. 최대공약수를 구할 때 큰 지수와 작은 지수 가운데 어느 쪽을 택하는지 쓰시오. 그 까닭을 $2^4\\times3$과 $2^2\\times3^3$의 소인수 $2$를 예로 들어 설명하고 두 수의 최대공약수를 구하시오.",
+        "bAnswer": "작은 지수를 택한다. 최대공약수는 두 수를 모두 나누어떨어지게 해야 하는데, $2^4$은 $2^2\\times3^3$을 나누어떨어지게 하지 못하고 $2^2$은 두 수를 모두 나누어떨어지게 하기 때문이다. 같은 이유로 $3$의 지수는 $1$을 택하므로 최대공약수는 $2^2\\times3$이다.",
+        "bGoal": "최대공약수에서 작은 지수를 택하는 까닭을 약수의 뜻으로 설명할 수 있다.",
+        "bReason": "원제목 '고르는 쪽'은 무엇을 구할 때인지 빠져 있어 이름을 다듬었다. c5와 달리 방법보다 까닭을 묻도록 하고, 한 소인수에 집중한 예를 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "공통인 소인수의 지수가 서로 다르면 최대공약수에는 {작은} 지수를 택한다. 최대공약수는 두 수 모두의 {약수}여야 하기 때문이다.",
+        "cAnswers": [
+          "작은",
+          "약수"
+        ],
+        "cReason": "둘째 빈칸 '나누어떨어지게'는 구 전체를 똑같이 써야 하는 긴 표현이다. 같은 까닭을 '두 수 모두의 약수'라는 용어로 묻게 바꾸었다.",
+        "studentLabel": "최대공약수에서 지수 고르기",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "작은 지수를 택한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^4$은 $2^2\\times3^3$을 나누어떨어지게 하지 못하지만 $2^2$은 두 수를 모두 나누어떨어지게 한다(같은 뜻의 설명 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수: $2^2\\times3$($=12$)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "두 수를 모두 나누려면 작은 지수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 981,
+        "part": "m1plus",
+        "sourceFingerprint": "f0f9e95212e98c6e3428a13d76e7139a0ebbfeeddd266af9db6aa6583eb499c8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 981
+        },
+        "directReview": null,
+        "cMarkedSentence": "공통인 소인수의 지수가 서로 다르면 최대공약수에는 {작은} 지수를 택한다. 최대공약수는 두 수 모두의 {약수}여야 하기 때문이다.",
+        "cSlotAnswers": [
+          "작은",
+          "약수"
+        ],
+        "cStudentSentence": "공통인 소인수의 지수가 서로 다르면 최대공약수에는 □ 지수를 택한다. 최대공약수는 두 수 모두의 □여야 하기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작은",
+            "equivalentAnswers": [
+              "작은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "약수",
+            "equivalentAnswers": [
+              "약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작은"
+          ],
+          [
+            "약수"
+          ]
+        ],
+        "proposalFingerprint": "d13feb66d5e8cd9245266310ec1f2377b950b9ae790a97c4c0ace032b92fb3f5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc13",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공약수의 개수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "공약수가 몇 개인지 알려면 최대공약수를 구한 뒤 그 수의 {약수}가 몇 개인지 {센다}.",
+        "example": {
+          "prompt": "$36$과 $48$의 공약수는 몇 개?",
+          "answer": "$6$개"
+        },
+        "studentC": "공약수가 몇 개인지 알려면 최대공약수를 구한 뒤 그 수의 □가 몇 개인지 □.",
+        "answers": [
+          "약수",
+          "센다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 공약수가 모두 몇 개인지 알고 싶다. 공약수를 하나씩 찾지 않고 최대공약수를 이용해 개수를 구하는 방법을 설명하고, 그 방법으로 $36$과 $48$의 공약수의 개수를 구하시오.",
+        "bAnswer": "두 수의 공약수는 최대공약수의 약수와 같으므로, 최대공약수를 구한 뒤 그 수의 약수의 개수를 센다. $36$과 $48$의 최대공약수는 $12$이고 $12$의 약수는 $1, 2, 3, 4, 6, 12$이므로 공약수는 $6$개이다.",
+        "bGoal": "최대공약수의 약수의 개수로 공약수의 개수를 구할 수 있다.",
+        "bReason": "제목은 무엇을 이용해 세는지 말하지 않는다. c3은 최대공약수가 주어진 경우이고, 여기서는 두 수에서 출발해 개수까지 구하는 절차로 구별했다.",
+        "cDecision": "exclude",
+        "cReason": "남는 핵심 빈칸은 '최대공약수의 약수'인데 c3 수정안과 같은 낱말을 묻게 된다. '센다'는 서술어 끝맺음일 뿐이다.",
+        "exclusionReason": "C 제외: m1-01-03-c3의 빈칸(최대공약수, 약수)과 같은 내용의 중복이다. 개수 구하기는 B 서술형으로만 다룬다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "공약수는 최대공약수의 약수이므로, 최대공약수를 구해 그 약수의 개수를 센다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36$과 $48$의 최대공약수는 $12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "공약수는 $6$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "최대공약수의 약수 개수 세기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 982,
+        "part": "m1plus",
+        "sourceFingerprint": "03862c8f7b8ad14ed41c628863bb1704e51f1dc2d46ece34d17f6e8f2f0f69c6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 982
+        },
+        "directReview": null,
+        "proposalFingerprint": "ab5c4ecd7952b93c70ac2fc2f6123115bf79df8b365ec2d87f213aafb5e6de73"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc14",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "세 수의 최대공약수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "세 수의 최대공약수는 세 수에 {모두} 들어 있는 소인수를 골라 지수가 가장 {작은} 것끼리 곱한다.",
+        "example": {
+          "prompt": "$12$, $18$, $30$의 최대공약수는?",
+          "answer": "$6$"
+        },
+        "studentC": "세 수의 최대공약수는 세 수에 □ 들어 있는 소인수를 골라 지수가 가장 □ 것끼리 곱한다.",
+        "answers": [
+          "모두",
+          "작은"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "세 자연수를 소인수분해한 결과로 최대공약수를 구할 때, 어떤 소인수를 고르고 지수는 어떻게 정하는지 설명하시오. 그 방법으로 $12$, $18$, $30$의 최대공약수를 구하시오.",
+        "bAnswer": "세 수 모두에 들어 있는 소인수만 고르고, 소인수마다 세 지수 가운데 가장 작은 것을 택해 곱한다. $12=2^2\\times3$, $18=2\\times3^2$, $30=2\\times3\\times5$에서 세 수 모두에 있는 소인수는 $2$, $3$이고 가장 작은 지수는 모두 $1$이므로 최대공약수는 $2\\times3=6$이다.",
+        "bGoal": "세 수의 최대공약수를 소인수분해로 구할 수 있다.",
+        "bReason": "제목만으로는 뜻을 묻는지 구하는 법을 묻는지 알 수 없다. 소인수 고르기와 지수 정하기를 답하게 하고, 한 수에만 있는 소인수 $5$가 든 예를 주었다.",
+        "cDecision": "keep",
+        "cReason": "고르는 범위와 지수의 크기라는 두 핵심이 한 낱말씩 비어 있고 앞뒤 말로 답이 정해진다. '모두'와 뜻이 같은 표현만 인정한다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 수 모두에 들어 있는 소인수만 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소인수마다 가장 작은 지수를 택해 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12=2^2\\times3$, $18=2\\times3^2$, $30=2\\times3\\times5$에서 최대공약수는 $2\\times3=6$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "세 수 공통 소인수의 최소 지수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 983,
+        "part": "m1plus",
+        "sourceFingerprint": "aaca7a0114c5cf246956df8a900b4022581652ea5a84b4549d21054d9812abee",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 983
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 수의 최대공약수는 세 수에 □ 들어 있는 소인수를 골라 지수가 가장 □ 것끼리 곱한다.",
+        "cFrozenDefinition": "세 수의 최대공약수는 세 수에 {모두} 들어 있는 소인수를 골라 지수가 가장 {작은} 것끼리 곱한다.",
+        "cFrozenAnswers": [
+          "모두",
+          "작은"
+        ],
+        "cMarkedSentence": "세 수의 최대공약수는 세 수에 {모두} 들어 있는 소인수를 골라 지수가 가장 {작은} 것끼리 곱한다.",
+        "cSlotAnswers": [
+          "모두",
+          "작은"
+        ],
+        "cStudentSentence": "세 수의 최대공약수는 세 수에 □ 들어 있는 소인수를 골라 지수가 가장 □ 것끼리 곱한다.",
+        "cAnswers": [
+          "모두",
+          "작은"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모두",
+            "equivalentAnswers": [
+              "모두",
+              "전부",
+              "공통으로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작은",
+            "equivalentAnswers": [
+              "작은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모두",
+            "accept": [
+              "전부",
+              "공통으로"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모두",
+            "전부",
+            "공통으로"
+          ],
+          [
+            "작은"
+          ]
+        ],
+        "proposalFingerprint": "49f885f5088c5ef9f9fe73942729212415182d1bc42e6d23b004687d05193c2d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc15",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공통인 소인수가 없을 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수에 공통인 소인수가 하나도 없으면 최대공약수는 {$1$}이고 두 수는 {서로소}이다.",
+        "example": {
+          "prompt": "$2^3\\times5$와 $3^2\\times7$의 최대공약수는?",
+          "answer": "$1$"
+        },
+        "studentC": "두 수에 공통인 소인수가 하나도 없으면 최대공약수는 □이고 두 수는 □이다.",
+        "answers": [
+          "$1$",
+          "서로소"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수를 소인수분해했더니 공통인 소인수가 하나도 없었다. 이때 두 수의 최대공약수는 얼마이고 두 수의 관계를 무엇이라 하는지, $2^3\\times5$와 $3^2\\times7$을 예로 들어 설명하시오.",
+        "bAnswer": "최대공약수는 $1$이고 두 수는 서로소이다. $2^3\\times5$의 소인수는 $2, 5$, $3^2\\times7$의 소인수는 $3, 7$로 공통인 소인수가 없어서, 두 수를 모두 나누어떨어지게 하는 수는 $1$뿐이기 때문이다.",
+        "bGoal": "공통인 소인수가 없으면 최대공약수가 $1$이고 서로소임을 설명할 수 있다.",
+        "bReason": "제목은 조건만 있고 결론을 묻는 말이 없다. 최대공약수의 값과 관계의 이름 두 가지를 답하도록 정했다.",
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 그대로 보이고 결론의 값과 용어를 짧게 묻는다. 두 빈칸 모두 답이 하나로 정해진다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최대공약수는 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수는 서로소이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^3\\times5$의 소인수 $2$, $5$와 $3^2\\times7$의 소인수 $3$, $7$에 공통인 것이 없다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "공통 소인수 없으면 공약수는 1뿐",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 984,
+        "part": "m1plus",
+        "sourceFingerprint": "3ede19bc7b43e5fb78a3442b132066eea893a076bc5398cf86caec5934dd868f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 984
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수에 공통인 소인수가 하나도 없으면 최대공약수는 □이고 두 수는 □이다.",
+        "cFrozenDefinition": "두 수에 공통인 소인수가 하나도 없으면 최대공약수는 {$1$}이고 두 수는 {서로소}이다.",
+        "cFrozenAnswers": [
+          "$1$",
+          "서로소"
+        ],
+        "cMarkedSentence": "두 수에 공통인 소인수가 하나도 없으면 최대공약수는 {$1$}이고 두 수는 {서로소}이다.",
+        "cSlotAnswers": [
+          "$1$",
+          "서로소"
+        ],
+        "cStudentSentence": "두 수에 공통인 소인수가 하나도 없으면 최대공약수는 □이고 두 수는 □이다.",
+        "cAnswers": [
+          "$1$",
+          "서로소"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "서로소",
+            "equivalentAnswers": [
+              "서로소"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "서로소"
+          ]
+        ],
+        "proposalFingerprint": "724719661cbcbab2dea4ec6f65ea66a4e00ed67e68ec57d343e6d0f92404a2bd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc16",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "두 짝수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 짝수는 $2$를 공약수로 가지므로 {서로소가 될 수 없다}.",
+        "example": {
+          "prompt": "$14$와 $22$의 최대공약수는?",
+          "answer": "$2$"
+        },
+        "studentC": "두 짝수는 $2$를 공약수로 가지므로 □.",
+        "answers": [
+          "서로소가 될 수 없다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "두 짝수는 서로소가 될 수 있는지 없는지 답하고, 그 까닭을 두 수의 공약수를 들어 설명하시오. $14$와 $22$의 최대공약수도 구하시오.",
+        "bAnswer": "될 수 없다. 짝수는 모두 $2$의 배수이므로 두 짝수는 $2$를 공약수로 가지고, 최대공약수가 $2$ 이상이어서 $1$이 될 수 없기 때문이다. $14=2\\times7$, $22=2\\times11$이므로 최대공약수는 $2$이다.",
+        "bGoal": "두 짝수가 서로소가 아닌 까닭을 공약수 $2$로 설명할 수 있다.",
+        "bReason": "제목 '두 짝수'는 대상만 있어 무엇을 묻는지 알 수 없다. 서로소 여부를 판단하고 까닭을 쓰는 질문으로 만들고 이름도 다듬었다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 짝수는 $2$를 공약수로 가져서 최대공약수가 $1$이 될 수 없으므로 {서로소}가 아니다.",
+        "cAnswers": [
+          "서로소"
+        ],
+        "cReason": "원문은 결론 전체('서로소가 될 수 없다')를 긴 구로 써야 해서 채점이 흔들린다. 까닭을 문장에 두고 용어 하나만 묻게 했다.",
+        "studentLabel": "두 짝수와 서로소",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로소가 될 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 짝수는 $2$를 공약수로 가져 최대공약수가 $1$이 될 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$14$와 $22$의 최대공약수: $2$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "공약수 2 때문에 서로소 불가",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 985,
+        "part": "m1plus",
+        "sourceFingerprint": "a21e3a31da355ff9ccfdc6497e941066499297fe59c608d9692b4d68e1658774",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 985
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 짝수는 $2$를 공약수로 가져서 최대공약수가 $1$이 될 수 없으므로 {서로소}가 아니다.",
+        "cSlotAnswers": [
+          "서로소"
+        ],
+        "cStudentSentence": "두 짝수는 $2$를 공약수로 가져서 최대공약수가 $1$이 될 수 없으므로 □가 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "서로소",
+            "equivalentAnswers": [
+              "서로소"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "서로소"
+          ]
+        ],
+        "proposalFingerprint": "a54a9d6e70d40b37168b66bd206a9b1c31bed58f2b098cd5930fe276c44c4825"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc17",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "최대공약수로 두 수 나타내기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 수 $A$, $B$의 최대공약수가 $G$이면 $A=G\\times a$, $B=G\\times b$이고 $a$와 $b$는 {서로소}이다.",
+        "example": {
+          "prompt": "두 수의 최대공약수가 $6$이면 두 수는 모두 무엇의 배수인가?",
+          "answer": "$6$의 배수"
+        },
+        "studentC": "두 수 $A$, $B$의 최대공약수가 $G$이면 $A=G\\times a$, $B=G\\times b$이고 $a$와 $b$는 □이다.",
+        "answers": [
+          "서로소"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수 $A$, $B$의 최대공약수가 $G$이면 자연수 $a$, $b$를 써서 $A=G\\times a$, $B=G\\times b$로 나타낼 수 있다. 이때 $a$와 $b$ 사이에는 어떤 관계가 있는지 쓰고 그 까닭을 설명하시오. $A=18$, $B=30$으로 확인하시오.",
+        "bAnswer": "$a$와 $b$는 서로소이다. $a$와 $b$에 $1$보다 큰 공약수 $k$가 있다면 $G\\times k$도 $A$, $B$의 공약수가 되어 $G$보다 큰 공약수가 생기므로 $G$가 최대공약수라는 것에 어긋난다. $18$과 $30$의 최대공약수는 $6$이고 $18=6\\times3$, $30=6\\times5$에서 $3$과 $5$는 서로소이다.",
+        "bGoal": "두 수를 최대공약수와 서로소인 두 수의 곱으로 나타낼 수 있음을 설명할 수 있다.",
+        "bReason": "제목만으로는 $A$, $B$, $G$, $a$, $b$가 무엇인지 알 수 없다. 기호의 뜻을 질문에 모두 적고, 묻는 것이 $a$와 $b$의 관계임을 특정했다.",
+        "cDecision": "keep",
+        "cReason": "기호와 식이 문장에 다 주어져 있고 결론 용어 하나만 묻는다. 상 수준 학생이 읽고 답할 수 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a$와 $b$는 서로소이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$, $b$에 $1$보다 큰 공약수가 있으면 $G$보다 큰 공약수가 생겨 $G$가 최대공약수라는 것에 어긋난다(같은 뜻의 설명 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18=6\\times3$, $30=6\\times5$에서 $3$과 $5$는 서로소이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "G로 나눈 두 몫이 서로소인 까닭",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 986,
+        "part": "m1plus",
+        "sourceFingerprint": "3f1900d71601d7ffe5c6e133703da92bbcb21d5e9e7c6b86b82c3508e69a0f75",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 986
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수 $A$, $B$의 최대공약수가 $G$이면 $A=G\\times a$, $B=G\\times b$이고 $a$와 $b$는 □이다.",
+        "cFrozenDefinition": "두 수 $A$, $B$의 최대공약수가 $G$이면 $A=G\\times a$, $B=G\\times b$이고 $a$와 $b$는 {서로소}이다.",
+        "cFrozenAnswers": [
+          "서로소"
+        ],
+        "cMarkedSentence": "두 수 $A$, $B$의 최대공약수가 $G$이면 $A=G\\times a$, $B=G\\times b$이고 $a$와 $b$는 {서로소}이다.",
+        "cSlotAnswers": [
+          "서로소"
+        ],
+        "cStudentSentence": "두 수 $A$, $B$의 최대공약수가 $G$이면 $A=G\\times a$, $B=G\\times b$이고 $a$와 $b$는 □이다.",
+        "cAnswers": [
+          "서로소"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "서로소",
+            "equivalentAnswers": [
+              "서로소"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "서로소"
+          ]
+        ],
+        "proposalFingerprint": "06c5cba68ad9fece5d75c1165fd5c872bbcc308e161f2af9645f655e34f7ffab"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc18",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "나머지가 남게 나누는 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어떤 수로 $A$를 나누어 $a$가 남으면, 그 수는 $A-a$의 {약수}이면서 $a$보다 {크다}.",
+        "example": {
+          "prompt": "$40$을 나누면 $4$가 남는 자연수를 모두 쓰면?",
+          "answer": "$6$, $9$, $12$, $18$, $36$"
+        },
+        "studentC": "어떤 수로 $A$를 나누어 $a$가 남으면, 그 수는 $A-a$의 □이면서 $a$보다 □.",
+        "answers": [
+          "약수",
+          "크다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "자연수 $A$를 어떤 자연수로 나누었더니 나머지가 $a$였다. 나누는 수는 어떤 두 가지 조건을 만족해야 하는지 $A-a$와 $a$를 써서 설명하시오. 이를 이용해 $40$을 나누면 $4$가 남는 자연수를 모두 구하시오.",
+        "bAnswer": "나누는 수는 $A-a$의 약수이면서 $a$보다 커야 한다. 나머지를 뺀 $A-a$는 나누어떨어지고, 나머지는 나누는 수보다 작아야 하기 때문이다. $40-4=36$의 약수 $1, 2, 3, 4, 6, 9, 12, 18, 36$ 가운데 $4$보다 큰 $6, 9, 12, 18, 36$이 답이다.",
+        "bGoal": "나머지가 주어진 나눗셈에서 나누는 수의 조건(약수, 나머지보다 큼)을 찾을 수 있다.",
+        "bReason": "제목 '나머지가 남게 나누는 수'는 뜻이 흐리고 기호 설명이 없다. $A$, $a$의 뜻을 질문에 적고 조건 두 가지를 쓰라고 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "상황($A$를 나누어 $a$가 남음)이 문장에 있고 '약수', '크다'가 각각 조건 하나씩에 대응한다. 둘째 조건을 놓치기 쉬워 빈칸으로 쓸모가 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수는 $A-a$의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수는 $a$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36$의 약수 가운데 $4$보다 큰 $6$, $9$, $12$, $18$, $36$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "A−a의 약수 중 a보다 큰 수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 987,
+        "part": "m1plus",
+        "sourceFingerprint": "764b2f4cc98643bb9025de2e17524bca2da46f48e94847b1dac93313195e98bd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 987
+        },
+        "directReview": null,
+        "cFrozenSentence": "어떤 수로 $A$를 나누어 $a$가 남으면, 그 수는 $A-a$의 □이면서 $a$보다 □.",
+        "cFrozenDefinition": "어떤 수로 $A$를 나누어 $a$가 남으면, 그 수는 $A-a$의 {약수}이면서 $a$보다 {크다}.",
+        "cFrozenAnswers": [
+          "약수",
+          "크다"
+        ],
+        "cMarkedSentence": "어떤 수로 $A$를 나누어 $a$가 남으면, 그 수는 $A-a$의 {약수}이면서 $a$보다 {크다}.",
+        "cSlotAnswers": [
+          "약수",
+          "크다"
+        ],
+        "cStudentSentence": "어떤 수로 $A$를 나누어 $a$가 남으면, 그 수는 $A-a$의 □이면서 $a$보다 □.",
+        "cAnswers": [
+          "약수",
+          "크다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약수",
+            "equivalentAnswers": [
+              "약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크다",
+            "equivalentAnswers": [
+              "크다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약수"
+          ],
+          [
+            "크다"
+          ]
+        ],
+        "proposalFingerprint": "bc74f91fc9150e6de9e8dcbed6be61a19cdb657eaabd97311e0c4dab34f1b165"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc19",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "최대공약수의 지수로 다른 수의 지수 알기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "최대공약수에서 어떤 소인수의 지수가 한 수의 지수보다 {작으면}, 다른 수에서 그 소인수의 지수는 최대공약수의 지수와 {같다}. 두 지수 가운데 작은 쪽이 남기 때문이다.",
+        "example": {
+          "prompt": "$2^a\\times3^2$과 $2^3\\times3$의 최대공약수가 $2^2\\times3$이다. $a$가 $2$인 까닭은?",
+          "answer": "작은 쪽 지수가 $2$여야 해서"
+        },
+        "studentC": "최대공약수에서 어떤 소인수의 지수가 한 수의 지수보다 □, 다른 수에서 그 소인수의 지수는 최대공약수의 지수와 □. 두 지수 가운데 작은 쪽이 남기 때문이다.",
+        "answers": [
+          "작으면",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^a\\times3^2$과 $2^3\\times3$의 최대공약수가 $2^2\\times3$이다. 자연수 $a$의 값을 구하고, 최대공약수에서 소인수 $2$의 지수가 정해지는 규칙을 써서 그 까닭을 설명하시오.",
+        "bAnswer": "$a=2$이다. 최대공약수에서 $2$의 지수는 두 수의 지수 $a$와 $3$ 가운데 작은 쪽이다. 그 값이 $2$인데 $3$은 $2$보다 크므로 작은 쪽은 $a$이고 $a=2$이다. $a$가 $3$ 이상이면 최대공약수의 $2$의 지수가 $3$이 되어 맞지 않는다.",
+        "bGoal": "최대공약수의 지수가 두 지수 가운데 작은 쪽임을 이용해 모르는 지수를 찾을 수 있다.",
+        "bReason": "원제목과 정의는 '한 수의 지수', '다른 수의 지수'처럼 추상적인 말뿐이라 예 없이는 상황을 떠올리기 어렵다. 구체적인 두 수를 주고 값과 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 수의 최대공약수에서 각 소인수의 지수는 두 수의 지수 가운데 {작은} 쪽이다. 그래서 최대공약수의 지수가 한 수의 지수보다 작으면, 다른 수에서 그 소인수의 지수는 최대공약수의 지수와 {같다}. (예: $2^a\\times3^2$과 $2^3\\times3$의 최대공약수가 $2^2\\times3$이면 $a=2$이다.)",
+        "cAnswers": [
+          "작은",
+          "같다"
+        ],
+        "cReason": "원문은 조건('작으면')과 결론('같다')을 둘 다 숨겨 문장만으로는 무슨 말인지 알 수 없다. 규칙을 먼저 묻고 조건은 보이게 둔 채 결론만 비웠으며 예를 붙였다.",
+        "studentLabel": "최대공약수로 모르는 지수 찾기",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수에서 $2$의 지수는 $a$와 $3$ 가운데 작은 쪽이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 값이 $2$이고 $3$은 $2$보다 크므로 작은 쪽이 $a$이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "application",
+        "roleReason": "작은 쪽 지수로 모르는 지수 찾기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 988,
+        "part": "m1plus",
+        "sourceFingerprint": "7c1cd1c399f87598100e291247937dec3a9c2b5b8938c36fd27050a5b9403fe3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 988
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 수의 최대공약수에서 각 소인수의 지수는 두 수의 지수 가운데 {작은} 쪽이다. 그래서 최대공약수의 지수가 한 수의 지수보다 작으면, 다른 수에서 그 소인수의 지수는 최대공약수의 지수와 {같다}. (예: $2^a\\times3^2$과 $2^3\\times3$의 최대공약수가 $2^2\\times3$이면 $a=2$이다.)",
+        "cSlotAnswers": [
+          "작은",
+          "같다"
+        ],
+        "cStudentSentence": "두 수의 최대공약수에서 각 소인수의 지수는 두 수의 지수 가운데 □ 쪽이다. 그래서 최대공약수의 지수가 한 수의 지수보다 작으면, 다른 수에서 그 소인수의 지수는 최대공약수의 지수와 □. (예: $2^a\\times3^2$과 $2^3\\times3$의 최대공약수가 $2^2\\times3$이면 $a=2$이다.)",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작은",
+            "equivalentAnswers": [
+              "작은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작은"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "f03e0e2e8e7f1279f7ad5a8cb512bc97b358b447a3026288b5c92a7af8351652"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc20",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공약수와 두 수의 차",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 자연수의 공약수는 큰 수에서 작은 수를 뺀 {차}도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$인 경우도 마찬가지이다.",
+        "example": {
+          "prompt": "$91$과 $98$의 최대공약수는?",
+          "answer": "$7$"
+        },
+        "studentC": "두 자연수의 공약수는 큰 수에서 작은 수를 뺀 □도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$인 경우도 마찬가지이다.",
+        "answers": [
+          "차"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 공약수는 두 수의 차(큰 수에서 작은 수를 뺀 수)와 어떤 관계가 있는지 쓰고, 이를 이용해 $91$과 $98$의 최대공약수를 구하시오.",
+        "bAnswer": "두 수의 공약수는 두 수의 차도 나누어떨어지게 한다. 곧 차의 약수이다. $98-91=7$이므로 공약수는 $7$의 약수인 $1$ 또는 $7$이다. $91=7\\times13$, $98=7\\times14$로 둘 다 $7$로 나누어떨어지므로 최대공약수는 $7$이다.",
+        "bGoal": "공약수가 두 수의 차의 약수임을 이용해 최대공약수 후보를 좁힐 수 있다.",
+        "bReason": "제목만으로는 공약수와 차 사이의 무슨 관계를 묻는지 알 수 없다. '차'의 뜻을 괄호로 밝히고, 차가 작아 이 성질이 쓸모 있는 예를 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 자연수의 공약수는 두 수의 {차}도 나누어떨어지게 한다. 예를 들어 $91$과 $98$의 공약수는 $98-91=7$도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$일 때도 마찬가지이다.",
+        "cAnswers": [
+          "차"
+        ],
+        "cReason": "원문 '큰 수에서 작은 수를 뺀 □'에는 '값', '수'도 들어가 답이 흔들린다. 빈칸 앞 설명을 줄이고 예를 붙여 '차'로 정해지게 했다. 두 수가 같은 경우도 그대로 두었다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 공약수는 두 수의 차도 나누어떨어지게 한다(차의 약수이다)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$98-91=7$이므로 공약수는 $1$ 또는 $7$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수 모두 $7$로 나누어떨어지므로 최대공약수는 $7$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "application",
+        "roleReason": "차의 약수로 공약수 후보 좁히기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 989,
+        "part": "m1plus",
+        "sourceFingerprint": "baa7cf27a73749ac8822a8f119e4ee60c67b12baa47c3646dcf92eeb2441005a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 989
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 자연수의 공약수는 두 수의 {차}도 나누어떨어지게 한다. 예를 들어 $91$과 $98$의 공약수는 $98-91=7$도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$일 때도 마찬가지이다.",
+        "cSlotAnswers": [
+          "차"
+        ],
+        "cStudentSentence": "두 자연수의 공약수는 두 수의 □도 나누어떨어지게 한다. 예를 들어 $91$과 $98$의 공약수는 $98-91=7$도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$일 때도 마찬가지이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "차",
+            "equivalentAnswers": [
+              "차",
+              "차이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "차",
+            "accept": [
+              "차이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "차",
+            "차이"
+          ]
+        ],
+        "proposalFingerprint": "6543fe8f4462d2d885c0bb052645beb77aca4fecb3fcc22616e0afbb3d49d1dc"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc21",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "연속한 두 홀수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "연속한 두 홀수의 공약수는 차 $2$의 약수여야 하는데 $2$는 홀수를 못 나누므로, 두 수는 언제나 {서로소}이다.",
+        "example": {
+          "prompt": "$51$과 $53$의 최대공약수는?",
+          "answer": "$1$"
+        },
+        "studentC": "연속한 두 홀수의 공약수는 차 $2$의 약수여야 하는데 $2$는 홀수를 못 나누므로, 두 수는 언제나 □이다.",
+        "answers": [
+          "서로소"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$51$과 $53$처럼 연속한 두 홀수의 최대공약수는 항상 얼마인지 쓰고, 그 까닭을 두 수의 차를 이용해 설명하시오.",
+        "bAnswer": "항상 $1$이므로 두 수는 서로소이다. 두 수의 공약수는 두 수의 차 $2$도 나누어떨어지게 해야 하므로 $1$ 또는 $2$인데, 홀수는 $2$로 나누어떨어지지 않으므로 공약수는 $1$뿐이다. $51$과 $53$의 최대공약수도 $1$이다.",
+        "bGoal": "연속한 두 홀수가 서로소임을 두 수의 차로 설명할 수 있다.",
+        "bReason": "제목은 대상만 있다. 묻는 것이 최대공약수의 값과 까닭임을 밝히고, '연속한 두 홀수'의 뜻이 보이는 예와 까닭에 쓸 실마리(차)를 주었다.",
+        "cDecision": "keep",
+        "cReason": "까닭이 문장에 차례대로 적혀 있고 결론 용어 하나만 묻는다. 상 수준에서 읽을 만한 길이이다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최대공약수는 항상 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "공약수는 차 $2$의 약수인 $1$ 또는 $2$인데, 홀수는 $2$로 나누어떨어지지 않는다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "차 2와 홀수라 공약수는 1뿐",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 990,
+        "part": "m1plus",
+        "sourceFingerprint": "1179e936970eb4c847c064aa3dce2b14355aaa3867142ba93b452cc8d7c10bfa",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 990
+        },
+        "directReview": null,
+        "cFrozenSentence": "연속한 두 홀수의 공약수는 차 $2$의 약수여야 하는데 $2$는 홀수를 못 나누므로, 두 수는 언제나 □이다.",
+        "cFrozenDefinition": "연속한 두 홀수의 공약수는 차 $2$의 약수여야 하는데 $2$는 홀수를 못 나누므로, 두 수는 언제나 {서로소}이다.",
+        "cFrozenAnswers": [
+          "서로소"
+        ],
+        "cMarkedSentence": "연속한 두 홀수의 공약수는 차 $2$의 약수여야 하는데 $2$는 홀수를 못 나누므로, 두 수는 언제나 {서로소}이다.",
+        "cSlotAnswers": [
+          "서로소"
+        ],
+        "cStudentSentence": "연속한 두 홀수의 공약수는 차 $2$의 약수여야 하는데 $2$는 홀수를 못 나누므로, 두 수는 언제나 □이다.",
+        "cAnswers": [
+          "서로소"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "서로소",
+            "equivalentAnswers": [
+              "서로소"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "서로소"
+          ]
+        ],
+        "proposalFingerprint": "4b495c5dbf1a1090e4abf82e551b963fa55e5f15751d5d9879aefc94f4a33887"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc22",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "세 수의 최대공약수가 $1$일 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "세 수의 최대공약수가 $1$이어도 그 가운데 두 수는 {서로소가 아닐} 수 있다.",
+        "example": {
+          "prompt": "$6$, $10$, $15$의 최대공약수는?",
+          "answer": "$1$"
+        },
+        "studentC": "세 수의 최대공약수가 $1$이어도 그 가운데 두 수는 □ 수 있다.",
+        "answers": [
+          "서로소가 아닐"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "세 자연수의 최대공약수가 $1$이면 그 가운데 어느 두 수를 골라도 서로소라고 할 수 있는지 답하고, $6$, $10$, $15$를 예로 들어 설명하시오.",
+        "bAnswer": "그렇다고 할 수 없다. $6=2\\times3$, $10=2\\times5$, $15=3\\times5$는 세 수 모두에 공통인 소인수가 없어 최대공약수가 $1$이다. 그러나 $6$과 $10$의 최대공약수는 $2$, $6$과 $15$는 $3$, $10$과 $15$는 $5$여서 어느 두 수도 서로소가 아니다.",
+        "bGoal": "세 수의 최대공약수가 $1$인 것과 두 수씩 서로소인 것을 구별할 수 있다.",
+        "bReason": "제목은 조건만 있고 무엇을 판단하라는지 없다. '두 수씩도 서로소인가'라는 물음으로 특정하고 반례가 되는 세 수를 주었다.",
+        "cDecision": "rewrite",
+        "cAfter": "$6$, $10$, $15$처럼 세 자연수의 최대공약수가 $1$이어도, 그 가운데 두 수의 최대공약수는 $1$이 아닐 수 있다. 즉, 그 가운데 두 수는 {서로소}가 아닐 수 있다.",
+        "cAnswers": [
+          "서로소"
+        ],
+        "cReason": "원문 빈칸 '서로소가 아닐'은 부정 표현까지 통째로 써야 해서 답이 길고 흔들린다. 예를 넣고 용어 하나만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그렇다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$, $10$, $15$의 최대공약수는 $1$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$과 $10$은 $2$, $6$과 $15$는 $3$, $10$과 $15$는 $5$를 공약수로 가져 서로소가 아니다(서로소가 아닌 쌍을 하나만 들어도 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "세 수 공약수 1과 쌍별 서로소 구별",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 991,
+        "part": "m1plus",
+        "sourceFingerprint": "fa2f50614e67e0fafc0622dd0141acc7600fc25e6b1e74bb3cde05cb9cb29a6f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 991
+        },
+        "directReview": null,
+        "cMarkedSentence": "$6$, $10$, $15$처럼 세 자연수의 최대공약수가 $1$이어도, 그 가운데 두 수의 최대공약수는 $1$이 아닐 수 있다. 즉, 그 가운데 두 수는 {서로소}가 아닐 수 있다.",
+        "cSlotAnswers": [
+          "서로소"
+        ],
+        "cStudentSentence": "$6$, $10$, $15$처럼 세 자연수의 최대공약수가 $1$이어도, 그 가운데 두 수의 최대공약수는 $1$이 아닐 수 있다. 즉, 그 가운데 두 수는 □가 아닐 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "서로소",
+            "equivalentAnswers": [
+              "서로소"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "서로소"
+          ]
+        ],
+        "proposalFingerprint": "625ae9263a6fc288b7fe5894f4a1e921f9f17b95db5183730faa5a894814a8a5"
+      }
+    }
+  ]
+}

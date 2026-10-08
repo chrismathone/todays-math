@@ -1,0 +1,820 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:32:49.256Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-03-xc7",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "표준형에서 최댓값과 최솟값 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$y=a(x-p)^2+q$에서 $(x-p)^2$은 늘 $0$ 이상이므로 {$x=p$}일 때 $y$가 {$q$}가 되어 가장 크거나 작다.",
+        "studentC": "$y=a(x-p)^2+q$에서 $(x-p)^2$은 늘 $0$ 이상이므로 □일 때 $y$가 □가 되어 가장 크거나 작다.",
+        "answers": [
+          "$x=p$",
+          "$q$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=a(x-p)^2+q$에서 $(x-p)^2$의 값의 범위를 이용하여, $y$가 가장 크거나 가장 작아지는 $x$의 값과 그때의 $y$의 값을 까닭과 함께 쓰시오.",
+        "bAnswer": "$(x-p)^2$은 늘 $0$ 이상이고 $x=p$일 때 가장 작은 값 $0$이 되므로, 이때 $a(x-p)^2=0$이 되어 $y=q$이다. 따라서 $x=p$일 때 $y$가 $q$로 가장 크거나 작다.",
+        "bGoal": "표준형에서 최대·최소가 생기는 까닭",
+        "bReason": "c3의 결과를 제곱이 $0$ 이상이라는 근거로 설명하게 하여 목표를 구분했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=p$일 때 $(x-p)^2=0$",
+              "$(x-p)^2$의 가장 작은 값이 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=q$",
+              "그때 $y$의 값은 $q$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "제곱이 $0$ 이상이라는 근거가 보여 $x=p$, $q$를 추론하는 빈칸이 된다.",
+        "learningRole": "reason",
+        "roleReason": "제곱이 $0$일 때 $y=q$",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3503,
+        "part": "m3plus",
+        "sourceFingerprint": "9c395323c01e459fbb12826158fcb09c60e3638c03b61102010e8beb3f668ba2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3503
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=a(x-p)^2+q$에서 $(x-p)^2$은 늘 $0$ 이상이므로 □일 때 $y$가 □가 되어 가장 크거나 작다.",
+        "cFrozenDefinition": "$y=a(x-p)^2+q$에서 $(x-p)^2$은 늘 $0$ 이상이므로 {$x=p$}일 때 $y$가 {$q$}가 되어 가장 크거나 작다.",
+        "cFrozenAnswers": [
+          "$x=p$",
+          "$q$"
+        ],
+        "cMarkedSentence": "$y=a(x-p)^2+q$에서 $(x-p)^2$은 늘 $0$ 이상이므로 {$x=p$}일 때 $y$가 {$q$}가 되어 가장 크거나 작다.",
+        "cSlotAnswers": [
+          "$x=p$",
+          "$q$"
+        ],
+        "cStudentSentence": "$y=a(x-p)^2+q$에서 $(x-p)^2$은 늘 $0$ 이상이므로 □일 때 $y$가 □가 되어 가장 크거나 작다.",
+        "cAnswers": [
+          "$x=p$",
+          "$q$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x=p$",
+            "equivalentAnswers": [
+              "$x=p$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$q$",
+            "equivalentAnswers": [
+              "$q$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x=p$"
+          ],
+          [
+            "$q$"
+          ]
+        ],
+        "proposalFingerprint": "b42219358797cc4180bcbadb2dcb1f71c3f1326fb4a97f861e89eaf364965c6b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-03-xc13",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "차가 일정한 두 수의 곱",
+        "kind": "성질",
+        "level": "중",
+        "definition": "차가 일정한 두 수의 곱은 한 수를 $x$로 놓으면 $x$의 {이차함수}가 되고, 두 수의 {합이 $0$일 때} 가장 작다.",
+        "example": {
+          "prompt": "차가 $6$인 두 수 $x$, $x+6$의 곱 $(x+3)^2-9$가 $x=-3$일 때 가장 작은 까닭은?",
+          "answer": "$(x+3)^2$이 $0$이 되어서"
+        },
+        "studentC": "차가 일정한 두 수의 곱은 한 수를 $x$로 놓으면 $x$의 □가 되고, 두 수의 □ 가장 작다.",
+        "answers": [
+          "이차함수",
+          "합이 $0$일 때"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "차가 $6$인 두 수를 $x$, $x+6$이라 하면 두 수의 곱은 $x(x+6)=(x+3)^2-9$이다. 곱이 가장 작아지는 $x$의 값과 그때의 곱을 구하고, 그때 두 수의 합을 쓰시오.",
+        "bAnswer": "$x=-3$일 때 $(x+3)^2=0$이 되어 곱이 가장 작은 값 $-9$가 된다. 두 수는 $-3$, $3$이고 합은 $0$이다.",
+        "bGoal": "차가 일정한 두 수의 곱의 최솟값",
+        "bReason": "합이 $0$일 때 곱이 가장 작다는 일반 사실을 구체 식으로 확인하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=-3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱의 최솟값 $-9$",
+              "가장 작은 곱은 $-9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "합은 $0$",
+              "합이 $0$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "차가 일정한 두 수의 곱은 한 수를 $x$로 놓으면 $x$의 {이차함수}가 되고, 두 수의 합이 {$0$}일 때 가장 작다.",
+        "cAnswers": [
+          "이차함수",
+          "$0$"
+        ],
+        "cReason": "'합이 $0$일 때'를 통째로 비워 문장 범위가 모호해 수만 비웠다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "곱을 이차함수로 놓고 최솟값 찾기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3508,
+        "part": "m3plus",
+        "sourceFingerprint": "9a6afe3a784100aaf50fd98de631a39a365813159b84496322e2ced49aac4cc9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3508
+        },
+        "directReview": null,
+        "cMarkedSentence": "차가 일정한 두 수의 곱은 한 수를 $x$로 놓으면 $x$의 {이차함수}가 되고, 두 수의 합이 {$0$}일 때 가장 작다.",
+        "cSlotAnswers": [
+          "이차함수",
+          "$0$"
+        ],
+        "cStudentSentence": "차가 일정한 두 수의 곱은 한 수를 $x$로 놓으면 $x$의 □가 되고, 두 수의 합이 □일 때 가장 작다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이차함수",
+            "equivalentAnswers": [
+              "이차함수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이차함수"
+          ],
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "07331c0c5ff0b95589358fa88cc27cfc1fb4bd058dd54867407d53267a9ff840"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-03-xc18",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "이차식으로 주어진 높이의 최댓값",
+        "kind": "방법",
+        "level": "상",
+        "definition": "높이가 $y=a(t-p)^2+q$이고 {$a<0$}이며 $p$가 실제로 움직이는 동안의 시각이면, 꼭짓점의 {$t$좌표} $p$가 최고 높이에 이르는 시각이고 $y$좌표 $q$가 최고 높이이다.",
+        "studentC": "높이가 $y=a(t-p)^2+q$이고 □이며 $p$가 실제로 움직이는 동안의 시각이면, 꼭짓점의 □ $p$가 최고 높이에 이르는 시각이고 $y$좌표 $q$가 최고 높이이다.",
+        "answers": [
+          "$a<0$",
+          "$t$좌표"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "던져 올린 공의 $t$초 뒤 높이가 $y=a(t-p)^2+q$ ($\\mathrm{m}$)이고, $p$는 공이 실제로 움직이는 동안의 시각이다. 높이가 최댓값을 가지려면 $a$의 부호는 어떠해야 하며, 최고 높이와 그 높이에 이르는 시각은 각각 무엇인가?",
+        "bAnswer": "$a<0$이어야 한다. 이때 꼭짓점의 $t$좌표인 $p$초에 최고 높이에 이르고, 최고 높이는 꼭짓점의 $y$좌표인 $q$ $\\mathrm{m}$이다.",
+        "bGoal": "높이 식에서 최고 높이와 시각 읽기",
+        "bReason": "$a$의 조건과 $t$·$y$좌표의 뜻을 구분해 읽도록 상황과 범위를 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a<0$",
+              "$a$가 음수"
+            ]
+          },
+          {
+            "anyOf": [
+              "시각은 $p$",
+              "$t=p$일 때"
+            ]
+          },
+          {
+            "anyOf": [
+              "최고 높이는 $q$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "부호 조건과 꼭짓점의 좌표 이름을 하나씩 채우며 결론은 보이게 두었다.",
+        "learningRole": "application",
+        "roleReason": "위로 볼록한 높이 식의 꼭짓점 해석",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3513,
+        "part": "m3plus",
+        "sourceFingerprint": "3fbad2ea2aec48fc285bb7e69354409b15ec88dfdb6562cc59047e30fc49e9fa",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3513
+        },
+        "directReview": null,
+        "cFrozenSentence": "높이가 $y=a(t-p)^2+q$이고 □이며 $p$가 실제로 움직이는 동안의 시각이면, 꼭짓점의 □ $p$가 최고 높이에 이르는 시각이고 $y$좌표 $q$가 최고 높이이다.",
+        "cFrozenDefinition": "높이가 $y=a(t-p)^2+q$이고 {$a<0$}이며 $p$가 실제로 움직이는 동안의 시각이면, 꼭짓점의 {$t$좌표} $p$가 최고 높이에 이르는 시각이고 $y$좌표 $q$가 최고 높이이다.",
+        "cFrozenAnswers": [
+          "$a<0$",
+          "$t$좌표"
+        ],
+        "cMarkedSentence": "높이가 $y=a(t-p)^2+q$이고 {$a<0$}이며 $p$가 실제로 움직이는 동안의 시각이면, 꼭짓점의 {$t$좌표} $p$가 최고 높이에 이르는 시각이고 $y$좌표 $q$가 최고 높이이다.",
+        "cSlotAnswers": [
+          "$a<0$",
+          "$t$좌표"
+        ],
+        "cStudentSentence": "높이가 $y=a(t-p)^2+q$이고 □이며 $p$가 실제로 움직이는 동안의 시각이면, 꼭짓점의 □ $p$가 최고 높이에 이르는 시각이고 $y$좌표 $q$가 최고 높이이다.",
+        "cAnswers": [
+          "$a<0$",
+          "$t$좌표"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a<0$",
+            "equivalentAnswers": [
+              "$a<0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$t$좌표",
+            "equivalentAnswers": [
+              "$t$좌표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a<0$"
+          ],
+          [
+            "$t$좌표"
+          ]
+        ],
+        "proposalFingerprint": "fe8dbab4f4d12a2240d4953626a9a160e0d8fe45b42738074580825a10acb373"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-03-xc19",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "문자가 있어도 변하지 않는 최솟값",
+        "kind": "성질",
+        "level": "상",
+        "definition": "문자가 어떤 값이어도 {이차항의 계수가 양수}이고 표준형의 꼭짓점의 $y$좌표가 {같은 상수}이면, 최솟값은 문자의 값과 상관없이 일정하다.",
+        "example": {
+          "prompt": "$y=x^2-2ax+a^2+3$의 최솟값이 $a$와 상관없이 $3$인 까닭은?",
+          "answer": "꼭짓점의 $y$좌표가 늘 $3$이라서"
+        },
+        "studentC": "문자가 어떤 값이어도 □이고 표준형의 꼭짓점의 $y$좌표가 □이면, 최솟값은 문자의 값과 상관없이 일정하다.",
+        "answers": [
+          "이차항의 계수가 양수",
+          "같은 상수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=x^2-2ax+a^2+3$을 $y=a(x-p)^2+q$ 꼴의 표준형으로 고치고, 이 함수의 최솟값이 $a$의 값과 상관없이 일정한 까닭을 쓰시오.",
+        "bAnswer": "$y=(x-a)^2+3$이다. 꼭짓점이 $(a,\\ 3)$이고 그 $y$좌표가 $a$와 상관없이 늘 $3$이므로 최솟값은 항상 $3$이다.",
+        "bGoal": "문자가 있어도 최솟값이 일정한 까닭",
+        "bReason": "'문자'가 무엇인지 구체 식이 있어야 알 수 있어 $a$가 들어간 식을 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=(x-a)^2+3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 $y$좌표가 늘 $3$",
+              "꼭짓점의 $y$좌표에 $a$가 없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "이차함수의 식에 문자 $a$가 있을 때, $a$가 어떤 값이어도 이차항의 계수가 {양수}이고 표준형으로 고친 식의 {꼭짓점}의 $y$좌표가 $a$를 포함하지 않는 상수이면, 최솟값은 $a$의 값과 상관없이 일정하다.",
+        "cAnswers": [
+          "양수",
+          "꼭짓점"
+        ],
+        "cReason": "'문자'의 지칭이 없고 빈칸이 긴 구절이라 문자를 밝히고 핵심 낱말만 비웠다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "꼭짓점의 $y$좌표에 문자가 없음",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3514,
+        "part": "m3plus",
+        "sourceFingerprint": "b3a87b012dd7dc7b0b5cfad0bed3a7ab0b44811751a2e139d8c131ecfe622fe8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3514
+        },
+        "directReview": null,
+        "cMarkedSentence": "이차함수의 식에 문자 $a$가 있을 때, $a$가 어떤 값이어도 이차항의 계수가 {양수}이고 표준형으로 고친 식의 {꼭짓점}의 $y$좌표가 $a$를 포함하지 않는 상수이면, 최솟값은 $a$의 값과 상관없이 일정하다.",
+        "cSlotAnswers": [
+          "양수",
+          "꼭짓점"
+        ],
+        "cStudentSentence": "이차함수의 식에 문자 $a$가 있을 때, $a$가 어떤 값이어도 이차항의 계수가 □이고 표준형으로 고친 식의 □의 $y$좌표가 $a$를 포함하지 않는 상수이면, 최솟값은 $a$의 값과 상관없이 일정하다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "꼭짓점"
+          ]
+        ],
+        "proposalFingerprint": "8b8b7a94996eb83e4d350745a88d052c280ae6c3e13644b2c50cfe066c0cc2de"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-03-xc23",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "합이 일정한 두 수의 제곱의 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "합이 일정한 두 수의 제곱의 합은 두 수가 {같을 때} 가장 {작다} — 한 수를 $x$로 놓으면 $x$의 이차함수가 된다.",
+        "example": {
+          "prompt": "합이 $8$인 두 수 $x$, $8-x$의 제곱의 합은 $2(x-4)^2+32$이다. 두 수가 같을 때 가장 작은 까닭은?",
+          "answer": "$x=4$일 때 제곱항이 $0$이라서"
+        },
+        "studentC": "합이 일정한 두 수의 제곱의 합은 두 수가 □ 가장 □ — 한 수를 $x$로 놓으면 $x$의 이차함수가 된다.",
+        "answers": [
+          "같을 때",
+          "작다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "합이 $8$인 두 수를 $x$, $8-x$라 하면 두 수의 제곱의 합은 $2(x-4)^2+32$이다. 제곱의 합이 가장 작을 때의 두 수와 그 값을 구하고, 그때 두 수는 어떤 관계인지 쓰시오.",
+        "bAnswer": "$x=4$일 때 $2(x-4)^2=0$이 되어 제곱의 합이 가장 작은 값 $32$가 된다. 두 수는 $4$, $4$로 서로 같다.",
+        "bGoal": "합이 일정한 두 수의 제곱의 합의 최솟값",
+        "bReason": "두 수가 같을 때 가장 작다는 일반 사실을 구체 식으로 확인하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수는 $4$, $4$",
+              "$x=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "최솟값 $32$",
+              "가장 작은 값은 $32$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수가 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건 '같을 때'와 결론 '작다'를 채우는 짧은 비교 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "제곱의 합을 이차함수로 놓아 최솟값",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3517,
+        "part": "m3plus",
+        "sourceFingerprint": "6c3457f0b9786f4c46c493c22a341b0c779997207e633a77ae96f834c9521beb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3517
+        },
+        "directReview": null,
+        "cFrozenSentence": "합이 일정한 두 수의 제곱의 합은 두 수가 □ 가장 □ — 한 수를 $x$로 놓으면 $x$의 이차함수가 된다.",
+        "cFrozenDefinition": "합이 일정한 두 수의 제곱의 합은 두 수가 {같을 때} 가장 {작다} — 한 수를 $x$로 놓으면 $x$의 이차함수가 된다.",
+        "cFrozenAnswers": [
+          "같을 때",
+          "작다"
+        ],
+        "cMarkedSentence": "합이 일정한 두 수의 제곱의 합은 두 수가 {같을 때} 가장 {작다} — 한 수를 $x$로 놓으면 $x$의 이차함수가 된다.",
+        "cSlotAnswers": [
+          "같을 때",
+          "작다"
+        ],
+        "cStudentSentence": "합이 일정한 두 수의 제곱의 합은 두 수가 □ 가장 □ — 한 수를 $x$로 놓으면 $x$의 이차함수가 된다.",
+        "cAnswers": [
+          "같을 때",
+          "작다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같을 때",
+            "equivalentAnswers": [
+              "같을 때"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작다",
+            "equivalentAnswers": [
+              "작다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같을 때"
+          ],
+          [
+            "작다"
+          ]
+        ],
+        "proposalFingerprint": "4defc7a1d72662be9a02294c63e398d6a554e3adb110aecb13c1ab297b648949"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-03-xc24",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "울타리로 두른 직사각형의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "울타리의 길이가 정해져 있으면 한 변을 $x$로 놓고 나머지 변을 {$x$의 식}으로 나타내어 넓이를 이차함수로 만든다 — 벽을 한 변으로 쓰면 울타리는 {세 변}에만 든다.",
+        "example": {
+          "prompt": "벽을 한 변으로 하는 직사각형의 세 변에 길이 $20$인 울타리를 두른다. 벽에 수직인 변이 $x$이면 벽과 마주 보는 변이 $20-2x$인 까닭은?",
+          "answer": "길이 $x$인 변이 둘이라서"
+        },
+        "studentC": "울타리의 길이가 정해져 있으면 한 변을 $x$로 놓고 나머지 변을 □으로 나타내어 넓이를 이차함수로 만든다 — 벽을 한 변으로 쓰면 울타리는 □에만 든다.",
+        "answers": [
+          "$x$의 식",
+          "세 변"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "벽을 한 변으로 하는 직사각형 모양 밭의 나머지 세 변에 길이 $20$ $\\mathrm{m}$인 울타리를 모두 두른다. 벽에 수직인 변의 길이를 $x$ $\\mathrm{m}$라 할 때, 벽과 마주 보는 변의 길이와 밭의 넓이를 $x$의 식으로 나타내고, 넓이가 가장 클 때의 $x$의 값과 넓이를 구하시오.",
+        "bAnswer": "벽과 마주 보는 변은 $(20-2x)$ $\\mathrm{m}$이고, 넓이는 $y=x(20-2x)=-2(x-5)^2+50$이다. $x=5$일 때 넓이가 가장 크고 그 넓이는 $50$ $\\mathrm{m}^2$이다.",
+        "bGoal": "울타리 조건으로 최대 넓이 구하기",
+        "bReason": "벽이 한 변이라 울타리가 세 변에만 드는 점이 드러나도록 변의 위치를 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$20-2x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=x(20-2x)$",
+              "$y=-2x^2+20x$",
+              "$y=-2(x-5)^2+50$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50$ $\\mathrm{m}^2$",
+              "넓이 $50$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "울타리의 길이가 정해져 있으면 한 변을 $x$로 놓고 나머지 변을 $x$의 식으로 나타내어 넓이를 {이차함수}로 만든다. 벽을 한 변으로 쓰면 울타리는 {세 변}에만 든다.",
+        "cAnswers": [
+          "이차함수",
+          "세 변"
+        ],
+        "cReason": "'$x$의 식' 빈칸은 답이 막연해 넓이가 되는 함수의 종류를 비웠다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "변을 $x$의 식으로 놓아 넓이 최댓값",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3518,
+        "part": "m3plus",
+        "sourceFingerprint": "cf22e479b6207a31c97fa680edcbb9894345847fbd71e22751205d44372a615a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3518
+        },
+        "directReview": null,
+        "cMarkedSentence": "울타리의 길이가 정해져 있으면 한 변을 $x$로 놓고 나머지 변을 $x$의 식으로 나타내어 넓이를 {이차함수}로 만든다. 벽을 한 변으로 쓰면 울타리는 {세 변}에만 든다.",
+        "cSlotAnswers": [
+          "이차함수",
+          "세 변"
+        ],
+        "cStudentSentence": "울타리의 길이가 정해져 있으면 한 변을 $x$로 놓고 나머지 변을 $x$의 식으로 나타내어 넓이를 □로 만든다. 벽을 한 변으로 쓰면 울타리는 □에만 든다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이차함수",
+            "equivalentAnswers": [
+              "이차함수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "세 변",
+            "equivalentAnswers": [
+              "세 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이차함수"
+          ],
+          [
+            "세 변"
+          ]
+        ],
+        "proposalFingerprint": "529e6d50d39721ec591f30def7a79520e1545f30148179b63238908d7a4867e4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc1",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "삼각비의 기준이 되는 각",
+        "kind": "정의",
+        "level": "하",
+        "definition": "삼각비는 직각삼각형의 한 {예각}을 기준으로 정하므로, 어느 각을 기준으로 하느냐에 따라 {높이}와 밑변이 바뀐다.",
+        "studentC": "삼각비는 직각삼각형의 한 □을 기준으로 정하므로, 어느 각을 기준으로 하느냐에 따라 □와 밑변이 바뀐다.",
+        "answers": [
+          "예각",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "높이·밑변의 정의는 c6, 기준각 교체는 xc7이 구체 삼각형으로 묻는다.",
+        "cDecision": "keep",
+        "cReason": "'예각'과 '높이'를 채우는 짧은 빈칸으로 문장 범위가 분명하다.",
+        "exclusionReason": "B 제외: c6의 높이·밑변 정의와 xc7의 기준각 교체 질문을 합친 목표 중복이다.",
+        "learningRole": "definition",
+        "roleReason": "삼각비는 한 예각을 기준으로 정함",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3519,
+        "part": "m3plus",
+        "sourceFingerprint": "a9b568cecada66445badc186b0f6ea585f81d35e26838a352d3faad11f3caaae",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3519
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "삼각비는 직각삼각형의 한 □을 기준으로 정하므로, 어느 각을 기준으로 하느냐에 따라 □와 밑변이 바뀐다.",
+        "cFrozenDefinition": "삼각비는 직각삼각형의 한 {예각}을 기준으로 정하므로, 어느 각을 기준으로 하느냐에 따라 {높이}와 밑변이 바뀐다.",
+        "cFrozenAnswers": [
+          "예각",
+          "높이"
+        ],
+        "cMarkedSentence": "삼각비는 직각삼각형의 한 {예각}을 기준으로 정하므로, 어느 각을 기준으로 하느냐에 따라 {높이}와 밑변이 바뀐다.",
+        "cSlotAnswers": [
+          "예각",
+          "높이"
+        ],
+        "cStudentSentence": "삼각비는 직각삼각형의 한 □을 기준으로 정하므로, 어느 각을 기준으로 하느냐에 따라 □와 밑변이 바뀐다.",
+        "cAnswers": [
+          "예각",
+          "높이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "예각",
+            "equivalentAnswers": [
+              "예각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "예각"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "1e3ad4adc0fd66fb77e876d591fa9db93ac2948cce33422fecc6d6c0c8a1653e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc4",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "사인과 코사인의 다른 점",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사인과 코사인은 분모가 모두 {빗변}이고, 분자가 사인은 기준각과 {마주 보는 변}, 코사인은 기준각에 붙은 두 변 가운데 {빗변이 아닌 변}이다.",
+        "studentC": "사인과 코사인은 분모가 모두 □이고, 분자가 사인은 기준각과 □, 코사인은 기준각에 붙은 두 변 가운데 □이다.",
+        "answers": [
+          "빗변",
+          "마주 보는 변",
+          "빗변이 아닌 변"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형의 한 예각을 기준으로 사인과 코사인을 분수로 쓸 때, 분모와 분자는 각각 어떤 변인지 두 삼각비를 비교하여 쓰시오.",
+        "bAnswer": "분모는 둘 다 빗변이다. 분자는 사인이 기준각과 마주 보는 변(높이), 코사인이 기준각에 붙은 두 변 가운데 빗변이 아닌 변(밑변)이다.",
+        "bGoal": "사인과 코사인의 공통점과 차이",
+        "bReason": "두 정의를 따로 외우지 않고 분모 공통·분자 차이로 비교하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모는 둘 다 빗변"
+            ]
+          },
+          {
+            "anyOf": [
+              "사인의 분자는 마주 보는 변",
+              "사인의 분자는 높이"
+            ]
+          },
+          {
+            "anyOf": [
+              "코사인의 분자는 붙은 변 가운데 빗변이 아닌 변",
+              "코사인의 분자는 밑변"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "분모와 두 분자를 채우는 비교 빈칸으로 범위가 분명하다.",
+        "learningRole": "definition",
+        "roleReason": "분모 공통, 분자 차이 비교",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3522,
+        "part": "m3plus",
+        "sourceFingerprint": "2be933a20c1db1ef00fa259a9dc2014f9d632734c64de501b9867bbb95277a21",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3522
+        },
+        "directReview": null,
+        "cFrozenSentence": "사인과 코사인은 분모가 모두 □이고, 분자가 사인은 기준각과 □, 코사인은 기준각에 붙은 두 변 가운데 □이다.",
+        "cFrozenDefinition": "사인과 코사인은 분모가 모두 {빗변}이고, 분자가 사인은 기준각과 {마주 보는 변}, 코사인은 기준각에 붙은 두 변 가운데 {빗변이 아닌 변}이다.",
+        "cFrozenAnswers": [
+          "빗변",
+          "마주 보는 변",
+          "빗변이 아닌 변"
+        ],
+        "cMarkedSentence": "사인과 코사인은 분모가 모두 {빗변}이고, 분자가 사인은 기준각과 {마주 보는 변}, 코사인은 기준각에 붙은 두 변 가운데 {빗변이 아닌 변}이다.",
+        "cSlotAnswers": [
+          "빗변",
+          "마주 보는 변",
+          "빗변이 아닌 변"
+        ],
+        "cStudentSentence": "사인과 코사인은 분모가 모두 □이고, 분자가 사인은 기준각과 □, 코사인은 기준각에 붙은 두 변 가운데 □이다.",
+        "cAnswers": [
+          "빗변",
+          "마주 보는 변",
+          "빗변이 아닌 변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "마주 보는 변",
+            "equivalentAnswers": [
+              "마주 보는 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "빗변이 아닌 변",
+            "equivalentAnswers": [
+              "빗변이 아닌 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "마주 보는 변"
+          ],
+          [
+            "빗변이 아닌 변"
+          ]
+        ],
+        "proposalFingerprint": "596b4f55c6d0ce2512feae473710c802ce1d437772133c34278983c530b3481c"
+      }
+    }
+  ]
+}

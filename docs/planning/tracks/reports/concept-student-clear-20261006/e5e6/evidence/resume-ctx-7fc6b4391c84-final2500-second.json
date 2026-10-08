@@ -1,0 +1,23 @@
+{
+  "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-final2500-patch-corrected-input.json",
+  "patches": {
+    "2523": {
+      "bAnswer": "두 끝값을 더해 2로 나눈다. 2와 4의 가운데 값은 (2+4)÷2=3이므로 약 3배로 어림한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 끝값을 더해 2로 나눈다",
+            "두 끝값의 평균을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$배",
+            "$3$"
+          ]
+        }
+      ]
+    }
+  },
+  "notes": {}
+}

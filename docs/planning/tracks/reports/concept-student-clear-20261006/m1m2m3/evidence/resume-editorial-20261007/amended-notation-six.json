@@ -1,0 +1,622 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-20261007/input-notation-six.json",
+  "changes": [
+    {
+      "id": "m2-02-01-c10",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 변에 $2$를 곱해 $2<2x<6$을 얻고 $1$을 더한다",
+            "각 변에 $\\frac12$를 더해 $\\frac32<x+\\frac12<\\frac72$를 얻고 $2$를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3<2x+1<7$"
+          ]
+        }
+      ],
+      "bReason": "반쪽 단계 하나만 쓰는 답을 전체 순서 설명으로 인정하지 않고 두 성질 적용을 확인한다. 다른 올바른 계산 순서도 허용한다."
+    },
+    {
+      "id": "m1-02-01-xc5",
+      "bPrompt": "정수가 아닌 유리수가 어떤 수인지 기약분수의 분모를 이용하여 설명하시오. 또 $-\\frac93$과 $\\frac52$ 가운데 정수가 아닌 유리수를 고르고 까닭을 쓰시오.",
+      "bAnswer": "분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수이다. $\\frac52$는 기약분수이고 분모가 $2$이므로 정수가 아닌 유리수이다. $-\\frac93$은 약분하면 $-3$이므로 정수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수"
+          ]
+        },
+        {
+          "anyOf": [
+            "정수가 아닌 유리수는 $\\frac52$이고 기약분수의 분모가 $2$이다"
+          ]
+        }
+      ],
+      "bReason": "고른 수의 이유만 요구한 질문에서 고르지 않은 수의 약분을 필수 채점 조건으로 삼지 않는다. 읽는 분모 삼에 맞게 조사를 고친다."
+    },
+    {
+      "id": "m1-02-01-xc12",
+      "bPrompt": "자연수와 정수 사이, 정수와 유리수 사이의 포함 관계를 각각 문장으로 쓰시오. 또 $5$와 $-\\frac12$는 각각 자연수, 정수, 유리수 가운데 어디에 속하는지 모두 쓰시오.",
+      "bAnswer": "자연수는 모두 정수이다. 정수는 모두 유리수이다. $5$는 자연수, 정수, 유리수 모두에 속하고, $-\\frac{1}{2}$는 유리수에만 속한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수는 모두 정수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정수는 모두 유리수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$는 자연수, 정수, 유리수 모두에 속한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-\\frac{1}{2}$는 유리수에만 속한다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m1-02-01-xc16",
+      "bAnswer": "$-\\frac{14}{7}=-\\frac21=-2$는 기약분수의 분모가 $1$이므로 정수이다. $\\frac{14}{4}=\\frac72$는 분모가 $1$이 아니므로 정수가 아닌 유리수이다. 약분 전 분모가 $1$이 아니어도 약분 후에는 $1$이 될 수 있으므로 먼저 약분해야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-\\frac{14}{7}=-2$로 기약분수의 분모가 $1$이므로 정수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{14}{4}=\\frac{7}{2}$로 기약분수의 분모가 $1$이 아니므로 정수가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약분 후 분모가 $1$이 될 수 있으므로 먼저 약분해야 한다",
+            "약분 전의 분모만으로는 약분 후 정수가 되는 수를 잘못 판단한다"
+          ]
+        }
+      ],
+      "bReason": "이유를 특정한 긴 사례 문장과 일치시킬 필요가 없어 약분 전후 분모가 달라질 수 있다는 뜻만 요구한다."
+    },
+    {
+      "id": "m1-02-05-xc22",
+      "bAnswer": "$-\\frac53$과 $-\\frac35$를 먼저 곱한다. 두 수는 서로 역수여서 곱이 $1$이기 때문이다. 따라서 값은 $1\\times7=7$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 곱할 두 수는 $-\\frac53$과 $-\\frac35$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수는 서로 역수여서 곱하면 $1$이다",
+            "두 수의 곱이 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "값은 $7$이다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2-01-06-xc18",
+      "bAnswer": "앞에서부터 차례로 나누면 $\\frac{24x^3}{2x\\times3x}=4x$이다. 괄호가 있는 식에서는 $2x\\div3x=\\frac23$의 몫을 먼저 구한 뒤 그 몫으로 나누므로 $36x^3$이 된다. 두 식의 계산 차례가 다르다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 없으면 $2x$로 나눈 뒤 $3x$로 나누고, 괄호가 있으면 $2x\\div3x$의 몫으로 나눈다"
+          ]
+        }
+      ],
+      "coreAfter": "$B$, $C$가 $0$이 아닐 때 $A\\div B\\div C$는 앞에서부터 차례로 나누므로 {$\\frac{A}{BC}$}와 같다. $A\\div(B\\div C)$는 괄호 안을 먼저 계산하므로 $\\frac{AC}{B}$와 같다. 두 식은 계산 차례가 다르고, 값이 같을 수도 다를 수도 있다.",
+      "coreReason": "B·C의 영이 아닌 조건을 밝히고 항상 값이 다르다는 오해를 막는다. C=1 또는 A=0 등의 경우 값은 같아질 수 있다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-02-01-c10",
+      "bDecision": "rewrite",
+      "bPrompt": "$1<x<3$일 때 $2x+1$의 값의 범위를 구하는 과정을 부등식의 성질을 써서 순서대로 쓰세요.",
+      "bAnswer": "각 변에 양수 $2$를 곱하면 부등호의 방향이 그대로여서 $2<2x<6$이고, 각 변에 $1$을 더하면 $3<2x+1<7$이다.",
+      "bGoal": "$x$의 범위에서 $ax+b$의 범위를 곱하고 더하는 순서로 구하기",
+      "bReason": "반쪽 단계 하나만 쓰는 답을 전체 순서 설명으로 인정하지 않고 두 성질 적용을 확인한다. 다른 올바른 계산 순서도 허용한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 변에 $2$를 곱해 $2<2x<6$을 얻고 $1$을 더한다",
+            "각 변에 $\\frac12$를 더해 $\\frac32<x+\\frac12<\\frac72$를 얻고 $2$를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3<2x+1<7$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "$a>0$ 조건이 문장에 있고 곱한, 더한다 두 단계가 순서대로 드러난다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "식의 값의 범위를 구하는 순서",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 417,
+      "part": "m2",
+      "sourceFingerprint": "14eab1ff702e0d278540beeada892db0c538467c0615f9ee349ee3568cea18ec",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 417
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-02-01-c10"
+      },
+      "cFrozenSentence": "$a>0$일 때 $x$의 범위에서 $ax+b$의 범위를 구하려면 각 변에 $a$를 □ 다음 $b$를 □.",
+      "cFrozenDefinition": "$a>0$일 때 $x$의 범위에서 $ax+b$의 범위를 구하려면 각 변에 $a$를 {곱한} 다음 $b$를 {더한다}.",
+      "cFrozenAnswers": [
+        "곱한",
+        "더한다"
+      ],
+      "cMarkedSentence": "$a>0$일 때 $x$의 범위에서 $ax+b$의 범위를 구하려면 각 변에 $a$를 {곱한} 다음 $b$를 {더한다}.",
+      "cSlotAnswers": [
+        "곱한",
+        "더한다"
+      ],
+      "cStudentSentence": "$a>0$일 때 $x$의 범위에서 $ax+b$의 범위를 구하려면 각 변에 $a$를 □ 다음 $b$를 □.",
+      "cAnswers": [
+        "곱한",
+        "더한다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱한",
+          "equivalentAnswers": [
+            "곱한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "더한다",
+          "equivalentAnswers": [
+            "더한다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱한"
+        ],
+        [
+          "더한다"
+        ]
+      ],
+      "proposalFingerprint": "954d633201a4aa7aa6a5eb7df371fc75f9addac183a0e7b4ec2614f345eddcce"
+    },
+    {
+      "id": "m1-02-01-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "정수가 아닌 유리수가 어떤 수인지 기약분수의 분모를 이용하여 설명하시오. 또 $-\\frac93$과 $\\frac52$ 가운데 정수가 아닌 유리수를 고르고 까닭을 쓰시오.",
+      "bAnswer": "분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수이다. $\\frac52$는 기약분수이고 분모가 $2$이므로 정수가 아닌 유리수이다. $-\\frac93$은 약분하면 $-3$이므로 정수이다.",
+      "bGoal": "정수가 아닌 유리수를 기약분수의 분모로 정의하고 예에서 고른다.",
+      "bReason": "고른 수의 이유만 요구한 질문에서 고르지 않은 수의 약분을 필수 채점 조건으로 삼지 않는다. 읽는 분모 삼에 맞게 조사를 고친다.",
+      "cDecision": "rewrite",
+      "cAfter": "$\\frac{5}{2}$, $-\\frac{1}{3}$처럼 분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수를 {정수가 아닌 유리수}라 한다.",
+      "cAnswers": [
+        "정수가 아닌 유리수"
+      ],
+      "cReason": "원문은 조건인 분모의 값과 결론인 용어를 함께 가려 문장만으로는 무엇을 말하는지 잡기 어렵다. 조건은 드러내고 용어만 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수"
+          ]
+        },
+        {
+          "anyOf": [
+            "정수가 아닌 유리수는 $\\frac52$이고 기약분수의 분모가 $2$이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "definition",
+      "roleReason": "기약분수 분모가 1이 아닌 수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "notationReason": "삼분의 구를 읽은 뒤 와·는을 쓰고 분수식/분모의 수학 값은 그대로 유지한다.",
+      "sourceIndex": 1048,
+      "part": "m1plus",
+      "sourceFingerprint": "a57b5af138a8313603b70b52f609e1a70f0bab7bfec55b52b1da1e798869ee31",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1048
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m1-02-01-xc5"
+      },
+      "cMarkedSentence": "$\\frac{5}{2}$, $-\\frac{1}{3}$처럼 분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수를 {정수가 아닌 유리수}라 한다.",
+      "cSlotAnswers": [
+        "정수가 아닌 유리수"
+      ],
+      "cStudentSentence": "$\\frac{5}{2}$, $-\\frac{1}{3}$처럼 분모가 양수인 기약분수로 나타냈을 때 분모가 $1$이 아닌 유리수를 □라 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "정수가 아닌 유리수",
+          "equivalentAnswers": [
+            "정수가 아닌 유리수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "정수가 아닌 유리수"
+        ]
+      ],
+      "proposalFingerprint": "e9a7fcfa4e7ea37e12b38952f1fdae18d8d2bf86896a72bff9b7665ff800e6bb"
+    },
+    {
+      "id": "m1-02-01-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "자연수와 정수 사이, 정수와 유리수 사이의 포함 관계를 각각 문장으로 쓰시오. 또 $5$와 $-\\frac12$는 각각 자연수, 정수, 유리수 가운데 어디에 속하는지 모두 쓰시오.",
+      "bAnswer": "자연수는 모두 정수이다. 정수는 모두 유리수이다. $5$는 자연수, 정수, 유리수 모두에 속하고, $-\\frac{1}{2}$는 유리수에만 속한다.",
+      "bGoal": "자연수, 정수, 유리수의 포함 관계를 말하고 수가 속하는 범위를 판단한다.",
+      "bReason": "'자연수는 모두 유리수이다'처럼 맞지만 모범답과 다른 문장 조합이 나올 수 있어, 어떤 두 관계를 묻는지 밝힘.",
+      "cDecision": "keep",
+      "cReason": "세 수 집합의 포함 순서를 짧게 묻는 분명한 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수는 모두 정수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정수는 모두 유리수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$는 자연수, 정수, 유리수 모두에 속한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-\\frac{1}{2}$는 유리수에만 속한다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "definition",
+      "roleReason": "자연수는 정수, 정수는 유리수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "notationReason": "수학 도형이 아닌 자리표시 ○○·△△는 쓰지 않고 두 실제 포함 관계와 분류 요구를 그대로 둔다.",
+      "sourceIndex": 1055,
+      "part": "m1plus",
+      "sourceFingerprint": "3755009534dbaafa74ea7382a865c0570a15f62ec35b16415c90846f313af89e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1055
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m1-02-01-xc12"
+      },
+      "cFrozenSentence": "자연수는 모두 □에, 정수는 모두 □에 들어 있다.",
+      "cFrozenDefinition": "자연수는 모두 {정수}에, 정수는 모두 {유리수}에 들어 있다.",
+      "cFrozenAnswers": [
+        "정수",
+        "유리수"
+      ],
+      "cMarkedSentence": "자연수는 모두 {정수}에, 정수는 모두 {유리수}에 들어 있다.",
+      "cSlotAnswers": [
+        "정수",
+        "유리수"
+      ],
+      "cStudentSentence": "자연수는 모두 □에, 정수는 모두 □에 들어 있다.",
+      "cAnswers": [
+        "정수",
+        "유리수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "정수",
+          "equivalentAnswers": [
+            "정수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "유리수",
+          "equivalentAnswers": [
+            "유리수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "정수"
+        ],
+        [
+          "유리수"
+        ]
+      ],
+      "proposalFingerprint": "9656090e4e6aebb4732788beebef7b6edcc4bf520e6a2015c6faff5d249aa988"
+    },
+    {
+      "id": "m1-02-01-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$-\\frac{14}{7}$와 $\\frac{14}{4}$ 가운데 정수인 것을 고르려고 한다. 각 수를 분모가 양수인 기약분수로 나타내어 판단하는 방법을 설명하고, 약분하기 전의 분모만 보고 판단하면 안 되는 까닭을 쓰시오.",
+      "bAnswer": "$-\\frac{14}{7}=-\\frac21=-2$는 기약분수의 분모가 $1$이므로 정수이다. $\\frac{14}{4}=\\frac72$는 분모가 $1$이 아니므로 정수가 아닌 유리수이다. 약분 전 분모가 $1$이 아니어도 약분 후에는 $1$이 될 수 있으므로 먼저 약분해야 한다.",
+      "bGoal": "기약분수로 고쳐 분모가 $1$인지로 정수 여부를 판정한다.",
+      "bReason": "이유를 특정한 긴 사례 문장과 일치시킬 필요가 없어 약분 전후 분모가 달라질 수 있다는 뜻만 요구한다.",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 유리수를 분모가 양수인 기약분수로 나타냈을 때 분모가 {$1$}이면 정수이고, 그렇지 않으면 정수가 아닌 유리수이다. 따라서 {약분}하기 전의 분모만 보고 판단하면 안 된다.",
+      "cAnswers": [
+        "$1$",
+        "약분"
+      ],
+      "cReason": "원문은 첫 빈칸의 답 '$1$'이 바로 뒤 '$1$이 아니면'에 그대로 나와 베껴 쓸 수 있다. 그 부분을 '그렇지 않으면'으로 바꾸고 주의할 점의 핵심어를 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-\\frac{14}{7}=-2$로 기약분수의 분모가 $1$이므로 정수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{14}{4}=\\frac{7}{2}$로 기약분수의 분모가 $1$이 아니므로 정수가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약분 후 분모가 $1$이 될 수 있으므로 먼저 약분해야 한다",
+            "약분 전의 분모만으로는 약분 후 정수가 되는 수를 잘못 판단한다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "기약분수 분모로 정수 판정",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "notationReason": "칠분의 십사는 와, 이분의 칠은 은으로 읽으며 정수 분류와 약분 값은 그대로이다.",
+      "sourceIndex": 1059,
+      "part": "m1plus",
+      "sourceFingerprint": "a8ad678029e005dbdce46b5a27b4d3863c019078bb48a7ebfdf401d40200ee97",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1059
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m1-02-01-xc16"
+      },
+      "cMarkedSentence": "어떤 유리수를 분모가 양수인 기약분수로 나타냈을 때 분모가 {$1$}이면 정수이고, 그렇지 않으면 정수가 아닌 유리수이다. 따라서 {약분}하기 전의 분모만 보고 판단하면 안 된다.",
+      "cSlotAnswers": [
+        "$1$",
+        "약분"
+      ],
+      "cStudentSentence": "어떤 유리수를 분모가 양수인 기약분수로 나타냈을 때 분모가 □이면 정수이고, 그렇지 않으면 정수가 아닌 유리수이다. 따라서 □하기 전의 분모만 보고 판단하면 안 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "약분"
+        ]
+      ],
+      "proposalFingerprint": "8cbfd80d781ff8f7864968a4b50c6fecbf7c9e4483da8d2b3068746767448ab5"
+    },
+    {
+      "id": "m1-02-05-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\left(-\\frac{5}{3}\\right)\\times7\\times\\left(-\\frac{3}{5}\\right)$에서 먼저 짝지어 곱하면 편한 두 수를 고르고 그 까닭을 쓴 뒤, 식의 값을 구하시오.",
+      "bAnswer": "$-\\frac53$과 $-\\frac35$를 먼저 곱한다. 두 수는 서로 역수여서 곱이 $1$이기 때문이다. 따라서 값은 $1\\times7=7$이다.",
+      "bGoal": "서로 역수인 두 수를 찾아 먼저 곱하여 계산을 간단히 할 수 있다.",
+      "bReason": "짝지을 수가 보여야 물을 수 있다. 서로 역수인 두 수 사이에 다른 수가 끼어 있는 식을 주어 고르기와 까닭을 함께 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$a$, $b$가 $0$이 아닐 때 $\\frac{a}{b}$와 $\\frac{b}{a}$는 서로 {역수}이어서 곱이 $1$이므로, 함께 곱해져 있으면 두 수를 먼저 짝지어 계산한다.",
+      "cAnswers": [
+        "역수"
+      ],
+      "cReason": "원문에는 $a$, $b$의 조건이 없고 둘째 빈칸 '짝지어'는 임의의 말이다. 조건을 넣고, 두 수의 관계를 나타내는 용어를 묻는 빈칸 하나로 바꿨다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 곱할 두 수는 $-\\frac53$과 $-\\frac35$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수는 서로 역수여서 곱하면 $1$이다",
+            "두 수의 곱이 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "값은 $7$이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-003",
+      "learningRole": "procedure",
+      "roleReason": "역수 짝 먼저 곱해 1 만들기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "notationReason": "삼분의 오 뒤 과를 와로 고치고 두 음수 역수와 곱1·최종7은 바꾸지 않는다.",
+      "sourceIndex": 1156,
+      "part": "m1plus",
+      "sourceFingerprint": "49d457912b103818b3d14e5f5c016119a1f5bab234bb787826e1088ecf3bad7c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1156
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m1-02-05-xc22"
+      },
+      "cMarkedSentence": "$a$, $b$가 $0$이 아닐 때 $\\frac{a}{b}$와 $\\frac{b}{a}$는 서로 {역수}이어서 곱이 $1$이므로, 함께 곱해져 있으면 두 수를 먼저 짝지어 계산한다.",
+      "cSlotAnswers": [
+        "역수"
+      ],
+      "cStudentSentence": "$a$, $b$가 $0$이 아닐 때 $\\frac{a}{b}$와 $\\frac{b}{a}$는 서로 □이어서 곱이 $1$이므로, 함께 곱해져 있으면 두 수를 먼저 짝지어 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "역수",
+          "equivalentAnswers": [
+            "역수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "역수"
+        ]
+      ],
+      "proposalFingerprint": "ea269a97aeb4098650d5aba839f056d899c1a629528aa3eed1669f51e8052ca5"
+    },
+    {
+      "id": "m2-01-06-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$x\\ne0$일 때 $24x^3\\div2x\\div3x$를 계산하고, 이 식이 $24x^3\\div(2x\\div3x)$와 다른 까닭을 설명하시오.",
+      "bAnswer": "앞에서부터 차례로 나누면 $\\frac{24x^3}{2x\\times3x}=4x$이다. 괄호가 있는 식에서는 $2x\\div3x=\\frac23$의 몫을 먼저 구한 뒤 그 몫으로 나누므로 $36x^3$이 된다. 두 식의 계산 차례가 다르다.",
+      "bGoal": "잇달아 나누는 식과 괄호가 있는 식 구별하기",
+      "bReason": "괄호 유무에 따른 차이를 같은 세 식으로 비교하도록 두 식을 모두 제시했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 없으면 $2x$로 나눈 뒤 $3x$로 나누고, 괄호가 있으면 $2x\\div3x$의 몫으로 나눈다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$B$, $C$가 $0$이 아닐 때 $A\\div B\\div C$는 앞에서부터 차례로 나누므로 {$\\frac{A}{BC}$}와 같다. 괄호가 있는 $A\\div(B\\div C)$는 {$\\frac{AC}{B}$}와 같다.",
+      "cAnswers": [
+        "$\\frac{A}{BC}$",
+        "$\\frac{AC}{B}$"
+      ],
+      "cReason": "특정 값에서 두 결과가 같을 수도 있어 항상 다르다고 읽히는 마지막 말은 빼고 서로 다른 계산식의 일반 의미를 남긴다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "괄호에 따라 나누는 대상이 달라지는 까닭",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "notationReason": "삼분의 이 뒤 직접 조사 대신 몫을 구한다는 문장을 쓰며 값4x·36x³은 보존한다. 이유의 값 나열만으로 계산 차이를 대신하지 않게 한다.",
+      "sourceIndex": 2257,
+      "part": "m2plus",
+      "sourceFingerprint": "bdea47044f19c28b54cfdd14d8ae0db84a44854ff40efdea2e8553fef951f70d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2257
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-06-xc18"
+      },
+      "cMarkedSentence": "$B$, $C$가 $0$이 아닐 때 $A\\div B\\div C$는 앞에서부터 차례로 나누므로 {$\\frac{A}{BC}$}와 같다. 괄호가 있는 $A\\div(B\\div C)$는 {$\\frac{AC}{B}$}와 같다.",
+      "cSlotAnswers": [
+        "$\\frac{A}{BC}$",
+        "$\\frac{AC}{B}$"
+      ],
+      "cStudentSentence": "$B$, $C$가 $0$이 아닐 때 $A\\div B\\div C$는 앞에서부터 차례로 나누므로 □와 같다. 괄호가 있는 $A\\div(B\\div C)$는 □와 같다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{A}{BC}$",
+          "equivalentAnswers": [
+            "$\\frac{A}{BC}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{AC}{B}$",
+          "equivalentAnswers": [
+            "$\\frac{AC}{B}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{A}{BC}$"
+        ],
+        [
+          "$\\frac{AC}{B}$"
+        ]
+      ],
+      "proposalFingerprint": "fdb122464a061ab1753083af279d80841ee1fd670b7bce948bb78f197e86a962",
+      "coreAfter": "$B$, $C$가 $0$이 아닐 때 $A\\div B\\div C$는 앞에서부터 차례로 나누므로 {$\\frac{A}{BC}$}와 같다. $A\\div(B\\div C)$는 괄호 안을 먼저 계산하므로 $\\frac{AC}{B}$와 같다. 두 식은 계산 차례가 다르고, 값이 같을 수도 다를 수도 있다.",
+      "coreReason": "B·C의 영이 아닌 조건을 밝히고 항상 값이 다르다는 오해를 막는다. C=1 또는 A=0 등의 경우 값은 같아질 수 있다."
+    }
+  ]
+}

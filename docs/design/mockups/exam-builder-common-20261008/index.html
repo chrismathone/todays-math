@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>시험지 만들기 · 공통 포맷 5안</title>
+    <style>
+      @font-face {
+        font-family: Pretendard;
+        src: url("../../../../public/fonts/PretendardVariable.woff2")
+          format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      :root {
+        --ink: #172b4d;
+        --muted: #596c86;
+        --blue: #3159df;
+        --line: #dde3ec;
+        --soft: #edf2ff;
+        --bg: #f4f6fa;
+        --nav: #14243d;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          14px/1.6 Pretendard,
+          "Malgun Gothic",
+          sans-serif;
+      }
+      button,
+      a {
+        touch-action: manipulation;
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button:focus-visible,
+      a:focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 4px;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      .top {
+        background: var(--nav);
+        color: white;
+        padding: 17px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .top strong {
+        font-size: 15px;
+      }
+      .top span {
+        font-size: 12px;
+        color: #bac8de;
+      }
+      .container {
+        max-width: 1400px;
+        padding: 36px 32px 64px;
+        margin: auto;
+      }
+      .intro {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 24px;
+        margin-bottom: 24px;
+      }
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: var(--blue);
+        font-weight: 750;
+        margin-bottom: 10px;
+      }
+      h1 {
+        font-size: 30px;
+        letter-spacing: -1px;
+        line-height: 1.35;
+      }
+      .intro p {
+        margin-top: 10px;
+        color: var(--muted);
+        max-width: 700px;
+      }
+      .subjects {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+        flex-shrink: 0;
+      }
+      .subjects span {
+        background: white;
+        border: 1px solid var(--line);
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-size: 12px;
+      }
+      .principle {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 17px 0;
+        margin-bottom: 28px;
+      }
+      .principle strong {
+        font-size: 13px;
+      }
+      .principle p {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: white;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        transition:
+          border-color 0.15s,
+          box-shadow 0.15s;
+      }
+      .card:hover {
+        border-color: #879edb;
+        box-shadow: 0 8px 24px #172b4d0b;
+      }
+      .thumbnail {
+        display: block;
+        aspect-ratio: 16/10;
+        background: #e7ecf4;
+        border-bottom: 1px solid var(--line);
+        overflow: hidden;
+        position: relative;
+      }
+      .thumbnail img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        display: block;
+      }
+      .thumb-tag {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: #fffefc;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 3px 8px;
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .card-body {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .title-row {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 9px;
+      }
+      .letter {
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        width: 30px;
+        height: 30px;
+        border-radius: 7px;
+        color: var(--blue);
+        background: var(--soft);
+        font-weight: 750;
+      }
+      h2 {
+        font-size: 18px;
+        letter-spacing: -0.4px;
+      }
+      .card-body > p {
+        color: var(--muted);
+        font-size: 13px;
+        margin-bottom: 16px;
+        min-height: 42px;
+      }
+      .flow {
+        font-size: 11px;
+        background: var(--bg);
+        border-radius: 6px;
+        padding: 10px 12px;
+        margin-bottom: 16px;
+        line-height: 1.7;
+      }
+      .fit {
+        font-size: 12px;
+        margin-top: auto;
+        padding-bottom: 16px;
+      }
+      .fit b {
+        font-weight: 600;
+        color: var(--muted);
+        margin-right: 8px;
+      }
+      .card-actions {
+        display: flex;
+        gap: 8px;
+      }
+      .card-actions a,
+      .card-actions button {
+        min-height: 44px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: white;
+        font-size: 13px;
+        font-weight: 650;
+      }
+      .card-actions button {
+        color: white;
+        background: var(--blue);
+        border-color: var(--blue);
+      }
+      .card-actions button:hover {
+        background: #2448bd;
+      }
+      .shared {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #eaf0fc;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .shared h2 {
+        margin-bottom: 16px;
+      }
+      .shared ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: grid;
+        gap: 14px;
+      }
+      .shared li {
+        font-size: 13px;
+        padding-bottom: 13px;
+        border-bottom: 1px solid #ccd8ef;
+      }
+      .shared li:last-child {
+        border: 0;
+        padding-bottom: 0;
+      }
+      .shared b {
+        display: block;
+        margin-bottom: 3px;
+      }
+      .shared span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .viewer {
+        margin-top: 40px;
+        scroll-margin-top: 20px;
+      }
+      .viewer-head {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 14px;
+      }
+      .viewer-head p {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .viewer-head a {
+        font-size: 13px;
+        color: var(--blue);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+      .viewer-tools {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        background: white;
+        border: 1px solid var(--line);
+        padding: 10px 14px;
+        border-radius: 12px 12px 0 0;
+      }
+      .tabs {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .tabs button,
+      .sizes button {
+        min-height: 44px;
+        padding: 8px 15px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--muted);
+        font-weight: 650;
+      }
+      .tabs button[aria-pressed="true"],
+      .sizes button[aria-pressed="true"] {
+        background: var(--soft);
+        color: var(--blue);
+      }
+      .sizes {
+        display: flex;
+        gap: 4px;
+      }
+      .frame-area {
+        display: flex;
+        justify-content: center;
+        padding: 18px;
+        background: #e1e7f0;
+        border: 1px solid var(--line);
+        border-top: 0;
+        border-radius: 0 0 12px 12px;
+        overflow: hidden;
+      }
+      iframe {
+        width: 100%;
+        height: 880px;
+        background: white;
+        border: 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 14px #172b4d16;
+        transition: width 0.15s;
+      }
+      iframe.mobile {
+        width: 390px;
+        max-width: 100%;
+        height: 844px;
+      }
+      .foot {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 20px;
+      }
+      .viewer[hidden] {
+        display: none;
+      }
+      .note {
+        margin-top: 28px;
+        background: white;
+        border-left: 3px solid var(--blue);
+        padding: 18px 20px;
+      }
+      .note strong {
+        font-size: 14px;
+      }
+      .note p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 5px;
+      }
+      @media (max-width: 1050px) {
+        .cards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .intro {
+          align-items: start;
+          flex-direction: column;
+          gap: 16px;
+        }
+      }
+      @media (max-width: 620px) {
+        .top {
+          padding: 14px 16px;
+        }
+        .top span {
+          display: none;
+        }
+        .container {
+          padding: 26px 16px 40px;
+        }
+        h1 {
+          font-size: 26px;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .principle {
+          flex-direction: column;
+          gap: 12px;
+        }
+        .card-body > p {
+          min-height: 0;
+        }
+        .viewer-head {
+          align-items: start;
+        }
+        .frame-area {
+          padding: 0;
+        }
+        .viewer-tools {
+          padding: 10px;
+        }
+        .tabs button,
+        .sizes button {
+          padding: 8px 12px;
+        }
+        .thumbnail {
+          aspect-ratio: 16/10;
+        }
+        .subjects span {
+          padding: 4px 9px;
+        }
+        .note {
+          padding: 16px;
+        }
+        .viewer-head a {
+          white-space: nowrap;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top">
+      <strong>교사 작업실 · 디자인 비교</strong
+      ><span>2026.10.08 &nbsp; / &nbsp; INTERACTIVE CONCEPTS</span>
+    </header>
+    <main class="container">
+      <div class="intro">
+        <div>
+          <div class="eyebrow">ONE FORMAT, EVERY SUBJECT</div>
+          <h1>시험지 만들기, 다섯 가지 작업 방식</h1>
+          <p>
+            범위를 정하면 문항 초안이 나오고, 그 안에서 교체·추가·삭제합니다.<br />같은
+            기능을 어떤 순서와 화면에 놓을지 비교해 보세요.
+          </p>
+        </div>
+        <div class="subjects" aria-label="공통 포맷을 적용할 과목">
+          <span>수학</span><span>영어</span><span>국어</span><span>과학</span
+          ><span>사회</span>
+        </div>
+      </div>
+      <div class="principle">
+        <div>
+          <strong>공통 흐름</strong>
+          <p>범위 선택 → 문항 구성·수정 → 출력</p>
+        </div>
+        <div>
+          <strong>과목별로 바뀌는 것</strong>
+          <p>범위 이름 · 지문·문항 내용 · 필요한 자료</p>
+        </div>
+        <div>
+          <strong>모두 눌러볼 수 있는 시안</strong>
+          <p>예시 데이터로 동작하며 실제 계정에 저장하지 않습니다.</p>
+        </div>
+      </div>
+      <div class="cards" id="cards"></div>
+      <div class="note">
+        <strong>추천 출발점은 A의 단계 구분 + C의 문항 편집입니다.</strong>
+        <p>
+          첫 진입에서는 조건만 간단히 받고, 구성 후에는 시험지 내용을 넓게
+          보여주는 조합입니다. 반복 제작이 많다면 E의 빠른 구성을 첫 단계에 더할
+          수 있습니다.
+        </p>
+      </div>
+      <section id="viewer" class="viewer" hidden aria-labelledby="viewer-title">
+        <div class="viewer-head">
+          <div>
+            <h2 id="viewer-title">시안 살펴보기</h2>
+            <p id="viewer-description"></p>
+          </div>
+          <a id="full-link" href="a-guided.html" target="_blank" rel="noopener"
+            >전체 화면으로 열기 ↗</a
+          >
+        </div>
+        <div class="viewer-tools">
+          <div class="tabs" aria-label="시안 선택" id="tabs"></div>
+          <div class="sizes" aria-label="미리보기 화면 너비">
+            <button id="desktop" aria-pressed="true">PC</button
+            ><button id="mobile" aria-pressed="false">모바일</button>
+          </div>
+        </div>
+        <div class="frame-area">
+          <iframe
+            id="prototype"
+            title="시험지 만들기 시안"
+            loading="lazy"
+          ></iframe>
+        </div>
+        <p class="foot">
+          시안 안의 과목을 바꾸고 문항을 구성해 보세요. PC / 모바일은 미리보기
+          폭을 바꿉니다. 실서비스의 자동 출제·저장·인쇄 계약은 시안 선택 후
+          연결합니다.
+        </p>
+      </section>
+    </main>
+    <script>
+      const concepts = [
+        {
+          id: "A",
+          file: "a-guided.html",
+          title: "단계별 진행",
+          desc: "한 번에 한 가지에 집중합니다. 범위를 정한 다음에 문항을 보여줍니다.",
+          flow: "범위 설정 → 문항 검토 → 출력 설정",
+          fit: "처음 사용하는 교사 · 적은 화면 부담",
+          image: "previews/a.png",
+        },
+        {
+          id: "B",
+          file: "b-workbench.html",
+          title: "조건과 초안",
+          desc: "왼쪽의 조건과 오른쪽의 초안을 함께 보며 시험지를 다듬습니다.",
+          flow: "조건 패널 ↔ 구성된 문항 → 출력",
+          fit: "조건을 자주 조정하는 제작",
+          image: "previews/b.png",
+        },
+        {
+          id: "C",
+          file: "c-paper.html",
+          title: "시험지 중심",
+          desc: "실제 시험지처럼 읽으면서 해당 문제 옆에서 바로 수정합니다.",
+          flow: "범위 설정 → 시험지 위에서 수정 → 출력",
+          fit: "문항 내용 · 지면을 중시하는 검토",
+          image: "previews/c.png",
+        },
+        {
+          id: "D",
+          file: "d-blueprint.html",
+          title: "단원별 구성표",
+          desc: "어느 범위에서 몇 문제를 낼지 먼저 정하고, 단원별로 확인합니다.",
+          flow: "범위별 문항 배분 → 묶음 검토 → 출력",
+          fit: "여러 단원이 섞인 정기 평가",
+          image: "previews/d.png",
+        },
+        {
+          id: "E",
+          file: "e-quick.html",
+          title: "빠른 구성 후 수정",
+          desc: "자주 쓰는 구성을 선택해 초안을 만들고, 필요한 문제만 바꿉니다.",
+          flow: "구성 방식 선택 → 범위 확인 → 바로 수정",
+          fit: "매일 만드는 짧은 복습 시험지",
+          image: "previews/e.png",
+        },
+      ];
+      const cards = document.getElementById("cards");
+      cards.innerHTML =
+        concepts
+          .map(
+            (c) =>
+              `<article class="card"><a class="thumbnail" href="${c.file}" aria-label="${c.id} ${c.title} 시안 열기"><img src="${c.image}" alt="${c.id}안 ${c.title} 실제 시안 화면"><span class="thumb-tag">실제 시안 화면</span></a><div class="card-body"><div class="title-row"><span class="letter">${c.id}</span><h2>${c.title}</h2></div><p>${c.desc}</p><div class="flow">${c.flow}</div><div class="fit"><b>잘 맞는 작업</b>${c.fit}</div><div class="card-actions"><button data-preview="${c.id}">${c.id}안 눌러보기</button><a href="${c.file}" target="_blank" rel="noopener">새 창 ↗</a></div></div></article>`,
+          )
+          .join("") +
+        `<aside class="shared"><h2>다섯 안의 공통 약속</h2><ul><li><b>과목이 바뀌어도 같은 조작</b><span>교체 · 추가 · 삭제 · 순서 · 출력</span></li><li><b>구성된 문항이 화면의 중심</b><span>문항 탐색은 추가·교체할 때 열기</span></li><li><b>부족한 문항 수를 그대로 안내</b><span>범위나 난이도를 몰래 넓히지 않기</span></li><li><b>초안 수정에는 되돌리기</b><span>변경한 내용과 현재 문항 수를 확인</span></li></ul></aside>`;
+      document.getElementById("tabs").innerHTML = concepts
+        .map(
+          (c) =>
+            `<button data-preview="${c.id}" aria-pressed="false" aria-label="${c.id} ${c.title} 미리보기">${c.id}</button>`,
+        )
+        .join("");
+      function show(id, scroll = true) {
+        const c = concepts.find((c) => c.id === id);
+        if (!c) return;
+        document.getElementById("viewer").hidden = false;
+        document.getElementById("viewer-title").textContent =
+          `${c.id} · ${c.title}`;
+        document.getElementById("viewer-description").textContent = c.desc;
+        document.getElementById("full-link").href = c.file;
+        document.getElementById("prototype").src = c.file;
+        document.getElementById("prototype").title =
+          `${c.id} ${c.title} 인터랙티브 시안`;
+        document
+          .querySelectorAll("#tabs button")
+          .forEach((b) =>
+            b.setAttribute("aria-pressed", b.dataset.preview === id),
+          );
+        history.replaceState(null, "", "#" + id);
+        if (scroll)
+          document
+            .getElementById("viewer")
+            .scrollIntoView({
+              behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+                ? "instant"
+                : "smooth",
+            });
+      }
+      document
+        .querySelectorAll("[data-preview]")
+        .forEach((b) => (b.onclick = () => show(b.dataset.preview)));
+      function resize(mobile) {
+        document.getElementById("prototype").classList.toggle("mobile", mobile);
+        document.getElementById("mobile").setAttribute("aria-pressed", mobile);
+        document
+          .getElementById("desktop")
+          .setAttribute("aria-pressed", !mobile);
+      }
+      document.getElementById("mobile").onclick = () => resize(true);
+      document.getElementById("desktop").onclick = () => resize(false);
+      if (location.hash) show(location.hash.slice(1), false);
+    </script>
+  </body>
+</html>

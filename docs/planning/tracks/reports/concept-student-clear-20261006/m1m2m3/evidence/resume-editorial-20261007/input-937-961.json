@@ -1,0 +1,2436 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:43:49.932Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc13",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "밑과 지수를 바꾼 두 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑과 지수를 서로 바꾼 두 거듭제곱의 값은 {다를 수도} 있고 {같을 수도} 있다. $2^3$과 $3^2$은 다르고 $2^4$과 $4^2$은 같다.",
+        "example": {
+          "prompt": "$2^5$, $5^2$ 가운데 큰 것은?",
+          "answer": "$2^5$"
+        },
+        "studentC": "밑과 지수를 서로 바꾼 두 거듭제곱의 값은 □ 있고 □ 있다. $2^3$과 $3^2$은 다르고 $2^4$과 $4^2$은 같다.",
+        "answers": [
+          "다를 수도",
+          "같을 수도"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^3$과 $3^2$의 값, $2^4$과 $4^2$의 값을 각각 구하세요. 이를 바탕으로 밑과 지수를 서로 바꾼 두 거듭제곱의 값이 항상 같은지 설명하세요.",
+        "bAnswer": "$2^3=8$, $3^2=9$로 다르고, $2^4=16$, $4^2=16$으로 같다. 따라서 밑과 지수를 바꾼 두 거듭제곱의 값은 다를 수도 있고 같을 수도 있으므로 직접 계산해 보아야 한다.",
+        "bGoal": "밑과 지수를 바꾸면 값이 달라질 수 있음을 계산으로 확인한다.",
+        "bReason": "제목 '밑과 지수를 바꾼 두 수'는 어떤 두 수인지, 무엇을 견주는지 지면에 없다. 두 쌍의 식을 주고 값을 견주어 결론을 내리게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "밑과 지수를 바꾼 두 거듭제곱의 값은 같을 수도, 다를 수도 있다. $2^3$과 $3^2$의 값은 서로 {다르고}, $2^4$과 $4^2$의 값은 서로 {같다}.",
+        "cAnswers": [
+          "다르고",
+          "같다"
+        ],
+        "cReason": "원문 빈칸의 두 답을 뒤 문장에서 그대로 복사할 수 있다. 일반적인 가능성은 보여 주고 실제 두 쌍을 비교하게 한다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2^3=8$, $3^2=9$로 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^4=16$, $4^2=16$으로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "항상 같은 것은 아니다(같을 수도 다를 수도 있다)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "application",
+        "roleReason": "직접 계산해 값 비교",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 937,
+        "part": "m1plus",
+        "sourceFingerprint": "23b2d07dfa572331d32c4e21bef2751f2d323437fe817bdfc594b85d26755e7f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 937
+        },
+        "directReview": {
+          "path": "direct-review.json",
+          "id": "m1-01-01-xc13",
+          "note": "사실과 예는 그대로 두고 빈칸 위치를 옮긴다."
+        },
+        "cMarkedSentence": "밑과 지수를 바꾼 두 거듭제곱의 값은 같을 수도, 다를 수도 있다. $2^3$과 $3^2$의 값은 서로 {다르고}, $2^4$과 $4^2$의 값은 서로 {같다}.",
+        "cSlotAnswers": [
+          "다르고",
+          "같다"
+        ],
+        "cStudentSentence": "밑과 지수를 바꾼 두 거듭제곱의 값은 같을 수도, 다를 수도 있다. $2^3$과 $3^2$의 값은 서로 □, $2^4$과 $4^2$의 값은 서로 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다르고",
+            "equivalentAnswers": [
+              "다르고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다르고"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "66c435f8ff9e4a48fe93c0fafc232320800b3dce559f33fff650912d8b304fb4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc14",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "$1$의 거듭제곱",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$1$은 몇 번을 거듭 곱해도 {$1$}이다.",
+        "example": {
+          "prompt": "$1^{10}$의 값은?",
+          "answer": "$1$"
+        },
+        "studentC": "$1$은 몇 번을 거듭 곱해도 □이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$1^{10}$의 값을 구하세요. 또 자연수 $n$에 대하여 $1^n$의 값이 얼마인지 까닭과 함께 쓰세요.",
+        "bAnswer": "$1^{10}=1$이다. $1$은 몇 번을 곱해도 $1\\times1\\times\\cdots\\times1=1$이므로 $1^n=1$이다.",
+        "bGoal": "밑이 $1$인 거듭제곱의 값은 지수와 관계없이 $1$임을 안다.",
+        "bReason": "제목 '$1$의 거듭제곱'은 식도 지수도 없어 무엇을 구할지 알 수 없다. $1^{10}$과 일반적인 $1^n$을 식으로 주었다.",
+        "cDecision": "rewrite",
+        "cAfter": "$1$은 몇 번을 거듭 곱해도 값이 변하지 않으므로, 자연수 $n$에 대하여 $1^n=${$1$}이다.",
+        "cAnswers": [
+          "$1$"
+        ],
+        "cReason": "원문 문장에는 거듭제곱 기호가 없어 숨은 제목 없이는 이 단원의 어떤 식에 대한 말인지 드러나지 않는다. $1^n$이라는 식과 $n$의 조건을 넣어 무엇의 값을 묻는지 밝혔다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1^{10}=1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1^n=1$: $1$은 몇 번을 곱해도 $1$이기 때문"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "1은 곱해도 늘 1",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 938,
+        "part": "m1plus",
+        "sourceFingerprint": "5193f22372979b32301aeae5eb889d1b87622ee92dc5ac0fd0a4d92db467e0bf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 938
+        },
+        "directReview": null,
+        "cMarkedSentence": "$1$은 몇 번을 거듭 곱해도 값이 변하지 않으므로, 자연수 $n$에 대하여 $1^n=${$1$}이다.",
+        "cSlotAnswers": [
+          "$1$"
+        ],
+        "cStudentSentence": "$1$은 몇 번을 거듭 곱해도 값이 변하지 않으므로, 자연수 $n$에 대하여 $1^n=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "4af93e2ecf012b2a869121e8f2c6c560feb0b7f386848cccd2895a525e1e2447"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc15",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "소수인지 볼 때 나눌 범위",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$1$보다 큰 자연수가 소수인지 볼 때, 제곱해서 그 수를 넘지 않는 {소수}로만 나누어 보아도 {충분하다}.",
+        "example": {
+          "prompt": "$97$이 소수인지 보려면 어떤 소수로 나누어 보면 되는가?",
+          "answer": "$2$, $3$, $5$, $7$"
+        },
+        "studentC": "$1$보다 큰 자연수가 소수인지 볼 때, 제곱해서 그 수를 넘지 않는 □로만 나누어 보아도 □.",
+        "answers": [
+          "소수",
+          "충분하다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$97$이 소수인지 알아보려면 어떤 소수들로만 나누어 보면 충분한지 쓰고, 그 까닭을 설명하세요. $97$이 소수인지도 판단하세요.",
+        "bAnswer": "$2$, $3$, $5$, $7$로만 나누어 보면 된다. $7\\times7=49$는 $97$을 넘지 않지만 $11\\times11=121$은 $97$보다 크기 때문이다. $97$이 합성수라면 $1$이 아닌 두 수의 곱으로 나타나고, 그중 작은 쪽은 제곱해서 $97$을 넘지 않으므로 그 범위의 소수로 나누어떨어져야 한다. $97$은 $2$, $3$, $5$, $7$ 어느 것으로도 나누어떨어지지 않으므로 소수이다.",
+        "bGoal": "제곱해서 그 수를 넘지 않는 소수까지만 나누어 보면 되는 까닭을 이해하고 적용한다.",
+        "bReason": "한 가지 서술만 강요하던 까닭을 동치 설명들로 나눔",
+        "cDecision": "rewrite",
+        "cAfter": "$1$보다 큰 자연수가 소수인지 볼 때는, 제곱해서 그 수를 넘지 않는 {소수}로만 나누어 보아도 충분하다. 예를 들어 $97$은 $2$, $3$, $5$, {$7$}로만 나누어 보면 된다.",
+        "cAnswers": [
+          "소수",
+          "$7$"
+        ],
+        "cReason": "원문 둘째 빈칸 '충분하다'는 문장 끝 서술어를 임의로 가린 것이라 수학 내용을 묻지 못한다. 그 자리는 보여 주고, 범위의 끝을 직접 따져 보는 예를 붙였다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$, $3$, $5$, $7$로 나누어 보면 충분하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$97$이 합성수라면 두 약수 가운데 작은 쪽은 제곱이 $97$을 넘지 않는다",
+              "$7\\times7=49$는 $97$을 넘지 않고 $11\\times11=121$은 $97$보다 크다",
+              "$11$ 이상의 소수로 나누어떨어지면 몫이 $11$보다 작아 이미 확인한 수가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$97$은 $2$, $3$, $5$, $7$ 어느 것으로도 나누어떨어지지 않아 소수이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "제곱이 안 넘는 소수까지만",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 939,
+        "part": "m1plus",
+        "sourceFingerprint": "1b4e5aa5abe7027b53cf06bc2893a4d0c6d4cdd296ac30f778aa75b663f2bf0d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 939
+        },
+        "directReview": null,
+        "cMarkedSentence": "$1$보다 큰 자연수가 소수인지 볼 때는, 제곱해서 그 수를 넘지 않는 {소수}로만 나누어 보아도 충분하다. 예를 들어 $97$은 $2$, $3$, $5$, {$7$}로만 나누어 보면 된다.",
+        "cSlotAnswers": [
+          "소수",
+          "$7$"
+        ],
+        "cStudentSentence": "$1$보다 큰 자연수가 소수인지 볼 때는, 제곱해서 그 수를 넘지 않는 □로만 나누어 보아도 충분하다. 예를 들어 $97$은 $2$, $3$, $5$, □로만 나누어 보면 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$7$",
+            "equivalentAnswers": [
+              "$7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소수"
+          ],
+          [
+            "$7$"
+          ]
+        ],
+        "proposalFingerprint": "6cfdfb0598bfb239a09ec367cfbbf8acd2bb60c406d2f3c1618167f611795d92"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc16",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "체에서 배수 지우기를 멈추는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$N$ 이하의 수에서 체를 쓸 때, 제곱이 $N$보다 큰 소수 $p$의 배수 가운데 $N$ 이하인 합성수는 $p$보다 {작은 소수}의 배수여서 {이미 지워져} 있다.",
+        "example": {
+          "prompt": "$100$ 이하에서 체를 쓸 때 $7$의 배수 $14$, $21$, $35$가 이미 지워져 있는 까닭은?",
+          "answer": "$2$, $3$, $5$의 배수이기도 해서"
+        },
+        "studentC": "$N$ 이하의 수에서 체를 쓸 때, 제곱이 $N$보다 큰 소수 $p$의 배수 가운데 $N$ 이하인 합성수는 $p$보다 □의 배수여서 □ 있다.",
+        "answers": [
+          "작은 소수",
+          "이미 지워져"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$부터 $100$까지의 수에서 에라토스테네스의 체를 쓸 때, $2$, $3$, $5$, $7$의 배수를 지우고 나면 $11$의 배수는 따로 지우지 않아도 됩니다. 그 까닭을 $11$의 배수 $22$, $33$, $55$, $77$을 예로 들어 설명하세요.",
+        "bAnswer": "$11\\times11=121$은 $100$보다 크다. 그래서 $100$ 이하인 $11$의 배수 가운데 합성수는 $11\\times2$, $11\\times3$, …, $11\\times9$뿐이고, 곱해진 $2$부터 $9$까지의 수는 모두 $11$보다 작은 소수 $2$, $3$, $5$, $7$ 가운데 어느 하나의 배수이다. 따라서 $22$는 $2$의 배수, $33$은 $3$의 배수, $55$는 $5$의 배수, $77$은 $7$의 배수로 이미 지워져 있다.",
+        "bGoal": "체에서 제곱이 범위를 넘는 소수의 배수는 더 작은 소수의 배수로 이미 지워졌음을 설명한다.",
+        "bReason": "예로 설명하라는 질문이라 11×2~11×9 나열을 강요하지 않음",
+        "cDecision": "rewrite",
+        "cAfter": "$N$ 이하의 수에서 에라토스테네스의 체를 쓸 때, 제곱이 $N$보다 큰 소수 $p$의 배수 가운데 $N$ 이하인 합성수는 $p$보다 {작은 소수}의 배수여서 이미 지워져 있다. 예를 들어 $N=100$, $p=11$이면 $22$, $33$, $55$, $77$은 각각 $2$, $3$, $5$, $7$의 배수이다.",
+        "cAnswers": [
+          "작은 소수"
+        ],
+        "cReason": "원문은 '체'가 무엇인지 이름이 없고 $N$, $p$만으로 된 문장이라 중1 학생이 상황을 그리기 어렵다. 둘째 빈칸 '이미 지워져'도 임의로 끊은 말이다. 방법의 이름과 구체적인 예를 넣고 핵심 조건 하나만 묻게 했다.",
+        "studentLabel": "에라토스테네스의 체에서 큰 소수의 배수를 따로 지우지 않아도 되는 까닭",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$100$ 이하인 $11$의 배수 가운데 합성수는 $11$보다 작은 소수 $2$, $3$, $5$, $7$ 중 하나의 배수여서 이미 지워져 있다",
+              "$11$에 곱해지는 수가 $11$보다 작아 $2$, $3$, $5$, $7$ 중 하나의 배수가 된다",
+              "$11\\times11=121$은 $100$을 넘으므로 남은 $11$의 배수는 더 작은 소수의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$22$는 $2$의 배수, $33$은 $3$의 배수, $55$는 $5$의 배수, $77$은 $7$의 배수이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "더 작은 소수 배수로 이미 지움",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 940,
+        "part": "m1plus",
+        "sourceFingerprint": "00da49f2cca76dcb6693c0f501810984db86915b44ce76f93f8f3c9c9c060931",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 940
+        },
+        "directReview": null,
+        "cMarkedSentence": "$N$ 이하의 수에서 에라토스테네스의 체를 쓸 때, 제곱이 $N$보다 큰 소수 $p$의 배수 가운데 $N$ 이하인 합성수는 $p$보다 {작은 소수}의 배수여서 이미 지워져 있다. 예를 들어 $N=100$, $p=11$이면 $22$, $33$, $55$, $77$은 각각 $2$, $3$, $5$, $7$의 배수이다.",
+        "cSlotAnswers": [
+          "작은 소수"
+        ],
+        "cStudentSentence": "$N$ 이하의 수에서 에라토스테네스의 체를 쓸 때, 제곱이 $N$보다 큰 소수 $p$의 배수 가운데 $N$ 이하인 합성수는 $p$보다 □의 배수여서 이미 지워져 있다. 예를 들어 $N=100$, $p=11$이면 $22$, $33$, $55$, $77$은 각각 $2$, $3$, $5$, $7$의 배수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작은 소수",
+            "equivalentAnswers": [
+              "작은 소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작은 소수"
+          ]
+        ],
+        "proposalFingerprint": "1658ef592a0caa68b715cec167d035f70cd9c084486e05d46259805c0a03c26e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc17",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "거듭제곱의 일의 자리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑이 자연수인 거듭제곱의 일의 자리 숫자는 지수가 커지면 일정한 {주기}로 되풀이된다.",
+        "example": {
+          "prompt": "$3^{10}$의 일의 자리 숫자는?",
+          "answer": "$9$"
+        },
+        "studentC": "밑이 자연수인 거듭제곱의 일의 자리 숫자는 지수가 커지면 일정한 □로 되풀이된다.",
+        "answers": [
+          "주기"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$3^1$, $3^2$, $3^3$, $3^4$, $3^5$, …의 일의 자리 숫자를 차례로 구하여 어떤 규칙이 있는지 설명하세요. 이 규칙으로 $3^{10}$의 일의 자리 숫자를 구하세요.",
+        "bAnswer": "일의 자리 숫자는 $3$, $9$, $7$, $1$, $3$, …으로 $3$, $9$, $7$, $1$의 네 숫자가 이 차례로 되풀이된다. $10=4\\times2+2$이므로 $3^{10}$의 일의 자리 숫자는 되풀이되는 네 숫자 가운데 둘째인 $9$이다.",
+        "bGoal": "거듭제곱의 일의 자리 숫자가 되풀이되는 규칙을 찾아 큰 지수에 이용한다.",
+        "bReason": "차례로 세어 구해도 맞으므로 10=4×2+2 셈을 강요하지 않음",
+        "cDecision": "rewrite",
+        "cAfter": "밑이 자연수인 거듭제곱의 일의 자리 숫자는 지수가 커지면 몇 개의 숫자가 같은 차례로 되풀이된다. 예를 들어 $3^1$, $3^2$, $3^3$, $3^4$의 일의 자리 숫자는 차례로 $3$, $9$, $7$, {$1$}이고, $3^5$의 일의 자리 숫자는 다시 {$3$}이다.",
+        "cAnswers": [
+          "$1$",
+          "$3$"
+        ],
+        "cReason": "원문 빈칸 답 '주기'는 중1 학생이 수학 용어로 아직 배우지 않은 말이다. '되풀이된다'는 말은 문장에 그대로 두고, 되풀이를 직접 확인하는 자리를 빈칸으로 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리 숫자가 $3$, $9$, $7$, $1$의 차례로 되풀이된다",
+              "네 개마다 같은 숫자 $3$, $9$, $7$, $1$이 반복된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3^{10}$의 일의 자리 숫자는 $9$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "application",
+        "roleReason": "되풀이 규칙으로 끝자리 구함",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 941,
+        "part": "m1plus",
+        "sourceFingerprint": "902497b8af27e02b70e89ced4a7f426477f7efa12fd1ef913380f59b257f8bd8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 941
+        },
+        "directReview": null,
+        "cMarkedSentence": "밑이 자연수인 거듭제곱의 일의 자리 숫자는 지수가 커지면 몇 개의 숫자가 같은 차례로 되풀이된다. 예를 들어 $3^1$, $3^2$, $3^3$, $3^4$의 일의 자리 숫자는 차례로 $3$, $9$, $7$, {$1$}이고, $3^5$의 일의 자리 숫자는 다시 {$3$}이다.",
+        "cSlotAnswers": [
+          "$1$",
+          "$3$"
+        ],
+        "cStudentSentence": "밑이 자연수인 거듭제곱의 일의 자리 숫자는 지수가 커지면 몇 개의 숫자가 같은 차례로 되풀이된다. 예를 들어 $3^1$, $3^2$, $3^3$, $3^4$의 일의 자리 숫자는 차례로 $3$, $9$, $7$, □이고, $3^5$의 일의 자리 숫자는 다시 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "5b2756b7fbb1adf66407715f60ff0d673b593e59a70232c5312a7d39e8bbf892"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc18",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "거듭제곱의 크기 비교",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 {지수}가 큰 쪽이, 지수가 같으면 {밑}이 큰 쪽이 크다.",
+        "example": {
+          "prompt": "$2^{10}$, $4^4$ 가운데 큰 것은?",
+          "answer": "$2^{10}$"
+        },
+        "studentC": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 □가 큰 쪽이, 지수가 같으면 □이 큰 쪽이 크다.",
+        "answers": [
+          "지수",
+          "밑"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "밑이 $1$보다 큰 자연수인 두 거듭제곱의 크기를 비교하는 방법을, 밑이 같을 때와 지수가 같을 때로 나누어 설명하세요. 또 $2^{10}$과 $4^4$ 가운데 어느 쪽이 큰지 밑을 같게 만들어 비교하세요.",
+        "bAnswer": "밑이 같으면 지수가 큰 쪽이 크고, 지수가 같으면 밑이 큰 쪽이 크다. $4^4=(2\\times2)\\times(2\\times2)\\times(2\\times2)\\times(2\\times2)=2^8$이므로 $2^{10}$이 더 크다.",
+        "bGoal": "밑이나 지수를 같게 맞추어 거듭제곱의 크기를 비교한다.",
+        "bReason": "제목 '거듭제곱의 크기 비교'는 어떤 조건의 두 수를 견주는지 없다. 밑의 조건과 두 경우를 질문에 밝히고, 밑이 다른 실제 예를 하나 넣었다.",
+        "cDecision": "keep",
+        "cReason": "밑의 조건이 문장에 있고, 경우마다 무엇이 큰 쪽이 큰지 고르는 짧은 비교 빈칸이다. 문장에 '밑', '지수'가 보이지만 조건으로 쓰인 말이라 답이 미리 드러나지는 않는다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑이 같으면 지수가 큰 쪽이 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지수가 같으면 밑이 큰 쪽이 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4^4=2^8$이므로 $2^{10}$이 더 크다($2^{10}=4^5$으로 맞춘 비교도 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "밑이나 지수 맞춰 비교",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 942,
+        "part": "m1plus",
+        "sourceFingerprint": "8f8820883294c8286b7b2491f94a01ef6a3b949b35496b7d01b6f08b12a497f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 942
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 □가 큰 쪽이, 지수가 같으면 □이 큰 쪽이 크다.",
+        "cFrozenDefinition": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 {지수}가 큰 쪽이, 지수가 같으면 {밑}이 큰 쪽이 크다.",
+        "cFrozenAnswers": [
+          "지수",
+          "밑"
+        ],
+        "cMarkedSentence": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 {지수}가 큰 쪽이, 지수가 같으면 {밑}이 큰 쪽이 크다.",
+        "cSlotAnswers": [
+          "지수",
+          "밑"
+        ],
+        "cStudentSentence": "밑이 $1$보다 큰 자연수일 때, 밑이 같으면 □가 큰 쪽이, 지수가 같으면 □이 큰 쪽이 크다.",
+        "cAnswers": [
+          "지수",
+          "밑"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지수",
+            "equivalentAnswers": [
+              "지수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "밑",
+            "equivalentAnswers": [
+              "밑"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지수"
+          ],
+          [
+            "밑"
+          ]
+        ],
+        "proposalFingerprint": "78d4757a02456b11d71b84a4852c5c0048067bbb0340f4e3ca66ec3959ede31d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc19",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "합이 홀수인 두 소수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 소수의 합이 홀수이면 두 소수 가운데 하나는 반드시 {$2$}이다.",
+        "example": {
+          "prompt": "합이 $25$인 두 소수는?",
+          "answer": "$2$, $23$"
+        },
+        "studentC": "두 소수의 합이 홀수이면 두 소수 가운데 하나는 반드시 □이다.",
+        "answers": [
+          "$2$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "두 소수의 합이 홀수일 때, 두 소수 가운데 하나는 반드시 어떤 수인지 쓰고 그 까닭을 설명하세요. 또 합이 $25$인 두 소수를 구하세요.",
+        "bAnswer": "하나는 반드시 $2$이다. 홀수끼리 더하면 짝수가 되므로 합이 홀수이려면 하나는 짝수여야 하고, 짝수인 소수는 $2$뿐이기 때문이다. 합이 $25$인 두 소수는 $2$와 $23$이다.",
+        "bGoal": "짝수인 소수가 $2$뿐임을 이용해 합이 홀수인 두 소수를 찾는다.",
+        "bReason": "제목 '합이 홀수인 두 소수'는 무엇을 구하라는지 없다. 반드시 들어가는 수와 까닭, 구체적인 합을 묻는 세 부분으로 정했다.",
+        "cDecision": "keep",
+        "cReason": "조건(합이 홀수)과 결론 자리(하나는 반드시 □)가 분명하고 답이 수 하나이다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "하나는 반드시 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "홀수끼리의 합은 짝수이므로 하나는 짝수여야 하고, 짝수인 소수는 $2$뿐이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합이 $25$인 두 소수: $2$와 $23$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "짝수인 소수는 2뿐",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 943,
+        "part": "m1plus",
+        "sourceFingerprint": "0425675654eb053c655a8fcb1f1259eef7e7f3240f94e4defdb094efb7a6d853",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 943
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 소수의 합이 홀수이면 두 소수 가운데 하나는 반드시 □이다.",
+        "cFrozenDefinition": "두 소수의 합이 홀수이면 두 소수 가운데 하나는 반드시 {$2$}이다.",
+        "cFrozenAnswers": [
+          "$2$"
+        ],
+        "cMarkedSentence": "두 소수의 합이 홀수이면 두 소수 가운데 하나는 반드시 {$2$}이다.",
+        "cSlotAnswers": [
+          "$2$"
+        ],
+        "cStudentSentence": "두 소수의 합이 홀수이면 두 소수 가운데 하나는 반드시 □이다.",
+        "cAnswers": [
+          "$2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "cf4ed9104465e41ab291e3ee2000d578e1cdb04c8842a20453018333353d5141"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc20",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "지수 거꾸로 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$a$가 $1$보다 큰 자연수일 때 $a^n$의 값을 $a$로 거듭 나누어 {$1$}이 될 때까지 나눈 {횟수}가 $n$이다.",
+        "example": {
+          "prompt": "$5^n=625$일 때 $n$의 값은?",
+          "answer": "$4$"
+        },
+        "studentC": "$a$가 $1$보다 큰 자연수일 때 $a^n$의 값을 $a$로 거듭 나누어 □이 될 때까지 나눈 □가 $n$이다.",
+        "answers": [
+          "$1$",
+          "횟수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$5^n=625$를 만족시키는 자연수 $n$의 값을 구하려고 합니다. $625$를 $5$로 거듭 나누는 방법으로 $n$을 구하고, 나눈 횟수가 왜 $n$이 되는지 설명하세요.",
+        "bAnswer": "$625\\div5=125$, $125\\div5=25$, $25\\div5=5$, $5\\div5=1$로 $4$번 나누어 $1$이 되므로 $n=4$이다. $5^n$은 $5$를 $n$번 곱한 수이므로 $5$로 $n$번 나누면 $1$이 되기 때문이다.",
+        "bGoal": "거듭제곱의 값을 밑으로 거듭 나누어 지수를 구한다.",
+        "bReason": "제목 '지수 거꾸로 구하기'는 '거꾸로'가 무엇을 뜻하는지 학생이 알 수 없다. 식 $5^n=625$와 쓸 방법을 질문에 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "$a$의 조건과 나누는 과정이 문장에 있고, 어디까지 나누는지와 무엇을 세는지를 묻는 두 빈칸이 분명하다.",
+        "studentLabel": "거듭제곱의 값에서 지수 구하기",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$625\\div5=125$, $125\\div5=25$, $25\\div5=5$, $5\\div5=1$로 $4$번 나누어 $1$이 되므로 $n=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5^n$은 $5$를 $n$번 곱한 수이므로 $5$로 $n$번 나누면 $1$이 된다(같은 뜻의 설명 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "밑으로 거듭 나눈 횟수 세기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 944,
+        "part": "m1plus",
+        "sourceFingerprint": "c79aa18bfc74022c9d90011a849b9f3a03fc5984aaa02dc3291ce472a177da36",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 944
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a$가 $1$보다 큰 자연수일 때 $a^n$의 값을 $a$로 거듭 나누어 □이 될 때까지 나눈 □가 $n$이다.",
+        "cFrozenDefinition": "$a$가 $1$보다 큰 자연수일 때 $a^n$의 값을 $a$로 거듭 나누어 {$1$}이 될 때까지 나눈 {횟수}가 $n$이다.",
+        "cFrozenAnswers": [
+          "$1$",
+          "횟수"
+        ],
+        "cMarkedSentence": "$a$가 $1$보다 큰 자연수일 때 $a^n$의 값을 $a$로 거듭 나누어 {$1$}이 될 때까지 나눈 {횟수}가 $n$이다.",
+        "cSlotAnswers": [
+          "$1$",
+          "횟수"
+        ],
+        "cStudentSentence": "$a$가 $1$보다 큰 자연수일 때 $a^n$의 값을 $a$로 거듭 나누어 □이 될 때까지 나눈 □가 $n$이다.",
+        "cAnswers": [
+          "$1$",
+          "횟수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "횟수",
+            "equivalentAnswers": [
+              "횟수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "횟수"
+          ]
+        ],
+        "proposalFingerprint": "b88c913ba130f7dd5f003a33abc83a225a221c463263552264a157ed0c3e7ad1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc21",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "괄호 안팎의 분수 제곱",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\left(\\frac{2}{3}\\right)^2$은 분자와 분모를 모두 {제곱}하고, $\\frac{2^2}{3}$은 {분자}만 제곱한 것이다.",
+        "example": {
+          "prompt": "$\\frac{3^2}{5}$, $\\left(\\frac{3}{5}\\right)^2$ 가운데 큰 것은?",
+          "answer": "$\\frac{3^2}{5}$"
+        },
+        "studentC": "$\\left(\\frac{2}{3}\\right)^2$은 분자와 분모를 모두 □하고, $\\frac{2^2}{3}$은 □만 제곱한 것이다.",
+        "answers": [
+          "제곱",
+          "분자"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\left(\\frac{2}{3}\\right)^2$과 $\\frac{2^2}{3}$은 각각 무엇을 제곱한 것인지 설명하고, 두 값을 구하여 크기를 비교하세요.",
+        "bAnswer": "$\\left(\\frac{2}{3}\\right)^2=\\frac{2}{3}\\times\\frac{2}{3}=\\frac{4}{9}$로 분자와 분모를 모두 제곱한 것이다. $\\frac{2^2}{3}=\\frac{4}{3}$로 분자만 제곱한 것이다. $\\frac{4}{3}$가 더 크다.",
+        "bGoal": "괄호가 있고 없음에 따라 제곱되는 부분이 달라짐을 구별한다.",
+        "bReason": "제목 '괄호 안팎의 분수 제곱'은 어떤 두 식인지 보이지 않는다. 견줄 두 식을 직접 쓰고 뜻과 값을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\left(\\frac{2}{3}\\right)^2$은 {분자와 분모}를 모두 제곱한 것이고, $\\frac{2^2}{3}$은 {분자}만 제곱한 것이다.",
+        "cAnswers": [
+          "분자와 분모",
+          "분자"
+        ],
+        "cReason": "원문 첫 빈칸 '제곱'은 문장 끝의 '제곱한 것이다'에서 그대로 베낄 수 있다. 빈칸을 '무엇을 제곱하는가'로 옮겨 두 식의 차이를 묻게 했다.",
+        "studentLabel": "괄호가 있는 분수의 제곱과 없는 분수의 제곱",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\left(\\frac{2}{3}\\right)^2$은 분수 $\\frac{2}{3}$ 전체(분자와 분모 모두)를 제곱한 것: $\\frac{4}{9}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2^2}{3}$은 분자 $2$만 제곱한 것: $\\frac{4}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2^2}{3}$이 더 크다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "괄호 유무로 제곱 범위 구별",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 945,
+        "part": "m1plus",
+        "sourceFingerprint": "9d1152bb0660025828c5f7ea90889b5276b626e04c500a31c19d0a7e3b19ef3c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 945
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\left(\\frac{2}{3}\\right)^2$은 {분자와 분모}를 모두 제곱한 것이고, $\\frac{2^2}{3}$은 {분자}만 제곱한 것이다.",
+        "cSlotAnswers": [
+          "분자와 분모",
+          "분자"
+        ],
+        "cStudentSentence": "$\\left(\\frac{2}{3}\\right)^2$은 □를 모두 제곱한 것이고, $\\frac{2^2}{3}$은 □만 제곱한 것이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분자와 분모",
+            "equivalentAnswers": [
+              "분자와 분모",
+              "분모와 분자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "분자",
+            "equivalentAnswers": [
+              "분자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "분자와 분모",
+            "accept": [
+              "분모와 분자"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분자와 분모",
+            "분모와 분자"
+          ],
+          [
+            "분자"
+          ]
+        ],
+        "proposalFingerprint": "5756798d632cb726ea240fdc47b2f009334a0ebf09cb04ea7701d29e294ba64e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc22",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "연속한 두 자연수가 모두 소수인 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "연속한 두 자연수가 모두 소수인 것은 {$2$와 $3$}뿐이다. 연속한 두 수 중 하나는 {짝수}이기 때문이다.",
+        "example": {
+          "prompt": "차가 $1$인 두 소수를 모두 쓰면?",
+          "answer": "$2$, $3$"
+        },
+        "studentC": "연속한 두 자연수가 모두 소수인 것은 □뿐이다. 연속한 두 수 중 하나는 □이기 때문이다.",
+        "answers": [
+          "$2$와 $3$",
+          "짝수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "연속한 두 자연수가 모두 소수인 경우를 모두 찾고, 그 밖에는 왜 없는지 설명하세요.",
+        "bAnswer": "$2$와 $3$뿐이다. 연속한 두 자연수 가운데 하나는 짝수이고 짝수인 소수는 $2$뿐이므로 $2$가 들어 있어야 한다. $1$과 $2$는 $1$이 소수가 아니므로 $2$와 $3$만 남는다.",
+        "bGoal": "연속한 두 소수가 $2$, $3$뿐임을 짝수인 소수의 성질로 설명한다.",
+        "bReason": "핵심 까닭을 쓴 답이 1과 2 언급이 없다고 틀리지 않게 함",
+        "cDecision": "keep",
+        "cReason": "결론과 까닭이 두 문장으로 나뉘어 있고 빈칸이 각각 수의 쌍과 '짝수'로 정해진다.",
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$와 $3$뿐"
+            ]
+          },
+          {
+            "anyOf": [
+              "연속한 두 자연수 가운데 하나는 짝수이고 짝수인 소수는 $2$뿐이다",
+              "$2$보다 큰 짝수는 소수가 아니므로 $2$가 들어 있어야 한다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "연속한 두 수 중 하나는 짝수",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 946,
+        "part": "m1plus",
+        "sourceFingerprint": "6f9c4db0d02c82359be950f694cf6e9b62e3b6f2db55ece764803fba4f45bad7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 946
+        },
+        "directReview": null,
+        "cFrozenSentence": "연속한 두 자연수가 모두 소수인 것은 □뿐이다. 연속한 두 수 중 하나는 □이기 때문이다.",
+        "cFrozenDefinition": "연속한 두 자연수가 모두 소수인 것은 {$2$와 $3$}뿐이다. 연속한 두 수 중 하나는 {짝수}이기 때문이다.",
+        "cFrozenAnswers": [
+          "$2$와 $3$",
+          "짝수"
+        ],
+        "cMarkedSentence": "연속한 두 자연수가 모두 소수인 것은 {$2$와 $3$}뿐이다. 연속한 두 수 중 하나는 {짝수}이기 때문이다.",
+        "cSlotAnswers": [
+          "$2$와 $3$",
+          "짝수"
+        ],
+        "cStudentSentence": "연속한 두 자연수가 모두 소수인 것은 □뿐이다. 연속한 두 수 중 하나는 □이기 때문이다.",
+        "cAnswers": [
+          "$2$와 $3$",
+          "짝수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$와 $3$",
+            "equivalentAnswers": [
+              "$2$와 $3$",
+              "$2$, $3$",
+              "$3$과 $2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "짝수",
+            "equivalentAnswers": [
+              "짝수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$2$와 $3$",
+            "accept": [
+              "$2$, $3$",
+              "$3$과 $2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$2$와 $3$",
+            "$2$, $3$",
+            "$3$과 $2$"
+          ],
+          [
+            "짝수"
+          ]
+        ],
+        "proposalFingerprint": "88211a9bf22a557ad482acbe1e3ee5162fd0fc7b3643e0bcf8f8d62f3d37230a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc1",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소인수분해하는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "나누어떨어지는 가장 작은 {소수}로 몫이 {소수}가 될 때까지 거듭 나눈다.",
+        "example": {
+          "prompt": "$45$를 소인수분해하면?",
+          "answer": "$3^2\\times5$"
+        },
+        "studentC": "나누어떨어지는 가장 작은 □로 몫이 □가 될 때까지 거듭 나눈다.",
+        "answers": [
+          "소수",
+          "소수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$45$를 나눗셈으로 소인수분해하는 차례를 설명하세요. 어떤 수로 나누기 시작하고 언제 멈추는지 밝힌 뒤 결과를 쓰세요.",
+        "bAnswer": "나누어떨어지는 가장 작은 소수로 거듭 나눈다. $45\\div3=15$, $15\\div3=5$이고 몫 $5$가 소수이므로 멈춘다. $45=3^2\\times5$.",
+        "bGoal": "가장 작은 소수로 거듭 나누어 소인수분해하는 차례와 멈추는 때를 안다.",
+        "bReason": "제목 '소인수분해하는 차례'는 대상 수가 없어 차례를 구체적으로 쓸 수 없다. $45$를 주고 시작과 멈춤의 기준을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "자연수를 소인수분해할 때는 나누어떨어지는 가장 작은 {소수}로, 몫이 {소수}가 될 때까지 거듭 나눈다.",
+        "cAnswers": [
+          "소수",
+          "소수"
+        ],
+        "cReason": "원문 문장에는 무엇을 하는 방법인지가 없어 숨은 제목 없이는 상황을 알 수 없다. '자연수를 소인수분해할 때는'을 넣고 빈칸은 그대로 두었다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나누어떨어지는 가장 작은 소수 $3$으로 나누기 시작해 소수로 거듭 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫이 소수가 되면 멈춘다($45\\div3=15$, $15\\div3=5$)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$45=3^2\\times5$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "작은 소수로 거듭 나누기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 947,
+        "part": "m1plus",
+        "sourceFingerprint": "a3b6b080cd17ddd2b7726e99cd606f2bf3d86850aaaea6c85b2fcec707e49e50",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 947
+        },
+        "directReview": null,
+        "cMarkedSentence": "자연수를 소인수분해할 때는 나누어떨어지는 가장 작은 {소수}로, 몫이 {소수}가 될 때까지 거듭 나눈다.",
+        "cSlotAnswers": [
+          "소수",
+          "소수"
+        ],
+        "cStudentSentence": "자연수를 소인수분해할 때는 나누어떨어지는 가장 작은 □로, 몫이 □가 될 때까지 거듭 나눈다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소수"
+          ],
+          [
+            "소수"
+          ]
+        ],
+        "proposalFingerprint": "e1b9bf2213281424ebfdf58d47ad2290016c48db276c3be8258720306934ed56"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc2",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "가지 뻗기로 소인수분해",
+        "kind": "방법",
+        "level": "하",
+        "definition": "수를 두 수의 곱으로 갈라 가지를 뻗고, 가지 끝이 모두 {소수}가 될 때까지 되풀이한다.",
+        "example": {
+          "prompt": "$24$를 가지 뻗기로 가를 때 가지 끝에 남는 수는?",
+          "answer": "$2$, $2$, $2$, $3$"
+        },
+        "studentC": "수를 두 수의 곱으로 갈라 가지를 뻗고, 가지 끝이 모두 □가 될 때까지 되풀이한다.",
+        "answers": [
+          "소수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$24$를 두 수의 곱으로 계속 갈라 가는 방법(가지 뻗기)으로 소인수분해하려고 합니다. $24=4\\times6$에서 시작할 때 다음에 무엇을 하고 언제 멈추는지 설명하고, 끝에 남는 수를 모두 쓰세요.",
+        "bAnswer": "$4=2\\times2$, $6=2\\times3$으로 다시 가른다. 끝에 남는 수가 모두 소수가 되면 멈춘다. 남는 수는 $2$, $2$, $2$, $3$이므로 $24=2^3\\times3$이다.",
+        "bGoal": "수를 두 수의 곱으로 거듭 갈라 끝이 모두 소수가 되게 하는 방법을 안다.",
+        "bReason": "제목의 '가지 뻗기'는 그림 없이는 뜻을 알 수 없다. '두 수의 곱으로 계속 가르는 방법'이라고 풀어 쓰고 시작 식을 주었다.",
+        "cDecision": "rewrite",
+        "cAfter": "가지 뻗기로 소인수분해할 때는 수를 $1$보다 큰 두 수의 곱으로 가르고, 갈라진 수가 합성수이면 다시 두 수의 곱으로 가르기를 되풀이하여 끝에 남는 수가 모두 {소수}가 되게 한다.",
+        "cAnswers": [
+          "소수"
+        ],
+        "cReason": "원문의 '가지', '가지 끝'은 그림이 없으면 가리키는 대상이 없다. 방법의 이름과 가르는 과정을 글로 풀어 쓰고 빈칸은 그대로 두었다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4=2\\times2$, $6=2\\times3$으로 다시 가른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝에 남는 수가 모두 소수가 되면 멈춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남는 수: $2$, $2$, $2$, $3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "곱으로 갈라 끝이 소수까지",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 948,
+        "part": "m1plus",
+        "sourceFingerprint": "db54ec4b47a09a67f9f5441791859d74197d75a6802b664e21f426eb11b5f957",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 948
+        },
+        "directReview": null,
+        "cMarkedSentence": "가지 뻗기로 소인수분해할 때는 수를 $1$보다 큰 두 수의 곱으로 가르고, 갈라진 수가 합성수이면 다시 두 수의 곱으로 가르기를 되풀이하여 끝에 남는 수가 모두 {소수}가 되게 한다.",
+        "cSlotAnswers": [
+          "소수"
+        ],
+        "cStudentSentence": "가지 뻗기로 소인수분해할 때는 수를 $1$보다 큰 두 수의 곱으로 가르고, 갈라진 수가 합성수이면 다시 두 수의 곱으로 가르기를 되풀이하여 끝에 남는 수가 모두 □가 되게 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소수"
+          ]
+        ],
+        "proposalFingerprint": "51141c4d60c52e30f8b7158ebe67045575839e3dc121f3fb7482a848d729b5c5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc3",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소인수 읽어 내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소인수분해한 식에 나오는 서로 다른 {소수}가 그 수의 {소인수}이다.",
+        "example": {
+          "prompt": "$2^3\\times7$의 소인수는?",
+          "answer": "$2$, $7$"
+        },
+        "studentC": "소인수분해한 식에 나오는 서로 다른 □가 그 수의 □이다.",
+        "answers": [
+          "소수",
+          "소인수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "소인수분해한 식 $2^3\\times7$을 보고 이 수의 소인수를 모두 쓰세요. 식의 어느 자리에 있는 수가 소인수인지 설명하고, 지수 $3$은 이 수의 소인수인지도 답하세요.",
+        "bAnswer": "소인수는 $2$와 $7$이다. 식에서 밑의 자리에 나오는 서로 다른 소수가 소인수이다. 지수 $3$은 $2$가 세 번 곱해졌다는 뜻일 뿐 소인수가 아니다.",
+        "bGoal": "소인수분해한 식에서 밑을 보고 소인수를 읽어 내며 지수와 구별한다.",
+        "bReason": "제목 '소인수 읽어 내기'는 무엇에서 읽어 내는지 없다. 식을 주고, 지수를 소인수로 착각하는 실수까지 확인하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "소인수분해한 식에서 밑의 자리에 나오는 서로 다른 소수가 그 수의 {소인수}이다. 예를 들어 $2^3\\times7$에서는 $2$와 {$7$}이다(지수 $3$은 해당하지 않는다).",
+        "cAnswers": [
+          "소인수",
+          "$7$"
+        ],
+        "cReason": "원문은 주어와 결론이 둘 다 빈칸이고, '식에 나오는 소수'라고만 하면 지수에 쓰인 소수와 헷갈린다. '밑의 자리'를 밝히고 결론과 확인용 예만 묻게 했다.",
+        "studentLabel": "소인수분해한 식에서 소인수 찾기",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소인수는 $2$와 $7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑의 자리에 나오는 소수가 소인수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지수 $3$은 소인수가 아니다($2$가 곱해진 횟수일 뿐)"
+            ]
+          }
+        ],
+        "coreAfter": "소인수분해한 식에서 곱해진 서로 다른 {소수}(거듭제곱이면 그 밑)가 그 수의 {소인수}이다. 지수는 그 소수를 곱한 횟수일 뿐이다.",
+        "coreReason": "'식에 나오는 소수'라고만 하면 $2^3\\times7$의 지수 $3$도 소인수처럼 읽힐 수 있다. 그래서 곱해진 소수(거듭제곱의 밑)로 한정했다.",
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "식의 밑에서 소인수 읽기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 949,
+        "part": "m1plus",
+        "sourceFingerprint": "2bec4ad92f50ba4e414d822975c5e1fcec5174a43f3d8f7204dff092c913ad70",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 949
+        },
+        "directReview": null,
+        "coreBeforeRepair": "소인수분해한 식에서 밑으로 나오는 서로 다른 {소수}가 그 수의 {소인수}이다. 지수로 쓰인 수는 소인수가 아니다.",
+        "coreRepairReason": "원본 핵심어 {소수}, {소인수}를 유지했다. 현재안의 '지수로 쓰인 수는 소인수가 아니다'는 틀린 말이 될 수 있어 고쳤다. $2\\times3^2$에서는 지수 $2$와 같은 수 $2$가 실제로 소인수이기 때문이다. 그래서 지수의 역할만 설명했다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "소인수분해한 식에서 밑의 자리에 나오는 서로 다른 소수가 그 수의 {소인수}이다. 예를 들어 $2^3\\times7$에서는 $2$와 {$7$}이다(지수 $3$은 해당하지 않는다).",
+        "cSlotAnswers": [
+          "소인수",
+          "$7$"
+        ],
+        "cStudentSentence": "소인수분해한 식에서 밑의 자리에 나오는 서로 다른 소수가 그 수의 □이다. 예를 들어 $2^3\\times7$에서는 $2$와 □이다(지수 $3$은 해당하지 않는다).",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소인수",
+            "equivalentAnswers": [
+              "소인수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$7$",
+            "equivalentAnswers": [
+              "$7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소인수"
+          ],
+          [
+            "$7$"
+          ]
+        ],
+        "proposalFingerprint": "0053d0d6021f9bba6066ef6a87af0d1f5ad472d2e81245a14585b9d48f699005"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc4",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소수의 소인수분해",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수를 소인수분해하면 {자기 자신} 하나만 남는다.",
+        "example": {
+          "prompt": "$17$을 소인수분해하면?",
+          "answer": "$17$"
+        },
+        "studentC": "소수를 소인수분해하면 □ 하나만 남는다.",
+        "answers": [
+          "자기 자신"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "소수 $17$을 소인수분해하면 어떻게 되는지 쓰고, 그 까닭을 설명하세요.",
+        "bAnswer": "$17$ 그대로이다. 소수는 약수가 $1$과 자기 자신뿐이어서 소인수가 자기 자신 하나뿐이기 때문이다.",
+        "bGoal": "소수의 소인수분해는 자기 자신임을 안다.",
+        "bReason": "괄호 속 대안 설명을 anyOf로 나눔",
+        "cDecision": "keep",
+        "cReason": "주어가 분명하고 답이 '자기 자신'으로 정해지는 한 줄 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$17$ 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수는 약수가 $1$과 자기 자신뿐이라 소인수가 자기 자신 하나뿐이다",
+              "소수는 더 작은 소수들의 곱으로 가를 수 없다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "소수는 더 가를 수 없음",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 950,
+        "part": "m1plus",
+        "sourceFingerprint": "0bcfcf180cdf9a3509ed808d35a6727cf4ed612c2b20d203d4a437f5154d3378",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 950
+        },
+        "directReview": null,
+        "cFrozenSentence": "소수를 소인수분해하면 □ 하나만 남는다.",
+        "cFrozenDefinition": "소수를 소인수분해하면 {자기 자신} 하나만 남는다.",
+        "cFrozenAnswers": [
+          "자기 자신"
+        ],
+        "cMarkedSentence": "소수를 소인수분해하면 {자기 자신} 하나만 남는다.",
+        "cSlotAnswers": [
+          "자기 자신"
+        ],
+        "cStudentSentence": "소수를 소인수분해하면 □ 하나만 남는다.",
+        "cAnswers": [
+          "자기 자신"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "자기 자신",
+            "equivalentAnswers": [
+              "자기 자신",
+              "그 수 자신",
+              "그 소수 자신"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "자기 자신",
+            "accept": [
+              "그 수 자신",
+              "그 소수 자신"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "자기 자신",
+            "그 수 자신",
+            "그 소수 자신"
+          ]
+        ],
+        "proposalFingerprint": "e8b5c4c549978ec4fe70d99677a5d2a9b88bd9e2a1824033c8f99cf04c360c54"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc5",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소인수분해에 쓰지 않는 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1$은 소수가 아니므로 소인수분해한 결과에 {$1$}을 곱하여 쓰지 않는다.",
+        "example": {
+          "prompt": "$2\\times3\\times1$은 $6$을 소인수분해한 것인가?",
+          "answer": "아니다"
+        },
+        "studentC": "$1$은 소수가 아니므로 소인수분해한 결과에 □을 곱하여 쓰지 않는다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$6=2\\times3\\times1$은 $6$을 소인수분해한 것이라고 할 수 있는지 판단하고, 까닭을 설명하세요.",
+        "bAnswer": "할 수 없다. 소인수분해는 소인수들만의 곱으로 나타내는 것인데 $1$은 소수가 아니어서 소인수가 아니다. 바른 결과는 $6=2\\times3$이다.",
+        "bGoal": "$1$은 소수가 아니므로 소인수분해 결과에 쓰지 않음을 설명한다.",
+        "bReason": "제목 '소인수분해에 쓰지 않는 수'는 답($1$)을 그대로 묻는 수수께끼처럼 읽히고 까닭을 묻지 않는다. 잘못된 식을 보여 주고 판단과 까닭을 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$1$은 {소수}가 아니므로 소인수분해한 결과에 $1$을 곱하여 쓰지 않는다. 그래서 $6=2\\times3\\times1$은 $6$을 소인수분해한 것이 아니다.",
+        "cAnswers": [
+          "소수"
+        ],
+        "cReason": "원문 빈칸의 답 '$1$'은 문장 첫머리의 '$1$은'에서 그대로 베낄 수 있다. 빈칸을 까닭('소수가 아니다') 쪽으로 옮기고 예를 붙였다.",
+        "studentLabel": "소인수분해에 $1$을 쓰지 않는 까닭",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소인수분해라고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$은 소수가 아니어서 소인수가 아니므로 소인수들만의 곱이 아니다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "1은 소수가 아니라 제외",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 951,
+        "part": "m1plus",
+        "sourceFingerprint": "b7fe7a95ee570dab775ed488e74beacdd425cfbca86145989bf6938d73f5bfbd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 951
+        },
+        "directReview": null,
+        "cMarkedSentence": "$1$은 {소수}가 아니므로 소인수분해한 결과에 $1$을 곱하여 쓰지 않는다. 그래서 $6=2\\times3\\times1$은 $6$을 소인수분해한 것이 아니다.",
+        "cSlotAnswers": [
+          "소수"
+        ],
+        "cStudentSentence": "$1$은 □가 아니므로 소인수분해한 결과에 $1$을 곱하여 쓰지 않는다. 그래서 $6=2\\times3\\times1$은 $6$을 소인수분해한 것이 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소수"
+          ]
+        ],
+        "proposalFingerprint": "b2f2c6e593aa8c90c3e2eebd8cffac1338a4fc141596ea4ce86638b42851c27b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc6",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "합성수와 소인수분해",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모든 합성수는 {두 개 이상}의 {소수}의 곱으로 나타낼 수 있다.",
+        "example": {
+          "prompt": "$35$를 두 소수의 곱으로 나타내면?",
+          "answer": "$5\\times7$"
+        },
+        "studentC": "모든 합성수는 □의 □의 곱으로 나타낼 수 있다.",
+        "answers": [
+          "두 개 이상",
+          "소수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 합성수는 소수를 써서 어떤 꼴로 나타낼 수 있는지 설명하고, $35$와 $12$를 각각 그렇게 나타내세요.",
+        "bAnswer": "두 개 이상의 소수의 곱으로 나타낼 수 있다. $35=5\\times7$, $12=2\\times2\\times3$.",
+        "bGoal": "합성수는 언제나 두 개 이상의 소수의 곱으로 나타낼 수 있음을 안다.",
+        "bReason": "꼴만 물으므로 '두 개 이상'을 강요하지 않고 동치 표기를 나눔",
+        "cDecision": "rewrite",
+        "cAfter": "모든 합성수는 {두} 개 이상의 {소수}의 곱으로 나타낼 수 있다.",
+        "cAnswers": [
+          "두",
+          "소수"
+        ],
+        "cReason": "원문은 '□의 □의 곱'으로 빈칸이 이어져 각 빈칸이 무엇을 묻는지 알 수 없다. '개 이상의'를 보여 주어 앞은 개수, 뒤는 수의 종류임을 드러냈다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수들의 곱으로 나타낼 수 있다",
+              "두 개 이상의 소수의 곱으로 나타낼 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35=5\\times7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12=2\\times2\\times3$",
+              "$12=2^2\\times3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "합성수는 소수들의 곱",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 952,
+        "part": "m1plus",
+        "sourceFingerprint": "81e4cc0e0b997a845a7584d5a8a13d43008aedadc3020720480980bd21d3fd52",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 952
+        },
+        "directReview": null,
+        "cMarkedSentence": "모든 합성수는 {두} 개 이상의 {소수}의 곱으로 나타낼 수 있다.",
+        "cSlotAnswers": [
+          "두",
+          "소수"
+        ],
+        "cStudentSentence": "모든 합성수는 □ 개 이상의 □의 곱으로 나타낼 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두",
+            "equivalentAnswers": [
+              "두",
+              "$2$",
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "두",
+            "accept": [
+              "$2$",
+              "2"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "두",
+            "$2$"
+          ],
+          [
+            "소수"
+          ]
+        ],
+        "proposalFingerprint": "bed7c35744ca013e8e07f6498e916ec383596a529bcbf2917bbd17c622691560"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc7",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소인수분해의 쓸모",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소인수분해를 하면 그 수의 {약수}, 최대공약수, 최소공배수를 쉽게 구할 수 있다.",
+        "studentC": "소인수분해를 하면 그 수의 □, 최대공약수, 최소공배수를 쉽게 구할 수 있다.",
+        "answers": [
+          "약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "소인수분해가 약수, 최대공약수, 최소공배수를 구하는 데 쓰임을 안다.",
+        "bReason": "쓰임새를 늘어놓는 질문이라 설명할 내용이 없다. 약수 구하기와 약수의 개수는 이 단원의 다른 질문에서 방법까지 묻고 있고, 최대공약수·최소공배수 구하기는 다음 단원에서 배운다.",
+        "cDecision": "exclude",
+        "cReason": "목록의 한 항목만 가린 빈칸이라 '약수' 말고 '소인수', '약수의 개수'를 넣어도 문장이 성립해 답이 하나로 정해지지 않는다. 채워도 방법을 익히는 데 도움이 되지 않는다.",
+        "exclusionReason": "B 제외: 나열형 B로, 약수 구하기는 m1-01-02-c5·xc9, 약수의 개수는 m1-01-02-c6·xc14의 B와 겹치고, 최대공약수·최소공배수는 다음 단원 내용이라 이 단원에서 설명할 근거가 없다. C 제외: 목록 중 한 항목만 가린 빈칸이라 답이 여러 개 가능하다.",
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "application",
+        "roleReason": "약수·공약수·공배수 구할 때 씀",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 953,
+        "part": "m1plus",
+        "sourceFingerprint": "02183fd97df33a35c780e05ee090293c721a3f9fe166cf8a8071881c5ab6e65d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 953
+        },
+        "directReview": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc8",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "나누는 차례와 결과",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$60$을 $2$부터 나누든 $5$부터 나누든 소인수분해 결과는 {같다}.",
+        "example": {
+          "prompt": "$60$을 $5$, $3$, $2$, $2$의 차례로 나누어 얻은 결과는?",
+          "answer": "$2^2\\times3\\times5$"
+        },
+        "studentC": "$60$을 $2$부터 나누든 $5$부터 나누든 소인수분해 결과는 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$60$을 $2$, $2$, $3$의 차례로 나누어 소인수분해한 결과와 $5$, $3$, $2$의 차례로 나누어 얻은 결과를 각각 쓰세요. 나누는 소수의 차례가 달라지면 소인수분해 결과가 달라지는지 설명하세요.",
+        "bAnswer": "$60\\div2=30$, $30\\div2=15$, $15\\div3=5$이므로 $2\\times2\\times3\\times5=2^2\\times3\\times5$이다. $60\\div5=12$, $12\\div3=4$, $4\\div2=2$이므로 $5\\times3\\times2\\times2=2^2\\times3\\times5$이다. 곱하는 순서만 다를 뿐 결과는 같다.",
+        "bGoal": "어떤 소수부터 나누어도 소인수분해 결과가 같음을 확인한다.",
+        "bReason": "제목 '나누는 차례와 결과'는 무엇을 나누는지, 어떤 결과인지 없다. 수 $60$과 두 가지 나누는 차례를 질문에 직접 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "$60$을 $2$부터 나누든 $5$부터 나누든, 소인수분해한 결과를 작은 소인수부터 거듭제곱으로 정리하면 모두 {$2^2\\times3\\times5$}로 같다.",
+        "cAnswers": [
+          "$2^2\\times3\\times5$"
+        ],
+        "cReason": "원문 빈칸 '같다'는 내용을 따져 보지 않아도 맞힐 수 있는 문장 끝 서술어이다. 실제로 소인수분해한 결과를 쓰게 하여 '같다'는 사실을 확인하게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$, $2$, $3$의 차례: $60=2\\times2\\times3\\times5=2^2\\times3\\times5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$, $3$, $2$의 차례: $60=5\\times3\\times2\\times2=2^2\\times3\\times5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 차례가 달라도 결과는 같다(곱하는 순서만 다르다)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "나누는 차례 달라도 결과 같음",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 954,
+        "part": "m1plus",
+        "sourceFingerprint": "e205e35dbdfb0c4bf5446e963b5c85b2b46794eec5335fd22b896fb487ec5691",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 954
+        },
+        "directReview": null,
+        "cMarkedSentence": "$60$을 $2$부터 나누든 $5$부터 나누든, 소인수분해한 결과를 작은 소인수부터 거듭제곱으로 정리하면 모두 {$2^2\\times3\\times5$}로 같다.",
+        "cSlotAnswers": [
+          "$2^2\\times3\\times5$"
+        ],
+        "cStudentSentence": "$60$을 $2$부터 나누든 $5$부터 나누든, 소인수분해한 결과를 작은 소인수부터 거듭제곱으로 정리하면 모두 □로 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2^2\\times3\\times5$",
+            "equivalentAnswers": [
+              "$2^2\\times3\\times5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2^2\\times3\\times5$"
+          ]
+        ],
+        "proposalFingerprint": "82c045e43d14652f2e653dfc754374e8630708743e9e0072ade089e68d9a981f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc9",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "표로 약수 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$a^m\\times b^n$의 약수는 가로에 $a^m$의 약수, 세로에 $b^n$의 약수를 놓은 {표}의 칸마다 두 수의 {곱}을 써서 구한다.",
+        "example": {
+          "prompt": "$2^2\\times3$의 약수를 모두 쓰면?",
+          "answer": "$1$, $2$, $3$, $4$, $6$, $12$"
+        },
+        "studentC": "$a^m\\times b^n$의 약수는 가로에 $a^m$의 약수, 세로에 $b^n$의 약수를 놓은 □의 칸마다 두 수의 □을 써서 구한다.",
+        "answers": [
+          "표",
+          "곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^2\\times3$의 약수를 표로 구하려고 합니다. 표의 가로줄과 세로줄에 각각 어떤 수들을 놓고 칸에는 무엇을 쓰는지 설명한 뒤, 약수를 모두 쓰세요.",
+        "bAnswer": "가로에 $2^2$의 약수 $1$, $2$, $4$를, 세로에 $3$의 약수 $1$, $3$을 놓고 칸마다 두 수의 곱을 쓴다. 약수는 $1$, $2$, $3$, $4$, $6$, $12$이다.",
+        "bGoal": "두 거듭제곱의 약수를 가로·세로에 놓은 표로 약수를 빠짐없이 구한다.",
+        "bReason": "제목 '표로 약수 구하기'는 그림이 없어 어떤 표인지 알 수 없다. 대상 수를 주고 가로·세로·칸에 들어갈 것을 말로 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "서로 다른 소수 $a$, $b$에 대하여 $a^m\\times b^n$의 약수는, 가로에 $a^m$의 약수를, 세로에 $b^n$의 약수를 놓은 표의 칸마다 두 수의 {곱}을 써서 구한다. 예를 들어 $2^2\\times3$이면 가로에 $1$, $2$, $4$를, 세로에 $1$, {$3$}을 놓는다.",
+        "cAnswers": [
+          "곱",
+          "$3$"
+        ],
+        "cReason": "원문은 $a$, $b$의 조건이 없고, 첫 빈칸 '표'는 내용을 몰라도 맞히는 낱말이다. 조건을 채우고, 칸에 쓰는 것과 세로에 놓는 수를 묻는 빈칸으로 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 줄에 $2^2$의 약수 $1$, $2$, $4$를, 다른 줄에 $3$의 약수 $1$, $3$을 놓는다(가로와 세로를 바꾸어도 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "칸마다 두 수의 곱을 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약수: $1$, $2$, $3$, $4$, $6$, $12$"
+            ]
+          }
+        ],
+        "coreAfter": "서로 다른 소수 $a$, $b$에 대하여 $a^m\\times b^n$의 약수는 가로에 $a^m$의 약수, 세로에 $b^n$의 약수를 놓은 {표}의 칸마다 두 수의 {곱}을 써서 구한다.",
+        "coreReason": "$a$, $b$가 서로 다른 소수라는 조건이 빠져 있었다. 그래서 소인수분해한 식에 대한 설명임을 밝혔다.",
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "표 칸마다 두 약수의 곱",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 955,
+        "part": "m1plus",
+        "sourceFingerprint": "f08c2600545efabdec24a5965ed07ae8835d7e8dafbf6706ea74eabac64343d9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 955
+        },
+        "directReview": null,
+        "coreBeforeRepair": "서로 다른 소수 $a$, $b$에 대하여 $a^m\\times b^n$의 약수는 가로에 $a^m$의 약수, 세로에 $b^n$의 약수를 놓은 {표}의 칸마다 두 수의 {곱}을 써서 구한다.",
+        "coreRepairReason": "원본 핵심어 {표}, {곱}과 표 만드는 방법을 그대로 유지했다. 이미 좋은 교정이라 보존했다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "서로 다른 소수 $a$, $b$에 대하여 $a^m\\times b^n$의 약수는, 가로에 $a^m$의 약수를, 세로에 $b^n$의 약수를 놓은 표의 칸마다 두 수의 {곱}을 써서 구한다. 예를 들어 $2^2\\times3$이면 가로에 $1$, $2$, $4$를, 세로에 $1$, {$3$}을 놓는다.",
+        "cSlotAnswers": [
+          "곱",
+          "$3$"
+        ],
+        "cStudentSentence": "서로 다른 소수 $a$, $b$에 대하여 $a^m\\times b^n$의 약수는, 가로에 $a^m$의 약수를, 세로에 $b^n$의 약수를 놓은 표의 칸마다 두 수의 □을 써서 구한다. 예를 들어 $2^2\\times3$이면 가로에 $1$, $2$, $4$를, 세로에 $1$, □을 놓는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "77c35ec5635596eae2492934f08d56e8dc1112ec5a7766b442798eb5e7e6da3a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc10",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소인수분해로 약수 알아보기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "어떤 수의 소인수가 모두 $A$의 소인수이고 지수도 $A$의 것 {이하}이면 그 수는 $A$의 {약수}이다.",
+        "example": {
+          "prompt": "$2^2\\times5$는 $2^3\\times3\\times5$의 약수인가?",
+          "answer": "약수이다"
+        },
+        "studentC": "어떤 수의 소인수가 모두 $A$의 소인수이고 지수도 $A$의 것 □이면 그 수는 $A$의 □이다.",
+        "answers": [
+          "이하",
+          "약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^2\\times5$가 $2^3\\times3\\times5$의 약수인지를 나눗셈을 하지 않고 소인수분해한 식만 보고 판단하는 방법을 설명하세요. 같은 방법으로 $2^4\\times3$도 판단하세요.",
+        "bAnswer": "어떤 수의 소인수가 모두 $2^3\\times3\\times5$의 소인수이고 각 지수가 그 수에서의 지수 이하이면 약수이다. $2^2\\times5$는 $2$의 지수 $2$가 $3$ 이하이고 $5$의 지수 $1$이 $1$ 이하이므로 약수이다. $2^4\\times3$은 $2$의 지수 $4$가 $3$보다 크므로 약수가 아니다.",
+        "bGoal": "소인수와 지수를 견주어 어떤 수가 약수인지 판단한다.",
+        "bReason": "제목 '소인수분해로 약수 알아보기'는 약수를 구하는 질문(c5)과 구별되지 않는다. 두 식을 주고 '약수인지 판단'하는 것으로 범위를 정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "자연수 $A$와 어떤 수를 각각 소인수분해했을 때, 그 수의 소인수가 모두 $A$의 소인수이고 각 소인수의 지수가 $A$에서의 지수 {이하}이면 그 수는 $A$의 약수이다. 예를 들어 $2^2\\times5$는 $2^3\\times3\\times5$의 약수이다.",
+        "cAnswers": [
+          "이하"
+        ],
+        "cReason": "원문은 $A$가 무엇인지 없고 '$A$의 것'이 가리키는 대상이 모호하며, 조건과 결론이 모두 빈칸이다. $A$를 소개하고 '$A$에서의 지수'로 풀어 쓴 뒤 조건 하나만 묻게 했다.",
+        "studentLabel": "소인수분해한 식으로 약수인지 판단하기",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소인수가 모두 $2^3\\times3\\times5$의 소인수이고 각 지수가 그 수에서의 지수 이하이면 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^2\\times5$는 $2$의 지수 $2$가 $3$ 이하, $5$의 지수 $1$이 $1$ 이하이므로 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^4\\times3$은 $2$의 지수 $4$가 $3$보다 크므로 약수가 아니다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "소인수와 지수 견줘 판별",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 956,
+        "part": "m1plus",
+        "sourceFingerprint": "23663b790b9e781bbf0a434de40d943c56db22cf0d76cfe2a26ea28d23fe3114",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 956
+        },
+        "directReview": null,
+        "cMarkedSentence": "자연수 $A$와 어떤 수를 각각 소인수분해했을 때, 그 수의 소인수가 모두 $A$의 소인수이고 각 소인수의 지수가 $A$에서의 지수 {이하}이면 그 수는 $A$의 약수이다. 예를 들어 $2^2\\times5$는 $2^3\\times3\\times5$의 약수이다.",
+        "cSlotAnswers": [
+          "이하"
+        ],
+        "cStudentSentence": "자연수 $A$와 어떤 수를 각각 소인수분해했을 때, 그 수의 소인수가 모두 $A$의 소인수이고 각 소인수의 지수가 $A$에서의 지수 □이면 그 수는 $A$의 약수이다. 예를 들어 $2^2\\times5$는 $2^3\\times3\\times5$의 약수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이하",
+            "equivalentAnswers": [
+              "이하"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이하"
+          ]
+        ],
+        "proposalFingerprint": "64c250fa1a0a8c8f4ae416d9320419598db445c08c55d78aeec96c42d5426f98"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc11",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소인수의 지수가 뜻하는 것",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소인수분해한 식에서 각 소인수의 {지수}는 그 소인수가 {몇 번} 곱해졌는지 알려 준다.",
+        "example": {
+          "prompt": "$2^4\\times3^2$에서 $2$는 몇 번 곱해졌나?",
+          "answer": "$4$번"
+        },
+        "studentC": "소인수분해한 식에서 각 소인수의 □는 그 소인수가 □ 곱해졌는지 알려 준다.",
+        "answers": [
+          "지수",
+          "몇 번"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "소인수분해한 식 $2^4\\times3^2$에서 지수 $4$와 $2$는 각각 무엇을 알려 주는지 설명하세요.",
+        "bAnswer": "$4$는 소인수 $2$가 $4$번, $2$는 소인수 $3$이 $2$번 곱해졌음을 알려 준다. 곧 $2\\times2\\times2\\times2\\times3\\times3$이다.",
+        "bGoal": "소인수분해한 식의 지수가 각 소인수가 곱해진 횟수임을 설명한다.",
+        "bReason": "제목 '소인수의 지수가 뜻하는 것'은 식이 없어 추상적인 말로만 답하게 된다. 식을 주고 두 지수의 뜻을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "소인수분해한 식에서 각 소인수의 {지수}는 그 소인수가 몇 번 곱해졌는지 알려 준다. 예를 들어 $2^4\\times3^2$에서 $2$는 {$4$}번 곱해졌다.",
+        "cAnswers": [
+          "지수",
+          "$4$"
+        ],
+        "cReason": "원문 둘째 빈칸 '몇 번'은 물음말을 가린 것이라 수학 내용을 묻지 못한다. 그 자리는 보여 주고, 뜻을 식에 적용하는 빈칸으로 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "지수 $4$: 소인수 $2$가 $4$번 곱해졌다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지수 $2$: 소인수 $3$이 $2$번 곱해졌다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "지수는 곱해진 횟수",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 957,
+        "part": "m1plus",
+        "sourceFingerprint": "b2d6081f358078b0d0fd72c1cb93ed4c080c79ddd4afaec865376e32457707bc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 957
+        },
+        "directReview": null,
+        "cMarkedSentence": "소인수분해한 식에서 각 소인수의 {지수}는 그 소인수가 몇 번 곱해졌는지 알려 준다. 예를 들어 $2^4\\times3^2$에서 $2$는 {$4$}번 곱해졌다.",
+        "cSlotAnswers": [
+          "지수",
+          "$4$"
+        ],
+        "cStudentSentence": "소인수분해한 식에서 각 소인수의 □는 그 소인수가 몇 번 곱해졌는지 알려 준다. 예를 들어 $2^4\\times3^2$에서 $2$는 □번 곱해졌다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지수",
+            "equivalentAnswers": [
+              "지수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지수"
+          ],
+          [
+            "$4$"
+          ]
+        ],
+        "proposalFingerprint": "b0d2652419621a559a4e615dc3f531c7d759f89e47337874d8bc16189405c0e2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc12",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "약수와 소인수의 구별",
+        "kind": "성질",
+        "level": "중",
+        "definition": "약수 가운데 {소수}인 것만 소인수이다. $1$과 합성수인 약수는 약수이지만 {소인수가 아니다}.",
+        "example": {
+          "prompt": "$12$의 약수 $4$와 $6$이 $12$의 소인수가 아닌 까닭은?",
+          "answer": "소수가 아닌 합성수여서"
+        },
+        "studentC": "약수 가운데 □인 것만 소인수이다. $1$과 합성수인 약수는 약수이지만 □.",
+        "answers": [
+          "소수",
+          "소인수가 아니다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$12$의 약수 $1$, $2$, $3$, $4$, $6$, $12$ 가운데 $12$의 소인수인 것과 아닌 것을 나누고, 아닌 것은 왜 소인수가 아닌지 설명하세요.",
+        "bAnswer": "소인수는 $2$, $3$이다. $1$은 소수가 아니고, $4$, $6$, $12$는 합성수여서 소인수가 아니다. 약수 가운데 소수인 것만 소인수이다.",
+        "bGoal": "약수와 소인수를 구별하여 약수 가운데 소수만 소인수임을 안다.",
+        "bReason": "제목 '약수와 소인수의 구별'은 어떤 수에서 구별하는지 없다. $12$의 약수 목록을 주고 나누기와 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "약수 가운데 {소수}인 것만 소인수이다. 그래서 $12$의 약수 $1$, $4$, $6$, $12$는 소인수가 아니고, $12$의 소인수는 $2$와 {$3$}뿐이다.",
+        "cAnswers": [
+          "소수",
+          "$3$"
+        ],
+        "cReason": "원문 둘째 빈칸 '소인수가 아니다'는 길고, 앞 문장의 '소인수이다'를 뒤집으면 채워진다. 구체적인 수 $12$로 바꾸어 실제로 골라내게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소인수인 것: $2$, $3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "소인수가 아닌 것: $1$, $4$, $6$, $12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$은 소수가 아니고 $4$, $6$, $12$는 합성수여서(소수가 아니어서) 소인수가 아니다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "약수 중 소수만 소인수",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 958,
+        "part": "m1plus",
+        "sourceFingerprint": "1a50c253ed993abb04844c246ed74a72270a6437214d45c07268fba390800faf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 958
+        },
+        "directReview": null,
+        "cMarkedSentence": "약수 가운데 {소수}인 것만 소인수이다. 그래서 $12$의 약수 $1$, $4$, $6$, $12$는 소인수가 아니고, $12$의 소인수는 $2$와 {$3$}뿐이다.",
+        "cSlotAnswers": [
+          "소수",
+          "$3$"
+        ],
+        "cStudentSentence": "약수 가운데 □인 것만 소인수이다. 그래서 $12$의 약수 $1$, $4$, $6$, $12$는 소인수가 아니고, $12$의 소인수는 $2$와 □뿐이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소수"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "proposalFingerprint": "eeab89799ab365cad3c7479bdb5f97dbf4ca50d6c56cb430570e6e29e33e7b09"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc13",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "나누어 제곱인 수 만들기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "나누어서 제곱인 수를 만들려면 지수가 {홀수}인 소인수로 한 번씩 {나눈다}.",
+        "example": {
+          "prompt": "$2^3\\times3^2\\times7$을 가장 작은 자연수로 나누어 제곱인 수를 만들 때 나누는 수는?",
+          "answer": "$14$"
+        },
+        "studentC": "나누어서 제곱인 수를 만들려면 지수가 □인 소인수로 한 번씩 □.",
+        "answers": [
+          "홀수",
+          "나눈다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^3\\times3^2\\times7$을 가장 작은 자연수로 나누어 어떤 자연수의 제곱이 되게 하려고 합니다. 어떤 소인수로 나누어야 하는지 까닭과 함께 설명하고, 나누는 수를 구하세요.",
+        "bAnswer": "제곱인 수는 모든 소인수의 지수가 짝수이다. 지수가 홀수인 소인수 $2$(지수 $3$)와 $7$(지수 $1$)로 한 번씩 나누면 $2^2\\times3^2$이 된다. 나누는 수는 $2\\times7=14$이다.",
+        "bGoal": "지수가 홀수인 소인수로 나누어 제곱인 수를 만든다.",
+        "bReason": "제목 '나누어 제곱인 수 만들기'는 무엇을 나누는지 없다. 소인수분해된 수와 '가장 작은 자연수로'라는 조건을 질문에 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수를 가장 작은 자연수로 나누어 자연수의 제곱인 수로 만들려면, 그 수를 소인수분해한 식에서 지수가 {홀수}인 소인수로 한 번씩 나눈다. 예를 들어 $2^3\\times3^2\\times7$은 $2\\times7=${$14$}로 나눈다.",
+        "cAnswers": [
+          "홀수",
+          "$14$"
+        ],
+        "cReason": "원문은 '가장 작은 자연수로'와 '소인수분해한 식에서'라는 상황이 빠져 있고, 둘째 빈칸 '나눈다'는 문장 첫머리 '나누어서'에서 베낄 수 있다. 상황을 채우고 적용 예로 빈칸을 바꾸었다.",
+        "studentLabel": "나누어서 제곱인 수 만들기",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "제곱인 수는 모든 소인수의 지수가 짝수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지수가 홀수인 소인수 $2$와 $7$로 한 번씩 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수: $2\\times7=14$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "홀수 지수 소인수로 나눔",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 959,
+        "part": "m1plus",
+        "sourceFingerprint": "809e4ec92751340cb5755b17f709b9d15cd0714b97c402174b9e3f673518181c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 959
+        },
+        "directReview": null,
+        "cMarkedSentence": "어떤 수를 가장 작은 자연수로 나누어 자연수의 제곱인 수로 만들려면, 그 수를 소인수분해한 식에서 지수가 {홀수}인 소인수로 한 번씩 나눈다. 예를 들어 $2^3\\times3^2\\times7$은 $2\\times7=${$14$}로 나눈다.",
+        "cSlotAnswers": [
+          "홀수",
+          "$14$"
+        ],
+        "cStudentSentence": "어떤 수를 가장 작은 자연수로 나누어 자연수의 제곱인 수로 만들려면, 그 수를 소인수분해한 식에서 지수가 □인 소인수로 한 번씩 나눈다. 예를 들어 $2^3\\times3^2\\times7$은 $2\\times7=$□로 나눈다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "홀수",
+            "equivalentAnswers": [
+              "홀수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$14$",
+            "equivalentAnswers": [
+              "$14$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "홀수"
+          ],
+          [
+            "$14$"
+          ]
+        ],
+        "proposalFingerprint": "ae5f69461a018218ce94267acfbbf8be4dffb859673a74185e174583b8c83d7f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc14",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "약수의 개수 구하는 차례",
+        "kind": "방법",
+        "level": "중",
+        "definition": "약수의 개수는 먼저 {소인수분해}하고, 각 지수에 $1$을 더한 수를 모두 {곱한다}.",
+        "example": {
+          "prompt": "$72$의 약수의 개수는?",
+          "answer": "$12$개"
+        },
+        "studentC": "약수의 개수는 먼저 □하고, 각 지수에 $1$을 더한 수를 모두 □.",
+        "answers": [
+          "소인수분해",
+          "곱한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$72$의 약수의 개수를, 약수를 하나하나 쓰지 않고 구하는 차례를 설명하고 개수를 구하세요.",
+        "bAnswer": "먼저 소인수분해하면 $72=2^3\\times3^2$이다. 각 지수에 $1$을 더한 수를 모두 곱하면 $(3+1)\\times(2+1)=12$이므로 $12$개이다.",
+        "bGoal": "자연수를 소인수분해한 뒤 지수로 약수의 개수를 구하는 차례를 익힌다.",
+        "bReason": "제목 '약수의 개수 구하는 차례'는 대상 수가 없다. 소인수분해되지 않은 수 $72$를 주어, 식이 주어진 c6과 달리 첫 단계부터 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "먼저 할 일과 지수로 할 일을 차례로 묻는 짧은 문장이고, 두 빈칸이 '소인수분해'와 '곱한다'로 정해진다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$72=2^3\\times3^2$으로 소인수분해한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 지수에 $1$을 더한 수를 곱한다: $(3+1)\\times(2+1)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "지수에 1 더해 모두 곱함",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 960,
+        "part": "m1plus",
+        "sourceFingerprint": "da1dfe58c31b7f6b2aa8a082bf7c8f681d68f495076285c821eb0f7a18c03c8d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 960
+        },
+        "directReview": null,
+        "cFrozenSentence": "약수의 개수는 먼저 □하고, 각 지수에 $1$을 더한 수를 모두 □.",
+        "cFrozenDefinition": "약수의 개수는 먼저 {소인수분해}하고, 각 지수에 $1$을 더한 수를 모두 {곱한다}.",
+        "cFrozenAnswers": [
+          "소인수분해",
+          "곱한다"
+        ],
+        "cMarkedSentence": "약수의 개수는 먼저 {소인수분해}하고, 각 지수에 $1$을 더한 수를 모두 {곱한다}.",
+        "cSlotAnswers": [
+          "소인수분해",
+          "곱한다"
+        ],
+        "cStudentSentence": "약수의 개수는 먼저 □하고, 각 지수에 $1$을 더한 수를 모두 □.",
+        "cAnswers": [
+          "소인수분해",
+          "곱한다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소인수분해",
+            "equivalentAnswers": [
+              "소인수분해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱한다",
+            "equivalentAnswers": [
+              "곱한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소인수분해"
+          ],
+          [
+            "곱한다"
+          ]
+        ],
+        "proposalFingerprint": "9fdaea2e17a89a1483a6f3d28d8f9acd63bdc72edcdc4aa30b28a85f17827582"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc15",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소수의 거듭제곱의 약수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 {$n+1$개}이다.",
+        "example": {
+          "prompt": "$3^4$의 약수의 개수는?",
+          "answer": "$5$개"
+        },
+        "studentC": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 □이다.",
+        "answers": [
+          "$n+1$개"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$p$가 소수이고 $n$이 자연수일 때 $p^n$의 약수를 모두 쓰고 그 개수를 구하세요. $3^4$으로 확인해 보세요.",
+        "bAnswer": "약수는 $1$, $p$, $p^2$, …, $p^n$으로 $n+1$개이다. $3^4$의 약수는 $1$, $3$, $9$, $27$, $81$로 $5$개이다.",
+        "bGoal": "소수의 거듭제곱 $p^n$의 약수와 그 개수 $n+1$을 안다.",
+        "bReason": "제목 '소수의 거듭제곱의 약수'에는 식과 기호가 없다. $p^n$과 $p$, $n$의 조건을 주고 약수와 개수를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "약수의 목록이 문장에 나와 있어 개수를 세어 답하는 빈칸임이 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "약수: $1$, $p$, $p^2$, …, $p^n$"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수: $n+1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3^4$의 약수는 $1$, $3$, $9$, $27$, $81$로 $5$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "p^n의 약수는 n+1개",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 961,
+        "part": "m1plus",
+        "sourceFingerprint": "8e4d00380497735e390e30036674d5deda41fcba240aa45df2ee94b0bad80ec5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 961
+        },
+        "directReview": null,
+        "cFrozenSentence": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 □이다.",
+        "cFrozenDefinition": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 {$n+1$개}이다.",
+        "cFrozenAnswers": [
+          "$n+1$개"
+        ],
+        "cMarkedSentence": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 {$n+1$개}이다.",
+        "cSlotAnswers": [
+          "$n+1$개"
+        ],
+        "cStudentSentence": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 □이다.",
+        "cAnswers": [
+          "$n+1$개"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n+1$개",
+            "equivalentAnswers": [
+              "$n+1$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n+1$개"
+          ]
+        ],
+        "proposalFingerprint": "98cce3a3442275944a20ca8874bdc5b8e1c1f302e59501a15aca58b8c9872444"
+      }
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T11:37:19.237Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-02-06-xc22",
+        "section": "중2::2. 부등식::일차부등식의 활용(속력, 도형, 기타)",
+        "term": "떨어진 거리의 조건",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 곳에서 동시에 반대 방향으로 걸어 어떤 거리 이상 떨어지려면 두 속력의 {합}에 걸은 시간을 곱한 값이 그 거리 {이상}이어야 한다.",
+        "example": {
+          "prompt": "시속 $3\\,\\mathrm{km}$, $4\\,\\mathrm{km}$로 반대 방향으로 걸어 $14\\,\\mathrm{km}$ 이상 떨어지는 데 걸리는 시간",
+          "answer": "$2$시간 이상"
+        },
+        "studentC": "같은 곳에서 동시에 반대 방향으로 걸어 어떤 거리 이상 떨어지려면 두 속력의 □에 걸은 시간을 곱한 값이 그 거리 □이어야 한다.",
+        "answers": [
+          "합",
+          "이상"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-06-xc22",
+        "learningRole": "application",
+        "roleReason": "두 속력 합×시간이 거리 이상",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 곳에서 두 사람이 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$, $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 몇 시간 이상 걸어야 하는지 부등식을 세워 구하시오.",
+        "bAnswer": "$t$시간 걸으면 두 사람 사이의 거리는 $(3+4)t=7t\\,(\\mathrm{km})$이다. $7t\\ge14$를 풀면 $t\\ge2$이므로 $2$시간 이상 걸어야 한다.",
+        "bGoal": null,
+        "bReason": "xc15가 거리 식만 묻는 데 비해 이 목표는 최소 시간의 부등식 풀이이다. 별도 B를 복구하고 불필요한 수량 예시는 일반 설명에 넣지 않는다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 사람이 같은 곳에서 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$와 $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 {$2$}시간 이상 걸어야 한다.",
+        "cAnswers": [
+          "$2$"
+        ],
+        "cReason": "거리와 최소 시간의 구체 조건으로 이중 부정 표현을 없앤다.",
+        "exclusionReason": "B 제외: 반대 방향 이동 거리의 합은 06-xc15 B에서, '이상' 부등식 세우기는 다른 활용 B에서 평가되는 중복이다.",
+        "authorBatch": 32,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2432,
+        "part": "m2plus",
+        "sourceFingerprint": "9d91501e7f86f611fbcb97916bea60bacac570fff2ab6aea42d63b3139046116",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2432
+        },
+        "directReview": null,
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7t\\ge14$",
+              "$(3+4)t\\ge14$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$시간 이상",
+              "$t\\ge2$"
+            ]
+          }
+        ],
+        "cMarkedSentence": "두 사람이 같은 곳에서 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$와 $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 {$2$}시간 이상 걸어야 한다.",
+        "cSlotAnswers": [
+          "$2$"
+        ],
+        "cStudentSentence": "두 사람이 같은 곳에서 동시에 반대 방향으로 시속 $3\\,\\mathrm{km}$와 $4\\,\\mathrm{km}$로 걷는다. 두 사람이 $14\\,\\mathrm{km}$ 이상 떨어지려면 □시간 이상 걸어야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "8e7ff6e289077828b2cef8060a4b3027da43d9ae7bf4138f4d3f242fbcb45ef5"
+      }
+    }
+  ]
+}

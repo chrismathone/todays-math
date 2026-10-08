@@ -10,6 +10,7 @@
  */
 import { z } from "zod";
 import { getTextbookCharacter } from "./characters";
+import { conceptSupportsForm } from "@/lib/concept-blank/questions";
 
 import {
   planUploadChunks,
@@ -903,14 +904,20 @@ function picksFromCatalog(
       entry.payload.level === "하" || entry.payload.level === "상"
         ? entry.payload.level
         : "중";
-    return formsFor(entry.entryKind, givenCase).map((form) => ({
-      blankSectionKey: entry.payload.section,
-      entryKind: entry.entryKind,
-      entryId: entry.payload.id,
-      form,
-      level,
-      reviewStatus: "candidate" as const,
-    }));
+    return formsFor(entry.entryKind, givenCase)
+      .filter(
+        (form) =>
+          entry.entryKind !== "concept" ||
+          conceptSupportsForm(entry.payload, form),
+      )
+      .map((form) => ({
+        blankSectionKey: entry.payload.section,
+        entryKind: entry.entryKind,
+        entryId: entry.payload.id,
+        form,
+        level,
+        reviewStatus: "candidate" as const,
+      }));
   });
 }
 

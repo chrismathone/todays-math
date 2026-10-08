@@ -1,0 +1,27 @@
+{
+  "status": "Preserved exploratory failures; not final compiler or release output",
+  "attempts": [
+    {
+      "command": "node <artifact>/replay.mjs --preliminary --out D:/tmp/source-sync-assist-ctx_de9caad71bd4-preliminary-1",
+      "exitCode": 1,
+      "error": "SyntaxError: Unexpected token '{' at import type { ConceptTeachingScript } from @/lib/textbook/scripts/types",
+      "resolution": "Use Root private node_modules/tsx/dist/cli.mjs with Root --tsconfig, as documented"
+    },
+    {
+      "command": "node <Root>/node_modules/tsx/dist/cli.mjs --tsconfig <Root>/tsconfig.json <artifact>/replay.mjs --preliminary --out D:/tmp/source-sync-assist-ctx_de9caad71bd4-preliminary-1",
+      "exitCode": 1,
+      "error": "Error: Missing proposal definition reason: e5-2-5-4-xc1",
+      "productionFilesWritten": false,
+      "preparedOutputWritten": false,
+      "resolution": "Explicitly excluded only this unreasoned proposal for preliminary tests and escalated exact raw/normalized fields; Root later supplied reason and goal reread evidence"
+    },
+    {
+      "command": "verify-and-test.mjs against preliminary-1",
+      "exitCode": 1,
+      "passed": 18,
+      "failed": 1,
+      "error": "Incorrect test-only expected represented source ID count 50; actual 98",
+      "resolution": "Corrected test to independently compare every represented base definition ID; full failed test artifact retained"
+    }
+  ]
+}

@@ -1,0 +1,793 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-3-2-xc8",
+      "bDecision": "revise",
+      "bPrompt": "대응 관계를 나타낸 식에서 기호의 모양을 다른 것으로 바꾸어 써도 같은 대응 관계가 되려면 무엇이 그대로여야 하는지 설명하시오. 또 봉지 수를 $\\square$, 사탕 수를 $\\triangle$로 나타낸 $\\square\\times6=\\triangle$를 봉지 수는 $\\bigcirc$, 사탕 수는 $\\star$로 바꾸어 쓰시오.",
+      "bAnswer": "각 기호가 나타내는 양과 두 양 사이의 규칙이 그대로이면 기호 모양이 달라도 같은 대응 관계이다. $\\bigcirc\\times6=\\star$ (또는 $\\star\\div6=\\bigcirc$).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 기호가 나타내는 양과 두 양 사이의 규칙이 모두 그대로여야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\bigcirc\\times6=\\star$",
+            "$\\star\\div6=\\bigcirc$"
+          ]
+        }
+      ],
+      "bGoal": "기호 모양이 아니라 기호가 나타내는 양과 규칙이 대응 관계를 정함을 안다.",
+      "bReason": "제목은 행동만 말해 묻는 내용이 없으므로, 같은 관계가 되는 조건과 실제로 바꾸어 쓰는 예를 함께 물었다.",
+      "cDecision": "revise",
+      "cAfter": "봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$로 하여 $\\bigcirc\\times6=\\triangle$로 쓴 식을, 사탕 수만 $\\star$로 바꾸어 쓰면 $\\bigcirc\\times6=${$\\star$}이고, 두 식이 나타내는 대응 관계는 서로 {같다}.",
+      "cReason": "'정한 뜻만 같으면'은 임의 구절이라, 기호를 실제로 바꾸어 쓰고 관계가 같은지 판단하는 짧은 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'같다', '같은 관계이다', '변하지 않는다' 허용.",
+      "learningRole": "definition",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\star$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "같은 관계이다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0660-0690.json",
+      "codexFinalAmendedFromFingerprint": "b560625512654e9b123db1d6b1389aa107aa9699b0faa40a2b0cb67297ec65e4",
+      "sourceIndex": 660,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-2-xc8",
+        "section": "초5::1-3 대응 관계::1-3-2 대응 관계를 식으로 나타내기",
+        "term": "다른 기호로 바꾸어 쓰기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$\\square$, $\\triangle$ 대신 $\\bigcirc$ 같은 다른 기호를 써도 {정한 뜻만 같으면} 같은 관계이다.",
+        "studentC": "$\\square$, $\\triangle$ 대신 $\\bigcirc$ 같은 다른 기호를 써도 □ 같은 관계이다.",
+        "answers": [
+          "정한 뜻만 같으면"
+        ]
+      },
+      "sourceFingerprint": "94da81cbcf3669ce2f6b740ba88c50979973f325ade36e0d1b2d230e57db44f5",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\star$",
+        "같다"
+      ],
+      "cStudentAfter": "봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$로 하여 $\\bigcirc\\times6=\\triangle$로 쓴 식을, 사탕 수만 $\\star$로 바꾸어 쓰면 $\\bigcirc\\times6=$□이고, 두 식이 나타내는 대응 관계는 서로 □.",
+      "cMarkedSentence": "봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$로 하여 $\\bigcirc\\times6=\\triangle$로 쓴 식을, 사탕 수만 $\\star$로 바꾸어 쓰면 $\\bigcirc\\times6=${$\\star$}이고, 두 식이 나타내는 대응 관계는 서로 {같다}.",
+      "cStudentSentence": "봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$로 하여 $\\bigcirc\\times6=\\triangle$로 쓴 식을, 사탕 수만 $\\star$로 바꾸어 쓰면 $\\bigcirc\\times6=$□이고, 두 식이 나타내는 대응 관계는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\star$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "같은 관계이다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대응 관계를 나타낸 식에서 기호의 모양을 다른 것으로 바꾸어 써도 같은 대응 관계가 되려면 무엇이 그대로여야 하는지 설명하시오. 또 봉지 수를 $\\square$, 사탕 수를 $\\triangle$로 나타낸 $\\square\\times6=\\triangle$를 봉지 수는 $\\bigcirc$, 사탕 수는 $\\star$로 바꾸어 쓰시오.",
+        "answer": "각 기호가 나타내는 양과 두 양 사이의 규칙이 그대로이면 기호 모양이 달라도 같은 대응 관계이다. $\\bigcirc\\times6=\\star$ (또는 $\\star\\div6=\\bigcirc$).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 기호가 나타내는 양과 두 양 사이의 규칙이 모두 그대로여야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\bigcirc\\times6=\\star$",
+              "$\\star\\div6=\\bigcirc$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "봉지 수를 $\\bigcirc$, 사탕 수를 $\\triangle$로 하여 $\\bigcirc\\times6=\\triangle$로 쓴 식을, 사탕 수만 $\\star$로 바꾸어 쓰면 $\\bigcirc\\times6=${$\\star$}이고, 두 식이 나타내는 대응 관계는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\star$"
+          ],
+          [
+            "같다",
+            "같은 관계이다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "683ed738eb0eb1a67dbec7e4e14a25fcc6f135564b62f533ca6ab32f906477d6",
+      "questionRevision": "planning-e5e6-20261006-683ed738eb0e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-2-xc9",
+      "bDecision": "revise",
+      "bPrompt": "$\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙을 나타낸 표에서 $\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 각각 $7$, $14$, $21$입니다. 짝지어진 수로 곱하는 수를 찾는 방법을 설명하고 규칙을 식으로 나타내세요.",
+      "bAnswer": "짝지어진 두 수를 비교하여 모든 짝에서 똑같이 성립하는 관계를 찾는다. $1\\times7=7$, $2\\times7=14$, $3\\times7=21$이므로 $\\triangle$는 언제나 $\\square$의 $7$배이고, 식은 $\\square\\times7=\\triangle$ (또는 $\\triangle\\div7=\\square$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "짝지어진 두 수를 비교하여 모든 짝에서 똑같이 성립하는 규칙을 찾는다",
+            "각 짝에서 $\\triangle$를 $\\square$로 나누거나 $\\square$에 몇을 곱했는지 살펴 모든 짝에 맞는 규칙을 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square\\times7=\\triangle$",
+            "$\\triangle\\div7=\\square$"
+          ]
+        }
+      ],
+      "bGoal": "표의 짝들에서 공통 규칙을 찾아 기호를 쓴 식으로 옮긴다.",
+      "bReason": "표 없이는 답할 수 없으므로 표의 값을 질문에 넣고, 규칙을 찾는 방법과 식을 함께 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\bigcirc$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\bigcirc$가 $1$, $2$, $3$일 때 $\\triangle$가 각각 $7$, $14$, $21$이다. 식으로 나타내면 $\\bigcirc\\times${$7$}$=\\triangle$이고, $\\bigcirc$가 $6$이면 $\\triangle$는 {$42$}이다.",
+      "cReason": "'기호를 넣어'는 내용 없는 구절이라, 실제 표에서 규칙의 수를 찾고 표에 없는 값까지 구하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$42$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0660-0690.json",
+      "codexFinalAmendedFromFingerprint": "f138d9780cedc3b9f699a7116a994bd551c5376f9047ba7e310329debec12080",
+      "sourceIndex": 661,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-2-xc9",
+        "section": "초5::1-3 대응 관계::1-3-2 대응 관계를 식으로 나타내기",
+        "term": "대응표에서 식으로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대응표에서 찾은 규칙을 {기호를 넣어} 식으로 옮긴다.",
+        "example": {
+          "prompt": "$\\square$가 $1,\\ 2,\\ 3$일 때 $\\triangle$가 $7,\\ 14,\\ 21$이면 식은?",
+          "answer": "$\\square\\times7=\\triangle$"
+        },
+        "studentC": "대응표에서 찾은 규칙을 □ 식으로 옮긴다.",
+        "answers": [
+          "기호를 넣어"
+        ]
+      },
+      "sourceFingerprint": "d4a0b9b007a195fa1450b84d3b9e83c1058be62e187a55d3458dc054d8db23c4",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$7$",
+        "$42$"
+      ],
+      "cStudentAfter": "$\\bigcirc$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\bigcirc$가 $1$, $2$, $3$일 때 $\\triangle$가 각각 $7$, $14$, $21$이다. 식으로 나타내면 $\\bigcirc\\times$□$=\\triangle$이고, $\\bigcirc$가 $6$이면 $\\triangle$는 □이다.",
+      "cMarkedSentence": "$\\bigcirc$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\bigcirc$가 $1$, $2$, $3$일 때 $\\triangle$가 각각 $7$, $14$, $21$이다. 식으로 나타내면 $\\bigcirc\\times${$7$}$=\\triangle$이고, $\\bigcirc$가 $6$이면 $\\triangle$는 {$42$}이다.",
+      "cStudentSentence": "$\\bigcirc$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\bigcirc$가 $1$, $2$, $3$일 때 $\\triangle$가 각각 $7$, $14$, $21$이다. 식으로 나타내면 $\\bigcirc\\times$□$=\\triangle$이고, $\\bigcirc$가 $6$이면 $\\triangle$는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "$42$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\square$에 같은 수를 곱해 $\\triangle$를 구하는 규칙을 나타낸 표에서 $\\square$가 $1$, $2$, $3$일 때 $\\triangle$가 각각 $7$, $14$, $21$입니다. 짝지어진 수로 곱하는 수를 찾는 방법을 설명하고 규칙을 식으로 나타내세요.",
+        "answer": "짝지어진 두 수를 비교하여 모든 짝에서 똑같이 성립하는 관계를 찾는다. $1\\times7=7$, $2\\times7=14$, $3\\times7=21$이므로 $\\triangle$는 언제나 $\\square$의 $7$배이고, 식은 $\\square\\times7=\\triangle$ (또는 $\\triangle\\div7=\\square$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "짝지어진 두 수를 비교하여 모든 짝에서 똑같이 성립하는 규칙을 찾는다",
+              "각 짝에서 $\\triangle$를 $\\square$로 나누거나 $\\square$에 몇을 곱했는지 살펴 모든 짝에 맞는 규칙을 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square\\times7=\\triangle$",
+              "$\\triangle\\div7=\\square$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\bigcirc$에 같은 수를 곱해 $\\triangle$를 구하는 규칙에서 $\\bigcirc$가 $1$, $2$, $3$일 때 $\\triangle$가 각각 $7$, $14$, $21$이다. 식으로 나타내면 $\\bigcirc\\times${$7$}$=\\triangle$이고, $\\bigcirc$가 $6$이면 $\\triangle$는 {$42$}이다.",
+        "acceptedAnswers": [
+          [
+            "$7$"
+          ],
+          [
+            "$42$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3d78e8275a82d49226a9cb929da3396bf1eeeef56206244df1c29dac2223a024",
+      "questionRevision": "planning-e5e6-20261006-3d78e8275a82",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-2-xc16",
+      "bDecision": "revise",
+      "bPrompt": "$\\square+2=\\triangle$와 $\\square\\times2=\\triangle$는 $\\square=2$일 때 $\\triangle$가 모두 $4$입니다. 두 식이 같은 대응 관계를 나타내는지 판단하고, $\\square$에 다른 수를 넣어 그 까닭을 설명하시오.",
+      "bAnswer": "같은 대응 관계가 아니다. 예를 들어 $\\square=3$이면 덧셈식의 $\\triangle$는 $5$, 곱셈식의 $\\triangle$는 $6$으로 서로 다르다. 한 값에서 같아도 다른 값에서 다르면 다른 관계이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 대응 관계가 아니다",
+            "다른 대응 관계이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$이외의 수를 넣었을 때 더하기$2$와곱하기$2$의 결과가 다른 예를 정확히 제시한다",
+            "$\\square=3$이면 덧셈식은$5$, 곱셈식은$6$이다"
+          ]
+        }
+      ],
+      "bGoal": "한 짝에서 일치해도 다른 짝에서 다르면 다른 대응 관계임을 반례로 보인다.",
+      "bReason": "원문은 결론을 그대로 말하므로, 판단을 학생에게 맡기고 다른 수를 넣어 근거를 대게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\bigcirc+2=\\triangle$와 $\\bigcirc\\times2=\\triangle$는 $\\bigcirc=2$일 때 $\\triangle$가 모두 $4$이다. 그러나 $\\bigcirc=3$일 때 $\\triangle$는 덧셈식에서 {$5$}, 곱셈식에서 {$6$}이므로 두 식은 서로 {다른} 대응 관계를 나타낸다.",
+      "cReason": "원 빈칸 '다른 대응 관계'는 근거 없이 결론만 쓰게 하고 빈칸 □가 기호와 겹치므로, 다른 값을 계산해 판단하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "다른",
+            "같지 않은"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0660-0690.json",
+      "codexFinalAmendedFromFingerprint": "e9a55fa46ff661aa9fb0060b9699058f3f5781fe5c6d58abdc1ffa11993262f4",
+      "sourceIndex": 667,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-2-xc16",
+        "section": "초5::1-3 대응 관계::1-3-2 대응 관계를 식으로 나타내기",
+        "term": "한 값에서 같아도 다른 식",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$\\square=2$일 때 $\\square+2$와 $\\square\\times2$는 모두 $4$이지만 두 식은 {다른 대응 관계}이다.",
+        "studentC": "$\\square=2$일 때 $\\square+2$와 $\\square\\times2$는 모두 $4$이지만 두 식은 □이다.",
+        "answers": [
+          "다른 대응 관계"
+        ]
+      },
+      "sourceFingerprint": "89c76a0e80a3cea2def7d020433cf82229bba398b64fe0319a5b87572f600ee7",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$6$",
+        "다른"
+      ],
+      "cStudentAfter": "$\\bigcirc+2=\\triangle$와 $\\bigcirc\\times2=\\triangle$는 $\\bigcirc=2$일 때 $\\triangle$가 모두 $4$이다. 그러나 $\\bigcirc=3$일 때 $\\triangle$는 덧셈식에서 □, 곱셈식에서 □이므로 두 식은 서로 □ 대응 관계를 나타낸다.",
+      "cMarkedSentence": "$\\bigcirc+2=\\triangle$와 $\\bigcirc\\times2=\\triangle$는 $\\bigcirc=2$일 때 $\\triangle$가 모두 $4$이다. 그러나 $\\bigcirc=3$일 때 $\\triangle$는 덧셈식에서 {$5$}, 곱셈식에서 {$6$}이므로 두 식은 서로 {다른} 대응 관계를 나타낸다.",
+      "cStudentSentence": "$\\bigcirc+2=\\triangle$와 $\\bigcirc\\times2=\\triangle$는 $\\bigcirc=2$일 때 $\\triangle$가 모두 $4$이다. 그러나 $\\bigcirc=3$일 때 $\\triangle$는 덧셈식에서 □, 곱셈식에서 □이므로 두 식은 서로 □ 대응 관계를 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "다른",
+          "equivalents": [
+            "같지 않은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\square+2=\\triangle$와 $\\square\\times2=\\triangle$는 $\\square=2$일 때 $\\triangle$가 모두 $4$입니다. 두 식이 같은 대응 관계를 나타내는지 판단하고, $\\square$에 다른 수를 넣어 그 까닭을 설명하시오.",
+        "answer": "같은 대응 관계가 아니다. 예를 들어 $\\square=3$이면 덧셈식의 $\\triangle$는 $5$, 곱셈식의 $\\triangle$는 $6$으로 서로 다르다. 한 값에서 같아도 다른 값에서 다르면 다른 관계이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 대응 관계가 아니다",
+              "다른 대응 관계이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$이외의 수를 넣었을 때 더하기$2$와곱하기$2$의 결과가 다른 예를 정확히 제시한다",
+              "$\\square=3$이면 덧셈식은$5$, 곱셈식은$6$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\bigcirc+2=\\triangle$와 $\\bigcirc\\times2=\\triangle$는 $\\bigcirc=2$일 때 $\\triangle$가 모두 $4$이다. 그러나 $\\bigcirc=3$일 때 $\\triangle$는 덧셈식에서 {$5$}, 곱셈식에서 {$6$}이므로 두 식은 서로 {다른} 대응 관계를 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$6$"
+          ],
+          [
+            "다른",
+            "같지 않은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1b8f51081d71cd8a8df4c9fb72453675c5bcf362eec11a4b3b497a218e92f0a6",
+      "questionRevision": "planning-e5e6-20261006-1b8f51081d71",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-3-xc10",
+      "bDecision": "revise",
+      "bPrompt": "한 양을 알면 식을 이용해 다른 양을 계산해 구하려 합니다. 같은 한 양의 값에서 다른 양이 서로 다른 여러 값일 수도 있다면 그 방법으로 구할 수 있는지 설명하세요. 또 ㉠ 한 개에 $500$원인 지우개의 개수와 전체 값, ㉡ 우리 반 학생의 나이와 키 중 한 양만으로 다른 양을 정확히 계산해 구할 수 없는 것을 고르고 까닭을 말해 보세요.",
+      "bAnswer": "같은 한 양의 값에서 다른 양이 하나로 정해져야 계산해 구할 수 있다. ㉡은 같은 나이에도 학생마다 키가 달라 나이만으로 그 학생의 키를 정확히 구할 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 양이 정해지면 다른 양이 하나로 정해져야 한다",
+            "한 양에 다른 양이 한 가지로만 대응해야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "㉡",
+            "㉡ 우리 반 학생의 나이와 키"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 나이에도 키가 여러 가지일 수 있다",
+            "나이가 같아도 키가 사람마다 다르다"
+          ]
+        }
+      ],
+      "bGoal": "한 양만으로 다른 양을 계산해 구하려면 값이 하나로 정해져야 함을 실제 자료의 상황으로 설명한다.",
+      "bReason": "어떠한 식으로도 나타낼 수 없다는 일반 단정 대신 한 양만으로 다른 양을 정확히 구하는 계산 규칙의 범위를 명시한다.",
+      "cDecision": "revise",
+      "cAfter": "한 양의 값만으로 다른 양을 정확히 계산해 구하려면, 한 양이 정해졌을 때 다른 양이 {하나}로 정해져야 한다. 한 개에 $500$원인 지우개의 개수만 알면 전체 값을 구할 수 {있고}, 학생의 나이만으로 그 학생의 키를 정확히 구할 수는 {없다}.",
+      "cReason": "'하나로 정해지는'이라는 구절 암기 대신 핵심 낱말과 두 상황의 판단을 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "하나=한 가지/하나의 값 인정.",
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "하나",
+            "한 가지",
+            "하나의 값",
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "있고",
+            "있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "없고"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-011-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0660-0690.json",
+      "codexFinalAmendedFromFingerprint": "395135656e6c635636c49a8344b8d73a1ec3ec47197ea864645c82d15eae5922",
+      "sourceIndex": 685,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-3-xc10",
+        "section": "초5::1-3 대응 관계::1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+        "term": "대응식으로 나타낼 수 있는 상황",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 양이 정해지면 다른 양이 {하나로 정해지는} 상황이어야 대응 관계를 식으로 나타낼 수 있다.",
+        "studentC": "한 양이 정해지면 다른 양이 □ 상황이어야 대응 관계를 식으로 나타낼 수 있다.",
+        "answers": [
+          "하나로 정해지는"
+        ]
+      },
+      "sourceFingerprint": "7f7f19beca19b28318f72bc343491c83e0eebdbe89652292e9cded05c2b2e10c",
+      "draftEvidence": "evidence/section-011-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "하나",
+        "있고",
+        "없다"
+      ],
+      "cStudentAfter": "한 양의 값만으로 다른 양을 정확히 계산해 구하려면, 한 양이 정해졌을 때 다른 양이 □로 정해져야 한다. 한 개에 $500$원인 지우개의 개수만 알면 전체 값을 구할 수 □, 학생의 나이만으로 그 학생의 키를 정확히 구할 수는 □.",
+      "cMarkedSentence": "한 양의 값만으로 다른 양을 정확히 계산해 구하려면, 한 양이 정해졌을 때 다른 양이 {하나}로 정해져야 한다. 한 개에 $500$원인 지우개의 개수만 알면 전체 값을 구할 수 {있고}, 학생의 나이만으로 그 학생의 키를 정확히 구할 수는 {없다}.",
+      "cStudentSentence": "한 양의 값만으로 다른 양을 정확히 계산해 구하려면, 한 양이 정해졌을 때 다른 양이 □로 정해져야 한다. 한 개에 $500$원인 지우개의 개수만 알면 전체 값을 구할 수 □, 학생의 나이만으로 그 학생의 키를 정확히 구할 수는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "하나",
+          "equivalents": [
+            "한 가지",
+            "하나의 값",
+            "$1$"
+          ]
+        },
+        {
+          "key": "있고",
+          "equivalents": [
+            "있다"
+          ]
+        },
+        {
+          "key": "없다",
+          "equivalents": [
+            "없고"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 양을 알면 식을 이용해 다른 양을 계산해 구하려 합니다. 같은 한 양의 값에서 다른 양이 서로 다른 여러 값일 수도 있다면 그 방법으로 구할 수 있는지 설명하세요. 또 ㉠ 한 개에 $500$원인 지우개의 개수와 전체 값, ㉡ 우리 반 학생의 나이와 키 중 한 양만으로 다른 양을 정확히 계산해 구할 수 없는 것을 고르고 까닭을 말해 보세요.",
+        "answer": "같은 한 양의 값에서 다른 양이 하나로 정해져야 계산해 구할 수 있다. ㉡은 같은 나이에도 학생마다 키가 달라 나이만으로 그 학생의 키를 정확히 구할 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 양이 정해지면 다른 양이 하나로 정해져야 한다",
+              "한 양에 다른 양이 한 가지로만 대응해야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "㉡",
+              "㉡ 우리 반 학생의 나이와 키"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 나이에도 키가 여러 가지일 수 있다",
+              "나이가 같아도 키가 사람마다 다르다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 양의 값만으로 다른 양을 정확히 계산해 구하려면, 한 양이 정해졌을 때 다른 양이 {하나}로 정해져야 한다. 한 개에 $500$원인 지우개의 개수만 알면 전체 값을 구할 수 {있고}, 학생의 나이만으로 그 학생의 키를 정확히 구할 수는 {없다}.",
+        "acceptedAnswers": [
+          [
+            "하나",
+            "한 가지",
+            "하나의 값",
+            "$1$"
+          ],
+          [
+            "있고",
+            "있다"
+          ],
+          [
+            "없다",
+            "없고"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "399aafc06db853e56e06b7e4b49eee1f33f4c3df75998338fea2274855c74623",
+      "questionRevision": "planning-e5e6-20261006-399aafc06db8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-3-xc12",
+      "bDecision": "revise",
+      "bPrompt": "두 도시의 날짜가 같을 때만 생각하고, 시각을 $0$시부터 $24$시 전까지의 수로 씁니다. 서울이 $15$시일 때 어느 도시는 $10$시이며 두 도시의 시각 차이는 일정합니다. 서울의 시각을 $\\bigcirc$, 그 도시의 시각을 $\\triangle$로 나타내어 두 시각의 관계를 식으로 쓰고, 식을 만든 까닭을 설명하시오. 서울이 $22$시일 때 그 도시의 시각도 구하시오.",
+      "bAnswer": "$\\bigcirc - 5 = \\triangle$ 또는 $\\triangle + 5 = \\bigcirc$이다. 두 도시의 시각 차이가 $15 - 10 = 5$로 일정하기 때문이다. 서울이 $22$시이면 그 도시는 같은 날 $17$시이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서울 시각에서 $5$를 빼면 다른 도시의 시각이 되는 식",
+            "다른 도시의 시각에 $5$를 더하면 서울 시각이 되는 식"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 시각의 차 $5$가 일정하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다른 도시의 시각은 $17$시이다"
+          ]
+        }
+      ],
+      "bGoal": "같은 날짜의 두 도시 시각을 일정한 차를 이용한 뺄셈 관계로 나타낸다.",
+      "bReason": "'시각이 늦다'를 실제 두 시각으로 풀고, 날짜가 같은 경우만 본다는 조건을 질문 전체에 명시한다. 시각의 기호도 그 뜻을 함께 제시한다.",
+      "cDecision": "revise",
+      "cAfter": "두 도시의 날짜가 같을 때, 서울이 $15$시이면 어느 도시는 $10$시이고 두 도시의 시각 차이는 일정하다. 그 도시의 시각은 서울의 시각에서 {$5$}를 {뺀} 값이므로, 서울이 $20$시일 때 그 도시는 {$15$}시이다.",
+      "cReason": "일상에서 뜻이 갈리는 '늦다'를 쓰지 않고 실제 같은 날짜의 두 시각으로 일정한 차와 연산을 확인한다.",
+      "coreAfter": "두 도시의 날짜가 같고 시각을 $0$시부터 $24$시 전까지로 나타낼 때, 표시된 시각이 더 이른 도시의 시각은 다른 도시의 시각에서 {시간 차를 뺀} 시각이다.",
+      "coreReason": "'늦은 시각'은 더 나중 시각으로 읽힐 수 있다. 일정한 시각 차라는 일반 관계와 날짜 조건을 보존하며 뺄셈의 방향을 분명히 한다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "뺀",
+            "뺀 뒤 얻은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-011-rubric.json",
+      "editorialOwner": "Codex",
+      "codexRubricReview": "Direct deletion and copying review: only requested mathematical meanings are required; alternatives are separate strings.",
+      "coreTargetReason": "그 시간을 뺀이라는 원문 표적의 뺄셈 방향을 보존한다. 늦은 시각이라는 오독과 오전·오후 숫자 비교를 피하도록 같은 날짜와24시간 표기를 명시한다. 분이 있는 시각까지 포함하도록24시 전까지라고 범위를 쓰며, 시각 수의 소수 연산으로 오독하지 않게 시각에서 시간 차를 빼는 관계로 표현한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0660-0690.json",
+      "codexFinalAmendedFromFingerprint": "aad1485cab1cc5687601c299fe81c49ba3dcb413fa724b9a0c431e14e19a80d8",
+      "sourceIndex": 687,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-3-xc12",
+        "section": "초5::1-3 대응 관계::1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+        "term": "늦은 시각을 나타내는 식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 곳의 날짜가 같을 때, 한 곳의 시각이 다른 곳보다 일정한 시간만큼 늦으면 늦은 쪽의 시각은 빠른 쪽 시각에서 {그 시간을 뺀} 값이다.",
+        "example": {
+          "prompt": "시각을 $0$시부터 $24$시까지의 수로 쓸 때, 같은 날 서울보다 $5$시간 늦은 도시의 시각 $\\triangle$를 서울 시각 $\\square$로 나타낸 식은?",
+          "answer": "$\\square-5=\\triangle$"
+        },
+        "studentC": "두 곳의 날짜가 같을 때, 한 곳의 시각이 다른 곳보다 일정한 시간만큼 늦으면 늦은 쪽의 시각은 빠른 쪽 시각에서 □ 값이다.",
+        "answers": [
+          "그 시간을 뺀"
+        ]
+      },
+      "sourceFingerprint": "a39a64372382b2f397ba55330852d4b7f48936252af209a3697ad2d4d26e0b1d",
+      "draftEvidence": "evidence/section-011-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$5$",
+        "뺀",
+        "$15$"
+      ],
+      "cStudentAfter": "두 도시의 날짜가 같을 때, 서울이 $15$시이면 어느 도시는 $10$시이고 두 도시의 시각 차이는 일정하다. 그 도시의 시각은 서울의 시각에서 □를 □ 값이므로, 서울이 $20$시일 때 그 도시는 □시이다.",
+      "cMarkedSentence": "두 도시의 날짜가 같을 때, 서울이 $15$시이면 어느 도시는 $10$시이고 두 도시의 시각 차이는 일정하다. 그 도시의 시각은 서울의 시각에서 {$5$}를 {뺀} 값이므로, 서울이 $20$시일 때 그 도시는 {$15$}시이다.",
+      "cStudentSentence": "두 도시의 날짜가 같을 때, 서울이 $15$시이면 어느 도시는 $10$시이고 두 도시의 시각 차이는 일정하다. 그 도시의 시각은 서울의 시각에서 □를 □ 값이므로, 서울이 $20$시일 때 그 도시는 □시이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "뺀",
+          "equivalents": [
+            "뺀 뒤 얻은"
+          ]
+        },
+        {
+          "key": "$15$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 도시의 날짜가 같을 때만 생각하고, 시각을 $0$시부터 $24$시 전까지의 수로 씁니다. 서울이 $15$시일 때 어느 도시는 $10$시이며 두 도시의 시각 차이는 일정합니다. 서울의 시각을 $\\bigcirc$, 그 도시의 시각을 $\\triangle$로 나타내어 두 시각의 관계를 식으로 쓰고, 식을 만든 까닭을 설명하시오. 서울이 $22$시일 때 그 도시의 시각도 구하시오.",
+        "answer": "$\\bigcirc - 5 = \\triangle$ 또는 $\\triangle + 5 = \\bigcirc$이다. 두 도시의 시각 차이가 $15 - 10 = 5$로 일정하기 때문이다. 서울이 $22$시이면 그 도시는 같은 날 $17$시이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서울 시각에서 $5$를 빼면 다른 도시의 시각이 되는 식",
+              "다른 도시의 시각에 $5$를 더하면 서울 시각이 되는 식"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 시각의 차 $5$가 일정하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 도시의 시각은 $17$시이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 도시의 날짜가 같을 때, 서울이 $15$시이면 어느 도시는 $10$시이고 두 도시의 시각 차이는 일정하다. 그 도시의 시각은 서울의 시각에서 {$5$}를 {뺀} 값이므로, 서울이 $20$시일 때 그 도시는 {$15$}시이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "뺀",
+            "뺀 뒤 얻은"
+          ],
+          [
+            "$15$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "38758685240247eb4c84fcb010edf8a9a326c24eed9a6274d9fb76f09172509b",
+      "questionRevision": "planning-e5e6-20261006-387586852402",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-3-3-xc14",
+      "bDecision": "revise",
+      "bPrompt": "다리가 $4$개인 의자의 수를 $\\square$, 전체 다리 수를 $\\triangle$로 나타내어 식을 쓰세요. 바퀴가 $4$개인 자동차의 수를 $\\square$, 전체 바퀴 수를 $\\triangle$로 나타내어 식을 쓰세요. 두 식을 비교하여 상황이 달라도 같은 식을 쓸 수 있는 조건을 설명하세요.",
+      "bAnswer": "두 상황 모두 $\\square\\times4=\\triangle$이다. 상황이 달라도 두 양 사이의 규칙(한 양이 다른 양의 $4$배)이 같으면 같은 식으로 나타낼 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 상황 모두 $\\square\\times4=\\triangle$",
+            "$4\\times\\square=\\triangle$",
+            "$\\triangle\\div4=\\square$"
+          ]
+        },
+        {
+          "anyOf": [
+            "상황이 달라도 두 양 사이의 규칙이 같으면 같은 식으로 나타낼 수 있다",
+            "한 양이 다른 양의 $4$배인 관계가 같아 같은 식이다"
+          ]
+        }
+      ],
+      "bGoal": "규칙이 같은 서로 다른 상황이 하나의 식으로 나타남을 설명한다.",
+      "bReason": "'같은 식의 여러 상황'은 편집용 제목이라 두 상황의 식을 직접 써서 비교하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "다리가 $4$개인 의자의 수를 $\\square$, 전체 다리 수를 $\\triangle$로 하면 $\\square\\times4=\\triangle$이다. 자동차의 수를 $\\square$, 전체 바퀴 수를 $\\triangle$로 하면 이 식은 바퀴가 $4$개인 자동차에도 쓸 수 {있고}, 바퀴가 $3$개인 세발자전거에는 쓸 수 {없다}.",
+      "cReason": "빈칸 '여러 상황'은 짐작으로 채우는 말이라 규칙이 같은 상황과 다른 상황을 판단하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "있고",
+            "있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "없고"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-011-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0660-0690.json",
+      "codexFinalAmendedFromFingerprint": "7a24f906d58e22c3067c771747eda79599c04054f20258d87746b0cdfb24482e",
+      "sourceIndex": 689,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-3-xc14",
+        "section": "초5::1-3 대응 관계::1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+        "term": "같은 식의 여러 상황",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$\\square\\times4=\\triangle$는 의자와 다리, 자동차와 바퀴처럼 {여러 상황}에 쓸 수 있다.",
+        "studentC": "$\\square\\times4=\\triangle$는 의자와 다리, 자동차와 바퀴처럼 □에 쓸 수 있다.",
+        "answers": [
+          "여러 상황"
+        ]
+      },
+      "sourceFingerprint": "0cc280e4f203ef2aaeb8e1c277f760fe8915ac83933fec3e53cb0f3ec887b7e5",
+      "draftEvidence": "evidence/section-011-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "있고",
+        "없다"
+      ],
+      "cStudentAfter": "다리가 $4$개인 의자의 수를 $\\square$, 전체 다리 수를 $\\triangle$로 하면 $\\square\\times4=\\triangle$이다. 자동차의 수를 $\\square$, 전체 바퀴 수를 $\\triangle$로 하면 이 식은 바퀴가 $4$개인 자동차에도 쓸 수 □, 바퀴가 $3$개인 세발자전거에는 쓸 수 □.",
+      "cMarkedSentence": "다리가 $4$개인 의자의 수를 $\\square$, 전체 다리 수를 $\\triangle$로 하면 $\\square\\times4=\\triangle$이다. 자동차의 수를 $\\square$, 전체 바퀴 수를 $\\triangle$로 하면 이 식은 바퀴가 $4$개인 자동차에도 쓸 수 {있고}, 바퀴가 $3$개인 세발자전거에는 쓸 수 {없다}.",
+      "cStudentSentence": "다리가 $4$개인 의자의 수를 $\\square$, 전체 다리 수를 $\\triangle$로 하면 $\\square\\times4=\\triangle$이다. 자동차의 수를 $\\square$, 전체 바퀴 수를 $\\triangle$로 하면 이 식은 바퀴가 $4$개인 자동차에도 쓸 수 □, 바퀴가 $3$개인 세발자전거에는 쓸 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "있고",
+          "equivalents": [
+            "있다"
+          ]
+        },
+        {
+          "key": "없다",
+          "equivalents": [
+            "없고"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "다리가 $4$개인 의자의 수를 $\\square$, 전체 다리 수를 $\\triangle$로 나타내어 식을 쓰세요. 바퀴가 $4$개인 자동차의 수를 $\\square$, 전체 바퀴 수를 $\\triangle$로 나타내어 식을 쓰세요. 두 식을 비교하여 상황이 달라도 같은 식을 쓸 수 있는 조건을 설명하세요.",
+        "answer": "두 상황 모두 $\\square\\times4=\\triangle$이다. 상황이 달라도 두 양 사이의 규칙(한 양이 다른 양의 $4$배)이 같으면 같은 식으로 나타낼 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 상황 모두 $\\square\\times4=\\triangle$",
+              "$4\\times\\square=\\triangle$",
+              "$\\triangle\\div4=\\square$"
+            ]
+          },
+          {
+            "anyOf": [
+              "상황이 달라도 두 양 사이의 규칙이 같으면 같은 식으로 나타낼 수 있다",
+              "한 양이 다른 양의 $4$배인 관계가 같아 같은 식이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "다리가 $4$개인 의자의 수를 $\\square$, 전체 다리 수를 $\\triangle$로 하면 $\\square\\times4=\\triangle$이다. 자동차의 수를 $\\square$, 전체 바퀴 수를 $\\triangle$로 하면 이 식은 바퀴가 $4$개인 자동차에도 쓸 수 {있고}, 바퀴가 $3$개인 세발자전거에는 쓸 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "있고",
+            "있다"
+          ],
+          [
+            "없다",
+            "없고"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "72d0faf5d22ef124a8222164fac97b092e2e770359ae7d31efb0774c32e8d5a5",
+      "questionRevision": "planning-e5e6-20261006-72d0faf5d22e",
+      "requiresIndependentReview": true
+    }
+  ]
+}

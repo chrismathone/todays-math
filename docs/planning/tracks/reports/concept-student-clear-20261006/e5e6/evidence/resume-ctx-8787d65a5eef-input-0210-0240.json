@@ -1,0 +1,3198 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T05:04:00.598332+00:00",
+  "rows": [
+    {
+      "id": "e6-1-2-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 이름은 무엇을 보고 정하는지 쓰시오. 밑면이 칠각형인 각기둥의 이름도 쓰시오.",
+      "bAnswer": "밑면이 어떤 다각형인지(밑면의 모양)를 보고 정한다. 밑면이 칠각형이면 칠각기둥이다.",
+      "bGoal": "밑면의 다각형 이름으로 각기둥 이름을 정하는 규칙을 안다.",
+      "bReason": "이름 짓기의 기준과 적용을 함께 묻는 핵심 개념이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 모양",
+            "밑면이 어떤 다각형인지",
+            "밑면의 다각형 이름"
+          ]
+        },
+        {
+          "anyOf": [
+            "칠각기둥"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "cDecision": "keep",
+      "cAfter": "각기둥은 {밑면의 모양}으로 이름을 정한다. 밑면이 오각형이면 오각기둥이다.",
+      "cReason": "밑면 모양으로 이름을 정한다는 짧은 낱말 목표가 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 210,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-2-c1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "각기둥의 이름",
+        "definition": "각기둥은 {밑면의 모양}으로 이름을 정한다. 밑면이 오각형이면 오각기둥이다.",
+        "studentC": "각기둥은 □으로 이름을 정한다. 밑면이 오각형이면 오각기둥이다.",
+        "answers": [
+          "밑면의 모양"
+        ]
+      },
+      "sourceFingerprint": "5fdcd408cd39c28b228bccb676d120b89fa411c402a7cafef0525438affbcd78",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥은 {밑면의 모양}으로 이름을 정한다. 밑면이 오각형이면 오각기둥이다.",
+      "cFrozenStudentSentence": "각기둥은 □으로 이름을 정한다. 밑면이 오각형이면 오각기둥이다.",
+      "cProposedAnswers": [
+        "밑면의 모양"
+      ],
+      "cStudentAfter": "각기둥은 □으로 이름을 정한다. 밑면이 오각형이면 오각기둥이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면의 모양"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥은 {밑면의 모양}으로 이름을 정한다. 밑면이 오각형이면 오각기둥이다.",
+      "cStudentSentence": "각기둥은 □으로 이름을 정한다. 밑면이 오각형이면 오각기둥이다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면의 모양",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 이름은 무엇을 보고 정하는지 쓰시오. 밑면이 칠각형인 각기둥의 이름도 쓰시오.",
+        "answer": "밑면이 어떤 다각형인지(밑면의 모양)를 보고 정한다. 밑면이 칠각형이면 칠각기둥이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 모양",
+              "밑면이 어떤 다각형인지",
+              "밑면의 다각형 이름"
+            ]
+          },
+          {
+            "anyOf": [
+              "칠각기둥"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥은 {밑면의 모양}으로 이름을 정한다. 밑면이 오각형이면 오각기둥이다.",
+        "acceptedAnswers": [
+          [
+            "밑면의 모양"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e4e9d39047c309712618265e2a0f1bb470d008cfa9bed00562c8af76a594b281",
+      "questionRevision": "planning-e5e6-20261006-e4e9d39047c3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "각기둥에서 모서리란 어떤 부분을 말하는지 쓰시오.",
+      "bAnswer": "각기둥의 두 면이 맞닿아 생기는 선분이다.",
+      "bGoal": "모서리가 면과 면이 만나 생기는 선분임을 안다.",
+      "bReason": "용어의 뜻을 직접 설명하게 하는 기본 정의이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 면이 만나는 선분",
+            "면과 면이 맞닿아 생기는 선분"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 두 면이 맞닿아 생기는 {선분}을 모서리라 한다.",
+      "cReason": "'선분'이라는 한 낱말로 모서리의 뜻을 확인하는 짧은 정의이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 211,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-2-c2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "모서리",
+        "definition": "각기둥의 두 면이 맞닿아 생기는 {선분}을 모서리라 한다.",
+        "studentC": "각기둥의 두 면이 맞닿아 생기는 □을 모서리라 한다.",
+        "answers": [
+          "선분"
+        ]
+      },
+      "sourceFingerprint": "6f40f8d87e9635043ae99bf9024f33b1f0cf4bf2e6b90e47d3ceb06b768adc63",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥의 두 면이 맞닿아 생기는 {선분}을 모서리라 한다.",
+      "cFrozenStudentSentence": "각기둥의 두 면이 맞닿아 생기는 □을 모서리라 한다.",
+      "cProposedAnswers": [
+        "선분"
+      ],
+      "cStudentAfter": "각기둥의 두 면이 맞닿아 생기는 □을 모서리라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "선분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 두 면이 맞닿아 생기는 {선분}을 모서리라 한다.",
+      "cStudentSentence": "각기둥의 두 면이 맞닿아 생기는 □을 모서리라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "선분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥에서 모서리란 어떤 부분을 말하는지 쓰시오.",
+        "answer": "각기둥의 두 면이 맞닿아 생기는 선분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 면이 만나는 선분",
+              "면과 면이 맞닿아 생기는 선분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 두 면이 맞닿아 생기는 {선분}을 모서리라 한다.",
+        "acceptedAnswers": [
+          [
+            "선분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "01e1597ed037fd20c91a4918f177a69ab1a8d6ea1bd43e6dcca08f734665a199",
+      "questionRevision": "planning-e5e6-20261006-01e1597ed037",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "각기둥에서 꼭짓점이란 어떤 부분을 말하는지 쓰시오.",
+      "bAnswer": "모서리들의 끝이 모이는 점이다.",
+      "bGoal": "꼭짓점이 모서리들이 만나는 점임을 안다.",
+      "bReason": "모서리와 구분되는 점이라는 뜻을 묻는 기본 정의이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리들이 만나는 점",
+            "모서리의 끝이 모이는 점",
+            "모서리끼리 만나는 점"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각기둥에서 모서리들의 끝이 모이는 {점}을 꼭짓점이라 한다.",
+      "cReason": "선분(모서리)과 점(꼭짓점)을 구별하는 짧은 낱말 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 212,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-2-c3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "꼭짓점",
+        "definition": "각기둥에서 모서리들의 끝이 모이는 {점}을 꼭짓점이라 한다.",
+        "studentC": "각기둥에서 모서리들의 끝이 모이는 □을 꼭짓점이라 한다.",
+        "answers": [
+          "점"
+        ]
+      },
+      "sourceFingerprint": "0fdf724827d6a2c61f69a74c26a6ad188f082ca33a51cf12c44c68a21e9078f4",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥에서 모서리들의 끝이 모이는 {점}을 꼭짓점이라 한다.",
+      "cFrozenStudentSentence": "각기둥에서 모서리들의 끝이 모이는 □을 꼭짓점이라 한다.",
+      "cProposedAnswers": [
+        "점"
+      ],
+      "cStudentAfter": "각기둥에서 모서리들의 끝이 모이는 □을 꼭짓점이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥에서 모서리들의 끝이 모이는 {점}을 꼭짓점이라 한다.",
+      "cStudentSentence": "각기둥에서 모서리들의 끝이 모이는 □을 꼭짓점이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥에서 꼭짓점이란 어떤 부분을 말하는지 쓰시오.",
+        "answer": "모서리들의 끝이 모이는 점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모서리들이 만나는 점",
+              "모서리의 끝이 모이는 점",
+              "모서리끼리 만나는 점"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥에서 모서리들의 끝이 모이는 {점}을 꼭짓점이라 한다.",
+        "acceptedAnswers": [
+          [
+            "점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "da3907a8608fe62e5a21b422d3247900d2f091ef882fff7df15188efda28d341",
+      "questionRevision": "planning-e5e6-20261006-da3907a8608f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-c4",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 높이는 어떤 길이인지 쓰시오. 또 이 길이를 옆면끼리 만나는 모서리의 길이와 비교하여 말하시오.",
+      "bAnswer": "두 밑면 사이를 수직으로 잰 길이이다. 옆면끼리 만나는 모서리의 길이와 같다.",
+      "bGoal": "높이가 두 밑면 사이의 수직 거리이며 옆 모서리 길이와 같음을 안다.",
+      "bReason": "높이의 뜻과 모서리와의 관계를 함께 확인하는 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면 사이의 수직 거리",
+            "밑면에서 밑면까지 수직으로 잰 길이"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면끼리 만나는 모서리의 길이와 같다",
+            "옆 모서리와 길이가 같다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 높이는 밑면 사이를 {수직}으로 잰 길이이며, 옆면끼리 만나는 모서리의 길이와 같다.",
+      "cReason": "'수직'으로 잰다는 조건이 높이 개념의 핵심이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 213,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-2-c4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "level": "중",
+        "kind": "정의",
+        "term": "높이",
+        "definition": "각기둥의 높이는 밑면 사이를 {수직}으로 잰 길이이며, 옆면끼리 만나는 모서리의 길이와 같다.",
+        "studentC": "각기둥의 높이는 밑면 사이를 □으로 잰 길이이며, 옆면끼리 만나는 모서리의 길이와 같다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "f33ee37baae33812bdd4bc23881547f796d6cedd9f311127bd2c4498d4b59ddc",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥의 높이는 밑면 사이를 {수직}으로 잰 길이이며, 옆면끼리 만나는 모서리의 길이와 같다.",
+      "cFrozenStudentSentence": "각기둥의 높이는 밑면 사이를 □으로 잰 길이이며, 옆면끼리 만나는 모서리의 길이와 같다.",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "각기둥의 높이는 밑면 사이를 □으로 잰 길이이며, 옆면끼리 만나는 모서리의 길이와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 높이는 밑면 사이를 {수직}으로 잰 길이이며, 옆면끼리 만나는 모서리의 길이와 같다.",
+      "cStudentSentence": "각기둥의 높이는 밑면 사이를 □으로 잰 길이이며, 옆면끼리 만나는 모서리의 길이와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 높이는 어떤 길이인지 쓰시오. 또 이 길이를 옆면끼리 만나는 모서리의 길이와 비교하여 말하시오.",
+        "answer": "두 밑면 사이를 수직으로 잰 길이이다. 옆면끼리 만나는 모서리의 길이와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면 사이의 수직 거리",
+              "밑면에서 밑면까지 수직으로 잰 길이"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면끼리 만나는 모서리의 길이와 같다",
+              "옆 모서리와 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 높이는 밑면 사이를 {수직}으로 잰 길이이며, 옆면끼리 만나는 모서리의 길이와 같다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fba9cf7dcc69a8449ef7a3bd6255fada4869ea7b528f82078cf872825faa5636",
+      "questionRevision": "planning-e5e6-20261006-fba9cf7dcc69",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-c5",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 밑면의 변의 수를 알 때 면, 모서리, 꼭짓점의 수를 각각 어떻게 구하는지 쓰시오. 밑면이 육각형인 각기둥은 면, 모서리, 꼭짓점이 각각 몇 개인지도 구하시오.",
+      "bAnswer": "면은 변의 수에 $2$를 더하고, 모서리는 변의 수에 $3$을 곱하고, 꼭짓점은 변의 수에 $2$를 곱한다. 육각기둥은 면 $8$개, 모서리 $18$개, 꼭짓점 $12$개이다.",
+      "bGoal": "밑면의 변의 수로 세 구성 요소의 수를 구하는 방법을 안다.",
+      "bReason": "세 규칙을 한 번에 묻고 육각기둥으로 적용까지 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면의 수는 변의 수에 $2$를 더한다",
+            "면의 수는 변의 수 $+2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리의 수는 변의 수의 $3$배",
+            "모서리의 수는 변의 수에 $3$을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점의 수는 변의 수의 $2$배",
+            "꼭짓점의 수는 변의 수에 $2$를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "면 $8$개, 모서리 $18$개, 꼭짓점 $12$개"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "밑면이 사각형인 각기둥은 밑면의 변이 $4$개이다. 면은 $4+$ {$2$} $=6$개, 모서리는 $4\\times$ {$3$} $=12$개, 꼭짓점은 $4\\times$ {$2$} $=8$개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "맥락 없이 수만 외우는 대신 사각기둥의 구체적 식으로 각 수의 역할을 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 214,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-2-c5",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "level": "상",
+        "kind": "공식",
+        "term": "각기둥의 구성 요소의 수",
+        "definition": "각기둥에서 밑면의 변 수에 {$2$}를 더하면 면 수, {$3$}을 곱하면 모서리 수, {$2$}를 곱하면 꼭짓점 수가 된다.",
+        "studentC": "각기둥에서 밑면의 변 수에 □를 더하면 면 수, □을 곱하면 모서리 수, □를 곱하면 꼭짓점 수가 된다.",
+        "answers": [
+          "$2$",
+          "$3$",
+          "$2$"
+        ]
+      },
+      "sourceFingerprint": "f1cdd02a08a4b69b59088664dcaedf21a5df267dade6b2efc0af59c693d8e2e0",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$3$",
+        "$2$"
+      ],
+      "cStudentAfter": "밑면이 사각형인 각기둥은 밑면의 변이 $4$개이다. 면은 $4+$ □ $=6$개, 모서리는 $4\\times$ □ $=12$개, 꼭짓점은 $4\\times$ □ $=8$개이다.",
+      "cMarkedSentence": "밑면이 사각형인 각기둥은 밑면의 변이 $4$개이다. 면은 $4+$ {$2$} $=6$개, 모서리는 $4\\times$ {$3$} $=12$개, 꼭짓점은 $4\\times$ {$2$} $=8$개이다.",
+      "cStudentSentence": "밑면이 사각형인 각기둥은 밑면의 변이 $4$개이다. 면은 $4+$ □ $=6$개, 모서리는 $4\\times$ □ $=12$개, 꼭짓점은 $4\\times$ □ $=8$개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 밑면의 변의 수를 알 때 면, 모서리, 꼭짓점의 수를 각각 어떻게 구하는지 쓰시오. 밑면이 육각형인 각기둥은 면, 모서리, 꼭짓점이 각각 몇 개인지도 구하시오.",
+        "answer": "면은 변의 수에 $2$를 더하고, 모서리는 변의 수에 $3$을 곱하고, 꼭짓점은 변의 수에 $2$를 곱한다. 육각기둥은 면 $8$개, 모서리 $18$개, 꼭짓점 $12$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면의 수는 변의 수에 $2$를 더한다",
+              "면의 수는 변의 수 $+2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리의 수는 변의 수의 $3$배",
+              "모서리의 수는 변의 수에 $3$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 수는 변의 수의 $2$배",
+              "꼭짓점의 수는 변의 수에 $2$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "면 $8$개, 모서리 $18$개, 꼭짓점 $12$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 사각형인 각기둥은 밑면의 변이 $4$개이다. 면은 $4+$ {$2$} $=6$개, 모서리는 $4\\times$ {$3$} $=12$개, 꼭짓점은 $4\\times$ {$2$} $=8$개이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2ffb523a1acc9bc97de49ddd7091a0512fc073ca09f80f7a51f98009e2755e53",
+      "questionRevision": "planning-e5e6-20261006-2ffb523a1acc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "입체도형의 전개도는 어떤 그림인지, 입체도형을 어떻게 해서 얻는지 설명하시오.",
+      "bAnswer": "입체도형의 일부 모서리를 잘라서 면들이 이어진 채 평평하게 펼친 그림이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일부 모서리를 잘라 낸다",
+            "모서리를 따라 자른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평평하게 펼친 모양이다",
+            "납작하게 펼친 그림이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "전개도가 입체를 잘라 평평하게 편 그림임을 설명한다.",
+      "bReason": "제목만 쓰는 대신 얻는 방법과 모양을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "입체도형의 일부 모서리를 자르고 면들이 이어진 채 {평평하게} 펼친 그림을 {전개도}라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평평하게",
+            "납작하게",
+            "평면으로"
+          ]
+        },
+        {
+          "anyOf": [
+            "전개도"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸이 긴 구절이라 '평평하게'와 용어 '전개도'만 묻는 짧은 빈칸으로 나눈다.",
+      "exampleNeeded": false,
+      "sourceIndex": 215,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-3-c1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "level": "하",
+        "kind": "정의",
+        "term": "전개도",
+        "definition": "입체의 면들을 이어 둔 채 잘라서 {평평하게 편 모양}이 전개도이다.",
+        "studentC": "입체의 면들을 이어 둔 채 잘라서 □이 전개도이다.",
+        "answers": [
+          "평평하게 편 모양"
+        ]
+      },
+      "sourceFingerprint": "06c018d68602bb4cc1a8f90821f46d81f1461e1bde8a0f0036740265121d8e7a",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "평평하게",
+        "전개도"
+      ],
+      "cStudentAfter": "입체도형의 일부 모서리를 자르고 면들이 이어진 채 □ 펼친 그림을 □라고 한다.",
+      "cMarkedSentence": "입체도형의 일부 모서리를 자르고 면들이 이어진 채 {평평하게} 펼친 그림을 {전개도}라고 한다.",
+      "cStudentSentence": "입체도형의 일부 모서리를 자르고 면들이 이어진 채 □ 펼친 그림을 □라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "평평하게",
+          "equivalents": [
+            "납작하게",
+            "평면으로"
+          ]
+        },
+        {
+          "key": "전개도",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "입체도형의 전개도는 어떤 그림인지, 입체도형을 어떻게 해서 얻는지 설명하시오.",
+        "answer": "입체도형의 일부 모서리를 잘라서 면들이 이어진 채 평평하게 펼친 그림이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "일부 모서리를 잘라 낸다",
+              "모서리를 따라 자른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평평하게 펼친 모양이다",
+              "납작하게 펼친 그림이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "입체도형의 일부 모서리를 자르고 면들이 이어진 채 {평평하게} 펼친 그림을 {전개도}라고 한다.",
+        "acceptedAnswers": [
+          [
+            "평평하게",
+            "납작하게",
+            "평면으로"
+          ],
+          [
+            "전개도"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0345da47d76a1a14a22e8352a50976ac66e2e69afe6134ac542b540467ade041",
+      "questionRevision": "planning-e5e6-20261006-0345da47d76a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "삼각기둥의 전개도에는 밑면과 옆면이 각각 어떤 모양으로 몇 개씩 그려지는지 쓰시오.",
+      "bAnswer": "밑면은 삼각형 $2$개, 옆면은 직사각형 $3$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면은 삼각형 $2$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면은 직사각형 $3$개이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "삼각기둥의 면의 모양과 개수를 전개도와 연결한다.",
+      "bReason": "밑면과 옆면의 모양과 개수를 각각 따로 판단해야 한다.",
+      "cDecision": "keep",
+      "cAfter": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+      "cReason": "밑면과 옆면의 모양·개수를 묻는 짧고 분명한 문장이라 그대로 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 216,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-3-c2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "level": "중",
+        "kind": "성질",
+        "term": "삼각기둥 전개도의 면",
+        "definition": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+        "studentC": "삼각기둥의 전개도에는 밑면인 □와 옆면인 □가 있다.",
+        "answers": [
+          "삼각형 두 개",
+          "직사각형 세 개"
+        ]
+      },
+      "sourceFingerprint": "ab6cfdec121822a48468f8536c41423ac3f751754b33feed9d5bb7ce57b4aa2b",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+      "cFrozenStudentSentence": "삼각기둥의 전개도에는 밑면인 □와 옆면인 □가 있다.",
+      "cProposedAnswers": [
+        "삼각형 두 개",
+        "직사각형 세 개"
+      ],
+      "cStudentAfter": "삼각기둥의 전개도에는 밑면인 □와 옆면인 □가 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형 두 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "직사각형 세 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+      "cStudentSentence": "삼각기둥의 전개도에는 밑면인 □와 옆면인 □가 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형 두 개",
+          "equivalents": []
+        },
+        {
+          "key": "직사각형 세 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각기둥의 전개도에는 밑면과 옆면이 각각 어떤 모양으로 몇 개씩 그려지는지 쓰시오.",
+        "answer": "밑면은 삼각형 $2$개, 옆면은 직사각형 $3$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면은 삼각형 $2$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면은 직사각형 $3$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+        "acceptedAnswers": [
+          [
+            "삼각형 두 개"
+          ],
+          [
+            "직사각형 세 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b4abdd3e65f25953d3a1218eb66587858127d0b1072a6864bea1df20d0894ea9",
+      "questionRevision": "planning-e5e6-20261006-b4abdd3e65f2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 전개도처럼 그린 그림에서 면의 종류와 수가 맞아도 전개도가 아닐 수 있다. 접었을 때 어떤 문제가 생기면 전개도가 아닌지 두 가지 쓰시오.",
+      "bAnswer": "면이 서로 겹치는 경우와, 닫히지 않고 틈이 생기는 경우이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "접었을 때 면이 겹친다",
+            "면이 포개진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "접었을 때 틈이 생겨 닫히지 않는다",
+            "빈 곳이 생긴다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "전개도 판별 기준인 겹침과 틈을 설명한다.",
+      "bReason": "그림 없이도 접었을 때의 두 가지 실패 조건을 일반적으로 말할 수 있다.",
+      "cDecision": "keep",
+      "cAfter": "면의 종류와 수가 맞아도 접었을 때 {겹치는 면}이나 {닫히지 않는 틈}이 있으면 전개도가 아니다.",
+      "cReason": "겹침과 틈이라는 두 판별 조건을 묻는 짧은 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 217,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-3-c3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "level": "상",
+        "kind": "성질",
+        "term": "전개도 판별",
+        "definition": "면의 종류와 수가 맞아도 접었을 때 {겹치는 면}이나 {닫히지 않는 틈}이 있으면 전개도가 아니다.",
+        "studentC": "면의 종류와 수가 맞아도 접었을 때 □이나 □이 있으면 전개도가 아니다.",
+        "answers": [
+          "겹치는 면",
+          "닫히지 않는 틈"
+        ]
+      },
+      "sourceFingerprint": "8f74aa252d77aed193af284d6df5c07fdd831b4ef8ad23e330895ce51fb8a52c",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "면의 종류와 수가 맞아도 접었을 때 {겹치는 면}이나 {닫히지 않는 틈}이 있으면 전개도가 아니다.",
+      "cFrozenStudentSentence": "면의 종류와 수가 맞아도 접었을 때 □이나 □이 있으면 전개도가 아니다.",
+      "cProposedAnswers": [
+        "겹치는 면",
+        "닫히지 않는 틈"
+      ],
+      "cStudentAfter": "면의 종류와 수가 맞아도 접었을 때 □이나 □이 있으면 전개도가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "겹치는 면"
+          ]
+        },
+        {
+          "anyOf": [
+            "닫히지 않는 틈"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "면의 종류와 수가 맞아도 접었을 때 {겹치는 면}이나 {닫히지 않는 틈}이 있으면 전개도가 아니다.",
+      "cStudentSentence": "면의 종류와 수가 맞아도 접었을 때 □이나 □이 있으면 전개도가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "겹치는 면",
+          "equivalents": []
+        },
+        {
+          "key": "닫히지 않는 틈",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 전개도처럼 그린 그림에서 면의 종류와 수가 맞아도 전개도가 아닐 수 있다. 접었을 때 어떤 문제가 생기면 전개도가 아닌지 두 가지 쓰시오.",
+        "answer": "면이 서로 겹치는 경우와, 닫히지 않고 틈이 생기는 경우이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "접었을 때 면이 겹친다",
+              "면이 포개진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "접었을 때 틈이 생겨 닫히지 않는다",
+              "빈 곳이 생긴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "면의 종류와 수가 맞아도 접었을 때 {겹치는 면}이나 {닫히지 않는 틈}이 있으면 전개도가 아니다.",
+        "acceptedAnswers": [
+          [
+            "겹치는 면"
+          ],
+          [
+            "닫히지 않는 틈"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9fc56d048d852141a62d90bd650ad110edfbfe7c94561495dfb9d361b35b1b58",
+      "questionRevision": "planning-e5e6-20261006-9fc56d048d85",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-c1",
+      "bDecision": "revise",
+      "bPrompt": "각뿔은 어떤 입체도형인가요? 밑면의 모양, 옆면의 모양, 옆면들이 만나는 모습을 설명하세요.",
+      "bAnswer": "밑면은 다각형이고, 옆면은 모두 삼각형이며, 옆면들이 한 꼭짓점(한 점)에서 만나는 입체도형이다.",
+      "bGoal": "각뿔을 밑면·옆면·만나는 점으로 정의한다.",
+      "bReason": "이름만 묻지 않고 정의의 세 조건을 모두 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 다각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면이 모두 삼각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면들이 한 점에서 만난다",
+            "옆면들이 한 꼭짓점에서 만난다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 {각뿔}이라 한다.",
+      "cReason": "세 조건을 읽고 이름 '각뿔'을 답하는 짧은 낱말 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 218,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-4-c1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "level": "하",
+        "kind": "정의",
+        "term": "각뿔",
+        "definition": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 {각뿔}이라 한다.",
+        "studentC": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 □이라 한다.",
+        "answers": [
+          "각뿔"
+        ]
+      },
+      "sourceFingerprint": "bcaf051836b39da03ef7bdb11c2c9c3d3edad50c0350d76ea7c510dfc73b7101",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 {각뿔}이라 한다.",
+      "cFrozenStudentSentence": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 □이라 한다.",
+      "cProposedAnswers": [
+        "각뿔"
+      ],
+      "cStudentAfter": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 □이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "각뿔"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 {각뿔}이라 한다.",
+      "cStudentSentence": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 □이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "각뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔은 어떤 입체도형인가요? 밑면의 모양, 옆면의 모양, 옆면들이 만나는 모습을 설명하세요.",
+        "answer": "밑면은 다각형이고, 옆면은 모두 삼각형이며, 옆면들이 한 꼭짓점(한 점)에서 만나는 입체도형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면이 다각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면이 모두 삼각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면들이 한 점에서 만난다",
+              "옆면들이 한 꼭짓점에서 만난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 다각형이고 옆면이 모두 삼각형이며, 옆면들이 한 꼭짓점에서 만나는 입체도형을 {각뿔}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "각뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4e922bf810a97a312093c1e147006ce2e7b1f789a3fd8d26d9bb449e09340a08",
+      "questionRevision": "planning-e5e6-20261006-4e922bf810a9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-c2",
+      "bDecision": "revise",
+      "bPrompt": "각뿔에서 밑면은 어떤 면인가요? 면의 모양과 개수를 말하세요.",
+      "bAnswer": "밑면은 다각형 모양의 면이고, 각뿔에는 $1$개 있다.",
+      "bGoal": "각뿔의 밑면이 다각형 한 면임을 안다.",
+      "bReason": "'바탕으로 삼은'이라는 모호한 말 대신 모양과 개수를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다각형 모양의 면이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$개이다",
+            "하나이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각뿔을 만들 때 바탕으로 삼은 {다각형 한 면}을 밑면이라 한다.",
+      "cReason": "밑면이 '다각형 한 면'이라는 정의를 묻는 문장으로 목표가 분명해 유지한다.",
+      "exampleNeeded": false,
+      "coreAfter": "각뿔에서 꼭대기 점에 닿지 않는 다각형 모양의 면 $1$개를 {밑면}이라 한다.",
+      "coreReason": "'만들 때 바탕으로 삼은'은 학생에게 불명확한 표현이다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "다각형 한 면은 어느 면인지 판별할 조건과 답 범위가 없었다. 꼭대기 점에 닿지 않는 조건을 일반 정의에 추가하고 표적을 정식 이름 밑면으로 바꾼다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 219,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-4-c2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "level": "하",
+        "kind": "정의",
+        "term": "밑면",
+        "definition": "각뿔을 만들 때 바탕으로 삼은 {다각형 한 면}을 밑면이라 한다.",
+        "studentC": "각뿔을 만들 때 바탕으로 삼은 □을 밑면이라 한다.",
+        "answers": [
+          "다각형 한 면"
+        ]
+      },
+      "sourceFingerprint": "7b170784d046815bc4d94e27c523cc786bfd15cecd0dd8c024ac2ca404d0c170",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "각뿔을 만들 때 바탕으로 삼은 {다각형 한 면}을 밑면이라 한다.",
+      "cFrozenStudentSentence": "각뿔을 만들 때 바탕으로 삼은 □을 밑면이라 한다.",
+      "cProposedAnswers": [
+        "다각형 한 면"
+      ],
+      "cStudentAfter": "각뿔을 만들 때 바탕으로 삼은 □을 밑면이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다각형 한 면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔을 만들 때 바탕으로 삼은 {다각형 한 면}을 밑면이라 한다.",
+      "cStudentSentence": "각뿔을 만들 때 바탕으로 삼은 □을 밑면이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "다각형 한 면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔에서 밑면은 어떤 면인가요? 면의 모양과 개수를 말하세요.",
+        "answer": "밑면은 다각형 모양의 면이고, 각뿔에는 $1$개 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "다각형 모양의 면이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$개이다",
+              "하나이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔을 만들 때 바탕으로 삼은 {다각형 한 면}을 밑면이라 한다.",
+        "acceptedAnswers": [
+          [
+            "다각형 한 면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "813e8ba73b7416745d243918c7991eb0c32affb49ba67f239deeed3ad021593f",
+      "questionRevision": "planning-e5e6-20261006-813e8ba73b74",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 옆면은 어떤 모양인가요? 밑면의 변과 꼭대기 점을 이용해 옆면이 어떻게 만들어지는지도 설명하세요.",
+      "bAnswer": "옆면은 삼각형이다. 밑면의 변 하나와 꼭대기 점을 이으면 옆면 하나가 된다.",
+      "bGoal": "옆면의 모양과 만들어지는 방법을 연결한다.",
+      "bReason": "모양만 외우지 않고 변 하나와 꼭대기로 이루어짐을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면은 삼각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 변 하나와 꼭대기를 잇는다",
+            "변 하나마다 꼭대기와 이어져 만들어진다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각뿔에서 밑면의 각 변과 꼭대기를 잇는 {삼각형 면}을 옆면이라 한다.",
+      "cReason": "밑면의 변과 꼭대기를 잇는 면이 무엇인지 묻는 짧은 정의 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'삼각형 면'과 '삼각형'은 같은 답이다.",
+      "sourceIndex": 220,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-4-c3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "level": "중",
+        "kind": "정의",
+        "term": "옆면",
+        "definition": "각뿔에서 밑면의 각 변과 꼭대기를 잇는 {삼각형 면}을 옆면이라 한다.",
+        "studentC": "각뿔에서 밑면의 각 변과 꼭대기를 잇는 □을 옆면이라 한다.",
+        "answers": [
+          "삼각형 면"
+        ]
+      },
+      "sourceFingerprint": "00b2faa2a4c65c46f1abfa843b1f09c5fe25cc8f8c6ff5e56c227cf1f129563c",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "각뿔에서 밑면의 각 변과 꼭대기를 잇는 {삼각형 면}을 옆면이라 한다.",
+      "cFrozenStudentSentence": "각뿔에서 밑면의 각 변과 꼭대기를 잇는 □을 옆면이라 한다.",
+      "cProposedAnswers": [
+        "삼각형 면"
+      ],
+      "cStudentAfter": "각뿔에서 밑면의 각 변과 꼭대기를 잇는 □을 옆면이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형 면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔에서 밑면의 각 변과 꼭대기를 잇는 {삼각형 면}을 옆면이라 한다.",
+      "cStudentSentence": "각뿔에서 밑면의 각 변과 꼭대기를 잇는 □을 옆면이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형 면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 옆면은 어떤 모양인가요? 밑면의 변과 꼭대기 점을 이용해 옆면이 어떻게 만들어지는지도 설명하세요.",
+        "answer": "옆면은 삼각형이다. 밑면의 변 하나와 꼭대기 점을 이으면 옆면 하나가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면은 삼각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 변 하나와 꼭대기를 잇는다",
+              "변 하나마다 꼭대기와 이어져 만들어진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔에서 밑면의 각 변과 꼭대기를 잇는 {삼각형 면}을 옆면이라 한다.",
+        "acceptedAnswers": [
+          [
+            "삼각형 면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1bb44a317969379a2a3277d048d929e42525bbd40f5028d17ee691b4b92a62e6",
+      "questionRevision": "planning-e5e6-20261006-1bb44a317969",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-4-c4",
+      "bDecision": "revise",
+      "bPrompt": "각기둥과 각뿔은 밑면의 개수가 어떻게 다른가요? 또 옆면이 만나는 모습은 각뿔에서 어떻게 되나요?",
+      "bAnswer": "각기둥은 밑면이 $2$개이고 각뿔은 $1$개이다. 각뿔의 옆면들은 한 꼭대기(한 점)에서 만난다.",
+      "bGoal": "밑면 수와 옆면이 모이는 점으로 각기둥과 각뿔을 구별한다.",
+      "bReason": "두 입체의 핵심 차이를 한 번에 비교하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각기둥은 밑면이 $2$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각뿔은 밑면이 $1$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각뿔의 옆면들은 한 점에서 만난다",
+            "각뿔의 옆면들은 꼭대기에서 만난다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각기둥에는 밑면이 {두 개}, 각뿔에는 밑면이 {한 개}이며 각뿔의 옆면들은 한 꼭대기에서 만난다.",
+      "cReason": "각기둥 두 개, 각뿔 한 개라는 밑면 수 대비를 묻는 성질 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 221,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-4-c4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-4 각뿔 알아보기와 각뿔의 밑면과 옆면",
+        "level": "상",
+        "kind": "성질",
+        "term": "각기둥과 각뿔 구별",
+        "definition": "각기둥에는 밑면이 {두 개}, 각뿔에는 밑면이 {한 개}이며 각뿔의 옆면들은 한 꼭대기에서 만난다.",
+        "studentC": "각기둥에는 밑면이 □, 각뿔에는 밑면이 □이며 각뿔의 옆면들은 한 꼭대기에서 만난다.",
+        "answers": [
+          "두 개",
+          "한 개"
+        ]
+      },
+      "sourceFingerprint": "4f2708b0b8bf304ce73e0cc581364fce5e216a670b884281ac0df0827cf2b02f",
+      "draftEvidence": "evidence/section-062-draft.json",
+      "cFrozenDefinition": "각기둥에는 밑면이 {두 개}, 각뿔에는 밑면이 {한 개}이며 각뿔의 옆면들은 한 꼭대기에서 만난다.",
+      "cFrozenStudentSentence": "각기둥에는 밑면이 □, 각뿔에는 밑면이 □이며 각뿔의 옆면들은 한 꼭대기에서 만난다.",
+      "cProposedAnswers": [
+        "두 개",
+        "한 개"
+      ],
+      "cStudentAfter": "각기둥에는 밑면이 □, 각뿔에는 밑면이 □이며 각뿔의 옆면들은 한 꼭대기에서 만난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥에는 밑면이 {두 개}, 각뿔에는 밑면이 {한 개}이며 각뿔의 옆면들은 한 꼭대기에서 만난다.",
+      "cStudentSentence": "각기둥에는 밑면이 □, 각뿔에는 밑면이 □이며 각뿔의 옆면들은 한 꼭대기에서 만난다.",
+      "cSlotAnswers": [
+        {
+          "key": "두 개",
+          "equivalents": []
+        },
+        {
+          "key": "한 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥과 각뿔은 밑면의 개수가 어떻게 다른가요? 또 옆면이 만나는 모습은 각뿔에서 어떻게 되나요?",
+        "answer": "각기둥은 밑면이 $2$개이고 각뿔은 $1$개이다. 각뿔의 옆면들은 한 꼭대기(한 점)에서 만난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각기둥은 밑면이 $2$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각뿔은 밑면이 $1$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각뿔의 옆면들은 한 점에서 만난다",
+              "각뿔의 옆면들은 꼭대기에서 만난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥에는 밑면이 {두 개}, 각뿔에는 밑면이 {한 개}이며 각뿔의 옆면들은 한 꼭대기에서 만난다.",
+        "acceptedAnswers": [
+          [
+            "두 개"
+          ],
+          [
+            "한 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d944bd974aed128c9a3d9eda102a0da8b08815632915b622827879affb2d4542",
+      "questionRevision": "planning-e5e6-20261006-d944bd974aed",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-c1",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 이름은 어느 면의 무엇을 보고 짓는지 쓰시오. 또 밑면이 육각형인 각뿔의 이름을 쓰시오.",
+      "bAnswer": "밑면의 모양(변의 수)을 보고 짓는다. 밑면이 육각형이면 육각뿔이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 모양",
+            "밑면의 변의 수",
+            "밑면의 꼭짓점의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "육각뿔"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "bGoal": "밑면의 모양이 각뿔 이름을 정한다는 규칙을 새로운 밑면에 적용한다.",
+      "bReason": "원문은 오각뿔 예뿐이라 육각형 예로 규칙 적용을 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "각뿔의 이름은 {밑면}의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 {육각뿔}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면",
+            "아랫면"
+          ]
+        },
+        {
+          "anyOf": [
+            "육각뿔"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 답이 '밑면의 변 개수' 하나로 고정되어 '밑면의 모양' 같은 정답도 막으므로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 222,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "각뿔의 이름",
+        "definition": "각뿔의 이름에는 {밑면의 변 개수}를 쓴다. 변이 다섯이면 오각뿔이다.",
+        "studentC": "각뿔의 이름에는 □를 쓴다. 변이 다섯이면 오각뿔이다.",
+        "answers": [
+          "밑면의 변 개수"
+        ]
+      },
+      "sourceFingerprint": "9b48f58b2d10caad02187847adfc43ba467f6970ecf450256f164841ab10d86b",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [
+        "밑면",
+        "육각뿔"
+      ],
+      "cStudentAfter": "각뿔의 이름은 □의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 □이다.",
+      "cMarkedSentence": "각뿔의 이름은 {밑면}의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 {육각뿔}이다.",
+      "cStudentSentence": "각뿔의 이름은 □의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면",
+          "equivalents": [
+            "아랫면"
+          ]
+        },
+        {
+          "key": "육각뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 이름은 어느 면의 무엇을 보고 짓는지 쓰시오. 또 밑면이 육각형인 각뿔의 이름을 쓰시오.",
+        "answer": "밑면의 모양(변의 수)을 보고 짓는다. 밑면이 육각형이면 육각뿔이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 모양",
+              "밑면의 변의 수",
+              "밑면의 꼭짓점의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "육각뿔"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 이름은 {밑면}의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 {육각뿔}이다.",
+        "acceptedAnswers": [
+          [
+            "밑면",
+            "아랫면"
+          ],
+          [
+            "육각뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f74e2e6c869751ce1352ba758a91bc5a6a77cc9e4ed51001087db0ffb0752c72",
+      "questionRevision": "planning-e5e6-20261006-f74e2e6c8697",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-c2",
+      "bDecision": "revise",
+      "bPrompt": "각뿔에서 모서리는 어떤 부분을 부르는 말인지 쓰시오.",
+      "bAnswer": "면과 면이 만나는 선분이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 면이 만나는 곳",
+            "면과 면의 경계",
+            "두 면이 만나는 선분",
+            "두 면의 경계가 되는 선분"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "모서리가 면과 면이 만나는 선분임을 안다.",
+      "bReason": "제목만 묻지 않고 모서리가 가리키는 대상을 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "각뿔에서 두 면의 경계가 되는 {선분}을 모서리라 한다.",
+      "cReason": "두 면의 경계라는 조건에서 선분이라는 낱말을 떠올리는 짧은 정의 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "선분, 선 모두 허용 가능.",
+      "sourceIndex": 223,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "모서리",
+        "definition": "각뿔에서 두 면의 경계가 되는 {선분}을 모서리라 한다.",
+        "studentC": "각뿔에서 두 면의 경계가 되는 □을 모서리라 한다.",
+        "answers": [
+          "선분"
+        ]
+      },
+      "sourceFingerprint": "6446985ec9210f5fed326d472a160324862ab007fd196bab9442da654a988618",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "각뿔에서 두 면의 경계가 되는 {선분}을 모서리라 한다.",
+      "cFrozenStudentSentence": "각뿔에서 두 면의 경계가 되는 □을 모서리라 한다.",
+      "cProposedAnswers": [
+        "선분"
+      ],
+      "cStudentAfter": "각뿔에서 두 면의 경계가 되는 □을 모서리라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "선분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔에서 두 면의 경계가 되는 {선분}을 모서리라 한다.",
+      "cStudentSentence": "각뿔에서 두 면의 경계가 되는 □을 모서리라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "선분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔에서 모서리는 어떤 부분을 부르는 말인지 쓰시오.",
+        "answer": "면과 면이 만나는 선분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 면이 만나는 곳",
+              "면과 면의 경계",
+              "두 면이 만나는 선분",
+              "두 면의 경계가 되는 선분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔에서 두 면의 경계가 되는 {선분}을 모서리라 한다.",
+        "acceptedAnswers": [
+          [
+            "선분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "086b90ae28e3d6e7b5856869d387a251dca9ecf10b79c2cfc30986fc130da1f8",
+      "questionRevision": "planning-e5e6-20261006-086b90ae28e3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-c3",
+      "bDecision": "revise",
+      "bPrompt": "각뿔에서 꼭짓점은 어떤 점인지 쓰시오.",
+      "bAnswer": "모서리와 모서리가 만나는 점이다. 밑면의 모서리 끝과 꼭대기에 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리와 모서리가 만나는 점",
+            "모서리의 끝에 있는 점",
+            "모서리들이 만나는 점"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "꼭짓점이 모서리가 만나는 점임을 안다.",
+      "bReason": "원문의 '밑면에도 꼭짓점이 있다'는 부분은 요구하지 않고 정의만 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '점'은 낱말이 거의 자명해 개념 확인이 되지 않는다.",
+      "exclusionReason": "C: 자명한 낱말 빈칸이며 꼭짓점 위치는 e6-1-2-5-c4에서 다룬다.",
+      "exampleNeeded": false,
+      "sourceIndex": 224,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "꼭짓점",
+        "definition": "각뿔의 모서리 끝에 있는 {점}들이 꼭짓점이며, 밑면에도 꼭짓점이 있다.",
+        "studentC": "각뿔의 모서리 끝에 있는 □들이 꼭짓점이며, 밑면에도 꼭짓점이 있다.",
+        "answers": [
+          "점"
+        ]
+      },
+      "sourceFingerprint": "68b75a7e3c3b168741e993a46f7a5fa5e16b0387ed95c8c7b92eef1219682c41",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "각뿔에서 꼭짓점은 어떤 점인지 쓰시오.",
+        "answer": "모서리와 모서리가 만나는 점이다. 밑면의 모서리 끝과 꼭대기에 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모서리와 모서리가 만나는 점",
+              "모서리의 끝에 있는 점",
+              "모서리들이 만나는 점"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C: 자명한 낱말 빈칸이며 꼭짓점 위치는 e6-1-2-5-c4에서 다룬다."
+      },
+      "proposalFingerprint": "3b87ec1a811da4d582af5aa20106e3735b8e26f6edb46464cca6af4c31495cbd",
+      "questionRevision": "planning-e5e6-20261006-3b87ec1a811d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-c4",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 꼭대기에 있는 꼭짓점은 몇 개인지 쓰고, 이 꼭짓점에 어떤 면들이 모이는지 쓰시오.",
+      "bAnswer": "$1$개이고, 모든 옆면이 이 꼭짓점에 모인다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$개",
+            "한 개",
+            "하나"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 옆면이 모인다",
+            "옆면들이 만난다",
+            "옆면이 모두 만난다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "각뿔의 꼭대기 꼭짓점이 한 개이며 옆면이 모두 모이는 점임을 안다.",
+      "bReason": "'꼭대기 한 점' 구절 암기 대신 개수와 옆면의 관계를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 {$1$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "$1$개",
+            "한"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 개수 하나로 줄여 옆면이 한 점에 모인다는 핵심을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 225,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "각뿔의 꼭짓점",
+        "definition": "각뿔의 꼭짓점은 밑면 밖에서 모든 옆면이 모이는 {꼭대기 한 점}이다.",
+        "studentC": "각뿔의 꼭짓점은 밑면 밖에서 모든 옆면이 모이는 □이다.",
+        "answers": [
+          "꼭대기 한 점"
+        ]
+      },
+      "sourceFingerprint": "024c849e8ddcb5906abf70a207a422f9cf21ffe6d4a5affa27eb4f257a9fc64a",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 □개이다.",
+      "cMarkedSentence": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 {$1$}개이다.",
+      "cStudentSentence": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "$1$개",
+            "한"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 꼭대기에 있는 꼭짓점은 몇 개인지 쓰고, 이 꼭짓점에 어떤 면들이 모이는지 쓰시오.",
+        "answer": "$1$개이고, 모든 옆면이 이 꼭짓점에 모인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$개",
+              "한 개",
+              "하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "모든 옆면이 모인다",
+              "옆면들이 만난다",
+              "옆면이 모두 만난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 {$1$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "$1$개",
+            "한"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3aa1829d7737c8b9241f002dcaeb65a5e8bbb50714cb51c67a69e43707cd2c0e",
+      "questionRevision": "planning-e5e6-20261006-3aa1829d7737",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-c5",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 높이는 어디에서 어디까지, 어떤 방향으로 잰 길이인지 설명하시오.",
+      "bAnswer": "꼭대기의 꼭짓점에서 밑면까지 밑면에 수직으로 잰 길이이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭대기에서 밑면까지",
+            "꼭짓점에서 밑면까지"
+          ]
+        },
+        {
+          "anyOf": [
+            "수직",
+            "직각",
+            "밑면에 곧게"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "높이를 비스듬한 모서리가 아닌 수직 거리로 이해한다.",
+      "bReason": "측정의 시작과 끝, 방향을 모두 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+      "cReason": "꼭대기에서 밑면까지 잰다는 조건에서 수직이라는 핵심 낱말을 확인한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "직각으로도 인정 가능.",
+      "sourceIndex": 226,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c5",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "중",
+        "kind": "정의",
+        "term": "높이",
+        "definition": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+        "studentC": "각뿔의 높이는 꼭대기에서 밑면에 □으로 닿도록 잰 길이이다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "23872a638b25e1eca701beb90cef6814ef03776da241c1cf97f369e8eb752030",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+      "cFrozenStudentSentence": "각뿔의 높이는 꼭대기에서 밑면에 □으로 닿도록 잰 길이이다.",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "각뿔의 높이는 꼭대기에서 밑면에 □으로 닿도록 잰 길이이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+      "cStudentSentence": "각뿔의 높이는 꼭대기에서 밑면에 □으로 닿도록 잰 길이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 높이는 어디에서 어디까지, 어떤 방향으로 잰 길이인지 설명하시오.",
+        "answer": "꼭대기의 꼭짓점에서 밑면까지 밑면에 수직으로 잰 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭대기에서 밑면까지",
+              "꼭짓점에서 밑면까지"
+            ]
+          },
+          {
+            "anyOf": [
+              "수직",
+              "직각",
+              "밑면에 곧게"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b1c0cb2f7606842442e4f64c17efa2e98368734bbdaec8cdbe3e7ea6c86b7363",
+      "questionRevision": "planning-e5e6-20261006-b1c0cb2f7606",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-c6",
+      "bDecision": "revise",
+      "bPrompt": "각뿔에서 밑면의 변의 수를 알 때 면의 수, 꼭짓점의 수, 모서리의 수를 각각 어떻게 구하는지 쓰시오. 밑면이 육각형인 각뿔에서는 각각 몇 개인지도 쓰시오.",
+      "bAnswer": "면의 수와 꼭짓점의 수는 밑면의 변의 수에 $1$을 더한 수이고, 모서리의 수는 밑면의 변의 수의 $2$배이다. 육각뿔은 면 $7$개, 꼭짓점 $7$개, 모서리 $12$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면의 수는 변의 수에 $1$을 더한다",
+            "면의 수는 변의 수$+1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점의 수는 변의 수에 $1$을 더한다",
+            "꼭짓점의 수는 변의 수$+1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리의 수는 변의 수의 $2$배",
+            "모서리의 수는 변의 수$\\times2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "면 $7$개, 꼭짓점 $7$개, 모서리 $12$개"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "밑면의 변의 수로 각뿔의 면·꼭짓점·모서리 수를 구하는 방법을 쓴다.",
+      "bReason": "세 구성 요소의 관계를 일반적으로 묻고 육각뿔로 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "각뿔에서 밑면의 변 수에 {$1$}을 더하면 면 수와 꼭짓점 수, {$2$}를 곱하면 모서리 수가 된다.",
+      "cReason": "더하는 수와 곱하는 수라는 두 핵심 값을 짧게 묻고 빈칸 순서도 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 227,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c6",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "상",
+        "kind": "공식",
+        "term": "각뿔의 구성 요소의 수",
+        "definition": "각뿔에서 밑면의 변 수에 {$1$}을 더하면 면 수와 꼭짓점 수, {$2$}를 곱하면 모서리 수가 된다.",
+        "studentC": "각뿔에서 밑면의 변 수에 □을 더하면 면 수와 꼭짓점 수, □를 곱하면 모서리 수가 된다.",
+        "answers": [
+          "$1$",
+          "$2$"
+        ]
+      },
+      "sourceFingerprint": "c2e02c0539ef3af980d0edc1f8e7759c5aa4472eb808fe2c47832002f1618c7c",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "cFrozenDefinition": "각뿔에서 밑면의 변 수에 {$1$}을 더하면 면 수와 꼭짓점 수, {$2$}를 곱하면 모서리 수가 된다.",
+      "cFrozenStudentSentence": "각뿔에서 밑면의 변 수에 □을 더하면 면 수와 꼭짓점 수, □를 곱하면 모서리 수가 된다.",
+      "cProposedAnswers": [
+        "$1$",
+        "$2$"
+      ],
+      "cStudentAfter": "각뿔에서 밑면의 변 수에 □을 더하면 면 수와 꼭짓점 수, □를 곱하면 모서리 수가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔에서 밑면의 변 수에 {$1$}을 더하면 면 수와 꼭짓점 수, {$2$}를 곱하면 모서리 수가 된다.",
+      "cStudentSentence": "각뿔에서 밑면의 변 수에 □을 더하면 면 수와 꼭짓점 수, □를 곱하면 모서리 수가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔에서 밑면의 변의 수를 알 때 면의 수, 꼭짓점의 수, 모서리의 수를 각각 어떻게 구하는지 쓰시오. 밑면이 육각형인 각뿔에서는 각각 몇 개인지도 쓰시오.",
+        "answer": "면의 수와 꼭짓점의 수는 밑면의 변의 수에 $1$을 더한 수이고, 모서리의 수는 밑면의 변의 수의 $2$배이다. 육각뿔은 면 $7$개, 꼭짓점 $7$개, 모서리 $12$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면의 수는 변의 수에 $1$을 더한다",
+              "면의 수는 변의 수$+1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 수는 변의 수에 $1$을 더한다",
+              "꼭짓점의 수는 변의 수$+1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리의 수는 변의 수의 $2$배",
+              "모서리의 수는 변의 수$\\times2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "면 $7$개, 꼭짓점 $7$개, 모서리 $12$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔에서 밑면의 변 수에 {$1$}을 더하면 면 수와 꼭짓점 수, {$2$}를 곱하면 모서리 수가 된다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "81c2cef5bfaf892b2a4f5715a220d8dda29043463383abdc8afac509821a447f",
+      "questionRevision": "planning-e5e6-20261006-81c2cef5bfaf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "소수 $0.37$에서 $3$과 $7$은 각각 얼마를 나타내는지 쓰고, 자리에 따라 그렇게 되는 까닭을 설명하시오.",
+      "bAnswer": "$3$은 소수 첫째 자리 숫자라서 $0.3$($0.1$이 $3$개)을, $7$은 소수 둘째 자리 숫자라서 $0.07$($0.01$이 $7$개)을 나타낸다.",
+      "bGoal": "소수 첫째·둘째 자리 숫자가 나타내는 크기를 자릿값으로 설명한다.",
+      "bReason": "단순 빈칸 대신 실제 소수의 각 숫자 값을 자릿값과 연결해 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "소수 첫째 자리의 $1$은 {$0.1$}, 둘째 자리의 $1$은 {$0.01$}을 뜻한다.",
+      "cReason": "첫째·둘째 자리의 $1$이 뜻하는 수를 짧게 묻는 명확한 자릿값 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$은 $0.3$을 나타낸다",
+            "$3$은 $0.1$이 $3$개인 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$은 $0.07$을 나타낸다",
+            "$7$은 $0.01$이 $7$개인 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "숫자가 놓인 자리(소수 첫째·둘째 자리)에 따라 값이 정해진다",
+            "자리가 다르면 같은 숫자도 나타내는 크기가 다르다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "sourceIndex": 228,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-1-c1",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "소수의 자릿값",
+        "definition": "소수 첫째 자리의 $1$은 {$0.1$}, 둘째 자리의 $1$은 {$0.01$}을 뜻한다.",
+        "studentC": "소수 첫째 자리의 $1$은 □, 둘째 자리의 $1$은 □을 뜻한다.",
+        "answers": [
+          "$0.1$",
+          "$0.01$"
+        ]
+      },
+      "sourceFingerprint": "18019fc90fcb86465cec49961df0bb7ad63f4cdd5246729bfff15bfb23e1df35",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cFrozenDefinition": "소수 첫째 자리의 $1$은 {$0.1$}, 둘째 자리의 $1$은 {$0.01$}을 뜻한다.",
+      "cFrozenStudentSentence": "소수 첫째 자리의 $1$은 □, 둘째 자리의 $1$은 □을 뜻한다.",
+      "cProposedAnswers": [
+        "$0.1$",
+        "$0.01$"
+      ],
+      "cStudentAfter": "소수 첫째 자리의 $1$은 □, 둘째 자리의 $1$은 □을 뜻한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.01$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수 첫째 자리의 $1$은 {$0.1$}, 둘째 자리의 $1$은 {$0.01$}을 뜻한다.",
+      "cStudentSentence": "소수 첫째 자리의 $1$은 □, 둘째 자리의 $1$은 □을 뜻한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.1$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.01$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 $0.37$에서 $3$과 $7$은 각각 얼마를 나타내는지 쓰고, 자리에 따라 그렇게 되는 까닭을 설명하시오.",
+        "answer": "$3$은 소수 첫째 자리 숫자라서 $0.3$($0.1$이 $3$개)을, $7$은 소수 둘째 자리 숫자라서 $0.07$($0.01$이 $7$개)을 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$은 $0.3$을 나타낸다",
+              "$3$은 $0.1$이 $3$개인 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$은 $0.07$을 나타낸다",
+              "$7$은 $0.01$이 $7$개인 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "숫자가 놓인 자리(소수 첫째·둘째 자리)에 따라 값이 정해진다",
+              "자리가 다르면 같은 숫자도 나타내는 크기가 다르다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 첫째 자리의 $1$은 {$0.1$}, 둘째 자리의 $1$은 {$0.01$}을 뜻한다.",
+        "acceptedAnswers": [
+          [
+            "$0.1$"
+          ],
+          [
+            "$0.01$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f085dea9713d7b4592479507ae102ad4e2516122efcb7040ed1179b0d93f969f",
+      "questionRevision": "planning-e5e6-20261006-f085dea9713d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "세로셈으로 $7.2\\div3$을 계산할 때 몫의 소수점은 어디에 찍어야 하는지 쓰고, 그 까닭을 자리별로 나눈 양과 연결해 설명하시오. 몫도 구하시오.",
+      "bAnswer": "나누어지는 수의 소수점 바로 위에 찍는다. 일의 자리 $7$을 나눈 몫은 일의 자리에, $0.1$이 $12$개인 양을 나눈 몫은 소수 첫째 자리에 쓰기 때문이다. 몫은 $2.4$이다.",
+      "bGoal": "세로셈에서 소수점을 맞추는 까닭을 자리별 나눗셈으로 설명한다.",
+      "bReason": "소수점 위치를 외우지 않고 어느 자리의 양을 나눈 몫인지로 이해하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "세로셈에서 일의 자리의 양을 나누면 몫의 일의 자리를, $0.1$ 단위의 양을 나누면 {몫의 소수 첫째 자리}를 정하므로 소수점을 서로 맞춘다.",
+      "cReason": "$0.1$ 단위의 양을 나눈 몫이 소수 첫째 자리가 된다는 짧은 자리 관계라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫의 소수점을 나누어지는 수의 소수점 바로 위에 찍는다",
+            "나누어지는 수의 소수점과 위아래로 맞춘다"
+          ]
+        },
+        {
+          "anyOf": [
+            "일의 자리를 나눈 몫은 몫의 일의 자리이고 소수 첫째 자리 양을 나눈 몫은 몫의 소수 첫째 자리이다",
+            "같은 자리의 양끼리 나눈 몫이 같은 자리에 쓰이기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $2.4$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 229,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-1-c2",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "소수 나눗셈의 소수점",
+        "definition": "세로셈에서 일의 자리의 양을 나누면 몫의 일의 자리를, $0.1$ 단위의 양을 나누면 {몫의 소수 첫째 자리}를 정하므로 소수점을 서로 맞춘다.",
+        "studentC": "세로셈에서 일의 자리의 양을 나누면 몫의 일의 자리를, $0.1$ 단위의 양을 나누면 □를 정하므로 소수점을 서로 맞춘다.",
+        "answers": [
+          "몫의 소수 첫째 자리"
+        ]
+      },
+      "sourceFingerprint": "0f189c9bf8c70655e3278f6b62221ba1f17a53893c2e55ab0ca4d8c2239f78ea",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cFrozenDefinition": "세로셈에서 일의 자리의 양을 나누면 몫의 일의 자리를, $0.1$ 단위의 양을 나누면 {몫의 소수 첫째 자리}를 정하므로 소수점을 서로 맞춘다.",
+      "cFrozenStudentSentence": "세로셈에서 일의 자리의 양을 나누면 몫의 일의 자리를, $0.1$ 단위의 양을 나누면 □를 정하므로 소수점을 서로 맞춘다.",
+      "cProposedAnswers": [
+        "몫의 소수 첫째 자리"
+      ],
+      "cStudentAfter": "세로셈에서 일의 자리의 양을 나누면 몫의 일의 자리를, $0.1$ 단위의 양을 나누면 □를 정하므로 소수점을 서로 맞춘다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "몫의 소수 첫째 자리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "세로셈에서 일의 자리의 양을 나누면 몫의 일의 자리를, $0.1$ 단위의 양을 나누면 {몫의 소수 첫째 자리}를 정하므로 소수점을 서로 맞춘다.",
+      "cStudentSentence": "세로셈에서 일의 자리의 양을 나누면 몫의 일의 자리를, $0.1$ 단위의 양을 나누면 □를 정하므로 소수점을 서로 맞춘다.",
+      "cSlotAnswers": [
+        {
+          "key": "몫의 소수 첫째 자리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세로셈으로 $7.2\\div3$을 계산할 때 몫의 소수점은 어디에 찍어야 하는지 쓰고, 그 까닭을 자리별로 나눈 양과 연결해 설명하시오. 몫도 구하시오.",
+        "answer": "나누어지는 수의 소수점 바로 위에 찍는다. 일의 자리 $7$을 나눈 몫은 일의 자리에, $0.1$이 $12$개인 양을 나눈 몫은 소수 첫째 자리에 쓰기 때문이다. 몫은 $2.4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫의 소수점을 나누어지는 수의 소수점 바로 위에 찍는다",
+              "나누어지는 수의 소수점과 위아래로 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "일의 자리를 나눈 몫은 몫의 일의 자리이고 소수 첫째 자리 양을 나눈 몫은 몫의 소수 첫째 자리이다",
+              "같은 자리의 양끼리 나눈 몫이 같은 자리에 쓰이기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $2.4$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "세로셈에서 일의 자리의 양을 나누면 몫의 일의 자리를, $0.1$ 단위의 양을 나누면 {몫의 소수 첫째 자리}를 정하므로 소수점을 서로 맞춘다.",
+        "acceptedAnswers": [
+          [
+            "몫의 소수 첫째 자리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f02fb2acd07801fd9c5ea920a65113939ad905bb56f1adbff69dca18dee34ca3",
+      "questionRevision": "planning-e5e6-20261006-f02fb2acd078",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "$0.6\\div3$을 $0.1$의 개수를 이용해 계산하는 방법을 설명하고, 구한 몫이 무엇이 몇 개씩인지 말하시오.",
+      "bAnswer": "$0.6$은 $0.1$이 $6$개이므로 $6\\div3=2$를 계산한다. 몫은 $0.1$이 $2$개씩이므로 $0.2$이다.",
+      "bGoal": "소수를 자릿값 단위의 개수로 보고 개수를 나누는 방법을 이해한다.",
+      "bReason": "긴 키워드 문장 대신 구체적 소수로 단위 개수 나누기의 절차와 몫의 뜻을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0.8\\div4$에서 $0.8$은 $0.1$이 {$8$}개이고, $8\\div4=$ {$2$}이므로 몫은 $0.1$이 $2$개씩이다. 따라서 $0.8\\div4=$ {$0.2$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.2$"
+          ]
+        }
+      ],
+      "cReason": "추상 어구를 외우게 하는 두 빈칸을 실제 식의 개수 계산과 몫으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.6$을 $0.1$이 $6$개로 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\div3=2$로 개수를 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $0.1$이 $2$개씩이므로 $0.2$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 230,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-1-c3",
+        "section": "초6::1-3 소수의 나눗셈::1-3-1 (소수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "자릿값 단위로 나누기",
+        "definition": "소수를 $0.1$, $0.01$, $0.001$ 등의 자릿값 단위가 {몇 개인지}로 나타내어 {그 개수를 나눈다}. 몫은 그 단위가 몇 개씩 돌아가는지를 뜻한다.",
+        "studentC": "소수를 $0.1$, $0.01$, $0.001$ 등의 자릿값 단위가 □로 나타내어 □. 몫은 그 단위가 몇 개씩 돌아가는지를 뜻한다.",
+        "answers": [
+          "몇 개인지",
+          "그 개수를 나눈다"
+        ]
+      },
+      "sourceFingerprint": "ad836c0f7443a70688ab812d01bfb4b4b3dc7685bc666228a5af0e86e079cc60",
+      "draftEvidence": "evidence/section-064-draft.json",
+      "cProposedAnswers": [
+        "$8$",
+        "$2$",
+        "$0.2$"
+      ],
+      "cStudentAfter": "$0.8\\div4$에서 $0.8$은 $0.1$이 □개이고, $8\\div4=$ □이므로 몫은 $0.1$이 $2$개씩이다. 따라서 $0.8\\div4=$ □이다.",
+      "cMarkedSentence": "$0.8\\div4$에서 $0.8$은 $0.1$이 {$8$}개이고, $8\\div4=$ {$2$}이므로 몫은 $0.1$이 $2$개씩이다. 따라서 $0.8\\div4=$ {$0.2$}이다.",
+      "cStudentSentence": "$0.8\\div4$에서 $0.8$은 $0.1$이 □개이고, $8\\div4=$ □이므로 몫은 $0.1$이 $2$개씩이다. 따라서 $0.8\\div4=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.6\\div3$을 $0.1$의 개수를 이용해 계산하는 방법을 설명하고, 구한 몫이 무엇이 몇 개씩인지 말하시오.",
+        "answer": "$0.6$은 $0.1$이 $6$개이므로 $6\\div3=2$를 계산한다. 몫은 $0.1$이 $2$개씩이므로 $0.2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.6$을 $0.1$이 $6$개로 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\div3=2$로 개수를 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $0.1$이 $2$개씩이므로 $0.2$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.8\\div4$에서 $0.8$은 $0.1$이 {$8$}개이고, $8\\div4=$ {$2$}이므로 몫은 $0.1$이 $2$개씩이다. 따라서 $0.8\\div4=$ {$0.2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$0.2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e00ab4c17d01430056ba4489c308b2666752c2fe802831947ea99f7877ae713b",
+      "questionRevision": "planning-e5e6-20261006-e00ab4c17d01",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-c1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "나누어지는 수가 나누는 수보다 작으면 몫이 $1$보다 작다는 비교를 안다.",
+      "bReason": "같은 비교가 xc7의 세 가지 경우(크다·같다·작다) 안에 모두 들어 있어 B가 중복된다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "$0.6$은 $2$보다 {작으므로} $0.6\\div2$의 몫은 $1$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작으므로",
+            "작기",
+            "작아서"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cReason": "원문은 □가 '그보다 큰 수'인데 '그'가 무엇을 가리키는지 화면에서 알 수 없으므로 실제 나눗셈 식으로 비교하게 바꾼다.",
+      "exampleNeeded": false,
+      "exclusionReason": "B는 xc7과 중복되어 제외하며 대체 ID는 e6-1-3-2-xc7이다.",
+      "coreAfter": null,
+      "coreReason": "'그보다 큰 수'의 '그'가 무엇인지 분명하지 않아 나누어지는 수를 가리키도록 고친다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "원문의 그보다 큰 수는 바로 앞의0보다 큰 수만을 가리켜 선행 대상이 하나이다. 이 일반 설명을 바꿀 필요는 없어 기존 표시된 정의와 비교 표적을 그대로 쓰도록 coreAfter 제안을 철회한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 231,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-2-c1",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "level": "하",
+        "kind": "성질",
+        "term": "$1$보다 작은 몫",
+        "definition": "$0$보다 큰 수를 {그보다 큰 수}로 나누면 몫은 $1$보다 작다.",
+        "studentC": "$0$보다 큰 수를 □로 나누면 몫은 $1$보다 작다.",
+        "answers": [
+          "그보다 큰 수"
+        ]
+      },
+      "sourceFingerprint": "fb052653bdae4729b2061b50fa941694a54a7d1afc25c5ad1bed4ccffe45aea3",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작으므로",
+        "작다"
+      ],
+      "cStudentAfter": "$0.6$은 $2$보다 □ $0.6\\div2$의 몫은 $1$보다 □.",
+      "cMarkedSentence": "$0.6$은 $2$보다 {작으므로} $0.6\\div2$의 몫은 $1$보다 {작다}.",
+      "cStudentSentence": "$0.6$은 $2$보다 □ $0.6\\div2$의 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작으므로",
+          "equivalents": [
+            "작기",
+            "작아서"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0.6$은 $2$보다 {작으므로} $0.6\\div2$의 몫은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작으므로",
+            "작기",
+            "작아서"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc7과 중복되어 제외하며 대체 ID는 e6-1-3-2-xc7이다."
+      },
+      "proposalFingerprint": "6a2c4e8a6e4a1d6e76cfe61e52bad3b582da0a8bcaa170ca1ca111442612cd50",
+      "questionRevision": "planning-e5e6-20261006-6a2c4e8a6e4a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "$2.4\\div3$을 세로셈으로 계산할 때 몫의 일의 자리에는 무엇을 쓰는지 쓰고, 그렇게 쓰는 까닭을 $2.4$와 $3$의 크기를 비교해 설명하시오.",
+      "bAnswer": "일의 자리에 $0$을 쓴다. $2.4$가 $3$보다 작아 일의 자리에서는 $3$으로 나누어 한 몫을 만들 수 없고 몫이 $1$보다 작기 때문이다. 몫은 $0.8$이다.",
+      "bGoal": "몫이 $1$에 못 미칠 때 일의 자리에 $0$을 쓰는 절차와 까닭을 안다.",
+      "bReason": "절차만 묻지 않고 $2.4$와 $3$의 크기 비교로 까닭을 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫의 일의 자리에 $0$을 쓴다",
+            "일의 자리 몫은 $0$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.4$가 $3$보다 작아 일의 자리에서 나눌 수 없다",
+            "몫이 $1$보다 작기 때문이다",
+            "나누어지는 수가 나누는 수보다 작다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "몫이 $1$에 못 미치면 일의 자리에 {$0$}을 놓고 소수점 뒤의 계산을 이어 간다.",
+      "cReason": "몫이 $1$에 못 미칠 때 일의 자리에 $0$을 놓는 규칙 하나를 묻는 짧은 문장이라 그대로 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 232,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-2-c2",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "몫이 $1$보다 작을 때 몫의 일의 자리",
+        "definition": "몫이 $1$에 못 미치면 일의 자리에 {$0$}을 놓고 소수점 뒤의 계산을 이어 간다.",
+        "studentC": "몫이 $1$에 못 미치면 일의 자리에 □을 놓고 소수점 뒤의 계산을 이어 간다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "sourceFingerprint": "beb0b2ced8c16345dcc9587145fd969c25769514f75b52fc5da3bb65b4b5119e",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "cFrozenDefinition": "몫이 $1$에 못 미치면 일의 자리에 {$0$}을 놓고 소수점 뒤의 계산을 이어 간다.",
+      "cFrozenStudentSentence": "몫이 $1$에 못 미치면 일의 자리에 □을 놓고 소수점 뒤의 계산을 이어 간다.",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "몫이 $1$에 못 미치면 일의 자리에 □을 놓고 소수점 뒤의 계산을 이어 간다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "몫이 $1$에 못 미치면 일의 자리에 {$0$}을 놓고 소수점 뒤의 계산을 이어 간다.",
+      "cStudentSentence": "몫이 $1$에 못 미치면 일의 자리에 □을 놓고 소수점 뒤의 계산을 이어 간다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2.4\\div3$을 세로셈으로 계산할 때 몫의 일의 자리에는 무엇을 쓰는지 쓰고, 그렇게 쓰는 까닭을 $2.4$와 $3$의 크기를 비교해 설명하시오.",
+        "answer": "일의 자리에 $0$을 쓴다. $2.4$가 $3$보다 작아 일의 자리에서는 $3$으로 나누어 한 몫을 만들 수 없고 몫이 $1$보다 작기 때문이다. 몫은 $0.8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫의 일의 자리에 $0$을 쓴다",
+              "일의 자리 몫은 $0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.4$가 $3$보다 작아 일의 자리에서 나눌 수 없다",
+              "몫이 $1$보다 작기 때문이다",
+              "나누어지는 수가 나누는 수보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "몫이 $1$에 못 미치면 일의 자리에 {$0$}을 놓고 소수점 뒤의 계산을 이어 간다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2e609d9bfad2a74ced47325725eab2269131abf16505d82846ffff91ac789eda",
+      "questionRevision": "planning-e5e6-20261006-2e609d9bfad2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "$0.6\\div2$의 몫은 $1$보다 큰가, 작은가? 몫이 $1$이 되려면 나누어지는 수가 얼마여야 하는지를 이용해 까닭을 설명하시오.",
+      "bAnswer": "$1$보다 작다. $\\square\\div2=1$이 되려면 나누어지는 수가 $2$여야 하는데 $0.6$은 $2$보다 작기 때문이다.",
+      "bGoal": "몫이 $1$이 되는 양을 기준으로 몫이 $1$보다 작은 까닭을 설명한다.",
+      "bReason": "결론만 말하지 않고 몫 $1$에 필요한 양과 비교하는 추론 과정을 요구한다. 새 질문의 수식 안 미지수 □만 표준 KaTeX square로 고치며 값과 뜻은 바꾸지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 $1$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫이 $1$이 되려면 나누어지는 수가 $2$여야 한다",
+            "몫이 $1$이 되려면 나누는 수만큼 필요하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.6$은 $2$보다 작다",
+            "나누어지는 수가 필요한 양보다 적다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 {작다}.",
+      "cReason": "몫 $1$에 필요한 양을 먼저 제시한 뒤 '작으면 $1$보다 작다'를 묻는 명확한 비교 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "rootPhotoAmendmentEvidence": "evidence/root-supplemental-fraction-verdicts-original.json",
+      "amendedFromProposalFingerprint": "af2eaaa9f5ccd64afa7d14498d1cc886409c594d557126c0e6a7a4a0e25283b5",
+      "sourceIndex": 233,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-2-c3",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "몫이 $1$보다 작은 까닭",
+        "definition": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 {작다}.",
+        "studentC": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "ec9862acbfec8bd4ddbd044c37b55d462154a49a47674206e637c59c8d39af1b",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 {작다}.",
+      "cFrozenStudentSentence": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 □.",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 {작다}.",
+      "cStudentSentence": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.6\\div2$의 몫은 $1$보다 큰가, 작은가? 몫이 $1$이 되려면 나누어지는 수가 얼마여야 하는지를 이용해 까닭을 설명하시오.",
+        "answer": "$1$보다 작다. $\\square\\div2=1$이 되려면 나누어지는 수가 $2$여야 하는데 $0.6$은 $2$보다 작기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $1$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫이 $1$이 되려면 나누어지는 수가 $2$여야 한다",
+              "몫이 $1$이 되려면 나누는 수만큼 필요하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.6$은 $2$보다 작다",
+              "나누어지는 수가 필요한 양보다 적다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9d1f3a17c31ccf02978dd9374387d10505808f8e85ebd3efd3c246f6925178e3",
+      "questionRevision": "planning-e5e6-20261006-9d1f3a17c31c",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e6-1-3-2-c3",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "몫1의피제수2를기준으로0.6이작다는세의미가질문과맞다. 수식의미지수만표준square로바꿨고기존C의작다비교는유지한다.",
+        "sourceIndex": 233,
+        "proposalFingerprintReviewed": "9d1f3a17c31ccf02978dd9374387d10505808f8e85ebd3efd3c246f6925178e3",
+        "inputEvidence": "evidence/final-editorial-amendments-013.json",
+        "learningRole": "reason",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "keep",
+        "bSourceReason": "결론만 말하지 않고 몫 $1$에 필요한 양과 비교하는 추론 과정을 요구한다. 새 질문의 수식 안 미지수 □만 표준 KaTeX square로 고치며 값과 뜻은 바꾸지 않는다.",
+        "cSourceReason": "몫 $1$에 필요한 양을 먼저 제시한 뒤 '작으면 $1$보다 작다'를 묻는 명확한 비교 문장이라 유지한다.",
+        "recordedAfterDirectReading": "2026-10-06T17:35:36.764835+00:00"
+      }
+    },
+    {
+      "id": "e6-1-3-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "소수 $2.6$의 끝에 $0$을 붙여 $2.60$으로 쓰면 수의 크기는 어떻게 되는가? 소수 마지막 숫자 뒤에 $0$을 붙일 때 크기에 생기는 일을 쓰시오.",
+      "bAnswer": "크기는 변하지 않고 같다. $2.6=2.60$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "크기가 변하지 않는다",
+            "크기가 같다",
+            "같은 수이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "소수 끝에 $0$을 붙여도 크기가 변하지 않는다는 핵심 성질을 말한다.",
+      "bReason": "일반 관계와 $2.6$, $2.60$ 예를 함께 묻되 결론은 드러내지 않았다.",
+      "cDecision": "keep",
+      "cAfter": "소수점 뒤 마지막 숫자 다음에 $0$을 붙여도 수의 크기는 {그대로}이다.",
+      "cReason": "조건이 분명한 짧은 성질 문장이고 빈칸 하나로 핵심을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 234,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-3-c1",
+        "section": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "level": "하",
+        "kind": "성질",
+        "term": "소수 끝의 $0$",
+        "definition": "소수점 뒤 마지막 숫자 다음에 $0$을 붙여도 수의 크기는 {그대로}이다.",
+        "studentC": "소수점 뒤 마지막 숫자 다음에 $0$을 붙여도 수의 크기는 □이다.",
+        "answers": [
+          "그대로"
+        ]
+      },
+      "sourceFingerprint": "d8635ebfd095da1fb2b84967e39294c74bdd7aba4103cdd492250be075c9995a",
+      "draftEvidence": "evidence/section-066-draft.json",
+      "cFrozenDefinition": "소수점 뒤 마지막 숫자 다음에 $0$을 붙여도 수의 크기는 {그대로}이다.",
+      "cFrozenStudentSentence": "소수점 뒤 마지막 숫자 다음에 $0$을 붙여도 수의 크기는 □이다.",
+      "cProposedAnswers": [
+        "그대로"
+      ],
+      "cStudentAfter": "소수점 뒤 마지막 숫자 다음에 $0$을 붙여도 수의 크기는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "그대로"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수점 뒤 마지막 숫자 다음에 $0$을 붙여도 수의 크기는 {그대로}이다.",
+      "cStudentSentence": "소수점 뒤 마지막 숫자 다음에 $0$을 붙여도 수의 크기는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "그대로",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 $2.6$의 끝에 $0$을 붙여 $2.60$으로 쓰면 수의 크기는 어떻게 되는가? 소수 마지막 숫자 뒤에 $0$을 붙일 때 크기에 생기는 일을 쓰시오.",
+        "answer": "크기는 변하지 않고 같다. $2.6=2.60$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 변하지 않는다",
+              "크기가 같다",
+              "같은 수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수점 뒤 마지막 숫자 다음에 $0$을 붙여도 수의 크기는 {그대로}이다.",
+        "acceptedAnswers": [
+          [
+            "그대로"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7c42b8f4dfedd187b2593fd19afdd1c6d4cf50609c4b93fba544c8c605fbfccf",
+      "questionRevision": "planning-e5e6-20261006-7c42b8f4dfed",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "소수의 나눗셈에서 나머지 뒤에 $0$을 내려 계속 계산할 때, 남은 양을 어떤 크기의 단위로 바꾸어 나누는가? 이때 단위의 개수와 남은 양 전체의 크기는 각각 어떻게 되는지 쓰시오.",
+      "bAnswer": "앞 단위의 $\\frac{1}{10}$ 크기인 단위로 바꾼다. 단위의 개수는 $10$배가 되지만 남은 양은 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞 단위의 $\\frac{1}{10}$ 크기 단위",
+            "한 자리 아래의 $10$분의 $1$ 크기 단위"
+          ]
+        },
+        {
+          "anyOf": [
+            "단위 개수가 $10$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "남은 양은 같다",
+            "전체 크기는 변하지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "$0$을 내리는 일이 단위를 바꾸는 것이며 양은 그대로임을 설명한다.",
+      "bReason": "세 가지 관계를 질문에서 각각 지정해 막연한 '왜'를 피했다.",
+      "cDecision": "keep",
+      "cAfter": "소수의 나눗셈에서 나머지에 $0$을 내려 계산할 때는 남은 양을 크기가 앞 단위의 {$\\frac{1}{10}$}인 단위로 바꾸어 나눈다. 단위의 개수는 {$10$배}가 되지만 남은 양은 {같다}.",
+      "cReason": "크기, 개수, 양의 세 관계를 짧은 빈칸 세 개로 묻는 알맞은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 235,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-3-c2",
+        "section": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "$0$을 내려 계산하기",
+        "definition": "소수의 나눗셈에서 나머지에 $0$을 내려 계산할 때는 남은 양을 크기가 앞 단위의 {$\\frac{1}{10}$}인 단위로 바꾸어 나눈다. 단위의 개수는 {$10$배}가 되지만 남은 양은 {같다}.",
+        "studentC": "소수의 나눗셈에서 나머지에 $0$을 내려 계산할 때는 남은 양을 크기가 앞 단위의 □인 단위로 바꾸어 나눈다. 단위의 개수는 □가 되지만 남은 양은 □.",
+        "answers": [
+          "$\\frac{1}{10}$",
+          "$10$배",
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "88ba940647ad431d8fd7fb1dd711edd282c096317d5020f7bb7958e8c6351712",
+      "draftEvidence": "evidence/section-066-draft.json",
+      "cFrozenDefinition": "소수의 나눗셈에서 나머지에 $0$을 내려 계산할 때는 남은 양을 크기가 앞 단위의 {$\\frac{1}{10}$}인 단위로 바꾸어 나눈다. 단위의 개수는 {$10$배}가 되지만 남은 양은 {같다}.",
+      "cFrozenStudentSentence": "소수의 나눗셈에서 나머지에 $0$을 내려 계산할 때는 남은 양을 크기가 앞 단위의 □인 단위로 바꾸어 나눈다. 단위의 개수는 □가 되지만 남은 양은 □.",
+      "cProposedAnswers": [
+        "$\\frac{1}{10}$",
+        "$10$배",
+        "같다"
+      ],
+      "cStudentAfter": "소수의 나눗셈에서 나머지에 $0$을 내려 계산할 때는 남은 양을 크기가 앞 단위의 □인 단위로 바꾸어 나눈다. 단위의 개수는 □가 되지만 남은 양은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수의 나눗셈에서 나머지에 $0$을 내려 계산할 때는 남은 양을 크기가 앞 단위의 {$\\frac{1}{10}$}인 단위로 바꾸어 나눈다. 단위의 개수는 {$10$배}가 되지만 남은 양은 {같다}.",
+      "cStudentSentence": "소수의 나눗셈에서 나머지에 $0$을 내려 계산할 때는 남은 양을 크기가 앞 단위의 □인 단위로 바꾸어 나눈다. 단위의 개수는 □가 되지만 남은 양은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{10}$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$배",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수의 나눗셈에서 나머지 뒤에 $0$을 내려 계속 계산할 때, 남은 양을 어떤 크기의 단위로 바꾸어 나누는가? 이때 단위의 개수와 남은 양 전체의 크기는 각각 어떻게 되는지 쓰시오.",
+        "answer": "앞 단위의 $\\frac{1}{10}$ 크기인 단위로 바꾼다. 단위의 개수는 $10$배가 되지만 남은 양은 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞 단위의 $\\frac{1}{10}$ 크기 단위",
+              "한 자리 아래의 $10$분의 $1$ 크기 단위"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위 개수가 $10$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 양은 같다",
+              "전체 크기는 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수의 나눗셈에서 나머지에 $0$을 내려 계산할 때는 남은 양을 크기가 앞 단위의 {$\\frac{1}{10}$}인 단위로 바꾸어 나눈다. 단위의 개수는 {$10$배}가 되지만 남은 양은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{10}$"
+          ],
+          [
+            "$10$배"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "78ff555bccc40f6fbc1cc4afa99016f5b9105f1de680bf3e560b8476580f4d87",
+      "questionRevision": "planning-e5e6-20261006-78ff555bccc4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "$0.3\\div2$를 계산하면 몫의 $0.1$ 자리에 $1$이 쓰이고 $0.1$짜리 $1$개가 남는다. 다음 자리를 계속 나누려면 남은 것을 어떤 단위 몇 개로 바꾸어야 하는지 쓰고, 그렇게 바꿀 수 있는 까닭과 $0.3\\div2$의 몫을 쓰시오.",
+      "bAnswer": "$0.01$짜리 $10$개로 바꾼다. $0.1$은 $0.01$이 $10$개와 같기 때문이다. $10\\div2=5$이므로 몫은 $0.15$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.01$짜리 $10$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.1$은 $0.01$이 $10$개와 같다",
+            "$0.1=0.01\\times10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.15$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "남은 $0.1$을 더 작은 단위로 바꾸어 계속 나누는 과정을 설명한다.",
+      "bReason": "단위 바꾸기와 그 까닭을 한 예로 묻되 일반 개념도 함께 요구한다.",
+      "cDecision": "revise",
+      "cAfter": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 {$10$}개로 바꾸어 나누고, 몫은 {$0.15$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$",
+            "$10$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.15$"
+          ]
+        }
+      ],
+      "cReason": "실제 식을 제시해 단위 바꾸기와 몫을 짧은 값으로 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 236,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-3-c3",
+        "section": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "남은 $0.1$짜리 $1$개의 단위 바꾸기",
+        "definition": "$0.1$짜리 $1$개가 남았을 때 이를 {$0.01$짜리 $10$개}로 바꾸면 다음 자리의 나눗셈을 할 수 있다.",
+        "studentC": "$0.1$짜리 $1$개가 남았을 때 이를 □로 바꾸면 다음 자리의 나눗셈을 할 수 있다.",
+        "answers": [
+          "$0.01$짜리 $10$개"
+        ]
+      },
+      "sourceFingerprint": "4435d634045dfa439409876b1231f5979fe9740e7faad24af487d2190f04ff45",
+      "draftEvidence": "evidence/section-066-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$0.15$"
+      ],
+      "cStudentAfter": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 □개로 바꾸어 나누고, 몫은 □이다.",
+      "cMarkedSentence": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 {$10$}개로 바꾸어 나누고, 몫은 {$0.15$}이다.",
+      "cStudentSentence": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 □개로 바꾸어 나누고, 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": [
+            "$10$개"
+          ]
+        },
+        {
+          "key": "$0.15$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.3\\div2$를 계산하면 몫의 $0.1$ 자리에 $1$이 쓰이고 $0.1$짜리 $1$개가 남는다. 다음 자리를 계속 나누려면 남은 것을 어떤 단위 몇 개로 바꾸어야 하는지 쓰고, 그렇게 바꿀 수 있는 까닭과 $0.3\\div2$의 몫을 쓰시오.",
+        "answer": "$0.01$짜리 $10$개로 바꾼다. $0.1$은 $0.01$이 $10$개와 같기 때문이다. $10\\div2=5$이므로 몫은 $0.15$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.01$짜리 $10$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$은 $0.01$이 $10$개와 같다",
+              "$0.1=0.01\\times10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.15$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 {$10$}개로 바꾸어 나누고, 몫은 {$0.15$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "$10$개"
+          ],
+          [
+            "$0.15$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f44a5ccebc060cb1a689526f4df4bca3cc00cd007c03f9a63ea08aeae43c93c0",
+      "questionRevision": "planning-e5e6-20261006-f44a5ccebc06",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-4-c1",
+      "bDecision": "revise",
+      "bPrompt": "소수 $3.04$를 쓸 때 소수 첫째 자리에 숫자를 하나 써 넣는 까닭은 무엇입니까? 그 자리에 쓴 숫자가 나타내는 뜻도 말하시오.",
+      "bAnswer": "소수 첫째 자리에 $0.1$이 하나도 없어서 $0$을 써 그 자리를 채운다. 그래야 $4$가 $0.04$를 나타낸다.",
+      "bGoal": "빈 자리를 $0$으로 채워야 다른 자리의 값이 유지된다는 점을 안다.",
+      "bReason": "제목만 묻지 않고 $3.04$에서 $0$의 역할을 직접 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 자리의 단위가 하나도 없다는 뜻이다",
+            "$0.1$이 $0$개라는 뜻이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자리를 채워 다른 숫자의 자릿값을 지킨다",
+            "$0$을 쓰지 않으면 $4$의 자리가 달라진다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "소수에서 어떤 자리의 단위가 하나도 없으면 그 자리를 {$0$}으로 나타낸다.",
+      "cReason": "단위가 하나도 없는 자리를 $0$으로 쓴다는 짧은 낱말 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 237,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-4-c1",
+        "section": "초6::1-3 소수의 나눗셈::1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "빈 자리의 $0$",
+        "definition": "소수에서 어떤 자리의 단위가 하나도 없으면 그 자리를 {$0$}으로 나타낸다.",
+        "studentC": "소수에서 어떤 자리의 단위가 하나도 없으면 그 자리를 □으로 나타낸다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "sourceFingerprint": "20c1783029e1d9f91ac3af172a51446cccedb1bea6409ad69371c2451edb754e",
+      "draftEvidence": "evidence/section-067-draft.json",
+      "cFrozenDefinition": "소수에서 어떤 자리의 단위가 하나도 없으면 그 자리를 {$0$}으로 나타낸다.",
+      "cFrozenStudentSentence": "소수에서 어떤 자리의 단위가 하나도 없으면 그 자리를 □으로 나타낸다.",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "소수에서 어떤 자리의 단위가 하나도 없으면 그 자리를 □으로 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수에서 어떤 자리의 단위가 하나도 없으면 그 자리를 {$0$}으로 나타낸다.",
+      "cStudentSentence": "소수에서 어떤 자리의 단위가 하나도 없으면 그 자리를 □으로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 $3.04$를 쓸 때 소수 첫째 자리에 숫자를 하나 써 넣는 까닭은 무엇입니까? 그 자리에 쓴 숫자가 나타내는 뜻도 말하시오.",
+        "answer": "소수 첫째 자리에 $0.1$이 하나도 없어서 $0$을 써 그 자리를 채운다. 그래야 $4$가 $0.04$를 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 자리의 단위가 하나도 없다는 뜻이다",
+              "$0.1$이 $0$개라는 뜻이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자리를 채워 다른 숫자의 자릿값을 지킨다",
+              "$0$을 쓰지 않으면 $4$의 자리가 달라진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수에서 어떤 자리의 단위가 하나도 없으면 그 자리를 {$0$}으로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "147ada4b3622659bfd275983ff15d4af097412fcab1a5f132de5fe33f996a371",
+      "questionRevision": "planning-e5e6-20261006-147ada4b3622",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-4-c2",
+      "bDecision": "revise",
+      "bPrompt": "$2.04\\div2$를 세로셈으로 계산할 때, 몫의 소수 첫째 자리에 쓴 $0$과 마지막 나머지 $0$은 각각 무슨 뜻입니까?",
+      "bAnswer": "몫은 $1.02$이다. 몫의 $0$은 한 몫에 $0.1$이 하나도 없다는 뜻이다. 나머지 $0$은 다 나누고 남은 양이 없다는 뜻이다.",
+      "bGoal": "몫의 $0$과 나머지 $0$의 서로 다른 뜻을 구별한다.",
+      "bReason": "두 $0$을 같은 계산 안에서 비교하게 해 혼동을 막는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫의 $0$은 그 자리 몫이 없다는 뜻이다",
+            "한 몫에 $0.1$을 하나도 줄 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나머지 $0$은 남은 양이 없다는 뜻이다",
+            "다 나누어떨어졌다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$2.04\\div2=1.02$에서 몫의 소수 첫째 자리 $0$은 한 몫에 $0.1$이 {$0$}개라는 뜻이고, 나머지가 $0$이면 나누고 남은 양이 {없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "하나도 없다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 맥락 없는 긴 구절이라 실제 식을 보이고 짧은 값과 낱말을 답하게 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 238,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-4-c2",
+        "section": "초6::1-3 소수의 나눗셈::1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "몫의 $0$과 나머지 $0$",
+        "definition": "몫에 쓴 $0$은 그 자리의 단위가 {한 몫에 없다}는 뜻이고, 나머지 $0$은 {나눌 양이 남지 않았다}는 뜻이다.",
+        "studentC": "몫에 쓴 $0$은 그 자리의 단위가 □는 뜻이고, 나머지 $0$은 □는 뜻이다.",
+        "answers": [
+          "한 몫에 없다",
+          "나눌 양이 남지 않았다"
+        ]
+      },
+      "sourceFingerprint": "dbc0150b33740876ac01d289d276028660e5bf49c7430b1492acc663b054a237",
+      "draftEvidence": "evidence/section-067-draft.json",
+      "cProposedAnswers": [
+        "$0$",
+        "없다"
+      ],
+      "cStudentAfter": "$2.04\\div2=1.02$에서 몫의 소수 첫째 자리 $0$은 한 몫에 $0.1$이 □개라는 뜻이고, 나머지가 $0$이면 나누고 남은 양이 □.",
+      "cMarkedSentence": "$2.04\\div2=1.02$에서 몫의 소수 첫째 자리 $0$은 한 몫에 $0.1$이 {$0$}개라는 뜻이고, 나머지가 $0$이면 나누고 남은 양이 {없다}.",
+      "cStudentSentence": "$2.04\\div2=1.02$에서 몫의 소수 첫째 자리 $0$은 한 몫에 $0.1$이 □개라는 뜻이고, 나머지가 $0$이면 나누고 남은 양이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "없다",
+          "equivalents": [
+            "하나도 없다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2.04\\div2$를 세로셈으로 계산할 때, 몫의 소수 첫째 자리에 쓴 $0$과 마지막 나머지 $0$은 각각 무슨 뜻입니까?",
+        "answer": "몫은 $1.02$이다. 몫의 $0$은 한 몫에 $0.1$이 하나도 없다는 뜻이다. 나머지 $0$은 다 나누고 남은 양이 없다는 뜻이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫의 $0$은 그 자리 몫이 없다는 뜻이다",
+              "한 몫에 $0.1$을 하나도 줄 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지 $0$은 남은 양이 없다는 뜻이다",
+              "다 나누어떨어졌다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.04\\div2=1.02$에서 몫의 소수 첫째 자리 $0$은 한 몫에 $0.1$이 {$0$}개라는 뜻이고, 나머지가 $0$이면 나누고 남은 양이 {없다}.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "없다",
+            "하나도 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "69377413968d751fd678fdb11e6903090fe14498cf772521de1a946aabac7e77",
+      "questionRevision": "planning-e5e6-20261006-69377413968d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "$1.04$에서 소수 첫째 자리의 $0$을 지우고 $1.4$로 쓰면 왜 다른 수가 됩니까? 숫자 $4$가 나타내는 값이 어떻게 달라지는지 설명하시오.",
+      "bAnswer": "$0$을 지우면 $4$가 한 자리 앞으로 와서 $0.04$를 나타내던 것이 $0.4$를 나타내게 된다. 값이 열 배가 되므로 $1.04$는 $1.4$와 다르다.",
+      "bGoal": "가운데 $0$을 지우면 뒤 숫자의 자릿값이 커져 다른 수가 됨을 설명한다.",
+      "bReason": "$4$의 값이 $0.04$에서 $0.4$로 바뀌는 관계를 직접 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀐다",
+            "$4$의 자릿값이 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "열 배가 된다",
+            "$10$배가 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 {열 배}가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "열 배",
+            "$10$배"
+          ]
+        }
+      ],
+      "cReason": "자릿값이라는 말 대신 $4$가 나타내는 값의 변화를 보여 학생이 이해하기 쉽다.",
+      "exampleNeeded": false,
+      "sourceIndex": 239,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-4-c3",
+        "section": "초6::1-3 소수의 나눗셈::1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "가운데 $0$을 생략할 수 없는 까닭",
+        "definition": "소수점 아래에서 $0$ 뒤에 다른 숫자가 있으면, 그 $0$을 지울 때 뒤 숫자의 자릿값이 {열 배}가 되어 다른 수가 된다. $1.04$는 $1.4$가 아니다.",
+        "studentC": "소수점 아래에서 $0$ 뒤에 다른 숫자가 있으면, 그 $0$을 지울 때 뒤 숫자의 자릿값이 □가 되어 다른 수가 된다. $1.04$는 $1.4$가 아니다.",
+        "answers": [
+          "열 배"
+        ]
+      },
+      "sourceFingerprint": "1fbe47a970aef085fe220e54e5a68cc4721747de4dbd5cd32e0e7ac22d4eed5a",
+      "draftEvidence": "evidence/section-067-draft.json",
+      "cProposedAnswers": [
+        "열 배"
+      ],
+      "cStudentAfter": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 □가 된다.",
+      "cMarkedSentence": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 {열 배}가 된다.",
+      "cStudentSentence": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "열 배",
+          "equivalents": [
+            "$10$배"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1.04$에서 소수 첫째 자리의 $0$을 지우고 $1.4$로 쓰면 왜 다른 수가 됩니까? 숫자 $4$가 나타내는 값이 어떻게 달라지는지 설명하시오.",
+        "answer": "$0$을 지우면 $4$가 한 자리 앞으로 와서 $0.04$를 나타내던 것이 $0.4$를 나타내게 된다. 값이 열 배가 되므로 $1.04$는 $1.4$와 다르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀐다",
+              "$4$의 자릿값이 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "열 배가 된다",
+              "$10$배가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 {열 배}가 된다.",
+        "acceptedAnswers": [
+          [
+            "열 배",
+            "$10$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "09063973b8ad7bbb851b382bbc8cf6c600901ab020fcc708b91177a6cb6dd474",
+      "questionRevision": "planning-e5e6-20261006-09063973b8ad",
+      "requiresIndependentReview": true
+    }
+  ]
+}

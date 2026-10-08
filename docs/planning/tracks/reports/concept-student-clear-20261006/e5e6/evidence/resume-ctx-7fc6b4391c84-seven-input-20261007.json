@@ -1,0 +1,911 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-1-1-c5",
+      "bDecision": "revise",
+      "bPrompt": "식에서 괄호 ( )는 어떤 역할을 하는지 쓰고, $20-7+3$과 $20-(7+3)$에서 먼저 계산하는 부분을 각각 쓰시오.",
+      "bAnswer": "괄호는 먼저 계산할 부분을 묶어 나타낸다. $20-7+3$에서는 $20-7$을, $20-(7+3)$에서는 $7+3$을 먼저 계산한다.",
+      "bGoal": "괄호가 '먼저 계산할 부분을 묶는 표시'임을 말하고, 괄호가 있고 없음에 따라 먼저 계산할 부분이 달라짐을 확인한다.",
+      "bReason": "'괄호'는 정식 용어라 역할을 직접 물었고, c2와 겹치지 않게 두 식을 견주게 했다.",
+      "studentLabel": "괄호의 역할",
+      "cDecision": "keep",
+      "cAfter": "식에서 먼저 계산할 부분을 묶어 보여 주는 표시는 {괄호}이다.",
+      "cReason": "'먼저 계산할 부분을 묶어 보여 주는 표시'라는 뜻에서 용어 하나를 떠올리는 짧은 문장이라 그대로 둔다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'( )', '소괄호'는 인정한다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 계산할 부분을 묶어 나타내는 표시이다",
+            "먼저 계산할 부분을 묶어 주는 표시이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20-7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7+3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "괄호",
+            "( )",
+            "소괄호"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-000-rubric.json",
+      "sourceIndex": 4,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-1-1-1-c5",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-1 덧셈과 뺄셈 / 곱셈과 나눗셈이 섞여 있는 식",
+        "term": "괄호",
+        "kind": "정의",
+        "level": "하",
+        "definition": "식에서 먼저 계산할 부분을 묶어 보여 주는 표시는 {괄호}이다.",
+        "studentC": "식에서 먼저 계산할 부분을 묶어 보여 주는 표시는 □이다.",
+        "answers": [
+          "괄호"
+        ]
+      },
+      "sourceFingerprint": "eab13c8cefe2a623cae62571632a1a635d6fddceab78d0890f65a0e385d64101",
+      "draftEvidence": "evidence/section-000-draft.json",
+      "cFrozenDefinition": "식에서 먼저 계산할 부분을 묶어 보여 주는 표시는 {괄호}이다.",
+      "cFrozenStudentSentence": "식에서 먼저 계산할 부분을 묶어 보여 주는 표시는 □이다.",
+      "cProposedAnswers": [
+        "괄호"
+      ],
+      "cStudentAfter": "식에서 먼저 계산할 부분을 묶어 보여 주는 표시는 □이다.",
+      "cMarkedSentence": "식에서 먼저 계산할 부분을 묶어 보여 주는 표시는 {괄호}이다.",
+      "cStudentSentence": "식에서 먼저 계산할 부분을 묶어 보여 주는 표시는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "괄호",
+          "equivalents": [
+            "( )",
+            "소괄호"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "식에서 괄호 ( )는 어떤 역할을 하는지 쓰고, $20-7+3$과 $20-(7+3)$에서 먼저 계산하는 부분을 각각 쓰시오.",
+        "answer": "괄호는 먼저 계산할 부분을 묶어 나타낸다. $20-7+3$에서는 $20-7$을, $20-(7+3)$에서는 $7+3$을 먼저 계산한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 계산할 부분을 묶어 나타내는 표시이다",
+              "먼저 계산할 부분을 묶어 주는 표시이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20-7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7+3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "식에서 먼저 계산할 부분을 묶어 보여 주는 표시는 {괄호}이다.",
+        "acceptedAnswers": [
+          [
+            "괄호",
+            "( )",
+            "소괄호"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5c4664a64e3c9eaaac2e992afeadf501e1cf662be0ed4bb20ea2f3e5075f7cfe",
+      "questionRevision": "planning-e5e6-20261006-5c4664a64e3c",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e5-1-1-1-c5",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "괄호 역할과 두 식의 첫 계산 부분 20−7·7+3을 각각 묻고 각 의미 기준이 대응한다. C 괄호·소괄호·( )는 이 지면에서 같은 표시다.",
+        "sourceIndex": 4,
+        "proposalFingerprintReviewed": "5c4664a64e3c9eaaac2e992afeadf501e1cf662be0ed4bb20ea2f3e5075f7cfe",
+        "learningRole": "definition",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "keep",
+        "bSourceReason": "'괄호'는 정식 용어라 역할을 직접 물었고, c2와 겹치지 않게 두 식을 견주게 했다.",
+        "cSourceReason": "'먼저 계산할 부분을 묶어 보여 주는 표시'라는 뜻에서 용어 하나를 떠올리는 짧은 문장이라 그대로 둔다.",
+        "recordedAfterDirectReading": "2026-10-06T13:49:17.112800+00:00"
+      }
+    },
+    {
+      "id": "e5-1-1-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "괄호가 없고 덧셈, 뺄셈, 곱셈이 섞여 있는 식에서는 어느 계산을 먼저 하는지 쓰고, 그 차례대로 $26-4\\times5$를 계산하시오.",
+      "bAnswer": "곱셈을 먼저 계산한다. $4\\times5=20$을 먼저 구한 다음 $26-20=6$이다.",
+      "bGoal": "괄호 없는 덧셈·뺄셈·곱셈 혼합식에서 곱셈을 먼저 한다는 규칙을 말하고 실제 식에 적용한다.",
+      "bReason": "제목만으로는 무엇을 답할지 알 수 없다. '괄호 없음' 조건과 '어느 계산을 먼저'라는 답 범위를 질문에 넣고 적용 예를 붙였다.",
+      "studentLabel": "곱셈이 섞인 식의 계산 차례",
+      "cDecision": "keep",
+      "cAfter": "괄호가 없는 덧셈·뺄셈·곱셈 식에서는 곱셈을 {먼저} 계산한다.",
+      "cReason": "이 소단원의 핵심 규칙을 한 낱말로 확인하는 문장이다. '괄호가 없는' 조건이 문장에 있고 답이 뒤 문장에 드러나지 않는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'먼저', '가장 먼저', '제일 먼저'는 모두 정답이다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호가 없으면 곱셈을 먼저 계산한다",
+            "곱셈을 덧셈·뺄셈보다 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$",
+            "$26-20=6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "먼저",
+            "가장 먼저",
+            "제일 먼저"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 5,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-1-1-2-c1",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "덧셈, 뺄셈, 곱셈이 섞여 있는 식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "괄호가 없는 덧셈·뺄셈·곱셈 식에서는 곱셈을 {먼저} 계산한다.",
+        "studentC": "괄호가 없는 덧셈·뺄셈·곱셈 식에서는 곱셈을 □ 계산한다.",
+        "answers": [
+          "먼저"
+        ]
+      },
+      "sourceFingerprint": "56ab17e818cecb330997e78140360ca8ea8ba50cbac87ed761f7c7f7ca6d564d",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cFrozenDefinition": "괄호가 없는 덧셈·뺄셈·곱셈 식에서는 곱셈을 {먼저} 계산한다.",
+      "cFrozenStudentSentence": "괄호가 없는 덧셈·뺄셈·곱셈 식에서는 곱셈을 □ 계산한다.",
+      "cProposedAnswers": [
+        "먼저"
+      ],
+      "cStudentAfter": "괄호가 없는 덧셈·뺄셈·곱셈 식에서는 곱셈을 □ 계산한다.",
+      "cMarkedSentence": "괄호가 없는 덧셈·뺄셈·곱셈 식에서는 곱셈을 {먼저} 계산한다.",
+      "cStudentSentence": "괄호가 없는 덧셈·뺄셈·곱셈 식에서는 곱셈을 □ 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "먼저",
+          "equivalents": [
+            "가장 먼저",
+            "제일 먼저"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호가 없고 덧셈, 뺄셈, 곱셈이 섞여 있는 식에서는 어느 계산을 먼저 하는지 쓰고, 그 차례대로 $26-4\\times5$를 계산하시오.",
+        "answer": "곱셈을 먼저 계산한다. $4\\times5=20$을 먼저 구한 다음 $26-20=6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호가 없으면 곱셈을 먼저 계산한다",
+              "곱셈을 덧셈·뺄셈보다 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$",
+              "$26-20=6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "괄호가 없는 덧셈·뺄셈·곱셈 식에서는 곱셈을 {먼저} 계산한다.",
+        "acceptedAnswers": [
+          [
+            "먼저",
+            "가장 먼저",
+            "제일 먼저"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "31639fb1321de717ec548e718c37175d2b57e3957f2d052abc8adf533e6a5d42",
+      "questionRevision": "planning-e5e6-20261006-31639fb1321d",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e5-1-1-2-c1",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "괄호 없음에서 곱셈을 뺄셈보다 먼저 하여 26−20=6인 방법과 적용을 묻는다. C 먼저라는 우선 순서 낱말은 보이는 조건 안에서 결정된다.",
+        "sourceIndex": 5,
+        "proposalFingerprintReviewed": "31639fb1321de717ec548e718c37175d2b57e3957f2d052abc8adf533e6a5d42",
+        "learningRole": "procedure",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "keep",
+        "bSourceReason": "제목만으로는 무엇을 답할지 알 수 없다. '괄호 없음' 조건과 '어느 계산을 먼저'라는 답 범위를 질문에 넣고 적용 예를 붙였다.",
+        "cSourceReason": "이 소단원의 핵심 규칙을 한 낱말로 확인하는 문장이다. '괄호가 없는' 조건이 문장에 있고 답이 뒤 문장에 드러나지 않는다.",
+        "recordedAfterDirectReading": "2026-10-06T13:49:17.113802+00:00"
+      }
+    },
+    {
+      "id": "e5-1-1-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "괄호가 없고 덧셈, 뺄셈, 나눗셈이 섞여 있는 식에서는 어느 계산을 먼저 하는지 쓰고, 그 차례대로 $30+18\\div6$을 계산하시오.",
+      "bAnswer": "나눗셈을 먼저 계산한다. $18\\div6=3$을 먼저 구한 다음 $30+3=33$이다.",
+      "bGoal": "괄호 없는 덧셈·뺄셈·나눗셈 혼합식에서 나눗셈을 먼저 한다는 규칙을 말하고 적용한다.",
+      "bReason": "c1과 연산만 다른 규칙이라 같은 형식으로 묻되, 나눗셈이 뒤쪽에 놓인 식을 예로 써서 앞에서부터 계산하는 버릇을 점검한다.",
+      "studentLabel": "나눗셈이 섞인 식의 계산 차례",
+      "cDecision": "keep",
+      "cAfter": "괄호가 없는 덧셈·뺄셈·나눗셈 식에서는 나눗셈을 {먼저} 계산한다.",
+      "cReason": "나눗셈 쪽 규칙을 확인하는 짧은 문장이다. c1과 짝을 이루어 곱셈·나눗셈 모두 먼저 한다는 점을 따로 확인하므로 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'먼저', '가장 먼저', '제일 먼저'는 모두 정답이다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호가 없으면 나눗셈을 먼저 계산한다",
+            "나눗셈을 덧셈·뺄셈보다 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$33$",
+            "$30+3=33$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "먼저",
+            "가장 먼저",
+            "제일 먼저"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 6,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-1-1-2-c2",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "덧셈, 뺄셈, 나눗셈이 섞여 있는 식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "괄호가 없는 덧셈·뺄셈·나눗셈 식에서는 나눗셈을 {먼저} 계산한다.",
+        "studentC": "괄호가 없는 덧셈·뺄셈·나눗셈 식에서는 나눗셈을 □ 계산한다.",
+        "answers": [
+          "먼저"
+        ]
+      },
+      "sourceFingerprint": "c2ecbeab939b9e28e1f3aad69d4cb0c4b898b1b5d49158a3b500371861a7e50c",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cFrozenDefinition": "괄호가 없는 덧셈·뺄셈·나눗셈 식에서는 나눗셈을 {먼저} 계산한다.",
+      "cFrozenStudentSentence": "괄호가 없는 덧셈·뺄셈·나눗셈 식에서는 나눗셈을 □ 계산한다.",
+      "cProposedAnswers": [
+        "먼저"
+      ],
+      "cStudentAfter": "괄호가 없는 덧셈·뺄셈·나눗셈 식에서는 나눗셈을 □ 계산한다.",
+      "cMarkedSentence": "괄호가 없는 덧셈·뺄셈·나눗셈 식에서는 나눗셈을 {먼저} 계산한다.",
+      "cStudentSentence": "괄호가 없는 덧셈·뺄셈·나눗셈 식에서는 나눗셈을 □ 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "먼저",
+          "equivalents": [
+            "가장 먼저",
+            "제일 먼저"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "괄호가 없고 덧셈, 뺄셈, 나눗셈이 섞여 있는 식에서는 어느 계산을 먼저 하는지 쓰고, 그 차례대로 $30+18\\div6$을 계산하시오.",
+        "answer": "나눗셈을 먼저 계산한다. $18\\div6=3$을 먼저 구한 다음 $30+3=33$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "괄호가 없으면 나눗셈을 먼저 계산한다",
+              "나눗셈을 덧셈·뺄셈보다 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$33$",
+              "$30+3=33$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "괄호가 없는 덧셈·뺄셈·나눗셈 식에서는 나눗셈을 {먼저} 계산한다.",
+        "acceptedAnswers": [
+          [
+            "먼저",
+            "가장 먼저",
+            "제일 먼저"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c2660452980c749ea1365de454ac9d0242b3e6c3aceed4686035ba09aacf687e",
+      "questionRevision": "planning-e5e6-20261006-c2660452980c",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e5-1-1-2-c2",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "나눗셈 18÷6을 덧셈보다 먼저 하는 방법과 33의 적용이 요청·답·기준에 맞는다. C 나눗셈 우선과 먼저의 동의 표현도 조건과 맞는다.",
+        "sourceIndex": 6,
+        "proposalFingerprintReviewed": "c2660452980c749ea1365de454ac9d0242b3e6c3aceed4686035ba09aacf687e",
+        "learningRole": "procedure",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "keep",
+        "bSourceReason": "c1과 연산만 다른 규칙이라 같은 형식으로 묻되, 나눗셈이 뒤쪽에 놓인 식을 예로 써서 앞에서부터 계산하는 버릇을 점검한다.",
+        "cSourceReason": "나눗셈 쪽 규칙을 확인하는 짧은 문장이다. c1과 짝을 이루어 곱셈·나눗셈 모두 먼저 한다는 점을 따로 확인하므로 유지한다.",
+        "recordedAfterDirectReading": "2026-10-06T13:49:17.113802+00:00"
+      }
+    },
+    {
+      "id": "e5-1-1-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "같은 수만큼씩 든 묶음 몇 개와 낱개 몇 개가 함께 있을 때, 전체 수를 하나의 식으로 나타내는 방법을 설명하시오. 또 한 상자에 $12$개씩 든 귤 $5$상자와 낱개 $7$개의 수를 하나의 식으로 쓰고, 먼저 계산하는 부분을 밝혀 값을 구하시오.",
+      "bAnswer": "한 묶음의 수에 묶음 수를 곱해 묶음에 든 수를 구하고, 거기에 낱개의 수를 더한다. 식은 $12\\times5+7$이고, $12\\times5=60$을 먼저 계산하여 $60+7=67$(개)이다.",
+      "bGoal": "묶음과 낱개가 함께 있는 상황을 (곱셈)+(수)의 식으로 세우고 곱셈부터 계산한다.",
+      "bReason": "원래 제목은 편집용 표현이라 상황을 풀어 썼다. 식 세우기와 계산 차례를 함께 답하게 범위를 정했다.",
+      "studentLabel": "묶음과 낱개를 한 식으로",
+      "cDecision": "revise",
+      "cAfter": "한 봉지에 $10$개씩 든 사탕 $3$봉지와 낱개 $4$개의 수는 $10\\times3+4$로 구한다. $10\\times3$을 먼저 계산하면 {$30$}이고, 사탕은 모두 {$34$}개이다.",
+      "cReason": "원문은 '곱한 뒤 더하므로'가 바로 앞에 있어 답을 베끼게 되고, '한 묶음의 값', '낱개의 값'은 추상적이다. 실제 상황과 식으로 바꿔 짧은 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 묶음의 수에 묶음 수를 곱한 뒤 낱개의 수를 더한다",
+            "묶음에 든 수를 곱셈으로 구하고 낱개를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\times5+7$",
+            "$7+12\\times5$",
+            "$5\\times12+7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈을 먼저 계산한다",
+            "$12\\times5=60$을 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$67$",
+            "$67$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$34$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-001-rubric.json",
+      "sourceIndex": 7,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-1-1-2-c3",
+        "section": "초5::1-1 자연수의 혼합 계산::1-1-2 덧셈, 뺄셈, 곱셈(나눗셈)이 섞여 있는 식",
+        "term": "묶음의 값에 낱개의 값을 더할 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "묶음과 낱개가 함께 있는 양은 한 묶음의 값과 묶음 수를 곱한 뒤 낱개의 값을 더하므로 {곱셈}부터 한다.",
+        "studentC": "묶음과 낱개가 함께 있는 양은 한 묶음의 값과 묶음 수를 곱한 뒤 낱개의 값을 더하므로 □부터 한다.",
+        "answers": [
+          "곱셈"
+        ]
+      },
+      "sourceFingerprint": "4e00b2b19ab5b5a46fcf21a875c9cde5fba86b3a1a2c0d5a4a1eeae79f074fb5",
+      "draftEvidence": "evidence/section-001-draft.json",
+      "cProposedAnswers": [
+        "$30$",
+        "$34$"
+      ],
+      "cStudentAfter": "한 봉지에 $10$개씩 든 사탕 $3$봉지와 낱개 $4$개의 수는 $10\\times3+4$로 구한다. $10\\times3$을 먼저 계산하면 □이고, 사탕은 모두 □개이다.",
+      "cMarkedSentence": "한 봉지에 $10$개씩 든 사탕 $3$봉지와 낱개 $4$개의 수는 $10\\times3+4$로 구한다. $10\\times3$을 먼저 계산하면 {$30$}이고, 사탕은 모두 {$34$}개이다.",
+      "cStudentSentence": "한 봉지에 $10$개씩 든 사탕 $3$봉지와 낱개 $4$개의 수는 $10\\times3+4$로 구한다. $10\\times3$을 먼저 계산하면 □이고, 사탕은 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": []
+        },
+        {
+          "key": "$34$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 수만큼씩 든 묶음 몇 개와 낱개 몇 개가 함께 있을 때, 전체 수를 하나의 식으로 나타내는 방법을 설명하시오. 또 한 상자에 $12$개씩 든 귤 $5$상자와 낱개 $7$개의 수를 하나의 식으로 쓰고, 먼저 계산하는 부분을 밝혀 값을 구하시오.",
+        "answer": "한 묶음의 수에 묶음 수를 곱해 묶음에 든 수를 구하고, 거기에 낱개의 수를 더한다. 식은 $12\\times5+7$이고, $12\\times5=60$을 먼저 계산하여 $60+7=67$(개)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 묶음의 수에 묶음 수를 곱한 뒤 낱개의 수를 더한다",
+              "묶음에 든 수를 곱셈으로 구하고 낱개를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\times5+7$",
+              "$7+12\\times5$",
+              "$5\\times12+7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱셈을 먼저 계산한다",
+              "$12\\times5=60$을 먼저 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$67$",
+              "$67$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 봉지에 $10$개씩 든 사탕 $3$봉지와 낱개 $4$개의 수는 $10\\times3+4$로 구한다. $10\\times3$을 먼저 계산하면 {$30$}이고, 사탕은 모두 {$34$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ],
+          [
+            "$34$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a010b0cd55302c20070b8fbdc4a161dcbea81cba0215d50eba6b18e0487a6f85",
+      "questionRevision": "planning-e5e6-20261006-a010b0cd5530",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e5-1-1-2-c3",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "귤의 묶음과 낱개를 곱한 뒤 더하는 식·첫 계산·67을 모두 요청하여 네 기준이 필요하다. C 사탕 30과 34는 제공된 식을 실제로 계산하는 서로 다른 값이다.",
+        "sourceIndex": 7,
+        "proposalFingerprintReviewed": "a010b0cd55302c20070b8fbdc4a161dcbea81cba0215d50eba6b18e0487a6f85",
+        "learningRole": "application",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "원래 제목은 편집용 표현이라 상황을 풀어 썼다. 식 세우기와 계산 차례를 함께 답하게 범위를 정했다.",
+        "cSourceReason": "원문은 '곱한 뒤 더하므로'가 바로 앞에 있어 답을 베끼게 되고, '한 묶음의 값', '낱개의 값'은 추상적이다. 실제 상황과 식으로 바꿔 짧은 수를 답하게 했다.",
+        "recordedAfterDirectReading": "2026-10-06T13:49:17.113802+00:00"
+      }
+    },
+    {
+      "id": "e5-1-2-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "어떤 자연수의 약수는 어떤 수를 말하는지 나눗셈의 나머지로 설명하고, $12$의 약수를 모두 쓰시오.",
+      "bAnswer": "어떤 자연수를 나누었을 때 나머지가 $0$이 되게 하는(나누어떨어지게 하는) 자연수가 그 수의 약수이다. $12$의 약수는 $1$, $2$, $3$, $4$, $6$, $12$이다.",
+      "bGoal": "약수의 뜻을 '나머지가 0인 나눗셈'으로 말하고 실제 수에서 약수를 가려낸다.",
+      "bReason": "제목 '약수'만으로는 답의 범위가 없다. 뜻을 나머지로 설명하게 하고 $12$의 약수로 확인하게 했다.",
+      "studentLabel": "약수의 뜻",
+      "cDecision": "revise",
+      "cAfter": "어떤 자연수를 나누었을 때 나머지가 {$0$}이 되게 하는 자연수를 그 수의 약수라고 한다. $12\\div5$는 나머지가 {$2$}이므로 $5$는 $12$의 약수가 아니다.",
+      "cReason": "원문은 '□이 되게 하는'만 보여 '몫이 자연수' 같은 다른 답도 가능하다. '나머지'를 보여 주고 값 $0$만 묻되, 약수가 아닌 예를 계산으로 확인하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "B 답에서 '나누어떨어지게 하는 수'와 '나머지가 0이 되게 나누는 수'는 같은 뜻으로 인정한다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나머지가 $0$이 되게 하는 자연수",
+            "나누어떨어지게 하는 자연수",
+            "나머지 없이 나누는 자연수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$, $2$, $3$, $4$, $6$, $12$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 11,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-1-2-1-c1",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "약수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "어떤 자연수를 나눌 때 {나머지가 $0$}이 되게 하는 자연수가 그 수의 약수이다.",
+        "studentC": "어떤 자연수를 나눌 때 □이 되게 하는 자연수가 그 수의 약수이다.",
+        "answers": [
+          "나머지가 $0$"
+        ]
+      },
+      "sourceFingerprint": "b86a8b5ffe67f8375ae8a6ed660c3c6ba8bfbe9bae27e43427b007f1f9c41b3c",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "$0$",
+        "$2$"
+      ],
+      "cStudentAfter": "어떤 자연수를 나누었을 때 나머지가 □이 되게 하는 자연수를 그 수의 약수라고 한다. $12\\div5$는 나머지가 □이므로 $5$는 $12$의 약수가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어떤 자연수를 나누었을 때 나머지가 {$0$}이 되게 하는 자연수를 그 수의 약수라고 한다. $12\\div5$는 나머지가 {$2$}이므로 $5$는 $12$의 약수가 아니다.",
+      "cStudentSentence": "어떤 자연수를 나누었을 때 나머지가 □이 되게 하는 자연수를 그 수의 약수라고 한다. $12\\div5$는 나머지가 □이므로 $5$는 $12$의 약수가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 자연수의 약수는 어떤 수를 말하는지 나눗셈의 나머지로 설명하고, $12$의 약수를 모두 쓰시오.",
+        "answer": "어떤 자연수를 나누었을 때 나머지가 $0$이 되게 하는(나누어떨어지게 하는) 자연수가 그 수의 약수이다. $12$의 약수는 $1$, $2$, $3$, $4$, $6$, $12$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나머지가 $0$이 되게 하는 자연수",
+              "나누어떨어지게 하는 자연수",
+              "나머지 없이 나누는 자연수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$, $2$, $3$, $4$, $6$, $12$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 자연수를 나누었을 때 나머지가 {$0$}이 되게 하는 자연수를 그 수의 약수라고 한다. $12\\div5$는 나머지가 {$2$}이므로 $5$는 $12$의 약수가 아니다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5c3991292d24e228ed7715bf0de20173228b16728dad65182c606571ffde1c72",
+      "questionRevision": "planning-e5e6-20261006-5c3991292d24",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e5-1-2-1-c1",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "약수를 나머지 0으로 정의하고 12의 여섯 약수를 모두 확인하는 기준이 질문에 맞는다. C는 약수 아닌 5의 나머지 2까지 계산하여 정의와 적용을 구분한다.",
+        "sourceIndex": 11,
+        "proposalFingerprintReviewed": "5c3991292d24e228ed7715bf0de20173228b16728dad65182c606571ffde1c72",
+        "learningRole": "definition",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "제목 '약수'만으로는 답의 범위가 없다. 뜻을 나머지로 설명하게 하고 $12$의 약수로 확인하게 했다.",
+        "cSourceReason": "원문은 '□이 되게 하는'만 보여 '몫이 자연수' 같은 다른 답도 가능하다. '나머지'를 보여 주고 값 $0$만 묻되, 약수가 아닌 예를 계산으로 확인하게 했다.",
+        "recordedAfterDirectReading": "2026-10-06T13:49:17.113802+00:00"
+      }
+    },
+    {
+      "id": "e5-1-2-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "자연수 하나의 약수와 배수 가운데 빠짐없이 모두 쓸 수 있는 것은 어느 쪽인지 고르고, $6$을 예로 들어 두 쪽의 개수가 어떻게 다른지 설명하시오.",
+      "bAnswer": "모두 쓸 수 있는 것은 약수이다. 약수는 그 수보다 클 수 없어서 개수가 정해져 있고, $6$의 약수는 $1$, $2$, $3$, $6$으로 $4$개이다. 배수는 $6$, $12$, $18$, ……처럼 곱하는 자연수가 끝없이 있으므로 끝없이 이어져 모두 쓸 수 없다.",
+      "bGoal": "약수는 개수가 정해져 있고 배수는 끝없이 많다는 차이를 이유와 함께 말한다.",
+      "bReason": "결론을 알려 주지 않으려고 '어느 쪽을 모두 쓸 수 있는가'로 묻고, $6$의 약수 개수와 배수의 이어짐을 비교하게 했다.",
+      "studentLabel": "약수와 배수의 개수",
+      "cDecision": "revise",
+      "cAfter": "$6$의 약수는 모두 {$4$}개이다. 하지만 $6$의 배수는 $6$, $12$, $18$, ……로 끝없이 이어지므로 개수를 모두 셀 수 {없다}.",
+      "cReason": "'끝이 있지만'은 문장 어미까지 외워야 하는 임의 구절이다. 약수의 개수를 직접 세고, 배수는 셀 수 없음을 짧은 낱말로 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "둘째 빈칸은 '없다'만 맞다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모두 쓸 수 있는 것은 약수이다",
+            "약수는 빠짐없이 쓸 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$의 약수는 $1$, $2$, $3$, $6$으로 $4$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수는 끝없이 이어져 모두 쓸 수 없다",
+            "배수는 개수가 끝이 없다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 13,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-1-2-1-c3",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "약수와 배수의 개수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자연수 하나의 약수는 {끝이 있지만}, 배수는 {끝없이} 찾을 수 있다.",
+        "studentC": "자연수 하나의 약수는 □, 배수는 □ 찾을 수 있다.",
+        "answers": [
+          "끝이 있지만",
+          "끝없이"
+        ]
+      },
+      "sourceFingerprint": "4be103a9606de5707033cd69c61abde25f990ce0b3ff7070f6604a7daef43728",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "없다"
+      ],
+      "cStudentAfter": "$6$의 약수는 모두 □개이다. 하지만 $6$의 배수는 $6$, $12$, $18$, ……로 끝없이 이어지므로 개수를 모두 셀 수 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$6$의 약수는 모두 {$4$}개이다. 하지만 $6$의 배수는 $6$, $12$, $18$, ……로 끝없이 이어지므로 개수를 모두 셀 수 {없다}.",
+      "cStudentSentence": "$6$의 약수는 모두 □개이다. 하지만 $6$의 배수는 $6$, $12$, $18$, ……로 끝없이 이어지므로 개수를 모두 셀 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수 하나의 약수와 배수 가운데 빠짐없이 모두 쓸 수 있는 것은 어느 쪽인지 고르고, $6$을 예로 들어 두 쪽의 개수가 어떻게 다른지 설명하시오.",
+        "answer": "모두 쓸 수 있는 것은 약수이다. 약수는 그 수보다 클 수 없어서 개수가 정해져 있고, $6$의 약수는 $1$, $2$, $3$, $6$으로 $4$개이다. 배수는 $6$, $12$, $18$, ……처럼 곱하는 자연수가 끝없이 있으므로 끝없이 이어져 모두 쓸 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모두 쓸 수 있는 것은 약수이다",
+              "약수는 빠짐없이 쓸 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$의 약수는 $1$, $2$, $3$, $6$으로 $4$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "배수는 끝없이 이어져 모두 쓸 수 없다",
+              "배수는 개수가 끝이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6$의 약수는 모두 {$4$}개이다. 하지만 $6$의 배수는 $6$, $12$, $18$, ……로 끝없이 이어지므로 개수를 모두 셀 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5b32a91c5074a015bcecf16cb1fa2456f6308dc9d1e69bf8cd54dffcdf1161e1",
+      "questionRevision": "planning-e5e6-20261006-5b32a91c5074",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e5-1-2-1-c3",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "6의 약수 네 개와 끝없이 이어지는 배수의 개수 차이를 실제 예로 설명한다. C 약수 개수 4를 구하는 목표가 있고 배수 쪽도 같은 비교 문장 안에서 판단한다.",
+        "sourceIndex": 13,
+        "proposalFingerprintReviewed": "5b32a91c5074a015bcecf16cb1fa2456f6308dc9d1e69bf8cd54dffcdf1161e1",
+        "learningRole": "reason",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "revise",
+        "bSourceReason": "결론을 알려 주지 않으려고 '어느 쪽을 모두 쓸 수 있는가'로 묻고, $6$의 약수 개수와 배수의 이어짐을 비교하게 했다.",
+        "cSourceReason": "'끝이 있지만'은 문장 어미까지 외워야 하는 임의 구절이다. 약수의 개수를 직접 세고, 배수는 셀 수 없음을 짧은 낱말로 답하게 했다.",
+        "recordedAfterDirectReading": "2026-10-06T13:49:17.113802+00:00"
+      }
+    },
+    {
+      "id": "e5-1-2-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "두 자연수를 곱한 식에서 곱한 두 수와 그 곱은 서로 약수와 배수로 어떤 관계인지 쓰시오. 그리고 $6\\times8=48$에서 그 관계를 말하시오.",
+      "bAnswer": "곱한 두 수는 곱의 약수이고, 곱은 곱한 두 수 각각의 배수이다. $6\\times8=48$에서 $6$과 $8$은 $48$의 약수이고, $48$은 $6$의 배수이면서 $8$의 배수이다.",
+      "bGoal": "곱셈식 하나에서 곱한 두 수와 곱의 약수·배수 관계를 양쪽 방향으로 말한다.",
+      "bReason": "제목만으로는 무엇과 무엇의 관계인지 알 수 없어, 곱셈식이라는 대상과 C와 다른 예($6\\times8=48$)를 질문 안에 넣었다.",
+      "studentLabel": "곱셈식에서 읽는 약수와 배수",
+      "cDecision": "keep",
+      "cAfter": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+      "cReason": "$3\\times7=21$ 한 식에서 약수·배수 두 낱말을 채우는 짧은 문장이다. '두 수 각각의'라는 말로 $21$이 $3$과 $7$ 양쪽의 배수임이 드러나 조건이 분명하다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱한 두 수는 그 곱의 약수이다",
+            "$6$과 $8$은 $48$의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱은 곱한 두 수 각각의 배수이다",
+            "$48$은 $6$의 배수이면서 $8$의 배수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 14,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-1-2-2-c1",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "약수와 배수의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+        "studentC": "$3\\times7=21$에서 $3$과 $7$은 $21$의 □이고, $21$은 두 수 각각의 □이다.",
+        "answers": [
+          "약수",
+          "배수"
+        ]
+      },
+      "sourceFingerprint": "7cfd111e0ec3ece88be21df37528009da20401dc61600e91bb3cc20c8ce9758a",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cFrozenDefinition": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+      "cFrozenStudentSentence": "$3\\times7=21$에서 $3$과 $7$은 $21$의 □이고, $21$은 두 수 각각의 □이다.",
+      "cProposedAnswers": [
+        "약수",
+        "배수"
+      ],
+      "cStudentAfter": "$3\\times7=21$에서 $3$과 $7$은 $21$의 □이고, $21$은 두 수 각각의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+      "cStudentSentence": "$3\\times7=21$에서 $3$과 $7$은 $21$의 □이고, $21$은 두 수 각각의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "약수",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 자연수를 곱한 식에서 곱한 두 수와 그 곱은 서로 약수와 배수로 어떤 관계인지 쓰시오. 그리고 $6\\times8=48$에서 그 관계를 말하시오.",
+        "answer": "곱한 두 수는 곱의 약수이고, 곱은 곱한 두 수 각각의 배수이다. $6\\times8=48$에서 $6$과 $8$은 $48$의 약수이고, $48$은 $6$의 배수이면서 $8$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱한 두 수는 그 곱의 약수이다",
+              "$6$과 $8$은 $48$의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱은 곱한 두 수 각각의 배수이다",
+              "$48$은 $6$의 배수이면서 $8$의 배수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\times7=21$에서 $3$과 $7$은 $21$의 {약수}이고, $21$은 두 수 각각의 {배수}이다.",
+        "acceptedAnswers": [
+          [
+            "약수"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "10638438f2fa88ac23ca0be2f2e964dad8ffd9c91af11a4f0eb3d31b5ea95cdf",
+      "questionRevision": "planning-e5e6-20261006-10638438f2fa",
+      "requiresIndependentReview": true,
+      "codexFinalEditorial": {
+        "id": "e5-1-2-2-c1",
+        "bVerdict": "adopt",
+        "cVerdict": "adopt",
+        "reason": "곱한 두 수→곱의 약수와 곱→각 수의 배수라는 두 방향을 따로 확인한다. 6×8=48 및 C의 3×7=21이 정확하며 약수·배수는 서로 바꿀 동의어가 아니다.",
+        "sourceIndex": 14,
+        "proposalFingerprintReviewed": "10638438f2fa88ac23ca0be2f2e964dad8ffd9c91af11a4f0eb3d31b5ea95cdf",
+        "learningRole": "definition",
+        "bSourceDecision": "revise",
+        "cSourceDecision": "keep",
+        "bSourceReason": "제목만으로는 무엇과 무엇의 관계인지 알 수 없어, 곱셈식이라는 대상과 C와 다른 예($6\\times8=48$)를 질문 안에 넣었다.",
+        "cSourceReason": "$3\\times7=21$ 한 식에서 약수·배수 두 낱말을 채우는 짧은 문장이다. '두 수 각각의'라는 말로 $21$이 $3$과 $7$ 양쪽의 배수임이 드러나 조건이 분명하다.",
+        "recordedAfterDirectReading": "2026-10-06T13:49:17.113802+00:00"
+      }
+    }
+  ]
+}

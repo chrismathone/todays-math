@@ -1,0 +1,784 @@
+{
+  "rows": [
+    {
+      "id": "e5-1-6-2-c1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "$1\\,\\mathrm{cm}^2$는 어떤 도형의 넓이로 정한 것인지, 그 도형의 모양과 변의 길이를 넣어 쓰세요.",
+      "bAnswer": "한 변의 길이가 $1\\,\\mathrm{cm}$인 정사각형의 넓이이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형의 넓이",
+            "정사각형이 차지하는 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 변이 1cm",
+            "가로와 세로가 모두 1cm"
+          ]
+        }
+      ],
+      "bGoal": "1cm²가 한 변 1cm인 정사각형의 넓이임을 말한다.",
+      "bReason": "기호만 있는 제목이라 모양과 변의 길이를 답하도록 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{cm}^2$는 한 변의 길이가 {$1$}$\\mathrm{cm}$인 {정사각형}의 넓이이다.",
+      "cReason": "'정사각형이 차지하는 넓이'라는 긴 구절 대신 길이와 도형 이름만 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-c2",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "직사각형의 넓이를 가로와 세로의 곱으로 구한다.",
+      "bReason": "공식만 묻는 B는 까닭을 묻는 c4, 둘레와 구별하는 xc12와 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형의 넓이는 $6${$\\times$}$4=${$24$}$(\\mathrm{cm}^2)$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "×",
+            "곱하기"
+          ]
+        },
+        {
+          "anyOf": [
+            "24"
+          ]
+        }
+      ],
+      "cReason": "'단위 정사각형'이라는 낯선 말과 공식 통째 빈칸을 실제 계산으로 바꿨다.",
+      "exclusionReason": "B만 제외. 대체: e5-1-6-2-c4, e5-1-6-2-xc12.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-c3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정사각형의 넓이를 한 변의 길이로 구하는 방법을 쓰고, 한 변의 길이가 $7\\,\\mathrm{cm}$인 정사각형의 넓이를 구하세요.",
+      "bAnswer": "한 변의 길이를 두 번 곱한다. $7\\times7=49$이므로 $49\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변의 길이를 두 번 곱한다",
+            "(한 변)×(한 변)",
+            "한 변의 길이끼리 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "49cm²",
+            "49"
+          ]
+        }
+      ],
+      "bGoal": "정사각형의 넓이를 한 변끼리 곱해 구한다.",
+      "bReason": "방법과 확인할 예를 함께 묻고, 까닭은 xc17에서 따로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "한 변의 길이가 $7\\,\\mathrm{cm}$인 정사각형의 넓이는 $7\\times${$7$}$=${$49$}$(\\mathrm{cm}^2)$이다.",
+      "cReason": "공식 전체를 한 빈칸에 쓰게 하는 대신 같은 수를 곱하는 계산으로 확인한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-c4",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "가로 $4\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형을 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 채웠습니다. 정사각형의 개수를 하나씩 세지 않고 곱셈으로 구하는 방법을 설명하고, 이 직사각형의 넓이를 쓰세요.",
+      "bAnswer": "한 줄에 $4$개씩 $3$줄이므로 $4\\times3=12$(개)이다. $1\\,\\mathrm{cm}^2$가 $12$개이므로 넓이는 $12\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 줄의 개수에 줄 수를 곱한다",
+            "4개씩 3줄이라 4×3",
+            "3개씩 4줄이라 3×4"
+          ]
+        },
+        {
+          "anyOf": [
+            "12cm²",
+            "12"
+          ]
+        }
+      ],
+      "bGoal": "한 줄의 개수와 줄 수의 곱이 넓이 공식의 바탕임을 설명한다.",
+      "bReason": "'넓이 공식의 까닭'은 편집용 제목이라 실제 직사각형을 채우는 상황으로 물었다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형을 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 채우면, 가로로 한 줄에 {$5$}개씩 {$3$}줄이므로 모두 {$15$}개이다.",
+      "cReason": "'한 줄 개수', '줄 수'는 외우기 어려운 임의 구절이라 수로 답하게 했다.",
+      "coreAfter": "직사각형을 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 채우면, 한 줄에 놓인 개수에 줄 수를 곱한 값이 안쪽을 채운 전체 개수가 된다.",
+      "coreReason": "'단위 정사각형'은 초5 교과서에 없는 말이고 무엇을 채우는지도 드러나지 않는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "도형의 넓이는 무엇을 나타내는지 쓰고, 도형의 둘레가 나타내는 것과 어떻게 다른지 쓰세요.",
+      "bAnswer": "넓이는 도형이 평면에서 차지하는 크기이고, 둘레는 도형의 가장자리를 한 바퀴 돈 길이이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "도형이 차지하는 크기",
+            "도형 안쪽 면의 크기",
+            "1cm² 정사각형이 들어가는 개수로 나타내는 크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 가장자리의 길이",
+            "둘레는 변의 길이의 합",
+            "둘레는 테두리를 한 바퀴 돈 길이"
+          ]
+        }
+      ],
+      "bGoal": "넓이가 차지하는 크기임을 둘레와 구별해 말한다.",
+      "bReason": "낱말 뜻만 물으면 답이 막연해 둘레와 견주어 답의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "평면에서 도형이 차지하는 크기를 그 도형의 {넓이}라 한다.",
+      "cReason": "'차지하는 크기'는 표현이 여러 가지라 낱말 '넓이'를 빈칸으로 옮겼다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc2",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "1cm²를 바르게 읽는다.",
+      "bReason": "읽는 법 하나는 서술할 내용이 없어 C 빈칸으로 충분하다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "기호를 읽는 말 하나만 묻는 짧고 분명한 문장이다.",
+      "exclusionReason": "B만 제외. 단순한 읽기라 C로 평가한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'일 제곱센티미터', '1제곱센티미터'도 정답으로 인정한다."
+    },
+    {
+      "id": "e5-1-6-2-xc3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$1\\,\\mathrm{cm}^2$인 정사각형을 이용해 도형의 넓이를 수로 나타내는 방법을 쓰고, $1\\,\\mathrm{cm}^2$인 정사각형 $12$개로 빈틈없이 겹치지 않게 덮이는 도형의 넓이를 쓰세요.",
+      "bAnswer": "$1\\,\\mathrm{cm}^2$인 정사각형이 몇 개 들어가는지 세어 그 수에 $\\mathrm{cm}^2$를 붙인다. $12\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "1cm² 정사각형이 몇 개 들어가는지 센다",
+            "덮는 정사각형의 개수를 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "12cm²"
+          ]
+        }
+      ],
+      "bGoal": "넓이를 1cm²의 개수로 나타낸다.",
+      "bReason": "'단위넓이'는 학생이 모르는 말이라 1cm²인 정사각형으로 풀어 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{cm}^2$인 정사각형 {$12$}개로 빈틈없이 겹치지 않게 덮이는 도형의 넓이는 $12\\,\\mathrm{cm}^2$이다.",
+      "cReason": "'몇 개 들어가는지'라는 구절 대신 개수와 넓이의 수가 같음을 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc6",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "넓이에 cm²를 붙여 쓴다.",
+      "bReason": "단위를 붙인다는 사소한 표기 행동이고 xc9의 단위 구별과 겹친다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답이 xc9와 같은 cm²이고 '처럼'이라 답의 범위도 흐리다.",
+      "exclusionReason": "B·C 모두 제외. 대체: e5-1-6-2-xc9.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc7",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "모눈의 칸 수로 넓이를 구한다.",
+      "bReason": "칸을 세는 방법은 xc3와 같고 3줄에 4칸씩인 예는 c4와 겹친다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "한 칸 1cm²와 선을 따라 그린다는 조건이 있어 칸 수가 넓이임이 분명하다.",
+      "exclusionReason": "B만 제외. 대체: e5-1-6-2-xc3, e5-1-6-2-c4.",
+      "exampleNeeded": false,
+      "synonymNotes": "'칸의 수', '칸의 개수'도 정답으로 인정한다."
+    },
+    {
+      "id": "e5-1-6-2-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "모양이 다른 두 도형의 넓이가 같은지 $1\\,\\mathrm{cm}^2$인 정사각형을 이용해 알아보는 방법을 쓰세요. 또 $1\\,\\mathrm{cm}^2$인 정사각형 $6$개를 한 줄로 붙인 도형과 $3$개씩 $2$줄로 붙인 도형의 넓이를 비교하세요.",
+      "bAnswer": "각 도형에 들어가는 $1\\,\\mathrm{cm}^2$ 정사각형의 개수를 세어 비교한다. 두 도형 모두 $6\\,\\mathrm{cm}^2$로 넓이가 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "1cm² 정사각형의 개수를 세어 비교한다",
+            "들어가는 정사각형의 수가 같으면 넓이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 도형의 넓이가 같다",
+            "둘 다 6cm²"
+          ]
+        }
+      ],
+      "bGoal": "모양이 달라도 1cm²의 개수가 같으면 넓이가 같음을 안다.",
+      "bReason": "결론을 알려 주지 않고 비교 방법과 구체적인 두 도형을 함께 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{cm}^2$인 정사각형 $6$개를 한 줄로 붙인 도형과 $3$개씩 $2$줄로 붙인 도형은 모양이 다르지만 넓이는 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "'개수가 같으면'이라는 조건 구절 대신 실제 두 도형의 결론을 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc9",
+      "learningRole": "naming",
+      "bDecision": "revise",
+      "bPrompt": "$\\mathrm{cm}$와 $\\mathrm{cm}^2$는 각각 무엇을 나타낼 때 쓰는 단위인지 쓰고, 직사각형의 둘레와 넓이에는 각각 어느 단위를 쓰는지 쓰세요.",
+      "bAnswer": "$\\mathrm{cm}$는 길이의 단위라 둘레에 쓰고, $\\mathrm{cm}^2$는 넓이의 단위라 넓이에 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "cm는 길이의 단위",
+            "cm는 둘레에 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "cm²는 넓이의 단위",
+            "cm²는 넓이에 쓴다"
+          ]
+        }
+      ],
+      "bGoal": "길이 단위와 넓이 단위를 구별한다.",
+      "bReason": "두 단위의 쓰임을 둘레와 넓이에 이어 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "cm와 대비해 넓이 단위 하나만 묻는 짧고 분명한 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 넓이와 가로를 알 때 세로를 구하는 방법을, 넓이를 구하는 식과 관련지어 설명하세요. 또 넓이가 $48\\,\\mathrm{cm}^2$, 가로가 $8\\,\\mathrm{cm}$인 직사각형의 세로를 구하세요.",
+      "bAnswer": "(가로)$\\times$(세로)$=$(넓이)이므로 넓이를 가로로 나누면 세로가 된다. $48\\div8=6$이므로 $6\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이를 가로로 나눈다",
+            "가로에 곱해서 넓이가 되는 수를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "6cm",
+            "6"
+          ]
+        }
+      ],
+      "bGoal": "곱셈과 나눗셈의 관계로 넓이에서 세로를 구한다.",
+      "bReason": "방법만이 아니라 넓이 식과의 관계를 설명하도록 정했다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $48\\,\\mathrm{cm}^2$이고 가로가 $8\\,\\mathrm{cm}$인 직사각형의 세로는 $48${$\\div$}$8=${$6$}$(\\mathrm{cm})$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "÷",
+            "나누기"
+          ]
+        },
+        {
+          "anyOf": [
+            "6"
+          ]
+        }
+      ],
+      "cReason": "'가로로 나누면'이라는 구절 대신 연산과 값을 실제 식에서 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정사각형의 넓이만 알 때 한 변의 길이를 찾는 방법을 설명하고, 넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변의 길이를 구하세요.",
+      "bAnswer": "같은 수를 두 번 곱해서 넓이가 되는 수를 찾는다. $8\\times8=64$이므로 $8\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 수를 두 번 곱해 넓이가 되는 수를 찾는다",
+            "어떤 수×어떤 수=넓이가 되는 수를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "8cm",
+            "8"
+          ]
+        }
+      ],
+      "bGoal": "같은 수끼리의 곱으로 정사각형의 한 변을 찾는다.",
+      "bReason": "제곱근을 배우지 않은 학년이라 곱해 보며 찾는 방법을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $64\\,\\mathrm{cm}^2$인 정사각형의 한 변의 길이는 같은 수를 두 번 곱해 $64$가 되는 수인 {$8$}$\\mathrm{cm}$이다.",
+      "cReason": "'같은 두 수를 곱해'라는 구절 대신 찾은 수를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 가로와 세로로 넓이를 구하는 방법과 둘레를 구하는 방법이 어떻게 다른지 쓰고, 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형의 넓이와 둘레를 각각 구하세요.",
+      "bAnswer": "넓이는 가로와 세로를 곱하고, 둘레는 가로와 세로를 더한 뒤 $2$배 한다. 넓이는 $15\\,\\mathrm{cm}^2$, 둘레는 $16\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이는 가로와 세로를 곱한다",
+            "넓이는 가로×세로"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 가로와 세로를 더해 2배 한다",
+            "둘레는 네 변의 길이를 모두 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이 15cm²",
+            "넓이 15"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레 16cm",
+            "둘레 16"
+          ]
+        }
+      ],
+      "bGoal": "넓이와 둘레 구하는 방법을 구별한다.",
+      "bReason": "'섞는 잘못'은 편집용 제목이라 두 방법의 차이를 직접 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "넓이의 연산을 둘레 계산과 대비해 한 낱말로 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'곱하면', '곱해서'도 정답으로 인정한다."
+    },
+    {
+      "id": "e5-1-6-2-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "둘레가 같은 두 직사각형은 넓이도 반드시 같을까요? 가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$인 직사각형과 한 변이 $4\\,\\mathrm{cm}$인 정사각형의 둘레와 넓이를 구해 답하세요.",
+      "bAnswer": "반드시 같지는 않다. 둘레는 둘 다 $16\\,\\mathrm{cm}$이지만 넓이는 $7\\,\\mathrm{cm}^2$와 $16\\,\\mathrm{cm}^2$로 다르다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 반드시 같지는 않다",
+            "넓이가 다를 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레가 둘 다 16cm",
+            "둘레가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이가 7cm²와 16cm²"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 같아도 넓이가 다를 수 있음을 예로 보인다.",
+      "bReason": "결론을 주지 않고 원문 예의 두 도형으로 판단과 근거를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $7\\,\\mathrm{cm}$·세로 $1\\,\\mathrm{cm}$인 직사각형과 한 변이 $4\\,\\mathrm{cm}$인 정사각형은 둘레가 모두 {$16$}$\\mathrm{cm}$이지만 넓이는 {$7$}$\\mathrm{cm}^2$와 {$16$}$\\mathrm{cm}^2$로 서로 다르다.",
+      "cReason": "'다를 수 있다'는 표현이 여러 가지라 실제 값으로 확인하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "넓이가 같은 두 직사각형은 둘레도 반드시 같을까요? 가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형의 넓이와 둘레를 구해 답하세요.",
+      "bAnswer": "반드시 같지는 않다. 넓이는 둘 다 $12\\,\\mathrm{cm}^2$이지만 둘레는 $16\\,\\mathrm{cm}$와 $14\\,\\mathrm{cm}$로 다르다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레가 반드시 같지는 않다",
+            "둘레가 다를 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이가 둘 다 12cm²",
+            "넓이가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레가 16cm와 14cm"
+          ]
+        }
+      ],
+      "bGoal": "넓이가 같아도 둘레가 다를 수 있음을 예로 보인다.",
+      "bReason": "xc13의 반대 방향이므로 따로 두고 같은 형식으로 판단과 근거를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $6\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형은 넓이가 모두 {$12$}$\\mathrm{cm}^2$이지만 둘레는 {$16$}$\\mathrm{cm}$와 {$14$}$\\mathrm{cm}$로 서로 다르다.",
+      "cReason": "원문은 바로 뒤 문장이 '둘레는 다르다'고 답을 알려 주므로 값을 구하게 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc15",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "직사각형이 아닌 ㄱ자 모양 도형의 넓이를 직사각형의 넓이 구하는 방법으로 구하려면 어떻게 하면 되는지 쓰세요. 또 가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 겹치지 않게 이어 붙인 도형의 넓이를 구하세요.",
+      "bAnswer": "직사각형 여러 개로 나누어 각각의 넓이를 구해 더한다. $10+6=16$이므로 $16\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직사각형으로 나누어 넓이를 더한다",
+            "큰 직사각형에서 빈 부분의 넓이를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "16cm²",
+            "16"
+          ]
+        }
+      ],
+      "bGoal": "복합 도형을 직사각형으로 나누어 넓이를 구한다.",
+      "bReason": "그림 없이도 풀리도록 붙인 두 직사각형의 치수를 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $5\\,\\mathrm{cm}$·세로 $2\\,\\mathrm{cm}$인 직사각형과 가로 $2\\,\\mathrm{cm}$·세로 $3\\,\\mathrm{cm}$인 직사각형을 겹치지 않게 붙여 만든 도형의 넓이는 $10+${$6$}$=${$16$}$(\\mathrm{cm}^2)$이다.",
+      "cReason": "'직사각형 두 개로 나누어'는 그림 없이 외우는 구절이라 계산으로 바꿨다.",
+      "exampleNeeded": false,
+      "exampleReason": "글만으로 풀 수 있으나 ㄱ자 도형 그림을 붙이면 더 좋다."
+    },
+    {
+      "id": "e5-1-6-2-xc16",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형 종이의 한 귀퉁이에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 냈습니다. 남은 종이의 넓이를 처음 직사각형의 넓이를 이용해 구하는 방법을 설명하고, 넓이를 구하세요.",
+      "bAnswer": "처음 직사각형의 넓이에서 잘라 낸 정사각형의 넓이를 뺀다. $30-4=26$이므로 $26\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 넓이에서 잘라 낸 부분의 넓이를 뺀다",
+            "30-4"
+          ]
+        },
+        {
+          "anyOf": [
+            "26cm²",
+            "26"
+          ]
+        }
+      ],
+      "bGoal": "전체 넓이에서 없는 부분을 빼어 넓이를 구한다.",
+      "bReason": "'빈 부분'이 무엇인지 알 수 있게 잘라 낸 상황을 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $6\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 한 변이 $2\\,\\mathrm{cm}$인 정사각형을 잘라 내면 남은 넓이는 {$30$}$-${$4$}$=${$26$}$(\\mathrm{cm}^2)$이다.",
+      "cReason": "'빈 부분의 넓이를 빼어'라는 긴 구절 대신 두 넓이와 결과를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc17",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 넓이는 가로와 세로를 알아야 구하는데, 정사각형의 넓이는 한 변의 길이만 알아도 구할 수 있습니다. 그 이유를 정사각형의 가로와 세로의 관계로 설명하세요.",
+      "bAnswer": "정사각형은 가로와 세로의 길이가 같으므로, 한 변의 길이를 알면 가로와 세로를 모두 아는 것이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형은 가로와 세로의 길이가 같다",
+            "정사각형은 네 변의 길이가 모두 같다"
+          ]
+        }
+      ],
+      "bGoal": "정사각형 넓이 공식이 직사각형 공식의 특별한 경우임을 안다.",
+      "bReason": "제목이 관계를 드러내지 못해 한 변만으로 충분한 이유를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형은 가로와 세로의 길이가 {같은} 직사각형이므로, 넓이를 (한 변의 길이)$\\times$(한 변의 길이)로 구한다.",
+      "cReason": "'~에서 ~ 경우이다'라는 추상적인 문장을 풀고 빈칸을 한 낱말로 줄였다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc18",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 세로는 그대로 두고 가로만 $2$배로 늘리면 넓이는 처음의 몇 배가 되는지 쓰고, 그 이유를 넓이 구하는 식으로 설명하세요. 가로 $4\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형으로 확인도 하세요.",
+      "bAnswer": "$2$배가 된다. 넓이는 가로와 세로의 곱인데 가로만 $2$배가 되므로 곱도 $2$배가 된다. $12\\,\\mathrm{cm}^2$에서 $24\\,\\mathrm{cm}^2$가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 2배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로×세로에서 가로만 2배라 곱도 2배",
+            "같은 직사각형 두 개를 옆으로 이어 붙인 것과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "12cm²에서 24cm²가 된다",
+            "4×3=12, 8×3=24"
+          ]
+        }
+      ],
+      "bGoal": "한 변만 2배로 늘리면 넓이도 2배임을 식으로 설명한다.",
+      "bReason": "결과만이 아니라 곱셈식에 근거한 이유와 확인할 예를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "직사각형의 세로는 그대로 두고 가로만 $2$배로 늘리면 넓이는 처음의 {$2$}배가 된다.",
+      "cReason": "세로가 그대로라는 조건을 밝히고, xc19의 4배와 견주도록 배수를 빈칸으로 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정사각형의 한 변의 길이를 $2$배로 늘리면 넓이는 처음의 몇 배가 되는지 쓰고, 그 이유를 가로와 세로의 변화로 설명하세요. 한 변이 $3\\,\\mathrm{cm}$인 정사각형으로 확인도 하세요.",
+      "bAnswer": "$4$배가 된다. 가로와 세로가 모두 $2$배가 되어 넓이는 $2\\times2=4$(배)이다. $9\\,\\mathrm{cm}^2$에서 $36\\,\\mathrm{cm}^2$가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 4배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로와 세로가 모두 2배가 된다",
+            "2배가 두 번 곱해진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "9cm²에서 36cm²가 된다",
+            "3×3=9, 6×6=36"
+          ]
+        }
+      ],
+      "bGoal": "변을 2배로 늘리면 넓이가 4배인 이유를 설명한다.",
+      "bReason": "넓이도 2배라고 여기는 오개념을 이유와 예로 점검한다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형의 한 변의 길이를 $2$배로 늘리면 가로와 세로가 모두 $2$배가 되어 넓이는 처음의 {$4$}배가 된다.",
+      "cReason": "'모두 2배'는 앞말에서 짐작되는 구절이라 핵심 결과인 4배를 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc20",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "둘레가 $20\\,\\mathrm{cm}$이고 변의 길이가 자연수인 직사각형의 가로와 세로를 모두 찾아 넓이를 구하세요(가로가 세로보다 길거나 같게). 그리고 가로와 세로의 길이 차이와 넓이 사이에 어떤 관계가 있는지 쓰세요.",
+      "bAnswer": "$9\\times1=9$, $8\\times2=16$, $7\\times3=21$, $6\\times4=24$, $5\\times5=25(\\mathrm{cm}^2)$이다. 가로와 세로의 차이가 작을수록 넓이가 크고, 정사각형일 때 $25\\,\\mathrm{cm}^2$로 가장 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 9, 16, 21, 24, 25cm²",
+            "9×1, 8×2, 7×3, 6×4, 5×5의 넓이를 구함"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로와 세로의 차이가 작을수록 넓이가 크다",
+            "가로와 세로가 같을 때 넓이가 가장 크다",
+            "정사각형에 가까울수록 넓이가 크다"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 같을 때 정사각형에 가까울수록 넓이가 큼을 찾아낸다.",
+      "bReason": "결론을 알려 주지 않고 표를 만들듯 조사해 관계를 찾게 했다.",
+      "cDecision": "revise",
+      "cAfter": "둘레가 $20\\,\\mathrm{cm}$이고 변의 길이가 자연수인 직사각형 중 넓이가 가장 큰 것은 가로와 세로가 모두 {$5$}$\\mathrm{cm}$인 정사각형이고, 그 넓이는 {$25$}$\\mathrm{cm}^2$이다.",
+      "cReason": "'같을수록'은 뜻이 어색하고 답이 여러 가지라 구체적인 값으로 바꿨다.",
+      "coreAfter": "둘레가 같은 직사각형 가운데 가로와 세로의 길이 차이가 작을수록 넓이가 크고, 가로와 세로가 같은 정사각형일 때 넓이가 가장 크다.",
+      "coreReason": "'같다'에는 정도가 없어 '같을수록'은 뜻이 불명확하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "넓이가 $18\\,\\mathrm{cm}^2$이고 변의 길이가 자연수인 직사각형을 찾으려면 어떤 두 수를 찾아야 하는지 쓰고, 가로가 세로보다 길거나 같은 경우의 가로와 세로를 모두 쓰세요.",
+      "bAnswer": "곱해서 $18$이 되는 두 자연수를 찾는다. (가로, 세로)는 $(18,1)$, $(9,2)$, $(6,3)$으로 $3$가지이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱이 18인 두 수",
+            "18의 약수끼리 짝지은 두 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "18과 1, 9와 2, 6과 3"
+          ]
+        }
+      ],
+      "bGoal": "곱이 넓이가 되는 두 수로 가로와 세로를 찾는다.",
+      "bReason": "가짓수만이 아니라 찾는 기준과 모든 경우를 쓰게 했다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $18\\,\\mathrm{cm}^2$이고 변의 길이가 자연수인 직사각형의 (가로, 세로)는 가로가 더 길 때 $(18,1)$, $(9,${$2$}$)$, $(${$6$}$,3)$의 {$3$}가지이다.",
+      "cReason": "'곱이 그 넓이가 되는'이라는 구절 대신 실제 짝과 가짓수를 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc22",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "가로와 세로의 길이 단위가 서로 다른 직사각형의 넓이를 구할 때, 곱하기 전에 먼저 무엇을 해야 하는지 쓰세요. 또 가로 $1\\,\\mathrm{m}$, 세로 $20\\,\\mathrm{cm}$인 직사각형의 넓이는 몇 $\\mathrm{cm}^2$인지 구하세요.",
+      "bAnswer": "두 길이를 같은 단위로 맞춘다. $1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 $100\\times20=2000$, 곧 $2000\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "길이의 단위를 같게 맞춘다",
+            "1m를 100cm로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "2000cm²",
+            "2000"
+          ]
+        }
+      ],
+      "bGoal": "단위를 같게 맞춘 뒤 넓이를 구한다.",
+      "bReason": "방법을 알려 주지 않고 먼저 할 일을 묻고 원문 예로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "가로가 $1\\,\\mathrm{m}$, 세로가 $20\\,\\mathrm{cm}$인 직사각형의 넓이는 가로를 {$100$}$\\mathrm{cm}$로 바꾸어 계산하면 {$2000$}$\\mathrm{cm}^2$이다.",
+      "cReason": "'한 단위로 맞춘'은 표현이 여러 가지라 바꾼 길이와 넓이를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc23",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "차지하는 크기는 둘레가 아닌 넓이로 비교한다.",
+      "bReason": "넓이와 둘레의 뜻 구별은 xc1에서, 둘레로 넓이를 판단할 수 없음은 xc13에서 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "두 도형 중 어느 것이 평면을 더 많이 차지하는지 알아보려면 둘레가 아니라 {넓이}를 비교한다.",
+      "cReason": "'둘레가 아니라'는 문장만 보고는 떠올릴 수 없어 비교할 양을 묻는다.",
+      "exclusionReason": "B만 제외. 대체: e5-1-6-2-xc1, e5-1-6-2-xc13.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc24",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "한 변이 $1\\,\\mathrm{cm}$인 정사각형 타일로 가로 $9\\,\\mathrm{cm}$, 세로 $7\\,\\mathrm{cm}$인 직사각형 판을 빈틈없이 겹치지 않게 덮으려고 합니다. 필요한 타일 수와 판의 넓이가 어떤 관계인지 설명하고, 타일이 몇 장 필요한지 구하세요.",
+      "bAnswer": "타일 한 장의 넓이가 $1\\,\\mathrm{cm}^2$이므로 타일 수는 판의 넓이를 $\\mathrm{cm}^2$로 나타낸 수와 같다. $9\\times7=63$이므로 $63$장이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "타일 수는 넓이를 cm²로 나타낸 수와 같다",
+            "타일 한 장이 1cm²이므로 넓이만큼 타일이 든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "63장",
+            "63"
+          ]
+        }
+      ],
+      "bGoal": "1cm² 타일 수와 넓이의 수가 같음을 생활 상황에 쓴다.",
+      "bReason": "관계를 알려 주지 않고 설명하게 하며 원문 예의 수를 썼다.",
+      "cDecision": "revise",
+      "cAfter": "한 변이 $1\\,\\mathrm{cm}$인 정사각형 타일로 가로 $9\\,\\mathrm{cm}$, 세로 $7\\,\\mathrm{cm}$인 판을 빈틈없이 겹치지 않게 덮으려면 타일이 {$63$}장 필요하다.",
+      "cReason": "'넓이를 cm²로 나타낸 수'는 외우기 어려운 긴 구절이라 타일 수를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc25",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "세로는 넓이에서 가로를 빼지 않고 나누어 구한다.",
+      "bReason": "넓이를 가로로 나누어 세로를 구하는 방법과 근거는 xc10 B와 같다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $35\\,\\mathrm{cm}^2$이고 가로가 $7\\,\\mathrm{cm}$인 직사각형의 세로는 $35-7$이 아니라 $35${$\\div$}$7=${$5$}$(\\mathrm{cm})$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "÷",
+            "나누기"
+          ]
+        },
+        {
+          "anyOf": [
+            "5"
+          ]
+        }
+      ],
+      "cReason": "빼는 잘못과 견주는 원문의 뜻을 살려 다른 수의 실제 식으로 바꿨다.",
+      "exclusionReason": "B만 제외. 대체: e5-1-6-2-xc10.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-6-2-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "가로 $8\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형 종이를 대각선을 따라 잘라 삼각형 두 개를 만들었습니다. 삼각형 한 개의 넓이는 직사각형 넓이의 얼마인지 쓰고, 그렇게 말할 수 있는 이유를 두 삼각형의 관계로 설명한 뒤 넓이를 구하세요.",
+      "bAnswer": "절반이다. 두 삼각형은 꼭 포개져서 넓이가 같기 때문이다. $48\\div2=24$이므로 $24\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "절반",
+            "$\\frac{1}{2}$",
+            "반"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 삼각형이 꼭 포개진다",
+            "두 삼각형의 모양과 크기가 같다",
+            "두 삼각형의 넓이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "24cm²",
+            "24"
+          ]
+        }
+      ],
+      "bGoal": "꼭 포개지는 두 조각은 각각 전체 넓이의 절반임을 설명한다.",
+      "bReason": "원문 예의 답이던 까닭을 학생이 직접 설명하고 값도 구하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $8\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형을 대각선으로 자르면 꼭 포개지는 삼각형 두 개가 되므로, 삼각형 한 개의 넓이는 $48\\div${$2$}$=${$24$}$(\\mathrm{cm}^2)$이다.",
+      "cReason": "'전체 넓이의 절반'이라는 구절 대신 2로 나누는 계산으로 확인한다.",
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "공식·방법이 겹치는 c2, xc7, xc23, xc25와 사소한 읽기·표기인 xc2, xc6은 B에서 제외했고, xc6은 C도 xc9와 겹쳐 제외했다.",
+    "xc15·xc16은 치수를 글로 적어 그림 없이 풀 수 있게 했고, c4와 xc20은 학년에 맞지 않거나 불명확한 표현 때문에 coreAfter를 제안했다."
+  ]
+}

@@ -1,0 +1,94 @@
+/* The school and exam are one context, using the current Workroom controls. */
+.context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px 20px;
+  min-width: 0;
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  border: 1px solid #dbe3ee;
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink, #172b4d);
+}
+
+.schoolField,
+.examField {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.schoolField {
+  flex: 0 1 auto;
+}
+
+.examField {
+  flex: 0 1 280px;
+}
+
+.label {
+  color: var(--muted, #596c86);
+  font-size: var(--text-caption, 12px);
+  font-weight: 600;
+}
+
+.schools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.chip,
+.examSelect {
+  min-height: var(--control-height, 44px);
+  max-width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #dbe3ee;
+  border-radius: var(--control-radius, 8px);
+  background: #fff;
+  color: var(--ink, #172b4d);
+  font: inherit;
+  font-size: var(--text-body, 14px);
+}
+
+.chip {
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.chip:hover,
+.examSelect:hover {
+  border-color: #91a9da;
+}
+
+.chip[aria-pressed="true"] {
+  border-color: var(--accent, #3159df);
+  background: #edf2ff;
+  color: #2447b8;
+}
+
+.examSelect {
+  width: 100%;
+  min-width: 0;
+  text-overflow: ellipsis;
+}
+
+.context :is(button, select):focus-visible {
+  outline: 3px solid #82a1ff;
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .context {
+    padding: 16px;
+  }
+
+  .schoolField,
+  .examField {
+    flex-basis: 100%;
+  }
+}

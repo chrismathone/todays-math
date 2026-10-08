@@ -1,0 +1,111 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T11:21:02.090Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-05-xc22",
+        "section": "중1::1. 소인수분해::최대공약수와 최소공배수의 활용",
+        "term": "자르기와 붙이기 가르기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형을 남김없이 {잘라} 가장 큰 정사각형들을 만들면 최대공약수, 같은 직사각형을 {붙여} 가장 작은 정사각형을 만들면 최소공배수를 쓴다.",
+        "example": {
+          "prompt": "가로 $8\\,\\mathrm{cm}$, 세로 $12\\,\\mathrm{cm}$인 카드를 붙여 만든 가장 작은 정사각형의 한 변은?",
+          "answer": "$24\\,\\mathrm{cm}$"
+        },
+        "studentC": "직사각형을 남김없이 □ 가장 큰 정사각형들을 만들면 최대공약수, 같은 직사각형을 □ 가장 작은 정사각형을 만들면 최소공배수를 쓴다.",
+        "answers": [
+          "잘라",
+          "붙여"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-05-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $8$ $\\mathrm{cm}$, 세로 $12$ $\\mathrm{cm}$인 직사각형 종이가 있다. (가) 이 종이 한 장을 남김없이 잘라 크기가 같은 가장 큰 정사각형들을 만들 때 (나) 이 종이 여러 장을 같은 방향으로 빈틈없이 붙여 가장 작은 정사각형을 만들 때, 정사각형의 한 변의 길이를 각각 구하시오. 또 한쪽은 왜 최대공약수를, 다른 쪽은 왜 최소공배수를 쓰는지 비교하여 쓰시오.",
+        "bAnswer": "(가) $4$ $\\mathrm{cm}$: 한 변이 $8$과 $12$를 모두 나누어떨어지게 해야 하므로 공약수이고, 가장 커야 하므로 최대공약수이다. (나) $24$ $\\mathrm{cm}$: 한 변이 $8$의 배수이면서 $12$의 배수여야 하므로 공배수이고, 가장 작아야 하므로 최소공배수이다.",
+        "bGoal": "같은 직사각형에서 자르는 문제와 붙이는 문제를 구별하여 최대공약수와 최소공배수를 가려 쓴다.",
+        "bReason": "제목 '가르기'는 무엇을 구별하라는 것인지 드러나지 않는다. 같은 직사각형으로 자르기와 붙이기를 나란히 놓아 값과 까닭을 비교하게 했다.",
+        "cDecision": "rewrite",
+        "cReason": "자르기와붙이기행동어미를숨기지않고 같은직사각형의최대공약수·최소공배수에따른길이를실제로구하게한다. 일반설명은자연수길이와같은방향조건을보존한다.",
+        "studentLabel": "자르기와 붙이기 구별하기",
+        "exampleNeeded": true,
+        "authorBatch": 2,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(가) $4$ $\\mathrm{cm}$, (나) $24$ $\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "(가) 한 변이 $8$과 $12$를 모두 나누어떨어지게 해야 하고 가장 커야 하므로 최대공약수"
+            ]
+          },
+          {
+            "anyOf": [
+              "(나) 한 변이 $8$과 $12$ 모두의 배수여야 하고 가장 작아야 하므로 최소공배수"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "application",
+        "roleReason": "자르면 최대공약수, 붙이면 최소공배수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1041,
+        "part": "m1plus",
+        "sourceFingerprint": "dbb2723343f5d29127ef9d1a513706cf64483d19d39562690c5f02064a52b255",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1041
+        },
+        "directReview": null,
+        "cMarkedSentence": "가로 $8$, 세로 $12$인 종이를 남김없이 같은 크기의 정사각형들로 자르면 가장 큰 한 변은 {$4$}입니다. 같은 종이들을 같은 방향으로 붙인 가장 작은 정사각형의 한 변은 {$24$}입니다. 길이 단위는 모두 $\\mathrm{cm}$입니다.",
+        "cSlotAnswers": [
+          "$4$",
+          "$24$"
+        ],
+        "cStudentSentence": "가로 $8$, 세로 $12$인 종이를 남김없이 같은 크기의 정사각형들로 자르면 가장 큰 한 변은 □입니다. 같은 종이들을 같은 방향으로 붙인 가장 작은 정사각형의 한 변은 □입니다. 길이 단위는 모두 $\\mathrm{cm}$입니다.",
+        "cAnswers": [
+          "$4$",
+          "$24$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$24$",
+            "equivalentAnswers": [
+              "$24$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$24$"
+          ]
+        ],
+        "proposalFingerprint": "bc623c585cd15c92080998bdff244a3a99909c400eedb3221cd61bfc0acd9a20",
+        "cAfter": "가로 $8$, 세로 $12$인 종이를 남김없이 같은 크기의 정사각형들로 자르면 가장 큰 한 변은 {$4$}입니다. 같은 종이들을 같은 방향으로 붙인 가장 작은 정사각형의 한 변은 {$24$}입니다. 길이 단위는 모두 $\\mathrm{cm}$입니다.",
+        "coreAfter": "가로와 세로 길이를 같은 단위의 자연수로 나타낸 직사각형을 다룬다. 한 장을 남김없이 {잘라} 크기가 같은 가장 큰 정사각형들을 만들면 두 길이의 최대공약수를 쓴다. 같은 직사각형들을 같은 방향으로 빈틈없이 {붙여} 가장 작은 정사각형을 만들면 두 길이의 최소공배수를 쓴다.",
+        "coreReason": "자르기는같은크기의조각,붙이기는같은방향의배치라는필요조건과공약수·공배수계산에쓰는길이단위를밝힌다."
+      }
+    }
+  ]
+}

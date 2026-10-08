@@ -1,0 +1,1156 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-2-3-xc18",
+      "bDecision": "revise",
+      "bPrompt": "사과와 배를 쪼개지 않고 바구니 여러 개에 남김없이 담되, 바구니마다 사과 수가 서로 같고 배 수도 서로 같게 하려고 한다. 바구니 수를 가장 많게 하려면 두 과일의 개수에서 무엇을 구해야 하는지 이유와 함께 설명하고, 사과 $18$개와 배 $24$개일 때의 바구니 수를 구하시오.",
+      "bAnswer": "바구니 수로 사과 수와 배 수가 모두 나누어떨어져야 하므로 바구니 수는 두 개수의 공약수이고, 가장 많게 하려면 그중 가장 큰 수인 최대공약수를 구한다. $18$과 $24$의 공약수는 $1, 2, 3, 6$이므로 바구니는 $6$개이다.",
+      "bGoal": "'남김없이 똑같이'는 공약수, '가장 많이'는 최대공약수임을 상황에서 읽어 낸다.",
+      "bReason": "과일을쪼개지않는개수나눔임을명시한다. 바구니수의공약수조건과가장많은최대공약수6개라는목표를남긴다.",
+      "studentLabel": "가장 많은 바구니에 나누어 담기",
+      "cDecision": "revise",
+      "cAfter": "사과 $18$개와 배 $24$개를 쪼개지 않고 바구니 여러 개에 남김없이 똑같이 나누어 담으려고 한다. 바구니 수를 가장 많게 하려면 $18$과 $24$의 {최대공약수}인 {$6$}개에 담는다.",
+      "cReason": "물건을쪼갠분수몫이아닌바구니의자연수구성을명시해최대공약수조건이성립하게한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "첫째 빈칸에 '공약수'를 쓰면 '가장 많게' 조건을 빠뜨린 답이므로 오답이다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바구니 수로 사과 수와 배 수가 모두 나누어떨어져야 하므로 두 개수의 공약수여야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 많게 하려면 공약수 중 가장 큰 수인 최대공약수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바구니는 $6$개이다",
+            "$6$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "최대공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-005-rubric.json",
+      "editorialOwner": "Codex",
+      "coreAfter": "두 종류의 물건을 쪼개지 않고 남김없이 같은 구성으로 가장 많이 묶으려면 두 개수의 {최대공약수}를 구한다.",
+      "coreReason": "물건을 쪼개어 나누면 같은 구성의 묶음 개수는 자연수 약수로만 제한되지 않는다. 쪼개지 않는 개수 나눔 조건을 명시하여 가장 많은 묶음 수의 최대공약수 목표를 보존한다.",
+      "coreTargetReason": "원문 최대공약수 한 표적을 보존한다. 두 종류의 개수가 각각 나누어떨어지는 최대 묶음 수를 구하는 일반 목표를 유지한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0540-0570.json",
+      "codexFinalAmendedFromFingerprint": "ad294cdd492e5156d89bec5e99c71751082fc42aed55ebf6d567e8dead21f638",
+      "sourceIndex": 540,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-3-xc18",
+        "section": "초5::1-2 약수와 배수::1-2-3 공약수와 최대공약수",
+        "term": "같은 구성으로 가장 많이 묶기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 종류의 물건을 남김없이 같은 구성으로 가장 많이 묶으려면 두 개수의 {최대공약수}를 구한다.",
+        "example": {
+          "prompt": "사과 $18$개, 배 $24$개를 남김없이 같은 구성으로 담을 바구니 수가 공약수여야 하는 까닭은?",
+          "answer": "둘 다 나누어떨어져야 해서"
+        },
+        "studentC": "두 종류의 물건을 남김없이 같은 구성으로 가장 많이 묶으려면 두 개수의 □를 구한다.",
+        "answers": [
+          "최대공약수"
+        ]
+      },
+      "sourceFingerprint": "cd156e6fc8e922265cc9301cc089d3d65a8406514c31aa538a9728c4c637f6ef",
+      "draftEvidence": "evidence/section-005-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "최대공약수",
+        "$6$"
+      ],
+      "cStudentAfter": "사과 $18$개와 배 $24$개를 쪼개지 않고 바구니 여러 개에 남김없이 똑같이 나누어 담으려고 한다. 바구니 수를 가장 많게 하려면 $18$과 $24$의 □인 □개에 담는다.",
+      "cMarkedSentence": "사과 $18$개와 배 $24$개를 쪼개지 않고 바구니 여러 개에 남김없이 똑같이 나누어 담으려고 한다. 바구니 수를 가장 많게 하려면 $18$과 $24$의 {최대공약수}인 {$6$}개에 담는다.",
+      "cStudentSentence": "사과 $18$개와 배 $24$개를 쪼개지 않고 바구니 여러 개에 남김없이 똑같이 나누어 담으려고 한다. 바구니 수를 가장 많게 하려면 $18$과 $24$의 □인 □개에 담는다.",
+      "cSlotAnswers": [
+        {
+          "key": "최대공약수",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사과와 배를 쪼개지 않고 바구니 여러 개에 남김없이 담되, 바구니마다 사과 수가 서로 같고 배 수도 서로 같게 하려고 한다. 바구니 수를 가장 많게 하려면 두 과일의 개수에서 무엇을 구해야 하는지 이유와 함께 설명하고, 사과 $18$개와 배 $24$개일 때의 바구니 수를 구하시오.",
+        "answer": "바구니 수로 사과 수와 배 수가 모두 나누어떨어져야 하므로 바구니 수는 두 개수의 공약수이고, 가장 많게 하려면 그중 가장 큰 수인 최대공약수를 구한다. $18$과 $24$의 공약수는 $1, 2, 3, 6$이므로 바구니는 $6$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바구니 수로 사과 수와 배 수가 모두 나누어떨어져야 하므로 두 개수의 공약수여야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 많게 하려면 공약수 중 가장 큰 수인 최대공약수를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "바구니는 $6$개이다",
+              "$6$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사과 $18$개와 배 $24$개를 쪼개지 않고 바구니 여러 개에 남김없이 똑같이 나누어 담으려고 한다. 바구니 수를 가장 많게 하려면 $18$과 $24$의 {최대공약수}인 {$6$}개에 담는다.",
+        "acceptedAnswers": [
+          [
+            "최대공약수"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "30ae04873bf89aed20c2daf9db893c7b49b5b63e94e620b9adb5f40849c3d731",
+      "questionRevision": "planning-e5e6-20261006-30ae04873bf8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-3-xc23",
+      "bDecision": "revise",
+      "bPrompt": "서로 다른 두 자연수의 공약수는, 큰 수에서 작은 수를 뺀 차와 어떤 관계가 있는지 쓰시오. $18$과 $30$의 공약수와 두 수의 차로 확인하고, 차의 약수인 $4$가 두 수의 공약수인지도 쓰시오.",
+      "bAnswer": "두 수의 공약수는 두 수의 차도 나누어떨어지게 한다(차의 약수이다). $18$과 $30$의 공약수는 $1, 2, 3, 6$이고 차는 $12$인데, $1, 2, 3, 6$은 모두 $12$의 약수이다. 그러나 $4$는 $12$의 약수이지만 $18\\div 4=4\\cdots 2$이므로 공약수가 아니다. 곧 차의 약수가 모두 공약수인 것은 아니다.",
+      "bGoal": "공약수는 두 수의 차도 나누어떨어지게 함을 알고, 그 거꾸로는 성립하지 않음을 구별한다.",
+      "bReason": "원문 예(42와 56)는 차 14가 최대공약수와 같아 '차의 약수=공약수'로 오해하기 쉽다. 18과 30(차 12, 공약수 1·2·3·6)으로 바꾸고 거꾸로가 안 되는 수 4를 확인하게 했다.",
+      "studentLabel": "공약수와 두 수의 차",
+      "cDecision": "revise",
+      "cAfter": "$18$과 $30$의 공약수는 $1, 2, 3, 6$이고 두 수의 차는 $30-18=$ {$12$}이다. 공약수 $1, 2, 3, 6$은 모두 이 차의 {약수}이다.",
+      "cReason": "계산할차12를뒤에다시인쇄하지않고이차로명확히가리킨다. 두수공약수가차의약수인학습목표는보존한다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 공약수는 두 수의 차의 약수이다",
+            "공약수는 두 수의 차도 나누어떨어지게 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$과 $30$의 공약수는 $1, 2, 3, 6$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수의 차는 $30-18=12$이다",
+            "차는 $12$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$는 $12$의 약수이지만 $18$과 $30$의 공약수는 아니다",
+            "$18\\div 4$는 나누어떨어지지 않아 $4$는 공약수가 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "약수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-005-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0540-0570.json",
+      "codexFinalAmendedFromFingerprint": "3cd373fdb301b270c0da9c248c9796578cfb850d64c23b56b60d3b4e8ebf3a2a",
+      "sourceIndex": 545,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-3-xc23",
+        "section": "초5::1-2 약수와 배수::1-2-3 공약수와 최대공약수",
+        "term": "공약수와 두 수의 차",
+        "kind": "성질",
+        "level": "상",
+        "definition": "서로 다른 두 자연수에서 큰 수에서 작은 수를 뺀 {차}는 두 수의 공약수로 나누어떨어진다.",
+        "example": {
+          "prompt": "$42$와 $56$의 공약수를 찾을 때 차 $14$의 약수만 살피면 되는 까닭은?",
+          "answer": "공약수는 차도 나누어서"
+        },
+        "studentC": "서로 다른 두 자연수에서 큰 수에서 작은 수를 뺀 □는 두 수의 공약수로 나누어떨어진다.",
+        "answers": [
+          "차"
+        ]
+      },
+      "sourceFingerprint": "a3447432dd918e4ffafd06002d10a332378fc374d21d59d39dc6043a177a6273",
+      "draftEvidence": "evidence/section-005-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$12$",
+        "약수"
+      ],
+      "cStudentAfter": "$18$과 $30$의 공약수는 $1, 2, 3, 6$이고 두 수의 차는 $30-18=$ □이다. 공약수 $1, 2, 3, 6$은 모두 이 차의 □이다.",
+      "cMarkedSentence": "$18$과 $30$의 공약수는 $1, 2, 3, 6$이고 두 수의 차는 $30-18=$ {$12$}이다. 공약수 $1, 2, 3, 6$은 모두 이 차의 {약수}이다.",
+      "cStudentSentence": "$18$과 $30$의 공약수는 $1, 2, 3, 6$이고 두 수의 차는 $30-18=$ □이다. 공약수 $1, 2, 3, 6$은 모두 이 차의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 다른 두 자연수의 공약수는, 큰 수에서 작은 수를 뺀 차와 어떤 관계가 있는지 쓰시오. $18$과 $30$의 공약수와 두 수의 차로 확인하고, 차의 약수인 $4$가 두 수의 공약수인지도 쓰시오.",
+        "answer": "두 수의 공약수는 두 수의 차도 나누어떨어지게 한다(차의 약수이다). $18$과 $30$의 공약수는 $1, 2, 3, 6$이고 차는 $12$인데, $1, 2, 3, 6$은 모두 $12$의 약수이다. 그러나 $4$는 $12$의 약수이지만 $18\\div 4=4\\cdots 2$이므로 공약수가 아니다. 곧 차의 약수가 모두 공약수인 것은 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 공약수는 두 수의 차의 약수이다",
+              "공약수는 두 수의 차도 나누어떨어지게 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$과 $30$의 공약수는 $1, 2, 3, 6$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수의 차는 $30-18=12$이다",
+              "차는 $12$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$는 $12$의 약수이지만 $18$과 $30$의 공약수는 아니다",
+              "$18\\div 4$는 나누어떨어지지 않아 $4$는 공약수가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$18$과 $30$의 공약수는 $1, 2, 3, 6$이고 두 수의 차는 $30-18=$ {$12$}이다. 공약수 $1, 2, 3, 6$은 모두 이 차의 {약수}이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5f4acb60c82b61126a73721d4ebccf662897b9a1026583b41124d7e0c9e15491",
+      "questionRevision": "planning-e5e6-20261006-5f4acb60c82b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-3-xc27",
+      "bDecision": "revise",
+      "bPrompt": "두 가지 물건을 쪼개지 않고 남김없이 똑같이 나누어 주는 문제에서 '나누어 줄 수 있는 사람 수를 모두' 구할 때와 '가장 많은 사람 수'를 구할 때 각각 두 개수의 무엇을 구해야 하는지 쓰시오. 연필 $12$자루와 공책 $18$권으로 두 가지 답을 구하시오.",
+      "bAnswer": "모두 구할 때는 두 개수의 공약수를, 가장 많은 사람 수를 구할 때는 최대공약수를 구한다. $12$와 $18$의 공약수는 $1, 2, 3, 6$이므로 나누어 줄 수 있는 사람 수는 $1$명, $2$명, $3$명, $6$명이고, 가장 많은 사람 수는 $6$명이다.",
+      "bGoal": "같은 상황에서 묻는 말('모두'/'가장 많은')에 따라 공약수와 최대공약수를 가려 쓴다.",
+      "bReason": "물건을쪼개지않는개수조건에서전체공약수와최대공약수의서로다른목표를구별한다.",
+      "studentLabel": "공약수와 최대공약수 가려 쓰기",
+      "cDecision": "revise",
+      "cAfter": "연필 $12$자루와 공책 $18$권을 쪼개지 않고 남김없이 똑같이 나누어 줄 때, 가능한 사람 수를 모두 찾으려면 $12$와 $18$의 {공약수}를 구하고, 가장 많은 사람 수를 찾으려면 {최대공약수}를 구한다.",
+      "cReason": "C에도쪼개지않는조건을명시하고가능한모든수와최대하나라는목표를공약수·최대공약수로구별한다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어 줄 수 있는 사람 수를 모두 구할 때는 공약수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 많은 사람 수를 구할 때는 최대공약수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$명, $2$명, $3$명, $6$명"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 많은 사람 수는 $6$명이다",
+            "$6$명"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-005-rubric.json",
+      "editorialOwner": "Codex",
+      "coreAfter": "물건을 쪼개지 않고 두 종류를 각각 남김없이 똑같이 나누거나, 같은 단위의 자연수로 나타낸 두 길이를 남김없이 같은 길이로 자를 때는 두 개수나 두 길이의 {공약수}를 이용한다.",
+      "coreReason": "두 양을 함께 나누는 문제라는 표현은 분수 몫으로 두 액체를 나누는 경우에도 적용되는 지나치게 넓은 조건이다. 자연수 개수와 같은 단위의 자연수 길이를 남김없이 함께 나누는 구체적인 공약수 사용 범위로 명시한다.",
+      "coreTargetReason": "원문 두 양을 함께 나누는이라는 임의 구절 대신 공약수라는 정식 개념을 한 표적으로 선택한다. 원래 목표인 어떤 나눔 문제에서 공약수를 쓰는가를 개수와 길이의 필요한 조건으로 구체화하며 단순 계산문제로 대체하지 않는다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0540-0570.json",
+      "codexFinalAmendedFromFingerprint": "33239ef9072f36cd64e2c6c1bc4833e66b7fe085af0a297946c054b7102cfbee",
+      "sourceIndex": 549,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-3-xc27",
+        "section": "초5::1-2 약수와 배수::1-2-3 공약수와 최대공약수",
+        "term": "공약수를 쓰는 문제 알아보기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "‘두 가지를 남김없이 똑같이 나누기’, ‘두 길이를 같은 길이로 남김없이 자르기’처럼 {두 양을 함께 나누는} 문제에서 공약수를 쓴다.",
+        "studentC": "‘두 가지를 남김없이 똑같이 나누기’, ‘두 길이를 같은 길이로 남김없이 자르기’처럼 □ 문제에서 공약수를 쓴다.",
+        "answers": [
+          "두 양을 함께 나누는"
+        ]
+      },
+      "sourceFingerprint": "7d83fb27d11557094d3b0356c5f44cfaa556838cd1e9e23df2ee03a127549c56",
+      "draftEvidence": "evidence/section-005-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "공약수",
+        "최대공약수"
+      ],
+      "cStudentAfter": "연필 $12$자루와 공책 $18$권을 쪼개지 않고 남김없이 똑같이 나누어 줄 때, 가능한 사람 수를 모두 찾으려면 $12$와 $18$의 □를 구하고, 가장 많은 사람 수를 찾으려면 □를 구한다.",
+      "cMarkedSentence": "연필 $12$자루와 공책 $18$권을 쪼개지 않고 남김없이 똑같이 나누어 줄 때, 가능한 사람 수를 모두 찾으려면 $12$와 $18$의 {공약수}를 구하고, 가장 많은 사람 수를 찾으려면 {최대공약수}를 구한다.",
+      "cStudentSentence": "연필 $12$자루와 공책 $18$권을 쪼개지 않고 남김없이 똑같이 나누어 줄 때, 가능한 사람 수를 모두 찾으려면 $12$와 $18$의 □를 구하고, 가장 많은 사람 수를 찾으려면 □를 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "공약수",
+          "equivalents": []
+        },
+        {
+          "key": "최대공약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 가지 물건을 쪼개지 않고 남김없이 똑같이 나누어 주는 문제에서 '나누어 줄 수 있는 사람 수를 모두' 구할 때와 '가장 많은 사람 수'를 구할 때 각각 두 개수의 무엇을 구해야 하는지 쓰시오. 연필 $12$자루와 공책 $18$권으로 두 가지 답을 구하시오.",
+        "answer": "모두 구할 때는 두 개수의 공약수를, 가장 많은 사람 수를 구할 때는 최대공약수를 구한다. $12$와 $18$의 공약수는 $1, 2, 3, 6$이므로 나누어 줄 수 있는 사람 수는 $1$명, $2$명, $3$명, $6$명이고, 가장 많은 사람 수는 $6$명이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어 줄 수 있는 사람 수를 모두 구할 때는 공약수를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 많은 사람 수를 구할 때는 최대공약수를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$명, $2$명, $3$명, $6$명"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 많은 사람 수는 $6$명이다",
+              "$6$명"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "연필 $12$자루와 공책 $18$권을 쪼개지 않고 남김없이 똑같이 나누어 줄 때, 가능한 사람 수를 모두 찾으려면 $12$와 $18$의 {공약수}를 구하고, 가장 많은 사람 수를 찾으려면 {최대공약수}를 구한다.",
+        "acceptedAnswers": [
+          [
+            "공약수"
+          ],
+          [
+            "최대공약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b403072ae534ecab55288bf2707960eb49f8d883d17d2e5c4ff0d2b19bfb765b",
+      "questionRevision": "planning-e5e6-20261006-b403072ae534",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-4-xc3",
+      "bDecision": "revise",
+      "bPrompt": "두 수를 각각 $1$보다 큰 수들의 곱으로 더 쪼갤 수 없을 때까지 나타냈다. 최대공약수를 구하려면 두 곱셈식에서 어떤 수를 찾아야 하는지 설명하시오. $20=2\\times2\\times5$, $30=2\\times3\\times5$에서 그런 수를 모두 찾고, $2$는 몇 개로 세어야 하는지 까닭과 함께 쓰시오.",
+      "bAnswer": "두 식에 함께 들어 있는 수를 양쪽에서 하나씩 짝지어 찾는다. 함께 들어 있는 수는 $2$와 $5$이다. $2$는 $20$에 두 번, $30$에 한 번 들어 있어 짝지을 수 있는 것은 한 쌍뿐이므로 $1$개로 센다.",
+      "bGoal": "두 곱셈식에서 공통으로 곱해진 수를 짝지어 찾고, 개수가 다를 때 적은 쪽만큼만 센다는 것을 안다.",
+      "bReason": "어떤곱셈식에서도같은숫자만찾으면된다고오해하지않게더쪼갤수없을때까지의표현조건을명시한다. 실제2·5짝과2하나의이유는남긴다.",
+      "studentLabel": "두 곱셈식에 함께 들어 있는 수",
+      "cDecision": "revise",
+      "cAfter": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 두 식에 함께 들어 있는 수는 $2$와 {$3$}이다. $2$는 $18$에 한 번만 들어 있으므로 짝지을 수 있는 $2$는 {$1$}개이다.",
+      "cReason": "'함께 들어 있는 수'라는 구절을 외우게 하는 대신, 실제 두 식에서 공통인 수와 짝지은 개수를 답하게 함.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 식에 함께 들어 있는(공통으로 곱해진) 수를 찾는다",
+            "양쪽 식에 모두 있는 수를 하나씩 짝지어 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$와 $5$",
+            "$2, 5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$는 $1$개로 센다",
+            "$2$는 한 개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30$에는 $2$가 한 번뿐이라 양쪽에서 짝지을 수 있는 것은 한 쌍이다",
+            "적은 쪽의 개수만큼만 짝지을 수 있다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-006-rubric.json",
+      "editorialOwner": "Codex",
+      "coreAfter": "두 수를 각각 $1$보다 큰 수들의 곱으로 더 쪼갤 수 없을 때까지 나타낸 뒤, 두 곱셈식에 {함께 들어 있는 수}를 양쪽에서 하나씩 짝짓는다.",
+      "coreReason": "작은 수들의 곱으로 끝까지라는 표현만으로는 어떤 수까지 나누어야 하는지 불분명하다.1보다큰수들의곱으로더쪼갤수없을때까지라는 범위와 양쪽곱셈식의 짝짓기를 명시한다.",
+      "coreTargetReason": "원문의 함께 들어 있는 수 한 표적을 보존한다. 두 수의 곱셈식에서 공통으로 곱해진 수를 양쪽 한 개씩 짝짓는 의미를 유지하며 아직 배우지 않은 소인수라는 이름을 새로 요구하지 않는다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0540-0570.json",
+      "codexFinalAmendedFromFingerprint": "19c96a6def23fd309ebdbdb272432aed194f7880e027a9799967358b177082f8",
+      "sourceIndex": 552,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-4-xc3",
+        "section": "초5::1-2 약수와 배수::1-2-4 최대공약수 구하는 방법",
+        "term": "곱셈식에서 같은 수 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 수를 각각 작은 수들의 곱으로 끝까지 나타낸 뒤 양쪽에 {함께 들어 있는 수}를 찾는다.",
+        "example": {
+          "prompt": "두 곱셈식에 $2$가 한 번씩 있으면 함께 곱해진 $2$는 두 개인가?",
+          "answer": "하나 — 짝지으면 한 쌍이다"
+        },
+        "studentC": "두 수를 각각 작은 수들의 곱으로 끝까지 나타낸 뒤 양쪽에 □를 찾는다.",
+        "answers": [
+          "함께 들어 있는 수"
+        ]
+      },
+      "sourceFingerprint": "f103080ba01e3d83a8f58a4ee1c155b392ed1e3c31f5c9cb97031e63e7f79181",
+      "draftEvidence": "evidence/section-006-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$1$"
+      ],
+      "cStudentAfter": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 두 식에 함께 들어 있는 수는 $2$와 □이다. $2$는 $18$에 한 번만 들어 있으므로 짝지을 수 있는 $2$는 □개이다.",
+      "cMarkedSentence": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 두 식에 함께 들어 있는 수는 $2$와 {$3$}이다. $2$는 $18$에 한 번만 들어 있으므로 짝지을 수 있는 $2$는 {$1$}개이다.",
+      "cStudentSentence": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 두 식에 함께 들어 있는 수는 $2$와 □이다. $2$는 $18$에 한 번만 들어 있으므로 짝지을 수 있는 $2$는 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수를 각각 $1$보다 큰 수들의 곱으로 더 쪼갤 수 없을 때까지 나타냈다. 최대공약수를 구하려면 두 곱셈식에서 어떤 수를 찾아야 하는지 설명하시오. $20=2\\times2\\times5$, $30=2\\times3\\times5$에서 그런 수를 모두 찾고, $2$는 몇 개로 세어야 하는지 까닭과 함께 쓰시오.",
+        "answer": "두 식에 함께 들어 있는 수를 양쪽에서 하나씩 짝지어 찾는다. 함께 들어 있는 수는 $2$와 $5$이다. $2$는 $20$에 두 번, $30$에 한 번 들어 있어 짝지을 수 있는 것은 한 쌍뿐이므로 $1$개로 센다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 식에 함께 들어 있는(공통으로 곱해진) 수를 찾는다",
+              "양쪽 식에 모두 있는 수를 하나씩 짝지어 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$와 $5$",
+              "$2, 5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 $1$개로 센다",
+              "$2$는 한 개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30$에는 $2$가 한 번뿐이라 양쪽에서 짝지을 수 있는 것은 한 쌍이다",
+              "적은 쪽의 개수만큼만 짝지을 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12=2\\times2\\times3$, $18=2\\times3\\times3$에서 두 식에 함께 들어 있는 수는 $2$와 {$3$}이다. $2$는 $18$에 한 번만 들어 있으므로 짝지을 수 있는 $2$는 {$1$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e57c7e5c4086f3a8d60d6311d8e3fa0f08002eab3339b62936038d9bd791d87f",
+      "questionRevision": "planning-e5e6-20261006-e57c7e5c4086",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-4-xc5",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수가 두 자연수의 최대공약수가 맞는지 나눗셈으로 확인하려고 한다. 확인해야 할 두 가지를 쓰고, $6$이 $24$와 $36$의 최대공약수인지 이 방법으로 판단하시오.",
+      "bAnswer": "첫째, 그 수로 두 수가 모두 나누어떨어지는지 본다. 둘째, 두 몫의 공약수가 $1$뿐인지 본다. $24\\div6=4$, $36\\div6=6$으로 모두 나누어떨어지지만 $4$와 $6$에는 공약수 $2$가 있으므로 $6$은 최대공약수가 아니다. (최대공약수는 $12$이다.)",
+      "bGoal": "구한 답이 공약수인지, 그리고 가장 큰 공약수인지 두 단계로 검산한다.",
+      "bReason": "공약수이지만 최대공약수가 아닌 $6$을 예로 주어, 둘째 확인이 왜 필요한지 드러나게 함.",
+      "studentLabel": "구한 최대공약수 확인하기",
+      "cDecision": "revise",
+      "cAfter": "$24$와 $36$의 최대공약수를 $12$로 구했다면, $24\\div12=2$, $36\\div12=$ {$3$}으로 둘 다 나누어떨어지는지 보고, 두 몫의 공약수가 {$1$}뿐인지 확인한다.",
+      "cReason": "앞의몫빈칸3을뒤의두몫2·3표시에서읽어올수없게두몫이라는대상만명확히남긴다. 두몫의공약수1로최대임을확인하는목표는보존한다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 수로 두 수가 모두 나누어떨어지는지 본다",
+            "두 수가 다 나누어떨어지는지 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 몫의 공약수가 $1$뿐인지 본다",
+            "두 몫에 $1$보다 큰 공약수가 없는지 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$은 최대공약수가 아니다",
+            "몫 $4$와 $6$에 공약수 $2$가 있으므로 $6$은 최대공약수가 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-006-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0540-0570.json",
+      "codexFinalAmendedFromFingerprint": "95d9b555de14e3770771a59ae5b3d259e7ed0da313a306e306027cdb75871f16",
+      "sourceIndex": 554,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-4-xc5",
+        "section": "초5::1-2 약수와 배수::1-2-4 최대공약수 구하는 방법",
+        "term": "구한 최대공약수 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "구한 수로 두 수를 나누어 {둘 다 나누어떨어지는지} 보고, 두 몫의 공약수가 $1$뿐인지도 확인한다.",
+        "studentC": "구한 수로 두 수를 나누어 □ 보고, 두 몫의 공약수가 $1$뿐인지도 확인한다.",
+        "answers": [
+          "둘 다 나누어떨어지는지"
+        ]
+      },
+      "sourceFingerprint": "fcf951b2f455c8132702643d5550eb22532ffed13e4a2aaa5d0417b292dc1008",
+      "draftEvidence": "evidence/section-006-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$1$"
+      ],
+      "cStudentAfter": "$24$와 $36$의 최대공약수를 $12$로 구했다면, $24\\div12=2$, $36\\div12=$ □으로 둘 다 나누어떨어지는지 보고, 두 몫의 공약수가 □뿐인지 확인한다.",
+      "cMarkedSentence": "$24$와 $36$의 최대공약수를 $12$로 구했다면, $24\\div12=2$, $36\\div12=$ {$3$}으로 둘 다 나누어떨어지는지 보고, 두 몫의 공약수가 {$1$}뿐인지 확인한다.",
+      "cStudentSentence": "$24$와 $36$의 최대공약수를 $12$로 구했다면, $24\\div12=2$, $36\\div12=$ □으로 둘 다 나누어떨어지는지 보고, 두 몫의 공약수가 □뿐인지 확인한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수가 두 자연수의 최대공약수가 맞는지 나눗셈으로 확인하려고 한다. 확인해야 할 두 가지를 쓰고, $6$이 $24$와 $36$의 최대공약수인지 이 방법으로 판단하시오.",
+        "answer": "첫째, 그 수로 두 수가 모두 나누어떨어지는지 본다. 둘째, 두 몫의 공약수가 $1$뿐인지 본다. $24\\div6=4$, $36\\div6=6$으로 모두 나누어떨어지지만 $4$와 $6$에는 공약수 $2$가 있으므로 $6$은 최대공약수가 아니다. (최대공약수는 $12$이다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 수로 두 수가 모두 나누어떨어지는지 본다",
+              "두 수가 다 나누어떨어지는지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫의 공약수가 $1$뿐인지 본다",
+              "두 몫에 $1$보다 큰 공약수가 없는지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$은 최대공약수가 아니다",
+              "몫 $4$와 $6$에 공약수 $2$가 있으므로 $6$은 최대공약수가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$24$와 $36$의 최대공약수를 $12$로 구했다면, $24\\div12=2$, $36\\div12=$ {$3$}으로 둘 다 나누어떨어지는지 보고, 두 몫의 공약수가 {$1$}뿐인지 확인한다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9e7cbe3a0cbfb888e9c6c383ab4f9003f79923807125fdb282785c4bab61c488",
+      "questionRevision": "planning-e5e6-20261006-9e7cbe3a0cbf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-4-xc11",
+      "bDecision": "revise",
+      "bPrompt": "두 수를 각각 $1$보다 큰 수들의 곱으로 더 쪼갤 수 없을 때까지 나타냈더니 두 식에 함께 들어 있는 수가 여러 개였다. 이때 최대공약수를 어떻게 구하는지 설명하시오. $20=2\\times2\\times5$, $70=2\\times5\\times7$에서 $2$만 고르면 최대공약수가 아닌 까닭도 쓰시오.",
+      "bAnswer": "함께 들어 있는 수를 양쪽에서 하나씩 짝지어 모두 곱한다. 두 식에 함께 들어 있는 수는 $2$와 $5$이므로 최대공약수는 $2\\times5=10$이다. $2$도 공약수이지만 더 큰 공약수 $10$이 있으므로 최대공약수가 아니다.",
+      "bGoal": "공통으로 곱해진 수가 여러 개일 때 모두 곱해야 가장 큰 공약수가 됨을 안다.",
+      "bReason": "아무곱셈분해에서같은수들을고르면항상최대가되는것은아니다. 원래일반설명에있는더쪼갤수없는수들의곱조건을학생질문에도명시한다.",
+      "studentLabel": "함께 들어 있는 수가 여러 개일 때",
+      "cDecision": "revise",
+      "cAfter": "$20=2\\times2\\times5$, $70=2\\times5\\times7$에서 두 식에 함께 들어 있는 수는 $2$와 $5$이므로 두 수의 최대공약수는 {$10$}이다.",
+      "cReason": "'더 쪼갤 수 없는 수', '하나씩 짝지어'가 한 문장에 겹쳐 길고, 빈칸 '모두 곱해야'는 구절 암기임. 실제 식에서 곱해 답을 내게 함.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "함께 들어 있는 수를 양쪽에서 하나씩 짝지어 모두 곱한다",
+            "공통으로 곱해진 수를 모두 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "더 큰 공약수 $10$이 있다",
+            "$2\\times5=10$도 공약수여서 $2$는 최대가 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-006-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0540-0570.json",
+      "codexFinalAmendedFromFingerprint": "19ff40cfa40c60c158494708f6ac6e33e168b907c7c8d182f36c6cd7d52eb495",
+      "sourceIndex": 560,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-4-xc11",
+        "section": "초5::1-2 약수와 배수::1-2-4 최대공약수 구하는 방법",
+        "term": "곱셈식에 함께 든 수가 여러 개일 때의 최대공약수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 수를 더 쪼갤 수 없는 수들의 곱으로 나타냈을 때, 함께 들어 있는 수가 여러 개이면 양쪽에서 하나씩 짝지어 {모두 곱해야} 최대공약수가 된다.",
+        "example": {
+          "prompt": "$20=2\\times2\\times5$, $70=2\\times5\\times7$에서 함께 든 $2$와 $5$ 가운데 $2$만 고르면 최대공약수가 아닌 까닭은?",
+          "answer": "더 큰 공약수 $10$이 있어서"
+        },
+        "studentC": "두 수를 더 쪼갤 수 없는 수들의 곱으로 나타냈을 때, 함께 들어 있는 수가 여러 개이면 양쪽에서 하나씩 짝지어 □ 최대공약수가 된다.",
+        "answers": [
+          "모두 곱해야"
+        ]
+      },
+      "sourceFingerprint": "94d69971f5516c3d69734f35b9f887615fdf44e8ec2372604afc988118d51072",
+      "draftEvidence": "evidence/section-006-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$10$"
+      ],
+      "cStudentAfter": "$20=2\\times2\\times5$, $70=2\\times5\\times7$에서 두 식에 함께 들어 있는 수는 $2$와 $5$이므로 두 수의 최대공약수는 □이다.",
+      "cMarkedSentence": "$20=2\\times2\\times5$, $70=2\\times5\\times7$에서 두 식에 함께 들어 있는 수는 $2$와 $5$이므로 두 수의 최대공약수는 {$10$}이다.",
+      "cStudentSentence": "$20=2\\times2\\times5$, $70=2\\times5\\times7$에서 두 식에 함께 들어 있는 수는 $2$와 $5$이므로 두 수의 최대공약수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수를 각각 $1$보다 큰 수들의 곱으로 더 쪼갤 수 없을 때까지 나타냈더니 두 식에 함께 들어 있는 수가 여러 개였다. 이때 최대공약수를 어떻게 구하는지 설명하시오. $20=2\\times2\\times5$, $70=2\\times5\\times7$에서 $2$만 고르면 최대공약수가 아닌 까닭도 쓰시오.",
+        "answer": "함께 들어 있는 수를 양쪽에서 하나씩 짝지어 모두 곱한다. 두 식에 함께 들어 있는 수는 $2$와 $5$이므로 최대공약수는 $2\\times5=10$이다. $2$도 공약수이지만 더 큰 공약수 $10$이 있으므로 최대공약수가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "함께 들어 있는 수를 양쪽에서 하나씩 짝지어 모두 곱한다",
+              "공통으로 곱해진 수를 모두 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "더 큰 공약수 $10$이 있다",
+              "$2\\times5=10$도 공약수여서 $2$는 최대가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20=2\\times2\\times5$, $70=2\\times5\\times7$에서 두 식에 함께 들어 있는 수는 $2$와 $5$이므로 두 수의 최대공약수는 {$10$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "14a4ee44650015287a5f5ee6b0e7cbe8d7fa5f0d0da026d3aff580d027d4a7db",
+      "questionRevision": "planning-e5e6-20261006-14a4ee446500",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-4-xc14",
+      "bDecision": "revise",
+      "bPrompt": "두 수의 최대공약수를 곱셈식에서 함께 들어 있는 수를 찾아 구한 결과와, 공약수로 계속 나누어 구한 결과는 서로 어떤 관계인지 쓰시오. $12$와 $30$의 최대공약수를 두 방법으로 각각 구해 확인하시오.",
+      "bAnswer": "두 결과는 같다. 곱셈식으로는 $12=2\\times2\\times3$, $30=2\\times3\\times5$에서 함께 들어 있는 $2$와 $3$을 곱해 $6$이다. 공약수로 나누면 $2$로 나누어 $6$과 $15$, $3$으로 나누어 $2$와 $5$이므로 $2\\times3=6$이다.",
+      "bGoal": "방법이 달라도 최대공약수는 하나로 정해짐을 두 방법으로 확인한다.",
+      "bReason": "두방법으로각각구해확인하라는요청에맞춰곱셈식의공통수방법과계속나누는방법을따로확인한다. 결과6만쓰는것으로두방법요청을대체하지않는다.",
+      "studentLabel": "두 방법으로 구한 최대공약수",
+      "cDecision": "keep",
+      "cAfter": "곱셈식으로 구해도, 공약수로 나누어 구해도 최대공약수는 {같다}.",
+      "cReason": "두 방법의 이름이 문장에 나와 있고 결과의 비교만 묻는 짧은 문장이라 조건이 분명함.",
+      "exampleNeeded": false,
+      "synonymNotes": "'같다', '똑같다', '같은 수이다' 모두 인정.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 결과는 같다",
+            "같은 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 곱셈식에서 공통으로 곱해진 수를 짝지어 곱하면 $6$이 된다",
+            "$12=2\\times2\\times3$, $30=2\\times3\\times5$에서 $2\\times3=6$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수를 공약수로 더 나눌 수 없을 때까지 나누고 나눈 수를 곱하면 $6$이다",
+            "$12$와 $30$을 $6$으로 나눈 몫 $2$와 $5$는 공약수가 $1$뿐이므로 $6$이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다",
+            "같은 수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-006-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0540-0570.json",
+      "codexFinalAmendedFromFingerprint": "1c2c7a1d53eb7b3bbb2705b2209bd6684ccc626cc5e1ab98d9947acd7be07a18",
+      "sourceIndex": 563,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-4-xc14",
+        "section": "초5::1-2 약수와 배수::1-2-4 최대공약수 구하는 방법",
+        "term": "방법이 달라도 같은 결과",
+        "kind": "성질",
+        "level": "중",
+        "definition": "곱셈식으로 구해도, 공약수로 나누어 구해도 최대공약수는 {같다}.",
+        "studentC": "곱셈식으로 구해도, 공약수로 나누어 구해도 최대공약수는 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "cf9e2a469144c05d8bbf1b9d3799ba6f944564621214e68135f1721395c28a93",
+      "draftEvidence": "evidence/section-006-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "곱셈식으로 구해도, 공약수로 나누어 구해도 최대공약수는 {같다}.",
+      "cFrozenStudentSentence": "곱셈식으로 구해도, 공약수로 나누어 구해도 최대공약수는 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "곱셈식으로 구해도, 공약수로 나누어 구해도 최대공약수는 □.",
+      "cMarkedSentence": "곱셈식으로 구해도, 공약수로 나누어 구해도 최대공약수는 {같다}.",
+      "cStudentSentence": "곱셈식으로 구해도, 공약수로 나누어 구해도 최대공약수는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다",
+            "같은 수이다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수의 최대공약수를 곱셈식에서 함께 들어 있는 수를 찾아 구한 결과와, 공약수로 계속 나누어 구한 결과는 서로 어떤 관계인지 쓰시오. $12$와 $30$의 최대공약수를 두 방법으로 각각 구해 확인하시오.",
+        "answer": "두 결과는 같다. 곱셈식으로는 $12=2\\times2\\times3$, $30=2\\times3\\times5$에서 함께 들어 있는 $2$와 $3$을 곱해 $6$이다. 공약수로 나누면 $2$로 나누어 $6$과 $15$, $3$으로 나누어 $2$와 $5$이므로 $2\\times3=6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 결과는 같다",
+              "같은 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 곱셈식에서 공통으로 곱해진 수를 짝지어 곱하면 $6$이 된다",
+              "$12=2\\times2\\times3$, $30=2\\times3\\times5$에서 $2\\times3=6$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수를 공약수로 더 나눌 수 없을 때까지 나누고 나눈 수를 곱하면 $6$이다",
+              "$12$와 $30$을 $6$으로 나눈 몫 $2$와 $5$는 공약수가 $1$뿐이므로 $6$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "곱셈식으로 구해도, 공약수로 나누어 구해도 최대공약수는 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다",
+            "같은 수이다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "db542ca669dbdea9371e35503f8af7c1115de69272845de92b0647f8d9419221",
+      "questionRevision": "planning-e5e6-20261006-db542ca669db",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-4-xc18",
+      "bDecision": "revise",
+      "bPrompt": "두 수를 공약수로 여러 번 나누는 것과, 나눌 때 쓴 공약수들을 모두 곱한 수로 한 번에 나누는 것은 마지막 두 몫이 어떤 관계인지 설명하시오. $24$와 $40$을 $2$로 세 번 나눈 결과와 $8$로 한 번 나눈 결과를 비교하고, $8$이 최대공약수인지 판단하시오.",
+      "bAnswer": "여러 번 나눈 공약수들을 곱한 수로 한 번에 나눈 것과 같아서 마지막 두 몫이 같다. $2$로 세 번 나누면 $12$와 $20$, $6$과 $10$, $3$과 $5$가 되고, $8$로 한 번 나누어도 $3$과 $5$이다. $3$과 $5$의 공약수가 $1$뿐이므로 $8$이 최대공약수이다.",
+      "bGoal": "여러 번 나누기와 그 곱으로 한 번 나누기가 같음을 알고, 두 몫으로 최대공약수인지 판단한다.",
+      "bReason": "임의의큰공약수로한번나누는것이항상같다는뜻을피해여러번나눈수들의곱으로나눔이라는조건을명시한다. 실제2세번과8한번의같은몫3·5는남긴다.",
+      "studentLabel": "한 번에 나누기와 여러 번 나누기",
+      "cDecision": "revise",
+      "cAfter": "$24$와 $40$을 $2$로 세 번 나누면 몫이 $3$과 $5$가 된다. 처음부터 $2\\times2\\times2=$ {$8$}로 한 번에 나누어도 몫은 $3$과 {$5$}로 같다.",
+      "cReason": "'최대공약수가 보이면'은 학생에게 뜻이 불분명하고, 빈칸 '$1$뿐'은 xc13, xc20과 겹침. 한 번에 나누는 것과 여러 번 나누는 것의 관계를 계산으로 묻게 함.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "여러 번 나눈 공약수들의 곱으로 한 번에 나눈 것과 같다",
+            "$2\\times2\\times2=8$로 한 번 나눈 것과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 경우 모두 몫이 $3$과 $5$이다",
+            "마지막 두 몫이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$과 $5$의 공약수가 $1$뿐이므로 $8$이 최대공약수이다",
+            "$8$은 최대공약수이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-006-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0540-0570.json",
+      "codexFinalAmendedFromFingerprint": "95da69e6dacc23382375239a08d0893affabdcab02a67a499fdbb89ac4930ea4",
+      "sourceIndex": 566,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-4-xc18",
+        "section": "초5::1-2 약수와 배수::1-2-4 최대공약수 구하는 방법",
+        "term": "최대공약수로 한 번에 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "최대공약수가 보이면 두 수를 한 번에 그 수로 나누어도 되고, 두 몫의 공약수는 {$1$뿐}이다.",
+        "example": {
+          "prompt": "$24$와 $40$을 $8$로 나눈 몫 $3$과 $5$를 보고 $8$이 최대공약수임을 아는 까닭은?",
+          "answer": "두 몫의 공약수가 $1$뿐이다"
+        },
+        "studentC": "최대공약수가 보이면 두 수를 한 번에 그 수로 나누어도 되고, 두 몫의 공약수는 □이다.",
+        "answers": [
+          "$1$뿐"
+        ]
+      },
+      "sourceFingerprint": "651810c1f89854841d10d75109c054b12905797e3f2bf2a17dcdeec27f981983",
+      "draftEvidence": "evidence/section-006-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$8$",
+        "$5$"
+      ],
+      "cStudentAfter": "$24$와 $40$을 $2$로 세 번 나누면 몫이 $3$과 $5$가 된다. 처음부터 $2\\times2\\times2=$ □로 한 번에 나누어도 몫은 $3$과 □로 같다.",
+      "cMarkedSentence": "$24$와 $40$을 $2$로 세 번 나누면 몫이 $3$과 $5$가 된다. 처음부터 $2\\times2\\times2=$ {$8$}로 한 번에 나누어도 몫은 $3$과 {$5$}로 같다.",
+      "cStudentSentence": "$24$와 $40$을 $2$로 세 번 나누면 몫이 $3$과 $5$가 된다. 처음부터 $2\\times2\\times2=$ □로 한 번에 나누어도 몫은 $3$과 □로 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수를 공약수로 여러 번 나누는 것과, 나눌 때 쓴 공약수들을 모두 곱한 수로 한 번에 나누는 것은 마지막 두 몫이 어떤 관계인지 설명하시오. $24$와 $40$을 $2$로 세 번 나눈 결과와 $8$로 한 번 나눈 결과를 비교하고, $8$이 최대공약수인지 판단하시오.",
+        "answer": "여러 번 나눈 공약수들을 곱한 수로 한 번에 나눈 것과 같아서 마지막 두 몫이 같다. $2$로 세 번 나누면 $12$와 $20$, $6$과 $10$, $3$과 $5$가 되고, $8$로 한 번 나누어도 $3$과 $5$이다. $3$과 $5$의 공약수가 $1$뿐이므로 $8$이 최대공약수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "여러 번 나눈 공약수들의 곱으로 한 번에 나눈 것과 같다",
+              "$2\\times2\\times2=8$로 한 번 나눈 것과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 경우 모두 몫이 $3$과 $5$이다",
+              "마지막 두 몫이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$과 $5$의 공약수가 $1$뿐이므로 $8$이 최대공약수이다",
+              "$8$은 최대공약수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$24$와 $40$을 $2$로 세 번 나누면 몫이 $3$과 $5$가 된다. 처음부터 $2\\times2\\times2=$ {$8$}로 한 번에 나누어도 몫은 $3$과 {$5$}로 같다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ac72dc16f620ef0ecd470df0546a8c7a4de420a26bd082415fb6f6e5c22eef50",
+      "questionRevision": "planning-e5e6-20261006-ac72dc16f620",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-4-xc19",
+      "bDecision": "revise",
+      "bPrompt": "두 수를 $1$보다 큰 공약수로 계속 나누어 마지막 두 몫의 공약수가 $1$뿐이 되었다. 이때 나눌 때 쓴 공약수들을 모두 곱하면 최대공약수가 되는 까닭을 설명하시오. $12$와 $18$을 $2$, $3$으로 차례로 나눈 경우를 예로 드시오.",
+      "bAnswer": "공약수로 나누는 것은 두 수에 함께 곱해진 수를 하나씩 꺼내는 것이다. $12=2\\times3\\times2$, $18=2\\times3\\times3$이므로 꺼낸 $2$와 $3$은 두 수에 함께 곱해져 있고, 남은 몫 $2$와 $3$은 공약수가 $1$뿐이라 더 꺼낼 수가 없다. 그래서 $2\\times3=6$이 가장 큰 공약수이다.",
+      "bGoal": "나눈 공약수들의 곱이 최대공약수가 되는 까닭을 곱셈식으로 설명한다.",
+      "bReason": "끝까지나누었다는조건없이중간에멈춘공약수곱을최대라고할수없다. 마지막두몫공약수1이라는정확한종료조건을보이고특정구절을그대로쓰라는말은빼서의미설명을요청한다.",
+      "studentLabel": "나눈 공약수를 곱하는 까닭",
+      "cDecision": "revise",
+      "cAfter": "$12$와 $18$을 $2$로 나누고 다시 $3$으로 나누면 $12=2\\times3\\times2$, $18=2\\times3\\times$ {$3$}으로 쓸 수 있다. 두 수에 함께 곱해진 $2$와 $3$을 곱한 {$6$}이 최대공약수이다.",
+      "cReason": "'꺼내는 것'이라는 비유와 조건이 한 문장에 길게 이어져 빈칸 없이도 읽기 어려움. 실제 식으로 '함께 곱해진 수'를 보여 줌.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "공약수로 나누는 것은 두 수에 함께 곱해진 수를 하나씩 꺼내는 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "남은 두 몫의 공약수가 $1$뿐이라 더 꺼낼 공통인 수가 없으므로 꺼낸 수의 곱이 가장 큰 공약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\times3=6$",
+            "최대공약수는 $6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-006-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0540-0570.json",
+      "codexFinalAmendedFromFingerprint": "198b17fc4dd619127d1b80023adeb1331fe1b9da9e2f500dc9ccbd78f9f5da43",
+      "sourceIndex": 567,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-4-xc19",
+        "section": "초5::1-2 약수와 배수::1-2-4 최대공약수 구하는 방법",
+        "term": "나눈 공약수를 곱하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 수를 공약수로 나누는 것은 두 수에 {함께 곱해진 수}를 하나씩 꺼내는 것이라, 두 몫의 공약수가 $1$뿐일 때까지 꺼낸 수를 모두 곱하면 최대공약수가 된다.",
+        "studentC": "두 수를 공약수로 나누는 것은 두 수에 □를 하나씩 꺼내는 것이라, 두 몫의 공약수가 $1$뿐일 때까지 꺼낸 수를 모두 곱하면 최대공약수가 된다.",
+        "answers": [
+          "함께 곱해진 수"
+        ]
+      },
+      "sourceFingerprint": "d3fe0b1de522a65762fbe6e02d2a50f5d347e504f4ffe24be18a254cbadcf5b1",
+      "draftEvidence": "evidence/section-006-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$6$"
+      ],
+      "cStudentAfter": "$12$와 $18$을 $2$로 나누고 다시 $3$으로 나누면 $12=2\\times3\\times2$, $18=2\\times3\\times$ □으로 쓸 수 있다. 두 수에 함께 곱해진 $2$와 $3$을 곱한 □이 최대공약수이다.",
+      "cMarkedSentence": "$12$와 $18$을 $2$로 나누고 다시 $3$으로 나누면 $12=2\\times3\\times2$, $18=2\\times3\\times$ {$3$}으로 쓸 수 있다. 두 수에 함께 곱해진 $2$와 $3$을 곱한 {$6$}이 최대공약수이다.",
+      "cStudentSentence": "$12$와 $18$을 $2$로 나누고 다시 $3$으로 나누면 $12=2\\times3\\times2$, $18=2\\times3\\times$ □으로 쓸 수 있다. 두 수에 함께 곱해진 $2$와 $3$을 곱한 □이 최대공약수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 수를 $1$보다 큰 공약수로 계속 나누어 마지막 두 몫의 공약수가 $1$뿐이 되었다. 이때 나눌 때 쓴 공약수들을 모두 곱하면 최대공약수가 되는 까닭을 설명하시오. $12$와 $18$을 $2$, $3$으로 차례로 나눈 경우를 예로 드시오.",
+        "answer": "공약수로 나누는 것은 두 수에 함께 곱해진 수를 하나씩 꺼내는 것이다. $12=2\\times3\\times2$, $18=2\\times3\\times3$이므로 꺼낸 $2$와 $3$은 두 수에 함께 곱해져 있고, 남은 몫 $2$와 $3$은 공약수가 $1$뿐이라 더 꺼낼 수가 없다. 그래서 $2\\times3=6$이 가장 큰 공약수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "공약수로 나누는 것은 두 수에 함께 곱해진 수를 하나씩 꺼내는 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 두 몫의 공약수가 $1$뿐이라 더 꺼낼 공통인 수가 없으므로 꺼낸 수의 곱이 가장 큰 공약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\times3=6$",
+              "최대공약수는 $6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12$와 $18$을 $2$로 나누고 다시 $3$으로 나누면 $12=2\\times3\\times2$, $18=2\\times3\\times$ {$3$}으로 쓸 수 있다. 두 수에 함께 곱해진 $2$와 $3$을 곱한 {$6$}이 최대공약수이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9d19f4a986114afe6244f2d01a728e25f45d901c3fb64516099f7b6acd576d1d",
+      "questionRevision": "planning-e5e6-20261006-9d19f4a98611",
+      "requiresIndependentReview": true
+    }
+  ]
+}

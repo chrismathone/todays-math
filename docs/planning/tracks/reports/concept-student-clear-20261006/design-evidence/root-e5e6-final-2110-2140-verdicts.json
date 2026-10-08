@@ -1,0 +1,1267 @@
+{
+  "inputFile": "root-e5e6-final-2110-2140-input.json",
+  "inputSha256": "be8ed36a2b18bb99114f9841a933e10a5392b2b2298d2067a9e4148013190e6b",
+  "reader": "Root Codex direct final question/answer/criteria reading",
+  "notIndependentClaudeApproval": true,
+  "rows": [
+    {
+      "id": "e6-1-6-1-xc6",
+      "sourceIndex": 2110,
+      "proposalFingerprint": "5942dcc83010c84eed0eecbf50795cf1eb9f41ecb98a559defbcb4d70177d922",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "숫자만 묻는 자명한 문장이며 e6-1-6-1-c1, e6-1-6-1-c2가 더 가치 있다.",
+        "cloze": "숫자만 묻는 자명한 문장이며 e6-1-6-1-c1, e6-1-6-1-c2가 더 가치 있다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "하위 학년에서 이미 배운 단순 사실이다.",
+      "cReason": "'$6$개' 숫자 하나를 묻는 자명한 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "여섯 면 개수만 다시 외우는 중복을 겉넓이 정의와 계산 문항으로 대체한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc7",
+      "sourceIndex": 2111,
+      "proposalFingerprint": "c9e7813e90b17e7465a1b0abee6c5339005ff988b2a3882595165e35ffdff357",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "e6-1-6-1-xc2, e6-1-6-1-c2와 중복된다.",
+        "cloze": "e6-1-6-1-xc2, e6-1-6-1-c2와 중복된다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc2, c2와 중복되며 숫자 하나만 묻는다.",
+      "cReason": "'$3$쌍'은 숫자 하나뿐이고 마주 보는 면 관계는 xc2가 더 낫다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "마주 보는 면의 관계는 xc2,c2에서 이유와 함께 다루므로 세 쌍 숫자 암기를 중복시키지 않는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc8",
+      "sourceIndex": 2112,
+      "proposalFingerprint": "090e9a23dacc52b06fe658a0ea6338eee55539e116a9f2b4ee34c38c953c3fed",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체의 옆면 네 개를 옆으로 이어 붙인 큰 직사각형이 있습니다. 이 직사각형에서 밑면의 네 변을 따라 이어진 쪽 변의 길이는 밑면의 무엇과 같고, 그 이유는 무엇인가요?",
+        "answer": "밑면의 둘레와 같다. 네 옆면의 가로 길이가 각각 밑면의 네 변의 길이이고 이를 이어 붙였기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 둘레",
+              "밑면의 네 변의 길이의 합"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 옆면의 가로가 밑면의 네 변과 각각 같다",
+              "옆면을 이으면 밑면의 네 변이 차례로 이어진다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직육면체의 옆면 네 개를 옆으로 이어 붙인 직사각형에서, 밑면의 네 변을 따라 이어진 쪽 변의 길이는 밑면의 {둘레}와 같다.",
+        "acceptedAnswers": [
+          [
+            "둘레",
+            "둘레의 길이"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "글만으로 상황이 설명되며 옆면 넓이 공식의 근거가 된다.",
+      "cReason": "'밑면을 두르는 쪽 변'이 학생에게 낯서므로 풀어 썼다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "이어진 쪽 변이 밑면 네 변에 대응한다는 상황을 글로 설명하여 둘레와 그 이유를 답할 수 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc9",
+      "sourceIndex": 2113,
+      "proposalFingerprint": "1ef78717c1c32d730b1506b693c75db4095ebe122d4514f3639c45abfa5608ac",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체의 겉넓이를 옆면의 넓이와 밑면의 넓이로 나누어 구하는 방법을 쓰세요.",
+        "answer": "옆면 네 개의 넓이의 합에 두 밑면의 넓이(밑면 한 개의 넓이의 $2$배)를 더한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면의 넓이를 구한다",
+              "옆면 네 개의 넓이의 합을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑면의 넓이를 더한다",
+              "밑면의 넓이의 $2$배를 더한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직육면체의 겉넓이는 {옆면 네 개의 넓이의 합}$+$(밑면 한 개의 넓이)$\\times2$이다.",
+        "acceptedAnswers": [
+          [
+            "옆면 네 개의 넓이의 합",
+            "옆면의 넓이의 합",
+            "옆면의 넓이"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "기본 분해 방법을 묻는 정당한 질문이다.",
+      "cReason": "원문의 '겉넓이' 빈칸은 쉽고 중복되어 실제 계산 식에서 옆면 부분을 묻게 바꿨다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "C는 '옆면 네 개의 넓이의 합'이라는 긴 구절을 통째로 추측하게 한다. 옆면 넓이 합을 지문에 주고 밑면 몇 개를 더하는지 또는 실제 넓이 값을 짧게 답하게 바꾸면 구하는 원리는 유지하며 답 유형이 명확해진다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc10",
+      "sourceIndex": 2114,
+      "proposalFingerprint": "d525a46b3480740ef22c378e24cb3a2531c6a7d38f9e3e6265583d0ba6207a46",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체의 가로, 세로, 높이로 겉넓이를 구하는 식을 쓰고, 식에 쓰인 세 곱이 각각 어떤 면의 넓이인지, 왜 마지막에 곱하는 수가 있는지 설명하세요.",
+        "answer": "$($가로$\\times$세로$+$세로$\\times$높이$+$가로$\\times$높이$)\\times2$이다. 세 곱은 한 꼭짓점에서 만나는 서로 다른 세 면의 넓이이고, 마주 보는 면의 넓이가 같아 $2$배 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세 곱의 합에 $2$를 곱한다",
+              "$($가로$\\times$세로$+$세로$\\times$높이$+$가로$\\times$높이$)\\times2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 곱은 한 꼭짓점에서 만나는 세 면의 넓이이다",
+              "세 곱은 서로 다른 세 면의 넓이이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 면의 넓이가 같다",
+              "같은 넓이의 면이 둘씩 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가로 $3\\ \\mathrm{cm}$, 세로 $4\\ \\mathrm{cm}$, 높이 $5\\ \\mathrm{cm}$인 직육면체에서 세 면의 넓이는 $12$, $20$, $15$이다. 마주 보는 면끼리 넓이가 같으므로 합 $12+20+15=${$47$}에 {$2$}를 곱해 겉넓이 {$94$}$\\ \\mathrm{cm}^2$를 구한다.",
+        "acceptedAnswers": [
+          [
+            "$47$"
+          ],
+          [
+            "$2$",
+            "두"
+          ],
+          [
+            "$94$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "식 암기가 아니라 각 항과 $2$배의 의미를 묻는다.",
+      "cReason": "원문은 긴 구절 암기이므로 실제 수로 합, 곱하는 수, 겉넓이를 묻는다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "세 면의 넓이 합47에 마주 보는 두 면의2를 곱하여94가 되는 과정과 식의 의미가 일치한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc11",
+      "sourceIndex": 2115,
+      "proposalFingerprint": "decb6671a925f85c716588436126ec0df3067b09e8ac209c3764b092bbf56732",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체에서 (밑면의 둘레)$\\times$(높이)는 어느 부분의 넓이인가요? 이를 이용해 겉넓이를 구하는 방법을 쓰세요.",
+        "answer": "옆면 네 개를 이은 직사각형의 넓이이다. 여기에 두 밑면의 넓이를 더하면 겉넓이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면 네 개의 넓이의 합",
+              "옆면의 넓이"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑면의 넓이를 더한다",
+              "밑면 두 개의 넓이를 더한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "밑면이 가로 $3\\ \\mathrm{cm}$, 세로 $2\\ \\mathrm{cm}$, 높이 $4\\ \\mathrm{cm}$인 직육면체에서 (밑면의 둘레)$\\times$(높이)$=10\\times4=40\\ \\mathrm{cm}^2$은 {옆면 네 개}의 넓이의 합이다. 두 밑면의 넓이 {$12$}$\\ \\mathrm{cm}^2$를 더하면 겉넓이 {$52$}$\\ \\mathrm{cm}^2$가 된다.",
+        "acceptedAnswers": [
+          [
+            "옆면 네 개",
+            "옆면",
+            "옆면 전체"
+          ],
+          [
+            "$12$"
+          ],
+          [
+            "$52$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "식의 의미와 겉넓이 구성을 함께 묻는다.",
+      "cReason": "맥락 없는 구절 대신 실제 수 식에서 옆면과 밑면의 역할을 확인하게 했다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "밑면 둘레×높이가 옆면 네 개 넓이임을 연결하고 두 밑면12를 더해52를 구한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc12",
+      "sourceIndex": 2116,
+      "proposalFingerprint": "b24f5be986870f0b7fca6d6dfdae2c86fe976b50b956f672999748db01d25af4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "정육면체의 겉넓이를 알 때 한 면의 넓이를 구하는 방법과 이유를 설명하세요. 겉넓이가 $54\\ \\mathrm{cm}^2$일 때 한 면의 넓이도 구하세요.",
+        "answer": "여섯 면의 넓이가 모두 같으므로 겉넓이를 $6$으로 나눈다. $54\\div6=9$이므로 $9\\ \\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "여섯 면의 넓이가 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉넓이를 $6$으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 면의 넓이는 $9\\ \\mathrm{cm}^2$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "정육면체의 겉넓이가 $54\\ \\mathrm{cm}^2$이면 여섯 면의 넓이가 모두 같으므로 한 면의 넓이는 $54\\div${$6$}$=${$9$}$\\ \\mathrm{cm}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 방법과 이유를 묻고 예의 답까지 포함했다.",
+      "cReason": "원문은 '$6$으로 나눈'이라는 구절이므로 실제 식에서 수를 답하게 했다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "여섯 같은 면으로54를 나누어9를 구하는 방법과 까닭이 일치한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc13",
+      "sourceIndex": 2117,
+      "proposalFingerprint": "8a6573a37e15a90770c7861802849007bc3ed5239ee0fb37d97c9c22aae60bfe",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "정육면체의 겉넓이가 $54\\ \\mathrm{cm}^2$일 때 한 모서리의 길이를 구하는 방법을 단계별로 설명하고 답을 쓰세요.",
+        "answer": "겉넓이를 $6$으로 나누어 한 면의 넓이 $9\\ \\mathrm{cm}^2$를 구한다. 같은 수를 두 번 곱해 $9$가 되는 수는 $3$이므로 한 모서리는 $3\\ \\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겉넓이를 $6$으로 나누어 한 면의 넓이를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 수를 두 번 곱해 그 넓이가 되는 수를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 모서리는 $3\\ \\mathrm{cm}$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "정육면체의 겉넓이가 $150\\ \\mathrm{cm}^2$이면 한 면의 넓이는 {$25$}$\\ \\mathrm{cm}^2$이고, 같은 수를 두 번 곱해 이 넓이가 되는 수 {$5$}$\\ \\mathrm{cm}$가 한 모서리의 길이이다.",
+        "acceptedAnswers": [
+          [
+            "$25$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "여러 단계가 얽힌 방법을 순서대로 말하게 한다.",
+      "cReason": "원문 빈칸 '모서리'는 낱말만 맞히는 문제라 실제 계산 단계를 묻게 바꿨다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "한 면의 넓이25를 구하고 같은 수를 곱해25가 되는5를 찾는 단계로 모서리 길이를 구한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc14",
+      "sourceIndex": 2118,
+      "proposalFingerprint": "df70b19525375e885dc1ddc06809ac4bc0083a0b618433eeed661030ab11ca99",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체의 겉넓이를 여섯 면을 모두 더하는 방법, 한 꼭짓점에서 만나는 세 면을 $2$배 하는 방법, 옆면과 두 밑면을 더하는 방법으로 구하면 결과가 어떻게 되나요? 그 이유도 쓰세요.",
+        "answer": "결과가 모두 같다. 세 방법 모두 겉면 전체를 빠짐없이 한 번씩 센 것이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "결과가 같다",
+              "겉넓이는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉면 전체를 한 번씩 센다",
+              "같은 면들을 빠짐없이 한 번씩 더한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "겉넓이를 구하는 세 방법은 모두 직육면체의 겉면 전체를 {한 번씩} 더하므로 결과가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "한 번씩",
+            "빠짐없이 한 번씩",
+            "한 번만"
+          ],
+          [
+            "같다",
+            "똑같다",
+            "같은 값이다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "결과만 아니라 같은 겉면을 센다는 이유를 말하게 한다.",
+      "cReason": "원문 빈칸이 긴 결론 구절이라 이유와 결론을 각각 짧게 답하도록 했다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "세 방법이 모든 겉면을 한 번씩 센다는 같은 근거로 결과가 같음을 설명한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc15",
+      "sourceIndex": 2119,
+      "proposalFingerprint": "295dc0e9cd57a0123b649abb51f2c03a28d8019a7c94e092b57d86a43c3b643a",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직육면체에서 한 꼭짓점에서 만나는 세 면의 넓이의 합만 구하고 $2$배 하지 않으면, 이 값은 겉넓이와 어떤 관계인가요? 이유도 설명하세요.",
+        "answer": "겉넓이의 절반이다. 마주 보는 면의 넓이가 같아서 세 쌍 중 한 면씩만 더한 셈이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겉넓이의 절반이다",
+              "겉넓이의 반이다",
+              "겉넓이의 $\\frac{1}{2}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 면 중 한 면씩만 더했다",
+              "같은 넓이의 면이 둘씩인데 하나씩만 더했다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 꼭짓점에서 만나는 세 면의 넓이만 더하고 두 배를 하지 않으면 겉넓이의 {절반}이 된다.",
+        "acceptedAnswers": [
+          [
+            "절반"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "흔한 계산 실수를 개념과 연결한다.",
+      "cReason": "'절반'을 답하는 짧고 명확한 관계 문장이며 조건이 모두 문장에 있다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "마주 보는 면 쌍에서 하나씩만 더했으므로 겉넓이의 절반이라는 관계를 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc16",
+      "sourceIndex": 2120,
+      "proposalFingerprint": "934c9e89f3049bef0cde2f97fe4df8e03299229ce1ada07a18b2d1c607bc294e",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직사각형 모양 면의 넓이를 구할 때 가로와 세로의 길이 단위를 같게 맞춰야 하는 이유를 설명하세요. 가로 $2\\ \\mathrm{m}$, 세로 $50\\ \\mathrm{cm}$인 면의 넓이를 $\\mathrm{cm}^2$로 구하는 과정도 쓰세요.",
+        "answer": "같은 단위 길이를 기준으로 가로와 세로를 나타내야 곱이 같은 크기의 단위 정사각형의 수가 되기 때문이다. $2\\ \\mathrm{m}=200\\ \\mathrm{cm}$이므로 $200\\times50=10000\\ \\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 단위 길이를 기준으로 해야 한다",
+              "단위가 같아야 같은 크기의 정사각형 수로 넓이를 구할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\ \\mathrm{m}$를 $200\\ \\mathrm{cm}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이는 $10000\\ \\mathrm{cm}^2$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가로 $2\\ \\mathrm{m}$, 세로 $50\\ \\mathrm{cm}$인 직사각형의 넓이를 $\\mathrm{cm}^2$로 구하려면 가로를 {$200$}$\\ \\mathrm{cm}$로 바꿔 $200\\times50=${$10000$}$\\ \\mathrm{cm}^2$로 구한다.",
+        "acceptedAnswers": [
+          [
+            "$200$"
+          ],
+          [
+            "$10000$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "이유와 간단한 예를 함께 묻는다.",
+      "cReason": "원문 빈칸은 긴 설명 구절이므로 단위 환산 계산으로 대체했다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "단위를200cm로 바꾸어50cm와 곱하면10000cm²가 되는 변환과 이유를 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc17",
+      "sourceIndex": 2121,
+      "proposalFingerprint": "bc51a676af31d51667d762a35956e92420d9d9c0553785afa5a092ba0d474d94",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "숫자만 묻는 자명한 문장이며 e6-1-6-1-c3이 더 가치 있다.",
+        "cloze": "숫자만 묻는 자명한 문장이며 e6-1-6-1-c3이 더 가치 있다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "숫자와 이름만 묻는 하위 학년 내용이다.",
+      "cReason": "'$6$개' 숫자 하나를 묻는 자명한 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "정육면체 여섯 면이라는 단순 개수 확인의 중복을 c3로 대체한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc18",
+      "sourceIndex": 2122,
+      "proposalFingerprint": "43516680a6ebfb256d8d2ca9b30e7b87f6d766aebc2cb0edb8793e44e67b35b9",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "정육면체의 한 모서리 길이가 $2$배가 되면 겉넓이는 몇 배가 되나요? 모서리가 $3\\ \\mathrm{cm}$에서 $6\\ \\mathrm{cm}$가 되는 경우를 예로 들어 이유를 설명하세요.",
+        "answer": "$4$배가 된다. 한 면의 가로와 세로가 모두 $2$배가 되어 넓이가 $2\\times2=4$배가 된다. 예: $9\\ \\mathrm{cm}^2$에서 $36\\ \\mathrm{cm}^2$가 되어 겉넓이가 $54\\ \\mathrm{cm}^2$에서 $216\\ \\mathrm{cm}^2$가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$배",
+              "겉넓이는 $4$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로와 세로가 모두 $2$배라서 한 면이 $2\\times2=4$배가 된다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "정육면체의 한 모서리가 $3\\ \\mathrm{cm}$에서 $6\\ \\mathrm{cm}$로 $2$배가 되면 한 면의 넓이는 $9\\ \\mathrm{cm}^2$에서 $36\\ \\mathrm{cm}^2$로 바뀌므로 겉넓이는 {$4$}배가 된다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "길이 배수와 넓이 배수의 차이를 예와 함께 이해하게 한다.",
+      "cReason": "실제 수로 한 면의 넓이 변화를 보여 주고 배수를 하나만 답하게 했다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는3cm에서6cm인 경우를 예로 설명하라고 했지만 기준에는 일반적인2×2=4배만 있고 실제 예의9→36 또는54→216 확인은 빠졌다. 예를 요청하는 물음을 유지한다면 적어도 한 면 또는 겉넓이의 예를 기준에 반영해야 한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc19",
+      "sourceIndex": 2123,
+      "proposalFingerprint": "e53138c764262f984e41baed6b391be1c0a02fb95c2a40c7431bd2801a040fa3",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체 두 개를 합동인 면끼리 꼭 맞게 붙이면, 두 직육면체의 겉넓이의 합보다 새 입체의 겉넓이가 어떻게 달라지나요? 이유도 설명하세요.",
+        "answer": "맞닿은 두 면의 넓이만큼 줄어든다. 맞닿은 두 면은 더 이상 겉면이 아니기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겉넓이가 줄어든다",
+              "겉넓이의 합이 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞닿은 두 면의 넓이만큼 줄어든다",
+              "한 면의 넓이의 $2$배만큼 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞닿은 면은 겉면이 아니게 된다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "합동인 두 직육면체를 넓이가 $12\\ \\mathrm{cm}^2$인 면끼리 꼭 맞게 붙이면, 두 직육면체의 겉넓이의 합보다 {$24$}$\\ \\mathrm{cm}^2$ 줄어든다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "줄어드는 양과 이유를 함께 묻는다.",
+      "cReason": "'두 면'만 묻던 원문을 맞닿은 두 면의 넓이 합 계산으로 바꿨다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "꼭 맞게 붙은 합동 두 면이 겉면에서 사라져12cm²의 두배24만큼 줄어든다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc20",
+      "sourceIndex": 2124,
+      "proposalFingerprint": "98e617ba0446a1a55fec5055a888c4b4891cdb1f51f34e3aba29407bf9e1f3c9",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체를 한 번 평평하게 잘라 둘로 나누면, 나뉜 두 입체의 겉넓이의 합은 처음 직육면체의 겉넓이와 비교해 어떻게 달라지나요? 이유도 쓰세요.",
+        "answer": "잘린 면 두 개의 넓이만큼 늘어난다. 두 조각에 각각 새 면이 하나씩 생기기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겉넓이의 합이 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "잘린 면 두 개의 넓이만큼 늘어난다",
+              "잘린 면의 넓이의 $2$배만큼 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 조각에 새 면이 하나씩 생긴다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "넓이가 $15\\ \\mathrm{cm}^2$인 단면으로 직육면체를 한 번 잘라 둘로 나누면, 두 입체의 겉넓이의 합은 처음보다 {$30$}$\\ \\mathrm{cm}^2$ 늘어난다.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "붙이기와 대비되는 관계를 이유와 함께 묻는다.",
+      "cReason": "'두 개'만 묻던 원문을 실제 넓이 증가량으로 바꿨다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "한번 평평하게 자르면 같은15cm² 새 면이 두개 생겨30만큼 늘어난다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc21",
+      "sourceIndex": 2125,
+      "proposalFingerprint": "6460117ca1d0e0b6dd9f4f2fa04c513f6c18e3fbb389488b1a36369c059cc168",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "뚜껑이 없는 직육면체 상자의 겉넓이는 어떻게 구하나요? 가로 $4\\ \\mathrm{cm}$, 세로 $3\\ \\mathrm{cm}$, 높이 $2\\ \\mathrm{cm}$인 상자의 값도 구하세요.",
+        "answer": "여섯 면 중 뚜껑에 해당하는 윗면 한 개를 뺀 다섯 면의 넓이를 더한다. 전체 겉넓이 $52\\ \\mathrm{cm}^2$에서 윗면 $12\\ \\mathrm{cm}^2$를 빼 $40\\ \\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "윗면 한 개를 제외하고 다섯 면을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40\\ \\mathrm{cm}^2$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "윗면이 없는 상자의 겉넓이는 전체 겉넓이 $52\\ \\mathrm{cm}^2$에서 넓이 $12\\ \\mathrm{cm}^2$인 {윗면}을 빼서 {$40$}$\\ \\mathrm{cm}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "윗면",
+            "뚜껑",
+            "뚜껑 면"
+          ],
+          [
+            "$40$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단순 정의를 넘어 구체적 상자에 적용하게 한다.",
+      "cReason": "어느 면을 빼는지와 결과를 실제 수로 확인하게 했다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "C 첫 빈칸 윗면은 '윗면이 없는 상자'에서 그대로 베끼는 값이다. 윗면 조건을 보이고52-12=40의 값만 묻거나 실제로 제외되는 면의 넓이를 계산하게 고쳐야 한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc22",
+      "sourceIndex": 2126,
+      "proposalFingerprint": "ec836cdd2ce63220bde52b4dbe3e28aeda592cec8ce30f0a7b2a218af516b275",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "상자의 겉면을 모두 덮고 일부를 겹쳐 붙인 포장지의 넓이는 상자의 겉넓이와 비교해 어떤가요? 이유도 설명하세요.",
+        "answer": "포장지의 넓이가 겉넓이보다 크다. 겉면을 덮는 부분 외에 겹치는 부분이 더 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겉넓이보다 크다",
+              "겉넓이보다 넓다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겹치는 부분이 더 있다",
+              "겹쳐 붙인 부분도 종이 넓이에 포함된다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "상자의 겉넓이가 $100\\ \\mathrm{cm}^2$일 때 겉면을 모두 덮고 일부가 겹치게 붙인 포장지의 넓이는 $100\\ \\mathrm{cm}^2$보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다",
+            "더 크다",
+            "더 넓다",
+            "넓다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "실생활에서 겉넓이와 필요한 종이 넓이를 구별하게 한다.",
+      "cReason": "원문 두 빈칸은 긴 구절이고 이유를 베끼기 쉬워 수 비교 하나로 줄였다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "겉면을 모두 덮고 실제 겹친 부분이 있다는 조건으로 종이 넓이가 겉넓이보다 크다고 판단한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc24",
+      "sourceIndex": 2127,
+      "proposalFingerprint": "a481a139c7dabdd1bc8c6855f45a9edebef2a29f4020d7cb2b8c68952d0cf894",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체의 겉넓이와 밑면의 모양을 알 때 높이를 구하는 방법을 순서대로 설명하세요. 밑면이 가로 $3\\ \\mathrm{cm}$, 세로 $2\\ \\mathrm{cm}$이고 겉넓이가 $52\\ \\mathrm{cm}^2$일 때 높이도 구하세요.",
+        "answer": "겉넓이에서 두 밑면의 넓이를 빼 옆면의 넓이의 합을 구하고 밑면의 둘레로 나눈다. $52-12=40$, $40\\div10=4$이므로 높이는 $4\\ \\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겉넓이에서 두 밑면의 넓이를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 옆면의 넓이의 합을 밑면의 둘레로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 $4\\ \\mathrm{cm}$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "밑면이 가로 $3\\ \\mathrm{cm}$, 세로 $2\\ \\mathrm{cm}$인 직육면체의 겉넓이가 $52\\ \\mathrm{cm}^2$이면 옆면의 넓이의 합은 $52-12=${$40$}$\\ \\mathrm{cm}^2$이고, 높이는 $40\\div${$10$}$=${$4$}$\\ \\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$40$"
+          ],
+          [
+            "$10$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "여러 단계를 거꾸로 추론하는 방법을 예와 함께 묻는다.",
+      "cReason": "원문은 낱말 하나뿐이라 실제 수로 거꾸로 푸는 과정을 확인하게 했다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B 일반 물음은 밑면의 모양만 안다고 했는데 높이를 구하려면 밑면의 크기 또는 변 길이도 알아야 한다. 밑면의 모양과 크기를 안다는 조건으로 고쳐야 한다. 실제 숫자가 주어진 C는4cm가 정해진다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-1-xc26",
+      "sourceIndex": 2128,
+      "proposalFingerprint": "1efa5ca62fde71a7d9c032d8a9bf1cee55b959288c6983bf66387197a4363ae6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "같은 직육면체를 어느 면이 바닥에 닿게 놓는지에 따라 겉넓이가 달라지나요? 그 이유를 설명하세요.",
+        "answer": "달라지지 않는다. 놓는 방향을 바꿔도 직육면체의 면과 크기는 그대로여서 겉면 전체의 넓이가 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "달라지지 않는다",
+              "겉넓이는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "입체의 면과 크기는 그대로이다",
+              "놓는 방향이 바뀌어도 겉면 전체는 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직육면체를 어느 면이 바닥에 닿게 놓든 겉넓이는 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방향과 겉넓이를 혼동하기 쉬워 판단과 이유를 묻는다.",
+      "cReason": "방향과 무관하게 겉넓이가 같다는 짧고 분명한 성질 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "같은 직육면체를 놓는 방향만 바꾸므로 모든 면의 넓이가 그대로라는 이유가 성립한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc1",
+      "sourceIndex": 2129,
+      "proposalFingerprint": "baeb6ea480b249e175d6a17cebb430215d22063d743aa40ac9ff40bd0547e012",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "모양이 다른 두 상자를 크기가 같은 쌓기나무로 각각 빈틈없이 채웠다. 어느 상자의 부피가 더 큰지 어떻게 알 수 있는지 설명하시오.",
+        "answer": "들어간 쌓기나무의 개수를 비교한다. 개수가 더 많은 상자의 부피가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쌓기나무의 개수를 비교한다",
+              "들어간 쌓기나무 수를 센다"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수가 더 많은 쪽의 부피가 더 크다",
+              "더 많이 들어가는 쪽이 더 크다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "크기가 같은 쌓기나무로 두 상자를 채워 {쌓기나무의 개수}로 부피를 비교할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "쌓기나무의 개수"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비교 방법과 판단 결과를 함께 묻는다.",
+      "cReason": "같은 쌓기나무로 채운다는 조건 아래 개수로 비교한다는 간단한 방법 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 빈틈없이 채운다고 명시했다. C도 같은 크기 쌓기나무가 두 상자에 빈틈없이 들어갔다는 조건을 명시해야 개수 비교가 부피 비교로 이어진다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc2",
+      "sourceIndex": 2130,
+      "proposalFingerprint": "af7c845fcf5ead76934e56b2287a019f0d3781295c54c9c386911c870805a7b3",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "$1\\,\\mathrm{cm}^3$의 읽는 말은 {$1$ 세제곱센티미터}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$ 세제곱센티미터"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "단위 읽기는 e6-1-6-2-c3 B에 포함되어 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "읽기 암기 하나라 설명 질문 가치가 낮고 c3 B가 읽기까지 묻는다.",
+      "cReason": "짧은 낱말 확인이고 읽는 소리 표기가 정확하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "부피 단위1cm³를 읽는 말 세제곱센티미터를 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc5",
+      "sourceIndex": 2131,
+      "proposalFingerprint": "a113b9e58655e33d4b94f72fc602f956af4837ae15e2166a1ba4104b4eb6f45e",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "직육면체의 부피는 가로, 세로, {높이}를 모두 곱해 구한다.",
+        "acceptedAnswers": [
+          [
+            "높이"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "c4 B와 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c4와 c6이 같은 공식을 더 깊게 묻는다.",
+      "cReason": "가로·세로와 함께 곱할 길이가 높이임을 확인하는 짧은 공식 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "가로·세로와 함께 곱하는 높이라는 대상이 직육면체 조건으로 정해진다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc6",
+      "sourceIndex": 2132,
+      "proposalFingerprint": "b86afe28ba08dbda0063a171663e3e093d9e4804316e691a9ab6c243e25af54a",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "모서리가 $1\\,\\mathrm{cm}$인 쌓기나무 $24$개로 상자를 빈틈없이 채웠다. 이 상자의 부피를 구하고, 그렇게 되는 까닭을 말하시오.",
+        "answer": "$24\\,\\mathrm{cm}^3$이다. 쌓기나무 한 개의 부피가 $1\\,\\mathrm{cm}^3$이므로 쌓기나무 수만큼 $\\mathrm{cm}^3$가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$24\\,\\mathrm{cm}^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "쌓기나무 한 개의 부피가 $1\\,\\mathrm{cm}^3$이므로",
+              "개수만큼 $\\mathrm{cm}^3$가 된다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$1\\,\\mathrm{cm}^3$짜리 쌓기나무로 빈틈없이 채운 상자의 부피는 {쌓기나무의 수}만큼의 $\\mathrm{cm}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "쌓기나무의 수"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "값만 묻지 않고 단위 정육면체와 개수의 관계를 묻는다.",
+      "cReason": "빈틈없이 채웠다는 조건이 있고 빈칸이 쌓기나무의 수 하나로 분명하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "각1cm³ 쌓기나무로 빈틈없이 채운 조건으로24개가24cm³를 뜻함을 설명한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc7",
+      "sourceIndex": 2133,
+      "proposalFingerprint": "9cd932e60946624115a91f75768cc6be2df49506b131348fea3f97b55bf0e1dd",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "높이가 $1\\,\\mathrm{cm}$인 한 층의 부피를 세제곱센티미터로 나타낸 수는 {밑면의 넓이}를 제곱센티미터로 나타낸 수와 같다.",
+        "acceptedAnswers": [
+          [
+            "밑면의 넓이"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "e6-1-6-2-c6 B와 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c6 B가 한 층의 개수와 밑면의 넓이 관계를 이미 묻는다.",
+      "cReason": "높이 $1\\,\\mathrm{cm}$ 한 층이라는 조건이 명확하고 밑면의 넓이라는 답이 하나이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "높이1cm인 층의 부피 수와 밑면 넓이 수가 같다는 단위 관계를 명시한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc8",
+      "sourceIndex": 2134,
+      "proposalFingerprint": "42471b4dadf76e554f61116796cdf1093fb7c68b046b850c169e7d36c422e83c",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "부피의 단위는 $\\mathrm{cm}^3$처럼 오른쪽 위에 작은 {$3$}을 쓴다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "표기 암기만 요구하여 B 가치가 낮고 C로 충분하다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "작은 3을 쓰는 표기 암기라 설명할 개념이 없다.",
+      "cReason": "단위 표기 확인용 짧은 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "C는 cm³ 표기를 바로 앞에 보여 준 뒤 오른쪽 위의3을 베껴 쓰게 한다. 이미 단위 읽기를 다루는 c3로 대체하여 제외하거나1cm 정육면체의 단위를 스스로 쓰는 질문으로 바꾸어야 한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc11",
+      "sourceIndex": 2135,
+      "proposalFingerprint": "d06bb7500fe21a70640190f6435f2e7f029baa353c123d9b6951200d694a4075",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직육면체의 부피와 밑면의 넓이를 알 때 높이를 어떻게 구하는가? 그렇게 구하는 까닭을 한 층의 부피와 관련해 말하고, 부피 $60\\,\\mathrm{cm}^3$, 밑면의 넓이 $15\\,\\mathrm{cm}^2$일 때 높이를 구하시오.",
+        "answer": "부피를 밑면의 넓이로 나눈다. 한 층의 부피가 몇 번 쌓였는지 구하는 것이기 때문이다. $60\\div15=4$이므로 높이는 $4\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "부피를 밑면의 넓이로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 층의 부피가 몇 번 쌓였는지 구한다",
+              "층 수를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "부피를 밑면의 넓이로 나누면 {높이}가 된다. 한 층의 부피가 몇 번 쌓였는지를 구하는 셈이다.",
+        "acceptedAnswers": [
+          [
+            "높이"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "나눗셈의 의미를 층 수로 설명하게 한다.",
+      "cReason": "부피÷밑면의 넓이가 높이라는 결과 하나만 묻고 뒤 문장이 의미를 보충한다.",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "높이를 층 수로 설명하려면 한 층의 높이가1cm라는 조건을 알려 주어야 한다. 단위를 쓰지 않은 일반적인 '한 층'은 높이가 얼마인지 정해지지 않아 몫이 높이인 까닭을 설명하지 못한다. B/C 이유 부분을1cm 층으로 명시해야 한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc12",
+      "sourceIndex": 2136,
+      "proposalFingerprint": "5a4e0ae23a607052b754d2a07654422e51ef7553b2064e7f39988992b9370b91",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직육면체의 부피와 겉넓이는 각각 무엇의 크기를 나타내는가? 또 두 값을 나타내는 단위는 어떻게 다른지 말하시오.",
+        "answer": "부피는 차지하는 공간의 크기이고, 겉넓이는 겉면 전체의 넓이이다. 부피는 $\\mathrm{cm}^3$, 겉넓이는 $\\mathrm{cm}^2$ 같은 단위로 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "부피는 차지하는 공간의 크기이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉넓이는 겉면 전체의 넓이이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "부피는 $\\mathrm{cm}^3$, 겉넓이는 $\\mathrm{cm}^2$ 단위를 쓴다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "부피는 공간의 크기를, 겉넓이는 {겉면의 넓이}를 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "겉면의 넓이"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 개념의 혼동이 흔해 뜻과 단위를 짝지어 묻는다.",
+      "cReason": "부피와 대비해 겉넓이의 뜻을 묻는 짧은 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "부피는 공간의 크기이고 겉넓이는 모든 겉면의 넓이라는 뜻·단위의 차이를 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc13",
+      "sourceIndex": 2137,
+      "proposalFingerprint": "1436fc5ad6df2f8cedfb0d50bb61bf732798d14e884b0c01d6d74a65f9efd34d",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "e6-1-6-2-xc1과 중복이다.",
+        "cloze": "e6-1-6-2-xc1과 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc1이 같은 쌓기나무로 부피를 비교하는 방법을 이미 묻는다.",
+      "cReason": "빈칸 '비교하기 어려워'는 표현이 다양해 정답이 흔들리고 xc1과 중복이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "같은 쌓기나무로 비교하는 원리의 중복을 xc1로 대체한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc14",
+      "sourceIndex": 2138,
+      "proposalFingerprint": "c91c7f50c65ad24f4291f65b65279347a4da8bc58f2f07d7b7d9a4eb53c0b92f",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "가로 $2\\,\\mathrm{m}$, 세로 $50\\,\\mathrm{cm}$, 높이 $40\\,\\mathrm{cm}$인 직육면체의 부피를 $\\mathrm{cm}^3$로 구하려면 곱하기 전에 무엇을 해야 하는가? 이렇게 하여 부피를 구하시오.",
+        "answer": "세 길이를 모두 $\\mathrm{cm}$로 고친다. $2\\,\\mathrm{m}=200\\,\\mathrm{cm}$이므로 $200\\times50\\times40=400000$, 부피는 $400000\\,\\mathrm{cm}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이를 모두 같은 단위로 맞춘다",
+              "모두 $\\mathrm{cm}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$400000\\,\\mathrm{cm}^3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "세 모서리의 길이 단위가 다르면 곱하기 전에 길이를 모두 {같은 단위}로 고친다. 부피를 $\\mathrm{cm}^3$로 구하려면 모든 길이를 {$\\mathrm{cm}$} 단위로 맞춘다.",
+        "acceptedAnswers": [
+          [
+            "같은 단위",
+            "같은 길이 단위",
+            "하나의 단위"
+          ],
+          [
+            "$\\mathrm{cm}$",
+            "센티미터"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단위가 섞인 상황에서 처리 순서를 묻는다.",
+      "cReason": "긴 구절 대신 두 개의 짧은 빈칸으로 바꾼다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "길이를 모두cm로 바꾼 뒤200×50×40=400000cm³를 구하는 조건과 계산이 맞는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc15",
+      "sourceIndex": 2139,
+      "proposalFingerprint": "ac8394553689fbfc1e8dd5b9853115cdc22bf13ea483605200d3f87e0dff3133",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "높이가 같은 두 직육면체 중 부피가 더 큰 쪽은 어느 쪽인가? 부피를 구하는 방법과 관련해 그 까닭을 말하시오.",
+        "answer": "밑면의 넓이가 더 넓은 쪽이다. 부피는 밑면의 넓이에 높이를 곱하는데 높이가 같으므로 밑면의 넓이가 클수록 부피가 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 넓이가 더 넓은 쪽이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 같으므로 밑면의 넓이에 따라 부피가 정해진다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "높이가 같은 두 직육면체는 {밑면의 넓이}가 넓은 쪽의 부피가 더 크다.",
+        "acceptedAnswers": [
+          [
+            "밑면의 넓이"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c2와 비슷하지만 같은 조건이 높이이므로 별도로 묻는다.",
+      "cReason": "높이가 같다는 조건이 있어 밑면의 넓이라는 답이 분명하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "C의 '밑면의 넓이가 넓은 쪽'은 양의 크기와 면의 넓음을 섞은 어색한 표현이다. '밑면의 넓이가 큰 쪽'으로 다듬고 가능하면 두 밑면 넓이 값을 주어 부피의 크고 작음을 짧게 판단하도록 좁혀야 한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    }
+  ]
+}

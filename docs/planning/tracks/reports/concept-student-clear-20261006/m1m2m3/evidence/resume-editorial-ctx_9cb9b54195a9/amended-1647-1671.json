@@ -1,0 +1,1884 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-1647-1671.json",
+  "changes": [
+    {
+      "id": "m1-05-04-xc12",
+      "bPrompt": "옆모서리가 밑면에 수직인 각기둥에서 두 밑면끼리의 위치 관계와, 옆면과 밑면의 위치 관계를 각각 쓰시오. 이런 오각기둥에서 한 밑면과 수직인 면의 개수도 구하시오.",
+      "cAfter": "옆모서리가 밑면에 수직인 각기둥에서 두 밑면은 서로 {평행}하고, 옆면은 모두 두 밑면과 {수직}이다.",
+      "coreAfter": "옆모서리가 밑면에 수직인 각기둥에서 두 밑면은 서로 {평행}하고, 옆면은 모두 두 밑면과 {수직}이다.",
+      "coreReason": "기울어진각기둥까지밑면과옆면이수직이라고확대하지않도록조건을명시한다.",
+      "cReason": "옆면이밑면에수직이라는결론의조건을독립문장에밝힌다."
+    },
+    {
+      "id": "m1-05-04-xc22",
+      "cAfter": "공간에서 서로 다른 세 평면 $P$, $Q$, $R$이 $P\\parallel Q$, $Q\\parallel R$이면 평면 $P$와 $R$은 서로 {평행}하다.",
+      "cReason": "빈칸이묻는두평면을정해주어진다른참인관계식을답하는문제를막는다."
+    },
+    {
+      "id": "m1-05-05-xc1",
+      "cAfter": "두 직선을 다른 한 직선이 가로질러 서로 다른 두 점에서 만난다. 한 교점의 왼쪽 위에 생긴 각과 다른 교점의 왼쪽 위에 생긴 각처럼, 두 교점에서 같은 위치에 놓인 두 각을 {동위각}이라 한다.",
+      "cReason": "두직선을기준으로같은쪽이라는말을각교점의같은위치라는구체적예로풀어쓴다."
+    },
+    {
+      "id": "m1-05-05-xc5",
+      "cAcceptedAnswers": [
+        [
+          "$8$개"
+        ],
+        [
+          "$4$개"
+        ]
+      ],
+      "cReason": "8생기고·4이다만으로는개수단위가빠지므로개를포함하는대체답만유지한다."
+    },
+    {
+      "id": "m1-05-05-xc7",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나머지는 $110^\\circ$가 $3$개, $70^\\circ$가 $4$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "맞꼭지각·동위각·엇각은 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이웃한 각은 $180^\\circ$에서 뺀다",
+            "평각을 이용한다"
+          ]
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-05-04-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "한 평면 $P$에 수직인 서로 다른 두 직선 $l$, $m$의 위치 관계를 쓰고, 직육면체에서 이 관계를 보여 주는 모서리의 예를 하나 드시오.",
+      "bAnswer": "$l\\parallel m$, 곧 평행하다. 예를 들어 직육면체에서 밑면에 수직인 옆모서리들은 서로 평행하다.",
+      "bGoal": "한 평면에 수직인 두 직선이 평행함을 알고 예 들기",
+      "bReason": "'서로 다른'이라는 조건을 넣고 직육면체 모서리로 확인하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 직선은 평행하다",
+            "$l\\parallel m$"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면에 수직인 옆모서리끼리 평행하다",
+            "한 면에 수직인 두 모서리가 평행하다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 평면에 수직인 서로 다른 두 직선은 서로 {평행}하다.",
+      "cAnswers": [
+        "평행"
+      ],
+      "cReason": "두 직선이 일치하는 경우를 빼도록 '서로 다른'을 넣었다.",
+      "coreAfter": "한 평면에 수직인 서로 다른 두 직선은 서로 {평행}하다.",
+      "coreReason": "두 직선이 일치하면 평행이라 할 수 없으므로 '서로 다른'이라는 조건이 필요하다.",
+      "exampleNeeded": true,
+      "learningRole": "definition",
+      "roleReason": "한 평면에 수직인 두 직선의 평행",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1647,
+      "part": "m1plus",
+      "sourceFingerprint": "68bf308582b6b91e3a60e8d7300fc38837913cfe8df21c39b49e99182cb33028",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1647
+      },
+      "directReview": null,
+      "coreBeforeRepair": "한 평면에 수직인 서로 다른 두 직선은 서로 {평행}하다.",
+      "coreRepairReason": "이미 형식과 뜻이 좋아 그대로 보존했다. 원본 핵심어 {평행}을 유지했다.",
+      "coreRepairEvidence": "core-repair/core-001",
+      "cMarkedSentence": "한 평면에 수직인 서로 다른 두 직선은 서로 {평행}하다.",
+      "cSlotAnswers": [
+        "평행"
+      ],
+      "cStudentSentence": "한 평면에 수직인 서로 다른 두 직선은 서로 □하다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평행",
+          "equivalentAnswers": [
+            "평행"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평행"
+        ]
+      ],
+      "proposalFingerprint": "12a0c3c8f2ee71028602e63f3d273e996bf53512a8f992a8edf2a90356cf8daf"
+    },
+    {
+      "id": "m1-05-04-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "한 평면에 평행한 서로 다른 두 직선의 위치 관계로 가능한 경우를 모두 쓰시오. 또 직육면체 $ABCD$-$EFGH$(밑면 $ABCD$, 윗면 $EFGH$, 옆모서리 $AE$, $BF$, $CG$, $DH$)에서 면 $ABCD$에 평행한 두 모서리가 한 점에서 만나는 예를 하나 드시오.",
+      "bAnswer": "평행할 수도, 한 점에서 만날 수도, 꼬인 위치에 있을 수도 있다. 예를 들어 $EF$와 $FG$는 모두 면 $ABCD$에 평행하지만 점 $F$에서 만난다.",
+      "bGoal": "한 평면에 평행한 두 직선의 관계가 여러 가지임을 알기",
+      "bReason": "'하나로 정해지지 않는다'를 가능한 경우의 나열과 직육면체 예로 바꿔 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평행할 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 점에서 만날 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼬인 위치에 있을 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$EF$와 $FG$가 면 $ABCD$에 평행하면서 만난다",
+            "윗면의 이웃한 두 모서리가 면 $ABCD$에 평행하면서 한 점에서 만난다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 평면에 평행한 서로 다른 두 직선은 {평행}할 수도, 한 점에서 {만날} 수도, {꼬인 위치}에 있을 수도 있다.",
+      "cAnswers": [
+        "평행",
+        "만날",
+        "꼬인 위치"
+      ],
+      "cReason": "'하나로 정해지지 않는다'는 긴 구절 빈칸이라 세 경우를 묻게 바꿨다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "평행이 보장되지 않는 세 가지 경우",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1648,
+      "part": "m1plus",
+      "sourceFingerprint": "2ecabb6f6136eef8ab7daa8b6b5a071b59d3d9fbcd1634675ac1286eeca32011",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1648
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 평면에 평행한 서로 다른 두 직선은 {평행}할 수도, 한 점에서 {만날} 수도, {꼬인 위치}에 있을 수도 있다.",
+      "cSlotAnswers": [
+        "평행",
+        "만날",
+        "꼬인 위치"
+      ],
+      "cStudentSentence": "한 평면에 평행한 서로 다른 두 직선은 □할 수도, 한 점에서 □ 수도, □에 있을 수도 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평행",
+          "equivalentAnswers": [
+            "평행"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "만날",
+          "equivalentAnswers": [
+            "만날"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "꼬인 위치",
+          "equivalentAnswers": [
+            "꼬인 위치"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평행"
+        ],
+        [
+          "만날"
+        ],
+        [
+          "꼬인 위치"
+        ]
+      ],
+      "proposalFingerprint": "bd582859159833620e95d46970620e03664f637adae6130f115ed4ac1c5e06fc"
+    },
+    {
+      "id": "m1-05-04-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "평행한 두 평면 $P$, $Q$가 다른 평면 $R$와 각각 만날 때 생기는 두 교선의 위치 관계를 쓰고, 그 이유를 설명하시오.",
+      "bAnswer": "두 교선은 평행하다. 두 교선은 모두 평면 $R$ 위에 있고, 서로 만나지 않는 평면 $P$, $Q$ 위에 각각 있어 만나지 않기 때문이다.",
+      "bGoal": "평행한 두 평면의 교선이 평행한 이유 설명하기",
+      "bReason": "'자른'이라는 말 대신 평면 $P$, $Q$, $R$를 정하고 이유까지 묻게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 교선은 평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 교선은 같은 평면 $R$ 위에 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평면 $P$, $Q$가 만나지 않으므로 두 교선도 만나지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "상황이 문장에 모두 있고 두 교선의 관계만 묻는다.",
+      "learningRole": "reason",
+      "roleReason": "두 교선이 평행한 까닭",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1649,
+      "part": "m1plus",
+      "sourceFingerprint": "2ba1eece0d7fbfecad7fd6ee379a6dc47f33d8224195fc3f108903354c03d5d6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1649
+      },
+      "directReview": null,
+      "cFrozenSentence": "평행한 두 평면을 다른 한 평면이 자르면 생기는 두 교선은 서로 □하다.",
+      "cFrozenDefinition": "평행한 두 평면을 다른 한 평면이 자르면 생기는 두 교선은 서로 {평행}하다.",
+      "cFrozenAnswers": [
+        "평행"
+      ],
+      "cMarkedSentence": "평행한 두 평면을 다른 한 평면이 자르면 생기는 두 교선은 서로 {평행}하다.",
+      "cSlotAnswers": [
+        "평행"
+      ],
+      "cStudentSentence": "평행한 두 평면을 다른 한 평면이 자르면 생기는 두 교선은 서로 □하다.",
+      "cAnswers": [
+        "평행"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평행",
+          "equivalentAnswers": [
+            "평행"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평행"
+        ]
+      ],
+      "proposalFingerprint": "8aae72f103c279e1dc1334fa6a915bbd579632a9917e78987f0a4315da59e0bc"
+    },
+    {
+      "id": "m1-05-04-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "가로 $4$, 세로 $3$, 높이 $5$인 직육면체에서 윗면의 한 꼭짓점과 밑면 사이의 거리를 구하고, 그 거리가 어떤 선분의 길이인지 설명하시오.",
+      "bAnswer": "$5$이다. 그 꼭짓점에서 밑면에 내린 수선의 길이이며, 이는 직육면체의 높이(옆모서리의 길이)와 같다.",
+      "bGoal": "점과 평면 사이의 거리를 직육면체에서 구하기",
+      "bReason": "수치만 답하지 않도록 수선이라는 거리의 뜻을 함께 설명하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점에서 밑면에 내린 수선의 길이이다",
+            "밑면에 수직인 옆모서리의 길이, 곧 높이이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'수선'과 '높이'를 연결해 묻는 분명한 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "점과 평면 사이의 거리를 높이로 구하기",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1650,
+      "part": "m1plus",
+      "sourceFingerprint": "7b26653d5920cfd1f33b35f2a2d60f1ad95057a6e0504b415634e1b5216fecb6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1650
+      },
+      "directReview": null,
+      "cFrozenSentence": "직육면체에서 윗면의 꼭짓점과 밑면 사이의 거리는 그 꼭짓점에서 밑면에 내린 □의 길이, 곧 □이다.",
+      "cFrozenDefinition": "직육면체에서 윗면의 꼭짓점과 밑면 사이의 거리는 그 꼭짓점에서 밑면에 내린 {수선}의 길이, 곧 {높이}이다.",
+      "cFrozenAnswers": [
+        "수선",
+        "높이"
+      ],
+      "cMarkedSentence": "직육면체에서 윗면의 꼭짓점과 밑면 사이의 거리는 그 꼭짓점에서 밑면에 내린 {수선}의 길이, 곧 {높이}이다.",
+      "cSlotAnswers": [
+        "수선",
+        "높이"
+      ],
+      "cStudentSentence": "직육면체에서 윗면의 꼭짓점과 밑면 사이의 거리는 그 꼭짓점에서 밑면에 내린 □의 길이, 곧 □이다.",
+      "cAnswers": [
+        "수선",
+        "높이"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "수선",
+          "equivalentAnswers": [
+            "수선"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "높이",
+          "equivalentAnswers": [
+            "높이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "수선"
+        ],
+        [
+          "높이"
+        ]
+      ],
+      "proposalFingerprint": "4481b75fb4a12ea6f0f14dbc373595fb2a0bda40415852fed04f0a33ed2608cb"
+    },
+    {
+      "id": "m1-05-04-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "직육면체 $ABCD$-$EFGH$(밑면 $ABCD$, 윗면 $EFGH$, 옆모서리 $AE$, $BF$, $CG$, $DH$)에서 모서리 $AE$는 면 $ABCD$에 수직이다. 모서리 $AE$를 포함하는 면을 모두 쓰고, 그 면들이 면 $ABCD$와 어떤 관계인지 이유와 함께 쓰시오.",
+      "bAnswer": "면 $ABFE$와 면 $AEHD$이다. 두 면 모두 면 $ABCD$에 수직인 직선 $AE$를 포함하므로 면 $ABCD$와 수직이다.",
+      "bGoal": "수직인 직선을 포함하는 면으로 수직인 평면 찾기",
+      "bReason": "두 평면의 수직의 뜻을 꼭짓점 이름이 있는 직육면체에 적용하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면 $ABFE$와 면 $AEHD$"
+          ]
+        },
+        {
+          "anyOf": [
+            "면 $ABCD$에 수직인 직선 $AE$를 포함하므로 수직이다",
+            "수직인 직선을 포함하는 평면은 그 평면과 수직이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'포함'과 '수직'으로 판별 기준과 결론을 하나씩 묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "수직인 평면을 찾는 방법",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1651,
+      "part": "m1plus",
+      "sourceFingerprint": "b2cdcf86b6418f98268ea3e8d3c85b13b03adb606ef243bb0bd2d94a31160544",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1651
+      },
+      "directReview": null,
+      "cFrozenSentence": "한 평면에 수직인 직선을 □하는 평면은 모두 그 평면과 □이다.",
+      "cFrozenDefinition": "한 평면에 수직인 직선을 {포함}하는 평면은 모두 그 평면과 {수직}이다.",
+      "cFrozenAnswers": [
+        "포함",
+        "수직"
+      ],
+      "cMarkedSentence": "한 평면에 수직인 직선을 {포함}하는 평면은 모두 그 평면과 {수직}이다.",
+      "cSlotAnswers": [
+        "포함",
+        "수직"
+      ],
+      "cStudentSentence": "한 평면에 수직인 직선을 □하는 평면은 모두 그 평면과 □이다.",
+      "cAnswers": [
+        "포함",
+        "수직"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "포함",
+          "equivalentAnswers": [
+            "포함"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "수직",
+          "equivalentAnswers": [
+            "수직"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "포함"
+        ],
+        [
+          "수직"
+        ]
+      ],
+      "proposalFingerprint": "bd526869cbf47ee9dac9b25d098bbe9c37b6bb1f1e2c9e704da0cf0823ac19ae"
+    },
+    {
+      "id": "m1-05-04-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "옆모서리가 밑면에 수직인 각기둥에서 두 밑면끼리의 위치 관계와, 옆면과 밑면의 위치 관계를 각각 쓰시오. 이런 오각기둥에서 한 밑면과 수직인 면의 개수도 구하시오.",
+      "bAnswer": "두 밑면은 서로 평행하고, 옆면은 모두 밑면과 수직이다. 오각기둥에서 한 밑면과 수직인 면은 옆면 $5$개이다.",
+      "bGoal": "각기둥의 밑면과 옆면 사이의 관계 말하기",
+      "bReason": "밑면끼리와 옆면·밑면의 관계를 나누어 묻고 오각기둥으로 확인하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면은 평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면은 밑면과 수직이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "옆면이밑면에수직이라는결론의조건을독립문장에밝힌다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "각기둥의 면 사이 평행과 수직",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1652,
+      "part": "m1plus",
+      "sourceFingerprint": "8ef208d226601810ca1dec0f0129c7e125741e883ae26d99e3f82e04fd214d36",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1652
+      },
+      "directReview": null,
+      "cMarkedSentence": "옆모서리가 밑면에 수직인 각기둥에서 두 밑면은 서로 {평행}하고, 옆면은 모두 두 밑면과 {수직}이다.",
+      "cSlotAnswers": [
+        "평행",
+        "수직"
+      ],
+      "cStudentSentence": "옆모서리가 밑면에 수직인 각기둥에서 두 밑면은 서로 □하고, 옆면은 모두 두 밑면과 □이다.",
+      "cAnswers": [
+        "평행",
+        "수직"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평행",
+          "equivalentAnswers": [
+            "평행"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "수직",
+          "equivalentAnswers": [
+            "수직"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평행"
+        ],
+        [
+          "수직"
+        ]
+      ],
+      "proposalFingerprint": "98533921693ace9f51c920c67293713fd258d3a7a2015170e15fc2d7042ed7ff",
+      "cAfter": "옆모서리가 밑면에 수직인 각기둥에서 두 밑면은 서로 {평행}하고, 옆면은 모두 두 밑면과 {수직}이다.",
+      "coreAfter": "옆모서리가 밑면에 수직인 각기둥에서 두 밑면은 서로 {평행}하고, 옆면은 모두 두 밑면과 {수직}이다.",
+      "coreReason": "기울어진각기둥까지밑면과옆면이수직이라고확대하지않도록조건을명시한다."
+    },
+    {
+      "id": "m1-05-04-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "직육면체의 모서리 $12$개를 한 면에 대하여 '그 면에 포함된다', '그 면과 평행하다', '그 면과 한 점에서 만난다'로 나눌 때, 각 경우의 모서리가 몇 개씩인지 쓰고 각각 어디에 있는 모서리인지 설명하시오.",
+      "bAnswer": "포함되는 모서리는 그 면의 네 변으로 $4$개, 평행한 모서리는 마주 보는 면의 네 변으로 $4$개, 한 점에서 만나는 모서리는 두 면을 잇는(그 면에 수직인) 모서리로 $4$개이다.",
+      "bGoal": "한 면에 대한 모서리 $12$개의 위치 관계 분류하기",
+      "bReason": "세 분류를 질문에 밝히고 개수는 감춰 위치와 함께 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "포함되는 모서리는 그 면의 변 $4$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행한 모서리는 마주 보는 면의 변 $4$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 점에서 만나는 모서리는 그 면에 수직인 모서리 $4$개이다",
+            "한 점에서 만나는 모서리는 두 면을 잇는 모서리 $4$개이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "직육면체에서 한 면에 대하여 모서리 $12$개는 그 면에 {포함}되는 것, 그 면과 {평행}한 것, 그 면과 {한 점}에서 만나는 것으로 $4$개씩 나뉜다.",
+      "cAnswers": [
+        "포함",
+        "평행",
+        "한 점"
+      ],
+      "cReason": "두 빈칸의 답이 문장에 보이는 '$4$개'와 같아 수치를 베끼는 빈칸이었다.",
+      "learningRole": "procedure",
+      "roleReason": "한 면을 기준으로 모서리 나누기",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1653,
+      "part": "m1plus",
+      "sourceFingerprint": "b9bf444b5a55481209075588af1d1afd5f6e2f1d333e0ece82ed42977c9499ce",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1653
+      },
+      "directReview": null,
+      "cMarkedSentence": "직육면체에서 한 면에 대하여 모서리 $12$개는 그 면에 {포함}되는 것, 그 면과 {평행}한 것, 그 면과 {한 점}에서 만나는 것으로 $4$개씩 나뉜다.",
+      "cSlotAnswers": [
+        "포함",
+        "평행",
+        "한 점"
+      ],
+      "cStudentSentence": "직육면체에서 한 면에 대하여 모서리 $12$개는 그 면에 □되는 것, 그 면과 □한 것, 그 면과 □에서 만나는 것으로 $4$개씩 나뉜다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "포함",
+          "equivalentAnswers": [
+            "포함"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "평행",
+          "equivalentAnswers": [
+            "평행"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "한 점",
+          "equivalentAnswers": [
+            "한 점"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "포함"
+        ],
+        [
+          "평행"
+        ],
+        [
+          "한 점"
+        ]
+      ],
+      "proposalFingerprint": "131f907087db1f5d75378be424f19e5f4b727080ac5c09ea4a32a12d73a93ff8"
+    },
+    {
+      "id": "m1-05-04-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "직육면체 $ABCD$-$EFGH$(밑면 $ABCD$, 윗면 $EFGH$, 옆모서리 $AE$, $BF$, $CG$, $DH$)에서 모서리 $EF$가 면 $ABCD$와 평행함을, 면 $ABCD$ 위의 모서리와의 관계를 이용해 설명하시오.",
+      "bAnswer": "모서리 $EF$는 면 $ABCD$에 포함되지 않고, 면 $ABCD$ 위의 모서리 $AB$와 평행하므로 면 $ABCD$와 평행하다.",
+      "bGoal": "평면 위의 직선과의 평행으로 직선과 평면의 평행 알아보기",
+      "bReason": "판별법을 꼭짓점 이름이 있는 직육면체의 모서리 $EF$에 적용해 설명하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$EF$는 면 $ABCD$ 위의 모서리 $AB$와 평행하다",
+            "$EF$는 면 $ABCD$ 위의 모서리 $DC$와 평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평면 밖의 직선이 평면 위의 한 직선과 평행하면 그 평면과 평행하다",
+            "$EF$는 면 $ABCD$에 포함되지 않으므로 면 $ABCD$와 평행하다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "판별 조건인 '평면 위의 한 직선'을 묻고 결론은 문장에 남아 있다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "직선과 평면의 평행을 알아보는 방법",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1654,
+      "part": "m1plus",
+      "sourceFingerprint": "3fc1b6f51e6699dee8fcc60cee08d661b7f959e677616c57ee4977de1a134b39",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1654
+      },
+      "directReview": null,
+      "cFrozenSentence": "평면 밖의 직선이 □과 평행하면 그 직선은 평면과 평행하다.",
+      "cFrozenDefinition": "평면 밖의 직선이 {평면 위의 한 직선}과 평행하면 그 직선은 평면과 평행하다.",
+      "cFrozenAnswers": [
+        "평면 위의 한 직선"
+      ],
+      "cMarkedSentence": "평면 밖의 직선이 {평면 위의 한 직선}과 평행하면 그 직선은 평면과 평행하다.",
+      "cSlotAnswers": [
+        "평면 위의 한 직선"
+      ],
+      "cStudentSentence": "평면 밖의 직선이 □과 평행하면 그 직선은 평면과 평행하다.",
+      "cAnswers": [
+        "평면 위의 한 직선"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평면 위의 한 직선",
+          "equivalentAnswers": [
+            "평면 위의 한 직선"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평면 위의 한 직선"
+        ]
+      ],
+      "proposalFingerprint": "006d60ff10e9d05de13560daea9b694c8249deaa2fdf68d8b6592a3dd17beef7"
+    },
+    {
+      "id": "m1-05-04-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "한 직선에 평행한 서로 다른 두 평면의 위치 관계로 가능한 경우를 모두 쓰시오. 또 직육면체 $ABCD$-$EFGH$(밑면 $ABCD$, 윗면 $EFGH$, 옆모서리 $AE$, $BF$, $CG$, $DH$)에서 모서리 $AE$에 평행한 두 면이 서로 만나는 예를 드시오.",
+      "bAnswer": "평행할 수도 있고 한 직선에서 만날 수도 있다. 예를 들어 면 $BFGC$와 면 $CGHD$는 모두 모서리 $AE$에 평행하지만 모서리 $CG$에서 만난다.",
+      "bGoal": "한 직선에 평행한 두 평면의 관계가 여러 가지임을 알기",
+      "bReason": "'하나로 정해지지 않는다'를 가능한 경우의 나열과 직육면체 예로 바꿔 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평행할 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "만날 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "면 $BFGC$와 면 $CGHD$는 $AE$에 평행하면서 $CG$에서 만난다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 직선에 평행한 서로 다른 두 평면은 서로 {평행}할 수도 있고, 한 직선에서 {만날} 수도 있다.",
+      "cAnswers": [
+        "평행",
+        "만날"
+      ],
+      "cReason": "'하나로 정해지지 않는다'는 긴 구절 빈칸이라 두 경우를 묻게 바꿨다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "평행이 보장되지 않는 두 가지 경우",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1655,
+      "part": "m1plus",
+      "sourceFingerprint": "0f39c50acfdcd4165c45cf9e97981beddde8a5f278c09fa690d6e308a0b169fe",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1655
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 직선에 평행한 서로 다른 두 평면은 서로 {평행}할 수도 있고, 한 직선에서 {만날} 수도 있다.",
+      "cSlotAnswers": [
+        "평행",
+        "만날"
+      ],
+      "cStudentSentence": "한 직선에 평행한 서로 다른 두 평면은 서로 □할 수도 있고, 한 직선에서 □ 수도 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평행",
+          "equivalentAnswers": [
+            "평행"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "만날",
+          "equivalentAnswers": [
+            "만날"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평행"
+        ],
+        [
+          "만날"
+        ]
+      ],
+      "proposalFingerprint": "bfd6a659f1c80400e04c3ded562d86a4d43b5dc383c6bd07386535650e332da6"
+    },
+    {
+      "id": "m1-05-04-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "한 평면에 수직인 서로 다른 두 평면의 위치 관계로 가능한 경우를 모두 쓰고, 직육면체의 옆면을 예로 각 경우를 설명하시오.",
+      "bAnswer": "평행할 수도 있고 만날 수도 있다. 직육면체의 옆면은 모두 밑면에 수직인데, 마주 보는 두 옆면은 평행하고 이웃한 두 옆면은 한 모서리에서 만난다.",
+      "bGoal": "한 평면에 수직인 두 평면의 관계가 여러 가지임을 알기",
+      "bReason": "두 경우를 직육면체의 마주 보는 옆면과 이웃한 옆면으로 구별하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평행할 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "만날 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 두 옆면은 평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이웃한 두 옆면은 만난다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "가능한 두 관계를 한 낱말씩 묻는 짧은 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "수직인 두 평면이 평행 또는 만남",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1656,
+      "part": "m1plus",
+      "sourceFingerprint": "c7a21c3dc56d2441890cd9b42bc26f9e70056ecfbc7306814a945f1c7c5274e0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1656
+      },
+      "directReview": null,
+      "cFrozenSentence": "한 평면에 수직인 두 평면은 서로 □할 수도 □ 수도 있다.",
+      "cFrozenDefinition": "한 평면에 수직인 두 평면은 서로 {평행}할 수도 {만날} 수도 있다.",
+      "cFrozenAnswers": [
+        "평행",
+        "만날"
+      ],
+      "cMarkedSentence": "한 평면에 수직인 두 평면은 서로 {평행}할 수도 {만날} 수도 있다.",
+      "cSlotAnswers": [
+        "평행",
+        "만날"
+      ],
+      "cStudentSentence": "한 평면에 수직인 두 평면은 서로 □할 수도 □ 수도 있다.",
+      "cAnswers": [
+        "평행",
+        "만날"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평행",
+          "equivalentAnswers": [
+            "평행"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "만날",
+          "equivalentAnswers": [
+            "만날"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평행"
+        ],
+        [
+          "만날"
+        ]
+      ],
+      "proposalFingerprint": "a110ca0c6bb43e5c7d20b38698f4fe5d03fcaad664a79a6e5e0445762a175116"
+    },
+    {
+      "id": "m1-05-04-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "삼각기둥에서 서로 평행한 면은 몇 쌍인지 쓰고, 세 옆면 중에는 서로 평행한 면이 없는 이유를 설명하시오.",
+      "bAnswer": "두 밑면의 $1$쌍뿐이다. 세 옆면은 어느 두 면을 골라도 옆모서리를 함께 가져 서로 만나기 때문이다.",
+      "bGoal": "삼각기둥의 면 사이의 평행과 만남 구별하기",
+      "bReason": "평행한 면의 수와 옆면끼리 평행하지 않은 이유를 함께 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평행한 면은 두 밑면 $1$쌍이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면은 어느 둘도 옆모서리에서 만난다",
+            "세 옆면은 둘씩 서로 만난다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "밑면끼리와 옆면끼리의 관계를 한 낱말씩 묻는다.",
+      "learningRole": "application",
+      "roleReason": "삼각기둥의 면 사이 관계",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1657,
+      "part": "m1plus",
+      "sourceFingerprint": "2b21c26fabd0119e992ab8072237f3518899d308c3357292eace8d3efb881d9b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1657
+      },
+      "directReview": null,
+      "cFrozenSentence": "삼각기둥에서 두 밑면은 □하고, 세 옆면은 서로 평행하지 않고 둘씩 □.",
+      "cFrozenDefinition": "삼각기둥에서 두 밑면은 {평행}하고, 세 옆면은 서로 평행하지 않고 둘씩 {만난다}.",
+      "cFrozenAnswers": [
+        "평행",
+        "만난다"
+      ],
+      "cMarkedSentence": "삼각기둥에서 두 밑면은 {평행}하고, 세 옆면은 서로 평행하지 않고 둘씩 {만난다}.",
+      "cSlotAnswers": [
+        "평행",
+        "만난다"
+      ],
+      "cStudentSentence": "삼각기둥에서 두 밑면은 □하고, 세 옆면은 서로 평행하지 않고 둘씩 □.",
+      "cAnswers": [
+        "평행",
+        "만난다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평행",
+          "equivalentAnswers": [
+            "평행"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "만난다",
+          "equivalentAnswers": [
+            "만난다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평행"
+        ],
+        [
+          "만난다"
+        ]
+      ],
+      "proposalFingerprint": "e52e20f65867eb44c52c4e42d1e579615a28d4ee13655eee98e36d697409cdf9"
+    },
+    {
+      "id": "m1-05-04-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "정육각기둥에서 서로 평행한 면은 모두 몇 쌍인지 구하고, 어떤 면끼리 평행한지 설명하시오.",
+      "bAnswer": "모두 $4$쌍이다. 두 밑면이 $1$쌍이고, 마주 보는 옆면끼리 $3$쌍이 평행하다.",
+      "bGoal": "정육각기둥에서 평행한 면의 쌍 세기",
+      "bReason": "쌍의 수만이 아니라 밑면과 마주 보는 옆면으로 나누어 설명하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모두 $4$쌍"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 밑면 $1$쌍과 마주 보는 옆면 $3$쌍이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'마주 보는'이라는 기준과 옆면 쌍의 수를 하나씩 묻는다.",
+      "learningRole": "application",
+      "roleReason": "정육각기둥의 평행한 면 세기",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1658,
+      "part": "m1plus",
+      "sourceFingerprint": "ef41f503f88281770693396b9e09ea9f453d96fb75299019a7143c0386d0513d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1658
+      },
+      "directReview": null,
+      "cFrozenSentence": "정육각기둥에서 □ 두 옆면은 평행하므로 평행한 면은 밑면 $1$쌍과 옆면 □이다.",
+      "cFrozenDefinition": "정육각기둥에서 {마주 보는} 두 옆면은 평행하므로 평행한 면은 밑면 $1$쌍과 옆면 {$3$쌍}이다.",
+      "cFrozenAnswers": [
+        "마주 보는",
+        "$3$쌍"
+      ],
+      "cMarkedSentence": "정육각기둥에서 {마주 보는} 두 옆면은 평행하므로 평행한 면은 밑면 $1$쌍과 옆면 {$3$쌍}이다.",
+      "cSlotAnswers": [
+        "마주 보는",
+        "$3$쌍"
+      ],
+      "cStudentSentence": "정육각기둥에서 □ 두 옆면은 평행하므로 평행한 면은 밑면 $1$쌍과 옆면 □이다.",
+      "cAnswers": [
+        "마주 보는",
+        "$3$쌍"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "마주 보는",
+          "equivalentAnswers": [
+            "마주 보는"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$3$쌍",
+          "equivalentAnswers": [
+            "$3$쌍"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "마주 보는"
+        ],
+        [
+          "$3$쌍"
+        ]
+      ],
+      "proposalFingerprint": "e925bd57ad647459ff4aa28feb012767de6b92b86cd827447c6211b8a20209a0"
+    },
+    {
+      "id": "m1-05-04-xc19",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "거리의 뜻은 이미 묻고 있어 여기에는 높이 수치를 읽는 일만 남는다.",
+      "exclusionReason": "B 제외: 뜻은 m1-05-04-c8의 B가 묻고, 직육면체의 높이를 그대로 답하는 단순 수치 문항이다.",
+      "cDecision": "keep",
+      "cReason": "'수직'과 '높이'로 재는 기준과 직육면체에서의 값을 연결해 묻는다.",
+      "learningRole": "procedure",
+      "roleReason": "두 평면 사이의 거리를 재는 선분",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1659,
+      "part": "m1plus",
+      "sourceFingerprint": "1fb66e6b910f94d4152307d617f6973c94901d748cea1535d686f01e581a8685",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1659
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "평행한 두 평면 사이의 거리는 양 끝 점이 두 평면에 각각 있고 두 평면에 모두 □인 선분의 길이이며, 직육면체의 윗면과 아랫면 사이에서는 □와 같다.",
+      "cFrozenDefinition": "평행한 두 평면 사이의 거리는 양 끝 점이 두 평면에 각각 있고 두 평면에 모두 {수직}인 선분의 길이이며, 직육면체의 윗면과 아랫면 사이에서는 {높이}와 같다.",
+      "cFrozenAnswers": [
+        "수직",
+        "높이"
+      ],
+      "cMarkedSentence": "평행한 두 평면 사이의 거리는 양 끝 점이 두 평면에 각각 있고 두 평면에 모두 {수직}인 선분의 길이이며, 직육면체의 윗면과 아랫면 사이에서는 {높이}와 같다.",
+      "cSlotAnswers": [
+        "수직",
+        "높이"
+      ],
+      "cStudentSentence": "평행한 두 평면 사이의 거리는 양 끝 점이 두 평면에 각각 있고 두 평면에 모두 □인 선분의 길이이며, 직육면체의 윗면과 아랫면 사이에서는 □와 같다.",
+      "cAnswers": [
+        "수직",
+        "높이"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "수직",
+          "equivalentAnswers": [
+            "수직"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "높이",
+          "equivalentAnswers": [
+            "높이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "수직"
+        ],
+        [
+          "높이"
+        ]
+      ],
+      "proposalFingerprint": "be88f7a38106ecf8e4f22a3f63dfdf7b729884b6dc4475e797b85b106165e8c1"
+    },
+    {
+      "id": "m1-05-04-xc20",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "이웃한 두 면이 함께 가진 모서리가 교선이라는 내용을 되풀이한다.",
+      "exclusionReason": "B 제외: m1-05-04-xc6의 B가 직육면체의 두 면에서 교선인 모서리를 찾게 하는 목표 중복이다.",
+      "cDecision": "keep",
+      "cReason": "'교선'이라는 용어와 그것이 하나뿐임을 짧게 묻는다.",
+      "learningRole": "application",
+      "roleReason": "두 면에 공통인 모서리와 교선",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1660,
+      "part": "m1plus",
+      "sourceFingerprint": "52460320bdbd686755ce5666cfa10199d3ba7d11ab953593f0857bf9fa31e1a9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1660
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "직육면체에서 이웃한 두 면에 모두 포함되는 모서리는 두 면의 □인 모서리 □뿐이다.",
+      "cFrozenDefinition": "직육면체에서 이웃한 두 면에 모두 포함되는 모서리는 두 면의 {교선}인 모서리 {하나}뿐이다.",
+      "cFrozenAnswers": [
+        "교선",
+        "하나"
+      ],
+      "cMarkedSentence": "직육면체에서 이웃한 두 면에 모두 포함되는 모서리는 두 면의 {교선}인 모서리 {하나}뿐이다.",
+      "cSlotAnswers": [
+        "교선",
+        "하나"
+      ],
+      "cStudentSentence": "직육면체에서 이웃한 두 면에 모두 포함되는 모서리는 두 면의 □인 모서리 □뿐이다.",
+      "cAnswers": [
+        "교선",
+        "하나"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "교선",
+          "equivalentAnswers": [
+            "교선"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "하나",
+          "equivalentAnswers": [
+            "하나",
+            "$1$개",
+            "한 개"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "하나",
+          "accept": [
+            "$1$개",
+            "한 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "교선"
+        ],
+        [
+          "하나",
+          "$1$개",
+          "한 개"
+        ]
+      ],
+      "proposalFingerprint": "16369bd900ed1c39d202fb929eb3b8064f808e0d73d8bf91e069f9fe946bda34"
+    },
+    {
+      "id": "m1-05-04-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "정육각기둥에서 한 옆면과 평행한 모서리를 옆모서리와 밑면의 모서리로 나누어 설명하고, 모두 몇 개인지 구하시오.",
+      "bAnswer": "그 옆면에 포함되지 않은 옆모서리 $4$개와, 그 옆면에 포함된 밑면의 모서리와 평행한 밑면의 모서리가 두 밑면에 $1$개씩 $2$개 있어 모두 $6$개이다.",
+      "bGoal": "각기둥에서 한 옆면과 평행한 모서리 찾기",
+      "bReason": "일반 각기둥만으로는 개수를 정할 수 없어 정육각기둥으로 구체화했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 옆면에 포함되지 않은 옆모서리 $4$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 옆면의 밑변과 평행한 밑면의 모서리 $2$개",
+            "마주 보는 옆면에 포함된 밑면의 모서리 $2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "모두 $6$개"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "옆모서리와 밑면 모서리 두 종류를 나누어 묻는 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "옆면과 평행한 모서리 고르는 기준",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1661,
+      "part": "m1plus",
+      "sourceFingerprint": "d3bd67e1558d0a4c19344d602b25654cbb95740b1d9c9221080800ce59858cfe",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1661
+      },
+      "directReview": null,
+      "cFrozenSentence": "각기둥에서 한 옆면과 평행한 모서리는 그 옆면에 포함되지 않은 모서리 가운데 □와, 그 옆면의 밑변과 □ 밑면 모서리이다.",
+      "cFrozenDefinition": "각기둥에서 한 옆면과 평행한 모서리는 그 옆면에 포함되지 않은 모서리 가운데 {옆모서리}와, 그 옆면의 밑변과 {평행한} 밑면 모서리이다.",
+      "cFrozenAnswers": [
+        "옆모서리",
+        "평행한"
+      ],
+      "cMarkedSentence": "각기둥에서 한 옆면과 평행한 모서리는 그 옆면에 포함되지 않은 모서리 가운데 {옆모서리}와, 그 옆면의 밑변과 {평행한} 밑면 모서리이다.",
+      "cSlotAnswers": [
+        "옆모서리",
+        "평행한"
+      ],
+      "cStudentSentence": "각기둥에서 한 옆면과 평행한 모서리는 그 옆면에 포함되지 않은 모서리 가운데 □와, 그 옆면의 밑변과 □ 밑면 모서리이다.",
+      "cAnswers": [
+        "옆모서리",
+        "평행한"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "옆모서리",
+          "equivalentAnswers": [
+            "옆모서리"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "평행한",
+          "equivalentAnswers": [
+            "평행한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "옆모서리"
+        ],
+        [
+          "평행한"
+        ]
+      ],
+      "proposalFingerprint": "8166bf4490bd712bc26fef29a1b164365ab7118cc3e521bcebd36fae85caf2c0"
+    },
+    {
+      "id": "m1-05-04-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "공간에서 서로 다른 세 평면 $P$, $Q$, $R$가 $P\\parallel Q$, $Q\\parallel R$일 때, $P$와 $R$의 위치 관계를 기호로 쓰시오.",
+      "bAnswer": "$P\\parallel R$이다.",
+      "bGoal": "한 평면에 평행한 두 평면이 서로 평행함을 알기",
+      "bReason": "'이어짐'이라는 제목이 낯설어 세 평면의 조건을 기호로 밝혀 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$P\\parallel R$",
+            "$P$와 $R$는 평행하다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "빈칸이묻는두평면을정해주어진다른참인관계식을답하는문제를막는다.",
+      "studentLabel": "한 평면에 평행한 두 평면",
+      "learningRole": "definition",
+      "roleReason": "평면의 평행이 다음 평면으로 이어지는 성질",
+      "authorBatch": 15,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1662,
+      "part": "m1plus",
+      "sourceFingerprint": "b29c8e01a14f6cbd243004e15977b16698d3047b86eb1c92295cdbc1b8d89c5b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1662
+      },
+      "directReview": null,
+      "cMarkedSentence": "공간에서 서로 다른 세 평면 $P$, $Q$, $R$이 $P\\parallel Q$, $Q\\parallel R$이면 평면 $P$와 $R$은 서로 {평행}하다.",
+      "cSlotAnswers": [
+        "평행"
+      ],
+      "cStudentSentence": "공간에서 서로 다른 세 평면 $P$, $Q$, $R$이 $P\\parallel Q$, $Q\\parallel R$이면 평면 $P$와 $R$은 서로 □하다.",
+      "cAnswers": [
+        "평행"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평행",
+          "equivalentAnswers": [
+            "평행"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평행"
+        ]
+      ],
+      "proposalFingerprint": "1ed82f30a4dd9f6a05fbd110fb72541f5d9a07e31f2a0b24decdfbca592943d7",
+      "cAfter": "공간에서 서로 다른 세 평면 $P$, $Q$, $R$이 $P\\parallel Q$, $Q\\parallel R$이면 평면 $P$와 $R$은 서로 {평행}하다."
+    },
+    {
+      "id": "m1-05-05-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "위아래로 놓인 두 직선 $l$(위), $m$(아래)을 직선 $n$이 가로지른다. $l$과 $n$의 교점 둘레의 네 각을 왼쪽 위부터 시계 방향으로 $\\angle a$, $\\angle b$, $\\angle c$, $\\angle d$, $m$과 $n$의 교점 둘레의 네 각을 같은 순서로 $\\angle e$, $\\angle f$, $\\angle g$, $\\angle h$라 하자. $\\angle a$의 동위각을 쓰고, 동위각은 모두 몇 쌍인지 구하시오.",
+      "bAnswer": "$\\angle a$의 동위각은 $\\angle e$이다. 동위각은 $\\angle a$와 $\\angle e$, $\\angle b$와 $\\angle f$, $\\angle c$와 $\\angle g$, $\\angle d$와 $\\angle h$의 $4$쌍이다.",
+      "bGoal": "이름 붙인 여덟 각에서 동위각 짝 찾기",
+      "bReason": "정의(c1)와 겹치지 않게 각에 이름을 붙여 실제로 짝을 찾게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\angle e$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$쌍"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "두직선을기준으로같은쪽이라는말을각교점의같은위치라는구체적예로풀어쓴다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "여덟 각에서 동위각 짝과 쌍의 수 찾기",
+      "authorBatch": 16,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1663,
+      "part": "m1plus",
+      "sourceFingerprint": "43c4d588fd8863c0ed994cd6550ab3a9ce81894fadf41417a486da9c7d0e662f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1663
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 직선을 다른 한 직선이 가로질러 서로 다른 두 점에서 만난다. 한 교점의 왼쪽 위에 생긴 각과 다른 교점의 왼쪽 위에 생긴 각처럼, 두 교점에서 같은 위치에 놓인 두 각을 {동위각}이라 한다.",
+      "cSlotAnswers": [
+        "동위각"
+      ],
+      "cStudentSentence": "두 직선을 다른 한 직선이 가로질러 서로 다른 두 점에서 만난다. 한 교점의 왼쪽 위에 생긴 각과 다른 교점의 왼쪽 위에 생긴 각처럼, 두 교점에서 같은 위치에 놓인 두 각을 □이라 한다.",
+      "cAnswers": [
+        "동위각"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "동위각",
+          "equivalentAnswers": [
+            "동위각"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "동위각"
+        ]
+      ],
+      "proposalFingerprint": "4238b76790415cb2a02fc9d601d5baa187ccc887fbbcdaaa08a549382dcbfadd",
+      "cAfter": "두 직선을 다른 한 직선이 가로질러 서로 다른 두 점에서 만난다. 한 교점의 왼쪽 위에 생긴 각과 다른 교점의 왼쪽 위에 생긴 각처럼, 두 교점에서 같은 위치에 놓인 두 각을 {동위각}이라 한다."
+    },
+    {
+      "id": "m1-05-05-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "위아래로 놓인 두 직선 $l$(위), $m$(아래)을 직선 $n$이 가로지른다. $l$과 $n$의 교점 둘레의 네 각을 왼쪽 위부터 시계 방향으로 $\\angle a$, $\\angle b$, $\\angle c$, $\\angle d$, $m$과 $n$의 교점 둘레의 네 각을 같은 순서로 $\\angle e$, $\\angle f$, $\\angle g$, $\\angle h$라 하자. $\\angle c$의 엇각을 쓰고, 엇각은 모두 몇 쌍인지 구하시오.",
+      "bAnswer": "$\\angle c$의 엇각은 $\\angle e$이다. 엇각은 $\\angle c$와 $\\angle e$, $\\angle d$와 $\\angle f$의 $2$쌍이다.",
+      "bGoal": "이름 붙인 여덟 각에서 엇각 짝 찾기",
+      "bReason": "정의(c2)와 겹치지 않게 이름 붙인 각에서 엇각을 고르게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\angle e$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$쌍"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cReason": "c2와 낱말만 다른 같은 정의 빈칸이라 한쪽만 남김",
+      "exclusionReason": "C 제외: m1-05-05-c2의 엇각 정의 빈칸(안쪽/반대쪽)과 같은 문장 구조·같은 뜻의 답(사이/서로 다른 쪽) 중복",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "여덟 각에서 엇각 짝과 쌍의 수 찾기",
+      "authorBatch": 16,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1664,
+      "part": "m1plus",
+      "sourceFingerprint": "6292229f40de275a05e18b27d1ed4941d7079ec0712aa41f424baeb09d31adeb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1664
+      },
+      "directReview": null,
+      "proposalFingerprint": "db237f3e9fcc46f967ed0a07437f1f57e2aae97910afb0a7721ef167fc8593a9"
+    },
+    {
+      "id": "m1-05-05-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "c3 평행선의 성질에서 동위각 부분만 뗀 조각이라 목표가 겹침",
+      "cDecision": "rewrite",
+      "cAfter": "평행한 두 직선이 다른 한 직선과 만날 때 생기는 동위각의 크기는 서로 {같다}.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cReason": "가로지르는 직선이 빠졌고 답 '같은 크기'가 어색해 문장을 다듬음",
+      "exclusionReason": "B 제외: m1-05-05-c3 서술 질문과 목표 중복(동위각 부분만 반복)",
+      "learningRole": "definition",
+      "roleReason": "평행선에서 동위각의 크기가 같다는 사실",
+      "authorBatch": 16,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1665,
+      "part": "m1plus",
+      "sourceFingerprint": "8a030aec8c3eb9312a661610e74bf2815c229c65af294323a0de1cfa8349fa9a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1665
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "평행한 두 직선이 다른 한 직선과 만날 때 생기는 동위각의 크기는 서로 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "평행한 두 직선이 다른 한 직선과 만날 때 생기는 동위각의 크기는 서로 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "e46e30e656f5e5eb661bf798287876e6cd6909533c4674acd969f10946b7c0a6"
+    },
+    {
+      "id": "m1-05-05-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "c3 평행선의 성질에서 엇각 부분만 뗀 조각이라 목표가 겹침",
+      "cDecision": "keep",
+      "cReason": "조건과 결론이 분명한 한 낱말 빈칸",
+      "exclusionReason": "B 제외: m1-05-05-c3 서술 질문과 목표 중복(엇각 부분만 반복)",
+      "learningRole": "definition",
+      "roleReason": "평행선에서 엇각의 크기가 같다는 사실",
+      "authorBatch": 16,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1666,
+      "part": "m1plus",
+      "sourceFingerprint": "545d81fe54596181c5d45c4b87171cccd1b4e30d6023a5244a9abc4ef04d55e6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1666
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "두 직선이 평행하면 짝이 되는 엇각의 크기는 □.",
+      "cFrozenDefinition": "두 직선이 평행하면 짝이 되는 엇각의 크기는 {같다}.",
+      "cFrozenAnswers": [
+        "같다"
+      ],
+      "cMarkedSentence": "두 직선이 평행하면 짝이 되는 엇각의 크기는 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "두 직선이 평행하면 짝이 되는 엇각의 크기는 □.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "10a867e13100dcbe691b54b6164776d5ca635bb8b1665f85c27f464f99a11ab7"
+    },
+    {
+      "id": "m1-05-05-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "교점과 각의 개수만 외우는 내용이라 서술형으로 물을 것이 없음",
+      "cDecision": "rewrite",
+      "cAfter": "한 직선이 두 직선과 서로 다른 두 점에서 만나면 각은 모두 {$8$개} 생기고, 그 가운데 두 직선 사이에 있는 각은 {$4$개}이다.",
+      "cAnswers": [
+        "$8$개",
+        "$4$개"
+      ],
+      "cReason": "8생기고·4이다만으로는개수단위가빠지므로개를포함하는대체답만유지한다.",
+      "exclusionReason": "B 제외: 단순 수치 암기이고 xc1·xc2의 여덟 각 상황과 겹침",
+      "learningRole": "definition",
+      "roleReason": "세 직선이 만들 때 생기는 각의 개수",
+      "authorBatch": 16,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1667,
+      "part": "m1plus",
+      "sourceFingerprint": "ceea9eb1485e525a7f981e598d866d76fa2efc356e7aa0c551e71492a1526dff",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1667
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "한 직선이 두 직선과 서로 다른 두 점에서 만나면 각은 모두 {$8$개} 생기고, 그 가운데 두 직선 사이에 있는 각은 {$4$개}이다.",
+      "cSlotAnswers": [
+        "$8$개",
+        "$4$개"
+      ],
+      "cStudentSentence": "한 직선이 두 직선과 서로 다른 두 점에서 만나면 각은 모두 □ 생기고, 그 가운데 두 직선 사이에 있는 각은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$8$개",
+          "equivalentAnswers": [
+            "$8$개"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$4$개",
+          "equivalentAnswers": [
+            "$4$개"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$8$개",
+          "accept": [
+            "$8$"
+          ]
+        },
+        {
+          "answer": "$4$개",
+          "accept": [
+            "$4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$8$개"
+        ],
+        [
+          "$4$개"
+        ]
+      ],
+      "proposalFingerprint": "a14e594f3b0c9bcb177dcdaafecdeb83aef0dcd8209d8cc72687ecd7b225980c"
+    },
+    {
+      "id": "m1-05-05-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "두 직선 $l$, $m$이 평행하지 않을 때, 다른 한 직선 $n$과 만나 생기는 동위각의 크기는 서로 같은지 쓰고, '동위각'이라는 이름이 무엇을 나타내는지와 관련지어 설명하시오.",
+      "bAnswer": "같지 않다. 동위각은 두 각의 위치 관계를 나타내는 이름일 뿐이고, 크기가 같은 것은 두 직선이 평행할 때뿐이다.",
+      "bGoal": "동위각이 위치의 이름임을 알고 크기와 구별하기",
+      "bReason": "'동위각은 항상 같다'는 오해를 겨냥해 평행하지 않은 경우를 물음",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같지 않다",
+            "다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "동위각은 위치를 나타내는 이름이다",
+            "크기는 두 직선이 평행할 때만 같다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "크기와 이름의 뜻을 각각 한 낱말로 묻는 분명한 빈칸",
+      "learningRole": "reason",
+      "roleReason": "동위각은 위치일 뿐 크기를 보장하지 않음",
+      "authorBatch": 16,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1668,
+      "part": "m1plus",
+      "sourceFingerprint": "22c3707e3efd56b2bbafc61ed8502996b9e7c862430c212d833caae7d13d7a35",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1668
+      },
+      "directReview": null,
+      "cFrozenSentence": "두 직선이 평행하지 않으면 동위각의 크기는 □. 동위각이라는 이름은 □만 나타낸다.",
+      "cFrozenDefinition": "두 직선이 평행하지 않으면 동위각의 크기는 {다르다}. 동위각이라는 이름은 {위치}만 나타낸다.",
+      "cFrozenAnswers": [
+        "다르다",
+        "위치"
+      ],
+      "cMarkedSentence": "두 직선이 평행하지 않으면 동위각의 크기는 {다르다}. 동위각이라는 이름은 {위치}만 나타낸다.",
+      "cSlotAnswers": [
+        "다르다",
+        "위치"
+      ],
+      "cStudentSentence": "두 직선이 평행하지 않으면 동위각의 크기는 □. 동위각이라는 이름은 □만 나타낸다.",
+      "cAnswers": [
+        "다르다",
+        "위치"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "다르다",
+          "equivalentAnswers": [
+            "다르다",
+            "같지 않다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "위치",
+          "equivalentAnswers": [
+            "위치"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "다르다",
+          "accept": [
+            "같지 않다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "다르다",
+          "같지 않다"
+        ],
+        [
+          "위치"
+        ]
+      ],
+      "proposalFingerprint": "1bd6195324d5c5eb3970db72dccfc6ffa0a11638cefc18a211d9c2235c87649e"
+    },
+    {
+      "id": "m1-05-05-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "$l\\parallel m$인 두 직선이 직선 $n$과 만나 각이 $8$개 생겼고 그중 한 각의 크기가 $110^\\circ$이다. 나머지 $7$개의 각의 크기를 구하고, 어떤 관계를 써서 구했는지 설명하시오.",
+      "bAnswer": "$110^\\circ$인 각이 $3$개, $70^\\circ$인 각이 $4$개이다. 맞꼭지각, 동위각, 엇각은 크기가 같으므로 $110^\\circ$이고, 한 교점에서 이웃한 각은 $180^\\circ-110^\\circ=70^\\circ$이다.",
+      "bGoal": "한 각에서 나머지 각을 모두 구하는 방법 쓰기",
+      "bReason": "일반 방법을 실제로 쓰도록 한 각의 크기를 주고 전체를 구하게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나머지는 $110^\\circ$가 $3$개, $70^\\circ$가 $4$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "맞꼭지각·동위각·엇각은 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이웃한 각은 $180^\\circ$에서 뺀다",
+            "평각을 이용한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "평행한 두 직선이 한 직선과 만날 때 한 각의 크기를 알면, 그 각의 맞꼭지각·동위각·엇각은 크기가 그 각과 {같고}, 한 교점에서 이웃한 각의 크기는 {$180^\\circ$}에서 그 각의 크기를 빼서 구한다.",
+      "cAnswers": [
+        "같고",
+        "$180^\\circ$"
+      ],
+      "cReason": "답 '$180^\\circ$에서 빼서'가 긴 구절이라 수치 하나로 좁힘",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "같은 각 찾기와 평각에서 빼기의 두 단계",
+      "authorBatch": 16,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1669,
+      "part": "m1plus",
+      "sourceFingerprint": "6aeac707f6513b2f96d3a467dfba27603a858cefb3d630bf4729eca3095b13c9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1669
+      },
+      "directReview": null,
+      "cMarkedSentence": "평행한 두 직선이 한 직선과 만날 때 한 각의 크기를 알면, 그 각의 맞꼭지각·동위각·엇각은 크기가 그 각과 {같고}, 한 교점에서 이웃한 각의 크기는 {$180^\\circ$}에서 그 각의 크기를 빼서 구한다.",
+      "cSlotAnswers": [
+        "같고",
+        "$180^\\circ$"
+      ],
+      "cStudentSentence": "평행한 두 직선이 한 직선과 만날 때 한 각의 크기를 알면, 그 각의 맞꼭지각·동위각·엇각은 크기가 그 각과 □, 한 교점에서 이웃한 각의 크기는 □에서 그 각의 크기를 빼서 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같고",
+          "equivalentAnswers": [
+            "같고",
+            "같으며"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$180^\\circ$",
+          "equivalentAnswers": [
+            "$180^\\circ$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "같고",
+          "accept": [
+            "같으며"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같고",
+          "같으며"
+        ],
+        [
+          "$180^\\circ$"
+        ]
+      ],
+      "proposalFingerprint": "721ea33a8855a34430a0c7a9d08c09bf9eeabfbae8e0252a15552b199aa0874c"
+    },
+    {
+      "id": "m1-05-05-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "c4의 평행 조건 가운데 엇각 부분만 되풀이하는 조각임",
+      "cDecision": "rewrite",
+      "cAfter": "한 직선이 두 직선과 만나 생긴 엇각의 크기를 재어 서로 {같으면} 두 직선은 평행하다고 판단한다.",
+      "cAnswers": [
+        "같으면"
+      ],
+      "cReason": "'알 수'는 뜻 없는 빈칸이고 '평행한지'가 앞 답을 알려 줌",
+      "exclusionReason": "B 제외: m1-05-05-c4와 목표 중복(엇각이 같으면 평행)",
+      "learningRole": "procedure",
+      "roleReason": "엇각을 재어 평행을 판정하는 방법",
+      "authorBatch": 16,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1670,
+      "part": "m1plus",
+      "sourceFingerprint": "65d4b5bd3dc5d960145d3d4f1d9717f19485daefeb15c1eca1e64873f7709829",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1670
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "한 직선이 두 직선과 만나 생긴 엇각의 크기를 재어 서로 {같으면} 두 직선은 평행하다고 판단한다.",
+      "cSlotAnswers": [
+        "같으면"
+      ],
+      "cStudentSentence": "한 직선이 두 직선과 만나 생긴 엇각의 크기를 재어 서로 □ 두 직선은 평행하다고 판단한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같으면",
+          "equivalentAnswers": [
+            "같으면",
+            "같다면"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "같으면",
+          "accept": [
+            "같다면"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같으면",
+          "같다면"
+        ]
+      ],
+      "proposalFingerprint": "5dcf30228cd7411b8e01f8be9cc9f8ae354f7f9e59128b209ae28682d0bb9763"
+    },
+    {
+      "id": "m1-05-05-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "$l\\parallel m$인 두 직선이 직선 $n$과 만난다. $n$의 같은 쪽에 있고 $l$과 $m$ 사이에 있는 두 각 중 한 각의 크기가 $65^\\circ$일 때, 다른 한 각의 크기를 식과 함께 구하시오.",
+      "bAnswer": "두 각의 크기의 합이 $180^\\circ$이므로 $180^\\circ-65^\\circ=115^\\circ$이다.",
+      "bGoal": "같은 쪽 안쪽 두 각의 합으로 각 구하기",
+      "bReason": "이유를 묻는 c5와 겹치지 않게 수치를 주어 적용 문제로 돌림",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$115^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 각의 합이 $180^\\circ$",
+            "$180^\\circ-65^\\circ$"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cReason": "c5와 같은 사실을 같은 답으로 묻는 빈칸이라 한쪽만 남김",
+      "exclusionReason": "C 제외: m1-05-05-c5의 빈칸과 같은 사실·같은 답($180^\\circ$) 중복",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "합 $180^\\circ$를 써서 나머지 각 계산",
+      "authorBatch": 16,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1671,
+      "part": "m1plus",
+      "sourceFingerprint": "6260def7610b451dee24fad9e5341650b7af83d107bec9f48b30d8394f2da5b0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1671
+      },
+      "directReview": null,
+      "proposalFingerprint": "bf407069b7f87e41f66294a8040c95e841952fb33bb9905120cd2a7f064d440f"
+    }
+  ]
+}

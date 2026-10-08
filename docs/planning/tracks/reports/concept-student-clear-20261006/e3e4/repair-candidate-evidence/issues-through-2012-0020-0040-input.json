@@ -1,0 +1,1109 @@
+[
+  {
+    "id": "e3-1-2-2-xc9",
+    "sourceIndex": 473,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 473,
+      "sourceFingerprint": "06c053c56249e70af2591163909e212112287fcad590dc69c3ded0ad52c4fab9",
+      "part": "e3plus",
+      "id": "e3-1-2-2-xc9",
+      "section": "초3::1-2 평면도형::1-2-2 각, 직각 알아보기",
+      "term": "삼각형의 각 수",
+      "kind": "성질",
+      "level": "중",
+      "definition": "삼각형에는 꼭짓점이 $3$개이므로 각도 {$3$개} 있다.",
+      "studentC": "삼각형에는 꼭짓점이 $3$개이므로 각도 □ 있다.",
+      "answers": [
+        "$3$개"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-2-xc9",
+      "proposalFingerprint": "f8e2fe96459766f191304b3ceff8aa75cf0cf8d46977352bd54c76d7b1b2784e",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": null,
+      "bReason": "삼각형의 각 수는 각의 수와 꼭짓점 수가 같다는 설명의 한 사례임",
+      "cDecision": "keep",
+      "cReason": "꼭짓점 3개를 주고 각의 수를 쓰는 선명한 개수 빈칸",
+      "cSlotEquivalents": [],
+      "exclusionReason": "e3-1-2-2-xc21에서 같은 까닭을 설명하게 하므로 목표가 겹침",
+      "answerNotes": "3개, 세 개, 3 허용"
+    },
+    "currentCMarkedSentence": "삼각형에는 꼭짓점이 $3$개이므로 각도 {$3$개} 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$3$개",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "꼭짓점마다 각 하나의 설명은 485와 겹친다.",
+      "c": "주어진 꼭짓점 3을 그대로 각 수에 복사하는 문항은 485로 합치거나 이 C를 제외하는 편이 유용하다."
+    }
+  },
+  {
+    "id": "e3-1-2-2-xc10",
+    "sourceIndex": 474,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 474,
+      "sourceFingerprint": "0a7a3a9977f90a84e300d4b02cc81acceeeff92b7cd438a032fbc0d5fe2b1811",
+      "part": "e3plus",
+      "id": "e3-1-2-2-xc10",
+      "section": "초3::1-2 평면도형::1-2-2 각, 직각 알아보기",
+      "term": "사각형의 각 수",
+      "kind": "성질",
+      "level": "중",
+      "definition": "사각형에는 꼭짓점이 $4$개이므로 각이 {$4$개} 있다.",
+      "studentC": "사각형에는 꼭짓점이 $4$개이므로 각이 □ 있다.",
+      "answers": [
+        "$4$개"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-2-xc10",
+      "proposalFingerprint": "e8664e9693310d118a09af263d938a5252061b9956bc86771861fa0ad0a74c65",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": null,
+      "bReason": "사각형의 각 수는 각의 수와 꼭짓점 수가 같다는 설명의 한 사례임",
+      "cDecision": "keep",
+      "cReason": "꼭짓점 4개를 주고 각의 수를 쓰는 선명한 개수 빈칸",
+      "cSlotEquivalents": [],
+      "exclusionReason": "e3-1-2-2-xc21에서 사각형으로 같은 까닭을 묻으므로 목표가 겹침",
+      "answerNotes": "4개, 네 개, 4 허용"
+    },
+    "currentCMarkedSentence": "사각형에는 꼭짓점이 $4$개이므로 각이 {$4$개} 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$4$개",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "485에서 사각형의 같은 이유를 이미 설명한다.",
+      "c": "주어진 꼭짓점 4를 그대로 복사하는 C는 관계 설명 항목과 겹쳐 제외를 검토한다."
+    }
+  },
+  {
+    "id": "e3-1-2-2-xc18",
+    "sourceIndex": 482,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 482,
+      "sourceFingerprint": "8255d9b002d5c8355489927356f3667c9b4af8e97e1d6b7d27d90d5c749224ea",
+      "part": "e3plus",
+      "id": "e3-1-2-2-xc18",
+      "section": "초3::1-2 평면도형::1-2-2 각, 직각 알아보기",
+      "term": "두 바늘이 직각인 정각",
+      "kind": "성질",
+      "level": "상",
+      "definition": "정각 가운데 시계의 두 바늘이 직각을 이루는 때는 {$3$시}와 {$9$시}이다.",
+      "studentC": "정각 가운데 시계의 두 바늘이 직각을 이루는 때는 □와 □이다.",
+      "answers": [
+        "$3$시",
+        "$9$시"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-2-xc18",
+      "proposalFingerprint": "0e902dbca3fa1044219607299870ef810913e0ae03d7c945b8de5984da194df6",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "시계가 $3$시를 가리킬 때 긴바늘과 짧은바늘이 이루는 각이 직각인지 확인하는 방법을 설명하고, 두 바늘이 직각을 이루는 다른 정각을 하나 더 쓰세요.",
+      "bAnswer": "$3$시에는 긴바늘이 $12$, 짧은바늘이 $3$을 가리키고, 두 바늘 사이에 삼각자의 직각 부분을 대면 꼭 맞으므로 직각이다. $9$시에도 직각이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각자의 직각 부분을 대어 꼭 맞는지 확인한다.",
+            "직각이 되게 접은 종이를 포개어 꼭 맞는지 확인한다.",
+            "직각 확인 도구로 각을 맞추어 확인한다."
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$시이다."
+          ]
+        }
+      ],
+      "bGoal": "시계 바늘이 직각을 이루는 정각을 찾고 확인",
+      "bReason": "3시를 주고 확인 방법과 나머지 시각 하나로 범위를 정함",
+      "cDecision": "keep",
+      "cReason": "'정각 가운데'로 범위가 정해져 시각 두 개를 쓰면 됨",
+      "cSlotEquivalents": [],
+      "answerNotes": "순서는 상관없음"
+    },
+    "currentCMarkedSentence": "정각 가운데 시계의 두 바늘이 직각을 이루는 때는 {$3$시}와 {$9$시}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$3$시",
+        "equivalents": []
+      },
+      {
+        "expected": "$9$시",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "다른 정각 한 개라는 질문은 12시간 표시 범위를 명시하거나 15·21시 같은 표현도 검토해야 한다; 확인 도구 대안은 적절하다.",
+      "c": "3시·9시의 나열 순서가 자유인 문장을 고정 슬롯 두 개로 채점하면 안 된다; 1~12 범위와 작은 시간부터 같은 순서를 명시한다."
+    }
+  },
+  {
+    "id": "e3-1-2-2-xc21",
+    "sourceIndex": 485,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 485,
+      "sourceFingerprint": "620149cb98aa7c82426aa46819f773ff52218f8d67dbebc77593c950b0265a88",
+      "part": "e3plus",
+      "id": "e3-1-2-2-xc21",
+      "section": "초3::1-2 평면도형::1-2-2 각, 직각 알아보기",
+      "term": "도형의 각 수와 꼭짓점 수",
+      "kind": "성질",
+      "level": "상",
+      "definition": "곧은 선으로 둘러싸인 도형에서 각의 수는 {꼭짓점의 수}와 같다.",
+      "studentC": "곧은 선으로 둘러싸인 도형에서 각의 수는 □와 같다.",
+      "answers": [
+        "꼭짓점의 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-2-xc21",
+      "proposalFingerprint": "d2fa5c19633cca6a0f93113aae4696e561b33bedd87f71aeb248cb3186f87aed",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "사각형에서 각의 수와 꼭짓점의 수가 같은 까닭을 설명해 보세요.",
+      "bAnswer": "꼭짓점마다 두 변이 만나 각이 하나씩 생기므로 꼭짓점이 $4$개이면 각도 $4$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭짓점마다 각이 하나씩 생김"
+          ]
+        }
+      ],
+      "bGoal": "도형의 각 수가 꼭짓점 수와 같은 까닭 설명",
+      "bReason": "'곧은 선으로 둘러싸인 도형'을 사각형으로 좁혀 이유를 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸에는 '변의 수'도 들어갈 수 있어 답이 하나로 정해지지 않음",
+      "cSlotEquivalents": [],
+      "answerNotes": "문장 흐름상 꼭짓점이 기대 답. '변'은 수학적으로 참이므로 틀렸다고 단정하지 않음"
+    },
+    "currentCMarkedSentence": "삼각형은 꼭짓점이 $3$개라서 각도 $3$개이고, 사각형은 꼭짓점이 $4$개라서 각도 {$4$}개이다. 이처럼 각의 수는 {꼭짓점}의 수와 같다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$4$",
+        "equivalents": []
+      },
+      {
+        "expected": "꼭짓점",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "꼭짓점마다 각이 하나 생긴다는 B 이유는 분명하다.",
+      "c": "첫 슬롯 4는 본문 4의 복사라 빼고 꼭짓점 수와 각 수의 관계를 묻는 부분만 남기는 것을 검토한다."
+    }
+  },
+  {
+    "id": "e3-1-2-3-xc14",
+    "sourceIndex": 502,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 502,
+      "sourceFingerprint": "aafe57678ee8159a97740c100e59907f78e251d7b710a609fc38bf6a0b6f683d",
+      "part": "e3plus",
+      "id": "e3-1-2-3-xc14",
+      "section": "초3::1-2 평면도형::1-2-3 직각삼각형 알아보기",
+      "term": "직각인 꼭짓점의 자리",
+      "kind": "성질",
+      "level": "중",
+      "definition": "직각삼각형에서 직각인 꼭짓점은 직각을 이루는 두 변이 {만나는} 점이다.",
+      "studentC": "직각삼각형에서 직각인 꼭짓점은 직각을 이루는 두 변이 □ 점이다.",
+      "answers": [
+        "만나는"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-3-xc14",
+      "proposalFingerprint": "a3a3ea02fd37503473b5c8313e2f357fe795fe68d810a2a85997f1adb1352101",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "B 설명 목표 없음",
+      "bReason": "'직각인 꼭짓점'과 '직각을 이루는 두 변이 만나는 점'은 같은 말의 반복임",
+      "cDecision": "keep",
+      "cReason": "'만나는' 한 낱말이고 꼭짓점의 뜻과 이어져 혼자 답할 수 있음",
+      "cSlotEquivalents": [
+        [
+          "만난",
+          "닿는"
+        ]
+      ],
+      "exclusionReason": "질문으로 만들면 답(직각을 이루는 두 변이 만나는 점)이 질문 안에 그대로 드러나 설명할 내용이 남지 않음",
+      "answerNotes": "'만난', '닿는' 허용"
+    },
+    "currentCMarkedSentence": "직각삼각형에서 직각인 꼭짓점은 직각을 이루는 두 변이 {만나는} 점이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "만나는",
+        "equivalents": [
+          "만난",
+          "닿는"
+        ]
+      }
+    ],
+    "directReaderNotes": {
+      "b": "직각인 꼭짓점의 표현을 되풀이하는 B 제외는 타당하다.",
+      "c": "두 변이 만나는 점이라는 문법 복원은 꼭짓점 정의와 겹쳐 C도 제외를 검토한다."
+    }
+  },
+  {
+    "id": "e3-1-2-3-xc21",
+    "sourceIndex": 509,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 509,
+      "sourceFingerprint": "1ed7a607e102c0f7bf35c1c649e11ec9b3443868cc13aa30519353d265e3db5a",
+      "part": "e3plus",
+      "id": "e3-1-2-3-xc21",
+      "section": "초3::1-2 평면도형::1-2-3 직각삼각형 알아보기",
+      "term": "삼각형의 직각은 하나",
+      "kind": "성질",
+      "level": "상",
+      "definition": "삼각형의 한 변 양 끝에서 모두 직각으로 변을 세우면 {두 변이 만나지 않으므로} 직각은 하나만 있을 수 있다.",
+      "studentC": "삼각형의 한 변 양 끝에서 모두 직각으로 변을 세우면 □ 직각은 하나만 있을 수 있다.",
+      "answers": [
+        "두 변이 만나지 않으므로"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-3-xc21",
+      "proposalFingerprint": "6b239f4111b83b37097f9cedec62ca428319af7535f04f90ead55ffac9a8517c",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "삼각형에는 직각이 $2$개 있을 수 없습니다. 한 변의 양 끝에서 모두 직각으로 변을 세우면 어떤 일이 생기는지를 써서 그 까닭을 설명하세요.",
+      "bAnswer": "양 끝에서 직각으로 세운 두 변은 서로 만나지 않아서 세 번째 꼭짓점이 생기지 않습니다. 그래서 삼각형이 될 수 없습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양 끝에서 직각으로 세운 두 변은 만나지 않음"
+          ]
+        },
+        {
+          "anyOf": [
+            "삼각형이 되지 않음"
+          ]
+        }
+      ],
+      "bGoal": "삼각형에 직각이 하나뿐인 까닭 설명하기",
+      "bReason": "생각할 상황(한 변 양 끝에서 직각으로 세우기)을 주고 까닭을 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸 '두 변이 만나지 않으므로'는 이유 구절 통째 복원이라 짧은 낱말과 수로 나눔",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "한 변의 양 끝에 직각으로 세운 두 변이 나란히 올라가는 그림"
+    },
+    "currentCMarkedSentence": "삼각형의 한 변 양 끝에서 모두 직각으로 변을 세우면 그 두 변은 서로 {만나지} 않는다. 그래서 삼각형에 직각은 {$1$}개만 있을 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "만나지",
+        "equivalents": []
+      },
+      {
+        "expected": "$1$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "서로 만나지 않는 두 변으로 불가능을 설명하는 B에는 나란한 두 직각 변의 그림 예가 필요하다; 초3의 평행 지식 없이 관찰할 수 있어야 한다.",
+      "c": "직각이 1개만 있다는 표현을 많아야 1개로 고쳐 직각 없는 삼각형도 포함해야 하며 일반 정의도 같은 조건을 확인한다."
+    }
+  },
+  {
+    "id": "e3-1-2-4-xc16",
+    "sourceIndex": 531,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 531,
+      "sourceFingerprint": "6141de4d67a14ea8a178a6b0915d5f3b2e3d038debb4c8a3a55763fee031bc87",
+      "part": "e3plus",
+      "id": "e3-1-2-4-xc16",
+      "section": "초3::1-2 평면도형::1-2-4 직사각형 알아보기",
+      "term": "직사각형 두 개 붙이기",
+      "kind": "성질",
+      "level": "중",
+      "definition": "똑같은 직사각형 두 개를 {길이가 같은 변끼리} 맞붙이면 더 큰 직사각형이 된다.",
+      "studentC": "똑같은 직사각형 두 개를 □ 맞붙이면 더 큰 직사각형이 된다.",
+      "answers": [
+        "길이가 같은 변끼리"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-4-xc16",
+      "proposalFingerprint": "bcd6f85f39ac9851df96382ac4319b3a8054e54582543aa31ff149de22e0c3a1",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "똑같은 직사각형 두 개를 붙여 더 큰 직사각형 하나를 만들려고 합니다. 어떤 변끼리 어떻게 붙여야 하는지 쓰세요.",
+      "bAnswer": "길이가 같은 변끼리(긴 변끼리 또는 짧은 변끼리) 끝이 어긋나지 않게 꼭 맞추어 붙입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "길이가 같은 변끼리"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭 맞추어 붙임"
+          ]
+        }
+      ],
+      "bGoal": "직사각형 두 개로 큰 직사각형을 만드는 방법 말하기",
+      "bReason": "목표 도형을 주고 붙이는 방법만 답하게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸 '길이가 같은 변끼리'는 조건 구절이라 조건을 보여 주고 결과 도형 이름을 답하게 함",
+      "cSlotEquivalents": [],
+      "answerNotes": "특별한 경우 정사각형이 되기도 하지만 그것도 직사각형에 속하므로 답은 직사각형. '사각형'만 쓰면 불완전"
+    },
+    "currentCMarkedSentence": "똑같은 직사각형 두 개를 길이가 같은 변끼리 꼭 맞게 붙이면 더 큰 {직사각형}이 된다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "직사각형",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "같은 변끼리 끝이 안 어긋나게 붙이는 B 방법은 적절하다; 조합 그림 예가 도움이 된다.",
+      "c": "본문 직사각형을 그대로 다시 쓰는 C보다 결과 가로·세로 계산으로 바꾸거나 C를 제외한다."
+    }
+  },
+  {
+    "id": "e3-1-2-4-xc17",
+    "sourceIndex": 532,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 532,
+      "sourceFingerprint": "c0c28a0655b4c03c0d4c05487633d1fa5f3ef8e72bc0581f9cd53ed045b1c24c",
+      "part": "e3plus",
+      "id": "e3-1-2-4-xc17",
+      "section": "초3::1-2 평면도형::1-2-4 직사각형 알아보기",
+      "term": "직사각형 나누기",
+      "kind": "성질",
+      "level": "중",
+      "definition": "직사각형을 {마주 보는 두 변의 가운데}를 잇는 선으로 자르면 작은 직사각형 $2$개가 생긴다.",
+      "studentC": "직사각형을 □를 잇는 선으로 자르면 작은 직사각형 $2$개가 생긴다.",
+      "answers": [
+        "마주 보는 두 변의 가운데"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-4-xc17",
+      "proposalFingerprint": "1773939c6178ff08b097db8c1a9225698dfc5a366ea39cd149702ba7925a3e58",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "직사각형 종이를 곧은 선 하나로 잘라 크기가 같은 작은 직사각형 $2$개를 만들려고 합니다. 어디와 어디를 잇는 선으로 잘라야 하는지 쓰세요.",
+      "bAnswer": "마주 보는 두 변의 가운데끼리 잇는 선으로 자릅니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "마주 보는 두 변"
+          ]
+        },
+        {
+          "anyOf": [
+            "가운데끼리 잇는 선"
+          ]
+        }
+      ],
+      "bGoal": "직사각형을 작은 직사각형 둘로 나누는 선 말하기",
+      "bReason": "목표를 주고 자르는 선의 자리만 답하게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸 '마주 보는 두 변의 가운데'는 긴 구절이라 결과 도형 이름을 답하게 함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'사각형'만 쓰면 불완전한 답"
+    },
+    "currentCMarkedSentence": "직사각형을 마주 보는 두 변의 가운데를 잇는 선으로 자르면 작은 {직사각형} $2$개가 생긴다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "직사각형",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "마주 보는 두 변의 가운데끼리 자르는 B 방법은 명확하다.",
+      "c": "본문 직사각형을 결과 이름에 복사하는 C는 절단 위치 질문으로 바꾸거나 제외한다."
+    }
+  },
+  {
+    "id": "e3-1-2-4-xc27",
+    "sourceIndex": 541,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 541,
+      "sourceFingerprint": "67bfdef57da0ac501a33aabe6131cea70c086807e872f3c945e1b5b428ad7544",
+      "part": "e3plus",
+      "id": "e3-1-2-4-xc27",
+      "section": "초3::1-2 평면도형::1-2-4 직사각형 알아보기",
+      "term": "직사각형의 크기를 정하는 것",
+      "kind": "성질",
+      "level": "상",
+      "definition": "직사각형은 가로와 {세로}의 길이를 알면 크기가 하나로 정해진다.",
+      "studentC": "직사각형은 가로와 □의 길이를 알면 크기가 하나로 정해진다.",
+      "answers": [
+        "세로"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-4-xc27",
+      "proposalFingerprint": "6bc035ed2cfd0c1e51ce5860fc6f2904700e9775e84bf23efb5cea4ea9949983",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "친구가 그린 직사각형과 크기가 똑같은 직사각형을 그리려고 합니다. 어떤 두 길이를 알아야 하는지 쓰고, 두 길이만 알면 되는 까닭을 쓰세요.",
+      "bAnswer": "가로와 세로의 길이를 알아야 합니다. 직사각형은 마주 보는 변의 길이가 같고 네 각이 모두 직각이라서, 가로와 세로만 알면 네 변이 모두 정해집니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로와 세로"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 변의 길이가 같아 네 변이 정해짐"
+          ]
+        }
+      ],
+      "bGoal": "직사각형의 크기를 정하는 두 길이 말하기",
+      "bReason": "상황을 주고 필요한 길이와 까닭을 묻게 함",
+      "cDecision": "keep",
+      "cReason": "'가로와 □'에서 짝이 되는 '세로'가 바로 떠오름",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "직사각형은 가로와 {세로}의 길이를 알면 크기가 하나로 정해진다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "세로",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "가로·세로와 마주 보는 길이의 같음으로 필요한 두 길이를 설명한다.",
+      "c": "가로와 짝인 세로라는 어휘 복원보다 구체 길이를 정하는 문항으로 바꾸거나 C를 제외한다."
+    }
+  },
+  {
+    "id": "e3-1-2-5-xc3",
+    "sourceIndex": 544,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 544,
+      "sourceFingerprint": "380e5ff52b3418d4cdfbb155ff5bec6b20c78a6c775d09135dea184db62be92d",
+      "part": "e3plus",
+      "id": "e3-1-2-5-xc3",
+      "section": "초3::1-2 평면도형::1-2-5 정사각형 알아보기",
+      "term": "생활 속 정사각형",
+      "kind": "성질",
+      "level": "하",
+      "definition": "바둑판, 색종이처럼 생활 속에서 {정사각형} 모양을 찾을 수 있다.",
+      "studentC": "바둑판, 색종이처럼 생활 속에서 □ 모양을 찾을 수 있다.",
+      "answers": [
+        "정사각형"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-5-xc3",
+      "proposalFingerprint": "9ee8790c540295774b90d7ecbf2526604ea633aed555962bd81edf9b7f50c706",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "B 설명 목표 없음",
+      "bReason": "정사각형 모양 물건의 예를 드는 내용임",
+      "cDecision": "keep",
+      "cReason": "익숙한 물건 두 가지가 주어져 도형 이름을 답하기 쉬움",
+      "cSlotEquivalents": [],
+      "exclusionReason": "까닭을 물으면 '네 변이 같고 네 각이 직각'으로 e3-1-2-5-xc1의 B와 같은 답이 되어 목표가 겹침",
+      "answerNotes": "'사각형', '네모', '직사각형'은 범위가 넓어 불완전한 답"
+    },
+    "currentCMarkedSentence": "바둑판, 색종이처럼 생활 속에서 {정사각형} 모양을 찾을 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "정사각형",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "생활 예의 분류 이유가 542 정의와 겹치는 B 제외는 적절하다.",
+      "c": "색종이·바둑판이라는 물건명만으로 항상 정사각형을 단정하지 말고 네 변·각 조건을 보이거나 C를 제외한다."
+    }
+  },
+  {
+    "id": "e3-1-2-5-xc5",
+    "sourceIndex": 546,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 546,
+      "sourceFingerprint": "5497815c9afe7cdba5197c586217f890ac0e50db27e87d64d1b520129b40d86f",
+      "part": "e3plus",
+      "id": "e3-1-2-5-xc5",
+      "section": "초3::1-2 평면도형::1-2-5 정사각형 알아보기",
+      "term": "정사각형의 꼭짓점과 직각",
+      "kind": "성질",
+      "level": "하",
+      "definition": "정사각형에는 꼭짓점이 {$4$개}, 직각도 $4$개 있다.",
+      "studentC": "정사각형에는 꼭짓점이 □, 직각도 $4$개 있다.",
+      "answers": [
+        "$4$개"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-5-xc5",
+      "proposalFingerprint": "80574fb7bcc1470145aed6c4a3ef8fc80c671c5af8c1f7a003f160d66c327dfa",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "B 설명 목표 없음",
+      "bReason": "꼭짓점과 직각의 개수만 세는 사실임",
+      "cDecision": "keep",
+      "cReason": "꼭짓점의 개수를 답하는 것이 분명한 짧은 문장임",
+      "cSlotEquivalents": [],
+      "exclusionReason": "개수를 적는 것 말고 설명할 의미·이유가 없어 C와 같은 답이 됨",
+      "answerNotes": "'4', '네 개' 허용"
+    },
+    "currentCMarkedSentence": "정사각형에는 꼭짓점이 {$4$개}, 직각도 $4$개 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$4$개",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "개수 나열뿐인 B를 제외한다.",
+      "c": "직각 4를 주고 꼭짓점 4를 복사하게 하는 C는 부분 관계를 묻도록 바꾸거나 중복 제외를 검토한다."
+    }
+  },
+  {
+    "id": "e3-1-2-5-xc7",
+    "sourceIndex": 548,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 548,
+      "sourceFingerprint": "895fb94dc5d3b9b123d410f2a05da39fa72fdbff0cc78fb1d03835cce968a93b",
+      "part": "e3plus",
+      "id": "e3-1-2-5-xc7",
+      "section": "초3::1-2 평면도형::1-2-5 정사각형 알아보기",
+      "term": "같은 길이 표시",
+      "kind": "방법",
+      "level": "하",
+      "definition": "그림에서 변에 같은 표시가 있으면 그 변들의 {길이가 같다}는 뜻이다.",
+      "studentC": "그림에서 변에 같은 표시가 있으면 그 변들의 □는 뜻이다.",
+      "answers": [
+        "길이가 같다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-5-xc7",
+      "proposalFingerprint": "6eb166dceee7cf156ddf48a931c3a69010b13624ca14f44e7da37b39f0b5ac72",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "B 설명 목표 없음",
+      "bReason": "그림 속 표시의 뜻을 읽는 약속임",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸 '길이가 같다'에서 비교 대상(길이)을 보여 주고 '같다'만 답하게 함",
+      "cSlotEquivalents": [],
+      "exclusionReason": "기호(같은 표시) 읽기 약속이라 설명할 이유가 없고 B로 물어도 '길이가 같다' 한 마디가 됨",
+      "answerNotes": "'똑같다' 허용"
+    },
+    "currentCMarkedSentence": "그림에서 두 변에 같은 표시가 있으면 그 두 변의 길이가 서로 {같다}는 뜻이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "같다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "같은 길이 표시의 약속만의 B를 제외한다.",
+      "c": "같은 표시가 어떤 모양인지 실제 그림 예를 붙여야 한다; 같다를 넣은 같다는 문법은 맞다."
+    }
+  },
+  {
+    "id": "e3-1-2-5-xc8",
+    "sourceIndex": 549,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 549,
+      "sourceFingerprint": "5a80ccdff5fd911b8fecad41c4231a1f4688cd8a2ea596ba37743efd911689a9",
+      "part": "e3plus",
+      "id": "e3-1-2-5-xc8",
+      "section": "초3::1-2 평면도형::1-2-5 정사각형 알아보기",
+      "term": "정사각형의 이름",
+      "kind": "방법",
+      "level": "하",
+      "definition": "둘레를 따라 꼭짓점이 차례로 ㅁ, ㅂ, ㅅ, ㅇ인 정사각형은 {정사각형 ㅁㅂㅅㅇ}이라 부른다.",
+      "studentC": "둘레를 따라 꼭짓점이 차례로 ㅁ, ㅂ, ㅅ, ㅇ인 정사각형은 □이라 부른다.",
+      "answers": [
+        "정사각형 ㅁㅂㅅㅇ"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-2-5-xc8",
+      "proposalFingerprint": "4f1b5c0c5509f486481ad74b81a7432d6fe3a2d82a46193fd6aab768f820504f",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "B 설명 목표 없음",
+      "bReason": "꼭짓점 글자를 차례로 불러 이름 붙이는 약속임",
+      "cDecision": "keep",
+      "cReason": "꼭짓점 글자와 순서가 문장에 보여 답이 분명함",
+      "cSlotEquivalents": [],
+      "exclusionReason": "이름 표기 약속이라 B로 물어도 C와 같은 '정사각형 ㅁㅂㅅㅇ' 한 줄이 됨",
+      "answerNotes": "정사각형 ㅂㅅㅇㅁ처럼 둘레 순서를 지키면 정답"
+    },
+    "currentCMarkedSentence": "둘레를 따라 꼭짓점이 차례로 ㅁ, ㅂ, ㅅ, ㅇ인 정사각형은 {정사각형 ㅁㅂㅅㅇ}이라 부른다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "정사각형 ㅁㅂㅅㅇ",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "이름 붙이는 약속만의 B를 제외한다.",
+      "c": "둘레 시작 꼭짓점·방향을 달리한 여덟 이름도 같은 정사각형이므로 한 배열만 채점하지 말고 다른 이름 항목처럼 C 제외 또는 표기 범위 제한을 검토한다."
+    }
+  },
+  {
+    "id": "e3-1-3-1-xc5",
+    "sourceIndex": 569,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 569,
+      "sourceFingerprint": "503e7cd60fa497d763d041775077eca72b45f23fac43b3d767b7fc30ee3d71e3",
+      "part": "e3plus",
+      "id": "e3-1-3-1-xc5",
+      "section": "초3::1-3 나눗셈::1-3-1 똑같이 나누기",
+      "term": "나누어 주는 상황의 몫",
+      "kind": "성질",
+      "level": "중",
+      "definition": "$20$개를 $4$명에게 똑같이 나누는 $20\\div4$에서 몫은 한 {사람}이 받는 개수를 뜻한다.",
+      "studentC": "$20$개를 $4$명에게 똑같이 나누는 $20\\div4$에서 몫은 한 □이 받는 개수를 뜻한다.",
+      "answers": [
+        "사람"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-3-1-xc5",
+      "proposalFingerprint": "65b10257fa9ad569b63aa5749a1257d6efc192be5625e54302375c8ff96213f8",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "사탕 $20$개를 $4$명에게 똑같이 나누어 주는 상황을 $20\\div4$로 나타냈습니다. 이때 몫은 무엇을 뜻하는지 쓰세요.",
+      "bAnswer": "한 사람이 받는 사탕의 개수를 뜻합니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 사람이 받는 개수"
+          ]
+        }
+      ],
+      "bGoal": "똑같이 나누어 주는 상황에서 몫의 뜻 말하기",
+      "bReason": "상황을 자립시키고 몫의 뜻만 묻게 함",
+      "cDecision": "keep",
+      "cReason": "상황과 식이 함께 있어 '사람'을 답하기 쉬움",
+      "cSlotEquivalents": [],
+      "answerNotes": "'명' 허용. '묶음'은 이 상황에서 오답"
+    },
+    "currentCMarkedSentence": "$20$개를 $4$명에게 똑같이 나누는 $20\\div4$에서 몫은 한 {사람}이 받는 개수를 뜻한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "사람",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "20개를 4명에게 나눈 몫을 한 사람의 사탕 개수로 해석하는 B가 분명하다.",
+      "c": "한 사람의 사람만 채우는 문법 빈칸보다 실제 한 사람이 받는 5개를 구하는 C로 바꾸는 편이 유용하다."
+    }
+  },
+  {
+    "id": "e3-1-3-1-xc10",
+    "sourceIndex": 573,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 573,
+      "sourceFingerprint": "201fa709863102354d0ad6d8b15f6032d02fc5f95736b55c0006b6b1a66d5eef",
+      "part": "e3plus",
+      "id": "e3-1-3-1-xc10",
+      "section": "초3::1-3 나눗셈::1-3-1 똑같이 나누기",
+      "term": "$1$로 나누기",
+      "kind": "성질",
+      "level": "중",
+      "definition": "어떤 수를 $1$로 나누면 몫은 {처음 수}와 같다.",
+      "example": {
+        "prompt": "$7\\div1$의 몫을 쓰시오.",
+        "answer": "$7$"
+      },
+      "studentC": "어떤 수를 $1$로 나누면 몫은 □와 같다.",
+      "answers": [
+        "처음 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-3-1-xc10",
+      "proposalFingerprint": "6020ebb132ecd1f63fbb2a417d027494096459eafcedfa242729065c55da1d39",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$7\\div1$의 몫을 쓰고, 사탕 $7$개를 $1$명에게 주는 상황 또는 $1$개씩 묶는 상황으로 그 까닭을 설명하세요.",
+      "bAnswer": "몫은 $7$입니다. 사탕 $7$개를 $1$명에게 모두 주면 그 사람이 $7$개를 다 받기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫 $7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$명이 모두 받음(또는 $1$개씩 $7$묶음)"
+          ]
+        }
+      ],
+      "bGoal": "1로 나눈 몫이 처음 수와 같은 까닭 설명하기",
+      "bReason": "원문 예제 $7\\div1$을 써서 몫과 까닭을 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸 '처음 수'는 숨은 수 이름을 맞혀야 해서 실제 계산식의 몫을 답하게 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "B에서 '1개씩 묶으면 7묶음'으로 설명해도 정답"
+    },
+    "currentCMarkedSentence": "$7\\div1$의 몫은 {$7$}이다. 이처럼 어떤 수를 $1$로 나누면 몫은 처음 수와 같다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$7$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "몫 7과 1명이 모두 받음 또는 1개씩 7묶음의 두 설명은 옳지만 하나의 기준 문자열 안에 또는을 두지 말고 anyOf 두 대안으로 나눈다.",
+      "c": "1로 나눈 실제 몫 7을 확인한다."
+    }
+  },
+  {
+    "id": "e3-1-3-1-xc11",
+    "sourceIndex": 574,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 574,
+      "sourceFingerprint": "321d772da5a02299be253f1f77a72e15987f0b49f137ba7df7c9a4806d235069",
+      "part": "e3plus",
+      "id": "e3-1-3-1-xc11",
+      "section": "초3::1-3 나눗셈::1-3-1 똑같이 나누기",
+      "term": "자기 자신으로 나누기",
+      "kind": "성질",
+      "level": "중",
+      "definition": "$0$이 아닌 어떤 수를 그 수로 나누면 몫은 {$1$}이다.",
+      "studentC": "$0$이 아닌 어떤 수를 그 수로 나누면 몫은 □이다.",
+      "answers": [
+        "$1$"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-3-1-xc11",
+      "proposalFingerprint": "b630ad001d02b413ab0fd169296b5f163e6105acbab11ff39c387db0314ed559",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$6\\div6$의 몫을 쓰고, 사탕 $6$개를 $6$명에게 나누어 주는 상황 또는 $6$개씩 묶는 상황으로 그 까닭을 설명하세요.",
+      "bAnswer": "몫은 $1$입니다. 사탕 $6$개를 $6$명에게 똑같이 나누어 주면 한 사람이 $1$개씩 받기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$명이 $1$개씩(또는 $6$개씩 $1$묶음)"
+          ]
+        }
+      ],
+      "bGoal": "자기 자신으로 나눈 몫이 1인 까닭 설명하기",
+      "bReason": "간단한 수를 새로 주어 몫과 까닭을 묻게 함",
+      "cDecision": "keep",
+      "cReason": "답이 수 '1' 하나인 선명한 문장임",
+      "cSlotEquivalents": [],
+      "answerNotes": "B에서 '6개씩 묶으면 1묶음'으로 설명해도 정답"
+    },
+    "currentCMarkedSentence": "$0$이 아닌 어떤 수를 그 수로 나누면 몫은 {$1$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$1$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "몫 1과 6명이 1개씩 또는 6개씩 한 묶음의 두 설명을 anyOf 별개 대안으로 나눠야 한다.",
+      "c": "자기 자신으로 나눌 때의 0 아님 조건과 몫 1이 정확하다."
+    }
+  },
+  {
+    "id": "e3-1-3-1-xc18",
+    "sourceIndex": 580,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 580,
+      "sourceFingerprint": "4d8352de7aa5396e6a06a4021ef40cb48eda1078c6c49aede0990d62a86e66c4",
+      "part": "e3plus",
+      "id": "e3-1-3-1-xc18",
+      "section": "초3::1-3 나눗셈::1-3-1 똑같이 나누기",
+      "term": "나눗셈 상황 만들기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "$30\\div5$의 상황을 만들 때 $30$을 전체로, $5$를 {사람 수}나 한 묶음의 수로 정한다.",
+      "studentC": "$30\\div5$의 상황을 만들 때 $30$을 전체로, $5$를 □나 한 묶음의 수로 정한다.",
+      "answers": [
+        "사람 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-3-1-xc18",
+      "proposalFingerprint": "6f17fbcb1b0e76c1ae23489e07bce999b947ee9bd333543c3011269d7ffa2c09",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$30\\div5$로 나타낼 수 있는 이야기를 하나 만들어 쓰세요. 그리고 그 이야기에서 $30$과 $5$가 각각 무엇을 나타내는지 쓰세요.",
+      "bAnswer": "사탕 $30$개를 $5$명에게 똑같이 나누어 줍니다. $30$은 전체 사탕의 수, $5$는 나누어 받는 사람 수입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$30$은 전체"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$는 사람 수 또는 한 묶음의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "똑같이 나누는 상황"
+          ]
+        }
+      ],
+      "bGoal": "나눗셈식에 맞는 상황을 만들고 두 수의 뜻 말하기",
+      "bReason": "식을 주고 이야기와 두 수의 뜻을 답하게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸은 '사람 수', '묶음 수', '접시 수' 등 답이 여러 가지라 이야기 속 수를 채우게 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "B에서는 '30개를 5개씩 묶는다'처럼 5를 한 묶음의 수로 정한 이야기도 정답. 물건과 사람은 무엇이든 가능"
+    },
+    "currentCMarkedSentence": "$30\\div5$의 상황을 만들 때 '사탕 {$30$}개를 {$5$}명에게 똑같이 나누어 준다'처럼 $30$을 전체로, $5$를 나누어 받는 사람 수로 정할 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$30$",
+        "equivalents": []
+      },
+      {
+        "expected": "$5$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "30÷5에 맞는 이야기와 두 수의 역할을 요청하는 B는 유용하다.",
+      "c": "30·5의 역할을 이미 본문에 주어 두 숫자를 복사하는 C는 제외하거나 실제 각자 받는 수를 묻도록 바꾼다."
+    }
+  },
+  {
+    "id": "e3-1-3-1-xc22",
+    "sourceIndex": 583,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 583,
+      "sourceFingerprint": "20231e44f87a16c61ed3fd9a47db1db7a8d4cd505a5b6ad88fa8f18a30e31872",
+      "part": "e3plus",
+      "id": "e3-1-3-1-xc22",
+      "section": "초3::1-3 나눗셈::1-3-1 똑같이 나누기",
+      "term": "나눗셈식에서 수의 자리",
+      "kind": "방법",
+      "level": "상",
+      "definition": "나눗셈식에서 {앞의 수는 나눌 전체}, 뒤의 수는 나누는 기준을 나타내므로 서로 다른 두 수의 자리를 바꾸면 상황의 뜻이 달라진다.",
+      "studentC": "나눗셈식에서 □, 뒤의 수는 나누는 기준을 나타내므로 서로 다른 두 수의 자리를 바꾸면 상황의 뜻이 달라진다.",
+      "answers": [
+        "앞의 수는 나눌 전체"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-3-1-xc22",
+      "proposalFingerprint": "e0da5b48774e3c4f788b6f28509aa50fc33b94ca7b3dff5ea2a1588d381947af",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "사탕 $12$개를 $3$명에게 똑같이 나누어 주는 상황을 식으로 쓸 때 $12\\div3$으로 써야 하고 $3\\div12$로 쓰면 안 됩니다. 그 까닭을 쓰세요.",
+      "bAnswer": "$\\div$ 앞에는 나눌 전체인 $12$를, 뒤에는 나누는 사람 수인 $3$을 써야 하기 때문입니다. $3\\div12$는 $3$개를 $12$명에게 나눈다는 다른 뜻이 됩니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞의 수는 나눌 전체"
+          ]
+        },
+        {
+          "anyOf": [
+            "뒤의 수는 나누는 수(사람 수)"
+          ]
+        },
+        {
+          "anyOf": [
+            "자리를 바꾸면 뜻이 달라짐"
+          ]
+        }
+      ],
+      "bGoal": "나눗셈식에서 두 수의 자리가 뜻하는 것 설명하기",
+      "bReason": "간단한 상황을 새로 주어 자리의 뜻을 까닭으로 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문은 문장이 길고 빈칸 '앞의 수는 나눌 전체'가 문장 복원이라 식에서 수를 찾아 쓰게 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "$12\\div3$에서 앞의 수 {$12$}는 나눌 전체를, 뒤의 수 {$3$}은 나누는 기준(몇 명 또는 몇 개씩)을 나타낸다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$12$",
+        "equivalents": []
+      },
+      {
+        "expected": "$3$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "앞의 전체·뒤의 사람 수로 식의 순서를 바꾸면 다른 뜻인 이유를 묻는다.",
+      "c": "12÷3의 앞 12·뒤 3을 그대로 복사하는 C보다 사탕 상황에서 수 역할을 선택하도록 바꾼다."
+    }
+  },
+  {
+    "id": "e3-1-3-2-xc2",
+    "sourceIndex": 585,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 585,
+      "sourceFingerprint": "89e4d53c6b2f1174230bdd75675741136bb4ed635c7d3afb42d822a470ed2773",
+      "part": "e3plus",
+      "id": "e3-1-3-2-xc2",
+      "section": "초3::1-3 나눗셈::1-3-2 곱셈과 나눗셈의 관계",
+      "term": "나눗셈식을 곱셈식으로 나타내기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "나눗셈식은 {(나누는 수)$\\times$(몫)}이 {나누어지는 수}가 되는 곱셈식으로 바꾸어 나타낼 수 있다.",
+      "example": {
+        "prompt": "$15\\div3=5$를 곱셈식으로 바꿀 때 $15$가 곱이 되는 까닭은?",
+        "answer": "묶음을 모두 모은 전체라서"
+      },
+      "studentC": "나눗셈식은 □이 □가 되는 곱셈식으로 바꾸어 나타낼 수 있다.",
+      "answers": [
+        "(나누는 수)$\\times$(몫)",
+        "나누어지는 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-3-2-xc2",
+      "proposalFingerprint": "c6a05214b9d1bd6bfd8e8fd46002a5722397962583d695fb03f0f8b07be9b179",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$15\\div3=5$를 곱셈식으로 바꾸어 쓰세요. 그리고 곱셈식에서 $15$가 곱한 결과의 자리에 오는 까닭을 쓰세요.",
+      "bAnswer": "$3\\times5=15$입니다. $15$는 $3$개씩 $5$묶음을 모두 모은 전체이기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3\\times5=15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$는 묶음을 모두 모은 전체"
+          ]
+        }
+      ],
+      "bGoal": "나눗셈식을 곱셈식으로 바꾸고 전체가 곱이 되는 까닭 설명하기",
+      "bReason": "원문 예제의 식을 써서 식과 까닭을 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸은 '(나누는 수)×(몫)', '나누어지는 수'처럼 수 이름을 복원해야 해서 실제 식의 수를 답하게 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "B에서 $5\\times3=15$로 써도 정답"
+    },
+    "currentCMarkedSentence": "나눗셈식 $15\\div3=5$는 곱셈식 $3\\times${$5$}$=${$15$}로 바꾸어 나타낼 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$5$",
+        "equivalents": []
+      },
+      {
+        "expected": "$15$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "바꿔 쓴 곱셈식은 3×5=15뿐 아니라 5×3=15도 옳으므로 질문이 순서를 정하지 않는 한 기준 대안에 포함한다.",
+      "c": "3×라는 고정된 식에서는 5·15의 위치가 분명하다."
+    }
+  },
+  {
+    "id": "e3-1-3-2-xc5",
+    "sourceIndex": 587,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 587,
+      "sourceFingerprint": "49d78dee16667090f643baca6cf9758bb732620b43737849e8da753a30438063",
+      "part": "e3plus",
+      "id": "e3-1-3-2-xc5",
+      "section": "초3::1-3 나눗셈::1-3-2 곱셈과 나눗셈의 관계",
+      "term": "배열로 보는 관계",
+      "kind": "성질",
+      "level": "하",
+      "definition": "바둑돌을 $3$줄에 $6$개씩 놓으면 $3\\times6=18$이다. $18\\div3$의 몫은 한 {줄}에 놓인 개수를 뜻한다.",
+      "studentC": "바둑돌을 $3$줄에 $6$개씩 놓으면 $3\\times6=18$이다. $18\\div3$의 몫은 한 □에 놓인 개수를 뜻한다.",
+      "answers": [
+        "줄"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-1-3-2-xc5",
+      "proposalFingerprint": "bf5d039d98db0210a7a0da93a19a6405ee7e48aaba1238d7056717ecac4d61e8",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "바둑돌을 $3$줄에 $6$개씩 놓았더니 모두 $18$개입니다. 이때 $18\\div3$의 몫은 바둑돌 배열에서 무엇을 뜻하는지 쓰세요.",
+      "bAnswer": "한 줄에 놓인 바둑돌의 개수를 뜻합니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 줄에 놓인 개수"
+          ]
+        }
+      ],
+      "bGoal": "배열에서 나눗셈의 몫이 뜻하는 것 말하기",
+      "bReason": "원문 상황을 그대로 써서 몫의 뜻만 묻게 함",
+      "cDecision": "keep",
+      "cReason": "상황과 식이 함께 있어 '줄'을 답하기 쉬움",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "바둑돌을 3줄에 6개씩 놓은 배열 그림"
+    },
+    "currentCMarkedSentence": "바둑돌을 $3$줄에 $6$개씩 놓으면 $3\\times6=18$이다. $18\\div3$의 몫은 한 {줄}에 놓인 개수를 뜻한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "줄",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "18÷3의 몫을 한 줄의 개수로 해석하는 B는 구체적이다.",
+      "c": "한 줄의 줄만 복원하는 C보다 한 줄의 실제 6개를 구하거나 다른 두 몫과의 해석을 비교한다."
+    }
+  }
+]

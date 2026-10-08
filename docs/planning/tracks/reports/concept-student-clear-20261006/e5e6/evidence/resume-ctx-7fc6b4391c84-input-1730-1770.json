@@ -1,0 +1,3542 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T08:14:03.262558+00:00",
+  "rows": [
+    {
+      "id": "e6-1-2-2-xc4",
+      "bDecision": "revise",
+      "bPrompt": "각기둥을 이루는 세 가지 구성 요소는 무엇인지 쓰시오.",
+      "bAnswer": "면, 모서리, 꼭짓점이다.",
+      "bGoal": "각기둥의 구성 요소 세 가지 이름을 안다.",
+      "bReason": "이후 개수 세기에 쓰이는 기본 용어 목록이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "모서리 한 낱말만 채우는 사소한 문항이고 c2와 겹친다.",
+      "exclusionReason": "c2에서 모서리를 이미 확인한다. 대체: e6-1-2-2-c2.",
+      "exampleNeeded": false,
+      "sourceIndex": 1730,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "각기둥의 구성 요소",
+        "kind": "정의",
+        "level": "하",
+        "definition": "각기둥의 면, {모서리}, 꼭짓점을 각기둥의 구성 요소라 한다.",
+        "studentC": "각기둥의 면, □, 꼭짓점을 각기둥의 구성 요소라 한다.",
+        "answers": [
+          "모서리"
+        ]
+      },
+      "sourceFingerprint": "39f076c0d0c2998b814c7117ee83780ecf87b5506aa60d83ed0dd80b4bee0b77",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "각기둥을 이루는 세 가지 구성 요소는 무엇인지 쓰시오.",
+        "answer": "면, 모서리, 꼭짓점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "c2에서 모서리를 이미 확인한다. 대체: e6-1-2-2-c2."
+      },
+      "proposalFingerprint": "463c5d4e71fb1cf736526dad2d1a7a6d5a77a72eb321c9bf0ffc69593f9049b2",
+      "questionRevision": "planning-e5e6-20261006-463c5d4e71fb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc5",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 꼭짓점은 모두 어느 면의 둘레에 있는지 쓰시오.",
+      "bAnswer": "위와 아래 두 밑면의 둘레에 있다.",
+      "bGoal": "꼭짓점이 두 밑면의 둘레에만 있음을 안다.",
+      "bReason": "꼭짓점 수를 두 밑면으로 세는 근거가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면",
+            "위아래 밑면",
+            "두 밑면의 둘레"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 꼭짓점은 모두 {두 밑면}의 둘레에 있다.",
+      "cReason": "'두 밑면'이라는 위치를 묻는 짧고 분명한 성질이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1731,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc5",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "꼭짓점이 있는 곳",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥의 꼭짓점은 모두 {두 밑면}의 둘레에 있다.",
+        "studentC": "각기둥의 꼭짓점은 모두 □의 둘레에 있다.",
+        "answers": [
+          "두 밑면"
+        ]
+      },
+      "sourceFingerprint": "90bf9d7d3f3a7f733c8886c8279d92e25cbee7f129ee65380ed0aab62b42ebe3",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥의 꼭짓점은 모두 {두 밑면}의 둘레에 있다.",
+      "cFrozenStudentSentence": "각기둥의 꼭짓점은 모두 □의 둘레에 있다.",
+      "cProposedAnswers": [
+        "두 밑면"
+      ],
+      "cStudentAfter": "각기둥의 꼭짓점은 모두 □의 둘레에 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두 밑면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 꼭짓점은 모두 {두 밑면}의 둘레에 있다.",
+      "cStudentSentence": "각기둥의 꼭짓점은 모두 □의 둘레에 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "두 밑면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 꼭짓점은 모두 어느 면의 둘레에 있는지 쓰시오.",
+        "answer": "위와 아래 두 밑면의 둘레에 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면",
+              "위아래 밑면",
+              "두 밑면의 둘레"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 꼭짓점은 모두 {두 밑면}의 둘레에 있다.",
+        "acceptedAnswers": [
+          [
+            "두 밑면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8ed1a10aea4d4d20302db745f75ccc1d72936ca969e846d34d166166d3ea7375",
+      "questionRevision": "planning-e5e6-20261006-8ed1a10aea4d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "밑면 이름에서 각기둥 이름을 만드는 규칙을 안다.",
+      "bReason": "c1과 같은 내용이고 '형을 빼고 기둥을 붙여' 문구 암기에 가깝다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 임의 문구를 외우게 하는 빈칸이다.",
+      "exclusionReason": "c1과 중복이며 형식 문구 암기를 요구한다. 대체: e6-1-2-2-c1.",
+      "exampleNeeded": false,
+      "sourceIndex": 1732,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc6",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "이름 짓는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "밑면인 다각형의 이름에서 {'형'을 빼고 '기둥'을 붙여} 이름을 짓는다. 밑면이 팔각형이면 팔각기둥이다.",
+        "studentC": "밑면인 다각형의 이름에서 □ 이름을 짓는다. 밑면이 팔각형이면 팔각기둥이다.",
+        "answers": [
+          "'형'을 빼고 '기둥'을 붙여"
+        ]
+      },
+      "sourceFingerprint": "b5980073399a668afe401e8e5ef03ed560a447c8dd06505867c6669945e175ac",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c1과 중복이며 형식 문구 암기를 요구한다. 대체: e6-1-2-2-c1.",
+        "cloze": "c1과 중복이며 형식 문구 암기를 요구한다. 대체: e6-1-2-2-c1."
+      },
+      "proposalFingerprint": "cc986a084622f73fa7f44bf27869d57bccff13aae24efb6905fe65d3a5bfe93e",
+      "questionRevision": "planning-e5e6-20261006-cc986a084622",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc7",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 한 밑면에 있는 꼭짓점의 수와 밑면의 변의 수는 어떤 관계인지 쓰시오. 밑면이 오각형이면 한 밑면의 꼭짓점은 몇 개인지도 구하시오.",
+      "bAnswer": "서로 같다. 밑면이 오각형이면 $5$개이다.",
+      "bGoal": "다각형의 변의 수와 꼭짓점 수가 같음을 밑면에 적용한다.",
+      "bReason": "꼭짓점 수 세기의 출발점이 되는 관계이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같다",
+            "변의 수와 꼭짓점 수가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개",
+            "$5$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 한 밑면에 있는 꼭짓점 수는 밑면의 {변의 수}와 같다.",
+      "cReason": "'변의 수'를 채워 꼭짓점과 변의 대응을 확인하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1733,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc7",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "한 밑면의 꼭짓점 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥의 한 밑면에 있는 꼭짓점 수는 밑면의 {변의 수}와 같다.",
+        "studentC": "각기둥의 한 밑면에 있는 꼭짓점 수는 밑면의 □와 같다.",
+        "answers": [
+          "변의 수"
+        ]
+      },
+      "sourceFingerprint": "ff33d22c45a6093729cc1a75b0c27e4dff5b391afd0d5c84088a96df8c37dae1",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥의 한 밑면에 있는 꼭짓점 수는 밑면의 {변의 수}와 같다.",
+      "cFrozenStudentSentence": "각기둥의 한 밑면에 있는 꼭짓점 수는 밑면의 □와 같다.",
+      "cProposedAnswers": [
+        "변의 수"
+      ],
+      "cStudentAfter": "각기둥의 한 밑면에 있는 꼭짓점 수는 밑면의 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변의 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 한 밑면에 있는 꼭짓점 수는 밑면의 {변의 수}와 같다.",
+      "cStudentSentence": "각기둥의 한 밑면에 있는 꼭짓점 수는 밑면의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "변의 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 한 밑면에 있는 꼭짓점의 수와 밑면의 변의 수는 어떤 관계인지 쓰시오. 밑면이 오각형이면 한 밑면의 꼭짓점은 몇 개인지도 구하시오.",
+        "answer": "서로 같다. 밑면이 오각형이면 $5$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같다",
+              "변의 수와 꼭짓점 수가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$개",
+              "$5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 한 밑면에 있는 꼭짓점 수는 밑면의 {변의 수}와 같다.",
+        "acceptedAnswers": [
+          [
+            "변의 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "046b554479cba8f78563d0d62259e45f96623e6e8746ca57b28ba4e0ade5a5d4",
+      "questionRevision": "planning-e5e6-20261006-046b554479cb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc8",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 면의 수를 옆면의 수로 구하는 방법을 쓰시오. 옆면이 $7$개인 각기둥은 면이 모두 몇 개인지도 구하시오.",
+      "bAnswer": "옆면의 수에 밑면 $2$개를 더한다. 옆면이 $7$개이면 면은 $9$개이다.",
+      "bGoal": "전체 면 수를 옆면과 밑면으로 나누어 센다.",
+      "bReason": "밑면 두 개를 빠뜨리지 않는 셈법을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면의 수에 밑면 $2$개를 더한다",
+            "옆면의 수 $+2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$개",
+            "$9$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 면의 수는 옆면의 수에 밑면 {$2$개}를 더한 것이다.",
+      "cReason": "밑면이 2개라는 사실을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1734,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc8",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "면의 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "각기둥의 면의 수는 옆면의 수에 밑면 {$2$개}를 더한 것이다.",
+        "studentC": "각기둥의 면의 수는 옆면의 수에 밑면 □를 더한 것이다.",
+        "answers": [
+          "$2$개"
+        ]
+      },
+      "sourceFingerprint": "cedb321f3635424ac7efb223221c9da6a76dff6060771f08217e9b9ecd312e04",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥의 면의 수는 옆면의 수에 밑면 {$2$개}를 더한 것이다.",
+      "cFrozenStudentSentence": "각기둥의 면의 수는 옆면의 수에 밑면 □를 더한 것이다.",
+      "cProposedAnswers": [
+        "$2$개"
+      ],
+      "cStudentAfter": "각기둥의 면의 수는 옆면의 수에 밑면 □를 더한 것이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 면의 수는 옆면의 수에 밑면 {$2$개}를 더한 것이다.",
+      "cStudentSentence": "각기둥의 면의 수는 옆면의 수에 밑면 □를 더한 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 면의 수를 옆면의 수로 구하는 방법을 쓰시오. 옆면이 $7$개인 각기둥은 면이 모두 몇 개인지도 구하시오.",
+        "answer": "옆면의 수에 밑면 $2$개를 더한다. 옆면이 $7$개이면 면은 $9$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면의 수에 밑면 $2$개를 더한다",
+              "옆면의 수 $+2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$개",
+              "$9$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 면의 수는 옆면의 수에 밑면 {$2$개}를 더한 것이다.",
+        "acceptedAnswers": [
+          [
+            "$2$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3d2adf306bcd2d6f7adc52afc4e1cdd20909d9cf2dcecb9f4656c9e8b5bf3647",
+      "questionRevision": "planning-e5e6-20261006-3d2adf306bcd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc9",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 꼭짓점의 수를 한 밑면의 꼭짓점 수로 구하는 방법을 쓰시오. 밑면이 팔각형인 각기둥은 꼭짓점이 몇 개인지도 구하시오.",
+      "bAnswer": "꼭짓점이 두 밑면에 각각 있으므로 한 밑면의 꼭짓점 수에 $2$를 곱한다. 팔각기둥은 $8\\times2=16$이므로 $16$개이다.",
+      "bGoal": "두 밑면에 꼭짓점이 있음을 이용해 꼭짓점 수를 구한다.",
+      "bReason": "'두 벌'이라는 모호한 말을 곱셈 방법으로 바꾼다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 밑면의 꼭짓점 수의 $2$배",
+            "한 밑면의 꼭짓점 수에 $2$를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16$개",
+            "$16$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "한 밑면의 꼭짓점이 $6$개인 각기둥의 꼭짓점은 모두 $6\\times$ {$2$} $=12$개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "'두 벌'을 학생이 아는 곱셈 식의 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1735,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc9",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "꼭짓점의 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "각기둥의 꼭짓점은 한 밑면의 꼭짓점이 {두 벌} 있는 셈이다.",
+        "studentC": "각기둥의 꼭짓점은 한 밑면의 꼭짓점이 □ 있는 셈이다.",
+        "answers": [
+          "두 벌"
+        ]
+      },
+      "sourceFingerprint": "d617139b55a684fef6ef2fabc32a4066e0b8c0b263d9459c43b7ed2b181a5ca1",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "한 밑면의 꼭짓점이 $6$개인 각기둥의 꼭짓점은 모두 $6\\times$ □ $=12$개이다.",
+      "cMarkedSentence": "한 밑면의 꼭짓점이 $6$개인 각기둥의 꼭짓점은 모두 $6\\times$ {$2$} $=12$개이다.",
+      "cStudentSentence": "한 밑면의 꼭짓점이 $6$개인 각기둥의 꼭짓점은 모두 $6\\times$ □ $=12$개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 꼭짓점의 수를 한 밑면의 꼭짓점 수로 구하는 방법을 쓰시오. 밑면이 팔각형인 각기둥은 꼭짓점이 몇 개인지도 구하시오.",
+        "answer": "꼭짓점이 두 밑면에 각각 있으므로 한 밑면의 꼭짓점 수에 $2$를 곱한다. 팔각기둥은 $8\\times2=16$이므로 $16$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 밑면의 꼭짓점 수의 $2$배",
+              "한 밑면의 꼭짓점 수에 $2$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$16$개",
+              "$16$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 밑면의 꼭짓점이 $6$개인 각기둥의 꼭짓점은 모두 $6\\times$ {$2$} $=12$개이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "68f259c0e466858d7aae2da90efe4a2508cd71616d567c163fc0ef0107e84497",
+      "questionRevision": "planning-e5e6-20261006-68f259c0e466",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc10",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 모서리를 두 밑면의 둘레에 있는 모서리와 두 밑면을 잇는 모서리로 나누어, 밑면의 변의 수로 모서리 수를 구하는 방법을 설명하시오. 밑면이 오각형인 각기둥의 모서리는 몇 개인지도 구하시오.",
+      "bAnswer": "두 밑면의 둘레의 모서리는 변의 수의 $2$배이고 두 밑면을 잇는 모서리는 변의 수와 같으므로 모두 변의 수의 $3$배이다. 오각기둥은 $5\\times3=15$이므로 $15$개이다.",
+      "bGoal": "모서리 수가 변의 수의 3배가 되는 까닭을 이해한다.",
+      "bReason": "c5 공식의 3배를 부분으로 나누어 설명하는 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면의 둘레 모서리는 변의 수의 $2$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 밑면을 잇는 모서리는 변의 수와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모두 변의 수의 $3$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$개",
+            "$15$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "밑면이 사각형인 각기둥에서 두 밑면의 둘레에 있는 모서리는 $4\\times2=8$개이고, 두 밑면을 잇는 모서리는 {$4$}개이므로 모서리는 모두 $12$개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "$4$개"
+          ]
+        }
+      ],
+      "cReason": "긴 문장 대신 사각기둥의 구체적 계산으로 한 값을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1736,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc10",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "모서리의 수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 밑면의 둘레에 있는 모서리와 두 밑면을 잇는 모서리를 더하면 한 밑면의 변의 수의 {$3$배}이다.",
+        "studentC": "두 밑면의 둘레에 있는 모서리와 두 밑면을 잇는 모서리를 더하면 한 밑면의 변의 수의 □이다.",
+        "answers": [
+          "$3$배"
+        ]
+      },
+      "sourceFingerprint": "6cf0902e22ea181d1147d2fcc8d9044bd4cb204062d8032daee53a104ae72422",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "밑면이 사각형인 각기둥에서 두 밑면의 둘레에 있는 모서리는 $4\\times2=8$개이고, 두 밑면을 잇는 모서리는 □개이므로 모서리는 모두 $12$개이다.",
+      "cMarkedSentence": "밑면이 사각형인 각기둥에서 두 밑면의 둘레에 있는 모서리는 $4\\times2=8$개이고, 두 밑면을 잇는 모서리는 {$4$}개이므로 모서리는 모두 $12$개이다.",
+      "cStudentSentence": "밑면이 사각형인 각기둥에서 두 밑면의 둘레에 있는 모서리는 $4\\times2=8$개이고, 두 밑면을 잇는 모서리는 □개이므로 모서리는 모두 $12$개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": [
+            "$4$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 모서리를 두 밑면의 둘레에 있는 모서리와 두 밑면을 잇는 모서리로 나누어, 밑면의 변의 수로 모서리 수를 구하는 방법을 설명하시오. 밑면이 오각형인 각기둥의 모서리는 몇 개인지도 구하시오.",
+        "answer": "두 밑면의 둘레의 모서리는 변의 수의 $2$배이고 두 밑면을 잇는 모서리는 변의 수와 같으므로 모두 변의 수의 $3$배이다. 오각기둥은 $5\\times3=15$이므로 $15$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면의 둘레 모서리는 변의 수의 $2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑면을 잇는 모서리는 변의 수와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모두 변의 수의 $3$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15$개",
+              "$15$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 사각형인 각기둥에서 두 밑면의 둘레에 있는 모서리는 $4\\times2=8$개이고, 두 밑면을 잇는 모서리는 {$4$}개이므로 모서리는 모두 $12$개이다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "$4$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "edef16a3796814faa8987c2d5bf7b455970e3e50fa56db609eb5c638c5f3b72d",
+      "questionRevision": "planning-e5e6-20261006-edef16a37968",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc11",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "밑면을 잇는 모서리의 길이가 높이임을 안다.",
+      "bReason": "c4의 높이와 옆 모서리 관계와 같다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답이 긴 구절이고 c4와 중복이다.",
+      "exclusionReason": "c4와 같은 내용이다. 대체: e6-1-2-2-c4.",
+      "exampleNeeded": false,
+      "sourceIndex": 1737,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc11",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "높이를 나타내는 모서리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥에서 {두 밑면을 잇는 모서리}는 모두 길이가 같고 그 길이가 높이이다.",
+        "studentC": "각기둥에서 □는 모두 길이가 같고 그 길이가 높이이다.",
+        "answers": [
+          "두 밑면을 잇는 모서리"
+        ]
+      },
+      "sourceFingerprint": "c9090b39e4a1a5d827e82e14acde4dbc3d0c568070414b6fd77d4416d3b755b9",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c4와 같은 내용이다. 대체: e6-1-2-2-c4.",
+        "cloze": "c4와 같은 내용이다. 대체: e6-1-2-2-c4."
+      },
+      "proposalFingerprint": "41a30bc814cd20c4182050a0c30da749bf8a6ac5cd5c384f232435d59f60bb58",
+      "questionRevision": "planning-e5e6-20261006-41a30bc814cd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "직육면체를 각기둥으로 볼 때 몇 각기둥인지 쓰고, 밑면과 옆면을 어떻게 정하면 그렇게 볼 수 있는지 설명하시오.",
+      "bAnswer": "사각기둥이다. 마주 보는 두 직사각형 면을 밑면으로 보면 밑면이 사각형이고 나머지 $4$개의 면이 옆면이다.",
+      "bGoal": "직육면체가 사각기둥의 특별한 경우임을 이해한다.",
+      "bReason": "두 입체의 관계를 면의 모양으로 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사각기둥"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 두 면을 밑면으로 본다",
+            "마주 보는 두 직사각형이 밑면이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "면이 모두 {직사각형}인 사각기둥은 직육면체이다.",
+      "cReason": "'직사각형'이라는 면의 조건으로 직육면체를 정하는 분명한 성질이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1738,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc12",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "사각기둥과 직육면체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "면이 모두 {직사각형}인 사각기둥은 직육면체이다.",
+        "studentC": "면이 모두 □인 사각기둥은 직육면체이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "77a1fd50eb060bc8da5d4d9c0fc60476745cd3ff5c1cc0c813b48e792141e4ed",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "면이 모두 {직사각형}인 사각기둥은 직육면체이다.",
+      "cFrozenStudentSentence": "면이 모두 □인 사각기둥은 직육면체이다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "면이 모두 □인 사각기둥은 직육면체이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "면이 모두 {직사각형}인 사각기둥은 직육면체이다.",
+      "cStudentSentence": "면이 모두 □인 사각기둥은 직육면체이다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체를 각기둥으로 볼 때 몇 각기둥인지 쓰고, 밑면과 옆면을 어떻게 정하면 그렇게 볼 수 있는지 설명하시오.",
+        "answer": "사각기둥이다. 마주 보는 두 직사각형 면을 밑면으로 보면 밑면이 사각형이고 나머지 $4$개의 면이 옆면이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사각기둥"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 두 면을 밑면으로 본다",
+              "마주 보는 두 직사각형이 밑면이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "면이 모두 {직사각형}인 사각기둥은 직육면체이다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5766663abc38a232af2074340c1af9d6bc501dab2ece7f901f3489acadf15a5a",
+      "questionRevision": "planning-e5e6-20261006-5766663abc38",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc13",
+      "bDecision": "revise",
+      "bPrompt": "구각기둥의 밑면은 어떤 도형이고 옆면은 몇 개인지 쓰시오. 옆면의 수가 그렇게 되는 까닭도 밑면과 관련지어 설명하시오.",
+      "bAnswer": "밑면은 구각형이고 옆면은 $9$개이다. 밑면의 변마다 옆면이 하나씩 있기 때문이다.",
+      "bGoal": "옆면의 수가 밑면의 변의 수와 같음을 이해한다.",
+      "bReason": "이름에서 변의 수와 옆면 수를 읽는 활용 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$개",
+            "$9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 변마다 옆면이 하나씩 있다",
+            "옆면의 수는 밑면의 변의 수와 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'구각기둥'에서 '구각형'을 옮기는 자명한 빈칸이다.",
+      "exclusionReason": "C는 c1과 중복이고 이름만으로 답이 나온다. 대체: e6-1-2-2-c1.",
+      "exampleNeeded": false,
+      "sourceIndex": 1739,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc13",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "이름으로 밑면 알기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "구각기둥은 밑면이 {구각형}이고 옆면이 $9$개이다.",
+        "studentC": "구각기둥은 밑면이 □이고 옆면이 $9$개이다.",
+        "answers": [
+          "구각형"
+        ]
+      },
+      "sourceFingerprint": "9e0d7c8cfc4274f705aa214bb949bd76a0811392b489e813c9c7179da5099387",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "구각기둥의 밑면은 어떤 도형이고 옆면은 몇 개인지 쓰시오. 옆면의 수가 그렇게 되는 까닭도 밑면과 관련지어 설명하시오.",
+        "answer": "밑면은 구각형이고 옆면은 $9$개이다. 밑면의 변마다 옆면이 하나씩 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$개",
+              "$9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 변마다 옆면이 하나씩 있다",
+              "옆면의 수는 밑면의 변의 수와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 c1과 중복이고 이름만으로 답이 나온다. 대체: e6-1-2-2-c1."
+      },
+      "proposalFingerprint": "d06beba52a5780753f005f837a36ff48027bdf9b624985a76474515041192e7f",
+      "questionRevision": "planning-e5e6-20261006-d06beba52a57",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc14",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 어떤 수가 남는지 쓰고 그 까닭을 설명하시오. 오각기둥으로 확인하시오.",
+      "bAnswer": "밑면의 변의 수가 남는다. 모서리는 변의 수의 $3$배, 꼭짓점은 $2$배이기 때문이다. 오각기둥은 $15-10=5$이다.",
+      "bGoal": "모서리 수와 꼭짓점 수의 차가 변의 수임을 설명한다.",
+      "bReason": "3배와 2배의 차이라는 이유를 요구하는 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 변의 수",
+            "한 밑면의 변의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리는 변의 수의 $3$배이고 꼭짓점은 $2$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15-10=5$",
+            "$5$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 밑면의 {변의 수}가 남는다.",
+      "cReason": "차가 '변의 수'가 된다는 짧은 관계를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1740,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc14",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "모서리와 꼭짓점 수의 차",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 밑면의 {변의 수}가 남는다.",
+        "studentC": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 밑면의 □가 남는다.",
+        "answers": [
+          "변의 수"
+        ]
+      },
+      "sourceFingerprint": "41f0c65a601d872fe70e16103f47a20eb0ea7600bccae2c04d3e9ee5b9c588a6",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 밑면의 {변의 수}가 남는다.",
+      "cFrozenStudentSentence": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 밑면의 □가 남는다.",
+      "cProposedAnswers": [
+        "변의 수"
+      ],
+      "cStudentAfter": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 밑면의 □가 남는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변의 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 밑면의 {변의 수}가 남는다.",
+      "cStudentSentence": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 밑면의 □가 남는다.",
+      "cSlotAnswers": [
+        {
+          "key": "변의 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 어떤 수가 남는지 쓰고 그 까닭을 설명하시오. 오각기둥으로 확인하시오.",
+        "answer": "밑면의 변의 수가 남는다. 모서리는 변의 수의 $3$배, 꼭짓점은 $2$배이기 때문이다. 오각기둥은 $15-10=5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 변의 수",
+              "한 밑면의 변의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리는 변의 수의 $3$배이고 꼭짓점은 $2$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15-10=5$",
+              "$5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 모서리 수에서 꼭짓점 수를 빼면 밑면의 {변의 수}가 남는다.",
+        "acceptedAnswers": [
+          [
+            "변의 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5fa187f2526b9843792ee98f898819f383bf13437fa084fc14ed0a388e0c9e54",
+      "questionRevision": "planning-e5e6-20261006-5fa187f2526b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc15",
+      "bDecision": "revise",
+      "bPrompt": "각기둥 가운데 면의 수가 가장 적은 것은 무엇이고 면이 몇 개인지 쓰시오. 그 까닭도 설명하시오.",
+      "bAnswer": "삼각기둥이고 면은 $5$개이다. 밑면의 변이 가장 적은 경우가 $3$개이고 면은 변의 수에 $2$를 더하기 때문이다.",
+      "bGoal": "다각형의 변이 3개 이상임을 이용해 최소 면의 수를 찾는다.",
+      "bReason": "면 수 공식을 활용한 이유 설명 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각기둥"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개",
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 변이 가장 적은 경우가 $3$개이다",
+            "다각형의 변은 $3$개 이상이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "각기둥 가운데 면이 가장 적은 것은 {삼각기둥}으로 면이 $5$개이다.",
+      "cReason": "면이 5개라는 단서로 삼각기둥을 찾는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1741,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc15",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "면이 가장 적은 각기둥",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥 가운데 면이 가장 적은 것은 {삼각기둥}으로 면이 $5$개이다.",
+        "studentC": "각기둥 가운데 면이 가장 적은 것은 □으로 면이 $5$개이다.",
+        "answers": [
+          "삼각기둥"
+        ]
+      },
+      "sourceFingerprint": "71f06c19b6aa1dfa69178e2ffb4ff54211fa820e7546ac6efc0f5c37500ace7d",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥 가운데 면이 가장 적은 것은 {삼각기둥}으로 면이 $5$개이다.",
+      "cFrozenStudentSentence": "각기둥 가운데 면이 가장 적은 것은 □으로 면이 $5$개이다.",
+      "cProposedAnswers": [
+        "삼각기둥"
+      ],
+      "cStudentAfter": "각기둥 가운데 면이 가장 적은 것은 □으로 면이 $5$개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각기둥"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥 가운데 면이 가장 적은 것은 {삼각기둥}으로 면이 $5$개이다.",
+      "cStudentSentence": "각기둥 가운데 면이 가장 적은 것은 □으로 면이 $5$개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각기둥",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥 가운데 면의 수가 가장 적은 것은 무엇이고 면이 몇 개인지 쓰시오. 그 까닭도 설명하시오.",
+        "answer": "삼각기둥이고 면은 $5$개이다. 밑면의 변이 가장 적은 경우가 $3$개이고 면은 변의 수에 $2$를 더하기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각기둥"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$개",
+              "$5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 변이 가장 적은 경우가 $3$개이다",
+              "다각형의 변은 $3$개 이상이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥 가운데 면이 가장 적은 것은 {삼각기둥}으로 면이 $5$개이다.",
+        "acceptedAnswers": [
+          [
+            "삼각기둥"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1b1e1398bc51e9146bb53335831744089d3e9313afe6d481d5911e0b1bf39dad",
+      "questionRevision": "planning-e5e6-20261006-1b1e1398bc51",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc16",
+      "bDecision": "revise",
+      "bPrompt": "각기둥을 옆으로 눕혀 놓았을 때 높이는 어떤 기준으로 정하는지 쓰시오. 바닥에서 가장 높은 곳까지의 길이가 늘 높이와 같은지도 판단하시오.",
+      "bAnswer": "놓인 방향과 관계없이 두 밑면 사이의 거리로 정한다. 눕혔을 때 바닥에서 가장 높은 곳까지의 길이는 높이와 다를 수 있다.",
+      "bGoal": "높이는 놓은 모양이 아니라 두 밑면 사이의 거리임을 안다.",
+      "bReason": "눕힌 모양에서 높이를 잘못 잡는 오개념을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면 사이의 거리",
+            "두 밑면 사이의 수직 거리"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이와 다를 수 있다",
+            "늘 같지는 않다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "각기둥을 눕혀도 높이는 {두 밑면 사이}의 거리로 잰다.",
+      "cReason": "눕혀도 '두 밑면 사이'로 잰다는 기준을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1742,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc16",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "눕힌 각기둥의 높이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥을 눕혀도 높이는 {두 밑면 사이}의 거리로 잰다.",
+        "studentC": "각기둥을 눕혀도 높이는 □의 거리로 잰다.",
+        "answers": [
+          "두 밑면 사이"
+        ]
+      },
+      "sourceFingerprint": "4d1cb5afd7435d4e41534a605adcf30fea5b60279b881ec68280f2a67784a779",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "각기둥을 눕혀도 높이는 {두 밑면 사이}의 거리로 잰다.",
+      "cFrozenStudentSentence": "각기둥을 눕혀도 높이는 □의 거리로 잰다.",
+      "cProposedAnswers": [
+        "두 밑면 사이"
+      ],
+      "cStudentAfter": "각기둥을 눕혀도 높이는 □의 거리로 잰다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두 밑면 사이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥을 눕혀도 높이는 {두 밑면 사이}의 거리로 잰다.",
+      "cStudentSentence": "각기둥을 눕혀도 높이는 □의 거리로 잰다.",
+      "cSlotAnswers": [
+        {
+          "key": "두 밑면 사이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥을 옆으로 눕혀 놓았을 때 높이는 어떤 기준으로 정하는지 쓰시오. 바닥에서 가장 높은 곳까지의 길이가 늘 높이와 같은지도 판단하시오.",
+        "answer": "놓인 방향과 관계없이 두 밑면 사이의 거리로 정한다. 눕혔을 때 바닥에서 가장 높은 곳까지의 길이는 높이와 다를 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면 사이의 거리",
+              "두 밑면 사이의 수직 거리"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이와 다를 수 있다",
+              "늘 같지는 않다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥을 눕혀도 높이는 {두 밑면 사이}의 거리로 잰다.",
+        "acceptedAnswers": [
+          [
+            "두 밑면 사이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "670f0d6b13bef786779cf383a91f5632cdbd5fb1f397c67be40359fedfc4f79b",
+      "questionRevision": "planning-e5e6-20261006-670f0d6b13be",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc17",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 면의 수와 꼭짓점의 수를 더한 값을 모서리의 수와 비교하면 어떤 관계인지 쓰시오. 육각기둥으로 확인하시오.",
+      "bAnswer": "모서리의 수보다 $2$ 크다. 육각기둥은 면 $8$개와 꼭짓점 $12$개의 합이 $20$이고 모서리 $18$개보다 $2$ 크다.",
+      "bGoal": "면, 꼭짓점, 모서리 수 사이의 관계를 확인한다.",
+      "bReason": "세 개수 공식을 이용해 관계를 검산하는 응용이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리의 수보다 $2$ 크다",
+            "모서리 수 $+2$와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8+12=20$",
+            "$20=18+2$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "삼각기둥은 면이 $5$개, 꼭짓점이 $6$개, 모서리가 $9$개이다. 면의 수와 꼭짓점의 수를 더한 값은 모서리의 수보다 {$2$} 크다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "$2$개"
+          ]
+        }
+      ],
+      "cReason": "문장 끝 빈칸 대신 삼각기둥의 실제 수를 주고 차이를 계산하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1743,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc17",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "면 · 꼭짓점 · 모서리 수의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각기둥은 면의 수와 꼭짓점의 수를 더한 값이 모서리의 수보다 {$2$ 크다}.",
+        "studentC": "각기둥은 면의 수와 꼭짓점의 수를 더한 값이 모서리의 수보다 □.",
+        "answers": [
+          "$2$ 크다"
+        ]
+      },
+      "sourceFingerprint": "2e8d014e67c3a50a625800942e4d29a4fe7631eeb8f2d1ff14207ba32c4209d2",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "삼각기둥은 면이 $5$개, 꼭짓점이 $6$개, 모서리가 $9$개이다. 면의 수와 꼭짓점의 수를 더한 값은 모서리의 수보다 □ 크다.",
+      "cMarkedSentence": "삼각기둥은 면이 $5$개, 꼭짓점이 $6$개, 모서리가 $9$개이다. 면의 수와 꼭짓점의 수를 더한 값은 모서리의 수보다 {$2$} 크다.",
+      "cStudentSentence": "삼각기둥은 면이 $5$개, 꼭짓점이 $6$개, 모서리가 $9$개이다. 면의 수와 꼭짓점의 수를 더한 값은 모서리의 수보다 □ 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "$2$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 면의 수와 꼭짓점의 수를 더한 값을 모서리의 수와 비교하면 어떤 관계인지 쓰시오. 육각기둥으로 확인하시오.",
+        "answer": "모서리의 수보다 $2$ 크다. 육각기둥은 면 $8$개와 꼭짓점 $12$개의 합이 $20$이고 모서리 $18$개보다 $2$ 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모서리의 수보다 $2$ 크다",
+              "모서리 수 $+2$와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8+12=20$",
+              "$20=18+2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "삼각기둥은 면이 $5$개, 꼭짓점이 $6$개, 모서리가 $9$개이다. 면의 수와 꼭짓점의 수를 더한 값은 모서리의 수보다 {$2$} 크다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "$2$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "474a4646aa6bed0ae8b4f0894e5409cd306162e755bea6b23ac2add818838308",
+      "questionRevision": "planning-e5e6-20261006-474a4646aa6b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc18",
+      "bDecision": "revise",
+      "bPrompt": "어떤 각기둥의 모서리가 $21$개이다. 모서리 수로 밑면의 변의 수를 구하는 방법을 쓰고 이 각기둥의 이름을 쓰시오.",
+      "bAnswer": "모서리 수를 $3$으로 나누면 밑면의 변의 수이다. $21\\div3=7$이므로 칠각기둥이다.",
+      "bGoal": "모서리 수에서 밑면의 변의 수를 거꾸로 구해 이름을 정한다.",
+      "bReason": "모서리 수가 변의 수의 3배라는 것을 거꾸로 사용한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$으로 나눈다",
+            "$21\\div3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "칠각기둥"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "모서리가 $15$개인 각기둥의 밑면의 변의 수는 $15\\div$ {$3$} $=5$이므로 {오각기둥}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "오각기둥"
+          ]
+        }
+      ],
+      "cReason": "구체적 나눗셈 식으로 나누는 수와 이름을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1744,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc18",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "모서리 수로 이름 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각기둥의 모서리 수를 {$3$으로 나누면} 밑면의 변의 수가 나오므로 그것으로 이름을 정한다.",
+        "studentC": "각기둥의 모서리 수를 □ 밑면의 변의 수가 나오므로 그것으로 이름을 정한다.",
+        "answers": [
+          "$3$으로 나누면"
+        ]
+      },
+      "sourceFingerprint": "5d2912b1499c81855ba8529e8240509d84e17dc77d5a006c8a5d5a39d15fe3cd",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "오각기둥"
+      ],
+      "cStudentAfter": "모서리가 $15$개인 각기둥의 밑면의 변의 수는 $15\\div$ □ $=5$이므로 □이다.",
+      "cMarkedSentence": "모서리가 $15$개인 각기둥의 밑면의 변의 수는 $15\\div$ {$3$} $=5$이므로 {오각기둥}이다.",
+      "cStudentSentence": "모서리가 $15$개인 각기둥의 밑면의 변의 수는 $15\\div$ □ $=5$이므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "오각기둥",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 각기둥의 모서리가 $21$개이다. 모서리 수로 밑면의 변의 수를 구하는 방법을 쓰고 이 각기둥의 이름을 쓰시오.",
+        "answer": "모서리 수를 $3$으로 나누면 밑면의 변의 수이다. $21\\div3=7$이므로 칠각기둥이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$으로 나눈다",
+              "$21\\div3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "칠각기둥"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모서리가 $15$개인 각기둥의 밑면의 변의 수는 $15\\div$ {$3$} $=5$이므로 {오각기둥}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "오각기둥"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b101660f8909044aebed20e9f2dc4843d2592a8ae7e94acbf0918e7115cfd807",
+      "questionRevision": "planning-e5e6-20261006-b101660f8909",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "어떤 각기둥의 꼭짓점이 $16$개이다. 꼭짓점 수로 밑면의 변의 수를 구하는 방법을 쓰고 이 각기둥의 이름을 쓰시오.",
+      "bAnswer": "꼭짓점 수를 $2$로 나누면 한 밑면의 꼭짓점 수, 곧 변의 수이다. $16\\div2=8$이므로 팔각기둥이다.",
+      "bGoal": "꼭짓점 수에서 변의 수를 거꾸로 구해 이름을 정한다.",
+      "bReason": "두 밑면에 꼭짓점이 있다는 사실을 거꾸로 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$로 나눈다",
+            "$16\\div2$",
+            "반으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "팔각기둥"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "꼭짓점이 $12$개인 각기둥의 한 밑면의 꼭짓점 수는 $12\\div$ {$2$} $=6$이므로 {육각기둥}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "육각기둥"
+          ]
+        }
+      ],
+      "cReason": "긴 문장을 구체적 나눗셈으로 바꿔 나누는 수를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1745,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc19",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "꼭짓점 수로 이름 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각기둥의 꼭짓점 수를 {$2$로 나누면} 한 밑면의 꼭짓점 수, 곧 밑면의 변의 수가 나오므로 그것으로 이름을 정한다.",
+        "studentC": "각기둥의 꼭짓점 수를 □ 한 밑면의 꼭짓점 수, 곧 밑면의 변의 수가 나오므로 그것으로 이름을 정한다.",
+        "answers": [
+          "$2$로 나누면"
+        ]
+      },
+      "sourceFingerprint": "af4a7daaf9a859fad8f57fe813786c282bb473e849639193bf07a82f0f16ba92",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "육각기둥"
+      ],
+      "cStudentAfter": "꼭짓점이 $12$개인 각기둥의 한 밑면의 꼭짓점 수는 $12\\div$ □ $=6$이므로 □이다.",
+      "cMarkedSentence": "꼭짓점이 $12$개인 각기둥의 한 밑면의 꼭짓점 수는 $12\\div$ {$2$} $=6$이므로 {육각기둥}이다.",
+      "cStudentSentence": "꼭짓점이 $12$개인 각기둥의 한 밑면의 꼭짓점 수는 $12\\div$ □ $=6$이므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "육각기둥",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 각기둥의 꼭짓점이 $16$개이다. 꼭짓점 수로 밑면의 변의 수를 구하는 방법을 쓰고 이 각기둥의 이름을 쓰시오.",
+        "answer": "꼭짓점 수를 $2$로 나누면 한 밑면의 꼭짓점 수, 곧 변의 수이다. $16\\div2=8$이므로 팔각기둥이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$로 나눈다",
+              "$16\\div2$",
+              "반으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "팔각기둥"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "꼭짓점이 $12$개인 각기둥의 한 밑면의 꼭짓점 수는 $12\\div$ {$2$} $=6$이므로 {육각기둥}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "육각기둥"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "968b4733b1e1332cfe9db289c16be232546648b05ac7a87cb35d9fa1e31a33f2",
+      "questionRevision": "planning-e5e6-20261006-968b4733b1e1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc20",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 꼭짓점의 수는 짝수일까 홀수일까? 한 밑면의 꼭짓점 수를 이용해 그 까닭을 설명하고 칠각기둥의 꼭짓점 수도 구하시오.",
+      "bAnswer": "언제나 짝수이다. 두 밑면의 꼭짓점 수가 같아 한 밑면의 꼭짓점 수의 $2$배이기 때문이다. 칠각기둥은 $14$개이다.",
+      "bGoal": "꼭짓점 수가 2배라는 사실로 짝수임을 설명한다.",
+      "bReason": "규칙을 이용해 성질의 이유를 말하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "짝수"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 밑면의 꼭짓점 수의 $2$배",
+            "두 밑면의 꼭짓점 수가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$개",
+            "$14$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "꼭짓점 수가 한 밑면의 $2$배라는 내용은 xc9와 중복이다.",
+      "exclusionReason": "C는 xc9와 중복이다. 대체: e6-1-2-2-xc9.",
+      "exampleNeeded": false,
+      "sourceIndex": 1746,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc20",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "꼭짓점 수는 짝수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각기둥의 꼭짓점의 수는 한 밑면의 꼭짓점 수의 {$2$배}이므로 언제나 짝수이다.",
+        "studentC": "각기둥의 꼭짓점의 수는 한 밑면의 꼭짓점 수의 □이므로 언제나 짝수이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "sourceFingerprint": "0f0d3e651bdc8517e864a76de128b0429890b72e8110b61b3076b1058d54e94d",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "각기둥의 꼭짓점의 수는 짝수일까 홀수일까? 한 밑면의 꼭짓점 수를 이용해 그 까닭을 설명하고 칠각기둥의 꼭짓점 수도 구하시오.",
+        "answer": "언제나 짝수이다. 두 밑면의 꼭짓점 수가 같아 한 밑면의 꼭짓점 수의 $2$배이기 때문이다. 칠각기둥은 $14$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "짝수"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 밑면의 꼭짓점 수의 $2$배",
+              "두 밑면의 꼭짓점 수가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$14$개",
+              "$14$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 xc9와 중복이다. 대체: e6-1-2-2-xc9."
+      },
+      "proposalFingerprint": "a2391c96a5013cc4dacbc5e53d118d0b4c70e960b071759a25c23680552b2e4b",
+      "questionRevision": "planning-e5e6-20261006-a2391c96a501",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc21",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "모서리 수가 3의 배수임을 안다.",
+      "bReason": "모서리 수가 변의 수의 3배라는 앞 문항의 결과를 되풀이한다.",
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "변의 수의 3배라는 같은 내용을 반복한다.",
+      "exclusionReason": "c5와 xc10에서 이미 다룬다. 대체: e6-1-2-2-xc10, e6-1-2-2-c5.",
+      "exampleNeeded": false,
+      "sourceIndex": 1747,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc21",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "모서리 수는 $3$의 배수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각기둥의 모서리 수는 {한 밑면의 변의 수}의 $3$배이므로 언제나 $3$의 배수이다.",
+        "studentC": "각기둥의 모서리 수는 □의 $3$배이므로 언제나 $3$의 배수이다.",
+        "answers": [
+          "한 밑면의 변의 수"
+        ]
+      },
+      "sourceFingerprint": "8e01676e8e97d97cfd940c9c9654be5280aa058ba465c043788acb997c53f809",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c5와 xc10에서 이미 다룬다. 대체: e6-1-2-2-xc10, e6-1-2-2-c5.",
+        "cloze": "c5와 xc10에서 이미 다룬다. 대체: e6-1-2-2-xc10, e6-1-2-2-c5."
+      },
+      "proposalFingerprint": "603109f987d2e11b03da5a0543cfa44d728bc1647433264e02d248f9a6f330ef",
+      "questionRevision": "planning-e5e6-20261006-603109f987d2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc22",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 모든 모서리 길이의 합을 두 밑면의 둘레와 높이를 이용해 구하는 방법을 쓰시오. 한 변이 $3$ $\\mathrm{cm}$인 정삼각형이 밑면이고 높이가 $5$ $\\mathrm{cm}$인 삼각기둥의 모든 모서리 길이의 합도 구하시오.",
+      "bAnswer": "두 밑면 둘레의 합에 높이를 밑면의 변의 수만큼 더한다. 밑면 둘레의 합은 $9\\times2=18$ $\\mathrm{cm}$, 높이 모서리의 합은 $5\\times3=15$ $\\mathrm{cm}$이므로 $33$ $\\mathrm{cm}$이다.",
+      "bGoal": "밑면 둘레와 높이 모서리로 나누어 모서리 길이의 합을 구한다.",
+      "bReason": "모서리를 두 종류로 나누어 합을 구하는 절차를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면 둘레의 합과 높이를 밑면의 변의 수만큼 더한 값을 합한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$33$ $\\mathrm{cm}$",
+            "$33$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "높이가 $5$ $\\mathrm{cm}$인 삼각기둥에서 높이와 길이가 같은 모서리들의 길이의 합은 $5\\times$ {$3$} $=15$ $\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cReason": "높이 모서리가 밑면의 변의 수만큼 있음을 구체적 곱셈으로 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1748,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc22",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "모든 모서리 길이의 합",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각기둥의 모든 모서리 길이의 합은 두 밑면 둘레의 합에 {높이}를 밑면의 변의 수만큼 더한 값이다.",
+        "studentC": "각기둥의 모든 모서리 길이의 합은 두 밑면 둘레의 합에 □를 밑면의 변의 수만큼 더한 값이다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "sourceFingerprint": "29e3a2b92c9308c5a41661c64d4b6f22563c0a5beff40188b094d60b09af1bb1",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "높이가 $5$ $\\mathrm{cm}$인 삼각기둥에서 높이와 길이가 같은 모서리들의 길이의 합은 $5\\times$ □ $=15$ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "높이가 $5$ $\\mathrm{cm}$인 삼각기둥에서 높이와 길이가 같은 모서리들의 길이의 합은 $5\\times$ {$3$} $=15$ $\\mathrm{cm}$이다.",
+      "cStudentSentence": "높이가 $5$ $\\mathrm{cm}$인 삼각기둥에서 높이와 길이가 같은 모서리들의 길이의 합은 $5\\times$ □ $=15$ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 모든 모서리 길이의 합을 두 밑면의 둘레와 높이를 이용해 구하는 방법을 쓰시오. 한 변이 $3$ $\\mathrm{cm}$인 정삼각형이 밑면이고 높이가 $5$ $\\mathrm{cm}$인 삼각기둥의 모든 모서리 길이의 합도 구하시오.",
+        "answer": "두 밑면 둘레의 합에 높이를 밑면의 변의 수만큼 더한다. 밑면 둘레의 합은 $9\\times2=18$ $\\mathrm{cm}$, 높이 모서리의 합은 $5\\times3=15$ $\\mathrm{cm}$이므로 $33$ $\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면 둘레의 합과 높이를 밑면의 변의 수만큼 더한 값을 합한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$33$ $\\mathrm{cm}$",
+              "$33$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "높이가 $5$ $\\mathrm{cm}$인 삼각기둥에서 높이와 길이가 같은 모서리들의 길이의 합은 $5\\times$ {$3$} $=15$ $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "373a58b4ce04a5191aca4249b7bd5b77df6ff8f738c28474f8aa4d879b0cce78",
+      "questionRevision": "planning-e5e6-20261006-373a58b4ce04",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc23",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "꼭짓점 수가 옆면 수의 2배임을 안다.",
+      "bReason": "xc9의 2배 관계와 xc13의 옆면 수 관계를 합친 것이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "앞 문항들의 관계를 이어 붙인 중복 빈칸이다.",
+      "exclusionReason": "xc9와 xc13에서 다룬다. 대체: e6-1-2-2-xc9, e6-1-2-2-xc13.",
+      "exampleNeeded": false,
+      "sourceIndex": 1749,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc23",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "꼭짓점 수와 옆면 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각기둥의 꼭짓점 수는 옆면 수의 {$2$배}이다.",
+        "studentC": "각기둥의 꼭짓점 수는 옆면 수의 □이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "sourceFingerprint": "662f5f72cf34fd1b0dc71612a44bcafa313870fa0346731c0b312b52329cd2c1",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "xc9와 xc13에서 다룬다. 대체: e6-1-2-2-xc9, e6-1-2-2-xc13.",
+        "cloze": "xc9와 xc13에서 다룬다. 대체: e6-1-2-2-xc9, e6-1-2-2-xc13."
+      },
+      "proposalFingerprint": "a96539a25083e812da89ed3c09495d5b6ac58891327143e53a4ccb11b14aa62c",
+      "questionRevision": "planning-e5e6-20261006-a96539a25083",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc24",
+      "bDecision": "revise",
+      "bPrompt": "사각기둥에서 오각기둥으로 바뀔 때 모서리가 몇 개 늘어나는지 쓰고, 밑면의 변의 수와 관련지어 그 까닭을 설명하시오.",
+      "bAnswer": "$3$개 늘어난다. 모서리는 $12$개에서 $15$개가 되고, 모서리 수가 변의 수의 $3$배이므로 변이 $1$개 늘면 $3$개 늘기 때문이다.",
+      "bGoal": "변이 하나 늘 때 모서리가 3개 늘어남을 설명한다.",
+      "bReason": "모서리가 변의 수의 3배라는 관계의 변화 해석이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$개",
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리 수는 변의 수의 $3$배이다",
+            "변이 $1$개 늘면 $3$개 는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "밑면의 변이 하나 늘어 각기둥의 면이 $1$개 늘면 모서리는 {$3$개} 늘어난다.",
+      "cReason": "면이 1개 늘 때 모서리가 3개 늘어난다는 변화 관계를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1750,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc24",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "면이 하나 늘 때 모서리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면의 변이 하나 늘어 각기둥의 면이 $1$개 늘면 모서리는 {$3$개} 늘어난다.",
+        "studentC": "밑면의 변이 하나 늘어 각기둥의 면이 $1$개 늘면 모서리는 □ 늘어난다.",
+        "answers": [
+          "$3$개"
+        ]
+      },
+      "sourceFingerprint": "6abdab3fcccb8ce9bf4e504ed7554e8e4880d34c34e64d0672a3630c943e78f0",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cFrozenDefinition": "밑면의 변이 하나 늘어 각기둥의 면이 $1$개 늘면 모서리는 {$3$개} 늘어난다.",
+      "cFrozenStudentSentence": "밑면의 변이 하나 늘어 각기둥의 면이 $1$개 늘면 모서리는 □ 늘어난다.",
+      "cProposedAnswers": [
+        "$3$개"
+      ],
+      "cStudentAfter": "밑면의 변이 하나 늘어 각기둥의 면이 $1$개 늘면 모서리는 □ 늘어난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면의 변이 하나 늘어 각기둥의 면이 $1$개 늘면 모서리는 {$3$개} 늘어난다.",
+      "cStudentSentence": "밑면의 변이 하나 늘어 각기둥의 면이 $1$개 늘면 모서리는 □ 늘어난다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사각기둥에서 오각기둥으로 바뀔 때 모서리가 몇 개 늘어나는지 쓰고, 밑면의 변의 수와 관련지어 그 까닭을 설명하시오.",
+        "answer": "$3$개 늘어난다. 모서리는 $12$개에서 $15$개가 되고, 모서리 수가 변의 수의 $3$배이므로 변이 $1$개 늘면 $3$개 늘기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개",
+              "$3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리 수는 변의 수의 $3$배이다",
+              "변이 $1$개 늘면 $3$개 는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면의 변이 하나 늘어 각기둥의 면이 $1$개 늘면 모서리는 {$3$개} 늘어난다.",
+        "acceptedAnswers": [
+          [
+            "$3$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ec74f0330ac0168a3a5118f3a37d4ae794bb9d3e5ca41e8752f9fe6e0f074728",
+      "questionRevision": "planning-e5e6-20261006-ec74f0330ac0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc25",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 면의 수와 꼭짓점의 수로 각각 밑면의 변의 수를 구하는 방법을 쓰고, 두 방법의 결과가 어떠해야 하는지 설명하시오. 면이 $8$개, 꼭짓점이 $12$개인 입체도형이 각기둥일 수 있는지도 확인하시오.",
+      "bAnswer": "면의 수에서 $2$를 빼고, 꼭짓점의 수를 $2$로 나눈다. 두 값이 같아야 한다. $8-2=6$, $12\\div2=6$으로 같으므로 각기둥일 수 있다.",
+      "bGoal": "두 방법으로 구한 변의 수가 같아야 한다는 조건으로 각기둥인지 확인한다.",
+      "bReason": "검산 조건으로 개수 공식을 활용하는 응용 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면의 수에서 $2$를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점의 수를 $2$로 나눈다",
+            "꼭짓점의 수의 반"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 값이 같아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$과 $6$으로 같아 각기둥일 수 있다",
+            "육각기둥일 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "면이 $7$개, 꼭짓점이 $12$개인 입체도형에서 면의 수에서 $2$를 뺀 값은 {$5$}이고 꼭짓점 수의 반은 $6$이다. 두 값이 {다르므로} 각기둥이 될 수 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "다르므로",
+            "같지 않으므로",
+            "일치하지 않으므로"
+          ]
+        }
+      ],
+      "cReason": "추상적 빈칸 대신 두 값을 구해 비교하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1751,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc25",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "구성 요소 수의 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각기둥의 면 수에서 밑면 $2$개를 빼면 {한 밑면의 변 수}이고, 꼭짓점 수를 반으로 나누어도 {같은 수}가 나와야 한다.",
+        "studentC": "각기둥의 면 수에서 밑면 $2$개를 빼면 □이고, 꼭짓점 수를 반으로 나누어도 □가 나와야 한다.",
+        "answers": [
+          "한 밑면의 변 수",
+          "같은 수"
+        ]
+      },
+      "sourceFingerprint": "5afcbccde28963eb7affc80d84b9a6afe7e611fdcb864c6c1487884c60c1529a",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "다르므로"
+      ],
+      "cStudentAfter": "면이 $7$개, 꼭짓점이 $12$개인 입체도형에서 면의 수에서 $2$를 뺀 값은 □이고 꼭짓점 수의 반은 $6$이다. 두 값이 □ 각기둥이 될 수 없다.",
+      "cMarkedSentence": "면이 $7$개, 꼭짓점이 $12$개인 입체도형에서 면의 수에서 $2$를 뺀 값은 {$5$}이고 꼭짓점 수의 반은 $6$이다. 두 값이 {다르므로} 각기둥이 될 수 없다.",
+      "cStudentSentence": "면이 $7$개, 꼭짓점이 $12$개인 입체도형에서 면의 수에서 $2$를 뺀 값은 □이고 꼭짓점 수의 반은 $6$이다. 두 값이 □ 각기둥이 될 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "다르므로",
+          "equivalents": [
+            "같지 않으므로",
+            "일치하지 않으므로"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 면의 수와 꼭짓점의 수로 각각 밑면의 변의 수를 구하는 방법을 쓰고, 두 방법의 결과가 어떠해야 하는지 설명하시오. 면이 $8$개, 꼭짓점이 $12$개인 입체도형이 각기둥일 수 있는지도 확인하시오.",
+        "answer": "면의 수에서 $2$를 빼고, 꼭짓점의 수를 $2$로 나눈다. 두 값이 같아야 한다. $8-2=6$, $12\\div2=6$으로 같으므로 각기둥일 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면의 수에서 $2$를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 수를 $2$로 나눈다",
+              "꼭짓점의 수의 반"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 값이 같아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$과 $6$으로 같아 각기둥일 수 있다",
+              "육각기둥일 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "면이 $7$개, 꼭짓점이 $12$개인 입체도형에서 면의 수에서 $2$를 뺀 값은 {$5$}이고 꼭짓점 수의 반은 $6$이다. 두 값이 {다르므로} 각기둥이 될 수 없다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "다르므로",
+            "같지 않으므로",
+            "일치하지 않으므로"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1e50509f1b5216bb5220f5595befc12a3bd9896be7692da4f8f1e2941b0b4162",
+      "questionRevision": "planning-e5e6-20261006-1e50509f1b52",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "전개도에 모든 면이 그려진다는 점을 확인한다.",
+      "bReason": "자명하고 c1·c2와 겹쳐 독립 평가 가치가 낮다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'하나도 빠짐없이'는 동의어가 많고 얻는 개념이 적다.",
+      "exclusionReason": "전개도가 모든 면을 포함한다는 내용은 e6-1-2-3-c2의 면 모양·개수 확인에 이미 담긴다. 대체: e6-1-2-3-c2",
+      "exampleNeeded": false,
+      "sourceIndex": 1752,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "전개도에 그려지는 면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥의 전개도에는 각기둥의 면이 {하나도 빠짐없이} 그려진다.",
+        "studentC": "각기둥의 전개도에는 각기둥의 면이 □ 그려진다.",
+        "answers": [
+          "하나도 빠짐없이"
+        ]
+      },
+      "sourceFingerprint": "c49815ce3f573a33fd317ec0db0e25a1e664e18bf3fc1e2704c763e7eecfc3b4",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "전개도가 모든 면을 포함한다는 내용은 e6-1-2-3-c2의 면 모양·개수 확인에 이미 담긴다. 대체: e6-1-2-3-c2",
+        "cloze": "전개도가 모든 면을 포함한다는 내용은 e6-1-2-3-c2의 면 모양·개수 확인에 이미 담긴다. 대체: e6-1-2-3-c2"
+      },
+      "proposalFingerprint": "e0e366e4dfb2ea2d55ee2d8271c6c111206c231545faa524ef377d11d79c4dd1",
+      "questionRevision": "planning-e5e6-20261006-e0e366e4dfb2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc2",
+      "bDecision": "revise",
+      "bPrompt": "전개도를 그릴 때 자른 모서리와 접는 모서리는 각각 어떤 선으로 나타내는지 쓰시오.",
+      "bAnswer": "자른 모서리는 실선, 접는 모서리는 점선으로 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자른 모서리는 실선이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "접는 모서리는 점선이다"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "bGoal": "전개도를 읽을 때 쓰는 선의 약속을 안다.",
+      "bReason": "전개도를 읽는 데 필요한 표기 약속이며 두 선의 짝을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "전개도에서 잘린 모서리는 {실선}, 접는 모서리는 점선으로 그린다.",
+      "cReason": "실선과 점선의 짝을 묻는 짧은 문장이고 점선이 보여 한 답으로 정해진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1753,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "자른 선과 접는 선",
+        "kind": "방법",
+        "level": "하",
+        "definition": "전개도에서 잘린 모서리는 {실선}, 접는 모서리는 점선으로 그린다.",
+        "studentC": "전개도에서 잘린 모서리는 □, 접는 모서리는 점선으로 그린다.",
+        "answers": [
+          "실선"
+        ]
+      },
+      "sourceFingerprint": "b0b874b0a0e561c754f2842865b17d444988ea6a2a35111a2a7445e4202207d7",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "전개도에서 잘린 모서리는 {실선}, 접는 모서리는 점선으로 그린다.",
+      "cFrozenStudentSentence": "전개도에서 잘린 모서리는 □, 접는 모서리는 점선으로 그린다.",
+      "cProposedAnswers": [
+        "실선"
+      ],
+      "cStudentAfter": "전개도에서 잘린 모서리는 □, 접는 모서리는 점선으로 그린다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "실선"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "전개도에서 잘린 모서리는 {실선}, 접는 모서리는 점선으로 그린다.",
+      "cStudentSentence": "전개도에서 잘린 모서리는 □, 접는 모서리는 점선으로 그린다.",
+      "cSlotAnswers": [
+        {
+          "key": "실선",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전개도를 그릴 때 자른 모서리와 접는 모서리는 각각 어떤 선으로 나타내는지 쓰시오.",
+        "answer": "자른 모서리는 실선, 접는 모서리는 점선으로 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자른 모서리는 실선이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "접는 모서리는 점선이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전개도에서 잘린 모서리는 {실선}, 접는 모서리는 점선으로 그린다.",
+        "acceptedAnswers": [
+          [
+            "실선"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3b35fc782501a489472cff376bb3cea633d9d9b58c253a563a6a1f3df646d363",
+      "questionRevision": "planning-e5e6-20261006-3b35fc782501",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc3",
+      "bDecision": "revise",
+      "bPrompt": "사각기둥의 전개도에 그려지는 밑면과 옆면의 개수를 각각 쓰고, 옆면의 개수가 밑면의 무엇의 개수와 같은지 설명하시오.",
+      "bAnswer": "밑면 $2$개, 옆면 $4$개로 모두 $6$개이다. 옆면의 개수는 밑면의 변의 수와 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면 $2$개, 옆면 $4$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면의 수는 밑면의 변의 수와 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "옆면의 수가 밑면의 변의 수와 같음을 사각기둥에서 확인한다.",
+      "bReason": "단순 개수 대신 옆면 수와 밑면 변의 수의 관계를 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "사각기둥의 전개도는 밑면 {$2$개}와 옆면 $4$개, 모두 $6$개의 면으로 이루어진다.",
+      "cReason": "옆면 $4$개와 전체 $6$개를 이용해 밑면 개수를 구하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1754,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "사각기둥 전개도의 면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사각기둥의 전개도는 밑면 {$2$개}와 옆면 $4$개, 모두 $6$개의 면으로 이루어진다.",
+        "studentC": "사각기둥의 전개도는 밑면 □와 옆면 $4$개, 모두 $6$개의 면으로 이루어진다.",
+        "answers": [
+          "$2$개"
+        ]
+      },
+      "sourceFingerprint": "c78a917484f7e97d05caccf4835a37c8879cfb243178ef609cdc2aa657ab223b",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "사각기둥의 전개도는 밑면 {$2$개}와 옆면 $4$개, 모두 $6$개의 면으로 이루어진다.",
+      "cFrozenStudentSentence": "사각기둥의 전개도는 밑면 □와 옆면 $4$개, 모두 $6$개의 면으로 이루어진다.",
+      "cProposedAnswers": [
+        "$2$개"
+      ],
+      "cStudentAfter": "사각기둥의 전개도는 밑면 □와 옆면 $4$개, 모두 $6$개의 면으로 이루어진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "사각기둥의 전개도는 밑면 {$2$개}와 옆면 $4$개, 모두 $6$개의 면으로 이루어진다.",
+      "cStudentSentence": "사각기둥의 전개도는 밑면 □와 옆면 $4$개, 모두 $6$개의 면으로 이루어진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사각기둥의 전개도에 그려지는 밑면과 옆면의 개수를 각각 쓰고, 옆면의 개수가 밑면의 무엇의 개수와 같은지 설명하시오.",
+        "answer": "밑면 $2$개, 옆면 $4$개로 모두 $6$개이다. 옆면의 개수는 밑면의 변의 수와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면 $2$개, 옆면 $4$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면의 수는 밑면의 변의 수와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사각기둥의 전개도는 밑면 {$2$개}와 옆면 $4$개, 모두 $6$개의 면으로 이루어진다.",
+        "acceptedAnswers": [
+          [
+            "$2$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "732c148dccc7e623b4c5d434996715bb553b9c575a896a7d026c1144f40cb571",
+      "questionRevision": "planning-e5e6-20261006-732c148dccc7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "전개도를 접으면 처음 입체가 됨을 안다.",
+      "bReason": "전개도 정의의 반복이라 새 판단이 없다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "답이 문장에서 거의 정해져 '처음 입체'를 베끼는 수준이다.",
+      "exclusionReason": "전개도를 접으면 입체가 된다는 내용은 정의와 판별 문항에 포함된다. 대체: e6-1-2-3-c1, e6-1-2-3-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 1755,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "전개도를 접으면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "전개도를 점선을 따라 접으면 다시 {처음 입체}가 된다.",
+        "studentC": "전개도를 점선을 따라 접으면 다시 □가 된다.",
+        "answers": [
+          "처음 입체"
+        ]
+      },
+      "sourceFingerprint": "c76c82f0ac9eaed201cf76c66a24be9e03bb23337dd42441cd48e9ff75f07bb9",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "전개도를 접으면 입체가 된다는 내용은 정의와 판별 문항에 포함된다. 대체: e6-1-2-3-c1, e6-1-2-3-c3",
+        "cloze": "전개도를 접으면 입체가 된다는 내용은 정의와 판별 문항에 포함된다. 대체: e6-1-2-3-c1, e6-1-2-3-c3"
+      },
+      "proposalFingerprint": "7dfd60643cb99a93a31e3f34065d0c4ab69f119db029ac5ea037179b8c3eeee6",
+      "questionRevision": "planning-e5e6-20261006-7dfd60643cb9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc5",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 옆면 직사각형들을 한 줄로 이어 붙이면 전체는 어떤 모양이 되는지 쓰시오.",
+      "bAnswer": "하나의 큰 직사각형이 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 직사각형",
+            "하나의 직사각형"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "이은 옆면 전체가 직사각형임을 안다.",
+      "bReason": "모든 옆면의 높이가 같아 한 줄로 이으면 직사각형이 되는 사실을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "각기둥의 옆면을 한 줄로 이어 붙인 전체 모양은 하나의 큰 {직사각형}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형",
+            "큰 직사각형"
+          ]
+        }
+      ],
+      "cReason": "원문의 '큰 직사각형처럼 그린다'는 표현을 '직사각형'만 정답으로 인정하게 단순화한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1756,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc5",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "이어 그린 옆면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥의 전개도에서 옆면들은 흔히 한 줄로 이어 {큰 직사각형}처럼 그린다.",
+        "studentC": "각기둥의 전개도에서 옆면들은 흔히 한 줄로 이어 □처럼 그린다.",
+        "answers": [
+          "큰 직사각형"
+        ]
+      },
+      "sourceFingerprint": "4fcbc8d20abd70f25637710528ad33072bfe0a89c965e8dace371a1f35cc14eb",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "각기둥의 옆면을 한 줄로 이어 붙인 전체 모양은 하나의 큰 □이다.",
+      "cMarkedSentence": "각기둥의 옆면을 한 줄로 이어 붙인 전체 모양은 하나의 큰 {직사각형}이다.",
+      "cStudentSentence": "각기둥의 옆면을 한 줄로 이어 붙인 전체 모양은 하나의 큰 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": [
+            "큰 직사각형"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 옆면 직사각형들을 한 줄로 이어 붙이면 전체는 어떤 모양이 되는지 쓰시오.",
+        "answer": "하나의 큰 직사각형이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 직사각형",
+              "하나의 직사각형"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 옆면을 한 줄로 이어 붙인 전체 모양은 하나의 큰 {직사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "직사각형",
+            "큰 직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5e6afe685ee1e78dabd9ffa932e4cff9d7630a3567db1600dbb9d4ad654f217f",
+      "questionRevision": "planning-e5e6-20261006-5e6afe685ee1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc6",
+      "bDecision": "revise",
+      "bPrompt": "사각기둥의 옆면 직사각형 $4$개를 한 줄로 이을 때 어떤 순서로 이어야 하는지, 그 까닭을 설명하시오.",
+      "bAnswer": "밑면의 둘레를 따라 이웃한 변의 순서대로 이어야 한다. 그래야 접었을 때 각 옆면이 밑면의 해당 변과 맞닿는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 둘레를 따라 이웃한 순서",
+            "밑면의 변이 이어진 순서"
+          ]
+        },
+        {
+          "anyOf": [
+            "접었을 때 각 옆면이 밑면의 해당 변과 맞닿아야 한다",
+            "접었을 때 옆면이 제자리에 와야 한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "옆면 순서와 밑면 변의 위치 관계를 설명한다.",
+      "bReason": "방법과 까닭을 모두 묻되 결론은 질문에 쓰지 않는다.",
+      "cDecision": "revise",
+      "cAfter": "사각기둥의 옆면을 한 줄로 이을 때는 밑면의 둘레를 따라 {이웃한} 옆면끼리 이어 붙인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "이웃한",
+            "옆에 있는",
+            "맞닿은"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸이 긴 구절이고 뒤 문장이 까닭을 베끼게 하므로 한 낱말로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1757,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc6",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "옆면을 한 줄로 잇는 순서",
+        "kind": "방법",
+        "level": "하",
+        "definition": "옆면은 {밑면의 둘레를 따라 이웃한 순서}로 잇는다. 접었을 때 각 옆면이 밑면의 해당 변과 맞닿아야 하기 때문이다.",
+        "studentC": "옆면은 □로 잇는다. 접었을 때 각 옆면이 밑면의 해당 변과 맞닿아야 하기 때문이다.",
+        "answers": [
+          "밑면의 둘레를 따라 이웃한 순서"
+        ]
+      },
+      "sourceFingerprint": "c37534808c596b87c833ccde2c6aa591fd173ee86d795e988a5287ce00c4ceb6",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "이웃한"
+      ],
+      "cStudentAfter": "사각기둥의 옆면을 한 줄로 이을 때는 밑면의 둘레를 따라 □ 옆면끼리 이어 붙인다.",
+      "cMarkedSentence": "사각기둥의 옆면을 한 줄로 이을 때는 밑면의 둘레를 따라 {이웃한} 옆면끼리 이어 붙인다.",
+      "cStudentSentence": "사각기둥의 옆면을 한 줄로 이을 때는 밑면의 둘레를 따라 □ 옆면끼리 이어 붙인다.",
+      "cSlotAnswers": [
+        {
+          "key": "이웃한",
+          "equivalents": [
+            "옆에 있는",
+            "맞닿은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사각기둥의 옆면 직사각형 $4$개를 한 줄로 이을 때 어떤 순서로 이어야 하는지, 그 까닭을 설명하시오.",
+        "answer": "밑면의 둘레를 따라 이웃한 변의 순서대로 이어야 한다. 그래야 접었을 때 각 옆면이 밑면의 해당 변과 맞닿는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 둘레를 따라 이웃한 순서",
+              "밑면의 변이 이어진 순서"
+            ]
+          },
+          {
+            "anyOf": [
+              "접었을 때 각 옆면이 밑면의 해당 변과 맞닿아야 한다",
+              "접었을 때 옆면이 제자리에 와야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사각기둥의 옆면을 한 줄로 이을 때는 밑면의 둘레를 따라 {이웃한} 옆면끼리 이어 붙인다.",
+        "acceptedAnswers": [
+          [
+            "이웃한",
+            "옆에 있는",
+            "맞닿은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "28c84dea4601cbcf30b15a8426b09ab37f234976f737706d6f09b99adec99bf3",
+      "questionRevision": "planning-e5e6-20261006-28c84dea4601",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc7",
+      "bDecision": "revise",
+      "bPrompt": "전개도를 접었을 때 서로 맞닿는 두 선분의 길이는 어떤 관계여야 하는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "길이가 같아야 한다. 다르면 접었을 때 한 모서리로 완전히 맞붙지 못하고 어긋나기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 선분의 길이가 같아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다르면 한 모서리로 맞붙지 못한다",
+            "다르면 어긋나 틈이나 겹침이 생긴다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "맞닿는 선분의 길이가 같아야 하는 까닭을 안다.",
+      "bReason": "길이 비교 규칙과 그 이유를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "전개도를 접었을 때 맞닿는 두 선분의 길이는 {같아야} 한다.",
+      "cReason": "맞닿는 두 선분의 길이 관계만 묻는 짧은 문장으로 조건이 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1758,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc7",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "맞닿는 두 선분",
+        "kind": "성질",
+        "level": "하",
+        "definition": "전개도를 접었을 때 맞닿는 두 선분의 길이는 {같아야} 한다.",
+        "studentC": "전개도를 접었을 때 맞닿는 두 선분의 길이는 □ 한다.",
+        "answers": [
+          "같아야"
+        ]
+      },
+      "sourceFingerprint": "bdd996dcbea3f1bff249d082b3f310ca2c18e6ff60e5f6616be6e5699195cb1e",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "전개도를 접었을 때 맞닿는 두 선분의 길이는 {같아야} 한다.",
+      "cFrozenStudentSentence": "전개도를 접었을 때 맞닿는 두 선분의 길이는 □ 한다.",
+      "cProposedAnswers": [
+        "같아야"
+      ],
+      "cStudentAfter": "전개도를 접었을 때 맞닿는 두 선분의 길이는 □ 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같아야"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "전개도를 접었을 때 맞닿는 두 선분의 길이는 {같아야} 한다.",
+      "cStudentSentence": "전개도를 접었을 때 맞닿는 두 선분의 길이는 □ 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "같아야",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전개도를 접었을 때 서로 맞닿는 두 선분의 길이는 어떤 관계여야 하는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "길이가 같아야 한다. 다르면 접었을 때 한 모서리로 완전히 맞붙지 못하고 어긋나기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 선분의 길이가 같아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다르면 한 모서리로 맞붙지 못한다",
+              "다르면 어긋나 틈이나 겹침이 생긴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전개도를 접었을 때 맞닿는 두 선분의 길이는 {같아야} 한다.",
+        "acceptedAnswers": [
+          [
+            "같아야"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b77ce832a82a5bcc953ed406cd91b32adc32e4202501bf5a0b8ea20e98db6491",
+      "questionRevision": "planning-e5e6-20261006-b77ce832a82a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc9",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 전개도에서 옆면 직사각형의 네 변 중 길이가 각기둥의 높이와 같은 변은 어느 변인지 설명하시오.",
+      "bAnswer": "두 밑면 사이를 잇는 변이다. 밑면과 맞닿는 변이 아닌 변이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면 사이를 잇는 변",
+            "밑면과 맞닿지 않는 변"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "옆면의 어느 변이 높이가 되는지 가려낸다.",
+      "bReason": "높이가 두 밑면 사이의 거리라는 뜻과 전개도의 변을 연결한다.",
+      "cDecision": "revise",
+      "cAfter": "각기둥의 옆면 직사각형에서 밑면과 맞닿은 변이 아닌 변의 길이는 각기둥의 {높이}와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "높이"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '두 밑면 사이를 잇는 변'이 길어서 짧은 낱말 '높이'를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1759,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc9",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "옆면에서 높이와 길이가 같은 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "전개도에서 옆면 직사각형의 변 가운데 {두 밑면 사이를 잇는 변}의 길이는 각기둥의 높이와 같다.",
+        "studentC": "전개도에서 옆면 직사각형의 변 가운데 □의 길이는 각기둥의 높이와 같다.",
+        "answers": [
+          "두 밑면 사이를 잇는 변"
+        ]
+      },
+      "sourceFingerprint": "fe703befbd65fa1335f56104293862083d5579fa531a45a99f90616ff28c5108",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "높이"
+      ],
+      "cStudentAfter": "각기둥의 옆면 직사각형에서 밑면과 맞닿은 변이 아닌 변의 길이는 각기둥의 □와 같다.",
+      "cMarkedSentence": "각기둥의 옆면 직사각형에서 밑면과 맞닿은 변이 아닌 변의 길이는 각기둥의 {높이}와 같다.",
+      "cStudentSentence": "각기둥의 옆면 직사각형에서 밑면과 맞닿은 변이 아닌 변의 길이는 각기둥의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "높이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 전개도에서 옆면 직사각형의 네 변 중 길이가 각기둥의 높이와 같은 변은 어느 변인지 설명하시오.",
+        "answer": "두 밑면 사이를 잇는 변이다. 밑면과 맞닿는 변이 아닌 변이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면 사이를 잇는 변",
+              "밑면과 맞닿지 않는 변"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 옆면 직사각형에서 밑면과 맞닿은 변이 아닌 변의 길이는 각기둥의 {높이}와 같다.",
+        "acceptedAnswers": [
+          [
+            "높이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9a1a9b8a1808abfaee251c513e415b0ee4af3a165d05c3fac9ba3ada5a064435",
+      "questionRevision": "planning-e5e6-20261006-9a1a9b8a1808",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc10",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 가로 $4\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형인 사각기둥의 옆면을 한 줄로 이은 직사각형에서, 밑면과 맞닿는 쪽 변의 길이를 구하고 그 길이가 밑면의 어떤 길이와 같은지 까닭과 함께 설명하시오.",
+      "bAnswer": "$14\\,\\mathrm{cm}$이다. 옆면마다 밑면의 한 변과 맞닿는 변이 차례로 이어져 있으므로 밑면의 둘레 $(4+3)\\times2=14\\,\\mathrm{cm}$와 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 둘레와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "이은 옆면의 한 변이 밑면의 둘레와 같음을 설명하고 구한다.",
+      "bReason": "일반 관계와 까닭을 묻고 구체적인 수로 확인하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "옆면을 한 줄로 이어 붙인 직사각형에서 밑면을 두르는 쪽 변의 길이는 밑면의 {둘레}와 같다.",
+      "cReason": "짧은 낱말 '둘레'만 묻는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1760,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc10",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "한 줄로 이은 옆면에서 밑면을 두르는 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "옆면을 한 줄로 이어 붙인 직사각형에서 밑면을 두르는 쪽 변의 길이는 밑면의 {둘레}와 같다.",
+        "studentC": "옆면을 한 줄로 이어 붙인 직사각형에서 밑면을 두르는 쪽 변의 길이는 밑면의 □와 같다.",
+        "answers": [
+          "둘레"
+        ]
+      },
+      "sourceFingerprint": "d7efc01d02922146fd0238d06f5749eb4364473025296d46759dabcaeba9247a",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "옆면을 한 줄로 이어 붙인 직사각형에서 밑면을 두르는 쪽 변의 길이는 밑면의 {둘레}와 같다.",
+      "cFrozenStudentSentence": "옆면을 한 줄로 이어 붙인 직사각형에서 밑면을 두르는 쪽 변의 길이는 밑면의 □와 같다.",
+      "cProposedAnswers": [
+        "둘레"
+      ],
+      "cStudentAfter": "옆면을 한 줄로 이어 붙인 직사각형에서 밑면을 두르는 쪽 변의 길이는 밑면의 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "둘레"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "옆면을 한 줄로 이어 붙인 직사각형에서 밑면을 두르는 쪽 변의 길이는 밑면의 {둘레}와 같다.",
+      "cStudentSentence": "옆면을 한 줄로 이어 붙인 직사각형에서 밑면을 두르는 쪽 변의 길이는 밑면의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "둘레",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 가로 $4\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형인 사각기둥의 옆면을 한 줄로 이은 직사각형에서, 밑면과 맞닿는 쪽 변의 길이를 구하고 그 길이가 밑면의 어떤 길이와 같은지 까닭과 함께 설명하시오.",
+        "answer": "$14\\,\\mathrm{cm}$이다. 옆면마다 밑면의 한 변과 맞닿는 변이 차례로 이어져 있으므로 밑면의 둘레 $(4+3)\\times2=14\\,\\mathrm{cm}$와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 둘레와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$14\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "옆면을 한 줄로 이어 붙인 직사각형에서 밑면을 두르는 쪽 변의 길이는 밑면의 {둘레}와 같다.",
+        "acceptedAnswers": [
+          [
+            "둘레"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "79f1dd7d2cad2c35047b43d4aa86bc16b019c6bc54287d505e39a1cb0526adef",
+      "questionRevision": "planning-e5e6-20261006-79f1dd7d2cad",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc11",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 전개도에서 서로 다른 면에 그려진 꼭짓점 몇 개가 접었을 때 한 점에서 만난다. 이 꼭짓점들은 각기둥에서 몇 개의 꼭짓점이 되는지 쓰시오.",
+      "bAnswer": "각기둥의 같은 꼭짓점 하나가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "하나의 같은 꼭짓점이 된다",
+            "$1$개의 꼭짓점이 된다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "전개도의 여러 꼭짓점이 입체에서 한 꼭짓점이 됨을 안다.",
+      "bReason": "전개도의 꼭짓점 수와 입체의 꼭짓점 수를 구분하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "접었을 때 한 점에서 만나는 전개도의 꼭짓점들은 삼각기둥에서 {하나}의 꼭짓점이 되므로, 삼각기둥의 꼭짓점은 모두 {$6$개}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "하나",
+            "$1$개",
+            "한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$개",
+            "$6$"
+          ]
+        }
+      ],
+      "cReason": "원문은 답이 앞 구절에서 거의 드러나므로 삼각기둥의 꼭짓점 수까지 확인하게 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1761,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc11",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "접었을 때 만나는 면의 꼭짓점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "전개도에 그려진 각 면의 꼭짓점 중 접었을 때 한 점에서 만나는 것들은 각기둥의 {같은 꼭짓점}이 된다.",
+        "studentC": "전개도에 그려진 각 면의 꼭짓점 중 접었을 때 한 점에서 만나는 것들은 각기둥의 □이 된다.",
+        "answers": [
+          "같은 꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "24c84876de6c8f1f87e81c04a5d3eda79fdf301c88d0015885705f8fcc26f4cf",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "하나",
+        "$6$개"
+      ],
+      "cStudentAfter": "접었을 때 한 점에서 만나는 전개도의 꼭짓점들은 삼각기둥에서 □의 꼭짓점이 되므로, 삼각기둥의 꼭짓점은 모두 □이다.",
+      "cMarkedSentence": "접었을 때 한 점에서 만나는 전개도의 꼭짓점들은 삼각기둥에서 {하나}의 꼭짓점이 되므로, 삼각기둥의 꼭짓점은 모두 {$6$개}이다.",
+      "cStudentSentence": "접었을 때 한 점에서 만나는 전개도의 꼭짓점들은 삼각기둥에서 □의 꼭짓점이 되므로, 삼각기둥의 꼭짓점은 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "하나",
+          "equivalents": [
+            "$1$개",
+            "한"
+          ]
+        },
+        {
+          "key": "$6$개",
+          "equivalents": [
+            "$6$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 전개도에서 서로 다른 면에 그려진 꼭짓점 몇 개가 접었을 때 한 점에서 만난다. 이 꼭짓점들은 각기둥에서 몇 개의 꼭짓점이 되는지 쓰시오.",
+        "answer": "각기둥의 같은 꼭짓점 하나가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "하나의 같은 꼭짓점이 된다",
+              "$1$개의 꼭짓점이 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "접었을 때 한 점에서 만나는 전개도의 꼭짓점들은 삼각기둥에서 {하나}의 꼭짓점이 되므로, 삼각기둥의 꼭짓점은 모두 {$6$개}이다.",
+        "acceptedAnswers": [
+          [
+            "하나",
+            "$1$개",
+            "한"
+          ],
+          [
+            "$6$개",
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "61a71d7dbccf1e3cb3f2a71c5cfb9a1bc28cb10b5a911dec89f5e3a55e1209bb",
+      "questionRevision": "planning-e5e6-20261006-61a71d7dbccf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc12",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 전개도에서 길이를 모르는 변이 있다. 접었을 때 맞닿는 선분을 이용해 그 길이를 알아내는 방법을 설명하시오. 예를 들어 밑면이 한 변 $5\\,\\mathrm{cm}$인 정삼각형인 삼각기둥에서 옆면의 밑면과 맞닿는 변의 길이는 얼마인가?",
+      "bAnswer": "접었을 때 맞닿는 두 선분은 길이가 같으므로, 맞닿는 선분의 길이를 그대로 쓴다. 예에서는 $5\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "맞닿는 두 선분은 길이가 같다",
+            "맞닿는 선분의 길이를 그대로 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "맞닿는 선분을 근거로 모르는 변의 길이를 찾는다.",
+      "bReason": "규칙을 적용해 모르는 길이를 추론하는 목표다.",
+      "cDecision": "revise",
+      "cAfter": "밑면의 한 변이 $5\\,\\mathrm{cm}$이고 옆면에서 그 변과 맞닿는 변의 길이를 모를 때, 접으면 두 선분의 길이가 같으므로 모르는 변은 {$5\\,\\mathrm{cm}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5\\,\\mathrm{cm}$",
+            "$5$"
+          ]
+        }
+      ],
+      "cReason": "xc7과 겹치는 규칙 문장 대신 실제 수로 길이를 알아내는 적용으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1762,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc12",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "맞닿는 선분으로 길이 알기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "접었을 때 맞닿는 두 선분은 길이가 {같으므로}, 모르는 변의 길이는 그 변과 맞닿는 선분의 길이로 알 수 있다.",
+        "studentC": "접었을 때 맞닿는 두 선분은 길이가 □, 모르는 변의 길이는 그 변과 맞닿는 선분의 길이로 알 수 있다.",
+        "answers": [
+          "같으므로"
+        ]
+      },
+      "sourceFingerprint": "c0d2063a3f70d56df557fb649b1f2f0a7f2e2cca34ad7b7b2aea8135695e4fa7",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "$5\\,\\mathrm{cm}$"
+      ],
+      "cStudentAfter": "밑면의 한 변이 $5\\,\\mathrm{cm}$이고 옆면에서 그 변과 맞닿는 변의 길이를 모를 때, 접으면 두 선분의 길이가 같으므로 모르는 변은 □이다.",
+      "cMarkedSentence": "밑면의 한 변이 $5\\,\\mathrm{cm}$이고 옆면에서 그 변과 맞닿는 변의 길이를 모를 때, 접으면 두 선분의 길이가 같으므로 모르는 변은 {$5\\,\\mathrm{cm}$}이다.",
+      "cStudentSentence": "밑면의 한 변이 $5\\,\\mathrm{cm}$이고 옆면에서 그 변과 맞닿는 변의 길이를 모를 때, 접으면 두 선분의 길이가 같으므로 모르는 변은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5\\,\\mathrm{cm}$",
+          "equivalents": [
+            "$5$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 전개도에서 길이를 모르는 변이 있다. 접었을 때 맞닿는 선분을 이용해 그 길이를 알아내는 방법을 설명하시오. 예를 들어 밑면이 한 변 $5\\,\\mathrm{cm}$인 정삼각형인 삼각기둥에서 옆면의 밑면과 맞닿는 변의 길이는 얼마인가?",
+        "answer": "접었을 때 맞닿는 두 선분은 길이가 같으므로, 맞닿는 선분의 길이를 그대로 쓴다. 예에서는 $5\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "맞닿는 두 선분은 길이가 같다",
+              "맞닿는 선분의 길이를 그대로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면의 한 변이 $5\\,\\mathrm{cm}$이고 옆면에서 그 변과 맞닿는 변의 길이를 모를 때, 접으면 두 선분의 길이가 같으므로 모르는 변은 {$5\\,\\mathrm{cm}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5\\,\\mathrm{cm}$",
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "aec309eaebbadb0991139e13d48b2392ce7780ce40f005b17353fe2fef6ab080",
+      "questionRevision": "planning-e5e6-20261006-aec309eaebba",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc13",
+      "bDecision": "revise",
+      "bPrompt": "같은 각기둥의 전개도는 한 가지뿐인지 쓰고, 달라진다면 무엇이 달라서 전개도의 모양이 달라지는지 설명하시오.",
+      "bAnswer": "한 가지뿐이 아니다. 어느 모서리를 자르느냐에 따라 여러 가지 전개도가 나온다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전개도는 여러 가지이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자르는 모서리가 다르면 전개도가 달라진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "전개도가 하나로 정해지지 않음을 안다.",
+      "bReason": "자르는 모서리와 전개도 모양의 관계를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "같은 각기둥이라도 {자르는 모서리}에 따라 여러 가지 전개도가 나온다.",
+      "cReason": "'자르는 모서리'라는 짧은 구절로 핵심 원인을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1763,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc13",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "여러 가지 전개도",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 각기둥이라도 {자르는 모서리}에 따라 여러 가지 전개도가 나온다.",
+        "studentC": "같은 각기둥이라도 □에 따라 여러 가지 전개도가 나온다.",
+        "answers": [
+          "자르는 모서리"
+        ]
+      },
+      "sourceFingerprint": "f99ecd5ed4f03499151b86dc93d634d1fc58b39ec18bcd4255ee24da43fc5a1c",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "같은 각기둥이라도 {자르는 모서리}에 따라 여러 가지 전개도가 나온다.",
+      "cFrozenStudentSentence": "같은 각기둥이라도 □에 따라 여러 가지 전개도가 나온다.",
+      "cProposedAnswers": [
+        "자르는 모서리"
+      ],
+      "cStudentAfter": "같은 각기둥이라도 □에 따라 여러 가지 전개도가 나온다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자르는 모서리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "같은 각기둥이라도 {자르는 모서리}에 따라 여러 가지 전개도가 나온다.",
+      "cStudentSentence": "같은 각기둥이라도 □에 따라 여러 가지 전개도가 나온다.",
+      "cSlotAnswers": [
+        {
+          "key": "자르는 모서리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 각기둥의 전개도는 한 가지뿐인지 쓰고, 달라진다면 무엇이 달라서 전개도의 모양이 달라지는지 설명하시오.",
+        "answer": "한 가지뿐이 아니다. 어느 모서리를 자르느냐에 따라 여러 가지 전개도가 나온다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전개도는 여러 가지이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자르는 모서리가 다르면 전개도가 달라진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 각기둥이라도 {자르는 모서리}에 따라 여러 가지 전개도가 나온다.",
+        "acceptedAnswers": [
+          [
+            "자르는 모서리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c90d9d6d844babe325ec487daa5285e9b758516cc81dadbabe433824789ecbc8",
+      "questionRevision": "planning-e5e6-20261006-c90d9d6d844b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc14",
+      "bDecision": "revise",
+      "bPrompt": "옆면을 한 줄로 이은 직사각형의 위쪽 변에만 밑면 두 개를 모두 붙여 그리면 접었을 때 어떤 문제가 생기는지 설명하시오.",
+      "bAnswer": "두 밑면이 같은 쪽을 덮어 서로 겹치고, 반대쪽은 비어 닫히지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면이 겹친다",
+            "반대쪽이 비어 닫히지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "밑면 위치가 잘못된 그림이 전개도가 아닌 까닭을 설명한다.",
+      "bReason": "원문의 '같은 옆면의 같은 변'은 그릴 수 없는 표현이라 조건을 바로잡는다.",
+      "coreAfter": "옆면들을 한 줄로 이은 직사각형의 {같은 쪽 변}에 밑면 두 개를 모두 붙이면, 접었을 때 두 밑면이 겹치고 반대쪽이 비므로 전개도가 아니다.",
+      "coreReason": "같은 옆면의 같은 변에는 두 밑면이 겹쳐 그려져 모호하다.",
+      "cDecision": "revise",
+      "cAfter": "옆면을 한 줄로 이은 직사각형의 위쪽 변에만 밑면 두 개를 모두 붙이면 접었을 때 두 밑면이 {겹치므로} 전개도가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "겹치므로",
+            "포개지므로",
+            "겹쳐지므로"
+          ]
+        }
+      ],
+      "cReason": "그릴 수 없는 '같은 변'을 구체적 위치로 바꾸고 결과를 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "같은 옆면의 같은 변에 두 면을 붙인다는 불가능한 평면 조건 대신 옆면 띠의 같은 쪽을 지목한다. 겹치는 밑면과 비는 반대쪽이라는 원래 전개도 실패 이유를 보존한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1764,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc14",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "밑면이 겹치는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 밑면을 같은 옆면의 {같은 변}에 붙이면 접었을 때 겹치므로 전개도가 아니다.",
+        "studentC": "두 밑면을 같은 옆면의 □에 붙이면 접었을 때 겹치므로 전개도가 아니다.",
+        "answers": [
+          "같은 변"
+        ]
+      },
+      "sourceFingerprint": "fc4942497e70b6d7235033d384bb2ca714e00f1d6c019eef0cc541f16c204560",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "겹치므로"
+      ],
+      "cStudentAfter": "옆면을 한 줄로 이은 직사각형의 위쪽 변에만 밑면 두 개를 모두 붙이면 접었을 때 두 밑면이 □ 전개도가 아니다.",
+      "cMarkedSentence": "옆면을 한 줄로 이은 직사각형의 위쪽 변에만 밑면 두 개를 모두 붙이면 접었을 때 두 밑면이 {겹치므로} 전개도가 아니다.",
+      "cStudentSentence": "옆면을 한 줄로 이은 직사각형의 위쪽 변에만 밑면 두 개를 모두 붙이면 접었을 때 두 밑면이 □ 전개도가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "겹치므로",
+          "equivalents": [
+            "포개지므로",
+            "겹쳐지므로"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "옆면을 한 줄로 이은 직사각형의 위쪽 변에만 밑면 두 개를 모두 붙여 그리면 접었을 때 어떤 문제가 생기는지 설명하시오.",
+        "answer": "두 밑면이 같은 쪽을 덮어 서로 겹치고, 반대쪽은 비어 닫히지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면이 겹친다",
+              "반대쪽이 비어 닫히지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "옆면을 한 줄로 이은 직사각형의 위쪽 변에만 밑면 두 개를 모두 붙이면 접었을 때 두 밑면이 {겹치므로} 전개도가 아니다.",
+        "acceptedAnswers": [
+          [
+            "겹치므로",
+            "포개지므로",
+            "겹쳐지므로"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ab7c2c8f519062af4c4be8c039cb2d67f7094e6a43d1cc038ac9ac11cb6585ee",
+      "questionRevision": "planning-e5e6-20261006-ab7c2c8f5190",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc15",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 전개도 전체의 넓이를 구하려면 무엇을 더하면 되는지 설명하시오. 밑면의 넓이가 $6\\,\\mathrm{cm^2}$씩 $2$개, 옆면의 넓이가 $10\\,\\mathrm{cm^2}$씩 $3$개인 삼각기둥이면 전개도의 넓이는 얼마인가?",
+      "bAnswer": "모든 면의 넓이를 더한다. $6\\times2+10\\times3=42\\,\\mathrm{cm^2}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모든 면의 넓이를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$42\\,\\mathrm{cm^2}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "전개도의 넓이가 모든 면의 넓이의 합임을 구체적으로 구한다.",
+      "bReason": "일반 방법을 먼저 묻고 수로 확인하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "전개도 전체의 넓이는 모든 면의 넓이를 더한 값이다. 밑면이 $6\\,\\mathrm{cm^2}$씩 $2$개, 옆면이 $10\\,\\mathrm{cm^2}$씩 $3$개이면 전개도의 넓이는 {$42$}$\\,\\mathrm{cm^2}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$42$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸이 긴 구절이므로 값을 구하는 적용 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1765,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc15",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "전개도의 넓이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "전개도 전체의 넓이는 각기둥의 {모든 면의 넓이}를 더한 것과 같다.",
+        "studentC": "전개도 전체의 넓이는 각기둥의 □를 더한 것과 같다.",
+        "answers": [
+          "모든 면의 넓이"
+        ]
+      },
+      "sourceFingerprint": "10654e78b04aaa7d4056eaf4578098740cfdee465c84fcd182bec592ca5a0b4c",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "$42$"
+      ],
+      "cStudentAfter": "전개도 전체의 넓이는 모든 면의 넓이를 더한 값이다. 밑면이 $6\\,\\mathrm{cm^2}$씩 $2$개, 옆면이 $10\\,\\mathrm{cm^2}$씩 $3$개이면 전개도의 넓이는 □$\\,\\mathrm{cm^2}$이다.",
+      "cMarkedSentence": "전개도 전체의 넓이는 모든 면의 넓이를 더한 값이다. 밑면이 $6\\,\\mathrm{cm^2}$씩 $2$개, 옆면이 $10\\,\\mathrm{cm^2}$씩 $3$개이면 전개도의 넓이는 {$42$}$\\,\\mathrm{cm^2}$이다.",
+      "cStudentSentence": "전개도 전체의 넓이는 모든 면의 넓이를 더한 값이다. 밑면이 $6\\,\\mathrm{cm^2}$씩 $2$개, 옆면이 $10\\,\\mathrm{cm^2}$씩 $3$개이면 전개도의 넓이는 □$\\,\\mathrm{cm^2}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$42$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 전개도 전체의 넓이를 구하려면 무엇을 더하면 되는지 설명하시오. 밑면의 넓이가 $6\\,\\mathrm{cm^2}$씩 $2$개, 옆면의 넓이가 $10\\,\\mathrm{cm^2}$씩 $3$개인 삼각기둥이면 전개도의 넓이는 얼마인가?",
+        "answer": "모든 면의 넓이를 더한다. $6\\times2+10\\times3=42\\,\\mathrm{cm^2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모든 면의 넓이를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$42\\,\\mathrm{cm^2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전개도 전체의 넓이는 모든 면의 넓이를 더한 값이다. 밑면이 $6\\,\\mathrm{cm^2}$씩 $2$개, 옆면이 $10\\,\\mathrm{cm^2}$씩 $3$개이면 전개도의 넓이는 {$42$}$\\,\\mathrm{cm^2}$이다.",
+        "acceptedAnswers": [
+          [
+            "$42$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2d61a7b5383671ae7d662e611e2c8527d7470a3f6b72875f9c7aa5bd38fc55eb",
+      "questionRevision": "planning-e5e6-20261006-2d61a7b53836",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc16",
+      "bDecision": "revise",
+      "bPrompt": "삼각기둥의 전개도에 그려진 삼각형 두 개는 접으면 서로 어떤 위치의 면이 되는지 쓰시오.",
+      "bAnswer": "서로 마주 보는 면이 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 마주 보는 면이다",
+            "서로 평행한 면이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "두 밑면이 입체에서 마주 보는 위치임을 안다.",
+      "bReason": "전개도의 면이 입체에서 놓이는 위치를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "밑면이 삼각형인 각기둥의 전개도에서 삼각형 두 개는 접으면 서로 {마주 보는} 면이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "마주 보는",
+            "서로 마주 보는",
+            "평행한",
+            "서로 평행한"
+          ]
+        }
+      ],
+      "cReason": "원문은 '평행한'도 맞아 동치 답을 인정해야 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1766,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc16",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "마주 보는 두 삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 삼각형인 각기둥의 전개도에서 삼각형 두 개는 접으면 {서로 마주 보는} 면이 된다.",
+        "studentC": "밑면이 삼각형인 각기둥의 전개도에서 삼각형 두 개는 접으면 □ 면이 된다.",
+        "answers": [
+          "서로 마주 보는"
+        ]
+      },
+      "sourceFingerprint": "9c6a08be6454815d00271834050c1fd7e632d541f86f441b7729a75a31218b42",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "마주 보는"
+      ],
+      "cStudentAfter": "밑면이 삼각형인 각기둥의 전개도에서 삼각형 두 개는 접으면 서로 □ 면이 된다.",
+      "cMarkedSentence": "밑면이 삼각형인 각기둥의 전개도에서 삼각형 두 개는 접으면 서로 {마주 보는} 면이 된다.",
+      "cStudentSentence": "밑면이 삼각형인 각기둥의 전개도에서 삼각형 두 개는 접으면 서로 □ 면이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "마주 보는",
+          "equivalents": [
+            "서로 마주 보는",
+            "평행한",
+            "서로 평행한"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각기둥의 전개도에 그려진 삼각형 두 개는 접으면 서로 어떤 위치의 면이 되는지 쓰시오.",
+        "answer": "서로 마주 보는 면이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 마주 보는 면이다",
+              "서로 평행한 면이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 삼각형인 각기둥의 전개도에서 삼각형 두 개는 접으면 서로 {마주 보는} 면이 된다.",
+        "acceptedAnswers": [
+          [
+            "마주 보는",
+            "서로 마주 보는",
+            "평행한",
+            "서로 평행한"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9a6d78714e81b937e62754e44d53a70c2c4b1c9d78c7837e4db75c2a68b4b6fb",
+      "questionRevision": "planning-e5e6-20261006-9a6d78714e81",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc17",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "옆면과 밑면이 맞닿는 변의 길이가 같음을 안다.",
+      "bReason": "xc7과 xc12의 맞닿는 선분 규칙과 겹친다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "같은 규칙의 특수한 경우이고 '밑면의 변'을 베끼게 된다.",
+      "exclusionReason": "맞닿는 선분의 길이가 같다는 일반 규칙이 xc7과 xc12에서 더 분명히 다뤄진다. 대체: e6-1-2-3-xc7, e6-1-2-3-xc12",
+      "exampleNeeded": false,
+      "sourceIndex": 1767,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc17",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "옆면에서 밑면과 맞닿는 변의 길이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "전개도에서 각 옆면의 변 가운데 밑면과 맞닿는 변은 그 {밑면의 변}과 길이가 같다.",
+        "studentC": "전개도에서 각 옆면의 변 가운데 밑면과 맞닿는 변은 그 □과 길이가 같다.",
+        "answers": [
+          "밑면의 변"
+        ]
+      },
+      "sourceFingerprint": "357e6a6118fe7258619a1a01551bd15e21087e4f9676cc9c9477131df64a63c6",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "맞닿는 선분의 길이가 같다는 일반 규칙이 xc7과 xc12에서 더 분명히 다뤄진다. 대체: e6-1-2-3-xc7, e6-1-2-3-xc12",
+        "cloze": "맞닿는 선분의 길이가 같다는 일반 규칙이 xc7과 xc12에서 더 분명히 다뤄진다. 대체: e6-1-2-3-xc7, e6-1-2-3-xc12"
+      },
+      "proposalFingerprint": "0e55b79c38152f4e123ffef25d1c66f15c59cd01df76d87eaea7969ced472834",
+      "questionRevision": "planning-e5e6-20261006-0e55b79c3815",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc18",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 정다각형인 각기둥의 전개도에서 옆면인 직사각형들은 서로 어떤 관계인지, 그 까닭과 함께 설명하시오.",
+      "bAnswer": "모두 합동이다. 밑면의 변의 길이가 모두 같고 높이도 같아 가로와 세로가 각각 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모두 합동이다",
+            "모양과 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 변의 길이가 모두 같고 높이가 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "옆면의 합동을 밑면의 변과 높이로 설명한다.",
+      "bReason": "합동과 변의 길이를 연결하는 설명이 필요하다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 밑면이 정다각형이면 전개도의 옆면인 직사각형들은 모양과 크기가 같아 모두 {합동}이다.",
+      "cReason": "조건이 분명하고 합동이라는 짧은 낱말로 답이 정해진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1768,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc18",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "정다각형 밑면의 옆면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥의 밑면이 정다각형이면 전개도의 옆면인 직사각형들은 모양과 크기가 같아 모두 {합동}이다.",
+        "studentC": "각기둥의 밑면이 정다각형이면 전개도의 옆면인 직사각형들은 모양과 크기가 같아 모두 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "c10b0282a50e0c181115ac79dab4ae59a31ee12a8c1cb8ff30f3f0c3b13c1e74",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cFrozenDefinition": "각기둥의 밑면이 정다각형이면 전개도의 옆면인 직사각형들은 모양과 크기가 같아 모두 {합동}이다.",
+      "cFrozenStudentSentence": "각기둥의 밑면이 정다각형이면 전개도의 옆면인 직사각형들은 모양과 크기가 같아 모두 □이다.",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "각기둥의 밑면이 정다각형이면 전개도의 옆면인 직사각형들은 모양과 크기가 같아 모두 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 밑면이 정다각형이면 전개도의 옆면인 직사각형들은 모양과 크기가 같아 모두 {합동}이다.",
+      "cStudentSentence": "각기둥의 밑면이 정다각형이면 전개도의 옆면인 직사각형들은 모양과 크기가 같아 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 정다각형인 각기둥의 전개도에서 옆면인 직사각형들은 서로 어떤 관계인지, 그 까닭과 함께 설명하시오.",
+        "answer": "모두 합동이다. 밑면의 변의 길이가 모두 같고 높이도 같아 가로와 세로가 각각 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모두 합동이다",
+              "모양과 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 변의 길이가 모두 같고 높이가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 밑면이 정다각형이면 전개도의 옆면인 직사각형들은 모양과 크기가 같아 모두 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "aace624d2df78ef758929518a63c886649987874a4218f993cc6af4ccffff115",
+      "questionRevision": "planning-e5e6-20261006-aace624d2df7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-3-xc19",
+      "bDecision": "revise",
+      "bPrompt": "한 장으로 이어진 각기둥의 전개도에서 접는 선의 수와 면의 수는 어떤 관계인지 설명하시오. 삼각기둥의 전개도에서 접는 선은 몇 개인가?",
+      "bAnswer": "접는 선의 수는 면의 수보다 $1$ 적다. 한 면에서 시작해 나머지 면이 접는 선 하나씩으로 이어지기 때문이다. 삼각기둥은 면이 $5$개이므로 접는 선은 $4$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "접는 선의 수는 면의 수보다 $1$ 적다"
+          ]
+        },
+        {
+          "anyOf": [
+            "삼각기둥은 $4$개이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "접는 선의 수와 면의 수의 관계를 안다.",
+      "bReason": "관계의 일반 규칙과 구체적 수를 연결한다.",
+      "cDecision": "revise",
+      "cAfter": "한 장으로 이어진 전개도에서 접는 선의 수는 면의 수보다 {$1$}개 적다. 삼각기둥의 전개도는 면이 $5$개이므로 접는 선은 {$4$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "$1$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "$4$개"
+          ]
+        }
+      ],
+      "cReason": "원문의 '1 적다' 빈칸은 형식이 섞이므로 수 빈칸 둘로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1769,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-3-xc19",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "term": "접는 선의 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "전개도에서 접는 선의 수는 면의 수보다 {$1$ 적다}.",
+        "studentC": "전개도에서 접는 선의 수는 면의 수보다 □.",
+        "answers": [
+          "$1$ 적다"
+        ]
+      },
+      "sourceFingerprint": "4ab680e549837b452810449fd35f24b88188b0e49ef6e949e5bafe777746128b",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$4$"
+      ],
+      "cStudentAfter": "한 장으로 이어진 전개도에서 접는 선의 수는 면의 수보다 □개 적다. 삼각기둥의 전개도는 면이 $5$개이므로 접는 선은 □개이다.",
+      "cMarkedSentence": "한 장으로 이어진 전개도에서 접는 선의 수는 면의 수보다 {$1$}개 적다. 삼각기둥의 전개도는 면이 $5$개이므로 접는 선은 {$4$}개이다.",
+      "cStudentSentence": "한 장으로 이어진 전개도에서 접는 선의 수는 면의 수보다 □개 적다. 삼각기둥의 전개도는 면이 $5$개이므로 접는 선은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "$1$개"
+          ]
+        },
+        {
+          "key": "$4$",
+          "equivalents": [
+            "$4$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 장으로 이어진 각기둥의 전개도에서 접는 선의 수와 면의 수는 어떤 관계인지 설명하시오. 삼각기둥의 전개도에서 접는 선은 몇 개인가?",
+        "answer": "접는 선의 수는 면의 수보다 $1$ 적다. 한 면에서 시작해 나머지 면이 접는 선 하나씩으로 이어지기 때문이다. 삼각기둥은 면이 $5$개이므로 접는 선은 $4$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "접는 선의 수는 면의 수보다 $1$ 적다"
+            ]
+          },
+          {
+            "anyOf": [
+              "삼각기둥은 $4$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 장으로 이어진 전개도에서 접는 선의 수는 면의 수보다 {$1$}개 적다. 삼각기둥의 전개도는 면이 $5$개이므로 접는 선은 {$4$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "$1$개"
+          ],
+          [
+            "$4$",
+            "$4$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "133d1672695c2ad0fc8ee2eccd2dae86e7eaded6e794689636cce86bed2ecd5e",
+      "questionRevision": "planning-e5e6-20261006-133d1672695c",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,1251 @@
+{
+  "status": "Actual before and authored normalized after awaiting direct reread and application; not independent approval",
+  "rows": [
+    {
+      "id": "m1-04-03-xc1",
+      "scope": "middle",
+      "reason": "수학적 의미는 그대로 두고 답과 필수 의미의 숫자들을 실제 지면의 수식 표기 규칙에 맞춘다.",
+      "beforeRaw": {
+        "id": "m1-04-03-xc1",
+        "learningRole": "reason",
+        "roleReason": "축이 나타내는 양을 알아야 좌표값의 의미를 해석할 수 있는 이유",
+        "bDecision": "rewrite",
+        "bPrompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+        "bAnswer": "A에서는 2시간이 지났을 때 기온이 15℃라는 뜻이다. B에서는 2시간이 지났을 때 이동한 거리가 15km라는 뜻이다.",
+        "bGoal": "두 축의 양과 단위에 따라 같은 좌표를 해석한다.",
+        "bReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "A: 2시간이 지났을 때 기온이 15℃이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "B: 2시간이 지났을 때 이동한 거리가 15km이다"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cReason": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다.",
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1512,
+        "part": "m1plus",
+        "sourceFingerprint": "13bd49cc27c131c7a1f9189b1d117032c75766b2570fd95e22325401d3f773de",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1512
+        },
+        "directReview": null,
+        "cMarkedSentence": null,
+        "cSlotAnswers": null,
+        "cStudentSentence": null,
+        "cAnswers": null,
+        "cSlots": null,
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "가로축",
+            "accept": [
+              "$x$축"
+            ]
+          },
+          {
+            "answer": "세로축",
+            "accept": [
+              "$y$축"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": null,
+        "proposalFingerprint": "ce14cb10df88828d8657f21aed240fa22763ec8623341aae97486469e16ffc66",
+        "cAfter": null,
+        "exclusionReason": "C 제외: 양의 종류·대상·내용 등 요령 낱말의 답 범위가 열려 있다. 축을 모르면 점의 의미를 알 수 없는 이유를 B에서 묻는다.",
+        "bQuestion": {
+          "prompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+          "answer": "A에서는 2시간이 지났을 때 기온이 15℃라는 뜻이다. B에서는 2시간이 지났을 때 이동한 거리가 15km라는 뜻이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "A: 2시간이 지났을 때 기온이 15℃이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "B: 2시간이 지났을 때 이동한 거리가 15km이다"
+              ]
+            }
+          ]
+        },
+        "editorialReview": {
+          "id": "m1-04-03-xc1",
+          "sourceIndex": 1512,
+          "proposalFingerprint": "ce14cb10df88828d8657f21aed240fa22763ec8623341aae97486469e16ffc66",
+          "learningRole": "reason",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.089Z",
+          "bReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+          "cReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "exclude"
+        }
+      },
+      "before": {
+        "id": "m1-04-03-xc1",
+        "grade": "중1",
+        "source": {
+          "id": "m1-04-03-xc1",
+          "section": "중1::4. 그래프와 비례::그래프의 이해",
+          "term": "그래프를 읽을 때 먼저 확인할 것",
+          "kind": "방법",
+          "level": "하",
+          "definition": "그래프를 읽을 때는 먼저 {가로축}과 {세로축}이 각각 무엇을 나타내는지 확인한다.",
+          "example": {
+            "prompt": "시간에 따른 기온 그래프에서 가로축은 보통 무엇인가?",
+            "answer": "시간"
+          }
+        },
+        "B": {
+          "prompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+          "answer": "A에서는 2시간이 지났을 때 기온이 15℃라는 뜻이다. B에서는 2시간이 지났을 때 이동한 거리가 15km라는 뜻이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "A: 2시간이 지났을 때 기온이 15℃이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "B: 2시간이 지났을 때 이동한 거리가 15km이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다."
+        },
+        "goal": "두 축의 양과 단위에 따라 같은 좌표를 해석한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "2a59d23e7c878f45ace4e75f1f65f37b5c7044c78c605086fa48fb7d5cc65c44"
+      },
+      "proposedRaw": {
+        "id": "m1-04-03-xc1",
+        "learningRole": "reason",
+        "roleReason": "축이 나타내는 양을 알아야 좌표값의 의미를 해석할 수 있는 이유",
+        "bDecision": "rewrite",
+        "bPrompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+        "bAnswer": "A에서는 $2$시간이 지났을 때 기온이 $15$℃라는 뜻이다. B에서는 $2$시간이 지났을 때 이동한 거리가 $15$km라는 뜻이다.",
+        "bGoal": "두 축의 양과 단위에 따라 같은 좌표를 해석한다.",
+        "bReason": "수학적 의미는 그대로 두고 답과 필수 의미의 숫자들을 실제 지면의 수식 표기 규칙에 맞춘다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "A: $2$시간이 지났을 때 기온이 $15$℃이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "B: $2$시간이 지났을 때 이동한 거리가 $15$km이다"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cReason": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다.",
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1512,
+        "part": "m1plus",
+        "sourceFingerprint": "13bd49cc27c131c7a1f9189b1d117032c75766b2570fd95e22325401d3f773de",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1512
+        },
+        "directReview": null,
+        "cMarkedSentence": null,
+        "cSlotAnswers": null,
+        "cStudentSentence": null,
+        "cAnswers": null,
+        "cSlots": null,
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "가로축",
+            "accept": [
+              "$x$축"
+            ]
+          },
+          {
+            "answer": "세로축",
+            "accept": [
+              "$y$축"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": null,
+        "proposalFingerprint": "c4c69589c59c76007ea14a710321a3925165dee5027de543c92b253deceae2c9",
+        "cAfter": null,
+        "exclusionReason": "C 제외: 양의 종류·대상·내용 등 요령 낱말의 답 범위가 열려 있다. 축을 모르면 점의 의미를 알 수 없는 이유를 B에서 묻는다.",
+        "bQuestion": {
+          "prompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+          "answer": "A에서는 $2$시간이 지났을 때 기온이 $15$℃라는 뜻이다. B에서는 $2$시간이 지났을 때 이동한 거리가 $15$km라는 뜻이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "A: $2$시간이 지났을 때 기온이 $15$℃이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "B: $2$시간이 지났을 때 이동한 거리가 $15$km이다"
+              ]
+            }
+          ]
+        },
+        "editorialReview": {
+          "id": "m1-04-03-xc1",
+          "sourceIndex": 1512,
+          "proposalFingerprint": "ce14cb10df88828d8657f21aed240fa22763ec8623341aae97486469e16ffc66",
+          "learningRole": "reason",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.089Z",
+          "bReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+          "cReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "exclude"
+        }
+      },
+      "after": {
+        "id": "m1-04-03-xc1",
+        "grade": "중1",
+        "source": {
+          "id": "m1-04-03-xc1",
+          "section": "중1::4. 그래프와 비례::그래프의 이해",
+          "term": "그래프를 읽을 때 먼저 확인할 것",
+          "kind": "방법",
+          "level": "하",
+          "definition": "그래프를 읽을 때는 먼저 {가로축}과 {세로축}이 각각 무엇을 나타내는지 확인한다.",
+          "example": {
+            "prompt": "시간에 따른 기온 그래프에서 가로축은 보통 무엇인가?",
+            "answer": "시간"
+          }
+        },
+        "B": {
+          "prompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+          "answer": "A에서는 $2$시간이 지났을 때 기온이 $15$℃라는 뜻이다. B에서는 $2$시간이 지났을 때 이동한 거리가 $15$km라는 뜻이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "A: $2$시간이 지났을 때 기온이 $15$℃이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "B: $2$시간이 지났을 때 이동한 거리가 $15$km이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다."
+        },
+        "goal": "두 축의 양과 단위에 따라 같은 좌표를 해석한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "018e2fe5c7431216c4228135f6124d03de8434c7723a8cb6a4abc5528291e15c"
+      }
+    },
+    {
+      "id": "m2-02-04-xc17",
+      "scope": "middle",
+      "reason": "기호 답은 정규 수식 표기로 저장한다. 질문·정답의 수학 내용은 직전 실제 읽기와 같다.",
+      "beforeRaw": {
+        "id": "m2-02-04-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+        "bAnswer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+        "bGoal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "bReason": "할인율0을 포함하는지 물음에서 정해주지 않았다. x가0 이상100 이하이고0은 할인하지 않는 경우도 포함함을 명시해 기존 범위 기준과 일치시킨다. C와 일반 설명은 유지한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6000-60x-4000\\ge800$",
+              "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0\\le x\\le20$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+        "cAnswers": [
+          "$\\ge$"
+        ],
+        "cReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "할인과 이익 조건을 상황에 적용",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2385,
+        "part": "m2plus",
+        "sourceFingerprint": "bdb32b13f121e991abb1ff58f78ad65dd40d8648d8797d9ff043fc17e5cf3b16",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2385
+        },
+        "directReview": null,
+        "cMarkedSentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+        "cSlotAnswers": [
+          "$\\ge$"
+        ],
+        "cStudentSentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) □ (원하는 이익)이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\ge$",
+            "equivalentAnswers": [
+              "$\\ge$",
+              "≥"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\ge$",
+            "≥"
+          ]
+        ],
+        "proposalFingerprint": "c353aed05b2b2c24cd445b357d829f40185af49995c71ce03c9ddc8d63716c75",
+        "bQuestion": {
+          "prompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+          "answer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6000-60x-4000\\ge800$",
+                "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0\\le x\\le20$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+          "acceptedAnswers": [
+            [
+              "$\\ge$",
+              "≥"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-02-04-xc17",
+          "sourceIndex": 2385,
+          "proposalFingerprint": "c353aed05b2b2c24cd445b357d829f40185af49995c71ce03c9ddc8d63716c75",
+          "learningRole": "application",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.080Z",
+          "bReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+          "cReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "before": {
+        "id": "m2-02-04-xc17",
+        "grade": "중2",
+        "source": {
+          "id": "m2-02-04-xc17",
+          "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+          "term": "할인해도 이익이 남는 조건",
+          "kind": "방법",
+          "level": "상",
+          "definition": "정가를 할인해 팔아 원하는 이익을 얻으려면 (판매 가격) {$-$} (원가)가 원하는 {이익} 이상이어야 한다."
+        },
+        "B": {
+          "prompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+          "answer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6000-60x-4000\\ge800$",
+                "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0\\le x\\le20$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+          "acceptedAnswers": [
+            [
+              "$\\ge$",
+              "≥"
+            ]
+          ]
+        },
+        "goal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "7a39bc11395e005c0ba13a66b5f5fad0c30ec3aee838c647bc9486fac30e9332"
+      },
+      "proposedRaw": {
+        "id": "m2-02-04-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+        "bAnswer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+        "bGoal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "bReason": "할인율0을 포함하는지 물음에서 정해주지 않았다. x가0 이상100 이하이고0은 할인하지 않는 경우도 포함함을 명시해 기존 범위 기준과 일치시킨다. C와 일반 설명은 유지한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6000-60x-4000\\ge800$",
+              "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0\\le x\\le20$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+        "cAnswers": [
+          "$\\ge$"
+        ],
+        "cReason": "기호 답은 정규 수식 표기로 저장한다. 질문·정답의 수학 내용은 직전 실제 읽기와 같다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "할인과 이익 조건을 상황에 적용",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2385,
+        "part": "m2plus",
+        "sourceFingerprint": "bdb32b13f121e991abb1ff58f78ad65dd40d8648d8797d9ff043fc17e5cf3b16",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2385
+        },
+        "directReview": null,
+        "cMarkedSentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+        "cSlotAnswers": [
+          "$\\ge$"
+        ],
+        "cStudentSentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) □ (원하는 이익)이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\ge$",
+            "equivalentAnswers": [
+              "$\\ge$"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\ge$"
+          ]
+        ],
+        "proposalFingerprint": "3880512c5cfc277d7344b2de4f421f053edfd4a45594c78ffa761d932356b52a",
+        "bQuestion": {
+          "prompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+          "answer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6000-60x-4000\\ge800$",
+                "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0\\le x\\le20$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+          "acceptedAnswers": [
+            [
+              "$\\ge$"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-02-04-xc17",
+          "sourceIndex": 2385,
+          "proposalFingerprint": "c353aed05b2b2c24cd445b357d829f40185af49995c71ce03c9ddc8d63716c75",
+          "learningRole": "application",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.080Z",
+          "bReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+          "cReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-02-04-xc17",
+        "grade": "중2",
+        "source": {
+          "id": "m2-02-04-xc17",
+          "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+          "term": "할인해도 이익이 남는 조건",
+          "kind": "방법",
+          "level": "상",
+          "definition": "정가를 할인해 팔아 원하는 이익을 얻으려면 (판매 가격) {$-$} (원가)가 원하는 {이익} 이상이어야 한다."
+        },
+        "B": {
+          "prompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+          "answer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6000-60x-4000\\ge800$",
+                "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0\\le x\\le20$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+          "acceptedAnswers": [
+            [
+              "$\\ge$"
+            ]
+          ]
+        },
+        "goal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "a3043f414b838794e703c8236851b44c526e8cd8089263f326744bbedbbb92e4"
+      }
+    },
+    {
+      "id": "m2-09-02-xc13",
+      "scope": "middle",
+      "reason": "숫자 답은 정규 수식 표기로 저장한다. 카드 선택의 수와 곱셈 내용은 직전 실제 읽기와 같다.",
+      "beforeRaw": {
+        "id": "m2-09-02-xc13",
+        "learningRole": "procedure",
+        "roleReason": "첫 카드와 남은 카드를 차례로 골라 곱하기",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+        "bAnswer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\times3=12$",
+              "$12$개"
+            ]
+          }
+        ],
+        "bGoal": "카드로 두 자리 수를 만드는 경우의 수",
+        "bReason": "B가 각 곱셈 수의 뜻을 요청하는데 4×3만으로 기준을 충족하는 대안이 있어 어긋난다. 십의 자리 후보4개와 사용 후 남은 일의 자리 후보3개라는 두 뜻을 명시적으로 필수로 한다. C와 일반 설명은 유지한다.",
+        "exampleNeeded": true,
+        "cDecision": "rewrite",
+        "cReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3208,
+        "part": "m2plus",
+        "sourceFingerprint": "ba6199fe723c29412488162e904d08e6d7482145acffd93f0beb25315826c31f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3208
+        },
+        "directReview": null,
+        "cFrozenSentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 □를 차례로 고른다.",
+        "cFrozenDefinition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다.",
+        "cFrozenAnswers": [
+          "남은 카드"
+        ],
+        "cMarkedSentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+        "cSlotAnswers": [
+          "$3$",
+          "$12$"
+        ],
+        "cStudentSentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 □장이다. 만들 수 있는 두 자리 수는 모두 □가지이다.",
+        "cAnswers": [
+          "$3$",
+          "$12$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$",
+              "3"
+            ]
+          },
+          {
+            "index": 1,
+            "answer": "$12$",
+            "equivalentAnswers": [
+              "$12$",
+              "12"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3$",
+            "3"
+          ],
+          [
+            "$12$",
+            "12"
+          ]
+        ],
+        "proposalFingerprint": "1a75197031d833e4a86a7a5327057a8329da51ebaffe2fda50c4fa5ac11f506e",
+        "bQuestion": {
+          "prompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+          "answer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4\\times3=12$",
+                "$12$개"
+              ]
+            }
+          ]
+        },
+        "cAfter": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+        "clozeQuestion": {
+          "sentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "3"
+            ],
+            [
+              "$12$",
+              "12"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-09-02-xc13",
+          "sourceIndex": 3208,
+          "proposalFingerprint": "1a75197031d833e4a86a7a5327057a8329da51ebaffe2fda50c4fa5ac11f506e",
+          "learningRole": "procedure",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.096Z",
+          "bReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+          "cReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "before": {
+        "id": "m2-09-02-xc13",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-02-xc13",
+          "section": "중2::9. 확률::여러 가지 경우의 수",
+          "term": "카드 수를 만드는 곱셈",
+          "kind": "방법",
+          "level": "중",
+          "definition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다."
+        },
+        "B": {
+          "prompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+          "answer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4\\times3=12$",
+                "$12$개"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "3"
+            ],
+            [
+              "$12$",
+              "12"
+            ]
+          ]
+        },
+        "goal": "카드로 두 자리 수를 만드는 경우의 수",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "6753a7c0a44500ba53af16cba668bd3fa15d6978e063b694c8d952474ad9fac1"
+      },
+      "proposedRaw": {
+        "id": "m2-09-02-xc13",
+        "learningRole": "procedure",
+        "roleReason": "첫 카드와 남은 카드를 차례로 골라 곱하기",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+        "bAnswer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\times3=12$",
+              "$12$개"
+            ]
+          }
+        ],
+        "bGoal": "카드로 두 자리 수를 만드는 경우의 수",
+        "bReason": "B가 각 곱셈 수의 뜻을 요청하는데 4×3만으로 기준을 충족하는 대안이 있어 어긋난다. 십의 자리 후보4개와 사용 후 남은 일의 자리 후보3개라는 두 뜻을 명시적으로 필수로 한다. C와 일반 설명은 유지한다.",
+        "exampleNeeded": true,
+        "cDecision": "rewrite",
+        "cReason": "숫자 답은 정규 수식 표기로 저장한다. 카드 선택의 수와 곱셈 내용은 직전 실제 읽기와 같다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3208,
+        "part": "m2plus",
+        "sourceFingerprint": "ba6199fe723c29412488162e904d08e6d7482145acffd93f0beb25315826c31f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3208
+        },
+        "directReview": null,
+        "cFrozenSentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 □를 차례로 고른다.",
+        "cFrozenDefinition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다.",
+        "cFrozenAnswers": [
+          "남은 카드"
+        ],
+        "cMarkedSentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+        "cSlotAnswers": [
+          "$3$",
+          "$12$"
+        ],
+        "cStudentSentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 □장이다. 만들 수 있는 두 자리 수는 모두 □가지이다.",
+        "cAnswers": [
+          "$3$",
+          "$12$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ]
+          },
+          {
+            "index": 1,
+            "answer": "$12$",
+            "equivalentAnswers": [
+              "$12$"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$12$"
+          ]
+        ],
+        "proposalFingerprint": "3f9defb46b29c694f545a93e2cf656ad3af9ff9f18c8afad5c6611eb35798b7e",
+        "bQuestion": {
+          "prompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+          "answer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4\\times3=12$",
+                "$12$개"
+              ]
+            }
+          ]
+        },
+        "cAfter": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+        "clozeQuestion": {
+          "sentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ],
+            [
+              "$12$"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-09-02-xc13",
+          "sourceIndex": 3208,
+          "proposalFingerprint": "1a75197031d833e4a86a7a5327057a8329da51ebaffe2fda50c4fa5ac11f506e",
+          "learningRole": "procedure",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.096Z",
+          "bReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+          "cReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-09-02-xc13",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-02-xc13",
+          "section": "중2::9. 확률::여러 가지 경우의 수",
+          "term": "카드 수를 만드는 곱셈",
+          "kind": "방법",
+          "level": "중",
+          "definition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다."
+        },
+        "B": {
+          "prompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+          "answer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4\\times3=12$",
+                "$12$개"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ],
+            [
+              "$12$"
+            ]
+          ]
+        },
+        "goal": "카드로 두 자리 수를 만드는 경우의 수",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "9a7d233465f87dd4ce285bb6ab94529e73850f3b4350da32cb66cdbb1e6af26b"
+      }
+    },
+    {
+      "id": "m2-09-04-xc1",
+      "scope": "middle",
+      "reason": "숫자 답은 정규 수식 표기로 저장한다. 겹치는 눈 6과 두 번 세는 내용은 직전 실제 읽기와 같다.",
+      "beforeRaw": {
+        "id": "m2-09-04-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+        "bAnswer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+        "bGoal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+        "bReason": "겹친 결과와 이중 계산은 같은 오류 이유를 이루므로 하나의 필수 의미로 묶는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+              "겹친 결과를 두 번 세기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac23$",
+              "$\\frac46$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+        "exclusionReason": "배타 사건 합 조건의 C 중복 제외다.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "겹치는 경우 먼저 확인",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 3246,
+        "part": "m2plus",
+        "sourceFingerprint": "eeede5a987f3d08a87a635d2b692d7efe1d0c858d9826817b944e27922db3982",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3246
+        },
+        "directReview": null,
+        "proposalFingerprint": "b625ff3f951d89dd6227c32d133e765144d20680cbe5379ca798e3eb8c96f461",
+        "coreAfter": null,
+        "coreReason": null,
+        "cAfter": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+        "cMarkedSentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+        "cStudentSentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 □이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 □번 세게 된다.",
+        "cAnswers": [
+          "$6$",
+          "$2$"
+        ],
+        "cSlotAnswers": [
+          "$6$",
+          "$2$"
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$6$",
+            "6"
+          ],
+          [
+            "$2$",
+            "2"
+          ]
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$6$",
+            "equivalentAnswers": [
+              "$6$",
+              "6"
+            ]
+          },
+          {
+            "index": 1,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$",
+              "2"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+          "answer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+                "겹친 결과를 두 번 세기 때문이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac23$",
+                "$\\frac46$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "6"
+            ],
+            [
+              "$2$",
+              "2"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-09-04-xc1",
+          "sourceIndex": 3246,
+          "proposalFingerprint": "b625ff3f951d89dd6227c32d133e765144d20680cbe5379ca798e3eb8c96f461",
+          "learningRole": "procedure",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.097Z",
+          "bReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+          "cReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "before": {
+        "id": "m2-09-04-xc1",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-04-xc1",
+          "section": "중2::9. 확률::확률의 계산",
+          "term": "덧셈 전에 겹침 확인",
+          "kind": "방법",
+          "level": "하",
+          "definition": "둘 중 하나가 일어날 확률을 더해서 구하기 전에는 두 사건이 {함께 일어날 수 없는지} 확인한다."
+        },
+        "B": {
+          "prompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+          "answer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+                "겹친 결과를 두 번 세기 때문이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac23$",
+                "$\\frac46$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "6"
+            ],
+            [
+              "$2$",
+              "2"
+            ]
+          ]
+        },
+        "goal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "9d67beab47f906d2be63e7cf936621a3dea63b47cc9cf52c34b150d0f9a377ff"
+      },
+      "proposedRaw": {
+        "id": "m2-09-04-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+        "bAnswer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+        "bGoal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+        "bReason": "겹친 결과와 이중 계산은 같은 오류 이유를 이루므로 하나의 필수 의미로 묶는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+              "겹친 결과를 두 번 세기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac23$",
+              "$\\frac46$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "숫자 답은 정규 수식 표기로 저장한다. 겹치는 눈 6과 두 번 세는 내용은 직전 실제 읽기와 같다.",
+        "exclusionReason": "배타 사건 합 조건의 C 중복 제외다.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "겹치는 경우 먼저 확인",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 3246,
+        "part": "m2plus",
+        "sourceFingerprint": "eeede5a987f3d08a87a635d2b692d7efe1d0c858d9826817b944e27922db3982",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3246
+        },
+        "directReview": null,
+        "proposalFingerprint": "d6204a46535a025edafbf67e05bc7bf633fa0331395ef5b6008709d9381703ad",
+        "coreAfter": null,
+        "coreReason": null,
+        "cAfter": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+        "cMarkedSentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+        "cStudentSentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 □이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 □번 세게 된다.",
+        "cAnswers": [
+          "$6$",
+          "$2$"
+        ],
+        "cSlotAnswers": [
+          "$6$",
+          "$2$"
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$2$"
+          ]
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$6$",
+            "equivalentAnswers": [
+              "$6$"
+            ]
+          },
+          {
+            "index": 1,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+          "answer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+                "겹친 결과를 두 번 세기 때문이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac23$",
+                "$\\frac46$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ],
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-09-04-xc1",
+          "sourceIndex": 3246,
+          "proposalFingerprint": "b625ff3f951d89dd6227c32d133e765144d20680cbe5379ca798e3eb8c96f461",
+          "learningRole": "procedure",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.097Z",
+          "bReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+          "cReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-09-04-xc1",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-04-xc1",
+          "section": "중2::9. 확률::확률의 계산",
+          "term": "덧셈 전에 겹침 확인",
+          "kind": "방법",
+          "level": "하",
+          "definition": "둘 중 하나가 일어날 확률을 더해서 구하기 전에는 두 사건이 {함께 일어날 수 없는지} 확인한다."
+        },
+        "B": {
+          "prompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+          "answer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+                "겹친 결과를 두 번 세기 때문이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac23$",
+                "$\\frac46$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ],
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "goal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "6d2936d616b165eb61536a807c04b2b49f3422db4e3ea6456810538338a57cac"
+      }
+    }
+  ]
+}

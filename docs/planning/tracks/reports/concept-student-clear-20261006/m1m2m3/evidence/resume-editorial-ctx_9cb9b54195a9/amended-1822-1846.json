@@ -1,0 +1,1935 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-1822-1846.json",
+  "changes": [
+    {
+      "id": "m1-06-05-xc4",
+      "bPrompt": "반지름의 길이가 $r$인 반원의 넓이를 $r$과 $\\pi$를 써서 나타내고, 그렇게 되는 까닭을 쓰시오.",
+      "bReason": "기호r에이어지는조사를자연스럽게정돈한다."
+    },
+    {
+      "id": "m1-06-05-xc7",
+      "bAnswer": "반지름의 길이를 $r$라 하면 $2\\pi r=L$이므로 $r=\\frac{L}{2\\pi}$이다. 둘레의 길이가 $14\\pi$이면 $r=14\\pi\\div(2\\pi)=7$이다.",
+      "bReason": "2π전체로나눈다는뜻이분명하도록괄호를사용한다."
+    },
+    {
+      "id": "m1-06-05-xc8",
+      "cAfter": "원의 넓이가 $k\\pi$($k>0$)이면 반지름의 길이는 제곱하여 $k$가 되는 {양수}이다.",
+      "cReason": "두번곱하여라는동작어빈칸대신길이인반지름이양수라는핵심조건만묻는다."
+    },
+    {
+      "id": "m1-06-05-xc9",
+      "bPrompt": "반지름의 길이가 $6$, 호의 길이가 $2\\pi$인 부채꼴의 중심각의 크기를 $x^\\circ$라 한다. 중심각의 크기를 구하고, 호의 길이와 원의 둘레의 관계를 이용해 구한 과정을 쓰시오.",
+      "bReason": "식을반드시세우는방법과전체에대한비율로푸는방법모두질문요구에맞게한다."
+    },
+    {
+      "id": "m1-06-05-xc10",
+      "bPrompt": "반지름의 길이가 $6$, 넓이가 $9\\pi$인 부채꼴의 중심각의 크기를 $x^\\circ$라 한다. 중심각의 크기를 구하고, 부채꼴의 넓이와 원의 넓이의 관계를 이용해 구한 과정을 쓰시오.",
+      "bReason": "넓이비율로직접중심각을구하는올바른방법도질문의범위에포함한다."
+    },
+    {
+      "id": "m1-06-05-xc11",
+      "bPrompt": "중심각의 크기가 $120^\\circ$, 호의 길이가 $4\\pi$인 부채꼴의 반지름의 길이를 $r$라 한다. $r$의 값을 구하고, 중심각과 호의 길이의 관계를 이용해 구한 과정을 쓰시오.",
+      "bReason": "호가둘레의삼분의일임을이용한답도질문과채점이일치하도록한다."
+    },
+    {
+      "id": "m1-06-05-xc14",
+      "cAfter": "부채꼴의 넓이 $S$와 호의 길이 $l$을 알면, 반지름의 길이를 $r$라 하고 식 {$S=\\frac{1}{2}rl$}에 두 값을 넣어 $r$의 값을 구한다.",
+      "cAcceptedAnswers": [
+        [
+          "$S=\\frac{1}{2}rl$",
+          "$S=\\frac{rl}{2}$",
+          "$\\frac{1}{2}rl=S$"
+        ]
+      ],
+      "cReason": "r뒤조사를피해r의값을구한다고자연스럽게쓴다."
+    },
+    {
+      "id": "m1-06-05-xc17",
+      "cAfter": "중심각의 크기가 $0^\\circ$보다 크고 $360^\\circ$보다 작은 부채꼴에서 중심각과 둘레의 길이가 주어졌다. 반지름의 길이를 $r$라 하고 둘레의 길이를 호의 길이와 {$2r$}의 합으로 나타낸 {방정식}을 세워 $r$의 값을 구한다.",
+      "cAcceptedAnswers": [
+        [
+          "$2r$",
+          "$r+r$"
+        ],
+        [
+          "방정식"
+        ]
+      ],
+      "cReason": "원전체이면반지름두개가둘레아니므로중심각의적용범위를밝힌다."
+    },
+    {
+      "id": "m1-06-05-xc21",
+      "cAfter": "반지름의 길이가 같고 한 점에서 맞닿은 두 원을 끈으로 한 바퀴 팽팽하게 감으면, 끈은 길이가 같은 {선분} 두 개와 {반원}의 호 두 개로 이루어진다. 두 호의 길이의 합은 원 {한} 개의 둘레의 길이와 같다.",
+      "cAcceptedAnswers": [
+        [
+          "선분",
+          "곧은 부분"
+        ],
+        [
+          "반원"
+        ],
+        [
+          "한",
+          "$1$"
+        ]
+      ],
+      "cReason": "완전히겹친원을생각하지않게한점에서맞닿는실제배치를밝힌다."
+    },
+    {
+      "id": "m1-07-01-xc4",
+      "bPrompt": "각기둥의 높이는 무엇과 무엇 사이의 거리인지 쓰시오. 또 옆모서리가 밑면에 수직인 각기둥에서는 높이와 옆모서리의 길이가 어떤 관계인지 쓰시오.",
+      "bAnswer": "높이는 평행한 두 밑면 사이의 거리이다. 옆모서리가 밑면에 수직이면 옆모서리의 길이가 두 밑면 사이의 거리이므로 높이와 같다.",
+      "bReason": "옆모서리길이와높이가같으려면필요한수직조건을학생에게명시한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-06-05-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 $r$인 반원의 넓이를 $r$과 $\\pi$를 써서 나타내고, 그렇게 되는 까닭을 쓰시오.",
+      "bAnswer": "$\\frac{1}{2}\\pi r^2$이다. 반원은 원을 지름으로 똑같이 둘로 나눈 것이므로 넓이가 원의 넓이 $\\pi r^2$의 절반이기 때문이다.",
+      "bGoal": "반원의 넓이를 식으로 나타내기",
+      "bReason": "기호r에이어지는조사를자연스럽게정돈한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}\\pi r^2$",
+            "$\\frac{\\pi r^2}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "원의 넓이의 절반이다",
+            "원을 똑같이 둘로 나눈 것이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "$r$의 뜻이 문장에 있고 공식 하나만 묻는 짧은 빈칸임.",
+      "learningRole": "procedure",
+      "roleReason": "원의 넓이의 절반으로 반원의 넓이 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1822,
+      "part": "m1plus",
+      "sourceFingerprint": "8c00be264ea9b4fe00e3c8ebbdbb2e76de8bbc961e16e411391730496de42ab7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1822
+      },
+      "directReview": null,
+      "cFrozenSentence": "반지름이 $r$인 반원의 넓이는 □이다.",
+      "cFrozenDefinition": "반지름이 $r$인 반원의 넓이는 {$\\frac{1}{2}\\pi r^2$}이다.",
+      "cFrozenAnswers": [
+        "$\\frac{1}{2}\\pi r^2$"
+      ],
+      "cMarkedSentence": "반지름이 $r$인 반원의 넓이는 {$\\frac{1}{2}\\pi r^2$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{2}\\pi r^2$"
+      ],
+      "cStudentSentence": "반지름이 $r$인 반원의 넓이는 □이다.",
+      "cAnswers": [
+        "$\\frac{1}{2}\\pi r^2$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{2}\\pi r^2$",
+          "equivalentAnswers": [
+            "$\\frac{1}{2}\\pi r^2$",
+            "$\\frac{\\pi r^2}{2}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{1}{2}\\pi r^2$",
+          "accept": [
+            "$\\frac{\\pi r^2}{2}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{2}\\pi r^2$",
+          "$\\frac{\\pi r^2}{2}$"
+        ]
+      ],
+      "proposalFingerprint": "5db39454b0b2364f4c92ba54cb57094397570e57a75aabe86da5725f531feb91"
+    },
+    {
+      "id": "m1-06-05-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "중심각의 크기가 $90^\\circ$인 부채꼴의 호의 길이는 같은 원의 둘레의 길이의 몇 분의 몇인지 쓰고, 반지름의 길이가 $8$일 때 이 호의 길이를 구하시오.",
+      "bAnswer": "$\\frac{90}{360}=\\frac{1}{4}$이므로 원의 둘레의 길이의 $\\frac{1}{4}$이다. 호의 길이는 $2\\pi\\times8\\times\\frac{1}{4}=4\\pi$이다.",
+      "bGoal": "중심각이 $90^\\circ$인 부채꼴의 호의 길이 구하기",
+      "bReason": "'사분원'이라는 말 대신 중심각의 크기를 밝혀 비율과 계산을 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\pi$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "중심각이 문장에 있고 원의 둘레에 대한 비율만 묻는 짧은 빈칸임.",
+      "studentLabel": "중심각이 $90^\\circ$인 부채꼴의 호",
+      "learningRole": "application",
+      "roleReason": "$90^\\circ$가 원 전체의 $\\frac{1}{4}$임을 호에 적용",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1823,
+      "part": "m1plus",
+      "sourceFingerprint": "82bb95fb5702c4b0ceaa4f5a5821448e62b6fe7e4046812814867da8bc643e51",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1823
+      },
+      "directReview": null,
+      "cFrozenSentence": "중심각이 $90^\\circ$인 부채꼴의 호는 원의 둘레의 □이다.",
+      "cFrozenDefinition": "중심각이 $90^\\circ$인 부채꼴의 호는 원의 둘레의 {$\\frac{1}{4}$}이다.",
+      "cFrozenAnswers": [
+        "$\\frac{1}{4}$"
+      ],
+      "cMarkedSentence": "중심각이 $90^\\circ$인 부채꼴의 호는 원의 둘레의 {$\\frac{1}{4}$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{4}$"
+      ],
+      "cStudentSentence": "중심각이 $90^\\circ$인 부채꼴의 호는 원의 둘레의 □이다.",
+      "cAnswers": [
+        "$\\frac{1}{4}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{4}$",
+          "equivalentAnswers": [
+            "$\\frac{1}{4}$",
+            "$\\frac{90}{360}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{1}{4}$",
+          "accept": [
+            "$\\frac{90}{360}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{4}$",
+          "$\\frac{90}{360}$"
+        ]
+      ],
+      "proposalFingerprint": "3aa0d798bbb14e737440fecc620ad73b88be5be67e254127826797d9cd07e0a3"
+    },
+    {
+      "id": "m1-06-05-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "중심각의 크기가 $360^\\circ$보다 작은 부채꼴의 둘레는 어떤 부분들로 이루어지는지 쓰고, 반지름의 길이가 $3$, 호의 길이가 $2\\pi$인 부채꼴의 둘레의 길이를 구하시오.",
+      "bAnswer": "부채꼴의 둘레는 호 하나와 반지름 두 개로 이루어진다. 둘레의 길이는 $2\\pi+3+3=2\\pi+6$이다.",
+      "bGoal": "부채꼴의 둘레의 길이 구하기",
+      "bReason": "반지름 두 개를 빠뜨리기 쉬워 둘레를 이루는 부분과 계산을 함께 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "호와 반지름 두 개",
+            "호의 길이에 반지름의 길이의 $2$배를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\pi+6$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "둘레를 이루는 두 종류의 부분을 묻는 빈칸으로 조건도 문장에 있음.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "호에 반지름 두 개를 더해 둘레 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1824,
+      "part": "m1plus",
+      "sourceFingerprint": "fe9a10553e91b3dc6d85e16cb67cba10b560941e2f392aa078dd996cbb81e9cc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1824
+      },
+      "directReview": null,
+      "cFrozenSentence": "중심각이 $360^\\circ$보다 작은 부채꼴의 둘레의 길이는 □의 길이에 □의 길이 두 개를 더한 것이다.",
+      "cFrozenDefinition": "중심각이 $360^\\circ$보다 작은 부채꼴의 둘레의 길이는 {호}의 길이에 {반지름}의 길이 두 개를 더한 것이다.",
+      "cFrozenAnswers": [
+        "호",
+        "반지름"
+      ],
+      "cMarkedSentence": "중심각이 $360^\\circ$보다 작은 부채꼴의 둘레의 길이는 {호}의 길이에 {반지름}의 길이 두 개를 더한 것이다.",
+      "cSlotAnswers": [
+        "호",
+        "반지름"
+      ],
+      "cStudentSentence": "중심각이 $360^\\circ$보다 작은 부채꼴의 둘레의 길이는 □의 길이에 □의 길이 두 개를 더한 것이다.",
+      "cAnswers": [
+        "호",
+        "반지름"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "호",
+          "equivalentAnswers": [
+            "호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "반지름",
+          "equivalentAnswers": [
+            "반지름"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "호"
+        ],
+        [
+          "반지름"
+        ]
+      ],
+      "proposalFingerprint": "c5c9eeeaa6b1588e320e6dc7be9f95feeaca77544fd51f3da911cb7d31b8afec"
+    },
+    {
+      "id": "m1-06-05-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "원의 둘레의 길이가 $L$일 때 반지름의 길이를 $L$과 $\\pi$를 써서 나타내고, 둘레의 길이가 $14\\pi$인 원의 반지름의 길이를 구하시오.",
+      "bAnswer": "반지름의 길이를 $r$라 하면 $2\\pi r=L$이므로 $r=\\frac{L}{2\\pi}$이다. 둘레의 길이가 $14\\pi$이면 $r=14\\pi\\div(2\\pi)=7$이다.",
+      "bGoal": "둘레의 길이에서 반지름의 길이 구하기",
+      "bReason": "2π전체로나눈다는뜻이분명하도록괄호를사용한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{L}{2\\pi}$",
+            "$L\\div(2\\pi)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "원의 둘레의 길이가 $L$이면 반지름의 길이는 $L$을 {$2\\pi$}로 나눈 값이다.",
+      "cAnswers": [
+        "$2\\pi$"
+      ],
+      "cReason": "첫 빈칸 답 $L$이 문장 앞에 그대로 있어 나누는 수만 묻게 함.",
+      "learningRole": "procedure",
+      "roleReason": "둘레를 $2\\pi$로 나누어 반지름 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1825,
+      "part": "m1plus",
+      "sourceFingerprint": "83c2f80a24b8650825babcd76ed367e344990403da52984556e777da95e8e7a2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1825
+      },
+      "directReview": null,
+      "cMarkedSentence": "원의 둘레의 길이가 $L$이면 반지름의 길이는 $L$을 {$2\\pi$}로 나눈 값이다.",
+      "cSlotAnswers": [
+        "$2\\pi$"
+      ],
+      "cStudentSentence": "원의 둘레의 길이가 $L$이면 반지름의 길이는 $L$을 □로 나눈 값이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2\\pi$",
+          "equivalentAnswers": [
+            "$2\\pi$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2\\pi$"
+        ]
+      ],
+      "proposalFingerprint": "d41ac25476975ccd441bfbe15c0157266e90252dc5d5c5341d73f9db496a6e46"
+    },
+    {
+      "id": "m1-06-05-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "넓이가 $49\\pi$인 원의 반지름의 길이를 구하고, 넓이가 $k\\pi$($k>0$)인 원의 반지름의 길이는 어떤 수인지 쓰시오.",
+      "bAnswer": "반지름의 길이를 $r$라 하면 $\\pi r^2=49\\pi$에서 $r^2=49$이고 $r>0$이므로 $r=7$이다. 넓이가 $k\\pi$인 원의 반지름의 길이는 제곱하여 $k$가 되는 양수이다.",
+      "bGoal": "넓이에서 반지름의 길이 구하기",
+      "bReason": "중$1$은 제곱근을 모르므로 수치 예와 '제곱하여 $k$가 되는 양수'라는 표현으로 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "제곱하여 $k$가 되는 양수",
+            "두 번 곱해 $k$가 되는 양수",
+            "$r^2=k$인 양수 $r$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "원의 넓이가 $k\\pi$($k>0$)이면 반지름의 길이는 제곱하여 $k$가 되는 {양수}이다.",
+      "cAnswers": [
+        "양수"
+      ],
+      "cReason": "두번곱하여라는동작어빈칸대신길이인반지름이양수라는핵심조건만묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "$r^2=k$인 양수로 반지름 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1826,
+      "part": "m1plus",
+      "sourceFingerprint": "8e4c3fdcb9d44dc70bc84aa9f33c2b44eec6ae59ca3466dae9cca5bb994b403b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1826
+      },
+      "directReview": null,
+      "cMarkedSentence": "원의 넓이가 $k\\pi$($k>0$)이면 반지름의 길이는 제곱하여 $k$가 되는 {양수}이다.",
+      "cSlotAnswers": [
+        "양수"
+      ],
+      "cStudentSentence": "원의 넓이가 $k\\pi$($k>0$)이면 반지름의 길이는 제곱하여 $k$가 되는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "제곱",
+          "accept": [
+            "두 번 곱"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양수"
+        ]
+      ],
+      "proposalFingerprint": "943ea00dbf5a7e71965ddcaabb4347d6272d1812126bc09732ed5b5368745b22"
+    },
+    {
+      "id": "m1-06-05-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 $6$, 호의 길이가 $2\\pi$인 부채꼴의 중심각의 크기를 $x^\\circ$라 한다. 중심각의 크기를 구하고, 호의 길이와 원의 둘레의 관계를 이용해 구한 과정을 쓰시오.",
+      "bAnswer": "$2\\pi\\times6\\times\\frac{x}{360}=2\\pi$에서 $\\frac{x}{30}=2$이므로 $x=60$이다. 중심각의 크기는 $60^\\circ$이다.",
+      "bGoal": "호의 길이 공식으로 중심각 구하기",
+      "bReason": "식을반드시세우는방법과전체에대한비율로푸는방법모두질문요구에맞게한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2\\pi\\times6\\times\\frac{x}{360}=2\\pi$",
+            "호의 길이 $2\\pi$는 원의 둘레 $12\\pi$의 $\\frac{1}{6}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60^\\circ$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "부채꼴의 반지름의 길이 $r$와 호의 길이 $l$을 알면, 중심각의 크기를 $x^\\circ$라 하고 식 {$2\\pi r\\times\\frac{x}{360}$}$=l$을 세워 $x$의 값을 구한다.",
+      "cAnswers": [
+        "$2\\pi r\\times\\frac{x}{360}$"
+      ],
+      "cReason": "빈칸 답 $x$가 바로 앞 식에 있어 베끼게 되므로 세우는 식의 좌변을 묻게 함.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "호의 길이 공식을 거꾸로 써서 중심각 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1827,
+      "part": "m1plus",
+      "sourceFingerprint": "75d4fc4e1a9f7c912bed1bc14b7763ac156d3bae55fcd67fe2e334a425307a17",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1827
+      },
+      "directReview": null,
+      "cMarkedSentence": "부채꼴의 반지름의 길이 $r$와 호의 길이 $l$을 알면, 중심각의 크기를 $x^\\circ$라 하고 식 {$2\\pi r\\times\\frac{x}{360}$}$=l$을 세워 $x$의 값을 구한다.",
+      "cSlotAnswers": [
+        "$2\\pi r\\times\\frac{x}{360}$"
+      ],
+      "cStudentSentence": "부채꼴의 반지름의 길이 $r$와 호의 길이 $l$을 알면, 중심각의 크기를 $x^\\circ$라 하고 식 □$=l$을 세워 $x$의 값을 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2\\pi r\\times\\frac{x}{360}$",
+          "equivalentAnswers": [
+            "$2\\pi r\\times\\frac{x}{360}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2\\pi r\\times\\frac{x}{360}$"
+        ]
+      ],
+      "proposalFingerprint": "07dfa9094c567c5927e8c0fb1fb35b0584bebe668877170f8c920034fe6fe8a1"
+    },
+    {
+      "id": "m1-06-05-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 $6$, 넓이가 $9\\pi$인 부채꼴의 중심각의 크기를 $x^\\circ$라 한다. 중심각의 크기를 구하고, 부채꼴의 넓이와 원의 넓이의 관계를 이용해 구한 과정을 쓰시오.",
+      "bAnswer": "$\\pi\\times6^2\\times\\frac{x}{360}=9\\pi$에서 $\\frac{x}{10}=9$이므로 $x=90$이다. 중심각의 크기는 $90^\\circ$이다.",
+      "bGoal": "부채꼴의 넓이 공식으로 중심각 구하기",
+      "bReason": "넓이비율로직접중심각을구하는올바른방법도질문의범위에포함한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\pi\\times6^2\\times\\frac{x}{360}=9\\pi$",
+            "넓이 $9\\pi$는 원의 넓이 $36\\pi$의 $\\frac{1}{4}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$90^\\circ$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "부채꼴의 반지름의 길이 $r$와 넓이 $S$를 알면, 중심각의 크기를 $x^\\circ$라 하고 식 {$\\pi r^2\\times\\frac{x}{360}$}$=S$를 세워 $x$의 값을 구한다.",
+      "cAnswers": [
+        "$\\pi r^2\\times\\frac{x}{360}$"
+      ],
+      "cReason": "원문에는 부채꼴이라는 대상과 $x$의 뜻이 없어 둘을 밝히고 식의 좌변을 묻게 함.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "넓이 공식을 거꾸로 써서 중심각 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1828,
+      "part": "m1plus",
+      "sourceFingerprint": "01a921f170dbb1b1b8490e284d1f1d93400ed6088d39c673053c22995dac6a51",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1828
+      },
+      "directReview": null,
+      "cMarkedSentence": "부채꼴의 반지름의 길이 $r$와 넓이 $S$를 알면, 중심각의 크기를 $x^\\circ$라 하고 식 {$\\pi r^2\\times\\frac{x}{360}$}$=S$를 세워 $x$의 값을 구한다.",
+      "cSlotAnswers": [
+        "$\\pi r^2\\times\\frac{x}{360}$"
+      ],
+      "cStudentSentence": "부채꼴의 반지름의 길이 $r$와 넓이 $S$를 알면, 중심각의 크기를 $x^\\circ$라 하고 식 □$=S$를 세워 $x$의 값을 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\pi r^2\\times\\frac{x}{360}$",
+          "equivalentAnswers": [
+            "$\\pi r^2\\times\\frac{x}{360}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\pi r^2\\times\\frac{x}{360}$"
+        ]
+      ],
+      "proposalFingerprint": "dad8800f1fd69ec7b71b1b69689eb88cdc9963ff6ef3f05b77d94b3a3f8405fa"
+    },
+    {
+      "id": "m1-06-05-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "중심각의 크기가 $120^\\circ$, 호의 길이가 $4\\pi$인 부채꼴의 반지름의 길이를 $r$라 한다. $r$의 값을 구하고, 중심각과 호의 길이의 관계를 이용해 구한 과정을 쓰시오.",
+      "bAnswer": "$2\\pi r\\times\\frac{120}{360}=4\\pi$에서 $\\frac{2\\pi r}{3}=4\\pi$이므로 $r=6$이다.",
+      "bGoal": "호의 길이 공식으로 반지름의 길이 구하기",
+      "bReason": "호가둘레의삼분의일임을이용한답도질문과채점이일치하도록한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2\\pi r\\times\\frac{120}{360}=4\\pi$",
+            "호의 길이 $4\\pi$가 원의 둘레의 $\\frac{1}{3}$이므로 원의 둘레는 $12\\pi$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "부채꼴의 중심각의 크기 $x^\\circ$와 호의 길이 $l$을 알면, 식 $2\\pi r\\times\\frac{x}{360}=l$에 두 값을 넣어 {반지름}의 길이 $r$에 대한 {방정식}을 풀어 구한다.",
+      "cAnswers": [
+        "반지름",
+        "방정식"
+      ],
+      "cReason": "'호의 공식'이 어떤 식인지 문장에 없어 식을 보여 주고 빈칸은 그대로 둠.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "호의 길이 공식에서 $r$에 대한 방정식 풀기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1829,
+      "part": "m1plus",
+      "sourceFingerprint": "1957d582222ae49e06d463786b8ccc93d542ffa555ea482d7e7123c68fd027ca",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1829
+      },
+      "directReview": null,
+      "cMarkedSentence": "부채꼴의 중심각의 크기 $x^\\circ$와 호의 길이 $l$을 알면, 식 $2\\pi r\\times\\frac{x}{360}=l$에 두 값을 넣어 {반지름}의 길이 $r$에 대한 {방정식}을 풀어 구한다.",
+      "cSlotAnswers": [
+        "반지름",
+        "방정식"
+      ],
+      "cStudentSentence": "부채꼴의 중심각의 크기 $x^\\circ$와 호의 길이 $l$을 알면, 식 $2\\pi r\\times\\frac{x}{360}=l$에 두 값을 넣어 □의 길이 $r$에 대한 □을 풀어 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "반지름",
+          "equivalentAnswers": [
+            "반지름"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "방정식",
+          "equivalentAnswers": [
+            "방정식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "반지름"
+        ],
+        [
+          "방정식"
+        ]
+      ],
+      "proposalFingerprint": "e18cac8cf3344a894a5c5e3d0b66dac994fcb4ef816e4ecc1f19469a3be244fb"
+    },
+    {
+      "id": "m1-06-05-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "원의 반지름의 길이가 $k$배($k>0$)가 되면 넓이는 몇 배가 되는지 $k$를 써서 나타내고, 그 까닭을 원의 넓이를 구하는 식으로 설명하시오.",
+      "bAnswer": "$k^2$배가 된다. 반지름의 길이가 $r$에서 $kr$가 되면 넓이는 $\\pi(kr)^2=k^2\\times\\pi r^2$이 되기 때문이다.",
+      "bGoal": "반지름이 $k$배일 때 넓이의 변화와 까닭 말하기",
+      "bReason": "$k$의 조건을 밝히고 배수와 넓이 식에 근거한 까닭을 함께 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$k^2$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\pi(kr)^2=k^2\\pi r^2$",
+            "넓이 식에서 반지름을 두 번 곱하므로 $k$도 두 번 곱해진다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "결과와 까닭을 하나씩 묻는 빈칸이며 조건 $k>0$도 문장에 있음.",
+      "learningRole": "reason",
+      "roleReason": "넓이가 $k^2$배가 되는 까닭",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1830,
+      "part": "m1plus",
+      "sourceFingerprint": "df7396f538a6aabfced4013fc8ceb87fad325bf4d96f7885492db08ef4a948e8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1830
+      },
+      "directReview": null,
+      "cFrozenSentence": "원의 반지름이 $k$배($k>0$)가 되면 넓이는 □가 된다. 넓이 $\\pi r^2$에서 반지름을 □ 곱하기 때문이다.",
+      "cFrozenDefinition": "원의 반지름이 $k$배($k>0$)가 되면 넓이는 {$k^2$배}가 된다. 넓이 $\\pi r^2$에서 반지름을 {두 번} 곱하기 때문이다.",
+      "cFrozenAnswers": [
+        "$k^2$배",
+        "두 번"
+      ],
+      "cMarkedSentence": "원의 반지름이 $k$배($k>0$)가 되면 넓이는 {$k^2$배}가 된다. 넓이 $\\pi r^2$에서 반지름을 {두 번} 곱하기 때문이다.",
+      "cSlotAnswers": [
+        "$k^2$배",
+        "두 번"
+      ],
+      "cStudentSentence": "원의 반지름이 $k$배($k>0$)가 되면 넓이는 □가 된다. 넓이 $\\pi r^2$에서 반지름을 □ 곱하기 때문이다.",
+      "cAnswers": [
+        "$k^2$배",
+        "두 번"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$k^2$배",
+          "equivalentAnswers": [
+            "$k^2$배"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "두 번",
+          "equivalentAnswers": [
+            "두 번",
+            "$2$번"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "두 번",
+          "accept": [
+            "$2$번"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$k^2$배"
+        ],
+        [
+          "두 번",
+          "$2$번"
+        ]
+      ],
+      "proposalFingerprint": "b98dfac6081ef35f3a27951f4f07ca36036f47a48b0ebb61ac034c604b287e8f"
+    },
+    {
+      "id": "m1-06-05-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "원의 반지름의 길이가 $k$배($k>0$)가 되면 둘레의 길이는 몇 배가 되는지 쓰고, 원의 둘레의 길이는 반지름의 길이와 어떤 관계인지 쓰시오.",
+      "bAnswer": "$2\\pi\\times kr=k\\times2\\pi r$이므로 둘레의 길이도 $k$배가 된다. 곧 원의 둘레의 길이는 반지름의 길이에 정비례한다.",
+      "bGoal": "반지름과 둘레의 길이의 정비례 관계 말하기",
+      "bReason": "두 양의 이름만 있어 반지름이 $k$배일 때의 변화와 관계 이름을 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$k$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "정비례"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "원의 반지름의 길이가 $k$배($k>0$)가 되면 둘레의 길이도 $k$배가 된다. 곧 원의 둘레의 길이는 반지름의 길이에 {정비례}한다.",
+      "cAnswers": [
+        "정비례"
+      ],
+      "cReason": "첫 빈칸 답 '$k$배'가 바로 앞 구절에 있어 관계 이름만 묻게 함.",
+      "learningRole": "definition",
+      "roleReason": "둘레가 반지름에 정비례한다는 성질",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1831,
+      "part": "m1plus",
+      "sourceFingerprint": "9cb431acc14208d76c0be7d847689836874fd3e56428e0535fdeb5de56c2191e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1831
+      },
+      "directReview": null,
+      "cMarkedSentence": "원의 반지름의 길이가 $k$배($k>0$)가 되면 둘레의 길이도 $k$배가 된다. 곧 원의 둘레의 길이는 반지름의 길이에 {정비례}한다.",
+      "cSlotAnswers": [
+        "정비례"
+      ],
+      "cStudentSentence": "원의 반지름의 길이가 $k$배($k>0$)가 되면 둘레의 길이도 $k$배가 된다. 곧 원의 둘레의 길이는 반지름의 길이에 □한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "정비례",
+          "equivalentAnswers": [
+            "정비례"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "정비례"
+        ]
+      ],
+      "proposalFingerprint": "cdfe6f1e92afd28903838e134f158cb3763117327799200aa25104868c99fece"
+    },
+    {
+      "id": "m1-06-05-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "넓이가 $10\\pi$, 호의 길이가 $4\\pi$인 부채꼴의 반지름의 길이를 $r$라 할 때, 넓이와 호의 길이 사이의 관계식을 이용해 $r$의 값을 구하시오.",
+      "bAnswer": "$S=\\frac{1}{2}rl$에서 $10\\pi=\\frac{1}{2}\\times r\\times4\\pi$, 곧 $2\\pi r=10\\pi$이므로 $r=5$이다.",
+      "bGoal": "넓이와 호의 길이로 반지름의 길이 구하기",
+      "bReason": "어느 도형의 넓이와 호인지 제목에 없어 부채꼴임을 밝히고 수치를 줌.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10\\pi=\\frac{1}{2}\\times r\\times4\\pi$",
+            "$S=\\frac{1}{2}rl$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "부채꼴의 넓이 $S$와 호의 길이 $l$을 알면, 반지름의 길이를 $r$라 하고 식 {$S=\\frac{1}{2}rl$}에 두 값을 넣어 $r$의 값을 구한다.",
+      "cAnswers": [
+        "$S=\\frac{1}{2}rl$"
+      ],
+      "cReason": "r뒤조사를피해r의값을구한다고자연스럽게쓴다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "$S=\\frac{1}{2}rl$에서 $r$ 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1832,
+      "part": "m1plus",
+      "sourceFingerprint": "df2766f65c394a2ffaab9d1c3aaa5282ae78269815d695ac2d0191831d32ddcf",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1832
+      },
+      "directReview": null,
+      "cMarkedSentence": "부채꼴의 넓이 $S$와 호의 길이 $l$을 알면, 반지름의 길이를 $r$라 하고 식 {$S=\\frac{1}{2}rl$}에 두 값을 넣어 $r$의 값을 구한다.",
+      "cSlotAnswers": [
+        "$S=\\frac{1}{2}rl$"
+      ],
+      "cStudentSentence": "부채꼴의 넓이 $S$와 호의 길이 $l$을 알면, 반지름의 길이를 $r$라 하고 식 □에 두 값을 넣어 $r$의 값을 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$S=\\frac{1}{2}rl$",
+          "equivalentAnswers": [
+            "$S=\\frac{1}{2}rl$",
+            "$S=\\frac{rl}{2}$",
+            "$\\frac{1}{2}rl=S$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$S=\\frac{1}{2}rl$",
+          "accept": [
+            "$S=\\frac{rl}{2}$",
+            "$\\frac{1}{2}rl=S$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$S=\\frac{1}{2}rl$",
+          "$S=\\frac{rl}{2}$",
+          "$\\frac{1}{2}rl=S$"
+        ]
+      ],
+      "proposalFingerprint": "d71e33151b18bab6e4355c82e99391b387fdac6a36af21ea468b55fc4ff9dec3"
+    },
+    {
+      "id": "m1-06-05-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 $5$인 원 안에 중심이 같고 반지름의 길이가 $3$인 원이 있다. 큰 원의 안쪽이면서 작은 원의 바깥쪽인 부분의 넓이를 구하는 방법을 쓰고, 그 넓이를 구하시오.",
+      "bAnswer": "큰 원의 넓이에서 작은 원의 넓이를 뺀다. 넓이는 $\\pi\\times5^2-\\pi\\times3^2=25\\pi-9\\pi=16\\pi$이다.",
+      "bGoal": "큰 도형에서 작은 도형을 빼 넓이 구하기",
+      "bReason": "그림이 없으므로 '색칠한 부분' 대신 두 원의 위치와 구할 영역을 말로 밝힘.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 원의 넓이에서 작은 원의 넓이를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16\\pi$"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cReason": "빈칸 답 '큰', '작은'이 같은 문장 앞부분에 그대로 있어 베끼면 됨.",
+      "exclusionReason": "C 제외: 두 빈칸의 답이 문장 앞의 '큰 도형', '작은 도형'에서 그대로 보이는 베끼기 빈칸이며, 고쳐도 '뺀다'는 뻔한 낱말만 남음. B 서술형으로만 사용함.",
+      "studentLabel": "큰 도형에서 작은 도형을 뺀 넓이",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "전체에서 부분을 빼 남은 넓이 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1833,
+      "part": "m1plus",
+      "sourceFingerprint": "3d82d279df23960a5d8440c5cb09c00d0f0a6ebeeb74171719e72c058c819b6b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1833
+      },
+      "directReview": null,
+      "proposalFingerprint": "944da940d6739edc51e752c1d4433364519ed6c916877bdbc988081567b7f5e8"
+    },
+    {
+      "id": "m1-06-05-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "지름의 길이가 $4$인 반원과 지름의 길이가 $6$인 반원의 호의 길이의 합을 구하고, 이것을 지름의 길이가 $10$인 반원의 호의 길이와 비교하시오.",
+      "bAnswer": "두 호의 길이의 합은 $\\frac{1}{2}\\times4\\pi+\\frac{1}{2}\\times6\\pi=2\\pi+3\\pi=5\\pi$이다. 지름의 길이가 $10$인 반원의 호의 길이도 $\\frac{1}{2}\\times10\\pi=5\\pi$이므로 서로 같다.",
+      "bGoal": "두 반원의 호의 합과 큰 반원의 호 비교하기",
+      "bReason": "어떤 반원과 비교하는지 제목에 없어 세 지름의 길이를 수로 줌.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5\\pi$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 길이가 같다",
+            "같다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "지름의 길이가 $a$, $b$인 두 반원의 호의 길이의 합은 지름의 길이가 {$a+b$}인 반원의 호의 길이와 같다.",
+      "cAnswers": [
+        "$a+b$"
+      ],
+      "cReason": "'두 지름을 이어 만든 큰 반원'이 어떤 반원인지 흐릿해 지름의 길이를 기호로 나타냄.",
+      "studentLabel": "두 반원의 호의 길이의 합",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "호의 길이가 지름에 정비례함을 이용한 비교",
+      "coreAfter": "지름의 길이가 $a$, $b$인 두 반원의 호의 길이를 더하면, 지름의 길이가 {$a+b$}인 반원의 호의 길이와 {같다}.",
+      "coreReason": "'두 지름을 이어 만든 큰 반원'이 지름의 길이의 합을 지름으로 하는 반원임을 분명히 했다.",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1834,
+      "part": "m1plus",
+      "sourceFingerprint": "c4c8700f3cceef4ebef8b5679a0bb03de56e8dac2326b4a1abee9e37a08e51ea",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1834
+      },
+      "directReview": null,
+      "coreBeforeRepair": "지름의 길이가 $a$, $b$인 두 반원의 호의 길이를 더하면, 지름의 길이가 $a+b$인 반원의 호의 길이와 같다.",
+      "coreRepairReason": "현재안에서 빠진 원본 핵심어 {같다} 표지를 되살렸다. 큰 반원을 정하는 일반 관계 {$a+b$}를 핵심어로 더했다. 문자 $a$, $b$로 일반 관계를 유지했다.",
+      "coreRepairEvidence": "core-repair/core-001",
+      "cMarkedSentence": "지름의 길이가 $a$, $b$인 두 반원의 호의 길이의 합은 지름의 길이가 {$a+b$}인 반원의 호의 길이와 같다.",
+      "cSlotAnswers": [
+        "$a+b$"
+      ],
+      "cStudentSentence": "지름의 길이가 $a$, $b$인 두 반원의 호의 길이의 합은 지름의 길이가 □인 반원의 호의 길이와 같다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a+b$",
+          "equivalentAnswers": [
+            "$a+b$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a+b$"
+        ]
+      ],
+      "proposalFingerprint": "9348293fdd5af239f613591e5a37da95eaa4f0e90217e58719978f33fd8a2cdf"
+    },
+    {
+      "id": "m1-06-05-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "중심각의 크기가 $90^\\circ$인 부채꼴의 둘레의 길이가 $\\pi+4$이다. 반지름의 길이를 $r$라 할 때, 둘레의 길이를 $r$로 나타낸 식을 세우고 $r$의 값을 구하시오.",
+      "bAnswer": "호의 길이는 $2\\pi r\\times\\frac{90}{360}=\\frac{\\pi r}{2}$이므로 $\\frac{\\pi r}{2}+2r=\\pi+4$이다. 좌변은 $\\frac{r}{2}(\\pi+4)$이므로 $r=2$이다.",
+      "bGoal": "부채꼴의 둘레로 반지름의 길이 구하기",
+      "bReason": "방정식을 세우는 절차라 중심각과 둘레를 수로 주고 식과 값을 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{\\pi r}{2}+2r=\\pi+4$",
+            "$2\\pi r\\times\\frac{90}{360}+2r=\\pi+4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "중심각의 크기가 $0^\\circ$보다 크고 $360^\\circ$보다 작은 부채꼴에서 중심각과 둘레의 길이가 주어졌다. 반지름의 길이를 $r$라 하고 둘레의 길이를 호의 길이와 {$2r$}의 합으로 나타낸 {방정식}을 세워 $r$의 값을 구한다.",
+      "cAnswers": [
+        "$2r$",
+        "방정식"
+      ],
+      "cReason": "원전체이면반지름두개가둘레아니므로중심각의적용범위를밝힌다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "둘레를 호와 $2r$의 합으로 놓고 방정식 세우기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1835,
+      "part": "m1plus",
+      "sourceFingerprint": "a816f343b55a1bcb01358e7043d1f7b836b16234a218e34da2efe221cd708dda",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1835
+      },
+      "directReview": null,
+      "cMarkedSentence": "중심각의 크기가 $0^\\circ$보다 크고 $360^\\circ$보다 작은 부채꼴에서 중심각과 둘레의 길이가 주어졌다. 반지름의 길이를 $r$라 하고 둘레의 길이를 호의 길이와 {$2r$}의 합으로 나타낸 {방정식}을 세워 $r$의 값을 구한다.",
+      "cSlotAnswers": [
+        "$2r$",
+        "방정식"
+      ],
+      "cStudentSentence": "중심각의 크기가 $0^\\circ$보다 크고 $360^\\circ$보다 작은 부채꼴에서 중심각과 둘레의 길이가 주어졌다. 반지름의 길이를 $r$라 하고 둘레의 길이를 호의 길이와 □의 합으로 나타낸 □을 세워 $r$의 값을 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2r$",
+          "equivalentAnswers": [
+            "$2r$",
+            "$r+r$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "방정식",
+          "equivalentAnswers": [
+            "방정식"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$2r$",
+          "accept": [
+            "$r+r$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$2r$",
+          "$r+r$"
+        ],
+        [
+          "방정식"
+        ]
+      ],
+      "proposalFingerprint": "000d717d57863132833b179f0c81da86d879daffe9b7848b7f735ad5842ff97c"
+    },
+    {
+      "id": "m1-06-05-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "호의 길이가 $3\\pi\\,\\mathrm{cm}$, 넓이가 $3\\pi\\,\\mathrm{cm}^2$인 부채꼴의 반지름의 길이를 $r\\,\\mathrm{cm}$라 할 때, $r$의 값을 구하는 과정을 쓰시오.",
+      "bAnswer": "$S=\\frac{1}{2}rl$에서 $3\\pi=\\frac{1}{2}\\times r\\times3\\pi$이므로 $r=2$이다. 반지름의 길이는 $2\\,\\mathrm{cm}$이다.",
+      "bGoal": "넓이와 호의 길이를 나타낸 수가 같은 부채꼴의 반지름 구하기",
+      "bReason": "'같은 수'가 무엇끼리인지 제목에 없어 단위를 붙인 두 값을 직접 줌.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3\\pi=\\frac{1}{2}\\times r\\times3\\pi$",
+            "$\\frac{1}{2}rl=l$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "부채꼴의 반지름의 길이를 $r\\,\\mathrm{cm}$, 호의 길이를 $l\\,\\mathrm{cm}$($l>0$)라 하자. 넓이를 $\\mathrm{cm}^2$로 나타낸 수가 $l$과 같으면 {$\\frac{1}{2}rl$}$=l$이므로 $r=$ {$2$}이다.",
+      "cAnswers": [
+        "$\\frac{1}{2}rl$",
+        "$2$"
+      ],
+      "cReason": "기호의 뜻이 문장 맨 뒤에 있어 읽기 어려우므로 앞에 두고 식과 값을 묻게 함.",
+      "studentLabel": "넓이와 호의 길이를 나타낸 수가 같은 부채꼴",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "$\\frac{1}{2}rl=l$에서 $r=2$ 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1836,
+      "part": "m1plus",
+      "sourceFingerprint": "addf49c9942935c3c31868974476ca26b2cc76d5607ba80905b5c38226a5bb16",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1836
+      },
+      "directReview": null,
+      "cMarkedSentence": "부채꼴의 반지름의 길이를 $r\\,\\mathrm{cm}$, 호의 길이를 $l\\,\\mathrm{cm}$($l>0$)라 하자. 넓이를 $\\mathrm{cm}^2$로 나타낸 수가 $l$과 같으면 {$\\frac{1}{2}rl$}$=l$이므로 $r=$ {$2$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{2}rl$",
+        "$2$"
+      ],
+      "cStudentSentence": "부채꼴의 반지름의 길이를 $r\\,\\mathrm{cm}$, 호의 길이를 $l\\,\\mathrm{cm}$($l>0$)라 하자. 넓이를 $\\mathrm{cm}^2$로 나타낸 수가 $l$과 같으면 □$=l$이므로 $r=$ □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{2}rl$",
+          "equivalentAnswers": [
+            "$\\frac{1}{2}rl$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{2}rl$"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "003d8a9a81ae263590d537fbf6eff984fa33328286cf4893655561fa0862105f"
+    },
+    {
+      "id": "m1-06-05-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "한 변의 길이가 $4$인 정사각형 $ABCD$ 안에, 꼭짓점 $A$를 중심으로 하고 반지름의 길이가 $4$이며 중심각의 크기가 $90^\\circ$인 부채꼴 $BAD$를 그렸다. 정사각형의 안쪽이면서 이 부채꼴의 바깥쪽인 부분의 넓이를 구하는 방법을 쓰고, 그 넓이를 구하시오.",
+      "bAnswer": "정사각형의 넓이에서 부채꼴의 넓이를 뺀다. 넓이는 $4\\times4-\\pi\\times4^2\\times\\frac{90}{360}=16-4\\pi$이다.",
+      "bGoal": "정사각형에서 사분원을 뺀 넓이 구하기",
+      "bReason": "그림이 없으므로 정사각형의 꼭짓점, 부채꼴의 중심과 반지름, 구할 영역을 밝힘.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형의 넓이에서 부채꼴(사분원)의 넓이를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16-4\\pi$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 변의 길이가 $a$인 정사각형에서 한 꼭짓점을 중심으로 하고 반지름의 길이가 $a$인 사분원을 정사각형 안에 그리면, 사분원 밖에 남는 부분의 넓이는 $a^2-$ {$\\frac{1}{4}\\pi a^2$}이다.",
+      "cAnswers": [
+        "$\\frac{1}{4}\\pi a^2$"
+      ],
+      "cReason": "둘째 빈칸 답 '사분원'이 문장 앞에 그대로 있어 빼는 넓이를 식으로 묻게 함.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "정사각형에서 사분원의 넓이 빼기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1837,
+      "part": "m1plus",
+      "sourceFingerprint": "ca85f6c9a603998e04364ad4f5b8d4620329aad28f2abdc677a184fa645e5a61",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1837
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 변의 길이가 $a$인 정사각형에서 한 꼭짓점을 중심으로 하고 반지름의 길이가 $a$인 사분원을 정사각형 안에 그리면, 사분원 밖에 남는 부분의 넓이는 $a^2-$ {$\\frac{1}{4}\\pi a^2$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{4}\\pi a^2$"
+      ],
+      "cStudentSentence": "한 변의 길이가 $a$인 정사각형에서 한 꼭짓점을 중심으로 하고 반지름의 길이가 $a$인 사분원을 정사각형 안에 그리면, 사분원 밖에 남는 부분의 넓이는 $a^2-$ □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{4}\\pi a^2$",
+          "equivalentAnswers": [
+            "$\\frac{1}{4}\\pi a^2$",
+            "$\\frac{\\pi a^2}{4}$",
+            "$\\pi a^2\\times\\frac{90}{360}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{1}{4}\\pi a^2$",
+          "accept": [
+            "$\\frac{\\pi a^2}{4}$",
+            "$\\pi a^2\\times\\frac{90}{360}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{4}\\pi a^2$",
+          "$\\frac{\\pi a^2}{4}$",
+          "$\\pi a^2\\times\\frac{90}{360}$"
+        ]
+      ],
+      "proposalFingerprint": "c2c57c28db6ce38541ee2cec974a350c15b76efc71cb8d8d12147738365f64a9"
+    },
+    {
+      "id": "m1-06-05-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "한 변의 길이가 $2$인 정사각형 $ABCD$ 안에, 마주 보는 꼭짓점 $A$, $C$를 각각 중심으로 하고 반지름의 길이가 $2$이며 중심각의 크기가 $90^\\circ$인 부채꼴 $BAD$와 부채꼴 $BCD$를 그렸다. 두 부채꼴이 겹치는 부분의 넓이를 구하는 방법을 쓰고, 그 넓이를 구하시오.",
+      "bAnswer": "두 부채꼴의 넓이의 합에서 정사각형의 넓이를 뺀다. 두 부채꼴을 합치면 정사각형을 다 덮고 겹친 부분만 두 번 세어지기 때문이다. 넓이는 $2\\times\\left(\\pi\\times2^2\\times\\frac{90}{360}\\right)-2\\times2=2\\pi-4$이다.",
+      "bGoal": "두 사분원이 겹친 부분의 넓이 구하기",
+      "bReason": "그림이 없으므로 정사각형의 꼭짓점과 두 부채꼴의 중심·반지름을 모두 밝힘.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 부채꼴(사분원)의 넓이의 합에서 정사각형의 넓이를 뺀다",
+            "부채꼴에서 직각삼각형을 뺀 활꼴의 넓이를 $2$배 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\pi-4$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "한 변의 길이가 $a$인 정사각형의 마주 보는 두 꼭짓점을 각각 중심으로 하고 반지름의 길이가 $a$인 사분원 두 개를 정사각형 안에 그리면, 겹친 부분의 넓이는 사분원 두 개의 넓이의 합 {$\\frac{1}{2}\\pi a^2$}에서 정사각형의 넓이 {$a^2$}을 뺀 것이다.",
+      "cAnswers": [
+        "$\\frac{1}{2}\\pi a^2$",
+        "$a^2$"
+      ],
+      "cReason": "빈칸 답 '사분원', '정사각형'이 문장 앞에 그대로 있어 두 넓이를 식으로 묻게 함.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "두 사분원의 합에서 정사각형을 빼 겹친 넓이 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1838,
+      "part": "m1plus",
+      "sourceFingerprint": "ee7eb6a54cd6a202beaae9506485f377d48261136035cdd5beceedd357b128e7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1838
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 변의 길이가 $a$인 정사각형의 마주 보는 두 꼭짓점을 각각 중심으로 하고 반지름의 길이가 $a$인 사분원 두 개를 정사각형 안에 그리면, 겹친 부분의 넓이는 사분원 두 개의 넓이의 합 {$\\frac{1}{2}\\pi a^2$}에서 정사각형의 넓이 {$a^2$}을 뺀 것이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{2}\\pi a^2$",
+        "$a^2$"
+      ],
+      "cStudentSentence": "한 변의 길이가 $a$인 정사각형의 마주 보는 두 꼭짓점을 각각 중심으로 하고 반지름의 길이가 $a$인 사분원 두 개를 정사각형 안에 그리면, 겹친 부분의 넓이는 사분원 두 개의 넓이의 합 □에서 정사각형의 넓이 □을 뺀 것이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{2}\\pi a^2$",
+          "equivalentAnswers": [
+            "$\\frac{1}{2}\\pi a^2$",
+            "$\\frac{\\pi a^2}{2}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$a^2$",
+          "equivalentAnswers": [
+            "$a^2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{1}{2}\\pi a^2$",
+          "accept": [
+            "$\\frac{\\pi a^2}{2}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{2}\\pi a^2$",
+          "$\\frac{\\pi a^2}{2}$"
+        ],
+        [
+          "$a^2$"
+        ]
+      ],
+      "proposalFingerprint": "abf57fa5002c3e4be5d502c5f7ac95785335f88fe9a3249ac4b758ab8169758a"
+    },
+    {
+      "id": "m1-06-05-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 $3$인 두 원이 한 점에서 맞닿아 있다. 두 원의 둘레를 끈으로 한 바퀴 팽팽하게 감을 때, 끈이 곧은 부분과 굽은 부분으로 어떻게 이루어지는지 쓰고 끈의 길이를 구하시오. (매듭의 길이는 생각하지 않는다.)",
+      "bAnswer": "곧은 부분은 두 개이고 길이는 각각 두 원의 중심 사이의 거리인 $6$이다. 굽은 부분은 반원의 호 두 개로, 합치면 원 한 개의 둘레 $2\\pi\\times3=6\\pi$이다. 끈의 길이는 $6\\pi+12$이다.",
+      "bGoal": "두 원을 감은 끈의 길이 구하기",
+      "bReason": "그림이 없으므로 두 원의 반지름과 맞닿은 위치, 끈을 감는 방식을 밝힘.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곧은 부분 두 개와 반원의 호 두 개",
+            "곧은 부분 두 개와 합쳐서 원 한 개의 둘레가 되는 두 호"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\pi+12$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "반지름의 길이가 같고 한 점에서 맞닿은 두 원을 끈으로 한 바퀴 팽팽하게 감으면, 끈은 길이가 같은 {선분} 두 개와 {반원}의 호 두 개로 이루어진다. 두 호의 길이의 합은 원 {한} 개의 둘레의 길이와 같다.",
+      "cAnswers": [
+        "선분",
+        "반원",
+        "한"
+      ],
+      "cReason": "완전히겹친원을생각하지않게한점에서맞닿는실제배치를밝힌다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "끈을 선분 둘과 반원의 호 둘로 나누어 길이 구하기",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1839,
+      "part": "m1plus",
+      "sourceFingerprint": "506a188e75c8e743250ae7cd6b573f421b928515a4f47c3ccfb08bdb2da7e996",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1839
+      },
+      "directReview": null,
+      "cMarkedSentence": "반지름의 길이가 같고 한 점에서 맞닿은 두 원을 끈으로 한 바퀴 팽팽하게 감으면, 끈은 길이가 같은 {선분} 두 개와 {반원}의 호 두 개로 이루어진다. 두 호의 길이의 합은 원 {한} 개의 둘레의 길이와 같다.",
+      "cSlotAnswers": [
+        "선분",
+        "반원",
+        "한"
+      ],
+      "cStudentSentence": "반지름의 길이가 같고 한 점에서 맞닿은 두 원을 끈으로 한 바퀴 팽팽하게 감으면, 끈은 길이가 같은 □ 두 개와 □의 호 두 개로 이루어진다. 두 호의 길이의 합은 원 □ 개의 둘레의 길이와 같다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "선분",
+          "equivalentAnswers": [
+            "선분",
+            "곧은 부분"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "반원",
+          "equivalentAnswers": [
+            "반원"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "한",
+          "equivalentAnswers": [
+            "한",
+            "$1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "선분",
+          "accept": [
+            "곧은 부분"
+          ]
+        }
+      ],
+      "equivalentExpressions": [
+        {
+          "answer": "한",
+          "accept": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "선분",
+          "곧은 부분"
+        ],
+        [
+          "반원"
+        ],
+        [
+          "한",
+          "$1$"
+        ]
+      ],
+      "proposalFingerprint": "0d5ed40e719ff8f7c802bf08e00da0dae1e1764b70be955df07979434006ca63"
+    },
+    {
+      "id": "m1-06-05-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "중심각의 크기가 같은 두 부채꼴의 반지름의 길이의 비가 $a:b$일 때, 호의 길이의 비와 넓이의 비를 각각 $a$, $b$를 써서 나타내고, 넓이의 비가 그렇게 되는 까닭을 쓰시오.",
+      "bAnswer": "호의 길이의 비는 $a:b$, 넓이의 비는 $a^2:b^2$이다. 부채꼴의 넓이 $\\pi r^2\\times\\frac{x}{360}$에는 반지름의 길이가 두 번 곱해지므로 넓이는 반지름의 길이의 제곱에 비례하기 때문이다.",
+      "bGoal": "반지름의 비로 호의 길이의 비와 넓이의 비 구하기",
+      "bReason": "조건만 있는 제목이라 구할 두 비와 넓이의 비의 까닭을 답하도록 범위를 정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "호의 길이의 비는 $a:b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이의 비는 $a^2:b^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이 식에 반지름의 길이가 두 번 곱해진다",
+            "넓이는 반지름의 길이의 제곱에 비례한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "중심각의 크기가 같은 두 부채꼴의 반지름의 길이의 비가 $a:b$이면 호의 길이의 비도 $a:b$이고, 넓이의 비는 {$a^2:b^2$}이다.",
+      "cAnswers": [
+        "$a^2:b^2$"
+      ],
+      "cReason": "첫 빈칸 답 $a:b$가 조건에 그대로 있어 넓이의 비만 묻게 함.",
+      "learningRole": "reason",
+      "roleReason": "넓이의 비가 반지름의 비의 제곱이 되는 까닭",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1840,
+      "part": "m1plus",
+      "sourceFingerprint": "7aae1e0859f92fe063a549987ccff6ebac167a219d6292d48c0b8ed5e38548d6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1840
+      },
+      "directReview": null,
+      "cMarkedSentence": "중심각의 크기가 같은 두 부채꼴의 반지름의 길이의 비가 $a:b$이면 호의 길이의 비도 $a:b$이고, 넓이의 비는 {$a^2:b^2$}이다.",
+      "cSlotAnswers": [
+        "$a^2:b^2$"
+      ],
+      "cStudentSentence": "중심각의 크기가 같은 두 부채꼴의 반지름의 길이의 비가 $a:b$이면 호의 길이의 비도 $a:b$이고, 넓이의 비는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a^2:b^2$",
+          "equivalentAnswers": [
+            "$a^2:b^2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a^2:b^2$"
+        ]
+      ],
+      "proposalFingerprint": "c28de28f1576689bb2c1477dc241083b64583415efec48dc081b421799a195fc"
+    },
+    {
+      "id": "m1-06-05-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 $6$, 중심각의 크기가 $60^\\circ$인 부채꼴과 호의 길이가 같고 반지름의 길이가 $9$인 부채꼴의 중심각의 크기를 구하시오. 또 호의 길이가 일정할 때 반지름의 길이와 중심각의 크기는 어떤 관계인지 쓰시오.",
+      "bAnswer": "처음 부채꼴의 호의 길이는 $2\\pi\\times6\\times\\frac{60}{360}=2\\pi$이다. $2\\pi\\times9\\times\\frac{x}{360}=2\\pi$에서 $x=40$이므로 중심각의 크기는 $40^\\circ$이다. $6\\times60=9\\times40$처럼 반지름의 길이와 중심각의 크기의 곱이 일정하므로 둘은 반비례한다.",
+      "bGoal": "호의 길이가 같을 때 반지름과 중심각의 관계 알기",
+      "bReason": "반비례를 일반 문장만으로 답하기 어려워 두 부채꼴의 수치를 주고 관계를 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$40^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "반비례",
+            "반지름의 길이와 중심각의 크기의 곱이 일정하다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "호의 길이가 같은 부채꼴들에서는 반지름의 길이 $r$와 중심각의 크기 $x^\\circ$에 대하여 $2\\pi r\\times\\frac{x}{360}$의 값이 일정하므로, $r$와 $x$는 서로 {반비례}한다.",
+      "cAnswers": [
+        "반비례"
+      ],
+      "cReason": "식에 나오는 $r$, $x$의 뜻이 문장에 없어 기호의 뜻만 보태고 빈칸은 유지함.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "호의 길이가 같을 때 $r$와 $x$의 반비례 적용",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1841,
+      "part": "m1plus",
+      "sourceFingerprint": "a9edcf126b8e38420c13fcbc043aeb4e28fb1abdc928a0d18ed4bba4170d1cca",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1841
+      },
+      "directReview": null,
+      "cMarkedSentence": "호의 길이가 같은 부채꼴들에서는 반지름의 길이 $r$와 중심각의 크기 $x^\\circ$에 대하여 $2\\pi r\\times\\frac{x}{360}$의 값이 일정하므로, $r$와 $x$는 서로 {반비례}한다.",
+      "cSlotAnswers": [
+        "반비례"
+      ],
+      "cStudentSentence": "호의 길이가 같은 부채꼴들에서는 반지름의 길이 $r$와 중심각의 크기 $x^\\circ$에 대하여 $2\\pi r\\times\\frac{x}{360}$의 값이 일정하므로, $r$와 $x$는 서로 □한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "반비례",
+          "equivalentAnswers": [
+            "반비례"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "반비례"
+        ]
+      ],
+      "proposalFingerprint": "9555e259f94c8be7d29fe793c1853d2017fa103afeda666e90947ad40b064089"
+    },
+    {
+      "id": "m1-06-05-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "바퀴가 미끄러지지 않고 한 바퀴 구를 때 나아간 거리는 바퀴의 무엇과 같은지 쓰고, 반지름의 길이가 $20\\,\\mathrm{cm}$인 바퀴가 미끄러지지 않고 $5$바퀴 굴렀을 때 나아간 거리를 구하시오.",
+      "bAnswer": "한 바퀴 구르면 바퀴의 둘레의 길이만큼 나아간다. 한 바퀴에 $2\\pi\\times20=40\\pi\\,(\\mathrm{cm})$이므로 $5$바퀴에 $200\\pi\\,\\mathrm{cm}$ 나아간다.",
+      "bGoal": "굴러간 거리를 원의 둘레의 길이로 구하기",
+      "bReason": "제목이 상황만 말해 나아간 거리와 둘레의 관계, 구체적인 거리를 묻도록 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바퀴의 둘레의 길이",
+            "원의 둘레의 길이",
+            "$2\\pi r$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$200\\pi\\,\\mathrm{cm}$",
+            "$200\\pi$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "미끄러지지 않는다는 조건과 $r$의 뜻이 있고 둘레 식 하나만 묻는 빈칸임.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "한 바퀴에 둘레만큼 나아간다는 사실 적용",
+      "authorBatch": 19,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1842,
+      "part": "m1plus",
+      "sourceFingerprint": "8d2bcb8b217b09ee872723100f93d88b451d48e3bedaefb14f0af5b3972d2d5d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1842
+      },
+      "directReview": null,
+      "cFrozenSentence": "반지름이 $r$인 바퀴가 미끄러지지 않고 한 바퀴 구르면 □만큼 나아간다.",
+      "cFrozenDefinition": "반지름이 $r$인 바퀴가 미끄러지지 않고 한 바퀴 구르면 {$2\\pi r$}만큼 나아간다.",
+      "cFrozenAnswers": [
+        "$2\\pi r$"
+      ],
+      "cMarkedSentence": "반지름이 $r$인 바퀴가 미끄러지지 않고 한 바퀴 구르면 {$2\\pi r$}만큼 나아간다.",
+      "cSlotAnswers": [
+        "$2\\pi r$"
+      ],
+      "cStudentSentence": "반지름이 $r$인 바퀴가 미끄러지지 않고 한 바퀴 구르면 □만큼 나아간다.",
+      "cAnswers": [
+        "$2\\pi r$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2\\pi r$",
+          "equivalentAnswers": [
+            "$2\\pi r$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2\\pi r$"
+        ]
+      ],
+      "proposalFingerprint": "cc8f9cbdef414a405156719b496510095aafa52437144a4a39642fdcac6634d4"
+    },
+    {
+      "id": "m1-07-01-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "원기둥, 원뿔, 구가 다면체가 아닌 이유를 다면체의 뜻과 연결하여 설명하시오.",
+      "bAnswer": "다면체는 다각형인 면으로만 둘러싸여야 하는데, 원기둥, 원뿔, 구에는 굽은 면이 있어 다각형이 아닌 면이 있기 때문이다.",
+      "bGoal": "다면체가 아닌 까닭 설명하기",
+      "bReason": "어떤 도형이 왜 아닌지 묻도록 세 도형을 질문에 제시함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다면체는 면이 모두 다각형이어야 한다",
+            "다각형인 면으로만 둘러싸여야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "굽은 면이 있다",
+            "곡면이 있다",
+            "다각형이 아닌 면이 있다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "예가 문장에 있어 판단 기준과 결론을 분명히 채울 수 있음.",
+      "learningRole": "reason",
+      "roleReason": "굽은 면이 있으면 다면체가 아닌 까닭",
+      "authorBatch": 20,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1843,
+      "part": "m1plus",
+      "sourceFingerprint": "397ff6a9383dc4c45dc0014c94f614eb0911b5b22debe0b79e02595c56f7588d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1843
+      },
+      "directReview": null,
+      "cFrozenSentence": "원기둥, 원뿔, 구처럼 □이 있는 입체도형은 □가 아니다.",
+      "cFrozenDefinition": "원기둥, 원뿔, 구처럼 {굽은 면}이 있는 입체도형은 {다면체}가 아니다.",
+      "cFrozenAnswers": [
+        "굽은 면",
+        "다면체"
+      ],
+      "cMarkedSentence": "원기둥, 원뿔, 구처럼 {굽은 면}이 있는 입체도형은 {다면체}가 아니다.",
+      "cSlotAnswers": [
+        "굽은 면",
+        "다면체"
+      ],
+      "cStudentSentence": "원기둥, 원뿔, 구처럼 □이 있는 입체도형은 □가 아니다.",
+      "cAnswers": [
+        "굽은 면",
+        "다면체"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "굽은 면",
+          "equivalentAnswers": [
+            "굽은 면",
+            "곡면"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "다면체",
+          "equivalentAnswers": [
+            "다면체"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "굽은 면",
+          "accept": [
+            "곡면"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "굽은 면",
+          "곡면"
+        ],
+        [
+          "다면체"
+        ]
+      ],
+      "proposalFingerprint": "7291b0a27873b6b8642469fdaccf658dfcebae3fac29cb3880e6a6ff1fc967a5"
+    },
+    {
+      "id": "m1-07-01-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "삼각기둥, 사각기둥, 오각기둥이라는 이름은 각기둥의 어느 면이 어떤 모양인지에 따라 붙인 것인지 설명하시오.",
+      "bAnswer": "밑면의 모양에 따라 붙인 이름으로, 밑면이 각각 삼각형, 사각형, 오각형인 각기둥이다.",
+      "bGoal": "밑면으로 각기둥 이름 붙이기",
+      "bReason": "기준인 '밑면'을 질문에서 먼저 말하지 않도록 이름만 주고 묻게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 모양이 기준이다",
+            "밑면이 어떤 다각형인지로 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면이 각각 삼각형, 사각형, 오각형이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "각기둥의 이름은 {밑면}이 어떤 다각형인지에 따라 정한다. 예를 들어 그 다각형이 오각형이면 {오각기둥}이다.",
+      "cAnswers": [
+        "밑면",
+        "오각기둥"
+      ],
+      "cReason": "뒤 구절의 '밑면이 오각형이면'이 빈칸 답을 그대로 보여 주어 고침.",
+      "exampleNeeded": true,
+      "learningRole": "naming",
+      "roleReason": "밑면의 모양으로 붙이는 각기둥 이름",
+      "authorBatch": 20,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1844,
+      "part": "m1plus",
+      "sourceFingerprint": "ff30733a07a70a193e5d5b183000cb08795c717803c27c876102d458cbc59252",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1844
+      },
+      "directReview": null,
+      "cMarkedSentence": "각기둥의 이름은 {밑면}이 어떤 다각형인지에 따라 정한다. 예를 들어 그 다각형이 오각형이면 {오각기둥}이다.",
+      "cSlotAnswers": [
+        "밑면",
+        "오각기둥"
+      ],
+      "cStudentSentence": "각기둥의 이름은 □이 어떤 다각형인지에 따라 정한다. 예를 들어 그 다각형이 오각형이면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "밑면",
+          "equivalentAnswers": [
+            "밑면"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "오각기둥",
+          "equivalentAnswers": [
+            "오각기둥"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "밑면"
+        ],
+        [
+          "오각기둥"
+        ]
+      ],
+      "proposalFingerprint": "20f695e1977e7c50d70d44b071ce265714dc7736bec14eeac878866196f4c2f8"
+    },
+    {
+      "id": "m1-07-01-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "옆면이 $5$개인 각뿔의 이름을 쓰고, 그렇게 판단한 이유를 설명하시오.",
+      "bAnswer": "오각뿔이다. 각뿔의 옆면의 개수는 밑면의 변의 개수와 같으므로 밑면이 오각형이고, 각뿔의 이름은 밑면의 모양으로 정하기 때문이다.",
+      "bGoal": "밑면으로 각뿔 이름 정하기",
+      "bReason": "xc2와 같은 물음이 되지 않도록 옆면 수에서 밑면을 찾아 이름을 정하게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "오각뿔"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면이 오각형이다",
+            "옆면의 개수가 밑면의 변의 개수와 같다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "각뿔의 이름은 {밑면}이 어떤 다각형인지에 따라 정한다. 예를 들어 그 다각형이 사각형이면 {사각뿔}이다.",
+      "cAnswers": [
+        "밑면",
+        "사각뿔"
+      ],
+      "cReason": "'각뿔도'가 앞 문항을 가리키고 뒤의 '밑면이'가 답을 그대로 보여 줌.",
+      "exampleNeeded": true,
+      "learningRole": "naming",
+      "roleReason": "밑면의 모양으로 붙이는 각뿔 이름",
+      "authorBatch": 20,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1845,
+      "part": "m1plus",
+      "sourceFingerprint": "0e013c536d4108fa83d4431eaffdd65bc9baf9ee62af1c77b47fc811701331bc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1845
+      },
+      "directReview": null,
+      "cMarkedSentence": "각뿔의 이름은 {밑면}이 어떤 다각형인지에 따라 정한다. 예를 들어 그 다각형이 사각형이면 {사각뿔}이다.",
+      "cSlotAnswers": [
+        "밑면",
+        "사각뿔"
+      ],
+      "cStudentSentence": "각뿔의 이름은 □이 어떤 다각형인지에 따라 정한다. 예를 들어 그 다각형이 사각형이면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "밑면",
+          "equivalentAnswers": [
+            "밑면"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "사각뿔",
+          "equivalentAnswers": [
+            "사각뿔"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "밑면"
+        ],
+        [
+          "사각뿔"
+        ]
+      ],
+      "proposalFingerprint": "0b5995303608b2b3abe031d3a2981a0afa1727274c300572a63bdb059a14c3a0"
+    },
+    {
+      "id": "m1-07-01-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "각기둥의 높이는 무엇과 무엇 사이의 거리인지 쓰시오. 또 옆모서리가 밑면에 수직인 각기둥에서는 높이와 옆모서리의 길이가 어떤 관계인지 쓰시오.",
+      "bAnswer": "높이는 평행한 두 밑면 사이의 거리이다. 옆모서리가 밑면에 수직이면 옆모서리의 길이가 두 밑면 사이의 거리이므로 높이와 같다.",
+      "bGoal": "각기둥의 높이의 뜻",
+      "bReason": "옆모서리길이와높이가같으려면필요한수직조건을학생에게명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면 사이의 거리이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆모서리의 길이와 같다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'두 밑면 사이'라는 조건이 남아 있어 뜻과 용어를 분명히 채울 수 있음.",
+      "learningRole": "definition",
+      "roleReason": "각기둥의 높이의 뜻",
+      "authorBatch": 20,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1846,
+      "part": "m1plus",
+      "sourceFingerprint": "ac9c2c1aec588bad8c995db8ebfa1d681135eb1352160032389f636e5cd4e91d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1846
+      },
+      "directReview": null,
+      "cFrozenSentence": "각기둥에서 평행한 두 밑면 사이의 □를 각기둥의 □라 한다.",
+      "cFrozenDefinition": "각기둥에서 평행한 두 밑면 사이의 {거리}를 각기둥의 {높이}라 한다.",
+      "cFrozenAnswers": [
+        "거리",
+        "높이"
+      ],
+      "cMarkedSentence": "각기둥에서 평행한 두 밑면 사이의 {거리}를 각기둥의 {높이}라 한다.",
+      "cSlotAnswers": [
+        "거리",
+        "높이"
+      ],
+      "cStudentSentence": "각기둥에서 평행한 두 밑면 사이의 □를 각기둥의 □라 한다.",
+      "cAnswers": [
+        "거리",
+        "높이"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "거리",
+          "equivalentAnswers": [
+            "거리"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "높이",
+          "equivalentAnswers": [
+            "높이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "거리"
+        ],
+        [
+          "높이"
+        ]
+      ],
+      "proposalFingerprint": "63cebbb7f2ac0a20ec1ca526d7793420407aeebcedeba58cec015846034edce8"
+    }
+  ]
+}

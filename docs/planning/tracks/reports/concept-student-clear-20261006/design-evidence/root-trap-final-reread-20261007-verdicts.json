@@ -1,0 +1,489 @@
+{
+  "status": "Root direct thirty-slot mathematics judgment; fresh independent review and current digest comparison pending",
+  "inputFile": "root-trap-final-reread-20261007-input.json",
+  "inputSha256": "f312d92c8ad238133e2513f8620485b4edbfb57413b88db7155e2d6bd5f584a6",
+  "groups": 7,
+  "notIndependentClaudeApproval": true,
+  "rows": [
+    {
+      "groupId": "e3-1-2-3-c3",
+      "trapText": "크기가 다르다",
+      "digest": "bfa7ee4f",
+      "ox": "e3-1-2-3-xo26",
+      "slot": {
+        "targetId": "e3-1-2-3-c3#1",
+        "canonicalAnswer": "각의 크기는 같으므로",
+        "propositionId": "e3-1-2-3-c3",
+        "text": "직각삼각형을 돌려 놓아도 크기가 다르다 여전히 직각삼각형이다."
+      },
+      "verdict": "wrong",
+      "reason": "돌려놓는 이동은 변의 길이와 각의 크기를 보존한다. 크기가 달라진다는 설명은 주어진 회전에서 참이 아니다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-2-3-c3",
+      "trapText": "크기가 다르다",
+      "digest": "bfa7ee4f",
+      "ox": "e3-1-2-3-xo26",
+      "slot": {
+        "targetId": "e3-1-2-3-xc19#1",
+        "canonicalAnswer": "마주 보는 변에 직각으로",
+        "propositionId": "e3-1-2-3-xc19",
+        "text": "직각인 꼭짓점에서 크기가 다르다 선을 그으면 작은 직각삼각형 $2$개가 생긴다."
+      },
+      "verdict": "wrong",
+      "reason": "두 작은 직각삼각형을 보장하려면 맞은편 변에 수직인 선이어야 한다. 크기가 다르다는 말은 선의 방향 조건을 주지 못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-2-3-c3",
+      "trapText": "크기가 다르다",
+      "digest": "bfa7ee4f",
+      "ox": "e3-1-2-3-xo26",
+      "slot": {
+        "targetId": "e3-1-2-3-xc20#1",
+        "canonicalAnswer": "한 직선 위",
+        "propositionId": "e3-1-2-3-xc20",
+        "text": "세 점이 크기가 다르다에 있으면 삼각형을 만들 수 없다."
+      },
+      "verdict": "wrong",
+      "reason": "세 점이 삼각형을 만들지 못하는 조건은 한 직선 위에 놓이는 것이다. 점 그림의 크기 차이는 세 점의 일직선 여부를 결정하지 못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-2-3-c3",
+      "trapText": "크기가 다르다",
+      "digest": "bfa7ee4f",
+      "ox": "e3-1-2-3-xo26",
+      "slot": {
+        "targetId": "e3-1-2-3-xc21#1",
+        "canonicalAnswer": "두 변이 만나지 않으므로",
+        "propositionId": "e3-1-2-3-xc21",
+        "text": "삼각형의 한 변 양 끝에서 모두 직각으로 변을 세우면 크기가 다르다 삼각형의 직각은 많아야 하나이다."
+      },
+      "verdict": "wrong",
+      "reason": "양끝에서 세운 두 직각변은 평행하여 만나지 않는다. 크기가 다르다는 설명은 그 비교가 성립하지 않으며 삼각형이 닫히지 못하는 이유를 대신하지 못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-2-3-c3",
+      "trapText": "크기가 다르다",
+      "digest": "bfa7ee4f",
+      "ox": "e3-1-2-3-xo26",
+      "slot": {
+        "targetId": "e3-1-2-3-xc22#1",
+        "canonicalAnswer": "크기와 모양이 같다",
+        "propositionId": "e3-1-2-3-xc22",
+        "text": "정사각형을 마주 보는 꼭짓점끼리 맞추어 접어 생긴 두 직각삼각형은 크기가 다르다."
+      },
+      "verdict": "wrong",
+      "reason": "정사각형의 대각선을 따라 포개진 두 직각삼각형은 모양과 크기가 같다. 실제 등분과 합동에 반하는 선택지다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-5-5-c1",
+      "trapText": "시간",
+      "digest": "ad2078ab",
+      "ox": "e3-1-5-5-xo4",
+      "slot": {
+        "targetId": "e3-1-5-5-c1#1",
+        "canonicalAnswer": "같은 단위끼리",
+        "propositionId": "e3-1-5-5-c1",
+        "text": "시간을 더할 때에는 시·분·초를 시간 모아 더한다."
+      },
+      "verdict": "wrong",
+      "reason": "시는시끼리·분은분끼리·초는초끼리 모아야 한다. 시간이라는 종류 이름만으로는 서로 다른 단위의 숫자를 그대로 더하지 않는 조건을 설명하지 못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-5-5-c1",
+      "trapText": "시간",
+      "digest": "ad2078ab",
+      "ox": "e3-1-5-5-xo4",
+      "slot": {
+        "targetId": "e3-1-5-5-xc1#1",
+        "canonicalAnswer": "시각",
+        "propositionId": "e3-1-5-5-xc1",
+        "text": "시계가 가리키는 어느 한 때는 시간이고, 두 때 사이의 길이는 시간이다."
+      },
+      "verdict": "wrong",
+      "reason": "문장이 한때와 두때사이길이를 대비한다. 시계가 가리키는 한때의 수학 이름은 시각이며 이 자리의 시간은 길이 개념과 구별하지 못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-5-5-c1",
+      "trapText": "시간",
+      "digest": "ad2078ab",
+      "ox": "e3-1-5-5-xo4",
+      "slot": {
+        "targetId": "e3-1-5-5-xc4#1",
+        "canonicalAnswer": "$60$보다 작으면",
+        "propositionId": "e3-1-5-5-xc4",
+        "text": "시간을 더할 때 초의 합과 분의 합이 모두 시간 받아올리지 않고 그대로 쓴다."
+      },
+      "verdict": "wrong",
+      "reason": "받아올리지 않는 조건은 초와분의 각 합이60보다 작다는 것이다. 시간은 크기의 상한 조건이 아니므로60이상인 합도 배제하지 못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-5-5-c1",
+      "trapText": "시간",
+      "digest": "ad2078ab",
+      "ox": "e3-1-5-5-xo4",
+      "slot": {
+        "targetId": "e3-1-5-5-xc6#1",
+        "canonicalAnswer": "시각",
+        "propositionId": "e3-1-5-5-xc6",
+        "text": "시각에 시간을 더하면 시간이 된다."
+      },
+      "verdict": "wrong",
+      "reason": "시각에 경과시간을 더하면 끝나는시각을 구한다. 예를들어1시에30분을 더한1시30분은 경과시간이 아닌 한때다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-1-3-xc23",
+      "trapText": "커진다",
+      "digest": "a534d8e6",
+      "ox": "e3-1-1-3-xo25",
+      "slot": {
+        "targetId": "e3-1-1-3-xc23#1",
+        "canonicalAnswer": "가장 큰 수",
+        "propositionId": "e3-1-1-3-xc23",
+        "text": "숫자 카드 세 장을 한 번씩 써서 만들 수 있는 세 자리 수 가운데 두 수를 골라 차를 가장 크게 하려면 커진다에서 가장 작은 수를 뺀다."
+      },
+      "verdict": "wrong",
+      "reason": "가장큰차를 얻으려면 고를수있는가장큰수에서가장작은수를 뺀다. 커진다는 어떤수에서빼는지를 특정하는 수량이 아니다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-1-3-xc23",
+      "trapText": "커진다",
+      "digest": "a534d8e6",
+      "ox": "e3-1-1-3-xo25",
+      "slot": {
+        "targetId": "e3-1-1-3-xc24#1",
+        "canonicalAnswer": "어림한 차",
+        "propositionId": "e3-1-1-3-xc24",
+        "text": "계산한 차가 몇백으로 커진다와 크게 다르면 다시 계산해 본다."
+      },
+      "verdict": "wrong",
+      "reason": "계산차를 비교하는 대상은 몇백으로어림한차이다. 커진다는 비교할 예상수치를 주지 않으며 반올림이 늘어나는 경우만이라는 조건도 없다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-1-3-xc23",
+      "trapText": "커진다",
+      "digest": "a534d8e6",
+      "ox": "e3-1-1-3-xo25",
+      "slot": {
+        "targetId": "e3-1-1-3-xc25#1",
+        "canonicalAnswer": "한",
+        "propositionId": "e3-1-1-3-xc25",
+        "text": "세 자리 수에서 더 작은 세 자리 수를 빼고 큰 수의 십의 자리 숫자는 $0$이 아니라고 하자. 일의 자리로 $1$을 내려 준 뒤 남은 십의 자리 숫자에서 빼는 수의 십의 자리 숫자를 뺄 수 있으면 받아내림은 커진다 번뿐이다."
+      },
+      "verdict": "wrong",
+      "reason": "일의자리에서 한 번 받아내리고 남은십의자리에서 뺄수있다는조건이면 총한번이다. 증가라는방향은 받아내림의횟수 답을 결정하지 않는다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-1-3-xc23",
+      "trapText": "커진다",
+      "digest": "a534d8e6",
+      "ox": "e3-1-1-3-xo25",
+      "slot": {
+        "targetId": "e3-1-1-3-xc26#1",
+        "canonicalAnswer": "작은 수에 얼마를 더하면",
+        "propositionId": "e3-1-1-3-xc26",
+        "text": "두 수의 차는 커진다 큰 수가 되는지를 생각해도 구할 수 있다."
+      },
+      "verdict": "wrong",
+      "reason": "뺄셈을덧셈으로확인하려면 작은수에얼마를더해큰수가되는지구해야 한다. 커진다는 얼마나더하는지와 어느수를 출발점으로하는지를 설명하지못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-1-3-xc23",
+      "trapText": "커진다",
+      "digest": "a534d8e6",
+      "ox": "e3-1-1-3-xo25",
+      "slot": {
+        "targetId": "e3-1-1-3-xc27#1",
+        "canonicalAnswer": "작아진다",
+        "propositionId": "e3-1-1-3-xc27",
+        "text": "같은 수에서 뺄 때 빼는 수가 클수록 차는 커진다."
+      },
+      "verdict": "wrong",
+      "reason": "같은수에서 더많이빼면 남는차는작아진다. 예를들어100-30은100-20보다작다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-5-5-xc7",
+      "trapText": "$100$분",
+      "digest": "b06809d5",
+      "ox": "e3-1-5-5-xo7",
+      "slot": {
+        "targetId": "e3-1-5-5-xc7#1",
+        "canonicalAnswer": "시간",
+        "propositionId": "e3-1-5-5-xc7",
+        "text": "시간에 시간을 더하면 $100$분이 된다."
+      },
+      "verdict": "wrong",
+      "reason": "이 문장은 특정 덧셈 사례가 아닌 시간의합이시간이라는 일반 종류 관계다. 두시간의합이언제나100분인것은아니며10분+20분=30분이반례다. 특정사례의값을일반결과로주장하지않는다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-5-5-xc7",
+      "trapText": "$100$분",
+      "digest": "b06809d5",
+      "ox": "e3-1-5-5-xo7",
+      "slot": {
+        "targetId": "e3-1-5-5-xc8#1",
+        "canonicalAnswer": "위아래로 줄을 맞추어",
+        "propositionId": "e3-1-5-5-xc8",
+        "text": "시간의 덧셈을 세로로 할 때에는 시는 시끼리, 분은 분끼리, 초는 초끼리 $100$분 쓴다."
+      },
+      "verdict": "wrong",
+      "reason": "세로덧셈에서 같은단위를 위아래줄에맞추는 쓰기방법을 묻는다.100분이라는 특정기간은 단위별줄맞춤을 지시하지 못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e3-1-5-5-xc7",
+      "trapText": "$100$분",
+      "digest": "b06809d5",
+      "ox": "e3-1-5-5-xo7",
+      "slot": {
+        "targetId": "e3-1-5-5-xc9#1",
+        "canonicalAnswer": "$60$분",
+        "propositionId": "e3-1-5-5-xc9",
+        "text": "$1$시간은 $100$분이다."
+      },
+      "verdict": "wrong",
+      "reason": "한시간은60분이다.100분은1시간40분이므로 주어진1시간과같지않다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e5-2-4-3-c2",
+      "trapText": "$\\frac{1}{25}$",
+      "digest": "41b79599",
+      "ox": "e5-2-4-3-xo12",
+      "slot": {
+        "targetId": "e5-2-4-3-c2#1",
+        "canonicalAnswer": "분수",
+        "propositionId": "e5-2-4-3-c2",
+        "text": "자연수에 $1$보다 작은 소수를 곱할 때에는 그 소수를 $\\frac{1}{25}$로 고쳐 자연수의 몇 분의 몇인지 구할 수 있다."
+      },
+      "verdict": "wrong",
+      "reason": "어떤1미만소수도분수로고치는 일반방법을말한다. 특정소수0.04만1/25이고0.25는1/4이며0.2는1/5이므로 그소수를항상1/25로고친다는규칙은거짓이다. 주어지지않은0.04사례를새로가정하지않는다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e5-2-4-3-c2",
+      "trapText": "$\\frac{1}{25}$",
+      "digest": "41b79599",
+      "ox": "e5-2-4-3-xo12",
+      "slot": {
+        "targetId": "e5-2-4-3-xc11#1",
+        "canonicalAnswer": "$\\frac{1}{4}$",
+        "propositionId": "e5-2-4-3-xc11",
+        "text": "어떤 수의 $0.25$배는 그 수의 $\\frac{1}{25}$이다."
+      },
+      "verdict": "wrong",
+      "reason": "0.25=25/100=1/4이다.1/25=0.04이므로 주어진배율의분수와다르다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e5-2-4-3-c2",
+      "trapText": "$\\frac{1}{25}$",
+      "digest": "41b79599",
+      "ox": "e5-2-4-3-xo12",
+      "slot": {
+        "targetId": "e5-2-4-3-xc12#1",
+        "canonicalAnswer": "$\\frac{1}{5}$",
+        "propositionId": "e5-2-4-3-xc12",
+        "text": "어떤 수의 $0.2$배는 그 수의 $\\frac{1}{25}$이다."
+      },
+      "verdict": "wrong",
+      "reason": "0.2=2/10=1/5이다.1/25=0.04이므로 주어진배율과다르다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e5-2-4-3-c2",
+      "trapText": "$\\frac{1}{25}$",
+      "digest": "41b79599",
+      "ox": "e5-2-4-3-xo12",
+      "slot": {
+        "targetId": "e5-2-4-3-xc13#1",
+        "canonicalAnswer": "크다",
+        "propositionId": "e5-2-4-3-xc13",
+        "text": "같은 자연수에 곱하는 소수가 클수록 곱도 $\\frac{1}{25}$."
+      },
+      "verdict": "wrong",
+      "reason": "같은양의자연수에서 곱하는양의소수가 커질수록곱이커진다는 비교관계다.1/25라는고정된배율이나값은 증가관계를설명하지못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e6-2-3-4-c1",
+      "trapText": "$0$을 적어 칸으로 그린다",
+      "digest": "addc8394",
+      "ox": "e6-2-3-4-xo19",
+      "slot": {
+        "targetId": "e6-2-3-4-c1#1",
+        "canonicalAnswer": "쌓기나무의 개수",
+        "propositionId": "e6-2-3-4-c1",
+        "text": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 $0$을 적어 칸으로 그린다이다."
+      },
+      "verdict": "wrong",
+      "reason": "한칸의수는 그자리기둥의쌓기나무개수라는 수량을뜻한다. 빈자리칸을그리는행동은 그수량을 뜻하지않으며 실제높이2나3을 설명하지못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e6-2-3-4-c1",
+      "trapText": "$0$을 적어 칸으로 그린다",
+      "digest": "addc8394",
+      "ox": "e6-2-3-4-xo19",
+      "slot": {
+        "targetId": "e6-2-3-4-xc2#1",
+        "canonicalAnswer": "한 층",
+        "propositionId": "e6-2-3-4-xc2",
+        "text": "$1$이 적힌 칸에는 쌓기나무가 $0$을 적어 칸으로 그린다만 있다."
+      },
+      "verdict": "wrong",
+      "reason": "1이적힌칸의기둥은 쌓기나무한층이다.0으로빈자리를그린다는말은1개의블록과 모순된다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e6-2-3-4-c1",
+      "trapText": "$0$을 적어 칸으로 그린다",
+      "digest": "addc8394",
+      "ox": "e6-2-3-4-xo19",
+      "slot": {
+        "targetId": "e6-2-3-4-xc3#1",
+        "canonicalAnswer": "가장 높은 층",
+        "propositionId": "e6-2-3-4-xc3",
+        "text": "위에서 본 모양에 적힌 가장 큰 수가 쌓은 모양의 $0$을 적어 칸으로 그린다다."
+      },
+      "verdict": "wrong",
+      "reason": "칸에적힌최댓값은 가장높은기둥의층수를결정한다. 빈자리에0을그리는정책은 최댓값의높이라는뜻을 설명하지못한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e6-2-3-4-c1",
+      "trapText": "$0$을 적어 칸으로 그린다",
+      "digest": "addc8394",
+      "ox": "e6-2-3-4-xo19",
+      "slot": {
+        "targetId": "e6-2-3-4-xc4#1",
+        "canonicalAnswer": "가려진 쌓기나무",
+        "propositionId": "e6-2-3-4-xc4",
+        "text": "위에서 본 모양에 수를 쓰면 $0$을 적어 칸으로 그린다까지 빠짐없이 알 수 있다."
+      },
+      "verdict": "wrong",
+      "reason": "각기둥개수가적혀있으면 위의블록에가려진아래블록도함께센다. 빈자리0표시는 기둥안의숨은블록개수를 알려주지않는다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e6-2-3-4-c1",
+      "trapText": "$0$을 적어 칸으로 그린다",
+      "digest": "addc8394",
+      "ox": "e6-2-3-4-xo19",
+      "slot": {
+        "targetId": "e6-2-3-4-xc9#1",
+        "canonicalAnswer": "칸이 없다",
+        "propositionId": "e6-2-3-4-xc9",
+        "text": "쌓기나무가 없는 자리는 위에서 본 모양에 $0$을 적어 칸으로 그린다."
+      },
+      "verdict": "wrong",
+      "reason": "이개념의위에서본모양은 실제쌓기나무가차지한자리만칸으로그린다. 빈자리를0칸으로만드는다른격자표표현은 여기정의한위에서본모양과구별한다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e6-2-5-4-xc23",
+      "trapText": "$4$배",
+      "digest": "254bfe31",
+      "ox": "e6-2-5-4-xo25",
+      "slot": {
+        "targetId": "e6-2-5-4-xc23#1",
+        "canonicalAnswer": "점점 커진다",
+        "propositionId": "e6-2-5-4-xc23",
+        "text": "반지름이 $1\\,\\mathrm{cm}$씩 늘 때 원의 넓이가 느는 양은 $4$배."
+      },
+      "verdict": "wrong",
+      "reason": "반지름을1씩늘릴때늘어난넓이는π(2r+1)로점점커지지만 고정된4배가아니다. r1→2와2→3의증가는3π·5π로4배관계가아니다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e6-2-5-4-xc23",
+      "trapText": "$4$배",
+      "digest": "254bfe31",
+      "ox": "e6-2-5-4-xo25",
+      "slot": {
+        "targetId": "e6-2-5-4-xc24#1",
+        "canonicalAnswer": "반으로 나눈",
+        "propositionId": "e6-2-5-4-xc24",
+        "text": "원의 넓이는 원주와 반지름을 곱해 $4$배 값과 같다."
+      },
+      "verdict": "wrong",
+      "reason": "원의넓이는원주곱하기반지름의절반이다. 그곱의4배는실제원의넓이8배가되어틀리다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e6-2-5-4-xc23",
+      "trapText": "$4$배",
+      "digest": "254bfe31",
+      "ox": "e6-2-5-4-xo25",
+      "slot": {
+        "targetId": "e6-2-5-4-xc25#1",
+        "canonicalAnswer": "원 하나의 넓이",
+        "propositionId": "e6-2-5-4-xc25",
+        "text": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙인 모양의 넓이는, 직사각형의 넓이에 $4$배를 더한 값이다."
+      },
+      "verdict": "wrong",
+      "reason": "같은지름인반원두개는원한개의넓이가된다. 주어진직사각형의변길이관계와무관하게추가넓이를4배라고하는일반식은성립하지않고 배수의기준도주어지지않는다. 특정비율의직사각형을새로가정하지않는다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    },
+    {
+      "groupId": "e6-2-5-4-xc23",
+      "trapText": "$4$배",
+      "digest": "254bfe31",
+      "ox": "e6-2-5-4-xo25",
+      "slot": {
+        "targetId": "e6-2-5-4-xc27#1",
+        "canonicalAnswer": "$2$배",
+        "propositionId": "e6-2-5-4-xc27",
+        "text": "넓이가 $4$배인 원의 반지름은 $4$배이다."
+      },
+      "verdict": "wrong",
+      "reason": "원의넓이가4배가되려면반지름이2배여야한다. 반지름4배라면넓이는16배가되어조건과다르다.",
+      "reader": "Root Codex direct current full-proposition and per-slot mathematics reading",
+      "recordedAfterActualReading": true
+    }
+  ]
+}

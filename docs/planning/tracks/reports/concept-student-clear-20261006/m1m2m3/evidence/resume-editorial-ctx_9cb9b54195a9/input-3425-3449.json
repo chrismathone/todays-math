@@ -1,0 +1,2455 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:49:51.857Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc9",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "근의 공식을 쓸 수 있는 방정식",
+        "kind": "성질",
+        "level": "하",
+        "definition": "근의 공식은 인수분해가 되든 안 되든 {모든} 이차방정식에 쓸 수 있지만, 인수분해가 쉬우면 그쪽이 빠르다.",
+        "studentC": "근의 공식은 인수분해가 되든 안 되든 □ 이차방정식에 쓸 수 있지만, 인수분해가 쉬우면 그쪽이 빠르다.",
+        "answers": [
+          "모든"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식을 푸는 방법 중 인수분해와 근의 공식을 비교하여, 각각 어떤 이차방정식에 쓸 수 있는지와 어느 때 어느 쪽이 편한지 쓰시오.",
+        "bAnswer": "근의 공식은 인수분해가 되든 안 되든 모든 이차방정식에 쓸 수 있다. 인수분해는 좌변이 인수분해될 때만 쓸 수 있고, 쉽게 인수분해되면 그쪽이 더 빠르다.",
+        "bGoal": "근의 공식과 인수분해 풀이의 쓰임 비교",
+        "bReason": "제목만으로는 답할 범위가 없어 두 풀이의 비교로 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "근의 공식은 모든 이차방정식에 쓸 수 있음"
+            ]
+          },
+          {
+            "anyOf": [
+              "인수분해가 쉬우면 인수분해가 빠름"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "대비가 분명한 문장에 빈칸 하나라 그대로 읽힌다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "근의 공식은 모든 이차방정식",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3425,
+        "part": "m3plus",
+        "sourceFingerprint": "e1c7c042576f024ec6c85057ab4a33bd6e65333023cadfa62913126826771a90",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3425
+        },
+        "directReview": null,
+        "cFrozenSentence": "근의 공식은 인수분해가 되든 안 되든 □ 이차방정식에 쓸 수 있지만, 인수분해가 쉬우면 그쪽이 빠르다.",
+        "cFrozenDefinition": "근의 공식은 인수분해가 되든 안 되든 {모든} 이차방정식에 쓸 수 있지만, 인수분해가 쉬우면 그쪽이 빠르다.",
+        "cFrozenAnswers": [
+          "모든"
+        ],
+        "cMarkedSentence": "근의 공식은 인수분해가 되든 안 되든 {모든} 이차방정식에 쓸 수 있지만, 인수분해가 쉬우면 그쪽이 빠르다.",
+        "cSlotAnswers": [
+          "모든"
+        ],
+        "cStudentSentence": "근의 공식은 인수분해가 되든 안 되든 □ 이차방정식에 쓸 수 있지만, 인수분해가 쉬우면 그쪽이 빠르다.",
+        "cAnswers": [
+          "모든"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모든",
+            "equivalentAnswers": [
+              "모든"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모든"
+          ]
+        ],
+        "proposalFingerprint": "7eceb81e458129b60c18086855a8cc563cccf005e20643fd53e7f889dd65b0cb"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc10",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "근호 안이 정수의 제곱일 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "계수가 정수인 이차방정식에서 근의 공식의 근호 안의 값이 {정수의 제곱}이면 해는 {유리수}이다 — 이때 좌변은 계수가 정수인 일차식의 곱으로 인수분해된다.",
+        "studentC": "계수가 정수인 이차방정식에서 근의 공식의 근호 안의 값이 □이면 해는 □이다 — 이때 좌변은 계수가 정수인 일차식의 곱으로 인수분해된다.",
+        "answers": [
+          "정수의 제곱",
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "계수가 정수인 이차방정식 $2x^2-7x+3=0$에서 근의 공식의 근호 안의 값은 $25$이다. 근호 안의 값이 이렇게 정수의 제곱일 때 해가 어떤 수가 되는지와 좌변의 인수분해에 대해 알 수 있는 것을 쓰시오.",
+        "bAnswer": "$\\sqrt{25}=5$로 근호가 없어져 해가 $x=3$, $x=\\frac{1}{2}$로 유리수이다. 이때 좌변은 $(2x-1)(x-3)$처럼 계수가 정수인 일차식의 곱으로 인수분해된다.",
+        "bGoal": "근호 안이 정수의 제곱일 때의 해와 인수분해",
+        "bReason": "근호 안의 값을 준 예로 해의 종류와 인수분해를 함께 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "근호가 없어져 해가 유리수"
+            ]
+          },
+          {
+            "anyOf": [
+              "좌변이 계수가 정수인 일차식의 곱으로 인수분해됨"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "계수가 정수인 이차방정식에서 근의 공식의 근호 안의 값이 $0$, $1$, $4$, $9$처럼 정수의 제곱이면 근호가 없어져 해는 {유리수}이다 — 이때 좌변은 계수가 정수인 일차식의 곱으로 {인수분해}된다.",
+        "cAnswers": [
+          "유리수",
+          "인수분해"
+        ],
+        "cReason": "조건과 결론이 모두 빈칸이어서 조건은 보이고 결론만 가렸다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "근호가 없어져 해가 유리수",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3426,
+        "part": "m3plus",
+        "sourceFingerprint": "e3ca0ece449adf6809e7a8a8565efeb5ff51441ca79b1efb5932786b171a0345",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3426
+        },
+        "directReview": null,
+        "cMarkedSentence": "계수가 정수인 이차방정식에서 근의 공식의 근호 안의 값이 $0$, $1$, $4$, $9$처럼 정수의 제곱이면 근호가 없어져 해는 {유리수}이다 — 이때 좌변은 계수가 정수인 일차식의 곱으로 {인수분해}된다.",
+        "cSlotAnswers": [
+          "유리수",
+          "인수분해"
+        ],
+        "cStudentSentence": "계수가 정수인 이차방정식에서 근의 공식의 근호 안의 값이 $0$, $1$, $4$, $9$처럼 정수의 제곱이면 근호가 없어져 해는 □이다 — 이때 좌변은 계수가 정수인 일차식의 곱으로 □된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "인수분해",
+            "equivalentAnswers": [
+              "인수분해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수"
+          ],
+          [
+            "인수분해"
+          ]
+        ],
+        "proposalFingerprint": "4640becbe50e79acaaf5292a94da7d15ed3032bde2693241c0196436d806cf54"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc11",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "근호 안이 $0$일 때 겹치는 두 해",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$x^2-6x+9=0$처럼 $b^2-4ac=0$이면 근의 공식의 $\\pm$ 뒤가 {$0$}이 되어 두 해가 {겹친다}.",
+        "studentC": "$x^2-6x+9=0$처럼 $b^2-4ac=0$이면 근의 공식의 $\\pm$ 뒤가 □이 되어 두 해가 □.",
+        "answers": [
+          "$0$",
+          "겹친다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $x^2-6x+9=0$을 근의 공식으로 풀고, $b^2-4ac=0$일 때 해가 하나뿐인 까닭을 풀이에서 찾아 설명하시오.",
+        "bAnswer": "$b^2-4ac=36-36=0$이므로 $x=\\frac{6\\pm\\sqrt{0}}{2}=3$이다. $\\pm$ 뒤가 $0$이어서 더한 값과 뺀 값이 같아 두 해가 겹치고 중근 $x=3$이 된다.",
+        "bGoal": "$b^2-4ac=0$일 때 중근이 되는 까닭",
+        "bReason": "'중근' 용어 없이도 맞는 설명을 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\pm$ 뒤의 근호 값이 $0$이다",
+              "$\\sqrt{b^2-4ac}=0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "더한 값과 뺀 값이 같아 두 해가 겹친다",
+              "두 해가 모두 $x=3$으로 같아진다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$x^2-6x+9=0$처럼 $b^2-4ac=0$이면 근의 공식의 $\\pm$ 뒤의 $\\sqrt{b^2-4ac}$가 {$0$}이 되어 두 해가 같아진다 — 이런 해를 {중근}이라 한다.",
+        "cAnswers": [
+          "$0$",
+          "중근"
+        ],
+        "cReason": "'겹친다'는 답이 여럿 가능한 서술어라 용어 빈칸으로 바꿨다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "$\\pm$ 뒤가 0이라 해가 겹침",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3427,
+        "part": "m3plus",
+        "sourceFingerprint": "db2df14bdc847afa852916c2a2f28615895ed4e4db854f903c4f08b0c6d1de2a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3427
+        },
+        "directReview": null,
+        "cMarkedSentence": "$x^2-6x+9=0$처럼 $b^2-4ac=0$이면 근의 공식의 $\\pm$ 뒤의 $\\sqrt{b^2-4ac}$가 {$0$}이 되어 두 해가 같아진다 — 이런 해를 {중근}이라 한다.",
+        "cSlotAnswers": [
+          "$0$",
+          "중근"
+        ],
+        "cStudentSentence": "$x^2-6x+9=0$처럼 $b^2-4ac=0$이면 근의 공식의 $\\pm$ 뒤의 $\\sqrt{b^2-4ac}$가 □이 되어 두 해가 같아진다 — 이런 해를 □이라 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중근",
+            "equivalentAnswers": [
+              "중근"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "중근"
+          ]
+        ],
+        "proposalFingerprint": "935c8ddd96857113b0aafb5ec58380fd37d27f674837d8a06d2a3be5582c23d1"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc12",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "근호 안이 음수일 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$b^2-4ac<0$이면 근의 공식의 근호 안이 {음수}가 되어 실수인 해가 {없다} — 음수의 제곱근은 생각하지 않는다.",
+        "studentC": "$b^2-4ac<0$이면 근의 공식의 근호 안이 □가 되어 실수인 해가 □ — 음수의 제곱근은 생각하지 않는다.",
+        "answers": [
+          "음수",
+          "없다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $x^2+2x+3=0$에 근의 공식을 쓰면 근호 안의 값이 $-8$이 된다. 이때 이 방정식의 해에 대해 알 수 있는 것과 그 까닭을 쓰시오.",
+        "bAnswer": "실수인 해가 없다. 제곱해서 음수가 되는 실수는 없으므로 근호 안이 음수인 값은 생각하지 않기 때문이다.",
+        "bGoal": "근호 안이 음수이면 해가 없는 까닭",
+        "bReason": "근호 안이 음수가 되는 식으로 결론과 이유를 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "실수인 해가 없음"
+            ]
+          },
+          {
+            "anyOf": [
+              "제곱해서 음수가 되는 실수는 없음"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$b^2-4ac<0$이면 근의 공식의 근호 안이 음수가 된다. {제곱}해서 음수가 되는 실수는 없으므로 이 이차방정식은 실수인 해가 {없다}.",
+        "cAnswers": [
+          "제곱",
+          "없다"
+        ],
+        "cReason": "첫 빈칸 '음수'가 $<0$과 뒤 구절에 그대로 나와 베낄 수 있었다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "제곱해 음수인 실수 없음",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3428,
+        "part": "m3plus",
+        "sourceFingerprint": "f8f8d2991065ccd562f096d252440ce38591c0156cefb50e85cd46f9f60ad251",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3428
+        },
+        "directReview": null,
+        "cMarkedSentence": "$b^2-4ac<0$이면 근의 공식의 근호 안이 음수가 된다. {제곱}해서 음수가 되는 실수는 없으므로 이 이차방정식은 실수인 해가 {없다}.",
+        "cSlotAnswers": [
+          "제곱",
+          "없다"
+        ],
+        "cStudentSentence": "$b^2-4ac<0$이면 근의 공식의 근호 안이 음수가 된다. □해서 음수가 되는 실수는 없으므로 이 이차방정식은 실수인 해가 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱"
+          ],
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "5c3f51e0cf5db772b1d61410abb46a175e087b7dd37f243df84ec3ba98158aea"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc13",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "짝수 공식의 $b'$ 읽기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "짝수 공식의 $b'$은 $x$의 계수의 {절반}이고 부호도 함께 읽는다 — 공식의 분자는 {$-b'$}으로 시작한다.",
+        "example": {
+          "prompt": "$x^2-6x+2=0$에서 $b'$이 $-6$이 아니라 $-3$인 까닭은?",
+          "answer": "$x$의 계수가 $2b'$이라서"
+        },
+        "studentC": "짝수 공식의 $b'$은 $x$의 계수의 □이고 부호도 함께 읽는다 — 공식의 분자는 □으로 시작한다.",
+        "answers": [
+          "절반",
+          "$-b'$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$의 계수가 짝수인 이차방정식 $ax^2+2b'x+c=0$의 해는 $x=\\frac{-b'\\pm\\sqrt{b'^2-ac}}{a}$이다. $x^2-6x+2=0$에서 $b'$의 값을 구하고, 그렇게 정한 까닭을 쓰시오.",
+        "bAnswer": "$b'=-3$이다. $x$의 계수 $-6$이 $2b'$에 해당하므로 $b'$은 부호까지 포함한 계수의 절반이다.",
+        "bGoal": "$b'$을 $x$의 계수의 절반으로 읽기",
+        "bReason": "주어진 꼴의 복사가 아니라 $-6$과 $2b'$의 대응을 요구",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$의 계수 $-6$이 $2b'$에 해당한다",
+              "$2b'=-6$",
+              "$b'$은 $x$의 계수 $-6$의 절반이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b'=-3$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$ax^2+2b'x+c=0$의 $b'$은 $x$의 계수의 {절반}이고 부호도 함께 읽는다 — 예를 들어 $x^2-6x+2=0$에서 $b'=${$-3$}이다.",
+        "cAnswers": [
+          "절반",
+          "$-3$"
+        ],
+        "cReason": "'짝수 공식'과 $b'$이 무엇인지 문장만으로는 알 수 없었다.",
+        "coreAfter": "$ax^2+2b'x+c=0$에서 $b'$은 $x$의 계수의 {절반}이고 부호도 함께 읽는다 — $x$의 계수가 짝수일 때 쓰는 근의 공식의 분자는 {$-b'$}으로 시작한다.",
+        "coreReason": "'짝수 공식'은 교과서 용어가 아니고 $b'$이 어느 식의 것인지 설명에 없다.",
+        "studentLabel": "$x$의 계수가 짝수일 때 $b'$ 정하기",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "$b'$은 $x$ 계수의 절반",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3429,
+        "part": "m3plus",
+        "sourceFingerprint": "27b211dd98b3cb8f8cca987a7203a57e41043bd0dd2fb4f5bb37cd51c1e0acb5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3429
+        },
+        "directReview": null,
+        "coreBeforeRepair": "$ax^2+2b'x+c=0$에서 $b'$은 $x$의 계수의 {절반}이고 부호도 함께 읽는다 — $x$의 계수가 짝수일 때 쓰는 근의 공식의 분자는 {$-b'$}으로 시작한다.",
+        "coreRepairReason": "식의 꼴과 공식 이름을 밝힌 교정이 적절하고 원본 핵심어 {절반}, {$-b'$}이 있어 그대로 보존했다.",
+        "coreRepairEvidence": "core-repair/core-003",
+        "cMarkedSentence": "$ax^2+2b'x+c=0$의 $b'$은 $x$의 계수의 {절반}이고 부호도 함께 읽는다 — 예를 들어 $x^2-6x+2=0$에서 $b'=${$-3$}이다.",
+        "cSlotAnswers": [
+          "절반",
+          "$-3$"
+        ],
+        "cStudentSentence": "$ax^2+2b'x+c=0$의 $b'$은 $x$의 계수의 □이고 부호도 함께 읽는다 — 예를 들어 $x^2-6x+2=0$에서 $b'=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$-3$",
+            "equivalentAnswers": [
+              "$-3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "절반"
+          ],
+          [
+            "$-3$"
+          ]
+        ],
+        "proposalFingerprint": "6c3deb7725f4cd5018abbb091a18df858616f19b689225fccec0bd5ed5d58fdc"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc14",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "중근이 주어진 이차방정식",
+        "kind": "공식",
+        "level": "중",
+        "definition": "중근 $x=p$를 갖고 $x^2$ 항의 계수가 $1$이 되는 이차방정식은 {$(x-p)^2=0$}이다.",
+        "studentC": "중근 $x=p$를 갖고 $x^2$ 항의 계수가 $1$이 되는 이차방정식은 □이다.",
+        "answers": [
+          "$(x-p)^2=0$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$x=p$를 중근으로 갖고 $x^2$의 계수가 $1$인 이차방정식을 쓰고, 그 방정식의 해가 $x=p$ 하나뿐인 까닭을 쓰시오.",
+        "bAnswer": "$(x-p)^2=0$이다. 제곱한 값이 $0$이 되려면 $x-p=0$이어야 하므로 해는 $x=p$뿐이다.",
+        "bGoal": "중근이 주어진 이차방정식 만들기",
+        "bReason": "식과 함께 중근이 되는 까닭을 묻도록 범위를 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(x-p)^2=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x-p=0$일 때만 성립"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 모두 주어진 한 줄 공식 빈칸이라 분명하다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "중근 $p$면 $(x-p)^2=0$",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3430,
+        "part": "m3plus",
+        "sourceFingerprint": "ab181d1b987b61a9a40a69727b2e808bc8a13f50c95977e5b0ae7909006ad874",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3430
+        },
+        "directReview": null,
+        "cFrozenSentence": "중근 $x=p$를 갖고 $x^2$ 항의 계수가 $1$이 되는 이차방정식은 □이다.",
+        "cFrozenDefinition": "중근 $x=p$를 갖고 $x^2$ 항의 계수가 $1$이 되는 이차방정식은 {$(x-p)^2=0$}이다.",
+        "cFrozenAnswers": [
+          "$(x-p)^2=0$"
+        ],
+        "cMarkedSentence": "중근 $x=p$를 갖고 $x^2$ 항의 계수가 $1$이 되는 이차방정식은 {$(x-p)^2=0$}이다.",
+        "cSlotAnswers": [
+          "$(x-p)^2=0$"
+        ],
+        "cStudentSentence": "중근 $x=p$를 갖고 $x^2$ 항의 계수가 $1$이 되는 이차방정식은 □이다.",
+        "cAnswers": [
+          "$(x-p)^2=0$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(x-p)^2=0$",
+            "equivalentAnswers": [
+              "$(x-p)^2=0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$(x-p)^2=0$"
+          ]
+        ],
+        "proposalFingerprint": "6122b21e9437c612535bebfbc1ddc8189866f87443b344ef851aba3530c6469f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc15",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "무리수인 해의 크기 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "근의 공식으로 얻은 무리수인 해의 크기는 근호 부분을 이웃한 두 {정수} 사이에 끼운 뒤, 같은 계산을 부등식의 {각 변}에 해서 어림한다.",
+        "example": {
+          "prompt": "$\\frac{1+\\sqrt{5}}{2}$가 $1.5$와 $2$ 사이인 까닭은?",
+          "answer": "$2<\\sqrt{5}<3$이라서"
+        },
+        "studentC": "근의 공식으로 얻은 무리수인 해의 크기는 근호 부분을 이웃한 두 □ 사이에 끼운 뒤, 같은 계산을 부등식의 □에 해서 어림한다.",
+        "answers": [
+          "정수",
+          "각 변"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식의 해 $\\frac{1+\\sqrt{5}}{2}$가 어떤 두 수 사이에 있는지 어림하려고 한다. $\\sqrt{5}$가 이웃한 어느 두 정수 사이에 있는지부터 시작하여 과정을 쓰시오.",
+        "bAnswer": "$4<5<9$이므로 $2<\\sqrt{5}<3$이다. 각 변에 $1$을 더하면 $3<1+\\sqrt{5}<4$, 각 변을 $2$로 나누면 $1.5<\\frac{1+\\sqrt{5}}{2}<2$이다.",
+        "bGoal": "무리수인 해의 크기 어림하기",
+        "bReason": "추상적인 절차 대신 어림할 해를 주고 시작점을 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2<\\sqrt{5}<3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 변에 같은 계산을 함"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.5$와 $2$ 사이"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "무리수인 해 $\\frac{1+\\sqrt{5}}{2}$의 크기는 $\\sqrt{5}$를 이웃한 두 {정수} 사이에 끼워 $2<\\sqrt{5}<3$으로 쓴 뒤, 부등식의 각 변에 $1$을 더하고 $2$로 나누어 {$1.5$}$<\\frac{1+\\sqrt{5}}{2}<${$2$}로 어림한다.",
+        "cAnswers": [
+          "정수",
+          "$1.5$",
+          "$2$"
+        ],
+        "cReason": "'같은 계산을 각 변에'가 식 없이는 무슨 계산인지 알 수 없었다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "근호를 정수 사이에 끼워 어림",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3431,
+        "part": "m3plus",
+        "sourceFingerprint": "6cb657c4d2809732df3bc567260658f797973afad723dd3090a481765fb943e8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3431
+        },
+        "directReview": null,
+        "cMarkedSentence": "무리수인 해 $\\frac{1+\\sqrt{5}}{2}$의 크기는 $\\sqrt{5}$를 이웃한 두 {정수} 사이에 끼워 $2<\\sqrt{5}<3$으로 쓴 뒤, 부등식의 각 변에 $1$을 더하고 $2$로 나누어 {$1.5$}$<\\frac{1+\\sqrt{5}}{2}<${$2$}로 어림한다.",
+        "cSlotAnswers": [
+          "정수",
+          "$1.5$",
+          "$2$"
+        ],
+        "cStudentSentence": "무리수인 해 $\\frac{1+\\sqrt{5}}{2}$의 크기는 $\\sqrt{5}$를 이웃한 두 □ 사이에 끼워 $2<\\sqrt{5}<3$으로 쓴 뒤, 부등식의 각 변에 $1$을 더하고 $2$로 나누어 □$<\\frac{1+\\sqrt{5}}{2}<$□로 어림한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1.5$",
+            "equivalentAnswers": [
+              "$1.5$",
+              "$\\frac{3}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$1.5$",
+            "accept": [
+              "$\\frac{3}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ],
+          [
+            "$1.5$",
+            "$\\frac{3}{2}$"
+          ],
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "b4addcdac0a548ef04c56bd51ef7419bb777c73d7801ebbfc73dff2ec612e8cc"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc16",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "완전제곱식 풀이와 근의 공식",
+        "kind": "성질",
+        "level": "중",
+        "definition": "완전제곱식을 이용해 푼 해와 근의 공식으로 구한 해는 언제나 {같다} — 근의 공식은 그 풀이를 {일반화}한 것이다.",
+        "studentC": "완전제곱식을 이용해 푼 해와 근의 공식으로 구한 해는 언제나 □ — 근의 공식은 그 풀이를 □한 것이다.",
+        "answers": [
+          "같다",
+          "일반화"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "두 풀이의 해가 같은 까닭은 결국 근의 공식 유도 설명이라 c5의 B와 겹친다.",
+        "cDecision": "rewrite",
+        "cAfter": "같은 이차방정식이면 완전제곱식을 이용해 푼 해와 근의 공식으로 구한 해는 언제나 {같다} — 근의 공식은 계수를 {문자} $a$, $b$, $c$로 놓고 완전제곱식을 이용해 미리 풀어 둔 결과이기 때문이다.",
+        "cAnswers": [
+          "같다",
+          "문자"
+        ],
+        "cReason": "'일반화'는 중학생에게 어려운 말이라 뜻을 풀어 썼다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m3-03-02-c5(근의 공식 유도)와 설명 목표가 중복된다. C는 수정해 유지한다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "공식은 완전제곱 풀이의 일반화",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3432,
+        "part": "m3plus",
+        "sourceFingerprint": "e3c70e4a2a931468ee3f3ba2b16b78b3fe156859f92a5466cc361bfa9ab18c56",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3432
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "같은 이차방정식이면 완전제곱식을 이용해 푼 해와 근의 공식으로 구한 해는 언제나 {같다} — 근의 공식은 계수를 {문자} $a$, $b$, $c$로 놓고 완전제곱식을 이용해 미리 풀어 둔 결과이기 때문이다.",
+        "cSlotAnswers": [
+          "같다",
+          "문자"
+        ],
+        "cStudentSentence": "같은 이차방정식이면 완전제곱식을 이용해 푼 해와 근의 공식으로 구한 해는 언제나 □ — 근의 공식은 계수를 □ $a$, $b$, $c$로 놓고 완전제곱식을 이용해 미리 풀어 둔 결과이기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "문자",
+            "equivalentAnswers": [
+              "문자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ],
+          [
+            "문자"
+          ]
+        ],
+        "proposalFingerprint": "2b5dee4e713bd6ae04df476258e2a3a12ef5c70bc25b20ea40aa973f95886dfe"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc17",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "계수에 문자가 있을 때 근의 개수 조건",
+        "kind": "방법",
+        "level": "상",
+        "definition": "계수에 문자가 있을 때 근의 개수에 대한 조건은 {$b^2-4ac$}의 부호에 대한 {부등식이나 등식}으로 바꾸어 문자의 범위를 구한다.",
+        "example": {
+          "prompt": "$x^2+2x+k=0$이 서로 다른 두 근을 가질 조건이 $4-4k>0$인 까닭은?",
+          "answer": "근호 안이 양수여야 해서"
+        },
+        "studentC": "계수에 문자가 있을 때 근의 개수에 대한 조건은 □의 부호에 대한 □으로 바꾸어 문자의 범위를 구한다.",
+        "answers": [
+          "$b^2-4ac$",
+          "부등식이나 등식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $x^2+2x+k=0$이 서로 다른 두 근을 갖도록 하는 $k$의 값의 범위를 구하려고 한다. 어떤 식의 부호를 이용해 어떤 부등식을 세우는지 쓰고, $k$의 범위를 구하시오.",
+        "bAnswer": "$b^2-4ac$가 양수여야 하므로 $4-4k>0$을 세운다. 따라서 $k<1$이다.",
+        "bGoal": "근의 개수 조건을 $b^2-4ac$의 식으로 바꾸기",
+        "bReason": "짝수 공식으로 세운 동치 부등식도 허용",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$b^2-4ac>0$",
+              "$b^2-4ac$가 양수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4-4k>0$",
+              "$1-k>0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$k<1$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "이차방정식 $ax^2+bx+c=0$의 계수에 문자가 있을 때, 근의 개수에 대한 조건은 {$b^2-4ac$}의 부호에 대한 식으로 바꾼다 — 서로 다른 두 근이면 이 값이 $0$보다 {크다}, 중근이면 $0$과 {같다}로 놓고 문자의 값이나 범위를 구한다.",
+        "cAnswers": [
+          "$b^2-4ac$",
+          "크다",
+          "같다"
+        ],
+        "cReason": "'부등식이나 등식'은 임의의 구절이라 경우별 관계를 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "근의 개수를 판별값 식으로",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3433,
+        "part": "m3plus",
+        "sourceFingerprint": "eb00fa56d30d48d55ac0b8c424d99623e4a62d25eaa944c6cc8e8c8dd3675682",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3433
+        },
+        "directReview": null,
+        "cMarkedSentence": "이차방정식 $ax^2+bx+c=0$의 계수에 문자가 있을 때, 근의 개수에 대한 조건은 {$b^2-4ac$}의 부호에 대한 식으로 바꾼다 — 서로 다른 두 근이면 이 값이 $0$보다 {크다}, 중근이면 $0$과 {같다}로 놓고 문자의 값이나 범위를 구한다.",
+        "cSlotAnswers": [
+          "$b^2-4ac$",
+          "크다",
+          "같다"
+        ],
+        "cStudentSentence": "이차방정식 $ax^2+bx+c=0$의 계수에 문자가 있을 때, 근의 개수에 대한 조건은 □의 부호에 대한 식으로 바꾼다 — 서로 다른 두 근이면 이 값이 $0$보다 □, 중근이면 $0$과 □로 놓고 문자의 값이나 범위를 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$b^2-4ac$",
+            "equivalentAnswers": [
+              "$b^2-4ac$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크다",
+            "equivalentAnswers": [
+              "크다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$b^2-4ac$"
+          ],
+          [
+            "크다"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "814f7f61cadf008acb27f85af13c3fcddf43f50298f8b154f88d5fea3e3fff59"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc19",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "이차항의 계수에 문자가 있을 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이차항의 계수에 문자가 있으면 근의 개수 조건과 함께 {이차항의 계수가 $0$이 아니라는} 조건도 따진다 — $0$이면 {이차방정식}이 아니다.",
+        "example": {
+          "prompt": "$(k-1)x^2+2x+1=0$이 서로 다른 두 근을 가지려면 $k\\ne 1$도 필요한 까닭은?",
+          "answer": "$k=1$이면 일차방정식이라서"
+        },
+        "studentC": "이차항의 계수에 문자가 있으면 근의 개수 조건과 함께 □ 조건도 따진다 — $0$이면 □이 아니다.",
+        "answers": [
+          "이차항의 계수가 $0$이 아니라는",
+          "이차방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$에 대한 이차방정식 $(k-1)x^2+2x+1=0$이 서로 다른 두 근을 가질 $k$의 조건을 구할 때, $b^2-4ac>0$ 말고도 따져야 하는 조건과 그 까닭을 쓰고 $k$의 범위를 구하시오.",
+        "bAnswer": "$k\\ne1$이어야 한다. $k=1$이면 $x^2$ 항이 없어져 이차방정식이 아니기 때문이다. $4-4(k-1)>0$에서 $k<2$이므로 $k<2$이고 $k\\ne1$이다.",
+        "bGoal": "이차항의 계수가 $0$이 아니라는 조건 따지기",
+        "bReason": "빠뜨리기 쉬운 조건을 구체 식에서 찾아 이유까지 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이차항의 계수 $k-1\\ne0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$이면 이차방정식이 아님"
+            ]
+          },
+          {
+            "anyOf": [
+              "$k<2$이고 $k\\ne1$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$(k-1)x^2+2x+1=0$처럼 이차항의 계수에 문자가 있으면, 근의 개수 조건과 함께 이차항의 계수가 {$0$}이 아니라는 조건도 따진다 — 그렇지 않으면 $x^2$ 항이 없어져 {이차방정식}이 아니기 때문이다.",
+        "cAnswers": [
+          "$0$",
+          "이차방정식"
+        ],
+        "cReason": "첫 빈칸이 긴 구절이고 답의 $0$이 뒤 문장에 그대로 나와 있었다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "이차항 계수 0 아님도 확인",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3434,
+        "part": "m3plus",
+        "sourceFingerprint": "587a0a89db79f39331cf216b615764caa4e0877a86e243fd88a959fdd7bc25c4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3434
+        },
+        "directReview": null,
+        "cMarkedSentence": "$(k-1)x^2+2x+1=0$처럼 이차항의 계수에 문자가 있으면, 근의 개수 조건과 함께 이차항의 계수가 {$0$}이 아니라는 조건도 따진다 — 그렇지 않으면 $x^2$ 항이 없어져 {이차방정식}이 아니기 때문이다.",
+        "cSlotAnswers": [
+          "$0$",
+          "이차방정식"
+        ],
+        "cStudentSentence": "$(k-1)x^2+2x+1=0$처럼 이차항의 계수에 문자가 있으면, 근의 개수 조건과 함께 이차항의 계수가 □이 아니라는 조건도 따진다 — 그렇지 않으면 $x^2$ 항이 없어져 □이 아니기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이차방정식",
+            "equivalentAnswers": [
+              "이차방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "이차방정식"
+          ]
+        ],
+        "proposalFingerprint": "23751ca246f812590645f51210f256cf4cf638a106603786594d450b682098bf"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc20",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "양변을 $a$로 나누는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "근의 공식을 끌어낼 때 양변을 $a$로 나누는 것은 $x^2$의 계수를 {$1$}로 만들어 {완전제곱식}을 쉽게 만들기 위해서이다.",
+        "studentC": "근의 공식을 끌어낼 때 양변을 $a$로 나누는 것은 $x^2$의 계수를 □로 만들어 □을 쉽게 만들기 위해서이다.",
+        "answers": [
+          "$1$",
+          "완전제곱식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $ax^2+bx+c=0$에서 근의 공식을 끌어낼 때 맨 먼저 양변을 $a$로 나눈다. 이렇게 나누는 까닭과, $a$로 나누어도 되는 까닭을 쓰시오.",
+        "bAnswer": "$x^2$의 계수를 $1$로 만들어야 $x$의 계수의 절반의 제곱을 더해 완전제곱식을 쉽게 만들 수 있기 때문이다. 이차방정식이므로 $a\\ne0$이어서 나눌 수 있다.",
+        "bGoal": "유도에서 양변을 $a$로 나누는 까닭",
+        "bReason": "c5는 순서를 묻고 여기서는 첫 단계의 이유만 묻도록 나누었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x^2$의 계수를 $1$로 만듦"
+            ]
+          },
+          {
+            "anyOf": [
+              "완전제곱식을 쉽게 만들기 위함"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a\\ne0$이라 나눌 수 있음"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$ax^2+bx+c=0$에서 근의 공식을 끌어낼 때 양변을 $a$로 나누는 것은 $x^2$의 계수를 {$1$}로 만들어 {완전제곱식}을 쉽게 만들기 위해서이다.",
+        "cAnswers": [
+          "$1$",
+          "완전제곱식"
+        ],
+        "cReason": "$a$가 어느 식의 계수인지 없어 방정식만 앞에 덧붙였다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "$x^2$ 계수를 1로 만들려고",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3435,
+        "part": "m3plus",
+        "sourceFingerprint": "ac59c25bdd52a9383adcba4734bf2b662013b1a9c847431a7f3c86e1091a19ad",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3435
+        },
+        "directReview": null,
+        "cMarkedSentence": "$ax^2+bx+c=0$에서 근의 공식을 끌어낼 때 양변을 $a$로 나누는 것은 $x^2$의 계수를 {$1$}로 만들어 {완전제곱식}을 쉽게 만들기 위해서이다.",
+        "cSlotAnswers": [
+          "$1$",
+          "완전제곱식"
+        ],
+        "cStudentSentence": "$ax^2+bx+c=0$에서 근의 공식을 끌어낼 때 양변을 $a$로 나누는 것은 $x^2$의 계수를 □로 만들어 □을 쉽게 만들기 위해서이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "완전제곱식",
+            "equivalentAnswers": [
+              "완전제곱식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "완전제곱식"
+          ]
+        ],
+        "proposalFingerprint": "71cff9e4e6177fc8131d7615b790d001bc4002bfc57bd172223a61700bdcd95a"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc21",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "짝수 공식이 간단한 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$x$의 계수가 짝수이면 근의 공식의 분자와 분모가 모두 {$2$}로 나누어지므로, $b'$을 쓰는 공식은 {약분}을 미리 해 둔 셈이다.",
+        "studentC": "$x$의 계수가 짝수이면 근의 공식의 분자와 분모가 모두 □로 나누어지므로, $b'$을 쓰는 공식은 □을 미리 해 둔 셈이다.",
+        "answers": [
+          "$2$",
+          "약분"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$ax^2+2b'x+c=0$에 근의 공식을 쓰면 $x=\\frac{-2b'\\pm\\sqrt{4b'^2-4ac}}{2a}$이다. 이 식에서 $x=\\frac{-b'\\pm\\sqrt{b'^2-ac}}{a}$가 나오는 과정을 설명하시오.",
+        "bAnswer": "$\\sqrt{4b'^2-4ac}=2\\sqrt{b'^2-ac}$이므로 분자의 두 항과 분모가 모두 $2$로 나누어진다. $2$로 약분하면 $x=\\frac{-b'\\pm\\sqrt{b'^2-ac}}{a}$이다.",
+        "bGoal": "$b'$을 쓰는 공식이 약분한 결과임을 알기",
+        "bReason": "출발 식과 도착 식을 주어 그 사이 과정만 설명하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "근호에서 $2$를 꺼냄"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자의 두 항과 분모를 $2$로 약분"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$ax^2+2b'x+c=0$처럼 $x$의 계수가 짝수이면 근의 공식의 분자와 분모가 모두 {$2$}로 나누어진다 — $b'$을 쓰는 공식 $x=\\frac{-b'\\pm\\sqrt{b'^2-ac}}{a}$는 이 {약분}을 미리 해 둔 것이다.",
+        "cAnswers": [
+          "$2$",
+          "약분"
+        ],
+        "cReason": "$b'$과 '$b'$을 쓰는 공식'이 무엇인지 문장에 없어 식을 넣었다.",
+        "studentLabel": "$b'$을 쓰는 근의 공식이 간단한 까닭",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "2로 약분을 미리 한 공식",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3436,
+        "part": "m3plus",
+        "sourceFingerprint": "a760a5bede5f138eced648f218282f07ac5adf10059a6b8b20904779921dfa47",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3436
+        },
+        "directReview": null,
+        "cMarkedSentence": "$ax^2+2b'x+c=0$처럼 $x$의 계수가 짝수이면 근의 공식의 분자와 분모가 모두 {$2$}로 나누어진다 — $b'$을 쓰는 공식 $x=\\frac{-b'\\pm\\sqrt{b'^2-ac}}{a}$는 이 {약분}을 미리 해 둔 것이다.",
+        "cSlotAnswers": [
+          "$2$",
+          "약분"
+        ],
+        "cStudentSentence": "$ax^2+2b'x+c=0$처럼 $x$의 계수가 짝수이면 근의 공식의 분자와 분모가 모두 □로 나누어진다 — $b'$을 쓰는 공식 $x=\\frac{-b'\\pm\\sqrt{b'^2-ac}}{a}$는 이 □을 미리 해 둔 것이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "약분",
+            "equivalentAnswers": [
+              "약분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "약분"
+          ]
+        ],
+        "proposalFingerprint": "3a546adf10551426c2d555ab622b89eae77971ee5444f1796ef3b610a50ef329"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc22",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "두 해가 같은 여러 이차방정식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 해가 같아도 $x^2$의 계수 $a$가 다르면 방정식은 {다르다} — $a(x-\\alpha)(x-\\beta)=0$에서 $0$이 아닌 $a$는 {해}를 바꾸지 않는다.",
+        "example": {
+          "prompt": "해가 $\\frac{1}{2}$, $3$인 이차방정식이 $2x^2-7x+3=0$ 하나뿐이 아닌 까닭은?",
+          "answer": "$0$ 아닌 수를 곱해도 해가 같아서"
+        },
+        "studentC": "두 해가 같아도 $x^2$의 계수 $a$가 다르면 방정식은 □ — $a(x-\\alpha)(x-\\beta)=0$에서 $0$이 아닌 $a$는 □를 바꾸지 않는다.",
+        "answers": [
+          "다르다",
+          "해"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "해가 $\\frac{1}{2}$, $3$인 이차방정식은 $2x^2-7x+3=0$ 하나뿐인지 답하시오. 해가 같은 다른 이차방정식을 하나 들고, 그렇게 되는 까닭을 쓰시오.",
+        "bAnswer": "하나뿐이 아니다. 예를 들어 $4x^2-14x+6=0$도 해가 같다. 양변에 $0$이 아닌 수를 곱해도 해는 변하지 않으므로 $a\\left(x-\\frac{1}{2}\\right)(x-3)=0$($a\\ne0$) 꼴은 모두 해가 같다.",
+        "bGoal": "해가 같아도 $x^2$의 계수에 따라 방정식이 다름",
+        "bReason": "'두 해가 같은'이 중근으로 읽히지 않도록 해를 직접 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "해가 같은 이차방정식은 여러 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$이 아닌 수를 곱해도 해는 그대로"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$(x-1)(x-3)=0$과 $2(x-1)(x-3)=0$은 $x^2$의 계수가 달라 서로 {다른} 방정식이지만 {해}는 같다 — $a(x-\\alpha)(x-\\beta)=0$에서 $0$이 아닌 $a$는 좌변이 $0$이 되는 $x$의 값을 바꾸지 않기 때문이다.",
+        "cAnswers": [
+          "다른",
+          "해"
+        ],
+        "cReason": "'두 해가 같아도'가 중근으로 읽힐 수 있어 두 방정식을 직접 보였다.",
+        "coreAfter": "해가 $\\alpha$, $\\beta$로 같은 두 이차방정식도 $x^2$의 계수 $a$가 다르면 서로 {다른} 방정식이다 — $a(x-\\alpha)(x-\\beta)=0$에서 $0$이 아닌 $a$는 {해}를 바꾸지 않는다.",
+        "coreReason": "'두 해가 같아도'는 두 해가 서로 같다(중근)는 뜻으로 읽힐 수 있다.",
+        "studentLabel": "해는 같고 $x^2$의 계수가 다른 이차방정식",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "0 아닌 $a$는 해를 안 바꿈",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3437,
+        "part": "m3plus",
+        "sourceFingerprint": "5329fec5cf6e8436732552d7facea98a476d844eb354c9d21b38677304379152",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3437
+        },
+        "directReview": null,
+        "coreBeforeRepair": "해가 $\\alpha$, $\\beta$로 같은 두 이차방정식도 $x^2$의 계수 $a$가 다르면 서로 {다른} 방정식이다 — $a(x-\\alpha)(x-\\beta)=0$에서 $0$이 아닌 $a$는 {해}를 바꾸지 않는다.",
+        "coreRepairReason": "중근으로 오해할 수 있는 표현을 고친 교정이 적절하다. 원본 핵심어 '다르다'는 활용형 {다른}으로, {해}는 그대로 있어 보존했다.",
+        "coreRepairEvidence": "core-repair/core-003",
+        "cMarkedSentence": "$(x-1)(x-3)=0$과 $2(x-1)(x-3)=0$은 $x^2$의 계수가 달라 서로 {다른} 방정식이지만 {해}는 같다 — $a(x-\\alpha)(x-\\beta)=0$에서 $0$이 아닌 $a$는 좌변이 $0$이 되는 $x$의 값을 바꾸지 않기 때문이다.",
+        "cSlotAnswers": [
+          "다른",
+          "해"
+        ],
+        "cStudentSentence": "$(x-1)(x-3)=0$과 $2(x-1)(x-3)=0$은 $x^2$의 계수가 달라 서로 □ 방정식이지만 □는 같다 — $a(x-\\alpha)(x-\\beta)=0$에서 $0$이 아닌 $a$는 좌변이 $0$이 되는 $x$의 값을 바꾸지 않기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다른",
+            "equivalentAnswers": [
+              "다른"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "해",
+            "equivalentAnswers": [
+              "해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다른"
+          ],
+          [
+            "해"
+          ]
+        ],
+        "proposalFingerprint": "959a3532bcb4c6e76e34ac0bd1914d86711cccef5c914fc935bba74a69ea2266"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc23",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "$ac<0$인 이차방정식의 근",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$ac<0$이면 $b^2-4ac$가 늘 {양수}이므로 이차방정식 $ax^2+bx+c=0$은 언제나 서로 다른 {두} 근을 갖는다.",
+        "studentC": "$ac<0$이면 $b^2-4ac$가 늘 □이므로 이차방정식 $ax^2+bx+c=0$은 언제나 서로 다른 □ 근을 갖는다.",
+        "answers": [
+          "양수",
+          "두"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "이차방정식 $ax^2+bx+c=0$에서 $a$와 $c$의 부호가 서로 달라 $ac<0$일 때, $b$의 값에 관계없이 근의 개수가 어떻게 되는지 $b^2-4ac$의 부호를 따져 설명하시오.",
+        "bAnswer": "$b^2\\ge0$이고 $ac<0$이므로 $-4ac>0$이다. 따라서 $b^2-4ac>0$이 되어 항상 서로 다른 두 근을 갖는다.",
+        "bGoal": "$ac<0$이면 항상 서로 다른 두 근임을 설명",
+        "bReason": "결론을 미리 주지 않고 부호를 따져 스스로 이끌게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$b^2\\ge0$, $-4ac>0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b^2-4ac>0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 다른 두 근"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건과 식이 다 보이고 부호와 개수만 묻는 짧은 빈칸이다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "$-4ac>0$이라 항상 두 근",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3438,
+        "part": "m3plus",
+        "sourceFingerprint": "50b5d07061d4a411ef74e93c83244b145bcfcc16db4b27c69b240424e2fb9939",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3438
+        },
+        "directReview": null,
+        "cFrozenSentence": "$ac<0$이면 $b^2-4ac$가 늘 □이므로 이차방정식 $ax^2+bx+c=0$은 언제나 서로 다른 □ 근을 갖는다.",
+        "cFrozenDefinition": "$ac<0$이면 $b^2-4ac$가 늘 {양수}이므로 이차방정식 $ax^2+bx+c=0$은 언제나 서로 다른 {두} 근을 갖는다.",
+        "cFrozenAnswers": [
+          "양수",
+          "두"
+        ],
+        "cMarkedSentence": "$ac<0$이면 $b^2-4ac$가 늘 {양수}이므로 이차방정식 $ax^2+bx+c=0$은 언제나 서로 다른 {두} 근을 갖는다.",
+        "cSlotAnswers": [
+          "양수",
+          "두"
+        ],
+        "cStudentSentence": "$ac<0$이면 $b^2-4ac$가 늘 □이므로 이차방정식 $ax^2+bx+c=0$은 언제나 서로 다른 □ 근을 갖는다.",
+        "cAnswers": [
+          "양수",
+          "두"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "두",
+            "equivalentAnswers": [
+              "두"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "두"
+          ]
+        ],
+        "proposalFingerprint": "b0328ff6d0ba93964c8b4bec028dee74e271500b56d7e3b9ee62f43c709b477a"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-02-xc24",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "정수 계수로 인수분해되지 않는 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "계수가 정수인 이차방정식에서 근호 안의 값이 양수이고 {정수의 제곱}이 아니면 해는 무리수이다 — 이때 좌변은 {계수가 정수인 일차식의 곱}으로 인수분해되지 않는다.",
+        "studentC": "계수가 정수인 이차방정식에서 근호 안의 값이 양수이고 □이 아니면 해는 무리수이다 — 이때 좌변은 □으로 인수분해되지 않는다.",
+        "answers": [
+          "정수의 제곱",
+          "계수가 정수인 일차식의 곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "계수가 정수인 이차방정식 $x^2-2x-1=0$에서 근의 공식의 근호 안의 값은 $8$이다. 이 값이 양수이지만 정수의 제곱이 아닐 때, 해가 어떤 수인지와 좌변을 계수가 정수인 일차식의 곱으로 인수분해할 수 있는지 쓰시오.",
+        "bAnswer": "$\\sqrt{8}=2\\sqrt{2}$로 근호가 남아 해가 $x=1\\pm\\sqrt{2}$인 무리수이다. 이때 좌변은 계수가 정수인 일차식의 곱으로 인수분해되지 않는다.",
+        "bGoal": "근호 안이 정수의 제곱이 아닐 때의 해와 인수분해",
+        "bReason": "xc10과 반대 경우임이 드러나도록 근호 안이 $8$인 예를 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "근호가 남아 해가 무리수"
+            ]
+          },
+          {
+            "anyOf": [
+              "계수가 정수인 일차식의 곱으로 인수분해되지 않음"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "계수가 정수인 이차방정식에서 근의 공식의 근호 안의 값이 $2$, $5$, $8$처럼 양수이지만 정수의 제곱이 아니면 근호가 남아 해는 {무리수}이다 — 이때 좌변은 계수가 정수인 일차식의 곱으로 {인수분해}되지 않는다.",
+        "cAnswers": [
+          "무리수",
+          "인수분해"
+        ],
+        "cReason": "어느 근호인지 없고 둘째 빈칸이 긴 구절이라 결론 낱말만 가렸다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "근호가 남아 해가 무리수",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3439,
+        "part": "m3plus",
+        "sourceFingerprint": "865e21c4e6a4d50dfe15137487527c68ef9e090280665774dfea525a9b9fb424",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3439
+        },
+        "directReview": null,
+        "cMarkedSentence": "계수가 정수인 이차방정식에서 근의 공식의 근호 안의 값이 $2$, $5$, $8$처럼 양수이지만 정수의 제곱이 아니면 근호가 남아 해는 {무리수}이다 — 이때 좌변은 계수가 정수인 일차식의 곱으로 {인수분해}되지 않는다.",
+        "cSlotAnswers": [
+          "무리수",
+          "인수분해"
+        ],
+        "cStudentSentence": "계수가 정수인 이차방정식에서 근의 공식의 근호 안의 값이 $2$, $5$, $8$처럼 양수이지만 정수의 제곱이 아니면 근호가 남아 해는 □이다 — 이때 좌변은 계수가 정수인 일차식의 곱으로 □되지 않는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "무리수",
+            "equivalentAnswers": [
+              "무리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "인수분해",
+            "equivalentAnswers": [
+              "인수분해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "무리수"
+          ],
+          [
+            "인수분해"
+          ]
+        ],
+        "proposalFingerprint": "2a9ed7c8c7c2288946cbc5e65e650d6cbd5efdfa73cf96776e241fcd08d28028"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc1",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "구하려는 양을 미지수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "활용 문제에서는 {구하려는 양}을 $x$로 놓는 것이 기본이고, 다른 양은 $x$를 써서 {식}으로 나타낸다.",
+        "studentC": "활용 문제에서는 □을 $x$로 놓는 것이 기본이고, 다른 양은 $x$를 써서 □으로 나타낸다.",
+        "answers": [
+          "구하려는 양",
+          "식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "'연속하는 두 자연수의 곱이 $56$일 때 작은 수를 구하시오.'라는 문제에서 무엇을 $x$로 놓는 것이 좋은지 쓰고, 나머지 수를 $x$로 나타내시오. 또 활용 문제에서 미지수를 정하는 기본 방법을 쓰시오.",
+        "bAnswer": "구하려는 작은 수를 $x$로 놓으면 큰 수는 $x+1$이다. 활용 문제에서는 구하려는 양을 $x$로 놓고 다른 양은 $x$를 쓴 식으로 나타낸다.",
+        "bGoal": "구하려는 양을 미지수로 놓기",
+        "bReason": "실제 큰 수 x+1을 쓰라는 요구를 독립 기준에 넣고 일반론만으로 통과하던 범위를 고친다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구하려는 작은 수를 $x$로 놓는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "큰 수를 $x+1$로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "활용 문제에서는 구하려는 양을 미지수로 놓고 다른 양을 그 미지수를 쓴 식으로 나타낸다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "미지수 정하기의 두 단계를 짧은 낱말로 묻는 분명한 문장이다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "구하려는 양을 $x$로 놓기",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3440,
+        "part": "m3plus",
+        "sourceFingerprint": "6f9f020f68bd345aaf553fdf9f8306c38a9ee15d4090ee00e9f04b16f9da664a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3440
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-03-03-xc1"
+        },
+        "cFrozenSentence": "활용 문제에서는 □을 $x$로 놓는 것이 기본이고, 다른 양은 $x$를 써서 □으로 나타낸다.",
+        "cFrozenDefinition": "활용 문제에서는 {구하려는 양}을 $x$로 놓는 것이 기본이고, 다른 양은 $x$를 써서 {식}으로 나타낸다.",
+        "cFrozenAnswers": [
+          "구하려는 양",
+          "식"
+        ],
+        "cMarkedSentence": "활용 문제에서는 {구하려는 양}을 $x$로 놓는 것이 기본이고, 다른 양은 $x$를 써서 {식}으로 나타낸다.",
+        "cSlotAnswers": [
+          "구하려는 양",
+          "식"
+        ],
+        "cStudentSentence": "활용 문제에서는 □을 $x$로 놓는 것이 기본이고, 다른 양은 $x$를 써서 □으로 나타낸다.",
+        "cAnswers": [
+          "구하려는 양",
+          "식"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "구하려는 양",
+            "equivalentAnswers": [
+              "구하려는 양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "식",
+            "equivalentAnswers": [
+              "식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "구하려는 양"
+          ],
+          [
+            "식"
+          ]
+        ],
+        "proposalFingerprint": "133f8d45becf0fa8f6dcdb9c874f280f1ab3585bec7f0ceeae7077decdf0f291"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc2",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "말을 식으로 옮기기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "문장을 식으로 옮길 때는 구하는 수를 $x$로 놓고 '제곱' · '몇 배' · '~만큼 크다'를 차례대로 {연산}으로 바꾸어 {등식}을 세운다.",
+        "example": {
+          "prompt": "'어떤 수의 제곱에서 그 수의 $2$배를 빼면 $15$'를 식으로 옮기면?",
+          "answer": "$x^2-2x=15$"
+        },
+        "studentC": "문장을 식으로 옮길 때는 구하는 수를 $x$로 놓고 '제곱' · '몇 배' · '~만큼 크다'를 차례대로 □으로 바꾸어 □을 세운다.",
+        "answers": [
+          "연산",
+          "등식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "'어떤 수의 제곱에서 그 수의 $2$배를 빼면 $15$이다.'를 어떤 수를 $x$로 놓고 방정식으로 나타내시오. '제곱', '$2$배', '빼면', '이다'를 각각 무엇으로 바꾸었는지도 쓰시오.",
+        "bAnswer": "$x^2-2x=15$이다. '제곱'은 $x^2$, '$2$배'는 $2x$, '빼면'은 뺄셈, '이다'는 등호로 바꾸었다.",
+        "bGoal": "문장을 방정식으로 옮기기",
+        "bReason": "낱말을 연산으로 바꾼다는 질문 복사 대신 실제 네 낱말의 수학 대응을 요구한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x^2-2x=15$"
+            ]
+          },
+          {
+            "anyOf": [
+              "제곱은 $x^2$, 두 배는 $2x$, 빼면은 뺄셈, 이다는 등호에 해당한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "'어떤 수의 제곱에서 그 수의 $2$배를 빼면 $15$이다'를 식으로 옮길 때는 어떤 수를 $x$로 놓고 '제곱'은 {$x^2$}, '$2$배'는 {$2x$}로 바꾸어 등식 {$x^2-2x=15$}를 세운다.",
+        "cAnswers": [
+          "$x^2$",
+          "$2x$",
+          "$x^2-2x=15$"
+        ],
+        "cReason": "'연산'은 문장 없이 답하기 어려운 말이라 실제 문장으로 옮기게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "낱말을 연산·등호로 옮김",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3441,
+        "part": "m3plus",
+        "sourceFingerprint": "cc8c0674e907f6bf929a21e6dd6045bf9000ccf535638ad00371b61e4a111192",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3441
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-03-03-xc2"
+        },
+        "cMarkedSentence": "'어떤 수의 제곱에서 그 수의 $2$배를 빼면 $15$이다'를 식으로 옮길 때는 어떤 수를 $x$로 놓고 '제곱'은 {$x^2$}, '$2$배'는 {$2x$}로 바꾸어 등식 {$x^2-2x=15$}를 세운다.",
+        "cSlotAnswers": [
+          "$x^2$",
+          "$2x$",
+          "$x^2-2x=15$"
+        ],
+        "cStudentSentence": "'어떤 수의 제곱에서 그 수의 $2$배를 빼면 $15$이다'를 식으로 옮길 때는 어떤 수를 $x$로 놓고 '제곱'은 □, '$2$배'는 □로 바꾸어 등식 □를 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x^2$",
+            "equivalentAnswers": [
+              "$x^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2x$",
+            "equivalentAnswers": [
+              "$2x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$x^2-2x=15$",
+            "equivalentAnswers": [
+              "$x^2-2x=15$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x^2$"
+          ],
+          [
+            "$2x$"
+          ],
+          [
+            "$x^2-2x=15$"
+          ]
+        ],
+        "proposalFingerprint": "1be6605b66d8cd4538f155c78313b8528d7c8ed911a60631ce8b165a4972fec2"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc3",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "연속하는 세 자연수 놓기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "연속하는 세 자연수의 가운데 수를 $x$로 놓으면 세 수는 {$x-1$}, $x$, {$x+1$}이다 — 작은 수와 큰 수가 가운데 수보다 $1$ 작고 $1$ 크기 때문이다.",
+        "studentC": "연속하는 세 자연수의 가운데 수를 $x$로 놓으면 세 수는 □, $x$, □이다 — 작은 수와 큰 수가 가운데 수보다 $1$ 작고 $1$ 크기 때문이다.",
+        "answers": [
+          "$x-1$",
+          "$x+1$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "연속하는 세 자연수 중 가운데 수를 $x$로 놓을 때, 세 수를 작은 것부터 차례로 $x$로 나타내고 그렇게 되는 까닭을 쓰시오.",
+        "bAnswer": "$x-1$, $x$, $x+1$이다. 작은 수는 가운데 수보다 $1$ 작고 큰 수는 $1$ 크기 때문이다.",
+        "bGoal": "연속하는 세 자연수를 가운데 수로 나타내기",
+        "bReason": "어느 수를 $x$로 놓는지와 답할 순서를 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x-1$, $x$, $x+1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 자연수의 차는 $1$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "바로 뒤에서 각각 1 작고 크다고 풀이해 답을 보여 주던 부분을 빼고 연속 자연수 관계만 준다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "가운데 $x$, 양옆 $x\\pm1$",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "cAfter": "연속하는 세 자연수의 가운데 수를 $x$로 놓으면 세 수는 작은 것부터 {$x-1$}, $x$, {$x+1$}이다.",
+        "cAnswers": [
+          "$x-1$",
+          "$x+1$"
+        ],
+        "sourceIndex": 3442,
+        "part": "m3plus",
+        "sourceFingerprint": "44b1d2d6bfc33044dd9068dd2f7ce4d7554e2219ef1f5fb44e1243455e8315e6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3442
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-03-03-xc3"
+        },
+        "cMarkedSentence": "연속하는 세 자연수의 가운데 수를 $x$로 놓으면 세 수는 작은 것부터 {$x-1$}, $x$, {$x+1$}이다.",
+        "cSlotAnswers": [
+          "$x-1$",
+          "$x+1$"
+        ],
+        "cStudentSentence": "연속하는 세 자연수의 가운데 수를 $x$로 놓으면 세 수는 작은 것부터 □, $x$, □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x-1$",
+            "equivalentAnswers": [
+              "$x-1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x+1$",
+            "equivalentAnswers": [
+              "$x+1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x-1$"
+          ],
+          [
+            "$x+1$"
+          ]
+        ],
+        "proposalFingerprint": "763acb96553fda906f3f888ce65690ba3e72e5c0404df0569836994480c9b858"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc4",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "식에 담기지 않은 조건",
+        "kind": "성질",
+        "level": "하",
+        "definition": "방정식은 문제의 조건 가운데 {식으로 옮긴 것}만 담으므로, '길이는 양수' 같은 {식에 담지 않은 조건}은 해를 구한 뒤 따로 확인한다.",
+        "example": {
+          "prompt": "넓이가 $49$인 정사각형의 한 변을 $x$라 할 때 $x^2=49$의 해 $-7$을 버리는 까닭은?",
+          "answer": "길이는 양수라서"
+        },
+        "studentC": "방정식은 문제의 조건 가운데 □만 담으므로, '길이는 양수' 같은 □은 해를 구한 뒤 따로 확인한다.",
+        "answers": [
+          "식으로 옮긴 것",
+          "식에 담지 않은 조건"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "넓이가 $49$인 정사각형의 한 변의 길이를 $x$라 하고 $x^2=49$를 풀면 $x=7$ 또는 $x=-7$이다. 방정식은 바르게 풀었는데도 $-7$을 답에서 빼야 하는 까닭을, 방정식에 들어 있는 조건과 들어 있지 않은 조건으로 나누어 설명하시오.",
+        "bAnswer": "방정식 $x^2=49$에는 '넓이가 $49$'라는 조건만 들어 있고 '길이는 양수'라는 조건은 들어 있지 않다. 그래서 해를 구한 뒤 이 조건을 따로 확인해 $-7$을 버린다.",
+        "bGoal": "식에 담기지 않은 조건을 따로 확인하는 까닭",
+        "bReason": "c2와 달리 방정식이 담는 조건과 담지 않는 조건을 구분하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "방정식에는 식으로 옮긴 조건만 있음"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이는 양수라는 조건은 따로 확인"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "방정식에는 문제의 조건 가운데 식으로 옮긴 것만 들어 있다. 그래서 $x^2=49$를 풀어 정사각형의 한 변의 길이를 구할 때, '길이는 {양수}'라는 조건은 해를 구한 뒤 따로 확인하여 $x=${$7$}만 답으로 한다.",
+        "cAnswers": [
+          "양수",
+          "$7$"
+        ],
+        "cReason": "두 빈칸이 서로 비슷한 긴 구절이라 구체 상황의 짧은 답으로 바꿨다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "식에 없는 조건은 따로 확인",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3443,
+        "part": "m3plus",
+        "sourceFingerprint": "aed67d08bfbdd047269bd90a314d244d71fe9639063597965994286b063ce8ad",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3443
+        },
+        "directReview": null,
+        "cMarkedSentence": "방정식에는 문제의 조건 가운데 식으로 옮긴 것만 들어 있다. 그래서 $x^2=49$를 풀어 정사각형의 한 변의 길이를 구할 때, '길이는 {양수}'라는 조건은 해를 구한 뒤 따로 확인하여 $x=${$7$}만 답으로 한다.",
+        "cSlotAnswers": [
+          "양수",
+          "$7$"
+        ],
+        "cStudentSentence": "방정식에는 문제의 조건 가운데 식으로 옮긴 것만 들어 있다. 그래서 $x^2=49$를 풀어 정사각형의 한 변의 길이를 구할 때, '길이는 □'라는 조건은 해를 구한 뒤 따로 확인하여 $x=$□만 답으로 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$7$",
+            "equivalentAnswers": [
+              "$7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "$7$"
+          ]
+        ],
+        "proposalFingerprint": "05d2b048d47d7267a17d1fdcb0c421038cd3937bf8d62e4f32e36801e7cf7d17"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc5",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "넓이 문제가 이차방정식이 되는 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "가로와 세로가 모두 $x$의 일차식이고 넓이가 주어진 수이면, 두 일차식의 {곱}을 그 수와 같게 놓아 {이차방정식}을 세운다.",
+        "studentC": "가로와 세로가 모두 $x$의 일차식이고 넓이가 주어진 수이면, 두 일차식의 □을 그 수와 같게 놓아 □을 세운다.",
+        "answers": [
+          "곱",
+          "이차방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형의 가로가 $(x+3)$ $\\mathrm{cm}$, 세로가 $(x+1)$ $\\mathrm{cm}$이고 넓이가 $24$ $\\mathrm{cm}$$^2$일 때, $x$를 구하는 방정식을 세우고 이 방정식이 이차방정식이 되는 까닭을 쓰시오.",
+        "bAnswer": "$(x+3)(x+1)=24$이다. 가로와 세로가 모두 $x$에 대한 일차식이어서 곱하면 $x^2$ 항이 생기므로 이차방정식이 된다.",
+        "bGoal": "넓이 문제가 이차방정식이 되는 까닭",
+        "bReason": "c5와 달리 왜 이차방정식이 되는지에 초점을 두었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 일차식의 곱을 넓이와 같게 놓음"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱하면 $x^2$ 항이 생김"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직사각형의 가로와 세로가 모두 $x$에 대한 일차식이고 넓이가 주어진 수이면, 두 일차식의 {곱}을 그 수와 같게 놓는다 — 일차식끼리 곱하면 $x^2$ 항이 생기므로 {이차방정식}이 된다.",
+        "cAnswers": [
+          "곱",
+          "이차방정식"
+        ],
+        "cReason": "어떤 도형인지 없고 이차방정식이 되는 이유가 빠져 있어 보탰다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "일차식의 곱이라 $x^2$ 생김",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3444,
+        "part": "m3plus",
+        "sourceFingerprint": "d2ea636348cbb1e98483aa739f6cb0bd6fae1f1c9514a899fff9bc093e5c7bd4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3444
+        },
+        "directReview": null,
+        "cMarkedSentence": "직사각형의 가로와 세로가 모두 $x$에 대한 일차식이고 넓이가 주어진 수이면, 두 일차식의 {곱}을 그 수와 같게 놓는다 — 일차식끼리 곱하면 $x^2$ 항이 생기므로 {이차방정식}이 된다.",
+        "cSlotAnswers": [
+          "곱",
+          "이차방정식"
+        ],
+        "cStudentSentence": "직사각형의 가로와 세로가 모두 $x$에 대한 일차식이고 넓이가 주어진 수이면, 두 일차식의 □을 그 수와 같게 놓는다 — 일차식끼리 곱하면 $x^2$ 항이 생기므로 □이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이차방정식",
+            "equivalentAnswers": [
+              "이차방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "이차방정식"
+          ]
+        ],
+        "proposalFingerprint": "65469505a14ea5c77a102913624e11f2b99c97241816ead36bfc14e8cc6dfb60"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc6",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "개수를 구할 때 버리는 해",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사람 수나 물건의 개수는 {$0$ 이상의 정수}이므로 음수이거나 정수가 아닌 해는 버린다 — '적어도 하나'라는 조건이 있으면 {자연수}인 해만 남긴다.",
+        "studentC": "사람 수나 물건의 개수는 □이므로 음수이거나 정수가 아닌 해는 버린다 — '적어도 하나'라는 조건이 있으면 □인 해만 남긴다.",
+        "answers": [
+          "$0$ 이상의 정수",
+          "자연수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 모임의 사람 수를 $x$명으로 놓고 세운 이차방정식의 해가 $x=12$ 또는 $x=-\\frac{5}{2}$였다. 답을 고르고, 사람 수나 물건의 개수를 구할 때 어떤 해를 버려야 하는지 쓰시오.",
+        "bAnswer": "답은 $12$명이다. 사람 수나 개수는 $0$ 이상의 정수이므로 음수이거나 정수가 아닌 해는 버린다. '적어도 하나'라는 조건이 있으면 자연수인 해만 남긴다.",
+        "bGoal": "개수를 구할 때 버리는 해의 기준",
+        "bReason": "답 고르기와 버리는 기준만 물으므로 기준의 다른 표현도 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "답은 $12$명이다",
+              "$x=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "음수이거나 정수가 아닌 해는 버린다",
+              "$0$ 이상의 정수가 아닌 해는 버린다",
+              "자연수가 아닌 해는 버린다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "버리는 해와 남기는 해의 기준이 한 문장에서 짝을 이룬다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "개수는 0 이상의 정수만",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3445,
+        "part": "m3plus",
+        "sourceFingerprint": "9317fcd11af4864b35434741427eedbd8d3162184232a90e10a4e4741f46355d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3445
+        },
+        "directReview": null,
+        "cFrozenSentence": "사람 수나 물건의 개수는 □이므로 음수이거나 정수가 아닌 해는 버린다 — '적어도 하나'라는 조건이 있으면 □인 해만 남긴다.",
+        "cFrozenDefinition": "사람 수나 물건의 개수는 {$0$ 이상의 정수}이므로 음수이거나 정수가 아닌 해는 버린다 — '적어도 하나'라는 조건이 있으면 {자연수}인 해만 남긴다.",
+        "cFrozenAnswers": [
+          "$0$ 이상의 정수",
+          "자연수"
+        ],
+        "cMarkedSentence": "사람 수나 물건의 개수는 {$0$ 이상의 정수}이므로 음수이거나 정수가 아닌 해는 버린다 — '적어도 하나'라는 조건이 있으면 {자연수}인 해만 남긴다.",
+        "cSlotAnswers": [
+          "$0$ 이상의 정수",
+          "자연수"
+        ],
+        "cStudentSentence": "사람 수나 물건의 개수는 □이므로 음수이거나 정수가 아닌 해는 버린다 — '적어도 하나'라는 조건이 있으면 □인 해만 남긴다.",
+        "cAnswers": [
+          "$0$ 이상의 정수",
+          "자연수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$ 이상의 정수",
+            "equivalentAnswers": [
+              "$0$ 이상의 정수",
+              "음이 아닌 정수",
+              "$0$ 또는 자연수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "자연수",
+            "equivalentAnswers": [
+              "자연수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$0$ 이상의 정수",
+            "accept": [
+              "음이 아닌 정수",
+              "$0$ 또는 자연수"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$0$ 이상의 정수",
+            "음이 아닌 정수",
+            "$0$ 또는 자연수"
+          ],
+          [
+            "자연수"
+          ]
+        ],
+        "proposalFingerprint": "367420c631aa765ba5a7fbfa4e4b19537cb63db773eb4179610d8ca85205843c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc7",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "합이 주어진 두 수 놓기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "합이 $s$인 두 수는 한 수를 $x$로 놓으면 다른 수가 {$s-x$}이다 — 미지수를 {하나}만 써서 식을 세울 수 있다.",
+        "example": {
+          "prompt": "합이 $10$인 두 수를 $x$, $y$ 대신 $x$, $10-x$로 놓으면 좋은 점은?",
+          "answer": "미지수가 하나로 줄어서"
+        },
+        "studentC": "합이 $s$인 두 수는 한 수를 $x$로 놓으면 다른 수가 □이다 — 미지수를 □만 써서 식을 세울 수 있다.",
+        "answers": [
+          "$s-x$",
+          "하나"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "합이 $10$인 두 수의 곱이 $21$일 때 두 수를 구하려고 한다. 두 수를 $x$, $y$로 놓지 않고 문자 $x$ 하나만으로 나타내는 방법을 쓰고, 그렇게 하면 좋은 점을 쓰시오.",
+        "bAnswer": "한 수를 $x$로 놓으면 다른 수는 $10-x$이다. 미지수가 하나뿐이어서 $x(10-x)=21$이라는 이차방정식 하나로 풀 수 있다.",
+        "bGoal": "합이 주어진 두 수를 미지수 하나로 나타내기",
+        "bReason": "합과 곱이 주어진 상황으로 미지수를 줄이는 이점을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$, $10-x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "미지수가 하나로 줄어듦"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "문자 x·하나·한 문자 모두 맞게 읽히는 수량 칸을 없애고 다른 수의 일반 관계만 묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "합 $s$면 $x$와 $s-x$",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "cAfter": "합이 $s$인 두 수에서 한 수를 $x$로 놓으면 다른 수는 {$s-x$}이다. 이렇게 두 수를 문자 하나로 나타낼 수 있다.",
+        "cAnswers": [
+          "$s-x$"
+        ],
+        "sourceIndex": 3446,
+        "part": "m3plus",
+        "sourceFingerprint": "bbc71dfc99fc25782aa90277b4140cddca43ece14d582a254eb72e5688d82f4a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3446
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-03-03-xc7"
+        },
+        "cMarkedSentence": "합이 $s$인 두 수에서 한 수를 $x$로 놓으면 다른 수는 {$s-x$}이다. 이렇게 두 수를 문자 하나로 나타낼 수 있다.",
+        "cSlotAnswers": [
+          "$s-x$"
+        ],
+        "cStudentSentence": "합이 $s$인 두 수에서 한 수를 $x$로 놓으면 다른 수는 □이다. 이렇게 두 수를 문자 하나로 나타낼 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$s-x$",
+            "equivalentAnswers": [
+              "$s-x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "하나",
+            "accept": [
+              "한 개",
+              "$1$개"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$s-x$"
+          ]
+        ],
+        "proposalFingerprint": "2f6b16760003361d4730fa8dffcb98d2550d1c620136033db869cac785c22596"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc8",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "차가 주어진 두 양 놓기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "차가 $d$($d>0$)인 두 양은 작은 쪽을 $x$로 놓으면 큰 쪽이 {$x+d$}, 큰 쪽을 $x$로 놓으면 작은 쪽이 {$x-d$}이다.",
+        "example": {
+          "prompt": "동생이 $x$살이고 형이 $3$살 많을 때 형을 $(x-3)$살이라 하면 틀린 까닭은?",
+          "answer": "형이 더 많으므로 $(x+3)$살이다"
+        },
+        "studentC": "차가 $d$($d>0$)인 두 양은 작은 쪽을 $x$로 놓으면 큰 쪽이 □, 큰 쪽을 $x$로 놓으면 작은 쪽이 □이다.",
+        "answers": [
+          "$x+d$",
+          "$x-d$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "형이 동생보다 $3$살 많다. 동생의 나이를 $x$살로 놓을 때 형의 나이를 $x$로 나타내시오. 반대로 형의 나이를 $x$살로 놓으면 동생의 나이는 어떻게 되는지도 쓰시오.",
+        "bAnswer": "동생이 $x$살이면 형은 $(x+3)$살이다. 형이 $x$살이면 동생은 $(x-3)$살이다. 큰 쪽은 작은 쪽에 차를 더한 것이다.",
+        "bGoal": "차가 주어진 두 양을 미지수로 나타내기",
+        "bReason": "어느 쪽을 $x$로 놓느냐에 따라 식이 달라짐을 비교하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "작은 쪽이 $x$이면 큰 쪽은 $x+3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "큰 쪽이 $x$이면 작은 쪽은 $x-3$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$d>0$ 조건과 두 경우가 나란히 있어 비교 빈칸으로 좋다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "차 $d$면 $x+d$ 또는 $x-d$",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3447,
+        "part": "m3plus",
+        "sourceFingerprint": "ba110aac82dd4552caf94300417a0f30595c4b8f2d85bfbfa649c595c52df14c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3447
+        },
+        "directReview": null,
+        "cFrozenSentence": "차가 $d$($d>0$)인 두 양은 작은 쪽을 $x$로 놓으면 큰 쪽이 □, 큰 쪽을 $x$로 놓으면 작은 쪽이 □이다.",
+        "cFrozenDefinition": "차가 $d$($d>0$)인 두 양은 작은 쪽을 $x$로 놓으면 큰 쪽이 {$x+d$}, 큰 쪽을 $x$로 놓으면 작은 쪽이 {$x-d$}이다.",
+        "cFrozenAnswers": [
+          "$x+d$",
+          "$x-d$"
+        ],
+        "cMarkedSentence": "차가 $d$($d>0$)인 두 양은 작은 쪽을 $x$로 놓으면 큰 쪽이 {$x+d$}, 큰 쪽을 $x$로 놓으면 작은 쪽이 {$x-d$}이다.",
+        "cSlotAnswers": [
+          "$x+d$",
+          "$x-d$"
+        ],
+        "cStudentSentence": "차가 $d$($d>0$)인 두 양은 작은 쪽을 $x$로 놓으면 큰 쪽이 □, 큰 쪽을 $x$로 놓으면 작은 쪽이 □이다.",
+        "cAnswers": [
+          "$x+d$",
+          "$x-d$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x+d$",
+            "equivalentAnswers": [
+              "$x+d$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x-d$",
+            "equivalentAnswers": [
+              "$x-d$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x+d$"
+          ],
+          [
+            "$x-d$"
+          ]
+        ],
+        "proposalFingerprint": "bb2ce79fc18587dcb9207443a39b8a701212f0ab5011962e1008387bc419ab44"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc9",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "대각선의 수로 세우는 방정식",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대각선의 수가 $d$인 다각형의 변의 수를 $n$이라 하면 {$\\frac{n(n-3)}{2}=d$}이고, 이를 정리하면 $n$에 대한 {이차방정식}이 된다.",
+        "studentC": "대각선의 수가 $d$인 다각형의 변의 수를 $n$이라 하면 □이고, 이를 정리하면 $n$에 대한 □이 된다.",
+        "answers": [
+          "$\\frac{n(n-3)}{2}=d$",
+          "이차방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "대각선의 수가 $20$인 다각형이 몇 각형인지 구하려고 한다. 변의 수를 $n$이라 할 때 세울 방정식을 쓰고, 방정식의 좌변이 대각선의 수를 나타내는 까닭을 쓰시오.",
+        "bAnswer": "$\\frac{n(n-3)}{2}=20$이다. 한 꼭짓점에서 그을 수 있는 대각선이 $(n-3)$개이고 꼭짓점이 $n$개인데, 같은 대각선을 두 번씩 세므로 $2$로 나눈다.",
+        "bGoal": "대각선의 수로 이차방정식 세우기",
+        "bReason": "구체 수를 주어 식을 세우고 그 식의 근거도 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{n(n-3)}{2}=20$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 꼭짓점에서 $(n-3)$개, 두 번씩 세어 $2$로 나눔"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$d$와 $n$의 뜻이 문장에 있어 식과 용어 빈칸이 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "대각선 수 식으로 방정식",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3448,
+        "part": "m3plus",
+        "sourceFingerprint": "fc38a49ddf407257ef4a107c4052fbb8c4ca896a550c39b99405bc587917f463",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3448
+        },
+        "directReview": null,
+        "cFrozenSentence": "대각선의 수가 $d$인 다각형의 변의 수를 $n$이라 하면 □이고, 이를 정리하면 $n$에 대한 □이 된다.",
+        "cFrozenDefinition": "대각선의 수가 $d$인 다각형의 변의 수를 $n$이라 하면 {$\\frac{n(n-3)}{2}=d$}이고, 이를 정리하면 $n$에 대한 {이차방정식}이 된다.",
+        "cFrozenAnswers": [
+          "$\\frac{n(n-3)}{2}=d$",
+          "이차방정식"
+        ],
+        "cMarkedSentence": "대각선의 수가 $d$인 다각형의 변의 수를 $n$이라 하면 {$\\frac{n(n-3)}{2}=d$}이고, 이를 정리하면 $n$에 대한 {이차방정식}이 된다.",
+        "cSlotAnswers": [
+          "$\\frac{n(n-3)}{2}=d$",
+          "이차방정식"
+        ],
+        "cStudentSentence": "대각선의 수가 $d$인 다각형의 변의 수를 $n$이라 하면 □이고, 이를 정리하면 $n$에 대한 □이 된다.",
+        "cAnswers": [
+          "$\\frac{n(n-3)}{2}=d$",
+          "이차방정식"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{n(n-3)}{2}=d$",
+            "equivalentAnswers": [
+              "$\\frac{n(n-3)}{2}=d$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이차방정식",
+            "equivalentAnswers": [
+              "이차방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{n(n-3)}{2}=d$"
+          ],
+          [
+            "이차방정식"
+          ]
+        ],
+        "proposalFingerprint": "2819fa13ffaf422ed7f5c15377b5744ec0b747bc87c962d1bd0c97f907338777"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-03-xc10",
+        "section": "중3::3. 이차방정식::이차방정식의 활용",
+        "term": "길을 낸 땅의 남은 넓이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직사각형 땅에 가로 · 세로 방향으로 폭이 일정한 길을 내면, 길을 {가장자리로 옮겨도} 남은 땅의 넓이는 같으므로 남은 땅을 {한 직사각형}으로 보고 식을 세운다.",
+        "example": {
+          "prompt": "가로 $10$, 세로 $8$인 직사각형 땅에 폭 $x$인 길을 가로세로로 하나씩 낼 때 남은 넓이가 $(10-x)(8-x)$인 까닭은?",
+          "answer": "붙이면 가로 $10-x$, 세로 $8-x$"
+        },
+        "studentC": "직사각형 땅에 가로 · 세로 방향으로 폭이 일정한 길을 내면, 길을 □ 남은 땅의 넓이는 같으므로 남은 땅을 □으로 보고 식을 세운다.",
+        "answers": [
+          "가장자리로 옮겨도",
+          "한 직사각형"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-03-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $10$ $\\mathrm{m}$, 세로 $8$ $\\mathrm{m}$인 직사각형 땅에 가로 변에 평행한 길 하나와 세로 변에 평행한 길 하나를 내었다. 두 길은 폭이 $x$ $\\mathrm{m}$로 같고 각각 땅의 한쪽 끝에서 반대쪽 끝까지 이어진다. 길을 뺀 남은 땅의 넓이를 $x$의 식으로 나타내고, 그렇게 나타낼 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$(10-x)(8-x)$ $\\mathrm{m}$$^2$이다. 두 길을 땅의 가장자리로 옮겨도 남은 땅의 넓이는 같고, 이때 남은 땅은 가로 $(10-x)$ $\\mathrm{m}$, 세로 $(8-x)$ $\\mathrm{m}$인 직사각형 하나가 된다.",
+        "bGoal": "길을 낸 땅의 남은 넓이를 식으로 나타내기",
+        "bReason": "길의 넓이를 빼고 겹친 부분을 더하는 다른 올바른 설명도 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(10-x)(8-x)$",
+              "$x^2-18x+80$"
+            ]
+          },
+          {
+            "anyOf": [
+              "길을 가장자리로 옮기면 남은 땅이 가로 $10-x$, 세로 $8-x$인 직사각형이 된다",
+              "전체 넓이 $80$에서 두 길의 넓이 $10x$, $8x$를 빼고 겹친 $x^2$을 다시 더한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "가로 $10$, 세로 $8$인 직사각형 땅에 가로 방향과 세로 방향으로 폭이 $x$인 길을 하나씩 내면, 길을 가장자리로 옮겨도 남은 땅의 넓이는 같다. 그래서 남은 땅을 가로 {$10-x$}, 세로 {$8-x$}인 직사각형 하나로 보고 식을 세운다.",
+        "cAnswers": [
+          "$10-x$",
+          "$8-x$"
+        ],
+        "cReason": "'가장자리로 옮겨도'는 떠올리기 힘든 긴 빈칸이라 식 빈칸으로 바꿨다.",
+        "exampleNeeded": true,
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "길을 옮겨 한 직사각형으로",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3449,
+        "part": "m3plus",
+        "sourceFingerprint": "801eace04885992fc5bd8318b660aad9fbbb7fa15ff01000137d7104c3671634",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3449
+        },
+        "directReview": null,
+        "cMarkedSentence": "가로 $10$, 세로 $8$인 직사각형 땅에 가로 방향과 세로 방향으로 폭이 $x$인 길을 하나씩 내면, 길을 가장자리로 옮겨도 남은 땅의 넓이는 같다. 그래서 남은 땅을 가로 {$10-x$}, 세로 {$8-x$}인 직사각형 하나로 보고 식을 세운다.",
+        "cSlotAnswers": [
+          "$10-x$",
+          "$8-x$"
+        ],
+        "cStudentSentence": "가로 $10$, 세로 $8$인 직사각형 땅에 가로 방향과 세로 방향으로 폭이 $x$인 길을 하나씩 내면, 길을 가장자리로 옮겨도 남은 땅의 넓이는 같다. 그래서 남은 땅을 가로 □, 세로 □인 직사각형 하나로 보고 식을 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10-x$",
+            "equivalentAnswers": [
+              "$10-x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$8-x$",
+            "equivalentAnswers": [
+              "$8-x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$10-x$"
+          ],
+          [
+            "$8-x$"
+          ]
+        ],
+        "proposalFingerprint": "bf7efb09e0db489a373c02791915030f17fc6ccf5a6f3759edc3a1a5ef613081"
+      }
+    }
+  ]
+}

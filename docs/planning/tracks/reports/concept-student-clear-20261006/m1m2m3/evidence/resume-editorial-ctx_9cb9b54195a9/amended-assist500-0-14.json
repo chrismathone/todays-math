@@ -1,0 +1,1627 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-assist500-0-14.json",
+  "changes": [
+    {
+      "id": "m2-02-05-xc16",
+      "bPrompt": "지금 예금액은 $A$가 $10000$원, $B$가 $20000$원이고, 매달 $A$는 $5000$원, $B$는 $3000$원씩 넣는다. $5$개월 뒤 두 금액이 같아진다. 매월 입금을 마친 뒤 $A$가 $B$보다 많아지는 것은 몇 개월 뒤부터인지 이유와 함께 쓰시오.",
+      "bAnswer": "$6$개월 뒤부터이다. $5$개월 뒤 같아지고, 그 뒤에는 $A$가 매달 $2000$원씩 더 넣기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$개월 뒤부터",
+            "$x>5$인 정수 개월"
+          ]
+        },
+        {
+          "anyOf": [
+            "같아진 뒤 $A$가 매달 더 넣는다",
+            "매달 $A-B$가 $2000$원씩 늘어난다"
+          ]
+        }
+      ],
+      "cAfter": "지금 예금액이 적은 쪽이 매달 더 많이 저금하여 어느 달에 두 예금액이 {같아졌다면}, 그 다음 달부터는 처음에 적었던 쪽의 예금액이 다른 쪽보다 {많아진다}.",
+      "cMarkedSentence": "지금 예금액이 적은 쪽이 매달 더 많이 저금하여 어느 달에 두 예금액이 {같아졌다면}, 그 다음 달부터는 처음에 적었던 쪽의 예금액이 {더 많아진다}.",
+      "cAcceptedAnswers": [
+        [
+          "같아졌다면",
+          "같다면"
+        ],
+        [
+          "많아진다",
+          "더 많아진다"
+        ]
+      ],
+      "coreAfter": "지금 예금액이 적은 쪽이 매달 더 많이 저금하여 어느 달에 두 예금액이 {같아졌다면}, 그 다음 달부터는 처음에 적었던 쪽의 예금액이 다른 쪽보다 {많아진다}.",
+      "coreReason": "월별 입금에서는 같아지는 정수 개월이 없을 수도 있으므로 같아졌을 때로 조건을 한정한다.",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bReason": "매월 입금은 금액이 같아지는 정수 개월이 없을 수 있다. 수치를 줘 경계 시점을 정한다.",
+      "cReason": "반드시 같아지는 달이 있다는 단정은 월별 입금 모형에서 성립하지 않아 조건부 설명으로 고친다."
+    },
+    {
+      "id": "m2-02-05-xc24",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0\\le x\\le10$인 정수",
+            "$0$부터 $10$까지의 정수"
+          ]
+        },
+        {
+          "anyOf": [
+            "배가 $-1$개가 된다",
+            "배의 개수가 음수가 된다",
+            "사과만 $11$개면 전체 $10$개를 넘는다",
+            "전체 개수 조건을 만족하지 않는다"
+          ]
+        }
+      ],
+      "cAfter": "합해서 $n$개를 살 때 한 물건의 개수 $x$는 {$0$ 이상 $n$ 이하}인 {정수}여야 하므로, 부등식의 해 중 이 조건을 만족하는 값만 실제 답으로 남긴다.",
+      "cMarkedSentence": "합해서 $n$개를 살 때 한 물건의 개수 $x$는 {$0$ 이상 $n$ 이하}인 {정수}여야 하므로, 부등식의 해 중 이 조건을 만족하는 값만 실제 답으로 남긴다.",
+      "cAcceptedAnswers": [
+        [
+          "$0$ 이상 $n$ 이하",
+          "$0\\le x\\le n$"
+        ],
+        [
+          "정수"
+        ]
+      ],
+      "coreAfter": "합해서 $n$개를 살 때 한 물건의 개수 $x$는 {$0$ 이상 $n$ 이하}인 {정수}여야 하므로, 부등식의 해 중 이 조건을 만족하는 값만 실제 답으로 남긴다.",
+      "coreReason": "전체 개수 조건과 원래 해의 교집합을 취하며 개수의 정수 조건을 명시한다.",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bPrompt": "사과와 배를 합해서 $10$개 사려고 한다(한 가지를 사지 않아도 된다). 사과의 개수 $x$에 대한 부등식을 풀었더니 $x\\le12$가 나왔다. 실제로 가능한 $x$의 범위를 쓰고, $x=11$이 답이 될 수 없는 이유를 쓰시오.",
+      "bAnswer": "$0\\le x\\le10$인 정수. $x=11$이면 배의 개수가 $10-11=-1$이 되어 불가능하다.",
+      "bReason": "11개는 전체10개를 초과한다는 이유도 타당하므로 음수 배 개수만 필수로 요구하지 않는다.",
+      "cReason": "0~n 전부가 해라는 인상을 피하고 원래 해와 정수 개수 조건의 교집합을 설명한다."
+    },
+    {
+      "id": "m2-02-06-xc11",
+      "bPrompt": "집에서 $x\\,\\mathrm{km}$ 떨어진 가게까지 같은 길로 왕복한다. 갈 때와 올 때 모두 시속 $4\\,\\mathrm{km}$로 걷고, 가게에서 $30$분 머문다. 출발부터 돌아올 때까지 $2$시간 이내가 되려면 가게는 집에서 최대 몇 $\\mathrm{km}$까지 떨어져 있어도 되는지 부등식을 세워 구하시오.",
+      "bDecision": "rewrite",
+      "bAnswer": "$\\frac{x}{4}+\\frac{x}{4}+\\frac{1}{2}\\le2$에서 $x\\le3$이므로 최대 $3\\,\\mathrm{km}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{x}{4}+\\frac{x}{4}+\\frac{1}{2}\\le2$",
+            "$\\frac{x}{2}+\\frac{1}{2}\\le2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\,\\mathrm{km}$",
+            "$x\\le3$"
+          ]
+        }
+      ],
+      "bReason": "돌아올 때 속력이 명시되지 않아 최대3km는 확정할 수 없다. 양방향 시속4km를 명시한다."
+    },
+    {
+      "id": "m2-02-06-xc23",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$80-5x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0\\le x\\le16$",
+            "$x$는 $0$ 이상 $16$ 이하",
+            "$x\\ge0$이고 $x\\le16$"
+          ]
+        }
+      ],
+      "bDecision": "rewrite",
+      "bPrompt": "물 $80\\,\\mathrm{L}$가 든 물통에서 매분 $5\\,\\mathrm{L}$씩 물을 뺀다. $x$분 뒤 남은 물의 양을 식으로 쓰고, 이 식을 쓸 수 있는 $x$의 범위를 구하시오.",
+      "bAnswer": "$(80-5x)\\,\\mathrm{L}$. 남은 물은 $0\\,\\mathrm{L}$보다 적을 수 없으므로 $80-5x\\ge0$, 즉 $0\\le x\\le16$",
+      "bReason": "남은 물80-5x는 맞지만 범위 기준의 x≤16만으로는 음수 시간도 허용해 하한을 넣는다."
+    },
+    {
+      "id": "m2-02-07-xc11",
+      "bPrompt": "소금물의 농도가 $a\\%$ 이상이라는 조건을 (소금의 양)과 (소금물의 양)을 사용한 부등식으로 나타내시오. 단, 소금물의 양이 분모에 오지 않는 형태로 쓰시오.",
+      "bDecision": "rewrite",
+      "bAnswer": "(소금의 양)$\\ge\\frac{a}{100}\\times$(소금물의 양)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(소금의 양)$\\ge\\frac{a}{100}\\times$(소금물의 양)",
+            "$100\\times$(소금의 양)$\\ge a\\times$(소금물의 양)"
+          ]
+        }
+      ],
+      "bReason": "분수식을 쓰지 말라는 말과 답 a/100이 겉으로 충돌한다. 미지수 분모를 피하는 요구로 명시한다."
+    },
+    {
+      "id": "m2-02-07-xc19",
+      "cAfter": "물을 더 넣을수록 소금물의 농도는 낮아진다. $0\\%$보다 높고 처음 농도보다 낮은 기준 농도 이상을 지키며 물을 가능한 한 많이 넣으려면 {최댓값}을, 그 농도 이하로 낮추는 데 물을 가능한 한 적게 넣으려면 {최솟값}을 구한다.",
+      "cMarkedSentence": "물을 더 넣을수록 소금물의 농도는 낮아진다. $0\\%$보다 높고 처음 농도보다 낮은 기준 농도 이상을 지키며 물을 가능한 한 많이 넣으려면 {최댓값}을, 그 농도 이하로 낮추는 데 물을 가능한 한 적게 넣으려면 {최솟값}을 구한다.",
+      "cAcceptedAnswers": [
+        [
+          "최댓값"
+        ],
+        [
+          "최솟값"
+        ]
+      ],
+      "cDecision": "rewrite",
+      "cReason": "C는 최대한 많이/적게라는 목표가 빠져 왜 극값을 구하는지 불명확하므로 문장에 넣는다."
+    },
+    {
+      "id": "m2-03-01-xc10",
+      "bPrompt": "$x$, $y$의 값을 제한하지 않을 때, $x+y=5$ 하나만으로는 값을 한 쌍으로 정할 수 없는 까닭을 쓰시오. 한 쌍으로 정하려면 어떤 조건이 더 필요한지 말하시오.",
+      "bAnswer": "$x+y=5$에는 해가 무수히 많기 때문이다. 예를 들어 $x-y=1$처럼 두 수 사이의 다른 관계를 하나 더 알면, 두 식을 모두 만족하는 한 쌍 $x=3$, $y=2$를 정할 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 다른 해가 무수히 많다",
+            "서로 다른 해가 여러 개 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수의 합과 차처럼 서로 다른 관계를 함께 만족시키는 조건이 필요하다",
+            "예를 들어 $x-y=1$이라는 조건을 더 알면 한 쌍으로 정해진다"
+          ]
+        }
+      ],
+      "cAfter": "$x+y=5$의 해는 {무수히} 많다. $x-y=1$도 함께 만족해야 하면 $x=${$3$}, $y=${$2$}인 한 쌍으로 정해진다.",
+      "cMarkedSentence": "미지수가 $2$개인 일차방정식 하나의 해는 {무수히} 많다. 값을 한 쌍으로 정하려면 한 쌍을 정할 수 있는 다른 조건을 식으로 나타내어 {함께 만족하는} 해를 찾는다.",
+      "cAcceptedAnswers": [
+        [
+          "무수히",
+          "무한히"
+        ],
+        [
+          "$3$"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "coreAfter": "미지수가 $2$개인 일차방정식 하나의 해는 {무수히} 많다. 한 쌍을 정하려면 두 미지수 사이의 {다른 관계}도 알아야 한다. 같은 관계를 다시 쓴 식은 새로운 조건이 되지 않는다.",
+      "coreReason": "같은 관계의 식을 더 써도 값이 정해지지 않으므로 한 쌍을 정할 수 있는 다른 조건이 필요하다.",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bReason": "식 하나를 아무거나 추가해도 유일한 해가 생기지 않는다. 한 쌍을 정하는 다른 조건이 필요함을 명시한다.",
+      "cReason": "추가 식은 기존과 같은 관계이면 효과가 없으므로 충분한 조건이라는 뜻을 넣는다."
+    },
+    {
+      "id": "m2-03-01-xc11",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y$는 $4$까지만 넣는다",
+            "$1\\le y\\le4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y=5$부터 $x$가 자연수가 아니다",
+            "$y$가 커질수록 $x$가 작아지고 $y=5$에서 $x=-1$이다",
+            "$x=9-2y$가 양의 정수여야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$개"
+          ]
+        }
+      ],
+      "bDecision": "rewrite",
+      "bPrompt": "일차방정식 $x+2y=9$의 자연수 해를 구할 때 $y$에 어떤 값까지 넣으면 되는지 까닭과 함께 말하고, 자연수 해의 개수를 구하시오.",
+      "bAnswer": "$y$가 클수록 $x$가 작아지고, $y=4$이면 $x=1$, $y=5$이면 $x=-1$이 되므로 $y$는 $4$까지만 넣는다. 자연수 해는 $(7,\\ 1)$, $(5,\\ 2)$, $(3,\\ 3)$, $(1,\\ 4)$의 $4$개이다.",
+      "bReason": "네 자연수 해는 맞지만 이유 요구를 y≤4만으로 통과시키지 않도록 감소/자연수 경계 의미를 추가한다."
+    },
+    {
+      "id": "m2-03-01-xc13",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$에 넣어 볼 값은 $1$부터 $6$까지로 $y$의 $1$부터 $9$까지보다 적다",
+            "계수가 큰 $x$ 쪽의 대입 후보가 더 적다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(2,\\ 7)$, $(4,\\ 4)$, $(6,\\ 1)$"
+          ]
+        }
+      ],
+      "bDecision": "rewrite",
+      "bPrompt": "일차방정식 $3x+2y=20$의 자연수 해를 구할 때, $y$보다 계수가 큰 $x$에 $1$, $2$, $3$, $\\cdots$을 넣는 것이 더 빠른 까닭을 말하고, 자연수 해를 모두 구하시오.",
+      "bAnswer": "$3x<20$이어야 하므로 $x$는 $1$부터 $6$까지만 넣으면 되어, $1$부터 $9$까지 넣어야 하는 $y$보다 넣어 볼 값이 적다. 자연수 해는 $(2,\\ 7)$, $(4,\\ 4)$, $(6,\\ 1)$이다.",
+      "bReason": "세 해는 맞으나 왜 빠른지 요구에는 x최대6이라는 값보다 비교 시도 수가 필요하다."
+    },
+    {
+      "id": "m2-03-01-xc21",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x+y=10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2x+4y=28$",
+            "$x+2y=14$"
+          ]
+        },
+        {
+          "anyOf": [
+            "첫째 식은 마리 수의 합이 $10$임을 나타낸다",
+            "닭과 토끼의 총 마리 수 관계"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘째 식은 다리 수의 합이 $28$임을 나타낸다",
+            "닭과 토끼의 총 다리 수 관계"
+          ]
+        }
+      ],
+      "bDecision": "rewrite",
+      "bPrompt": "닭과 토끼가 모두 $10$마리이고 다리가 모두 $28$개이다. 닭을 $x$마리, 토끼를 $y$마리라 할 때 연립방정식을 세우고, 각 식이 어떤 관계를 나타내는지 말하시오.",
+      "bAnswer": "$x+y=10$은 마리 수의 합, $2x+4y=28$은 다리 수의 합을 나타낸다.",
+      "bReason": "두 식은 맞지만 각 식의 관계 설명을 묻고 기준에는 식만 있어 마리 수/다리 수 의미를 추가한다."
+    },
+    {
+      "id": "m2-03-02-xc4",
+      "cAfter": "계수가 $0$이 아닌 한 미지수에 대해 푼다는 것은 그 미지수만 한쪽에 남기고 필요하면 그 {계수}로 나누는 것이다. $x+y=9$를 $y$에 대해 풀면 {$y=9-x$}이다.",
+      "cMarkedSentence": "한 미지수에 대해 푼다는 것은 그 미지수만 한쪽에 남기고 필요하면 그 {계수}로 나누어 $y=$(식) 같은 꼴로 정리하는 것이다. $x+y=9$를 $y$에 대해 풀면 {$y=9-x$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "계수"
+        ],
+        [
+          "$y=9-x$",
+          "$y=-x+9$"
+        ]
+      ],
+      "coreAfter": "계수가 $0$이 아닌 한 미지수에 대해 푼다는 것은 그 미지수만 한쪽에 남기고 필요하면 그 {계수}로 나누어 $y=$(식) 같은 꼴로 {정리}하는 것이다.",
+      "coreReason": "이항만으로는 미지수의 계수가1이 되지 않을 수 있으므로 계수로 나누는 과정을 포함한다.",
+      "cDecision": "rewrite",
+      "cReason": "일반적으로 이항만 하면 ay=...가 남을 수 있어 계수로 나누는 과정도 설명한다."
+    },
+    {
+      "id": "m2-03-02-xc9",
+      "bAnswer": "예를 들어 첫째 식에 $3$, 둘째 식에 $2$를 곱하면 $x$의 계수가 모두 $6$이 된다. 첫째 식에 $6$, 둘째 식에 $4$를 곱해 모두 $12$로 맞추는 등 다른 공배수를 사용해도 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "첫째 식에 $3$, 둘째 식에 $2$를 곱하는 등 두 $x$의 계수가 같아지게 자연수를 선택한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자신이 곱한 수에 맞는 같은 계수의 값을 쓴다. 예를 들어 $3$, $2$를 곱했으면 $6$이고 $6$, $4$를 곱했으면 $12$이다"
+          ]
+        }
+      ],
+      "bDecision": "rewrite",
+      "bPrompt": "$2x+3y=8$, $3x+2y=7$에서는 $x$의 계수 $2$와 $3$ 중 어느 것도 다른 것의 배수가 아니다. 자연수를 곱해 $x$를 없애려면 두 식에 각각 얼마를 곱해야 하는지, 그때 $x$의 계수가 얼마로 맞춰지는지 쓰시오.",
+      "bReason": "최소 배수라고 묻지 않았으므로3,2뿐 아니라6,4 등 다른 공배수도 인정해야 한다.",
+      "cAfter": "$2x+3y=8$, $3x+2y=7$에서 $x$의 계수를 두 계수의 최소공배수인 {$6$}으로 맞추려면 첫째 식에는 {$3$}, 둘째 식에는 {$2$}를 곱한다.",
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ],
+        [
+          "$3$"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "coreAfter": "$2x+3y=8$, $3x+2y=7$에서 $x$를 없애는 한 방법은 두 식에 수를 곱해 $x$의 계수를 $2$와 $3$의 {최소공배수}인 $6$으로 {맞추는 것}이다. 다른 공배수로 맞추어도 된다."
+    },
+    {
+      "id": "m2-03-02-xc20",
+      "cAfter": "$x=3$을 $x+y=5$에 넣어도 $y=5-x$에 넣어도 $y$는 {같은} 값이다. $y=5-x$는 처음 식에서 $x$를 {이항}한 식이므로 두 식의 해가 같기 때문이다.",
+      "cMarkedSentence": "$x=3$을 $x+y=5$에 넣어도 $y=5-x$에 넣어도 $y$는 {같은} 값이다. $y=5-x$는 처음 식에서 $x$를 {이항}한 식이므로 두 식의 해가 같기 때문이다.",
+      "cAcceptedAnswers": [
+        [
+          "같은",
+          "동일한"
+        ],
+        [
+          "이항"
+        ]
+      ],
+      "cDecision": "rewrite",
+      "cReason": "일반 정리가 이항만이라는 단정은 계수 나눔 경우에 틀려 구체식의 이항으로 한정한다."
+    },
+    {
+      "id": "m2-03-02-xc22",
+      "bAnswer": "연립방정식을 풀어 $x=5$, $y=3$을 구한 뒤 대입하면 $xy=15$이다. 두 조건을 이용해 곱을 직접 구하는 올바른 방법도 가능하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=5$, $y=3$을 구해 $xy$에 대입한다",
+            "두 조건으로 $xy$를 직접 구하는 타당한 계산을 보인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "bDecision": "rewrite",
+      "bPrompt": "$x+y=8$, $x-y=2$일 때 $xy$의 값을 구하는 방법을 쓰고, 그 값을 구하시오.",
+      "bReason": "값15는 맞지만 두 값을 먼저 구하지 않고 제곱 차로xy를 구하는 타당한 방법도 허용한다."
+    },
+    {
+      "id": "m2-03-03-xc2",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x-y=3$",
+            "$x-y+2=5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호 앞 $-$ 때문에 괄호 안 모든 항의 부호가 바뀌어 $-2$가 $+2$가 된다"
+          ]
+        }
+      ],
+      "bDecision": "rewrite",
+      "bPrompt": "$x-(y-2)=5$를 정리한 식을 쓰고, 괄호를 풀 때 $-2$가 어떻게 바뀌는지 그 까닭과 함께 쓰시오.",
+      "bAnswer": "괄호 앞이 $-$이므로 괄호 안 각 항의 부호가 모두 바뀌어 $x-y+2=5$, 즉 $x-y=3$이다. $-2$는 $+2$가 된다.",
+      "bReason": "부호 변화를 설명할 때 x-y+2=5도 정리한 올바른 식이므로 그 동치식을 기준에 포함한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-02-05-xc16",
+      "learningRole": "reason",
+      "roleReason": "같아지는 때를 지나야 더 많아지는 까닭",
+      "bDecision": "rewrite",
+      "bPrompt": "지금 예금액은 $A$가 $10000$원, $B$가 $20000$원이고, 매달 $A$는 $5000$원, $B$는 $3000$원씩 넣는다. $5$개월 뒤 두 금액이 같아진다. 매월 입금을 마친 뒤 $A$가 $B$보다 많아지는 것은 몇 개월 뒤부터인지 이유와 함께 쓰시오.",
+      "bAnswer": "$6$개월 뒤부터이다. $5$개월 뒤 같아지고, 그 뒤에는 $A$가 매달 $2000$원씩 더 넣기 때문이다.",
+      "bGoal": "예금액 역전 시점 설명",
+      "bReason": "매월 입금은 금액이 같아지는 정수 개월이 없을 수 있다. 수치를 줘 경계 시점을 정한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$개월 뒤부터",
+            "$x>5$인 정수 개월"
+          ]
+        },
+        {
+          "anyOf": [
+            "같아진 뒤 $A$가 매달 더 넣는다",
+            "매달 $A-B$가 $2000$원씩 늘어난다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "반드시 같아지는 달이 있다는 단정은 월별 입금 모형에서 성립하지 않아 조건부 설명으로 고친다.",
+      "authorBatch": 32,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2404,
+      "part": "m2plus",
+      "sourceFingerprint": "1fa7f4303cd8a731425acceb35b65b8ace5be0cffa12e14618059fc1c0271c2f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2404
+      },
+      "directReview": null,
+      "cMarkedSentence": "지금 예금액이 적은 쪽이 매달 더 많이 저금하여 어느 달에 두 예금액이 {같아졌다면}, 그 다음 달부터는 처음에 적었던 쪽의 예금액이 다른 쪽보다 {많아진다}.",
+      "cSlotAnswers": [
+        "같아졌다면",
+        "많아진다"
+      ],
+      "cStudentSentence": "지금 예금액이 적은 쪽이 매달 더 많이 저금하여 어느 달에 두 예금액이 □, 그 다음 달부터는 처음에 적었던 쪽의 예금액이 다른 쪽보다 □.",
+      "cAnswers": [
+        "같아졌다면",
+        "많아진다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같아졌다면",
+          "equivalentAnswers": [
+            "같아졌다면",
+            "같다면"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "많아진다",
+          "equivalentAnswers": [
+            "많아진다",
+            "더 많아진다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "더 많아진다",
+          "accept": [
+            "많아진다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같아졌다면",
+          "같다면"
+        ],
+        [
+          "많아진다",
+          "더 많아진다"
+        ]
+      ],
+      "proposalFingerprint": "ef9118ced61afe98aaa851760aff1be1388005079b5c633c57b74d53141e0fbb",
+      "cAfter": "지금 예금액이 적은 쪽이 매달 더 많이 저금하여 어느 달에 두 예금액이 {같아졌다면}, 그 다음 달부터는 처음에 적었던 쪽의 예금액이 다른 쪽보다 {많아진다}.",
+      "coreAfter": "지금 예금액이 적은 쪽이 매달 더 많이 저금하여 어느 달에 두 예금액이 {같아졌다면}, 그 다음 달부터는 처음에 적었던 쪽의 예금액이 다른 쪽보다 {많아진다}.",
+      "coreReason": "월별 입금에서는 같아지는 정수 개월이 없을 수도 있으므로 같아졌을 때로 조건을 한정한다."
+    },
+    {
+      "id": "m2-02-05-xc24",
+      "learningRole": "reason",
+      "roleReason": "전체 개수 조건으로 해를 다시 거르기",
+      "bDecision": "rewrite",
+      "bPrompt": "사과와 배를 합해서 $10$개 사려고 한다(한 가지를 사지 않아도 된다). 사과의 개수 $x$에 대한 부등식을 풀었더니 $x\\le12$가 나왔다. 실제로 가능한 $x$의 범위를 쓰고, $x=11$이 답이 될 수 없는 이유를 쓰시오.",
+      "bAnswer": "$0\\le x\\le10$인 정수. $x=11$이면 배의 개수가 $10-11=-1$이 되어 불가능하다.",
+      "bGoal": "문제 조건으로 해의 범위 좁히기",
+      "bReason": "11개는 전체10개를 초과한다는 이유도 타당하므로 음수 배 개수만 필수로 요구하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0\\le x\\le10$인 정수",
+            "$0$부터 $10$까지의 정수"
+          ]
+        },
+        {
+          "anyOf": [
+            "배가 $-1$개가 된다",
+            "배의 개수가 음수가 된다",
+            "사과만 $11$개면 전체 $10$개를 넘는다",
+            "전체 개수 조건을 만족하지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "0~n 전부가 해라는 인상을 피하고 원래 해와 정수 개수 조건의 교집합을 설명한다.",
+      "exampleNeeded": true,
+      "authorBatch": 32,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2412,
+      "part": "m2plus",
+      "sourceFingerprint": "40cf2e35b88401e72896aa552c2819cd5753608e609ccd5bb3c97683bd3e6afa",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2412
+      },
+      "directReview": null,
+      "cMarkedSentence": "합해서 $n$개를 살 때 한 물건의 개수 $x$는 {$0$ 이상 $n$ 이하}인 {정수}여야 하므로, 부등식의 해 중 이 조건을 만족하는 값만 실제 답으로 남긴다.",
+      "cSlotAnswers": [
+        "$0$ 이상 $n$ 이하",
+        "정수"
+      ],
+      "cStudentSentence": "합해서 $n$개를 살 때 한 물건의 개수 $x$는 □인 □여야 하므로, 부등식의 해 중 이 조건을 만족하는 값만 실제 답으로 남긴다.",
+      "cAnswers": [
+        "$0$ 이상 $n$ 이하",
+        "정수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$ 이상 $n$ 이하",
+          "equivalentAnswers": [
+            "$0$ 이상 $n$ 이하",
+            "$0\\le x\\le n$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "정수",
+          "equivalentAnswers": [
+            "정수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$ 이상 $n$ 이하",
+          "$0\\le x\\le n$"
+        ],
+        [
+          "정수"
+        ]
+      ],
+      "proposalFingerprint": "8fbf9914426efe723857d1d828f10badd064043c309898187e3a76be9fbe4896",
+      "cAfter": "합해서 $n$개를 살 때 한 물건의 개수 $x$는 {$0$ 이상 $n$ 이하}인 {정수}여야 하므로, 부등식의 해 중 이 조건을 만족하는 값만 실제 답으로 남긴다.",
+      "coreAfter": "합해서 $n$개를 살 때 한 물건의 개수 $x$는 {$0$ 이상 $n$ 이하}인 {정수}여야 하므로, 부등식의 해 중 이 조건을 만족하는 값만 실제 답으로 남긴다.",
+      "coreReason": "전체 개수 조건과 원래 해의 교집합을 취하며 개수의 정수 조건을 명시한다."
+    },
+    {
+      "id": "m2-02-06-xc11",
+      "learningRole": "application",
+      "roleReason": "오가는 시간에 머무는 시간을 더해 비교",
+      "bDecision": "rewrite",
+      "bPrompt": "집에서 $x\\,\\mathrm{km}$ 떨어진 가게까지 같은 길로 왕복한다. 갈 때와 올 때 모두 시속 $4\\,\\mathrm{km}$로 걷고, 가게에서 $30$분 머문다. 출발부터 돌아올 때까지 $2$시간 이내가 되려면 가게는 집에서 최대 몇 $\\mathrm{km}$까지 떨어져 있어도 되는지 부등식을 세워 구하시오.",
+      "bAnswer": "$\\frac{x}{4}+\\frac{x}{4}+\\frac{1}{2}\\le2$에서 $x\\le3$이므로 최대 $3\\,\\mathrm{km}$",
+      "bGoal": "머무는 시간을 포함한 시간 조건",
+      "bReason": "돌아올 때 속력이 명시되지 않아 최대3km는 확정할 수 없다. 양방향 시속4km를 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{x}{4}+\\frac{x}{4}+\\frac{1}{2}\\le2$",
+            "$\\frac{x}{2}+\\frac{1}{2}\\le2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\,\\mathrm{km}$",
+            "$x\\le3$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "중간에 들르는 곳이 있으면, 가고 오는 데 걸린 시간에 {머무는 시간}을 더한 합이 {제한 시간} 이내가 되게 부등식을 세운다.",
+      "cAnswers": [
+        "머무는 시간",
+        "제한 시간"
+      ],
+      "cReason": "첫 답 '머무는 시간'이 앞 구절에 그대로 있었다.",
+      "exampleNeeded": true,
+      "authorBatch": 32,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2424,
+      "part": "m2plus",
+      "sourceFingerprint": "1daae130b2974e40444702a0497abfa028d54e8978666ea7e8f33491426682e4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2424
+      },
+      "directReview": null,
+      "cMarkedSentence": "중간에 들르는 곳이 있으면, 가고 오는 데 걸린 시간에 {머무는 시간}을 더한 합이 {제한 시간} 이내가 되게 부등식을 세운다.",
+      "cSlotAnswers": [
+        "머무는 시간",
+        "제한 시간"
+      ],
+      "cStudentSentence": "중간에 들르는 곳이 있으면, 가고 오는 데 걸린 시간에 □을 더한 합이 □ 이내가 되게 부등식을 세운다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "머무는 시간",
+          "equivalentAnswers": [
+            "머무는 시간",
+            "머문 시간"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "제한 시간",
+          "equivalentAnswers": [
+            "제한 시간",
+            "정해진 시간"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "머무는 시간",
+          "accept": [
+            "머문 시간"
+          ]
+        },
+        {
+          "answer": "제한 시간",
+          "accept": [
+            "정해진 시간"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "머무는 시간",
+          "머문 시간"
+        ],
+        [
+          "제한 시간",
+          "정해진 시간"
+        ]
+      ],
+      "proposalFingerprint": "9f8ca01b3d329b6995eeab373b6028fc54cc070c75fd5a38ca9d3969748996ec"
+    },
+    {
+      "id": "m2-02-06-xc23",
+      "learningRole": "application",
+      "roleReason": "줄어드는 양의 식과 $0$ 이상 조건",
+      "bDecision": "rewrite",
+      "bPrompt": "물 $80\\,\\mathrm{L}$가 든 물통에서 매분 $5\\,\\mathrm{L}$씩 물을 뺀다. $x$분 뒤 남은 물의 양을 식으로 쓰고, 이 식을 쓸 수 있는 $x$의 범위를 구하시오.",
+      "bAnswer": "$(80-5x)\\,\\mathrm{L}$. 남은 물은 $0\\,\\mathrm{L}$보다 적을 수 없으므로 $80-5x\\ge0$, 즉 $0\\le x\\le16$",
+      "bGoal": "줄어드는 양의 식과 범위",
+      "bReason": "남은 물80-5x는 맞지만 범위 기준의 x≤16만으로는 음수 시간도 허용해 하한을 넣는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$80-5x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0\\le x\\le16$",
+            "$x$는 $0$ 이상 $16$ 이하",
+            "$x\\ge0$이고 $x\\le16$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "물의 양이 일정하게 줄어들면 남은 양은 처음 양에서 (줄어드는 빠르기)$\\times$(시간)을 {뺀} 식으로 나타내고, 이 식의 값이 {$0$ 이상}인 범위에서만 그 식을 쓸 수 있다.",
+      "cAnswers": [
+        "뺀",
+        "$0$ 이상"
+      ],
+      "cReason": "'음수가 될 수 없는 양'이 둘째 답을 미리 알려 주었다.",
+      "exampleNeeded": true,
+      "authorBatch": 32,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2433,
+      "part": "m2plus",
+      "sourceFingerprint": "19ce55b66af03534c83fb106fa70370bde0146f7dd50e2fadd8fa505bb1ddfc9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2433
+      },
+      "directReview": null,
+      "cMarkedSentence": "물의 양이 일정하게 줄어들면 남은 양은 처음 양에서 (줄어드는 빠르기)$\\times$(시간)을 {뺀} 식으로 나타내고, 이 식의 값이 {$0$ 이상}인 범위에서만 그 식을 쓸 수 있다.",
+      "cSlotAnswers": [
+        "뺀",
+        "$0$ 이상"
+      ],
+      "cStudentSentence": "물의 양이 일정하게 줄어들면 남은 양은 처음 양에서 (줄어드는 빠르기)$\\times$(시간)을 □ 식으로 나타내고, 이 식의 값이 □인 범위에서만 그 식을 쓸 수 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "뺀",
+          "equivalentAnswers": [
+            "뺀"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$ 이상",
+          "equivalentAnswers": [
+            "$0$ 이상"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "뺀"
+        ],
+        [
+          "$0$ 이상"
+        ]
+      ],
+      "proposalFingerprint": "a65af4709ec8123a21af1fd82965e0f4ee3b86e09edcbe3b320b7ef823fc3208"
+    },
+    {
+      "id": "m2-02-07-xc11",
+      "learningRole": "procedure",
+      "roleReason": "농도 조건을 소금 양 부등식으로 바꾸기",
+      "bDecision": "rewrite",
+      "bPrompt": "소금물의 농도가 $a\\%$ 이상이라는 조건을 (소금의 양)과 (소금물의 양)을 사용한 부등식으로 나타내시오. 단, 소금물의 양이 분모에 오지 않는 형태로 쓰시오.",
+      "bAnswer": "(소금의 양)$\\ge\\frac{a}{100}\\times$(소금물의 양)",
+      "bGoal": "농도 조건을 소금 양 비교로 세우기",
+      "bReason": "분수식을 쓰지 말라는 말과 답 a/100이 겉으로 충돌한다. 미지수 분모를 피하는 요구로 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(소금의 양)$\\ge\\frac{a}{100}\\times$(소금물의 양)",
+            "$100\\times$(소금의 양)$\\ge a\\times$(소금물의 양)"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "농도가 $a\\%$ 이상이라는 조건은 분수식 대신 (소금의 양) {$\\ge$} {$\\frac{a}{100}$}$\\times$(소금물의 양)처럼 나타내면 세우기 쉽다.",
+      "cAnswers": [
+        "$\\ge$",
+        "$\\frac{a}{100}$"
+      ],
+      "cReason": "둘째 답 '소금의 양'이 괄호에 그대로 보여 계수 $\\frac{a}{100}$를 묻게 바꿈",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2445,
+      "part": "m2plus",
+      "sourceFingerprint": "b2766291574d91f7525d240d4fbe5eb6988de133ad4c2d65c5d883275a3c835a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2445
+      },
+      "directReview": null,
+      "cMarkedSentence": "농도가 $a\\%$ 이상이라는 조건은 분수식 대신 (소금의 양) {$\\ge$} {$\\frac{a}{100}$}$\\times$(소금물의 양)처럼 나타내면 세우기 쉽다.",
+      "cSlotAnswers": [
+        "$\\ge$",
+        "$\\frac{a}{100}$"
+      ],
+      "cStudentSentence": "농도가 $a\\%$ 이상이라는 조건은 분수식 대신 (소금의 양) □ □$\\times$(소금물의 양)처럼 나타내면 세우기 쉽다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\ge$",
+          "equivalentAnswers": [
+            "$\\ge$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{a}{100}$",
+          "equivalentAnswers": [
+            "$\\frac{a}{100}$",
+            "$0.01a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{a}{100}$",
+          "accept": [
+            "$0.01a$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\ge$"
+        ],
+        [
+          "$\\frac{a}{100}$",
+          "$0.01a$"
+        ]
+      ],
+      "proposalFingerprint": "6ac7955ff47aaba9fa1b0c33e1f8b6bd7137c1b0f314a8f6fc34b29486c1bf1b"
+    },
+    {
+      "id": "m2-02-07-xc19",
+      "learningRole": "reason",
+      "roleReason": "물을 넣을수록 농도가 낮아져 최댓값/최솟값 결정",
+      "bDecision": "rewrite",
+      "bPrompt": "농도가 $10\\%$인 소금물에 물만 더 넣는다. ($1$) 농도를 $5\\%$ 이상으로 지키면서 물을 가능한 한 많이 넣으려 할 때, ($2$) 농도를 $5\\%$ 이하로 낮추면서 물을 가능한 한 적게 넣으려 할 때, 넣는 물의 양의 최댓값과 최솟값 중 각각 무엇을 구해야 하는지 까닭과 함께 말하시오.",
+      "bAnswer": "물을 넣을수록 농도가 낮아진다. ($1$) $5\\%$ 이상을 지킬 수 있는 물의 양에는 한계가 있으므로 최댓값을 구한다. ($2$) $5\\%$ 이하가 되려면 일정량 이상 넣어야 하므로 최솟값을 구한다.",
+      "bGoal": "부등식 해에서 최댓값·최솟값 선택",
+      "bReason": "구체 농도로 두 상황을 나눠 어느 값을 구할지와 근거를 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "($1$) 최댓값"
+          ]
+        },
+        {
+          "anyOf": [
+            "($2$) 최솟값"
+          ]
+        },
+        {
+          "anyOf": [
+            "물을 넣을수록 농도가 낮아진다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "물을 더 넣을수록 소금물의 농도는 낮아진다. $0\\%$보다 높고 처음 농도보다 낮은 기준 농도 이상을 지키며 물을 가능한 한 많이 넣으려면 {최댓값}을, 그 농도 이하로 낮추는 데 물을 가능한 한 적게 넣으려면 {최솟값}을 구한다.",
+      "cAnswers": [
+        "최댓값",
+        "최솟값"
+      ],
+      "cReason": "C는 최대한 많이/적게라는 목표가 빠져 왜 극값을 구하는지 불명확하므로 문장에 넣는다.",
+      "exampleNeeded": true,
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2450,
+      "part": "m2plus",
+      "sourceFingerprint": "6d0671d7bba8b4d272d6271fe5124942a1d0c2f97e53d543b95e4c745b09dbd7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2450
+      },
+      "directReview": null,
+      "cMarkedSentence": "물을 더 넣을수록 소금물의 농도는 낮아진다. $0\\%$보다 높고 처음 농도보다 낮은 기준 농도 이상을 지키며 물을 가능한 한 많이 넣으려면 {최댓값}을, 그 농도 이하로 낮추는 데 물을 가능한 한 적게 넣으려면 {최솟값}을 구한다.",
+      "cSlotAnswers": [
+        "최댓값",
+        "최솟값"
+      ],
+      "cStudentSentence": "물을 더 넣을수록 소금물의 농도는 낮아진다. $0\\%$보다 높고 처음 농도보다 낮은 기준 농도 이상을 지키며 물을 가능한 한 많이 넣으려면 □을, 그 농도 이하로 낮추는 데 물을 가능한 한 적게 넣으려면 □을 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최댓값",
+          "equivalentAnswers": [
+            "최댓값"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "최솟값",
+          "equivalentAnswers": [
+            "최솟값"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최댓값"
+        ],
+        [
+          "최솟값"
+        ]
+      ],
+      "proposalFingerprint": "9ab44c734a4c8651464b9624ad29649debe4be836c7c2439b2c39913060f2ee6"
+    },
+    {
+      "id": "m2-03-01-xc10",
+      "learningRole": "reason",
+      "roleReason": "해가 무수히 많아 식을 하나 더 세움",
+      "bDecision": "rewrite",
+      "bPrompt": "$x$, $y$의 값을 제한하지 않을 때, $x+y=5$ 하나만으로는 값을 한 쌍으로 정할 수 없는 까닭을 쓰시오. 한 쌍으로 정하려면 어떤 조건이 더 필요한지 말하시오.",
+      "bAnswer": "$x+y=5$에는 해가 무수히 많기 때문이다. 예를 들어 $x-y=1$처럼 두 수 사이의 다른 관계를 하나 더 알면, 두 식을 모두 만족하는 한 쌍 $x=3$, $y=2$를 정할 수 있다.",
+      "bGoal": "연립이 필요한 이유 설명",
+      "bReason": "식 하나를 아무거나 추가해도 유일한 해가 생기지 않는다. 한 쌍을 정하는 다른 조건이 필요함을 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 다른 해가 무수히 많다",
+            "서로 다른 해가 여러 개 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수의 합과 차처럼 서로 다른 관계를 함께 만족시키는 조건이 필요하다",
+            "예를 들어 $x-y=1$이라는 조건을 더 알면 한 쌍으로 정해진다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "추가 식은 기존과 같은 관계이면 효과가 없으므로 충분한 조건이라는 뜻을 넣는다.",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2466,
+      "part": "m2plus",
+      "sourceFingerprint": "dd2e38a6ca100edab0d66c5cc5b849d5518d3165970218d08a5ee0198f984b31",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2466
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x+y=5$의 해는 {무수히} 많다. $x-y=1$도 함께 만족해야 하면 $x=${$3$}, $y=${$2$}인 한 쌍으로 정해진다.",
+      "cSlotAnswers": [
+        "무수히",
+        "$3$",
+        "$2$"
+      ],
+      "cStudentSentence": "$x+y=5$의 해는 □ 많다. $x-y=1$도 함께 만족해야 하면 $x=$□, $y=$□인 한 쌍으로 정해진다.",
+      "cAnswers": [
+        "무수히",
+        "$3$",
+        "$2$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "무수히",
+          "equivalentAnswers": [
+            "무수히",
+            "무한히"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "무수히",
+          "무한히"
+        ],
+        [
+          "$3$"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "c103294710ff97c8cc254ec58b98cb5fd452a1099ac2b242d7193c560249f123",
+      "cAfter": "$x+y=5$의 해는 {무수히} 많다. $x-y=1$도 함께 만족해야 하면 $x=${$3$}, $y=${$2$}인 한 쌍으로 정해진다.",
+      "coreAfter": "미지수가 $2$개인 일차방정식 하나의 해는 {무수히} 많다. 한 쌍을 정하려면 두 미지수 사이의 {다른 관계}도 알아야 한다. 같은 관계를 다시 쓴 식은 새로운 조건이 되지 않는다.",
+      "coreReason": "같은 관계의 식을 더 써도 값이 정해지지 않으므로 한 쌍을 정할 수 있는 다른 조건이 필요하다."
+    },
+    {
+      "id": "m2-03-01-xc11",
+      "learningRole": "procedure",
+      "roleReason": "$x$가 자연수로 남는 $y$까지만 대입",
+      "bDecision": "rewrite",
+      "bPrompt": "일차방정식 $x+2y=9$의 자연수 해를 구할 때 $y$에 어떤 값까지 넣으면 되는지 까닭과 함께 말하고, 자연수 해의 개수를 구하시오.",
+      "bAnswer": "$y$가 클수록 $x$가 작아지고, $y=4$이면 $x=1$, $y=5$이면 $x=-1$이 되므로 $y$는 $4$까지만 넣는다. 자연수 해는 $(7,\\ 1)$, $(5,\\ 2)$, $(3,\\ 3)$, $(1,\\ 4)$의 $4$개이다.",
+      "bGoal": "대입 범위 정하기",
+      "bReason": "네 자연수 해는 맞지만 이유 요구를 y≤4만으로 통과시키지 않도록 감소/자연수 경계 의미를 추가한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y$는 $4$까지만 넣는다",
+            "$1\\le y\\le4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y=5$부터 $x$가 자연수가 아니다",
+            "$y$가 커질수록 $x$가 작아지고 $y=5$에서 $x=-1$이다",
+            "$x=9-2y$가 양의 정수여야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$개"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'클수록' 한 낱말로 증감 관계를 묻는 빈칸이다.",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2467,
+      "part": "m2plus",
+      "sourceFingerprint": "f820d5687bde05b6daeccdcd613d1e606d4763417a5e21917c904c6d1ffb0b6c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2467
+      },
+      "directReview": null,
+      "cFrozenSentence": "$x+ay=b$ 꼴($a$는 자연수)의 자연수 해를 찾을 때는 $y$가 □ $x$가 작아지므로 $x$가 자연수로 남는 $y$까지만 넣는다.",
+      "cFrozenDefinition": "$x+ay=b$ 꼴($a$는 자연수)의 자연수 해를 찾을 때는 $y$가 {클수록} $x$가 작아지므로 $x$가 자연수로 남는 $y$까지만 넣는다.",
+      "cFrozenAnswers": [
+        "클수록"
+      ],
+      "cMarkedSentence": "$x+ay=b$ 꼴($a$는 자연수)의 자연수 해를 찾을 때는 $y$가 {클수록} $x$가 작아지므로 $x$가 자연수로 남는 $y$까지만 넣는다.",
+      "cSlotAnswers": [
+        "클수록"
+      ],
+      "cStudentSentence": "$x+ay=b$ 꼴($a$는 자연수)의 자연수 해를 찾을 때는 $y$가 □ $x$가 작아지므로 $x$가 자연수로 남는 $y$까지만 넣는다.",
+      "cAnswers": [
+        "클수록"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "클수록",
+          "equivalentAnswers": [
+            "클수록"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "클수록"
+        ]
+      ],
+      "proposalFingerprint": "dda376f80e42a01de65089805412b074ae25b7d20b9e0d528f2a993b0db053ac"
+    },
+    {
+      "id": "m2-03-01-xc13",
+      "learningRole": "procedure",
+      "roleReason": "계수가 큰 미지수부터 넣어 시도 줄이기",
+      "bDecision": "rewrite",
+      "bPrompt": "일차방정식 $3x+2y=20$의 자연수 해를 구할 때, $y$보다 계수가 큰 $x$에 $1$, $2$, $3$, $\\cdots$을 넣는 것이 더 빠른 까닭을 말하고, 자연수 해를 모두 구하시오.",
+      "bAnswer": "$3x<20$이어야 하므로 $x$는 $1$부터 $6$까지만 넣으면 되어, $1$부터 $9$까지 넣어야 하는 $y$보다 넣어 볼 값이 적다. 자연수 해는 $(2,\\ 7)$, $(4,\\ 4)$, $(6,\\ 1)$이다.",
+      "bGoal": "효율적인 대입 순서 판단",
+      "bReason": "세 해는 맞으나 왜 빠른지 요구에는 x최대6이라는 값보다 비교 시도 수가 필요하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$에 넣어 볼 값은 $1$부터 $6$까지로 $y$의 $1$부터 $9$까지보다 적다",
+            "계수가 큰 $x$ 쪽의 대입 후보가 더 적다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(2,\\ 7)$, $(4,\\ 4)$, $(6,\\ 1)$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'개수' 한 낱말로 효율의 이유를 묻는 빈칸이다.",
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2469,
+      "part": "m2plus",
+      "sourceFingerprint": "6d8c80e810669dc82904852e9918dd3fdae4c970f397e039aa726ed98f1ec16a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2469
+      },
+      "directReview": null,
+      "cFrozenSentence": "$3x+2y=20$처럼 계수가 큰 미지수부터 차례로 넣으면 넣어 볼 값의 □가 줄어드는 일이 많아 자연수 해를 빨리 셀 수 있다.",
+      "cFrozenDefinition": "$3x+2y=20$처럼 계수가 큰 미지수부터 차례로 넣으면 넣어 볼 값의 {개수}가 줄어드는 일이 많아 자연수 해를 빨리 셀 수 있다.",
+      "cFrozenAnswers": [
+        "개수"
+      ],
+      "cMarkedSentence": "$3x+2y=20$처럼 계수가 큰 미지수부터 차례로 넣으면 넣어 볼 값의 {개수}가 줄어드는 일이 많아 자연수 해를 빨리 셀 수 있다.",
+      "cSlotAnswers": [
+        "개수"
+      ],
+      "cStudentSentence": "$3x+2y=20$처럼 계수가 큰 미지수부터 차례로 넣으면 넣어 볼 값의 □가 줄어드는 일이 많아 자연수 해를 빨리 셀 수 있다.",
+      "cAnswers": [
+        "개수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "개수",
+          "equivalentAnswers": [
+            "개수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "개수"
+        ]
+      ],
+      "proposalFingerprint": "92b7d9ed8447d739110b47a7e16b03b83ab7359a4bd4b41db9ed2b6d31e00efc"
+    },
+    {
+      "id": "m2-03-01-xc21",
+      "learningRole": "application",
+      "roleReason": "두 관계를 식 하나씩으로 세우기",
+      "bDecision": "rewrite",
+      "bPrompt": "닭과 토끼가 모두 $10$마리이고 다리가 모두 $28$개이다. 닭을 $x$마리, 토끼를 $y$마리라 할 때 연립방정식을 세우고, 각 식이 어떤 관계를 나타내는지 말하시오.",
+      "bAnswer": "$x+y=10$은 마리 수의 합, $2x+4y=28$은 다리 수의 합을 나타낸다.",
+      "bGoal": "상황을 연립방정식으로 표현",
+      "bReason": "두 식은 맞지만 각 식의 관계 설명을 묻고 기준에는 식만 있어 마리 수/다리 수 의미를 추가한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x+y=10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2x+4y=28$",
+            "$x+2y=14$"
+          ]
+        },
+        {
+          "anyOf": [
+            "첫째 식은 마리 수의 합이 $10$임을 나타낸다",
+            "닭과 토끼의 총 마리 수 관계"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘째 식은 다리 수의 합이 $28$임을 나타낸다",
+            "닭과 토끼의 총 다리 수 관계"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'두 관계'와 '하나씩'을 묻는 짧은 절차 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 33,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2476,
+      "part": "m2plus",
+      "sourceFingerprint": "5571b1d67017d275612a3604bd774923ce75702da605903993a140e04a4399f4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2476
+      },
+      "directReview": null,
+      "cFrozenSentence": "구하려는 두 양을 $x$, $y$로 놓고 문제에 주어진 서로 다른 □를 식 □으로 나타내면 연립방정식이 된다.",
+      "cFrozenDefinition": "구하려는 두 양을 $x$, $y$로 놓고 문제에 주어진 서로 다른 {두 관계}를 식 {하나씩}으로 나타내면 연립방정식이 된다.",
+      "cFrozenAnswers": [
+        "두 관계",
+        "하나씩"
+      ],
+      "cMarkedSentence": "구하려는 두 양을 $x$, $y$로 놓고 문제에 주어진 서로 다른 {두 관계}를 식 {하나씩}으로 나타내면 연립방정식이 된다.",
+      "cSlotAnswers": [
+        "두 관계",
+        "하나씩"
+      ],
+      "cStudentSentence": "구하려는 두 양을 $x$, $y$로 놓고 문제에 주어진 서로 다른 □를 식 □으로 나타내면 연립방정식이 된다.",
+      "cAnswers": [
+        "두 관계",
+        "하나씩"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "두 관계",
+          "equivalentAnswers": [
+            "두 관계"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "하나씩",
+          "equivalentAnswers": [
+            "하나씩"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "두 관계"
+        ],
+        [
+          "하나씩"
+        ]
+      ],
+      "proposalFingerprint": "d6f46cdc03419167f2a134d82cee0fc58e2ad5dee1ef80259737a18d81a051ab"
+    },
+    {
+      "id": "m2-03-02-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "'$3x+y=7$을 $y$에 대해 푼다'는 것은 식을 어떤 꼴로 바꾸는 것인지 쓰고, 실제로 $y$에 대해 푼 식을 쓰시오.",
+      "bAnswer": "$y$만 좌변에 남기고 나머지 항을 우변으로 이항하여 $y=$(식) 꼴로 나타내는 것이다. $y=7-3x$",
+      "bGoal": "한 미지수에 대해 푼다는 뜻",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y$만 한쪽(좌변)에 남기고 나머지를 다른 쪽으로 옮긴다",
+            "$y=$(식) 꼴로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y=7-3x$",
+            "$y=-3x+7$"
+          ]
+        }
+      ],
+      "bReason": "표현의 뜻을 실제 식 $3x+y=7$로 확인하게 하여 막연한 설명을 피함",
+      "cDecision": "rewrite",
+      "cAfter": "계수가 $0$이 아닌 한 미지수에 대해 푼다는 것은 그 미지수만 한쪽에 남기고 필요하면 그 {계수}로 나누는 것이다. $x+y=9$를 $y$에 대해 풀면 {$y=9-x$}이다.",
+      "cAnswers": [
+        "계수",
+        "$y=9-x$"
+      ],
+      "cReason": "일반적으로 이항만 하면 ay=...가 남을 수 있어 계수로 나누는 과정도 설명한다.",
+      "learningRole": "definition",
+      "roleReason": "미지수만 한쪽에 남기는 '~에 대해 푼다'의 뜻",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2480,
+      "part": "m2plus",
+      "sourceFingerprint": "3467ac42e739c9e5145944104032ffe8610053c577746c529c8e4ca45ba47bc1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2480
+      },
+      "directReview": null,
+      "cMarkedSentence": "계수가 $0$이 아닌 한 미지수에 대해 푼다는 것은 그 미지수만 한쪽에 남기고 필요하면 그 {계수}로 나누는 것이다. $x+y=9$를 $y$에 대해 풀면 {$y=9-x$}이다.",
+      "cSlotAnswers": [
+        "계수",
+        "$y=9-x$"
+      ],
+      "cStudentSentence": "계수가 $0$이 아닌 한 미지수에 대해 푼다는 것은 그 미지수만 한쪽에 남기고 필요하면 그 □로 나누는 것이다. $x+y=9$를 $y$에 대해 풀면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "계수",
+          "equivalentAnswers": [
+            "계수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$y=9-x$",
+          "equivalentAnswers": [
+            "$y=9-x$",
+            "$y=-x+9$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$y=9-x$",
+          "accept": [
+            "$y=-x+9$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "계수"
+        ],
+        [
+          "$y=9-x$",
+          "$y=-x+9$"
+        ]
+      ],
+      "proposalFingerprint": "962be685ad6692e9dc3b52f3197e02323c903f1fab08414f9af26986c13b2f7a",
+      "coreAfter": "계수가 $0$이 아닌 한 미지수에 대해 푼다는 것은 그 미지수만 한쪽에 남기고 필요하면 그 {계수}로 나누어 $y=$(식) 같은 꼴로 {정리}하는 것이다.",
+      "coreReason": "이항만으로는 미지수의 계수가1이 되지 않을 수 있으므로 계수로 나누는 과정을 포함한다."
+    },
+    {
+      "id": "m2-03-02-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "$2x+3y=8$, $3x+2y=7$에서는 $x$의 계수 $2$와 $3$ 중 어느 것도 다른 것의 배수가 아니다. 자연수를 곱해 $x$를 없애려면 두 식에 각각 얼마를 곱해야 하는지, 그때 $x$의 계수가 얼마로 맞춰지는지 쓰시오.",
+      "bAnswer": "예를 들어 첫째 식에 $3$, 둘째 식에 $2$를 곱하면 $x$의 계수가 모두 $6$이 된다. 첫째 식에 $6$, 둘째 식에 $4$를 곱해 모두 $12$로 맞추는 등 다른 공배수를 사용해도 된다.",
+      "bGoal": "두 식 모두에 곱해 최소공배수로 맞추기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "첫째 식에 $3$, 둘째 식에 $2$를 곱하는 등 두 $x$의 계수가 같아지게 자연수를 선택한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자신이 곱한 수에 맞는 같은 계수의 값을 쓴다. 예를 들어 $3$, $2$를 곱했으면 $6$이고 $6$, $4$를 곱했으면 $12$이다"
+          ]
+        }
+      ],
+      "bReason": "최소 배수라고 묻지 않았으므로3,2뿐 아니라6,4 등 다른 공배수도 인정해야 한다.",
+      "cDecision": "rewrite",
+      "cAfter": "$2x+3y=8$, $3x+2y=7$에서 $x$의 계수를 두 계수의 최소공배수인 {$6$}으로 맞추려면 첫째 식에는 {$3$}, 둘째 식에는 {$2$}를 곱한다.",
+      "cAnswers": [
+        "$6$",
+        "$3$",
+        "$2$"
+      ],
+      "cReason": "'맞춘다' 빈칸은 의미가 약하고 조건이 모호해 배수 조건과 실제 맞출 값을 묻게 함",
+      "coreAfter": "$2x+3y=8$, $3x+2y=7$에서 $x$를 없애는 한 방법은 두 식에 수를 곱해 $x$의 계수를 $2$와 $3$의 {최소공배수}인 $6$으로 {맞추는 것}이다. 다른 공배수로 맞추어도 된다.",
+      "coreReason": "'맞출 계수가 없으면'은 학생에게 뜻이 모호해 배수가 아닌 경우로 범위를 밝힘",
+      "learningRole": "procedure",
+      "roleReason": "두 식에 곱해 계수를 최소공배수로 맞춤",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2485,
+      "part": "m2plus",
+      "sourceFingerprint": "8c727d177f60ae46bcf7defe5b1647adf091dd4e8c3faed504ca84f79cbba91e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2485
+      },
+      "directReview": null,
+      "coreBeforeRepair": "$2x+3y=8$, $3x+2y=7$처럼 없앨 미지수의 계수 중 어느 것도 다른 것의 배수가 아니면 두 식에 각각 수를 곱해 그 미지수의 계수를 두 계수의 {최소공배수}로 {맞춘다}.",
+      "coreRepairReason": "예시 식은 원본에 있던 '처럼' 예시라서 일반 규칙을 대신하지 않는다. 원본 핵심어 {최소공배수}, {맞춘다}도 있어 그대로 보존했다.",
+      "coreRepairEvidence": "core-repair/core-003",
+      "cMarkedSentence": "$2x+3y=8$, $3x+2y=7$에서 $x$의 계수를 두 계수의 최소공배수인 {$6$}으로 맞추려면 첫째 식에는 {$3$}, 둘째 식에는 {$2$}를 곱한다.",
+      "cSlotAnswers": [
+        "$6$",
+        "$3$",
+        "$2$"
+      ],
+      "cStudentSentence": "$2x+3y=8$, $3x+2y=7$에서 $x$의 계수를 두 계수의 최소공배수인 □으로 맞추려면 첫째 식에는 □, 둘째 식에는 □를 곱한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$6$",
+          "equivalentAnswers": [
+            "$6$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ],
+        [
+          "$3$"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "a3d037c93c5eda03eeca7c1850469d7eba18f6d33f9c072d9bc63bca4e32e304"
+    },
+    {
+      "id": "m2-03-02-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "$x+y=5$, $x-y=1$을 풀어 $x=3$을 얻었다. $y$를 구할 때 $x=3$을 처음 식 $x+y=5$에 넣는 경우와, 이 식을 $y$에 대해 정리한 $y=5-x$에 넣는 경우의 결과를 비교하고 그 까닭을 쓰시오.",
+      "bAnswer": "두 경우 모두 $y=2$로 같다. $y=5-x$는 $x+y=5$에서 $x$를 이항만 한 식이라 두 식을 만족하는 $x$, $y$가 같기 때문이다.",
+      "bGoal": "정리한 식과 처음 식의 해가 같음",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 경우 모두 $y=2$로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y=5-x$는 $x+y=5$를 이항만 한 식이라 해가 같다",
+            "두 식은 같은 등식을 바꾸어 쓴 것이라 해가 같다"
+          ]
+        }
+      ],
+      "bReason": "어느 식에 넣어도 되는 근거를 실제 두 식의 결과 비교로 확인하게 함",
+      "cDecision": "rewrite",
+      "cAfter": "$x=3$을 $x+y=5$에 넣어도 $y=5-x$에 넣어도 $y$는 {같은} 값이다. $y=5-x$는 처음 식에서 $x$를 {이항}한 식이므로 두 식의 해가 같기 때문이다.",
+      "cAnswers": [
+        "같은",
+        "이항"
+      ],
+      "cReason": "일반 정리가 이항만이라는 단정은 계수 나눔 경우에 틀려 구체식의 이항으로 한정한다.",
+      "learningRole": "reason",
+      "roleReason": "이항한 식은 해가 같아 어디에 넣어도 됨",
+      "exampleNeeded": true,
+      "studentLabel": "남은 미지수를 구할 때 넣는 식",
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2496,
+      "part": "m2plus",
+      "sourceFingerprint": "88e03cb8744ea6bf5379ae97ba222d01ab03b73c2f852325b74c1da94eb0e559",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2496
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x=3$을 $x+y=5$에 넣어도 $y=5-x$에 넣어도 $y$는 {같은} 값이다. $y=5-x$는 처음 식에서 $x$를 {이항}한 식이므로 두 식의 해가 같기 때문이다.",
+      "cSlotAnswers": [
+        "같은",
+        "이항"
+      ],
+      "cStudentSentence": "$x=3$을 $x+y=5$에 넣어도 $y=5-x$에 넣어도 $y$는 □ 값이다. $y=5-x$는 처음 식에서 $x$를 □한 식이므로 두 식의 해가 같기 때문이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같은",
+          "equivalentAnswers": [
+            "같은",
+            "동일한"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "이항",
+          "equivalentAnswers": [
+            "이항"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같은",
+          "동일한"
+        ],
+        [
+          "이항"
+        ]
+      ],
+      "proposalFingerprint": "f9f30974a0f467814c401a8dad69ba79d45b442af9873daf32c9bd5441921696"
+    },
+    {
+      "id": "m2-03-02-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "$x+y=8$, $x-y=2$일 때 $xy$의 값을 구하는 방법을 쓰고, 그 값을 구하시오.",
+      "bAnswer": "연립방정식을 풀어 $x=5$, $y=3$을 구한 뒤 대입하면 $xy=15$이다. 두 조건을 이용해 곱을 직접 구하는 올바른 방법도 가능하다.",
+      "bGoal": "해를 대입해 식의 값 구하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=5$, $y=3$을 구해 $xy$에 대입한다",
+            "두 조건으로 $xy$를 직접 구하는 타당한 계산을 보인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "bReason": "값15는 맞지만 두 값을 먼저 구하지 않고 제곱 차로xy를 구하는 타당한 방법도 허용한다.",
+      "cDecision": "keep",
+      "cReason": "'대입–식의 값' 빈칸이 짧고 앞 단원 용어와 연결되어 유지",
+      "learningRole": "application",
+      "roleReason": "구한 해를 다른 식에 대입",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2498,
+      "part": "m2plus",
+      "sourceFingerprint": "a9497e5ac59a3075ceb7697e71d96a1e2c73b1a428f1af1e673e1a16da9708cb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2498
+      },
+      "directReview": null,
+      "cFrozenSentence": "연립방정식을 풀어 구한 $x$, $y$를 □하면 $xy$ 같은 □을 구할 수 있다.",
+      "cFrozenDefinition": "연립방정식을 풀어 구한 $x$, $y$를 {대입}하면 $xy$ 같은 {식의 값}을 구할 수 있다.",
+      "cFrozenAnswers": [
+        "대입",
+        "식의 값"
+      ],
+      "cMarkedSentence": "연립방정식을 풀어 구한 $x$, $y$를 {대입}하면 $xy$ 같은 {식의 값}을 구할 수 있다.",
+      "cSlotAnswers": [
+        "대입",
+        "식의 값"
+      ],
+      "cStudentSentence": "연립방정식을 풀어 구한 $x$, $y$를 □하면 $xy$ 같은 □을 구할 수 있다.",
+      "cAnswers": [
+        "대입",
+        "식의 값"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "대입",
+          "equivalentAnswers": [
+            "대입"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "식의 값",
+          "equivalentAnswers": [
+            "식의 값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "대입"
+        ],
+        [
+          "식의 값"
+        ]
+      ],
+      "proposalFingerprint": "10d94dd6a6d1e920baf30648c64f247256032a4f67ab01e8caee7c135d77da73"
+    },
+    {
+      "id": "m2-03-03-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "$x-(y-2)=5$를 정리한 식을 쓰고, 괄호를 풀 때 $-2$가 어떻게 바뀌는지 그 까닭과 함께 쓰시오.",
+      "bAnswer": "괄호 앞이 $-$이므로 괄호 안 각 항의 부호가 모두 바뀌어 $x-y+2=5$, 즉 $x-y=3$이다. $-2$는 $+2$가 된다.",
+      "bGoal": "괄호 앞 $-$의 부호 처리",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x-y=3$",
+            "$x-y+2=5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호 앞 $-$ 때문에 괄호 안 모든 항의 부호가 바뀌어 $-2$가 $+2$가 된다"
+          ]
+        }
+      ],
+      "bReason": "부호 변화를 설명할 때 x-y+2=5도 정리한 올바른 식이므로 그 동치식을 기준에 포함한다.",
+      "cDecision": "keep",
+      "cReason": "예 $-(x-y)$가 있고 '부호–바꾼다' 빈칸이 분명해 유지",
+      "learningRole": "procedure",
+      "roleReason": "$-$ 괄호를 풀 때 모든 항 부호 바꾸기",
+      "exampleNeeded": true,
+      "authorBatch": 34,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2499,
+      "part": "m2plus",
+      "sourceFingerprint": "550ac6285e80f6c4f933230d760a74c74982719aca91fc6fbbc5e6198fa96dda",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2499
+      },
+      "directReview": null,
+      "cFrozenSentence": "$-(x-y)$처럼 괄호 앞이 $-$이면 괄호 안 각 항의 □를 모두 □.",
+      "cFrozenDefinition": "$-(x-y)$처럼 괄호 앞이 $-$이면 괄호 안 각 항의 {부호}를 모두 {바꾼다}.",
+      "cFrozenAnswers": [
+        "부호",
+        "바꾼다"
+      ],
+      "cMarkedSentence": "$-(x-y)$처럼 괄호 앞이 $-$이면 괄호 안 각 항의 {부호}를 모두 {바꾼다}.",
+      "cSlotAnswers": [
+        "부호",
+        "바꾼다"
+      ],
+      "cStudentSentence": "$-(x-y)$처럼 괄호 앞이 $-$이면 괄호 안 각 항의 □를 모두 □.",
+      "cAnswers": [
+        "부호",
+        "바꾼다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "바꾼다",
+          "equivalentAnswers": [
+            "바꾼다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ],
+        [
+          "바꾼다"
+        ]
+      ],
+      "proposalFingerprint": "86569de3aa2a2a4a63bcbb056091d02b2e30563cb91a632eb10fd549d6e26c63"
+    }
+  ]
+}

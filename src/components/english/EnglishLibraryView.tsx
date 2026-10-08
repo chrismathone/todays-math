@@ -18,7 +18,7 @@ import {
 
 import EnglishExamPicker from "./EnglishExamPicker";
 import { STATUS_TONE, examLabel, formatDay, type Load } from "./englishClient";
-import s from "./EnglishStudio.module.css";
+import s from "./EnglishLibrary.module.css";
 
 export default function EnglishLibraryView({
   exam,
@@ -58,7 +58,17 @@ export default function EnglishLibraryView({
         description="이 시험의 문제 세트를 찾고, 열어 검토합니다."
       />
       <EnglishExamPicker exams={exams} exam={exam} onSelect={onSelectExam} />
-      <section className={s.card}>
+      <section className={s.library} aria-label="저장한 문제 세트">
+        <div className={s.listHeading}>
+          <h2>저장한 세트</h2>
+          {sets.status === "ready" ? (
+            <span className={s.resultCount} role="status">
+              {needle || status !== "all"
+                ? `${filtered.length} / ${sets.data.length}개`
+                : `${sets.data.length}개`}
+            </span>
+          ) : null}
+        </div>
         <div className={s.tools}>
           <label className={s.search}>
             <Icon name="search" size={18} />
@@ -118,35 +128,55 @@ export default function EnglishLibraryView({
             )}
           </div>
         ) : filtered.length === 0 ? (
-          <p className={s.footnote}>조건에 맞는 문제 세트가 없습니다.</p>
+          <div className={s.empty}>
+            <p>조건에 맞는 문제 세트가 없습니다.</p>
+            <button
+              type="button"
+              className={w.outlineButton}
+              onClick={() => {
+                setQuery("");
+                setStatus("all");
+              }}
+            >
+              검색·상태 초기화
+            </button>
+          </div>
         ) : (
-          <ul className={s.libraryList} aria-label="문제 세트 목록">
-            {filtered.map((set) => (
-              <li key={set.id}>
-                <button
-                  type="button"
-                  className={s.libraryRow}
-                  onClick={() => onOpen(set.id)}
-                >
-                  <span className={s.fileIcon}>
-                    <Icon name="paper" size={20} />
-                  </span>
-                  <span className={s.rowBody}>
+          <>
+            <div className={s.listColumns} aria-hidden="true">
+              <span>세트 이름</span>
+              <span>수정일</span>
+              <span>문항 수</span>
+              <span>상태</span>
+              <span />
+            </div>
+            <ul className={s.libraryList} aria-label="문제 세트 목록">
+              {filtered.map((set) => (
+                <li key={set.id}>
+                  <button
+                    type="button"
+                    className={s.libraryRow}
+                    onClick={() => onOpen(set.id)}
+                  >
                     <span className={s.rowTitle}>{set.title}</span>
-                    <span className={s.rowMeta}>
-                      {formatDay(set.updatedAt)} · {set.questionCount}문항
+                    <span className={s.rowDate}>
+                      {formatDay(set.updatedAt)}
                     </span>
-                  </span>
-                  <span className={s.pill} data-tone={STATUS_TONE[set.status]}>
-                    {set.status}
-                  </span>
-                  <span className={s.rowChevron}>
-                    <Icon name="chevron" size={16} />
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
+                    <span className={s.rowCount}>{set.questionCount}문항</span>
+                    <span
+                      className={s.pill}
+                      data-tone={STATUS_TONE[set.status]}
+                    >
+                      {set.status}
+                    </span>
+                    <span className={s.rowChevron} aria-hidden="true">
+                      <Icon name="chevron" size={16} />
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </section>
     </>

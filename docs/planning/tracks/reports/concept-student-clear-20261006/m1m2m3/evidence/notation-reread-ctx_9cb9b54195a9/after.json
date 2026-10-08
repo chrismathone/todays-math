@@ -1,0 +1,4826 @@
+{
+  "appliedAt": "2026-10-07T10:02:10.626Z",
+  "rows": [
+    {
+      "id": "m1-07-02-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "면이 정삼각형인 정다면체에서 한 꼭짓점에 정삼각형이 $6$개 모일 수 없는 이유를 각의 크기로 설명하고, 한 꼭짓점에 모일 수 있는 정삼각형의 개수와 그때의 정다면체의 이름을 모두 쓰시오.",
+      "bAnswer": "정삼각형의 한 내각은 $60^\\circ$이므로 $6$개가 모이면 $60^\\circ\\times 6=360^\\circ$가 되어 평면이 되고 입체도형이 되지 않는다. 모일 수 있는 개수는 $3$개(정사면체), $4$개(정팔면체), $5$개(정이십면체)이다.",
+      "bGoal": "면이 정삼각형인 정다면체가 세 가지인 까닭",
+      "bReason": "360도 계산에 그치지 않고 입체가 되지 않는 이유까지 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$개가 모이면 각의 합이 $360^\\circ$여서 평면이 되어 입체를 만들지 못한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$개 모이면 정사면체"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$개 모이면 정팔면체"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개 모이면 정이십면체"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$개, $4$개, {$5$}개 모이는 세 가지뿐이다. $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 {$360^\\circ$}가 되어 입체가 되지 않는다.",
+      "cAnswers": [
+        "$5$",
+        "$360^\\circ$"
+      ],
+      "cReason": "'세'는 앞의 수를 세면 나오고 무엇이 $360^\\circ$가 되는지 빠져 있음.",
+      "coreAfter": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$, $4$, $5$개 모인 {세} 가지이다. $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 $60^\\circ\\times6=$ {$360^\\circ$}가 되어 입체가 되지 않는다.",
+      "coreReason": "무엇이 $360^\\circ$가 되는지 주어가 빠져 있어 보충했다.",
+      "studentLabel": "면이 정삼각형인 정다면체가 세 가지인 까닭",
+      "learningRole": "reason",
+      "roleReason": "정삼각형이 $6$개 모일 수 없는 까닭",
+      "authorBatch": 20,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1879,
+      "part": "m1plus",
+      "sourceFingerprint": "41c7bea31ea111bbd644d847d321dab3e27b78fa63e32ccd7386919c1bfe9582",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1879
+      },
+      "directReview": null,
+      "coreBeforeRepair": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$, $4$, $5$개 모인 {세} 가지이고, $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 {$360^\\circ$}가 되어 입체가 되지 않는다.",
+      "coreRepairReason": "원본 핵심어 {세}, {$360^\\circ$}를 유지했다. 정삼각형 한 각 $60^\\circ$에서 $360^\\circ$가 나오는 계산을 보여 주어 근거를 분명히 했다.",
+      "coreRepairEvidence": "core-repair/core-001",
+      "cMarkedSentence": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$개, $4$개, {$5$}개 모이는 세 가지뿐이다. $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 {$360^\\circ$}가 되어 입체가 되지 않는다.",
+      "cSlotAnswers": [
+        "$5$",
+        "$360^\\circ$"
+      ],
+      "cStudentSentence": "면이 정삼각형인 정다면체는 한 꼭짓점에 면이 $3$개, $4$개, □개 모이는 세 가지뿐이다. $6$개가 모이면 한 꼭짓점에 모인 각의 크기의 합이 □가 되어 입체가 되지 않는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$5$",
+          "equivalentAnswers": [
+            "$5$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$360^\\circ$",
+          "equivalentAnswers": [
+            "$360^\\circ$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$5$"
+        ],
+        [
+          "$360^\\circ$"
+        ]
+      ],
+      "proposalFingerprint": "74bf2fd6025ee8ff145bfd54e369c3bebaef3c20ba2a689238f1ed2e9dca60e4"
+    },
+    {
+      "id": "m1-07-02-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "정십이면체는 정오각형 $12$개로 둘러싸여 있고 한 꼭짓점에 면이 $3$개씩 모인다. 이를 이용하여 정십이면체의 꼭짓점의 개수를 구하는 과정을 쓰시오.",
+      "bAnswer": "정오각형 $12$개의 꼭짓점은 $12\\times 5=60$개인데, 꼭짓점 하나가 $3$개의 면에 겹쳐 세어졌으므로 $60\\div 3=20$개이다.",
+      "bGoal": "정십이면체의 꼭짓점 수 구하기",
+      "bReason": "과정 문항이므로 20개만 적는 대신 중복을 3으로 나누는 이유와 계산을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$12\\times5=60$",
+            "$12\\times5\\div3=20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점을 $3$번씩 세었으므로 $60\\div3=20$",
+            "중복하여 센 꼭짓점을 $3$으로 나누어 $20$개"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "나누는 수와 결과를 채우는 짧은 계산 빈칸.",
+      "learningRole": "application",
+      "roleReason": "정십이면체에 꼭짓점 세는 방법 적용",
+      "authorBatch": 20,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1880,
+      "part": "m1plus",
+      "sourceFingerprint": "334f2d2e23b0b7e64048c305789a7f2c2204916585c34241f87f0d8e17fb7827",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1880
+      },
+      "directReview": null,
+      "cFrozenSentence": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 □으로 나눈 □개이다.",
+      "cFrozenDefinition": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 {$3$}으로 나눈 {$20$}개이다.",
+      "cFrozenAnswers": [
+        "$3$",
+        "$20$"
+      ],
+      "cMarkedSentence": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 {$3$}으로 나눈 {$20$}개이다.",
+      "cSlotAnswers": [
+        "$3$",
+        "$20$"
+      ],
+      "cStudentSentence": "정십이면체의 꼭짓점은 정오각형 $12$개의 꼭짓점 $60$개를 한 꼭짓점에 모인 면의 수 □으로 나눈 □개이다.",
+      "cAnswers": [
+        "$3$",
+        "$20$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$20$",
+          "equivalentAnswers": [
+            "$20$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$3$"
+        ],
+        [
+          "$20$"
+        ]
+      ],
+      "proposalFingerprint": "d4fe700293e6e7b74e3a8fece4909e6d05cada1a5459ecff479c430edc0ecbac"
+    },
+    {
+      "id": "m1-07-02-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "정이십면체는 정삼각형 $20$개로 둘러싸여 있다. 이를 이용하여 정이십면체의 모서리의 개수를 구하는 과정을 쓰시오.",
+      "bAnswer": "정삼각형 $20$개의 변은 $20\\times 3=60$개인데, 모서리 하나가 두 면의 변으로 두 번 세어졌으므로 $60\\div 2=30$개이다.",
+      "bGoal": "정이십면체의 모서리 수 구하기",
+      "bReason": "30이라는 결과만으로 과정 설명을 대신하지 않고 두 면의 중복을 나누는 계산을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$20\\times3=60$",
+            "$20\\times3\\div2=30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리를 $2$번씩 세었으므로 $60\\div2=30$",
+            "중복하여 센 모서리를 $2$로 나누어 $30$개"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "나누는 수와 결과를 채우는 짧은 계산 빈칸.",
+      "learningRole": "application",
+      "roleReason": "정이십면체에 모서리 세는 방법 적용",
+      "authorBatch": 20,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1881,
+      "part": "m1plus",
+      "sourceFingerprint": "7fc66efb6a1a9a0d75bfd150de9f6fdc4a1b4a28418cc1a9c25afd9725fa3749",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1881
+      },
+      "directReview": null,
+      "cFrozenSentence": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 □로 나눈 □개이다.",
+      "cFrozenDefinition": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 {$2$}로 나눈 {$30$}개이다.",
+      "cFrozenAnswers": [
+        "$2$",
+        "$30$"
+      ],
+      "cMarkedSentence": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 {$2$}로 나눈 {$30$}개이다.",
+      "cSlotAnswers": [
+        "$2$",
+        "$30$"
+      ],
+      "cStudentSentence": "정이십면체의 모서리는 정삼각형 $20$개의 변 $60$개를 □로 나눈 □개이다.",
+      "cAnswers": [
+        "$2$",
+        "$30$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$30$",
+          "equivalentAnswers": [
+            "$30$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "$30$"
+        ]
+      ],
+      "proposalFingerprint": "354853e05c1e63bb8e52f768b7096691ccee7c4be4fa5f0d314c2a347e6d7cb4"
+    },
+    {
+      "id": "m1-07-02-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "정육면체에서 (면의 개수)$\\times$(한 면의 변의 개수), (모서리의 개수)$\\times 2$, (꼭짓점의 개수)$\\times$(한 꼭짓점에 모인 면의 개수)를 각각 계산하고, 세 값의 관계와 그 이유를 설명하시오.",
+      "bAnswer": "$6\\times4=24$, $12\\times2=24$, $8\\times3=24$로 세 값이 같다. 각 면의 변을 모두 세면 모서리 하나를 두 번씩 센다. 한 면의 변 수와 꼭짓점 수는 같고, 각 면의 꼭짓점을 모두 세면 입체의 꼭짓점 하나를 거기에 모인 면의 수만큼 센다.",
+      "bGoal": "정다면체의 개수 사이의 관계와 근거",
+      "bReason": "세 계산의 값과 두 종류의 중복 세기를 모두 확인하도록 이유를 분리한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6\\times4=12\\times2=8\\times3=24$",
+            "세 식의 값이 모두 $24$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리 하나가 두 면에서 두 번 세어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 면의 변 수와 꼭짓점 수가 같고 꼭짓점 하나가 모인 면의 수만큼 세어진다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "정다면체에서 면의 수와 한 면의 변의 수의 곱은 모서리 수의 {$2$}배이고, 꼭짓점 수에 한 꼭짓점에 모인 {면}의 수를 곱한 값과도 같다.",
+      "cAnswers": [
+        "$2$",
+        "면"
+      ],
+      "cReason": "빈칸 답 '곱'이 앞 구절에 그대로 나와 베껴 쓸 수 있음.",
+      "exampleNeeded": true,
+      "studentLabel": "정다면체의 면 · 모서리 · 꼭짓점 개수 사이의 관계",
+      "learningRole": "reason",
+      "roleReason": "세 곱이 같아지는 까닭",
+      "authorBatch": 20,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1885,
+      "part": "m1plus",
+      "sourceFingerprint": "ede5c7e18f95b25a8da25d4c2bc16770bc624d6114080743a168a9cd401bd7f1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1885
+      },
+      "directReview": null,
+      "cMarkedSentence": "정다면체에서 면의 수와 한 면의 변의 수의 곱은 모서리 수의 {$2$}배이고, 꼭짓점 수에 한 꼭짓점에 모인 {면}의 수를 곱한 값과도 같다.",
+      "cSlotAnswers": [
+        "$2$",
+        "면"
+      ],
+      "cStudentSentence": "정다면체에서 면의 수와 한 면의 변의 수의 곱은 모서리 수의 □배이고, 꼭짓점 수에 한 꼭짓점에 모인 □의 수를 곱한 값과도 같다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "면",
+          "equivalentAnswers": [
+            "면"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "면"
+        ]
+      ],
+      "proposalFingerprint": "953a9673c992dd113abbf07e928f30c566c207cfac95e5a5c79ceecc7ef97dad"
+    },
+    {
+      "id": "m1-07-02-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "한 면의 넓이가 $S$인 정이십면체의 겉넓이를 $S$를 사용한 식으로 나타내고, 그렇게 구할 수 있는 이유를 설명하시오.",
+      "bAnswer": "정다면체의 면은 모두 합동이어서 넓이가 같으므로 겉넓이는 (한 면의 넓이)$\\times$(면의 개수)이다. 정이십면체는 면이 $20$개이므로 $20S$이다.",
+      "bGoal": "정다면체의 겉넓이 구하기",
+      "bReason": "20S라는 식에 더하여 같은 넓이를 더할 수 있는 이유를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$20S$"
+          ]
+        },
+        {
+          "anyOf": [
+            "합동인 면 $20$개의 넓이가 모두 같기 때문이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "이유가 문장에 있고 곱하는 대상만 묻는 분명한 빈칸.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "한 면의 넓이와 면의 수의 곱",
+      "authorBatch": 20,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1887,
+      "part": "m1plus",
+      "sourceFingerprint": "03773db382c9d22e1fb0053e6c93b668d10193e856a700a5a9fe1b9c0a8f87c2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1887
+      },
+      "directReview": null,
+      "cFrozenSentence": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 □를 곱한다.",
+      "cFrozenDefinition": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 {면의 수}를 곱한다.",
+      "cFrozenAnswers": [
+        "면의 수"
+      ],
+      "cMarkedSentence": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 {면의 수}를 곱한다.",
+      "cSlotAnswers": [
+        "면의 수"
+      ],
+      "cStudentSentence": "정다면체의 면은 모두 합동이므로 겉넓이는 한 면의 넓이에 □를 곱한다.",
+      "cAnswers": [
+        "면의 수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "면의 수",
+          "equivalentAnswers": [
+            "면의 수",
+            "면의 개수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "면의 수",
+          "accept": [
+            "면의 개수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "면의 수",
+          "면의 개수"
+        ]
+      ],
+      "proposalFingerprint": "8beadab2d827ddaddd688182f3c8eb53c3b9d09e3cd9b148ec0751eaf7dad705"
+    },
+    {
+      "id": "m1-07-04-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "옆모서리가 밑면에 수직인 사각기둥의 밑면은 한 변의 길이가 $3$인 정사각형이고 높이는 $5$이다. 옆면이 어떤 도형 몇 개로 이루어지는지 쓰고, 옆넓이를 구하시오.",
+      "bAnswer": "옆면은 가로 $3$, 세로 $5$인 직사각형 $4$개이므로 옆넓이는 $3\\times5\\times4=60$이다.",
+      "bGoal": "사각기둥의 옆면 구성을 밝혀 옆넓이 구하기",
+      "bReason": "직사각형 옆면이 되는 수직 조건을 명시하고 물은 도형 이름·개수를 기준에서 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면은 직사각형 $4$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "이름에 나온4와 단순 더한다 복사를 구체적인 옆넓이 계산60으로 바꾼다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "사각기둥의 옆넓이 계산",
+      "authorBatch": 21,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1913,
+      "part": "m1plus",
+      "sourceFingerprint": "efaca515c0e8cb124588fdaa54949d3e9cec0f192eaa729f55ded76d03b672cd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1913
+      },
+      "directReview": null,
+      "cMarkedSentence": "옆모서리가 밑면에 수직인 사각기둥의 밑면은 한 변의 길이가 $3$인 정사각형이고 높이는 $5$이다. 이 기둥의 옆넓이는 옆면인 직사각형 $4$개의 넓이를 더한 {$60$}이다.",
+      "cSlotAnswers": [
+        "$60$"
+      ],
+      "cStudentSentence": "옆모서리가 밑면에 수직인 사각기둥의 밑면은 한 변의 길이가 $3$인 정사각형이고 높이는 $5$이다. 이 기둥의 옆넓이는 옆면인 직사각형 $4$개의 넓이를 더한 □이다.",
+      "cAnswers": [
+        "$60$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$60$",
+          "equivalentAnswers": [
+            "$60$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "더한다",
+          "accept": [
+            "합한다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$60$"
+        ]
+      ],
+      "proposalFingerprint": "8ff99b369b04f89661efa91fbb0341ac709c592914639be0e0fc4dfbf8cac8b5",
+      "cAfter": "옆모서리가 밑면에 수직인 사각기둥의 밑면은 한 변의 길이가 $3$인 정사각형이고 높이는 $5$이다. 이 기둥의 옆넓이는 옆면인 직사각형 $4$개의 넓이를 더한 {$60$}이다.",
+      "coreAfter": "옆모서리가 밑면에 수직인 사각기둥의 옆넓이는 옆면인 직사각형 {$4$}개의 넓이를 모두 {더한} 값이다.",
+      "coreReason": "일반설명에서도 옆면이 직사각형인 조건을 명시한다."
+    },
+    {
+      "id": "m1-07-04-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "옆모서리가 밑면에 수직인 각기둥의 밑면의 둘레는 $10$, 밑넓이는 $6$, 겉넓이는 $62$이다. 이 기둥의 높이를 구하는 과정을 순서대로 쓰시오.",
+      "bAnswer": "옆넓이는 겉넓이에서 밑넓이의 $2$배를 뺀 $62-6\\times2=50$이다. 옆넓이는 (밑면의 둘레)$\\times$(높이)이므로 높이는 $50\\div10=5$이다.",
+      "bGoal": "겉넓이에서 옆넓이를 거쳐 높이 구하기",
+      "bReason": "옆넓이=밑면 둘레×높이가 성립하는 수직 각기둥의 조건을 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆넓이가 $62-6\\times2=50$임을 구한다",
+            "$6\\times2+10\\times($높이$)=62$로 식을 세운다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이는 $5$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "옆모서리가 밑면에 수직인 각기둥의 겉넓이에서 밑넓이의 $2$배를 빼면 {옆넓이}가 되고, 이것을 밑면의 {둘레}로 나누면 기둥의 {높이}가 된다.",
+      "cAnswers": [
+        "옆넓이",
+        "둘레",
+        "높이"
+      ],
+      "cReason": "비스듬한 기둥까지 옆넓이 공식을 적용하지 않도록 범위를 밝힌다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "겉넓이에서 높이를 구하는 순서",
+      "authorBatch": 21,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1918,
+      "part": "m1plus",
+      "sourceFingerprint": "3b7145b3a034cd4f77e4bbeab6d19a20b722f95f13afd948249cc99e4d6d6368",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1918
+      },
+      "directReview": null,
+      "cMarkedSentence": "옆모서리가 밑면에 수직인 각기둥의 겉넓이에서 밑넓이의 $2$배를 빼면 {옆넓이}가 되고, 이것을 밑면의 {둘레}로 나누면 기둥의 {높이}가 된다.",
+      "cSlotAnswers": [
+        "옆넓이",
+        "둘레",
+        "높이"
+      ],
+      "cStudentSentence": "옆모서리가 밑면에 수직인 각기둥의 겉넓이에서 밑넓이의 $2$배를 빼면 □가 되고, 이것을 밑면의 □로 나누면 기둥의 □가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "옆넓이",
+          "equivalentAnswers": [
+            "옆넓이"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "둘레",
+          "equivalentAnswers": [
+            "둘레"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 2,
+          "answer": "높이",
+          "equivalentAnswers": [
+            "높이"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "옆넓이"
+        ],
+        [
+          "둘레"
+        ],
+        [
+          "높이"
+        ]
+      ],
+      "proposalFingerprint": "fcaa77b767d838f33ebd8d5312ced11456cb2e00553014be00448f0e709a824a",
+      "coreAfter": "옆모서리가 밑면에 수직인 각기둥에서, 겉넓이에서 두 밑넓이를 뺀 {옆넓이}를 밑면의 {둘레}로 나누면 높이가 나온다.",
+      "coreReason": "겉넓이로 높이를 구하는 일반설명에도 같은 수직 조건을 명시한다."
+    },
+    {
+      "id": "m1-07-05-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "밑넓이와 높이를 곱해 $3$으로 나눈다는 내용이 뿔의 부피 문항과 같음.",
+      "cDecision": "rewrite",
+      "cReason": "3과 나눈다, 1/3과 곱한다라는 서로 다른 정답 쌍이 생기지 않도록 한 배율만 묻는다.",
+      "exclusionReason": "B 제외: m1-07-05-c2(뿔의 부피)와 설명 목표가 같은 서술형 중복.",
+      "learningRole": "procedure",
+      "roleReason": "밑넓이와 높이를 곱해 $3$으로 나누는 계산 순서",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1933,
+      "part": "m1plus",
+      "sourceFingerprint": "d00db743c80d8ae05ef657c37ee8113bc4dc2c86f856092c8525cdfe1a7c11eb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1933
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "각뿔의 부피는 밑넓이와 높이를 곱한 값의 {$\\frac{1}{3}$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{3}$"
+      ],
+      "cStudentSentence": "각뿔의 부피는 밑넓이와 높이를 곱한 값의 □이다.",
+      "cAnswers": [
+        "$\\frac{1}{3}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{3}$",
+          "equivalentAnswers": [
+            "$\\frac{1}{3}$",
+            "$\\frac{1}{3}$배",
+            "$3$분의 $1$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{3}$",
+          "$\\frac{1}{3}$배",
+          "$3$분의 $1$"
+        ]
+      ],
+      "proposalFingerprint": "2c78dd925ceef3419bc5d6d93ab3aac97e71db92291b09feca0bef64663d5d00",
+      "cAfter": "각뿔의 부피는 밑넓이와 높이를 곱한 값의 {$\\frac{1}{3}$}이다."
+    },
+    {
+      "id": "m1-07-05-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "밑면의 한 변의 길이가 $a$인 정사각뿔에서 옆면인 삼각형은 밑면의 한 변을 밑변으로 할 때 높이가 $h$이다. 이 정사각뿔의 옆넓이가 $\\frac{1}{2}\\times$(밑면의 둘레의 길이)$\\times h$와 같은 까닭을 설명하시오.",
+      "bAnswer": "옆면 하나의 넓이는 $\\frac{1}{2}\\times a\\times h$이고 옆면은 합동인 삼각형 $4$개이므로 옆넓이는 $4\\times\\frac{1}{2}ah=\\frac{1}{2}\\times4a\\times h$이다. 여기서 $4a$가 밑면의 둘레의 길이이다.",
+      "bGoal": "옆면 $4$개의 넓이의 합이 둘레와 높이의 곱의 절반임을 설명",
+      "bReason": "삼각형 네 개의 넓이 합과 밑면 둘레4a의 관계를 모두 연결하도록 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면 하나의 넓이는 $\\frac12 ah$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "합동인 옆면 $4$개의 넓이를 더하면 $\\frac12\\times4a\\times h$이고 $4a$가 밑면의 둘레이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "둘레와 절반이라는 두 핵심어를 묻는 짧은 빈칸으로 계산 구조가 드러남.",
+      "studentLabel": "정사각뿔의 옆넓이와 밑면의 둘레",
+      "learningRole": "reason",
+      "roleReason": "옆넓이가 둘레와 높이의 곱의 절반인 까닭",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1940,
+      "part": "m1plus",
+      "sourceFingerprint": "fc30d194e3e666c9a6ca661eacc20800c33ae7db608f9837e24636cc56d72e6f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1940
+      },
+      "directReview": null,
+      "cFrozenSentence": "정사각뿔의 옆면 삼각형의 높이를 알면, 옆넓이는 밑면의 □와 그 높이의 곱의 □이다.",
+      "cFrozenDefinition": "정사각뿔의 옆면 삼각형의 높이를 알면, 옆넓이는 밑면의 {둘레}와 그 높이의 곱의 {절반}이다.",
+      "cFrozenAnswers": [
+        "둘레",
+        "절반"
+      ],
+      "cMarkedSentence": "정사각뿔의 옆면 삼각형의 높이를 알면, 옆넓이는 밑면의 {둘레}와 그 높이의 곱의 {절반}이다.",
+      "cSlotAnswers": [
+        "둘레",
+        "절반"
+      ],
+      "cStudentSentence": "정사각뿔의 옆면 삼각형의 높이를 알면, 옆넓이는 밑면의 □와 그 높이의 곱의 □이다.",
+      "cAnswers": [
+        "둘레",
+        "절반"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "둘레",
+          "equivalentAnswers": [
+            "둘레",
+            "둘레의 길이"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "절반",
+          "equivalentAnswers": [
+            "절반",
+            "$\\frac{1}{2}$",
+            "반"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "둘레",
+          "accept": [
+            "둘레의 길이"
+          ]
+        }
+      ],
+      "equivalentExpressions": [
+        {
+          "answer": "절반",
+          "accept": [
+            "$\\frac{1}{2}$",
+            "반"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "둘레",
+          "둘레의 길이"
+        ],
+        [
+          "절반",
+          "$\\frac{1}{2}$",
+          "반"
+        ]
+      ],
+      "proposalFingerprint": "20c7c19fbda32a4b1a4bafa2d615cd28399840fb15d1d81b1ac36497c567cc1e"
+    },
+    {
+      "id": "m1-07-05-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "한 모서리의 길이가 $a$인 정육면체를, 정육면체의 한가운데 점을 공통인 꼭짓점으로 하고 정육면체의 각 면을 밑면으로 하는 사각뿔들로 나누었다. 사각뿔은 모두 몇 개이고 서로 어떤 관계인지 쓰고, 사각뿔 하나의 부피를 $a$로 나타내시오.",
+      "bAnswer": "정육면체의 면이 $6$개이므로 사각뿔은 $6$개이고 모두 합동이다. 따라서 하나의 부피는 정육면체의 부피 $a^3$의 $\\frac{1}{6}$인 $\\frac{1}{6}a^3$이다.",
+      "bGoal": "정육면체를 합동인 사각뿔로 나누어 부피 구하기",
+      "bReason": "a로 나타내라고 요구하므로1/6배만이 아니라a세제곱/6 식을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합동인 사각뿔 $6$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac16 a^3$",
+            "$\\frac{a^3}{6}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "정육면체는 한가운데 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 {$6$}개로 나눌 수 있으므로, 사각뿔 하나의 부피는 정육면체의 부피의 {$\\frac{1}{6}$}이다.",
+      "cAnswers": [
+        "$6$",
+        "$\\frac{1}{6}$"
+      ],
+      "cReason": "가운데의 임의 한 점이 아니라 정중앙인 한가운데 점을 명시한다.",
+      "studentLabel": "정육면체를 사각뿔로 나누기",
+      "learningRole": "application",
+      "roleReason": "정육면체 분할로 사각뿔 하나의 부피 알기",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1950,
+      "part": "m1plus",
+      "sourceFingerprint": "7f44bee274ac6bf885d20985f1f33f54f65c41a18ed941073eb1e7f32f5bf479",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1950
+      },
+      "directReview": null,
+      "cMarkedSentence": "정육면체는 한가운데 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 {$6$}개로 나눌 수 있으므로, 사각뿔 하나의 부피는 정육면체의 부피의 {$\\frac{1}{6}$}이다.",
+      "cSlotAnswers": [
+        "$6$",
+        "$\\frac{1}{6}$"
+      ],
+      "cStudentSentence": "정육면체는 한가운데 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 □개로 나눌 수 있으므로, 사각뿔 하나의 부피는 정육면체의 부피의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$6$",
+          "equivalentAnswers": [
+            "$6$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{1}{6}$",
+          "equivalentAnswers": [
+            "$\\frac{1}{6}$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ],
+        [
+          "$\\frac{1}{6}$"
+        ]
+      ],
+      "proposalFingerprint": "d236583dd683d15bd1301679720e460bb2c7402f1fcefb31f7e3f85888e99f86",
+      "coreAfter": "정육면체는 한가운데 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 {$6$}개로 {나눌} 수 있다.",
+      "coreReason": "합동인 여섯 사각뿔이 되도록 꼭짓점을 한가운데 점으로 명확히 한다."
+    },
+    {
+      "id": "m1-07-06-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "구의 겉넓이 공식 $4\\pi r^2$에서 $r$는 어떤 길이를 뜻하는지 쓰시오. 이 공식을 이용하여 지름의 길이가 $4$인 구의 겉넓이를 구하는 과정을 설명하시오.",
+      "bAnswer": "구의 겉넓이를 구하는 식 $4\\pi r^2$의 $r$는 반지름의 길이이므로 먼저 지름의 절반인 $2$를 구한다. 겉넓이는 $4\\pi\\times2^2=16\\pi$이다.",
+      "bGoal": "지름을 반지름으로 바꾸어 겉넓이 구하기",
+      "bReason": "지름으로 계산하는 다른 올바른 공식을 부정하지 않고 특정 공식4πr제곱의 r 의미와 대입을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "r는 반지름의 길이이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "반지름은 $2$이므로 $4\\pi\\times2^2=16\\pi$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "지름을 절반으로 바꾸는 단계와 넣을 식을 차례로 묻는 빈칸이 분명함.",
+      "studentLabel": "지름이 주어진 구의 겉넓이",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "지름을 반지름으로 바꾼 뒤 식에 넣기",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1955,
+      "part": "m1plus",
+      "sourceFingerprint": "cf3c305b6b936d6e7d23b714834b49e4f8ffa77c0afe192092d300eef729c2a9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1955
+      },
+      "directReview": null,
+      "cFrozenSentence": "구의 지름이 주어지면 그 □을 반지름 $r$로 하여, 구의 겉넓이 공식 □에 넣는다.",
+      "cFrozenDefinition": "구의 지름이 주어지면 그 {절반}을 반지름 $r$로 하여, 구의 겉넓이 공식 {$4\\pi r^2$}에 넣는다.",
+      "cFrozenAnswers": [
+        "절반",
+        "$4\\pi r^2$"
+      ],
+      "cMarkedSentence": "구의 지름이 주어지면 그 {절반}을 반지름 $r$로 하여, 구의 겉넓이 공식 {$4\\pi r^2$}에 넣는다.",
+      "cSlotAnswers": [
+        "절반",
+        "$4\\pi r^2$"
+      ],
+      "cStudentSentence": "구의 지름이 주어지면 그 □을 반지름 $r$로 하여, 구의 겉넓이 공식 □에 넣는다.",
+      "cAnswers": [
+        "절반",
+        "$4\\pi r^2$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "절반",
+          "equivalentAnswers": [
+            "절반",
+            "$\\frac{1}{2}$",
+            "반"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$4\\pi r^2$",
+          "equivalentAnswers": [
+            "$4\\pi r^2$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "절반",
+          "accept": [
+            "$\\frac{1}{2}$",
+            "반"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "절반",
+          "$\\frac{1}{2}$",
+          "반"
+        ],
+        [
+          "$4\\pi r^2$"
+        ]
+      ],
+      "proposalFingerprint": "7908fc809240ee39ee8dbc820eec04fcc711e6a142d90df10ac1a80496fafd69"
+    },
+    {
+      "id": "m1-07-06-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "구를 중심을 지나는 평면으로 자른 단면의 넓이가 $9\\pi$이다. 이 구의 겉넓이를 구하고, 단면의 넓이와 구의 겉넓이 사이의 관계를 까닭과 함께 설명하시오.",
+      "bAnswer": "겉넓이는 $36\\pi$이다. 중심을 지나게 자른 단면은 반지름의 길이가 구와 같은 원이므로 넓이가 $\\pi r^2$이고, 구의 겉넓이 $4\\pi r^2$은 그 $4$배이기 때문이다.",
+      "bGoal": "중심을 지나는 단면의 넓이로 구의 겉넓이 구하기",
+      "bReason": "관계와 까닭을 모두 요구하므로 반지름이 같음과 두 넓이 공식의4배 관계를 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$36\\pi$"
+          ]
+        },
+        {
+          "anyOf": [
+            "중심 단면은 구와 반지름이 같은 원이라 넓이가 $\\pi r^2$이고 구 겉넓이는 $4\\pi r^2$여서 $4$배이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "구의 겉넓이는 구를 중심을 지나는 평면으로 잘랐을 때 생기는 단면인 {원}의 넓이의 {$4$}배이다.",
+      "cAnswers": [
+        "원",
+        "$4$"
+      ],
+      "cReason": "'반으로 잘랐을 때 생기는 □'에 단면·반구도 들어갈 수 있어 단면의 모양을 묻게 좁힘.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "단면인 원의 넓이의 $4$배 관계 적용",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1956,
+      "part": "m1plus",
+      "sourceFingerprint": "3f7db163d4a080ef01288ea994c8ea683d2726f03da13f5e139b4a0699e6d83e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1956
+      },
+      "directReview": null,
+      "cMarkedSentence": "구의 겉넓이는 구를 중심을 지나는 평면으로 잘랐을 때 생기는 단면인 {원}의 넓이의 {$4$}배이다.",
+      "cSlotAnswers": [
+        "원",
+        "$4$"
+      ],
+      "cStudentSentence": "구의 겉넓이는 구를 중심을 지나는 평면으로 잘랐을 때 생기는 단면인 □의 넓이의 □배이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "원",
+          "equivalentAnswers": [
+            "원"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$4$",
+          "equivalentAnswers": [
+            "$4$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "원"
+        ],
+        [
+          "$4$"
+        ]
+      ],
+      "proposalFingerprint": "41d34360a80781426985bd3e3ab2e5a702e5346e4a9eb05007c13e856ee07720"
+    },
+    {
+      "id": "m1-07-06-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "구의 부피 식을 말로 풀어 쓴 계산 순서라 구의 부피 문항과 답이 같음.",
+      "cDecision": "keep",
+      "cReason": "세번과3번은 같은 횟수이다.",
+      "exclusionReason": "B 제외: m1-07-06-c2(구의 부피)와 목표가 같은 서술형 중복.",
+      "learningRole": "procedure",
+      "roleReason": "구의 부피를 계산하는 곱셈 순서",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1958,
+      "part": "m1plus",
+      "sourceFingerprint": "16ef892cff9e83bef31c84795e9fae62cf365e4337d0dca7aa61d5d34fb0baf2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1958
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "구의 부피는 반지름을 □ 곱한 뒤 □를 곱한다.",
+      "cFrozenDefinition": "구의 부피는 반지름을 {세 번} 곱한 뒤 {$\\frac{4}{3}\\pi$}를 곱한다.",
+      "cFrozenAnswers": [
+        "세 번",
+        "$\\frac{4}{3}\\pi$"
+      ],
+      "cMarkedSentence": "구의 부피는 반지름을 {세 번} 곱한 뒤 {$\\frac{4}{3}\\pi$}를 곱한다.",
+      "cSlotAnswers": [
+        "세 번",
+        "$\\frac{4}{3}\\pi$"
+      ],
+      "cStudentSentence": "구의 부피는 반지름을 □ 곱한 뒤 □를 곱한다.",
+      "cAnswers": [
+        "세 번",
+        "$\\frac{4}{3}\\pi$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "세 번",
+          "equivalentAnswers": [
+            "세 번",
+            "$3$번"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{4}{3}\\pi$",
+          "equivalentAnswers": [
+            "$\\frac43\\pi$",
+            "$\\frac{4}{3}\\pi$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "세 번",
+          "$3$번"
+        ],
+        [
+          "$\\frac43\\pi$",
+          "$\\frac{4}{3}\\pi$"
+        ]
+      ],
+      "proposalFingerprint": "7d12f0d19732db48ec439772eef334c108d368c5514a642fb7355d11c19aff8a"
+    },
+    {
+      "id": "m1-07-06-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "겉넓이가 $64\\pi$인 구의 반지름의 길이를 구하는 과정을 구의 겉넓이를 구하는 식을 써서 설명하시오.",
+      "bAnswer": "반지름의 길이를 $r$라 하면 $4\\pi r^2=64\\pi$이므로 양변을 $4\\pi$로 나누어 $r^2=16$이다. 두 번 곱해 $16$이 되는 양수는 $4$이므로 $r=4$이다.",
+      "bGoal": "겉넓이 식을 거꾸로 풀어 반지름 구하기",
+      "bReason": "4π 전체로 나누는 식에 괄호를 넣어 나눗셈의 범위를 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4\\pi r^2=64\\pi$에서 $r^2=16$",
+            "$64\\pi\\div(4\\pi)=16$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$r=4$",
+            "반지름의 길이는 $4$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "구의 겉넓이를 {$4\\pi$}로 나누면 반지름의 길이를 {두} 번 곱한 값이 나온다. 이 값을 보고 반지름의 길이를 찾는다.",
+      "cAnswers": [
+        "$4\\pi$",
+        "두"
+      ],
+      "cReason": "둘째 빈칸의 답 '반지름'이 바로 앞에 나와 곱한 횟수를 묻도록 바꿈.",
+      "studentLabel": "구의 겉넓이로 반지름 구하기",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "겉넓이를 $4\\pi$로 나누어 반지름 찾기",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1964,
+      "part": "m1plus",
+      "sourceFingerprint": "127727de8432b8c1768e48d6e9226d8d399c063c8ec072bf5471ec8a30ea81cb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1964
+      },
+      "directReview": null,
+      "cMarkedSentence": "구의 겉넓이를 {$4\\pi$}로 나누면 반지름의 길이를 {두} 번 곱한 값이 나온다. 이 값을 보고 반지름의 길이를 찾는다.",
+      "cSlotAnswers": [
+        "$4\\pi$",
+        "두"
+      ],
+      "cStudentSentence": "구의 겉넓이를 □로 나누면 반지름의 길이를 □ 번 곱한 값이 나온다. 이 값을 보고 반지름의 길이를 찾는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$4\\pi$",
+          "equivalentAnswers": [
+            "$4\\pi$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "두",
+          "equivalentAnswers": [
+            "두",
+            "$2$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "두",
+          "accept": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$4\\pi$"
+        ],
+        [
+          "두",
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "1a9376d7d060f606acc5f4183bff143ca17c5126afe78d4713251cff56e2a0a6"
+    },
+    {
+      "id": "m1-07-06-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 $r$인 구를 중심을 지나고 서로 수직인 두 평면으로 잘라 똑같은 네 조각으로 나누었다. 한 조각의 부피와 겉넓이를 각각 $r$로 나타내고, 겉넓이가 어떤 면들의 넓이의 합인지 설명하시오.",
+      "bAnswer": "부피는 구의 부피의 $\\frac{1}{4}$인 $\\frac{1}{3}\\pi r^3$이다. 겉넓이는 둥근 면의 넓이 $\\frac{1}{4}\\times4\\pi r^2=\\pi r^2$에 잘린 면인 반원 $2$개의 넓이 $2\\times\\frac{1}{2}\\pi r^2=\\pi r^2$을 더한 $2\\pi r^2$이다.",
+      "bGoal": "구의 조각의 부피와 겉넓이에서 잘린 면 처리",
+      "bReason": "r로 나타내라는 요구에 맞게 부피의 일반식까지 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부피는 $\\frac13\\pi r^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "둥근 면의 넓이에 반원 $2$개의 넓이를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "겉넓이는 $2\\pi r^2$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "반지름의 길이가 $r$인 구를 중심을 지나고 서로 수직인 두 평면으로 잘라 똑같은 조각 $4$개로 나눌 때, 한 조각의 부피는 구의 부피의 {$\\frac{1}{4}$}이고, 한 조각의 겉넓이는 둥근 면의 넓이에 잘린 면인 {반원} {$2$}개의 넓이를 더한 값이다.",
+      "cAnswers": [
+        "$\\frac{1}{4}$",
+        "반원",
+        "$2$"
+      ],
+      "cReason": "문장에 '$\\frac{1}{4}$ 조각'이 그대로 있어 답을 베끼게 되므로 조각 수로 바꿔 씀.",
+      "studentLabel": "구를 똑같이 네 조각으로 자른 한 조각",
+      "learningRole": "application",
+      "roleReason": "잘린 구 조각의 부피와 겉넓이 구하기",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1968,
+      "part": "m1plus",
+      "sourceFingerprint": "c2ebfce003083cd97ee1744ec4340eaf80d5f35f179c1ffc42b4661f6e4e94ea",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1968
+      },
+      "directReview": null,
+      "cMarkedSentence": "반지름의 길이가 $r$인 구를 중심을 지나고 서로 수직인 두 평면으로 잘라 똑같은 조각 $4$개로 나눌 때, 한 조각의 부피는 구의 부피의 {$\\frac{1}{4}$}이고, 한 조각의 겉넓이는 둥근 면의 넓이에 잘린 면인 {반원} {$2$}개의 넓이를 더한 값이다.",
+      "cSlotAnswers": [
+        "$\\frac{1}{4}$",
+        "반원",
+        "$2$"
+      ],
+      "cStudentSentence": "반지름의 길이가 $r$인 구를 중심을 지나고 서로 수직인 두 평면으로 잘라 똑같은 조각 $4$개로 나눌 때, 한 조각의 부피는 구의 부피의 □이고, 한 조각의 겉넓이는 둥근 면의 넓이에 잘린 면인 □ □개의 넓이를 더한 값이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{1}{4}$",
+          "equivalentAnswers": [
+            "$\\frac{1}{4}$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "반원",
+          "equivalentAnswers": [
+            "반원"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 2,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{1}{4}$"
+        ],
+        [
+          "반원"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "7aea8b9e0cd61e90df579c412b7926541a0b608da3f29fefdfd790d36bd5ef47"
+    },
+    {
+      "id": "m1-07-06-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "안쪽이 한 모서리의 길이가 $4$인 정육면체 모양인 상자에 안쪽 여섯 면에 모두 닿는 구를 넣었다. 구의 반지름의 길이를 까닭과 함께 쓰고, 상자 안에서 구가 차지하지 않는 부분의 부피를 구하시오.",
+      "bAnswer": "구가 마주 보는 두 면에 모두 닿으므로 구의 지름의 길이는 모서리의 길이 $4$와 같고 반지름의 길이는 $2$이다. 빈 부분의 부피는 상자의 부피에서 구의 부피를 뺀 $4^3-\\frac{4}{3}\\pi\\times2^3=64-\\frac{32}{3}\\pi$이다.",
+      "bGoal": "정육면체에 꼭 맞는 구의 반지름과 빈 곳의 부피",
+      "bReason": "상자의 안쪽 치수를 사용함을 명시하고 반지름2의 까닭을 별도로 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구의 지름이 안쪽 모서리 길이$4$와 같아 반지름은$2$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "상자 안쪽의 부피에서 구의 부피를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$64-\\frac{32}{3}\\pi$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "안쪽이 정육면체 모양인 상자의 안쪽 여섯 면에 모두 닿는 구의 지름은 상자 안쪽의 한 {모서리}의 길이와 같으므로 반지름은 그 {절반}이다. 빈 곳의 부피는 상자 안쪽의 부피에서 구의 부피를 {뺀} 값이다.",
+      "cAnswers": [
+        "모서리",
+        "절반",
+        "뺀"
+      ],
+      "cReason": "상자 두께와 무관하게 구가 접하는 안쪽 치수로 읽도록 한다.",
+      "studentLabel": "정육면체 상자에 꼭 맞는 구",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "상자에서 구를 뺀 빈 곳의 부피 구하기",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1969,
+      "part": "m1plus",
+      "sourceFingerprint": "38bf8c7b9460b7ab320c3e78867b38925046991c4b8c2c0478179268b78e5a06",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1969
+      },
+      "directReview": null,
+      "cMarkedSentence": "안쪽이 정육면체 모양인 상자의 안쪽 여섯 면에 모두 닿는 구의 지름은 상자 안쪽의 한 {모서리}의 길이와 같으므로 반지름은 그 {절반}이다. 빈 곳의 부피는 상자 안쪽의 부피에서 구의 부피를 {뺀} 값이다.",
+      "cSlotAnswers": [
+        "모서리",
+        "절반",
+        "뺀"
+      ],
+      "cStudentSentence": "안쪽이 정육면체 모양인 상자의 안쪽 여섯 면에 모두 닿는 구의 지름은 상자 안쪽의 한 □의 길이와 같으므로 반지름은 그 □이다. 빈 곳의 부피는 상자 안쪽의 부피에서 구의 부피를 □ 값이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "모서리",
+          "equivalentAnswers": [
+            "모서리"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "절반",
+          "equivalentAnswers": [
+            "절반",
+            "반",
+            "$\\frac12$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 2,
+          "answer": "뺀",
+          "equivalentAnswers": [
+            "뺀"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "절반",
+          "accept": [
+            "$\\frac{1}{2}$",
+            "반"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "모서리"
+        ],
+        [
+          "절반",
+          "반",
+          "$\\frac12$"
+        ],
+        [
+          "뺀"
+        ]
+      ],
+      "proposalFingerprint": "8d1b59b49135f77390f7c68dbe84490e2dca8153bec462f39190f7878b8a723a"
+    },
+    {
+      "id": "m1-07-06-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 $6$인 쇠구슬 $1$개를 녹여 반지름의 길이가 $2$인 쇠구슬을 남김없이 만들려고 한다. 몇 개를 만들 수 있는지 구하는 방법을 까닭과 함께 설명하고 값을 구하시오.",
+      "bAnswer": "녹여도 전체 부피는 변하지 않으므로 큰 구의 부피를 작은 구 하나의 부피로 나눈다. $\\frac{4}{3}\\pi\\times6^3\\div\\left(\\frac{4}{3}\\pi\\times2^3\\right)=216\\div8=27$이므로 $27$개이다.",
+      "bGoal": "부피가 변하지 않음을 이용해 작은 구의 개수 구하기",
+      "bReason": "부피 보존과27개라는 결과 사이에 나눗셈 또는 세제곱 비율의 계산 방법을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "녹여도 전체 부피는 변하지 않는다",
+            "작은 구들의 부피 합이 큰 구 부피와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "큰 구 부피를 작은 구 하나의 부피로 나눈다",
+            "반지름이 $3$배라 부피는 $3^3=27$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$27$개"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "큰 구 하나를 녹여 같은 크기의 작은 구를 남김없이 만들면 작은 구들의 부피의 합은 큰 구의 부피와 {같다}. 따라서 작은 구의 개수는 큰 구의 부피를 작은 구 하나의 부피로 {나눈} 값이다.",
+      "cAnswers": [
+        "같다",
+        "나눈"
+      ],
+      "cReason": "둘째 빈칸의 답 '부피'가 바로 앞에 그대로 있어 관계와 계산을 묻게 바꿈.",
+      "studentLabel": "구를 녹여 작은 구 만들기",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "부피가 그대로임을 이용한 개수 구하기",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1971,
+      "part": "m1plus",
+      "sourceFingerprint": "43fa7af78731980b176f7aa62f26b8ad7b12f64127d6af91c754a894e35322f0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1971
+      },
+      "directReview": null,
+      "cMarkedSentence": "큰 구 하나를 녹여 같은 크기의 작은 구를 남김없이 만들면 작은 구들의 부피의 합은 큰 구의 부피와 {같다}. 따라서 작은 구의 개수는 큰 구의 부피를 작은 구 하나의 부피로 {나눈} 값이다.",
+      "cSlotAnswers": [
+        "같다",
+        "나눈"
+      ],
+      "cStudentSentence": "큰 구 하나를 녹여 같은 크기의 작은 구를 남김없이 만들면 작은 구들의 부피의 합은 큰 구의 부피와 □. 따라서 작은 구의 개수는 큰 구의 부피를 작은 구 하나의 부피로 □ 값이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "나눈",
+          "equivalentAnswers": [
+            "나눈"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ],
+        [
+          "나눈"
+        ]
+      ],
+      "proposalFingerprint": "184f84dcbc3135fc85ef8013aa0b640be528ff2d7d759aeeee3e255e6c523995"
+    },
+    {
+      "id": "m1-07-06-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름의 길이가 $3$인 구를 녹여 밑면의 반지름의 길이가 $3$인 원기둥을 남김없이 만들었다. 원기둥의 높이를 구하는 과정을 식을 세워 설명하시오.",
+      "bAnswer": "구와 원기둥의 부피가 같으므로 원기둥의 높이를 $h$라 하면 $\\pi\\times3^2\\times h=\\frac{4}{3}\\pi\\times3^3$이다. $9\\pi h=36\\pi$이므로 $h=4$이다.",
+      "bGoal": "부피가 같다는 식으로 원기둥의 높이 구하기",
+      "bReason": "식을 세워 설명하라는 요구에 맞게 부피가 같다는 식을 실제 응답에 요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\pi\\times3^2\\times h=\\frac43\\pi\\times3^3$",
+            "$9\\pi h=36\\pi$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$h=4$",
+            "높이는$4$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "구를 녹여 남김없이 원기둥을 만들면 구와 원기둥은 {부피}가 서로 같다. 원기둥의 밑면의 반지름을 알면 이 관계를 식으로 세워 원기둥의 {높이}를 구할 수 있다.",
+      "cAnswers": [
+        "부피",
+        "높이"
+      ],
+      "cReason": "'등식'은 학생에게 어려운 형식 이름이라 빼고 같은 양과 구할 길이만 묻게 함.",
+      "studentLabel": "구를 녹여 원기둥 만들기",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "부피가 같다는 식으로 높이 구하기",
+      "authorBatch": 22,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1972,
+      "part": "m1plus",
+      "sourceFingerprint": "4a27321baeb4f5f51c00f1079ba23cde84c0eb2cdce79ada9e21c08e8dcc0e02",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1972
+      },
+      "directReview": null,
+      "cMarkedSentence": "구를 녹여 남김없이 원기둥을 만들면 구와 원기둥은 {부피}가 서로 같다. 원기둥의 밑면의 반지름을 알면 이 관계를 식으로 세워 원기둥의 {높이}를 구할 수 있다.",
+      "cSlotAnswers": [
+        "부피",
+        "높이"
+      ],
+      "cStudentSentence": "구를 녹여 남김없이 원기둥을 만들면 구와 원기둥은 □가 서로 같다. 원기둥의 밑면의 반지름을 알면 이 관계를 식으로 세워 원기둥의 □를 구할 수 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부피",
+          "equivalentAnswers": [
+            "부피"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "높이",
+          "equivalentAnswers": [
+            "높이"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부피"
+        ],
+        [
+          "높이"
+        ]
+      ],
+      "proposalFingerprint": "ab7b9da4a4378436bd12deab770ae23e0230690734bd36309e17b08b5fd4dbc7"
+    },
+    {
+      "id": "m1-08-01-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$3$, $8$, $10$의 평균을 $12$라고 계산했다. 다시 계산하지 않고도 이 답이 틀렸음을 알 수 있는 이유를 쓰시오.",
+      "bAnswer": "평균은 가장 큰 변량보다 클 수 없는데, $12$는 가장 큰 변량 $10$보다 크기 때문이다.",
+      "bGoal": "평균의 범위로 계산 실수 찾아내기",
+      "bReason": "12>10이라는 비교만이 아니라 평균이 최댓값을 넘지 않는 성질을 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균은 가장 큰 변량$10$보다 클 수 없는데$12$는$10$보다 크기 때문이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "평균은 가장 {작은} 변량 이상, 가장 {큰} 변량 이하이다. 이 범위를 벗어나면 계산이 틀린 것이지만, 범위 안에 있다고 반드시 맞는 것은 아니다.",
+      "cAnswers": [
+        "작은",
+        "큰"
+      ],
+      "cReason": "긴 구절 빈칸 두 개를 핵심 낱말 '작은/큰'으로 줄임",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "평균이 최솟값과 최댓값 사이에 있다는 성질",
+      "authorBatch": 23,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1983,
+      "part": "m1plus",
+      "sourceFingerprint": "4d3c009eb3cec95758407faeee67369463fdb79e7738c1ae0168b7982c505302",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1983
+      },
+      "directReview": null,
+      "cMarkedSentence": "평균은 가장 {작은} 변량 이상, 가장 {큰} 변량 이하이다. 이 범위를 벗어나면 계산이 틀린 것이지만, 범위 안에 있다고 반드시 맞는 것은 아니다.",
+      "cSlotAnswers": [
+        "작은",
+        "큰"
+      ],
+      "cStudentSentence": "평균은 가장 □ 변량 이상, 가장 □ 변량 이하이다. 이 범위를 벗어나면 계산이 틀린 것이지만, 범위 안에 있다고 반드시 맞는 것은 아니다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작은",
+          "equivalentAnswers": [
+            "작은"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "큰",
+          "equivalentAnswers": [
+            "큰"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작은"
+        ],
+        [
+          "큰"
+        ]
+      ],
+      "proposalFingerprint": "cd36e63c54e5d8415803e062a0645976e391c08fc484ab50429f2f72cc2c431b"
+    },
+    {
+      "id": "m1-08-01-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "모든 변량을 $3$배 하면 평균과 중앙값은 각각 어떻게 달라지는지 쓰고 까닭을 설명하시오. 평균이 $4$, 중앙값이 $5$인 자료의 새 평균과 새 중앙값도 구하시오.",
+      "bAnswer": "평균과 중앙값은 모두 $3$배가 된다. 총합이 $3$배가 되어 같은 개수로 나눈 평균도 $3$배이다. 크기순의 자리는 그대로이고 가운데 값도 각각 $3$배가 되어 중앙값도 $3$배이다. 따라서 새 평균은 $12$, 새 중앙값은 $15$이다.",
+      "bGoal": "모든 변량을 몇 배 할 때 대푯값의 변화 알기",
+      "bReason": "reason 역할에 맞게 평균과 중앙값이 각각 세 배가 되는 이유를 질문과 답에 포함한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평균과 중앙값 모두$3$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "총합이$3$배이고 개수는 같아 평균도$3$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "크기순은 같고 가운데 값이 각각$3$배라 중앙값도$3$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "새 평균$12$, 새 중앙값$15$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "평균이 $m$, 중앙값이 $c$인 자료의 모든 변량을 $k$배 하면 새 자료의 평균은 {$km$}, 중앙값은 {$kc$}이다.",
+      "cAnswers": [
+        "$km$",
+        "$kc$"
+      ],
+      "cReason": "원래 답 '$k$배'가 문장에 그대로 있어 결과 식을 쓰게 바꿈",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "변량을 몇 배 할 때 평균·중앙값의 성질",
+      "authorBatch": 23,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1989,
+      "part": "m1plus",
+      "sourceFingerprint": "f0a1523672b713a9e221f7413dc0cfa9aafb119876813a78178b73f69dbfba4d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1989
+      },
+      "directReview": null,
+      "cMarkedSentence": "평균이 $m$, 중앙값이 $c$인 자료의 모든 변량을 $k$배 하면 새 자료의 평균은 {$km$}, 중앙값은 {$kc$}이다.",
+      "cSlotAnswers": [
+        "$km$",
+        "$kc$"
+      ],
+      "cStudentSentence": "평균이 $m$, 중앙값이 $c$인 자료의 모든 변량을 $k$배 하면 새 자료의 평균은 □, 중앙값은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$km$",
+          "equivalentAnswers": [
+            "$km$",
+            "$mk$",
+            "$k\\times m$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$kc$",
+          "equivalentAnswers": [
+            "$kc$",
+            "$ck$",
+            "$k\\times c$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$km$",
+          "accept": [
+            "$mk$",
+            "$k\\times m$"
+          ]
+        },
+        {
+          "answer": "$kc$",
+          "accept": [
+            "$ck$",
+            "$k\\times c$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$km$",
+          "$mk$",
+          "$k\\times m$"
+        ],
+        [
+          "$kc$",
+          "$ck$",
+          "$k\\times c$"
+        ]
+      ],
+      "proposalFingerprint": "179ceefef4c183c5cabb74ac4f785fe028010742905a51e705a4a0b72b04a3bf"
+    },
+    {
+      "id": "m1-08-01-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "자료 $2$, $5$, $x$, $9$의 중앙값이 $6$이다. $x$가 크기순으로 어느 자리에 놓이는지 경우를 나누어 생각하여 $x$를 구하시오.",
+      "bAnswer": "$x<5$이면 가운데 두 값은 모두 $5$ 이하라 중앙값이 $6$일 수 없다. $x\\ge9$이면 가운데 두 값은 $5$, $9$여서 중앙값이 $7$이다. 따라서 $5\\le x<9$이고, 가운데 두 값이 $5$, $x$이므로 $\\frac{5+x}{2}=6$에서 $x=7$이다.",
+      "bGoal": "중앙값 조건으로 모르는 변량 구하기",
+      "bReason": "원래 목표인 모르는 변량의 위치별 판단을 실제로 수행하도록 위치를 미리 주던 조건을 없앤다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$가$5$보다 작으면 중앙값은$5$이하",
+            "$x$가가운데두값에들지않으면 중앙값은$3.5$또는$7$이어서$6$이아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$가$9$이상이면 중앙값$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5+x}{2}=6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=7$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "모르는 변량 $x$가 있는 자료의 중앙값이 주어지면, 크기순으로 늘어놓았을 때 $x$가 {가운데} 자리에 오는 경우와 오지 않는 경우로 나누어 생각한다.",
+      "cAnswers": [
+        "가운데"
+      ],
+      "cReason": "'경우를 나눈다'는 풀이 말투 빈칸을 없애고 따질 자리만 묻게 함",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "중앙값 조건을 식으로 바꿔 미지수 구하기",
+      "authorBatch": 23,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1992,
+      "part": "m1plus",
+      "sourceFingerprint": "cd1427aec5b4c6b53f3dff7646ca28203270c842c560a68170343f2e2fd0a814",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1992
+      },
+      "directReview": null,
+      "cMarkedSentence": "모르는 변량 $x$가 있는 자료의 중앙값이 주어지면, 크기순으로 늘어놓았을 때 $x$가 {가운데} 자리에 오는 경우와 오지 않는 경우로 나누어 생각한다.",
+      "cSlotAnswers": [
+        "가운데"
+      ],
+      "cStudentSentence": "모르는 변량 $x$가 있는 자료의 중앙값이 주어지면, 크기순으로 늘어놓았을 때 $x$가 □ 자리에 오는 경우와 오지 않는 경우로 나누어 생각한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "가운데",
+          "equivalentAnswers": [
+            "가운데",
+            "한가운데",
+            "중앙"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "가운데",
+          "accept": [
+            "한가운데",
+            "중앙"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "가운데",
+          "한가운데",
+          "중앙"
+        ]
+      ],
+      "proposalFingerprint": "a61e1a72f46ba756827876270c45ce2f49ec0109f48105b1c7450c5e0e1d3e7e"
+    },
+    {
+      "id": "m1-08-01-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$1$, $5$, $9$와 자연수 $x$로 이루어진 자료의 중앙값이 될 수 있는 값 중 가장 큰 값을 구하고, $x$의 크기에 따라 경우를 나누어 그 이유를 쓰시오.",
+      "bAnswer": "$7$. $x\\ge 9$이면 크기순으로 $1$, $5$, $9$, $x$이므로 중앙값은 $\\frac{5+9}{2}=7$이다. $5\\le x<9$이면 중앙값은 $\\frac{5+x}{2}$로 $7$보다 작고, $x<5$이면 $5$보다 작다.",
+      "bGoal": "모르는 변량의 자리에 따라 중앙값 따져 보기",
+      "bReason": "경우를 나눠 최댓값을 보이라는 요구에 맞게 나머지 경우의 중앙값이7보다작음도 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 중앙값은$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$가$9$이상이면 가운데$5$와$9$의 평균$7$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\le x<9$이면 중앙값은 $(5+x)/2<7$이고 $x<5$이면 중앙값은 $5$ 미만이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "모르는 변량이 하나 있을 때 중앙값이 될 수 있는 값을 모두 구하려면, 크기순으로 늘어놓았을 때 그 변량이 놓일 {자리}에 따라 경우를 나누어 구한다.",
+      "cAnswers": [
+        "자리"
+      ],
+      "cReason": "'나눈다' 빈칸은 풀이 말투일 뿐이라 기준이 되는 '자리'만 묻게 함",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "미지수의 자리별로 중앙값을 따지는 경우 나누기",
+      "authorBatch": 23,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1999,
+      "part": "m1plus",
+      "sourceFingerprint": "db27bbca4e89f4caf64b46a0ed00fcb4cac1edae73a72b879d87595d28525a7a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1999
+      },
+      "directReview": null,
+      "cMarkedSentence": "모르는 변량이 하나 있을 때 중앙값이 될 수 있는 값을 모두 구하려면, 크기순으로 늘어놓았을 때 그 변량이 놓일 {자리}에 따라 경우를 나누어 구한다.",
+      "cSlotAnswers": [
+        "자리"
+      ],
+      "cStudentSentence": "모르는 변량이 하나 있을 때 중앙값이 될 수 있는 값을 모두 구하려면, 크기순으로 늘어놓았을 때 그 변량이 놓일 □에 따라 경우를 나누어 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "자리",
+          "equivalentAnswers": [
+            "자리",
+            "위치"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "자리",
+          "accept": [
+            "위치"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "자리",
+          "위치"
+        ]
+      ],
+      "proposalFingerprint": "c27cd7af80176e6fe4096b4b58de01af5304d14b4eec428f3c188c07c32641d6"
+    },
+    {
+      "id": "m1-08-02-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$12$, $15$, $31$을 줄기와 잎 그림으로 그리려고 한다(잎은 일의 자리 숫자). 줄기로 써야 하는 수를 모두 쓰고, 해당하는 변량이 없는 줄기의 잎 칸은 어떻게 하는지 쓰시오.",
+      "bAnswer": "줄기는 $1$, $2$, $3$을 모두 쓴다. 변량이 없는 줄기 $2$의 잎 칸은 비워 둔다.",
+      "bGoal": "잎이 없는 줄기를 처리하는 방법 알기",
+      "bReason": "줄기 전부를 요구하므로2도 쓴다는 단편만으로 전체목록을 대신하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "줄기$1$,$2$,$3$을 모두 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "줄기$2$의 잎 칸을 비워 둔다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "가장 작은 줄기와 가장 큰 줄기 사이에 있는 어떤 줄기에 해당하는 변량이 없어도 그 줄기는 {쓰고}, 잎 칸은 {비워} 둔다.",
+      "cAnswers": [
+        "쓰고",
+        "비워"
+      ],
+      "cReason": "'지우지 않고'는 떠올리기 어려운 구절이라 '쓰고'로 단순화함",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "변량이 없는 줄기를 남겨 두는 규칙",
+      "authorBatch": 23,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2005,
+      "part": "m1plus",
+      "sourceFingerprint": "fe63aeef57102aa17ef1c1aed723d7463c8c651624a5c48e48a6903410192ff4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2005
+      },
+      "directReview": null,
+      "cMarkedSentence": "가장 작은 줄기와 가장 큰 줄기 사이에 있는 어떤 줄기에 해당하는 변량이 없어도 그 줄기는 {쓰고}, 잎 칸은 {비워} 둔다.",
+      "cSlotAnswers": [
+        "쓰고",
+        "비워"
+      ],
+      "cStudentSentence": "가장 작은 줄기와 가장 큰 줄기 사이에 있는 어떤 줄기에 해당하는 변량이 없어도 그 줄기는 □, 잎 칸은 □ 둔다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "쓰고",
+          "equivalentAnswers": [
+            "쓰고",
+            "적고",
+            "남기고"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "비워",
+          "equivalentAnswers": [
+            "비워"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "쓰고",
+          "accept": [
+            "적고",
+            "남기고"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "쓰고",
+          "적고",
+          "남기고"
+        ],
+        [
+          "비워"
+        ]
+      ],
+      "proposalFingerprint": "84a13115c703833a0f9333a5f744b025d6399860fd40af94b219cc3d715b3372"
+    },
+    {
+      "id": "m1-08-02-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "$7.4$, $7.9$, $8.2$처럼 소수 첫째 자리까지 있는 자료를 줄기와 잎 그림으로 나타내며, 잎은 소수 첫째 자리 숫자로 정했다. 줄기는 변량의 어느 부분인지 쓰고, $7.4$의 줄기와 잎을 각각 쓰시오.",
+      "bAnswer": "정수 부분을 줄기로, 소수 첫째 자리 숫자를 잎으로 정한다. $7.4$는 줄기 $7$, 잎 $4$이다.",
+      "bGoal": "소수인 자료의 줄기와 잎 정하기",
+      "bReason": "잎의 자리 기준을 조건으로 주고 그 기준에서 줄기의 의미와 실제 수를 읽게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "줄기는 정수 부분이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7.4$는 줄기$7$, 잎$4$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "0.4의 줄기0을 포함하므로 자연수 부분이라는 부정확한 동의어를 빼고 자리 기준을 정한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "소수 자료에서 줄기와 잎을 정하는 방법",
+      "authorBatch": 23,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2007,
+      "part": "m1plus",
+      "sourceFingerprint": "4116b4a5c5d01b9a6c9a7b6cb5af9bfdaf2f01c050f0f85f3a3c969453e2bf5a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2007
+      },
+      "directReview": null,
+      "cMarkedSentence": "음이 아닌 소수 첫째 자리까지의 자료에서 잎을 소수 첫째 자리 숫자로 쓰면, 줄기는 변량의 {정수 부분}이다.",
+      "cSlotAnswers": [
+        "정수 부분"
+      ],
+      "cStudentSentence": "음이 아닌 소수 첫째 자리까지의 자료에서 잎을 소수 첫째 자리 숫자로 쓰면, 줄기는 변량의 □이다.",
+      "cAnswers": [
+        "정수 부분"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "정수 부분",
+          "equivalentAnswers": [
+            "정수 부분",
+            "일의 자리 이상의 수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "정수 부분",
+          "accept": [
+            "자연수 부분",
+            "일의 자리 이상의 수"
+          ]
+        },
+        {
+          "answer": "소수 첫째 자리 숫자",
+          "accept": [
+            "소수 첫째 자리",
+            "소수 첫째 자리 수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "정수 부분",
+          "일의 자리 이상의 수"
+        ]
+      ],
+      "proposalFingerprint": "6e64c91a5ed78e8ab04b6df35bee46943d03fb201d60b4f52c4072520ece82d2",
+      "cAfter": "음이 아닌 소수 첫째 자리까지의 자료에서 잎을 소수 첫째 자리 숫자로 쓰면, 줄기는 변량의 {정수 부분}이다."
+    },
+    {
+      "id": "m1-08-02-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "잎이 일의 자리 숫자인 줄기와 잎 그림에서 줄기 $2$의 잎이 $4$, $7$, 줄기 $3$의 잎이 $1$, $5$이다. $27$ 이상인 변량은 몇 개인지 구하고, 어떤 잎들을 세었는지 쓰시오.",
+      "bAnswer": "$3$개. 줄기 $2$에서는 잎 $7$만 세고, 줄기 $3$의 잎 $1$, $5$는 모두 세었다($27$, $31$, $35$).",
+      "bGoal": "줄기와 잎 그림에서 기준값 이상인 변량 세기",
+      "bReason": "어떤 잎들을 세었는지 모두 물으므로 세 잎의 대상을 전부 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$27$이상 변량$3$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "줄기$2$의잎$7$과 줄기$3$의잎$1$,$5$를센다",
+            "$27$,$31$,$35$를센다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "줄기를 작은 수부터 위에서 아래로 쓴 그림에서 기준값 이상인 자료를 셀 때는, 기준값이 있는 줄기에서는 기준값의 잎보다 {크거나 같은} 잎만 세고, 그보다 {아래쪽} 줄기의 잎은 모두 센다.",
+      "cAnswers": [
+        "크거나 같은",
+        "아래쪽"
+      ],
+      "cReason": "보다 이상인이라는 문법적으로 맞지 않는 인정답을 빼고 크거나같은 비교만 허용한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "기준값 이상인 잎을 골라 세는 방법",
+      "authorBatch": 23,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2008,
+      "part": "m1plus",
+      "sourceFingerprint": "44ed5557af823d72f21fa9f8b63b39d83e437c72d5df563c5530d591a6c9f2be",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2008
+      },
+      "directReview": null,
+      "cMarkedSentence": "줄기를 작은 수부터 위에서 아래로 쓴 그림에서 기준값 이상인 자료를 셀 때는, 기준값이 있는 줄기에서는 기준값의 잎보다 {크거나 같은} 잎만 세고, 그보다 {아래쪽} 줄기의 잎은 모두 센다.",
+      "cSlotAnswers": [
+        "크거나 같은",
+        "아래쪽"
+      ],
+      "cStudentSentence": "줄기를 작은 수부터 위에서 아래로 쓴 그림에서 기준값 이상인 자료를 셀 때는, 기준값이 있는 줄기에서는 기준값의 잎보다 □ 잎만 세고, 그보다 □ 줄기의 잎은 모두 센다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "크거나 같은",
+          "equivalentAnswers": [
+            "크거나 같은",
+            "같거나 큰"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "아래쪽",
+          "equivalentAnswers": [
+            "아래쪽",
+            "아래"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "크거나 같은",
+          "accept": [
+            "같거나 큰",
+            "이상인"
+          ]
+        },
+        {
+          "answer": "아래쪽",
+          "accept": [
+            "아래"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "크거나 같은",
+          "같거나 큰"
+        ],
+        [
+          "아래쪽",
+          "아래"
+        ]
+      ],
+      "proposalFingerprint": "7945d1c1170e4892c120427fa8f9c1880854b2cd89e510fe7b52a25dded50188"
+    },
+    {
+      "id": "m1-08-02-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "자료 $12$, $18$, $25$, $33$, $40$에서 $x$ 이상인 변량이 정확히 $2$개가 되는 자연수 $x$를 모두 구하고, 그중 가장 작은 값이 왜 그 값인지 쓰시오.",
+      "bAnswer": "$26$부터 $33$까지의 자연수이다. $x=25$이면 $25$도 포함되어 $3$개가 되므로 $x$는 $25$보다 커야 하고, 따라서 가장 작은 값은 $26$이다.",
+      "bGoal": "이상인 변량의 개수 조건으로 기준값의 범위 찾기",
+      "bReason": "25이하에서는 정확히3개가 아니라3개이상일수있으므로 부등식의 이유를 수정한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$26$부터$33$까지의 자연수",
+            "$26\\le x\\le33$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$가$25$이하이면$25$,$33$,$40$을포함해$3$개이상이된다",
+            "$x$가$25$일때$3$개이므로$25$보다커야한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크다고 하자. $x$ 이상인 변량이 정확히 $k$개가 되려면 $x$는 $(k+1)$번째 값보다 {크고} $k$번째 값 {이하}여야 한다.",
+      "cAnswers": [
+        "크고",
+        "이하"
+      ],
+      "cReason": "보다초과이고,작거나같아여야처럼 실제문장에 맞지 않는 어형을 인정답에서 제외한다.",
+      "coreAfter": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크면, 정확히 $k$개가 $x$ 이상이 되는 $x$는 $(k+1)$번째 값보다 {크고} $k$번째 값 {이하}이다.",
+      "coreReason": "'다음 값'이 큰 쪽에서 $(k+1)$번째 값임이 드러나지 않아 학생이 읽기 어려움",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "개수 조건을 만족하는 기준값의 범위 정하기",
+      "authorBatch": 23,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2022,
+      "part": "m1plus",
+      "sourceFingerprint": "fd884b7b8f75e7af72b497942d4f6c9afeb6b75f11eca88180a9d7e55d89efa7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2022
+      },
+      "directReview": null,
+      "coreBeforeRepair": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크면, 정확히 $k$개가 $x$ 이상이 되는 $x$는 $(k+1)$번째 값보다 크고 $k$번째 값 이하이다.",
+      "coreRepairReason": "표지가 없어서 원래 핵심어 {크고}, {이하}를 되살림. 범위의 경계(초과/이하)와 일반 조건은 그대로 두었고, 예의 답 $26$은 넣지 않음.",
+      "coreRepairEvidence": "core-repair/core-002",
+      "cMarkedSentence": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크다고 하자. $x$ 이상인 변량이 정확히 $k$개가 되려면 $x$는 $(k+1)$번째 값보다 {크고} $k$번째 값 {이하}여야 한다.",
+      "cSlotAnswers": [
+        "크고",
+        "이하"
+      ],
+      "cStudentSentence": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크다고 하자. $x$ 이상인 변량이 정확히 $k$개가 되려면 $x$는 $(k+1)$번째 값보다 □ $k$번째 값 □여야 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "크고",
+          "equivalentAnswers": [
+            "크고"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "이하",
+          "equivalentAnswers": [
+            "이하"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "크고",
+          "accept": [
+            "초과이고"
+          ]
+        },
+        {
+          "answer": "이하",
+          "accept": [
+            "보다 작거나 같아",
+            "작거나 같아"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "크고"
+        ],
+        [
+          "이하"
+        ]
+      ],
+      "proposalFingerprint": "5da368bd799ded9e63bb4d0883ec8da7779faf34447b00c216bb887e5f22cd2a"
+    },
+    {
+      "id": "m1-08-06-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "상대도수를 백분율로 바꾸는 방법을 쓰고, 상대도수 $0.35$를 백분율로, $8\\%$를 상대도수로 각각 나타내시오.",
+      "bAnswer": "상대도수에 $100$을 곱하고 $\\%$를 붙인다. $0.35$는 $35\\%$이고, $8\\%$는 $8\\div 100=0.08$이다.",
+      "bGoal": "상대도수와 백분율을 서로 바꾸기",
+      "bReason": "100배만 한 수와 백분율을 구별해 퍼센트 기호까지 요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100$을 곱한 수에 퍼센트 기호를 붙인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$35\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.08$",
+            "$\\frac{8}{100}$",
+            "$\\frac{2}{25}$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "곱하는 수를 묻는 짧고 분명한 방법 빈칸",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "$100$을 곱하거나 나누어 상대도수와 백분율을 바꾸는 방법",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2105,
+      "part": "m1plus",
+      "sourceFingerprint": "8867cd97f1ebf35e1189591df3927cddb352e92e1c96daac84524c09c5e41e44",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2105
+      },
+      "directReview": null,
+      "cFrozenSentence": "상대도수를 백분율로 바꾸려면 □을 곱한 수에 퍼센트 기호를 붙인다.",
+      "cFrozenDefinition": "상대도수를 백분율로 바꾸려면 {$100$}을 곱한 수에 퍼센트 기호를 붙인다.",
+      "cFrozenAnswers": [
+        "$100$"
+      ],
+      "cMarkedSentence": "상대도수를 백분율로 바꾸려면 {$100$}을 곱한 수에 퍼센트 기호를 붙인다.",
+      "cSlotAnswers": [
+        "$100$"
+      ],
+      "cStudentSentence": "상대도수를 백분율로 바꾸려면 □을 곱한 수에 퍼센트 기호를 붙인다.",
+      "cAnswers": [
+        "$100$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$100$",
+          "equivalentAnswers": [
+            "$100$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$100$"
+        ]
+      ],
+      "proposalFingerprint": "b0fe67e5637e4d788a13fe4f357dcbb6b1c63331b3bc4b2e49b6ba6b61967e0b"
+    },
+    {
+      "id": "m1-08-06-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "$A$ 집단은 $10$ 이상 $20$ 미만인 계급의 상대도수만, $B$ 집단은 $10$ 이상 $30$ 미만인 계급의 상대도수만 주어졌다. 이 두 값을 비교하는 것만으로 어느 집단에서 $10$ 이상 $20$ 미만인 자료의 비율이 더 큰지 항상 판단할 수 있는가? 까닭과 함께 쓰시오.",
+      "bAnswer": "항상 판단할 수 없다. $B$의 값에는 $20$ 이상 $30$ 미만인 자료도 포함되어 있어 $10$ 이상 $20$ 미만의 비율만 알 수는 없기 때문이다.",
+      "bGoal": "상대도수를 비교하기 전에 계급의 범위가 같은지 확인하기",
+      "bReason": "서로 다른 범위의 수치 비교 자체를 금지하지 않고 같은 범위의 비율을 판단하는 목표를 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 판단할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$B$의 계급에는 $20$ 이상 $30$ 미만도 포함된다",
+            "$B$의 $10$ 이상 $20$ 미만에 해당하는 비율이 따로 주어지지 않았다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 집단에서 같은 값의 범위에 속하는 자료의 비율을 비교하려면, 비교하는 두 계급의 {범위}가 같은지 먼저 확인한다.",
+      "cAnswers": [
+        "범위"
+      ],
+      "cReason": "같은 값의 범위에 대한 비교임을 밝혀 조건의 목적을 구체화한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "비교 전에 계급의 범위가 같은지 살피는 점검 단계",
+      "authorBatch": 25,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2120,
+      "part": "m1plus",
+      "sourceFingerprint": "f4d525a018c15d917abd2eb3a665db8622f69a0226312520ae2aecbd48a256f0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2120
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 집단에서 같은 값의 범위에 속하는 자료의 비율을 비교하려면, 비교하는 두 계급의 {범위}가 같은지 먼저 확인한다.",
+      "cSlotAnswers": [
+        "범위"
+      ],
+      "cStudentSentence": "두 집단에서 같은 값의 범위에 속하는 자료의 비율을 비교하려면, 비교하는 두 계급의 □가 같은지 먼저 확인한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "범위",
+          "equivalentAnswers": [
+            "범위",
+            "구간"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "범위",
+          "accept": [
+            "구간"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "범위",
+          "구간"
+        ]
+      ],
+      "proposalFingerprint": "8ce32c4c7c580df0f3b23ed60da318cb3742523e7f916ca2445cbd1bd9da3009"
+    },
+    {
+      "id": "m2-01-01-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "정수는 모두 유리수이다. 그 까닭을 $-4$를 예로 들어, 유리수의 뜻(분자와 분모가 정수이고 분모가 $0$이 아닌 분수로 쓸 수 있는 수)에 맞추어 설명하시오.",
+      "bAnswer": "$-4=\\frac{-4}{1}$처럼 정수는 분모가 $1$인 분수로 쓸 수 있기 때문이다.",
+      "bGoal": "정수가 유리수인 까닭 설명하기",
+      "bReason": "요청한 -4의 구체 예와 모든 정수에 성립하는 이유를 각각 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$-4=\\frac{-4}{1}$",
+            "$-4=-\\frac82$처럼 $-4$를 정수를 $0$이 아닌 정수로 나눈 분수로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 정수는 분모가$1$인 분수로 쓸 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "근거가 문장에 있고 결론 하나만 묻는 분명한 빈칸임.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "정수가 유리수인 까닭",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2122,
+      "part": "m2plus",
+      "sourceFingerprint": "45dadd3aae43ae753c3bd7a8127041a5a3f718163a9d18d091258687bfe97552",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2122
+      },
+      "directReview": null,
+      "cFrozenSentence": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 □이다.",
+      "cFrozenDefinition": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 {유리수}이다.",
+      "cFrozenAnswers": [
+        "유리수"
+      ],
+      "cMarkedSentence": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 {유리수}이다.",
+      "cSlotAnswers": [
+        "유리수"
+      ],
+      "cStudentSentence": "정수 $n$은 분모가 $1$인 분수 $\\frac{n}{1}$로 쓸 수 있으므로 정수도 모두 □이다.",
+      "cAnswers": [
+        "유리수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "유리수",
+          "equivalentAnswers": [
+            "유리수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "유리수"
+        ]
+      ],
+      "proposalFingerprint": "0f11641a93dd01612ee9dd79cb8b3b73fcef0070f40ac61d1fe29b1b39013268"
+    },
+    {
+      "id": "m2-01-01-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "유한소수 $0.125$를 기약분수로 고치는 과정을 쓰고, 그 기약분수의 분모의 소인수를 구하시오.",
+      "bAnswer": "$0.125=\\frac{125}{1000}=\\frac{1}{8}$이고, 분모 $8=2^3$의 소인수는 $2$뿐이다.",
+      "bGoal": "유한소수를 기약분수로 고치고 분모의 소인수 확인하기",
+      "bReason": "기약분수로 고치는 과정을 요구한 만큼 중간 분수와 약분도 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.125=\\frac{125}{1000}=\\frac18$로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모$8$의 소인수는$2$뿐이다",
+            "$8=2^3$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "분모1로 끝나는 정수를 제외하고, 순서 없는2·5 두 답 칸을 없앤다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "분수로 고친 뒤 약분하기",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2135,
+      "part": "m2plus",
+      "sourceFingerprint": "8fef102c963888eef037d2c0201cfb844f76d4365d9ef424a04a78ae3f180ad1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2135
+      },
+      "directReview": null,
+      "cMarkedSentence": "정수가 아닌 유한소수를 분수로 고친 뒤 {약분}하면, 분모에 남는 소인수는 $2$ 또는 $5$뿐이다.",
+      "cSlotAnswers": [
+        "약분"
+      ],
+      "cStudentSentence": "정수가 아닌 유한소수를 분수로 고친 뒤 □하면, 분모에 남는 소인수는 $2$ 또는 $5$뿐이다.",
+      "cAnswers": [
+        "약분"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ]
+      ],
+      "proposalFingerprint": "027c426fa4fdd471f2dc018641e6877bbdae5b6a9d96ee41d79cff69141446f2",
+      "cAfter": "정수가 아닌 유한소수를 분수로 고친 뒤 {약분}하면, 분모에 남는 소인수는 $2$ 또는 $5$뿐이다.",
+      "coreAfter": "정수가 아닌 유한소수를 분수로 고친 뒤 {약분}하여 기약분수로 만들면, 분모의 소인수로는 {$2$} 또는 {$5$}만 남는다.",
+      "coreReason": "정수이면 기약분수의 분모1에는 소인수가 없으므로 정수가 아닌 경우로 명시한다."
+    },
+    {
+      "id": "m2-01-01-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+      "bAnswer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+      "bGoal": "두 분수의 곱을 약분한 뒤 판정하기",
+      "bReason": "과정을 요구했으므로0.75라는 답만으로 이유 기준을 통과하지 않도록 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "유한소수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac56\\times\\frac9{10}=\\frac34$로 약분되며 분모의 소인수는$2$뿐이다",
+            "$\\frac56\\times\\frac9{10}=\\frac34=0.75$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "판정 대상이 문장에 있고 절차의 핵심 낱말 두 개를 물음.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "곱을 약분해 판정하기",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2144,
+      "part": "m2plus",
+      "sourceFingerprint": "2038aaa8400b3e2f45a36796f31507a39b854267833c2e7d381e3a25f4348a32",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2144
+      },
+      "directReview": null,
+      "cFrozenSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+      "cFrozenDefinition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+      "cFrozenAnswers": [
+        "약분",
+        "기약분수"
+      ],
+      "cMarkedSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+      "cSlotAnswers": [
+        "약분",
+        "기약분수"
+      ],
+      "cStudentSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+      "cAnswers": [
+        "약분",
+        "기약분수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "기약분수",
+          "equivalentAnswers": [
+            "기약분수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ],
+        [
+          "기약분수"
+        ]
+      ],
+      "proposalFingerprint": "756f6911e1a5d371e24b7d0ed5c8b003ab394413a8d9e75d2ed77d4fdb087884"
+    },
+    {
+      "id": "m2-01-02-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "c3의 질문이 이미 세 자리 순환마디의 점 표기를 다룸.",
+      "exclusionReason": "B 제외: 설명형에서 m2-01-02-c3(순환소수의 표현)과 같은 규칙·같은 유형의 예로 중복됨.",
+      "cDecision": "rewrite",
+      "cReason": "순서를 바꾸어도 맞던 두 위치 이름을 실제 숫자에 대응시킨다.",
+      "learningRole": "procedure",
+      "roleReason": "세 자리 이상 마디의 점 표기",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2153,
+      "part": "m2plus",
+      "sourceFingerprint": "8bc211fb02993f6f063df48dc3ca2960012a0c2e9bc38d85c58acabcfd87adab",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2153
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$0.123123123\\cdots$를 점을 찍어 나타낼 때, 순환마디의 첫 숫자 {$1$}과 끝 숫자 {$3$} 위에만 점을 찍는다.",
+      "cSlotAnswers": [
+        "$1$",
+        "$3$"
+      ],
+      "cStudentSentence": "$0.123123123\\cdots$를 점을 찍어 나타낼 때, 순환마디의 첫 숫자 □과 끝 숫자 □ 위에만 점을 찍는다.",
+      "cAnswers": [
+        "$1$",
+        "$3$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "첫 숫자",
+          "accept": [
+            "처음 숫자"
+          ]
+        },
+        {
+          "answer": "끝 숫자",
+          "accept": [
+            "마지막 숫자"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "f8bffc44c923e3e856e37c6bd6ff0c78bb7bfff4f23147f6a3fceda96dc3fa09",
+      "cAfter": "$0.123123123\\cdots$를 점을 찍어 나타낼 때, 순환마디의 첫 숫자 {$1$}과 끝 숫자 {$3$} 위에만 점을 찍는다."
+    },
+    {
+      "id": "m2-01-02-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.\\dot{3}8\\dot{5}$의 소수점 아래 $30$번째 자리의 숫자를 구하려고 $30$을 순환마디의 숫자 개수 $3$으로 나누었더니 나머지가 $0$이었다. 이때 답이 어느 숫자인지 까닭과 함께 쓰시오.",
+      "bAnswer": "$30$번째 자리는 순환마디 $385$가 꼭 $10$번 되풀이되어 끝나는 자리이므로, 순환마디의 마지막 숫자인 $5$이다.",
+      "bGoal": "나머지가 $0$일 때 순환마디의 마지막 숫자임을 알기",
+      "bReason": "실제 숫자를 물었으므로 마지막 숫자라는 위치 설명과 별도로5를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "순환마디$385$가$10$번 되풀이되어 끝나는 자리이다",
+            "나누어떨어지면 순환마디의 끝자리이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "순환 조건과 나머지 조건이 문장에 다 있어 결론 하나를 묻기에 분명함.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "나머지 $0$인 경우 처리",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2163,
+      "part": "m2plus",
+      "sourceFingerprint": "3d2297e8192f55c00eed1c085f515ba054a567d9f5f8d6fbba3ffb298fec9934",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2163
+      },
+      "directReview": null,
+      "cFrozenSentence": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 □ 숫자이다.",
+      "cFrozenDefinition": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 {마지막} 숫자이다.",
+      "cFrozenAnswers": [
+        "마지막"
+      ],
+      "cMarkedSentence": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 {마지막} 숫자이다.",
+      "cSlotAnswers": [
+        "마지막"
+      ],
+      "cStudentSentence": "소수점 바로 아래부터 순환할 때, $n$을 순환마디의 숫자 개수로 나눈 나머지가 $0$이면 소수점 아래 $n$번째 숫자는 순환마디의 □ 숫자이다.",
+      "cAnswers": [
+        "마지막"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "마지막",
+          "equivalentAnswers": [
+            "마지막",
+            "끝"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "마지막",
+          "accept": [
+            "끝"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "마지막",
+          "끝"
+        ]
+      ],
+      "proposalFingerprint": "f39e23342cfac435df6e3ea3f2e18ac76ff20189c02b18e422cff91bdfac9a10"
+    },
+    {
+      "id": "m2-01-02-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "기약분수 $\\frac7{20}$과 $\\frac7{12}$을 소수로 고치면 각각 유한소수와 순환소수 중 어느 것이 되는지, 분모의 소인수를 근거로 판단하시오.",
+      "bAnswer": "$20=2^2\\times5$는 소인수가 $2$와 $5$뿐이므로 $\\frac{7}{20}$은 유한소수이다. $12=2^2\\times3$에는 소인수 $3$이 있으므로 $\\frac{7}{12}$은 순환소수이다.",
+      "bGoal": "분모의 소인수로 유한소수와 순환소수 가르기",
+      "bReason": "두 분수 각각의 판정과 소인수 근거를 모두 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac7{20}$은 유한소수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$의 소인수는$2$와$5$뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac7{12}$은 순환소수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$에는$2$와$5$가 아닌 소인수$3$이 있다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "정수가 아닌 유리수를 기약분수로 고쳤을 때, 분모의 소인수가 $2$ 또는 $5$뿐이면 {유한소수}, 그 밖의 소인수가 있으면 {순환소수}로 나타내어진다.",
+      "cAnswers": [
+        "유한소수",
+        "순환소수"
+      ],
+      "cReason": "순서 없는 소인수2·5 칸을 없애고 두 소수 종류의 판정에 집중한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "분모로 두 소수 구분하기",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "notationReason": "십이분의 칠 뒤 을을 쓰며 두 분수의 분모 조건은 유지한다.",
+      "sourceIndex": 2165,
+      "part": "m2plus",
+      "sourceFingerprint": "05167442f90cd89154c50da6fc1636a3cc86ecf66bafe580a2c7731a5707fea5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2165
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-02-xc21"
+      },
+      "cMarkedSentence": "정수가 아닌 유리수를 기약분수로 고쳤을 때, 분모의 소인수가 $2$ 또는 $5$뿐이면 {유한소수}, 그 밖의 소인수가 있으면 {순환소수}로 나타내어진다.",
+      "cSlotAnswers": [
+        "유한소수",
+        "순환소수"
+      ],
+      "cStudentSentence": "정수가 아닌 유리수를 기약분수로 고쳤을 때, 분모의 소인수가 $2$ 또는 $5$뿐이면 □, 그 밖의 소인수가 있으면 □로 나타내어진다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "유한소수",
+          "equivalentAnswers": [
+            "유한소수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "순환소수",
+          "equivalentAnswers": [
+            "순환소수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "유한소수"
+        ],
+        [
+          "순환소수"
+        ]
+      ],
+      "proposalFingerprint": "9f028e775f383537d28697bc06f1414d2fce6d58232a3a5c9995e092578704ee",
+      "coreAfter": "정수가 아닌 유리수를 기약분수로 고쳤을 때, 분모의 소인수가 $2$ 또는 $5$뿐이면 {유한소수}, 그 밖의 소인수가 있으면 {순환소수}가 된다.",
+      "coreReason": "분모1인 정수의 예외를 제외해 분모 소인수 판정을 정확히 서술한다."
+    },
+    {
+      "id": "m2-01-03-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=3.\\dot{4}$를 공식으로 분수로 고치면 분자가 $34-3$이 된다. 정수 부분 $3$을 빼게 되는 까닭을 $10x$와 $x$를 써서 설명하시오.",
+      "bAnswer": "$10x=34.444\\cdots$, $x=3.444\\cdots$는 소수 부분이 같으므로 변끼리 빼면 $9x=34-3=31$이다. 빼는 식 $x$의 정수 부분 $3$이 그대로 빼지므로 정수 부분도 순환하지 않는 부분으로 보고 뺀다.",
+      "bGoal": "정수 부분이 있을 때 분자에서 정수 부분을 빼는 까닭 설명하기",
+      "bReason": "10과x가나뉜수식표기를하나로정리한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10x$와 $x$의 소수 부분이 같아 빼면 없어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는식$x$의정수부분이$3$이므로그$3$을뺀다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$3.\\dot{4}$를 공식으로 분수로 고칠 때는 정수 부분도 {순환하지 않는} 부분으로 보아 뺀다. 따라서 분자는 $34-3=31$이고 분수는 {$\\frac{31}{9}$}이다.",
+      "cAnswers": [
+        "순환하지 않는",
+        "$\\frac{31}{9}$"
+      ],
+      "cReason": "'되풀이되지 않는 부분'이 긴 구 빈칸이고 예가 없어 뜻을 알기 어려움",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "빼는 식 x의 정수 부분이 빠짐",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2180,
+      "part": "m2plus",
+      "sourceFingerprint": "572ac9609a99350072d5e82b63196f6febb87327bf21b488d77861b32a410b4c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2180
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-03-xc12"
+      },
+      "cMarkedSentence": "$3.\\dot{4}$를 공식으로 분수로 고칠 때는 정수 부분도 {순환하지 않는} 부분으로 보아 뺀다. 따라서 분자는 $34-3=31$이고 분수는 {$\\frac{31}{9}$}이다.",
+      "cSlotAnswers": [
+        "순환하지 않는",
+        "$\\frac{31}{9}$"
+      ],
+      "cStudentSentence": "$3.\\dot{4}$를 공식으로 분수로 고칠 때는 정수 부분도 □ 부분으로 보아 뺀다. 따라서 분자는 $34-3=31$이고 분수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "순환하지 않는",
+          "equivalentAnswers": [
+            "순환하지 않는",
+            "되풀이되지 않는"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{31}{9}$",
+          "equivalentAnswers": [
+            "$\\frac{31}{9}$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "순환하지 않는",
+          "accept": [
+            "되풀이되지 않는"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "순환하지 않는",
+          "되풀이되지 않는"
+        ],
+        [
+          "$\\frac{31}{9}$"
+        ]
+      ],
+      "proposalFingerprint": "1821dc7fc6c6b9735849952aeca5e3ec2358060444b40ed6368306aa475893f9"
+    },
+    {
+      "id": "m2-01-03-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=0.1\\dot{5}$를 공식으로 분수로 고치면 분자가 $15-1$이 된다. $1$을 빼게 되는 까닭을 $100x$와 $10x$를 써서 설명하시오.",
+      "bAnswer": "$100x=15.555\\cdots$, $10x=1.555\\cdots$는 소수 부분이 같으므로 변끼리 빼면 $90x=15-1=14$이다. 빼는 수 $1$은 작은 쪽 식 $10x$의 정수 부분, 곧 순환하지 않는 앞부분이다.",
+      "bGoal": "분자 공식의 뺄셈이 생기는 까닭 설명하기",
+      "bReason": "100x와10x를각하나의수식으로표시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100x$와 $10x$의 소수 부분이 같아 빼면 없어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는 식 $10x$의 정수 부분이 $1$이므로 그 $1$을 뺀다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$x=0.1\\dot{5}$이면 $100x=15.555\\cdots$, $10x=1.555\\cdots$이다. 변끼리 빼면 $90x=15-${$1$}이므로, 분자에서 빼는 수는 작은 쪽 식 $10x$의 {정수 부분}이다.",
+      "cAnswers": [
+        "$1$",
+        "정수 부분"
+      ],
+      "cReason": "'변끼리 뺄 때'는 문장 조각 빈칸이고 예 없이는 '작은 쪽 식'을 알 수 없음",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "작은 쪽 식의 정수 부분이 빠짐",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2184,
+      "part": "m2plus",
+      "sourceFingerprint": "7a8068559ba8fdf953750aa83c44424a5b0e4207b16781163db10f751781ea8f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2184
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-03-xc16"
+      },
+      "cMarkedSentence": "$x=0.1\\dot{5}$이면 $100x=15.555\\cdots$, $10x=1.555\\cdots$이다. 변끼리 빼면 $90x=15-${$1$}이므로, 분자에서 빼는 수는 작은 쪽 식 $10x$의 {정수 부분}이다.",
+      "cSlotAnswers": [
+        "$1$",
+        "정수 부분"
+      ],
+      "cStudentSentence": "$x=0.1\\dot{5}$이면 $100x=15.555\\cdots$, $10x=1.555\\cdots$이다. 변끼리 빼면 $90x=15-$□이므로, 분자에서 빼는 수는 작은 쪽 식 $10x$의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "정수 부분",
+          "equivalentAnswers": [
+            "정수 부분"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "정수 부분"
+        ]
+      ],
+      "proposalFingerprint": "185478840a6dd16ad00650762ec79bae08eb865ee13d6939637ac3f6ca946dd3"
+    },
+    {
+      "id": "m2-01-03-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.333\\cdots$에서 반복 묶음을 임시로 $33$으로 잡아 분수로 고치면 어떻게 되는가? 묶음을 $3$으로 잡을 때와 기약분수 결과를 비교하고, 가장 짧은 묶음으로 계산하면 편리한 까닭을 쓰시오.",
+      "bAnswer": "$33/99=1/3$이고 $3/9=1/3$이므로 값은 같다. 가장 짧은 묶음 $3$으로 잡으면 분자와 분모가 작아 약분이 간단하다.",
+      "bGoal": "순환마디를 가장 짧게 잡는 까닭 알기",
+      "bReason": "최소마디약속에어긋난점표기를정식표현처럼사용하지않고임시반복묶음으로구별한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{33}{99}=\\frac{1}{3}$로 값은 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 짧게 잡으면 약분할 것이 적다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$0.333\\cdots$의 반복 묶음을 임시로 $33$으로 잡아 얻은 $\\frac{33}{99}$을 기약분수로 고치면 {$\\frac13$}이 되어 값은 같다. 가장 짧은 묶음 $3$을 사용하면 약분이 간단하다.",
+      "cAnswers": [
+        "$\\frac13$"
+      ],
+      "cReason": "정식순환마디표기와길게잡은반복묶음을구별한다.",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "마디를 짧게 잡아야 약분이 적음",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2187,
+      "part": "m2plus",
+      "sourceFingerprint": "2ebdd3c2aa3605bee12f5832adc0c6f7a362791b7b79d818f2ed7cb1d93cb332",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2187
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0.333\\cdots$의 반복 묶음을 임시로 $33$으로 잡아 얻은 $\\frac{33}{99}$을 기약분수로 고치면 {$\\frac13$}이 되어 값은 같다. 가장 짧은 묶음 $3$을 사용하면 약분이 간단하다.",
+      "cSlotAnswers": [
+        "$\\frac13$"
+      ],
+      "cStudentSentence": "$0.333\\cdots$의 반복 묶음을 임시로 $33$으로 잡아 얻은 $\\frac{33}{99}$을 기약분수로 고치면 □이 되어 값은 같다. 가장 짧은 묶음 $3$을 사용하면 약분이 간단하다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac13$",
+          "equivalentAnswers": [
+            "$\\frac13$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac13$"
+        ]
+      ],
+      "proposalFingerprint": "b68522e9dd9ca8299a1e912beb1fe62e61b2546ba4567047148633b2a29eeb49"
+    },
+    {
+      "id": "m2-01-03-xc26",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.\\dot{4}\\dot{5}=\\frac{45}{99}$를 한 번에 기약분수로 만들려면 분자와 분모를 어떤 수로 나누어야 하는지 쓰고, 기약분수를 구하시오.",
+      "bAnswer": "$45$와 $99$의 최대공약수 $9$로 나눈다. $\\frac{45}{99}=\\frac{5}{11}$",
+      "bGoal": "최대공약수로 나누어 한 번에 기약분수 만들기",
+      "bReason": "실제로나눌수9와기약분수5/11을함께확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$45$와$99$의최대공약수$9$로나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac5{11}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "순환소수를 분수로 고친 뒤 분자와 분모를 두 수의 {최대공약수}로 나누면 한 번에 {기약분수}가 된다.",
+      "cAnswers": [
+        "최대공약수",
+        "기약분수"
+      ],
+      "cReason": "무엇을 분수로 고친 뒤인지 주어가 없어 보충하고 빈칸은 유지함",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "최대공약수로 한 번에 약분",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2192,
+      "part": "m2plus",
+      "sourceFingerprint": "1751706dd471214e611b7b242f4ad354dc008faf6db574c401656cc1071f3f3e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2192
+      },
+      "directReview": null,
+      "cMarkedSentence": "순환소수를 분수로 고친 뒤 분자와 분모를 두 수의 {최대공약수}로 나누면 한 번에 {기약분수}가 된다.",
+      "cSlotAnswers": [
+        "최대공약수",
+        "기약분수"
+      ],
+      "cStudentSentence": "순환소수를 분수로 고친 뒤 분자와 분모를 두 수의 □로 나누면 한 번에 □가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최대공약수",
+          "equivalentAnswers": [
+            "최대공약수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "기약분수",
+          "equivalentAnswers": [
+            "기약분수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최대공약수"
+        ],
+        [
+          "기약분수"
+        ]
+      ],
+      "proposalFingerprint": "3167da7d747874f254100dc68834d57deb225c7fc42609f00caeb2d447fadbf5"
+    },
+    {
+      "id": "m2-01-04-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "방정식 $0.\\dot{2}x=4$를 푸는 과정을 쓰고 해를 구하시오.",
+      "bAnswer": "$0.\\dot{2}=\\frac{2}{9}$이므로 $\\frac{2}{9}x=4$이다. 양변에 $\\frac{9}{2}$를 곱하면 $x=18$이다.",
+      "bGoal": "순환소수 계수를 분수로 고쳐 방정식 풀기",
+      "bReason": "과정을요구하므로이방정식에서실제로곱하거나나누는수를확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac29x=4$로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "양변에 $\\frac92$를 곱한다",
+            "양변을 $\\frac29$로 나눈다",
+            "양변에$9$를곱한뒤양변을$2$로나누는등등식의성질을이용한올바른계산과정을보인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=18$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "계수를 분수로, 양변에 같은 수라는 두 단계를 묻는 분명한 빈칸임",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "계수를 분수로 고쳐 양변 계산",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 2203,
+      "part": "m2plus",
+      "sourceFingerprint": "d1ea3cb88db83991f73df35fdb63c52731fb1db6e8bb60914108233fa9c8c20d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2203
+      },
+      "directReview": null,
+      "cFrozenSentence": "계수가 순환소수인 방정식은 계수를 □로 고친 뒤 □에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+      "cFrozenDefinition": "계수가 순환소수인 방정식은 계수를 {분수}로 고친 뒤 {양변}에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+      "cFrozenAnswers": [
+        "분수",
+        "양변"
+      ],
+      "cMarkedSentence": "계수가 순환소수인 방정식은 계수를 {분수}로 고친 뒤 {양변}에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+      "cSlotAnswers": [
+        "분수",
+        "양변"
+      ],
+      "cStudentSentence": "계수가 순환소수인 방정식은 계수를 □로 고친 뒤 □에 $0$이 아닌 같은 수를 곱하거나 나누어 푼다.",
+      "cAnswers": [
+        "분수",
+        "양변"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분수",
+          "equivalentAnswers": [
+            "분수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "양변",
+          "equivalentAnswers": [
+            "양변"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분수"
+        ],
+        [
+          "양변"
+        ]
+      ],
+      "proposalFingerprint": "bf6bf34b7cf4ece40d998a1175938f731e4fb573cb0f9296ef11825af1357eb7"
+    },
+    {
+      "id": "m2-01-04-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "순환소수가 든 식을 계산한 결과가 $\\frac{5}{12}$로 나왔다. 이 수를 순환소수로 나타낼 수 있는지 분모의 소인수로 판단하고, 순환소수로 쓰시오.",
+      "bAnswer": "$12=2^2\\times3$으로 분모에 $2$와 $5$가 아닌 소인수 $3$이 있으므로 순환소수로 나타낼 수 있다. $5\\div12=0.41666\\cdots=0.41\\dot{6}$",
+      "bGoal": "기약분수의 분모로 순환소수가 되는지 판단하고 고치기",
+      "bReason": "점표기를강제하지않았으므로정확한반복을보인풀어쓴소수도받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모에$2$와$5$가아닌소인수$3$이있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.41\\dot6$",
+            "$0.41666\\cdots$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "기약분수의 분모에 $2$와 $5$가 아닌 소인수가 있으면 그 수는 {순환소수}로 나타내어진다. $\\frac5{12}$의 분모에는 $2$와 $5$가 아닌 소인수 {$3$}이 있으므로 이 경우에 해당한다.",
+      "cAnswers": [
+        "순환소수",
+        "$3$"
+      ],
+      "cReason": "12의다른소인수2를쓰는모호함이없게2·5가아닌소인수라고한정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "분모 소인수로 순환 판정",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2208,
+      "part": "m2plus",
+      "sourceFingerprint": "ff81a8215006a8dd00ecfae77ea07c1d4787a4ff73d8bdc2fc0eed77f221fb98",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2208
+      },
+      "directReview": null,
+      "cMarkedSentence": "기약분수의 분모에 $2$와 $5$가 아닌 소인수가 있으면 그 수는 {순환소수}로 나타내어진다. $\\frac5{12}$의 분모에는 $2$와 $5$가 아닌 소인수 {$3$}이 있으므로 이 경우에 해당한다.",
+      "cSlotAnswers": [
+        "순환소수",
+        "$3$"
+      ],
+      "cStudentSentence": "기약분수의 분모에 $2$와 $5$가 아닌 소인수가 있으면 그 수는 □로 나타내어진다. $\\frac5{12}$의 분모에는 $2$와 $5$가 아닌 소인수 □이 있으므로 이 경우에 해당한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "순환소수",
+          "equivalentAnswers": [
+            "순환소수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "순환소수"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "95c9290b5fe3d1ee58ec16524619150bacec1411a5bf7a1e544a13461249559b"
+    },
+    {
+      "id": "m2-01-04-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.\\dot{5}$, $0.5\\dot{4}$, $0.\\dot{5}\\dot{4}$를 큰 수부터 차례로 쓰고, 어떻게 비교했는지 설명하시오.",
+      "bAnswer": "같은 자리까지 풀어 쓰면 $0.5555\\cdots$, $0.5444\\cdots$, $0.5454\\cdots$이다. 첫째 자리는 모두 $5$이고 둘째 자리에서 $5>4$, 나머지 두 수는 셋째 자리에서 $5>4$이므로 $0.\\dot{5}>0.\\dot{5}\\dot{4}>0.5\\dot{4}$이다.",
+      "bGoal": "여러 순환소수를 풀어 써서 크기 순서 정하기",
+      "bReason": "비교 방법을 자유롭게 묻는 문항이라 분수 풀이도 인정",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.5555\\cdots$, $0.5444\\cdots$, $0.5454\\cdots$로 풀어 써서 앞자리부터 자리별로 비교한다",
+            "세 수를 분수로 고쳐 통분한 뒤 분자를 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.\\dot{5}>0.\\dot{5}\\dot{4}>0.5\\dot{4}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "정수 부분이 같은 여러 양의 순환소수는 반복되는 숫자를 충분히 풀어 쓴 뒤 소수 {첫째 자리}부터 차례로 비교한다. $0.\\dot5$, $0.5\\dot4$, $0.\\dot5\\dot4$ 중 가장 큰 수는 {$0.\\dot5$}이다.",
+      "cAnswers": [
+        "첫째 자리",
+        "$0.\\dot5$"
+      ],
+      "cReason": "정수부분이다른수도소수첫째자리부터비교해도된다는오해를막는다.",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "같은 자리까지 풀어 비교",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2211,
+      "part": "m2plus",
+      "sourceFingerprint": "1ef3e1e8abb36d09a0d794f1947b0ff4f758cb67edf087fe13ad4a323f79093b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2211
+      },
+      "directReview": null,
+      "cMarkedSentence": "정수 부분이 같은 여러 양의 순환소수는 반복되는 숫자를 충분히 풀어 쓴 뒤 소수 {첫째 자리}부터 차례로 비교한다. $0.\\dot5$, $0.5\\dot4$, $0.\\dot5\\dot4$ 중 가장 큰 수는 {$0.\\dot5$}이다.",
+      "cSlotAnswers": [
+        "첫째 자리",
+        "$0.\\dot5$"
+      ],
+      "cStudentSentence": "정수 부분이 같은 여러 양의 순환소수는 반복되는 숫자를 충분히 풀어 쓴 뒤 소수 □부터 차례로 비교한다. $0.\\dot5$, $0.5\\dot4$, $0.\\dot5\\dot4$ 중 가장 큰 수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "첫째 자리",
+          "equivalentAnswers": [
+            "첫째 자리",
+            "첫 번째 자리",
+            "$1$번째 자리"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$0.\\dot5$",
+          "equivalentAnswers": [
+            "$0.\\dot5$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "앞자리",
+          "accept": [
+            "소수 첫째 자리",
+            "높은 자리"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "첫째 자리",
+          "첫 번째 자리",
+          "$1$번째 자리"
+        ],
+        [
+          "$0.\\dot5$"
+        ]
+      ],
+      "proposalFingerprint": "d03e5caed4ff80d289bab05fc59dc7f8768721620df4f136960fdcfb01784a0e",
+      "coreAfter": "여러 양의 순환소수의 크기를 비교할 때는 먼저 {정수 부분}을 비교한다. 정수 부분이 같으면 숫자를 충분히 {풀어 써서} 소수 첫째 자리부터 차례로 비교한다.",
+      "coreReason": "정수부분우선후소수자리비교라는일반절차를명시한다."
+    },
+    {
+      "id": "m2-01-04-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "순환소수끼리 더하거나 빼거나 곱하거나 나눈 결과는 항상 유리수인가? 단, $0$으로 나누는 계산은 제외한다. 그렇게 판단하는 까닭을 쓰시오.",
+      "bAnswer": "항상 유리수이다. 순환소수는 분자와 분모가 정수인 분수로 나타낼 수 있고, 분수끼리 사칙계산한 결과도 그런 분수로 나타낼 수 있다. 나누는 수는$0$이 아니어야 한다.",
+      "bGoal": "순환소수의 사칙계산 결과가 유리수임을 설명하기",
+      "bReason": "항상이라는일반화에나눗셈이정의되는조건을명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "결과는 유리수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "순환소수는 분수로 고칠 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수끼리의 계산 결과도 분수이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "유리수의표현과0나눗셈제외조건을완전하게쓴다.",
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "분수 계산 결과도 분수",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2214,
+      "part": "m2plus",
+      "sourceFingerprint": "5be479fc798e8d75ae1f25de392964f9214ca852c6a1362de7ffb6b537b0dcf0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2214
+      },
+      "directReview": null,
+      "cMarkedSentence": "순환소수끼리 사칙계산한 결과는 분자와 분모가 정수인 분수로 나타낼 수 있으므로 {유리수}이다. 단, $0$으로 나누는 계산은 제외한다.",
+      "cSlotAnswers": [
+        "유리수"
+      ],
+      "cStudentSentence": "순환소수끼리 사칙계산한 결과는 분자와 분모가 정수인 분수로 나타낼 수 있으므로 □이다. 단, $0$으로 나누는 계산은 제외한다.",
+      "cAnswers": [
+        "유리수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "유리수",
+          "equivalentAnswers": [
+            "유리수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "유리수"
+        ]
+      ],
+      "proposalFingerprint": "3c7c7e6c2a4dd86d3a58cf016c8228d188d341c96d6d37a4a12c5257cbcbfca5",
+      "cAfter": "순환소수끼리 사칙계산한 결과는 분자와 분모가 정수인 분수로 나타낼 수 있으므로 {유리수}이다. 단, $0$으로 나누는 계산은 제외한다.",
+      "coreAfter": "순환소수끼리 더하고 빼고 곱하고 나눈 결과는 분자와 분모가 정수인 분수로 나타낼 수 있으므로 {유리수}이다. 단, {$0$으로 나누는 계산}은 제외한다.",
+      "coreReason": "닫혀있음의성질은정의된사칙계산에서성립한다."
+    },
+    {
+      "id": "m2-01-05-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$일 때 $a^2\\div a^5$를 분수로 쓰고 약분하여 간단히 하시오. 약분한 뒤 $a$가 분자와 분모 중 어디에 몇 개 남는지도 쓰시오.",
+      "bAnswer": "$\\frac{a\\times a}{a\\times a\\times a\\times a\\times a}$에서 분자의 $a$ $2$개가 모두 약분되고 분모에 $a$가 $3$개 남아 $\\frac{1}{a^3}$이 된다.",
+      "bGoal": "나누는 쪽 지수가 클 때 몫이 분수가 되는 까닭 알기",
+      "bReason": "실제약분과남은위치·개수를모두묻는질문에맞춘다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{a\\times a}{a\\times a\\times a\\times a\\times a}$에서 같은 인수 $a$ 두 개씩 약분한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac1{a^3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모에 $a$가 $3$개 남는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "지수를인수개수로해석하는자연수조건을밝힌다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "몫이 분수 꼴이 되는 근거",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2231,
+      "part": "m2plus",
+      "sourceFingerprint": "99430e476a307563a2b7baf566269f2e57178579257bf20833bfeac729a37583",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2231
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a\\ne0$이고 자연수 $m$, $n$이 $m<n$일 때 $a^m\\div a^n$에서는 분자의 $a$가 모두 {약분}되고 {분모}에 $a$가 $(n-m)$개 남는다.",
+      "cSlotAnswers": [
+        "약분",
+        "분모"
+      ],
+      "cStudentSentence": "$a\\ne0$이고 자연수 $m$, $n$이 $m<n$일 때 $a^m\\div a^n$에서는 분자의 $a$가 모두 □되고 □에 $a$가 $(n-m)$개 남는다.",
+      "cAnswers": [
+        "약분",
+        "분모"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "분모",
+          "equivalentAnswers": [
+            "분모"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ],
+        [
+          "분모"
+        ]
+      ],
+      "proposalFingerprint": "439eeeb215c857cac96d0fd5af28e937f2da82a01e8499397071976b561253e4",
+      "cAfter": "$a\\ne0$이고 자연수 $m$, $n$이 $m<n$일 때 $a^m\\div a^n$에서는 분자의 $a$가 모두 {약분}되고 {분모}에 $a$가 $(n-m)$개 남는다."
+    },
+    {
+      "id": "m2-01-05-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "$2^5\\times5^3$이 몇 자리 자연수인지 구하고, $10$의 거듭제곱을 이용한 풀이 과정을 쓰시오.",
+      "bAnswer": "$2^5\\times5^3=2^2\\times(2^3\\times5^3)=4\\times10^3=4000$이므로 $4$자리 수이다.",
+      "bGoal": "$2$와 $5$를 짝지어 자릿수 구하기",
+      "bReason": "십의거듭제곱이용과정요구에맞춰4000만쓴답으로과정을대체하지않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2^3\\times5^3=10^3$으로 묶는다",
+            "$2^5\\times5^3=4\\times10^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$자리"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$2^5\\times5^3$에서 $2$와 $5$를 세 쌍 묶으면 $4\\times10^3$이 된다. 이 수는 {$4$}자리 자연수이다.",
+      "cAnswers": [
+        "$4$"
+      ],
+      "cReason": "자릿수를알수있다는추상어휘칸대신실제십의거듭제곱자릿수를판단한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "$10$의 거듭제곱으로 자릿수 구하기",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2237,
+      "part": "m2plus",
+      "sourceFingerprint": "05f56e0533c82ea975ac01f7aa304265886f3ea13b3090251f9f1edd97cea6ed",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2237
+      },
+      "directReview": null,
+      "cMarkedSentence": "$2^5\\times5^3$에서 $2$와 $5$를 세 쌍 묶으면 $4\\times10^3$이 된다. 이 수는 {$4$}자리 자연수이다.",
+      "cSlotAnswers": [
+        "$4$"
+      ],
+      "cStudentSentence": "$2^5\\times5^3$에서 $2$와 $5$를 세 쌍 묶으면 $4\\times10^3$이 된다. 이 수는 □자리 자연수이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$4$",
+          "equivalentAnswers": [
+            "$4$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$4$"
+        ]
+      ],
+      "proposalFingerprint": "052bd223901c39566096e91e9754a095b4d7ec154d98e2374c48a5a6591140bc"
+    },
+    {
+      "id": "m2-01-05-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$2^4\\times5^4$을 거듭제곱 하나로 나타내고, 그렇게 묶을 수 있는 까닭을 곱을 풀어 써서 설명하시오.",
+      "bAnswer": "$2$ $4$개와 $5$ $4$개의 곱은 순서를 바꾸면 $(2\\times5)$를 $4$번 곱한 것과 같으므로 $2^4\\times5^4=(2\\times5)^4=10^4$",
+      "bGoal": "지수가 같은 거듭제곱의 곱을 하나로 묶기",
+      "bReason": "거듭제곱하나라는조건을만족하는두동등표현을받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10^4$",
+            "$(2\\times5)^4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\times5$가 $4$번 곱해진 것과 같다",
+            "곱하는 순서를 바꾸어 $(2\\times5)$를 $4$묶음으로 만든다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "조건 설명이 문장에 있고 결과식 하나만 묻는 분명한 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "$a^nb^n=(ab)^n$의 근거",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2238,
+      "part": "m2plus",
+      "sourceFingerprint": "275948182ac59f23b783ea3dbd04363cf35a5fec630a6f1641af7a110f612fd4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2238
+      },
+      "directReview": null,
+      "cFrozenSentence": "밑이 달라도 지수가 같은 두 거듭제곱의 곱은 밑끼리 곱해 한 거듭제곱으로 묶을 수 있다. $a^n\\times b^n$은 □과 같다.",
+      "cFrozenDefinition": "밑이 달라도 지수가 같은 두 거듭제곱의 곱은 밑끼리 곱해 한 거듭제곱으로 묶을 수 있다. $a^n\\times b^n$은 {$(ab)^n$}과 같다.",
+      "cFrozenAnswers": [
+        "$(ab)^n$"
+      ],
+      "cMarkedSentence": "밑이 달라도 지수가 같은 두 거듭제곱의 곱은 밑끼리 곱해 한 거듭제곱으로 묶을 수 있다. $a^n\\times b^n$은 {$(ab)^n$}과 같다.",
+      "cSlotAnswers": [
+        "$(ab)^n$"
+      ],
+      "cStudentSentence": "밑이 달라도 지수가 같은 두 거듭제곱의 곱은 밑끼리 곱해 한 거듭제곱으로 묶을 수 있다. $a^n\\times b^n$은 □과 같다.",
+      "cAnswers": [
+        "$(ab)^n$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(ab)^n$",
+          "equivalentAnswers": [
+            "$(ab)^n$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(ab)^n$"
+        ]
+      ],
+      "proposalFingerprint": "57d4a2eef47ebf0eb919935567cf821bc3529c32e5160c0cadec25a4fb8d6e6d"
+    },
+    {
+      "id": "m2-04-04-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "일차함수 $y=ax$의 그래프가 지나는 사분면을 $a>0$일 때와 $a<0$일 때로 나누어 쓰시오.",
+      "bAnswer": "원점을 지나므로 $a>0$이면 제$1$, $3$사분면만, $a<0$이면 제$2$, $4$사분면만 지난다.",
+      "bGoal": "원점을 지나는 직선의 사분면",
+      "bReason": "$b=0$인 경우를 두 부호로 나누어 답하게 범위를 정했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a>0$이면 제$1$, $3$사분면"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a<0$이면 제$2$, $4$사분면"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$y=ax$의 그래프는 원점을 지나므로 $a>0$이면 {제$1$, $3$사분면}만, $a<0$이면 {제$2$, $4$사분면}만 지난다.",
+      "cAnswers": [
+        "제$1$, $3$사분면",
+        "제$2$, $4$사분면"
+      ],
+      "cReason": "사분면두개나열은순서교환도맞아각쌍전체를키로묶어역순을인정한다.",
+      "learningRole": "definition",
+      "roleReason": "$y=ax$의 부호별 사분면",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2701,
+      "part": "m2plus",
+      "sourceFingerprint": "cffd9e84ef936407d8db02cd96434cd6c53607a7fb058f7b00a0a5fb09551cf9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2701
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y=ax$의 그래프는 원점을 지나므로 $a>0$이면 {제$1$, $3$사분면}만, $a<0$이면 {제$2$, $4$사분면}만 지난다.",
+      "cSlotAnswers": [
+        "제$1$, $3$사분면",
+        "제$2$, $4$사분면"
+      ],
+      "cStudentSentence": "$y=ax$의 그래프는 원점을 지나므로 $a>0$이면 □만, $a<0$이면 □만 지난다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "제$1$, $3$사분면",
+          "equivalentAnswers": [
+            "제$1$, $3$사분면",
+            "제$3$, $1$사분면",
+            "제$1$사분면과 제$3$사분면"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "제$2$, $4$사분면",
+          "equivalentAnswers": [
+            "제$2$, $4$사분면",
+            "제$4$, $2$사분면",
+            "제$2$사분면과 제$4$사분면"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "제$1$, $3$사분면",
+          "제$3$, $1$사분면",
+          "제$1$사분면과 제$3$사분면"
+        ],
+        [
+          "제$2$, $4$사분면",
+          "제$4$, $2$사분면",
+          "제$2$사분면과 제$4$사분면"
+        ]
+      ],
+      "proposalFingerprint": "2a5eb15b85e9f193682a7c6cf32ccf992713b101fa902243cff5979148185301"
+    },
+    {
+      "id": "m3-03-01-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "$x^2=4x$의 양변을 $x$로 나누어 $x=4$라고만 답하면 무엇이 잘못인지 설명하고, 바르게 풀어 해를 모두 구하시오.",
+      "bAnswer": "$x$가 $0$일 수 있는데 $x$로 나누어 해 $x=0$을 잃었다. $x^2-4x=0$, $x(x-4)=0$이므로 $x=0$ 또는 $x=4$이다.",
+      "bGoal": "$x$로 나눌 때의 해 손실",
+      "bReason": "잘못된 풀이를 제시해 $0$으로 나누는 문제를 찾게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=0$일 수 있는데 $x$로 나누어 그 해를 잃었다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x(x-4)=0$에서 $x=0$ 또는 $x=4$",
+            "$0$인 경우와 $0$이 아닌 경우를 나누어 해 $0$, $4$를 모두 구한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "양변을 같은 수로 나누려면 그 수가 $0$이 아니어야 한다. 그래서 $x^2=3x$의 양변을 $x$로 나누어 $x=3$만 얻으면 해 {$x=0$}을 잃으므로, {$x(x-3)=0$}으로 고쳐 푼다.",
+      "cAnswers": [
+        "$x=0$",
+        "$x(x-3)=0$"
+      ],
+      "cReason": "'해 $0$을 잃는다' 같은 긴 구절 빈칸 대신 잃는 해와 바른 꼴을 묻게 함",
+      "learningRole": "reason",
+      "roleReason": "$0$으로 나눌 수 없어 해를 잃음",
+      "authorBatch": 55,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3403,
+      "part": "m3plus",
+      "sourceFingerprint": "fcf3746de9ed893f1543d53a3450dc22f21dd255589b258c355f2a02063a2603",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3403
+      },
+      "directReview": null,
+      "cMarkedSentence": "양변을 같은 수로 나누려면 그 수가 $0$이 아니어야 한다. 그래서 $x^2=3x$의 양변을 $x$로 나누어 $x=3$만 얻으면 해 {$x=0$}을 잃으므로, {$x(x-3)=0$}으로 고쳐 푼다.",
+      "cSlotAnswers": [
+        "$x=0$",
+        "$x(x-3)=0$"
+      ],
+      "cStudentSentence": "양변을 같은 수로 나누려면 그 수가 $0$이 아니어야 한다. 그래서 $x^2=3x$의 양변을 $x$로 나누어 $x=3$만 얻으면 해 □을 잃으므로, □으로 고쳐 푼다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x=0$",
+          "equivalentAnswers": [
+            "$x=0$",
+            "$0$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$x(x-3)=0$",
+          "equivalentAnswers": [
+            "$x(x-3)=0$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$x=0$",
+          "accept": [
+            "$0$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$x=0$",
+          "$0$"
+        ],
+        [
+          "$x(x-3)=0$"
+        ]
+      ],
+      "proposalFingerprint": "e7e83dfdf5424d09cf4cbe4e6afd680308fd4840aa404618572dd91d1e1afecc"
+    },
+    {
+      "id": "m3-05-01-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 어떤 범위에 있는지 부등호로 쓰고, 그 까닭을 빗변과 관련지어 쓰시오.",
+      "bAnswer": "$0<\\sin A<1$, $0<\\cos A<1$이다. 두 값의 분모인 빗변이 가장 긴 변이라 분자가 분모보다 짧은 양수이기 때문이다.",
+      "bGoal": "사인·코사인 값의 범위",
+      "bReason": "부등호로 쓰라는 요구 및 양수이고1미만인 근거를 모두 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0<\\sin A<1$과 $0<\\cos A<1$을 모두 부등호로 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변 길이는 양수이고 빗변이 다른 두 변보다 길다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "근거가 문장 앞에 있어 $1$과 '작다'를 추론하는 짧은 빈칸이다.",
+      "learningRole": "reason",
+      "roleReason": "빗변이 가장 길어 $1$보다 작음",
+      "authorBatch": 58,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3526,
+      "part": "m3plus",
+      "sourceFingerprint": "2a178e034261a29aec9907ad54dcb6fd056386379752664c095741e5185f2ff2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3526
+      },
+      "directReview": null,
+      "cFrozenSentence": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 □보다 □.",
+      "cFrozenDefinition": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 {$1$}보다 {작다}.",
+      "cFrozenAnswers": [
+        "$1$",
+        "작다"
+      ],
+      "cMarkedSentence": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 {$1$}보다 {작다}.",
+      "cSlotAnswers": [
+        "$1$",
+        "작다"
+      ],
+      "cStudentSentence": "빗변이 가장 긴 변이므로 예각 $A$에 대하여 $\\sin A$와 $\\cos A$의 값은 $0$보다 크고 □보다 □.",
+      "cAnswers": [
+        "$1$",
+        "작다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "작다",
+          "equivalentAnswers": [
+            "작다"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "작다"
+        ]
+      ],
+      "proposalFingerprint": "8a7462e30be25e3b9c52e60a8e016e5579a464aedb9fa87b9284f8f87fe9fbef"
+    },
+    {
+      "id": "m3-05-01-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 직각삼각형의 변의 길이를 $\\mathrm{cm}$로 재어 구한 $\\sin A$와 $\\mathrm{mm}$로 재어 구한 $\\sin A$는 어떤 관계인지 쓰고, 그 까닭을 쓰시오.",
+      "bAnswer": "같다. 삼각비는 두 길이의 비라서 단위를 바꾸면 분자와 분모가 똑같이 $10$배가 되어 값이 변하지 않는다. 그래서 삼각비는 단위가 없는 수이다.",
+      "bGoal": "삼각비가 단위와 무관한 까닭",
+      "bReason": "두 길이의 비라는 말만으로는 부족하며 두 측정값의 같은 배 변화를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 사인값이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\mathrm{cm}$를 $\\mathrm{mm}$로 바꾸면 분자와 분모의 길이 수치가 모두 $10$배라 비는 그대로이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "'단위'와 '같다'를 채우는 짧은 빈칸으로 근거가 앞에 있다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "비이므로 단위가 없음",
+      "authorBatch": 58,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3529,
+      "part": "m3plus",
+      "sourceFingerprint": "3e7ec0eed36649c8e37fedac28f8d180ee3209ae6249207b92cb145e7286b008",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3529
+      },
+      "directReview": null,
+      "cFrozenSentence": "삼각비는 두 길이의 비이므로 □가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 □.",
+      "cFrozenDefinition": "삼각비는 두 길이의 비이므로 {단위}가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 {같다}.",
+      "cFrozenAnswers": [
+        "단위",
+        "같다"
+      ],
+      "cMarkedSentence": "삼각비는 두 길이의 비이므로 {단위}가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 {같다}.",
+      "cSlotAnswers": [
+        "단위",
+        "같다"
+      ],
+      "cStudentSentence": "삼각비는 두 길이의 비이므로 □가 없는 수이고, 길이를 재는 단위를 바꾸어도 값이 □.",
+      "cAnswers": [
+        "단위",
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "단위",
+          "equivalentAnswers": [
+            "단위"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "단위"
+        ],
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "40a66f71555983e55e4acd21813e654f0d194b6b63e4f1878f119af2b4fda876"
+    },
+    {
+      "id": "m3-05-02-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "정삼각형을 반으로 자른 직각삼각형의 두 예각은 $30^\\circ$, $60^\\circ$이다. 이 삼각형에서 $\\cos 30^\\circ$와 $\\sin 60^\\circ$가 각각 어느 변을 어느 변으로 나눈 값인지 밝히고 두 값을 비교해 보세요.",
+      "bAnswer": "$\\cos 30^\\circ$는 $30^\\circ$에 붙은 직각을 낀 변을 빗변으로 나눈 값이고, $\\sin 60^\\circ$는 $60^\\circ$와 마주 보는 변을 빗변으로 나눈 값이다. 이 두 변은 같은 변이므로 두 값은 같고, 그 값은 $\\frac{\\sqrt{3}}{2}$이다.",
+      "bGoal": "$\\cos 30^\\circ=\\sin 60^\\circ$인 까닭 설명하기",
+      "bReason": "각 비가 어느 두 변의 비인지 각각 답하도록 하고 요청하지 않은 수치는 강제하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\cos30^\\circ$는 $30^\\circ$에 붙은 빗변 아닌 변의 길이를 빗변 길이로 나눈 값이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sin60^\\circ$는 $60^\\circ$와 마주 보는 변의 길이를 빗변 길이로 나눈 값이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 분자는 같은 변의 길이이고 빗변도 같으므로 두 값은 같다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$\\cos 30^\\circ$와 $\\sin 60^\\circ$는 같은 값 {$\\frac{\\sqrt{3}}{2}$}이다 — 정삼각형을 반으로 자른 삼각형에서 $30^\\circ$에 붙은 직각을 낀 변은 $60^\\circ$와 {마주 보는} 변이고, 두 값 모두 이 변을 {빗변}으로 나눈 것이다.",
+      "cAnswers": [
+        "$\\frac{\\sqrt{3}}{2}$",
+        "마주 보는",
+        "빗변"
+      ],
+      "cReason": "둘째 빈칸 '같은'이 앞의 '같은 값'에 드러나 있고 어느 두 변인지도 없었다.",
+      "authorBatch": 59,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "같은 변을 빗변으로 나눔",
+      "enrichmentEvidence": "enrichment/enrich-009",
+      "sourceIndex": 3543,
+      "part": "m3plus",
+      "sourceFingerprint": "999399238bd6a727e6170a1eb4828310f38a37f8ce64c9e146bac30dd03e9a62",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3543
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m3-05-02-xc5"
+      },
+      "cMarkedSentence": "$\\cos 30^\\circ$와 $\\sin 60^\\circ$는 같은 값 {$\\frac{\\sqrt{3}}{2}$}이다 — 정삼각형을 반으로 자른 삼각형에서 $30^\\circ$에 붙은 직각을 낀 변은 $60^\\circ$와 {마주 보는} 변이고, 두 값 모두 이 변을 {빗변}으로 나눈 것이다.",
+      "cSlotAnswers": [
+        "$\\frac{\\sqrt{3}}{2}$",
+        "마주 보는",
+        "빗변"
+      ],
+      "cStudentSentence": "$\\cos 30^\\circ$와 $\\sin 60^\\circ$는 같은 값 □이다 — 정삼각형을 반으로 자른 삼각형에서 $30^\\circ$에 붙은 직각을 낀 변은 $60^\\circ$와 □ 변이고, 두 값 모두 이 변을 □으로 나눈 것이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{\\sqrt{3}}{2}$",
+          "equivalentAnswers": [
+            "$\\frac{\\sqrt{3}}{2}$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "마주 보는",
+          "equivalentAnswers": [
+            "마주 보는"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 2,
+          "answer": "빗변",
+          "equivalentAnswers": [
+            "빗변"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{\\sqrt{3}}{2}$"
+        ],
+        [
+          "마주 보는"
+        ],
+        [
+          "빗변"
+        ]
+      ],
+      "proposalFingerprint": "41ddfe33b5ad29354d590d6236aadaac6b317113bbc6f4abe54e80e04a09528d"
+    },
+    {
+      "id": "m3-05-02-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\sin45^\\circ=\\frac{\\sqrt2}{2}$인데 어떤 삼각비 표에는 이 값을 $0.7071$로 적었다. 표의 수가 정확한 값인지 어림값인지 판단하고, 무리수의 소수 표현을 이용해 까닭을 설명하시오.",
+      "bAnswer": "어림값이다. $\\frac{\\sqrt2}{2}$는 무리수이므로 소수점 아래가 끝없이 이어지고 순환하지 않는다. $0.7071$은 이를 소수점 아래 넷째 자리까지 반올림한 값이다.",
+      "bGoal": "삼각비의 표의 값이 어림값인 까닭 알기",
+      "bReason": "실제 표시값과 정밀도를 문제에 주고 정확한 값과 어림값의 차이를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.7071$은 어림값이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt2/2$는 무리수여서 소수점 아래가 끝없이 이어져 유한한 네 자리만으로 정확히 적을 수 없다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$\\sin45^\\circ=\\frac{\\sqrt2}{2}$는 {무리수}이므로 소수로 끝까지 적을 수 없다. 이를 정한 자리까지 반올림한 수는 {어림값}이다.",
+      "cAnswers": [
+        "무리수",
+        "어림값"
+      ],
+      "cReason": "모든 표가 넷째 자리까지라는 임의 정책을 수학 사실처럼 묻지 않는다.",
+      "authorBatch": 59,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "대부분 무리수라 반올림",
+      "enrichmentEvidence": "enrichment/enrich-009",
+      "sourceIndex": 3544,
+      "part": "m3plus",
+      "sourceFingerprint": "381ded48cc80b40225d01b446b578e9ee35e55c7b32cec8a94910eb306c02929",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3544
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\sin45^\\circ=\\frac{\\sqrt2}{2}$는 {무리수}이므로 소수로 끝까지 적을 수 없다. 이를 정한 자리까지 반올림한 수는 {어림값}이다.",
+      "cSlotAnswers": [
+        "무리수",
+        "어림값"
+      ],
+      "cStudentSentence": "$\\sin45^\\circ=\\frac{\\sqrt2}{2}$는 □이므로 소수로 끝까지 적을 수 없다. 이를 정한 자리까지 반올림한 수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "무리수",
+          "equivalentAnswers": [
+            "무리수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "어림값",
+          "equivalentAnswers": [
+            "어림값",
+            "근삿값"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "어림값",
+          "accept": [
+            "근삿값"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "무리수"
+        ],
+        [
+          "어림값",
+          "근삿값"
+        ]
+      ],
+      "proposalFingerprint": "e1ce1926f9132366ae8049e8fcf7b0858db4bc138f5b6f52a65a31220b145bd9",
+      "coreAfter": "삼각비의 값이 {무리수}이면 소수점 아래가 끝없이 이어지고 순환하지 않아 소수로 끝까지 적을 수 없다. 표에 싣기 위해 정한 자리까지 반올림한 값은 {어림값}이다.",
+      "coreReason": "값이 무리수인 경우의 성질과 표가 정한 정밀도를 구별한다."
+    },
+    {
+      "id": "m3-05-02-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "한 삼각비 표는 각도 하나마다 가로줄 하나를 쓰고, 왼쪽부터 각도·사인·코사인·탄젠트를 세로줄로 나누어 적었다. $\\sin x=0.4226$인 예각 $x$의 어림값을 찾으려면 어떤 칸을 찾고 어느 각도를 읽어야 하는지 순서대로 설명하시오.",
+      "bAnswer": "사인 세로줄에서$0.4226$이 적힌 칸을 찾고, 그 칸과 같은 가로줄 맨 왼쪽의 각도를 읽는다. 표의 사인값이 반올림되어 있으므로 읽은 각도는$x$의 어림값이다.",
+      "bGoal": "삼각비의 값에서 각을 찾는 표 읽기",
+      "bReason": "표의 실제 배열을 문항 안에서 정하여 가로·세로 해석을 가능하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사인 세로줄에서$0.4226$칸을 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 가로줄 맨왼쪽 각도를x의 어림값으로 읽는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "각도마다 가로줄을 두고 각도·사인·코사인·탄젠트를 세로줄로 나눈 표가 있다. 사인 세로줄에서 $0.4226$을 찾으면 같은 {가로줄}에 적힌 각도가 $\\sin x=0.4226$인 예각 $x$의 {어림값}이다.",
+      "cAnswers": [
+        "가로줄",
+        "어림값"
+      ],
+      "cReason": "표의 배열과 역으로 읽은 각이 어림값이라는 범위를 밝힌다.",
+      "exampleNeeded": true,
+      "authorBatch": 59,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "세로줄 값에서 가로줄 각 읽기",
+      "enrichmentEvidence": "enrichment/enrich-009",
+      "sourceIndex": 3550,
+      "part": "m3plus",
+      "sourceFingerprint": "0441234dd3d007e508fa2eb3be552986a29c86428e8f8b0def24597855f0929b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3550
+      },
+      "directReview": null,
+      "cMarkedSentence": "각도마다 가로줄을 두고 각도·사인·코사인·탄젠트를 세로줄로 나눈 표가 있다. 사인 세로줄에서 $0.4226$을 찾으면 같은 {가로줄}에 적힌 각도가 $\\sin x=0.4226$인 예각 $x$의 {어림값}이다.",
+      "cSlotAnswers": [
+        "가로줄",
+        "어림값"
+      ],
+      "cStudentSentence": "각도마다 가로줄을 두고 각도·사인·코사인·탄젠트를 세로줄로 나눈 표가 있다. 사인 세로줄에서 $0.4226$을 찾으면 같은 □에 적힌 각도가 $\\sin x=0.4226$인 예각 $x$의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "가로줄",
+          "equivalentAnswers": [
+            "가로줄"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "어림값",
+          "equivalentAnswers": [
+            "어림값",
+            "근삿값"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "어림값",
+          "accept": [
+            "근삿값"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "가로줄"
+        ],
+        [
+          "어림값",
+          "근삿값"
+        ]
+      ],
+      "proposalFingerprint": "ec3595acfa9cada155dec56ab15254c9326632c040194b38c640dd0f36cd1f2e",
+      "coreAfter": "각도마다 가로줄을 둔 삼각비 표에서, 원하는 삼각비의 세로줄에 주어진 값과 가까운 수를 찾는다. 같은 {가로줄}의 각도를 읽으면 그 각의 {어림값}을 구할 수 있다.",
+      "coreReason": "반올림한 값으로 정확한 각을 단정하지 않고 표 배열이 정해진 경우의 방법을 설명한다."
+    },
+    {
+      "id": "m3-05-02-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "예각 $x$ 가운데 $\\sin x=\\cos x$가 되는 각의 크기를 말하고, 직각삼각형의 변의 길이로 그 까닭을 설명해 보세요.",
+      "bAnswer": "$x=45^\\circ$이다. 사인과 코사인은 각각 기준각과 마주 보는 직각변, 기준각에 붙은 직각변의 길이를 같은 빗변의 길이로 나눈 값이다. 두 비가 같으면 두 직각변의 길이가 같아 직각이등변삼각형이므로 두 예각은 모두 $45^\\circ$이다.",
+      "bGoal": "사인과 코사인이 같아지는 예각 찾기",
+      "bReason": "기준 없는 높이·밑변 대신 두 직각변과 공통 빗변의 비를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=45^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 빗변 길이로 나눈 두 비가 같으므로 직각을 낀 두 변 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "직각이등변삼각형이므로 두 예각이 $45^\\circ$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "같은 두 길이가 직각을 낀 두 변임을 명시한다.",
+      "authorBatch": 59,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "높이=밑변일 때 45°",
+      "enrichmentEvidence": "enrichment/enrich-010",
+      "sourceIndex": 3554,
+      "part": "m3plus",
+      "sourceFingerprint": "64313785e5ab82804e0ed4c3e306df6258005a1ab8f675178c6ad3d8d7e05a5c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3554
+      },
+      "directReview": null,
+      "cMarkedSentence": "예각 $x$에서 $\\sin x=\\cos x$가 되는 각은 {$45^\\circ$}이다. 두 비의 분모인 빗변이 같으므로, 이때 직각을 낀 두 변의 길이는 {같다}.",
+      "cSlotAnswers": [
+        "$45^\\circ$",
+        "같다"
+      ],
+      "cStudentSentence": "예각 $x$에서 $\\sin x=\\cos x$가 되는 각은 □이다. 두 비의 분모인 빗변이 같으므로, 이때 직각을 낀 두 변의 길이는 □.",
+      "cAnswers": [
+        "$45^\\circ$",
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$45^\\circ$",
+          "equivalentAnswers": [
+            "$45^\\circ$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$45^\\circ$"
+        ],
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "94238fa2a8c8514ab7e77eb8ec0402c1729634bee907a0b6964b471e85bd4a98",
+      "cAfter": "예각 $x$에서 $\\sin x=\\cos x$가 되는 각은 {$45^\\circ$}이다. 두 비의 분모인 빗변이 같으므로, 이때 직각을 낀 두 변의 길이는 {같다}.",
+      "coreAfter": "예각 $x$에서 사인과 코사인은 서로 다른 두 직각변의 길이를 같은 빗변의 길이로 나눈 값이다. 두 값이 같으면 두 직각변의 길이가 {같아} 직각이등변삼각형이므로 {$x=45^\\circ$}이다.",
+      "coreReason": "비의 같음에서 이등변 성질과45도를 이끌어 낸다."
+    },
+    {
+      "id": "m3-05-02-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "예각 $x$에 대하여 $x<45^\\circ$일 때와 $x>45^\\circ$일 때 $\\sin x$와 $\\cos x$의 대소를 각각 쓰시오. 직각삼각형에서 $x$와 마주 보는 변과 $x$에 붙어 있는 빗변 아닌 변을 비교하여 까닭을 설명하시오.",
+      "bAnswer": "$x<45^\\circ$이면 $\\sin x<\\cos x$, $x>45^\\circ$이면 $\\sin x>\\cos x$이다. 첫 경우에는 $x$의 맞은편 직각변이 다른 직각변보다 짧고, 둘째 경우에는 더 길다. 이 두 길이를 같은 빗변 길이로 나누므로 비의 대소도 같다.",
+      "bGoal": "$45^\\circ$를 기준으로 사인과 코사인의 대소 알기",
+      "bReason": "비교할 두 직각변과 공통 분모를 명시해 대소 이유를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x<45^\\circ$이면 $\\sin x<\\cos x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x>45^\\circ$이면 $\\sin x>\\cos x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$45^\\circ$ 미만일 때 $x$의 맞은편 직각변이 짧고 $45^\\circ$ 초과일 때 길다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 직각변의 길이를 같은 빗변 길이로 나누므로 크기 순서가 같다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "임의 밑변 이름 칸을 없애고45도 양쪽의 비 비교를 묻는다.",
+      "authorBatch": 59,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "45° 기준 높이·밑변 대소",
+      "enrichmentEvidence": "enrichment/enrich-010",
+      "sourceIndex": 3555,
+      "part": "m3plus",
+      "sourceFingerprint": "c05f48ea6904aa09732dd10b450f6f88f3fb10e74754013df71876e639297e00",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3555
+      },
+      "directReview": null,
+      "cMarkedSentence": "예각 $x$에서 $x>45^\\circ$이면 {$\\sin x>\\cos x$}이고 $x<45^\\circ$이면 {$\\sin x<\\cos x$}이다. 사인과 코사인은 두 직각변의 길이를 같은 빗변 길이로 나눈 값이다.",
+      "cSlotAnswers": [
+        "$\\sin x>\\cos x$",
+        "$\\sin x<\\cos x$"
+      ],
+      "cStudentSentence": "예각 $x$에서 $x>45^\\circ$이면 □이고 $x<45^\\circ$이면 □이다. 사인과 코사인은 두 직각변의 길이를 같은 빗변 길이로 나눈 값이다.",
+      "cAnswers": [
+        "$\\sin x>\\cos x$",
+        "$\\sin x<\\cos x$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\sin x>\\cos x$",
+          "equivalentAnswers": [
+            "$\\sin x>\\cos x$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$\\sin x<\\cos x$",
+          "equivalentAnswers": [
+            "$\\sin x<\\cos x$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\sin x>\\cos x$"
+        ],
+        [
+          "$\\sin x<\\cos x$"
+        ]
+      ],
+      "proposalFingerprint": "21fa763474b06e5af408a79c35880d7e5cfbf4ea984f641b657481d4536f3084",
+      "cAfter": "예각 $x$에서 $x>45^\\circ$이면 {$\\sin x>\\cos x$}이고 $x<45^\\circ$이면 {$\\sin x<\\cos x$}이다. 사인과 코사인은 두 직각변의 길이를 같은 빗변 길이로 나눈 값이다.",
+      "coreAfter": "예각 $x$가 $45^\\circ$보다 크면 $x$와 마주 보는 직각변이 다른 직각변보다 길어 {$\\sin x>\\cos x$}이다. $x<45^\\circ$이면 두 직각변의 대소가 반대여서 {$\\sin x<\\cos x$}이다.",
+      "coreReason": "기준각의 맞은편 직각변과 다른 직각변으로 비교 대상을 특정한다."
+    },
+    {
+      "id": "m3-05-02-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$0^\\circ\\le x\\le90^\\circ$에서 $\\sin x$와 $\\cos x$의 값의 범위를 쓰시오. 탄젠트는 $0^\\circ\\le x<90^\\circ$에서 생각할 때 $1$보다 커질 수 있는지, $x$가 $90^\\circ$보다 작은 채 가까워질수록 어떻게 되는지 설명하시오.",
+      "bAnswer": "사인과 코사인은 $0$ 이상 $1$ 이하이다. 탄젠트는 $\\tan60^\\circ=\\sqrt3$처럼 $1$보다 커질 수 있고, $x<90^\\circ$인 채 $90^\\circ$에 가까워질수록 끝없이 커진다. $\\tan90^\\circ$는 정의되지 않는다.",
+      "bGoal": "사인·코사인의 값의 범위와 탄젠트의 차이 알기",
+      "bReason": "탄젠트90도가 정의되지 않으므로 적용 구간과 접근 방향을 구별한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사인과 코사인은$0$이상$1$이하이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "탄젠트는$1$보다 커질 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$90^\\circ$보다 작은 각이 $90^\\circ$에 가까워질수록 탄젠트는 끝없이 커진다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$0^\\circ\\le x\\le90^\\circ$에서 사인과 코사인은 {$0$} 이상 {$1$} 이하이다. 탄젠트는 $x<90^\\circ$인 채 $90^\\circ$에 가까워질수록 끝없이 {커진다}.",
+      "cAnswers": [
+        "$0$",
+        "$1$",
+        "커진다"
+      ],
+      "cReason": "탄젠트는90도보다 작은 쪽에서 접근한다는 조건을 명시한다.",
+      "authorBatch": 59,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "사인·코사인 0~1, 탄젠트 무한",
+      "enrichmentEvidence": "enrichment/enrich-010",
+      "sourceIndex": 3557,
+      "part": "m3plus",
+      "sourceFingerprint": "8eff2db766e3445099af63d971a56893ec5da6010e6181c30e35116aa435f83c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3557
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0^\\circ\\le x\\le90^\\circ$에서 사인과 코사인은 {$0$} 이상 {$1$} 이하이다. 탄젠트는 $x<90^\\circ$인 채 $90^\\circ$에 가까워질수록 끝없이 {커진다}.",
+      "cSlotAnswers": [
+        "$0$",
+        "$1$",
+        "커진다"
+      ],
+      "cStudentSentence": "$0^\\circ\\le x\\le90^\\circ$에서 사인과 코사인은 □ 이상 □ 이하이다. 탄젠트는 $x<90^\\circ$인 채 $90^\\circ$에 가까워질수록 끝없이 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 2,
+          "answer": "커진다",
+          "equivalentAnswers": [
+            "커진다"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "$1$"
+        ],
+        [
+          "커진다"
+        ]
+      ],
+      "proposalFingerprint": "e7ec61c00bc4934387ba1ef087dea3bdc29abee4517454c49ac545f54c381ddb",
+      "coreAfter": "$0^\\circ\\le x\\le90^\\circ$에서 사인과 코사인은 {$0$ 이상 $1$ 이하}이다. 탄젠트는 $0^\\circ\\le x<90^\\circ$에서 $90^\\circ$에 가까워질수록 {끝없이 커진다}. $\\tan90^\\circ$는 정의되지 않는다.",
+      "coreReason": "사인·코사인의 닫힌구간과 탄젠트의 끝점 제외를 구별한다."
+    },
+    {
+      "id": "m3-06-01-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름이 $r$인 원에서 가장 긴 현은 무엇이며 그 길이는 얼마인가? 그 현이 다른 현보다 긴 까닭도 쓰시오.",
+      "bAnswer": "지름이고 길이는 $2r$이다. 지름이 아닌 현 $AB$는 $\\triangle OAB$에서 $\\overline{AB}<\\overline{OA}+\\overline{OB}=2r$이므로 지름보다 짧다.",
+      "bGoal": "가장 긴 현이 지름인 까닭",
+      "bReason": "중심거리0에서 최대라는 결론 반복 대신 삼각형 부등식이나 실제 길이식을 근거로 받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2r$"
+          ]
+        },
+        {
+          "anyOf": [
+            "중심O와 지름 아닌 현AB로 만든 삼각형에서 $AB<OA+OB=2r$이다",
+            "중심까지 거리 $d$일 때 현 길이 $2\\sqrt{r^2-d^2}$는 $d$가 커지면 작아져 $d=0$인 지름이 가장 길다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "지름과 $2$배를 묻는 짧은 비교 빈칸으로 유용하다.",
+      "learningRole": "reason",
+      "roleReason": "지름이 가장 긴 현인 근거",
+      "authorBatch": 60,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3581,
+      "part": "m3plus",
+      "sourceFingerprint": "11780bf5a26158d046761794b52305e4e074d1f8f76b564e51cc293388416c48",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3581
+      },
+      "directReview": null,
+      "cFrozenSentence": "한 원에서 가장 긴 현은 원의 중심을 지나는 □이고, 그 길이는 반지름의 □배이다.",
+      "cFrozenDefinition": "한 원에서 가장 긴 현은 원의 중심을 지나는 {지름}이고, 그 길이는 반지름의 {$2$}배이다.",
+      "cFrozenAnswers": [
+        "지름",
+        "$2$"
+      ],
+      "cMarkedSentence": "한 원에서 가장 긴 현은 원의 중심을 지나는 {지름}이고, 그 길이는 반지름의 {$2$}배이다.",
+      "cSlotAnswers": [
+        "지름",
+        "$2$"
+      ],
+      "cStudentSentence": "한 원에서 가장 긴 현은 원의 중심을 지나는 □이고, 그 길이는 반지름의 □배이다.",
+      "cAnswers": [
+        "지름",
+        "$2$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "지름",
+          "equivalentAnswers": [
+            "지름"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "지름"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "d59699680f927b64726169205dcd5372151a5d8ff1525acd86e05e9fe5f0145d"
+    },
+    {
+      "id": "m3-06-01-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "원의 중심 $O$와 지름이 아닌 현 $AB$의 중점 $M$을 이었다. $\\overline{OM}$과 $\\overline{AB}$는 어떤 위치 관계인가? 그 까닭도 쓰시오.",
+      "bAnswer": "서로 수직이다. $\\triangle OAM$과 $\\triangle OBM$은 $\\overline{OA}=\\overline{OB}$, $\\overline{AM}=\\overline{BM}$, $\\overline{OM}$ 공통이라 $\\mathrm{SSS}$ 합동이므로 $\\angle OMA=\\angle OMB$이고, 두 각의 합이 $180^\\circ$라 각각 $90^\\circ$이다.",
+      "bGoal": "중심과 현의 중점을 이은 선분이 현에 수직임",
+      "bReason": "특정 SSS증명만 강제하지 않고 이미 배운 이등변삼각형 성질을 맞게 적용한 이유도 받는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수직",
+            "$OM\\perp AB$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$OA=OB$, $AM=BM$, $OM$ 공통이므로 $\\mathrm{SSS}$ 합동이고 중점 $M$의 같은 두 각의 합이 $180^\\circ$여서 각각 $90^\\circ$이다",
+            "OA=OB인 이등변삼각형에서 꼭짓점O와 밑변AB의 중점M을 잇는 선은 밑변에 수직이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "중점과 수직을 묻는 짧고 명확한 문장이다.",
+      "learningRole": "reason",
+      "roleReason": "중심과 현의 중점을 이은 선분이 수직인 이유",
+      "authorBatch": 60,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3586,
+      "part": "m3plus",
+      "sourceFingerprint": "92a42f5f042ae1f4519cd51e40a2ff36aadc91cd4518b02263fb156570293a45",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3586
+      },
+      "directReview": null,
+      "cFrozenSentence": "원의 중심과 지름이 아닌 현의 □을 이은 선분은 그 현에 □이다.",
+      "cFrozenDefinition": "원의 중심과 지름이 아닌 현의 {중점}을 이은 선분은 그 현에 {수직}이다.",
+      "cFrozenAnswers": [
+        "중점",
+        "수직"
+      ],
+      "cMarkedSentence": "원의 중심과 지름이 아닌 현의 {중점}을 이은 선분은 그 현에 {수직}이다.",
+      "cSlotAnswers": [
+        "중점",
+        "수직"
+      ],
+      "cStudentSentence": "원의 중심과 지름이 아닌 현의 □을 이은 선분은 그 현에 □이다.",
+      "cAnswers": [
+        "중점",
+        "수직"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "중점",
+          "equivalentAnswers": [
+            "중점"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "수직",
+          "equivalentAnswers": [
+            "수직"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "중점"
+        ],
+        [
+          "수직"
+        ]
+      ],
+      "proposalFingerprint": "244e4d71d50f68ab71f7ccb7982df23f5d0472ea7d9162440ef03cbdc4b48abb"
+    },
+    {
+      "id": "m3-06-03-xc4",
+      "learningRole": "reason",
+      "roleReason": "원주각이 $180^\\circ$보다 작은 까닭",
+      "bDecision": "rewrite",
+      "bPrompt": "한 원에서 어떤 호에 대한 원주각의 크기는 어떤 범위에 있는가? 같은 호에 대한 중심각을 이용해 까닭과 함께 쓰시오.",
+      "bAnswer": "원주각은 $0^\\circ$보다 크고 $180^\\circ$보다 작다. 중심각은 $0^\\circ$보다 크고 $360^\\circ$보다 작은데, 원주각은 그 절반이기 때문이다.",
+      "bGoal": "원주각의 범위와 근거",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0^\\circ<$(원주각)$<180^\\circ$",
+            "원주각은 $0^\\circ$보다 크고 $180^\\circ$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 호의 중심각은 $0^\\circ$ 초과 $360^\\circ$ 미만이고 원주각은 그 절반이다"
+          ]
+        }
+      ],
+      "bReason": "상한만으로 범위 답이 되지 않으므로 양의 하한과 절반 근거도 함께 확인한다.",
+      "cDecision": "keep",
+      "cReason": "$180^\\circ$와 작다라는 두 빈칸이 범위를 근거와 함께 묻는다.",
+      "authorBatch": 61,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3624,
+      "part": "m3plus",
+      "sourceFingerprint": "e2d9b89b398acade4673d745209eafb41c1c3e2a8363605194948c3a47860802",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3624
+      },
+      "directReview": null,
+      "cFrozenSentence": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 □보다 □.",
+      "cFrozenDefinition": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 {$180^\\circ$}보다 {작다}.",
+      "cFrozenAnswers": [
+        "$180^\\circ$",
+        "작다"
+      ],
+      "cMarkedSentence": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 {$180^\\circ$}보다 {작다}.",
+      "cSlotAnswers": [
+        "$180^\\circ$",
+        "작다"
+      ],
+      "cStudentSentence": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 □보다 □.",
+      "cAnswers": [
+        "$180^\\circ$",
+        "작다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$180^\\circ$",
+          "equivalentAnswers": [
+            "$180^\\circ$"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "작다",
+          "equivalentAnswers": [
+            "작다"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$180^\\circ$"
+        ],
+        [
+          "작다"
+        ]
+      ],
+      "proposalFingerprint": "bb08f83068e8a5ce01806a681bb56baca1bd11a829eb33babdb2d50b5547f8a6"
+    },
+    {
+      "id": "m3-06-04-xc2",
+      "learningRole": "reason",
+      "roleReason": "원에 내접하지 않는 사각형의 반례",
+      "bDecision": "rewrite",
+      "bPrompt": "모든 사각형이 원에 내접하는가? 판단하고, 원에 내접하지 않는 사각형의 예를 하나 들어 까닭을 쓰시오.",
+      "bAnswer": "아니다. 예를 들어 한 내각이 $60^\\circ$인 평행사변형(직사각형이 아닌 것)은 대각의 크기가 $60^\\circ$, $60^\\circ$로 그 합이 $180^\\circ$가 아니다. 따라서 원에 내접하지 않는다.",
+      "bGoal": "내접 여부 판단과 반례",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모든사각형이원에내접하는것은아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 내각이 $60^\\circ$인 평행사변형처럼 실제로 내접하지 않는 사각형의 예를 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 예에서 마주 보는 두 각의 합이 $180^\\circ$가 아님을 확인한다",
+            "그예의네꼭짓점을모두지나는원이없음을다른올바른기하근거로설명한다"
+          ]
+        }
+      ],
+      "bReason": "반례 이름만 받지 않고 그 예에서 내접 조건이 성립하지 않는 까닭도 따로 확인한다.",
+      "cDecision": "keep",
+      "cReason": "내접과 아니다라는 두 빈칸이 판단을 짧게 확인한다.",
+      "authorBatch": 61,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3644,
+      "part": "m3plus",
+      "sourceFingerprint": "7e02c38f04dcccc294c693ac303cc341d4fbdf2c4edb0e2ab48a7f23a88c6ddd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3644
+      },
+      "directReview": null,
+      "cFrozenSentence": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 □하므로, 모든 사각형이 원에 내접하는 것은 □.",
+      "cFrozenDefinition": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 {내접}하므로, 모든 사각형이 원에 내접하는 것은 {아니다}.",
+      "cFrozenAnswers": [
+        "내접",
+        "아니다"
+      ],
+      "cMarkedSentence": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 {내접}하므로, 모든 사각형이 원에 내접하는 것은 {아니다}.",
+      "cSlotAnswers": [
+        "내접",
+        "아니다"
+      ],
+      "cStudentSentence": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 □하므로, 모든 사각형이 원에 내접하는 것은 □.",
+      "cAnswers": [
+        "내접",
+        "아니다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "내접",
+          "equivalentAnswers": [
+            "내접"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "아니다",
+          "equivalentAnswers": [
+            "아니다"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "내접"
+        ],
+        [
+          "아니다"
+        ]
+      ],
+      "proposalFingerprint": "0005a0d917c82c3c1619acd3dd5c13f9ee564e7de5ceaac6a0d6bc64b74f1a61"
+    }
+  ]
+}

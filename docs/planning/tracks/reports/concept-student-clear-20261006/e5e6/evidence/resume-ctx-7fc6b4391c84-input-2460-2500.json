@@ -1,0 +1,4102 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T09:01:06.228839+00:00",
+  "rows": [
+    {
+      "id": "e6-2-4-3-xc22",
+      "bDecision": "revise",
+      "bPrompt": "비례식 $3:5=12:20$에서 앞의 수 $3$과 $12$, 뒤의 수 $5$와 $20$은 각각 몇 배 관계인지 쓰고 두 배를 비교하시오.",
+      "bAnswer": "$12$는 $3$의 $4$배이고 $20$은 $5$의 $4$배이다. 두 배가 서로 같다.",
+      "bGoal": "비례식에서 앞의 수끼리, 뒤의 수끼리의 배가 같음을 확인한다.",
+      "bReason": "배 관계를 구체적으로 계산하고 비교하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$3:5=12:20$에서 앞의 수는 $3$에서 $12$로 $4$배가 되었다. 뒤의 수 $5$도 같은 배가 되면 {$20$}이 된다.",
+      "cReason": "원문 빈칸은 긴 구절이라 구체적 계산 빈칸으로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "coreAfter": "네 수가 모두 $0$이 아닌 비례식에서, 둘째 비의 앞의 수는 첫째 비의 앞의 수의 몇 배이고, 뒤의 수도 첫째 비의 뒤의 수의 {같은 배}이다.",
+      "coreReason": "'같은 배 관계'를 구체적으로 풀고 $0$ 조건을 더한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$12$는 $3$의 $4$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$은 $5$의 $4$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 배가 서로 같다",
+            "모두 $4$배로 같다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "앞의 수끼리·뒤의 수끼리 같은 배라는 원문 긴 표적을 같은 배로 줄이고 비교할 두 앞 수와 두 뒤 수를 문장에 지목한다.0인 수의 배수 판단은 제외한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 2460,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-3-xc22",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "term": "두 비 사이의 같은 배",
+        "kind": "성질",
+        "level": "상",
+        "definition": "비례식의 두 비 사이에는 {앞의 수끼리, 뒤의 수끼리 같은 배} 관계가 있다.",
+        "studentC": "비례식의 두 비 사이에는 □ 관계가 있다.",
+        "answers": [
+          "앞의 수끼리, 뒤의 수끼리 같은 배"
+        ]
+      },
+      "sourceFingerprint": "05232a346a30741b31cbf623a28f7e40c86041639ca4a0227c21a0db0c0bc790",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$20$"
+      ],
+      "cStudentAfter": "$3:5=12:20$에서 앞의 수는 $3$에서 $12$로 $4$배가 되었다. 뒤의 수 $5$도 같은 배가 되면 □이 된다.",
+      "cMarkedSentence": "$3:5=12:20$에서 앞의 수는 $3$에서 $12$로 $4$배가 되었다. 뒤의 수 $5$도 같은 배가 되면 {$20$}이 된다.",
+      "cStudentSentence": "$3:5=12:20$에서 앞의 수는 $3$에서 $12$로 $4$배가 되었다. 뒤의 수 $5$도 같은 배가 되면 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식 $3:5=12:20$에서 앞의 수 $3$과 $12$, 뒤의 수 $5$와 $20$은 각각 몇 배 관계인지 쓰고 두 배를 비교하시오.",
+        "answer": "$12$는 $3$의 $4$배이고 $20$은 $5$의 $4$배이다. 두 배가 서로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$12$는 $3$의 $4$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$은 $5$의 $4$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 배가 서로 같다",
+              "모두 $4$배로 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3:5=12:20$에서 앞의 수는 $3$에서 $12$로 $4$배가 되었다. 뒤의 수 $5$도 같은 배가 되면 {$20$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cd840d095b919b4065c3daee9e85adb77956e2e511b0eb8573b25eef45e2439a",
+      "questionRevision": "planning-e5e6-20261006-cd840d095b91",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-xc23",
+      "bDecision": "revise",
+      "bPrompt": "비례식 $2:3=6:9$에서 둘째 비의 두 수는 첫째 비의 두 수의 몇 배인가? 두 수의 합 $2+3$과 $6+9$는 어떤 관계인지 쓰고 까닭을 설명하시오.",
+      "bAnswer": "$3$배이다. $6+9=15$는 $2+3=5$의 $3$배이다. 각 수가 $3$배이므로 합도 $3$배가 된다.",
+      "bGoal": "각 수가 같은 배일 때 합도 같은 배가 됨을 설명한다.",
+      "bReason": "합의 배 관계와 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$2:3=6:9$에서 $6$은 $2$의 $3$배, $9$는 $3$의 $3$배이다. $6+9$는 $2+3$의 {$3$}배이다.",
+      "cReason": "원문 빈칸 '그 배'는 모호하므로 구체적 수로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "$3$배"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수가 각각 $3$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "합도 $3$배이다",
+            "$15$는 $5$의 $3$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 수가 같은 배이므로 합도 같은 배이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2461,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-3-xc23",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "term": "두 비의 합의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "비례식에서 둘째 비의 두 수가 각각 첫째 비의 두 수의 같은 배이면, 둘째 비의 두 수의 합도 첫째 비의 두 수의 합의 {그 배}가 된다.",
+        "studentC": "비례식에서 둘째 비의 두 수가 각각 첫째 비의 두 수의 같은 배이면, 둘째 비의 두 수의 합도 첫째 비의 두 수의 합의 □가 된다.",
+        "answers": [
+          "그 배"
+        ]
+      },
+      "sourceFingerprint": "05710c1c30f15c6efec1b55f85bc043ace54583b67b8e8e5a963f77e472f4800",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "$2:3=6:9$에서 $6$은 $2$의 $3$배, $9$는 $3$의 $3$배이다. $6+9$는 $2+3$의 □배이다.",
+      "cMarkedSentence": "$2:3=6:9$에서 $6$은 $2$의 $3$배, $9$는 $3$의 $3$배이다. $6+9$는 $2+3$의 {$3$}배이다.",
+      "cStudentSentence": "$2:3=6:9$에서 $6$은 $2$의 $3$배, $9$는 $3$의 $3$배이다. $6+9$는 $2+3$의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "$3$배"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식 $2:3=6:9$에서 둘째 비의 두 수는 첫째 비의 두 수의 몇 배인가? 두 수의 합 $2+3$과 $6+9$는 어떤 관계인지 쓰고 까닭을 설명하시오.",
+        "answer": "$3$배이다. $6+9=15$는 $2+3=5$의 $3$배이다. 각 수가 $3$배이므로 합도 $3$배가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수가 각각 $3$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합도 $3$배이다",
+              "$15$는 $5$의 $3$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 수가 같은 배이므로 합도 같은 배이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2:3=6:9$에서 $6$은 $2$의 $3$배, $9$는 $3$의 $3$배이다. $6+9$는 $2+3$의 {$3$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "$3$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "145ab7f8fa0379bcde98068c1b014ff0d494d264c78919afff0ec710b235409e",
+      "questionRevision": "planning-e5e6-20261006-145ab7f8fa03",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-xc25",
+      "bDecision": "revise",
+      "bPrompt": "$3:3$과 $7:7$처럼 앞의 수와 뒤의 수가 같은 두 비를 등호로 이어 비례식을 만들 수 있는가? 두 비의 비율을 구해 까닭을 쓰시오.",
+      "bAnswer": "만들 수 있다. $3:3$의 비율은 $3\\div3=1$, $7:7$의 비율은 $7\\div7=1$로 같으므로 $3:3=7:7$이다.",
+      "bGoal": "앞뒤 수가 같은 비는 비율이 모두 $1$임을 안다.",
+      "bReason": "조건과 비율 계산으로 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "앞의 수와 뒤의 수가 같고 $0$이 아닌 비의 비율은 항상 {$1$}이다.",
+      "cReason": "원문은 $0$ 조건이 없고 정답이 긴 구절이라 비율 $1$ 빈칸으로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "coreAfter": "앞의 수와 뒤의 수가 같고 $0$이 아닌 비끼리는 비율이 모두 $1$이므로 {비례식으로 이을 수 있다}.",
+      "coreReason": "원문에 $0$ 제외 조건이 없어 수정한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "만들 수 있다",
+            "비례식이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 비율이 모두 $1$이다",
+            "$3\\div3=1$, $7\\div7=1$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "비례식으로 이을 수 있다는 원문 표적을 보존하고0:0처럼 비율을 정의할 수 없는 경우를 제외한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 2462,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-3-xc25",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "term": "두 수가 같은 비",
+        "kind": "성질",
+        "level": "상",
+        "definition": "앞의 수와 뒤의 수가 같은 비끼리는 비율이 모두 $1$이라 {비례식으로 이을 수 있다}.",
+        "studentC": "앞의 수와 뒤의 수가 같은 비끼리는 비율이 모두 $1$이라 □.",
+        "answers": [
+          "비례식으로 이을 수 있다"
+        ]
+      },
+      "sourceFingerprint": "763f334aee51e11f7211a353ea148b04274c4b2e9b5c7071c309d31ab1c17856",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "앞의 수와 뒤의 수가 같고 $0$이 아닌 비의 비율은 항상 □이다.",
+      "cMarkedSentence": "앞의 수와 뒤의 수가 같고 $0$이 아닌 비의 비율은 항상 {$1$}이다.",
+      "cStudentSentence": "앞의 수와 뒤의 수가 같고 $0$이 아닌 비의 비율은 항상 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3:3$과 $7:7$처럼 앞의 수와 뒤의 수가 같은 두 비를 등호로 이어 비례식을 만들 수 있는가? 두 비의 비율을 구해 까닭을 쓰시오.",
+        "answer": "만들 수 있다. $3:3$의 비율은 $3\\div3=1$, $7:7$의 비율은 $7\\div7=1$로 같으므로 $3:3=7:7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "만들 수 있다",
+              "비례식이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 비율이 모두 $1$이다",
+              "$3\\div3=1$, $7\\div7=1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "앞의 수와 뒤의 수가 같고 $0$이 아닌 비의 비율은 항상 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b07e02e41509a1c8829b9ce4b4c87997cb47182484b5bd581559b92a65332840",
+      "questionRevision": "planning-e5e6-20261006-b07e02e41509",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc1",
+      "bDecision": "revise",
+      "bPrompt": "비례식에서 '양 끝 두 수'는 식의 어떤 위치에 있는 수인지 쓰고, $2:3=4:6$에서 양 끝 두 수를 찾으시오.",
+      "bAnswer": "식의 맨 앞과 맨 뒤에 있는 두 수이다. $2:3=4:6$에서는 $2$와 $6$이다.",
+      "bGoal": "양 끝 두 수의 위치 이해하기",
+      "bReason": "용어를 위치로 풀어 말하게 하고 예에서 바르게 고르는지 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "비례식에서 양 끝 두 수는 식의 {맨 앞}에 있는 수와 {맨 뒤}에 있는 수이다.",
+      "cReason": "긴 구 하나를 외우게 하는 대신 앞/뒤 두 위치를 나누어 빈칸으로 만든다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "맨 앞",
+            "가장 앞",
+            "처음",
+            "첫 번째"
+          ]
+        },
+        {
+          "anyOf": [
+            "맨 뒤",
+            "가장 뒤",
+            "마지막",
+            "끝"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "식의 맨 앞과 맨 뒤에 있는 수",
+            "첫 번째 수와 마지막 수",
+            "바깥쪽 두 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$와 $6$"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "sourceIndex": 2463,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc1",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "비례식의 양 끝 두 수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "비례식에서 {맨 앞과 맨 뒤}에 있는 두 수를 양 끝 두 수라 한다.",
+        "studentC": "비례식에서 □에 있는 두 수를 양 끝 두 수라 한다.",
+        "answers": [
+          "맨 앞과 맨 뒤"
+        ]
+      },
+      "sourceFingerprint": "426cd2ece99d183c83407f57f1557bc0f3836be4e8be66b9daa414895d5821b2",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "맨 앞",
+        "맨 뒤"
+      ],
+      "cStudentAfter": "비례식에서 양 끝 두 수는 식의 □에 있는 수와 □에 있는 수이다.",
+      "cMarkedSentence": "비례식에서 양 끝 두 수는 식의 {맨 앞}에 있는 수와 {맨 뒤}에 있는 수이다.",
+      "cStudentSentence": "비례식에서 양 끝 두 수는 식의 □에 있는 수와 □에 있는 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "맨 앞",
+          "equivalents": [
+            "가장 앞",
+            "처음",
+            "첫 번째"
+          ]
+        },
+        {
+          "key": "맨 뒤",
+          "equivalents": [
+            "가장 뒤",
+            "마지막",
+            "끝"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식에서 '양 끝 두 수'는 식의 어떤 위치에 있는 수인지 쓰고, $2:3=4:6$에서 양 끝 두 수를 찾으시오.",
+        "answer": "식의 맨 앞과 맨 뒤에 있는 두 수이다. $2:3=4:6$에서는 $2$와 $6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "식의 맨 앞과 맨 뒤에 있는 수",
+              "첫 번째 수와 마지막 수",
+              "바깥쪽 두 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$와 $6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비례식에서 양 끝 두 수는 식의 {맨 앞}에 있는 수와 {맨 뒤}에 있는 수이다.",
+        "acceptedAnswers": [
+          [
+            "맨 앞",
+            "가장 앞",
+            "처음",
+            "첫 번째"
+          ],
+          [
+            "맨 뒤",
+            "가장 뒤",
+            "마지막",
+            "끝"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d523da94d377b7140842420777de5e0641ca81348fa7b5ba72e406d2f7947237",
+      "questionRevision": "planning-e5e6-20261006-d523da94d377",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc2",
+      "bDecision": "revise",
+      "bPrompt": "비례식에서 '가운데 두 수'는 식의 어느 곳에 있는 수인지 쓰고, $2:3=4:6$에서 가운데 두 수를 찾으시오.",
+      "bAnswer": "등호($=$) 바로 양옆에 있는 두 수이다. $2:3=4:6$에서는 $3$과 $4$이다.",
+      "bGoal": "가운데 두 수의 위치 이해하기",
+      "bReason": "xc1과 짝을 이루며 등호 기준 위치를 말하고 예로 확인하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "비례식에서 가운데 두 수는 {등호} 바로 양옆에 있는 두 수이다.",
+      "cReason": "'등호 양옆'이라는 긴 구 대신 핵심 낱말 하나만 빈칸으로 둔다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "등호",
+            "$=$",
+            "같다는 기호"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "등호 바로 양옆에 있는 수",
+            "등호와 붙어 있는 두 수",
+            "바깥이 아닌 안쪽 두 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$과 $4$"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "sourceIndex": 2464,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc2",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "비례식의 가운데 두 수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "비례식에서 {등호 양옆}에 있는 두 수를 가운데 두 수라 한다.",
+        "studentC": "비례식에서 □에 있는 두 수를 가운데 두 수라 한다.",
+        "answers": [
+          "등호 양옆"
+        ]
+      },
+      "sourceFingerprint": "c1476f6376b328391e1132149dfe820abeb69b69e79bcc01b322aad3c3b57d05",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "등호"
+      ],
+      "cStudentAfter": "비례식에서 가운데 두 수는 □ 바로 양옆에 있는 두 수이다.",
+      "cMarkedSentence": "비례식에서 가운데 두 수는 {등호} 바로 양옆에 있는 두 수이다.",
+      "cStudentSentence": "비례식에서 가운데 두 수는 □ 바로 양옆에 있는 두 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "등호",
+          "equivalents": [
+            "$=$",
+            "같다는 기호"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식에서 '가운데 두 수'는 식의 어느 곳에 있는 수인지 쓰고, $2:3=4:6$에서 가운데 두 수를 찾으시오.",
+        "answer": "등호($=$) 바로 양옆에 있는 두 수이다. $2:3=4:6$에서는 $3$과 $4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "등호 바로 양옆에 있는 수",
+              "등호와 붙어 있는 두 수",
+              "바깥이 아닌 안쪽 두 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$과 $4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비례식에서 가운데 두 수는 {등호} 바로 양옆에 있는 두 수이다.",
+        "acceptedAnswers": [
+          [
+            "등호",
+            "$=$",
+            "같다는 기호"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8cf363117a8cb5e3bc2fc8c011715fa2c41cc465af210e7b00ef208fa3f62012",
+      "questionRevision": "planning-e5e6-20261006-8cf363117a8c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc6",
+      "bDecision": "revise",
+      "bPrompt": "어떤 식이 비례식인지 양 끝의 곱과 가운데의 곱으로 판단하는 방법을 설명하시오. $2:3=4:7$은 비례식입니까?",
+      "bAnswer": "두 곱을 구해 비교한다. $2\\times7=14$, $3\\times4=12$로 두 곱이 다르므로 비례식이 아니다.",
+      "bGoal": "두 곱이 다르면 비례식이 아님을 알고 판별하기",
+      "bReason": "성질의 역방향 활용(판별)을 방법과 예로 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "양 끝의 곱과 가운데의 곱이 다르면 그 식은 비례식이 {아니다}.",
+      "cReason": "원문 빈칸은 긴 구절이라 '성립하지 않는다' 등 표현이 갈릴 수 있어 짧은 낱말로 정리한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양 끝의 곱과 가운데의 곱을 구해 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 곱이 $14$와 $12$로 다르다",
+            "$2\\times7=14$, $3\\times4=12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "비례식이 아니다",
+            "성립하지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 2465,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc6",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "두 곱이 다른 식",
+        "kind": "성질",
+        "level": "하",
+        "definition": "양 끝의 곱과 가운데의 곱이 다르면 {비례식이 아니다}.",
+        "studentC": "양 끝의 곱과 가운데의 곱이 다르면 □.",
+        "answers": [
+          "비례식이 아니다"
+        ]
+      },
+      "sourceFingerprint": "6798609552fa1afe071ecd5720000201b994881a495a07bd3979786f90776555",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "아니다"
+      ],
+      "cStudentAfter": "양 끝의 곱과 가운데의 곱이 다르면 그 식은 비례식이 □.",
+      "cMarkedSentence": "양 끝의 곱과 가운데의 곱이 다르면 그 식은 비례식이 {아니다}.",
+      "cStudentSentence": "양 끝의 곱과 가운데의 곱이 다르면 그 식은 비례식이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 식이 비례식인지 양 끝의 곱과 가운데의 곱으로 판단하는 방법을 설명하시오. $2:3=4:7$은 비례식입니까?",
+        "answer": "두 곱을 구해 비교한다. $2\\times7=14$, $3\\times4=12$로 두 곱이 다르므로 비례식이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "양 끝의 곱과 가운데의 곱을 구해 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 곱이 $14$와 $12$로 다르다",
+              "$2\\times7=14$, $3\\times4=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비례식이 아니다",
+              "성립하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "양 끝의 곱과 가운데의 곱이 다르면 그 식은 비례식이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5e4dcc73a1b4371f3358fd1cbbff34b4eca6d596d1bd8b7dda8c8a092f9cc096",
+      "questionRevision": "planning-e5e6-20261006-5e4dcc73a1b4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc9",
+      "bDecision": "revise",
+      "bPrompt": "비례식의 빈칸을 구한 뒤 그 답이 맞는지 확인하는 방법을 설명하시오. $3:5=\\square:20$에서 $\\square=12$가 맞는지도 확인하시오.",
+      "bAnswer": "빈칸에 구한 수를 넣고 양 끝의 곱과 가운데의 곱이 같은지 확인한다. $3\\times20=60$, $5\\times12=60$으로 같으므로 맞다.",
+      "bGoal": "구한 값을 비례식에 넣어 검산하는 절차 알기",
+      "bReason": "검산 방법과 예의 두 곱을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "빈칸에 구한 수를 넣어 양 끝의 곱과 가운데의 곱이 {같은지} 확인한다.",
+      "cReason": "'두 곱이 같은지 확인한다'는 검산 목표가 한 문장에 분명하고 빈칸도 짧다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빈칸에 구한 수를 넣는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "양 끝의 곱과 가운데의 곱이 같은지 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 곱이 모두 $60$이므로 맞다",
+            "$3\\times20=60$, $5\\times12=60$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 2466,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc9",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "구한 수 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "빈칸에 구한 수를 넣어 양 끝의 곱과 가운데의 곱이 {같은지} 확인한다.",
+        "studentC": "빈칸에 구한 수를 넣어 양 끝의 곱과 가운데의 곱이 □ 확인한다.",
+        "answers": [
+          "같은지"
+        ]
+      },
+      "sourceFingerprint": "5dee3d583b9d33c46bc498a97ffa00bc7b65ab3bdd4229da64948505045e16e2",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cFrozenDefinition": "빈칸에 구한 수를 넣어 양 끝의 곱과 가운데의 곱이 {같은지} 확인한다.",
+      "cFrozenStudentSentence": "빈칸에 구한 수를 넣어 양 끝의 곱과 가운데의 곱이 □ 확인한다.",
+      "cProposedAnswers": [
+        "같은지"
+      ],
+      "cStudentAfter": "빈칸에 구한 수를 넣어 양 끝의 곱과 가운데의 곱이 □ 확인한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은지"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "빈칸에 구한 수를 넣어 양 끝의 곱과 가운데의 곱이 {같은지} 확인한다.",
+      "cStudentSentence": "빈칸에 구한 수를 넣어 양 끝의 곱과 가운데의 곱이 □ 확인한다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은지",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식의 빈칸을 구한 뒤 그 답이 맞는지 확인하는 방법을 설명하시오. $3:5=\\square:20$에서 $\\square=12$가 맞는지도 확인하시오.",
+        "answer": "빈칸에 구한 수를 넣고 양 끝의 곱과 가운데의 곱이 같은지 확인한다. $3\\times20=60$, $5\\times12=60$으로 같으므로 맞다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "빈칸에 구한 수를 넣는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "양 끝의 곱과 가운데의 곱이 같은지 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 곱이 모두 $60$이므로 맞다",
+              "$3\\times20=60$, $5\\times12=60$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "빈칸에 구한 수를 넣어 양 끝의 곱과 가운데의 곱이 {같은지} 확인한다.",
+        "acceptedAnswers": [
+          [
+            "같은지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2ffb182baf6f60db9f991b7ecb6aa72b92096da37f2c7b2eb752f2dc5df41579",
+      "questionRevision": "planning-e5e6-20261006-2ffb182baf6f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc11",
+      "bDecision": "revise",
+      "bPrompt": "분수가 있는 비례식 $\\frac{1}{2}:3=\\square:12$에서 $\\square$를 구하는 방법을 쓰고 $\\square$의 값을 구하시오.",
+      "bAnswer": "양 끝의 곱과 가운데의 곱이 같으므로 $\\frac{1}{2}\\times12=3\\times\\square$, 곧 $3\\times\\square=6$이다. $3$이 $0$이 아니므로 $6$을 $3$으로 나누어 $\\square=2$이다.",
+      "bGoal": "분수가 있어도 두 곱이 같다는 성질로 빈칸 구하기",
+      "bReason": "분수가 들어간 식에도 같은 성질이 쓰임을 풀이 과정으로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "빈칸과 곱하는 수가 $0$이 아니면, 분수나 소수가 있어도 양 끝의 곱과 가운데의 곱이 {같다}는 성질로 빈칸을 구할 수 있다.",
+      "cReason": "긴 구절 전체를 빈칸으로 한 원문 대신 성질의 핵심 낱말만 묻고 $0$ 제외 조건은 유지한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}\\times12=3\\times\\square$",
+            "두 곱이 같다는 식을 세운다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$을 $3$으로 나눈다",
+            "$3\\times\\square=6$에서 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square=2$",
+            "$2$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 2467,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc11",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "분수나 소수가 있는 비례식의 빈칸",
+        "kind": "방법",
+        "level": "중",
+        "definition": "빈칸과 곱하는 수가 $0$이 아니면, 분수나 소수가 있어도 {양 끝의 곱과 가운데의 곱이 같다}는 성질로 빈칸을 구할 수 있다.",
+        "studentC": "빈칸과 곱하는 수가 $0$이 아니면, 분수나 소수가 있어도 □는 성질로 빈칸을 구할 수 있다.",
+        "answers": [
+          "양 끝의 곱과 가운데의 곱이 같다"
+        ]
+      },
+      "sourceFingerprint": "a35fbe6eff70fc7e11e7a9e1ba7671b9f3bcdf28a2707c9be8c35f3ff750a28a",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "빈칸과 곱하는 수가 $0$이 아니면, 분수나 소수가 있어도 양 끝의 곱과 가운데의 곱이 □는 성질로 빈칸을 구할 수 있다.",
+      "cMarkedSentence": "빈칸과 곱하는 수가 $0$이 아니면, 분수나 소수가 있어도 양 끝의 곱과 가운데의 곱이 {같다}는 성질로 빈칸을 구할 수 있다.",
+      "cStudentSentence": "빈칸과 곱하는 수가 $0$이 아니면, 분수나 소수가 있어도 양 끝의 곱과 가운데의 곱이 □는 성질로 빈칸을 구할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수가 있는 비례식 $\\frac{1}{2}:3=\\square:12$에서 $\\square$를 구하는 방법을 쓰고 $\\square$의 값을 구하시오.",
+        "answer": "양 끝의 곱과 가운데의 곱이 같으므로 $\\frac{1}{2}\\times12=3\\times\\square$, 곧 $3\\times\\square=6$이다. $3$이 $0$이 아니므로 $6$을 $3$으로 나누어 $\\square=2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{2}\\times12=3\\times\\square$",
+              "두 곱이 같다는 식을 세운다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$을 $3$으로 나눈다",
+              "$3\\times\\square=6$에서 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square=2$",
+              "$2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "빈칸과 곱하는 수가 $0$이 아니면, 분수나 소수가 있어도 양 끝의 곱과 가운데의 곱이 {같다}는 성질로 빈칸을 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5dd8b61e0cf77e7276e39f36109ee6e19caa4808992ed0ab87a68e617470eafe",
+      "questionRevision": "planning-e5e6-20261006-5dd8b61e0cf7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc14",
+      "bDecision": "revise",
+      "bPrompt": "$3:5=\\square:20$을 비의 성질로 풀어도, 양 끝의 곱과 가운데의 곱이 같다는 성질로 풀어도 $\\square=12$가 나온다. 두 풀이가 같은 수를 내는 까닭을 비율을 이용해 설명하시오.",
+      "bAnswer": "두 풀이 모두 $\\square:20$의 비율이 $3:5$의 비율 $\\frac{3}{5}$과 같아지는 수를 찾는 것이다. 비율이 같은 두 비는 두 곱도 같고, 그런 수는 $12$ 하나뿐이다.",
+      "bGoal": "두 풀이가 모두 같은 비율을 만드는 수를 찾는 것임을 이해하기",
+      "bReason": "비의 성질과 곱의 성질을 비율로 연결하는 이유를 묻는 문항이다.",
+      "cDecision": "revise",
+      "cAfter": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 {비율}이 같다.",
+      "cReason": "원문의 두 긴 구절을 외우게 하는 대신 비의 성질과 비율의 연결만 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "비율",
+            "비의 값"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 풀이 모두 앞의 비와 비율이 같은 비가 되게 하는 수를 찾는다",
+            "비의 성질로 만든 비도 비율이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비율이 같으면 양 끝의 곱과 가운데의 곱도 같다",
+            "그런 수는 $12$ 하나뿐이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2468,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc14",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "두 풀이가 같은 수를 내는 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "비의 성질로 만든 비는 {비율이 같은 비}이고, 비율이 같은 두 비는 {양 끝의 곱과 가운데의 곱도 같아} 두 풀이가 같은 수를 낸다.",
+        "studentC": "비의 성질로 만든 비는 □이고, 비율이 같은 두 비는 □ 두 풀이가 같은 수를 낸다.",
+        "answers": [
+          "비율이 같은 비",
+          "양 끝의 곱과 가운데의 곱도 같아"
+        ]
+      },
+      "sourceFingerprint": "b56fceb9d68f83f477058274a70fa57d5817963c6d9c1ac01ca6a9022945a8f9",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "비율"
+      ],
+      "cStudentAfter": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 □이 같다.",
+      "cMarkedSentence": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 {비율}이 같다.",
+      "cStudentSentence": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 □이 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "비율",
+          "equivalents": [
+            "비의 값"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3:5=\\square:20$을 비의 성질로 풀어도, 양 끝의 곱과 가운데의 곱이 같다는 성질로 풀어도 $\\square=12$가 나온다. 두 풀이가 같은 수를 내는 까닭을 비율을 이용해 설명하시오.",
+        "answer": "두 풀이 모두 $\\square:20$의 비율이 $3:5$의 비율 $\\frac{3}{5}$과 같아지는 수를 찾는 것이다. 비율이 같은 두 비는 두 곱도 같고, 그런 수는 $12$ 하나뿐이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 풀이 모두 앞의 비와 비율이 같은 비가 되게 하는 수를 찾는다",
+              "비의 성질로 만든 비도 비율이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율이 같으면 양 끝의 곱과 가운데의 곱도 같다",
+              "그런 수는 $12$ 하나뿐이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비의 앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하여 만든 비는 처음 비와 {비율}이 같다.",
+        "acceptedAnswers": [
+          [
+            "비율",
+            "비의 값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "243f4e4bc7200cbc0342f6bba644d62dd422ca20a7648b150f2173c9d5956df0",
+      "questionRevision": "planning-e5e6-20261006-243f4e4bc720",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc15",
+      "bDecision": "revise",
+      "bPrompt": "비례식 $2:3=4:6$에서 두 곱이 같은 까닭을, 뒤의 비 $4:6$이 앞의 비 $2:3$의 두 수에 같은 수를 곱한 것임을 이용해 설명하시오.",
+      "bAnswer": "$4=2\\times2$, $6=3\\times2$이다. 양 끝의 곱 $2\\times6=2\\times3\\times2$, 가운데의 곱 $3\\times4=3\\times2\\times2$로 곱한 수 $2$가 두 곱에 한 번씩 들어가 같다.",
+      "bGoal": "같은 수를 곱해 만든 비례식에서 두 곱이 같은 까닭 설명하기",
+      "bReason": "구체적 수로 곱셈 구조를 보게 하여 성질의 이유를 설명하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "뒤의 비가 앞의 비의 두 수에 같은 수를 곱한 것이면, 양 끝의 곱과 가운데의 곱에는 그 같은 수가 각각 {한} 번씩 곱해진다.",
+      "cReason": "'같은 수가 한 번씩' 구절 전체 대신 한 낱말만 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한",
+            "$1$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4=2\\times2$, $6=3\\times2$",
+            "뒤의 비의 수를 앞의 비의 수에 같은 수를 곱한 꼴로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 곱 모두 $2\\times3\\times2$이다",
+            "같은 수 $2$가 두 곱에 한 번씩 곱해진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2469,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc15",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "두 곱이 같은 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "비례식의 뒤의 비는 앞의 비의 두 수에 같은 수를 곱한 것이라, 양 끝의 곱과 가운데의 곱에 {같은 수가 한 번씩} 곱해져 두 곱이 같다.",
+        "studentC": "비례식의 뒤의 비는 앞의 비의 두 수에 같은 수를 곱한 것이라, 양 끝의 곱과 가운데의 곱에 □ 곱해져 두 곱이 같다.",
+        "answers": [
+          "같은 수가 한 번씩"
+        ]
+      },
+      "sourceFingerprint": "8d6a04aa55ef98719d408f329b477e1e62e21076d436f9abc775d8d475f1bb92",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "한"
+      ],
+      "cStudentAfter": "뒤의 비가 앞의 비의 두 수에 같은 수를 곱한 것이면, 양 끝의 곱과 가운데의 곱에는 그 같은 수가 각각 □ 번씩 곱해진다.",
+      "cMarkedSentence": "뒤의 비가 앞의 비의 두 수에 같은 수를 곱한 것이면, 양 끝의 곱과 가운데의 곱에는 그 같은 수가 각각 {한} 번씩 곱해진다.",
+      "cStudentSentence": "뒤의 비가 앞의 비의 두 수에 같은 수를 곱한 것이면, 양 끝의 곱과 가운데의 곱에는 그 같은 수가 각각 □ 번씩 곱해진다.",
+      "cSlotAnswers": [
+        {
+          "key": "한",
+          "equivalents": [
+            "$1$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식 $2:3=4:6$에서 두 곱이 같은 까닭을, 뒤의 비 $4:6$이 앞의 비 $2:3$의 두 수에 같은 수를 곱한 것임을 이용해 설명하시오.",
+        "answer": "$4=2\\times2$, $6=3\\times2$이다. 양 끝의 곱 $2\\times6=2\\times3\\times2$, 가운데의 곱 $3\\times4=3\\times2\\times2$로 곱한 수 $2$가 두 곱에 한 번씩 들어가 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4=2\\times2$, $6=3\\times2$",
+              "뒤의 비의 수를 앞의 비의 수에 같은 수를 곱한 꼴로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 곱 모두 $2\\times3\\times2$이다",
+              "같은 수 $2$가 두 곱에 한 번씩 곱해진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "뒤의 비가 앞의 비의 두 수에 같은 수를 곱한 것이면, 양 끝의 곱과 가운데의 곱에는 그 같은 수가 각각 {한} 번씩 곱해진다.",
+        "acceptedAnswers": [
+          [
+            "한",
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4440792b8749691068220328658b8f46118e316c4a41cbcd3b869decafc2725f",
+      "questionRevision": "planning-e5e6-20261006-4440792b8749",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc18",
+      "bDecision": "revise",
+      "bPrompt": "$2:3=4:6$은 비례식이다. 네 수는 모두 $0$이 아니다. 가운데 두 수를 서로 바꾼 $2:4=3:6$도 비례식인지 두 곱을 이용해 판단하고 그 까닭을 쓰시오.",
+      "bAnswer": "양 끝의 곱은 $2\\times6=12$, 가운데의 곱은 $4\\times3=12$로 같으므로 비례식이다. 가운데 두 수의 곱은 곱하는 순서만 바뀌어 값이 변하지 않기 때문이다.",
+      "bGoal": "가운데 두 수를 바꿔도 두 곱이 같아 비례식임을 알기",
+      "bReason": "예의 계산과 곱셈 순서를 바꿔도 같다는 이유를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 {비례식}이다.",
+      "cReason": "원문 빈칸은 문장 끝에 붙어 있어 답이 어색하므로 낱말 하나로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "비례식"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 곱이 $12$와 $12$로 같다",
+            "$2\\times6=12$, $4\\times3=12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "비례식이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가운데 두 수의 곱은 순서만 바뀌어 같다",
+            "곱셈은 순서를 바꿔도 값이 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2470,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc18",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "가운데 두 수를 바꾼 비례식",
+        "kind": "성질",
+        "level": "중",
+        "definition": "네 수가 모두 $0$이 아닌 비례식은 가운데 두 수를 서로 바꾸어도 두 곱이 같아 {비례식이다}.",
+        "studentC": "네 수가 모두 $0$이 아닌 비례식은 가운데 두 수를 서로 바꾸어도 두 곱이 같아 □.",
+        "answers": [
+          "비례식이다"
+        ]
+      },
+      "sourceFingerprint": "8b6e8f6301d7bcf846a639d5e6aea7502017ff161e9145b21068edc32d0f923d",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "비례식"
+      ],
+      "cStudentAfter": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 □이다.",
+      "cMarkedSentence": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 {비례식}이다.",
+      "cStudentSentence": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "비례식",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2:3=4:6$은 비례식이다. 네 수는 모두 $0$이 아니다. 가운데 두 수를 서로 바꾼 $2:4=3:6$도 비례식인지 두 곱을 이용해 판단하고 그 까닭을 쓰시오.",
+        "answer": "양 끝의 곱은 $2\\times6=12$, 가운데의 곱은 $4\\times3=12$로 같으므로 비례식이다. 가운데 두 수의 곱은 곱하는 순서만 바뀌어 값이 변하지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 곱이 $12$와 $12$로 같다",
+              "$2\\times6=12$, $4\\times3=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비례식이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가운데 두 수의 곱은 순서만 바뀌어 같다",
+              "곱셈은 순서를 바꿔도 값이 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "네 수가 모두 $0$이 아닌 비례식에서 가운데 두 수를 서로 바꾸어도 두 곱이 같아 그 식은 {비례식}이다.",
+        "acceptedAnswers": [
+          [
+            "비례식"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "64f4d621ddaa7aad083192e18a288f47673275982caae5d4a0e00420ea380262",
+      "questionRevision": "planning-e5e6-20261006-64f4d621ddaa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc22",
+      "bDecision": "revise",
+      "bPrompt": "같은 시각 평평한 땅에 곧게 서 있는 두 물체에서 높이의 비와 그림자 길이의 비 사이에 어떤 관계가 있는지 쓰시오. 높이 $2$ $\\mathrm{m}$인 막대의 그림자가 $3$ $\\mathrm{m}$일 때, 같은 시각 그림자가 $12$ $\\mathrm{m}$인 나무의 높이는 몇 $\\mathrm{m}$입니까?",
+      "bAnswer": "두 비가 같다. $2:3=\\square:12$에서 $\\square=8$이므로 $8$ $\\mathrm{m}$이다.",
+      "bGoal": "같은 시각 높이와 그림자의 비가 같음을 이용해 비례식 세우기",
+      "bReason": "일반 관계와 실생활 적용을 함께 묻는 문항이며 글만으로 상황이 충분하다.",
+      "cDecision": "revise",
+      "cAfter": "같은 시각 평평한 땅에 곧게 선 두 물체에서 높이의 비와 그림자 길이의 비는 서로 {같다}.",
+      "cReason": "원문 빈칸 '같은 비'는 표현이 갈릴 수 있어 더 짧은 관계 낱말로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "높이의 비와 그림자 길이의 비가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$ $\\mathrm{m}$",
+            "$8$미터"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "sourceIndex": 2471,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc22",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "높이와 그림자",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 시각 평평한 땅에 곧게 선 물체들의 높이와 그림자 길이는 {같은 비}를 이루므로 비례식으로 높이를 구할 수 있다.",
+        "studentC": "같은 시각 평평한 땅에 곧게 선 물체들의 높이와 그림자 길이는 □를 이루므로 비례식으로 높이를 구할 수 있다.",
+        "answers": [
+          "같은 비"
+        ]
+      },
+      "sourceFingerprint": "8b3bfed8fb63ec7fb3e3fe5804c0957134bf3b9032be53d0c01f2a0625ca126f",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "같은 시각 평평한 땅에 곧게 선 두 물체에서 높이의 비와 그림자 길이의 비는 서로 □.",
+      "cMarkedSentence": "같은 시각 평평한 땅에 곧게 선 두 물체에서 높이의 비와 그림자 길이의 비는 서로 {같다}.",
+      "cStudentSentence": "같은 시각 평평한 땅에 곧게 선 두 물체에서 높이의 비와 그림자 길이의 비는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 시각 평평한 땅에 곧게 서 있는 두 물체에서 높이의 비와 그림자 길이의 비 사이에 어떤 관계가 있는지 쓰시오. 높이 $2$ $\\mathrm{m}$인 막대의 그림자가 $3$ $\\mathrm{m}$일 때, 같은 시각 그림자가 $12$ $\\mathrm{m}$인 나무의 높이는 몇 $\\mathrm{m}$입니까?",
+        "answer": "두 비가 같다. $2:3=\\square:12$에서 $\\square=8$이므로 $8$ $\\mathrm{m}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "높이의 비와 그림자 길이의 비가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$ $\\mathrm{m}$",
+              "$8$미터"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 시각 평평한 땅에 곧게 선 두 물체에서 높이의 비와 그림자 길이의 비는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f96799ae1ca68032cb458018bc5bb1d0a3ea3f2c1c33e517658733f147e5fd19",
+      "questionRevision": "planning-e5e6-20261006-f96799ae1ca6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc24",
+      "bDecision": "revise",
+      "bPrompt": "농구공 $3$개의 값이 $2400$원일 때 농구공 $5$개의 값을 비례식으로 구하려 한다. 두 비를 어떻게 써야 하는지 설명하고 비례식을 세워 값을 구하시오.",
+      "bAnswer": "두 비에서 같은 종류의 양이 같은 자리에 오게 쓴다. $3:2400=5:\\square$에서 $3\\times\\square=2400\\times5$이므로 $\\square=4000$, 즉 $4000$원이다.",
+      "bGoal": "두 비에서 대응하는 양의 순서를 맞춰 비례식 세우기",
+      "bReason": "순서를 맞추는 이유와 올바른 식 세우기, 값 구하기를 함께 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "개수와 값처럼 두 종류의 양으로 비례식을 세울 때는 두 비에서 같은 종류의 양이 같은 {자리}에 오도록 쓴다.",
+      "cReason": "'대응하는 양의 순서'라는 추상적 구절 대신 학생이 이해할 수 있는 말로 풀어 쓴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자리",
+            "위치",
+            "순서"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 종류의 양을 두 비에서 같은 자리에 쓴다",
+            "개수는 개수끼리, 값은 값끼리 같은 위치에 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3:2400=5:\\square$",
+            "$2400:3=\\square:5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4000$원"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 2472,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc24",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "비례식을 세울 때의 순서",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 종류의 양으로 비례식을 세울 때는 두 비에서 {대응하는 양의 순서}를 맞춘다.",
+        "studentC": "두 종류의 양으로 비례식을 세울 때는 두 비에서 □를 맞춘다.",
+        "answers": [
+          "대응하는 양의 순서"
+        ]
+      },
+      "sourceFingerprint": "9a8888257720c79a12f886f6e47ede4cc580c297c59462e5d6c133422aa5b9ad",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "자리"
+      ],
+      "cStudentAfter": "개수와 값처럼 두 종류의 양으로 비례식을 세울 때는 두 비에서 같은 종류의 양이 같은 □에 오도록 쓴다.",
+      "cMarkedSentence": "개수와 값처럼 두 종류의 양으로 비례식을 세울 때는 두 비에서 같은 종류의 양이 같은 {자리}에 오도록 쓴다.",
+      "cStudentSentence": "개수와 값처럼 두 종류의 양으로 비례식을 세울 때는 두 비에서 같은 종류의 양이 같은 □에 오도록 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "자리",
+          "equivalents": [
+            "위치",
+            "순서"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "농구공 $3$개의 값이 $2400$원일 때 농구공 $5$개의 값을 비례식으로 구하려 한다. 두 비를 어떻게 써야 하는지 설명하고 비례식을 세워 값을 구하시오.",
+        "answer": "두 비에서 같은 종류의 양이 같은 자리에 오게 쓴다. $3:2400=5:\\square$에서 $3\\times\\square=2400\\times5$이므로 $\\square=4000$, 즉 $4000$원이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 종류의 양을 두 비에서 같은 자리에 쓴다",
+              "개수는 개수끼리, 값은 값끼리 같은 위치에 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3:2400=5:\\square$",
+              "$2400:3=\\square:5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4000$원"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "개수와 값처럼 두 종류의 양으로 비례식을 세울 때는 두 비에서 같은 종류의 양이 같은 {자리}에 오도록 쓴다.",
+        "acceptedAnswers": [
+          [
+            "자리",
+            "위치",
+            "순서"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2094fbf29850f0811fea9fbe0d39fdb08411fa80947eb0d61d98c95dd20818d7",
+      "questionRevision": "planning-e5e6-20261006-2094fbf29850",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-xc26",
+      "bDecision": "revise",
+      "bPrompt": "비례식 $3:4=\\square:10$에서 $\\square$의 값을 구하고, 그 값이 자연수가 아니어도 비례식이 되는 까닭을 쓰시오.",
+      "bAnswer": "$3\\times10=4\\times\\square$이므로 $\\square=7.5$이다. 양 끝의 곱과 가운데의 곱이 같아지는 수이면 자연수가 아니어도 비례식이 된다.",
+      "bGoal": "빈칸이 자연수가 아니어도 두 곱이 같으면 비례식임을 알기",
+      "bReason": "소수 답이 나오는 예와 이유를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "두 비의 기준량이 $0$이 아니면, 빈칸의 값이 자연수가 아니어도 양 끝의 곱과 가운데의 곱이 {같으면} 비례식이 된다.",
+      "cReason": "기준량 $0$ 제외 조건은 유지하고 긴 빈칸 구절을 짧은 낱말로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같으면",
+            "같다면"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7.5$",
+            "$\\frac{15}{2}$",
+            "$7\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 곱이 같으면 비례식이 된다",
+            "두 비의 비율이 같아 비례식이 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2473,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-4-xc26",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "term": "자연수가 아닌 빈칸",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 비의 기준량이 $0$이 아니면, 빈칸의 값이 자연수가 아니어도 {두 곱이 같게 되는 수}이면 비례식이 된다.",
+        "studentC": "두 비의 기준량이 $0$이 아니면, 빈칸의 값이 자연수가 아니어도 □이면 비례식이 된다.",
+        "answers": [
+          "두 곱이 같게 되는 수"
+        ]
+      },
+      "sourceFingerprint": "e20f7d64e34abe883eace6f4f34aadf4bd196e1a6d6631fff409285f6a36f636",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "cProposedAnswers": [
+        "같으면"
+      ],
+      "cStudentAfter": "두 비의 기준량이 $0$이 아니면, 빈칸의 값이 자연수가 아니어도 양 끝의 곱과 가운데의 곱이 □ 비례식이 된다.",
+      "cMarkedSentence": "두 비의 기준량이 $0$이 아니면, 빈칸의 값이 자연수가 아니어도 양 끝의 곱과 가운데의 곱이 {같으면} 비례식이 된다.",
+      "cStudentSentence": "두 비의 기준량이 $0$이 아니면, 빈칸의 값이 자연수가 아니어도 양 끝의 곱과 가운데의 곱이 □ 비례식이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "같으면",
+          "equivalents": [
+            "같다면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식 $3:4=\\square:10$에서 $\\square$의 값을 구하고, 그 값이 자연수가 아니어도 비례식이 되는 까닭을 쓰시오.",
+        "answer": "$3\\times10=4\\times\\square$이므로 $\\square=7.5$이다. 양 끝의 곱과 가운데의 곱이 같아지는 수이면 자연수가 아니어도 비례식이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$7.5$",
+              "$\\frac{15}{2}$",
+              "$7\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 곱이 같으면 비례식이 된다",
+              "두 비의 비율이 같아 비례식이 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 비의 기준량이 $0$이 아니면, 빈칸의 값이 자연수가 아니어도 양 끝의 곱과 가운데의 곱이 {같으면} 비례식이 된다.",
+        "acceptedAnswers": [
+          [
+            "같으면",
+            "같다면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2ec8bc7ac4b32ee39221e7d2688943ee435abfec335961474c4738cb06b3fa52",
+      "questionRevision": "planning-e5e6-20261006-2ec8bc7ac4b3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "두 몫의 합이 전체임을 확인한다.",
+      "bReason": "비례배분의 뜻에 이미 들어 있는 자명한 사실이라 따로 묻는 가치가 낮다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'전체'를 바로 추측하는 낱말 맞히기여서 제외한다.",
+      "exclusionReason": "합이 전체와 같은지는 검산 문항에서 비 확인과 함께 다룬다. 대체 ID: e6-2-4-5-xc17.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "sourceIndex": 2474,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc4",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "두 몫의 합",
+        "kind": "성질",
+        "level": "하",
+        "definition": "비례배분한 두 몫을 더하면 처음 {전체}와 같다.",
+        "studentC": "비례배분한 두 몫을 더하면 처음 □와 같다.",
+        "answers": [
+          "전체"
+        ]
+      },
+      "sourceFingerprint": "d3c7eb00637cfe005b4f6aa4e56827b086c40203d4e60426fa4f3a287a8be183",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "합이 전체와 같은지는 검산 문항에서 비 확인과 함께 다룬다. 대체 ID: e6-2-4-5-xc17.",
+        "cloze": "합이 전체와 같은지는 검산 문항에서 비 확인과 함께 다룬다. 대체 ID: e6-2-4-5-xc17."
+      },
+      "proposalFingerprint": "3bddc4bf905fff119c80a3a1bcb66bab4709f020326ad732a90c558ce79f23a6",
+      "questionRevision": "planning-e5e6-20261006-3bddc4bf905f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc5",
+      "bDecision": "revise",
+      "bPrompt": "전체를 $1:1$로 비례배분하면 두 몫은 어떤 관계인가요? 비의 뜻으로 까닭을 설명하세요.",
+      "bAnswer": "두 몫이 같다. $1:1$은 두 사람이 같은 크기 부분을 하나씩 갖는다는 뜻이기 때문이다.",
+      "bGoal": "두 항이 같은 비로 나누면 두 몫이 같음을 비의 뜻으로 설명한다.",
+      "bReason": "결과만 말하지 않고 두 항이 같다는 까닭까지 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "$1:1$로 비례배분하면 두 몫이 {같다}.",
+      "cReason": "$1:1$이라는 조건이 문장에 있고 두 몫의 관계만 묻는 짧은 성질이라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 몫이 같다",
+            "두 몫이 서로 똑같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 항이 같아서 같은 부분을 하나씩 갖기 때문이다",
+            "몫의 비도 $1:1$이어야 하기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "synonymNotes": "C 답은 '같다', '똑같다', '서로 같다' 모두 인정한다.",
+      "sourceIndex": 2475,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc5",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "$1:1$로 나누기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1:1$로 비례배분하면 두 몫이 {같다}.",
+        "studentC": "$1:1$로 비례배분하면 두 몫이 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "63d55eae97c829eea719ae242b57665f6cc876ca33bb68d4147b24a97b54c901",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cFrozenDefinition": "$1:1$로 비례배분하면 두 몫이 {같다}.",
+      "cFrozenStudentSentence": "$1:1$로 비례배분하면 두 몫이 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "$1:1$로 비례배분하면 두 몫이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1:1$로 비례배분하면 두 몫이 {같다}.",
+      "cStudentSentence": "$1:1$로 비례배분하면 두 몫이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체를 $1:1$로 비례배분하면 두 몫은 어떤 관계인가요? 비의 뜻으로 까닭을 설명하세요.",
+        "answer": "두 몫이 같다. $1:1$은 두 사람이 같은 크기 부분을 하나씩 갖는다는 뜻이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 몫이 같다",
+              "두 몫이 서로 똑같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 항이 같아서 같은 부분을 하나씩 갖기 때문이다",
+              "몫의 비도 $1:1$이어야 하기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1:1$로 비례배분하면 두 몫이 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "95fb57e41597f11dc3a9c78bd84777963c68bee50aec058dddba2466c2c35007",
+      "questionRevision": "planning-e5e6-20261006-95fb57e41597",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc6",
+      "bDecision": "revise",
+      "bPrompt": "전체 $20$을 $2:3$으로 비례배분해 두 몫 $8$과 $12$를 얻었다. 두 몫의 비를 간단히 한 결과를 구하고, 처음 비와 어떤 관계인지 말하세요.",
+      "bAnswer": "$8:12$를 간단히 하면 $2:3$이고 처음 비와 같다.",
+      "bGoal": "나눈 몫의 비로 비례배분 결과를 확인할 수 있음을 안다.",
+      "bReason": "몫의 비를 직접 간단히 해 처음 비와 비교하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$20$을 $2:3$으로 비례배분하면 두 몫이 $8$과 $12$이고, 두 몫의 비 $8:12$를 간단히 하면 {$2:3$}이다.",
+      "cReason": "'처음 비와 같다'는 막연한 문구 대신 실제 간단히 한 비를 쓰게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "간단히 하면 $2:3$이다",
+            "$8:12=2:3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 비와 같다",
+            "주어진 비와 같다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2:3$",
+            "$2$ 대 $3$"
+          ]
+        }
+      ],
+      "sourceIndex": 2476,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc6",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "나눈 몫의 비 확인",
+        "kind": "성질",
+        "level": "하",
+        "definition": "비례배분한 두 몫의 비를 간단히 하면 {처음 비와 같다}.",
+        "studentC": "비례배분한 두 몫의 비를 간단히 하면 □.",
+        "answers": [
+          "처음 비와 같다"
+        ]
+      },
+      "sourceFingerprint": "588efa82739c103918d5cbd58a1609f3f341bb9ca44fb15389d3d4b54f7501ae",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$2:3$"
+      ],
+      "cStudentAfter": "$20$을 $2:3$으로 비례배분하면 두 몫이 $8$과 $12$이고, 두 몫의 비 $8:12$를 간단히 하면 □이다.",
+      "cMarkedSentence": "$20$을 $2:3$으로 비례배분하면 두 몫이 $8$과 $12$이고, 두 몫의 비 $8:12$를 간단히 하면 {$2:3$}이다.",
+      "cStudentSentence": "$20$을 $2:3$으로 비례배분하면 두 몫이 $8$과 $12$이고, 두 몫의 비 $8:12$를 간단히 하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2:3$",
+          "equivalents": [
+            "$2$ 대 $3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체 $20$을 $2:3$으로 비례배분해 두 몫 $8$과 $12$를 얻었다. 두 몫의 비를 간단히 한 결과를 구하고, 처음 비와 어떤 관계인지 말하세요.",
+        "answer": "$8:12$를 간단히 하면 $2:3$이고 처음 비와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "간단히 하면 $2:3$이다",
+              "$8:12=2:3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 비와 같다",
+              "주어진 비와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20$을 $2:3$으로 비례배분하면 두 몫이 $8$과 $12$이고, 두 몫의 비 $8:12$를 간단히 하면 {$2:3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2:3$",
+            "$2$ 대 $3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c57bc33296488ee944606a9af2d1da0f232d56c89620d45ea0b9fc05c188af23",
+      "questionRevision": "planning-e5e6-20261006-c57bc3329648",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc9",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 전체를 $3:5$로 비례배분할 때 어느 항에 해당하는 몫이 더 큰가요? 몫을 구하는 방법과 관련지어 까닭을 설명하세요.",
+      "bAnswer": "$5$에 해당하는 몫이 더 크다. 전체에 곱하는 분수가 $\\frac{3}{8}$, $\\frac{5}{8}$이므로 항이 클수록 몫이 크다.",
+      "bGoal": "같은 전체를 나눌 때 항이 클수록 몫이 큼을 방법으로 설명한다.",
+      "bReason": "큰 항에 큰 몫이라는 암기 문구보다 같은 부분을 더 많이 갖는 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0$보다 큰 전체를 $3:5$로 비례배분하면 항이 {$5$}인 쪽 몫이 항이 $3$인 쪽 몫보다 {크다}.",
+      "cReason": "$0$보다 큰 전체라는 조건은 유지하고 긴 구절 대신 두 값을 비교하게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$에 해당하는 몫이 더 크다",
+            "큰 항 쪽 몫이 더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 크기 부분을 더 많이 갖는다",
+            "곱하는 분수가 $\\frac{5}{8}$로 더 크다",
+            "합은 같고 항이 더 크다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다",
+            "더 크다",
+            "많다"
+          ]
+        }
+      ],
+      "sourceIndex": 2477,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc9",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "큰 수에 큰 몫",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0$보다 큰 전체를 비례배분하면 {더 큰 항에 해당하는 몫}이 더 크다.",
+        "studentC": "$0$보다 큰 전체를 비례배분하면 □이 더 크다.",
+        "answers": [
+          "더 큰 항에 해당하는 몫"
+        ]
+      },
+      "sourceFingerprint": "9f4c8137f731b33d6bd3dfaddb9e72cdc33792731fdf2bf28ead70d2d1e61fda",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "크다"
+      ],
+      "cStudentAfter": "$0$보다 큰 전체를 $3:5$로 비례배분하면 항이 □인 쪽 몫이 항이 $3$인 쪽 몫보다 □.",
+      "cMarkedSentence": "$0$보다 큰 전체를 $3:5$로 비례배분하면 항이 {$5$}인 쪽 몫이 항이 $3$인 쪽 몫보다 {크다}.",
+      "cStudentSentence": "$0$보다 큰 전체를 $3:5$로 비례배분하면 항이 □인 쪽 몫이 항이 $3$인 쪽 몫보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": [
+            "더 크다",
+            "많다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 전체를 $3:5$로 비례배분할 때 어느 항에 해당하는 몫이 더 큰가요? 몫을 구하는 방법과 관련지어 까닭을 설명하세요.",
+        "answer": "$5$에 해당하는 몫이 더 크다. 전체에 곱하는 분수가 $\\frac{3}{8}$, $\\frac{5}{8}$이므로 항이 클수록 몫이 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5$에 해당하는 몫이 더 크다",
+              "큰 항 쪽 몫이 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 크기 부분을 더 많이 갖는다",
+              "곱하는 분수가 $\\frac{5}{8}$로 더 크다",
+              "합은 같고 항이 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 전체를 $3:5$로 비례배분하면 항이 {$5$}인 쪽 몫이 항이 $3$인 쪽 몫보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "크다",
+            "더 크다",
+            "많다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "13211e07ecca49d11bb817dedcaad422ea8b827a963c063b42a4f25db804be37",
+      "questionRevision": "planning-e5e6-20261006-13211e07ecca",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc12",
+      "bDecision": "revise",
+      "bPrompt": "나눈 비와 한쪽 몫만 알 때 전체를 구하는 방법을 설명하세요. 예를 들어 비가 $2:3$이고 $2$에 해당하는 몫이 $8$일 때 전체를 구하세요.",
+      "bAnswer": "아는 몫을 대응하는 항으로 나누어 한 부분의 크기를 구하고 두 항의 합을 곱한다. $8\\div2=4$, $4\\times5=20$이므로 전체는 $20$이다.",
+      "bGoal": "한 몫에서 한 부분의 크기를 거쳐 전체를 구한다.",
+      "bReason": "거꾸로 푸는 절차를 설명하고 예에 적용하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "비가 $2:3$이고 $2$에 해당하는 몫이 $8$이다. $8$을 {$2$}로 나누어 한 부분의 크기 {$4$}를 구하고 이 값에 두 항의 합 $5$를 곱하면 전체는 {$20$}이다.",
+      "cReason": "'나눈 비와 한쪽 몫'이라는 빈칸 대신 실제 계산 순서를 확인하게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫을 대응하는 항으로 나눈 값에 두 항의 합을 곱한다",
+            "몫을 $\\frac{\\text{그 항}}{\\text{두 항의 합}}$으로 나눈다",
+            "비례식을 세워 전체를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체는 $20$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "sourceIndex": 2478,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc12",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "한쪽 몫으로 전체 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "{나눈 비와 한쪽 몫}을 알면 그 몫을 대응하는 항으로 나누어 한 몫의 크기를 구하고, 두 항의 합을 곱해 전체를 찾는다.",
+        "studentC": "□을 알면 그 몫을 대응하는 항으로 나누어 한 몫의 크기를 구하고, 두 항의 합을 곱해 전체를 찾는다.",
+        "answers": [
+          "나눈 비와 한쪽 몫"
+        ]
+      },
+      "sourceFingerprint": "952a7e82ee3a9ab984341515c6e77943d97cbab6a27d5b9a4c5327516229a29d",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$4$",
+        "$20$"
+      ],
+      "cStudentAfter": "비가 $2:3$이고 $2$에 해당하는 몫이 $8$이다. $8$을 □로 나누어 한 부분의 크기 □를 구하고 이 값에 두 항의 합 $5$를 곱하면 전체는 □이다.",
+      "cMarkedSentence": "비가 $2:3$이고 $2$에 해당하는 몫이 $8$이다. $8$을 {$2$}로 나누어 한 부분의 크기 {$4$}를 구하고 이 값에 두 항의 합 $5$를 곱하면 전체는 {$20$}이다.",
+      "cStudentSentence": "비가 $2:3$이고 $2$에 해당하는 몫이 $8$이다. $8$을 □로 나누어 한 부분의 크기 □를 구하고 이 값에 두 항의 합 $5$를 곱하면 전체는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나눈 비와 한쪽 몫만 알 때 전체를 구하는 방법을 설명하세요. 예를 들어 비가 $2:3$이고 $2$에 해당하는 몫이 $8$일 때 전체를 구하세요.",
+        "answer": "아는 몫을 대응하는 항으로 나누어 한 부분의 크기를 구하고 두 항의 합을 곱한다. $8\\div2=4$, $4\\times5=20$이므로 전체는 $20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫을 대응하는 항으로 나눈 값에 두 항의 합을 곱한다",
+              "몫을 $\\frac{\\text{그 항}}{\\text{두 항의 합}}$으로 나눈다",
+              "비례식을 세워 전체를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체는 $20$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비가 $2:3$이고 $2$에 해당하는 몫이 $8$이다. $8$을 {$2$}로 나누어 한 부분의 크기 {$4$}를 구하고 이 값에 두 항의 합 $5$를 곱하면 전체는 {$20$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "57ffb31516cbfcb8b8ff0a5c53f7e10bd1e232147798a2e1835028d5becf50c0",
+      "questionRevision": "planning-e5e6-20261006-57ffb31516cb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc13",
+      "bDecision": "revise",
+      "bPrompt": "$20$을 $2:3$으로 비례배분할 때, 두 몫을 각각 구하지 않고 두 몫의 차를 구하는 방법을 설명하고 값을 구하세요. 두 항이 같은 비로 나누면 차는 얼마인가요?",
+      "bAnswer": "한 부분의 크기 $20\\div5=4$에 두 항의 차 $3-2=1$을 곱해 차는 $4$이다. 두 항이 같으면 차는 $0$이다.",
+      "bGoal": "한 부분의 크기에 두 항의 차를 곱해 몫의 차를 구한다.",
+      "bReason": "몫을 따로 구하지 않는 지름길을 묻고 두 항이 같은 경우도 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ {$1$}부분이므로 {$4$}이다.",
+      "cReason": "빈칸 '차'는 낱말 맞히기라 항의 차와 몫의 차를 계산하게 바꿨다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 부분의 크기에 두 항의 차를 곱한다",
+            "전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 값을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 몫의 차는 $4$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 항이 같으면 차는 $0$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "sourceIndex": 2479,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc13",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "두 몫의 차",
+        "kind": "성질",
+        "level": "중",
+        "definition": "전체를 두 자연수의 비로 비례배분할 때 두 항이 같으면 받은 두 양의 차는 $0$이다. 두 항이 다르면 전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 {차}를 곱해 두 양의 차를 구한다.",
+        "studentC": "전체를 두 자연수의 비로 비례배분할 때 두 항이 같으면 받은 두 양의 차는 $0$이다. 두 항이 다르면 전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 □를 곱해 두 양의 차를 구한다.",
+        "answers": [
+          "차"
+        ]
+      },
+      "sourceFingerprint": "4c5f8f5075884e56db96dfaba85fc54eb02e440cdcace071d08e79f79f0b55d4",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$4$"
+      ],
+      "cStudentAfter": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ □부분이므로 □이다.",
+      "cMarkedSentence": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ {$1$}부분이므로 {$4$}이다.",
+      "cStudentSentence": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ □부분이므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$20$을 $2:3$으로 비례배분할 때, 두 몫을 각각 구하지 않고 두 몫의 차를 구하는 방법을 설명하고 값을 구하세요. 두 항이 같은 비로 나누면 차는 얼마인가요?",
+        "answer": "한 부분의 크기 $20\\div5=4$에 두 항의 차 $3-2=1$을 곱해 차는 $4$이다. 두 항이 같으면 차는 $0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 부분의 크기에 두 항의 차를 곱한다",
+              "전체를 두 항의 합으로 나눈 값에 큰 항에서 작은 항을 뺀 값을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫의 차는 $4$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 항이 같으면 차는 $0$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20$을 $2:3$으로 비례배분할 때 한 부분은 $20\\div5$이다. 두 몫의 차는 항의 차 $3-2=$ {$1$}부분이므로 {$4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "86efa6c5c239209a542c8d4398da3b29dc06785a17fb3e53ff60bfae240a66ae",
+      "questionRevision": "planning-e5e6-20261006-86efa6c5c239",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc15",
+      "bDecision": "revise",
+      "bPrompt": "비례배분한 몫이 자연수로 나누어떨어지지 않으면 어떻게 나타내나요? 예를 들어 $10$을 $1:3$으로 비례배분한 두 몫을 구하세요.",
+      "bAnswer": "분수나 소수로 나타낸다. 두 몫은 $2.5$와 $7.5$이다. 분수로는 $2\\frac{1}{2}$과 $7\\frac{1}{2}$이다.",
+      "bGoal": "나누어떨어지지 않는 몫을 분수나 소수로 나타낸다.",
+      "bReason": "자연수가 아닌 몫을 어떻게 쓸지 정하고 소수로 딱 떨어지는 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$10$을 $1:3$으로 비례배분한 작은 몫은 $10\\div4$이며 나누어떨어지지 않으므로 {분수}나 {소수}로 나타낸다.",
+      "cReason": "구체적인 나눗셈 상황에서 자연수가 아닌 표현을 고르게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수로 나타낸다",
+            "소수로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.5$와 $7.5$",
+            "$2\\frac{1}{2}$과 $7\\frac{1}{2}$",
+            "$\\frac{5}{2}$와 $\\frac{15}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "synonymNotes": "분수와 소수 중 하나만 써도 맞다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분수",
+            "소수"
+          ]
+        },
+        {
+          "anyOf": [
+            "소수",
+            "분수"
+          ]
+        }
+      ],
+      "sourceIndex": 2480,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc15",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "자연수가 아닌 몫",
+        "kind": "방법",
+        "level": "중",
+        "definition": "비례배분한 몫은 나누어떨어지지 않으면 {분수나 소수}로 나타낸다.",
+        "studentC": "비례배분한 몫은 나누어떨어지지 않으면 □로 나타낸다.",
+        "answers": [
+          "분수나 소수"
+        ]
+      },
+      "sourceFingerprint": "ad686da2d5444898455d9ce6fa1e51f1c99441f2f02e110e50ca7ea1b4443c0d",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "분수",
+        "소수"
+      ],
+      "cStudentAfter": "$10$을 $1:3$으로 비례배분한 작은 몫은 $10\\div4$이며 나누어떨어지지 않으므로 □나 □로 나타낸다.",
+      "cMarkedSentence": "$10$을 $1:3$으로 비례배분한 작은 몫은 $10\\div4$이며 나누어떨어지지 않으므로 {분수}나 {소수}로 나타낸다.",
+      "cStudentSentence": "$10$을 $1:3$으로 비례배분한 작은 몫은 $10\\div4$이며 나누어떨어지지 않으므로 □나 □로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "분수",
+          "equivalents": [
+            "소수"
+          ]
+        },
+        {
+          "key": "소수",
+          "equivalents": [
+            "분수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례배분한 몫이 자연수로 나누어떨어지지 않으면 어떻게 나타내나요? 예를 들어 $10$을 $1:3$으로 비례배분한 두 몫을 구하세요.",
+        "answer": "분수나 소수로 나타낸다. 두 몫은 $2.5$와 $7.5$이다. 분수로는 $2\\frac{1}{2}$과 $7\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수로 나타낸다",
+              "소수로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.5$와 $7.5$",
+              "$2\\frac{1}{2}$과 $7\\frac{1}{2}$",
+              "$\\frac{5}{2}$와 $\\frac{15}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10$을 $1:3$으로 비례배분한 작은 몫은 $10\\div4$이며 나누어떨어지지 않으므로 {분수}나 {소수}로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "분수",
+            "소수"
+          ],
+          [
+            "소수",
+            "분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "18e9d2e2b4cfd630db1c36e1c00de6aa933e894e044cae06ca4f1836bcf6fe13",
+      "questionRevision": "planning-e5e6-20261006-18e9d2e2b4cf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc17",
+      "bDecision": "revise",
+      "bPrompt": "$20$을 $2:3$으로 비례배분한 두 몫이 $8$과 $12$라고 한다. 이 결과가 맞는지 확인하는 두 가지 방법과 결론을 쓰세요.",
+      "bAnswer": "두 몫의 합이 전체와 같은지 확인하고($8+12=20$), 두 몫의 비가 주어진 비와 같은지 확인한다($8:12=2:3$). 둘 다 맞으므로 옳다.",
+      "bGoal": "합과 비를 모두 이용해 비례배분 결과를 검산한다.",
+      "bReason": "검산의 두 조건을 실제 값으로 확인하게 해 합 확인 문항의 대체가 된다.",
+      "cDecision": "revise",
+      "cAfter": "$20$을 $2:3$으로 나눈 두 몫이 $8$과 $12$이다. 합 $8+12=$ {$20$}은 전체와 같고, $8:12$를 간단히 하면 {$2:3$}이므로 비례배분이 맞다.",
+      "cReason": "'같은지'라는 낱말 대신 합과 비를 직접 계산하게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 몫의 합이 전체와 같다",
+            "$8+12=20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 몫의 비가 주어진 비와 같다",
+            "$8:12$를 간단히 하면 $2:3$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그러므로 맞다",
+            "비례배분이 옳다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$",
+            "$2$ 대 $3$"
+          ]
+        }
+      ],
+      "sourceIndex": 2481,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc17",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "비례배분이 맞는지 확인",
+        "kind": "방법",
+        "level": "중",
+        "definition": "나눈 두 몫의 합이 전체와 같고 두 몫의 비가 주어진 비와 {같은지} 확인한다.",
+        "studentC": "나눈 두 몫의 합이 전체와 같고 두 몫의 비가 주어진 비와 □ 확인한다.",
+        "answers": [
+          "같은지"
+        ]
+      },
+      "sourceFingerprint": "d015ca975456a1c68301ed7af1926a58430a9c517624b214732e63d3ac08f474",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$20$",
+        "$2:3$"
+      ],
+      "cStudentAfter": "$20$을 $2:3$으로 나눈 두 몫이 $8$과 $12$이다. 합 $8+12=$ □은 전체와 같고, $8:12$를 간단히 하면 □이므로 비례배분이 맞다.",
+      "cMarkedSentence": "$20$을 $2:3$으로 나눈 두 몫이 $8$과 $12$이다. 합 $8+12=$ {$20$}은 전체와 같고, $8:12$를 간단히 하면 {$2:3$}이므로 비례배분이 맞다.",
+      "cStudentSentence": "$20$을 $2:3$으로 나눈 두 몫이 $8$과 $12$이다. 합 $8+12=$ □은 전체와 같고, $8:12$를 간단히 하면 □이므로 비례배분이 맞다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        },
+        {
+          "key": "$2:3$",
+          "equivalents": [
+            "$2$ 대 $3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$20$을 $2:3$으로 비례배분한 두 몫이 $8$과 $12$라고 한다. 이 결과가 맞는지 확인하는 두 가지 방법과 결론을 쓰세요.",
+        "answer": "두 몫의 합이 전체와 같은지 확인하고($8+12=20$), 두 몫의 비가 주어진 비와 같은지 확인한다($8:12=2:3$). 둘 다 맞으므로 옳다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 몫의 합이 전체와 같다",
+              "$8+12=20$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫의 비가 주어진 비와 같다",
+              "$8:12$를 간단히 하면 $2:3$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그러므로 맞다",
+              "비례배분이 옳다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20$을 $2:3$으로 나눈 두 몫이 $8$과 $12$이다. 합 $8+12=$ {$20$}은 전체와 같고, $8:12$를 간단히 하면 {$2:3$}이므로 비례배분이 맞다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ],
+          [
+            "$2:3$",
+            "$2$ 대 $3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "37e64516d79d19a1bb07c72dc7262faa4584a3041743c4ddaf7bbf515f97f1e3",
+      "questionRevision": "planning-e5e6-20261006-37e64516d79d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$40$을 $0.5:1.5$로 비례배분하려 한다. 비를 어떻게 고치면 쉬운지, 고쳐도 몫이 변하지 않는 까닭, 두 몫을 쓰세요.",
+      "bAnswer": "두 항에 같은 수를 곱해 비율이 같은 간단한 자연수의 비 $1:3$으로 고친다. 비율이 같아 몫도 같고 두 몫은 $10$과 $30$이다.",
+      "bGoal": "소수 비를 비율이 같은 자연수의 비로 바꿔 비례배분한다.",
+      "bReason": "변환 방법과 비율이 같다는 까닭을 함께 묻고 계산으로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$0.5:1.5$로 비례배분하려면 두 항에 $10$을 곱해 $5:15$로 고치고, 더 간단히 해 {$1:3$}으로 만든다.",
+      "cReason": "긴 키워드 구절 대신 실제로 고친 간단한 자연수 비를 쓰게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 항에 같은 수를 곱해 자연수의 비로 고친다",
+            "비율이 같은 간단한 자연수의 비 $1:3$으로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비율이 같아서 몫이 같다",
+            "두 항에 같은 수를 곱해도 비의 값이 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 몫은 $10$과 $30$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1:3$",
+            "$1$ 대 $3$"
+          ]
+        }
+      ],
+      "sourceIndex": 2482,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc19",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "소수나 분수의 비로 나누기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수나 분수의 비는 {비율이 같은 간단한 자연수의 비}로 고친 뒤 비례배분해도 된다.",
+        "studentC": "소수나 분수의 비는 □로 고친 뒤 비례배분해도 된다.",
+        "answers": [
+          "비율이 같은 간단한 자연수의 비"
+        ]
+      },
+      "sourceFingerprint": "0b9236ccc708de0cf4e6880f71a9474660ce1d674d56408102629bfa19221a95",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$1:3$"
+      ],
+      "cStudentAfter": "$0.5:1.5$로 비례배분하려면 두 항에 $10$을 곱해 $5:15$로 고치고, 더 간단히 해 □으로 만든다.",
+      "cMarkedSentence": "$0.5:1.5$로 비례배분하려면 두 항에 $10$을 곱해 $5:15$로 고치고, 더 간단히 해 {$1:3$}으로 만든다.",
+      "cStudentSentence": "$0.5:1.5$로 비례배분하려면 두 항에 $10$을 곱해 $5:15$로 고치고, 더 간단히 해 □으로 만든다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1:3$",
+          "equivalents": [
+            "$1$ 대 $3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$40$을 $0.5:1.5$로 비례배분하려 한다. 비를 어떻게 고치면 쉬운지, 고쳐도 몫이 변하지 않는 까닭, 두 몫을 쓰세요.",
+        "answer": "두 항에 같은 수를 곱해 비율이 같은 간단한 자연수의 비 $1:3$으로 고친다. 비율이 같아 몫도 같고 두 몫은 $10$과 $30$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 항에 같은 수를 곱해 자연수의 비로 고친다",
+              "비율이 같은 간단한 자연수의 비 $1:3$으로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율이 같아서 몫이 같다",
+              "두 항에 같은 수를 곱해도 비의 값이 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫은 $10$과 $30$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.5:1.5$로 비례배분하려면 두 항에 $10$을 곱해 $5:15$로 고치고, 더 간단히 해 {$1:3$}으로 만든다.",
+        "acceptedAnswers": [
+          [
+            "$1:3$",
+            "$1$ 대 $3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "28685c55c1535831450481e6f064cac927762b17af6d770162390705d3959cf7",
+      "questionRevision": "planning-e5e6-20261006-28685c55c153",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc23",
+      "bDecision": "revise",
+      "bPrompt": "갑이 $3000$원, 을이 $2000$원을 내어 얻은 이익 $10000$원을 낸 돈에 따라 나누려 한다. 어떤 비로 나누어야 하는지 설명하고 각자 받을 돈을 구하세요.",
+      "bAnswer": "낸 돈의 비 $3000:2000=3:2$로 비례배분한다. 갑은 $6000$원, 을은 $4000$원을 받는다.",
+      "bGoal": "낸 돈의 비로 이익을 비례배분한다.",
+      "bReason": "낸 돈의 비를 기준으로 삼는 생활 상황이며 각자의 몫도 계산하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "갑이 $3000$원, 을이 $2000$원을 내어 이익 $10000$원을 낸 돈에 따라 나누면 비는 {$3:2$}이므로 갑이 {$6000$}원을 가진다.",
+      "cReason": "'낸 돈의 비'라는 구절 대신 실제 비와 몫을 쓰게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "낸 돈의 비로 나눈다",
+            "$3000:2000=3:2$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "갑은 $6000$원, 을은 $4000$원이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3:2$",
+            "$3000:2000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6000$"
+          ]
+        }
+      ],
+      "sourceIndex": 2483,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc23",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "돈을 낸 만큼 나누기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "낸 돈에 따라 나누어 가질 때는 {낸 돈의 비}로 비례배분한다.",
+        "studentC": "낸 돈에 따라 나누어 가질 때는 □로 비례배분한다.",
+        "answers": [
+          "낸 돈의 비"
+        ]
+      },
+      "sourceFingerprint": "0df81961dbb165b6b62d064dce87050b4125c6ce37750bfd6f19c57b95dc7b92",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$3:2$",
+        "$6000$"
+      ],
+      "cStudentAfter": "갑이 $3000$원, 을이 $2000$원을 내어 이익 $10000$원을 낸 돈에 따라 나누면 비는 □이므로 갑이 □원을 가진다.",
+      "cMarkedSentence": "갑이 $3000$원, 을이 $2000$원을 내어 이익 $10000$원을 낸 돈에 따라 나누면 비는 {$3:2$}이므로 갑이 {$6000$}원을 가진다.",
+      "cStudentSentence": "갑이 $3000$원, 을이 $2000$원을 내어 이익 $10000$원을 낸 돈에 따라 나누면 비는 □이므로 갑이 □원을 가진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3:2$",
+          "equivalents": [
+            "$3000:2000$"
+          ]
+        },
+        {
+          "key": "$6000$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "갑이 $3000$원, 을이 $2000$원을 내어 얻은 이익 $10000$원을 낸 돈에 따라 나누려 한다. 어떤 비로 나누어야 하는지 설명하고 각자 받을 돈을 구하세요.",
+        "answer": "낸 돈의 비 $3000:2000=3:2$로 비례배분한다. 갑은 $6000$원, 을은 $4000$원을 받는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "낸 돈의 비로 나눈다",
+              "$3000:2000=3:2$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "갑은 $6000$원, 을은 $4000$원이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "갑이 $3000$원, 을이 $2000$원을 내어 이익 $10000$원을 낸 돈에 따라 나누면 비는 {$3:2$}이므로 갑이 {$6000$}원을 가진다.",
+        "acceptedAnswers": [
+          [
+            "$3:2$",
+            "$3000:2000$"
+          ],
+          [
+            "$6000$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7cf68367f3c6c02cb2528d73b744469f5cbccc8404eabd3a448419b80b587ed5",
+      "questionRevision": "planning-e5e6-20261006-7cf68367f3c6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc24",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 둘레가 $30\\text{ cm}$이고 가로와 세로의 비가 $2:3$이다. 어떤 수를 $2:3$으로 비례배분하면 가로와 세로를 구할 수 있는지 설명하고, 가로와 세로를 구하세요.",
+      "bAnswer": "가로와 세로의 합인 둘레의 절반 $15\\text{ cm}$를 $2:3$으로 비례배분한다. 가로는 $6\\text{ cm}$, 세로는 $9\\text{ cm}$이다.",
+      "bGoal": "둘레의 절반이 가로와 세로의 합임을 이용해 비례배분한다.",
+      "bReason": "둘레 전체가 아닌 합을 나눈다는 점을 실수하기 쉬워 따로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "둘레가 $30\\text{ cm}$이고 가로와 세로의 비가 $2:3$인 직사각형에서 가로와 세로의 합은 {$15$} $\\text{cm}$이다. 가로는 $15$를 $2:3$으로 비례배분한 작은 몫인 {$6$} $\\text{cm}$이다.",
+      "cReason": "'둘레의 절반'이라는 말을 실제 둘레 값과 가로 계산으로 확인한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로와 세로의 합인 둘레의 절반 $15\\text{ cm}$를 나눈다",
+            "$30\\div2=15$를 $2:3$으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로는 $6\\text{ cm}$이고 세로는 $9\\text{ cm}$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$",
+            "$15\\text{ cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$",
+            "$6\\text{ cm}$"
+          ]
+        }
+      ],
+      "sourceIndex": 2484,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc24",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "둘레로 가로·세로 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형의 둘레와 가로·세로의 비를 알 때, 가로와 세로의 합은 {둘레의 절반}이므로 이를 그 비로 비례배분해 두 변을 구한다.",
+        "studentC": "직사각형의 둘레와 가로·세로의 비를 알 때, 가로와 세로의 합은 □이므로 이를 그 비로 비례배분해 두 변을 구한다.",
+        "answers": [
+          "둘레의 절반"
+        ]
+      },
+      "sourceFingerprint": "3b7bf89f90ccc7bf506089a031e1ed98530afec01add4ac6fa4281d7575ffc80",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$15$",
+        "$6$"
+      ],
+      "cStudentAfter": "둘레가 $30\\text{ cm}$이고 가로와 세로의 비가 $2:3$인 직사각형에서 가로와 세로의 합은 □ $\\text{cm}$이다. 가로는 $15$를 $2:3$으로 비례배분한 작은 몫인 □ $\\text{cm}$이다.",
+      "cMarkedSentence": "둘레가 $30\\text{ cm}$이고 가로와 세로의 비가 $2:3$인 직사각형에서 가로와 세로의 합은 {$15$} $\\text{cm}$이다. 가로는 $15$를 $2:3$으로 비례배분한 작은 몫인 {$6$} $\\text{cm}$이다.",
+      "cStudentSentence": "둘레가 $30\\text{ cm}$이고 가로와 세로의 비가 $2:3$인 직사각형에서 가로와 세로의 합은 □ $\\text{cm}$이다. 가로는 $15$를 $2:3$으로 비례배분한 작은 몫인 □ $\\text{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": [
+            "$15\\text{ cm}$"
+          ]
+        },
+        {
+          "key": "$6$",
+          "equivalents": [
+            "$6\\text{ cm}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형의 둘레가 $30\\text{ cm}$이고 가로와 세로의 비가 $2:3$이다. 어떤 수를 $2:3$으로 비례배분하면 가로와 세로를 구할 수 있는지 설명하고, 가로와 세로를 구하세요.",
+        "answer": "가로와 세로의 합인 둘레의 절반 $15\\text{ cm}$를 $2:3$으로 비례배분한다. 가로는 $6\\text{ cm}$, 세로는 $9\\text{ cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로와 세로의 합인 둘레의 절반 $15\\text{ cm}$를 나눈다",
+              "$30\\div2=15$를 $2:3$으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로는 $6\\text{ cm}$이고 세로는 $9\\text{ cm}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "둘레가 $30\\text{ cm}$이고 가로와 세로의 비가 $2:3$인 직사각형에서 가로와 세로의 합은 {$15$} $\\text{cm}$이다. 가로는 $15$를 $2:3$으로 비례배분한 작은 몫인 {$6$} $\\text{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$15$",
+            "$15\\text{ cm}$"
+          ],
+          [
+            "$6$",
+            "$6\\text{ cm}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dbadccf703df4887d7a0365251d7c73b83834b194c67d3a59dbf3c730bff3758",
+      "questionRevision": "planning-e5e6-20261006-dbadccf703df",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc25",
+      "bDecision": "revise",
+      "bPrompt": "쪼갤 수 없는 구슬을 남김없이 가장 간단한 자연수의 비 $2:3$으로 나누려 한다. 구슬 개수가 어떤 수여야 하는지 설명하고, $12$개와 $15$개가 가능한지 판단하세요.",
+      "bAnswer": "구슬 개수가 두 항의 합 $2+3=5$의 배수여야 한다. $12$개는 불가능하고 $15$개는 가능하다.",
+      "bGoal": "쪼갤 수 없는 물건은 두 항의 합의 배수일 때만 남김없이 나눌 수 있다.",
+      "bReason": "조건을 말하고 가능한 경우와 불가능한 경우를 판단하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$2:3$으로 쪼개지 않고 남김없이 나누려면 구슬 수가 $2+3=5$의 {배수}여야 한다. 따라서 $12$개는 {나눌 수 없고} $15$개는 {나눌 수 있다}.",
+      "cReason": "두 항의 합 $5$를 직접 보이고 배수 조건과 판단을 묻는다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 항의 합 $5$의 배수여야 한다",
+            "$5$로 나누어떨어져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$개는 불가능하다",
+            "$12$개는 나눌 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$개는 가능하다",
+            "$15$개는 나눌 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "synonymNotes": "조건은 '$5$로 나누어떨어진다'도 인정한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눌 수 없고",
+            "없고",
+            "불가능하고"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눌 수 있다",
+            "있다",
+            "가능하다"
+          ]
+        }
+      ],
+      "sourceIndex": 2485,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc25",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "남김없이 나눌 수 있는 개수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "쪼갤 수 없는 물건을 남김없이 비례배분하려면, 비를 {가장 간단한 자연수의 비}로 나타냈을 때 전체 개수가 {두 항의 합의 배수}여야 한다.",
+        "studentC": "쪼갤 수 없는 물건을 남김없이 비례배분하려면, 비를 □로 나타냈을 때 전체 개수가 □여야 한다.",
+        "answers": [
+          "가장 간단한 자연수의 비",
+          "두 항의 합의 배수"
+        ]
+      },
+      "sourceFingerprint": "90c4bb785c05d93f2105a2e4af5a9a63ec1eb170ba7185f65c38a16137332b7d",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "배수",
+        "나눌 수 없고",
+        "나눌 수 있다"
+      ],
+      "cStudentAfter": "$2:3$으로 쪼개지 않고 남김없이 나누려면 구슬 수가 $2+3=5$의 □여야 한다. 따라서 $12$개는 □ $15$개는 □.",
+      "cMarkedSentence": "$2:3$으로 쪼개지 않고 남김없이 나누려면 구슬 수가 $2+3=5$의 {배수}여야 한다. 따라서 $12$개는 {나눌 수 없고} $15$개는 {나눌 수 있다}.",
+      "cStudentSentence": "$2:3$으로 쪼개지 않고 남김없이 나누려면 구슬 수가 $2+3=5$의 □여야 한다. 따라서 $12$개는 □ $15$개는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        },
+        {
+          "key": "나눌 수 없고",
+          "equivalents": [
+            "없고",
+            "불가능하고"
+          ]
+        },
+        {
+          "key": "나눌 수 있다",
+          "equivalents": [
+            "있다",
+            "가능하다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쪼갤 수 없는 구슬을 남김없이 가장 간단한 자연수의 비 $2:3$으로 나누려 한다. 구슬 개수가 어떤 수여야 하는지 설명하고, $12$개와 $15$개가 가능한지 판단하세요.",
+        "answer": "구슬 개수가 두 항의 합 $2+3=5$의 배수여야 한다. $12$개는 불가능하고 $15$개는 가능하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 항의 합 $5$의 배수여야 한다",
+              "$5$로 나누어떨어져야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$개는 불가능하다",
+              "$12$개는 나눌 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15$개는 가능하다",
+              "$15$개는 나눌 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2:3$으로 쪼개지 않고 남김없이 나누려면 구슬 수가 $2+3=5$의 {배수}여야 한다. 따라서 $12$개는 {나눌 수 없고} $15$개는 {나눌 수 있다}.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "나눌 수 없고",
+            "없고",
+            "불가능하고"
+          ],
+          [
+            "나눌 수 있다",
+            "있다",
+            "가능하다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bdb40129ee34b811a272a43d5e3173ea0dcd8a9f1137740396305b2575ac4bf0",
+      "questionRevision": "planning-e5e6-20261006-bdb40129ee34",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-xc26",
+      "bDecision": "revise",
+      "bPrompt": "같은 전체 $20$을 $2:3$으로 나눌 때와 $4:6$으로 나눌 때 작은 몫은 어떻게 되나요? 두 비의 관계를 이용해 까닭을 설명하세요.",
+      "bAnswer": "작은 몫이 $8$로 같다. $2:3$과 $4:6$은 비율이 같아 곱하는 분수 $\\frac{2}{5}$와 $\\frac{4}{10}$가 같기 때문이다.",
+      "bGoal": "비율이 같은 비로 같은 전체를 나누면 몫이 같음을 설명한다.",
+      "bReason": "비율이 같은 두 비가 같은 분수로 이어진다는 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$20$을 $2:3$으로 나눈 작은 몫은 $8$이다. $4:6$으로 나눈 작은 몫은 $20\\times\\frac{4}{10}=$ {$8$}이므로 두 비로 나눈 몫이 {같다}.",
+      "cReason": "'몫이 같다'는 문구 암기 대신 두 번째 계산을 하고 비교하게 했다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 경우의 몫이 같다",
+            "작은 몫이 모두 $8$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 비의 비율이 같기 때문이다",
+            "곱하는 분수가 같기 때문이다",
+            "$4:6$은 $2:3$의 각 항을 두 배 한 비이기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "서로 같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "sourceIndex": 2486,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-5-xc26",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "term": "비율이 같은 두 비로 나누기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "비율이 같은 두 비로 같은 전체를 나누면 {몫이 같다}.",
+        "studentC": "비율이 같은 두 비로 같은 전체를 나누면 □.",
+        "answers": [
+          "몫이 같다"
+        ]
+      },
+      "sourceFingerprint": "4e47897b5f9dd404e26d0658f153ab6dd9cdadea459269b974708b4b1d74eacb",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "cProposedAnswers": [
+        "$8$",
+        "같다"
+      ],
+      "cStudentAfter": "$20$을 $2:3$으로 나눈 작은 몫은 $8$이다. $4:6$으로 나눈 작은 몫은 $20\\times\\frac{4}{10}=$ □이므로 두 비로 나눈 몫이 □.",
+      "cMarkedSentence": "$20$을 $2:3$으로 나눈 작은 몫은 $8$이다. $4:6$으로 나눈 작은 몫은 $20\\times\\frac{4}{10}=$ {$8$}이므로 두 비로 나눈 몫이 {같다}.",
+      "cStudentSentence": "$20$을 $2:3$으로 나눈 작은 몫은 $8$이다. $4:6$으로 나눈 작은 몫은 $20\\times\\frac{4}{10}=$ □이므로 두 비로 나눈 몫이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "서로 같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 전체 $20$을 $2:3$으로 나눌 때와 $4:6$으로 나눌 때 작은 몫은 어떻게 되나요? 두 비의 관계를 이용해 까닭을 설명하세요.",
+        "answer": "작은 몫이 $8$로 같다. $2:3$과 $4:6$은 비율이 같아 곱하는 분수 $\\frac{2}{5}$와 $\\frac{4}{10}$가 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 경우의 몫이 같다",
+              "작은 몫이 모두 $8$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 비의 비율이 같기 때문이다",
+              "곱하는 분수가 같기 때문이다",
+              "$4:6$은 $2:3$의 각 항을 두 배 한 비이기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20$을 $2:3$으로 나눈 작은 몫은 $8$이다. $4:6$으로 나눈 작은 몫은 $20\\times\\frac{4}{10}=$ {$8$}이므로 두 비로 나눈 몫이 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "같다",
+            "서로 같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7aecf4bfa10f13744205b726487a5c76af19ff2fe55e40550c9fc35096ad9982",
+      "questionRevision": "planning-e5e6-20261006-7aecf4bfa10f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc1",
+      "bDecision": "revise",
+      "bPrompt": "원의 중심은 원 위의 점들과 어떤 관계에 있는 점인지 설명하시오.",
+      "bAnswer": "원 위의 모든 점까지의 거리가 같은 점이다.",
+      "bGoal": "중심에서 원 위의 모든 점까지 거리가 같다는 성질을 설명한다.",
+      "bReason": "원의 정의를 이루는 거리 조건을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원 위의 모든 점까지 거리가 같다",
+            "테두리 모든 점까지의 거리가 같다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "원의 한가운데 있는 점으로 원 위의 모든 점까지의 {거리}가 같은 점을 원의 중심이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "거리",
+            "길이"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸이 용어 반복이어서 핵심 조건인 거리 같음을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2487,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc1",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "원의 중심",
+        "kind": "정의",
+        "level": "하",
+        "definition": "원의 한가운데 있어 원 위의 모든 점까지 거리가 같은 점을 {원의 중심}이라 한다.",
+        "studentC": "원의 한가운데 있어 원 위의 모든 점까지 거리가 같은 점을 □이라 한다.",
+        "answers": [
+          "원의 중심"
+        ]
+      },
+      "sourceFingerprint": "b9f1559a7dbf34a8fa647a12386a600abce80ccdc836001f1478c07934845288",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "거리"
+      ],
+      "cStudentAfter": "원의 한가운데 있는 점으로 원 위의 모든 점까지의 □가 같은 점을 원의 중심이라 한다.",
+      "cMarkedSentence": "원의 한가운데 있는 점으로 원 위의 모든 점까지의 {거리}가 같은 점을 원의 중심이라 한다.",
+      "cStudentSentence": "원의 한가운데 있는 점으로 원 위의 모든 점까지의 □가 같은 점을 원의 중심이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "거리",
+          "equivalents": [
+            "길이"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 중심은 원 위의 점들과 어떤 관계에 있는 점인지 설명하시오.",
+        "answer": "원 위의 모든 점까지의 거리가 같은 점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원 위의 모든 점까지 거리가 같다",
+              "테두리 모든 점까지의 거리가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 한가운데 있는 점으로 원 위의 모든 점까지의 {거리}가 같은 점을 원의 중심이라 한다.",
+        "acceptedAnswers": [
+          [
+            "거리",
+            "길이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3f15b0645d8c782d7693203f4be2f2aeabb4afde8ca6c11924c6f0b790287989",
+      "questionRevision": "planning-e5e6-20261006-3f15b0645d8c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc2",
+      "bDecision": "revise",
+      "bPrompt": "자로 곧게 잴 수 없는 원의 테두리 길이를 실이나 띠로 재는 방법을 설명하시오.",
+      "bAnswer": "실이나 띠로 테두리를 한 바퀴 감은 뒤 곧게 펴서 그 길이를 잰다.",
+      "bGoal": "굽은 테두리를 감은 뒤 펴서 재는 절차를 설명한다.",
+      "bReason": "측정 절차를 순서대로 말하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "실이나 띠로 테두리를 한 바퀴 감는다",
+            "테두리를 따라 한 바퀴 감는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "펴서 길이를 잰다",
+            "곧게 펴서 자로 잰다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "원주는 실로 원의 테두리를 한 바퀴 감은 뒤 {펴서} 그 길이를 재면 알 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "펴서",
+            "곧게 펴서"
+          ]
+        }
+      ],
+      "cReason": "'길이' 채우기는 자명하므로 감은 실을 펴는 단계를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2488,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc2",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "원주를 재는 방법",
+        "kind": "방법",
+        "level": "하",
+        "definition": "실이나 띠로 원의 테두리를 한 바퀴 감은 뒤 펴서 그 {길이}를 재면 원주를 알 수 있다.",
+        "studentC": "실이나 띠로 원의 테두리를 한 바퀴 감은 뒤 펴서 그 □를 재면 원주를 알 수 있다.",
+        "answers": [
+          "길이"
+        ]
+      },
+      "sourceFingerprint": "c60b06dff34c8af1b6e86af095ca11bbed8ab62bbac58324478a49f3a6d6b9da",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "펴서"
+      ],
+      "cStudentAfter": "원주는 실로 원의 테두리를 한 바퀴 감은 뒤 □ 그 길이를 재면 알 수 있다.",
+      "cMarkedSentence": "원주는 실로 원의 테두리를 한 바퀴 감은 뒤 {펴서} 그 길이를 재면 알 수 있다.",
+      "cStudentSentence": "원주는 실로 원의 테두리를 한 바퀴 감은 뒤 □ 그 길이를 재면 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "펴서",
+          "equivalents": [
+            "곧게 펴서"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자로 곧게 잴 수 없는 원의 테두리 길이를 실이나 띠로 재는 방법을 설명하시오.",
+        "answer": "실이나 띠로 테두리를 한 바퀴 감은 뒤 곧게 펴서 그 길이를 잰다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "실이나 띠로 테두리를 한 바퀴 감는다",
+              "테두리를 따라 한 바퀴 감는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "펴서 길이를 잰다",
+              "곧게 펴서 자로 잰다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주는 실로 원의 테두리를 한 바퀴 감은 뒤 {펴서} 그 길이를 재면 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "펴서",
+            "곧게 펴서"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fedf0e610466770975bcac845d74bdffff4fc2dca3f47170a24d8be5c2bc1371",
+      "questionRevision": "planning-e5e6-20261006-fedf0e610466",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc3",
+      "bDecision": "revise",
+      "bPrompt": "한 원의 원주와 지름 중 어느 쪽이 더 긴지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "원주가 더 길다. 원주는 테두리를 따라 한 바퀴 도는 길이이고 지름은 곧은 선분이기 때문이다.",
+      "bGoal": "원주가 지름보다 긴 까닭을 설명한다.",
+      "bReason": "비교 결과와 이유를 함께 말해야 단순 암기를 피한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주가 더 길다",
+            "원주가 지름보다 길다"
+          ]
+        },
+        {
+          "anyOf": [
+            "테두리를 한 바퀴 도는 길이이기 때문",
+            "지름은 곧은 선분이기 때문",
+            "돌아가는 길이 곧은 길보다 길기 때문"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "원주는 원의 테두리를 한 바퀴 돈 길이이므로 지름보다 {길다}.",
+      "cReason": "원주와 지름의 길이 비교로 원문 그대로 짧고 조건이 명확하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2489,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc3",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "원주와 지름의 길이 비교",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원주는 원의 테두리를 한 바퀴 돈 길이이므로 지름보다 {길다}.",
+        "studentC": "원주는 원의 테두리를 한 바퀴 돈 길이이므로 지름보다 □.",
+        "answers": [
+          "길다"
+        ]
+      },
+      "sourceFingerprint": "6a31b8efd98424fac3fa54d6b86d1c99710ee5b4c90041f1a248b506f062844d",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cFrozenDefinition": "원주는 원의 테두리를 한 바퀴 돈 길이이므로 지름보다 {길다}.",
+      "cFrozenStudentSentence": "원주는 원의 테두리를 한 바퀴 돈 길이이므로 지름보다 □.",
+      "cProposedAnswers": [
+        "길다"
+      ],
+      "cStudentAfter": "원주는 원의 테두리를 한 바퀴 돈 길이이므로 지름보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "길다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원주는 원의 테두리를 한 바퀴 돈 길이이므로 지름보다 {길다}.",
+      "cStudentSentence": "원주는 원의 테두리를 한 바퀴 돈 길이이므로 지름보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "길다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 원의 원주와 지름 중 어느 쪽이 더 긴지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "원주가 더 길다. 원주는 테두리를 따라 한 바퀴 도는 길이이고 지름은 곧은 선분이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주가 더 길다",
+              "원주가 지름보다 길다"
+            ]
+          },
+          {
+            "anyOf": [
+              "테두리를 한 바퀴 도는 길이이기 때문",
+              "지름은 곧은 선분이기 때문",
+              "돌아가는 길이 곧은 길보다 길기 때문"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주는 원의 테두리를 한 바퀴 돈 길이이므로 지름보다 {길다}.",
+        "acceptedAnswers": [
+          [
+            "길다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ce19b167aa1dca27c056aad194cc916367a45e5b8677ff4495d6b0e5cf492655",
+      "questionRevision": "planning-e5e6-20261006-ce19b167aa1d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc4",
+      "bDecision": "revise",
+      "bPrompt": "크기가 다른 두 원이 있을 때 지름이 더 긴 원의 원주는 어떠한지 쓰고, 원주와 지름의 관계를 이용해 까닭을 설명하시오.",
+      "bAnswer": "원주도 더 길다. 원주는 지름의 일정한 배(약 $3$배보다 큼)이므로 지름이 길면 원주도 길다.",
+      "bGoal": "원주가 지름의 일정한 배이므로 지름과 함께 커짐을 설명한다.",
+      "bReason": "단순한 대소 판단이 아니라 원주율과 연결하는 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주도 더 길다",
+            "원주도 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "원주는 지름의 일정한 배이다",
+            "원주를 지름으로 나눈 값이 같다",
+            "원주는 지름의 약 $3$배"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "지름이 긴 원일수록 원주도 {길다}.",
+      "cReason": "지름과 원주의 비교 관계가 한 문장에 완결되어 있어 그대로 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2490,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc4",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "지름이 클수록 긴 원주",
+        "kind": "성질",
+        "level": "하",
+        "definition": "지름이 긴 원일수록 원주도 {길다}.",
+        "studentC": "지름이 긴 원일수록 원주도 □.",
+        "answers": [
+          "길다"
+        ]
+      },
+      "sourceFingerprint": "7f71a58c9ff10567035045fef542dc7b3a53a6fb90bd4b62a86eb3473f3986e7",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cFrozenDefinition": "지름이 긴 원일수록 원주도 {길다}.",
+      "cFrozenStudentSentence": "지름이 긴 원일수록 원주도 □.",
+      "cProposedAnswers": [
+        "길다"
+      ],
+      "cStudentAfter": "지름이 긴 원일수록 원주도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "길다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "지름이 긴 원일수록 원주도 {길다}.",
+      "cStudentSentence": "지름이 긴 원일수록 원주도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "길다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "크기가 다른 두 원이 있을 때 지름이 더 긴 원의 원주는 어떠한지 쓰고, 원주와 지름의 관계를 이용해 까닭을 설명하시오.",
+        "answer": "원주도 더 길다. 원주는 지름의 일정한 배(약 $3$배보다 큼)이므로 지름이 길면 원주도 길다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주도 더 길다",
+              "원주도 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원주는 지름의 일정한 배이다",
+              "원주를 지름으로 나눈 값이 같다",
+              "원주는 지름의 약 $3$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "지름이 긴 원일수록 원주도 {길다}.",
+        "acceptedAnswers": [
+          [
+            "길다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b168253577edcc9fafbec126ccd7809c7f0eb3507d1849c4787108fa9a02c31f",
+      "questionRevision": "planning-e5e6-20261006-b168253577ed",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "정육각형 둘레가 원주보다 짧음을 이해한다.",
+      "bReason": "그림 없이는 도형 배치를 상상하기 어렵고 xc15와 내용이 겹친다.",
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "exclusionReason": "그림이 필요하고 xc15에서 같은 비교를 다룬다. 그림 사양: 원 안에 꼭짓점이 모두 원 위에 있는 정육각형.",
+      "cDecision": "keep",
+      "cAfter": "원 안에 꼭 맞게 그린 정육각형의 둘레는 원주보다 {짧다}.",
+      "cReason": "조건이 명확한 짧은 비교 문장이라 그대로 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2491,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc6",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "원 안 정육각형과 원주",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원 안에 꼭 맞게 그린 정육각형의 둘레는 원주보다 {짧다}.",
+        "studentC": "원 안에 꼭 맞게 그린 정육각형의 둘레는 원주보다 □.",
+        "answers": [
+          "짧다"
+        ]
+      },
+      "sourceFingerprint": "17e36bd855e06fff90dc8a7d4ead6ad5c08d5a029d9f6723637c0a2bd615b452",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cFrozenDefinition": "원 안에 꼭 맞게 그린 정육각형의 둘레는 원주보다 {짧다}.",
+      "cFrozenStudentSentence": "원 안에 꼭 맞게 그린 정육각형의 둘레는 원주보다 □.",
+      "cProposedAnswers": [
+        "짧다"
+      ],
+      "cStudentAfter": "원 안에 꼭 맞게 그린 정육각형의 둘레는 원주보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "짧다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원 안에 꼭 맞게 그린 정육각형의 둘레는 원주보다 {짧다}.",
+      "cStudentSentence": "원 안에 꼭 맞게 그린 정육각형의 둘레는 원주보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "짧다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원 안에 꼭 맞게 그린 정육각형의 둘레는 원주보다 {짧다}.",
+        "acceptedAnswers": [
+          [
+            "짧다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "그림이 필요하고 xc15에서 같은 비교를 다룬다. 그림 사양: 원 안에 꼭짓점이 모두 원 위에 있는 정육각형."
+      },
+      "proposalFingerprint": "5374f1b96f572c4883ef4de01d35334623d504f9c9c44931616112997bab471c",
+      "questionRevision": "planning-e5e6-20261006-5374f1b96f57",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc7",
+      "bDecision": "revise",
+      "bPrompt": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 어느 길이와 같은지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "바퀴의 원주와 같다. 한 바퀴 구르면 바퀴 테두리 전체가 땅에 한 번 닿기 때문이다.",
+      "bGoal": "한 바퀴 구른 거리가 원주인 까닭을 설명한다.",
+      "bReason": "생활 상황에서 원주의 의미를 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주와 같다",
+            "바퀴 테두리 한 바퀴의 길이와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "테두리 전체가 땅에 한 번 닿는다",
+            "테두리가 한 바퀴 닿는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 {원주}와 같다.",
+      "cReason": "미끄러지지 않는다는 조건이 있어 원문 그대로 명확하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2492,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc7",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "한 바퀴 굴린 거리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 {원주}와 같다.",
+        "studentC": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 □와 같다.",
+        "answers": [
+          "원주"
+        ]
+      },
+      "sourceFingerprint": "ed5750460f161f38e9445add2c837c180b29f9a20416324efc416376baa0b717",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cFrozenDefinition": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 {원주}와 같다.",
+      "cFrozenStudentSentence": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 □와 같다.",
+      "cProposedAnswers": [
+        "원주"
+      ],
+      "cStudentAfter": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원주"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 {원주}와 같다.",
+      "cStudentSentence": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "원주",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 어느 길이와 같은지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "바퀴의 원주와 같다. 한 바퀴 구르면 바퀴 테두리 전체가 땅에 한 번 닿기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주와 같다",
+              "바퀴 테두리 한 바퀴의 길이와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "테두리 전체가 땅에 한 번 닿는다",
+              "테두리가 한 바퀴 닿는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "바퀴가 미끄러지지 않고 한 바퀴 굴렀을 때 나아간 거리는 바퀴의 {원주}와 같다.",
+        "acceptedAnswers": [
+          [
+            "원주"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fb363f96817139d70284065b862bf1535da9b270398d27a907d0f8ad18c4c1f1",
+      "questionRevision": "planning-e5e6-20261006-fb363f968171",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "바깥 정사각형 둘레가 원주보다 긺을 이해한다.",
+      "bReason": "그림이 필요하고 xc15와 겹친다.",
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "exclusionReason": "xc15에서 안팎 도형 비교를 다룬다. 그림 사양: 원의 지름과 같은 한 변을 가진 정사각형이 원 밖에 꼭 맞게 그려진 모양.",
+      "cDecision": "keep",
+      "cAfter": "원 밖에 꼭 맞게 그린 정사각형의 둘레는 지름의 $4$배이고 원주보다 {길다}.",
+      "cReason": "정사각형 둘레가 지름의 $4$배라는 조건이 문장에 있어 그대로 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2493,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc8",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "원 밖 정사각형과 원주",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원 밖에 꼭 맞게 그린 정사각형의 둘레는 지름의 $4$배이고 원주보다 {길다}.",
+        "studentC": "원 밖에 꼭 맞게 그린 정사각형의 둘레는 지름의 $4$배이고 원주보다 □.",
+        "answers": [
+          "길다"
+        ]
+      },
+      "sourceFingerprint": "479e90efdf4b4b09d1c475ee797ca59f66cf71fbb35cb2e523d509e1b3687b55",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cFrozenDefinition": "원 밖에 꼭 맞게 그린 정사각형의 둘레는 지름의 $4$배이고 원주보다 {길다}.",
+      "cFrozenStudentSentence": "원 밖에 꼭 맞게 그린 정사각형의 둘레는 지름의 $4$배이고 원주보다 □.",
+      "cProposedAnswers": [
+        "길다"
+      ],
+      "cStudentAfter": "원 밖에 꼭 맞게 그린 정사각형의 둘레는 지름의 $4$배이고 원주보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "길다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원 밖에 꼭 맞게 그린 정사각형의 둘레는 지름의 $4$배이고 원주보다 {길다}.",
+      "cStudentSentence": "원 밖에 꼭 맞게 그린 정사각형의 둘레는 지름의 $4$배이고 원주보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "길다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원 밖에 꼭 맞게 그린 정사각형의 둘레는 지름의 $4$배이고 원주보다 {길다}.",
+        "acceptedAnswers": [
+          [
+            "길다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc15에서 안팎 도형 비교를 다룬다. 그림 사양: 원의 지름과 같은 한 변을 가진 정사각형이 원 밖에 꼭 맞게 그려진 모양."
+      },
+      "proposalFingerprint": "0b1cfc561c6c1a520318760a4ad4a1b90c624f1921f057013ae0763cc98e5117",
+      "questionRevision": "planning-e5e6-20261006-0b1cfc561c6c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc9",
+      "bDecision": "revise",
+      "bPrompt": "원 안에 꼭 맞게 그린 정육각형은 여섯 변의 길이가 모두 반지름과 같다. 이 정육각형의 둘레는 지름의 몇 배인지 구하고, 과정을 설명하시오.",
+      "bAnswer": "둘레는 반지름의 $6$배이고 지름은 반지름의 $2$배이므로, 둘레는 지름의 $3$배이다.",
+      "bGoal": "반지름과 지름의 관계로 정육각형 둘레가 지름의 $3$배임을 설명한다.",
+      "bReason": "계산 결과만이 아니라 반지름과 지름을 연결하는 과정을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레는 반지름의 $6$배",
+            "반지름 $\\times6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "지름은 반지름의 $2$배이므로 둘레는 지름의 $3$배",
+            "$6\\div2=3$이므로 $3$배"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "원 안에 꼭 맞게 그린 정육각형의 둘레는 반지름의 $6$배이고, 지름은 반지름의 {$2$}배이므로 둘레는 지름의 {$3$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cReason": "한 칸 결과 대신 반지름과 지름의 관계와 결과를 각각 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2494,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc9",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "원 안 정육각형의 둘레",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원 안에 꼭 맞게 그린 정육각형의 둘레는 반지름의 $6$배, 곧 지름의 {$3$배}이다.",
+        "studentC": "원 안에 꼭 맞게 그린 정육각형의 둘레는 반지름의 $6$배, 곧 지름의 □이다.",
+        "answers": [
+          "$3$배"
+        ]
+      },
+      "sourceFingerprint": "34790a52ff09a420d4a15f2c8f6d41a67e90a3bb799d777896866552ff60f16c",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$3$"
+      ],
+      "cStudentAfter": "원 안에 꼭 맞게 그린 정육각형의 둘레는 반지름의 $6$배이고, 지름은 반지름의 □배이므로 둘레는 지름의 □배이다.",
+      "cMarkedSentence": "원 안에 꼭 맞게 그린 정육각형의 둘레는 반지름의 $6$배이고, 지름은 반지름의 {$2$}배이므로 둘레는 지름의 {$3$}배이다.",
+      "cStudentSentence": "원 안에 꼭 맞게 그린 정육각형의 둘레는 반지름의 $6$배이고, 지름은 반지름의 □배이므로 둘레는 지름의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원 안에 꼭 맞게 그린 정육각형은 여섯 변의 길이가 모두 반지름과 같다. 이 정육각형의 둘레는 지름의 몇 배인지 구하고, 과정을 설명하시오.",
+        "answer": "둘레는 반지름의 $6$배이고 지름은 반지름의 $2$배이므로, 둘레는 지름의 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘레는 반지름의 $6$배",
+              "반지름 $\\times6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "지름은 반지름의 $2$배이므로 둘레는 지름의 $3$배",
+              "$6\\div2=3$이므로 $3$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원 안에 꼭 맞게 그린 정육각형의 둘레는 반지름의 $6$배이고, 지름은 반지름의 {$2$}배이므로 둘레는 지름의 {$3$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0718cf741003eec43b946cbf96002c7465e97bffc65116a6ea1f39a258e92de5",
+      "questionRevision": "planning-e5e6-20261006-0718cf741003",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc11",
+      "bDecision": "revise",
+      "bPrompt": "원 ㄱ은 지름이 $2$ $\\mathrm{cm}$이고 원주가 $6.28$ $\\mathrm{cm}$이다. 원 ㄴ은 지름이 $4$ $\\mathrm{cm}$이고 원주가 $12.56$ $\\mathrm{cm}$이다. 두 원에서 원주를 지름으로 나눈 값을 각각 구하고, 원의 크기와 이 값의 관계를 말하시오.",
+      "bAnswer": "두 원 모두 $3.14$이다. 원의 크기가 달라도 원주를 지름으로 나눈 값은 같다.",
+      "bGoal": "크기가 다른 원에서도 원주÷지름이 같음을 확인한다.",
+      "bReason": "계산 결과로 일반 관계를 말하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘 다 $3.14$",
+            "$6.28\\div2=3.14$, $12.56\\div4=3.14$"
+          ]
+        },
+        {
+          "anyOf": [
+            "원의 크기가 달라도 같다",
+            "크기와 관계없이 일정하다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "원의 크기가 달라도 원주를 지름으로 나눈 값은 {같다}.",
+      "cReason": "크기가 달라도 같다는 짧은 성질로 원문 그대로 명확하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2495,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc11",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "크기와 관계없는 원주율",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원의 크기가 달라도 원주를 지름으로 나눈 값은 {같다}.",
+        "studentC": "원의 크기가 달라도 원주를 지름으로 나눈 값은 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "490bc0d3d6ddd3cc89b62a5c9f33268c7d8033dc1ec4fd0e4015370543111179",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cFrozenDefinition": "원의 크기가 달라도 원주를 지름으로 나눈 값은 {같다}.",
+      "cFrozenStudentSentence": "원의 크기가 달라도 원주를 지름으로 나눈 값은 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "원의 크기가 달라도 원주를 지름으로 나눈 값은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원의 크기가 달라도 원주를 지름으로 나눈 값은 {같다}.",
+      "cStudentSentence": "원의 크기가 달라도 원주를 지름으로 나눈 값은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원 ㄱ은 지름이 $2$ $\\mathrm{cm}$이고 원주가 $6.28$ $\\mathrm{cm}$이다. 원 ㄴ은 지름이 $4$ $\\mathrm{cm}$이고 원주가 $12.56$ $\\mathrm{cm}$이다. 두 원에서 원주를 지름으로 나눈 값을 각각 구하고, 원의 크기와 이 값의 관계를 말하시오.",
+        "answer": "두 원 모두 $3.14$이다. 원의 크기가 달라도 원주를 지름으로 나눈 값은 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘 다 $3.14$",
+              "$6.28\\div2=3.14$, $12.56\\div4=3.14$"
+            ]
+          },
+          {
+            "anyOf": [
+              "원의 크기가 달라도 같다",
+              "크기와 관계없이 일정하다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 크기가 달라도 원주를 지름으로 나눈 값은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bcb5f73e3da5437d2ed52c11b3a5cc711b56bcd3e8bbbfac858dce26fe1ef847",
+      "questionRevision": "planning-e5e6-20261006-bcb5f73e3da5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc12",
+      "bDecision": "revise",
+      "bPrompt": "원주율 $3.14159\\ldots$를 반올림하여 소수 둘째 자리까지 나타내려고 한다. 어느 자리의 숫자를 보고 올릴지 버릴지 정하는지 설명하고 결과를 쓰시오.",
+      "bAnswer": "소수 셋째 자리 숫자 $1$이 $5$보다 작으므로 버려서 $3.14$이다.",
+      "bGoal": "반올림할 때 보는 자리와 결과를 설명한다.",
+      "bReason": "반올림 방법을 바르게 적용하는지 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수 셋째 자리 숫자를 본다",
+            "소수 셋째 자리에서 반올림한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "결과는 $3.14$",
+            "$3.14$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "원주율 $3.14159\\ldots$를 반올림하여 소수 둘째 자리까지 나타낼 때는 소수 {셋째} 자리 숫자를 보고 정하며, 결과는 {$3.14$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "셋째",
+            "세 번째",
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.14$"
+          ]
+        }
+      ],
+      "cReason": "결과만 묻지 않고 반올림하는 자리를 함께 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2496,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc12",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "원주율을 소수 둘째 자리까지",
+        "kind": "방법",
+        "level": "중",
+        "definition": "원주율을 반올림하여 소수 둘째 자리까지 나타내면 {$3.14$}이다.",
+        "studentC": "원주율을 반올림하여 소수 둘째 자리까지 나타내면 □이다.",
+        "answers": [
+          "$3.14$"
+        ]
+      },
+      "sourceFingerprint": "f0b190906af373fe0b9f4b7fb305c5d692a595f54d319e1b3fddccbf90d7ed11",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "셋째",
+        "$3.14$"
+      ],
+      "cStudentAfter": "원주율 $3.14159\\ldots$를 반올림하여 소수 둘째 자리까지 나타낼 때는 소수 □ 자리 숫자를 보고 정하며, 결과는 □이다.",
+      "cMarkedSentence": "원주율 $3.14159\\ldots$를 반올림하여 소수 둘째 자리까지 나타낼 때는 소수 {셋째} 자리 숫자를 보고 정하며, 결과는 {$3.14$}이다.",
+      "cStudentSentence": "원주율 $3.14159\\ldots$를 반올림하여 소수 둘째 자리까지 나타낼 때는 소수 □ 자리 숫자를 보고 정하며, 결과는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "셋째",
+          "equivalents": [
+            "세 번째",
+            "$3$"
+          ]
+        },
+        {
+          "key": "$3.14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원주율 $3.14159\\ldots$를 반올림하여 소수 둘째 자리까지 나타내려고 한다. 어느 자리의 숫자를 보고 올릴지 버릴지 정하는지 설명하고 결과를 쓰시오.",
+        "answer": "소수 셋째 자리 숫자 $1$이 $5$보다 작으므로 버려서 $3.14$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수 셋째 자리 숫자를 본다",
+              "소수 셋째 자리에서 반올림한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과는 $3.14$",
+              "$3.14$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주율 $3.14159\\ldots$를 반올림하여 소수 둘째 자리까지 나타낼 때는 소수 {셋째} 자리 숫자를 보고 정하며, 결과는 {$3.14$}이다.",
+        "acceptedAnswers": [
+          [
+            "셋째",
+            "세 번째",
+            "$3$"
+          ],
+          [
+            "$3.14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e70d249295d4c1b1a4f7df653640a3958be8c601ba18f6f55a1d1cfed395684b",
+      "questionRevision": "planning-e5e6-20261006-e70d249295d4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc13",
+      "bDecision": "revise",
+      "bPrompt": "원주율을 소수로 나타내면 소수점 아래 숫자가 어떻게 이어지는지 말하고, 그래서 계산할 때는 어떤 값을 쓰는지 설명하시오.",
+      "bAnswer": "소수점 아래 숫자가 끝없이 이어진다. 그래서 계산할 때는 어림한 값을 쓴다.",
+      "bGoal": "원주율이 끝없이 이어지는 소수라 어림값을 씀을 설명한다.",
+      "bReason": "왜 어림값을 쓰는지 연결해서 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "끝없이 이어진다",
+            "끝나지 않는다",
+            "한없이 이어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "어림한 값을 쓴다",
+            "어림값을 쓴다",
+            "$3.14$ 같은 어림값을 쓴다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "원주율은 $3.1415\\ldots$처럼 소수점 아래 숫자가 {끝없이} 이어진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "끝없이",
+            "한없이"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 핵심 낱말 하나를 묻고 동의어를 허용한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2497,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc13",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "끝없이 이어지는 원주율",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원주율은 $3.1415\\ldots$처럼 소수점 아래 숫자가 {끝없이 이어진다}.",
+        "studentC": "원주율은 $3.1415\\ldots$처럼 소수점 아래 숫자가 □.",
+        "answers": [
+          "끝없이 이어진다"
+        ]
+      },
+      "sourceFingerprint": "fa40074dcc6f6292dbb3d1e8d637bc99686a201125cb99a46dcfa7ef4acab6c5",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "끝없이"
+      ],
+      "cStudentAfter": "원주율은 $3.1415\\ldots$처럼 소수점 아래 숫자가 □ 이어진다.",
+      "cMarkedSentence": "원주율은 $3.1415\\ldots$처럼 소수점 아래 숫자가 {끝없이} 이어진다.",
+      "cStudentSentence": "원주율은 $3.1415\\ldots$처럼 소수점 아래 숫자가 □ 이어진다.",
+      "cSlotAnswers": [
+        {
+          "key": "끝없이",
+          "equivalents": [
+            "한없이"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원주율을 소수로 나타내면 소수점 아래 숫자가 어떻게 이어지는지 말하고, 그래서 계산할 때는 어떤 값을 쓰는지 설명하시오.",
+        "answer": "소수점 아래 숫자가 끝없이 이어진다. 그래서 계산할 때는 어림한 값을 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "끝없이 이어진다",
+              "끝나지 않는다",
+              "한없이 이어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "어림한 값을 쓴다",
+              "어림값을 쓴다",
+              "$3.14$ 같은 어림값을 쓴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주율은 $3.1415\\ldots$처럼 소수점 아래 숫자가 {끝없이} 이어진다.",
+        "acceptedAnswers": [
+          [
+            "끝없이",
+            "한없이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6165c9d89ddd3c2fe347e2a1307faed754d891f95103df479bb130ce14016798",
+      "questionRevision": "planning-e5e6-20261006-6165c9d89ddd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "문제에서 정한 원주율 값을 쓰는 규칙을 안다.",
+      "bReason": "문제의 조건을 따른다는 사소한 행동 규칙이라 개념 질문이 되기 어렵다.",
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "exclusionReason": "사소한 규칙이다. 대체: xc12, xc17.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'정해 준 값'은 메타적인 말이라 의미 있는 빈칸이 아니다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2498,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc14",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "정해 준 원주율로 계산하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "문제에서 원주율을 $3$, $3.1$, $3.14$ 가운데 {정해 준 값}으로 계산한다.",
+        "studentC": "문제에서 원주율을 $3$, $3.1$, $3.14$ 가운데 □으로 계산한다.",
+        "answers": [
+          "정해 준 값"
+        ]
+      },
+      "sourceFingerprint": "f5d1c9ed0ab73166080650d4e58baf860cc1169c057cd7de7e8dcf1f05b63acf",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "사소한 규칙이다. 대체: xc12, xc17.",
+        "cloze": "사소한 규칙이다. 대체: xc12, xc17."
+      },
+      "proposalFingerprint": "23c87cd7ceab61f59404c61103f1075934a3e891c650bad0b09065c992b07cc6",
+      "questionRevision": "planning-e5e6-20261006-23c87cd7ceab",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc15",
+      "bDecision": "revise",
+      "bPrompt": "원주가 지름의 $3$배보다 길고 $4$배보다 짧다는 것을 확인하려면, 원 안과 밖에 꼭 맞게 그린 어떤 도형의 둘레와 비교하면 되는지 각각 쓰고 비교 결과를 설명하시오.",
+      "bAnswer": "원 안의 정육각형 둘레(지름의 $3$배)는 원주보다 짧고, 원 밖의 정사각형 둘레(지름의 $4$배)는 원주보다 길다.",
+      "bGoal": "안쪽 정육각형과 바깥쪽 정사각형으로 원주의 범위를 설명한다.",
+      "bReason": "범위가 나오는 까닭을 도형 비교로 연결해 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "안쪽 정육각형 둘레가 원주보다 짧다",
+            "정육각형 둘레는 지름의 $3$배이고 원주보다 짧다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바깥쪽 정사각형 둘레가 원주보다 길다",
+            "정사각형 둘레는 지름의 $4$배이고 원주보다 길다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "원주는 원 안에 꼭 맞는 {정육각형}의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 {정사각형}의 둘레(지름의 $4$배)보다 짧다.",
+      "cReason": "두 도형 이름을 안과 밖 조건과 함께 묻는 원문이 그대로 명확하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2499,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc15",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "지름의 $3$배와 $4$배 사이인 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원주는 원 안에 꼭 맞는 {정육각형}의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 {정사각형}의 둘레(지름의 $4$배)보다 짧다.",
+        "studentC": "원주는 원 안에 꼭 맞는 □의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 □의 둘레(지름의 $4$배)보다 짧다.",
+        "answers": [
+          "정육각형",
+          "정사각형"
+        ]
+      },
+      "sourceFingerprint": "344215c7acdd4c064a056a5e6ee472ee995577a73b7ccf93b41aa202f250c9db",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cFrozenDefinition": "원주는 원 안에 꼭 맞는 {정육각형}의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 {정사각형}의 둘레(지름의 $4$배)보다 짧다.",
+      "cFrozenStudentSentence": "원주는 원 안에 꼭 맞는 □의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 □의 둘레(지름의 $4$배)보다 짧다.",
+      "cProposedAnswers": [
+        "정육각형",
+        "정사각형"
+      ],
+      "cStudentAfter": "원주는 원 안에 꼭 맞는 □의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 □의 둘레(지름의 $4$배)보다 짧다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정육각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원주는 원 안에 꼭 맞는 {정육각형}의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 {정사각형}의 둘레(지름의 $4$배)보다 짧다.",
+      "cStudentSentence": "원주는 원 안에 꼭 맞는 □의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 □의 둘레(지름의 $4$배)보다 짧다.",
+      "cSlotAnswers": [
+        {
+          "key": "정육각형",
+          "equivalents": []
+        },
+        {
+          "key": "정사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원주가 지름의 $3$배보다 길고 $4$배보다 짧다는 것을 확인하려면, 원 안과 밖에 꼭 맞게 그린 어떤 도형의 둘레와 비교하면 되는지 각각 쓰고 비교 결과를 설명하시오.",
+        "answer": "원 안의 정육각형 둘레(지름의 $3$배)는 원주보다 짧고, 원 밖의 정사각형 둘레(지름의 $4$배)는 원주보다 길다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "안쪽 정육각형 둘레가 원주보다 짧다",
+              "정육각형 둘레는 지름의 $3$배이고 원주보다 짧다"
+            ]
+          },
+          {
+            "anyOf": [
+              "바깥쪽 정사각형 둘레가 원주보다 길다",
+              "정사각형 둘레는 지름의 $4$배이고 원주보다 길다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주는 원 안에 꼭 맞는 {정육각형}의 둘레(지름의 $3$배)보다 길고, 원 밖에 꼭 맞는 {정사각형}의 둘레(지름의 $4$배)보다 짧다.",
+        "acceptedAnswers": [
+          [
+            "정육각형"
+          ],
+          [
+            "정사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "92ffa744712fb380ad99a66c2bdcc0cb8389b6168d3c8967b13936b99d42d7cf",
+      "questionRevision": "planning-e5e6-20261006-92ffa744712f",
+      "requiresIndependentReview": true
+    }
+  ]
+}

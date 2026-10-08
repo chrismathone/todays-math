@@ -39,6 +39,9 @@
  * ㉡ **결합형은 `registeredTypes()` 밖이라 구조적으로 0이다.** 따로 센다 —
  *    「목록에 없는 부류는 구조적으로 0」이 이 저장소의 단골 함정이다.
  * ㉢ **적재본이 비어 있으면** 전부 「안 나간다」가 되어 뜻이 없다. 행 수가 너무 적으면 멈춘다.
+ * ㉣ **판정형**(`src/lib/middle/judge/` — 2026-10-08)도 `registeredTypes()` 밖이라 따로 센다. 유형 · 결합형과
+ *    달리 **정확한 키**로 댄다(`loadedJudgeKeys`) — 포함으로 대면 비슷한 키가 «나갔다»로 읽힌다.
+ *    그 읽기가 갈리지 않았는지 실행마다 스스로 대 본다(`judgeKeyProbe` — ㉠ 의 판정형 몫).
  */
 import { readFileSync, writeFileSync } from "node:fs";
 
@@ -46,6 +49,11 @@ import { PrismaClient } from "@prisma/client";
 
 import { middleComboDefinitions } from "../../src/lib/middle/combo";
 import { registeredTypes } from "../../src/lib/middle/generate";
+import {
+  judgeExternalId,
+  parseJudgeExternalId,
+} from "../../src/lib/middle/judge/contract";
+import { judgementDefinitions } from "../../src/lib/middle/judge/registry";
 
 import { isDirectScript } from "../import/isDirectScript";
 
@@ -72,6 +80,24 @@ export type ComboRow = {
   anchorGrade: string;
   anchorSection: string;
 };
+/** 판정형 등록 한 건 — `judgementDefinitions()` 의 모양 그대로(`src/lib/middle/judge/`). */
+export type JudgeRow = { key: string; grade: string; unitSection: string };
+
+/**
+ * 적재본에서 **판정형 판정키**를 정확히 뽑는다 — `parseJudgeExternalId` 가 읽는 열쇠만.
+ *
+ * 🔴 유형 · 결합형처럼 `includes` 로 대지 않는다. 판정키 `…|calc-add2` 는 `…|calc-add2x` 의 일부라,
+ *    포함으로 물으면 **다른 문항류를 넣고도 «나갔다»**가 된다(비슷한 키의 «거짓 적재» — 2026-10-08 합의 §1 Q1).
+ *    읽는 함수는 적재기가 열쇠를 짓는 `judgeExternalId` 의 짝이다(같은 파일 — 규칙을 옮겨 적지 않는다).
+ */
+export function loadedJudgeKeys(fragments: ReadonlySet<string>): Set<string> {
+  const out = new Set<string>();
+  for (const f of fragments) {
+    const parts = parseJudgeExternalId(f);
+    if (parts) out.add(parts.judgeKey);
+  }
+  return out;
+}
 
 /**
  * 🔴 **유형 표와 결합형 표를 «인자로» 받는다.** 안에서 직접 부르면 시험이 픽스처로
@@ -82,6 +108,7 @@ export function unloaded(
   fragments: ReadonlySet<string>,
   types: readonly TypeRow[] = registeredTypes() as unknown as TypeRow[],
   combos: readonly ComboRow[] = middleComboDefinitions() as unknown as ComboRow[],
+  judges: readonly JudgeRow[] = judgementDefinitions(),
 ): Entry[] {
   const frags = [...fragments];
   const out: Entry[] = [];
@@ -98,7 +125,39 @@ export function unloaded(
         where: `${d.anchorSection} (결합형)`,
       });
   }
+  // ㉣ 판정형도 `registeredTypes()` 밖이다 — 결합형과 같은 까닭으로 따로 센다. 대조는 **정확한 키**다.
+  const judgeKeys = loadedJudgeKeys(fragments);
+  for (const j of judges) {
+    if (!judgeKeys.has(j.key))
+      out.push({
+        key: j.key,
+        grade: j.grade,
+        where: `${j.unitSection} (판정형)`,
+      });
+  }
   return out.sort((a, b) => a.key.localeCompare(b.key));
+}
+
+/**
+ * ㉠ 의 판정형 몫 — 판정형 열쇠를 **정확히** 읽는지 실행할 때마다 스스로 대 본다.
+ * 짓는 함수로 지은 열쇠를 읽는 함수가 되읽지 못하면(모양이 갈렸다) 판정형은 전부 «안 나감»으로 운다 — 시끄럽다.
+ * 거꾸로 **비슷한 키**를 «나갔다»로 읽으면 조용히 빚이 숨는다 — 그것을 여기서 막는다. 문제가 없으면 null.
+ */
+export function judgeKeyProbe(): string | null {
+  const key = "중9|없는소단원|zz";
+  const id = judgeExternalId({
+    judgeKey: key,
+    ruleVersion: 1,
+    seed: 1,
+    variant: 0,
+    questionType: "객관식",
+  });
+  if (!loadedJudgeKeys(loadedFragments([id])).has(key))
+    return "판정형 열쇠를 짓는 함수와 읽는 함수가 갈렸다 — 실린 판정형을 «안 나감»으로 센다";
+  const similar = loadedFragments([id.replace("|zz|", "|zzz|")]);
+  if (loadedJudgeKeys(similar).has(key))
+    return "비슷한 판정키를 «나갔다»로 읽는다 — 거짓 적재가 빚을 숨긴다";
+  return null;
 }
 
 async function main(): Promise<void> {
@@ -125,6 +184,11 @@ async function main(): Promise<void> {
       console.error(
         "🔴 양성 대조 실패 — 있을 수 없는 키가 «적재됨»으로 잡힌다. 판정을 거부한다.",
       );
+      process.exit(2);
+    }
+    const probe = judgeKeyProbe();
+    if (probe) {
+      console.error(`🔴 양성 대조 실패 — ${probe}. 판정을 거부한다.`);
       process.exit(2);
     }
 

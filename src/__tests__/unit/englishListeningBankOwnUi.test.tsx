@@ -83,8 +83,11 @@ describe("own listening bank UI", () => {
       data: { data: [], meta: { nextCursor: null } },
     });
     render(<ListeningBank active onOpenListening={vi.fn()} />);
-    expect(
-      screen.getByText("조건에 맞는 듣기 자료가 없습니다."),
-    ).toBeInTheDocument();
+    expect(screen.getByText(/등록된 듣기 자료가 없습니다/)).toBeInTheDocument();
+    expect(screen.getByRole("status")).toHaveTextContent("이 페이지 0개");
+    fireEvent.change(screen.getByRole("combobox", { name: "듣기 출처" }), {
+      target: { value: "authored" },
+    });
+    expect(screen.getByText(/조건에 맞는 듣기 자료가 없습니다/)).toBeVisible();
   });
 });

@@ -1,0 +1,69 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e3-1-3-4-xc24",
+      "sourceIndex": 628,
+      "beforeProposal": {
+        "sourceIndex": 628,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-3 나눗셈::1-3-4 나눗셈의 몫을 곱셈구구로 구하기",
+        "sourceFingerprint": "5484355feb929b31166ad5f99821d9a1bac0c4a2218686300ed2a2532bc74d5d",
+        "proposalFingerprint": "4c9490f0cb234c0822f43184d77c7f0bd00700a6cd723b0c312d7ab047f048db",
+        "reviewStatus": "draft",
+        "id": "e3-1-3-4-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "단에 없으면 남김없이 나눌 수 없음을 판단",
+        "bReason": "같은 절 항목과 설명이 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "$5$단 곱셈구구에는 $40$ 다음에 $45$가 있고 $42$는 없다. 그러므로 $42$를 $5$로 남김없이 나눌 수 {없다}.",
+        "cReason": "답 '남김없이'는 '똑같이', '나머지 없이' 등으로도 쓸 수 있어 답이 흔들림. 제목의 목표인 '어느 단을 살피는지'를 수로 묻게 함",
+        "exclusionReason": "e3-1-3-4-xc15가 25÷4로 '단에 없어서 남김없이 나눌 수 없다'는 같은 까닭을 묻는다",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단에 있는지 살피기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5$단 곱셈구구에는 $40$ 다음에 $45$가 있고 $42$는 없다. 그러므로 $42$를 $5$로 남김없이 나눌 수 {없다}.",
+        "cStudentSentence": "$5$단 곱셈구구에는 $40$ 다음에 $45$가 있고 $42$는 없다. 그러므로 $42$를 $5$로 남김없이 나눌 수 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "없다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$5$단 곱셈구구에는 $40$ 다음에 $45$가 있고 $42$는 없다. 그러므로 $42$를 $5$로 남김없이 나눌 수 {없다}.",
+          "acceptedAnswers": [
+            [
+              "없다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "같은 절 항목과 설명이 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cAfter": "$5$단 곱셈구구에서 $40$ 다음 수는 $45$이다. $42$는 이 단에 {없는} 수이므로 $42$를 $5$로 남김없이 나눌 수 없다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

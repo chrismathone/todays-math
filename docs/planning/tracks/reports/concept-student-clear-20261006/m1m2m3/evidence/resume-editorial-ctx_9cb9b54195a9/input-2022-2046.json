@@ -1,0 +1,2441 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:27:25.636Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-02-xc22",
+        "section": "중1::8. 통계::줄기와 잎 그림",
+        "term": "이상인 변량의 개수로 범위 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "큰 쪽 $k$번째 값이 다음 값보다 크면, 정확히 $k$개가 $x$ 이상이 되는 $x$는 다음 값보다 {크고} $k$번째 값 {이하}이다.",
+        "example": {
+          "prompt": "$12$, $18$, $25$, $33$, $40$에서 $x$ 이상인 변량이 $2$개가 되는 자연수 $x$의 가장 작은 값은?",
+          "answer": "$26$"
+        },
+        "studentC": "큰 쪽 $k$번째 값이 다음 값보다 크면, 정확히 $k$개가 $x$ 이상이 되는 $x$는 다음 값보다 □ $k$번째 값 □이다.",
+        "answers": [
+          "크고",
+          "이하"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-02-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "자료 $12$, $18$, $25$, $33$, $40$에서 $x$ 이상인 변량이 정확히 $2$개가 되는 자연수 $x$를 모두 구하고, 그중 가장 작은 값이 왜 그 값인지 쓰시오.",
+        "bAnswer": "$26$부터 $33$까지의 자연수이다. $x=25$이면 $25$도 포함되어 $3$개가 되므로 $x$는 $25$보다 커야 하고, 따라서 가장 작은 값은 $26$이다.",
+        "bGoal": "이상인 변량의 개수 조건으로 기준값의 범위 찾기",
+        "bReason": "추상적인 '$k$번째, 다음 값'을 구체 자료와 개수 조건으로 바꿔 범위를 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$26$부터 $33$까지의 자연수",
+              "$26\\le x\\le 33$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$가 $25$ 이하이면 $25$도 포함되어 $3$개가 된다",
+              "$x$는 $25$보다 커야 한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크다고 하자. $x$ 이상인 변량이 정확히 $k$개가 되려면 $x$는 $(k+1)$번째 값보다 {크고} $k$번째 값 {이하}여야 한다.",
+        "cAnswers": [
+          "크고",
+          "이하"
+        ],
+        "cReason": "'다음 값'이 어느 값인지 모호해 큰 쪽에서 $(k+1)$번째 값으로 밝힘",
+        "coreAfter": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크면, 정확히 $k$개가 $x$ 이상이 되는 $x$는 $(k+1)$번째 값보다 {크고} $k$번째 값 {이하}이다.",
+        "coreReason": "'다음 값'이 큰 쪽에서 $(k+1)$번째 값임이 드러나지 않아 학생이 읽기 어려움",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "개수 조건을 만족하는 기준값의 범위 정하기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2022,
+        "part": "m1plus",
+        "sourceFingerprint": "fd884b7b8f75e7af72b497942d4f6c9afeb6b75f11eca88180a9d7e55d89efa7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2022
+        },
+        "directReview": null,
+        "coreBeforeRepair": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크면, 정확히 $k$개가 $x$ 이상이 되는 $x$는 $(k+1)$번째 값보다 크고 $k$번째 값 이하이다.",
+        "coreRepairReason": "표지가 없어서 원래 핵심어 {크고}, {이하}를 되살림. 범위의 경계(초과/이하)와 일반 조건은 그대로 두었고, 예의 답 $26$은 넣지 않음.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크다고 하자. $x$ 이상인 변량이 정확히 $k$개가 되려면 $x$는 $(k+1)$번째 값보다 {크고} $k$번째 값 {이하}여야 한다.",
+        "cSlotAnswers": [
+          "크고",
+          "이하"
+        ],
+        "cStudentSentence": "변량을 큰 것부터 늘어놓았을 때 $k$번째 값이 $(k+1)$번째 값보다 크다고 하자. $x$ 이상인 변량이 정확히 $k$개가 되려면 $x$는 $(k+1)$번째 값보다 □ $k$번째 값 □여야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "크고",
+            "equivalentAnswers": [
+              "크고",
+              "초과이고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이하",
+            "equivalentAnswers": [
+              "이하",
+              "보다 작거나 같아",
+              "작거나 같아"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "크고",
+            "accept": [
+              "초과이고"
+            ]
+          },
+          {
+            "answer": "이하",
+            "accept": [
+              "보다 작거나 같아",
+              "작거나 같아"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "크고",
+            "초과이고"
+          ],
+          [
+            "이하",
+            "보다 작거나 같아",
+            "작거나 같아"
+          ]
+        ],
+        "proposalFingerprint": "f2b6844f9f50f00d047f486cce406496d6ad7d521a5acf25bf138d3a3374255e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-02-xc23",
+        "section": "중1::8. 통계::줄기와 잎 그림",
+        "term": "상위 몇 퍼센트 안에 들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "{동점자가 없을 때}, 상위 $p\\%$ 안에 들려면 큰 쪽에서의 순위가 전체 개수의 {$\\frac{p}{100}$}배 {이하}여야 한다.",
+        "example": {
+          "prompt": "$40$명 중 상위 $10\\%$ 안에 들려면 몇 등 안?",
+          "answer": "$4$등"
+        },
+        "studentC": "□, 상위 $p\\%$ 안에 들려면 큰 쪽에서의 순위가 전체 개수의 □배 □여야 한다.",
+        "answers": [
+          "동점자가 없을 때",
+          "$\\frac{p}{100}$",
+          "이하"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-02-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "동점자가 없는 $40$명 가운데 상위 $10\\%$ 안에 들려면 큰 쪽에서 몇 등 안에 들어야 하는지 구하는 과정을 쓰시오.",
+        "bAnswer": "$40\\times\\frac{10}{100}=4$이므로 큰 쪽에서 $4$등 안에 들어야 한다.",
+        "bGoal": "상위 퍼센트를 순위 조건으로 바꾸기",
+        "bReason": "동점자가 없다는 조건과 전체 수·퍼센트를 주어 순위의 한계를 구하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "전체 개수에 $\\frac{10}{100}$을 곱한다",
+              "$40\\times\\frac{10}{100}=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$등 안"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "동점자가 없을 때, 상위 $p\\%$ 안에 들려면 큰 쪽에서의 순위가 전체 개수의 {$\\frac{p}{100}$}배 {이하}여야 한다.",
+        "cAnswers": [
+          "$\\frac{p}{100}$",
+          "이하"
+        ],
+        "cReason": "조건 구절 전체를 빈칸으로 둔 것을 풀고 식과 부등 관계만 묻게 함",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "상위 $p\\%$를 순위의 한계로 바꾸기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2023,
+        "part": "m1plus",
+        "sourceFingerprint": "7de9b663c9ce303ea98d7a6bdcfd6bd407fbe8b6cf43d8c1506170ff8d185588",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2023
+        },
+        "directReview": null,
+        "cMarkedSentence": "동점자가 없을 때, 상위 $p\\%$ 안에 들려면 큰 쪽에서의 순위가 전체 개수의 {$\\frac{p}{100}$}배 {이하}여야 한다.",
+        "cSlotAnswers": [
+          "$\\frac{p}{100}$",
+          "이하"
+        ],
+        "cStudentSentence": "동점자가 없을 때, 상위 $p\\%$ 안에 들려면 큰 쪽에서의 순위가 전체 개수의 □배 □여야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{p}{100}$",
+            "equivalentAnswers": [
+              "$\\frac{p}{100}$",
+              "$0.01p$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이하",
+            "equivalentAnswers": [
+              "이하"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{p}{100}$",
+            "accept": [
+              "$0.01p$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{p}{100}$",
+            "$0.01p$"
+          ],
+          [
+            "이하"
+          ]
+        ],
+        "proposalFingerprint": "2d492461e4cc31a7c34b804987ccfad893c5e16891fb8906be37a5b52519f022"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-02-xc24",
+        "section": "중1::8. 통계::줄기와 잎 그림",
+        "term": "두 모둠의 중앙값",
+        "kind": "방법",
+        "level": "상",
+        "definition": "양쪽에 잎을 쓴 그림에서 두 모둠의 중앙값은 각 쪽 잎을 {따로} 세어 {각각} 구한다.",
+        "example": {
+          "prompt": "두 모둠의 인원이 다르면 중앙값의 자리도 다를 수 있는가?",
+          "answer": "있다"
+        },
+        "studentC": "양쪽에 잎을 쓴 그림에서 두 모둠의 중앙값은 각 쪽 잎을 □ 세어 □ 구한다.",
+        "answers": [
+          "따로",
+          "각각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-02-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "줄기를 가운데 두고 왼쪽에 $A$ 모둠의 잎 $7$개, 오른쪽에 $B$ 모둠의 잎 $10$개를 쓴 줄기와 잎 그림이 있다. 각 모둠의 중앙값은 그 모둠에서 작은 쪽부터 몇 번째 값으로 구하는지 각각 쓰시오.",
+        "bAnswer": "$A$ 모둠은 $4$번째 값이고, $B$ 모둠은 $5$번째 값과 $6$번째 값의 평균이다.",
+        "bGoal": "양쪽에 잎을 쓴 그림에서 모둠별 중앙값 구하기",
+        "bReason": "두 모둠의 잎 개수를 다르게 주어 모둠마다 따로 세어야 함을 드러냄",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$A$ 모둠은 $4$번째 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "$B$ 모둠은 $5$번째와 $6$번째 값의 평균"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "줄기를 가운데 두고 두 모둠의 잎을 양쪽에 쓴 그림에서 중앙값은 두 모둠의 잎을 합쳐 세지 않고, 모둠마다 자기 쪽 잎의 {개수}를 세어 {한가운데} 값을 따로 구한다.",
+        "cAnswers": [
+          "개수",
+          "한가운데"
+        ],
+        "cReason": "'따로/각각'은 뜻이 겹치는 부사 빈칸이라 세는 것과 찾는 자리를 묻게 함",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "모둠별로 잎을 따로 세어 중앙값 찾기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2024,
+        "part": "m1plus",
+        "sourceFingerprint": "a14530d26ca369f3fbc1814cb5d63bb46c11e503aa4fe695b52db4eb2e0ada47",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2024
+        },
+        "directReview": null,
+        "cMarkedSentence": "줄기를 가운데 두고 두 모둠의 잎을 양쪽에 쓴 그림에서 중앙값은 두 모둠의 잎을 합쳐 세지 않고, 모둠마다 자기 쪽 잎의 {개수}를 세어 {한가운데} 값을 따로 구한다.",
+        "cSlotAnswers": [
+          "개수",
+          "한가운데"
+        ],
+        "cStudentSentence": "줄기를 가운데 두고 두 모둠의 잎을 양쪽에 쓴 그림에서 중앙값은 두 모둠의 잎을 합쳐 세지 않고, 모둠마다 자기 쪽 잎의 □를 세어 □ 값을 따로 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "개수",
+            "equivalentAnswers": [
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "한가운데",
+            "equivalentAnswers": [
+              "한가운데",
+              "가운데",
+              "중앙"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한가운데",
+            "accept": [
+              "가운데",
+              "중앙"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "개수"
+          ],
+          [
+            "한가운데",
+            "가운데",
+            "중앙"
+          ]
+        ],
+        "proposalFingerprint": "465ad1efa92accf42ec4f34fbc0e08c5fa518dc815cff621c7e2eebe17e7b0d3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-02-xc25",
+        "section": "중1::8. 통계::줄기와 잎 그림",
+        "term": "한 줄의 합 빨리 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "일의 자리를 잎으로 나타낸 자연수 자료에서 한 줄의 합은 {줄기}와 $10$과 잎 개수의 곱에 {잎의 합}을 더한 값이다.",
+        "example": {
+          "prompt": "줄기 $2$의 잎이 $1$, $4$, $5$이면 이 줄의 합은?",
+          "answer": "$70$"
+        },
+        "studentC": "일의 자리를 잎으로 나타낸 자연수 자료에서 한 줄의 합은 □와 $10$과 잎 개수의 곱에 □을 더한 값이다.",
+        "answers": [
+          "줄기",
+          "잎의 합"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-02-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "잎이 일의 자리 숫자인 줄기와 잎 그림에서 줄기 $2$의 잎이 $1$, $4$, $5$이다. 이 줄의 세 변량 $21$, $24$, $25$를 하나씩 더하지 않고 줄기와 잎을 이용해 합을 구하는 식을 쓰시오.",
+        "bAnswer": "$20\\times 3+(1+4+5)=60+10=70$",
+        "bGoal": "한 줄기에 속한 변량의 합을 줄기와 잎으로 구하기",
+        "bReason": "'빨리 구하기'가 뜻하는 방법을 줄기와 잎을 이용한 식으로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$20\\times 3$",
+              "줄기에 $10$을 곱한 값을 잎의 개수만큼 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "잎의 합 $1+4+5=10$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합은 $70$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "일의 자리를 잎으로 나타낸 자연수 자료에서 한 줄기에 속한 변량의 합은 줄기에 $10$을 곱한 값을 {잎의 개수}만큼 더하고, 거기에 {잎의 합}을 더한 값이다.",
+        "cAnswers": [
+          "잎의 개수",
+          "잎의 합"
+        ],
+        "cReason": "'□와 $10$과 잎 개수의 곱'은 어떤 곱인지 읽기 어려워 단계별로 풀어 씀",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "줄기×$10$×잎 개수에 잎의 합을 더하는 계산법",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2025,
+        "part": "m1plus",
+        "sourceFingerprint": "c91d4766fc1c5cdf6e79d7de41631db0ab674fe0580ea63a9eae19be927dd6d0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2025
+        },
+        "directReview": null,
+        "cMarkedSentence": "일의 자리를 잎으로 나타낸 자연수 자료에서 한 줄기에 속한 변량의 합은 줄기에 $10$을 곱한 값을 {잎의 개수}만큼 더하고, 거기에 {잎의 합}을 더한 값이다.",
+        "cSlotAnswers": [
+          "잎의 개수",
+          "잎의 합"
+        ],
+        "cStudentSentence": "일의 자리를 잎으로 나타낸 자연수 자료에서 한 줄기에 속한 변량의 합은 줄기에 $10$을 곱한 값을 □만큼 더하고, 거기에 □을 더한 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "잎의 개수",
+            "equivalentAnswers": [
+              "잎의 개수",
+              "잎 개수",
+              "잎의 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "잎의 합",
+            "equivalentAnswers": [
+              "잎의 합",
+              "잎의 총합",
+              "잎을 모두 더한 값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "잎의 개수",
+            "accept": [
+              "잎 개수",
+              "잎의 수"
+            ]
+          },
+          {
+            "answer": "잎의 합",
+            "accept": [
+              "잎의 총합",
+              "잎을 모두 더한 값"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "잎의 개수",
+            "잎 개수",
+            "잎의 수"
+          ],
+          [
+            "잎의 합",
+            "잎의 총합",
+            "잎을 모두 더한 값"
+          ]
+        ],
+        "proposalFingerprint": "724e1f59392fd2f2cbfb614876574d56a5860f0e72b9ff710ebff55e0c1d33b0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc1",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "조사한 값인 변량",
+        "kind": "정의",
+        "level": "하",
+        "definition": "키나 무게처럼 조사하여 얻은 각각의 {값}을 {변량}이라고 부른다.",
+        "studentC": "키나 무게처럼 조사하여 얻은 각각의 □을 □이라고 부른다.",
+        "answers": [
+          "값",
+          "변량"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "통계에서 '변량'이란 무엇인지 쓰고, 변량의 예를 하나 드시오.",
+        "bAnswer": "키나 몸무게처럼 조사하여 얻은 각각의 값(자료를 수량으로 나타낸 것)을 변량이라 한다. 예: 학생 한 명의 키 $158$ $\\mathrm{cm}$.",
+        "bGoal": "변량의 뜻을 예와 함께 말하기",
+        "bReason": "'조사한 값인 변량'은 답이 드러난 제목이라 뜻과 예를 묻는 질문으로 고쳤다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조사하여 얻은 각각의 값",
+              "자료를 수량으로 나타낸 것"
+            ]
+          },
+          {
+            "anyOf": [
+              "키, 몸무게, 점수처럼 수로 나타낸 조사 값의 올바른 예"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "키나 무게처럼 조사하여 얻은 각각의 값을 {변량}이라고 부른다.",
+        "cAnswers": [
+          "변량"
+        ],
+        "cReason": "'값'과 '변량'을 함께 가려 설명과 이름이 모두 숨어 있어 이름만 묻게 했다.",
+        "studentLabel": "변량",
+        "learningRole": "naming",
+        "roleReason": "조사한 값에 변량이라는 이름 붙이기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2026,
+        "part": "m1plus",
+        "sourceFingerprint": "8e8b75c696dd9aad5a97ebcd39f0842adcf4ce5e0fd3930c1a38ce095c6fe62b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2026
+        },
+        "directReview": null,
+        "cMarkedSentence": "키나 무게처럼 조사하여 얻은 각각의 값을 {변량}이라고 부른다.",
+        "cSlotAnswers": [
+          "변량"
+        ],
+        "cStudentSentence": "키나 무게처럼 조사하여 얻은 각각의 값을 □이라고 부른다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변량",
+            "equivalentAnswers": [
+              "변량"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변량"
+          ]
+        ],
+        "proposalFingerprint": "a890786730cfb48f352dd30a5d5f24a007ae0612e5c47cca2575295a61a0e60d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc2",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "계급의 시작 경계",
+        "kind": "성질",
+        "level": "하",
+        "definition": "계급을 이상과 미만으로 적으면 시작 경계의 값은 그 계급에 {포함}된다.",
+        "studentC": "계급을 이상과 미만으로 적으면 시작 경계의 값은 그 계급에 □된다.",
+        "answers": [
+          "포함"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "경계값이 속하는 계급을 묻는 m1-08-03-c6의 절반 조각이다.",
+        "cDecision": "rewrite",
+        "cAfter": "계급을 '$a$ 이상 $b$ 미만'으로 나타내면 작은 쪽 끝 값 $a$는 그 계급에 {포함}된다.",
+        "cAnswers": [
+          "포함"
+        ],
+        "cReason": "'시작 경계'는 학생이 배우지 않은 말이라 기호로 끝 값을 가리키게 했다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-03-c6(경계값이 속하는 계급)과 목표가 겹치는 조각 제목이다.",
+        "learningRole": "definition",
+        "roleReason": "'이상'이 끝 값을 포함한다는 뜻",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2027,
+        "part": "m1plus",
+        "sourceFingerprint": "3048ff0a980615f12472cd7fff5c64e914dc8b1d03a740802e045ffd2cb6705a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2027
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "계급을 '$a$ 이상 $b$ 미만'으로 나타내면 작은 쪽 끝 값 $a$는 그 계급에 {포함}된다.",
+        "cSlotAnswers": [
+          "포함"
+        ],
+        "cStudentSentence": "계급을 '$a$ 이상 $b$ 미만'으로 나타내면 작은 쪽 끝 값 $a$는 그 계급에 □된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "포함",
+            "equivalentAnswers": [
+              "포함"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "포함"
+          ]
+        ],
+        "proposalFingerprint": "04ceba6ac6f870533300f1246505627489d74fc81878a65e0a3c9fb476c3b97e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc3",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "계급의 끝 경계",
+        "kind": "성질",
+        "level": "하",
+        "definition": "계급을 이상과 미만으로 적을 때 끝 경계의 값은 그 계급에서 {제외}된다.",
+        "studentC": "계급을 이상과 미만으로 적을 때 끝 경계의 값은 그 계급에서 □된다.",
+        "answers": [
+          "제외"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "m1-08-03-c6에서 '미만'의 뜻으로 이미 설명하게 한 내용의 조각이다.",
+        "cDecision": "rewrite",
+        "cAfter": "계급을 '$a$ 이상 $b$ 미만'으로 나타내면 큰 쪽 끝 값 $b$는 그 계급에서 {제외}된다.",
+        "cAnswers": [
+          "제외"
+        ],
+        "cReason": "'끝 경계'가 가리키는 값이 불분명해 기호 $b$로 대상을 밝혔다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-03-c6(경계값이 속하는 계급)과 목표가 겹치는 조각 제목이다.",
+        "learningRole": "definition",
+        "roleReason": "'미만'이 끝 값을 포함하지 않는다는 뜻",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2028,
+        "part": "m1plus",
+        "sourceFingerprint": "5898a407a3795731a52ef61dbcdce4541aabf2ec60fed5432022c5466996a2b7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2028
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "계급을 '$a$ 이상 $b$ 미만'으로 나타내면 큰 쪽 끝 값 $b$는 그 계급에서 {제외}된다.",
+        "cSlotAnswers": [
+          "제외"
+        ],
+        "cStudentSentence": "계급을 '$a$ 이상 $b$ 미만'으로 나타내면 큰 쪽 끝 값 $b$는 그 계급에서 □된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제외",
+            "equivalentAnswers": [
+              "제외"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제외"
+          ]
+        ],
+        "proposalFingerprint": "9745b9dd2adb51acf24bb750b0997f4fe938fffef348e401fc1d8c1fcd1fddc0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc4",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "빈 계급의 도수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "어떤 구간에 들어갈 자료가 하나도 없다면 그 계급의 도수 칸에 {$0$}을 쓴다.",
+        "studentC": "어떤 구간에 들어갈 자료가 하나도 없다면 그 계급의 도수 칸에 □을 쓴다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "답이 수 하나뿐이고 도수의 뜻(m1-08-03-c3)을 그대로 적용한 내용이다.",
+        "cDecision": "keep",
+        "cReason": "자료가 없는 계급의 도수를 묻는 짧고 분명한 빈칸이다.",
+        "exclusionReason": "B 제외: 단순 수치 암기라 서술형 B에 맞지 않고 m1-08-03-c3과 목표가 겹친다.",
+        "learningRole": "application",
+        "roleReason": "자료가 없는 계급의 도수 적기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2029,
+        "part": "m1plus",
+        "sourceFingerprint": "16674dff519668d630477404f222c358733bad566918a149ced97511c1e1d347",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2029
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "어떤 구간에 들어갈 자료가 하나도 없다면 그 계급의 도수 칸에 □을 쓴다.",
+        "cFrozenDefinition": "어떤 구간에 들어갈 자료가 하나도 없다면 그 계급의 도수 칸에 {$0$}을 쓴다.",
+        "cFrozenAnswers": [
+          "$0$"
+        ],
+        "cMarkedSentence": "어떤 구간에 들어갈 자료가 하나도 없다면 그 계급의 도수 칸에 {$0$}을 쓴다.",
+        "cSlotAnswers": [
+          "$0$"
+        ],
+        "cStudentSentence": "어떤 구간에 들어갈 자료가 하나도 없다면 그 계급의 도수 칸에 □을 쓴다.",
+        "cAnswers": [
+          "$0$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "c5e5ba0ce6439639900c9147f20ce84c86fc575509e0af378109e278c39f73d1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc5",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "표에서 계급 세기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "도수분포표의 계급 수는 합계 줄을 {빼고} 구간을 적은 줄을 세어 구한다.",
+        "studentC": "도수분포표의 계급 수는 합계 줄을 □ 구간을 적은 줄을 세어 구한다.",
+        "answers": [
+          "빼고"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 도수분포표가 제목 줄을 빼고 모두 $6$줄이고, 맨 아래 줄은 '합계'이다. 이 표의 계급의 개수를 구하고, 그렇게 센 이유를 쓰시오.",
+        "bAnswer": "$5$개이다. 합계 줄은 계급(구간)이 아니므로 빼고 센다. $6-1=5$.",
+        "bGoal": "합계 줄을 빼고 계급의 개수 세기",
+        "bReason": "표가 지면에 없으므로 줄 수와 합계 줄의 위치를 질문에 직접 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "합계 줄은 계급이 아니다",
+              "합계 줄은 빼고 센다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "합계 줄의 처리 하나만 묻는 짧은 빈칸으로 문장이 분명하다.",
+        "studentLabel": "계급의 개수 세기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "표에서 계급의 개수를 세는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2030,
+        "part": "m1plus",
+        "sourceFingerprint": "b14a9b75562f6a1b3fb356bcacb63c1cec178c0670889262ad38cdfff6e4363f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2030
+        },
+        "directReview": null,
+        "cFrozenSentence": "도수분포표의 계급 수는 합계 줄을 □ 구간을 적은 줄을 세어 구한다.",
+        "cFrozenDefinition": "도수분포표의 계급 수는 합계 줄을 {빼고} 구간을 적은 줄을 세어 구한다.",
+        "cFrozenAnswers": [
+          "빼고"
+        ],
+        "cMarkedSentence": "도수분포표의 계급 수는 합계 줄을 {빼고} 구간을 적은 줄을 세어 구한다.",
+        "cSlotAnswers": [
+          "빼고"
+        ],
+        "cStudentSentence": "도수분포표의 계급 수는 합계 줄을 □ 구간을 적은 줄을 세어 구한다.",
+        "cAnswers": [
+          "빼고"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빼고",
+            "equivalentAnswers": [
+              "빼고",
+              "제외하고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "빼고",
+            "accept": [
+              "제외하고"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빼고",
+            "제외하고"
+          ]
+        ],
+        "proposalFingerprint": "def705a9f60d90625b39910a05fcbb760d7f958f034653fd29508f9145d25b5d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc6",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "도수 칸의 단위",
+        "kind": "성질",
+        "level": "하",
+        "definition": "학생의 키를 조사할 때 변량은 길이지만 도수는 학생의 {인원수}를 나타낸다.",
+        "studentC": "학생의 키를 조사할 때 변량은 길이지만 도수는 학생의 □를 나타낸다.",
+        "answers": [
+          "인원수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "학생들의 키를 조사하여 도수분포표를 만들었다. 이때 변량과 도수는 각각 무엇을 나타내는지 구별하여 쓰시오.",
+        "bAnswer": "변량은 학생 한 명 한 명의 키(길이)이고, 도수는 각 계급에 속하는 학생의 수이다.",
+        "bGoal": "같은 표에서 변량과 도수가 나타내는 것 구별하기",
+        "bReason": "'도수 칸의 단위'가 모호해 키 조사 상황에서 두 용어를 대비하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변량은 학생의 키이다",
+              "변량은 길이이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도수는 학생의 수이다",
+              "도수는 그 계급에 속한 인원수이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "변량과 도수를 대비하는 문장이 분명하고 빈칸이 짧다.",
+        "studentLabel": "변량과 도수의 구별",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "변량과 도수가 나타내는 대상 구별",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2031,
+        "part": "m1plus",
+        "sourceFingerprint": "c56020a732c5ab6b793f35a55f70a7e4157f1b781b928dc88f0533c1c5c911ce",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2031
+        },
+        "directReview": null,
+        "cFrozenSentence": "학생의 키를 조사할 때 변량은 길이지만 도수는 학생의 □를 나타낸다.",
+        "cFrozenDefinition": "학생의 키를 조사할 때 변량은 길이지만 도수는 학생의 {인원수}를 나타낸다.",
+        "cFrozenAnswers": [
+          "인원수"
+        ],
+        "cMarkedSentence": "학생의 키를 조사할 때 변량은 길이지만 도수는 학생의 {인원수}를 나타낸다.",
+        "cSlotAnswers": [
+          "인원수"
+        ],
+        "cStudentSentence": "학생의 키를 조사할 때 변량은 길이지만 도수는 학생의 □를 나타낸다.",
+        "cAnswers": [
+          "인원수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "인원수",
+            "equivalentAnswers": [
+              "인원수",
+              "수",
+              "사람 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "인원수",
+            "accept": [
+              "수",
+              "사람 수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "인원수",
+            "수",
+            "사람 수"
+          ]
+        ],
+        "proposalFingerprint": "d03a48cac6f676837390a979463acf920673a7d3472e8ae48765c5e111340ce0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc7",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "빠진 도수 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "{전체 개수}에서 이미 적힌 도수의 {합}을 빼면 비어 있는 한 칸의 도수를 구할 수 있다.",
+        "studentC": "□에서 이미 적힌 도수의 □을 빼면 비어 있는 한 칸의 도수를 구할 수 있다.",
+        "answers": [
+          "전체 개수",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "도수의 총합이 $30$인 도수분포표에서 한 계급의 도수만 비어 있고, 나머지 계급의 도수는 $4$, $9$, $6$이다. 비어 있는 도수를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "도수의 총합에서 나머지 도수의 합을 뺀다. $30-(4+9+6)=11$.",
+        "bGoal": "도수의 총합을 이용해 빈 도수 구하기",
+        "bReason": "방법만 묻으면 막연하므로 총합과 나머지 도수를 준 예로 구체화했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "도수의 총합에서 나머지 도수의 합을 뺀다",
+              "$30-(4+9+6)$",
+              "$30-4-9-6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "도수분포표에서 한 계급의 도수만 비어 있으면, 도수의 {총합}에서 이미 적힌 도수를 모두 {뺀} 값이 그 계급의 도수이다.",
+        "cAnswers": [
+          "총합",
+          "뺀"
+        ],
+        "cReason": "문장이 빈칸으로 시작해 상황을 알 수 없어 표의 상황을 앞에 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "총합에서 빼서 빈 도수를 구하는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2032,
+        "part": "m1plus",
+        "sourceFingerprint": "ff8d4c3037b0cff52cb7859ee35e405c5bbd2d99703702b50eb0a3d8f47ac685",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2032
+        },
+        "directReview": null,
+        "cMarkedSentence": "도수분포표에서 한 계급의 도수만 비어 있으면, 도수의 {총합}에서 이미 적힌 도수를 모두 {뺀} 값이 그 계급의 도수이다.",
+        "cSlotAnswers": [
+          "총합",
+          "뺀"
+        ],
+        "cStudentSentence": "도수분포표에서 한 계급의 도수만 비어 있으면, 도수의 □에서 이미 적힌 도수를 모두 □ 값이 그 계급의 도수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "총합",
+            "equivalentAnswers": [
+              "총합",
+              "합계"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "뺀",
+            "equivalentAnswers": [
+              "뺀"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "총합",
+            "accept": [
+              "합계"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "총합",
+            "합계"
+          ],
+          [
+            "뺀"
+          ]
+        ],
+        "proposalFingerprint": "3b71e7f42c779720684b6d39a95d3902d0334ac694240d2411bf4f61693b5f9b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc8",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "자료를 빠짐없이 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "각 자료가 {한 번씩} 들어가도록 계급 사이에 빈틈이나 {겹침}이 없게 정한다.",
+        "studentC": "각 자료가 □ 들어가도록 계급 사이에 빈틈이나 □이 없게 정한다.",
+        "answers": [
+          "한 번씩",
+          "겹침"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포표의 계급을 정할 때, 계급 사이에 빈틈이 있는 경우와 겹치는 부분이 있는 경우 각각 어떤 문제가 생기는지 쓰시오.",
+        "bAnswer": "빈틈이 있으면 어느 계급에도 속하지 못하는 자료가 생길 수 있고, 겹치면 한 자료가 두 계급에 속해 두 번 세어질 수 있다.",
+        "bGoal": "계급에 빈틈과 겹침이 없어야 하는 이유 말하기",
+        "bReason": "방법만 되풀이하지 않도록 빈틈과 겹침 각각의 문제를 묻는 이유 질문으로 바꿨다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빈틈이 있으면 어느 계급에도 속하지 않는 자료가 생긴다",
+              "빠지는 자료가 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겹치면 한 자료가 두 계급에 속한다",
+              "두 번 세어지는 자료가 생긴다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "도수분포표의 계급은 모든 자료가 꼭 {한} 계급에만 속하도록, 계급 사이에 빈틈이나 {겹치는} 부분이 없게 정한다.",
+        "cAnswers": [
+          "한",
+          "겹치는"
+        ],
+        "cReason": "무엇을 정하는지 주어가 없어 계급을 정하는 상황임을 문장에 넣었다.",
+        "learningRole": "reason",
+        "roleReason": "계급이 빈틈·겹침 없이 이어져야 하는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2033,
+        "part": "m1plus",
+        "sourceFingerprint": "e550b8ec306307f1e65a4a5c79ad0dd0c762057cec52a70593b678bf7f55939c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2033
+        },
+        "directReview": null,
+        "cMarkedSentence": "도수분포표의 계급은 모든 자료가 꼭 {한} 계급에만 속하도록, 계급 사이에 빈틈이나 {겹치는} 부분이 없게 정한다.",
+        "cSlotAnswers": [
+          "한",
+          "겹치는"
+        ],
+        "cStudentSentence": "도수분포표의 계급은 모든 자료가 꼭 □ 계급에만 속하도록, 계급 사이에 빈틈이나 □ 부분이 없게 정한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한",
+            "equivalentAnswers": [
+              "한",
+              "하나의"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "겹치는",
+            "equivalentAnswers": [
+              "겹치는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한",
+            "accept": [
+              "하나의"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한",
+            "하나의"
+          ],
+          [
+            "겹치는"
+          ]
+        ],
+        "proposalFingerprint": "1d01a449612168cd29bd8e22eb3f75d344e023eb7bd0bb851f848e85267d80a2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc9",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "이웃한 계급 묶기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "이웃한 두 계급을 합칠 때 새 도수는 원래 두 도수의 {합}이다.",
+        "studentC": "이웃한 두 계급을 합칠 때 새 도수는 원래 두 도수의 □이다.",
+        "answers": [
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포표에서 이웃한 두 계급 '$10$ 이상 $20$ 미만'(도수 $3$)과 '$20$ 이상 $30$ 미만'(도수 $5$)을 한 계급으로 합치려 한다. 새 계급의 범위와 도수를 구하고, 합친 계급의 도수를 구하는 방법을 한 문장으로 쓰시오.",
+        "bAnswer": "새 계급은 $10$ 이상 $30$ 미만이고 도수는 $3+5=8$이다. 합친 계급의 도수는 원래 두 계급의 도수의 합이다.",
+        "bGoal": "이웃한 계급을 합칠 때의 범위와 도수 구하기",
+        "bReason": "'묶기'만으로는 무엇을 구할지 몰라 두 계급과 도수를 직접 제시했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10$ 이상 $30$ 미만"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 계급의 도수를 더한다",
+              "원래 두 도수의 합이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "합칠 때 도수가 합이 된다는 관계를 한 낱말로 묻는 분명한 문장이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "두 계급을 합친 새 도수 구하기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2034,
+        "part": "m1plus",
+        "sourceFingerprint": "7ab4b89f7246aac58153de8e452f92ba502e99912db5b208b03b7e877a7e8059",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2034
+        },
+        "directReview": null,
+        "cFrozenSentence": "이웃한 두 계급을 합칠 때 새 도수는 원래 두 도수의 □이다.",
+        "cFrozenDefinition": "이웃한 두 계급을 합칠 때 새 도수는 원래 두 도수의 {합}이다.",
+        "cFrozenAnswers": [
+          "합"
+        ],
+        "cMarkedSentence": "이웃한 두 계급을 합칠 때 새 도수는 원래 두 도수의 {합}이다.",
+        "cSlotAnswers": [
+          "합"
+        ],
+        "cStudentSentence": "이웃한 두 계급을 합칠 때 새 도수는 원래 두 도수의 □이다.",
+        "cAnswers": [
+          "합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "f3eb93d77c662190aa9380c70f603dc3a1be262d5428fb72fe5ff5a7db13a3da"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc10",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "같은 폭으로 계급 잇기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "앞 계급의 끝을 다음 계급의 {시작}으로 삼고 같은 {크기}만큼 구간을 이어 간다.",
+        "studentC": "앞 계급의 끝을 다음 계급의 □으로 삼고 같은 □만큼 구간을 이어 간다.",
+        "answers": [
+          "시작",
+          "크기"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "첫 계급이 $40$ 이상 $50$ 미만일 때, 같은 크기로 이어지는 다음 두 계급을 차례로 쓰고 앞 계급과 다음 계급이 어떻게 이어지는지 설명하시오.",
+        "bAnswer": "$50$ 이상 $60$ 미만, $60$ 이상 $70$ 미만이다. 앞 계급의 끝 값이 다음 계급의 시작 값이 되고, 계급의 크기 $10$을 그대로 유지한다.",
+        "bGoal": "같은 크기로 계급을 이어서 만들기",
+        "bReason": "잇는 방법이 추상적이어서 첫 계급을 주고 다음 계급을 직접 만들게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$50$ 이상 $60$ 미만, $60$ 이상 $70$ 미만"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞 계급의 끝 값이 다음 계급의 시작 값이다",
+              "끝난 값에서 다음 계급이 시작한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "계급을 차례로 만들 때에는 앞 계급의 끝 값을 다음 계급의 {시작} 값으로 하고, 계급의 {크기}를 모두 같게 한다.",
+        "cAnswers": [
+          "시작",
+          "크기"
+        ],
+        "cReason": "'같은 □만큼'은 들어갈 말이 여럿이라 계급의 크기를 묻도록 문장을 다듬었다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "계급을 같은 크기로 이어 만드는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2035,
+        "part": "m1plus",
+        "sourceFingerprint": "b8739785af15ddaf679503b647d8a80b4828aff042f51e1493cd0553744cd872",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2035
+        },
+        "directReview": null,
+        "cMarkedSentence": "계급을 차례로 만들 때에는 앞 계급의 끝 값을 다음 계급의 {시작} 값으로 하고, 계급의 {크기}를 모두 같게 한다.",
+        "cSlotAnswers": [
+          "시작",
+          "크기"
+        ],
+        "cStudentSentence": "계급을 차례로 만들 때에는 앞 계급의 끝 값을 다음 계급의 □ 값으로 하고, 계급의 □를 모두 같게 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "시작",
+            "equivalentAnswers": [
+              "시작"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크기",
+            "equivalentAnswers": [
+              "크기",
+              "폭",
+              "너비"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "크기",
+            "accept": [
+              "폭",
+              "너비"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "시작"
+          ],
+          [
+            "크기",
+            "폭",
+            "너비"
+          ]
+        ],
+        "proposalFingerprint": "32a1f1da9f58adc644e31c0ade0aac149eaf9ece8b3e529358ff3025ff5ff924"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc11",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "여러 계급에 속한 자료 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "조건에 해당하는 계급이 여럿이면 그 계급들의 도수를 {더해서} 자료 수를 구한다.",
+        "studentC": "조건에 해당하는 계급이 여럿이면 그 계급들의 도수를 □ 자료 수를 구한다.",
+        "answers": [
+          "더해서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포표에서 $60$ 이상 $70$ 미만인 계급의 도수가 $7$, $70$ 이상 $80$ 미만인 계급의 도수가 $9$이다. $60$ 이상 $80$ 미만인 자료의 수를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "해당하는 두 계급의 도수를 더한다. $7+9=16$.",
+        "bGoal": "여러 계급에 걸친 자료의 수를 도수의 합으로 구하기",
+        "bReason": "'조건'이 무엇인지 알 수 없어 두 계급에 걸친 범위를 직접 제시했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 계급의 도수를 더한다",
+              "$7+9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$16$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "여러 계급의 도수를 더한다는 방법을 한 낱말로 묻는 명확한 문장이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "여러 계급의 도수를 더해 자료 수 구하기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2036,
+        "part": "m1plus",
+        "sourceFingerprint": "8971da14770f1cd435fcc952bc512ca0fb766e50e595a1935334b9bd8df8fb37",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2036
+        },
+        "directReview": null,
+        "cFrozenSentence": "조건에 해당하는 계급이 여럿이면 그 계급들의 도수를 □ 자료 수를 구한다.",
+        "cFrozenDefinition": "조건에 해당하는 계급이 여럿이면 그 계급들의 도수를 {더해서} 자료 수를 구한다.",
+        "cFrozenAnswers": [
+          "더해서"
+        ],
+        "cMarkedSentence": "조건에 해당하는 계급이 여럿이면 그 계급들의 도수를 {더해서} 자료 수를 구한다.",
+        "cSlotAnswers": [
+          "더해서"
+        ],
+        "cStudentSentence": "조건에 해당하는 계급이 여럿이면 그 계급들의 도수를 □ 자료 수를 구한다.",
+        "cAnswers": [
+          "더해서"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "더해서",
+            "equivalentAnswers": [
+              "더해서",
+              "더하여",
+              "합하여",
+              "모두 더해서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더해서",
+            "accept": [
+              "더하여",
+              "합하여",
+              "모두 더해서"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "더해서",
+            "더하여",
+            "합하여",
+            "모두 더해서"
+          ]
+        ],
+        "proposalFingerprint": "f17b42d0e521639d9c8dd6d98b5af17569f2e7ca1a46493d2a1397aab898ebc3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc12",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "도수가 가장 큰 구간",
+        "kind": "방법",
+        "level": "중",
+        "definition": "도수 칸의 수를 비교하여 가장 큰 수가 적힌 {계급}을 찾으면 자료가 가장 많이 모인 구간을 안다.",
+        "studentC": "도수 칸의 수를 비교하여 가장 큰 수가 적힌 □을 찾으면 자료가 가장 많이 모인 구간을 안다.",
+        "answers": [
+          "계급"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포표에서 자료가 가장 많이 속한 구간을 찾으려면 표의 어느 칸을 보고 어떤 계급을 골라야 하는지 쓰시오.",
+        "bAnswer": "도수 칸을 보고 도수가 가장 큰 계급을 고른다.",
+        "bGoal": "도수를 비교해 자료가 가장 많은 계급 찾기",
+        "bReason": "제목이 결과만 말하므로 표의 어느 칸을 어떻게 비교하는지 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "도수가 가장 큰 계급을 고른다",
+              "도수 칸에서 가장 큰 수가 적힌 계급을 고른다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "가장 큰 도수가 적힌 것이 계급임을 묻는 짧고 분명한 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "도수가 가장 큰 계급을 찾는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2037,
+        "part": "m1plus",
+        "sourceFingerprint": "e644a1f51d11b04b9241d85250f1d78615b50b980cdb2a4dd37bfbae9009b3f6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2037
+        },
+        "directReview": null,
+        "cFrozenSentence": "도수 칸의 수를 비교하여 가장 큰 수가 적힌 □을 찾으면 자료가 가장 많이 모인 구간을 안다.",
+        "cFrozenDefinition": "도수 칸의 수를 비교하여 가장 큰 수가 적힌 {계급}을 찾으면 자료가 가장 많이 모인 구간을 안다.",
+        "cFrozenAnswers": [
+          "계급"
+        ],
+        "cMarkedSentence": "도수 칸의 수를 비교하여 가장 큰 수가 적힌 {계급}을 찾으면 자료가 가장 많이 모인 구간을 안다.",
+        "cSlotAnswers": [
+          "계급"
+        ],
+        "cStudentSentence": "도수 칸의 수를 비교하여 가장 큰 수가 적힌 □을 찾으면 자료가 가장 많이 모인 구간을 안다.",
+        "cAnswers": [
+          "계급"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "계급",
+            "equivalentAnswers": [
+              "계급",
+              "구간"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "계급",
+            "accept": [
+              "구간"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "계급",
+            "구간"
+          ]
+        ],
+        "proposalFingerprint": "d64d632b80115a550828df78721310ebcdea1ec7ed1bbd3c697600c82ba0ecd6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc13",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "작은 값부터 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "어느 계급까지 자료가 몇 개인지 알아보려면 첫 계급부터 해당 계급까지 도수를 {차례로 더한다}.",
+        "studentC": "어느 계급까지 자료가 몇 개인지 알아보려면 첫 계급부터 해당 계급까지 도수를 □.",
+        "answers": [
+          "차례로 더한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "도수를 차례로 더하는 내용이 m1-08-03-xc11, m1-08-03-xc18과 같은 목표이다.",
+        "cDecision": "keep",
+        "cReason": "첫 계급부터 도수를 더해 간다는 방법이 문장만으로 분명하다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-03-xc11(여러 계급의 도수 더하기), m1-08-03-xc18(도수를 더해 순위 찾기)과 목표가 겹친다.",
+        "learningRole": "procedure",
+        "roleReason": "첫 계급부터 도수를 더해 세는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2038,
+        "part": "m1plus",
+        "sourceFingerprint": "1f7ef622621eb0b987fc915bf7a1e17fb473c4366507f0b4196b4105365aa744",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2038
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "어느 계급까지 자료가 몇 개인지 알아보려면 첫 계급부터 해당 계급까지 도수를 □.",
+        "cFrozenDefinition": "어느 계급까지 자료가 몇 개인지 알아보려면 첫 계급부터 해당 계급까지 도수를 {차례로 더한다}.",
+        "cFrozenAnswers": [
+          "차례로 더한다"
+        ],
+        "cMarkedSentence": "어느 계급까지 자료가 몇 개인지 알아보려면 첫 계급부터 해당 계급까지 도수를 {차례로 더한다}.",
+        "cSlotAnswers": [
+          "차례로 더한다"
+        ],
+        "cStudentSentence": "어느 계급까지 자료가 몇 개인지 알아보려면 첫 계급부터 해당 계급까지 도수를 □.",
+        "cAnswers": [
+          "차례로 더한다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "차례로 더한다",
+            "equivalentAnswers": [
+              "차례로 더한다",
+              "모두 더한다",
+              "더한다",
+              "차례대로 더한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "차례로 더한다",
+            "accept": [
+              "모두 더한다",
+              "더한다",
+              "차례대로 더한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "차례로 더한다",
+            "모두 더한다",
+            "더한다",
+            "차례대로 더한다"
+          ]
+        ],
+        "proposalFingerprint": "a4129ac71ce710586bd61b2a641b35c6c999b48fdc196e59e3fc1c504192f0e4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc14",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "전체에서 조건 밖을 빼기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "기준 이상인 자료 수는 전체 개수에서 기준 {미만}인 자료 수를 {빼서} 구할 수도 있다.",
+        "studentC": "기준 이상인 자료 수는 전체 개수에서 기준 □인 자료 수를 □ 구할 수도 있다.",
+        "answers": [
+          "미만",
+          "빼서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "전체 자료가 $30$개인 도수분포표에서 $70$점 미만인 자료가 $12$개이다. $70$이 계급의 경계값일 때, $70$점 이상인 자료의 수를 뺄셈으로 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "전체 자료의 수에서 $70$점 미만인 자료의 수를 뺀다. $30-12=18$.",
+        "bGoal": "전체에서 미만인 수를 빼어 이상인 수 구하기",
+        "bReason": "'조건 밖'이 무엇인지 모호해 기준 점수와 전체 개수를 준 예로 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "전체에서 $70$점 미만인 자료의 수를 뺀다",
+              "$30-12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "어떤 값 이상인 자료의 수는 전체 자료의 수에서 그 값 {미만}인 자료의 수를 {빼서} 구할 수도 있다.",
+        "cAnswers": [
+          "미만",
+          "빼서"
+        ],
+        "cReason": "'기준'이 가리키는 것이 없어 '어떤 값'으로 대상을 밝혔다.",
+        "studentLabel": "전체에서 빼서 구하기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "전체에서 나머지를 빼어 구하는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2039,
+        "part": "m1plus",
+        "sourceFingerprint": "6e4f3db9e372541cf90092e8583ececbd41abc44fb97101862114a59e300ecee",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2039
+        },
+        "directReview": null,
+        "cMarkedSentence": "어떤 값 이상인 자료의 수는 전체 자료의 수에서 그 값 {미만}인 자료의 수를 {빼서} 구할 수도 있다.",
+        "cSlotAnswers": [
+          "미만",
+          "빼서"
+        ],
+        "cStudentSentence": "어떤 값 이상인 자료의 수는 전체 자료의 수에서 그 값 □인 자료의 수를 □ 구할 수도 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "미만",
+            "equivalentAnswers": [
+              "미만"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빼서",
+            "equivalentAnswers": [
+              "빼서",
+              "빼어",
+              "빼"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "빼서",
+            "accept": [
+              "빼어",
+              "빼"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "미만"
+          ],
+          [
+            "빼서",
+            "빼어",
+            "빼"
+          ]
+        ],
+        "proposalFingerprint": "7e248db27342492065995c85ca5c24238cb47832dfc31920c5aaf61605c0bc13"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc15",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "같은 계급의 서로 다른 값",
+        "kind": "성질",
+        "level": "중",
+        "definition": "서로 다른 변량이라도 한 계급의 범위에 속하면 {같은 도수} 칸에 함께 세어진다.",
+        "studentC": "서로 다른 변량이라도 한 계급의 범위에 속하면 □ 칸에 함께 세어진다.",
+        "answers": [
+          "같은 도수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "계급 '$150$ 이상 $160$ 미만'이 있는 도수분포표를 만들 때, 값이 서로 다른 두 변량 $152$와 $158$은 도수에 어떻게 세어지는지 쓰시오.",
+        "bAnswer": "둘 다 $150$ 이상 $160$ 미만인 계급에 속하므로 그 계급의 도수에 함께 세어진다.",
+        "bGoal": "값이 달라도 같은 계급이면 같은 도수에 세어짐을 알기",
+        "bReason": "일반 문장만으로는 상황이 안 보여 한 계급에 드는 두 변량을 예로 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 변량 모두 같은 계급의 도수에 세어진다",
+              "$150$ 이상 $160$ 미만인 계급의 도수에 함께 포함된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "값이 서로 다른 변량이라도 같은 {계급}에 속하면 그 계급의 {도수}에 함께 세어진다.",
+        "cAnswers": [
+          "계급",
+          "도수"
+        ],
+        "cReason": "'같은 도수 칸'은 통째로 맞히기 어려워 계급과 도수를 따로 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "다른 값이 한 계급의 도수로 묶이는 경우",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2040,
+        "part": "m1plus",
+        "sourceFingerprint": "439281d7f58be6ae86d97f95e8d67c46ab1e87887a2954d11fc9b950511fe349",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2040
+        },
+        "directReview": null,
+        "cMarkedSentence": "값이 서로 다른 변량이라도 같은 {계급}에 속하면 그 계급의 {도수}에 함께 세어진다.",
+        "cSlotAnswers": [
+          "계급",
+          "도수"
+        ],
+        "cStudentSentence": "값이 서로 다른 변량이라도 같은 □에 속하면 그 계급의 □에 함께 세어진다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "계급",
+            "equivalentAnswers": [
+              "계급"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "계급"
+          ],
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "fac1a04e0201ecd4f2224cc589f1b2530887fe9956ca8693dc41e016e6ecd8c3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc16",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "계급을 더 잘게 나눌 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 계급을 둘로 나누어도 전체 자료 수는 {같지만}, 원래 도수가 $0$이 아니면 나눈 계급별 도수는 {원자료}를 봐야 정할 수 있다.",
+        "studentC": "한 계급을 둘로 나누어도 전체 자료 수는 □, 원래 도수가 $0$이 아니면 나눈 계급별 도수는 □를 봐야 정할 수 있다.",
+        "answers": [
+          "같지만",
+          "원자료"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "도수가 $6$인 계급 '$10$ 이상 $20$ 미만'을 '$10$ 이상 $15$ 미만'과 '$15$ 이상 $20$ 미만'으로 나누려 한다. 나눈 두 계급의 도수를 도수분포표만 보고 정할 수 있는지 이유와 함께 쓰시오.",
+        "bAnswer": "정할 수 없다. 표로는 $6$개가 $10$ 이상 $20$ 미만이라는 것만 알 뿐 각 자료의 정확한 값을 모르므로, 원래 자료를 봐야 한다. 두 도수의 합이 $6$이라는 것만 알 수 있다.",
+        "bGoal": "계급을 나눌 때 원래 자료가 필요한 이유 말하기",
+        "bReason": "'잘게 나눌 때' 무엇이 문제인지 드러나도록 나누는 계급과 도수를 제시했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "표만으로는 정할 수 없다",
+              "알 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 자료의 정확한 값을 알 수 없다",
+              "원래 자료를 봐야 한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "한 계급을 둘로 나누어도 전체 자료의 수는 {같지만}, 원래 도수가 $0$이 아니면 나눈 두 계급 각각의 도수는 각 자료의 {실제 값}을 봐야 정할 수 있다.",
+        "cAnswers": [
+          "같지만",
+          "실제 값"
+        ],
+        "cReason": "'원자료'는 학생에게 낯선 말이어서 각 자료의 실제 값으로 풀어 썼다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "표만으로 나눈 계급의 도수를 모르는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2041,
+        "part": "m1plus",
+        "sourceFingerprint": "27ea56eb3a15dc6370ffe22911185f3a360958a40194c92a5ebb5a38671c9800",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2041
+        },
+        "directReview": null,
+        "cMarkedSentence": "한 계급을 둘로 나누어도 전체 자료의 수는 {같지만}, 원래 도수가 $0$이 아니면 나눈 두 계급 각각의 도수는 각 자료의 {실제 값}을 봐야 정할 수 있다.",
+        "cSlotAnswers": [
+          "같지만",
+          "실제 값"
+        ],
+        "cStudentSentence": "한 계급을 둘로 나누어도 전체 자료의 수는 □, 원래 도수가 $0$이 아니면 나눈 두 계급 각각의 도수는 각 자료의 □을 봐야 정할 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같지만",
+            "equivalentAnswers": [
+              "같지만",
+              "변하지 않지만",
+              "그대로이지만"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "실제 값",
+            "equivalentAnswers": [
+              "실제 값",
+              "정확한 값",
+              "원래 값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "같지만",
+            "accept": [
+              "변하지 않지만",
+              "그대로이지만"
+            ]
+          },
+          {
+            "answer": "실제 값",
+            "accept": [
+              "정확한 값",
+              "원래 값"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같지만",
+            "변하지 않지만",
+            "그대로이지만"
+          ],
+          [
+            "실제 값",
+            "정확한 값",
+            "원래 값"
+          ]
+        ],
+        "proposalFingerprint": "3a9a691252a1f88e0fee8c8d35553c1f74541c1bc413a0f0a5be02399516d654"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc17",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "계급 안의 기준으로 나누기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "판단 기준이 계급의 {안쪽}에 있으면, 그 기준 이상인 자료 수를 {표만으로}는 확정하지 못할 수 있다.",
+        "studentC": "판단 기준이 계급의 □에 있으면, 그 기준 이상인 자료 수를 □는 확정하지 못할 수 있다.",
+        "answers": [
+          "안쪽",
+          "표만으로"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "계급이 $60$ 이상 $70$ 미만, $70$ 이상 $80$ 미만, $80$ 이상 $90$ 미만이고 도수가 차례로 $4$, $5$, $3$인 도수분포표가 있다. $75$ 이상인 자료의 수를 이 표만으로 정확히 구할 수 있는지 이유와 함께 쓰시오.",
+        "bAnswer": "구할 수 없다. $75$가 계급 $70$ 이상 $80$ 미만의 안쪽에 있어, 그 계급의 $5$개 중 몇 개가 $75$ 이상인지 표로는 알 수 없기 때문이다. $3$개 이상 $8$개 이하라는 것만 알 수 있다.",
+        "bGoal": "기준값이 계급 안쪽에 있을 때 표의 한계 설명하기",
+        "bReason": "'판단 기준'이 가리키는 값이 없어 계급 안쪽의 값 $75$를 예로 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정확히 구할 수 없다",
+              "알 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$75$가 계급의 경계가 아니라 안쪽에 있다",
+              "$70$ 이상 $80$ 미만인 $5$개 중 $75$ 이상이 몇 개인지 모른다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "어떤 값이 계급의 경계가 아니라 계급의 {안쪽}에 있으면, 그 값 이상인 자료의 수는 도수분포표만으로 {정하지 못할} 수 있다.",
+        "cAnswers": [
+          "안쪽",
+          "정하지 못할"
+        ],
+        "cReason": "'판단 기준', '표만으로' 같은 임의의 말을 가려 '어떤 값'으로 대상을 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "경계가 아닌 값으로는 자료 수를 못 정하는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2042,
+        "part": "m1plus",
+        "sourceFingerprint": "6f62db4babaa82427ce1077a1b52c45f0a2b5fc73bd692b22d253badcb2731a5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2042
+        },
+        "directReview": null,
+        "cMarkedSentence": "어떤 값이 계급의 경계가 아니라 계급의 {안쪽}에 있으면, 그 값 이상인 자료의 수는 도수분포표만으로 {정하지 못할} 수 있다.",
+        "cSlotAnswers": [
+          "안쪽",
+          "정하지 못할"
+        ],
+        "cStudentSentence": "어떤 값이 계급의 경계가 아니라 계급의 □에 있으면, 그 값 이상인 자료의 수는 도수분포표만으로 □ 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "안쪽",
+            "equivalentAnswers": [
+              "안쪽",
+              "안",
+              "내부",
+              "사이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정하지 못할",
+            "equivalentAnswers": [
+              "정하지 못할",
+              "확정하지 못할",
+              "알지 못할",
+              "구하지 못할"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "안쪽",
+            "accept": [
+              "안",
+              "내부",
+              "사이"
+            ]
+          },
+          {
+            "answer": "정하지 못할",
+            "accept": [
+              "확정하지 못할",
+              "알지 못할",
+              "구하지 못할"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "안쪽",
+            "안",
+            "내부",
+            "사이"
+          ],
+          [
+            "정하지 못할",
+            "확정하지 못할",
+            "알지 못할",
+            "구하지 못할"
+          ]
+        ],
+        "proposalFingerprint": "e514edf0c18f3017a7dfe1743d9babe011632d13629fcddc3a879d3392783f9a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc18",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "순위가 들어 있는 계급",
+        "kind": "방법",
+        "level": "상",
+        "definition": "{도수}를 작은 구간부터 {더하다가} 목표 순위에 처음 도달하는 계급을 찾는다.",
+        "studentC": "□를 작은 구간부터 □ 목표 순위에 처음 도달하는 계급을 찾는다.",
+        "answers": [
+          "도수",
+          "더하다가"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포표의 도수가 값이 작은 계급부터 차례로 $3$, $5$, $8$, $4$이다. 값이 작은 쪽에서 $10$번째인 자료가 몇 번째 계급에 속하는지 구하고, 찾는 방법을 설명하시오.",
+        "bAnswer": "작은 계급부터 도수를 차례로 더하면 $3$, $8$, $16$이다. 처음으로 $10$ 이상이 되는 세 번째 계급에 속한다.",
+        "bGoal": "도수를 차례로 더해 특정 순위의 자료가 속한 계급 찾기",
+        "bReason": "'목표 순위'가 무엇인지 알 수 없어 도수와 순위를 준 예로 구체화했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 번째 계급",
+              "도수가 $8$인 계급"
+            ]
+          },
+          {
+            "anyOf": [
+              "작은 계급부터 도수를 차례로 더한다",
+              "$3+5=8$, $8+8=16$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "작은 값부터 세어 몇 번째인 자료가 속한 계급을 찾으려면, 작은 계급부터 {도수}를 차례로 더해 그 합이 찾는 순위 {이상}이 되는 첫 계급을 고른다.",
+        "cAnswers": [
+          "도수",
+          "이상"
+        ],
+        "cReason": "문장이 빈칸으로 시작하고 '목표 순위'의 뜻이 없어 찾는 대상을 앞에 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "도수를 더해 순위가 속한 계급 찾기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2043,
+        "part": "m1plus",
+        "sourceFingerprint": "925bf8b67b9e398bcfa695ab2efae31c9ac65c9dd6b2c06ebd11554a7380d904",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2043
+        },
+        "directReview": null,
+        "cMarkedSentence": "작은 값부터 세어 몇 번째인 자료가 속한 계급을 찾으려면, 작은 계급부터 {도수}를 차례로 더해 그 합이 찾는 순위 {이상}이 되는 첫 계급을 고른다.",
+        "cSlotAnswers": [
+          "도수",
+          "이상"
+        ],
+        "cStudentSentence": "작은 값부터 세어 몇 번째인 자료가 속한 계급을 찾으려면, 작은 계급부터 □를 차례로 더해 그 합이 찾는 순위 □이 되는 첫 계급을 고른다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이상",
+            "equivalentAnswers": [
+              "이상"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ],
+          [
+            "이상"
+          ]
+        ],
+        "proposalFingerprint": "fea3b61fea2af2cf76cff412d8a99b4ea9a41cd195a4a3e1079c51e2b037ab66"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc19",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "자료 하나를 옮겨 고치기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "자료 하나를 잘못 분류했다면 잘못 센 계급의 도수를 {$1$} 줄이고 올바른 계급의 도수를 {$1$} 늘린다.",
+        "studentC": "자료 하나를 잘못 분류했다면 잘못 센 계급의 도수를 □ 줄이고 올바른 계급의 도수를 □ 늘린다.",
+        "answers": [
+          "$1$",
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포표를 만들다가 자료 하나를 원래 속해야 할 계급이 아닌 다른 계급에 세었다. 표를 바르게 고치려면 두 계급의 도수를 각각 어떻게 바꿔야 하는지 쓰시오.",
+        "bAnswer": "잘못 센 계급의 도수를 $1$ 줄이고, 원래 속해야 할 계급의 도수를 $1$ 늘린다.",
+        "bGoal": "잘못 분류한 자료 하나에 맞게 두 도수 고치기",
+        "bReason": "'옮겨 고치기'가 무엇을 옮기는지 모호해 잘못 센 상황을 질문에 서술했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "잘못 센 계급의 도수를 $1$ 줄인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "올바른 계급의 도수를 $1$ 늘린다",
+              "원래 속해야 할 계급의 도수를 $1$ 늘린다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "자료 하나를 잘못된 계급에 세었다면, 잘못 센 계급의 도수를 $1$ {줄이고} 올바른 계급의 도수를 $1$ {늘린다}.",
+        "cAnswers": [
+          "줄이고",
+          "늘린다"
+        ],
+        "cReason": "두 빈칸의 답이 같은 수여서 의미가 없으므로 줄이고 늘리는 방향을 묻게 했다.",
+        "learningRole": "procedure",
+        "roleReason": "잘못 센 자료에 맞게 도수를 고치는 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2044,
+        "part": "m1plus",
+        "sourceFingerprint": "fdc448b3c0ac6f04ad4b3b31f554ca9b39c87b6220cc880167fc658f85993f20",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2044
+        },
+        "directReview": null,
+        "cMarkedSentence": "자료 하나를 잘못된 계급에 세었다면, 잘못 센 계급의 도수를 $1$ {줄이고} 올바른 계급의 도수를 $1$ {늘린다}.",
+        "cSlotAnswers": [
+          "줄이고",
+          "늘린다"
+        ],
+        "cStudentSentence": "자료 하나를 잘못된 계급에 세었다면, 잘못 센 계급의 도수를 $1$ □ 올바른 계급의 도수를 $1$ □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "줄이고",
+            "equivalentAnswers": [
+              "줄이고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "늘린다",
+            "equivalentAnswers": [
+              "늘린다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "줄이고"
+          ],
+          [
+            "늘린다"
+          ]
+        ],
+        "proposalFingerprint": "72405bd799eac5c169373c902e4451827d38d9acead7d45681496a132b1f4cc4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc20",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "최솟값을 찾을 수 있는 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "도수가 양수인 첫 계급을 알면 최솟값이 속한 {범위}는 알지만, 그 값 자체는 표만으로 {확정하지 못할} 수 있다.",
+        "studentC": "도수가 양수인 첫 계급을 알면 최솟값이 속한 □는 알지만, 그 값 자체는 표만으로 □ 수 있다.",
+        "answers": [
+          "범위",
+          "확정하지 못할"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 도수분포표에서 첫 계급 '$30$ 이상 $40$ 미만'의 도수가 $0$이고, 다음 계급 '$40$ 이상 $50$ 미만'의 도수가 $2$이다. 이 자료에서 가장 작은 변량에 대해 표만으로 알 수 있는 것과 알 수 없는 것을 쓰시오.",
+        "bAnswer": "가장 작은 변량이 $40$ 이상 $50$ 미만이라는 것은 알 수 있지만, 그 정확한 값은 알 수 없다.",
+        "bGoal": "표에서 가장 작은 변량의 범위만 알 수 있음을 설명하기",
+        "bReason": "'도수가 양수인 첫 계급'이 추상적이어서 두 계급과 도수를 직접 제시했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 변량은 $40$ 이상 $50$ 미만이다",
+              "$40$ 이상 $50$ 미만인 계급에 속한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정확한 값은 알 수 없다",
+              "실제 값은 표만으로 정할 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "도수분포표에서 도수가 $0$이 아닌 가장 앞 계급을 보면 가장 작은 변량이 속한 {계급}은 알 수 있지만, 그 변량의 정확한 값은 표만으로 {알지 못할} 수 있다.",
+        "cAnswers": [
+          "계급",
+          "알지 못할"
+        ],
+        "cReason": "'확정하지 못할'은 통째로 맞히기 어려워 쉬운 말로 바꾸고 범위를 계급으로 밝혔다.",
+        "studentLabel": "가장 작은 변량이 속한 계급",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "표로는 최솟값의 범위만 알 수 있는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2045,
+        "part": "m1plus",
+        "sourceFingerprint": "c9fbbae15c155a7bf74cf8b6933e8847939f9334ccb5b031dc1891e7aa1ae6a2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2045
+        },
+        "directReview": null,
+        "cMarkedSentence": "도수분포표에서 도수가 $0$이 아닌 가장 앞 계급을 보면 가장 작은 변량이 속한 {계급}은 알 수 있지만, 그 변량의 정확한 값은 표만으로 {알지 못할} 수 있다.",
+        "cSlotAnswers": [
+          "계급",
+          "알지 못할"
+        ],
+        "cStudentSentence": "도수분포표에서 도수가 $0$이 아닌 가장 앞 계급을 보면 가장 작은 변량이 속한 □은 알 수 있지만, 그 변량의 정확한 값은 표만으로 □ 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "계급",
+            "equivalentAnswers": [
+              "계급",
+              "범위",
+              "구간"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "알지 못할",
+            "equivalentAnswers": [
+              "알지 못할",
+              "확정하지 못할",
+              "정하지 못할"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "계급",
+            "accept": [
+              "범위",
+              "구간"
+            ]
+          },
+          {
+            "answer": "알지 못할",
+            "accept": [
+              "확정하지 못할",
+              "정하지 못할"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "계급",
+            "범위",
+            "구간"
+          ],
+          [
+            "알지 못할",
+            "확정하지 못할",
+            "정하지 못할"
+          ]
+        ],
+        "proposalFingerprint": "bc1bc1f68a68cd632b46d398c05eb91b88fd8136a8493978184a50de3c08629c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc21",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "두 표를 합칠 조건",
+        "kind": "방법",
+        "level": "상",
+        "definition": "서로 {겹치지 않는} 두 집단에서 같은 항목과 단위로 조사한 표는 계급의 {경계}가 같으면 같은 구간의 도수를 더해 합친다.",
+        "studentC": "서로 □ 두 집단에서 같은 항목과 단위로 조사한 표는 계급의 □가 같으면 같은 구간의 도수를 더해 합친다.",
+        "answers": [
+          "겹치지 않는",
+          "경계"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$반과 $2$반 학생의 키를 각각 조사하여 만든 두 도수분포표를 하나의 도수분포표로 합치려 한다. 두 표의 계급이 어떠해야 바로 합칠 수 있는지 쓰고, 합친 표의 도수는 어떻게 구하는지 쓰시오.",
+        "bAnswer": "두 표의 계급(구간의 경계)이 서로 같아야 한다. 이때 같은 계급의 도수끼리 더한다.",
+        "bGoal": "두 도수분포표를 합칠 조건과 방법 말하기",
+        "bReason": "조건이 여럿이라 겹치지 않는 두 집단을 예로 주고 계급의 조건을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 표의 계급이 같아야 한다",
+              "계급의 경계가 같아야 한다",
+              "구간이 같아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 계급의 도수끼리 더한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "서로 겹치지 않는 두 집단을 같은 항목과 단위로 조사한 두 도수분포표는 계급의 {경계}가 서로 같으면 같은 계급의 도수끼리 {더하여} 합친다.",
+        "cAnswers": [
+          "경계",
+          "더하여"
+        ],
+        "cReason": "'서로 □ 두 집단'은 맞히기 어려워 조건은 보여 주고 핵심인 경계와 더하기를 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "두 표를 합치는 조건과 방법",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2046,
+        "part": "m1plus",
+        "sourceFingerprint": "492d1f6972432e7c9ce41953f9379148b734cea67d2970654038f3d9f11b367a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2046
+        },
+        "directReview": null,
+        "cMarkedSentence": "서로 겹치지 않는 두 집단을 같은 항목과 단위로 조사한 두 도수분포표는 계급의 {경계}가 서로 같으면 같은 계급의 도수끼리 {더하여} 합친다.",
+        "cSlotAnswers": [
+          "경계",
+          "더하여"
+        ],
+        "cStudentSentence": "서로 겹치지 않는 두 집단을 같은 항목과 단위로 조사한 두 도수분포표는 계급의 □가 서로 같으면 같은 계급의 도수끼리 □ 합친다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "경계",
+            "equivalentAnswers": [
+              "경계",
+              "양 끝 값",
+              "범위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더하여",
+            "equivalentAnswers": [
+              "더하여",
+              "더해",
+              "합하여"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "경계",
+            "accept": [
+              "양 끝 값",
+              "범위"
+            ]
+          },
+          {
+            "answer": "더하여",
+            "accept": [
+              "더해",
+              "합하여"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "경계",
+            "양 끝 값",
+            "범위"
+          ],
+          [
+            "더하여",
+            "더해",
+            "합하여"
+          ]
+        ],
+        "proposalFingerprint": "3786c5a0e9f0a37cd1f1ddb0a1f510ce0e460eb794867a96b10b6e7df25ea270"
+      }
+    }
+  ]
+}

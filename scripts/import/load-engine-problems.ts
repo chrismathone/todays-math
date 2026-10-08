@@ -1,5 +1,7 @@
 /**
- * **엔진이 낸 문항을 공유 DB 에 적재한다** — 초등 4단(D-71/72) · 중등 873유형.
+ * **엔진이 낸 문항을 공유 DB 에 적재한다** — 초등 4단(D-71/72) · 중등 873유형 · 결합형 · 판정형.
+ *
+ * 계획의 target 은 `engine` 으로 갈린다 — `elem` · `middle` · `combo` · `judge`(`buildTargetRows` 한 곳).
  *
  *   npx tsx scripts/import/load-engine-problems.ts --plan <계획.json>              # 드라이런(기본)
  *   ALLOW_SHARED_IMPORT=1 npx tsx scripts/import/load-engine-problems.ts --plan <계획.json> --apply
@@ -65,6 +67,14 @@ import {
   generateMiddleComboProblem,
   middleComboDefinitions,
 } from "../../src/lib/middle/combo";
+import {
+  judgeExternalId,
+  judgeFamilyKey,
+} from "../../src/lib/middle/judge/contract";
+import {
+  defaultJudgeRegistry,
+  type JudgeRegistry,
+} from "../../src/lib/middle/judge/registry";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 // 판정 규칙은 관문 판정기가 유일한 자리다 — 옮겨 적지 않는다.
 import { deadBackslashHits } from "../qa/probe-middle-raw-latex";
@@ -129,10 +139,28 @@ type ComboTarget = {
   variants?: number;
 };
 
+/**
+ * 🔴 **판정형** — «다음 중 계산이 옳지 않은 것은?» (2026-10-08 엔진 보강 · `src/lib/middle/judge/`).
+ * RPM 등록부에도 결합형에도 없다 — 그래서 target 이 따로다. 결합형이 «시험에서만 생성되던» 자리를
+ * 다시 만들지 않으려고 등록부 · 미적재 검사 · 제자리 갱신을 처음부터 이 target 하나에 묶는다.
+ *
+ * ⚠️ `externalId` 는 `judgeExternalId` 로만 짓는다 — 미적재 검사가 `parseJudgeExternalId` 로 **정확히**
+ *    읽는다(같은 파일의 짝). 여기서 모양을 따로 적으면 넣고도 빚이 안 줄어든다.
+ */
+type JudgeTarget = {
+  engine: "judge";
+  /** 비우면 등록된 판정형 전부 */
+  keys?: string[];
+  /** 판정형마다 몇 벌 (기본 3) */
+  variants?: number;
+};
+
+export type Target = ElemTarget | MiddleTarget | ComboTarget | JudgeTarget;
+
 type Plan = {
   label: string;
   seedBase?: number;
-  targets: (ElemTarget | MiddleTarget | ComboTarget)[];
+  targets: Target[];
 };
 
 type Row = {
@@ -419,6 +447,114 @@ export function buildComboRows(t: ComboTarget, seedBase: number): Row[] {
   return rows;
 }
 
+/**
+ * 판정형을 행으로 — `src/lib/middle/judge/` 의 등록부를 **적재기가 부르는 자리**.
+ *
+ * 등록부가 이미 객관식(보기 ①~⑤ · 번호 정답)을 낸다. `expandFamily` 는 그런 발문을 파생하지 않고
+ * 그대로 객관식으로 내므로(«이미 객관식인 발문은 파생하지 않는다») 형식은 객관식 하나다.
+ * 중복 제거 · 변형 공간 검사는 초등 · 중등 · 결합형과 **같은 `expandFamily`** 를 탄다.
+ *
+ * `registry` 는 시험이 픽스처 등록부를 넣으려고 연 자리다 — 기본은 살아 있는 등록부.
+ */
+export function buildJudgeRows(
+  t: JudgeTarget,
+  seedBase: number,
+  registry: JudgeRegistry = defaultJudgeRegistry(),
+): Row[] {
+  const defs = registry.definitions();
+  const want = t.keys ? new Set(t.keys) : null;
+  const picked = want ? defs.filter((d) => want.has(d.key)) : defs;
+  if (picked.length === 0)
+    throw new Error(
+      `판정형을 못 찾았다: ${t.keys ? JSON.stringify(t.keys) : "(등록된 것 전부 — 0개)"}` +
+        ` — judgementDefinitions() 로 키를 확인하라`,
+    );
+  if (want && picked.length !== want.size)
+    throw new Error(
+      `판정형 ${want.size}개를 물었는데 ${picked.length}개만 찾았다 — 멈춘다`,
+    );
+  const variants = t.variants ?? 3;
+  const rows: Row[] = [];
+  for (const def of picked) {
+    const familyKey = judgeFamilyKey(def.key);
+    const got = expandFamily((v) => {
+      const p = registry.generate(def.key, seedBase, v);
+      return {
+        content: p.content,
+        answer: p.answer,
+        solution: p.solution,
+        familyKey,
+        // 중등 유형과 같은 어림이다 — 밑 두 칸은 계산, 위는 활용(`buildMiddleRows`).
+        problemType:
+          p.difficulty === "연산" || p.difficulty === "기본" ? "계산" : "활용",
+        difficulty: p.difficulty,
+        variant: v,
+      };
+    }, variants);
+    midSkippedMcq += got.skippedMcq;
+    for (const item of got.items) {
+      const it = item as typeof item & {
+        difficulty: Difficulty;
+        variant: number;
+      };
+      rows.push({
+        externalId: judgeExternalId({
+          judgeKey: def.key,
+          ruleVersion: def.ruleVersion,
+          seed: seedBase,
+          variant: it.variant,
+          questionType: it.questionType,
+        }),
+        variantKey: `mid-judge:${def.key}|r${def.ruleVersion}|s${seedBase}|v${it.variant}`,
+        familyKey,
+        unitKey: `${def.grade} / ${def.unitSection}`,
+        grade: def.grade,
+        section: def.unitSection,
+        content: it.content,
+        answer: it.answer,
+        solution: it.solution,
+        difficulty: it.difficulty,
+        problemType: it.problemType,
+        questionType: it.questionType,
+        figureSpec: null,
+        origin: `중등 판정형 ${def.key} r${def.ruleVersion}`,
+      });
+    }
+  }
+  return rows;
+}
+
+/**
+ * 🔴 **계획의 target 하나 → 행.** 적재기와 제자리 갱신(`scripts/qa/refresh-engine-content.ts`)이 **이 함수 하나**를 부른다.
+ *
+ * 종전에는 두 파일이 저마다 `elem ? … : combo ? … : buildMiddleRows` 를 적었다 — 모르는 target 이
+ * **중등 유형으로 흘러가** «중등 유형을 못 찾았다»로 죽거나, 그 모양이 우연히 맞으면 엉뚱한 행을 냈다.
+ * 판정형을 더하며 한 곳으로 모으고, 모르는 것은 던진다.
+ */
+export function buildTargetRows(
+  t: Target,
+  seedBase: number,
+  deps: { judges?: JudgeRegistry } = {},
+): Row[] {
+  switch (t.engine) {
+    case "elem":
+      return buildElemRows(t, seedBase);
+    case "middle":
+      return buildMiddleRows(t, seedBase);
+    case "combo":
+      return buildComboRows(t, seedBase);
+    case "judge":
+      return buildJudgeRows(t, seedBase, deps.judges);
+    default: {
+      const unknown: never = t;
+      throw new Error(
+        `모르는 적재 대상이다: ${JSON.stringify(unknown).slice(0, 120)}` +
+          ` — engine 은 elem · middle · combo · judge 넷뿐이다`,
+      );
+    }
+  }
+}
+
 /** 중등에서 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. */
 let midSkippedMcq = 0;
 
@@ -500,19 +636,16 @@ async function apply(planFile: string, doApply: boolean) {
 
   const rows: Row[] = [];
   for (const t of plan.targets) {
-    const made =
-      t.engine === "elem"
-        ? buildElemRows(t, seedBase)
-        : t.engine === "combo"
-          ? buildComboRows(t, seedBase)
-          : buildMiddleRows(t, seedBase);
+    const made = buildTargetRows(t, seedBase);
     console.log(
       `   · ${
         t.engine === "elem"
           ? `${t.grade} ${t.chapter}`
           : t.engine === "combo"
             ? `결합형 ${(t.ids ?? middleComboDefinitions().map((d) => d.id)).length}개`
-            : `${t.grade} ${t.unitSection}`
+            : t.engine === "judge"
+              ? `판정형 ${new Set(made.map((r) => r.familyKey)).size}개`
+              : `${t.grade} ${t.unitSection}`
       } → ${made.length}문항`,
     );
     rows.push(...made);
@@ -1026,7 +1159,11 @@ async function revert(ledgerFile: string) {
   const led = readLedger(ledgerFile);
   console.log(`원장 ${led.rows.length}행 · 회차 ${led.runs.length}`);
   // 자기가 넣은 것만 지운다 — externalId 가 우리 접두사인지 한 번 더 본다.
-  const mine = led.rows.filter((r) => /^engine-(elem|mid):/.test(r.externalId));
+  // ⚠️ 결합형(`engine-mid-combo:`)·판정형(`engine-mid-judge:`)도 이 적재기가 넣는다 — 종전 식
+  //    `^engine-(elem|mid):` 는 그 둘을 «우리 것이 아니다»로 읽어 되돌리기를 통째로 멈췄다.
+  const mine = led.rows.filter((r) =>
+    /^engine-(?:elem|mid|mid-combo|mid-judge):/.test(r.externalId),
+  );
   if (mine.length !== led.rows.length)
     throw new Error(
       `원장에 우리 것이 아닌 행이 ${led.rows.length - mine.length}건 있다 — 멈춘다`,

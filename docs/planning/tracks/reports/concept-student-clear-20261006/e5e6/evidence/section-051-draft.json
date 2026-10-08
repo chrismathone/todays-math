@@ -1,0 +1,767 @@
+{
+  "rows": [
+    {
+      "id": "e5-2-5-5-c1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "입체도형의 전개도란 무엇인지, 입체도형을 어떻게 해서 만든 그림인지 설명하시오.",
+      "bAnswer": "입체도형의 모서리 일부를 잘라 면들이 이어진 채로 평평하게 펼친 그림이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리를 잘라 펼친 그림",
+            "입체도형을 평평하게 펼쳐 놓은 그림"
+          ]
+        }
+      ],
+      "bGoal": "전개도가 입체를 잘라 펼친 평면 그림임을 말한다.",
+      "bReason": "익숙한 정식 용어라 만드는 방법으로 범위를 좁혀 물으면 충분하다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "자르기·이어짐·펼치기 조건이 문장에 다 있어 용어 하나를 답하기에 알맞다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-c2",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도는 어떤 모양의 면 몇 개로 이루어져 있는지, 그 면들의 크기는 서로 어떠한지 쓰시오.",
+      "bAnswer": "정사각형 $6$개로 이루어져 있고, $6$개의 크기는 모두 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$개",
+            "여섯 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "크기가 모두 같다",
+            "모두 합동이다"
+          ]
+        }
+      ],
+      "bGoal": "전개도 면의 모양·개수·크기를 정육면체의 면과 연결한다.",
+      "bReason": "모양, 개수, 크기 세 가지를 질문 안에서 직접 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 전개도에는 크기가 같은 {정사각형}이 {$6$}개 들어 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$",
+            "여섯"
+          ]
+        }
+      ],
+      "cReason": "원문은 긴 구절 전체가 빈칸이라 모양과 개수의 두 짧은 빈칸으로 나눴다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-c3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정사각형 $6$개가 변끼리 이어진 그림이 정육면체의 전개도인지 확인하려고 한다. 머릿속으로 접어 볼 때 무엇을 살펴보아야 하는지 설명하시오.",
+      "bAnswer": "접었을 때 서로 겹치는 면이 없는지 살펴본다. 겹치는 면이 있으면 정육면체의 전개도가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "접었을 때 겹치는 면이 없는지 본다",
+            "면 $6$개가 겹치지 않고 정육면체의 여섯 면이 되는지 본다",
+            "빈 곳 없이 여섯 면이 모두 생기는지 본다"
+          ]
+        }
+      ],
+      "bGoal": "면의 수만이 아니라 접었을 때 겹침 여부로 전개도를 판별한다.",
+      "bReason": "결론인 '겹치면'을 질문에 드러내지 않고 확인할 내용을 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 {겹치면} 정육면체의 전개도가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "겹치면",
+            "겹쳐지면",
+            "포개지면"
+          ]
+        }
+      ],
+      "cReason": "빈칸을 '겹치면' 한 낱말로 줄이고 접는 상황을 문장에 분명히 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc1",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "전개도의 면이 $6$개임을 안다.",
+      "bReason": "e5-2-5-5-c2의 B가 모양·개수·크기를 함께 물어 완전히 겹친다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "수정한 c2의 C가 같은 문장에서 $6$을 빈칸으로 묻는다.",
+      "exclusionReason": "B와 C 모두 e5-2-5-5-c2와 중복이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc2",
+      "learningRole": "naming",
+      "bDecision": "revise",
+      "bPrompt": "전개도를 그릴 때 잘린 모서리와 접는 선은 각각 어떤 선으로 그리는지 쓰시오.",
+      "bAnswer": "잘린 모서리는 실선으로, 접는 선은 점선으로 그린다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "잘린 모서리는 실선"
+          ]
+        },
+        {
+          "anyOf": [
+            "접는 선은 점선"
+          ]
+        }
+      ],
+      "bGoal": "전개도에서 실선과 점선의 쓰임을 구별한다.",
+      "bReason": "두 선의 약속을 한꺼번에 묻는 짧은 질문이 알맞다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "점선과 견주어 실선을 답하는 짧은 낱말 문항이라 그대로 쓸 수 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc3",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도를 접었을 때 서로 마주 보는 면은 모두 몇 쌍인지, 면의 수를 이용하여 설명하시오.",
+      "bAnswer": "면 $6$개가 두 개씩 짝을 지어 마주 보므로 $6\\div 2=3$, 모두 $3$쌍이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$쌍",
+            "세 쌍"
+          ]
+        },
+        {
+          "anyOf": [
+            "면 $6$개가 두 개씩 짝을 이룬다",
+            "$6\\div 2=3$"
+          ]
+        }
+      ],
+      "bGoal": "여섯 면이 둘씩 짝을 지어 마주 봄을 설명한다.",
+      "bReason": "수만 묻지 않고 면의 수와 연결해 까닭을 말하게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "접었을 때 마주 보는 면의 쌍의 수를 숫자 하나로 답하는 분명한 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc4",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "전개도를 접으면 원래 입체가 됨을 안다.",
+      "bReason": "'정육면체의 전개도'라는 말에 답이 들어 있어 물을 내용이 없다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸의 답이 같은 문장 앞부분에 그대로 나와 있다.",
+      "exclusionReason": "자명한 문장이며 전개도의 뜻은 e5-2-5-5-c1에서 다룬다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정육면체의 전개도가 여러 가지임을 안다.",
+      "bReason": "여러 가지인 까닭을 묻는 e5-2-5-5-xc26의 B가 이 내용을 포함한다.",
+      "cDecision": "revise",
+      "cAfter": "같은 정육면체라도 전개도의 모양은 {여러 가지}로 그릴 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "여러 가지",
+            "여러 모양",
+            "여러 개"
+          ]
+        }
+      ],
+      "cReason": "원문은 '한 가지'를 부정문 속에서 맞히게 해 어색하므로 긍정문으로 바꿨다.",
+      "exclusionReason": "B는 e5-2-5-5-xc26과 중복이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도에 정사각형 세 개가 한 줄로 이어진 부분이 있다. 접었을 때 이 세 면 가운데 서로 마주 보는 두 면은 어느 것인지 쓰고, 그 두 면이 가운데 면과 어떻게 만나는지를 이용하여 까닭을 설명하시오.",
+      "bAnswer": "양 끝의 두 면이 마주 본다. 두 면이 가운데 면의 서로 반대쪽 변에서 각각 수직으로 세워지기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양 끝의 두 면",
+            "첫째 면과 셋째 면"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 면이 가운데 면의 서로 반대쪽 변에서 수직으로 세워진다",
+            "가운데 면의 마주 보는 두 변에 붙어 있어서 접으면 서로 마주 선다"
+          ]
+        }
+      ],
+      "bGoal": "한 줄 세 면에서 마주 보는 면을 찾고 그 까닭을 말한다.",
+      "bReason": "그림 없이도 떠올릴 수 있는 배치라 조건을 질문에 적고 까닭의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "전개도에서 한 줄로 이어진 세 면 가운데 {양 끝}의 두 면은 접으면 서로 마주 본다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "양 끝",
+            "양쪽 끝",
+            "맨 끝"
+          ]
+        }
+      ],
+      "cReason": "빈칸을 위치를 나타내는 짧은 말로 줄여 표현 차이로 틀리지 않게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc7",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도에서 변을 맞대고 붙어 있는 두 면은 접으면 어떤 관계로 만나는지 쓰고, 이 두 면이 서로 마주 보는 면이 될 수 있는지도 쓰시오.",
+      "bAnswer": "접으면 수직으로 만난다. 서로 만나는 면이므로 마주 보는 면이 될 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수직으로 만난다",
+            "직각으로 만난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 면이 될 수 없다",
+            "마주 보지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "붙어 있는 면은 수직이며 마주 보는 면이 아님을 구별한다.",
+      "bReason": "수직 관계에 더해 마주 보는 면과의 구별까지 묻도록 넓혔다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "변을 맞댄 두 면이라는 조건이 분명하고 답이 '수직' 한 낱말이다.",
+      "synonymNotes": "C에서 '직각'도 같은 뜻으로 인정할 수 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc8",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "전개도의 정사각형이 모두 같은 크기임을 안다.",
+      "bReason": "e5-2-5-5-c2의 B가 면의 크기까지 이미 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 전개도에 있는 정사각형 $6$개는 모두 크기가 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "원문은 '모두 □'라 무엇을 답할지 열려 있어 크기를 묻는다는 점을 문장에 넣었다.",
+      "exclusionReason": "B는 e5-2-5-5-c2와 중복이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc9",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "정육면체에서 한 면과 모서리를 맞대고 만나는 면은 몇 개인지 쓰고, 나머지 한 면은 그 면과 어떤 관계인지 쓰시오.",
+      "bAnswer": "모서리를 맞대고 만나는 면은 $4$개이고, 나머지 한 면은 그 면과 마주 보는 면이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$개",
+            "네 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "나머지 한 면은 마주 보는 면이다",
+            "나머지 한 면은 평행한 면이다"
+          ]
+        }
+      ],
+      "bGoal": "한 면을 기준으로 다른 다섯 면을 만나는 면과 마주 보는 면으로 나눈다.",
+      "bReason": "개수만 묻지 않고 남은 한 면과의 관계까지 물어 구조를 보게 했다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체에서 한 면과 모서리를 맞대고 만나는 면은 {$4$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "네"
+          ]
+        }
+      ],
+      "cReason": "답을 숫자 하나로 받도록 '개'를 빈칸 밖으로 뺐다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc10",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "전개도를 접을 때 서로 맞닿아 모서리 하나가 되는 두 선분의 길이는 어떤 관계여야 하는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "두 선분의 길이는 같아야 한다. 두 선분이 꼭 맞게 붙어 모서리 하나가 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 선분이 꼭 맞게 붙어 한 모서리가 된다",
+            "길이가 다르면 딱 맞게 붙지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "맞닿는 선분의 길이가 같아야 하는 까닭을 말한다.",
+      "bReason": "길이 관계와 그 까닭으로 설명할 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "전개도를 접었을 때 서로 맞닿는 두 선분은 길이가 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 무엇을 견주는지 드러나지 않아 '길이가'를 문장에 남겼다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc11",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "주사위에서 마주 보는 두 면의 눈의 수 사이에는 어떤 규칙이 있는지 쓰고, 눈이 $2$인 면과 마주 보는 면의 눈의 수를 구하시오.",
+      "bAnswer": "마주 보는 두 면의 눈의 수의 합은 $7$이다. 눈이 $2$인 면과 마주 보는 면의 눈의 수는 $7-2=5$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "마주 보는 두 면의 눈의 수의 합이 $7$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "bGoal": "주사위의 눈 규칙을 알고 마주 보는 면의 눈을 구한다.",
+      "bReason": "규칙을 먼저 묻고 한 가지 예에 써 보게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "마주 보는 두 면의 눈의 합을 숫자 하나로 답하는 분명한 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정사각형 네 개가 한 줄로 이어진 정육면체의 전개도에서 나머지 두 면은 그 줄의 어느 쪽에 붙어야 하는지 쓰고, 두 면이 모두 같은 쪽에 붙으면 접었을 때 어떤 문제가 생기는지 설명하시오.",
+      "bAnswer": "줄의 양쪽에 하나씩 붙어야 한다. 두 면이 같은 쪽에 붙으면 접었을 때 두 면이 서로 겹치고 반대쪽은 면이 없이 비게 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "줄의 양쪽에 하나씩 붙는다",
+            "줄을 사이에 두고 서로 반대쪽에 하나씩 붙는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 쪽에 붙으면 두 면이 겹친다",
+            "같은 쪽에 붙으면 한쪽이 비게 된다"
+          ]
+        }
+      ],
+      "bGoal": "네 면이 한 줄일 때 나머지 두 면의 위치와 그 까닭을 말한다.",
+      "bReason": "위치 규칙과 어겼을 때 생기는 일을 함께 물어 암기가 되지 않게 했다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형 네 개가 한 줄로 이어진 정육면체의 전개도에서 나머지 두 면이 그 줄의 같은 쪽에 붙으면 접었을 때 두 면이 서로 {겹친다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "겹친다",
+            "겹쳐진다",
+            "포개진다"
+          ]
+        }
+      ],
+      "cReason": "'양쪽에 하나씩'은 표현이 여러 가지라 같은 쪽에 붙었을 때의 결과를 한 낱말로 묻게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정사각형 $6$개 가운데 $5$개가 한 줄로 이어진 그림은 정육면체의 전개도가 될 수 있는지 쓰고, 한 줄로 이어진 면들을 차례로 접을 때 생기는 일로 까닭을 설명하시오.",
+      "bAnswer": "될 수 없다. 한 줄로 이어진 네 면을 접으면 한 바퀴를 다 돌기 때문에 다섯째 면이 첫째 면과 겹친다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전개도가 될 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다섯째 면이 첫째 면과 겹친다",
+            "네 면만으로 한 바퀴가 다 돌아 남는 면이 겹친다"
+          ]
+        }
+      ],
+      "bGoal": "다섯 면이 한 줄이면 면이 겹쳐 전개도가 되지 못함을 설명한다.",
+      "bReason": "될 수 있는지와 접을 때 생기는 일을 묻도록 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형 다섯 개가 한 줄로 이어지면 접을 때 첫째 면과 다섯째 면이 {겹쳐서} 정육면체의 전개도가 될 수 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "겹쳐서",
+            "겹쳐져서",
+            "포개져서"
+          ]
+        }
+      ],
+      "cReason": "원문은 결론 구절 전체가 빈칸이라 까닭을 나타내는 한 낱말로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정사각형 네 개가 한 꼭짓점에 모여 큰 정사각형 모양을 이루는 부분이 있는 그림은 정육면체의 전개도가 될 수 있는지 쓰고, 그 꼭짓점에 모인 각의 크기의 합을 이용하여 까닭을 설명하시오.",
+      "bAnswer": "될 수 없다. 그 꼭짓점에 모인 각의 합이 $90^\\circ\\times 4=360^\\circ$로 평면을 빈틈없이 채워서 접어 세울 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전개도가 될 수 없다",
+            "접을 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "네 각의 합이 $360^\\circ$라 평평하게 꽉 찬다",
+            "$90^\\circ\\times 4=360^\\circ$이므로 접어 세울 틈이 없다"
+          ]
+        }
+      ],
+      "bGoal": "한 꼭짓점에 네 면이 모이면 접을 수 없는 까닭을 각으로 설명한다.",
+      "bReason": "배치를 글로 적고 각의 합이라는 설명 방법을 정해 주었다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "한 꼭짓점에 모인 정사각형의 개수라는 조건이 분명하고 답이 짧다.",
+      "synonymNotes": "C에서 '$4$개'도 같은 답으로 인정할 수 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc15",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 면을 밑면으로 정해 접은 모양을 떠올린다.",
+      "bReason": "떠올리는 요령이라 답이 하나로 정해지지 않고, 판별은 e5-2-5-5-c3의 B가 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "전개도를 볼 때 한 면을 {밑면}으로 정하고 나머지 면을 차례로 세워 보면 접은 모양을 떠올리기 쉽다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면",
+            "바닥",
+            "바닥면"
+          ]
+        }
+      ],
+      "cReason": "빈칸을 '밑면' 한 낱말로 줄여 구절을 외우지 않게 했다.",
+      "exclusionReason": "B는 요령을 말하는 문장이라 채점 기준을 세우기 어렵다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc16",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "전개도의 접는 선이 $5$개임을 안다.",
+      "bReason": "e5-2-5-5-xc20의 B가 접는 선의 수와 까닭을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "접는 선의 수를 숫자 하나로 답하는 짧은 문장이다.",
+      "exclusionReason": "B는 e5-2-5-5-xc20과 중복이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc17",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 모서리는 모두 몇 개인지 쓰고, 전개도에서 접는 선으로 남는 모서리가 $5$개일 때 잘라야 하는 모서리의 수를 어떻게 구하는지 설명하시오.",
+      "bAnswer": "정육면체의 모서리는 $12$개이다. 접는 선으로 남는 $5$개를 빼면 $12-5=7$이므로 $7$개를 잘라야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리는 $12$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12-5=7$",
+            "전체 모서리 수에서 접는 선의 수를 빼면 $7$개"
+          ]
+        }
+      ],
+      "bGoal": "자르는 모서리의 수를 전체 모서리와 접는 선의 관계로 구한다.",
+      "bReason": "$7$을 외우지 않고 $12$와 $5$의 관계로 구하게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "펼칠 때 자르는 모서리의 수를 묻는 조건이 분명하고 답이 짧다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도의 둘레는 한 모서리 길이의 몇 배인지 구하려고 한다. 정사각형 $6$개의 변의 수와 접는 선이 $5$개라는 사실을 이용하여 구하는 방법을 설명하시오.",
+      "bAnswer": "정사각형 $6$개의 변은 $6\\times 4=24$개이다. 접는 선 하나에는 변이 $2$개씩 붙어 있어 $5\\times 2=10$개는 둘레가 아니다. $24-10=14$이므로 둘레는 한 모서리 길이의 $14$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$14$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24-10=14$",
+            "변 $24$개에서 접는 선에 붙은 변 $10$개를 뺀다"
+          ]
+        }
+      ],
+      "bGoal": "전개도의 둘레가 모양과 관계없이 일정한 까닭을 변의 수로 설명한다.",
+      "bReason": "$14$를 알려 주지 않고 쓸 수 있는 사실을 주어 계산 과정을 설명하게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "모양이 달라도 둘레가 같다는 조건에서 배수 하나를 답하는 분명한 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도에서 면 $6$개가 모두 이어져 있으려면 접는 선이 몇 개 있어야 하는지, 면을 하나씩 이어 붙여 가는 방법으로 설명하시오.",
+      "bAnswer": "첫 면에 나머지 $5$개의 면을 하나씩 이어 붙일 때마다 접는 선이 $1$개씩 생기므로 접는 선은 $5$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "면을 하나 붙일 때마다 접는 선이 $1$개씩 늘어난다",
+            "첫 면에 나머지 $5$개의 면을 붙이면 접는 선이 $5$개 생긴다"
+          ]
+        }
+      ],
+      "bGoal": "접는 선이 $5$개인 까닭을 면을 이어 붙이는 과정으로 설명한다.",
+      "bReason": "'이음선'은 학생이 배우지 않은 말이라 '접는 선'으로 바꾸고 설명 방법을 정했다.",
+      "cDecision": "revise",
+      "cAfter": "전개도에서 면을 하나 더 이어 붙일 때마다 접는 선이 하나씩 늘어나므로 면 $6$개를 이으려면 접는 선이 {$5$}개 있어야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$",
+            "다섯"
+          ]
+        }
+      ],
+      "cReason": "'이음선'을 '접는 선'으로 풀고 답을 숫자 하나로 받게 했다.",
+      "coreAfter": "전개도에서 면을 하나 이어 붙일 때마다 접는 선이 하나씩 늘어나므로 면 $6$개를 이으려면 접는 선이 {$5$개} 있어야 한다.",
+      "coreReason": "'이음선'은 교과서에 없는 말이므로 학생이 아는 '접는 선'으로 통일한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc21",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "마주 보는 면이 세 쌍임을 색칠 상황에 써 본다.",
+      "bReason": "마주 보는 면이 $3$쌍이라는 e5-2-5-5-xc3의 B와 묻는 내용이 같다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "색칠 조건이 문장에 다 있어 세 쌍을 색의 수로 옮기는 짧은 적용 문항이 된다.",
+      "exclusionReason": "B는 e5-2-5-5-xc3과 중복이다.",
+      "synonymNotes": "C에서 '$3$가지'도 같은 답으로 인정할 수 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도를 접으면 테두리에 있는 선분들은 몇 개씩 맞붙어 모서리 하나가 되는지 쓰고, 테두리의 선분이 $14$개일 때 이렇게 만들어지는 모서리는 몇 개인지 구하시오.",
+      "bAnswer": "두 개씩 맞붙어 모서리 하나가 된다. 테두리의 선분이 $14$개이므로 $14\\div 2=7$, 모서리 $7$개가 만들어진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$개씩 맞붙는다",
+            "두 개씩 맞붙는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$개",
+            "$14\\div 2=7$"
+          ]
+        }
+      ],
+      "bGoal": "테두리 선분이 둘씩 붙어 잘랐던 모서리가 됨을 수로 확인한다.",
+      "bReason": "짝을 이루는 관계를 묻고 $14$개의 예로 자른 모서리 $7$개와 이어지게 했다.",
+      "cDecision": "revise",
+      "cAfter": "전개도의 테두리에 있는 선분은 접으면 {$2$}개씩 맞붙어 모서리 하나가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        }
+      ],
+      "cReason": "답을 숫자 하나로 받고 '모서리 하나'라고 써서 짝의 뜻을 분명히 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc24",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "그림의 전개도에서 테두리가 안쪽으로 꺾여 직각을 이루는 곳에 표시한 두 선분은 접으면 어떻게 되는지 쓰고, 두 선분이 한 점에서 만나고 있다는 점을 이용하여 까닭을 설명하시오.",
+      "bAnswer": "두 선분은 서로 맞붙어 모서리 하나가 된다. 두 선분은 한 끝점이 같으므로 두 면을 접어 세우면 벌어져 있던 직각의 틈이 닫히기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 선분이 맞붙는다",
+            "두 선분이 만나 한 모서리가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 끝점이 같아서 접으면 틈이 닫힌다",
+            "같은 점에서 시작하는 두 선분이라 면을 세우면 서로 붙는다"
+          ]
+        }
+      ],
+      "bGoal": "테두리가 안쪽으로 꺾인 곳의 두 선분이 맞붙음을 찾아 설명한다.",
+      "bReason": "'안쪽으로 직각'은 그림이 없으면 위치를 알 수 없어 그림을 전제로 물었다.",
+      "cDecision": "revise",
+      "cAfter": "전개도의 테두리가 안쪽으로 꺾여 직각을 이루는 곳에서 만나는 두 선분은 접으면 서로 {맞붙어} 모서리 하나가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "맞붙어",
+            "맞닿아",
+            "붙어",
+            "만나"
+          ]
+        }
+      ],
+      "cReason": "원문은 문장 끝이 통째로 빈칸이라 결과를 문장에 남기고 한 낱말만 묻게 했다.",
+      "exampleNeeded": true,
+      "exampleReason": "정육면체 전개도 그림이 필요하다. 예: 네 면이 한 줄이고 위아래에 한 면씩 붙은 모양에서, 안쪽으로 꺾인 한 곳의 두 테두리 선분을 굵게 표시한다."
+    },
+    {
+      "id": "e5-2-5-5-xc25",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "전개도의 테두리가 선분 $14$개임을 안다.",
+      "bReason": "e5-2-5-5-xc19의 B가 같은 $14$를 구하는 과정을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체를 펼칠 때 자른 모서리 $7$개가 각각 선분 $2$개로 갈라지므로, 전개도의 테두리는 한 모서리 길이의 선분 {$14$}개로 이루어진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$14$",
+            "열네"
+          ]
+        }
+      ],
+      "cReason": "xc19의 C와 답이 같아 자른 모서리 $7$개와 잇는 계산 문장으로 바꿨다.",
+      "exclusionReason": "B는 e5-2-5-5-xc19와 중복이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "같은 정육면체인데도 전개도의 모양이 한 가지로 정해지지 않는 까닭을, 정육면체를 펼칠 때 자르는 모서리와 관련지어 설명하시오.",
+      "bAnswer": "어느 모서리를 자르느냐에 따라 면들이 이어지는 방식이 달라져서 펼친 모양이 달라지기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자르는 모서리가 달라지면 펼친 모양이 달라진다",
+            "자르는 모서리에 따라 면이 이어지는 방식이 달라진다"
+          ]
+        }
+      ],
+      "bGoal": "전개도가 여러 가지인 까닭을 자르는 모서리의 선택으로 설명한다.",
+      "bReason": "'여러 가지'라는 사실 대신 그 까닭을 묻고 관련지을 대상을 정했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "자르는 모서리를 바꾼다는 조건과 결과가 한 문장에 있고 답이 짧다.",
+      "synonymNotes": "C에서 '여러 가지 모양'도 같은 뜻으로 인정할 수 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-5-5-xc27",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "주사위 눈 전체의 합을 구한다.",
+      "bReason": "$7\\times 3$을 한 번 계산하는 것뿐이고 규칙은 e5-2-5-5-xc11의 B가 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "세 쌍의 눈을 모두 더한다는 조건이 분명해 숫자 하나로 답하는 계산 문항이 된다.",
+      "exclusionReason": "B는 계산값 하나만 묻게 되며 규칙은 e5-2-5-5-xc11에서 다룬다.",
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "면의 수·크기(xc1, xc8), 접는 선(xc16), 테두리 선분(xc25), 여러 가지 전개도(xc5)는 c2, xc20, xc19, xc26과 겹쳐 B를 한쪽으로 모았고, '이음선'은 '접는 선'으로 통일했다.",
+    "xc24는 그림 없이는 위치를 알 수 없어 그림 사양을 적었고, 나머지 배치 문항은 글로 조건을 적어 해결했다."
+  ]
+}

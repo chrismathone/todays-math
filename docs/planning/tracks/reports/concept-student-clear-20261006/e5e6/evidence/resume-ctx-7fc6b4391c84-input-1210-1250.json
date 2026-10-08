@@ -1,0 +1,3808 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:25:26.517258+00:00",
+  "rows": [
+    {
+      "id": "e5-2-2-3-xc14",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "밭 전체의 $\\frac{3}{4}$에 채소를 심고, 채소를 심은 부분의 $\\frac{2}{3}$에 상추를 심었습니다. 여기서 $\\frac{2}{3}$는 무엇을 똑같이 $3$으로 나눈 것 중의 $2$인지 쓰고, 상추를 심은 부분은 밭 전체의 몇 분의 몇인지 구하시오.",
+      "bAnswer": "밭 전체가 아니라 채소를 심은 부분(밭의 $\\frac{3}{4}$)을 똑같이 $3$으로 나눈 것 중의 $2$이다. $\\frac{3}{4}\\times\\frac{2}{3}=\\frac{1}{2}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "채소를 심은 부분",
+            "밭의 $\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{6}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "두 번째 분수가 전체가 아닌 먼저 구한 부분을 나눈 것임을 알고 곱셈으로 구한다.",
+      "bReason": "‘기준’이라는 말이 추상적이어서 상황을 주고 무엇을 나눈 것인지 묻도록 풀었다.",
+      "studentLabel": "일부의 일부 구하기",
+      "cDecision": "revise",
+      "cAfter": "색종이 전체의 $\\frac{1}{2}$을 쓰고, 쓴 부분의 $\\frac{1}{3}$에 그림을 그렸다. 이때 $\\frac{1}{3}$은 색종이 전체가 아니라 {쓴 부분}을 똑같이 $3$으로 나눈 것 중의 $1$이므로, 그림을 그린 부분은 색종이 전체의 {$\\frac{1}{6}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "쓴 부분",
+            "색종이의 $\\frac{1}{2}$",
+            "색종이의 절반"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$"
+          ]
+        }
+      ],
+      "cReason": "‘두 번째 분수의 기준’, ‘먼저 정한 일부’가 맥락 없이 어려워 구체적 상황과 값으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1210,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc14",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "두 번째 분수의 기준",
+        "kind": "방법",
+        "level": "중",
+        "definition": "전체의 일부 가운데 다시 몇 분의 몇을 구할 때 두 번째 분수의 기준은 {먼저 정한 일부}이다.",
+        "studentC": "전체의 일부 가운데 다시 몇 분의 몇을 구할 때 두 번째 분수의 기준은 □이다.",
+        "answers": [
+          "먼저 정한 일부"
+        ]
+      },
+      "sourceFingerprint": "f6084ce13fe2ed2fb9ca506bcbfbc497526fcc208832c354f6cbff5f1ad962bb",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "cProposedAnswers": [
+        "쓴 부분",
+        "$\\frac{1}{6}$"
+      ],
+      "cStudentAfter": "색종이 전체의 $\\frac{1}{2}$을 쓰고, 쓴 부분의 $\\frac{1}{3}$에 그림을 그렸다. 이때 $\\frac{1}{3}$은 색종이 전체가 아니라 □을 똑같이 $3$으로 나눈 것 중의 $1$이므로, 그림을 그린 부분은 색종이 전체의 □이다.",
+      "cMarkedSentence": "색종이 전체의 $\\frac{1}{2}$을 쓰고, 쓴 부분의 $\\frac{1}{3}$에 그림을 그렸다. 이때 $\\frac{1}{3}$은 색종이 전체가 아니라 {쓴 부분}을 똑같이 $3$으로 나눈 것 중의 $1$이므로, 그림을 그린 부분은 색종이 전체의 {$\\frac{1}{6}$}이다.",
+      "cStudentSentence": "색종이 전체의 $\\frac{1}{2}$을 쓰고, 쓴 부분의 $\\frac{1}{3}$에 그림을 그렸다. 이때 $\\frac{1}{3}$은 색종이 전체가 아니라 □을 똑같이 $3$으로 나눈 것 중의 $1$이므로, 그림을 그린 부분은 색종이 전체의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "쓴 부분",
+          "equivalents": [
+            "색종이의 $\\frac{1}{2}$",
+            "색종이의 절반"
+          ]
+        },
+        {
+          "key": "$\\frac{1}{6}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밭 전체의 $\\frac{3}{4}$에 채소를 심고, 채소를 심은 부분의 $\\frac{2}{3}$에 상추를 심었습니다. 여기서 $\\frac{2}{3}$는 무엇을 똑같이 $3$으로 나눈 것 중의 $2$인지 쓰고, 상추를 심은 부분은 밭 전체의 몇 분의 몇인지 구하시오.",
+        "answer": "밭 전체가 아니라 채소를 심은 부분(밭의 $\\frac{3}{4}$)을 똑같이 $3$으로 나눈 것 중의 $2$이다. $\\frac{3}{4}\\times\\frac{2}{3}=\\frac{1}{2}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "채소를 심은 부분",
+              "밭의 $\\frac{3}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "$\\frac{6}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "색종이 전체의 $\\frac{1}{2}$을 쓰고, 쓴 부분의 $\\frac{1}{3}$에 그림을 그렸다. 이때 $\\frac{1}{3}$은 색종이 전체가 아니라 {쓴 부분}을 똑같이 $3$으로 나눈 것 중의 $1$이므로, 그림을 그린 부분은 색종이 전체의 {$\\frac{1}{6}$}이다.",
+        "acceptedAnswers": [
+          [
+            "쓴 부분",
+            "색종이의 $\\frac{1}{2}$",
+            "색종이의 절반"
+          ],
+          [
+            "$\\frac{1}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "50bd47bbf04502edec33cf5640c37c87b0e26d83a274261c2cf28c6c9188854a",
+      "questionRevision": "planning-e5e6-20261006-50bd47bbf045",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-3-xc15",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "$0$보다 큰 수에 진분수를 곱하면 처음 수보다 작아짐을 안다.",
+      "bReason": "일부만 구하므로 작아진다는 같은 설명을 c3의 B가 이미 요구한다.",
+      "exclusionReason": "B 제외: e5-2-2-3-c3과 까닭이 같다. 다만 c3은 진분수끼리의 곱만 다루므로, 자연수나 대분수에 곱하는 경우는 이 문항의 C로 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "$0$보다 큰 수에 진분수를 곱하면 곱은 그 수보다 {작아진다}.",
+      "cReason": "‘$0$보다 큰 수’라는 조건이 있고 작아진다/커진다를 고르는 분명한 비교이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1211,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc15",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "진분수를 곱하면 작아짐",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$보다 큰 수에 진분수를 곱하면 곱은 그 수보다 {작아진다}.",
+        "studentC": "$0$보다 큰 수에 진분수를 곱하면 곱은 그 수보다 □.",
+        "answers": [
+          "작아진다"
+        ]
+      },
+      "sourceFingerprint": "3f2e26db4cb374df5e15a8f2cb30c06436a8467e0874ff71ff28eab112b49db0",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "cFrozenDefinition": "$0$보다 큰 수에 진분수를 곱하면 곱은 그 수보다 {작아진다}.",
+      "cFrozenStudentSentence": "$0$보다 큰 수에 진분수를 곱하면 곱은 그 수보다 □.",
+      "cProposedAnswers": [
+        "작아진다"
+      ],
+      "cStudentAfter": "$0$보다 큰 수에 진분수를 곱하면 곱은 그 수보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작아진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$보다 큰 수에 진분수를 곱하면 곱은 그 수보다 {작아진다}.",
+      "cStudentSentence": "$0$보다 큰 수에 진분수를 곱하면 곱은 그 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작아진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 수에 진분수를 곱하면 곱은 그 수보다 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: e5-2-2-3-c3과 까닭이 같다. 다만 c3은 진분수끼리의 곱만 다루므로, 자연수나 대분수에 곱하는 경우는 이 문항의 C로 확인한다."
+      },
+      "proposalFingerprint": "9b1f70d2bb8fae69f942071eb33419c8ec5978bbb989af90747bd0706b7807f4",
+      "questionRevision": "planning-e5e6-20261006-9b1f70d2bb8f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-3-xc17",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "진분수끼리의 곱이 다시 진분수임을 안다.",
+      "bReason": "곱이 진분수보다 작으면 $1$보다 작다는 것이 c3에서 바로 따라 나와 따로 물을 가치가 낮다.",
+      "exclusionReason": "B 제외: e5-2-2-3-c3으로 대체된다.",
+      "cDecision": "keep",
+      "cAfter": "진분수끼리 곱하면 곱도 {진분수}이다.",
+      "cReason": "곱이 어떤 분수인지를 ‘진분수’ 한 낱말로 답하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1212,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc17",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "진분수끼리의 곱",
+        "kind": "성질",
+        "level": "중",
+        "definition": "진분수끼리 곱하면 곱도 {진분수}이다.",
+        "studentC": "진분수끼리 곱하면 곱도 □이다.",
+        "answers": [
+          "진분수"
+        ]
+      },
+      "sourceFingerprint": "602c993c5765ab747ffff963b5031ce8dbdd37cc96de9e0b43757ef68942e250",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "cFrozenDefinition": "진분수끼리 곱하면 곱도 {진분수}이다.",
+      "cFrozenStudentSentence": "진분수끼리 곱하면 곱도 □이다.",
+      "cProposedAnswers": [
+        "진분수"
+      ],
+      "cStudentAfter": "진분수끼리 곱하면 곱도 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "진분수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "진분수끼리 곱하면 곱도 {진분수}이다.",
+      "cStudentSentence": "진분수끼리 곱하면 곱도 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "진분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "진분수끼리 곱하면 곱도 {진분수}이다.",
+        "acceptedAnswers": [
+          [
+            "진분수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: e5-2-2-3-c3으로 대체된다."
+      },
+      "proposalFingerprint": "8b51da23250cd413306574a50c96aef9683c1d9841ed51632065073bff584358",
+      "questionRevision": "planning-e5e6-20261006-8b51da23250c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-3-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{2}\\times\\frac{1}{3}$은 전체 $1$을 어떻게 똑같이 나눈 것 중의 한 조각인지 나누는 과정을 설명하고, 그 조각이 전체의 몇 분의 몇인지 쓰시오.",
+      "bAnswer": "전체를 똑같이 $3$으로 나눈 것 중 한 조각을 다시 똑같이 $2$로 나눈 것 중의 한 조각이다. 전체가 $6$조각으로 나뉘는 셈이므로 $\\frac{1}{6}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체를 $3$등분한 한 조각을 다시 $2$등분한다",
+            "전체를 $2$등분한 한 조각을 다시 $3$등분한다",
+            "전체를 모두 $6$조각으로 똑같이 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$",
+            "$6$분의 $1$"
+          ]
+        }
+      ],
+      "bGoal": "단위분수끼리의 곱을 다시 똑같이 나눈 조각으로 설명한다.",
+      "bReason": "분모가 두 분모의 곱이 되는 까닭을 나누는 과정으로 말하게 해 c1의 방법과 구별했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}\\times\\frac{1}{3}$은 전체를 똑같이 $3$으로 나눈 것 중의 한 조각을 다시 똑같이 {$2$}로 나눈 것 중의 한 조각이다. 이 조각은 전체를 똑같이 {$6$}으로 나눈 것 중의 하나이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cReason": "‘한 단위분수만큼을 다른 분모만큼’이라는 말이 어려워 실제 식에서 나누는 수를 답하게 했다.",
+      "coreAfter": "단위분수끼리 곱할 때는 전체를 첫째 분모의 수만큼 똑같이 나눈 부분 하나를, 둘째 분모의 수만큼 다시 똑같이 나눈다. 그중 {한 조각}이 곱이 나타내는 양이며, 곱의 분모는 두 분모의 곱이다.",
+      "coreReason": "‘다른 분모만큼 다시 똑같이 나눈’은 무엇을 몇 조각으로 나누는지 초5 학생이 읽어 내기 어렵다.",
+      "exampleNeeded": false,
+      "exampleReason": "수 막대나 직사각형 그림이 있으면 좋지만, 나누는 과정을 글로 써도 설명할 수 있다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "한 조각이라는 원문 표적을 두 번째 나눔의 최종 조각에 유지한다. 무엇을 어느 분모의 수만큼 나누는지 두 단계 모두 명시하고 곱의 일반 분모 관계를 보존한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1213,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc19",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "단위분수끼리의 곱이 나타내는 양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "단위분수끼리의 곱은 한 단위분수만큼을 다른 분모만큼 다시 똑같이 나눈 {한 조각}이다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}\\times\\frac{1}{3}$의 분모가 $6$인 까닭은?",
+          "answer": "$2$등분한 조각마다 $3$등분해서"
+        },
+        "studentC": "단위분수끼리의 곱은 한 단위분수만큼을 다른 분모만큼 다시 똑같이 나눈 □이다.",
+        "answers": [
+          "한 조각"
+        ]
+      },
+      "sourceFingerprint": "d4fbd891b7b94f70f76266851016e17d16e61ab28cfaccf3701ad9eeafcfd36a",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$6$"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}\\times\\frac{1}{3}$은 전체를 똑같이 $3$으로 나눈 것 중의 한 조각을 다시 똑같이 □로 나눈 것 중의 한 조각이다. 이 조각은 전체를 똑같이 □으로 나눈 것 중의 하나이다.",
+      "cMarkedSentence": "$\\frac{1}{2}\\times\\frac{1}{3}$은 전체를 똑같이 $3$으로 나눈 것 중의 한 조각을 다시 똑같이 {$2$}로 나눈 것 중의 한 조각이다. 이 조각은 전체를 똑같이 {$6$}으로 나눈 것 중의 하나이다.",
+      "cStudentSentence": "$\\frac{1}{2}\\times\\frac{1}{3}$은 전체를 똑같이 $3$으로 나눈 것 중의 한 조각을 다시 똑같이 □로 나눈 것 중의 한 조각이다. 이 조각은 전체를 똑같이 □으로 나눈 것 중의 하나이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{1}{2}\\times\\frac{1}{3}$은 전체 $1$을 어떻게 똑같이 나눈 것 중의 한 조각인지 나누는 과정을 설명하고, 그 조각이 전체의 몇 분의 몇인지 쓰시오.",
+        "answer": "전체를 똑같이 $3$으로 나눈 것 중 한 조각을 다시 똑같이 $2$로 나눈 것 중의 한 조각이다. 전체가 $6$조각으로 나뉘는 셈이므로 $\\frac{1}{6}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체를 $3$등분한 한 조각을 다시 $2$등분한다",
+              "전체를 $2$등분한 한 조각을 다시 $3$등분한다",
+              "전체를 모두 $6$조각으로 똑같이 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{6}$",
+              "$6$분의 $1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}\\times\\frac{1}{3}$은 전체를 똑같이 $3$으로 나눈 것 중의 한 조각을 다시 똑같이 {$2$}로 나눈 것 중의 한 조각이다. 이 조각은 전체를 똑같이 {$6$}으로 나눈 것 중의 하나이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ec934ae2989cee1a4b05aa6f808debc66c45bed71cbf7cca8851010ab60275f4",
+      "questionRevision": "planning-e5e6-20261006-ec934ae2989c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-3-xc20",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "여러 진분수 중에서 서로 다른 두 수를 골라 곱을 가장 크게 하려면 어떤 두 수를 골라야 하는지 쓰고, $\\frac{1}{2}$, $\\frac{3}{4}$, $\\frac{2}{3}$ 중에서 그렇게 고른 두 수의 곱을 구하시오.",
+      "bAnswer": "가장 큰 분수와 둘째로 큰 분수를 고른다. $\\frac{3}{4}\\times\\frac{2}{3}=\\frac{1}{2}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 두 분수를 고른다",
+            "가장 큰 수와 둘째로 큰 수를 고른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{6}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "곱이 가장 크게 되도록 두 진분수를 고르고 곱을 구한다.",
+      "bReason": "원문의 예를 일반적인 고르는 방법과 묶어 하나의 완전한 물음으로 만들었다.",
+      "cDecision": "revise",
+      "cAfter": "주어진 진분수 가운데 서로 다른 두 수를 골라 곱을 가장 크게 하려면 가장 {큰} 분수와 둘째로 {큰} 분수를 고른다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "큰"
+          ]
+        },
+        {
+          "anyOf": [
+            "큰"
+          ]
+        }
+      ],
+      "cReason": "‘가장 큰 두 분수’는 표현이 여러 가지라 크다/작다를 고르는 짧은 빈칸으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1214,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc20",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "곱이 가장 크게 고르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "주어진 진분수 가운데 서로 다른 두 수를 골라 곱을 가장 크게 하려면 {가장 큰 두 분수}를 고른다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}$, $\\frac{3}{4}$, $\\frac{2}{3}$ 중 두 수의 곱이 가장 클 때 그 곱은?",
+          "answer": "$\\frac{1}{2}$"
+        },
+        "studentC": "주어진 진분수 가운데 서로 다른 두 수를 골라 곱을 가장 크게 하려면 □를 고른다.",
+        "answers": [
+          "가장 큰 두 분수"
+        ]
+      },
+      "sourceFingerprint": "e7f620b76d42c96a9d4dcec016988c83b41a69ebfd8fa9d9edbc2057b152f586",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "cProposedAnswers": [
+        "큰",
+        "큰"
+      ],
+      "cStudentAfter": "주어진 진분수 가운데 서로 다른 두 수를 골라 곱을 가장 크게 하려면 가장 □ 분수와 둘째로 □ 분수를 고른다.",
+      "cMarkedSentence": "주어진 진분수 가운데 서로 다른 두 수를 골라 곱을 가장 크게 하려면 가장 {큰} 분수와 둘째로 {큰} 분수를 고른다.",
+      "cStudentSentence": "주어진 진분수 가운데 서로 다른 두 수를 골라 곱을 가장 크게 하려면 가장 □ 분수와 둘째로 □ 분수를 고른다.",
+      "cSlotAnswers": [
+        {
+          "key": "큰",
+          "equivalents": []
+        },
+        {
+          "key": "큰",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "여러 진분수 중에서 서로 다른 두 수를 골라 곱을 가장 크게 하려면 어떤 두 수를 골라야 하는지 쓰고, $\\frac{1}{2}$, $\\frac{3}{4}$, $\\frac{2}{3}$ 중에서 그렇게 고른 두 수의 곱을 구하시오.",
+        "answer": "가장 큰 분수와 둘째로 큰 분수를 고른다. $\\frac{3}{4}\\times\\frac{2}{3}=\\frac{1}{2}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 두 분수를 고른다",
+              "가장 큰 수와 둘째로 큰 수를 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "$\\frac{6}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "주어진 진분수 가운데 서로 다른 두 수를 골라 곱을 가장 크게 하려면 가장 {큰} 분수와 둘째로 {큰} 분수를 고른다.",
+        "acceptedAnswers": [
+          [
+            "큰"
+          ],
+          [
+            "큰"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d72a94cc9d004411b519acd8b3bdab157f29042357cc8f5a65331bb9db9dc81a",
+      "questionRevision": "planning-e5e6-20261006-d72a94cc9d00",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-3-xc24",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "약분할 수 있는 짝이 여럿이면 모두 약분한 뒤 곱한다.",
+      "bReason": "B로 만들면 계산값만 묻게 되고, 두 쌍을 약분하는 예는 xc9의 B에 이미 있다.",
+      "exclusionReason": "B 제외: e5-2-2-3-xc9와 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{6}{7}\\times\\frac{14}{15}$에서 $6$과 $15$는 {$3$}으로, $7$과 $14$는 {$7$}로 약분하면 $\\frac{2}{1}\\times\\frac{2}{5}$가 되어 곱은 {$\\frac{4}{5}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{5}$"
+          ]
+        }
+      ],
+      "cReason": "‘모두 약분’이라는 말 대신 두 쌍을 각각 어떤 수로 약분하는지와 곱을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1215,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc24",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "약분할 짝이 여럿일 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$\\frac{6}{7}\\times\\frac{14}{15}$처럼 약분할 짝이 여럿이면 {모두 약분}한 뒤 곱한다.",
+        "example": {
+          "prompt": "$\\frac{6}{7}\\times\\frac{14}{15}$는?",
+          "answer": "$\\frac{4}{5}$"
+        },
+        "studentC": "$\\frac{6}{7}\\times\\frac{14}{15}$처럼 약분할 짝이 여럿이면 □한 뒤 곱한다.",
+        "answers": [
+          "모두 약분"
+        ]
+      },
+      "sourceFingerprint": "1695ee53d5ba53eedb313bda390a21d4263d53f58514024707d4b7c98b957651",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$7$",
+        "$\\frac{4}{5}$"
+      ],
+      "cStudentAfter": "$\\frac{6}{7}\\times\\frac{14}{15}$에서 $6$과 $15$는 □으로, $7$과 $14$는 □로 약분하면 $\\frac{2}{1}\\times\\frac{2}{5}$가 되어 곱은 □이다.",
+      "cMarkedSentence": "$\\frac{6}{7}\\times\\frac{14}{15}$에서 $6$과 $15$는 {$3$}으로, $7$과 $14$는 {$7$}로 약분하면 $\\frac{2}{1}\\times\\frac{2}{5}$가 되어 곱은 {$\\frac{4}{5}$}이다.",
+      "cStudentSentence": "$\\frac{6}{7}\\times\\frac{14}{15}$에서 $6$과 $15$는 □으로, $7$과 $14$는 □로 약분하면 $\\frac{2}{1}\\times\\frac{2}{5}$가 되어 곱은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$7$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{4}{5}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{6}{7}\\times\\frac{14}{15}$에서 $6$과 $15$는 {$3$}으로, $7$과 $14$는 {$7$}로 약분하면 $\\frac{2}{1}\\times\\frac{2}{5}$가 되어 곱은 {$\\frac{4}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$7$"
+          ],
+          [
+            "$\\frac{4}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: e5-2-2-3-xc9와 겹친다."
+      },
+      "proposalFingerprint": "716ddb8dcf77686efc9842df9a2b977fdbaed08c51e15d785e4ad0a8338677e0",
+      "questionRevision": "planning-e5e6-20261006-716ddb8dcf77",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-3-xc25",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "진분수끼리의 곱이 두 분수 중 작은 쪽보다도 작음을 안다.",
+      "bReason": "곱이 두 분수 각각보다 작다는 c3과 수학적으로 같은 내용이다.",
+      "exclusionReason": "B 제외: e5-2-2-3-c3과 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}\\times\\frac{3}{4}=\\frac{3}{8}$이다. $\\frac{3}{8}$은 $\\frac{1}{2}$과 $\\frac{3}{4}$ 중 더 작은 분수인 {$\\frac{1}{2}$}보다도 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "작습니다"
+          ]
+        }
+      ],
+      "cReason": "‘작은 분수보다도’라는 어색한 빈칸 대신 실제 수로 더 작은 분수와 비교 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1216,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc25",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "곱과 두 분수의 크기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "진분수끼리의 곱은 두 분수 중 {작은 분수보다도} 작다.",
+        "studentC": "진분수끼리의 곱은 두 분수 중 □ 작다.",
+        "answers": [
+          "작은 분수보다도"
+        ]
+      },
+      "sourceFingerprint": "c75d615c230ff746736778ed3f38cc1d6e54a7e0c60505d81b026f2cd8d39d0c",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$",
+        "작다"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}\\times\\frac{3}{4}=\\frac{3}{8}$이다. $\\frac{3}{8}$은 $\\frac{1}{2}$과 $\\frac{3}{4}$ 중 더 작은 분수인 □보다도 □.",
+      "cMarkedSentence": "$\\frac{1}{2}\\times\\frac{3}{4}=\\frac{3}{8}$이다. $\\frac{3}{8}$은 $\\frac{1}{2}$과 $\\frac{3}{4}$ 중 더 작은 분수인 {$\\frac{1}{2}$}보다도 {작다}.",
+      "cStudentSentence": "$\\frac{1}{2}\\times\\frac{3}{4}=\\frac{3}{8}$이다. $\\frac{3}{8}$은 $\\frac{1}{2}$과 $\\frac{3}{4}$ 중 더 작은 분수인 □보다도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": []
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "작습니다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}\\times\\frac{3}{4}=\\frac{3}{8}$이다. $\\frac{3}{8}$은 $\\frac{1}{2}$과 $\\frac{3}{4}$ 중 더 작은 분수인 {$\\frac{1}{2}$}보다도 {작다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "작다",
+            "작습니다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: e5-2-2-3-c3과 겹친다."
+      },
+      "proposalFingerprint": "b1e8699dda12ef6150de001ae0bbb4ecad1ff675b1e5af52813ccf8ae67e2ebb",
+      "questionRevision": "planning-e5e6-20261006-b1e8699dda12",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-3-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}\\times\\frac{4}{5}$를 계산할 때 분자 $2$와 분자 $4$를 $2$로 나누어 약분했더니 틀렸습니다. 분수의 곱셈에서 약분은 어떤 수와 어떤 수 사이에서 해야 하는지 쓰고, 바른 곱을 구하시오.",
+      "bAnswer": "약분은 분자와 분모 사이에서만 한다. 이 식은 약분할 수 있는 분자와 분모가 없으므로 $\\frac{2\\times 4}{3\\times 5}=\\frac{8}{15}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모 사이에서 약분한다",
+            "분자와 분모를 같은 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{15}$",
+            "$15$분의 $8$"
+          ]
+        }
+      ],
+      "bGoal": "분자끼리는 약분할 수 없고 분자와 분모 사이에서만 약분함을 안다.",
+      "bReason": "자주 하는 잘못을 그대로 보여 주고 약분하는 자리와 바른 값을 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "약분은 분자와 {분모}를 같은 수로 나누는 것이다. 그래서 $\\frac{2}{3}\\times\\frac{4}{5}$에서 분자 $2$와 분자 $4$끼리는 약분할 수 {없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "없습니다"
+          ]
+        }
+      ],
+      "cReason": "‘분자와 분모 사이’라는 구절 대신 낱말 하나와 할 수 있는지 여부를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1217,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc26",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "분자끼리 약분하는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\frac{2}{3}\\times\\frac{4}{5}$에서 분자 $2$와 $4$를 약분하면 틀린다. 약분은 {분자와 분모 사이}에서만 한다.",
+        "studentC": "$\\frac{2}{3}\\times\\frac{4}{5}$에서 분자 $2$와 $4$를 약분하면 틀린다. 약분은 □에서만 한다.",
+        "answers": [
+          "분자와 분모 사이"
+        ]
+      },
+      "sourceFingerprint": "ec18d66b1a8bd97ef3ce0ed2e9be7031533763c4848110858eb6db325646eba1",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "cProposedAnswers": [
+        "분모",
+        "없다"
+      ],
+      "cStudentAfter": "약분은 분자와 □를 같은 수로 나누는 것이다. 그래서 $\\frac{2}{3}\\times\\frac{4}{5}$에서 분자 $2$와 분자 $4$끼리는 약분할 수 □.",
+      "cMarkedSentence": "약분은 분자와 {분모}를 같은 수로 나누는 것이다. 그래서 $\\frac{2}{3}\\times\\frac{4}{5}$에서 분자 $2$와 분자 $4$끼리는 약분할 수 {없다}.",
+      "cStudentSentence": "약분은 분자와 □를 같은 수로 나누는 것이다. 그래서 $\\frac{2}{3}\\times\\frac{4}{5}$에서 분자 $2$와 분자 $4$끼리는 약분할 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "분모",
+          "equivalents": []
+        },
+        {
+          "key": "없다",
+          "equivalents": [
+            "없습니다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}\\times\\frac{4}{5}$를 계산할 때 분자 $2$와 분자 $4$를 $2$로 나누어 약분했더니 틀렸습니다. 분수의 곱셈에서 약분은 어떤 수와 어떤 수 사이에서 해야 하는지 쓰고, 바른 곱을 구하시오.",
+        "answer": "약분은 분자와 분모 사이에서만 한다. 이 식은 약분할 수 있는 분자와 분모가 없으므로 $\\frac{2\\times 4}{3\\times 5}=\\frac{8}{15}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자와 분모 사이에서 약분한다",
+              "분자와 분모를 같은 수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{8}{15}$",
+              "$15$분의 $8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "약분은 분자와 {분모}를 같은 수로 나누는 것이다. 그래서 $\\frac{2}{3}\\times\\frac{4}{5}$에서 분자 $2$와 분자 $4$끼리는 약분할 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "분모"
+          ],
+          [
+            "없다",
+            "없습니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2f8b5ab952416af0056354048e929c4309c380b2dffa307c3bbb633cf70378b2",
+      "questionRevision": "planning-e5e6-20261006-2f8b5ab95241",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-3-xc27",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "용돈의 $\\frac{1}{3}$을 쓰고, 남은 돈의 $\\frac{1}{2}$을 다시 썼습니다. 두 번째로 쓴 돈이 처음 용돈의 몇 분의 몇인지 구하려면 먼저 무엇을 구해야 하는지 쓰고, 답을 구하시오.",
+      "bAnswer": "먼저 남은 돈이 처음 용돈의 몇 분의 몇인지 구한다. 남은 돈은 $1-\\frac{1}{3}=\\frac{2}{3}$이므로 두 번째로 쓴 돈은 $\\frac{2}{3}\\times\\frac{1}{2}=\\frac{1}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남은 돈이 전체의 몇 분의 몇인지 먼저 구한다",
+            "남은 돈은 용돈의 $\\frac{2}{3}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$",
+            "$\\frac{2}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "남은 양을 전체의 분수로 나타낸 뒤 곱하여 남은 양의 일부를 구한다.",
+      "bReason": "두 단계로 푸는 문제라 구체적인 상황에서 먼저 구할 것과 답을 함께 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "끈 전체의 $\\frac{1}{4}$을 쓰고, 남은 끈의 $\\frac{1}{3}$을 다시 썼다. 남은 끈은 전체의 {$\\frac{3}{4}$}이므로 두 번째로 쓴 끈은 전체의 $\\frac{3}{4}\\times\\frac{1}{3}=${$\\frac{1}{4}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$",
+            "$\\frac{3}{12}$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 ‘남은 양’은 바로 뒤 구절에서 베낄 수 있어 실제 수로 남은 양과 곱을 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1218,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc27",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "남은 양의 일부",
+        "kind": "방법",
+        "level": "상",
+        "definition": "전체의 몇 분의 몇을 쓰고 {남은 양}의 몇 분의 몇을 다시 쓰면, 남은 양을 전체의 분수로 나타낸 뒤 곱한다.",
+        "studentC": "전체의 몇 분의 몇을 쓰고 □의 몇 분의 몇을 다시 쓰면, 남은 양을 전체의 분수로 나타낸 뒤 곱한다.",
+        "answers": [
+          "남은 양"
+        ]
+      },
+      "sourceFingerprint": "b7e6c1222f8f4f95a8e017638d8255c4eb452216a13c10a6d5ee82f50526a995",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{4}$",
+        "$\\frac{1}{4}$"
+      ],
+      "cStudentAfter": "끈 전체의 $\\frac{1}{4}$을 쓰고, 남은 끈의 $\\frac{1}{3}$을 다시 썼다. 남은 끈은 전체의 □이므로 두 번째로 쓴 끈은 전체의 $\\frac{3}{4}\\times\\frac{1}{3}=$□이다.",
+      "cMarkedSentence": "끈 전체의 $\\frac{1}{4}$을 쓰고, 남은 끈의 $\\frac{1}{3}$을 다시 썼다. 남은 끈은 전체의 {$\\frac{3}{4}$}이므로 두 번째로 쓴 끈은 전체의 $\\frac{3}{4}\\times\\frac{1}{3}=${$\\frac{1}{4}$}이다.",
+      "cStudentSentence": "끈 전체의 $\\frac{1}{4}$을 쓰고, 남은 끈의 $\\frac{1}{3}$을 다시 썼다. 남은 끈은 전체의 □이므로 두 번째로 쓴 끈은 전체의 $\\frac{3}{4}\\times\\frac{1}{3}=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": [
+            "$\\frac{3}{12}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "용돈의 $\\frac{1}{3}$을 쓰고, 남은 돈의 $\\frac{1}{2}$을 다시 썼습니다. 두 번째로 쓴 돈이 처음 용돈의 몇 분의 몇인지 구하려면 먼저 무엇을 구해야 하는지 쓰고, 답을 구하시오.",
+        "answer": "먼저 남은 돈이 처음 용돈의 몇 분의 몇인지 구한다. 남은 돈은 $1-\\frac{1}{3}=\\frac{2}{3}$이므로 두 번째로 쓴 돈은 $\\frac{2}{3}\\times\\frac{1}{2}=\\frac{1}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "남은 돈이 전체의 몇 분의 몇인지 먼저 구한다",
+              "남은 돈은 용돈의 $\\frac{2}{3}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$",
+              "$\\frac{2}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "끈 전체의 $\\frac{1}{4}$을 쓰고, 남은 끈의 $\\frac{1}{3}$을 다시 썼다. 남은 끈은 전체의 {$\\frac{3}{4}$}이므로 두 번째로 쓴 끈은 전체의 $\\frac{3}{4}\\times\\frac{1}{3}=${$\\frac{1}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{4}$"
+          ],
+          [
+            "$\\frac{1}{4}$",
+            "$\\frac{3}{12}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "921f9cc24e764ec7f1b6e9d658e38c66c14557a46a4fc7dfb478a62eee7c85c0",
+      "questionRevision": "planning-e5e6-20261006-921f9cc24e76",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc1",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대분수끼리 곱할 때 먼저 가분수로 고친다는 것을 안다.",
+      "bReason": "c1의 B가 같은 방법을 같은 예 $1\\frac{1}{2}\\times1\\frac{1}{3}$으로 이미 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '두 대분수를 가분수로'는 c1의 C와 같은 내용을 긴 구절로 외우게 한다.",
+      "exclusionReason": "c1과 중복이다. 대체 ID는 e5-2-2-4-c1(B, C)이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1219,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc1",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "대분수끼리 곱하는 첫걸음",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수끼리 곱할 때는 먼저 {두 대분수를 가분수로} 고친다.",
+        "example": {
+          "prompt": "$1\\frac{1}{2}\\times1\\frac{1}{3}$은?",
+          "answer": "$2$"
+        },
+        "studentC": "대분수끼리 곱할 때는 먼저 □ 고친다.",
+        "answers": [
+          "두 대분수를 가분수로"
+        ]
+      },
+      "sourceFingerprint": "092b682c18884c3dc866425a4453daed12fb29a5bcd2c3e0db7debf0f3bb9bcf",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c1과 중복이다. 대체 ID는 e5-2-2-4-c1(B, C)이다.",
+        "cloze": "c1과 중복이다. 대체 ID는 e5-2-2-4-c1(B, C)이다."
+      },
+      "proposalFingerprint": "0cefea38ea82631481f2001fe7583b3b615ef4155581154b703129dc2a6c21fb",
+      "questionRevision": "planning-e5e6-20261006-0cefea38ea82",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc2",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대분수와 진분수의 곱도 대분수를 가분수로 고쳐 계산한다.",
+      "bReason": "방법은 c1의 B와 같고, 대분수와 진분수 곱의 크기는 xc16의 B가 같은 예로 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{4}\\times\\frac{2}{3}$는 $2\\frac{1}{4}$을 가분수 {$\\frac{9}{4}$}로 고쳐 계산하고, 곱은 {$1\\frac{1}{2}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{9}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{1}{2}$",
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '가분수'는 c1의 C와 겹치므로 실제 식에서 고친 가분수와 곱을 쓰게 했다.",
+      "exclusionReason": "B만 제외한다. 대체 ID는 e5-2-2-4-c1, e5-2-2-4-xc16이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1220,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc2",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "대분수와 진분수의 곱",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수와 진분수를 곱할 때도 대분수를 {가분수}로 고친 뒤 곱한다.",
+        "example": {
+          "prompt": "$2\\frac{1}{4}\\times\\frac{2}{3}$는?",
+          "answer": "$1\\frac{1}{2}$"
+        },
+        "studentC": "대분수와 진분수를 곱할 때도 대분수를 □로 고친 뒤 곱한다.",
+        "answers": [
+          "가분수"
+        ]
+      },
+      "sourceFingerprint": "896a47c20a01fe691532c58f9069f50011be49cbb2d17c6259164f4d66b14b41",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{9}{4}$",
+        "$1\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$2\\frac{1}{4}\\times\\frac{2}{3}$는 $2\\frac{1}{4}$을 가분수 □로 고쳐 계산하고, 곱은 □이다.",
+      "cMarkedSentence": "$2\\frac{1}{4}\\times\\frac{2}{3}$는 $2\\frac{1}{4}$을 가분수 {$\\frac{9}{4}$}로 고쳐 계산하고, 곱은 {$1\\frac{1}{2}$}이다.",
+      "cStudentSentence": "$2\\frac{1}{4}\\times\\frac{2}{3}$는 $2\\frac{1}{4}$을 가분수 □로 고쳐 계산하고, 곱은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{9}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "$1\\frac{1}{2}$",
+          "equivalents": [
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{4}\\times\\frac{2}{3}$는 $2\\frac{1}{4}$을 가분수 {$\\frac{9}{4}$}로 고쳐 계산하고, 곱은 {$1\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{9}{4}$"
+          ],
+          [
+            "$1\\frac{1}{2}$",
+            "$\\frac{3}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체 ID는 e5-2-2-4-c1, e5-2-2-4-xc16이다."
+      },
+      "proposalFingerprint": "48531e00c705ef8b979db6b8d55b7f34059e5759249e7acceacdb8ee399faeb4",
+      "questionRevision": "planning-e5e6-20261006-48531e00c705",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc3",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "세 분수를 앞에서부터 두 개씩 차례로 곱할 수 있음을 안다.",
+      "bReason": "세 분수 곱의 방법은 c2가, 곱하는 순서는 xc14가 묻고 있어 따로 물을 내용이 남지 않는다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}\\times\\frac{1}{3}\\times\\frac{1}{4}$은 앞의 두 분수를 먼저 곱한 {$\\frac{1}{6}$}에 $\\frac{1}{4}$을 곱하여 {$\\frac{1}{24}$}로 계산할 수 있다.",
+      "cReason": "빈칸 '그 곱에 나머지'는 임의 구절이라 실제 식의 중간 곱과 결과를 쓰게 바꾸었다.",
+      "exclusionReason": "B만 제외한다. 대체 ID는 e5-2-2-4-c2, e5-2-2-4-xc14이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1221,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc3",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "세 분수를 차례로 곱하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "세 분수는 앞의 두 분수를 먼저 곱하고 {그 곱에 나머지}를 곱해도 된다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}\\times\\frac{1}{3}\\times\\frac{1}{4}$은?",
+          "answer": "$\\frac{1}{24}$"
+        },
+        "studentC": "세 분수는 앞의 두 분수를 먼저 곱하고 □를 곱해도 된다.",
+        "answers": [
+          "그 곱에 나머지"
+        ]
+      },
+      "sourceFingerprint": "6b1dafbcecd297eeb376e0bc04c09237cd9baec35d91f506ff2cb6346fa87d63",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{6}$",
+        "$\\frac{1}{24}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}\\times\\frac{1}{3}\\times\\frac{1}{4}$은 앞의 두 분수를 먼저 곱한 □에 $\\frac{1}{4}$을 곱하여 □로 계산할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{24}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{1}{2}\\times\\frac{1}{3}\\times\\frac{1}{4}$은 앞의 두 분수를 먼저 곱한 {$\\frac{1}{6}$}에 $\\frac{1}{4}$을 곱하여 {$\\frac{1}{24}$}로 계산할 수 있다.",
+      "cStudentSentence": "$\\frac{1}{2}\\times\\frac{1}{3}\\times\\frac{1}{4}$은 앞의 두 분수를 먼저 곱한 □에 $\\frac{1}{4}$을 곱하여 □로 계산할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{6}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{24}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}\\times\\frac{1}{3}\\times\\frac{1}{4}$은 앞의 두 분수를 먼저 곱한 {$\\frac{1}{6}$}에 $\\frac{1}{4}$을 곱하여 {$\\frac{1}{24}$}로 계산할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{6}$"
+          ],
+          [
+            "$\\frac{1}{24}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체 ID는 e5-2-2-4-c2, e5-2-2-4-xc14이다."
+      },
+      "proposalFingerprint": "66113da79ba3fc013ce06097e0bd3d0d3abb5583479a554cab3b1a92789feac6",
+      "questionRevision": "planning-e5e6-20261006-66113da79ba3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수와 분수의 곱셈에서 자연수도 분수처럼 분자끼리, 분모끼리 곱하려면 자연수를 어떤 분수로 나타내면 되는지 설명하고, $3\\times\\frac{2}{5}$를 그 방법으로 계산하시오.",
+      "bAnswer": "자연수를 분모가 $1$인 분수로 나타낸다. $\\frac{3}{1}\\times\\frac{2}{5}=\\frac{6}{5}=1\\frac{1}{5}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 $1$인 분수로 나타낸다",
+            "$3$을 $\\frac{3}{1}$으로 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{6}{5}$",
+            "$1\\frac{1}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수를 분모가 1인 분수로 보아 분수의 곱셈 방법에 맞춘다.",
+      "bReason": "'분모가 1'이라는 답을 질문에서 말하지 않고 어떤 분수인지 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "곱셈에서 자연수 $5$는 분모가 {$1$}인 분수 {$\\frac{5}{1}$}로 보고 다른 분수와 곱할 수 있다.",
+      "cReason": "구절 전체를 쓰던 빈칸을 분모의 값과 실제 분수 꼴로 나누어 짧게 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1222,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc4",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "자연수를 분수로 보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "곱셈에서 자연수는 {분모가 $1$인 분수}로 보고 다른 분수와 곱할 수 있다.",
+        "studentC": "곱셈에서 자연수는 □로 보고 다른 분수와 곱할 수 있다.",
+        "answers": [
+          "분모가 $1$인 분수"
+        ]
+      },
+      "sourceFingerprint": "6db71ed520d671214359233bae9df69f17cfa0e6354ece5270fa6dd7886eb595",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$\\frac{5}{1}$"
+      ],
+      "cStudentAfter": "곱셈에서 자연수 $5$는 분모가 □인 분수 □로 보고 다른 분수와 곱할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{1}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "곱셈에서 자연수 $5$는 분모가 {$1$}인 분수 {$\\frac{5}{1}$}로 보고 다른 분수와 곱할 수 있다.",
+      "cStudentSentence": "곱셈에서 자연수 $5$는 분모가 □인 분수 □로 보고 다른 분수와 곱할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{5}{1}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수와 분수의 곱셈에서 자연수도 분수처럼 분자끼리, 분모끼리 곱하려면 자연수를 어떤 분수로 나타내면 되는지 설명하고, $3\\times\\frac{2}{5}$를 그 방법으로 계산하시오.",
+        "answer": "자연수를 분모가 $1$인 분수로 나타낸다. $\\frac{3}{1}\\times\\frac{2}{5}=\\frac{6}{5}=1\\frac{1}{5}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 $1$인 분수로 나타낸다",
+              "$3$을 $\\frac{3}{1}$으로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{6}{5}$",
+              "$1\\frac{1}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "곱셈에서 자연수 $5$는 분모가 {$1$}인 분수 {$\\frac{5}{1}$}로 보고 다른 분수와 곱할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$\\frac{5}{1}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6b7531f158de813b74e60698da74dc201ce7df097e75ecd1156a566f6f98a7d7",
+      "questionRevision": "planning-e5e6-20261006-6b7531f158de",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc5",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "가분수로 나온 곱을 대분수로 바꾸어 나타낼 수 있다.",
+      "bReason": "가분수를 대분수로 바꾸는 것은 이전 학년 내용이라 이 소단원의 서술형으로 물을 것이 없다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{2}\\times\\frac{11}{6}=\\frac{11}{4}$처럼 곱이 가분수로 나오면 대분수 {$2\\frac{3}{4}$}으로 바꾸어 나타낼 수 있다.",
+      "cReason": "빈칸 '자연수가 아닌 가분수'는 외우기 어려운 조건 구절이라 실제 곱을 대분수로 바꾸게 했다.",
+      "exclusionReason": "B만 제외한다. 이전 학년 기능의 반복이며 대체 ID는 없다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1223,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc5",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "곱을 대분수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "{자연수가 아닌 가분수}로 나온 곱은 대분수로 바꾸어 나타낼 수 있다.",
+        "example": {
+          "prompt": "$\\frac{11}{4}$을 대분수로 나타내면?",
+          "answer": "$2\\frac{3}{4}$"
+        },
+        "studentC": "□로 나온 곱은 대분수로 바꾸어 나타낼 수 있다.",
+        "answers": [
+          "자연수가 아닌 가분수"
+        ]
+      },
+      "sourceFingerprint": "fcfce36c27446f491e06fedac54ae758d202b6536f5f665ef6b3ccd2abbabb8d",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$2\\frac{3}{4}$"
+      ],
+      "cStudentAfter": "$\\frac{3}{2}\\times\\frac{11}{6}=\\frac{11}{4}$처럼 곱이 가분수로 나오면 대분수 □으로 바꾸어 나타낼 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{3}{2}\\times\\frac{11}{6}=\\frac{11}{4}$처럼 곱이 가분수로 나오면 대분수 {$2\\frac{3}{4}$}으로 바꾸어 나타낼 수 있다.",
+      "cStudentSentence": "$\\frac{3}{2}\\times\\frac{11}{6}=\\frac{11}{4}$처럼 곱이 가분수로 나오면 대분수 □으로 바꾸어 나타낼 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2\\frac{3}{4}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{2}\\times\\frac{11}{6}=\\frac{11}{4}$처럼 곱이 가분수로 나오면 대분수 {$2\\frac{3}{4}$}으로 바꾸어 나타낼 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$2\\frac{3}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 이전 학년 기능의 반복이며 대체 ID는 없다."
+      },
+      "proposalFingerprint": "7d182d0882651b9664c9aa8191fa4904b8ca4107bf87d757a5e8c3fb5317b3c4",
+      "questionRevision": "planning-e5e6-20261006-7d182d088265",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc6",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대분수 곱셈을 가분수로 고치기, 약분하기, 곱하기의 차례로 계산한다.",
+      "bReason": "계산 차례는 c1의 B가 방법과 예로 묻고, 약분은 c3의 B가 다룬다.",
+      "cDecision": "keep",
+      "cAfter": "가분수로 고치기, {약분하기}, 곱하기의 차례로 계산한다.",
+      "cReason": "세 단계 가운데 가운데 단계인 '약분하기'만 짧게 채우는 문장이라 쓸모가 있다.",
+      "exclusionReason": "B만 제외한다. 대체 ID는 e5-2-2-4-c1, e5-2-2-4-c3이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'약분'도 옳은 답으로 본다.",
+      "sourceIndex": 1224,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc6",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "대분수 곱셈의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "가분수로 고치기, {약분하기}, 곱하기의 차례로 계산한다.",
+        "studentC": "가분수로 고치기, □, 곱하기의 차례로 계산한다.",
+        "answers": [
+          "약분하기"
+        ]
+      },
+      "sourceFingerprint": "f25e52b114f2fe44f7b644e79f5a554c0f2a46567fbb09d3ec0d750e1107db80",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cFrozenDefinition": "가분수로 고치기, {약분하기}, 곱하기의 차례로 계산한다.",
+      "cFrozenStudentSentence": "가분수로 고치기, □, 곱하기의 차례로 계산한다.",
+      "cProposedAnswers": [
+        "약분하기"
+      ],
+      "cStudentAfter": "가분수로 고치기, □, 곱하기의 차례로 계산한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약분하기"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가분수로 고치기, {약분하기}, 곱하기의 차례로 계산한다.",
+      "cStudentSentence": "가분수로 고치기, □, 곱하기의 차례로 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "약분하기",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가분수로 고치기, {약분하기}, 곱하기의 차례로 계산한다.",
+        "acceptedAnswers": [
+          [
+            "약분하기"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체 ID는 e5-2-2-4-c1, e5-2-2-4-c3이다."
+      },
+      "proposalFingerprint": "b16e9a0581ffc27987870bd32b8717b9825e5884957a70bc8145eb783766aa6a",
+      "questionRevision": "planning-e5e6-20261006-b16e9a0581ff",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc7",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 대분수를 가분수로 고쳐 곱할 때, 약분한 뒤의 분모가 어떻게 되면 곱이 자연수가 되는지 쓰고, $1\\frac{1}{3}\\times1\\frac{1}{2}$로 확인하시오.",
+      "bAnswer": "약분하여 분모가 모두 $1$이 되면 곱이 자연수가 된다. $\\frac{4}{3}\\times\\frac{3}{2}$에서 $3$끼리, $4$와 $2$를 약분하면 분모가 모두 $1$이 되어 곱은 $2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분하면 분모가 모두 $1$이 된다",
+            "분모가 분자와 모두 약분되어 없어진다",
+            "분자의 곱이 분모의 곱으로 나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$",
+            "$\\frac{4}{3}\\times\\frac{3}{2}=2$"
+          ]
+        }
+      ],
+      "bGoal": "곱이 자연수가 되는 조건을 약분한 뒤의 분모로 설명한다.",
+      "bReason": "원문의 '분모가 모두 약분되면'은 뜻이 흐려서 약분한 뒤 분모가 어떻게 되는지를 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{3}\\times1\\frac{1}{2}=\\frac{4}{3}\\times\\frac{3}{2}$에서 약분하면 분모가 모두 {$1$}이 되어 곱은 자연수 {$2$}가 된다.",
+      "cReason": "빈칸 구절을 분모의 값과 곱이라는 짧은 수로 바꾸어 조건을 분명히 했다.",
+      "coreAfter": "대분수들을 가분수로 고쳐 곱셈식에서 약분할 때, {분모가 모두 $1$이 되면} 곱이 자연수가 된다.",
+      "coreReason": "'분모가 모두 약분되면'은 초5 학생에게 뜻이 불명확하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "분모가 모두 약분된다는 말의 실제 결과1을 명시한다. 표적은 같은 자연수 결과의 조건이며 새 수식 포함 표적이므로 SRS 표적 유형 영향은 별도 검토 대상이다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1225,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc7",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "곱이 자연수가 되는 대분수 곱셈",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1\\frac{1}{3}\\times1\\frac{1}{2}$처럼 {분모가 모두 약분되면} 곱이 자연수가 된다.",
+        "studentC": "$1\\frac{1}{3}\\times1\\frac{1}{2}$처럼 □ 곱이 자연수가 된다.",
+        "answers": [
+          "분모가 모두 약분되면"
+        ]
+      },
+      "sourceFingerprint": "1a2dda3ab5bc8f0fa0b9fbc4ea8d025aa17650f52b80c50d46c1a29c6c9d88fe",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$2$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{3}\\times1\\frac{1}{2}=\\frac{4}{3}\\times\\frac{3}{2}$에서 약분하면 분모가 모두 □이 되어 곱은 자연수 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\frac{1}{3}\\times1\\frac{1}{2}=\\frac{4}{3}\\times\\frac{3}{2}$에서 약분하면 분모가 모두 {$1$}이 되어 곱은 자연수 {$2$}가 된다.",
+      "cStudentSentence": "$1\\frac{1}{3}\\times1\\frac{1}{2}=\\frac{4}{3}\\times\\frac{3}{2}$에서 약분하면 분모가 모두 □이 되어 곱은 자연수 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대분수를 가분수로 고쳐 곱할 때, 약분한 뒤의 분모가 어떻게 되면 곱이 자연수가 되는지 쓰고, $1\\frac{1}{3}\\times1\\frac{1}{2}$로 확인하시오.",
+        "answer": "약분하여 분모가 모두 $1$이 되면 곱이 자연수가 된다. $\\frac{4}{3}\\times\\frac{3}{2}$에서 $3$끼리, $4$와 $2$를 약분하면 분모가 모두 $1$이 되어 곱은 $2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "약분하면 분모가 모두 $1$이 된다",
+              "분모가 분자와 모두 약분되어 없어진다",
+              "분자의 곱이 분모의 곱으로 나누어떨어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$",
+              "$\\frac{4}{3}\\times\\frac{3}{2}=2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{3}\\times1\\frac{1}{2}=\\frac{4}{3}\\times\\frac{3}{2}$에서 약분하면 분모가 모두 {$1$}이 되어 곱은 자연수 {$2$}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "658431fdeb31d1cf3ea4cd68322433e43d8d6d9efe904dabb2a8972c60849148",
+      "questionRevision": "planning-e5e6-20261006-658431fdeb31",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc8",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수 부분끼리, 분수 부분끼리만 곱하는 계산이 틀림을 안다.",
+      "bReason": "틀리는 까닭은 xc19의 B가, 잘못 찾기는 xc25의 B가 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{2}\\times1\\frac{1}{3}$을 $2\\times1$과 $\\frac{1}{2}\\times\\frac{1}{3}$만 곱해 더하면 $2\\frac{1}{6}$이 되지만, 가분수로 고쳐 계산한 올바른 곱은 {$3\\frac{1}{3}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3\\frac{1}{3}$",
+            "$\\frac{10}{3}$"
+          ]
+        }
+      ],
+      "cReason": "'틀린다' 한 낱말은 문장만 봐도 짐작되므로 올바른 곱을 구해 잘못된 값과 견주게 했다.",
+      "exclusionReason": "B만 제외한다. 대체 ID는 e5-2-2-4-xc19, e5-2-2-4-xc25이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1226,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc8",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "부분끼리 곱하는 잘못",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$2\\frac{1}{2}\\times1\\frac{1}{3}$을 $2\\times1$과 $\\frac{1}{2}\\times\\frac{1}{3}$로 나누어 곱하면 {틀린다}.",
+        "studentC": "$2\\frac{1}{2}\\times1\\frac{1}{3}$을 $2\\times1$과 $\\frac{1}{2}\\times\\frac{1}{3}$로 나누어 곱하면 □.",
+        "answers": [
+          "틀린다"
+        ]
+      },
+      "sourceFingerprint": "d25fbd86a2da1286422183751a0339bb5d96eba05478ebba8c8fff9f4f45c979",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cProposedAnswers": [
+        "$3\\frac{1}{3}$"
+      ],
+      "cStudentAfter": "$2\\frac{1}{2}\\times1\\frac{1}{3}$을 $2\\times1$과 $\\frac{1}{2}\\times\\frac{1}{3}$만 곱해 더하면 $2\\frac{1}{6}$이 되지만, 가분수로 고쳐 계산한 올바른 곱은 □이다.",
+      "cMarkedSentence": "$2\\frac{1}{2}\\times1\\frac{1}{3}$을 $2\\times1$과 $\\frac{1}{2}\\times\\frac{1}{3}$만 곱해 더하면 $2\\frac{1}{6}$이 되지만, 가분수로 고쳐 계산한 올바른 곱은 {$3\\frac{1}{3}$}이다.",
+      "cStudentSentence": "$2\\frac{1}{2}\\times1\\frac{1}{3}$을 $2\\times1$과 $\\frac{1}{2}\\times\\frac{1}{3}$만 곱해 더하면 $2\\frac{1}{6}$이 되지만, 가분수로 고쳐 계산한 올바른 곱은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3\\frac{1}{3}$",
+          "equivalents": [
+            "$\\frac{10}{3}$"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{2}\\times1\\frac{1}{3}$을 $2\\times1$과 $\\frac{1}{2}\\times\\frac{1}{3}$만 곱해 더하면 $2\\frac{1}{6}$이 되지만, 가분수로 고쳐 계산한 올바른 곱은 {$3\\frac{1}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3\\frac{1}{3}$",
+            "$\\frac{10}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체 ID는 e5-2-2-4-xc19, e5-2-2-4-xc25이다."
+      },
+      "proposalFingerprint": "37745ea6360cd4775ea0082a61e4db65915109a7bfad9da3acb023cd0f38061e",
+      "questionRevision": "planning-e5e6-20261006-37745ea6360c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc9",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 대분수의 곱과, 두 대분수의 자연수 부분끼리만 곱한 값 중 어느 쪽이 더 큰지 쓰고 그 까닭을 두 대분수와 자연수 부분의 크기를 비교하여 설명하시오. $1\\frac{1}{2}\\times2\\frac{1}{2}$로 확인하시오.",
+      "bAnswer": "두 대분수의 곱이 더 크다. 각 대분수는 자기 자연수 부분보다 크기 때문이다. $1\\times2=2$이고 $1\\frac{1}{2}\\times2\\frac{1}{2}=3\\frac{3}{4}$이므로 곱이 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 대분수의 곱이 더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 대분수가 자기 자연수 부분보다 크다",
+            "더 큰 수끼리 곱하므로 곱도 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{3}{4}$이 $2$보다 크다",
+            "$\\frac{15}{4}$가 $2$보다 크다"
+          ]
+        }
+      ],
+      "bGoal": "대분수끼리의 곱을 자연수 부분끼리의 곱으로 어림해 크기를 비교한다.",
+      "bReason": "'어림하기'라는 제목 대신 무엇과 무엇을 비교하는지와 설명할 관계를 질문에 넣었다.",
+      "cDecision": "keep",
+      "cAfter": "대분수끼리의 곱은 두 대분수의 자연수 부분끼리의 곱보다 {크다}.",
+      "cReason": "비교하는 두 값이 문장에 드러나 있고 답 '크다'가 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1227,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc9",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "대분수끼리의 곱 어림하기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "대분수끼리의 곱은 두 대분수의 자연수 부분끼리의 곱보다 {크다}.",
+        "example": {
+          "prompt": "$1\\frac{1}{2}\\times2\\frac{1}{2}$이 $2$보다 큰 까닭은?",
+          "answer": "두 수가 $1$과 $2$보다 커서"
+        },
+        "studentC": "대분수끼리의 곱은 두 대분수의 자연수 부분끼리의 곱보다 □.",
+        "answers": [
+          "크다"
+        ]
+      },
+      "sourceFingerprint": "921eff644e65f63166c238572e24041c28fbab64103ebf7c564c7dde54c3bd5c",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cFrozenDefinition": "대분수끼리의 곱은 두 대분수의 자연수 부분끼리의 곱보다 {크다}.",
+      "cFrozenStudentSentence": "대분수끼리의 곱은 두 대분수의 자연수 부분끼리의 곱보다 □.",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "대분수끼리의 곱은 두 대분수의 자연수 부분끼리의 곱보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수끼리의 곱은 두 대분수의 자연수 부분끼리의 곱보다 {크다}.",
+      "cStudentSentence": "대분수끼리의 곱은 두 대분수의 자연수 부분끼리의 곱보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대분수의 곱과, 두 대분수의 자연수 부분끼리만 곱한 값 중 어느 쪽이 더 큰지 쓰고 그 까닭을 두 대분수와 자연수 부분의 크기를 비교하여 설명하시오. $1\\frac{1}{2}\\times2\\frac{1}{2}$로 확인하시오.",
+        "answer": "두 대분수의 곱이 더 크다. 각 대분수는 자기 자연수 부분보다 크기 때문이다. $1\\times2=2$이고 $1\\frac{1}{2}\\times2\\frac{1}{2}=3\\frac{3}{4}$이므로 곱이 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 대분수의 곱이 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 대분수가 자기 자연수 부분보다 크다",
+              "더 큰 수끼리 곱하므로 곱도 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\frac{3}{4}$이 $2$보다 크다",
+              "$\\frac{15}{4}$가 $2$보다 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수끼리의 곱은 두 대분수의 자연수 부분끼리의 곱보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9a259e2b306a688ee7de40e13a281742431781da249745a73a76a54f64e07b12",
+      "questionRevision": "planning-e5e6-20261006-9a259e2b306a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "진분수 세 개를 곱한 값은 곱한 세 분수 각각과 비교하여 크기가 어떠한지 쓰고, 어떤 수에 $1$보다 작은 수를 곱하면 값이 어떻게 되는지를 이용해 까닭을 설명하시오.",
+      "bAnswer": "곱은 세 분수 모두보다 작다. 곧 가장 작은 분수보다도 작다. 진분수는 $1$보다 작고, $1$보다 작은 수를 곱하면 값이 작아지기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 세 분수 모두보다 작다",
+            "곱은 가장 작은 분수보다도 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$보다 작은 수를 곱하면 값이 작아진다",
+            "진분수를 곱할 때마다 값이 줄어든다"
+          ]
+        }
+      ],
+      "bGoal": "진분수를 곱하면 값이 작아진다는 관계로 세 진분수의 곱의 크기를 판단한다.",
+      "bReason": "결론을 말하지 않고 비교할 대상과 설명에 쓸 관계만 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "진분수 셋을 곱하면 곱은 셋 중 가장 작은 분수보다도 {작다}.",
+      "cReason": "빈칸 '가장 작은 분수보다도'는 구절 암기라서 크기 비교 낱말 하나로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1228,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc12",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "진분수 셋을 곱한 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "진분수 셋을 곱하면 곱은 셋 중 {가장 작은 분수보다도} 작다.",
+        "studentC": "진분수 셋을 곱하면 곱은 셋 중 □ 작다.",
+        "answers": [
+          "가장 작은 분수보다도"
+        ]
+      },
+      "sourceFingerprint": "0587d757b06225a41aecefc5873c10f589fb8860bd55d95aa3f83cfe69378438",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "진분수 셋을 곱하면 곱은 셋 중 가장 작은 분수보다도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "진분수 셋을 곱하면 곱은 셋 중 가장 작은 분수보다도 {작다}.",
+      "cStudentSentence": "진분수 셋을 곱하면 곱은 셋 중 가장 작은 분수보다도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "진분수 세 개를 곱한 값은 곱한 세 분수 각각과 비교하여 크기가 어떠한지 쓰고, 어떤 수에 $1$보다 작은 수를 곱하면 값이 어떻게 되는지를 이용해 까닭을 설명하시오.",
+        "answer": "곱은 세 분수 모두보다 작다. 곧 가장 작은 분수보다도 작다. 진분수는 $1$보다 작고, $1$보다 작은 수를 곱하면 값이 작아지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 세 분수 모두보다 작다",
+              "곱은 가장 작은 분수보다도 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$보다 작은 수를 곱하면 값이 작아진다",
+              "진분수를 곱할 때마다 값이 줄어든다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "진분수 셋을 곱하면 곱은 셋 중 가장 작은 분수보다도 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "abb1a84f797eacb80126b0147d8a467545f2adb16cd409561a4e23fa6c73b1a8",
+      "questionRevision": "planning-e5e6-20261006-abb1a84f797e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc13",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수가 섞인 곱에서도 자연수와 분모를 약분할 수 있다.",
+      "bReason": "약분할 수 있는 수의 짝은 c3의 B가, 자연수를 분수로 보는 것은 xc4의 B가 이미 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "자연수가 섞인 세 수의 곱에서도 자연수와 다른 분수의 {분모}를 약분할 수 있다. $6\\times\\frac{2}{5}\\times\\frac{7}{9}$에서는 $6$과 $9$를 {$3$}으로 나눈다.",
+      "cReason": "구절 빈칸을 '분모' 한 낱말로 줄이고 실제 식에서 나누는 수를 확인하게 했다.",
+      "exclusionReason": "B만 제외한다. 대체 ID는 e5-2-2-4-c3, e5-2-2-4-xc4이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1229,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc13",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "자연수가 섞인 세 수의 곱",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수가 섞인 세 수의 곱에서도 자연수와 {다른 분수의 분모}를 약분할 수 있다.",
+        "studentC": "자연수가 섞인 세 수의 곱에서도 자연수와 □를 약분할 수 있다.",
+        "answers": [
+          "다른 분수의 분모"
+        ]
+      },
+      "sourceFingerprint": "0b71bb69bf597a68407e522fb25d435e0c0c0a690d699b2c5a35ca62d7556328",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cProposedAnswers": [
+        "분모",
+        "$3$"
+      ],
+      "cStudentAfter": "자연수가 섞인 세 수의 곱에서도 자연수와 다른 분수의 □를 약분할 수 있다. $6\\times\\frac{2}{5}\\times\\frac{7}{9}$에서는 $6$과 $9$를 □으로 나눈다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "자연수가 섞인 세 수의 곱에서도 자연수와 다른 분수의 {분모}를 약분할 수 있다. $6\\times\\frac{2}{5}\\times\\frac{7}{9}$에서는 $6$과 $9$를 {$3$}으로 나눈다.",
+      "cStudentSentence": "자연수가 섞인 세 수의 곱에서도 자연수와 다른 분수의 □를 약분할 수 있다. $6\\times\\frac{2}{5}\\times\\frac{7}{9}$에서는 $6$과 $9$를 □으로 나눈다.",
+      "cSlotAnswers": [
+        {
+          "key": "분모",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "자연수가 섞인 세 수의 곱에서도 자연수와 다른 분수의 {분모}를 약분할 수 있다. $6\\times\\frac{2}{5}\\times\\frac{7}{9}$에서는 $6$과 $9$를 {$3$}으로 나눈다.",
+        "acceptedAnswers": [
+          [
+            "분모"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체 ID는 e5-2-2-4-c3, e5-2-2-4-xc4이다."
+      },
+      "proposalFingerprint": "8a49cbfa560ea0620dab93b782093725150d0fecc370a4cab74515fbce2972a8",
+      "questionRevision": "planning-e5e6-20261006-8a49cbfa560e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc14",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "분수 세 개를 곱할 때 곱하는 순서를 바꾸면 결과가 어떻게 되는지 쓰시오. 그리고 $\\frac{3}{4}\\times\\frac{5}{7}\\times\\frac{4}{3}$를 간단히 계산하려면 어느 두 분수를 먼저 곱하면 좋은지와 그 까닭, 계산 결과를 쓰시오.",
+      "bAnswer": "순서를 바꾸어도 결과는 같다. $\\frac{3}{4}$과 $\\frac{4}{3}$를 먼저 곱하면 모두 약분되어 $1$이 되므로 결과는 $\\frac{5}{7}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "순서를 바꾸어도 결과가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$과 $\\frac{4}{3}$를 먼저 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 분수가 서로 약분되어 곱이 $1$이 된다",
+            "분자와 분모가 잘 약분된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{7}$"
+          ]
+        }
+      ],
+      "bGoal": "곱하는 순서를 바꾸어도 결과가 같음을 이용해 약분이 잘 되는 짝을 먼저 곱한다.",
+      "bReason": "원문의 두 문장인 순서의 성질과 쉬운 짝 고르기를 각각 묻고 원문 예에 적용하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "분수 세 개를 곱할 때 어느 두 수를 먼저 곱해도 결과가 같다. 계산을 간단히 하려면 분자와 분모가 잘 {약분}되는 두 수를 먼저 곱한다.",
+      "cReason": "순서를 바꾸어도 된다는 조건 뒤에 어떤 두 수를 고르는지를 '약분'으로 답하는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1230,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc14",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "곱하는 차례를 바꾸어 쉽게",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분수 세 개를 곱할 때 어느 두 수를 먼저 곱해도 결과가 같다. 계산을 간단히 하려면 분자와 분모가 잘 {약분}되는 두 수를 먼저 곱한다.",
+        "example": {
+          "prompt": "$\\frac{3}{4}\\times\\frac{5}{7}\\times\\frac{4}{3}$는?",
+          "answer": "$\\frac{5}{7}$"
+        },
+        "studentC": "분수 세 개를 곱할 때 어느 두 수를 먼저 곱해도 결과가 같다. 계산을 간단히 하려면 분자와 분모가 잘 □되는 두 수를 먼저 곱한다.",
+        "answers": [
+          "약분"
+        ]
+      },
+      "sourceFingerprint": "f825e829dc5013fcdea1ccb1df1a6164e44c458300ee0a2f54cd57a50bb5bf23",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bRequiredIdeas[1].anyOf[0]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "분수 세 개를 곱할 때 어느 두 수를 먼저 곱해도 결과가 같다. 계산을 간단히 하려면 분자와 분모가 잘 {약분}되는 두 수를 먼저 곱한다.",
+      "cFrozenStudentSentence": "분수 세 개를 곱할 때 어느 두 수를 먼저 곱해도 결과가 같다. 계산을 간단히 하려면 분자와 분모가 잘 □되는 두 수를 먼저 곱한다.",
+      "cProposedAnswers": [
+        "약분"
+      ],
+      "cStudentAfter": "분수 세 개를 곱할 때 어느 두 수를 먼저 곱해도 결과가 같다. 계산을 간단히 하려면 분자와 분모가 잘 □되는 두 수를 먼저 곱한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분수 세 개를 곱할 때 어느 두 수를 먼저 곱해도 결과가 같다. 계산을 간단히 하려면 분자와 분모가 잘 {약분}되는 두 수를 먼저 곱한다.",
+      "cStudentSentence": "분수 세 개를 곱할 때 어느 두 수를 먼저 곱해도 결과가 같다. 계산을 간단히 하려면 분자와 분모가 잘 □되는 두 수를 먼저 곱한다.",
+      "cSlotAnswers": [
+        {
+          "key": "약분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수 세 개를 곱할 때 곱하는 순서를 바꾸면 결과가 어떻게 되는지 쓰시오. 그리고 $\\frac{3}{4}\\times\\frac{5}{7}\\times\\frac{4}{3}$를 간단히 계산하려면 어느 두 분수를 먼저 곱하면 좋은지와 그 까닭, 계산 결과를 쓰시오.",
+        "answer": "순서를 바꾸어도 결과는 같다. $\\frac{3}{4}$과 $\\frac{4}{3}$를 먼저 곱하면 모두 약분되어 $1$이 되므로 결과는 $\\frac{5}{7}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "순서를 바꾸어도 결과가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$과 $\\frac{4}{3}$를 먼저 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 분수가 서로 약분되어 곱이 $1$이 된다",
+              "분자와 분모가 잘 약분된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{7}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분수 세 개를 곱할 때 어느 두 수를 먼저 곱해도 결과가 같다. 계산을 간단히 하려면 분자와 분모가 잘 {약분}되는 두 수를 먼저 곱한다.",
+        "acceptedAnswers": [
+          [
+            "약분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1249599c92081b308d02ff8bf5a448ff71118cde7b73d0e0691c697e2ccb2d0d",
+      "questionRevision": "planning-e5e6-20261006-1249599c9208",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc15",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "대분수끼리 곱한 값은 곱한 두 대분수 각각과 비교하여 크기가 어떠한지 쓰고, 대분수와 $1$의 크기를 비교하여 까닭을 설명하시오.",
+      "bAnswer": "곱은 두 대분수 모두보다 크다. 대분수는 $1$보다 크고, 어떤 수에 $1$보다 큰 수를 곱하면 값이 커지기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 두 대분수 모두보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대분수는 $1$보다 크고 $1$보다 큰 수를 곱하면 값이 커진다"
+          ]
+        }
+      ],
+      "bGoal": "1보다 큰 수를 곱하면 값이 커진다는 관계로 대분수끼리의 곱의 크기를 판단한다.",
+      "bReason": "xc9는 자연수 부분끼리의 곱과, 이 행은 곱한 대분수 자체와 비교하므로 따로 물었다.",
+      "cDecision": "keep",
+      "cAfter": "대분수끼리 곱하면 곱은 두 대분수보다 {크다}.",
+      "cReason": "곱과 두 대분수를 비교해 '크다'로 답하는 짧고 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1231,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc15",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "대분수끼리 곱한 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대분수끼리 곱하면 곱은 두 대분수보다 {크다}.",
+        "studentC": "대분수끼리 곱하면 곱은 두 대분수보다 □.",
+        "answers": [
+          "크다"
+        ]
+      },
+      "sourceFingerprint": "99be1bbe8ed5d6245e94cc9ad1fe169f1981cbfffa122ff3d61e82cd1ec1fa52",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cFrozenDefinition": "대분수끼리 곱하면 곱은 두 대분수보다 {크다}.",
+      "cFrozenStudentSentence": "대분수끼리 곱하면 곱은 두 대분수보다 □.",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "대분수끼리 곱하면 곱은 두 대분수보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수끼리 곱하면 곱은 두 대분수보다 {크다}.",
+      "cStudentSentence": "대분수끼리 곱하면 곱은 두 대분수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수끼리 곱한 값은 곱한 두 대분수 각각과 비교하여 크기가 어떠한지 쓰고, 대분수와 $1$의 크기를 비교하여 까닭을 설명하시오.",
+        "answer": "곱은 두 대분수 모두보다 크다. 대분수는 $1$보다 크고, 어떤 수에 $1$보다 큰 수를 곱하면 값이 커지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 두 대분수 모두보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대분수는 $1$보다 크고 $1$보다 큰 수를 곱하면 값이 커진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수끼리 곱하면 곱은 두 대분수보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0afd8efbd277ddb39aa3b9a13ee5d634613c1c65ed2b674dfc21336e2368881c",
+      "questionRevision": "planning-e5e6-20261006-0afd8efbd277",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "대분수에 진분수를 곱한 값은 처음 대분수와 비교하여 크기가 어떠한지 쓰고, 진분수와 $1$의 크기를 비교하여 까닭을 설명하시오. $2\\frac{1}{4}\\times\\frac{2}{3}$로 확인하시오.",
+      "bAnswer": "곱은 처음 대분수보다 작다. 진분수는 $1$보다 작고, $1$보다 작은 수를 곱하면 값이 작아지기 때문이다. $2\\frac{1}{4}\\times\\frac{2}{3}=1\\frac{1}{2}$로 $2\\frac{1}{4}$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 처음 대분수보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "진분수는 $1$보다 작고 $1$보다 작은 수를 곱하면 값이 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{1}{2}$",
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "bGoal": "진분수를 곱하면 원래 수보다 작아짐을 대분수의 경우에 적용한다.",
+      "bReason": "비교 대상인 '그 대분수'와 설명에 쓸 관계를 질문에 밝혔다.",
+      "cDecision": "keep",
+      "cAfter": "대분수에 진분수를 곱하면 곱은 그 대분수보다 {작다}.",
+      "cReason": "대분수에 진분수를 곱한 값과 그 대분수를 비교해 '작다'로 답하는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1232,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc16",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "대분수와 진분수 곱의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대분수에 진분수를 곱하면 곱은 그 대분수보다 {작다}.",
+        "studentC": "대분수에 진분수를 곱하면 곱은 그 대분수보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "f79f410ccb594da1b3ed74f2534af00dd8ff9c95e4a783af100865a409802422",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cFrozenDefinition": "대분수에 진분수를 곱하면 곱은 그 대분수보다 {작다}.",
+      "cFrozenStudentSentence": "대분수에 진분수를 곱하면 곱은 그 대분수보다 □.",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "대분수에 진분수를 곱하면 곱은 그 대분수보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수에 진분수를 곱하면 곱은 그 대분수보다 {작다}.",
+      "cStudentSentence": "대분수에 진분수를 곱하면 곱은 그 대분수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수에 진분수를 곱한 값은 처음 대분수와 비교하여 크기가 어떠한지 쓰고, 진분수와 $1$의 크기를 비교하여 까닭을 설명하시오. $2\\frac{1}{4}\\times\\frac{2}{3}$로 확인하시오.",
+        "answer": "곱은 처음 대분수보다 작다. 진분수는 $1$보다 작고, $1$보다 작은 수를 곱하면 값이 작아지기 때문이다. $2\\frac{1}{4}\\times\\frac{2}{3}=1\\frac{1}{2}$로 $2\\frac{1}{4}$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 처음 대분수보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "진분수는 $1$보다 작고 $1$보다 작은 수를 곱하면 값이 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\frac{1}{2}$",
+              "$\\frac{3}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수에 진분수를 곱하면 곱은 그 대분수보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7dc323e26923d9869543b010951b162a8316a6a0c0b7c23ef6a305c656e9be36",
+      "questionRevision": "planning-e5e6-20261006-7dc323e26923",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc17",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "‘$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$’을 구하려면 세 분수를 어떻게 계산해야 하는지 식으로 나타내고 값을 구하시오.",
+      "bAnswer": "세 분수를 모두 곱한다. $\\frac{1}{2}\\times\\frac{2}{3}\\times\\frac{3}{4}=\\frac{1}{4}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "세 분수를 모두 곱한다",
+            "$\\frac{1}{2}\\times\\frac{2}{3}\\times\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "'의'가 이어진 표현을 세 분수의 곱셈식으로 옮긴다.",
+      "bReason": "제목 \"'의'가 두 번 나올 때\"는 질문이 아니므로 실제 표현을 주고 식과 값을 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "‘$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$’은 세 분수를 모두 {곱한} 값이고, 그 값은 {$\\frac{1}{4}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱한",
+            "곱셈한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "cReason": "'모두 곱한'을 '곱한' 한 낱말로 줄이고 실제 값도 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1233,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc17",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "‘의’가 두 번 나올 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "‘$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$’은 세 분수를 {모두 곱한} 값이다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$은?",
+          "answer": "$\\frac{1}{4}$"
+        },
+        "studentC": "‘$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$’은 세 분수를 □ 값이다.",
+        "answers": [
+          "모두 곱한"
+        ]
+      },
+      "sourceFingerprint": "a20aa6e1ac7a4e3c75b87c3c1f291d8a37dbd4f73a853c9fc3aedf50a68a40da",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cProposedAnswers": [
+        "곱한",
+        "$\\frac{1}{4}$"
+      ],
+      "cStudentAfter": "‘$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$’은 세 분수를 모두 □ 값이고, 그 값은 □이다.",
+      "cMarkedSentence": "‘$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$’은 세 분수를 모두 {곱한} 값이고, 그 값은 {$\\frac{1}{4}$}이다.",
+      "cStudentSentence": "‘$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$’은 세 분수를 모두 □ 값이고, 그 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱한",
+          "equivalents": [
+            "곱셈한"
+          ]
+        },
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "‘$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$’을 구하려면 세 분수를 어떻게 계산해야 하는지 식으로 나타내고 값을 구하시오.",
+        "answer": "세 분수를 모두 곱한다. $\\frac{1}{2}\\times\\frac{2}{3}\\times\\frac{3}{4}=\\frac{1}{4}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세 분수를 모두 곱한다",
+              "$\\frac{1}{2}\\times\\frac{2}{3}\\times\\frac{3}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘$\\frac{1}{2}$의 $\\frac{2}{3}$의 $\\frac{3}{4}$’은 세 분수를 모두 {곱한} 값이고, 그 값은 {$\\frac{1}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "곱한",
+            "곱셈한"
+          ],
+          [
+            "$\\frac{1}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1aa56b9d40d8fc361559c3b65aa3e70c82b09860d2ad7ea2bf7a8f55100f992c",
+      "questionRevision": "planning-e5e6-20261006-1aa56b9d40d8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "대분수끼리 곱할 때 자연수 부분끼리 곱한 값과 분수 부분끼리 곱한 값만 더하면 올바른 곱보다 작아집니다. 어떤 곱이 빠졌기 때문인지 설명하시오.",
+      "bAnswer": "한 대분수의 자연수 부분과 다른 대분수의 분수 부분을 곱한 값 두 가지가 빠졌기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 부분과 다른 대분수의 분수 부분을 곱한 값이 빠진다",
+            "네 가지 곱 중 두 가지만 더했다"
+          ]
+        }
+      ],
+      "bGoal": "부분끼리만 곱하면 빠지는 곱이 무엇인지 설명한다.",
+      "bReason": "'빠지는 곱'이 무엇인지 구체적으로 말하게 해야 가분수로 고치는 까닭이 드러난다.",
+      "cDecision": "revise",
+      "cAfter": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 자연수 부분과 {분수} 부분을 곱한 값이 빠지므로, 대분수를 {가분수}로 고쳐 곱한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분수",
+            "진분수"
+          ]
+        },
+        {
+          "anyOf": [
+            "가분수"
+          ]
+        }
+      ],
+      "cReason": "'빠지는 곱'은 임의 구절이라 무엇이 빠지는지와 해결 방법을 낱말로 답하게 했다.",
+      "coreAfter": "대분수끼리 곱할 때 같은 부분끼리만 곱해 더하면, 한 수의 자연수 부분과 다른 수의 분수 부분을 곱한 값들이 빠진다. {가분수}로 고치면 각 수의 전체 양을 곱할 수 있다.",
+      "coreReason": "'빠지는 곱'이 무엇을 가리키는지 원문만으로는 알 수 없다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "빠지는 곱이라는 표적은 어떤 곱인지 답 범위가 없었다. 교차하는 두 부분의 곱을 일반 설명에 명시하고 표적은 이를 빠뜨리지 않는 정식 변환 이름 가분수로 정한다. 이유의 일반 뜻은 문장과 B에 보존한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1234,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc19",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "가분수로 고쳐 곱하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대분수를 그대로 부분끼리 곱하면 {빠지는 곱}이 생겨 가분수로 고쳐 곱한다.",
+        "studentC": "대분수를 그대로 부분끼리 곱하면 □이 생겨 가분수로 고쳐 곱한다.",
+        "answers": [
+          "빠지는 곱"
+        ]
+      },
+      "sourceFingerprint": "ea040bd51ae30482dcb93c7ffe24110d8e6954f9daabd21c2957b66a74ae41e9",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "분수",
+        "가분수"
+      ],
+      "cStudentAfter": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 자연수 부분과 □ 부분을 곱한 값이 빠지므로, 대분수를 □로 고쳐 곱한다.",
+      "cMarkedSentence": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 자연수 부분과 {분수} 부분을 곱한 값이 빠지므로, 대분수를 {가분수}로 고쳐 곱한다.",
+      "cStudentSentence": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 자연수 부분과 □ 부분을 곱한 값이 빠지므로, 대분수를 □로 고쳐 곱한다.",
+      "cSlotAnswers": [
+        {
+          "key": "분수",
+          "equivalents": [
+            "진분수"
+          ]
+        },
+        {
+          "key": "가분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수끼리 곱할 때 자연수 부분끼리 곱한 값과 분수 부분끼리 곱한 값만 더하면 올바른 곱보다 작아집니다. 어떤 곱이 빠졌기 때문인지 설명하시오.",
+        "answer": "한 대분수의 자연수 부분과 다른 대분수의 분수 부분을 곱한 값 두 가지가 빠졌기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분과 다른 대분수의 분수 부분을 곱한 값이 빠진다",
+              "네 가지 곱 중 두 가지만 더했다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수끼리 곱할 때 자연수 부분끼리, 분수 부분끼리만 곱해 더하면 자연수 부분과 {분수} 부분을 곱한 값이 빠지므로, 대분수를 {가분수}로 고쳐 곱한다.",
+        "acceptedAnswers": [
+          [
+            "분수",
+            "진분수"
+          ],
+          [
+            "가분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "87cafc97c50dd7bd3cd2feab7c228336d392662690cfb81473d7060996587daf",
+      "questionRevision": "planning-e5e6-20261006-87cafc97c50d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc24",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "곱이 $1$이 되는 두 분수는 분자와 분모가 서로 어떤 관계인지 설명하고, $\\frac{3}{4}$에 곱해서 $1$이 되는 분수를 쓰시오.",
+      "bAnswer": "한 분수의 분자와 분모를 서로 바꾼 것이 다른 분수이다. $\\frac{3}{4}$에는 $\\frac{4}{3}$를 곱하면 $1$이 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 분수의 분자와 분모를 서로 바꾸면 다른 분수가 된다",
+            "한 분수의 분자가 다른 분수의 분모와 같고 분모는 분자와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{3}$",
+            "$1\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "분자와 분모를 서로 바꾼 두 분수의 곱이 1임을 안다.",
+      "bReason": "초5는 '역수'를 배우지 않았으므로 분자와 분모의 관계로 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{4}\\times\\frac{4}{3}$처럼 분자와 분모를 서로 바꾼 두 분수의 곱은 {$1$}이다. $\\frac{2}{5}$에 {$\\frac{5}{2}$}를 곱해도 곱이 $1$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{2}$",
+            "$2\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸 대신 곱의 값과 다른 분수에 적용한 짝을 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1235,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc24",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "곱이 $1$이 되는 두 분수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\frac{3}{4}\\times\\frac{4}{3}$처럼 {분자와 분모를 서로 바꾼} 두 분수의 곱은 $1$이다.",
+        "studentC": "$\\frac{3}{4}\\times\\frac{4}{3}$처럼 □ 두 분수의 곱은 $1$이다.",
+        "answers": [
+          "분자와 분모를 서로 바꾼"
+        ]
+      },
+      "sourceFingerprint": "a8032588c9618862942fc7b98b8f4466bd5f583a14940a2c4066ba42ad828b40",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$1$",
+        "$\\frac{5}{2}$"
+      ],
+      "cStudentAfter": "$\\frac{3}{4}\\times\\frac{4}{3}$처럼 분자와 분모를 서로 바꾼 두 분수의 곱은 □이다. $\\frac{2}{5}$에 □를 곱해도 곱이 $1$이다.",
+      "cMarkedSentence": "$\\frac{3}{4}\\times\\frac{4}{3}$처럼 분자와 분모를 서로 바꾼 두 분수의 곱은 {$1$}이다. $\\frac{2}{5}$에 {$\\frac{5}{2}$}를 곱해도 곱이 $1$이다.",
+      "cStudentSentence": "$\\frac{3}{4}\\times\\frac{4}{3}$처럼 분자와 분모를 서로 바꾼 두 분수의 곱은 □이다. $\\frac{2}{5}$에 □를 곱해도 곱이 $1$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{5}{2}$",
+          "equivalents": [
+            "$2\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "곱이 $1$이 되는 두 분수는 분자와 분모가 서로 어떤 관계인지 설명하고, $\\frac{3}{4}$에 곱해서 $1$이 되는 분수를 쓰시오.",
+        "answer": "한 분수의 분자와 분모를 서로 바꾼 것이 다른 분수이다. $\\frac{3}{4}$에는 $\\frac{4}{3}$를 곱하면 $1$이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 분수의 분자와 분모를 서로 바꾸면 다른 분수가 된다",
+              "한 분수의 분자가 다른 분수의 분모와 같고 분모는 분자와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{4}{3}$",
+              "$1\\frac{1}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{4}\\times\\frac{4}{3}$처럼 분자와 분모를 서로 바꾼 두 분수의 곱은 {$1$}이다. $\\frac{2}{5}$에 {$\\frac{5}{2}$}를 곱해도 곱이 $1$이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$\\frac{5}{2}$",
+            "$2\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6d12c3d7971fe5b0275d499fac5f3a658a47595242a63edbcb7efbb240615c08",
+      "questionRevision": "planning-e5e6-20261006-6d12c3d7971f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-4-xc25",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "어떤 학생이 $1\\frac{1}{2}\\times1\\frac{1}{2}$을 $1\\times1=1$과 $\\frac{1}{2}\\times\\frac{1}{2}=\\frac{1}{4}$을 더해 $1\\frac{1}{4}$이라고 답했습니다. 이 계산에서 빠진 곱셈을 찾아 쓰고, 올바른 답을 구하시오.",
+      "bAnswer": "$1\\times\\frac{1}{2}$이 두 번 빠졌다. 올바른 답은 $\\frac{3}{2}\\times\\frac{3}{2}=\\frac{9}{4}=2\\frac{1}{4}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\times\\frac{1}{2}$이 빠졌다",
+            "자연수 부분과 분수 부분을 곱한 값이 빠졌다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{4}$",
+            "$\\frac{9}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "잘못된 대분수 곱셈에서 빠진 곱을 찾고 바르게 고친다.",
+      "bReason": "원문의 잘못된 답 $1\\frac{1}{4}$을 그대로 써서 xc19의 일반 까닭을 실제 오류에 적용하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{2}\\times1\\frac{1}{2}$을 $1\\times1$과 $\\frac{1}{2}\\times\\frac{1}{2}$만 더해 $1\\frac{1}{4}$이라고 하면, $1\\times\\frac{1}{2}$이 {$2$}번 빠져서 올바른 곱 {$2\\frac{1}{4}$}보다 {$1$}만큼 작다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{4}$",
+            "$\\frac{9}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cReason": "빈칸 '같은 부분끼리만'은 임의 구절이라 빠진 횟수와 올바른 곱, 차이를 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1236,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-4-xc25",
+        "section": "초5::2-2 분수의 곱셈::2-2-4 여러 가지 분수의 곱셈",
+        "term": "대분수 곱셈의 잘못 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$1\\frac{1}{2}\\times1\\frac{1}{2}$에서 두 대분수를 {같은 부분끼리만} 곱해 더하면 잘못된 답 $1\\frac{1}{4}$이 나온다.",
+        "studentC": "$1\\frac{1}{2}\\times1\\frac{1}{2}$에서 두 대분수를 □ 곱해 더하면 잘못된 답 $1\\frac{1}{4}$이 나온다.",
+        "answers": [
+          "같은 부분끼리만"
+        ]
+      },
+      "sourceFingerprint": "cf8e966ad44530cba5cf7c95c039b2c5f090b6a9ef51d2c088873911f54c7712",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$2\\frac{1}{4}$",
+        "$1$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{2}\\times1\\frac{1}{2}$을 $1\\times1$과 $\\frac{1}{2}\\times\\frac{1}{2}$만 더해 $1\\frac{1}{4}$이라고 하면, $1\\times\\frac{1}{2}$이 □번 빠져서 올바른 곱 □보다 □만큼 작다.",
+      "cMarkedSentence": "$1\\frac{1}{2}\\times1\\frac{1}{2}$을 $1\\times1$과 $\\frac{1}{2}\\times\\frac{1}{2}$만 더해 $1\\frac{1}{4}$이라고 하면, $1\\times\\frac{1}{2}$이 {$2$}번 빠져서 올바른 곱 {$2\\frac{1}{4}$}보다 {$1$}만큼 작다.",
+      "cStudentSentence": "$1\\frac{1}{2}\\times1\\frac{1}{2}$을 $1\\times1$과 $\\frac{1}{2}\\times\\frac{1}{2}$만 더해 $1\\frac{1}{4}$이라고 하면, $1\\times\\frac{1}{2}$이 □번 빠져서 올바른 곱 □보다 □만큼 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두"
+          ]
+        },
+        {
+          "key": "$2\\frac{1}{4}$",
+          "equivalents": [
+            "$\\frac{9}{4}$"
+          ]
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 학생이 $1\\frac{1}{2}\\times1\\frac{1}{2}$을 $1\\times1=1$과 $\\frac{1}{2}\\times\\frac{1}{2}=\\frac{1}{4}$을 더해 $1\\frac{1}{4}$이라고 답했습니다. 이 계산에서 빠진 곱셈을 찾아 쓰고, 올바른 답을 구하시오.",
+        "answer": "$1\\times\\frac{1}{2}$이 두 번 빠졌다. 올바른 답은 $\\frac{3}{2}\\times\\frac{3}{2}=\\frac{9}{4}=2\\frac{1}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\times\\frac{1}{2}$이 빠졌다",
+              "자연수 부분과 분수 부분을 곱한 값이 빠졌다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{1}{4}$",
+              "$\\frac{9}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{2}\\times1\\frac{1}{2}$을 $1\\times1$과 $\\frac{1}{2}\\times\\frac{1}{2}$만 더해 $1\\frac{1}{4}$이라고 하면, $1\\times\\frac{1}{2}$이 {$2$}번 빠져서 올바른 곱 {$2\\frac{1}{4}$}보다 {$1$}만큼 작다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ],
+          [
+            "$2\\frac{1}{4}$",
+            "$\\frac{9}{4}$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b25019d1d2402c388388076fff6d5618dc21b54c4a783d4f8d23bd4e603e6635",
+      "questionRevision": "planning-e5e6-20261006-b25019d1d240",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc1",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "합동의 조건인 모양과 크기를 안다.",
+      "bReason": "c1의 합동의 뜻 질문과 답이 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c2 문장과 사실상 같고, '둘 다'가 빈칸의 답 개수를 알려 준다.",
+      "exclusionReason": "B·C 모두 중복: B는 e5-2-3-1-c1, C는 e5-2-3-1-c2로 대체.",
+      "exampleNeeded": false,
+      "sourceIndex": 1237,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc1",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동의 두 조건",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 도형이 합동이려면 {모양과 크기}가 둘 다 같아야 한다.",
+        "studentC": "두 도형이 합동이려면 □가 둘 다 같아야 한다.",
+        "answers": [
+          "모양과 크기"
+        ]
+      },
+      "sourceFingerprint": "ae767877f7137f404002c8d50abf226801eeb163cbcb07844969c802a27dc52a",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 모두 중복: B는 e5-2-3-1-c1, C는 e5-2-3-1-c2로 대체.",
+        "cloze": "B·C 모두 중복: B는 e5-2-3-1-c1, C는 e5-2-3-1-c2로 대체."
+      },
+      "proposalFingerprint": "2de4807d83e8a8b367becf5b6900d10bff67521cc27e7fd6b6fde868fd2963a6",
+      "questionRevision": "planning-e5e6-20261006-2de4807d83e8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc2",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "종이에 그려진 두 도형이 합동인지 직접 확인하려면 어떻게 하면 되는지 쓰고, 어떤 결과가 나오면 합동인지 설명하시오.",
+      "bAnswer": "한 도형을 오리거나 투명 종이에 본떠서 다른 도형 위에 포개어 본다. 완전히 겹치면 두 도형은 합동이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 도형을 다른 도형 위에 포개어 본다",
+            "본뜨거나 오려서 겹쳐 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "완전히 겹치면 합동이다",
+            "남거나 모자라는 부분 없이 겹치면 합동이다"
+          ]
+        }
+      ],
+      "bGoal": "포개어 보는 확인 방법과 판단 기준을 말한다.",
+      "bReason": "방법과 판단 결과를 나누어 물어 답의 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "두 도형이 합동인지 알아보려면 한 도형을 다른 도형 위에 {포개어} 보고, 완전히 {겹치는지} 확인한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "포개어",
+            "겹쳐",
+            "올려"
+          ]
+        },
+        {
+          "anyOf": [
+            "겹치는지",
+            "포개어지는지"
+          ]
+        }
+      ],
+      "cReason": "원문의 긴 구절 빈칸을 행동과 확인 기준을 나타내는 두 낱말로 나누었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1238,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc2",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "포개어 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "합동인지 알아보려면 한 도형을 {다른 도형 위에 포개어} 본다.",
+        "studentC": "합동인지 알아보려면 한 도형을 □ 본다.",
+        "answers": [
+          "다른 도형 위에 포개어"
+        ]
+      },
+      "sourceFingerprint": "2c473a7dbe73678d24748ab1c5e1c06d6b6cb40c4d875b1d502ecacad473f923",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "포개어",
+        "겹치는지"
+      ],
+      "cStudentAfter": "두 도형이 합동인지 알아보려면 한 도형을 다른 도형 위에 □ 보고, 완전히 □ 확인한다.",
+      "cMarkedSentence": "두 도형이 합동인지 알아보려면 한 도형을 다른 도형 위에 {포개어} 보고, 완전히 {겹치는지} 확인한다.",
+      "cStudentSentence": "두 도형이 합동인지 알아보려면 한 도형을 다른 도형 위에 □ 보고, 완전히 □ 확인한다.",
+      "cSlotAnswers": [
+        {
+          "key": "포개어",
+          "equivalents": [
+            "겹쳐",
+            "올려"
+          ]
+        },
+        {
+          "key": "겹치는지",
+          "equivalents": [
+            "포개어지는지"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "종이에 그려진 두 도형이 합동인지 직접 확인하려면 어떻게 하면 되는지 쓰고, 어떤 결과가 나오면 합동인지 설명하시오.",
+        "answer": "한 도형을 오리거나 투명 종이에 본떠서 다른 도형 위에 포개어 본다. 완전히 겹치면 두 도형은 합동이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 도형을 다른 도형 위에 포개어 본다",
+              "본뜨거나 오려서 겹쳐 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "완전히 겹치면 합동이다",
+              "남거나 모자라는 부분 없이 겹치면 합동이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 도형이 합동인지 알아보려면 한 도형을 다른 도형 위에 {포개어} 보고, 완전히 {겹치는지} 확인한다.",
+        "acceptedAnswers": [
+          [
+            "포개어",
+            "겹쳐",
+            "올려"
+          ],
+          [
+            "겹치는지",
+            "포개어지는지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "aa2b57822a20bbfb3a3cf6459e5fb3fdb17ed6d4da95b3d922d57da9ea912ddd",
+      "questionRevision": "planning-e5e6-20261006-aa2b57822a20",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc3",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "뒤집어 놓은 도형도 처음 도형과 합동임을 안다.",
+      "bReason": "옮기고 돌려 놓은 경우를 묻는 xc26 B와 같은 까닭이라 따로 물을 가치가 낮다.",
+      "cDecision": "keep",
+      "cAfter": "한 도형을 뒤집어 놓아도 처음 도형과 {합동}이다.",
+      "cReason": "뒤집는다는 조건이 분명하고 답이 '합동' 한 낱말이다.",
+      "exclusionReason": "B 중복: e5-2-3-1-xc26으로 대체.",
+      "exampleNeeded": false,
+      "sourceIndex": 1239,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc3",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "뒤집어 놓은 도형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 도형을 뒤집어 놓아도 처음 도형과 {합동}이다.",
+        "studentC": "한 도형을 뒤집어 놓아도 처음 도형과 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "a1c601463fb84f7f2994d144a4baf1d3629006bc02e1343e67c3273415927a3f",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "한 도형을 뒤집어 놓아도 처음 도형과 {합동}이다.",
+      "cFrozenStudentSentence": "한 도형을 뒤집어 놓아도 처음 도형과 □이다.",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "한 도형을 뒤집어 놓아도 처음 도형과 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 도형을 뒤집어 놓아도 처음 도형과 {합동}이다.",
+      "cStudentSentence": "한 도형을 뒤집어 놓아도 처음 도형과 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 도형을 뒤집어 놓아도 처음 도형과 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-3-1-xc26으로 대체."
+      },
+      "proposalFingerprint": "709faf12f035ad30d35ca5d49f35e5802e2c37602c306470d8d22013d6ca9beb",
+      "questionRevision": "planning-e5e6-20261006-709faf12f035",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc4",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "돌려 놓아도 모양과 크기가 변하지 않음을 안다.",
+      "bReason": "xc26 B가 돌려 놓은 경우와 그 까닭을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "한 도형을 돌려 놓아도 {모양}과 {크기}가 변하지 않으므로 처음 도형과 합동이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모양",
+            "크기"
+          ]
+        },
+        {
+          "anyOf": [
+            "크기",
+            "모양"
+          ]
+        }
+      ],
+      "cReason": "'모양과 크기' 한 덩어리 빈칸을 순서와 관계없는 두 낱말 빈칸으로 나누었다.",
+      "exclusionReason": "B 중복: e5-2-3-1-xc26으로 대체.",
+      "exampleNeeded": false,
+      "sourceIndex": 1240,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc4",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "돌려 놓은 도형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 도형을 돌려 놓아도 {모양과 크기}가 그대로라서 처음 도형과 합동이다.",
+        "studentC": "한 도형을 돌려 놓아도 □가 그대로라서 처음 도형과 합동이다.",
+        "answers": [
+          "모양과 크기"
+        ]
+      },
+      "sourceFingerprint": "aac1e681ca6be16fa9b57ca57d6bf9c7a979fc62fed146cab6d27d558d6634e1",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "모양",
+        "크기"
+      ],
+      "cStudentAfter": "한 도형을 돌려 놓아도 □과 □가 변하지 않으므로 처음 도형과 합동이다.",
+      "cMarkedSentence": "한 도형을 돌려 놓아도 {모양}과 {크기}가 변하지 않으므로 처음 도형과 합동이다.",
+      "cStudentSentence": "한 도형을 돌려 놓아도 □과 □가 변하지 않으므로 처음 도형과 합동이다.",
+      "cSlotAnswers": [
+        {
+          "key": "모양",
+          "equivalents": [
+            "크기"
+          ]
+        },
+        {
+          "key": "크기",
+          "equivalents": [
+            "모양"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 도형을 돌려 놓아도 {모양}과 {크기}가 변하지 않으므로 처음 도형과 합동이다.",
+        "acceptedAnswers": [
+          [
+            "모양",
+            "크기"
+          ],
+          [
+            "크기",
+            "모양"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-3-1-xc26으로 대체."
+      },
+      "proposalFingerprint": "bce36825e8cf739715ff98b9b2b3980f468b5ac0615f3374909bbd5453a7c935",
+      "questionRevision": "planning-e5e6-20261006-bce36825e8cf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "한 변의 길이가 같은 두 정사각형은 항상 합동인지 쓰고, 정사각형의 변과 각의 성질을 이용해 그 까닭을 설명하시오.",
+      "bAnswer": "항상 합동이다. 정사각형은 네 변의 길이가 모두 같고 네 각이 모두 직각이므로, 한 변의 길이가 같으면 모든 변과 각이 같아서 포개었을 때 완전히 겹친다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 합동이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정사각형은 네 변의 길이가 모두 같고 네 각이 모두 직각이다",
+            "한 변이 같으면 나머지 변과 각도 모두 같아 완전히 겹친다"
+          ]
+        }
+      ],
+      "bGoal": "한 변의 길이만으로 정사각형의 합동이 정해지는 까닭을 설명한다.",
+      "bReason": "원문 예제는 값만 묻기 때문에 변과 각의 성질로 까닭을 묻게 바꾸었다.",
+      "cDecision": "keep",
+      "cAfter": "한 변의 길이가 같은 두 정사각형은 서로 {합동}이다.",
+      "cReason": "한 변의 길이가 같다는 조건이 분명한 짧은 판단 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1241,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc5",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "한 변이 같은 정사각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 변의 길이가 같은 두 정사각형은 서로 {합동}이다.",
+        "example": {
+          "prompt": "한 변이 $4\\,\\mathrm{cm}$인 정사각형과 합동인 정사각형의 한 변은?",
+          "answer": "$4\\,\\mathrm{cm}$"
+        },
+        "studentC": "한 변의 길이가 같은 두 정사각형은 서로 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "c84e9e054048c934d8da2c8e075dba539d0c0465e32f30d3bb064c00368ee3f0",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "한 변의 길이가 같은 두 정사각형은 서로 {합동}이다.",
+      "cFrozenStudentSentence": "한 변의 길이가 같은 두 정사각형은 서로 □이다.",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "한 변의 길이가 같은 두 정사각형은 서로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 변의 길이가 같은 두 정사각형은 서로 {합동}이다.",
+      "cStudentSentence": "한 변의 길이가 같은 두 정사각형은 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 변의 길이가 같은 두 정사각형은 항상 합동인지 쓰고, 정사각형의 변과 각의 성질을 이용해 그 까닭을 설명하시오.",
+        "answer": "항상 합동이다. 정사각형은 네 변의 길이가 모두 같고 네 각이 모두 직각이므로, 한 변의 길이가 같으면 모든 변과 각이 같아서 포개었을 때 완전히 겹친다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정사각형은 네 변의 길이가 모두 같고 네 각이 모두 직각이다",
+              "한 변이 같으면 나머지 변과 각도 모두 같아 완전히 겹친다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 변의 길이가 같은 두 정사각형은 서로 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dc7d6cfb6f4563f97a537aae17b1d10c52c31bf6f7a92b178d23c6d520a82829",
+      "questionRevision": "planning-e5e6-20261006-dc7d6cfb6f45",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 원이 합동인지 알아보려면 무엇을 비교하면 되는지 쓰고, 그것만 비교해도 되는 까닭을 설명하시오.",
+      "bAnswer": "반지름(또는 지름)의 길이를 비교한다. 원은 모양이 모두 같아서 반지름이 같으면 크기도 같아 포개었을 때 완전히 겹친다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반지름을 비교한다",
+            "지름을 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "원은 모양이 모두 같다",
+            "반지름이 같으면 크기가 같아 완전히 겹친다"
+          ]
+        }
+      ],
+      "bGoal": "원은 반지름으로 크기가 정해져 합동을 판단할 수 있음을 설명한다.",
+      "bReason": "결론을 말해 주지 않도록 비교할 대상을 스스로 쓰게 했다.",
+      "cDecision": "keep",
+      "cAfter": "반지름이 같은 두 원은 서로 {합동}이다.",
+      "cReason": "반지름이 같다는 조건에서 합동을 판단하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "B에서 반지름과 지름은 모두 인정한다.",
+      "sourceIndex": 1242,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc6",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "반지름이 같은 원",
+        "kind": "성질",
+        "level": "하",
+        "definition": "반지름이 같은 두 원은 서로 {합동}이다.",
+        "studentC": "반지름이 같은 두 원은 서로 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "fcdca45281b6b7339f838c388670496b2ff75347a3b04a3c6a765063de9f889c",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "반지름이 같은 두 원은 서로 {합동}이다.",
+      "cFrozenStudentSentence": "반지름이 같은 두 원은 서로 □이다.",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "반지름이 같은 두 원은 서로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "반지름이 같은 두 원은 서로 {합동}이다.",
+      "cStudentSentence": "반지름이 같은 두 원은 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 원이 합동인지 알아보려면 무엇을 비교하면 되는지 쓰고, 그것만 비교해도 되는 까닭을 설명하시오.",
+        "answer": "반지름(또는 지름)의 길이를 비교한다. 원은 모양이 모두 같아서 반지름이 같으면 크기도 같아 포개었을 때 완전히 겹친다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반지름을 비교한다",
+              "지름을 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원은 모양이 모두 같다",
+              "반지름이 같으면 크기가 같아 완전히 겹친다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "반지름이 같은 두 원은 서로 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "62af54829d8dad7f0ffb16cfd70412440dac6eebf9f73394059a15f65fcc2fb5",
+      "questionRevision": "planning-e5e6-20261006-62af54829d8d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc7",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "겹쳐 오린 두 조각이 합동임을 안다.",
+      "bReason": "활동 결과 하나를 확인하는 내용이라 서술형으로 물을 것이 없다.",
+      "cDecision": "keep",
+      "cAfter": "종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 {합동}이다.",
+      "cReason": "겹쳐 오리는 상황이 문장에 다 있고 답이 '합동' 한 낱말이다.",
+      "exclusionReason": "B는 사소한 활동 사실이며, 포개어 겹침의 뜻은 e5-2-3-1-c1에서 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1243,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc7",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "겹쳐 오린 조각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 {합동}이다.",
+        "studentC": "종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "44dc2d80f3a9af5bc003ccf1943590f1b1d61e606540283d1b08a634715a91f2",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 {합동}이다.",
+      "cFrozenStudentSentence": "종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 □이다.",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 {합동}이다.",
+      "cStudentSentence": "종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "종이 두 장을 겹쳐 한꺼번에 오린 두 조각은 서로 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 사소한 활동 사실이며, 포개어 겹침의 뜻은 e5-2-3-1-c1에서 확인한다."
+      },
+      "proposalFingerprint": "f4b688434b50ff6d71aba8241a9304c6318503d936612f15d40eca74d44f5ae7",
+      "questionRevision": "planning-e5e6-20261006-f4b688434b50",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "모양이 같은 두 도형은 항상 합동인지 쓰고, 한 변이 $2\\,\\mathrm{cm}$인 정사각형과 한 변이 $3\\,\\mathrm{cm}$인 정사각형을 예로 들어 그 까닭을 설명하시오.",
+      "bAnswer": "항상 합동인 것은 아니다. 두 정사각형은 모양은 같지만 크기가 달라서 포개어도 완전히 겹치지 않으므로 합동이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 합동인 것은 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "크기가 다르다",
+            "변의 길이가 다르다",
+            "포개어도 완전히 겹치지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "모양만 같고 크기가 다르면 합동이 아님을 예로 설명한다.",
+      "bReason": "크기가 다른 두 정사각형을 주어 일반 판단과 까닭을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "모양이 같아도 {크기}가 다르면 서로 합동이 아니다.",
+      "cReason": "'크기가 다르면' 구절 대신 핵심 낱말 하나만 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1244,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc8",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "크기가 다른 같은 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모양이 같아도 {크기가 다르면} 서로 합동이 아니다.",
+        "studentC": "모양이 같아도 □ 서로 합동이 아니다.",
+        "answers": [
+          "크기가 다르면"
+        ]
+      },
+      "sourceFingerprint": "48c9d36a2c39c6513906d677a614f063e7fb3b9f2ced1e7a7fb3d2f8855a8730",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "크기"
+      ],
+      "cStudentAfter": "모양이 같아도 □가 다르면 서로 합동이 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크기"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "모양이 같아도 {크기}가 다르면 서로 합동이 아니다.",
+      "cStudentSentence": "모양이 같아도 □가 다르면 서로 합동이 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "크기",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모양이 같은 두 도형은 항상 합동인지 쓰고, 한 변이 $2\\,\\mathrm{cm}$인 정사각형과 한 변이 $3\\,\\mathrm{cm}$인 정사각형을 예로 들어 그 까닭을 설명하시오.",
+        "answer": "항상 합동인 것은 아니다. 두 정사각형은 모양은 같지만 크기가 달라서 포개어도 완전히 겹치지 않으므로 합동이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 합동인 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "크기가 다르다",
+              "변의 길이가 다르다",
+              "포개어도 완전히 겹치지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모양이 같아도 {크기}가 다르면 서로 합동이 아니다.",
+        "acceptedAnswers": [
+          [
+            "크기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "02ae358be4d7a82c44a44c17b298239e74d5d9e766334e96f94a37a91410c348",
+      "questionRevision": "planning-e5e6-20261006-02ae358be4d7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc9",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "모양과 크기가 같은 도형끼리 합동임을 이용해 찾는다.",
+      "bReason": "실제 도형 그림 없이 물으면 c1의 합동의 뜻을 되묻는 것과 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '모양과 크기가 같은'이 c2와 겹치고 찾기 활동은 그림이 있어야 뜻이 있다.",
+      "exclusionReason": "B·C 중복: e5-2-3-1-c1, e5-2-3-1-c2로 대체. 살리려면 여러 도형 그림이 필요하다.",
+      "exampleNeeded": true,
+      "exampleReason": "합동인 짝을 찾게 하려면 모눈 위에 그린 도형 5~6개의 그림이 있어야 한다.",
+      "sourceIndex": 1245,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc9",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동인 도형 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "여러 도형 가운데 {모양과 크기가 같은} 것끼리 짝지으면 합동인 도형을 찾을 수 있다.",
+        "studentC": "여러 도형 가운데 □ 것끼리 짝지으면 합동인 도형을 찾을 수 있다.",
+        "answers": [
+          "모양과 크기가 같은"
+        ]
+      },
+      "sourceFingerprint": "3301b1f56ad8b400d2d23496a8c54d08ad43a171fe122f17b137f0cd6ba37462",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 중복: e5-2-3-1-c1, e5-2-3-1-c2로 대체. 살리려면 여러 도형 그림이 필요하다.",
+        "cloze": "B·C 중복: e5-2-3-1-c1, e5-2-3-1-c2로 대체. 살리려면 여러 도형 그림이 필요하다."
+      },
+      "proposalFingerprint": "b6af6ae9d7233a62be989ff890fb0e87164deca43a28c24f357601b085a5775b",
+      "questionRevision": "planning-e5e6-20261006-b6af6ae9d723",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc10",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "합동인 두 도형의 넓이와 둘레를 각각 비교하면 어떻게 되는지 쓰고, 두 도형을 포개었을 때의 모습을 이용해 그 까닭을 설명하시오.",
+      "bAnswer": "넓이도 서로 같고 둘레도 서로 같다. 합동인 두 도형은 포개었을 때 완전히 겹치기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "포개면 완전히 겹친다",
+            "남거나 모자라는 부분이 없다"
+          ]
+        }
+      ],
+      "bGoal": "합동이면 넓이와 둘레가 같음을 완전히 겹침으로 설명한다.",
+      "bReason": "넓이(xc10)와 둘레(xc11)는 까닭이 같아 한 문항으로 묶었다.",
+      "cDecision": "revise",
+      "cAfter": "합동인 두 도형은 포개었을 때 완전히 겹치므로 넓이가 서로 {같다}. 넓이가 $20\\,\\mathrm{cm} ^2$인 도형과 합동인 도형의 넓이는 {$20$} $\\mathrm{cm} ^2$이다.",
+      "cReason": "'완전히 포개어지므로' 구절 암기 대신 결론과 원문 예제의 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1246,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc10",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동인 도형의 넓이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "합동인 두 도형은 {완전히 포개어지므로} 넓이도 같다.",
+        "example": {
+          "prompt": "넓이가 $20\\,\\mathrm{cm}^2$인 도형과 합동인 도형의 넓이는?",
+          "answer": "$20\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "합동인 두 도형은 □ 넓이도 같다.",
+        "answers": [
+          "완전히 포개어지므로"
+        ]
+      },
+      "sourceFingerprint": "9710fae62486edbde228e9e6a3631920416adc4d95ae9cd70cd3bed358283fdc",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "같다",
+        "$20$"
+      ],
+      "cStudentAfter": "합동인 두 도형은 포개었을 때 완전히 겹치므로 넓이가 서로 □. 넓이가 $20\\,\\mathrm{cm} ^2$인 도형과 합동인 도형의 넓이는 □ $\\mathrm{cm} ^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "합동인 두 도형은 포개었을 때 완전히 겹치므로 넓이가 서로 {같다}. 넓이가 $20\\,\\mathrm{cm} ^2$인 도형과 합동인 도형의 넓이는 {$20$} $\\mathrm{cm} ^2$이다.",
+      "cStudentSentence": "합동인 두 도형은 포개었을 때 완전히 겹치므로 넓이가 서로 □. 넓이가 $20\\,\\mathrm{cm} ^2$인 도형과 합동인 도형의 넓이는 □ $\\mathrm{cm} ^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        },
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "합동인 두 도형의 넓이와 둘레를 각각 비교하면 어떻게 되는지 쓰고, 두 도형을 포개었을 때의 모습을 이용해 그 까닭을 설명하시오.",
+        "answer": "넓이도 서로 같고 둘레도 서로 같다. 합동인 두 도형은 포개었을 때 완전히 겹치기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레가 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "포개면 완전히 겹친다",
+              "남거나 모자라는 부분이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "합동인 두 도형은 포개었을 때 완전히 겹치므로 넓이가 서로 {같다}. 넓이가 $20\\,\\mathrm{cm} ^2$인 도형과 합동인 도형의 넓이는 {$20$} $\\mathrm{cm} ^2$이다.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bce54b8cc50273908416e62efae901cc94029a9ac475670fbbb0f8976fc8bf79",
+      "questionRevision": "planning-e5e6-20261006-bce54b8cc502",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc11",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "합동인 두 도형은 둘레가 같음을 안다.",
+      "bReason": "xc10 B가 둘레까지 같은 까닭으로 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "합동인 두 도형은 포개었을 때 완전히 겹치므로 둘레가 서로 {같다}. 둘레가 $18\\,\\mathrm{cm}$인 삼각형과 합동인 삼각형의 둘레는 {$18$} $\\mathrm{cm}$이다.",
+      "cReason": "xc10과 같은 긴 구절 빈칸이라 둘레의 결론과 값으로 바꾸었다.",
+      "exclusionReason": "B 중복: e5-2-3-1-xc10으로 대체.",
+      "exampleNeeded": false,
+      "sourceIndex": 1247,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc11",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동인 도형의 둘레",
+        "kind": "성질",
+        "level": "중",
+        "definition": "합동인 두 도형은 {완전히 포개어지므로} 둘레의 길이도 같다.",
+        "studentC": "합동인 두 도형은 □ 둘레의 길이도 같다.",
+        "answers": [
+          "완전히 포개어지므로"
+        ]
+      },
+      "sourceFingerprint": "8c4fe12fea30e94bdb5e3287c63c78a3d81a8495c02372afbc80fdbb04137078",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "같다",
+        "$18$"
+      ],
+      "cStudentAfter": "합동인 두 도형은 포개었을 때 완전히 겹치므로 둘레가 서로 □. 둘레가 $18\\,\\mathrm{cm}$인 삼각형과 합동인 삼각형의 둘레는 □ $\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "합동인 두 도형은 포개었을 때 완전히 겹치므로 둘레가 서로 {같다}. 둘레가 $18\\,\\mathrm{cm}$인 삼각형과 합동인 삼각형의 둘레는 {$18$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "합동인 두 도형은 포개었을 때 완전히 겹치므로 둘레가 서로 □. 둘레가 $18\\,\\mathrm{cm}$인 삼각형과 합동인 삼각형의 둘레는 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "합동인 두 도형은 포개었을 때 완전히 겹치므로 둘레가 서로 {같다}. 둘레가 $18\\,\\mathrm{cm}$인 삼각형과 합동인 삼각형의 둘레는 {$18$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-3-1-xc10으로 대체."
+      },
+      "proposalFingerprint": "25d0cf816f7d251a00a0b6a9c2e3b2146bede09f13b51bd34442291c38b8cbdd",
+      "questionRevision": "planning-e5e6-20261006-25d0cf816f7d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "둘레가 같은 두 도형은 항상 합동인지 쓰고, 한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형을 예로 들어 그 까닭을 설명하시오.",
+      "bAnswer": "항상 합동인 것은 아니다. 두 도형은 둘레가 모두 $12\\,\\mathrm{cm}$이지만 모양이 달라서 포개어도 완전히 겹치지 않으므로 합동이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 합동인 것은 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 같지만 모양이 다르다",
+            "포개어도 완전히 겹치지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "둘레가 같다는 것만으로 합동이라 할 수 없음을 설명한다.",
+      "bReason": "둘레 12 cm로 같은 정사각형과 정삼각형으로 '모양이 다르면'을 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형은 둘레가 모두 {$12$} $\\mathrm{cm}$이지만, 모양이 달라서 합동이 {아니다}.",
+      "cReason": "원문 빈칸 '모양이 다르면'은 크기 등 다른 답도 가능해 실제 예의 값과 판단으로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1248,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc12",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "둘레만 같은 도형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "둘레가 같아도 {모양이 다르면} 합동이 아니다.",
+        "studentC": "둘레가 같아도 □ 합동이 아니다.",
+        "answers": [
+          "모양이 다르면"
+        ]
+      },
+      "sourceFingerprint": "e7935a6ddea4cc4620120acdbe4dab21a3ec719e6363bd0d51adc94636f20b3e",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "아니다"
+      ],
+      "cStudentAfter": "한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형은 둘레가 모두 □ $\\mathrm{cm}$이지만, 모양이 달라서 합동이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형은 둘레가 모두 {$12$} $\\mathrm{cm}$이지만, 모양이 달라서 합동이 {아니다}.",
+      "cStudentSentence": "한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형은 둘레가 모두 □ $\\mathrm{cm}$이지만, 모양이 달라서 합동이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "둘레가 같은 두 도형은 항상 합동인지 쓰고, 한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형을 예로 들어 그 까닭을 설명하시오.",
+        "answer": "항상 합동인 것은 아니다. 두 도형은 둘레가 모두 $12\\,\\mathrm{cm}$이지만 모양이 달라서 포개어도 완전히 겹치지 않으므로 합동이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 합동인 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레는 같지만 모양이 다르다",
+              "포개어도 완전히 겹치지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 변이 $3\\,\\mathrm{cm}$인 정사각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형은 둘레가 모두 {$12$} $\\mathrm{cm}$이지만, 모양이 달라서 합동이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "94b5be7cde06e4dafe14293bbcb6f98472b70e165234de3b37635381e6ff3076",
+      "questionRevision": "planning-e5e6-20261006-94b5be7cde06",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc13",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "두 직사각형이 합동인지 알아보려면 어떤 길이를 비교하면 되는지 쓰고, 가로 $3\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형과 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이 합동인지 까닭과 함께 판단하시오.",
+      "bAnswer": "가로와 세로의 길이를 비교한다. 두 직사각형은 합동이다. 한 직사각형을 돌리면 긴 변끼리, 짧은 변끼리 길이가 같아 완전히 겹친다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로와 세로의 길이를 비교한다",
+            "이웃한 두 변의 길이를 비교한다",
+            "긴 변과 짧은 변의 길이를 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 직사각형은 합동이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "돌려 놓으면 완전히 겹친다",
+            "긴 변끼리 짧은 변끼리 길이가 같다"
+          ]
+        }
+      ],
+      "bGoal": "직사각형의 합동을 두 변의 길이로 판단하고 방향이 달라도 됨을 안다.",
+      "bReason": "가로·세로가 바뀐 예를 붙여 돌려 놓은 경우까지 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "두 직사각형은 {가로}와 {세로}의 길이가 각각 같으면 합동이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가로",
+            "세로"
+          ]
+        },
+        {
+          "anyOf": [
+            "세로",
+            "가로"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸을 순서와 관계없는 두 낱말로 나누었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1249,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc13",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "직사각형끼리의 합동",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 직사각형은 {가로와 세로의 길이}가 각각 같으면 합동이다.",
+        "studentC": "두 직사각형은 □가 각각 같으면 합동이다.",
+        "answers": [
+          "가로와 세로의 길이"
+        ]
+      },
+      "sourceFingerprint": "54a1c2c774e0627b51d2b589206fb06a866d19622f1bde5b8b71d4c86151b714",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "가로",
+        "세로"
+      ],
+      "cStudentAfter": "두 직사각형은 □와 □의 길이가 각각 같으면 합동이다.",
+      "cMarkedSentence": "두 직사각형은 {가로}와 {세로}의 길이가 각각 같으면 합동이다.",
+      "cStudentSentence": "두 직사각형은 □와 □의 길이가 각각 같으면 합동이다.",
+      "cSlotAnswers": [
+        {
+          "key": "가로",
+          "equivalents": [
+            "세로"
+          ]
+        },
+        {
+          "key": "세로",
+          "equivalents": [
+            "가로"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 직사각형이 합동인지 알아보려면 어떤 길이를 비교하면 되는지 쓰고, 가로 $3\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형과 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이 합동인지 까닭과 함께 판단하시오.",
+        "answer": "가로와 세로의 길이를 비교한다. 두 직사각형은 합동이다. 한 직사각형을 돌리면 긴 변끼리, 짧은 변끼리 길이가 같아 완전히 겹친다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로와 세로의 길이를 비교한다",
+              "이웃한 두 변의 길이를 비교한다",
+              "긴 변과 짧은 변의 길이를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 직사각형은 합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "돌려 놓으면 완전히 겹친다",
+              "긴 변끼리 짧은 변끼리 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 직사각형은 {가로}와 {세로}의 길이가 각각 같으면 합동이다.",
+        "acceptedAnswers": [
+          [
+            "가로",
+            "세로"
+          ],
+          [
+            "세로",
+            "가로"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8182acfdd12ce5555596480af5ee2a3c04cd2dc8226d2fe4ddc3b5dbccac50fd",
+      "questionRevision": "planning-e5e6-20261006-8182acfdd12c",
+      "requiresIndependentReview": true
+    }
+  ]
+}

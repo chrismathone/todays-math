@@ -119,6 +119,12 @@ export type RenderBlock = BlockBase &
         memoryPhases?: readonly ("study" | "keywords" | "sentences")[];
         displayRows?: RecallDisplayRow[];
         rowHeightsMm?: Readonly<Record<string, number>>;
+        questionRows?: {
+          entryId: string;
+          prompt: string;
+          answer?: string;
+          requiredIdeas?: { anyOf: string[] }[];
+        }[];
       }
     | {
         kind: "problem";
@@ -294,7 +300,15 @@ export function createTextbookRenderModel(
                   sourceBlockId: b.blockId,
                   unitKey: u.unitKey,
                   sectionKey: s.sectionKey,
-                  ...(b.semantic ? { semantic: b.semantic } : {}),
+                  ...(b.semantic
+                    ? {
+                        semantic:
+                          variant === "student" &&
+                          b.semantic.node?.kind === "conceptQuestions"
+                            ? { ...b.semantic, node: undefined }
+                            : b.semantic,
+                      }
+                    : {}),
                 };
                 switch (b.kind) {
                   case "text": {
@@ -376,6 +390,34 @@ export function createTextbookRenderModel(
                         : {}),
                     }));
                   case "concept-recall": {
+                    const questionNode = b.semantic?.node;
+                    if (questionNode?.kind === "conceptQuestions") {
+                      return [
+                        {
+                          ...base,
+                          kind: "recall",
+                          phase: b.phase,
+                          questionRows: questionNode.questions.map(
+                            ({ entryId, question }) =>
+                              variant === "student"
+                                ? { entryId, prompt: question.prompt }
+                                : {
+                                    entryId,
+                                    prompt: question.prompt,
+                                    answer: question.answer,
+                                    requiredIdeas: question.requiredIdeas.map(
+                                      (idea) => ({ anyOf: [...idea.anyOf] }),
+                                    ),
+                                  },
+                          ),
+                          answersVisible: variant === "answers",
+                          pieces: [],
+                          repetitionChecks: false,
+                          continuation: b.semantic?.continuation,
+                          lastPart: true,
+                        },
+                      ];
+                    }
                     const phase = variant === "answers" ? "study" : b.phase;
                     const node = b.semantic?.node;
                     const rows =

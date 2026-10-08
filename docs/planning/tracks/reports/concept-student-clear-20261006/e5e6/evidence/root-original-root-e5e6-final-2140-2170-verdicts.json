@@ -1,0 +1,1297 @@
+{
+  "inputFile": "root-e5e6-final-2140-2170-input.json",
+  "inputSha256": "c31c07dc6c16e3302df0099b2055f100b8459601e9e59f20eadd46a5c3425917",
+  "reader": "Root Codex direct final question/answer/criteria reading",
+  "notIndependentClaudeApproval": true,
+  "rows": [
+    {
+      "id": "e6-1-6-2-xc16",
+      "sourceIndex": 2140,
+      "proposalFingerprint": "f1fa995f74cda60581fad2c409c1a336b7377239ebaa0923de36e0e46298d639",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "정육면체의 한 모서리 길이를 $2$배로 하면 가로·세로·높이가 각각 어떻게 되고 부피는 몇 배가 되는가? 한 모서리 길이를 $3$배로 하면 부피는 몇 배가 되는지도 구하시오.",
+        "answer": "가로·세로·높이가 모두 $2$배가 되어 부피는 $2\\times2\\times2=8$배이다. $3$배로 하면 $3\\times3\\times3=27$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세 길이가 모두 같은 배수로 변한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$27$배"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "정육면체의 한 모서리 길이를 $2$배로 하면 가로·세로·높이가 모두 $2$배가 되어 부피는 {$8$}배가 된다. 한 모서리 길이를 $3$배로 하면 부피는 {$27$}배가 된다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$27$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 관계를 두 가지 예로 확인한다.",
+      "cReason": "추상 구절 대신 구체적 배수로 바꿔 이해하기 쉽게 한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "정육면체 세 길이가 함께 변하는 조건으로2배 때8배,3배 때27배를 구한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc17",
+      "sourceIndex": 2141,
+      "proposalFingerprint": "ad852c2bb082e628463574cea4b2b838636765a42bf6f9e50f106670778595bf",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "가로·세로·높이가 $4\\,\\mathrm{cm}$, $3\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$인 직육면체와 $6\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$인 직육면체의 부피를 각각 구하고, 부피가 같으면 모양도 같다고 할 수 있는지 말하시오.",
+        "answer": "두 부피는 $24\\,\\mathrm{cm}^3$로 같다. 그러나 가로·세로·높이가 달라 모양은 같지 않다. 부피가 같아도 모양이 같다고 할 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 부피는 모두 $24\\,\\mathrm{cm}^3$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "부피가 같아도 모양이 같다고 할 수 없다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "서로 다른 모양의 직육면체도 가로·세로·높이의 {곱이 같으면} 부피가 같다. 부피가 같다는 것만으로 모양까지 같다고 할 수는 없다.",
+        "acceptedAnswers": [
+          [
+            "곱이 같으면"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "반례가 되는 두 직육면체를 주어 확인한다.",
+      "cReason": "곱이 같으면 부피가 같다는 조건과 모양이 같지 않다는 뒤 문장을 함께 이해하게 한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "4×3×2와6×2×2가 모두24이지만 모양은 다른 반례로 같은 부피와 같은 모양을 구별한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc19",
+      "sourceIndex": 2142,
+      "proposalFingerprint": "e21e16c9914b4669932b90b44f9971202d1f0aee59d021dccd8f4e66e7bae369",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직육면체 두 개를 빈틈없이 붙여 한 입체를 만들었다. 이 입체의 부피를 구하는 방법을 말하고, 두 직육면체의 부피가 $12\\,\\mathrm{cm}^3$, $8\\,\\mathrm{cm}^3$일 때 부피를 구하시오.",
+        "answer": "두 직육면체의 부피를 더한다. $12+8=20$이므로 $20\\,\\mathrm{cm}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 부피를 더한다",
+              "합을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20\\,\\mathrm{cm}^3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직육면체 두 개를 붙인 입체의 부피는 두 직육면체 부피의 {합}이다.",
+        "acceptedAnswers": [
+          [
+            "합"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "붙여도 부피가 겹치지 않아 합이 되는 상황을 묻는다.",
+      "cReason": "붙인 입체의 부피와 합을 잇는 간단한 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "실제 두 직육면체를 붙이는 상황에서12와8의 부피를 합하여20을 구한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc20",
+      "sourceIndex": 2143,
+      "proposalFingerprint": "2afeb04e31968474e90f0e094e8806353881e3a58c77b78543a75e02d859fabb",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "큰 직육면체에서 작은 직육면체 모양을 잘라 낸 입체의 부피를 구하는 방법을 말하시오. 큰 직육면체의 부피가 $30\\,\\mathrm{cm}^3$, 잘라 낸 부분의 부피가 $8\\,\\mathrm{cm}^3$이면 남은 입체의 부피를 구하시오.",
+        "answer": "큰 직육면체의 부피에서 잘라 낸 부분의 부피를 뺀다. $30-8=22$이므로 $22\\,\\mathrm{cm}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 부피에서 작은 부피를 뺀다",
+              "두 부피의 차를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$22\\,\\mathrm{cm}^3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "큰 직육면체에서 작은 직육면체를 잘라 낸 입체의 부피는 두 부피의 {차}이다.",
+        "acceptedAnswers": [
+          [
+            "차"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "덧셈 방법인 xc19와 대비되는 뺄셈 상황이다.",
+      "cReason": "차라는 낱말 하나로 잘라 낸 입체의 부피 방법을 확인한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "큰 직육면체에서 잘라 낸 부분의 부피8을 빼30-8=22를 구하는 순서가 명확하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc21",
+      "sourceIndex": 2144,
+      "proposalFingerprint": "466b566eee26b5ac09d82c714ef495cab6fe11e9934e06e753cd7d1a134efdcd",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직육면체의 가로와 세로는 그대로 두고 높이만 $3$배로 하면 부피는 어떻게 되는가? 부피를 구하는 방법을 이용해 그 까닭을 설명하시오.",
+        "answer": "부피도 $3$배가 된다. 부피는 밑면의 넓이에 높이를 곱하는데 밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "부피도 $3$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 넓이는 그대로이고 높이만 $3$배가 되기 때문이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가로와 세로는 그대로 두고 높이만 $3$배 하면 {부피}는 $3$배가 된다.",
+        "acceptedAnswers": [
+          [
+            "부피"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "곱셈에서 한 수만 배가 되면 곱도 배가 되는 관계를 묻는다.",
+      "cReason": "무엇이 $3$배가 되는지 묻는 짧은 결과 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "C는 직육면체라는 대상이 없고 높이 자체도3배여서 '무엇이3배인가'의 답이 부피로 정해지지 않는다. 부피를 지문에 명시하고 배수를 묻거나 실제 길이와 부피 값을 주어 짧은 계산을 답하게 좁혀야 한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc22",
+      "sourceIndex": 2145,
+      "proposalFingerprint": "e77a3150d6247c2bdb525e9350290694476e84c098a657c6b7ad32985c0fea80",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "정육면체의 부피가 $27\\,\\mathrm{cm}^3$일 때 한 모서리의 길이를 구하는 방법을 설명하고 길이를 구하시오.",
+        "answer": "같은 수를 세 번 곱해 $27$이 되는 수를 찾는다. $3\\times3\\times3=27$이므로 한 모서리의 길이는 $3\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 수를 세 번 곱해 부피가 되는 수를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 모서리의 길이를 $3$번 곱한 값이 정육면체의 부피이다. 부피가 $64\\,\\mathrm{cm}^3$인 정육면체의 한 모서리 길이는 {$4$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방법과 예의 답을 함께 묻는다.",
+      "cReason": "원문 빈칸 $3$은 c5와 중복이라 적용 문제로 바꾼다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "정육면체의 같은 모서리 세 길이를 곱한다는 방법으로27의 모서리3,64의 모서리4를 구한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-2-xc23",
+      "sourceIndex": 2146,
+      "proposalFingerprint": "a1bd4e27cd75aac3c7fb52ebbfe6be8589de63dbfba5111d5b3753a345ece672",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "e6-1-6-2-xc1, e6-1-6-2-xc6과 중복이다.",
+        "cloze": "e6-1-6-2-xc1, e6-1-6-2-xc6과 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc1이 같은 크기를, xc6이 빈틈없이 채우는 조건을 이미 다룬다.",
+      "cReason": "빈칸 '크기가 같은 쌓기나무'가 xc1과 중복이고 표현이 길다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "쌓기나무 크기와 빈틈없는 채우기 조건은 xc1,xc6에서 다루므로 긴 중복 구절 문항을 제외한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc1",
+      "sourceIndex": 2147,
+      "proposalFingerprint": "91233e956fbdc05aa603e9ad1accd0f3a87b34a9bdc19f25679d09db2f121b4d",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "$1\\,\\mathrm{m}^3$는 {$1$ 세제곱미터}라고 읽는다.",
+        "acceptedAnswers": [
+          [
+            "$1$ 세제곱미터"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "기호 읽기뿐이라 이해를 묻기 어렵다. 단위의 뜻은 e6-1-6-3-c1에서 다룬다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "읽는 소리만 외우는 낱말 문제라 B로 묻는 가치가 낮고 C가 충분하다.",
+      "cReason": "읽는 법을 짧게 확인하는 낱말 문장이고 조건이 명확하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "1m³의 읽는 말과 단위 뜻을 구별해 읽는 말은 짧은 C에서 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc2",
+      "sourceIndex": 2148,
+      "proposalFingerprint": "be7676ba673e3b31e21b3e35dbab08ac2d8034f810e63835b942214e5d588889",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "방이나 창고처럼 큰 공간의 부피를 $\\mathrm{cm}^3$보다 $\\mathrm{m}^3$로 나타내면 편리한 까닭을 수의 크기에 맞추어 설명하시오.",
+        "answer": "$\\mathrm{cm}^3$로 나타내면 $1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3$처럼 수가 매우 커져 불편하지만, $\\mathrm{m}^3$로 나타내면 수가 작아져 읽고 쓰기 편하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\mathrm{cm}^3$로 나타내면 수가 매우 크다",
+              "작은 단위로 나타내면 수가 매우 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{m}^3$로 나타내면 수가 작다",
+              "큰 단위로 나타내면 수가 간단하다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "방이나 창고처럼 큰 공간의 부피는 {$\\mathrm{m}^3$} 단위로 나타내면 편리하다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{m}^3$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단위 이름만 고르는 것보다 단위 선택의 이유를 묻는 것이 좋다.",
+      "cReason": "큰 공간의 단위를 고르는 짧은 문장이고 답이 $\\mathrm{m}^3$로 분명하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "방·창고라는 큰 공간에서m³를 쓰면 표현 수가 작아 편리하다는 단위 선택과 까닭을 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc3",
+      "sourceIndex": 2149,
+      "proposalFingerprint": "664efb08688ff2a08e770a4a4b4601f68efb1d914b8206c95f22881304c1a197",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체의 가로, 세로, 높이를 모두 $\\mathrm{m}$로 쟀을 때 부피를 구하는 방법과 부피에 붙는 단위를 설명하시오. 그리고 가로 $3\\,\\mathrm{m}$, 세로 $2\\,\\mathrm{m}$, 높이 $4\\,\\mathrm{m}$일 때의 부피를 구하시오.",
+        "answer": "가로, 세로, 높이를 곱하고 단위는 $\\mathrm{m}^3$로 쓴다. $3\\times2\\times4=24$이므로 부피는 $24\\,\\mathrm{m}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로, 세로, 높이를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위는 $\\mathrm{m}^3$이다",
+              "세제곱미터로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24\\,\\mathrm{m}^3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가로 $3\\,\\mathrm{m}$, 세로 $2\\,\\mathrm{m}$, 높이 $4\\,\\mathrm{m}$인 직육면체의 부피는 $3\\times2\\times4=${$24$}이고, 단위는 {$\\mathrm{m}^3$}로 쓴다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "$\\mathrm{m}^3$",
+            "세제곱미터"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방법과 단위를 일반적으로 묻고 예로 한 번 적용하게 한다.",
+      "cReason": "원문 첫 빈칸은 앞 구절을 베끼는 낱말이므로 실제 곱셈과 단위로 확인한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "세 길이를 모두m로 잰 조건으로3×2×4=24와 부피 단위m³를 각각 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc4",
+      "sourceIndex": 2150,
+      "proposalFingerprint": "e322a9b9a4cab0bf8284656a7515b5c5c063c21b3f1bbf250b8e79815a02e814",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "revise",
+      "B": null,
+      "C": {
+        "sentence": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 바닥 한 층에는 $1\\,\\mathrm{cm}^3$ 쌓기나무가 한 줄에 $100$개씩 $100$줄 놓이므로 모두 {$10000$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$10000$"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "B는 e6-1-6-3-c2와 내용이 겹친다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "e6-1-6-3-c2의 B가 한 층 개수와 층수를 이미 함께 묻는다.",
+      "cReason": "긴 구절을 외우게 하지 않고 한 층의 개수를 짧은 값으로 확인한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "1m 정육면체 바닥층에100개씩100줄이라는 조건으로 한 층10000개를 계산한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc5",
+      "sourceIndex": 2151,
+      "proposalFingerprint": "0e9f8516fab42df1b5438c733b771b263103d328b358b1b466176d768fc13113",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3$일 때, 같은 부피를 $\\mathrm{m}^3$로 나타낸 수에서 $\\mathrm{cm}^3$로 나타낸 수로 바꾸는 방법을 쓰고, $3\\,\\mathrm{m}^3$는 몇 $\\mathrm{cm}^3$인지 구하시오.",
+        "answer": "$\\mathrm{m}^3$로 나타낸 수에 $1000000$을 곱한다. $3\\times1000000=3000000$이므로 $3\\,\\mathrm{m}^3=3000000\\,\\mathrm{cm}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1000000$을 곱한다",
+              "$1000000$배 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3000000\\,\\mathrm{cm}^3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$4\\,\\mathrm{m}^3$는 $4\\times${$1000000$}$=${$4000000$}$\\,\\mathrm{cm}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$1000000$"
+          ],
+          [
+            "$4000000$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "수가 $1000000$배가 되는 변환 방법을 직접 쓰게 한다.",
+      "cReason": "원문은 앞 문장 수를 그대로 베끼면 되므로 실제 변환 식으로 바꾼다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "m³에서cm³로 바꾸는 백만배 관계를 실제3m³와4m³에 적용한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc7",
+      "sourceIndex": 2152,
+      "proposalFingerprint": "2c5554e3a7bf5095130908a34e6ee8024aebadd7dac2c5a9a693fab6bf3d6121",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 한 모서리를 따라 한 모서리가 $1\\,\\mathrm{cm}$인 쌓기나무를 한 줄로 놓으면 몇 개가 놓이는지 구하고, 그 까닭을 쓰시오.",
+        "answer": "쌓기나무 한 개가 모서리 길이 $1\\,\\mathrm{cm}$를 차지하고 $1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 $100$개가 놓인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쌓기나무 한 개가 $1\\,\\mathrm{cm}$를 차지한다",
+              "쌓기나무 한 개의 모서리는 $1\\,\\mathrm{cm}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100$개"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$1\\,\\mathrm{cm}^3$ 쌓기나무 한 개는 모서리의 길이 $1\\,\\mathrm{cm}$를 차지하고 $1\\,\\mathrm{m}=${$100$}$\\,\\mathrm{cm}$이므로, 한 모서리 $1\\,\\mathrm{m}$에는 쌓기나무가 {$100$}개 놓인다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ],
+          [
+            "$100$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "개수의 근거인 '한 개가 $1\\,\\mathrm{cm}$를 차지함'을 직접 말하게 한다.",
+      "cReason": "긴 구절 빈칸 대신 길이 관계와 개수라는 핵심 수를 확인한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "작은 쌓기나무 한 개의 모서리1cm와1m=100cm의 관계로 한 줄100개를 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc9",
+      "sourceIndex": 2153,
+      "proposalFingerprint": "e124a42132d3d480546dc12728f53a7c82517161eebd85cee990710e773d4f33",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$1\\,\\mathrm{m}^3$보다 작은 부피를 $\\mathrm{m}^3$ 단위로 나타내려면 어떤 수를 써야 하는지 쓰시오. 또 $500000\\,\\mathrm{cm}^3$는 몇 $\\mathrm{m}^3$인지 구하시오.",
+        "answer": "$1$보다 작은 소수(또는 분수)로 나타낸다. $500000\\,\\mathrm{cm}^3$는 $1000000\\,\\mathrm{cm}^3$의 반이므로 $0.5\\,\\mathrm{m}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$보다 작은 소수",
+              "$1$보다 작은 분수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5\\,\\mathrm{m}^3$",
+              "$\\frac{1}{2}\\,\\mathrm{m}^3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$500000\\,\\mathrm{cm}^3$는 $1000000\\,\\mathrm{cm}^3$의 반이므로 {$0.5$}$\\,\\mathrm{m}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 설명과 한 예를 함께 묻는다.",
+      "cReason": "원문은 소수만 강요할 수 있어 분수 표현도 허용하는 구체적인 값 빈칸으로 바꾼다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "백만cm³의 절반이라는 관계를0.5m³ 또는1/2m³의 동치 값으로 나타낸다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc11",
+      "sourceIndex": 2154,
+      "proposalFingerprint": "31148f20c1fe02d2f716c21232f079a1b44efe4ec1bda2ab56121c72f347e6bb",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "가로 $200\\,\\mathrm{cm}$, 세로 $100\\,\\mathrm{cm}$, 높이 $50\\,\\mathrm{cm}$인 직육면체의 부피를 $\\mathrm{m}^3$로 구하려 한다. 길이를 $\\mathrm{m}$로 먼저 고쳐 구하는 방법과 $\\mathrm{cm}^3$로 구한 뒤 바꾸는 방법을 각각 쓰고 결과를 비교하시오.",
+        "answer": "길이를 $2\\,\\mathrm{m}$, $1\\,\\mathrm{m}$, $0.5\\,\\mathrm{m}$로 고쳐 $2\\times1\\times0.5=1$이므로 $1\\,\\mathrm{m}^3$이다. $200\\times100\\times50=1000000\\,\\mathrm{cm}^3$를 $1000000$으로 나누어도 $1\\,\\mathrm{m}^3$이다. 두 값은 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이를 $\\mathrm{m}$로 고쳐 곱하면 $1\\,\\mathrm{m}^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{cm}^3$로 구한 뒤 $1000000$으로 나누면 $1\\,\\mathrm{m}^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 값이 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가로 $200\\,\\mathrm{cm}$, 세로 $100\\,\\mathrm{cm}$, 높이 $50\\,\\mathrm{cm}$인 직육면체의 부피를 $\\mathrm{cm}^3$로 구하면 $200\\times100\\times50=${$1000000$}$\\,\\mathrm{cm}^3$이고, 이것은 {$1$}$\\,\\mathrm{m}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$1000000$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 길을 실제로 계산하게 해 같은 값이 나옴을 확인한다.",
+      "cReason": "'같은 값' 한 낱말보다 실제 수치 계산으로 확인하는 편이 낫다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "길이를 먼저m로 바꾸는 방법과 부피를cm³로 구한 뒤 변환하는 방법이 모두1m³가 됨을 설명한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc12",
+      "sourceIndex": 2155,
+      "proposalFingerprint": "7ceab2b1eb4f77207671005b3e45eb306b352796dfc187b0b16812f1009614e4",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 부피가 몇 배인지, 가로·세로·높이의 길이 관계를 이용해 설명하시오.",
+        "answer": "가로, 세로, 높이가 각각 $100$배이므로 부피는 $100\\times100\\times100=1000000$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로·세로·높이가 각각 $100$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100\\times100\\times100$배",
+              "$1000000$배"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 모서리가 $1\\,\\mathrm{m}$인 정육면체는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체보다 가로, 세로, 높이가 각각 {$100$}배이므로 부피는 $100\\times100\\times100=${$1000000$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ],
+          [
+            "$1000000$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "길이 배수에서 부피 배수로 가는 관계를 묻는다.",
+      "cReason": "긴 구절 빈칸을 배수 두 값으로 줄여 목표를 유지한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "C 첫 빈칸100은 바로 뒤 부피 식의100×100×100에서 그대로 보인다. 변환 배수를 답하게 하려면 뒤 식에서 그 수를 드러내지 않거나,100배 조건을 보이고 부피 배수 하나만 구하게 고쳐야 한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc13",
+      "sourceIndex": 2156,
+      "proposalFingerprint": "be8971092efb13a8060206141ae2303ff4933ebe4def419a4fffe5b3ca73d670",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$\\mathrm{cm}^3$로 나타낸 부피를 $\\mathrm{m}^3$로 바꾸려면 수에 어떤 계산을 해야 하는지 $1\\,\\mathrm{m}^3$와 $\\mathrm{cm}^3$의 관계로 설명하고, $3500000\\,\\mathrm{cm}^3$는 몇 $\\mathrm{m}^3$인지 구하시오.",
+        "answer": "$1000000\\,\\mathrm{cm}^3$가 $1\\,\\mathrm{m}^3$이므로 $1000000\\,\\mathrm{cm}^3$씩 몇 묶음인지 구하려고 $1000000$으로 나눈다. $3500000\\div1000000=3.5$이므로 $3.5\\,\\mathrm{m}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1000000\\,\\mathrm{cm}^3$가 $1\\,\\mathrm{m}^3$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1000000$으로 나눈다",
+              "몇 묶음인지 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.5\\,\\mathrm{m}^3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$1000000\\,\\mathrm{cm}^3$가 $1\\,\\mathrm{m}^3$이므로, $4000000\\,\\mathrm{cm}^3$는 $4000000\\div${$1000000$}$=${$4$}$\\,\\mathrm{m}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$1000000$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "묶음 개념으로 나눗셈의 까닭을 말하게 한다.",
+      "cReason": "원문 첫 빈칸은 첫 칸이 문장을 통째로 가려 학생에게 맥락이 없으므로 실제 나눗셈으로 확인한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "백만cm³가 한m³라는 주어진 변환 관계에서 몇 묶음인지 나누어3.5m³와4m³를 구한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc15",
+      "sourceIndex": 2157,
+      "proposalFingerprint": "e2708931b9b24ae4158795784ef9738b72bf9510abfd5b83eb2a2ae7a20f97c5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "큰 정육면체를 작은 정육면체로 빈틈없이 채우는데 한 모서리에 작은 정육면체가 $5$개씩 놓인다. 모두 몇 개가 필요한지 구하는 방법과 그 까닭을 쓰시오.",
+        "answer": "한 층에 $5\\times5=25$개이고 $5$층이므로 $25\\times5=125$개이다. 한 모서리에 놓이는 수를 세 번 곱하면 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 층에 $25$개씩 $5$층",
+              "$5\\times5\\times5$로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$125$개"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 모서리에 작은 정육면체가 $4$개씩 놓이면 한 층에 $4\\times4=${$16$}개씩 $4$층이므로 모두 {$64$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$16$"
+          ],
+          [
+            "$64$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "세 번 곱하는 이유를 층 구조로 설명하게 한다.",
+      "cReason": "추상적인 '세 번 곱한' 대신 층 구조가 보이는 계산으로 확인한다.",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B는 까닭도 묻지만 첫 기준에서5×5×5라는 식만으로 그 요구를 충족한다. 한 층의 개수와 층 수 또는 세 길이의 개수 관계를 실제 이유로 평가해야 한다. C에는 큰 정육면체를 작은 정육면체로 빈틈없이 채운다는 상황이 없어 한 모서리의4개만으로 모든 방향4개·4층을 정할 수 없다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc17",
+      "sourceIndex": 2158,
+      "proposalFingerprint": "e8086fd09ed66e005d0059fad05fddbc8aec07c4edfd2dda4f62371277a8c62d",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "가로 $2\\,\\mathrm{m}$, 세로 $50\\,\\mathrm{cm}$, 높이 $1\\,\\mathrm{m}$인 직육면체의 부피를 $\\mathrm{m}^3$로 구하려면 먼저 무엇을 해야 하는지 쓰고, 부피를 구하시오.",
+        "answer": "길이 단위를 $\\mathrm{m}$로 맞춘다. $50\\,\\mathrm{cm}=0.5\\,\\mathrm{m}$이므로 $2\\times0.5\\times1=1$, 부피는 $1\\,\\mathrm{m}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이 단위를 같게 맞춘다",
+              "$50\\,\\mathrm{cm}$를 $0.5\\,\\mathrm{m}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{m}^3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가로 $2\\,\\mathrm{m}$, 세로 $50\\,\\mathrm{cm}$, 높이 $1\\,\\mathrm{m}$인 직육면체에서 $50\\,\\mathrm{cm}=${$0.5$}$\\,\\mathrm{m}$로 고치면 부피는 $2\\times0.5\\times1=${$1$}$\\,\\mathrm{m}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방법과 실제 계산을 함께 묻는다.",
+      "cReason": "원문은 '맞춘다'라는 행동 문구 빈칸이라 실제 변환과 계산으로 바꾼다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "50cm=0.5m로 단위를 맞춰2×0.5×1=1m³를 구한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc19",
+      "sourceIndex": 2159,
+      "proposalFingerprint": "b8d659b641006dc1096e90e3eaaa18cced62d4987d1b4c1ef3aa7280db53f9b9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "한 모서리가 $2\\,\\mathrm{cm}$인 정육면체를 가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$, 높이 $4\\,\\mathrm{cm}$인 직육면체에 모서리 방향에 맞추어 빈틈없이 채운다. 필요한 개수를 구하는 방법과 개수를 쓰시오.",
+        "answer": "가로에 $10\\div2=5$개, 세로에 $6\\div2=3$개, 높이에 $4\\div2=2$개가 놓이므로 $5\\times3\\times2=30$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로 $5$개, 세로 $3$개, 높이 $2$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 개수를 곱한다",
+              "$5\\times3\\times2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30$개"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가로 $10\\,\\mathrm{cm}$에는 $2\\,\\mathrm{cm}$씩 {$5$}개, 세로 $6\\,\\mathrm{cm}$에는 {$3$}개, 높이 $4\\,\\mathrm{cm}$에는 {$2$}개가 놓이므로 모두 {$30$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$30$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "각 방향의 개수를 구한 뒤 곱하는 절차를 확인한다.",
+      "cReason": "긴 구절 대신 방향별 개수와 총 개수를 짧은 수로 확인한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "C는 무엇을 놓는지, 작은 입체의 모서리가 모든 방향2cm인지, 빈틈없이 채우는지 알려 주지 않는다. B처럼 한 모서리2cm 작은 정육면체를 모서리 방향에 맞추어 채운다고 독립 지문에 명시해야5·3·2·30을 정할 수 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc20",
+      "sourceIndex": 2160,
+      "proposalFingerprint": "d52ffd4d56dcb2b74c0356da8bc8b1c8b472bfbb7a349e7c7d1edc6bf934a28f",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$0$보다 큰 같은 부피를 $\\mathrm{m}^3$로 나타낼 때와 $\\mathrm{cm}^3$로 나타낼 때 어느 쪽 수가 더 큰지 쓰고, 단위의 크기로 이유를 설명하시오.",
+        "answer": "$\\mathrm{cm}^3$로 나타낸 수가 더 크다. $\\mathrm{cm}^3$가 더 작은 단위라 같은 부피에 더 많이 들어가기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\mathrm{cm}^3$로 나타낸 수가 더 크다",
+              "작은 단위로 나타낸 수가 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "작은 단위가 더 많이 들어간다",
+              "작은 단위는 개수가 더 많이 필요하다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$0$보다 큰 같은 부피를 $\\mathrm{m}^3$와 $\\mathrm{cm}^3$로 나타낼 때, 수가 더 큰 쪽은 {$\\mathrm{cm}^3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{cm}^3$",
+            "세제곱센티미터"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "작은 단위의 개수가 많아진다는 이유를 말하게 한다.",
+      "cReason": "'커진다'는 앞 문장과 겹치므로 어느 단위의 수가 큰지 짧게 확인한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "같은 양의 부피를 더 작은 단위cm³로 나타내면 단위 개수가 더 많다는 비교가 성립한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc22",
+      "sourceIndex": 2161,
+      "proposalFingerprint": "4b34d407f1d97a799fef39e481fc7c06effae26baf877c1efea71866601cbd9c",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2$이고 $1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3$인 것을 길이가 $100$배가 되는 방향의 수로 비교하여 설명하시오.",
+        "answer": "넓이는 가로·세로 두 방향이 $100$배라 $100\\times100=10000$배이고, 부피는 가로·세로·높이 세 방향이 모두 $100$배라 $100\\times100\\times100=1000000$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이는 두 방향이 $100$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "부피는 세 방향이 $100$배"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=${$10000$}$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 {$3$}번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$10000$"
+          ],
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 방향과 세 방향이라는 핵심 차이를 짚는다.",
+      "cReason": "'방향'이라는 추상어 대신 곱하는 횟수로 차이를 확인한다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 '길이가100배가 되는 방향의 수'는 가로·세로·높이 중 무엇을 비교해 쓰라는지 학생에게 낯설다. 넓이는 가로·세로 두 길이를, 부피는 가로·세로·높이 세 길이를 곱한다는 대상을 직접 명시해 두 환산의 차이를 설명하게 좁혀야 한다. C의 수와 곱하는 횟수는 구체적이다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-1-6-3-xc25",
+      "sourceIndex": 2162,
+      "proposalFingerprint": "3d2624fc152439a73d413d473fd16beefe40e1a3657ed7ee866ed9c288a98fb2",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "어떤 학생이 $1\\,\\mathrm{m}^3=100\\,\\mathrm{cm}^3$라고 했다. 이 생각이 맞는지 판단하고, 이유와 바른 값을 쓰시오.",
+        "answer": "틀렸다. 한 방향의 길이만 $100$배로 바꾼 것이다. 가로·세로·높이가 모두 $100$배이므로 $100\\times100\\times100=1000000$, 즉 $1\\,\\mathrm{m}^3=1000000\\,\\mathrm{cm}^3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "틀렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 방향만 $100$배로 바꾸었다",
+              "세 방향 모두 $100$배로 해야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1000000\\,\\mathrm{cm}^3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$1\\,\\mathrm{m}^3$를 $100\\,\\mathrm{cm}^3$로 바꾸면 안 된다. 세 방향이 모두 $100$배이므로 $100\\times100\\times100=${$1000000$}$\\,\\mathrm{cm}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$1000000$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "오류의 원인과 바른 값을 함께 묻는다.",
+      "cReason": "원문 빈칸은 긴 구절이므로 올바른 환산값 빈칸으로 바꾼다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "길이100배를 한 번만 적용한 오류를 판단하고 세 길이의 곱 백만cm³로 바로잡는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-2-1-1-xc2",
+      "sourceIndex": 2163,
+      "proposalFingerprint": "1015474479eafd0901f866870c075d0526084bc7497de9a2fb85e423a49f9bf4",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\frac{6}{7}$에서 $\\frac{2}{7}$를 계속 덜어 내면 몇 번 덜어 내야 남는 것이 없나요? 이 횟수가 $\\frac{6}{7}\\div\\frac{2}{7}$의 몫과 어떤 관계인지도 쓰세요.",
+        "answer": "$3$번 덜어 내면 남는 것이 없습니다. 덜어 낸 횟수 $3$이 몫입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$번",
+              "$3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "덜어 낸 횟수가 몫이다",
+              "횟수와 몫이 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$0$보다 큰 나누는 분수를 나누어지는 분수에서 여러 번 덜어 내어 남는 양이 없으면, 몫은 덜어 낸 {횟수}이다.",
+        "acceptedAnswers": [
+          [
+            "횟수"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "덜어 내기 상황과 몫을 연결하는 것이 목표라 구체적 값과 관계를 함께 묻는다.",
+      "cReason": "남는 양이 없다는 조건이 있고 '횟수'는 학생이 이미 아는 낱말이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "같은2/7를 세번 덜어0이 되는 실제 상황과 덜어 낸 횟수가 몫인 관계를 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-2-1-1-xc3",
+      "sourceIndex": 2164,
+      "proposalFingerprint": "c4d2f1015093f975a4761666da778f8e7448375216b431ae5eef7a4651e8ffc6",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수의 분모가 같을 때, 분자끼리의 나눗셈이 나누어떨어지면 몫은 {자연수}이다.",
+        "acceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "c1의 분자끼리 나누는 방법에 포함되는 중복 내용이라 별도 B로 묻지 않는다. 대체는 e6-2-1-1-c1, e6-2-1-1-c2이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단순한 결과 문장이고 분자끼리 나누는 방법과 겹친다.",
+      "cReason": "분모가 같다는 조건과 나누어떨어진다는 조건이 있고 빈칸이 자연수 하나라 짧고 명확하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "두 수가 양수이고 같은 분모의 분자 나눗셈이 나누어떨어진다는 조건으로 자연수 몫을 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-2-1-1-xc6",
+      "sourceIndex": 2165,
+      "proposalFingerprint": "2bbf50f2fea05064bfa9e7f3c4ad347065ca14a3f873d637ae6bb171f9356f7a",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$0$이 아닌 분수를 같은 분수로 나누면 몫은 얼마인가요? 덜어 내는 생각으로 까닭을 설명하세요.",
+        "answer": "몫은 $1$입니다. 나누는 분수가 나누어지는 분수와 같아서 한 번 덜어 내면 남는 것이 없기 때문입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $1$",
+              "$1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 번 덜어 내면 남지 않는다",
+              "한 번만 들어간다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "나누는 분수가 $0$이 아닐 때 $\\frac{5}{8}\\div\\frac{5}{8}$의 몫은 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "결과 $1$과 한 번 덜어 낸다는 까닭을 함께 확인한다.",
+      "cReason": "앞부분 '한 번 들어가므로'가 답을 거의 알려 주어 실제 식에서 몫을 쓰게 바꾼다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "0이 아닌 같은 분수끼리 나누면 한 번 덜어 남지 않아 몫1이라는 이유와 실제 식을 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-2-1-1-xc8",
+      "sourceIndex": 2166,
+      "proposalFingerprint": "d608e94aab98bb07098056bdc5d78b94ca151e1d5f9f29fdb2e9340f2d6575c5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\frac{5}{9}\\div\\frac{1}{9}$의 몫은 얼마인가요? 분모가 같은 단위분수로 나눌 때 몫이 나누어지는 분수의 무엇과 같은지 쓰고, 그 까닭도 설명하세요.",
+        "answer": "몫은 $5$입니다. 나누어지는 분수의 분자와 같고, $\\frac{5}{9}$ 안에 $\\frac{1}{9}$이 $5$개 들어 있기 때문입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $5$",
+              "$5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자와 같다",
+              "분자"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위분수가 분자만큼 들어 있다",
+              "$\\frac{1}{9}$이 $5$개 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "진분수나 가분수를 분모가 같은 단위분수로 나누면 몫은 나누어지는 분수의 {분자}와 같다. 단위분수가 그 수만큼 들어 있기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "분자"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단위분수가 몇 개 들어 있는지로 연결하는 것이 핵심이라 예와 일반 관계를 함께 묻는다.",
+      "cReason": "분모가 같은 단위분수로 나눈다는 조건이 있고 빈칸이 분자 하나다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "같은 분모의 단위분수1/9가5/9에5개 들어 있다는 이유로 몫과 분자를 연결한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-2-1-1-xc10",
+      "sourceIndex": 2167,
+      "proposalFingerprint": "7d45c55ac7cb4e4b119dd5e733e1a6f0d3a4cea70e164f496db04d67a690e886",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "e6-2-1-1-c1과 완전히 중복된다. 대체는 e6-2-1-1-c1, e6-2-1-1-xc26이다.",
+        "cloze": "e6-2-1-1-c1과 완전히 중복된다. 대체는 e6-2-1-1-c1, e6-2-1-1-xc26이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c1과 같은 내용이다.",
+      "cReason": "c1과 같은 내용이고 '□이 같다'는 조사가 어색하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "c1과 같은 분자 나눗셈의 중복을 제외하고 c1,xc26으로 대체한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-2-1-1-xc11",
+      "sourceIndex": 2168,
+      "proposalFingerprint": "2706045098e36d48f2f6d6696251cff102217ef069df64bdd90ed450dbe87293",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$0$보다 큰 두 분수를 나눌 때, 몫이 $1$보다 작은 경우와 $1$보다 큰 경우는 각각 두 분수의 크기가 어떠할 때인가요? $\\frac{2}{9}\\div\\frac{5}{9}$의 몫도 구하세요.",
+        "answer": "나누어지는 분수가 나누는 분수보다 작으면 몫이 $1$보다 작고, 크면 $1$보다 큽니다. $\\frac{2}{9}\\div\\frac{5}{9}=\\frac{2}{5}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 분수가 더 작으면 몫이 $1$보다 작다",
+              "나누어지는 분수 < 나누는 분수일 때 몫 < $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 분수가 더 크면 몫이 $1$보다 크다",
+              "나누어지는 분수 > 나누는 분수일 때 몫 > $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{5}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$0$보다 큰 두 분수에서 나누어지는 분수가 나누는 분수보다 {작으면} 몫은 $1$보다 작다.",
+        "acceptedAnswers": [
+          [
+            "작으면",
+            "더 작으면",
+            "작을 때"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "작은 경우와 큰 경우를 한 번에 묻고 예로 몫이 $1$보다 작음을 확인한다.",
+      "cReason": "학생 문장 안에 양수인 두 분수와 비교할 두 수가 모두 있고, 짧은 비교어 '작으면'을 쓰면 된다. 사용자가 유용하다고 인정한 작은/큰 관계의 목표와 같다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "양수 두 분수의 대소와 몫1의 대소를 구별하고2/9÷5/9=2/5를 구한다. 사용자가 승인한 작으면 C를 그대로 보존했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "e6-2-1-1-xc12",
+      "sourceIndex": 2169,
+      "proposalFingerprint": "646afb53916a386ea284016a755e6967d4fe4d34871624ef592634b0bc95a7ee",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "$0$보다 큰 두 분수에서 나누어지는 분수가 나누는 분수보다 {크면} 몫은 $1$보다 크다.",
+        "acceptedAnswers": [
+          [
+            "크면",
+            "더 크면",
+            "클 때"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "xc11 B에 대칭 내용이 이미 있어 B가 중복된다. 대체는 e6-2-1-1-xc11이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc11 B에서 두 경우를 함께 묻는다.",
+      "cReason": "양수 분수 두 수의 크기와 몫을 1과 비교하는 관계가 문장에 모두 보인다. '크면'이라는 짧은 답으로 확인할 수 있어 불필요한 예나 긴 구절로 바꾸지 않는다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "B는 두 경우를 묻는 xc11로 중복을 대체하고 사용자가 승인한 크면 C는 별도로 유지했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    }
+  ]
+}

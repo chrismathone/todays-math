@@ -1,3 +1,4 @@
+import type { BankSourceGroup } from "@/contracts/bankSource.contract";
 import type { ProblemSource, ReviewStatus } from "@/contracts/common.contract";
 
 // 🔴 `DIFFICULTY_LABEL` 은 없앴다 (D-106, 2026-08-25).
@@ -25,6 +26,20 @@ export const SOURCE_LABEL: Record<ProblemSource, string> = {
   transformed: "변형",
   ai_generated: "AI 생성",
   school_textbook: "교과서",
+};
+
+/**
+ * 문제은행 «출처 고르기» 창 맨 위 출처 줄의 이름(D-161 H1 ⑴) — 갈래는 계약(`bankSource.contract.ts`)이 정한다.
+ *
+ * ⚠️ «엔진»은 `source = manual` **전부**다(엔진 표지 없는 옛 수작업 행까지). 문항 상세의 출처 이름
+ *    (`SOURCE_LABEL.manual` = «자작»)과 다른 말이다 — 리드 결정 2026-10-08, 상세 쪽은 고치지 않는다.
+ *    교과서 · 기출은 같은 낱말을 쓴다(«교재»와 «교과서»는 다른 낱말 — 07 D-161).
+ */
+export const BANK_SOURCE_GROUP_LABEL: Record<BankSourceGroup, string> = {
+  engine: "엔진",
+  school_textbook: "교과서",
+  past_exam: "기출",
+  other: "그 밖",
 };
 
 /** 필터 드롭다운이 그리는 순서 — 많은 것부터. */

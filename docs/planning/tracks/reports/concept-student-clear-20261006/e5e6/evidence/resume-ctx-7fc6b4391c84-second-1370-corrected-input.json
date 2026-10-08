@@ -1,0 +1,125 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-4-4-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$6×2.9$를 정확히 계산하기 전에 곱이 대략 얼마인지 알아보려고 합니다. $2.9$에 가장 가까운 자연수를 찾고, 이 수를 어떻게 사용해 곱을 어림하는지 설명하세요.",
+      "bAnswer": "소수를 가까운 자연수로 바꾸어 곱한다. $2.9$는 $3$에 가까우므로 $6\\times 3=18$, 곱은 약 $18$(조금 작다)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수를 가까운 자연수로 바꾸어 곱한다",
+            "$2.9$를 $3$으로 보고 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약 $18$",
+            "$18$보다 조금 작다",
+            "$18$쯤"
+          ]
+        }
+      ],
+      "bGoal": "소수를 가까운 자연수로 바꾸어 곱을 어림한다.",
+      "bReason": "어림 방법과 그 방법을 쓴 구체적 어림값을 함께 묻도록 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "$6\\times 2.9$는 $2.9$를 가까운 자연수 {$3$}으로 바꾸어 곱하면 약 {$18$}로 어림할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "cReason": "'곱의 대략적인 크기'는 긴 구절 암기라 실제 어림 과정을 채우게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1370.json",
+      "codexFinalAmendedFromFingerprint": "8e2b133530399b6d1385b76ae278acfc8e846b2c0a1254c9e63842f7eefe9b74",
+      "sourceIndex": 1379,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-4-xc12",
+        "section": "초5::2-4 소수의 곱셈::2-4-4 (자연수)×(1보다 큰 소수)의 계산",
+        "term": "곱의 어림",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수에 소수를 곱할 때 소수를 가까운 자연수로 바꾸어 곱하면 {곱의 대략적인 크기}를 어림할 수 있다.",
+        "studentC": "자연수에 소수를 곱할 때 소수를 가까운 자연수로 바꾸어 곱하면 □를 어림할 수 있다.",
+        "answers": [
+          "곱의 대략적인 크기"
+        ]
+      },
+      "sourceFingerprint": "1d456e0f0769db8e4455ad7ff5383e11e65ea5f14fa3edf05e36af18014b63d6",
+      "draftEvidence": "evidence/section-043-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$3$",
+        "$18$"
+      ],
+      "cStudentAfter": "$6\\times 2.9$는 $2.9$를 가까운 자연수 □으로 바꾸어 곱하면 약 □로 어림할 수 있다.",
+      "cMarkedSentence": "$6\\times 2.9$는 $2.9$를 가까운 자연수 {$3$}으로 바꾸어 곱하면 약 {$18$}로 어림할 수 있다.",
+      "cStudentSentence": "$6\\times 2.9$는 $2.9$를 가까운 자연수 □으로 바꾸어 곱하면 약 □로 어림할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$6×2.9$를 정확히 계산하기 전에 곱이 대략 얼마인지 알아보려고 합니다. $2.9$에 가장 가까운 자연수를 찾고, 이 수를 어떻게 사용해 곱을 어림하는지 설명하세요.",
+        "answer": "소수를 가까운 자연수로 바꾸어 곱한다. $2.9$는 $3$에 가까우므로 $6\\times 3=18$, 곱은 약 $18$(조금 작다)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수를 가까운 자연수로 바꾸어 곱한다",
+              "$2.9$를 $3$으로 보고 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약 $18$",
+              "$18$보다 조금 작다",
+              "$18$쯤"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6\\times 2.9$는 $2.9$를 가까운 자연수 {$3$}으로 바꾸어 곱하면 약 {$18$}로 어림할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a3048291303621d61bb9b522debe3a9bb3913f57b253e1508993aefbab89ae36",
+      "questionRevision": "planning-e5e6-20261006-a30482913036",
+      "requiresIndependentReview": true
+    }
+  ]
+}
