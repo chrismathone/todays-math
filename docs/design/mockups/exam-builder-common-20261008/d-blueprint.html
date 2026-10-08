@@ -1819,6 +1819,8 @@
           (n, i) => n + units()[i].questions.length,
           0,
         );
+        if (VARIANT === "D" && count && state.scopeIds.length === linked.length)
+          return "";
         return `<p class="coverage-note caption">${
           !state.scopeIds.length
             ? "출제 범위를 추가하세요."
@@ -1827,8 +1829,8 @@
               : `구성에 사용할 수 있는 자체 작성 예시: ${linked.length}개 범위 · ${count}문항`
         }</p>`;
       }
-      function titleField() {
-        return `<label class="field title-field"><span>시험지 제목</span><input id="exam-title" maxlength="80" value="${esc(state.title)}"></label>`;
+      function titleField(label = "시험지 제목") {
+        return `<label class="field title-field"><span>${esc(label)}</span><input aria-label="시험지 제목" id="exam-title" maxlength="80" value="${esc(state.title)}"></label>`;
       }
       function previewButton() {
         return `<button class="primary" data-action="preview" ${!state.items.length ? "disabled" : ""}>양식 구성 · 출력 <span aria-hidden="true">↗</span></button>`;
@@ -1862,7 +1864,7 @@
             return `<tr><td><b>${esc(u.name)}</b><p class="caption">${esc(row.grade + " · 시안 문항")}</p><div class="allocation" aria-hidden="true"><span style="width:${(state.counts[i] / 4) * 100}%"></span></div></td><td><div class="stepper"><button data-action="less" data-unit="${i}" aria-label="${esc(u.name)} 문항 수 줄이기" ${state.counts[i] === 0 ? "disabled" : ""}>−</button><output aria-label="${esc(u.name)} 구성 수">${state.counts[i]}</output><button data-action="more" data-unit="${i}" aria-label="${esc(u.name)} 문항 수 늘리기" ${state.counts[i] === 4 ? "disabled" : ""}>＋</button></div></td><td>${unitItems(i).length}문항</td></tr>`;
           })
           .join("");
-        return `<table class="blueprint-table"><thead><tr><th scope="col">선택한 출제 범위</th><th scope="col">구성할 문항 수</th><th scope="col">현재 담은 문항</th></tr></thead><tbody>${rows || '<tr><td colspan="3">출제할 범위를 선택하세요.</td></tr>'}</tbody></table>${pages > 1 ? `<div class="scope-pager" aria-label="출제 구성표 페이지"><button data-action="allocation-prev" ${allocationPage ? "" : "disabled"}>이전</button><span>${allocationPage + 1} / ${pages} · ${selected.length}개 범위</span><button data-action="allocation-next" ${allocationPage + 1 === pages ? "disabled" : ""}>다음</button></div>` : ""}`;
+        return `<table class="blueprint-table"><thead><tr><th scope="col">선택한 출제 범위</th><th scope="col">구성 수</th><th scope="col">현재</th></tr></thead><tbody>${rows || '<tr><td colspan="3">출제할 범위를 선택하세요.</td></tr>'}</tbody></table>${pages > 1 ? `<div class="scope-pager" aria-label="출제 구성표 페이지"><button data-action="allocation-prev" ${allocationPage ? "" : "disabled"}>이전</button><span>${allocationPage + 1} / ${pages} · ${selected.length}개 범위</span><button data-action="allocation-next" ${allocationPage + 1 === pages ? "disabled" : ""}>다음</button></div>` : ""}`;
       }
       function questionRuns() {
         const runs = [];
@@ -1875,7 +1877,7 @@
       }
       function renderD() {
         const total = state.counts.reduce((a, b) => a + b, 0);
-        return `${commonNote()}<div class="shell"><aside class="rail"><div><div class="brand"><span class="mark" aria-hidden="true">T</span>${esc(window.ExamScope.productName)}</div></div><nav aria-label="현재 작업"><a class="rail-link selected" href="#scope"><small>01</small>출제 구성표</a><a class="rail-link" href="#composition"><small>02</small>문항 다듬기</a><a class="rail-link" href="#output"><small>03</small>출력 설정</a></nav><div class="rail-stat"><div class="eyebrow">현재 시험지</div><div class="rail-count">${state.items.length}<span style="font-size:14px;font-weight:500;margin-left:8px">문항</span></div><p class="caption" style="color:#b4c4da;margin-top:8px">${state.order.filter((i) => unitItems(i).length).length}개 단원 · ${esc(state.subject)}</p></div><p class="rail-note">단원별 수량을 먼저 정하고<br>문항을 한 묶음씩 검토합니다.</p></aside><main class="workspace"><div class="heading spread"><div><div class="eyebrow" style="margin-bottom:8px">D · 구성표 중심</div><h1>시험지 만들기</h1><p>단원별 출제 수를 정하고, 구성을 한눈에 확인하세요.</p></div>${previewButton()}</div><section class="panel setup" id="scope" aria-labelledby="scope-title"><div class="setup-head spread"><div><h2 id="scope-title">출제 구성표</h2><p class="caption" style="margin-top:4px">선택한 범위만 표시합니다. 범위가 많으면 8개씩 나눠 확인합니다.</p></div></div>${scopeHTML()}${allocationHTML()}<div class="compose-bar"><div><span class="total">합계 ${total}문항</span><p class="caption" id="scope-status" style="margin-top:4px"></p></div><button class="primary" data-action="compose" ${total ? "" : "disabled"}>시험지 구성 <span aria-hidden="true">→</span></button></div></section><div class="initial-empty panel"><span class="eyebrow">다음 · 단원별 문항 검토</span><h2>구성표가 시험지의 뼈대가 됩니다.</h2><p class="muted">단원별 문항 수를 정한 뒤 시험지 구성을 눌러 주세요.</p></div><section id="composition" aria-labelledby="composition-title"><div class="spread results-heading"><div><h2 id="composition-title">구성한 문항 <span class="badge">${state.items.length}</span></h2><p class="caption" style="margin-top:4px">⠿ 손잡이를 끌어 원하는 위치로 옮기세요. 단원 사이 이동도 가능합니다.</p></div><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${
+        return `${commonNote()}<div class="shell"><aside class="rail"><div><div class="brand"><span class="mark" aria-hidden="true">T</span>${esc(window.ExamScope.productName)}</div></div><nav aria-label="현재 작업"><a class="rail-link selected" href="#scope"><small>01</small>출제 구성표</a><a class="rail-link" href="#composition"><small>02</small>문항 다듬기</a><a class="rail-link" href="#output"><small>03</small>출력 설정</a></nav><div class="rail-stat"><div class="eyebrow">현재 시험지</div><div class="rail-count">${state.items.length}<span style="font-size:14px;font-weight:500;margin-left:8px">문항</span></div><p class="caption" style="color:#b4c4da;margin-top:8px">${state.order.filter((i) => unitItems(i).length).length}개 단원 · ${esc(state.subject)}</p></div><p class="rail-note">단원별 수량을 먼저 정하고<br>문항을 한 묶음씩 검토합니다.</p></aside><main class="workspace"><header class="heading blueprint-header"><h1>시험지 만들기</h1><span class="badge">D · 확정안</span></header><aside class="settings-column" aria-label="시험지 설정과 출제 범위"><section class="panel output-panel" id="output" aria-label="제목 및 출력 설정"><div class="output-fields">${titleField("제목")}${previewButton()}</div></section><section class="panel setup" id="scope" aria-label="출제 구성표">${scopeHTML()}${allocationHTML()}<div class="compose-bar"><div><span class="total">합계 ${total}문항</span><p class="caption" id="scope-status" style="margin-top:4px"></p></div><button class="primary" data-action="compose" ${total ? "" : "disabled"}>시험지 구성 <span aria-hidden="true">→</span></button></div></section></aside><div class="review-column"><div class="initial-empty panel"><span class="eyebrow">다음 · 단원별 문항 검토</span><h2>구성표가 시험지의 뼈대가 됩니다.</h2><p class="muted">단원별 문항 수를 정한 뒤 시험지 구성을 눌러 주세요.</p></div><section id="composition" aria-labelledby="composition-title"><div class="spread results-heading"><h2 id="composition-title">구성한 문항 <span class="badge">${state.items.length}</span></h2><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${
           state.items.length
             ? questionRuns()
                 .map(
@@ -1884,7 +1886,7 @@
                 )
                 .join("")
             : '<div class="panel empty"><h2>아직 담은 문항이 없습니다</h2><p>출제 구성표에서 수량을 정하거나 문항을 추가하세요.</p></div>'
-        }</section><section class="panel output-panel" id="output"><div class="spread"><h2>양식 구성 · 출력</h2><span class="caption">문제 추출과 같은 양식 구성</span></div><div class="output-fields">${titleField()}${previewButton()}</div><p class="caption" style="margin-top:12px">다음 화면에서 양식, 단 수, 풀이 공간과 정답지 설정을 구성합니다.</p></section><p class="footnote">이 시안을 위해 작성한 문항입니다. 실제 문제은행·교육과정 검증 자료가 아니며 새로고침하면 편집 내용이 초기화됩니다.</p></main></div>`;
+        }</section></div><p class="footnote">이 시안을 위해 작성한 문항입니다. 실제 문제은행·교육과정 검증 자료가 아니며 새로고침하면 편집 내용이 초기화됩니다.</p></main></div>`;
       }
       function scopeStatus() {
         if (VARIANT === "C") {
@@ -1962,6 +1964,9 @@
             );
         ExamQuestionPicker.open({
           mode,
+          getDialogWidth: current
+            ? () => $("#composition").getBoundingClientRect().width
+            : undefined,
           levels: units()
             .flatMap((u) => u.questions)
             .map((q) => q.level),
