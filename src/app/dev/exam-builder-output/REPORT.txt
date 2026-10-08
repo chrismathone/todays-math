@@ -1,0 +1,63 @@
+Development-only shared exam output preview — 2026-10-08
+
+Route: /dev/exam-builder-output (coordinator's Next server: 127.0.0.1:3179).
+Base: main 970f0f6f8 was fast-forwarded before implementation.
+Only this directory changed; production components and static mockups are unchanged.
+
+Reuse and boundaries
+- ExamBuilderOutput mounts the actual WorksheetEditor, whose existing children
+  are PrintOptionsPanel and WorksheetPrint. All six production templates, native
+  content rendering, measured pagination, answers and browser printing remain shared.
+- allowedMenus is only export. The existing step bar consequently omits upload,
+  cropping and OCR tabs. There is no duplicate output renderer or template picker.
+- Supplied prompt/passage text is joined with a paragraph boundary in the shared
+  typed-content carrier; choices remain separate ordered native choice groups.
+  IDs, answers, solutions and supplied metadata survive. Missing answer/solution
+  content is never authored. The required ocr carrier is not an OCR operation;
+  number=0 means no supplied source number, avoiding numeric prompt stripping.
+- page.tsx awaits connection() then notFound() outside development.
+- CSS owns only the wrapper and outer editor layout: full width, two columns above
+  860px, stacked with 16px side spacing at <=860px. A4 descendants retain shared
+  styles and dimensions. Wrapper UI and the shared action bar are hidden in print.
+
+Bridge
+- Only window.parent messages with exact origin http://127.0.0.1:3178 are accepted.
+  The message listener is installed before exam-concept:ready is posted there.
+- exam-concept:open validates subject, title (80 characters), <=120 unique-ID
+  questions, <=10 choices each and bounded field lengths / 500,000 total text
+  characters. Invalid payloads show a recoverable error; text is not clipped.
+- Each valid open loads its latest title/questions, retains print options and
+  other form metadata, updates the subject/title metadata and clears the previous
+  question bundle's temporary snapshot. No browser storage is used.
+- Back button, Escape and authenticated exam-concept:close return
+  exam-concept:back with current title and ordered remaining questionIds.
+  Before a valid open or after invalid input, back has no payload: the coordinator
+  explicitly accepted this as cancellation without changing the parent selection.
+
+Temporary actions
+- Save/restore clone the actual in-memory title, questions, options and metadata.
+  Wording explicitly says 시안 / 임시, with no account-save claim.
+- Work-file export downloads real JSON locally, marked exam-concept-preview and
+  temporary. There is no file-import claim; restore applies to the memory snapshot.
+- As agreed with the coordinator, wrapper click capture handles the shared HWPX
+  and server PDF buttons with a notice directing users to 인쇄 / PDF 저장.
+  The real browser print button still calls window.print().
+- A layout-effect boundary locally rejects /api/ fetches and absorbs API beacons
+  from inherited activity/error reporters. Asset loads are delegated. Cleanup also
+  deactivates retained wrappers so API blocking cannot leak to another route.
+
+Verification
+- PASS: npx eslint src/app/dev/exam-builder-output
+- PASS: node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit
+  --project src/app/dev/exam-builder-output/tsconfig.check.json
+  (targeted dependency graph, not a whole-repository type check).
+- PASS: npx vitest run --config src/app/dev/exam-builder-output/vitest.config.mts
+  10 tests across 3 files: bounded conversion, parent origin/source, ready/open,
+  all six real template DOMs, memory save/restore, reorder/remove/title return,
+  reopen option preservation, close/Escape/cancel, export guard, API isolation,
+  and connection-before-production-notFound.
+- The integration test replaces only useMeasuredPages geometry because jsdom has
+  no layout. WorksheetEditor, PrintOptionsPanel, WorksheetPrint, native renderer
+  and template components are real. Pixel layout, physical pagination and mobile
+  browser QA are for the coordinator's running Next server after integration.
+- No dev server was started here. No push or external publication was performed.
