@@ -39,7 +39,7 @@ const GRID_STYLE = {
 const BADGE_CHIP =
   "inline-flex h-5 min-w-5 items-center justify-center rounded-sm px-1 text-[11px] font-semibold leading-none text-white";
 
-function Chevron() {
+export function Chevron() {
   return (
     <svg
       width="18"
@@ -122,7 +122,7 @@ function Card({ problem, number }: { problem: WireProblem; number: number }) {
   );
 }
 
-function Cards({ count = 2 }: { count?: number }) {
+export function Cards({ count = 2 }: { count?: number }) {
   return (
     <div className={styles.problemList} style={GRID_STYLE}>
       {WIRE_PROBLEMS.slice(0, count).map((problem, index) => (
@@ -132,7 +132,7 @@ function Cards({ count = 2 }: { count?: number }) {
   );
 }
 
-function Select({
+export function Select({
   label,
   options,
   value,
@@ -169,7 +169,7 @@ function Select({
 }
 
 /** 지금 화면의 첫 줄 — 검색 · 학년 · 단원 · 범위 · 상세 필터 */
-function TopRow({
+export function TopRow({
   children,
   grade = "중1",
 }: {
@@ -226,7 +226,7 @@ function TopRow({
 }
 
 /** 지금 화면의 둘째 줄 — 난이도 · 유형 · 상태 · 출처 · 자료 */
-function ExtraRow({
+export function ExtraRow({
   children,
   source = "교과서",
   withSource = true,
@@ -286,7 +286,7 @@ function Chips({ items }: { items: Array<[string, string]> }) {
   );
 }
 
-function ResultLine({ text }: { text: string }) {
+export function ResultLine({ text }: { text: string }) {
   return (
     <p
       style={{ margin: "4px 0 12px", fontSize: 13, color: "var(--bank-muted)" }}
