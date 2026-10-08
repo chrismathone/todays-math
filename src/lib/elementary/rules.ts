@@ -96,13 +96,23 @@ export function numRo(value: number): string {
   return JOSA_FINAL[last] === "other" ? "으로" : "로";
 }
 
+// TeX permits a single token without braces: \frac12 means \frac{1}{2}.
+// The spoken ending still comes from the numerator, not the final source digit.
+const FRACTION_TAIL =
+  /\\(?:d|t)?frac\s*(?:\{([^{}]+)\}|([^{}\s]))\s*(?:\{[^{}]+\}|[^{}\s])\s*$/;
+
+function fractionNumerator(match: RegExpMatchArray): string | undefined {
+  const numerator = (match[1] ?? match[2])?.trim();
+  return numerator && /^-?\d+$/.test(numerator) ? numerator : undefined;
+}
+
 /**
  * `fmtFrac` 이 낸 글자에서 **마지막으로 읽히는 수**.
  * `11\frac{1}{4}` 는 「십일과 사분의 일」이라 끝소리가 **분자**다.
  */
 export function lastSpokenNumber(latex: string): number {
-  const frac = latex.match(/\\frac\{(\d+)\}\{(\d+)\}/);
-  if (frac) return Number(frac[1]);
+  const frac = latex.match(FRACTION_TAIL);
+  if (frac) return Number(fractionNumerator(frac) ?? 0);
   const nums = latex.match(/\d+/g);
   return nums ? Number(nums[nums.length - 1]) : 0;
 }
@@ -173,9 +183,13 @@ export function josaFaults(text: string): string[] {
     //    켤 때는 `final = powArg === "\\circ" ? "none" : "other"` 한 줄이면 된다.
     const POW = /\^(?:\{([^{}]+)\}|(-?\d+|[A-Za-z]|\\circ))$/;
     const pow = POW.test(span);
-    const asFrac = span.match(/\\frac\{(\d+)\}\{\d+\}$/);
+    const asFrac = span.match(FRACTION_TAIL);
     const asNum = span.match(/(\d+)$/);
-    const digits = pow ? undefined : (asFrac?.[1] ?? asNum?.[1]);
+    const digits = pow
+      ? undefined
+      : asFrac
+        ? fractionNumerator(asFrac)
+        : asNum?.[1];
     const final =
       digits === undefined ? undefined : JOSA_FINAL[digits.slice(-1)!]!;
     if (final !== undefined) {

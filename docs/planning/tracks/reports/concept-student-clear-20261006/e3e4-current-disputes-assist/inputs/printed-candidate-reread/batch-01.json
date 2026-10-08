@@ -1,0 +1,473 @@
+{
+  "printedAt": "2026-10-07T11:02:04.684Z",
+  "reader": "Codex direct e3e4 current-disputes assist",
+  "rows": [
+    {
+      "id": "e4-1-6-2-xc13",
+      "B": {
+        "prompt": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 가장 작은 반복 묶음은 도형 몇 개로 이루어지는지 쓰세요. 앞에서부터 두 개씩 묶은 처음 두 묶음을 비교하여, 두 개가 반복 단위가 될 수 없는 까닭을 쓰세요.",
+        "answer": "가장 작은 반복 묶음은 $3$개입니다. 두 개씩 묶으면 첫 묶음은 동그라미·세모, 다음 묶음은 세모·동그라미로 차례가 다르므로 같은 두 개 묶음이 연이어 반복되지 않습니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 반복 묶음은 $3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 두 묶음은 동그라미·세모와 세모·동그라미로 차례가 달라 같은 두 개 묶음이 연이어 반복되지 않는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "동그라미, 세모, 세모, 동그라미, 세모, 세모 순서가 계속 반복된다. 같은 차례가 되풀이되는 가장 작은 묶음은 도형 {$3$}개로 이루어져 있다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "generalDefinition": "반복 묶음은 처음과 {같은 차례가 다시 시작되는 곳}에서 끊어 찾는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "procedure",
+      "hash": "bece1e050147c526a833f8f31119ed6585445144627b8de8d7d4e114c5820118",
+      "fingerprint": "7a794e204752b820d41d612bde5e1d8dbb80609e672cd64fcbd26696b5747f22"
+    },
+    {
+      "id": "e4-2-2-1-xc4",
+      "B": {
+        "prompt": "이등변삼각형에서 길이가 같은 두 변 말고 나머지 한 변은 그 두 변과 길이가 같아야만 하는지 쓰고 까닭을 설명하시오.",
+        "answer": "같아야만 하는 것은 아닙니다. 두 변의 길이가 같으면 이등변삼각형의 조건을 만족하므로 나머지 한 변의 길이는 달라도 됩니다. 세 변이 모두 같아도 이등변삼각형입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같지 않아도 된다",
+              "나머지 변은 달라도 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변의 길이가 같으면 이등변삼각형의 조건을 만족한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+        "acceptedAnswers": [
+          [
+            "달라도",
+            "다르더라도"
+          ]
+        ]
+      },
+      "generalDefinition": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 {다를 수도} 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "definition",
+      "hash": "3d8f74a915bf274285b0ec59ee1a5e04cfac730c8f81e03b4863ae38ad98f0a9",
+      "fingerprint": "dfc592007cf87481b9292eebb1b2f713b72993787e9802bd778ccbb4e75addd0"
+    },
+    {
+      "id": "e4-2-2-4-xc2",
+      "B": {
+        "prompt": "삼각형을 각의 크기에 따라 나누면 어떤 세 종류로 나눌 수 있는지 이름을 모두 쓰시오.",
+        "answer": "예각삼각형, 직각삼각형, 둔각삼각형",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "예각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "둔각삼각형"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형은 세 각이 모두 예각이면 {예각삼각형}, 직각이 하나 있으면 {직각삼각형}, 둔각이 하나 있으면 {둔각삼각형}으로 분류한다.",
+        "acceptedAnswers": [
+          [
+            "예각삼각형"
+          ],
+          [
+            "직각삼각형"
+          ],
+          [
+            "둔각삼각형"
+          ]
+        ]
+      },
+      "generalDefinition": "삼각형은 각의 크기에 따라 {예각삼각형}, {직각삼각형}, {둔각삼각형}으로 나눌 수 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "naming",
+      "hash": "437640a1729a8a76d078a3715a4b7533abb1df16924d82f548e6bfb2b901ddb1",
+      "fingerprint": "6f05e6da259380f8d37c4e0035da499c95b6b276d3774f803ff78d5693b218d7"
+    },
+    {
+      "id": "e4-2-2-4-xc12",
+      "B": {
+        "prompt": "삼각형에서 두 예각의 합이 $90^\\circ$보다 클 때 나머지 한 각은 $90^\\circ$와 비교해 어떤지 쓰고, 그 까닭을 쓰시오.",
+        "answer": "$90^\\circ$보다 작은 예각이다. 세 각의 합 $180^\\circ$에서 $90^\\circ$보다 큰 수를 빼기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$90^\\circ$보다 작다",
+              "예각"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ$에서 $90^\\circ$보다 큰 두 각의 합을 빼므로 나머지는 $90^\\circ$보다 작다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 각은 직각이나 둔각이 아니라 {예각}이다.",
+        "acceptedAnswers": [
+          [
+            "예각",
+            "$90^\\circ$보다 작은 각",
+            "$90^\\circ$보다 작은 예각"
+          ]
+        ]
+      },
+      "generalDefinition": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 각은 {$90^\\circ$보다 작은 예각}이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "reason",
+      "hash": "a2695ce93acdb3a6702aaa671ea08d77cf90d3a4edde7ba99596f4dfb73e0f1e",
+      "fingerprint": "4a625bc73e6b0cd63830f46021ed9b8ab5712cd72344b6dea5fca891534e33cb"
+    },
+    {
+      "id": "e4-2-2-4-xc15",
+      "B": {
+        "excluded": "직각삼각형의 직각 수는 C의 개수 단답으로 확인한다. 이 항목에는 직각이 둘일 수 없는 까닭을 설명하는 별도 B 문항을 두지 않는다."
+      },
+      "C": {
+        "sentence": "직각삼각형에는 직각이 {하나}만 있다.",
+        "acceptedAnswers": [
+          [
+            "하나",
+            "한 개",
+            "$1$개",
+            "$1$"
+          ]
+        ]
+      },
+      "generalDefinition": "직각삼각형에는 직각이 {하나}만 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "reason",
+      "hash": "ef8ce75d00b9291e878e45b38ed441f54115781ab1542db0f7200debfce5574a",
+      "fingerprint": "509e5761751145ae9144c47a81ffafa45a406deb44a01b77ef0245d42bd2a736"
+    },
+    {
+      "id": "e4-2-2-5-xc7",
+      "B": {
+        "excluded": "두 기준을 모두 확인한다는 방법"
+      },
+      "C": {
+        "sentence": "삼각형을 두 기준으로 분류하려면 변의 길이와 {각의 크기}를 모두 확인한다.",
+        "acceptedAnswers": [
+          [
+            "각의 크기"
+          ]
+        ]
+      },
+      "generalDefinition": "삼각형을 두 기준으로 분류하려면 변의 길이와 {각의 크기}를 모두 확인한다.",
+      "coreAfter": "삼각형을 두 기준으로 분류하려면 변의 길이와 {각의 크기}를 모두 확인한다.",
+      "coreReason": "원문 역시 분류 대상이 생략되어 있어 일반 설명에 삼각형만 추가한다. 수치 예로 대체하지 않는다.",
+      "role": "procedure",
+      "hash": "448acabf5942f79204aa775540941d1f7f8fdc5e12a2415ba344af24bab6f6f5",
+      "fingerprint": "d0b21fb29f16285633fbfe6dcfc1afbf9b286965ff552fc4770482d5eb158055"
+    },
+    {
+      "id": "e4-2-2-5-xc13",
+      "B": {
+        "excluded": "정삼각형과 둔각삼각형 조건을 동시에 만족하는 삼각형의 존재 여부는 C에서 확인한다. 이 항목에는 정삼각형의 각을 다시 설명하는 별도 B 문항을 두지 않는다."
+      },
+      "C": {
+        "sentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 {없다}.",
+        "acceptedAnswers": [
+          [
+            "없다",
+            "하나도 없다"
+          ]
+        ]
+      },
+      "generalDefinition": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 {없다}.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "application",
+      "hash": "bf0722bfeede024ccc94e0cd901b1e54b221f5b458c83acf4fa7ecc607eebaa2",
+      "fingerprint": "ab6172f71d7125f9c994213eafbb41ce4384aeda3f712c4ecbc8c720371c1e3c"
+    },
+    {
+      "id": "e4-2-2-5-xc16",
+      "B": {
+        "prompt": "각이 $30^\\circ$, $60^\\circ$, $90^\\circ$인 삼각자를 변의 길이와 각의 크기 두 기준으로 분류하면 어떻게 되는지 쓰시오.",
+        "answer": "직각이 있어 직각삼각형이고, 세 각이 모두 달라 세 변의 길이도 모두 다르므로 이등변삼각형은 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변의 길이가 모두 다르다",
+              "이등변삼각형이 아니다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$30^\\circ$, $60^\\circ$, $90^\\circ$인 삼각자는 세 변의 길이가 모두 다르고, 각의 크기로 분류하면 {직각삼각형}이다.",
+        "acceptedAnswers": [
+          [
+            "직각삼각형"
+          ]
+        ]
+      },
+      "generalDefinition": "$30^\\circ$, $60^\\circ$, $90^\\circ$인 삼각자는 세 변의 길이가 모두 다른 {직각삼각형}이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "application",
+      "hash": "a286d6c5bdecb40bc0c0cb2fe3ebdbe152f5eb5bf4d0de9d37ebd9843d4bb50a",
+      "fingerprint": "a6d078a736c61d0bc592ad5e9419aa82edf974fa0b331c55fc7d8e52ef30d7d0"
+    },
+    {
+      "id": "e4-2-2-5-xc24",
+      "B": {
+        "prompt": "삼각형을 변의 길이와 각의 크기로 분류한 표가 있다. 이등변삼각형이면서 예각삼각형인 칸에 크기가 다른 두 삼각형을 함께 넣을 수 있는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "두 삼각형이 모두 이등변삼각형이면서 예각삼각형이면 넣을 수 있다. 도형 전체의 크기는 이 칸의 분류 기준이 아니기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘 다 이등변삼각형이면서 예각삼각형이면 넣을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도형 전체의 크기는 기준이 아니고 두 분류 조건을 만족하면 된다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 {같은} 칸에 들어간다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "동일한"
+          ]
+        ]
+      },
+      "generalDefinition": "분류 표의 한 칸에는 그 칸의 두 조건을 만족하면 {크기가 다른 삼각형도 함께} 들어갈 수 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "reason",
+      "hash": "6ec8a58d86586ccdafa68a16e0d4953efee3f9769e1c14fd1309a0ba0f20c9b6",
+      "fingerprint": "8c5ca84d761e4c80dcafe87203a5c4aff7a069d7f18b7d02a782b95c36f4c3ad"
+    },
+    {
+      "id": "e4-2-2-5-xc26",
+      "B": {
+        "prompt": "세 각이 $45^\\circ$, $45^\\circ$, $90^\\circ$인 삼각형을 변과 각 두 기준으로 분류할 때 '직각삼각형'이라고만 쓰면 왜 부족한지 쓰시오.",
+        "answer": "두 각이 같아 이등변삼각형이기도 한데 변 기준의 이름을 빠뜨렸기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 각이 같아 마주 보는 두 변도 같으므로 변 기준 이름인 이등변삼각형을 빠뜨렸다",
+              "직각삼각형뿐 아니라 이등변삼각형이기도 한데 변 기준의 이름을 쓰지 않았다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "세 각이 $45^\\circ$, $45^\\circ$, $90^\\circ$인 삼각형은 직각삼각형이다. 크기가 같은 두 각과 마주 보는 두 변의 길이도 같으므로 {이등변삼각형}이기도 하다.",
+        "acceptedAnswers": [
+          [
+            "이등변삼각형"
+          ]
+        ]
+      },
+      "generalDefinition": "두 기준으로 분류할 때 한 기준만 말하면 {나머지 기준의 이름}을 빠뜨린 것이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "reason",
+      "hash": "609a2bd49e86e38f21cda388815da220a641bf53c27852cf86dd1097f4f0f4ff",
+      "fingerprint": "209b0baf8218a8f26ef76430c6d7ee4da6db380c95d881f67fc3a40e93dbcd09"
+    },
+    {
+      "id": "e4-2-3-1-xc6",
+      "B": {
+        "prompt": "소수 $4.25$를 소수점 기준으로 왼쪽과 오른쪽 두 부분으로 나누었습니다. 왼쪽 부분의 이름을 쓰시오.",
+        "answer": "자연수 부분입니다. 정수 부분이라고도 합니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분",
+              "정수 부분"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$4.25$를 소수점 기준으로 두 부분으로 나누면 왼쪽 부분을 {자연수 부분}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "자연수 부분",
+            "정수 부분"
+          ]
+        ]
+      },
+      "generalDefinition": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "naming",
+      "hash": "065d55c4943616ce4d7f6a1fc3838a1ae4ece04446bdcf9d8f161700a53fa4ef",
+      "fingerprint": "db53a769f29bc08f23b4406601ec1aa3daefef84862d3869c256b120ce113ce8"
+    },
+    {
+      "id": "e4-2-3-3-xc26",
+      "B": {
+        "prompt": "$4.8$은 $0.048$의 몇 배인지 쓰고, 그 까닭을 각 숫자의 값으로 쓰시오.",
+        "answer": "$100$배이다. $4$가 나타내는 값은 $0.04$에서 $4$로, $8$이 나타내는 값은 $0.008$에서 $0.8$로 모두 $100$배가 되었다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100$배",
+              "백 배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$의 값은 $0.04$에서 $4$로, $8$의 값은 $0.008$에서 $0.8$로 모두 $100$배가 된다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$4.8$에서 각 숫자가 나타내는 값은 $0.048$에서 나타내는 값의 {$100$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$100$",
+            "백"
+          ]
+        ]
+      },
+      "generalDefinition": "각 숫자가 나타내는 값이 모두 {같은 배}가 되면 전체 수도 그 배가 된다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "reason",
+      "hash": "b24c3ea8d01dc0d9e023597f0492d6e365da202cfd630cb371bc82c3e7574d5c",
+      "fingerprint": "a3803090ac152f6f0fd6a62b09454acf485cefba5a925d1514ec9d4fcc8546b2"
+    },
+    {
+      "id": "e4-2-3-4-xc16",
+      "B": {
+        "prompt": "$2.7+3.5$를 $27+35$로 계산할 수 있는 까닭을 쓰고, 합을 구하시오.",
+        "answer": "$6.2$. $2.7$은 $0.1$이 $27$개, $3.5$는 $0.1$이 $35$개라서 $0.1$이 $62$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6.2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $27$개와 $35$개",
+              "$27$과 $35$는 $0.1$의 개수"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "소수 한 자리 수의 덧셈은 소수 첫째 자리의 $1$이 나타내는 값인 {$0.1$}을 단위로 하여, 두 수를 그 개수로 바꾸어 더할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$0.1$",
+            "영 점 일"
+          ]
+        ]
+      },
+      "generalDefinition": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "reason",
+      "hash": "c6b07456cf8ef7c9ec09ba14c5a092afc9a039b1d5516649509977f54ecc4156",
+      "fingerprint": "6a0b55251876b0e59ae5b3a2280ee6b1e281b105b13dc69ae062aa4c318c3936"
+    },
+    {
+      "id": "e4-2-3-6-xc13",
+      "B": {
+        "excluded": "xc4 B와 같은 $0.01$ 개수 덧셈"
+      },
+      "C": {
+        "sentence": "소수 두 자리 수의 덧셈은 소수 둘째 자리의 $1$이 나타내는 값인 {$0.01$}을 단위로 하여, 두 수를 그 개수로 바꾸어 더할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$0.01$",
+            "영 점 영일"
+          ]
+        ]
+      },
+      "generalDefinition": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "procedure",
+      "hash": "0d59565350cd226950023c1c5a61f5b481489e210111ae4cc5f6cc47d110d9bf",
+      "fingerprint": "cc77b842e8164195867af7b0af5f31cc5cf85bb3cf294d821b3cdb006ac46fea"
+    },
+    {
+      "id": "e4-2-3-6-xc15",
+      "B": {
+        "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하고, $35$를 $0.35$로 바꾸는 까닭을 쓰시오.",
+        "answer": "$1.55\\,\\mathrm{m}$. $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$로 단위를 맞추어 더하기 위해서이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1.55\\,\\mathrm{m}$",
+              "$1.55$"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위를 맞추려고",
+              "두 양의 단위를 $\\mathrm{m}$로 같게 해야 더할 수 있기 때문이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "generalDefinition": "단위가 다른 두 양을 더하려면 {같은 단위로 바꾼} 뒤 더한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "role": "procedure",
+      "hash": "383127077bbc61b9509b9a0be925651647f0220627344061c7db4d74d2a5f4cf",
+      "fingerprint": "36af801c9f33c0660b4ab54b68c7abb7d055cb7e28ff7a0d6f6eb32861331cfc"
+    }
+  ]
+}

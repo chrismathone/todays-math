@@ -1,0 +1,132 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-4-5-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분모가 $4$인 분수는 분모와 분자에 자연수를 곱해 분모를 $10$으로 만들 수 없습니다. 그 까닭을 쓰고, 분모를 $100$으로 바꾸는 방법으로 $\\frac{3}{4}$을 소수로 나타내세요.",
+      "bAnswer": "$10$은 $4$의 배수가 아니어서 $4$에 자연수를 곱해 $10$을 만들 수 없다. $4\\times25=100$이므로 분모를 $100$으로 만든다. $\\frac{3}{4}=\\frac{75}{100}=0.75$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$은 $4$의 배수가 아니다",
+            "$4$에 자연수를 곱해 $10$이 될 수 없다",
+            "$10$은 $4$로 나누어떨어지지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모와 분자에 $25$를 곱하여 $\\frac{75}{100}$으로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.75$"
+          ]
+        }
+      ],
+      "bGoal": "분모 4는 10이 아닌 100으로 바꾸어야 하는 까닭을 배수 관계로 설명한다.",
+      "bReason": "xc5와 같은 절차의 반복을 피하려고 10이 안 되는 까닭을 묻는 문항으로 잡았다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{7}{25}$은 분모와 분자에 {$4$}를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 {$0.28$}이다.",
+      "cReason": "원문 빈칸은 1000도 가능하므로 분모 25인 실제 분수로 곱할 수와 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-0806.json",
+      "codexFinalAmendedFromFingerprint": "a8e0982df78993cdcce95c1fcf838552b9e69c2a4565797cab1c83f1346b1b3b",
+      "sourceIndex": 806,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-5-xc6",
+        "section": "초5::1-4 약분과 통분::1-4-5 분수와 소수의 크기 비교",
+        "term": "분모가 $4$나 $25$인 분수를 소수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 $4$나 $25$인 분수는 분모를 {$100$}으로 바꾸어 소수로 쓴다.",
+        "example": {
+          "prompt": "$\\frac{1}{4}$을 소수로 나타내면?",
+          "answer": "$0.25$"
+        },
+        "studentC": "분모가 $4$나 $25$인 분수는 분모를 □으로 바꾸어 소수로 쓴다.",
+        "answers": [
+          "$100$"
+        ]
+      },
+      "sourceFingerprint": "ae79af2f3470bbee8bff1fd4f7ae23ffb79c5023cd2849033a531e6950e40b34",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$0.28$"
+      ],
+      "cStudentAfter": "$\\frac{7}{25}$은 분모와 분자에 □를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.28$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{7}{25}$은 분모와 분자에 {$4$}를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 {$0.28$}이다.",
+      "cStudentSentence": "$\\frac{7}{25}$은 분모와 분자에 □를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.28$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 $4$인 분수는 분모와 분자에 자연수를 곱해 분모를 $10$으로 만들 수 없습니다. 그 까닭을 쓰고, 분모를 $100$으로 바꾸는 방법으로 $\\frac{3}{4}$을 소수로 나타내세요.",
+        "answer": "$10$은 $4$의 배수가 아니어서 $4$에 자연수를 곱해 $10$을 만들 수 없다. $4\\times25=100$이므로 분모를 $100$으로 만든다. $\\frac{3}{4}=\\frac{75}{100}=0.75$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$은 $4$의 배수가 아니다",
+              "$4$에 자연수를 곱해 $10$이 될 수 없다",
+              "$10$은 $4$로 나누어떨어지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모와 분자에 $25$를 곱하여 $\\frac{75}{100}$으로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.75$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{7}{25}$은 분모와 분자에 {$4$}를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 {$0.28$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$0.28$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c2677235949b72cf9b1a78f390bb93db692a4107db9a758cc27f3b7f5c766f86",
+      "questionRevision": "planning-e5e6-20261006-c2677235949b",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "importedAt": "2026-10-07T08:54:44.675Z",
+  "dispatchId": "ctx_9cb9b54195a9",
+  "notIndependentClaudeApproval": true,
+  "importedIds": [
+    "m3-06-03-xc5",
+    "m3-06-03-xc6",
+    "m3-06-03-xc7",
+    "m3-06-03-xc8",
+    "m3-06-03-xc10",
+    "m3-06-03-xc11",
+    "m3-06-03-xc12",
+    "m3-06-03-xc13",
+    "m3-06-03-xc14",
+    "m3-06-03-xc15",
+    "m3-06-03-xc16",
+    "m3-06-03-xc17",
+    "m3-06-03-xc18",
+    "m3-06-03-xc19",
+    "m3-06-03-xc20",
+    "m3-06-03-xc21",
+    "m3-06-03-xc22",
+    "m3-06-03-xc23",
+    "m3-06-03-xc24",
+    "m3-06-04-xc3",
+    "m3-06-04-xc5",
+    "m3-06-04-xc7",
+    "m3-06-04-xc9"
+  ],
+  "pending": [
+    {
+      "id": "m3-06-04-xc2",
+      "sourceIndex": 3644,
+      "proposalFingerprint": "52bd02c92fb6e35d5f7a8c4782a1708898078ec0fc5ae7b5859b0e414614addf",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 반례 하나와 그 까닭을 요구하지만 네꼭짓점을 모두 지나는 원이 없는 예라는 기준은 반례 이름만 쓰도록 열려 있다. 실제 사각형 예와 마주 보는 두 각의 합이180도가 아니라는 등의 타당한 이유를 모두 확인한다. 참조 예60도 평행사변형은 옳다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3625-3650-20261007/root-middle-final-3625-3650-verdicts.json"
+    },
+    {
+      "id": "m3-06-04-xc8",
+      "sourceIndex": 3648,
+      "proposalFingerprint": "3e5b66abad3de79fdda045c5d121f77862c0c36d66a96b306921abfc73acd431",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 주된 접선현각=원주각→중심각2x 설명은 맞다. 하지만 대안 기준각OAB=90도-x라는 삼각형 계산은 x가 둔각이면 음수각이 되어 틀리다. 예각일 때만 가능한 증명이라고 한정하거나 해당 대안을 없애고 큰호에도 맞는 원주각 근거를 유지한다. C의 각안쪽 호 중심각2x는 맞다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3625-3650-20261007/root-middle-final-3625-3650-verdicts.json"
+    }
+  ],
+  "inputSha256": "a0ca32655d45f8e9790aa4ceb2e9c0529fcdaab94819a150dbc57b9604113724",
+  "verdictSha256": "e9090f4a229ed7e6dacaa8bc728c4eef6da30aa228db279da24c54c0b138bade"
+}

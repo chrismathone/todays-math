@@ -1,0 +1,94 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-07T18:27:20.664Z",
+  "questionNumbers": [
+    2,
+    3,
+    15,
+    21
+  ],
+  "packageDigest": "3b6706318763917e3b65f257031823643748034df3e44bd1f2c2633c8c72e906",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "candidateFileSha256": "5446899a7fbebf9d2a92a1d605ff69454cb60fffe4c7bf4be4f9c73a646ca32a",
+      "studentDigest": "1c8ac8bd281d8f547e8db86ec1e3f8671e37a21d79ca707d9c4b57b81b63ffa4",
+      "assetDigest": "d2dc51a1825bf305e102f3fdc5015b2e908a9ee243d5d7fe9820d22778019e4b",
+      "candidateDigest": "dcbb3d2ca3b945c8a0cfabb9c70793981123d6d57b82993c172bc20559ff7ed4",
+      "privateCandidatePath": "private/q02/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q02.json",
+        "sha256": "284ac58025af5c19583519be412f9f66e6e57dcf17e6b2b80c175b3f92f496ea"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "00d4f0b6ba18d801b8b4455448a306bb0a80e34cfc0360929e6f0f2cb7e69fd4",
+          "svgSha256": "56e0794fdd035748ce9d5aebc8d664ca1fc11f193c7365c0a6956c4d4a2f2312",
+          "intendedWidthMm": 65,
+          "studentPath": "figures/q02-1.svg"
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "2dce4f52a2b3c57d71710a7d797ff00d6132344a1c843d037cb1d96ebef1e1cc",
+      "studentDigest": "d6095c275426e8f3728660cc3bb6d4f33a9cddb3014a708455585c5e159e82a9",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateDigest": "4b763285173adb0385e1854674722bc90e619ce6b3e317104f2a8cf3959cea3d",
+      "privateCandidatePath": "private/q03/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\algebra\\q03.json",
+        "sha256": "2dce4f52a2b3c57d71710a7d797ff00d6132344a1c843d037cb1d96ebef1e1cc"
+      },
+      "assets": []
+    },
+    {
+      "candidateFileSha256": "b4d324fa7e19fbf82ac5faeecffdb51eb60a110e11eab868fcefc6805f7dad62",
+      "studentDigest": "bc3bd97b90cec786cce08661bc8312b7b160ca9997115ba07c151ba8745dd71d",
+      "assetDigest": "efa7180539b3c8f4676f94d093466464fff9d82dfdee835b8a0d9e647c94a2f1",
+      "candidateDigest": "9e8ed64b44fb0c74137b22cbb7288f8e14b831a87c83fd455efd05f25ffa6b2e",
+      "privateCandidatePath": "private/q15/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\geometry\\q15.json",
+        "sha256": "6e948da15efef5177bf65592bbd9099e1a78b404a63a637b342aacfe09908aeb"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "10fcbadf7ec9c6ac6d9a51728fc2302f3d9b299e4f16dae7b48496364afb7391",
+          "svgSha256": "f6f27e2e04d7f98fde4f6236f6e3fedef555fee37f160fefd2ca1573d97928e2",
+          "intendedWidthMm": 54,
+          "studentPath": "figures/q15-1.svg"
+        }
+      ]
+    },
+    {
+      "candidateFileSha256": "a7bd6ef328c66a6fb1ec396936c54c7e264c2eae9e702436ceee40159a6f09bc",
+      "studentDigest": "a6c2a3165a9cb2fd394a937d2d9182cbf86b1fe44c75f84c450bbd534f8ee15a",
+      "assetDigest": "481ea4702885cbc16cafa05ec9bd7cfd5df4e430c812dc6cbc07a19f3bbf87bf",
+      "candidateDigest": "627739fd82bf6809efca3070e606a354df0aca4b0b8e305249ffdad6768c78fb",
+      "privateCandidatePath": "private/q21/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\geometry\\q21.json",
+        "sha256": "8f3489c6e162d8df86c0978a8942b26ced1c53ee28d67c542c1d628513bcecea"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "e1eb1787df56f758f8336984dd8826f954681530ecec1f75fc235aa9bdac106a",
+          "svgSha256": "ad84c6b289eef08dd2679624c2d7eb4279e97becb5e9cbe50c1921f06e573861",
+          "intendedWidthMm": 62,
+          "studentPath": "figures/q21-1.svg"
+        }
+      ]
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

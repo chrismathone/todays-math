@@ -1,0 +1,383 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-06T14:23:29.549599+00:00",
+  "scope": "Current amended questions captured for direct reading; not an editorial verdict.",
+  "rows": [
+    {
+      "id": "e5-1-4-3-c1",
+      "sourceIndex": 43,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수를 통분한다는 것은 분수의 무엇을 어떻게 만드는 일인지 쓰고, 그때 각 분수에서 변하지 않는 것은 무엇인지 쓰시오.",
+        "answer": "두 분수의 분모를 같게 만드는 일이다. 이때 각 분수의 크기(값)는 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모를 같게 만든다",
+              "분모를 하나로 맞춘다",
+              "분모를 똑같게 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 분수의 크기(값)는 변하지 않는다",
+              "분수의 값은 그대로이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "통분이 크기는 그대로 두고 분모를 같게 하는 일임을 스스로 말하게 한다.",
+      "bReason": "원문 정의의 두 조건(값 유지, 분모 맞춤)을 '무엇을 어떻게'와 '변하지 않는 것'으로 좁혀 물었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "분모가 다른 분수들을 각 분수의 {크기}는 바꾸지 않고 분모가 {같은} 분수로 고치는 것을 {통분}한다고 한다.",
+        "acceptedAnswers": [
+          [
+            "크기"
+          ],
+          [
+            "같은",
+            "똑같은"
+          ],
+          [
+            "통분"
+          ]
+        ]
+      },
+      "cStudentSentence": "분모가 다른 분수들을 각 분수의 □는 바꾸지 않고 분모가 □ 분수로 고치는 것을 □한다고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "크기",
+          "equivalents": []
+        },
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        },
+        {
+          "key": "통분",
+          "equivalents": []
+        }
+      ],
+      "cReason": "크기와 값은 수학적으로 같은 뜻이지만 이 문장의 는 앞에 값을 넣으면 값는이 된다. 실제 문장에 맞는 크기만 첫 슬롯에서 인정한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "55b27aa41835fba293742c48af51930e5bcde85f1d3c716a9a4fcab2baa9e25f",
+      "proposalFingerprint": "ae6db84de0cbf4fb7d696528de0563e63d8e5b0eb6707f86d58820946e6a1ce5",
+      "questionRevision": "planning-e5e6-20261006-ae6db84de0cb",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-4-3-c2",
+      "sourceIndex": 44,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "두 분수를 통분했을 때 '공통분모'는 어떤 수를 가리키는지 쓰고, $\\frac{1}{2}$과 $\\frac{1}{3}$을 $\\frac{3}{6}$과 $\\frac{2}{6}$로 통분했을 때의 공통분모를 쓰시오.",
+        "answer": "통분하여 같아진 분모를 공통분모라고 한다. 이 예의 공통분모는 $6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "통분하여 같아진 분모",
+              "통분한 분수들의 같은 분모"
+            ]
+          },
+          {
+            "anyOf": [
+              "이 예의 공통분모는 $6$이다",
+              "$6$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "공통분모가 통분한 분수들의 같아진 분모임을 뜻과 예로 확인한다.",
+      "bReason": "낱말 뜻만 묻지 않고 실제 통분 결과에서 공통분모를 짚게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}$과 $\\frac{1}{3}$을 $\\frac{3}{6}$과 $\\frac{2}{6}$로 통분했을 때, 같아진 분모 $6$을 두 분수의 {공통분모}라고 한다.",
+        "acceptedAnswers": [
+          [
+            "공통분모"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{1}{2}$과 $\\frac{1}{3}$을 $\\frac{3}{6}$과 $\\frac{2}{6}$로 통분했을 때, 같아진 분모 $6$을 두 분수의 □라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "공통분모",
+          "equivalents": []
+        }
+      ],
+      "cReason": "두 분수에 이미 보이는 분모 $6$을 다시 쓰는 숫자 슬롯을 제거했다. 실제 통분한 분수들을 보며 같아진 분모의 정식 이름을 묻는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "92acd1d34c186fa5a296e37130dd42bb051daca1adaa845dd587611aca725831",
+      "proposalFingerprint": "c84deb4b4d263cb56df3aa5b7737f554e302e1a70ee978ef1f594491f8162573",
+      "questionRevision": "planning-e5e6-20261006-c84deb4b4d26",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-4-5-c2",
+      "sourceIndex": 50,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "분수 하나와 소수 하나의 크기를 비교하려면 먼저 두 수를 어떻게 바꾸어야 하는지 쓰시오. 그 방법으로 $\\frac{3}{5}$과 $0.7$ 중 더 큰 수를 구하시오.",
+        "answer": "두 수를 모두 소수로, 또는 모두 분수로 바꾸어 같은 꼴로 만든다. $\\frac{3}{5}=0.6$이고 $0.6<0.7$이므로 $0.7$이 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수를 같은 꼴로 바꾼다",
+              "분수를 소수로 바꾼다",
+              "소수를 분수로 바꾼다",
+              "둘 다 소수 또는 둘 다 분수로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.7$이 더 크다",
+              "$\\frac{3}{5}$ < $0.7$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분수와 소수는 같은 꼴로 바꾸어 비교한다는 일반 방법을 알고 적용한다.",
+      "bReason": "이 소단원의 중심 방법이므로 일반 방법을 묻고 예 하나로 확인한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "분수와 소수의 크기를 비교할 때는 둘 다 {분수}로 바꾸어 통분한 뒤 분자를 비교하거나, 둘 다 {소수}로 바꾸어 자연수 부분부터 차례로 숫자를 비교한다.",
+        "acceptedAnswers": [
+          [
+            "분수"
+          ],
+          [
+            "소수"
+          ]
+        ]
+      },
+      "cStudentSentence": "분수와 소수의 크기를 비교할 때는 둘 다 □로 바꾸어 통분한 뒤 분자를 비교하거나, 둘 다 □로 바꾸어 자연수 부분부터 차례로 숫자를 비교한다.",
+      "cSlotAnswers": [
+        {
+          "key": "분수",
+          "equivalents": []
+        },
+        {
+          "key": "소수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "분수와 소수라는 두 답은 역할이 다른 변환 방법이며 위치를 바꿀 수 없다. 소수의 자연수 부분이 다를 수도 있으므로 소수점 아래만 비교한다는 불완전한 일반 절차를 바로잡았다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ed371c092287841f1d53c3d6bc8e75c08e708cd2350b0198c328e2f5d2362c56",
+      "proposalFingerprint": "e7dc4c755e24aa94a01125705756cd79eedd4053c589e97f82dab5cd25d93f65",
+      "questionRevision": "planning-e5e6-20261006-e7dc4c755e24",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-4-5-c3",
+      "sourceIndex": 51,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{9}{25}$를 분모와 분자에 같은 자연수를 곱하는 방법으로 소수로 나타내려고 한다. 분모를 얼마로 바꾸면 되는지와 그렇게 바꾼 분수가 소수로 나타내기 쉬운 까닭을 쓰고, 소수로 나타내시오.",
+        "answer": "분모를 $100$으로 만들면 된다. $\\frac{1}{100}$은 $0.01$이므로 분자가 그 개수를 나타낸다. $\\frac{9}{25}=\\frac{36}{100}=0.36$이다. 분모를 $1000$ 같은 수로 만들어도 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모를 $100$으로 만든다",
+              "분모를 $1000$ 등 $25$의 배수인 소수 자리값의 분모로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모가 $100$이면 분자가 $0.01$의 개수라 소수 둘째 자리까지 쓸 수 있다",
+              "분모가 $1000$이면 분자가 $0.001$의 개수라 소수 셋째 자리까지 쓸 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.36$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분모를 소수 자리값에 맞게 바꾸는 방법과 까닭을 $9/25$에 적용하여 설명한다.",
+      "bReason": "모든 분수가 같은 자연수를 곱해 분모 $10$, $100$ 등으로 바뀌는 것은 아니다. 해당 방법이 가능한 $9/25$에 범위를 정하고, 분모 선택과 소수 자리값의 관계를 설명하게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{4}$을 분모가 $100$인 분수로 쓰면 {$\\frac{25}{100}$}이고, 소수로 쓰면 {$0.25$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{25}{100}$"
+          ],
+          [
+            "$0.25$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{1}{4}$을 분모가 $100$인 분수로 쓰면 □이고, 소수로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{25}{100}$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.25$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "분모를 얼마로 만들 수 있느냐는 질문에는 $100$, $1000$ 등 여러 서로 다른 답이 가능하다. 분모 $100$을 조건으로 주고 실제 분수와 소수를 각각 쓰게 해 답의 범위를 정했다.",
+      "coreAfter": "분모와 분자에 같은 수를 곱해 분모를 $10$, $100$, $1000$ 같은 수로 만들 수 있으면, 그 분수는 소수점 아래 숫자가 끝없이 이어지지 않는 소수로 쓸 수 있다.",
+      "coreReason": "'끝나는 소수'는 초5 학생이 배우지 않은 표현이라 뜻을 풀어 썼다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "3e8b9917f8edd1b748d47fb589dd471026621e2a6d79d4228e6d984fa3ec3a6a",
+      "proposalFingerprint": "a439bee903787991ca7ec5a5fd55322de21853ce68e0e88fe0f729f8e8c81812",
+      "questionRevision": "planning-e5e6-20261006-a439bee90378",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-5-2-c2",
+      "sourceIndex": 55,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "두 대분수를 부분끼리 더했더니 분수 부분의 합이 가분수가 되었다. 이때 합을 대분수로 바르게 나타내는 방법을 설명하고, $1\\frac{2}{3}+1\\frac{2}{3}$를 계산하시오.",
+        "answer": "분수 부분의 합에서 $1$을 떼어 자연수 부분에 더한다. $\\frac{2}{3}+\\frac{2}{3}=\\frac{4}{3}=1\\frac{1}{3}$이므로 $2+1\\frac{1}{3}=3\\frac{1}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분의 합에 든 $1$을 자연수 부분으로 옮긴다",
+              "가분수를 대분수로 고쳐 그 자연수를 자연수 부분에 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\frac{1}{3}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분수 부분의 합이 1 이상일 때 받아올림하는 방법을 설명한다.",
+      "bReason": "'옮길 수 있다'는 문장만으로는 실제 처리 과정이 드러나지 않아 가분수가 된 상황과 예를 넣었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "대분수 덧셈에서 분수 부분의 합이 $\\frac{4}{3}$이면 대분수 {$1\\frac{1}{3}$}로 바꾸어, 그 자연수 부분을 원래 자연수 부분의 합에 더한다.",
+        "acceptedAnswers": [
+          [
+            "$1\\frac{1}{3}$"
+          ]
+        ]
+      },
+      "cStudentSentence": "대분수 덧셈에서 분수 부분의 합이 $\\frac{4}{3}$이면 대분수 □로 바꾸어, 그 자연수 부분을 원래 자연수 부분의 합에 더한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1\\frac{1}{3}$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "$1$ 이상이라는 조건의 $1$을 다시 쓰는 대신 실제 가분수의 대분수 변환을 묻는다. 대분수로 쓰라는 답 형태를 밝혀 같은 값인 가분수 자체와 구별한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "6be21dd27f8729deae9503ef52c206fbc901edd490a479ff55bcae720f00113b",
+      "proposalFingerprint": "0dd813d41bbdd27829906bbc9b6c3408ebeb8532350ce482cd2c7aa1318109c1",
+      "questionRevision": "planning-e5e6-20261006-0dd813d41bbd",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-5-4-c2",
+      "sourceIndex": 59,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "대분수의 뺄셈에서 왼쪽 대분수의 분수 부분이 오른쪽보다 작을 때, 왼쪽 대분수를 어떻게 바꾸어 계산하는지 설명하고, $4\\frac{1}{5}-1\\frac{3}{5}$을 계산하시오.",
+        "answer": "왼쪽 대분수의 자연수 부분에서 $1$을 떼어 분모와 분자가 같은 분수로 바꾸어 분수 부분에 합친다. $4\\frac{1}{5}=3\\frac{6}{5}$이므로 $3\\frac{6}{5}-1\\frac{3}{5}=2\\frac{3}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분에서 $1$을 떼어 분수로 바꾸어 분수 부분에 합친다",
+              "자연수 $1$을 받아내려 분수 부분을 크게 만든다",
+              "$4\\frac{1}{5}$을 $3\\frac{6}{5}$으로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{3}{5}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "받아내림에서 자연수 1을 분수로 바꾸는 방법을 설명하고 계산한다.",
+      "bReason": "빼지는 수라는 모호한 말 대신 제시한 뺄셈식의 왼쪽 대분수를 지목한다. 분수 부분 비교 조건과 자연수 $1$의 받아내림 방법 및 실제 차를 묻는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$4\\frac{1}{5}-1\\frac{3}{5}$에서 $\\frac{1}{5}$에서 $\\frac{3}{5}$을 뺄 수 없으므로, $4$에서 $1$을 떼어 {$\\frac{5}{5}$}로 바꾸면 $4\\frac{1}{5}$은 {$3\\frac{6}{5}$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{5}{5}$"
+          ],
+          [
+            "$3\\frac{6}{5}$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$4\\frac{1}{5}-1\\frac{3}{5}$에서 $\\frac{1}{5}$에서 $\\frac{3}{5}$을 뺄 수 없으므로, $4$에서 $1$을 떼어 □로 바꾸면 $4\\frac{1}{5}$은 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{5}{5}$",
+          "equivalents": []
+        },
+        {
+          "key": "$3\\frac{6}{5}$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'분모와 분자가 같은 분수'라는 긴 구절 대신 실제 분수와 바꾼 꼴을 쓰게 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "6c4665e4f54723ccd703f4e87799ac69327ffd6eff2e7b719b965bb70569c7d9",
+      "proposalFingerprint": "336b04c76844b37123ca795fedde599b9ea25e84102acd35b0ffa17bbc314f2b",
+      "questionRevision": "planning-e5e6-20261006-336b04c76844",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    }
+  ]
+}

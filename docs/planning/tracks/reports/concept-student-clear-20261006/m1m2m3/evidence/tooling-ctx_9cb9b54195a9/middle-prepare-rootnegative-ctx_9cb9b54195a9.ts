@@ -1,0 +1,47 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {execFileSync} from 'node:child_process';
+import {normalizeProposal} from 'C:/Users/user/orca/workspaces/todays-math/student-clear-integration-20261006/scripts/qa/concept-blank/student-clear/proposals';
+const root='C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3';
+const [file,label]=process.argv.slice(2),bytes=fs.readFileSync(file),e=JSON.parse(bytes.toString('utf8'));
+const sha=(x:any)=>createHash('sha256').update(x).digest('hex');
+const fp=(r:any)=>sha(JSON.stringify({bDecision:r.bDecision,bPrompt:r.bPrompt,bAnswer:r.bAnswer,bRequiredIdeas:r.bRequiredIdeas,cDecision:r.cDecision,cMarkedSentence:r.cMarkedSentence,cAcceptedAnswers:r.cAcceptedAnswers,coreAfter:r.coreAfter}));
+const a=JSON.parse(fs.readFileSync(root+'/audit.json','utf8')),baseline=JSON.parse(fs.readFileSync('D:/tmp/concept-student-clear-20261006/baseline.json','utf8')),negative=JSON.parse(fs.readFileSync(root+'/evidence/negative-current-ctx_9cb9b54195a9.json','utf8'));
+const sources=new Map(Object.values(baseline.parts).flatMap((p:any)=>p.concepts).map((r:any)=>[r.id,r]));
+const evidence='evidence/'+label+'-20261007',dest=root+'/'+evidence;
+if(fs.existsSync(dest))throw Error('Evidence import already exists');
+const names=[path.basename(file),e.inputFile,...(e.afterInputFile?[e.afterInputFile]:[])];
+const inputBytes=fs.readFileSync(path.join(path.dirname(file),e.inputFile));
+if(sha(inputBytes)!==e.inputSha256)throw Error('Input evidence SHA mismatch');
+if(e.afterInputFile&&sha(fs.readFileSync(path.join(path.dirname(file),e.afterInputFile)))!==e.afterInputSha256)throw Error('After evidence SHA mismatch');
+const verified=[];
+for(const r of e.rows){
+ const current=a.rows.find((q:any)=>q.id===r.id),source=sources.get(r.id) as any,n=negative.current[r.disputeIndex];
+ if(!current||n?.id!==r.id||n.sourceIndex!==r.sourceIndex||n.raw.proposalFingerprint!==r.currentFingerprint)throw Error('Snapshot mismatch '+r.id);
+ if(current.proposalFingerprint!==r.currentFingerprint||fp(current)!==r.currentFingerprint)throw Error('Stale current fingerprint '+r.id);
+ if(normalizeProposal(current,source).hash!==r.normalized.hash||r.normalized.hash!==n.normalized.hash)throw Error('Current normalized hash mismatch '+r.id);
+ if(fp(r.proposedRawRow)!==r.candidateFingerprint||normalizeProposal(r.proposedRawRow,source).hash!==r.candidateNormalizedHash||r.candidate.hash!==r.candidateNormalizedHash)throw Error('Candidate fingerprint/hash mismatch '+r.id);
+ if(r.proposedRawRow.sourceFingerprint!==current.sourceFingerprint)throw Error('Source fingerprint mismatch '+r.id);
+ verified.push({id:r.id,disputeIndex:r.disputeIndex,sourceIndex:r.sourceIndex,sourceFingerprint:current.sourceFingerprint,currentFingerprint:r.currentFingerprint,currentNormalizedHash:r.normalized.hash,rootCandidateFingerprint:r.candidateFingerprint,rootCandidateNormalizedHash:r.candidateNormalizedHash});
+}
+fs.mkdirSync(dest,{recursive:true});
+for(const name of names)fs.copyFileSync(path.join(path.dirname(file),name),path.join(dest,name));
+fs.writeFileSync(dest+'/import-verification.json',JSON.stringify({verifiedAt:new Date().toISOString(),sourceFile:file,files:names.map(n=>({name:n,sha256:sha(fs.readFileSync(path.join(dest,n)))})),rows:verified},null,2)+'\n');
+const input=root+'/evidence/resume-editorial-ctx_9cb9b54195a9/input-'+label+'.json';
+if(fs.existsSync(input))throw Error('Capture exists');
+const captured=execFileSync(process.execPath,['D:/tmp/concept-student-clear-20261006/middle-resume-batch-ctx_9cb9b54195a9.mjs','capture',e.rows.map((r:any)=>r.id).join(','),label],{encoding:'utf8'});
+const keys=['bDecision','bPrompt','bAnswer','bRequiredIdeas','bGoal','bReason','studentLabel','cDecision','cAfter','cMarkedSentence','cAcceptedAnswers','cReason','coreAfter','coreReason','exclusionReason','learningRole','roleReason','exampleNeeded'];
+const changes=e.rows.filter((r:any)=>r.currentFingerprint!==r.candidateFingerprint).map((r:any)=>{
+ const c:any={id:r.id};for(const k of keys)if(JSON.stringify(r.raw[k])!==JSON.stringify(r.proposedRawRow[k])&&r.proposedRawRow[k]!==undefined)c[k]=r.proposedRawRow[k];
+ if(c.bPrompt||c.bRequiredIdeas)c.bReason=r.reason;
+ if(c.cAfter)c.cReason=r.reason;
+ if(c.cAfter&&r.proposedRawRow.cAcceptedAnswers)c.cAcceptedAnswers=r.proposedRawRow.cAcceptedAnswers;
+ if(c.coreAfter)c.coreReason=r.reason;
+ if(c.cDecision==='keep')delete c.cAfter;
+ if(c.cDecision==='exclude')Object.assign(c,{cAfter:null,cMarkedSentence:null,cStudentSentence:null,cAnswers:null,cSlotAnswers:null,cAcceptedAnswers:null,cSlots:null});
+ return c;
+});
+const spec={label,input,changes,notes:[],rereadIds:changes.map((r:any)=>r.id),rootEvidence:evidence+'/'+path.basename(file),independentFindingDispositions:e.rows.map((r:any)=>({id:r.id,disputeIndex:r.disputeIndex,decision:r.currentFingerprint===r.candidateFingerprint?'retain-with-reason':'amend',reason:r.reason,rootEvidence:evidence+'/'+path.basename(file)}))};
+fs.writeFileSync('D:/tmp/concept-student-clear-20261006/middle-resume-'+label+'-ctx_9cb9b54195a9.json',JSON.stringify(spec,null,2)+'\n');
+console.log(JSON.stringify({rows:e.rows.length,changes:changes.length,evidence,input,capture:captured.split('\n')[0]}));

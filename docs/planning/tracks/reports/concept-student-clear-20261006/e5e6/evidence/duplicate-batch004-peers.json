@@ -1,0 +1,222 @@
+{
+  "sourceCommit": "13bf05dce",
+  "method": "Codex read actual source and current full questions/answers/criteria of the peer rows, not a missing-cohort label. This verifies exclusion rationale only, not their entire final release.",
+  "relationships": [
+    {
+      "id": "e5-2-1-5-c3",
+      "form": "cloze",
+      "peerId": "e5-2-1-5-xc7",
+      "reason": "Same47 objects in groups of10; base C only asks an arbitrary connective and peer C tests rounding plus40 grouped objects."
+    },
+    {
+      "id": "e5-2-3-1-c2",
+      "form": "term",
+      "peerIds": [
+        "e5-2-3-1-c1",
+        "e5-2-3-1-xc8"
+      ],
+      "reason": "Definition and actual2cm/3cm size counterexample cover the same congruence size condition."
+    }
+  ],
+  "rows": [
+    {
+      "id": "e5-2-1-5-c3",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-1-5-c3",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-5 버림 알아보기",
+        "term": "버림을 쓰는 상황",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정해진 개수로 꽉 찬 묶음만 셀 때는 남는 낱개를 {빼고} 묶음 수를 정한다.",
+        "studentC": "정해진 개수로 꽉 찬 묶음만 셀 때는 남는 낱개를 □ 묶음 수를 정한다.",
+        "answers": [
+          "빼고"
+        ]
+      },
+      "sourceFingerprint": "97f5b53ca55ef9749b755304b54627d7f320879ae5478dda80b6c7f8b624f41e",
+      "proposalFingerprint": "c94dffa32497fb5a8e26d7ef4132282d95beae82a4f1fad254310421a491f819",
+      "bQuestion": {
+        "prompt": "물건을 정해진 개수씩 묶어 꽉 찬 묶음만 셀 때, 묶음에 든 물건의 수는 올림과 버림 중 어느 방법으로 구하나요? 남는 낱개와 관련지어 까닭을 쓰고, 구슬 $47$개를 $10$개씩 묶을 때 꽉 찬 묶음의 수도 쓰세요.",
+        "answer": "버림으로 구한다. 남는 낱개는 한 묶음이 되지 못해 세지 않기 때문이다. 구슬 $47$개는 $40$개만 묶음에 들어가므로 꽉 찬 묶음은 $4$묶음이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "버림"
+            ]
+          },
+          {
+            "anyOf": [
+              "남는 낱개는 한 묶음이 되지 못해 세지 않는다",
+              "남는 것은 묶음을 채우지 못하므로 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$묶음",
+              "$4$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "bGoal": "꽉 찬 묶음만 세는 상황에서 버림을 고르는 까닭을 설명한다.",
+      "learningRole": "application"
+    },
+    {
+      "id": "e5-2-1-5-xc7",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-5-xc7",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-5 버림 알아보기",
+        "term": "꽉 찬 묶음만 셀 때",
+        "kind": "방법",
+        "level": "하",
+        "definition": "꽉 찬 묶음만 셀 때는 남는 낱개를 버리는 {버림}을 쓴다.",
+        "example": {
+          "prompt": "구슬 $47$개를 $10$개씩 묶을 때 꽉 찬 묶음은 몇 개인가?",
+          "answer": "$4$개"
+        },
+        "studentC": "꽉 찬 묶음만 셀 때는 남는 낱개를 버리는 □을 쓴다.",
+        "answers": [
+          "버림"
+        ]
+      },
+      "sourceFingerprint": "0fcf5fec2890dbb0b85f0f225fdba71c327558e6da2cd842a7d8d9ac6d3bcd73",
+      "proposalFingerprint": "3b8202b162e29b8028773db95a36ccad2a283c4cc0843a8d6c30ff1b72491cae",
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "구슬 $47$개를 $10$개씩 묶어 꽉 찬 묶음만 셀 때, 묶음에 든 구슬은 $47$을 {버림}하여 십의 자리까지 나타낸 {$40$}개이다.",
+        "acceptedAnswers": [
+          [
+            "버림"
+          ],
+          [
+            "$40$"
+          ]
+        ]
+      },
+      "bGoal": "꽉 찬 묶음만 세는 상황의 어림 방법 이름을 안다.",
+      "learningRole": "naming"
+    },
+    {
+      "id": "e5-2-3-1-c2",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-3-1-c2",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동과 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "합동인 도형은 생긴 모양뿐 아니라 {크기까지} 같아야 한다.",
+        "studentC": "합동인 도형은 생긴 모양뿐 아니라 □ 같아야 한다.",
+        "answers": [
+          "크기까지"
+        ]
+      },
+      "sourceFingerprint": "6c498b792b5b513d75872c325c8315a6934bf4b33d451c7ee336c73a9ca9c665",
+      "proposalFingerprint": "d54c758e85163ee6e830ceb5e7e86daf2100348f70bc1fbc877b9e9fb082b309",
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "합동인 두 도형은 모양뿐 아니라 {크기}도 같아야 한다.",
+        "acceptedAnswers": [
+          [
+            "크기"
+          ]
+        ]
+      },
+      "bGoal": "합동은 모양과 크기가 모두 같아야 함을 안다.",
+      "learningRole": "definition"
+    },
+    {
+      "id": "e5-2-3-1-c1",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-3-1-c1",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동",
+        "kind": "정의",
+        "level": "하",
+        "definition": "도형을 옮기거나 돌리거나 뒤집어 서로 {빈틈없이 포갤 수 있으면} 합동이다.",
+        "studentC": "도형을 옮기거나 돌리거나 뒤집어 서로 □ 합동이다.",
+        "answers": [
+          "빈틈없이 포갤 수 있으면"
+        ]
+      },
+      "sourceFingerprint": "0824445d1f5d0e0fcac38a9e71f2394400dff98937cd6886ffff15f7968f690b",
+      "proposalFingerprint": "94c5c10e5c04baed7a98284caa7e68f1e46adae25400b4ce05c161a3dfcb5e69",
+      "bQuestion": {
+        "prompt": "두 도형이 서로 합동이라는 것은 무슨 뜻인지 설명하시오.",
+        "answer": "두 도형의 모양과 크기가 같아서 포개었을 때 완전히 겹친다는 뜻이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "포개었을 때 완전히 겹친다",
+              "모양과 크기가 모두 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모양과 크기가 같아서 포개었을 때 완전히 {겹치는} 두 도형을 서로 {합동}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "겹치는",
+            "포개어지는"
+          ],
+          [
+            "합동"
+          ]
+        ]
+      },
+      "bGoal": "합동의 뜻을 포개어 완전히 겹침으로 말한다.",
+      "learningRole": "definition"
+    },
+    {
+      "id": "e5-2-3-1-xc8",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc8",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "크기가 다른 같은 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모양이 같아도 {크기가 다르면} 서로 합동이 아니다.",
+        "studentC": "모양이 같아도 □ 서로 합동이 아니다.",
+        "answers": [
+          "크기가 다르면"
+        ]
+      },
+      "sourceFingerprint": "48c9d36a2c39c6513906d677a614f063e7fb3b9f2ced1e7a7fb3d2f8855a8730",
+      "proposalFingerprint": "02ae358be4d7a82c44a44c17b298239e74d5d9e766334e96f94a37a91410c348",
+      "bQuestion": {
+        "prompt": "모양이 같은 두 도형은 항상 합동인지 쓰고, 한 변이 $2\\,\\mathrm{cm}$인 정사각형과 한 변이 $3\\,\\mathrm{cm}$인 정사각형을 예로 들어 그 까닭을 설명하시오.",
+        "answer": "항상 합동인 것은 아니다. 두 정사각형은 모양은 같지만 크기가 달라서 포개어도 완전히 겹치지 않으므로 합동이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 합동인 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "크기가 다르다",
+              "변의 길이가 다르다",
+              "포개어도 완전히 겹치지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모양이 같아도 {크기}가 다르면 서로 합동이 아니다.",
+        "acceptedAnswers": [
+          [
+            "크기"
+          ]
+        ]
+      },
+      "bGoal": "모양만 같고 크기가 다르면 합동이 아님을 예로 설명한다.",
+      "learningRole": "reason"
+    }
+  ]
+}

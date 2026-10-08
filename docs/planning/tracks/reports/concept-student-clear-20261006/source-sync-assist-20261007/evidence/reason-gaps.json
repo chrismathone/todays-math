@@ -1,0 +1,21 @@
+{
+  "gaps": [],
+  "earlierGaps": [
+    {
+      "id": "e5-2-5-4-xc1",
+      "part": "e5plus",
+      "before": "직육면체의 겨냥도에서 보이는 면은 {세 개}이다.",
+      "proposedAfter": "직육면체의 모양을 알아보기 쉽게 겨냥도를 그릴 때에는 {세 면}이 보이도록 나타낼 수 있다.",
+      "rawCoreReasonPresent": false,
+      "rawCoreReason": null,
+      "normalizedCoreReason": null,
+      "rawBReason": "면의 수 하나만 답하는 내용이라 서술형으로 물을 가치가 낮다.",
+      "rawCReason": "그림없이보이는면이항상3개라고하면시점조건이빠진다. 세면이보이는그림이라고조건을주면답세개를그대로베끼므로C에서도제외한다. 실제겨냥도를보고보이는면을찾는예가필요하며원천ID와일반설명은보존한다.",
+      "rawFinalEditorialReason": "조건없이보이는면수3을외우게하는문항은그림이필요하고조건으로3을주면답복사가되어C제외한최종행을읽었다. ID보존·예필요표시·세면보이도록그릴수있다는일반core가맞다.",
+      "proposalFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\student-clear-integration-20261006\\docs\\planning\\tracks\\reports\\concept-student-clear-20261006\\e5e6\\audit.json",
+      "proposalFileSha256": "0088b5f1e63a58106f83310297a8109b10fa44292d8115e56cf66b14b1552c6b",
+      "blocker": "Missing coreReason; excluded from preliminary definition changes; final compiler must resolve"
+    }
+  ],
+  "resolution": "Root supplied explicit coreReason and aligned its old goal; latest complete preliminary replay has no reason gaps; independent final recheck remains Root-owned"
+}

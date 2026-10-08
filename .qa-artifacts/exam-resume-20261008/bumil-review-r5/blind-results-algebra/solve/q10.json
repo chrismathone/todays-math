@@ -1,0 +1,159 @@
+{
+  "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+  "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+  "answer": "③",
+  "solution": "눈높이의 수평선이 벽과 만나는 점이 B이므로 $\\overline{BE}=\\overline{AG}=1.6\\,\\mathrm{m}$이고 $\\overline{AB}=\\overline{GE}$이다. 따라서 눈높이에서 환기창 중심까지의 높이는 $\\overline{BC}=\\overline{CE}-\\overline{BE}=12.8-1.6=11.2\\,\\mathrm{m}$이다.\n\n직각삼각형 ABC에서 $\\tan 58^\\circ=\\dfrac{\\overline{BC}}{\\overline{AB}}$이다. 주어진 표의 값을 대입하면 $1.6003=\\dfrac{11.2}{\\overline{AB}}$이므로 $\\overline{GE}=\\overline{AB}=\\dfrac{11.2}{1.6003}\\approx6.998687746\\,\\mathrm{m}$이다. 소수점 아래 둘째 자리에서 반올림하면 $7.0\\,\\mathrm{m}$이므로 정답은 ③이다.",
+  "evidence": {
+    "mode": "fresh-blind-student-only",
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+    "grade": "중3",
+    "curriculum": "2015",
+    "scoreObserved": 4,
+    "answerValue": {
+      "exactUsingTable": "11.2/1.6003",
+      "rounded": "7.0",
+      "unit": "m"
+    },
+    "studentMethods": [
+      "수평선과 수직선으로 생긴 직사각형의 마주 보는 변의 길이",
+      "눈높이를 뺀 높이",
+      "직각삼각형의 탄젠트",
+      "소수의 나눗셈과 반올림"
+    ],
+    "conditionChecks": [
+      "주어진 높이 12.8m와 눈높이 1.6m를 새 학생 입력에서 읽었다. 높이 차는 11.2m로 양수이다.",
+      "58°는 0°보다 크고 90°보다 작다. AB가 수평이고 BC가 수직이므로 ABC는 B에서 직각인 삼각형이다.",
+      "tan 58°의 표 값 1.6003이 양수이므로 GE=11.2/1.6003은 양수인 하나의 값으로 결정된다.",
+      "코드로 sin·cos·tan 각 열을 소수 네 자리에서 확인했으며 0.8480, 0.5299, 1.6003이 맞았다. 학생 풀이에는 주어진 탄젠트 값을 그대로 사용했다.",
+      "반올림 전 GE는 약 6.998687746m이다. 소수점 아래 둘째 자리에서 반올림하므로 소수 첫째 자리까지 7.0m로 쓴다."
+    ],
+    "choiceReview": [
+      {
+        "mark": "①",
+        "value": "6.5m",
+        "matches": false,
+        "reason": "반올림한 수평거리 7.0m와 다르다."
+      },
+      {
+        "mark": "②",
+        "value": "6.8m",
+        "matches": false,
+        "reason": "반올림한 수평거리 7.0m와 다르다."
+      },
+      {
+        "mark": "③",
+        "value": "7.0m",
+        "matches": true,
+        "reason": "주어진 탄젠트 표로 계산한 수평거리의 반올림값이다."
+      },
+      {
+        "mark": "④",
+        "value": "7.2m",
+        "matches": false,
+        "reason": "반올림한 수평거리 7.0m와 다르다."
+      },
+      {
+        "mark": "⑤",
+        "value": "11.2m",
+        "matches": false,
+        "reason": "BC의 높이 차이며 GE의 수평거리가 아니다."
+      }
+    ],
+    "uniqueAnswer": true,
+    "figureReview": {
+      "viewed": true,
+      "authoritativeStudentLayout": "student-preview-r2/q10.png",
+      "sourceOrder": "왼쪽 장면, 오른쪽 관계도",
+      "separateAssetWidthMm": 70,
+      "observations": [
+        "새 A4 배치 미리보기에서 본문·두 표·그림·다섯 보기가 모두 잘림 없이 보인다. 본문의 두 번째 그림은 오른쪽 관계도에 해당한다.",
+        "장면은 체육관 벽·환기창·관측자의 배경이다. 길이와 각의 근거는 학생 기록과 별도 관계도이다.",
+        "70mm 관계도에서 A와 G, B와 E가 각각 분리되어 읽히고 C, 수평 점선 AB, 수직 벽 CE, 지면 GE, B의 직각 표시가 보인다.",
+        "58° 표기는 아래쪽에 놓였지만 연결선이 A의 위쪽 각호에 닿으므로 각 BAC를 나타낸다. 점 이름·각도·선이 겹치거나 잘리지 않았다.",
+        "이 문항의 두 학생용 SVG 바이트 해시는 제공된 값과 같았다. 장면 래스터 픽셀에서 수학적 길이나 각을 측정하지 않았다."
+      ]
+    },
+    "scope": "독립 풀이와 학생용 시각 확인만 완료. 저자 답·해설·비공개 스펙을 읽지 않았으며 최종 교육과정·분류·권리 승인을 뜻하지 않는다.",
+    "bindings": {
+      "studentInputPath": "bumil-review-r5/blind/student-problems.json",
+      "studentInputSha256": "b0a75b81b9618e1450fc90dad49f17ad4a043dd45c6ed557dfc28407b03d3212",
+      "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "studentFigures": [
+        {
+          "questionNumber": 10,
+          "role": "stem",
+          "studentSvgPath": "figures/q10-1.svg",
+          "studentSvgSha256": "a0924a0c32ceb18d08f1126358a0ecfe495dfb02a3e462e72d14507257337cd3",
+          "intendedWidthMm": 70,
+          "previewPath": "previews/q10-1-70mm.png",
+          "previewSha256": "387b57b0a6f141e4e4b7930d475aac9f1fe4cd7269e241671eb16d9807f17912",
+          "previewPixels": [
+            265,
+            177
+          ],
+          "densityDpi": 96,
+          "renderedWidthMm": 70.11458333333333,
+          "labelText": [],
+          "embeddedImageCount": 1,
+          "studentViewBox": [
+            0,
+            0,
+            1536,
+            1024
+          ]
+        },
+        {
+          "questionNumber": 10,
+          "role": "stem",
+          "studentSvgPath": "figures/q10-2.svg",
+          "studentSvgSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+          "intendedWidthMm": 70,
+          "previewPath": "previews/q10-2-70mm.png",
+          "previewSha256": "7371b4e115e46f8af814f5b0956cd6d1fec2475002c35e48ffc87bc0baced921",
+          "previewPixels": [
+            265,
+            389
+          ],
+          "densityDpi": 96,
+          "renderedWidthMm": 70.11458333333333,
+          "labelText": [
+            "58^\\circ",
+            "A",
+            "B",
+            "C",
+            "E",
+            "G"
+          ],
+          "embeddedImageCount": 0,
+          "studentViewBox": [
+            0,
+            0,
+            206.304,
+            302.53
+          ]
+        }
+      ],
+      "authoritativePrintPreview": {
+        "questionNumber": 10,
+        "path": "student-preview-r2/q10.png",
+        "sha256": "bdee4529adf437b63d55603efd632aa2e9c414af8e20397bb667416a0ceb5a14",
+        "layout": "separate70mm-side-by-side-source-order-left-to-right",
+        "viewed": true
+      },
+      "native70mmProof": {
+        "questionNumber": 10,
+        "nativeProofPath": "previews/q10-70mm-proof.svg",
+        "nativeProofSha256": "50b093d762e4dc832401f4fcdb56e8663d7c74697740085f30291e8c01e28fc6",
+        "previewPath": "previews/q10-70mm-proof.png",
+        "previewSha256": "edd18d746466ee1f533644a3ee235cb7a1d4cca3e9a6687a8d46e73825203f1e",
+        "pageWidthMm": 210,
+        "assetWidthMm": 70,
+        "separateAssets": 2
+      },
+      "calculationPath": "calculations.json",
+      "calculationSha256": "3e08649559dcf283164ce4cd87e54a323dfbf3d282a19b27c66e557538dc1816"
+    }
+  },
+  "status": "solved"
+}

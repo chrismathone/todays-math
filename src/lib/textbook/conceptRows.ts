@@ -4,6 +4,11 @@ import {
 } from "@/contracts/conceptBlank.contract";
 import type { TextbookConcept } from "@/contracts/textbookConcept.contract";
 import type { TextbookSemanticRow } from "@/contracts/textbookSemantic.contract";
+import { reviewedQuestionMode } from "@/lib/concept-blank/questions";
+import {
+  clozeSentence,
+  conceptSupportsForm,
+} from "@/lib/concept-blank/questions";
 
 export function definitionText(entry: ConceptEntry): string {
   return splitBlankSentence(entry.definition)
@@ -14,11 +19,20 @@ export function definitionText(entry: ConceptEntry): string {
 /** One immutable master list, shared by all three memory phases. */
 export function conceptMemoryRows(
   entries: readonly ConceptEntry[],
+  phase: "study" | "keywords" | "sentences" = "study",
 ): TextbookSemanticRow[] {
-  return entries.map((entry) => ({
+  reviewedQuestionMode(entries);
+  const selected =
+    phase === "keywords"
+      ? entries.filter((entry) => conceptSupportsForm(entry, "cloze"))
+      : entries;
+  return selected.map((entry, index) => ({
     rowKey: `${entry.id}.definition`,
-    label: entry.term,
-    rawText: entry.definition,
+    label:
+      phase === "keywords" && entry.clozeQuestion
+        ? `문항 ${index + 1}`
+        : entry.term,
+    rawText: phase === "keywords" ? clozeSentence(entry) : entry.definition,
     textFormat: "bank-blank",
   }));
 }

@@ -1,0 +1,590 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 20,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q20",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "지름이 $\\overline{AB}$이고 반지름의 길이가 $6\\,\\mathrm{cm}$인 반원의 넓이를 두 부분으로 나누어 기록하려고 한다. $\\mathrm{O}$는 반원의 중심이고, $\\mathrm{C}$는 두 끝점 $\\mathrm{A},\\mathrm{B}$를 제외한 반원의 호 $AB$ 위에 있으며 $\\angle ABC=30^\\circ$이다.\n\n영역 기록\n∘ 색칠한 부분: 현 $\\overline{CB}$와 두 호 $CB$ 중 중심각이 $180^\\circ$보다 작은 호 $CB$로 둘러싸인 부분\n∘ 구할 부분: 반원 전체에서 위의 색칠한 부분을 제외한, 색칠하지 않은 나머지 부분\n\n색칠하지 않은 부분의 넓이를 구하고 풀이 과정을 쓰시오. (단, 답은 $\\pi$와 제곱근을 포함한 정확한 값으로 나타낸다.)",
+  "choices": [],
+  "answer": "$(6\\pi+9\\sqrt3)\\,\\mathrm{cm}^2$",
+  "solution": "두 반지름 $\\overline{OB},\\overline{OC}$의 길이가 같고 $\\angle OBC=\\angle ABC=30^\\circ$이므로 이등변삼각형 $\\mathrm{OBC}$에서 $\\angle OCB=30^\\circ$이다. 따라서 $\\angle BOC=180^\\circ-30^\\circ-30^\\circ=120^\\circ$이다.\n짧은 호 $CB$에 대응하는 부채꼴 $\\mathrm{OBC}$의 넓이는 $\\pi\\times6^2\\times\\frac{120}{360}=12\\pi\\,\\mathrm{cm}^2$이다.\n$\\mathrm{C}$에서 지름 $\\overline{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하자. $\\angle AOC=180^\\circ-120^\\circ=60^\\circ$이므로 $\\mathrm{H}$는 선분 $AO$의 내부에 있고 $\\angle COH=60^\\circ$이다.\n직각삼각형 $\\mathrm{OHC}$에서 $60^\\circ$의 삼각비를 이용하면 $\\frac{\\overline{CH}}{\\overline{OC}}=\\frac{\\sqrt3}{2}$이므로 $\\overline{CH}=6\\times\\frac{\\sqrt3}{2}=3\\sqrt3\\,\\mathrm{cm}$이다.\n따라서 삼각형 $\\mathrm{OBC}$의 넓이는 밑변 $\\overline{OB}$와 높이 $\\overline{CH}$를 이용하여 $\\frac12\\times6\\times3\\sqrt3=9\\sqrt3\\,\\mathrm{cm}^2$이다.\n색칠한 부분의 넓이는 부채꼴에서 삼각형을 뺀 $(12\\pi-9\\sqrt3)\\,\\mathrm{cm}^2$이다. 반원 전체의 넓이는 $\\frac12\\pi\\times6^2=18\\pi\\,\\mathrm{cm}^2$이므로, 색칠하지 않은 부분의 넓이는\n$18\\pi-(12\\pi-9\\sqrt3)=6\\pi+9\\sqrt3\\,\\mathrm{cm}^2$이다.",
+  "score": 7,
+  "questionType": "서술형",
+  "facts": {
+    "unit": "cm",
+    "diameter": "AB",
+    "radius": "6",
+    "center": "O",
+    "C": "반원 호 AB의 내부에 있는 점",
+    "givenAngleABC": "30°",
+    "coloredRegion": "현 CB와 중심각 180° 미만의 작은 호 CB 사이의 활꼴",
+    "target": "반원에서 색칠한 CB 활꼴을 뺀 나머지 넓이",
+    "answerFormat": "π와 제곱근을 포함한 정확한 넓이"
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 62,
+      "specSha256": "4473e58cdec9bda08889ecd6e5c4494c310702f82f2fa822669ee4a4043a4f67",
+      "renderMode": "local-renderFigureSpec-strict",
+      "svgSha256": "9f4ecc3d85b8608cefcd69840a458fd9a047347a2aca68e0f8752b30b6a0ade1",
+      "renderResult": {
+        "ok": true,
+        "strict": true,
+        "localOnly": true,
+        "typeset": true,
+        "droppedDimensions": []
+      }
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "반원 안에서 호 CB와 현 CB 사이에 색칠된 활꼴의 넓이를 바로 구한다.",
+    "after": "영역 기록으로 CB의 작은 활꼴 경계를 확정한 뒤 색칠하지 않은 나머지 넓이를 구한다. 색칠은 같은 CB 활꼴에만 두고 질문 대상을 반원의 여집합 넓이로 바꾸었다.",
+    "sharedConcept": "반지름이 같은 중심 삼각형의 각, 부채꼴 넓이, 수선과 60° 삼각비, 삼각형 넓이",
+    "sharedProcedure": "OBC의 밑각 → 중심각 → 도 단위 부채꼴 넓이 → C에서 지름에 수선 → 60° 삼각비로 높이 → 밑변×높이÷2 → 부채꼴에서 삼각형을 빼 활꼴 계산; 마지막에 반원에서 활꼴을 뺀다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-18",
+      "9수04-06",
+      "9수04-10",
+      "9수04-17",
+      "6수03-06",
+      "6수03-08"
+    ],
+    "allowedProcedure": [
+      "OB=OC인 이등변삼각형의 밑각과 내각의 합",
+      "180° 직선각에서 60° 계산",
+      "도 단위 중심각/360°를 이용한 부채꼴 넓이",
+      "C에서 지름 AB로 수선 CH를 내려 높이 도입",
+      "직각삼각형 OHC의 60° 삼각비로 CH 계산",
+      "밑변 OB와 수직 높이 CH를 이용한 삼각형 넓이",
+      "부채꼴−삼각형으로 작은 CB 활꼴, 반원−활꼴로 질문 대상 계산"
+    ],
+    "forbiddenAvoided": [
+      "접선-할선 또는 할선-할선의 거듭제곱 정리",
+      "원과 비례에 관한 곱의 정리",
+      "원의 방정식·좌표를 이용한 학생용 접점 계산",
+      "사인 법칙·코사인 법칙",
+      "90° 밖의 삼각비·일반 삼각함수·삼각형의 사인 넓이 공식",
+      "부채꼴 라디안 공식",
+      "미분·벡터"
+    ],
+    "status": "author-proposed",
+    "standardEvidence": [
+      {
+        "code": "9수04-18",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-06",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4276,
+          "record_offset_in_uncompressed_stream": 216736,
+          "extracted_paragraph_1based": 875
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-10",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4300,
+          "record_offset_in_uncompressed_stream": 217636,
+          "extracted_paragraph_1based": 881
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-17",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "6수03-06",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3433,
+          "record_offset_in_uncompressed_stream": 176573,
+          "extracted_paragraph_1based": 690
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            29
+          ],
+          "printed_pages": [
+            25
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "6수03-08",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3445,
+          "record_offset_in_uncompressed_stream": 177155,
+          "extracted_paragraph_1based": 693
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            29
+          ],
+          "printed_pages": [
+            25
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "gradeBandCaveat": "9수 성취기준은 중1~중3 학년군이며, 중3 지정은 v2의 중3 Unit/live family 제안과 함께 검토해야 한다. 학년군 코드만으로 개별 학년 승인으로 간주하지 않는다.",
+    "surfaces": {
+      "content": {
+        "status": "author-proposed",
+        "evidence": "반원·지름·예각 30°·작은 CB 활꼴·나머지 넓이를 구분한다. 모든 영역 경계를 본문에서 명시한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "서술형으로 보기 없음."
+      },
+      "figure": {
+        "status": "author-proposed",
+        "evidence": "정확한 반원과 30° 조건, 현 CB 및 작은 호 CB로 닫힌 영역만 색칠한다. 120° 중심각·수선 높이·면적 값을 그림에 적지 않는다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "π와 제곱근을 포함한 정확한 넓이와 cm² 단위."
+      },
+      "solution": {
+        "status": "author-proposed",
+        "evidence": "중심 삼각형의 각, 도 단위 부채꼴, 떨어뜨린 수선, 60° 직각삼각형의 비, 밑변·높이 넓이를 사용한다."
+      },
+      "requiredProcedure": {
+        "status": "author-proposed",
+        "evidence": "sin120°나 일반 삼각함수·사인/코사인 법칙·삼각형의 사인 넓이 공식·라디안 없이 높이를 직접 구한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중학교 이등변삼각형·내각 합·부채꼴 넓이·특수각 삼각비, 초등 원과 삼각형 넓이."
+      }
+    },
+    "gate": {
+      "scope": [
+        "content",
+        "choices",
+        "figure",
+        "answer",
+        "solution",
+        "requiredProcedure",
+        "prerequisites"
+      ],
+      "outOfGrade": "reject",
+      "unclear": "hold",
+      "independentGradeApproval": false
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-20",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 20,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "79e3387af8eda6fe66ce2e9702721e383ba01baedc6b004676c6089e39ea6693",
+    "sourceObservation": "반지름 8cm인 반원에 지름 AB와 ∠ABC=30°가 있으며 호 CB와 현 CB 사이가 색칠되어 있다.",
+    "sharedConceptProcedure": "원주각과 중심각 관계로 호에 대응하는 부채꼴을 정하고 중심 삼각형 넓이를 빼서 활꼴 넓이를 만든다.",
+    "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q20",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+    "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "answerFreeContentSha256": "79e3387af8eda6fe66ce2e9702721e383ba01baedc6b004676c6089e39ea6693",
+    "referenceFigures": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q20.png",
+        "sha256": "ecad083252c704406ee0775d6555ac2937eacff0de6b6036972867bbb5ac877f",
+        "role": "source-reference-only"
+      }
+    ],
+    "sourceAnswersSolutionsAccessed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "서술형",
+    "score": 7,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "서술형",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+      "familyKey": null,
+      "currentUnit": {
+        "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원주각",
+        "semester": 2,
+        "orderIndex": 486,
+        "problemCodePrefix": "J30603"
+      },
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "색칠 영역은 호 CB와 현 CB 사이의 활꼴이다. 원주각으로 중심각을 결정하고 부채꼴에서 삼각형을 빼는 절차까지 필요한데 등록06/10은 각·변·삼각비 문제여서 같은 family인지 확신하기 어렵다.",
+      "candidates": [
+        {
+          "registryKey": "3-2|원주각|06",
+          "registryTitle": "원주각의 성질과 삼각비의 값",
+          "section": "원주각",
+          "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+          "family": "mid:3-2|원주각|06",
+          "confidence": "low",
+          "evidence": "원주각과 삼각비를 함께 쓰는 부분은 관련되지만 부채꼴-삼각형의 활꼴 넓이 절차가 확인되지 않았다.",
+          "sameUnitLiveCount": 26,
+          "currentUnit": {
+            "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각",
+            "semester": 2,
+            "orderIndex": 486,
+            "problemCodePrefix": "J30603"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|원주각|06",
+            "grade": "중3",
+            "unitSection": "원주각",
+            "rpmBook": "3-2",
+            "rpmMinor": "원주각",
+            "rpmType": "06",
+            "rpmTitle": "원주각의 성질과 삼각비의 값"
+          },
+          "currentLiveCount": 26
+        },
+        {
+          "registryKey": "3-2|원주각|10",
+          "registryTitle": "반원에 대한 원주각의 크기의 응용",
+          "section": "원주각",
+          "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+          "family": "mid:3-2|원주각|10",
+          "confidence": "low",
+          "evidence": "반원 원주각 응용이라는 개념은 관련되지만 색칠 활꼴 넓이의 핵심 절차까지 일치한다고 확정할 수 없다.",
+          "sameUnitLiveCount": 28,
+          "currentUnit": {
+            "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각",
+            "semester": 2,
+            "orderIndex": 486,
+            "problemCodePrefix": "J30603"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|원주각|10",
+            "grade": "중3",
+            "unitSection": "원주각",
+            "rpmBook": "3-2",
+            "rpmMinor": "원주각",
+            "rpmType": "10",
+            "rpmTitle": "반원에 대한 원주각의 크기의 응용"
+          },
+          "currentLiveCount": 28
+        }
+      ]
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수04-18",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-06",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4276,
+          "record_offset_in_uncompressed_stream": 216736,
+          "extracted_paragraph_1based": 875
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-10",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4300,
+          "record_offset_in_uncompressed_stream": 217636,
+          "extracted_paragraph_1based": 881
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-17",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "6수03-06",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3433,
+          "record_offset_in_uncompressed_stream": 176573,
+          "extracted_paragraph_1based": 690
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            29
+          ],
+          "printed_pages": [
+            25
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "6수03-08",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3445,
+          "record_offset_in_uncompressed_stream": 177155,
+          "extracted_paragraph_1based": 693
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            29
+          ],
+          "printed_pages": [
+            25
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "OB=OC인 이등변삼각형의 밑각과 내각의 합 → 180° 직선각에서 60° 계산 → 도 단위 중심각/360°를 이용한 부채꼴 넓이 → C에서 지름 AB로 수선 CH를 내려 높이 도입 → 직각삼각형 OHC의 60° 삼각비로 CH 계산 → 밑변 OB와 수직 높이 CH를 이용한 삼각형 넓이 → 부채꼴−삼각형으로 작은 CB 활꼴, 반원−활꼴로 질문 대상 계산",
+    "curriculumSpecificHold": "새 후보 전체의 학년 적합성·Unit/live family·생성 규칙 및 출처의 별도 검수 전이며 승인되지 않았다. 활꼴 넓이 복합 절차에 대한 family는 계속 보류한다. assignment.status=pending, familyKey=null을 유지한다.",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": []
+    },
+    "authoringStatus": "author-proposed",
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate",
+      "candidateDisplayOccurrences": 0
+    }
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "gradeCurriculum": "pending",
+    "equivalentConceptAndMethod": "pending",
+    "distinctPresentation": "pending",
+    "naturalKorean": "pending",
+    "mathematicalCorrectness": "pending",
+    "figure": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  },
+  "directUseAllowed": false
+}

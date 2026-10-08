@@ -1,0 +1,2452 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:15:33.900Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc13",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "그래프 위의 점인지 알아보기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "점이 $y=ax$의 그래프 위에 있는지는 $x$좌표를 대입해 얻은 값이 그 점의 {$y$좌표}와 {같은지} 본다.",
+        "example": {
+          "prompt": "점 $(2, -8)$은 $y=-4x$의 그래프 위에 있는가?",
+          "answer": "있다"
+        },
+        "studentC": "점이 $y=ax$의 그래프 위에 있는지는 $x$좌표를 대입해 얻은 값이 그 점의 □와 □ 본다.",
+        "answers": [
+          "$y$좌표",
+          "같은지"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "점 $(2, -8)$이 $y=-4x$의 그래프 위에 있는지 판단하고, 확인한 방법을 쓰시오.",
+        "bAnswer": "있다. $x=2$를 대입하면 $y=-4\\times2=-8$로 점의 $y$좌표와 같다.",
+        "bGoal": "대입으로 그래프 위의 점인지 판단하기",
+        "bReason": "확인할 점과 식이 없어 구체 좌표를 주고 방법까지 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그래프 위에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=2$를 대입한 값 $-8$이 $y$좌표와 같다",
+              "$-8=-4\\times2$가 성립한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "대입한 값과 무엇을 비교하는지를 묻는 절차 빈칸으로 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "점이 그래프 위에 있는지 확인",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1547,
+        "part": "m1plus",
+        "sourceFingerprint": "f8e3f9a3f639b0069b98577312456c7950eaa52ef14c9afc196b30a04236e83e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1547
+        },
+        "directReview": null,
+        "cFrozenSentence": "점이 $y=ax$의 그래프 위에 있는지는 $x$좌표를 대입해 얻은 값이 그 점의 □와 □ 본다.",
+        "cFrozenDefinition": "점이 $y=ax$의 그래프 위에 있는지는 $x$좌표를 대입해 얻은 값이 그 점의 {$y$좌표}와 {같은지} 본다.",
+        "cFrozenAnswers": [
+          "$y$좌표",
+          "같은지"
+        ],
+        "cMarkedSentence": "점이 $y=ax$의 그래프 위에 있는지는 $x$좌표를 대입해 얻은 값이 그 점의 {$y$좌표}와 {같은지} 본다.",
+        "cSlotAnswers": [
+          "$y$좌표",
+          "같은지"
+        ],
+        "cStudentSentence": "점이 $y=ax$의 그래프 위에 있는지는 $x$좌표를 대입해 얻은 값이 그 점의 □와 □ 본다.",
+        "cAnswers": [
+          "$y$좌표",
+          "같은지"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y$좌표",
+            "equivalentAnswers": [
+              "$y$좌표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같은지",
+            "equivalentAnswers": [
+              "같은지"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y$좌표"
+          ],
+          [
+            "같은지"
+          ]
+        ],
+        "proposalFingerprint": "78c961345ecabdcff5fee7f02b9f305ac978f53ea1ffcf7250f356c3382da20c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc14",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "정비례와 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$y$가 $x$에 정비례하면 $x$가 $0$이 아닐 때 $x$와 $y$의 {비}가 항상 {일정}하다.",
+        "example": {
+          "prompt": "$y=3x$에서 $x:y$는?",
+          "answer": "$1:3$"
+        },
+        "studentC": "$y$가 $x$에 정비례하면 $x$가 $0$이 아닐 때 $x$와 $y$의 □가 항상 □하다.",
+        "answers": [
+          "비",
+          "일정"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "정비례 관계 $y=3x$에서 $x$가 $0$이 아닐 때 $x:y$를 가장 간단한 자연수의 비로 나타내고, $x$의 값이 바뀌면 이 비가 어떻게 되는지 쓰시오.",
+        "bAnswer": "$x:y=1:3$이고, $x$의 값이 바뀌어도 이 비는 항상 일정하다.",
+        "bGoal": "정비례에서 $x$와 $y$의 비가 일정함을 알기",
+        "bReason": "'비'가 $x:y$임을 밝히고 구체 식으로 일정함을 확인하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1:3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "항상 일정하다",
+              "변하지 않는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$x\\neq0$ 조건이 있고 비와 일정이라는 핵심어만 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "$x:y$가 일정하다는 성질",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1548,
+        "part": "m1plus",
+        "sourceFingerprint": "7b2412593ae00443418653fb13d12ec20e01e215140c12431983f828d12b9087",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1548
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y$가 $x$에 정비례하면 $x$가 $0$이 아닐 때 $x$와 $y$의 □가 항상 □하다.",
+        "cFrozenDefinition": "$y$가 $x$에 정비례하면 $x$가 $0$이 아닐 때 $x$와 $y$의 {비}가 항상 {일정}하다.",
+        "cFrozenAnswers": [
+          "비",
+          "일정"
+        ],
+        "cMarkedSentence": "$y$가 $x$에 정비례하면 $x$가 $0$이 아닐 때 $x$와 $y$의 {비}가 항상 {일정}하다.",
+        "cSlotAnswers": [
+          "비",
+          "일정"
+        ],
+        "cStudentSentence": "$y$가 $x$에 정비례하면 $x$가 $0$이 아닐 때 $x$와 $y$의 □가 항상 □하다.",
+        "cAnswers": [
+          "비",
+          "일정"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "비",
+            "equivalentAnswers": [
+              "비"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "일정",
+            "equivalentAnswers": [
+              "일정"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "비"
+          ],
+          [
+            "일정"
+          ]
+        ],
+        "proposalFingerprint": "a194e9919c466dc68c7f3f49fbdbb9021ba320c137a239202ca41bb91d343cb3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc15",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "직선 위의 한 점 $(p, q)$로 $a$ 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "원점을 지나는 직선 $y=ax$ 위의 원점이 아닌 한 점 $(p, q)$를 알면 $a$는 {$\\frac{q}{p}$}이다.",
+        "example": {
+          "prompt": "원점과 점 $(4, 2)$를 지나는 직선의 관계식은?",
+          "answer": "$y=\\frac{1}{2}x$"
+        },
+        "studentC": "원점을 지나는 직선 $y=ax$ 위의 원점이 아닌 한 점 $(p, q)$를 알면 $a$는 □이다.",
+        "answers": [
+          "$\\frac{q}{p}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "원점과 점 $(4, 2)$를 지나는 직선을 그래프로 하는 정비례 관계식을 구하고, $x$에 곱해진 수를 어떻게 구했는지 쓰시오.",
+        "bAnswer": "$y=ax$에 $x=4$, $y=2$를 대입하면 $2=4a$이므로 $a=\\frac{1}{2}$이다. 따라서 $y=\\frac{1}{2}x$이다.",
+        "bGoal": "그래프 위의 한 점으로 관계식 구하기",
+        "bReason": "문자 $(p, q)$ 대신 실제 점을 주고 식과 구한 방법을 함께 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=\\frac{1}{2}x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "점의 좌표를 $y=ax$에 대입한다",
+              "$y$좌표를 $x$좌표로 나눈다",
+              "$a=2\\div4$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "원점이 아닌 점이라는 조건이 있고 $a$를 나타내는 식 하나만 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "한 점의 좌표로 $a$ 구하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1549,
+        "part": "m1plus",
+        "sourceFingerprint": "a1ee8b4e4b7b0b9e4a4ac3e9d52cd74be239a271c685d72c89bc228fbf0f9c3c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1549
+        },
+        "directReview": null,
+        "cFrozenSentence": "원점을 지나는 직선 $y=ax$ 위의 원점이 아닌 한 점 $(p, q)$를 알면 $a$는 □이다.",
+        "cFrozenDefinition": "원점을 지나는 직선 $y=ax$ 위의 원점이 아닌 한 점 $(p, q)$를 알면 $a$는 {$\\frac{q}{p}$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{q}{p}$"
+        ],
+        "cMarkedSentence": "원점을 지나는 직선 $y=ax$ 위의 원점이 아닌 한 점 $(p, q)$를 알면 $a$는 {$\\frac{q}{p}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{q}{p}$"
+        ],
+        "cStudentSentence": "원점을 지나는 직선 $y=ax$ 위의 원점이 아닌 한 점 $(p, q)$를 알면 $a$는 □이다.",
+        "cAnswers": [
+          "$\\frac{q}{p}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{q}{p}$",
+            "equivalentAnswers": [
+              "$\\frac{q}{p}$",
+              "$q\\div p$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{q}{p}$",
+            "accept": [
+              "$q\\div p$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{q}{p}$",
+            "$q\\div p$"
+          ]
+        ],
+        "proposalFingerprint": "5446b5c1afe400180fe561e1b06f783ec88a3f69505fe49b99802d8e4a92bb99"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc16",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "두 정비례 그래프의 가파름",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 그래프 $y=ax$, $y=bx$에서 $|a|>|b|$이면 $y=ax$의 그래프가 더 {가파르다}.",
+        "example": {
+          "prompt": "$y=5x$와 $y=-2x$ 가운데 더 가파른 것은?",
+          "answer": "$y=5x$"
+        },
+        "studentC": "두 그래프 $y=ax$, $y=bx$에서 $|a|>|b|$이면 $y=ax$의 그래프가 더 □.",
+        "answers": [
+          "가파르다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=5x$와 $y=-2x$의 그래프 가운데 $y$축에 더 가까운(더 가파른) 것을 고르고, 두 식에서 무엇을 비교했는지 쓰시오.",
+        "bAnswer": "$y=5x$의 그래프이다. $x$에 곱해진 수의 절댓값을 비교하면 $|5|>|-2|$이기 때문이다.",
+        "bGoal": "절댓값 비교로 두 그래프의 가파름 판단하기",
+        "bReason": "'가파름'을 $y$축에 가까운 정도로 풀고 부호가 다른 두 식을 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=5x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$에 곱해진 수의 절댓값을 비교한다",
+              "$|5|>|-2|$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "절댓값 조건이 식으로 주어져 결론 한 낱말을 묻는 짧은 비교이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "두 그래프의 가파름 비교",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1550,
+        "part": "m1plus",
+        "sourceFingerprint": "501cf65ee0e623a12ce115b81cdf41dac4b99afdb1bd904745096d3fd0097aa5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1550
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 그래프 $y=ax$, $y=bx$에서 $|a|>|b|$이면 $y=ax$의 그래프가 더 □.",
+        "cFrozenDefinition": "두 그래프 $y=ax$, $y=bx$에서 $|a|>|b|$이면 $y=ax$의 그래프가 더 {가파르다}.",
+        "cFrozenAnswers": [
+          "가파르다"
+        ],
+        "cMarkedSentence": "두 그래프 $y=ax$, $y=bx$에서 $|a|>|b|$이면 $y=ax$의 그래프가 더 {가파르다}.",
+        "cSlotAnswers": [
+          "가파르다"
+        ],
+        "cStudentSentence": "두 그래프 $y=ax$, $y=bx$에서 $|a|>|b|$이면 $y=ax$의 그래프가 더 □.",
+        "cAnswers": [
+          "가파르다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가파르다",
+            "equivalentAnswers": [
+              "가파르다",
+              "$y$축에 가깝다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "가파르다",
+            "accept": [
+              "$y$축에 가깝다"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "가파르다",
+            "$y$축에 가깝다"
+          ]
+        ],
+        "proposalFingerprint": "c79fbdc699af5742efc99b11b489b9d49e2fb41d7a8ec494646eae4b02d0c4fc"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc17",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "정비례 그래프와 삼각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$y=ax$의 그래프 위의 원점이 아닌 점에서 $x$축에 내린 수선과 $x$축, 그래프로 만든 {삼각형}의 넓이는 그 점의 {좌표}로 구한다.",
+        "example": {
+          "prompt": "$y=2x$ 위의 점 $(3, 6)$, 점 $(3, 0)$, 원점으로 만든 삼각형의 넓이는?",
+          "answer": "$9$"
+        },
+        "studentC": "$y=ax$의 그래프 위의 원점이 아닌 점에서 $x$축에 내린 수선과 $x$축, 그래프로 만든 □의 넓이는 그 점의 □로 구한다.",
+        "answers": [
+          "삼각형",
+          "좌표"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=2x$의 그래프 위의 점 $\\mathrm{A}(3, 6)$, $x$축 위의 점 $\\mathrm{B}(3, 0)$, 원점 $\\mathrm{O}$를 꼭짓점으로 하는 삼각형 $\\mathrm{OAB}$의 넓이를 구하시오. 밑변과 높이로 삼은 길이도 쓰시오.",
+        "bAnswer": "밑변 $\\mathrm{OB}$의 길이는 $3$, 높이 $\\mathrm{AB}$의 길이는 $6$이므로 넓이는 $\\frac{1}{2}\\times3\\times6=9$이다.",
+        "bGoal": "점의 좌표로 삼각형의 넓이 구하기",
+        "bReason": "그림이 없어 세 꼭짓점의 좌표와 이름을 질문에 모두 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑변의 길이 $3$, 높이 $6$",
+              "$\\frac{1}{2}\\times3\\times6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이는 $9$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$y=2x$의 그래프 위의 점 $(3, 6)$, 점 $(3, 0)$, 원점을 꼭짓점으로 하는 삼각형에서 밑변의 길이는 $3$, 높이는 점 $(3, 6)$의 {$y$좌표}인 $6$이므로 넓이는 $\\frac{1}{2}\\times3\\times6=${$9$}이다.",
+        "cAnswers": [
+          "$y$좌표",
+          "$9$"
+        ],
+        "cReason": "어떤 삼각형인지 그림 없이는 알 수 없고 '좌표'는 막연한 답이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "그래프 위의 점으로 만든 삼각형의 넓이",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1551,
+        "part": "m1plus",
+        "sourceFingerprint": "21837d96bc2c0a879d3886533499e675a6c561205c5a406e2358ed1a07cd2748",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1551
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=2x$의 그래프 위의 점 $(3, 6)$, 점 $(3, 0)$, 원점을 꼭짓점으로 하는 삼각형에서 밑변의 길이는 $3$, 높이는 점 $(3, 6)$의 {$y$좌표}인 $6$이므로 넓이는 $\\frac{1}{2}\\times3\\times6=${$9$}이다.",
+        "cSlotAnswers": [
+          "$y$좌표",
+          "$9$"
+        ],
+        "cStudentSentence": "$y=2x$의 그래프 위의 점 $(3, 6)$, 점 $(3, 0)$, 원점을 꼭짓점으로 하는 삼각형에서 밑변의 길이는 $3$, 높이는 점 $(3, 6)$의 □인 $6$이므로 넓이는 $\\frac{1}{2}\\times3\\times6=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y$좌표",
+            "equivalentAnswers": [
+              "$y$좌표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$9$",
+            "equivalentAnswers": [
+              "$9$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y$좌표"
+          ],
+          [
+            "$9$"
+          ]
+        ],
+        "proposalFingerprint": "18d76c4506b050eeac01228831a396e47d79ff5849758c61f70167efa2546a34"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc18",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "두 그래프 사이의 세로 거리",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 $x$에서 두 정비례 그래프의 {$y$값}의 {차}의 절댓값이 두 점 사이의 세로 거리이다.",
+        "example": {
+          "prompt": "$x=4$에서 $y=3x$와 $y=x$ 위의 두 점 사이 거리는?",
+          "answer": "$8$"
+        },
+        "studentC": "같은 $x$에서 두 정비례 그래프의 □의 □의 절댓값이 두 점 사이의 세로 거리이다.",
+        "answers": [
+          "$y$값",
+          "차"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$x=4$일 때 $y=3x$의 그래프 위의 점과 $y=x$의 그래프 위의 점의 좌표를 각각 구하고, 두 점 사이의 거리를 구하시오.",
+        "bAnswer": "두 점은 $(4, 12)$와 $(4, 4)$이다. $x$좌표가 같으므로 거리는 $y$좌표의 차인 $12-4=8$이다.",
+        "bGoal": "$x$좌표가 같은 두 점 사이의 거리 구하기",
+        "bReason": "'세로 거리'가 가리키는 두 점을 식과 $x$의 값으로 정해 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(4, 12)$와 $(4, 4)$",
+              "$y$의 값이 $12$와 $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "거리는 $8$",
+              "$12-4=8$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$x$좌표가 같은 두 점 사이의 거리는 두 점의 {$y$좌표}의 차의 절댓값이다. 예를 들어 $x=4$일 때 $y=3x$의 그래프 위의 점 $(4, 12)$와 $y=x$의 그래프 위의 점 $(4, 4)$ 사이의 거리는 {$8$}이다.",
+        "cAnswers": [
+          "$y$좌표",
+          "$8$"
+        ],
+        "cReason": "'두 점'이 무엇인지 문장에 없고 '□의 □의' 꼴이라 읽기 어렵다.",
+        "coreAfter": "두 정비례 그래프 위에서 $x$좌표가 같은 두 점 사이의 거리(세로 거리)는 두 점의 {$y$좌표}의 {차}의 절댓값이다.",
+        "coreReason": "원문은 '두 점'이 어떤 점인지 밝히지 않아 불명확하다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "같은 $x$에서 두 그래프 위의 점 사이 거리",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1552,
+        "part": "m1plus",
+        "sourceFingerprint": "7d2097a241a0204b10bd25bb348a5fcc0a02b0396c1beed22ddfeff2813e70d6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1552
+        },
+        "directReview": null,
+        "coreBeforeRepair": "$x$의 값이 같을 때 두 정비례 그래프 위의 두 점 사이의 거리는 두 점의 {$y$좌표}의 {차}의 절댓값이다.",
+        "coreRepairReason": "원본 핵심어 '$y$값'은 점에 맞는 말인 {$y$좌표}로 바꾸었고, {차}는 유지했다. 현재안에서 빠졌던 '세로 거리'라는 원래 개념을 괄호로 되살렸다. '$x$좌표가 같은 두 점'으로 대상을 밝혔다.",
+        "coreRepairEvidence": "core-repair/core-001",
+        "cMarkedSentence": "$x$좌표가 같은 두 점 사이의 거리는 두 점의 {$y$좌표}의 차의 절댓값이다. 예를 들어 $x=4$일 때 $y=3x$의 그래프 위의 점 $(4, 12)$와 $y=x$의 그래프 위의 점 $(4, 4)$ 사이의 거리는 {$8$}이다.",
+        "cSlotAnswers": [
+          "$y$좌표",
+          "$8$"
+        ],
+        "cStudentSentence": "$x$좌표가 같은 두 점 사이의 거리는 두 점의 □의 차의 절댓값이다. 예를 들어 $x=4$일 때 $y=3x$의 그래프 위의 점 $(4, 12)$와 $y=x$의 그래프 위의 점 $(4, 4)$ 사이의 거리는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y$좌표",
+            "equivalentAnswers": [
+              "$y$좌표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$8$",
+            "equivalentAnswers": [
+              "$8$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y$좌표"
+          ],
+          [
+            "$8$"
+          ]
+        ],
+        "proposalFingerprint": "79e3c094613229094b791d825684b54c573f99b1dec58002c7961e45d6411845"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc19",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "일정한 빠르기와 정비례",
+        "kind": "방법",
+        "level": "상",
+        "definition": "일정한 빠르기로 움직이면 간 거리는 시간에 {정비례}하므로 $y=$(속력)$\\times x$로 {놓는다}.",
+        "example": {
+          "prompt": "분속 $70\\,\\mathrm{m}$로 걸을 때 $x$분 동안 간 거리 $y\\,\\mathrm{m}$의 관계식은?",
+          "answer": "$y=70x$"
+        },
+        "studentC": "일정한 빠르기로 움직이면 간 거리는 시간에 □하므로 $y=$(속력)$\\times x$로 □.",
+        "answers": [
+          "정비례",
+          "놓는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "분속 $70\\,\\mathrm{m}$의 일정한 빠르기로 $x$분 동안 걸은 거리를 $y\\,\\mathrm{m}$라 할 때, $x$와 $y$ 사이의 관계식을 쓰고 $y$가 $x$에 정비례하는지 까닭과 함께 쓰시오.",
+        "bAnswer": "(거리)$=$(속력)$\\times$(시간)이므로 $y=70x$이다. $y=ax$ 꼴이므로 $y$는 $x$에 정비례한다.",
+        "bGoal": "일정한 속력 상황을 정비례 관계식으로 나타내기",
+        "bReason": "속력과 단위, 변수의 뜻을 주어 식과 정비례 판단을 함께 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=70x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정비례한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=ax$ 꼴이다",
+              "시간이 $2$배, $3$배가 되면 거리도 $2$배, $3$배가 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "일정한 속력으로 움직일 때 (거리)$=$(속력)$\\times$(시간)이므로 거리는 시간에 {정비례}한다. 분속 $70\\,\\mathrm{m}$로 $x$분 동안 간 거리를 $y\\,\\mathrm{m}$라 하면 관계식은 {$y=70x$}이다.",
+        "cAnswers": [
+          "정비례",
+          "$y=70x$"
+        ],
+        "cReason": "'놓는다'는 내용 없는 빈칸이고 $x$, $y$의 뜻이 문장에 없다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "시간과 거리의 정비례",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1553,
+        "part": "m1plus",
+        "sourceFingerprint": "cf59def8b8c82a1a19f7b3fe4b8447a78712d6740eadfdd5b69ed795a966c005",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1553
+        },
+        "directReview": null,
+        "cMarkedSentence": "일정한 속력으로 움직일 때 (거리)$=$(속력)$\\times$(시간)이므로 거리는 시간에 {정비례}한다. 분속 $70\\,\\mathrm{m}$로 $x$분 동안 간 거리를 $y\\,\\mathrm{m}$라 하면 관계식은 {$y=70x$}이다.",
+        "cSlotAnswers": [
+          "정비례",
+          "$y=70x$"
+        ],
+        "cStudentSentence": "일정한 속력으로 움직일 때 (거리)$=$(속력)$\\times$(시간)이므로 거리는 시간에 □한다. 분속 $70\\,\\mathrm{m}$로 $x$분 동안 간 거리를 $y\\,\\mathrm{m}$라 하면 관계식은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정비례",
+            "equivalentAnswers": [
+              "정비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y=70x$",
+            "equivalentAnswers": [
+              "$y=70x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정비례"
+          ],
+          [
+            "$y=70x$"
+          ]
+        ],
+        "proposalFingerprint": "b8f497b92e2d6825169d39736af92f147df89e79f9185536ca85b7bc61bf8e7f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc20",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "$y$로 $x$ 거꾸로 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$y$의 값이 주어지면 관계식에 대입하여 {방정식}을 풀어 {$x$}를 구한다.",
+        "example": {
+          "prompt": "$y=-\\frac{2}{3}x$에서 $y=8$일 때 $x$의 값은?",
+          "answer": "$-12$"
+        },
+        "studentC": "$y$의 값이 주어지면 관계식에 대입하여 □을 풀어 □를 구한다.",
+        "answers": [
+          "방정식",
+          "$x$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "정비례 관계 $y=-\\frac{2}{3}x$에서 $y=8$일 때 $x$의 값을 구하는 과정을 쓰시오.",
+        "bAnswer": "$y=8$을 대입하면 $8=-\\frac{2}{3}x$이다. 양변에 $-\\frac{3}{2}$을 곱하면 $x=-12$이다.",
+        "bGoal": "$y$의 값을 대입해 $x$의 값 구하기",
+        "bReason": "어느 관계식인지 없어 분수 계수의 식과 $y$의 값을 구체로 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8=-\\frac{2}{3}x$",
+              "$y$에 $8$을 대입한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=-12$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정비례 관계식 $y=-\\frac{2}{3}x$에서 $y=8$일 때 $x$의 값은 $y$에 $8$을 {대입}한 방정식 $8=-\\frac{2}{3}x$를 풀어 $x=${$-12$}로 구한다.",
+        "cAnswers": [
+          "대입",
+          "$-12$"
+        ],
+        "cReason": "가리키는 관계식이 없어 상황을 알 수 없으므로 구체 식을 넣었다.",
+        "studentLabel": "$y$의 값으로 $x$의 값 구하기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "대입 후 방정식 풀기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1554,
+        "part": "m1plus",
+        "sourceFingerprint": "0c56e5be607f27d9a47556613ec0d7f5bb11e28e05cd725c5004a8c05ee13374",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1554
+        },
+        "directReview": null,
+        "cMarkedSentence": "정비례 관계식 $y=-\\frac{2}{3}x$에서 $y=8$일 때 $x$의 값은 $y$에 $8$을 {대입}한 방정식 $8=-\\frac{2}{3}x$를 풀어 $x=${$-12$}로 구한다.",
+        "cSlotAnswers": [
+          "대입",
+          "$-12$"
+        ],
+        "cStudentSentence": "정비례 관계식 $y=-\\frac{2}{3}x$에서 $y=8$일 때 $x$의 값은 $y$에 $8$을 □한 방정식 $8=-\\frac{2}{3}x$를 풀어 $x=$□로 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$-12$",
+            "equivalentAnswers": [
+              "$-12$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ],
+          [
+            "$-12$"
+          ]
+        ],
+        "proposalFingerprint": "46560249329bd06a621acf8768e60051508d5e2d4bb986a4d1e65c86a2b16ab6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc21",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "$x$가 $1$ 늘 때 $y$의 변화",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$y=ax$에서 $x$가 $1$ 늘 때마다 $y$는 정확히 {$a$}만큼 변하고, 이것이 그래프의 {기울어진 정도}를 정한다.",
+        "example": {
+          "prompt": "$y=-4x$에서 $x$가 $1$ 늘면 $y$는 어떻게 변하는가?",
+          "answer": "$4$만큼 줄어든다"
+        },
+        "studentC": "$y=ax$에서 $x$가 $1$ 늘 때마다 $y$는 정확히 □만큼 변하고, 이것이 그래프의 □를 정한다.",
+        "answers": [
+          "$a$",
+          "기울어진 정도"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=-4x$에서 $x$의 값이 $1$만큼 커질 때마다 $y$의 값은 얼마만큼 어떻게 변하는지 쓰고, $x=1$, $x=2$일 때의 $y$의 값으로 확인하시오.",
+        "bAnswer": "$4$만큼 작아진다. $x=1$일 때 $y=-4$, $x=2$일 때 $y=-8$로 $4$만큼 줄어든다.",
+        "bGoal": "$x$가 $1$ 커질 때 $y$가 $a$만큼 변함을 확인하기",
+        "bReason": "문자 $a$만으로는 감이 없어 음수 계수의 식으로 변화량을 확인하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$만큼 작아진다",
+              "$-4$만큼 변한다",
+              "$4$만큼 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=1$일 때 $y=-4$, $x=2$일 때 $y=-8$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$y=ax$에서 $x$의 값이 $1$만큼 커질 때마다 $y$의 값은 {$a$}만큼 변한다. 예를 들어 $y=-4x$에서 $x$의 값이 $1$만큼 커지면 $y$의 값은 $4$만큼 {작아진다}.",
+        "cAnswers": [
+          "$a$",
+          "작아진다"
+        ],
+        "cReason": "'기울어진 정도'는 중$1$이 배우지 않은 임의의 낱말이라 답하기 어렵다.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "$x$가 $1$ 커질 때 $y$의 변화량",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1555,
+        "part": "m1plus",
+        "sourceFingerprint": "6e2141714d4677c3eecb46cc6c36792ad0d9b0e9072f0c8a4d1d366042eca57b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1555
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=ax$에서 $x$의 값이 $1$만큼 커질 때마다 $y$의 값은 {$a$}만큼 변한다. 예를 들어 $y=-4x$에서 $x$의 값이 $1$만큼 커지면 $y$의 값은 $4$만큼 {작아진다}.",
+        "cSlotAnswers": [
+          "$a$",
+          "작아진다"
+        ],
+        "cStudentSentence": "$y=ax$에서 $x$의 값이 $1$만큼 커질 때마다 $y$의 값은 □만큼 변한다. 예를 들어 $y=-4x$에서 $x$의 값이 $1$만큼 커지면 $y$의 값은 $4$만큼 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작아진다",
+            "equivalentAnswers": [
+              "작아진다",
+              "줄어든다",
+              "감소한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작아진다",
+            "accept": [
+              "줄어든다",
+              "감소한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a$"
+          ],
+          [
+            "작아진다",
+            "줄어든다",
+            "감소한다"
+          ]
+        ],
+        "proposalFingerprint": "15f05beebb5ac3c0415bec177f67d8e7e1094753cd9855e21733484a7c1e7dd7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc22",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "단위 바꾸기와 정비례",
+        "kind": "방법",
+        "level": "상",
+        "definition": "길이 $\\mathrm{cm}$를 $\\mathrm{mm}$로 바꾸는 것처럼 단위를 바꾸는 관계도 {정비례}이고 $a$는 {바꾸는 비율}이다.",
+        "example": {
+          "prompt": "$x\\,\\mathrm{cm}$를 $y\\,\\mathrm{mm}$로 바꾸는 관계식은?",
+          "answer": "$y=10x$"
+        },
+        "studentC": "길이 $\\mathrm{cm}$를 $\\mathrm{mm}$로 바꾸는 것처럼 단위를 바꾸는 관계도 □이고 $a$는 □이다.",
+        "answers": [
+          "정비례",
+          "바꾸는 비율"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "길이 $x\\,\\mathrm{cm}$를 $\\mathrm{mm}$ 단위로 나타낸 값을 $y\\,\\mathrm{mm}$라 할 때, $x$와 $y$ 사이의 관계식을 쓰고 $y$가 $x$에 정비례하는지 판단하시오.",
+        "bAnswer": "$1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$이므로 $y=10x$이다. $y=ax$ 꼴이므로 정비례한다.",
+        "bGoal": "단위 바꾸기를 정비례 관계식으로 나타내기",
+        "bReason": "어떤 단위끼리인지와 $x$, $y$의 뜻을 정해 식을 세울 수 있게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=10x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정비례한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$x\\,\\mathrm{cm}$를 $y\\,\\mathrm{mm}$로 나타내면 $1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$이므로 관계식은 {$y=10x$}이고, $y$는 $x$에 {정비례}한다.",
+        "cAnswers": [
+          "$y=10x$",
+          "정비례"
+        ],
+        "cReason": "'바꾸는 비율'은 배운 용어가 아니고 $a$가 가리키는 식도 없다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "단위 환산의 정비례",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1556,
+        "part": "m1plus",
+        "sourceFingerprint": "040a0695cd2a50aa7ed8fb75f13bdabec225cc9782991a4f0f62dbd103a45ba8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1556
+        },
+        "directReview": null,
+        "cMarkedSentence": "$x\\,\\mathrm{cm}$를 $y\\,\\mathrm{mm}$로 나타내면 $1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$이므로 관계식은 {$y=10x$}이고, $y$는 $x$에 {정비례}한다.",
+        "cSlotAnswers": [
+          "$y=10x$",
+          "정비례"
+        ],
+        "cStudentSentence": "$x\\,\\mathrm{cm}$를 $y\\,\\mathrm{mm}$로 나타내면 $1\\,\\mathrm{cm}=10\\,\\mathrm{mm}$이므로 관계식은 □이고, $y$는 $x$에 □한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y=10x$",
+            "equivalentAnswers": [
+              "$y=10x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정비례",
+            "equivalentAnswers": [
+              "정비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y=10x$"
+          ],
+          [
+            "정비례"
+          ]
+        ],
+        "proposalFingerprint": "3cdde176a0bc79c27d611c2533823978330c07fb3bcb8da8503b289b60affa69"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-04-xc23",
+        "section": "중1::4. 그래프와 비례::정비례 관계 y=ax의 그래프",
+        "term": "그래프가 지나는 두 점 $(p, q)$, $(r, s)$",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$y=ax$의 그래프가 원점이 아닌 두 점 $(p, q)$, $(r, s)$를 지나면 {$\\frac{q}{p}=\\frac{s}{r}$}로 놓아 모르는 {좌표}를 구한다.",
+        "example": {
+          "prompt": "$y=ax$의 그래프가 $(2, 6)$과 $(b, -9)$를 지날 때 $b$의 값은?",
+          "answer": "$-3$"
+        },
+        "studentC": "$y=ax$의 그래프가 원점이 아닌 두 점 $(p, q)$, $(r, s)$를 지나면 □로 놓아 모르는 □를 구한다.",
+        "answers": [
+          "$\\frac{q}{p}=\\frac{s}{r}$",
+          "좌표"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-04-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=ax$의 그래프가 두 점 $(2, 6)$과 $(b, -9)$를 지날 때 $b$의 값을 구하는 과정을 쓰시오.",
+        "bAnswer": "$(2, 6)$을 대입하면 $6=2a$이므로 $a=3$이다. $y=3x$에 $(b, -9)$를 대입하면 $-9=3b$이므로 $b=-3$이다.",
+        "bGoal": "한 점으로 $a$를 구해 다른 점의 좌표 구하기",
+        "bReason": "문자 네 개의 제목 대신 실제 두 점을 주어 구하는 대상을 $b$로 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a=3$",
+              "$\\frac{6}{2}=\\frac{-9}{b}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b=-3$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$y=ax$의 그래프가 원점이 아닌 두 점 $(p, q)$, $(r, s)$를 지나면 $\\frac{q}{p}$와 $\\frac{s}{r}$의 값은 모두 {$a$}로 같다. 예를 들어 그래프가 $(2, 6)$과 $(b, -9)$를 지나면 $a=3$이므로 $b=${$-3$}이다.",
+        "cAnswers": [
+          "$a$",
+          "$-3$"
+        ],
+        "cReason": "등식 전체를 쓰는 빈칸은 길고 '좌표'는 무엇을 뜻하는지 막연하다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "두 점을 이용해 모르는 좌표 구하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1557,
+        "part": "m1plus",
+        "sourceFingerprint": "6320fb14736f1d12ea03f2fba5329274ce66d81f5055e38741ce2fdcdfb3c061",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1557
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=ax$의 그래프가 원점이 아닌 두 점 $(p, q)$, $(r, s)$를 지나면 $\\frac{q}{p}$와 $\\frac{s}{r}$의 값은 모두 {$a$}로 같다. 예를 들어 그래프가 $(2, 6)$과 $(b, -9)$를 지나면 $a=3$이므로 $b=${$-3$}이다.",
+        "cSlotAnswers": [
+          "$a$",
+          "$-3$"
+        ],
+        "cStudentSentence": "$y=ax$의 그래프가 원점이 아닌 두 점 $(p, q)$, $(r, s)$를 지나면 $\\frac{q}{p}$와 $\\frac{s}{r}$의 값은 모두 □로 같다. 예를 들어 그래프가 $(2, 6)$과 $(b, -9)$를 지나면 $a=3$이므로 $b=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$-3$",
+            "equivalentAnswers": [
+              "$-3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a$"
+          ],
+          [
+            "$-3$"
+          ]
+        ],
+        "proposalFingerprint": "cdd31768669b1e2410b8e307378d8a45571f10b5c02e6d2f1c88ceea99642dce"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc1",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "표로 반비례 알아보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "표에서 반비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$가 각각 {$\\frac{1}{2}$배, $\\frac{1}{3}$배}가 되는지 확인한다.",
+        "example": {
+          "prompt": "$x$가 $1$, $2$, $4$일 때 $y$가 $8$, $4$, $2$이면 반비례하는가?",
+          "answer": "반비례한다"
+        },
+        "studentC": "표에서 반비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$가 각각 □가 되는지 확인한다.",
+        "answers": [
+          "$\\frac{1}{2}$배, $\\frac{1}{3}$배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$의 값이 $1$, $2$, $4$일 때 $y$의 값이 차례로 $8$, $4$, $2$인 표가 있다. $y$가 $x$에 반비례하는지 판단하고, 표에서 무엇을 확인했는지 쓰시오.",
+        "bAnswer": "반비례한다. $x$가 $2$배, $4$배가 될 때 $y$는 $8$에서 $4$, $2$로 $\\frac{1}{2}$배, $\\frac{1}{4}$배가 되기 때문이다.",
+        "bGoal": "표의 값으로 반비례 여부 판단하기",
+        "bReason": "표가 지면에 없어 구체적인 값을 주고 확인한 내용까지 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "반비례한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$가 $2$배, $4$배가 될 때 $y$는 $\\frac{1}{2}$배, $\\frac{1}{4}$배가 된다",
+              "$xy$의 값이 항상 $8$로 일정하다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "확인할 $y$의 변화를 묻는 빈칸으로 앞 구절을 베껴 쓸 수 없다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "표에서 반비례를 확인하는 방법",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1558,
+        "part": "m1plus",
+        "sourceFingerprint": "9e10207d8dc2cc08595ba1c18e08f3c02121cad0b336b682f4f16316c0c28813",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1558
+        },
+        "directReview": null,
+        "cFrozenSentence": "표에서 반비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$가 각각 □가 되는지 확인한다.",
+        "cFrozenDefinition": "표에서 반비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$가 각각 {$\\frac{1}{2}$배, $\\frac{1}{3}$배}가 되는지 확인한다.",
+        "cFrozenAnswers": [
+          "$\\frac{1}{2}$배, $\\frac{1}{3}$배"
+        ],
+        "cMarkedSentence": "표에서 반비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$가 각각 {$\\frac{1}{2}$배, $\\frac{1}{3}$배}가 되는지 확인한다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{2}$배, $\\frac{1}{3}$배"
+        ],
+        "cStudentSentence": "표에서 반비례 관계인지 확인할 때에는 $x$가 $2$배, $3$배가 될 때 $y$가 각각 □가 되는지 확인한다.",
+        "cAnswers": [
+          "$\\frac{1}{2}$배, $\\frac{1}{3}$배"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{2}$배, $\\frac{1}{3}$배",
+            "equivalentAnswers": [
+              "$\\frac{1}{2}$배, $\\frac{1}{3}$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{2}$배, $\\frac{1}{3}$배"
+          ]
+        ],
+        "proposalFingerprint": "bb94d58e90de1928fbf660800503bf46abe249d614b805b1433e267e2bea9da1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc2",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례에서 $a$ 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "반비례 관계식 $y=\\frac{a}{x}$에서 $a$는 {$x$와 $y$의 곱}이다.",
+        "example": {
+          "prompt": "$x=4$일 때 $y=3$이면 $a$의 값은?",
+          "answer": "$12$"
+        },
+        "studentC": "반비례 관계식 $y=\\frac{a}{x}$에서 $a$는 □이다.",
+        "answers": [
+          "$x$와 $y$의 곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$a=xy$는 c3 성질과 xc11 관계식 세우기 과정에 이미 들어 있다.",
+        "exclusionReason": "B 제외: 서술형 목표가 m1-04-05-c3($xy=a$)과 m1-04-05-xc11($a$를 구해 관계식 세우기)과 겹친다.",
+        "cDecision": "keep",
+        "cReason": "식이 제시된 상태에서 $a$의 뜻 하나만 묻는 짧은 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "한 쌍의 값으로 $a$ 구하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1559,
+        "part": "m1plus",
+        "sourceFingerprint": "1b8f46c4f2d14c439fa02844ed4611b25dcbcd26e3f402964ffac16d5cfa76c0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1559
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "반비례 관계식 $y=\\frac{a}{x}$에서 $a$는 □이다.",
+        "cFrozenDefinition": "반비례 관계식 $y=\\frac{a}{x}$에서 $a$는 {$x$와 $y$의 곱}이다.",
+        "cFrozenAnswers": [
+          "$x$와 $y$의 곱"
+        ],
+        "cMarkedSentence": "반비례 관계식 $y=\\frac{a}{x}$에서 $a$는 {$x$와 $y$의 곱}이다.",
+        "cSlotAnswers": [
+          "$x$와 $y$의 곱"
+        ],
+        "cStudentSentence": "반비례 관계식 $y=\\frac{a}{x}$에서 $a$는 □이다.",
+        "cAnswers": [
+          "$x$와 $y$의 곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$와 $y$의 곱",
+            "equivalentAnswers": [
+              "$x$와 $y$의 곱",
+              "$xy$",
+              "$x\\times y$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$x$와 $y$의 곱",
+            "accept": [
+              "$xy$",
+              "$x\\times y$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$x$와 $y$의 곱",
+            "$xy$",
+            "$x\\times y$"
+          ]
+        ],
+        "proposalFingerprint": "4767fa3d67ef73f5bafee0ba3555e2a69b038f2b0bba50518f69435a86289668"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc3",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례 관계식으로 값 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$y=\\frac{a}{x}$에 $x$의 값을 {대입}하면 $y$의 값을 구할 수 있다. 이때 $x$는 {$0$이 아니다}.",
+        "example": {
+          "prompt": "$y=\\frac{24}{x}$에서 $x=-6$일 때 $y$의 값은?",
+          "answer": "$-4$"
+        },
+        "studentC": "$y=\\frac{a}{x}$에 $x$의 값을 □하면 $y$의 값을 구할 수 있다. 이때 $x$는 □.",
+        "answers": [
+          "대입",
+          "$0$이 아니다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "대입 계산 한 번으로 끝나 서술할 관계나 이유가 없다.",
+        "exclusionReason": "B 제외: 단순 대입 계산이어서 서술형에 맞지 않고, $x\\neq0$ 조건은 m1-04-05-c2에서 묻는다.",
+        "cDecision": "rewrite",
+        "cAfter": "$y=\\frac{24}{x}$에서 $x=-6$일 때 $y$의 값은 $x$ 대신 $-6$을 {대입}하여 $y=\\frac{24}{-6}=${$-4$}로 구한다. 이때 $x$에는 {$0$}을 대입할 수 없다.",
+        "cAnswers": [
+          "대입",
+          "$-4$",
+          "$0$"
+        ],
+        "cReason": "문자식뿐이라 막연하고 '$0$이 아니다'는 구 전체가 답이어서 다듬었다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$x$의 값을 대입해 $y$의 값 구하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1560,
+        "part": "m1plus",
+        "sourceFingerprint": "efee40234dfbdd366bab153ecaad43a522f1ca6260929bc0abaecc587c6671d5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1560
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$y=\\frac{24}{x}$에서 $x=-6$일 때 $y$의 값은 $x$ 대신 $-6$을 {대입}하여 $y=\\frac{24}{-6}=${$-4$}로 구한다. 이때 $x$에는 {$0$}을 대입할 수 없다.",
+        "cSlotAnswers": [
+          "대입",
+          "$-4$",
+          "$0$"
+        ],
+        "cStudentSentence": "$y=\\frac{24}{x}$에서 $x=-6$일 때 $y$의 값은 $x$ 대신 $-6$을 □하여 $y=\\frac{24}{-6}=$□로 구한다. 이때 $x$에는 □을 대입할 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$-4$",
+            "equivalentAnswers": [
+              "$-4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ],
+          [
+            "$-4$"
+          ],
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "69ed58319482cec8be90e44183ea037cd41557277454cf269bd9bc31ee32b28d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc4",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "생활 속 반비례",
+        "kind": "성질",
+        "level": "하",
+        "definition": "전체 양을 똑같이 나눌 때 사람 수와 {한 사람 몫}처럼, 한쪽이 $2$배가 되면 다른 쪽이 {$\\frac{1}{2}$배}가 되는 관계가 반비례이다.",
+        "example": {
+          "prompt": "사탕 $36$개를 $x$명이 똑같이 나눌 때 한 사람 몫 $y$개의 관계식은?",
+          "answer": "$y=\\frac{36}{x}$"
+        },
+        "studentC": "전체 양을 똑같이 나눌 때 사람 수와 □처럼, 한쪽이 $2$배가 되면 다른 쪽이 □가 되는 관계가 반비례이다.",
+        "answers": [
+          "한 사람 몫",
+          "$\\frac{1}{2}$배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "사탕 $36$개를 $x$명이 똑같이 나누어 가질 때 한 사람이 받는 사탕을 $y$개라 하자. $x$와 $y$ 사이의 관계식을 쓰고, $y$가 $x$에 반비례하는 까닭을 쓰시오.",
+        "bAnswer": "$y=\\frac{36}{x}$이다. 사람 수가 $2$배, $3$배가 되면 한 사람 몫은 $\\frac{1}{2}$배, $\\frac{1}{3}$배가 되므로($xy=36$으로 일정하므로) 반비례한다.",
+        "bGoal": "생활 속 상황을 반비례 관계식으로 나타내기",
+        "bReason": "어떤 상황인지 없어 사탕 나누기 장면과 변수의 뜻을 정해 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=\\frac{36}{x}$",
+              "$xy=36$"
+            ]
+          },
+          {
+            "anyOf": [
+              "사람 수가 $2$배, $3$배가 되면 몫은 $\\frac{1}{2}$배, $\\frac{1}{3}$배가 된다",
+              "$xy$의 값이 $36$으로 일정하다",
+              "$y=\\frac{a}{x}$ 꼴이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "사탕 $36$개를 $x$명이 똑같이 나눌 때 한 사람 몫을 $y$개라 하면 $xy=${$36$}으로 일정하므로 $y$는 $x$에 {반비례}하고, 관계식은 {$y=\\frac{36}{x}$}이다.",
+        "cAnswers": [
+          "$36$",
+          "반비례",
+          "$y=\\frac{36}{x}$"
+        ],
+        "cReason": "'한 사람 몫'은 임의로 고른 낱말이라 문장만 보고 떠올리기 어렵다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "똑같이 나누는 상황의 반비례",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1561,
+        "part": "m1plus",
+        "sourceFingerprint": "ed0d50349a2759a4c06b4b17a6c68ccfa91418d8743f83fcf69b8d16e769416c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1561
+        },
+        "directReview": null,
+        "cMarkedSentence": "사탕 $36$개를 $x$명이 똑같이 나눌 때 한 사람 몫을 $y$개라 하면 $xy=${$36$}으로 일정하므로 $y$는 $x$에 {반비례}하고, 관계식은 {$y=\\frac{36}{x}$}이다.",
+        "cSlotAnswers": [
+          "$36$",
+          "반비례",
+          "$y=\\frac{36}{x}$"
+        ],
+        "cStudentSentence": "사탕 $36$개를 $x$명이 똑같이 나눌 때 한 사람 몫을 $y$개라 하면 $xy=$□으로 일정하므로 $y$는 $x$에 □하고, 관계식은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$36$",
+            "equivalentAnswers": [
+              "$36$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반비례",
+            "equivalentAnswers": [
+              "반비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$y=\\frac{36}{x}$",
+            "equivalentAnswers": [
+              "$y=\\frac{36}{x}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$36$"
+          ],
+          [
+            "반비례"
+          ],
+          [
+            "$y=\\frac{36}{x}$"
+          ]
+        ],
+        "proposalFingerprint": "1c6d524234d83d718a11d46915913b17f36925d73e47074d55e6b03ff97699bc"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc5",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례 그래프의 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "반비례 관계를 좌표평면에 나타내면 곧은 선이 아니라 둘로 떨어진 {곡선}이 된다.",
+        "example": {
+          "prompt": "$y=\\frac{6}{x}$의 그래프는 직선인가, 곡선인가?",
+          "answer": "곡선"
+        },
+        "studentC": "반비례 관계를 좌표평면에 나타내면 곧은 선이 아니라 둘로 떨어진 □이 된다.",
+        "answers": [
+          "곡선"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "곡선이라는 모양은 c4 물음의 답에 그대로 포함된다.",
+        "exclusionReason": "B 제외: m1-04-05-c4의 그래프 모양 서술과 목표가 겹치는 조각 항목이다.",
+        "cDecision": "keep",
+        "cReason": "'곧은 선이 아니라'와 대비해 곡선을 묻는 쉬운 확인 빈칸이다.",
+        "learningRole": "definition",
+        "roleReason": "반비례 그래프는 곡선",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1562,
+        "part": "m1plus",
+        "sourceFingerprint": "8c9e50d5368e483ad6f6ee310f0078a5827b1308d75797a8630cb358385c998e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1562
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "반비례 관계를 좌표평면에 나타내면 곧은 선이 아니라 둘로 떨어진 □이 된다.",
+        "cFrozenDefinition": "반비례 관계를 좌표평면에 나타내면 곧은 선이 아니라 둘로 떨어진 {곡선}이 된다.",
+        "cFrozenAnswers": [
+          "곡선"
+        ],
+        "cMarkedSentence": "반비례 관계를 좌표평면에 나타내면 곧은 선이 아니라 둘로 떨어진 {곡선}이 된다.",
+        "cSlotAnswers": [
+          "곡선"
+        ],
+        "cStudentSentence": "반비례 관계를 좌표평면에 나타내면 곧은 선이 아니라 둘로 떨어진 □이 된다.",
+        "cAnswers": [
+          "곡선"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곡선",
+            "equivalentAnswers": [
+              "곡선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곡선"
+          ]
+        ],
+        "proposalFingerprint": "40ae105d57608ebda8ced08b0ae539632bc0059753ac56977bc5a474ef9ac258"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc6",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "$a>0$인 반비례 그래프",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$a>0$이면 $y=\\frac{a}{x}$의 그래프는 {제$1$사분면}과 {제$3$사분면}에 있다.",
+        "example": {
+          "prompt": "$y=\\frac{5}{x}$의 그래프가 있는 사분면은?",
+          "answer": "제$1$, $3$사분면"
+        },
+        "studentC": "$a>0$이면 $y=\\frac{a}{x}$의 그래프는 □과 □에 있다.",
+        "answers": [
+          "제$1$사분면",
+          "제$3$사분면"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$a>0$일 때의 사분면은 c5 물음이 $a<0$과 함께 이미 묻는다.",
+        "exclusionReason": "B 제외: m1-04-05-c5의 부호별 사분면 서술과 목표가 겹치는 조각 항목이다.",
+        "cDecision": "keep",
+        "cReason": "양수 조건 하나에 대한 짧은 확인이며 두 답의 순서는 무관하다.",
+        "learningRole": "definition",
+        "roleReason": "$a>0$일 때 지나는 사분면",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1563,
+        "part": "m1plus",
+        "sourceFingerprint": "f26eeac1054c772f145778bd68730f8fb9be1bd3e93daa55988f5a6c2a00b293",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1563
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$a>0$이면 $y=\\frac{a}{x}$의 그래프는 □과 □에 있다.",
+        "cFrozenDefinition": "$a>0$이면 $y=\\frac{a}{x}$의 그래프는 {제$1$사분면}과 {제$3$사분면}에 있다.",
+        "cFrozenAnswers": [
+          "제$1$사분면",
+          "제$3$사분면"
+        ],
+        "cMarkedSentence": "$a>0$이면 $y=\\frac{a}{x}$의 그래프는 {제$1$사분면}과 {제$3$사분면}에 있다.",
+        "cSlotAnswers": [
+          "제$1$사분면",
+          "제$3$사분면"
+        ],
+        "cStudentSentence": "$a>0$이면 $y=\\frac{a}{x}$의 그래프는 □과 □에 있다.",
+        "cAnswers": [
+          "제$1$사분면",
+          "제$3$사분면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제$1$사분면",
+            "equivalentAnswers": [
+              "제$1$사분면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제$3$사분면",
+            "equivalentAnswers": [
+              "제$3$사분면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제$1$사분면"
+          ],
+          [
+            "제$3$사분면"
+          ]
+        ],
+        "proposalFingerprint": "25043c1e43ee46894a13f3438d78d3bdaab47f93bd3cfe08b25ee8104bbd9309"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc7",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례 그래프 위의 점 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$y=\\frac{a}{x}$의 그래프 위의 점은 $x$좌표를 대입해 {$y$좌표}를 구해 {찾는다}.",
+        "example": {
+          "prompt": "$y=\\frac{12}{x}$의 그래프 위에 있고 $x$좌표가 $3$인 점은?",
+          "answer": "$(3, 4)$"
+        },
+        "studentC": "$y=\\frac{a}{x}$의 그래프 위의 점은 $x$좌표를 대입해 □를 구해 □.",
+        "answers": [
+          "$y$좌표",
+          "찾는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=\\frac{12}{x}$의 그래프 위에 있고 $x$좌표가 $3$인 점의 좌표를 구하고, 구한 방법을 쓰시오.",
+        "bAnswer": "$x=3$을 대입하면 $y=\\frac{12}{3}=4$이므로 점 $(3, 4)$이다.",
+        "bGoal": "$x$좌표를 대입해 그래프 위의 점 찾기",
+        "bReason": "찾을 점의 조건이 없어 식과 $x$좌표를 주고 방법을 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(3, 4)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=3$을 대입해 $y$의 값을 구한다",
+              "$y=\\frac{12}{3}=4$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$y=\\frac{12}{x}$의 그래프 위에 있고 $x$좌표가 $3$인 점은 $x=3$을 대입해 {$y$좌표}를 구하면 $y=4$이므로 점 {$(3, 4)$}이다.",
+        "cAnswers": [
+          "$y$좌표",
+          "$(3, 4)$"
+        ],
+        "cReason": "문장 끝의 '찾는다'는 수학 내용이 없는 빈칸이라 구체 점으로 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "대입으로 그래프 위의 점 구하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1564,
+        "part": "m1plus",
+        "sourceFingerprint": "1b78248298d2b6589b45250c0713f0ef44c03a9abdae336d68203ceeb08fc0ed",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1564
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=\\frac{12}{x}$의 그래프 위에 있고 $x$좌표가 $3$인 점은 $x=3$을 대입해 {$y$좌표}를 구하면 $y=4$이므로 점 {$(3, 4)$}이다.",
+        "cSlotAnswers": [
+          "$y$좌표",
+          "$(3, 4)$"
+        ],
+        "cStudentSentence": "$y=\\frac{12}{x}$의 그래프 위에 있고 $x$좌표가 $3$인 점은 $x=3$을 대입해 □를 구하면 $y=4$이므로 점 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y$좌표",
+            "equivalentAnswers": [
+              "$y$좌표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(3, 4)$",
+            "equivalentAnswers": [
+              "$(3, 4)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y$좌표"
+          ],
+          [
+            "$(3, 4)$"
+          ]
+        ],
+        "proposalFingerprint": "2a965edd33c6428cb63bb8c777ff6fb9314237726a3879567adf7d8b4b4b7e5b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc8",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "$x$가 커질 때 $y$의 변화",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$a>0$이고 $x>0$일 때 $x$의 값이 커지면 $y=\\frac{a}{x}$의 값은 {작아진다}.",
+        "example": {
+          "prompt": "$y=\\frac{12}{x}$에서 $x$가 $2$에서 $4$로 커지면 $y$는?",
+          "answer": "$6$에서 $3$으로 작아진다"
+        },
+        "studentC": "$a>0$이고 $x>0$일 때 $x$의 값이 커지면 $y=\\frac{a}{x}$의 값은 □.",
+        "answers": [
+          "작아진다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=\\frac{12}{x}$에서 $x$의 값이 $2$에서 $4$로 커질 때 $y$의 값이 어떻게 변하는지 구하고, $a>0$, $x>0$인 반비례 관계 $y=\\frac{a}{x}$에서 $x$의 값이 커질 때 $y$의 값의 변화를 쓰시오.",
+        "bAnswer": "$y$의 값은 $6$에서 $3$으로 작아진다. $a>0$, $x>0$이면 $x$의 값이 커질 때 $y$의 값은 작아진다.",
+        "bGoal": "반비례에서 $x$가 커질 때 $y$의 변화 알기",
+        "bReason": "정비례 단원과 제목이 같아 반비례 식과 $a>0$, $x>0$ 조건을 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$에서 $3$으로 변한다",
+              "$y$의 값이 $3$만큼 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$의 값은 작아진다",
+              "$y$의 값은 감소한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$a>0$, $x>0$ 조건이 모두 있고 변화 방향 하나만 묻는다.",
+        "studentLabel": "반비례에서 $x$가 커질 때 $y$의 변화",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "$x>0$에서 $y$의 감소",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1565,
+        "part": "m1plus",
+        "sourceFingerprint": "d09b76c18697f076cda60e6a2a1bd73275d4c22f1f07db5feeb4e1fb5ea98d63",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1565
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a>0$이고 $x>0$일 때 $x$의 값이 커지면 $y=\\frac{a}{x}$의 값은 □.",
+        "cFrozenDefinition": "$a>0$이고 $x>0$일 때 $x$의 값이 커지면 $y=\\frac{a}{x}$의 값은 {작아진다}.",
+        "cFrozenAnswers": [
+          "작아진다"
+        ],
+        "cMarkedSentence": "$a>0$이고 $x>0$일 때 $x$의 값이 커지면 $y=\\frac{a}{x}$의 값은 {작아진다}.",
+        "cSlotAnswers": [
+          "작아진다"
+        ],
+        "cStudentSentence": "$a>0$이고 $x>0$일 때 $x$의 값이 커지면 $y=\\frac{a}{x}$의 값은 □.",
+        "cAnswers": [
+          "작아진다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작아진다",
+            "equivalentAnswers": [
+              "작아진다",
+              "감소한다",
+              "줄어든다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작아진다",
+            "accept": [
+              "감소한다",
+              "줄어든다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작아진다",
+            "감소한다",
+            "줄어든다"
+          ]
+        ],
+        "proposalFingerprint": "7aa91009b8b1b7f1e368befbe87d09253061547f1e239af1c211f1a370d88692"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc9",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례인 식 고르기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$a$가 $0$이 아닐 때 {$y=\\frac{a}{x}$} 꼴이나 $xy=a$ 꼴이면 반비례이고, $y=\\frac{x}{a}$ 꼴은 {정비례}이다.",
+        "example": {
+          "prompt": "$y=\\frac{3}{x}$, $y=\\frac{x}{3}$ 가운데 반비례 관계는?",
+          "answer": "$y=\\frac{3}{x}$"
+        },
+        "studentC": "$a$가 $0$이 아닐 때 □ 꼴이나 $xy=a$ 꼴이면 반비례이고, $y=\\frac{x}{a}$ 꼴은 □이다.",
+        "answers": [
+          "$y=\\frac{a}{x}$",
+          "정비례"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "네 식 $y=\\frac{3}{x}$, $y=\\frac{x}{3}$, $xy=-6$, $y=3-x$ 가운데 $y$가 $x$에 반비례하는 것을 모두 고르고, 고른 기준을 쓰시오.",
+        "bAnswer": "$y=\\frac{3}{x}$과 $xy=-6$이다. $a\\neq0$일 때 $y=\\frac{a}{x}$ 꼴로 나타낼 수 있기($xy$의 값이 일정하기) 때문이다.",
+        "bGoal": "식의 꼴로 반비례 관계 가려내기",
+        "bReason": "고를 식이 지면에 없어 헷갈리기 쉬운 네 식을 주고 기준을 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=\\frac{3}{x}$을 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$xy=-6$을 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=\\frac{a}{x}$ 꼴로 나타낼 수 있다",
+              "$xy$의 값이 $0$이 아닌 수로 일정하다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$xy=a$ 꼴이 단서가 되고 $y=\\frac{x}{a}$와의 혼동을 바로 짚는다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "식의 꼴로 반비례 판별하기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1566,
+        "part": "m1plus",
+        "sourceFingerprint": "92f9800530caffd15193884adb6bac68e3a8646d9ad56c335f63a8e84c7d6604",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1566
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a$가 $0$이 아닐 때 □ 꼴이나 $xy=a$ 꼴이면 반비례이고, $y=\\frac{x}{a}$ 꼴은 □이다.",
+        "cFrozenDefinition": "$a$가 $0$이 아닐 때 {$y=\\frac{a}{x}$} 꼴이나 $xy=a$ 꼴이면 반비례이고, $y=\\frac{x}{a}$ 꼴은 {정비례}이다.",
+        "cFrozenAnswers": [
+          "$y=\\frac{a}{x}$",
+          "정비례"
+        ],
+        "cMarkedSentence": "$a$가 $0$이 아닐 때 {$y=\\frac{a}{x}$} 꼴이나 $xy=a$ 꼴이면 반비례이고, $y=\\frac{x}{a}$ 꼴은 {정비례}이다.",
+        "cSlotAnswers": [
+          "$y=\\frac{a}{x}$",
+          "정비례"
+        ],
+        "cStudentSentence": "$a$가 $0$이 아닐 때 □ 꼴이나 $xy=a$ 꼴이면 반비례이고, $y=\\frac{x}{a}$ 꼴은 □이다.",
+        "cAnswers": [
+          "$y=\\frac{a}{x}$",
+          "정비례"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y=\\frac{a}{x}$",
+            "equivalentAnswers": [
+              "$y=\\frac{a}{x}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정비례",
+            "equivalentAnswers": [
+              "정비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y=\\frac{a}{x}$"
+          ],
+          [
+            "정비례"
+          ]
+        ],
+        "proposalFingerprint": "6f2967d4a28d648c34b9da8740a2608b865c6e1848233f2b135a006391b06db3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc10",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "$xy=a$ 꼴",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$a$가 $0$이 아닐 때 $xy=a$는 양변을 $x$로 나누면 {$y=\\frac{a}{x}$}가 되므로 {반비례} 관계이다.",
+        "example": {
+          "prompt": "$xy=-10$에서 $x=5$일 때 $y$의 값은?",
+          "answer": "$-2$"
+        },
+        "studentC": "$a$가 $0$이 아닐 때 $xy=a$는 양변을 $x$로 나누면 □가 되므로 □ 관계이다.",
+        "answers": [
+          "$y=\\frac{a}{x}$",
+          "반비례"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$a\\neq0$일 때 $xy=a$가 반비례 관계인 까닭을 식을 변형하여 설명하시오.",
+        "bAnswer": "$a\\neq0$이므로 $x\\neq0$이고, 양변을 $x$로 나누면 $y=\\frac{a}{x}$ 꼴이 되기 때문이다.",
+        "bGoal": "$xy=a$를 $y=\\frac{a}{x}$로 고쳐 반비례임을 설명하기",
+        "bReason": "꼴의 이름만 있어 식 변형으로 이유를 답하도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변을 $x$로 나눈다",
+              "$y$를 $x$에 대한 식으로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=\\frac{a}{x}$ 꼴이 된다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "변형 방법이 보이고 결과 식과 관계 이름을 묻는 흐름이 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "$xy=a$가 반비례인 까닭",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1567,
+        "part": "m1plus",
+        "sourceFingerprint": "95b550c0a61313f9b3d86067ad49cc0e908255bf930cd02b1bacb96d3ade290d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1567
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a$가 $0$이 아닐 때 $xy=a$는 양변을 $x$로 나누면 □가 되므로 □ 관계이다.",
+        "cFrozenDefinition": "$a$가 $0$이 아닐 때 $xy=a$는 양변을 $x$로 나누면 {$y=\\frac{a}{x}$}가 되므로 {반비례} 관계이다.",
+        "cFrozenAnswers": [
+          "$y=\\frac{a}{x}$",
+          "반비례"
+        ],
+        "cMarkedSentence": "$a$가 $0$이 아닐 때 $xy=a$는 양변을 $x$로 나누면 {$y=\\frac{a}{x}$}가 되므로 {반비례} 관계이다.",
+        "cSlotAnswers": [
+          "$y=\\frac{a}{x}$",
+          "반비례"
+        ],
+        "cStudentSentence": "$a$가 $0$이 아닐 때 $xy=a$는 양변을 $x$로 나누면 □가 되므로 □ 관계이다.",
+        "cAnswers": [
+          "$y=\\frac{a}{x}$",
+          "반비례"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y=\\frac{a}{x}$",
+            "equivalentAnswers": [
+              "$y=\\frac{a}{x}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반비례",
+            "equivalentAnswers": [
+              "반비례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y=\\frac{a}{x}$"
+          ],
+          [
+            "반비례"
+          ]
+        ],
+        "proposalFingerprint": "8a89d39b59a9c0993c718e3861bf246d73c0e19d046c0de1a2542242aee1aa7c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc11",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례 관계식 세우기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "반비례하는 두 양은 $y=\\frac{a}{x}$로 놓고 주어진 한 쌍의 값의 {곱}으로 {$a$}를 구한다.",
+        "example": {
+          "prompt": "$y$가 $x$에 반비례하고 $x=-2$일 때 $y=6$이면 관계식은?",
+          "answer": "$y=-\\frac{12}{x}$"
+        },
+        "studentC": "반비례하는 두 양은 $y=\\frac{a}{x}$로 놓고 주어진 한 쌍의 값의 □으로 □를 구한다.",
+        "answers": [
+          "곱",
+          "$a$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$y$가 $x$에 반비례하고 $x=-2$일 때 $y=6$이다. $x$와 $y$ 사이의 관계식을 구하는 과정을 쓰시오.",
+        "bAnswer": "$y=\\frac{a}{x}$로 놓고 $x=-2$, $y=6$을 대입하면 $a=(-2)\\times6=-12$이다. 따라서 $y=-\\frac{12}{x}$이다.",
+        "bGoal": "한 쌍의 값으로 반비례 관계식 세우기",
+        "bReason": "세울 식의 조건이 없어 음수를 포함한 한 쌍의 값을 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a=(-2)\\times6=-12$",
+              "$y=\\frac{a}{x}$에 $x=-2$, $y=6$을 대입한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=-\\frac{12}{x}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "식의 꼴이 보이고 곱으로 $a$를 구한다는 절차의 핵심을 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "곱으로 $a$를 구해 식 세우기",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1568,
+        "part": "m1plus",
+        "sourceFingerprint": "556a4b78fac45960cb5ab62476b886f8d0d48963b764bcb61f15ead4daee1d2d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1568
+        },
+        "directReview": null,
+        "cFrozenSentence": "반비례하는 두 양은 $y=\\frac{a}{x}$로 놓고 주어진 한 쌍의 값의 □으로 □를 구한다.",
+        "cFrozenDefinition": "반비례하는 두 양은 $y=\\frac{a}{x}$로 놓고 주어진 한 쌍의 값의 {곱}으로 {$a$}를 구한다.",
+        "cFrozenAnswers": [
+          "곱",
+          "$a$"
+        ],
+        "cMarkedSentence": "반비례하는 두 양은 $y=\\frac{a}{x}$로 놓고 주어진 한 쌍의 값의 {곱}으로 {$a$}를 구한다.",
+        "cSlotAnswers": [
+          "곱",
+          "$a$"
+        ],
+        "cStudentSentence": "반비례하는 두 양은 $y=\\frac{a}{x}$로 놓고 주어진 한 쌍의 값의 □으로 □를 구한다.",
+        "cAnswers": [
+          "곱",
+          "$a$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "$a$"
+          ]
+        ],
+        "proposalFingerprint": "78627cebe99d8a0b809d05555cdcafebf1f68140d769926b94f45661127ee139"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc12",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "반비례 그래프 위의 점인지",
+        "kind": "방법",
+        "level": "중",
+        "definition": "점 $(p, q)$가 $y=\\frac{a}{x}$의 그래프 위에 있으려면 {$pq=a$}이어야 {한다}.",
+        "example": {
+          "prompt": "점 $(-3, 4)$는 $y=-\\frac{12}{x}$의 그래프 위에 있는가?",
+          "answer": "있다"
+        },
+        "studentC": "점 $(p, q)$가 $y=\\frac{a}{x}$의 그래프 위에 있으려면 □이어야 □.",
+        "answers": [
+          "$pq=a$",
+          "한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "점 $(-3, 4)$가 $y=-\\frac{12}{x}$의 그래프 위에 있는지 판단하고, 확인한 방법을 쓰시오.",
+        "bAnswer": "있다. $x=-3$을 대입하면 $y=-\\frac{12}{-3}=4$로 점의 $y$좌표와 같다.",
+        "bGoal": "반비례 그래프 위의 점인지 판단하기",
+        "bReason": "끊긴 제목이라 확인할 점과 식을 구체로 주고 방법까지 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그래프 위에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=-3$을 대입하면 $y=4$이다",
+              "$(-3)\\times4=-12$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "점 $(p, q)$가 $y=\\frac{a}{x}$의 그래프 위에 있으면 두 좌표의 {곱} $pq$의 값이 {$a$}와 같다.",
+        "cAnswers": [
+          "곱",
+          "$a$"
+        ],
+        "cReason": "문장 끝의 '한다'는 내용 없는 빈칸이고 등식 전체 빈칸은 단서가 없다.",
+        "studentLabel": "반비례 그래프 위의 점인지 알아보기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "점이 그래프 위에 있는지 확인",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1569,
+        "part": "m1plus",
+        "sourceFingerprint": "e41d5a639f02edb0c6d92a3be3cafaa31418928961ccd390788b7c2767934763",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1569
+        },
+        "directReview": null,
+        "cMarkedSentence": "점 $(p, q)$가 $y=\\frac{a}{x}$의 그래프 위에 있으면 두 좌표의 {곱} $pq$의 값이 {$a$}와 같다.",
+        "cSlotAnswers": [
+          "곱",
+          "$a$"
+        ],
+        "cStudentSentence": "점 $(p, q)$가 $y=\\frac{a}{x}$의 그래프 위에 있으면 두 좌표의 □ $pq$의 값이 □와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "$a$"
+          ]
+        ],
+        "proposalFingerprint": "a9b8f84353910f4f45ade9fc592cbd84b2f88299b7b3d80c14788905c2d620a5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc13",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "속력과 시간의 반비례",
+        "kind": "방법",
+        "level": "중",
+        "definition": "일정한 거리를 갈 때 속력과 걸리는 시간은 {곱}이 거리로 {일정}하므로 반비례한다.",
+        "example": {
+          "prompt": "$120\\,\\mathrm{km}$를 시속 $x\\,\\mathrm{km}$로 갈 때 걸리는 시간 $y$시간의 관계식은?",
+          "answer": "$y=\\frac{120}{x}$"
+        },
+        "studentC": "일정한 거리를 갈 때 속력과 걸리는 시간은 □이 거리로 □하므로 반비례한다.",
+        "answers": [
+          "곱",
+          "일정"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$120\\,\\mathrm{km}$의 거리를 시속 $x\\,\\mathrm{km}$로 갈 때 걸리는 시간을 $y$시간이라 하자. $x$와 $y$ 사이의 관계식을 쓰고, $y$가 $x$에 반비례하는 까닭을 쓰시오.",
+        "bAnswer": "(속력)$\\times$(시간)$=$(거리)이므로 $xy=120$, 곧 $y=\\frac{120}{x}$이다. $xy$의 값이 일정하므로 반비례한다.",
+        "bGoal": "거리가 일정할 때 속력과 시간의 반비례 나타내기",
+        "bReason": "거리와 단위, 변수의 뜻을 주어 식과 이유를 함께 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=\\frac{120}{x}$",
+              "$xy=120$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$xy$의 값이 $120$으로 일정하다",
+              "$y=\\frac{a}{x}$ 꼴이다",
+              "속력이 $2$배가 되면 시간은 $\\frac{1}{2}$배가 된다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "상황이 문장에 드러나 있고 곱이 일정하다는 근거를 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "속력과 시간의 반비례",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1570,
+        "part": "m1plus",
+        "sourceFingerprint": "2cac6582a3f3b2e1c94a613249a1acea7fa1c0bb8672ff076e9f9f549eec70c3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1570
+        },
+        "directReview": null,
+        "cFrozenSentence": "일정한 거리를 갈 때 속력과 걸리는 시간은 □이 거리로 □하므로 반비례한다.",
+        "cFrozenDefinition": "일정한 거리를 갈 때 속력과 걸리는 시간은 {곱}이 거리로 {일정}하므로 반비례한다.",
+        "cFrozenAnswers": [
+          "곱",
+          "일정"
+        ],
+        "cMarkedSentence": "일정한 거리를 갈 때 속력과 걸리는 시간은 {곱}이 거리로 {일정}하므로 반비례한다.",
+        "cSlotAnswers": [
+          "곱",
+          "일정"
+        ],
+        "cStudentSentence": "일정한 거리를 갈 때 속력과 걸리는 시간은 □이 거리로 □하므로 반비례한다.",
+        "cAnswers": [
+          "곱",
+          "일정"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "일정",
+            "equivalentAnswers": [
+              "일정"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "일정"
+          ]
+        ],
+        "proposalFingerprint": "1c65465cdd5de6979b0cb08dfb3a54afe2e689cf504d181cdc70c696fedc70a7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-05-xc14",
+        "section": "중1::4. 그래프와 비례::반비례 관계 y=a/x의 그래프",
+        "term": "$a<0$인 반비례 그래프",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$a<0$이면 $y=\\frac{a}{x}$에서 $x$와 $y$의 부호가 {반대}이므로 그래프는 {제$2$, $4$사분면}에 있다.",
+        "example": {
+          "prompt": "$y=-\\frac{8}{x}$에서 $x=2$일 때 $y$의 값은?",
+          "answer": "$-4$"
+        },
+        "studentC": "$a<0$이면 $y=\\frac{a}{x}$에서 $x$와 $y$의 부호가 □이므로 그래프는 □에 있다.",
+        "answers": [
+          "반대",
+          "제$2$, $4$사분면"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-05-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$a<0$일 때 $y=\\frac{a}{x}$의 그래프가 제$2$사분면과 제$4$사분면에만 있는 까닭을 그래프 위의 점의 $x$좌표와 $y$좌표의 부호로 설명하시오.",
+        "bAnswer": "$xy=a<0$이므로 $x$와 $y$의 부호가 서로 반대이다. $x>0$이면 $y<0$이어서 제$4$사분면, $x<0$이면 $y>0$이어서 제$2$사분면에 있다.",
+        "bGoal": "부호로 $a<0$인 반비례 그래프의 위치 설명하기",
+        "bReason": "사분면 암기는 c5에 있으므로 여기서는 부호를 이용한 이유를 묻는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$와 $y$의 부호가 서로 반대이다",
+              "$xy<0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>0$, $y<0$이면 제$4$사분면, $x<0$, $y>0$이면 제$2$사분면이다",
+              "좌표의 부호가 서로 다른 점은 제$2$, $4$사분면에 있다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "부호 관계라는 이유와 사분면이라는 결론을 차례로 묻는다.",
+        "learningRole": "reason",
+        "roleReason": "부호로 사분면을 정하는 까닭",
+        "authorBatch": 13,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1571,
+        "part": "m1plus",
+        "sourceFingerprint": "754a6d2bf29ce80626f2005009ccf769c1212ff361bd692f20d0625a900ea87c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1571
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a<0$이면 $y=\\frac{a}{x}$에서 $x$와 $y$의 부호가 □이므로 그래프는 □에 있다.",
+        "cFrozenDefinition": "$a<0$이면 $y=\\frac{a}{x}$에서 $x$와 $y$의 부호가 {반대}이므로 그래프는 {제$2$, $4$사분면}에 있다.",
+        "cFrozenAnswers": [
+          "반대",
+          "제$2$, $4$사분면"
+        ],
+        "cMarkedSentence": "$a<0$이면 $y=\\frac{a}{x}$에서 $x$와 $y$의 부호가 {반대}이므로 그래프는 {제$2$, $4$사분면}에 있다.",
+        "cSlotAnswers": [
+          "반대",
+          "제$2$, $4$사분면"
+        ],
+        "cStudentSentence": "$a<0$이면 $y=\\frac{a}{x}$에서 $x$와 $y$의 부호가 □이므로 그래프는 □에 있다.",
+        "cAnswers": [
+          "반대",
+          "제$2$, $4$사분면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "반대",
+            "equivalentAnswers": [
+              "반대",
+              "서로 반대"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제$2$, $4$사분면",
+            "equivalentAnswers": [
+              "제$2$, $4$사분면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "반대",
+            "accept": [
+              "서로 반대"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "반대",
+            "서로 반대"
+          ],
+          [
+            "제$2$, $4$사분면"
+          ]
+        ],
+        "proposalFingerprint": "f590b18d55557edad6dcd377f7799f41528e7a240c3978f7618edb17da244bff"
+      }
+    }
+  ]
+}

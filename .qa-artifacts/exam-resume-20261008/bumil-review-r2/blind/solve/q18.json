@@ -1,0 +1,82 @@
+{
+  "studentDigest": "7560f9f6c5dcf51efcb593ccc24873d941d6d7fb26339aada218c7eba6af98ac",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "answer": "③",
+  "solution": "점 $(-1,14)$를 대입하면 $3a+b=14$이다. 주어진 $a+b=10$과 두 식을 빼면 $2a=4$이므로 $a=2$, $b=8$이다. 함수식을 $y=a(x-1)^2+b-a$로 고치면 꼭짓점은 $(1,b-a)=(1,6)$이다. 이 점이 직선 $y=-2x+c$ 위에 있으므로 $6=-2+c$, 따라서 $c=8$이다. 정답은 ③이다.",
+  "evidence": {
+    "questionNumber": 18,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q18",
+    "input": {
+      "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/student-problems.json",
+      "studentProblemsSha256": "252ea8959ca5d96e13959ea9bf4b393fe00b0ff476f2b457b292c568fe6763b4",
+      "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/SOLVE-BRIEF.md",
+      "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    "figures": [],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "matches": false,
+        "reason": "c=4이면 x=1에서 직선의 y값이 2라서 꼭짓점 6에 맞지 않는다."
+      },
+      {
+        "choice": 2,
+        "matches": false,
+        "reason": "c=6이면 x=1에서 y=4이다."
+      },
+      {
+        "choice": 3,
+        "matches": true,
+        "reason": "c=8이면 x=1에서 y=6으로 꼭짓점과 일치한다."
+      },
+      {
+        "choice": 4,
+        "matches": false,
+        "reason": "c=10이면 x=1에서 y=8이다."
+      },
+      {
+        "choice": 5,
+        "matches": false,
+        "reason": "c=14이면 x=1에서 y=12이다."
+      }
+    ],
+    "codeCalculation": {
+      "tool": "Python fractions.Fraction",
+      "a": "2",
+      "b": "8",
+      "vertex": [
+        "1",
+        "6"
+      ],
+      "c": "8",
+      "pointResidual": "0",
+      "sumResidual": "0",
+      "choiceLineValuesAtOne": [
+        "2",
+        "4",
+        "6",
+        "8",
+        "12"
+      ],
+      "choiceMatches": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ]
+    },
+    "existenceUniquenessAndDomain": "서로 다른 두 일차 조건에서 a,b가 유일하게 정해지고 a=2≠0이다. 꼭짓점의 x좌표 1을 대입하면 c도 유일하게 정해진다. 미분이나 최적화는 사용하지 않았다.",
+    "blindness": {
+      "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+      "authorAnswerRead": false,
+      "authorSolutionRead": false,
+      "originalAnswersOrSolutionsRead": false,
+      "privateSpecOrPackageRead": false,
+      "parentHtmlOrSolutionPreviewRead": false,
+      "solverAuthoredThisCandidate": false
+    },
+    "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+  },
+  "status": "solved"
+}

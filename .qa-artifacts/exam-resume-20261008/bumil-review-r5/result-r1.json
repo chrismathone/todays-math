@@ -1,0 +1,57 @@
+{
+  "kind": "authored-exam-twin-review-result/v1",
+  "packageDigest": "785a7e437f0aff5b75ce1430b7b4672300b213b88ee0bbfb90b01aa11c9be605",
+  "createdAt": "2026-10-07T20:27:37.821Z",
+  "authored": 2,
+  "mathematicalVerified": 2,
+  "gradeReviewed": 2,
+  "overallVerified": 0,
+  "loadable": 0,
+  "productionWrites": false,
+  "results": [
+    {
+      "n": 10,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+      "candidateDigest": "a44d112ea0647bc9858e5f9199da0d23718e833fab7ee1339f70cbbb050089f8",
+      "assetDigest": "6e051c4bd40203816b3208f73cf93dd6be3f212357583d69bd906b6f379640f4",
+      "solveDigest": "29182eecaced72f34f0bc88be8b19e5816661fcb940c194bd18d18623ff74226",
+      "reportSha256": "395c2c781bcd26008bb255f10eaca466a3a03cc0f46564b9e05471bdf5d2e428",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    },
+    {
+      "n": 19,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+      "candidateDigest": "4241865fd9d1676dbe7dd30ea55459f4da6d8fa98f2bb8c7cb64bcb13964354e",
+      "assetDigest": "26cfe0d9c548d205dc6650a634e29df73e8d605b0b53743022d5eae9d9d889e5",
+      "solveDigest": "e2800ff85f56aec92277f838f130e3a912fd3583b534e338c6f48dabdefca3bb",
+      "reportSha256": "ad41a206b9593d662ad4f03fd3ad3f819e39e2bada8366bdba373566b40cd195",
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  ]
+}

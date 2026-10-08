@@ -1,0 +1,913 @@
+[
+  {
+    "id": "e4-2-4-2-c3",
+    "sourceIndex": 307,
+    "sourceDefinition": "기준 직선에서 떨어진 곳을 달리 잡으면 평행한 선을 {끝없이} 만들 수 있다. 같은 평면에서 한 직선과 각각 수직인 서로 다른 두 직선은 서로 {평행}이다.",
+    "sourceKeys": [
+      "끝없이",
+      "평행"
+    ],
+    "coreAfter": "한 직선과 평행한 직선은 떨어진 거리를 바꾸어 가며 {끝없이} 그을 수 있다. 같은 평면에서 한 직선에 수직인 서로 다른 두 직선은 서로 {평행}하다.",
+    "keyDecisionReason": "끝없이·평행이라는 원래 두 학습 표적을 보존한다. 무엇을 달리 잡는지 떨어진 거리로 명시한다.",
+    "reviewStatus": "manually authored; actual final contract check and hash-linked reading still required"
+  },
+  {
+    "id": "e4-2-4-4-c1",
+    "sourceIndex": 310,
+    "sourceDefinition": "사각형의 맞은편 변들을 살펴 평행한 짝이 {한 쌍 이상} 있으면 사다리꼴로 분류한다.",
+    "sourceKeys": [
+      "한 쌍 이상"
+    ],
+    "coreAfter": "마주 보는 변 중에서 평행한 변이 {한 쌍이라도} 있는 사각형을 사다리꼴이라 한다.",
+    "keyDecisionReason": "한 쌍 이상이라는 원래 포함 조건을 한 쌍이라도로 풀어 쓴다. 두 쌍 평행도 포함하는 의미를 보존한다.",
+    "reviewStatus": "manually authored; actual final contract check and hash-linked reading still required"
+  },
+  {
+    "id": "e4-2-5-1-c2",
+    "sourceIndex": 321,
+    "sourceDefinition": "가로축을 시간 순서대로 읽을 때 선이 오른쪽 위로 향하면 수량이 {늘고}, 아래로 향하면 {준다}.",
+    "sourceKeys": [
+      "늘고",
+      "준다"
+    ],
+    "coreAfter": "시간을 왼쪽부터 순서대로 나타낸 꺾은선그래프에서 선이 오른쪽 위로 올라가면 수량이 {늘고}, 오른쪽 아래로 내려가면 {준다}.",
+    "keyDecisionReason": "늘고·준다의 두 표적과 시간 순서라는 원래 조건을 보존한다. 자료와 방향의 실제 대상을 꺾은선그래프로 명시한다.",
+    "reviewStatus": "manually authored; actual final contract check and hash-linked reading still required"
+  },
+  {
+    "id": "e4-2-5-3-c1",
+    "sourceIndex": 324,
+    "sourceDefinition": "가로축의 순서와 세로축의 수량이 {함께 맞는 위치}에 자료 하나의 점을 찍는다.",
+    "sourceKeys": [
+      "함께 맞는 위치"
+    ],
+    "coreAfter": "꺾은선그래프를 그릴 때에는 가로 눈금(순서)과 세로 눈금(수량)이 {만나는 자리}에 점을 찍는다.",
+    "keyDecisionReason": "함께 맞는 위치라는 추상 표적을 같은 의미의 만나는 자리로 바꾼다. 두 눈금을 함께 맞추는 일반 방법은 보존한다.",
+    "reviewStatus": "manually authored; actual final contract check and hash-linked reading still required"
+  },
+  {
+    "id": "e4-2-6-1-c1",
+    "sourceIndex": 326,
+    "sourceDefinition": "선분들을 끝과 끝으로 이어 하나의 둘레를 닫아 만든 평면도형을 {다각형}이라 한다.",
+    "sourceKeys": [
+      "다각형"
+    ],
+    "coreAfter": "선분으로만 둘러싸인 도형을 {다각형}이라 한다.",
+    "keyDecisionReason": "다각형이라는 원래 이름 표적을 보존하며 선분만 사용하고 닫힌 둘레라는 뜻을 둘러싸인으로 쉽게 표현한다.",
+    "reviewStatus": "manually authored; actual final contract check and hash-linked reading still required"
+  },
+  {
+    "id": "e3-1-1-2-xc1",
+    "sourceIndex": 366,
+    "sourceDefinition": "받아올린 수까지 더했을 때 세 자리 가운데 {두 자리}에서 합이 $10$ 이상이 되면 받아올림이 두 번 있다.",
+    "sourceKeys": [
+      "두 자리"
+    ],
+    "coreAfter": "받아올린 수까지 더했을 때 세 자리 가운데 {두 자리}에서만 합이 $10$이거나 $10$보다 크면 받아올림이 두 번 있다.",
+    "keyDecisionReason": "두 자리라는 원래 표적을 보존하며 그 두 자리에서만이라는 조건과10 경계를 쉽게 명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-1-3-xc25",
+    "sourceIndex": 415,
+    "sourceDefinition": "세 자리 수끼리 뺄 때 빼어지는 수가 더 크고 빼어지는 수의 십의 자리 숫자가 $0$이 아니라고 하자. 일의 자리로 $1$을 내려 준 뒤 남은 십의 자리 숫자가 빼는 수의 십의 자리 숫자보다 작지 않으면 받아내림은 {한} 번뿐이다.",
+    "sourceKeys": [
+      "한"
+    ],
+    "coreAfter": "세 자리 수에서 더 작은 세 자리 수를 빼고 큰 수의 십의 자리 숫자는 $0$이 아니라고 하자. 일의 자리로 $1$을 내려 준 뒤 남은 십의 자리 숫자에서 빼는 수의 십의 자리 숫자를 뺄 수 있으면 받아내림은 {한} 번뿐이다.",
+    "keyDecisionReason": "한 번이라는 원래 표적과 큰 수·십의0아님 조건을 보존한다. 작지 않으면을 뺄 수 있으면으로 푼다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-1-4-xc4",
+    "sourceIndex": 421,
+    "sourceDefinition": "빗금과 그 위에 적은 바뀐 숫자는 윗자리 {묶음 하나를 풀어} 아랫자리 {묶음 열 개}로 바꾼 것을 나타낸다.",
+    "sourceKeys": [
+      "묶음 하나를 풀어",
+      "묶음 열 개"
+    ],
+    "coreAfter": "빗금과 그 위에 적은 바뀐 숫자는 {윗자리 $1$을 풀어} {아랫자리 $10$}으로 바꾼 것을 나타낸다.",
+    "keyDecisionReason": "원래의 묶음 하나를 푸는 동작과 열 개의 교환 표적을 보존하되 일의 자리 낱개도 포함하도록 자리 단위로 명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-1-4-xc7",
+    "sourceIndex": 424,
+    "sourceDefinition": "일의 자리에서 받아내리면 일의 자리 위의 숫자에 {$10$}을 더한 뒤 뺀다.",
+    "sourceKeys": [
+      "$10$"
+    ],
+    "coreAfter": "일의 자리에서 뺄 수 없어 십의 자리에서 받아내리면 일의 자리 위의 숫자에 {$10$}을 더한 뒤 뺀다.",
+    "keyDecisionReason": "10을 보태는 원래 표적을 보존하고 어디에서 받아내리는지 십의 자리로 확정한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-1-4-xc14",
+    "sourceIndex": 430,
+    "sourceDefinition": "세 자리 수끼리 뺄 때 빼어지는 수의 십의 자리 숫자가 $0$이 아니고, 일의 자리로 $1$을 내려 준 뒤 남은 십의 자리 숫자가 빼는 수의 십의 자리 숫자보다 {작으면} 십의 자리에서도 받아내림이 필요하다.",
+    "sourceKeys": [
+      "작으면"
+    ],
+    "coreAfter": "세 자리 수의 뺄셈에서 처음 수의 십의 자리 숫자가 $0$이 아닐 때, 일의 자리로 $1$을 내려 준 뒤 십의 자리에 남은 숫자가 빼는 수의 십의 자리 숫자보다 {작으면} 십의 자리에서도 받아내림이 필요하다.",
+    "keyDecisionReason": "작으면이라는 원래 비교 표적과십의0아님 조건을 보존하며 줄어든 십을 순서대로 설명한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-1-4-xc21",
+    "sourceIndex": 436,
+    "sourceDefinition": "일에 내어 준 뒤 십의 자리 숫자를 줄이지 않으면 차가 바른 값보다 {$10$ 크게} 나온다.",
+    "sourceKeys": [
+      "$10$ 크게"
+    ],
+    "coreAfter": "일의 자리로 $1$을 내어 준 뒤 십의 자리 숫자를 $1$ 줄이지 않으면 차가 바른 값보다 {$10$ 크게} 나온다.",
+    "keyDecisionReason": "10 크게라는 원래 차이 표적을 보존하고 어디로 내어 주었는지 일의 자리로 명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-3-1-xc9",
+    "sourceIndex": 572,
+    "sourceDefinition": "나눈 뒤 몫마다 개수가 모두 {같은지} 세어 보면 똑같이 나누었는지 알 수 있다.",
+    "sourceKeys": [
+      "같은지"
+    ],
+    "coreAfter": "나눈 뒤 한 사람(또는 한 묶음)이 가진 개수가 모두 {같은지} 세어 보면 똑같이 나누었는지 알 수 있다.",
+    "keyDecisionReason": "같은지라는 표적을 보존한다. 몫마다 대신 실제 받는 사람이나 묶음의 개수를 명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-3-1-xc13",
+    "sourceIndex": 576,
+    "sourceDefinition": "전체를 남김없이 몇 개씩 묶었을 때 그 묶음의 수만큼으로 똑같이 나누면 한 묶음은 {처음에 묶은 그 수}가 된다.",
+    "sourceKeys": [
+      "처음에 묶은 그 수"
+    ],
+    "coreAfter": "전체를 몇 개씩 남김없이 묶었을 때 생긴 묶음의 수로 전체를 똑같이 나누면, 한 묶음은 {처음 묶은 개수}와 같다. 예: $24$개를 $6$개씩 묶으면 $4$묶음이고, $24$개를 $4$묶음으로 나누면 한 묶음은 $6$개이다.",
+    "keyDecisionReason": "처음에 묶은 그 수라는 표적을 처음 묶은 개수로 명시한다. 일반적인 두 나눔의 역관계와 보조 예를 함께 보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-3-2-xc17",
+    "sourceIndex": 598,
+    "sourceDefinition": "나누어지는 수가 $0$이 아닌 나눗셈식에서 맨 앞의 나누어지는 수는 나누는 수와 몫보다 {작지 않다}.",
+    "sourceKeys": [
+      "작지 않다"
+    ],
+    "coreAfter": "나누어떨어지는 나눗셈에서 나눌 전체의 수가 $0$이 아니면, 전체의 수는 나누는 수나 몫보다 {크거나 같다}. 예: $24\\div6=4$에서 $24$는 $6$과 $4$보다 크고, $8\\div1=8$에서는 몫과 같다.",
+    "keyDecisionReason": "나머지 있는3÷5는 원문 단정의 반례다. 나누어떨어지는 조건을 명시하고 작지 않다와 같은 비교를 크거나 같다로 풀어 쓴다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-3-2-xc19",
+    "sourceIndex": 600,
+    "sourceDefinition": "두 수가 모두 $0$이 아닐 때, 곱하는 두 수와 곱 사이의 관계는 {곱셈}으로 곱을 구하거나 {나눗셈}으로 곱하는 수 하나를 구하는 식으로 나타낼 수 있다.",
+    "sourceKeys": [
+      "곱셈",
+      "나눗셈"
+    ],
+    "coreAfter": "곱하는 두 수가 모두 $0$이 아닐 때, {곱셈}으로 두 수의 곱을 구할 수 있다. 그 곱을 곱한 수 하나로 {나눗셈}하면 다른 수를 구할 수 있다.",
+    "keyDecisionReason": "곱셈·나눗셈이라는 원래 표적과0아님 조건을 보존한다. 초안의 두 식이라는 새 단정은 같은 두 수일 때 부적절하므로 넣지 않는다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-3-2-xc24",
+    "sourceIndex": 604,
+    "sourceDefinition": "몫이 같은 나눗셈식들은 {같은 수에 서로 다른 수를 곱한} 곱셈식에서 나온다.",
+    "sourceKeys": [
+      "같은 수에 서로 다른 수를 곱한"
+    ],
+    "coreAfter": "{같은 수}를 서로 다른 $0$이 아닌 수와 각각 곱하고, 각 곱을 그 서로 다른 수로 나누면 {몫이 같다}. 예: $4\\times3=12$, $4\\times4=16$에서 $12\\div3=4$, $16\\div4=4$이다.",
+    "keyDecisionReason": "긴 같은 수에 서로 다른 수를 곱한 표적을 고정한 같은 수와 같은 몫이라는 두 의미로 나눈다. 곱·나눔의 관계와보조예를 보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-3-4-xc18",
+    "sourceIndex": 626,
+    "sourceDefinition": "곱셈구구로 구한 몫은 나누는 수와 곱해 {처음 수}가 나오는지 다시 본다.",
+    "sourceKeys": [
+      "처음 수"
+    ],
+    "coreAfter": "곱셈구구로 구한 몫은 나누는 수와 곱해 {나눌 전체의 수}가 나오는지 다시 본다. 예: $56\\div8=7$이면 $8\\times7=56$인지 확인한다.",
+    "keyDecisionReason": "처음 수라는 가려진 지시를 나눌 전체의 수로 명시한다. 구구로 구한 몫 확인의 일반 관계와 보조 예를 보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-4-1-xc3",
+    "sourceIndex": 632,
+    "sourceDefinition": "(몇십)$\\times$(몇)을 십 모형으로 놓으면 십 모형이 {(몇)$\\times$(몇)개} 놓인다.",
+    "sourceKeys": [
+      "(몇)$\\times$(몇)개"
+    ],
+    "coreAfter": "몇십에 수를 곱할 때 십 모형의 개수는 십의 자리 숫자와 곱하는 수의 {곱}이다. 예: $30\\times2$는 십 모형 $3$개씩 $2$묶음이므로 십 모형이 $6$개이다.",
+    "keyDecisionReason": "어느수인지 모르는 두 몇의 곱을 이름이 명확한 두 수의 곱으로 고친다. 원래 표적의 곱 결과 의미를 짧은 일반 이름 곱으로 보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-4-1-xc5",
+    "sourceIndex": 634,
+    "sourceDefinition": "(몇십)$\\times$(몇)은 {(몇)$\\times$(몇)}을 계산한 뒤 끝에 $0$을 하나 붙인다.",
+    "sourceKeys": [
+      "(몇)$\\times$(몇)"
+    ],
+    "coreAfter": "몇십에 수를 곱할 때에는 십의 자리 숫자와 곱하는 수의 {곱}을 구한 뒤 끝에 $0$을 하나 붙인다. 예: $70\\times4$는 $7\\times4=28$에 $0$을 붙여 $280$이다.",
+    "keyDecisionReason": "두 몇의 곱이라는 원래 표적을 해당 두 수의 곱으로 명시한다. 끝의0과10단위 곱하는 일반 방법을 보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-4-2-xc19",
+    "sourceIndex": 657,
+    "sourceDefinition": "어느 자리의 숫자와 곱하는 수의 곱이 {$10$ 이상}이면 그 자리에서 올림이 생긴다.",
+    "sourceKeys": [
+      "$10$ 이상"
+    ],
+    "coreAfter": "어느 자리의 숫자와 곱하는 수의 곱이 {$10$이거나 $10$보다 크면} 그 자리에서 올림이 생긴다.",
+    "keyDecisionReason": "10 이상이라는 원래 경계 표적을 같은 포함 관계의 쉬운 말로 풀어 쓴다. 숫자10만으로 옮기지 않는다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-4-5-xc14",
+    "sourceIndex": 703,
+    "sourceDefinition": "일의 자리 곱이 $10$ 이상이고 십의 자리 곱에 올린 수를 더한 값도 {$10$ 이상}이면 두 번 올린다.",
+    "sourceKeys": [
+      "$10$ 이상"
+    ],
+    "coreAfter": "일의 자리 곱이 $10$이거나 $10$보다 크고, 십의 자리 곱에 올린 수를 더한 값도 {$10$이거나 $10$보다 크면} 올림을 두 번 한다.",
+    "keyDecisionReason": "십의 곱에 올린 수를 포함하는 조건과10 이상이라는 원래 경계 표적을 보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-4-5-xc19",
+    "sourceIndex": 706,
+    "sourceDefinition": "십의 자리 곱이 $10$보다 작아도 일의 자리에서 {올린 수를 더해} $10$ 이상이 되면 백의 자리로 올린다.",
+    "sourceKeys": [
+      "올린 수를 더해"
+    ],
+    "coreAfter": "십의 자리 곱이 $10$보다 작아도 일의 자리에서 {올린 수를 더해} $10$이거나 $10$보다 커지면 백의 자리로 올린다.",
+    "keyDecisionReason": "올린 수를 더해라는 원래 원인 표적을 보존하며10과같은 경우도 포함한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-1-xc14",
+    "sourceIndex": 723,
+    "sourceDefinition": "$\\mathrm{cm}$는 $\\mathrm{mm}$보다 {$10$배} 긴 단위이다.",
+    "sourceKeys": [
+      "$10$배"
+    ],
+    "coreAfter": "$1\\,\\mathrm{cm}$는 $1\\,\\mathrm{mm}$의 {$10$배}인 길이이다.",
+    "keyDecisionReason": "10배라는 원래 표적을 보존하고 두 비교 길이를1cm·1mm로 명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-2-xc16",
+    "sourceIndex": 740,
+    "sourceDefinition": "$\\mathrm{m}$끼리 더해 $1000\\,\\mathrm{m}$ 이상이 되면 그중 $1000\\,\\mathrm{m}$를 {$1\\,\\mathrm{km}$}로 바꾼다.",
+    "sourceKeys": [
+      "$1\\,\\mathrm{km}$"
+    ],
+    "coreAfter": "$\\mathrm{m}$끼리 더해 $1000\\,\\mathrm{m}$이거나 $1000\\,\\mathrm{m}$보다 길면 그중 $1000\\,\\mathrm{m}$를 {$1\\,\\mathrm{km}$}로 바꾼다.",
+    "keyDecisionReason": "1km라는 원래 교환 표적과1000m 같은 경계를 보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-2-xc17",
+    "sourceIndex": 741,
+    "sourceDefinition": "$\\mathrm{km}$는 $\\mathrm{m}$보다 {$1000$배} 긴 단위이다.",
+    "sourceKeys": [
+      "$1000$배"
+    ],
+    "coreAfter": "$1\\,\\mathrm{km}$는 $1\\,\\mathrm{m}$의 {$1000$배}인 길이이다.",
+    "keyDecisionReason": "1000배라는 원래 표적과단위 관계를 보존하고 비교 길이를1씩으로 명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-2-xc20",
+    "sourceIndex": 743,
+    "sourceDefinition": "빼어지는 거리가 더 길 때 $\\mathrm{m}$끼리 뺄 수 없으면 {$1\\,\\mathrm{km}$를 $1000\\,\\mathrm{m}$로 바꾸어} 뺀다.",
+    "sourceKeys": [
+      "$1\\,\\mathrm{km}$를 $1000\\,\\mathrm{m}$로 바꾸어"
+    ],
+    "coreAfter": "긴 거리에서 짧은 거리를 뺄 때 $\\mathrm{m}$끼리 뺄 수 없으면 {$1\\,\\mathrm{km}$를 $1000\\,\\mathrm{m}$로 바꾸어} 뺀다.",
+    "keyDecisionReason": "원래1km를1000m로바꾸어라는 교환 표적과 큰 거리에서 작은 거리를 빼는 조건을 보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-2-xc22",
+    "sourceIndex": 745,
+    "sourceDefinition": "$0$보다 긴 같은 거리를 더 큰 단위로 나타내면 {수가 작아진다}.",
+    "sourceKeys": [
+      "수가 작아진다"
+    ],
+    "coreAfter": "$0$이 아닌 같은 거리를 더 큰 단위로 나타내면 {수가 작아진다}. 예: $3000\\,\\mathrm{m}$는 $3\\,\\mathrm{km}$이다.",
+    "keyDecisionReason": "수가 작아진다라는 표적과양의거리 조건을 보존한다. 초안이 버린0아님 조건은0m=0km의 반례 때문에 필요하다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-4-xc12",
+    "sourceIndex": 779,
+    "sourceDefinition": "분은 초보다 {$60$배} 긴 단위이다.",
+    "sourceKeys": [
+      "$60$배"
+    ],
+    "coreAfter": "$1$분은 $1$초의 {$60$배}인 시간이다.",
+    "keyDecisionReason": "60배라는 원래 관계 표적을 보존하며 비교할 두 시간 크기를1분·1초로 명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-5-xc4",
+    "sourceIndex": 790,
+    "sourceDefinition": "초의 합도 분의 합도 {$60$보다 작으면} 윗단위로 받아올리지 않고 그대로 쓴다.",
+    "sourceKeys": [
+      "$60$보다 작으면"
+    ],
+    "coreAfter": "시간을 더할 때 초의 합과 분의 합이 모두 {$60$보다 작으면} 받아올리지 않고 그대로 쓴다.",
+    "keyDecisionReason": "60보다 작으면이라는 조건 표적을 보존하며 어떤 단위의 합인지 시간 덧셈으로 밝힌다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-5-xc8",
+    "sourceIndex": 793,
+    "sourceDefinition": "시간의 덧셈을 세로로 할 때에는 시, 분, 초를 {같은 줄}에 맞추어 쓴다.",
+    "sourceKeys": [
+      "같은 줄"
+    ],
+    "coreAfter": "시간의 덧셈을 세로로 할 때에는 시는 시끼리, 분은 분끼리, 초는 초끼리 {위아래로 줄을 맞추어} 쓴다.",
+    "keyDecisionReason": "같은 줄이라는 표적의 세로 대응 의미를 위아래로 줄맞춤으로 명시한다. 서로 다른 단위를 한 줄에 놓는 뜻과 구별한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-5-xc11",
+    "sourceIndex": 795,
+    "sourceDefinition": "더한 분이 $60$ 이상이면 그중 {$60$분을 $1$시간}으로 바꾼다.",
+    "sourceKeys": [
+      "$60$분을 $1$시간"
+    ],
+    "coreAfter": "더한 분이 $60$분이거나 $60$분보다 많으면 그중 {$60$분을 $1$시간}으로 바꾼다.",
+    "keyDecisionReason": "60분을1시간이라는 원래 단위 교환 표적과경계60을 보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-5-xc15",
+    "sourceIndex": 797,
+    "sourceDefinition": "시각에 시간을 더해 분이 $60$ 이상이 되면 $60$분을 $1$시간으로 바꾸어 {시각이 한 시간 더 지나간다}.",
+    "sourceKeys": [
+      "시각이 한 시간 더 지나간다"
+    ],
+    "coreAfter": "시각에 시간을 더해 분이 $60$분이거나 $60$분보다 많아지면, 그중 $60$분을 $1$시간으로 바꾸어 시각이 {다음 시로 바뀐다}.",
+    "keyDecisionReason": "한 시간 더 지나는 시각의 변화 표적을 다음 시로 명시한다. 시의숫자1증가는12→1시계에서틀리므로 초안의그단정을피한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-6-xc2",
+    "sourceIndex": 803,
+    "sourceDefinition": "같은 단위끼리 {뺄 수 있으면} 윗단위를 바꾸지 않고 그대로 뺀다.",
+    "sourceKeys": [
+      "뺄 수 있으면"
+    ],
+    "coreAfter": "같은 단위끼리 {뺄 수 있으면} 더 큰 단위를 바꾸지 않고 그대로 뺀다. 예: 초끼리 뺄 수 있으면 $1$분을 $60$초로 바꾸지 않는다.",
+    "keyDecisionReason": "뺄 수 있으면이라는 원래 조건 표적을 보존하며 윗단위를 더큰단위와분·초보조예로 명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-5-6-xc8",
+    "sourceIndex": 807,
+    "sourceDefinition": "시간의 뺄셈도 시, 분, 초를 {같은 줄}에 맞추어 쓴 뒤 뺀다.",
+    "sourceKeys": [
+      "같은 줄"
+    ],
+    "coreAfter": "시간의 뺄셈을 세로로 쓸 때에는 시는 시끼리, 분은 분끼리, 초는 초끼리 {위아래로 맞추어} 쓴 뒤 뺀다.",
+    "keyDecisionReason": "같은 줄이라는 원래 표적의 세로단위 대응 의미를 위아래로 맞추어로 명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-6-1-xc2",
+    "sourceIndex": 820,
+    "sourceDefinition": "똑같이 나눈 조각은 모양과 {크기}가 같아 서로 포개면 꼭 겹친다.",
+    "sourceKeys": [
+      "크기"
+    ],
+    "coreAfter": "한 전체를 똑같이 나누려면 나눈 각 부분의 {크기}가 같아야 한다. 모양과 크기가 같아 서로 꼭 겹치는 조각은 같은 크기임을 확인할 수 있지만, 같은 크기의 조각이 반드시 같은 모양일 필요는 없다.",
+    "keyDecisionReason": "크기라는 원래 표적을 보존한다. 같은크기로등분하면모양까지같아야한다는원문의 잘못된일반화를고치고 겹침은같은크기확인의한방법으로만남긴다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-1-6-5-xc17",
+    "sourceIndex": 902,
+    "sourceDefinition": "$\\frac{1}{7}$은 분자가 $1$ 이상이고 분모가 $7$인 분수 가운데 {가장 작다}.",
+    "sourceKeys": [
+      "가장 작다"
+    ],
+    "coreAfter": "$\\frac{1}{7}$, $\\frac{2}{7}$, $\\frac{3}{7}$처럼 분자가 $1$이거나 $1$보다 크고 분모가 $7$인 분수 가운데 $\\frac{1}{7}$이 {가장 작다}.",
+    "keyDecisionReason": "가장작다라는 원래 비교 표적과분자1포함조건을 보존하며 이상을쉬운말로푼다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-1-1-xc5",
+    "sourceIndex": 938,
+    "sourceDefinition": "(몇백)$\\times$(몇)은 {백의 묶음의 수}에 곱하는 수를 곱한 값만큼 백의 묶음이 있는 수이다.",
+    "sourceKeys": [
+      "백의 묶음의 수"
+    ],
+    "coreAfter": "몇백에 수를 곱할 때에는 {백이 몇 개인지} 보고 그 개수에 곱하는 수를 곱해 구한다. 예: $300\\times2$는 백이 $3\\times2=6$(개)이므로 $600$이다.",
+    "keyDecisionReason": "백의묶음의수라는 원래량 표적을 백이몇개인지로풀어쓰며100단위곱의방법과보조예를보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-1-1-xc13",
+    "sourceIndex": 944,
+    "sourceDefinition": "일의 자리가 $0$인 세 자리 수는 {십의 묶음의 수}로 보고 곱한 뒤 십의 묶음으로 되돌린다.",
+    "sourceKeys": [
+      "십의 묶음의 수"
+    ],
+    "coreAfter": "일의 자리가 $0$인 세 자리 수는 {십이 몇 개인지}로 보고 곱한 뒤, 그 곱만큼 십이 있는 수로 쓴다. 예: $230\\times3$은 십이 $23\\times3=69$(개)이므로 $690$이다.",
+    "keyDecisionReason": "십의묶음의수라는 원래 표적을 같은량인십의개수로명시하며10단위로되돌리는방법을풀어쓴다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-1-2-xc4",
+    "sourceIndex": 955,
+    "sourceDefinition": "백의 자리 곱에 올린 수를 더해 {$10$ 이상}이면 곱은 네 자리 수가 된다.",
+    "sourceKeys": [
+      "$10$ 이상"
+    ],
+    "coreAfter": "백의 자리 곱에 올린 수를 더한 값이 {$10$이거나 $10$보다 크면} 곱은 네 자리 수가 된다.",
+    "keyDecisionReason": "10이상이라는 원래경계와백의곱에올린수를포함하는조건을보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-1-2-xc10",
+    "sourceIndex": 957,
+    "sourceDefinition": "어느 자리에서 올림이 있는지는 그 자리의 곱에 {아랫자리에서 올린 수}를 더한 값이 {$10$ 이상}인지로 안다.",
+    "sourceKeys": [
+      "아랫자리에서 올린 수",
+      "$10$ 이상"
+    ],
+    "coreAfter": "어느 자리에서 올림이 있는지는 그 자리의 곱에 {아랫자리에서 올린 수}를 더한 값이 {$10$이거나 $10$보다 큰지}로 안다.",
+    "keyDecisionReason": "아랫자리올린수와10경계의 원래두표적을보존하며 이상을같은포함관계로푼다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-1-2-xc24",
+    "sourceIndex": 963,
+    "sourceDefinition": "백의 자리 숫자와 곱하는 수의 곱이 {$10$ 이상}이면 곱에는 반드시 천의 자리가 생긴다.",
+    "sourceKeys": [
+      "$10$ 이상"
+    ],
+    "coreAfter": "백의 자리 숫자와 곱하는 수의 곱이 {$10$이거나 $10$보다 크면} 곱에는 반드시 천의 자리가 생긴다.",
+    "keyDecisionReason": "백의자리원곱이10이상이면천의자리가생긴다는 충분조건과원래경계표적을보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-2-1-xc2",
+    "sourceIndex": 993,
+    "sourceDefinition": "(몇십)$\\div$(몇)은 {십의 묶음을 똑같이 나누어} 한 몫에 십의 묶음이 몇 개인지 본다.",
+    "sourceKeys": [
+      "십의 묶음을 똑같이 나누어"
+    ],
+    "coreAfter": "십의 묶음 수를 남김없이 나눌 수 있을 때, 몇십을 몇으로 나누는 것은 {십의 묶음을 똑같이 나누어} 한 묶음에 십이 몇 개인지 보는 것이다. 예: $60\\div3$은 십 $2$개씩이므로 $20$이다.",
+    "keyDecisionReason": "십묶음을등분하는원래동작을보존한다. 십묶음수의나눔에남는경우50÷2와구별하도록이방법의조건을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-2-1-xc9",
+    "sourceIndex": 999,
+    "sourceDefinition": "몫의 십의 자리 숫자는 {십의 묶음을 나눈 몫}으로, 한 몫에 든 십의 묶음의 수이다.",
+    "sourceKeys": [
+      "십의 묶음을 나눈 몫"
+    ],
+    "coreAfter": "몫의 십의 자리 숫자는 {십의 묶음을 나눈 몫}으로, 한 묶음에 십이 몇 개씩인지 나타낸다. 예: $84\\div4=21$에서 $2$는 십이 $2$개인 $20$을 나타낸다.",
+    "keyDecisionReason": "십묶음을나눈몫이라는원래표적을보존하며 한몫에든 대신한묶음에있는십으로역할을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-2-1-xc20",
+    "sourceIndex": 1004,
+    "sourceDefinition": "두 자리 수를 한 자리 수로 나눌 때 십의 자리 숫자가 나누는 수보다 작지 않으면 몫은 {두} 자리 수이다.",
+    "sourceKeys": [
+      "두"
+    ],
+    "coreAfter": "두 자리 수를 한 자리 수로 나눌 때 십의 자리 숫자가 나누는 수와 같거나 나누는 수보다 크면 몫은 {두} 자리 수이다.",
+    "keyDecisionReason": "두자리라는 원래표적을보존하며 작지않다는 같은조건을 같거나크면으로푼다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-2-2-xc11",
+    "sourceIndex": 1014,
+    "sourceDefinition": "남김없이 나누어지는 나눗셈에서 나누어지는 수가 나누는 수의 $10$배와 $20$배처럼 {몇십 배인 두 수 사이}에 있으면 몫은 {그 두 몇십 사이}이다.",
+    "sourceKeys": [
+      "몇십 배인 두 수 사이",
+      "그 두 몇십 사이"
+    ],
+    "coreAfter": "나누어떨어지는 나눗셈에서 나누는 수에 곱할 수를 $10$, $20$처럼 두 개 정한다. 나눌 수가 두 곱 {사이에} 있으면 몫은 앞서 정한 두 수 {사이에} 있다. 예: $75\\div5$에서 $75$가 $50$과 $100$ 사이이므로 몫은 $10$과 $20$ 사이이다.",
+    "keyDecisionReason": "원래남김없이조건을보존해51÷5의정수몫10반례를피한다. 긴두범위표적을지시대상이명시된사이에로줄이고 일반배수비교와보조예를보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-2-4-xc2",
+    "sourceIndex": 1031,
+    "sourceDefinition": "세 자리 수를 한 자리 수로 나눌 때 백의 자리 숫자가 나누는 수보다 작지 않으면 몫은 {세} 자리 수이다.",
+    "sourceKeys": [
+      "세"
+    ],
+    "coreAfter": "세 자리 수를 한 자리 수로 나눌 때 백의 자리 숫자가 나누는 수와 같거나 나누는 수보다 크면 몫은 {세} 자리 수이다.",
+    "keyDecisionReason": "세자리라는 원래표적을보존하며 작지않다를 같은또는큰조건으로푼다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-2-4-xc8",
+    "sourceIndex": 1035,
+    "sourceDefinition": "(몇백)$\\div$(몇)은 {백의 묶음을 나누어} 한 몫에 백의 묶음이 몇 개인지 본다.",
+    "sourceKeys": [
+      "백의 묶음을 나누어"
+    ],
+    "coreAfter": "몇백을 몇으로 나누는 것은 {백의 묶음을 나누어} 한 묶음에 백이 몇 개인지 보는 것이다. 예: $800\\div4$는 백 $8$개를 $4$로 나누어 백 $2$개씩이므로 $200$이다.",
+    "keyDecisionReason": "백묶음을나눈다는 원래동작을보존하고 한몫이라는겹치는말을 한묶음으로명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-3-2-xc23",
+    "sourceIndex": 1084,
+    "sourceDefinition": "두 원의 크기는 {반지름끼리 또는 지름끼리} 같은 것으로 바꾸어 견준다.",
+    "sourceKeys": [
+      "반지름끼리 또는 지름끼리"
+    ],
+    "coreAfter": "두 원의 크기를 비교할 때 한 원은 반지름으로, 다른 원은 지름으로 주어지면 둘 다 {반지름}으로 또는 둘 다 {지름}으로 바꾸어 비교한다.",
+    "keyDecisionReason": "반지름끼리또는지름끼리라는 원래기준의두길이를짧게나눠표시한다. 전체대상을원두개와주어진길이로명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-4-4-xc1",
+    "sourceIndex": 1138,
+    "sourceDefinition": "$\\frac{2}{5}$, $\\frac{4}{7}$처럼 위의 수가 아래의 수에 못 미치는 분수는 모두 {진분수}이다.",
+    "sourceKeys": [
+      "진분수"
+    ],
+    "coreAfter": "$\\frac{2}{5}$, $\\frac{4}{7}$처럼 분자가 분모보다 작은 분수는 모두 {진분수}이다.",
+    "keyDecisionReason": "진분수라는 원래표적과 예를보존하며위아래못미친다는 표현을 익숙한분자분모작다로푼다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-4-5-xc5",
+    "sourceIndex": 1156,
+    "sourceDefinition": "대분수는 자연수 부분이 $1$ 이상이고 진분수가 더해지므로 $1$보다 {크다}.",
+    "sourceKeys": [
+      "크다"
+    ],
+    "coreAfter": "대분수는 $1$이거나 $1$보다 큰 자연수에 진분수가 더해진 수이므로 $1$보다 {크다}.",
+    "keyDecisionReason": "크다라는 원래관계표적과 자연수부분1포함조건을보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-5-2-xc15",
+    "sourceIndex": 1217,
+    "sourceDefinition": "같은 들이씩 나눈 눈금에서 한 칸의 들이는 {나눈 들이를 칸 수로} 똑같이 나누어 안다.",
+    "sourceKeys": [
+      "나눈 들이를 칸 수로"
+    ],
+    "coreAfter": "이웃한 큰 눈금의 들이 {차}를 두 눈금 사이의 {칸 수}로 나누면 한 칸의 들이를 구한다.",
+    "keyDecisionReason": "나눈들이를칸수로라는 표적의두량을이웃눈금의차와칸수로명시한다. 전체높이가아닌눈금사이차를나눈다는 실제방법을보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-5-3-xc12",
+    "sourceIndex": 1229,
+    "sourceDefinition": "들이의 뺄셈에서 $1\\,\\mathrm{L}$를 $1000\\,\\mathrm{mL}$로 바꾸어 빼면 $\\mathrm{L}$끼리 뺄 때 빼어지는 수가 {$1$ 작아진다}.",
+    "sourceKeys": [
+      "$1$ 작아진다"
+    ],
+    "coreAfter": "들이의 뺄셈에서 $\\mathrm{mL}$끼리 뺄 수 없으면 $1\\,\\mathrm{L}$를 $1000\\,\\mathrm{mL}$로 바꾸어 뺀다. 이때 처음 들이의 $\\mathrm{L}$의 수는 {$1$ 작아진다}.",
+    "keyDecisionReason": "1작아진다라는 원래변화표적을보존하고 처음들이의L수라는감소대상을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-5-4-xc13",
+    "sourceIndex": 1246,
+    "sourceDefinition": "가와 나가 수평이고 나가 다보다 무거우면 가도 다보다 {무겁다}.",
+    "sourceKeys": [
+      "무겁다"
+    ],
+    "coreAfter": "양팔저울 양쪽에 물건 가와 나를 하나씩 올렸을 때 수평이고, 나가 다보다 무거우면 가도 다보다 {무겁다}.",
+    "keyDecisionReason": "무겁다라는 원래관계표적을보존하며 양팔저울의서로다른쪽에하나씩올려같은무게임을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-5-4-xc19",
+    "sourceIndex": 1252,
+    "sourceDefinition": "가와 나를 한쪽에, 다를 다른 쪽에 올려 수평이면 다는 가보다 {무겁다}.",
+    "sourceKeys": [
+      "무겁다"
+    ],
+    "coreAfter": "무게가 있는 물건 가와 나를 양팔저울 한쪽에, 물건 다를 다른 쪽에 올려 수평이면 다는 가보다 {무겁다}.",
+    "keyDecisionReason": "무겁다라는 원래표적과두물건합과한물건의평형관계를보존한다. 나의무게가0인경우가아니라실제무게있는물건임을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-5-5-xc13",
+    "sourceIndex": 1267,
+    "sourceDefinition": "같은 무게씩 나눈 저울 눈금에서 한 칸의 무게는 {나눈 무게를 칸 수로} 똑같이 나누어 안다.",
+    "sourceKeys": [
+      "나눈 무게를 칸 수로"
+    ],
+    "coreAfter": "이웃한 큰 눈금의 무게 {차}를 두 눈금 사이의 {칸 수}로 나누면 한 칸의 무게를 구한다.",
+    "keyDecisionReason": "나눈무게를칸수로라는 두량표적을눈금차와칸수로나눠명시한다. 전체값이아닌이웃큰눈금의차를나눈다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-5-6-xc11",
+    "sourceIndex": 1282,
+    "sourceDefinition": "무게의 뺄셈에서 $1\\,\\mathrm{kg}$을 $1000\\,\\mathrm{g}$으로 바꾸어 빼면 $\\mathrm{kg}$끼리 뺄 때 빼어지는 수가 {$1$ 작아진다}.",
+    "sourceKeys": [
+      "$1$ 작아진다"
+    ],
+    "coreAfter": "무게의 뺄셈에서 $\\mathrm{g}$끼리 뺄 수 없으면 $1\\,\\mathrm{kg}$을 $1000\\,\\mathrm{g}$으로 바꾸어 뺀다. 이때 처음 무게의 $\\mathrm{kg}$의 수는 {$1$ 작아진다}.",
+    "keyDecisionReason": "1작아진다라는 원래변화표적을보존하며 처음무게의kg수라는대상을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e3-2-6-1-xc18",
+    "sourceIndex": 1299,
+    "sourceDefinition": "작은 그림이 나타내는 수도 {설명을 보고} 확인해야 한다 — $1$이 아닐 수 있다.",
+    "sourceKeys": [
+      "설명을 보고"
+    ],
+    "coreAfter": "작은 그림이 나타내는 수는 $1$이 아닐 수 있으므로, 그래프에 적힌 {설명을 보고} 확인해야 한다.",
+    "keyDecisionReason": "설명을보고라는 원래읽기방법표적을보존하고 설명이어디에있는지그래프로명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-1-1-xc12",
+    "sourceIndex": 1334,
+    "sourceDefinition": "만이 어떤 수보다 얼마만큼 큰 수이면, 그 어떤 수는 만보다 {같은 만큼 작은 수}이다.",
+    "sourceKeys": [
+      "같은 만큼 작은 수"
+    ],
+    "coreAfter": "$10000$이 $8000$보다 $2000$ 큰 수이면, $8000$은 $10000$보다 $2000$ 작은 수이다. 이처럼 얼마 큰 수와 얼마 작은 수는 {같은 차이}를 반대쪽에서 말한 것이다.",
+    "keyDecisionReason": "같은만큼작은수라는 긴표적을 같은차이로명시한다. 구체두수와일반적인반대쪽비교관계를함께보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-1-1-xc19",
+    "sourceIndex": 1340,
+    "sourceDefinition": "같은 만을 나타낼 때 묶는 단위가 $10$배 작아지면 묶음의 수는 {$10$배}로 많아진다.",
+    "sourceKeys": [
+      "$10$배"
+    ],
+    "coreAfter": "같은 만을 한 묶음의 크기가 원래의 $\\frac{1}{10}$이 되게 묶으면 묶음의 수는 {$10$배}로 많아진다. 예: $1000$씩 묶으면 $10$묶음, $100$씩 묶으면 $100$묶음이다.",
+    "keyDecisionReason": "10배라는 원래표적을보존하며10배작아진다는모호한말을1/10크기로명시한다. 같은전체에서묶음크기와개수의역관계를보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-1-2-xc24",
+    "sourceIndex": 1369,
+    "sourceDefinition": "한 자리의 숫자를 $1$ 크게 바꾸면 수는 {그 자리의 단위만큼} 커지고 다른 자리가 나타내는 값은 그대로이다.",
+    "sourceKeys": [
+      "그 자리의 단위만큼"
+    ],
+    "coreAfter": "바꿀 자리의 숫자가 $9$가 아니면 그 숫자를 $1$ 크게 바꿀 수 있다. 수는 {그 자리에서 $1$이 나타내는 수만큼} 커지고 다른 자리의 값은 그대로이다. 예: 천의 자리라면 $1000$만큼 커진다.",
+    "keyDecisionReason": "그자리의단위라는 표적을1의자릿값으로명시한다.9에서올림하면다른자리도변하므로그경계조건을추가한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-1-2-xc27",
+    "sourceIndex": 1372,
+    "sourceDefinition": "자릿값 표의 각 칸 숫자에 그 칸의 {단위}를 곱해 모두 더하면 원래 수가 된다.",
+    "sourceKeys": [
+      "단위"
+    ],
+    "coreAfter": "자릿값 표의 각 칸 숫자에 {그 자리에서 $1$이 나타내는 수}를 곱해 모두 더하면 원래 수가 된다. 만의 칸에서는 $10000$, 천의 칸에서는 $1000$을 곱한다.",
+    "keyDecisionReason": "단위라는 원래자리가중치표적을1의자릿값과만·천보조예로명시한다. 숫자자체의값과자리단위를구별한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-1-3-xc2",
+    "sourceIndex": 1375,
+    "sourceDefinition": "만이 한 개 이상인 수에서 만의 개수를 나타내는 부분의 오른쪽에는 {천, 백, 십, 일의 네 자리}가 있으므로, 자릿수가 만의 개수의 자릿수보다 {$4$}만큼 많다.",
+    "sourceKeys": [
+      "천, 백, 십, 일의 네 자리",
+      "$4$"
+    ],
+    "coreAfter": "만이 한 개라도 있는 수에서 만의 개수를 나타내는 부분의 오른쪽에는 {천, 백, 십, 일의 네 자리}가 있다. 그래서 자릿수가 {$4$}만큼 더 많다. 예: 만이 $40$개인 $400000$은 $40$보다 네 자리가 더 있다.",
+    "keyDecisionReason": "원래네자리이름과자리수차4의두표적및만1개이상조건을보존한다. 초안이빠뜨린양의만조건을복원한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-1-3-xc11",
+    "sourceIndex": 1384,
+    "sourceDefinition": "몇백몇만은 만이 몇백몇 개인 수이다. 몇십만에 해당하는 묶음이 없으므로 {십만의 자리}와 만보다 작은 네 자리에 {$0$}을 쓴다.",
+    "sourceKeys": [
+      "십만의 자리",
+      "$0$"
+    ],
+    "coreAfter": "삼백이만처럼 몇백몇만인 수는 만이 몇백몇 개인 수이다. 몇십만에 해당하는 묶음이 없으므로 {십만의 자리}와 만보다 작은 네 자리에 {$0$}을 쓴다.",
+    "keyDecisionReason": "십만의자리·0의 원래두표적을보존하고 삼백이만이라는보조예로 읽을수의모양을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-1-7-xc8",
+    "sourceIndex": 1475,
+    "sourceDefinition": "만, 억, 조 가운데 서로 다른 단위로 나타낸 두 수에서 단위 앞의 수가 $1$ 이상 $10000$ 미만이면 {큰 단위}가 붙은 수가 더 크다.",
+    "sourceKeys": [
+      "큰 단위"
+    ],
+    "coreAfter": "만, 억, 조 가운데 서로 다른 단위로 나타낸 두 수에서 단위 앞의 수가 모두 $1$부터 $9999$까지의 수이면 {큰 단위}가 붙은 수가 더 크다.",
+    "keyDecisionReason": "큰단위라는 표적과단위앞값의1~9999조건을보존하며이상·미만을숫자끝값으로푼다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-2-1-xc18",
+    "sourceIndex": 1511,
+    "sourceDefinition": "문을 닫힌 자리에서 여는 동안, 위에서 본 닫힌 문짝의 자리와 열린 문짝 사이의 각은 {점점 커진다}.",
+    "sourceKeys": [
+      "점점 커진다"
+    ],
+    "coreAfter": "문을 위에서 볼 때, 닫혀 있던 문을 점점 더 열면 닫힌 문짝의 자리와 열린 문짝 사이의 각은 {점점 커진다}.",
+    "keyDecisionReason": "점점커진다라는 원래표적과 위에서보는조건을보존한다. 초안이빼버린시점을복원하고 두문짝자리의각을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-2-2-xc11",
+    "sourceIndex": 1530,
+    "sourceDefinition": "한 자리의 안쪽 눈금과 바깥쪽 눈금을 더하면 언제나 {$180$}이다.",
+    "sourceKeys": [
+      "$180$"
+    ],
+    "coreAfter": "각도기의 같은 자리에 나란히 적힌 안쪽 눈금과 바깥쪽 눈금을 더하면 언제나 {$180$}이다.",
+    "keyDecisionReason": "180이라는 원래표적을보존한다.한자리라는지시를각도기의같은위치로명시하여한자리숫자와구별한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-2-5-xc3",
+    "sourceIndex": 1598,
+    "sourceDefinition": "삼각형에는 꼭짓점이 세 개 있어 각도 {세 개} 있다.",
+    "sourceKeys": [
+      "세 개"
+    ],
+    "coreAfter": "삼각형에는 꼭짓점이 세 개 있으므로 각의 수도 {세 개}이다.",
+    "keyDecisionReason": "세개라는 원래표적을보존한다.각도세개를 각의수세개로고쳐각도라는낱말의오독을피한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-2-5-xc25",
+    "sourceIndex": 1619,
+    "sourceDefinition": "세 각을 잘라 꼭짓점을 맞추고 겹치지 않게 이어 붙이면 일직선이 되는 것이 세 각의 합이 {$180^\\circ$}인 까닭이다.",
+    "sourceKeys": [
+      "$180^\\circ$"
+    ],
+    "coreAfter": "삼각형의 세 각을 잘라 꼭짓점을 맞추고 겹치지 않게 이어 붙이면 일직선이 된다. 그래서 삼각형의 세 각의 크기의 합은 {$180^\\circ$}이다.",
+    "keyDecisionReason": "180도라는 원래표적을보존하고 세각의대상을삼각형으로명시하며종이조작의일반이유를보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-2-6-xc13",
+    "sourceIndex": 1634,
+    "sourceDefinition": "두 각을 알고 나머지 두 각이 같으면 {$360^\\circ$에서 두 각을 뺀} 값을 {둘로 나눈다}.",
+    "sourceKeys": [
+      "$360^\\circ$에서 두 각을 뺀",
+      "둘로 나눈다"
+    ],
+    "coreAfter": "사각형의 두 각을 알고 나머지 두 각이 같으면 {$360^\\circ$에서 아는 두 각을 뺀} 값을 {둘로 나눈다}.",
+    "keyDecisionReason": "360에서두각을빼기와둘로나누기의두표적을보존하며사각형과아는두각이라는대상을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-2-6-xc18",
+    "sourceIndex": 1639,
+    "sourceDefinition": "네 각을 재어 더한 값이 {$360^\\circ$}와 크게 다르면 잘못 잰 각이 있는지 살핀다.",
+    "sourceKeys": [
+      "$360^\\circ$"
+    ],
+    "coreAfter": "사각형의 네 각을 재어 더한 값이 {$360^\\circ$}와 크게 다르면 잘못 잰 각이 있는지 살핀다.",
+    "keyDecisionReason": "360도라는 원래표적을보존하며네각의대상을사각형으로명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-2-6-xc20",
+    "sourceIndex": 1641,
+    "sourceDefinition": "사각형 안의 한 점과 네 꼭짓점을 이어 삼각형 네 개를 만들면 $180^\\circ\\times4$에서 가운데 {$360^\\circ$}를 뺀다.",
+    "sourceKeys": [
+      "$360^\\circ$"
+    ],
+    "coreAfter": "사각형 안의 한 점과 네 꼭짓점을 이어 안쪽을 겹치지 않게 삼각형 네 개로 나누면, $180^\\circ\\times4$에서 가운데 점에 모인 {$360^\\circ$}를 뺀다. 남은 값이 사각형의 네 각의 합이다.",
+    "keyDecisionReason": "가운데360도라는 원래표적을보존하며겹치지않는안쪽분할조건과빼는목적을명시한다.아무내부점이나성립한다고일반화하지않는다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-2-6-xc27",
+    "sourceIndex": 1646,
+    "sourceDefinition": "사각형의 네 각의 합이 삼각형보다 $180^\\circ$ 큰 것은 {삼각형 하나만큼} 더 있기 때문이다.",
+    "sourceKeys": [
+      "삼각형 하나만큼"
+    ],
+    "coreAfter": "사각형 안쪽을 삼각형 두 개로 나누면 삼각형 한 개보다 {삼각형 하나를 더} 모은 셈이다. 그래서 사각형의 네 각의 합은 삼각형의 세 각의 합보다 $180^\\circ$ 크다.",
+    "keyDecisionReason": "삼각형하나만큼이라는 원래추가분할의미를 삼각형하나를더로명시한다.각의개수가아닌각의합의차이임을분명히한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-3-1-xc12",
+    "sourceIndex": 1657,
+    "sourceDefinition": "$0$을 뗀 두 수의 곱이 $0$으로 끝나면, 곱의 끝에 있는 $0$은 두 수 끝의 $0$을 합한 것보다 {더 많다}.",
+    "sourceKeys": [
+      "더 많다"
+    ],
+    "coreAfter": "$0$이 아닌 두 수의 끝의 $0$을 뗀 뒤 곱한 값이 $0$으로 끝나면, 곱의 끝의 $0$은 두 수 끝의 $0$을 합한 것보다 {더 많다}. 예: $500\\times20$은 $5\\times2=10$이므로 곱 $10000$의 끝의 $0$이 $4$개이다.",
+    "keyDecisionReason": "더많다라는 원래표적과끝의0이라는대상을보존한다.0자체를곱한경우의반례를피하는조건과500×20보조예를추가한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-3-1-xc17",
+    "sourceIndex": 1661,
+    "sourceDefinition": "$30$을 곱할 때 $3$만 곱하고 $0$을 붙이지 않으면 곱이 {$10$배} 작게 나온다.",
+    "sourceKeys": [
+      "$10$배"
+    ],
+    "coreAfter": "$0$보다 큰 수에 $30$을 곱할 때 $3$만 곱하고 $0$을 붙이지 않으면 바른 곱보다 작은 값이 나온다. 바른 곱은 그 값의 {$10$배}이다.",
+    "keyDecisionReason": "10배라는 원래비교비율을보존하며10배작게라는모호한말을역방향비교로푼다.0일때작아지지않는조건을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-3-1-xc22",
+    "sourceIndex": 1663,
+    "sourceDefinition": "곱해지는 수가 같은 두 곱의 차는 곱해지는 수에 {곱하는 수의 차}를 곱한 것과 같다.",
+    "sourceKeys": [
+      "곱하는 수의 차"
+    ],
+    "coreAfter": "곱해지는 수가 같은 두 곱의 차는 곱해지는 수에 {곱하는 수의 차}를 곱한 것과 같다. 예: $312\\times50$은 $312\\times30$보다 $312\\times20$만큼 크다.",
+    "keyDecisionReason": "곱하는수의차라는 원래표적과같은수조건을보존한다.312×50과312×30의보조예로가리키는수들을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-3-2-xc19",
+    "sourceIndex": 1681,
+    "sourceDefinition": "$123\\times24$에서 $123\\times2$를 한 자리 왼쪽으로 옮기지 않고 더하면 {$10$배} 작은 값을 더한 셈이다.",
+    "sourceKeys": [
+      "$10$배"
+    ],
+    "coreAfter": "$123\\times24$에서 $123\\times2$를 한 자리 왼쪽으로 옮기지 않고 더하면, 더해야 할 $2460$ 대신 $246$을 더한 셈이다. $2460$은 $246$의 {$10$배}이다.",
+    "keyDecisionReason": "10배라는 원래비율표적과123×24의자리맞춤상황을보존하며10배작다는말을큰값과작은값의비교로푼다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-1-6-2-xc17",
+    "sourceIndex": 2012,
+    "sourceDefinition": "가운데 $1$개를 두고 위, 아래, 왼쪽, 오른쪽에 하나씩 더하면 단계마다 {$4$개}씩 늘어난다.",
+    "sourceKeys": [
+      "$4$개"
+    ],
+    "coreAfter": "가운데 $1$개에서 시작해 단계마다 위, 아래, 왼쪽, 오른쪽 끝에 하나씩 더 놓으면 도형이 {$4$개}씩 늘어난다.",
+    "keyDecisionReason": "4개라는 원래증가표적을보존하며매단계이전끝에더놓는다는반복조건을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-2-3-1-xc15",
+    "sourceIndex": 2298,
+    "sourceDefinition": "$1$, $0.1$, $0.01$의 개수가 각각 {$9$개 이하이면} 그 개수를 해당 자리의 숫자로 써서 소수를 만든다.",
+    "sourceKeys": [
+      "$9$개 이하이면"
+    ],
+    "coreAfter": "$1$, $0.1$, $0.01$의 개수가 각각 {$9$개를 넘지 않으면} 그 개수를 해당 자리의 숫자로 써서 소수를 만든다.",
+    "keyDecisionReason": "9개이하라는 원래포함조건표적을같은뜻의넘지않음으로풀어쓴다.각단위의개수를자리에쓰는일반방법을보존한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-2-4-1-xc24",
+    "sourceIndex": 2442,
+    "sourceDefinition": "수직인 두 직선이 만나는 점을 지나는 직선은 두 직선과 이루는 작은 각의 합이 {$90^\\circ$}이다.",
+    "sourceKeys": [
+      "$90^\\circ$"
+    ],
+    "coreAfter": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 선을 그어 두 각으로 나누면, 그 두 각의 크기의 합은 {$90^\\circ$}이다.",
+    "keyDecisionReason": "90도라는 원래표적을보존하며어느각을합하는지 같은직각안쪽의두부분으로명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-2-4-2-xc11",
+    "sourceIndex": 2456,
+    "sourceDefinition": "모눈종이에서 비스듬한 선분과 평행한 선분은 그 선분을 늘인 직선 밖의 점에서 같은 방향으로 가로와 세로 칸 수를 {똑같이} 하여 긋는다.",
+    "sourceKeys": [
+      "똑같이"
+    ],
+    "coreAfter": "모눈종이에서 한 선분을 늘인 직선 밖의 점을 지나는 평행한 선분은, 원래 선분과 같은 방향으로 가로 칸 수와 세로 칸 수를 각각 {똑같이} 하여 긋는다.",
+    "keyDecisionReason": "똑같이라는 원래표적과원래직선밖의점조건을보존한다.가로와세로서로같음이아닌각각원래선분과같음으로명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-2-4-3-xc4",
+    "sourceIndex": 2475,
+    "sourceDefinition": "직사각형에서 마주 보는 두 변 사이의 거리는 나머지 한 변의 {길이}와 같다.",
+    "sourceKeys": [
+      "길이"
+    ],
+    "coreAfter": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+    "keyDecisionReason": "길이라는 원래표적을보존하며나머지한변을선택할기준을수직인변으로명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  },
+  {
+    "id": "e4-2-4-5-xc28",
+    "sourceIndex": 2540,
+    "sourceDefinition": "평행사변형은 네 각의 합이 $360^\\circ$이고 맞은편 각의 크기가 같으므로 세 각의 합만 알아도 {네 각의 크기를 모두} 알 수 있다.",
+    "sourceKeys": [
+      "네 각의 크기를 모두"
+    ],
+    "coreAfter": "평행사변형의 세 각의 합을 알면 $360^\\circ$에서 빼서 남은 각을 구한다. 맞은편 각은 같고 이웃한 각은 그 각과 더해 $180^\\circ$이므로 {네 각의 크기를 모두} 구할 수 있다.",
+    "keyDecisionReason": "원래모든네각을구하는표적과옳은사실을보존한다.초안은두각만알수있다로약화했으므로남은각·맞은편·이웃각의방법을명시한다.",
+    "reviewStatus": "manual source/proposal target comparison; actual final contract check and hash-linked full B/C reading still required"
+  }
+]

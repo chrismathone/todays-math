@@ -1,0 +1,1774 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-06T15:08:35.652411+00:00",
+  "auditSha256": "d6deabdde733f4172c04e510319d3408fd35dedd3c61f2a04f30b8a23ffe0364",
+  "scope": "Current source-ordered final inputs captured for direct reading; not an adoption verdict.",
+  "rows": [
+    {
+      "id": "e5-2-1-1-c3",
+      "sourceIndex": 90,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "‘$4$ 이상 $9$ 이하인 수’처럼 이상과 이하를 함께 써서 범위를 정하면 어떤 수들이 그 범위에 들어가는지 설명하시오. 그리고 $3$, $4$, $9$, $10$ 중에서 이 범위에 들어가는 수를 모두 고르시오.",
+        "answer": "$4$ 이상이면서 동시에 $9$ 이하인 수, 곧 두 조건에 모두 맞는 수만 들어간다. $4$와 $9$가 들어간다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 조건에 모두 맞는 수만 들어간다",
+              "$4$와 같거나 크면서 $9$와 같거나 작은 수",
+              "$4$부터 $9$까지의 수($4$와 $9$ 포함)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$와 $9$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "두 조건을 함께 쓰면 둘 다 만족하는 수만 남는다는 것을 설명한다.",
+      "bReason": "‘겹친 범위’는 편집용 제목이라 실제 범위와 경계 안팎의 수를 넣어 물었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "‘$4$ 이상 $9$ 이하인 수’는 $4$ 이상이면서 $9$ 이하인 수이다. $3$, $4$, $9$, $10$ 중에서 이 범위에 들어가는 수는 {$4$}와 {$9$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "cStudentSentence": "‘$4$ 이상 $9$ 이하인 수’는 $4$ 이상이면서 $9$ 이하인 수이다. $3$, $4$, $9$, $10$ 중에서 이 범위에 들어가는 수는 □와 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "‘두 조건을 모두’라는 긴 구절을 외우게 하는 대신 실제 수로 두 조건을 함께 판단하게 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "5a9d3e980ebe3e08555de6d342712ed208706a680977817d31ce7dd4b56e341f",
+      "proposalFingerprint": "0bbe417488adc71a3331e14e70ede2c8f4924de4afc3a6f126f2d23ec3a5da3a",
+      "questionRevision": "planning-e5e6-20261006-0bbe417488ad",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-2-c1",
+      "sourceIndex": 91,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "‘어떤 수 초과인 수’는 어떤 수를 말하는지 설명하고, $7$, $7.1$, $8$ 중 $7$ 초과인 수를 모두 고르시오.",
+        "answer": "그 수보다 큰 수를 말하며, 기준이 되는 수 자신은 들어가지 않는다. $7$ 초과인 수는 $7.1$, $8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준 수보다 큰 수",
+              "기준 수보다 크고 기준 수와 같지 않은 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7.1$과 $8$을 고름",
+              "$7$만 빼고 고름"
+            ]
+          }
+        ]
+      },
+      "bGoal": "초과가 기준 수보다 큰 수이고 기준 수 자신은 빠진다는 것을 예로 판별한다.",
+      "bReason": "제목 ‘초과’만으로는 답할 범위가 없어 뜻과 판별 예를 한 질문에 넣었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$7$ 초과인 수는 $7$보다 {큰} 수이다. $6.9$, $7$, $7.1$ 중 $7$ 초과인 수는 {$7.1$}이다.",
+        "acceptedAnswers": [
+          [
+            "큰"
+          ],
+          [
+            "$7.1$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$7$ 초과인 수는 $7$보다 □ 수이다. $6.9$, $7$, $7.1$ 중 $7$ 초과인 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "큰",
+          "equivalents": []
+        },
+        {
+          "key": "$7.1$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "원문 빈칸은 ‘기준 수보다 큰 수’라는 긴 구절을 통째로 외우게 하므로 낱말 하나와 판별 값으로 바꿨다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "59cd29bb0e03b3f820243addceea9931d5923b4b84cf4bf100932410f1883290",
+      "proposalFingerprint": "6c1185339aa074671be4a5539cb310f1b653ef2e87b8b3400d5782dcf9f4c590",
+      "questionRevision": "planning-e5e6-20261006-6c1185339aa0",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-2-c2",
+      "sourceIndex": 92,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "‘어떤 수 미만인 수’는 어떤 수를 말하는지 설명하고, $11.9$, $12$, $13$ 중 $12$ 미만인 수를 모두 고르시오.",
+        "answer": "그 수보다 작은 수를 말하며, 기준이 되는 수 자신은 들어가지 않는다. $12$ 미만인 수는 $11.9$뿐이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준 수보다 작은 수",
+              "기준 수보다 작고 기준 수와 같지 않은 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$11.9$만 고름"
+            ]
+          }
+        ]
+      },
+      "bGoal": "미만이 기준 수보다 작은 수이고 기준 수 자신은 빠진다는 것을 예로 판별한다.",
+      "bReason": "제목 ‘미만’만으로는 질문이 되지 않아 뜻과 경계값 $12$의 판별을 함께 묻는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$12$ 미만인 수는 $12$보다 {작은} 수이다. $11.9$, $12$, $12.1$ 중 $12$ 미만인 수는 {$11.9$}이다.",
+        "acceptedAnswers": [
+          [
+            "작은"
+          ],
+          [
+            "$11.9$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$12$ 미만인 수는 $12$보다 □ 수이다. $11.9$, $12$, $12.1$ 중 $12$ 미만인 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "작은",
+          "equivalents": []
+        },
+        {
+          "key": "$11.9$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "‘기준 수보다 작은 수’라는 긴 구절 빈칸을 낱말 하나와 판별 값으로 줄였다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "a7573a8c706e235f8f2c0b59bc3a05617a1bb89da1cc5abb47e8bed8087101dc",
+      "proposalFingerprint": "aac15005a08d2eba97e202a28ad241364099295196219bb73652bf8140dbe63e",
+      "questionRevision": "planning-e5e6-20261006-aac15005a08d",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-2-c3",
+      "sourceIndex": 93,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "이상, 이하, 초과, 미만을 기준이 되는 수가 범위에 들어가는 것과 들어가지 않는 것으로 나누어 쓰시오.",
+        "answer": "기준 수가 들어가는 것은 이상과 이하이고, 들어가지 않는 것은 초과와 미만이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "이상과 이하는 기준 수가 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "초과와 미만은 기준 수가 들어가지 않는다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "네 가지 범위 말을 기준 수 포함 여부로 분류한다.",
+      "bReason": "‘경계의 수 비교’는 편집용 제목이므로 네 낱말을 직접 제시해 분류하게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "기준이 되는 수는 포함하지 않고 그보다 큰 수들의 범위를 {초과}, 그보다 작은 수들의 범위를 {미만}이라는 말로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "초과"
+          ],
+          [
+            "미만"
+          ]
+        ]
+      },
+      "cStudentSentence": "기준이 되는 수는 포함하지 않고 그보다 큰 수들의 범위를 □, 그보다 작은 수들의 범위를 □이라는 말로 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "초과",
+          "equivalents": []
+        },
+        {
+          "key": "미만",
+          "equivalents": []
+        }
+      ],
+      "cReason": "첫 초안의 초과·미만 두 빈칸은 순서를 바꾸어도 유효한 답이다. 큰 쪽과 작은 쪽을 각 빈칸에 정하여 서로 다른 개념을 동의어로 섞지 않는다.",
+      "coreAfter": "이상과 이하는 기준이 되는 수를 범위에 포함하지만, 초과와 미만은 그 수를 {제외한다}.",
+      "coreReason": "‘경계의 수를 받는다’는 초5 교과서에 없는 불명확한 표현이다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "602dba1ec42991cd05b99b987aeae039b6a06bece8e1cc690e5c4dbcba5be51c",
+      "proposalFingerprint": "5aa2ca7e9bef82f560d09b426f99893eb6a3940e56e3d76bd955aac00e405d56",
+      "questionRevision": "planning-e5e6-20261006-5aa2ca7e9bef",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-1-3-c1",
+      "sourceIndex": 94,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "수직선에 수의 범위를 나타낼 때, 끝의 수에 ●를 그린 경우와 $\\bigcirc$를 그린 경우에 그 수가 범위에 들어가는지 각각 쓰시오.",
+        "answer": "●를 그린 수는 범위에 들어가고, $\\bigcirc$를 그린 수는 범위에 들어가지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "●는 그 수가 범위에 들어간다",
+              "●는 그 수를 포함한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\bigcirc$는 그 수가 범위에 들어가지 않는다",
+              "$\\bigcirc$는 그 수를 제외한다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "수직선 끝점 ●와 ○가 끝의 수를 넣는지 빼는지 구별한다.",
+      "bReason": "제목만으로는 물음이 되지 않아 두 점의 뜻을 각각 묻는 문장으로 바꿨다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "수직선의 경계를 ●로 그리면 그 값을 {포함}, ○로 그리면 {제외}한다.",
+        "acceptedAnswers": [
+          [
+            "포함"
+          ],
+          [
+            "제외"
+          ]
+        ]
+      },
+      "cStudentSentence": "수직선의 경계를 ●로 그리면 그 값을 □, ○로 그리면 □한다.",
+      "cSlotAnswers": [
+        {
+          "key": "포함",
+          "equivalents": []
+        },
+        {
+          "key": "제외",
+          "equivalents": []
+        }
+      ],
+      "cReason": "●는 포함, ○는 제외라는 짧은 대비가 분명해 그대로 쓸 수 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "01437f570212d09f7f57847bd32c9ff25531c077a95f2105ec175f88f4af30f3",
+      "proposalFingerprint": "40577f67ed738c501c4b45dbeeb33f0c06136c46d74d9d95e6ee8cf152ceb5df",
+      "questionRevision": "planning-e5e6-20261006-40577f67ed73",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-3-c2",
+      "sourceIndex": 95,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bQuestion": null,
+      "bGoal": "생활 속 범위에서 기준 수가 들어가는지 살핀다.",
+      "bReason": "원문의 범위 포함 여부 확인은 e5-2-1-3-xc16 B가 기준 수와 같은 값의 판단 방법과 실제 $15$, $20$의 포함 여부로 설명한다. 이 실제 원문·제안 질문은 별도 중복 증거에 함께 보존하며, 이 행의 $130\\,\\mathrm{cm}$ C는 유지한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "놀이 기구에 '키 $130$ $\\mathrm{cm}$ 이상만 탈 수 있다'고 쓰여 있으면 키가 꼭 $130$ $\\mathrm{cm}$인 사람은 탈 수 {있다}. '키 $130$ $\\mathrm{cm}$ 초과만 탈 수 있다'고 쓰여 있으면 키가 꼭 $130$ $\\mathrm{cm}$인 사람은 탈 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "있다"
+          ],
+          [
+            "없다"
+          ]
+        ]
+      },
+      "cStudentSentence": "놀이 기구에 '키 $130$ $\\mathrm{cm}$ 이상만 탈 수 있다'고 쓰여 있으면 키가 꼭 $130$ $\\mathrm{cm}$인 사람은 탈 수 □. '키 $130$ $\\mathrm{cm}$ 초과만 탈 수 있다'고 쓰여 있으면 키가 꼭 $130$ $\\mathrm{cm}$인 사람은 탈 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "있다",
+          "equivalents": []
+        },
+        {
+          "key": "없다",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'포함 여부'라는 추상어를 외우게 하는 빈칸이라 실제 기준에서 판단하는 문장으로 바꿨다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "B: e5-2-1-3-xc16 B와 같은 경계 값 포함 판단을 되풀이한다. evidence/duplicate-e5-2-1-3-c2.json에 실제 중복 대상의 원문·질문·hash를 보존했다. C의 구체적인 키 제한 판단·일반 설명·ID는 유지한다.",
+      "questionExclusions": {
+        "term": "B: e5-2-1-3-xc16 B와 같은 경계 값 포함 판단을 되풀이한다. evidence/duplicate-e5-2-1-3-c2.json에 실제 중복 대상의 원문·질문·hash를 보존했다. C의 구체적인 키 제한 판단·일반 설명·ID는 유지한다."
+      },
+      "sourceFingerprint": "febc03017cd77f0b61300994e54f421b16380df7148afa1d94d2d2c7deda0c0b",
+      "proposalFingerprint": "dd6feff69e8020299d795cf791093cf88504c7c3ed3e812b216e28f29ac418ba",
+      "questionRevision": "planning-e5e6-20261006-dd6feff69e80",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-1-3-c3",
+      "sourceIndex": 96,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "수의 범위에 드는 수 가운데 자연수만 고를 때, 범위 안에 있어도 고르지 않는 수는 어떤 수인지 쓰시오. 또 $2$ 초과 $5$ 이하인 자연수를 모두 쓰시오.",
+        "answer": "범위 안에 있어도 $2.5$처럼 자연수가 아닌 수(소수나 분수)는 고르지 않는다. $2$ 초과 $5$ 이하인 자연수는 $3$, $4$, $5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수가 아닌 수는 고르지 않는다",
+              "소수나 분수는 뺀다",
+              "$2.5$ 같은 수는 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$, $4$, $5$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "범위 안의 수와 범위 안의 자연수를 구별해 고른다.",
+      "bReason": "원문은 빼는 수만 말하므로 일반 조건과 실제로 골라 보는 예를 함께 묻게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$2$ 이상 $5$ 미만인 수 가운데 자연수만 고르면 $2$, $3$, {$4$}이다. $2.5$는 이 범위에 들지만 {자연수}가 아니므로 고르지 않는다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "cStudentSentence": "$2$ 이상 $5$ 미만인 수 가운데 자연수만 고르면 $2$, $3$, □이다. $2.5$는 이 범위에 들지만 □가 아니므로 고르지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "자연수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'자연수가 아닌 수'라는 긴 구절을 바로 앞 낱말에서 베끼게 되어 실제 범위에서 고르는 문장으로 바꿨다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "0b64fa27d11dabae3a7207c880f62989b64b8b252527ed6d1dfde3361350291e",
+      "proposalFingerprint": "04da7853ca4c34c5211c2d834624a4f91800fba5bc84cc3ffbb5d7087386aa15",
+      "questionRevision": "planning-e5e6-20261006-04da7853ca4c",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-4-c1",
+      "sourceIndex": 97,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "어떤 수를 올림하여 백의 자리까지 나타낼 때, 백의 자리 숫자와 그 아래 자리 숫자를 각각 어떻게 하는지 설명하시오. 그리고 $5230$을 올림하여 백의 자리까지 나타내시오.",
+        "answer": "백의 자리 아래(십, 일의 자리)에 $0$이 아닌 숫자가 있으면 백의 자리 숫자를 $1$ 크게 하고, 그 아래 자리 숫자는 모두 $0$으로 쓴다. $5230$은 $5300$이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "아래 자리에 $0$이 아닌 숫자가 있으면 백의 자리 숫자를 $1$ 크게 한다",
+              "아래 수를 $100$으로 보고 백의 자리에 $1$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래 자리 숫자는 모두 $0$으로 쓴다",
+              "십의 자리와 일의 자리를 $0$으로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5300$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "올림의 두 단계(윗자리에 1 더하기, 아래 자리 0으로 쓰기)를 스스로 말하고 적용한다.",
+      "bReason": "제목 '올림'만으로는 답의 범위가 없어 자리와 처리 방법을 지정해 물었다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "올림할 때는 정한 자리 아래에 $0$이 아닌 숫자가 있으면 정한 자리의 수에 {$1$}을 보태고 아래 자리를 $0$으로 처리한다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "cStudentSentence": "올림할 때는 정한 자리 아래에 $0$이 아닌 숫자가 있으면 정한 자리의 수에 □을 보태고 아래 자리를 $0$으로 처리한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "0이 아닌 숫자가 있을 때라는 조건과 보태는 수 1이 문장 안에서 분명하다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "8fc5b0d5487e383429c8de7cf330a425b4c9eeaa4798fd623338173d3f0e9fb1",
+      "proposalFingerprint": "b680761e7899b2b0a70fd025c9c134680754048f439f159624a32e45282a267f",
+      "questionRevision": "planning-e5e6-20261006-b680761e7899",
+      "draftEvidence": "evidence/section-029-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-4-c2",
+      "sourceIndex": 98,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "올림하여 나타낼 자리의 아래 자리 숫자가 모두 $0$인 수를 올림하면 수가 어떻게 되는지 설명하시오. 그리고 $2300$을 올림하여 백의 자리까지 나타내시오.",
+        "answer": "올릴 것이 없으므로 수는 그대로이다. $2300$을 올림하여 백의 자리까지 나타내면 $2300$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수가 바뀌지 않는다",
+              "처음 수 그대로이다",
+              "올릴 것이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2300$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "아래 자리가 모두 0이면 올림해도 그대로임을 알고 2400으로 잘못 올리지 않는다.",
+      "bReason": "'정확한 배수'라는 편집용 제목 대신 아래 자리가 모두 0이라는 조건을 직접 제시했다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "정한 자리 아래가 이미 모두 $0$이면 올림해도 수의 값은 {바뀌지 않는다}.",
+        "acceptedAnswers": [
+          [
+            "바뀌지 않는다"
+          ]
+        ]
+      },
+      "cStudentSentence": "정한 자리 아래가 이미 모두 $0$이면 올림해도 수의 값은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "바뀌지 않는다",
+          "equivalents": []
+        }
+      ],
+      "cReason": "조건(아래가 모두 0)과 결과(값이 그대로)를 짧게 묻는 유용한 문장이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "8798e2ca8a442533223c6c0ca7061d58a178cf00b1c407456a801f569ed76da9",
+      "proposalFingerprint": "aebc30e34b233137da344ffa28455186ff06c6fd82f165d1453f5e4b714235a3",
+      "questionRevision": "planning-e5e6-20261006-aebc30e34b23",
+      "draftEvidence": "evidence/section-029-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-4-c3",
+      "sourceIndex": 99,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "물건을 한 상자에 같은 개수씩 나누어 담는데, 가득 채우고 남은 물건까지 모두 담아야 합니다. 필요한 상자 수를 정할 때 올림과 버림 중 어느 것을 써야 하는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "올림을 쓴다. 남은 물건을 담을 상자가 하나 더 있어야 모두 담을 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "올림을 쓴다",
+              "올려서 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 물건을 담을 상자가 하나 더 필요하다",
+              "버리면 남은 물건을 담지 못한다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "남는 것까지 담아야 하는 상황에서 올림을 쓰는 까닭을 설명한다.",
+      "bReason": "상황 조건을 질문에 모두 넣고 방법 선택과 까닭을 함께 물었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "달걀 $32$개를 한 판에 $10$개씩 모두 담으려면 판은 {$4$}개 필요하다. 이처럼 남은 것까지 모두 담아야 할 때는 {올림}을 쓴다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "$4$"
+          ],
+          [
+            "올림"
+          ]
+        ]
+      },
+      "cStudentSentence": "달걀 $32$개를 한 판에 $10$개씩 모두 담으려면 판은 □개 필요하다. 이처럼 남은 것까지 모두 담아야 할 때는 □을 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "올림",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'□ 잡는다'는 답의 형태가 모호해 실제 수와 방법 이름을 답하게 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "aa9e8db208790edf7e64f5f23799ed05a434dc41c50824e871319707c2558838",
+      "proposalFingerprint": "e765dd3bf5e08b02dd868df53d41cf3ca35c6fc771bbfd3095e5b0f8e20ec5b3",
+      "questionRevision": "planning-e5e6-20261006-e765dd3bf5e0",
+      "draftEvidence": "evidence/section-029-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-5-c1",
+      "sourceIndex": 100,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "어떤 수를 버림하여 정한 자리까지 나타낼 때, 그 자리보다 아래 자리의 수는 어떻게 하나요? $3456$을 버림하여 백의 자리까지 나타낸 수도 쓰세요.",
+        "answer": "정한 자리 아래의 수는 크기와 상관없이 모두 버리고(자연수에서는 $0$으로 바꾸고) 그 자리까지만 남긴다. $3456$을 버림하여 백의 자리까지 나타내면 $3400$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정한 자리 아래의 수를 모두 버린다",
+              "아래 자리 숫자를 모두 $0$으로 바꾼다",
+              "아래 자리 수를 없애고 그 자리까지만 남긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3400$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "버림이 정한 자리 아래 수를 모두 없애는 어림임을 말하고 예에 적용한다.",
+      "bReason": "제목 '버림'만으로는 무엇을 답할지 알 수 없어 아래 자리 처리 방법과 예를 묻는 질문으로 좁혔다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$3456$을 버림하여 백의 자리까지 나타내면 백의 자리 아래의 수 {$56$}을 버려 {$3400$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$56$"
+          ],
+          [
+            "$3400$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$3456$을 버림하여 백의 자리까지 나타내면 백의 자리 아래의 수 □을 버려 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$56$",
+          "equivalents": []
+        },
+        {
+          "key": "$3400$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "원문 답 '없애고'는 '버리고' 등 여러 말이 가능한 임의 낱말이라 실제 수로 답하게 바꿨다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "45bebcb5526ec0211e9b444589bd5d55c55bf1681e5a62ecfebb755aca390353",
+      "proposalFingerprint": "d540487567f0b1c4ebaffac1a6118c7e8e984368b4a455917656e5d4bd00c1ef",
+      "questionRevision": "planning-e5e6-20261006-d540487567f0",
+      "draftEvidence": "evidence/section-030-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-5-c2",
+      "sourceIndex": 101,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$0$보다 큰 수를 버림하여 나타낸 값은 원래 수와 비교하면 크기가 어떠한가요? 버리는 아래 자리 수와 관련지어 까닭도 설명하세요.",
+        "answer": "원래 수보다 작거나 같다. 아래 자리에 $0$이 아닌 수가 있으면 그만큼 줄어들어 작아지고, 아래 자리가 모두 $0$이면 버릴 것이 없어 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원래 수보다 작거나 같다",
+              "원래 수보다 커지지 않는다",
+              "원래 수 이하이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래 자리 수를 버린 만큼 줄어든다",
+              "아래 자리에 $0$이 아닌 수가 있으면 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래 자리가 모두 $0$이면 원래 수와 같다",
+              "버릴 것이 없으면 그대로이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "버림한 값이 원래 수 이하가 되는 까닭을 버린 양으로 설명한다.",
+      "bReason": "크기 비교와 그 까닭을 묻되 '같다'가 되는 경우까지 답 범위에 넣었다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 수를 버림해서 나타낸 값은 원래 수보다 {작거나 같다}.",
+        "acceptedAnswers": [
+          [
+            "작거나 같다"
+          ]
+        ]
+      },
+      "cStudentSentence": "$0$보다 큰 수를 버림해서 나타낸 값은 원래 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작거나 같다",
+          "equivalents": []
+        }
+      ],
+      "cReason": "0보다 큰 수라는 조건 아래 버림한 값과 원래 수의 크기 비교를 짧게 묻는 문장이라 그대로 쓸 수 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "9f81d8b2f18252e7b02d8ed7299869dfb217807d32b623f07918b7a2cc988f28",
+      "proposalFingerprint": "592ea72751c02616b4d5e6fe823c410cb9556594c7bc810e92fc60dc5658d4ae",
+      "questionRevision": "planning-e5e6-20261006-592ea72751c0",
+      "draftEvidence": "evidence/section-030-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-5-c3",
+      "sourceIndex": 102,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "물건을 정해진 개수씩 묶어 꽉 찬 묶음만 셀 때, 묶음에 든 물건의 수는 올림과 버림 중 어느 방법으로 구하나요? 남는 낱개와 관련지어 까닭을 쓰고, 구슬 $47$개를 $10$개씩 묶을 때 꽉 찬 묶음의 수도 쓰세요.",
+        "answer": "버림으로 구한다. 남는 낱개는 한 묶음이 되지 못해 세지 않기 때문이다. 구슬 $47$개는 $40$개만 묶음에 들어가므로 꽉 찬 묶음은 $4$묶음이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "버림"
+            ]
+          },
+          {
+            "anyOf": [
+              "남는 낱개는 한 묶음이 되지 못해 세지 않는다",
+              "남는 것은 묶음을 채우지 못하므로 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$묶음",
+              "$4$개"
+            ]
+          }
+        ]
+      },
+      "bGoal": "꽉 찬 묶음만 세는 상황에서 버림을 고르는 까닭을 설명한다.",
+      "bReason": "상황과 방법의 연결이 핵심이라 방법 선택, 까닭, 구슬 예를 함께 물었다.",
+      "cDecision": "exclude",
+      "clozeQuestion": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "cReason": "답 '빼고'는 '버리고', '세지 않고' 등으로도 쓸 수 있는 임의 낱말이고 같은 내용이 xc7 C에 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "C는 e5-2-1-5-xc7의 빈칸 문항과 내용이 겹치고 답 낱말이 임의적이다.",
+      "questionExclusions": {
+        "cloze": "C는 e5-2-1-5-xc7의 빈칸 문항과 내용이 겹치고 답 낱말이 임의적이다."
+      },
+      "sourceFingerprint": "97f5b53ca55ef9749b755304b54627d7f320879ae5478dda80b6c7f8b624f41e",
+      "proposalFingerprint": "c94dffa32497fb5a8e26d7ef4132282d95beae82a4f1fad254310421a491f819",
+      "questionRevision": "planning-e5e6-20261006-c94dffa32497",
+      "draftEvidence": "evidence/section-030-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-6-c1",
+      "sourceIndex": 103,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "어떤 수를 반올림하여 백의 자리까지 나타내려고 합니다. 어느 자리의 숫자를 보고, 그 숫자에 따라 어떻게 하는지 설명하고, $3472$를 반올림하여 백의 자리까지 나타내시오.",
+        "answer": "백의 자리 바로 아래인 십의 자리 숫자를 본다. 그 숫자가 $5$ 이상이면 올리고 $5$ 미만이면 버린다. $3472$는 십의 자리 숫자가 $7$이므로 올려서 $3500$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "십의 자리 숫자를 본다",
+              "나타낼 자리 바로 아래 자리 숫자를 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$ 이상이면 올리고 $5$ 미만이면 버린다",
+              "$0$~$4$이면 버리고 $5$~$9$이면 올린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3500$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "볼 자리와 $5$ 기준을 스스로 말하고 실제 수에 적용한다.",
+      "bReason": "원제목 '반올림'만으로는 답의 범위가 없어, 볼 자리·기준·예를 질문에 넣었다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "반올림할 때 남길 자리 바로 아래 숫자가 $5$ 이상이면 {올림}, $5$ 미만이면 {버림}으로 어림한다.",
+        "acceptedAnswers": [
+          [
+            "올림"
+          ],
+          [
+            "버림"
+          ]
+        ]
+      },
+      "cStudentSentence": "반올림할 때 남길 자리 바로 아래 숫자가 $5$ 이상이면 □, $5$ 미만이면 □으로 어림한다.",
+      "cSlotAnswers": [
+        {
+          "key": "올림",
+          "equivalents": []
+        },
+        {
+          "key": "버림",
+          "equivalents": []
+        }
+      ],
+      "cReason": "$5$ 이상/미만 조건이 문장에 있고 답이 올림·버림 두 낱말로 짧고 분명하다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "407f154ba822356b4715f7839ac0ec4fd9fa9189ca4191e9307e524b0c51940a",
+      "proposalFingerprint": "33b2d3ac00f356ede449c03322d5645a46cf5081499d198b1d9a96982453c5cb",
+      "questionRevision": "planning-e5e6-20261006-33b2d3ac00f3",
+      "draftEvidence": "evidence/section-031-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-6-c2",
+      "sourceIndex": 104,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bQuestion": null,
+      "bGoal": "백의 자리까지 반올림할 때 볼 자리를 안다.",
+      "bReason": "볼 자리는 c1의 B에서 이미 묻고 있어 따로 물으면 한 낱말 답만 반복된다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "반올림하여 백의 자리까지 쓰려면 바로 아래인 {십의 자리} 숫자를 살핀다.",
+        "acceptedAnswers": [
+          [
+            "십의 자리"
+          ]
+        ]
+      },
+      "cStudentSentence": "반올림하여 백의 자리까지 쓰려면 바로 아래인 □ 숫자를 살핀다.",
+      "cSlotAnswers": [
+        {
+          "key": "십의 자리",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'백의 자리 바로 아래'라는 단서로 십의 자리를 짧게 답하는 유용한 문장이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "B는 e5-2-1-6-c1과 중복된다.",
+      "questionExclusions": {
+        "term": "B는 e5-2-1-6-c1과 중복된다."
+      },
+      "sourceFingerprint": "5510ec841c074b863df70ef7dc645a2912482d56164eee6c361540cb14d8cea1",
+      "proposalFingerprint": "e819444f4a8266108284ada6bef700c3bc0d3ee1206b2dbeb14e1811a9a6c44a",
+      "questionRevision": "planning-e5e6-20261006-e819444f4a82",
+      "draftEvidence": "evidence/section-031-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-1-6-c3",
+      "sourceIndex": 105,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "자연수를 반올림하여 십의 자리까지 나타냈더니 $50$이 되었습니다. 가능한 자연수의 범위를 '이상'과 '미만'을 써서 나타내고, 양쪽 경계의 수를 포함하는지 설명하시오.",
+        "answer": "$45$ 이상 $55$ 미만이다. $45$는 일의 자리 $5$를 보고 올려 $50$이 되므로 포함하고, $55$는 $60$이 되므로 포함하지 않는다. $45$부터 $54$까지의 자연수가 가능하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$45$ 이상 $55$ 미만",
+              "$45$부터 $54$까지의 자연수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$45$는 $50$으로 반올림되므로 포함한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$55$는 $60$으로 반올림되므로 제외한다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "반올림 결과가 같은 원래 수의 범위를 정하고 두 경계의 포함 여부를 설명한다.",
+      "bReason": "'그 값에서 나타낸 자리의 반 단위'를 추측하지 않도록 실제 자리와 결과를 제시한다. 범위 표기와 경계 포함 여부를 모두 물어 일반 규칙의 뜻을 확인한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "반올림하여 십의 자리까지 나타내면 $50$이 되는 자연수의 범위는 {$45$} 이상 {$55$} 미만이다.",
+        "acceptedAnswers": [
+          [
+            "$45$"
+          ],
+          [
+            "$55$"
+          ]
+        ]
+      },
+      "cStudentSentence": "반올림하여 십의 자리까지 나타내면 $50$이 되는 자연수의 범위는 □ 이상 □ 미만이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$45$",
+          "equivalents": []
+        },
+        {
+          "key": "$55$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "정한 자리와 결과를 보여 주고 범위의 두 경계를 수로 답하게 한다. 임의의 긴 구절을 암기하는 빈칸을 없앤다.",
+      "coreAfter": "같은 자리까지 반올림해 같은 값이 되는 수는, 그 값에서 나타낸 자리 단위의 {절반을 뺀 수} 이상이고 절반을 더한 수 미만이다. 십의 자리면 $5$, 백의 자리면 $50$을 빼고 더한다.",
+      "coreReason": "'반 단위'는 초5 교과 용어가 아니어서 '자리 단위의 절반'으로 풀고 자리별 값을 덧붙였다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "953f5d189c15d1939d4357b5c9ea9260414b30837d989258e2f3a6fa19cd7735",
+      "proposalFingerprint": "a78276cd7568f4b3ac57d50835c7f24cb39c0fe96265a8c88087103ad0137e1a",
+      "questionRevision": "planning-e5e6-20261006-a78276cd7568",
+      "draftEvidence": "evidence/section-031-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-2-1-c1",
+      "sourceIndex": 106,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "진분수에 자연수를 곱할 때 분모와 분자는 각각 어떻게 하나요? 그 방법으로 $\\frac{2}{9}\\times4$를 계산하세요.",
+        "answer": "분모는 그대로 두고 분자에 자연수를 곱한다. $\\frac{2}{9}\\times4=\\frac{2\\times4}{9}=\\frac{8}{9}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모는 그대로 둔다",
+              "분모는 바뀌지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자에 자연수를 곱한다",
+              "분자는 $2 \\times 4$로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{8}{9}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "진분수와 자연수의 곱에서 분모와 분자를 다루는 방법을 말하고 적용한다.",
+      "bReason": "제목만으로는 물음이 되지 않아 분모·분자 처리와 예 계산을 묻도록 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{9}\\times4$는 $\\frac{2}{9}$를 $4$번 더한 것이므로 분모는 {$9$} 그대로 두고 분자는 $2\\times4=$ {$8$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{2}{9}\\times4$는 $\\frac{2}{9}$를 $4$번 더한 것이므로 분모는 □ 그대로 두고 분자는 $2\\times4=$ □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'분자에 자연수를 곱한다'라는 긴 구절 암기 대신 실제 식의 분모와 분자를 답하게 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "dde057ddada2eeff814a8ee2060e8a1eeaa2a5908ef55325995975c1dae9b233",
+      "proposalFingerprint": "ed6688c1091573795fcbabadfbf1d5824a1aa0f578be15b22643604c10a43d2f",
+      "questionRevision": "planning-e5e6-20261006-ed6688c10915",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-1-c2",
+      "sourceIndex": 107,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "대분수에 자연수를 곱할 때, 분자에 자연수를 곱하는 방법을 쓰려면 대분수를 먼저 어떤 분수로 바꾸어야 하나요? $1\\frac{2}{3}\\times2$를 그 방법으로 계산하세요.",
+        "answer": "가분수로 바꾼다. $1\\frac{2}{3}=\\frac{5}{3}$이므로 $\\frac{5}{3}\\times2=\\frac{10}{3}=3\\frac{1}{3}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가분수로 바꾼다",
+              "$\\frac{5}{3}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{10}{3}$",
+              "$3$ $\\frac{1}{3}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "대분수를 가분수로 고쳐 자연수를 곱하는 절차를 안다.",
+      "bReason": "바꾸는 대상과 계산 예를 질문 안에 넣어 답의 범위를 좁혔다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "대분수를 {가분수}로 고친 뒤 분자에 자연수를 곱하면 계산할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "가분수"
+          ]
+        ]
+      },
+      "cStudentSentence": "대분수를 □로 고친 뒤 분자에 자연수를 곱하면 계산할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "가분수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "대분수를 가분수로 고친다는 핵심 단계를 낱말 하나로 묻는 짧은 문장이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "60a05f3817c08090032e23b1fe9fc0e075cad081bf84ff8eede2d46b9f239b46",
+      "proposalFingerprint": "46dc56e25609f7f4b5f0520fd74d259e4537bf22c93c37b5a896127ef42b45c1",
+      "questionRevision": "planning-e5e6-20261006-46dc56e25609",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-1-c3",
+      "sourceIndex": 108,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{5}{6}\\times9$를 계산할 때 곱하기 전에 어떤 두 수를 어떤 수로 나누면 계산이 간단해지나요? 그렇게 계산한 답도 쓰세요.",
+        "answer": "분모 $6$과 곱하는 수 $9$를 공약수 $3$으로 나누어 약분한다. $\\frac{5}{2}\\times3=\\frac{15}{2}=7\\frac{1}{2}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모 $6$과 곱하는 수 $9$를 $3$으로 나눈다",
+              "$6$과 $9$를 $3$으로 약분한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{15}{2}$",
+              "$7$ $\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분모와 곱하는 자연수의 공약수로 미리 약분하는 방법을 적용한다.",
+      "bReason": "'미리 약분'이라는 말을 알려 주지 않고 어떤 두 수를 무엇으로 나누는지 묻는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{6}\\times9$에서 분모 $6$과 곱하는 수 $9$를 공약수 {$3$}으로 나누어 미리 {약분}하면 $\\frac{5}{2}\\times3$이 된다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "약분"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{5}{6}\\times9$에서 분모 $6$과 곱하는 수 $9$를 공약수 □으로 나누어 미리 □하면 $\\frac{5}{2}\\times3$이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "약분",
+          "equivalents": []
+        }
+      ],
+      "cReason": "원문 빈칸 '미리 약분'은 구절 암기라 실제 식에서 공약수와 낱말을 답하게 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "25041266c9441c13a31f8bdd6e4f2f3ea81b30f4e143aa2f2b88a72df7043c9f",
+      "proposalFingerprint": "c7760e80c3bcd88ba02577f66d59eb1a787414e5077320a0043f5dda737a31a0",
+      "questionRevision": "planning-e5e6-20261006-c7760e80c3bc",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-2-c1",
+      "sourceIndex": 109,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "자연수에 진분수를 곱한 값을 구하는 방법을, 분모와 분자를 각각 어떻게 쓰는지 넣어 설명하시오. 그 방법으로 $12\\times\\frac{3}{4}$을 구하시오.",
+        "answer": "자연수를 분모로 나눈 다음 분자를 곱한다(자연수와 분자를 곱한 뒤 분모로 나누어도 된다). $12\\div4=3$, $3\\times3=9$이므로 $9$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수를 분모로 나누고 분자를 곱한다",
+              "자연수와 분자를 곱한 것을 분모로 나눈다",
+              "자연수를 분자에 곱하고 분모는 그대로 둔다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분모로 나누고 분자를 곱하는 계산 절차를 스스로 말하고 적용한다.",
+      "bReason": "제목만으로는 무엇을 설명할지 알 수 없어 분모·분자의 쓰임을 묻고 예를 붙였다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$20\\times\\frac{3}{5}$은 $20$을 {$5$}로 나눈 값에 {$3$}을 곱하여 구하므로 {$12$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$20\\times\\frac{3}{5}$은 $20$을 □로 나눈 값에 □을 곱하여 구하므로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "원문 빈칸은 '분모로 나눈 값', '분자를 곱해' 같은 긴 구절을 외워야 해서 실제 식의 수로 답하게 했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "e9f78b693e332662a632e43c1b90bd4a847b05421060621e80b8f9ad825b440f",
+      "proposalFingerprint": "6179426d110a34d3cc7bec76905ec29ba8817bc404a3f43348298e39a2616eb5",
+      "questionRevision": "planning-e5e6-20261006-6179426d110a",
+      "draftEvidence": "evidence/section-033-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-2-c2",
+      "sourceIndex": 110,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "자연수에 대분수를 곱할 때 대분수를 먼저 어떤 분수로 고쳐서 계산할 수 있는지 쓰고, 그 방법으로 $3\\times1\\frac{1}{2}$을 구하시오.",
+        "answer": "대분수를 가분수로 고쳐서 곱한다. $1\\frac{1}{2}=\\frac{3}{2}$이므로 $3\\times\\frac{3}{2}=\\frac{9}{2}=4\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가분수로 고친다",
+              "$\\frac{3}{2}$으로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\frac{1}{2}$",
+              "$\\frac{9}{2}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "대분수를 가분수로 고쳐 자연수와 곱하는 절차를 안다.",
+      "bReason": "나누어 곱하는 방법은 xc15에서 따로 묻기 때문에 여기서는 가분수로 고치는 절차로 좁혔다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "대분수부터 {가분수 꼴}로 고친 다음, 자연수를 분자 쪽에 곱해 계산한다.",
+        "acceptedAnswers": [
+          [
+            "가분수 꼴"
+          ]
+        ]
+      },
+      "cStudentSentence": "대분수부터 □로 고친 다음, 자연수를 분자 쪽에 곱해 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "가분수 꼴",
+          "equivalents": []
+        }
+      ],
+      "cReason": "고칠 분수의 이름 하나만 묻는 짧은 문장이고, 뒤의 '분자 쪽에 곱해'가 답을 알려 주지 않는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "541152bdfdddbd723da273199f170b29b5401b560c60a0ecee4b1d566f59d467",
+      "proposalFingerprint": "2165b075c118d977cfcc36527c75e47997e5f2edf0aa824f5edfeb72ddcc5ab5",
+      "questionRevision": "planning-e5e6-20261006-2165b075c118",
+      "draftEvidence": "evidence/section-033-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-2-c3",
+      "sourceIndex": 111,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "자연수에 진분수를 곱하면 곱은 처음 자연수보다 큰지 작은지 쓰고, 진분수의 크기와 관련지어 그 까닭을 설명하시오.",
+        "answer": "처음 자연수보다 작다. 진분수는 $1$보다 작아서 자연수 전체가 아니라 그 일부만 나타내기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 자연수보다 작다",
+              "곱이 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "진분수는 $1$보다 작다",
+              "전체 중 일부만 나타낸다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "진분수를 곱하면 곱이 작아지는 까닭을 1보다 작다는 점과 연결한다.",
+      "bReason": "결론을 말해 주지 않고 큰지 작은지와 까닭을 함께 묻게 했다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 자연수에 진분수를 곱하면 전체 중 일부만 남아 원래 수보다 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다"
+          ]
+        ]
+      },
+      "cStudentSentence": "$0$보다 큰 자연수에 진분수를 곱하면 전체 중 일부만 남아 원래 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작아진다",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'전체 중 일부만 남아'라는 근거가 있고 비교 낱말 하나만 묻는 분명한 문장이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "8295bf05b26c57f2e970f7ae22087d21ceb9dceeb65e6c5e8f00f57834facfd9",
+      "proposalFingerprint": "6cf9113e56ddb892e0d3f58fd51458550f0b4c6690eecf82250b136ada972b52",
+      "questionRevision": "planning-e5e6-20261006-6cf9113e56dd",
+      "draftEvidence": "evidence/section-033-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-3-c1",
+      "sourceIndex": 112,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "단위분수끼리 곱할 때 곱의 분자와 분모는 각각 어떻게 정해지는지 쓰고, $\\frac{1}{3}\\times\\frac{1}{5}$을 계산하시오.",
+        "answer": "곱의 분자는 $1$이고, 분모는 두 분모를 곱한 수이다. $\\frac{1}{3}\\times\\frac{1}{5}=\\frac{1}{15}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱의 분자는 $1$이다",
+              "분자는 $1 \\times 1 = 1$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 두 분모를 곱한 수이다",
+              "분모끼리 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{15}$",
+              "$15$분의 $1$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "단위분수끼리의 곱에서 분자와 분모가 정해지는 방법을 말하고 계산한다.",
+      "bReason": "제목만으로는 물음이 되지 않아 분자·분모를 각각 묻고 예를 붙였다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "단위분수끼리 곱하면 분자는 {$1$}이고, 분모는 {두 분모의 곱}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "두 분모의 곱"
+          ]
+        ]
+      },
+      "cStudentSentence": "단위분수끼리 곱하면 분자는 □이고, 분모는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "두 분모의 곱",
+          "equivalents": []
+        }
+      ],
+      "cReason": "분자 $1$과 분모(두 분모의 곱)를 짧게 묻는 문장이라 그대로 쓸 수 있다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "d1565452bfbe64b78ae7b0e33b5e5450f575dbb614b87ae8386c93abd52c29d1",
+      "proposalFingerprint": "bc4844b222dc492ada0d209d8009f1c55b343a87bbd1543f9341f45ec2c39a7e",
+      "questionRevision": "planning-e5e6-20261006-bc4844b222dc",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-3-c2",
+      "sourceIndex": 113,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "진분수끼리 곱할 때 곱의 분자와 분모를 각각 어떻게 구하는지 쓰고, $\\frac{3}{5}\\times\\frac{2}{7}$를 계산하시오.",
+        "answer": "분자는 분자끼리 곱하고, 분모는 분모끼리 곱한다. $\\frac{3}{5}\\times\\frac{2}{7}=\\frac{6}{35}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자는 분자끼리 곱한다",
+              "두 분자의 곱이 분자이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 분모끼리 곱한다",
+              "두 분모의 곱이 분모이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{6}{35}$",
+              "$35$분의 $6$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "진분수끼리 곱하는 계산 방법을 말하고 적용한다.",
+      "bReason": "분자와 분모를 구하는 방법을 범위를 정해 묻고 계산 예로 확인하게 했다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "진분수끼리 곱한 값은 {분자의 곱}을 분자로, {분모의 곱}을 분모로 적는다.",
+        "acceptedAnswers": [
+          [
+            "분자의 곱"
+          ],
+          [
+            "분모의 곱"
+          ]
+        ]
+      },
+      "cStudentSentence": "진분수끼리 곱한 값은 □을 분자로, □을 분모로 적는다.",
+      "cSlotAnswers": [
+        {
+          "key": "분자의 곱",
+          "equivalents": []
+        },
+        {
+          "key": "분모의 곱",
+          "equivalents": []
+        }
+      ],
+      "cReason": "분자의 곱·분모의 곱이라는 계산 방법을 짧게 확인하는 문장이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ac7f1ac6c7b8456fd10b8c1905bb91eafd7fb308df2cc2ab23a098d2f0dbf592",
+      "proposalFingerprint": "e18b48d189b4cadba431ac87a380c77968e7708f05c3d75ac62879e9b4a9cb5d",
+      "questionRevision": "planning-e5e6-20261006-e18b48d189b4",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-3-c3",
+      "sourceIndex": 114,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "진분수 두 개를 곱한 값은 곱한 두 분수 각각과 비교하여 크기가 어떠한지 쓰고, 그 까닭을 분수의 곱셈이 ‘어떤 양의 몇 분의 몇’을 구한다는 뜻으로 설명하시오.",
+        "answer": "곱은 두 분수 각각보다 작다. 진분수를 곱하는 것은 한 분수의 일부만 구하는 것이므로 그 분수보다 작아지고, 곱하는 차례를 바꾸어 생각하면 다른 분수보다도 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 두 분수 각각보다 작다",
+              "곱은 두 분수 중 어느 것보다도 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 분수의 일부만 구하기 때문이다",
+              "전체가 아닌 부분만큼만 구하기 때문이다",
+              "$1$보다 작은 수만큼만 구하기 때문이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "진분수끼리의 곱이 두 분수보다 작은 까닭을 일부의 일부라는 뜻으로 설명한다.",
+      "bReason": "‘부분의 부분’은 편집용 제목이라 크기 비교와 설명할 관계를 질문에 직접 넣었다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "진분수에 진분수를 곱하면 일부의 일부를 구하므로 곱은 각각의 분수보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "cStudentSentence": "진분수에 진분수를 곱하면 일부의 일부를 구하므로 곱은 각각의 분수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "cReason": "일부의 일부라는 근거가 문장에 있고 작다/크다를 고르는 분명한 비교이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "836a294d6f28ad82c362100d70c2af8993b9e04160174fa53e7f559db25425a2",
+      "proposalFingerprint": "341d3427dbb27a23086c8c5245e57c08fe8100cc6f708d8979874fba9cf384a1",
+      "questionRevision": "planning-e5e6-20261006-341d3427dbb2",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-4-c1",
+      "sourceIndex": 115,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "대분수가 들어 있는 분수의 곱셈은 어떤 방법으로 계산할 수 있는지 설명하고, $1\\frac{1}{2}\\times1\\frac{1}{3}$을 계산하시오.",
+        "answer": "대분수를 가분수로 바꾼 뒤 분자는 분자끼리, 분모는 분모끼리 곱한다. $\\frac{3}{2}\\times\\frac{4}{3}=2$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대분수를 가분수로 바꾸어 곱한다",
+              "자연수 부분과 분수 부분으로 나누어 각각 곱한 값을 모두 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$",
+              "$\\frac{3}{2}\\times\\frac{4}{3}=2$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "대분수 곱셈의 계산 방법을 말하고 실제 식에 적용한다.",
+      "bReason": "원 제목만으로는 무엇을 답할지 알 수 없어 방법과 예를 함께 묻는 질문으로 만들었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "대분수가 있는 곱셈은 먼저 대분수를 {가분수}로 바꾸어 계산할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "가분수"
+          ]
+        ]
+      },
+      "cStudentSentence": "대분수가 있는 곱셈은 먼저 대분수를 □로 바꾸어 계산할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "가분수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "빈칸 '대분수를 가분수로'는 구절 전체를 외워야 해서 핵심 낱말 하나로 줄였다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "19b29b89427373861437dd4df04797478002dc3c19f946a6f50f9d4c58c97fc2",
+      "proposalFingerprint": "09edf325de1fd9dca108faaf49edcd2b96c868b43ad43f57c8193392e75063fe",
+      "questionRevision": "planning-e5e6-20261006-09edf325de1f",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-4-c2",
+      "sourceIndex": 116,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "세 분수를 한꺼번에 곱할 때 분자와 분모를 각각 어떻게 계산하는지 설명하고, $\\frac{1}{2}\\times\\frac{2}{3}\\times\\frac{3}{4}$을 계산하시오.",
+        "answer": "분자 셋을 곱한 값을 분자로, 분모 셋을 곱한 값을 분모로 하고 약분한다. $\\frac{6}{24}=\\frac{1}{4}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자끼리 모두 곱하고 분모끼리 모두 곱한다",
+              "분자 셋의 곱을 분자로, 분모 셋의 곱을 분모로 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$",
+              "$\\frac{6}{24}$을 약분한 $\\frac{1}{4}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "세 분수의 곱에서 분자와 분모를 각각 구하는 방법을 안다.",
+      "bReason": "분자 셋·분모 셋의 곱이라는 원문 핵심을 질문에서 미리 말하지 않고 설명하게 했다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "세 분수의 곱은 분자 셋의 곱과 분모 셋의 곱으로 나타내고 {약분}한다.",
+        "acceptedAnswers": [
+          [
+            "약분"
+          ]
+        ]
+      },
+      "cStudentSentence": "세 분수의 곱은 분자 셋의 곱과 분모 셋의 곱으로 나타내고 □한다.",
+      "cSlotAnswers": [
+        {
+          "key": "약분",
+          "equivalents": []
+        }
+      ],
+      "cReason": "분자 셋·분모 셋의 곱으로 나타낸 뒤 할 일을 '약분' 한 낱말로 답하는 짧고 분명한 문장이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "783e065f6bbfb2f14ffe37df6b4dcf99b8bffeca6cebb6b4ec3f54ddb74cb95b",
+      "proposalFingerprint": "002e2b9c7ca83507f8b834adc78c687ba0ffc35496a172e2c918d1d7515ac521",
+      "questionRevision": "planning-e5e6-20261006-002e2b9c7ca8",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-2-4-c3",
+      "sourceIndex": 117,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "분수 여러 개를 곱하는 식에서 곱하기 전에 약분하려면 어떤 수끼리, 무엇으로 나눌 수 있는지 설명하시오. 그리고 $\\frac{2}{3}\\times\\frac{3}{5}\\times\\frac{5}{8}$를 약분하여 계산하시오.",
+        "answer": "같은 분수가 아니어도 어느 분자와 어느 분모 사이든 두 수의 공약수로 나누어 약분할 수 있다. $3$끼리, $5$끼리 약분하고 $2$와 $8$을 $2$로 약분하면 $\\frac{1}{4}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어느 분자와 어느 분모 사이든 약분할 수 있다",
+              "다른 분수에 있는 분자와 분모끼리도 약분할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수의 공약수로 나눈다",
+              "분자와 분모를 똑같이 나눌 수 있는 수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "곱으로 이어진 분수에서 약분할 수 있는 수의 짝과 나누는 수를 안다.",
+      "bReason": "'어느 분자와 어느 분모 사이든'이 핵심이므로 약분하는 대상과 나누는 수를 지정해 물었다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "곱으로 이어진 분수에서는 어느 분자와 어느 분모 사이든 {공약수}로 약분할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "공약수"
+          ]
+        ]
+      },
+      "cStudentSentence": "곱으로 이어진 분수에서는 어느 분자와 어느 분모 사이든 □로 약분할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "공약수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "분자와 분모 사이라는 조건이 문장에 있고 답이 '공약수'로 분명하다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "9a6e49d7f98b4d88d28a664e88b44466ce68db1b6d79633216210252c25ecabe",
+      "proposalFingerprint": "e0a42c98ed12ab674452107cc2ada88442bcfd0c69a22bc03e93eacdc7709454",
+      "questionRevision": "planning-e5e6-20261006-e0a42c98ed12",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-3-1-c1",
+      "sourceIndex": 118,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "두 도형이 서로 합동이라는 것은 무슨 뜻인지 설명하시오.",
+        "answer": "두 도형의 모양과 크기가 같아서 포개었을 때 완전히 겹친다는 뜻이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "포개었을 때 완전히 겹친다",
+              "모양과 크기가 모두 같다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "합동의 뜻을 포개어 완전히 겹침으로 말한다.",
+      "bReason": "익숙한 정식 개념명이라 뜻을 직접 물어도 범위가 분명하다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "모양과 크기가 같아서 포개었을 때 완전히 {겹치는} 두 도형을 서로 {합동}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "겹치는",
+            "포개어지는"
+          ],
+          [
+            "합동"
+          ]
+        ]
+      },
+      "cStudentSentence": "모양과 크기가 같아서 포개었을 때 완전히 □ 두 도형을 서로 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "겹치는",
+          "equivalents": [
+            "포개어지는"
+          ]
+        },
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "cReason": "원문 빈칸 '빈틈없이 포갤 수 있으면'은 긴 구절 암기라 핵심 낱말 두 개로 줄였다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "0824445d1f5d0e0fcac38a9e71f2394400dff98937cd6886ffff15f7968f690b",
+      "proposalFingerprint": "94c5c10e5c04baed7a98284caa7e68f1e46adae25400b4ce05c161a3dfcb5e69",
+      "questionRevision": "planning-e5e6-20261006-94c5c10e5c04",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    },
+    {
+      "id": "e5-2-3-1-c2",
+      "sourceIndex": 119,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bQuestion": null,
+      "bGoal": "합동은 모양과 크기가 모두 같아야 함을 안다.",
+      "bReason": "c1의 뜻 설명과 xc8의 크기가 다른 예 문항이 같은 내용을 묻는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "합동인 두 도형은 모양뿐 아니라 {크기}도 같아야 한다.",
+        "acceptedAnswers": [
+          [
+            "크기"
+          ]
+        ]
+      },
+      "cStudentSentence": "합동인 두 도형은 모양뿐 아니라 □도 같아야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "크기",
+          "equivalents": []
+        }
+      ],
+      "cReason": "조사까지 붙은 '크기까지'를 강요하지 않도록 낱말 하나로 줄였다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "B 중복: e5-2-3-1-c1, e5-2-3-1-xc8로 대체.",
+      "questionExclusions": {
+        "term": "B 중복: e5-2-3-1-c1, e5-2-3-1-xc8로 대체."
+      },
+      "sourceFingerprint": "6c498b792b5b513d75872c325c8315a6934bf4b33d451c7ee336c73a9ca9c665",
+      "proposalFingerprint": "d54c758e85163ee6e830ceb5e7e86daf2100348f70bc1fbc877b9e9fb082b309",
+      "questionRevision": "planning-e5e6-20261006-d54c758e8516",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": null
+    }
+  ]
+}

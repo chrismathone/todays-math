@@ -1,0 +1,2628 @@
+{
+  "status": "Root actually reread the normalized final questions then applied them; fresh independent consensus pending",
+  "count": 8,
+  "rows": [
+    {
+      "id": "m2-02-04-xc17",
+      "scope": "middle",
+      "reason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+      "beforeRaw": {
+        "id": "m2-02-04-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+        "bAnswer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+        "bGoal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "bReason": "할인율0을 포함하는지 물음에서 정해주지 않았다. x가0 이상100 이하이고0은 할인하지 않는 경우도 포함함을 명시해 기존 범위 기준과 일치시킨다. C와 일반 설명은 유지한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6000-60x-4000\\ge800$",
+              "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0\\le x\\le20$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정가를 할인해 팔아도 원하는 이익만큼은 꼭 남기려면 (판매 가격) {$-$} (원가) {$\\ge$} (원하는 이익)이어야 한다.",
+        "cAnswers": [
+          "$-$",
+          "$\\ge$"
+        ],
+        "cReason": "둘째 답 '이익'이 앞 구절 '원하는 이익'을 베끼면 되어 부등호를 묻게 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "할인과 이익 조건을 상황에 적용",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2385,
+        "part": "m2plus",
+        "sourceFingerprint": "bdb32b13f121e991abb1ff58f78ad65dd40d8648d8797d9ff043fc17e5cf3b16",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2385
+        },
+        "directReview": null,
+        "cMarkedSentence": "정가를 할인해 팔아도 원하는 이익만큼은 꼭 남기려면 (판매 가격) {$-$} (원가) {$\\ge$} (원하는 이익)이어야 한다.",
+        "cSlotAnswers": [
+          "$-$",
+          "$\\ge$"
+        ],
+        "cStudentSentence": "정가를 할인해 팔아도 원하는 이익만큼은 꼭 남기려면 (판매 가격) □ (원가) □ (원하는 이익)이어야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-$",
+            "equivalentAnswers": [
+              "$-$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\ge$",
+            "equivalentAnswers": [
+              "$\\ge$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-$"
+          ],
+          [
+            "$\\ge$"
+          ]
+        ],
+        "proposalFingerprint": "11aca0ef29fb9875ccd8e218e97599832f19056d8849c024ff89fb68b67722e3"
+      },
+      "before": {
+        "id": "m2-02-04-xc17",
+        "grade": "중2",
+        "source": {
+          "id": "m2-02-04-xc17",
+          "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+          "term": "할인해도 이익이 남는 조건",
+          "kind": "방법",
+          "level": "상",
+          "definition": "정가를 할인해 팔아 원하는 이익을 얻으려면 (판매 가격) {$-$} (원가)가 원하는 {이익} 이상이어야 한다."
+        },
+        "B": {
+          "prompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+          "answer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6000-60x-4000\\ge800$",
+                "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0\\le x\\le20$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "정가를 할인해 팔아도 원하는 이익만큼은 꼭 남기려면 (판매 가격) {$-$} (원가) {$\\ge$} (원하는 이익)이어야 한다.",
+          "acceptedAnswers": [
+            [
+              "$-$"
+            ],
+            [
+              "$\\ge$"
+            ]
+          ]
+        },
+        "goal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "b1be56bbc7ac4afb6c0a02f9554c8c809068d410a7698d1879af1290905e2c21"
+      },
+      "proposedRaw": {
+        "id": "m2-02-04-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+        "bAnswer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+        "bGoal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "bReason": "할인율0을 포함하는지 물음에서 정해주지 않았다. x가0 이상100 이하이고0은 할인하지 않는 경우도 포함함을 명시해 기존 범위 기준과 일치시킨다. C와 일반 설명은 유지한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6000-60x-4000\\ge800$",
+              "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0\\le x\\le20$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+        "cAnswers": [
+          "$\\ge$"
+        ],
+        "cReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "할인과 이익 조건을 상황에 적용",
+        "authorBatch": 31,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2385,
+        "part": "m2plus",
+        "sourceFingerprint": "bdb32b13f121e991abb1ff58f78ad65dd40d8648d8797d9ff043fc17e5cf3b16",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2385
+        },
+        "directReview": null,
+        "cMarkedSentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+        "cSlotAnswers": [
+          "$\\ge$"
+        ],
+        "cStudentSentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) □ (원하는 이익)이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\ge$",
+            "equivalentAnswers": [
+              "$\\ge$",
+              "≥"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\ge$",
+            "≥"
+          ]
+        ],
+        "proposalFingerprint": "c353aed05b2b2c24cd445b357d829f40185af49995c71ce03c9ddc8d63716c75",
+        "bQuestion": {
+          "prompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+          "answer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6000-60x-4000\\ge800$",
+                "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0\\le x\\le20$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+          "acceptedAnswers": [
+            [
+              "$\\ge$",
+              "≥"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-02-04-xc17",
+          "sourceIndex": 2385,
+          "proposalFingerprint": "c353aed05b2b2c24cd445b357d829f40185af49995c71ce03c9ddc8d63716c75",
+          "learningRole": "application",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.080Z",
+          "bReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+          "cReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-02-04-xc17",
+        "grade": "중2",
+        "source": {
+          "id": "m2-02-04-xc17",
+          "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+          "term": "할인해도 이익이 남는 조건",
+          "kind": "방법",
+          "level": "상",
+          "definition": "정가를 할인해 팔아 원하는 이익을 얻으려면 (판매 가격) {$-$} (원가)가 원하는 {이익} 이상이어야 한다."
+        },
+        "B": {
+          "prompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+          "answer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6000-60x-4000\\ge800$",
+                "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0\\le x\\le20$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+          "acceptedAnswers": [
+            [
+              "$\\ge$",
+              "≥"
+            ]
+          ]
+        },
+        "goal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "7a39bc11395e005c0ba13a66b5f5fad0c30ec3aee838c647bc9486fac30e9332"
+      },
+      "direct": {
+        "id": "m2-02-04-xc17",
+        "sourceIndex": 2385,
+        "proposalFingerprint": "c353aed05b2b2c24cd445b357d829f40185af49995c71ce03c9ddc8d63716c75",
+        "learningRole": "application",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T13:49:22.080Z",
+        "bReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+        "cReason": "판매가격≥원가+이익과 판매가격−원가≥이익은 모두 맞다. 뺄셈을 이미 표시하고 이익이 원하는 값 이상이라는 정확한 조건의 비교 기호 하나를 묻는다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m2-02-04-xc17",
+        "grade": "중2",
+        "source": {
+          "id": "m2-02-04-xc17",
+          "section": "중2::2. 부등식::일차부등식의 활용(수, 평균, 정가)",
+          "term": "할인해도 이익이 남는 조건",
+          "kind": "방법",
+          "level": "상",
+          "definition": "정가를 할인해 팔아 원하는 이익을 얻으려면 (판매 가격) {$-$} (원가)가 원하는 {이익} 이상이어야 한다."
+        },
+        "B": {
+          "prompt": "원가 $4000$원인 물건의 정가가 $6000$원이다. 정가의 $x\\%$를 할인해도 이익이 $800$원 이상이 되게 하려 한다. $0\\le x\\le100$이며 $x=0$은 할인하지 않는 경우도 포함한다. 부등식을 세우고 $x$의 범위를 구하시오.",
+          "answer": "판매 가격은 $6000\\left(1-\\frac{x}{100}\\right)=6000-60x$원이므로 $6000-60x-4000\\ge800$, $x\\le20$이다. 할인하지 않는 경우도 포함하므로 $0\\le x\\le20$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6000-60x-4000\\ge800$",
+                "$6000\\left(1-\\frac{x}{100}\\right)-4000\\ge800$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0\\le x\\le20$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "판매 가격에서 원가를 뺀 이익이 원하는 이익 이상이라는 조건을 부등식으로 나타내면, (판매 가격) $-$ (원가) {$\\ge$} (원하는 이익)이다.",
+          "acceptedAnswers": [
+            [
+              "$\\ge$",
+              "≥"
+            ]
+          ]
+        },
+        "goal": "할인 후 이익 조건으로 할인율 범위 구하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "7a39bc11395e005c0ba13a66b5f5fad0c30ec3aee838c647bc9486fac30e9332"
+      }
+    },
+    {
+      "id": "m1-04-03-xc1",
+      "scope": "middle",
+      "reason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+      "beforeRaw": {
+        "id": "m1-04-03-xc1",
+        "learningRole": "reason",
+        "roleReason": "축이 나타내는 양을 알아야 좌표값의 의미를 해석할 수 있는 이유",
+        "bDecision": "rewrite",
+        "bPrompt": "그래프의 두 축이 각각 무엇을 나타내는지 알지 못할 때, 점 $(2,15)$의 두 숫자가 실제로 무엇의 값인지 알 수 있는가? 이유와 함께 쓰시오.",
+        "bAnswer": "알 수 없다. 가로축과 세로축이 각각 어떤 양을 나타내는지 알아야 두 숫자가 시간, 기온, 거리 등 무엇의 값인지 해석할 수 있다.",
+        "bGoal": "두 축이 나타내는 양부터 확인하기",
+        "bReason": "가장 먼저라는 임의 순서보다 축의 정보가 없는 구체상황에서 해석이 어려운 이유를 묻는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 숫자가 무엇의 값인지 알 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 축이 나타내는 양을 알아야 좌표값의 실제 의미를 알 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cReason": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다.",
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1512,
+        "part": "m1plus",
+        "sourceFingerprint": "13bd49cc27c131c7a1f9189b1d117032c75766b2570fd95e22325401d3f773de",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1512
+        },
+        "directReview": null,
+        "cMarkedSentence": null,
+        "cSlotAnswers": null,
+        "cStudentSentence": null,
+        "cAnswers": null,
+        "cSlots": null,
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "가로축",
+            "accept": [
+              "$x$축"
+            ]
+          },
+          {
+            "answer": "세로축",
+            "accept": [
+              "$y$축"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": null,
+        "proposalFingerprint": "f465a8a3a8dfa535298af1628e485ba1fa8a8aa94ee575c4d9ac94b210be727a",
+        "cAfter": null,
+        "exclusionReason": "C 제외: 양의 종류·대상·내용 등 요령 낱말의 답 범위가 열려 있다. 축을 모르면 점의 의미를 알 수 없는 이유를 B에서 묻는다."
+      },
+      "before": {
+        "id": "m1-04-03-xc1",
+        "grade": "중1",
+        "source": {
+          "id": "m1-04-03-xc1",
+          "section": "중1::4. 그래프와 비례::그래프의 이해",
+          "term": "그래프를 읽을 때 먼저 확인할 것",
+          "kind": "방법",
+          "level": "하",
+          "definition": "그래프를 읽을 때는 먼저 {가로축}과 {세로축}이 각각 무엇을 나타내는지 확인한다.",
+          "example": {
+            "prompt": "시간에 따른 기온 그래프에서 가로축은 보통 무엇인가?",
+            "answer": "시간"
+          }
+        },
+        "B": {
+          "prompt": "그래프의 두 축이 각각 무엇을 나타내는지 알지 못할 때, 점 $(2,15)$의 두 숫자가 실제로 무엇의 값인지 알 수 있는가? 이유와 함께 쓰시오.",
+          "answer": "알 수 없다. 가로축과 세로축이 각각 어떤 양을 나타내는지 알아야 두 숫자가 시간, 기온, 거리 등 무엇의 값인지 해석할 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 숫자가 무엇의 값인지 알 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 축이 나타내는 양을 알아야 좌표값의 실제 의미를 알 수 있다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다."
+        },
+        "goal": "두 축이 나타내는 양부터 확인하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "39887054a9025ed79fcd1c417bfb53a9185f9ce579e2a45ec65b5066c0eb3186"
+      },
+      "proposedRaw": {
+        "id": "m1-04-03-xc1",
+        "learningRole": "reason",
+        "roleReason": "축이 나타내는 양을 알아야 좌표값의 의미를 해석할 수 있는 이유",
+        "bDecision": "rewrite",
+        "bPrompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+        "bAnswer": "A에서는 2시간이 지났을 때 기온이 15℃라는 뜻이다. B에서는 2시간이 지났을 때 이동한 거리가 15km라는 뜻이다.",
+        "bGoal": "두 축의 양과 단위에 따라 같은 좌표를 해석한다.",
+        "bReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "A: 2시간이 지났을 때 기온이 15℃이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "B: 2시간이 지났을 때 이동한 거리가 15km이다"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cReason": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다.",
+        "authorBatch": 12,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1512,
+        "part": "m1plus",
+        "sourceFingerprint": "13bd49cc27c131c7a1f9189b1d117032c75766b2570fd95e22325401d3f773de",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1512
+        },
+        "directReview": null,
+        "cMarkedSentence": null,
+        "cSlotAnswers": null,
+        "cStudentSentence": null,
+        "cAnswers": null,
+        "cSlots": null,
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "가로축",
+            "accept": [
+              "$x$축"
+            ]
+          },
+          {
+            "answer": "세로축",
+            "accept": [
+              "$y$축"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": null,
+        "proposalFingerprint": "ce14cb10df88828d8657f21aed240fa22763ec8623341aae97486469e16ffc66",
+        "cAfter": null,
+        "exclusionReason": "C 제외: 양의 종류·대상·내용 등 요령 낱말의 답 범위가 열려 있다. 축을 모르면 점의 의미를 알 수 없는 이유를 B에서 묻는다.",
+        "bQuestion": {
+          "prompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+          "answer": "A에서는 2시간이 지났을 때 기온이 15℃라는 뜻이다. B에서는 2시간이 지났을 때 이동한 거리가 15km라는 뜻이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "A: 2시간이 지났을 때 기온이 15℃이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "B: 2시간이 지났을 때 이동한 거리가 15km이다"
+              ]
+            }
+          ]
+        },
+        "editorialReview": {
+          "id": "m1-04-03-xc1",
+          "sourceIndex": 1512,
+          "proposalFingerprint": "ce14cb10df88828d8657f21aed240fa22763ec8623341aae97486469e16ffc66",
+          "learningRole": "reason",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.089Z",
+          "bReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+          "cReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "exclude"
+        }
+      },
+      "after": {
+        "id": "m1-04-03-xc1",
+        "grade": "중1",
+        "source": {
+          "id": "m1-04-03-xc1",
+          "section": "중1::4. 그래프와 비례::그래프의 이해",
+          "term": "그래프를 읽을 때 먼저 확인할 것",
+          "kind": "방법",
+          "level": "하",
+          "definition": "그래프를 읽을 때는 먼저 {가로축}과 {세로축}이 각각 무엇을 나타내는지 확인한다.",
+          "example": {
+            "prompt": "시간에 따른 기온 그래프에서 가로축은 보통 무엇인가?",
+            "answer": "시간"
+          }
+        },
+        "B": {
+          "prompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+          "answer": "A에서는 2시간이 지났을 때 기온이 15℃라는 뜻이다. B에서는 2시간이 지났을 때 이동한 거리가 15km라는 뜻이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "A: 2시간이 지났을 때 기온이 15℃이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "B: 2시간이 지났을 때 이동한 거리가 15km이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다."
+        },
+        "goal": "두 축의 양과 단위에 따라 같은 좌표를 해석한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "2a59d23e7c878f45ace4e75f1f65f37b5c7044c78c605086fa48fb7d5cc65c44"
+      },
+      "direct": {
+        "id": "m1-04-03-xc1",
+        "sourceIndex": 1512,
+        "proposalFingerprint": "ce14cb10df88828d8657f21aed240fa22763ec8623341aae97486469e16ffc66",
+        "learningRole": "reason",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T13:49:22.089Z",
+        "bReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+        "cReason": "축을 모른다는 전제를 그대로 되풀이하는 판단에서 벗어나, 같은 좌표를 다른 축의 양과 단위에 실제로 적용한다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "exclude"
+      },
+      "actualNormalizedAfter": {
+        "id": "m1-04-03-xc1",
+        "grade": "중1",
+        "source": {
+          "id": "m1-04-03-xc1",
+          "section": "중1::4. 그래프와 비례::그래프의 이해",
+          "term": "그래프를 읽을 때 먼저 확인할 것",
+          "kind": "방법",
+          "level": "하",
+          "definition": "그래프를 읽을 때는 먼저 {가로축}과 {세로축}이 각각 무엇을 나타내는지 확인한다.",
+          "example": {
+            "prompt": "시간에 따른 기온 그래프에서 가로축은 보통 무엇인가?",
+            "answer": "시간"
+          }
+        },
+        "B": {
+          "prompt": "그래프 A의 가로축은 지난 시간(시간), 세로축은 기온(℃)이다. 그래프 B의 가로축은 지난 시간(시간), 세로축은 이동한 거리(km)이다. 두 그래프에 각각 찍힌 점 $(2,15)$가 뜻하는 상황을 그래프별로 쓰시오.",
+          "answer": "A에서는 2시간이 지났을 때 기온이 15℃라는 뜻이다. B에서는 2시간이 지났을 때 이동한 거리가 15km라는 뜻이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "A: 2시간이 지났을 때 기온이 15℃이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "B: 2시간이 지났을 때 이동한 거리가 15km이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다."
+        },
+        "goal": "두 축의 양과 단위에 따라 같은 좌표를 해석한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "2a59d23e7c878f45ace4e75f1f65f37b5c7044c78c605086fa48fb7d5cc65c44"
+      }
+    },
+    {
+      "id": "m3-07-02-xc12",
+      "scope": "middle",
+      "reason": "'단정할 수는 없다'의 문법 복원을 버리고, 양의 상관관계와 개별 예외가 함께 가능한지 두 판단 중에서 고르게 한다.",
+      "beforeRaw": {
+        "id": "m3-07-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "키와 몸무게 사이에 양의 상관관계가 있는 반에서, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 말할 수 있는지 쓰고 이유를 쓰시오.",
+        "bAnswer": "말할 수 없다. 상관관계는 전체의 대체적인 경향이므로 키가 더 크지만 몸무게는 더 적은 학생도 있을 수 있다.",
+        "bGoal": "상관관계는 전체 경향임을 이해",
+        "bReason": "'언제나'라는 잘못된 일반화를 판단하게 하는 상황을 제시함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "말할 수 없다",
+              "언제나 그렇지는 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체의 대체적인 경향",
+              "경향과 반대인 학생이 있을 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "C의 후속 문장이 예외가 있을 수 있음을 미리 말해 판단을 노출한다. 그 이유 문장을 C에서 제거하고 양의 상관관계만으로 언제나 같은 순서라고 단정 가능한지 판단하게 한다. B와 예외 가능성·필연을 구별한 일반 설명은 유지한다.",
+        "learningRole": "reason",
+        "roleReason": "경향과 반대인 자료가 있을 수 있음",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3690,
+        "part": "m3plus",
+        "sourceFingerprint": "5f92b487d3f3e1cfaadd9d937c72e7e57e99e6992d4d7e960e700bfd558fc8e2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3690
+        },
+        "directReview": null,
+        "cMarkedSentence": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 {없다}.",
+        "cSlotAnswers": [
+          "없다"
+        ],
+        "cStudentSentence": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 □.",
+        "cAnswers": [
+          "없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "3262d02867f5a5d75ec70995c9db266a8b69b18dae9194d70577a548df370dbb",
+        "cAfter": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 {없다}.",
+        "coreAfter": "양의 상관관계는 전체의 대체적인 {경향}을 나타낸다. 모든 자료가 반드시 그 경향을 따른다고 {단정할 수는 없다}. 경향과 반대인 자료가 있을 수도 있다.",
+        "coreReason": "예외의 존재 가능성과 예외가 반드시 있다는 주장을 구별한다."
+      },
+      "before": {
+        "id": "m3-07-02-xc12",
+        "grade": "중3",
+        "source": {
+          "id": "m3-07-02-xc12",
+          "section": "중3::7. 통계::산점도와 상관관계",
+          "term": "경향과 반대인 자료",
+          "kind": "성질",
+          "level": "중",
+          "definition": "양의 상관관계가 있어도 모든 자료가 그 경향을 따르는 것은 {아니다} — 경향과 반대인 점이 {있을} 수 있다."
+        },
+        "B": {
+          "prompt": "키와 몸무게 사이에 양의 상관관계가 있는 반에서, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 말할 수 있는지 쓰고 이유를 쓰시오.",
+          "answer": "말할 수 없다. 상관관계는 전체의 대체적인 경향이므로 키가 더 크지만 몸무게는 더 적은 학생도 있을 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "말할 수 없다",
+                "언제나 그렇지는 않다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체의 대체적인 경향",
+                "경향과 반대인 학생이 있을 수 있다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 {없다}.",
+          "acceptedAnswers": [
+            [
+              "없다"
+            ]
+          ]
+        },
+        "goal": "상관관계는 전체 경향임을 이해",
+        "coreAfter": "양의 상관관계는 전체의 대체적인 {경향}을 나타낸다. 모든 자료가 반드시 그 경향을 따른다고 {단정할 수는 없다}. 경향과 반대인 자료가 있을 수도 있다.",
+        "coreReason": "예외의 존재 가능성과 예외가 반드시 있다는 주장을 구별한다.",
+        "hash": "c463fb655827425db015469663aa20d962aa3c35d452a3720679f500f9dd91d1"
+      },
+      "proposedRaw": {
+        "id": "m3-07-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "키와 몸무게 사이에 양의 상관관계가 있는 반에서, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 말할 수 있는지 쓰고 이유를 쓰시오.",
+        "bAnswer": "말할 수 없다. 상관관계는 전체의 대체적인 경향이므로 키가 더 크지만 몸무게는 더 적은 학생도 있을 수 있다.",
+        "bGoal": "상관관계는 전체 경향임을 이해",
+        "bReason": "'언제나'라는 잘못된 일반화를 판단하게 하는 상황을 제시함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "말할 수 없다",
+              "언제나 그렇지는 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체의 대체적인 경향",
+              "경향과 반대인 학생이 있을 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "'단정할 수는 없다'의 문법 복원을 버리고, 양의 상관관계와 개별 예외가 함께 가능한지 두 판단 중에서 고르게 한다.",
+        "learningRole": "reason",
+        "roleReason": "경향과 반대인 자료가 있을 수 있음",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3690,
+        "part": "m3plus",
+        "sourceFingerprint": "5f92b487d3f3e1cfaadd9d937c72e7e57e99e6992d4d7e960e700bfd558fc8e2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3690
+        },
+        "directReview": null,
+        "cMarkedSentence": "한 반의 키와 몸무게 사이에 양의 상관관계가 있다. 이 반에 키는 더 크지만 몸무게는 더 적은 학생 쌍이 있는 것도 가능한지, '가능' 또는 '불가능'으로 판단하면 {가능}이다.",
+        "cSlotAnswers": [
+          "가능"
+        ],
+        "cStudentSentence": "한 반의 키와 몸무게 사이에 양의 상관관계가 있다. 이 반에 키는 더 크지만 몸무게는 더 적은 학생 쌍이 있는 것도 가능한지, '가능' 또는 '불가능'으로 판단하면 □이다.",
+        "cAnswers": [
+          "가능"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가능",
+            "equivalentAnswers": [
+              "가능"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가능"
+          ]
+        ],
+        "proposalFingerprint": "c773bb4642e5eb3fd19e652c1381fab3261a1421a437999f1a1df1faf2fed8ec",
+        "cAfter": "한 반의 키와 몸무게 사이에 양의 상관관계가 있다. 이 반에 키는 더 크지만 몸무게는 더 적은 학생 쌍이 있는 것도 가능한지, '가능' 또는 '불가능'으로 판단하면 {가능}이다.",
+        "coreAfter": "양의 상관관계는 전체의 대체적인 {경향}을 나타낸다. 모든 자료가 반드시 그 경향을 따른다고 {단정할 수는 없다}. 경향과 반대인 자료가 있을 수도 있다.",
+        "coreReason": "예외의 존재 가능성과 예외가 반드시 있다는 주장을 구별한다.",
+        "bQuestion": {
+          "prompt": "키와 몸무게 사이에 양의 상관관계가 있는 반에서, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 말할 수 있는지 쓰고 이유를 쓰시오.",
+          "answer": "말할 수 없다. 상관관계는 전체의 대체적인 경향이므로 키가 더 크지만 몸무게는 더 적은 학생도 있을 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "말할 수 없다",
+                "언제나 그렇지는 않다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체의 대체적인 경향",
+                "경향과 반대인 학생이 있을 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 반의 키와 몸무게 사이에 양의 상관관계가 있다. 이 반에 키는 더 크지만 몸무게는 더 적은 학생 쌍이 있는 것도 가능한지, '가능' 또는 '불가능'으로 판단하면 {가능}이다.",
+          "acceptedAnswers": [
+            [
+              "가능"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m3-07-02-xc12",
+          "sourceIndex": 3690,
+          "proposalFingerprint": "c773bb4642e5eb3fd19e652c1381fab3261a1421a437999f1a1df1faf2fed8ec",
+          "learningRole": "reason",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.091Z",
+          "bReason": "'단정할 수는 없다'의 문법 복원을 버리고, 양의 상관관계와 개별 예외가 함께 가능한지 두 판단 중에서 고르게 한다.",
+          "cReason": "'단정할 수는 없다'의 문법 복원을 버리고, 양의 상관관계와 개별 예외가 함께 가능한지 두 판단 중에서 고르게 한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m3-07-02-xc12",
+        "grade": "중3",
+        "source": {
+          "id": "m3-07-02-xc12",
+          "section": "중3::7. 통계::산점도와 상관관계",
+          "term": "경향과 반대인 자료",
+          "kind": "성질",
+          "level": "중",
+          "definition": "양의 상관관계가 있어도 모든 자료가 그 경향을 따르는 것은 {아니다} — 경향과 반대인 점이 {있을} 수 있다."
+        },
+        "B": {
+          "prompt": "키와 몸무게 사이에 양의 상관관계가 있는 반에서, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 말할 수 있는지 쓰고 이유를 쓰시오.",
+          "answer": "말할 수 없다. 상관관계는 전체의 대체적인 경향이므로 키가 더 크지만 몸무게는 더 적은 학생도 있을 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "말할 수 없다",
+                "언제나 그렇지는 않다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체의 대체적인 경향",
+                "경향과 반대인 학생이 있을 수 있다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "한 반의 키와 몸무게 사이에 양의 상관관계가 있다. 이 반에 키는 더 크지만 몸무게는 더 적은 학생 쌍이 있는 것도 가능한지, '가능' 또는 '불가능'으로 판단하면 {가능}이다.",
+          "acceptedAnswers": [
+            [
+              "가능"
+            ]
+          ]
+        },
+        "goal": "상관관계는 전체 경향임을 이해",
+        "coreAfter": "양의 상관관계는 전체의 대체적인 {경향}을 나타낸다. 모든 자료가 반드시 그 경향을 따른다고 {단정할 수는 없다}. 경향과 반대인 자료가 있을 수도 있다.",
+        "coreReason": "예외의 존재 가능성과 예외가 반드시 있다는 주장을 구별한다.",
+        "hash": "e17a022c3688ec8ed53d1e8128377df5d8c22ce0822e00ed18650da42410d2f2"
+      },
+      "direct": {
+        "id": "m3-07-02-xc12",
+        "sourceIndex": 3690,
+        "proposalFingerprint": "c773bb4642e5eb3fd19e652c1381fab3261a1421a437999f1a1df1faf2fed8ec",
+        "learningRole": "reason",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T13:49:22.091Z",
+        "bReason": "'단정할 수는 없다'의 문법 복원을 버리고, 양의 상관관계와 개별 예외가 함께 가능한지 두 판단 중에서 고르게 한다.",
+        "cReason": "'단정할 수는 없다'의 문법 복원을 버리고, 양의 상관관계와 개별 예외가 함께 가능한지 두 판단 중에서 고르게 한다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m3-07-02-xc12",
+        "grade": "중3",
+        "source": {
+          "id": "m3-07-02-xc12",
+          "section": "중3::7. 통계::산점도와 상관관계",
+          "term": "경향과 반대인 자료",
+          "kind": "성질",
+          "level": "중",
+          "definition": "양의 상관관계가 있어도 모든 자료가 그 경향을 따르는 것은 {아니다} — 경향과 반대인 점이 {있을} 수 있다."
+        },
+        "B": {
+          "prompt": "키와 몸무게 사이에 양의 상관관계가 있는 반에서, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 말할 수 있는지 쓰고 이유를 쓰시오.",
+          "answer": "말할 수 없다. 상관관계는 전체의 대체적인 경향이므로 키가 더 크지만 몸무게는 더 적은 학생도 있을 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "말할 수 없다",
+                "언제나 그렇지는 않다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체의 대체적인 경향",
+                "경향과 반대인 학생이 있을 수 있다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "한 반의 키와 몸무게 사이에 양의 상관관계가 있다. 이 반에 키는 더 크지만 몸무게는 더 적은 학생 쌍이 있는 것도 가능한지, '가능' 또는 '불가능'으로 판단하면 {가능}이다.",
+          "acceptedAnswers": [
+            [
+              "가능"
+            ]
+          ]
+        },
+        "goal": "상관관계는 전체 경향임을 이해",
+        "coreAfter": "양의 상관관계는 전체의 대체적인 {경향}을 나타낸다. 모든 자료가 반드시 그 경향을 따른다고 {단정할 수는 없다}. 경향과 반대인 자료가 있을 수도 있다.",
+        "coreReason": "예외의 존재 가능성과 예외가 반드시 있다는 주장을 구별한다.",
+        "hash": "e17a022c3688ec8ed53d1e8128377df5d8c22ce0822e00ed18650da42410d2f2"
+      }
+    },
+    {
+      "id": "m3-07-02-xc18",
+      "scope": "middle",
+      "reason": "어미 '없다' 대신 새 점을 포함해 어느 범위를 살펴야 하는지 명시된 두 대상 중에서 선택하게 한다.",
+      "beforeRaw": {
+        "id": "m3-07-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "강한 양의 상관관계를 보이는 산점도에 경향에서 크게 벗어난 점 하나가 더해졌다. 상관관계가 항상 약해진다고 할 수 있는지 쓰고, 어떻게 판단해야 하는지 쓰시오.",
+        "bAnswer": "항상 약해진다고 할 수는 없다. 약해 보일 수 있지만 점을 더한 뒤의 전체 분포를 다시 살펴 판단해야 한다.",
+        "bGoal": "벗어난 점이 더해질 때의 판단",
+        "bReason": "'항상'을 판단하게 하여 전체 분포를 다시 보는 절차를 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "항상 그렇지는 않다",
+              "항상 약해진다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 분포를 다시 살핀다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "C 뒤 문장의 전체 분포 재검토 요구가 부정 판단의 방향을 미리 드러낸다. 후속 문장을 C에서 제거하여 추가점 하나라는 조건에서 항상 약해졌다는 주장의 성립 여부를 판단하게 한다. B와 일반 설명은 유지한다.",
+        "learningRole": "reason",
+        "roleReason": "전체 분포를 다시 보고 판단",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3696,
+        "part": "m3plus",
+        "sourceFingerprint": "41719db974e06fccbcd6df502b6fd4e23fc35b1b93caa81cbbf0681d177431b5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3696
+        },
+        "directReview": null,
+        "cMarkedSentence": "산점도에 전체 경향에서 크게 벗어난 점 하나가 더해졌다는 사실만으로, 상관관계가 반드시 약해졌다고 단정할 수는 {없다}.",
+        "cSlotAnswers": [
+          "없다"
+        ],
+        "cStudentSentence": "산점도에 전체 경향에서 크게 벗어난 점 하나가 더해졌다는 사실만으로, 상관관계가 반드시 약해졌다고 단정할 수는 □.",
+        "cAnswers": [
+          "없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "d424d9dfe1958ef7e1a3fce10d6393ce03b472c5bc6404a77b3a23dd37eca1a6",
+        "cAfter": "산점도에 전체 경향에서 크게 벗어난 점 하나가 더해졌다는 사실만으로, 상관관계가 반드시 약해졌다고 단정할 수는 {없다}."
+      },
+      "before": {
+        "id": "m3-07-02-xc18",
+        "grade": "중3",
+        "source": {
+          "id": "m3-07-02-xc18",
+          "section": "중3::7. 통계::산점도와 상관관계",
+          "term": "경향에서 벗어난 점",
+          "kind": "성질",
+          "level": "상",
+          "definition": "경향에서 크게 벗어난 점이 더해지면 상관관계가 {약해} 보일 수 있지만 언제나 그런 것은 아니다 — 점을 더한 뒤의 {전체} 분포를 다시 살핀다."
+        },
+        "B": {
+          "prompt": "강한 양의 상관관계를 보이는 산점도에 경향에서 크게 벗어난 점 하나가 더해졌다. 상관관계가 항상 약해진다고 할 수 있는지 쓰고, 어떻게 판단해야 하는지 쓰시오.",
+          "answer": "항상 약해진다고 할 수는 없다. 약해 보일 수 있지만 점을 더한 뒤의 전체 분포를 다시 살펴 판단해야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "항상 그렇지는 않다",
+                "항상 약해진다고 할 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체 분포를 다시 살핀다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "산점도에 전체 경향에서 크게 벗어난 점 하나가 더해졌다는 사실만으로, 상관관계가 반드시 약해졌다고 단정할 수는 {없다}.",
+          "acceptedAnswers": [
+            [
+              "없다"
+            ]
+          ]
+        },
+        "goal": "벗어난 점이 더해질 때의 판단",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "0b7fec07f79dc67efde8e256f5722ef38849936fc717644b9637e923d40f0b14"
+      },
+      "proposedRaw": {
+        "id": "m3-07-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "강한 양의 상관관계를 보이는 산점도에 경향에서 크게 벗어난 점 하나가 더해졌다. 상관관계가 항상 약해진다고 할 수 있는지 쓰고, 어떻게 판단해야 하는지 쓰시오.",
+        "bAnswer": "항상 약해진다고 할 수는 없다. 약해 보일 수 있지만 점을 더한 뒤의 전체 분포를 다시 살펴 판단해야 한다.",
+        "bGoal": "벗어난 점이 더해질 때의 판단",
+        "bReason": "'항상'을 판단하게 하여 전체 분포를 다시 보는 절차를 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "항상 그렇지는 않다",
+              "항상 약해진다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 분포를 다시 살핀다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "어미 '없다' 대신 새 점을 포함해 어느 범위를 살펴야 하는지 명시된 두 대상 중에서 선택하게 한다.",
+        "learningRole": "reason",
+        "roleReason": "전체 분포를 다시 보고 판단",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3696,
+        "part": "m3plus",
+        "sourceFingerprint": "41719db974e06fccbcd6df502b6fd4e23fc35b1b93caa81cbbf0681d177431b5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3696
+        },
+        "directReview": null,
+        "cMarkedSentence": "산점도에 새로운 점 하나가 더해진 뒤 상관관계를 판단하려면, '새 점 하나'와 '새 점을 포함한 전체 분포' 중 {새 점을 포함한 전체 분포}를 살펴야 한다.",
+        "cSlotAnswers": [
+          "새 점을 포함한 전체 분포"
+        ],
+        "cStudentSentence": "산점도에 새로운 점 하나가 더해진 뒤 상관관계를 판단하려면, '새 점 하나'와 '새 점을 포함한 전체 분포' 중 □를 살펴야 한다.",
+        "cAnswers": [
+          "새 점을 포함한 전체 분포"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "새 점을 포함한 전체 분포",
+            "equivalentAnswers": [
+              "새 점을 포함한 전체 분포",
+              "전체 분포",
+              "전체분포"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "새 점을 포함한 전체 분포",
+            "전체 분포",
+            "전체분포"
+          ]
+        ],
+        "proposalFingerprint": "d601fe95cd2fb04ee7a19ab9d4618107c6cd793dc1c85f0315b75dc4a5aab24e",
+        "cAfter": "산점도에 새로운 점 하나가 더해진 뒤 상관관계를 판단하려면, '새 점 하나'와 '새 점을 포함한 전체 분포' 중 {새 점을 포함한 전체 분포}를 살펴야 한다.",
+        "bQuestion": {
+          "prompt": "강한 양의 상관관계를 보이는 산점도에 경향에서 크게 벗어난 점 하나가 더해졌다. 상관관계가 항상 약해진다고 할 수 있는지 쓰고, 어떻게 판단해야 하는지 쓰시오.",
+          "answer": "항상 약해진다고 할 수는 없다. 약해 보일 수 있지만 점을 더한 뒤의 전체 분포를 다시 살펴 판단해야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "항상 그렇지는 않다",
+                "항상 약해진다고 할 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체 분포를 다시 살핀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "산점도에 새로운 점 하나가 더해진 뒤 상관관계를 판단하려면, '새 점 하나'와 '새 점을 포함한 전체 분포' 중 {새 점을 포함한 전체 분포}를 살펴야 한다.",
+          "acceptedAnswers": [
+            [
+              "새 점을 포함한 전체 분포",
+              "전체 분포",
+              "전체분포"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m3-07-02-xc18",
+          "sourceIndex": 3696,
+          "proposalFingerprint": "d601fe95cd2fb04ee7a19ab9d4618107c6cd793dc1c85f0315b75dc4a5aab24e",
+          "learningRole": "reason",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.093Z",
+          "bReason": "어미 '없다' 대신 새 점을 포함해 어느 범위를 살펴야 하는지 명시된 두 대상 중에서 선택하게 한다.",
+          "cReason": "어미 '없다' 대신 새 점을 포함해 어느 범위를 살펴야 하는지 명시된 두 대상 중에서 선택하게 한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m3-07-02-xc18",
+        "grade": "중3",
+        "source": {
+          "id": "m3-07-02-xc18",
+          "section": "중3::7. 통계::산점도와 상관관계",
+          "term": "경향에서 벗어난 점",
+          "kind": "성질",
+          "level": "상",
+          "definition": "경향에서 크게 벗어난 점이 더해지면 상관관계가 {약해} 보일 수 있지만 언제나 그런 것은 아니다 — 점을 더한 뒤의 {전체} 분포를 다시 살핀다."
+        },
+        "B": {
+          "prompt": "강한 양의 상관관계를 보이는 산점도에 경향에서 크게 벗어난 점 하나가 더해졌다. 상관관계가 항상 약해진다고 할 수 있는지 쓰고, 어떻게 판단해야 하는지 쓰시오.",
+          "answer": "항상 약해진다고 할 수는 없다. 약해 보일 수 있지만 점을 더한 뒤의 전체 분포를 다시 살펴 판단해야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "항상 그렇지는 않다",
+                "항상 약해진다고 할 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체 분포를 다시 살핀다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "산점도에 새로운 점 하나가 더해진 뒤 상관관계를 판단하려면, '새 점 하나'와 '새 점을 포함한 전체 분포' 중 {새 점을 포함한 전체 분포}를 살펴야 한다.",
+          "acceptedAnswers": [
+            [
+              "새 점을 포함한 전체 분포",
+              "전체 분포",
+              "전체분포"
+            ]
+          ]
+        },
+        "goal": "벗어난 점이 더해질 때의 판단",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "c46032277448b39a02b13cbe534426311af51bac0e15a288476f1873dcf72261"
+      },
+      "direct": {
+        "id": "m3-07-02-xc18",
+        "sourceIndex": 3696,
+        "proposalFingerprint": "d601fe95cd2fb04ee7a19ab9d4618107c6cd793dc1c85f0315b75dc4a5aab24e",
+        "learningRole": "reason",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T13:49:22.093Z",
+        "bReason": "어미 '없다' 대신 새 점을 포함해 어느 범위를 살펴야 하는지 명시된 두 대상 중에서 선택하게 한다.",
+        "cReason": "어미 '없다' 대신 새 점을 포함해 어느 범위를 살펴야 하는지 명시된 두 대상 중에서 선택하게 한다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m3-07-02-xc18",
+        "grade": "중3",
+        "source": {
+          "id": "m3-07-02-xc18",
+          "section": "중3::7. 통계::산점도와 상관관계",
+          "term": "경향에서 벗어난 점",
+          "kind": "성질",
+          "level": "상",
+          "definition": "경향에서 크게 벗어난 점이 더해지면 상관관계가 {약해} 보일 수 있지만 언제나 그런 것은 아니다 — 점을 더한 뒤의 {전체} 분포를 다시 살핀다."
+        },
+        "B": {
+          "prompt": "강한 양의 상관관계를 보이는 산점도에 경향에서 크게 벗어난 점 하나가 더해졌다. 상관관계가 항상 약해진다고 할 수 있는지 쓰고, 어떻게 판단해야 하는지 쓰시오.",
+          "answer": "항상 약해진다고 할 수는 없다. 약해 보일 수 있지만 점을 더한 뒤의 전체 분포를 다시 살펴 판단해야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "항상 그렇지는 않다",
+                "항상 약해진다고 할 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체 분포를 다시 살핀다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "산점도에 새로운 점 하나가 더해진 뒤 상관관계를 판단하려면, '새 점 하나'와 '새 점을 포함한 전체 분포' 중 {새 점을 포함한 전체 분포}를 살펴야 한다.",
+          "acceptedAnswers": [
+            [
+              "새 점을 포함한 전체 분포",
+              "전체 분포",
+              "전체분포"
+            ]
+          ]
+        },
+        "goal": "벗어난 점이 더해질 때의 판단",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "c46032277448b39a02b13cbe534426311af51bac0e15a288476f1873dcf72261"
+      }
+    },
+    {
+      "id": "m1-07-04-xc19",
+      "scope": "middle",
+      "reason": "확인할 수 없는 앞 문항 중복 사유를 쓰지 않는다. 실제 밑면에서 제거된 부분과 새로 생긴 안쪽 옆면을 설명하는 B를 복원하고 C의 수치 확인과 구별한다.",
+      "beforeRaw": {
+        "id": "m1-07-04-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "밑넓이에서 구멍을 빼고 안쪽 옆넓이를 더하는 내용이 이미 앞 문항에 있다.",
+        "cDecision": "rewrite",
+        "cAfter": "반지름 $3$, 높이 $2$인 원기둥의 회전축을 따라 반지름 $1$인 원기둥 구멍을 끝까지 뚫었다. 남은 한 밑면의 넓이는 {$8\\pi$}, 구멍 안쪽까지 포함한 옆넓이는 {$16\\pi$}이다.",
+        "cAnswers": [
+          "$8\\pi$",
+          "$16\\pi$"
+        ],
+        "cReason": "C의 조사에 맞는 뺀·더한을 복원하는 대신 구멍을 뚫었을 때 실제 밑넓이와 안쪽 면을 포함한 옆넓이를 계산하게 한다. B 제외와 일반 방법은 유지한다.",
+        "exclusionReason": "B 제외: m1-07-04-c6의 B가 구멍 뚫린 기둥의 밑넓이 빼기와 안쪽 옆넓이 더하기를 모두 묻고 있어 목표가 중복된다.",
+        "learningRole": "procedure",
+        "roleReason": "구멍 뚫린 기둥의 밑넓이·옆넓이",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1925,
+        "part": "m1plus",
+        "sourceFingerprint": "76bdb58c66cdb4c79a2e4541998840c51eba09a6b5d9d909116eafe99ba68602",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1925
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "반지름 $3$, 높이 $2$인 원기둥의 회전축을 따라 반지름 $1$인 원기둥 구멍을 끝까지 뚫었다. 남은 한 밑면의 넓이는 {$8\\pi$}, 구멍 안쪽까지 포함한 옆넓이는 {$16\\pi$}이다.",
+        "cSlotAnswers": [
+          "$8\\pi$",
+          "$16\\pi$"
+        ],
+        "cStudentSentence": "반지름 $3$, 높이 $2$인 원기둥의 회전축을 따라 반지름 $1$인 원기둥 구멍을 끝까지 뚫었다. 남은 한 밑면의 넓이는 □, 구멍 안쪽까지 포함한 옆넓이는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$8\\pi$",
+            "equivalentAnswers": [
+              "$8\\pi$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$16\\pi$",
+            "equivalentAnswers": [
+              "$16\\pi$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$8\\pi$"
+          ],
+          [
+            "$16\\pi$"
+          ]
+        ],
+        "proposalFingerprint": "de5b40bf422f49a95a321008dc04b581c8954b32b7b2b2fe952bf366ceed585e"
+      },
+      "before": {
+        "id": "m1-07-04-xc19",
+        "grade": "중1",
+        "source": {
+          "id": "m1-07-04-xc19",
+          "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+          "term": "구멍 뚫린 기둥의 밑넓이",
+          "kind": "방법",
+          "level": "상",
+          "definition": "밑면에 수직인 원기둥 모양 구멍이 두 밑면을 관통하면, 밑넓이는 바깥 밑면에서 {구멍}의 넓이를 빼고, 옆넓이는 바깥과 {안쪽}을 더한다.",
+          "example": {
+            "prompt": "반지름 $3$인 원기둥에 회전축을 따라 반지름 $1$인 구멍을 끝까지 뚫었다. 한 밑면의 넓이는?",
+            "answer": "$8\\pi$"
+          }
+        },
+        "B": {
+          "excluded": "밑넓이에서 구멍을 빼고 안쪽 옆넓이를 더하는 내용이 이미 앞 문항에 있다."
+        },
+        "C": {
+          "sentence": "반지름 $3$, 높이 $2$인 원기둥의 회전축을 따라 반지름 $1$인 원기둥 구멍을 끝까지 뚫었다. 남은 한 밑면의 넓이는 {$8\\pi$}, 구멍 안쪽까지 포함한 옆넓이는 {$16\\pi$}이다.",
+          "acceptedAnswers": [
+            [
+              "$8\\pi$"
+            ],
+            [
+              "$16\\pi$"
+            ]
+          ]
+        },
+        "goal": "procedure",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "c4e1a5be48f442d8ab64394543948db02beb6ca70d9769c72ad3825e7de51210"
+      },
+      "proposedRaw": {
+        "id": "m1-07-04-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "원기둥의 회전축을 따라 바깥 반지름보다 작은 원기둥 모양의 구멍을 두 밑면까지 관통해 뚫었다. 남은 한 밑면의 넓이는 바깥 원의 넓이와 구멍 단면의 넓이를 어떻게 계산해야 하는가? 또 남은 입체의 옆넓이에는 어느 옆면들을 포함해야 하는가? 각 이유도 쓰시오.",
+        "bAnswer": "한 밑면에서는 없어진 구멍 부분을 빼야 하므로 바깥 원의 넓이에서 구멍 단면의 넓이를 뺀다. 옆넓이는 바깥쪽 원기둥 옆면과 구멍 안쪽의 원기둥 옆면을 더한다. 구멍 안쪽에도 드러난 옆면이 생기기 때문이다.",
+        "bGoal": "구멍이 있는 원기둥에서 밑넓이의 뺄셈과 옆넓이의 덧셈 이유를 설명한다.",
+        "bReason": "확인할 수 없는 앞 문항 중복 사유를 쓰지 않는다. 실제 밑면에서 제거된 부분과 새로 생긴 안쪽 옆면을 설명하는 B를 복원하고 C의 수치 확인과 구별한다.",
+        "cDecision": "rewrite",
+        "cAfter": "반지름 $3$, 높이 $2$인 원기둥의 회전축을 따라 반지름 $1$인 원기둥 구멍을 끝까지 뚫었다. 남은 한 밑면의 넓이는 {$8\\pi$}, 구멍 안쪽까지 포함한 옆넓이는 {$16\\pi$}이다.",
+        "cAnswers": [
+          "$8\\pi$",
+          "$16\\pi$"
+        ],
+        "cReason": "C의 조사에 맞는 뺀·더한을 복원하는 대신 구멍을 뚫었을 때 실제 밑넓이와 안쪽 면을 포함한 옆넓이를 계산하게 한다. B 제외와 일반 방법은 유지한다.",
+        "exclusionReason": "B 제외: m1-07-04-c6의 B가 구멍 뚫린 기둥의 밑넓이 빼기와 안쪽 옆넓이 더하기를 모두 묻고 있어 목표가 중복된다.",
+        "learningRole": "procedure",
+        "roleReason": "구멍 뚫린 기둥의 밑넓이·옆넓이",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1925,
+        "part": "m1plus",
+        "sourceFingerprint": "76bdb58c66cdb4c79a2e4541998840c51eba09a6b5d9d909116eafe99ba68602",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1925
+        },
+        "directReview": null,
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑면에서 구멍 부분이 없어졌으므로 바깥 원의 넓이에서 구멍 단면의 넓이를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "구멍 안쪽에도 드러난 면이 생기므로 바깥쪽과 안쪽 원기둥 옆면의 넓이를 더한다"
+            ]
+          }
+        ],
+        "cMarkedSentence": "반지름 $3$, 높이 $2$인 원기둥의 회전축을 따라 반지름 $1$인 원기둥 구멍을 끝까지 뚫었다. 남은 한 밑면의 넓이는 {$8\\pi$}, 구멍 안쪽까지 포함한 옆넓이는 {$16\\pi$}이다.",
+        "cSlotAnswers": [
+          "$8\\pi$",
+          "$16\\pi$"
+        ],
+        "cStudentSentence": "반지름 $3$, 높이 $2$인 원기둥의 회전축을 따라 반지름 $1$인 원기둥 구멍을 끝까지 뚫었다. 남은 한 밑면의 넓이는 □, 구멍 안쪽까지 포함한 옆넓이는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$8\\pi$",
+            "equivalentAnswers": [
+              "$8\\pi$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$16\\pi$",
+            "equivalentAnswers": [
+              "$16\\pi$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$8\\pi$"
+          ],
+          [
+            "$16\\pi$"
+          ]
+        ],
+        "proposalFingerprint": "c51ca5c78a8b5f6b37ee96979e152d15f74fe14b24e05c8859867e9fe71fe9f5",
+        "bQuestion": {
+          "prompt": "원기둥의 회전축을 따라 바깥 반지름보다 작은 원기둥 모양의 구멍을 두 밑면까지 관통해 뚫었다. 남은 한 밑면의 넓이는 바깥 원의 넓이와 구멍 단면의 넓이를 어떻게 계산해야 하는가? 또 남은 입체의 옆넓이에는 어느 옆면들을 포함해야 하는가? 각 이유도 쓰시오.",
+          "answer": "한 밑면에서는 없어진 구멍 부분을 빼야 하므로 바깥 원의 넓이에서 구멍 단면의 넓이를 뺀다. 옆넓이는 바깥쪽 원기둥 옆면과 구멍 안쪽의 원기둥 옆면을 더한다. 구멍 안쪽에도 드러난 옆면이 생기기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "밑면에서 구멍 부분이 없어졌으므로 바깥 원의 넓이에서 구멍 단면의 넓이를 뺀다"
+              ]
+            },
+            {
+              "anyOf": [
+                "구멍 안쪽에도 드러난 면이 생기므로 바깥쪽과 안쪽 원기둥 옆면의 넓이를 더한다"
+              ]
+            }
+          ]
+        },
+        "editorialReview": {
+          "id": "m1-07-04-xc19",
+          "sourceIndex": 1925,
+          "proposalFingerprint": "c51ca5c78a8b5f6b37ee96979e152d15f74fe14b24e05c8859867e9fe71fe9f5",
+          "learningRole": "procedure",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.094Z",
+          "bReason": "확인할 수 없는 앞 문항 중복 사유를 쓰지 않는다. 실제 밑면에서 제거된 부분과 새로 생긴 안쪽 옆면을 설명하는 B를 복원하고 C의 수치 확인과 구별한다.",
+          "cReason": "확인할 수 없는 앞 문항 중복 사유를 쓰지 않는다. 실제 밑면에서 제거된 부분과 새로 생긴 안쪽 옆면을 설명하는 B를 복원하고 C의 수치 확인과 구별한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m1-07-04-xc19",
+        "grade": "중1",
+        "source": {
+          "id": "m1-07-04-xc19",
+          "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+          "term": "구멍 뚫린 기둥의 밑넓이",
+          "kind": "방법",
+          "level": "상",
+          "definition": "밑면에 수직인 원기둥 모양 구멍이 두 밑면을 관통하면, 밑넓이는 바깥 밑면에서 {구멍}의 넓이를 빼고, 옆넓이는 바깥과 {안쪽}을 더한다.",
+          "example": {
+            "prompt": "반지름 $3$인 원기둥에 회전축을 따라 반지름 $1$인 구멍을 끝까지 뚫었다. 한 밑면의 넓이는?",
+            "answer": "$8\\pi$"
+          }
+        },
+        "B": {
+          "prompt": "원기둥의 회전축을 따라 바깥 반지름보다 작은 원기둥 모양의 구멍을 두 밑면까지 관통해 뚫었다. 남은 한 밑면의 넓이는 바깥 원의 넓이와 구멍 단면의 넓이를 어떻게 계산해야 하는가? 또 남은 입체의 옆넓이에는 어느 옆면들을 포함해야 하는가? 각 이유도 쓰시오.",
+          "answer": "한 밑면에서는 없어진 구멍 부분을 빼야 하므로 바깥 원의 넓이에서 구멍 단면의 넓이를 뺀다. 옆넓이는 바깥쪽 원기둥 옆면과 구멍 안쪽의 원기둥 옆면을 더한다. 구멍 안쪽에도 드러난 옆면이 생기기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "밑면에서 구멍 부분이 없어졌으므로 바깥 원의 넓이에서 구멍 단면의 넓이를 뺀다"
+              ]
+            },
+            {
+              "anyOf": [
+                "구멍 안쪽에도 드러난 면이 생기므로 바깥쪽과 안쪽 원기둥 옆면의 넓이를 더한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "반지름 $3$, 높이 $2$인 원기둥의 회전축을 따라 반지름 $1$인 원기둥 구멍을 끝까지 뚫었다. 남은 한 밑면의 넓이는 {$8\\pi$}, 구멍 안쪽까지 포함한 옆넓이는 {$16\\pi$}이다.",
+          "acceptedAnswers": [
+            [
+              "$8\\pi$"
+            ],
+            [
+              "$16\\pi$"
+            ]
+          ]
+        },
+        "goal": "구멍이 있는 원기둥에서 밑넓이의 뺄셈과 옆넓이의 덧셈 이유를 설명한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "509ade76c1d4e760e6bf03c7f3b2ea6727a0f832e8fd7a5a34d22bb45f940bdf"
+      },
+      "direct": {
+        "id": "m1-07-04-xc19",
+        "sourceIndex": 1925,
+        "proposalFingerprint": "c51ca5c78a8b5f6b37ee96979e152d15f74fe14b24e05c8859867e9fe71fe9f5",
+        "learningRole": "procedure",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T13:49:22.094Z",
+        "bReason": "확인할 수 없는 앞 문항 중복 사유를 쓰지 않는다. 실제 밑면에서 제거된 부분과 새로 생긴 안쪽 옆면을 설명하는 B를 복원하고 C의 수치 확인과 구별한다.",
+        "cReason": "확인할 수 없는 앞 문항 중복 사유를 쓰지 않는다. 실제 밑면에서 제거된 부분과 새로 생긴 안쪽 옆면을 설명하는 B를 복원하고 C의 수치 확인과 구별한다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m1-07-04-xc19",
+        "grade": "중1",
+        "source": {
+          "id": "m1-07-04-xc19",
+          "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+          "term": "구멍 뚫린 기둥의 밑넓이",
+          "kind": "방법",
+          "level": "상",
+          "definition": "밑면에 수직인 원기둥 모양 구멍이 두 밑면을 관통하면, 밑넓이는 바깥 밑면에서 {구멍}의 넓이를 빼고, 옆넓이는 바깥과 {안쪽}을 더한다.",
+          "example": {
+            "prompt": "반지름 $3$인 원기둥에 회전축을 따라 반지름 $1$인 구멍을 끝까지 뚫었다. 한 밑면의 넓이는?",
+            "answer": "$8\\pi$"
+          }
+        },
+        "B": {
+          "prompt": "원기둥의 회전축을 따라 바깥 반지름보다 작은 원기둥 모양의 구멍을 두 밑면까지 관통해 뚫었다. 남은 한 밑면의 넓이는 바깥 원의 넓이와 구멍 단면의 넓이를 어떻게 계산해야 하는가? 또 남은 입체의 옆넓이에는 어느 옆면들을 포함해야 하는가? 각 이유도 쓰시오.",
+          "answer": "한 밑면에서는 없어진 구멍 부분을 빼야 하므로 바깥 원의 넓이에서 구멍 단면의 넓이를 뺀다. 옆넓이는 바깥쪽 원기둥 옆면과 구멍 안쪽의 원기둥 옆면을 더한다. 구멍 안쪽에도 드러난 옆면이 생기기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "밑면에서 구멍 부분이 없어졌으므로 바깥 원의 넓이에서 구멍 단면의 넓이를 뺀다"
+              ]
+            },
+            {
+              "anyOf": [
+                "구멍 안쪽에도 드러난 면이 생기므로 바깥쪽과 안쪽 원기둥 옆면의 넓이를 더한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "반지름 $3$, 높이 $2$인 원기둥의 회전축을 따라 반지름 $1$인 원기둥 구멍을 끝까지 뚫었다. 남은 한 밑면의 넓이는 {$8\\pi$}, 구멍 안쪽까지 포함한 옆넓이는 {$16\\pi$}이다.",
+          "acceptedAnswers": [
+            [
+              "$8\\pi$"
+            ],
+            [
+              "$16\\pi$"
+            ]
+          ]
+        },
+        "goal": "구멍이 있는 원기둥에서 밑넓이의 뺄셈과 옆넓이의 덧셈 이유를 설명한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "509ade76c1d4e760e6bf03c7f3b2ea6727a0f832e8fd7a5a34d22bb45f940bdf"
+      }
+    },
+    {
+      "id": "m2-09-02-xc13",
+      "scope": "middle",
+      "reason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+      "beforeRaw": {
+        "id": "m2-09-02-xc13",
+        "learningRole": "procedure",
+        "roleReason": "첫 카드와 남은 카드를 차례로 골라 곱하기",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+        "bAnswer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\times3=12$",
+              "$12$개"
+            ]
+          }
+        ],
+        "bGoal": "카드로 두 자리 수를 만드는 경우의 수",
+        "bReason": "B가 각 곱셈 수의 뜻을 요청하는데 4×3만으로 기준을 충족하는 대안이 있어 어긋난다. 십의 자리 후보4개와 사용 후 남은 일의 자리 후보3개라는 두 뜻을 명시적으로 필수로 한다. C와 일반 설명은 유지한다.",
+        "exampleNeeded": true,
+        "cDecision": "keep",
+        "cReason": "첫 카드를 고른 뒤 무엇을 고르는지 묻는 짧고 분명한 빈칸이다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3208,
+        "part": "m2plus",
+        "sourceFingerprint": "ba6199fe723c29412488162e904d08e6d7482145acffd93f0beb25315826c31f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3208
+        },
+        "directReview": null,
+        "cFrozenSentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 □를 차례로 고른다.",
+        "cFrozenDefinition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다.",
+        "cFrozenAnswers": [
+          "남은 카드"
+        ],
+        "cMarkedSentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다.",
+        "cSlotAnswers": [
+          "남은 카드"
+        ],
+        "cStudentSentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 □를 차례로 고른다.",
+        "cAnswers": [
+          "남은 카드"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "남은 카드",
+            "equivalentAnswers": [
+              "남은 카드"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "남은 카드"
+          ]
+        ],
+        "proposalFingerprint": "4c14aba4a624e0cd8b970a62d3f4c359a50223b325a88397ea2b8201e0545537"
+      },
+      "before": {
+        "id": "m2-09-02-xc13",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-02-xc13",
+          "section": "중2::9. 확률::여러 가지 경우의 수",
+          "term": "카드 수를 만드는 곱셈",
+          "kind": "방법",
+          "level": "중",
+          "definition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다."
+        },
+        "B": {
+          "prompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+          "answer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4\\times3=12$",
+                "$12$개"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다.",
+          "acceptedAnswers": [
+            [
+              "남은 카드"
+            ]
+          ]
+        },
+        "goal": "카드로 두 자리 수를 만드는 경우의 수",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "26f0427a1085d7d66057859968e96750829ee94e5365998d1801f75e82bbcb9e"
+      },
+      "proposedRaw": {
+        "id": "m2-09-02-xc13",
+        "learningRole": "procedure",
+        "roleReason": "첫 카드와 남은 카드를 차례로 골라 곱하기",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+        "bAnswer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\times3=12$",
+              "$12$개"
+            ]
+          }
+        ],
+        "bGoal": "카드로 두 자리 수를 만드는 경우의 수",
+        "bReason": "B가 각 곱셈 수의 뜻을 요청하는데 4×3만으로 기준을 충족하는 대안이 있어 어긋난다. 십의 자리 후보4개와 사용 후 남은 일의 자리 후보3개라는 두 뜻을 명시적으로 필수로 한다. C와 일반 설명은 유지한다.",
+        "exampleNeeded": true,
+        "cDecision": "rewrite",
+        "cReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3208,
+        "part": "m2plus",
+        "sourceFingerprint": "ba6199fe723c29412488162e904d08e6d7482145acffd93f0beb25315826c31f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3208
+        },
+        "directReview": null,
+        "cFrozenSentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 □를 차례로 고른다.",
+        "cFrozenDefinition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다.",
+        "cFrozenAnswers": [
+          "남은 카드"
+        ],
+        "cMarkedSentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+        "cSlotAnswers": [
+          "$3$",
+          "$12$"
+        ],
+        "cStudentSentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 □장이다. 만들 수 있는 두 자리 수는 모두 □가지이다.",
+        "cAnswers": [
+          "$3$",
+          "$12$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$",
+              "3"
+            ]
+          },
+          {
+            "index": 1,
+            "answer": "$12$",
+            "equivalentAnswers": [
+              "$12$",
+              "12"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3$",
+            "3"
+          ],
+          [
+            "$12$",
+            "12"
+          ]
+        ],
+        "proposalFingerprint": "1a75197031d833e4a86a7a5327057a8329da51ebaffe2fda50c4fa5ac11f506e",
+        "bQuestion": {
+          "prompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+          "answer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4\\times3=12$",
+                "$12$개"
+              ]
+            }
+          ]
+        },
+        "cAfter": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+        "clozeQuestion": {
+          "sentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "3"
+            ],
+            [
+              "$12$",
+              "12"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-09-02-xc13",
+          "sourceIndex": 3208,
+          "proposalFingerprint": "1a75197031d833e4a86a7a5327057a8329da51ebaffe2fda50c4fa5ac11f506e",
+          "learningRole": "procedure",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.096Z",
+          "bReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+          "cReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-09-02-xc13",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-02-xc13",
+          "section": "중2::9. 확률::여러 가지 경우의 수",
+          "term": "카드 수를 만드는 곱셈",
+          "kind": "방법",
+          "level": "중",
+          "definition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다."
+        },
+        "B": {
+          "prompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+          "answer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4\\times3=12$",
+                "$12$개"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "3"
+            ],
+            [
+              "$12$",
+              "12"
+            ]
+          ]
+        },
+        "goal": "카드로 두 자리 수를 만드는 경우의 수",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "6753a7c0a44500ba53af16cba668bd3fa15d6978e063b694c8d952474ad9fac1"
+      },
+      "direct": {
+        "id": "m2-09-02-xc13",
+        "sourceIndex": 3208,
+        "proposalFingerprint": "1a75197031d833e4a86a7a5327057a8329da51ebaffe2fda50c4fa5ac11f506e",
+        "learningRole": "procedure",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T13:49:22.096Z",
+        "bReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+        "cReason": "임의 명사 '남은 카드'를 복원하지 않고, 카드를 다시 쓰지 않을 때 실제 선택 수가 줄어드는 곱셈 관계를 묻는다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m2-09-02-xc13",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-02-xc13",
+          "section": "중2::9. 확률::여러 가지 경우의 수",
+          "term": "카드 수를 만드는 곱셈",
+          "kind": "방법",
+          "level": "중",
+          "definition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다."
+        },
+        "B": {
+          "prompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+          "answer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십의 자리의 후보는 $4$가지이고 일의 자리의 후보는 사용한 한 장을 뺀 $3$가지이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4\\times3=12$",
+                "$12$개"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드로 두 자리 수를 만들고, 같은 카드는 다시 쓰지 않는다. 십의 자리 카드를 고른 뒤 일의 자리에 고를 수 있는 카드는 {$3$}장이다. 만들 수 있는 두 자리 수는 모두 {$12$}가지이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "3"
+            ],
+            [
+              "$12$",
+              "12"
+            ]
+          ]
+        },
+        "goal": "카드로 두 자리 수를 만드는 경우의 수",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "6753a7c0a44500ba53af16cba668bd3fa15d6978e063b694c8d952474ad9fac1"
+      }
+    },
+    {
+      "id": "m2-09-04-xc1",
+      "scope": "middle",
+      "reason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+      "beforeRaw": {
+        "id": "m2-09-04-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+        "bAnswer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+        "bGoal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+        "bReason": "겹친 결과와 이중 계산은 같은 오류 이유를 이루므로 하나의 필수 의미로 묶는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+              "겹친 결과를 두 번 세기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac23$",
+              "$\\frac46$"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cReason": "같은 배타 사건 조건의 C 중복 제외를 유지한다.",
+        "exclusionReason": "배타 사건 합 조건의 C 중복 제외다.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "겹치는 경우 먼저 확인",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 3246,
+        "part": "m2plus",
+        "sourceFingerprint": "eeede5a987f3d08a87a635d2b692d7efe1d0c858d9826817b944e27922db3982",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3246
+        },
+        "directReview": null,
+        "proposalFingerprint": "8ef7ac568318454f75c3dec34f687310ed0f047ff21066140575ed994fd1544a",
+        "coreAfter": null,
+        "coreReason": null,
+        "cAfter": null,
+        "cMarkedSentence": null,
+        "cStudentSentence": null,
+        "cAnswers": null,
+        "cSlotAnswers": null,
+        "cAcceptedAnswers": null,
+        "cSlots": null
+      },
+      "before": {
+        "id": "m2-09-04-xc1",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-04-xc1",
+          "section": "중2::9. 확률::확률의 계산",
+          "term": "덧셈 전에 겹침 확인",
+          "kind": "방법",
+          "level": "하",
+          "definition": "둘 중 하나가 일어날 확률을 더해서 구하기 전에는 두 사건이 {함께 일어날 수 없는지} 확인한다."
+        },
+        "B": {
+          "prompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+          "answer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+                "겹친 결과를 두 번 세기 때문이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac23$",
+                "$\\frac46$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "같은 배타 사건 조건의 C 중복 제외를 유지한다."
+        },
+        "goal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "1dea3d87fc98ee63ca84c741e02dd4f6257af44b0b6286a5d531b2a36f1d8c33"
+      },
+      "proposedRaw": {
+        "id": "m2-09-04-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+        "bAnswer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+        "bGoal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+        "bReason": "겹친 결과와 이중 계산은 같은 오류 이유를 이루므로 하나의 필수 의미로 묶는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+              "겹친 결과를 두 번 세기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac23$",
+              "$\\frac46$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+        "exclusionReason": "배타 사건 합 조건의 C 중복 제외다.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "겹치는 경우 먼저 확인",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 3246,
+        "part": "m2plus",
+        "sourceFingerprint": "eeede5a987f3d08a87a635d2b692d7efe1d0c858d9826817b944e27922db3982",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3246
+        },
+        "directReview": null,
+        "proposalFingerprint": "b625ff3f951d89dd6227c32d133e765144d20680cbe5379ca798e3eb8c96f461",
+        "coreAfter": null,
+        "coreReason": null,
+        "cAfter": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+        "cMarkedSentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+        "cStudentSentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 □이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 □번 세게 된다.",
+        "cAnswers": [
+          "$6$",
+          "$2$"
+        ],
+        "cSlotAnswers": [
+          "$6$",
+          "$2$"
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$6$",
+            "6"
+          ],
+          [
+            "$2$",
+            "2"
+          ]
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$6$",
+            "equivalentAnswers": [
+              "$6$",
+              "6"
+            ]
+          },
+          {
+            "index": 1,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$",
+              "2"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+          "answer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+                "겹친 결과를 두 번 세기 때문이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac23$",
+                "$\\frac46$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "6"
+            ],
+            [
+              "$2$",
+              "2"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-09-04-xc1",
+          "sourceIndex": 3246,
+          "proposalFingerprint": "b625ff3f951d89dd6227c32d133e765144d20680cbe5379ca798e3eb8c96f461",
+          "learningRole": "procedure",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:22.097Z",
+          "bReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+          "cReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-09-04-xc1",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-04-xc1",
+          "section": "중2::9. 확률::확률의 계산",
+          "term": "덧셈 전에 겹침 확인",
+          "kind": "방법",
+          "level": "하",
+          "definition": "둘 중 하나가 일어날 확률을 더해서 구하기 전에는 두 사건이 {함께 일어날 수 없는지} 확인한다."
+        },
+        "B": {
+          "prompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+          "answer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+                "겹친 결과를 두 번 세기 때문이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac23$",
+                "$\\frac46$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "6"
+            ],
+            [
+              "$2$",
+              "2"
+            ]
+          ]
+        },
+        "goal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "9d67beab47f906d2be63e7cf936621a3dea63b47cc9cf52c34b150d0f9a377ff"
+      },
+      "direct": {
+        "id": "m2-09-04-xc1",
+        "sourceIndex": 3246,
+        "proposalFingerprint": "b625ff3f951d89dd6227c32d133e765144d20680cbe5379ca798e3eb8c96f461",
+        "learningRole": "procedure",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T13:49:22.097Z",
+        "bReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+        "cReason": "근거 없는 배타 사건 중복 제외를 버리고 실제로 겹치는 주사위 결과와 덧셈에서의 중복 횟수를 확인한다. 두 사건을 배타적이라고 부르지 않는다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bVerdict": "keep",
+        "cVerdict": "keep"
+      },
+      "actualNormalizedAfter": {
+        "id": "m2-09-04-xc1",
+        "grade": "중2",
+        "source": {
+          "id": "m2-09-04-xc1",
+          "section": "중2::9. 확률::확률의 계산",
+          "term": "덧셈 전에 겹침 확인",
+          "kind": "방법",
+          "level": "하",
+          "definition": "둘 중 하나가 일어날 확률을 더해서 구하기 전에는 두 사건이 {함께 일어날 수 없는지} 확인한다."
+        },
+        "B": {
+          "prompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+          "answer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+                "겹친 결과를 두 번 세기 때문이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac23$",
+                "$\\frac46$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "주사위 한 개를 던질 때 '짝수가 나오는 사건'과 '$3$의 배수가 나오는 사건'에 모두 속하는 눈은 {$6$}이다. 두 사건의 확률을 그대로 더하면 이 눈이 나오는 경우를 {$2$}번 세게 된다.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "6"
+            ],
+            [
+              "$2$",
+              "2"
+            ]
+          ]
+        },
+        "goal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "9d67beab47f906d2be63e7cf936621a3dea63b47cc9cf52c34b150d0f9a377ff"
+      }
+    },
+    {
+      "id": "e4-2-5-3-xc20",
+      "scope": "e3e4",
+      "reason": "물음은 예상값의 표시 방법 하나만 요구한다. 오해의 원인과 표시 대안을 분리하고, 범례 설명까지 필수로 강제하지 않는다. 맞는 표시 방법들을 각각의 anyOf 대안으로 둔다.",
+      "beforeRaw": {
+        "sourceIndex": 2663,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+        "proposalFingerprint": "44144acba9ee441e2504b7d24a8fd4d5c97ac17f9d37e88188772c2a88a1445d",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+        "bAnswer": "다음 날의 기온도 실제로 재어 본 값이라고 오해할 수 있습니다. 예상한 점에 예상값이라고 쓰거나, 다른 색·다른 점 모양·점선으로 표시하고 그것이 예상값을 뜻한다고 설명합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "예상값이라고 쓰거나, 조사한 점과 다른 색·점 모양·점선 등을 사용하고 예상값임을 알 수 있게 설명한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "실제 측정값과 예상값을 같은 표시로 나타낼 때의 오해를 설명하고 구별 방법을 제안한다.",
+        "bReason": "표시이름의뜻을되풀이하는대신예상점을측정점처럼그렸을때생기는오해와구별방법을서로다른기준으로묻는다.",
+        "cDecision": "rewrite",
+        "cReason": "B에실제측정과다음날예상점상황을주고표시방법과그뜻설명을함께요청한다. C는관측여부를두분명한범주로구별하게하여열린낱말복원을피한다.",
+        "cSlotEquivalents": [
+          [
+            "예상값",
+            "예측한 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "예상값과 관측값 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+        "cStudentSentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 □입니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "예상한 값",
+            "equivalents": [
+              "예상값",
+              "예측한 값"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+          "answers": [
+            "예상한 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+          "answer": "다음 날의 기온도 실제로 재어 본 값이라고 오해할 수 있습니다. 예상한 점에 예상값이라고 쓰거나, 다른 색·다른 점 모양·점선으로 표시하고 그것이 예상값을 뜻한다고 설명합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "예상값이라고 쓰거나, 조사한 점과 다른 색·점 모양·점선 등을 사용하고 예상값임을 알 수 있게 설명한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "cloze": "아직 조사하지 않은 값이라는 조건에서 예상값·예측값·조사하지 않은 값 등의 낱말을 채우는 C는 답 범위를 명확하게 좁히기 어렵다. 이 항목의 B에서 예상값이라고 쓰거나 다른 색·점선과 설명을 함께 사용하여 실제 조사값과 구별하는 방법을 설명한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc20",
+          "sourceIndex": 2663,
+          "proposalFingerprint": "44144acba9ee441e2504b7d24a8fd4d5c97ac17f9d37e88188772c2a88a1445d",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:42:27.689Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "표시이름의뜻을되풀이하는대신예상점을측정점처럼그렸을때생기는오해와구별방법을서로다른기준으로묻는다.",
+          "cReason": "표시이름의뜻을되풀이하는대신예상점을측정점처럼그렸을때생기는오해와구별방법을서로다른기준으로묻는다.",
+          "issues": [],
+          "isIndependentApproval": false,
+          "isReleaseApproval": false,
+          "inputEvidence": "../design-evidence/root-e3e4-final-reasons-proposals-20261007.json"
+        },
+        "cAfter": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+        "cAcceptedAnswers": [
+          [
+            "예상한 값",
+            "예상값",
+            "예측한 값"
+          ]
+        ]
+      },
+      "before": {
+        "id": "e4-2-5-3-xc20",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-5-3-xc20",
+          "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+          "term": "예상값과 관측값 구별",
+          "kind": "방법",
+          "level": "상",
+          "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다."
+        },
+        "B": {
+          "prompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+          "answer": "다음 날의 기온도 실제로 재어 본 값이라고 오해할 수 있습니다. 예상한 점에 예상값이라고 쓰거나, 다른 색·다른 점 모양·점선으로 표시하고 그것이 예상값을 뜻한다고 설명합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "예상값이라고 쓰거나, 조사한 점과 다른 색·점 모양·점선 등을 사용하고 예상값임을 알 수 있게 설명한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "goal": "실제 측정값과 예상값을 같은 표시로 나타낼 때의 오해를 설명하고 구별 방법을 제안한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "64625bcd396a06df4491a4662c2542965afda9f35683469502ff15adf56132fb"
+      },
+      "proposedRaw": {
+        "sourceIndex": 2663,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+        "proposalFingerprint": "8db47cc7f5746fe4fbb272ae23e3c91e783ac911e5bdca2aa82181387c5b4380",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+        "bAnswer": "다음 날의 기온을 실제로 재어 본 값이라고 오해할 수 있습니다. 예상값이라고 적거나, 예상한 부분을 다른 색·다른 점 모양·점선 중 한 가지로 표시할 수 있습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "예상값이라고 적는다",
+              "예상한 점을 다른 색으로 표시한다",
+              "예상한 점을 속이 빈 점 등 다른 점 모양으로 표시한다",
+              "예상한 부분을 점선으로 표시한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "실제 측정값과 예상값을 같은 표시로 나타낼 때의 오해를 설명하고 구별 방법을 제안한다.",
+        "bReason": "표시이름의뜻을되풀이하는대신예상점을측정점처럼그렸을때생기는오해와구별방법을서로다른기준으로묻는다.",
+        "cDecision": "rewrite",
+        "cReason": "B에실제측정과다음날예상점상황을주고표시방법과그뜻설명을함께요청한다. C는관측여부를두분명한범주로구별하게하여열린낱말복원을피한다.",
+        "cSlotEquivalents": [
+          [
+            "예상값",
+            "예측한 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "예상값과 관측값 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+        "cStudentSentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 □입니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "예상한 값",
+            "equivalents": [
+              "예상값",
+              "예측한 값"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+          "answers": [
+            "예상한 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+          "answer": "다음 날의 기온을 실제로 재어 본 값이라고 오해할 수 있습니다. 예상값이라고 적거나, 예상한 부분을 다른 색·다른 점 모양·점선 중 한 가지로 표시할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "예상값이라고 적는다",
+                "예상한 점을 다른 색으로 표시한다",
+                "예상한 점을 속이 빈 점 등 다른 점 모양으로 표시한다",
+                "예상한 부분을 점선으로 표시한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "cloze": "아직 조사하지 않은 값이라는 조건에서 예상값·예측값·조사하지 않은 값 등의 낱말을 채우는 C는 답 범위를 명확하게 좁히기 어렵다. 이 항목의 B에서 예상값이라고 쓰거나 다른 색·점선과 설명을 함께 사용하여 실제 조사값과 구별하는 방법을 설명한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc20",
+          "sourceIndex": 2663,
+          "proposalFingerprint": "8db47cc7f5746fe4fbb272ae23e3c91e783ac911e5bdca2aa82181387c5b4380",
+          "learningRole": "procedure",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T13:49:23.024Z",
+          "bReason": "물음은 예상값의 표시 방법 하나만 요구한다. 오해의 원인과 표시 대안을 분리하고, 범례 설명까지 필수로 강제하지 않는다. 맞는 표시 방법들을 각각의 anyOf 대안으로 둔다.",
+          "cReason": "물음은 예상값의 표시 방법 하나만 요구한다. 오해의 원인과 표시 대안을 분리하고, 범례 설명까지 필수로 강제하지 않는다. 맞는 표시 방법들을 각각의 anyOf 대안으로 둔다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal"
+        },
+        "cAfter": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+        "cAcceptedAnswers": [
+          [
+            "예상한 값",
+            "예상값",
+            "예측한 값"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-5-3-xc20",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-5-3-xc20",
+          "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+          "term": "예상값과 관측값 구별",
+          "kind": "방법",
+          "level": "상",
+          "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다."
+        },
+        "B": {
+          "prompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+          "answer": "다음 날의 기온을 실제로 재어 본 값이라고 오해할 수 있습니다. 예상값이라고 적거나, 예상한 부분을 다른 색·다른 점 모양·점선 중 한 가지로 표시할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "예상값이라고 적는다",
+                "예상한 점을 다른 색으로 표시한다",
+                "예상한 점을 속이 빈 점 등 다른 점 모양으로 표시한다",
+                "예상한 부분을 점선으로 표시한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "goal": "실제 측정값과 예상값을 같은 표시로 나타낼 때의 오해를 설명하고 구별 방법을 제안한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "dc48892be6105963664c9cadbe1007cf71072ad92b2611418be1d305be3217d7"
+      },
+      "direct": {
+        "id": "e4-2-5-3-xc20",
+        "sourceIndex": 2663,
+        "proposalFingerprint": "8db47cc7f5746fe4fbb272ae23e3c91e783ac911e5bdca2aa82181387c5b4380",
+        "learningRole": "procedure",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T13:49:23.024Z",
+        "bReason": "물음은 예상값의 표시 방법 하나만 요구한다. 오해의 원인과 표시 대안을 분리하고, 범례 설명까지 필수로 강제하지 않는다. 맞는 표시 방법들을 각각의 anyOf 대안으로 둔다.",
+        "cReason": "물음은 예상값의 표시 방법 하나만 요구한다. 오해의 원인과 표시 대안을 분리하고, 범례 설명까지 필수로 강제하지 않는다. 맞는 표시 방법들을 각각의 anyOf 대안으로 둔다.",
+        "issues": [],
+        "inputEvidence": "../design-evidence/root-final-eight-proposals-20261007.json",
+        "isIndependentApproval": false,
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal"
+      },
+      "actualNormalizedAfter": {
+        "id": "e4-2-5-3-xc20",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-5-3-xc20",
+          "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+          "term": "예상값과 관측값 구별",
+          "kind": "방법",
+          "level": "상",
+          "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다."
+        },
+        "B": {
+          "prompt": "매일 재어 본 기온을 꺾은선그래프로 그렸습니다. 아직 재지 않은 다음 날의 예상 기온도 조사한 점과 같은 색·같은 모양으로 표시하고 실선으로 이었습니다. 예상값이라는 설명은 쓰지 않았습니다. 보는 사람에게 어떤 오해가 생길 수 있나요? 그 오해를 줄일 표시 방법 하나도 쓰세요.",
+          "answer": "다음 날의 기온을 실제로 재어 본 값이라고 오해할 수 있습니다. 예상값이라고 적거나, 예상한 부분을 다른 색·다른 점 모양·점선 중 한 가지로 표시할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아직 재지 않은 예상 기온을 실제로 재어 본 값이라고 오해할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "예상값이라고 적는다",
+                "예상한 점을 다른 색으로 표시한다",
+                "예상한 점을 속이 빈 점 등 다른 점 모양으로 표시한다",
+                "예상한 부분을 점선으로 표시한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "다음 날의 기온을 온도계로 재지 않고 이전 그래프의 흐름을 보고 $18^\\circ\\mathrm{C}$라고 적었습니다. 조사한 값과 예상한 값 중에서 고르면, 이 값은 {예상한 값}입니다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "goal": "실제 측정값과 예상값을 같은 표시로 나타낼 때의 오해를 설명하고 구별 방법을 제안한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "dc48892be6105963664c9cadbe1007cf71072ad92b2611418be1d305be3217d7"
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "curriculum": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "pending"
+  },
+  "calculationAuthority": "explicit-math-facts-not-image-pixels",
+  "pointRoles": {
+    "A": "관측자의 눈",
+    "G": "관측자 발밑",
+    "B": "눈높이와 벽의 교점",
+    "C": "환기창 중심",
+    "E": "창 중심 바로 아래 지면"
+  },
+  "facts": {
+    "heightM": 9.6,
+    "eyeHeightM": 1.6,
+    "elevationDegrees": 58,
+    "displayedTan": "1.6003",
+    "distanceM": 4.999062675748297,
+    "roundedM": 5
+  },
+  "factRelations": [
+    "CB=CE-AG=8",
+    "tan58=CB/AB",
+    "AB=8/1.6003",
+    "GE=AB"
+  ],
+  "constraints": [
+    "level ground; vertical wall; eye line horizontal",
+    "height>eyeHeight>0",
+    "0<angle<90",
+    "positive unique distance",
+    "use supplied table and stated rounding"
+  ],
+  "rasterRole": "scene-only; mathematical point roles refer to the separate engine diagram"
+}

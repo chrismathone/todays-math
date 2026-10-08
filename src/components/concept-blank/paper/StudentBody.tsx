@@ -1,6 +1,7 @@
 import { Fragment, type CSSProperties } from "react";
 
 import type { ConceptEntry } from "@/contracts/conceptBlank.contract";
+import { clozeSentence, termPrompt } from "@/lib/concept-blank/questions";
 
 import { FigureSvg } from "./FigureSvg";
 import type { StudentPage } from "./paginate";
@@ -95,11 +96,16 @@ function TermBody({ page }: { page: Extract<StudentPage, { form: "term" }> }) {
                   문 {block.n}
                 </span>
                 <span className={styles.term}>
-                  <PaperText text={block.entry.term} />
+                  <PaperText text={termPrompt(block.entry)} />
                 </span>
               </div>
               <div
-                className={`${styles.ruled} ${termRuledLines(block.entry) === 1 ? styles.r1 : styles.r2}`}
+                className={`${styles.ruled} ${styles.termRuled}`}
+                style={
+                  {
+                    "--cb-answer-lines": termRuledLines(block.entry),
+                  } as CSSProperties
+                }
                 data-cb-ruled=""
               />
             </div>
@@ -153,7 +159,7 @@ function ClozeBody({
       {sentences.length ? (
         <>
           <div className={styles.part}>
-            <span>가</span>빈칸에 알맞은 말이나 수를 쓰시오.
+            <span>가</span>빈칸에 알맞은 말, 수, 식이나 기호를 쓰세요.
           </div>
           {/* 적용이 없는 장은 문장 칸이 늘어나 장을 채운다 — 적용이 있으면 적용 칸이 채운다 */}
           <ol
@@ -167,7 +173,7 @@ function ClozeBody({
                 </span>
                 {/* <p> 가 아니다 — 제품 MathText(인라인)가 <div> 를 내서 HTML 파서가 문단을 끊는다 */}
                 <div className={styles.sentText}>
-                  <BlankSentence sentence={b.entry.definition} />
+                  <BlankSentence sentence={clozeSentence(b.entry)} />
                 </div>
               </li>
             ))}
@@ -248,26 +254,60 @@ const hubFont = (hub: string) => {
   return em <= 6 ? 19 : em <= 10 ? 17 : em <= 14 ? 15 : 13;
 };
 
-function MapNode({ entry }: { entry: ConceptEntry }) {
+function MapNode({
+  entry,
+  questionMode,
+  n,
+}: {
+  entry: ConceptEntry;
+  questionMode?: true;
+  n?: number;
+}) {
   return (
     <section className={styles.node} data-cb-node="">
       <div className={styles.nodeTitle}>
-        <span className={styles.done} />
+        {questionMode ? (
+          <span className={styles.nodeNumber}>문 {n}</span>
+        ) : (
+          <span className={styles.done} />
+        )}
         <span>
           <PaperText text={entry.term} />
         </span>
       </div>
-      <div className={styles.nodeLabel}>뜻</div>
-      <div className={`${styles.ruled} ${styles.nodeRuled}`} data-cb-ruled="" />
-      <div className={styles.nodeLabel}>예</div>
-      <div className={styles.nodeExample}>
-        {entry.example ? (
-          <>
-            <PaperText text={entry.example.prompt} />{" "}
-            <Blank answer={entry.example.answer} />
-          </>
-        ) : null}
-      </div>
+      {questionMode ? (
+        <>
+          <div className={styles.nodeLabel}>물음</div>
+          <div className={styles.nodeQuestion}>
+            <PaperText text={termPrompt(entry)} />
+          </div>
+          <div className={styles.nodeLabel}>답</div>
+          <div
+            className={`${styles.ruled} ${styles.nodeRuled} ${styles.termRuled}`}
+            data-cb-ruled=""
+            style={
+              { "--cb-answer-lines": termRuledLines(entry) } as CSSProperties
+            }
+          />
+        </>
+      ) : (
+        <>
+          <div className={styles.nodeLabel}>뜻</div>
+          <div
+            className={`${styles.ruled} ${styles.nodeRuled}`}
+            data-cb-ruled=""
+          />
+          <div className={styles.nodeLabel}>예</div>
+          <div className={styles.nodeExample}>
+            {entry.example ? (
+              <>
+                <PaperText text={entry.example.prompt} />{" "}
+                <Blank answer={entry.example.answer} />
+              </>
+            ) : null}
+          </div>
+        </>
+      )}
     </section>
   );
 }
@@ -284,8 +324,16 @@ function MapBody({
     <>
       {first ? (
         <HowTo>
-          가지마다 <b>뜻</b>을 쓰고, 아래 <b>예</b>를 채우세요. 다 쓴 가지는
-          동그라미 안에 ✓.
+          {page.questionMode ? (
+            <>
+              같은 단원의 가지마다 <b>물음</b>을 읽고 답을 쓰세요.
+            </>
+          ) : (
+            <>
+              가지마다 <b>뜻</b>을 쓰고, 아래 <b>예</b>를 채우세요. 다 쓴 가지는
+              동그라미 안에 ✓.
+            </>
+          )}
         </HowTo>
       ) : null}
       <div
@@ -306,7 +354,12 @@ function MapBody({
         </svg>
         <div className={styles.mapSide} data-cb-side="left">
           {left.map((entry) => (
-            <MapNode entry={entry} key={entry.id} />
+            <MapNode
+              entry={entry}
+              questionMode={page.questionMode}
+              n={(page.nodeStart ?? 1) + page.map.nodes.indexOf(entry)}
+              key={entry.id}
+            />
           ))}
         </div>
         <div
@@ -319,7 +372,12 @@ function MapBody({
         {right.length ? (
           <div className={styles.mapSide} data-cb-side="right">
             {right.map((entry) => (
-              <MapNode entry={entry} key={entry.id} />
+              <MapNode
+                entry={entry}
+                questionMode={page.questionMode}
+                n={(page.nodeStart ?? 1) + page.map.nodes.indexOf(entry)}
+                key={entry.id}
+              />
             ))}
           </div>
         ) : null}

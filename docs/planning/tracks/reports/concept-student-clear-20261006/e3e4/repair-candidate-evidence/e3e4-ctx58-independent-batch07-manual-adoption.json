@@ -1,0 +1,1309 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e3-2-2-4-xc22",
+      "sourceIndex": 1040,
+      "beforeProposal": {
+        "sourceIndex": 1040,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-2 나눗셈::2-2-4 (세 자리 수)÷(한 자리 수)",
+        "sourceFingerprint": "6f24d1310e7486b9b5dee49dd61f48c2932aba48268c28be096d49a2cc456c04",
+        "proposalFingerprint": "dd6ae3642d3def2651a9950a64ea2cb1ad0bc3b493a155bd6de18fc6a0dd6696",
+        "reviewStatus": "draft",
+        "id": "e3-2-2-4-xc22",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "몫을 가장 크게 하는 까닭 설명이 다른 항목과 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "세 자리 수를 $9$로 나눌 때 몫이 가장 크려면 나누어지는 수가 가장 커야 한다. 가장 큰 세 자리 수는 {$999$}이고 $999\\div9=${$111$}이다.",
+        "cReason": "원문은 수식의 □와 빈칸 □가 똑같이 보여 헷갈리므로 □ 표기를 없애고 몫 계산도 덧붙임",
+        "exclusionReason": "나누는 수가 같으면 나누어지는 수가 클수록 몫이 크다는 설명은 e3-2-2-2-xc20의 B(98÷2)와 같은 목표",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "(세 자리 수)$\\div9$의 몫이 가장 큰 경우",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 자리 수를 $9$로 나눌 때 몫이 가장 크려면 나누어지는 수가 가장 커야 한다. 가장 큰 세 자리 수는 {$999$}이고 $999\\div9=${$111$}이다.",
+        "cStudentSentence": "세 자리 수를 $9$로 나눌 때 몫이 가장 크려면 나누어지는 수가 가장 커야 한다. 가장 큰 세 자리 수는 □이고 $999\\div9=$□이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$999$",
+            "equivalents": []
+          },
+          {
+            "expected": "$111$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "세 자리 수를 $9$로 나눌 때 몫이 가장 크려면 나누어지는 수가 가장 커야 한다. 가장 큰 세 자리 수는 {$999$}이고 $999\\div9=${$111$}이다.",
+          "acceptedAnswers": [
+            [
+              "$999$"
+            ],
+            [
+              "$111$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "몫을 가장 크게 하는 까닭 설명이 다른 항목과 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-2-4-xc22",
+          "sourceIndex": 1040,
+          "proposalFingerprint": "dd6ae3642d3def2651a9950a64ea2cb1ad0bc3b493a155bd6de18fc6a0dd6696",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "나누는수고정의최대이유는1018과같아B를 제외한다.",
+          "cReason": "999÷9=111이최대정수몫이며다른세자리수는111을만들지못하므로현조건이 맞다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "나누는 수가 같을 때 나누어지는 수가 클수록 몫이 크다는 까닭은 e3-2-2-2-xc20 B에서 설명한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-2-xc17",
+      "sourceIndex": 2012,
+      "beforeProposal": {
+        "sourceIndex": 2012,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+        "sourceFingerprint": "5195a5cd43565e53aadb45979fb4e75d9913bf2fc3b4b5a645e48687a3939c6e",
+        "proposalFingerprint": "21ba7ac307bc9c7fa68801017de7477540550e430daca286e6e4ee2e134fbe31",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-2-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "네 방향으로 늘어나는 수",
+        "bReason": "그림 없이 네 방향을 세는 단순 계산",
+        "cDecision": "rewrite",
+        "cAfter": "가운데 $1$개에서 시작해 단계마다 위, 아래, 왼쪽, 오른쪽 끝에 하나씩 더 놓으면 도형이 {$4$}개씩 늘어난다.",
+        "cReason": "'단계마다'가 무엇을 더하는지 불분명해 조건을 분명히 함",
+        "cSlotEquivalents": [
+          [
+            "넷"
+          ]
+        ],
+        "coreAfter": "가운데 $1$개에서 시작해 단계마다 위, 아래, 왼쪽, 오른쪽 끝에 하나씩 더 놓으면 도형이 {$4$개}씩 늘어난다.",
+        "coreReason": "4개라는 원래증가표적을보존하며매단계이전끝에더놓는다는반복조건을명시한다.",
+        "exclusionReason": "방향이 네 개이므로 $4$개라는 단순 셈이고 설명 목표가 없다",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "네 방향으로 늘어나는 배열",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가운데 $1$개에서 시작해 단계마다 위, 아래, 왼쪽, 오른쪽 끝에 하나씩 더 놓으면 도형이 {$4$}개씩 늘어난다.",
+        "cStudentSentence": "가운데 $1$개에서 시작해 단계마다 위, 아래, 왼쪽, 오른쪽 끝에 하나씩 더 놓으면 도형이 □개씩 늘어난다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": [
+              "넷"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "가운데 $1$개에서 시작해 단계마다 위, 아래, 왼쪽, 오른쪽 끝에 하나씩 더 놓으면 도형이 {$4$}개씩 늘어난다.",
+          "acceptedAnswers": [
+            [
+              "$4$",
+              "넷"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "그림 없이 네 방향을 세는 단순 계산"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-2-xc17",
+          "sourceIndex": 2012,
+          "proposalFingerprint": "21ba7ac307bc9c7fa68801017de7477540550e430daca286e6e4ee2e134fbe31",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "네 방향의 개수를 세는 단순 B 제외를 유지한다.",
+          "cReason": "네 끝마다 하나씩 추가한다는 실제 반복 조건으로 증가 네 개를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "coreAfter": "가운데 $1$개에서 시작해 단계마다 위, 아래, 왼쪽, 오른쪽 끝에 하나씩 더 놓으면 도형이 {$4$}개씩 늘어난다.",
+        "coreReason": "4개씩 늘어난다는 원래 표적을 보존하면서 매 단계마다 이전 모양의 네 방향 끝에 하나씩 더 놓는다는 반복 조건을 명시한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-1-xc6",
+      "sourceIndex": 1046,
+      "beforeProposal": {
+        "sourceIndex": 1046,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+        "sourceFingerprint": "1f2eeb6240efacff61405a48a77c13c2ce523247fe941847401d5457535459a2",
+        "proposalFingerprint": "34ec1415114548f4733e48606a2bf496d27cee0ef075122152fe79ec5e44f28c",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-1-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "지름의 조건 설명이 다른 항목과 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "원 위의 두 점 ㄱ, ㄴ을 이은 선분 ㄱㄴ이 원의 중심 ㅇ을 지나면, 선분 ㄱㄴ을 원의 {지름}이라고 한다.",
+        "cReason": "'중심 ㅇ을 지나면'이라는 조건 구절을 가리는 대신 조건을 다 보여 주고 용어를 쓰게 함",
+        "exclusionReason": "원 위의 두 점을 이은 선분이 중심을 지나야 지름이라는 설명은 e3-2-3-1-xc4의 B와 같은 목표",
+        "learningRole": "naming",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "지름의 이름",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "원 위의 두 점 ㄱ, ㄴ을 이은 선분 ㄱㄴ이 원의 중심 ㅇ을 지나면, 선분 ㄱㄴ을 원의 {지름}이라고 한다.",
+        "cStudentSentence": "원 위의 두 점 ㄱ, ㄴ을 이은 선분 ㄱㄴ이 원의 중심 ㅇ을 지나면, 선분 ㄱㄴ을 원의 □이라고 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "지름",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "원 위의 두 점 ㄱ, ㄴ을 이은 선분 ㄱㄴ이 원의 중심 ㅇ을 지나면, 선분 ㄱㄴ을 원의 {지름}이라고 한다.",
+          "acceptedAnswers": [
+            [
+              "지름"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "지름의 조건 설명이 다른 항목과 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-1-xc6",
+          "sourceIndex": 1046,
+          "proposalFingerprint": "34ec1415114548f4733e48606a2bf496d27cee0ef075122152fe79ec5e44f28c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "지름의중심통과설명은1044와겹친다.",
+          "cReason": "두끝원위·중심통과를명시해지름을 분류한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "지름이 중심을 지나 원 위의 두 점을 잇는 선분이라는 뜻은 e3-2-3-1-xc4 B에서 설명한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-1-xc8",
+      "sourceIndex": 1048,
+      "beforeProposal": {
+        "sourceIndex": 1048,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+        "sourceFingerprint": "fed7015dcda95af81d3e5556af17191f5f56dc1e2597e442df2ef660d25ef417",
+        "proposalFingerprint": "ef2091d425709bf9f70da90229218cef457153a47b31691e462fabec994157bf",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-1-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "반지름의 두 끝점 설명이 다른 항목과 겹침",
+        "cDecision": "keep",
+        "cReason": "앞에서 한 끝(중심)을 알려 주고 다른 끝의 위치만 묻는 짧은 빈칸",
+        "exclusionReason": "반지름의 두 끝이 중심과 원 위의 점이라는 설명은 e3-2-3-1-xc5의 B와 같은 목표",
+        "answerNotes": "'원의 둘레', '원의 가장자리'도 정답. '원 안', '원 밖'은 오답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "반지름의 두 끝",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "반지름의 한 끝은 원의 중심이고, 다른 한 끝은 {원 위}에 있다.",
+        "cStudentSentence": "반지름의 한 끝은 원의 중심이고, 다른 한 끝은 □에 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "원 위",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "반지름의 한 끝은 원의 중심이고, 다른 한 끝은 □에 있다.",
+          "answers": [
+            "원 위"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "반지름의 한 끝은 원의 중심이고, 다른 한 끝은 {원 위}에 있다.",
+          "acceptedAnswers": [
+            [
+              "원 위"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "반지름의 두 끝점 설명이 다른 항목과 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-1-xc8",
+          "sourceIndex": 1048,
+          "proposalFingerprint": "ef2091d425709bf9f70da90229218cef457153a47b31691e462fabec994157bf",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "반지름의두끝뜻은1045와같아B를 제외한다.",
+          "cReason": "반지름다른끝의원위위치를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "중심과 원 위의 점을 잇는 반지름의 두 끝은 e3-2-3-1-xc5 B에서 설명한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-1-xc9",
+      "sourceIndex": 1049,
+      "beforeProposal": {
+        "sourceIndex": 1049,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+        "sourceFingerprint": "e7734942e2ad1eb16eba7925833991cc06a759396b54960b4a7825b596bb0beb",
+        "proposalFingerprint": "61cece0e7ec3e0cebf74d3e728b7c1bbc794608c5e723a4a075bc2c802b12f8b",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-1-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "지름의 끝과 중심의 위치 설명이 다른 항목과 겹침",
+        "cDecision": "keep",
+        "cReason": "지름의 두 끝의 위치만 묻는 짧은 빈칸이고 뒤 구절이 지름임을 뒷받침함",
+        "exclusionReason": "지름이 중심을 지난다는 조건은 e3-2-3-1-xc4의 B에서, 지름의 한가운데가 중심이라는 내용은 e3-2-3-1-xc25의 B에서 이미 설명함",
+        "answerNotes": "'원의 둘레', '원의 가장자리'도 정답. '원 안'은 오답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "지름의 두 끝과 중심",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "지름의 두 끝은 모두 {원 위}에 있고, 그 가운데에 중심이 있다.",
+        "cStudentSentence": "지름의 두 끝은 모두 □에 있고, 그 가운데에 중심이 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "원 위",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "지름의 두 끝은 모두 □에 있고, 그 가운데에 중심이 있다.",
+          "answers": [
+            "원 위"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "지름의 두 끝은 모두 {원 위}에 있고, 그 가운데에 중심이 있다.",
+          "acceptedAnswers": [
+            [
+              "원 위"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "지름의 끝과 중심의 위치 설명이 다른 항목과 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-1-xc9",
+          "sourceIndex": 1049,
+          "proposalFingerprint": "61cece0e7ec3e0cebf74d3e728b7c1bbc794608c5e723a4a075bc2c802b12f8b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "지름중심통과·중앙점뜻은다른B로 남긴다.",
+          "cReason": "지름두끝의원위위치를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "지름의 두 끝과 중심 통과 조건은 e3-2-3-1-xc4 B, 지름 한가운데가 중심이라는 뜻은 e3-2-3-1-xc25 B에서 설명한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-1-xc10",
+      "sourceIndex": 1050,
+      "beforeProposal": {
+        "sourceIndex": 1050,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+        "sourceFingerprint": "24c120ef20ea073fb48e663874afce08fca8baa9db890953433bc76003a08d9f",
+        "proposalFingerprint": "b141e30822f51fb5bb98e92b5b87f2306a447347cc67fbd85d2cfc79b758783a",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-1-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "한 원에서 지름의 길이가 반지름의 길이의 $2$배인 까닭을, 지름을 원의 중심에서 둘로 나누어 생각하여 설명하세요.",
+        "bAnswer": "지름은 중심을 지나므로 중심에서 양쪽 끝까지 두 부분으로 나뉜다. 각 부분은 중심과 원 위의 점을 이은 반지름이다. 지름은 반지름 $2$개를 곧게 이은 것이므로 길이가 $2$배이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "지름은 중심에서 두 부분으로 나뉨"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 부분이 반지름"
+            ]
+          }
+        ],
+        "bGoal": "지름이 반지름 두 개를 이은 것인 까닭",
+        "bReason": "'일직선' 낱말 암기 대신 지름과 반지름의 관계를 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "원의 중심에서 서로 반대쪽으로 그은 반지름 {$2$}개를 곧게 이으면 원의 {지름}이 된다.",
+        "cReason": "빈칸 '일직선'은 '직선', '선분', '하나' 등으로 답이 흩어지므로 개수와 익숙한 용어로 바꿈",
+        "answerNotes": "첫째 빈칸은 '두'도 정답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "반지름 두 개로 된 지름",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "원의 중심에서 서로 반대쪽으로 그은 반지름 {$2$}개를 곧게 이으면 원의 {지름}이 된다.",
+        "cStudentSentence": "원의 중심에서 서로 반대쪽으로 그은 반지름 □개를 곧게 이으면 원의 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": []
+          },
+          {
+            "expected": "지름",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 원에서 지름의 길이가 반지름의 길이의 $2$배인 까닭을, 지름을 원의 중심에서 둘로 나누어 생각하여 설명하세요.",
+          "answer": "지름은 중심을 지나므로 중심에서 양쪽 끝까지 두 부분으로 나뉜다. 각 부분은 중심과 원 위의 점을 이은 반지름이다. 지름은 반지름 $2$개를 곧게 이은 것이므로 길이가 $2$배이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "지름은 중심에서 두 부분으로 나뉨"
+              ]
+            },
+            {
+              "anyOf": [
+                "각 부분이 반지름"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "원의 중심에서 서로 반대쪽으로 그은 반지름 {$2$}개를 곧게 이으면 원의 {지름}이 된다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ],
+            [
+              "지름"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-1-xc10",
+          "sourceIndex": 1050,
+          "proposalFingerprint": "b141e30822f51fb5bb98e92b5b87f2306a447347cc67fbd85d2cfc79b758783a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "중심으로나눈두부분각각반지름이라두배인까닭을 묻는다.",
+          "cReason": "반대방향반지름두개를이은지름의구성을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "중심에서 나눈 두 부분은 모두 중심과 원 위의 점을 이은 반지름입니다. 같은 원의 반지름은 길이가 같으므로 두 부분을 합친 지름은 반지름 길이의 $2$배입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "중심에서 나눈 두 부분이 모두 반지름이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 원의 반지름은 길이가 같으므로 두 부분을 합하면 반지름 길이의 $2$배이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-1-xc12",
+      "sourceIndex": 1052,
+      "beforeProposal": {
+        "sourceIndex": 1052,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+        "sourceFingerprint": "32fe29a8ff0f92bcd6bb985068c5244d20b0322ecdf311fe859fe5431f78bb1a",
+        "proposalFingerprint": "ec5a223331c7d8baef0dc4a34dc8609ad771e6df7c638dfb7c8fbe32aafef892",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-1-xc12",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "반지름을 긋는 두 점 설명이 다른 항목과 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "반지름을 그을 때에는 원의 {중심}에서 원 위의 한 점까지 자를 대고 곧게 긋는다.",
+        "cReason": "빈칸 '곧게'는 '똑바로', '자로', '선분으로' 등으로 답이 흩어지므로 시작점인 '중심'을 묻도록 바꿈",
+        "exclusionReason": "반지름이 중심과 원 위의 점을 이은 선분이라는 설명은 e3-2-3-1-xc5의 B와 같은 목표",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "반지름 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "반지름을 그을 때에는 원의 {중심}에서 원 위의 한 점까지 자를 대고 곧게 긋는다.",
+        "cStudentSentence": "반지름을 그을 때에는 원의 □에서 원 위의 한 점까지 자를 대고 곧게 긋는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "중심",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "반지름을 그을 때에는 원의 {중심}에서 원 위의 한 점까지 자를 대고 곧게 긋는다.",
+          "acceptedAnswers": [
+            [
+              "중심"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "반지름을 긋는 두 점 설명이 다른 항목과 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-1-xc12",
+          "sourceIndex": 1052,
+          "proposalFingerprint": "ec5a223331c7d8baef0dc4a34dc8609ad771e6df7c638dfb7c8fbe32aafef892",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "긋는두점설명은1045와같아B를 제외한다.",
+          "cReason": "반지름긋기의출발중심을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "반지름을 이루는 두 점이 중심과 원 위의 점이라는 뜻은 e3-2-3-1-xc5 B에서 설명한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-1-xc13",
+      "sourceIndex": 1053,
+      "beforeProposal": {
+        "sourceIndex": 1053,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+        "sourceFingerprint": "919ac429aff88a9a9ca207e47642f52e0c94998e1809509fee26aee0e306dda5",
+        "proposalFingerprint": "27d19262c1fa5ebffceea67e08b829c9d2ee85bcd2484eaf4d08de52aad885e8",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-1-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "지름이 중심을 지난다는 설명이 다른 항목과 겹침",
+        "cDecision": "keep",
+        "cReason": "시작점과 지나는 점이 나와 있고 끝나는 곳만 묻는 짧은 빈칸",
+        "exclusionReason": "원 위의 두 점을 중심을 지나게 잇는다는 내용은 e3-2-3-1-xc4의 B와 같은 목표",
+        "answerNotes": "'원의 둘레', '원의 가장자리'도 정답. '원의 중심'은 오답",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "지름 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "지름은 원 위의 한 점에서 중심을 지나 반대쪽 {원 위}까지 긋는다.",
+        "cStudentSentence": "지름은 원 위의 한 점에서 중심을 지나 반대쪽 □까지 긋는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "원 위",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "지름은 원 위의 한 점에서 중심을 지나 반대쪽 □까지 긋는다.",
+          "answers": [
+            "원 위"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "지름은 원 위의 한 점에서 중심을 지나 반대쪽 {원 위}까지 긋는다.",
+          "acceptedAnswers": [
+            [
+              "원 위"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "지름이 중심을 지난다는 설명이 다른 항목과 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-1-xc13",
+          "sourceIndex": 1053,
+          "proposalFingerprint": "27d19262c1fa5ebffceea67e08b829c9d2ee85bcd2484eaf4d08de52aad885e8",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "중심을지나는지름조건설명은1044와같다.",
+          "cReason": "중심을지나반대원위점까지지름을 긋는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "지름이 원 위의 두 점을 잇고 중심을 지난다는 뜻은 e3-2-3-1-xc4 B에서 설명한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-3-xc7",
+      "sourceIndex": 2027,
+      "beforeProposal": {
+        "sourceIndex": 2027,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-3 계산식에서 규칙 찾기",
+        "sourceFingerprint": "e96b2f7fd54770fbab4a3395292f4a0a8fc0d6a0c7ad30849b5c6fc8d13b9e44",
+        "proposalFingerprint": "3e51818b4f632e0be6fdadfa9cee7aad940b771d629f35606a01746676b74fc0",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-3-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "계산식 배열 용어",
+        "bReason": "용어 이름 확인은 C로 충분",
+        "cDecision": "keep",
+        "cReason": "익숙한 '배열' 용어를 묻는 짧은 정의 빈칸",
+        "cSlotEquivalents": [
+          [
+            "계산식의 배열"
+          ]
+        ],
+        "exclusionReason": "이름만 묻는 용어라 설명할 의미·이유가 없고 C와 같은 내용이다",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "계산식 배열",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "규칙에 따라 차례로 늘어놓은 계산식들을 {계산식 배열}이라 한다.",
+        "cStudentSentence": "규칙에 따라 차례로 늘어놓은 계산식들을 □이라 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "계산식 배열",
+            "equivalents": [
+              "계산식의 배열"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "규칙에 따라 차례로 늘어놓은 계산식들을 □이라 한다.",
+          "answers": [
+            "계산식 배열"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "규칙에 따라 차례로 늘어놓은 계산식들을 {계산식 배열}이라 한다.",
+          "acceptedAnswers": [
+            [
+              "계산식 배열",
+              "계산식의 배열"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "용어 이름 확인은 C로 충분"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-3-xc7",
+          "sourceIndex": 2027,
+          "proposalFingerprint": "3e51818b4f632e0be6fdadfa9cee7aad940b771d629f35606a01746676b74fc0",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "배열의 이름 한 낱말 확인의 B 제외를 유지한다.",
+          "cReason": "규칙대로 놓인 계산식의 배열이라는 기존 이름을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "계산식 배열이라는 편집용 이름을 추측하는 빈칸으로, 식의 실제 규칙을 판단하지 못한다.",
+        "bReason": "계산식 배열이라는 임의의 이름 자체는 별도 설명 목표가 없고 계산식 규칙의 내용과 다르다.",
+        "exclusionReason": "B/C: 계산식 배열이라는 이름 맞히기만 요구하므로 이 형식에서 제외한다. 원래 일반 설명과 항목은 보존한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-5-c2",
+      "sourceIndex": 233,
+      "beforeProposal": {
+        "sourceIndex": 233,
+        "grade": "e4",
+        "part": "e4",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-5 몇십몇으로 나누기 (1)",
+        "sourceFingerprint": "c817fe882b0717d302c4428631d237a7bcd714ecc1825cf40e059b670b713c81",
+        "proposalFingerprint": "d196584d7c7541e7c59f4fc9a723df337aa95d2e5f04adf28415057f650b9637",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-5-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "$91\\div13$의 몫을 $7$이라고 구했습니다. 이 몫이 맞는지 곱셈으로 확인하는 방법을 쓰고, 맞는지 판단하세요.",
+        "bAnswer": "나누는 수 $13$에 몫 $7$을 곱한 값이 처음 수 $91$과 같은지 확인한다. $13\\times7=91$이므로 몫 $7$은 맞다.",
+        "bGoal": "나누어떨어지는 나눗셈의 몫을 곱셈으로 확인하는 방법 설명하기",
+        "bReason": "수의 이름을 되살리게 하지 않고 실제 식에서 무엇과 무엇을 곱해 무엇과 비교하는지 쓰게 함",
+        "studentLabel": "몫이 맞는지 곱셈으로 확인하기",
+        "cDecision": "rewrite",
+        "cReason": "84제외사유를바로잡고실제13×7의곱91을계산하게한다. 원래91과계산한곱91은검산의다른역할이며처음수의이름만복원하는슬롯을피한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수 $13$에 몫 $7$을 곱하여 나누어지는 수 $91$과 같은지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$13\\times7=91$이므로 몫 $7$은 맞다"
+            ]
+          }
+        ],
+        "exclusionReason": null,
+        "cAfter": "$91\\div13$의 몫 $7$이 맞는지 확인하려고 곱셈을 하면 $13\\times7=${$91$}이다. 계산한 곱이 처음 나눌 수와 같아서 몫이 맞다.",
+        "cSlotEquivalents": [],
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몫 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$91\\div13$의 몫 $7$이 맞는지 확인하려고 곱셈을 하면 $13\\times7=${$91$}이다. 계산한 곱이 처음 나눌 수와 같아서 몫이 맞다.",
+        "cStudentSentence": "$91\\div13$의 몫 $7$이 맞는지 확인하려고 곱셈을 하면 $13\\times7=$□이다. 계산한 곱이 처음 나눌 수와 같아서 몫이 맞다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$91$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$91\\div13$의 몫을 $7$이라고 구했습니다. 이 몫이 맞는지 곱셈으로 확인하는 방법을 쓰고, 맞는지 판단하세요.",
+          "answer": "나누는 수 $13$에 몫 $7$을 곱한 값이 처음 수 $91$과 같은지 확인한다. $13\\times7=91$이므로 몫 $7$은 맞다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나누는 수 $13$에 몫 $7$을 곱하여 나누어지는 수 $91$과 같은지 확인한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$13\\times7=91$이므로 몫 $7$은 맞다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$91\\div13$의 몫 $7$이 맞는지 확인하려고 곱셈을 하면 $13\\times7=${$91$}이다. 계산한 곱이 처음 나눌 수와 같아서 몫이 맞다.",
+          "acceptedAnswers": [
+            [
+              "$91$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-5-c2",
+          "sourceIndex": 233,
+          "proposalFingerprint": "d196584d7c7541e7c59f4fc9a723df337aa95d2e5f04adf28415057f650b9637",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "13×7=91의곱검산과맞는몫판정을설명한다.",
+          "cReason": "잘못된84제외사유를고치고곱91을계산하여원래전체와비교하는검산을복원했다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$91\\div13$의 몫을 $8$이라고 구했다. 곱셈으로 확인하면 $13\\times8=104$이고 $104$는 $91$과 다르므로 구한 몫은 {틀렸다}.",
+        "cSlotEquivalents": [
+          [
+            "잘못되었다",
+            "틀리다",
+            "잘못됐다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-1-xc21",
+      "sourceIndex": 1061,
+      "beforeProposal": {
+        "sourceIndex": 1061,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+        "sourceFingerprint": "95e26a0c755640d007cf1068b54b11d2538a8b81a0b45389560f8a0a01f7a72a",
+        "proposalFingerprint": "6a6e016ea789c4558d3c3ef195dec7a94819a7fa60a4646d79e8f088f798f251",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-1-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "원 위의 점과 중심 사이의 거리 설명이 다른 항목에 들어 있음",
+        "cDecision": "keep",
+        "cReason": "빈칸이 익숙한 낱말 '반지름'이고 문장이 분명함",
+        "exclusionReason": "원 위의 점에서 중심까지의 거리가 반지름과 같다는 내용은 e3-2-3-1-xc22의 B(안쪽·원 위·바깥 비교)에 들어 있음",
+        "answerNotes": "'반지름의 길이'도 정답. '지름'은 오답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "원 위의 점과 중심 사이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "원 위의 어느 점에서 중심까지의 거리는 {반지름}과 같다.",
+        "cStudentSentence": "원 위의 어느 점에서 중심까지의 거리는 □과 같다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "반지름",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "원 위의 어느 점에서 중심까지의 거리는 □과 같다.",
+          "answers": [
+            "반지름"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "원 위의 어느 점에서 중심까지의 거리는 {반지름}과 같다.",
+          "acceptedAnswers": [
+            [
+              "반지름"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "원 위의 점과 중심 사이의 거리 설명이 다른 항목에 들어 있음"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-1-xc21",
+          "sourceIndex": 1061,
+          "proposalFingerprint": "6a6e016ea789c4558d3c3ef195dec7a94819a7fa60a4646d79e8f088f798f251",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "원위거리와반지름관계는1062의 세점비교에 있다.",
+          "cReason": "어느원위점이든중심거리의반지름길이를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "원 위의 점과 중심 사이 거리가 반지름과 같다는 사실은 e3-2-3-1-xc22 B의 안쪽·원 위·바깥 점 비교에 포함된다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-1-xc23",
+      "sourceIndex": 1063,
+      "beforeProposal": {
+        "sourceIndex": 1063,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+        "sourceFingerprint": "a72b6b0c716b3828d0f244af91c027e541c45217048fc284b63e03d5a9ae4c28",
+        "proposalFingerprint": "2db5cdb5699804ae3201458a75a47ef1340f9bdf542f207e3fa4b911a6f05f80",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-1-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "바깥 점의 거리 비교가 다른 항목에 들어 있음",
+        "cDecision": "keep",
+        "cReason": "'길다/짧다' 비교 한 낱말이고 조건이 분명함",
+        "exclusionReason": "원 바깥의 점은 중심까지의 거리가 반지름보다 길다는 내용은 e3-2-3-1-xc22의 B(7 cm 떨어진 점)에 들어 있음",
+        "answerNotes": "'멀다', '크다'도 정답. '짧다'는 오답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "원 바깥의 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "원 바깥에 있는 점에서 중심까지의 거리는 반지름보다 {길다}.",
+        "cStudentSentence": "원 바깥에 있는 점에서 중심까지의 거리는 반지름보다 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "길다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "원 바깥에 있는 점에서 중심까지의 거리는 반지름보다 □.",
+          "answers": [
+            "길다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "원 바깥에 있는 점에서 중심까지의 거리는 반지름보다 {길다}.",
+          "acceptedAnswers": [
+            [
+              "길다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "바깥 점의 거리 비교가 다른 항목에 들어 있음"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-1-xc23",
+          "sourceIndex": 1063,
+          "proposalFingerprint": "2db5cdb5699804ae3201458a75a47ef1340f9bdf542f207e3fa4b911a6f05f80",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "바깥7cm의판단설명은1062에 있다.",
+          "cReason": "바깥의반지름보다긴거리관계다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "원 바깥 점의 거리를 반지름과 비교하는 목표는 e3-2-3-1-xc22 B에 포함된다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-2-xc9",
+      "sourceIndex": 1072,
+      "beforeProposal": {
+        "sourceIndex": 1072,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-2 원의 성질",
+        "sourceFingerprint": "f551cffd8b71795534ed3ba6e1a96bd31edac80d07edb36e9c898f5d3865fea7",
+        "proposalFingerprint": "3af6d9ed110aeaa615f41e362af7e70b4949b6d05189e90d697e6322b01b58c7",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-2-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "지름의 한가운데가 중심이라는 설명이 다른 항목과 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "지름이 $10\\,\\mathrm{cm}$인 원에서 원의 중심은 지름을 $5\\,\\mathrm{cm}$와 {$5$}$\\,\\mathrm{cm}$로 똑같이 나눈다.",
+        "cReason": "빈칸 '반으로'는 '똑같이 둘로', '같은 길이로' 등으로 답이 흩어지므로 구체적인 길이로 바꿈",
+        "exclusionReason": "중심이 지름의 한가운데라는 내용은 e3-2-3-1-xc25의 B(지름에서 중심 찾기)와 같은 목표",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "지름 위의 중심",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "지름이 $10\\,\\mathrm{cm}$인 원에서 원의 중심은 지름을 $5\\,\\mathrm{cm}$와 {$5$}$\\,\\mathrm{cm}$로 똑같이 나눈다.",
+        "cStudentSentence": "지름이 $10\\,\\mathrm{cm}$인 원에서 원의 중심은 지름을 $5\\,\\mathrm{cm}$와 □$\\,\\mathrm{cm}$로 똑같이 나눈다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "지름이 $10\\,\\mathrm{cm}$인 원에서 원의 중심은 지름을 $5\\,\\mathrm{cm}$와 {$5$}$\\,\\mathrm{cm}$로 똑같이 나눈다.",
+          "acceptedAnswers": [
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "지름의 한가운데가 중심이라는 설명이 다른 항목과 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-2-xc9",
+          "sourceIndex": 1072,
+          "proposalFingerprint": "3af6d9ed110aeaa615f41e362af7e70b4949b6d05189e90d697e6322b01b58c7",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "지름중앙의중심설명은1065와 겹친다.",
+          "cReason": "10cm지름을5·5로반분하는실제값이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "지름의 한가운데에서 중심을 찾는 이유는 e3-2-3-1-xc25 B에서 설명한다.",
+        "cDecision": "rewrite",
+        "cAfter": "지름이 $10\\,\\mathrm{cm}$인 원에서 원의 중심은 지름의 한가운데에 있다. 중심에서 지름의 한쪽 끝까지 길이는 {$5$}$\\,\\mathrm{cm}$이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-3-2-xc24",
+      "sourceIndex": 1085,
+      "beforeProposal": {
+        "sourceIndex": 1085,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-3 원::2-3-2 원의 성질",
+        "sourceFingerprint": "59fef1f0937e065c9cae9c75c784c069598b5e024c7d3e9c43f4be0cc1555e5d",
+        "proposalFingerprint": "96358a8bf78ac29c15ca85ddcee41ffd78ba54788d5c3ea4636ede09c70b55d4",
+        "reviewStatus": "draft",
+        "id": "e3-2-3-2-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "별도 B 없음",
+        "bReason": "반지름의 길이가 모두 같다는 설명이 다른 항목과 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "한 원의 반지름은 길이가 모두 {같다}. 그래서 한 원에서 잰 두 반지름이 $4\\,\\mathrm{cm}$와 $5\\,\\mathrm{cm}$로 나왔다면 잘못 잰 것이다.",
+        "cReason": "'길이가 서로 다르면'이라는 조건 구절을 가리는 대신 판단의 근거인 '같다'를 쓰게 함",
+        "exclusionReason": "한 원의 반지름은 길이가 모두 같다는 근거는 e3-2-3-2-xc1의 B와 같은 목표",
+        "answerNotes": "'똑같다'도 정답. '다르다'는 오답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "반지름이 다르게 잰 경우",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 원의 반지름은 길이가 모두 {같다}. 그래서 한 원에서 잰 두 반지름이 $4\\,\\mathrm{cm}$와 $5\\,\\mathrm{cm}$로 나왔다면 잘못 잰 것이다.",
+        "cStudentSentence": "한 원의 반지름은 길이가 모두 □. 그래서 한 원에서 잰 두 반지름이 $4\\,\\mathrm{cm}$와 $5\\,\\mathrm{cm}$로 나왔다면 잘못 잰 것이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "한 원의 반지름은 길이가 모두 {같다}. 그래서 한 원에서 잰 두 반지름이 $4\\,\\mathrm{cm}$와 $5\\,\\mathrm{cm}$로 나왔다면 잘못 잰 것이다.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "반지름의 길이가 모두 같다는 설명이 다른 항목과 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-3-2-xc24",
+          "sourceIndex": 1085,
+          "proposalFingerprint": "96358a8bf78ac29c15ca85ddcee41ffd78ba54788d5c3ea4636ede09c70b55d4",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "한원반지름같음의근거는1066과 겹친다.",
+          "cReason": "같은반지름성질로4·5cm두측정의오류를 판단한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bReason": "같은 원의 반지름은 길이가 같다는 이유는 e3-2-3-2-xc1 B에서 설명한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-1-xc28",
+      "sourceIndex": 1520,
+      "beforeProposal": {
+        "sourceIndex": 1520,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-1 각의 크기 비교하기",
+        "sourceFingerprint": "c3b8b18576a7c0491bc5c6c511aae456c312911ffc78228b3cd28bd6eb00c780",
+        "proposalFingerprint": "93ce45cc45f92f892d5c4906b3f4002a17033a76f0c31e87e067992a1dc7dc96",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-1-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "단위 각을 어떤 각에 맞추어 대 보니 $3$번 들어가고, 한 번 더 들어갈 만큼은 아니지만 조금 남았습니다. 이 각의 크기를 단위 각의 몇 번으로 말하면 좋을지 쓰세요.",
+        "bAnswer": "단위 각 $3$번보다 조금 더 크다고 어림하여 말한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$번보다 조금 더",
+              "$3$번보다 조금 크다",
+              "$3$번과 $4$번 사이"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "단위 각이 꼭 맞지 않을 때 '몇 번보다 조금 더'로 어림해 말하기",
+        "bReason": "'$3$번쯤'은 남은 부분이 있다는 방향이 드러나지 않아 기준에서 빼고, 3번보다 조금 크다는 뜻이나 3번과 4번 사이라는 뜻만 인정하도록 범위를 좁힘. 질문에도 한 번 더 들어갈 만큼은 아니라는 조건을 넣음.",
+        "cDecision": "exclude",
+        "cReason": "문장에 '조금 더'라는 어림 표현이 이미 있어 '어림하여'라는 부사 하나만 채우게 되므로 학습 이점이 낮음. 수나 크기를 비교·계산하는 빈칸이 아님.",
+        "exclusionReason": "C만 제외한다: 문장에 '조금 더'라는 어림 표현이 이미 있어 '어림하여'라는 부사 하나만 채우게 되므로 학습 이점이 낮음. 수나 크기를 비교·계산하는 빈칸이 아님. B의 학습 목표는 유지한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단위 각이 꼭 맞지 않을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "단위 각을 어떤 각에 맞추어 대 보니 $3$번 들어가고, 한 번 더 들어갈 만큼은 아니지만 조금 남았습니다. 이 각의 크기를 단위 각의 몇 번으로 말하면 좋을지 쓰세요.",
+          "answer": "단위 각 $3$번보다 조금 더 크다고 어림하여 말한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$번보다 조금 더",
+                "$3$번보다 조금 크다",
+                "$3$번과 $4$번 사이"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "문장에 '조금 더'라는 어림 표현이 이미 있어 '어림하여'라는 부사 하나만 채우게 되므로 학습 이점이 낮음. 수나 크기를 비교·계산하는 빈칸이 아님."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-1-xc28",
+          "sourceIndex": 1520,
+          "proposalFingerprint": "93ce45cc45f92f892d5c4906b3f4002a17033a76f0c31e87e067992a1dc7dc96",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "exclude",
+          "verdict": "retain-planning-proposal",
+          "bReason": "단위각세개보다크고네개미만이라는남은부분의어림을허용한다.",
+          "cReason": "어림하여부사복원은C만제외하고실제크기표현은B에남긴다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "단위 각을 어떤 각에 맞추어 대 보니 $3$번 들어가고, 한 번 더 들어갈 만큼은 아니지만 조금 남았습니다. 이 각의 크기는 단위 각의 몇 배보다 크고 몇 배보다 작은지 쓰세요.",
+        "bAnswer": "단위 각의 $3$배보다 크고 $4$배보다 작습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "단위 각의 $3$배보다 크고 $4$배보다 작다",
+              "단위 각의 $3$배와 $4$배 사이이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-2-2-xc26",
+      "sourceIndex": 1544,
+      "beforeProposal": {
+        "sourceIndex": 1544,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-2 각도::1-2-2 각의 크기 재기",
+        "sourceFingerprint": "538495d68638db523d0d3a1135f51f07c1be2d2bdad14cb41a7ba2b642efa6c3",
+        "proposalFingerprint": "9a2b9e9dbf13c9ffdd85751bc174b66bc0a3ead0fdccfd25432e2a321e9cad1b",
+        "reviewStatus": "draft",
+        "id": "e4-1-2-2-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "각도기의 작은 눈금 한 칸은 $1^\\circ$입니다. $0$에서부터 세어 가니 각의 다른 변이 큰 눈금 $50$을 지나 작은 눈금 $3$칸을 더 간 곳에 있습니다. 이 각이 $47^\\circ$가 아니라 $53^\\circ$인 까닭을 쓰세요.",
+        "bAnswer": "작은 눈금 한 칸이 $1^\\circ$이고, $0$에서 세어 $50$을 지나 $3$칸 더 벌어졌으므로 $50+3=53$에서 $53^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$50$보다 $3$칸 더 벌어졌다",
+              "$50$에서 $3$칸 더 갔으니 $50$에 $3$을 더한다",
+              "$50+3$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$0$에서 세어 온 큰 눈금에 작은 눈금 칸 수를 더해 읽기",
+        "bReason": "작은 눈금 한 칸이 $1^\\circ$라는 조건을 질문에 직접 넣어 질문만으로 $3$칸이 $3^\\circ$임을 알 수 있게 함. 원문 예의 $47^\\circ$ 오답과 견주어 더하는 까닭을 쓰게 하는 구성은 유지함.",
+        "cDecision": "rewrite",
+        "cAfter": "작은 눈금 한 칸은 $1^\\circ$이다. $0$에서 세어 다른 변이 큰 눈금 $50$을 지나 작은 눈금 $3$칸 더 간 곳에 있으면 각도는 {$53$}도이다.",
+        "cReason": "'$0$에서 세어 온 쪽의 큰 눈금' 긴 구절을 계산으로 바꿈",
+        "exampleNeeded": "다른 변이 큰 눈금 $50$과 $60$ 사이, $50$에서 작은 눈금 $3$칸 지난 곳을 가리키는 각도기 그림(없어도 질문은 글로 자립함)",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "큰 눈금 사이의 작은 눈금 읽기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "작은 눈금 한 칸은 $1^\\circ$이다. $0$에서 세어 다른 변이 큰 눈금 $50$을 지나 작은 눈금 $3$칸 더 간 곳에 있으면 각도는 {$53$}도이다.",
+        "cStudentSentence": "작은 눈금 한 칸은 $1^\\circ$이다. $0$에서 세어 다른 변이 큰 눈금 $50$을 지나 작은 눈금 $3$칸 더 간 곳에 있으면 각도는 □도이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$53$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "각도기의 작은 눈금 한 칸은 $1^\\circ$입니다. $0$에서부터 세어 가니 각의 다른 변이 큰 눈금 $50$을 지나 작은 눈금 $3$칸을 더 간 곳에 있습니다. 이 각이 $47^\\circ$가 아니라 $53^\\circ$인 까닭을 쓰세요.",
+          "answer": "작은 눈금 한 칸이 $1^\\circ$이고, $0$에서 세어 $50$을 지나 $3$칸 더 벌어졌으므로 $50+3=53$에서 $53^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$50$보다 $3$칸 더 벌어졌다",
+                "$50$에서 $3$칸 더 갔으니 $50$에 $3$을 더한다",
+                "$50+3$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "작은 눈금 한 칸은 $1^\\circ$이다. $0$에서 세어 다른 변이 큰 눈금 $50$을 지나 작은 눈금 $3$칸 더 간 곳에 있으면 각도는 {$53$}도이다.",
+          "acceptedAnswers": [
+            [
+              "$53$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-2-2-xc26",
+          "sourceIndex": 1544,
+          "proposalFingerprint": "9a2b9e9dbf13c9ffdd85751bc174b66bc0a3ead0fdccfd25432e2a321e9cad1b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "작은한칸1도조건을넣어50에서더간세칸은뺄셈이아닌덧셈임을설명한다.",
+          "cReason": "50+3=53도의실제눈금을계산한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0$에서 세어 $50$을 지난 뒤 더 간 것이므로 $50$에서 $3$을 빼지 않고 더한다",
+              "$50+3=53$이므로 $53$도이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

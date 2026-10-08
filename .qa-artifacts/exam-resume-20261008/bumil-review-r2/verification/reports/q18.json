@@ -1,0 +1,399 @@
+{
+  "status": "pending",
+  "studentDigest": "7560f9f6c5dcf51efcb593ccc24873d941d6d7fb26339aada218c7eba6af98ac",
+  "candidateDigest": "0360d1fcae6d467e221d669743cadf3d60f560b7943da51d082f0d045f572e82",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "solveDigest": "3e35d55f8e2fd2b1aa26fdbb29eef4d55576ee6337c176f075475366b42cc6b2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 18,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q18",
+    "reviewedAtKst": "2026-10-08",
+    "independence": {
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "verifierIsDifferentAuthor": true,
+      "blindSolveCommit": "c998ea12a6447970c71679e6dd97d06d0fa3dc6b",
+      "answerExposure": "only after parent copied/hash-fixed this solver independent result",
+      "solveRawFileSha256": "775cd629fa36066e871b260cee7ce6e1184884d0a0384fc2174c216b6f14e910",
+      "solveRawBytesMatchParent": true,
+      "solveFileUneditedSinceCommit": true,
+      "originalAnswersOrSolutionsRead": false,
+      "geometryAuthorCandidatesReviewed": false
+    },
+    "binding": {
+      "contract": "parent scripts/import/exam-twin/candidatePack.mjs bindCandidate(candidate.json); digest(independentSolve)",
+      "candidateObjectAndAssetBindingsRecomputed": true,
+      "allFourProvidedDigestsMatch": true,
+      "candidateFileSha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6",
+      "verificationInputsPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\verification\\verification-inputs.json",
+      "verificationInputsSha256": "d95b08d3c66132071e0c25b3488187ab4d3bc73b87d3c5a25ff8649ff8f20d81",
+      "manifestInputHashMatched": true,
+      "alteredBytesPolicy": "fail closed; no altered candidate/student/spec/svg/solve detected",
+      "contractFileSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59"
+    },
+    "checkEvidence": {
+      "answerCorrect": {
+        "authorAnswer": "③",
+        "sealedIndependentAnswer": "③",
+        "codeChoiceMatches": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "calculation": {
+          "a": "2",
+          "b": "8",
+          "vertex": [
+            1,
+            "6"
+          ],
+          "c": "8",
+          "aNonzero": true
+        }
+      },
+      "solutionCorrect": "(-1,14)를 대입한 3a+b=14와 a+b=10을 빼 a=2,b=8을 얻는다. a(x-1)²+(b-a)의 꼭짓점 (1,6)을 y=-2x+c에 대입하면 c=8이다. a≠0 조건도 만족한다.",
+      "existenceUniqueness": "서로 다른 두 일차 조건에서 a,b가 유일하게 정해지고 a=2≠0이다. 꼭짓점의 x좌표 1을 대입하면 c도 유일하게 정해진다. 미분이나 최적화는 사용하지 않았다.",
+      "choicesCorrect": {
+        "allFiveChecked": true,
+        "details": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "c=4이면 x=1에서 직선의 y값이 2라서 꼭짓점 6에 맞지 않는다."
+          },
+          {
+            "choice": 2,
+            "matches": false,
+            "reason": "c=6이면 x=1에서 y=4이다."
+          },
+          {
+            "choice": 3,
+            "matches": true,
+            "reason": "c=8이면 x=1에서 y=6으로 꼭짓점과 일치한다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "c=10이면 x=1에서 y=8이다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "c=14이면 x=1에서 y=12이다."
+          }
+        ],
+        "codeMatchesSealedBlindChoiceChecks": true
+      },
+      "figureConsistent": "그림 없음. 점, 두 상수의 합, 꼭짓점이 놓인 직선의 세 기록 행과 c의 질문을 표 렌더에서 확인했다.",
+      "sameCoreConceptAndProcedure": "원본도 점 대입과 완전제곱으로 얻은 꼭짓점의 직선 소속을 연결해 계수 조건을 푼다. 새 후보는 계수 합을 주고 직선 절편을 복구하는 역방향으로 같은 두 관계를 적용한다.",
+      "distinctPresentation": "원본의 고정 직선/미지 계수합에서 새 미지 직선 절편/주어진 계수합으로 입력과 목표를 교환했다. 세 기록을 연결하는 표로 조직하고 서술형에서 객관식 역산으로 바꿨다.",
+      "naturalKorean": "세 기록 모두를 만족시키는 c라는 질문과 상수 조건이 분명하며 점/꼭짓점/직선의 관계를 자연스럽게 설명한다.",
+      "curriculumAppropriate": "점 대입, 두 일차 조건의 연립, 완전제곱 꼭짓점과 직선에 점 대입이다. a≠0도 명시되어 이차함수 조건이 분명하다. 식의 값, 중2 연립일차방정식/일차함수, 중3 다항식 전개. 근과 계수, 미분 또는 함수 극값 최적화가 없다. 학교·AI·family 존재가 아니라 아래 공식 문구 및 실제 요구 절차로 판정했다.",
+      "allStudentSurfacesInScope": {
+        "stem": "점 대입, 두 일차 조건의 연립, 완전제곱 꼭짓점과 직선에 점 대입이다. a≠0도 명시되어 이차함수 조건이 분명하다.",
+        "choices": "4,6,8,10,14라는 정수 절편 후보이다. 각각 같은 유일한 a,b에 대해 직선 조건을 비교할 수 있다.",
+        "figuresAndTables": "그림 없음. 점, 두 상수의 합, 꼭짓점이 놓인 직선의 세 기록 행과 c의 질문을 표 렌더에서 확인했다.",
+        "notation": "a,b,c 실수 상수, 좌표 (-1,14), 상수 합과 y=-2x+c 및 완전제곱 표기이다.",
+        "answer": "c=8과 ③이며 실수 이차함수의 꼭짓점만 사용한다.",
+        "studentSolution": "(-1,14)를 대입한 3a+b=14와 a+b=10을 빼 a=2,b=8을 얻는다. a(x-1)²+(b-a)의 꼭짓점 (1,6)을 y=-2x+c에 대입하면 c=8이다. a≠0 조건도 만족한다.",
+        "prerequisites": "식의 값, 중2 연립일차방정식/일차함수, 중3 다항식 전개. 근과 계수, 미분 또는 함수 극값 최적화가 없다."
+      },
+      "unitFamilyFit": "중3 일반형 이차함수 Unit의 꼭짓점/계수 조건은 적합하지만 candidate.metadata.assignment.familyKey=null, status=pending이다. 주변 꼭짓점02나 한 점으로 계수 결정10을 그대로 확정할 근거가 주어지지 않았다.",
+      "scoreAppropriate": "기본 상단으로 적정한 4점 객관식. 점 대입→두 일차식 차감→완전제곱→직선 대입의 네 짧은 단계이며 계산은 정수이다. 원본 서술형 7점과 같다고 가정하지 않고 새 기록표와 객관식 출력의 부담을 따로 평가했다."
+    },
+    "deterministicMath": {
+      "tool": "Python fractions.Fraction / decimal.Decimal / exact sign and symbolic-side classifications",
+      "executed": true,
+      "sourceOfInputs": "already blinded student statement/figures, not author facts or old answers",
+      "calculationCode": "a=(14-10)/2; b=10-a; vertex=(1,b-a); c=(b-a)+2 (Fraction)",
+      "results": {
+        "a": "2",
+        "b": "8",
+        "vertex": [
+          1,
+          "6"
+        ],
+        "c": "8",
+        "aNonzero": true
+      },
+      "choiceMatches": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "matchesPreExposureSolve": true
+    },
+    "studentRenderReview": {
+      "localChromium": true,
+      "networkRequestsBlocked": true,
+      "katexThrowOnError": true,
+      "mathSpanCount": 24,
+      "reviewerViewedFullStemChoicesTablesFiguresAndNewSolution": true,
+      "inspectionPngSha256": "7031dce7cd20cea8f8828f406fecf6247025814c174c894b6d140586677c5ed2",
+      "inspectionArtifactRetained": false,
+      "layoutScope": "temporary neutral local review layout; no claim to parent production pagination",
+      "observations": "그림 없음. 점, 두 상수의 합, 꼭짓점이 놓인 직선의 세 기록 행과 c의 질문을 표 렌더에서 확인했다.",
+      "assets": []
+    },
+    "sourceComparison": {
+      "referencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\problems.json",
+      "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "questionNumber": 18,
+      "contentSha256": "f4deafdc27156f764d585406d49164f2b783b0fa234d2f03c57ba8450da08819",
+      "contentHashMatched": true,
+      "redactedAnswerFree": true,
+      "originalAnswerOrSolutionNotAccessed": true,
+      "figures": [],
+      "sameProcedure": "원본도 점 대입과 완전제곱으로 얻은 꼭짓점의 직선 소속을 연결해 계수 조건을 푼다. 새 후보는 계수 합을 주고 직선 절편을 복구하는 역방향으로 같은 두 관계를 적용한다.",
+      "substantiveDelta": "원본의 고정 직선/미지 계수합에서 새 미지 직선 절편/주어진 계수합으로 입력과 목표를 교환했다. 세 기록을 연결하는 표로 조직하고 서술형에서 객관식 역산으로 바꿨다."
+    },
+    "curriculum": {
+      "targetGrade": "중3",
+      "targetEdition": "2015",
+      "status": "independently-reviewed-selected-student-surfaces",
+      "official2015Pdf": {
+        "id": "moe-2015-74-math-pdf",
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+        "archive_member": "별책8_수학과 교육과정.pdf",
+        "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "bytes": 2533289,
+        "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "primary": true,
+        "retrieved_date_kst": "2026-10-08",
+        "format": "pdf"
+      },
+      "evidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardRefs": [
+        {
+          "code": "9수03-10",
+          "verifiedText": "이차함수의 그래프의 성질을 이해한다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수02-12",
+          "verifiedText": "다항식의 곱셈과 인수분해를 할 수 있다.",
+          "physicalPages1Based": [
+            34
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수02-11",
+          "verifiedText": "미지수가 2개인 연립일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "physicalPages1Based": [
+            34
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수03-05",
+          "verifiedText": "일차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+          "physicalPages1Based": [
+            36
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수02-02",
+          "verifiedText": "식의 값을 구할 수 있다.",
+          "physicalPages1Based": [
+            34
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        }
+      ],
+      "restrictionsVerified": [
+        {
+          "id": "no_vieta",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_ratio_identities",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "angle_range",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "real_quadratic_roots",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_function_applications",
+          "physicalPages1Based": [
+            37
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        }
+      ],
+      "surfaceEvidence": {
+        "stem": "점 대입, 두 일차 조건의 연립, 완전제곱 꼭짓점과 직선에 점 대입이다. a≠0도 명시되어 이차함수 조건이 분명하다.",
+        "choices": "4,6,8,10,14라는 정수 절편 후보이다. 각각 같은 유일한 a,b에 대해 직선 조건을 비교할 수 있다.",
+        "figuresAndTables": "그림 없음. 점, 두 상수의 합, 꼭짓점이 놓인 직선의 세 기록 행과 c의 질문을 표 렌더에서 확인했다.",
+        "notation": "a,b,c 실수 상수, 좌표 (-1,14), 상수 합과 y=-2x+c 및 완전제곱 표기이다.",
+        "answer": "c=8과 ③이며 실수 이차함수의 꼭짓점만 사용한다.",
+        "studentSolution": "(-1,14)를 대입한 3a+b=14와 a+b=10을 빼 a=2,b=8을 얻는다. a(x-1)²+(b-a)의 꼭짓점 (1,6)을 y=-2x+c에 대입하면 c=8이다. a≠0 조건도 만족한다.",
+        "prerequisites": "식의 값, 중2 연립일차방정식/일차함수, 중3 다항식 전개. 근과 계수, 미분 또는 함수 극값 최적화가 없다."
+      },
+      "rolloutSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "phaseInTextChecked": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "phaseInTextChecked": true
+        }
+      ],
+      "phaseInConclusion": "2015 중3 적용은 2020-03-01, 2022 중3 적용은 2027-03-01. 자료의 2025/2026 출처 연도 차이는 이 범위의 2015 적용 결론을 바꾸지 않는다. 출처 확정은 별도 보류.",
+      "normalization": "PDF 추출의 공백/줄바꿈/U+0001 제어 구분자만 제거하여 제공된 2020 HWP 추출 증거의 해당 문구와 2015 PDF를 대조했다. 새 HWP 추출을 수행했다고 주장하지 않는다.",
+      "amendmentReviewBoundary": "선택 문항의 기준·각도 범위·금지 방법·복잡도 제한 및 시행 시점에 한정했다. 관련 문구에서 실질 변경/불확실성은 발견되지 않았다. 전체 2015 개정 고시 연혁을 감사하거나 2022 재출판을 승인한 결과는 아니다.",
+      "specificForbiddenMethodsAvoided": "미분, 근과 계수 관계, 삼각비 항등식, 90° 밖 삼각비, 사인/코사인 법칙, 일반 삼각형 사인 넓이 암기식, 원과 비례/원의 거듭제곱, 라디안, 정사영/벡터 없음. q12 수선 높이와 q13 명시 단면만 사용."
+    },
+    "taxonomy": {
+      "unitSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+      "unitSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotScope": "parent supplied read-only 2026-10-07 snapshot; no DB call or claim of later live recapture",
+      "unit": {
+        "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수 y=ax^2+bx+c의 그래프",
+        "semester": 1,
+        "orderIndex": 479,
+        "problemCodePrefix": "J30402"
+      },
+      "unitAppropriate": true,
+      "familyKey": null,
+      "registryMatch": null,
+      "liveCount": null,
+      "liveFamilySnapshotMatch": false,
+      "generator": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "mode": "read-only relevant family source, no generator execution or edits",
+        "relevantLines1Based": null
+      },
+      "semanticDecision": "pending",
+      "reason": "중3 일반형 이차함수 Unit의 꼭짓점/계수 조건은 적합하지만 candidate.metadata.assignment.familyKey=null, status=pending이다. 주변 꼭짓점02나 한 점으로 계수 결정10을 그대로 확정할 근거가 주어지지 않았다."
+    },
+    "objectiveDifficultyAndScore": {
+      "authorDifficultyProposal": "기본",
+      "reviewerDifficultyBand": "기본 상단",
+      "candidateScore": 4,
+      "scoreAppropriate": true,
+      "candidateQuestionType": "객관식",
+      "authorProblemTypeProposal": null,
+      "reviewerProblemType": "활용",
+      "reason": "기본 상단으로 적정한 4점 객관식. 점 대입→두 일차식 차감→완전제곱→직선 대입의 네 짧은 단계이며 계산은 정수이다. 원본 서술형 7점과 같다고 가정하지 않고 새 기록표와 객관식 출력의 부담을 따로 평가했다.",
+      "empiricalCalibrationClaimed": false,
+      "sourceOrGeneratorDifficultyAutoApplied": false
+    },
+    "holds": [
+      "taxonomy: familyKey가 미지정이다. 실제 live/registry family의 절차 일치 근거와 부모의 분류 결정을 기다린다. Unit 적정성과 수학·교육과정 통과는 family 확정과 별도로 기록한다."
+    ],
+    "nonblockingSuggestions": [],
+    "releaseBoundary": {
+      "reviewStatusCovers": "only these selected independent mathematics, full student-surface curriculum, presentation/language, difficulty/score and taxonomy dimensions",
+      "nativeProvenance": "blocked-parent-owned",
+      "rights": "blocked-parent-owned",
+      "sourceIdentity": "pending-parent-attestation",
+      "productionUseApproved": false,
+      "DBWrites": false,
+      "paidCalls": false,
+      "pushes": false,
+      "inferenceAPICalls": false
+    },
+    "consumerValidation": {
+      "module": "parent candidatePack.mjs evaluateReview",
+      "executed": true,
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "productionWrites": false,
+      "selectedReviewReasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed"
+      ],
+      "effect": "technical dimensions preserved separately; no production approval"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q11",
+    "questionNumber": 11,
+    "grade": "중3",
+    "curriculum": "2015",
+    "questionType": "객관식",
+    "score": 4,
+    "content": "직각삼각형을 두 부분으로 나눈 측정 기록에서 높이만 남아 있다. 점 $\\mathrm{D}$는 선분 $BC$의 내부에 있고, 세 점 $\\mathrm{B},\\mathrm{D},\\mathrm{C}$는 이 순서로 한 직선 위에 있다.\n\n측정 기록\n∘ $\\angle ACB=90^\\circ$\n∘ $\\angle ABD=15^\\circ$, $\\angle ADC=30^\\circ$\n∘ 높이 $\\overline{AC}=3\\,\\mathrm{cm}$\n\n이 기록에 맞게 밑변 $\\overline{BC}$의 길이를 복구한 값은?",
+    "choices": [
+      "$(3+3\\sqrt3)\\,\\mathrm{cm}$",
+      "$(6+3\\sqrt3)\\,\\mathrm{cm}$",
+      "$(6+6\\sqrt3)\\,\\mathrm{cm}$",
+      "$(9+3\\sqrt3)\\,\\mathrm{cm}$",
+      "$(12+3\\sqrt3)\\,\\mathrm{cm}$"
+    ],
+    "figures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q11-1.svg",
+        "sha256": "7f29f3386f364319ab0c686ae371816523830751f35e42cb5392be7a612e3c02",
+        "intendedWidthMm": 66
+      }
+    ],
+    "studentDigest": "570ab4369989cd77285dad0e26313d0e9282f0cec12e2b9568525bf8c728c2e4"
+  },
+  {
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q14",
+    "questionNumber": 14,
+    "grade": "중3",
+    "curriculum": "2015",
+    "questionType": "객관식",
+    "score": 5,
+    "content": "직사각형 종이띠 $\\mathrm{ABCD}$에서 왼쪽 위 꼭짓점을 $\\mathrm{A}$, 왼쪽 아래를 $\\mathrm{B}$, 오른쪽 아래를 $\\mathrm{C}$, 오른쪽 위를 $\\mathrm{D}$라 하였다. $\\mathrm{P}$는 선분 $AD$의 내부, $\\mathrm{Q}$는 선분 $BC$의 내부에 있다.\n첫 번째 그림은 접기 전의 종이띠이고, 두 번째 그림은 선분 $PQ$를 따라 왼쪽 부분을 접어 점 $\\mathrm{A}$를 점 $\\mathrm{C}$와 일치시킨 모습이다. 접은 뒤 $\\mathrm{B}$의 위치를 $\\mathrm{B}'$로 표시하였다.\n\n접기 기록\n∘ 종이띠의 폭 $\\overline{AB}=3\\,\\mathrm{cm}$\n∘ 접은 뒤의 $\\angle CPQ=x$, $0^\\circ<x<90^\\circ$\n∘ $\\tan x=3$\n\n이 접기 기록을 만족하는 접기 전 선분 $\\overline{AP}$의 길이는?",
+    "choices": [
+      "$3\\,\\mathrm{cm}$",
+      "$4\\,\\mathrm{cm}$",
+      "$5\\,\\mathrm{cm}$",
+      "$6\\,\\mathrm{cm}$",
+      "$9\\,\\mathrm{cm}$"
+    ],
+    "figures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q14-1.svg",
+        "sha256": "e2b2ef401c08f88ada3b7b8df350fa9f5504a3e7fd32c923434187b029b8d623",
+        "intendedWidthMm": 66
+      },
+      {
+        "role": "stem",
+        "svgPath": "figures/q14-2.svg",
+        "sha256": "5825d50a282c4432beba489d50560506719b3cea76c6cdb75e64dfef2a7dabaa",
+        "intendedWidthMm": 45
+      }
+    ],
+    "studentDigest": "122a3917ecccd86d1f12da18984bbedec0fe1f22e1eeca58e55212f4d90fdb83"
+  }
+]

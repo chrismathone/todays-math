@@ -1,0 +1,58 @@
+[
+  {
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+    "questionNumber": 10,
+    "grade": "중3",
+    "curriculum": "2015",
+    "questionType": "객관식",
+    "score": 4,
+    "content": "체육관 환기창을 관측할 위치를 정하려고 한다. 두 번째 그림의 관계도에서 $\\mathrm{A}$는 민준의 눈, $\\mathrm{G}$는 발밑, $\\mathrm{C}$는 환기창의 중심이며, $\\mathrm{E}$는 창 중심 바로 아래 지면이다. 지면은 수평이고 벽은 수직이다. $\\mathrm{B}$는 눈높이의 수평선과 벽이 만나는 점이다.\n\n| 관측 기록 | 값 |\n| --- | --- |\n| 지면에서 환기창 중심까지의 높이 $\\overline{CE}$ | $12.8\\,\\mathrm{m}$ |\n| 민준의 눈높이 $\\overline{AG}$ | $1.6\\,\\mathrm{m}$ |\n| 환기창 중심을 올려다본 각 $\\angle BAC$ | $58^\\circ$ |\n\n| 각 | $\\sin$ | $\\cos$ | $\\tan$ |\n| --- | --- | --- | --- |\n| $58^\\circ$ | $0.8480$ | $0.5299$ | $1.6003$ |\n\n위 삼각비 표를 이용할 때 민준의 발밑에서 벽까지의 수평거리 $\\overline{GE}$는? (소수점 아래 둘째 자리에서 반올림한다.)",
+    "choices": [
+      "$6.5\\,\\mathrm{m}$",
+      "$6.8\\,\\mathrm{m}$",
+      "$7.0\\,\\mathrm{m}$",
+      "$7.2\\,\\mathrm{m}$",
+      "$11.2\\,\\mathrm{m}$"
+    ],
+    "figures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q10-1.svg",
+        "sha256": "a0924a0c32ceb18d08f1126358a0ecfe495dfb02a3e462e72d14507257337cd3",
+        "intendedWidthMm": 70
+      },
+      {
+        "role": "stem",
+        "svgPath": "figures/q10-2.svg",
+        "sha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+        "intendedWidthMm": 70
+      }
+    ],
+    "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934"
+  },
+  {
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+    "questionNumber": 19,
+    "grade": "중3",
+    "curriculum": "2015",
+    "questionType": "서술형",
+    "score": 7,
+    "content": "공원 측량 기록에서 두 측량 표지 $\\mathrm{A},\\mathrm{B}$ 사이의 거리만 빠져 있다. $\\mathrm{C}$는 관개 제어함의 위치이며, 세 위치를 이은 삼각형에 대한 기록은 다음과 같다.\n\n| 측량 항목 | 기록 |\n| --- | --- |\n| 표지 $\\mathrm{B}$에서 제어함 $\\mathrm{C}$까지의 거리 | $30\\sqrt{6}\\,\\mathrm{m}$ |\n| $\\angle BAC$ | $45^\\circ$ |\n| $\\angle ABC$ | $75^\\circ$ |\n\n빠진 거리 $\\overline{AB}$를 구하고 풀이 과정을 쓰시오.",
+    "choices": [],
+    "figures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q19-1.svg",
+        "sha256": "0c1e6d3c4ab1c275f1f87b238b504830a92b5ca24e15af527b5a46bb43ffa0ae",
+        "intendedWidthMm": 70
+      },
+      {
+        "role": "stem",
+        "svgPath": "figures/q19-2.svg",
+        "sha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+        "intendedWidthMm": 70
+      }
+    ],
+    "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75"
+  }
+]

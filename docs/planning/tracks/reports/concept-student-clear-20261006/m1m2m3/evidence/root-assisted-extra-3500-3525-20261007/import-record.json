@@ -1,0 +1,100 @@
+{
+  "importedAt": "2026-10-07T08:32:47.789Z",
+  "dispatchId": "ctx_9cb9b54195a9",
+  "notIndependentClaudeApproval": true,
+  "importedIds": [
+    "m3-04-03-xc3",
+    "m3-04-03-xc5",
+    "m3-04-03-xc6",
+    "m3-04-03-xc8",
+    "m3-04-03-xc9",
+    "m3-04-03-xc10",
+    "m3-04-03-xc11",
+    "m3-04-03-xc14",
+    "m3-04-03-xc15",
+    "m3-04-03-xc16",
+    "m3-04-03-xc17",
+    "m3-04-03-xc20",
+    "m3-04-03-xc22",
+    "m3-05-01-xc2",
+    "m3-05-01-xc3",
+    "m3-05-01-xc5",
+    "m3-05-01-xc6"
+  ],
+  "pending": [
+    {
+      "id": "m3-04-03-xc7",
+      "sourceIndex": 3503,
+      "proposalFingerprint": "b42219358797cc4180bcbadb2dcb1f71c3f1326fb4a97f861e89eaf364965c6b",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "a가0이 아니라는 조건이 없어 상수함수인 경우 모든x에서 y=q가 되고 x=p만 필수로 받는 기준이 부적절하다. 이차함수이며a0이 아닌 조건과 실수 전체 범위를 명시해 꼭짓점에서의 극값을 묻는다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3500-3525-20261007/root-middle-final-3500-3525-verdicts.json"
+    },
+    {
+      "id": "m3-04-03-xc13",
+      "sourceIndex": 3508,
+      "proposalFingerprint": "07331c0c5ff0b95589358fa88cc27cfc1fb4bd058dd54867407d53267a9ff840",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "차가 일정한 두 수의 곱의 최소를 음수와 양수의 쌍에서 찾는 문항이다. 자연수나 양수로 제한한 해석을 막도록 두 실수의 차라는 범위를 명시한다. 차6에서 -3·3과곱-9 및합0이라는 계산 자체는 맞다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3500-3525-20261007/root-middle-final-3500-3525-verdicts.json"
+    },
+    {
+      "id": "m3-04-03-xc18",
+      "sourceIndex": 3513,
+      "proposalFingerprint": "fe8dbab4f4d12a2240d4953626a9a160e0d8fe45b42738074580825a10acb373",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "공의 실제 움직임은 제한된 시간 범위인데 최댓값이 존재하기만 하면 a음수라는 결론은 성립하지 않는다. 꼭짓점인p초에서 최고 높이에 이른다는 요구와 이차함수/a0아닌 조건을 명시한다. C도 이차함수라는 조건과 계수 부호를 분명히 묻는다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3500-3525-20261007/root-middle-final-3500-3525-verdicts.json"
+    },
+    {
+      "id": "m3-04-03-xc19",
+      "sourceIndex": 3514,
+      "proposalFingerprint": "8b8b7a94996eb83e4d350745a88d052c280ae6c3e13644b2c50cfe066c0cc2de",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "원래식의 a는 위치를 바꾸는 상수인데 요청한 표준형 y=a(x-p)^2+q에서도 같은a를 이차항 계수로 쓴다. a0이면 원래식은x제곱+3인데 제시형은 상수여서 맞지 않는다. 표준형의 계수는 다른 문자를 쓰거나 완전제곱식과 상수의 합이라고 요청한다. C의 일반 양수 계수 조건은 타당하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3500-3525-20261007/root-middle-final-3500-3525-verdicts.json"
+    },
+    {
+      "id": "m3-04-03-xc23",
+      "sourceIndex": 3517,
+      "proposalFingerprint": "4defc7a1d72662be9a02294c63e398d6a554e3adb110aecb13c1ab297b648949",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B의 합8에서4·4 및 제곱합32는 타당하다. C의 임의 고정합 일반화는 자연수로 해석하면 홀수 합에서 두 수가 같을 수 없다. 두 실수라는 범위를 명시하여 같을 때 최소라는 일반 성질을 확인한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3500-3525-20261007/root-middle-final-3500-3525-verdicts.json"
+    },
+    {
+      "id": "m3-04-03-xc24",
+      "sourceIndex": 3518,
+      "proposalFingerprint": "529e6d50d39721ec591f30def7a79520e1545f30148179b63238908d7a4867e4",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 벽과 수직인 두 변 및 마주보는변20-2x를 특정해 넓이 최대50을 구한다. C는 울타리 길이만 정해졌을 뿐 밭이 직사각형이라는 조건이 없어 넓이가이차함수라는 결론이 항상 맞지 않는다. 직사각형 밭을 명시한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3500-3525-20261007/root-middle-final-3500-3525-verdicts.json"
+    },
+    {
+      "id": "m3-05-01-xc1",
+      "sourceIndex": 3519,
+      "proposalFingerprint": "1e3ad4adc0fd66fb77e876d591fa9db93ac2948cce33422fecc6d6c0c8a1653e",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B의 구체 기준각 교체 문항으로 통합은 명시적이다. C는 그림의 기준 없이높이·밑변이라는 말이 어떤 변인지 불명확하다. 직각 꼭짓점과기준각을 정해 마주보는변과빗변이아닌붙은변을 실제 이름으로 묻게 고친다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3500-3525-20261007/root-middle-final-3500-3525-verdicts.json"
+    },
+    {
+      "id": "m3-05-01-xc4",
+      "sourceIndex": 3522,
+      "proposalFingerprint": "596b4f55c6d0ce2512feae473710c802ce1d437772133c34278983c530b3481c",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 질문과 참고답은 기준각의 맞은편 변과 빗변 아닌 붙은 변으로 분명하지만 기준의 높이·밑변 대안은 어느 밑변을 정했는지 없이도 받는다. 실제 기준각 상대의 변 조건을 확인하거나 삼각형과 밑변의 위치를 명시한다. C는 실제 세 변의 역할을 정확히 정의한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3500-3525-20261007/root-middle-final-3500-3525-verdicts.json"
+    }
+  ],
+  "inputSha256": "6d6953e603b28138744f37446781495a1d83782729c80f78b66c53399514f023",
+  "verdictSha256": "e821686c08e96fb7ffaf16aa725e74b7023c7cb0bf0a702fc016d8b8e3295776"
+}

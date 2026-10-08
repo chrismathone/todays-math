@@ -1,0 +1,1026 @@
+{
+  "version": 3,
+  "createdAt": "2026-10-07T19:32:56.862071+00:00",
+  "branch": "chrismathone/exam-extraction-resume-20261008",
+  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-2.md",
+  "latestDirectiveSha256": "fb911ce3f90d5e08f69b1fb86e957368c03ce28f47b53abbdaafba4a7d56cdb6",
+  "scope": "actual-first-batch-authoring-and-independent-review-in-progress",
+  "baselineCommit": "6b14920ed",
+  "latestPackage": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/candidate-index-r1.json",
+  "historicalInventory": {
+    "date": "2026-10-03",
+    "jobs": 1715,
+    "ready": 1388,
+    "hold": 323,
+    "registeredExams": 4,
+    "registeredRows": 82,
+    "completedPairsInReady": 643,
+    "notSelectedPairsInReady": 745,
+    "manifestPath": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+  },
+  "counts": {
+    "historicalSourceVerifications": 21,
+    "plannedTwins": 21,
+    "authoredTwins": 20,
+    "figureInstancesRecreated": 23,
+    "imagegenImagesGenerated": 2,
+    "blindSolvesBound": 18,
+    "mathematicalReviewed": 4,
+    "gradeReviewed": 4,
+    "wholeQuestionReviewPassed": 3,
+    "verifiedTwins": 0,
+    "loadableTwins": 0,
+    "heldBeforeAuthoring": [
+      7
+    ],
+    "taxonomyInitiallyProposed": 16,
+    "taxonomyInitiallyHeld": [
+      10,
+      11,
+      14,
+      18,
+      20
+    ],
+    "newReviewedTaxonomyHold": [
+      15
+    ],
+    "remainingWholeReviews": 16,
+    "engineUpgradeCandidates": 28,
+    "engineUpgradesImplementedInProduction": 0
+  },
+  "stages": [
+    {
+      "id": "resume-setup",
+      "status": "complete",
+      "evidence": "prior v2 ledger preserved; latest execution addendum2 committed d420c615b"
+    },
+    {
+      "id": "source-extraction-content-dedup",
+      "status": "incomplete",
+      "evidence": "q2/q3/q15/q21 source date, question content and HWP/PDF/scan linkage confirmed; remaining17 content equivalence not extended; next5 original drafts are reference-stage only"
+    },
+    {
+      "id": "new-twin-authoring",
+      "status": "20-authored-1-held",
+      "evidence": ".qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\candidate-index-r1.json"
+    },
+    {
+      "id": "new-vector-and-imagegen-assets",
+      "status": "23-authored-assets-including2-imagegen-compositions; review-in-progress",
+      "evidence": "existing strict local figure engine used; two actual built-in imagegen PNGs preserved with generation prompts and math bindings; no original crop counted"
+    },
+    {
+      "id": "new-solve-independent-verification",
+      "status": "18-blind-solves-bound;4-reviews-collected",
+      "evidence": "r1/r2/r3 verification manifests hash bind solves before author-answer exposure; r4 last2 blind task assigned"
+    },
+    {
+      "id": "final-grade-metadata-rights-review",
+      "status": "partial;no-production-approval",
+      "evidence": "r1 independent reports: math4/grade4/whole-review3; q15 family purpose held; rights/similarity/native provenance pending"
+    },
+    {
+      "id": "authored-twin-dry-run-contract",
+      "status": "implemented-offline-subset",
+      "evidence": "scripts/import/exam-twin; 16 meaningful synthetic/control tests, four actual package checks; no DB writer"
+    },
+    {
+      "id": "production-load-unlock-deploy",
+      "status": "not-performed;restricted",
+      "evidence": "protected82/permanent exclusion/three ledgers untouched; no apply/unlock/deploy/main/push"
+    },
+    {
+      "id": "post-extraction-engine-upgrades",
+      "status": "incomplete;28-tracked",
+      "evidence": ".qa-artifacts\\exam-resume-20261008\\engine-upgrades-progress-r1.json"
+    }
+  ],
+  "workers": [
+    {
+      "name": "exam-twin-contracts-20261008",
+      "branch": "chrismathone/exam-twin-contracts-20261008",
+      "commit": "5a56d5ba72353db0741b2d4435b2974a0f51eb52",
+      "status": "integrated-into-feature-branch"
+    },
+    {
+      "name": "exam-twin-next-five-20261008",
+      "branch": "chrismathone/exam-twin-next-five-20261008",
+      "commit": "e55809117",
+      "sourceAuditCommit": "1cdfe02b5",
+      "status": "integrated-into-feature-branch"
+    },
+    {
+      "name": "exam-twin-curriculum-20261008",
+      "branch": "chrismathone/exam-twin-curriculum-20261008",
+      "commit": "1b590efbc",
+      "status": "integrated-into-feature-branch"
+    }
+  ],
+  "currentReadScope": {
+    "capturedAt": "2026-10-07 15:57:15.290971+00",
+    "readOnly": "on",
+    "unitCount": 22,
+    "eligibleFamilyCount": 302,
+    "registryCount": 299,
+    "protectedRows": 82,
+    "unlocked": 0,
+    "correctionsMismatch": 0,
+    "globallyDeduplicated": false
+  },
+  "nextFive": {
+    "examCount": 5,
+    "selectedCompletedPairsExist": 5,
+    "readableHwpSections": 5,
+    "exactLegacyPdfBodyRechecks": 5,
+    "legacyExtractedQuestions": 106,
+    "legacyDrafts": 48,
+    "legacySolAiFiles": 43,
+    "legacyReferenceFigureFiles": 71,
+    "fullyCertifiedHwpPdfEquivalence": 0,
+    "currentDbDedupChecks": 0,
+    "newTwinsCreated": 0,
+    "verifiedTwins": 0,
+    "identityYearHolds": [
+      "경신중"
+    ],
+    "eligibleForProductionNow": 0,
+    "wholeQuestionCurriculumApprovals": 0,
+    "curriculumGatePendingQuestions": 106,
+    "parentScopedAbsenceEvidenceAvailableForExams": 5,
+    "globalDbDedupCompleted": false,
+    "sourceReport": "docs/planning/tracks/reports/exam-twin-next-five-20261008.md",
+    "firstProductionGroup": "none-until-gates",
+    "preparationPriority": [
+      "경구중",
+      "경산중",
+      "경암중",
+      "경상중"
+    ],
+    "sourceIdentityYearHold": [
+      "경신중"
+    ]
+  },
+  "upgradeImplementationLedger": [
+    {
+      "id": "U01",
+      "title": "Structural/context variants",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/prompts/transform.ts",
+          "line": 75,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/transformer.ts",
+          "line": 97,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Fail number/name/synonym/order-only controls; pass meaningful condition/data/question organization or natural new situation while preserving core steps; fluency, method and presentation reviews independent",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U02",
+      "title": "School/context substitution",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/transformer.ts",
+          "line": 161,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Search stem/choices/subparts/table/figure/solution for real-name residue; one mapping per school per question; compare names affecting numeric/choice conditions",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U03",
+      "title": "Independent twin solve gate",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 355,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 498,
+          "existing": true
+        }
+      ],
+      "validationRequired": "No original-answer oracle; all types solved; mutate stem/spec/asset/choice/score and reject old reports; independent computations, every step and uniqueness checked",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U04",
+      "title": "Parameter constraints",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/m3Trig.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/m3.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/types.ts",
+          "line": 24,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Enumerate boundary parameters and at least 100 deterministic seeds per changed rule; separate solver checks denominator/domain/discriminant/positivity/integer counts/triangle inequalities and required solution cardinality",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U05",
+      "title": "Choice quality",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/engine/expandEngine.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/engine/variants.ts",
+          "line": 159,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 113,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Recompute all options; algebraic-equivalent duplicate controls, one required correct answer/set, faithful figure-choice mapping, balanced answer positions and plausible distractors",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U06",
+      "title": "Solution and rubric quality",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/generator.ts",
+          "line": 34,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/prompts/generate.ts",
+          "line": 57,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/solutionText.ts",
+          "line": 107,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Require new nonempty complete explanations; check cases, units and conclusion; subpart/rubric scores sum to item/paper totals; render and independent step review",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U07",
+      "title": "Difficulty/reading-burden preservation",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/tier.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 148,
+          "existing": true
+        }
+      ],
+      "validationRequired": "After U27 gate, preserve core steps/target difficulty; no new reading or prerequisite burden; labeled review and no confidence-only assignment",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U08",
+      "title": "Concept/type coverage",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/generate.ts",
+          "line": 147,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 88,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/types.ts",
+          "line": 49,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Compare every extracted concept/core method to registry/live families; register∪hold completeness, no key collisions, actual multi-seed invariants and held reason per missing type",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U09",
+      "title": "Conditions, tables and multipart forms",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/combo.ts",
+          "line": 548,
+          "existing": true
+        },
+        {
+          "path": "src/lib/elementary/forms.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/parseProblemContent.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/examConfig.ts",
+          "line": 39,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Preserve subpart/option order, table headers/units/data totals and score; rebuild tables instead of source crops; parser/render parity and independent recalculation",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U10",
+      "title": "Prompt/catalog capability sync",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/prompts/transform.ts",
+          "line": 56,
+          "existing": true
+        },
+        {
+          "path": "src/lib/dev-ai/figure-prompt.ts",
+          "line": 17,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/build_catalog.py",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/render_spec.py",
+          "line": 65,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Prompt includes current v2/graph/elem keys; representative geometry/function/stat/solid specs render; catalog generated from engine, unknown keys still reject",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U11",
+      "title": "Figure mathematical bindings",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/figure/figureMatchesContent.ts",
+          "line": 41,
+          "existing": true
+        },
+        {
+          "path": "vendor/figure-engine/core/figure_scene.py",
+          "line": 3042,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/graph_scene.py",
+          "line": 102,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/realScene.ts",
+          "line": 10,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Bind each length/angle/coordinate/table count to target facts and units; negative right-angle/ratio/scatter cases; allow documented figure-only givens; prevent showing sought answers",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U12",
+      "title": "Strict figure quality",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/figure/renderFigureSpec.ts",
+          "line": 112,
+          "existing": true
+        },
+        {
+          "path": "src/lib/figure/renderFigureSpec.ts",
+          "line": 254,
+          "existing": true
+        },
+        {
+          "path": "src/lib/dev-ai/figure-engine.ts",
+          "line": 256,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Strict render no silent dimension loss; collision/cutoff/label checks, explicit unresolved labels and omissions; source-review false/timeout drafts remain held; actual print size inspection",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U13",
+      "title": "Multi-figure ownership",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/contracts/problem.contract.ts",
+          "line": 367,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/graphChoiceFigures.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/print/toPrintProblem.ts",
+          "line": 45,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Multiple stem/subpart/solution/choice artifacts; exact URL/dims/mm/index cardinality, no duplicate/missing choice binding, screen/print parity; geometry SVG supplied per role through reviewed representation",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U14",
+      "title": "Imagegen assets/templates",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/figure/figure_assets.py",
+          "line": 12,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/realScene.ts",
+          "line": 18,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Pin reviewed bytes/template/hash/anchors; reject pending/stale/missing assets; no runtime skill call; label transcript/school/name review, multiple parameter cases and print legibility",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U15",
+      "title": "Provenance and metadata read chain",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/contracts/problem.contract.ts",
+          "line": 124,
+          "existing": true
+        },
+        {
+          "path": "src/lib/serializers.ts",
+          "line": 88,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/provenance.ts",
+          "line": 193,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/provenance.ts",
+          "line": 215,
+          "existing": true
+        }
+      ],
+      "validationRequired": "External-origin twin never workbook; null FK truthful; authored raster never scan; old textbook/engine labels unchanged; source+variant+review/figure fields survive serialization; high-engine origin considered if current data requires it",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U16",
+      "title": "Filter/search completion",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/components/problem/ProblemBank.tsx",
+          "line": 218,
+          "existing": true
+        },
+        {
+          "path": "src/contracts/problem.contract.ts",
+          "line": 190,
+          "existing": true
+        },
+        {
+          "path": "src/app/api/problems/route.ts",
+          "line": 189,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/formatQuery.ts",
+          "line": 15,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/problemApi.ts",
+          "line": null,
+          "existing": true
+        }
+      ],
+      "validationRequired": "UI→request→where/join→stored value parity; source/twin/review/year/term/asset/concept queries with unknown values, mixed filters, total counts and page boundaries; measure before adding indexes",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U17",
+      "title": "Snapshot-based classification",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-paper/load-exam-paper.ts",
+          "line": 239,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/examConfig.ts",
+          "line": 17,
+          "existing": true
+        },
+        {
+          "path": "src/lib/jev/client.ts",
+          "line": 111,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Parent snapshot hash/time required; real Unit/live family; no-match/ambiguous cases held; five Bumil proposals reevaluated; mocked Jev timeout/invalid output paths cannot approve",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U18",
+      "title": "Twin IDs/digests/replay",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/import/problemFingerprint.ts",
+          "line": 20,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 160,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problemCode.ts",
+          "line": null,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Separate reference/twin/solution/metadata versions, ordered canonical representation, byte changes stale results, ID collisions and rerun idempotency; problemCode not forged",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U19",
+      "title": "Diversity/deduplication",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/engine/variants.ts",
+          "line": 51,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/generate.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 163,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/load-engine-problems.ts",
+          "line": 552,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Same seed/template version reproducible; semantic near-copy controls, structural/context coverage, spec/asset-aware keys, honest shortfalls; valid same-answer twins allowed; format siblings kept/dropped together",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U20",
+      "title": "Review/failure observability",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "src/lib/dev-ai/figure-engine.ts",
+          "line": 72,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 451,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Persist successful and failed generation/review evidence, model/prompt/template version, pending versus rejected, changed-conditions reset and bounded retries; no fallback to old answer/crop",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U21",
+      "title": "Safe authored-asset handling",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/figure/render_spec.py",
+          "line": 81,
+          "existing": true
+        },
+        {
+          "path": "vendor/figure-engine/core/figure_quality.py",
+          "line": 687,
+          "existing": true
+        },
+        {
+          "path": "src/lib/figure/mathjaxLabel.ts",
+          "line": 291,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/figure_assets.py",
+          "line": 88,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Manifest/file hash validation, trusted MIME/dimensions, physical-path escape/overwrite controls, hostile SVG/label rejection and separate raster boundary; do not weaken engine image prohibition",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U22",
+      "title": "Permanent exclusion/lock guard",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-paper/examConfig.ts",
+          "line": 55,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/load-exam-paper.ts",
+          "line": 429,
+          "existing": true
+        }
+      ],
+      "validationRequired": "81 holds + 1 permanent exclude = 82 unique original IDs; 2 patches are subsets; q19 excluded despite new twin UUID and baseline before=true; no writer/unlock hidden in dry-run",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U23",
+      "title": "Generation scope/count/answers",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/generator.ts",
+          "line": 116,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/transformer.ts",
+          "line": 156,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Reject incomplete requested batch without silently counting it complete; require solutions; grade-aware constraints and approved image/template input; mocked responses preserve pending/failed states",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U24",
+      "title": "Korean/math notation consistency",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/jsonRepair.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/wordyOperators.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/solutionText.ts",
+          "line": 107,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/josa.ts",
+          "line": 76,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Correct particles/units, natural context vocabulary, no wordy-symbol or source-font residue, valid math delimiters; normalization cannot change an equation or create fake structural change; screen/print textual review",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U25",
+      "title": "Algebra/geometry representation templates",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/types.ts",
+          "line": 24,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/graph_scene.py",
+          "line": 102,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/realScene.ts",
+          "line": 10,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Signed-variable→positive-length counterexample must fail; distinguish segment from length; prove relation/domain equivalence, positive lengths/areas, coordinates/units and same principle; all new prerequisites pass U27",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U26",
+      "title": "Inverse input/condition/parameter generation",
+      "status": "not-implemented",
+      "basis": "corpus_dependent_extension_with_existing_code_seam",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/combo.ts",
+          "line": 548,
+          "existing": true
+        }
+      ],
+      "validationRequired": "M-m=R checks m=M-R, R≥0, attained extrema; negative/zero/boundary cases, impossible range, multiple parameters, denominator zero and square-root sign; independently solve full admissible inverse set and student method",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    },
+    {
+      "id": "U27",
+      "title": "Highest-priority applied-curriculum gate",
+      "status": "not-implemented",
+      "basis": "observed_contract_gap_or_required_safety_gate",
+      "codeTargets": [
+        {
+          "path": "prisma/seed-data/units.ts",
+          "line": 3408,
+          "existing": true
+        },
+        {
+          "path": "src/lib/mathgen/mathDefense.ts",
+          "line": 526,
+          "existing": true
+        },
+        {
+          "path": "src/lib/mathgen/solutionValidator.ts",
+          "line": 12,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 397,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/solver_rules.json",
+          "line": 3,
+          "existing": true
+        }
+      ],
+      "validationRequired": "2025 middle3 resolves to 2015; all stem/choice/figure/notation/answer/student-solution/prerequisite surfaces checked; no legitimate method→reject, unclear→hold; unverified codes null; Unit/family/template existence and school/AI confidence never auto-approve",
+      "implementationDependency": "reviewed extraction evidence plus mandatory curriculum/presentation/asset/review contract; no report-only completion"
+    }
+  ],
+  "validation": {
+    "newPreparationTestsPassed": 9,
+    "existingLocalFilesPassed": 2,
+    "existingLocalTestsPassed": 36,
+    "workerExistingTests": {
+      "kind": "existing_contract_offline_tests",
+      "groups": [
+        {
+          "command": "node node_modules/vitest/vitest.mjs run --no-cache --configLoader runner --maxWorkers 2 src/__tests__/unit/planPersonalExams.test.ts src/__tests__/unit/examRegeneration.test.ts src/__tests__/unit/examDecisionLoad.test.ts src/__tests__/unit/examDecisionCorpus.test.ts src/__tests__/unit/examCorpusGuards.test.ts src/__tests__/unit/examPercentRepair.test.ts src/__tests__/unit/aiGenerator.test.ts src/__tests__/unit/aiBankIntakeNormalize.test.ts src/__tests__/unit/devAiFigureEngine.test.ts src/__tests__/unit/figureEngineCatalog.test.ts src/__tests__/unit/figureDropSafety.test.ts src/__tests__/unit/figureCurveGraph.test.ts src/__tests__/unit/figureStatKinds.test.ts src/__tests__/unit/figureSolidKinds.test.ts src/__tests__/unit/vendoredFigureEngine.test.ts src/__tests__/unit/figureMatchesContent.test.ts src/__tests__/unit/problemProvenance.test.ts src/__tests__/unit/problemFormatQuery.test.ts src/__tests__/api/problemTransform.test.ts src/__tests__/api/problemFormatFilter.test.ts src/__tests__/unit/jevClient.test.ts",
+          "fileCount": 21,
+          "testsPassed": 404,
+          "testsFailed": 0,
+          "exitCode": 0,
+          "durationSeconds": 91.29,
+          "files": [
+            "src/__tests__/unit/planPersonalExams.test.ts",
+            "src/__tests__/unit/examRegeneration.test.ts",
+            "src/__tests__/unit/examDecisionLoad.test.ts",
+            "src/__tests__/unit/examDecisionCorpus.test.ts",
+            "src/__tests__/unit/examCorpusGuards.test.ts",
+            "src/__tests__/unit/examPercentRepair.test.ts",
+            "src/__tests__/unit/aiGenerator.test.ts",
+            "src/__tests__/unit/aiBankIntakeNormalize.test.ts",
+            "src/__tests__/unit/devAiFigureEngine.test.ts",
+            "src/__tests__/unit/figureEngineCatalog.test.ts",
+            "src/__tests__/unit/figureDropSafety.test.ts",
+            "src/__tests__/unit/figureCurveGraph.test.ts",
+            "src/__tests__/unit/figureStatKinds.test.ts",
+            "src/__tests__/unit/figureSolidKinds.test.ts",
+            "src/__tests__/unit/vendoredFigureEngine.test.ts",
+            "src/__tests__/unit/figureMatchesContent.test.ts",
+            "src/__tests__/unit/problemProvenance.test.ts",
+            "src/__tests__/unit/problemFormatQuery.test.ts",
+            "src/__tests__/api/problemTransform.test.ts",
+            "src/__tests__/api/problemFormatFilter.test.ts",
+            "src/__tests__/unit/jevClient.test.ts"
+          ]
+        },
+        {
+          "command": "node node_modules/vitest/vitest.mjs run --no-cache --configLoader runner --maxWorkers 2 src/__tests__/components/sourceFigureSanitize.test.tsx src/__tests__/unit/figureLabelTypeset.test.ts src/__tests__/unit/figurePrintSize.test.ts src/__tests__/unit/toPrintProblem.test.ts src/__tests__/unit/highRegistry.test.ts src/__tests__/unit/problemEligibility.test.ts src/__tests__/unit/importMetadata.test.ts",
+          "fileCount": 7,
+          "testsPassed": 119,
+          "testsFailed": 0,
+          "exitCode": 0,
+          "durationSeconds": 187.32,
+          "files": [
+            "src/__tests__/components/sourceFigureSanitize.test.tsx",
+            "src/__tests__/unit/figureLabelTypeset.test.ts",
+            "src/__tests__/unit/figurePrintSize.test.ts",
+            "src/__tests__/unit/toPrintProblem.test.ts",
+            "src/__tests__/unit/highRegistry.test.ts",
+            "src/__tests__/unit/problemEligibility.test.ts",
+            "src/__tests__/unit/importMetadata.test.ts"
+          ]
+        }
+      ],
+      "totalFilesPassed": 28,
+      "totalTestsPassed": 523,
+      "totalFailures": 0,
+      "noNewTwinVerificationClaim": true,
+      "dbMock": "vitest.setup.ts global in-memory Prisma double; loader tests mock Prisma directly",
+      "aiMocks": "AI generator SDK, transform wrapper, Studio subscription CLI and Jev fetch mocked in relevant tests",
+      "runtimeEnvironmentOverrides": {
+        "STUDIO_AI_JEV": "off",
+        "STUDIO_ENGINE_URL": "",
+        "VERCEL": "",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "NO_COLOR": "1"
+      },
+      "cacheDisabled": true,
+      "configLoader": "runner",
+      "temporaryDependencyJunction": "Own worktree pointer to existing D:/todays-math/node_modules; removed after tests. No install/generate.",
+      "referenceLineValidation": "All cited file:line references exist at baseline; report and JSON generated in own worktree only."
+    },
+    "claimsNewTwinMathVerified": true,
+    "claimsImageEngineImplemented": false,
+    "authoredCandidateContractTestsPassed": 16,
+    "actualPackageChecks": {
+      "packageCount": 4,
+      "authoredQuestions": 20,
+      "mathApprovalInferred": false,
+      "productionWrites": false
+    },
+    "mathVerifiedScope": [
+      2,
+      3,
+      15,
+      21
+    ]
+  },
+  "prohibitionsRespected": [
+    "no DB apply/write/delete/reload/unlock/deploy",
+    "no source/old artifact writes",
+    "no npm install/prisma generate",
+    "no main or other active session file writes",
+    "no paid APIs or imagegen CLI fallback",
+    "no push"
+  ],
+  "worktreeRetention": "Workers active or unmerged into main; retain all worktrees/branches and evidence. Main and shared dependencies unchanged.",
+  "previousLedger": ".qa-artifacts\\exam-resume-20261008\\status-ledger-v2.json",
+  "previousLedgerSha256": "4e4135f0199688f757c18a9408bdae9d85b28d7c558ae8df0ae0ac32921c7d3d",
+  "actualAuthoringCommit": "d420c615b",
+  "report": "docs/planning/tracks/reports/exam-twin-authoring-progress-20261008.md",
+  "actualSourceEvidence": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\source-identity\\source-review.json",
+    "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86",
+    "confirmedQuestions": [
+      2,
+      3,
+      15,
+      21
+    ],
+    "actualDate": "2025-09-23",
+    "actualYear": 2025,
+    "actualSchool": "?????",
+    "preparationFooter": "26? ?? is an editorial/preparation label, not the exam administration date",
+    "otherQuestionsNotConfirmedByThisReview": true,
+    "custodyPublisherRightsNotCleared": true
+  },
+  "reviewPackages": [
+    {
+      "version": 1,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package",
+      "manifestSha256": "7b609562670103c0a8d9f3ba66b3ab109b782fb4420c36e9e4f103b181d63724",
+      "questionCount": 4,
+      "blindSolvesBound": 4,
+      "reviewStatus": "collected-first4-snapshot"
+    },
+    {
+      "version": 2,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package",
+      "manifestSha256": "6a17a124daabdf2161711014ca3701990897f984512fa1d435a91d6e47821810",
+      "questionCount": 9,
+      "blindSolvesBound": 9,
+      "reviewStatus": "peer-review-in-progress"
+    },
+    {
+      "version": 3,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package",
+      "manifestSha256": "200f55ba7d27897a14ba170a021efe1295ffb27468924aa8335157fd3f31ea1c",
+      "questionCount": 5,
+      "blindSolvesBound": 5,
+      "reviewStatus": "peer-review-in-progress"
+    },
+    {
+      "version": 4,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\package",
+      "manifestSha256": "229814a33b588d4d3162ffaaf4ee35fce2397528710c7b6f019b91352eafde61",
+      "questionCount": 2,
+      "blindSolvesBound": 0,
+      "reviewStatus": "blind-task-in-progress"
+    }
+  ],
+  "reviewResult": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\result-r1.json",
+    "sha256": "752b74b59c43f2d1d97683459084946ce3281aef49e3b8aba99c9fe4236c6527",
+    "reviewerSnapshot": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\reviewer-report-snapshot-r1.json",
+    "kind": "committed independent reviewer reports; point-in-time parent copies byte-match ba35ced10",
+    "sourceIdentityJoin": "freeze manifest retains pending gate; source evidence is separately confirmed above",
+    "math4Grade4DoesNotAuthorizeUse": true,
+    "workerCommit": "ba35ced10",
+    "workerReviewNote": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification-results\\REVIEW.md",
+    "workerReviewNoteSha256": "ef8045f1f12ab4bdb81ff96325839a56136f9e6dd67e1103b1d0501a3212ab80"
+  },
+  "currentWorkers": [
+    {
+      "name": "exam-twin-author-algebra-20261008",
+      "branch": "chrismathone/exam-twin-author-algebra-20261008",
+      "stage": "full peer review q10/q16/q17/q19/q20",
+      "terminal": "term_96d5d3c8-12f8-4d84-bd31-fde090144e66"
+    },
+    {
+      "name": "exam-twin-author-geometry-20261008",
+      "branch": "chrismathone/exam-twin-author-geometry-20261008",
+      "stage": "full peer review q1/q4/q5/q18/q6/q8/q9/q12/q13",
+      "terminal": "term_0e513da0-cb1a-466b-ace2-84b762f87803"
+    },
+    {
+      "name": "exam-twin-source-identity-20261008",
+      "branch": "chrismathone/exam-twin-source-identity-20261008",
+      "stage": "first4 review committed and integrated; blind q11/q14 in progress",
+      "terminal": "term_c1193961-c5e3-4a60-bff3-e14c7531ad38"
+    }
+  ],
+  "upgradeProgress": ".qa-artifacts\\exam-resume-20261008\\engine-upgrades-progress-r1.json"
+}

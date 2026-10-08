@@ -1,13 +1,19 @@
 /* 오늘의 영어 — 문제 만들기 (D-148). 작업실 토큰 그대로(05 §8.9 · Workroom.module.css) — 새 색·새 글꼴 없음.
    D-30: 손가락 커서는 단추·선택 상자에만(.workspace button 이 준다). 카드·행에는 없다. */
 .maker {
-  padding: var(--workspace-page-padding, 16px 20px);
+  padding: 0;
   min-width: 0;
+  container: english-maker / inline-size;
   color: var(--learn-ink, #172b4d);
   font-size: var(--text-body, 14px);
   line-height: 1.6;
-  --control-height: 38px;
-  --control-radius: 6px;
+  --control-height: 44px;
+  --control-radius: 8px;
+}
+.maker *,
+.maker *::before,
+.maker *::after {
+  box-sizing: border-box;
 }
 .maker :is(button, input, select, textarea, summary):focus-visible {
   outline: 3px solid var(--learn-focus, #82a1ff);
@@ -22,7 +28,7 @@
   min-width: 0;
 }
 .card {
-  padding: 14px 0;
+  padding: 16px 0;
   background: var(--learn-surface, #fff);
 }
 .card h2 {
@@ -44,7 +50,7 @@
 }
 .form {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 .group {
   margin: 0;
@@ -68,7 +74,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  min-height: 32px;
+  min-height: var(--control-height, 44px);
 }
 .choice input {
   width: 18px;
@@ -139,7 +145,7 @@
 .row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 .actions {
   display: flex;
@@ -153,12 +159,13 @@
   justify-content: center;
   gap: 8px;
   min-height: var(--control-height, 44px);
-  padding: 0 16px;
+  max-width: 100%;
+  padding: 8px 16px;
   border: 1px solid transparent;
   border-radius: var(--control-radius, 8px);
   font-size: var(--text-body, 14px);
   font-weight: 600;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 .primaryButton {
   background: var(--learn-accent, #3159df);
@@ -237,17 +244,17 @@
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 8px 16px;
+  margin-bottom: 16px;
 }
 .methodButton {
-  min-height: 38px;
+  min-height: var(--control-height, 44px);
   padding: 7px 12px;
   border: 1px solid #d8e0ed;
   background: #fff;
   color: #596c86;
-  border-radius: 6px;
-  font-size: 14px;
+  border-radius: var(--control-radius, 8px);
+  font-size: var(--text-body, 14px);
 }
 .methodButton[aria-pressed="true"] {
   color: #254ecb;
@@ -258,37 +265,35 @@
 .methodHelp {
   margin-left: auto;
   color: #596c86;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
 }
 .otherMethods {
-  position: relative;
+  max-width: 100%;
 }
 .otherMethods summary {
   cursor: pointer;
-  padding: 7px 9px;
+  min-height: var(--control-height, 44px);
+  padding: 10px 12px;
+  border-radius: var(--control-radius, 8px);
   color: #596c86;
 }
 .methodOptions {
-  position: absolute;
-  z-index: 2;
-  top: 100%;
-  left: 0;
-  display: grid;
-  gap: 6px;
-  width: 190px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 100%;
   padding: 8px;
   border: 1px solid #d8e0ed;
-  border-radius: 6px;
+  border-radius: var(--control-radius, 8px);
   background: #fff;
-  box-shadow: 0 6px 14px #172b4d12;
 }
 .methodOptions button {
   text-align: left;
 }
 .workarea {
   display: grid;
-  grid-template-columns: minmax(280px, 330px) minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 24px;
   align-items: start;
 }
 .controls {
@@ -296,60 +301,60 @@
   padding: 16px;
   background: #fff;
   border: 1px solid #d8e0ed;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 .context {
   display: grid;
-  gap: 3px;
-  padding-bottom: 12px;
+  gap: 8px;
+  padding-bottom: 16px;
   border-bottom: 1px solid #e3e8f1;
   color: #596c86;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
+  overflow-wrap: anywhere;
 }
 .context strong {
   margin-left: 8px;
   color: #172b4d;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
 }
 .controls .card {
   padding: 0;
   border: 0;
 }
 .controls .panel {
-  padding-top: 14px;
+  padding-top: 16px;
 }
 .controls .card h2 {
-  font-size: 16px;
+  font-size: var(--text-section, 18px);
 }
 .controls .card p {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
 }
 .controls .choices {
   gap: 4px 10px;
 }
 .controls .group .quietButton {
-  margin-top: 10px;
-  font-size: 12px;
+  margin-top: 8px;
+  font-size: var(--text-body, 14px);
 }
 .controls .actions > .primaryButton {
   flex: 1;
 }
 .startModes {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
 }
 .startChoice {
   display: flex;
   align-items: center;
   gap: 5px;
-  min-height: 40px;
+  min-height: var(--control-height, 44px);
   padding: 6px 8px;
   border: 1px solid #c7d1e1;
-  border-radius: 6px;
-  font-size: 12px;
+  border-radius: var(--control-radius, 8px);
+  font-size: var(--text-body, 14px);
   font-weight: 600;
-  cursor: pointer;
 }
 .startChoice:has(input:checked) {
   color: #254ecb;
@@ -363,14 +368,14 @@
 .results {
   min-width: 0;
   border: 1px solid #d8e0ed;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #fff;
   container-type: inline-size;
   overflow-wrap: anywhere;
 }
 .results > .card,
 .resultActions {
-  padding: 16px 20px;
+  padding: 16px 24px;
   border-top: 1px solid #d8e0ed;
 }
 .results > .card {
@@ -383,34 +388,16 @@
   margin-bottom: 12px;
 }
 .emptyResult {
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 28px;
-  text-align: center;
+  padding: 24px;
 }
 .emptyResult h2 {
-  margin: 20px 0 8px;
-  font-size: 18px;
+  margin: 0 0 8px;
+  font-size: var(--text-section, 18px);
 }
 .emptyResult p {
-  max-width: 430px;
   margin: 4px 0;
   color: #596c86;
-  font-size: 13px;
-}
-.emptyMark {
-  display: grid;
-  place-items: center;
-  width: 54px;
-  height: 58px;
-  border: 1px solid #d2dceb;
-  border-radius: 6px;
-  background: #f4f6fa;
-  color: #6e85a4;
-  font-size: 22px;
+  font-size: var(--text-body, 14px);
 }
 .preview {
   min-width: 0;
@@ -420,16 +407,17 @@
   align-items: start;
   justify-content: space-between;
   gap: 16px;
-  padding: 20px;
+  flex-wrap: wrap;
+  padding: 24px;
 }
 .previewHead h2 {
   margin: 6px 0 4px;
-  font-size: 20px;
+  font-size: var(--text-section, 18px);
   line-height: 1.4;
 }
 .previewHead p {
   margin: 0;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #596c86;
 }
 .draftBadge,
@@ -439,18 +427,18 @@
   border-radius: 4px;
   background: #edf2ff;
   color: #3159df;
-  font-size: 11px;
+  font-size: var(--text-caption, 12px);
   font-weight: 700;
 }
 .validation {
-  padding: 12px 20px;
+  padding: 16px 24px;
   border-top: 1px solid #e3e8f1;
   border-bottom: 1px solid #e3e8f1;
   background: #f7f9fc;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
 }
 .validation strong {
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
 }
 .validation p {
   margin: 3px 0 0;
@@ -462,7 +450,7 @@
   align-items: start;
 }
 .sourcePreview {
-  padding: 20px;
+  padding: 24px;
   min-width: 0;
 }
 .sectionHead {
@@ -473,42 +461,44 @@
 }
 .sectionHead h3 {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
 }
 .sourceName {
   color: #596c86;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   margin: 6px 0;
 }
 .passage {
   white-space: pre-wrap;
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
   line-height: 1.9;
-  margin: 14px 0 0;
+  margin: 16px 0 0;
 }
 .originalSource {
   border-top: 1px solid #e3e8f1;
-  margin-top: 20px;
-  padding-top: 12px;
-  font-size: 12px;
+  margin-top: 24px;
+  padding-top: 16px;
+  font-size: var(--text-caption, 12px);
 }
 .originalSource summary {
+  min-height: var(--control-height, 44px);
+  padding: 10px 0;
   cursor: pointer;
   color: #3159df;
 }
 .sourceNote {
   margin-top: 16px;
-  padding: 10px;
+  padding: 16px;
   background: #f4f6fa;
   color: #596c86;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
 }
 .questionsPreview {
   min-width: 0;
   border-left: 1px solid #e3e8f1;
 }
 .question {
-  padding: 18px 20px;
+  padding: 24px;
 }
 .question + .question {
   border-top: 1px solid #e3e8f1;
@@ -522,32 +512,33 @@
   color: #3159df;
 }
 .questionHead span {
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   color: #596c86;
 }
 .titleEdit {
-  padding: 16px 20px 0;
+  padding: 16px 24px 0;
 }
 .questionEdit {
   display: grid;
-  gap: 10px;
-  margin-top: 12px;
+  gap: 16px;
+  margin-top: 16px;
 }
 .editField {
   display: grid;
   gap: 4px;
-  font-size: 12px;
+  font-size: var(--text-caption, 12px);
   font-weight: 600;
 }
 .editField textarea {
   box-sizing: border-box;
   width: 100%;
   min-width: 0;
-  padding: 8px 10px;
+  min-height: var(--control-height, 44px);
+  padding: 8px 12px;
   border: 1px solid #b8c4d6;
-  border-radius: 6px;
+  border-radius: var(--control-radius, 8px);
   font: inherit;
-  font-size: 14px;
+  font-size: var(--text-body, 14px);
   font-weight: 400;
   line-height: 1.6;
   color: #172b4d;
@@ -564,7 +555,7 @@
     border-top: 1px solid #e3e8f1;
   }
 }
-@media (max-width: 800px) {
+@container english-maker (max-width: 860px) {
   .workarea {
     grid-template-columns: 1fr;
   }
@@ -572,21 +563,31 @@
     width: 100%;
     margin-left: 0;
   }
-  .emptyResult {
-    min-height: 230px;
-  }
   .results > .card {
     position: static;
   }
 }
-@media (max-width: 640px) {
-  .maker {
-    padding: 12px;
+@container english-maker (max-width: 480px) {
+  .question dl {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
   }
-  .previewHead {
-    flex-wrap: wrap;
+  .previewHead,
+  .sourcePreview,
+  .question,
+  .validation,
+  .results > .card,
+  .resultActions,
+  .emptyResult {
+    padding: 16px;
   }
-  .row {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .titleEdit {
+    padding: 16px 16px 0;
+  }
+  .actions > button {
+    flex: 1 1 auto;
+  }
+  .startModes {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

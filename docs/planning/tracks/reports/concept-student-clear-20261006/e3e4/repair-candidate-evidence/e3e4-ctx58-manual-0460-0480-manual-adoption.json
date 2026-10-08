@@ -1,0 +1,2184 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-2-5-xc22",
+      "sourceIndex": 2282,
+      "beforeProposal": {
+        "sourceIndex": 2282,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "e9748a0d8d0879599e940f5329b762d9d52b7ffa6a9e7bb4d03abd1551d613a1",
+        "proposalFingerprint": "a8c12d3731e78b2b4347f41684e35be3856c55d7a59fe534688f73f01e0fcf08",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc22",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "같은 두 각이 45도일 때",
+        "bReason": "같은 두 각이 $45^\\circ$이면 직각이등변삼각형",
+        "exclusionReason": "2-2-2-xc16 B가 같은 두 각 $45^\\circ$의 나머지 각 계산을 이미 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "같은 두 각이 각각 꼭 $45^\\circ$이면 나머지 각은 {$90^\\circ$}라 직각이등변삼각형이다.",
+        "cReason": "'□이다'는 이름 답이 여러 가지라 각도 계산 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "직각",
+            "$90$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 두 각이 꼭 $45^\\circ$일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 두 각이 각각 꼭 $45^\\circ$이면 나머지 각은 {$90^\\circ$}라 직각이등변삼각형이다.",
+        "cStudentSentence": "같은 두 각이 각각 꼭 $45^\\circ$이면 나머지 각은 □라 직각이등변삼각형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "직각",
+              "$90$도"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "같은 두 각이 각각 꼭 $45^\\circ$이면 나머지 각은 {$90^\\circ$}라 직각이등변삼각형이다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "직각",
+              "$90$도"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "같은 두 각이 $45^\\circ$이면 직각이등변삼각형"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc22",
+          "sourceIndex": 2282,
+          "proposalFingerprint": "a8c12d3731e78b2b4347f41684e35be3856c55d7a59fe534688f73f01e0fcf08",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "두45각에서나머지각구하는B는중복이다.",
+          "cReason": "이등변삼각형이라는대상을앞에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형에서 크기가 같은 두 각이 각각 $45^\\circ$이면 나머지 각은 {$90^\\circ$}이므로 직각이등변삼각형이다.",
+        "cSlotEquivalents": [
+          [
+            "직각",
+            "$90$도"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc23",
+      "sourceIndex": 2283,
+      "beforeProposal": {
+        "sourceIndex": 2283,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "58c85c95e5bf007e60d2ed299cee04c5eae4329c41f027f6d5caa182d70924f8",
+        "proposalFingerprint": "2d72e184529f822f99c10e8a150b2c585bb7116b48358f4bf7705ded67a863c8",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "변 기준 두 가지(이등변삼각형, 세 변이 모두 다른 삼각형)와 각 기준 세 가지(예각삼각형, 직각삼각형, 둔각삼각형)로 분류 표를 만들면 칸은 모두 몇 개인지 식과 함께 쓰시오.",
+        "bAnswer": "$2\\times3=6$이므로 $6$개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$개",
+              "$2\\times3$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "분류 표의 칸 수",
+        "bReason": "두 기준의 가짓수를 곱해 칸 수를 구하는 계산",
+        "cDecision": "keep",
+        "cReason": "가짓수가 보이는 선명한 숫자 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$6$",
+            "여섯 개"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "변 기준 두 가지, 각 기준 세 가지인 분류 표의 칸 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변 기준 두 가지(이등변삼각형 · 세 변이 모두 다른 삼각형)와 각 기준 세 가지로 만든 표는 칸이 {$6$개}이다.",
+        "cStudentSentence": "변 기준 두 가지(이등변삼각형 · 세 변이 모두 다른 삼각형)와 각 기준 세 가지로 만든 표는 칸이 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$개",
+            "equivalents": [
+              "$6$",
+              "여섯 개"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "변 기준 두 가지(이등변삼각형 · 세 변이 모두 다른 삼각형)와 각 기준 세 가지로 만든 표는 칸이 □이다.",
+          "answers": [
+            "$6$개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "변 기준 두 가지(이등변삼각형, 세 변이 모두 다른 삼각형)와 각 기준 세 가지(예각삼각형, 직각삼각형, 둔각삼각형)로 분류 표를 만들면 칸은 모두 몇 개인지 식과 함께 쓰시오.",
+          "answer": "$2\\times3=6$이므로 $6$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$개",
+                "$2\\times3$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "변 기준 두 가지(이등변삼각형 · 세 변이 모두 다른 삼각형)와 각 기준 세 가지로 만든 표는 칸이 {$6$개}이다.",
+          "acceptedAnswers": [
+            [
+              "$6$개",
+              "$6$",
+              "여섯 개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc23",
+          "sourceIndex": 2283,
+          "proposalFingerprint": "2d72e184529f822f99c10e8a150b2c585bb7116b48358f4bf7705ded67a863c8",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "식도요청하므로두기준의조합2×3=6까지기준으로받는다.",
+          "cReason": "두가지와세가지기준의전체칸6을구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2\\times3=6$이므로 $6$개",
+              "$3\\times2=6$이므로 $6$개"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc24",
+      "sourceIndex": 2284,
+      "beforeProposal": {
+        "sourceIndex": 2284,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "e8b2e297cf12b0527c3df06efc1a92e369c8c107d652e34825a9af40a38a20fc",
+        "proposalFingerprint": "5a9a709d04ea90f29b0d7b975fcbd65c450176d0932d949f67b94bc51b519872",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "분류 표의 한 칸에 두 조건을 모두 만족하는 크기가 다른 삼각형 두 개를 함께 넣을 수 있는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "넣을 수 있다. 칸은 변의 길이와 각의 크기 조건만 보고 삼각형의 크기는 기준이 아니기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "넣을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "크기는 분류 기준이 아니다",
+              "두 조건만 만족하면 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "한 칸에 여러 삼각형 들기",
+        "bReason": "분류 기준에 크기가 없다는 이유를 확인",
+        "cDecision": "rewrite",
+        "cAfter": "분류 표의 한 칸에는 두 조건을 만족하는 삼각형이면 크기가 달라도 {모두} 들어갈 수 있다.",
+        "cReason": "긴 구절 빈칸이라 어려워서 짧은 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "다",
+            "전부"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 칸에 드는 여러 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분류 표의 한 칸에는 두 조건을 만족하는 삼각형이면 크기가 달라도 {모두} 들어갈 수 있다.",
+        "cStudentSentence": "분류 표의 한 칸에는 두 조건을 만족하는 삼각형이면 크기가 달라도 □ 들어갈 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "모두",
+            "equivalents": [
+              "다",
+              "전부"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "분류 표의 한 칸에 두 조건을 모두 만족하는 크기가 다른 삼각형 두 개를 함께 넣을 수 있는지 쓰고, 그 까닭을 설명하시오.",
+          "answer": "넣을 수 있다. 칸은 변의 길이와 각의 크기 조건만 보고 삼각형의 크기는 기준이 아니기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "넣을 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "크기는 분류 기준이 아니다",
+                "두 조건만 만족하면 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분류 표의 한 칸에는 두 조건을 만족하는 삼각형이면 크기가 달라도 {모두} 들어갈 수 있다.",
+          "acceptedAnswers": [
+            [
+              "모두",
+              "다",
+              "전부"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc24",
+          "sourceIndex": 2284,
+          "proposalFingerprint": "5a9a709d04ea90f29b0d7b975fcbd65c450176d0932d949f67b94bc51b519872",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "임의의두조건이아니라이등변·예각같은성질분류임을질문안에명시한다.",
+          "cReason": "분류기준을C에도특정하여수치길이조건과혼동하지않게한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "삼각형을 변의 길이와 각의 크기로 분류한 표가 있다. 이등변삼각형이면서 예각삼각형인 칸에 크기가 다른 두 삼각형을 함께 넣을 수 있는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "두 삼각형이 모두 이등변삼각형이면서 예각삼각형이면 넣을 수 있다. 도형 전체의 크기는 이 칸의 분류 기준이 아니기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘 다 이등변삼각형이면서 예각삼각형이면 넣을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도형 전체의 크기는 기준이 아니고 두 분류 조건을 만족하면 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "변의 길이와 각의 크기로 분류한 표에서, 이등변삼각형이면서 예각삼각형인 칸에는 이 두 조건을 만족하면 크기가 다른 삼각형들도 {모두} 들어갈 수 있다.",
+        "cSlotEquivalents": [
+          [
+            "다",
+            "전부"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc26",
+      "sourceIndex": 2286,
+      "beforeProposal": {
+        "sourceIndex": 2286,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "2a283c19a2fa339afb7870c8062d1a171466c23e15c48696526b49e96b4106e7",
+        "proposalFingerprint": "60c1ec57b992688740fe99de4c5523ad929f468418ca816740f348582725ecd5",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "세 각이 $45^\\circ$, $45^\\circ$, $90^\\circ$인 삼각형을 변과 각 두 기준으로 분류할 때 '직각삼각형'이라고만 쓰면 왜 부족한지 쓰시오.",
+        "bAnswer": "두 각이 같아 이등변삼각형이기도 한데 변 기준의 이름을 빠뜨렸기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형이기도 하다",
+              "변 기준 이름이 빠졌다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "한 기준만 쓴 잘못",
+        "bReason": "원문 예제를 자립시켜 빠진 이름을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "두 기준으로 분류할 때 한 기준만 말하면 {나머지} 기준의 이름을 빠뜨린 것이다.",
+        "cReason": "'□을 빠뜨린' 긴 구절 빈칸을 짧은 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "다른",
+            "남은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 기준만 쓴 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 기준으로 분류할 때 한 기준만 말하면 {나머지} 기준의 이름을 빠뜨린 것이다.",
+        "cStudentSentence": "두 기준으로 분류할 때 한 기준만 말하면 □ 기준의 이름을 빠뜨린 것이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "나머지",
+            "equivalents": [
+              "다른",
+              "남은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "세 각이 $45^\\circ$, $45^\\circ$, $90^\\circ$인 삼각형을 변과 각 두 기준으로 분류할 때 '직각삼각형'이라고만 쓰면 왜 부족한지 쓰시오.",
+          "answer": "두 각이 같아 이등변삼각형이기도 한데 변 기준의 이름을 빠뜨렸기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이등변삼각형이기도 하다",
+                "변 기준 이름이 빠졌다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 기준으로 분류할 때 한 기준만 말하면 {나머지} 기준의 이름을 빠뜨린 것이다.",
+          "acceptedAnswers": [
+            [
+              "나머지",
+              "다른",
+              "남은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc26",
+          "sourceIndex": 2286,
+          "proposalFingerprint": "60c1ec57b992688740fe99de4c5523ad929f468418ca816740f348582725ecd5",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "변기준이빠졌거나이등변조건도됨을이유로답할수있다.",
+          "cReason": "나머지기준이라는출력지시대신45·45·90의추가분류명을묻게고친다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "세 각이 $45^\\circ$, $45^\\circ$, $90^\\circ$인 삼각형은 직각삼각형이다. 크기가 같은 두 각과 마주 보는 두 변의 길이도 같으므로 {이등변삼각형}이기도 하다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-1-xc1",
+      "sourceIndex": 2289,
+      "beforeProposal": {
+        "sourceIndex": 2289,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+        "sourceFingerprint": "0db18fa87e31bc6807e37d6ef0816330e04f2e9b65f72bac2fa4cfd1408cfbda",
+        "proposalFingerprint": "5e276f3b454c5681b6ae437aa75dada0ee564e754ff5f07778079200612bcb21",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-1-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "$\\frac{1}{100}$을 소수로",
+        "bReason": "분수를 소수로 바꾸고 읽기",
+        "exclusionReason": "단순 변환·읽기이고 xc5 B가 분모 $100$ 분수의 의미를 묻는다",
+        "cDecision": "keep",
+        "cReason": "소수 숫자 하나를 묻는 선명한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "영 점 영일"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "$\\frac{1}{100}$을 소수로",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$\\frac{1}{100}$을 소수로 나타낸 것이 {$0.01$}이며, 읽을 때는 영 점 영일이다.",
+        "cStudentSentence": "$\\frac{1}{100}$을 소수로 나타낸 것이 □이며, 읽을 때는 영 점 영일이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0.01$",
+            "equivalents": [
+              "영 점 영일"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$\\frac{1}{100}$을 소수로 나타낸 것이 □이며, 읽을 때는 영 점 영일이다.",
+          "answers": [
+            "$0.01$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$\\frac{1}{100}$을 소수로 나타낸 것이 {$0.01$}이며, 읽을 때는 영 점 영일이다.",
+          "acceptedAnswers": [
+            [
+              "$0.01$",
+              "영 점 영일"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "분수를 소수로 바꾸고 읽기"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-1-xc1",
+          "sourceIndex": 2289,
+          "proposalFingerprint": "5e276f3b454c5681b6ae437aa75dada0ee564e754ff5f07778079200612bcb21",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "분수의소수변환B는기존자리뜻설명과중복이다.",
+          "cReason": "정답0.01의읽기를함께제공하여답을그대로옮길수있으므로읽기문구를뺀다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{1}{100}$을 소수로 나타내면 {$0.01$}이다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-1-xc3",
+      "sourceIndex": 2291,
+      "beforeProposal": {
+        "sourceIndex": 2291,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+        "sourceFingerprint": "07341b1a6bf47d37daa477c02888f4b866e80af8c01e45dfca70f3cd4c939fa9",
+        "proposalFingerprint": "ce77b346728d2c4be498cbcff83fb24be4f0e2c47cb3bdefd0f341fa3bbfb4bf",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-1-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "소수 $2.57$을 어떻게 읽는지 쓰고, 소수점과 소수 부분은 각각 어떻게 읽는지 설명하시오.",
+        "bAnswer": "이 점 오칠이라고 읽는다. 소수점은 점으로 읽고 소수 부분은 숫자를 하나씩 읽는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수점을 점으로 읽는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 부분은 숫자를 하나씩 읽는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "소수 읽는 방법",
+        "bReason": "소수점과 소수 부분 읽기의 두 규칙을 확인",
+        "cDecision": "keep",
+        "cReason": "점이라는 짧은 낱말 빈칸으로 범위가 분명",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "소수 읽기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수는 소수점을 {점}으로 읽고, 소수 부분은 숫자를 하나씩 읽는다.",
+        "cStudentSentence": "소수는 소수점을 □으로 읽고, 소수 부분은 숫자를 하나씩 읽는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "점",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수는 소수점을 □으로 읽고, 소수 부분은 숫자를 하나씩 읽는다.",
+          "answers": [
+            "점"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "소수 $2.57$을 어떻게 읽는지 쓰고, 소수점과 소수 부분은 각각 어떻게 읽는지 설명하시오.",
+          "answer": "이 점 오칠이라고 읽는다. 소수점은 점으로 읽고 소수 부분은 숫자를 하나씩 읽는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "소수점을 점으로 읽는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "소수 부분은 숫자를 하나씩 읽는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수는 소수점을 {점}으로 읽고, 소수 부분은 숫자를 하나씩 읽는다.",
+          "acceptedAnswers": [
+            [
+              "점"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-1-xc3",
+          "sourceIndex": 2291,
+          "proposalFingerprint": "ce77b346728d2c4be498cbcff83fb24be4f0e2c47cb3bdefd0f341fa3bbfb4bf",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "점읽기와낱낱숫자읽기외에요청한2.57의실제읽기도기준에넣는다.",
+          "cReason": "소수점의읽는이름점을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이 점 오칠"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수점은 점으로 읽는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 부분은 숫자를 하나씩 읽는다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-1-xc5",
+      "sourceIndex": 2293,
+      "beforeProposal": {
+        "sourceIndex": 2293,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+        "sourceFingerprint": "573fc35f5a6aae4ad2eade56ac3063bb2f9834198133f885638110a4f58b6e6b",
+        "proposalFingerprint": "fcd9c497b1bca786c5204f846229ed9d966691005ca58f84214ede7432051394",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-1-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "분수 $\\frac{9}{100}$를 소수로 나타내고, 소수 몇 자리 수가 되는지와 그 까닭을 쓰시오.",
+        "bAnswer": "$0.09$이고 소수 두 자리 수이다. $\\frac{1}{100}$인 $0.01$이 $9$개이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.09$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.01$이 $9$개",
+              "$\\frac{1}{100}$이 $9$개"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "분모 100 분수를 소수로",
+        "bReason": "분자가 $0.01$의 개수라는 이유로 자리를 정함",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 $100$인 분수는 분자가 {$0.01$}이 몇 개인지를 나타내므로 소수 두 자리 수로 쓴다.",
+        "cReason": "긴 구절 빈칸이라 어려워 0.01 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "$\\frac{1}{100}$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "분모가 백인 분수를 소수로",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 $100$인 분수는 분자가 {$0.01$}이 몇 개인지를 나타내므로 소수 두 자리 수로 쓴다.",
+        "cStudentSentence": "분모가 $100$인 분수는 분자가 □이 몇 개인지를 나타내므로 소수 두 자리 수로 쓴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0.01$",
+            "equivalents": [
+              "$\\frac{1}{100}$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "분수 $\\frac{9}{100}$를 소수로 나타내고, 소수 몇 자리 수가 되는지와 그 까닭을 쓰시오.",
+          "answer": "$0.09$이고 소수 두 자리 수이다. $\\frac{1}{100}$인 $0.01$이 $9$개이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.09$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.01$이 $9$개",
+                "$\\frac{1}{100}$이 $9$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 $100$인 분수는 분자가 {$0.01$}이 몇 개인지를 나타내므로 소수 두 자리 수로 쓴다.",
+          "acceptedAnswers": [
+            [
+              "$0.01$",
+              "$\\frac{1}{100}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-1-xc5",
+          "sourceIndex": 2293,
+          "proposalFingerprint": "fcd9c497b1bca786c5204f846229ed9d966691005ca58f84214ede7432051394",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "9/100의0.09와이유외에요청한두자리수도기준으로받는다.",
+          "cReason": "분모100이면언제나소수두자리수가된다는일반화는둘째자리까지나타낼수있다는표현으로좁히고일반설명도원문확인후고친다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.09$"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 두 자리 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.01$이 $9$개이다",
+              "$\\frac{1}{100}$이 $9$개이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분모가 $100$인 분수는 분자가 {$0.01$}이 몇 개인지를 나타내므로 소수점 아래 둘째 자리까지 써서 나타낼 수 있다.",
+        "coreAfter": "분모가 $100$인 분수의 분자는 {$0.01$}이 몇 개인지를 나타낸다. 이 분수는 소수점 아래 둘째 자리까지 써서 나타낼 수 있다.",
+        "coreReason": "원문은 분모가100인 분수를 모두 소수두자리수라고 단정한다. 10/100=0.1처럼 끝의0을 생략할 수도 있으므로 둘째자리까지 나타낼수있다는 의미로 고치고 작은단위0.01의개수라는 일반설명을 보존한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-1-xc6",
+      "sourceIndex": 2294,
+      "beforeProposal": {
+        "sourceIndex": 2294,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+        "sourceFingerprint": "61ff547a678af2d94a8d30414253f05ded7d20a6d624bab87b9d0fa9a8e8a826",
+        "proposalFingerprint": "cf085c594994fcbcc1a1cf2612644cf53f2540775f75dd66b061698f94e1e781",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-1-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "소수 $4.25$에서 소수점의 왼쪽에 있는 수 $4$를 무엇이라 부르는지 쓰시오.",
+        "bAnswer": "자연수 부분",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "소수의 자연수 부분",
+        "bReason": "소수점 왼쪽 수의 이름이라는 보통 이름 확인",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸이고 예시 $4.25$가 보임",
+        "cSlotEquivalents": [
+          [
+            "자연수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "자연수 부분",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다.",
+        "cStudentSentence": "$4.25$에서 소수점 왼쪽의 $4$를 □이라 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "자연수 부분",
+            "equivalents": [
+              "자연수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$4.25$에서 소수점 왼쪽의 $4$를 □이라 한다.",
+          "answers": [
+            "자연수 부분"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "소수 $4.25$에서 소수점의 왼쪽에 있는 수 $4$를 무엇이라 부르는지 쓰시오.",
+          "answer": "자연수 부분",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "자연수 부분"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다.",
+          "acceptedAnswers": [
+            [
+              "자연수 부분",
+              "자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-1-xc6",
+          "sourceIndex": 2294,
+          "proposalFingerprint": "cf085c594994fcbcc1a1cf2612644cf53f2540775f75dd66b061698f94e1e781",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "naming",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "4.25의4를자연수부분이라는확립된이름으로묻는다.",
+          "cReason": "자연수와자연수부분은다른범위이므로부분을뺀별칭을제거한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-1-xc9",
+      "sourceIndex": 2295,
+      "beforeProposal": {
+        "sourceIndex": 2295,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+        "sourceFingerprint": "1c50b0f8fb22d5a8546b7f79640644eb4867adf17683b72e28f2ae75935355fe",
+        "proposalFingerprint": "587beaafb290bc8c09da80a58e2c80fe990895ca4ce0e3f05840153b952ced0e",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-1-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "소수 $0.37$은 $0.01$이 몇 개 모인 수인지 구하고, 그 방법을 쓰시오.",
+        "bAnswer": "$37$개이다. $0.3$은 $0.01$이 $30$개이고 $0.07$은 $7$개이므로 $30+7=37$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$37$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$은 $0.01$이 $10$개",
+              "소수점을 떼고 읽은 수"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "0.01의 개수로 세기",
+        "bReason": "$0.1$이 $0.01$의 $10$개임을 이용해 세는 방법",
+        "cDecision": "rewrite",
+        "cAfter": "소수 두 자리 수는 소수점을 떼고 읽은 수만큼 {$0.01$}이 모인 수이다.",
+        "cReason": "'0.01이 모인' 구절 빈칸을 단위 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "$\\frac{1}{100}$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "소수 두 자리 수를 작은 단위로 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 두 자리 수는 소수점을 떼고 읽은 수만큼 {$0.01$}이 모인 수이다.",
+        "cStudentSentence": "소수 두 자리 수는 소수점을 떼고 읽은 수만큼 □이 모인 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0.01$",
+            "equivalents": [
+              "$\\frac{1}{100}$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "소수 $0.37$은 $0.01$이 몇 개 모인 수인지 구하고, 그 방법을 쓰시오.",
+          "answer": "$37$개이다. $0.3$은 $0.01$이 $30$개이고 $0.07$은 $7$개이므로 $30+7=37$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$37$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.1$은 $0.01$이 $10$개",
+                "소수점을 떼고 읽은 수"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 두 자리 수는 소수점을 떼고 읽은 수만큼 {$0.01$}이 모인 수이다.",
+          "acceptedAnswers": [
+            [
+              "$0.01$",
+              "$\\frac{1}{100}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-1-xc9",
+          "sourceIndex": 2295,
+          "proposalFingerprint": "587beaafb290bc8c09da80a58e2c80fe990895ca4ce0e3f05840153b952ced0e",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "모범답의30개와7개를합치는방법도기준에명시한다.",
+          "cReason": "같은0.01단위개수로소수두자리수를나타내는일반관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$37$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.3$은 $0.01$이 $30$개이고 $0.07$은 $7$개여서 $37$개이다",
+              "$0.37$의 소수점을 떼어 읽으면 $37$이므로 $0.01$이 $37$개이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-1-xc26",
+      "sourceIndex": 2304,
+      "beforeProposal": {
+        "sourceIndex": 2304,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+        "sourceFingerprint": "388dc601b4ccd396d2e73ab106c7c3f8cedd1a3d30e3195c5909f28c86a9afdf",
+        "proposalFingerprint": "0f352fc33d5361892b61bd8fa35bc0c8c71253ec5eb4568af03bdaf1fcf7392d",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-1-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$은 $0.001$이 몇 개인 수인지 쓰고, $0.001$이 $10$개씩 모일 때 어떤 수가 되는지 이어서 설명하시오.",
+        "bAnswer": "$1000$개. $0.001$이 $10$개면 $0.01$, $0.01$이 $10$개면 $0.1$, $0.1$이 $10$개면 $1$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1000$개",
+              "천 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$개씩 모여 $0.01$, $0.1$, $1$이 된다",
+              "$10\\times10\\times10$"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "$1$과 $0.001$의 개수 관계",
+        "bReason": "$10$개씩 모으는 과정으로 $1000$개 이해",
+        "cDecision": "keep",
+        "cReason": "$1000$개를 쓰는 짧은 관계 빈칸",
+        "cSlotEquivalents": [
+          [
+            "천 개"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$1$과 $0.001$의 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1$은 $0.001$이 {$1000$개}인 수이다.",
+        "cStudentSentence": "$1$은 $0.001$이 □인 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1000$개",
+            "equivalents": [
+              "천 개"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$1$은 $0.001$이 □인 수이다.",
+          "answers": [
+            "$1000$개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1$은 $0.001$이 몇 개인 수인지 쓰고, $0.001$이 $10$개씩 모일 때 어떤 수가 되는지 이어서 설명하시오.",
+          "answer": "$1000$개. $0.001$이 $10$개면 $0.01$, $0.01$이 $10$개면 $0.1$, $0.1$이 $10$개면 $1$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1000$개",
+                "천 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$10$개씩 모여 $0.01$, $0.1$, $1$이 된다",
+                "$10\\times10\\times10$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1$은 $0.001$이 {$1000$개}인 수이다.",
+          "acceptedAnswers": [
+            [
+              "$1000$개",
+              "천 개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-1-xc26",
+          "sourceIndex": 2304,
+          "proposalFingerprint": "0f352fc33d5361892b61bd8fa35bc0c8c71253ec5eb4568af03bdaf1fcf7392d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "열개씩묶는과정을1까지설명하라는응답범위를명시한다.",
+          "cReason": "1을이루는0.001의개수1000을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$1$은 $0.001$이 몇 개 모인 수인지 쓰시오. $0.001$을 $10$개씩 모으고, 그렇게 만든 수를 다시 $10$개씩 모으는 과정을 $1$이 될 때까지 차례로 설명하시오."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-2-xc7",
+      "sourceIndex": 2310,
+      "beforeProposal": {
+        "sourceIndex": 2310,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "f51c867d286003238ec2c36846b51335fe3760dc4f13cebf6e9c2ad98eb2cb84",
+        "proposalFingerprint": "2227e1a51011ad87e6c8a844da493fc3f54fd96c1ee3a4c4c56c61862ff3096b",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.5$와 $0.50$이 같은 수인지 쓰고, 그렇게 생각한 까닭을 쓰시오.",
+        "bAnswer": "같은 수이다. $0.5$는 $0.1$이 $5$개이고 $0.50$은 $0.01$이 $50$개로 크기가 같다. 끝의 $0$은 크기를 바꾸지 않는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 수",
+              "같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $5$개와 $0.01$이 $50$개",
+              "끝의 $0$은 크기를 바꾸지 않는다",
+              "$0.5=0.50$이라는 크기 확인"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "끝의 0이 붙은 소수 이해",
+        "bReason": "같다는 결론과 단위 개수 근거 요구",
+        "cDecision": "keep",
+        "cReason": "짧은 낱말 빈칸으로 충분히 명확",
+        "cSlotEquivalents": [
+          [
+            "똑같은 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "끝에 $0$이 붙은 같은 소수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.5$와 $0.50$은 {같은 수}이다.",
+        "cStudentSentence": "$0.5$와 $0.50$은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 수",
+            "equivalents": [
+              "똑같은 수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.5$와 $0.50$은 □이다.",
+          "answers": [
+            "같은 수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.5$와 $0.50$이 같은 수인지 쓰고, 그렇게 생각한 까닭을 쓰시오.",
+          "answer": "같은 수이다. $0.5$는 $0.1$이 $5$개이고 $0.50$은 $0.01$이 $50$개로 크기가 같다. 끝의 $0$은 크기를 바꾸지 않는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 수",
+                "같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.1$이 $5$개와 $0.01$이 $50$개",
+                "끝의 $0$은 크기를 바꾸지 않는다",
+                "$0.5=0.50$이라는 크기 확인"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.5$와 $0.50$은 {같은 수}이다.",
+          "acceptedAnswers": [
+            [
+              "같은 수",
+              "똑같은 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-2-xc7",
+          "sourceIndex": 2310,
+          "proposalFingerprint": "2227e1a51011ad87e6c8a844da493fc3f54fd96c1ee3a4c4c56c61862ff3096b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "0.5=0.50이라는결론반복을이유별칭에서빼고단위개수또는새자리0의의미를받는다.",
+          "cReason": "끝0을붙인두소수의같은값을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 수이다",
+              "같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$ 다섯 개는 $0.01$ 쉰 개와 같은 양이다",
+              "$0.50$의 소수 둘째 자리 $0$은 더해진 양이 없다는 뜻이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-2-xc13",
+      "sourceIndex": 2315,
+      "beforeProposal": {
+        "sourceIndex": 2315,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "1e85f8c46668165b7fd0c0d83bc17f41f55e1269f074ca77633fa4d82fc045dc",
+        "proposalFingerprint": "46daff4e65a94fdeeabca018e5aecca9120af3ce48af3df3d0da26d4452ab6a6",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$3.28$과 $3.5$의 크기를 비교할 때 소수점을 맞추어 쓰면 어떤 숫자끼리 견주는지 쓰고, 더 큰 수를 쓰시오.",
+        "bAnswer": "같은 자리 숫자끼리 견준다. 소수 첫째 자리 $2$와 $5$를 비교하여 $3.5$가 더 크다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 자리 숫자끼리",
+              "같은 자리의 숫자끼리 비교"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.5$가 더 크다",
+              "$3.28<3.5$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "소수점을 맞춘 비교",
+        "bReason": "자리 맞춤 기준과 결과를 함께 묻는다",
+        "cDecision": "keep",
+        "cReason": "'같은 자리 숫자' 친숙한 구절 빈칸",
+        "cSlotEquivalents": [
+          [
+            "같은 자리의 숫자"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "소수점을 맞추어 비교하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수를 비교할 때는 소수점을 맞추어 {같은 자리 숫자}끼리 견준다.",
+        "cStudentSentence": "소수를 비교할 때는 소수점을 맞추어 □끼리 견준다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 자리 숫자",
+            "equivalents": [
+              "같은 자리의 숫자"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수를 비교할 때는 소수점을 맞추어 □끼리 견준다.",
+          "answers": [
+            "같은 자리 숫자"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3.28$과 $3.5$의 크기를 비교할 때 소수점을 맞추어 쓰면 어떤 숫자끼리 견주는지 쓰고, 더 큰 수를 쓰시오.",
+          "answer": "같은 자리 숫자끼리 견준다. 소수 첫째 자리 $2$와 $5$를 비교하여 $3.5$가 더 크다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 자리 숫자끼리",
+                "같은 자리의 숫자끼리 비교"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3.5$가 더 크다",
+                "$3.28<3.5$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수를 비교할 때는 소수점을 맞추어 {같은 자리 숫자}끼리 견준다.",
+          "acceptedAnswers": [
+            [
+              "같은 자리 숫자",
+              "같은 자리의 숫자"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-2-xc13",
+          "sourceIndex": 2315,
+          "proposalFingerprint": "46daff4e65a94fdeeabca018e5aecca9120af3ce48af3df3d0da26d4452ab6a6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "어떤숫자끼리인지요청했으므로실제첫째자리2와5도기준으로받는다.",
+          "cReason": "소수점맞춤으로같은자리숫자끼리비교하는방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 자리끼리 맞추어 소수 첫째 자리의 $2$와 $5$를 견준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.5$가 더 크다",
+              "$3.28<3.5$"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-2-xc26",
+      "sourceIndex": 2323,
+      "beforeProposal": {
+        "sourceIndex": 2323,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-2 소수의 크기 비교하기",
+        "sourceFingerprint": "992737fabceeca2efbdfcadea896f7cd89406ce3d05bf264dac67a8c30b75e8e",
+        "proposalFingerprint": "b4335e9eea1d6da45b6ab0acb2a28edce505fa5e9203589242eece3232384707",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-2-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸이 나타내는 수를 쓰고, $0.47$이 $0$에서 몇 칸 간 곳인지 쓰시오.",
+        "bAnswer": "한 칸은 $0.01$이고, $0.47$은 $0.01$이 $47$개이므로 $0$에서 $47$칸 간 곳이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.01$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$47$칸",
+              "$0.01$이 $47$개"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "수직선에서 두 자리 소수 위치",
+        "bReason": "한 칸의 값과 칸 수를 연결",
+        "cDecision": "keep",
+        "cReason": "한 칸의 값을 묻는 짧은 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "수직선에서 소수 두 자리 수의 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 {$0.01$}이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+        "cStudentSentence": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 □이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0.01$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 □이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+          "answers": [
+            "$0.01$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸이 나타내는 수를 쓰고, $0.47$이 $0$에서 몇 칸 간 곳인지 쓰시오.",
+          "answer": "한 칸은 $0.01$이고, $0.47$은 $0.01$이 $47$개이므로 $0$에서 $47$칸 간 곳이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.01$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$47$칸",
+                "$0.01$이 $47$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 {$0.01$}이므로 소수 두 자리 수는 $0$에서 그 개수만큼 간 곳이다.",
+          "acceptedAnswers": [
+            [
+              "$0.01$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-2-xc26",
+          "sourceIndex": 2323,
+          "proposalFingerprint": "b4335e9eea1d6da45b6ab0acb2a28edce505fa5e9203589242eece3232384707",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "100등분한칸0.01과0.47의47칸을구한다.",
+          "cReason": "구체소수없이그개수라고가리키므로0.47의실제47칸으로대상을명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$0$과 $1$ 사이를 똑같이 $100$칸으로 나눈 수직선에서 한 칸은 $0.01$이다. $0.47$은 $0$에서 오른쪽으로 {$47$}칸 간 곳이다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-3-xc13",
+      "sourceIndex": 2335,
+      "beforeProposal": {
+        "sourceIndex": 2335,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "aa4b9adca2ac934a32db229b0127d945c452ff738bcf53acc2e622d0638ba82f",
+        "proposalFingerprint": "7924c0cb105d60c9639a1fb5c009da6d59f41e6c6e67b1c333a3ef1bc3f62d40",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$27$의 $\\frac{1}{10}$을 구하고, $2$가 일의 자리로 가는 까닭을 쓰시오.",
+        "bAnswer": "$2.7$. $20$의 $\\frac{1}{10}$이 $2$이므로 $2$가 일의 자리로 간다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$의 $\\frac{1}{10}$은 $2$",
+              "각 숫자의 값이 $\\frac{1}{10}$이 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$\\frac{1}{10}$로 한 자리 내려감",
+        "bReason": "자리 이동을 숫자 값의 변화로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 {$\\frac{1}{10}$}이 되어 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+        "cReason": "문장 복원을 짧은 분수 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "십분의 일"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "십분의 일로 하면 숫자가 내려간다",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 {$\\frac{1}{10}$}이 되어 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+        "cStudentSentence": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 □이 되어 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$\\frac{1}{10}$",
+            "equivalents": [
+              "십분의 일"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$27$의 $\\frac{1}{10}$을 구하고, $2$가 일의 자리로 가는 까닭을 쓰시오.",
+          "answer": "$2.7$. $20$의 $\\frac{1}{10}$이 $2$이므로 $2$가 일의 자리로 간다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$20$의 $\\frac{1}{10}$은 $2$",
+                "각 숫자의 값이 $\\frac{1}{10}$이 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수의 $\\frac{1}{10}$은 각 숫자가 나타내는 값이 {$\\frac{1}{10}$}이 되어 숫자들이 한 자리씩 낮은 자리로 옮겨 간 수이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{1}{10}$",
+              "십분의 일"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-3-xc13",
+          "sourceIndex": 2335,
+          "proposalFingerprint": "7924c0cb105d60c9639a1fb5c009da6d59f41e6c6e67b1c333a3ef1bc3f62d40",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "27의십분의일2.7에서20의값이2로바뀐자리이유이다.",
+          "cReason": "앞의십분의일을그대로옮기는빈칸대신실제자리값20에서2로변하는값을묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$27$의 $\\frac{1}{10}$은 $2.7$이다. $27$의 숫자 $2$가 나타내는 $20$의 $\\frac{1}{10}$이 {$2$}가 되어, 이 숫자는 일의 자리에 놓인다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-3-xc15",
+      "sourceIndex": 2336,
+      "beforeProposal": {
+        "sourceIndex": 2336,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "12ae909facf7e8fd73817bd61abc5ad0317a1e1e0d9f63728339fdf6d528aed4",
+        "proposalFingerprint": "6b9bdcb7cbb601b29e809b4653a6f6d2b34f748fec6f47dfde778effc4019948",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.003$에서 소수점과 $3$ 사이의 $0$ 두 개는 각각 무엇을 나타내는지 쓰시오.",
+        "bAnswer": "소수 첫째 자리와 소수 둘째 자리에 $0.1$과 $0.01$이 하나도 없음을 나타낸다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수 첫째 자리와 둘째 자리가 $0$",
+              "$0.1$과 $0.01$이 하나도 없다",
+              "빈 자리를 $0$으로 채운 것"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "빈 자리의 0 뜻",
+        "bReason": "자리 채움 $0$의 의미를 직접 설명",
+        "cDecision": "rewrite",
+        "cAfter": "소수점을 옮기다 숫자가 없는 자리가 생기면 빈 자리에 숫자 {$0$}을 채운다.",
+        "cReason": "문장형 정답을 숫자 $0$ 하나로 좁힘",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "소수점을 옮긴 뒤의 빈 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수점을 옮기다 숫자가 없는 자리가 생기면 빈 자리에 숫자 {$0$}을 채운다.",
+        "cStudentSentence": "소수점을 옮기다 숫자가 없는 자리가 생기면 빈 자리에 숫자 □을 채운다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.003$에서 소수점과 $3$ 사이의 $0$ 두 개는 각각 무엇을 나타내는지 쓰시오.",
+          "answer": "소수 첫째 자리와 소수 둘째 자리에 $0.1$과 $0.01$이 하나도 없음을 나타낸다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "소수 첫째 자리와 둘째 자리가 $0$",
+                "$0.1$과 $0.01$이 하나도 없다",
+                "빈 자리를 $0$으로 채운 것"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수점을 옮기다 숫자가 없는 자리가 생기면 빈 자리에 숫자 {$0$}을 채운다.",
+          "acceptedAnswers": [
+            [
+              "$0$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-3-xc15",
+          "sourceIndex": 2336,
+          "proposalFingerprint": "6b9bdcb7cbb601b29e809b4653a6f6d2b34f748fec6f47dfde778effc4019948",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "각각물었으므로0.1의개수0과0.01의개수0을구별해기준으로받는다.",
+          "cReason": "소수점이동후없는자리를0으로채우는방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수 첫째 자리의 $0$은 $0.1$이 하나도 없음을 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 둘째 자리의 $0$은 $0.01$이 하나도 없음을 나타낸다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-3-xc26",
+      "sourceIndex": 2345,
+      "beforeProposal": {
+        "sourceIndex": 2345,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "sourceFingerprint": "30580bb9a9503d30ee0bccb887f918c0fc25b3aee3b54ec5c2156a444752c333",
+        "proposalFingerprint": "2c1c3cfe1efbcb586607b597d93c1c7593fb43923ccc0d7e30b6156cfddc3476",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-3-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "$4.8$은 $0.048$의 몇 배인지 쓰고, 그 까닭을 각 숫자의 값으로 쓰시오.",
+        "bAnswer": "$100$배. $0.048$의 각 숫자가 나타내는 값이 모두 $100$배가 되면 $4.8$이 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$100$배",
+              "백 배"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 숫자의 값이 모두 $100$배",
+              "소수점이 오른쪽으로 두 자리 옮겨진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "숫자 값 배수로 전체 배수",
+        "bReason": "전체 수와 자리값의 배수를 연결",
+        "cDecision": "rewrite",
+        "cAfter": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+        "cReason": "'같은' 한 낱말로 빈칸 범위를 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "몇 배인지 알아보기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+        "cStudentSentence": "각 숫자가 나타내는 값이 모두 □ 배가 되면 전체 수도 그 배가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4.8$은 $0.048$의 몇 배인지 쓰고, 그 까닭을 각 숫자의 값으로 쓰시오.",
+          "answer": "$100$배. $0.048$의 각 숫자가 나타내는 값이 모두 $100$배가 되면 $4.8$이 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$100$배",
+                "백 배"
+              ]
+            },
+            {
+              "anyOf": [
+                "각 숫자의 값이 모두 $100$배",
+                "소수점이 오른쪽으로 두 자리 옮겨진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-3-xc26",
+          "sourceIndex": 2345,
+          "proposalFingerprint": "2c1c3cfe1efbcb586607b597d93c1c7593fb43923ccc0d7e30b6156cfddc3476",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "각숫자의값으로이유를쓰라고했으므로소수점이동만말하는기준을실제자리값비교로좁힌다.",
+          "cReason": "모든자리값을같은배로바꾸면전체도같은배가되는관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$100$배",
+              "백 배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$의 값은 $0.04$에서 $4$로, $8$의 값은 $0.008$에서 $0.8$로 모두 $100$배가 된다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-4-xc5",
+      "sourceIndex": 2348,
+      "beforeProposal": {
+        "sourceIndex": 2348,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "fb72d263e0e294aff3a73fdcfd4f376fe185586d07957b8b5c7fbef804206ebf",
+        "proposalFingerprint": "7aa9367563b603c293ed82e87b9ccf314c2b7909c154ead61955a4ad49ad6d90",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "한 칸이 $0.1$인 수직선에서 $0.5+0.3$을 어떻게 구하는지 쓰고, 합을 쓰시오.",
+        "bAnswer": "$0.5$에서 오른쪽으로 $3$칸 가므로 $0.8$이다. $0.3$은 $0.1$이 $3$개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽으로 $3$칸",
+              "$0.3$은 $0.1$이 $3$개"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "수직선에서 소수 더하기",
+        "bReason": "칸 수를 더하는 수의 개수와 연결",
+        "cDecision": "rewrite",
+        "cAfter": "한 칸이 $0.1$인 수직선에서 $0.5$에 $0.3$을 더하려면 $0.5$에서 오른쪽으로 {$3$}칸 간다.",
+        "cReason": "긴 구절 정답을 구체 칸 수로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "한 칸이 $0.1$인 수직선에서 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 칸이 $0.1$인 수직선에서 $0.5$에 $0.3$을 더하려면 $0.5$에서 오른쪽으로 {$3$}칸 간다.",
+        "cStudentSentence": "한 칸이 $0.1$인 수직선에서 $0.5$에 $0.3$을 더하려면 $0.5$에서 오른쪽으로 □칸 간다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 칸이 $0.1$인 수직선에서 $0.5+0.3$을 어떻게 구하는지 쓰고, 합을 쓰시오.",
+          "answer": "$0.5$에서 오른쪽으로 $3$칸 가므로 $0.8$이다. $0.3$은 $0.1$이 $3$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.8$"
+              ]
+            },
+            {
+              "anyOf": [
+                "오른쪽으로 $3$칸",
+                "$0.3$은 $0.1$이 $3$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 칸이 $0.1$인 수직선에서 $0.5$에 $0.3$을 더하려면 $0.5$에서 오른쪽으로 {$3$}칸 간다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc5",
+          "sourceIndex": 2348,
+          "proposalFingerprint": "7aa9367563b603c293ed82e87b9ccf314c2b7909c154ead61955a4ad49ad6d90",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "0.3이세개라는수량만으로수직선방법완성이아니므로0.5에서오른쪽세칸을기준으로받는다.",
+          "cReason": "덧셈의오른쪽세칸이동을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5$에서 오른쪽으로 $3$칸 간다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-4-xc7",
+      "sourceIndex": 2350,
+      "beforeProposal": {
+        "sourceIndex": 2350,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "7e3507ed8ff3525093162a0d80879e7551de733eb54db545a5975d8219a55868",
+        "proposalFingerprint": "71cf98ccefc8087977d47b3c3c2420ae72fed5e31529d20d004fb7c7d5fec369",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.1$을 한 칸으로 한 모눈에서 $0.3+0.4$를 어떻게 색칠해 구하는지 쓰고, 합을 쓰시오.",
+        "bAnswer": "$3$칸을 색칠하고 겹치지 않게 $4$칸을 더 색칠하면 모두 $7$칸이므로 $0.7$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "겹치지 않게 색칠",
+              "색칠한 칸 수를 센다",
+              "$3$칸과 $4$칸을 합해 $7$칸"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈 그림으로 소수 덧셈",
+        "bReason": "겹치지 않게 칠하는 이유를 활용",
+        "cDecision": "rewrite",
+        "cAfter": "$0.1$을 한 칸으로 한 모눈에서 $0.3$은 $3$칸, $0.4$는 $4$칸을 색칠하므로 합은 색칠한 칸이 모두 {$7$}칸인 수이다.",
+        "cReason": "'겹치지 않게' 구절 대신 계산 빈칸으로",
+        "cSlotEquivalents": [
+          [
+            "$7$칸"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈 그림으로 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.1$을 한 칸으로 한 모눈에서 $0.3$은 $3$칸, $0.4$는 $4$칸을 색칠하므로 합은 색칠한 칸이 모두 {$7$}칸인 수이다.",
+        "cStudentSentence": "$0.1$을 한 칸으로 한 모눈에서 $0.3$은 $3$칸, $0.4$는 $4$칸을 색칠하므로 합은 색칠한 칸이 모두 □칸인 수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$7$",
+            "equivalents": [
+              "$7$칸"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.1$을 한 칸으로 한 모눈에서 $0.3+0.4$를 어떻게 색칠해 구하는지 쓰고, 합을 쓰시오.",
+          "answer": "$3$칸을 색칠하고 겹치지 않게 $4$칸을 더 색칠하면 모두 $7$칸이므로 $0.7$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "겹치지 않게 색칠",
+                "색칠한 칸 수를 센다",
+                "$3$칸과 $4$칸을 합해 $7$칸"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.1$을 한 칸으로 한 모눈에서 $0.3$은 $3$칸, $0.4$는 $4$칸을 색칠하므로 합은 색칠한 칸이 모두 {$7$}칸인 수이다.",
+          "acceptedAnswers": [
+            [
+              "$7$",
+              "$7$칸"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc7",
+          "sourceIndex": 2350,
+          "proposalFingerprint": "71cf98ccefc8087977d47b3c3c2420ae72fed5e31529d20d004fb7c7d5fec369",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "색칠방법을요청하므로3칸과겹치지않은4칸의결합을실제기준에넣는다.",
+          "cReason": "색칠개수3+4의전체7을구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$칸을 색칠한 뒤 겹치지 않게 $4$칸을 더 칠해 모두 $7$칸을 센다"
+            ]
+          }
+        ],
+        "cSlotEquivalents": [
+          [
+            "일곱"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-4-xc11",
+      "sourceIndex": 2352,
+      "beforeProposal": {
+        "sourceIndex": 2352,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "7b90e8b82a2b2db1e72a1771cdadff1d70981f686d2da80e3f6b3cb325287626",
+        "proposalFingerprint": "081558ebc801dd4912760a233478e462c2a738ff429c18c1da5d98842d325474",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.8+0.5$를 세로셈으로 계산할 때 소수 첫째 자리에서 받아올림이 어떻게 일어나는지 쓰고, 합을 구하시오.",
+        "bAnswer": "$1.3$. $8+5=13$이라서 $1$을 일의 자리로 받아올리고 $3$은 소수 첫째 자리에 쓴다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8+5=13$",
+              "$1$을 일의 자리로 받아올린다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "소수 첫째 자리 받아올림",
+        "bReason": "받아올릴 자리와 이유를 함께 확인",
+        "cDecision": "keep",
+        "cReason": "'일의 자리' 짧은 낱말 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "소수 첫째 자리에서 받아올림",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 첫째 자리 숫자의 합이 $10$이거나 $10$보다 크면 $1$을 {일의 자리}로 받아올린다.",
+        "cStudentSentence": "소수 첫째 자리 숫자의 합이 $10$이거나 $10$보다 크면 $1$을 □로 받아올린다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "일의 자리",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 첫째 자리 숫자의 합이 $10$이거나 $10$보다 크면 $1$을 □로 받아올린다.",
+          "answers": [
+            "일의 자리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.8+0.5$를 세로셈으로 계산할 때 소수 첫째 자리에서 받아올림이 어떻게 일어나는지 쓰고, 합을 구하시오.",
+          "answer": "$1.3$. $8+5=13$이라서 $1$을 일의 자리로 받아올리고 $3$은 소수 첫째 자리에 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$8+5=13$",
+                "$1$을 일의 자리로 받아올린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 첫째 자리 숫자의 합이 $10$이거나 $10$보다 크면 $1$을 {일의 자리}로 받아올린다.",
+          "acceptedAnswers": [
+            [
+              "일의 자리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc11",
+          "sourceIndex": 2352,
+          "proposalFingerprint": "081558ebc801dd4912760a233478e462c2a738ff429c18c1da5d98842d325474",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "8+5=13계산만으로올림방법이아니므로일의1과첫째3의교환을기준으로받는다.",
+          "cReason": "소수첫째자리에서일의자리로받아올리는방향이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $13$개여서 $10$개를 $1$로 바꾸어 일의 자리에 올리고 소수 첫째 자리에는 $3$을 쓴다",
+              "$8+5=13$이므로 $1$을 일의 자리로 올리고 $3$은 소수 첫째 자리에 쓴다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-3-4-xc13",
+      "sourceIndex": 2353,
+      "beforeProposal": {
+        "sourceIndex": 2353,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "5aa0037e0fcabd9d756597808a4a5cd4d14af2f25254c7ce8b809f70c3b122f7",
+        "proposalFingerprint": "48c1fda51cd07bf64f4cef2ca45e77b4ccdfaf715b8610bcdea3ab6a3e555027",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.2+0.3+0.4$를 $0.1$의 개수로 생각해 계산하는 방법과 합을 쓰시오.",
+        "bAnswer": "$0.1$이 $2$개, $3$개, $4$개이므로 모두 $9$개이고 합은 $0.9$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$의 개수 $2+3+4=9$",
+              "$0.1$이 모두 $9$개"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "세 소수를 개수로 더하기",
+        "bReason": "세 수의 $0.1$ 개수를 모으게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$0.2+0.3+0.4$는 $0.1$이 모두 {$9$}개이므로 $0.9$이다.",
+        "cReason": "긴 구절 정답을 구체 개수로",
+        "cSlotEquivalents": [
+          [
+            "$9$개"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "소수 한 자리 수 세 개의 덧셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.2+0.3+0.4$는 $0.1$이 모두 {$9$}개이므로 $0.9$이다.",
+        "cStudentSentence": "$0.2+0.3+0.4$는 $0.1$이 모두 □개이므로 $0.9$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$9$",
+            "equivalents": [
+              "$9$개"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.2+0.3+0.4$를 $0.1$의 개수로 생각해 계산하는 방법과 합을 쓰시오.",
+          "answer": "$0.1$이 $2$개, $3$개, $4$개이므로 모두 $9$개이고 합은 $0.9$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.9$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.1$의 개수 $2+3+4=9$",
+                "$0.1$이 모두 $9$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.2+0.3+0.4$는 $0.1$이 모두 {$9$}개이므로 $0.9$이다.",
+          "acceptedAnswers": [
+            [
+              "$9$",
+              "$9$개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc13",
+          "sourceIndex": 2353,
+          "proposalFingerprint": "48c1fda51cd07bf64f4cef2ca45e77b4ccdfaf715b8610bcdea3ab6a3e555027",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "0.1의전체개수9와합0.9의관계를설명한다.",
+          "cReason": "끝의0.9에서빈칸9를그대로옮길수있어결과제공을제거한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$0.2+0.3+0.4$는 $0.1$이 모두 {$9$}개 모인 수이다.",
+        "cSlotEquivalents": [
+          [
+            "아홉"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

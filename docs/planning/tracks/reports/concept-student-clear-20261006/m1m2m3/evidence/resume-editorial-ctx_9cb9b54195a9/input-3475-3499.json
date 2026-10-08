@@ -1,0 +1,2458 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:54:17.457Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc14",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "표준형 그래프와 $y$축의 교점",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 {$(0,\\ ap^2+q)$}이다.",
+        "studentC": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 □이다.",
+        "answers": [
+          "$(0,\\ ap^2+q)$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc14",
+        "learningRole": "procedure",
+        "roleReason": "$x=0$ 대입으로 $y$축 교점 구하기",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점의 좌표를 구하는 방법을 쓰고, 그 좌표를 $a$, $p$, $q$로 나타내시오.",
+        "bAnswer": "$y$축 위의 점은 $x$좌표가 $0$이므로 $x=0$을 대입하면 $y=a(0-p)^2+q=ap^2+q$이다. 따라서 $(0,\\ ap^2+q)$이다.",
+        "bGoal": "표준형에서 $y$축 교점 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=0$을 대입",
+              "$y$축 위의 점은 $x$좌표가 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(0,\\ ap^2+q)$"
+            ]
+          }
+        ],
+        "bReason": "구하는 방법과 문자식 결과를 함께 쓰도록 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "$x=0$ 대입 결과를 계산하게 하는 의미 있는 계산 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3475,
+        "part": "m3plus",
+        "sourceFingerprint": "2d71046a5e62a1c7e38fa1290fa7f62d0d8f48322fcd353c4dc11b0b09817408",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3475
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 □이다.",
+        "cFrozenDefinition": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 {$(0,\\ ap^2+q)$}이다.",
+        "cFrozenAnswers": [
+          "$(0,\\ ap^2+q)$"
+        ],
+        "cMarkedSentence": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 {$(0,\\ ap^2+q)$}이다.",
+        "cSlotAnswers": [
+          "$(0,\\ ap^2+q)$"
+        ],
+        "cStudentSentence": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 □이다.",
+        "cAnswers": [
+          "$(0,\\ ap^2+q)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(0,\\ ap^2+q)$",
+            "equivalentAnswers": [
+              "$(0,\\ ap^2+q)$",
+              "$(0,ap^2+q)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$(0,\\ ap^2+q)$",
+            "accept": [
+              "$(0,ap^2+q)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$(0,\\ ap^2+q)$",
+            "$(0,ap^2+q)$"
+          ]
+        ],
+        "proposalFingerprint": "0e0235b54c4b0abecd44a858c7b93b8a6f0a39b95b3324be2b734cad73cd4492"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc1",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "일반형의 계수 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$y=ax^2+bx+c$에서 $a$, $b$, $c$는 각 항의 계수를 {부호}까지 읽은 것이다 — 빼는 항은 계수가 {음수}이다.",
+        "example": {
+          "prompt": "$y=2x^2-3x+1$에서 $b$가 $3$이 아니라 $-3$인 까닭은?",
+          "answer": "$-3x$는 $(-3)\\times x$이기 때문이다"
+        },
+        "studentC": "$y=ax^2+bx+c$에서 $a$, $b$, $c$는 각 항의 계수를 □까지 읽은 것이다 — 빼는 항은 계수가 □이다.",
+        "answers": [
+          "부호",
+          "음수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc1",
+        "learningRole": "procedure",
+        "roleReason": "빼는 항의 계수를 부호까지 읽기",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=2x^2-3x+1$을 $y=ax^2+bx+c$와 비교할 때 $a$, $b$, $c$의 값을 각각 쓰고, $b$의 값을 정할 때 주의할 점을 쓰시오.",
+        "bAnswer": "$a=2$, $b=-3$, $c=1$이다. $-3x=(-3)\\times x$이므로 빼는 항의 계수는 부호까지 읽어 음수로 쓴다.",
+        "bGoal": "일반형의 계수를 부호까지 읽기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a=2$, $c=1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b=-3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-3x=(-3)\\times x$",
+              "빼는 항은 계수가 음수",
+              "부호까지 읽는다"
+            ]
+          }
+        ],
+        "bReason": "기대 답 $-3$을 미리 암시하지 않도록 주의할 점으로 물었다.",
+        "cDecision": "keep",
+        "cReason": "부호까지 읽는 규칙과 음수를 묻는 짧고 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3476,
+        "part": "m3plus",
+        "sourceFingerprint": "3078896b4c806a61bcacf270734cd2b4e6e7bbe9689a0d979d0144dac9da3421",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3476
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=ax^2+bx+c$에서 $a$, $b$, $c$는 각 항의 계수를 □까지 읽은 것이다 — 빼는 항은 계수가 □이다.",
+        "cFrozenDefinition": "$y=ax^2+bx+c$에서 $a$, $b$, $c$는 각 항의 계수를 {부호}까지 읽은 것이다 — 빼는 항은 계수가 {음수}이다.",
+        "cFrozenAnswers": [
+          "부호",
+          "음수"
+        ],
+        "cMarkedSentence": "$y=ax^2+bx+c$에서 $a$, $b$, $c$는 각 항의 계수를 {부호}까지 읽은 것이다 — 빼는 항은 계수가 {음수}이다.",
+        "cSlotAnswers": [
+          "부호",
+          "음수"
+        ],
+        "cStudentSentence": "$y=ax^2+bx+c$에서 $a$, $b$, $c$는 각 항의 계수를 □까지 읽은 것이다 — 빼는 항은 계수가 □이다.",
+        "cAnswers": [
+          "부호",
+          "음수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "음수",
+            "equivalentAnswers": [
+              "음수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "부호"
+          ],
+          [
+            "음수"
+          ]
+        ],
+        "proposalFingerprint": "2359f3ca2ccb28a98867e0a45b37606f1ea4aa7d771cf72bf098b1e61940e869"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc2",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "일반형에서 $a$의 부호와 볼록한 방향",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$y=ax^2+bx+c$도 $a>0$이면 {아래로}, $a<0$이면 {위로} 볼록하다 — $b$, $c$는 볼록한 방향과 {관계없다}.",
+        "studentC": "$y=ax^2+bx+c$도 $a>0$이면 □, $a<0$이면 □ 볼록하다 — $b$, $c$는 볼록한 방향과 □.",
+        "answers": [
+          "아래로",
+          "위로",
+          "관계없다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc2",
+        "learningRole": "reason",
+        "roleReason": "볼록 방향은 $a$만 정하고 $b$, $c$는 무관",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=ax^2+bx+c$의 그래프가 볼록한 방향은 어떤 계수의 부호로 정해지는지 쓰시오. 또 $b$, $c$의 값을 바꾸면 볼록한 방향이 바뀌는지 까닭과 함께 쓰시오.",
+        "bAnswer": "$a$의 부호로 정해져 $a>0$이면 아래로, $a<0$이면 위로 볼록하다. 표준형으로 고쳐도 $x^2$의 계수는 $a$ 그대로이고 $b$, $c$는 꼭짓점의 위치만 바꾸므로 볼록한 방향은 바뀌지 않는다.",
+        "bGoal": "일반형의 볼록 방향 결정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a>0$이면 아래로, $a<0$이면 위로 볼록"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b$, $c$는 볼록한 방향을 바꾸지 않는다",
+              "$b$, $c$와 관계없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b$, $c$는 꼭짓점의 위치만 바꾼다",
+              "$x^2$의 계수는 $a$ 그대로이다"
+            ]
+          }
+        ],
+        "bReason": "$a$의 역할에 더해 $b$, $c$가 무관한 까닭을 묻도록 정했다.",
+        "cDecision": "keep",
+        "cReason": "부호별 방향과 $b$, $c$의 무관함을 묻는 짧은 비교 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3477,
+        "part": "m3plus",
+        "sourceFingerprint": "4b8bfc0a40be9ed60014138c6e35178ea0cd2c21cd7a2e8ec879b7de7c273532",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3477
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=ax^2+bx+c$도 $a>0$이면 □, $a<0$이면 □ 볼록하다 — $b$, $c$는 볼록한 방향과 □.",
+        "cFrozenDefinition": "$y=ax^2+bx+c$도 $a>0$이면 {아래로}, $a<0$이면 {위로} 볼록하다 — $b$, $c$는 볼록한 방향과 {관계없다}.",
+        "cFrozenAnswers": [
+          "아래로",
+          "위로",
+          "관계없다"
+        ],
+        "cMarkedSentence": "$y=ax^2+bx+c$도 $a>0$이면 {아래로}, $a<0$이면 {위로} 볼록하다 — $b$, $c$는 볼록한 방향과 {관계없다}.",
+        "cSlotAnswers": [
+          "아래로",
+          "위로",
+          "관계없다"
+        ],
+        "cStudentSentence": "$y=ax^2+bx+c$도 $a>0$이면 □, $a<0$이면 □ 볼록하다 — $b$, $c$는 볼록한 방향과 □.",
+        "cAnswers": [
+          "아래로",
+          "위로",
+          "관계없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "아래로",
+            "equivalentAnswers": [
+              "아래로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "위로",
+            "equivalentAnswers": [
+              "위로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "관계없다",
+            "equivalentAnswers": [
+              "관계없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "아래로"
+          ],
+          [
+            "위로"
+          ],
+          [
+            "관계없다"
+          ]
+        ],
+        "proposalFingerprint": "3d5fab226d122fadfcd796f228e0457b693614edcea79a8a60b872eee62224bd"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc3",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "점이 그래프 위에 있다는 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "점 $(m,\\ n)$이 이차함수의 그래프 위에 있다는 것은 식의 $x$에 $m$을 넣었을 때 $y$가 {$n$}이 된다는 뜻이다 — 좌표가 식을 {만족}한다.",
+        "example": {
+          "prompt": "점 $(1,\\ 2)$가 함수의 그래프 위에 있다는 말을 $x$의 값과 함숫값으로 설명하면?",
+          "answer": "$x=1$일 때 함숫값이 $2$"
+        },
+        "studentC": "점 $(m,\\ n)$이 이차함수의 그래프 위에 있다는 것은 식의 $x$에 $m$을 넣었을 때 $y$가 □이 된다는 뜻이다 — 좌표가 식을 □한다.",
+        "answers": [
+          "$n$",
+          "만족"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc3",
+        "learningRole": "definition",
+        "roleReason": "그래프 위의 점은 좌표가 식을 만족함",
+        "bDecision": "rewrite",
+        "bPrompt": "점 $(1,\\ 2)$가 어떤 이차함수의 그래프 위에 있다는 말을 $x$의 값과 함숫값으로 설명하시오. 또 점 $(1,\\ 2)$가 $y=x^2+k$의 그래프 위에 있을 때 $k$의 값을 구하시오.",
+        "bAnswer": "$x=1$일 때 함숫값이 $2$라는 뜻이다. $2=1^2+k$이므로 $k=1$이다.",
+        "bGoal": "그래프 위의 점의 뜻",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=1$일 때 함숫값이 $2$",
+              "$x=1$일 때 $y=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$k=1$"
+            ]
+          }
+        ],
+        "bReason": "뜻 설명에 미지수를 구하는 대입을 더해 활용까지 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "함숫값과 만족이라는 뜻을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3478,
+        "part": "m3plus",
+        "sourceFingerprint": "24d7e341dba435c690a1e90d896711037b77d898d8db01d28caca1706167f87c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3478
+        },
+        "directReview": null,
+        "cFrozenSentence": "점 $(m,\\ n)$이 이차함수의 그래프 위에 있다는 것은 식의 $x$에 $m$을 넣었을 때 $y$가 □이 된다는 뜻이다 — 좌표가 식을 □한다.",
+        "cFrozenDefinition": "점 $(m,\\ n)$이 이차함수의 그래프 위에 있다는 것은 식의 $x$에 $m$을 넣었을 때 $y$가 {$n$}이 된다는 뜻이다 — 좌표가 식을 {만족}한다.",
+        "cFrozenAnswers": [
+          "$n$",
+          "만족"
+        ],
+        "cMarkedSentence": "점 $(m,\\ n)$이 이차함수의 그래프 위에 있다는 것은 식의 $x$에 $m$을 넣었을 때 $y$가 {$n$}이 된다는 뜻이다 — 좌표가 식을 {만족}한다.",
+        "cSlotAnswers": [
+          "$n$",
+          "만족"
+        ],
+        "cStudentSentence": "점 $(m,\\ n)$이 이차함수의 그래프 위에 있다는 것은 식의 $x$에 $m$을 넣었을 때 $y$가 □이 된다는 뜻이다 — 좌표가 식을 □한다.",
+        "cAnswers": [
+          "$n$",
+          "만족"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n$",
+            "equivalentAnswers": [
+              "$n$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "만족",
+            "equivalentAnswers": [
+              "만족"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n$"
+          ],
+          [
+            "만족"
+          ]
+        ],
+        "proposalFingerprint": "832e7e100252644151e4fd9951155a531d709900f1dc9bfa54259d896cee23b2"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc4",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "그래프의 폭을 구별하는 정보",
+        "kind": "성질",
+        "level": "하",
+        "definition": "꼭짓점 · 축 · 볼록한 방향이 같아도 {$x^2$의 계수의 절댓값}이 다르면 그래프의 폭이 다르다 — 그리려면 꼭짓점 말고 {다른 한 점}이 더 있어야 한다.",
+        "studentC": "꼭짓점 · 축 · 볼록한 방향이 같아도 □이 다르면 그래프의 폭이 다르다 — 그리려면 꼭짓점 말고 □이 더 있어야 한다.",
+        "answers": [
+          "$x^2$의 계수의 절댓값",
+          "다른 한 점"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc4",
+        "learningRole": "reason",
+        "roleReason": "폭은 $|a|$로 달라 다른 한 점이 필요함",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "꼭짓점 외 한 점으로 $a$를 정하는 목표가 c7 B와 같다.",
+        "cDecision": "rewrite",
+        "cAfter": "꼭짓점, 축, 볼록한 방향이 같아도 $x^2$의 계수의 {절댓값}이 다르면 그래프의 폭이 다르다. 그래서 그래프를 하나로 정하려면 꼭짓점 말고 그래프 위의 다른 한 점이 더 필요하다.",
+        "cAnswers": [
+          "절댓값"
+        ],
+        "cReason": "'$x^2$의 계수의 절댓값'이 너무 긴 빈칸이라 핵심 낱말만 비웠다.",
+        "exclusionReason": "B 제외: 꼭짓점 말고 한 점이 더 필요하다는 목표가 m3-04-02-c7 B와 중복된다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3479,
+        "part": "m3plus",
+        "sourceFingerprint": "0f51e2acf72c7e2731a68fbae8198ea406fd8be7d47c819eaa619425b0789484",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3479
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "꼭짓점, 축, 볼록한 방향이 같아도 $x^2$의 계수의 {절댓값}이 다르면 그래프의 폭이 다르다. 그래서 그래프를 하나로 정하려면 꼭짓점 말고 그래프 위의 다른 한 점이 더 필요하다.",
+        "cSlotAnswers": [
+          "절댓값"
+        ],
+        "cStudentSentence": "꼭짓점, 축, 볼록한 방향이 같아도 $x^2$의 계수의 □이 다르면 그래프의 폭이 다르다. 그래서 그래프를 하나로 정하려면 꼭짓점 말고 그래프 위의 다른 한 점이 더 필요하다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절댓값",
+            "equivalentAnswers": [
+              "절댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "절댓값"
+          ]
+        ],
+        "proposalFingerprint": "379d1a08de638216165336a1043c497ff324cf5af89ab925b723c9db2f12510d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc5",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "일반형 그래프의 폭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "이차함수 $y=ax^2+bx+c$의 그래프는 $y=ax^2$의 그래프를 평행이동한 것이므로, 그래프의 폭은 이차항 계수 $a$가 $0$에서 떨어진 거리인 {절댓값}만으로 정해진다.",
+        "studentC": "이차함수 $y=ax^2+bx+c$의 그래프는 $y=ax^2$의 그래프를 평행이동한 것이므로, 그래프의 폭은 이차항 계수 $a$가 $0$에서 떨어진 거리인 □만으로 정해진다.",
+        "answers": [
+          "절댓값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc5",
+        "learningRole": "reason",
+        "roleReason": "평행이동이라 폭은 $|a|$로만 정해짐",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=ax^2+bx+c$의 그래프의 폭은 $a$, $b$, $c$ 가운데 무엇으로 정해지는가? 그 까닭을 $y=ax^2$의 그래프와의 관계로 쓰시오.",
+        "bAnswer": "$a$의 절댓값으로 정해진다. 그래프는 $y=ax^2$의 그래프를 평행이동한 것이고 평행이동해도 폭은 변하지 않으므로, $y=ax^2$의 폭처럼 $|a|$만으로 정해진다.",
+        "bGoal": "일반형 그래프의 폭 결정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a$의 절댓값",
+              "$|a|$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=ax^2$을 평행이동한 것",
+              "평행이동해도 폭은 변하지 않는다"
+            ]
+          }
+        ],
+        "bReason": "'절댓값'을 질문에 쓰지 않고 평행이동 관계로 근거를 대게 했다.",
+        "cDecision": "keep",
+        "cReason": "$0$에서의 거리를 절댓값이란 용어로 잇는 짧은 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3480,
+        "part": "m3plus",
+        "sourceFingerprint": "3adfe4507967be99c7527692779e725dff5f4c2e43509e53e16df3c73286e3b3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3480
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차함수 $y=ax^2+bx+c$의 그래프는 $y=ax^2$의 그래프를 평행이동한 것이므로, 그래프의 폭은 이차항 계수 $a$가 $0$에서 떨어진 거리인 □만으로 정해진다.",
+        "cFrozenDefinition": "이차함수 $y=ax^2+bx+c$의 그래프는 $y=ax^2$의 그래프를 평행이동한 것이므로, 그래프의 폭은 이차항 계수 $a$가 $0$에서 떨어진 거리인 {절댓값}만으로 정해진다.",
+        "cFrozenAnswers": [
+          "절댓값"
+        ],
+        "cMarkedSentence": "이차함수 $y=ax^2+bx+c$의 그래프는 $y=ax^2$의 그래프를 평행이동한 것이므로, 그래프의 폭은 이차항 계수 $a$가 $0$에서 떨어진 거리인 {절댓값}만으로 정해진다.",
+        "cSlotAnswers": [
+          "절댓값"
+        ],
+        "cStudentSentence": "이차함수 $y=ax^2+bx+c$의 그래프는 $y=ax^2$의 그래프를 평행이동한 것이므로, 그래프의 폭은 이차항 계수 $a$가 $0$에서 떨어진 거리인 □만으로 정해진다.",
+        "cAnswers": [
+          "절댓값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "절댓값",
+            "equivalentAnswers": [
+              "절댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "절댓값"
+          ]
+        ],
+        "proposalFingerprint": "0cd5d94f31a32e46e3aeb47c86a44c6858b80922a6f738f776fa729c12ba124d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc6",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "더한 수를 다시 빼는 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "완전제곱식을 만들려고 어떤 수를 더했으면 {같은 수를 빼서} 함수의 식이 {달라지지 않게} 한다.",
+        "example": {
+          "prompt": "$y=x^2+6x$에 $9$를 더하기만 하면 안 되는 까닭은?",
+          "answer": "다른 함수가 되어서"
+        },
+        "studentC": "완전제곱식을 만들려고 어떤 수를 더했으면 □ 함수의 식이 □ 한다.",
+        "answers": [
+          "같은 수를 빼서",
+          "달라지지 않게"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc6",
+        "learningRole": "reason",
+        "roleReason": "더한 수를 빼야 같은 함수가 유지됨",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=x^2+6x$를 완전제곱식을 이용해 고칠 때 $9$를 더하기만 하면 안 되는 까닭을 쓰고, 올바르게 고친 식을 쓰시오.",
+        "bAnswer": "$9$를 더하기만 하면 $y=x^2+6x+9$로 다른 함수가 된다. 더한 $9$를 다시 빼야 하므로 $y=x^2+6x+9-9=(x+3)^2-9$이다.",
+        "bGoal": "완전제곱식 변형에서 식을 보존하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다른 함수가 된다",
+              "식이 달라진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(x+3)^2-9$"
+            ]
+          }
+        ],
+        "bReason": "구체 식을 주어 더하기만 할 때의 문제와 바른 변형을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "완전제곱식을 만들려고 식에 어떤 수를 더하기만 하면 {다른} 함수가 되므로, 더한 수와 같은 수를 다시 {빼} 주어야 한다.",
+        "cAnswers": [
+          "다른",
+          "빼"
+        ],
+        "cReason": "원문은 긴 구 두 개를 비워 조건과 결론이 함께 숨겨졌다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3481,
+        "part": "m3plus",
+        "sourceFingerprint": "040021b6651e712732050851d725723df80dd4c74d711ed99833c2d3e847967c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3481
+        },
+        "directReview": null,
+        "cMarkedSentence": "완전제곱식을 만들려고 식에 어떤 수를 더하기만 하면 {다른} 함수가 되므로, 더한 수와 같은 수를 다시 {빼} 주어야 한다.",
+        "cSlotAnswers": [
+          "다른",
+          "빼"
+        ],
+        "cStudentSentence": "완전제곱식을 만들려고 식에 어떤 수를 더하기만 하면 □ 함수가 되므로, 더한 수와 같은 수를 다시 □ 주어야 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다른",
+            "equivalentAnswers": [
+              "다른"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빼",
+            "equivalentAnswers": [
+              "빼"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다른"
+          ],
+          [
+            "빼"
+          ]
+        ],
+        "proposalFingerprint": "9c9d6a0d5eb5189e7ec9d1b25f1d9c12d11fa581d6766389ae8490bf84ed7822"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc7",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "일반형과 표준형이 보여 주는 것",
+        "kind": "성질",
+        "level": "하",
+        "definition": "일반형 $y=ax^2+bx+c$에서는 {$y$절편}이, 표준형 $y=a(x-p)^2+q$에서는 {꼭짓점}이 바로 보인다 — 두 식은 모양만 다른 같은 함수이다.",
+        "studentC": "일반형 $y=ax^2+bx+c$에서는 □이, 표준형 $y=a(x-p)^2+q$에서는 □이 바로 보인다 — 두 식은 모양만 다른 같은 함수이다.",
+        "answers": [
+          "$y$절편",
+          "꼭짓점"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc7",
+        "learningRole": "application",
+        "roleReason": "일반형은 $y$절편, 표준형은 꼭짓점을 보여 줌",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 이차함수를 일반형 $y=ax^2+bx+c$와 표준형 $y=a(x-p)^2+q$로 나타낼 때, 각 식에서 계산 없이 바로 읽을 수 있는 그래프의 정보를 하나씩 쓰시오.",
+        "bAnswer": "일반형에서는 $y$절편 $c$, 곧 점 $(0,\\ c)$를, 표준형에서는 꼭짓점 $(p,\\ q)$를 바로 읽을 수 있다.",
+        "bGoal": "두 식의 장점 비교",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일반형은 $y$절편",
+              "일반형은 $(0,\\ c)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "표준형은 꼭짓점",
+              "표준형은 $(p,\\ q)$",
+              "표준형은 축 $x=p$"
+            ]
+          }
+        ],
+        "bReason": "두 형태를 나란히 주고 각각 바로 보이는 정보를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "두 형태가 보여 주는 정보를 대비시키는 짧은 비교 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3482,
+        "part": "m3plus",
+        "sourceFingerprint": "4ced68f3063a7474381ac87529dde42c38dd07cc377157faae838484abfcf04a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3482
+        },
+        "directReview": null,
+        "cFrozenSentence": "일반형 $y=ax^2+bx+c$에서는 □이, 표준형 $y=a(x-p)^2+q$에서는 □이 바로 보인다 — 두 식은 모양만 다른 같은 함수이다.",
+        "cFrozenDefinition": "일반형 $y=ax^2+bx+c$에서는 {$y$절편}이, 표준형 $y=a(x-p)^2+q$에서는 {꼭짓점}이 바로 보인다 — 두 식은 모양만 다른 같은 함수이다.",
+        "cFrozenAnswers": [
+          "$y$절편",
+          "꼭짓점"
+        ],
+        "cMarkedSentence": "일반형 $y=ax^2+bx+c$에서는 {$y$절편}이, 표준형 $y=a(x-p)^2+q$에서는 {꼭짓점}이 바로 보인다 — 두 식은 모양만 다른 같은 함수이다.",
+        "cSlotAnswers": [
+          "$y$절편",
+          "꼭짓점"
+        ],
+        "cStudentSentence": "일반형 $y=ax^2+bx+c$에서는 □이, 표준형 $y=a(x-p)^2+q$에서는 □이 바로 보인다 — 두 식은 모양만 다른 같은 함수이다.",
+        "cAnswers": [
+          "$y$절편",
+          "꼭짓점"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y$절편",
+            "equivalentAnswers": [
+              "$y$절편"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y$절편"
+          ],
+          [
+            "꼭짓점"
+          ]
+        ],
+        "proposalFingerprint": "328c84186f532a4b50b383b1f0192e6d3661829e7e01a55864a5bb24b156d5e7"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc8",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "$x$절편",
+        "kind": "정의",
+        "level": "하",
+        "definition": "그래프가 $x$축과 만나는 점의 $x$좌표를 {$x$절편}이라 하고, $y=0$을 넣은 방정식의 {해}로 구한다.",
+        "studentC": "그래프가 $x$축과 만나는 점의 $x$좌표를 □이라 하고, $y=0$을 넣은 방정식의 □로 구한다.",
+        "answers": [
+          "$x$절편",
+          "해"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc8",
+        "learningRole": "naming",
+        "roleReason": "$x$축 교점의 $x$좌표를 $x$절편이라 부름",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수의 그래프가 $x$축과 만나는 점의 $x$좌표를 무엇이라 부르는가? 또 $y=x^2-4$의 그래프에서 그 값을 모두 구하시오.",
+        "bAnswer": "$x$절편이다. $x^2-4=0$에서 $x=-2$ 또는 $x=2$이다.",
+        "bGoal": "$x$절편의 이름과 구하는 법",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$절편"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-2$와 $2$",
+              "$x=\\pm 2$"
+            ]
+          }
+        ],
+        "bReason": "이름에 더해 구체 식에서 $y=0$으로 값을 구하게 했다.",
+        "cDecision": "keep",
+        "cReason": "용어와 구하는 방법을 묻는 짧고 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3483,
+        "part": "m3plus",
+        "sourceFingerprint": "5cb40f62fbb6ed4427fceeec0831b96ec4407f7674e34b96313cd1662c9f1fcf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3483
+        },
+        "directReview": null,
+        "cFrozenSentence": "그래프가 $x$축과 만나는 점의 $x$좌표를 □이라 하고, $y=0$을 넣은 방정식의 □로 구한다.",
+        "cFrozenDefinition": "그래프가 $x$축과 만나는 점의 $x$좌표를 {$x$절편}이라 하고, $y=0$을 넣은 방정식의 {해}로 구한다.",
+        "cFrozenAnswers": [
+          "$x$절편",
+          "해"
+        ],
+        "cMarkedSentence": "그래프가 $x$축과 만나는 점의 $x$좌표를 {$x$절편}이라 하고, $y=0$을 넣은 방정식의 {해}로 구한다.",
+        "cSlotAnswers": [
+          "$x$절편",
+          "해"
+        ],
+        "cStudentSentence": "그래프가 $x$축과 만나는 점의 $x$좌표를 □이라 하고, $y=0$을 넣은 방정식의 □로 구한다.",
+        "cAnswers": [
+          "$x$절편",
+          "해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$절편",
+            "equivalentAnswers": [
+              "$x$절편"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "해",
+            "equivalentAnswers": [
+              "해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x$절편"
+          ],
+          [
+            "해"
+          ]
+        ],
+        "proposalFingerprint": "216d9dba908e0571e11e45bd2741aaf98548a5d244f3e128f21565713507de17"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc9",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "같은 높이의 두 점과 축",
+        "kind": "성질",
+        "level": "중",
+        "definition": "그래프 위의 두 점의 $y$좌표가 같으면 두 점은 축에 대하여 {대칭}이므로, 축은 두 $x$좌표의 {한가운데}를 지난다.",
+        "studentC": "그래프 위의 두 점의 $y$좌표가 같으면 두 점은 축에 대하여 □이므로, 축은 두 $x$좌표의 □를 지난다.",
+        "answers": [
+          "대칭",
+          "한가운데"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc9",
+        "learningRole": "application",
+        "roleReason": "같은 높이의 두 점의 가운데가 축",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수의 그래프가 두 점 $(-1,\\ 7)$과 $(5,\\ 7)$을 지날 때 축의 방정식을 구하고, 그렇게 구할 수 있는 까닭을 쓰시오.",
+        "bAnswer": "두 점의 $y$좌표가 같으므로 두 점은 축에 대하여 대칭이다. 축은 두 $x$좌표의 한가운데를 지나므로 $x=\\frac{-1+5}{2}=2$, 곧 $x=2$이다.",
+        "bGoal": "대칭인 두 점으로 축 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 점이 축에 대하여 대칭",
+              "$y$좌표가 같아 대칭"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=2$"
+            ]
+          }
+        ],
+        "bReason": "같은 높이의 두 점을 주어 대칭과 한가운데를 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "대칭과 한가운데를 묻는 분명한 이유 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3484,
+        "part": "m3plus",
+        "sourceFingerprint": "7c8cc8b4db0d9dadc453df5c4b519e95fae79209467519758418cd86c9e75aea",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3484
+        },
+        "directReview": null,
+        "cFrozenSentence": "그래프 위의 두 점의 $y$좌표가 같으면 두 점은 축에 대하여 □이므로, 축은 두 $x$좌표의 □를 지난다.",
+        "cFrozenDefinition": "그래프 위의 두 점의 $y$좌표가 같으면 두 점은 축에 대하여 {대칭}이므로, 축은 두 $x$좌표의 {한가운데}를 지난다.",
+        "cFrozenAnswers": [
+          "대칭",
+          "한가운데"
+        ],
+        "cMarkedSentence": "그래프 위의 두 점의 $y$좌표가 같으면 두 점은 축에 대하여 {대칭}이므로, 축은 두 $x$좌표의 {한가운데}를 지난다.",
+        "cSlotAnswers": [
+          "대칭",
+          "한가운데"
+        ],
+        "cStudentSentence": "그래프 위의 두 점의 $y$좌표가 같으면 두 점은 축에 대하여 □이므로, 축은 두 $x$좌표의 □를 지난다.",
+        "cAnswers": [
+          "대칭",
+          "한가운데"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대칭",
+            "equivalentAnswers": [
+              "대칭"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "한가운데",
+            "equivalentAnswers": [
+              "한가운데",
+              "가운데"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한가운데",
+            "accept": [
+              "가운데"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대칭"
+          ],
+          [
+            "한가운데",
+            "가운데"
+          ]
+        ],
+        "proposalFingerprint": "36e28de3a38755c579efa3e8cb511f1971193519a93aed009177b27c321870f8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc11",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "괄호 안에서 뺀 수를 밖으로 꺼낼 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 {$a$배}가 된다 — 괄호 앞의 $a$가 {곱해지기} 때문이다.",
+        "example": {
+          "prompt": "$y=2(x^2-4x+4-4)+5$에서 $-4$가 괄호 밖으로 나오면 $-8$이 되는 까닭은?",
+          "answer": "괄호 앞의 $2$가 곱해지기 때문이다"
+        },
+        "studentC": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 □가 된다 — 괄호 앞의 $a$가 □ 때문이다.",
+        "answers": [
+          "$a$배",
+          "곱해지기"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc11",
+        "learningRole": "reason",
+        "roleReason": "괄호 앞 $a$가 곱해져 $a$배가 됨",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=2(x^2-4x+4-4)+5$를 표준형으로 고칠 때, 괄호 안의 $-4$를 괄호 밖으로 꺼내면 얼마가 되는가? 그 까닭과 고친 식을 쓰시오.",
+        "bAnswer": "$-8$이 된다. 괄호 앞의 $2$가 곱해지기 때문이다. 따라서 $y=2(x-2)^2-8+5=2(x-2)^2-3$이다.",
+        "bGoal": "괄호 밖으로 꺼낼 때 계수 곱하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "괄호 앞의 $2$가 곱해진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=2(x-2)^2-3$"
+            ]
+          }
+        ],
+        "bReason": "질문에서 $-8$을 먼저 말하지 않고 값과 까닭을 함께 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "$a$배와 곱해짐이라는 규칙과 까닭을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3485,
+        "part": "m3plus",
+        "sourceFingerprint": "74945c1858c531b7930ac8f76a37f17c82a4366ba358938c41c0d5a20dc9f572",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3485
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 □가 된다 — 괄호 앞의 $a$가 □ 때문이다.",
+        "cFrozenDefinition": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 {$a$배}가 된다 — 괄호 앞의 $a$가 {곱해지기} 때문이다.",
+        "cFrozenAnswers": [
+          "$a$배",
+          "곱해지기"
+        ],
+        "cMarkedSentence": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 {$a$배}가 된다 — 괄호 앞의 $a$가 {곱해지기} 때문이다.",
+        "cSlotAnswers": [
+          "$a$배",
+          "곱해지기"
+        ],
+        "cStudentSentence": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 □가 된다 — 괄호 앞의 $a$가 □ 때문이다.",
+        "cAnswers": [
+          "$a$배",
+          "곱해지기"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a$배",
+            "equivalentAnswers": [
+              "$a$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱해지기",
+            "equivalentAnswers": [
+              "곱해지기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a$배"
+          ],
+          [
+            "곱해지기"
+          ]
+        ],
+        "proposalFingerprint": "9c13d19cf64a5e166357b8b672381ce13142206c58ccd22f99561b15e137dfaa"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc12",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "$x$축과 두 점에서 만날 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이차함수의 꼭짓점이 $x$축 아래에 있고 아래로 볼록하면, 그래프는 $x$축과 {두} 점에서 만난다.",
+        "studentC": "이차함수의 꼭짓점이 $x$축 아래에 있고 아래로 볼록하면, 그래프는 $x$축과 □ 점에서 만난다.",
+        "answers": [
+          "두"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc12",
+        "learningRole": "reason",
+        "roleReason": "최저점이 $x$축 아래면 양쪽에서 한 번씩 만남",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수의 그래프가 아래로 볼록하고 꼭짓점이 $x$축보다 아래에 있을 때, 그래프는 $x$축과 몇 개의 점에서 만나는가? 그 까닭을 쓰시오.",
+        "bAnswer": "두 점에서 만난다. 꼭짓점이 가장 낮은 점이면서 $x$축 아래에 있고, 축의 양쪽으로 갈수록 $y$의 값이 커져 $x$축 위로 올라가므로 축의 왼쪽과 오른쪽에서 한 번씩 $x$축과 만난다.",
+        "bGoal": "$x$축과 두 점에서 만나는 조건",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 점",
+              "$2$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "축의 양쪽에서 한 번씩 만난다",
+              "양쪽으로 갈수록 커져 $x$축 위로 올라간다"
+            ]
+          }
+        ],
+        "bReason": "개수를 질문에 밝히지 않고 꼭짓점과 볼록 방향으로 설명하게 했다.",
+        "cDecision": "keep",
+        "cReason": "조건에서 교점 개수를 판단하는 짧고 분명한 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3486,
+        "part": "m3plus",
+        "sourceFingerprint": "3439dd08230edfd411f0849331ad02b43ce881e018e2a405669b4039935f171b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3486
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차함수의 꼭짓점이 $x$축 아래에 있고 아래로 볼록하면, 그래프는 $x$축과 □ 점에서 만난다.",
+        "cFrozenDefinition": "이차함수의 꼭짓점이 $x$축 아래에 있고 아래로 볼록하면, 그래프는 $x$축과 {두} 점에서 만난다.",
+        "cFrozenAnswers": [
+          "두"
+        ],
+        "cMarkedSentence": "이차함수의 꼭짓점이 $x$축 아래에 있고 아래로 볼록하면, 그래프는 $x$축과 {두} 점에서 만난다.",
+        "cSlotAnswers": [
+          "두"
+        ],
+        "cStudentSentence": "이차함수의 꼭짓점이 $x$축 아래에 있고 아래로 볼록하면, 그래프는 $x$축과 □ 점에서 만난다.",
+        "cAnswers": [
+          "두"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두",
+            "equivalentAnswers": [
+              "두",
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "두",
+            "accept": [
+              "$2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "두",
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "3a4baf71297001ffc22dbdf70c65fb472de9aa60b17ba6a085fa54035f63cc87"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc13",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "$x$축과 한 점에서 만날 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$y=x^2-6x+9=(x-3)^2$처럼 {꼭짓점}이 $x$축 위에 있으면 그래프는 $x$축과 {한} 점에서 만난다.",
+        "studentC": "$y=x^2-6x+9=(x-3)^2$처럼 □이 $x$축 위에 있으면 그래프는 $x$축과 □ 점에서 만난다.",
+        "answers": [
+          "꼭짓점",
+          "한"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc13",
+        "learningRole": "reason",
+        "roleReason": "꼭짓점이 $x$축 위면 한 점에서 만남",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=x^2-6x+9$의 그래프는 $x$축과 몇 개의 점에서 만나는가? 식을 표준형으로 고친 뒤 꼭짓점의 위치로 까닭을 쓰시오.",
+        "bAnswer": "$y=(x-3)^2$이므로 꼭짓점 $(3,\\ 0)$이 $x$축 위에 있다. 꼭짓점이 가장 낮은 점이라 나머지 점은 모두 $x$축보다 위에 있으므로 한 점에서 만난다.",
+        "bGoal": "$x$축과 한 점에서 만나는 경우",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 점",
+              "$1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점 $(3,\\ 0)$이 $x$축 위",
+              "$y=(x-3)^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지 점은 $x$축보다 위",
+              "꼭짓점이 가장 낮은 점"
+            ]
+          }
+        ],
+        "bReason": "개수를 숨기고 표준형 변형과 꼭짓점 위치로 판단하게 했다.",
+        "cDecision": "keep",
+        "cReason": "예시 식과 꼭짓점 위치로 교점 수를 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3487,
+        "part": "m3plus",
+        "sourceFingerprint": "daf7f9c377dcfecd3615055f4696e98f6a5992cfd22415e1a1ee94d278c77c46",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3487
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=x^2-6x+9=(x-3)^2$처럼 □이 $x$축 위에 있으면 그래프는 $x$축과 □ 점에서 만난다.",
+        "cFrozenDefinition": "$y=x^2-6x+9=(x-3)^2$처럼 {꼭짓점}이 $x$축 위에 있으면 그래프는 $x$축과 {한} 점에서 만난다.",
+        "cFrozenAnswers": [
+          "꼭짓점",
+          "한"
+        ],
+        "cMarkedSentence": "$y=x^2-6x+9=(x-3)^2$처럼 {꼭짓점}이 $x$축 위에 있으면 그래프는 $x$축과 {한} 점에서 만난다.",
+        "cSlotAnswers": [
+          "꼭짓점",
+          "한"
+        ],
+        "cStudentSentence": "$y=x^2-6x+9=(x-3)^2$처럼 □이 $x$축 위에 있으면 그래프는 $x$축과 □ 점에서 만난다.",
+        "cAnswers": [
+          "꼭짓점",
+          "한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "한",
+            "equivalentAnswers": [
+              "한",
+              "$1$",
+              "하나의"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "한",
+            "accept": [
+              "$1$",
+              "하나의"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "꼭짓점"
+          ],
+          [
+            "한",
+            "$1$",
+            "하나의"
+          ]
+        ],
+        "proposalFingerprint": "65bf62a2666887d86b5a578c3601a34bc9df2a7b647fba0a3245a9e25a8ca989"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc14",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "일반형에서 증가와 감소가 바뀌는 곳",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$y=ax^2+bx+c$에서 $y$의 증가와 감소가 바뀌는 경계는 축 {$x=-\\frac{b}{2a}$}이다 — $a>0$이면 축의 오른쪽에서 $x$가 커질수록 $y$가 {커진다}.",
+        "studentC": "$y=ax^2+bx+c$에서 $y$의 증가와 감소가 바뀌는 경계는 축 □이다 — $a>0$이면 축의 오른쪽에서 $x$가 커질수록 $y$가 □.",
+        "answers": [
+          "$x=-\\frac{b}{2a}$",
+          "커진다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc14",
+        "learningRole": "application",
+        "roleReason": "일반형의 축 $x=-\\frac{b}{2a}$를 증감 경계로 씀",
+        "bDecision": "rewrite",
+        "bPrompt": "$a>0$인 이차함수 $y=ax^2+bx+c$에서 $x$가 커질 때 $y$의 증가와 감소가 바뀌는 경계가 되는 직선의 방정식을 $a$, $b$로 쓰고, 그 직선의 오른쪽에서 $x$가 커지면 $y$가 어떻게 되는지 쓰시오.",
+        "bAnswer": "경계는 축 $x=-\\frac{b}{2a}$이고, 그 오른쪽에서는 $x$가 커질수록 $y$도 커진다.",
+        "bGoal": "일반형에서 증감이 바뀌는 곳",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=-\\frac{b}{2a}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$가 커진다",
+              "증가한다"
+            ]
+          }
+        ],
+        "bReason": "$a>0$ 조건과 축의 식, 오른쪽 범위를 질문에 특정했다.",
+        "cDecision": "keep",
+        "cReason": "축의 식과 증감을 묻는 짧고 분명한 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3488,
+        "part": "m3plus",
+        "sourceFingerprint": "f9057320ef4826b36633a3fd1bda0f54381a5d872ce9dedd10fa4e4d579ace08",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3488
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=ax^2+bx+c$에서 $y$의 증가와 감소가 바뀌는 경계는 축 □이다 — $a>0$이면 축의 오른쪽에서 $x$가 커질수록 $y$가 □.",
+        "cFrozenDefinition": "$y=ax^2+bx+c$에서 $y$의 증가와 감소가 바뀌는 경계는 축 {$x=-\\frac{b}{2a}$}이다 — $a>0$이면 축의 오른쪽에서 $x$가 커질수록 $y$가 {커진다}.",
+        "cFrozenAnswers": [
+          "$x=-\\frac{b}{2a}$",
+          "커진다"
+        ],
+        "cMarkedSentence": "$y=ax^2+bx+c$에서 $y$의 증가와 감소가 바뀌는 경계는 축 {$x=-\\frac{b}{2a}$}이다 — $a>0$이면 축의 오른쪽에서 $x$가 커질수록 $y$가 {커진다}.",
+        "cSlotAnswers": [
+          "$x=-\\frac{b}{2a}$",
+          "커진다"
+        ],
+        "cStudentSentence": "$y=ax^2+bx+c$에서 $y$의 증가와 감소가 바뀌는 경계는 축 □이다 — $a>0$이면 축의 오른쪽에서 $x$가 커질수록 $y$가 □.",
+        "cAnswers": [
+          "$x=-\\frac{b}{2a}$",
+          "커진다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x=-\\frac{b}{2a}$",
+            "equivalentAnswers": [
+              "$x=-\\frac{b}{2a}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "커진다",
+            "equivalentAnswers": [
+              "커진다",
+              "증가한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "커진다",
+            "accept": [
+              "증가한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x=-\\frac{b}{2a}$"
+          ],
+          [
+            "커진다",
+            "증가한다"
+          ]
+        ],
+        "proposalFingerprint": "64c4465894f1455fd88ebe41e78098659e2d3b4626d82b637032ab6cda53eaf8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc15",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "일반형 그래프를 평행이동으로 보기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$y=ax^2+bx+c$의 그래프는 $y=ax^2$의 그래프를 꼭짓점이 {원점}에서 {새 꼭짓점}으로 가도록 평행이동한 것이다 — 표준형의 $p$, $q$가 옮긴 양이다.",
+        "example": {
+          "prompt": "$y=(x-2)^2-3$과 $y=x^2$은 $x^2$의 계수가 같다. 앞의 그래프가 뒤의 그래프를 오른쪽 $2$, 아래쪽 $3$만큼 옮긴 것인 까닭은?",
+          "answer": "꼭짓점이 $(2,\\ -3)$으로 옮겨져서"
+        },
+        "studentC": "$y=ax^2+bx+c$의 그래프는 $y=ax^2$의 그래프를 꼭짓점이 □에서 □으로 가도록 평행이동한 것이다 — 표준형의 $p$, $q$가 옮긴 양이다.",
+        "answers": [
+          "원점",
+          "새 꼭짓점"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc15",
+        "learningRole": "reason",
+        "roleReason": "표준형의 $p$, $q$가 꼭짓점 이동량임",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=x^2-4x+1$을 표준형으로 고치고, 이 그래프가 $y=x^2$의 그래프를 어느 방향으로 얼마만큼 평행이동한 것인지 꼭짓점의 이동으로 설명하시오.",
+        "bAnswer": "$y=(x-2)^2-3$이다. 꼭짓점이 원점에서 $(2,\\ -3)$으로 옮겨졌으므로 $x$축 방향으로 $2$, $y$축 방향으로 $-3$만큼 평행이동한 것이다.",
+        "bGoal": "일반형 그래프를 평행이동으로 이해",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=(x-2)^2-3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점이 원점에서 $(2,\\ -3)$으로"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$축 방향으로 $2$, $y$축 방향으로 $-3$",
+              "오른쪽으로 $2$, 아래로 $3$"
+            ]
+          }
+        ],
+        "bReason": "구체 일반형 식으로 변형부터 이동량까지 한 흐름으로 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$y=ax^2+bx+c$를 표준형 $y=a(x-p)^2+q$로 바꾸면, 그 그래프는 $y=ax^2$의 그래프를 꼭짓점이 {원점}에서 점 {$(p,\\ q)$}로 가도록 평행이동한 것이다.",
+        "cAnswers": [
+          "원점",
+          "$(p,\\ q)$"
+        ],
+        "cReason": "'새 꼭짓점'은 지칭이 모호해 표준형의 꼭짓점 좌표로 특정했다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3489,
+        "part": "m3plus",
+        "sourceFingerprint": "ec8aee1baaca3f299286828463c649bb0723cce61e827fdcdafe5226d50edc41",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3489
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=ax^2+bx+c$를 표준형 $y=a(x-p)^2+q$로 바꾸면, 그 그래프는 $y=ax^2$의 그래프를 꼭짓점이 {원점}에서 점 {$(p,\\ q)$}로 가도록 평행이동한 것이다.",
+        "cSlotAnswers": [
+          "원점",
+          "$(p,\\ q)$"
+        ],
+        "cStudentSentence": "$y=ax^2+bx+c$를 표준형 $y=a(x-p)^2+q$로 바꾸면, 그 그래프는 $y=ax^2$의 그래프를 꼭짓점이 □에서 점 □로 가도록 평행이동한 것이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "원점",
+            "equivalentAnswers": [
+              "원점",
+              "$(0,\\ 0)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(p,\\ q)$",
+            "equivalentAnswers": [
+              "$(p,\\ q)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "원점",
+            "accept": [
+              "$(0,\\ 0)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "원점",
+            "$(0,\\ 0)$"
+          ],
+          [
+            "$(p,\\ q)$"
+          ]
+        ],
+        "proposalFingerprint": "7716e92f13fa67c48dc18b8be03d11c3d83cbca9b43aca34dfe74c56e3ce9d4d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc16",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "$y$축 위의 점으로 상수항 정하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$y=x^2+bx+c$의 그래프가 $(0,\\ k)$를 지나면 상수항이 {$c=k$}로 바로 정해지므로, 나머지 한 점으로 {$b$}만 구하면 된다.",
+        "studentC": "$y=x^2+bx+c$의 그래프가 $(0,\\ k)$를 지나면 상수항이 □로 바로 정해지므로, 나머지 한 점으로 □만 구하면 된다.",
+        "answers": [
+          "$c=k$",
+          "$b$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc16",
+        "learningRole": "procedure",
+        "roleReason": "$y$축 위의 점으로 $c$를 먼저 정함",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=x^2+bx+c$의 그래프가 두 점 $(0,\\ 3)$, $(1,\\ 6)$을 지날 때 $b$, $c$의 값을 구하시오. 또 점 $(0,\\ 3)$을 먼저 대입하면 좋은 까닭을 쓰시오.",
+        "bAnswer": "$x=0$을 대입하면 $y=c$이므로 $c=3$이 바로 정해진다. 그다음 $(1,\\ 6)$을 대입하면 $6=1+b+3$이므로 $b=2$이다.",
+        "bGoal": "$y$축 위의 점으로 식 결정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$c=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=0$이면 $y=c$",
+              "상수항이 바로 정해진다"
+            ]
+          }
+        ],
+        "bReason": "구체 두 점을 주어 계산과 $y$축 위의 점의 장점을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "상수항 결정과 남은 미지수를 묻는 분명한 절차 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3490,
+        "part": "m3plus",
+        "sourceFingerprint": "6363c4b09a5ab751d37d6eb6b0d74454e7b70a8f8212e7a2a2c6a3c9bbbdc2b9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3490
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=x^2+bx+c$의 그래프가 $(0,\\ k)$를 지나면 상수항이 □로 바로 정해지므로, 나머지 한 점으로 □만 구하면 된다.",
+        "cFrozenDefinition": "$y=x^2+bx+c$의 그래프가 $(0,\\ k)$를 지나면 상수항이 {$c=k$}로 바로 정해지므로, 나머지 한 점으로 {$b$}만 구하면 된다.",
+        "cFrozenAnswers": [
+          "$c=k$",
+          "$b$"
+        ],
+        "cMarkedSentence": "$y=x^2+bx+c$의 그래프가 $(0,\\ k)$를 지나면 상수항이 {$c=k$}로 바로 정해지므로, 나머지 한 점으로 {$b$}만 구하면 된다.",
+        "cSlotAnswers": [
+          "$c=k$",
+          "$b$"
+        ],
+        "cStudentSentence": "$y=x^2+bx+c$의 그래프가 $(0,\\ k)$를 지나면 상수항이 □로 바로 정해지므로, 나머지 한 점으로 □만 구하면 된다.",
+        "cAnswers": [
+          "$c=k$",
+          "$b$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$c=k$",
+            "equivalentAnswers": [
+              "$c=k$",
+              "$k$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$b$",
+            "equivalentAnswers": [
+              "$b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$c=k$",
+            "accept": [
+              "$k$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$c=k$",
+            "$k$"
+          ],
+          [
+            "$b$"
+          ]
+        ],
+        "proposalFingerprint": "64c0be24c2fce36acfb07276a95960e8759ce0eac4b663c77a0abb83b47835c6"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc17",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "축이 $y$축의 오른쪽일 때 $a$, $b$의 부호",
+        "kind": "성질",
+        "level": "상",
+        "definition": "축의 $x$좌표 $-\\frac{b}{2a}$가 양수이면, 곧 축이 $y$축의 {오른쪽}에 있으면 $a$와 $b$의 부호가 {다르다}.",
+        "studentC": "축의 $x$좌표 $-\\frac{b}{2a}$가 양수이면, 곧 축이 $y$축의 □에 있으면 $a$와 $b$의 부호가 □.",
+        "answers": [
+          "오른쪽",
+          "다르다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc17",
+        "learningRole": "reason",
+        "roleReason": "$-\\frac{b}{2a}>0$에서 $a$, $b$ 부호가 다름",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=ax^2+bx+c$의 축 $x=-\\frac{b}{2a}$가 $y$축의 오른쪽에 있을 때, $a$와 $b$의 부호는 같은가 다른가? 그 까닭을 쓰시오.",
+        "bAnswer": "다르다. 축이 오른쪽이면 $-\\frac{b}{2a}>0$, 곧 $\\frac{b}{a}<0$이므로 $a$와 $b$의 부호가 다르다.",
+        "bGoal": "축의 위치로 $a$, $b$ 부호 비교",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-\\frac{b}{2a}>0$",
+              "$\\frac{b}{a}<0$"
+            ]
+          }
+        ],
+        "bReason": "축의 식을 주고 오른쪽이라는 조건을 부등식으로 옮기게 했다.",
+        "cDecision": "keep",
+        "cReason": "축의 위치와 부호 관계를 묻는 짧은 비교 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3491,
+        "part": "m3plus",
+        "sourceFingerprint": "1a2660e605add15a6389fcb387698f891d0ee2e2c3681238b1e0ca998d7a5b4f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3491
+        },
+        "directReview": null,
+        "cFrozenSentence": "축의 $x$좌표 $-\\frac{b}{2a}$가 양수이면, 곧 축이 $y$축의 □에 있으면 $a$와 $b$의 부호가 □.",
+        "cFrozenDefinition": "축의 $x$좌표 $-\\frac{b}{2a}$가 양수이면, 곧 축이 $y$축의 {오른쪽}에 있으면 $a$와 $b$의 부호가 {다르다}.",
+        "cFrozenAnswers": [
+          "오른쪽",
+          "다르다"
+        ],
+        "cMarkedSentence": "축의 $x$좌표 $-\\frac{b}{2a}$가 양수이면, 곧 축이 $y$축의 {오른쪽}에 있으면 $a$와 $b$의 부호가 {다르다}.",
+        "cSlotAnswers": [
+          "오른쪽",
+          "다르다"
+        ],
+        "cStudentSentence": "축의 $x$좌표 $-\\frac{b}{2a}$가 양수이면, 곧 축이 $y$축의 □에 있으면 $a$와 $b$의 부호가 □.",
+        "cAnswers": [
+          "오른쪽",
+          "다르다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "오른쪽",
+            "equivalentAnswers": [
+              "오른쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "다르다",
+            "equivalentAnswers": [
+              "다르다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "다르다"
+          ]
+        ],
+        "proposalFingerprint": "f8cf916cc37f694342d1628c2f7b43cd3fe3c49a49556a26ce8bd1c7d0b33f88"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc18",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "축의 위치와 $b$의 부호",
+        "kind": "성질",
+        "level": "상",
+        "definition": "축이 $y$축이면 {$b=0$}이다 — 축이 $y$축의 왼쪽이면 $a$와 $b$의 부호가 {같고} 오른쪽이면 다르므로, 이때는 $a$의 부호도 알아야 $b$의 부호를 정할 수 있다.",
+        "studentC": "축이 $y$축이면 □이다 — 축이 $y$축의 왼쪽이면 $a$와 $b$의 부호가 □ 오른쪽이면 다르므로, 이때는 $a$의 부호도 알아야 $b$의 부호를 정할 수 있다.",
+        "answers": [
+          "$b=0$",
+          "같고"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc18",
+        "learningRole": "reason",
+        "roleReason": "축 위치만으로는 $a$, $b$의 부호 관계만 알 수 있음",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=ax^2+bx+c$의 축 $x=-\\frac{b}{2a}$가 $y$축일 때 $b$의 값을 쓰시오. 또 축이 $y$축의 왼쪽에 있다는 것만으로는 $b$의 부호를 정할 수 없는 까닭을 쓰시오.",
+        "bAnswer": "$-\\frac{b}{2a}=0$이므로 $b=0$이다. 축이 왼쪽이면 $a$와 $b$의 부호가 같다는 것만 알 수 있으므로, $a$의 부호를 알아야 $b$의 부호가 정해진다.",
+        "bGoal": "$b$의 부호 판단에 필요한 정보",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$b=0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$와 $b$의 부호가 같다는 것만 안다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$의 부호를 알아야 한다"
+            ]
+          }
+        ],
+        "bReason": "$b=0$인 경우와 $a$의 부호가 더 필요한 까닭을 나눠 물었다.",
+        "cDecision": "keep",
+        "cReason": "$b=0$과 부호 관계를 묻는 분명한 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3492,
+        "part": "m3plus",
+        "sourceFingerprint": "73e39671a4f9bd1d2dccb1b2ab7382e61e5ee79a5509250f4ccd28ebe05e58c4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3492
+        },
+        "directReview": null,
+        "cFrozenSentence": "축이 $y$축이면 □이다 — 축이 $y$축의 왼쪽이면 $a$와 $b$의 부호가 □ 오른쪽이면 다르므로, 이때는 $a$의 부호도 알아야 $b$의 부호를 정할 수 있다.",
+        "cFrozenDefinition": "축이 $y$축이면 {$b=0$}이다 — 축이 $y$축의 왼쪽이면 $a$와 $b$의 부호가 {같고} 오른쪽이면 다르므로, 이때는 $a$의 부호도 알아야 $b$의 부호를 정할 수 있다.",
+        "cFrozenAnswers": [
+          "$b=0$",
+          "같고"
+        ],
+        "cMarkedSentence": "축이 $y$축이면 {$b=0$}이다 — 축이 $y$축의 왼쪽이면 $a$와 $b$의 부호가 {같고} 오른쪽이면 다르므로, 이때는 $a$의 부호도 알아야 $b$의 부호를 정할 수 있다.",
+        "cSlotAnswers": [
+          "$b=0$",
+          "같고"
+        ],
+        "cStudentSentence": "축이 $y$축이면 □이다 — 축이 $y$축의 왼쪽이면 $a$와 $b$의 부호가 □ 오른쪽이면 다르므로, 이때는 $a$의 부호도 알아야 $b$의 부호를 정할 수 있다.",
+        "cAnswers": [
+          "$b=0$",
+          "같고"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$b=0$",
+            "equivalentAnswers": [
+              "$b=0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같고",
+            "equivalentAnswers": [
+              "같고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$b=0$"
+          ],
+          [
+            "같고"
+          ]
+        ],
+        "proposalFingerprint": "0ca3e942ddacf5866cc35eaf10b8cd5bf3df24ad48b1279990ee460a879a2455"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc19",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "축과 두 점으로 식을 정하는 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이차함수 그래프 위의 서로 다른 두 점이 축에서 같은 거리에 있으면 서로 {대칭}이어서 대입할 때 같은 조건을 준다. 축과 두 점으로 식을 하나로 정하려면 두 점에서 축까지의 거리가 서로 {달라야} 한다.",
+        "studentC": "이차함수 그래프 위의 서로 다른 두 점이 축에서 같은 거리에 있으면 서로 □이어서 대입할 때 같은 조건을 준다. 축과 두 점으로 식을 하나로 정하려면 두 점에서 축까지의 거리가 서로 □ 한다.",
+        "answers": [
+          "대칭",
+          "달라야"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc19",
+        "learningRole": "reason",
+        "roleReason": "대칭인 두 점은 같은 식을 주어 거리가 달라야 함",
+        "bDecision": "rewrite",
+        "bPrompt": "축이 $x=1$인 이차함수를 $y=a(x-1)^2+q$로 놓았다. 그래프가 두 점 $(0,\\ 5)$와 $(2,\\ 5)$를 지난다는 것만으로는 $a$, $q$를 하나로 정할 수 없다. 그 까닭을 쓰고, 식을 하나로 정하려면 두 점이 어떤 조건을 만족해야 하는지 쓰시오.",
+        "bAnswer": "두 점은 축 $x=1$에서 같은 거리에 있어 서로 대칭이므로, 대입하면 둘 다 $5=a+q$라는 같은 식만 얻는다. 식을 하나로 정하려면 두 점에서 축까지의 거리가 서로 달라야 한다.",
+        "bGoal": "축과 두 점으로 식을 정하는 조건",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 점이 축에 대하여 대칭",
+              "대입하면 같은 식 $5=a+q$"
+            ]
+          },
+          {
+            "anyOf": [
+              "축까지의 거리가 서로 달라야 한다"
+            ]
+          }
+        ],
+        "bReason": "대칭인 두 점의 구체 예로 식이 정해지지 않는 까닭을 확인하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "축이 $x=p$인 이차함수 $y=a(x-p)^2+q$의 $a$, $q$를 그래프 위의 서로 다른 두 점으로 구할 때, 두 점이 축에서 같은 거리에 있으면 축에 대하여 {대칭}이어서 대입한 두 식이 같아진다. 그래서 두 점에서 축까지의 거리가 서로 {달라야} $a$, $q$가 하나로 정해진다.",
+        "cAnswers": [
+          "대칭",
+          "달라야"
+        ],
+        "cReason": "어떤 식의 무엇을 정하는지 없어 '같은 조건'의 뜻이 모호했다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3493,
+        "part": "m3plus",
+        "sourceFingerprint": "94fef08aa471733049f4302f5c31a5b5414d97400a1ebd4565c148bc2a0b805f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3493
+        },
+        "directReview": null,
+        "cMarkedSentence": "축이 $x=p$인 이차함수 $y=a(x-p)^2+q$의 $a$, $q$를 그래프 위의 서로 다른 두 점으로 구할 때, 두 점이 축에서 같은 거리에 있으면 축에 대하여 {대칭}이어서 대입한 두 식이 같아진다. 그래서 두 점에서 축까지의 거리가 서로 {달라야} $a$, $q$가 하나로 정해진다.",
+        "cSlotAnswers": [
+          "대칭",
+          "달라야"
+        ],
+        "cStudentSentence": "축이 $x=p$인 이차함수 $y=a(x-p)^2+q$의 $a$, $q$를 그래프 위의 서로 다른 두 점으로 구할 때, 두 점이 축에서 같은 거리에 있으면 축에 대하여 □이어서 대입한 두 식이 같아진다. 그래서 두 점에서 축까지의 거리가 서로 □ $a$, $q$가 하나로 정해진다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대칭",
+            "equivalentAnswers": [
+              "대칭"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "달라야",
+            "equivalentAnswers": [
+              "달라야"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대칭"
+          ],
+          [
+            "달라야"
+          ]
+        ],
+        "proposalFingerprint": "902935f972c27055edeb1f38dd9529ef6a34c971b44cd7c4de41a7382e7e59d7"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc20",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "두 $x$절편 말고 필요한 점",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$y=a(x-\\alpha)(x-\\beta)$에 두 교점을 대입하면 모두 {$0=0$}이 되어 $a$가 정해지지 않는다 — $a$를 정하려면 $x$좌표가 {두 절편과 다른 점}이 필요하다.",
+        "studentC": "$y=a(x-\\alpha)(x-\\beta)$에 두 교점을 대입하면 모두 □이 되어 $a$가 정해지지 않는다 — $a$를 정하려면 $x$좌표가 □이 필요하다.",
+        "answers": [
+          "$0=0$",
+          "두 절편과 다른 점"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc20",
+        "learningRole": "reason",
+        "roleReason": "두 $x$절편 대입은 $0=0$이라 $a$ 미정",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$절편이 $1$, $3$인 이차함수를 $y=a(x-1)(x-3)$으로 놓았다. 두 점 $(1,\\ 0)$, $(3,\\ 0)$을 대입해도 $a$가 정해지지 않는 까닭을 쓰고, $a$를 정하려면 어떤 점이 더 필요한지 쓰시오.",
+        "bAnswer": "두 점을 대입하면 모두 $0=0$이 되어 $a$에 대한 정보가 생기지 않는다. 그래서 $x$좌표가 $1$, $3$이 아닌 그래프 위의 점이 하나 더 필요하다.",
+        "bGoal": "$x$절편 외에 필요한 점",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0=0$이 된다",
+              "$a$에 관한 식이 생기지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$좌표가 $1$, $3$이 아닌 점"
+            ]
+          }
+        ],
+        "bReason": "$\\alpha$, $\\beta$의 뜻을 구체 절편으로 밝히고 필요한 점을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$x$절편이 $\\alpha$, $\\beta$인 이차함수를 $y=a(x-\\alpha)(x-\\beta)$로 놓고 두 점 $(\\alpha,\\ 0)$, $(\\beta,\\ 0)$을 대입하면 모두 {$0=0$}이 되어 $a$가 정해지지 않는다. 그래서 $a$를 정하려면 $x$좌표가 $\\alpha$, $\\beta$가 아닌 그래프 위의 점이 하나 더 필요하다.",
+        "cAnswers": [
+          "$0=0$"
+        ],
+        "cReason": "원문은 '두 교점'과 $\\alpha$, $\\beta$의 뜻이 없어 지칭 대상이 불분명하다.",
+        "exampleNeeded": true,
+        "coreAfter": "$x$절편이 $\\alpha$, $\\beta$인 이차함수를 $y=a(x-\\alpha)(x-\\beta)$로 놓고 두 점 $(\\alpha,\\ 0)$, $(\\beta,\\ 0)$을 대입하면 모두 {$0=0$}이 되어 $a$가 정해지지 않는다 — $a$를 정하려면 $x$좌표가 {두 절편과 다른 점}이 필요하다.",
+        "coreReason": "학습 설명에서 $\\alpha$, $\\beta$와 '두 교점'이 무엇인지 밝혀져 있지 않다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3494,
+        "part": "m3plus",
+        "sourceFingerprint": "2c64aec4890aade39a32370ed3f1f349402085a06ccecbdf0b3d82561350a9a9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3494
+        },
+        "directReview": null,
+        "cMarkedSentence": "$x$절편이 $\\alpha$, $\\beta$인 이차함수를 $y=a(x-\\alpha)(x-\\beta)$로 놓고 두 점 $(\\alpha,\\ 0)$, $(\\beta,\\ 0)$을 대입하면 모두 {$0=0$}이 되어 $a$가 정해지지 않는다. 그래서 $a$를 정하려면 $x$좌표가 $\\alpha$, $\\beta$가 아닌 그래프 위의 점이 하나 더 필요하다.",
+        "cSlotAnswers": [
+          "$0=0$"
+        ],
+        "cStudentSentence": "$x$절편이 $\\alpha$, $\\beta$인 이차함수를 $y=a(x-\\alpha)(x-\\beta)$로 놓고 두 점 $(\\alpha,\\ 0)$, $(\\beta,\\ 0)$을 대입하면 모두 □이 되어 $a$가 정해지지 않는다. 그래서 $a$를 정하려면 $x$좌표가 $\\alpha$, $\\beta$가 아닌 그래프 위의 점이 하나 더 필요하다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0=0$",
+            "equivalentAnswers": [
+              "$0=0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0=0$"
+          ]
+        ],
+        "proposalFingerprint": "32da586c1248f5058782463abd5768637c9f427dc172658156067b148f7cd7ce"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc21",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "문자가 든 식의 꼭짓점이 놓이는 곳",
+        "kind": "방법",
+        "level": "상",
+        "definition": "식에 문자 $k$가 있으면 꼭짓점의 좌표를 {$k$의 식}으로 나타내고, 두 좌표 사이의 {관계식}에서 꼭짓점이 놓이는 도형을 찾는다.",
+        "example": {
+          "prompt": "$y=x^2-2kx+k^2+k$의 꼭짓점 $(k,\\ k)$가 늘 직선 $y=x$ 위에 있는 까닭은?",
+          "answer": "두 좌표가 늘 $k$로 같아서"
+        },
+        "studentC": "식에 문자 $k$가 있으면 꼭짓점의 좌표를 □으로 나타내고, 두 좌표 사이의 □에서 꼭짓점이 놓이는 도형을 찾는다.",
+        "answers": [
+          "$k$의 식",
+          "관계식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc21",
+        "learningRole": "application",
+        "roleReason": "꼭짓점을 $k$로 나타내 놓이는 직선 찾기",
+        "bDecision": "rewrite",
+        "bPrompt": "$k$가 상수일 때 $y=x^2-2kx+k^2+k$의 꼭짓점의 좌표를 $k$로 나타내시오. 또 $k$의 값이 바뀌어도 꼭짓점이 늘 놓이는 직선의 방정식과 그 까닭을 쓰시오.",
+        "bAnswer": "$y=(x-k)^2+k$이므로 꼭짓점은 $(k,\\ k)$이다. 꼭짓점의 $x$좌표와 $y$좌표가 늘 같으므로 꼭짓점은 직선 $y=x$ 위에 있다.",
+        "bGoal": "문자가 든 식의 꼭짓점 자취",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(k,\\ k)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$좌표와 $y$좌표가 늘 같다"
+            ]
+          }
+        ],
+        "bReason": "구체 식으로 꼭짓점 좌표와 두 좌표의 관계를 직접 찾게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$y=x^2-2kx+k^2+k=(x-k)^2+k$의 꼭짓점은 {$(k,\\ k)$}이다. $k$의 값이 바뀌어도 꼭짓점의 $x$좌표와 $y$좌표가 늘 같으므로, 꼭짓점은 직선 {$y=x$} 위에 놓인다.",
+        "cAnswers": [
+          "$(k,\\ k)$",
+          "$y=x$"
+        ],
+        "cReason": "'$k$의 식', '관계식'은 메타 언어 빈칸이라 구체 좌표와 직선으로 바꿨다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3495,
+        "part": "m3plus",
+        "sourceFingerprint": "79e3fb487dae7ce6ca885b8eec50d9f7b26245446b9b12379df3212a2e2f41a2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3495
+        },
+        "directReview": null,
+        "cMarkedSentence": "$y=x^2-2kx+k^2+k=(x-k)^2+k$의 꼭짓점은 {$(k,\\ k)$}이다. $k$의 값이 바뀌어도 꼭짓점의 $x$좌표와 $y$좌표가 늘 같으므로, 꼭짓점은 직선 {$y=x$} 위에 놓인다.",
+        "cSlotAnswers": [
+          "$(k,\\ k)$",
+          "$y=x$"
+        ],
+        "cStudentSentence": "$y=x^2-2kx+k^2+k=(x-k)^2+k$의 꼭짓점은 □이다. $k$의 값이 바뀌어도 꼭짓점의 $x$좌표와 $y$좌표가 늘 같으므로, 꼭짓점은 직선 □ 위에 놓인다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(k,\\ k)$",
+            "equivalentAnswers": [
+              "$(k,\\ k)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y=x$",
+            "equivalentAnswers": [
+              "$y=x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$(k,\\ k)$"
+          ],
+          [
+            "$y=x$"
+          ]
+        ],
+        "proposalFingerprint": "73d751ce037b43caa0bb3976e538e0079ee80616535829edcaa17c1da03543eb"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc22",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "$x$축과 만나지 않을 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$a>0$인 그래프가 $x$축과 만나지 않으려면 꼭짓점의 $y$좌표가 {양수}여야 한다 — 꼭짓점이 가장 {낮은} 점이기 때문이다.",
+        "studentC": "$a>0$인 그래프가 $x$축과 만나지 않으려면 꼭짓점의 $y$좌표가 □여야 한다 — 꼭짓점이 가장 □ 점이기 때문이다.",
+        "answers": [
+          "양수",
+          "낮은"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc22",
+        "learningRole": "reason",
+        "roleReason": "최저점의 $y$좌표가 양수면 $x$축과 안 만남",
+        "bDecision": "rewrite",
+        "bPrompt": "$a>0$인 이차함수의 그래프가 $x$축과 만나지 않으려면 꼭짓점의 $y$좌표가 어떤 수여야 하는가? 꼭짓점이 그래프에서 어떤 점인지를 이용해 까닭을 쓰시오.",
+        "bAnswer": "양수여야 한다. $a>0$이면 꼭짓점이 가장 낮은 점이므로, 그 $y$좌표가 양수이면 그래프 위의 모든 점의 $y$좌표가 양수가 되어 $x$축과 만나지 않는다.",
+        "bGoal": "$x$축과 만나지 않을 조건",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양수",
+              "$0$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점이 가장 낮은 점"
+            ]
+          }
+        ],
+        "bReason": "$a>0$ 조건을 밝히고 꼭짓점의 최저점 역할로 근거를 대게 했다.",
+        "cDecision": "keep",
+        "cReason": "조건과 그 까닭을 하나씩 묻는 짧고 분명한 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3496,
+        "part": "m3plus",
+        "sourceFingerprint": "d6240c34c1ae27424565b7c43032c4f27696ccabb28f1bd369bfbfd6550861da",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3496
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a>0$인 그래프가 $x$축과 만나지 않으려면 꼭짓점의 $y$좌표가 □여야 한다 — 꼭짓점이 가장 □ 점이기 때문이다.",
+        "cFrozenDefinition": "$a>0$인 그래프가 $x$축과 만나지 않으려면 꼭짓점의 $y$좌표가 {양수}여야 한다 — 꼭짓점이 가장 {낮은} 점이기 때문이다.",
+        "cFrozenAnswers": [
+          "양수",
+          "낮은"
+        ],
+        "cMarkedSentence": "$a>0$인 그래프가 $x$축과 만나지 않으려면 꼭짓점의 $y$좌표가 {양수}여야 한다 — 꼭짓점이 가장 {낮은} 점이기 때문이다.",
+        "cSlotAnswers": [
+          "양수",
+          "낮은"
+        ],
+        "cStudentSentence": "$a>0$인 그래프가 $x$축과 만나지 않으려면 꼭짓점의 $y$좌표가 □여야 한다 — 꼭짓점이 가장 □ 점이기 때문이다.",
+        "cAnswers": [
+          "양수",
+          "낮은"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "낮은",
+            "equivalentAnswers": [
+              "낮은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "낮은"
+          ]
+        ],
+        "proposalFingerprint": "796571a52bab89b90e51018f9652fad93dd96e6d0d5d63623e9f8da3f133d5de"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc23",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "꼭짓점과 두 $x$절편이 만드는 삼각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "꼭짓점과 $x$축 위의 두 교점을 이은 삼각형의 {밑변}은 두 $x$절편 사이의 거리이고, {높이}는 꼭짓점의 $y$좌표의 절댓값이다.",
+        "example": {
+          "prompt": "꼭짓점 $(2,\\ -1)$과 $x$축 위의 두 교점을 이은 삼각형의 높이가 $-1$이 아니라 $1$인 까닭은?",
+          "answer": "$x$축까지의 거리가 $1$이라서"
+        },
+        "studentC": "꼭짓점과 $x$축 위의 두 교점을 이은 삼각형의 □은 두 $x$절편 사이의 거리이고, □는 꼭짓점의 $y$좌표의 절댓값이다.",
+        "answers": [
+          "밑변",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc23",
+        "learningRole": "application",
+        "roleReason": "$x$절편 거리와 $|y|$로 삼각형 넓이",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=x^2-4x+3$의 그래프의 꼭짓점을 $\\mathrm{P}$, $x$축과 만나는 두 점을 $\\mathrm{A}$, $\\mathrm{B}$라 할 때, 삼각형 $\\mathrm{PAB}$의 밑변 $\\overline{\\mathrm{AB}}$의 길이, 높이, 넓이를 구하시오. 또 높이로 꼭짓점의 $y$좌표를 그대로 쓰지 않는 까닭을 쓰시오.",
+        "bAnswer": "$x^2-4x+3=0$에서 $x=1$ 또는 $x=3$이므로 $\\overline{\\mathrm{AB}}=2$이다. $y=(x-2)^2-1$에서 $\\mathrm{P}(2,\\ -1)$이고 높이는 $1$이다. 넓이는 $\\frac{1}{2}\\times 2\\times 1=1$이다. 높이는 길이이므로 $y$좌표 $-1$의 절댓값을 쓴다.",
+        "bGoal": "꼭짓점과 $x$절편으로 삼각형 넓이 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{\\mathrm{AB}}=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 길이라 절댓값을 쓴다",
+              "$x$축까지의 거리가 $1$"
+            ]
+          }
+        ],
+        "bReason": "그림 없이 점의 이름과 식을 밝혀 밑변·높이·넓이를 차례로 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "밑변과 높이를 각각 정의하는 짧고 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3497,
+        "part": "m3plus",
+        "sourceFingerprint": "c403e59eb1659233ff95a9869aede2f3652d1a517696b940c92044d03fde1267",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3497
+        },
+        "directReview": null,
+        "cFrozenSentence": "꼭짓점과 $x$축 위의 두 교점을 이은 삼각형의 □은 두 $x$절편 사이의 거리이고, □는 꼭짓점의 $y$좌표의 절댓값이다.",
+        "cFrozenDefinition": "꼭짓점과 $x$축 위의 두 교점을 이은 삼각형의 {밑변}은 두 $x$절편 사이의 거리이고, {높이}는 꼭짓점의 $y$좌표의 절댓값이다.",
+        "cFrozenAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cMarkedSentence": "꼭짓점과 $x$축 위의 두 교점을 이은 삼각형의 {밑변}은 두 $x$절편 사이의 거리이고, {높이}는 꼭짓점의 $y$좌표의 절댓값이다.",
+        "cSlotAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cStudentSentence": "꼭짓점과 $x$축 위의 두 교점을 이은 삼각형의 □은 두 $x$절편 사이의 거리이고, □는 꼭짓점의 $y$좌표의 절댓값이다.",
+        "cAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑변",
+            "equivalentAnswers": [
+              "밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑변"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "24cef299870fa11e6550ec97c7d3a66389b938e9903def9159e8e3a81112fe6c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-03-xc1",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "꼭짓점과 최솟값",
+        "kind": "성질",
+        "level": "하",
+        "definition": "아래로 볼록한 포물선은 {꼭짓점}이 가장 낮은 점이므로 꼭짓점의 {$y$좌표}가 최솟값이다.",
+        "studentC": "아래로 볼록한 포물선은 □이 가장 낮은 점이므로 꼭짓점의 □가 최솟값이다.",
+        "answers": [
+          "꼭짓점",
+          "$y$좌표"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "아래로 볼록한 포물선에서 꼭짓점의 $y$좌표가 최솟값이 되는 까닭을 그래프 위 점의 높낮이와 관련지어 쓰시오.",
+        "bAnswer": "아래로 볼록한 포물선에서는 꼭짓점이 가장 낮은 점이고 점의 높이는 $y$좌표(함숫값)이므로, 꼭짓점의 $y$좌표가 가장 작은 함숫값이다.",
+        "bGoal": "꼭짓점이 최솟값을 주는 까닭",
+        "bReason": "꼭짓점과 최솟값의 관계를 '가장 낮은 점'이라는 이유로 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점이 가장 낮은 점",
+              "꼭짓점이 제일 아래에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "점의 높이가 $y$좌표",
+              "$y$좌표가 함숫값"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "아래로 볼록한 포물선은 {꼭짓점}이 가장 낮은 점이므로 그 점의 {$y$좌표}가 최솟값이다.",
+        "cAnswers": [
+          "꼭짓점",
+          "$y$좌표"
+        ],
+        "cReason": "첫 빈칸의 답 '꼭짓점'이 뒤에 그대로 보여 '그 점'으로 바꾸었다.",
+        "learningRole": "reason",
+        "roleReason": "가장 낮은 점의 $y$좌표가 최솟값",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3498,
+        "part": "m3plus",
+        "sourceFingerprint": "70cfee62b88dc8e6b8ef44e8ef0be56494dcfc14e1ddc2e11ed421c863380ccc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3498
+        },
+        "directReview": null,
+        "cMarkedSentence": "아래로 볼록한 포물선은 {꼭짓점}이 가장 낮은 점이므로 그 점의 {$y$좌표}가 최솟값이다.",
+        "cSlotAnswers": [
+          "꼭짓점",
+          "$y$좌표"
+        ],
+        "cStudentSentence": "아래로 볼록한 포물선은 □이 가장 낮은 점이므로 그 점의 □가 최솟값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y$좌표",
+            "equivalentAnswers": [
+              "$y$좌표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "꼭짓점"
+          ],
+          [
+            "$y$좌표"
+          ]
+        ],
+        "proposalFingerprint": "c262597d9cad93ebb67be4a3836ceb45b9059c292ad23950dca5bcea1de23e1f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-03-xc2",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "꼭짓점과 최댓값",
+        "kind": "성질",
+        "level": "하",
+        "definition": "위로 볼록한 포물선은 꼭짓점이 가장 {높은} 점이므로 꼭짓점의 $y$좌표가 {최댓값}이다.",
+        "studentC": "위로 볼록한 포물선은 꼭짓점이 가장 □ 점이므로 꼭짓점의 $y$좌표가 □이다.",
+        "answers": [
+          "높은",
+          "최댓값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "xc1의 이유 질문을 위로 볼록·최댓값으로 뒤집은 것이라 B를 따로 둘 필요가 없다.",
+        "cDecision": "keep",
+        "cReason": "'높은'과 '최댓값'을 채우는 짧은 빈칸으로 조건이 분명하다.",
+        "exclusionReason": "B 제외: xc1의 '꼭짓점이 가장 낮은 점' 이유 질문과 방향만 바꾼 거울 중복이며, 두 방향은 c3에서 이미 묻는다.",
+        "learningRole": "reason",
+        "roleReason": "가장 높은 점의 $y$좌표가 최댓값",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3499,
+        "part": "m3plus",
+        "sourceFingerprint": "cc27e06000fdb21ff107bd0bef7ddbd2ee6e0113ca6beceb4c3df8134bb853d1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3499
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "위로 볼록한 포물선은 꼭짓점이 가장 □ 점이므로 꼭짓점의 $y$좌표가 □이다.",
+        "cFrozenDefinition": "위로 볼록한 포물선은 꼭짓점이 가장 {높은} 점이므로 꼭짓점의 $y$좌표가 {최댓값}이다.",
+        "cFrozenAnswers": [
+          "높은",
+          "최댓값"
+        ],
+        "cMarkedSentence": "위로 볼록한 포물선은 꼭짓점이 가장 {높은} 점이므로 꼭짓점의 $y$좌표가 {최댓값}이다.",
+        "cSlotAnswers": [
+          "높은",
+          "최댓값"
+        ],
+        "cStudentSentence": "위로 볼록한 포물선은 꼭짓점이 가장 □ 점이므로 꼭짓점의 $y$좌표가 □이다.",
+        "cAnswers": [
+          "높은",
+          "최댓값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "높은",
+            "equivalentAnswers": [
+              "높은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최댓값",
+            "equivalentAnswers": [
+              "최댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "높은"
+          ],
+          [
+            "최댓값"
+          ]
+        ],
+        "proposalFingerprint": "b6d7905893f5d4298a9b66729d8e86d31afc0b63ad7e7e9600a384b9b28a34d1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1299 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-e5e6-final-1930-1960-input.json",
+  "rows": [
+    {
+      "id": "e6-1-4-3-xc12",
+      "sourceIndex": 1930,
+      "proposalFingerprint": "06f40a6d291d650e313025d1765a6c82ce007b04f07e974fffe987929e6f77bb",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "기준량이 $40$이고 비율이 $\\frac{3}{5}$일 때, 비교하는 양을 구하는 방법을 비율의 뜻을 써서 설명하고 비교하는 양을 구하시오.",
+        "answer": "비율은 비교하는 양이 기준량의 몇 배인지 나타내므로 기준량에 비율을 곱해 구한다. $40\\times\\frac{3}{5}=24$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준량에 비율을 곱한다",
+              "기준량$\\times$비율"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율은 비교하는 양이 기준량의 몇 배인지 나타내므로"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "기준량이 $40$, 비율이 $\\frac{3}{5}$이면 비교하는 양은 $40$에 $\\frac{3}{5}$을 {곱해} 구하며 {$24$}이다.",
+        "acceptedAnswers": [
+          [
+            "곱해",
+            "곱하여"
+          ],
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방법의 근거와 계산 결과를 함께 물어 이해를 확인한다.",
+      "cReason": "긴 구절 대신 실제 곱셈 상황에서 연산과 값을 답하게 했다."
+    },
+    {
+      "id": "e6-1-4-3-xc13",
+      "sourceIndex": 1931,
+      "proposalFingerprint": "077c30bd35b017d36ceb766f8772cbcd84baa8cfaf647386c2e6a24bdb647ce1",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비율이 $\\frac{3}{4}$이고 비교하는 양이 $15$일 때, 기준량을 구하는 방법을 설명하고 기준량을 구하시오.",
+        "answer": "기준량에 비율을 곱하면 비교하는 양이 되므로 비교하는 양을 비율로 나누어 구한다. $15\\div\\frac{3}{4}=20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 양을 비율로 나눈다",
+              "비율을 곱해 $15$가 되는 수를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비율이 $\\frac{3}{4}$이고 비교하는 양이 $15$이면 기준량은 $15$를 $\\frac{3}{4}$으로 {나눈} 값인 {$20$}이다.",
+        "acceptedAnswers": [
+          [
+            "나눈",
+            "나누어 구한"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "곱해서 비교하는 양이 되는 수라는 뜻을 구체적 식에서 확인한다.",
+      "cReason": "맥락 없는 곱셈 확인 구절 대신 실제 나눗셈 식으로 바꿨다."
+    },
+    {
+      "id": "e6-1-4-3-xc15",
+      "sourceIndex": 1932,
+      "proposalFingerprint": "86fa1c02b1529c380904f737fbcd2b7d9d2282d05e1842761349206f455b910b",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비 $3:4$와 그 비율은 나타내는 방식이 어떻게 다른지 설명하고, 이 비의 비율을 쓰시오.",
+        "answer": "비는 두 수를 기호 $:$로 나란히 쓴 것이고, 비율은 그것을 하나의 수로 나타낸 값이다. 비 $3:4$의 비율은 $\\frac{3}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비는 두 수를 나란히 쓴 것",
+              "비는 두 수를 $:$로 나타낸 것"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율은 하나의 수로 나타낸 값",
+              "비율은 분수나 소수로 나타낸 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$",
+              "$0.75$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비 $3:4$는 두 수를 나란히 쓴 것이고, 이 비를 하나의 수로 나타낸 비율은 {$\\frac{3}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{4}$",
+            "$0.75$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "차이를 말하고 실제 비율까지 구하게 한다.",
+      "cReason": "'하나의 수' 낱말 대신 비를 비율로 바꾸는 값을 확인하게 했다."
+    },
+    {
+      "id": "e6-1-4-3-xc17",
+      "sourceIndex": 1933,
+      "proposalFingerprint": "83f7321ea9ba2306b8b6fa727f482c1a0ba617899d62b711cea94bbb25ecbe85",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비 $2:3$과 $4:6$의 비율을 각각 구하고, 비율이 같은 두 비에서 비교하는 양이 기준량의 몇 배인 관계가 어떠한지 설명하시오.",
+        "answer": "두 비의 비율은 모두 $\\frac{2}{3}$이다. 비율이 같은 두 비는 비교하는 양이 기준량의 같은 배인 관계이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2:3$의 비율은 $\\frac{2}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4:6$의 비율은 $\\frac{2}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교하는 양이 기준량의 같은 배이다",
+              "기준량의 몇 배인지가 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$2:3$과 $4:6$은 비율이 같으므로 비교하는 양이 기준량의 각각 {$\\frac{2}{3}$}배인 같은 관계이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{3}$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 비의 비율을 구해 같은 배임을 확인한다.",
+      "cReason": "'같은 배'를 외우게 하는 대신 실제 배를 구하게 했다."
+    },
+    {
+      "id": "e6-1-4-3-xc18",
+      "sourceIndex": 1934,
+      "proposalFingerprint": "38f6162ad3498577271bb22ad6027c16050e3d2b9dd5a0ed158ec338278baf77",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "두 양이 모두 $0$보다 크고 서로 다를 때, 비교하는 양과 기준량을 맞바꾸면 비율이 어떻게 되는지 쓰시오. 한쪽 비율이 $1$보다 작으면 다른 쪽은 $1$보다 큰지 작은지 까닭과 함께 쓰고, $4$와 $5$로 확인하시오.",
+        "answer": "비율이 달라진다. 한쪽 비율이 $1$보다 작으면 다른 쪽은 $1$보다 크다. 한쪽에서 비교하는 양이 기준량보다 작으면 맞바꾼 쪽에서는 비교하는 양이 기준량보다 크기 때문이다. $\\frac{4}{5}$와 $\\frac{5}{4}$로 확인한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율이 달라진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 쪽은 $1$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비교하는 양이 기준량보다 작던 것이 맞바꾸면 크게 되므로"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 양이 모두 $0$보다 크고 크기가 서로 다를 때, 비교하는 양과 기준량을 맞바꾸면 비율도 달라진다. 한쪽이 $1$보다 작으면 다른 쪽은 $1$보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "맞바꿈의 결과와 까닭을 크기 관계로 설명하게 한다.",
+      "cReason": "양수·서로 다른 크기 조건이 있고 크다/작다 비교가 명확해 그대로 둔다."
+    },
+    {
+      "id": "e6-1-4-3-xc19",
+      "sourceIndex": 1935,
+      "proposalFingerprint": "c605f1fa43f3ba2fdc2ada51b89665d75dd84d4e90f558f386c9b3a005313265",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비 $6:8$과 $9:15$ 중 비율이 더 큰 쪽을 쓰고, 기준량이 다른 두 비율의 크기를 견준다는 것이 무엇을 견주는 것인지 설명하시오.",
+        "answer": "$6:8$의 비율이 더 크다($\\frac{3}{4}>\\frac{3}{5}$). 각각의 기준량을 $1$로 보았을 때의 비교하는 양이 어느 쪽에서 더 큰지 견주는 것이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6:8$",
+              "$6:8$의 비율이 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준량을 $1$로 보았을 때의 비교하는 양을 견준다",
+              "기준량을 $1$로 같게 맞추어 비교하는 양을 견준다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$6:8$은 기준량 $8$을 $1$로 보면 비교하는 양이 {$\\frac{3}{4}$}이고, $9:15$는 기준량 $15$를 $1$로 보면 비교하는 양이 {$\\frac{3}{5}$}이므로 앞의 비율이 더 크다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{4}$",
+            "$0.75$",
+            "$\\frac{6}{8}$"
+          ],
+          [
+            "$\\frac{3}{5}$",
+            "$0.6$",
+            "$\\frac{9}{15}$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "기준량이 달라 바로 비교하기 어려운 두 비로 견주기의 의미를 묻는다.",
+      "cReason": "긴 구절 대신 기준량을 1로 맞춘 값을 계산해 비교하게 했다."
+    },
+    {
+      "id": "e6-1-4-3-xc20",
+      "sourceIndex": 1936,
+      "proposalFingerprint": "cf65fba4431c345509ceb4f9231301f4a88a124f53eb61caa64ac03c0f865328",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "비교하는 양과 기준량이 모두 $0$보다 크고 비교하는 양은 그대로일 때, 기준량을 키우면 비율은 어떻게 되는지 쓰시오. 비교하는 양 $6$에서 기준량이 $12$일 때와 $24$일 때의 비율로 확인하시오.",
+        "answer": "비율은 작아진다. 기준량 $12$일 때 $\\frac{1}{2}$, $24$일 때 $\\frac{1}{4}$로 작아진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율이 작아진다",
+              "비율이 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$에서 $\\frac{1}{4}$로 변한다",
+              "$0.5$에서 $0.25$로 변한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비교하는 양과 기준량이 모두 $0$보다 클 때, 비교하는 양을 그대로 두고 기준량을 키우면 비율은 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "변화 방향을 말하고 두 비율로 확인하게 한다.",
+      "cReason": "양수 조건과 비교하는 양을 그대로 둔다는 조건이 갖춰진 짧은 방향 문장이라 그대로 둔다."
+    },
+    {
+      "id": "e6-1-4-3-xc21",
+      "sourceIndex": 1937,
+      "proposalFingerprint": "5fcdd63691bd4f20a57124031cdca743cba0d2273d9e8026c1c86a5a7181df2b",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비율이 $\\frac{1}{2}$이라는 것만 알 때 비교하는 양과 기준량의 실제 크기를 알 수 있는지 쓰고, 비율이 $\\frac{1}{2}$인 두 비를 들어 까닭을 설명하시오.",
+        "answer": "알 수 없다. $3:6$과 $50:100$은 비율이 모두 $\\frac{1}{2}$이지만 두 양의 실제 크기가 다르기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "알 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율이 같아도 두 양의 크기가 다른 비가 있다",
+              "비율이 $\\frac{1}{2}$인 서로 다른 두 비를 든다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비율이 $\\frac{1}{2}$인 비에는 $3:6$도 있고 $50:100$도 있으므로, 비율만으로는 두 양의 실제 {크기}를 알 수 없다.",
+        "acceptedAnswers": [
+          [
+            "크기",
+            "값"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'실제 크기'만 채우게 하지 않고 반례로 까닭을 설명하게 한다.",
+      "cReason": "비율이 같은 두 비를 보여 주어 빈칸의 의미가 드러나게 했다."
+    },
+    {
+      "id": "e6-1-4-3-xc22",
+      "sourceIndex": 1938,
+      "proposalFingerprint": "5410b0fb0b6d1d6b7585e04cfdb8b3ef2474081d72d612fc37a6444b447f5861",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "시도 횟수가 $0$보다 클 때, 성공 횟수를 시도 횟수와 견준 성공 비율은 어떤 범위의 수인지 쓰고 까닭을 설명하시오. 슛을 $10$번 던질 때 가장 작은 비율과 가장 큰 비율도 쓰시오.",
+        "answer": "성공 비율은 $0$ 이상 $1$ 이하이다. 성공 횟수는 $0$ 이상이고 시도 횟수보다 많을 수 없기 때문이다. $10$번 던지면 가장 작은 비율은 $0$, 가장 큰 비율은 $1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0$ 이상 $1$ 이하"
+            ]
+          },
+          {
+            "anyOf": [
+              "성공 횟수가 시도 횟수보다 많을 수 없다",
+              "성공 횟수가 시도 횟수 이하이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 비율은 $0$이고 가장 큰 비율은 $1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "슛을 $10$번 던질 때 모두 성공하면 성공 비율은 {$1$}이고, 하나도 성공하지 못하면 성공 비율은 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "범위 암기 대신 성공이 시도보다 많을 수 없다는 까닭을 묻는다.",
+      "cReason": "긴 범위 구절 대신 양 끝값을 상황에서 구하게 했다."
+    },
+    {
+      "id": "e6-1-4-3-xc24",
+      "sourceIndex": 1939,
+      "proposalFingerprint": "bd2c8df4eb8e490b952d6c0845411ddd8332b8167e323fea5f9e5b1e26d930fc",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "기준량이 $0$보다 클 때, 어떤 경우에 비율이 $0$이 되는지 쓰고, 비교하는 양 $0$과 기준량 $5$의 비율을 구하시오.",
+        "answer": "비교하는 양이 $0$일 때 비율이 $0$이다. $0\\div5=0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 양이 $0$이다",
+              "비교하는 양이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$",
+              "$0\\div5=0$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "기준량이 $0$보다 클 때, {비교하는 양}이 $0$이면 비율은 $0$이다.",
+        "acceptedAnswers": [
+          [
+            "비교하는 양"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "조건을 말하고 간단한 예로 확인하는 일반 성질이다.",
+      "cReason": "기준량 0 초과 조건이 있고 비교하는 양이라는 짧은 낱말을 묻는 명확한 문장이다."
+    },
+    {
+      "id": "e6-1-4-3-xc25",
+      "sourceIndex": 1940,
+      "proposalFingerprint": "b727560f659eb6bee788ee4e803b4132d2be1e5c01aecc1cc1e55809568ee2ce",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$3\\text{ cm}$와 $5\\text{ cm}$를 비교한 비율을 구하고, 같은 단위의 두 양을 비교한 비율에 단위를 붙이는지 까닭과 함께 쓰시오.",
+        "answer": "비율은 $\\frac{3}{5}$이다. 같은 단위의 두 양을 비교한 비율에는 단위를 붙이지 않는다. 비율은 두 양이 몇 배인지 나타내는 수이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{5}$",
+              "$0.6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위를 붙이지 않는다",
+              "단위가 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율은 몇 배인지 나타내는 수이다",
+              "같은 단위끼리 나누면 단위가 없어진다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$3\\text{ cm}$와 $5\\text{ cm}$를 비교한 비율 $\\frac{3}{5}$에는 단위를 {붙이지 않는다}.",
+        "acceptedAnswers": [
+          [
+            "붙이지 않는다",
+            "쓰지 않는다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단위를 붙이는지와 까닭을 구체적 길이 예로 묻는다.",
+      "cReason": "원문은 상황 없이 문장을 외우게 하므로 구체적 길이 비교를 붙였다."
+    },
+    {
+      "id": "e6-1-4-4-xc1",
+      "sourceIndex": 1941,
+      "proposalFingerprint": "db26a8170669f90abc3fbc87de81a96043bdd7e315242cb40c2d102d3d830421",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "걸린 시간에 대한 간 거리의 비율이 서로 다른 두 사람의 빠르기를 비교하려 한다. 비율이 더 큰 사람은 빠르기가 어떠한지 쓰고, 그렇게 되는 까닭을 설명하시오.",
+        "answer": "더 빠르다. 같은 시간 동안 더 멀리 가기 때문이다. 즉 한 시간에 간 거리가 더 길다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "더 빠르다",
+              "빠르기가 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 시간 동안 더 멀리 간다",
+              "한 시간에 간 거리가 더 길다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "걸린 시간에 대한 간 거리의 비율이 클수록 {더 빠르다}.",
+        "acceptedAnswers": [
+          [
+            "더 빠르다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비율의 크기와 빠르기를 단순 암기가 아니라 같은 시간당 거리 관계로 설명하게 한다.",
+      "cReason": "비율이 클수록이라는 명확한 크기 비교 문장이다."
+    },
+    {
+      "id": "e6-1-4-4-xc2",
+      "sourceIndex": 1942,
+      "proposalFingerprint": "fbf88e6ad41310a5fa4e3bdf27ce1e7cc0e9e118a0ed875af7c7b83a722ee911",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "걸린 시간에 대한 간 거리의 비율은 어떤 뜻인지 설명하시오. $2$시간 동안 $90\\,\\mathrm{km}$를 갔을 때 비율은 얼마이고 무엇을 뜻하는지도 쓰시오.",
+        "answer": "한 시간에 평균적으로 간 거리를 나타낸다. $90\\div2=45$이므로 한 시간에 평균 $45\\,\\mathrm{km}$를 간 것이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 시간에 평균적으로 간 거리",
+              "시간 $1$에 간 거리"
+            ]
+          },
+          {
+            "anyOf": [
+              "$45$",
+              "$45\\,\\mathrm{km}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 시간에 평균 $45\\,\\mathrm{km}$를 간 것",
+              "한 시간에 평균 $45$ 킬로미터"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$2$시간에 $90\\,\\mathrm{km}$를 갔을 때 비율 $45$는 {$1$시간}에 평균 {$45\\,\\mathrm{km}$}를 갔다는 뜻이다.",
+        "acceptedAnswers": [
+          [
+            "$1$시간",
+            "한 시간"
+          ],
+          [
+            "$45\\,\\mathrm{km}$",
+            "$45$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비율 계산과 그 값의 의미 해석을 함께 확인한다.",
+      "cReason": "'한 단위 시간'은 학생에게 낯설어 구체적 예의 뜻으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-4-xc3",
+      "sourceIndex": 1943,
+      "proposalFingerprint": "19d5a68ee61f10e8bed6de8e2f4991659f95a305d5465a5ed375a6ac0b20fff8",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "넓이에 대한 인구의 비율은 어떻게 구하는지 쓰고, 이 값이 클수록 그 지역이 어떠한지 설명하시오.",
+        "answer": "인구를 넓이로 나누어 구한다. 값이 클수록 사람이 더 붐빈다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "인구를 넓이로 나눈다",
+              "인구$\\div$넓이"
+            ]
+          },
+          {
+            "anyOf": [
+              "더 붐빈다",
+              "사람이 더 빽빽하다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "넓이에 대한 인구의 비율은 (인구)$\\div$(넓이)로 구하며, 클수록 사람이 {더 붐빈다}.",
+        "acceptedAnswers": [
+          [
+            "더 붐빈다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "계산 방법과 큰 값의 의미를 함께 묻는다.",
+      "cReason": "계산식이 주어져 있고 클수록 붐빈다는 판단만 묻는다."
+    },
+    {
+      "id": "e6-1-4-4-xc4",
+      "sourceIndex": 1944,
+      "proposalFingerprint": "0c4eff7d271a850cd5a5af80796057794ddc216c58eba81aec30f01b040190b1",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "설탕물 양에 대한 설탕 양의 비율이 서로 다른 두 설탕물이 있다. 비율이 더 큰 설탕물은 어떠한지 쓰고 까닭을 설명하시오.",
+        "answer": "더 진하다. 같은 양의 설탕물에 설탕이 더 많이 들어 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "더 진하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 양의 설탕물에 설탕이 더 많다",
+              "설탕물 $1$당 설탕이 더 많다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "설탕물 양에 대한 설탕 양의 비율이 클수록 설탕물이 {더 진하다}.",
+        "acceptedAnswers": [
+          [
+            "더 진하다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "진하기를 비율로 판단하는 이유를 같은 양 기준으로 설명하게 한다.",
+      "cReason": "비율이 클수록 진하다는 분명한 비교 문장이다."
+    },
+    {
+      "id": "e6-1-4-4-xc5",
+      "sourceIndex": 1945,
+      "proposalFingerprint": "9562a00fa6bde44e03fbd33d813463d769848ed41567750a495fff2dd7117856",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "어떤 선수가 $20$번 시도해서 $13$번 성공했다. 성공한 횟수의 비율을 구하는 식과 값을 쓰고, 이 비율이 무엇을 나타내는지 설명하시오.",
+        "answer": "$13\\div20=\\frac{13}{20}=0.65$이다. 전체 시도 중 성공이 차지하는 정도를 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$13\\div20$",
+              "$\\frac{13}{20}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.65$",
+              "$\\frac{13}{20}$",
+              "$65\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 시도 중 성공이 차지하는 정도",
+              "전체에서 성공한 비중"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$20$번 시도해서 $13$번 성공했을 때 시도한 횟수에 대한 성공한 횟수의 비율은 {$13\\div20$}으로 구하고 값은 {$0.65$}이다.",
+        "acceptedAnswers": [
+          [
+            "$13\\div20$",
+            "$\\frac{13}{20}$"
+          ],
+          [
+            "$0.65$",
+            "$\\frac{13}{20}$",
+            "$65\\%$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "계산과 의미 해석을 한 문항에서 확인한다.",
+      "cReason": "긴 낱말 구절 암기 대신 비율 식과 값을 직접 구하게 한다."
+    },
+    {
+      "id": "e6-1-4-4-xc7",
+      "sourceIndex": 1946,
+      "proposalFingerprint": "89801ce4bcfb465b90589ae00c26269a950b21e64ed508aba7eeb7714687626c",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "두 사람이 같은 거리를 갔고 그 거리는 $0$보다 크다. 걸린 시간이 서로 다를 때 누가 더 빠른지 쓰고 까닭을 설명하시오.",
+        "answer": "걸린 시간이 더 짧은 사람이 더 빠르다. 같은 거리를 더 짧은 시간에 가므로 같은 시간 동안 더 멀리 간다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "걸린 시간이 더 짧은 사람",
+              "시간이 적게 걸린 사람"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 거리를 더 짧은 시간에 간다",
+              "같은 시간 동안 더 멀리 간다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "간 거리가 같고 $0$보다 크면 {걸린 시간이 짧은} 쪽이 더 빠르다.",
+        "acceptedAnswers": [
+          [
+            "걸린 시간이 짧은"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "조건 $0$보다 큰 같은 거리를 명시해 일반 관계를 묻는다.",
+      "cReason": "같은 거리 조건이 있고 시간 비교만 묻는 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-4-4-xc8",
+      "sourceIndex": 1947,
+      "proposalFingerprint": "73f19274542c5bf1d72bb131308b63db320ca0560d6075319b492df37b7de683",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "넓이에 대한 인구의 비율은 어떤 양을 나타내는지 설명하시오. 넓이 $2\\,\\mathrm{km}^2$에 $900$명이 사는 마을의 비율과 그 뜻도 쓰시오.",
+        "answer": "넓이 $1$만큼에 사는 사람 수를 나타낸다. $900\\div2=450$이므로 넓이 $1\\,\\mathrm{km}^2$에 평균 $450$명이 산다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이 $1$만큼에 사는 사람 수",
+              "한 단위 넓이당 인구"
+            ]
+          },
+          {
+            "anyOf": [
+              "$450$",
+              "$450$명"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "넓이에 대한 인구의 비율은 넓이 $1\\,\\mathrm{km}^2$에 사는 {사람 수}를 나타낸다. $2\\,\\mathrm{km}^2$에 $900$명이면 비율은 {$450$}이다.",
+        "acceptedAnswers": [
+          [
+            "사람 수",
+            "인구",
+            "사람의 수"
+          ],
+          [
+            "$450$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "예를 붙여 값과 뜻을 함께 확인한다.",
+      "cReason": "긴 구절 빈칸을 짧은 낱말과 계산값으로 나눈다."
+    },
+    {
+      "id": "e6-1-4-4-xc9",
+      "sourceIndex": 1948,
+      "proposalFingerprint": "47685251554a083637dd63b87910438100cbef36f032bdb557c34daa80e12416",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "설탕물 $200\\,\\mathrm{g}$에 설탕 $50\\,\\mathrm{g}$이 들어 있다. 설탕물 양에 대한 설탕 양의 비율을 구하고, 이 값이 무엇을 뜻하는지 설명하시오.",
+        "answer": "$50\\div200=\\frac{1}{4}=0.25$이다. 설탕물을 $1$로 볼 때 그 가운데 설탕이 $0.25$만큼 차지한다는 뜻이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$",
+              "$0.25$",
+              "$25\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "설탕물을 $1$로 볼 때 설탕이 차지하는 양",
+              "설탕물 전체 중 설탕이 차지하는 정도"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "설탕물 $200\\,\\mathrm{g}$에 설탕 $50\\,\\mathrm{g}$이 들어 있다. 설탕물 양을 $1$로 볼 때 설탕 양은 {$\\frac{1}{4}$}만큼이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$",
+            "$0.25$",
+            "$25\\%$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비율의 계산과 기준량 1의 의미를 연결한다.",
+      "cReason": "긴 설명 구절 대신 기준량을 1로 맞춘 값을 구하게 한다."
+    },
+    {
+      "id": "e6-1-4-4-xc10",
+      "sourceIndex": 1949,
+      "proposalFingerprint": "cc7259ed949a51f7d6ddad3e20804e0859869c496aa3b8b09201149395baf00c",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "걸린 시간과 간 거리가 모두 다른 두 자동차의 빠르기를 어떻게 견주는지 설명하시오. $3$시간에 $210\\,\\mathrm{km}$를 간 차와 $2$시간에 $150\\,\\mathrm{km}$를 간 차 중 더 빠른 차도 쓰시오.",
+        "answer": "한 시간에 간 거리로 견준다. 앞 차는 $210\\div3=70$, 뒤 차는 $150\\div2=75$이므로 뒤의 차가 더 빠르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 시간에 간 거리로 견준다",
+              "걸린 시간을 같게 맞춘 거리로 견준다",
+              "시간에 대한 거리의 비율을 구해 견준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞 차 $70\\,\\mathrm{km}$, 뒤 차 $75\\,\\mathrm{km}$",
+              "$70$과 $75$"
+            ]
+          },
+          {
+            "anyOf": [
+              "뒤의 차",
+              "$2$시간에 $150\\,\\mathrm{km}$를 간 차"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$3$시간에 $210\\,\\mathrm{km}$, $2$시간에 $150\\,\\mathrm{km}$를 간 두 차의 한 시간당 간 거리는 각각 {$70\\,\\mathrm{km}$}, {$75\\,\\mathrm{km}$}이므로 뒤의 차가 더 빠르다.",
+        "acceptedAnswers": [
+          [
+            "$70\\,\\mathrm{km}$",
+            "$70$"
+          ],
+          [
+            "$75\\,\\mathrm{km}$",
+            "$75$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 방법과 예의 정확한 비교 결과를 함께 요구한다.",
+      "cReason": "원문 빈칸은 긴 구절이라 실제 시간당 거리 계산값으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-4-xc11",
+      "sourceIndex": 1950,
+      "proposalFingerprint": "c78de2def1dad23d22f3d93a712d775c20e0124443395a004bca155536159586",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "넓이가 서로 다른 두 마을의 붐비는 정도를 어떻게 견주는지 설명하시오. 넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을 중 더 붐비는 곳도 쓰시오.",
+        "answer": "넓이 $1$만큼에 사는 인구로 견준다. $900\\div2=450$, $1200\\div3=400$이므로 앞 마을이 더 붐빈다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 넓이에 해당하는 인구로 견준다",
+              "넓이 $1$당 인구로 견준다",
+              "인구$\\div$넓이로 견준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞 마을 $450$, 뒤 마을 $400$",
+              "$450$과 $400$"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞 마을",
+              "$2\\,\\mathrm{km}^2$에 $900$명인 마을"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "넓이 $2\\,\\mathrm{km}^2$에 $900$명인 마을과 $3\\,\\mathrm{km}^2$에 $1200$명인 마을의 넓이 $1\\,\\mathrm{km}^2$당 인구는 각각 {$450$}명, {$400$}명이다.",
+        "acceptedAnswers": [
+          [
+            "$450$"
+          ],
+          [
+            "$400$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "인구만 보지 않고 넓이를 맞추는 방법을 예로 확인한다.",
+      "cReason": "긴 구절 대신 비교에 쓰이는 실제 값을 구하게 한다."
+    },
+    {
+      "id": "e6-1-4-4-xc12",
+      "sourceIndex": 1951,
+      "proposalFingerprint": "079dcfce05d9fc274a2b7c903b77c0e9f9b47c6cd839b4409666fe0bb7ecb016",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "설탕물 양이 서로 다른 두 설탕물의 진하기를 어떻게 견주는지 설명하시오. 설탕물 $100\\,\\mathrm{g}$에 설탕 $20\\,\\mathrm{g}$, 설탕물 $150\\,\\mathrm{g}$에 설탕 $27\\,\\mathrm{g}$이 있을 때 더 진한 것도 쓰시오.",
+        "answer": "같은 양의 설탕물에 든 설탕 양으로 견준다. $20\\div100=0.2$, $27\\div150=0.18$이므로 앞의 것이 더 진하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 양의 설탕물에 든 설탕 양으로 견준다",
+              "설탕물 양에 대한 설탕 양의 비율로 견준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.2$와 $0.18$",
+              "$\\frac{1}{5}$과 $\\frac{9}{50}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞의 것",
+              "설탕물 $100\\,\\mathrm{g}$인 것"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "설탕물 $100\\,\\mathrm{g}$에 설탕 $20\\,\\mathrm{g}$, $150\\,\\mathrm{g}$에 설탕 $27\\,\\mathrm{g}$이 든 설탕물의 설탕물 양에 대한 설탕 양의 비율은 각각 {$0.2$}, {$0.18$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0.2$",
+            "$\\frac{1}{5}$"
+          ],
+          [
+            "$0.18$",
+            "$\\frac{9}{50}$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비교 방법과 구체적 수치 결과를 함께 확인한다.",
+      "cReason": "긴 구절 빈칸을 비율 값 계산으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-4-xc13",
+      "sourceIndex": 1952,
+      "proposalFingerprint": "ea0e00dd1726e885a9428a102bb25383ba6a1492add21d311461d8c15721b9b7",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "$A$반은 $25$명 중 $10$명, $B$반은 $40$명 중 $12$명이 안경을 썼다. 전체 학생 수가 다를 때 안경 쓴 학생 수만 견주면 공정하지 않은 까닭을 설명하고, 어느 반이 안경 쓴 정도가 더 큰지 쓰시오.",
+        "answer": "전체 학생 수가 다르므로 비율로 견주어야 공정하다. $A$반은 $0.4$, $B$반은 $0.3$이므로 $A$반이 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 학생 수가 달라서 수만 보면 공정하지 않다",
+              "전체 양이 달라 비율로 견주어야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$A$반 $0.4$, $B$반 $0.3$",
+              "$\\frac{2}{5}$와 $\\frac{3}{10}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$A$반"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$25$명 중 $10$명인 경우와 $40$명 중 $12$명인 경우는 전체 양이 다르므로 {비율}로 비교한다. 비율은 각각 {$0.4$}, {$0.3$}이다.",
+        "acceptedAnswers": [
+          [
+            "비율"
+          ],
+          [
+            "$0.4$",
+            "$\\frac{2}{5}$"
+          ],
+          [
+            "$0.3$",
+            "$\\frac{3}{10}$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "안경 쓴 학생 수가 더 큰 쪽과 비율이 큰 쪽이 다를 수 있음을 구체적 예로 보인다.",
+      "cReason": "원문은 빈칸 위치가 어색하고 '공정'이 모호해 구체적 비교로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-4-xc14",
+      "sourceIndex": 1953,
+      "proposalFingerprint": "7332e92650e947fb564308ede210f11f31a9ecfca8ddfb1b058301f98fe63132",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "같은 빠르기로 달릴 때 한 시간에 간 거리와 걸린 시간을 알면 간 거리를 어떻게 구하는지 설명하시오. 한 시간에 $60\\,\\mathrm{km}$씩 $2$시간 $30$분 동안 간 거리도 구하시오.",
+        "answer": "한 시간에 간 거리에 걸린 시간을 곱한다. $2$시간 $30$분은 $2.5$시간이므로 $60\\times2.5=150$, 즉 $150\\,\\mathrm{km}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 시간에 간 거리에 걸린 시간을 곱한다",
+              "시간당 거리$\\times$걸린 시간"
+            ]
+          },
+          {
+            "anyOf": [
+              "$150\\,\\mathrm{km}$",
+              "$150$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 시간에 $60\\,\\mathrm{km}$를 가는 빠르기로 $2$시간 $30$분은 {$2.5$}시간이므로 간 거리는 $60\\times2.5=$ {$150\\,\\mathrm{km}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2.5$",
+            "$\\frac{5}{2}$"
+          ],
+          [
+            "$150\\,\\mathrm{km}$",
+            "$150$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "시간 단위를 맞추어 곱하는 절차를 예의 정확한 값으로 확인한다.",
+      "cReason": "'걸린 시간만큼 모은'이라는 표현 대신 시간 단위를 맞춘 곱셈 계산을 쓴다."
+    },
+    {
+      "id": "e6-1-4-4-xc16",
+      "sourceIndex": 1954,
+      "proposalFingerprint": "b34a74980c7eb9eef81688c99f62a4c4ad288459214ae13300745b0f7d563b67",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "설탕 양이 같은 두 설탕물이 있고 설탕물 양은 서로 다르다. 어느 쪽이 더 진한지 쓰고 까닭을 설명하시오.",
+        "answer": "설탕물 양이 더 적은 쪽이 더 진하다. 같은 설탕이 더 적은 설탕물에 들어 있어 설탕물 양에 대한 설탕 양의 비율이 더 크기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "설탕물 양이 적은 쪽",
+              "설탕물이 더 적은 쪽"
+            ]
+          },
+          {
+            "anyOf": [
+              "설탕물 양에 대한 설탕 양의 비율이 더 크다",
+              "같은 설탕이 더 적은 물에 들어 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "설탕 양이 같으면 {설탕물 양이 적은} 쪽이 더 진하다.",
+        "acceptedAnswers": [
+          [
+            "설탕물 양이 적은"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "기준량이 작아질 때 비율이 커지는 관계를 말로 설명하게 한다.",
+      "cReason": "설탕 양이 같다는 조건이 있고 설탕물 양을 비교하는 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-4-4-xc17",
+      "sourceIndex": 1955,
+      "proposalFingerprint": "110d524ac883519f79fe2ad930c6068f4335db0e9061979368b703d7d62fbf9b",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "revise",
+      "B": null,
+      "C": {
+        "sentence": "$2$시간에 $90\\,\\mathrm{km}$와 $3$시간에 $150\\,\\mathrm{km}$를 비율로 견주면 기준량을 $1$시간으로 맞춘 {$45$}와 {$50$}을 견주는 것이다.",
+        "acceptedAnswers": [
+          [
+            "$45$",
+            "$45\\,\\mathrm{km}$"
+          ],
+          [
+            "$50$",
+            "$50\\,\\mathrm{km}$"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "B는 e6-1-4-4-c1과 중복되어 제외하며 대체 ID는 c1이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c1과 같은 '기준량을 $1$로 맞춤' 설명의 반복이라 B는 별도 가치가 낮다.",
+      "cReason": "원문 빈칸 '비율로 견주는 것'은 문장 구조상 모호해 실제 기준량 $1$ 값으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-4-xc19",
+      "sourceIndex": 1956,
+      "proposalFingerprint": "fbbd476c3abebdf5a25658aadaea754596aa1c0a021deb99631fbcf7b6f1b1a6",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "e6-1-4-4-xc10 및 e6-1-4-4-c2와 중복되어 제외하며 대체 ID는 xc10이다.",
+        "cloze": "e6-1-4-4-xc10 및 e6-1-4-4-c2와 중복되어 제외하며 대체 ID는 xc10이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc10에서 두 차 예로 같은 방법을 더 구체적으로 묻는다.",
+      "cReason": "원문 빈칸이 '시간에 대한 거리의 비율'이라는 긴 용어 구절이라 xc10 C 계산으로 대신한다."
+    },
+    {
+      "id": "e6-1-4-4-xc20",
+      "sourceIndex": 1957,
+      "proposalFingerprint": "7a7ed6da810c8afb2481192dcecbe82c169656ed27676fbabbc1900f356f2622",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "설탕물 $100\\,\\mathrm{g}$에 설탕 $25\\,\\mathrm{g}$이 들어 있다. 여기에 설탕 $25\\,\\mathrm{g}$을 더 넣어 모두 녹이면 설탕물 양에 대한 설탕 양의 비율은 어떻게 변하는지 쓰고, 처음과 나중 비율을 구하시오.",
+        "answer": "커진다. 처음은 $25\\div100=0.25$, 나중은 설탕물 $125\\,\\mathrm{g}$에 설탕 $50\\,\\mathrm{g}$이므로 $50\\div125=0.4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "커진다",
+              "증가한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 $0.25$",
+              "$\\frac{1}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나중 $0.4$",
+              "$\\frac{2}{5}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "설탕물에 설탕을 더 넣어 녹이면 설탕물 양에 대한 설탕 양의 비율은 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "커진다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "기준량과 비교하는 양이 함께 변하는 상황을 구체적 값으로 확인한다.",
+      "cReason": "설탕을 더 넣어 녹이는 조건에서 비율 변화를 묻는 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-4-4-xc21",
+      "sourceIndex": 1958,
+      "proposalFingerprint": "85e238f810b860f5284eac151d43eb1420de5bcc1803499feacc1e08aaaee736",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "설탕물 $100\\,\\mathrm{g}$에 설탕 $25\\,\\mathrm{g}$이 들어 있다. 여기에 물만 $100\\,\\mathrm{g}$을 더 넣으면 설탕물 양에 대한 설탕 양의 비율은 어떻게 변하는지 쓰고 까닭과 나중 비율을 설명하시오.",
+        "answer": "작아진다. 설탕 양은 그대로이고 설탕물 양만 $200\\,\\mathrm{g}$으로 늘어난다. 나중 비율은 $25\\div200=0.125$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "작아진다",
+              "감소한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "설탕 양은 그대로이고 설탕물 양만 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.125$",
+              "$\\frac{1}{8}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "설탕물에 물만 더 넣으면 설탕물 양에 대한 설탕 양의 비율은 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비교하는 양은 같고 기준량만 커지는 변화를 설명하게 한다.",
+      "cReason": "물만 넣는 조건이 분명하고 비율 변화 방향만 묻는다."
+    },
+    {
+      "id": "e6-1-4-4-xc23",
+      "sourceIndex": 1959,
+      "proposalFingerprint": "a82284890e87818254e5820d466a8957317d5afeea30e3288d77d2f01c1085c9",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "넓이에 대한 인구의 비율이 더 높은 마을이 전체 인구는 더 적을 수 있는 까닭을 설명하시오. 가 마을은 $2\\,\\mathrm{km}^2$에 $800$명, 나 마을은 $10\\,\\mathrm{km}^2$에 $2000$명일 때 비율, 더 붐비는 마을, 인구가 더 많은 마을을 쓰시오.",
+        "answer": "비율은 인구를 넓이로 나눈 값이라 넓이가 작으면 인구가 적어도 높을 수 있다. 가 마을은 $400$, 나 마을은 $200$이므로 가 마을이 더 붐비고, 인구는 나 마을이 더 많다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율은 인구를 넓이로 나눈 값이라 넓이가 작으면 인구가 적어도 높을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가 $400$, 나 $200$"
+            ]
+          },
+          {
+            "anyOf": [
+              "더 붐비는 마을은 가 마을",
+              "가 마을"
+            ]
+          },
+          {
+            "anyOf": [
+              "인구가 더 많은 마을은 나 마을",
+              "나 마을"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가 마을은 $2\\,\\mathrm{km}^2$에 $800$명, 나 마을은 $10\\,\\mathrm{km}^2$에 $2000$명이다. 더 붐비는 마을은 {가} 마을이고 인구가 더 많은 마을은 {나} 마을이다.",
+        "acceptedAnswers": [
+          [
+            "가",
+            "가 마을"
+          ],
+          [
+            "나",
+            "나 마을"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "넓이를 나누는 비율의 의미를 구체적 두 마을로 확인한다.",
+      "cReason": "원문 빈칸 '넓이'는 쉬운 낱말이고 핵심 주장인 둘째 문장을 확인하지 않아 비교 판단으로 바꾼다."
+    }
+  ]
+}

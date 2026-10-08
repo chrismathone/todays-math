@@ -1,0 +1,1501 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:33:29.106Z",
+  "supplementalVerdicts": "evidence/assist-2400-2899-20261007/reviews.json",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-03-xc6",
+        "section": "중2::3. 방정식::여러 가지 연립방정식의 풀이",
+        "term": "정수 계수로 고친 뒤",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분수나 소수 계수를 {정수}로 바꾼 뒤에는 보통의 연립방정식처럼 {소거}하여 푼다.",
+        "studentC": "분수나 소수 계수를 □로 바꾼 뒤에는 보통의 연립방정식처럼 □하여 푼다.",
+        "answers": [
+          "정수",
+          "소거"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-03-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "연립방정식 $\\frac{x}{3}-\\frac{y}{2}=1$, $x+y=8$을 계수가 정수인 식으로 고친 뒤 푸시오. 어떤 방법으로 미지수를 없앴는지도 쓰시오.",
+        "bAnswer": "첫째 식에 $6$을 곱해 $2x-3y=6$으로 고친다. 둘째 식에 $2$를 곱한 $2x+2y=16$을 빼면 $-5y=-10$이므로 $y=2$, $x=6$이다(가감법). 대입법으로 풀어도 된다.",
+        "bGoal": "정수 계수로 고친 뒤 끝까지 풀기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "첫째 식에 $6$을 곱해 $2x-3y=6$으로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가감법으로 한 미지수를 소거한다",
+              "대입법으로 한 미지수를 소거한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=6$, $y=2$"
+            ]
+          }
+        ],
+        "bReason": "고치기와 소거를 잇는 단계라 실제 연립방정식 전체 풀이로 확인함",
+        "cDecision": "keep",
+        "cReason": "고친 뒤 '소거'로 이어진다는 흐름을 짧게 묻는 문장이라 유지",
+        "learningRole": "application",
+        "roleReason": "정수 계수로 고친 뒤 소거해 풀기",
+        "exampleNeeded": true,
+        "studentLabel": "정수 계수로 고친 뒤 풀기",
+        "authorBatch": 34,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2502,
+        "part": "m2plus",
+        "sourceFingerprint": "ff375ee5861de010a3531f6b68509c5400417073583f8fa28abf8c4ea2fa0a06",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2502
+        },
+        "directReview": null,
+        "cFrozenSentence": "분수나 소수 계수를 □로 바꾼 뒤에는 보통의 연립방정식처럼 □하여 푼다.",
+        "cFrozenDefinition": "분수나 소수 계수를 {정수}로 바꾼 뒤에는 보통의 연립방정식처럼 {소거}하여 푼다.",
+        "cFrozenAnswers": [
+          "정수",
+          "소거"
+        ],
+        "cMarkedSentence": "분수나 소수 계수를 {정수}로 바꾼 뒤에는 보통의 연립방정식처럼 {소거}하여 푼다.",
+        "cSlotAnswers": [
+          "정수",
+          "소거"
+        ],
+        "cStudentSentence": "분수나 소수 계수를 □로 바꾼 뒤에는 보통의 연립방정식처럼 □하여 푼다.",
+        "cAnswers": [
+          "정수",
+          "소거"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소거",
+            "equivalentAnswers": [
+              "소거"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수"
+          ],
+          [
+            "소거"
+          ]
+        ],
+        "proposalFingerprint": "b9a8a180449250ce3506f84b5a68a73f9d07f0c04a3d7a4978c5358d7e3916d1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-03-xc9",
+        "section": "중2::3. 방정식::여러 가지 연립방정식의 풀이",
+        "term": "처음 식에 넣어 확인",
+        "kind": "방법",
+        "level": "하",
+        "definition": "정리한 식이 아니라 {처음} 주어진 식에 해를 넣어 확인해야 정리하다 생긴 {실수}도 잡는다.",
+        "studentC": "정리한 식이 아니라 □ 주어진 식에 해를 넣어 확인해야 정리하다 생긴 □도 잡는다.",
+        "answers": [
+          "처음",
+          "실수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 학생이 $\\frac{x}{2}+y=3$의 양변에 $2$를 곱하면서 $x+y=6$이라고 잘못 고쳐 풀었다. 구한 해를 확인할 때 $x+y=6$이 아니라 처음 식 $\\frac{x}{2}+y=3$에 넣어야 하는 까닭을 쓰시오.",
+        "bAnswer": "구한 해는 잘못 고친 $x+y=6$은 만족하므로 그 식에 넣으면 실수를 찾을 수 없다. 처음 식에 넣어야 등식이 성립하지 않는 것을 보고 정리하다 생긴 실수를 알 수 있다. (바른 식은 $x+2y=6$)",
+        "bGoal": "처음 식으로 검산하는 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "잘못 고친 식은 구한 해를 만족하므로 그 식으로는 실수를 찾을 수 없다",
+              "처음 식에 넣어야 고칠 때 생긴 실수를 찾을 수 있다"
+            ]
+          }
+        ],
+        "bReason": "고칠 때 생긴 실수 상황을 주어 처음 식으로 검산해야 하는 이유를 체감하게 함",
+        "cDecision": "keep",
+        "cReason": "'처음–실수' 빈칸이 검산 대상과 목적을 짧게 묻어 유지",
+        "learningRole": "reason",
+        "roleReason": "처음 식에 넣어야 정리 실수를 잡음",
+        "exampleNeeded": true,
+        "authorBatch": 34,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2504,
+        "part": "m2plus",
+        "sourceFingerprint": "ca09d6f5929ab7c7fbd83ece994a14354a1966143e77837729625e497e2dd5fb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2504
+        },
+        "directReview": null,
+        "cFrozenSentence": "정리한 식이 아니라 □ 주어진 식에 해를 넣어 확인해야 정리하다 생긴 □도 잡는다.",
+        "cFrozenDefinition": "정리한 식이 아니라 {처음} 주어진 식에 해를 넣어 확인해야 정리하다 생긴 {실수}도 잡는다.",
+        "cFrozenAnswers": [
+          "처음",
+          "실수"
+        ],
+        "cMarkedSentence": "정리한 식이 아니라 {처음} 주어진 식에 해를 넣어 확인해야 정리하다 생긴 {실수}도 잡는다.",
+        "cSlotAnswers": [
+          "처음",
+          "실수"
+        ],
+        "cStudentSentence": "정리한 식이 아니라 □ 주어진 식에 해를 넣어 확인해야 정리하다 생긴 □도 잡는다.",
+        "cAnswers": [
+          "처음",
+          "실수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "처음",
+            "equivalentAnswers": [
+              "처음"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "실수",
+            "equivalentAnswers": [
+              "실수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "처음"
+          ],
+          [
+            "실수"
+          ]
+        ],
+        "proposalFingerprint": "9a84d9e0bd0b76b0e5eda8edef4989475a7942a92d268f0dcec50cf69de09ca0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-03-xc12",
+        "section": "중2::3. 방정식::여러 가지 연립방정식의 풀이",
+        "term": "소수점 아래 자릿수가 다를 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "계수의 소수점 아래 자릿수가 서로 다르면 자릿수가 {가장 많은} 계수가 정수가 되도록 {$10$의 거듭제곱}을 곱한다.",
+        "example": {
+          "prompt": "$0.6x+0.07y=1$의 계수를 모두 정수로 고칠 때 $10$이 아니라 $100$을 곱하는 까닭은?",
+          "answer": "$0.07$이 소수 둘째 자리까지라서"
+        },
+        "studentC": "계수의 소수점 아래 자릿수가 서로 다르면 자릿수가 □ 계수가 정수가 되도록 □을 곱한다.",
+        "answers": [
+          "가장 많은",
+          "$10$의 거듭제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-03-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.6x+0.07y=1$의 계수를 모두 정수로 고치려면 양변에 얼마를 곱해야 하는지 쓰고, $10$을 곱하면 안 되는 까닭과 고친 식을 쓰시오.",
+        "bAnswer": "$100$을 곱한다. $0.07$이 소수 둘째 자리까지라서 $10$을 곱하면 $0.7y$가 남는다. 고친 식은 $60x+7y=100$이다.",
+        "bGoal": "자릿수가 가장 많은 소수에 맞춰 곱하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$100$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.07$이 소수 둘째 자리까지라서",
+              "$10$을 곱하면 $0.7y$가 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60x+7y=100$"
+            ]
+          }
+        ],
+        "bReason": "자릿수가 다른 두 소수를 주어 $10$이 부족한 이유를 직접 확인하게 함",
+        "cDecision": "keep",
+        "cReason": "'가장 많은–$10$의 거듭제곱' 빈칸이 선택 기준을 짧게 묻어 유지",
+        "learningRole": "reason",
+        "roleReason": "가장 긴 소수 자릿수에 맞춰야 하는 까닭",
+        "exampleNeeded": true,
+        "authorBatch": 34,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2506,
+        "part": "m2plus",
+        "sourceFingerprint": "547b45062b9297688f12f30c99d3d8e3cd4c42b170398e799773974050e3b2c5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2506
+        },
+        "directReview": null,
+        "cFrozenSentence": "계수의 소수점 아래 자릿수가 서로 다르면 자릿수가 □ 계수가 정수가 되도록 □을 곱한다.",
+        "cFrozenDefinition": "계수의 소수점 아래 자릿수가 서로 다르면 자릿수가 {가장 많은} 계수가 정수가 되도록 {$10$의 거듭제곱}을 곱한다.",
+        "cFrozenAnswers": [
+          "가장 많은",
+          "$10$의 거듭제곱"
+        ],
+        "cMarkedSentence": "계수의 소수점 아래 자릿수가 서로 다르면 자릿수가 {가장 많은} 계수가 정수가 되도록 {$10$의 거듭제곱}을 곱한다.",
+        "cSlotAnswers": [
+          "가장 많은",
+          "$10$의 거듭제곱"
+        ],
+        "cStudentSentence": "계수의 소수점 아래 자릿수가 서로 다르면 자릿수가 □ 계수가 정수가 되도록 □을 곱한다.",
+        "cAnswers": [
+          "가장 많은",
+          "$10$의 거듭제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가장 많은",
+            "equivalentAnswers": [
+              "가장 많은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$10$의 거듭제곱",
+            "equivalentAnswers": [
+              "$10$의 거듭제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가장 많은"
+          ],
+          [
+            "$10$의 거듭제곱"
+          ]
+        ],
+        "proposalFingerprint": "5157e4009b4247a5bb9d4ab83da45e2c88c2ffab41ad6830ef5b224b5efc6c98"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-03-xc14",
+        "section": "중2::3. 방정식::여러 가지 연립방정식의 풀이",
+        "term": "$A=B=C$에서 상수가 있을 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$A=B=C$에서 $C$가 상수이면 {$A=C$}와 {$B=C$}를 고를 때 미지수와 상수가 이미 나뉘어 있어 정리할 일이 {적은} 경우가 많다.",
+        "studentC": "$A=B=C$에서 $C$가 상수이면 □와 □를 고를 때 미지수와 상수가 이미 나뉘어 있어 정리할 일이 □ 경우가 많다.",
+        "answers": [
+          "$A=C$",
+          "$B=C$",
+          "적은"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-03-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$x+y=2x-1=5$에서 만들 수 있는 등식 가운데 두 개를 골라 연립방정식을 만들려고 한다. 정리할 일이 가장 적은 두 식을 고르고 그 까닭을 쓴 뒤 해를 구하시오.",
+        "bAnswer": "$x+y=5$와 $2x-1=5$를 고른다. 상수 $5$와 같다고 놓은 식이라 미지수와 상수가 이미 나뉘어 있어 정리할 것이 적다. $2x-1=5$에서 $x=3$, $y=2$이다.",
+        "bGoal": "상수 부분을 이용한 식 선택",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+y=5$와 $2x-1=5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "상수와 같다고 놓아 미지수와 상수가 이미 나뉘어 있다",
+              "이항할 것이 적다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=3$, $y=2$"
+            ]
+          }
+        ],
+        "bReason": "상수 부분이 있는 실제 식으로 고를 등식과 그 근거를 함께 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$A=B=C$에서 $C$가 상수이면 $A=${$C$}, $B=${$C$}의 두 식을 고를 때 미지수가 있는 쪽과 수만 있는 쪽이 이미 나뉘어 있어 정리할 일이 {적은} 경우가 많다.",
+        "cAnswers": [
+          "$C$",
+          "$C$",
+          "적은"
+        ],
+        "cReason": "원문 '□와 □'는 두 등식 순서가 바뀌어도 맞아 채점이 모호해 자리를 고정함",
+        "learningRole": "application",
+        "roleReason": "상수 변과 같다고 놓아 정리 줄이기",
+        "exampleNeeded": true,
+        "authorBatch": 34,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2508,
+        "part": "m2plus",
+        "sourceFingerprint": "d2eb96d220ea456375ef1648be4d14a1ac912cae790f74e19ee4fefc6c95f990",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2508
+        },
+        "directReview": null,
+        "cMarkedSentence": "$A=B=C$에서 $C$가 상수이면 $A=${$C$}, $B=${$C$}의 두 식을 고를 때 미지수가 있는 쪽과 수만 있는 쪽이 이미 나뉘어 있어 정리할 일이 {적은} 경우가 많다.",
+        "cSlotAnswers": [
+          "$C$",
+          "$C$",
+          "적은"
+        ],
+        "cStudentSentence": "$A=B=C$에서 $C$가 상수이면 $A=$□, $B=$□의 두 식을 고를 때 미지수가 있는 쪽과 수만 있는 쪽이 이미 나뉘어 있어 정리할 일이 □ 경우가 많다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$C$",
+            "equivalentAnswers": [
+              "$C$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$C$",
+            "equivalentAnswers": [
+              "$C$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "적은",
+            "equivalentAnswers": [
+              "적은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$C$"
+          ],
+          [
+            "$C$"
+          ],
+          [
+            "적은"
+          ]
+        ],
+        "proposalFingerprint": "5eb9eac6ee0898de78eb0b5eb1047bf991ff53a2f035701e192b414299279fff"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-03-xc15",
+        "section": "중2::3. 방정식::여러 가지 연립방정식의 풀이",
+        "term": "괄호와 분수가 함께 있을 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "괄호와 분수가 함께 있으면 먼저 분모를 없애고 {괄호}를 푼 뒤 {동류항}을 정리한다.",
+        "studentC": "괄호와 분수가 함께 있으면 먼저 분모를 없애고 □를 푼 뒤 □을 정리한다.",
+        "answers": [
+          "괄호",
+          "동류항"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-03-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2(x-1)}{3}+y=2$처럼 괄호와 분수가 함께 있는 식을 계수가 정수인 $ax+by=c$ 꼴로 정리하시오. 어떤 단계를 거쳤는지도 쓰시오.",
+        "bAnswer": "먼저 양변에 $3$을 곱해 분모를 없애 $2(x-1)+3y=6$으로 만들고, 괄호를 풀어 $2x-2+3y=6$, 동류항을 정리해 $2x+3y=8$을 얻는다.",
+        "bGoal": "분모 없애기·괄호 풀기·동류항 정리",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변에 $3$을 곱해 분모를 없앤다"
+            ]
+          },
+          {
+            "anyOf": [
+              "괄호를 풀어 $2x-2$로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2x+3y=8$"
+            ]
+          }
+        ],
+        "bReason": "괄호와 분수가 겹친 실제 식으로 필요한 정리 단계를 모두 드러냄",
+        "cDecision": "keep",
+        "cReason": "순서를 보이고 '괄호–동류항'만 묻는 짧은 문장이라 유지",
+        "learningRole": "procedure",
+        "roleReason": "분모 없앤 뒤 괄호와 동류항 정리",
+        "exampleNeeded": true,
+        "authorBatch": 34,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2509,
+        "part": "m2plus",
+        "sourceFingerprint": "224e0f528fcb0def8704bd6bf5025e6266fb7056a19af9cf86025b6b9ed4319a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2509
+        },
+        "directReview": null,
+        "cFrozenSentence": "괄호와 분수가 함께 있으면 먼저 분모를 없애고 □를 푼 뒤 □을 정리한다.",
+        "cFrozenDefinition": "괄호와 분수가 함께 있으면 먼저 분모를 없애고 {괄호}를 푼 뒤 {동류항}을 정리한다.",
+        "cFrozenAnswers": [
+          "괄호",
+          "동류항"
+        ],
+        "cMarkedSentence": "괄호와 분수가 함께 있으면 먼저 분모를 없애고 {괄호}를 푼 뒤 {동류항}을 정리한다.",
+        "cSlotAnswers": [
+          "괄호",
+          "동류항"
+        ],
+        "cStudentSentence": "괄호와 분수가 함께 있으면 먼저 분모를 없애고 □를 푼 뒤 □을 정리한다.",
+        "cAnswers": [
+          "괄호",
+          "동류항"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "동류항",
+            "equivalentAnswers": [
+              "동류항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ],
+          [
+            "동류항"
+          ]
+        ],
+        "proposalFingerprint": "5cf83b2813aa018a92a44384c476c74934197b13998488d892ac66663391fab1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-03-xc21",
+        "section": "중2::3. 방정식::여러 가지 연립방정식의 풀이",
+        "term": "두 식을 모두 정리할 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 방정식에 각각 다른 수를 곱해 {정수 계수}로 만든 뒤 {같은 미지수}의 계수를 맞춘다.",
+        "studentC": "두 방정식에 각각 다른 수를 곱해 □로 만든 뒤 □의 계수를 맞춘다.",
+        "answers": [
+          "정수 계수",
+          "같은 미지수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-03-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "두 식을 정수 계수로 고친 뒤 계수를 맞추는 과정은 xc6 B 풀이와 겹침",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{x}{2}+\\frac{y}{3}=2$, $0.1x-0.2y=-0.4$처럼 두 식이 모두 정수 계수가 아니면 첫째 식에는 {$6$}, 둘째 식에는 {$10$}을 곱해 두 식을 모두 정수 계수로 만든다.",
+        "cAnswers": [
+          "$6$",
+          "$10$"
+        ],
+        "cReason": "'정수 계수–같은 미지수'는 막연해 두 식에 각각 다른 수를 곱하는 실제 예로 바꿈",
+        "exclusionReason": "B 제외: 정수 계수로 고친 뒤 계수를 맞춰 푸는 목표가 xc6 B와 중복. C는 구체 예로 고쳐 사용",
+        "learningRole": "procedure",
+        "roleReason": "두 식에 각각 다른 수를 곱해 정수 계수로",
+        "exampleNeeded": true,
+        "studentLabel": "두 식 모두 정수 계수로 고치기",
+        "authorBatch": 34,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2514,
+        "part": "m2plus",
+        "sourceFingerprint": "6d8ae22c18e7c8308bf6aba72b583a95892c5fe801ff72dd9465a27584ca7c7d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2514
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$\\frac{x}{2}+\\frac{y}{3}=2$, $0.1x-0.2y=-0.4$처럼 두 식이 모두 정수 계수가 아니면 첫째 식에는 {$6$}, 둘째 식에는 {$10$}을 곱해 두 식을 모두 정수 계수로 만든다.",
+        "cSlotAnswers": [
+          "$6$",
+          "$10$"
+        ],
+        "cStudentSentence": "$\\frac{x}{2}+\\frac{y}{3}=2$, $0.1x-0.2y=-0.4$처럼 두 식이 모두 정수 계수가 아니면 첫째 식에는 □, 둘째 식에는 □을 곱해 두 식을 모두 정수 계수로 만든다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$6$",
+            "equivalentAnswers": [
+              "$6$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$10$",
+            "equivalentAnswers": [
+              "$10$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$10$"
+          ]
+        ],
+        "proposalFingerprint": "864d4d739222bec65eeff4292ae6af1f1580056a75bddf14fb654bc06540d602"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-04-xc1",
+        "section": "중2::3. 방정식::연립방정식의 풀이의 응용",
+        "term": "해를 넣어 상수 하나 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "해를 상수가 든 식에 넣으면 상수에 대한 등식이 된다. 상수에 곱해지는 수가 $0$이 아니면 이 등식은 {일차방정식}이어서 상수를 {구할} 수 있다.",
+        "example": {
+          "prompt": "$(3,\\ 1)$이 $ax-y=5$의 해일 때 $a$",
+          "answer": "$2$"
+        },
+        "studentC": "해를 상수가 든 식에 넣으면 상수에 대한 등식이 된다. 상수에 곱해지는 수가 $0$이 아니면 이 등식은 □이어서 상수를 □ 수 있다.",
+        "answers": [
+          "일차방정식",
+          "구할"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-04-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "(가) $ax-y=5$의 해가 $(3,\\ 1)$일 때, (나) $ax-y=-1$의 해가 $(0,\\ 1)$일 때 각각 해를 대입한 식을 쓰고, $a$의 값을 하나로 정할 수 있는지 판단하시오. 두 경우에 차이가 생기는 까닭도 쓰시오.",
+        "bAnswer": "(가) $3a-1=5$이므로 $a=2$로 정해진다. (나) $0\\times a-1=-1$은 $a$가 어떤 수이든 성립하므로 $a$를 하나로 정할 수 없다. $a$에 곱해지는 수가 $0$이 아니어야 $a$에 대한 일차방정식이 되어 $a$가 정해진다.",
+        "bGoal": "상수에 곱해지는 수가 $0$이 아니어야 하는 이유 이해",
+        "bReason": "$0$이 아니라는 조건이 왜 필요한지 보이도록 $a$가 정해지는 예와 정해지지 않는 예를 대비했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(가) $a=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "(나) $a$를 하나로 정할 수 없다",
+              "(나) 어떤 $a$든 성립한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a$에 곱해지는 수가 $0$이 아니어야 $a$가 정해진다",
+              "$a$에 곱해지는 수가 $0$이면 $a$가 사라진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "roleReason": "상수 계수가 $0$이 아닐 조건의 필요성",
+        "cDecision": "keep",
+        "cReason": "$0$이 아니라는 조건과 일차방정식을 연결하는 빈칸이 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 35,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2517,
+        "part": "m2plus",
+        "sourceFingerprint": "ac841bad4e28727adcfa3ff3b3d220af43034b881c7f41f69655b4715c6a5458",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2517
+        },
+        "directReview": null,
+        "cFrozenSentence": "해를 상수가 든 식에 넣으면 상수에 대한 등식이 된다. 상수에 곱해지는 수가 $0$이 아니면 이 등식은 □이어서 상수를 □ 수 있다.",
+        "cFrozenDefinition": "해를 상수가 든 식에 넣으면 상수에 대한 등식이 된다. 상수에 곱해지는 수가 $0$이 아니면 이 등식은 {일차방정식}이어서 상수를 {구할} 수 있다.",
+        "cFrozenAnswers": [
+          "일차방정식",
+          "구할"
+        ],
+        "cMarkedSentence": "해를 상수가 든 식에 넣으면 상수에 대한 등식이 된다. 상수에 곱해지는 수가 $0$이 아니면 이 등식은 {일차방정식}이어서 상수를 {구할} 수 있다.",
+        "cSlotAnswers": [
+          "일차방정식",
+          "구할"
+        ],
+        "cStudentSentence": "해를 상수가 든 식에 넣으면 상수에 대한 등식이 된다. 상수에 곱해지는 수가 $0$이 아니면 이 등식은 □이어서 상수를 □ 수 있다.",
+        "cAnswers": [
+          "일차방정식",
+          "구할"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "일차방정식",
+            "equivalentAnswers": [
+              "일차방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "구할",
+            "equivalentAnswers": [
+              "구할",
+              "정할"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "구할",
+            "accept": [
+              "정할"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "일차방정식"
+          ],
+          [
+            "구할",
+            "정할"
+          ]
+        ],
+        "proposalFingerprint": "1af0f45f2dd02df711784d899b56c177ca67f83c27b43d28bdc18c0ce9e248a6"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-04-xc2",
+        "section": "중2::3. 방정식::연립방정식의 풀이의 응용",
+        "term": "해의 $x$ 값만 주어질 때",
+        "kind": "방법",
+        "level": "하",
+        "definition": "해의 $x$ 값만 주어지면 상수가 {없는} 식에 넣어 {$y$}부터 구한다.",
+        "example": {
+          "prompt": "$x+y=5$, $ax-y=3$의 해에서 $x=2$일 때 $y$",
+          "answer": "$3$"
+        },
+        "studentC": "해의 $x$ 값만 주어지면 상수가 □ 식에 넣어 □부터 구한다.",
+        "answers": [
+          "없는",
+          "$y$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-04-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "연립방정식 $x+y=5$, $ax-y=3$의 해에서 $x=2$라는 것만 알려져 있다. 상수 $a$를 구하는 순서를 쓰고 $a$의 값을 구하시오.",
+        "bAnswer": "먼저 상수가 없는 $x+y=5$에 $x=2$를 넣어 $y=3$을 구한다. $(2,\\ 3)$을 $ax-y=3$에 넣으면 $2a-3=3$이므로 $a=3$이다.",
+        "bGoal": "$x$ 값만 주어질 때 $y$를 먼저 구하기",
+        "bReason": "어느 식에 먼저 $x$ 값을 넣어야 하는지 판단하도록 두 식과 $x$ 값을 제시했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "상수가 없는 $x+y=5$에 $x=2$를 넣어 $y=3$을 먼저 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=3$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "roleReason": "상수 없는 식으로 $y$ 먼저 구하기",
+        "cDecision": "keep",
+        "cReason": "'없는'과 '$y$' 빈칸이 짧고 풀이 순서를 정확히 묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 35,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2518,
+        "part": "m2plus",
+        "sourceFingerprint": "1d96d0a8cb3bf6f1975e99284b3560c05f176fb6595ab94a276e153886321e57",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2518
+        },
+        "directReview": null,
+        "cFrozenSentence": "해의 $x$ 값만 주어지면 상수가 □ 식에 넣어 □부터 구한다.",
+        "cFrozenDefinition": "해의 $x$ 값만 주어지면 상수가 {없는} 식에 넣어 {$y$}부터 구한다.",
+        "cFrozenAnswers": [
+          "없는",
+          "$y$"
+        ],
+        "cMarkedSentence": "해의 $x$ 값만 주어지면 상수가 {없는} 식에 넣어 {$y$}부터 구한다.",
+        "cSlotAnswers": [
+          "없는",
+          "$y$"
+        ],
+        "cStudentSentence": "해의 $x$ 값만 주어지면 상수가 □ 식에 넣어 □부터 구한다.",
+        "cAnswers": [
+          "없는",
+          "$y$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없는",
+            "equivalentAnswers": [
+              "없는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y$",
+            "equivalentAnswers": [
+              "$y$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없는"
+          ],
+          [
+            "$y$"
+          ]
+        ],
+        "proposalFingerprint": "902b7d361e987e33b6b4bb5f9354b7d48e3ed772a666f9bf05aea0f0fd73f699"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-04-xc10",
+        "section": "중2::3. 방정식::연립방정식의 풀이의 응용",
+        "term": "조건식과 먼저 연립하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "해의 조건식은 상수가 {없는} 식과 먼저 연립해 $x$, $y$를 구한 뒤 상수가 {있는} 식에 넣는다.",
+        "example": {
+          "prompt": "$x+y=8$, $x-y=k$에서 $x=3y$일 때 $k$",
+          "answer": "$4$"
+        },
+        "studentC": "해의 조건식은 상수가 □ 식과 먼저 연립해 $x$, $y$를 구한 뒤 상수가 □ 식에 넣는다.",
+        "answers": [
+          "없는",
+          "있는"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-04-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "연립방정식 $x+y=8$, $x-y=k$의 해가 $x=3y$를 만족한다. 어느 두 식을 먼저 연립하는지 쓰고, 상수 $k$의 값을 구하시오.",
+        "bAnswer": "상수가 없는 $x+y=8$과 조건식 $x=3y$를 먼저 연립하면 $y=2$, $x=6$이다. 이것을 $x-y=k$에 넣으면 $k=4$이다.",
+        "bGoal": "조건식과 상수 없는 식을 먼저 연립해 상수 구하기",
+        "bReason": "조건식을 어느 식과 묶어야 하는지 직접 고르도록 세 식을 모두 제시했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+y=8$과 $x=3y$를 먼저 연립한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$k=4$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "roleReason": "조건식 활용해 상수 구하기",
+        "cDecision": "keep",
+        "cReason": "'없는'·'있는'의 대비로 연립하는 식과 대입하는 식을 분명히 묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 35,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2524,
+        "part": "m2plus",
+        "sourceFingerprint": "a7ac036265fb98c465a7be3331ffaff1c90b5e2309d4df950465ac9242765c63",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2524
+        },
+        "directReview": null,
+        "cFrozenSentence": "해의 조건식은 상수가 □ 식과 먼저 연립해 $x$, $y$를 구한 뒤 상수가 □ 식에 넣는다.",
+        "cFrozenDefinition": "해의 조건식은 상수가 {없는} 식과 먼저 연립해 $x$, $y$를 구한 뒤 상수가 {있는} 식에 넣는다.",
+        "cFrozenAnswers": [
+          "없는",
+          "있는"
+        ],
+        "cMarkedSentence": "해의 조건식은 상수가 {없는} 식과 먼저 연립해 $x$, $y$를 구한 뒤 상수가 {있는} 식에 넣는다.",
+        "cSlotAnswers": [
+          "없는",
+          "있는"
+        ],
+        "cStudentSentence": "해의 조건식은 상수가 □ 식과 먼저 연립해 $x$, $y$를 구한 뒤 상수가 □ 식에 넣는다.",
+        "cAnswers": [
+          "없는",
+          "있는"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없는",
+            "equivalentAnswers": [
+              "없는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "있는",
+            "equivalentAnswers": [
+              "있는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없는"
+          ],
+          [
+            "있는"
+          ]
+        ],
+        "proposalFingerprint": "60048ee1f649e4a00a8373f50d72408b2875e153f35fe0e1836051a9043e0edb"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-04-xc12",
+        "section": "중2::3. 방정식::연립방정식의 풀이의 응용",
+        "term": "해가 같은 네 방정식",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 연립방정식의 해가 같으면 네 방정식이 {모두} 그 해를 가지므로, 해가 한 쌍으로 정해지는 두 식을 새로 {묶어} 풀 수 있다.",
+        "studentC": "두 연립방정식의 해가 같으면 네 방정식이 □ 그 해를 가지므로, 해가 한 쌍으로 정해지는 두 식을 새로 □ 풀 수 있다.",
+        "answers": [
+          "모두",
+          "묶어"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-04-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "두 연립방정식의 해가 서로 같을 때, 두 연립방정식에서 한 식씩 골라 새로 연립해 풀어도 되는 까닭을 쓰시오.",
+        "bAnswer": "해가 같으면 네 방정식이 모두 그 해를 만족한다. 그러므로 그중 해가 한 쌍으로 정해지는 두 식을 골라 풀면 같은 해가 나온다.",
+        "bGoal": "해가 같은 네 식을 새로 묶을 수 있는 이유 설명",
+        "bReason": "절차보다 근거를 묻도록 '새로 연립해도 되는 까닭'으로 범위를 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 방정식이 모두 그 해를 만족한다",
+              "네 식 모두 그 해를 넣으면 참이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해가 한 쌍으로 정해지는 두 식을 풀면 그 해가 나온다",
+              "고른 두 식의 해가 바로 공통의 해이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "roleReason": "네 식이 모두 같은 해를 가짐",
+        "cDecision": "keep",
+        "cReason": "'모두'와 '묶어'로 성질과 그 활용을 짧게 묻는다.",
+        "authorBatch": 35,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2526,
+        "part": "m2plus",
+        "sourceFingerprint": "378830b85dd95de9ad0e6dc4ca3d84e12950dfb801ab13b48f5fc247ac92fe5e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2526
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 연립방정식의 해가 같으면 네 방정식이 □ 그 해를 가지므로, 해가 한 쌍으로 정해지는 두 식을 새로 □ 풀 수 있다.",
+        "cFrozenDefinition": "두 연립방정식의 해가 같으면 네 방정식이 {모두} 그 해를 가지므로, 해가 한 쌍으로 정해지는 두 식을 새로 {묶어} 풀 수 있다.",
+        "cFrozenAnswers": [
+          "모두",
+          "묶어"
+        ],
+        "cMarkedSentence": "두 연립방정식의 해가 같으면 네 방정식이 {모두} 그 해를 가지므로, 해가 한 쌍으로 정해지는 두 식을 새로 {묶어} 풀 수 있다.",
+        "cSlotAnswers": [
+          "모두",
+          "묶어"
+        ],
+        "cStudentSentence": "두 연립방정식의 해가 같으면 네 방정식이 □ 그 해를 가지므로, 해가 한 쌍으로 정해지는 두 식을 새로 □ 풀 수 있다.",
+        "cAnswers": [
+          "모두",
+          "묶어"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모두",
+            "equivalentAnswers": [
+              "모두"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "묶어",
+            "equivalentAnswers": [
+              "묶어",
+              "연립해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "묶어",
+            "accept": [
+              "연립해"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모두"
+          ],
+          [
+            "묶어",
+            "연립해"
+          ]
+        ],
+        "proposalFingerprint": "02cc39f2eea3ba0405b3e61ff3043d135ee4b037e36ee799ea764f248a0c7c32"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-04-xc19",
+        "section": "중2::3. 방정식::연립방정식의 풀이의 응용",
+        "term": "해가 자연수가 되는 상수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "연립방정식의 해 $x$, $y$가 모두 자연수가 되는 상수 $k$를 찾으려면, 먼저 $x$와 $y$를 {$k$의 식}으로 나타낸 뒤 두 값이 모두 자연수가 되는지 확인한다.",
+        "example": {
+          "prompt": "$x+y=k$, $x-y=2$의 해가 자연수일 때 $k$가 짝수인 까닭은?",
+          "answer": "$\\frac{k-2}{2}$가 자연수여야 해서"
+        },
+        "studentC": "연립방정식의 해 $x$, $y$가 모두 자연수가 되는 상수 $k$를 찾으려면, 먼저 $x$와 $y$를 □으로 나타낸 뒤 두 값이 모두 자연수가 되는지 확인한다.",
+        "answers": [
+          "$k$의 식"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-04-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "연립방정식 $x+y=k$, $x-y=2$의 해 $x$, $y$가 모두 자연수가 되도록 하는 상수 $k$의 조건을 구하고, 그렇게 판단한 까닭을 쓰시오.",
+        "bAnswer": "풀면 $x=\\frac{k+2}{2}$, $y=\\frac{k-2}{2}$이다. $y$가 자연수이려면 $k-2$가 $2$ 이상의 짝수여야 하므로 $k$는 $4$ 이상의 짝수이고, 이때 $x$도 자연수이다.",
+        "bGoal": "해가 자연수가 되는 상수 조건 찾기",
+        "bReason": "$k$의 식으로 나타낸 뒤 자연수 조건을 따지는 흐름이 보이도록 구체적인 연립방정식을 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=\\frac{k+2}{2}$, $y=\\frac{k-2}{2}$로 나타낸다",
+              "$\\frac{k-2}{2}$가 자연수여야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$k$는 $4$ 이상의 짝수"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "roleReason": "해를 $k$의 식으로 두고 자연수 조건 따지기",
+        "cDecision": "keep",
+        "cReason": "'$k$의 식' 한 빈칸으로 방법의 첫 단계를 정확히 묻는다.",
+        "exampleNeeded": true,
+        "authorBatch": 35,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2531,
+        "part": "m2plus",
+        "sourceFingerprint": "c2054ff6cf89bf97c56fb0b223b1974ec02b66f3419e92c28d578d3d6e868701",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2531
+        },
+        "directReview": null,
+        "cFrozenSentence": "연립방정식의 해 $x$, $y$가 모두 자연수가 되는 상수 $k$를 찾으려면, 먼저 $x$와 $y$를 □으로 나타낸 뒤 두 값이 모두 자연수가 되는지 확인한다.",
+        "cFrozenDefinition": "연립방정식의 해 $x$, $y$가 모두 자연수가 되는 상수 $k$를 찾으려면, 먼저 $x$와 $y$를 {$k$의 식}으로 나타낸 뒤 두 값이 모두 자연수가 되는지 확인한다.",
+        "cFrozenAnswers": [
+          "$k$의 식"
+        ],
+        "cMarkedSentence": "연립방정식의 해 $x$, $y$가 모두 자연수가 되는 상수 $k$를 찾으려면, 먼저 $x$와 $y$를 {$k$의 식}으로 나타낸 뒤 두 값이 모두 자연수가 되는지 확인한다.",
+        "cSlotAnswers": [
+          "$k$의 식"
+        ],
+        "cStudentSentence": "연립방정식의 해 $x$, $y$가 모두 자연수가 되는 상수 $k$를 찾으려면, 먼저 $x$와 $y$를 □으로 나타낸 뒤 두 값이 모두 자연수가 되는지 확인한다.",
+        "cAnswers": [
+          "$k$의 식"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$k$의 식",
+            "equivalentAnswers": [
+              "$k$의 식",
+              "$k$에 대한 식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$k$의 식",
+            "accept": [
+              "$k$에 대한 식"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$k$의 식",
+            "$k$에 대한 식"
+          ]
+        ],
+        "proposalFingerprint": "2a12b9f06a80f29547259504998138c0744675657115e75a08d1c8b07a29f6fe"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-05-xc6",
+        "section": "중2::3. 방정식::해가 특수한 연립방정식",
+        "term": "해가 무수히 많다는 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "해가 무수히 많다는 것은 한 식의 해가 {모두} 다른 식의 {해}도 된다는 뜻이다.",
+        "studentC": "해가 무수히 많다는 것은 한 식의 해가 □ 다른 식의 □도 된다는 뜻이다.",
+        "answers": [
+          "모두",
+          "해"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-05-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "한 식의 해가 모두 다른 식의 해가 된다는 이유는 c2의 B 모범답에 들어 있다.",
+        "learningRole": "definition",
+        "roleReason": "해가 무수히 많은 상황의 의미",
+        "cDecision": "keep",
+        "cReason": "'모두'·'해' 빈칸으로 무수히 많은 해의 구조를 짧게 묻는다.",
+        "exclusionReason": "B 제외: 해가 무수히 많은 이유를 묻는 B 형식이 c2와 중복된다.",
+        "coreAfter": "미지수가 $2$개인 두 일차방정식으로 된 연립방정식의 해가 무수히 많다는 것은, 한 식의 해가 {모두} 다른 식의 {해}도 되어 한 식의 해 전체가 연립방정식의 해가 된다는 뜻이다.",
+        "coreReason": "'무수히 많다'의 뜻 자체가 아니라 두 일차방정식에서 성립하는 성질이므로 범위를 밝혔다.",
+        "authorBatch": 35,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2542,
+        "part": "m2plus",
+        "sourceFingerprint": "118c811e8f5cf9e80edc9565630fd0ab730a6746b436190a57cd513041d6dd0a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2542
+        },
+        "directReview": null,
+        "coreBeforeRepair": "미지수가 $2$개인 두 일차방정식으로 된 연립방정식에서 해가 무수히 많은 것은, 한 식의 해가 모두 다른 식의 해도 되어 한 식의 해 전체가 연립방정식의 해가 될 때이다.",
+        "coreRepairReason": "범위를 밝힌 교정 내용은 유지했다. 정의 문항이므로 '~라는 뜻이다' 꼴로 되돌리고, 빠졌던 원본 핵심어 {모두}, {해}를 표시했다.",
+        "coreRepairEvidence": "core-repair/core-003",
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "해가 무수히 많다는 것은 한 식의 해가 □ 다른 식의 □도 된다는 뜻이다.",
+        "cFrozenDefinition": "해가 무수히 많다는 것은 한 식의 해가 {모두} 다른 식의 {해}도 된다는 뜻이다.",
+        "cFrozenAnswers": [
+          "모두",
+          "해"
+        ],
+        "cMarkedSentence": "해가 무수히 많다는 것은 한 식의 해가 {모두} 다른 식의 {해}도 된다는 뜻이다.",
+        "cSlotAnswers": [
+          "모두",
+          "해"
+        ],
+        "cStudentSentence": "해가 무수히 많다는 것은 한 식의 해가 □ 다른 식의 □도 된다는 뜻이다.",
+        "cAnswers": [
+          "모두",
+          "해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모두",
+            "equivalentAnswers": [
+              "모두"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "해",
+            "equivalentAnswers": [
+              "해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모두"
+          ],
+          [
+            "해"
+          ]
+        ],
+        "proposalFingerprint": "fe7851308391e11b13a1819d0199fcc3f0366c8cd402df3898e56259f8f7a9ed"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-05-xc10",
+        "section": "중2::3. 방정식::해가 특수한 연립방정식",
+        "term": "계수를 맞춰 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 식에 수를 곱해 $x$의 계수를 맞춘 뒤 $y$의 계수와 {상수항}을 {견준다}.",
+        "example": {
+          "prompt": "$x+2y=3$, $3x+6y=9$의 해의 개수",
+          "answer": "무수히 많다"
+        },
+        "studentC": "한 식에 수를 곱해 $x$의 계수를 맞춘 뒤 $y$의 계수와 □을 □.",
+        "answers": [
+          "상수항",
+          "견준다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-05-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "연립방정식 $x+2y=3$, $3x+6y=9$의 해의 개수를 판별하려고 한다. 한 식에 수를 곱해 $x$의 계수를 맞춘 뒤 무엇과 무엇을 비교하는지 쓰고, 해의 개수를 판단하시오.",
+        "bAnswer": "첫째 식에 $3$을 곱하면 $3x+6y=9$이다. $y$의 계수와 상수항을 비교하면 둘 다 같으므로 두 식은 같은 식이고, 해가 무수히 많다.",
+        "bGoal": "계수를 맞춰 비교하는 판별 절차",
+        "bReason": "맞춘 뒤 무엇을 비교하는지가 핵심이라 구체적인 식으로 절차를 밟게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "첫째 식에 $3$을 곱해 $x$의 계수를 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$의 계수와 상수항을 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해가 무수히 많다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "roleReason": "계수를 맞춘 뒤 비교하기",
+        "cDecision": "keep",
+        "cReason": "비교 대상인 '상수항'을 묻는 빈칸이 핵심이고, '견준다'는 동의어를 허용하면 된다.",
+        "exampleNeeded": true,
+        "authorBatch": 35,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2546,
+        "part": "m2plus",
+        "sourceFingerprint": "fef43d7634db122620699dbb690a49f65134d1f924b1385784005a4f5309d163",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2546
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 식에 수를 곱해 $x$의 계수를 맞춘 뒤 $y$의 계수와 □을 □.",
+        "cFrozenDefinition": "한 식에 수를 곱해 $x$의 계수를 맞춘 뒤 $y$의 계수와 {상수항}을 {견준다}.",
+        "cFrozenAnswers": [
+          "상수항",
+          "견준다"
+        ],
+        "cMarkedSentence": "한 식에 수를 곱해 $x$의 계수를 맞춘 뒤 $y$의 계수와 {상수항}을 {견준다}.",
+        "cSlotAnswers": [
+          "상수항",
+          "견준다"
+        ],
+        "cStudentSentence": "한 식에 수를 곱해 $x$의 계수를 맞춘 뒤 $y$의 계수와 □을 □.",
+        "cAnswers": [
+          "상수항",
+          "견준다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상수항",
+            "equivalentAnswers": [
+              "상수항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "견준다",
+            "equivalentAnswers": [
+              "견준다",
+              "비교한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "견준다",
+            "accept": [
+              "비교한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상수항"
+          ],
+          [
+            "견준다",
+            "비교한다"
+          ]
+        ],
+        "proposalFingerprint": "d5f4e6f5dab06775f9d8c676c05ad3f990103ed935b1ff0c28c4bea9ae34b350"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-05-xc20",
+        "section": "중2::3. 방정식::해가 특수한 연립방정식",
+        "term": "계수의 비가 다를 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$x$의 계수의 비와 $y$의 계수의 비가 {다르면} 해는 반드시 {한 쌍}이다.",
+        "example": {
+          "prompt": "$2x+y=3$, $x+y=1$의 해의 개수",
+          "answer": "한 쌍"
+        },
+        "studentC": "$x$의 계수의 비와 $y$의 계수의 비가 □ 해는 반드시 □이다.",
+        "answers": [
+          "다르면",
+          "한 쌍"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-05-xc20",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "계수의 비가 다르면 해가 한 쌍이라는 내용은 xc22의 B가 조건까지 포함해 묻는다.",
+        "learningRole": "reason",
+        "roleReason": "계수의 비가 다르면 해가 한 쌍",
+        "cDecision": "rewrite",
+        "cAfter": "$x$의 계수의 비와 $y$의 계수의 비가 다르면 해는 반드시 {한 쌍}이다.",
+        "cAnswers": [
+          "한 쌍"
+        ],
+        "cReason": "조건 '다르면'과 결론이 모두 빈칸이라 무엇을 비교한 결과인지 알 수 없어서, 조건을 보이고 결론만 묻게 했다.",
+        "exclusionReason": "B 제외: 해가 한 쌍일 계수 조건을 묻는 B 형식이 xc22와 중복된다.",
+        "authorBatch": 35,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2554,
+        "part": "m2plus",
+        "sourceFingerprint": "68cc3e74e6738ba59f3aed4e48de7695df222d6d59228e9ba25c8dd583a8e52b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2554
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$x$의 계수의 비와 $y$의 계수의 비가 다르면 해는 반드시 {한 쌍}이다.",
+        "cSlotAnswers": [
+          "한 쌍"
+        ],
+        "cStudentSentence": "$x$의 계수의 비와 $y$의 계수의 비가 다르면 해는 반드시 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 쌍",
+            "equivalentAnswers": [
+              "한 쌍"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한 쌍"
+          ]
+        ],
+        "proposalFingerprint": "8a13712b34f4d3d6fd8409f522766df2ae9c9842535858d95c581b99cfd4ccaa"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-06-xc8",
+        "section": "중2::3. 방정식::연립방정식의 활용(수, 평균, 나이)",
+        "term": "답이 될 수 있는 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사람 수는 {$0$ 이상의 정수}여야 하고, 두 자리 수의 각 자리 숫자는 $0$부터 $9$까지의 {정수}여야 한다. 나이는 문제에서 정한 범위에 맞아야 한다.",
+        "studentC": "사람 수는 □여야 하고, 두 자리 수의 각 자리 숫자는 $0$부터 $9$까지의 □여야 한다. 나이는 문제에서 정한 범위에 맞아야 한다.",
+        "answers": [
+          "$0$ 이상의 정수",
+          "정수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-06-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "연립방정식을 풀어 어떤 모임의 사람 수 $x$를 구했더니 한 문제에서는 $x=4.5$, 다른 문제에서는 $x=-2$가 나왔다. 두 값을 사람 수의 답으로 쓸 수 없는 까닭을 각각 쓰시오.",
+        "bAnswer": "사람 수는 $0$ 이상의 정수여야 한다. $4.5$는 정수가 아니고, $-2$는 음수이므로 답이 될 수 없다.",
+        "bGoal": "사람 수가 될 수 있는 수 판단",
+        "bReason": "자리 숫자 범위는 xc24가 맡으므로 사람 수만 구체 값으로 물었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4.5$는 정수가 아니다",
+              "사람 수는 분수나 소수가 될 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-2$는 음수이다",
+              "사람 수는 음수가 될 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "사람 수와 자리 숫자의 조건을 짧게 대비한다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "문제 뜻에 맞는 해의 조건",
+        "authorBatch": 36,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2566,
+        "part": "m2plus",
+        "sourceFingerprint": "b1d07b94212f7b71492c90947b15169eeafb96814de88c3c849ab84bfea0b50a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2566
+        },
+        "directReview": null,
+        "cFrozenSentence": "사람 수는 □여야 하고, 두 자리 수의 각 자리 숫자는 $0$부터 $9$까지의 □여야 한다. 나이는 문제에서 정한 범위에 맞아야 한다.",
+        "cFrozenDefinition": "사람 수는 {$0$ 이상의 정수}여야 하고, 두 자리 수의 각 자리 숫자는 $0$부터 $9$까지의 {정수}여야 한다. 나이는 문제에서 정한 범위에 맞아야 한다.",
+        "cFrozenAnswers": [
+          "$0$ 이상의 정수",
+          "정수"
+        ],
+        "cMarkedSentence": "사람 수는 {$0$ 이상의 정수}여야 하고, 두 자리 수의 각 자리 숫자는 $0$부터 $9$까지의 {정수}여야 한다. 나이는 문제에서 정한 범위에 맞아야 한다.",
+        "cSlotAnswers": [
+          "$0$ 이상의 정수",
+          "정수"
+        ],
+        "cStudentSentence": "사람 수는 □여야 하고, 두 자리 수의 각 자리 숫자는 $0$부터 $9$까지의 □여야 한다. 나이는 문제에서 정한 범위에 맞아야 한다.",
+        "cAnswers": [
+          "$0$ 이상의 정수",
+          "정수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$ 이상의 정수",
+            "equivalentAnswers": [
+              "$0$ 이상의 정수",
+              "음이 아닌 정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$0$ 이상의 정수",
+            "accept": [
+              "음이 아닌 정수"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$0$ 이상의 정수",
+            "음이 아닌 정수"
+          ],
+          [
+            "정수"
+          ]
+        ],
+        "proposalFingerprint": "1e30c211657fc255644739e38c95f6051793c7c02d636422fd817ccd7aa9f536"
+      }
+    }
+  ]
+}

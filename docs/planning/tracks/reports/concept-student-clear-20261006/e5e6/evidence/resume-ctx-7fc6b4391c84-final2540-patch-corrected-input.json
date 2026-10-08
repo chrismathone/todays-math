@@ -1,0 +1,1397 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-5-4-xc16",
+      "bDecision": "revise",
+      "bPrompt": "원의 넓이를 알 때 반지름을 구하는 방법을 설명하세요. 원주율이 $3.14$이고 넓이가 $78.5\\,\\mathrm{cm^2}$인 원의 반지름도 구하세요.",
+      "bAnswer": "넓이를 원주율로 나누면 (반지름)$\\times$(반지름)이 되고, 같은 수를 두 번 곱해 그 값이 되는 수가 반지름입니다. $78.5\\div3.14=25$이고 $5\\times5=25$이므로 $5\\,\\mathrm{cm}$입니다.",
+      "bGoal": "넓이 공식을 거꾸로 이용해 반지름을 구한다.",
+      "bReason": "역방향 풀이 과정을 설명하게 한다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이를 원주율로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 수를 두 번 곱해 그 값이 되는 수를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\,\\mathrm{cm}$",
+            "$5$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "원주율 $3.14$로 계산한 원의 넓이가 $78.5\\,\\mathrm{cm} ^2$이다. $78.5$를 $3.14$로 나누면 $25$이므로, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 {$5$} $\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cReason": "넓이와 반지름의 단위를 문항에 명시하여 이유 없이 cm 대체답을 요구하지 않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "496e8b45569443546b1f77c9d66ad1d1abcf3b6dcac5ffc4047f0c4668ce4129",
+      "sourceIndex": 2540,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc16",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "넓이로 반지름 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "넓이를 원주율로 나누면 {(반지름)$\\times$(반지름)}이 되어, 같은 수를 두 번 곱해 그 값이 되는 수가 반지름이다.",
+        "studentC": "넓이를 원주율로 나누면 □이 되어, 같은 수를 두 번 곱해 그 값이 되는 수가 반지름이다.",
+        "answers": [
+          "(반지름)$\\times$(반지름)"
+        ]
+      },
+      "sourceFingerprint": "ba66f60ddb9eb7ef1d107af032962d2081a28a86c24970ceb5b933ef012ba1e3",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$5$"
+      ],
+      "cStudentAfter": "원주율 $3.14$로 계산한 원의 넓이가 $78.5\\,\\mathrm{cm} ^2$이다. $78.5$를 $3.14$로 나누면 $25$이므로, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "원주율 $3.14$로 계산한 원의 넓이가 $78.5\\,\\mathrm{cm} ^2$이다. $78.5$를 $3.14$로 나누면 $25$이므로, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 {$5$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "원주율 $3.14$로 계산한 원의 넓이가 $78.5\\,\\mathrm{cm} ^2$이다. $78.5$를 $3.14$로 나누면 $25$이므로, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 넓이를 알 때 반지름을 구하는 방법을 설명하세요. 원주율이 $3.14$이고 넓이가 $78.5\\,\\mathrm{cm^2}$인 원의 반지름도 구하세요.",
+        "answer": "넓이를 원주율로 나누면 (반지름)$\\times$(반지름)이 되고, 같은 수를 두 번 곱해 그 값이 되는 수가 반지름입니다. $78.5\\div3.14=25$이고 $5\\times5=25$이므로 $5\\,\\mathrm{cm}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이를 원주율로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 수를 두 번 곱해 그 값이 되는 수를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$",
+              "$5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주율 $3.14$로 계산한 원의 넓이가 $78.5\\,\\mathrm{cm} ^2$이다. $78.5$를 $3.14$로 나누면 $25$이므로, 반지름은 같은 수를 두 번 곱해 $25$가 되는 수인 {$5$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "137b639f832d469b630356f5bbd287ee36ff7a904c2f38d0c0f806c292b01f76",
+      "questionRevision": "planning-e5e6-20261006-137b639f832d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc18",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "조각을 잘게 할수록 직사각형에 가까워짐을 안다.",
+      "bReason": "c3의 직사각형 질문에 포함되고 그림 없이 한 낱말만 묻게 된다.",
+      "learningRole": "naming",
+      "bRequiredIdeas": [],
+      "cDecision": "keep",
+      "cAfter": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+      "cReason": "원 중심에서 자른 조각을 번갈아 이어 붙이는 배치를 보여 주는 예시 그림이 필요하다. 직사각형에 가까워진다는 명확한 목표의 C는 유지한다.",
+      "exclusionReason": "B는 c3과 중복이다. 대체 ID: e6-2-5-4-c3",
+      "exampleNeeded": true,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "cbdcc855c47098da2ccd65304eb8258305d16f9b363a6c30c9e38518922c8f14",
+      "sourceIndex": 2541,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc18",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "잘게 자를수록 가까워지는 모양",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+        "studentC": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 □에 가까워진다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "21a6cd211fdc60bf46a92b89c9120ea7a066d235cbd460a9f7665466ac6e4c5f",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+      "cFrozenStudentSentence": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 □에 가까워진다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 □에 가까워진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+      "cStudentSentence": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 □에 가까워진다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원을 중심에서 똑같이 나눈 조각을 위아래로 번갈아 이어 붙이면, 조각을 더 잘게 나눌수록 {직사각형}에 가까워진다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c3과 중복이다. 대체 ID: e6-2-5-4-c3"
+      },
+      "proposalFingerprint": "cbdcc855c47098da2ccd65304eb8258305d16f9b363a6c30c9e38518922c8f14",
+      "questionRevision": "planning-e5e6-20261006-cbdcc855c470",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc19",
+      "bDecision": "revise",
+      "bPrompt": "중심이 같은 큰 원 안에서 작은 원을 빼낸 고리 모양이 있습니다. 이 고리 모양의 넓이는 어떻게 구하나요? 큰 원의 반지름이 $5\\,\\mathrm{cm}$, 작은 원의 반지름이 $3\\,\\mathrm{cm}$일 때 원주율 $3.14$로 넓이도 구하세요.",
+      "bAnswer": "큰 원의 넓이에서 작은 원의 넓이를 뺍니다. $3.14\\times5\\times5-3.14\\times3\\times3=78.5-28.26=50.24\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "고리 모양 넓이를 두 원의 넓이의 차로 구한다.",
+      "bReason": "글로 모양을 설명할 수 있어 그림 없이 방법과 값을 묻는다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 원의 넓이에서 작은 원의 넓이를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$50.24\\,\\mathrm{cm^2}$",
+            "$50.24$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) {$-$} (작은 원의 넓이)로 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$-$",
+            "$-$",
+            "빼기"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 계산 기호 한 칸으로 줄이고 모양 조건을 글로 밝혔다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "87f781a961d26510ab531e700ec75a094b5412d689fcce1909b068d2ac8d8696",
+      "sourceIndex": 2542,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc19",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "고리 모양의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "고리 모양의 넓이는 큰 원의 넓이에서 {작은 원의 넓이를 뺀} 값이다.",
+        "studentC": "고리 모양의 넓이는 큰 원의 넓이에서 □ 값이다.",
+        "answers": [
+          "작은 원의 넓이를 뺀"
+        ]
+      },
+      "sourceFingerprint": "ec29b2eb637638d1a560b9063ea6fd97f703922e920c93cab28811098001980c",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$-$"
+      ],
+      "cStudentAfter": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) □ (작은 원의 넓이)로 구한다.",
+      "cMarkedSentence": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) {$-$} (작은 원의 넓이)로 구한다.",
+      "cStudentSentence": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) □ (작은 원의 넓이)로 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$-$",
+          "equivalents": [
+            "빼기"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "중심이 같은 큰 원 안에서 작은 원을 빼낸 고리 모양이 있습니다. 이 고리 모양의 넓이는 어떻게 구하나요? 큰 원의 반지름이 $5\\,\\mathrm{cm}$, 작은 원의 반지름이 $3\\,\\mathrm{cm}$일 때 원주율 $3.14$로 넓이도 구하세요.",
+        "answer": "큰 원의 넓이에서 작은 원의 넓이를 뺍니다. $3.14\\times5\\times5-3.14\\times3\\times3=78.5-28.26=50.24\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 원의 넓이에서 작은 원의 넓이를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50.24\\,\\mathrm{cm^2}$",
+              "$50.24$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "중심이 같은 큰 원에서 작은 원을 빼낸 고리 모양의 넓이는 (큰 원의 넓이) {$-$} (작은 원의 넓이)로 구한다.",
+        "acceptedAnswers": [
+          [
+            "$-$",
+            "$-$",
+            "빼기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "890662ebb489400055f329d2454d6de84154278ff1befd8632939a803499a0b6",
+      "questionRevision": "planning-e5e6-20261006-890662ebb489",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc21",
+      "bDecision": "revise",
+      "bPrompt": "큰 원의 지름 위에 작은 원 두 개가 한 줄로 꼭 맞게 놓여 있어 두 작은 원의 지름의 합이 큰 원의 지름과 같습니다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 큰가요, 작은가요? 작은 원의 반지름이 $3\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$일 때를 예로 들어 설명하세요.",
+      "bAnswer": "작습니다. 큰 원의 반지름은 $5\\,\\mathrm{cm}$이고 (반지름)$\\times$(반지름)은 $25$인데, 작은 두 원은 $3\\times3+2\\times2=13$이어서 $13<25$입니다.",
+      "bGoal": "지름의 합이 같아도 넓이의 합은 더 작음을 수로 확인한다.",
+      "bReason": "큰 반지름이 5라는 사실만으로 이유를 통과하지 않고 작은 두 제곱의 합과 큰 제곱을 비교하게 한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 두 원의 넓이의 합이 더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "큰 원은 반지름 $5$의 제곱 $25$에 원주율을 곱하고 작은 두 원은 제곱의 합 $9 + 4 = 13$에 같은 원주율을 곱하므로 더 작다",
+            "원주율을 같은 값으로 써서 두 넓이의 합 $13 \\times$원주율과 큰 원 $25 \\times$원주율을 실제로 비교한다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "더 작다",
+            "적다"
+          ]
+        }
+      ],
+      "cReason": "'나란히 꼭 맞으면'의 조건을 분명히 하고 비교만 묻는다.",
+      "exampleNeeded": false,
+      "coreAfter": "작은 두 원의 지름의 합이 큰 원의 지름과 같으면, 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+      "coreReason": "작은 원의 배치 조건이 모호해서 지름의 합 조건을 분명히 한다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "작다라는 원문 비교를 보존한다. 나란히 꼭 맞는다는 모호한 배치 대신 지름 합의 정확한 조건으로 같은 일반 넓이 관계를 설명한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "078a5f6171c58719ee4e10653cb5860f23915bb198df7672849c46073c57abc1",
+      "sourceIndex": 2544,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc21",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "작은 원 둘과 큰 원 하나의 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "큰 원의 지름 위에 작은 두 원이 나란히 꼭 맞으면, 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+        "studentC": "큰 원의 지름 위에 작은 두 원이 나란히 꼭 맞으면, 작은 두 원의 넓이의 합은 큰 원의 넓이보다 □.",
+        "answers": [
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "626342b8ebdc52ebd0b7a7f0e66da79f5a15f26395e7dabc787d26c24d7f5f23",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작다"
+      ],
+      "cStudentAfter": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 □.",
+      "cMarkedSentence": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+      "cStudentSentence": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다",
+            "적다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "큰 원의 지름 위에 작은 원 두 개가 한 줄로 꼭 맞게 놓여 있어 두 작은 원의 지름의 합이 큰 원의 지름과 같습니다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 큰가요, 작은가요? 작은 원의 반지름이 $3\\,\\mathrm{cm}$, $2\\,\\mathrm{cm}$일 때를 예로 들어 설명하세요.",
+        "answer": "작습니다. 큰 원의 반지름은 $5\\,\\mathrm{cm}$이고 (반지름)$\\times$(반지름)은 $25$인데, 작은 두 원은 $3\\times3+2\\times2=13$이어서 $13<25$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "작은 두 원의 넓이의 합이 더 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "큰 원은 반지름 $5$의 제곱 $25$에 원주율을 곱하고 작은 두 원은 제곱의 합 $9 + 4 = 13$에 같은 원주율을 곱하므로 더 작다",
+              "원주율을 같은 값으로 써서 두 넓이의 합 $13 \\times$원주율과 큰 원 $25 \\times$원주율을 실제로 비교한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "큰 원의 지름 위에 작은 두 원이 한 줄로 꼭 맞게 놓여 있다. 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "더 작다",
+            "적다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "da260364b900e9588bdd8e925e8513c5f06484ffd8c062646ef3c3f29264aa3a",
+      "questionRevision": "planning-e5e6-20261006-da260364b900",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc24",
+      "bDecision": "revise",
+      "bPrompt": "원주와 반지름을 알 때 원의 넓이를 구하는 방법을 설명하세요. 반지름이 $3\\,\\mathrm{cm}$이고 원주율 $3.14$로 계산한 원주가 $18.84\\,\\mathrm{cm}$인 원의 넓이도 구하세요.",
+      "bAnswer": "원주와 반지름을 곱한 뒤 $2$로 나눕니다. $18.84\\times3\\div2=28.26\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "(원주의 절반)×(반지름)과 같은 식으로 넓이를 구한다.",
+      "bReason": "18.84가 정확한 원주라는 오해를 막고 지정한 원주율로 계산한 값임을 밝혔다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주와 반지름을 곱한 뒤 $2$로 나눈다",
+            "원주의 절반에 반지름을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$28.26\\,\\mathrm{cm^2}$",
+            "$28.26$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "원의 넓이는 (원주)$\\times$(반지름)을 {$2$}로 나눈 값이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "'반으로 나눈'이라는 긴 구절 대신 나누는 수를 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "cdf182d6977efd3fbe5ea5e39594e3c24e7ed9f700f455093a7993a5685a4587",
+      "sourceIndex": 2546,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc24",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "원주와 반지름으로 넓이 구하기",
+        "kind": "공식",
+        "level": "상",
+        "definition": "원의 넓이는 원주와 반지름을 곱해 {반으로 나눈} 값과 같다.",
+        "studentC": "원의 넓이는 원주와 반지름을 곱해 □ 값과 같다.",
+        "answers": [
+          "반으로 나눈"
+        ]
+      },
+      "sourceFingerprint": "cdf8ebff6e00c2a93a0ff8a12ed9b1cf3a746cdd0146ad6d17666b6da3435f77",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "원의 넓이는 (원주)$\\times$(반지름)을 □로 나눈 값이다.",
+      "cMarkedSentence": "원의 넓이는 (원주)$\\times$(반지름)을 {$2$}로 나눈 값이다.",
+      "cStudentSentence": "원의 넓이는 (원주)$\\times$(반지름)을 □로 나눈 값이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원주와 반지름을 알 때 원의 넓이를 구하는 방법을 설명하세요. 반지름이 $3\\,\\mathrm{cm}$이고 원주율 $3.14$로 계산한 원주가 $18.84\\,\\mathrm{cm}$인 원의 넓이도 구하세요.",
+        "answer": "원주와 반지름을 곱한 뒤 $2$로 나눕니다. $18.84\\times3\\div2=28.26\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주와 반지름을 곱한 뒤 $2$로 나눈다",
+              "원주의 절반에 반지름을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$28.26\\,\\mathrm{cm^2}$",
+              "$28.26$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 넓이는 (원주)$\\times$(반지름)을 {$2$}로 나눈 값이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8c7a5d2d99afb4f2904207a2b3d0545fd8dc7f3feac840fe8a473f2302213942",
+      "questionRevision": "planning-e5e6-20261006-8c7a5d2d99af",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc25",
+      "bDecision": "revise",
+      "bPrompt": "가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 세로 변 양쪽에, 지름이 $6\\,\\mathrm{cm}$인 반원을 바깥쪽에 하나씩 붙인 모양이 있습니다. 이 모양의 넓이를 구하는 방법을 설명하고 원주율 $3.14$로 넓이를 구하세요.",
+      "bAnswer": "직사각형의 넓이에 두 반원을 합친 원 하나의 넓이를 더합니다. $10\\times6+3.14\\times3\\times3=60+28.26=88.26\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "붙인 두 반원을 합쳐 원 하나로 보고 넓이를 구한다.",
+      "bReason": "반원을 바깥쪽에 붙인다는 조건을 B/C에도 넣어 안쪽 겹침을 제외했다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직사각형의 넓이에 원 하나의 넓이를 더한다",
+            "직사각형과 두 반원을 합친 원의 넓이를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$88.26\\,\\mathrm{cm^2}$",
+            "$88.26$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙였다. 두 반원을 합치면 {원} 한 개가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원"
+          ]
+        }
+      ],
+      "cReason": "긴 답 대신 두 반원이 합쳐져 원이 된다는 핵심을 묻는다.",
+      "exampleNeeded": false,
+      "coreAfter": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙인 모양의 넓이는, 직사각형의 넓이에 {원 하나의 넓이}를 더한 값이다.",
+      "coreReason": "반원의 지름이 직사각형의 어느 변인지 분명하지 않아 조건을 보완한다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "원 하나의 넓이라는 원문 표적을 보존한다. 지름으로 정한 두 변과 바깥쪽 부착을 명시하여 내부에 겹친 반원을 포함하지 않게 한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "6d70f25d57e4b4a1c9eb540780b48f519d61a237c222d1fe553ae00de24e12e8",
+      "sourceIndex": 2547,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc25",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "운동장 모양의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형 양쪽에 지름이 같은 반원을 붙인 모양의 넓이는 직사각형의 넓이에 {원 하나의 넓이}를 더한 값이다.",
+        "studentC": "직사각형 양쪽에 지름이 같은 반원을 붙인 모양의 넓이는 직사각형의 넓이에 □를 더한 값이다.",
+        "answers": [
+          "원 하나의 넓이"
+        ]
+      },
+      "sourceFingerprint": "648625387d39f9ff3a17af6f55298299aedad6db7e9f4d1cae419f43f3b4e080",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "원"
+      ],
+      "cStudentAfter": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙였다. 두 반원을 합치면 □ 한 개가 된다.",
+      "cMarkedSentence": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙였다. 두 반원을 합치면 {원} 한 개가 된다.",
+      "cStudentSentence": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙였다. 두 반원을 합치면 □ 한 개가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "원",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 세로 변 양쪽에, 지름이 $6\\,\\mathrm{cm}$인 반원을 바깥쪽에 하나씩 붙인 모양이 있습니다. 이 모양의 넓이를 구하는 방법을 설명하고 원주율 $3.14$로 넓이를 구하세요.",
+        "answer": "직사각형의 넓이에 두 반원을 합친 원 하나의 넓이를 더합니다. $10\\times6+3.14\\times3\\times3=60+28.26=88.26\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형의 넓이에 원 하나의 넓이를 더한다",
+              "직사각형과 두 반원을 합친 원의 넓이를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$88.26\\,\\mathrm{cm^2}$",
+              "$88.26$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙였다. 두 반원을 합치면 {원} 한 개가 된다.",
+        "acceptedAnswers": [
+          [
+            "원"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "629ef64146dc09697c055a1a56c9573f267cf9808496b506caa41ea3bf61c6ba",
+      "questionRevision": "planning-e5e6-20261006-629ef64146dc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc27",
+      "bDecision": "revise",
+      "bPrompt": "원의 넓이가 $4$배가 되려면 반지름은 몇 배가 되어야 하나요? 넓이를 구하는 식을 이용해 까닭을 설명하세요.",
+      "bAnswer": "$2$배가 되어야 합니다. 반지름을 두 번 곱하므로 $2\\times2=4$배가 됩니다.",
+      "bGoal": "넓이 배수에서 반지름 배수를 거꾸로 생각한다.",
+      "bReason": "xc14의 반대 방향으로 두 번 곱한다는 구조를 확인한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "반지름을 두 번 곱하므로 $2\\times2=4$이다",
+            "같은 수를 두 번 곱해 $4$가 되는 수가 $2$이다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "한 원의 넓이가 다른 원의 넓이의 $4$배이면, 한 원의 반지름은 다른 원의 반지름의 {$2$배}이다.",
+      "cReason": "넓이 $4$배일 때 반지름 $2$배라는 명확한 배수 관계다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "0552b206087ffc31ad416ddc965b58e746417a73a83fae5cfd96f080a01bd2d4",
+      "sourceIndex": 2548,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc27",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "넓이가 $4$배인 원의 반지름",
+        "kind": "성질",
+        "level": "상",
+        "definition": "넓이가 $4$배인 원의 반지름은 {$2$배}이다.",
+        "studentC": "넓이가 $4$배인 원의 반지름은 □이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "sourceFingerprint": "6f6da60b9b92daa0c58897e67a4f3d6d07313e6cb68a81738ffe3b40e21f2620",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$배"
+      ],
+      "cStudentAfter": "한 원의 넓이가 다른 원의 넓이의 $4$배이면, 한 원의 반지름은 다른 원의 반지름의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 원의 넓이가 다른 원의 넓이의 $4$배이면, 한 원의 반지름은 다른 원의 반지름의 {$2$배}이다.",
+      "cStudentSentence": "한 원의 넓이가 다른 원의 넓이의 $4$배이면, 한 원의 반지름은 다른 원의 반지름의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 넓이가 $4$배가 되려면 반지름은 몇 배가 되어야 하나요? 넓이를 구하는 식을 이용해 까닭을 설명하세요.",
+        "answer": "$2$배가 되어야 합니다. 반지름을 두 번 곱하므로 $2\\times2=4$배가 됩니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "반지름을 두 번 곱하므로 $2\\times2=4$이다",
+              "같은 수를 두 번 곱해 $4$가 되는 수가 $2$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 원의 넓이가 다른 원의 넓이의 $4$배이면, 한 원의 반지름은 다른 원의 반지름의 {$2$배}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "29845b5a91604bb17d0a9cc34805c4efbb4da3e0e961914d98ac44ac1f9be126",
+      "questionRevision": "planning-e5e6-20261006-29845b5a9160",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc7",
+      "bDecision": "revise",
+      "bPrompt": "원기둥에는 꼭짓점이 있나요? 각기둥의 꼭짓점이 어떻게 생기는지와 비교해 이유를 설명하시오.",
+      "bAnswer": "없다. 각기둥의 꼭짓점은 곧은 모서리끼리 뾰족하게 만나는 점인데, 원기둥은 테두리가 굽은 선(원)이라 뾰족하게 만나는 점이 없다.",
+      "bGoal": "꼭짓점이 생기는 조건으로 원기둥에 꼭짓점이 없는 이유를 설명한다.",
+      "bReason": "꼭짓점 유무만이 아니라 생기는 조건을 비교하는 이유 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭짓점이 없다",
+            "없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "테두리가 굽은 선이라 뾰족하게 만나는 곳이 없다",
+            "곧은 모서리가 만나는 점이 없다",
+            "원이라 뾰족한 곳이 없다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "각기둥에서 세 모서리가 만나는 점을 {꼭짓점}이라고 한다. 원기둥에는 이런 점이 없다.",
+      "cReason": "원기둥에는 없는 것으로 꼭짓점과 모서리 등 다른 답이 가능하던 범위를 각기둥의 모서리가 만나는 점으로 정했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "f5eeb23ddd553dfacec69acefa7a0abc27ab22295e9ddc23bc6280369f0e94b0",
+      "sourceIndex": 2555,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc7",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "원기둥에 없는 점",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥에는 각기둥과 달리 {꼭짓점}이 없다.",
+        "studentC": "원기둥에는 각기둥과 달리 □이 없다.",
+        "answers": [
+          "꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "17248f59c2b1d0bb360be60009da865d248fa401ff1d5509dc6d595d2388910d",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "꼭짓점"
+      ],
+      "cStudentAfter": "각기둥에서 세 모서리가 만나는 점을 □이라고 한다. 원기둥에는 이런 점이 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꼭짓점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥에서 세 모서리가 만나는 점을 {꼭짓점}이라고 한다. 원기둥에는 이런 점이 없다.",
+      "cStudentSentence": "각기둥에서 세 모서리가 만나는 점을 □이라고 한다. 원기둥에는 이런 점이 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "꼭짓점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥에는 꼭짓점이 있나요? 각기둥의 꼭짓점이 어떻게 생기는지와 비교해 이유를 설명하시오.",
+        "answer": "없다. 각기둥의 꼭짓점은 곧은 모서리끼리 뾰족하게 만나는 점인데, 원기둥은 테두리가 굽은 선(원)이라 뾰족하게 만나는 점이 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점이 없다",
+              "없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "테두리가 굽은 선이라 뾰족하게 만나는 곳이 없다",
+              "곧은 모서리가 만나는 점이 없다",
+              "원이라 뾰족한 곳이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥에서 세 모서리가 만나는 점을 {꼭짓점}이라고 한다. 원기둥에는 이런 점이 없다.",
+        "acceptedAnswers": [
+          [
+            "꼭짓점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a1dfe095c1b32e0764fccacfa573525b694d4a777ab3a7667b36cab7bd8dafe8",
+      "questionRevision": "planning-e5e6-20261006-a1dfe095c1b3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "각기둥의 옆면이 직사각형임을 안다.",
+      "bReason": "c5 B가 밑면·옆면 차이를 이미 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "exclusionReason": "B 제외: 각기둥과 원기둥의 옆면 비교는 e6-2-6-1-c5가 대체한다.",
+      "cDecision": "revise",
+      "cAfter": "원기둥의 옆면은 굽은 면이고, 각기둥의 옆면은 {평평한} 면이다.",
+      "cReason": "직사각형이라는 도형 이름과 평면이라는 면 종류를 같은 답으로 묶지 않고 굽은 면과 평평한 면의 차이를 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평평한"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "11cd7d13f6054eac2e4d19b1ce2fb46e0a236f78f84f757f007e5cd46ff9560f",
+      "sourceIndex": 2562,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-1-xc14",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "term": "원기둥과 각기둥의 다른 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 {직사각형}이다.",
+        "studentC": "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 □이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "205e423bb580ba14b0b71ee37026b9317f974c11b3a91869cf73ea496a9f14ee",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "평평한"
+      ],
+      "cStudentAfter": "원기둥의 옆면은 굽은 면이고, 각기둥의 옆면은 □ 면이다.",
+      "cMarkedSentence": "원기둥의 옆면은 굽은 면이고, 각기둥의 옆면은 {평평한} 면이다.",
+      "cStudentSentence": "원기둥의 옆면은 굽은 면이고, 각기둥의 옆면은 □ 면이다.",
+      "cSlotAnswers": [
+        {
+          "key": "평평한",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원기둥의 옆면은 굽은 면이고, 각기둥의 옆면은 {평평한} 면이다.",
+        "acceptedAnswers": [
+          [
+            "평평한"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 각기둥과 원기둥의 옆면 비교는 e6-2-6-1-c5가 대체한다."
+      },
+      "proposalFingerprint": "4757ded1aef3577177a1f5ccf23a8783ed3f33a1df3978d8912bd6ddaa53fac5",
+      "questionRevision": "planning-e5e6-20261006-4757ded1aef3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "원기둥의 전개도에서 두 원은 옆면 직사각형의 어느 두 변에 붙어야 하나요? 그 두 변의 길이는 밑면의 어떤 길이와 같아야 하는지도 쓰세요.",
+      "bAnswer": "밑면 둘레와 길이가 같은, 서로 마주 보는 두 변에 원을 하나씩 붙인다.",
+      "bGoal": "두 밑면이 옆면의 마주 보는 변에 하나씩 붙는 배치를 안다.",
+      "bReason": "아무 마주 보는 두 변을 고르는 것으로 끝내지 않고 밑면 원주와 같은 길이라는 필요한 조건을 질문과 기준에 함께 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 마주 보는 두 변",
+            "맞은편 변",
+            "반대쪽 두 변"
+          ]
+        },
+        {
+          "anyOf": [
+            "하나씩",
+            "변마다 한 개씩",
+            "각 변에 원 하나"
+          ]
+        },
+        {
+          "anyOf": [
+            "원을 붙이는 변의 길이가 밑면의 둘레와 같다",
+            "그 두 변의 길이는 밑면의 원주와 같다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+      "cReason": "원이 옆면의 마주 보는 두 변에 하나씩 붙는다는 배치 조건을 묻는다.",
+      "synonymNotes": "마주 보는, 맞은편, 반대쪽은 같은 뜻으로 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "7b8bfdc984726afa6696fb1373ac80379421864e7c455274e43233e1ad3c3517",
+      "sourceIndex": 2571,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc6",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "두 원이 붙는 자리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원기둥의 전개도에서 두 원은 옆면의 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+        "studentC": "원기둥의 전개도에서 두 원은 옆면의 □ 두 변에 하나씩 붙는다.",
+        "answers": [
+          "서로 마주 보는"
+        ]
+      },
+      "sourceFingerprint": "d1f139ab4cba723e164d1bf5c6489d41a4e79a6d4f14dfd35776fb6954be1ffb",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "서로 마주 보는"
+      ],
+      "cStudentAfter": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 □ 두 변에 하나씩 붙는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "서로 마주 보는"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+      "cStudentSentence": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 □ 두 변에 하나씩 붙는다.",
+      "cSlotAnswers": [
+        {
+          "key": "서로 마주 보는",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥의 전개도에서 두 원은 옆면 직사각형의 어느 두 변에 붙어야 하나요? 그 두 변의 길이는 밑면의 어떤 길이와 같아야 하는지도 쓰세요.",
+        "answer": "밑면 둘레와 길이가 같은, 서로 마주 보는 두 변에 원을 하나씩 붙인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 마주 보는 두 변",
+              "맞은편 변",
+              "반대쪽 두 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "하나씩",
+              "변마다 한 개씩",
+              "각 변에 원 하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "원을 붙이는 변의 길이가 밑면의 둘레와 같다",
+              "그 두 변의 길이는 밑면의 원주와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 전개도에서 두 원은 옆면 직사각형의 변 중 밑면 둘레와 길이가 같고 {서로 마주 보는} 두 변에 하나씩 붙는다.",
+        "acceptedAnswers": [
+          [
+            "서로 마주 보는"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "854597a572664e05078546a2da797d2c56a0f1d0d713041e76158e4aabd1f040",
+      "questionRevision": "planning-e5e6-20261006-854597a57266",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc8",
+      "bDecision": "revise",
+      "bPrompt": "전개도에서 옆면의 두 변에 붙인 두 원의 크기가 서로 다르면 원기둥의 전개도가 될 수 있나요? 까닭도 쓰시오.",
+      "bAnswer": "될 수 없다. 원기둥의 두 밑면은 크기가 같기 때문이다.",
+      "bGoal": "원기둥의 두 밑면은 크기가 같다는 조건으로 전개도를 판별한다.",
+      "bReason": "예/아니오 판단에 근거를 붙여 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "될 수 없다",
+            "아니다",
+            "원기둥의 전개도가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 밑면은 크기가 같다",
+            "두 밑면이 합동이다",
+            "두 밑면은 똑같은 원이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "원기둥의 두 밑면은 크기가 서로 {같다}. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 {아니다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다",
+            "될 수 없다"
+          ]
+        }
+      ],
+      "cReason": "원 크기가 같아야 한다는 이유와 판정 결과를 두 빈칸으로 나누고 동치 표현을 허용한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "4d1b9195d318c73e1348a122c2a180bacd23fdc6a0b64f5235784529868692cf",
+      "sourceIndex": 2573,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc8",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "크기가 다른 두 원",
+        "kind": "성질",
+        "level": "하",
+        "definition": "전개도에 밑면으로 붙인 두 원의 크기가 다르면 원기둥의 전개도가 {아니다}.",
+        "studentC": "전개도에 밑면으로 붙인 두 원의 크기가 다르면 원기둥의 전개도가 □.",
+        "answers": [
+          "아니다"
+        ]
+      },
+      "sourceFingerprint": "c1b9009c68ee2213900220d0b7df448d137bb076be42be6c63f2a4af1c7006d6",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같다",
+        "아니다"
+      ],
+      "cStudentAfter": "원기둥의 두 밑면은 크기가 서로 □. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 □.",
+      "cMarkedSentence": "원기둥의 두 밑면은 크기가 서로 {같다}. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 {아니다}.",
+      "cStudentSentence": "원기둥의 두 밑면은 크기가 서로 □. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        },
+        {
+          "key": "아니다",
+          "equivalents": [
+            "될 수 없다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전개도에서 옆면의 두 변에 붙인 두 원의 크기가 서로 다르면 원기둥의 전개도가 될 수 있나요? 까닭도 쓰시오.",
+        "answer": "될 수 없다. 원기둥의 두 밑면은 크기가 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "될 수 없다",
+              "아니다",
+              "원기둥의 전개도가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑면은 크기가 같다",
+              "두 밑면이 합동이다",
+              "두 밑면은 똑같은 원이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 두 밑면은 크기가 서로 {같다}. 그래서 전개도에서 두 원의 크기가 다르면 원기둥의 전개도가 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다"
+          ],
+          [
+            "아니다",
+            "될 수 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4b44ae06b4d11b09bda0d32ca99cc67638a5147ccc7778de2de508858f715502",
+      "questionRevision": "planning-e5e6-20261006-4b44ae06b4d1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc14",
+      "bDecision": "revise",
+      "bPrompt": "전개도에서 두 원을 옆면 직사각형의 같은 변에 붙이면 접었을 때 원기둥이 되지 않습니다. 접으면 어떤 모양이 되는지 설명하시오.",
+      "bAnswer": "두 밑면이 같은 쪽에 겹치고 반대쪽은 뚫려 있어 원기둥이 되지 않는다.",
+      "bGoal": "원이 마주 보는 변에 붙지 않으면 왜 틀린 전개도인지 접는 상상으로 설명한다.",
+      "bReason": "xc6의 위치 규칙을 반대로 확인해 접었을 때의 결과를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 원이 한쪽에서 겹친다",
+            "밑면이 겹친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "반대쪽이 뚫려 있다",
+            "한쪽 끝은 막히지 않는다",
+            "반대쪽에 밑면이 없다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "밑면이 겹친다는 이유와 반대쪽 밑면이 없다는 이유가 모두 맞지만 서로 같은 뜻은 아니다. 한 빈칸으로 하나만 강요하지 않고 두 결과를 설명하는 B를 유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "exclusionReason": "C는 서로 다른 두 올바른 이유를 한 구절 답으로 제한하여 제외한다.",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "abd4a381eb44b8289a9f951ef0080e0f25ab3f856d6a47236447be64bf778497",
+      "sourceIndex": 2575,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc14",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "두 원이 같은 쪽에 있으면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 {밑면이 겹쳐} 원기둥이 되지 않는다.",
+        "studentC": "두 원이 옆면의 같은 변에 붙어 있으면 접었을 때 □ 원기둥이 되지 않는다.",
+        "answers": [
+          "밑면이 겹쳐"
+        ]
+      },
+      "sourceFingerprint": "ac3a44005e44187af20ea0bd2530fcfc8feed40bc1d3cfe68d639dd96d8d8170",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "전개도에서 두 원을 옆면 직사각형의 같은 변에 붙이면 접었을 때 원기둥이 되지 않습니다. 접으면 어떤 모양이 되는지 설명하시오.",
+        "answer": "두 밑면이 같은 쪽에 겹치고 반대쪽은 뚫려 있어 원기둥이 되지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 원이 한쪽에서 겹친다",
+              "밑면이 겹친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반대쪽이 뚫려 있다",
+              "한쪽 끝은 막히지 않는다",
+              "반대쪽에 밑면이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 서로 다른 두 올바른 이유를 한 구절 답으로 제한하여 제외한다."
+      },
+      "proposalFingerprint": "2da81fe79d1affb56f2ab211a71e15d8b4c788b060f6715f065fa79ede45383b",
+      "questionRevision": "planning-e5e6-20261006-2da81fe79d1a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc24",
+      "bDecision": "revise",
+      "bPrompt": "가로가 $12\\,\\mathrm{cm}$, 세로가 $5\\,\\mathrm{cm}$인 직사각형을 원기둥의 옆면으로 씁니다. 가로를 밑면 둘레로 할 때와 세로를 밑면 둘레로 할 때 만들어지는 원기둥은 같은가요? 높이는 각각 얼마인가요?",
+      "bAnswer": "서로 다른 원기둥이다. 가로를 밑면 둘레로 하면 높이는 $5\\,\\mathrm{cm}$, 세로를 밑면 둘레로 하면 높이는 $12\\,\\mathrm{cm}$이다.",
+      "bGoal": "같은 직사각형도 밑면 둘레로 쓰는 변에 따라 다른 원기둥이 됨을 안다.",
+      "bReason": "두 높이를 순서 없이 나열한 답이 서로 반대 대응도 통과하지 않도록 두 경우와 높이를 각각 연결했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다르다",
+            "서로 다른 원기둥이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\,\\mathrm{cm}$ 변을 밑면 둘레로 쓰면 높이는 $5\\,\\mathrm{cm}$이다",
+            "가로를 밑면 둘레로 쓰면 높이는 $5\\,\\mathrm{cm}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\,\\mathrm{cm}$ 변을 밑면 둘레로 쓰면 높이는 $12\\,\\mathrm{cm}$이다",
+            "세로를 밑면 둘레로 쓰면 높이는 $12\\,\\mathrm{cm}$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+      "cReason": "어느 변을 밑면 둘레로 쓰느냐에 따라 원기둥이 달라진다는 핵심을 짧게 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "b5e9d0421c2cd8368e0917ba7250606e632bb3822660bf92ba6b79b4b8f8d3f9",
+      "sourceIndex": 2578,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc24",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "가로와 세로를 바꾸어 만든 원기둥",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+        "studentC": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 □이 만들어진다.",
+        "answers": [
+          "다른 원기둥"
+        ]
+      },
+      "sourceFingerprint": "1dba0b1f79f99ef91fa5cff75118f799519c5bc51941c27e9409c15521912e4b",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+      "cFrozenStudentSentence": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 □이 만들어진다.",
+      "cProposedAnswers": [
+        "다른 원기둥"
+      ],
+      "cStudentAfter": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 □이 만들어진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다른 원기둥"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+      "cStudentSentence": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 □이 만들어진다.",
+      "cSlotAnswers": [
+        {
+          "key": "다른 원기둥",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로가 $12\\,\\mathrm{cm}$, 세로가 $5\\,\\mathrm{cm}$인 직사각형을 원기둥의 옆면으로 씁니다. 가로를 밑면 둘레로 할 때와 세로를 밑면 둘레로 할 때 만들어지는 원기둥은 같은가요? 높이는 각각 얼마인가요?",
+        "answer": "서로 다른 원기둥이다. 가로를 밑면 둘레로 하면 높이는 $5\\,\\mathrm{cm}$, 세로를 밑면 둘레로 하면 높이는 $12\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "다르다",
+              "서로 다른 원기둥이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\,\\mathrm{cm}$ 변을 밑면 둘레로 쓰면 높이는 $5\\,\\mathrm{cm}$이다",
+              "가로를 밑면 둘레로 쓰면 높이는 $5\\,\\mathrm{cm}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$ 변을 밑면 둘레로 쓰면 높이는 $12\\,\\mathrm{cm}$이다",
+              "세로를 밑면 둘레로 쓰면 높이는 $12\\,\\mathrm{cm}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로와 세로가 다른 직사각형 옆면은 어느 변을 밑면 둘레로 쓰느냐에 따라 {다른 원기둥}이 만들어진다.",
+        "acceptedAnswers": [
+          [
+            "다른 원기둥"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8a64fec1a6f99ca8f8c296ac6e1ac50b65fa2aa8fa57f368aaec28a3b95ff335",
+      "questionRevision": "planning-e5e6-20261006-8a64fec1a6f9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-xc25",
+      "bDecision": "revise",
+      "bPrompt": "원기둥의 전개도에서 옆면 직사각형의 밑면과 맞닿는 변은, 밑면의 지름에 어떤 수를 곱한 길이인가요? 그 까닭도 쓰세요.",
+      "bAnswer": "원주율을 곱한다. 그 변의 길이는 밑면의 둘레(원주)와 같고, 원주는 지름 $\\times$ 원주율이기 때문이다.",
+      "bGoal": "옆면 변 길이, 밑면 둘레, 지름, 원주율의 관계를 연결한다.",
+      "bReason": "곡면에 곧은 변이 있다고 오해하지 않도록 전개도의 옆면 직사각형이라는 대상을 B/C 모두에 밝혔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주율",
+            "원주율을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 변이 밑면의 둘레와 같다",
+            "변의 길이가 원주와 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "원기둥의 전개도에서 옆면 직사각형의 밑면과 맞닿는 변의 길이는 밑면 지름의 {원주율}배이다.",
+      "cReason": "변 길이가 지름의 원주율배라는 연결을 한 칸으로 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2540-patch.json",
+      "codexFinalAmendedFromFingerprint": "ff24ddf8954bf25f61cbc7c2e471c55302be0f79bd194463b1eae93074439a26",
+      "sourceIndex": 2579,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc25",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "옆면의 밑면과 맞닿는 변과 밑면 지름",
+        "kind": "성질",
+        "level": "상",
+        "definition": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 {원주율}배이다.",
+        "studentC": "옆면에서 밑면과 맞닿는 변의 길이는 밑면 지름의 □배이다.",
+        "answers": [
+          "원주율"
+        ]
+      },
+      "sourceFingerprint": "d2816ce1abc15051722f41708b80b99f0981021ac392385820f64901bd982d8d",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "원주율"
+      ],
+      "cStudentAfter": "원기둥의 전개도에서 옆면 직사각형의 밑면과 맞닿는 변의 길이는 밑면 지름의 □배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원주율"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥의 전개도에서 옆면 직사각형의 밑면과 맞닿는 변의 길이는 밑면 지름의 {원주율}배이다.",
+      "cStudentSentence": "원기둥의 전개도에서 옆면 직사각형의 밑면과 맞닿는 변의 길이는 밑면 지름의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원주율",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥의 전개도에서 옆면 직사각형의 밑면과 맞닿는 변은, 밑면의 지름에 어떤 수를 곱한 길이인가요? 그 까닭도 쓰세요.",
+        "answer": "원주율을 곱한다. 그 변의 길이는 밑면의 둘레(원주)와 같고, 원주는 지름 $\\times$ 원주율이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주율",
+              "원주율을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 변이 밑면의 둘레와 같다",
+              "변의 길이가 원주와 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 전개도에서 옆면 직사각형의 밑면과 맞닿는 변의 길이는 밑면 지름의 {원주율}배이다.",
+        "acceptedAnswers": [
+          [
+            "원주율"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "56ac0981d1a9947a5b7d85f07aa022cfe6526d1a1e8781b8bea8a75cb96dbd46",
+      "questionRevision": "planning-e5e6-20261006-56ac0981d1a9",
+      "requiresIndependentReview": true
+    }
+  ]
+}

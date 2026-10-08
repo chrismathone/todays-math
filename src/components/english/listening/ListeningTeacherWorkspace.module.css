@@ -1,41 +1,44 @@
 .workspace {
   color: var(--ink);
-  background: var(--surface);
-  padding: 28px 32px;
+  padding: 0;
   font-size: var(--text-body);
   line-height: 1.6;
   min-width: 0;
   overflow-wrap: anywhere;
+  container: listening-workspace / inline-size;
+}
+.standalone {
+  padding: var(--workspace-page-padding, 16px 20px);
+}
+.embedded {
+  padding: 0;
 }
 
-.workspace h1,
 .workspace h2,
 .workspace h3,
-.workspace p {
+.workspace :where(p) {
   margin: 0;
-}
-.workspace h1 {
-  font-size: var(--text-title);
-  font-weight: 700;
 }
 .workspace h2 {
   font-size: var(--text-section);
   font-weight: 700;
 }
 .workspace h3 {
-  font-size: 16px;
-  font-weight: 700;
+  font-size: var(--text-body);
+  font-weight: 650;
 }
 .workspace button {
-  min-height: 42px;
+  min-height: var(--control-height, 44px);
+  max-width: 100%;
   padding: 9px 14px;
   border: 1px solid var(--control);
   border-radius: var(--control-radius);
   background: var(--surface);
   color: var(--ink);
   font: inherit;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: var(--text-body);
+  font-weight: 600;
+  overflow-wrap: anywhere;
 }
 .workspace button:enabled {
   cursor: pointer;
@@ -52,8 +55,9 @@
 .workspace input:focus-visible,
 .workspace textarea:focus-visible,
 .workspace select:focus-visible,
-.workspace summary:focus-visible {
-  outline: 2px solid var(--blue);
+.workspace summary:focus-visible,
+.workspace [tabindex]:focus-visible {
+  outline: 3px solid var(--learn-focus);
   outline-offset: 3px;
 }
 .workspace button.primary {
@@ -74,30 +78,25 @@
   border-color: var(--blue);
   background: var(--learn-soft);
 }
-.heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding-bottom: 22px;
-  margin-bottom: 24px;
-  border-bottom: 1px solid var(--divider);
-}
 .eyebrow {
   color: var(--text-2);
   font-size: var(--text-caption);
-  font-weight: 700;
+  font-weight: 400;
 }
 .muted {
   color: var(--text-2);
 }
-.heading .muted {
-  margin-top: 5px;
+.count {
+  color: var(--text-2);
+  font-size: var(--text-caption);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
 }
 .split {
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
-  gap: 28px;
+  grid-template-columns: minmax(220px, 0.65fr) minmax(0, 1.5fr);
+  align-items: start;
+  gap: 24px;
 }
 .catalog,
 .pane {
@@ -106,23 +105,36 @@
 .materials {
   list-style: none;
   padding: 0;
-  margin: 14px 0 0;
-  border-top: 2px solid var(--ink);
+  margin: 16px 0 0;
+  border: 1px solid var(--divider);
+  border-radius: var(--card-radius, 12px);
+  background: var(--surface);
+}
+.materials[tabindex] {
+  max-height: min(60vh, 40rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 }
 .materials li {
   border-bottom: 1px solid var(--divider);
+}
+.materials li:last-child {
+  border-bottom: 0;
 }
 .workspace button.material {
   display: block;
   width: 100%;
   text-align: left;
-  border: 0;
-  border-left: 3px solid transparent;
+  border: 1px solid transparent;
   border-radius: 0;
-  padding: 14px 12px;
+  padding: 16px;
 }
 .workspace button.material[aria-pressed="true"] {
-  border-left-color: var(--blue);
+  border-color: var(--blue);
+}
+.workspace button.material:focus-visible {
+  outline-offset: -3px;
 }
 .material strong,
 .material span {
@@ -135,17 +147,20 @@
 }
 .pane {
   border: 1px solid var(--divider);
-  padding: 22px;
+  border-radius: var(--card-radius, 12px);
+  background: var(--surface);
+  padding: 24px;
+  container: listening-detail / inline-size;
 }
 .documentHeading h2 {
-  margin: 4px 0 6px;
-  font-size: 23px;
+  margin: 0 0 8px;
+  font-size: var(--text-section);
 }
 .metadata {
   display: grid;
   grid-template-columns: 76px minmax(0, 1fr);
   gap: 12px;
-  margin: 18px 0;
+  margin: 16px 0;
 }
 .metadata dt {
   font-weight: 700;
@@ -161,7 +176,7 @@
   flex-wrap: wrap;
 }
 .actions {
-  margin-top: 20px;
+  margin-top: 16px;
 }
 .player {
   padding: 20px;
@@ -273,17 +288,21 @@
 
 .studio {
   min-width: 0;
-  background: var(--surface);
 }
-.studio > .workspace + .workspace {
-  padding-top: 0;
+.studio > .workspace {
+  padding: 0;
+}
+.areaTabs {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--divider);
 }
 .studio [hidden] {
   display: none;
 }
 .editor {
   display: grid;
-  gap: 20px;
+  gap: 24px;
   min-width: 0;
 }
 .editor label:not(.check),
@@ -331,8 +350,10 @@
   gap: 16px;
   min-width: 0;
   margin: 0;
-  padding: 20px;
+  padding: 24px;
   border: 1px solid var(--divider);
+  border-radius: var(--card-radius, 12px);
+  background: var(--surface);
 }
 .formSection legend,
 .questionFields legend,
@@ -354,7 +375,8 @@
 .targets {
   border: 1px solid var(--divider);
   margin: 0;
-  padding: 14px;
+  padding: 16px;
+  border-radius: var(--control-radius, 8px);
   min-width: 0;
 }
 .check {
@@ -366,12 +388,12 @@
 }
 .questionFields {
   display: grid;
-  gap: 14px;
+  gap: 16px;
   min-width: 0;
   margin: 12px 0 0;
-  padding: 18px;
-  background: var(--bg);
-  border: 1px solid var(--divider);
+  padding: 16px 0 0;
+  border: 0;
+  border-top: 1px solid var(--divider);
 }
 .choiceFields {
   display: grid;
@@ -387,8 +409,8 @@
 }
 .reviewPanel {
   margin-top: 24px;
-  border-top: 2px solid var(--ink);
-  padding-top: 18px;
+  border-top: 1px solid var(--divider);
+  padding-top: 24px;
   display: grid;
   gap: 16px;
 }
@@ -403,8 +425,10 @@
 }
 .assignmentCreate {
   border: 1px solid var(--divider);
-  margin-bottom: 26px;
-  padding: 18px;
+  border-radius: var(--card-radius, 12px);
+  background: var(--surface);
+  margin-bottom: 24px;
+  padding: 16px;
 }
 .assignmentCreate > summary {
   cursor: pointer;
@@ -415,6 +439,7 @@
   color: var(--blue);
 }
 .tableWrap {
+  max-width: 100%;
   overflow-x: auto;
   margin: 16px 0;
 }
@@ -422,7 +447,7 @@
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-size: 13px;
+  font-size: var(--text-body);
 }
 .results th,
 .results td {
@@ -438,35 +463,25 @@
   margin-left: 14px;
 }
 
-@media (max-width: 850px) {
-  .workspace {
-    padding: 22px 18px;
-  }
+@container listening-workspace (max-width: 850px) {
   .split {
     grid-template-columns: minmax(0, 1fr);
-    gap: 20px;
+    gap: 24px;
   }
-  .materials {
+  .materials,
+  .materials[tabindex] {
     max-height: 220px;
     overflow-y: auto;
   }
   .pane {
     padding: 16px;
   }
-  .heading {
-    align-items: flex-start;
-    flex-wrap: wrap;
-  }
-  .player {
-    padding: 14px;
-  }
   .formGrid {
     grid-template-columns: minmax(0, 1fr);
   }
   .formSection,
-  .questionFields,
   .assignmentCreate {
-    padding: 12px;
+    padding: 16px;
   }
   .interval {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -476,5 +491,24 @@
   }
   .choiceFields {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 850px) {
+  .player {
+    padding: 14px;
+  }
+}
+
+@container listening-detail (max-width: 420px) {
+  .metadata {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+}
+
+@media (max-width: 760px) {
+  .standalone {
+    padding: var(--workspace-page-padding, 14px 16px);
   }
 }

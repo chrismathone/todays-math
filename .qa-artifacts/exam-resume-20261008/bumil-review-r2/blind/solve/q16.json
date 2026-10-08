@@ -1,0 +1,129 @@
+{
+  "studentDigest": "818b8d74b4affcc33f5212e0e16936724f1732080c8ac4819ee3e7a09595790a",
+  "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+  "answer": "④",
+  "solution": "한 원에서 중심으로부터의 거리가 같은 두 현의 길이는 같다. $\\overline{OM}\\perp\\overline{AB}$, $\\overline{ON}\\perp\\overline{AC}$이고 $\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n따라서 삼각형 $\\mathrm{ABC}$는 밑변이 $\\overline{BC}$인 이등변삼각형이므로 $\\angle ACB=\\angle ABC=65^{\\circ}$이다.\n삼각형의 세 내각의 크기의 합에서 $\\angle BAC=180^{\\circ}-65^{\\circ}-65^{\\circ}=50^{\\circ}$이다.\n따라서 현의 길이 관계와 각의 크기는 $\\overline{AB}=\\overline{AC}$, $50^{\\circ}$이고 정답은 ④이다.",
+  "evidence": {
+    "questionNumber": 16,
+    "answerValue": {
+      "equalChords": "AB=AC",
+      "angleBACDegrees": 50
+    },
+    "method": [
+      "원 중심에서 거리가 같은 현의 길이가 같다는 성질",
+      "이등변삼각형의 밑각",
+      "삼각형 내각의 합"
+    ],
+    "conditions": {
+      "anglesDegrees": {
+        "A": 50,
+        "B": 65,
+        "C": 65
+      },
+      "allTriangleAnglesPositive": true,
+      "angleSumDegrees": 180,
+      "nondegenerateChords": true
+    },
+    "choiceReview": [
+      {
+        "choiceNumber": 1,
+        "correct": false,
+        "reason": "같은 중심 거리에 대응하는 두 현은 AB와 AC이다. AB=BC라면 A와 C의 각이 같아야 하므로 계산한 50°·65°와도 맞지 않는다."
+      },
+      {
+        "choiceNumber": 2,
+        "correct": false,
+        "reason": "현의 관계는 맞지만 BAC는 65°가 아니라 50°이다."
+      },
+      {
+        "choiceNumber": 3,
+        "correct": false,
+        "reason": "AC=BC이면 A와 B의 각이 같아야 하지만 A=50°, B=65°이다."
+      },
+      {
+        "choiceNumber": 4,
+        "correct": true,
+        "reason": "AB=AC와 BAC=50°를 모두 만족한다."
+      },
+      {
+        "choiceNumber": 5,
+        "correct": false,
+        "reason": "BAC=115°는 두 밑각 65°와 함께 삼각형의 내각 합을 만족하지 않는다."
+      }
+    ],
+    "uniqueAnswer": true,
+    "figureObservation": "A·B·C는 원 위에 있고 M·N은 각각 AB·AC 위에 있다. OM·ON에 동일한 길이 표시가 있으며 두 수선의 직각 표시와 B의 65°가 본문의 조건과 일치한다.",
+    "input": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/student-problems.json",
+      "sha256": "252ea8959ca5d96e13959ea9bf4b393fe00b0ff476f2b457b292c568fe6763b4",
+      "studentDigest": "818b8d74b4affcc33f5212e0e16936724f1732080c8ac4819ee3e7a09595790a",
+      "digestHandling": "copied verbatim from student-only export; no author package read",
+      "grade": "중3",
+      "curriculum": "2015"
+    },
+    "figures": [
+      {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q16-1.svg",
+        "sha256": "24e796e88d8ba1f5c3f3db7b03900fed1c11076c1ce875d8a71ee10f31b7e196",
+        "matchesStudentExportHash": true,
+        "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/previews/q16-1.png",
+        "previewSha256": "acbca76043fbe4bc748584eacd2f66dd55a73f0f1c168dfc670cd3a355f258e0",
+        "inspection": "view_image completed",
+        "embeddedRasterIncluded": false
+      }
+    ],
+    "calculation": {
+      "artifact": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/calculations.json",
+      "sha256": "2eaab47cbb07445bb57a79b0d7041bedf3f6f8e9e8918aa9fa8250dc8ff7fadc",
+      "jsonPointer": "/results/q16",
+      "data": {
+        "equalChords": "AB=AC",
+        "angles": {
+          "A": 50,
+          "B": 65,
+          "C": 65
+        },
+        "choices": [
+          {
+            "choiceNumber": 1,
+            "equalChords": "AB=BC",
+            "angle": 50,
+            "matches": false
+          },
+          {
+            "choiceNumber": 2,
+            "equalChords": "AB=AC",
+            "angle": 65,
+            "matches": false
+          },
+          {
+            "choiceNumber": 3,
+            "equalChords": "AC=BC",
+            "angle": 50,
+            "matches": false
+          },
+          {
+            "choiceNumber": 4,
+            "equalChords": "AB=AC",
+            "angle": 50,
+            "matches": true
+          },
+          {
+            "choiceNumber": 5,
+            "equalChords": "AB=AC",
+            "angle": 115,
+            "matches": false
+          }
+        ],
+        "answer": "④"
+      }
+    },
+    "reviewBoundary": {
+      "authorAnswersRead": false,
+      "originalAnswersRead": false,
+      "selfAuthoredCandidateReviewed": false,
+      "scope": "independent blind solve; final curriculum/rights/publication approval not issued"
+    }
+  },
+  "status": "solved"
+}

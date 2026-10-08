@@ -1,0 +1,29 @@
+{
+  "version": "graph-1",
+  "width": 320,
+  "height": 300,
+  "xRange": [-3, 3],
+  "yRange": [-1, 9],
+  "axes": true,
+  "curves": [
+    {
+      "coefficients": [2, 0, 0],
+      "domain": [-3, 3]
+    }
+  ],
+  "labels": [
+    {
+      "at": [0, 0],
+      "text": "$O$",
+      "dx": -12,
+      "dy": 18,
+      "size": 17
+    },
+    {
+      "at": [1.9, 4],
+      "text": "$y=2x^{2}$",
+      "anchor": "start",
+      "size": 17
+    }
+  ]
+}

@@ -1,0 +1,1675 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T11:58:55.458Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-08-02-xc17",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "직사각형 안의 점에서 제곱의 합이 같은 짝",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형 안의 한 점에서 꼭짓점까지의 거리의 제곱을 더한 값이 같은 것은 {마주 보는} 꼭짓점끼리 짝지을 때이다. {이웃한} 꼭짓점끼리 짝지은 합은 같다는 보장이 없다.",
+        "example": {
+          "prompt": "직사각형 $ABCD$ 안의 점 $P$에 대해 $\\overline{PA}^2+\\overline{PC}^2$과 값이 같은 식은?",
+          "answer": "$\\overline{PB}^2+\\overline{PD}^2$"
+        },
+        "studentC": "직사각형 안의 한 점에서 꼭짓점까지의 거리의 제곱을 더한 값이 같은 것은 □ 꼭짓점끼리 짝지을 때이다. □ 꼭짓점끼리 짝지은 합은 같다는 보장이 없다.",
+        "answers": [
+          "마주 보는",
+          "이웃한"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "마주 보는 꼭짓점 짝의 관계는 c7 B와 같은 목표임",
+        "cDecision": "exclude",
+        "cReason": "c7 C와 같은 '마주 보는' 빈칸을 반복함",
+        "exclusionReason": "B 제외: c7 B와 같은 관계를 묻는 목표 중복. C 제외: c7 C의 '마주 보는' 빈칸 반복이며 둘째 빈칸 '이웃한'은 그 반대말로 추측됨",
+        "learningRole": "application",
+        "roleReason": "제곱의 합이 같은 꼭짓점 짝 고르기",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3168,
+        "part": "m2plus",
+        "sourceFingerprint": "f74b5813e0cfa8d8343a9bc09f340ddc9c9cf14dcf981ce5c324dec19f614c21",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3168
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-02-xc3",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "양의 상관관계의 예",
+        "kind": "정의",
+        "level": "하",
+        "definition": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 {양의 상관관계}이다.",
+        "studentC": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 □이다.",
+        "answers": [
+          "양의 상관관계"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "어느 반의 학생들을 조사했더니 키가 큰 학생일수록 신발 크기도 대체로 컸다. 이 자료에서 키와 신발 크기 사이의 상관관계 종류를 쓰고, 관찰한 두 변량의 변화 방향을 이용해 까닭을 쓰시오.",
+        "bAnswer": "양의 상관관계이다. 키가 클수록 신발 크기도 대체로 크기 때문이다.",
+        "bGoal": "실생활 예에서 양의 상관관계 판단",
+        "bReason": "변량 이름만으로 결론을 추측하지 않게 이 자료에서 관찰한 증가 경향을 준다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양의 상관관계"
+            ]
+          },
+          {
+            "anyOf": [
+              "키가 클수록 신발 크기도 대체로 크다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "구체 예에서 관계 이름을 고르는 짧은 빈칸으로 분명함",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "예를 양의 상관관계로 분류",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3681,
+        "part": "m3plus",
+        "sourceFingerprint": "4bf9f5063dcb2bc211124b2ca415e5322ce1645c7827c0f81c5b865e3b30f23c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3681
+        },
+        "directReview": null,
+        "cFrozenSentence": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 □이다.",
+        "cFrozenDefinition": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 {양의 상관관계}이다.",
+        "cFrozenAnswers": [
+          "양의 상관관계"
+        ],
+        "cMarkedSentence": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 {양의 상관관계}이다.",
+        "cSlotAnswers": [
+          "양의 상관관계"
+        ],
+        "cStudentSentence": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 □이다.",
+        "cAnswers": [
+          "양의 상관관계"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양의 상관관계",
+            "equivalentAnswers": [
+              "양의 상관관계"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양의 상관관계"
+          ]
+        ],
+        "proposalFingerprint": "8ecf933bc4689af2fda407c180eda479ad4f7be71e24c76ce486eb24d694bec4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-02-xc4",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "음의 상관관계의 예",
+        "kind": "정의",
+        "level": "하",
+        "definition": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 {음의} 상관관계이다.",
+        "studentC": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 □ 상관관계이다.",
+        "answers": [
+          "음의"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "겨울철 어느 집을 조사했더니 하루 평균 기온이 높은 날일수록 그날의 난방비가 대체로 적었다. 이 자료에서 기온과 난방비 사이의 상관관계 종류를 쓰고, 두 변량의 변화 방향을 이용해 까닭을 쓰시오.",
+        "bAnswer": "음의 상관관계이다. 기온이 높을수록 난방비는 대체로 적게 들기 때문이다.",
+        "bGoal": "실생활 예에서 음의 상관관계 판단",
+        "bReason": "일상 상식 대신 조사에서 관찰한 증가·감소 경향을 주어 분류하게 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "음의 상관관계"
+            ]
+          },
+          {
+            "anyOf": [
+              "기온이 높을수록 난방비는 대체로 적다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "구체 예에서 관계 이름을 고르는 짧은 빈칸으로 분명함",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "예를 음의 상관관계로 분류",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3682,
+        "part": "m3plus",
+        "sourceFingerprint": "3cfa441ca5901b8459332fe74776cf645292527e8b54fa9f089a71df5ae62156",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3682
+        },
+        "directReview": null,
+        "cFrozenSentence": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 □ 상관관계이다.",
+        "cFrozenDefinition": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 {음의} 상관관계이다.",
+        "cFrozenAnswers": [
+          "음의"
+        ],
+        "cMarkedSentence": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 {음의} 상관관계이다.",
+        "cSlotAnswers": [
+          "음의"
+        ],
+        "cStudentSentence": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 □ 상관관계이다.",
+        "cAnswers": [
+          "음의"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "음의",
+            "equivalentAnswers": [
+              "음의"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "음의"
+          ]
+        ],
+        "proposalFingerprint": "52098d7bd21bcef363a12497080498a65e0a1aecb61feaabf2b9dea61949a255"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-02-xc5",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "상관관계가 없는 예",
+        "kind": "정의",
+        "level": "하",
+        "definition": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 {경향}이 보이지 않으므로 상관관계가 {없는} 경우이다.",
+        "studentC": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 □이 보이지 않으므로 상관관계가 □ 경우이다.",
+        "answers": [
+          "경향",
+          "없는"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "어느 반의 출석 번호와 키를 조사한 산점도에서, 번호가 커질 때 키가 커지거나 작아지는 일정한 경향이 보이지 않았다. 이 자료의 상관관계를 어떻게 판단하는지 까닭과 함께 쓰시오.",
+        "bAnswer": "상관관계가 없다. 출석 번호가 커져도 키가 커지거나 작아지는 경향이 없기 때문이다.",
+        "bGoal": "실생활 예에서 상관관계 없음 판단",
+        "bReason": "키순 출석번호 등의 반례가 있으므로 실제로 관찰한 경향 없음 조건을 준다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "상관관계가 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "커지거나 작아지는 경향이 없다",
+              "일정한 경향이 없다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "경향과 '없는'을 묻는 짧은 빈칸으로 분명함",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "예를 상관관계 없음으로 분류",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3683,
+        "part": "m3plus",
+        "sourceFingerprint": "8a1789a4c539bef08aff4bcb39033431bbcfa02d425f4d3c6d1e1a0753e68eb6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3683
+        },
+        "directReview": null,
+        "cFrozenSentence": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 □이 보이지 않으므로 상관관계가 □ 경우이다.",
+        "cFrozenDefinition": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 {경향}이 보이지 않으므로 상관관계가 {없는} 경우이다.",
+        "cFrozenAnswers": [
+          "경향",
+          "없는"
+        ],
+        "cMarkedSentence": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 {경향}이 보이지 않으므로 상관관계가 {없는} 경우이다.",
+        "cSlotAnswers": [
+          "경향",
+          "없는"
+        ],
+        "cStudentSentence": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 □이 보이지 않으므로 상관관계가 □ 경우이다.",
+        "cAnswers": [
+          "경향",
+          "없는"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "경향",
+            "equivalentAnswers": [
+              "경향"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "없는",
+            "equivalentAnswers": [
+              "없는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "경향"
+          ],
+          [
+            "없는"
+          ]
+        ],
+        "proposalFingerprint": "1602e79714d7fbe7a73cdd5d9d8c3048dab3010c44bf8b71a05a5a4eb305f094"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-02-xc12",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "경향과 반대인 자료",
+        "kind": "성질",
+        "level": "중",
+        "definition": "양의 상관관계가 있어도 모든 자료가 그 경향을 따르는 것은 {아니다} — 경향과 반대인 점이 {있을} 수 있다.",
+        "studentC": "양의 상관관계가 있어도 모든 자료가 그 경향을 따르는 것은 □ — 경향과 반대인 점이 □ 수 있다.",
+        "answers": [
+          "아니다",
+          "있을"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "키와 몸무게 사이에 양의 상관관계가 있는 반에서, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 말할 수 있는지 쓰고 이유를 쓰시오.",
+        "bAnswer": "말할 수 없다. 상관관계는 전체의 대체적인 경향이므로 키가 더 크지만 몸무게는 더 적은 학생도 있을 수 있다.",
+        "bGoal": "상관관계는 전체 경향임을 이해",
+        "bReason": "'언제나'라는 잘못된 일반화를 판단하게 하는 상황을 제시함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "말할 수 없다",
+              "언제나 그렇지는 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체의 대체적인 경향",
+              "경향과 반대인 학생이 있을 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "반드시 예외가 있다는 단정 대신 모든자료가따른다고 단정할 수 없음을 묻는다.",
+        "learningRole": "reason",
+        "roleReason": "경향과 반대인 자료가 있을 수 있음",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3690,
+        "part": "m3plus",
+        "sourceFingerprint": "5f92b487d3f3e1cfaadd9d937c72e7e57e99e6992d4d7e960e700bfd558fc8e2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3690
+        },
+        "directReview": null,
+        "cMarkedSentence": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 {없다}. 전체 경향과 반대인 학생이 있을 수도 있기 때문이다.",
+        "cSlotAnswers": [
+          "없다"
+        ],
+        "cStudentSentence": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 □. 전체 경향과 반대인 학생이 있을 수도 있기 때문이다.",
+        "cAnswers": [
+          "없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "3f73e60e5816721f25b756bcabf15d3fe25d842380c5886d0a9755c56dfb16e4",
+        "cAfter": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 {없다}. 전체 경향과 반대인 학생이 있을 수도 있기 때문이다.",
+        "coreAfter": "양의 상관관계는 전체의 대체적인 {경향}을 나타낸다. 모든 자료가 반드시 그 경향을 따른다고 {단정할 수는 없다}. 경향과 반대인 자료가 있을 수도 있다.",
+        "coreReason": "예외의 존재 가능성과 예외가 반드시 있다는 주장을 구별한다."
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-02-xc18",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "경향에서 벗어난 점",
+        "kind": "성질",
+        "level": "상",
+        "definition": "경향에서 크게 벗어난 점이 더해지면 상관관계가 {약해} 보일 수 있지만 언제나 그런 것은 아니다 — 점을 더한 뒤의 {전체} 분포를 다시 살핀다.",
+        "studentC": "경향에서 크게 벗어난 점이 더해지면 상관관계가 □ 보일 수 있지만 언제나 그런 것은 아니다 — 점을 더한 뒤의 □ 분포를 다시 살핀다.",
+        "answers": [
+          "약해",
+          "전체"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "강한 양의 상관관계를 보이는 산점도에 경향에서 크게 벗어난 점 하나가 더해졌다. 상관관계가 항상 약해진다고 할 수 있는지 쓰고, 어떻게 판단해야 하는지 쓰시오.",
+        "bAnswer": "항상 약해진다고 할 수는 없다. 약해 보일 수 있지만 점을 더한 뒤의 전체 분포를 다시 살펴 판단해야 한다.",
+        "bGoal": "벗어난 점이 더해질 때의 판단",
+        "bReason": "'항상'을 판단하게 하여 전체 분포를 다시 보는 절차를 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "항상 그렇지는 않다",
+              "항상 약해진다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 분포를 다시 살핀다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "약해질수있다와강해질수있다가모두참인가능성칸대신항상이라는단정을판단하게한다.",
+        "learningRole": "reason",
+        "roleReason": "전체 분포를 다시 보고 판단",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3696,
+        "part": "m3plus",
+        "sourceFingerprint": "41719db974e06fccbcd6df502b6fd4e23fc35b1b93caa81cbbf0681d177431b5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3696
+        },
+        "directReview": null,
+        "cMarkedSentence": "산점도에 경향에서 벗어난 점 하나가 더해졌다는 사실만으로 상관관계가 항상 약해졌다고 단정할 수는 {없다}. 점을 더한 뒤 전체 분포를 다시 살펴야 한다.",
+        "cSlotAnswers": [
+          "없다"
+        ],
+        "cStudentSentence": "산점도에 경향에서 벗어난 점 하나가 더해졌다는 사실만으로 상관관계가 항상 약해졌다고 단정할 수는 □. 점을 더한 뒤 전체 분포를 다시 살펴야 한다.",
+        "cAnswers": [
+          "없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "b253a463819707cf03bb3e0f84211d3744d531fcf7b5a943f53d4aadcb14f001",
+        "cAfter": "산점도에 경향에서 벗어난 점 하나가 더해졌다는 사실만으로 상관관계가 항상 약해졌다고 단정할 수는 {없다}. 점을 더한 뒤 전체 분포를 다시 살펴야 한다."
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc17",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "계급 안의 기준으로 나누기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "판단 기준이 계급의 {안쪽}에 있으면, 그 기준 이상인 자료 수를 {표만으로}는 확정하지 못할 수 있다.",
+        "studentC": "판단 기준이 계급의 □에 있으면, 그 기준 이상인 자료 수를 □는 확정하지 못할 수 있다.",
+        "answers": [
+          "안쪽",
+          "표만으로"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "계급이 $60$ 이상 $70$ 미만, $70$ 이상 $80$ 미만, $80$ 이상 $90$ 미만이고 도수가 차례로 $4$, $5$, $3$인 도수분포표가 있다. $75$ 이상인 자료의 수를 이 표만으로 정확히 구할 수 있는지 이유와 함께 쓰시오.",
+        "bAnswer": "구할 수 없다. $75$가 계급 $70$ 이상 $80$ 미만의 안쪽에 있어, 그 계급의 $5$개 중 몇 개가 $75$ 이상인지 표로는 알 수 없기 때문이다. $3$개 이상 $8$개 이하라는 것만 알 수 있다.",
+        "bGoal": "기준값이 계급 안쪽에 있을 때 표의 한계 설명하기",
+        "bReason": "'판단 기준'이 가리키는 값이 없어 계급 안쪽의 값 $75$를 예로 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정확히 구할 수 없다",
+              "알 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$75$가 계급의 경계가 아니라 안쪽에 있다",
+              "$70$ 이상 $80$ 미만인 $5$개 중 $75$ 이상이 몇 개인지 모른다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "어떤 값이 계급의 경계가 아니라 계급의 {안쪽}에 있으면, 그 값 이상인 자료의 수는 도수분포표만으로 {정하지 못할} 수 있다.",
+        "cAnswers": [
+          "안쪽",
+          "정하지 못할"
+        ],
+        "cReason": "계급의사이는계급안쪽이아닌계급들사이로읽힐수있어동의어에서제외한다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "경계가 아닌 값으로는 자료 수를 못 정하는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2042,
+        "part": "m1plus",
+        "sourceFingerprint": "6f62db4babaa82427ce1077a1b52c45f0a2b5fc73bd692b22d253badcb2731a5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2042
+        },
+        "directReview": null,
+        "cMarkedSentence": "어떤 값이 계급의 경계가 아니라 계급의 {안쪽}에 있으면, 그 값 이상인 자료의 수는 도수분포표만으로 {정하지 못할} 수 있다.",
+        "cSlotAnswers": [
+          "안쪽",
+          "정하지 못할"
+        ],
+        "cStudentSentence": "어떤 값이 계급의 경계가 아니라 계급의 □에 있으면, 그 값 이상인 자료의 수는 도수분포표만으로 □ 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "안쪽",
+            "equivalentAnswers": [
+              "안쪽",
+              "안",
+              "내부"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정하지 못할",
+            "equivalentAnswers": [
+              "정하지 못할",
+              "확정하지 못할",
+              "알지 못할",
+              "구하지 못할"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "안쪽",
+            "accept": [
+              "안",
+              "내부",
+              "사이"
+            ]
+          },
+          {
+            "answer": "정하지 못할",
+            "accept": [
+              "확정하지 못할",
+              "알지 못할",
+              "구하지 못할"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "안쪽",
+            "안",
+            "내부"
+          ],
+          [
+            "정하지 못할",
+            "확정하지 못할",
+            "알지 못할",
+            "구하지 못할"
+          ]
+        ],
+        "proposalFingerprint": "bf893b2625c0eb0bc9113841cf95f19f2a37c270613a097ee735d5522a8917e5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-03-xc20",
+        "section": "중1::8. 통계::도수분포표",
+        "term": "최솟값을 찾을 수 있는 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "도수가 양수인 첫 계급을 알면 최솟값이 속한 {범위}는 알지만, 그 값 자체는 표만으로 {확정하지 못할} 수 있다.",
+        "studentC": "도수가 양수인 첫 계급을 알면 최솟값이 속한 □는 알지만, 그 값 자체는 표만으로 □ 수 있다.",
+        "answers": [
+          "범위",
+          "확정하지 못할"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-03-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 도수분포표에서 첫 계급 '$30$ 이상 $40$ 미만'의 도수가 $0$이고, 다음 계급 '$40$ 이상 $50$ 미만'의 도수가 $2$이다. 이 자료에서 가장 작은 변량에 대해 표만으로 알 수 있는 것과 알 수 없는 것을 쓰시오.",
+        "bAnswer": "가장 작은 변량이 $40$ 이상 $50$ 미만이라는 것은 알 수 있지만, 그 정확한 값은 알 수 없다.",
+        "bGoal": "표에서 가장 작은 변량의 범위만 알 수 있음을 설명하기",
+        "bReason": "'도수가 양수인 첫 계급'이 추상적이어서 두 계급과 도수를 직접 제시했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 변량은 $40$ 이상 $50$ 미만이다",
+              "$40$ 이상 $50$ 미만인 계급에 속한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정확한 값은 알 수 없다",
+              "실제 값은 표만으로 정할 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "작은 값의 계급부터 차례로 적은 도수분포표에서, 도수가 $0$이 아닌 첫 계급을 보면 가장 작은 변량이 속한 {범위}는 알 수 있다. 그 변량의 정확한 값은 표만으로 {알지 못할} 수 있다.",
+        "cAnswers": [
+          "범위",
+          "알지 못할"
+        ],
+        "cReason": "앞계급이작은값을나타낸다는정렬방향을명시하고범위와정확한값을구별한다.",
+        "studentLabel": "가장 작은 변량이 속한 계급",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "표로는 최솟값의 범위만 알 수 있는 까닭",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2045,
+        "part": "m1plus",
+        "sourceFingerprint": "c9fbbae15c155a7bf74cf8b6933e8847939f9334ccb5b031dc1891e7aa1ae6a2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2045
+        },
+        "directReview": null,
+        "cMarkedSentence": "작은 값의 계급부터 차례로 적은 도수분포표에서, 도수가 $0$이 아닌 첫 계급을 보면 가장 작은 변량이 속한 {범위}는 알 수 있다. 그 변량의 정확한 값은 표만으로 {알지 못할} 수 있다.",
+        "cSlotAnswers": [
+          "범위",
+          "알지 못할"
+        ],
+        "cStudentSentence": "작은 값의 계급부터 차례로 적은 도수분포표에서, 도수가 $0$이 아닌 첫 계급을 보면 가장 작은 변량이 속한 □는 알 수 있다. 그 변량의 정확한 값은 표만으로 □ 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "범위",
+            "equivalentAnswers": [
+              "범위",
+              "구간",
+              "계급"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "알지 못할",
+            "equivalentAnswers": [
+              "알지 못할",
+              "확정하지 못할",
+              "정하지 못할"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "계급",
+            "accept": [
+              "범위",
+              "구간"
+            ]
+          },
+          {
+            "answer": "알지 못할",
+            "accept": [
+              "확정하지 못할",
+              "정하지 못할"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "범위",
+            "구간",
+            "계급"
+          ],
+          [
+            "알지 못할",
+            "확정하지 못할",
+            "정하지 못할"
+          ]
+        ],
+        "proposalFingerprint": "b6e9996de9888b3f2396af347260727fd78e837e84178bde3574ea5da2031dfd"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-01-xc14",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "단계를 나눈 길 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "반드시 들르는 중간 지점이 있으면 앞 구간과 뒤 구간의 선택을 {차례로} 이어 경우를 센다.",
+        "studentC": "반드시 들르는 중간 지점이 있으면 앞 구간과 뒤 구간의 선택을 □ 이어 경우를 센다.",
+        "answers": [
+          "차례로"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "집에서 학교로 가는 길은 $3$가지, 학교에서 도서관으로 가는 길은 $2$가지이다. 집에서 학교를 반드시 거쳐 도서관까지 가는 방법의 수를 구하고, 그렇게 계산한 까닭을 쓰시오.",
+        "bAnswer": "$3\\times2=6$가지이다. 집에서 학교로 가는 길 $3$가지 각각에 대해 학교에서 도서관으로 가는 길이 $2$가지씩 이어지기 때문이다.",
+        "bGoal": "중간 지점을 거치는 경로를 곱으로 세기",
+        "bReason": "'구간을 차례로 이음'이 모호해 구체 경로와 길 수를 주어 곱하는 이유를 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞 구간의 각 길마다 뒤 구간의 길이 $2$가지씩 있다",
+              "앞 구간과 뒤 구간을 차례로 이어 곱한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "구간을 차례로 이어 센다는 절차가 짧게 드러나 유지",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "중간 지점을 거치는 길의 수에 곱의 법칙 적용",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3186,
+        "part": "m2plus",
+        "sourceFingerprint": "e417f1d772ddcd198ec1ac78f39bba28d037b731f590e7b30de0e86d562b4f6a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3186
+        },
+        "directReview": null,
+        "cFrozenSentence": "반드시 들르는 중간 지점이 있으면 앞 구간과 뒤 구간의 선택을 □ 이어 경우를 센다.",
+        "cFrozenDefinition": "반드시 들르는 중간 지점이 있으면 앞 구간과 뒤 구간의 선택을 {차례로} 이어 경우를 센다.",
+        "cFrozenAnswers": [
+          "차례로"
+        ],
+        "cMarkedSentence": "반드시 들르는 중간 지점이 있으면 앞 구간과 뒤 구간의 선택을 {차례로} 이어 경우를 센다.",
+        "cSlotAnswers": [
+          "차례로"
+        ],
+        "cStudentSentence": "반드시 들르는 중간 지점이 있으면 앞 구간과 뒤 구간의 선택을 □ 이어 경우를 센다.",
+        "cAnswers": [
+          "차례로"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "차례로",
+            "equivalentAnswers": [
+              "차례로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "차례로"
+          ]
+        ],
+        "proposalFingerprint": "b7fe237f985eeb134474b236b03d6c234e5e79e39106f5ef2e61daf6285516df"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-01-xc16",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "갈래마다 선택 수가 다를 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "첫 선택에 따라 다음 선택 수가 다르면 각 갈래에서 가능한 수를 따로 센 다음 {더한다}.",
+        "studentC": "첫 선택에 따라 다음 선택 수가 다르면 각 갈래에서 가능한 수를 따로 센 다음 □.",
+        "answers": [
+          "더한다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "점심으로 한식이나 양식 중 하나를 고른다. 한식을 고르면 국 $3$가지 중 하나를, 양식을 고르면 수프 $2$가지 중 하나를 더 고른다. 점심을 정하는 경우의 수를 구하고, 두 수를 곱하지 않고 이렇게 세는 까닭을 쓰시오.",
+        "bAnswer": "$3+2=5$가지이다. 한식인지 양식인지에 따라 다음 선택 수가 $3$과 $2$로 달라 곱의 법칙을 쓸 수 없으므로, 갈래마다 따로 세어 더한다.",
+        "bGoal": "갈래마다 선택 수가 다를 때 나누어 더하기",
+        "bReason": "선택 수가 달라지는 상황을 구체 예로 주어 곱할 수 없는 이유를 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "첫 선택에 따라 다음 선택 수가 달라 갈래별로 세어 더한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "선택 수가 다른 갈래를 따로 세어 더한다는 절차가 분명해 유지",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "갈래별로 세어 더하는 절차",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3188,
+        "part": "m2plus",
+        "sourceFingerprint": "2eff65f60b665e7dd6e27695b4191485b6117c992b3ce4e857902636ce9b5be7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3188
+        },
+        "directReview": null,
+        "cFrozenSentence": "첫 선택에 따라 다음 선택 수가 다르면 각 갈래에서 가능한 수를 따로 센 다음 □.",
+        "cFrozenDefinition": "첫 선택에 따라 다음 선택 수가 다르면 각 갈래에서 가능한 수를 따로 센 다음 {더한다}.",
+        "cFrozenAnswers": [
+          "더한다"
+        ],
+        "cMarkedSentence": "첫 선택에 따라 다음 선택 수가 다르면 각 갈래에서 가능한 수를 따로 센 다음 {더한다}.",
+        "cSlotAnswers": [
+          "더한다"
+        ],
+        "cStudentSentence": "첫 선택에 따라 다음 선택 수가 다르면 각 갈래에서 가능한 수를 따로 센 다음 □.",
+        "cAnswers": [
+          "더한다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "더한다",
+            "equivalentAnswers": [
+              "더한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "더한다"
+          ]
+        ],
+        "proposalFingerprint": "dfc57c7d825c0d66c47e1ffdeb020309d9852f077d335935cb0d454419a50fe9"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-01-xc20",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "곱셈 사용 전의 확인",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 선택 수를 곱하기 전에는 첫 선택마다 뒤 선택이 {같은 수만큼} 허용되는지 확인한다.",
+        "studentC": "두 선택 수를 곱하기 전에는 첫 선택마다 뒤 선택이 □ 허용되는지 확인한다.",
+        "answers": [
+          "같은 수만큼"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-xc20",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "곱하기 전 확인은 c5·xc16 B의 조건과 같은 목표임",
+        "cDecision": "keep",
+        "cReason": "곱의 법칙 사용 조건을 짧게 점검하는 분명한 빈칸이라 유지",
+        "exclusionReason": "B 제외: c5의 '각 경우마다' 조건과 xc16 B의 곱할 수 없는 이유와 목표 중복",
+        "learningRole": "procedure",
+        "roleReason": "곱의 법칙을 쓰기 전 조건 확인",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3192,
+        "part": "m2plus",
+        "sourceFingerprint": "39d299c76f9c4044c2b13f0f179e78514fa5dcf6cddeb6173087a73eb617c291",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3192
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "두 선택 수를 곱하기 전에는 첫 선택마다 뒤 선택이 □ 허용되는지 확인한다.",
+        "cFrozenDefinition": "두 선택 수를 곱하기 전에는 첫 선택마다 뒤 선택이 {같은 수만큼} 허용되는지 확인한다.",
+        "cFrozenAnswers": [
+          "같은 수만큼"
+        ],
+        "cMarkedSentence": "두 선택 수를 곱하기 전에는 첫 선택마다 뒤 선택이 {같은 수만큼} 허용되는지 확인한다.",
+        "cSlotAnswers": [
+          "같은 수만큼"
+        ],
+        "cStudentSentence": "두 선택 수를 곱하기 전에는 첫 선택마다 뒤 선택이 □ 허용되는지 확인한다.",
+        "cAnswers": [
+          "같은 수만큼"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 수만큼",
+            "equivalentAnswers": [
+              "같은 수만큼"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은 수만큼"
+          ]
+        ],
+        "proposalFingerprint": "fa465b15157d31f00c0e61e3bde5e71277657b775363d01340da2b2868c4b0ae"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-04-xc23",
+        "section": "중1::8. 통계::히스토그램",
+        "term": "순위가 속하는 직사각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "자료를 {작은 값부터} 셀 때, 왼쪽부터 도수를 더한 값이 목표 순위 {이상}이 되는 첫 {계급}에 그 순위의 자료가 있다.",
+        "studentC": "자료를 □ 셀 때, 왼쪽부터 도수를 더한 값이 목표 순위 □이 되는 첫 □에 그 순위의 자료가 있다.",
+        "answers": [
+          "작은 값부터",
+          "이상",
+          "계급"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-04-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "도수를 차례로 더해 순위가 속한 계급을 찾는 m1-08-03-xc18과 같은 방법이다.",
+        "cDecision": "rewrite",
+        "cAfter": "히스토그램에서 자료를 작은 값부터 셀 때, 왼쪽 계급부터 도수를 차례로 더한 값이 찾는 순위 {이상}이 되는 첫 {계급}에 그 순위의 자료가 있다.",
+        "cAnswers": [
+          "이상",
+          "계급"
+        ],
+        "cReason": "직사각형은계급을나타내는도형이지만계급의진짜동의어는아니므로대상을계급/구간으로유지한다.",
+        "exclusionReason": "B 제외: 서술형 B에서 m1-08-03-xc18(순위가 들어 있는 계급)과 목표가 겹친다.",
+        "learningRole": "procedure",
+        "roleReason": "도수를 더해 순위가 속한 계급 찾기",
+        "authorBatch": 24,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2071,
+        "part": "m1plus",
+        "sourceFingerprint": "b09f42d871441def784a2185f29375d3820ef0ac1b372c80b22b9fe3bfbc38ef",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2071
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "히스토그램에서 자료를 작은 값부터 셀 때, 왼쪽 계급부터 도수를 차례로 더한 값이 찾는 순위 {이상}이 되는 첫 {계급}에 그 순위의 자료가 있다.",
+        "cSlotAnswers": [
+          "이상",
+          "계급"
+        ],
+        "cStudentSentence": "히스토그램에서 자료를 작은 값부터 셀 때, 왼쪽 계급부터 도수를 차례로 더한 값이 찾는 순위 □이 되는 첫 □에 그 순위의 자료가 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이상",
+            "equivalentAnswers": [
+              "이상"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "계급",
+            "equivalentAnswers": [
+              "계급",
+              "구간"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "계급",
+            "accept": [
+              "직사각형",
+              "구간"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이상"
+          ],
+          [
+            "계급",
+            "구간"
+          ]
+        ],
+        "proposalFingerprint": "6dd894ebb982c78d16690a6c7d5332ee2d09cd5cbfcb3196880e23a06942c765"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-01-xc22",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "직접 세기와 빼서 세기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "조건을 만족하는 수를 직접 센 값과 전체에서 만족하지 않는 수를 {뺀 값}을 비교하면 빠뜨린 경우를 찾을 수 있다.",
+        "studentC": "조건을 만족하는 수를 직접 센 값과 전체에서 만족하지 않는 수를 □을 비교하면 빠뜨린 경우를 찾을 수 있다.",
+        "answers": [
+          "뺀 값"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-xc22",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "빼서 세기는 xc18 B에서 이미 묻고 있음",
+        "cDecision": "keep",
+        "cReason": "직접 세기와 빼서 세기를 비교하는 검산 방법이 한 빈칸으로 드러나 유지",
+        "exclusionReason": "B 제외: xc18 B의 전체에서 빼서 세기와 목표 중복",
+        "learningRole": "procedure",
+        "roleReason": "두 방법으로 세어 빠뜨린 경우 점검",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3194,
+        "part": "m2plus",
+        "sourceFingerprint": "298dd79537d635d9f7ade4c601e2694b5337dc87d297f4ee56ef2869e598ac00",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3194
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "조건을 만족하는 수를 직접 센 값과 전체에서 만족하지 않는 수를 □을 비교하면 빠뜨린 경우를 찾을 수 있다.",
+        "cFrozenDefinition": "조건을 만족하는 수를 직접 센 값과 전체에서 만족하지 않는 수를 {뺀 값}을 비교하면 빠뜨린 경우를 찾을 수 있다.",
+        "cFrozenAnswers": [
+          "뺀 값"
+        ],
+        "cMarkedSentence": "조건을 만족하는 수를 직접 센 값과 전체에서 만족하지 않는 수를 {뺀 값}을 비교하면 빠뜨린 경우를 찾을 수 있다.",
+        "cSlotAnswers": [
+          "뺀 값"
+        ],
+        "cStudentSentence": "조건을 만족하는 수를 직접 센 값과 전체에서 만족하지 않는 수를 □을 비교하면 빠뜨린 경우를 찾을 수 있다.",
+        "cAnswers": [
+          "뺀 값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "뺀 값",
+            "equivalentAnswers": [
+              "뺀 값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "뺀 값"
+          ]
+        ],
+        "proposalFingerprint": "d6c7a78563224e39e985ea221f5aedfd44fd567f7a6b827d913f3439680e83c2"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-02-xc2",
+        "section": "중2::9. 확률::여러 가지 경우의 수",
+        "term": "맨 앞자리의 선택",
+        "kind": "방법",
+        "level": "하",
+        "definition": "서로 다른 사람이 제한 없이 줄을 설 때 맨 앞에는 {모든 사람}이 올 수 있다.",
+        "studentC": "서로 다른 사람이 제한 없이 줄을 설 때 맨 앞에는 □이 올 수 있다.",
+        "answers": [
+          "모든 사람"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-02-xc2",
+        "learningRole": "procedure",
+        "roleReason": "제한이 없을 때 맨 앞자리의 후보 확인",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "c1 공식의 이유를 설명할 때 첫 단계로 포함되는 조각이다.",
+        "exclusionReason": "B 제외: 맨 앞자리에 모든 사람이 올 수 있다는 내용은 c1의 이유 서술과 중복되는 단계 조각이다.",
+        "cDecision": "keep",
+        "cReason": "제한이 없는 맨 앞자리의 후보를 묻는 짧고 분명한 빈칸이다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3197,
+        "part": "m2plus",
+        "sourceFingerprint": "4068dac8c189248532d0f319b4a38d312659a29982db66178b28a7b5215e11ff",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3197
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "서로 다른 사람이 제한 없이 줄을 설 때 맨 앞에는 □이 올 수 있다.",
+        "cFrozenDefinition": "서로 다른 사람이 제한 없이 줄을 설 때 맨 앞에는 {모든 사람}이 올 수 있다.",
+        "cFrozenAnswers": [
+          "모든 사람"
+        ],
+        "cMarkedSentence": "서로 다른 사람이 제한 없이 줄을 설 때 맨 앞에는 {모든 사람}이 올 수 있다.",
+        "cSlotAnswers": [
+          "모든 사람"
+        ],
+        "cStudentSentence": "서로 다른 사람이 제한 없이 줄을 설 때 맨 앞에는 □이 올 수 있다.",
+        "cAnswers": [
+          "모든 사람"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모든 사람",
+            "equivalentAnswers": [
+              "모든 사람"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모든 사람"
+          ]
+        ],
+        "proposalFingerprint": "54d7beb20ab711170148af62800e3c36add4c9beefde3664e6e00624b20c4676"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-05-xc9",
+        "section": "중1::8. 통계::도수분포다각형",
+        "term": "이웃 점 사이의 가로 간격",
+        "kind": "성질",
+        "level": "중",
+        "definition": "계급 폭이 일정하면 이웃한 두 계급을 나타내는 점 사이의 가로 간격은 {계급의 크기}와 같다.",
+        "studentC": "계급 폭이 일정하면 이웃한 두 계급을 나타내는 점 사이의 가로 간격은 □와 같다.",
+        "answers": [
+          "계급의 크기"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-05-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "각 계급의 구간의 너비가 모두 같은 도수분포다각형에서 이웃한 두 계급을 나타내는 점 사이의 가로 간격은 무엇과 같은지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "계급의 크기와 같다. 각 점은 계급의 한가운데에 있으므로 이웃한 두 계급의 한가운데 사이의 거리는 계급의 크기만큼이다.",
+        "bGoal": "이웃한 점의 가로 간격이 계급의 크기임을 까닭과 함께 말하기",
+        "bReason": "어떤 점 사이의 간격인지 밝히고 낱말 복사를 막으려 까닭을 요구함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "계급의 크기와 같다",
+              "구간의 너비와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 점이 계급의 한가운데에 있기 때문",
+              "이웃한 계급의 가운데끼리는 계급의 크기만큼 떨어져 있다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "도수분포다각형에서 각 계급의 구간의 너비가 모두 같으면 이웃한 두 점 사이의 가로 간격은 {계급의 크기}와 같다.",
+        "cAnswers": [
+          "계급의 크기"
+        ],
+        "cReason": "같은 구간의 가로길이를 뜻하는 크기·너비·폭을 인정한다.",
+        "learningRole": "reason",
+        "roleReason": "점이 계급의 가운데라서 간격이 계급의 크기가 되는 까닭",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2082,
+        "part": "m1plus",
+        "sourceFingerprint": "dbb60559ff9f7ae229553cba6a08b74df007fec228b9f525e6f93969cf34b6cf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2082
+        },
+        "directReview": null,
+        "cMarkedSentence": "도수분포다각형에서 각 계급의 구간의 너비가 모두 같으면 이웃한 두 점 사이의 가로 간격은 {계급의 크기}와 같다.",
+        "cSlotAnswers": [
+          "계급의 크기"
+        ],
+        "cStudentSentence": "도수분포다각형에서 각 계급의 구간의 너비가 모두 같으면 이웃한 두 점 사이의 가로 간격은 □와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "계급의 크기",
+            "equivalentAnswers": [
+              "계급의 크기",
+              "구간의 너비",
+              "계급의 폭",
+              "계급의 너비"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "계급의 크기",
+            "accept": [
+              "구간의 너비"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "계급의 크기",
+            "구간의 너비",
+            "계급의 폭",
+            "계급의 너비"
+          ]
+        ],
+        "proposalFingerprint": "b823862542c09ee7d9716d56becb6362bfdeb8c4c3be6146ea8c20bfc3602003"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-09-02-xc13",
+        "section": "중2::9. 확률::여러 가지 경우의 수",
+        "term": "카드 수를 만드는 곱셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다.",
+        "studentC": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 □를 차례로 고른다.",
+        "answers": [
+          "남은 카드"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-02-xc13",
+        "learningRole": "procedure",
+        "roleReason": "첫 카드와 남은 카드를 차례로 골라 곱하기",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 $1$, $2$, $3$, $4$가 하나씩 적힌 카드 $4$장이 있다. 이 중 두 장을 골라 두 자리 수를 만들 때(카드는 한 번씩만 쓴다), 만들 수 있는 두 자리 수의 개수를 곱셈으로 구하고 각 수의 뜻을 쓰시오.",
+        "bAnswer": "십의 자리에 올 카드는 $4$가지이다. 일의 자리에는 십의 자리에 쓴 카드를 뺀 $3$가지가 올 수 있다. 따라서 $4\\times3=12$(개)이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십의 자리 $4$가지, 일의 자리는 남은 카드 $3$가지",
+              "$4\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          }
+        ],
+        "bGoal": "카드로 두 자리 수를 만드는 경우의 수",
+        "bReason": "카드 종류와 한 번씩만 쓴다는 조건을 밝혀 곱셈의 각 인수가 무엇을 뜻하는지 묻는다.",
+        "exampleNeeded": true,
+        "cDecision": "keep",
+        "cReason": "첫 카드를 고른 뒤 무엇을 고르는지 묻는 짧고 분명한 빈칸이다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3208,
+        "part": "m2plus",
+        "sourceFingerprint": "ba6199fe723c29412488162e904d08e6d7482145acffd93f0beb25315826c31f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3208
+        },
+        "directReview": null,
+        "cFrozenSentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 □를 차례로 고른다.",
+        "cFrozenDefinition": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다.",
+        "cFrozenAnswers": [
+          "남은 카드"
+        ],
+        "cMarkedSentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 {남은 카드}를 차례로 고른다.",
+        "cSlotAnswers": [
+          "남은 카드"
+        ],
+        "cStudentSentence": "서로 다른 양의 한 자리 숫자 카드로 두 자리 수를 만들 때 첫 카드와 □를 차례로 고른다.",
+        "cAnswers": [
+          "남은 카드"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "남은 카드",
+            "equivalentAnswers": [
+              "남은 카드"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "남은 카드"
+          ]
+        ],
+        "proposalFingerprint": "572f23be18414b48ae18efd68a81db2a92a25ecf28d768043e3f245215f6ef60"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-05-xc15",
+        "section": "중1::8. 통계::도수분포다각형",
+        "term": "두 분포를 겹칠 때의 축",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 자료의 그래프를 겹쳐 비교할 때는 계급의 {경계}와 세로축 {눈금}을 맞춘다.",
+        "studentC": "두 자료의 그래프를 겹쳐 비교할 때는 계급의 □와 세로축 □을 맞춘다.",
+        "answers": [
+          "경계",
+          "눈금"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-05-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자료의 도수분포다각형을 한 그래프에 겹쳐 그려 분포를 비교하려고 한다. 두 그래프에서 서로 같게 맞추어야 하는 것 두 가지를 쓰시오.",
+        "bAnswer": "계급(계급의 양 끝 값)을 똑같이 나누고, 세로축의 눈금을 같게 맞춘다.",
+        "bGoal": "두 분포를 겹쳐 비교할 때 맞출 조건 말하기",
+        "bReason": "가로축 눈금만 같아도 계급 경계가 다를 수 있으므로 계급을 같게 나눈다는 조건을 직접 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "계급을 똑같이 나눈다",
+              "계급의 양 끝 값을 같게 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세로축의 눈금을 같게 한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 자료의 도수분포다각형을 한 그래프에 겹쳐 비교할 때는 두 자료의 {계급}을 똑같이 나누고 {세로축}의 눈금도 같게 맞춘다.",
+        "cAnswers": [
+          "계급",
+          "세로축"
+        ],
+        "cReason": "'계급의 □'에 크기·경계가 모두 들어갈 수 있어 답이 갈림",
+        "learningRole": "procedure",
+        "roleReason": "겹쳐 그리기 전에 계급과 세로축 눈금을 맞추는 준비",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2088,
+        "part": "m1plus",
+        "sourceFingerprint": "970f5e08b04771a345f809d24f9cb333067d4400b8b0fa7ce548c3400a76fc0f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2088
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 자료의 도수분포다각형을 한 그래프에 겹쳐 비교할 때는 두 자료의 {계급}을 똑같이 나누고 {세로축}의 눈금도 같게 맞춘다.",
+        "cSlotAnswers": [
+          "계급",
+          "세로축"
+        ],
+        "cStudentSentence": "두 자료의 도수분포다각형을 한 그래프에 겹쳐 비교할 때는 두 자료의 □을 똑같이 나누고 □의 눈금도 같게 맞춘다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "계급",
+            "equivalentAnswers": [
+              "계급"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "세로축",
+            "equivalentAnswers": [
+              "세로축"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "계급"
+          ],
+          [
+            "세로축"
+          ]
+        ],
+        "proposalFingerprint": "433654e08fbf92f5bcf00e75729591cc7989d53f310e4d73bfe66daa112eba6e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-05-xc20",
+        "section": "중1::8. 통계::도수분포다각형",
+        "term": "선분 위의 중간 점",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이웃한 점을 잇는 선분의 중간 높이는 새로 조사한 도수가 아니므로 실제 계급 도수로 {읽지 않는다}.",
+        "studentC": "이웃한 점을 잇는 선분의 중간 높이는 새로 조사한 도수가 아니므로 실제 계급 도수로 □.",
+        "answers": [
+          "읽지 않는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-05-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포다각형에서 이웃한 두 계급의 점의 높이가 각각 $4$, $8$이다. 두 점을 이은 선분의 한가운데 높이는 $6$인데, 이를 보고 도수가 $6$인 계급이 있다고 할 수 있는지 판단하고 까닭을 쓰시오.",
+        "bAnswer": "할 수 없다. 도수를 나타내는 것은 각 계급의 점뿐이고, 선분은 점을 이어 분포의 모양을 보여 줄 뿐이어서 선분 중간의 높이는 어떤 계급의 도수도 아니다.",
+        "bGoal": "선분 위의 높이를 도수로 읽지 않는 까닭 설명하기",
+        "bReason": "'선분 위의 중간 점'을 구체적인 높이로 주어 오해를 직접 판단하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도수를 나타내는 것은 각 계급의 점뿐이다",
+              "선분 중간의 높이는 어떤 계급의 도수도 아니다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "도수분포다각형에서 이웃한 두 점을 이은 선분의 중간 높이는 어떤 계급의 {도수}도 나타내지 않는다.",
+        "cAnswers": [
+          "도수"
+        ],
+        "cReason": "'새로 조사한 도수'가 어려운 표현이고 답 '읽지 않는다'가 임의 구절임",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "선분은 점을 이은 것일 뿐 도수가 아니라는 근거",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2093,
+        "part": "m1plus",
+        "sourceFingerprint": "a899abfecd5fc18fc686636e74f6671d24cd00cf039050e96af45366baf52e23",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2093
+        },
+        "directReview": null,
+        "cMarkedSentence": "도수분포다각형에서 이웃한 두 점을 이은 선분의 중간 높이는 어떤 계급의 {도수}도 나타내지 않는다.",
+        "cSlotAnswers": [
+          "도수"
+        ],
+        "cStudentSentence": "도수분포다각형에서 이웃한 두 점을 이은 선분의 중간 높이는 어떤 계급의 □도 나타내지 않는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "59dae6d4aecfbe1f5e8a3e1d01663c92f9d50c085baf16a4c5e1ed1ae98dec9c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-05-xc24",
+        "section": "중1::8. 통계::도수분포다각형",
+        "term": "계급 내부 값의 한계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "점의 위치로 계급별 개수는 알지만 각 구간 안의 개별 변량까지 {정확히} 알아낼 수는 없다.",
+        "studentC": "점의 위치로 계급별 개수는 알지만 각 구간 안의 개별 변량까지 □ 알아낼 수는 없다.",
+        "answers": [
+          "정확히"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-05-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포다각형에서 $10$ 이상 $20$ 미만인 계급을 나타내는 점의 높이가 $4$이다. 이 계급에 속한 자료에 대해 그래프로 알 수 있는 것과 알 수 없는 것을 하나씩 쓰시오.",
+        "bAnswer": "이 계급에 속한 자료가 $4$개라는 것은 알 수 있지만, 그 $4$개의 값이 각각 얼마인지는 알 수 없다.",
+        "bGoal": "도수분포다각형으로 알 수 있는 것과 없는 것 구별하기",
+        "bReason": "'계급 내부 값의 한계'가 추상적이라 한 계급의 예로 구별하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이 계급에 속한 자료가 $4$개임을 알 수 있다",
+              "이 계급의 도수가 $4$임을 알 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 자료의 정확한 값은 알 수 없다",
+              "개별 변량은 알 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "도수분포다각형의 점으로 각 계급의 {도수}는 알 수 있지만, 그 계급에 속한 변량 하나하나의 값은 알 수 없다.",
+        "cAnswers": [
+          "도수"
+        ],
+        "cReason": "답 '정확히'가 수학 내용이 아닌 부사이고 그래프 이름도 없음",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "점이 알려 주는 것은 도수뿐이라는 한계를 예에 적용",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2097,
+        "part": "m1plus",
+        "sourceFingerprint": "2ecf2343214ee9fe42b1372f641714cd2088f4180c61ad8ed20b2f82fe521ff3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2097
+        },
+        "directReview": null,
+        "cMarkedSentence": "도수분포다각형의 점으로 각 계급의 {도수}는 알 수 있지만, 그 계급에 속한 변량 하나하나의 값은 알 수 없다.",
+        "cSlotAnswers": [
+          "도수"
+        ],
+        "cStudentSentence": "도수분포다각형의 점으로 각 계급의 □는 알 수 있지만, 그 계급에 속한 변량 하나하나의 값은 알 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "d422f52e4b1143d79ef049ae1598d5ef97d44412b58d704588665e48a0c0c198"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-06-xc10",
+        "section": "중2::1. 수와 식::단항식의 곱셈과 나눗셈",
+        "term": "분수 계수인 단항식으로 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "계수가 분수인 단항식으로 나눌 때는 나누는 식을 문자까지 넣어 {하나의 분수}로 쓴 다음 그 {역수}를 곱한다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}x$를 $\\frac{2x}{3}$로 쓸 수 있는 까닭은?",
+          "answer": "$x$가 분자에 곱해져서"
+        },
+        "studentC": "계수가 분수인 단항식으로 나눌 때는 나누는 식을 문자까지 넣어 □로 쓴 다음 그 □를 곱한다.",
+        "answers": [
+          "하나의 분수",
+          "역수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-06-xc10",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "분수 계수 단항식의 역수 구하기는 xc23의 오류 설명 질문에서 그대로 다룬다.",
+        "cDecision": "rewrite",
+        "cAfter": "$x\\ne0$일 때 $\\frac23x$로 나누려면 나누는 식을 $\\frac{2x}3$처럼 문자까지 넣은 하나의 {분수}로 쓴 다음 그 {역수}를 곱한다.",
+        "cAnswers": [
+          "분수",
+          "역수"
+        ],
+        "cReason": "역수의존재조건과문자를포함한분수형태를보인다.",
+        "exclusionReason": "B 제외: m2-01-06-xc23(역수에서 문자를 빠뜨리는 잘못) 질문과 목표가 겹치는 중복이다.",
+        "learningRole": "procedure",
+        "roleReason": "분수 계수 단항식으로 나누는 방법",
+        "authorBatch": 28,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2249,
+        "part": "m2plus",
+        "sourceFingerprint": "d2c36bc3f9e417b2d555f47135186f01ea1d46d45ea191e3c811267e69182c87",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2249
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$x\\ne0$일 때 $\\frac23x$로 나누려면 나누는 식을 $\\frac{2x}3$처럼 문자까지 넣은 하나의 {분수}로 쓴 다음 그 {역수}를 곱한다.",
+        "cSlotAnswers": [
+          "분수",
+          "역수"
+        ],
+        "cStudentSentence": "$x\\ne0$일 때 $\\frac23x$로 나누려면 나누는 식을 $\\frac{2x}3$처럼 문자까지 넣은 하나의 □로 쓴 다음 그 □를 곱한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분수",
+            "equivalentAnswers": [
+              "분수"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "역수",
+            "equivalentAnswers": [
+              "역수"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분수"
+          ],
+          [
+            "역수"
+          ]
+        ],
+        "proposalFingerprint": "07455fbb44249dec8816d1ccfb904da88cc86e7d541a36e62af22cebcec601ec"
+      }
+    }
+  ]
+}

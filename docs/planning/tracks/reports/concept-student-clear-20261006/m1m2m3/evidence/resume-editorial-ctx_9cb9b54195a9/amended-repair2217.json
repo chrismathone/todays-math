@@ -1,0 +1,107 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-repair2217.json",
+  "changes": [
+    {
+      "id": "m2-01-04-xc25",
+      "cAcceptedAnswers": [
+        [
+          "나누어"
+        ],
+        [
+          "$2.\\dot{6}$",
+          "$2.\\dot6$",
+          "$2.666\\cdots$"
+        ]
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-01-04-xc25",
+      "bDecision": "rewrite",
+      "bPrompt": "방정식 $0.\\dot{3}x+0.\\dot{1}=1$의 해를 구하고, 그 해를 순환소수로 나타내는 과정을 쓰시오.",
+      "bAnswer": "$\\frac{1}{3}x+\\frac{1}{9}=1$의 양변에 $9$를 곱하면 $3x+1=9$이므로 $x=\\frac{8}{3}$이다. $8\\div3=2.666\\cdots$이므로 $x=2.\\dot{6}$이다.",
+      "bGoal": "분수로 구한 해를 나눗셈으로 순환소수로 고치기",
+      "bReason": "순환소수로쓰라는요구에는정확한반복을보인점표기와풀어쓴표기가모두맞다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac13x+\\frac19=1$에서 $x=\\frac83$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\div3=2.666\\cdots$",
+            "$\\frac83=2+\\frac23=2+0.\\dot6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=2.\\dot6$",
+            "$x=2.666\\cdots$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "방정식의 해를 분수로 구한 뒤 순환소수로 답하려면, 그 분수의 분자를 분모로 {나누어} 소수로 고친다. 예를 들어 해가 $x=\\frac{8}{3}$이면 $x=${$2.\\dot{6}$}이다.",
+      "cAnswers": [
+        "나누어",
+        "$2.\\dot{6}$"
+      ],
+      "cReason": "같은순환소수의두표기를동등하게받는다.",
+      "exampleNeeded": true,
+      "authorBatch": 27,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "분수 해를 소수로 변환",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2217,
+      "part": "m2plus",
+      "sourceFingerprint": "fc25be44f2ee8cd14f807ba76e024f367d067fa00277b5677b334ebcf3593b09",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2217
+      },
+      "directReview": null,
+      "cMarkedSentence": "방정식의 해를 분수로 구한 뒤 순환소수로 답하려면, 그 분수의 분자를 분모로 {나누어} 소수로 고친다. 예를 들어 해가 $x=\\frac{8}{3}$이면 $x=${$2.\\dot{6}$}이다.",
+      "cSlotAnswers": [
+        "나누어",
+        "$2.\\dot{6}$"
+      ],
+      "cStudentSentence": "방정식의 해를 분수로 구한 뒤 순환소수로 답하려면, 그 분수의 분자를 분모로 □ 소수로 고친다. 예를 들어 해가 $x=\\frac{8}{3}$이면 $x=$□이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "나누어",
+          "equivalentAnswers": [
+            "나누어"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2.\\dot{6}$",
+          "equivalentAnswers": [
+            "$2.\\dot{6}$",
+            "$2.\\dot6$",
+            "$2.666\\cdots$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "나누어"
+        ],
+        [
+          "$2.\\dot{6}$",
+          "$2.\\dot6$",
+          "$2.666\\cdots$"
+        ]
+      ],
+      "proposalFingerprint": "70b1ba25ff33f3a570d73fa080ce206b5913587ab1314955ead8d1f95f06f52c"
+    }
+  ]
+}

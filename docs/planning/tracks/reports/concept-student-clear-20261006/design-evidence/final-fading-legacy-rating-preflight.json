@@ -1,0 +1,18 @@
+{
+  "purpose": "Provisional read-only student-record compatibility preflight; not final content or deployment approval.",
+  "checkedAt": "2026-10-07T16:28:30.523Z",
+  "impactInputHash": "1ebbdaa39bcf1705211da5907976762c61522f1c05bc03eda130e78877195dba",
+  "impactFileSha256": "5da2e098174a0f674fe1f2bde449dc8ac15efc41c49be954a58cb1724e611d31",
+  "affectedDraftGroups": 492,
+  "counts": {
+    "read_only": "on",
+    "state_rows": 1,
+    "rows_with_fading": 0,
+    "open_sessions": 0,
+    "legacy_rating_sessions": 0,
+    "affected_legacy_rating_sessions": 0,
+    "affected_open_sessions": 0
+  },
+  "studentRecordsWritten": false,
+  "requiresFinalImpactRecheck": true
+}

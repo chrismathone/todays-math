@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q05",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "그림과 같이 이차함수 $y=x^{2}-2x-3$의 그래프가 $x$축과 만나는 두 점을 $x$좌표가 작은 것부터 차례로 $\\mathrm{A}$, $\\mathrm{B}$라 하고, 꼭짓점을 $\\mathrm{C}$라 하자.\n삼각형 $\\mathrm{ABC}$의 계산 기록표를 완성하려고 한다.\n\n| 기록 항목 | 밑변 $\\overline{\\mathrm{AB}}$의 길이 | 높이 | 넓이 |\n| --- | --- | --- | --- |\n| 계산 결과 | ㉠ | ㉡ | ㉢ |\n\n㉠, ㉡, ㉢에 들어갈 수를 차례로 바르게 짝지은 것은?",
+  "choices": [
+    "$2$, $4$, $4$",
+    "$4$, $3$, $6$",
+    "$4$, $4$, $16$",
+    "$4$, $4$, $8$",
+    "$6$, $4$, $12$"
+  ],
+  "answer": "④",
+  "solution": "$x$축과 만나는 점에서는 $y=0$이므로 $x^{2}-2x-3=0$이다. 이를 인수분해하면 $(x+1)(x-3)=0$이므로 $x=-1$ 또는 $x=3$이다. 따라서 $\\mathrm{A}(-1,0)$, $\\mathrm{B}(3,0)$이고 밑변 $\\overline{\\mathrm{AB}}$의 길이는 $3-(-1)=4$이다.\n또 $y=x^{2}-2x-3=(x-1)^{2}-4$이므로 꼭짓점 $\\mathrm{C}$의 좌표는 $(1,-4)$이다.\n밑변이 $x$축 위에 있고 $\\mathrm{C}$가 $x$축보다 $4$만큼 아래에 있으므로 높이는 $4$이다.\n따라서 삼각형의 넓이는 $\\frac{1}{2}\\times4\\times4=8$이다.\n㉠, ㉡, ㉢에 들어갈 수는 차례로 $4$, $4$, $8$이므로 정답은 ④이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "coefficients": [
+      1,
+      -2,
+      -3
+    ],
+    "factoredEquation": "y=(x+1)(x-3)",
+    "vertexEquation": "y=(x-1)^2-4",
+    "roots": [
+      -1,
+      3
+    ],
+    "A": [
+      -1,
+      0
+    ],
+    "B": [
+      3,
+      0
+    ],
+    "C": [
+      1,
+      -4
+    ],
+    "altitudeFoot": [
+      1,
+      0
+    ],
+    "baseLength": 4,
+    "height": 4,
+    "area": 8,
+    "choiceRecords": [
+      [
+        2,
+        4,
+        4
+      ],
+      [
+        4,
+        3,
+        6
+      ],
+      [
+        4,
+        4,
+        16
+      ],
+      [
+        4,
+        4,
+        8
+      ],
+      [
+        6,
+        4,
+        12
+      ]
+    ],
+    "numericTicksShown": false,
+    "nativeTable": true
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "아래로 향하는 포물선의 꼭짓점과 x축 위 두 점이 만드는 삼각형에 대해 넓이 하나를 고른다.",
+    "after": "위로 향하는 포물선의 꼭짓점을 x축 아래에 두고, 두 교점에서 구하는 밑변·꼭짓점에서 구하는 양수 높이·넓이의 세 기록을 대응시킨다. A·B는 밑변의 양 끝점, C는 꼭짓점으로 점의 역할을 다시 정의했다.",
+    "sharedConcept": "이차함수의 꼭짓점·x축 교점과 삼각형의 밑변·높이·넓이",
+    "sharedProcedure": "인수분해로 x축 두 교점을 구하고 완전제곱식으로 꼭짓점을 구한 뒤 좌표에서 밑변·높이를 읽어 삼각형 넓이를 계산한다.",
+    "preparationAdjustment": "v2 제안의 아래로 볼록한 y=-x^2+4x+5 대신 y=x^2-2x-3을 채택했다. 음수인 꼭짓점의 y좌표와 양수인 높이를 구분하도록 하되, 새 선수 개념이나 최댓값·최솟값 문제는 추가하지 않았다. 원문 5점에서 이번 후보 계약의 4점으로 제안한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-10",
+      "9수02-13",
+      "9수02-12",
+      "9수03-01",
+      "6수03-06"
+    ],
+    "allowedProcedure": [
+      "y=0을 대입하고 정수 인수분해로 서로 다른 두 실근을 구한다.",
+      "완전제곱식으로 꼭짓점의 좌표를 읽는다.",
+      "x축 위 두 점의 x좌표 차로 밑변의 길이를, 꼭짓점에서 x축까지의 수직 거리로 높이를 구한다.",
+      "삼각형 넓이 공식에 양수 밑변·높이를 대입한다."
+    ],
+    "forbiddenAvoided": [
+      "근과 계수의 관계·판별식",
+      "미분·정적분·넓이의 최적화",
+      "일반 직선-포물선 교점 이론",
+      "벡터·좌표 거리 공식"
+    ],
+    "surfaceScope": {
+      "stem": "x축 두 교점·꼭짓점으로 정의된 삼각형과 세 계산량의 기록표",
+      "choices": "모두 양수인 밑변·높이·넓이의 수치 기록",
+      "figureAndNotation": "포물선·삼각형의 실제 좌표가 일치하며 x축까지의 수직 높이선만 보조로 표시한다. 뿌리·꼭짓점의 수치 눈금은 넣지 않는다.",
+      "studentSolution": "인수분해·완전제곱식·축 위 좌표의 차·양수 높이·삼각형 넓이",
+      "prerequisites": "인수분해, 이차방정식의 해, 좌표, 이차함수의 꼭짓점, 삼각형의 밑변과 높이"
+    },
+    "status": "author-proposed",
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "mappingJsonPointer": "/question_mappings/4",
+      "standards": [
+        {
+          "code": "6수03-06",
+          "verified_text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3433,
+            "record_offset_in_uncompressed_stream": 176573,
+            "extracted_paragraph_1based": 690
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "elementary_grade_band"
+        },
+        {
+          "code": "9수02-12",
+          "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수02-13",
+          "verified_text": "이차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3964,
+            "record_offset_in_uncompressed_stream": 201786,
+            "extracted_paragraph_1based": 809
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-01",
+          "verified_text": "순서쌍과 좌표를 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-10",
+          "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "bandCaveat": {
+        "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+        "source_id": "moe-2020-236-math-hwp",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record_1based": 3713,
+          "record_offset_in_uncompressed_stream": 190162,
+          "text": "[중학교 1~3학년]"
+        },
+        "original_pdf_page_1based": 32,
+        "original_pdf_printed_page": 28
+      },
+      "versionLimitations": {
+        "verified_math_editions": [
+          "2015-74 book8 PDF",
+          "2020-236 amended book8 HWP"
+        ],
+        "post_2020_complete_amendment_chain_audited": false,
+        "final_candidate_approval_allowed": false,
+        "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+      }
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-5",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 5,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "9d7184823e0d2561574b0c2944dcb5e5ad2429613d8e467c42504f80545adeb7",
+    "sourceObservation": "y=-x²+2x+8, 꼭짓점 A와 x축 교점 B,C로 만든 △ABC의 넓이다.",
+    "sharedConceptProcedure": "완전제곱과 인수분해로 꼭짓점·교점을 구하고 밑변×높이÷2로 넓이를 계산한다.",
+    "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "referenceJsonPointer": "/4/content",
+    "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "활용",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|08",
+      "currentUnit": {
+        "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수 y=ax^2+bx+c의 그래프",
+        "semester": 1,
+        "orderIndex": 479,
+        "problemCodePrefix": "J30402"
+      },
+      "currentRegistryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑵|08",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "08",
+        "rpmTitle": "이차함수의 그래프와 삼각형의 넓이"
+      },
+      "liveCount": 22,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "꼭짓점과 x축 두 교점으로 만든 삼각형의 밑변·높이를 구한다. 넓이의 최대를 묻지 않아 최댓값·최솟값 단원이 아니다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-10",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-13",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3964,
+          "record_offset_in_uncompressed_stream": 201786,
+          "extracted_paragraph_1based": 809
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-12",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3956,
+          "record_offset_in_uncompressed_stream": 201534,
+          "extracted_paragraph_1based": 807
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-01",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4102,
+          "record_offset_in_uncompressed_stream": 208503,
+          "extracted_paragraph_1based": 838
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "6수03-06",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3433,
+          "record_offset_in_uncompressed_stream": 176573,
+          "extracted_paragraph_1based": 690
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            29
+          ],
+          "printed_pages": [
+            25
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "y=0을 대입하고 정수 인수분해로 서로 다른 두 실근을 구한다. 완전제곱식으로 꼭짓점의 좌표를 읽는다. x축 위 두 점의 x좌표 차로 밑변의 길이를, 꼭짓점에서 x축까지의 수직 거리로 높이를 구한다. 삼각형 넓이 공식에 양수 밑변·높이를 대입한다.",
+    "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": [
+        "D:/todays-math/src/lib/middle/m3Func.ts:1660"
+      ],
+      "authorObservation": {
+        "status": "author-proposed-not-family-approval",
+        "path": "src/lib/middle/m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "scope": "read-only-procedure-comparison",
+        "familyType": "g2-08",
+        "line": 1660,
+        "fullSemanticMatch": "pending; live rule triangle uses y-intercept, new candidate uses vertex"
+      }
+    },
+    "source": "transformed",
+    "originProblemId": null,
+    "problemCode": null,
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate"
+    },
+    "publicationStatus": "author-proposed-not-approved",
+    "independentVerificationStatus": "pending-parent-blind-verification",
+    "gradeApprovalStatus": "pending-parent-review",
+    "rightsReviewStatus": "pending-parent-review",
+    "similarityReviewStatus": "pending-parent-review",
+    "directUseAllowed": false,
+    "sourceQuestionType": "객관식",
+    "sourceScore": 5,
+    "formAndScoreStatus": "author-proposed-pending-parent-review",
+    "curriculumSourceMethodProposal": "완전제곱식으로 꼭짓점을 구하고 y=0인 이차방정식을 인수분해하여 밑변·높이와 삼각형 넓이를 계산한다.",
+    "sourceCurriculumSpecificHold": "일반 직선과 이차함수의 교점 이론, 근과 계수의 관계, 미분 또는 정적분은 제외.",
+    "authorChecks": {
+      "status": "completed-author-self-check-only",
+      "independent": false,
+      "requiredFields": "present",
+      "choiceCount": 5,
+      "uniqueCorrectChoice": "④",
+      "mathSyntax": "katex-strict-pass",
+      "mathSpanCount": 45
+    },
+    "authorFigureRender": {
+      "entrypoint": "src/lib/figure/renderFigureSpec.ts",
+      "options": {
+        "strict": true,
+        "typeset": true
+      },
+      "transport": "local-python",
+      "enginePath": "vendor/figure-engine",
+      "inspection": "author-view-image-completed",
+      "finalFigureApproval": "pending-parent-review",
+      "artifacts": [
+        {
+          "role": "stem",
+          "specSha256": "b24cfc8fa9c7abf018e5c4db4fd3eeaf17936c066651e57bc1efbd631f5e121b",
+          "svgSha256": "d3471b102182c4de573c5bbd9ef3a70fd05cee74fb8692973cdde49162e5043a",
+          "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q05.preview.png",
+          "previewSha256": "10fc27763cc7f7e32348b391594c0954fcfed59857568dc6d161b17475a4b0ff",
+          "droppedDimensions": []
+        }
+      ]
+    }
+  }
+}

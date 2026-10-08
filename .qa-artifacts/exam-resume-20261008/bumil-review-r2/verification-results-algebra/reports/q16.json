@@ -1,0 +1,481 @@
+{
+  "status": "verified",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  },
+  "evidence": {
+    "questionNumber": 16,
+    "mathReview": "독립 풀이와 저자 답은 모두 ④이다. OM=ON인 현까지의 수선 거리에서 AB=AC, 두 밑각 B=C=65°, A=50°가 유일하다. ①·③의 현 관계는 세 각과 양립하지 않고 ②·⑤는 꼭지각이 틀리며 ④만 두 기록을 모두 만족한다.",
+    "solutionReview": "저자 해설은 같은 중심 거리의 현, 이등변삼각형의 밑각, 내각 합만 사용한다. 원과 비례의 곱 정리나 삼각비 등 새로운 방법을 추가하지 않는다.",
+    "transformationReview": "원문은 꼭지각 숫자 하나를 고른다. 새 문항은 검사 기록에서 먼저 추론한 현의 길이 관계와 각도를 함께 적은 행을 고른다. 맞는 각도와 잘못된 현 관계의 보기도 있으므로 숫자·동의어 교체만으로 풀 수 있는 변형이 아니다. 핵심 추론 사슬은 보존된다.",
+    "wordingReview": "M·N이 각 현 위에 있고 OM·ON이 수선임을 명시한다. 질문에서 현 관계와 BAC의 크기를 '차례로' 요구하여 보기 순서가 분명하다.",
+    "familyReview": {
+      "status": "passed-semantic-fit",
+      "family": "mid:3-2|원과 직선|18A",
+      "reason": "스냅샷의 중3/원과 현/중심에서 같은 거리에 있는 두 현 등록과 현재 m3.ts의 18A 규칙이 정확히 OM=ON→현 길이 같음이라는 주 개념을 사용한다. 이후 밑각·내각 합은 이미 배운 선수 개념이며 별도의 주 개념으로 이동시키지 않는다.",
+      "scope": "새 후보의 의미 대응 판정이며 현행 생성 함수가 이 관계·각도 보기 형식을 이미 출력한다는 주장은 아니다."
+    },
+    "difficultyScoreReview": {
+      "status": "passed-comparative-review",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "proposal": "기본",
+      "reason": "원문과 새 문항 모두 현의 길이 같음→이등변 밑각→내각 합의 세 추론이다. 새 관계·각도 짝은 이미 필요한 첫 추론을 답에도 드러내며 추가 선수 개념이나 계산량을 늘리지 않는다. 4점과 기본 제안이 이 부담에 맞는다."
+    },
+    "surfaceEvidence": {
+      "stem": "원의 현과 중심에서의 수선 거리라는 중3 원과 현의 주제이고 점의 위치가 명시된다.",
+      "choices": "같은 현의 관계와 양의 도 단위 각도를 비교하는 다섯 기록이다. 틀린 115°도 고등학교 방법을 요구하는 표기가 아니다.",
+      "figuresAndTables": "세 점이 실제로 반지름 92의 원 위에 있고 두 수선은 직각, 길이가 같으며 B가 65°다. 같은 길이 눈금이 OM·ON에 대응한다.",
+      "notation": "원의 중심 O, 현, 수직 기호, 선분 길이 막대, 도 단위 각만 쓴다.",
+      "answer": "현의 관계와 50°를 고르는 ④로 중학교 형식이다.",
+      "studentSolution": "9수04-19의 현 성질과 9수04-10의 이등변삼각형, 내각 합을 직접 적용한다.",
+      "prerequisites": "중학교 수직·삼각형 각·이등변 성질이며 중3 Unit에서 현 성질을 적용한다. 고등학교 선수 방법은 없다."
+    },
+    "holds": [],
+    "bindingAudit": {
+      "verificationInputsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/verification-inputs.json",
+      "verificationInputsSha256": "d95b08d3c66132071e0c25b3488187ab4d3bc73b87d3c5a25ff8649ff8f20d81",
+      "candidateFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/package/private/q16/candidate.json",
+      "candidateFileSha256": "ddb4b8ecd38969339b0dc554e558715cc91a1f6a7839c448e430f2ce6b3edf16",
+      "allFourDigestsRecomputed": true,
+      "digestImplementation": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs",
+      "digestImplementationSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59",
+      "solveFile": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/solve/q16.json",
+      "solveFileSha256": "b33a9a9a27c31b849ddf257fb52326df88480b942132409af2bfbdab9ca378bd",
+      "parentSolveCanonicalDigestMatchesFrozen": true,
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "authorDiffersFromVerifier": true,
+      "authorAnswerComparedOnlyAfterBlindFreeze": "0e2ee38d597e2e7a8782a673a0a0235c4910630f"
+    },
+    "independentEvidence": {
+      "answer": "④",
+      "solution": "한 원에서 중심으로부터의 거리가 같은 두 현의 길이는 같다. $\\overline{OM}\\perp\\overline{AB}$, $\\overline{ON}\\perp\\overline{AC}$이고 $\\overline{OM}=\\overline{ON}$이므로 $\\overline{AB}=\\overline{AC}$이다.\n따라서 삼각형 $\\mathrm{ABC}$는 밑변이 $\\overline{BC}$인 이등변삼각형이므로 $\\angle ACB=\\angle ABC=65^{\\circ}$이다.\n삼각형의 세 내각의 크기의 합에서 $\\angle BAC=180^{\\circ}-65^{\\circ}-65^{\\circ}=50^{\\circ}$이다.\n따라서 현의 길이 관계와 각의 크기는 $\\overline{AB}=\\overline{AC}$, $50^{\\circ}$이고 정답은 ④이다.",
+      "conditions": {
+        "anglesDegrees": {
+          "A": 50,
+          "B": 65,
+          "C": 65
+        },
+        "allTriangleAnglesPositive": true,
+        "angleSumDegrees": 180,
+        "nondegenerateChords": true
+      },
+      "choiceReview": [
+        {
+          "choiceNumber": 1,
+          "correct": false,
+          "reason": "같은 중심 거리에 대응하는 두 현은 AB와 AC이다. AB=BC라면 A와 C의 각이 같아야 하므로 계산한 50°·65°와도 맞지 않는다."
+        },
+        {
+          "choiceNumber": 2,
+          "correct": false,
+          "reason": "현의 관계는 맞지만 BAC는 65°가 아니라 50°이다."
+        },
+        {
+          "choiceNumber": 3,
+          "correct": false,
+          "reason": "AC=BC이면 A와 B의 각이 같아야 하지만 A=50°, B=65°이다."
+        },
+        {
+          "choiceNumber": 4,
+          "correct": true,
+          "reason": "AB=AC와 BAC=50°를 모두 만족한다."
+        },
+        {
+          "choiceNumber": 5,
+          "correct": false,
+          "reason": "BAC=115°는 두 밑각 65°와 함께 삼각형의 내각 합을 만족하지 않는다."
+        }
+      ]
+    },
+    "sourceQuestionOnly": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+      "sha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "jsonPointer": "/15",
+      "contentSha256": "2a0a3a6ab32cdaae436229cea0c6c7139a73ec1f9e483b76d7c828b3914be911",
+      "originalAnswersRead": false,
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "scorePreserved": true,
+      "sourceFigureReferences": [
+        "figures/q16.png"
+      ]
+    },
+    "curriculumGrounding": {
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardCodes": [
+        "9수04-19",
+        "9수04-04",
+        "9수04-10",
+        "9수04-05"
+      ],
+      "supplementaryReviewerCodes": [],
+      "standards": [
+        {
+          "code": "9수04-04",
+          "verified_text": "삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4264,
+            "record_offset_in_uncompressed_stream": 216294,
+            "extracted_paragraph_1based": 872
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-05",
+          "verified_text": "다각형의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4272,
+            "record_offset_in_uncompressed_stream": 216602,
+            "extracted_paragraph_1based": 874
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-10",
+          "verified_text": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4300,
+            "record_offset_in_uncompressed_stream": 217636,
+            "extracted_paragraph_1based": 881
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-19",
+          "verified_text": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4353,
+            "record_offset_in_uncompressed_stream": 219558,
+            "extracted_paragraph_1based": 894
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "gradeBandCodeAloneUsedAsApproval": false,
+      "exactGradeAnchors": {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      "targetYearApplication": {
+        "nominalSourceYear": 2025,
+        "middle3In2025And2026": "2015",
+        "middle3In2027": "2022 requires separate retarget review",
+        "evidence": {
+          "2015": {
+            "source_id": "moe-60747",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2017-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2018-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2019-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2020-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "2022": {
+            "source_id": "moe-93458",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2024-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2025-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2026-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2027-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "pilot_reference_2025_middle3": "2015_revision",
+          "middle3_2026": "2015_revision",
+          "middle3_2027": "2022_revision_requires_separate_mapping",
+          "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+        }
+      },
+      "restrictionCompliance": {
+        "trigAnglesInStudentCalculation": [],
+        "trigRatioIdentitiesUsed": false,
+        "circlePowerOrProportionalityUsed": false,
+        "vietaDiscriminantDerivativesVectorsInStudentMethod": false
+      },
+      "materialAmendmentReview": {
+        "status": "pending-final-publication-attestation-on-selected-provisions",
+        "scope": "Only listed standard texts and relevant trig/circle restrictions for middle3/2015; no unrelated whole-policy audit requested.",
+        "providedEditionChecks": "2015 PDF and 2020 HWP selected clauses match after whitespace normalization",
+        "materialConflictEvidenced": false,
+        "completePost2020AmendmentChainClaimed": false,
+        "owner": "parent",
+        "blocksAutomaticRelease": true
+      }
+    },
+    "taxonomyGrounding": {
+      "registryPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotCapturedAt": "2026-10-07T16:08:32.171Z",
+      "assignment": {
+        "status": "proposed",
+        "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "familyKey": "mid:3-2|원과 직선|18A",
+        "currentUnit": {
+          "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "section": "원과 현",
+          "semester": 2,
+          "orderIndex": 484,
+          "problemCodePrefix": "J30601"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|원과 직선|18A",
+          "grade": "중3",
+          "unitSection": "원과 현",
+          "rpmBook": "3-2",
+          "rpmMinor": "원과 직선",
+          "rpmType": "18A",
+          "rpmTitle": "중심에서 같은 거리에 있는 두 현"
+        },
+        "liveCount": 16,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "중심에서 같은 거리에 있는 두 현의 길이가 같다는 성질을 쓰고 이등변삼각형의 각을 판정한다. 기존 18A의 주 개념과 일치한다.",
+        "candidates": []
+      },
+      "registryMatch": {
+        "key": "3-2|원과 직선|18A",
+        "grade": "중3",
+        "unitSection": "원과 현",
+        "rpmBook": "3-2",
+        "rpmMinor": "원과 직선",
+        "rpmType": "18A",
+        "rpmTitle": "중심에서 같은 거리에 있는 두 현"
+      },
+      "verifierAssignedSemanticType": null,
+      "unknownTypeNullIsNotValidationFailure": false,
+      "forcedUnitOrFamily": false,
+      "currentRule": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3.ts",
+        "sha256": "aebe6db83ef404352029de1bbbd4607733fcb2a6ca4345dfd59109795d9d69e3",
+        "line": 493,
+        "reviewScope": "semantic scope and parameter coverage; no engine mutation"
+      }
+    },
+    "assetReview": [
+      {
+        "role": "stem",
+        "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q16\\figure-1.spec.json",
+        "specSha256": "9d860f61252cd19b1ad520cfc660dbf664093926dbfc477789c6ed72c054df25",
+        "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q16\\figure-1.svg",
+        "svgSha256": "24e796e88d8ba1f5c3f3db7b03900fed1c11076c1ce875d8a71ee10f31b7e196",
+        "intendedWidthMm": 58,
+        "actualStudentSvgByteHashMatches": true,
+        "visualInspectionCompleted": true,
+        "mathNeverMeasuredFromRaster": true,
+        "printMetrics": {
+          "minimumLabelEmMm": 4.642210576464984,
+          "minimumLabelEmPt": 13.159022106514914,
+          "labelCount": 7,
+          "screenWidthAt96Dpi": 219,
+          "screenSizeProofInspected": false,
+          "screenAssessment": "labels/angles identifiable without overlaps",
+          "physicalPaperProofInspected": false,
+          "dimensionsOwner": "parent"
+        },
+        "geometryCalculationScope": "coordinates are used only to validate authored vector geometry, not as the student solution method",
+        "geometryChecks": {
+          "radius": 92,
+          "OM": 38.88088008014434,
+          "ON": 38.88088008014434,
+          "AB": 166.7606328147436,
+          "AC": 166.7606328147436,
+          "ABCdegrees": 65,
+          "OMBdegrees": 90,
+          "ONCdegrees": 89.99999999999999
+        }
+      }
+    ],
+    "syntaxCheck": {
+      "engine": "KaTeX strict",
+      "studentMathSpans": 30,
+      "passed": true,
+      "surfaceKeywordViolations": []
+    },
+    "judgmentDesign": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "liveDocs": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "apiCalls": 0,
+      "jevResponses": null,
+      "probabilities": null,
+      "mode": "manual scoped judgments with named evidence; exact math and binding in code",
+      "aggregation": "Out-of-grade required methods reject; insufficient evidence holds its own dimension; no probability or hash grants release.",
+      "apiCallsScope": "TypeSafe/Jev/OpenAI inference endpoints; only public documentation was fetched"
+    },
+    "releaseBoundary": {
+      "automaticReleaseAllowed": false,
+      "dbOrApplyWrites": 0,
+      "sourceIdentity": "pending-parent-attestation",
+      "rights": "pending-parent-review",
+      "nativeProvenance": "pending-parent-review",
+      "materialAmendmentFinalAttestation": "pending-parent-on-selected-provisions",
+      "statusMeaning": "verified is only this scoped independent review; it is not publishing or rights permission"
+    },
+    "readOnlyGateAudit": {
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  },
+  "studentDigest": "818b8d74b4affcc33f5212e0e16936724f1732080c8ac4819ee3e7a09595790a",
+  "candidateDigest": "c422c4c43a5478a04fbc5cb9a3ae7412640cabbc26951e4a512bb87f5c765a5c",
+  "assetDigest": "28966973dc2a33441bec3dc01fb60c465a3a5c33a24b0917e4f26a4cf6227337",
+  "solveDigest": "88d64b0b682f8e7ed9731ce8f732dd7530a932112549989c9f816ad8c836954c"
+}

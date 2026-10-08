@@ -1,0 +1,2664 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2433,
+  "end": 2463,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2433,
+        "sourceFingerprint": "a292085623bdfbfd1f30232357ef65a36335ab4981d3ba877f0c3be427445ed7",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc12",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직각 옆의 각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 직선이 만나 생긴 한 각이 $90^\\circ$이면 그 옆의 각은 $180^\\circ$에서 빼어 {$90^\\circ$}이다.",
+        "studentC": "두 직선이 만나 생긴 한 각이 $90^\\circ$이면 그 옆의 각은 $180^\\circ$에서 빼어 □이다.",
+        "answers": [
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2433,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "a292085623bdfbfd1f30232357ef65a36335ab4981d3ba877f0c3be427445ed7",
+        "proposalFingerprint": "af8a6b435f8016243c2bef71edc65f4c4ec879e7329465bb0c62978c79b49093",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc12",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "직각 옆의 각",
+        "bReason": "xc26과 같은 목표",
+        "exclusionReason": "일직선 $180^\\circ$에서 빼는 계산은 xc26 수선이 일직선 각을 나누는 B와 같다",
+        "cDecision": "keep",
+        "cReason": "선명한 짧은 계산이라 유지",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각 옆의 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 직선이 만나 생긴 한 각이 $90^\\circ$이면 그 옆의 각은 $180^\\circ$에서 빼어 {$90^\\circ$}이다.",
+        "cStudentSentence": "두 직선이 만나 생긴 한 각이 $90^\\circ$이면 그 옆의 각은 $180^\\circ$에서 빼어 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 직선이 만나 생긴 한 각이 $90^\\circ$이면 그 옆의 각은 $180^\\circ$에서 빼어 □이다.",
+          "answers": [
+            "$90^\\circ$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "두 직선이 만나 생긴 한 각이 $90^\\circ$이면 그 옆의 각은 $180^\\circ$에서 빼어 {$90^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc26과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2434,
+        "sourceFingerprint": "3e8d02ded5f32b30d8ffa9e48ff41eb3fe8c397336e4f81ab40b32f62fe1c1bb",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc13",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "수직과 수선의 구별",
+        "kind": "성질",
+        "level": "중",
+        "definition": "수직은 두 직선의 관계를 나타내고, 수선은 그 관계에 있는 {직선}을 가리킨다.",
+        "studentC": "수직은 두 직선의 관계를 나타내고, 수선은 그 관계에 있는 □을 가리킨다.",
+        "answers": [
+          "직선"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2434,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "3e8d02ded5f32b30d8ffa9e48ff41eb3fe8c397336e4f81ab40b32f62fe1c1bb",
+        "proposalFingerprint": "e0b2a26fd81c3cabbb21854d043d9b698f096542c99365ff5674cdbaa1265eac",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "'수직'과 '수선'은 각각 무엇을 가리키는 말인지 쓰고 서로 어떻게 다른지 설명하시오.",
+        "bAnswer": "수직은 두 직선이 직각으로 만나는 관계이고, 수선은 그 관계에 있는 직선 자체를 가리킨다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직은 두 직선의 관계",
+              "수직은 직각으로 만나는 관계"
+            ]
+          },
+          {
+            "anyOf": [
+              "수선은 그 관계에 있는 직선",
+              "수선은 수직인 직선"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "수직과 수선의 구별",
+        "bReason": "두 낱말이 가리키는 대상을 구별하게 한다",
+        "cDecision": "keep",
+        "cReason": "짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "선",
+            "한 직선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "수직과 수선의 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수직은 두 직선의 관계를 나타내고, 수선은 그 관계에 있는 {직선}을 가리킨다.",
+        "cStudentSentence": "수직은 두 직선의 관계를 나타내고, 수선은 그 관계에 있는 □을 가리킨다.",
+        "cSlotAnswers": [
+          {
+            "expected": "직선",
+            "equivalents": [
+              "선",
+              "한 직선"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "수직은 두 직선의 관계를 나타내고, 수선은 그 관계에 있는 □을 가리킨다.",
+          "answers": [
+            "직선"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "'수직'과 '수선'은 각각 무엇을 가리키는 말인지 쓰고 서로 어떻게 다른지 설명하시오.",
+          "answer": "수직은 두 직선이 직각으로 만나는 관계이고, 수선은 그 관계에 있는 직선 자체를 가리킨다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "수직은 두 직선의 관계",
+                "수직은 직각으로 만나는 관계"
+              ]
+            },
+            {
+              "anyOf": [
+                "수선은 그 관계에 있는 직선",
+                "수선은 수직인 직선"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수직은 두 직선의 관계를 나타내고, 수선은 그 관계에 있는 {직선}을 가리킨다.",
+          "acceptedAnswers": [
+            [
+              "직선",
+              "선",
+              "한 직선"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2435,
+        "sourceFingerprint": "e627ac89bc005e5d619cd06b0cd66eb67eae59152024b74faf7b9e17a5607865",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc14",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직사각형에서 한 변에 수직인 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형에서 한 변에 수직인 변은 {$2$개}이다.",
+        "studentC": "직사각형에서 한 변에 수직인 변은 □이다.",
+        "answers": [
+          "$2$개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2435,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "e627ac89bc005e5d619cd06b0cd66eb67eae59152024b74faf7b9e17a5607865",
+        "proposalFingerprint": "4e4105b842cb263ddc861db4c70f6965c3446aeccf562d6946a3b34ee80d5e05",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "한 변에 수직인 변의 수",
+        "bReason": "xc6과 같은 목표",
+        "exclusionReason": "직사각형 이웃한 변이 수직이라는 목표가 xc6 B와 같다",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형에서 한 변에 수직인 변은 모두 {$2$}개이다.",
+        "cReason": "'□이다'로는 답 형태가 불명확해 개수로 고침",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형에서 한 변에 수직인 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형에서 한 변에 수직인 변은 모두 {$2$}개이다.",
+        "cStudentSentence": "직사각형에서 한 변에 수직인 변은 모두 □개이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직사각형에서 한 변에 수직인 변은 모두 {$2$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc6과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2436,
+        "sourceFingerprint": "efd4bd1dbd6c23a4d09980d225faae9108b463db6556dd7f862e45dd13196c30",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc17",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "각도기로 수직 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 직선이 만나는 곳에 각도기를 대어 잰 각이 {$90^\\circ$}이면 두 직선은 수직이다.",
+        "studentC": "두 직선이 만나는 곳에 각도기를 대어 잰 각이 □이면 두 직선은 수직이다.",
+        "answers": [
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2436,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "efd4bd1dbd6c23a4d09980d225faae9108b463db6556dd7f862e45dd13196c30",
+        "proposalFingerprint": "3fd7372db4093622dcbf7b78a240751ab42214b89a73d67917fc9f0a0d7f5966",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "각도기로 수직 확인",
+        "bReason": "xc3과 같은 확인 목표",
+        "exclusionReason": "도구로 직각을 확인해 수직을 판단하는 목표가 xc3 B와 같다",
+        "cDecision": "keep",
+        "cReason": "각도 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "각도기로 수직 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 직선이 만나는 곳에 각도기를 대어 잰 각이 {$90^\\circ$}이면 두 직선은 수직이다.",
+        "cStudentSentence": "두 직선이 만나는 곳에 각도기를 대어 잰 각이 □이면 두 직선은 수직이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 직선이 만나는 곳에 각도기를 대어 잰 각이 □이면 두 직선은 수직이다.",
+          "answers": [
+            "$90^\\circ$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "두 직선이 만나는 곳에 각도기를 대어 잰 각이 {$90^\\circ$}이면 두 직선은 수직이다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc3과 같은 확인 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2437,
+        "sourceFingerprint": "92dba0a0cc92dfa99e85a99ea5f3f568262571209fd90a40db045d9ca99b6ba9",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc18",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "$90^\\circ$가 아닌 각이 생긴 두 직선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 직선이 만나 생긴 한 각이 $90^\\circ$보다 크면 두 직선은 {수직이 아니다}.",
+        "studentC": "두 직선이 만나 생긴 한 각이 $90^\\circ$보다 크면 두 직선은 □.",
+        "answers": [
+          "수직이 아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2437,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "92dba0a0cc92dfa99e85a99ea5f3f568262571209fd90a40db045d9ca99b6ba9",
+        "proposalFingerprint": "4f684741b2e6e02c644991c3796535f7d7101306da2183e549f58262642bd1eb",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선이 만나 생긴 한 각이 $100^\\circ$입니다. 두 직선은 서로 수직입니까? 그 까닭을 쓰시오.",
+        "bAnswer": "수직이 아니다. 수직이면 만난 점 둘레의 각이 모두 $90^\\circ$여야 하는데 $100^\\circ$인 각이 있기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직이 아니다",
+              "수직이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수직이면 각이 $90^\\circ$여야 한다",
+              "직각이 아니다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직각이 아니면 수직 아님",
+        "bReason": "구체 각도로 판단 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "두 직선이 만나 생긴 한 각이 $90^\\circ$보다 크면 두 직선은 서로 {수직}이 아니다.",
+        "cReason": "문장 끝 구절 대신 낱말 빈칸으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$90^\\circ$가 아닌 각이 생긴 두 직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 직선이 만나 생긴 한 각이 $90^\\circ$보다 크면 두 직선은 서로 {수직}이 아니다.",
+        "cStudentSentence": "두 직선이 만나 생긴 한 각이 $90^\\circ$보다 크면 두 직선은 서로 □이 아니다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "두 직선이 만나 생긴 한 각이 $100^\\circ$입니다. 두 직선은 서로 수직입니까? 그 까닭을 쓰시오.",
+          "answer": "수직이 아니다. 수직이면 만난 점 둘레의 각이 모두 $90^\\circ$여야 하는데 $100^\\circ$인 각이 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "수직이 아니다",
+                "수직이 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "수직이면 각이 $90^\\circ$여야 한다",
+                "직각이 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 직선이 만나 생긴 한 각이 $90^\\circ$보다 크면 두 직선은 서로 {수직}이 아니다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2438,
+        "sourceFingerprint": "57a9cd3f5778ccc176428fe5381c37fdcdfcd7c96aae02458d94bf5bb648fbe5",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc19",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직사각형에서 수직인 변의 쌍",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형에서 서로 수직인 두 변의 짝은 모두 {네 쌍}이다.",
+        "studentC": "직사각형에서 서로 수직인 두 변의 짝은 모두 □이다.",
+        "answers": [
+          "네 쌍"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2438,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "57a9cd3f5778ccc176428fe5381c37fdcdfcd7c96aae02458d94bf5bb648fbe5",
+        "proposalFingerprint": "07a6293b921658052e6a05fc751f1f368ef29929f8db88dfd347754f6e6c1500",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "수직인 변의 쌍 수",
+        "bReason": "2-4-2 xc18과 같은 목표",
+        "exclusionReason": "직사각형의 수직 쌍 수는 2-4-2 xc18 B에서 평행과 함께 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형에서 서로 수직인 두 변의 짝은 모두 {$4$}쌍이다.",
+        "cReason": "숫자 빈칸으로 답 형태를 명확히 함",
+        "cSlotEquivalents": [
+          [
+            "네"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형에서 수직인 변의 쌍",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형에서 서로 수직인 두 변의 짝은 모두 {$4$}쌍이다.",
+        "cStudentSentence": "직사각형에서 서로 수직인 두 변의 짝은 모두 □쌍이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": [
+              "네"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직사각형에서 서로 수직인 두 변의 짝은 모두 {$4$}쌍이다.",
+          "acceptedAnswers": [
+            [
+              "$4$",
+              "네"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-4-2 xc18과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2439,
+        "sourceFingerprint": "851a11a33be3dd915e22a11cd1317d6e77cf5592ab2c16457ed736d71cd71558",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc20",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직각삼각형에서 수직인 변",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직각삼각형에서 서로 수직인 두 변은 {한 쌍}뿐이다.",
+        "studentC": "직각삼각형에서 서로 수직인 두 변은 □뿐이다.",
+        "answers": [
+          "한 쌍"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2439,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "851a11a33be3dd915e22a11cd1317d6e77cf5592ab2c16457ed736d71cd71558",
+        "proposalFingerprint": "18b8ac839879ed7df9c1119721c0d14a9e30b85b202b8d3e7f01adc5be3b381b",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 서로 수직인 두 변은 몇 쌍인지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "한 쌍이다. 직각이 한 개뿐이어서 그 직각을 이루는 두 변만 수직이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 쌍",
+              "$1$쌍"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각이 한 개뿐이다",
+              "직각을 이루는 두 변만 수직이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직각삼각형의 수직인 변",
+        "bReason": "직각 개수로 쌍의 수를 설명한다",
+        "cDecision": "rewrite",
+        "cAfter": "직각삼각형에서 서로 수직인 두 변은 {$1$}쌍뿐이다.",
+        "cReason": "숫자 빈칸으로 답 형태를 명확히 함",
+        "cSlotEquivalents": [
+          [
+            "한"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각삼각형에서 수직인 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직각삼각형에서 서로 수직인 두 변은 {$1$}쌍뿐이다.",
+        "cStudentSentence": "직각삼각형에서 서로 수직인 두 변은 □쌍뿐이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": [
+              "한"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직각삼각형에서 서로 수직인 두 변은 몇 쌍인지 쓰고, 그 까닭을 쓰시오.",
+          "answer": "한 쌍이다. 직각이 한 개뿐이어서 그 직각을 이루는 두 변만 수직이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 쌍",
+                "$1$쌍"
+              ]
+            },
+            {
+              "anyOf": [
+                "직각이 한 개뿐이다",
+                "직각을 이루는 두 변만 수직이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직각삼각형에서 서로 수직인 두 변은 {$1$}쌍뿐이다.",
+          "acceptedAnswers": [
+            [
+              "$1$",
+              "한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2440,
+        "sourceFingerprint": "bb8e11bc3f78c5533e930886054f66c5c6164e4dd2791bf26b964e88e91a667d",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc21",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "두 바늘이 수직인 정각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정각 가운데 시곗바늘 두 개가 수직인 때는 {$3$시와 $9$시}이다.",
+        "studentC": "정각 가운데 시곗바늘 두 개가 수직인 때는 □이다.",
+        "answers": [
+          "$3$시와 $9$시"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2440,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "bb8e11bc3f78c5533e930886054f66c5c6164e4dd2791bf26b964e88e91a667d",
+        "proposalFingerprint": "2cd6a90963280d85713039e7fc6eafe2d688b2a15cb18fa22df4ba9cdd09658d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "시계의 짧은바늘과 긴바늘이 서로 수직이 되는 정각을 $1$시부터 $12$시 가운데에서 모두 찾고, 그 까닭을 쓰시오.",
+        "bAnswer": "$3$시와 $9$시이다. 이때 두 바늘이 이루는 각이 직각($90^\\circ$)이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$시"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$시"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 바늘 사이의 각이 직각이다",
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 바늘이 수직인 정각",
+        "bReason": "시계 상황에 수직을 적용하게 한다",
+        "cDecision": "rewrite",
+        "cAfter": "정각 가운데 시곗바늘 두 개가 수직인 때는 {$3$}시와 {$9$}시이다.",
+        "cReason": "두 답을 한 빈칸에 쓰는 부담을 둘로 나눔",
+        "cSlotEquivalents": [
+          [
+            "$9$"
+          ],
+          [
+            "$3$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 바늘이 수직인 정각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정각 가운데 시곗바늘 두 개가 수직인 때는 {$3$}시와 {$9$}시이다.",
+        "cStudentSentence": "정각 가운데 시곗바늘 두 개가 수직인 때는 □시와 □시이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "$9$"
+            ]
+          },
+          {
+            "expected": "$9$",
+            "equivalents": [
+              "$3$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "시계의 짧은바늘과 긴바늘이 서로 수직이 되는 정각을 $1$시부터 $12$시 가운데에서 모두 찾고, 그 까닭을 쓰시오.",
+          "answer": "$3$시와 $9$시이다. 이때 두 바늘이 이루는 각이 직각($90^\\circ$)이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$시"
+              ]
+            },
+            {
+              "anyOf": [
+                "$9$시"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 바늘 사이의 각이 직각이다",
+                "$90^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정각 가운데 시곗바늘 두 개가 수직인 때는 {$3$}시와 {$9$}시이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "$9$"
+            ],
+            [
+              "$9$",
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2441,
+        "sourceFingerprint": "a1bfc769ce6113f4b93d97068b33e839dd1161823e6f4208ef8d3b9bcd531f98",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc22",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "접어서 수선 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직선 위에 표시한 서로 다른 두 점이 겹치도록 종이를 접으면 접힌 선은 처음 직선에 {수직}이다.",
+        "studentC": "직선 위에 표시한 서로 다른 두 점이 겹치도록 종이를 접으면 접힌 선은 처음 직선에 □이다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2441,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "a1bfc769ce6113f4b93d97068b33e839dd1161823e6f4208ef8d3b9bcd531f98",
+        "proposalFingerprint": "94da0cf092f306ad5abb17bad95c32e1b38e2345b20902dcb4f5436a9e874c7f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "종이에 직선을 긋고 그 위에 점 두 개를 찍은 뒤, 두 점이 서로 겹치도록 종이를 접었습니다. 접힌 선과 처음 직선은 어떤 관계입니까?",
+        "bAnswer": "서로 수직이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직이다",
+              "직각으로 만난다",
+              "$90^\\circ$로 만난다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "접은 선은 수직",
+        "bReason": "접기 상황의 관계만 묻는다",
+        "cDecision": "keep",
+        "cReason": "수직 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "접어서 수선 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 위에 표시한 서로 다른 두 점이 겹치도록 종이를 접으면 접힌 선은 처음 직선에 {수직}이다.",
+        "cStudentSentence": "직선 위에 표시한 서로 다른 두 점이 겹치도록 종이를 접으면 접힌 선은 처음 직선에 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직선 위에 표시한 서로 다른 두 점이 겹치도록 종이를 접으면 접힌 선은 처음 직선에 □이다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "종이에 직선을 긋고 그 위에 점 두 개를 찍은 뒤, 두 점이 서로 겹치도록 종이를 접었습니다. 접힌 선과 처음 직선은 어떤 관계입니까?",
+          "answer": "서로 수직이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "수직이다",
+                "직각으로 만난다",
+                "$90^\\circ$로 만난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직선 위에 표시한 서로 다른 두 점이 겹치도록 종이를 접으면 접힌 선은 처음 직선에 {수직}이다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2442,
+        "sourceFingerprint": "9694200b7fdece8c52e69dc3574660248ddd5b1d89f4ff844b8b42bd98cd4fcd",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc24",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "수직인 두 직선과 그 점을 지나는 직선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "수직인 두 직선이 만나는 점을 지나는 직선은 두 직선과 이루는 작은 각의 합이 {$90^\\circ$}이다.",
+        "example": {
+          "prompt": "수직인 가, 나가 만나는 점을 지나는 직선 다가 가와 $25^\\circ$를 이룰 때 나와 이루는 작은 각이 $65^\\circ$인 까닭은?",
+          "answer": "두 각이 직각을 나눠 가져서"
+        },
+        "studentC": "수직인 두 직선이 만나는 점을 지나는 직선은 두 직선과 이루는 작은 각의 합이 □이다.",
+        "answers": [
+          "$90^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2442,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "9694200b7fdece8c52e69dc3574660248ddd5b1d89f4ff844b8b42bd98cd4fcd",
+        "proposalFingerprint": "7c4f4bcb686c6bff3513346df9cfb87c011ef4203df4de2d97b8771659e003a4",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "수직인 두 직선 가, 나가 만나는 점에서 직각 안쪽으로 직선 다를 그었더니 다가 가와 $25^\\circ$를 이루었습니다. 다가 나와 이루는 각은 몇 도이며, 그 까닭은 무엇입니까?",
+        "bAnswer": "$65^\\circ$이다. 두 각이 직각 $90^\\circ$를 나누어 가지므로 $90^\\circ-25^\\circ=65^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$65^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각의 합이 $90^\\circ$다",
+              "직각을 나누어 가진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직각 안쪽 직선이 만드는 각",
+        "bReason": "원문 예제에 조건을 보충해 자립",
+        "coreAfter": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 선을 그어 두 각으로 나누면, 그 두 각의 크기의 합은 {$90^\\circ$}이다.",
+        "coreReason": "90도라는 원래표적을보존하며어느각을합하는지 같은직각안쪽의두부분으로명시한다.",
+        "cDecision": "rewrite",
+        "cAfter": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 직선을 그으면, 그 직선이 두 직선과 이루는 두 각의 합은 {$90^\\circ$}이다.",
+        "cReason": "'작은 각' 모호함을 직각 안쪽 조건으로 고침",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "수직인 두 직선과 그 점을 지나는 직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 직선을 그으면, 그 직선이 두 직선과 이루는 두 각의 합은 {$90^\\circ$}이다.",
+        "cStudentSentence": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 직선을 그으면, 그 직선이 두 직선과 이루는 두 각의 합은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "수직인 두 직선 가, 나가 만나는 점에서 직각 안쪽으로 직선 다를 그었더니 다가 가와 $25^\\circ$를 이루었습니다. 다가 나와 이루는 각은 몇 도이며, 그 까닭은 무엇입니까?",
+          "answer": "$65^\\circ$이다. 두 각이 직각 $90^\\circ$를 나누어 가지므로 $90^\\circ-25^\\circ=65^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$65^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 각의 합이 $90^\\circ$다",
+                "직각을 나누어 가진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "수직인 두 직선이 만나는 점에서 직각 안쪽으로 직선을 그으면, 그 직선이 두 직선과 이루는 두 각의 합은 {$90^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2443,
+        "sourceFingerprint": "2aaddcabb6e71623ab80863821eabe98d2d06eb1b5edcfee92b171ac1292497b",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc25",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "수직처럼 보이는 두 직선",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 직선이 수직인지는 겉모양만으로 판단하지 않고, 삼각자 · 각도기나 직각 표시로 {직각으로 만나는지} 확인한다.",
+        "studentC": "두 직선이 수직인지는 겉모양만으로 판단하지 않고, 삼각자 · 각도기나 직각 표시로 □ 확인한다.",
+        "answers": [
+          "직각으로 만나는지"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2443,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "2aaddcabb6e71623ab80863821eabe98d2d06eb1b5edcfee92b171ac1292497b",
+        "proposalFingerprint": "2b39bb944de7bf8054b18e4233c6466b531a6757ae2af503597ae2c0bd8d1e05",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선이 수직인 것처럼 보입니다. 보이는 모양만으로 수직이라고 말해도 되는지, 어떻게 확인해야 하는지 쓰시오.",
+        "bAnswer": "겉모양만으로 판단하면 안 된다. 삼각자나 각도기로 재거나 직각 표시로 직각으로 만나는지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "겉모양만으로 판단하면 안 된다",
+              "보이는 것만으로 안 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "삼각자나 각도기로 직각인지 확인한다",
+              "직각 표시를 확인한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "겉모양 말고 직각 확인",
+        "bReason": "수직 판단의 근거를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "두 직선이 수직인지는 겉모양만으로 판단하지 않고, 삼각자 · 각도기나 직각 표시로 두 직선이 {직각}으로 만나는지 확인한다.",
+        "cReason": "긴 구절 빈칸을 직각 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "$90^\\circ$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "수직처럼 보이는 두 직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 직선이 수직인지는 겉모양만으로 판단하지 않고, 삼각자 · 각도기나 직각 표시로 두 직선이 {직각}으로 만나는지 확인한다.",
+        "cStudentSentence": "두 직선이 수직인지는 겉모양만으로 판단하지 않고, 삼각자 · 각도기나 직각 표시로 두 직선이 □으로 만나는지 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": [
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "두 직선이 수직인 것처럼 보입니다. 보이는 모양만으로 수직이라고 말해도 되는지, 어떻게 확인해야 하는지 쓰시오.",
+          "answer": "겉모양만으로 판단하면 안 된다. 삼각자나 각도기로 재거나 직각 표시로 직각으로 만나는지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "겉모양만으로 판단하면 안 된다",
+                "보이는 것만으로 안 된다"
+              ]
+            },
+            {
+              "anyOf": [
+                "삼각자나 각도기로 직각인지 확인한다",
+                "직각 표시를 확인한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 직선이 수직인지는 겉모양만으로 판단하지 않고, 삼각자 · 각도기나 직각 표시로 두 직선이 {직각}으로 만나는지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "직각",
+              "$90^\\circ$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2444,
+        "sourceFingerprint": "cd1c78792a8de2889939566bd9763e0475933eec346513d6b537f7c7122458a0",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc26",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "일직선의 각을 나누는 수선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직선 위의 한 점에서 수선을 그으면 일직선의 각이 {$90^\\circ$씩 둘}로 나뉜다.",
+        "studentC": "직선 위의 한 점에서 수선을 그으면 일직선의 각이 □로 나뉜다.",
+        "answers": [
+          "$90^\\circ$씩 둘"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2444,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "cd1c78792a8de2889939566bd9763e0475933eec346513d6b537f7c7122458a0",
+        "proposalFingerprint": "3ca5eaaa588d81fb5b07e59523bf005633973dcf34fdb1b463c661979a9a4da0",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 위의 한 점에서 그 직선의 수선을 그으면 그 점에서 생기는 일직선의 각 $180^\\circ$가 어떻게 나뉘는지 쓰시오.",
+        "bAnswer": "$90^\\circ$인 각 두 개로 나뉜다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$90^\\circ$씩 두 개",
+              "직각 두 개",
+              "$90^\\circ+90^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "수선이 일직선 각을 나눔",
+        "bReason": "일직선 각 $180^\\circ$와 수선을 연결",
+        "cDecision": "rewrite",
+        "cAfter": "직선 위의 한 점에서 수선을 그으면 일직선의 각 $180^\\circ$가 {$90^\\circ$}인 각 두 개로 나뉜다.",
+        "cReason": "긴 구절 빈칸을 각도 하나로 줄임",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "일직선의 각을 나누는 수선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 위의 한 점에서 수선을 그으면 일직선의 각 $180^\\circ$가 {$90^\\circ$}인 각 두 개로 나뉜다.",
+        "cStudentSentence": "직선 위의 한 점에서 수선을 그으면 일직선의 각 $180^\\circ$가 □인 각 두 개로 나뉜다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직선 위의 한 점에서 그 직선의 수선을 그으면 그 점에서 생기는 일직선의 각 $180^\\circ$가 어떻게 나뉘는지 쓰시오.",
+          "answer": "$90^\\circ$인 각 두 개로 나뉜다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$90^\\circ$씩 두 개",
+                "직각 두 개",
+                "$90^\\circ+90^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직선 위의 한 점에서 수선을 그으면 일직선의 각 $180^\\circ$가 {$90^\\circ$}인 각 두 개로 나뉜다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2445,
+        "sourceFingerprint": "c2b191e1130b7a9f5a3d352f95ddeef3bd019a8e584a79ac3c9b56796cff9094",
+        "part": "e4plus",
+        "id": "e4-2-4-1-xc27",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직선 밖의 점에서 수선 긋기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고 다른 한 변이 {그 점을 지나도록} 옮겨 긋는다.",
+        "studentC": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고 다른 한 변이 □ 옮겨 긋는다.",
+        "answers": [
+          "그 점을 지나도록"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2445,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "sourceFingerprint": "c2b191e1130b7a9f5a3d352f95ddeef3bd019a8e584a79ac3c9b56796cff9094",
+        "proposalFingerprint": "e1fd386ddda7b651dc792787c8e0c3814debeea41569e325e817b383512f7a43",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-1-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 밖의 한 점을 지나는 그 직선의 수선을 삼각자로 긋는 방법을 쓰시오.",
+        "bAnswer": "삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 그 점을 지나도록 삼각자를 옮겨 그 변을 따라 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 한 변을 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 한 변이 점을 지나도록 옮겨 긋는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "직선 밖 점에서 수선 긋기",
+        "bReason": "점이 직선 밖일 때 작도 순서를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 {점}을 지나도록 옮겨 긋는다.",
+        "cReason": "어색한 구절 대신 '점' 낱말만 빈칸",
+        "cSlotEquivalents": [
+          [
+            "한 점"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직선 밖의 점에서 수선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 {점}을 지나도록 옮겨 긋는다.",
+        "cStudentSentence": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 □을 지나도록 옮겨 긋는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "점",
+            "equivalents": [
+              "한 점"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직선 밖의 한 점을 지나는 그 직선의 수선을 삼각자로 긋는 방법을 쓰시오.",
+          "answer": "삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 그 점을 지나도록 삼각자를 옮겨 그 변을 따라 긋는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각을 낀 한 변을 직선에 맞춘다"
+              ]
+            },
+            {
+              "anyOf": [
+                "다른 한 변이 점을 지나도록 옮겨 긋는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 {점}을 지나도록 옮겨 긋는다.",
+          "acceptedAnswers": [
+            [
+              "점",
+              "한 점"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2446,
+        "sourceFingerprint": "2ccc90b57adb454cd7f504946be5501bd72914196aef211233a9c0a0efe455f0",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc1",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "직사각형의 마주 보는 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직사각형에서 마주 보는 두 변은 서로 {평행}하다.",
+        "studentC": "직사각형에서 마주 보는 두 변은 서로 □하다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2446,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "2ccc90b57adb454cd7f504946be5501bd72914196aef211233a9c0a0efe455f0",
+        "proposalFingerprint": "008c8bb88733cee971bca72c3744c07c256cc746f0ae95102bde218187b22073",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "직사각형 마주 보는 변",
+        "bReason": "2-4-2 xc18과 같은 목표",
+        "exclusionReason": "직사각형의 평행한 변은 xc18 B에서 쌍의 수로 함께 묻는다",
+        "cDecision": "keep",
+        "cReason": "평행 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형의 마주 보는 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형에서 마주 보는 두 변은 서로 {평행}하다.",
+        "cStudentSentence": "직사각형에서 마주 보는 두 변은 서로 □하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형에서 마주 보는 두 변은 서로 □하다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직사각형에서 마주 보는 두 변은 서로 {평행}하다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-4-2 xc18과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2447,
+        "sourceFingerprint": "8454bbcba940e0de9b4a86704c3f727c5db50477e36b84dfc36130a2e5a3f22d",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc2",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "모눈종이의 가로줄끼리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모눈종이의 가로줄끼리는 서로 {평행}하다.",
+        "studentC": "모눈종이의 가로줄끼리는 서로 □하다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2447,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "8454bbcba940e0de9b4a86704c3f727c5db50477e36b84dfc36130a2e5a3f22d",
+        "proposalFingerprint": "496be0ecb7ea25858f7b41a5c40a880d005b0d574ad510e6d78c70039c9a812f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "모눈 가로줄 평행",
+        "bReason": "평행 정의와 같은 목표",
+        "exclusionReason": "모눈 가로줄 사례는 xc3 평행선 정의 B와 같은 목표다",
+        "cDecision": "keep",
+        "cReason": "평행 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "모눈종이의 가로줄끼리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모눈종이의 가로줄끼리는 서로 {평행}하다.",
+        "cStudentSentence": "모눈종이의 가로줄끼리는 서로 □하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모눈종이의 가로줄끼리는 서로 □하다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "모눈종이의 가로줄끼리는 서로 {평행}하다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "평행 정의와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2448,
+        "sourceFingerprint": "9d1ef401faf285a6526e121ecaee03ab564130f254cd35e61a7a48c2cb314c1b",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc3",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행선을 늘이면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행선은 양쪽으로 얼마나 길게 늘여도 {만나지 않는다}.",
+        "studentC": "평행선은 양쪽으로 얼마나 길게 늘여도 □.",
+        "answers": [
+          "만나지 않는다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2448,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "9d1ef401faf285a6526e121ecaee03ab564130f254cd35e61a7a48c2cb314c1b",
+        "proposalFingerprint": "446ac970b8c19122bd5e0ee57bcbdcdde6d70c99339ec387ac31f4f289a47c38",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "평행선은 어떤 두 직선입니까? 두 직선을 양쪽으로 아무리 길게 늘였을 때를 생각하여 쓰시오.",
+        "bAnswer": "아무리 길게 늘여도 서로 만나지 않는 두 직선이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "늘여도 만나지 않는 두 직선",
+              "끝없이 늘여도 만나지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행선의 뜻",
+        "bReason": "평행선 정의를 늘이는 상황으로 묻는다",
+        "cDecision": "keep",
+        "cReason": "익숙한 서술 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "서로 만나지 않는다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행선을 늘이면",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선은 양쪽으로 얼마나 길게 늘여도 {만나지 않는다}.",
+        "cStudentSentence": "평행선은 양쪽으로 얼마나 길게 늘여도 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "만나지 않는다",
+            "equivalents": [
+              "서로 만나지 않는다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선은 양쪽으로 얼마나 길게 늘여도 □.",
+          "answers": [
+            "만나지 않는다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "평행선은 어떤 두 직선입니까? 두 직선을 양쪽으로 아무리 길게 늘였을 때를 생각하여 쓰시오.",
+          "answer": "아무리 길게 늘여도 서로 만나지 않는 두 직선이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "늘여도 만나지 않는 두 직선",
+                "끝없이 늘여도 만나지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선은 양쪽으로 얼마나 길게 늘여도 {만나지 않는다}.",
+          "acceptedAnswers": [
+            [
+              "만나지 않는다",
+              "서로 만나지 않는다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2449,
+        "sourceFingerprint": "65477c5f911c4722be9c5d8eb08e6b8873cb364472ed9cf21dd9efaafe00ce33",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc4",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "삼각자 두 개로 평행선 긋기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 {밀면서} 평행선을 긋는다.",
+        "studentC": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 □ 평행선을 긋는다.",
+        "answers": [
+          "밀면서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2449,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "65477c5f911c4722be9c5d8eb08e6b8873cb364472ed9cf21dd9efaafe00ce33",
+        "proposalFingerprint": "7e7fb5889447d1f959de030f17d2956562a68d7e82748e6fbca1d7a91b22aefa",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각자 두 개로 주어진 직선과 평행한 직선을 긋는 방법을 쓰시오.",
+        "bAnswer": "한 삼각자의 한 변을 직선에 맞추어 고정하고, 다른 삼각자를 그 삼각자의 변에 대어 밀어 옮긴 자리에서 선을 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 삼각자를 직선에 맞추어 고정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 삼각자를 대고 밀어서 긋는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "삼각자 두 개로 평행선 긋기",
+        "bReason": "작도 순서를 묻는다",
+        "cDecision": "keep",
+        "cReason": "동사 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "움직이면서",
+            "옮기면서"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각자 두 개로 평행선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 {밀면서} 평행선을 긋는다.",
+        "cStudentSentence": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 □ 평행선을 긋는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "밀면서",
+            "equivalents": [
+              "움직이면서",
+              "옮기면서"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 □ 평행선을 긋는다.",
+          "answers": [
+            "밀면서"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각자 두 개로 주어진 직선과 평행한 직선을 긋는 방법을 쓰시오.",
+          "answer": "한 삼각자의 한 변을 직선에 맞추어 고정하고, 다른 삼각자를 그 삼각자의 변에 대어 밀어 옮긴 자리에서 선을 긋는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 삼각자를 직선에 맞추어 고정한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "다른 삼각자를 대고 밀어서 긋는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 삼각자를 고정하고 다른 삼각자를 그 변에 대어 {밀면서} 평행선을 긋는다.",
+          "acceptedAnswers": [
+            [
+              "밀면서",
+              "움직이면서",
+              "옮기면서"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2450,
+        "sourceFingerprint": "8fd55292755ab814b7fe5b39a333f0b2202de2e4fdb55da54687192564557425",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc5",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "철길의 두 레일",
+        "kind": "성질",
+        "level": "하",
+        "definition": "곧게 뻗은 철길의 두 레일처럼 같은 간격으로 계속 뻗은 두 직선은 서로 {평행}하다.",
+        "studentC": "곧게 뻗은 철길의 두 레일처럼 같은 간격으로 계속 뻗은 두 직선은 서로 □하다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2450,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "8fd55292755ab814b7fe5b39a333f0b2202de2e4fdb55da54687192564557425",
+        "proposalFingerprint": "b3d0679dea38e6e103b141e9d7af39b56c8707b3bb8055302ecdf6cb729fc73a",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "철길 레일 평행",
+        "bReason": "생활 예시",
+        "exclusionReason": "철길 사례는 xc3 평행선 정의 B와 같은 목표다",
+        "cDecision": "keep",
+        "cReason": "평행 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "철길의 두 레일",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "곧게 뻗은 철길의 두 레일처럼 같은 간격으로 계속 뻗은 두 직선은 서로 {평행}하다.",
+        "cStudentSentence": "곧게 뻗은 철길의 두 레일처럼 같은 간격으로 계속 뻗은 두 직선은 서로 □하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "곧게 뻗은 철길의 두 레일처럼 같은 간격으로 계속 뻗은 두 직선은 서로 □하다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "곧게 뻗은 철길의 두 레일처럼 같은 간격으로 계속 뻗은 두 직선은 서로 {평행}하다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "생활 예시"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2451,
+        "sourceFingerprint": "5cdbdf36a414b44ffefd0b8936d500a22da10f536e9c64d52d4c7bdfe418c778",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc6",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "삼각형과 평행",
+        "kind": "성질",
+        "level": "하",
+        "definition": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 {없다}.",
+        "studentC": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 □.",
+        "answers": [
+          "없다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2451,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "5cdbdf36a414b44ffefd0b8936d500a22da10f536e9c64d52d4c7bdfe418c778",
+        "proposalFingerprint": "83084552be5e557b68b83e79e1c7927e3cd63dd0ec36e58001941a5503c1d193",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형에는 서로 평행한 변이 있습니까? 그 까닭을 쓰시오.",
+        "bAnswer": "없다. 세 변이 서로 만나는데 평행선은 만나지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "없다",
+              "평행한 변이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변이 서로 만난다",
+              "평행선은 만나지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "삼각형에 평행한 변 없음",
+        "bReason": "평행선 정의로 삼각형을 판단",
+        "cDecision": "keep",
+        "cReason": "없다 빈칸이 짧아 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "삼각형과 평행",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 {없다}.",
+        "cStudentSentence": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "없다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 □.",
+          "answers": [
+            "없다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형에는 서로 평행한 변이 있습니까? 그 까닭을 쓰시오.",
+          "answer": "없다. 세 변이 서로 만나는데 평행선은 만나지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "없다",
+                "평행한 변이 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 변이 서로 만난다",
+                "평행선은 만나지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형의 세 변은 서로 모두 만나므로 평행한 변이 {없다}.",
+          "acceptedAnswers": [
+            [
+              "없다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2452,
+        "sourceFingerprint": "2dcc6936bb7f9ca658abbfaba4a756800e905bb04fa0a088deb5d07655befe9e",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc7",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행하지 않은 두 직선",
+        "kind": "성질",
+        "level": "하",
+        "definition": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}.",
+        "studentC": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 □.",
+        "answers": [
+          "않다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2452,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "2dcc6936bb7f9ca658abbfaba4a756800e905bb04fa0a088deb5d07655befe9e",
+        "proposalFingerprint": "a9ff6ad3291124b782b27946669323cda8c398d42c2683576e9c480fc4bfab5d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "만나면 평행 아님",
+        "bReason": "xc3과 같은 목표",
+        "exclusionReason": "평행선의 반대 표현으로 xc3 평행선 정의 B와 같다",
+        "cDecision": "keep",
+        "cReason": "짧은 부정 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행하지 않은 두 직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}.",
+        "cStudentSentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "않다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 □.",
+          "answers": [
+            "않다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}.",
+          "acceptedAnswers": [
+            [
+              "않다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc3과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2453,
+        "sourceFingerprint": "b952b58143911feb9d1e0ee4e4c77a7068a4d802f97091598b4d8d4785279247",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc8",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "사다리의 가로 막대",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사다리의 곧은 가로 막대들이 길게 늘여도 서로 만나지 않으면 {평행}하다.",
+        "studentC": "사다리의 곧은 가로 막대들이 길게 늘여도 서로 만나지 않으면 □하다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2453,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "b952b58143911feb9d1e0ee4e4c77a7068a4d802f97091598b4d8d4785279247",
+        "proposalFingerprint": "97b30bf83eccb8338a3491d39666661ff0c3e308f6f7037bef8d5c6a1c589055",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "사다리 막대 평행",
+        "bReason": "생활 예시",
+        "exclusionReason": "사다리 사례는 xc3 평행선 정의 B와 같은 목표다",
+        "cDecision": "keep",
+        "cReason": "평행 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사다리의 가로 막대",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리의 곧은 가로 막대들이 길게 늘여도 서로 만나지 않으면 {평행}하다.",
+        "cStudentSentence": "사다리의 곧은 가로 막대들이 길게 늘여도 서로 만나지 않으면 □하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리의 곧은 가로 막대들이 길게 늘여도 서로 만나지 않으면 □하다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "사다리의 곧은 가로 막대들이 길게 늘여도 서로 만나지 않으면 {평행}하다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "생활 예시"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2454,
+        "sourceFingerprint": "cca8933de998de03f856a2022262cb4156398f46ebcd6bc2e1e9cb3632dbb3bf",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc9",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행선과 수직인 직선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행선 가운데 한 직선에 수직인 직선은 {다른 직선에도} 수직이다.",
+        "studentC": "평행선 가운데 한 직선에 수직인 직선은 □ 수직이다.",
+        "answers": [
+          "다른 직선에도"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2454,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "cca8933de998de03f856a2022262cb4156398f46ebcd6bc2e1e9cb3632dbb3bf",
+        "proposalFingerprint": "2168d76bb1f30aa416748a242e459d0092cc43b398d42f98ead610159001cc4e",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 두 직선 가, 나가 있습니다. 직선 다가 가에 수직이면서 나와도 만날 때, 다와 나는 어떤 관계입니까?",
+        "bAnswer": "다는 나에도 수직이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다는 나에도 수직이다",
+              "나와도 수직이다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "평행선에 수직인 직선",
+        "bReason": "직선 이름으로 관계를 자립시킴",
+        "cDecision": "rewrite",
+        "cAfter": "평행한 두 직선 가, 나가 있을 때 직선 다가 가에 수직이면 다는 나에도 {수직}이다.",
+        "cReason": "'다른 직선에도' 구절 대신 낱말 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행선과 수직인 직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행한 두 직선 가, 나가 있을 때 직선 다가 가에 수직이면 다는 나에도 {수직}이다.",
+        "cStudentSentence": "평행한 두 직선 가, 나가 있을 때 직선 다가 가에 수직이면 다는 나에도 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행한 두 직선 가, 나가 있습니다. 직선 다가 가에 수직이면서 나와도 만날 때, 다와 나는 어떤 관계입니까?",
+          "answer": "다는 나에도 수직이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "다는 나에도 수직이다",
+                "나와도 수직이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행한 두 직선 가, 나가 있을 때 직선 다가 가에 수직이면 다는 나에도 {수직}이다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2455,
+        "sourceFingerprint": "9f72b5d3f402dc96c5e0f2529569fe6672626ef79b76df3822f951421d3502fe",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc10",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "직선 밖의 한 점을 지나는 평행선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직선 밖의 한 점을 지나고 그 직선과 평행한 직선은 {하나}뿐이다.",
+        "studentC": "직선 밖의 한 점을 지나고 그 직선과 평행한 직선은 □뿐이다.",
+        "answers": [
+          "하나"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2455,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "9f72b5d3f402dc96c5e0f2529569fe6672626ef79b76df3822f951421d3502fe",
+        "proposalFingerprint": "46d2e4bbb41b890d0e2724ffb6ab063e5ee675d4310498a41599f3ab88fe65d1",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 밖의 한 점을 지나면서 그 직선과 평행한 직선은 몇 개 그을 수 있습니까?",
+        "bAnswer": "한 개뿐이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "하나",
+              "한 개",
+              "$1$개"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "밖의 점을 지나는 평행선 하나",
+        "bReason": "개수 성질을 짧게 묻는다",
+        "cDecision": "keep",
+        "cReason": "하나라는 짧은 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "한 개",
+            "$1$개"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직선 밖의 한 점을 지나는 평행선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 밖의 한 점을 지나고 그 직선과 평행한 직선은 {하나}뿐이다.",
+        "cStudentSentence": "직선 밖의 한 점을 지나고 그 직선과 평행한 직선은 □뿐이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "하나",
+            "equivalents": [
+              "한 개",
+              "$1$개"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직선 밖의 한 점을 지나고 그 직선과 평행한 직선은 □뿐이다.",
+          "answers": [
+            "하나"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직선 밖의 한 점을 지나면서 그 직선과 평행한 직선은 몇 개 그을 수 있습니까?",
+          "answer": "한 개뿐이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "하나",
+                "한 개",
+                "$1$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직선 밖의 한 점을 지나고 그 직선과 평행한 직선은 {하나}뿐이다.",
+          "acceptedAnswers": [
+            [
+              "하나",
+              "한 개",
+              "$1$개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2456,
+        "sourceFingerprint": "22d1fecb532772f773a53c2969a0a20473e19b733cccf4f7fc516d763501d66c",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc11",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "모눈종이에 평행선 긋기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "모눈종이에서 비스듬한 선분과 평행한 선분은 그 선분을 늘인 직선 밖의 점에서 같은 방향으로 가로와 세로 칸 수를 {똑같이} 하여 긋는다.",
+        "studentC": "모눈종이에서 비스듬한 선분과 평행한 선분은 그 선분을 늘인 직선 밖의 점에서 같은 방향으로 가로와 세로 칸 수를 □ 하여 긋는다.",
+        "answers": [
+          "똑같이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2456,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "22d1fecb532772f773a53c2969a0a20473e19b733cccf4f7fc516d763501d66c",
+        "proposalFingerprint": "25839f0922f598c1f25ac53395541cb08e6a7eadff973d3c50be038f3621ec1b",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "모눈종이에 오른쪽 $3$칸, 위 $1$칸인 비스듬한 선분이 있습니다. 이 선분을 늘인 직선 밖의 한 점에서 이 선분과 평행한 선분을 긋는 방법을 쓰시오.",
+        "bAnswer": "그 점에서 같은 방향으로 오른쪽 $3$칸, 위 $1$칸을 가서 점을 찍고 두 점을 이어 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽 $3$칸, 위 $1$칸을 같은 방향으로 간다",
+              "가로와 세로 칸 수를 같게 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점을 잇는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈에서 평행한 선분 긋기",
+        "bReason": "칸 수를 주어 방법을 구체화",
+        "coreAfter": "모눈종이에서 한 선분을 늘인 직선 밖의 점을 지나는 평행한 선분은, 원래 선분과 같은 방향으로 가로 칸 수와 세로 칸 수를 각각 {똑같이} 하여 긋는다.",
+        "coreReason": "똑같이라는 원래표적과원래직선밖의점조건을보존한다.가로와세로서로같음이아닌각각원래선분과같음으로명시한다.",
+        "cDecision": "rewrite",
+        "cAfter": "모눈종이에서 오른쪽 $3$칸, 위 $1$칸인 선분과 평행한 선분은 같은 방향으로 오른쪽 {$3$}칸, 위 {$1$}칸 가도록 긋는다.",
+        "cReason": "모호한 '똑같이' 대신 구체 칸 수 빈칸",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈종이에 평행선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모눈종이에서 오른쪽 $3$칸, 위 $1$칸인 선분과 평행한 선분은 같은 방향으로 오른쪽 {$3$}칸, 위 {$1$}칸 가도록 긋는다.",
+        "cStudentSentence": "모눈종이에서 오른쪽 $3$칸, 위 $1$칸인 선분과 평행한 선분은 같은 방향으로 오른쪽 □칸, 위 □칸 가도록 긋는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": []
+          },
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "모눈종이에 오른쪽 $3$칸, 위 $1$칸인 비스듬한 선분이 있습니다. 이 선분을 늘인 직선 밖의 한 점에서 이 선분과 평행한 선분을 긋는 방법을 쓰시오.",
+          "answer": "그 점에서 같은 방향으로 오른쪽 $3$칸, 위 $1$칸을 가서 점을 찍고 두 점을 이어 긋는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "오른쪽 $3$칸, 위 $1$칸을 같은 방향으로 간다",
+                "가로와 세로 칸 수를 같게 한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 점을 잇는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모눈종이에서 오른쪽 $3$칸, 위 $1$칸인 선분과 평행한 선분은 같은 방향으로 오른쪽 {$3$}칸, 위 {$1$}칸 가도록 긋는다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ],
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2457,
+        "sourceFingerprint": "9f5e93593375be93bf9458e08a8f13eb84c39cec97429801f55ca3fbf23a9684",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc12",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행한 세 직선의 평행선 쌍",
+        "kind": "성질",
+        "level": "중",
+        "definition": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 {세 쌍}이다.",
+        "studentC": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 □이다.",
+        "answers": [
+          "세 쌍"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2457,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "9f5e93593375be93bf9458e08a8f13eb84c39cec97429801f55ca3fbf23a9684",
+        "proposalFingerprint": "bf3f7c1939ee497dfd4e0131c70f1155f6202306fef5c7dd6eb214dedac448b5",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 평행한 직선 세 개 중 두 개씩 짝 지은 평행선은 모두 몇 쌍입니까? 어떻게 세었는지 쓰시오.",
+        "bAnswer": "$3$쌍이다. 직선을 가, 나, 다라 하면 (가, 나), (가, 다), (나, 다)이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$쌍",
+              "세 쌍"
+            ]
+          },
+          {
+            "anyOf": [
+              "(가, 나), (가, 다), (나, 다)",
+              "빠짐없이 짝을 지어 센다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "평행선 세 개의 짝 세기",
+        "bReason": "짝을 빠짐없이 세는 방법을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 {$3$}쌍이다.",
+        "cReason": "숫자 빈칸으로 답 형태를 명확히 함",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 세 직선의 평행선 쌍",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 {$3$}쌍이다.",
+        "cStudentSentence": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 □쌍이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "서로 평행한 직선 세 개 중 두 개씩 짝 지은 평행선은 모두 몇 쌍입니까? 어떻게 세었는지 쓰시오.",
+          "answer": "$3$쌍이다. 직선을 가, 나, 다라 하면 (가, 나), (가, 다), (나, 다)이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$쌍",
+                "세 쌍"
+              ]
+            },
+            {
+              "anyOf": [
+                "(가, 나), (가, 다), (나, 다)",
+                "빠짐없이 짝을 지어 센다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "서로 평행한 직선 세 개에서 두 개씩 짝 지은 평행선은 {$3$}쌍이다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2458,
+        "sourceFingerprint": "da328e7e0ca7036a8498de1c7c68b121ee8293759990203ac600b352bfaf16b4",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc13",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행한 두 직선이 수직이 될 수 없는 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행한 두 직선은 {만나지 않으므로} 서로 수직이 될 수 없다.",
+        "studentC": "평행한 두 직선은 □ 서로 수직이 될 수 없다.",
+        "answers": [
+          "만나지 않으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2458,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "da328e7e0ca7036a8498de1c7c68b121ee8293759990203ac600b352bfaf16b4",
+        "proposalFingerprint": "a2c7ab30627f8df0463a022b3d483d0f04a95764650e7f08bbc12ab5853c340e",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 두 직선이 서로 수직일 수 있습니까? 그 까닭을 쓰시오.",
+        "bAnswer": "없다. 수직은 두 직선이 만나 직각을 이루는 것인데 평행선은 만나지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "없다",
+              "수직이 될 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선은 만나지 않는다",
+              "만나지 않아 직각을 이룰 수 없다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "평행선은 수직이 될 수 없음",
+        "bReason": "만남 여부로 자연스러운 까닭을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "평행한 두 직선은 {만나지} 않으므로 서로 수직이 될 수 없다.",
+        "cReason": "이유절 대신 낱말 빈칸으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 두 직선이 수직이 될 수 없는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행한 두 직선은 {만나지} 않으므로 서로 수직이 될 수 없다.",
+        "cStudentSentence": "평행한 두 직선은 □ 않으므로 서로 수직이 될 수 없다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "만나지",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행한 두 직선이 서로 수직일 수 있습니까? 그 까닭을 쓰시오.",
+          "answer": "없다. 수직은 두 직선이 만나 직각을 이루는 것인데 평행선은 만나지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "없다",
+                "수직이 될 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행선은 만나지 않는다",
+                "만나지 않아 직각을 이룰 수 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행한 두 직선은 {만나지} 않으므로 서로 수직이 될 수 없다.",
+          "acceptedAnswers": [
+            [
+              "만나지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2459,
+        "sourceFingerprint": "89e93cf642225e543a14e9fdddd1fedc378503c10992d25c267d03b1c974fd22",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc14",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행한 선분을 늘인 직선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행한 두 선분을 {길게 늘인 두 직선}도 서로 평행하다.",
+        "studentC": "평행한 두 선분을 □도 서로 평행하다.",
+        "answers": [
+          "길게 늘인 두 직선"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2459,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "89e93cf642225e543a14e9fdddd1fedc378503c10992d25c267d03b1c974fd22",
+        "proposalFingerprint": "0519119ade41e9356b4891f265152623459c8b47a026bfa30b66c83e7cb7e001",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "선분을 늘인 직선도 평행",
+        "bReason": "독립된 이유가 없는 정의 반복",
+        "exclusionReason": "평행한 선분의 뜻이 곧 늘인 직선의 평행이라 설명할 별도 이유가 없다",
+        "cDecision": "rewrite",
+        "cAfter": "평행한 두 선분을 양쪽으로 길게 {늘인} 두 직선도 서로 평행하다.",
+        "cReason": "긴 구절 빈칸을 동사 하나로 줄임",
+        "cSlotEquivalents": [
+          [
+            "늘여서 만든"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 선분을 늘인 직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행한 두 선분을 양쪽으로 길게 {늘인} 두 직선도 서로 평행하다.",
+        "cStudentSentence": "평행한 두 선분을 양쪽으로 길게 □ 두 직선도 서로 평행하다.",
+        "cSlotAnswers": [
+          {
+            "expected": "늘인",
+            "equivalents": [
+              "늘여서 만든"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행한 두 선분을 양쪽으로 길게 {늘인} 두 직선도 서로 평행하다.",
+          "acceptedAnswers": [
+            [
+              "늘인",
+              "늘여서 만든"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "독립된 이유가 없는 정의 반복"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2460,
+        "sourceFingerprint": "9665b0a970ea9337200c83c770f44b3a6f2153a2a8148ff14b191c4c901668f7",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc15",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행선을 가로지르는 수선과 직각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행선에 수직인 직선 하나가 지나가면 직각이 {$8$개} 생긴다.",
+        "studentC": "평행선에 수직인 직선 하나가 지나가면 직각이 □ 생긴다.",
+        "answers": [
+          "$8$개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2460,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "9665b0a970ea9337200c83c770f44b3a6f2153a2a8148ff14b191c4c901668f7",
+        "proposalFingerprint": "2643326e7d382b2b8437610660031804ac54599c0be7074db297850609820361",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 평행한 두 직선에 수직인 직선 하나를 그으면 직각이 모두 몇 개 생기는지 쓰고, 어떻게 알 수 있는지 설명하시오.",
+        "bAnswer": "$8$개이다. 수직인 직선이 두 평행선과 두 점에서 만나고 각 점 둘레에 직각이 $4$개씩이므로 $2\\times4=8$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8$개",
+              "여덟 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "만나는 두 점마다 직각이 $4$개",
+              "$2\\times4$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "수선이 만드는 직각 개수",
+        "bReason": "두 만나는 점으로 개수를 세게 한다",
+        "cDecision": "rewrite",
+        "cAfter": "서로 평행한 두 직선에 수직인 직선 하나가 지나가면 직각이 모두 {$8$}개 생긴다.",
+        "cReason": "'평행선' 대상을 두 직선으로 분명히 함",
+        "cSlotEquivalents": [
+          [
+            "여덟"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행선을 가로지르는 수선과 직각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "서로 평행한 두 직선에 수직인 직선 하나가 지나가면 직각이 모두 {$8$}개 생긴다.",
+        "cStudentSentence": "서로 평행한 두 직선에 수직인 직선 하나가 지나가면 직각이 모두 □개 생긴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$8$",
+            "equivalents": [
+              "여덟"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "서로 평행한 두 직선에 수직인 직선 하나를 그으면 직각이 모두 몇 개 생기는지 쓰고, 어떻게 알 수 있는지 설명하시오.",
+          "answer": "$8$개이다. 수직인 직선이 두 평행선과 두 점에서 만나고 각 점 둘레에 직각이 $4$개씩이므로 $2\\times4=8$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$8$개",
+                "여덟 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "만나는 두 점마다 직각이 $4$개",
+                "$2\\times4$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "서로 평행한 두 직선에 수직인 직선 하나가 지나가면 직각이 모두 {$8$}개 생긴다.",
+          "acceptedAnswers": [
+            [
+              "$8$",
+              "여덟"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2461,
+        "sourceFingerprint": "c15c095c6a2f672fc7184bae55811d2b65225509aa9f49db8a0d80ab3658aa2d",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc16",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "같은 직선과 만나지 않는 두 직선의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 {평행}하다.",
+        "studentC": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 □하다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2461,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "c15c095c6a2f672fc7184bae55811d2b65225509aa9f49db8a0d80ab3658aa2d",
+        "proposalFingerprint": "677f1a0df77d5de38f7a9fc1da2fa11fbfaebefc59d7bd6fa80e65ad3cbab9d2",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 다에 각각 평행한 서로 다른 두 직선 가, 나가 같은 평면 위에 있습니다. 가와 나는 서로 어떤 관계입니까?",
+        "bAnswer": "서로 평행하다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행하다",
+              "서로 평행"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 직선에 평행한 두 직선",
+        "bReason": "직선 이름으로 관계를 자립시킴",
+        "cDecision": "keep",
+        "cReason": "평행 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 직선과 만나지 않는 두 직선의 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 {평행}하다.",
+        "cStudentSentence": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 □하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 □하다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직선 다에 각각 평행한 서로 다른 두 직선 가, 나가 같은 평면 위에 있습니다. 가와 나는 서로 어떤 관계입니까?",
+          "answer": "서로 평행하다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행하다",
+                "서로 평행"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 직선에 각각 평행한 서로 다른 두 직선은 서로 {평행}하다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2462,
+        "sourceFingerprint": "79fa202fc24a6429dbe68b673837489027f998b9754df83b65f6076b928d2a97",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc17",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행선이 아닌 선분",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 선분이 그림에서 만나지 않아도 늘였을 때 만나면 {평행이 아니다}.",
+        "studentC": "두 선분이 그림에서 만나지 않아도 늘였을 때 만나면 □.",
+        "answers": [
+          "평행이 아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2462,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "79fa202fc24a6429dbe68b673837489027f998b9754df83b65f6076b928d2a97",
+        "proposalFingerprint": "c0f947093195b1344b6e7a6632352fe61374e64a21403cc617a1031d3aa88a7f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "그려진 부분에서 서로 만나지 않는 두 선분이 평행한지 판단하는 방법을 쓰시오.",
+        "bAnswer": "두 선분을 양쪽으로 길게 늘여 만나는지 본다. 만나면 평행이 아니고, 아무리 늘여도 만나지 않으면 평행이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "길게 늘여 만나는지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "늘였을 때 만나면 평행이 아니다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "선분의 평행 판단",
+        "bReason": "그림만 보는 오류를 막는 판단법",
+        "cDecision": "keep",
+        "cReason": "평행이 아니다 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "평행하지 않다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행선이 아닌 선분",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 선분이 그림에서 만나지 않아도 늘였을 때 만나면 {평행이 아니다}.",
+        "cStudentSentence": "두 선분이 그림에서 만나지 않아도 늘였을 때 만나면 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행이 아니다",
+            "equivalents": [
+              "평행하지 않다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 선분이 그림에서 만나지 않아도 늘였을 때 만나면 □.",
+          "answers": [
+            "평행이 아니다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "그려진 부분에서 서로 만나지 않는 두 선분이 평행한지 판단하는 방법을 쓰시오.",
+          "answer": "두 선분을 양쪽으로 길게 늘여 만나는지 본다. 만나면 평행이 아니고, 아무리 늘여도 만나지 않으면 평행이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "길게 늘여 만나는지 확인한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "늘였을 때 만나면 평행이 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 선분이 그림에서 만나지 않아도 늘였을 때 만나면 {평행이 아니다}.",
+          "acceptedAnswers": [
+            [
+              "평행이 아니다",
+              "평행하지 않다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

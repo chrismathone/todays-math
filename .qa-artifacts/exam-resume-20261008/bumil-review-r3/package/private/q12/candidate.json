@@ -1,0 +1,479 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q12",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "그림의 사각형 $\\mathrm{ABCD}$에서 $\\angle\\mathrm{ABC}=90^{\\circ}$, $\\angle\\mathrm{CAB}=45^{\\circ}$, $\\angle\\mathrm{ACD}=60^{\\circ}$이고, $\\overline{\\mathrm{BC}}=8\\,\\mathrm{cm}$이다. 대각선 $\\mathrm{AC}$로 나눈 두 부분의 넓이를 기록한 표에서 일부 기록이 지워졌다.\n\n| 영역 | 넓이 |\n| --- | --- |\n| 삼각형 $\\mathrm{ABC}$ | 지워짐 |\n| 삼각형 $\\mathrm{ACD}$ | 지워짐 |\n| 사각형 $\\mathrm{ABCD}$ 전체 | $(32+12\\sqrt{6})\\,\\mathrm{cm}^{2}$ |\n\n지워진 기록을 복원할 때, 선분 $\\mathrm{DC}$의 길이는?\n(단, $\\mathrm{H}$는 점 $\\mathrm{D}$에서 선분 $\\mathrm{AC}$에 내린 수선의 발이다.)",
+  "choices": [
+    "$3\\,\\mathrm{cm}$",
+    "$4\\,\\mathrm{cm}$",
+    "$5\\,\\mathrm{cm}$",
+    "$6\\,\\mathrm{cm}$",
+    "$8\\,\\mathrm{cm}$"
+  ],
+  "answer": "④",
+  "solution": "직각삼각형 $\\mathrm{ABC}$에서 $\\tan45^{\\circ}=\\frac{\\overline{\\mathrm{BC}}}{\\overline{\\mathrm{AB}}}=1$이므로 $\\overline{\\mathrm{AB}}=8\\,\\mathrm{cm}$이다. 또 $\\sin45^{\\circ}=\\frac{8}{\\overline{\\mathrm{AC}}}=\\frac{\\sqrt{2}}{2}$이므로 $\\overline{\\mathrm{AC}}=8\\sqrt{2}\\,\\mathrm{cm}$이다.\n삼각형 $\\mathrm{ABC}$의 넓이는 $\\frac{1}{2}\\times8\\times8=32\\,\\mathrm{cm}^{2}$이다. 따라서 삼각형 $\\mathrm{ACD}$의 넓이는 $(32+12\\sqrt{6})-32=12\\sqrt{6}\\,\\mathrm{cm}^{2}$이다.\n삼각형 $\\mathrm{ACD}$에서 밑변을 $\\overline{\\mathrm{AC}}$, 높이를 $\\overline{\\mathrm{DH}}$로 보면 $\\frac{1}{2}\\times8\\sqrt{2}\\times\\overline{\\mathrm{DH}}=12\\sqrt{6}$이다. 따라서 $\\overline{\\mathrm{DH}}=3\\sqrt{3}\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{DCH}$에서 $\\sin60^{\\circ}=\\frac{\\overline{\\mathrm{DH}}}{\\overline{\\mathrm{DC}}}=\\frac{\\sqrt{3}}{2}$이므로 $\\overline{\\mathrm{DC}}=3\\sqrt{3}\\div\\frac{\\sqrt{3}}{2}=6\\,\\mathrm{cm}$이다. 정답은 ④이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "anglesDegrees": {
+      "ABC": 90,
+      "CAB": 45,
+      "ACD": 60
+    },
+    "BC": 8,
+    "AB": 8,
+    "AC": "8sqrt(2)",
+    "areaABC": 32,
+    "areaACD": "12sqrt(6)",
+    "areaQuadrilateral": "32+12sqrt(6)",
+    "DH": "3sqrt(3)",
+    "DC": 6,
+    "CH": 3,
+    "HOnSegmentAC": true,
+    "choiceLengths": [
+      3,
+      4,
+      5,
+      6,
+      8
+    ],
+    "nativeTable": true
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 80
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target"
+    ],
+    "before": "사각형의 두 변 길이와 각을 주고 대각선으로 나눈 두 삼각형의 넓이를 더하여 전체 넓이를 구한다.",
+    "after": "전체 넓이는 복원 자료로 알려 주고 한 변 DC의 길이를 누락시킨다. 첫 삼각형의 넓이를 뺀 나머지 넓이에서 높이를 복구한 뒤 DC를 역으로 구한다.",
+    "sharedConcept": "직각삼각형의 삼각비·공통 대각선·삼각형의 밑변과 높이·사각형 넓이의 분할",
+    "sharedProcedure": "45°인 직각삼각형에서 대각선 길이를 구하고 다른 삼각형에 수선을 내려 60°의 삼각비를 사용한다. 두 영역의 넓이가 전체 넓이를 이루는 관계를 역으로 적용한다.",
+    "preparationAdjustment": "v2의 단순 부분 넓이 대응표 대신 BC=8과 전체 넓이를 주고 DC를 복원하는 역방향을 채택했다. D에서 AC로 수선을 내려 발이 선분 안에 놓이도록 구성했으며 일반 삼각형의 사인 넓이 암기식은 쓰지 않는다. 응용 난이도 제안과 4점은 유지하고 최종 난이도 검토는 보류한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-18",
+      "9수04-17",
+      "6수03-06",
+      "9수01-10"
+    ],
+    "allowedProcedure": [
+      "45° 직각삼각형의 삼각비로 AB와 AC를 구한다.",
+      "전체 넓이에서 첫 삼각형 넓이를 뺀다.",
+      "AC를 밑변, 수선 DH를 높이로 하는 삼각형 넓이식으로 높이를 복구한다.",
+      "DCH에서 sin60°의 정의로 DC를 구한다."
+    ],
+    "forbiddenAvoided": [
+      "일반 삼각형의 사인 넓이 암기식·사인법칙·코사인법칙",
+      "삼각비 사이의 관계식",
+      "벡터·내적·좌표 거리 공식",
+      "미분·최적화"
+    ],
+    "surfaceScope": {
+      "stem": "각·변·전체 넓이를 명시한 사각형과 지워진 부분 넓이 기록",
+      "choices": "길이 단위 cm를 가진 양수",
+      "figureAndNotation": "공통 대각선·선분 안 수선의 발·직각 두 개·45°·60°를 정확히 표시한다.",
+      "studentSolution": "수선과 높이에 의한 삼각형 넓이, 삼각비 정의, 근호의 사칙계산",
+      "prerequisites": "직각삼각형의 삼각비, 수선의 발, 삼각형 넓이, 넓이의 합·차, 근호 계산"
+    },
+    "status": "author-proposed",
+    "reviewStatus": "pending",
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "mappingJsonPointer": "/question_mappings/11",
+      "standards": [
+        {
+          "code": "6수03-06",
+          "verified_text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3433,
+            "record_offset_in_uncompressed_stream": 176573,
+            "extracted_paragraph_1based": 690
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "elementary_grade_band"
+        },
+        {
+          "code": "9수01-10",
+          "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-18",
+          "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "bandCaveat": {
+        "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+        "source_id": "moe-2020-236-math-hwp",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record_1based": 3713,
+          "record_offset_in_uncompressed_stream": 190162,
+          "text": "[중학교 1~3학년]"
+        },
+        "original_pdf_page_1based": 32,
+        "original_pdf_printed_page": 28
+      },
+      "versionLimitations": {
+        "verified_math_editions": [
+          "2015-74 book8 PDF",
+          "2020-236 amended book8 HWP"
+        ],
+        "post_2020_complete_amendment_chain_audited": false,
+        "final_candidate_approval_allowed": false,
+        "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+      }
+    }
+  },
+  "independentVerification": null,
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-12",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 12,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "e2590bd5a6113fd693dd09ed231a6afb94aa3205ca06475d2f33afba7e6d7303",
+    "sourceObservation": "사각형 ABCD에 대각선 AC, 직각 B, ∠CAB=45°, ∠ACD=60°, BC=10cm, DC=4cm가 표시된다.",
+    "sharedConceptProcedure": "직각삼각형에서 공통 대각선 길이를 정하고 각 삼각형의 넓이를 구해 합한다.",
+    "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "referenceJsonPointer": "/11/content",
+    "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "활용",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "familyKey": "mid:3-2|삼각비의 활용|10",
+      "currentUnit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "currentRegistryMatch": {
+        "key": "3-2|삼각비의 활용|10",
+        "grade": "중3",
+        "unitSection": "삼각비의 활용",
+        "rpmBook": "3-2",
+        "rpmMinor": "삼각비의 활용",
+        "rpmType": "10",
+        "rpmTitle": "다각형의 넓이"
+      },
+      "liveCount": 18,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "대각선 AC로 나눈 두 삼각형의 넓이를 합하는 기존 다각형 넓이10의 절차다. 사각형 넓이라는 제목의 12는 두 대각선의 길이와 끼인각을 쓰는 다른 절차다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수04-18",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-17",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "6수03-06",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3433,
+          "record_offset_in_uncompressed_stream": 176573,
+          "extracted_paragraph_1based": 690
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            29
+          ],
+          "printed_pages": [
+            25
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수01-10",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "45° 직각삼각형의 삼각비로 AB와 AC를 구한다. 전체 넓이에서 첫 삼각형 넓이를 뺀다. AC를 밑변, 수선 DH를 높이로 하는 삼각형 넓이식으로 높이를 복구한다. DCH에서 sin60°의 정의로 DC를 구한다.",
+    "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": [
+        "D:/todays-math/src/lib/middle/m3Trig.ts:2290",
+        "D:/todays-math/src/lib/middle/m3Trig.ts:2365"
+      ],
+      "authorObservation": {
+        "status": "author-proposed-not-family-approval",
+        "path": "src/lib/middle/m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "scope": "read-only-procedure-comparison",
+        "familyType": "trig-application-10",
+        "variation": "inverse total-area-to-side; full semantic review pending"
+      }
+    },
+    "source": "transformed",
+    "originProblemId": null,
+    "problemCode": null,
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate"
+    },
+    "publicationStatus": "author-proposed-not-approved",
+    "independentVerificationStatus": "pending-parent-blind-verification",
+    "gradeApprovalStatus": "pending-parent-review",
+    "rightsReviewStatus": "pending-parent-review",
+    "similarityReviewStatus": "pending-parent-review",
+    "directUseAllowed": false,
+    "sourceQuestionType": "객관식",
+    "sourceScore": 4,
+    "objectiveDifficultyScorePolicy": "preserve-v2-difficulty-proposal-and-source-score; final-objective-review-pending",
+    "curriculumSourceMethodProposal": "그림의 ∠ABC=90°를 확인하고 대각선 AC로 둘로 나눈다. ABC의 45° 삼각비로 길이를 얻고 A에서 DC에 수선을 내려 60°인 직각삼각형의 높이로 ADC 넓이를 구한다.",
+    "sourceCurriculumSpecificHold": "일반 삼각형의 넓이 공식 1/2 ab sin C를 암기식으로 쓰지 않고 수선·높이를 제시한다. 그림의 직각 누락은 보류.",
+    "authorSanityChecks": {
+      "reportedBy": "author",
+      "independent": false,
+      "reviewDecision": null,
+      "requiredFields": "present",
+      "uniqueCorrectChoice": "④",
+      "mathSpanCount": 36,
+      "mathSyntax": "katex-strict-pass",
+      "difficultyAndScore": "source-score-and-v2-difficulty-preserved; objective-review-pending"
+    },
+    "authorFigureRender": {
+      "entrypoint": "src/lib/figure/renderFigureSpec.ts",
+      "options": {
+        "strict": true,
+        "typeset": true
+      },
+      "transport": "local-python",
+      "enginePath": "vendor/figure-engine",
+      "inspection": "author-view-image-completed",
+      "finalFigureApproval": "pending-parent-review",
+      "artifacts": [
+        {
+          "role": "stem",
+          "specSha256": "71755c43fe6ae1b65c54ca26e3a9095d0646f56fb8502dc8b2f88cef69af7af9",
+          "svgSha256": "7b6aa3b966e0fac866bbe4c0fbc9c1dd5c275a8957815c4301c2a27aacd2beb3",
+          "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q12.preview.png",
+          "previewSha256": "bf96b5457c856864fee9d2e95a6a22965d25ef78045eb144eb2a3c174bd255ca",
+          "droppedDimensions": []
+        }
+      ]
+    }
+  },
+  "review": {
+    "status": "pending",
+    "gradeCurriculum": "pending",
+    "equivalentConceptAndMethod": "pending",
+    "distinctPresentation": "pending",
+    "naturalKorean": "pending",
+    "mathematicalCorrectness": "pending",
+    "figure": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

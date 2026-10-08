@@ -1,0 +1,169 @@
+{
+  "input": "blind/student-problems.json only",
+  "method": "middle-school scalar calculations; no author inputs",
+  "results": {
+    "q10": {
+      "heightDifference": 8,
+      "tableTangent": 1.6003,
+      "rawDistance": 4.999062675748297,
+      "roundedDistance": 5,
+      "answer": "③",
+      "choices": [
+        {
+          "choiceNumber": 1,
+          "value": 4.5,
+          "matches": false
+        },
+        {
+          "choiceNumber": 2,
+          "value": 4.8,
+          "matches": false
+        },
+        {
+          "choiceNumber": 3,
+          "value": 5,
+          "matches": true
+        },
+        {
+          "choiceNumber": 4,
+          "value": 5.2,
+          "matches": false
+        },
+        {
+          "choiceNumber": 5,
+          "value": 8,
+          "matches": false
+        }
+      ]
+    },
+    "q16": {
+      "equalChords": "AB=AC",
+      "angles": {
+        "A": 50,
+        "B": 65,
+        "C": 65
+      },
+      "choices": [
+        {
+          "choiceNumber": 1,
+          "equalChords": "AB=BC",
+          "angle": 50,
+          "matches": false
+        },
+        {
+          "choiceNumber": 2,
+          "equalChords": "AB=AC",
+          "angle": 65,
+          "matches": false
+        },
+        {
+          "choiceNumber": 3,
+          "equalChords": "AC=BC",
+          "angle": 50,
+          "matches": false
+        },
+        {
+          "choiceNumber": 4,
+          "equalChords": "AB=AC",
+          "angle": 50,
+          "matches": true
+        },
+        {
+          "choiceNumber": 5,
+          "equalChords": "AB=AC",
+          "angle": 115,
+          "matches": false
+        }
+      ],
+      "answer": "④"
+    },
+    "q17": {
+      "radius": 3,
+      "bg": 6,
+      "ae": 6,
+      "af": 6,
+      "bm": 4.5,
+      "mg": 1.5,
+      "mf": 1.5,
+      "am": 7.5,
+      "area": 13.5,
+      "conditions": {
+        "MInsideBG": true,
+        "FInsideAM": true
+      },
+      "choices": [
+        {
+          "choiceNumber": 1,
+          "value": 9,
+          "matches": false
+        },
+        {
+          "choiceNumber": 2,
+          "value": 12,
+          "matches": false
+        },
+        {
+          "choiceNumber": 3,
+          "value": 13.5,
+          "matches": true
+        },
+        {
+          "choiceNumber": 4,
+          "value": 15,
+          "matches": false
+        },
+        {
+          "choiceNumber": 5,
+          "value": 18,
+          "matches": false
+        }
+      ],
+      "answer": "③"
+    },
+    "q19": {
+      "angles": {
+        "A": 45,
+        "B": 75,
+        "C": 60
+      },
+      "BC": "20sqrt(6)",
+      "BH": "30sqrt(2)",
+      "CH": "10sqrt(6)",
+      "AH": "30sqrt(2)",
+      "AB": 60,
+      "altitudeFootOnAC": true,
+      "numeric": {
+        "bc": 48.98979485566356,
+        "bh": 42.426406871192846,
+        "ch": 24.49489742783178,
+        "ah": 42.426406871192846,
+        "ab": 59.999999999999986,
+        "ac": 66.92130429902463
+      }
+    },
+    "q20": {
+      "radius": 6,
+      "diameter": 12,
+      "angles": {
+        "ABC": 30,
+        "OCB": 30,
+        "COB": 120,
+        "COH": 60
+      },
+      "height": "3sqrt(3)",
+      "sectorCOB": "12pi",
+      "triangleCOB": "9sqrt(3)",
+      "shadedSegment": "12pi-9sqrt(3)",
+      "semicircle": "18pi",
+      "unshaded": "6pi+9sqrt(3)",
+      "numeric": {
+        "height": 5.196152422706632,
+        "sector": 37.69911184307752,
+        "triangle": 15.588457268119896,
+        "shaded": 22.11065457495762,
+        "semicircle": 56.548667764616276,
+        "remaining": 34.438013189658655
+      }
+    }
+  }
+}

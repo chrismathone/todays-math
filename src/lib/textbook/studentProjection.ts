@@ -1,5 +1,6 @@
 import "server-only";
 import { splitBlankSentence } from "@/contracts/conceptBlank.contract";
+import { clozeSentence, termPrompt } from "@/lib/concept-blank/questions";
 import type {
   TextbookConcept,
   TextbookConceptAttempt,
@@ -64,13 +65,17 @@ export function studentConceptOf(
     } else if (pick.form === "term") {
       if (entry.entryKind !== "concept" && entry.entryKind !== "ox")
         throw new Error("용어 백지에 맞지 않는 고정 항목입니다.");
+      const question =
+        entry.entryKind === "concept"
+          ? termPrompt(entry.payload)
+          : entry.payload.statement;
+      const hasQuestion =
+        entry.entryKind === "concept" && Boolean(entry.payload.bQuestion);
       sheet.prompts.push({
         id: pick.entryId,
-        label:
-          entry.entryKind === "concept"
-            ? entry.payload.term
-            : entry.payload.statement,
+        label: hasQuestion ? `문항 ${sheet.prompts.length + 1}` : question,
         pieces: [
+          ...(hasQuestion ? [{ kind: "text" as const, text: question }] : []),
           ...(entry.entryKind === "ox"
             ? [
                 {
@@ -85,14 +90,16 @@ export function studentConceptOf(
     } else if (entry.entryKind === "concept") {
       let blankIndex = 0;
       const pieces: TextbookStudentBlank["prompts"][number]["pieces"] =
-        splitBlankSentence(entry.payload.definition).map((piece) =>
+        splitBlankSentence(clozeSentence(entry.payload)).map((piece) =>
           piece.kind === "text"
             ? { kind: "text", text: piece.text }
             : { kind: "blank", index: blankIndex++ },
         );
       sheet.prompts.push({
         id: pick.entryId,
-        label: entry.payload.term,
+        label: entry.payload.clozeQuestion
+          ? `문항 ${sheet.prompts.length + 1}`
+          : entry.payload.term,
         pieces,
       });
     } else if (entry.entryKind === "apply") {

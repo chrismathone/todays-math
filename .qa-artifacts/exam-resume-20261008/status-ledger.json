@@ -1,12 +1,12 @@
 {
-  "version": 2,
-  "createdAt": "2026-10-07T16:29:11.022Z",
+  "version": 4,
+  "createdAt": "2026-10-08T04:38:50.112Z",
   "branch": "chrismathone/exam-extraction-resume-20261008",
-  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-1.md",
-  "latestDirectiveSha256": "b530f1367ededa6f40e56e58641e5d7a9a3afe927b5e72788dd7cbfc61033eaa",
-  "scope": "resume-setup-only",
+  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-3.md",
+  "latestDirectiveSha256": "679641b872a0eac3a277a36d329b77d1b2e0d004b66e9dfb20d359684105ed11",
+  "scope": "actual-first-batch-current20-independent-review-collected; full-extraction-and-engine-upgrades-incomplete",
   "baselineCommit": "6b14920ed",
-  "latestPackage": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+  "latestPackage": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/candidate-index-r2.json",
   "historicalInventory": {
     "date": "2026-10-03",
     "jobs": 1715,
@@ -22,67 +22,95 @@
   "counts": {
     "historicalSourceVerifications": 21,
     "plannedTwins": 21,
-    "authoredTwins": 0,
+    "authoredTwins": 20,
+    "figureInstancesRecreated": 25,
+    "imagegenImagesGenerated": 2,
+    "blindSolvesBound": 20,
+    "mathematicalReviewed": 20,
+    "gradeReviewed": 20,
+    "wholeQuestionReviewPassed": 12,
     "verifiedTwins": 0,
     "loadableTwins": 0,
-    "taxonomyProposed": 16,
-    "taxonomyHeld": [
+    "heldBeforeAuthoring": [
+      7
+    ],
+    "taxonomyInitiallyProposed": 16,
+    "taxonomyInitiallyHeld": [
       10,
       11,
       14,
       18,
       20
     ],
-    "finalGradePending": 21,
-    "imagegenImagesGenerated": 0,
-    "engineUpgradeCandidates": 27,
-    "engineUpgradesImplemented": 0
+    "newReviewedTaxonomyHold": [
+      5,
+      10,
+      11,
+      14,
+      15,
+      18,
+      20
+    ],
+    "remainingWholeReviews": 0,
+    "engineUpgradeCandidates": 28,
+    "engineUpgradesImplementedInProduction": 0,
+    "historicalCandidateVersions": 22,
+    "wholeQuestionReviewHeld": 8,
+    "reviewedDifficultyHold": [
+      17,
+      20
+    ],
+    "currentSourceQuestionIdentityConfirmed": 4
   },
   "stages": [
     {
       "id": "resume-setup",
       "status": "complete",
-      "evidence": "latest directions, scoped read, source/copy hashes, first21/next5 plans, contracts/official evidence and local reviewable scripts"
+      "evidence": "prior v2 ledger preserved; latest execution addendum2 committed d420c615b"
     },
     {
       "id": "source-extraction-content-dedup",
       "status": "incomplete",
-      "evidence": "pilot historical comparison retained; next5 read-only source reuse audit; remaining inventory unreviewed"
+      "evidence": "Source4 prior content links retained; worker executing remaining17. Next5 worker performing question-only source extraction, neither stage complete"
     },
     {
       "id": "new-twin-authoring",
-      "status": "planned",
-      "evidence": "21 source-bound structural/context/representation/inverse plans; no authored candidates"
+      "status": "20-current-authored-22-historical-versions-1-preauthor-curriculum-hold",
+      "evidence": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/candidate-index-r2.json"
     },
     {
       "id": "new-vector-and-imagegen-assets",
-      "status": "planned",
-      "evidence": "all diagrams recreated later; built-in imagegen first for q10/q19; reference crops never final"
+      "status": "25-current-figure-instances-including2-built-in-raster-assets;new10/19-separate70mm-panels-verified",
+      "evidence": "existing strict local figure engine used; two actual built-in imagegen PNGs preserved with generation prompts and math bindings; no original crop counted"
     },
     {
       "id": "new-solve-independent-verification",
-      "status": "not-started",
-      "evidence": "only changed final body/facts/new figures form solver input; no old result reuse"
+      "status": "20-current-blind-solves-bound-and20-math/grade-reviews-collected",
+      "evidence": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-final-review-summary-r1.json",
+        "sha256": "0e91894ed42b93f79a9f8ec8185d267e5803ac2d96c894d8b0436b14b7b64cbe",
+        "reviewBindingDigest": "39aadc9c098b3312097fb9391d17fffacea13e7a2a03c3715b55f00e6ece35da"
+      }
     },
     {
       "id": "final-grade-metadata-rights-review",
-      "status": "pending",
-      "evidence": "16 taxonomy proposals/5 held; all21 new-candidate grade reviews pending; source provenance holds"
+      "status": "content12-passed8-held;full0-loadable0",
+      "evidence": "r1-r5 proofs; r5 replaces prior10/19. Source/custody, taxonomy, rights/similarity/native provenance unresolved independently"
     },
     {
       "id": "authored-twin-dry-run-contract",
-      "status": "not-implemented",
-      "evidence": "separate candidate/digest/asset/review contract needed; current script checks preparation only"
+      "status": "implemented-offline-subset",
+      "evidence": "scripts/import/exam-twin; new current-ID digest summary and collection-stage blind recheck; contract test and five actual packs checked in this continuation"
     },
     {
       "id": "production-load-unlock-deploy",
-      "status": "outside-setup-authorization",
-      "evidence": "no production actions; protect82/three ledgers/permanent exclusion"
+      "status": "not-performed;restricted",
+      "evidence": "protected82/permanent exclusion/three ledgers untouched; no apply/unlock/deploy/main/push"
     },
     {
       "id": "post-extraction-engine-upgrades",
-      "status": "not-implemented",
-      "evidence": "27 code-targeted candidates plus future corpus findings; actual implementation/tests required"
+      "status": "incomplete;28-tracked",
+      "evidence": ".qa-artifacts\\exam-resume-20261008\\engine-upgrades-progress-r1.json"
     }
   ],
   "workers": [
@@ -115,7 +143,8 @@
     "protectedRows": 82,
     "unlocked": 0,
     "correctionsMismatch": 0,
-    "globallyDeduplicated": false
+    "globallyDeduplicated": false,
+    "observationIsNotCurrentDatabase": true
   },
   "nextFive": {
     "examCount": 5,
@@ -828,81 +857,14 @@
     }
   ],
   "validation": {
-    "newPreparationTestsPassed": 9,
-    "existingLocalFilesPassed": 2,
-    "existingLocalTestsPassed": 36,
-    "workerExistingTests": {
-      "kind": "existing_contract_offline_tests",
-      "groups": [
-        {
-          "command": "node node_modules/vitest/vitest.mjs run --no-cache --configLoader runner --maxWorkers 2 src/__tests__/unit/planPersonalExams.test.ts src/__tests__/unit/examRegeneration.test.ts src/__tests__/unit/examDecisionLoad.test.ts src/__tests__/unit/examDecisionCorpus.test.ts src/__tests__/unit/examCorpusGuards.test.ts src/__tests__/unit/examPercentRepair.test.ts src/__tests__/unit/aiGenerator.test.ts src/__tests__/unit/aiBankIntakeNormalize.test.ts src/__tests__/unit/devAiFigureEngine.test.ts src/__tests__/unit/figureEngineCatalog.test.ts src/__tests__/unit/figureDropSafety.test.ts src/__tests__/unit/figureCurveGraph.test.ts src/__tests__/unit/figureStatKinds.test.ts src/__tests__/unit/figureSolidKinds.test.ts src/__tests__/unit/vendoredFigureEngine.test.ts src/__tests__/unit/figureMatchesContent.test.ts src/__tests__/unit/problemProvenance.test.ts src/__tests__/unit/problemFormatQuery.test.ts src/__tests__/api/problemTransform.test.ts src/__tests__/api/problemFormatFilter.test.ts src/__tests__/unit/jevClient.test.ts",
-          "fileCount": 21,
-          "testsPassed": 404,
-          "testsFailed": 0,
-          "exitCode": 0,
-          "durationSeconds": 91.29,
-          "files": [
-            "src/__tests__/unit/planPersonalExams.test.ts",
-            "src/__tests__/unit/examRegeneration.test.ts",
-            "src/__tests__/unit/examDecisionLoad.test.ts",
-            "src/__tests__/unit/examDecisionCorpus.test.ts",
-            "src/__tests__/unit/examCorpusGuards.test.ts",
-            "src/__tests__/unit/examPercentRepair.test.ts",
-            "src/__tests__/unit/aiGenerator.test.ts",
-            "src/__tests__/unit/aiBankIntakeNormalize.test.ts",
-            "src/__tests__/unit/devAiFigureEngine.test.ts",
-            "src/__tests__/unit/figureEngineCatalog.test.ts",
-            "src/__tests__/unit/figureDropSafety.test.ts",
-            "src/__tests__/unit/figureCurveGraph.test.ts",
-            "src/__tests__/unit/figureStatKinds.test.ts",
-            "src/__tests__/unit/figureSolidKinds.test.ts",
-            "src/__tests__/unit/vendoredFigureEngine.test.ts",
-            "src/__tests__/unit/figureMatchesContent.test.ts",
-            "src/__tests__/unit/problemProvenance.test.ts",
-            "src/__tests__/unit/problemFormatQuery.test.ts",
-            "src/__tests__/api/problemTransform.test.ts",
-            "src/__tests__/api/problemFormatFilter.test.ts",
-            "src/__tests__/unit/jevClient.test.ts"
-          ]
-        },
-        {
-          "command": "node node_modules/vitest/vitest.mjs run --no-cache --configLoader runner --maxWorkers 2 src/__tests__/components/sourceFigureSanitize.test.tsx src/__tests__/unit/figureLabelTypeset.test.ts src/__tests__/unit/figurePrintSize.test.ts src/__tests__/unit/toPrintProblem.test.ts src/__tests__/unit/highRegistry.test.ts src/__tests__/unit/problemEligibility.test.ts src/__tests__/unit/importMetadata.test.ts",
-          "fileCount": 7,
-          "testsPassed": 119,
-          "testsFailed": 0,
-          "exitCode": 0,
-          "durationSeconds": 187.32,
-          "files": [
-            "src/__tests__/components/sourceFigureSanitize.test.tsx",
-            "src/__tests__/unit/figureLabelTypeset.test.ts",
-            "src/__tests__/unit/figurePrintSize.test.ts",
-            "src/__tests__/unit/toPrintProblem.test.ts",
-            "src/__tests__/unit/highRegistry.test.ts",
-            "src/__tests__/unit/problemEligibility.test.ts",
-            "src/__tests__/unit/importMetadata.test.ts"
-          ]
-        }
-      ],
-      "totalFilesPassed": 28,
-      "totalTestsPassed": 523,
-      "totalFailures": 0,
-      "noNewTwinVerificationClaim": true,
-      "dbMock": "vitest.setup.ts global in-memory Prisma double; loader tests mock Prisma directly",
-      "aiMocks": "AI generator SDK, transform wrapper, Studio subscription CLI and Jev fetch mocked in relevant tests",
-      "runtimeEnvironmentOverrides": {
-        "STUDIO_AI_JEV": "off",
-        "STUDIO_ENGINE_URL": "",
-        "VERCEL": "",
-        "PYTHONDONTWRITEBYTECODE": "1",
-        "NO_COLOR": "1"
-      },
-      "cacheDisabled": true,
-      "configLoader": "runner",
-      "temporaryDependencyJunction": "Own worktree pointer to existing D:/todays-math/node_modules; removed after tests. No install/generate.",
-      "referenceLineValidation": "All cited file:line references exist at baseline; report and JSON generated in own worktree only."
-    },
-    "claimsNewTwinMathVerified": false,
-    "claimsImageEngineImplemented": false
+    "contractTests": 19,
+    "passed": 19,
+    "failed": 0,
+    "syntheticControlsNotActualMathApproval": true,
+    "current20WorkerReportBytes": "bumil-review-commit-binding-r1.json",
+    "actualPackCount": 5,
+    "actualHistoricalVersions": 22,
+    "currentVersions": 20
   },
   "prohibitionsRespected": [
     "no DB apply/write/delete/reload/unlock/deploy",
@@ -912,5 +874,157 @@
     "no paid APIs or imagegen CLI fallback",
     "no push"
   ],
-  "worktreeRetention": "Workers clean/finished, preserved with branches and ignored source evidence because not merged into main; do not remove unmerged worktrees."
+  "worktreeRetention": "Workers active or unmerged into main; retain all worktrees/branches and evidence. Main and shared dependencies unchanged.",
+  "previousLedger": ".qa-artifacts\\exam-resume-20261008\\status-ledger-v2.json",
+  "previousLedgerSha256": "4e4135f0199688f757c18a9408bdae9d85b28d7c558ae8df0ae0ac32921c7d3d",
+  "actualAuthoringCommit": "d420c615b",
+  "report": "docs/planning/tracks/reports/exam-twin-authoring-progress-20261008.md",
+  "actualSourceEvidence": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\source-identity\\source-review.json",
+    "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86",
+    "confirmedQuestions": [
+      2,
+      3,
+      15,
+      21
+    ],
+    "actualDate": "2025-09-23",
+    "actualYear": 2025,
+    "actualSchool": "?????",
+    "preparationFooter": "26? ?? is an editorial/preparation label, not the exam administration date",
+    "otherQuestionsNotConfirmedByThisReview": true,
+    "custodyPublisherRightsNotCleared": true
+  },
+  "reviewPackages": [
+    {
+      "version": 1,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package",
+      "manifestSha256": "7b609562670103c0a8d9f3ba66b3ab109b782fb4420c36e9e4f103b181d63724",
+      "questionCount": 4,
+      "blindSolvesBound": 4,
+      "reviewStatus": "collected-first4-snapshot"
+    },
+    {
+      "version": 2,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package",
+      "manifestSha256": "6a17a124daabdf2161711014ca3701990897f984512fa1d435a91d6e47821810",
+      "questionCount": 9,
+      "blindSolvesBound": 9,
+      "reviewStatus": "peer-review-in-progress"
+    },
+    {
+      "version": 3,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package",
+      "manifestSha256": "200f55ba7d27897a14ba170a021efe1295ffb27468924aa8335157fd3f31ea1c",
+      "questionCount": 5,
+      "blindSolvesBound": 5,
+      "reviewStatus": "peer-review-in-progress"
+    },
+    {
+      "version": 4,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\package",
+      "manifestSha256": "229814a33b588d4d3162ffaaf4ee35fce2397528710c7b6f019b91352eafde61",
+      "questionCount": 2,
+      "blindSolvesBound": 0,
+      "reviewStatus": "blind-task-in-progress"
+    }
+  ],
+  "reviewResult": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\result-r1.json",
+    "sha256": "752b74b59c43f2d1d97683459084946ce3281aef49e3b8aba99c9fe4236c6527",
+    "reviewerSnapshot": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\reviewer-report-snapshot-r1.json",
+    "kind": "committed independent reviewer reports; point-in-time parent copies byte-match ba35ced10",
+    "sourceIdentityJoin": "freeze manifest retains pending gate; source evidence is separately confirmed above",
+    "math4Grade4DoesNotAuthorizeUse": true,
+    "workerCommit": "ba35ced10",
+    "workerReviewNote": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification-results\\REVIEW.md",
+    "workerReviewNoteSha256": "ef8045f1f12ab4bdb81ff96325839a56136f9e6dd67e1103b1d0501a3212ab80"
+  },
+  "currentWorkers": [
+    {
+      "name": "exam-twin-author-algebra-20261008",
+      "branch": "chrismathone/exam-twin-author-algebra-20261008",
+      "stage": "full peer review q10/q16/q17/q19/q20",
+      "terminal": "term_96d5d3c8-12f8-4d84-bd31-fde090144e66"
+    },
+    {
+      "name": "exam-twin-author-geometry-20261008",
+      "branch": "chrismathone/exam-twin-author-geometry-20261008",
+      "stage": "full peer review q1/q4/q5/q18/q6/q8/q9/q12/q13",
+      "terminal": "term_0e513da0-cb1a-466b-ace2-84b762f87803"
+    },
+    {
+      "name": "exam-twin-source-identity-20261008",
+      "branch": "chrismathone/exam-twin-source-identity-20261008",
+      "stage": "first4 review committed and integrated; blind q11/q14 in progress",
+      "terminal": "term_c1193961-c5e3-4a60-bff3-e14c7531ad38"
+    }
+  ],
+  "upgradeProgress": ".qa-artifacts\\exam-resume-20261008\\engine-upgrades-progress-r1.json",
+  "currentReviewSummary": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-final-review-summary-r1.json",
+    "sha256": "0e91894ed42b93f79a9f8ec8185d267e5803ac2d96c894d8b0436b14b7b64cbe",
+    "reviewBindingDigest": "39aadc9c098b3312097fb9391d17fffacea13e7a2a03c3715b55f00e6ece35da"
+  },
+  "contentReviewPassedNumbers": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8,
+    9,
+    12,
+    13,
+    16,
+    19,
+    21
+  ],
+  "contentReviewHeldNumbers": [
+    5,
+    10,
+    11,
+    14,
+    15,
+    17,
+    18,
+    20
+  ],
+  "currentGradeScope": "2025 source exam middle3/2015; all7 student surfaces externally reviewed; no automatic 2022 republication",
+  "methodClarification": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/variant-method-links-r2.json",
+    "sha256": "6316e4e23761b1570236ea00553351fd120269cced4cea3a90ca5c0bf0a0f491",
+    "effect": "Original direction-only source fields preserved; current inverse procedures reviewed without editing frozen candidates"
+  },
+  "remoteObservation": {
+    "fetchedAt": "2026-10-08T04:38:50.112Z",
+    "ref": "origin/main",
+    "sha": "6ecf0ee9942924f0b345b2d87f7674caea75be5b",
+    "divergence": "47\t86",
+    "integrationStatus": "pending-after-preserved-owned-commit",
+    "noCachedRefAsCurrent": true
+  },
+  "activeWork": [
+    {
+      "worktree": "exam-twin-source-identity-20261008",
+      "scope": "remaining17 Bumil original content identity audit",
+      "status": "turn-started"
+    },
+    {
+      "worktree": "exam-twin-next-five-20261008",
+      "scope": "actual5-paper question-only extraction and HWP/PDF comparison",
+      "status": "turn-started"
+    },
+    {
+      "worktree": "exam-twin-author-geometry-20261008",
+      "scope": "independent q05/q10/q18 classification proposals/holds",
+      "status": "turn-started"
+    }
+  ],
+  "continuationWatch": {
+    "config": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
+    "automationId": "358474c8-24be-49ee-b3c9-55fbebf68de4",
+    "state": "active; primary working; no stop/complete/blocked marker",
+    "role": "read-only continuity monitor, not author"
+  }
 }

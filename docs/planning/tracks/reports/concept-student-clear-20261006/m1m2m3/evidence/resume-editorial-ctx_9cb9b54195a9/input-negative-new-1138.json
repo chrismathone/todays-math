@@ -1,0 +1,95 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T12:04:12.929Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-08-xc5",
+        "section": "중1::3. 방정식::일차방정식의 활용(수)",
+        "term": "답 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "구한 값을 문제의 {문장}에 넣어 조건에 맞는지 {확인}한다.",
+        "example": {
+          "prompt": "어떤 수가 $13$일 때 '$7$을 더하면 $20$'이 맞는가?",
+          "answer": "맞다"
+        },
+        "studentC": "구한 값을 문제의 □에 넣어 조건에 맞는지 □한다.",
+        "answers": [
+          "문장",
+          "확인"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-08-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 어떤 수를 $13$이라고 구했다. 이 답이 맞는지 확인하려면 $13$을 어디에 넣어 보아야 하는지 쓰고, 실제로 확인하시오.",
+        "bAnswer": "구한 값 $13$을 문제의 문장에 넣어 본다. $13$에 $7$을 더하면 $20$이 되어 문제의 조건에 맞으므로 답이 맞다.",
+        "bGoal": "구한 값을 문제의 문장에 넣어 조건에 맞는지 확인한다.",
+        "bReason": "방정식자체가문장조건을잘못옮겼을수있으므로원래문제조건에넣어확인한다는기준을분명하게한다. 이구체문제의정확한식을허용하는것이수학적으로틀리지는않지만교육목표를장부에명시한다.",
+        "cDecision": "rewrite",
+        "cAfter": "방정식을 풀어 구한 값은 처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+        "cAnswers": [
+          "문장"
+        ],
+        "cReason": "문제의조건·내용에넣어검산한다는같은뜻을문장과함께인정한다.",
+        "exampleNeeded": true,
+        "authorBatch": 8,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구한 값 $13$을 처음 문제의 문장에 넣어 조건이 맞는지 확인한다",
+              "어떤 수에 $7$을 더하면 $20$이라는 원래 조건에 $13$을 넣어 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$13+7=20$으로 조건에 맞으므로 답이 맞다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "구한 값을 문장에 넣어 확인",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1325,
+        "part": "m1plus",
+        "sourceFingerprint": "83e7e634161735b00be378d2c85d062da4a74ee8656f1336471d92333e9332d7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1325
+        },
+        "directReview": null,
+        "cMarkedSentence": "방정식을 풀어 구한 값은 처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+        "cSlotAnswers": [
+          "문장"
+        ],
+        "cStudentSentence": "방정식을 풀어 구한 값은 처음 문제의 □에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "문장",
+            "equivalentAnswers": [
+              "문장",
+              "조건",
+              "내용"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "문장",
+            "조건",
+            "내용"
+          ]
+        ],
+        "proposalFingerprint": "1079e8423560fb1ded7d458cfe0aab9d493cec5a900b3b7f9eb638c1d0f93f1e"
+      }
+    }
+  ]
+}

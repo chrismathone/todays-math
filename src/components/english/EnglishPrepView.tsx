@@ -1,10 +1,9 @@
 "use client";
 
 /**
- * «학교별 내신 대비» (D-148 · 25 §1.2 · 셸 브리프 §2.2) — 시안 `hifi-d148-english-switch.html` C 안 본문 그대로.
- *
- * 머리 → 학교 칩 + 시험 고르기 → «이번 시험 준비» 세 단계(단추) → 왼쪽 시험 자료 · 출제 설정 / 오른쪽 대비 문제 세트.
- * 단계 수는 읽어 둔 목록이 있으면 그 길이로, 없으면 시험 요약(`materialCount`…)으로 센다 — 한 자리에서만 센다.
+ * 오늘의 작업 — WorkroomHome의 주 작업 열 + 보조 열 구성.
+ * 자료와 최근 세트를 작업 열에, 실제 준비 수와 출제 설정을 보조 열에 둔다.
+ * 개수는 읽어 둔 목록이 있으면 그 길이로, 없으면 시험 요약으로 센다.
  * 🔴 D-30 — 카드·행에는 손가락 커서가 없다. 누르는 것은 단추·링크뿐이다.
  */
 import { useRef, useState, type RefObject } from "react";
@@ -55,6 +54,7 @@ import {
 } from "./englishClient";
 import type { EnglishView } from "./views";
 import s from "./EnglishStudio.module.css";
+import p from "./EnglishPrep.module.css";
 
 const HEADER = {
   title: "오늘의 작업",
@@ -131,21 +131,19 @@ export default function EnglishPrepView({
     {
       label: "자료 등록",
       meta: `${materialCount}개 자료`,
-      done: materialCount > 0,
       onClick: () => setMaterialDialog(true),
+      returnFocus: addRef,
       enabled: true,
     },
     {
       label: "문제 제작",
       meta: `${setCount}개 세트`,
-      done: setCount > 0,
       onClick: () => onNavigate("english-maker"),
       enabled: canMake,
     },
     {
       label: "검토 및 인쇄",
       meta: `${reviewedCount}개 검토 완료`,
-      done: reviewedCount > 0,
       onClick: () => onNavigate("english-library"),
       enabled: canLibrary,
     },
@@ -189,60 +187,40 @@ export default function EnglishPrepView({
         title={HEADER.title}
         description={HEADER.description}
       >
-        <button type="button" className={w.primaryButton} onClick={onNewExam}>
+        <button type="button" className={w.outlineButton} onClick={onNewExam}>
           <Icon name="plus" size={18} />새 시험 등록
         </button>
       </WorkspacePageHeader>
-      <EnglishExamPicker exams={exams} exam={exam} onSelect={onSelectExam} />
-
-      <section className={`${s.card} ${s.steps}`}>
-        <div>
-          <span className={s.kick}>이번 시험 준비</span>
-          <h2 className={s.stepsTitle}>{formatExamDate(exam.examDate)}</h2>
-        </div>
-        <ul className={s.stepList} aria-label="이번 시험 준비">
-          {steps.map((step, index) => (
-            <li key={step.label}>
-              <button
-                type="button"
-                className={s.step}
-                data-done={step.done}
-                onClick={step.onClick}
-                disabled={!step.enabled}
-              >
-                <span className={s.dot} aria-hidden="true">
-                  {step.done ? "✓" : index + 1}
-                </span>
-                <b>{step.label}</b>
-                <small>{step.meta}</small>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <div className={s.grid}>
-        <div className={s.column}>
-          <section className={s.card} aria-label="시험 자료">
-            <div className={s.sectionHead}>
-              <h2 className={s.sectionTitle}>
-                시험 자료 <span className={s.num}>{materialCount}</span>
+      <div className={p.dashboard}>
+        <div className={p.primaryColumn}>
+          <EnglishExamPicker
+            exams={exams}
+            exam={exam}
+            onSelect={onSelectExam}
+          />
+          <section className={p.panel} aria-label="시험 자료">
+            <div className={p.sectionHead}>
+              <h2 className={p.sectionTitle}>
+                시험 자료 <span className={p.num}>{materialCount}</span>
               </h2>
               <button
                 ref={addRef}
                 type="button"
-                className={s.quiet}
-                onClick={() => setMaterialDialog(true)}
+                className={w.outlineButton}
+                onClick={(event) => {
+                  addRef.current = event.currentTarget;
+                  setMaterialDialog(true);
+                }}
               >
                 <Icon name="plus" size={15} />
                 자료 추가
               </button>
             </div>
-            <p className={s.desc}>기출, 시험 범위, 수업 지문을 모아 둡니다.</p>
+            <p className={p.desc}>기출, 시험 범위, 수업 지문을 모아 둡니다.</p>
             {materials.status === "loading" ? (
               <WorkProgress label="자료를 불러오는 중입니다…" />
             ) : materials.status === "error" ? (
-              <div role="alert" className={s.loadError}>
+              <div role="alert" className={p.loadError}>
                 <span>{materials.message}</span>
                 <button
                   type="button"
@@ -253,14 +231,14 @@ export default function EnglishPrepView({
                 </button>
               </div>
             ) : materials.data.length ? (
-              <ul className={s.rows}>
+              <ul className={p.materials}>
                 {materials.data.map((material) => (
-                  <li key={material.id} className={s.row}>
-                    <span className={s.fileIcon}>
+                  <li key={material.id} className={p.material}>
+                    <span className={p.fileIcon} aria-hidden="true">
                       <Icon name="paper" size={20} />
                     </span>
-                    <div className={s.rowBody}>
-                      <span className={s.rowTitle}>
+                    <div className={p.rowBody}>
+                      <span className={p.rowTitle}>
                         {material.hasFile ? (
                           <a
                             href={`/api/english/materials/${material.id}`}
@@ -272,7 +250,7 @@ export default function EnglishPrepView({
                           material.name
                         )}
                       </span>
-                      <span className={s.rowMeta}>
+                      <span className={p.rowMeta}>
                         {material.hasFile
                           ? formatBytes(material.size)
                           : formatChars(
@@ -281,71 +259,196 @@ export default function EnglishPrepView({
                         · {formatDay(material.createdAt)}
                       </span>
                     </div>
-                    {isEnglishPhoto(material) && (
+                    <div className={p.rowActions}>
+                      {isEnglishPhoto(material) && (
+                        <button
+                          type="button"
+                          className={p.quiet}
+                          aria-label={`${material.name} 글 읽기`}
+                          onClick={(event) => {
+                            readRef.current = event.currentTarget;
+                            setReading({ id: material.id, only: false });
+                          }}
+                        >
+                          글 읽기
+                        </button>
+                      )}
                       <button
                         type="button"
-                        className={s.quiet}
-                        aria-label={`${material.name} 글 읽기`}
+                        className={p.rowDelete}
+                        aria-label={`${material.name} 삭제`}
                         onClick={(event) => {
-                          readRef.current = event.currentTarget;
-                          setReading({ id: material.id, only: false });
+                          rowDeleteRef.current = event.currentTarget;
+                          setDialogError(null);
+                          setDeleting(material);
                         }}
                       >
-                        글 읽기
+                        <Icon name="close" size={17} />
                       </button>
-                    )}
-                    <button
-                      type="button"
-                      className={s.rowDelete}
-                      aria-label={`${material.name} 삭제`}
-                      onClick={(event) => {
-                        rowDeleteRef.current = event.currentTarget;
-                        setDialogError(null);
-                        setDeleting(material);
-                      }}
-                    >
-                      <Icon name="close" size={17} />
-                    </button>
+                    </div>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className={s.footnote}>아직 등록한 자료가 없습니다.</p>
+              <div className={p.empty}>
+                <p>아직 등록한 자료가 없습니다.</p>
+                <span>자료 추가에서 파일을 올리거나 지문을 입력하세요.</span>
+              </div>
             )}
           </section>
 
-          <section className={s.card} aria-label="출제 설정">
-            <div className={s.sectionHead}>
-              <h2 className={s.sectionTitle}>출제 설정</h2>
+          <section className={p.panel} aria-label="대비 문제 세트">
+            <div className={p.sectionHead}>
+              <h2 className={p.sectionTitle}>
+                대비 문제 세트 <span className={p.num}>{setCount}</span>
+              </h2>
+              {canMake && (
+                <button
+                  type="button"
+                  className={w.primaryButton}
+                  onClick={() => onNavigate("english-maker")}
+                >
+                  AI 문제 제작
+                  <Icon name="arrow" size={18} />
+                </button>
+              )}
+            </div>
+            <p className={p.desc}>
+              최근 만든 세트를 열어 검토하고 수업을 준비하세요.
+            </p>
+            {sets.status === "loading" ? (
+              <WorkProgress label="문제 세트를 불러오는 중입니다…" />
+            ) : sets.status === "error" ? (
+              <div role="alert" className={p.loadError}>
+                <span>{sets.message}</span>
+                <button
+                  type="button"
+                  className={w.outlineButton}
+                  onClick={onRetrySets}
+                >
+                  다시 시도
+                </button>
+              </div>
+            ) : sets.data.length ? (
+              <div className={p.sets}>
+                {sets.data.slice(0, 4).map((set) => (
+                  <article key={set.id} className={p.setRow}>
+                    <div className={p.rowBody}>
+                      <span
+                        className={s.pill}
+                        data-tone={STATUS_TONE[set.status]}
+                      >
+                        {set.status}
+                      </span>
+                      <h3 className={p.setTitle}>{set.title}</h3>
+                      <p className={p.rowMeta}>
+                        {[
+                          SOURCE_LABEL[set.source],
+                          set.status === "검토 완료" ? null : "강사 검토 필요",
+                          ...set.types.slice(0, 3),
+                        ]
+                          .filter(Boolean)
+                          .join(" · ")}
+                      </p>
+                    </div>
+                    <div className={p.setActions}>
+                      <span className={p.count}>
+                        <b>{set.questionCount}</b>문항
+                      </span>
+                      {canLibrary && (
+                        <button
+                          type="button"
+                          className={w.outlineButton}
+                          aria-label={`${set.title} 열기`}
+                          onClick={() => onOpenSet(set.id)}
+                        >
+                          열기
+                        </button>
+                      )}
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : (
+              <div className={p.empty}>
+                <p>아직 만든 문제 세트가 없습니다.</p>
+                {canMake && <span>AI 문제 제작에서 첫 초안을 준비하세요.</span>}
+              </div>
+            )}
+            <div className={p.sectionFoot}>
+              <p>모든 문제는 강사 검토 뒤에 씁니다.</p>
+              {canLibrary && (
+                <button
+                  type="button"
+                  className={p.quiet}
+                  onClick={() => onNavigate("english-library")}
+                >
+                  전체 보기
+                  <Icon name="chevron" size={14} />
+                </button>
+              )}
+            </div>
+          </section>
+        </div>
+
+        <div className={p.secondaryColumn}>
+          <section className={p.panel} aria-label="이번 시험 준비 현황">
+            <h2 className={p.sectionTitle}>이번 시험 준비</h2>
+            <p className={p.desc}>{formatExamDate(exam.examDate)}</p>
+            <ul className={p.summary} aria-label="이번 시험 준비">
+              {steps.map((step) => (
+                <li key={step.label}>
+                  <button
+                    type="button"
+                    className={p.summaryLink}
+                    onClick={(event) => {
+                      if (step.returnFocus)
+                        step.returnFocus.current = event.currentTarget;
+                      step.onClick();
+                    }}
+                    disabled={!step.enabled}
+                  >
+                    <span>{step.label}</span>
+                    <small>{step.meta}</small>
+                    <Icon name="chevron" size={14} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className={p.panel} aria-label="출제 설정">
+            <div className={p.sectionHead}>
+              <h2 className={p.sectionTitle}>출제 설정</h2>
               <button
                 ref={settingsRef}
                 type="button"
-                className={s.quiet}
+                className={p.quiet}
                 onClick={() => setSettingsDialog(true)}
               >
                 설정 수정
               </button>
             </div>
-            <p className={s.desc}>이번 시험에서 중점적으로 다룰 유형</p>
+            <p className={p.desc}>이번 시험에서 중점적으로 다룰 유형</p>
             {exam.types.length ? (
-              <ul className={s.tags}>
+              <ul className={p.tags}>
                 {exam.types.map((type) => (
-                  <li key={type} className={s.tag}>
-                    {type}
-                  </li>
+                  <li key={type}>{type}</li>
                 ))}
               </ul>
             ) : (
-              <p className={s.footnote}>
+              <p className={p.settingsEmpty}>
                 아직 정하지 않았습니다. «설정 수정»에서 고릅니다.
               </p>
             )}
-            <p className={s.gradeLine}>
-              대상 학년 <b>{exam.grade}</b>
+            <div className={p.settingsFoot}>
+              <span>
+                대상 학년 <b>{exam.grade}</b>
+              </span>
               <button
                 ref={deleteExamRef}
                 type="button"
-                className={s.dangerButton}
+                className={p.dangerButton}
                 onClick={() => {
                   setDialogError(null);
                   setExamDeleting(true);
@@ -353,93 +456,9 @@ export default function EnglishPrepView({
               >
                 시험 삭제
               </button>
-            </p>
+            </div>
           </section>
         </div>
-
-        <section className={s.card} aria-label="대비 문제 세트">
-          <div className={s.sectionHead}>
-            <h2 className={s.sectionTitle}>
-              대비 문제 세트 <span className={s.num}>{setCount}</span>
-            </h2>
-            {canLibrary && (
-              <button
-                type="button"
-                className={s.quiet}
-                onClick={() => onNavigate("english-library")}
-              >
-                전체 보기
-                <Icon name="chevron" size={14} />
-              </button>
-            )}
-          </div>
-          <p className={s.desc}>
-            초안을 만들고, 검토를 마친 문제를 수업에 씁니다.
-          </p>
-          {sets.status === "loading" ? (
-            <WorkProgress label="문제 세트를 불러오는 중입니다…" />
-          ) : sets.status === "error" ? (
-            <div role="alert" className={s.loadError}>
-              <span>{sets.message}</span>
-              <button
-                type="button"
-                className={w.outlineButton}
-                onClick={onRetrySets}
-              >
-                다시 시도
-              </button>
-            </div>
-          ) : sets.data.length ? (
-            sets.data.slice(0, 4).map((set) => (
-              <article key={set.id} className={s.setCard}>
-                <span className={s.setIcon}>
-                  <Icon name="paper" size={22} />
-                </span>
-                <div className={s.setBody}>
-                  <span className={s.pill} data-tone={STATUS_TONE[set.status]}>
-                    {set.status}
-                  </span>
-                  <h3 className={s.setTitle}>{set.title}</h3>
-                  <p className={s.setMeta}>
-                    {[
-                      SOURCE_LABEL[set.source],
-                      set.status === "검토 완료" ? null : "강사 검토 필요",
-                      ...set.types.slice(0, 3),
-                    ]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </p>
-                </div>
-                <span className={s.count}>
-                  <b>{set.questionCount}</b>문항
-                </span>
-                {canLibrary && (
-                  <button
-                    type="button"
-                    className={w.outlineButton}
-                    aria-label={`${set.title} 열기`}
-                    onClick={() => onOpenSet(set.id)}
-                  >
-                    열기
-                  </button>
-                )}
-              </article>
-            ))
-          ) : (
-            <p className={s.footnote}>아직 만든 문제 세트가 없습니다.</p>
-          )}
-          {canMake && (
-            <button
-              type="button"
-              className={`${w.primaryButton} ${s.wide}`}
-              onClick={() => onNavigate("english-maker")}
-            >
-              학교 맞춤 문제 만들기
-              <Icon name="arrow" size={18} />
-            </button>
-          )}
-          <p className={s.under}>모든 문제는 강사 검토 뒤에 씁니다.</p>
-        </section>
       </div>
 
       {materialDialog && (

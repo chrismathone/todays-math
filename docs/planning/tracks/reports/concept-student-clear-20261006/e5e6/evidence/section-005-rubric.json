@@ -1,0 +1,792 @@
+{
+  "rows": [
+    {
+      "id": "e5-1-2-3-c1",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수에 공통으로 들어 있는 약수",
+            "두 수 모두의 약수인 수",
+            "두 수를 모두 나누어떨어지게 하는 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1, 2, 3, 6$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-c2",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "공약수 가운데 가장 큰 수",
+            "공약수 중 제일 큰 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$과 $12$의 공약수는 $1, 2, 4$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-c3",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 공약수는 최대공약수의 약수와 같다",
+            "공약수는 최대공약수의 약수 전체이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1, 2, 5, 10$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc1",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 약수를 각각 모두 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "양쪽에 공통으로 들어 있는 수를 고른다",
+            "두 목록에 모두 있는 수가 공약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$은 $12$의 약수가 아니다",
+            "$12$가 $8$로 나누어떨어지지 않는다",
+            "$8$은 한쪽의 약수일 뿐 두 수 모두의 약수가 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1, 2, 4$",
+            "$1$, $2$, $4$",
+            "$4, 2, 1$",
+            "$1$과 $2$와 $4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc2",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 자연수는 $1$로 나누어떨어진다",
+            "$1$은 모든 자연수의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7\\div 1=7$, $10\\div 1=10$이므로 $1$은 $7$과 $10$의 공약수이다",
+            "$7$과 $10$ 모두 $1$로 나누어떨어진다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc3",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수를 각각 그 수로 나누었을 때 둘 다 나머지가 $0$이다",
+            "두 수 모두 나누어떨어지게 하는 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\div 4=3$이고 나머지가 $0$이다",
+            "$12\\div 4=3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20\\div 4=5$이고 나머지가 $0$이다",
+            "$20\\div 4=5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$는 $12$와 $20$의 공약수이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "공약수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc4",
+      "learningRole": "naming",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "'공'과 '최대'의 낱말 뜻을 따로 묻는 B는 최대공약수의 뜻을 묻는 c2와 같은 내용이다.",
+      "exclusionReason": "B만 제외: c2와 중복된다. 대체 e5-1-2-3-c2.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공통",
+            "함께"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc5",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "약수를 두 줄로 적는 것은 필기 모양일 뿐이고 공통인 수를 고르는 내용은 xc1과 같다.",
+      "exclusionReason": "B 제외: xc1과 중복된다. 대체 e5-1-2-3-xc1."
+    },
+    {
+      "id": "e5-1-2-3-xc6",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$9$의 약수는 $1, 3, 9$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$의 약수는 $1, 2, 7, 14$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "공약수는 $1$뿐이다",
+            "공약수는 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수도 $1$이다",
+            "최대공약수는 $1$이다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc7",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사람 수는 두 물건의 개수의 공약수여야 한다",
+            "사람 수로 두 개수가 모두 나누어떨어져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9\\div 2=4\\cdots 1$이라 지우개가 $1$개 남는다",
+            "$2$는 $9$의 약수가 아니다",
+            "$2$로 $9$가 나누어떨어지지 않는다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc8",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "공약수가 두 수 각각의 약수라는 말은 c1의 뜻 설명을 되풀이한다.",
+      "exclusionReason": "B만 제외: c1과 중복된다. 대체 e5-1-2-3-c1."
+    },
+    {
+      "id": "e5-1-2-3-xc9",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "공약수가 최대공약수의 약수와 같다는 c3의 관계에서 개수가 바로 나오므로 따로 물을 내용이 없다.",
+      "exclusionReason": "B만 제외: c3과 중복된다. 대체 e5-1-2-3-c3."
+    },
+    {
+      "id": "e5-1-2-3-xc10",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "최대공약수는 두 수 중 작은 수와 같거나 그보다 작다",
+            "최대공약수는 작은 수보다 클 수 없다",
+            "최대공약수는 작은 수 이하이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수는 작은 수의 약수이고 어떤 수의 약수는 그 수보다 클 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$과 $27$의 최대공약수는 $9$이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "작은 수이다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc11",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "공약수가 $1$뿐이면 최대공약수가 $1$이라는 내용은 xc6 B에 이미 들어 있고 수만 바뀐 반복이다.",
+      "exclusionReason": "B만 제외: xc6 B와 중복된다. 대체 e5-1-2-3-xc6."
+    },
+    {
+      "id": "e5-1-2-3-xc12",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "두 수를 각각 나누어 둘 다 나누어떨어지는지 보는 방법은 xc3과 xc15에서 이미 다룬다.",
+      "exclusionReason": "B만 제외: xc3, xc15와 중복된다. 대체 e5-1-2-3-xc3, e5-1-2-3-xc15."
+    },
+    {
+      "id": "e5-1-2-3-xc13",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "공약수는 여러 개일 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수는 하나뿐이다",
+            "최대공약수는 공약수 중 가장 큰 수 하나이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$와 $16$의 공약수는 $1, 2, 4$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$와 $16$의 최대공약수는 $4$이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "여러 개",
+            "여러 가지",
+            "$2$개 이상"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc14",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "공약수 중 가장 큰 수가 최대공약수라는 말은 c2와 같고 '마지막 수가 가장 크다'는 되풀이다.",
+      "exclusionReason": "B만 제외: c2와 중복된다. 대체 e5-1-2-3-c2."
+    },
+    {
+      "id": "e5-1-2-3-xc15",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 수만 나누어떨어지게 하면 공약수가 될 수 없다",
+            "두 수의 공약수가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "공약수는 두 수 모두의 약수여야 한다",
+            "공약수는 두 수를 모두 나누어떨어지게 해야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18\\div 6=3$으로 나누어떨어진다",
+            "$6$은 $18$의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20\\div 6=3\\cdots 2$로 나머지가 생긴다",
+            "$6$은 $20$의 약수가 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc16",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 수는 두 수의 공약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "어떤 수의 배수는 그 수로 나누어떨어지므로 그 수는 두 수 각각의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15=5\\times 3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$35=5\\times 7$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc17",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "최대공약수보다 큰 수는 공약수가 될 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수는 공약수 가운데 가장 큰 수이므로 그보다 큰 공약수는 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$는 $8$보다 크므로 $16$과 $24$의 공약수가 아니다",
+            "$16\\div 12=1\\cdots 4$로 나누어떨어지지 않는다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "큰",
+            "큰 수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc18",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바구니 수로 사과 수와 배 수가 모두 나누어떨어져야 하므로 두 개수의 공약수여야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 많게 하려면 공약수 중 가장 큰 수인 최대공약수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바구니는 $6$개이다",
+            "$6$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "최대공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc19",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 과일의 전체 개수를 바구니 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "사과는 $18\\div 6=3$(개)씩이다",
+            "한 바구니에 사과 $3$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "배는 $24\\div 6=4$(개)씩이다",
+            "한 바구니에 배 $4$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc20",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형의 한 변은 가로와 세로의 공약수여야 한다",
+            "한 변으로 가로와 세로가 모두 나누어떨어져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "최대공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc21",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나머지 $2$를 각각 빼서 $24$와 $36$으로 바꾼다",
+            "$26-2=24$, $38-2=36$을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나머지를 빼면 어떤 수로 나누어떨어지므로 $24$와 $36$의 공약수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수는 나머지보다 커야 하므로 $2$보다 큰 수만 고른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3, 4, 6, 12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$36$"
+          ]
+        },
+        {
+          "anyOf": [
+            "큰",
+            "큰 수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc22",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수에 같은 수를 곱하면 최대공약수도 그 수만큼 배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$과 $9$의 최대공약수는 $3$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$와 $18$의 최대공약수는 $6$이다",
+            "$12$와 $18$의 최대공약수는 $3$의 $2$배이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc23",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 공약수는 두 수의 차의 약수이다",
+            "공약수는 두 수의 차도 나누어떨어지게 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$과 $30$의 공약수는 $1, 2, 3, 6$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수의 차는 $30-18=12$이다",
+            "차는 $12$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$는 $12$의 약수이지만 $18$과 $30$의 공약수는 아니다",
+            "$18\\div 4$는 나누어떨어지지 않아 $4$는 공약수가 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "약수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc24",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수는 모두 최대공약수의 배수이다",
+            "최대공약수는 두 수 모두의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수가 $6$인 두 수를 각각 $6$이 들어간 곱셈식으로 바르게 나타낸다(예: $12=6\\times 2$, $18=6\\times 3$)"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc25",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 도막의 길이는 두 끈 길이의 공약수여야 한다",
+            "한 도막의 길이로 두 길이가 모두 나누어떨어져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$45\\div 10=4\\cdots 5$로 $5\\,\\mathrm{cm}$가 남는다",
+            "$10$은 $45$의 약수가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "최대공약수"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc26",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "간격은 가로와 세로의 공약수여야 한다",
+            "간격으로 가로와 세로가 모두 나누어떨어져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "간격이 넓을수록 나무가 적으므로 가장 큰 공약수인 최대공약수로 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\,\\mathrm{m}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "최대공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-2-3-xc27",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어 줄 수 있는 사람 수를 모두 구할 때는 공약수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 많은 사람 수를 구할 때는 최대공약수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$명, $2$명, $3$명, $6$명"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 많은 사람 수는 $6$명이다",
+            "$6$명"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "최대공약수"
+          ]
+        }
+      ]
+    }
+  ]
+}

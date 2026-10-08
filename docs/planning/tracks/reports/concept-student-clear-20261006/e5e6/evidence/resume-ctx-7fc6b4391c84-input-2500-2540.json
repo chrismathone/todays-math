@@ -1,0 +1,3729 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T09:06:28.802932+00:00",
+  "rows": [
+    {
+      "id": "e6-2-5-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "원주가 $2$ $\\mathrm{m}$인 바퀴가 미끄러지지 않고 $10$ $\\mathrm{m}$를 가려면 몇 바퀴 구르는지 구하는 방법을 설명하고 답을 쓰시오.",
+      "bAnswer": "한 바퀴에 원주만큼 가므로 간 거리를 원주로 나눈다. $10\\div2=5$이므로 $5$바퀴이다.",
+      "bGoal": "간 거리를 원주로 나누어 구른 바퀴 수를 구한다.",
+      "bReason": "방법과 한 예의 답을 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "간 거리를 원주로 나눈다",
+            "$10\\div2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$바퀴",
+            "$5$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "원주가 $50$ $\\mathrm{cm}$인 바퀴가 미끄러지지 않고 $200$ $\\mathrm{cm}$를 가면 $200\\div50=${$4$}바퀴 구른다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "추상적 낱말 대신 실제 나눗셈으로 바퀴 수를 구하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2500,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc16",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "구른 횟수와 원주",
+        "kind": "방법",
+        "level": "상",
+        "definition": "바퀴가 미끄러지지 않고 구를 때, 간 거리를 원주로 나누면 {구른 바퀴 수}가 된다.",
+        "studentC": "바퀴가 미끄러지지 않고 구를 때, 간 거리를 원주로 나누면 □가 된다.",
+        "answers": [
+          "구른 바퀴 수"
+        ]
+      },
+      "sourceFingerprint": "750ab158b7e3d9dee28c86f039a0bfcbc911f3ee9c8207f8515cc524dbe5d9fc",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "원주가 $50$ $\\mathrm{cm}$인 바퀴가 미끄러지지 않고 $200$ $\\mathrm{cm}$를 가면 $200\\div50=$□바퀴 구른다.",
+      "cMarkedSentence": "원주가 $50$ $\\mathrm{cm}$인 바퀴가 미끄러지지 않고 $200$ $\\mathrm{cm}$를 가면 $200\\div50=${$4$}바퀴 구른다.",
+      "cStudentSentence": "원주가 $50$ $\\mathrm{cm}$인 바퀴가 미끄러지지 않고 $200$ $\\mathrm{cm}$를 가면 $200\\div50=$□바퀴 구른다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원주가 $2$ $\\mathrm{m}$인 바퀴가 미끄러지지 않고 $10$ $\\mathrm{m}$를 가려면 몇 바퀴 구르는지 구하는 방법을 설명하고 답을 쓰시오.",
+        "answer": "한 바퀴에 원주만큼 가므로 간 거리를 원주로 나눈다. $10\\div2=5$이므로 $5$바퀴이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "간 거리를 원주로 나눈다",
+              "$10\\div2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$바퀴",
+              "$5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주가 $50$ $\\mathrm{cm}$인 바퀴가 미끄러지지 않고 $200$ $\\mathrm{cm}$를 가면 $200\\div50=${$4$}바퀴 구른다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dd53f44c95fdb805748c4c452fffe225f857af9171c291dc15f4748ca94daaaf",
+      "questionRevision": "planning-e5e6-20261006-dd53f44c95fd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc17",
+      "bDecision": "revise",
+      "bPrompt": "원주율은 $3.14159\\ldots$이다. $3$, $3.1$, $3.14$ 가운데 이 값에 가장 가까운 수를 고르고, 세 수와의 차를 비교해 까닭을 설명하시오.",
+      "bAnswer": "$3.14$이다. 차가 약 $0.14$, $0.04$, $0.002$로 $3.14$가 가장 작다.",
+      "bGoal": "원주율과의 차로 어림값의 가까운 정도를 비교한다.",
+      "bReason": "차이를 비교해 어림값의 정확도를 판단하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3.14$"
+          ]
+        },
+        {
+          "anyOf": [
+            "차가 가장 작다",
+            "원주율과의 차가 가장 작기 때문",
+            "더 많은 자리까지 같다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "원주율 $3.14159\\ldots$에 가장 가까운 수는 $3$, $3.1$, $3.14$ 가운데 {$3.14$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3.14$"
+          ]
+        }
+      ],
+      "cReason": "c7과 겹치는 '어림값' 대신 실제 값과의 가까움을 비교하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2501,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc17",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "실제 원주율에 가까운 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$3$, $3.1$, $3.14$는 모두 원주율의 {어림값}이고, 그 가운데 $3.14$가 실제 값에 가장 가깝다.",
+        "studentC": "$3$, $3.1$, $3.14$는 모두 원주율의 □이고, 그 가운데 $3.14$가 실제 값에 가장 가깝다.",
+        "answers": [
+          "어림값"
+        ]
+      },
+      "sourceFingerprint": "ab652d29972e3a675952aa3836f0fd4293af8fa8cd484ae5674edf765623bf8f",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "$3.14$"
+      ],
+      "cStudentAfter": "원주율 $3.14159\\ldots$에 가장 가까운 수는 $3$, $3.1$, $3.14$ 가운데 □이다.",
+      "cMarkedSentence": "원주율 $3.14159\\ldots$에 가장 가까운 수는 $3$, $3.1$, $3.14$ 가운데 {$3.14$}이다.",
+      "cStudentSentence": "원주율 $3.14159\\ldots$에 가장 가까운 수는 $3$, $3.1$, $3.14$ 가운데 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3.14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원주율은 $3.14159\\ldots$이다. $3$, $3.1$, $3.14$ 가운데 이 값에 가장 가까운 수를 고르고, 세 수와의 차를 비교해 까닭을 설명하시오.",
+        "answer": "$3.14$이다. 차가 약 $0.14$, $0.04$, $0.002$로 $3.14$가 가장 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3.14$"
+            ]
+          },
+          {
+            "anyOf": [
+              "차가 가장 작다",
+              "원주율과의 차가 가장 작기 때문",
+              "더 많은 자리까지 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주율 $3.14159\\ldots$에 가장 가까운 수는 $3$, $3.1$, $3.14$ 가운데 {$3.14$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3.14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b191ce6e577e463b4418e1c41b3a2065c2aa3312e71ed7b5d9276e382773e189",
+      "questionRevision": "planning-e5e6-20261006-b191ce6e577e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "지름이 $2$배, $3$배가 되면 원주는 어떻게 되는지 말하고, 그때 원주를 지름으로 나눈 값이 어떻게 되는지 설명하시오.",
+      "bAnswer": "원주도 $2$배, $3$배가 된다. 나누어지는 수와 나누는 수가 같은 배가 되므로 원주를 지름으로 나눈 값은 그대로이다.",
+      "bGoal": "지름과 원주가 같은 배로 변하면 비의 값이 변하지 않음을 설명한다.",
+      "bReason": "원주율이 일정하다는 뜻을 배 관계로 푼다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주도 같은 배가 된다",
+            "원주도 $2$배, $3$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눈 값은 그대로이다",
+            "나눈 값은 변하지 않는다",
+            "나눈 값은 일정하다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "지름이 $2$배가 되면 원주도 {$2$}배가 되므로 원주를 지름으로 나눈 값은 {그대로}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "그대로",
+            "변하지 않는다",
+            "같다",
+            "일정하다"
+          ]
+        }
+      ],
+      "cReason": "'같은 배'를 구체적인 배수로 바꾸고 결과 낱말의 동의어를 허용한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2502,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc19",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "원주율이 일정하다는 뜻",
+        "kind": "성질",
+        "level": "상",
+        "definition": "지름이 $2$배, $3$배가 되면 원주도 {같은 배}가 되어 원주를 지름으로 나눈 값은 그대로이다.",
+        "studentC": "지름이 $2$배, $3$배가 되면 원주도 □가 되어 원주를 지름으로 나눈 값은 그대로이다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "sourceFingerprint": "945e7857f86e697f0d8a72c5d175241254a6e7a98f9e0d2e4a866740fb1df445",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "그대로"
+      ],
+      "cStudentAfter": "지름이 $2$배가 되면 원주도 □배가 되므로 원주를 지름으로 나눈 값은 □이다.",
+      "cMarkedSentence": "지름이 $2$배가 되면 원주도 {$2$}배가 되므로 원주를 지름으로 나눈 값은 {그대로}이다.",
+      "cStudentSentence": "지름이 $2$배가 되면 원주도 □배가 되므로 원주를 지름으로 나눈 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "그대로",
+          "equivalents": [
+            "변하지 않는다",
+            "같다",
+            "일정하다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "지름이 $2$배, $3$배가 되면 원주는 어떻게 되는지 말하고, 그때 원주를 지름으로 나눈 값이 어떻게 되는지 설명하시오.",
+        "answer": "원주도 $2$배, $3$배가 된다. 나누어지는 수와 나누는 수가 같은 배가 되므로 원주를 지름으로 나눈 값은 그대로이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주도 같은 배가 된다",
+              "원주도 $2$배, $3$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눈 값은 그대로이다",
+              "나눈 값은 변하지 않는다",
+              "나눈 값은 일정하다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "지름이 $2$배가 되면 원주도 {$2$}배가 되므로 원주를 지름으로 나눈 값은 {그대로}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "그대로",
+            "변하지 않는다",
+            "같다",
+            "일정하다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "13b87caf17da2973f1b7703727f8a0c47dbcfe2764c704cf8d83d15b9027c7a5",
+      "questionRevision": "planning-e5e6-20261006-13b87caf17da",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc20",
+      "bDecision": "revise",
+      "bPrompt": "실제로 잰 원주를 지름으로 나눈 값이 $3.14$와 조금 다를 수 있는 까닭을 설명하시오.",
+      "bAnswer": "원주와 지름을 재는 과정에서 오차가 생길 수 있기 때문이다.",
+      "bGoal": "측정 오차 때문에 값이 조금 달라짐을 설명한다.",
+      "bReason": "측정과 이론값을 비교하는 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "재는 과정에서 오차가 생긴다",
+            "측정 오차 때문",
+            "정확히 재기 어렵다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "실제로 잰 원주를 지름으로 나눈 값이 $3.14$와 조금 다른 까닭은 재는 과정에서 {오차}가 생기기 때문이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "오차",
+            "측정 오차"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 핵심 낱말을 묻고 동의어를 허용한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2503,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc20",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "측정값으로 구한 원주율",
+        "kind": "성질",
+        "level": "상",
+        "definition": "실제로 잰 원주를 지름으로 나누면 잴 때의 오차 때문에 $3.14$와 {조금 다를 수} 있다.",
+        "studentC": "실제로 잰 원주를 지름으로 나누면 잴 때의 오차 때문에 $3.14$와 □ 있다.",
+        "answers": [
+          "조금 다를 수"
+        ]
+      },
+      "sourceFingerprint": "3b2c7a06855f7fa5d948fc11e1c2502b4d8544efc1ecd27ecccd46ba3581c0a4",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "오차"
+      ],
+      "cStudentAfter": "실제로 잰 원주를 지름으로 나눈 값이 $3.14$와 조금 다른 까닭은 재는 과정에서 □가 생기기 때문이다.",
+      "cMarkedSentence": "실제로 잰 원주를 지름으로 나눈 값이 $3.14$와 조금 다른 까닭은 재는 과정에서 {오차}가 생기기 때문이다.",
+      "cStudentSentence": "실제로 잰 원주를 지름으로 나눈 값이 $3.14$와 조금 다른 까닭은 재는 과정에서 □가 생기기 때문이다.",
+      "cSlotAnswers": [
+        {
+          "key": "오차",
+          "equivalents": [
+            "측정 오차"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "실제로 잰 원주를 지름으로 나눈 값이 $3.14$와 조금 다를 수 있는 까닭을 설명하시오.",
+        "answer": "원주와 지름을 재는 과정에서 오차가 생길 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "재는 과정에서 오차가 생긴다",
+              "측정 오차 때문",
+              "정확히 재기 어렵다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "실제로 잰 원주를 지름으로 나눈 값이 $3.14$와 조금 다른 까닭은 재는 과정에서 {오차}가 생기기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "오차",
+            "측정 오차"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7a4881378768f2676cd02e979ced517d3f031cd55f9e99c94b4718b1f9175d3a",
+      "questionRevision": "planning-e5e6-20261006-7a4881378768",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "반지름이 $5$ $\\mathrm{cm}$이고 원주가 $31.4$ $\\mathrm{cm}$인 원의 원주율을 구하는 방법을 설명하고 답을 쓰시오.",
+      "bAnswer": "지름은 반지름의 $2$배인 $10$ $\\mathrm{cm}$이고, 원주를 지름으로 나누면 $31.4\\div10=3.14$이다.",
+      "bGoal": "반지름만 알 때 지름을 구해 원주율을 계산한다.",
+      "bReason": "반지름을 지름으로 바꾸는 단계를 놓치기 쉬워 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반지름의 $2$배가 지름이므로 $10$ $\\mathrm{cm}$",
+            "지름은 $10$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "원주를 지름으로 나눈다",
+            "$31.4\\div10=3.14$",
+            "원주율은 $3.14$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "반지름이 $5$ $\\mathrm{cm}$, 원주가 $31.4$ $\\mathrm{cm}$인 원에서 지름은 {$10$} $\\mathrm{cm}$이고 원주율은 $31.4\\div10=${$3.14$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.14$"
+          ]
+        }
+      ],
+      "cReason": "반지름을 지름으로 바꾸는 단계와 나눗셈 결과를 구체적으로 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2504,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-1-xc21",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "term": "반지름을 잰 원의 원주율",
+        "kind": "방법",
+        "level": "상",
+        "definition": "반지름을 재었을 때는 원주를 {반지름의 $2$배인 지름}으로 나누어 원주율을 구한다.",
+        "studentC": "반지름을 재었을 때는 원주를 □으로 나누어 원주율을 구한다.",
+        "answers": [
+          "반지름의 $2$배인 지름"
+        ]
+      },
+      "sourceFingerprint": "c31f7f582a7a9988fe22f5c836c9b6f0b5f067096233329d588ef524e6dc4a1a",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$3.14$"
+      ],
+      "cStudentAfter": "반지름이 $5$ $\\mathrm{cm}$, 원주가 $31.4$ $\\mathrm{cm}$인 원에서 지름은 □ $\\mathrm{cm}$이고 원주율은 $31.4\\div10=$□이다.",
+      "cMarkedSentence": "반지름이 $5$ $\\mathrm{cm}$, 원주가 $31.4$ $\\mathrm{cm}$인 원에서 지름은 {$10$} $\\mathrm{cm}$이고 원주율은 $31.4\\div10=${$3.14$}이다.",
+      "cStudentSentence": "반지름이 $5$ $\\mathrm{cm}$, 원주가 $31.4$ $\\mathrm{cm}$인 원에서 지름은 □ $\\mathrm{cm}$이고 원주율은 $31.4\\div10=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$3.14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "반지름이 $5$ $\\mathrm{cm}$이고 원주가 $31.4$ $\\mathrm{cm}$인 원의 원주율을 구하는 방법을 설명하고 답을 쓰시오.",
+        "answer": "지름은 반지름의 $2$배인 $10$ $\\mathrm{cm}$이고, 원주를 지름으로 나누면 $31.4\\div10=3.14$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반지름의 $2$배가 지름이므로 $10$ $\\mathrm{cm}$",
+              "지름은 $10$ $\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "원주를 지름으로 나눈다",
+              "$31.4\\div10=3.14$",
+              "원주율은 $3.14$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "반지름이 $5$ $\\mathrm{cm}$, 원주가 $31.4$ $\\mathrm{cm}$인 원에서 지름은 {$10$} $\\mathrm{cm}$이고 원주율은 $31.4\\div10=${$3.14$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$3.14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2ca3f93954f1a4f1eb808e0f997def33a1d0ee739e4f9e12f49e98446b2900fc",
+      "questionRevision": "planning-e5e6-20261006-2ca3f93954f1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc2",
+      "bDecision": "revise",
+      "bPrompt": "반지름만 알 때 원주를 구하는 방법을 쓰세요. 반지름이 $5\\,\\mathrm{cm}$인 원의 원주도 구하세요. (원주율은 $3.14$)",
+      "bAnswer": "반지름을 $2$배 해서 지름을 구한 뒤 원주율을 곱합니다. $5\\times2\\times3.14=31.4$이므로 원주는 $31.4\\,\\mathrm{cm}$입니다.",
+      "bGoal": "반지름에서 지름을 거쳐 원주를 구하는 두 단계를 말한다.",
+      "bReason": "지름과 반지름 관계를 원주 계산에 연결하는 방법 문항이다.",
+      "cDecision": "revise",
+      "cAfter": "반지름이 $3\\,\\mathrm{cm}$인 원의 지름은 {$6$}$\\,\\mathrm{cm}$이므로, 원주율 $3.14$로 원주는 {$18.84$}$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$",
+            "$6\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18.84$",
+            "$18.84\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cReason": "원문의 긴 구절 빈칸 대신 지름과 원주를 차례로 계산하는 짧은 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반지름을 $2$배 해서 지름을 구한다",
+            "지름은 반지름의 $2$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "지름에 원주율을 곱한다",
+            "반지름 $\\times$ $2$ $\\times$ 원주율"
+          ]
+        },
+        {
+          "anyOf": [
+            "$31.4\\,\\mathrm{cm}$",
+            "$31.4$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 2505,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc2",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "반지름으로 원주 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "반지름만 알 때는 {반지름을 $2$배 한 지름}에 원주율을 곱해 원주를 구한다.",
+        "studentC": "반지름만 알 때는 □에 원주율을 곱해 원주를 구한다.",
+        "answers": [
+          "반지름을 $2$배 한 지름"
+        ]
+      },
+      "sourceFingerprint": "aed805edf19c332e31db35a9df5649b9f61fd2907e4405ee24262f3220a5a19a",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$18.84$"
+      ],
+      "cStudentAfter": "반지름이 $3\\,\\mathrm{cm}$인 원의 지름은 □$\\,\\mathrm{cm}$이므로, 원주율 $3.14$로 원주는 □$\\,\\mathrm{cm}$이다.",
+      "cMarkedSentence": "반지름이 $3\\,\\mathrm{cm}$인 원의 지름은 {$6$}$\\,\\mathrm{cm}$이므로, 원주율 $3.14$로 원주는 {$18.84$}$\\,\\mathrm{cm}$이다.",
+      "cStudentSentence": "반지름이 $3\\,\\mathrm{cm}$인 원의 지름은 □$\\,\\mathrm{cm}$이므로, 원주율 $3.14$로 원주는 □$\\,\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": [
+            "$6\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "key": "$18.84$",
+          "equivalents": [
+            "$18.84\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "반지름만 알 때 원주를 구하는 방법을 쓰세요. 반지름이 $5\\,\\mathrm{cm}$인 원의 원주도 구하세요. (원주율은 $3.14$)",
+        "answer": "반지름을 $2$배 해서 지름을 구한 뒤 원주율을 곱합니다. $5\\times2\\times3.14=31.4$이므로 원주는 $31.4\\,\\mathrm{cm}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반지름을 $2$배 해서 지름을 구한다",
+              "지름은 반지름의 $2$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지름에 원주율을 곱한다",
+              "반지름 $\\times$ $2$ $\\times$ 원주율"
+            ]
+          },
+          {
+            "anyOf": [
+              "$31.4\\,\\mathrm{cm}$",
+              "$31.4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "반지름이 $3\\,\\mathrm{cm}$인 원의 지름은 {$6$}$\\,\\mathrm{cm}$이므로, 원주율 $3.14$로 원주는 {$18.84$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$6$",
+            "$6\\,\\mathrm{cm}$"
+          ],
+          [
+            "$18.84$",
+            "$18.84\\,\\mathrm{cm}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "275c2949bba7ca314fa94b20205696781b7b9b32c027b0048d921edc5c06633f",
+      "questionRevision": "planning-e5e6-20261006-275c2949bba7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "지름이 같은 두 원의 원주를 비교한다.",
+      "bReason": "원주=지름×원주율에서 바로 보이는 자명한 결론이다.",
+      "exclusionReason": "c2의 원주 식과 중복되고 답이 '같다' 하나뿐이라 별도 B 가치가 낮다. 대체: e6-2-5-2-c2, e6-2-5-2-c4.",
+      "cDecision": "keep",
+      "cAfter": "지름이 같은 두 원은 원주도 {같다}.",
+      "cReason": "지름이 같은 두 원의 원주를 비교하는 짧고 조건이 명확한 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "sourceIndex": 2506,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc8",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "지름이 같은 두 원의 원주",
+        "kind": "성질",
+        "level": "하",
+        "definition": "지름이 같은 두 원은 원주도 {같다}.",
+        "studentC": "지름이 같은 두 원은 원주도 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "a1d25ff50b6942f59a51df7818e6591ade7ec727e97a7ff18b16502d766bea2e",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cFrozenDefinition": "지름이 같은 두 원은 원주도 {같다}.",
+      "cFrozenStudentSentence": "지름이 같은 두 원은 원주도 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "지름이 같은 두 원은 원주도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "지름이 같은 두 원은 원주도 {같다}.",
+      "cStudentSentence": "지름이 같은 두 원은 원주도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "지름이 같은 두 원은 원주도 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c2의 원주 식과 중복되고 답이 '같다' 하나뿐이라 별도 B 가치가 낮다. 대체: e6-2-5-2-c2, e6-2-5-2-c4."
+      },
+      "proposalFingerprint": "9b589f3723f9e166884157a12c551e01cb54b9bd8e46bcdca8379acf2934f31b",
+      "questionRevision": "planning-e5e6-20261006-9b589f3723f9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "둥근 물건 테두리 길이가 원주임을 안다.",
+      "bReason": "용어 이름만 되묻는 사소한 문항이다.",
+      "exclusionReason": "원주의 뜻 확인에 그쳐 계산이나 관계가 없고 C와 같다. 대체: e6-2-5-2-c2.",
+      "cDecision": "keep",
+      "cAfter": "둥근 접시나 굴렁쇠의 테두리 길이는 그 원의 {원주}이다.",
+      "cReason": "테두리 길이를 원주라 부르는 낱말 확인으로 짧고 적절하다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "sourceIndex": 2507,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc9",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "둥근 물건의 테두리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "둥근 접시나 굴렁쇠의 테두리 길이는 그 원의 {원주}이다.",
+        "studentC": "둥근 접시나 굴렁쇠의 테두리 길이는 그 원의 □이다.",
+        "answers": [
+          "원주"
+        ]
+      },
+      "sourceFingerprint": "3a8d6f10a1d4c0d2b802dd09c8695ba7b2445e5a0d075b3f6d1e01ab9c584c5e",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cFrozenDefinition": "둥근 접시나 굴렁쇠의 테두리 길이는 그 원의 {원주}이다.",
+      "cFrozenStudentSentence": "둥근 접시나 굴렁쇠의 테두리 길이는 그 원의 □이다.",
+      "cProposedAnswers": [
+        "원주"
+      ],
+      "cStudentAfter": "둥근 접시나 굴렁쇠의 테두리 길이는 그 원의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원주"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "둥근 접시나 굴렁쇠의 테두리 길이는 그 원의 {원주}이다.",
+      "cStudentSentence": "둥근 접시나 굴렁쇠의 테두리 길이는 그 원의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원주",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "둥근 접시나 굴렁쇠의 테두리 길이는 그 원의 {원주}이다.",
+        "acceptedAnswers": [
+          [
+            "원주"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "원주의 뜻 확인에 그쳐 계산이나 관계가 없고 C와 같다. 대체: e6-2-5-2-c2."
+      },
+      "proposalFingerprint": "231d8d1020a69c023df95631cfc01d2caada635a2a31e616ffd96c3b75efd080",
+      "questionRevision": "planning-e5e6-20261006-231d8d1020a6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc13",
+      "bDecision": "revise",
+      "bPrompt": "지름이 $10\\,\\mathrm{cm}$인 반원의 둘레는 어떤 두 부분의 길이를 더해 구하나요? 둘레의 길이도 구하세요. (원주율은 $3.14$)",
+      "bAnswer": "원주의 절반인 곡선과 곧은 지름을 더합니다. 곡선은 $10\\times3.14\\div2=15.7$이고, 여기에 $10$을 더하면 둘레는 $25.7\\,\\mathrm{cm}$입니다.",
+      "bGoal": "반원 둘레에 곡선과 곧은 부분이 함께 들어감을 이해한다.",
+      "bReason": "곡선만 구하고 지름을 빼먹는 흔한 실수를 짚는다.",
+      "cDecision": "revise",
+      "cAfter": "지름이 $10\\,\\mathrm{cm}$인 반원에서 곡선은 $15.7\\,\\mathrm{cm}$이다. 둘레는 곡선에 곧은 부분 {$10$}$\\,\\mathrm{cm}$를 더한 {$25.7$}$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$",
+            "$10\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25.7$",
+            "$25.7\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cReason": "'곧은 지름'과 '지름'처럼 답이 갈릴 수 있어 수치로 바꿔 더하는 부분을 확인한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곡선은 원주의 절반이다",
+            "곡선은 원주를 $2$로 나눈 길이이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "지름을 더한다",
+            "곧은 부분의 길이를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25.7\\,\\mathrm{cm}$",
+            "$25.7$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 2508,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc13",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "반원의 둘레",
+        "kind": "방법",
+        "level": "중",
+        "definition": "반원의 둘레는 원주의 절반인 곡선에 {곧은 지름}을 더한 길이이다.",
+        "studentC": "반원의 둘레는 원주의 절반인 곡선에 □을 더한 길이이다.",
+        "answers": [
+          "곧은 지름"
+        ]
+      },
+      "sourceFingerprint": "56f0cba78786f7bc4311927a80f5a344904daf9b88178b7112954c97ace137ee",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$25.7$"
+      ],
+      "cStudentAfter": "지름이 $10\\,\\mathrm{cm}$인 반원에서 곡선은 $15.7\\,\\mathrm{cm}$이다. 둘레는 곡선에 곧은 부분 □$\\,\\mathrm{cm}$를 더한 □$\\,\\mathrm{cm}$이다.",
+      "cMarkedSentence": "지름이 $10\\,\\mathrm{cm}$인 반원에서 곡선은 $15.7\\,\\mathrm{cm}$이다. 둘레는 곡선에 곧은 부분 {$10$}$\\,\\mathrm{cm}$를 더한 {$25.7$}$\\,\\mathrm{cm}$이다.",
+      "cStudentSentence": "지름이 $10\\,\\mathrm{cm}$인 반원에서 곡선은 $15.7\\,\\mathrm{cm}$이다. 둘레는 곡선에 곧은 부분 □$\\,\\mathrm{cm}$를 더한 □$\\,\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": [
+            "$10\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "key": "$25.7$",
+          "equivalents": [
+            "$25.7\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "지름이 $10\\,\\mathrm{cm}$인 반원의 둘레는 어떤 두 부분의 길이를 더해 구하나요? 둘레의 길이도 구하세요. (원주율은 $3.14$)",
+        "answer": "원주의 절반인 곡선과 곧은 지름을 더합니다. 곡선은 $10\\times3.14\\div2=15.7$이고, 여기에 $10$을 더하면 둘레는 $25.7\\,\\mathrm{cm}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곡선은 원주의 절반이다",
+              "곡선은 원주를 $2$로 나눈 길이이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지름을 더한다",
+              "곧은 부분의 길이를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25.7\\,\\mathrm{cm}$",
+              "$25.7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "지름이 $10\\,\\mathrm{cm}$인 반원에서 곡선은 $15.7\\,\\mathrm{cm}$이다. 둘레는 곡선에 곧은 부분 {$10$}$\\,\\mathrm{cm}$를 더한 {$25.7$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "$10\\,\\mathrm{cm}$"
+          ],
+          [
+            "$25.7$",
+            "$25.7\\,\\mathrm{cm}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "53844f7b89cb100c0eccd56a5ff0f3f8b9c4f61c67447c07e1fd9c8b6a5b846d",
+      "questionRevision": "planning-e5e6-20261006-53844f7b89cb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc17",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "곱하는 차례가 달라도 원주가 같음을 안다.",
+      "bReason": "곱셈의 교환 성질을 되풀이하는 자명한 문장이다.",
+      "exclusionReason": "답이 '같다' 하나뿐이고 xc2의 반지름 이용 방법과 겹친다. 대체: e6-2-5-2-xc2.",
+      "cDecision": "revise",
+      "cAfter": "반지름이 $2\\,\\mathrm{cm}$인 원의 원주는 $2\\times2\\times3.14$로 구해도 $3.14\\times4$로 구해도 모두 {$12.56$}$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12.56$",
+            "$12.56\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cReason": "추상적인 '같다' 대신 두 식의 실제 값을 계산하게 한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "sourceIndex": 2509,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc17",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "곱하는 차례와 원주",
+        "kind": "성질",
+        "level": "중",
+        "definition": "반지름에 $2$를 곱한 뒤 원주율을 곱하든, 원주율에 지름을 곱하든 원주는 {같다}.",
+        "studentC": "반지름에 $2$를 곱한 뒤 원주율을 곱하든, 원주율에 지름을 곱하든 원주는 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "fb0f8ced37249d6b73029d01c1f755a16be07cad0c3d2969d3adc36fe0969bc4",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cProposedAnswers": [
+        "$12.56$"
+      ],
+      "cStudentAfter": "반지름이 $2\\,\\mathrm{cm}$인 원의 원주는 $2\\times2\\times3.14$로 구해도 $3.14\\times4$로 구해도 모두 □$\\,\\mathrm{cm}$이다.",
+      "cMarkedSentence": "반지름이 $2\\,\\mathrm{cm}$인 원의 원주는 $2\\times2\\times3.14$로 구해도 $3.14\\times4$로 구해도 모두 {$12.56$}$\\,\\mathrm{cm}$이다.",
+      "cStudentSentence": "반지름이 $2\\,\\mathrm{cm}$인 원의 원주는 $2\\times2\\times3.14$로 구해도 $3.14\\times4$로 구해도 모두 □$\\,\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12.56$",
+          "equivalents": [
+            "$12.56\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "반지름이 $2\\,\\mathrm{cm}$인 원의 원주는 $2\\times2\\times3.14$로 구해도 $3.14\\times4$로 구해도 모두 {$12.56$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$12.56$",
+            "$12.56\\,\\mathrm{cm}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "답이 '같다' 하나뿐이고 xc2의 반지름 이용 방법과 겹친다. 대체: e6-2-5-2-xc2."
+      },
+      "proposalFingerprint": "4502af47348f709a6775c50b1cfabf423a10b294d4f8b6633cc8706bfdf5efb2",
+      "questionRevision": "planning-e5e6-20261006-4502af47348f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc18",
+      "bDecision": "revise",
+      "bPrompt": "원을 서로 수직인 두 지름으로 똑같이 넷으로 나눈 한 조각의 둘레는 어떤 길이들을 더해 구하나요? 반지름이 $10\\,\\mathrm{cm}$일 때 둘레도 구하세요. (원주율은 $3.14$)",
+      "bAnswer": "원주의 $\\frac{1}{4}$인 곡선과 곧은 반지름 두 개를 더합니다. 곡선은 $20\\times3.14\\div4=15.7$이고 반지름 두 개는 $20$이므로 둘레는 $35.7\\,\\mathrm{cm}$입니다.",
+      "bGoal": "부채꼴 조각의 둘레에 곡선과 곧은 선 두 개가 들어감을 이해한다.",
+      "bReason": "그림 없이 글로 조건이 완전하고 곡선과 직선을 나누어 생각하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "반지름이 $10\\,\\mathrm{cm}$인 원의 $\\frac{1}{4}$ 조각에서 곡선은 $15.7\\,\\mathrm{cm}$이고 곧은 선은 반지름 {$2$}개이므로 둘레는 {$35.7$}$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "$2$개",
+            "두"
+          ]
+        },
+        {
+          "anyOf": [
+            "$35.7$",
+            "$35.7\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cReason": "원문의 '반지름 두 개' 빈칸을 개수와 둘레 계산으로 나누어 의미 있게 묻는다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곡선은 원주의 $\\frac{1}{4}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곧은 반지름 두 개를 더한다",
+            "반지름 $2$개를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$35.7\\,\\mathrm{cm}$",
+            "$35.7$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 2510,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc18",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "원을 수직인 두 지름으로 나눈 조각의 둘레",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원을 서로 수직인 두 지름으로 넷으로 나눈 조각의 둘레는 원주의 $\\frac{1}{4}$에 {반지름 두 개}를 더한 길이이다.",
+        "studentC": "원을 서로 수직인 두 지름으로 넷으로 나눈 조각의 둘레는 원주의 $\\frac{1}{4}$에 □를 더한 길이이다.",
+        "answers": [
+          "반지름 두 개"
+        ]
+      },
+      "sourceFingerprint": "1e54ffab8769b21e8c0e9cc442450b508eb45673df669687b773ac07518e889b",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$35.7$"
+      ],
+      "cStudentAfter": "반지름이 $10\\,\\mathrm{cm}$인 원의 $\\frac{1}{4}$ 조각에서 곡선은 $15.7\\,\\mathrm{cm}$이고 곧은 선은 반지름 □개이므로 둘레는 □$\\,\\mathrm{cm}$이다.",
+      "cMarkedSentence": "반지름이 $10\\,\\mathrm{cm}$인 원의 $\\frac{1}{4}$ 조각에서 곡선은 $15.7\\,\\mathrm{cm}$이고 곧은 선은 반지름 {$2$}개이므로 둘레는 {$35.7$}$\\,\\mathrm{cm}$이다.",
+      "cStudentSentence": "반지름이 $10\\,\\mathrm{cm}$인 원의 $\\frac{1}{4}$ 조각에서 곡선은 $15.7\\,\\mathrm{cm}$이고 곧은 선은 반지름 □개이므로 둘레는 □$\\,\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "$2$개",
+            "두"
+          ]
+        },
+        {
+          "key": "$35.7$",
+          "equivalents": [
+            "$35.7\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원을 서로 수직인 두 지름으로 똑같이 넷으로 나눈 한 조각의 둘레는 어떤 길이들을 더해 구하나요? 반지름이 $10\\,\\mathrm{cm}$일 때 둘레도 구하세요. (원주율은 $3.14$)",
+        "answer": "원주의 $\\frac{1}{4}$인 곡선과 곧은 반지름 두 개를 더합니다. 곡선은 $20\\times3.14\\div4=15.7$이고 반지름 두 개는 $20$이므로 둘레는 $35.7\\,\\mathrm{cm}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곡선은 원주의 $\\frac{1}{4}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곧은 반지름 두 개를 더한다",
+              "반지름 $2$개를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35.7\\,\\mathrm{cm}$",
+              "$35.7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "반지름이 $10\\,\\mathrm{cm}$인 원의 $\\frac{1}{4}$ 조각에서 곡선은 $15.7\\,\\mathrm{cm}$이고 곧은 선은 반지름 {$2$}개이므로 둘레는 {$35.7$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "$2$개",
+            "두"
+          ],
+          [
+            "$35.7$",
+            "$35.7\\,\\mathrm{cm}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "55bf152702d50601f4d1e10e704910d00396e24c84ba81c2d06dc23ba8e60e58",
+      "questionRevision": "planning-e5e6-20261006-55bf152702d5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "양쪽 끝이 지름이 같은 반원이고 가운데 두 변이 곧은 선인 트랙의 둘레는 어떤 길이들을 더해 구하나요? 반원의 지름이 $20\\,\\mathrm{m}$이고 곧은 선이 각각 $50\\,\\mathrm{m}$일 때 둘레도 구하세요. (원주율은 $3.14$)",
+      "bAnswer": "두 반원의 곡선을 합친 길이는 원 하나의 원주와 같으므로, 이것에 곧은 두 선을 더합니다. $20\\times3.14=62.8$, $62.8+50+50=162.8$이므로 둘레는 $162.8\\,\\mathrm{m}$입니다.",
+      "bGoal": "두 반원의 곡선을 한 원의 원주로 묶어 트랙 둘레를 구한다.",
+      "bReason": "조건을 글로 모두 주었고 곡선 합과 직선 합을 나누는 방법을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "두 반원의 곡선을 합치면 원 {$1$}개의 원주가 되므로, 지름이 $20\\,\\mathrm{m}$일 때 곡선 길이의 합은 {$62.8$}$\\,\\mathrm{m}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "$1$개",
+            "한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$62.8$",
+            "$62.8\\,\\mathrm{m}$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 빈칸 대신 곡선 합이 원 한 개의 원주임을 수치로 확인한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 반원의 곡선을 합치면 원 하나의 원주가 된다",
+            "곡선 부분은 지름이 같은 원 하나의 원주이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곧은 두 선을 더한다",
+            "곧은 부분 $50+50$을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$162.8\\,\\mathrm{m}$",
+            "$162.8$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "sourceIndex": 2511,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc19",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "반원 둘을 이은 트랙의 둘레",
+        "kind": "방법",
+        "level": "상",
+        "definition": "양쪽이 지름이 같은 반원이고 가운데가 곧은 두 선인 트랙의 둘레는 {원 하나의 원주}에 곧은 두 선을 더한 길이이다.",
+        "studentC": "양쪽이 지름이 같은 반원이고 가운데가 곧은 두 선인 트랙의 둘레는 □에 곧은 두 선을 더한 길이이다.",
+        "answers": [
+          "원 하나의 원주"
+        ]
+      },
+      "sourceFingerprint": "5427eebf5ffb9552b0502389f8c6eed9500af109946567dfac2fd8932d5243e6",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$62.8$"
+      ],
+      "cStudentAfter": "두 반원의 곡선을 합치면 원 □개의 원주가 되므로, 지름이 $20\\,\\mathrm{m}$일 때 곡선 길이의 합은 □$\\,\\mathrm{m}$이다.",
+      "cMarkedSentence": "두 반원의 곡선을 합치면 원 {$1$}개의 원주가 되므로, 지름이 $20\\,\\mathrm{m}$일 때 곡선 길이의 합은 {$62.8$}$\\,\\mathrm{m}$이다.",
+      "cStudentSentence": "두 반원의 곡선을 합치면 원 □개의 원주가 되므로, 지름이 $20\\,\\mathrm{m}$일 때 곡선 길이의 합은 □$\\,\\mathrm{m}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "$1$개",
+            "한"
+          ]
+        },
+        {
+          "key": "$62.8$",
+          "equivalents": [
+            "$62.8\\,\\mathrm{m}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "양쪽 끝이 지름이 같은 반원이고 가운데 두 변이 곧은 선인 트랙의 둘레는 어떤 길이들을 더해 구하나요? 반원의 지름이 $20\\,\\mathrm{m}$이고 곧은 선이 각각 $50\\,\\mathrm{m}$일 때 둘레도 구하세요. (원주율은 $3.14$)",
+        "answer": "두 반원의 곡선을 합친 길이는 원 하나의 원주와 같으므로, 이것에 곧은 두 선을 더합니다. $20\\times3.14=62.8$, $62.8+50+50=162.8$이므로 둘레는 $162.8\\,\\mathrm{m}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 반원의 곡선을 합치면 원 하나의 원주가 된다",
+              "곡선 부분은 지름이 같은 원 하나의 원주이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곧은 두 선을 더한다",
+              "곧은 부분 $50+50$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$162.8\\,\\mathrm{m}$",
+              "$162.8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 반원의 곡선을 합치면 원 {$1$}개의 원주가 되므로, 지름이 $20\\,\\mathrm{m}$일 때 곡선 길이의 합은 {$62.8$}$\\,\\mathrm{m}$이다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "$1$개",
+            "한"
+          ],
+          [
+            "$62.8$",
+            "$62.8\\,\\mathrm{m}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8ebdbf35f151803a474b0426c35dae9944c91b130a1ca5a4bbc2f13db037bfe5",
+      "questionRevision": "planning-e5e6-20261006-8ebdbf35f151",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc22",
+      "bDecision": "revise",
+      "bPrompt": "원의 지름이 $1\\,\\mathrm{cm}$ 늘어나면 원주는 얼마나 늘어나나요? 원주를 구하는 식으로 까닭을 설명하고, 지름이 $10\\,\\mathrm{cm}$에서 $11\\,\\mathrm{cm}$가 될 때 두 원주도 구하세요. (원주율은 $3.14$)",
+      "bAnswer": "약 $3.14\\,\\mathrm{cm}$ 늘어납니다. 원주는 지름에 원주율을 곱한 값이라 지름이 $1$ 늘면 원주는 원주율만큼 늡니다. 두 원주는 $31.4\\,\\mathrm{cm}$와 $34.54\\,\\mathrm{cm}$입니다.",
+      "bGoal": "지름 변화량과 원주 변화량의 관계를 원주율로 설명한다.",
+      "bReason": "변화량으로 원주율의 의미를 다시 보게 하며 예의 값도 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "지름이 $10\\,\\mathrm{cm}$에서 $11\\,\\mathrm{cm}$로 늘면 원주는 $31.4\\,\\mathrm{cm}$에서 {$34.54$}$\\,\\mathrm{cm}$가 되어 {$3.14$}$\\,\\mathrm{cm}$ 늘어난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$34.54$",
+            "$34.54\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.14$",
+            "$3.14\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cReason": "원문의 변화량 개념을 실제 두 원주 계산으로 확인하게 한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주는 약 $3.14\\,\\mathrm{cm}$ 늘어난다",
+            "원주율만큼 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "원주는 지름에 원주율을 곱한 값이라 지름이 $1$ 늘면 원주율만큼 는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$31.4\\,\\mathrm{cm}$와 $34.54\\,\\mathrm{cm}$",
+            "$31.4$, $34.54$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2512,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc22",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "지름이 $1\\,\\mathrm{cm}$ 늘 때 느는 원주",
+        "kind": "성질",
+        "level": "상",
+        "definition": "지름이 $1\\,\\mathrm{cm}$ 늘 때마다 원주는 원주율만큼, 곧 약 {$3.14\\,\\mathrm{cm}$}씩 는다.",
+        "studentC": "지름이 $1\\,\\mathrm{cm}$ 늘 때마다 원주는 원주율만큼, 곧 약 □씩 는다.",
+        "answers": [
+          "$3.14\\,\\mathrm{cm}$"
+        ]
+      },
+      "sourceFingerprint": "ebb9d29e5a3c2209c19bbe9414334f12dec5f8aaebc54e06e745374db179b2ec",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cProposedAnswers": [
+        "$34.54$",
+        "$3.14$"
+      ],
+      "cStudentAfter": "지름이 $10\\,\\mathrm{cm}$에서 $11\\,\\mathrm{cm}$로 늘면 원주는 $31.4\\,\\mathrm{cm}$에서 □$\\,\\mathrm{cm}$가 되어 □$\\,\\mathrm{cm}$ 늘어난다.",
+      "cMarkedSentence": "지름이 $10\\,\\mathrm{cm}$에서 $11\\,\\mathrm{cm}$로 늘면 원주는 $31.4\\,\\mathrm{cm}$에서 {$34.54$}$\\,\\mathrm{cm}$가 되어 {$3.14$}$\\,\\mathrm{cm}$ 늘어난다.",
+      "cStudentSentence": "지름이 $10\\,\\mathrm{cm}$에서 $11\\,\\mathrm{cm}$로 늘면 원주는 $31.4\\,\\mathrm{cm}$에서 □$\\,\\mathrm{cm}$가 되어 □$\\,\\mathrm{cm}$ 늘어난다.",
+      "cSlotAnswers": [
+        {
+          "key": "$34.54$",
+          "equivalents": [
+            "$34.54\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "key": "$3.14$",
+          "equivalents": [
+            "$3.14\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 지름이 $1\\,\\mathrm{cm}$ 늘어나면 원주는 얼마나 늘어나나요? 원주를 구하는 식으로 까닭을 설명하고, 지름이 $10\\,\\mathrm{cm}$에서 $11\\,\\mathrm{cm}$가 될 때 두 원주도 구하세요. (원주율은 $3.14$)",
+        "answer": "약 $3.14\\,\\mathrm{cm}$ 늘어납니다. 원주는 지름에 원주율을 곱한 값이라 지름이 $1$ 늘면 원주는 원주율만큼 늡니다. 두 원주는 $31.4\\,\\mathrm{cm}$와 $34.54\\,\\mathrm{cm}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주는 약 $3.14\\,\\mathrm{cm}$ 늘어난다",
+              "원주율만큼 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원주는 지름에 원주율을 곱한 값이라 지름이 $1$ 늘면 원주율만큼 는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$31.4\\,\\mathrm{cm}$와 $34.54\\,\\mathrm{cm}$",
+              "$31.4$, $34.54$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "지름이 $10\\,\\mathrm{cm}$에서 $11\\,\\mathrm{cm}$로 늘면 원주는 $31.4\\,\\mathrm{cm}$에서 {$34.54$}$\\,\\mathrm{cm}$가 되어 {$3.14$}$\\,\\mathrm{cm}$ 늘어난다.",
+        "acceptedAnswers": [
+          [
+            "$34.54$",
+            "$34.54\\,\\mathrm{cm}$"
+          ],
+          [
+            "$3.14$",
+            "$3.14\\,\\mathrm{cm}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e7c2cfe5a01386871d162a9a71fa14ddec7418cc4c5b314cf801944714bf01ba",
+      "questionRevision": "planning-e5e6-20261006-e7c2cfe5a013",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc23",
+      "bDecision": "revise",
+      "bPrompt": "큰 원의 지름 위에 작은 두 원이 나란히 꼭 맞게 놓여 있습니다. 작은 두 원의 원주의 합과 큰 원의 원주를 비교하고 까닭을 설명하세요. 큰 원의 지름이 $10\\,\\mathrm{cm}$, 작은 두 원의 지름이 $4\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$일 때 값도 구하세요. (원주율은 $3.14$)",
+      "bAnswer": "서로 같습니다. 작은 두 원의 지름의 합이 큰 원의 지름과 같아서 원주율을 곱한 값도 같습니다. $4\\times3.14=12.56$, $6\\times3.14=18.84$이고 합은 $31.4\\,\\mathrm{cm}$이며 큰 원의 원주 $10\\times3.14=31.4\\,\\mathrm{cm}$와 같습니다.",
+      "bGoal": "지름의 합이 같으면 원주의 합도 같음을 설명한다.",
+      "bReason": "글로 조건이 완전하며 지름을 합치는 방법으로 원주를 비교하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "작은 두 원의 지름의 합은 {$10$}$\\,\\mathrm{cm}$로 큰 원의 지름과 같으므로, 작은 두 원의 원주의 합은 {$31.4$}$\\,\\mathrm{cm}$이다. (원주율은 $3.14$)",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$",
+            "$10\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$31.4$",
+            "$31.4\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "cReason": "원문의 긴 결론 빈칸 대신 지름의 합과 원주의 합을 계산하게 한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 원주의 합은 큰 원의 원주와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은 두 지름의 합이 큰 지름과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12.56$, $18.84$, 합 $31.4\\,\\mathrm{cm}$",
+            "합이 $31.4\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2513,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc23",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "큰 원 안의 작은 두 원",
+        "kind": "성질",
+        "level": "상",
+        "definition": "큰 원의 지름 위에 작은 두 원이 나란히 꼭 맞으면, 작은 두 원의 원주의 합은 {큰 원의 원주와 같다}.",
+        "studentC": "큰 원의 지름 위에 작은 두 원이 나란히 꼭 맞으면, 작은 두 원의 원주의 합은 □.",
+        "answers": [
+          "큰 원의 원주와 같다"
+        ]
+      },
+      "sourceFingerprint": "d799847473d7dd896dfb584612a6f9403b6624b3a0d3fe02bd038f1565816127",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$31.4$"
+      ],
+      "cStudentAfter": "작은 두 원의 지름의 합은 □$\\,\\mathrm{cm}$로 큰 원의 지름과 같으므로, 작은 두 원의 원주의 합은 □$\\,\\mathrm{cm}$이다. (원주율은 $3.14$)",
+      "cMarkedSentence": "작은 두 원의 지름의 합은 {$10$}$\\,\\mathrm{cm}$로 큰 원의 지름과 같으므로, 작은 두 원의 원주의 합은 {$31.4$}$\\,\\mathrm{cm}$이다. (원주율은 $3.14$)",
+      "cStudentSentence": "작은 두 원의 지름의 합은 □$\\,\\mathrm{cm}$로 큰 원의 지름과 같으므로, 작은 두 원의 원주의 합은 □$\\,\\mathrm{cm}$이다. (원주율은 $3.14$)",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": [
+            "$10\\,\\mathrm{cm}$"
+          ]
+        },
+        {
+          "key": "$31.4$",
+          "equivalents": [
+            "$31.4\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "큰 원의 지름 위에 작은 두 원이 나란히 꼭 맞게 놓여 있습니다. 작은 두 원의 원주의 합과 큰 원의 원주를 비교하고 까닭을 설명하세요. 큰 원의 지름이 $10\\,\\mathrm{cm}$, 작은 두 원의 지름이 $4\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$일 때 값도 구하세요. (원주율은 $3.14$)",
+        "answer": "서로 같습니다. 작은 두 원의 지름의 합이 큰 원의 지름과 같아서 원주율을 곱한 값도 같습니다. $4\\times3.14=12.56$, $6\\times3.14=18.84$이고 합은 $31.4\\,\\mathrm{cm}$이며 큰 원의 원주 $10\\times3.14=31.4\\,\\mathrm{cm}$와 같습니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 원주의 합은 큰 원의 원주와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "작은 두 지름의 합이 큰 지름과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12.56$, $18.84$, 합 $31.4\\,\\mathrm{cm}$",
+              "합이 $31.4\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "작은 두 원의 지름의 합은 {$10$}$\\,\\mathrm{cm}$로 큰 원의 지름과 같으므로, 작은 두 원의 원주의 합은 {$31.4$}$\\,\\mathrm{cm}$이다. (원주율은 $3.14$)",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "$10\\,\\mathrm{cm}$"
+          ],
+          [
+            "$31.4$",
+            "$31.4\\,\\mathrm{cm}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3375f9450b84e23f38a2435d653c1a9429385aeb968362f54d651fd63f19ea45",
+      "questionRevision": "planning-e5e6-20261006-3375f9450b84",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-2-xc26",
+      "bDecision": "revise",
+      "bPrompt": "같은 원주로 지름을 구할 때 원주율을 더 큰 어림값으로 쓰면 구한 지름은 더 길어지나요, 짧아지나요? 지름을 구하는 식으로 까닭을 설명하세요. 원주가 $30\\,\\mathrm{cm}$일 때 원주율을 $3$, $3.14$로 쓴 지름도 구하세요.",
+      "bAnswer": "더 짧아집니다. 지름은 원주를 원주율로 나누어 구하는데 나누는 수가 클수록 몫이 작기 때문입니다. $30\\div3=10$이므로 $10\\,\\mathrm{cm}$, $30\\div3.14$는 약 $9.55$이므로 약 $9.55\\,\\mathrm{cm}$입니다.",
+      "bGoal": "나누는 원주율이 클수록 지름이 작아지는 이유를 설명한다.",
+      "bReason": "어림값에 따른 결과 차이를 나눗셈 관계로 설명하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "같은 원주를 원주율로 나누어 지름을 구할 때, 나누는 원주율이 더 크면 구한 지름은 더 {짧다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "짧다",
+            "작다",
+            "짧아진다",
+            "작아진다"
+          ]
+        }
+      ],
+      "cReason": "원문의 '더 큰 어림값'은 긴 구절이라 나눗셈 크기 비교에서 짧다/작다만 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "짧다와 작다는 같은 뜻으로 인정한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "더 짧아진다",
+            "더 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "지름은 원주를 원주율로 나눈 값이라 나누는 수가 클수록 몫이 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10\\,\\mathrm{cm}$와 약 $9.55\\,\\mathrm{cm}$",
+            "$10$, 약 $9.55$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "sourceIndex": 2514,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-2-xc26",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-2 원주와 지름 구하기",
+        "term": "원주율의 어림값과 구한 지름",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 원주로 지름을 구할 때 원주율을 {더 큰 어림값}으로 하면 구한 지름은 더 짧다.",
+        "studentC": "같은 원주로 지름을 구할 때 원주율을 □으로 하면 구한 지름은 더 짧다.",
+        "answers": [
+          "더 큰 어림값"
+        ]
+      },
+      "sourceFingerprint": "1aa8351a6068138a336dac41b114f4f68e7a28b190ea161a4bfeda747ed6618b",
+      "draftEvidence": "evidence/section-105-draft.json",
+      "cProposedAnswers": [
+        "짧다"
+      ],
+      "cStudentAfter": "같은 원주를 원주율로 나누어 지름을 구할 때, 나누는 원주율이 더 크면 구한 지름은 더 □.",
+      "cMarkedSentence": "같은 원주를 원주율로 나누어 지름을 구할 때, 나누는 원주율이 더 크면 구한 지름은 더 {짧다}.",
+      "cStudentSentence": "같은 원주를 원주율로 나누어 지름을 구할 때, 나누는 원주율이 더 크면 구한 지름은 더 □.",
+      "cSlotAnswers": [
+        {
+          "key": "짧다",
+          "equivalents": [
+            "작다",
+            "짧아진다",
+            "작아진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 원주로 지름을 구할 때 원주율을 더 큰 어림값으로 쓰면 구한 지름은 더 길어지나요, 짧아지나요? 지름을 구하는 식으로 까닭을 설명하세요. 원주가 $30\\,\\mathrm{cm}$일 때 원주율을 $3$, $3.14$로 쓴 지름도 구하세요.",
+        "answer": "더 짧아집니다. 지름은 원주를 원주율로 나누어 구하는데 나누는 수가 클수록 몫이 작기 때문입니다. $30\\div3=10$이므로 $10\\,\\mathrm{cm}$, $30\\div3.14$는 약 $9.55$이므로 약 $9.55\\,\\mathrm{cm}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "더 짧아진다",
+              "더 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지름은 원주를 원주율로 나눈 값이라 나누는 수가 클수록 몫이 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10\\,\\mathrm{cm}$와 약 $9.55\\,\\mathrm{cm}$",
+              "$10$, 약 $9.55$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 원주를 원주율로 나누어 지름을 구할 때, 나누는 원주율이 더 크면 구한 지름은 더 {짧다}.",
+        "acceptedAnswers": [
+          [
+            "짧다",
+            "작다",
+            "짧아진다",
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b1b5d596d12a7c1b5ac45af246b2f62597c55a1d6034c749bad246787d9a2da8",
+      "questionRevision": "planning-e5e6-20261006-b1b5d596d12a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "모눈 한 칸의 넓이 단위를 안다.",
+      "bReason": "한 변 $1\\,\\mathrm{cm}$인 칸의 넓이가 $1\\,\\mathrm{cm}^2$라는 값 하나를 묻는 B라 가치가 낮다.",
+      "exclusionReason": "값 하나만 묻는 단순 사실이며 어림 방법은 e6-2-5-3-c1에서 다룬다.",
+      "cDecision": "keep",
+      "cAfter": "한 변이 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이는 {$1\\,\\mathrm{cm}^2$}이다.",
+      "cReason": "한 칸의 넓이 단위를 묻는 짧은 문장이고 조건이 명확해 원문 그대로 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2515,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc4",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "한 변 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 변이 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이는 {$1\\,\\mathrm{cm}^2$}이다.",
+        "studentC": "한 변이 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이는 □이다.",
+        "answers": [
+          "$1\\,\\mathrm{cm}^2$"
+        ]
+      },
+      "sourceFingerprint": "82887a87e07dfd704fafe8657b189d13aad497b5ea0d0dd746964f29349c565e",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cFrozenDefinition": "한 변이 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이는 {$1\\,\\mathrm{cm}^2$}이다.",
+      "cFrozenStudentSentence": "한 변이 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이는 □이다.",
+      "cProposedAnswers": [
+        "$1\\,\\mathrm{cm}^2$"
+      ],
+      "cStudentAfter": "한 변이 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{cm}^2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 변이 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이는 {$1\\,\\mathrm{cm}^2$}이다.",
+      "cStudentSentence": "한 변이 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1\\,\\mathrm{cm}^2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 변이 $1\\,\\mathrm{cm}$인 모눈 한 칸의 넓이는 {$1\\,\\mathrm{cm}^2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1\\,\\mathrm{cm}^2$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "값 하나만 묻는 단순 사실이며 어림 방법은 e6-2-5-3-c1에서 다룬다."
+      },
+      "proposalFingerprint": "be9edd787336c77e625b9d1ea61b2415bfcf5265dcbde5d13952ae76b796a6de",
+      "questionRevision": "planning-e5e6-20261006-be9edd787336",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "완전히 들어간 칸과 걸친 칸을 나누어 센다.",
+      "bReason": "c1과 xc6의 내용과 겹치고 '나누어 센다'는 단순 행동이다.",
+      "exclusionReason": "중복이고 사소한 행동이다. 대체: e6-2-5-3-c1, e6-2-5-3-xc6.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'□과 걸친 칸'은 빈칸이 어색하고 답이 낱말 암기에 가깝다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2516,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc5",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "완전히 들어간 모눈 세기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "모눈으로 어림할 때는 원 안에 {완전히 들어간 칸}과 테두리에 걸친 칸을 나누어 센다.",
+        "studentC": "모눈으로 어림할 때는 원 안에 □과 테두리에 걸친 칸을 나누어 센다.",
+        "answers": [
+          "완전히 들어간 칸"
+        ]
+      },
+      "sourceFingerprint": "5c0222bcb2b94bc5fbe96676bc7cb9498b497273e0bdfe9e18b8e6544b561c87",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "중복이고 사소한 행동이다. 대체: e6-2-5-3-c1, e6-2-5-3-xc6.",
+        "cloze": "중복이고 사소한 행동이다. 대체: e6-2-5-3-c1, e6-2-5-3-xc6."
+      },
+      "proposalFingerprint": "411d8fd8c27665ac91a9cb6037e1e24f8ad0b748014f3be489244718e8ecf049",
+      "questionRevision": "planning-e5e6-20261006-411d8fd8c276",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc6",
+      "bDecision": "revise",
+      "bPrompt": "모눈종이 위의 원에서 '테두리에 걸친 칸'은 어떤 칸인지 설명하시오.",
+      "bAnswer": "칸의 일부는 원 안에 있고 나머지는 원 밖에 있는 칸이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "칸의 일부만 원 안에 있다",
+            "칸의 일부는 원 안, 나머지는 원 밖에 있다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "걸친 칸의 뜻을 말로 설명한다.",
+      "bReason": "걸친 칸은 어림에서 오차의 원인이 되는 기본 낱말이다.",
+      "cDecision": "revise",
+      "cAfter": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 {나머지}는 원 밖에 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나머지",
+            "남은 부분",
+            "다른 부분"
+          ]
+        }
+      ],
+      "cReason": "'일부만'은 말투 암기에 가까워 안과 밖의 관계를 쓰는 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2517,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc6",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "걸친 모눈",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원의 테두리에 걸친 칸은 칸의 {일부만} 원 안에 들어 있다.",
+        "studentC": "원의 테두리에 걸친 칸은 칸의 □ 원 안에 들어 있다.",
+        "answers": [
+          "일부만"
+        ]
+      },
+      "sourceFingerprint": "b6b2bdee782cf9822f6e54e0e5c82c045cce3250269cf1ace902293c772c4c8c",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "나머지"
+      ],
+      "cStudentAfter": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 □는 원 밖에 있다.",
+      "cMarkedSentence": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 {나머지}는 원 밖에 있다.",
+      "cStudentSentence": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 □는 원 밖에 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "나머지",
+          "equivalents": [
+            "남은 부분",
+            "다른 부분"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모눈종이 위의 원에서 '테두리에 걸친 칸'은 어떤 칸인지 설명하시오.",
+        "answer": "칸의 일부는 원 안에 있고 나머지는 원 밖에 있는 칸이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "칸의 일부만 원 안에 있다",
+              "칸의 일부는 원 안, 나머지는 원 밖에 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 테두리에 걸친 칸은 칸의 일부는 원 안에 있고 {나머지}는 원 밖에 있다.",
+        "acceptedAnswers": [
+          [
+            "나머지",
+            "남은 부분",
+            "다른 부분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "63745b250a11dafc2cd791c61b52d12cbf8590d19c48d01bb7bdc3894399e42b",
+      "questionRevision": "planning-e5e6-20261006-63745b250a11",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc7",
+      "bDecision": "revise",
+      "bPrompt": "모눈의 칸을 세어 구한 원의 넓이는 정확한 값이라고 할 수 있는가? 그 까닭을 설명하시오.",
+      "bAnswer": "정확한 값이 아니라 어림한 값이다. 걸친 칸이 원 안에 얼마나 들어 있는지 정확히 알 수 없기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정확한 값이 아니라 어림한 값이다",
+            "어림값이다",
+            "근삿값이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "걸친 칸의 일부만 원 안에 있어 정확히 알 수 없다",
+            "걸친 칸을 정확히 셀 수 없다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "모눈으로 구한 넓이가 어림값인 까닭을 설명한다.",
+      "bReason": "단순 낱말이 아니라 오차가 생기는 이유를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "모눈의 걸친 칸을 정확히 셀 수 없으면, 구한 원의 넓이는 정확한 값이 아니라 {어림한 값}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "어림한 값",
+            "어림값",
+            "근삿값"
+          ]
+        }
+      ],
+      "cReason": "원문은 앞 문장 근거가 없어서 걸친 칸이라는 조건을 붙이고 동의어를 허용한다.",
+      "synonymNotes": "어림값·근삿값은 같은 뜻으로 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2518,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc7",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "어림으로 구한 넓이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모눈이나 도형으로 구한 원의 넓이는 정확한 값이 아니라 {어림한 값}이다.",
+        "studentC": "모눈이나 도형으로 구한 원의 넓이는 정확한 값이 아니라 □이다.",
+        "answers": [
+          "어림한 값"
+        ]
+      },
+      "sourceFingerprint": "54baddef600e52aa2b7868fc37f70386f3fa1c49753599716880caa036a93f79",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "어림한 값"
+      ],
+      "cStudentAfter": "모눈의 걸친 칸을 정확히 셀 수 없으면, 구한 원의 넓이는 정확한 값이 아니라 □이다.",
+      "cMarkedSentence": "모눈의 걸친 칸을 정확히 셀 수 없으면, 구한 원의 넓이는 정확한 값이 아니라 {어림한 값}이다.",
+      "cStudentSentence": "모눈의 걸친 칸을 정확히 셀 수 없으면, 구한 원의 넓이는 정확한 값이 아니라 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "어림한 값",
+          "equivalents": [
+            "어림값",
+            "근삿값"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모눈의 칸을 세어 구한 원의 넓이는 정확한 값이라고 할 수 있는가? 그 까닭을 설명하시오.",
+        "answer": "정확한 값이 아니라 어림한 값이다. 걸친 칸이 원 안에 얼마나 들어 있는지 정확히 알 수 없기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정확한 값이 아니라 어림한 값이다",
+              "어림값이다",
+              "근삿값이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "걸친 칸의 일부만 원 안에 있어 정확히 알 수 없다",
+              "걸친 칸을 정확히 셀 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모눈의 걸친 칸을 정확히 셀 수 없으면, 구한 원의 넓이는 정확한 값이 아니라 {어림한 값}이다.",
+        "acceptedAnswers": [
+          [
+            "어림한 값",
+            "어림값",
+            "근삿값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f8fc703812888702877724ff745e87a95f7d277630d005b6ac13a93d957470b6",
+      "questionRevision": "planning-e5e6-20261006-f8fc70381288",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc8",
+      "bDecision": "revise",
+      "bPrompt": "같은 원의 넓이를 모눈으로 어림할 때 모눈 한 칸이 작아지면 어림한 값이 실제 넓이에 가까워지는지 멀어지는지 말하고, 그 까닭을 설명하시오.",
+      "bAnswer": "더 가까워진다. 걸친 칸 한 개가 작아져 틀릴 수 있는 부분이 줄어들기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "더 가까워진다",
+            "더 정확해진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "걸친 칸의 크기가 작아 오차가 줄어든다",
+            "틀리는 부분이 작아진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "칸 크기와 어림 정확도의 관계를 설명한다.",
+      "bReason": "작을수록 정확하다는 결론과 이유를 함께 묻는 의미 있는 질문이다.",
+      "cDecision": "revise",
+      "cAfter": "모눈 한 칸이 작을수록 원의 넓이를 실제 값에 {더 가깝게} 어림할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더 가깝게",
+            "더 정확하게",
+            "더 비슷하게"
+          ]
+        }
+      ],
+      "cReason": "비교 방향을 묻는 짧은 문장이며 같은 뜻의 표현을 허용한다.",
+      "synonymNotes": "더 가깝게·더 정확하게는 같은 뜻으로 인정한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2519,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc8",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "작은 모눈으로 어림하기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모눈 한 칸이 작을수록 원의 넓이를 {더 가깝게} 어림할 수 있다.",
+        "studentC": "모눈 한 칸이 작을수록 원의 넓이를 □ 어림할 수 있다.",
+        "answers": [
+          "더 가깝게"
+        ]
+      },
+      "sourceFingerprint": "e8c948602075c8ef14e33bcdcea5d558a9575333fb0681f9fe3ec05c59a7416a",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "더 가깝게"
+      ],
+      "cStudentAfter": "모눈 한 칸이 작을수록 원의 넓이를 실제 값에 □ 어림할 수 있다.",
+      "cMarkedSentence": "모눈 한 칸이 작을수록 원의 넓이를 실제 값에 {더 가깝게} 어림할 수 있다.",
+      "cStudentSentence": "모눈 한 칸이 작을수록 원의 넓이를 실제 값에 □ 어림할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "더 가깝게",
+          "equivalents": [
+            "더 정확하게",
+            "더 비슷하게"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 원의 넓이를 모눈으로 어림할 때 모눈 한 칸이 작아지면 어림한 값이 실제 넓이에 가까워지는지 멀어지는지 말하고, 그 까닭을 설명하시오.",
+        "answer": "더 가까워진다. 걸친 칸 한 개가 작아져 틀릴 수 있는 부분이 줄어들기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "더 가까워진다",
+              "더 정확해진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "걸친 칸의 크기가 작아 오차가 줄어든다",
+              "틀리는 부분이 작아진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모눈 한 칸이 작을수록 원의 넓이를 실제 값에 {더 가깝게} 어림할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "더 가깝게",
+            "더 정확하게",
+            "더 비슷하게"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "293d68cbd0e1817bb1aed44b721811529a12b0215d8ed25d56e896b1c8b09587",
+      "questionRevision": "planning-e5e6-20261006-293d68cbd0e1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc12",
+      "bDecision": "revise",
+      "bPrompt": "원이 네 변에 모두 닿도록 원 밖에 정사각형을 그렸다. 이 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 몇 배인지 말하고, 그 까닭을 한 변의 길이로 설명하시오. 반지름이 $5\\,\\mathrm{cm}$일 때 두 정사각형의 넓이도 구하시오.",
+      "bAnswer": "$4$배이다. 바깥 정사각형의 한 변은 지름이라 반지름의 $2$배이고, 가로와 세로가 모두 $2$배이기 때문이다. 반지름이 $5\\,\\mathrm{cm}$이면 바깥은 $10\\times10=100\\,\\mathrm{cm}^2$, 반지름 정사각형은 $5\\times5=25\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$배",
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 변의 길이가 반지름의 $2$배이다",
+            "한 변이 지름이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바깥은 $100\\,\\mathrm{cm}^2$, 반지름 정사각형은 $25\\,\\mathrm{cm}^2$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "바깥 정사각형의 한 변이 지름임을 이용해 넓이가 $4$배임을 설명한다.",
+      "bReason": "배 관계를 한 변의 길이로 설명하게 해 외우기만 하는 것을 막는다.",
+      "cDecision": "revise",
+      "cAfter": "원 밖에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 {$4$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "'배'를 문장에 두고 수만 답하게 하여 불필요한 표기 요구를 없앤다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2520,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc12",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "바깥 정사각형과 반지름",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원 밖에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 {$4$배}이다.",
+        "studentC": "원 밖에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 □이다.",
+        "answers": [
+          "$4$배"
+        ]
+      },
+      "sourceFingerprint": "9641487ac2a9b8362038d9cf9a80fb806d31e29a1bd3cf98d98b5c5365f3ba93",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "원 밖에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 □배이다.",
+      "cMarkedSentence": "원 밖에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 {$4$}배이다.",
+      "cStudentSentence": "원 밖에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원이 네 변에 모두 닿도록 원 밖에 정사각형을 그렸다. 이 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 몇 배인지 말하고, 그 까닭을 한 변의 길이로 설명하시오. 반지름이 $5\\,\\mathrm{cm}$일 때 두 정사각형의 넓이도 구하시오.",
+        "answer": "$4$배이다. 바깥 정사각형의 한 변은 지름이라 반지름의 $2$배이고, 가로와 세로가 모두 $2$배이기 때문이다. 반지름이 $5\\,\\mathrm{cm}$이면 바깥은 $10\\times10=100\\,\\mathrm{cm}^2$, 반지름 정사각형은 $5\\times5=25\\,\\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$배",
+              "$4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 변의 길이가 반지름의 $2$배이다",
+              "한 변이 지름이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "바깥은 $100\\,\\mathrm{cm}^2$, 반지름 정사각형은 $25\\,\\mathrm{cm}^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원 밖에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 {$4$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e54dd32b9ee64d4fb1cfbe3a2b4954541ff73fd669857dccabee8c53a007a134",
+      "questionRevision": "planning-e5e6-20261006-e54dd32b9ee6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc13",
+      "bDecision": "revise",
+      "bPrompt": "원 안에 네 꼭짓점이 모두 원 위에 있는 정사각형을 그렸다. 이 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 몇 배인지 말하고, 그 까닭을 설명하시오. 반지름이 $5\\,\\mathrm{cm}$일 때 안쪽 정사각형의 넓이도 구하시오.",
+      "bAnswer": "$2$배이다. 원의 중심과 네 꼭짓점을 이으면 정사각형이 크기가 같은 삼각형 $4$개로 나뉘고, 삼각형 하나는 반지름 정사각형의 절반이기 때문이다. 반지름이 $5\\,\\mathrm{cm}$이면 $50\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$배",
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "삼각형 $4$개로 나누면 각각 반지름 정사각형의 절반이다",
+            "대각선이 지름인 정사각형의 넓이를 대각선으로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$50\\,\\mathrm{cm}^2$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "안쪽 정사각형이 반지름 정사각형의 $2$배임을 나누기로 설명한다.",
+      "bReason": "반지름 정사각형 $4$개 중 절반이라는 관계를 스스로 설명하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "원 안에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 {$2$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "수만 답하게 하여 배 관계를 묻고 불필요한 표기는 요구하지 않는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2521,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc13",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "안쪽 정사각형과 반지름",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원 안에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 {$2$배}이다.",
+        "studentC": "원 안에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 □이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "sourceFingerprint": "b1cb0390ec0ec84ecc2348ccd6ceb3c7321da03a291b06e29b1e749056dc477b",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "원 안에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 □배이다.",
+      "cMarkedSentence": "원 안에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 {$2$}배이다.",
+      "cStudentSentence": "원 안에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원 안에 네 꼭짓점이 모두 원 위에 있는 정사각형을 그렸다. 이 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 몇 배인지 말하고, 그 까닭을 설명하시오. 반지름이 $5\\,\\mathrm{cm}$일 때 안쪽 정사각형의 넓이도 구하시오.",
+        "answer": "$2$배이다. 원의 중심과 네 꼭짓점을 이으면 정사각형이 크기가 같은 삼각형 $4$개로 나뉘고, 삼각형 하나는 반지름 정사각형의 절반이기 때문이다. 반지름이 $5\\,\\mathrm{cm}$이면 $50\\,\\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$배",
+              "$2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "삼각형 $4$개로 나누면 각각 반지름 정사각형의 절반이다",
+              "대각선이 지름인 정사각형의 넓이를 대각선으로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50\\,\\mathrm{cm}^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원 안에 꼭 맞는 정사각형의 넓이는 반지름을 한 변으로 하는 정사각형 넓이의 {$2$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ce4c85c83df3fbd3622e347f8cdb00d026f9ee0538ab00ce23578193622be7ad",
+      "questionRevision": "planning-e5e6-20261006-ce4c85c83df3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc14",
+      "bDecision": "revise",
+      "bPrompt": "원 안에 꼭 맞는 정사각형과 원 밖에 꼭 맞는 정사각형의 넓이를 이용하면, 원의 넓이는 (반지름)$\\times$(반지름)의 몇 배보다 크고 몇 배보다 작다고 말할 수 있는지 설명하시오.",
+      "bAnswer": "원 안의 정사각형은 (반지름)$\\times$(반지름)의 $2$배이고 원 밖의 정사각형은 $4$배이다. 원의 넓이는 안쪽보다 크고 바깥쪽보다 작으므로 $2$배보다 크고 $4$배보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$배보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$배보다 작다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "안팎 정사각형으로 원 넓이의 범위를 잡는다.",
+      "bReason": "앞의 성질을 응용해 범위를 만드는 핵심 질문이다.",
+      "cDecision": "revise",
+      "cAfter": "원의 넓이는 (반지름)$\\times$(반지름)의 $2$배보다 크고 {$4$}배보다 작다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "배 단위를 문장에 두어 비교 범위의 위쪽 끝만 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2522,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc14",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "반지름으로 나타낸 넓이의 범위",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원의 넓이는 (반지름)$\\times$(반지름)의 $2$배보다 크고 {$4$배}보다 작다.",
+        "studentC": "원의 넓이는 (반지름)$\\times$(반지름)의 $2$배보다 크고 □보다 작다.",
+        "answers": [
+          "$4$배"
+        ]
+      },
+      "sourceFingerprint": "12b02c754c75dc31d2dd729dc2ee346dbab1a9f71b0168d125031cb1fdba17ff",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "원의 넓이는 (반지름)$\\times$(반지름)의 $2$배보다 크고 □배보다 작다.",
+      "cMarkedSentence": "원의 넓이는 (반지름)$\\times$(반지름)의 $2$배보다 크고 {$4$}배보다 작다.",
+      "cStudentSentence": "원의 넓이는 (반지름)$\\times$(반지름)의 $2$배보다 크고 □배보다 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원 안에 꼭 맞는 정사각형과 원 밖에 꼭 맞는 정사각형의 넓이를 이용하면, 원의 넓이는 (반지름)$\\times$(반지름)의 몇 배보다 크고 몇 배보다 작다고 말할 수 있는지 설명하시오.",
+        "answer": "원 안의 정사각형은 (반지름)$\\times$(반지름)의 $2$배이고 원 밖의 정사각형은 $4$배이다. 원의 넓이는 안쪽보다 크고 바깥쪽보다 작으므로 $2$배보다 크고 $4$배보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$배보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$배보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 넓이는 (반지름)$\\times$(반지름)의 $2$배보다 크고 {$4$}배보다 작다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ea2b887c44288b0a2d9fa942d9d38daebbae4f2405fedbc56fbe3847ac6c9310",
+      "questionRevision": "planning-e5e6-20261006-ea2b887c4428",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc15",
+      "bDecision": "revise",
+      "bPrompt": "원의 넓이가 어떤 값보다 크고 다른 값보다 작다는 것만 알 때, 넓이를 하나의 값으로 어림하는 방법을 설명하시오. 원의 넓이가 (반지름)$\\times$(반지름)의 $2$배보다 크고 $4$배보다 작다면, 이 방법으로 어림한 넓이는 (반지름)$\\times$(반지름)의 몇 배인지도 구하시오.",
+      "bAnswer": "두 값의 가운데 값을 택한다. $2$와 $4$의 가운데 값은 $(2+4)\\div2=3$이므로 약 $3$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 값의 가운데 값을 택한다",
+            "두 값을 더해 $2$로 나눈다",
+            "두 값의 평균을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$배",
+            "$3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "범위의 두 끝 사이 가운데 값으로 하나의 어림값을 정한다.",
+      "bReason": "방법과 예를 함께 물어 계산값 하나만 묻는 것을 피한다.",
+      "cDecision": "revise",
+      "cAfter": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 {$25$}$\\,\\mathrm{cm}^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$25$"
+          ]
+        }
+      ],
+      "cReason": "'가운데 값' 낱말 암기 대신 실제 범위에서 가운데 값을 구하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2523,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc15",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "범위로 넓이를 하나로 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "원 넓이의 범위를 알면 두 끝의 {가운데 값}으로 넓이를 하나로 어림할 수 있다.",
+        "studentC": "원 넓이의 범위를 알면 두 끝의 □으로 넓이를 하나로 어림할 수 있다.",
+        "answers": [
+          "가운데 값"
+        ]
+      },
+      "sourceFingerprint": "66d7abbb13be2a2f554de520e959c1206984c856fe832fbd0b8ed586e2317dd9",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "$25$"
+      ],
+      "cStudentAfter": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 □$\\,\\mathrm{cm}^2$이다.",
+      "cMarkedSentence": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 {$25$}$\\,\\mathrm{cm}^2$이다.",
+      "cStudentSentence": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 □$\\,\\mathrm{cm}^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$25$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 넓이가 어떤 값보다 크고 다른 값보다 작다는 것만 알 때, 넓이를 하나의 값으로 어림하는 방법을 설명하시오. 원의 넓이가 (반지름)$\\times$(반지름)의 $2$배보다 크고 $4$배보다 작다면, 이 방법으로 어림한 넓이는 (반지름)$\\times$(반지름)의 몇 배인지도 구하시오.",
+        "answer": "두 값의 가운데 값을 택한다. $2$와 $4$의 가운데 값은 $(2+4)\\div2=3$이므로 약 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 값의 가운데 값을 택한다",
+              "두 값을 더해 $2$로 나눈다",
+              "두 값의 평균을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$배",
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 넓이가 $20\\,\\mathrm{cm}^2$보다 크고 $30\\,\\mathrm{cm}^2$보다 작을 때, 두 끝의 가운데 값으로 어림하면 약 {$25$}$\\,\\mathrm{cm}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$25$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b814c9b97d9dda93f4e8248bf1482ea35cb9a8569fe1b1235698c833bd2e306e",
+      "questionRevision": "planning-e5e6-20261006-b814c9b97d9d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc16",
+      "bDecision": "revise",
+      "bPrompt": "원 안에 여섯 꼭짓점이 모두 원 위에 있는 정육각형을 그리고 원의 중심과 정육각형의 각 꼭짓점을 선분으로 이었다. 정육각형은 삼각형 몇 개로 나뉘는지 쓰고, 이 삼각형들의 크기를 서로 비교하면 어떠한지 까닭과 함께 설명하시오.",
+      "bAnswer": "삼각형 $6$개로 나뉜다. 세 변의 길이가 같아 서로 합동이므로 넓이도 모두 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$개",
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "서로 합동이다",
+            "크기와 넓이가 모두 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 삼각형의 세 변의 길이가 같다",
+            "반지름과 정육각형의 변으로 이루어진 같은 모양이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "정육각형을 같은 삼각형 $6$개로 나누는 까닭을 설명한다.",
+      "bReason": "넓이를 구하기 위한 분할 근거를 말로 설명하게 하는 문항이다.",
+      "cDecision": "revise",
+      "cAfter": "원의 중심과 정육각형의 꼭짓점을 모두 이으면 정육각형은 삼각형 {$6$}개로 나뉜다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cReason": "'넓이가 같은 삼각형'이라는 결론을 빼고 나뉘는 개수만 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2524,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc16",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "원 안 정육각형 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "원 안에 꼭 맞는 정육각형은 넓이가 같은 삼각형 {$6$개}로 나누어 넓이를 구한다.",
+        "studentC": "원 안에 꼭 맞는 정육각형은 넓이가 같은 삼각형 □로 나누어 넓이를 구한다.",
+        "answers": [
+          "$6$개"
+        ]
+      },
+      "sourceFingerprint": "7ca3ac516fe128d07d22a8c97b34574cb82594522b5351e56794a38dc7558a4f",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "$6$"
+      ],
+      "cStudentAfter": "원의 중심과 정육각형의 꼭짓점을 모두 이으면 정육각형은 삼각형 □개로 나뉜다.",
+      "cMarkedSentence": "원의 중심과 정육각형의 꼭짓점을 모두 이으면 정육각형은 삼각형 {$6$}개로 나뉜다.",
+      "cStudentSentence": "원의 중심과 정육각형의 꼭짓점을 모두 이으면 정육각형은 삼각형 □개로 나뉜다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원 안에 여섯 꼭짓점이 모두 원 위에 있는 정육각형을 그리고 원의 중심과 정육각형의 각 꼭짓점을 선분으로 이었다. 정육각형은 삼각형 몇 개로 나뉘는지 쓰고, 이 삼각형들의 크기를 서로 비교하면 어떠한지 까닭과 함께 설명하시오.",
+        "answer": "삼각형 $6$개로 나뉜다. 세 변의 길이가 같아 서로 합동이므로 넓이도 모두 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6$개",
+              "$6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 합동이다",
+              "크기와 넓이가 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 삼각형의 세 변의 길이가 같다",
+              "반지름과 정육각형의 변으로 이루어진 같은 모양이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 중심과 정육각형의 꼭짓점을 모두 이으면 정육각형은 삼각형 {$6$}개로 나뉜다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "917395ad284a37a8c444a5f13dbd3af57cfdd01ac3d4637997fb2fde6595ff93",
+      "questionRevision": "planning-e5e6-20261006-917395ad284a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc17",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "원 밖 정육각형이 원보다 크다는 것을 안다.",
+      "bReason": "c2의 바깥 도형이 크다는 성질과 중복된다.",
+      "exclusionReason": "c2에서 감싸는 도형 비교를 이미 다룬다. 대체: e6-2-5-3-c2, e6-2-5-3-xc19.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'크다' 한 낱말을 채우는 자명한 문장이라 가치가 낮다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2525,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc17",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "원 밖 정육각형의 넓이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원 밖에 꼭 맞는 정육각형의 넓이는 원의 넓이보다 {크다}.",
+        "studentC": "원 밖에 꼭 맞는 정육각형의 넓이는 원의 넓이보다 □.",
+        "answers": [
+          "크다"
+        ]
+      },
+      "sourceFingerprint": "3344a716ef7647a3805b933ffd5bbbbb93a34ce94431cca08f1759e063a5806b",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c2에서 감싸는 도형 비교를 이미 다룬다. 대체: e6-2-5-3-c2, e6-2-5-3-xc19.",
+        "cloze": "c2에서 감싸는 도형 비교를 이미 다룬다. 대체: e6-2-5-3-c2, e6-2-5-3-xc19."
+      },
+      "proposalFingerprint": "5bcc1848b684bf951c0338c68f5a8dcb5c56fbb1d790508699805f835f8a2e1a",
+      "questionRevision": "planning-e5e6-20261006-5bcc1848b684",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc18",
+      "bDecision": "revise",
+      "bPrompt": "원 밖에 꼭 맞는 정사각형과 원 밖에 꼭 맞는 정육각형 중 넓이가 원의 넓이에 더 가까운 것은 어느 쪽이며, 그 까닭은 무엇인지 설명하시오.",
+      "bAnswer": "정육각형이다. 변이 더 많아 원에 더 붙어 있어서 원과 도형 사이에 남는 부분이 더 적기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정육각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "원과 도형 사이에 남는 부분이 더 적다",
+            "원 모양에 더 가깝다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "변이 많은 도형이 원에 더 가까운 까닭을 설명한다.",
+      "bReason": "비교 결과와 오차가 줄어드는 이유를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "원 밖에 꼭 맞는 정사각형과 정육각형 중 넓이가 원의 넓이에 더 가까운 것은 {정육각형}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정육각형"
+          ]
+        }
+      ],
+      "cReason": "'더 가깝다' 암기 대신 어느 도형인지 고르게 하여 개념을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2526,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc18",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "정육각형으로 더 가깝게",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원 밖에 꼭 맞는 도형은 정사각형보다 정육각형일 때 넓이가 원에 {더 가깝다}.",
+        "studentC": "원 밖에 꼭 맞는 도형은 정사각형보다 정육각형일 때 넓이가 원에 □.",
+        "answers": [
+          "더 가깝다"
+        ]
+      },
+      "sourceFingerprint": "1584a501753358c2777816039c039e48bcb0b6f328bd17de608c209edea168c2",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "정육각형"
+      ],
+      "cStudentAfter": "원 밖에 꼭 맞는 정사각형과 정육각형 중 넓이가 원의 넓이에 더 가까운 것은 □이다.",
+      "cMarkedSentence": "원 밖에 꼭 맞는 정사각형과 정육각형 중 넓이가 원의 넓이에 더 가까운 것은 {정육각형}이다.",
+      "cStudentSentence": "원 밖에 꼭 맞는 정사각형과 정육각형 중 넓이가 원의 넓이에 더 가까운 것은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정육각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원 밖에 꼭 맞는 정사각형과 원 밖에 꼭 맞는 정육각형 중 넓이가 원의 넓이에 더 가까운 것은 어느 쪽이며, 그 까닭은 무엇인지 설명하시오.",
+        "answer": "정육각형이다. 변이 더 많아 원에 더 붙어 있어서 원과 도형 사이에 남는 부분이 더 적기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정육각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "원과 도형 사이에 남는 부분이 더 적다",
+              "원 모양에 더 가깝다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원 밖에 꼭 맞는 정사각형과 정육각형 중 넓이가 원의 넓이에 더 가까운 것은 {정육각형}이다.",
+        "acceptedAnswers": [
+          [
+            "정육각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "71540861997148fd6d299b5eebae9aa4205c348e482fa657f102533f953990e2",
+      "questionRevision": "planning-e5e6-20261006-715408619971",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc19",
+      "bDecision": "revise",
+      "bPrompt": "원 안에 꼭 맞는 정육각형과 원 밖에 꼭 맞는 정육각형의 넓이를 이용하면 원의 넓이가 어떤 범위에 있다고 말할 수 있는지 설명하시오.",
+      "bAnswer": "원의 넓이는 원 안에 꼭 맞는 정육각형의 넓이보다 크고, 원 밖에 꼭 맞는 정육각형의 넓이보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "안쪽 정육각형보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바깥 정육각형보다 작다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "안팎 정육각형으로 원 넓이의 범위를 잡는다.",
+      "bReason": "정사각형 범위와 같은 생각을 더 좁은 범위로 확장하는 응용이다.",
+      "cDecision": "revise",
+      "cAfter": "원의 넓이는 원 안에 꼭 맞는 정육각형의 넓이보다 {크고}, 원 밖에 꼭 맞는 정육각형의 넓이보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크고",
+            "크다",
+            "더 크고"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "더 작다",
+            "작고"
+          ]
+        }
+      ],
+      "cReason": "두 비교 방향을 모두 묻고 같은 뜻의 말을 허용한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2527,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc19",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "두 정육각형 사이의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원의 넓이는 원 안에 꼭 맞는 정육각형의 넓이보다 {크고}, 원 밖에 꼭 맞는 정육각형의 넓이보다 작다.",
+        "studentC": "원의 넓이는 원 안에 꼭 맞는 정육각형의 넓이보다 □, 원 밖에 꼭 맞는 정육각형의 넓이보다 작다.",
+        "answers": [
+          "크고"
+        ]
+      },
+      "sourceFingerprint": "e4b624805288d242e63ea75b531059a77b5198cf96ae882cf0c7512af3dcc6d0",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "크고",
+        "작다"
+      ],
+      "cStudentAfter": "원의 넓이는 원 안에 꼭 맞는 정육각형의 넓이보다 □, 원 밖에 꼭 맞는 정육각형의 넓이보다 □.",
+      "cMarkedSentence": "원의 넓이는 원 안에 꼭 맞는 정육각형의 넓이보다 {크고}, 원 밖에 꼭 맞는 정육각형의 넓이보다 {작다}.",
+      "cStudentSentence": "원의 넓이는 원 안에 꼭 맞는 정육각형의 넓이보다 □, 원 밖에 꼭 맞는 정육각형의 넓이보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크고",
+          "equivalents": [
+            "크다",
+            "더 크고"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다",
+            "작고"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원 안에 꼭 맞는 정육각형과 원 밖에 꼭 맞는 정육각형의 넓이를 이용하면 원의 넓이가 어떤 범위에 있다고 말할 수 있는지 설명하시오.",
+        "answer": "원의 넓이는 원 안에 꼭 맞는 정육각형의 넓이보다 크고, 원 밖에 꼭 맞는 정육각형의 넓이보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "안쪽 정육각형보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "바깥 정육각형보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 넓이는 원 안에 꼭 맞는 정육각형의 넓이보다 {크고}, 원 밖에 꼭 맞는 정육각형의 넓이보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "크고",
+            "크다",
+            "더 크고"
+          ],
+          [
+            "작다",
+            "더 작다",
+            "작고"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a5e12791924901bb01fb88ca15d19d8b350f191ff84fbb0b7565287eb5b53ef6",
+      "questionRevision": "planning-e5e6-20261006-a5e127919249",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc23",
+      "bDecision": "revise",
+      "bPrompt": "모눈으로 원의 넓이를 어림할 때, 원 테두리에 걸친 칸을 모두 빼고 센 경우와 모두 넣고 센 경우에 어림한 값은 각각 실제 넓이보다 큰지 작은지 까닭과 함께 설명하시오.",
+      "bAnswer": "모두 빼면 원 안에 있는 부분이 빠져서 실제보다 작게 어림되고, 모두 넣으면 원 밖의 부분까지 포함되어 실제보다 크게 어림된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모두 빼면 실제보다 작다",
+            "걸친 칸을 빼면 작게 어림된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모두 넣으면 실제보다 크다",
+            "걸친 칸을 넣으면 크게 어림된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "걸친 칸 처리 방식에 따른 어림값 방향을 설명한다.",
+      "bReason": "오차가 생기는 방향을 이유와 함께 묻는 좋은 질문이다.",
+      "cDecision": "keep",
+      "cAfter": "걸친 칸을 모두 빼면 실제보다 {작게}, 모두 넣으면 실제보다 크게 어림된다.",
+      "cReason": "조건이 분명한 짧은 비교 문장이고 '작게'와 '크게'가 대비되어 유지한다.",
+      "synonymNotes": "작게는 적게로 써도 같은 뜻이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2528,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc23",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "모눈 어림이 빗나가는 쪽",
+        "kind": "성질",
+        "level": "상",
+        "definition": "걸친 칸을 모두 빼면 실제보다 {작게}, 모두 넣으면 실제보다 크게 어림된다.",
+        "studentC": "걸친 칸을 모두 빼면 실제보다 □, 모두 넣으면 실제보다 크게 어림된다.",
+        "answers": [
+          "작게"
+        ]
+      },
+      "sourceFingerprint": "f104f968dbbefa85ba98f998745c59ebbb63c600342cb94697b4b7e5d476aa1e",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cFrozenDefinition": "걸친 칸을 모두 빼면 실제보다 {작게}, 모두 넣으면 실제보다 크게 어림된다.",
+      "cFrozenStudentSentence": "걸친 칸을 모두 빼면 실제보다 □, 모두 넣으면 실제보다 크게 어림된다.",
+      "cProposedAnswers": [
+        "작게"
+      ],
+      "cStudentAfter": "걸친 칸을 모두 빼면 실제보다 □, 모두 넣으면 실제보다 크게 어림된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작게"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "걸친 칸을 모두 빼면 실제보다 {작게}, 모두 넣으면 실제보다 크게 어림된다.",
+      "cStudentSentence": "걸친 칸을 모두 빼면 실제보다 □, 모두 넣으면 실제보다 크게 어림된다.",
+      "cSlotAnswers": [
+        {
+          "key": "작게",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모눈으로 원의 넓이를 어림할 때, 원 테두리에 걸친 칸을 모두 빼고 센 경우와 모두 넣고 센 경우에 어림한 값은 각각 실제 넓이보다 큰지 작은지 까닭과 함께 설명하시오.",
+        "answer": "모두 빼면 원 안에 있는 부분이 빠져서 실제보다 작게 어림되고, 모두 넣으면 원 밖의 부분까지 포함되어 실제보다 크게 어림된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모두 빼면 실제보다 작다",
+              "걸친 칸을 빼면 작게 어림된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모두 넣으면 실제보다 크다",
+              "걸친 칸을 넣으면 크게 어림된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "걸친 칸을 모두 빼면 실제보다 {작게}, 모두 넣으면 실제보다 크게 어림된다.",
+        "acceptedAnswers": [
+          [
+            "작게"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d3be107a7b92b109272069120add4de29daaabab630783ef511cfd6c43991810",
+      "questionRevision": "planning-e5e6-20261006-d3be107a7b92",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc25",
+      "bDecision": "revise",
+      "bPrompt": "원이 네 변에 모두 닿도록 원 밖에 그린 정사각형과, 네 꼭짓점이 모두 원 위에 있도록 원 안에 그린 정사각형이 있다. 안쪽 정사각형의 넓이는 바깥 정사각형 넓이의 얼마만큼인지 말하고, 그 까닭을 설명하시오. 반지름이 $5\\,\\mathrm{cm}$일 때 두 정사각형의 넓이도 구하시오.",
+      "bAnswer": "절반($\\frac{1}{2}$)이다. 안쪽은 반지름 정사각형의 $2$배, 바깥은 $4$배이기 때문이다. 반지름이 $5\\,\\mathrm{cm}$이면 안쪽은 $50\\,\\mathrm{cm}^2$, 바깥은 $100\\,\\mathrm{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "절반",
+            "$\\frac{1}{2}$",
+            "$\\frac{1}{2}$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "안쪽은 반지름 정사각형의 $2$배, 바깥은 $4$배이다",
+            "바깥 정사각형을 안쪽 정사각형이 정확히 반으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "안쪽 $50\\,\\mathrm{cm}^2$, 바깥 $100\\,\\mathrm{cm}^2$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "안팎 정사각형의 넓이가 $1$대 $2$임을 설명한다.",
+      "bReason": "앞의 두 성질을 연결해 비율을 얻는 의미 있는 추론이다.",
+      "cDecision": "revise",
+      "cAfter": "원 안에 꼭 맞는 정사각형의 넓이가 $50\\,\\mathrm{cm}^2$이면, 원 밖에 꼭 맞는 정사각형의 넓이는 {$100$}$\\,\\mathrm{cm}^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        }
+      ],
+      "cReason": "'절반'이라는 낱말을 외우기보다 실제 넓이로 관계를 확인하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2529,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc25",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "안팎 두 정사각형의 넓이 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원 안에 꼭 맞는 정사각형의 넓이는 원 밖에 꼭 맞는 정사각형 넓이의 {절반}이다.",
+        "studentC": "원 안에 꼭 맞는 정사각형의 넓이는 원 밖에 꼭 맞는 정사각형 넓이의 □이다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "sourceFingerprint": "e94fb83fca7ed1cc9ee4e47a6291fc689ecefeaea6b2f638d493c293149c67a8",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "$100$"
+      ],
+      "cStudentAfter": "원 안에 꼭 맞는 정사각형의 넓이가 $50\\,\\mathrm{cm}^2$이면, 원 밖에 꼭 맞는 정사각형의 넓이는 □$\\,\\mathrm{cm}^2$이다.",
+      "cMarkedSentence": "원 안에 꼭 맞는 정사각형의 넓이가 $50\\,\\mathrm{cm}^2$이면, 원 밖에 꼭 맞는 정사각형의 넓이는 {$100$}$\\,\\mathrm{cm}^2$이다.",
+      "cStudentSentence": "원 안에 꼭 맞는 정사각형의 넓이가 $50\\,\\mathrm{cm}^2$이면, 원 밖에 꼭 맞는 정사각형의 넓이는 □$\\,\\mathrm{cm}^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원이 네 변에 모두 닿도록 원 밖에 그린 정사각형과, 네 꼭짓점이 모두 원 위에 있도록 원 안에 그린 정사각형이 있다. 안쪽 정사각형의 넓이는 바깥 정사각형 넓이의 얼마만큼인지 말하고, 그 까닭을 설명하시오. 반지름이 $5\\,\\mathrm{cm}$일 때 두 정사각형의 넓이도 구하시오.",
+        "answer": "절반($\\frac{1}{2}$)이다. 안쪽은 반지름 정사각형의 $2$배, 바깥은 $4$배이기 때문이다. 반지름이 $5\\,\\mathrm{cm}$이면 안쪽은 $50\\,\\mathrm{cm}^2$, 바깥은 $100\\,\\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "절반",
+              "$\\frac{1}{2}$",
+              "$\\frac{1}{2}$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "안쪽은 반지름 정사각형의 $2$배, 바깥은 $4$배이다",
+              "바깥 정사각형을 안쪽 정사각형이 정확히 반으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "안쪽 $50\\,\\mathrm{cm}^2$, 바깥 $100\\,\\mathrm{cm}^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원 안에 꼭 맞는 정사각형의 넓이가 $50\\,\\mathrm{cm}^2$이면, 원 밖에 꼭 맞는 정사각형의 넓이는 {$100$}$\\,\\mathrm{cm}^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e1f92b0dfe91b4c3fad836853729a08ccb2db9dc092fc891a8bdbdf4e0befaf5",
+      "questionRevision": "planning-e5e6-20261006-e1f92b0dfe91",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc26",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "원주율을 반올림해 (반지름)$\\times$(반지름)의 약 $3$배임을 안다.",
+      "bReason": "원의 넓이 공식을 아는 것을 전제하는데 이 소단원은 어림하기이다.",
+      "exclusionReason": "원의 넓이 공식 이전에는 $3$배가 어림의 가운데 값 아이디어로 다뤄진다. 대체: e6-2-5-3-xc15.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "원주율과 공식 지식이 필요해 학생 수준에 맞지 않는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2530,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc26",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "어림한 넓이와 (반지름)$\\times$(반지름)",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원주율을 자연수로 반올림하여 어림하면, 원의 넓이는 (반지름)$\\times$(반지름)의 약 {$3$}배이다.",
+        "studentC": "원주율을 자연수로 반올림하여 어림하면, 원의 넓이는 (반지름)$\\times$(반지름)의 약 □배이다.",
+        "answers": [
+          "$3$"
+        ]
+      },
+      "sourceFingerprint": "0e34879eeabf7b9efef17e3bb60bbf981e2c0f8741fbd7da93c176977a6a8563",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "원의 넓이 공식 이전에는 $3$배가 어림의 가운데 값 아이디어로 다뤄진다. 대체: e6-2-5-3-xc15.",
+        "cloze": "원의 넓이 공식 이전에는 $3$배가 어림의 가운데 값 아이디어로 다뤄진다. 대체: e6-2-5-3-xc15."
+      },
+      "proposalFingerprint": "8be5df4b8d63da0c32ed395145fee3f80915893e695148a5717032055076d242",
+      "questionRevision": "planning-e5e6-20261006-8be5df4b8d63",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-xc27",
+      "bDecision": "revise",
+      "bPrompt": "원 밖에 꼭 맞는 정사각형에서 원의 반지름이 $2$배가 되면 정사각형의 한 변의 길이와 넓이는 각각 몇 배가 되는지 말하고, 그 까닭을 설명하시오. 반지름이 $3\\,\\mathrm{cm}$에서 $6\\,\\mathrm{cm}$로 바뀔 때 넓이도 구하시오.",
+      "bAnswer": "한 변은 $2$배, 넓이는 $4$배가 된다. 한 변이 지름이라서 반지름과 함께 $2$배가 되고, 가로와 세로가 모두 $2$배가 되기 때문이다. 넓이는 $6\\times6=36\\,\\mathrm{cm}^2$에서 $12\\times12=144\\,\\mathrm{cm}^2$가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변은 $2$배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이는 $4$배가 된다",
+            "$4$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36\\,\\mathrm{cm}^2$에서 $144\\,\\mathrm{cm}^2$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "길이가 $2$배이면 넓이가 $4$배가 됨을 정사각형으로 설명한다.",
+      "bReason": "길이와 넓이의 배 관계를 실제 수치로 확인하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "원의 반지름이 $2$배가 되면 원 밖에 꼭 맞는 정사각형의 한 변이 $2$배가 되므로 넓이는 {$4$}배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "한 변의 변화를 조건으로 제시해 넓이의 배 관계를 추론하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2531,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-3-xc27",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "term": "반지름이 $2$배일 때 바깥 정사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "반지름이 $2$배가 되면 원 밖에 꼭 맞는 정사각형의 넓이는 {$4$배}가 된다.",
+        "studentC": "반지름이 $2$배가 되면 원 밖에 꼭 맞는 정사각형의 넓이는 □가 된다.",
+        "answers": [
+          "$4$배"
+        ]
+      },
+      "sourceFingerprint": "d0f88704c44fb0dad1214f3a213e5ae7ae82db584b5235eb8ac824ebcd31516b",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "원의 반지름이 $2$배가 되면 원 밖에 꼭 맞는 정사각형의 한 변이 $2$배가 되므로 넓이는 □배가 된다.",
+      "cMarkedSentence": "원의 반지름이 $2$배가 되면 원 밖에 꼭 맞는 정사각형의 한 변이 $2$배가 되므로 넓이는 {$4$}배가 된다.",
+      "cStudentSentence": "원의 반지름이 $2$배가 되면 원 밖에 꼭 맞는 정사각형의 한 변이 $2$배가 되므로 넓이는 □배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원 밖에 꼭 맞는 정사각형에서 원의 반지름이 $2$배가 되면 정사각형의 한 변의 길이와 넓이는 각각 몇 배가 되는지 말하고, 그 까닭을 설명하시오. 반지름이 $3\\,\\mathrm{cm}$에서 $6\\,\\mathrm{cm}$로 바뀔 때 넓이도 구하시오.",
+        "answer": "한 변은 $2$배, 넓이는 $4$배가 된다. 한 변이 지름이라서 반지름과 함께 $2$배가 되고, 가로와 세로가 모두 $2$배가 되기 때문이다. 넓이는 $6\\times6=36\\,\\mathrm{cm}^2$에서 $12\\times12=144\\,\\mathrm{cm}^2$가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 변은 $2$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이는 $4$배가 된다",
+              "$4$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36\\,\\mathrm{cm}^2$에서 $144\\,\\mathrm{cm}^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 반지름이 $2$배가 되면 원 밖에 꼭 맞는 정사각형의 한 변이 $2$배가 되므로 넓이는 {$4$}배가 된다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6301fa397387e5ccaf4f9a085274704ac00abf665eff19e3a71f32217d8faf65",
+      "questionRevision": "planning-e5e6-20261006-6301fa397387",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc2",
+      "bDecision": "revise",
+      "bPrompt": "지름이 $12\\,\\mathrm{cm}$인 원의 넓이를 원주율 $3.14$로 구하려고 합니다. 지름을 알 때 넓이를 구하는 방법을 설명하고 넓이를 구하세요.",
+      "bAnswer": "지름의 절반이 반지름이므로 반지름은 $6\\,\\mathrm{cm}$이고, $3.14\\times6\\times6=113.04\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "지름을 곧바로 곱하지 않고 반지름으로 바꾸어 넓이를 구한다.",
+      "bReason": "지름과 반지름을 혼동하기 쉬운 부분을 예로 확인한다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름의 절반을 반지름으로 쓴다",
+            "지름을 $2$로 나누어 반지름을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$113.04\\,\\mathrm{cm^2}$",
+            "$113.04$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": "지름을 알 때는 {지름의 절반인 반지름}을 두 번 곱한 뒤 원주율을 곱해 넓이를 구한다.",
+      "cReason": "지름의 절반인 반지름을 두 번 곱한다는 단계가 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "C의 빈칸에는 '반지름'만 써도 같은 뜻이다.",
+      "sourceIndex": 2532,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc2",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "지름으로 넓이 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "지름을 알 때는 {지름의 절반인 반지름}을 두 번 곱한 뒤 원주율을 곱해 넓이를 구한다.",
+        "studentC": "지름을 알 때는 □을 두 번 곱한 뒤 원주율을 곱해 넓이를 구한다.",
+        "answers": [
+          "지름의 절반인 반지름"
+        ]
+      },
+      "sourceFingerprint": "b3a4d62aece97542e080440b015fd9166c28ee0c98e932c10d5ac66ddd511796",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cFrozenDefinition": "지름을 알 때는 {지름의 절반인 반지름}을 두 번 곱한 뒤 원주율을 곱해 넓이를 구한다.",
+      "cFrozenStudentSentence": "지름을 알 때는 □을 두 번 곱한 뒤 원주율을 곱해 넓이를 구한다.",
+      "cProposedAnswers": [
+        "지름의 절반인 반지름"
+      ],
+      "cStudentAfter": "지름을 알 때는 □을 두 번 곱한 뒤 원주율을 곱해 넓이를 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "지름의 절반인 반지름"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "지름을 알 때는 {지름의 절반인 반지름}을 두 번 곱한 뒤 원주율을 곱해 넓이를 구한다.",
+      "cStudentSentence": "지름을 알 때는 □을 두 번 곱한 뒤 원주율을 곱해 넓이를 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "지름의 절반인 반지름",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "지름이 $12\\,\\mathrm{cm}$인 원의 넓이를 원주율 $3.14$로 구하려고 합니다. 지름을 알 때 넓이를 구하는 방법을 설명하고 넓이를 구하세요.",
+        "answer": "지름의 절반이 반지름이므로 반지름은 $6\\,\\mathrm{cm}$이고, $3.14\\times6\\times6=113.04\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "지름의 절반을 반지름으로 쓴다",
+              "지름을 $2$로 나누어 반지름을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$113.04\\,\\mathrm{cm^2}$",
+              "$113.04$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "지름을 알 때는 {지름의 절반인 반지름}을 두 번 곱한 뒤 원주율을 곱해 넓이를 구한다.",
+        "acceptedAnswers": [
+          [
+            "지름의 절반인 반지름"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "34f88600319dcf7137479256f2c9268a5995a840488e656b0206799dfd19b3e1",
+      "questionRevision": "planning-e5e6-20261006-34f88600319d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "직사각형의 세로가 반지름임을 안다.",
+      "bReason": "c3의 가로·세로 질문에 이미 들어 있는 한 조각이다.",
+      "learningRole": "naming",
+      "bRequiredIdeas": [],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c3 C와 겹치고 빈칸 답이 한 낱말이라 가치가 낮다.",
+      "exclusionReason": "c3과 중복되는 부분 문항이다. 대체 ID: e6-2-5-4-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 2533,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc4",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "잘라 붙인 모양의 세로",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원을 잘게 잘라 엇갈려 붙일수록 직사각형에 가까워지고, 그 세로는 원의 {반지름}과 같아진다.",
+        "studentC": "원을 잘게 잘라 엇갈려 붙일수록 직사각형에 가까워지고, 그 세로는 원의 □과 같아진다.",
+        "answers": [
+          "반지름"
+        ]
+      },
+      "sourceFingerprint": "754d4d5a2d3b3c0d6b1162831b0127e81025ce5d5b9ef467fe5caa65d5697adc",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c3과 중복되는 부분 문항이다. 대체 ID: e6-2-5-4-c3",
+        "cloze": "c3과 중복되는 부분 문항이다. 대체 ID: e6-2-5-4-c3"
+      },
+      "proposalFingerprint": "3bd851f6bd3bd5a7d821c4e04fef1d1ff7311ffc018da98a4ee5b8f20c1c65cb",
+      "questionRevision": "planning-e5e6-20261006-3bd851f6bd3b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "직사각형의 가로가 원주의 절반임을 안다.",
+      "bReason": "c3의 가로·세로 질문에 이미 포함된다.",
+      "learningRole": "naming",
+      "bRequiredIdeas": [],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c3 C의 첫 빈칸과 같은 내용이다.",
+      "exclusionReason": "c3과 중복되는 부분 문항이다. 대체 ID: e6-2-5-4-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 2534,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc5",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "잘라 붙인 모양의 가로",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원을 잘게 잘라 엇갈려 붙일수록 직사각형에 가까워지고, 그 가로는 원주의 {절반}과 같아진다.",
+        "studentC": "원을 잘게 잘라 엇갈려 붙일수록 직사각형에 가까워지고, 그 가로는 원주의 □과 같아진다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "sourceFingerprint": "b88f65ef76d6d67e22affe4f33544a7d27de126f71b2f9bc22c7852991525b47",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c3과 중복되는 부분 문항이다. 대체 ID: e6-2-5-4-c3",
+        "cloze": "c3과 중복되는 부분 문항이다. 대체 ID: e6-2-5-4-c3"
+      },
+      "proposalFingerprint": "5120d8219f474ff35321beb8c834d1def7e955941b799ca54f656548f840e341",
+      "questionRevision": "planning-e5e6-20261006-5120d8219f47",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "반지름이 같으면 넓이가 같음을 안다.",
+      "bReason": "넓이 식이 반지름에만 달라지므로 거의 자명한 사실이다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "같다는 한 낱말을 채우는 자명한 문장이다.",
+      "exclusionReason": "자명한 문장이다. 대체 ID: e6-2-5-4-c2",
+      "exampleNeeded": false,
+      "sourceIndex": 2535,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc9",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "반지름이 같은 두 원의 넓이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "반지름이 같은 두 원은 넓이도 {같다}.",
+        "studentC": "반지름이 같은 두 원은 넓이도 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "2f8d1b44ce09bf642782c112ee8a0a251f9f627ee163c76e518f647cd447dcdf",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "자명한 문장이다. 대체 ID: e6-2-5-4-c2",
+        "cloze": "자명한 문장이다. 대체 ID: e6-2-5-4-c2"
+      },
+      "proposalFingerprint": "de096791cc27a47a66d8f6753d5ed5d544d2a43c27280765832305f126f5907c",
+      "questionRevision": "planning-e5e6-20261006-de096791cc27",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc11",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "(원주의 절반)×(반지름)이 공식으로 바뀌는 과정을 안다.",
+      "bReason": "c3 B가 같은 식 변형을 이미 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [],
+      "cDecision": "keep",
+      "cAfter": "(원주의 절반)$\\times$(반지름)을 풀어 쓰면 (반지름)$\\times$(반지름)에 {원주율}을 곱한 것이 된다.",
+      "cReason": "원주의 절반이 반지름×원주율임을 이용해 원주율을 채우는 식 변형 확인이라 유지한다.",
+      "exclusionReason": "B는 c3과 중복이다. 대체 ID: e6-2-5-4-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 2536,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc11",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "직사각형 넓이와 같은 식",
+        "kind": "공식",
+        "level": "중",
+        "definition": "(원주의 절반)$\\times$(반지름)을 풀어 쓰면 (반지름)$\\times$(반지름)에 {원주율}을 곱한 것이 된다.",
+        "studentC": "(원주의 절반)$\\times$(반지름)을 풀어 쓰면 (반지름)$\\times$(반지름)에 □을 곱한 것이 된다.",
+        "answers": [
+          "원주율"
+        ]
+      },
+      "sourceFingerprint": "8206e3b03bea1fa095a10d3542d71abe233e8adcc3b70db4eaedf80329065aaa",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cFrozenDefinition": "(원주의 절반)$\\times$(반지름)을 풀어 쓰면 (반지름)$\\times$(반지름)에 {원주율}을 곱한 것이 된다.",
+      "cFrozenStudentSentence": "(원주의 절반)$\\times$(반지름)을 풀어 쓰면 (반지름)$\\times$(반지름)에 □을 곱한 것이 된다.",
+      "cProposedAnswers": [
+        "원주율"
+      ],
+      "cStudentAfter": "(원주의 절반)$\\times$(반지름)을 풀어 쓰면 (반지름)$\\times$(반지름)에 □을 곱한 것이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원주율"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "(원주의 절반)$\\times$(반지름)을 풀어 쓰면 (반지름)$\\times$(반지름)에 {원주율}을 곱한 것이 된다.",
+      "cStudentSentence": "(원주의 절반)$\\times$(반지름)을 풀어 쓰면 (반지름)$\\times$(반지름)에 □을 곱한 것이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "원주율",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "(원주의 절반)$\\times$(반지름)을 풀어 쓰면 (반지름)$\\times$(반지름)에 {원주율}을 곱한 것이 된다.",
+        "acceptedAnswers": [
+          [
+            "원주율"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c3과 중복이다. 대체 ID: e6-2-5-4-c3"
+      },
+      "proposalFingerprint": "70a45fbfd599fb7eef045ddd9f080a20bc3abc8381fbafee594d47b25500198c",
+      "questionRevision": "planning-e5e6-20261006-70a45fbfd599",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc12",
+      "bDecision": "revise",
+      "bPrompt": "원을 중심에서 똑같은 조각 여러 개로 나눌 때 한 조각의 넓이는 어떻게 구하나요? 넓이가 $24\\,\\mathrm{cm^2}$인 원을 똑같이 $8$조각으로 나눈 한 조각의 넓이도 구하세요.",
+      "bAnswer": "원의 넓이를 조각 수로 나눕니다. $24\\div8=3$이므로 $3\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "똑같이 나눈 조각의 넓이를 전체 넓이와 조각 수로 구한다.",
+      "bReason": "방법을 말하고 예의 값까지 확인한다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원의 넓이를 조각 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\,\\mathrm{cm^2}$",
+            "$3$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "같은 원을 똑같이 나눌 때 조각 수가 많을수록 한 조각의 넓이는 {작아진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작아진다",
+            "줄어든다",
+            "작다",
+            "더 작아진다"
+          ]
+        }
+      ],
+      "cReason": "나누는 수가 클수록 한 조각이 작아지는 관계로 바꾸고 같은 원 조건을 넣었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2537,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc12",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "똑같이 나눈 조각의 넓이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "원을 중심에서 똑같이 나눈 한 조각의 넓이는 원의 넓이를 {조각 수로 나눈} 값이다.",
+        "studentC": "원을 중심에서 똑같이 나눈 한 조각의 넓이는 원의 넓이를 □ 값이다.",
+        "answers": [
+          "조각 수로 나눈"
+        ]
+      },
+      "sourceFingerprint": "8099f99380ef6291efd5b0ccf6fd6b80e77f4093ec51ac5b4e1f496184aea2fd",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cProposedAnswers": [
+        "작아진다"
+      ],
+      "cStudentAfter": "같은 원을 똑같이 나눌 때 조각 수가 많을수록 한 조각의 넓이는 □.",
+      "cMarkedSentence": "같은 원을 똑같이 나눌 때 조각 수가 많을수록 한 조각의 넓이는 {작아진다}.",
+      "cStudentSentence": "같은 원을 똑같이 나눌 때 조각 수가 많을수록 한 조각의 넓이는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작아진다",
+          "equivalents": [
+            "줄어든다",
+            "작다",
+            "더 작아진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원을 중심에서 똑같은 조각 여러 개로 나눌 때 한 조각의 넓이는 어떻게 구하나요? 넓이가 $24\\,\\mathrm{cm^2}$인 원을 똑같이 $8$조각으로 나눈 한 조각의 넓이도 구하세요.",
+        "answer": "원의 넓이를 조각 수로 나눕니다. $24\\div8=3$이므로 $3\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원의 넓이를 조각 수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\,\\mathrm{cm^2}$",
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 원을 똑같이 나눌 때 조각 수가 많을수록 한 조각의 넓이는 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다",
+            "줄어든다",
+            "작다",
+            "더 작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7078f85e2f18891022d8df39e336cb121ac7db3d876eea301e6603667bc6d931",
+      "questionRevision": "planning-e5e6-20261006-7078f85e2f18",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc13",
+      "bDecision": "revise",
+      "bPrompt": "원주가 $18.84\\,\\mathrm{cm}$인 원의 넓이를 원주율 $3.14$로 구하려고 합니다. 원주만 알 때 넓이를 구하는 순서를 설명하고 넓이를 구하세요.",
+      "bAnswer": "원주를 원주율로 나누어 지름 $6\\,\\mathrm{cm}$를 구하고, 그 절반인 반지름 $3\\,\\mathrm{cm}$를 구합니다. 넓이는 $3.14\\times3\\times3=28.26\\,\\mathrm{cm^2}$입니다.",
+      "bGoal": "원주에서 지름과 반지름을 거쳐 넓이를 구하는 순서를 안다.",
+      "bReason": "여러 단계를 순서대로 말하고 값도 확인한다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주를 원주율로 나누어 지름을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "지름의 절반으로 반지름을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$28.26\\,\\mathrm{cm^2}$",
+            "$28.26$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": "원주를 알면 원주를 원주율로 나누어 지름을, 그 절반으로 {반지름}을 구한 뒤 넓이를 구한다.",
+      "cReason": "원주→지름→반지름 순서 중 반지름 빈칸이 단계를 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2538,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc13",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "원주로 넓이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "원주를 알면 원주를 원주율로 나누어 지름을, 그 절반으로 {반지름}을 구한 뒤 넓이를 구한다.",
+        "studentC": "원주를 알면 원주를 원주율로 나누어 지름을, 그 절반으로 □을 구한 뒤 넓이를 구한다.",
+        "answers": [
+          "반지름"
+        ]
+      },
+      "sourceFingerprint": "c7e68d01c099bbf1558adcb31aba68e2d3a2b174f062f347dad4766e624c6bcd",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cFrozenDefinition": "원주를 알면 원주를 원주율로 나누어 지름을, 그 절반으로 {반지름}을 구한 뒤 넓이를 구한다.",
+      "cFrozenStudentSentence": "원주를 알면 원주를 원주율로 나누어 지름을, 그 절반으로 □을 구한 뒤 넓이를 구한다.",
+      "cProposedAnswers": [
+        "반지름"
+      ],
+      "cStudentAfter": "원주를 알면 원주를 원주율로 나누어 지름을, 그 절반으로 □을 구한 뒤 넓이를 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "반지름"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원주를 알면 원주를 원주율로 나누어 지름을, 그 절반으로 {반지름}을 구한 뒤 넓이를 구한다.",
+      "cStudentSentence": "원주를 알면 원주를 원주율로 나누어 지름을, 그 절반으로 □을 구한 뒤 넓이를 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "반지름",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원주가 $18.84\\,\\mathrm{cm}$인 원의 넓이를 원주율 $3.14$로 구하려고 합니다. 원주만 알 때 넓이를 구하는 순서를 설명하고 넓이를 구하세요.",
+        "answer": "원주를 원주율로 나누어 지름 $6\\,\\mathrm{cm}$를 구하고, 그 절반인 반지름 $3\\,\\mathrm{cm}$를 구합니다. 넓이는 $3.14\\times3\\times3=28.26\\,\\mathrm{cm^2}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주를 원주율로 나누어 지름을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "지름의 절반으로 반지름을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$28.26\\,\\mathrm{cm^2}$",
+              "$28.26$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주를 알면 원주를 원주율로 나누어 지름을, 그 절반으로 {반지름}을 구한 뒤 넓이를 구한다.",
+        "acceptedAnswers": [
+          [
+            "반지름"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7997ba8c30997c314c4da021dd22e02a0569d34250aeadbb9511961ed26d3596",
+      "questionRevision": "planning-e5e6-20261006-7997ba8c3099",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-xc14",
+      "bDecision": "revise",
+      "bPrompt": "원의 반지름이 $3$배가 되면 넓이는 몇 배가 되나요? 넓이를 구하는 식을 이용해 까닭을 설명하세요.",
+      "bAnswer": "$9$배가 됩니다. 반지름을 두 번 곱하므로 $3\\times3=9$배가 됩니다.",
+      "bGoal": "반지름이 두 번 곱해지므로 넓이는 제곱 배로 변함을 설명한다.",
+      "bReason": "배수만이 아니라 반지름을 두 번 곱한다는 까닭도 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$9$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "반지름을 두 번 곱하므로 $3\\times3$배",
+            "반지름이 두 번 곱해지기 때문이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": "반지름이 $3$배가 되면 원의 넓이는 {$9$배}가 된다.",
+      "cReason": "반지름 $3$배일 때 넓이 $9$배라는 명확한 배수 관계다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2539,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-5-4-xc14",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "term": "반지름이 $3$배일 때의 넓이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "반지름이 $3$배가 되면 원의 넓이는 {$9$배}가 된다.",
+        "studentC": "반지름이 $3$배가 되면 원의 넓이는 □가 된다.",
+        "answers": [
+          "$9$배"
+        ]
+      },
+      "sourceFingerprint": "582419155064d1a8fbb0ea11faac0711ec20c2b121d8371db528d03127d4f3fe",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "cFrozenDefinition": "반지름이 $3$배가 되면 원의 넓이는 {$9$배}가 된다.",
+      "cFrozenStudentSentence": "반지름이 $3$배가 되면 원의 넓이는 □가 된다.",
+      "cProposedAnswers": [
+        "$9$배"
+      ],
+      "cStudentAfter": "반지름이 $3$배가 되면 원의 넓이는 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "반지름이 $3$배가 되면 원의 넓이는 {$9$배}가 된다.",
+      "cStudentSentence": "반지름이 $3$배가 되면 원의 넓이는 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 반지름이 $3$배가 되면 넓이는 몇 배가 되나요? 넓이를 구하는 식을 이용해 까닭을 설명하세요.",
+        "answer": "$9$배가 됩니다. 반지름을 두 번 곱하므로 $3\\times3=9$배가 됩니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$9$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "반지름을 두 번 곱하므로 $3\\times3$배",
+              "반지름이 두 번 곱해지기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "반지름이 $3$배가 되면 원의 넓이는 {$9$배}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$9$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8041a87d1854bf94e962475f6e9deecb5899a09140ba0fada7504c13770b265e",
+      "questionRevision": "planning-e5e6-20261006-8041a87d1854",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -47,6 +47,9 @@ export const TEXTBOOK_CONTENT_CSS = `
 .tb-error-ox{display:flex;gap:2mm;padding-bottom:1mm}.tb-error-ox i{display:inline-flex;align-items:center;justify-content:center;width:7mm;height:7mm;border:.265mm solid #a7b7ac;border-radius:50%;font-style:normal;font-size:10pt;line-height:1;color:#6f8179}
 .tb-term-row{display:grid;grid-template-columns:34mm minmax(0,1fr);column-gap:3mm;align-items:start;padding:1.6mm 0;border-bottom:.265mm solid var(--tb-light);font-size:8.8pt;line-height:1.9;word-break:keep-all}
 .tb-term-name .tb-blank{width:100%;margin:0}.tb-term-definition p{margin:0}
+.tb-concept-questions{font-size:9pt;line-height:1.9;word-break:keep-all}
+.tb-question-task{margin-top:3mm;padding-bottom:3mm;border-bottom:.265mm solid var(--tb-light)}
+.tb-question-task>.tb-recall-text p{margin:0 0 2mm}.tb-question-task .tb-blank-sentence{margin-top:2mm}
 .tb-concept-rows{border-top:.6pt solid var(--tb-light)}
 .tb-concept-row{display:grid;grid-template-columns:23mm minmax(0,1fr);column-gap:3mm;padding:2.2mm 3mm;border-bottom:.55pt solid var(--tb-light);font-size:8.8pt;line-height:1.9;word-break:keep-all}
 .tb-concept-row:first-child{padding:3.2mm 4.5mm;border-bottom:0;border-left:2.3pt solid var(--tb-accent);border-radius:0 4mm 0 0;background:var(--tb-soft);color:var(--tb-dark);font-size:10pt;line-height:1.85}

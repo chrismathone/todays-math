@@ -1,0 +1,458 @@
+/** Authored twin review contract. No model calls, DB writer or approval-by-hash. */
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
+
+export const REVIEW_CHECKS = [
+  "answerCorrect",
+  "solutionCorrect",
+  "existenceUniqueness",
+  "choicesCorrect",
+  "figureConsistent",
+  "sameCoreConceptAndProcedure",
+  "distinctPresentation",
+  "naturalKorean",
+  "curriculumAppropriate",
+  "allStudentSurfacesInScope",
+  "unitFamilyFit",
+  "scoreAppropriate",
+];
+export const SURFACES = [
+  "stem",
+  "choices",
+  "figuresAndTables",
+  "notation",
+  "answer",
+  "studentSolution",
+  "prerequisites",
+];
+export const sha256 = (bytes) =>
+  createHash("sha256").update(bytes).digest("hex");
+export function canonicalJson(value) {
+  if (Array.isArray(value))
+    return "[" + value.map(canonicalJson).join(",") + "]";
+  if (value !== null && typeof value === "object")
+    return (
+      "{" +
+      Object.keys(value)
+        .sort()
+        .map((key) => JSON.stringify(key) + ":" + canonicalJson(value[key]))
+        .join(",") +
+      "}"
+    );
+  assert(
+    value !== undefined &&
+      (typeof value !== "number" || Number.isFinite(value)),
+    "Invalid digest value",
+  );
+  return JSON.stringify(value);
+}
+export const digest = (value) => sha256(canonicalJson(value));
+export const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
+// MOE 2022 general-education phase-in (93458): middle3 starts in 2027.
+// This offline pilot supports middle3/2015. A 2022 candidate requires new
+// template/standards and seven-surface review, never a relabel.
+export function middle3CurriculumForExamYear(year) {
+  assert(Number.isInteger(year) && year >= 2025);
+  return year >= 2027 ? "2022" : "2015";
+}
+
+export function newOutputPath(input, workspace = process.cwd()) {
+  const root = fs.realpathSync(workspace);
+  const output = path.resolve(workspace, input);
+  const within = path.relative(path.resolve(workspace), output);
+  assert(
+    within && !within.startsWith("..") && !path.isAbsolute(within),
+    "Output must stay in this task worktree",
+  );
+  let ancestor = output;
+  while (!fs.existsSync(ancestor)) ancestor = path.dirname(ancestor);
+  const realAncestor = fs.realpathSync(ancestor);
+  const realRelative = path.relative(root, realAncestor);
+  assert(
+    !realRelative.startsWith("..") && !path.isAbsolute(realRelative),
+    "Output junction escapes worktree",
+  );
+  assert(
+    !fs.existsSync(output),
+    "Refuse to overwrite an existing review version",
+  );
+  return output;
+}
+
+export function containedPath(root, relative) {
+  assert(
+    typeof relative === "string" &&
+      relative.length > 0 &&
+      !path.isAbsolute(relative),
+    "Expected a relative asset path",
+  );
+  const result = path.resolve(root, relative);
+  const within = path.relative(path.resolve(root), result);
+  assert(
+    within && !within.startsWith("..") && !path.isAbsolute(within),
+    "Asset path escapes its package",
+  );
+  const realRoot = fs.realpathSync(root);
+  const realFile = fs.realpathSync(result);
+  const realRelative = path.relative(realRoot, realFile);
+  assert(
+    realRelative &&
+      !realRelative.startsWith("..") &&
+      !path.isAbsolute(realRelative),
+    "Asset symlink escapes package",
+  );
+  return result;
+}
+
+export function studentPayload(candidate, assets = []) {
+  return {
+    twinExternalId: candidate.twinExternalId,
+    questionNumber: candidate.questionNumber,
+    grade: candidate.curriculumReview.grade,
+    curriculum: candidate.curriculumReview.edition,
+    questionType: candidate.questionType,
+    score: candidate.score,
+    content: candidate.content,
+    choices: candidate.choices.map((text, index) => {
+      const a = assets.find((asset) => asset.role === `choice:${index + 1}`);
+      return a && /^!\[[^\]]*\]\([^\n]+\)$/.test(text.trim())
+        ? `![선택지 ${index + 1}의 그래프](${a.studentPath})`
+        : text;
+    }),
+    figures: assets.map((a) => ({
+      role: a.role,
+      svgPath: a.studentPath,
+      sha256: a.svgSha256,
+      intendedWidthMm: a.intendedWidthMm,
+    })),
+  };
+}
+
+export function validateCandidate(candidate) {
+  assert.equal(candidate.schemaVersion, 1);
+  assert(
+    Number.isInteger(candidate.questionNumber) && candidate.questionNumber > 0,
+  );
+  assert(/^exam-twin-/.test(candidate.twinExternalId));
+  assert(typeof candidate.authorId === "string" && candidate.authorId.trim());
+  for (const key of ["content", "answer", "solution"])
+    assert(
+      typeof candidate[key] === "string" && candidate[key].trim(),
+      `Missing ${key}`,
+    );
+  assert(Number.isFinite(candidate.score) && candidate.score > 0);
+  assert(["객관식", "단답형", "서술형"].includes(candidate.questionType));
+  assert(Array.isArray(candidate.choices));
+  if (candidate.questionType === "객관식") {
+    assert.equal(candidate.choices.length, 5);
+    assert(candidate.choices.every((v) => typeof v === "string" && v.trim()));
+    assert.equal(
+      new Set(candidate.choices.map((v) => v.replace(/\s/g, ""))).size,
+      5,
+      "Duplicate displayed choices",
+    );
+    assert(
+      /^[①②③④⑤]$/.test(candidate.answer.trim()),
+      "A single choice answer is required",
+    );
+  } else assert.equal(candidate.choices.length, 0);
+  assert(Array.isArray(candidate.figureArtifacts));
+  assert.equal(candidate.curriculumReview.grade, "중3");
+  assert.equal(candidate.curriculumReview.edition, "2015");
+  assert.equal(
+    candidate.curriculumReview.status,
+    "author-proposed",
+    "Author cannot give final grade approval",
+  );
+  assert(
+    Array.isArray(candidate.curriculumReview.standardCodes) &&
+      candidate.curriculumReview.standardCodes.length,
+  );
+  assert(
+    candidate.variantDelta?.modes.some((m) =>
+      ["structure", "context", "representation", "inverse-target"].includes(m),
+    ),
+    "Numeric/name-only variants are insufficient",
+  );
+  for (const key of ["before", "after", "sharedConcept", "sharedProcedure"])
+    assert(candidate.variantDelta[key], `Missing delta ${key}`);
+  assert(
+    candidate.sourceReference?.sourceContentSha256?.match(/^[a-f0-9]{64}$/),
+  );
+  assert.notEqual(
+    candidate.twinExternalId,
+    candidate.sourceReference.externalId,
+  );
+  const metadata = candidate.metadata;
+  assert.equal(metadata?.grade, "중3");
+  assert.equal(metadata.curriculum?.sourceExam, "2015");
+  assert.equal(metadata.curriculum?.target, "2015");
+  assert(
+    Number.isInteger(metadata.sourceExamYear) &&
+      metadata.sourceExamYear >= 2025,
+    "Only 2025+ source exams",
+  );
+  assert.equal(
+    metadata.curriculum.sourceExam,
+    middle3CurriculumForExamYear(metadata.sourceExamYear),
+    "Source year/grade curriculum mismatch",
+  );
+  assert.equal(metadata.questionType, candidate.questionType);
+  assert.equal(metadata.score, candidate.score);
+  assert(
+    Object.hasOwn(metadata, "difficultyProposal") &&
+      metadata.difficultyStatus &&
+      Object.hasOwn(metadata, "problemTypeProposal") &&
+      metadata.problemTypeStatus,
+    "Missing classification evidence/status",
+  );
+  const assignment = metadata.assignment;
+  assert(
+    assignment && ["proposed", "pending"].includes(assignment.status),
+    "Author taxonomy is proposed or held",
+  );
+  assert(
+    assignment.unitId === null ||
+      /^[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}$/.test(assignment.unitId),
+  );
+  assert(
+    assignment.familyKey === null || typeof assignment.familyKey === "string",
+  );
+  assert(assignment.evidence, "Taxonomy hold/proposal requires evidence");
+  const rules = readJson(
+    new URL("../exam-paper/solver_rules.json", import.meta.url),
+  );
+  const studentText = [
+    candidate.content,
+    ...candidate.choices,
+    candidate.answer,
+    candidate.solution,
+  ].join("\n");
+  const violations = [...rules.forbiddenMethods, ...rules.forbiddenShapes]
+    .filter((r) => new RegExp(r.pattern, "i").test(studentText))
+    .map((r) => r.name);
+  return {
+    structurallyValid: true,
+    surfaceKeywordViolations: violations,
+    semanticGradeReviewStillRequired: true,
+  };
+}
+
+export function bindCandidate(file) {
+  const candidate = readJson(file);
+  const validation = validateCandidate(candidate);
+  const folder = path.dirname(file);
+  const assetPath = (relative) => {
+    // Author files may use a worktree-relative QA path. Resolve it only if the
+    // resulting physical file is still inside this candidate's own directory.
+    const local = relative.startsWith(".qa-artifacts/")
+      ? path.relative(folder, path.resolve(relative))
+      : relative;
+    return containedPath(folder, local);
+  };
+  const assets = candidate.figureArtifacts.map((a, index) => {
+    const role =
+      a.role === "choice" && Number.isInteger(a.choiceNumber)
+        ? `choice:${a.choiceNumber}`
+        : a.role;
+    assert(role === "stem" || /^choice:[1-5]$/.test(role));
+    assert(
+      Number.isFinite(a.intendedWidthMm) &&
+        a.intendedWidthMm > 0 &&
+        a.intendedWidthMm <= 100,
+    );
+    const spec = assetPath(a.specPath);
+    const svg = assetPath(a.svgPath);
+    const bytes = fs.readFileSync(svg);
+    const markup = bytes.toString("utf8");
+    const resources = (a.rasterResources ?? []).map((r) => {
+      const rasterPath = assetPath(r.path);
+      const generationPath = assetPath(r.generationPath);
+      const png = fs.readFileSync(rasterPath);
+      assert(
+        png
+          .subarray(0, 8)
+          .equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])),
+        "Only bound PNG raster resources are supported",
+      );
+      const generation = readJson(generationPath);
+      assert.equal(generation.tool, "built-in image_gen.imagegen");
+      assert.equal(generation.paidApiCliFallback, false);
+      assert(typeof generation.prompt === "string" && generation.prompt.trim());
+      assert(
+        markup.includes(`data:image/png;base64,${png.toString("base64")}`),
+        "Generated pixels are not bound into the authored figure",
+      );
+      return {
+        sourceRasterPath: rasterPath,
+        sourceGenerationPath: generationPath,
+        rasterSha256: sha256(png),
+        generationSha256: sha256(fs.readFileSync(generationPath)),
+        widthPx: png.readUInt32BE(16),
+        heightPx: png.readUInt32BE(20),
+      };
+    });
+    assert(
+      markup.includes("<svg") &&
+        !/<(?:script|foreignObject)\b|\bon\w+\s*=/i.test(markup),
+      "Unsafe figure markup",
+    );
+    for (const reference of markup.matchAll(
+      /(?:href|src)\s*=\s*["']([^"']+)/gi,
+    )) {
+      const value = reference[1];
+      assert(
+        value.startsWith("#") ||
+          resources.some(
+            (r) =>
+              value ===
+              `data:image/png;base64,${fs.readFileSync(r.sourceRasterPath).toString("base64")}`,
+          ),
+        "Unbound/external figure reference",
+      );
+    }
+    return {
+      role,
+      sourceSpecPath: spec,
+      sourceSvgPath: svg,
+      specSha256: sha256(fs.readFileSync(spec)),
+      svgSha256: sha256(bytes),
+      intendedWidthMm: a.intendedWidthMm,
+      studentPath: `figures/q${String(candidate.questionNumber).padStart(2, "0")}-${index + 1}.svg`,
+      ...(resources.length ? { resources } : {}),
+    };
+  });
+  const student = studentPayload(candidate, assets);
+  const assetBindings = assets.map(
+    ({ role, specSha256, svgSha256, intendedWidthMm, resources }) => ({
+      role,
+      specSha256,
+      svgSha256,
+      intendedWidthMm,
+      ...(resources
+        ? {
+            resources: resources.map(
+              ({ rasterSha256, generationSha256, widthPx, heightPx }) => ({
+                rasterSha256,
+                generationSha256,
+                widthPx,
+                heightPx,
+              }),
+            ),
+          }
+        : {}),
+    }),
+  );
+  return {
+    candidate,
+    candidateFile: path.resolve(file),
+    candidateFileSha256: sha256(fs.readFileSync(file)),
+    assets,
+    validation,
+    student,
+    studentDigest: digest(student),
+    assetDigest: digest(assetBindings),
+    candidateDigest: digest({ candidate, assetBindings }),
+  };
+}
+
+export function normalizeAnswer(text) {
+  return String(text)
+    .normalize("NFKC")
+    .replace(/\$(.*?)\$/g, "$1")
+    .replace(/^\\\(([\s\S]*)\\\)$/, "$1")
+    .replace(/\\(?:left|right)|\\[,!; ]|[~\s]/g, "")
+    .replace(/\\(?:dfrac|tfrac)/g, "\\frac")
+    .replace(/\\sqrt([0-9])/g, "\\sqrt{$1}")
+    .replace(/\^([0-9])/g, "^{$1}")
+    .replace(/\\(?:mathrm|text)\{(cm|m)\}/g, "$1");
+}
+
+export function evaluateReview(binding, solve, review, gates = {}) {
+  const reasons = [];
+  let mathematicalVerified = false;
+  let gradeReviewed = false;
+  const fail = (reason) => reasons.push(reason);
+  if (binding.validation.surfaceKeywordViolations.length)
+    fail("student-surface-out-of-grade-keyword");
+  if (!solve || !review) fail("independent-evidence-missing");
+  else {
+    if (
+      solve.studentDigest !== binding.studentDigest ||
+      review.studentDigest !== binding.studentDigest ||
+      review.candidateDigest !== binding.candidateDigest ||
+      review.assetDigest !== binding.assetDigest
+    )
+      fail("stale-review-digest");
+    if (
+      solve.solverId === binding.candidate.authorId ||
+      review.verifierId === binding.candidate.authorId ||
+      !solve.solverId ||
+      !review.verifierId
+    )
+      fail("author-is-not-independent-verifier");
+    if (
+      review.method !== "independent-solve-then-review" ||
+      review.solveDigest !== digest(solve)
+    )
+      fail("independent-solve-not-bound");
+    if (!["verified", "pending", "rejected"].includes(review.status))
+      fail("independent-review-status-missing");
+    else if (review.status !== "verified")
+      fail(`review-status-${review.status}`);
+    if (solve.status !== "solved") fail("independent-solve-not-complete");
+    if (
+      !solve.answer ||
+      normalizeAnswer(solve.answer) !==
+        normalizeAnswer(binding.candidate.answer)
+    )
+      fail("independent-answer-mismatch");
+    if (!solve.solution || !solve.evidence || !review.evidence)
+      fail("independent-reasoning-missing");
+    for (const key of REVIEW_CHECKS)
+      if (review.checks?.[key] !== true) fail(`review-${key}-not-passed`);
+    for (const surface of SURFACES) {
+      const audit = review.curriculumSurfaces?.[surface];
+      const status =
+        typeof audit === "object" && audit !== null ? audit.status : audit;
+      if (status !== "passed") fail(`curriculum-${surface}-not-passed`);
+      if (
+        typeof audit === "object" &&
+        audit !== null &&
+        !(audit.basis || audit.evidence)
+      )
+        fail(`curriculum-${surface}-basis-missing`);
+    }
+    // Each dimension is reported independently. A taxonomy hold cannot turn an
+    // actually checked answer into an unchecked one; no partial pass permits use.
+    const authentic = !reasons.some((r) =>
+      /digest|independent|author-is/.test(r),
+    );
+    mathematicalVerified =
+      authentic &&
+      !reasons.some((r) =>
+        /review-(answer|solution|existence|choices|figure)/.test(r),
+      );
+    gradeReviewed =
+      authentic &&
+      !reasons.some((r) =>
+        /curriculum|out-of-grade-keyword|review-allStudentSurfaces/.test(r),
+      );
+  }
+  if (gates.sourceIdentity !== "confirmed") fail("source-identity-held");
+  if (gates.taxonomy !== "reviewed") fail("taxonomy-held");
+  if (gates.rights !== "cleared") fail("rights-review-pending");
+  if (gates.similarity !== "reviewed") fail("similarity-review-pending");
+  // This task deliberately provides no native provenance/read-contract or writer.
+  fail("native-exam-twin-provenance-not-implemented");
+  return {
+    mathematicalVerified,
+    gradeReviewed,
+    overallVerified: false,
+    loadable: false,
+    reasons: [...new Set(reasons)],
+    productionWrites: false,
+  };
+}

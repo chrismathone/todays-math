@@ -1,0 +1,4452 @@
+{
+  "sourceCommit": "13bf05dce",
+  "fileCount": 889,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 85,
+      "sha256": "c7966411aa4881d67f0b06507682ece9f7abbad4107df492eb1afedd0afd3939"
+    },
+    {
+      "path": "answer-scope.md",
+      "bytes": 3839,
+      "sha256": "c1ed1032a11cc3b164244a72d48c86c3bd0cc5eb420bc7dfcca20a71a54e7295"
+    },
+    {
+      "path": "audit.json",
+      "bytes": 10944195,
+      "sha256": "6a3c2ef77bb3bf9bde6947cddd4552e59bedeb12f6e113865ea2e94e09506f68"
+    },
+    {
+      "path": "author-evidence/0000-0100-input.md",
+      "bytes": 50109,
+      "sha256": "945bf2d668637f0d7e0cd9d5ea9c6ecc9eea8d0eeb1415221ad110b5a2ecc3ec"
+    },
+    {
+      "path": "author-evidence/0000-0100-meta.json",
+      "bytes": 187,
+      "sha256": "0d6a65eab7081b686f73f9710673d1c5f550fa14725db78568286e827095ffcc"
+    },
+    {
+      "path": "author-evidence/0000-0100-raw.md",
+      "bytes": 89057,
+      "sha256": "83cb26474c5e7dd4ed21896e4dab87f9d53f44a4f6c5814d2fb6ad8b0f51399e"
+    },
+    {
+      "path": "author-evidence/0100-0200-input.md",
+      "bytes": 48211,
+      "sha256": "3e1783fb6963b64022a33149ecd2aad00b9155a1ad3341652bcac21b67ef9935"
+    },
+    {
+      "path": "author-evidence/0100-0200-meta.json",
+      "bytes": 189,
+      "sha256": "00155046c87a7b4bb60f25f535d3be8079fcfb6b180c0079c020a6c1d4611cf4"
+    },
+    {
+      "path": "author-evidence/0100-0200-raw.md",
+      "bytes": 87907,
+      "sha256": "98c0ac3994ab50e30896a3f24876a79e96bd12383ce343322a5be4e65e695d62"
+    },
+    {
+      "path": "author-evidence/0200-0300-input.md",
+      "bytes": 47328,
+      "sha256": "d5568c91fbfd0adf9c5fcc8e7337a1c4b799558af7fa398b664f26c22f0d1b1d"
+    },
+    {
+      "path": "author-evidence/0200-0300-meta.json",
+      "bytes": 189,
+      "sha256": "aa146e6a7aee59017aca27eedbe0367190d662ba56c581c406295d84da752d97"
+    },
+    {
+      "path": "author-evidence/0200-0300-raw.md",
+      "bytes": 102535,
+      "sha256": "a0962d3137dea066c9368fa516384f740074867a83f8a41c0efd549c246bedea"
+    },
+    {
+      "path": "author-evidence/0300-0400-input.md",
+      "bytes": 54092,
+      "sha256": "574b09b704dfc38e728493c3d985449d4b4c76fb210c7b7e234531ffe442c128"
+    },
+    {
+      "path": "author-evidence/0300-0400-meta.json",
+      "bytes": 190,
+      "sha256": "61b256945cf1aa0210ba45fd6c0d2da92884b0d8c034e49072e89d43455a9527"
+    },
+    {
+      "path": "author-evidence/0300-0400-raw.md",
+      "bytes": 94607,
+      "sha256": "350f340364d8e0f3ddc76c72caf50ed85f305fc1f80573615e7fa796985853cf"
+    },
+    {
+      "path": "author-evidence/0400-0500-input.md",
+      "bytes": 52608,
+      "sha256": "d9f69b76962cb2bbfa19e3fb89ca629099a4772cb0937355bda18efeb15e6603"
+    },
+    {
+      "path": "author-evidence/0400-0500-meta.json",
+      "bytes": 189,
+      "sha256": "39c6ad5f266b477c11e427cbd3f09670d10ed3cb9a70ba6cb4d33be3d2e99c1f"
+    },
+    {
+      "path": "author-evidence/0400-0500-raw.md",
+      "bytes": 80884,
+      "sha256": "7d6df727ef10762ace98bd4313151c1d859fbc7b481fbb2b2f9c020a20f07bf5"
+    },
+    {
+      "path": "author-evidence/0500-0600-input.md",
+      "bytes": 51555,
+      "sha256": "2b80f2b7a7b06df306b0424b4235a8fb31f04507f63c08ec8b6c900a685d3d74"
+    },
+    {
+      "path": "author-evidence/0500-0600-meta.json",
+      "bytes": 189,
+      "sha256": "3bcf8f672698a0a44852d6e6b03cd4f03215b7e0ac308814b29b79510d128b66"
+    },
+    {
+      "path": "author-evidence/0500-0600-raw.md",
+      "bytes": 84812,
+      "sha256": "54ee68cbd26e204bdde6d87950513caf006351a533042c5c28f5feadf4ae78d1"
+    },
+    {
+      "path": "author-evidence/0600-0700-input.md",
+      "bytes": 56473,
+      "sha256": "009bf7f0722df15c70777056e683661860bad1c61adb8b0bdf47635fa3349795"
+    },
+    {
+      "path": "author-evidence/0600-0700-meta.json",
+      "bytes": 189,
+      "sha256": "d86c1e21a36affe5340d555d445250e30680ba1a8d1637947891e7d25bffaba9"
+    },
+    {
+      "path": "author-evidence/0600-0700-raw.md",
+      "bytes": 80997,
+      "sha256": "63a7a9146b2966856ee6a6bffd055397417443cc1485cb3bbbef51a959c662e0"
+    },
+    {
+      "path": "author-evidence/0700-0800-input.md",
+      "bytes": 52606,
+      "sha256": "2b283535f388762ec0a1f541970a3dcef0c00bb0cc51bcbf0f8f365c2f611ad3"
+    },
+    {
+      "path": "author-evidence/0700-0800-meta.json",
+      "bytes": 189,
+      "sha256": "15f929dffcfafd84df3e80c8dc7e6fa4be3dc38df436432a937d483e5c8287e7"
+    },
+    {
+      "path": "author-evidence/0700-0800-raw.md",
+      "bytes": 86494,
+      "sha256": "2f68cc0d9c27db881d21cf15c4e63762be5065ca80229a2140c0ccb1539305fd"
+    },
+    {
+      "path": "author-evidence/0800-0900-input.md",
+      "bytes": 52261,
+      "sha256": "58f24790cbef1ececb12682d572802c31f01791db5c27107ac7379c757aae018"
+    },
+    {
+      "path": "author-evidence/0800-0900-meta.json",
+      "bytes": 189,
+      "sha256": "11de041f54ace730d813929d71e09d762f10fb3dab81b7498866a033c663ef3e"
+    },
+    {
+      "path": "author-evidence/0800-0900-raw.md",
+      "bytes": 79913,
+      "sha256": "24f738e88246a4434258c3eebc4d2db176afa9754f4d42c5d4d4cb52f025a31c"
+    },
+    {
+      "path": "author-evidence/0900-1000-input.md",
+      "bytes": 54050,
+      "sha256": "fa5e0842c67a5978f15af36446deb24ffe04a2f43c91f194d5933b161e1ecde3"
+    },
+    {
+      "path": "author-evidence/0900-1000-meta.json",
+      "bytes": 190,
+      "sha256": "c78a7db77e0c95666a10a2f97610393804d3a57467d129ccfcf20d46a9aa1fa6"
+    },
+    {
+      "path": "author-evidence/0900-1000-raw.md",
+      "bytes": 80564,
+      "sha256": "070d700932d7e277ca536d4404484699c5055c637a95d3334da62749815af35c"
+    },
+    {
+      "path": "author-evidence/1000-1100-input.md",
+      "bytes": 50602,
+      "sha256": "de1488613059e83573e63d20e3792c877bc77ae2a72ea5cf85bd3ff24857de76"
+    },
+    {
+      "path": "author-evidence/1000-1100-meta.json",
+      "bytes": 191,
+      "sha256": "91e9f942f0b6ac50b87b88e465f49b89232e99692be57db4255bbc4e2601e4ea"
+    },
+    {
+      "path": "author-evidence/1000-1100-raw.md",
+      "bytes": 81504,
+      "sha256": "fcdc94c804833e2f6e60ac59d1647a7aa602ba3d9c5c30bcd7775ca8f3503db9"
+    },
+    {
+      "path": "author-evidence/1100-1200-input.md",
+      "bytes": 53705,
+      "sha256": "f0f3492691089b1cb1cde8b21ab7ef1c019354db403fd624c8ac05cf2b3fa09a"
+    },
+    {
+      "path": "author-evidence/1100-1200-meta.json",
+      "bytes": 191,
+      "sha256": "ef6ea2b0c3282db6125c81be08803dab02da6838d9503d1d9cedcbb83ec3ec74"
+    },
+    {
+      "path": "author-evidence/1100-1200-raw.md",
+      "bytes": 92480,
+      "sha256": "e8ca08681db9c87815de8e9d48641337b0ead1329b5227c168f12a0f67436c74"
+    },
+    {
+      "path": "author-evidence/1200-1300-input.md",
+      "bytes": 55509,
+      "sha256": "3e049aec7546cd5a4494634b7cef95ec5bc575583e932f3835c34f9b9ed44a0b"
+    },
+    {
+      "path": "author-evidence/1200-1300-meta.json",
+      "bytes": 191,
+      "sha256": "b8c010a4b185243347f1e292f00289bc535339101eb796b9b2b4bfb494fc9ab8"
+    },
+    {
+      "path": "author-evidence/1200-1300-raw.md",
+      "bytes": 97427,
+      "sha256": "5f0a8b9d80ce6d2b4bab9a398b6b11e639b4a8e786cfa7f7088d1f2f73dd6238"
+    },
+    {
+      "path": "author-evidence/1300-1400-input.md",
+      "bytes": 55584,
+      "sha256": "0d109a998b2aad42bb8d7515906e1aa2452d6d32056e8798b2f7c2fea6340cd1"
+    },
+    {
+      "path": "author-evidence/1300-1400-meta.json",
+      "bytes": 191,
+      "sha256": "e031a3a4bfc53a42579c81a72b9c094a5de1bda41a34f0662c2f66d2258fe29a"
+    },
+    {
+      "path": "author-evidence/1300-1400-raw.md",
+      "bytes": 85058,
+      "sha256": "d7d27a714619d613bc7d418b98ee27649fcef982e3af762c9de981b9d69cb8f6"
+    },
+    {
+      "path": "author-evidence/1400-1500-input.md",
+      "bytes": 51232,
+      "sha256": "66cb2163b75726e35981fb8b0e210dd5f5105982535a0377e99abb817b2547d3"
+    },
+    {
+      "path": "author-evidence/1400-1500-meta.json",
+      "bytes": 191,
+      "sha256": "b52d310b47da281750211aaee478b8e54b712837a53f9aec79232fdea9158ae2"
+    },
+    {
+      "path": "author-evidence/1400-1500-raw.md",
+      "bytes": 80892,
+      "sha256": "91b63fecf395f0b31ea8080e40232ab2fb1193faad6aafaec2d169e9700c3873"
+    },
+    {
+      "path": "author-evidence/1500-1600-input.md",
+      "bytes": 51203,
+      "sha256": "8c198642e661480bfe08fa8ed17bbb11927453f40c0dbd8a385448bd2b91bc64"
+    },
+    {
+      "path": "author-evidence/1500-1600-meta.json",
+      "bytes": 191,
+      "sha256": "dac16920a37cc1c4c25e61e64960f5ab504ff0e708f0eb732a7380f51ed8b687"
+    },
+    {
+      "path": "author-evidence/1500-1600-raw.md",
+      "bytes": 72285,
+      "sha256": "875ee9ba2c128eb162d76efb25ba737d3595ab821af0b845777f338b8d73b220"
+    },
+    {
+      "path": "author-evidence/1600-1700-input.md",
+      "bytes": 53509,
+      "sha256": "c58c98b7e9aa16df6710b13c81fdc114474f7479462201ef46cb2fb35e488920"
+    },
+    {
+      "path": "author-evidence/1600-1700-meta.json",
+      "bytes": 191,
+      "sha256": "d1365bf2264f15a8db8d9c4fdad055bd60a07ca6d2327893bda66dd04af8bc83"
+    },
+    {
+      "path": "author-evidence/1600-1700-raw.md",
+      "bytes": 85094,
+      "sha256": "a1d41fd9c8fe63643d8c65dc1be1ba7032b7e5fc0ea55e89ddef218f5307d86d"
+    },
+    {
+      "path": "author-evidence/1700-1800-input.md",
+      "bytes": 57315,
+      "sha256": "4cae2c99233504bf30d63ff1659e11ba4c1e116dc24ddd31e6cb170b877a7f86"
+    },
+    {
+      "path": "author-evidence/1700-1800-meta.json",
+      "bytes": 223,
+      "sha256": "53cc6b5edea047c273a79d547bbeebbf62c0d7bc57e64b8a83a96c0568f5d930"
+    },
+    {
+      "path": "author-evidence/1700-1800-raw.md",
+      "bytes": 68650,
+      "sha256": "d54940784e173ca3de60905ffcefbba69ea49b5d460570da53d34f5fda6f1948"
+    },
+    {
+      "path": "author-evidence/1800-1900-input.md",
+      "bytes": 52827,
+      "sha256": "575004cbd9c536be2785401762984a88d764cb7b781db79c41b35a726d806631"
+    },
+    {
+      "path": "author-evidence/1800-1900-meta.json",
+      "bytes": 223,
+      "sha256": "702b884ba73b0d7d0f9aaafc4e13d34b8b63e753520e01e9b8d866f6a03dc6ae"
+    },
+    {
+      "path": "author-evidence/1800-1900-raw.md",
+      "bytes": 67525,
+      "sha256": "8d90bb8905798d1ed1dcf1e164835c6e829f0e9bf4839627885ddd8769989229"
+    },
+    {
+      "path": "author-evidence/1900-2000-input.md",
+      "bytes": 54162,
+      "sha256": "1a6e47e93dbc09f951fdbbb875507185614bdff6b61bcccd50a9b896eed8f0a6"
+    },
+    {
+      "path": "author-evidence/1900-2000-meta.json",
+      "bytes": 223,
+      "sha256": "a3dd3d73540d3d8decd35072417b1bdff9606bd6d6d2c340c0581777de75252f"
+    },
+    {
+      "path": "author-evidence/1900-2000-raw.md",
+      "bytes": 66622,
+      "sha256": "6284df9d38861141113c71debcdf41de14cc10335977836754c46e92b329af8d"
+    },
+    {
+      "path": "author-evidence/2000-2100-input.md",
+      "bytes": 57604,
+      "sha256": "97e84aa7c65bb819d9c9182d5f211f06393230f0848a7e83ec19d4c78c3b668c"
+    },
+    {
+      "path": "author-evidence/2000-2100-meta.json",
+      "bytes": 223,
+      "sha256": "b8f87c95138c0ff9ab8cf50840a059c164e64f533ad75479fd73b46811dff57b"
+    },
+    {
+      "path": "author-evidence/2000-2100-raw.md",
+      "bytes": 67811,
+      "sha256": "bc4abd50c7869643fae99d7daf2e06dc40f1b9b05632661edeb928c48f2a0f8e"
+    },
+    {
+      "path": "author-evidence/2100-2200-input.md",
+      "bytes": 58056,
+      "sha256": "8f149fd8adfc4484993d7bba77fb8261b6668c80fca7f86cb161d639836f20e6"
+    },
+    {
+      "path": "author-evidence/2100-2200-meta.json",
+      "bytes": 223,
+      "sha256": "12b4d3fef2b5a2564d7dd76a0709c054acee9c7e2aea522b83863b544aadf3ff"
+    },
+    {
+      "path": "author-evidence/2100-2200-raw.md",
+      "bytes": 73999,
+      "sha256": "295576b950ddf2247e9bb6ad847d811e045d38c1a0cc5c9469a38d389c04170f"
+    },
+    {
+      "path": "author-evidence/2200-2300-input.md",
+      "bytes": 52660,
+      "sha256": "9a2d6ba469e3a377a26cce26ac44936fe90c4ea6c1ee24cd9e6415ca00cd7ff9"
+    },
+    {
+      "path": "author-evidence/2200-2300-meta.json",
+      "bytes": 223,
+      "sha256": "44736fcec7f68ef8d8dfa426328aeaa49beeece57edeeb294fe2bd172f0b4af2"
+    },
+    {
+      "path": "author-evidence/2200-2300-raw.md",
+      "bytes": 70566,
+      "sha256": "2f1f77ba0410fdc44e307a37d717a655482a4bd8de7fb45b4227de68f7888fc7"
+    },
+    {
+      "path": "author-evidence/2300-2400-input.md",
+      "bytes": 56692,
+      "sha256": "e6cf43b7b713d0a235ba1f5f43636bca3f7a247ef1c35ba469fcaf5c75344d02"
+    },
+    {
+      "path": "author-evidence/2300-2400-meta.json",
+      "bytes": 223,
+      "sha256": "063d205a5a0c1b2e431bdead907749e2ed3d9ac00626db1a114dbe1dac1d0ba9"
+    },
+    {
+      "path": "author-evidence/2300-2400-raw.md",
+      "bytes": 68544,
+      "sha256": "32db6ea160860c14901b1e04082db5ad39c12ca37da5941690ccb19c35a76d3d"
+    },
+    {
+      "path": "author-evidence/2400-2500-input.md",
+      "bytes": 51844,
+      "sha256": "af35e2f8a961aa294efddcdd574ed3a772f70f70e34fd1aa62bdd7723f8a6382"
+    },
+    {
+      "path": "author-evidence/2400-2500-meta.json",
+      "bytes": 223,
+      "sha256": "f633c1993fdc731c1be754d74bb220f7a645df42db1ce41abe9d5c8769952f6c"
+    },
+    {
+      "path": "author-evidence/2400-2500-raw.md",
+      "bytes": 67488,
+      "sha256": "e2f76bfcc0a52df9d118b0874ef011bdd20b1a6c1a3698384d744d0b29fbbfe1"
+    },
+    {
+      "path": "author-evidence/2500-2600-input.md",
+      "bytes": 50590,
+      "sha256": "5aded4dd41954d8f781cb955b1dc768c373d4b5707888dd018f7d192845ab62e"
+    },
+    {
+      "path": "author-evidence/2500-2600-meta.json",
+      "bytes": 223,
+      "sha256": "524f4cc11552743cb1443d13c4cada6f1ac8ace4fdba9ac57a2fefffa3688774"
+    },
+    {
+      "path": "author-evidence/2500-2600-raw.md",
+      "bytes": 63876,
+      "sha256": "6562aa291c052169eb38150aa69a0d2116195af16fd93411edd5e64208555ba6"
+    },
+    {
+      "path": "author-evidence/2600-2700-input.md",
+      "bytes": 50533,
+      "sha256": "23881b13460f3fe1287f7f1fede437180d6c08dee1bf4c2f25e26eee8e061a94"
+    },
+    {
+      "path": "author-evidence/2600-2700-meta.json",
+      "bytes": 223,
+      "sha256": "97fd0101e2cafe63e4e0ba7d81ddae09a7bc2ecabe0134c5a418f07c4aab2917"
+    },
+    {
+      "path": "author-evidence/2600-2700-raw.md",
+      "bytes": 72663,
+      "sha256": "67202de3b8e2e8fd0f4f06d174d7ea044aa237e5f6e4441e1d56e5ad6b88ad13"
+    },
+    {
+      "path": "author-evidence/2700-2779-input.md",
+      "bytes": 39327,
+      "sha256": "11c99e12978c385e852ebd4a75c7f425457a822519f3a76260af82582b73a392"
+    },
+    {
+      "path": "author-evidence/2700-2779-meta.json",
+      "bytes": 223,
+      "sha256": "5fec5f8b8617ca8725753be51a91933aae53256a8fe2111b253d6d38980aa45a"
+    },
+    {
+      "path": "author-evidence/2700-2779-raw.md",
+      "bytes": 58410,
+      "sha256": "ef6a9906bd750ba764f9f7ec922b129065813d56b93f8ac011d44145f5b04296"
+    },
+    {
+      "path": "blind-recheck-requests.json",
+      "bytes": 2380,
+      "sha256": "0cd67badf1918348c8f64edaf1d7a88bcb81c621899711babc5f1325fe23ed5e"
+    },
+    {
+      "path": "cohort-amendment-overrides.json",
+      "bytes": 613834,
+      "sha256": "70bf70c4c017a4f8707618688d128705b365204db63417b3f1cd3c388426487b"
+    },
+    {
+      "path": "coordinator-blind-feedback.json",
+      "bytes": 18069,
+      "sha256": "24bd4dddbc4f7f732e62418b8528fd6d7959dcbf8fa6c09c1cdfe291b81f6692"
+    },
+    {
+      "path": "coordinator-key-feedback.json",
+      "bytes": 16101,
+      "sha256": "adb8ff878eeca69be768538406c1154a00b6b6d9d566ab48e7c89f05828eb26c"
+    },
+    {
+      "path": "core-definition-validation.json",
+      "bytes": 45516,
+      "sha256": "37dfda6c30bea4f04b5026474e241a3a9d2493a6a32fdf7d795220f43d6e6204"
+    },
+    {
+      "path": "core-repair-evidence.json",
+      "bytes": 62372,
+      "sha256": "75903f969b819da3f29e0087e1bdf2fe52e2d9e3231663497c71ef4cd094d2c3"
+    },
+    {
+      "path": "display-normalization.json",
+      "bytes": 154461,
+      "sha256": "f876f7ee9bebe4e3947c4412a271bb57380d31ac144c0489e15de14862b5e0d9"
+    },
+    {
+      "path": "draft-validation.json",
+      "bytes": 270,
+      "sha256": "73c8bea9cac2180506b0d49a4431b8271de5fc96333a585ba0b756a0e45667c8"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-000-020.json",
+      "bytes": 164518,
+      "sha256": "4fd99b5ec4db93c5253bf73bd157b162c250873cd3aaede417558885801082bf"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch02.json",
+      "bytes": 153928,
+      "sha256": "d0d080d83107d86922e3fcc6d3bdf7fa4693c69e47e42ef2338ab6ab9067bf60"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch03.json",
+      "bytes": 145761,
+      "sha256": "3afc1637a23bd1a958ca2e7a408d3ab8284f6572f637f391f957324afb81f0ba"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch04.json",
+      "bytes": 141121,
+      "sha256": "57efa64c9f5a6d77331d019bde9389c946b679a8c4d0c31dfe8fe729d708548c"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch05.json",
+      "bytes": 145851,
+      "sha256": "4106f9765c70af785c74edde4af8a5362340518e5dc435b8829f6995ee81e565"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch06.json",
+      "bytes": 156267,
+      "sha256": "3a0ac13199f1a01d948bfc6fd4e521981744ac38ad006c1efb1f6c4dfcf39c3e"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch07.json",
+      "bytes": 140444,
+      "sha256": "09a11185c11995b94c8e04c6e8a79dc6f32d74769b3f88950edcef609173e8bd"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch08.json",
+      "bytes": 167337,
+      "sha256": "da8d867127d9050101f20ae7224015fefa550880552ae7be1b297f5d129b4c85"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch09.json",
+      "bytes": 81201,
+      "sha256": "6cd6a83cafe2960976a97fb4886d9595d17ce45ac172be2f0aa26a65a740fe60"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch10.json",
+      "bytes": 161224,
+      "sha256": "590255c7ce851e48434d7e414483e66916f2cdf56dca04b0abb66f4302749aa1"
+    },
+    {
+      "path": "e3e4-ctx58-independent-dispositions-batch11.json",
+      "bytes": 228006,
+      "sha256": "2e3e82ef135b79f694da154ac2a1a395b33cc618009fbecc6e47e9323fb1c712"
+    },
+    {
+      "path": "final-core-proposals.json",
+      "bytes": 130819,
+      "sha256": "2b68886c8e9e6cd5e8692948f937a5c3b8f777925a89e430fcbc72d63a065458"
+    },
+    {
+      "path": "final-coverage-validation.json",
+      "bytes": 1626,
+      "sha256": "d4517ee16ab0bf9ac5a7081bbc0bb8cdf19b23adebaa3551cfd2a62cccef5e90"
+    },
+    {
+      "path": "final-current-independent-feedback.json",
+      "bytes": 1104615,
+      "sha256": "2b938f04f6edf5a287ec25c21936b78ef2fa425e350bb1da961f9b98fafbfca4"
+    },
+    {
+      "path": "final-editorial-ledger.json",
+      "bytes": 1662156,
+      "sha256": "c29d13550abe6eb2f2921161d5f1ce690b6b9d21b730db2b1760d1eb0f9fadc2"
+    },
+    {
+      "path": "final-example-requirements.json",
+      "bytes": 61249,
+      "sha256": "157ade65b08a6720d2fea2e09e0f0ca5855c79eca96d9995c88ea82c802e3c6a"
+    },
+    {
+      "path": "final-normalized-proposal-hashes.json",
+      "bytes": 975618,
+      "sha256": "7597b86c8930a352987a190393e41533d2e9bdc284c1c9175ecf4aa416aea682"
+    },
+    {
+      "path": "final-open-issues.json",
+      "bytes": 292,
+      "sha256": "7bbd6b654525bb200983dae6e54caf0b2fd97e5030aa0dd543aff63681d80c6f"
+    },
+    {
+      "path": "final-reading-evidence/resume-0000-0564-e47bdea00d98-input.json",
+      "bytes": 2878484,
+      "sha256": "859c0a62d62d9d976e88a3c76ed3bc21b54a6e7605becf9ba049e28bda5d13b3"
+    },
+    {
+      "path": "final-reading-evidence/resume-0339-0467-b019ff4996dc-input.json",
+      "bytes": 631604,
+      "sha256": "1d96a359bb4c90c2e3571009796585610da4ec3ccb2e9e89aa8e209114ffd469"
+    },
+    {
+      "path": "final-reading-evidence/resume-0473-0588-b760655e0eb5-input.json",
+      "bytes": 531204,
+      "sha256": "dddd4436579e4298855fe382012118a794964bacfbf039ca9145282803542cdc"
+    },
+    {
+      "path": "final-reading-evidence/resume-0592-0713-668738d83392-input.json",
+      "bytes": 577601,
+      "sha256": "ff0830941e51969f982701480a10d3550b14efa4052804b36eea58a381a08715"
+    },
+    {
+      "path": "final-reading-evidence/resume-0714-0806-ae69664355f1-input.json",
+      "bytes": 432991,
+      "sha256": "339fc7717feb1d81a1a4ff0d347a74991560c591678343c08b6347ba2aede5d6"
+    },
+    {
+      "path": "final-reading-evidence/resume-0807-0960-4b85cec01764-input.json",
+      "bytes": 726945,
+      "sha256": "ce62d85ac8ad95a7b3848f0e7008f28e6efceb4b1a12adc5becbd1da9e8a7ba9"
+    },
+    {
+      "path": "final-reading-evidence/resume-0960-1044-799e97b79a7e-input.json",
+      "bytes": 400236,
+      "sha256": "f0f1ccb0976da17113844afedff29493832f57c6118c28ef8e03f48cd5789f6c"
+    },
+    {
+      "path": "final-reading-evidence/resume-1047-1119-3b4207b78353-input.json",
+      "bytes": 338739,
+      "sha256": "b7fbfbd68ffd61908f27508885f40d53d42d745b24a4cb4b26791ba0f9c1359b"
+    },
+    {
+      "path": "final-reading-evidence/resume-1125-1191-619d8976f686-input.json",
+      "bytes": 337578,
+      "sha256": "7f07aa56fdf9e7364410bf7cbdbbccca1064bd7e9f222f1bd5e6b253c54cd29f"
+    },
+    {
+      "path": "final-reading-evidence/resume-1192-1262-6fbfce96ba95-input.json",
+      "bytes": 354723,
+      "sha256": "191b29cf6af325b1169077f83397d0f039aa410490b7dddc8057fb27a01b34e6"
+    },
+    {
+      "path": "final-reading-evidence/resume-1262-1323-9164388c9ccc-input.json",
+      "bytes": 316343,
+      "sha256": "a570d87a59e44bdfcd920d001fe0b5ef9806a31261137da3f89b9c21543ab21e"
+    },
+    {
+      "path": "final-reading-evidence/resume-1323-1423-4282fc46782a-input.json",
+      "bytes": 468409,
+      "sha256": "715c45f4733eb337fdfb322a314edadf6372237dd5eecea24d1bc6a6280c813e"
+    },
+    {
+      "path": "final-reading-evidence/resume-1423-1520-7679a62e8b13-input.json",
+      "bytes": 465572,
+      "sha256": "f4c47d0322bf845008a713c1649f3053ce9e52c5a0f74b91f28936129b90e752"
+    },
+    {
+      "path": "final-reading-evidence/resume-1520-1624-9f11bf148ad3-input.json",
+      "bytes": 482059,
+      "sha256": "25e34793853b8df759956ae2851f5644670593dd30cb8a50570f98d3386243b2"
+    },
+    {
+      "path": "final-reading-evidence/resume-1628-1704-745febd3632c-input.json",
+      "bytes": 375772,
+      "sha256": "35c712fb2fbb3c6f91a68492c09eeb33f72cf9610079fa7e178cb5b4a484352b"
+    },
+    {
+      "path": "final-reading-evidence/resume-1708-1774-2d7834dcaeed-input.json",
+      "bytes": 307390,
+      "sha256": "82e39bd82d4fdb563b0bb389eec1f1787b58ac5d23aa7aa7bf174d211aaae705"
+    },
+    {
+      "path": "final-reading-evidence/resume-1774-1844-ba37ffa3a0ec-input.json",
+      "bytes": 326080,
+      "sha256": "32bd49f3c8a69ab5473769125cca3e2dd13f282d7c13521764ba51ccbeafefd5"
+    },
+    {
+      "path": "final-reading-evidence/resume-1847-1908-bd8923099391-input.json",
+      "bytes": 277107,
+      "sha256": "b0bef75d5bd32dc2f5121f2188134696815edd15fdfc00ea2bc170d58729d973"
+    },
+    {
+      "path": "final-reading-evidence/resume-1908-1950-81f44a2d1de0-input.json",
+      "bytes": 177345,
+      "sha256": "475efa538e158bff038162d2f931fc6e78e2f8f5ba5124a969f5e45206f97448"
+    },
+    {
+      "path": "final-reading-evidence/resume-1950-1995-e2a94592e6eb-input.json",
+      "bytes": 194097,
+      "sha256": "206e9f2726183275cc5970e946f1144496ee6e849a51df85e1df3c4a49492f73"
+    },
+    {
+      "path": "final-reading-evidence/resume-2000-2042-a7d5e1e39905-input.json",
+      "bytes": 190832,
+      "sha256": "76ad1a1c991a21c40de9ffb69f6e3cd541cfa2413ca45da8b582fbdf2f9c894e"
+    },
+    {
+      "path": "final-reading-evidence/resume-2043-2073-071e3bf03fe8-input.json",
+      "bytes": 112667,
+      "sha256": "b5b37570cda04b8b9f64c287e53e049f2fdfbce72e13638def22dec3638e3626"
+    },
+    {
+      "path": "final-reading-evidence/resume-2043-2103-ae9b42499df6-input.json",
+      "bytes": 261778,
+      "sha256": "2424537921f9562e98b499a8bab3899f2beb9a8b149a6b08317a46c7469127c1"
+    },
+    {
+      "path": "final-reading-evidence/resume-2073-2103-747b09696f0a-input.json",
+      "bytes": 118683,
+      "sha256": "d1b9ba42578b309737f5e45a549cb05b790b0ec17f5c20ede199504d883ce26e"
+    },
+    {
+      "path": "final-reading-evidence/resume-2103-2133-e80897ae9e06-input.json",
+      "bytes": 121478,
+      "sha256": "4ace711c9ba95f5744a1fc8520f07cd8278aa03b86d5aebb482d07b796093593"
+    },
+    {
+      "path": "final-reading-evidence/resume-2106-2171-bd45e8df87c7-input.json",
+      "bytes": 294929,
+      "sha256": "496f16959d82e914fe569c10df08158501616862219e5afdcdb8f0b44f01d8ab"
+    },
+    {
+      "path": "final-reading-evidence/resume-2133-2163-79bbb1645b3f-input.json",
+      "bytes": 121428,
+      "sha256": "4e62b0516b7c90b3f141fad2f838001a367f38a980d9a0cac30228a6b949ae8a"
+    },
+    {
+      "path": "final-reading-evidence/resume-2163-2193-34e1e5cca1dc-input.json",
+      "bytes": 116567,
+      "sha256": "4ae8622b024f078d1c2b768583839b0c4ed0bcba7bae565290e737d29c257037"
+    },
+    {
+      "path": "final-reading-evidence/resume-2183-2234-c2cd128aa55f-input.json",
+      "bytes": 224519,
+      "sha256": "6a0e90c80ccefd5d42e968492c6b345e0dc6edf799a70c3c292f394b9bbe224f"
+    },
+    {
+      "path": "final-reading-evidence/resume-2193-2223-2cac94555d6a-input.json",
+      "bytes": 117780,
+      "sha256": "9eb6d2640abe6136bbcc64241ab1ffe1ba472a36d8ce9e1c2ab83acf77a55438"
+    },
+    {
+      "path": "final-reading-evidence/resume-2223-2253-4cdd87bc97db-input.json",
+      "bytes": 119415,
+      "sha256": "5371e48611b35990dd33885f1db0c1d06bff8c781268fc1d88713b64ffeea65c"
+    },
+    {
+      "path": "final-reading-evidence/resume-2235-2282-fe768174ea68-input.json",
+      "bytes": 205919,
+      "sha256": "fe4e90449341d1981ff085babe8833dd17a0936097526018ccb4b77f8ac9f523"
+    },
+    {
+      "path": "final-reading-evidence/resume-2253-2283-ca3e0495463a-input.json",
+      "bytes": 118221,
+      "sha256": "ba6ee985a826da9d720f54c8a64da82403101b37a790347f1d1385c9eedcdd02"
+    },
+    {
+      "path": "final-reading-evidence/resume-2282-2354-9c4e19b8035c-input.json",
+      "bytes": 322937,
+      "sha256": "951ddd6ae3a707557644a3587a4a08dc7019ad0a1d9aacaa4f758f984e4945bd"
+    },
+    {
+      "path": "final-reading-evidence/resume-2283-2313-a29c193fc4b4-input.json",
+      "bytes": 124908,
+      "sha256": "e7f0a914f7ca09d8d791d711bc17037db3cf7e93db78ce15432067748d15bcd3"
+    },
+    {
+      "path": "final-reading-evidence/resume-2313-2343-565d809f651d-input.json",
+      "bytes": 112964,
+      "sha256": "9f1af562dcdeaaf70c8200d34b434bbfa9467eb561ca200851f1d3a06990072b"
+    },
+    {
+      "path": "final-reading-evidence/resume-2343-2373-4de3bbdb3dab-input.json",
+      "bytes": 120398,
+      "sha256": "c59fa744aef73dcdda51186febd8cae29082df4fe78f522302896e5c1e49a218"
+    },
+    {
+      "path": "final-reading-evidence/resume-2354-2397-bfcfbe82365d-input.json",
+      "bytes": 192610,
+      "sha256": "08bf88abddf78baa4fad622d82bada0cd649e0b159bb7859aea1a965cfc14360"
+    },
+    {
+      "path": "final-reading-evidence/resume-2373-2403-2a51bcdf30f2-input.json",
+      "bytes": 126291,
+      "sha256": "5270b138c766dcafc4046e81b0c554157a164a1866a5269fff5d859020952941"
+    },
+    {
+      "path": "final-reading-evidence/resume-2397-2473-d7fd94dcbfc0-input.json",
+      "bytes": 334764,
+      "sha256": "52ff6aa0efc6108e1b051773102722fe14d4c78a1658f1a7e4792e67a9c5a18f"
+    },
+    {
+      "path": "final-reading-evidence/resume-2403-2433-dd359b762953-input.json",
+      "bytes": 119127,
+      "sha256": "1a6fd8f3825ada893ade98bfa03cd70df9c74cff2e26b414a1ee28cdc2fe649a"
+    },
+    {
+      "path": "final-reading-evidence/resume-2433-2463-7337d3051be8-input.json",
+      "bytes": 109910,
+      "sha256": "059097b25d957c0724b933456b6743cdffa2410754d6632abfa89799040fd129"
+    },
+    {
+      "path": "final-reading-evidence/resume-2463-2493-505beb811f44-input.json",
+      "bytes": 114139,
+      "sha256": "82eb8c531500e3c2aeec30d739a91de92d67cdec14315a23f800e4c8c2a296dd"
+    },
+    {
+      "path": "final-reading-evidence/resume-2484-2570-88adfcc10e56-input.json",
+      "bytes": 373245,
+      "sha256": "82b6b0b8e2e625213329906936e28e6f0537ea29b1fe12f710b96252589161c0"
+    },
+    {
+      "path": "final-reading-evidence/resume-2493-2523-1cf3378433cc-input.json",
+      "bytes": 114326,
+      "sha256": "4d1e91ca195c0397a8fce9c8994b6ef79810829ef872be087351481b7d8f43c0"
+    },
+    {
+      "path": "final-reading-evidence/resume-2523-2553-522658258165-input.json",
+      "bytes": 114523,
+      "sha256": "540c8afa33d0fc7cd3b0f4594fdee3f676acd8a9cc6c2b99b1f2e37084ef0b8c"
+    },
+    {
+      "path": "final-reading-evidence/resume-2553-2583-25892fbe83aa-input.json",
+      "bytes": 105338,
+      "sha256": "f14c7d4a1890ac9b084e1d13225f264958b8875b826b5e95551ec83f03f7515b"
+    },
+    {
+      "path": "final-reading-evidence/resume-2570-2708-a33bf5c87ac7-input.json",
+      "bytes": 624578,
+      "sha256": "ae58f0efebf10d458c56499e6a49d132d6e013f56e90112fb8f92710fcaa1c59"
+    },
+    {
+      "path": "final-reading-evidence/resume-2583-2613-054e2fd9db77-input.json",
+      "bytes": 119429,
+      "sha256": "e1238e360b2855945a9ecebe00ed9e4a1a6278405f4b25377b2168120cb66d08"
+    },
+    {
+      "path": "final-reading-evidence/resume-2613-2643-9417663b5e43-input.json",
+      "bytes": 123286,
+      "sha256": "17b5de11635e24e9e906b0f8d9e8c60452f8aa8933ed6a6c2f710de29c2ef37b"
+    },
+    {
+      "path": "final-reading-evidence/resume-2643-2673-cc70ae276b78-input.json",
+      "bytes": 120176,
+      "sha256": "cdbad0790582b12878b54e7d02636495fa48c85736a74f788cf4e055ab6ac9b6"
+    },
+    {
+      "path": "final-reading-evidence/resume-2673-2703-80c449dab2ab-input.json",
+      "bytes": 116429,
+      "sha256": "a995541f013a1f4b44fbbe12b167a1f9e7a121a4c95f0a094286591874f7302d"
+    },
+    {
+      "path": "final-reading-evidence/resume-2703-2733-7b5a9058bbf0-input.json",
+      "bytes": 119728,
+      "sha256": "cf5e3e89748232664c27fdcad0252abaa417a857301dfcf449c8488f335d49eb"
+    },
+    {
+      "path": "final-reading-evidence/resume-2711-2779-e000977ac92c-input.json",
+      "bytes": 302911,
+      "sha256": "0ad12cc5ecbc236ac7235d34e8d0eef225586ca2b3fa3af17b6ae1d7596f2a4c"
+    },
+    {
+      "path": "final-reading-evidence/resume-2733-2763-45bd0364afc3-input.json",
+      "bytes": 115849,
+      "sha256": "da1ea3ee4883f07b6a5643073465e6e001fda695ff1615eb8598f98913fe6e89"
+    },
+    {
+      "path": "final-reading-evidence/resume-2763-2779-e3700a4a1e57-input.json",
+      "bytes": 66686,
+      "sha256": "85820cbd6f8b0c86f12521d2ed73ebb69163d22dca1873b55100041db1531a23"
+    },
+    {
+      "path": "final-reading-evidence/resume-manual-2043-2103-adoption.json",
+      "bytes": 13301,
+      "sha256": "83a8d0863bc3204053a1a99a87ed18e1ca004b274c16ce0650a87dd2453c5834"
+    },
+    {
+      "path": "FINAL-REPORT-20261007.md",
+      "bytes": 5404,
+      "sha256": "3d9b98589ee7b031bb498f0f0b394bf563b184c1d355cd6619b68022005e487d"
+    },
+    {
+      "path": "independent-disagreement-equal-parts-20261007.md",
+      "bytes": 3234,
+      "sha256": "c97282067a9a317f6172e758ba4825b207727a4ba2dbcabf692405a965db419d"
+    },
+    {
+      "path": "independent-dispositions-resume-first15.json",
+      "bytes": 120173,
+      "sha256": "0e9ef4369aca1a5cd93aba316920b061640294ab4b5b661dad6cc6d92ef68391"
+    },
+    {
+      "path": "independent-feedback-snapshot.json",
+      "bytes": 683922,
+      "sha256": "76e907208b6982e8651879455d95090daf77eae4c8c30816828ee1fe4b46ea88"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-553Z-0-blind-input.md",
+      "bytes": 50328,
+      "sha256": "b99d6ccdafc253ad5b6c3dcf33cd5cf51f76009ed9625452f710f2fdbfdab35d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-553Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "21458992ac9bf474bca6e7ae3e7da85457f4dd870693d99182298e1fa864d837"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-553Z-0-blind-raw.md",
+      "bytes": 18476,
+      "sha256": "7dff5d5c566e8bdb6b42b0d28fa3ded57628e7b9320f5b11b6df8e34277d3331"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-553Z-0-blind.json",
+      "bytes": 25256,
+      "sha256": "5472bcd5a487f6e712d09db08edc225625f7ea3e2d62517535c54cefcede91f5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-553Z-0-key-input.md",
+      "bytes": 178199,
+      "sha256": "43d9f6a886867cfdc9638dc339e1f9a28334260b4d109488cbb28586416c4d33"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-553Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "d701ee94f7f1105dd9c583562831c175e8f57429d893a839bde19e9ee7d5f062"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-553Z-0-key-raw.md",
+      "bytes": 7944,
+      "sha256": "2dcc42d9eb5172909eda45c32dddc5f8df3925a125651dc4c2779f5bd8b4f7e5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-553Z-0-result.json",
+      "bytes": 46343,
+      "sha256": "98cf0209425a766fdbe02176ab2557fd733371bd17c674cedb2ea2a5091e1876"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-553Z-0-source.json",
+      "bytes": 214529,
+      "sha256": "81297b205646f5ed9296295174c47fefcb9eaf917e004017b6f0ab21845213b1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-598Z-1-blind-input.md",
+      "bytes": 43519,
+      "sha256": "1d55d4f513d559e06df9185a8aecef53a768dce4a3a87faf2241e2412a2d1984"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-598Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "357f86454bae07fa21c38753b5e352c9905363180169a30661fb3cf0441a98fa"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-598Z-1-blind-raw.md",
+      "bytes": 17389,
+      "sha256": "f4278a57ce067e834b77efd229ec5cde9aa969a0d0b807f9eb57d58e08540dbc"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-598Z-1-blind.json",
+      "bytes": 24019,
+      "sha256": "61df2c3937fed6b7fbb4365700f9ab56a80f88c4b591820a084ead18c2ca5c7a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-598Z-1-key-input.md",
+      "bytes": 160157,
+      "sha256": "2ade8704cf6765793dc1f8669ab9f937d1f7b36e4dbc607c7e8e4897c495139d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-598Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "ef4b6fca9ca93f76bdad3a5959df019590655c87ffc01dce55d70b5f10d9071f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-598Z-1-key-raw.md",
+      "bytes": 9095,
+      "sha256": "35ad670bef6f35d4a6a06340755562f33ef5a16fb8a4ef0d6b063051a848d81b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-598Z-1-result.json",
+      "bytes": 45971,
+      "sha256": "6696fdf569139197116fe9bedc89b77a435b5b29fe43b0f7f5565b58c8fbdba4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-03-34-598Z-1-source.json",
+      "bytes": 196152,
+      "sha256": "c2bcaef2e4ddd9d50d35768b5bf1fda3482400e977815a0ff9e0ae2e53b3decc"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-039Z-0-blind-input.md",
+      "bytes": 48954,
+      "sha256": "60c9d2bca5acd50185b9f1b0b19630a83b0f28072dab13fa062b581d331702d2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-039Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "d44997ebcbbc956eccb8b54d0d61ba95b757593b4dc4376858e56a3dacd62f34"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-039Z-0-blind-raw.md",
+      "bytes": 18157,
+      "sha256": "5e0325d7ecb63d326d1eea772345c6f67b0986ce9636c2407ecfd92e71d90bb0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-039Z-0-blind.json",
+      "bytes": 24997,
+      "sha256": "ec7606b1c008fa4b3385f6a9a74ec44b5c0d8db8940007e36e43b5dc3975213f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-039Z-0-key-input.md",
+      "bytes": 167465,
+      "sha256": "3255bb089023371c4b65dfc7714cc9e348f68a5145b8abbbb91b3819ec32235c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-039Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "64cc1a844510f6f42ead1c5955be20e3f3c66732d75645ec1bdaf537131fc8ad"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-039Z-0-key-raw.md",
+      "bytes": 7488,
+      "sha256": "b2ecf480eb9c841f52d3685e013eb3598e581efc5957aa004b64beb1881b08f4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-039Z-0-result.json",
+      "bytes": 45743,
+      "sha256": "08f9c6814ac6177561436f23ba440d0f3f29d49a1b3c322cb47d60ec73bbc1eb"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-039Z-0-source.json",
+      "bytes": 201192,
+      "sha256": "768ffd54d10b88f400f4ac4d3e0b6b184c787808d3e1b602fadb0a09b5fc1b9a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-069Z-1-blind-input.md",
+      "bytes": 47583,
+      "sha256": "56913fe62528c5afff59877dfa1b85548137bc0fdb329795138833069922720a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-069Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "44f1835ce56c9a41374c14cb6cae55711363c5aa315770291e022510473ce6a7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-069Z-1-blind-raw.md",
+      "bytes": 16086,
+      "sha256": "b8e6c926bc078493b14445579b820e3238728ad455571b8e1883cd1a7d444583"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-069Z-1-blind.json",
+      "bytes": 22868,
+      "sha256": "151fe21f3de8e2d03818cc86db1d467faf580d370c42b5408886f5ce2e68e334"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-069Z-1-key-input.md",
+      "bytes": 159282,
+      "sha256": "0dd91725174020ee6798ef136c46a728ea74e094d62d24c39a08158550fc33ba"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-069Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "902bdd1d885d59bdb900d77cb2e035788cb090c1e147001101c081e1b16a1454"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-069Z-1-key-raw.md",
+      "bytes": 8799,
+      "sha256": "e48b680342f2deb3c21a89673e4c5109dd24355cfc8afe99a05776d260b0d881"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-069Z-1-result.json",
+      "bytes": 44694,
+      "sha256": "b92da5759c55fce3b917415c960c24ef1b6ceeb230dee1e4465e1fe19ecb002c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-41-33-069Z-1-source.json",
+      "bytes": 194602,
+      "sha256": "acbb377a0d878555594a4f2d31d26ac505be5816acec9169e4908c3b674f38c0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-719Z-0-blind-input.md",
+      "bytes": 47692,
+      "sha256": "b73de9e8914abe6a3487d8accb7ef1c14c036514c42c75ea9a96c7819e3e1dd3"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-719Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "04b55e6e058f8eca1f254f53cc0d9c620e714f4b48fd2a3cff375a65dc6b6ef5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-719Z-0-blind-raw.md",
+      "bytes": 16067,
+      "sha256": "cb75120fc11c3a2af46b4d3cc7eb4afd442a22e20b665fa0d70f4cc76483dc63"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-719Z-0-blind.json",
+      "bytes": 23087,
+      "sha256": "94ed5b178bf9f33b4847c119860a31b237531e41f1c5b597847f31cafe3109cf"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-719Z-0-key-input.md",
+      "bytes": 164815,
+      "sha256": "48aa857340c2da9a6b000081b081c1a8e79d46e713c34e040bdc853ac062376c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-719Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "508d7dea240160675766fbdc1f27c4a046a3d21b3c112be4fdb3835bbfe324ed"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-719Z-0-key-raw.md",
+      "bytes": 9823,
+      "sha256": "0a8075726479549489261069b5b196da4033a41a6c4aec138d0111c28ea9746f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-719Z-0-result.json",
+      "bytes": 46020,
+      "sha256": "1996a6a553cc1b395ca46895164b1274f90366915379bf6b251d709e71b1ca73"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-719Z-0-source.json",
+      "bytes": 201729,
+      "sha256": "47429bdaca5b8d618cbdaccbb7595190063b6c3b360e943ffe0cc6012efe769e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-754Z-1-blind-input.md",
+      "bytes": 47471,
+      "sha256": "385f1ffe8b395650b354158e2624863a826278585bde8502d0c86fb2f1b53ac1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-754Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "2340d32b95a85811ab91d3f35c35e703a35ef91ef36ca91eeac12935a81f7638"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-754Z-1-blind-raw.md",
+      "bytes": 17617,
+      "sha256": "3ae978dd8d276e458792ae0d6a4e76a382261083fc5d0b2124004ea6856a45fb"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-754Z-1-blind.json",
+      "bytes": 24459,
+      "sha256": "2f7d7746e021cb1d39997e3104103db0aea2a41e283945cf29d1e57e0526d446"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-754Z-1-key-input.md",
+      "bytes": 168514,
+      "sha256": "014aa35eb7ff1ca51afc4650972caf7067599eca3165856f4b055e51dd3ee11a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-754Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "742211f927d25b1168b8317382324cc55f46dddc73e0cec01a164747b7850d58"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-754Z-1-key-raw.md",
+      "bytes": 9300,
+      "sha256": "60e6a5cbf4c7405fa4460ed7eb5967eed26875ef201f22d81c9cd7d187e2c8e0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-754Z-1-result.json",
+      "bytes": 46797,
+      "sha256": "c69f15dbe9494daa9de6f295c41cfda765001cc3508ac3913bab676b7e05a24c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T15-52-37-754Z-1-source.json",
+      "bytes": 204014,
+      "sha256": "eb433687cd5b5eb61ab458a1b856561178de7396a4ed75e34aa5286e5dd58f05"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-01-23-386Z-1-blind-input.md",
+      "bytes": 46928,
+      "sha256": "d3c898c94cd8423079b795ca019c577d08b09724ecc04c7ca52ea32d939e9ab8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-01-23-386Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "ee05d4c9b8754029b0bcbd58771a7e21c41af4256ea1bc5a643965043fc168f4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-01-23-386Z-1-blind-raw.md",
+      "bytes": 19556,
+      "sha256": "90796134057a224d9c19c4696931e84c4097f53d01542b245e917441d87d13f8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-01-23-386Z-1-blind.json",
+      "bytes": 26368,
+      "sha256": "964082aef7b604a480827f27d8209f32290a28926c5882b4969929633b72e83c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-01-23-386Z-1-key-input.md",
+      "bytes": 167154,
+      "sha256": "0bba1b43caff54033e70f43d06ca3c5c1a84caa3ed8ba8d30e7b2b4c6b93dd6e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-01-23-386Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "bbf24ebb7cff379265646d826443689eda2c880ddd71fa156180b8823d6a41a8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-01-23-386Z-1-key-raw.md",
+      "bytes": 10775,
+      "sha256": "d07ae7e49084f5acbd2d9a5405281b64c53030c286d5944549f0e9fbc5f61b93"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-01-23-386Z-1-result.json",
+      "bytes": 50115,
+      "sha256": "dc2d0452403d19a3f5553a0f5e34688a1a5a7c131acec690c734c8b7aef90594"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-01-23-386Z-1-source.json",
+      "bytes": 199107,
+      "sha256": "d62d412951f0a94374e9e95980068fd1d7c3bc74eb145714cf99e3f523efc7e4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-blind-incomplete.json",
+      "bytes": 20967,
+      "sha256": "8b2ad6efd3261a522c628cf1f1e418095b0bf0d2e8eb8adea329e0a7cabb21e0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-blind-input.md",
+      "bytes": 45609,
+      "sha256": "621c219326f7aac1bf8fc371742eaf0d790e55e0033d3fa51d0cd9b436edb2e7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-blind-meta.json",
+      "bytes": 596,
+      "sha256": "1569de1b33ac965b28055100201635bfff80ed1ee4fe9505de0f9f966594ad51"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-blind-raw.md",
+      "bytes": 14667,
+      "sha256": "26c06ec11d2b52f4844259ad330bb73e89f7fa2572ec00665e21beb94d61a397"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-blind-recovery-input.md",
+      "bytes": 2761,
+      "sha256": "429411d19100b928fdcee24dc0ba5e622b1626b36bc94df069c72f562a1058f0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-blind-recovery-meta.json",
+      "bytes": 488,
+      "sha256": "cba7e72d0a1b975391b9aadf6292026eac10ab45065f8cb0e08e9ea24c88faf7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-blind-recovery-raw.md",
+      "bytes": 1330,
+      "sha256": "4b72231d800d00c336d2936395b76df99db969179f9f3950ca8c76faf6acf0a8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-blind.json",
+      "bytes": 22595,
+      "sha256": "491dee96d073f8bd628965a324953c5dd1c1c6bcf9640187646ba9fbe2618d24"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-key-input.md",
+      "bytes": 165799,
+      "sha256": "289b97165aa1564a16ad27854eb1d2952e24b013e6b8f14e1672631ee4dea866"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "72d831e4ea79233e7006eb6b4a66ca39eb987580a3a9937042a6c773c6c9d46c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-key-raw.md",
+      "bytes": 7360,
+      "sha256": "de6274d21eefa0c70e6906ed3d50074231b7f9ca245b91275d14191488abbd98"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-result.json",
+      "bytes": 43142,
+      "sha256": "ab99da842d3ccc6b81fc995abc310349dc04ce557df4e6068dc73f8fb7731a68"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-277Z-0-source.json",
+      "bytes": 202355,
+      "sha256": "b126567af9bb124677854df55304fb70508827c8800d0e41ae1ce8526a3dc605"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-300Z-1-blind-input.md",
+      "bytes": 49322,
+      "sha256": "0049f94b5acd659e3d6cad06b60bbeec3ac104f0b9c43d7a29d8f0c8502f8ff9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-300Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "7d2ca580a01a4d1ea2488f1ade6c51abe91627b97c8bd454b0080b7b0242b262"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-300Z-1-blind-raw.md",
+      "bytes": 18932,
+      "sha256": "9f4df5f84c6d5b7fc695075af713a0a288d4777a7a3cec1c9df58ac67fc34b2d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-300Z-1-blind.json",
+      "bytes": 25744,
+      "sha256": "760b3a4e764cb6c29fd936a34f2128dffe3ac54778877250e952ab92e13d7b49"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-300Z-1-key-input.md",
+      "bytes": 173785,
+      "sha256": "95fec7a9a508e446f61a10fc1d33ec7bee9271940e07993fdc88a81ae12a2f8e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-300Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "6b47deb98e927cd65d969c7189a7c50fc6a7eb44837408c8e0c8097c3e5d88fa"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-300Z-1-key-raw.md",
+      "bytes": 8004,
+      "sha256": "128e6a16f32c765ca89eb594c18d07a084b21e1478c072aef333be744958071d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-300Z-1-result.json",
+      "bytes": 46978,
+      "sha256": "705872f87bfac3e7b43afb97b797c53e4c2cce06d2ec0512d47a76543b586806"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-09-43-300Z-1-source.json",
+      "bytes": 207894,
+      "sha256": "8624301afce2cd61e68b2f89cf1d573922de89d6f5429c78c8e3a08f35b546d5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-274Z-0-blind-input.md",
+      "bytes": 45780,
+      "sha256": "d46554ccf877c0140cf2cf2aecc82aa8e75a6aa8273db9c36abce35bc7b41284"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-274Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "de733966bdb5d294b52f56175cdfa0c6521f9f1b7ac1e4a578b65e66838d6b68"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-274Z-0-blind-raw.md",
+      "bytes": 17430,
+      "sha256": "32c7acb18fe0d01d9e11906dd152d75ea22c08e26e4f2e5d6e097399f95089d7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-274Z-0-blind.json",
+      "bytes": 24150,
+      "sha256": "886eea024b98978f2886a39fb80dedfe2e0b901ef45ee7a52b84ae7b185e55ad"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-274Z-0-key-input.md",
+      "bytes": 165391,
+      "sha256": "566a1ffe78fc6de83be7e35d2cbd0b3b5c6353155d02969dfa86199588f01da6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-274Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "6bd7917f303e06edc120d4dda53e96db36710c07e3a009f99eff5eee346cb0b2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-274Z-0-key-raw.md",
+      "bytes": 8914,
+      "sha256": "1c448980d9fd28daa09916c7c82d5622ec2e97b91bc4ac466fd5533e6693da81"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-274Z-0-result.json",
+      "bytes": 46258,
+      "sha256": "4fe4ee415c0edd00a9ec8da053e8c7b38eea20f23e455410e30f79b7b69104f1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-274Z-0-source.json",
+      "bytes": 199137,
+      "sha256": "f7bd90a7bedb0046c2b26c6d25a3fdb33d99dc12040194f0be5848128e4c0c73"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-297Z-1-blind-input.md",
+      "bytes": 49279,
+      "sha256": "19f869a38da22317d4790e28b42d7e8d611b3493befb4427847129d0097b5244"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-297Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "31c81d0c9793a84f1ae8a744048b709af473642f9afac5541b696a7317b7741f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-297Z-1-blind-raw.md",
+      "bytes": 17566,
+      "sha256": "d7829ebed13d990208abf57b394df6a898be7ae10bb0e00dfaa274dbce25e33f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-297Z-1-blind.json",
+      "bytes": 24076,
+      "sha256": "db55c3d5a74400bf102e3af96edd9098ff74b2b668c198de9432a7422588e482"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-297Z-1-key-input.md",
+      "bytes": 176163,
+      "sha256": "0ea0e9e7768315ba7bd4f13d97526483c47752dd1f73ab0127bd43752f8de21b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-297Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "f4d5b38ef5abea801e72a1955b5a431e1e70ca89bfff658231808129e2053610"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-297Z-1-key-raw.md",
+      "bytes": 8479,
+      "sha256": "6b82b8cb70fee58346cfcff20bf4cac469def0339a725fe26857e23264c1e58c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-297Z-1-result.json",
+      "bytes": 45630,
+      "sha256": "0d9786eaf6304fce2ceba089be4bff8d81fdef52592266724e5bf15ef7a419dc"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-21-22-297Z-1-source.json",
+      "bytes": 210177,
+      "sha256": "8affcba11059d132ab4b9b72425d8d4b633408ef52b668b1016ca196c530578c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-782Z-0-blind-input.md",
+      "bytes": 52425,
+      "sha256": "6f62d94100d9c46dd57f366651a91101867fa9a2beca35eb5c4891b426a3cb22"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-782Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "ec2766dc15c087373e96ee15f3858a4363e3bfffea5aad3a7c52dedcb1cb130d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-782Z-0-blind-raw.md",
+      "bytes": 18739,
+      "sha256": "9ebcf2ca2793c74899e9a96eee08156325f0fab1d75344725e9420f29709af62"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-782Z-0-blind.json",
+      "bytes": 25641,
+      "sha256": "bee1d54e35665867a15b2a0d06eaac9fa62054e688dce9a5d2d5db834c458c6b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-782Z-0-key-input.md",
+      "bytes": 186606,
+      "sha256": "e7080878e1d7447bb28f12caa52395a534232d86758d811e046cfb8fbf5cc569"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-782Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "ef213ebe32cece4c3ca2cc9e2c77a5ffaea87648ec76d95f74f20e3223aae2ee"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-782Z-0-key-raw.md",
+      "bytes": 7441,
+      "sha256": "f8ff0895186df4eec0902660df73ff09c1ddfdc4069a5c99d2c31b43fc372ffa"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-782Z-0-result.json",
+      "bytes": 46504,
+      "sha256": "ebe3d47f0aa1374d958b192a23cfc77022ce7bf992543782c942f96635bdff4d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-782Z-0-source.json",
+      "bytes": 223236,
+      "sha256": "6312e570bbb02a2878457115a9685cbfc068eeb63ccfea2558ff976a4bfa538d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-805Z-1-blind-input.md",
+      "bytes": 48366,
+      "sha256": "97596bdb6b9119c398820d46c7d5df2247be9ea3d5d0e78f3647171ce5a942a3"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-805Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "3aa2752df23f94034ca31d723dc60827be8dca72eae926324b23c2981d89ac4f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-805Z-1-blind-raw.md",
+      "bytes": 15815,
+      "sha256": "e558188f7847b01335fbaef731dee89c00a04335962cb923ab2dcafa77cc5787"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-805Z-1-blind.json",
+      "bytes": 22145,
+      "sha256": "f466a3e5603e6719b5cc08ec8a794bc1dfd5166d526405b74958e691d0964994"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-805Z-1-key-input.md",
+      "bytes": 178126,
+      "sha256": "ad89e03c6fbfe84a175cf3cbad47a508f7423d06e94fc6076debdd6e9d807072"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-805Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "64326ec756152de0c2a4a1d242772f0a55b116373e8d74f40736c43407c54627"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-805Z-1-key-raw.md",
+      "bytes": 8890,
+      "sha256": "11bb7417fc07c23d5e337fda83694bff98469aeb3249fa84815056c916e7ce69"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-805Z-1-result.json",
+      "bytes": 44249,
+      "sha256": "68b72ca60bfa0db4448ad364aaa8c31f056cf725d7f8b366dd1f1f4f6707a6b9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-29-47-805Z-1-source.json",
+      "bytes": 215766,
+      "sha256": "1dd963693067df1fd45249ac969d06a88a0543b7cc0a5d2b13b1bf48fa20c1b3"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-725Z-0-blind-input.md",
+      "bytes": 46992,
+      "sha256": "c35331b30271854b61c06822540b08b69b52627c334d4f3f0112ab58da2d0d93"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-725Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "85e65c4a3993fc03b9cecece7333767b29bca15d935fbc0aeb71705a6c8f6b79"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-725Z-0-blind-raw.md",
+      "bytes": 15553,
+      "sha256": "ab66e21bd36596b76428a57fec1cafe48e26c6d6c9171dbf9b155d5cb4915740"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-725Z-0-blind.json",
+      "bytes": 21975,
+      "sha256": "d9ec216968dea6371510d0fad75e62f5e834350d307031fc6c331a1f6194c088"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-725Z-0-key-input.md",
+      "bytes": 173105,
+      "sha256": "6fcd3aaab6a75fdaeecede28b14b2da395af082413b9cfec93a8dda7c40dbac2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-725Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "39a640986ad8f02790b94fc34d09d10266b117840b58b36b1c59f465f6185abe"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-725Z-0-key-raw.md",
+      "bytes": 8587,
+      "sha256": "f31719c50002624a1fcaf8e7cb5889c1979630e63cf3a4cf052b2e24d51236ae"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-725Z-0-result.json",
+      "bytes": 43628,
+      "sha256": "953e870cf240b8f1b5277e1144a0c94da854faa876550f503dfdd6f7157694bf"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-725Z-0-source.json",
+      "bytes": 211133,
+      "sha256": "f2c6fe59055e9820bafacbf47f232b99bb9fbea0d00d040121ae0ca87107fb79"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-blind-incomplete.json",
+      "bytes": 21669,
+      "sha256": "067165196fc85940c66a7c2b11930a51284b41186ea7a11834072cfa1cc41b1e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-blind-input.md",
+      "bytes": 49522,
+      "sha256": "74497c421a2d031755dace9373898976d83928d0439d9e488e6bec0bb7c86cda"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-blind-meta.json",
+      "bytes": 420,
+      "sha256": "5129db282c402540566fe9ab61930f019a55e179d73dc11e0c855e0d1fe3d0d6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-blind-raw.md",
+      "bytes": 14981,
+      "sha256": "40689c79427f1952e54cc967be8b02346019e1587d555a3ec031a955c9913214"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-blind-recovery-input.md",
+      "bytes": 1198,
+      "sha256": "91bad7171ba821c1b2392fc8fca952b977ee2c16e636061326395fa4df6016d7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-blind-recovery-meta.json",
+      "bytes": 309,
+      "sha256": "8deaf627896e7db67c4c228889066fd9aca3b1d5b2f4339cd1f253daa13cad4b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-blind-recovery-raw.md",
+      "bytes": 340,
+      "sha256": "4a637de463d8fa89539ca4541b318fe225f1da662a47d39d1b787ffa7c39721e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-blind.json",
+      "bytes": 21860,
+      "sha256": "a409705f1863aae1f79b652a55fe16c450365c435e4a605125d4fa06f4637f53"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-key-input.md",
+      "bytes": 177139,
+      "sha256": "eee0bf3a27e4bae785e6fe809bdbac4338656fa83bc9b8978a2752c4871aa99b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "fcc34db8fc99df91785d5a954a5cd067db5a89c3c2446ffa651e881dcfd1976c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-key-raw.md",
+      "bytes": 7266,
+      "sha256": "253b3cf5bfb057f7742e744d4e6414f2787b8556a8de7e149835865c4b533bfc"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-result.json",
+      "bytes": 42578,
+      "sha256": "e30ad6da00c1b6c8c019ed43638c8f35c9f9e5102532dc11a4263aa02b9c91e6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T16-38-40-746Z-1-source.json",
+      "bytes": 217708,
+      "sha256": "bad5a30625fdb4fc842c27ff510eb3f5daba025861bcc8f1c2245249de52458c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-blind-incomplete.json",
+      "bytes": 23465,
+      "sha256": "30c6897fc7ee34021767d66b1b2632272a406f67d6d4ad4f16d3bf70f8daa7d9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-blind-input.md",
+      "bytes": 46991,
+      "sha256": "ae9b30d0e95552c9ced50a59b88f886c58ec101b7e5f5672b8157bb03e9de27b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-blind-meta.json",
+      "bytes": 600,
+      "sha256": "8170db11a1b5d02a6a7da9b3a003a21760d891c3442952e7d1e18e67c611ba22"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-blind-raw.md",
+      "bytes": 17285,
+      "sha256": "c559f765bcaef234582a722801c5540a62c51febf3c8498e69779cfb197d60dd"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-blind-recovery-input.md",
+      "bytes": 2900,
+      "sha256": "a3d60ca2427fde5996c28729bf644fab5b2680636f36019b51ec0217b1dcfd72"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-blind-recovery-meta.json",
+      "bytes": 492,
+      "sha256": "394c160be2b62f5c6758be44a7e61559bcdf8368ac67e4aefe97e948a5dd514f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-blind-recovery-raw.md",
+      "bytes": 1311,
+      "sha256": "45e016dc8f2c6546eee8ffbfa4c5213effb8f88e8b1f810ee75304d893e2e32a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-blind.json",
+      "bytes": 25074,
+      "sha256": "7e11700eebcdb1c60a61dacb35669732ebe5682455e9a93df321f4a4ae7f2c63"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-key-input.md",
+      "bytes": 171396,
+      "sha256": "618aea8ddfde9c6abcdf82ada2f335e4c6282239d02ca8bbe7139a20c84b7748"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "bd71ccac81aee44883dfd27d79f709132bc92309b9e4ff247ae1dc7a2cca3d51"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-key-raw.md",
+      "bytes": 8246,
+      "sha256": "165ae6b1be40440b53b5a58b15ee3b5c7ee8ca05e1fddf484a46354a81e444a0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-result.json",
+      "bytes": 46443,
+      "sha256": "0a994e78471e83da51af105c01135561fb8d5b7899001522d9bb4ede7a4127a6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-08-59-714Z-1-source.json",
+      "bytes": 205330,
+      "sha256": "b75d5fed5a5a22ddc6d81266fd109a7ad1045d5ebf7a388914c68528a6a146a6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-058Z-0-blind-input.md",
+      "bytes": 48908,
+      "sha256": "3a66c91f13087a621b131f3a3c1f2764b8dbd40d68bf47d18f30b2751a077c34"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-058Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "3fe90af24ec385de347060e97f3f5763e213769618d203a73b4bb896d8a243b9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-058Z-0-blind-raw.md",
+      "bytes": 17561,
+      "sha256": "34640a2acf2b0f348b62e094b98b1eaa1f9fe1f7f72b56e2948c563f560bce4f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-058Z-0-blind.json",
+      "bytes": 24191,
+      "sha256": "8f15da3b01d760181312d2496564ef5812e82a3d26f5b66d92e009edb2b41fc0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-058Z-0-key-input.md",
+      "bytes": 172762,
+      "sha256": "f6af8110f4283067a922aa48ba1742629687a45ef23d1d753f8ea92e45d65019"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-058Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "6796d5298d28c3a3bcc970a75be2de1bb8d9b549be06b8e7681986dc2666ca71"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-058Z-0-key-raw.md",
+      "bytes": 7922,
+      "sha256": "5b9dffd81d14fe810fb98951ed7bf40828f905b2e712f299a4480f1ecaf2bdf1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-058Z-0-result.json",
+      "bytes": 45376,
+      "sha256": "fee28ff0483086eeb328ac505a93dda4b1de6ef0ec09579867893c83afa781c4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-058Z-0-source.json",
+      "bytes": 209945,
+      "sha256": "b189e72e0971c5440e2c335e05da0616949f48f56d7637966d935ef77bb9aec2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-077Z-1-blind-input.md",
+      "bytes": 49209,
+      "sha256": "060cb49366262335498bf96d672cd0e03dc141556ab7159677e1f5805ef2d9ad"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-077Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "525a8e0e2d13e33da860fb8c9c3faa24a36efdeecb6fcd7cc17e566ec38f6fe7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-077Z-1-blind-raw.md",
+      "bytes": 18297,
+      "sha256": "6e96f6116880ee5f9c705e4288cf9e2ac8b7a294110b8b648c7ab757b73d799a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-077Z-1-blind.json",
+      "bytes": 25017,
+      "sha256": "fcad321b5f680cd01a85651a4af70838efa33885d64ddf892a1e17b3277f795d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-077Z-1-key-input.md",
+      "bytes": 171305,
+      "sha256": "ec012f4ffad8e41605a23ddf400c095145db98b98a65cd407a2478e872670b8c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-077Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "e6eff1cad294f0c81c3547c4aacaffe5e7329d4e38aa293cb32a2cef20111d41"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-077Z-1-key-raw.md",
+      "bytes": 10235,
+      "sha256": "82d922046563419114751b5a0cc158880bed3cd942522e2351e59dfe5fa3df4e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-077Z-1-result.json",
+      "bytes": 48399,
+      "sha256": "d1885755bcd695da88186e00f4bf00e36cd71f837928e1659110c715e2c113a2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-19-06-077Z-1-source.json",
+      "bytes": 204595,
+      "sha256": "17e710907fe1f5822696cc01e71b4b3bb1cae2cc213e5b2a00619bea0427a9da"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-blind-incomplete.json",
+      "bytes": 23315,
+      "sha256": "c537ddb69031a2b62f2b1eb9b7853f5e6c742a4b90f6979935b20088585c17f0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-blind-input.md",
+      "bytes": 48644,
+      "sha256": "d18e60315d33f90ec17ed9b58300204c5ac4a07d10789e009548467c8cfbbf20"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-blind-meta.json",
+      "bytes": 623,
+      "sha256": "7f28c80bc4c54579b416f52f66dc5753678788f8d3d282b7a9ab09f1b1e98ef9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-blind-raw.md",
+      "bytes": 17135,
+      "sha256": "9a91d1b15661c2a1e07098dfca371d81cadecaa6dc8c85abfc7cee628fb89bb1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-blind-recovery-input.md",
+      "bytes": 3099,
+      "sha256": "a3a848a4e90195cbf41197042358d3e619a54bf85779bc92081cce1985e22256"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-blind-recovery-meta.json",
+      "bytes": 515,
+      "sha256": "fcb43ea472a495b1faa0d0050bea1a53ea9b686e27285c84c7d5da5c1a7069ca"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-blind-recovery-raw.md",
+      "bytes": 1474,
+      "sha256": "112ef72891a3eb5ec08b9d3dc171f855150626c25cdd680017cc0eca2da08095"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-blind.json",
+      "bytes": 25105,
+      "sha256": "f0f10078796de2d53642ad3ed6ec5ff38f7401c5d2fb68e6e24aca25b9a3c0e4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-key-input.md",
+      "bytes": 173144,
+      "sha256": "ac2c7a145e9a09d2a1ea2bc44d38ae05f50c3f7754134e17752e2ef47419a628"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "d40fa8888a653b67e237cbd715c81c2280fa4907be0993b43b55ed60cced89be"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-key-raw.md",
+      "bytes": 7660,
+      "sha256": "d7200fe6288e8ad692b68e54967824537b859adf8c09be047355caa7185c22d8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-result.json",
+      "bytes": 46180,
+      "sha256": "1a1e45c065fe60946e007f4ff4267ae005a9d62fb3c050d3a76ee4585c28cd7a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-150Z-0-source.json",
+      "bytes": 206428,
+      "sha256": "087e6fb4cd8287bc827dfddbf8795342115b1f17b0cefca0288056c8b939c65d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-194Z-1-blind-input.md",
+      "bytes": 46536,
+      "sha256": "336f0fcab4421c98830ef724f35abd00e1a56f13d750723fb5749c11c0f2afdb"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-194Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "cfa44eee3dc476bbf12675530ae667f4db0854813fcc7907720efd191376c153"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-194Z-1-blind-raw.md",
+      "bytes": 16721,
+      "sha256": "6e3a8bf48f5706bdb56e809811b303e9f8ae743fb25ac79badbe2a7fe9e74694"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-194Z-1-blind.json",
+      "bytes": 23293,
+      "sha256": "020de03bcb103b798793d520d3bea0c194dd6f9a33b58678d9a4c69b6b5999a0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-194Z-1-key-input.md",
+      "bytes": 167999,
+      "sha256": "3fb21167cc667c96ca9050af314034807c5a733e867c0d75a54048ebec59c9c3"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-194Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "311b9f36392b8b5b12766f8db9cd6975e5e3d3ed461df8eb840205adbad89251"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-194Z-1-key-raw.md",
+      "bytes": 7926,
+      "sha256": "e2f20cc1e2de1672be562cdcfe85a198ca0db7064e908c9615f8fb91a99185fc"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-194Z-1-result.json",
+      "bytes": 44571,
+      "sha256": "13a419ef6facf2e6148741874d8388e045ee0b41a5263b31822cc6ec7e4033fd"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-06T17-28-49-194Z-1-source.json",
+      "bytes": 202464,
+      "sha256": "c2f8d57b7da9d29665f441aaa4926ac2beab1b97cf59306d47f86dd543eaad19"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-009Z-0-blind-input.md",
+      "bytes": 42570,
+      "sha256": "f46b1fbbbb48625af0377c3a3a1f9a11a1860001ac315b6683421127a894a891"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-009Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "31c21a1950e577da41e4e86e0d9d29433396d51fa2e4504eb131811e1025fbf7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-009Z-0-blind-raw.md",
+      "bytes": 16950,
+      "sha256": "9b209b0c97190b0c42b4ac83b1bc089ac502d42d5e9a655fedb656544a4c7a13"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-009Z-0-blind.json",
+      "bytes": 23070,
+      "sha256": "a6800567fc1d519cd6eda0c40b5ba864cf4950dc2068955dc7d104ba84294ba7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-009Z-0-key-input.md",
+      "bytes": 161153,
+      "sha256": "a7142c29b0ee3b94ec4d9469648605440adad4468cfc28e46aaa54ecc0eddc0c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-009Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "ca8298ed000521b228c98580ce4c9d1b628cb0830384db001159894252e99dce"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-009Z-0-key-raw.md",
+      "bytes": 8877,
+      "sha256": "5b5d9f50352e8a07a64343f113e5dfca91941613983e71d8426170c351b463b9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-009Z-0-result.json",
+      "bytes": 44902,
+      "sha256": "bf9b9bc5f62c8fb7231e62fb8c618d000d7b64962a66d3a6da23791c7b7ebe6c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-009Z-0-source.json",
+      "bytes": 194594,
+      "sha256": "469b0dedd8ad536e70799d2db71aa925e2133507be4abf198b763032000b1de5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-034Z-1-blind-input.md",
+      "bytes": 46353,
+      "sha256": "acc7d3706c0a86924415ca530b4be433a3e4018c0d3773286a1c1aedac022b40"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-034Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "76c94d5ff4436984ae89de26d9ab72a264c9cd85756ecae48786e0fe48698869"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-034Z-1-blind-raw.md",
+      "bytes": 20704,
+      "sha256": "f07edb01ae16d5603415ab2ffb2f83483b9c325201d7da344b85fa9527d4ff32"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-034Z-1-blind.json",
+      "bytes": 27244,
+      "sha256": "8dfab8a035af97dee0ceaa9eb2861ef04be104cde474a8d564794943e0482480"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-034Z-1-key-input.md",
+      "bytes": 174206,
+      "sha256": "8ac21ba295c87e881e5c4cedb1e77a25c2b60bc89952be9b9e759ce6c134330b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-034Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "dde7c1ada8fe046f62af3eadd535fb5d76da08c3a74087d7b91f497faea19b09"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-034Z-1-key-raw.md",
+      "bytes": 9903,
+      "sha256": "ad9c08528da499f1c017ebac97169d96d35b65420287800451976b34a7caa1c8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-034Z-1-result.json",
+      "bytes": 50245,
+      "sha256": "3879cf5194347df63a77b667f447d8443f5976fbc7373b33d1bf248ecd538b55"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-02-39-034Z-1-source.json",
+      "bytes": 204907,
+      "sha256": "8b8e68006a2a2ddb2abbd46db0a7578cba853fd36c276db3f7a27784b7de5662"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-702Z-0-blind-input.md",
+      "bytes": 47381,
+      "sha256": "5251614ba3f835ff2bc8c9b4a543d64f15399824f752ab7de09a060511670543"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-702Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "66dc3a471b6a0905a4eb7caa2227fac8316a5a48151823a30a613994cebbedda"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-702Z-0-blind-raw.md",
+      "bytes": 18559,
+      "sha256": "c10998ce7cb769d5af5700bfb576a81de0ae830f93ed508b6da191371d1b57f8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-702Z-0-blind.json",
+      "bytes": 25279,
+      "sha256": "8a62cbcfdaffefb2df9d95bff7863de2006651ec38415f3b62393126caea2b56"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-702Z-0-key-input.md",
+      "bytes": 169767,
+      "sha256": "969f106bad25f083546014862cca1623c4c029c5bd5de6ddddc0394061acb8fc"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-702Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "8898900087013a0ca5335b9f3d926ad52ea327e7c28233f199dbf529e18d06ce"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-702Z-0-key-raw.md",
+      "bytes": 8724,
+      "sha256": "3b5b3f7cb861c668b7fc521ff59567e239ab208551426dec508200b6d61409a4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-702Z-0-result.json",
+      "bytes": 47156,
+      "sha256": "3ca05fbdf16667ff5490636882739093c0144fe94e3b333027f24498090592f2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-702Z-0-source.json",
+      "bytes": 202590,
+      "sha256": "6fad1c6495b4114fa7a162587c1e399be77c56dfea1cde6628c818f7a82487bf"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-728Z-1-blind-input.md",
+      "bytes": 52518,
+      "sha256": "79dfd2892599e0bacb45e8358dbe41eab87626d4f0c36579d4f9d24ccd2724a6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-728Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "de15bcf66183892c9f646587e2b37c7fd3ff591a5230badef37a1843f3736e68"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-728Z-1-blind-raw.md",
+      "bytes": 21068,
+      "sha256": "8a5fb3b2b420c16c0cef1040bea349dc68875b0a7db2a9f5ddc29f70042e46df"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-728Z-1-blind.json",
+      "bytes": 27998,
+      "sha256": "79387d2f4c633f2c538d31e82bb2ed73e2db388822fe157b575faf46d5cc03a9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-728Z-1-key-input.md",
+      "bytes": 188245,
+      "sha256": "de461cc6a8bd63d1f8fffba8e38eaf529a1b5bc86d6cd60d6b31ca56ddde0aa1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-728Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "6397058ad607e2677e97f95b5e998ee92f10c3cb1d5d4eac39c83fd4b7856ab2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-728Z-1-key-raw.md",
+      "bytes": 8686,
+      "sha256": "02d26e8cbd3ed5370c2d90d25da909a973d8c97c1cae1c13f1ffef9e17175fb8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-728Z-1-result.json",
+      "bytes": 50153,
+      "sha256": "67e833d421ccdccb25231eee34595facd43739e2dfbbed1a0f87e02f95817f34"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-13-26-728Z-1-source.json",
+      "bytes": 221029,
+      "sha256": "e0f9abe1d3c788609fab4d7373e06c1cf5601538a7bdeb3c674ef24b1dc2ecd7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-576Z-0-blind-input.md",
+      "bytes": 51669,
+      "sha256": "c539d42baee128c6a4201523ee9c23463d48bcafd474717f8337b6e063c898f9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-576Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "1ec575a38309840f03ce8939f4387cbc5143ebb8fdb182ebb1badcb6f01a3be0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-576Z-0-blind-raw.md",
+      "bytes": 19240,
+      "sha256": "7de3c1a3fabd40d1889670466d52e453dcf09a28fa9e264ed9252913d7048abc"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-576Z-0-blind.json",
+      "bytes": 26050,
+      "sha256": "1a2bc858f85eb09a85ce060e67b0db00ba7e883d543e216713f188ebbaf74688"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-576Z-0-key-input.md",
+      "bytes": 184096,
+      "sha256": "21ca586b7edd71b101da1b16ccdda88dfc48cfa05239fa63f1392cafa774f5fa"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-576Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "aab252a0db7a210c4fc914d650a90405d6dc8dd6b0a43d683f0dbd7b28bf15d4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-576Z-0-key-raw.md",
+      "bytes": 9124,
+      "sha256": "15e038a439788dc0dfb12aa2034fc6230f0c81377a658dabe97a8a5aed43b98d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-576Z-0-result.json",
+      "bytes": 48173,
+      "sha256": "d5e585afefcf79941d8b159d259dc756ae583e42c7a3935f0164ffae41418195"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-576Z-0-source.json",
+      "bytes": 218862,
+      "sha256": "dc1bef37ff46e08733a748fb786b28979cbc9118daee4481b814b33ca629ee1e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-626Z-1-blind-input.md",
+      "bytes": 47406,
+      "sha256": "7ee5ef5bcf80ba5abcccf9ae952ced4100dd0b7926235031241556de6a722819"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-626Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "0b403ada6238b51776e67984f206fab58f5599e391298ef2009d1975c42d20c4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-626Z-1-blind-raw.md",
+      "bytes": 15119,
+      "sha256": "86ee710998d660e4fc04734de0a050ad23c2cfed393f301ea69bdcd381ee9d8f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-626Z-1-blind.json",
+      "bytes": 21359,
+      "sha256": "878cff9f9a792d0046ae5006893c4bb7596bfde49e92fdfa3d673c34cb22f540"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-626Z-1-key-input.md",
+      "bytes": 167640,
+      "sha256": "3109f4b64117937a0a3385b86a47b56dd1e96db2fb3ffbf4b2533ba9547386a9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-626Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "e8172e140634b460f1b74b5d7cacd7ad848aa134a36999d96c05d077680bec1c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-626Z-1-key-raw.md",
+      "bytes": 8912,
+      "sha256": "75c22590e2dcbfa5d428fd469a775adf745d23ae5fe222225f04cca048af2fc7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-626Z-1-result.json",
+      "bytes": 43328,
+      "sha256": "1d856d13121efa1982c1a40d39b4f1d46243758f8992216f6ebd6bacde2d6660"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-21-14-626Z-1-source.json",
+      "bytes": 203080,
+      "sha256": "dd21c30c7b612b3299a42c672110c272fdd48d33ba2f13348c3322829ab9e87b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-012Z-0-blind-input.md",
+      "bytes": 45445,
+      "sha256": "cdefd65c5396f441e3a0e5dfbe8c20729daa29acf6f7a6f4f431da52fb225f8e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-012Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "e621e3d0162efa250b17a5237ba07b1145d2c8604325eb93361130e0972e722d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-012Z-0-blind-raw.md",
+      "bytes": 15596,
+      "sha256": "392c2b5235ec552dbbe4eaf5f31ad5d061fc4631da2eb77ac9f4236c547c6c72"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-012Z-0-blind.json",
+      "bytes": 21866,
+      "sha256": "942c5d58e34f6244413c4a905138d7f5086f0bd9efbee2c467013d402a5c5b60"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-012Z-0-key-input.md",
+      "bytes": 168822,
+      "sha256": "53495e5fb9739cf4e9bf51758ef2648aaf8ee8edd1ffb36b890983c970439bc5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-012Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "0a68160a731fb4da65fdb956d606b9b537d13d550b2a9b681d8feee999d82ca4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-012Z-0-key-raw.md",
+      "bytes": 8243,
+      "sha256": "fb872cfc15082d117525a342c286fd052999a290de75edd868c7f8dcc5936c1a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-012Z-0-result.json",
+      "bytes": 43355,
+      "sha256": "9915f3963dabd208ba953154b8596e53bda4e859ff3a0f1a611f8827eae9916a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-012Z-0-source.json",
+      "bytes": 204750,
+      "sha256": "550228a4c0ce252a918704a06f54bf9757d8c9c898b63d34afe23ddbb05e7c00"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-050Z-1-blind-input.md",
+      "bytes": 49667,
+      "sha256": "e3f68ef7c80e4cdf321a3e57cd7be718063e04fd019df99fee8d0a9795005996"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-050Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "2832dfa7880f1582c3b8c77be6b8a756ef056a27accc462d578b36c34eff3cf0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-050Z-1-blind-raw.md",
+      "bytes": 16761,
+      "sha256": "4d06fef2acbdd4e62ba3aced1e63b04a145d7aec2a0834568e667b1c957fe10e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-050Z-1-blind.json",
+      "bytes": 23303,
+      "sha256": "f90ad918a493872fbb2b22c8a282415b84db5f10c8e1994cd910c1f240bb5768"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-050Z-1-key-input.md",
+      "bytes": 175113,
+      "sha256": "701b2b21c5797fb9a922ed01e9c6162e19289c6b6e45e37c6f41c4441219be69"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-050Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "5cc790f2208df880955e4456b27e4234785db2f3790df5ada77204a5f1e570ae"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-050Z-1-key-raw.md",
+      "bytes": 7768,
+      "sha256": "ea4555483628d7904f53f0178ecdbbcfa54212465a0e80e90e11eeb841d83160"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-050Z-1-result.json",
+      "bytes": 44493,
+      "sha256": "7dd37eaeb0d990b002ff54bd52a4dfc5069f97d85ada969836e7aa609fbc5f50"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-30-30-050Z-1-source.json",
+      "bytes": 209978,
+      "sha256": "15ff74111b7fec81a4d12a03b39bcb8a9821cc36fe19c1b97e1fa3f27088ac5d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-815Z-0-blind-input.md",
+      "bytes": 50220,
+      "sha256": "0b341b82ace75af86479c0f4ebc550b3a0190f35b85b3358db34b16984678882"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-815Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "f014437a765e71a128d022d95001ff7f6b21446f63b0990aae7c24d8c2bd4eaa"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-815Z-0-blind-raw.md",
+      "bytes": 16755,
+      "sha256": "bdef0030e4fc4616c7fd95638202bbbc914e53e94e8082b9fc9a7161cbb0f2ce"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-815Z-0-blind.json",
+      "bytes": 23147,
+      "sha256": "3fb0243c1d2394861d4688e30e61ddcc58657803a7981b5a3b84bd74cfef024c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-815Z-0-key-input.md",
+      "bytes": 181119,
+      "sha256": "68fd935eeaf00f84581d860330e10f91d9f338e61cc02d08c432564b1fde9169"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-815Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "112a6f82b0fd4920714d6ad9f5d5f8cc66320069d51c6b60babce6ecfeb2d7e6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-815Z-0-key-raw.md",
+      "bytes": 7337,
+      "sha256": "d6ff22d4bfafa2dec28b73f1a13a80601181117fb3f9887ede7b1c4749185b32"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-815Z-0-result.json",
+      "bytes": 43800,
+      "sha256": "4294b8d5e00d742e956756b035739aeb44ba889abcdafa59c0003226b5c57daf"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-815Z-0-source.json",
+      "bytes": 216383,
+      "sha256": "33437052c83c0c20932bd0b45ad938fab33c8d6c543a1216f74ac41dfe8a4708"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-848Z-1-blind-input.md",
+      "bytes": 48458,
+      "sha256": "3376182ca6f2573a0d3451edddf8f3faaee58b94b03a2b09c5a0b0d4c1a6c413"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-848Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "31500bb8ed3c4a8c0ab7a7bbf2f6245e0789c951fda909fd2536f71f9d692ae1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-848Z-1-blind-raw.md",
+      "bytes": 14001,
+      "sha256": "3f34ab49dcd209611f31c073315a637c806ff43f8cdc0bf679cf4f213a49f12e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-848Z-1-blind.json",
+      "bytes": 20241,
+      "sha256": "097e7f529bb5e0a3b86c5c02a4c63f7866d32e9c10347063814a915ddac25315"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-848Z-1-key-input.md",
+      "bytes": 168592,
+      "sha256": "f32f996b6e97981dfcd19a67ff3a7324d2042f4aa91346443d3d1d7442b5fed6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-848Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "0e1777f6a063ba542b9b11f990c801ab2954eac56c012d2a79a435d9daf0783a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-848Z-1-key-raw.md",
+      "bytes": 7843,
+      "sha256": "b940ab460291c641042d3d567008e90e38bbac648092b61e043b3d27a6cc24d7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-848Z-1-result.json",
+      "bytes": 41233,
+      "sha256": "213edfa650887f409ee55d4944cb9a449e90d9bd8288221054313e1625aca48f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-40-40-848Z-1-source.json",
+      "bytes": 205877,
+      "sha256": "bab11f566f21ce1a40dda0604f2eca1d1907b7286bce2b4920202811b67123fe"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-594Z-0-blind-input.md",
+      "bytes": 48526,
+      "sha256": "0e762fe67c1e6b612d954b36b1fcd70c2a1b46bcf9e5bfb3db3a7892a28c7092"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-594Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "ad49e5a43647341120c72144079ce8cbc9387742a8bb749898e8184bbfc6415f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-594Z-0-blind-raw.md",
+      "bytes": 14350,
+      "sha256": "007f32d502e11afc9eab276db87c64e171d2465bc291b3373f89bffa80527fcd"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-594Z-0-blind.json",
+      "bytes": 20682,
+      "sha256": "ba5b2979731e3ccf320077d76359f8aee8fd1d91d657f5439af6a373c7315a2e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-594Z-0-key-input.md",
+      "bytes": 179646,
+      "sha256": "ad84d402eace702956f8be9673f68d78c2c8871dfa97d240d82eb8e6be89bee9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-594Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "7f73c6bf08bb96a574ae885bd0f5f8a7190fe75a72c5d305cb2ec7ee10ee6d3d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-594Z-0-key-raw.md",
+      "bytes": 7634,
+      "sha256": "a66a9ce678c0d8c96badd39dd15dfd79f6529c42d11211d34f467dbd91c4b75b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-594Z-0-result.json",
+      "bytes": 41479,
+      "sha256": "988510d85e1df5ce796c51760917492fdf17d4ca207dc87cfdd986f56e2ea342"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-594Z-0-source.json",
+      "bytes": 217365,
+      "sha256": "441f5245fc2cf921885ee7f918728933515ee481bae121f850c9bd7e6913d51b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-627Z-1-blind-input.md",
+      "bytes": 47294,
+      "sha256": "b8c52f6761bd71759a16dbdf49ac48af4602fb5463ab6719c3a2a3e51131d9a4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-627Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "b8175c027063b6d046506208f997822dd0d4e4557d4f1a4f3ad82804ce3c2a0f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-627Z-1-blind-raw.md",
+      "bytes": 19064,
+      "sha256": "f40ea026e75144e6cbf8c5f7a6517a06b54867eeb6a371c7d3582f515ba86a73"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-627Z-1-blind.json",
+      "bytes": 25514,
+      "sha256": "27db7cef01adbb428982b0c313dc7c1c0dda1d424c8db2a638d6ae97b31e3782"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-627Z-1-key-input.md",
+      "bytes": 173179,
+      "sha256": "ef837ab601349414d65181d6a4de2227eac1773a247dfcd30838aced770ea4ff"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-627Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "d1505f8e1792ee59a948df58a732c36be8b97f5e6ec0ea9f660d5b165f027444"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-627Z-1-key-raw.md",
+      "bytes": 7280,
+      "sha256": "f6a5d7b0d87a25b8e1b95b5dd5cda5fc36ae184caad1a3e174a9701f38fb818b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-627Z-1-result.json",
+      "bytes": 46007,
+      "sha256": "c1fec1644ac8568802b64795c8bc7a0f2de85ac9759ff61e5936fe5e321de782"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T05-50-17-627Z-1-source.json",
+      "bytes": 206589,
+      "sha256": "7272e79490dea25efb796f3e6f6445aae4669bf6e17e7468bf0f5a39cac26184"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-302Z-0-blind-input.md",
+      "bytes": 51973,
+      "sha256": "b7f09d53b5bdf1048154f7253aced892eccff41f5cd50f0ed04de044c22d89cd"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-302Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "7508bdf952b1a30d082fc2e7360cac6155729a05e3b76977464015a2972c9a79"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-302Z-0-blind-raw.md",
+      "bytes": 17854,
+      "sha256": "e1300449b2d7a96dac9a18cdaf968720bc08fdcea40263b9567416d4cb72d6fb"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-302Z-0-blind.json",
+      "bytes": 24334,
+      "sha256": "b08c6a89ad2dc70693e56338518ff3c298bf4409efd32c3d3bbb81c9e5e4b386"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-302Z-0-key-input.md",
+      "bytes": 186015,
+      "sha256": "51f53346345e64d488cde79d85e44d22ba3e4fcc5fadfe346209c69df8bdf7b1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-302Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "5a12e5a8034bae4173fa52d84d2b2051a1d7e79a1e1da9fcfd3134b04f1957f1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-302Z-0-key-raw.md",
+      "bytes": 9783,
+      "sha256": "27165d05c540120a408be84e62dc08464498953625a36930223d3b6113cfb2ad"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-302Z-0-result.json",
+      "bytes": 47100,
+      "sha256": "bf3069dc4b5fedb5b1d336ef9f8f8978d4ca4138851c9b80f13521ec5bfed02f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-302Z-0-source.json",
+      "bytes": 220838,
+      "sha256": "69aa9037acf52376e6288b0a9cec943d486598f190c6b9a56f1d1fc4514817b4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-353Z-1-blind-input.md",
+      "bytes": 49073,
+      "sha256": "b9a84879e308c083e2a8300566186c23a3f5dd0905bd5ba95c625996ad02c1a7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-353Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "61c7598b5222825894427ac6ddec0e12020844cb969dc33c99cc2070e7dae049"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-353Z-1-blind-raw.md",
+      "bytes": 14439,
+      "sha256": "fb782a186670075c1086bf390c05cc8dc8df8d98187c56f93ef639a663d9d0e5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-353Z-1-blind.json",
+      "bytes": 20981,
+      "sha256": "3aed812836dd0a470fd8dc5aa608318f9fe07779211718f5a09710606b60df3f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-353Z-1-key-input.md",
+      "bytes": 170973,
+      "sha256": "9fd844630ddcc643068357c12f737612a439bc83a2b3c21b8ff82840caeb3071"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-353Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "ccff1a10501fc537ac4be1f9b1038c02807b5cc972fd4f161a592739e77d3c55"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-353Z-1-key-raw.md",
+      "bytes": 7880,
+      "sha256": "98df79219064a86930c7cf824ee10cb3bd72081748242cabebc45f97d2b6a1e3"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-353Z-1-result.json",
+      "bytes": 42259,
+      "sha256": "c454b954b15248971a6e54c86f6b78f1ec55c7727ffaf93d8f5563741f44ca34"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-02-44-353Z-1-source.json",
+      "bytes": 208760,
+      "sha256": "2983062239fb152560d3f45586a187fe08aee8aa4cec123872c936c01a88c538"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-649Z-0-blind-input.md",
+      "bytes": 49209,
+      "sha256": "748f6cf7b340b5fc0f8ccd26550243a6b7f1b1b4eb633383caee01812437dd31"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-649Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "af750eb7ee35b01f46ec4bf906c20f2226ea95fe5ef32379241d9c145e6fddb0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-649Z-0-blind-raw.md",
+      "bytes": 15800,
+      "sha256": "77e5fc646d6ac02ebd14e51d0ea13e529e6321fb9237d4105209dff7f36e86ce"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-649Z-0-blind.json",
+      "bytes": 22342,
+      "sha256": "78270745857d6a5048ad47bb1afcd6e39fa004f47c0f3e70577eca5a0852b7ec"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-649Z-0-key-input.md",
+      "bytes": 177860,
+      "sha256": "80221e67327ad770ccbb18bdf0824c10d4543491761d5d7b54777bdc91e2401c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-649Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "dad1eac366a536c710fe63ee47c7d85e2529d7a911b49a4043ac0638d6b6377f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-649Z-0-key-raw.md",
+      "bytes": 8577,
+      "sha256": "ea4163ef19869dbf4a10a040c2f0dad1a959a1b8e92e1d44c3af7029c83dcfb0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-649Z-0-result.json",
+      "bytes": 44053,
+      "sha256": "396a7a804b282c1589916adcdc25c72d035f4fa4e2152fa90270b90a88d56a53"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-649Z-0-source.json",
+      "bytes": 214796,
+      "sha256": "227ec3d5f841e834abc5d6ad1a0bdd29cab0d7346b469a51a2cf92972b3a772d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-blind-input.md",
+      "bytes": 44629,
+      "sha256": "fa6ee21e58a8bdbbb97ff2057d25852a9984a37146199c3d02a11e5b252c2630"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "28942af704828115900aac5d4c004677c6ac37090b039f5820a61fca35e4944f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-blind-raw.md",
+      "bytes": 12910,
+      "sha256": "37dc63e7cf7054242dc1995d963ed431f817e8c997e781ed771c1b7a37dfbd16"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-blind.json",
+      "bytes": 18910,
+      "sha256": "79cb15b17b834ac4005edf2f5a15840d02cb00dd08736784ae5f7daf3b6f670e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-key-incomplete.json",
+      "bytes": 13897,
+      "sha256": "1ead1e3b582a0f457b322947de7590fae381a22ff09c9677dfd83e78346450dc"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-key-input.md",
+      "bytes": 161341,
+      "sha256": "4bc89461d556a8512353b2eafe7bfdcdf62fed51fb383dcd54a783720f56ecb5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-key-meta.json",
+      "bytes": 392,
+      "sha256": "af78937288714572560dd0dc7848b398873d7132fd240fe632ddea7d9726cdd9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-key-raw.md",
+      "bytes": 10325,
+      "sha256": "cd956e4f81aeea557983bb6952eed29c6d39e96b27f5347d7deefb6ae82fbccf"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-key-recovery-input.md",
+      "bytes": 1871,
+      "sha256": "48f4832223cdfbe639a8b925542a37d84676c16b14371e54371fc67eecbb61e9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-key-recovery-meta.json",
+      "bytes": 283,
+      "sha256": "4fb94aba273b3fc90ec8dae54fb0151a5645b7328d8015889c44c7e10ac3dea8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-key-recovery-raw.md",
+      "bytes": 50,
+      "sha256": "1dff7369740614ab418fd8f3d0692f09cbe8d4f3d9cf1ab4fc55643ae8a4a45d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-result.json",
+      "bytes": 42051,
+      "sha256": "a359b8b5967e3ef25b9e50b0f68c95d51c10ab149155e64c7af6a89f88e7cc74"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-12-02-683Z-1-source.json",
+      "bytes": 197533,
+      "sha256": "8b29df6b324d469b80997a7b3d3db5f42a0f690bd078d8a4d5c3a06a2082acd3"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-573Z-0-blind-input.md",
+      "bytes": 52047,
+      "sha256": "5f6f034a9e8f3eef1119eab1ea9bcbfeb6d033a482abd5d4fa9d79b2fdfd79b7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-573Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "3aa8ceadf90f5eaf469e3c640f3b81b449f98a245ca5b4469983d1c8aaca76e0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-573Z-0-blind-raw.md",
+      "bytes": 17548,
+      "sha256": "80743283ea2ca6358926b0d6b4731552b068a35e3af0950e0ffb6eb7c44b1bda"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-573Z-0-blind.json",
+      "bytes": 24208,
+      "sha256": "fc0ce08ef7fab49681ccd5b37192e25458a863894490bf38045b4d429e2e0a4f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-573Z-0-key-input.md",
+      "bytes": 181881,
+      "sha256": "68befd29eb8c7851a4f0a497ee8a4d1c6197e8268104f8ad90844f6946ce7740"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-573Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "1181e7a64112345d0f2d9178436cd44cd703193bc21b01cb603d13c083b9d544"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-573Z-0-key-raw.md",
+      "bytes": 8570,
+      "sha256": "4c7ae39c53a775ef71641f6524d899f57c4af0f467bfa4c8b4dd09e12d15027b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-573Z-0-result.json",
+      "bytes": 45926,
+      "sha256": "0dc9124635359b20941facf439243c690b8cd6f8114c27237ad8887e9c5ffc93"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-573Z-0-source.json",
+      "bytes": 217527,
+      "sha256": "61f759632910844146228cbae6b88817f35e553781e54d27fb9e7265622db899"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-611Z-1-blind-input.md",
+      "bytes": 49847,
+      "sha256": "dab4f76408b79a498de789de7aa8efdf46218077d18395ca11d2d8a574bd8f09"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-611Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "7213fa1060c76a9b7618ff99bcabeb1ac8f460c7cbbc789d157eb202b4a36fd4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-611Z-1-blind-raw.md",
+      "bytes": 12999,
+      "sha256": "4e0dce2b95dc1387668e8481e7ed97a0d539f0c59873e1bd8c25ba31b9a9039b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-611Z-1-blind.json",
+      "bytes": 19361,
+      "sha256": "7ad922e6ac8b301bd1fc9646f047bae0736358209fd43889abcf0e14b05fc39d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-611Z-1-key-input.md",
+      "bytes": 172214,
+      "sha256": "987fcd475db129e09aa049aeeb5cdf1b8162bd4236c44b38ccfd135b8ef6611b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-611Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "a8769ed009b72125cae13649d000d0b6daaffeae622ff950dfad09f9af2d6e13"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-611Z-1-key-raw.md",
+      "bytes": 8209,
+      "sha256": "90d662b090dc0f1bec92e757c537656ff633337252de8a0c38360655d4b9bcea"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-611Z-1-result.json",
+      "bytes": 40691,
+      "sha256": "8232ebedcde3fe22559efea3374617c73e76bf7a4ea4de77be6890887125da62"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-24-18-611Z-1-source.json",
+      "bytes": 210605,
+      "sha256": "ed78421e15cf739daed6441e7ff9fddfd386d50ca7cec3f508d15e06209f6fc8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-830Z-0-blind-input.md",
+      "bytes": 52058,
+      "sha256": "448ac9adb6ada343c2ca9dbac5d2492f0e9d8b6a44878eb9a7b18c30a856bc98"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-830Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "ba9f41e4a884c23489ea1994b63ee74a92f60f12716e51ea4a65a80bb3a07ffb"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-830Z-0-blind-raw.md",
+      "bytes": 18151,
+      "sha256": "471244e232840927785fc2bddc10b3e958c821465ec826dead657d519c76b290"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-830Z-0-blind.json",
+      "bytes": 24423,
+      "sha256": "de235f40ae278281c6d8e4b718ba3d15411df6d4e2b51581f55c3025235b69f2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-830Z-0-key-input.md",
+      "bytes": 180024,
+      "sha256": "55e8ab65f7f598a834c81cfad239880d56d07f7cc626a097672cf507808d52ff"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-830Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "a112c9a8e4150ca8764e36c1a6808e54c10529ac6170257d65f88056ce893086"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-830Z-0-key-raw.md",
+      "bytes": 10249,
+      "sha256": "b7695be6a97ba4559affb1860e7e52d8a251bf1109a034e196cf10c197f5d070"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-830Z-0-result.json",
+      "bytes": 47471,
+      "sha256": "62269c8ab9be305d58ee7525ba201627c7c5fa5b3d5492d7f569bcd11631c362"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-830Z-0-source.json",
+      "bytes": 213267,
+      "sha256": "7317edbe95992caa7c25f63a4269349135bdfee2595c82daad81870a952fd4b2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-861Z-1-blind-input.md",
+      "bytes": 50892,
+      "sha256": "dd9e3eabda5eef0f44dfebdc0538d7b067b1053e74fb1aa1e2b9388a7b73c8d8"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-861Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "5eb25cc4ba28e6700c832cc35c3892a0432ef1e61eb7b069d72e2ce054bf2e6d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-861Z-1-blind-raw.md",
+      "bytes": 15110,
+      "sha256": "806ccdaae9d638bad89abebd522abf1859d7468dc30f320268dcfcb90290edca"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-861Z-1-blind.json",
+      "bytes": 21470,
+      "sha256": "100b019a253a5389f893ff930e420edd96324ce07aacaabfc441cc9b03cf05f4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-861Z-1-key-input.md",
+      "bytes": 178265,
+      "sha256": "8111bb0fc5a5dfb78fab7cbf7c5b8f9101b2c68bfec9cb9937adfd714df80e9b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-861Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "9abf7a96756545cf4c30ba1d981c0b4c8d5f05f83b6e035b1f42bdca27e66812"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-861Z-1-key-raw.md",
+      "bytes": 6562,
+      "sha256": "3394c2490f0383d7a31e051fa8b75dc47c4b1b72c520de92d58588595af564c6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-861Z-1-result.json",
+      "bytes": 41339,
+      "sha256": "901904c9cc10b1cd69fcb4b0b61f6fd03180aa8cba2f1479682254258e369e41"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-32-05-861Z-1-source.json",
+      "bytes": 216375,
+      "sha256": "78a8cebcefecc010bf4f112fd9d045549d623f523029f532c16b253f271e9641"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-763Z-0-blind-input.md",
+      "bytes": 49859,
+      "sha256": "6f793e2fb7be98e07f718a466a26cbf44536f046bc4dd72dbeb1a3e7f3a99a20"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-763Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "1619b85b84c526fa967f0984710b6667813ba19f189f06f3ce6ba29e447ae4e5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-763Z-0-blind-raw.md",
+      "bytes": 18358,
+      "sha256": "c1bc5de2cd53c7db0c81cd3e695c9eed9c238128bdc7cc1ae6edbd9bac6f2c33"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-763Z-0-blind.json",
+      "bytes": 24838,
+      "sha256": "7e5430e15acb2ba27f7dffaa75dd0e0bfc5d8484a315697901324206eb837381"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-763Z-0-key-input.md",
+      "bytes": 180636,
+      "sha256": "04d079096974ee8589ce03cb86f65cfe32e884bb2e71cb77f3a4aad7ef63c545"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-763Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "837ab5ffacff88cac3955f389bcf8860bcd9eb6952ed307d7ad4f100892d636d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-763Z-0-key-raw.md",
+      "bytes": 10118,
+      "sha256": "97b1418b4ad91a8d85506fde8c441f79c5b613ddb0ceb31b6bfd86699e14f01f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-763Z-0-result.json",
+      "bytes": 47829,
+      "sha256": "fa4c682abe59b487088a08cca713aa97c64cf13d99898b3f448a44337a363a84"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-763Z-0-source.json",
+      "bytes": 214978,
+      "sha256": "a5755ae1386e814f5f974ce0d31a49cc53e208ac53051dfcda9b3efa4fb0b232"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-794Z-1-blind-input.md",
+      "bytes": 48979,
+      "sha256": "cf1fc9690387b1719d9c7ca943a623a387deba6907f6370844aa4eb1a77406bb"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-794Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "33f146fadfe5254fc7797cea0e2f3db4da30416e8f5dce93ba33fce93039eff1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-794Z-1-blind-raw.md",
+      "bytes": 16316,
+      "sha256": "51454f94b13d4cdd3f3bc43d566fdc53108b7226d4c7f7345ec421c57febcc42"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-794Z-1-blind.json",
+      "bytes": 22616,
+      "sha256": "ac86eee79d449097b19ef499a6b24e04d2709e5df00b479d6486d9287137e57d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-794Z-1-key-input.md",
+      "bytes": 172249,
+      "sha256": "26a90c915dbc9bd141e02bc0ee389e55af83de682ba55e16a984af2241a49376"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-794Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "40058913d7f4eb5f270248eb857d8a8c07f70544c88167f58d7044af16a4cd03"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-794Z-1-key-raw.md",
+      "bytes": 8587,
+      "sha256": "d351b90f9faa9c178d602aaa7cb61d6b0f1b8d38f42b0b0fbaa471519179ca0e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-794Z-1-result.json",
+      "bytes": 44379,
+      "sha256": "156ca2b55aa7f443cfc59400682e23ed08f1a4d6ba7610b464820b24b0f1d634"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T06-58-35-794Z-1-source.json",
+      "bytes": 207245,
+      "sha256": "c30b699edefc22d05dd6eb960a9ffeb26e470765ae79899759c7c5fbacf26b07"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-339Z-0-blind-input.md",
+      "bytes": 52527,
+      "sha256": "367a675a58387d6c711d8483f018147a67dc9bd9386f2fad4c774806f4483915"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-339Z-0-blind-meta.json",
+      "bytes": 242,
+      "sha256": "14ebb0abdf18634221c250ba1215517ab76fcdf5063a28f033627e9a3d3aba3b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-339Z-0-blind-raw.md",
+      "bytes": 13656,
+      "sha256": "4829ff08eb0d6b2561d4de2abedf20f9f8a56ffae9a99a7edad768ebaf300ca2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-339Z-0-blind.json",
+      "bytes": 20108,
+      "sha256": "7a86e932efe308bdac9db07adf5f5f9db188406b95cba9e68844283cb3566537"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-339Z-0-key-input.md",
+      "bytes": 177013,
+      "sha256": "a327112be0936f32d9edfa5bdb4fe6820ad3b666c2ebe1529d86d8bc0c1cf3c7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-339Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "69c627ed9d59763f47def4514ce835d7fc652e0d654ff23eb83a5249850da1a2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-339Z-0-key-raw.md",
+      "bytes": 7429,
+      "sha256": "72277d091a131e29a1544ab02372a1011a63d0058dbe9b631f3b9ea1172901e4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-339Z-0-result.json",
+      "bytes": 40978,
+      "sha256": "2eba9d9f91799ca50a62f3bc1ee541656438ac444d3c356034175a5ae4ccde65"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-339Z-0-source.json",
+      "bytes": 215482,
+      "sha256": "71bca12144869ed010ffe1133b09b2c1439e15f1396466bb28bfb2cde1d2258b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-359Z-1-blind-input.md",
+      "bytes": 49279,
+      "sha256": "f308cce1f59ab8842d08037928a1ef4c05614b9d685ff150ceae9a72e0499c46"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-359Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "ca3a066c929ddaae51d003288e88a5ec4beef667d17b5bbdef34e91b1417b761"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-359Z-1-blind-raw.md",
+      "bytes": 13979,
+      "sha256": "728cc9e4ca088c1ec2523cf856740be8ffef8b678a150a1aa280b0d0cbb69557"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-359Z-1-blind.json",
+      "bytes": 20459,
+      "sha256": "ae2cded4ec39ce0af00a8f71b3ba583f83b27233a85bd6256d5701eb19764b7d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-359Z-1-key-input.md",
+      "bytes": 166707,
+      "sha256": "75a4afaf9c4158846cfb71ef6575abeb06b66d79f0377f606fcd4461d6dfbb3e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-359Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "07abfc69b3ae8e973fa0f4fcf65689063aca4f838b652ef727eea56bb0a171ec"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-359Z-1-key-raw.md",
+      "bytes": 10411,
+      "sha256": "1ff029b1a2b6871e7ffd5c4abe3500a82e1735b25b4ebac40f8fda66189ef722"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-359Z-1-result.json",
+      "bytes": 43939,
+      "sha256": "20bd5a23c7d98b4b6bfde7bfb89f16c8abffe49ff65cdbbd9404e1f86910e877"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-08-16-359Z-1-source.json",
+      "bytes": 203003,
+      "sha256": "70b51bffff081e3e41351224665c4e771699715030d84ccf7afe37440556cc16"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-blind-incomplete.json",
+      "bytes": 20490,
+      "sha256": "f9a9d73b88d54ba922c431ddddc16121c9544e74d0d9d401ddfcf1acd679cb04"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-blind-input.md",
+      "bytes": 45422,
+      "sha256": "c900f6ab0fc0de845552ea6f7e09eafb92ef0bf8458a88cd6f3686c48cce268e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-blind-meta.json",
+      "bytes": 396,
+      "sha256": "50b93b4431dc79fde56d30900011a0a8480694869e4888509fb205de42e8834a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-blind-raw.md",
+      "bytes": 14488,
+      "sha256": "0a8ca26f97565147c7737540705b598aa1e2b0cc12873e4df50b8f43be4e0453"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-blind-recovery-input.md",
+      "bytes": 1001,
+      "sha256": "c5d0542b5e15e165e586381bad247d9e1e8a1b6e0cedb98660fd6d6f62456a1a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-blind-recovery-meta.json",
+      "bytes": 283,
+      "sha256": "94cf7c274776e18b4013024f90b4013b0809405e695877b85f7692218d4e0d76"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-blind-recovery-raw.md",
+      "bytes": 171,
+      "sha256": "8cb5c167112f7756e295083d270ae8b549dc5958fe7a293f7551b0c2a07a3ad6"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-blind.json",
+      "bytes": 20691,
+      "sha256": "35c2e16b4ecf71dd8c373ff872bc7fd7fdb69f381251617d62d27d0c3b16efd2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-key-input.md",
+      "bytes": 163800,
+      "sha256": "db1f6896f3387acf2f5fba593d91a55b057af6c032d935a3ba131405f74365ca"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "c26dd327d818f70102f60d8cc3aade5bce960ae98aeb8853573c00297263bb6b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-key-raw.md",
+      "bytes": 8500,
+      "sha256": "0c77da4feafc39cf312529a0d9dd9d77e6c931121bf1b83a56ec33837de4685d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-result.json",
+      "bytes": 41978,
+      "sha256": "e8f8c553116e3edb52c2fec6f201ce98888216763cdcac5cb1bbc9211d7f1a91"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-569Z-0-source.json",
+      "bytes": 198269,
+      "sha256": "7afddcebb3622d2ebe99e2cb0d120761371e6a6a20e38e74bb29d29a934d6c00"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-blind-input.md",
+      "bytes": 49793,
+      "sha256": "c35bfbff6023db758ae36d37c2daee9d48b438bbe92c200803efa77c6ef295f0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "b0e1b9d83ffc81d36cae5ba2071dd4e5bbdf0875ce7c53a44f089068778b43db"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-blind-raw.md",
+      "bytes": 15842,
+      "sha256": "87e88046d12a47e6d7017e2171f62dd280d562cc2415f30b652bb3fc57069602"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-blind.json",
+      "bytes": 22142,
+      "sha256": "2715aec5c17c70a65787086e75857c4668882ced12b1ff3e9b17ef2c3261ec77"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-key-incomplete.json",
+      "bytes": 11999,
+      "sha256": "613f5a0d01ca6ab48ea6f2e06eca6d4a084bcb157d36261a262dfb4d6521cf3e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-key-input.md",
+      "bytes": 175634,
+      "sha256": "ee5966b87e21c15c124257af6f95ddffbf8a15a13b8602a7e3a26e29b0ae8726"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-key-meta.json",
+      "bytes": 433,
+      "sha256": "4cb54deda8ae33fc5356a851b13ee428cb07fca374210c86adde958339317ba1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-key-raw.md",
+      "bytes": 8371,
+      "sha256": "ed37779216bbd5a4632bb67c1848ee4478a52564e38d3a9472e7800bf1fc3e95"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-key-recovery-input.md",
+      "bytes": 3325,
+      "sha256": "879db5ae01f652e33d165a15a3f26575518cd4b2c0de93887022387484a63320"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-key-recovery-meta.json",
+      "bytes": 323,
+      "sha256": "ff48ad47ea54e1f58208943139293a630919f39053482f5b33299eaf18613c98"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-key-recovery-raw.md",
+      "bytes": 149,
+      "sha256": "08034e111bfa0ddd7430d18be2351f4c2bc45ffbdf88681985f715016f481284"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-result.json",
+      "bytes": 43778,
+      "sha256": "2caaa8f82533608a5cf5ab1db745a3487fec4cb11f24b679a30d6124d1f805a0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-16-00-594Z-1-source.json",
+      "bytes": 210340,
+      "sha256": "63b88b318b00b70b6f83722452056c4a6ebc07adab108e5ff0e34a07fbcf9678"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-554Z-0-blind-input.md",
+      "bytes": 49956,
+      "sha256": "8994cc8c0f552a9fde60d539329d0af11656007561efe03c60ed9d4c867cd752"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-554Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "7d93b8cb76824cc8221dd5727e710d4cbccf865348be3e14f1104e87f8dff18d"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-554Z-0-blind-raw.md",
+      "bytes": 15353,
+      "sha256": "3f015f515c648e301d849eebb028776fdf667fe0c7e0f921f4fab4709a31dceb"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-554Z-0-blind.json",
+      "bytes": 21775,
+      "sha256": "743becb80c0d35e10afca0a619697d19d4d3352e14a832b2e54e6c32bbd8439b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-554Z-0-key-input.md",
+      "bytes": 168437,
+      "sha256": "2b030bc65afcbb5d471e5455f614ad41a6dd6295952873c13899be5242ee8407"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-554Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "646969854e36db807139ab3d245b77010e2bfe7b148c29a480b4e31348f84b25"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-554Z-0-key-raw.md",
+      "bytes": 8980,
+      "sha256": "890fa1e7feb0161983831d89e4cc3716378e87019bc7ac2851a7e4cd3453f263"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-554Z-0-result.json",
+      "bytes": 43840,
+      "sha256": "167749d417bdba0fee9f884503403265fb94f4e2716e90d877153741fb1f7735"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-554Z-0-source.json",
+      "bytes": 203552,
+      "sha256": "4a7f06b76f6f23d9b89d0ff2090ad1d1b92b1ef201dbc68b04f9ca56aca55a6b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-576Z-1-blind-input.md",
+      "bytes": 43838,
+      "sha256": "d866bb18f9ba9ae13ab04ae6f8b9b9f937ed85e1544eda4dbb4c9d917c92872e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-576Z-1-blind-meta.json",
+      "bytes": 243,
+      "sha256": "28bcc9739dbec09d49b4045b0f0d2bcc8bf2023ddc2ac81b22765042d067bade"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-576Z-1-blind-raw.md",
+      "bytes": 13740,
+      "sha256": "5494970be16f1b3ddd910f83c74440ca70e72dd67f08851871cb39f082ff0463"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-576Z-1-blind.json",
+      "bytes": 19862,
+      "sha256": "b1ef322eac3d023b785c11151f8edcc99413c971c9367c55acc1dda928ebb372"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-576Z-1-key-input.md",
+      "bytes": 158171,
+      "sha256": "d1d1ea32d280bc68590c3cd937f986a007670faef790732015f5d4367c96ef04"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-576Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "fa219992b30cb81b80503392ba92b82527e93f5f00655c153087d118b4b046a9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-576Z-1-key-raw.md",
+      "bytes": 7672,
+      "sha256": "6ef51503ccf826c27562ba7b24df300dd1ea8cf3be56f7af61620ef8763983e4"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-576Z-1-result.json",
+      "bytes": 40573,
+      "sha256": "667a223a571bb159b8816be93757b312154da62b402aec2cac1e5256353fefe7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-23-59-576Z-1-source.json",
+      "bytes": 193599,
+      "sha256": "781e03793c7bc47686350e2cfc5c0dfb1db6ad624f2c37a97f9701a9de325358"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-533Z-0-blind-input.md",
+      "bytes": 44331,
+      "sha256": "ccffbb0f7552420581889824af0b8f2dbf2d20c8e8081c2883a05c58dcef763b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-533Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "d8c86a3a64b7f8e749ea38a77b65fe04b1eb2d76fb4814d61bd4fd67bef764a0"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-533Z-0-blind-raw.md",
+      "bytes": 16491,
+      "sha256": "e3c7e23bc5f5681f54cd0851f7313412b49d34e4f6c9cbd6fe47ef3f7ed3234b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-533Z-0-blind.json",
+      "bytes": 22461,
+      "sha256": "633ce841946e07b7646cd62a72f3eb50ea27a8566841a57b7050f1196faf6f23"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-533Z-0-key-input.md",
+      "bytes": 161094,
+      "sha256": "8454763d59c11fba4b64d729f74babdb10e560a2aa21e4dfe01ef0be98db320b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-533Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "3a15cbd29d39d7f51838f7d9c4ff0cfa315237279aab3fc5049d2695ed60d480"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-533Z-0-key-raw.md",
+      "bytes": 9473,
+      "sha256": "dd6808f0fa7eb2f56324b2b35f0f54450280ccfc81557b527879ad922a35ac58"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-533Z-0-result.json",
+      "bytes": 44805,
+      "sha256": "7333c3ce5928bba290bf1183ad01be5c2d2266ea0337ce0a92bd5b35802f965a"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-533Z-0-source.json",
+      "bytes": 191628,
+      "sha256": "90a6b456de9876ba24a67acad5d5174c37a9bdb3d11bc799cb744149126068a1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-556Z-1-blind-input.md",
+      "bytes": 49850,
+      "sha256": "9fe6169e3f58800a9ba0166f05452ee38fd85fce10bc9b4e562f017148138899"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-556Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "2cf38bc7c021a8a46948fc642fd69d402be427b7725a035129b9726bff07f67f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-556Z-1-blind-raw.md",
+      "bytes": 17155,
+      "sha256": "ffd162dbada9ac5b76eb45dd9dd6a58794e95a7fe0175b4625dd07196c4b3a6e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-556Z-1-blind.json",
+      "bytes": 23545,
+      "sha256": "f7704cb0ef774a2973a724e8069ea72e65bb06f1275ddf9930c6a6f5518e9347"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-556Z-1-key-input.md",
+      "bytes": 172879,
+      "sha256": "4c8cd4f8d359d37df35c272e0186d7e985b1849bf6e2618dcfc13f9866418d59"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-556Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "28109018e9622d6be301624aa465b704b28a5ac9dbae58b02dc7ce68393501bf"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-556Z-1-key-raw.md",
+      "bytes": 8728,
+      "sha256": "61c7f81d105bebf50c873d85ce3c9f8777762381601504902cab7b45d1a872e9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-556Z-1-result.json",
+      "bytes": 45543,
+      "sha256": "95a96abb6924e630624a5aaf312ebfe73d8596482e2e1eebedd0d8e85022a6d7"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-31-25-556Z-1-source.json",
+      "bytes": 206372,
+      "sha256": "177847d27e22e616c980a51841631569f48fae775f16212313b68773adae2ce2"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-440Z-0-blind-input.md",
+      "bytes": 46250,
+      "sha256": "9b6007d75d024f04736d2264bcc72e0d9758f6d90e18f429e2f81109fd6c296e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-440Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "dc46a060b32ef03ad934280ab0970eba82406fbc96505a48e0e3ea821e60a351"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-440Z-0-blind-raw.md",
+      "bytes": 15887,
+      "sha256": "c071e8ffcacbac933b2d9716ea62058310f7680898adb2748ca92ee17410506b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-440Z-0-blind.json",
+      "bytes": 22067,
+      "sha256": "236c31751742629b72e6db1f7d5ed22c130304dcb17ab498199de94c3e999be3"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-440Z-0-key-input.md",
+      "bytes": 163924,
+      "sha256": "d1c02b81cf00f42e19e0aebc862ea5ba0c4b90e1a8bec6b396359c2d5651705b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-440Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "a16c2c48a1caa761267b01b0c5967f3beec675726d01d02e7e6c6692b01ee913"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-440Z-0-key-raw.md",
+      "bytes": 6902,
+      "sha256": "88d61ac68d77059318fbd4a229c8d7689a19b6644007e35567220ee78d970888"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-440Z-0-result.json",
+      "bytes": 42080,
+      "sha256": "3c6dea7457161a55ec72ad7b7b321563c3b8eb50dd3e590ddeff1dec2965148b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-440Z-0-source.json",
+      "bytes": 197441,
+      "sha256": "24b68221e4df2f1995ce840858d1ad8dfdcefd6ebad8f26fe930e5ad19f0e5e1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-476Z-1-blind-input.md",
+      "bytes": 45302,
+      "sha256": "dae872b3a286d50dbb8425f3f90c8878af87211f5f6f75ae6ff1dff697f630ce"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-476Z-1-blind-meta.json",
+      "bytes": 244,
+      "sha256": "3ac59ba04c1101c55e0dc7a3fcb5d7978ce6e9643aa4de6288101e9ed3cf4e3b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-476Z-1-blind-raw.md",
+      "bytes": 16111,
+      "sha256": "692a44d6f60d02b5e708c2f3ca564ef7fb87b14c5d9163b96d6107ee4c5de721"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-476Z-1-blind.json",
+      "bytes": 22441,
+      "sha256": "70345d1fff7b342f4d458cad3955dd95e6db42d9f71861a05cec172e5385b20c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-476Z-1-key-input.md",
+      "bytes": 164151,
+      "sha256": "ab7827694378eee7d527273b1499264e6d80cd87df1295edbcf33538443749b5"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-476Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "5d6d2d8e662d6f6884f01cc5fc7ecc32c2bfa766a7211a2fe5172ee88c9e5595"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-476Z-1-key-raw.md",
+      "bytes": 9516,
+      "sha256": "fe7feca9e7e29ed2708302f72fe4f1c21e526d496386b12a3a836a652394c1e9"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-476Z-1-result.json",
+      "bytes": 44953,
+      "sha256": "6114b49559bd498d61be5d69e729bcb53c5aabd2afcb5212cd4e4df1fc2d15bf"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-38-16-476Z-1-source.json",
+      "bytes": 197859,
+      "sha256": "7b84b3ab77deb5bcdf39a4dd47fb703aaa70cc6b73cfc95ee0347d005351d1de"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-262Z-0-blind-input.md",
+      "bytes": 45410,
+      "sha256": "f4ca12ef166722a729290baad105a761ed0fc46969a51557066cac5379398895"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-262Z-0-blind-meta.json",
+      "bytes": 244,
+      "sha256": "485b1700065627c83e1b7096724b7806c36e129c021fcaebd66fe76ae57bdc1e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-262Z-0-blind-raw.md",
+      "bytes": 16557,
+      "sha256": "6b4c3eb380c3a1ceb563d1a050369742dc4e3567c90f0d38536292d32e4ae16c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-262Z-0-blind.json",
+      "bytes": 22677,
+      "sha256": "8c0180219d56b2f087b707e8b167b70a7b382673e3b7c95ba2b3a38a7653c034"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-262Z-0-key-input.md",
+      "bytes": 166609,
+      "sha256": "7cbb4d32c1d51cf688468b7dbe09174719ca8d0523bf403b5d195e45b4fd8c5c"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-262Z-0-key-meta.json",
+      "bytes": 244,
+      "sha256": "08c7958fdc4223ac3dddfca08863496b1a4ad00e1ca9ff43bf2b0c8d3fd0b54e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-262Z-0-key-raw.md",
+      "bytes": 8625,
+      "sha256": "3711265f4e1f25dbb5d673de7d1c3cf774566397d73a17f33e74c7858739c1b1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-262Z-0-result.json",
+      "bytes": 44384,
+      "sha256": "b48d547581426d4880052d0fb569295ea1d040fcc72c61e7f994b938e5535e9f"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-262Z-0-source.json",
+      "bytes": 197627,
+      "sha256": "3a7730d92cc5441fee7ce29c0c022239e5852d855bdd828401256dfbf0b9ccef"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-blind-incomplete.json",
+      "bytes": 23040,
+      "sha256": "dc748ede667c57bfedb1b8ee9987e83bc36d7be3eca1658bcc22bbcb377b7065"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-blind-input.md",
+      "bytes": 44765,
+      "sha256": "a3862bc0b3b604cede91a104b12c9a7d668942e6d0c01c3b8249cbbfdd342d29"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-blind-meta.json",
+      "bytes": 420,
+      "sha256": "d2203fb0e1944d9dc73f05587589bfab016972bb021f5bed1f82c779b7c3a308"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-blind-raw.md",
+      "bytes": 17160,
+      "sha256": "9f31e7f89297c02e696eb5533e4f7b9ba294ce208ddd71b402465c941e20266e"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-blind-recovery-input.md",
+      "bytes": 1153,
+      "sha256": "4c649f955a5a15e870a743811d22b8beb11dd0501f61e1f58e4fb95a93ca2916"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-blind-recovery-meta.json",
+      "bytes": 309,
+      "sha256": "b61a55bea2f0fbb7b12f7916fb0f1373acb80b22e141818198e34aa2168ed668"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-blind-recovery-raw.md",
+      "bytes": 342,
+      "sha256": "17fdee0dc3d5ed626c0c5aefbc2a2f6b86eb2bec827404a35930f3c13aa9b25b"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-blind.json",
+      "bytes": 23440,
+      "sha256": "84bea850ef8ed390f05941ef99a5f90af50fc74d755758d184581e8c0bb2dfd1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-key-input.md",
+      "bytes": 167363,
+      "sha256": "62595cf603cebcc7b34a834c4c45666564991558ec9724e9d0a1856d0aa4d0bb"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-key-meta.json",
+      "bytes": 244,
+      "sha256": "5652e3a63384af5d67c2bbdd6e9380847e56038069a4513025c1eb0cbdc19a80"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-key-raw.md",
+      "bytes": 7963,
+      "sha256": "6826c5d54a4f74dc8ce8cdd0690fe1de59f4b2cae02a5c534d5e5a8b7c3f2996"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-result.json",
+      "bytes": 44437,
+      "sha256": "3b452a719786126d10da65406b32e7339e26c9718c90c567f326a3abd05c5fc1"
+    },
+    {
+      "path": "independent-raw-evidence/cohort-2026-10-07T07-46-16-283Z-1-source.json",
+      "bytes": 197271,
+      "sha256": "e77bd661eed24914be5d47e34d6b10f41ddb36f4d9410e257514f283a8178a51"
+    },
+    {
+      "path": "independent-raw-evidence-manifest.json",
+      "bytes": 185167,
+      "sha256": "7fa9084838ab0c31f55363031043beab57eefe68ffb9eb08b7d6e09c8a55ad24"
+    },
+    {
+      "path": "josa-repair-evidence.json",
+      "bytes": 8939,
+      "sha256": "d9413f77c0bddda05b7251806e249aa15b077a9f98081e82816ce325ca78413e"
+    },
+    {
+      "path": "notation-repair-evidence.json",
+      "bytes": 667,
+      "sha256": "45ba19af231c5fb0cd10b93da021cb6978517cc2157fee2913703e3a0b96c117"
+    },
+    {
+      "path": "notation-validation.json",
+      "bytes": 220,
+      "sha256": "c1ba6a43beeec9ac10e1b2d80979743e871d8983459b5565211565917e9363fc"
+    },
+    {
+      "path": "reader-notes.md",
+      "bytes": 5948,
+      "sha256": "be3302d947fb89480e9f18a9f27a763462c6e48248560b23bbc5e8cb71733686"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8279,
+      "sha256": "874b49f45dab1a1a21830b77ff39da1e0b60a390b0bce35ca5d07e90246087c0"
+    },
+    {
+      "path": "reference-note.md",
+      "bytes": 2107,
+      "sha256": "1b6017c137a3bc22815cf012be1961f50101e665f4817bd11b60a28fdf92466a"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-final-particles-manual-adoption.json",
+      "bytes": 5918,
+      "sha256": "cbdb6f2f75381e6d8f1314614762aecf3517f4bdeaa8b6a1c51d021b78e7bb4f"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-000-020-manual-adoption.json",
+      "bytes": 33811,
+      "sha256": "887a9001865d61bf02e5c17d5b144f0a9ec0c07f257326beb4593a8f37e6e253"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch02-manual-adoption.json",
+      "bytes": 69038,
+      "sha256": "1616c4c21af27f26f29d29e608e3400e1e2255f92f3591d01a20c77a1b806b70"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch03-manual-adoption.json",
+      "bytes": 78634,
+      "sha256": "d3fff9b4dbed1c331dc345e9fa64f8b0ae3d2ecfb229cbfd2e17d0e07e8455e8"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch04-manual-adoption.json",
+      "bytes": 73336,
+      "sha256": "abf8a304f0e5e5f670b926dcb2ad67b4ebb1b8ee73ff42e0994e4c8f4355fb7a"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch05-manual-adoption.json",
+      "bytes": 71934,
+      "sha256": "bb5a0d9b659c9238c382927469cbc416ce1328b37a0788be3c5eaa6f0204fc57"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch06-manual-adoption.json",
+      "bytes": 76209,
+      "sha256": "e844ea4c67955481028d2c917735714872ab2db1c8e106b1c0d7458f5356ae2b"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch07-manual-adoption.json",
+      "bytes": 62853,
+      "sha256": "00ec30e2dfe8f58f84de6b0b8ed64f38868b3e1f16d460fe95af775d3ec19258"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch08-manual-adoption.json",
+      "bytes": 70031,
+      "sha256": "9ee9a2c5b14775e03718dac3793218903fb39a5f942d0888a4ea4ef27ed95517"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch09-manual-adoption.json",
+      "bytes": 52227,
+      "sha256": "191b40c172b6c052a713719041af020e14177288b5a287ad5d602f9cc62b9a8b"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch10-manual-adoption.json",
+      "bytes": 68028,
+      "sha256": "835746d2b5424cb44ade2a870f8bb01cb9236fc8ec75fcbfb9245359ca14b049"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-independent-batch11-manual-adoption.json",
+      "bytes": 99124,
+      "sha256": "f4a9d78d138abf3c8d12aa661156e85f7ae216da7f9745aece14057de3389fd0"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0340-0360-manual-adoption.json",
+      "bytes": 85899,
+      "sha256": "1d4e70d76ceacec9f190cdc26b41f359d6be0b6bbe9874361c40e86bd837446f"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0360-0380-manual-adoption.json",
+      "bytes": 92255,
+      "sha256": "10bf6b66ae4950fa3fb4382688fcf105581c5286d7f352f1c2e884f37ae60671"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0380-0400-manual-adoption.json",
+      "bytes": 95214,
+      "sha256": "c2be189cf70dbe7f9a02af3a2fd3dad39a532738340ccf8884443113920cda78"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0400-0420-manual-adoption.json",
+      "bytes": 91398,
+      "sha256": "c12a0ef075b8929ec0aa67125438fb6b2dc3aded696c75e0dfa651d05361c825"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0420-0440-manual-adoption.json",
+      "bytes": 90496,
+      "sha256": "a259f192c435d4558fbe8e35b2516120f8d8b1a4022d81aebf5f0024f55af1bb"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0440-0460-manual-adoption.json",
+      "bytes": 88778,
+      "sha256": "18a0ad8e889b3f5c1c510baab2e5dd711f29fc4b6005ebaa2dd622663e87c830"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0460-0480-manual-adoption.json",
+      "bytes": 88194,
+      "sha256": "ccd0cf1efa1ee0200374f49bc4caa2b451b7117b2e66fdea107eee9f4f47ec4f"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0480-0500-manual-adoption.json",
+      "bytes": 89362,
+      "sha256": "4169c0cf98b5691325770b40f20383cc30e1e2ea9c63bc3f67783753ddb28387"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0500-0520-manual-adoption.json",
+      "bytes": 96849,
+      "sha256": "176679dfe2ea321023a51c54d9e9f6c7b1f522eeeff5b161c8bb151098e56f30"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0520-0540-manual-adoption.json",
+      "bytes": 90958,
+      "sha256": "d5e6fa0068cfe3f7697e83eb27b12595a288c1c268b3bbf3088d2c8762826062"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0540-0563-manual-adoption.json",
+      "bytes": 105347,
+      "sha256": "014c2848719dba348a2461ff6fa5bad5f2143cbc99e32469848721866976d76d"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-manual-0563-0583-manual-adoption.json",
+      "bytes": 91216,
+      "sha256": "0392253e90243cae576156b575157dafa6d2d5b2fffd0dd2e09e8681ccd0df1f"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-notation-final-manual-adoption.json",
+      "bytes": 18375,
+      "sha256": "009ced05360801069afa18ea227e0767c98d2108aad5ae0b9e06cefd8025b99c"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine-1724-manual-adoption.json",
+      "bytes": 5248,
+      "sha256": "1b969ae418874f23065d27718c121de3c8c61080c13314f619731418521802df"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine-1941-1942-manual-adoption.json",
+      "bytes": 8373,
+      "sha256": "2e2c48ac51c55350e99caf02a5afc5f57c6a35faeaa930c5a46f28deaf2cb8d0"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine-2120-2170-manual-adoption.json",
+      "bytes": 12616,
+      "sha256": "2444d92cef00dc4f31f7912f3e6c4ae76dd0c61aac21e217176543aa81b04ca1"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine-2183-2230-manual-adoption.json",
+      "bytes": 7521,
+      "sha256": "2f78cab60a5ef7039ef72bb8a6bc8fdc59bc5ff146c19838487aafdb8bb1ad06"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine-batch06-manual-adoption.json",
+      "bytes": 9902,
+      "sha256": "f170eb1f93d1fd1c2ff47b5ed7791f6002bff87d32a7735b32c7c4c802343e8e"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine-batch07-manual-adoption.json",
+      "bytes": 15560,
+      "sha256": "db877ad3dde5c44971124761cfeb244ca570c2db76bb13c89d55e6e993c0a784"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine1486-manual-adoption.json",
+      "bytes": 5443,
+      "sha256": "ff76824a0293c3eec8de9c51153e1f00cca47a5e8d8eff225a9d85eaaff65bc8"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine2304-2350-manual-adoption.json",
+      "bytes": 15386,
+      "sha256": "f77fe017c95204f9d1af7cb57e1c1b80a0e1b0d51e8ce0db0c047e781de496eb"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine2358-2396-manual-adoption.json",
+      "bytes": 11801,
+      "sha256": "97614286d984d948086b904d9943dde53da707149f59cd604fc9f22bcecc96d1"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine2514-2549-manual-adoption.json",
+      "bytes": 14374,
+      "sha256": "5802c97ecb95963dc25a1743247a6190c47c1afe195cffcddb8fe0890152bdf3"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine2633-manual-adoption.json",
+      "bytes": 3565,
+      "sha256": "a6b7cebacd9d29f18cab56a5d06ba87866d84918b0a3b2e57f0b85117d3c7e73"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-refine628-manual-adoption.json",
+      "bytes": 3104,
+      "sha256": "4468b151e22707043334b4dfd8ba1ae5ee0ac9768ed5c569875b25b36a276bff"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-selection-0280-0300-adoption.json",
+      "bytes": 22099,
+      "sha256": "5afadbdd8dde5483c68a8cbd5abe054daf0d98bf9c969b20c44a9a9c97c66bba"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-selection-0300-0320-adoption.json",
+      "bytes": 26683,
+      "sha256": "d691a36ae6ae1a8044209748b9f787b84b194f9a01665df99fdd681aa086a14c"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-ctx58-selection-0320-0340-adoption.json",
+      "bytes": 27797,
+      "sha256": "673c7f7c1efe1bb170c2aa917176678a5e6e0a3cbcad2d2bf591bfd0c869bd72"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-1602-c-standalone-20261007-worker-manual-adoption.json",
+      "bytes": 5978,
+      "sha256": "dad9980c1a7313c428115f7fd14a2913c1b4693f05854f713e584530f3fde548"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-1648-1665-1673-refine-20261007-worker-manual-adoption.json",
+      "bytes": 14222,
+      "sha256": "036dd68244805e8937a931b22fdc7c793f5302bda2c9d305bc5e77e9d705ef72"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-feedback-first15-manual-20261007-worker-manual-adoption.json",
+      "bytes": 63141,
+      "sha256": "3d1ff2e8db7f2aa5b4fb6d66bf1c22353d2a3f7ca1723930487f5a7920144ee6"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-feedback-first15-refine-20261007-worker-manual-adoption.json",
+      "bytes": 10041,
+      "sha256": "0d8f3450b358cc79e1c10144ebf1d375d98f477d343e47234e11758982c44117"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0020-0040-20261007-worker-adoption.json",
+      "bytes": 19054,
+      "sha256": "e2acc86fd06145ed99867d653dbaf75f4815bda9239d28830c4bfeb79b474b02"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0040-0060-20261007-worker-adoption.json",
+      "bytes": 25321,
+      "sha256": "5a9b1186da598fbbcbca105216184d3eab69b94f92a661c63419f9cb43e93c26"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0060-0080-20261007-worker-adoption.json",
+      "bytes": 20717,
+      "sha256": "045b24c630f0b5ed66e6ee2d6112bb56ae14ed25f7fe7a746d61a138839c78a2"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0080-0100-20261007-worker-adoption.json",
+      "bytes": 29003,
+      "sha256": "aefaae48ec018cb805a0d0e8c95099c2f01a4ba32a9a628ac80b7a71ea88c3a8"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0100-0120-20261007-worker-adoption.json",
+      "bytes": 27045,
+      "sha256": "133adde533cb62530e794f73629d8409476c9d199b074c01ee7ec57cc194b27e"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0120-0140-20261007-worker-adoption.json",
+      "bytes": 26722,
+      "sha256": "64cda5a867d3deee7353cb0bcd1b743a57bec923628cd64a52d0cda5a1909f1a"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0140-0160-20261007-worker-adoption.json",
+      "bytes": 32563,
+      "sha256": "faba86406c044f5e1169a00edc4290382b41b081ec1a5217eca1049db884595f"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0160-0180-20261007-worker-adoption.json",
+      "bytes": 29706,
+      "sha256": "705a6b28918c0ad9317a24c4e156590f5439fb8b34a8b465ab7eef427a6e8ad9"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0180-0200-20261007-worker-adoption.json",
+      "bytes": 23864,
+      "sha256": "717b30a805a9e3f0fd930d102f28afbe4da9bea37f5b40662e71a7ff07a56f2c"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0200-0220-20261007-worker-adoption.json",
+      "bytes": 20712,
+      "sha256": "ea1b90f4622eb6ba1d2bd2031ca818ca7521f27d0850496ac7173a3782b108d6"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0220-0240-20261007-worker-adoption.json",
+      "bytes": 24397,
+      "sha256": "a645a0b6e964251c362c2ca62380967d8ff901cd627b61f59d1e6550c9062366"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0240-0260-20261007-worker-adoption.json",
+      "bytes": 28514,
+      "sha256": "b0b4df5ad0f83af0c73f81b351a364f31140c65724eb439e5d0793b70e8e95d2"
+    },
+    {
+      "path": "repair-candidate-evidence/e3e4-resume-selection-0260-0280-20261007-worker-adoption.json",
+      "bytes": 28123,
+      "sha256": "d3459db917a643917b2ecd8396213cd715ead88b92c8ba344c603d9183999800"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0080-0100/issues-through-2012-0080-0100-error.json",
+      "bytes": 587,
+      "sha256": "9057bbc2e5eda62057629045e4a23a07e4ed4d80f1b264a34e7763221248524d"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0080-0100/issues-through-2012-0080-0100-input.json",
+      "bytes": 51782,
+      "sha256": "c1b06355f5581f0a344048f95c59a440d1365b23c7d150aaf325daea0239557f"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0080-0100/issues-through-2012-0080-0100-meta.json",
+      "bytes": 712,
+      "sha256": "fa83dd22a35b8059992305d6daeadf0b26859cea409522dca8a7aa1ceef59dc3"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0080-0100/issues-through-2012-0080-0100-prompt.md",
+      "bytes": 55997,
+      "sha256": "76bb61cfa6f69ff95163f0f202bb1c2d9affca4373b380566223cac761407c47"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0080-0100/issues-through-2012-0080-0100-raw.md",
+      "bytes": 22733,
+      "sha256": "b019b0f2890932f63038b09abb24bf98fae235d6aa518abcb8b2a2bd19e0ff22"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0080-0100/manual-id-binding.json",
+      "bytes": 591,
+      "sha256": "4fd456de5d0121ae9bc198c0134f589f297a1eb720942c1632bb7014ccb63cac"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0140-0160/issues-through-2012-0140-0160-error.json",
+      "bytes": 585,
+      "sha256": "2e69342c0ed9d92228132d6278f63d34b76b16c2ae15c00e3acedea08bb01a46"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0140-0160/issues-through-2012-0140-0160-input.json",
+      "bytes": 55993,
+      "sha256": "b93fdb3d8df4d07669e0d51b33b564df7e1f8e72554d848ca67ca5e5736c5f7c"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0140-0160/issues-through-2012-0140-0160-meta.json",
+      "bytes": 710,
+      "sha256": "f52bc58560bdcab4f151262156dd82a26dadf35d5fb4437ffd6bc5d2449b73b9"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0140-0160/issues-through-2012-0140-0160-prompt.md",
+      "bytes": 60208,
+      "sha256": "7b8ceaa224ff14b9b8ead02e07b49bc09e3fb4c40463266bc40abcd5b1e74031"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0140-0160/issues-through-2012-0140-0160-raw.md",
+      "bytes": 27188,
+      "sha256": "7be31f30c6fe1f8535c9b965233b26a119fbdaafc7fad813d6c1ef0e906eb01b"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0140-0160/manual-form-binding.json",
+      "bytes": 551,
+      "sha256": "2a15ab475e076d990bb5bffafc84295ed6227b72723646e24e63c08adb677992"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0140-0160/recovery-review-pending.json",
+      "bytes": 2283,
+      "sha256": "502943c3f9a099ed351345058d62a6260976e4fa8e3bf73d2f6fbbe59dd849bb"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0180-0200/issues-through-2012-0180-0200-error.json",
+      "bytes": 587,
+      "sha256": "ba34df915d84fd1f6faaed85e889ad7dcbc124b94b464d0da78f04a3247553c2"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0180-0200/issues-through-2012-0180-0200-input.json",
+      "bytes": 53922,
+      "sha256": "34789abf9d075b5fddb74d3387b4e0366eb9baa42bbf2a6865b6fd347aa549c7"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0180-0200/issues-through-2012-0180-0200-meta.json",
+      "bytes": 712,
+      "sha256": "dde5f21cee0be17ec06baf42590720f10ce79e443c9e54f30b5ed3e636a48598"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0180-0200/issues-through-2012-0180-0200-prompt.md",
+      "bytes": 58137,
+      "sha256": "abca08469de531ed9be17dde3bfe05e7fbe027a74757286b9b3617c26d386758"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0180-0200/issues-through-2012-0180-0200-raw.md",
+      "bytes": 18851,
+      "sha256": "8c95829314a51f3eb0847c2e56d70a15d6d32618e2b84d2858c6b41923d07d70"
+    },
+    {
+      "path": "repair-candidate-evidence/failed-author-0180-0200/manual-form-binding.json",
+      "bytes": 505,
+      "sha256": "efc77d1320156ebfd6d8ff72e41207e830d500ee407fcbad0fc3e73351155bb9"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0000-0020-candidates.json",
+      "bytes": 20191,
+      "sha256": "4273b4af8217e19827641eb9fe70677cb8fa5a273a6dc1baf55caa0c96c89935"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0000-0020-input.json",
+      "bytes": 54469,
+      "sha256": "4f36fd9ee0b83f4a7b5c5647c193f827efed9de58f02d3a79117e14dbff14585"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0000-0020-meta.json",
+      "bytes": 713,
+      "sha256": "6e0eefe6bf0c54186548b37e918da3553a91cef86befb172b125f64b7229f1ef"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0000-0020-prompt.md",
+      "bytes": 58684,
+      "sha256": "b1ef7c8af9d93f7e344af0e7b2dea914e286702658755013e5b94fcc99022f98"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0000-0020-raw.md",
+      "bytes": 20202,
+      "sha256": "9e911752d610eced02fbb956d01be4a4621ec52a9df59d7d46dd57f3dd659b7d"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0020-0040-candidates.json",
+      "bytes": 16010,
+      "sha256": "5ded4562c05d29b2bbb259aa67c54acbf88e5ab649004c9f140869795956f634"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0020-0040-input.json",
+      "bytes": 48264,
+      "sha256": "e659817d4ece2db32e9de19d475f503e3cd4780632733141dfad222dc227c4b2"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0020-0040-meta.json",
+      "bytes": 712,
+      "sha256": "23ee8e8788208c63be4a518b87748fce07611b5be14a9078c872e78166348ea7"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0020-0040-prompt.md",
+      "bytes": 52479,
+      "sha256": "a1a2dfbf93342b29464ee12d4038bd6c9d321a807a07a2b2d2d9fa7d59812848"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0020-0040-raw.md",
+      "bytes": 16009,
+      "sha256": "32acc5097b58dcda68298b01a52bd59deb5f6ef05371aa24e941c37af09f855f"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0040-0060-candidates.json",
+      "bytes": 22212,
+      "sha256": "143813e369024b6e7efc7f207c184b52ea887e85619507c9eada6b69262b7b46"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0040-0060-input.json",
+      "bytes": 54056,
+      "sha256": "6a273d48df626d665cbf186db64f8e6759ae41f46a8f3540c55d27ae6d36804e"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0040-0060-meta.json",
+      "bytes": 712,
+      "sha256": "2f5ad023644dde53f3b9b228f71e6c2a1c4f2a48bbdf242a51ddfb95c237a175"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0040-0060-prompt.md",
+      "bytes": 58271,
+      "sha256": "f7aca39934890cb16e3f3603ea55c5d72c1e118f29198a5e3e1b1038d34c5ba6"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0040-0060-raw.md",
+      "bytes": 22211,
+      "sha256": "764daf5240effb1644cbc10357eb1b91d6832d33a82970617b0262157a5f5d96"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0060-0080-candidates.json",
+      "bytes": 17506,
+      "sha256": "ed94d56316fc94d2cc1a5ac57cb4fabc151af1484b5c21bbb3920b289a1320b5"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0060-0080-input.json",
+      "bytes": 52035,
+      "sha256": "b095465706eaa5e192cd0607829c997ed550c297c4fb6a4bac6da073519836bc"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0060-0080-meta.json",
+      "bytes": 710,
+      "sha256": "a270714985b25e5cc3130439851d462137e274dcea0129ef61d9c6e6497c595c"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0060-0080-prompt.md",
+      "bytes": 56250,
+      "sha256": "e65d2a6c734b8448ed1c99932c6f745903ca19fd746e91341588f03b498bc382"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0060-0080-raw.md",
+      "bytes": 17385,
+      "sha256": "7f1e8251f5f3e0f96996734ddb56c086b1d6e63d1eff2889bb217f01334b2826"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0080-0100-id-bound-candidates.json",
+      "bytes": 23391,
+      "sha256": "303889a8024102f69afd4f2b46b19d671b7e20c187c28ac20dbfe620d9bb4d2e"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0080-0100-id-bound-input.json",
+      "bytes": 51782,
+      "sha256": "c1b06355f5581f0a344048f95c59a440d1365b23c7d150aaf325daea0239557f"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0080-0100-id-bound-meta.json",
+      "bytes": 712,
+      "sha256": "fa83dd22a35b8059992305d6daeadf0b26859cea409522dca8a7aa1ceef59dc3"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0080-0100-id-bound-prompt.md",
+      "bytes": 55997,
+      "sha256": "76bb61cfa6f69ff95163f0f202bb1c2d9affca4373b380566223cac761407c47"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0080-0100-id-bound-raw.md",
+      "bytes": 22733,
+      "sha256": "b019b0f2890932f63038b09abb24bf98fae235d6aa518abcb8b2a2bd19e0ff22"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0100-0120-candidates.json",
+      "bytes": 22058,
+      "sha256": "474a1503160e0c9215f5f878bec407d4a30bcf22e5462782cabfc5e3a30afad4"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0100-0120-input.json",
+      "bytes": 53393,
+      "sha256": "9b8ae2a78a6f59ccf71a4e76ab835d852fd9dd3503a544d80b7982a6329fc6fb"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0100-0120-meta.json",
+      "bytes": 715,
+      "sha256": "f38f3759a26729be9aa38dad03003f477c13e2dfdc8221a466c20338a07b28f8"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0100-0120-prompt.md",
+      "bytes": 57608,
+      "sha256": "f3fe46ab7d26356f6a25622d4e19840020e702233ad63d478d43fc88dd1ebd51"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0100-0120-raw.md",
+      "bytes": 21475,
+      "sha256": "8c876c877362d643bd567a6aa7d8d2f65780691921320e3400308d44ef176e69"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0120-0140-candidates.json",
+      "bytes": 24483,
+      "sha256": "3c419b9666097c40fe35f5c4ffa2688923b47929740573653b207442582c737d"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0120-0140-input.json",
+      "bytes": 56349,
+      "sha256": "39423153d5e676d60916f34fa9909db4acc8640ceaa83edd7d5179ff95428dc8"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0120-0140-meta.json",
+      "bytes": 713,
+      "sha256": "1174ee19cce83766b969e16c92c6fa89e54b6ba595a35c82ce0460549d2890f3"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0120-0140-prompt.md",
+      "bytes": 60564,
+      "sha256": "8aba32390f440af4555a5cac822e6efc7c967799fabafb8cd0b4a73fd54bdfbe"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0120-0140-raw.md",
+      "bytes": 24494,
+      "sha256": "12ba8a35ca46f7f5c8cba1cfa5189543ffc6f28ffc91cf9d0e41eab5c74a983e"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0140-0160forms-bound-candidates.json",
+      "bytes": 27552,
+      "sha256": "5ae882d9013e8018bb4cb49a6fcb437873438d13a99a93fa642b00d4f246a7d2"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0140-0160forms-bound-input.json",
+      "bytes": 55993,
+      "sha256": "b93fdb3d8df4d07669e0d51b33b564df7e1f8e72554d848ca67ca5e5736c5f7c"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0140-0160forms-bound-meta.json",
+      "bytes": 710,
+      "sha256": "f52bc58560bdcab4f151262156dd82a26dadf35d5fb4437ffd6bc5d2449b73b9"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0140-0160forms-bound-prompt.md",
+      "bytes": 60208,
+      "sha256": "7b8ceaa224ff14b9b8ead02e07b49bc09e3fb4c40463266bc40abcd5b1e74031"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0140-0160forms-bound-raw.md",
+      "bytes": 27188,
+      "sha256": "7be31f30c6fe1f8535c9b965233b26a119fbdaafc7fad813d6c1ef0e906eb01b"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0160-0180-candidates.json",
+      "bytes": 25359,
+      "sha256": "b69659afe004ea5f873bcdbcfddd3789f1214dbf7798343f0dd0fd54eec4eb61"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0160-0180-input.json",
+      "bytes": 55484,
+      "sha256": "85d4636ff5c1c2dc782bf3ea8de8e2b53c5d47fc599c40b5e862b568561706b4"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0160-0180-meta.json",
+      "bytes": 711,
+      "sha256": "8045b2260947a7be02e7560b5dea64b1a1cf525586702504f6e8219bdf06d9c6"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0160-0180-prompt.md",
+      "bytes": 59699,
+      "sha256": "b585ebbce0646ebcbbe41a12a0e8092f2ff217165a66a2091350823803fba51a"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0160-0180-raw.md",
+      "bytes": 25358,
+      "sha256": "f344bccc9cc91d7d31d226e9dc8fbdc251d7a5848c6c6abc4f087d8e69673d0c"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0180-0200forms-bound-candidates.json",
+      "bytes": 19531,
+      "sha256": "db3a7072d5d0adb6f7abd52536ff8cf04e24fcaa1d6eceba8a88ba3d689fec98"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0180-0200forms-bound-input.json",
+      "bytes": 53922,
+      "sha256": "34789abf9d075b5fddb74d3387b4e0366eb9baa42bbf2a6865b6fd347aa549c7"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0180-0200forms-bound-meta.json",
+      "bytes": 712,
+      "sha256": "dde5f21cee0be17ec06baf42590720f10ce79e443c9e54f30b5ed3e636a48598"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0180-0200forms-bound-prompt.md",
+      "bytes": 58137,
+      "sha256": "abca08469de531ed9be17dde3bfe05e7fbe027a74757286b9b3617c26d386758"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0180-0200forms-bound-raw.md",
+      "bytes": 18851,
+      "sha256": "8c95829314a51f3eb0847c2e56d70a15d6d32618e2b84d2858c6b41923d07d70"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0200-0220-candidates.json",
+      "bytes": 16104,
+      "sha256": "9a979386cb2f7a0a05064ee6e4d4b7fd96cbcd93456c7da5e6b4503b78cd32dd"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0200-0220-input.json",
+      "bytes": 54039,
+      "sha256": "47377a7310a335711f2d1fefb9b7a0caecdcd6cb09ceaaeec35539cb8ecb07de"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0200-0220-meta.json",
+      "bytes": 711,
+      "sha256": "60cb2badef1034aeb20be1d612cbf25f71daad9f27a95d3d09f58b844cb1f6ae"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0200-0220-prompt.md",
+      "bytes": 58464,
+      "sha256": "bc5d05a1b4e44f26bdb5b4fa5f7abc67e93be7e05e7b57049aa1a3f2cf79099f"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0200-0220-raw.md",
+      "bytes": 15839,
+      "sha256": "8f568d66bdb7820110df95432c640c3b7a036d159dae908a8fece6ec855d4c4d"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0220-0240-candidates.json",
+      "bytes": 20709,
+      "sha256": "2fc8ac2bdd3e97ba5ae0c0208ad43468469c3e3edd6d52cc758e3f6fdd72a838"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0220-0240-input.json",
+      "bytes": 54554,
+      "sha256": "861549e44403e0a84cb61ef6cd0d651389ba3fc3fa13f67c55ddae91e7db08a9"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0220-0240-meta.json",
+      "bytes": 714,
+      "sha256": "bc3beb078a041fa8d3f1b6f23b3e1d9c0ef0040b2744c62b95a45d456abc41a5"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0220-0240-prompt.md",
+      "bytes": 58979,
+      "sha256": "50acd69ac69438f2a59fdd73e4fb5fe74d77bf3f1db4329985351c099bfaa227"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0220-0240-raw.md",
+      "bytes": 20708,
+      "sha256": "31a2a77d15a04ecb6aad3fc1721b9e99a6bfb297c5f50c70f0e7b52452666fb5"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0240-0260-candidates.json",
+      "bytes": 22283,
+      "sha256": "008fc1d60ce39f262335ac9643fb38b9b99b1b420c61bddcc3e24561e9a093cb"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0240-0260-input.json",
+      "bytes": 50596,
+      "sha256": "720878a3af4b87c140268b1e8dc0727438de4b049ebe7009aed6e515b3da0fe8"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0240-0260-meta.json",
+      "bytes": 714,
+      "sha256": "52e812991e40602ffcf81bf468c4580e6f78db828579747757e4bccf2779f9a2"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0240-0260-prompt.md",
+      "bytes": 55021,
+      "sha256": "a0e8a7b6c030ea07a5da39484003cb183a513ec75fd58a00aaadda730775b5ec"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0240-0260-raw.md",
+      "bytes": 22282,
+      "sha256": "622b5155cb62290c91d545b9b9dd763d3ee0c6b685691e0e99141ea00c5b36c9"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0260-0280-candidates.json",
+      "bytes": 23640,
+      "sha256": "dcfefe724309b84c13f876ddbba01e6a85f1ba1781727f47d9622d49ffa4c660"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0260-0280-input.json",
+      "bytes": 54277,
+      "sha256": "d488ec9184bb4862c490e4124a5a561b9156845b9a96bdc0d35b84fbe3a5205d"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0260-0280-meta.json",
+      "bytes": 713,
+      "sha256": "db24a576394fd405a90230b5a3f600cde015a9aeac8764f2f3103be02eabd50a"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0260-0280-prompt.md",
+      "bytes": 58702,
+      "sha256": "d1763162d4b1cc3a2951e17400a1c0d2c5accfe77878d7b9739067ad751b0109"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0260-0280-raw.md",
+      "bytes": 23639,
+      "sha256": "af4c9c22216072b9ec4e06801cf9e83cc1ff9eba0ed60c35e86e7d0e3186cd03"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0280-0300-candidates.json",
+      "bytes": 17486,
+      "sha256": "91d66a7550985b0b34e2aa405b4c04d2619743ec1683790774b9b36550ec46e7"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0280-0300-input.json",
+      "bytes": 50777,
+      "sha256": "e47c44272afb819d2d285d0715121a6ec53f81068d967451f88557a3825ce4af"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0280-0300-meta.json",
+      "bytes": 712,
+      "sha256": "f16ad95cdb2f24ddbcef55bd876a8a62dedabd4e69da564ab1836d91a968a787"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0280-0300-prompt.md",
+      "bytes": 55202,
+      "sha256": "77a04722271b0ec0b4b041e736550778ed8534ba2b26484dddec30ad7786c7da"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0280-0300-raw.md",
+      "bytes": 17485,
+      "sha256": "c947f8f07c3b9888f90cd94a06d348b32c1188a426736c001fe43b870344e5fd"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0300-0320-candidates.json",
+      "bytes": 22529,
+      "sha256": "0d3881aaa489d8ab58ff78d468ffc577983b44452e1f321a31a13511f8f57aeb"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0300-0320-input.json",
+      "bytes": 51947,
+      "sha256": "701c0a03d88922c73dd2fbe1dc0e7fb96acc045be0226626c89f36bc41949ced"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0300-0320-meta.json",
+      "bytes": 713,
+      "sha256": "34a4582d3bffc4965e3231e790338cb2e6fbf193b023369dd7d4ed11b780911a"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0300-0320-prompt.md",
+      "bytes": 56372,
+      "sha256": "d2612f7aeac1a18ca84a11c136e038d871d3263771156b12303f2181462e7191"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0300-0320-raw.md",
+      "bytes": 22528,
+      "sha256": "08934feac17d686cf35c1be95f8e518b3a7fbe3ebc2176e6dee171866c4fd8f7"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0320-0340-candidates.json",
+      "bytes": 22605,
+      "sha256": "b49474f06c72fe80272e5986cb09dce302100302241e5fa7ffacc401e0497e02"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0320-0340-input.json",
+      "bytes": 47797,
+      "sha256": "6366ab515a9a2450763deb6f8ce7f144af31cd7e592c10042dafa15656cb54a7"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0320-0340-meta.json",
+      "bytes": 714,
+      "sha256": "26522a8fe39cd530238e1f0b5da220b16798a30c85d3fffa043d25e05ce9fdd5"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0320-0340-prompt.md",
+      "bytes": 52222,
+      "sha256": "635e682870ea4471d94ed0669e071d0f4a84d71cdef14027cf4e9d6e857c87f8"
+    },
+    {
+      "path": "repair-candidate-evidence/issues-through-2012-0320-0340-raw.md",
+      "bytes": 22604,
+      "sha256": "26bbe987f6705ed9574539b759dee2bcf3dc58b1809ab46306e4d17d82c669b4"
+    },
+    {
+      "path": "repair-candidate-evidence/resume-592-scope-amendment.json",
+      "bytes": 333,
+      "sha256": "3fe2bb82497d32a4d765a02acde7f5c2fd675137aac88c4984390cd962deb962"
+    },
+    {
+      "path": "repair-candidate-evidence/resume-592-utf8-storage-correction.json",
+      "bytes": 1029,
+      "sha256": "a7cebffbe602564f4705a05f14203b485caf92b50d2199180aae983875f99167"
+    },
+    {
+      "path": "repair-candidate-evidence/resume-731-grouped-number-alias.json",
+      "bytes": 480,
+      "sha256": "4dfba74483a430a3cd30d01c75253a83ac6cc6876fd6ffb8d39d2e8229d894e3"
+    },
+    {
+      "path": "repair-candidate-evidence/resume-843-936-after-adoption-refinement.json",
+      "bytes": 994,
+      "sha256": "54c5e0d8987896e244885bcf3d08650d0ec383191715eae51c540c877a102579"
+    },
+    {
+      "path": "repair-candidate-evidence/resume-adoption-0000-0020.json",
+      "bytes": 22407,
+      "sha256": "b1a03926dd8a7c66bc5d73828b735b63c15428de59df35da81923b444456b3b8"
+    },
+    {
+      "path": "resume-current-independent-feedback.json",
+      "bytes": 974260,
+      "sha256": "fd78bca743d239ec7ba7d0c9cbf4cfed96793537a534cef7a442b544aaaae303"
+    },
+    {
+      "path": "resume-schema-validation.json",
+      "bytes": 101,
+      "sha256": "d2b168b580430ff43fc86f585f46a88527c80f1e41221c029cf8b317f1d076b8"
+    },
+    {
+      "path": "reviewer-overrides.json",
+      "bytes": 12424,
+      "sha256": "536cdb443c9ea68bdbeeb92ccbb50a076489187d2151333dc61164a5ac505594"
+    },
+    {
+      "path": "rubric-evidence/0-80-input.md",
+      "bytes": 32334,
+      "sha256": "6a4a4e11f5f2d124589fc30da959dc9b26b6909b2171a827be9df317da19e770"
+    },
+    {
+      "path": "rubric-evidence/0-80-meta.json",
+      "bytes": 197,
+      "sha256": "b2258e498282816e3136a1561baec6e485b77e935a5f07741f8f4f388395ee4c"
+    },
+    {
+      "path": "rubric-evidence/0-80-raw.md",
+      "bytes": 22471,
+      "sha256": "2cdd3059ab3c08525b9fe028a7f59a6fd0b6fef9c59812f7c940724902c217a4"
+    },
+    {
+      "path": "rubric-evidence/0-80.json",
+      "bytes": 32833,
+      "sha256": "646abca4d1fcbe9f62569c6c411487f267f8fa8a259f20f7452649a7b3d7f638"
+    },
+    {
+      "path": "rubric-evidence/160-240-input.md",
+      "bytes": 32686,
+      "sha256": "3a7a114d390863af578a40ae71272da847ef1bb3a3c9dffa35b67331feaa7c2c"
+    },
+    {
+      "path": "rubric-evidence/160-240-meta.json",
+      "bytes": 200,
+      "sha256": "6da385ac0c12bba9b0537571f076223a187d7dce0a0465a0065ee2db9e17e721"
+    },
+    {
+      "path": "rubric-evidence/160-240-raw.md",
+      "bytes": 22040,
+      "sha256": "f84844d61ef01f65c5533ff5dfba1ca34041acd8e43519826c9555373db4bedb"
+    },
+    {
+      "path": "rubric-evidence/160-240.json",
+      "bytes": 32567,
+      "sha256": "3ad06ee1d0d27af63b50654ef2a68463befc8e0cde271476c2c4a022b6e2c349"
+    },
+    {
+      "path": "rubric-evidence/240-254-error.json",
+      "bytes": 118,
+      "sha256": "1bb8c797b808b565cc3cd2f9e4515f23a0f614e233525f0879f88c6548b039d2"
+    },
+    {
+      "path": "rubric-evidence/240-254-input.md",
+      "bytes": 6117,
+      "sha256": "3218eb92ff473e2a0735c7e9a795b13a1a8ab8549992e75cdf0a830b34fef192"
+    },
+    {
+      "path": "rubric-evidence/240-254-meta.json",
+      "bytes": 197,
+      "sha256": "7b4162ef2e9a6d45fa14fbc1a2bd8cf04b5b437bbbda0b7393e2df804f8a35f6"
+    },
+    {
+      "path": "rubric-evidence/240-254-parse-recovery.md",
+      "bytes": 330,
+      "sha256": "5d2c244cf864e0e3522d4e624bc420322ce27c391d604cae238c4f25fb2a8a15"
+    },
+    {
+      "path": "rubric-evidence/240-254-raw.md",
+      "bytes": 8963,
+      "sha256": "879cde581df784e371ebfa4df7b7264887b06379cd5746700a4f53c2b6e5060e"
+    },
+    {
+      "path": "rubric-evidence/240-254.json",
+      "bytes": 8489,
+      "sha256": "682a9fc1d9e456516096914469c8053b4ea57688ff6530dee91d7c917db3e206"
+    },
+    {
+      "path": "rubric-evidence/80-160-input.md",
+      "bytes": 30689,
+      "sha256": "b722e73ce48b5a59617805a64ceaa3e2dfc90fffa93ffc1db9df064d2655fac1"
+    },
+    {
+      "path": "rubric-evidence/80-160-meta.json",
+      "bytes": 197,
+      "sha256": "9f72674a6f7c58f832eb33cc207638bf79a18d901af2e09454c0a33be79cbf19"
+    },
+    {
+      "path": "rubric-evidence/80-160-raw.md",
+      "bytes": 21883,
+      "sha256": "16a524095bda4e70ce99e4b3c09209490d6d10a359ddbdd8cdc6b0b0f78ffe13"
+    },
+    {
+      "path": "rubric-evidence/80-160.json",
+      "bytes": 32307,
+      "sha256": "9bff5f0691ebbaadc0fc940f1d1d0c491822b9a8c60d485a20d99e2ea66abc8e"
+    },
+    {
+      "path": "rubric-evidence/selection.json",
+      "bytes": 106888,
+      "sha256": "fc26076c25c37d421f1d5594bc1788336a49efc5417413ece2b522d177e44f04"
+    },
+    {
+      "path": "source-evidence.json",
+      "bytes": 1978048,
+      "sha256": "93e5df96db674b0f3ed8aee60cdb1b77dccf20c5b837264c3d5ae3063324c83b"
+    },
+    {
+      "path": "unresolved-independent-disagreements.json",
+      "bytes": 177337,
+      "sha256": "cd1b4c7713d295090fbb4e3467b67da756c1b7c4059239275d7ee35762797338"
+    }
+  ],
+  "excludesSelf": true
+}

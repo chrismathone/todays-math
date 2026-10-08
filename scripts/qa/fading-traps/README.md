@@ -105,4 +105,6 @@ npx tsx scripts/qa/fading-traps/run.ts --report              # 받은 답으로 
 
 ## 원고 정리 뒤 다시 읽음 (2026-10-06)
 
-현재 후보 **67개 · 받은 것 45개(개념 45) · 받지 않은 것 22개**다. 내용이 바뀐 후보 10개(모든 빈칸 56곳)와 사라진 이전 후보 4개를 Codex와 독립 Claude가 다시 읽었다. 새 후보는 없다. 이전 판정 4개를 근거와 함께 걷어 냈고, 비교 조건이 빈칸 밖으로 옮겨 간 «커진다»는 이제 받았다. 새 «높이» 빈칸에 들어갈 «c cos B»는 읽기 둘의 의견이 갈려 보수적으로 뺐다. 이전 판정과 전후 문장, 독립 읽기 원본, 검증은 [재검토 기록](../../../docs/planning/tracks/reports/concept-cloze-fix-all-20261006/srs-traps/README.md)에 있다.
+2026-10-06 재검토 시점에는 후보 **67개 · 받은 것 45개(개념 45) · 받지 않은 것 22개**였다. 내용이 바뀐 후보 10개(모든 빈칸 56곳)와 사라진 이전 후보 4개를 Codex와 독립 Claude가 다시 읽었다. 새 후보는 없었다. 이전 판정 4개를 근거와 함께 걷어 냈고, 비교 조건이 빈칸 밖으로 옮겨 간 «커진다»는 받았다. 새 «높이» 빈칸에 들어갈 «c cos B»는 읽기 둘의 의견이 갈려 보수적으로 뺐다. 이전 판정과 전후 문장, 독립 읽기 원본, 검증은 [재검토 기록](../../../docs/planning/tracks/reports/concept-cloze-fix-all-20261006/srs-traps/README.md)에 있다.
+
+2026-10-08 학생 관점 개념 문항 적용 후 현재 후보는 **64개 · 받은 것 43개(개념 43) · 받지 않은 것 21개**다. 사라진 후보 셋의 이전 판정을 근거와 함께 보존하고 현재 표에서 제외했다. 문장이 바뀐 채택 그룹 일곱의 전체 빈칸 30곳은 Codex와 독립 Claude가 다시 읽었고 최종 내용 지문이 그 입력과 일치한다. [현재 원본·판정 기록](../../../docs/planning/tracks/reports/concept-student-clear-20261006/design-evidence/final-trap-independent-20261007/manifest.json)과 [판정 철회 기록](../../../docs/planning/tracks/reports/concept-student-clear-20261006/design-evidence/root-retired-trap-verdicts-20261008.json)을 구별한다. 이 표의 개수는 숙달 수나 실제 회상률이 아니다.

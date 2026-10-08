@@ -1,0 +1,408 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-1-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{3}\\div\\frac{1}{5}$의 몫을 통분하여 구하시오. 또 단위분수끼리의 나눗셈에서 원래 두 분모를 이용하여 몫을 어떤 분수로 바로 나타낼 수 있는지, 그 분자와 분모를 설명하시오.",
+      "bAnswer": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{15}\\div\\frac{3}{15}=\\frac{5}{3}$이다. 원래 두 분모로 몫을 나타내려면 나누는 단위분수의 분모를 분자로, 나누어지는 단위분수의 분모를 분모로 쓰면 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 $\\frac{5}{3}$이다",
+            "$\\frac{5}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 나누는 단위분수의 분모",
+            "분자는 나누는 수의 분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모는 나누어지는 단위분수의 분모",
+            "분모는 나누어지는 수의 분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$과 $\\frac{1}{5}$을 $\\frac{5}{15}$와 $\\frac{3}{15}$처럼 같은 분모로 고친 뒤 분자끼리 $5\\div3$을 계산한다",
+            "두 분수의 다른 유효한 통분을 실제로 제시하고 분자끼리 나눈다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "단위분수끼리 나눈 몫의 분자·분모 규칙을 찾는다.",
+      "bReason": "예의 계산에서 일반 규칙을 이끌어 말하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, {나누는} 단위분수의 분모를 분자로, {나누어지는} 단위분수의 분모를 분모로 쓰면 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누는",
+            "나누는 수",
+            "나누는 분수"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는",
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        }
+      ],
+      "cReason": "실제 식을 보여 주고 나누는 쪽과 나누어지는 쪽을 구분하게 해 맥락을 보완한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-root-josa-patch.json",
+      "codexFinalAmendedFromFingerprint": "4b7cf61db0906a8c7b0bedfeb8391c7b4d9c92fb22062655abd4b817b6944f93",
+      "sourceIndex": 2189,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-2-xc19",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "term": "단위분수끼리 나눌 때의 규칙",
+        "kind": "성질",
+        "level": "상",
+        "definition": "단위분수끼리 나누면 몫은 {나누는 수}의 분모를 분자로, 나누어지는 수의 분모를 분모로 하는 분수이다.",
+        "studentC": "단위분수끼리 나누면 몫은 □의 분모를 분자로, 나누어지는 수의 분모를 분모로 하는 분수이다.",
+        "answers": [
+          "나누는 수"
+        ]
+      },
+      "sourceFingerprint": "1ffbf6a738a07d3f1faaf5b07927a076d8862c1cf32e56d50e34582da71d2979",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "나누는",
+        "나누어지는"
+      ],
+      "cStudentAfter": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, □ 단위분수의 분모를 분자로, □ 단위분수의 분모를 분모로 쓰면 된다.",
+      "cMarkedSentence": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, {나누는} 단위분수의 분모를 분자로, {나누어지는} 단위분수의 분모를 분모로 쓰면 된다.",
+      "cStudentSentence": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, □ 단위분수의 분모를 분자로, □ 단위분수의 분모를 분모로 쓰면 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누는",
+          "equivalents": [
+            "나누는 수",
+            "나누는 분수"
+          ]
+        },
+        {
+          "key": "나누어지는",
+          "equivalents": [
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{1}{3}\\div\\frac{1}{5}$의 몫을 통분하여 구하시오. 또 단위분수끼리의 나눗셈에서 원래 두 분모를 이용하여 몫을 어떤 분수로 바로 나타낼 수 있는지, 그 분자와 분모를 설명하시오.",
+        "answer": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{15}\\div\\frac{3}{15}=\\frac{5}{3}$이다. 원래 두 분모로 몫을 나타내려면 나누는 단위분수의 분모를 분자로, 나누어지는 단위분수의 분모를 분모로 쓰면 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $\\frac{5}{3}$이다",
+              "$\\frac{5}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자는 나누는 단위분수의 분모",
+              "분자는 나누는 수의 분모"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 나누어지는 단위분수의 분모",
+              "분모는 나누어지는 수의 분모"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$과 $\\frac{1}{5}$을 $\\frac{5}{15}$와 $\\frac{3}{15}$처럼 같은 분모로 고친 뒤 분자끼리 $5\\div3$을 계산한다",
+              "두 분수의 다른 유효한 통분을 실제로 제시하고 분자끼리 나눈다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, {나누는} 단위분수의 분모를 분자로, {나누어지는} 단위분수의 분모를 분모로 쓰면 된다.",
+        "acceptedAnswers": [
+          [
+            "나누는",
+            "나누는 수",
+            "나누는 분수"
+          ],
+          [
+            "나누어지는",
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "71f1a5e9fddf629fc90a8760c6f2938a8f750caa3c45fa95f2eccadb7acb19f5",
+      "questionRevision": "planning-e5e6-20261006-71f1a5e9fddf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-4-xc15",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{4}\\div\\frac{5}{6}$를 통분하는 방법과 곱셈으로 바꾸는 방법으로 각각 구하시오. 두 값이 같은지, 곱셈으로 바꾸는 방법에서 통분이 필요한지도 쓰시오.",
+      "bAnswer": "통분하면 $\\frac{9}{12}\\div\\frac{10}{12}=9\\div10=\\frac{9}{10}$이고, 곱셈으로 바꾸면 $\\frac{3}{4}\\times\\frac{6}{5}=\\frac{9}{10}$입니다. 값은 같고 곱셈 방법에서는 통분이 필요 없습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 방법 모두 $\\frac{9}{10}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈으로 바꾸면 통분하지 않아도 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$과 $\\frac{5}{6}$를 $\\frac{9}{12}$와 $\\frac{10}{12}$ 등 같은 분모로 고치고 분자끼리 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$ $\\times$ $\\frac{6}{5}$ $=$ $\\frac{9}{10}$",
+            "$\\frac{6}{5}$ $\\times$ $\\frac{3}{4}$ $=$ $\\frac{9}{10}$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "통분 방법과 뒤집어 곱하기의 결과가 같고 통분이 필요 없음을 안다.",
+      "bReason": "두 방법을 직접 비교해 방법의 효율을 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "$0$이 아닌 나누는 분수를 진분수나 가분수로 나타내어 분자와 분모를 바꾸어 곱하면, 두 분수의 분모를 맞추는 {통분} 없이도 몫을 구할 수 있다.",
+      "cReason": "통분의 뜻이 문장에 설명되어 있고 낱말 하나를 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-root-josa-patch.json",
+      "codexFinalAmendedFromFingerprint": "e3cc729c27ade5b0978a641c3a732b98e052722e77a56d4b42d705473f0327e4",
+      "sourceIndex": 2213,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-4-xc15",
+        "section": "초6::2-1 분수의 나눗셈::2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "term": "통분하지 않아도 되는 계산",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$이 아닌 나누는 분수를 진분수나 가분수로 나타내어 분자와 분모를 바꾸어 곱하면, 두 분수의 분모를 맞추는 {통분} 없이도 몫을 구할 수 있다.",
+        "studentC": "$0$이 아닌 나누는 분수를 진분수나 가분수로 나타내어 분자와 분모를 바꾸어 곱하면, 두 분수의 분모를 맞추는 □ 없이도 몫을 구할 수 있다.",
+        "answers": [
+          "통분"
+        ]
+      },
+      "sourceFingerprint": "00e93f5d1b485b97303bd9f28972958f15297049421fac342321ee2d60169673",
+      "draftEvidence": "evidence/section-086-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "$0$이 아닌 나누는 분수를 진분수나 가분수로 나타내어 분자와 분모를 바꾸어 곱하면, 두 분수의 분모를 맞추는 {통분} 없이도 몫을 구할 수 있다.",
+      "cFrozenStudentSentence": "$0$이 아닌 나누는 분수를 진분수나 가분수로 나타내어 분자와 분모를 바꾸어 곱하면, 두 분수의 분모를 맞추는 □ 없이도 몫을 구할 수 있다.",
+      "cProposedAnswers": [
+        "통분"
+      ],
+      "cStudentAfter": "$0$이 아닌 나누는 분수를 진분수나 가분수로 나타내어 분자와 분모를 바꾸어 곱하면, 두 분수의 분모를 맞추는 □ 없이도 몫을 구할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "통분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$이 아닌 나누는 분수를 진분수나 가분수로 나타내어 분자와 분모를 바꾸어 곱하면, 두 분수의 분모를 맞추는 {통분} 없이도 몫을 구할 수 있다.",
+      "cStudentSentence": "$0$이 아닌 나누는 분수를 진분수나 가분수로 나타내어 분자와 분모를 바꾸어 곱하면, 두 분수의 분모를 맞추는 □ 없이도 몫을 구할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "통분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{4}\\div\\frac{5}{6}$를 통분하는 방법과 곱셈으로 바꾸는 방법으로 각각 구하시오. 두 값이 같은지, 곱셈으로 바꾸는 방법에서 통분이 필요한지도 쓰시오.",
+        "answer": "통분하면 $\\frac{9}{12}\\div\\frac{10}{12}=9\\div10=\\frac{9}{10}$이고, 곱셈으로 바꾸면 $\\frac{3}{4}\\times\\frac{6}{5}=\\frac{9}{10}$입니다. 값은 같고 곱셈 방법에서는 통분이 필요 없습니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 방법 모두 $\\frac{9}{10}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱셈으로 바꾸면 통분하지 않아도 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$과 $\\frac{5}{6}$를 $\\frac{9}{12}$와 $\\frac{10}{12}$ 등 같은 분모로 고치고 분자끼리 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$ $\\times$ $\\frac{6}{5}$ $=$ $\\frac{9}{10}$",
+              "$\\frac{6}{5}$ $\\times$ $\\frac{3}{4}$ $=$ $\\frac{9}{10}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$이 아닌 나누는 분수를 진분수나 가분수로 나타내어 분자와 분모를 바꾸어 곱하면, 두 분수의 분모를 맞추는 {통분} 없이도 몫을 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "통분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "206db3f3c482037f5d098fd13b20f461d730a82009d02553d64d37a2bcfbcaa6",
+      "questionRevision": "planning-e5e6-20261006-206db3f3c482",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-5-xc24",
+      "bDecision": "revise",
+      "bPrompt": "대분수끼리의 나눗셈에서 두 대분수를 각각 가장 가까운 자연수로 바꾸어 몫을 어림하는 방법을 설명하시오. 이 방법으로 $5\\frac{9}{10}\\div2\\frac{1}{8}$의 몫을 어림하시오.",
+      "bAnswer": "두 대분수를 각각 가까운 자연수로 바꾸어 나눈다. $5\\frac{9}{10}$는 약 $6$, $2\\frac{1}{8}$은 약 $2$이므로 몫은 약 $6\\div2=3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5\\frac{9}{10}$를 $6$으로, $2\\frac{1}{8}$을 $2$로 어림해 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\div2=3$",
+            "몫은 약 $3$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "가까운 자연수로 바꾸어 몫을 어림한다.",
+      "bReason": "계산 결과의 타당성을 점검하는 실용적 방법이다.",
+      "cDecision": "revise",
+      "cAfter": "$5\\frac{9}{10}$는 가장 가까운 자연수 {$6$}, $2\\frac{1}{8}$은 가장 가까운 자연수 {$2$}로 보면 몫은 약 {$3$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cReason": "'자연수' 낱말 빈칸 대신 실제 어림값을 구하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-root-josa-patch.json",
+      "codexFinalAmendedFromFingerprint": "ecd8da22b74af4acf710a78158f710f623a9e8e4dcc175800ca1384e7e8d4b0f",
+      "sourceIndex": 2227,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-5-xc24",
+        "section": "초6::2-1 분수의 나눗셈::2-1-5 (가분수)÷(분수), (대분수)÷(분수) 알아보기",
+        "term": "몫 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "대분수의 나눗셈은 두 수를 각각 가까운 {자연수}로 바꾸어 몫의 대략적인 크기를 어림할 수 있다.",
+        "studentC": "대분수의 나눗셈은 두 수를 각각 가까운 □로 바꾸어 몫의 대략적인 크기를 어림할 수 있다.",
+        "answers": [
+          "자연수"
+        ]
+      },
+      "sourceFingerprint": "8b014062c6120fee39f1115ce2b8d71fc1474a913b370b9d40908f7da49d7d8e",
+      "draftEvidence": "evidence/section-087-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$6$",
+        "$2$",
+        "$3$"
+      ],
+      "cStudentAfter": "$5\\frac{9}{10}$는 가장 가까운 자연수 □, $2\\frac{1}{8}$은 가장 가까운 자연수 □로 보면 몫은 약 □이다.",
+      "cMarkedSentence": "$5\\frac{9}{10}$는 가장 가까운 자연수 {$6$}, $2\\frac{1}{8}$은 가장 가까운 자연수 {$2$}로 보면 몫은 약 {$3$}이다.",
+      "cStudentSentence": "$5\\frac{9}{10}$는 가장 가까운 자연수 □, $2\\frac{1}{8}$은 가장 가까운 자연수 □로 보면 몫은 약 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수끼리의 나눗셈에서 두 대분수를 각각 가장 가까운 자연수로 바꾸어 몫을 어림하는 방법을 설명하시오. 이 방법으로 $5\\frac{9}{10}\\div2\\frac{1}{8}$의 몫을 어림하시오.",
+        "answer": "두 대분수를 각각 가까운 자연수로 바꾸어 나눈다. $5\\frac{9}{10}$는 약 $6$, $2\\frac{1}{8}$은 약 $2$이므로 몫은 약 $6\\div2=3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5\\frac{9}{10}$를 $6$으로, $2\\frac{1}{8}$을 $2$로 어림해 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\div2=3$",
+              "몫은 약 $3$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5\\frac{9}{10}$는 가장 가까운 자연수 {$6$}, $2\\frac{1}{8}$은 가장 가까운 자연수 {$2$}로 보면 몫은 약 {$3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e9300431fb997fa010994b6bcd3ab97aac0ea0b84ddc0d898040b9ccc59395e6",
+      "questionRevision": "planning-e5e6-20261006-e9300431fb99",
+      "requiresIndependentReview": true
+    }
+  ]
+}

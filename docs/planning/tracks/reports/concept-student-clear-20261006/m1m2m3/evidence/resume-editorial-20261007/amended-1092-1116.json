@@ -1,0 +1,1986 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-20261007/input-1092-1116.json",
+  "changes": [
+    {
+      "id": "m1-02-03-xc5",
+      "cAcceptedAnswers": [
+        [
+          "$a+(+b)$",
+          "$a+b$",
+          "$b+a$"
+        ]
+      ],
+      "cReason": "음수를빼서같은덧셈으로고친값의양의부호생략·교환표현만인정한다."
+    },
+    {
+      "id": "m1-02-03-xc8",
+      "cAcceptedAnswers": [
+        [
+          "$+a$",
+          "$a$"
+        ],
+        [
+          "$-a$"
+        ]
+      ],
+      "cReason": "양의부호를생략한a도+a와같은식을뜻하며B에서도인정한표현이다."
+    },
+    {
+      "id": "m1-02-03-xc10",
+      "cAfter": "여러 수를 더할 때 수의 순서를 바꾸는 것은 덧셈의 {교환법칙}, 먼저 더할 수들을 묶는 것은 덧셈의 {결합법칙}을 이용한 것이다. 이 두 법칙으로 양수끼리, 음수끼리 모아 계산할 수 있다.",
+      "cReason": "두법칙이름의순서를임의로바꿀수있는슬롯을없애고각법칙의실제역할을묻는다."
+    },
+    {
+      "id": "m1-02-03-xc12",
+      "bPrompt": "$(+7)+(-2)+(-7)+(+5)$에서 합이 $0$이 되는 두 수를 찾고, 그 두 수의 절댓값과 부호의 관계를 설명하시오. 이 짝을 이용하여 식의 값을 구하시오.",
+      "bReason": "임의의두수합산도계산을단순하게할수있으므로0되는짝을찾는실제목표와요청하는이유의범위를질문에밝힌다."
+    },
+    {
+      "id": "m1-02-03-xc14",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 수에서 작은 수를 뺀다",
+            "두 수의 차의 절댓값을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "거리는 $8$이다"
+          ]
+        }
+      ],
+      "bReason": "거리8을묻는질문에서특정뺄셈순서의표기를추가요구하지않는다. 큰수-작은수와차의절댓값방법을일관되게인정한다."
+    },
+    {
+      "id": "m1-02-03-xc19",
+      "cAfter": "분수와 소수가 섞인 덧셈과 뺄셈은 소수를 {분수}로 고쳐 같은 꼴로 만든 뒤 계산한다. 반대로 고치면 소수점 아래 숫자가 끝나지 않는 경우가 있다.",
+      "cReason": "순환소수는정확한소수표현자체가불가능한것이아니므로끝나지않는숫자라는실제계산상차이로바로잡는다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-02-03-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "$a-(+b)$와 $a-(-b)$를 각각 덧셈식으로 고쳐 쓰시오. 또 $(+3)-(-4)$를 덧셈식으로 고치시오.",
+      "bAnswer": "$a-(+b)=a+(-b)$, $a-(-b)=a+(+b)$. $(+3)-(-4)=(+3)+(+4)$",
+      "bGoal": "양수를 빼는 식과 음수를 빼는 식을 각각 덧셈식으로 고칠 수 있다.",
+      "bReason": "제목의 '꼴'이 어떤 식을 가리키는지 없다. 두 가지 식을 직접 주고 고쳐 쓰게 했으며 계산 결과가 아닌 고친 식을 답하도록 했다.",
+      "cDecision": "keep",
+      "cReason": "음수를빼서같은덧셈으로고친값의양의부호생략·교환표현만인정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a-(+b)=a+(-b)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a-(-b)=a+(+b)$ ($a+b$도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(+3)+(+4)$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "빼는 수 부호 바꿔 덧셈으로",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1092,
+      "part": "m1plus",
+      "sourceFingerprint": "ede787612c4c18692c165045a15c81710b2d66feecf59700aebadf5bce40dfa3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1092
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a-(+b)$는 $a+(-b)$로, $a-(-b)$는 □로 고친다.",
+      "cFrozenDefinition": "$a-(+b)$는 $a+(-b)$로, $a-(-b)$는 {$a+(+b)$}로 고친다.",
+      "cFrozenAnswers": [
+        "$a+(+b)$"
+      ],
+      "cMarkedSentence": "$a-(+b)$는 $a+(-b)$로, $a-(-b)$는 {$a+(+b)$}로 고친다.",
+      "cSlotAnswers": [
+        "$a+(+b)$"
+      ],
+      "cStudentSentence": "$a-(+b)$는 $a+(-b)$로, $a-(-b)$는 □로 고친다.",
+      "cAnswers": [
+        "$a+(+b)$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a+(+b)$",
+          "equivalentAnswers": [
+            "$a+(+b)$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a+(+b)$",
+          "$a+b$",
+          "$b+a$"
+        ]
+      ],
+      "proposalFingerprint": "6c4f17425cf49c7fba15508ec2e0e49b47191fc17b58dae12f8078d45cae4804"
+    },
+    {
+      "id": "m1-02-03-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "음수를 빼면 수가 커짐을 계산으로 확인할 수 있다.",
+      "bReason": "m1-02-03-xc22가 음수를 더할 때와 뺄 때를 함께 비교하며, 이 문항의 내용이 그 절반에 그대로 들어 있다.",
+      "cDecision": "exclude",
+      "cReason": "빈칸 '커진다'는 m1-02-03-xc22 C의 둘째 빈칸과 문장·답이 같다.",
+      "exclusionReason": "B 제외: m1-02-03-xc22의 B(음수를 더할 때와 뺄 때 비교)에 완전히 포함되는 중복 질문이다. C 제외: m1-02-03-xc22 C의 둘째 빈칸과 답이 같은 반복 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "음수를 빼면 처음보다 커짐",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1093,
+      "part": "m1plus",
+      "sourceFingerprint": "6118dd2406d2a38467a31da1e6e648e636e106ce01239ab41ea9ff18f63ecaa9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1093
+      },
+      "directReview": null,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+    },
+    {
+      "id": "m1-02-03-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "소수로 나타낸 수의 덧셈도 정수의 덧셈과 같은 방법으로 한다. $(-1.2)+(+0.5)$에서 합의 부호와 합의 절댓값을 각각 어떻게 정하는지 설명하고 값을 구하시오.",
+      "bAnswer": "부호가 다르므로 절댓값이 큰 $-1.2$의 부호 $-$를 먼저 정하고, 절댓값의 차 $1.2-0.5=0.7$을 계산한다. $(-1.2)+(+0.5)=-0.7$",
+      "bGoal": "소수인 유리수의 덧셈을 부호와 절댓값으로 나누어 계산할 수 있다.",
+      "bReason": "초등의 소수 덧셈과 구별되지 않는 제목이다. 음수가 들어간 소수 덧셈임을 구체 식으로 보이고 부호와 절댓값 순서로 답하게 했다.",
+      "cDecision": "keep",
+      "cReason": "'부호'와 '절댓값'은 계산 순서의 두 단계를 나타내는 표준 낱말이고 '정수와 같이'라는 맥락이 문장에 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합의 부호: 부호가 다르므로 절댓값이 큰 $-1.2$의 부호 $-$"
+          ]
+        },
+        {
+          "anyOf": [
+            "합의 절댓값: 절댓값의 차 $1.2-0.5=0.7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-0.7$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "부호 먼저, 절댓값 계산",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1094,
+      "part": "m1plus",
+      "sourceFingerprint": "c874611bb39e07baf468c70124b672ddbdd5cab0c07fdfc968adab9b5bdb539f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1094
+      },
+      "directReview": null,
+      "cFrozenSentence": "소수가 섞인 덧셈도 정수와 같이 □를 먼저 정하고 □을 계산한다.",
+      "cFrozenDefinition": "소수가 섞인 덧셈도 정수와 같이 {부호}를 먼저 정하고 {절댓값}을 계산한다.",
+      "cFrozenAnswers": [
+        "부호",
+        "절댓값"
+      ],
+      "cMarkedSentence": "소수가 섞인 덧셈도 정수와 같이 {부호}를 먼저 정하고 {절댓값}을 계산한다.",
+      "cSlotAnswers": [
+        "부호",
+        "절댓값"
+      ],
+      "cStudentSentence": "소수가 섞인 덧셈도 정수와 같이 □를 먼저 정하고 □을 계산한다.",
+      "cAnswers": [
+        "부호",
+        "절댓값"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "절댓값",
+          "equivalentAnswers": [
+            "절댓값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ],
+        [
+          "절댓값"
+        ]
+      ],
+      "proposalFingerprint": "f030e2f4ba91b3d27c00efa97b3fde445c282f390937cd30667abbcbdbadf07a"
+    },
+    {
+      "id": "m1-02-03-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "$+(+a)$, $-(-a)$, $+(-a)$, $-(+a)$를 각각 괄호 없이 간단히 쓰시오. 또 $5-(-2)$를 괄호 없이 쓰시오.",
+      "bAnswer": "$+(+a)=+a$, $-(-a)=+a$, $+(-a)=-a$, $-(+a)=-a$. $5-(-2)=5+2$",
+      "bGoal": "연산 기호와 부호가 겹친 괄호를 풀어 쓸 수 있다.",
+      "bReason": "제목에는 어떤 괄호를 푸는지 없다. 네 가지 꼴을 모두 제시하고 각각의 결과를 쓰게 했다.",
+      "cDecision": "keep",
+      "cReason": "양의부호를생략한a도+a와같은식을뜻하며B에서도인정한표현이다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$+(+a)=+a$, $-(-a)=+a$ ($a$로 써도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$+(-a)=-a$, $-(+a)=-a$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5+2$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "겹친 기호·부호 괄호 풀기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1095,
+      "part": "m1plus",
+      "sourceFingerprint": "b7575a7c57e7f07102025618982972989613767eaa21f42bc4b1e33b41e31dc8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1095
+      },
+      "directReview": null,
+      "cFrozenSentence": "$+(+a)$와 $-(-a)$는 □로, $+(-a)$와 $-(+a)$는 □로 쓴다.",
+      "cFrozenDefinition": "$+(+a)$와 $-(-a)$는 {$+a$}로, $+(-a)$와 $-(+a)$는 {$-a$}로 쓴다.",
+      "cFrozenAnswers": [
+        "$+a$",
+        "$-a$"
+      ],
+      "cMarkedSentence": "$+(+a)$와 $-(-a)$는 {$+a$}로, $+(-a)$와 $-(+a)$는 {$-a$}로 쓴다.",
+      "cSlotAnswers": [
+        "$+a$",
+        "$-a$"
+      ],
+      "cStudentSentence": "$+(+a)$와 $-(-a)$는 □로, $+(-a)$와 $-(+a)$는 □로 쓴다.",
+      "cAnswers": [
+        "$+a$",
+        "$-a$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$+a$",
+          "equivalentAnswers": [
+            "$+a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-a$",
+          "equivalentAnswers": [
+            "$-a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$+a$",
+          "$a$"
+        ],
+        [
+          "$-a$"
+        ]
+      ],
+      "proposalFingerprint": "dc6518ca9c0b85d60e4547efece47d5b0b43341be92d2c3ae19a345f4f9a8a1b"
+    },
+    {
+      "id": "m1-02-03-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "분모가 다른 두 분수(양수 또는 음수)의 덧셈은 어떤 순서로 계산하는지 쓰고, $\\left(-\\frac{1}{2}\\right)+\\left(+\\frac{3}{4}\\right)$을 계산하시오.",
+      "bAnswer": "먼저 통분한 뒤 부호가 같은지 다른지에 따른 덧셈 방법으로 더한다. $\\left(-\\frac{2}{4}\\right)+\\left(+\\frac{3}{4}\\right)=+\\frac{1}{4}$",
+      "bGoal": "분모가 다른 유리수의 덧셈을 통분하여 계산할 수 있다.",
+      "bReason": "통분한 뒤 바르게 더한 답이 '부호가 같은지 다른지에 따른'이라는 일반 문구를 안 썼다고 틀리지 않도록 대안 표현을 나눈다.",
+      "cDecision": "keep",
+      "cReason": "'통분' 한 낱말을 채우며 '분모가 다른 분수'라는 조건이 문장에 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 통분한다",
+            "분모를 같게 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "통분한 뒤 부호 규칙에 따라 더한다",
+            "부호가 다르므로 절댓값의 차에 절댓값이 큰 수의 부호를 붙인다",
+            "$\\left(-\\frac{2}{4}\\right)+\\left(+\\frac{3}{4}\\right)$로 고쳐 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$",
+            "$+\\frac{1}{4}$",
+            "$0.25$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "통분 후 부호 규칙으로 덧셈",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1096,
+      "part": "m1plus",
+      "sourceFingerprint": "5e7877e1300bfb3396fd0c25895ca80f409321a984217e36a1d44915c1a6c529",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1096
+      },
+      "directReview": null,
+      "cFrozenSentence": "분모가 다른 분수는 먼저 □한 뒤 부호 규칙에 따라 더한다.",
+      "cFrozenDefinition": "분모가 다른 분수는 먼저 {통분}한 뒤 부호 규칙에 따라 더한다.",
+      "cFrozenAnswers": [
+        "통분"
+      ],
+      "cMarkedSentence": "분모가 다른 분수는 먼저 {통분}한 뒤 부호 규칙에 따라 더한다.",
+      "cSlotAnswers": [
+        "통분"
+      ],
+      "cStudentSentence": "분모가 다른 분수는 먼저 □한 뒤 부호 규칙에 따라 더한다.",
+      "cAnswers": [
+        "통분"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "통분",
+          "equivalentAnswers": [
+            "통분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "통분"
+        ]
+      ],
+      "proposalFingerprint": "6a0f36ae92bf69c75b9d03bea0c91049c0e3d09e12522ad5b08bae4eddc656ef"
+    },
+    {
+      "id": "m1-02-03-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$(+5)+(-3)+(+2)+(-6)$을 양수끼리, 음수끼리 모아서 계산하시오. 이때 수의 순서를 바꾸는 데 쓰인 덧셈의 법칙과, 먼저 더할 수들을 묶는 데 쓰인 덧셈의 법칙의 이름을 각각 쓰시오.",
+      "bAnswer": "순서를 바꾸면 $(+5)+(+2)+(-3)+(-6)$이고 이는 교환법칙이다. 묶으면 $\\{(+5)+(+2)\\}+\\{(-3)+(-6)\\}=(+7)+(-9)=-2$이고 이는 결합법칙이다.",
+      "bGoal": "교환법칙과 결합법칙을 이용해 여러 수의 덧셈을 편리하게 계산할 수 있다.",
+      "bReason": "제목은 방법의 이름일 뿐 계산할 식도 근거 법칙도 없다. 네 수의 식을 주고 각 단계에서 쓰인 법칙을 구별해 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "두법칙이름의순서를임의로바꿀수있는슬롯을없애고각법칙의실제역할을묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "순서를 바꾸는 데 쓰인 법칙: 덧셈의 교환법칙"
+          ]
+        },
+        {
+          "anyOf": [
+            "묶어 먼저 더하는 데 쓰인 법칙: 덧셈의 결합법칙"
+          ]
+        },
+        {
+          "anyOf": [
+            "양수끼리 $(+5)+(+2)=+7$, 음수끼리 $(-3)+(-6)=-9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-2$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "교환·결합법칙으로 같은 부호 모으기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1097,
+      "part": "m1plus",
+      "sourceFingerprint": "241e5fef5e51c3b4e88616c4383468bb6e55361bd5d1c5ebd109f6759a8dc2b3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1097
+      },
+      "directReview": null,
+      "cMarkedSentence": "여러 수를 더할 때 수의 순서를 바꾸는 것은 덧셈의 {교환법칙}, 먼저 더할 수들을 묶는 것은 덧셈의 {결합법칙}을 이용한 것이다. 이 두 법칙으로 양수끼리, 음수끼리 모아 계산할 수 있다.",
+      "cSlotAnswers": [
+        "교환법칙",
+        "결합법칙"
+      ],
+      "cStudentSentence": "여러 수를 더할 때 수의 순서를 바꾸는 것은 덧셈의 □, 먼저 더할 수들을 묶는 것은 덧셈의 □을 이용한 것이다. 이 두 법칙으로 양수끼리, 음수끼리 모아 계산할 수 있다.",
+      "cAnswers": [
+        "교환법칙",
+        "결합법칙"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "교환법칙",
+          "equivalentAnswers": [
+            "교환법칙"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "결합법칙",
+          "equivalentAnswers": [
+            "결합법칙"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "교환법칙"
+        ],
+        [
+          "결합법칙"
+        ]
+      ],
+      "proposalFingerprint": "5ceccb2c860427a9de4f53c724d4f44dbb67dfab8f3d864f78b8cf2f9f4ff0f8",
+      "cAfter": "여러 수를 더할 때 수의 순서를 바꾸는 것은 덧셈의 {교환법칙}, 먼저 더할 수들을 묶는 것은 덧셈의 {결합법칙}을 이용한 것이다. 이 두 법칙으로 양수끼리, 음수끼리 모아 계산할 수 있다."
+    },
+    {
+      "id": "m1-02-03-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-3)-(+5)+(+9)$처럼 덧셈과 뺄셈이 섞인 식을 계산하는 순서를 쓰고, 이 식을 그 순서대로 계산하시오.",
+      "bAnswer": "뺄셈을 모두 덧셈으로 고친 뒤 덧셈의 교환법칙과 결합법칙을 이용해 계산한다. $(-3)+(-5)+(+9)=(-8)+(+9)=1$",
+      "bGoal": "덧셈과 뺄셈이 섞인 식을 덧셈으로 통일하여 계산할 수 있다.",
+      "bReason": "제목만으로는 계산 순서를 묻는지 값을 묻는지 알 수 없다. 구체 식과 함께 순서와 과정을 쓰도록 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "덧셈과 뺄셈이 섞인 식은 뺄셈을 모두 {덧셈}으로 고친 뒤, 덧셈의 교환법칙과 {결합}법칙을 이용하여 계산한다.",
+      "cAnswers": [
+        "덧셈",
+        "결합"
+      ],
+      "cReason": "답 '계산 법칙'은 어떤 법칙인지 가리키지 않는 막연한 말이라 학생이 떠올리기 어렵다. 실제 법칙 이름으로 바꾸어 하나를 채우게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "뺄셈을 모두 덧셈으로 고친 뒤 계산 (교환·결합법칙의 이름은 쓰지 않아도 됨)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-3)+(-5)+(+9)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "뺄셈을 덧셈으로 통일해 계산",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1098,
+      "part": "m1plus",
+      "sourceFingerprint": "3cb03321548af0d0302edde612b3415d47d81d631ca39d59941e5cc6b623323a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1098
+      },
+      "directReview": null,
+      "cMarkedSentence": "덧셈과 뺄셈이 섞인 식은 뺄셈을 모두 {덧셈}으로 고친 뒤, 덧셈의 교환법칙과 {결합}법칙을 이용하여 계산한다.",
+      "cSlotAnswers": [
+        "덧셈",
+        "결합"
+      ],
+      "cStudentSentence": "덧셈과 뺄셈이 섞인 식은 뺄셈을 모두 □으로 고친 뒤, 덧셈의 교환법칙과 □법칙을 이용하여 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "덧셈",
+          "equivalentAnswers": [
+            "덧셈"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "결합",
+          "equivalentAnswers": [
+            "결합"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "덧셈"
+        ],
+        [
+          "결합"
+        ]
+      ],
+      "proposalFingerprint": "96b483949f39b4fd9816f288d139e8f66e9a9b2e5a9dcb4b7b7aa61ccf9acb28"
+    },
+    {
+      "id": "m1-02-03-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$(+7)+(-2)+(-7)+(+5)$에서 합이 $0$이 되는 두 수를 찾고, 그 두 수의 절댓값과 부호의 관계를 설명하시오. 이 짝을 이용하여 식의 값을 구하시오.",
+      "bAnswer": "$(+7)$과 $(-7)$을 먼저 더한다. 절댓값이 같고 부호가 반대라서 합이 $0$이 되기 때문이다. 남은 $(-2)+(+5)=3$이므로 값은 $3$이다.",
+      "bGoal": "합이 $0$인 두 수를 먼저 짝지어 계산을 간단히 할 수 있다.",
+      "bReason": "임의의두수합산도계산을단순하게할수있으므로0되는짝을찾는실제목표와요청하는이유의범위를질문에밝힌다.",
+      "cDecision": "keep",
+      "cReason": "빈칸 하나($0$)로 요령의 핵심을 확인하며 문장이 스스로 완결된다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(+7)$과 $(-7)$을 먼저 더함"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 절댓값이 같고 부호가 반대라 합이 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "합이 0인 짝 먼저 더하기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1099,
+      "part": "m1plus",
+      "sourceFingerprint": "c9c290c75e3d36f4beebb8484618779e7015e5c4a29fa727f8a7de9fb6fa9131",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1099
+      },
+      "directReview": null,
+      "cFrozenSentence": "여러 수를 더할 때 합이 □이 되는 두 수를 먼저 짝지으면 계산이 쉽다.",
+      "cFrozenDefinition": "여러 수를 더할 때 합이 {$0$}이 되는 두 수를 먼저 짝지으면 계산이 쉽다.",
+      "cFrozenAnswers": [
+        "$0$"
+      ],
+      "cMarkedSentence": "여러 수를 더할 때 합이 {$0$}이 되는 두 수를 먼저 짝지으면 계산이 쉽다.",
+      "cSlotAnswers": [
+        "$0$"
+      ],
+      "cStudentSentence": "여러 수를 더할 때 합이 □이 되는 두 수를 먼저 짝지으면 계산이 쉽다.",
+      "cAnswers": [
+        "$0$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "a203459780ff16ab7ced2db5baf58b3c4cd55081f0d10039f4bfb041aab7db8d"
+    },
+    {
+      "id": "m1-02-03-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 수에 $a$를 더했더니 $b$가 되었을 때와, 어떤 수에서 $a$를 뺐더니 $b$가 되었을 때, 어떤 수를 각각 $a$, $b$를 사용한 식으로 나타내시오. 또 어떤 수에 $-4$를 더하면 $3$이 될 때, 어떤 수를 구하시오.",
+      "bAnswer": "$a$를 더해 $b$가 되면 어떤 수는 $b-a$이고, $a$를 빼서 $b$가 되면 어떤 수는 $b+a$이다. $3-(-4)=7$이므로 어떤 수는 $7$이다.",
+      "bGoal": "덧셈과 뺄셈의 관계를 이용해 어떤 수를 거꾸로 구할 수 있다.",
+      "bReason": "질문은 어떤 수의 값만 묻는데 $3-(-4)$라는 중간 식까지 강요하고 있어, 값 $7$만 써도 인정한다.",
+      "cDecision": "keep",
+      "cReason": "두 상황이 문장에 온전히 있고 각 결론 식만 채운다. 덧셈과 뺄셈이 서로 바뀌는 대비도 분명하다.",
+      "studentLabel": "계산 결과에서 어떤 수 구하기",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a$를 더해 $b$가 되면 어떤 수는 $b-a$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a$를 빼서 $b$가 되면 어떤 수는 $b+a$",
+            "$a$를 빼서 $b$가 되면 어떤 수는 $a+b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "어떤 수는 $7$",
+            "$3-(-4)=7$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "덧셈·뺄셈 거꾸로 되돌리기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1100,
+      "part": "m1plus",
+      "sourceFingerprint": "756e404a48a1ba60dcddaa56ccf47e001a9927cd36f8dac97b50c7bb0e50e208",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1100
+      },
+      "directReview": null,
+      "cFrozenSentence": "어떤 수에 $a$를 더해 $b$가 되면 그 수는 □이고, 어떤 수에서 $a$를 빼서 $b$가 되면 그 수는 □이다.",
+      "cFrozenDefinition": "어떤 수에 $a$를 더해 $b$가 되면 그 수는 {$b-a$}이고, 어떤 수에서 $a$를 빼서 $b$가 되면 그 수는 {$b+a$}이다.",
+      "cFrozenAnswers": [
+        "$b-a$",
+        "$b+a$"
+      ],
+      "cMarkedSentence": "어떤 수에 $a$를 더해 $b$가 되면 그 수는 {$b-a$}이고, 어떤 수에서 $a$를 빼서 $b$가 되면 그 수는 {$b+a$}이다.",
+      "cSlotAnswers": [
+        "$b-a$",
+        "$b+a$"
+      ],
+      "cStudentSentence": "어떤 수에 $a$를 더해 $b$가 되면 그 수는 □이고, 어떤 수에서 $a$를 빼서 $b$가 되면 그 수는 □이다.",
+      "cAnswers": [
+        "$b-a$",
+        "$b+a$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$b-a$",
+          "equivalentAnswers": [
+            "$b-a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$b+a$",
+          "equivalentAnswers": [
+            "$b+a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$b-a$"
+        ],
+        [
+          "$b+a$"
+        ]
+      ],
+      "proposalFingerprint": "155c7e24dcb88af27d91dd1913da54f96ba7f7fbdaa8920d04b04062aa4bfb22"
+    },
+    {
+      "id": "m1-02-03-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "수직선에서 서로 다른 두 수를 나타내는 두 점 사이의 거리를 뺄셈으로 구하는 방법을 쓰시오. 또 이 방법으로 $5$와 $-3$을 나타내는 두 점 사이의 거리를 구하시오.",
+      "bAnswer": "큰 수에서 작은 수를 뺀다. $5-(-3)=8$이므로 거리는 $8$이다.",
+      "bGoal": "두 수 사이의 거리를 큰 수에서 작은 수를 빼어 구할 수 있다.",
+      "bReason": "거리8을묻는질문에서특정뺄셈순서의표기를추가요구하지않는다. 큰수-작은수와차의절댓값방법을일관되게인정한다.",
+      "cDecision": "keep",
+      "cReason": "'큰 수', '작은 수'는 짧고 뜻이 분명하며 빼는 순서를 확인하는 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 수에서 작은 수를 뺀다",
+            "두 수의 차의 절댓값을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "거리는 $8$이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "큰 수에서 작은 수 빼기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1101,
+      "part": "m1plus",
+      "sourceFingerprint": "5b45f2549cd42724037fb19ab0c036c5966fef6ebe6ab8c1598db1c53e2d8cdf",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1101
+      },
+      "directReview": null,
+      "cFrozenSentence": "수직선에서 두 수 사이의 거리는 □에서 □를 빼서 구한다.",
+      "cFrozenDefinition": "수직선에서 두 수 사이의 거리는 {큰 수}에서 {작은 수}를 빼서 구한다.",
+      "cFrozenAnswers": [
+        "큰 수",
+        "작은 수"
+      ],
+      "cMarkedSentence": "수직선에서 두 수 사이의 거리는 {큰 수}에서 {작은 수}를 빼서 구한다.",
+      "cSlotAnswers": [
+        "큰 수",
+        "작은 수"
+      ],
+      "cStudentSentence": "수직선에서 두 수 사이의 거리는 □에서 □를 빼서 구한다.",
+      "cAnswers": [
+        "큰 수",
+        "작은 수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "큰 수",
+          "equivalentAnswers": [
+            "큰 수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "작은 수",
+          "equivalentAnswers": [
+            "작은 수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "큰 수"
+        ],
+        [
+          "작은 수"
+        ]
+      ],
+      "proposalFingerprint": "2f876a9f150ff5db289dd4f085650bd118ecf2f44859edb542093a0f19f827b0"
+    },
+    {
+      "id": "m1-02-03-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-6)-(-2)$를 덧셈으로 고칠 때, 두 수 $-6$과 $-2$ 중 부호를 바꾸는 수는 어느 것인지 쓰고 고친 덧셈식을 쓰시오. 또 $(+6)+(+2)$로 고치면 틀린 까닭을 쓰시오.",
+      "bAnswer": "빼는 수인 $-2$의 부호만 바꾸어 $(-6)+(+2)$로 고친다. 앞의 수 $-6$의 부호는 그대로 두어야 하므로 $(+6)+(+2)$는 틀리다.",
+      "bGoal": "뺄셈을 덧셈으로 고칠 때 빼는 수의 부호만 바꾼다는 점을 지킬 수 있다.",
+      "bReason": "m1-02-03-c5와 주제가 가깝지만 이 문항의 핵심은 '앞의 수는 그대로'라는 주의점이다. 흔한 오류를 직접 제시하여 그 점을 묻는 질문으로 구별했다.",
+      "cDecision": "keep",
+      "cReason": "'빼는 수'와 '그대로'가 바꾸는 대상과 바꾸지 않는 대상을 대비하며 문장에 조건이 모두 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부호를 바꾸는 수는 빼는 수 $-2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(-6)+(+2)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "틀린 까닭: 앞의 수 $-6$의 부호는 그대로 두어야 하는데 바꾸었음"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "빼는 수의 부호만 바꿈",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1102,
+      "part": "m1plus",
+      "sourceFingerprint": "8448bf4a460a280d285dab6d6b388ae0ba131a331bf0983c18712898b88089fc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1102
+      },
+      "directReview": null,
+      "cFrozenSentence": "뺄셈을 덧셈으로 고칠 때는 □의 부호만 바꾸고 앞의 수의 부호는 □ 둔다.",
+      "cFrozenDefinition": "뺄셈을 덧셈으로 고칠 때는 {빼는 수}의 부호만 바꾸고 앞의 수의 부호는 {그대로} 둔다.",
+      "cFrozenAnswers": [
+        "빼는 수",
+        "그대로"
+      ],
+      "cMarkedSentence": "뺄셈을 덧셈으로 고칠 때는 {빼는 수}의 부호만 바꾸고 앞의 수의 부호는 {그대로} 둔다.",
+      "cSlotAnswers": [
+        "빼는 수",
+        "그대로"
+      ],
+      "cStudentSentence": "뺄셈을 덧셈으로 고칠 때는 □의 부호만 바꾸고 앞의 수의 부호는 □ 둔다.",
+      "cAnswers": [
+        "빼는 수",
+        "그대로"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "빼는 수",
+          "equivalentAnswers": [
+            "빼는 수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "그대로",
+          "equivalentAnswers": [
+            "그대로"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "빼는 수"
+        ],
+        [
+          "그대로"
+        ]
+      ],
+      "proposalFingerprint": "2d6fd0a58faa2d1b8c0e3cda90f0f912cd3d14121290ac8c6c1237819bcb0ace"
+    },
+    {
+      "id": "m1-02-03-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\left(-\\frac{7}{3}\\right)+(+2)$를 끝까지 계산하지 않고 합이 양수인지 음수인지 판단하시오. 판단할 때 두 수의 무엇을 비교했는지와 그 결과를 쓰시오.",
+      "bAnswer": "두 수의 절댓값을 비교한다. $\\frac{7}{3}>2$이므로 합은 절댓값이 큰 $-\\frac{7}{3}$의 부호를 따라 음수이다.",
+      "bGoal": "부호가 다른 두 수의 합의 부호를 절댓값 비교만으로 미리 정할 수 있다.",
+      "bReason": "'결과의 부호 미리 보기'는 어떤 계산의 결과인지 알 수 없다. 부호가 다른 분수와 정수의 덧셈을 주고 판단 근거를 쓰게 했다.",
+      "cDecision": "exclude",
+      "cReason": "첫 답 '절댓값이 큰'은 m1-02-03-c3 C의 둘째 빈칸('절댓값이 큰 수의 부호')과 같은 사실이고, 둘째 답 '부호'는 같은 문장의 '수의 부호를 따르므로'에 그대로 보인다.",
+      "exclusionReason": "C 제외: m1-02-03-c3 C의 빈칸과 내용·답이 겹치고, 남는 빈칸은 문장 안에서 답을 베낄 수 있다. B는 계산 전 판단 질문으로 유지한다.",
+      "studentLabel": "합의 부호 미리 정하기",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 절댓값을 비교"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{3}>2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "합은 절댓값이 큰 $-\\frac{7}{3}$의 부호를 따라 음수"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "절댓값 큰 쪽 부호로 예측",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1103,
+      "part": "m1plus",
+      "sourceFingerprint": "a613f49c5a2170b57b18da1d4f9ca882fb7a02964bca1bac3fd210b0b5871d6e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1103
+      },
+      "directReview": null,
+      "proposalFingerprint": "a4c18f0f78c407063f654272cac09fe6fbf02e923158b9fc005c794ba879fce4"
+    },
+    {
+      "id": "m1-02-03-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$a-b=c$일 때 $a$, $b$, $c$ 사이에 성립하는 덧셈식을 쓰시오. 또 이를 이용하여 $(-2)-(-9)=7$이 맞는지 덧셈으로 확인하시오.",
+      "bAnswer": "$c+b=a$이다. $7+(-9)=-2$이므로 $(-2)-(-9)=7$은 맞다.",
+      "bGoal": "뺄셈의 결과를 덧셈으로 검산할 수 있다.",
+      "bReason": "제목의 '검산'이 어떤 식을 쓰는 것인지 드러나지 않는다. 문자식의 관계를 먼저 쓰게 하고 음수가 낀 계산에 적용하게 했다.",
+      "cDecision": "keep",
+      "cReason": "조건 $a-b=c$가 문장에 있고, 뒤 문장이 덧셈식을 쓰라는 방향을 알려 주어 채울 내용이 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$c+b=a$ ($b+c=a$도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7+(-9)=-2$이므로 맞음"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "c+b=a로 뺄셈 검산",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1104,
+      "part": "m1plus",
+      "sourceFingerprint": "0cd9404a5c44ac28d61fb71b90aa2b7a0bff14eaeaa72da415f2881d4acc0f7a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1104
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a-b=c$이면 □이다. 뺄셈의 답은 □으로 검산할 수 있다.",
+      "cFrozenDefinition": "$a-b=c$이면 {$c+b=a$}이다. 뺄셈의 답은 {덧셈}으로 검산할 수 있다.",
+      "cFrozenAnswers": [
+        "$c+b=a$",
+        "덧셈"
+      ],
+      "cMarkedSentence": "$a-b=c$이면 {$c+b=a$}이다. 뺄셈의 답은 {덧셈}으로 검산할 수 있다.",
+      "cSlotAnswers": [
+        "$c+b=a$",
+        "덧셈"
+      ],
+      "cStudentSentence": "$a-b=c$이면 □이다. 뺄셈의 답은 □으로 검산할 수 있다.",
+      "cAnswers": [
+        "$c+b=a$",
+        "덧셈"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$c+b=a$",
+          "equivalentAnswers": [
+            "$c+b=a$",
+            "$b+c=a$",
+            "$a=c+b$",
+            "$a=b+c$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "덧셈",
+          "equivalentAnswers": [
+            "덧셈"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$c+b=a$",
+          "accept": [
+            "$b+c=a$",
+            "$a=c+b$",
+            "$a=b+c$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$c+b=a$",
+          "$b+c=a$",
+          "$a=c+b$",
+          "$a=b+c$"
+        ],
+        [
+          "덧셈"
+        ]
+      ],
+      "proposalFingerprint": "b8aff79e67651fedfea892479a5cb4b9b412c5672e1a8d821d0f7cc953961618"
+    },
+    {
+      "id": "m1-02-03-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$-3+5-8$에서 각 수 앞의 기호를 그 수의 부호로 보아, 괄호와 덧셈 기호만 사용한 식으로 고쳐 쓰고 값을 구하시오.",
+      "bAnswer": "$-3+5-8=(-3)+(+5)+(-8)=-6$",
+      "bGoal": "음수로 시작하는 생략된 식을 부호가 붙은 수들의 덧셈으로 읽을 수 있다.",
+      "bReason": "m1-02-03-c7이 양의 부호를 되살리는 방식인 데 비해, 이 문항은 앞의 기호를 부호로 읽는 방식이다. 그 읽는 법을 질문에 밝히고 구체 식을 주었다.",
+      "cDecision": "keep",
+      "cReason": "원래 식과 고친 식이 문장에 함께 있어 '부호' 한 낱말로 읽는 방법을 확인할 수 있다.",
+      "studentLabel": "음수로 시작하는 생략된 식",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(-3)+(+5)+(-8)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-6$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "앞 기호를 부호로 읽기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1105,
+      "part": "m1plus",
+      "sourceFingerprint": "3249aeb56f2a48f2efb8527bdcaa9ad33427d64e1ec950174f4b66417d2a483a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1105
+      },
+      "directReview": null,
+      "cFrozenSentence": "$-3+5-8$에서 각 수 앞의 기호를 그 수의 □로 보고 $(-3)+(+5)+(-8)$로 읽는다.",
+      "cFrozenDefinition": "$-3+5-8$에서 각 수 앞의 기호를 그 수의 {부호}로 보고 $(-3)+(+5)+(-8)$로 읽는다.",
+      "cFrozenAnswers": [
+        "부호"
+      ],
+      "cMarkedSentence": "$-3+5-8$에서 각 수 앞의 기호를 그 수의 {부호}로 보고 $(-3)+(+5)+(-8)$로 읽는다.",
+      "cSlotAnswers": [
+        "부호"
+      ],
+      "cStudentSentence": "$-3+5-8$에서 각 수 앞의 기호를 그 수의 □로 보고 $(-3)+(+5)+(-8)$로 읽는다.",
+      "cAnswers": [
+        "부호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ]
+      ],
+      "proposalFingerprint": "f396762c07678c21b5a386afefe15652dee33aed6303011479eb97c7fccd8c9e"
+    },
+    {
+      "id": "m1-02-03-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.5-\\frac{4}{3}$처럼 분수와 소수가 섞인 덧셈·뺄셈에서는 분수와 소수 중 어느 쪽으로 고쳐서 통일하는 것이 좋은지 까닭과 함께 쓰고, 이 식을 계산하시오.",
+      "bAnswer": "소수를 분수로 고친다. $\\frac{4}{3}=1.333\\cdots$처럼 분수를 소수로 고치면 나누어떨어지지 않을 수 있기 때문이다. $\\frac{1}{2}-\\frac{4}{3}=\\frac{3}{6}-\\frac{8}{6}=-\\frac{5}{6}$",
+      "bGoal": "분수와 소수가 섞인 계산을 분수로 통일하여 계산할 수 있다.",
+      "bReason": "제목은 상황만 알려 준다. 어느 쪽으로 고치는지와 그 까닭이 핵심이므로 이를 묻고, 소수로 고치면 나누어떨어지지 않는 분수가 든 예를 넣었다.",
+      "cDecision": "rewrite",
+      "cAfter": "분수와 소수가 섞인 덧셈과 뺄셈은 소수를 {분수}로 고쳐 같은 꼴로 만든 뒤 계산한다. 반대로 고치면 소수점 아래 숫자가 끝나지 않는 경우가 있다.",
+      "cAnswers": [
+        "분수"
+      ],
+      "cReason": "순환소수는정확한소수표현자체가불가능한것이아니므로끝나지않는숫자라는실제계산상차이로바로잡는다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수를 분수로 고쳐 통일"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 분수를 소수로 고치면 나누어떨어지지 않을 수 있음 (예: $\\frac{4}{3}=1.333\\cdots$)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-\\frac{5}{6}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "소수를 분수로 통일",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1106,
+      "part": "m1plus",
+      "sourceFingerprint": "db001f0e291889f6cc810cfcdeee14fa0e2267a87d46a9cbcc36b65c27fb9053",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1106
+      },
+      "directReview": null,
+      "cMarkedSentence": "분수와 소수가 섞인 덧셈과 뺄셈은 소수를 {분수}로 고쳐 같은 꼴로 만든 뒤 계산한다. 반대로 고치면 소수점 아래 숫자가 끝나지 않는 경우가 있다.",
+      "cSlotAnswers": [
+        "분수"
+      ],
+      "cStudentSentence": "분수와 소수가 섞인 덧셈과 뺄셈은 소수를 □로 고쳐 같은 꼴로 만든 뒤 계산한다. 반대로 고치면 소수점 아래 숫자가 끝나지 않는 경우가 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "분수",
+          "equivalentAnswers": [
+            "분수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "분수"
+        ]
+      ],
+      "proposalFingerprint": "fb0fd73d8f98c6bbe4666c75fc2ca3dc099da53bae624da2dc1872e05f2233d7"
+    },
+    {
+      "id": "m1-02-03-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "$|a|=2$, $|b|=6$일 때 $a+b$가 될 수 있는 값을 모두 구하고, 그중 가장 작은 값이 될 때 $a$, $b$의 부호를 쓰시오. 또 두 수의 절댓값만 알아서는 합이 하나로 정해지지 않는 까닭을 쓰시오.",
+      "bAnswer": "$a=\\pm2$, $b=\\pm6$이므로 $a+b$는 $8$, $4$, $-4$, $-8$이 될 수 있다. 가장 작은 값 $-8$은 $a$, $b$가 모두 음수일 때이다. 두 수의 부호가 같으면 절댓값의 합에, 다르면 절댓값의 차에 부호를 붙인 값이 되어 부호에 따라 합이 달라지기 때문이다.",
+      "bGoal": "절댓값만 주어진 두 수의 합을 부호의 경우로 나누어 구할 수 있다.",
+      "bReason": "제목만으로는 절댓값의 값도 구할 대상도 없다. 구체적인 두 절댓값을 주고 모든 경우, 가장 작은 경우, 까닭을 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "문장이 길지만 조건이 모두 있고, '합/차'가 부호가 같은 경우와 다른 경우를 대비하는 짧은 빈칸이다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가능한 값 $8$, $4$, $-4$, $-8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 작은 값 $-8$은 $a$, $b$가 모두 음수일 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 절댓값이 정해져도 두 수의 부호에 따라 합이 달라짐 (부호가 같으면 절댓값의 합, 다르면 차라는 설명도 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "부호 경우 나눠 합 구하기",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1107,
+      "part": "m1plus",
+      "sourceFingerprint": "7fa08b1d8f05ad97f19ab5c0dddd77283855ce7b7fa17fea1a63d6ed4a8b08f9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1107
+      },
+      "directReview": null,
+      "cFrozenSentence": "$0$이 아닌 두 수는 절댓값만 알아서는 합이 하나로 정해지지 않는다. 부호가 같으면 절댓값의 □에, 다르면 절댓값의 □에 알맞은 부호를 붙인 값이 된다.",
+      "cFrozenDefinition": "$0$이 아닌 두 수는 절댓값만 알아서는 합이 하나로 정해지지 않는다. 부호가 같으면 절댓값의 {합}에, 다르면 절댓값의 {차}에 알맞은 부호를 붙인 값이 된다.",
+      "cFrozenAnswers": [
+        "합",
+        "차"
+      ],
+      "cMarkedSentence": "$0$이 아닌 두 수는 절댓값만 알아서는 합이 하나로 정해지지 않는다. 부호가 같으면 절댓값의 {합}에, 다르면 절댓값의 {차}에 알맞은 부호를 붙인 값이 된다.",
+      "cSlotAnswers": [
+        "합",
+        "차"
+      ],
+      "cStudentSentence": "$0$이 아닌 두 수는 절댓값만 알아서는 합이 하나로 정해지지 않는다. 부호가 같으면 절댓값의 □에, 다르면 절댓값의 □에 알맞은 부호를 붙인 값이 된다.",
+      "cAnswers": [
+        "합",
+        "차"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "합",
+          "equivalentAnswers": [
+            "합"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "차",
+          "equivalentAnswers": [
+            "차"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "합"
+        ],
+        [
+          "차"
+        ]
+      ],
+      "proposalFingerprint": "ef2027ebbf2fb02009802d9dde9b2efe7d1c7a2e443009846f1709b63c697dea"
+    },
+    {
+      "id": "m1-02-03-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "수직선에서 $b$를 나타내는 점에서 $a$를 나타내는 점까지 옮겨 간 양을 $a$, $b$의 뺄셈식으로 나타내고, 그 값의 부호가 옮겨 간 방향과 어떤 관계인지 쓰시오. 또 $-4$에서 $3$까지 옮겨 간 양을 구하시오.",
+      "bAnswer": "옮겨 간 양은 $a-b$이다. 오른쪽으로 옮겨 갔으면 양수, 왼쪽으로 옮겨 갔으면 음수이다. $3-(-4)=+7$",
+      "bGoal": "뺄셈 $a-b$를 수직선에서 $b$에서 $a$까지의 이동으로 해석할 수 있다.",
+      "bReason": "제목의 '옮겨 간 양'은 출발점과 도착점이 없으면 뜻을 알 수 없다. 두 점을 문자로 밝히고 식, 부호와 방향의 관계, 예를 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "수직선에서 $b$를 나타내는 점에서 $a$를 나타내는 점까지 옮겨 간 양은 {$a-b$}이다. 이 값은 오른쪽으로 옮겨 갔으면 양수, 왼쪽으로 옮겨 갔으면 {음수}이다.",
+      "cAnswers": [
+        "$a-b$",
+        "음수"
+      ],
+      "cReason": "답 '옮겨 간 양'은 학생이 스스로 떠올리기 어려운 구절이다. 상황을 문장에 주고 그에 맞는 식을 쓰게 하도록 묻는 방향을 바꿨다.",
+      "studentLabel": "수직선에서 $b$에서 $a$까지 옮겨 간 양",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옮겨 간 양은 $a-b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "오른쪽으로 옮겨 갔으면 양수, 왼쪽이면 음수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3-(-4)=+7$ ($7$도 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "a-b는 b에서 a까지 이동량",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1108,
+      "part": "m1plus",
+      "sourceFingerprint": "239a1f5e70bed457d0904f29ed483d018c8d1ab15d8b67fbcd603ca89cd8a68e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1108
+      },
+      "directReview": null,
+      "cMarkedSentence": "수직선에서 $b$를 나타내는 점에서 $a$를 나타내는 점까지 옮겨 간 양은 {$a-b$}이다. 이 값은 오른쪽으로 옮겨 갔으면 양수, 왼쪽으로 옮겨 갔으면 {음수}이다.",
+      "cSlotAnswers": [
+        "$a-b$",
+        "음수"
+      ],
+      "cStudentSentence": "수직선에서 $b$를 나타내는 점에서 $a$를 나타내는 점까지 옮겨 간 양은 □이다. 이 값은 오른쪽으로 옮겨 갔으면 양수, 왼쪽으로 옮겨 갔으면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a-b$",
+          "equivalentAnswers": [
+            "$a-b$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a-b$"
+        ],
+        [
+          "음수"
+        ]
+      ],
+      "proposalFingerprint": "95757f977cd28ae74bc4509e642815608aef8b6cba2e83a19a4c8f8f0740d92d"
+    },
+    {
+      "id": "m1-02-03-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 수에 음수를 더한 결과와 어떤 수에서 음수를 뺀 결과는 각각 처음 수보다 커지는지 작아지는지 쓰고, $4+(-1)$과 $4-(-1)$을 계산하여 확인하시오.",
+      "bAnswer": "음수를 더하면 처음 수보다 작아지고, 음수를 빼면 처음 수보다 커진다. $4+(-1)=3<4$, $4-(-1)=5>4$",
+      "bGoal": "음수를 더할 때와 뺄 때 결과가 처음 수보다 어떻게 달라지는지 비교할 수 있다.",
+      "bReason": "제목은 두 상황을 나란히 놓았을 뿐 무엇을 비교하는지 없다. '처음 수와 비교한 크기 변화'를 묻는다고 밝히고 같은 수로 두 계산을 대비했다.",
+      "cDecision": "keep",
+      "cReason": "두 경우의 결과를 대비해 채우는 짧은 빈칸이고 비교 기준('처음 수보다')이 문장에 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음수를 더하면 처음 수보다 작아짐"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수를 빼면 처음 수보다 커짐"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4+(-1)=3$, $4-(-1)=5$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "음수 더하면 작아지고 빼면 커짐",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1109,
+      "part": "m1plus",
+      "sourceFingerprint": "b049d49522b4a29e672f07607ef8f83830721927248007a307cfa2fea699aa91",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1109
+      },
+      "directReview": null,
+      "cFrozenSentence": "음수를 더하면 결과는 처음 수보다 □, 음수를 빼면 처음 수보다 □.",
+      "cFrozenDefinition": "음수를 더하면 결과는 처음 수보다 {작아지고}, 음수를 빼면 처음 수보다 {커진다}.",
+      "cFrozenAnswers": [
+        "작아지고",
+        "커진다"
+      ],
+      "cMarkedSentence": "음수를 더하면 결과는 처음 수보다 {작아지고}, 음수를 빼면 처음 수보다 {커진다}.",
+      "cSlotAnswers": [
+        "작아지고",
+        "커진다"
+      ],
+      "cStudentSentence": "음수를 더하면 결과는 처음 수보다 □, 음수를 빼면 처음 수보다 □.",
+      "cAnswers": [
+        "작아지고",
+        "커진다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작아지고",
+          "equivalentAnswers": [
+            "작아지고"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "커진다",
+          "equivalentAnswers": [
+            "커진다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작아지고"
+        ],
+        [
+          "커진다"
+        ]
+      ],
+      "proposalFingerprint": "9302de58014d0f760b5a202243bce4bb05fd989360ecb5403cc86ac95cd2808f"
+    },
+    {
+      "id": "m1-02-03-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "$1-2+3-4+\\cdots+9-10$의 값을 앞에서부터 이웃한 두 수씩 짝지어 구하시오. 한 쌍의 값과 쌍의 개수를 밝혀 쓰시오.",
+      "bAnswer": "$(1-2)+(3-4)+\\cdots+(9-10)$으로 짝지으면 한 쌍의 값은 $-1$이고 쌍은 $5$개이므로 값은 $-5$이다.",
+      "bGoal": "더하기와 빼기가 번갈아 나오는 식을 두 수씩 짝지어 계산할 수 있다.",
+      "bReason": "제목만으로는 어떤 식인지, 어디까지 계산하는지 알 수 없다. 끝이 정해진 식을 주고 짝짓는 방법, 한 쌍의 값, 쌍의 개수를 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$1-2+3-4+\\cdots+9-10$은 $(1-2)+(3-4)+\\cdots+(9-10)$처럼 앞에서부터 두 수씩 짝지으면 각 쌍의 값이 모두 {$-1$}이므로, 쌍의 개수를 이용하여 계산한다.",
+      "cAnswers": [
+        "$-1$"
+      ],
+      "cReason": "원문 식은 끝이 없어 값을 정할 수 없고, 답 '짝지어'는 정해진 용어가 아니다. 끝이 있는 식과 짝지은 모양을 보여 주고 방법의 핵심인 한 쌍의 값을 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 3,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 쌍의 값 $-1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "쌍의 개수 $5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-5$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "이웃 두 수씩 짝지어 -1",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1110,
+      "part": "m1plus",
+      "sourceFingerprint": "340482e52fb06b2f9f809f4ffd97dfdd3b274d444273b25078fd19da239c76be",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1110
+      },
+      "directReview": null,
+      "cMarkedSentence": "$1-2+3-4+\\cdots+9-10$은 $(1-2)+(3-4)+\\cdots+(9-10)$처럼 앞에서부터 두 수씩 짝지으면 각 쌍의 값이 모두 {$-1$}이므로, 쌍의 개수를 이용하여 계산한다.",
+      "cSlotAnswers": [
+        "$-1$"
+      ],
+      "cStudentSentence": "$1-2+3-4+\\cdots+9-10$은 $(1-2)+(3-4)+\\cdots+(9-10)$처럼 앞에서부터 두 수씩 짝지으면 각 쌍의 값이 모두 □이므로, 쌍의 개수를 이용하여 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-1$",
+          "equivalentAnswers": [
+            "$-1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-1$"
+        ]
+      ],
+      "proposalFingerprint": "6a258dba96c2599aad076ba7466fd4ee5a3a41209f01c2d45f70fd55f20601c3"
+    },
+    {
+      "id": "m1-02-04-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "부호가 같은 두 수의 곱을 구할 수 있다.",
+      "bReason": "m1-02-04-c1의 B가 이미 부호가 같은 경우와 다른 경우를 모두 쓰게 한다. 여기서 같은 규칙의 절반을 다시 쓰게 하면 새로 떠올릴 내용이 없다. 제안 질문은 c1을 둘로 나눌 때 쓸 수 있도록 남긴다.",
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 다 보이고 빈칸이 낱말 하나이다. c1의 C는 두 경우를 대비로 묻고 이 문장은 한 경우만 따로 확인하므로, '하' 수준 확인용으로 그대로 둔다.",
+      "exclusionReason": "B 제외: 백지 서술 형식에서 m1-02-04-c1의 B(두 수의 곱셈 규칙 전체)와 같은 내용을 되풀이하는 중복이다. C는 유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "같은 부호 곱은 양의 부호",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1111,
+      "part": "m1plus",
+      "sourceFingerprint": "f0080baff16376a0351e526e3f6c2465b1985b7be2d4132b5fd81a14b4bd767f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1111
+      },
+      "directReview": null,
+      "cFrozenSentence": "부호가 같은 두 수의 곱은 절댓값의 곱에 □를 붙인다.",
+      "cFrozenDefinition": "부호가 같은 두 수의 곱은 절댓값의 곱에 {양의 부호}를 붙인다.",
+      "cFrozenAnswers": [
+        "양의 부호"
+      ],
+      "cMarkedSentence": "부호가 같은 두 수의 곱은 절댓값의 곱에 {양의 부호}를 붙인다.",
+      "cSlotAnswers": [
+        "양의 부호"
+      ],
+      "cStudentSentence": "부호가 같은 두 수의 곱은 절댓값의 곱에 □를 붙인다.",
+      "cAnswers": [
+        "양의 부호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양의 부호",
+          "equivalentAnswers": [
+            "양의 부호",
+            "$+$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "양의 부호",
+          "accept": [
+            "$+$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "양의 부호",
+          "$+$"
+        ]
+      ],
+      "proposalFingerprint": "4b60ab7a820f4f5cf3aaedb807d1e15649bfad4dfc9495109105deaa3a183319"
+    },
+    {
+      "id": "m1-02-04-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "부호가 다른 두 수의 곱을 구할 수 있다.",
+      "bReason": "m1-02-04-c1의 B가 부호가 다른 경우까지 함께 쓰게 하므로, 이 제목으로 백지 질문을 따로 만들면 같은 답의 일부만 다시 쓰게 된다. 제안 질문은 c1을 나눌 때 쓸 수 있다.",
+      "cDecision": "keep",
+      "cReason": "조건과 '절댓값의 곱'이 문장에 보이고 빈칸은 붙일 부호 하나라서 분명하다. 한 경우만 따로 확인하는 짧은 빈칸으로 쓸모가 있다.",
+      "exclusionReason": "B 제외: 백지 서술 형식에서 m1-02-04-c1의 B(두 수의 곱셈 규칙 전체)와 겹치는 중복이다. C는 유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "다른 부호 곱은 음의 부호",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1112,
+      "part": "m1plus",
+      "sourceFingerprint": "dacc45aa8b8861e3425784585d037a7c0a399563d5b8ccf119a23d78bd361154",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1112
+      },
+      "directReview": null,
+      "cFrozenSentence": "부호가 다른 두 수의 곱은 절댓값의 곱에 □를 붙인다.",
+      "cFrozenDefinition": "부호가 다른 두 수의 곱은 절댓값의 곱에 {음의 부호}를 붙인다.",
+      "cFrozenAnswers": [
+        "음의 부호"
+      ],
+      "cMarkedSentence": "부호가 다른 두 수의 곱은 절댓값의 곱에 {음의 부호}를 붙인다.",
+      "cSlotAnswers": [
+        "음의 부호"
+      ],
+      "cStudentSentence": "부호가 다른 두 수의 곱은 절댓값의 곱에 □를 붙인다.",
+      "cAnswers": [
+        "음의 부호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음의 부호",
+          "equivalentAnswers": [
+            "음의 부호",
+            "$-$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "음의 부호",
+          "accept": [
+            "$-$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "음의 부호",
+          "$-$"
+        ]
+      ],
+      "proposalFingerprint": "be9d60f991453a3f831bb80ad4e03c92fe3f1700aeab9313e4e07bdcd02e56be"
+    },
+    {
+      "id": "m1-02-04-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 수에 $0$을 곱하면 곱이 얼마인지 쓰시오. 곱하는 수가 음수이거나 분수여도 결과가 같은지 $\\left(-\\frac{3}{8}\\right)\\times0$의 값을 구하여 확인하시오.",
+      "bAnswer": "어떤 수에 $0$을 곱해도 곱은 언제나 $0$이다. 음수나 분수여도 마찬가지여서 $\\left(-\\frac{3}{8}\\right)\\times0=0$이다.",
+      "bGoal": "어떤 수와 $0$의 곱은 수의 종류와 관계없이 $0$임을 말할 수 있다.",
+      "bReason": "제목 '$0$을 곱하기'는 동작만 말할 뿐 무엇을 답할지 알려 주지 않는다. '언제나'라는 범위를 확인하도록 음의 분수 예를 질문에 넣었다.",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 수에 $0$을 곱하면 그 곱은 언제나 {$0$}이다.",
+      "cAnswers": [
+        "$0$"
+      ],
+      "cReason": "원문은 곱하는 수(조건)와 곱(결론)을 둘 다 빈칸으로 숨겨 '어떤 수에 □을 곱하면'이 무슨 상황인지 알 수 없다. 조건을 보여 주고 결론만 묻도록 고쳤다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어떤 수에 $0$을 곱하면 곱은 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수·분수여도 같음: $\\left(-\\frac{3}{8}\\right)\\times0=0$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "0을 곱하면 언제나 0",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1113,
+      "part": "m1plus",
+      "sourceFingerprint": "ee5ef990b90db77d061601ff3549e09f109a757aaec0a22f8b1a4c544c19c1af",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1113
+      },
+      "directReview": null,
+      "cMarkedSentence": "어떤 수에 $0$을 곱하면 그 곱은 언제나 {$0$}이다.",
+      "cSlotAnswers": [
+        "$0$"
+      ],
+      "cStudentSentence": "어떤 수에 $0$을 곱하면 그 곱은 언제나 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "6f67bbefcf5433f4bbbdb0d2d190240d5fedcb2e856f96942c4d948e304d2d17"
+    },
+    {
+      "id": "m1-02-04-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 수에 $1$을 곱한 결과와 $0$이 아닌 수에 $-1$을 곱한 결과를 각각 처음 수와 비교하여 쓰시오. $-1$을 곱한 경우에는 절댓값과 부호가 각각 어떻게 되는지 밝히고, $(-1)\\times(-9)$의 값도 구하시오.",
+      "bAnswer": "$1$을 곱하면 처음 수 그대로이다. $0$이 아닌 수에 $-1$을 곱하면 절댓값은 그대로이고 부호만 반대로 바뀐다. $(-1)\\times(-9)=9$",
+      "bGoal": "$1$과 $-1$을 곱했을 때 수가 어떻게 달라지는지 말할 수 있다.",
+      "bReason": "제목에는 두 가지 곱이 함께 들어 있어 무엇을 비교하라는지 모른다. '처음 수와 비교', '절댓값과 부호'로 답할 관점을 정했다.",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 수에 $1$을 곱하면 그대로이고, $0$이 아닌 수에 $-1$을 곱하면 {절댓값}은 그대로이고 {부호}만 바뀐다.",
+      "cAnswers": [
+        "절댓값",
+        "부호"
+      ],
+      "cReason": "원문은 곱하는 수 $-1$(조건)과 바뀌는 것(결론)을 함께 숨겨 앞 빈칸에 무엇이든 들어갈 수 있다. $-1$을 보여 주고 결과 쪽 낱말 두 개만 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$을 곱하면 처음 수 그대로"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-1$을 곱하면 절댓값은 그대로"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-1$을 곱하면 부호가 반대로 바뀜"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "definition",
+      "roleReason": "-1을 곱하면 부호만 반대",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1114,
+      "part": "m1plus",
+      "sourceFingerprint": "c7aa34771940e8d02d7db372020b3881b5ac828ec0305b70d93075f973386b30",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1114
+      },
+      "directReview": null,
+      "cMarkedSentence": "어떤 수에 $1$을 곱하면 그대로이고, $0$이 아닌 수에 $-1$을 곱하면 {절댓값}은 그대로이고 {부호}만 바뀐다.",
+      "cSlotAnswers": [
+        "절댓값",
+        "부호"
+      ],
+      "cStudentSentence": "어떤 수에 $1$을 곱하면 그대로이고, $0$이 아닌 수에 $-1$을 곱하면 □은 그대로이고 □만 바뀐다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "절댓값",
+          "equivalentAnswers": [
+            "절댓값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "절댓값"
+        ],
+        [
+          "부호"
+        ]
+      ],
+      "proposalFingerprint": "4bc14b69902b60e2e1fb7ab34681fe69e1a9f46212f686da23a1b36b87c1fbf4"
+    },
+    {
+      "id": "m1-02-04-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "부호가 있는 두 분수를 곱할 때의 계산 차례를 쓰시오. 곱의 부호, 분자, 분모를 각각 어떻게 정하는지와 약분을 언제 해도 되는지를 포함하고, 이 방법으로 $\\left(-\\frac{3}{5}\\right)\\times\\frac{10}{9}$을 계산하시오.",
+      "bAnswer": "먼저 곱의 부호를 정하고, 분자는 분자끼리, 분모는 분모끼리 곱한다. 약분은 곱하기 전에 해도 된다. 두 수의 부호가 다르므로 부호는 $-$이다. $\\frac{3}{5}\\times\\frac{10}{9}$에서 $3$과 $9$, $10$과 $5$를 약분하면 $\\frac{1}{1}\\times\\frac{2}{3}=\\frac{2}{3}$이므로 답은 $-\\frac{2}{3}$이다.",
+      "bGoal": "부호가 있는 분수의 곱셈을 부호, 분자·분모, 약분의 차례로 계산할 수 있다.",
+      "bReason": "초등에서 배운 분수의 곱셈과 무엇이 다른지 제목만으로는 알 수 없다. 부호를 먼저 정한다는 점이 드러나도록 답할 항목을 적고 음의 분수 예를 넣었다.",
+      "cDecision": "rewrite",
+      "cAfter": "분수끼리 곱할 때는 {부호}를 먼저 정한 뒤 분자끼리, 분모끼리 곱한다. 곱하기 전에 분자와 분모를 {약분}해도 된다.",
+      "cAnswers": [
+        "부호",
+        "약분"
+      ],
+      "cReason": "원문 빈칸 '곱한다', '된다'는 문장 끝 서술어여서 수학 내용을 떠올리게 하지 못한다. 방법의 핵심 낱말을 빈칸으로 옮기고 '위의 수, 아래의 수'는 학생이 아는 분자, 분모로 바꿨다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱의 부호를 먼저 정함 (부호가 다르므로 $-$)"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 분자끼리, 분모는 분모끼리 곱함"
+          ]
+        },
+        {
+          "anyOf": [
+            "약분은 곱하기 전에 해도 됨 (곱한 뒤 약분해도 된다는 서술도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "부호 정하고 분자·분모끼리 곱",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1115,
+      "part": "m1plus",
+      "sourceFingerprint": "591d1d02b835c5b06202b4c5b0028ab8748bb269ad2173e9e369db9f5092d433",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1115
+      },
+      "directReview": null,
+      "cMarkedSentence": "분수끼리 곱할 때는 {부호}를 먼저 정한 뒤 분자끼리, 분모끼리 곱한다. 곱하기 전에 분자와 분모를 {약분}해도 된다.",
+      "cSlotAnswers": [
+        "부호",
+        "약분"
+      ],
+      "cStudentSentence": "분수끼리 곱할 때는 □를 먼저 정한 뒤 분자끼리, 분모끼리 곱한다. 곱하기 전에 분자와 분모를 □해도 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ],
+        [
+          "약분"
+        ]
+      ],
+      "proposalFingerprint": "930f472f0b664d9aeb6a4d1c83ce83e6029d9013f5059f8e1dfcfb278348c121"
+    },
+    {
+      "id": "m1-02-04-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "$(-0.2)\\times(+0.3)$처럼 부호가 있는 소수를 곱할 때 무엇을 먼저 정하고 무엇끼리 곱하는지 차례대로 쓰고, 이 식의 값을 구하시오.",
+      "bAnswer": "부호를 먼저 정하고 절댓값끼리 곱한다. 두 수의 부호가 다르므로 부호는 $-$이고 $0.2\\times0.3=0.06$이므로 값은 $-0.06$이다.",
+      "bGoal": "소수의 곱셈도 부호와 절댓값으로 나누어 계산할 수 있다.",
+      "bReason": "제목 '소수의 곱셈'은 초등의 소수 곱셈과 구별되지 않는다. 부호가 있는 소수 예를 넣어 부호와 절댓값을 나누어 다루는 방법을 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "두 빈칸이 '부호', '절댓값'이라는 짧은 핵심어이고 문장 구조상 차례가 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 4,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "부호를 먼저 정하고 절댓값끼리 곱함"
+          ]
+        },
+        {
+          "anyOf": [
+            "부호가 다르므로 $-$, $0.2\\times0.3=0.06$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-0.06$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-002",
+      "learningRole": "procedure",
+      "roleReason": "부호 먼저, 절댓값끼리 곱",
+      "enrichmentEvidence": "enrichment/enrich-004",
+      "sourceIndex": 1116,
+      "part": "m1plus",
+      "sourceFingerprint": "20e8d17e385ef2c5db9812d1e18eaab3c158ea28c067f35db841d77b80b51c1b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1116
+      },
+      "directReview": null,
+      "cFrozenSentence": "소수가 섞인 곱셈도 □를 먼저 정하고 □끼리 곱한다.",
+      "cFrozenDefinition": "소수가 섞인 곱셈도 {부호}를 먼저 정하고 {절댓값}끼리 곱한다.",
+      "cFrozenAnswers": [
+        "부호",
+        "절댓값"
+      ],
+      "cMarkedSentence": "소수가 섞인 곱셈도 {부호}를 먼저 정하고 {절댓값}끼리 곱한다.",
+      "cSlotAnswers": [
+        "부호",
+        "절댓값"
+      ],
+      "cStudentSentence": "소수가 섞인 곱셈도 □를 먼저 정하고 □끼리 곱한다.",
+      "cAnswers": [
+        "부호",
+        "절댓값"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "절댓값",
+          "equivalentAnswers": [
+            "절댓값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ],
+        [
+          "절댓값"
+        ]
+      ],
+      "proposalFingerprint": "dfc4b6cc2b9b931a66a4e728d39e002878e23579310dedfb406adc785fe67890"
+    }
+  ]
+}

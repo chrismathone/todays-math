@@ -62,12 +62,16 @@ const answerKey = (definition: string) =>
 export function blankClashes(bank: ConceptBlankBank): ConceptEntry[][] {
   const groups = new Map<string, ConceptEntry[]>();
   for (const c of bank.concepts) {
+    if (c.clozeQuestion === null) continue;
     const chapter = c.section.split("::").slice(0, 2).join("::");
-    const key = `${chapter}|${blankedSentence(c.definition)}`;
+    const key = `${chapter}|${blankedSentence(c.clozeQuestion?.sentence ?? c.definition)}`;
     groups.set(key, [...(groups.get(key) ?? []), c]);
   }
   return [...groups.values()].filter(
-    (g) => new Set(g.map((c) => answerKey(c.definition))).size > 1,
+    (g) =>
+      new Set(
+        g.map((c) => answerKey(c.clozeQuestion?.sentence ?? c.definition)),
+      ).size > 1,
   );
 }
 

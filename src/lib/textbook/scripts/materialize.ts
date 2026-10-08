@@ -16,6 +16,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   splitBlankSentence,
+  type ConceptBlankBank,
   type ConceptEntry,
 } from "@/contracts/conceptBlank.contract";
 import {
@@ -124,8 +125,8 @@ export function sectionLessonTitle(
 
 export function materializeGrade(
   grade: ConceptScriptGrade,
+  bank: ConceptBlankBank = parts[grade],
 ): ConceptTeachingScript[] {
-  const bank = parts[grade];
   return BLANK_SECTIONS.filter((s) => s.grade === grade).map((section) => {
     const concepts = bank.concepts.filter((c) => c.section === section.key);
     if (!concepts.length)

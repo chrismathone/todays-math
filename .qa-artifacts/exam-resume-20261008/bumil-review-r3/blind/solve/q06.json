@@ -1,0 +1,117 @@
+{
+  "studentDigest": "2bd42ccd5098fb0d9b9349e2d815b7d447a11625be456fa23aa8f30bfc533dd8",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "answer": "⑤",
+  "solution": "그림에서 삼각형 $\\mathrm{PQR}$의 직각은 $\\mathrm{Q}$, 표시한 예각은 $\\mathrm{P}$에 있다. 따라서 $\\sin\\theta=\\frac{\\overline{QR}}{\\overline{PR}}$이다. 삼각형 $\\mathrm{STU}$의 직각은 $\\mathrm{T}$, 표시한 예각은 $\\mathrm{S}$에 있으므로 $\\cos\\theta=\\frac{\\overline{ST}}{\\overline{SU}}$이다. 삼각형 $\\mathrm{VWX}$의 직각은 $\\mathrm{W}$, 표시한 예각은 $\\mathrm{V}$에 있으므로 $\\tan\\theta=\\frac{\\overline{WX}}{\\overline{VW}}$이다. 세 비를 모두 바르게 적은 것은 ⑤이다.",
+  "evidence": {
+    "questionNumber": 6,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q06",
+    "input": {
+      "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/student-problems.json",
+      "studentProblemsSha256": "77987a3499f60da5ea0e04f108cdc8f8779b499edacd829a45cb39122123e70d",
+      "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/SOLVE-BRIEF.md",
+      "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    "figures": [
+      {
+        "role": "stem",
+        "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/figures/q06-1.svg",
+        "sha256": "6753257982880fe3cd5782a38a5120d987c3ff90e365edb2b51a959ac10b3a3c",
+        "hashMatchesStudentInput": true,
+        "visuallyInspected": true,
+        "observation": "PQR: Q 직각/P의 θ. STU: T 직각/S의 θ. VWX: W 직각/V의 θ. 세 삼각형의 모든 점 표기를 확인했다."
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "matches": false,
+        "reason": "첫 비가 빗변/높이로 거꾸로 되어 있다."
+      },
+      {
+        "choice": 2,
+        "matches": false,
+        "reason": "두 번째 비의 분모 TU는 빗변 SU가 아니다."
+      },
+      {
+        "choice": 3,
+        "matches": false,
+        "reason": "세 번째 비의 분모 VX는 빗변이며 tan의 밑변 VW가 아니다."
+      },
+      {
+        "choice": 4,
+        "matches": false,
+        "reason": "첫 비의 분모 PQ는 빗변 PR이 아니고, 세 번째 비도 빗변/밑변으로 틀렸다."
+      },
+      {
+        "choice": 5,
+        "matches": true,
+        "reason": "높이/빗변, 밑변/빗변, 높이/밑변이 각 그림의 θ 위치에 모두 맞다."
+      }
+    ],
+    "codeCalculation": {
+      "tool": "Python exact side-role tuples; rational example as a secondary arithmetic check",
+      "requiredRatios": [
+        [
+          "QR",
+          "PR"
+        ],
+        [
+          "ST",
+          "SU"
+        ],
+        [
+          "WX",
+          "VW"
+        ]
+      ],
+      "choiceMatches": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "secondaryExample": "세 삼각형의 θ 대응 변을 각각 3:4:5로 두어 비 계산만 대조했다. 그림에 없는 수치를 실제 주어진 길이로 간주하지 않았다.",
+      "secondaryChoiceRatioValues": [
+        [
+          "5/3",
+          "4/5",
+          "3/4"
+        ],
+        [
+          "3/5",
+          "4/3",
+          "3/4"
+        ],
+        [
+          "3/5",
+          "4/5",
+          "3/5"
+        ],
+        [
+          "3/4",
+          "4/5",
+          "5/4"
+        ],
+        [
+          "3/5",
+          "4/5",
+          "3/4"
+        ]
+      ]
+    },
+    "existenceUniquenessAndDomain": "θ는 예각이므로 높이·밑변·빗변은 모두 양수이다. 각 직각삼각형의 빗변은 두 직각변보다 길다. 따라서 잘못 바꾼 분모/역수는 예각에서 우연히 정답과 같아지지 않으며 세 정의에 맞는 보기는 ⑤ 하나이다. 삼각비 사이의 항등식은 쓰지 않았다.",
+    "blindness": {
+      "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+      "authorAnswerRead": false,
+      "authorSolutionRead": false,
+      "originalAnswersOrSolutionsRead": false,
+      "privateSpecOrPackageRead": false,
+      "parentHtmlOrSolutionPreviewRead": false,
+      "solverAuthoredThisCandidate": false
+    },
+    "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+  },
+  "status": "solved"
+}

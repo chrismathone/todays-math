@@ -1,0 +1,899 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-e5e6-final-1980-2000-input.json",
+  "rows": [
+    {
+      "id": "e6-1-4-5-xc23",
+      "sourceIndex": 1980,
+      "proposalFingerprint": "01e16aea516864f12b7340be289d696b751e586665b95e59fcf092231b9164af",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비율 $\\frac{1}{3}$의 백분율을 가까운 수 $33\\%$로 나타낼 때 숫자 앞에 어떤 말을 붙이고 왜 붙이는지 설명하시오.",
+        "answer": "'약'을 붙인다. 정확한 값이 아니라 어림한 값임을 알리기 위해서이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "'약'을 붙인다",
+              "약",
+              "대략"
+            ]
+          },
+          {
+            "anyOf": [
+              "어림한 값임을 알리기 위해",
+              "정확한 값이 아님을 알리기 위해"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\frac{1}{3}$의 백분율을 가까운 수 $33\\%$로 나타낼 때는 정확한 값이 아니므로 {약} $33\\%$라고 쓴다.",
+        "acceptedAnswers": [
+          [
+            "약",
+            "대략"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원문 예를 구체적 비율로 바꿔 이유를 직접 묻는다.",
+      "cReason": "긴 문구 대신 약이라는 낱말 하나만 묻는 구체 문장으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-5-xc26",
+      "sourceIndex": 1981,
+      "proposalFingerprint": "8fe60262af95d19499da91964e3722c3d0045e46dfc3b1ee2a9b0b3e79a7e998",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "비율 $0.6$을 백분율로 바꾸면서 $100$ 대신 $10$을 곱해 $6\\%$라고 했다. 올바른 백분율을 쓰고, 틀린 값이 올바른 값의 얼마인지와 틀린 까닭을 설명하시오.",
+        "answer": "올바른 값은 $60\\%$이다. $6\\%$는 실제의 $\\frac{1}{10}$이다. 기준량 $1$이 $100\\%$이므로 $100$을 곱해야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$60\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "실제의 $\\frac{1}{10}$",
+              "$0.1$배",
+              "십분의 일"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100$을 곱해야 한다",
+              "기준량 $1$이 $100\\%$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "비율 $0.6$에 $10$을 곱해 $6\\%$라고 하면 올바른 백분율 $60\\%$의 {$\\frac{1}{10}$}인 값이 된다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{10}$",
+            "$0.1$배",
+            "십분의 일"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "오개념의 결과와 올바른 방법을 모두 묻는다.",
+      "cReason": "원문 문장에 구체적 수를 넣어 오류의 크기를 묻는 짧은 빈칸이 된다."
+    },
+    {
+      "id": "e6-1-4-6-xc1",
+      "sourceIndex": 1982,
+      "proposalFingerprint": "013b330d4e813eab6be7f58adf254dc1a336e5e920ff57f1c6049bc581ebd5db",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 후보가 전체 $200$표 중 $50$표를 얻었다. 이 후보의 득표율은 어떤 두 수를 어떻게 비교해 구하며, 몇 $\\%$인가?",
+        "answer": "얻은 표 수를 전체 투표 수로 나눈 비율을 백분율로 나타낸다. $\\frac{50}{200}\\times100=25\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "얻은 표 수를 전체 투표 수로 나눈다",
+              "전체 투표 수에 대한 얻은 표 수의 비율"
+            ]
+          },
+          {
+            "anyOf": [
+              "$25\\%$",
+              "$25$퍼센트"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "전체 투표 수에 대한 한 후보의 {얻은 표 수}의 비율을 백분율로 나타낸 것이 득표율이다.",
+        "acceptedAnswers": [
+          [
+            "얻은 표 수"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "전체와 부분의 비율을 실제 표 수로 구하게 한다.",
+      "cReason": "전체 투표 수에 대한 비율이라는 정의가 짧고 명확하다."
+    },
+    {
+      "id": "e6-1-4-6-xc5",
+      "sourceIndex": 1983,
+      "proposalFingerprint": "be483e9dca407ea7f1e5733c3c97742a9e51ae2c64e5c800273ea2a605ffeb38",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "소금 $20$ $\\mathrm{g}$이 녹아 있는 소금물 $200$ $\\mathrm{g}$의 진하기는 몇 $\\%$인지 구하고, 소금물의 진하기를 어떻게 구하는지 설명하시오.",
+        "answer": "소금 양을 소금물 전체 양으로 나눈 비율을 백분율로 나타낸다. $\\frac{20}{200}\\times100=10\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소금 양을 소금물 양으로 나눈다",
+              "소금물 양에 대한 소금 양의 비율"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10\\%$",
+              "$10$퍼센트"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "소금 $20$ $\\mathrm{g}$이 녹아 있는 소금물 $200$ $\\mathrm{g}$의 진하기는 소금 양을 {$200$} $\\mathrm{g}$으로 나눈 비율을 백분율로 나타낸 {$10$}$\\%$이다.",
+        "acceptedAnswers": [
+          [
+            "$200$",
+            "$200$ $\\mathrm{g}$"
+          ],
+          [
+            "$10$",
+            "$10\\%$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "긴 구절을 외우는 대신 실제 수로 진하기를 구하게 한다.",
+      "cReason": "긴 구절 빈칸 대신 기준량과 결과값을 짧게 답하게 한다."
+    },
+    {
+      "id": "e6-1-4-6-xc7",
+      "sourceIndex": 1984,
+      "proposalFingerprint": "6ee75258f95eba3fdfb522e07ad7f5992a92014e6bc768fca6ee551abead5201",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "원래 가격이 $10000$원인 물건을 $30\\%$ 할인하면 내는 돈은 원래 가격의 몇 $\\%$인가? 할인율과 내는 돈의 비율 사이에 어떤 관계가 있는지 이유와 함께 설명하시오.",
+        "answer": "$70\\%$이다. 둘을 더하면 $100\\%$이다. 원래 가격 전체에서 깎아 준 부분을 뺀 나머지를 내기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$70\\%$",
+              "$70$퍼센트"
+            ]
+          },
+          {
+            "anyOf": [
+              "합이 $100\\%$이다",
+              "내는 돈의 비율은 $100\\%$에서 할인율을 뺀 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체에서 깎아 준 부분을 뺀 나머지를 낸다",
+              "전체는 깎아 준 부분과 내는 부분으로 나뉜다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "할인율이 $30\\%$이면 내는 돈은 원래 가격의 $100\\%$에서 $30\\%$를 뺀 {$70$}$\\%$이다.",
+        "acceptedAnswers": [
+          [
+            "$70$",
+            "$70\\%$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "전체와 부분 관계를 구체 수와 일반 관계로 함께 확인한다.",
+      "cReason": "뒤의 이유 문장을 베끼지 않고 실제 계산으로 관계를 확인한다."
+    },
+    {
+      "id": "e6-1-4-6-xc9",
+      "sourceIndex": 1985,
+      "proposalFingerprint": "f105140b58e6537814940ac05ec5a01e3a910f9818403595b2c072b21206b691",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "전체 수가 다른 여러 경우를 비교할 때 백분율로 나타내면 비교하기 쉬운 까닭을 기준량을 이용해 설명하시오.",
+        "answer": "백분율은 기준량을 모두 $100$으로 같게 맞춘 것이므로 비교하는 양만 보고 비교할 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준량을 $100$으로 같게 맞춘다",
+              "모두 $100$을 기준으로 나타낸다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "백분율은 기준량을 {$100$}으로 보았을 때의 비율이므로, 전체 수가 달라도 백분율이 클수록 비율이 {크다}.",
+        "acceptedAnswers": [
+          [
+            "$100$",
+            "백"
+          ],
+          [
+            "크다",
+            "더 크다",
+            "높다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "백분율의 쓸모를 기준량 관점에서 설명하게 한다.",
+      "cReason": "긴 구절을 외우지 않고 기준량 $100$과 비교 방향을 짧게 묻는다."
+    },
+    {
+      "id": "e6-1-4-6-xc10",
+      "sourceIndex": 1986,
+      "proposalFingerprint": "f66d3fb94ebb543e52a74ef7790ba36cc4860c5966851977bc8d2afe15ca7a32",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "원래 가격이 $30000$원인 물건을 $24000$원에 샀다. 할인율을 구하는 방법을 설명하고, 할인율을 구하시오.",
+        "answer": "원래 가격에서 낸 돈을 빼서 깎아 준 금액 $6000$원을 구하고, 이를 원래 가격으로 나눈다. $\\frac{6000}{30000}\\times100=20\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원래 가격에서 낸 돈을 뺀 금액이 깎아 준 금액이다",
+              "깎아 준 금액은 $6000$원이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "깎아 준 금액을 원래 가격으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20\\%$",
+              "$20$퍼센트"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원래 가격이 $30000$원인 물건을 $24000$원에 샀다면 깎아 준 금액은 {$6000$}원이므로 할인율은 {$20$}$\\%$이다.",
+        "acceptedAnswers": [
+          [
+            "$6000$",
+            "$6000$원"
+          ],
+          [
+            "$20$",
+            "$20\\%$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "낸 돈이 아니라 깎아 준 금액이 비교하는 양임을 계산으로 확인한다.",
+      "cReason": "실제 금액으로 깎아 준 금액을 먼저 구하게 한다."
+    },
+    {
+      "id": "e6-1-4-6-xc11",
+      "sourceIndex": 1987,
+      "proposalFingerprint": "88ff9744642cc26837b110b8a0d5f4346e3612442b1beaed41a1a47cfab308f3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "원래 가격에서 $20\\%$ 할인한 값이 $8000$원이다. 할인한 값은 원래 가격의 몇 $\\%$에 해당하는지 쓰고, 원래 가격을 구하는 방법을 설명한 뒤 구하시오.",
+        "answer": "$100\\%-20\\%=80\\%$이다. $8000$원이 원래 가격의 $80\\%$이므로 $8000\\div\\frac{80}{100}=10000$, 원래 가격은 $10000$원이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$80\\%$",
+              "$80$퍼센트"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8000$원을 $\\frac{80}{100}$으로 나눈다",
+              "$8000$원이 원래 가격의 $80\\%$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10000$원"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "할인율이 $20\\%$이면 할인한 값은 원래 가격의 {$80$}$\\%$에 해당한다.",
+        "acceptedAnswers": [
+          [
+            "$80$",
+            "$80\\%$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비율과 그 값으로 기준량을 거꾸로 찾는 방법을 확인한다.",
+      "cReason": "긴 구절 대신 실제 할인율로 비율을 계산하게 한다."
+    },
+    {
+      "id": "e6-1-4-6-xc14",
+      "sourceIndex": 1988,
+      "proposalFingerprint": "3feb7b55dace61ca9770ddc9a856f966e097d2da6aa1274a44e649ee9df0d763",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "할인율이 모두 $10\\%$인 $10000$원짜리 물건과 $50000$원짜리 물건이 있다. 깎아 주는 금액은 각각 얼마인지 구하고, 할인율이 같은데 금액이 다른 까닭을 설명하시오.",
+        "answer": "각각 $1000$원, $5000$원이다. 원래 가격(기준량)이 더 크면 같은 비율에 해당하는 금액도 더 크기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1000$원과 $5000$원"
+            ]
+          },
+          {
+            "anyOf": [
+              "원래 가격이 더 크다",
+              "기준량이 더 크다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "할인율이 같고 $0\\%$보다 클 때, 원래 가격이 더 비싼 물건은 깎아 주는 금액이 더 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다",
+            "커진다",
+            "많다",
+            "더 크다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 비율, 다른 기준량의 관계를 실제 금액으로 확인한다.",
+      "cReason": "뒤 문장에서 베끼지 않고 비교 방향만 짧게 묻는다."
+    },
+    {
+      "id": "e6-1-4-6-xc15",
+      "sourceIndex": 1989,
+      "proposalFingerprint": "2cb9f4c23ea13bd2bed25e28c2d34dc5965cf21e89b264fc09dc1cd2f55b151f",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "가 물건은 $20000$원에서 $2000$원을, 나 물건은 $5000$원에서 $1000$원을 깎아 준다. 각 할인율을 구하고, 깎아 준 금액이 더 큰 쪽이 할인율도 더 큰지 이유와 함께 설명하시오.",
+        "answer": "가는 $10\\%$, 나는 $20\\%$이다. 깎아 준 금액이 더 큰 가의 할인율이 더 작다. 할인율은 원래 가격을 기준으로 한 비율이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가 $10\\%$, 나 $20\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "금액이 큰 쪽이 할인율도 큰 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원래 가격을 기준으로 한 비율이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원래 가격 $20000$원에서 $2000$원 깎으면 할인율은 {$10$}$\\%$이고, 원래 가격 $5000$원에서 $1000$원 깎으면 {$20$}$\\%$이다. 깎은 금액이 더 커도 할인율은 더 {작을} 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "$10\\%$"
+          ],
+          [
+            "$20$",
+            "$20\\%$"
+          ],
+          [
+            "작을",
+            "낮을",
+            "더 작을"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "금액 비교와 비율 비교가 다를 수 있는 반례를 계산하게 한다.",
+      "cReason": "반례 계산으로 원래 가격 기준의 의미를 확인한다."
+    },
+    {
+      "id": "e6-1-4-6-xc16",
+      "sourceIndex": 1990,
+      "proposalFingerprint": "46d60550c39854a8553948730869e55670c39ebceba490022a4aee36f9805456",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "어떤 양이 $30\\%$ 늘어났다. 늘어난 뒤의 양은 처음 양의 몇 $\\%$인지 구하는 방법을 설명하고, 처음 양이 $200$일 때 늘어난 뒤의 양을 구하시오.",
+        "answer": "처음 양의 $100\\%$에 늘어난 $30\\%$를 더해 $130\\%$이다. $200\\times\\frac{130}{100}=260$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100\\%$에 $30\\%$를 더한다",
+              "$130\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$260$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "처음 양이 $200$인 어떤 양이 $30\\%$ 늘면, 늘어난 뒤의 양은 처음 양의 {$130$}$\\%$인 {$260$}이다.",
+        "acceptedAnswers": [
+          [
+            "$130$",
+            "$130\\%$"
+          ],
+          [
+            "$260$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "늘어난 뒤의 비율 구성을 설명하고 실제 양을 계산하게 한다.",
+      "cReason": "긴 구절 대신 실제 수로 늘어난 비율을 확인한다."
+    },
+    {
+      "id": "e6-1-4-6-xc17",
+      "sourceIndex": 1991,
+      "proposalFingerprint": "8d9944fa2e265a22e323c35f89a33132e71ccc54efd1b0ae604217f20d740b42",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "세 후보의 득표율이 $40\\%$, $35\\%$, $20\\%$이고 무효표가 있다. 무효표는 전체 투표 수의 몇 $\\%$인지 구하고, 모든 후보의 득표율과 무효표의 백분율을 더하면 어떻게 되는지 이유와 함께 설명하시오.",
+        "answer": "무효표는 $5\\%$이다. 모두 더하면 $100\\%$이다. 모든 표(유효표와 무효표)가 합쳐 전체이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5\\%$",
+              "$5$퍼센트"
+            ]
+          },
+          {
+            "anyOf": [
+              "합이 $100\\%$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모든 표가 전체를 이룬다",
+              "나뉜 부분을 모두 더하면 전체이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "세 후보의 득표율이 $40\\%$, $35\\%$, $20\\%$이면 무효표는 전체의 {$5$}$\\%$이다.",
+        "acceptedAnswers": [
+          [
+            "$5$",
+            "$5\\%$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "부분의 합이 전체가 된다는 관계를 구체 수로 확인한다.",
+      "cReason": "'$100\\%$' 암기 대신 합이 $100\\%$임을 계산에 쓰게 한다."
+    },
+    {
+      "id": "e6-1-4-6-xc18",
+      "sourceIndex": 1992,
+      "proposalFingerprint": "048712d32946994db94bd1e345d2022d4cdf32d77192e5ae8e8006a6a1a82e4e",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "소금 $20$ $\\mathrm{g}$을 물 $180$ $\\mathrm{g}$에 녹였다. 이 소금물의 진하기를 구할 때 기준량은 무엇이며, 진하기는 몇 $\\%$인가?",
+        "answer": "기준량은 소금과 물을 합한 소금물 $200$ $\\mathrm{g}$이다. 진하기는 $\\frac{20}{200}\\times100=10\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소금물 전체 양이 기준량이다",
+              "소금과 물을 합한 $200$ $\\mathrm{g}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10\\%$",
+              "$10$퍼센트"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "소금 $20$ $\\mathrm{g}$을 물 $180$ $\\mathrm{g}$에 녹이면 진하기의 기준량은 {$200$} $\\mathrm{g}$이다.",
+        "acceptedAnswers": [
+          [
+            "$200$",
+            "$200$ $\\mathrm{g}$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "물의 양을 기준으로 삼는 흔한 오류를 수치로 가려낸다.",
+      "cReason": "긴 구절 대신 실제 기준량 값을 묻는다."
+    },
+    {
+      "id": "e6-1-4-6-xc19",
+      "sourceIndex": 1993,
+      "proposalFingerprint": "63e1ab0374578959b5b5105c5efee4e040a208af08e2228441b9201765d78339",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "원래 가격이 $10000$원인 물건을 $10\\%$ 할인하고, 그 값에서 다시 $10\\%$ 할인했다. 마지막 값을 구하고, $20\\%$를 한 번 할인한 값과 같은지 이유와 함께 설명하시오.",
+        "answer": "첫 할인 뒤 $9000$원, 둘째 할인액은 $900$원이므로 마지막 값은 $8100$원이다. $20\\%$ 한 번 할인은 $8000$원이므로 같지 않다. 둘째 할인의 기준량이 이미 할인한 $9000$원이라 덜 깎인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$8100$원"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8000$원과 같지 않다",
+              "$20\\%$ 한 번 할인과 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘째 할인의 기준량은 할인한 값이다",
+              "$9000$원이 기준이라 덜 깎인다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원래 가격 $10000$원을 $10\\%$ 할인한 뒤 그 값에서 다시 $10\\%$ 할인하면 둘째 할인액은 {$900$}원이고 마지막 값은 {$8100$}원이다.",
+        "acceptedAnswers": [
+          [
+            "$900$",
+            "$900$원"
+          ],
+          [
+            "$8100$",
+            "$8100$원"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "할인율을 단순히 더하면 안 되는 이유를 계산과 기준량으로 설명하게 한다.",
+      "cReason": "조건이 많은 문장을 실제 두 번 할인 계산으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-6-xc20",
+      "sourceIndex": 1994,
+      "proposalFingerprint": "ea9469cdfae23903a888ae5b0231d2398f0aa44a97a26513589bdfbfb2b7aa4e",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "소금 $20$ $\\mathrm{g}$이 녹은 소금물 $200$ $\\mathrm{g}$에 물 $100$ $\\mathrm{g}$을 더 부었다. 소금 양과 소금물 전체 양은 어떻게 되고, 진하기는 어떻게 변하는지 이유와 함께 설명하시오.",
+        "answer": "소금은 $20$ $\\mathrm{g}$으로 그대로이고 소금물은 $300$ $\\mathrm{g}$으로 늘어난다. 기준량만 커지므로 진하기는 $10\\%$보다 낮아진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "진하기가 낮아진다",
+              "진하기가 작아진다",
+              "묽어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소금은 그대로이고 소금물 전체 양이 늘어난다",
+              "기준량이 커진다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "소금 $20$ $\\mathrm{g}$이 녹은 소금물 $200$ $\\mathrm{g}$에 물 $100$ $\\mathrm{g}$을 더 부으면 소금물은 {$300$} $\\mathrm{g}$이 되고 진하기는 $10\\%$보다 {낮아진다}.",
+        "acceptedAnswers": [
+          [
+            "$300$",
+            "$300$ $\\mathrm{g}$"
+          ],
+          [
+            "낮아진다",
+            "작아진다",
+            "줄어든다",
+            "묽어진다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "소금 양 불변과 전체 양 증가를 함께 보게 한다.",
+      "cReason": "단순 낱말 빈칸 대신 전체 양 계산과 변화 방향을 확인한다."
+    },
+    {
+      "id": "e6-1-4-6-xc21",
+      "sourceIndex": 1995,
+      "proposalFingerprint": "633512801fcf97de960acb5e5b2b9930e606dee1e7f7837f8bec222bd1bc4519",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "진하기가 $10\\%$인 소금물 $100$ $\\mathrm{g}$과 $200$ $\\mathrm{g}$을 섞으면 진하기는 몇 $\\%$인지 구하고, 소금 양과 소금물 양으로 이유를 설명하시오.",
+        "answer": "소금은 $10+20=30$ $\\mathrm{g}$, 소금물은 $300$ $\\mathrm{g}$이므로 진하기는 $\\frac{30}{300}\\times100=10\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10\\%$",
+              "$10$퍼센트"
+            ]
+          },
+          {
+            "anyOf": [
+              "소금 합 $30$ $\\mathrm{g}$",
+              "소금물 합 $300$ $\\mathrm{g}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "진하기가 $10\\%$인 소금물 $100$ $\\mathrm{g}$과 $200$ $\\mathrm{g}$을 섞은 소금물은 소금이 {$30$} $\\mathrm{g}$이므로 진하기가 {$10$}$\\%$이다.",
+        "acceptedAnswers": [
+          [
+            "$30$",
+            "$30$ $\\mathrm{g}$"
+          ],
+          [
+            "$10$",
+            "$10\\%$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 진하기를 섞어도 변하지 않는 까닭을 계산으로 확인한다.",
+      "cReason": "뒤 결론을 미리 주지 않고 소금 양과 진하기를 계산하게 한다."
+    },
+    {
+      "id": "e6-1-4-6-xc23",
+      "sourceIndex": 1996,
+      "proposalFingerprint": "31bc85d283d9e8f96e4a24b1b5f5e74657a15c200413456de15a1942340ee951",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "가 물건은 원래 $10000$원에서 $50\\%$ 할인하고, 나 물건은 원래 $4000$원에서 $30\\%$ 할인한다. 내는 돈을 각각 구하고, 할인율이 더 큰 물건이 더 싼지 설명하시오.",
+        "answer": "가는 $5000$원, 나는 $2800$원이다. 할인율이 더 큰 가가 더 싸지 않다. 내는 돈은 원래 가격에서 깎아 준 금액을 뺀 돈이라 원래 가격도 함께 봐야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가 $5000$원, 나 $2800$원"
+            ]
+          },
+          {
+            "anyOf": [
+              "할인율이 크다고 반드시 싼 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원래 가격도 함께 본다",
+              "내는 돈은 원래 가격에서 깎아 준 금액을 뺀 것이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원래 가격 $10000$원에 $50\\%$ 할인하면 {$5000$}원, 원래 가격 $4000$원에 $30\\%$ 할인하면 {$2800$}원을 내므로 할인율이 더 커도 더 싸다고 할 수 없다.",
+        "acceptedAnswers": [
+          [
+            "$5000$",
+            "$5000$원"
+          ],
+          [
+            "$2800$",
+            "$2800$원"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "할인율 비교와 내는 돈 비교가 다를 수 있음을 반례로 확인한다.",
+      "cReason": "긴 일반 문장을 두 물건의 실제 내는 돈 계산으로 바꾼다."
+    },
+    {
+      "id": "e6-1-4-6-xc24",
+      "sourceIndex": 1997,
+      "proposalFingerprint": "879ed148968cd0b84eb9650033819042a567bee81c88376a499171d5db76feaa",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "전체 투표 수가 $500$표인 선거에서 두 후보의 득표율이 $40\\%$, $30\\%$이다. 두 후보의 표 차이를 득표율의 차를 이용해 구하는 방법을 설명하고 값을 구하시오.",
+        "answer": "기준량이 같으므로 득표율의 차 $10\\%$를 전체 투표 수에 곱한다. $500\\times\\frac{10}{100}=50$표이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "득표율의 차에 전체 투표 수를 곱한다",
+              "$10\\%$를 $500$에 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50$표"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "전체 투표 수가 $500$표인 선거에서 득표율이 $40\\%$, $30\\%$인 두 후보의 표 차이는 $500$표의 {$10$}$\\%$인 {$50$}표이다.",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "$10\\%$"
+          ],
+          [
+            "$50$",
+            "$50$표"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "기준량이 같을 때 비율의 차가 양의 차가 됨을 실제 값으로 확인한다.",
+      "cReason": "뒤의 이유를 베끼지 않고 득표율 차와 표 차를 계산하게 한다."
+    },
+    {
+      "id": "e6-1-4-6-xc25",
+      "sourceIndex": 1998,
+      "proposalFingerprint": "8f9bd9e1b54a70d7db8d55b799137e21ab71ba719ca26e84aa4a2b7dee56ead7",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "전체 투표 수가 $200$표인 선거에서 한 후보가 $100$표를 얻었다. 이 후보의 득표율은 몇 $\\%$이며, 득표율이 $50\\%$를 넘으려면 어떤 조건이 필요한지 설명하시오.",
+        "answer": "득표율은 $50\\%$이다. $50\\%$를 넘으려면 전체의 절반인 $100$표보다 많이 얻어야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$50\\%$",
+              "$50$퍼센트"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100$표보다 많아야 한다",
+              "절반보다 많아야 한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "전체 투표 수가 $200$표일 때 득표율이 $50\\%$를 넘으려면 {$100$}표보다 {많은} 표를 얻어야 한다.",
+        "acceptedAnswers": [
+          [
+            "$100$",
+            "$100$표"
+          ],
+          [
+            "많은",
+            "더 많은",
+            "많이"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "경계값과 초과 조건을 구체 표 수로 구분하게 한다.",
+      "cReason": "경계값 $100$표와 초과 방향을 짧게 확인한다."
+    },
+    {
+      "id": "e6-1-4-6-xc26",
+      "sourceIndex": 1999,
+      "proposalFingerprint": "7f5f6da444ea5aaef240d4b13b991f64ebd975cdf668286f2880e36d98170beb",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "처음 값이 $100$일 때 $10\\%$ 내렸다가 다시 $10\\%$ 올렸다. 마지막 값을 구하고 처음 값과 비교한 뒤, 기준량으로 그 이유를 설명하시오.",
+        "answer": "$100$에서 $10\\%$ 내리면 $90$이고, 올릴 때는 $90$의 $10\\%$인 $9$를 올려 $99$가 된다. 처음 값 $100$보다 낮다. 올릴 때의 기준량 $90$이 처음 값 $100$보다 작기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$99$"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 값보다 낮다",
+              "처음 값 $100$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "올릴 때 기준량이 $90$으로 더 작다",
+              "기준량이 내린 뒤의 값이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "처음 값이 $100$일 때 $10\\%$ 내리면 $90$이고, 여기서 $10\\%$를 올리면 {$9$}만큼 늘어 {$99$}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ],
+          [
+            "$99$"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 백분율이라도 기준량이 바뀌는 오개념을 계산으로 바로잡는다.",
+      "cReason": "긴 이유 구절을 실제 올리는 양과 결과값으로 확인한다."
+    }
+  ]
+}

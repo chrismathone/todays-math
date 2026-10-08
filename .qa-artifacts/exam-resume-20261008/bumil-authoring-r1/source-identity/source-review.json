@@ -1,0 +1,998 @@
+{
+  "schema_version": "bumil-source-identity-review.v1",
+  "reviewed_at": "2026-10-07T18:15:49.867349+00:00",
+  "exam_id": "personal-9967cfbb759aa6d369883bac4c986aaa",
+  "nominal_canonical_key": "범일중|중3|중3|2025-2-중간",
+  "worktree": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008",
+  "branch": "chrismathone/exam-twin-source-identity-20261008",
+  "base_commit": "3e4743a03911e1508b1fb781f754423d35d1972d",
+  "authorization_sources": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\AGENTS.md",
+      "sha256": "644dd7b882a2304d7ae022c94fcdea531599b3361a1c4b882ef34be9397f2801"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\tracks\\brief-exam-extraction-resume-20261008-addendum-1.md",
+      "sha256": "b530f1367ededa6f40e56e58641e5d7a9a3afe927b5e72788dd7cbfc61033eaa"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\tracks\\brief-exam-extraction-resume-20261008-addendum-2.md",
+      "sha256": "fb911ce3f90d5e08f69b1fb86e957368c03ce28f47b53abbdaafba4a7d56cdb6"
+    }
+  ],
+  "identity_verdict": "confirmed_for_selected_questions",
+  "affected_question_numbers": [
+    2,
+    3,
+    15,
+    21
+  ],
+  "scope": {
+    "read_only_original_artifact_root": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003",
+    "selected_question_numbers": [
+      2,
+      3,
+      15,
+      21
+    ],
+    "completed_pdf_pages_inspected": [
+      1,
+      3,
+      4
+    ],
+    "completed_pdf_pages_not_content_read": [
+      2,
+      5
+    ],
+    "scan_primary": "s3",
+    "scan_primary_pages_content_compared": [
+      1,
+      3,
+      4
+    ],
+    "corroborating_scans": {
+      "s2": "date/school and printed q2/q3/q15",
+      "s7": "date and printed q15"
+    },
+    "scan_page_identification": "leading strips of all scan pages show printed numbered questions; no separate answer page inspected",
+    "hwp": "Selected main text/equations/pictures only; note subtrees excluded; final reader stops at q21 picture.",
+    "no_further_workers": true,
+    "bounded_inspection_complete": true
+  },
+  "observed_identity": {
+    "school_full_name": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "year": 2025,
+    "semester": 2,
+    "round": "중간",
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+    "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+    "named_completed_label": "범일중 3학년 수학",
+    "edited_completed_label": "BI중 3학년 수학",
+    "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+    "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+  },
+  "inferences": [
+    {
+      "claim": "Footer year is an editorial/preparation label, not the actual exam year.",
+      "reason": "Printed 대비 wording + explicit linked 2025-09-23 administration date + selected-question content correspondence.",
+      "confidence": "high",
+      "not_claimed": [
+        "creation/publication date",
+        "specific intended 2026 use",
+        "identity of editor"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "component": "actual_exam_date_and_year",
+      "status": "confirmed",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "Observed printed scan title and explicit administration line; corroborated by s2/s7.",
+      "unresolved_reasons": [],
+      "evidence_files": [
+        "original-exam-header.png",
+        "second-scan-exam-header.png",
+        "third-scan-exam-header.png"
+      ]
+    },
+    {
+      "component": "school_grade_subject_semester_round",
+      "status": "confirmed",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "Observed full school footer and named completed PDF/HWP header, linked to selected printed questions.",
+      "unresolved_reasons": [],
+      "evidence_files": [
+        "original-school-footer.png",
+        "original-copyright-school.png",
+        "named-pdf-header.png",
+        "s5-hwp-first-page-preview.png"
+      ]
+    },
+    {
+      "component": "footer_year_role",
+      "status": "confirmed",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "Strong inference from explicit 대비 label plus linked original exam administration date: preparation/editorial label, not exam year.",
+      "unresolved_reasons": [
+        "Exact preparation/publication date and intended 2026 use are unknown."
+      ],
+      "evidence_files": [
+        "named-pdf-footer.png",
+        "anonymous-pdf-footer.png",
+        "original-exam-header.png"
+      ]
+    },
+    {
+      "component": "anonymous_BI_label_content_linkage",
+      "status": "confirmed",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "Selected content matches named PDF/HWP and printed Bumil original; file-specific linkage only.",
+      "unresolved_reasons": [
+        "Actor, date and reason for changed school label are unknown."
+      ],
+      "evidence_files": [
+        "anonymous-pdf-header.png",
+        "snippet-records.json",
+        "hwp-question-only-evidence.json"
+      ]
+    },
+    {
+      "component": "selected_HWP_PDF_scan_content_linkage",
+      "status": "confirmed",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "Direct visual comparison of four printed stems/conditions/options/scores and three diagrams, plus bounded HWP main text/equations/picture references.",
+      "unresolved_reasons": [],
+      "evidence_files": [
+        "hwp-question-only-evidence.json",
+        "selected-figure-linkage.json",
+        "snippet-records.json"
+      ]
+    },
+    {
+      "component": "current_path_association",
+      "status": "confirmed",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "Old work196 paths are missing; present previous-batch paths retain recorded completed-file hashes/sizes and matching selected content.",
+      "unresolved_reasons": [
+        "Mover and move date are unknown."
+      ],
+      "evidence_files": [
+        "source-files.json",
+        "prior-reports-integrity.json"
+      ]
+    },
+    {
+      "component": "direct_export_and_acquisition_chain",
+      "status": "held",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "Content correspondence is established; a specific export/custody sequence is not.",
+      "unresolved_reasons": [
+        "No exporter logs or acquisition/custody record inspected; filenames and byte hashes cannot establish this chain."
+      ],
+      "evidence_files": []
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "비상 appears in filenames only.",
+      "unresolved_reasons": [
+        "No printed textbook/publisher identification found within reviewed question evidence."
+      ],
+      "evidence_files": []
+    },
+    {
+      "component": "applicable_curriculum_approval",
+      "status": "held",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "Grade/date are observed; curriculum approval is outside this review.",
+      "unresolved_reasons": [
+        "Official applicable curriculum/achievement-standard review remains necessary; this worker did not perform it."
+      ],
+      "evidence_files": []
+    },
+    {
+      "component": "reuse_rights",
+      "status": "held",
+      "affected_question_numbers": [
+        2,
+        3,
+        15,
+        21
+      ],
+      "basis": "Copyright line is observed, but does not grant reuse permission.",
+      "unresolved_reasons": [
+        "No permission/license evidence reviewed; do not change rights gate from this identity report."
+      ],
+      "evidence_files": []
+    },
+    {
+      "component": "unselected_question_content_equivalence",
+      "status": "held",
+      "affected_question_numbers": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "basis": "Not reviewed to the same standard in this four-question task.",
+      "unresolved_reasons": [
+        "Prior all-21 comparison is historical only; no wholesale claim from selected questions."
+      ],
+      "evidence_files": []
+    }
+  ],
+  "question_reviews": [
+    {
+      "question_number": 2,
+      "original_label": "2",
+      "score": 4,
+      "scan_page": 1,
+      "completed_pdf_page": 1,
+      "conditions": [
+        "y=2x² translated in y direction",
+        "(-1,k)",
+        "diagram vertex y=-4"
+      ],
+      "choices": [
+        "-6",
+        "-4",
+        "-2",
+        "2",
+        "4"
+      ],
+      "printed_diagram": true,
+      "figure_labels": [
+        "x",
+        "y",
+        "O",
+        "-4"
+      ],
+      "source_identity_status": "confirmed"
+    },
+    {
+      "question_number": 3,
+      "original_label": "3",
+      "score": 4,
+      "scan_page": 1,
+      "completed_pdf_page": 1,
+      "conditions": [
+        "vertex on x-axis",
+        "axis x=-2",
+        "passes (-3,3)",
+        "asks for y-intercept coordinate"
+      ],
+      "choices": [
+        "(0,-18)",
+        "(0,-12)",
+        "(0,12/25)",
+        "(0,12)",
+        "(0,18)"
+      ],
+      "printed_diagram": false,
+      "annotation_note": "Handwritten sketch is not a printed question diagram.",
+      "source_identity_status": "confirmed"
+    },
+    {
+      "question_number": 15,
+      "original_label": "15",
+      "score": 4,
+      "scan_page": 3,
+      "completed_pdf_page": 3,
+      "conditions": [
+        "broken circular plate",
+        "asks for original circumference",
+        "preserve measurement markings as printed"
+      ],
+      "choices": [
+        "6π cm",
+        "8π cm",
+        "10π cm",
+        "12π cm",
+        "16π cm"
+      ],
+      "printed_diagram": true,
+      "figure_labels": [
+        "8cm",
+        "2cm",
+        "equal-length marks",
+        "perpendicular marker"
+      ],
+      "source_identity_status": "confirmed"
+    },
+    {
+      "question_number": 21,
+      "original_label": "서술형 4",
+      "score": 8,
+      "partial_credit_printed": true,
+      "scan_page": 4,
+      "completed_pdf_page": 4,
+      "conditions": [
+        "AD, BC, CD tangent to semicircle O",
+        "tangent points A, B, E",
+        "AD=10cm",
+        "AB=12cm",
+        "asks for CB"
+      ],
+      "printed_diagram": true,
+      "figure_labels": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "O",
+        "10cm",
+        "12cm"
+      ],
+      "source_identity_status": "confirmed"
+    }
+  ],
+  "sources": [
+    {
+      "id": "s1",
+      "manifest_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp",
+      "manifest_path_exists": true,
+      "current_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp",
+      "current_path_exists": true,
+      "manifest_role": "완료본",
+      "extension": "hwp",
+      "bytes": 594944,
+      "sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b"
+    },
+    {
+      "id": "s2",
+      "manifest_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간] (원본)(윤이아빠).pdf",
+      "manifest_path_exists": true,
+      "current_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간] (원본)(윤이아빠).pdf",
+      "current_path_exists": true,
+      "manifest_role": "원본",
+      "extension": "pdf",
+      "bytes": 2243942,
+      "sha256": "6409e7cb8e1ec5d82b178123b3f2708c194a8a799d54f435d745a49310ef2878",
+      "page_count": 4,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ]
+      ]
+    },
+    {
+      "id": "s3",
+      "manifest_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf",
+      "manifest_path_exists": true,
+      "current_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf",
+      "current_path_exists": true,
+      "manifest_role": "원본",
+      "extension": "pdf",
+      "bytes": 5744343,
+      "sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "page_count": 4,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          1031.0,
+          728.0
+        ],
+        [
+          0.0,
+          0.0,
+          1031.0,
+          728.0
+        ],
+        [
+          0.0,
+          0.0,
+          1031.0,
+          728.0
+        ],
+        [
+          0.0,
+          0.0,
+          1031.0,
+          728.0
+        ]
+      ]
+    },
+    {
+      "id": "s4",
+      "manifest_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "manifest_path_exists": true,
+      "current_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "current_path_exists": true,
+      "manifest_role": "완료본",
+      "extension": "pdf",
+      "bytes": 14731957,
+      "sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "page_count": 5,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ],
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ],
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ],
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ],
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ]
+      ]
+    },
+    {
+      "id": "s5",
+      "manifest_path": "N:\\개인\\기출\\기출작업\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp",
+      "manifest_path_exists": false,
+      "current_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp",
+      "current_path_exists": true,
+      "manifest_role": "완료본",
+      "extension": "hwp",
+      "bytes": 594944,
+      "sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b"
+    },
+    {
+      "id": "s6",
+      "manifest_path": "N:\\개인\\기출\\기출작업\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "manifest_path_exists": false,
+      "current_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "current_path_exists": true,
+      "manifest_role": "완료본",
+      "extension": "pdf",
+      "bytes": 176140,
+      "sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "page_count": 5,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ]
+      ]
+    },
+    {
+      "id": "s7",
+      "manifest_path": "N:\\개인\\기출\\기출작업\\196차\\[범일중][3][25-2-중간][비상] (원본).pdf",
+      "manifest_path_exists": false,
+      "current_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (원본).pdf",
+      "current_path_exists": true,
+      "manifest_role": "원본",
+      "extension": "pdf",
+      "bytes": 17662251,
+      "sha256": "32f9e510f5b095ff4756f37d332977a3bffa7d35fa001cac75670a3e8cf9df0d",
+      "page_count": 4,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          595.0,
+          842.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          842.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          842.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          842.0
+        ]
+      ]
+    }
+  ],
+  "original_scan_page_mapping": {
+    "s2": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "s3": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "s7": [
+      3,
+      4,
+      2,
+      1
+    ]
+  },
+  "historical_manifest_states": [
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest.json",
+      "sha256": "40b92f6b7d82b4a844be64253c6e127f8da818540f2fe77d4ce42f1d00003500",
+      "status": "holdMetadata",
+      "selected_pair": null,
+      "hold_reasons": [
+        "동일 stem의 완료 HWP/PDF 짝 4개: 내용/바이트 대조 필요"
+      ]
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+      "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+      "status": "readyForExtraction",
+      "selected_pair": {
+        "pdf": "N:\\개인\\기출\\기출작업\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+        "hwp": "N:\\개인\\기출\\기출작업\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+      },
+      "hold_reasons": []
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-pilot-hashes.json",
+      "sha256": "f752c500ce1605f507926a5c21f48121a0d0eb78bc2db9a3f3b7725604b412cc",
+      "status": "holdMetadata",
+      "selected_pair": null,
+      "hold_reasons": [
+        "동일 stem의 완료 HWP/PDF 짝 2개: 내용/바이트 대조 필요"
+      ]
+    }
+  ],
+  "content_linkage_method": [
+    "visual printed question conditions/options/scores",
+    "visual diagram labels/relations",
+    "bounded main-body HWP equations and selected picture references",
+    "hashes preserve file identity, not exam identity alone"
+  ],
+  "crop_text_comparisons": [
+    {
+      "question_number": 2,
+      "crop_text_hashes": {
+        "s6": "be75c984476b7ed784ae95ac1714a1386bf85fc7218e9c0fe5a4635cd21ff727",
+        "s4": "0c799d344866cb953691eb75bac8590429af309a42030f958314d4cfad005918"
+      },
+      "equal": false,
+      "decision_basis": "visual printed text + bounded HWP equations; crop text hashes are auxiliary",
+      "extraction_limit": "q2/q3 unequal crop extraction contains clipped edge characters/nearby text; not a rendered content discrepancy"
+    },
+    {
+      "question_number": 3,
+      "crop_text_hashes": {
+        "s6": "bc366aac6653953c66a5b81a9a8988496f1bac2553a873adacd053a54d682860",
+        "s4": "cfe40a13ecad55080ccbe94fd165a6e0f19ca7e870b85abf6858a68ecc27d86f"
+      },
+      "equal": false,
+      "decision_basis": "visual printed text + bounded HWP equations; crop text hashes are auxiliary",
+      "extraction_limit": "q2/q3 unequal crop extraction contains clipped edge characters/nearby text; not a rendered content discrepancy"
+    },
+    {
+      "question_number": 15,
+      "crop_text_hashes": {
+        "s6": "cc43bf153f8ca7242d15ac2783a8cb30c27189bd67bdb7bf6151a2e63b1987f2",
+        "s4": "cc43bf153f8ca7242d15ac2783a8cb30c27189bd67bdb7bf6151a2e63b1987f2"
+      },
+      "equal": true,
+      "decision_basis": "visual printed text + bounded HWP equations; crop text hashes are auxiliary",
+      "extraction_limit": null
+    },
+    {
+      "question_number": 21,
+      "crop_text_hashes": {
+        "s6": "c43dbed6f1957d298dde4e349cc6fd363e2f60c9f7a78d9f9d6b816a76518ac0",
+        "s4": "c43dbed6f1957d298dde4e349cc6fd363e2f60c9f7a78d9f9d6b816a76518ac0"
+      },
+      "equal": true,
+      "decision_basis": "visual printed text + bounded HWP equations; crop text hashes are auxiliary",
+      "extraction_limit": null
+    }
+  ],
+  "figure_pixel_equality_claimed": false,
+  "direct_HWP_to_PDF_export_claimed": false,
+  "blind_review_exposure": {
+    "separate_answer_pages_read": false,
+    "stored_answer_solution_outputs_read": false,
+    "hwp_note_contents_decoded": false,
+    "new_author_candidates_read": false,
+    "new_candidate_answer_fields_read": false,
+    "original_scan_handwriting_incidentally_visible": true,
+    "original_handwritten_work_transcribed_or_used_as_answer_evidence": false,
+    "initial_hwp_traversal_note": "Reached only answer-section heading and staff credits after q21; no answer values or note contents decoded. Retained reader/output stops at q21 picture.",
+    "candidate_answer_blindness": true,
+    "fully_blind_to_original_student_answer_markings": false
+  },
+  "recommended_reference": {
+    "completed_pdf_source_id": "s6",
+    "hwp_source_id": "s5",
+    "original_scan_source_id": "s3",
+    "status": "source_identity_evidence_only",
+    "automatic_apply_or_hold_release": false
+  },
+  "held_resume_requirements": [
+    "Export/custody records for any direct chain claim",
+    "Printed publisher evidence for 비상 claim",
+    "Separate applicable curriculum/achievement-standard review",
+    "Separate reuse-permission evidence"
+  ],
+  "prohibited_actions_performed": [],
+  "validation": {
+    "all_seven_current_source_hashes_rechecked": true,
+    "all_three_original_manifest_hashes_rechecked": true,
+    "both_prior_source_report_hashes_rechecked": true,
+    "snippet_hashes_rechecked": true,
+    "selected_HWP_stop_boundary_checked": true,
+    "visual_snippets_reviewed": true
+  },
+  "evidence_files": [
+    {
+      "file": "SOURCE-REVIEW.md",
+      "bytes": 10347,
+      "sha256": "b0aaa6ed5fcfbd36a35a9765b70fcd5b14bdb765625fa11a7c8213ae26cfc682"
+    },
+    {
+      "file": "anonymous-pdf-footer.png",
+      "bytes": 7401,
+      "sha256": "bf11806154c7baee381a57b71b777c1ab9bfc4cfd6bfc3f07abd2672e7d59113"
+    },
+    {
+      "file": "anonymous-pdf-header.png",
+      "bytes": 43828,
+      "sha256": "0951a8618b23486b2d0894fb304c888d44c578ef1570d63ad3576a5c3989b2be"
+    },
+    {
+      "file": "anonymous-pdf-q15.png",
+      "bytes": 59960,
+      "sha256": "c66ff5776306e3419f320df2802548f5c9fbd2e64eb5a5426c4fbd5ad1301594"
+    },
+    {
+      "file": "anonymous-pdf-q2.png",
+      "bytes": 47447,
+      "sha256": "c893114509d9b77241ce914d13593c61bde3faf4bdd598cd8123e853b3f0e14a"
+    },
+    {
+      "file": "anonymous-pdf-q21.png",
+      "bytes": 45502,
+      "sha256": "f48011fd3f9ccce4c7eda248c11df1a6d660d63ef187d42e56fb77689262c74b"
+    },
+    {
+      "file": "anonymous-pdf-q3.png",
+      "bytes": 49615,
+      "sha256": "4c7e5cb2e0258494d4f89c8f64ac789139224fba3f89745f9a0e4a3a01560c32"
+    },
+    {
+      "file": "build_report.py",
+      "bytes": 13656,
+      "sha256": "fc33f2040b2b9c07a851751bce2619ea14a406331ba911baf294c324267e48ed"
+    },
+    {
+      "file": "hwp-question-only-evidence.json",
+      "bytes": 7237,
+      "sha256": "217b89b30a38a00a296b92008487769a2b05a2c7802c82627e0c256f351c16bc"
+    },
+    {
+      "file": "hwp_question_only.py",
+      "bytes": 5483,
+      "sha256": "ad0300c498d9158d54251101eca9734ad2851261620de122546f61f6b05d1814"
+    },
+    {
+      "file": "inspect_sources.py",
+      "bytes": 3344,
+      "sha256": "712eebaa31fb45bcf8c70df02697a1bbd22d71cd39336cd03bb1936a88e680d6"
+    },
+    {
+      "file": "make_snippets.py",
+      "bytes": 5592,
+      "sha256": "c9a876ee586aef45e774333732cfd1c1f0c6095afd8b1caf2e4d05c4910f3cc7"
+    },
+    {
+      "file": "manifest-question-source-excerpts.json",
+      "bytes": 24619,
+      "sha256": "61c70bd0f229301d188c3d6aea20866d5b6f550c7c98c03b568f539fd8403506"
+    },
+    {
+      "file": "named-pdf-footer.png",
+      "bytes": 5600,
+      "sha256": "7d17cf7c6be9af0a7f8fa84b79030e3f7d8e207c74293b0e177e3a6d9d6c0e23"
+    },
+    {
+      "file": "named-pdf-header.png",
+      "bytes": 29451,
+      "sha256": "203e45de0649919f9b7dee1ca526fdaf17ae707e70559af75c79576d278a9f9f"
+    },
+    {
+      "file": "named-pdf-q15.png",
+      "bytes": 87473,
+      "sha256": "a823012c3352874381ffd1eec9049749b557653469d89ac5cb5237ca12211acc"
+    },
+    {
+      "file": "named-pdf-q2.png",
+      "bytes": 55759,
+      "sha256": "f82b4b517b6b9bd0bfc5c850a588407e04e44a2dec5aad98c5269533d4a92e66"
+    },
+    {
+      "file": "named-pdf-q21.png",
+      "bytes": 61382,
+      "sha256": "24e1f13d2ab92e45fd0870764a16dc08aa0923952ae34868db35a35c8268779d"
+    },
+    {
+      "file": "named-pdf-q3.png",
+      "bytes": 38721,
+      "sha256": "8d3e0341f360962bcebb9e37b0445ecd34d78a973c5c690ae4d3c748c487d925"
+    },
+    {
+      "file": "original-copyright-school.png",
+      "bytes": 90068,
+      "sha256": "a372b7af1aa946685949348ebd4eab9a1751ede53566c4af9dcc18168b90340a"
+    },
+    {
+      "file": "original-exam-header.png",
+      "bytes": 243691,
+      "sha256": "a9c8fc15603246015626c60a3c12d18d2c11a012eafd7429d40f5348915248f2"
+    },
+    {
+      "file": "original-q15-figure.png",
+      "bytes": 183817,
+      "sha256": "f28c18f267abda1414117916d8e0fd89598722c790b1a82b739c6b5510bc10e3"
+    },
+    {
+      "file": "original-q15-stem.png",
+      "bytes": 107913,
+      "sha256": "838ba81921f7043f156fd85fa28780b76e2685652d5b7b1bc3ce920094c412f5"
+    },
+    {
+      "file": "original-q2-figure.png",
+      "bytes": 95678,
+      "sha256": "13ce1af8b24af2a87c8426efde827c3483c5f527b0486cfe26acc5fdc77f06e6"
+    },
+    {
+      "file": "original-q2-stem.png",
+      "bytes": 156257,
+      "sha256": "a3b162812b095ea4b203e71203fb4fa1e6e958278a0414c21baade6b30a41204"
+    },
+    {
+      "file": "original-q21-figure.png",
+      "bytes": 120015,
+      "sha256": "9901aa65bec7cf08ceda5a947f9dc7f7ae277bd53f0268a7d34071563adbb9c5"
+    },
+    {
+      "file": "original-q21-stem.png",
+      "bytes": 170084,
+      "sha256": "a9099593950f779384f38d8248e0c744d51f54b7f552912b37ec7af5d1b95091"
+    },
+    {
+      "file": "original-q3-stem.png",
+      "bytes": 280738,
+      "sha256": "5e10a1f910b1bd26fef389a611f746dd32ccae8ddc6c79cfede70b7bce68c4f5"
+    },
+    {
+      "file": "original-school-footer.png",
+      "bytes": 9874,
+      "sha256": "33e21da52f97844bd3b8a9cfe88e5c63a8ce1d12187faa7d336d927a02efdcff"
+    },
+    {
+      "file": "prior-reports-integrity.json",
+      "bytes": 413,
+      "sha256": "86f6b9f070370a4c4f19299e4889f761501d6dbde6c5e2e05b9f84c8439078fa"
+    },
+    {
+      "file": "s4-q15-embedded-figure.png",
+      "bytes": 19442,
+      "sha256": "4a7c821171c4e6d37705b0625e6467d7e2f315a6d2f8bc78d54f0aa6fd18c2b3"
+    },
+    {
+      "file": "s4-q2-embedded-figure.png",
+      "bytes": 9643,
+      "sha256": "0ad966965b03126fa552468410880c0e1eec62ba7872bc248bf37e9f2ebc5cfc"
+    },
+    {
+      "file": "s4-q21-embedded-figure.png",
+      "bytes": 10556,
+      "sha256": "935cb25285821235aed3d1ecd37b6e2658b73482f44ab6ef51c0c3235e41d4d0"
+    },
+    {
+      "file": "s5-hwp-first-page-preview.png",
+      "bytes": 73327,
+      "sha256": "953cdf835086f1040be77a0529df79344b3d0c79caedfc44bfcff59112c10262"
+    },
+    {
+      "file": "s5-hwp-q15-figure.png",
+      "bytes": 27422,
+      "sha256": "7e7a2776fd4f3c2a5fc999cdd33949b27d0797bfa6b6867b526fc3f6503ec895"
+    },
+    {
+      "file": "s5-hwp-q2-figure.png",
+      "bytes": 15182,
+      "sha256": "27f57a2d62675ec77ff15e6365f90a9100dbb1f38049748e4fc4aaf00f4eca5c"
+    },
+    {
+      "file": "s5-hwp-q21-figure.png",
+      "bytes": 16254,
+      "sha256": "8f16c62b5d93ea8c6af29df4d68d1bfa77e93df4dfdaffef59ee463bc6b8a6d1"
+    },
+    {
+      "file": "s6-q15-embedded-figure.png",
+      "bytes": 17392,
+      "sha256": "4434b631231c74fc8faf9ae604aeb8ba23e275922b447b131691cdd9174f7e13"
+    },
+    {
+      "file": "s6-q2-embedded-figure.png",
+      "bytes": 8820,
+      "sha256": "f8b6b92b69f6a2c39d94eba6791fab2652ba2b702e79b9cc25ed2bbc6e92ead9"
+    },
+    {
+      "file": "s6-q21-embedded-figure.png",
+      "bytes": 10394,
+      "sha256": "75c72acca39f81ed03ddd18b22792bbf147d5bd29769133caa23d6294c7caa22"
+    },
+    {
+      "file": "second-scan-exam-header.png",
+      "bytes": 82257,
+      "sha256": "1889e7479028edf916cdbcd5bc1b6013e00c947ded7cae271a5b119524ead7f3"
+    },
+    {
+      "file": "second-scan-school-footer.png",
+      "bytes": 5708,
+      "sha256": "14723ca59eac359af1387d6df9b02a03d20d5ea67bf938df688729b2cbbe25ba"
+    },
+    {
+      "file": "selected-figure-linkage.json",
+      "bytes": 4710,
+      "sha256": "a3d6b2a54b1a41988b4beed778284791e801f67dbc722775bcfecb7da725f372"
+    },
+    {
+      "file": "snippet-records.json",
+      "bytes": 17294,
+      "sha256": "794b54bc82fb2e1c8117bd1c9a584813fbe723636da6b7df9cd1e7903aee3695"
+    },
+    {
+      "file": "source-files.json",
+      "bytes": 5866,
+      "sha256": "b74641da495bc9e914a4fd5a69a0170891e4690d6139db4c37102ca8565e5919"
+    },
+    {
+      "file": "third-scan-exam-header.png",
+      "bytes": 277490,
+      "sha256": "c4050101a7a6498f9378adef640f2f9d1e273cc2ca755c34d5b0795a8aa562cc"
+    },
+    {
+      "file": "third-scan-q15-figure.png",
+      "bytes": 168455,
+      "sha256": "7fddef670c1ad5014f6388f6f912b12afa36c136d4e5df3c36818685a55c8ffd"
+    },
+    {
+      "file": "third-scan-q15-stem.png",
+      "bytes": 144637,
+      "sha256": "2024c118e17e003c0eee7427515479d37bcc1fefe8a19b25178c7da51e5cb324"
+    }
+  ]
+}

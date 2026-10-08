@@ -14,6 +14,12 @@
 | 2. 바꾸기 | `convert_batch.py` | HWP → HWPX. **창을 안 띄운다**(별도 데스크톱 · 숨김 · 대화상자 자동응답 — `scripts/qa/hwp_to_hwpx_quiet.py` 와 같은 안전장치). 한글 객체를 50편마다 새로 띄워 한 편 0.9초 · 일꾼 둘로 3,863편 35분 |
 | 3. 뽑기 | `extract.py` | 문단의 흐름(`hwpx_flow.py`) → 문항 · 정답 · 풀이(`segment.py`) → 이름이 짝인 정답 파일(`…_정답및해설` · `…_해설` ↔ `…_문제` · 꼬리 없음)을 붙인다 |
 | 4. 보고서 | `report.py` | 답을 못 붙인 문항을 까닭별로 — `docs/planning/tracks/reports/textbook-import-20261007/unmapped.md` |
+| 5. 준비 | `prepare.py`(`normalize.py`) | 글만으로 완결된 문항 고르기 · 줄 잇기 · 수식의 몫 묶기(첨자 · 제곱근 · 분수) · LaTeX 변환(기출 이관과 같은 변환기) · 제품 렌더러 판정 |
+| 6. 검토 | `review/`(`BRIEF.md` · `build_batches.py` · `collect.py` · `JUDGE.md` · `build_judge.py` · `collect_judge.py`) | 검토자가 **정답 없이** 풀고 차시 · 유형 · 난이도 · 형식 · 해설을 붙인다 → 출판사 정답과 대조 → 다르면 둘째 검토 |
+| 7. 마무리 | `finalize.py` | 검토가 끝난 글의 줄 잇기 · 채점 단계 표지 걷기(글자를 안 바꾸는 것만) |
+| 8. 지면 검토 | `final-check/`(`BRIEF.md` · `check_batches.py` · `check_collect.py`) | 검토자가 **실을 글 그대로**를 읽는다 — 본문이 지면에 낼 꼴인가 · 해설 후보가 이 문항의 풀이인가(아니면 다시 쓴다) |
+| 9. 적재 | `load-school-textbook.ts` | 표기 손질(`src/lib/import/schoolTextbook/`) · 문 · 계획 → `--apply`(넣기) · `--refresh --apply`(실린 문항을 제자리에서 맞추기) · `--revert` |
+| 10. 세기 · 보고 | `census.ts` · `report_load.py` · `hold-school-textbook.ts` | DB 에 들어간 것을 다시 센다 · 못 실은 · 잠가 둔 문항의 보고서(`not-loaded.md`) · 전부 잠그기 / 목록으로 풀기 |
 | 개발용 | `peek.py` · `stats.py` | 한 파일을 가른 모양 · 책별 요약 |
 
 ```bash
@@ -43,7 +49,17 @@ python -m pytest scripts/import/textbook/test_segment.py -q
 빠른 정답 · 밀린 묶음) → 고친 뒤 둘째 표본 30개 가운데 맞춰 볼 수 있는 27개가 다 맞았다. 본문 쪽 결함(같이 쓰는 지시문 · 문제를 되풀이한
 풀이 줄)은 그 표본에서 찾아 고쳤다.
 
-## 아직 안 한 것
+## 2026-10-08 — 어디까지 왔나
+
+문제은행에 6,124문항(출제에 쓰는 것 6,006 · 잠가 둔 것 118). 길 전체와 실은 뒤 찾은 흠(§8)은 `docs/planning/schoolbook-import-20261007.md`.
+아래 «잰 것» · «아직 안 한 것»은 **첫 판(추출 단계)의 기록**이다 — 지금 남은 일은 그 문서 §7.
+
+```bash
+python -m pytest scripts/import/textbook -q                       # 추출 · 준비 · 마무리 · 수집기 시험
+npx vitest run src/__tests__/unit/hwpNotation.test.ts src/__tests__/unit/unsplitWords.test.ts src/__tests__/unit/schoolTextbookCheckKey.test.ts src/__tests__/unit/schoolTextbookSourceMeta.test.ts
+```
+
+## 아직 안 한 것(첫 판의 기록)
 
 - **적재**(문제은행에 넣기) — 출처 «교과서»는 새 값이다(`ProblemSource` 에 없다 → 공유 DB 의 enum 을 바꿔야 한다 · DB 먼저 · 코드 나중).
 - **단원 붙이기** — 우리 단원 나무(eywa 교육과정 · 차시)와 교과서 소단원 이름이 글자가 다르다.

@@ -1,0 +1,435 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:05:19.030Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-01-c1",
+        "section": "중2::7. 닮음의 활용::삼각형에서 평행선 사이의 선분의 길이의 비",
+        "term": "삼각형에서 평행선과 닮음",
+        "kind": "성질",
+        "level": "하",
+        "definition": "삼각형의 한 변에 {평행}한 직선이 나머지 두 변과 만나 생기는 작은 삼각형은 처음 삼각형과 {닮음}이다.",
+        "studentC": "삼각형의 한 변에 □한 직선이 나머지 두 변과 만나 생기는 작은 삼각형은 처음 삼각형과 □이다.",
+        "answers": [
+          "평행",
+          "닮음"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-01-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\triangle ADE$와 $\\triangle ABC$는 어떤 관계인지 쓰고, 그 까닭을 크기가 같은 각을 들어 닮음 조건의 이름과 함께 설명하시오.",
+        "bAnswer": "닮음이다($\\triangle ADE\\backsim\\triangle ABC$). $\\angle A$는 공통이고 평행선의 동위각으로 $\\angle ADE=\\angle ABC$이므로 $\\mathrm{AA}$ 닮음이다.",
+        "bGoal": "평행선이 만든 작은 삼각형이 닮음임을 설명하기",
+        "bReason": "평행선과 닮음의 관계 가운데 두 삼각형의 관계와 그 근거로 물음을 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 삼각형은 닮음이다",
+              "$\\triangle ADE\\backsim\\triangle ABC$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle A$ 공통과 동위각 $\\angle ADE=\\angle ABC$",
+              "$\\angle A$ 공통과 동위각 $\\angle AED=\\angle ACB$",
+              "동위각 $\\angle ADE=\\angle ABC$와 $\\angle AED=\\angle ACB$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{AA}$ 닮음"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 한 변에 평행한 직선이 나머지 두 변과 만나 생기는 작은 삼각형은 처음 삼각형과 {닮음}이다.",
+        "cAnswers": [
+          "닮음"
+        ],
+        "cReason": "조건인 평행과 결론인 닮음이 함께 가려져 있어 결론만 묻도록 했다.",
+        "learningRole": "reason",
+        "roleReason": "평행선이 닮은 삼각형을 만드는 까닭",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 670,
+        "part": "m2",
+        "sourceFingerprint": "1a65080dfc30fb4e88d06175faaa788469adb204900eee55c69c2d5b9999ce03",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 670
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형의 한 변에 평행한 직선이 나머지 두 변과 만나 생기는 작은 삼각형은 처음 삼각형과 {닮음}이다.",
+        "cSlotAnswers": [
+          "닮음"
+        ],
+        "cStudentSentence": "삼각형의 한 변에 평행한 직선이 나머지 두 변과 만나 생기는 작은 삼각형은 처음 삼각형과 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "닮음",
+            "equivalentAnswers": [
+              "닮음",
+              "닮은 도형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "닮음",
+            "accept": [
+              "닮은 도형"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "닮음",
+            "닮은 도형"
+          ]
+        ],
+        "proposalFingerprint": "bdd7ea2f99aedd0fe1dfe69c4873db34f528174d060efc375a4b80e8fd7c05f8"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-01-c2",
+        "section": "중2::7. 닮음의 활용::삼각형에서 평행선 사이의 선분의 길이의 비",
+        "term": "삼각형에서 평행선 사이의 선분의 길이의 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑변에 평행한 선을 그으면, 꼭짓점에서 잰 두 변 위의 길이의 비와 {평행한 두 선분}의 길이의 비가 모두 {닮음비}로 같다.",
+        "example": {
+          "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$, $\\overline{AD}=2,\\ \\overline{AB}=6,\\ \\overline{DE}=3$일 때 $\\overline{BC}$",
+          "answer": "$9$"
+        },
+        "studentC": "밑변에 평행한 선을 그으면, 꼭짓점에서 잰 두 변 위의 길이의 비와 □의 길이의 비가 모두 □로 같다.",
+        "answers": [
+          "평행한 두 선분",
+          "닮음비"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-01-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}:\\overline{AB}$와 같은 선분의 길이의 비를 모두 쓰고, 이 비들이 같은 까닭을 쓰시오.",
+        "bAnswer": "$\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}=\\overline{DE}:\\overline{BC}$이다. $\\triangle ADE\\backsim\\triangle ABC$이고 세 비가 모두 대응변의 길이의 비(닮음비)이기 때문이다.",
+        "bGoal": "평행선이 만드는 세 비의 관계 말하기",
+        "bReason": "어떤 선분의 비를 묻는지 알 수 없어 기준이 되는 비 $\\overline{AD}:\\overline{AB}$를 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AE}:\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{DE}:\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle ADE$와 $\\triangle ABC$가 닮음이라 대응변의 길이의 비가 같다",
+              "세 비가 모두 닮음비이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$이면 $\\overline{AD}:\\overline{AB}=\\overline{AE}:$ {$\\overline{AC}$} $=\\overline{DE}:$ {$\\overline{BC}$}이고, 이 비는 $\\triangle ADE$와 $\\triangle ABC$의 {닮음비}이다.",
+        "cAnswers": [
+          "$\\overline{AC}$",
+          "$\\overline{BC}$",
+          "닮음비"
+        ],
+        "cReason": "꼭짓점에서 잰 두 변 위의 길이라는 표현이 어느 선분인지 알기 어려워 기호로 바꾸었다.",
+        "learningRole": "definition",
+        "roleReason": "꼭짓점에서 잰 비와 평행한 선분의 비의 관계",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 671,
+        "part": "m2",
+        "sourceFingerprint": "ca449f7afcc6d4ab818028a2a1e7710334efed459b9f4fe02384e9b7d7f6c0e5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 671
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$이면 $\\overline{AD}:\\overline{AB}=\\overline{AE}:$ {$\\overline{AC}$} $=\\overline{DE}:$ {$\\overline{BC}$}이고, 이 비는 $\\triangle ADE$와 $\\triangle ABC$의 {닮음비}이다.",
+        "cSlotAnswers": [
+          "$\\overline{AC}$",
+          "$\\overline{BC}$",
+          "닮음비"
+        ],
+        "cStudentSentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$이면 $\\overline{AD}:\\overline{AB}=\\overline{AE}:$ □ $=\\overline{DE}:$ □이고, 이 비는 $\\triangle ADE$와 $\\triangle ABC$의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{AC}$",
+            "equivalentAnswers": [
+              "$\\overline{AC}$",
+              "$\\overline{CA}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\overline{BC}$",
+            "equivalentAnswers": [
+              "$\\overline{BC}$",
+              "$\\overline{CB}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "닮음비",
+            "equivalentAnswers": [
+              "닮음비"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{AC}$",
+            "accept": [
+              "$\\overline{CA}$"
+            ]
+          },
+          {
+            "answer": "$\\overline{BC}$",
+            "accept": [
+              "$\\overline{CB}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{AC}$",
+            "$\\overline{CA}$"
+          ],
+          [
+            "$\\overline{BC}$",
+            "$\\overline{CB}$"
+          ],
+          [
+            "닮음비"
+          ]
+        ],
+        "proposalFingerprint": "14572bccd3b7f7d3ae8222b71fa11ae993351bb0a03dcfeef3dff9f2572493b6"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-01-c3",
+        "section": "중2::7. 닮음의 활용::삼각형에서 평행선 사이의 선분의 길이의 비",
+        "term": "삼각형과 평행선 — 조각의 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑변에 평행한 선은 두 변을 {같은 비}로 나눈다. 곧 한 변의 위 · 아래 조각의 비와 다른 변의 위 · 아래 조각의 비가 {같다}.",
+        "example": {
+          "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$, $\\overline{AD}:\\overline{DB}=2:3,\\ \\overline{AE}=4$일 때 $\\overline{EC}$",
+          "answer": "$6$"
+        },
+        "studentC": "밑변에 평행한 선은 두 변을 □로 나눈다. 곧 한 변의 위 · 아래 조각의 비와 다른 변의 위 · 아래 조각의 비가 □.",
+        "answers": [
+          "같은 비",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-01-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. 변 $AB$가 나뉜 비 $\\overline{AD}:\\overline{DB}$와 같은 비를 변 $AC$ 위의 두 선분으로 나타내시오. 또 $\\overline{AD}:\\overline{DB}=2:3$, $\\overline{AE}=4$일 때 $\\overline{EC}$의 길이를 구하시오.",
+        "bAnswer": "$\\overline{AD}:\\overline{DB}=\\overline{AE}:\\overline{EC}$이다. $2:3=4:\\overline{EC}$에서 $\\overline{EC}=6$이다.",
+        "bGoal": "두 변이 같은 비로 나뉨을 식으로 쓰고 쓰기",
+        "bReason": "조각이 어느 선분인지 알 수 있게 점 이름을 주고 관계식과 쓰임을 함께 물었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AD}:\\overline{DB}=\\overline{AE}:\\overline{EC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{EC}=6$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$이면 $\\overline{AD}:\\overline{DB}=$ {$\\overline{AE}$} $:$ {$\\overline{EC}$}이다. 곧 $\\overline{DE}$는 두 변 $AB$, $AC$를 같은 비로 나눈다.",
+        "cAnswers": [
+          "$\\overline{AE}$",
+          "$\\overline{EC}$"
+        ],
+        "cReason": "두 문장이 같은 말을 되풀이해 한 빈칸의 답이 다른 문장에 드러나므로 비례식으로 바꾸었다.",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "평행선이 두 변을 같은 비로 나눈다는 성질",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 672,
+        "part": "m2",
+        "sourceFingerprint": "89d11eed64382f87a5a258f47d73e53f0d5b4751c0c46cab627561bf31796664",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 672
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$이면 $\\overline{AD}:\\overline{DB}=$ {$\\overline{AE}$} $:$ {$\\overline{EC}$}이다. 곧 $\\overline{DE}$는 두 변 $AB$, $AC$를 같은 비로 나눈다.",
+        "cSlotAnswers": [
+          "$\\overline{AE}$",
+          "$\\overline{EC}$"
+        ],
+        "cStudentSentence": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$이면 $\\overline{AD}:\\overline{DB}=$ □ $:$ □이다. 곧 $\\overline{DE}$는 두 변 $AB$, $AC$를 같은 비로 나눈다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{AE}$",
+            "equivalentAnswers": [
+              "$\\overline{AE}$",
+              "$\\overline{EA}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\overline{EC}$",
+            "equivalentAnswers": [
+              "$\\overline{EC}$",
+              "$\\overline{CE}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{AE}$",
+            "accept": [
+              "$\\overline{EA}$"
+            ]
+          },
+          {
+            "answer": "$\\overline{EC}$",
+            "accept": [
+              "$\\overline{CE}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{AE}$",
+            "$\\overline{EA}$"
+          ],
+          [
+            "$\\overline{EC}$",
+            "$\\overline{CE}$"
+          ]
+        ],
+        "proposalFingerprint": "2e47039f5647d55c9b86a875092c0e5b9c20aaf1722dd3d80b098794d4343fcf"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-01-c4",
+        "section": "중2::7. 닮음의 활용::삼각형에서 평행선 사이의 선분의 길이의 비",
+        "term": "연장선 위의 평행선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑변에 평행한 선이 꼭짓점을 지나 늘인 두 변의 {연장선}과 만나도 같은 비의 관계가 성립한다. 두 삼각형이 {맞꼭지각}과 엇각으로 $\\mathrm{AA}$ 닮음이기 때문이다.",
+        "studentC": "밑변에 평행한 선이 꼭짓점을 지나 늘인 두 변의 □과 만나도 같은 비의 관계가 성립한다. 두 삼각형이 □과 엇각으로 $\\mathrm{AA}$ 닮음이기 때문이다.",
+        "answers": [
+          "연장선",
+          "맞꼭지각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-01-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 변 $BA$와 변 $CA$를 점 $A$를 지나도록 늘인 연장선 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\triangle ADE$와 $\\triangle ABC$가 닮음인 까닭을 크기가 같은 각 두 쌍을 들어 설명하고 닮음 조건의 이름을 쓰시오.",
+        "bAnswer": "$\\angle DAE=\\angle BAC$(맞꼭지각)이고 $\\angle ADE=\\angle ABC$(엇각)이므로 $\\mathrm{AA}$ 닮음이다.",
+        "bGoal": "연장선 위의 평행선이 만든 닮음 설명하기",
+        "bReason": "연장선이 어느 쪽인지 그림 없이 알 수 있게 $A$를 지나 늘였다고 밝히고 닮음의 근거를 물었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "맞꼭지각 $\\angle DAE=\\angle BAC$와 엇각 $\\angle ADE=\\angle ABC$",
+              "맞꼭지각 $\\angle DAE=\\angle BAC$와 엇각 $\\angle AED=\\angle ACB$",
+              "엇각 $\\angle ADE=\\angle ABC$와 $\\angle AED=\\angle ACB$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{AA}$ 닮음"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$에서 변 $BA$, $CA$를 점 $A$를 지나도록 늘인 {연장선} 위에 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이면, $\\triangle ADE$와 $\\triangle ABC$는 {맞꼭지각}과 엇각이 각각 같아 $\\mathrm{AA}$ 닮음이므로 $\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}$이다.",
+        "cAnswers": [
+          "연장선",
+          "맞꼭지각"
+        ],
+        "cReason": "같은 비의 관계가 무엇을 가리키는지 문장 안에 없어 점 이름과 비례식을 넣었다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "맞꼭지각과 엇각으로 닮음이 되는 까닭",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 673,
+        "part": "m2",
+        "sourceFingerprint": "7e6293d005c085fd2976503321aed731ca7fcea74737c77778fc4bf555971544",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 673
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\triangle ABC$에서 변 $BA$, $CA$를 점 $A$를 지나도록 늘인 {연장선} 위에 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이면, $\\triangle ADE$와 $\\triangle ABC$는 {맞꼭지각}과 엇각이 각각 같아 $\\mathrm{AA}$ 닮음이므로 $\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}$이다.",
+        "cSlotAnswers": [
+          "연장선",
+          "맞꼭지각"
+        ],
+        "cStudentSentence": "$\\triangle ABC$에서 변 $BA$, $CA$를 점 $A$를 지나도록 늘인 □ 위에 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이면, $\\triangle ADE$와 $\\triangle ABC$는 □과 엇각이 각각 같아 $\\mathrm{AA}$ 닮음이므로 $\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "연장선",
+            "equivalentAnswers": [
+              "연장선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "맞꼭지각",
+            "equivalentAnswers": [
+              "맞꼭지각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "연장선"
+          ],
+          [
+            "맞꼭지각"
+          ]
+        ],
+        "proposalFingerprint": "f5d793693aa6011fd60eb57297a2a43577f2bc9247ba961bdd3bdf79d4a9b147"
+      }
+    }
+  ]
+}

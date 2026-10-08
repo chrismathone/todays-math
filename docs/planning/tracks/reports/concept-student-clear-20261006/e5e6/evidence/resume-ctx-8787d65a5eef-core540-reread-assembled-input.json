@@ -1,0 +1,51 @@
+{
+  "sourceCommit": "13bf05dce",
+  "scope": "Actual assembled learning definitions read by Codex; capture alone is not adoption.",
+  "rows": [
+    {
+      "id": "e5-1-2-3-xc18",
+      "sourceIndex": 540,
+      "sourceFingerprint": "cd156e6fc8e922265cc9301cc089d3d65a8406514c31aa538a9728c4c637f6ef",
+      "proposalFingerprint": "30ae04873bf89aed20c2daf9db893c7b49b5b63e94e620b9adb5f40849c3d731",
+      "proposed": true,
+      "definition": "두 종류의 물건을 쪼개지 않고 남김없이 같은 구성으로 가장 많이 묶으려면 두 개수의 {최대공약수}를 구한다.",
+      "definitionFingerprint": "b0a736feb57742b584afc9a747aa1a5b64222178274a63f4c81826bb36df4f45",
+      "visibleLength": 58,
+      "targets": [
+        "최대공약수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-2-3-xc27",
+      "sourceIndex": 549,
+      "sourceFingerprint": "7d83fb27d11557094d3b0356c5f44cfaa556838cd1e9e23df2ee03a127549c56",
+      "proposalFingerprint": "481f5979b528c14e70aafad0af2bc15790755072477c906718ba9c5cedb91d56",
+      "proposed": true,
+      "definition": "물건을 쪼개지 않고 두 종류를 각각 남김없이 똑같이 나누거나, 두 길이와 자른 조각의 길이를 같은 단위의 자연수로 나타내어 남김없이 같은 길이로 자를 때는 두 개수나 두 길이의 {공약수}를 이용한다.",
+      "definitionFingerprint": "a0512342132dfb9064c23b5c7cb4de5b0ad5b1e242929a94608c40d3cc5a593d",
+      "visibleLength": 109,
+      "targets": [
+        "공약수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-1-2-4-xc3",
+      "sourceIndex": 552,
+      "sourceFingerprint": "f103080ba01e3d83a8f58a4ee1c155b392ed1e3c31f5c9cb97031e63e7f79181",
+      "proposalFingerprint": "e57c7e5c4086f3a8d60d6311d8e3fa0f08002eab3339b62936038d9bd791d87f",
+      "proposed": true,
+      "definition": "두 수를 각각 $1$보다 큰 수들의 곱으로 더 쪼갤 수 없을 때까지 나타낸 뒤, 두 곱셈식에 {함께 들어 있는 수}를 양쪽에서 하나씩 짝짓는다.",
+      "definitionFingerprint": "03808bf4a2ad5c403f6f952d604b5edf5f94b6db76b8703a6003259fa61aae7c",
+      "visibleLength": 76,
+      "targets": [
+        "함께 들어 있는 수"
+      ],
+      "valid": true,
+      "issues": []
+    }
+  ]
+}

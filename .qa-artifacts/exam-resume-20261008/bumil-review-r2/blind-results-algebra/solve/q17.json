@@ -1,0 +1,133 @@
+{
+  "studentDigest": "0c25f73a7384f79f9e43e21d6aab87b38e0678dcc569534b36f9fe1880c4a1ad",
+  "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+  "answer": "③",
+  "solution": "원이 윗변과 아랫변에 접하므로 지름은 직사각형의 세로인 $6\\,\\mathrm{cm}$이고 반지름은 $3\\,\\mathrm{cm}$이다. 원이 오른쪽 변에도 접하므로 $\\overline{ED}=\\overline{CG}=3\\,\\mathrm{cm}$이다. 따라서 $\\overline{AE}=\\overline{BG}=9-3=6\\,\\mathrm{cm}$이다.\n한 점에서 원에 그은 두 접선의 길이는 같으므로 $\\overline{AF}=\\overline{AE}=6\\,\\mathrm{cm}$, $\\overline{MF}=\\overline{MG}$이다.\n$\\overline{BM}=x\\,\\mathrm{cm}$라 하면 $\\mathrm{M}$은 $\\overline{BG}$의 내부에 있으므로 $0<x<6$이고, $\\overline{MF}=\\overline{MG}=6-x\\,\\mathrm{cm}$이다. $\\mathrm{F}$가 $\\overline{AM}$의 내부에 있으므로 $\\overline{AM}=\\overline{AF}+\\overline{FM}=12-x\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{ABM}$에 피타고라스 정리를 적용하면 $(12-x)^{2}=6^{2}+x^{2}$이다. 이를 정리하면 $144-24x=36$이므로 $x=\\frac{108}{24}=\\frac{9}{2}$이다.\n이 값은 $0<x<6$을 만족하며, 삼각형 $\\mathrm{ABM}$의 넓이는 $\\frac{1}{2}\\times6\\times\\frac{9}{2}=\\frac{27}{2}\\,\\mathrm{cm}^{2}$이다. 정답은 ③이다.",
+  "evidence": {
+    "questionNumber": 17,
+    "answerValue": "$\\frac{27}{2}\\,\\mathrm{cm}^{2}$",
+    "method": [
+      "평행한 위·아래 변에 접하는 원의 지름과 반지름",
+      "원 밖 한 점에서 그은 두 접선의 길이가 같다는 성질",
+      "직각삼각형의 피타고라스 정리",
+      "삼각형의 밑변·높이 넓이"
+    ],
+    "conditions": {
+      "radiusCm": 3,
+      "AECm": 6,
+      "BGCm": 6,
+      "BMCm": 4.5,
+      "AFCm": 6,
+      "MFCm": 1.5,
+      "AMCm": 7.5,
+      "MInsideBG": true,
+      "FInsideAM": true,
+      "allRequiredLengthsPositive": true,
+      "rightTriangleCheck": "7.5^2=6^2+4.5^2",
+      "uniqueLinearEquation": "24x=108 after cancellation of x^2"
+    },
+    "choiceReview": [
+      {
+        "choiceNumber": 1,
+        "correct": false,
+        "reason": "9 cm²에 대응하는 BM=3 cm는 접선과 피타고라스 조건에서 얻은 24x=108을 만족하지 않는다."
+      },
+      {
+        "choiceNumber": 2,
+        "correct": false,
+        "reason": "12 cm²에 대응하는 BM=4 cm는 24x=108을 만족하지 않는다."
+      },
+      {
+        "choiceNumber": 3,
+        "correct": true,
+        "reason": "27/2 cm²에 대응하는 BM=9/2 cm는 모든 길이와 내부점 조건을 만족한다."
+      },
+      {
+        "choiceNumber": 4,
+        "correct": false,
+        "reason": "15 cm²에 대응하는 BM=5 cm는 24x=108을 만족하지 않는다."
+      },
+      {
+        "choiceNumber": 5,
+        "correct": false,
+        "reason": "18 cm²에 대응하는 BM=6 cm는 내부점 조건 0<x<6에도 어긋난다."
+      }
+    ],
+    "uniqueAnswer": true,
+    "figureObservation": "원은 윗변·오른쪽 변·아랫변에 접하고, AM이 왼쪽 아래로 원과 접한다. F는 A와 M 사이, M은 B와 G 사이이며 색칠한 영역은 지지대 왼쪽의 삼각형 ABM이다. 직사각형의 이름 배치도 본문과 일치한다.",
+    "input": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/student-problems.json",
+      "sha256": "252ea8959ca5d96e13959ea9bf4b393fe00b0ff476f2b457b292c568fe6763b4",
+      "studentDigest": "0c25f73a7384f79f9e43e21d6aab87b38e0678dcc569534b36f9fe1880c4a1ad",
+      "digestHandling": "copied verbatim from student-only export; no author package read",
+      "grade": "중3",
+      "curriculum": "2015"
+    },
+    "figures": [
+      {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q17-1.svg",
+        "sha256": "283cc73162fca4b99d19610b3405ff5a9f96511868909a2c36326475982a753f",
+        "matchesStudentExportHash": true,
+        "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/previews/q17-1.png",
+        "previewSha256": "f05d033372e16f2ad11316bf777a199e2eefa866a7282a13a38aad022d16a817",
+        "inspection": "view_image completed",
+        "embeddedRasterIncluded": false
+      }
+    ],
+    "calculation": {
+      "artifact": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/calculations.json",
+      "sha256": "2eaab47cbb07445bb57a79b0d7041bedf3f6f8e9e8918aa9fa8250dc8ff7fadc",
+      "jsonPointer": "/results/q17",
+      "data": {
+        "radius": 3,
+        "bg": 6,
+        "ae": 6,
+        "af": 6,
+        "bm": 4.5,
+        "mg": 1.5,
+        "mf": 1.5,
+        "am": 7.5,
+        "area": 13.5,
+        "conditions": {
+          "MInsideBG": true,
+          "FInsideAM": true
+        },
+        "choices": [
+          {
+            "choiceNumber": 1,
+            "value": 9,
+            "matches": false
+          },
+          {
+            "choiceNumber": 2,
+            "value": 12,
+            "matches": false
+          },
+          {
+            "choiceNumber": 3,
+            "value": 13.5,
+            "matches": true
+          },
+          {
+            "choiceNumber": 4,
+            "value": 15,
+            "matches": false
+          },
+          {
+            "choiceNumber": 5,
+            "value": 18,
+            "matches": false
+          }
+        ],
+        "answer": "③"
+      }
+    },
+    "reviewBoundary": {
+      "authorAnswersRead": false,
+      "originalAnswersRead": false,
+      "selfAuthoredCandidateReviewed": false,
+      "scope": "independent blind solve; final curriculum/rights/publication approval not issued"
+    }
+  },
+  "status": "solved"
+}

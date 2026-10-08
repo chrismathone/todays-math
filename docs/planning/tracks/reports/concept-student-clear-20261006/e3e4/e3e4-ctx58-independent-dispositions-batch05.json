@@ -1,0 +1,3178 @@
+{
+  "sourceCommit": "13bf05dce",
+  "status": "direct-planning-response-not-independent-pass",
+  "rows": [
+    {
+      "id": "e4-1-4-1-xc9",
+      "sourceIndex": 1799,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-1-xc9",
+          "grade": "초4",
+          "reviewedHash": "87f5c038046082e11892cae017d1ac8e3804a37f09d55fb0a7c4863a58490e39",
+          "inputHash": "8ede5573594a9f50aaf3bdf468dd83b4209a7d060d93969753c77809248d8425",
+          "evidence": "cohort-2026-10-07T05-13-26-728Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-4-1-xc9",
+              "revise",
+              "pass",
+              "none",
+              "B: 물음이 '점이 아래쪽으로 옮겨 갔다'고 말하고 필수 답이 '아래쪽으로 그린다'이므로 물음 문구 복사만으로 충족된다. 이동 방향을 말로 주지 않고 점의 처음·나중 위치만 주어 방향을 판단하게 하거나, 필수를 화살표와 이동 방향의 대응 이유로 한정해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-1-xc9",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-1-xc9",
+              "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+              "term": "화살표로 나타낸 이동",
+              "kind": "방법",
+              "level": "하",
+              "definition": "점의 이동은 화살표로 그려 {방향}을 나타낼 수 있다."
+            },
+            "B": {
+              "prompt": "점이 아래쪽으로 옮겨 갔다. 이 이동을 화살표로 그릴 때 화살표는 어느 쪽으로 그려야 하고, 왜 그런지 쓰시오.",
+              "answer": "아래쪽으로 그린다. 화살표가 점이 옮겨 간 방향을 나타내기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "아래쪽으로 그린다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "화살표가 옮겨 간 방향을 나타낸다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 {방향}이다.",
+              "acceptedAnswers": [
+                [
+                  "방향",
+                  "쪽",
+                  "방향 쪽"
+                ]
+              ]
+            },
+            "goal": "화살표로 이동 방향 나타내기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "87f5c038046082e11892cae017d1ac8e3804a37f09d55fb0a7c4863a58490e39"
+          },
+          "currentNormalizedHash": "87f5c038046082e11892cae017d1ac8e3804a37f09d55fb0a7c4863a58490e39",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "8e48a0f52fb7a891221b16565ce3266a4cdd9a2e1ee9a7e10ad5fe98122bd18d",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "8e48a0f52fb7a891221b16565ce3266a4cdd9a2e1ee9a7e10ad5fe98122bd18d",
+      "currentProposal": {
+        "sourceIndex": 1799,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+        "sourceFingerprint": "72b088c509fc6044c88c2366db94618f26db170cfe0dfdba0ee96654f486ba1c",
+        "proposalFingerprint": "8e48a0f52fb7a891221b16565ce3266a4cdd9a2e1ee9a7e10ad5fe98122bd18d",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-1-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "점이 아래쪽으로 옮겨 갔다. 이 이동을 화살표로 그릴 때 화살표는 어느 쪽으로 그려야 하고, 왜 그런지 쓰시오.",
+        "bAnswer": "아래쪽으로 그린다. 화살표가 점이 옮겨 간 방향을 나타내기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아래쪽으로 그린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "화살표가 옮겨 간 방향을 나타낸다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "화살표로 이동 방향 나타내기",
+        "bReason": "화살표 방향과 이동 방향의 대응 확인",
+        "cDecision": "rewrite",
+        "cAfter": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 {방향}이다.",
+        "cReason": "무엇을 나타내는지 불분명한 빈칸을 분명히 함",
+        "cSlotEquivalents": [
+          [
+            "쪽",
+            "방향 쪽"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "화살표로 나타낸 이동",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 {방향}이다.",
+        "cStudentSentence": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "방향",
+            "equivalents": [
+              "쪽",
+              "방향 쪽"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "점이 아래쪽으로 옮겨 갔다. 이 이동을 화살표로 그릴 때 화살표는 어느 쪽으로 그려야 하고, 왜 그런지 쓰시오.",
+          "answer": "아래쪽으로 그린다. 화살표가 점이 옮겨 간 방향을 나타내기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아래쪽으로 그린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "화살표가 옮겨 간 방향을 나타낸다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 {방향}이다.",
+          "acceptedAnswers": [
+            [
+              "방향",
+              "쪽",
+              "방향 쪽"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-1-xc9",
+          "sourceIndex": 1799,
+          "proposalFingerprint": "8e48a0f52fb7a891221b16565ce3266a4cdd9a2e1ee9a7e10ad5fe98122bd18d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "실제 아래쪽 이동과 화살표의 방향을 연결하여 이유를 설명한다.",
+          "cReason": "화살표가 이동 방향을 나타낸다는 뜻을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-4-1-xc9",
+        "sourceIndex": 1799,
+        "proposalFingerprint": "8e48a0f52fb7a891221b16565ce3266a4cdd9a2e1ee9a7e10ad5fe98122bd18d",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "아래쪽만 복사해서는 화살표가 이동 방향을 나타낸다는 필수 이유를 충족하지 못한다.",
+        "cReason": "방향을 나타내는 화살표의 뜻을 짧게 확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "화살표가 이동 방향을 나타낸다는 이유가 별도 필수이므로 아래쪽을 복사하기만 해서는 충족하지 못한다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-1-1-xc25",
+      "sourceIndex": 950,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-1-1-xc25",
+          "grade": "초3",
+          "reviewedHash": "dc2b59e8243522c63d09bfc1fce71ec4d1da8545d1809cb976dbc6ac1020b504",
+          "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+          "evidence": "cohort-2026-10-07T05-21-14-576Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-1-1-xc25",
+              "pass",
+              "revise",
+              "none",
+              "C: 문장에 '곱하는 수를 2배로 한'이 이미 있어 빈칸 2를 그대로 옮기면 맞다. 곱이 2배가 된다는 성질을 확인하지 못한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-1-1-xc25",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-1-1-xc25",
+              "section": "초3::2-1 곱셈::2-1-1 (세 자리 수)×(한 자리 수) (1)",
+              "term": "곱하는 수를 두 배로",
+              "kind": "성질",
+              "level": "상",
+              "definition": "곱해지는 수가 같을 때 곱하는 수를 $2$배로 하면 {곱}도 $2$배가 된다."
+            },
+            "B": {
+              "prompt": "$112\\times2=224$입니다. 이것을 이용해 $112\\times4$를 구하는 방법과 그렇게 해도 되는 까닭을 써 보세요.",
+              "answer": "$4$는 $2$의 $2$배이므로 $112\\times4$는 $112\\times2$의 $2$배입니다. $224$의 $2$배인 $448$입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$4$는 $2$의 $2$배"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "곱도 $2$배($224$의 $2$배)"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$112\\times2=224$이다. 곱하는 수를 $2$배로 한 $112\\times4$의 곱은 $224$의 {$2$}배이다.",
+              "acceptedAnswers": [
+                [
+                  "$2$"
+                ]
+              ]
+            },
+            "goal": "곱하는 수를 2배로 하면 곱도 2배가 됨",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "dc2b59e8243522c63d09bfc1fce71ec4d1da8545d1809cb976dbc6ac1020b504"
+          },
+          "currentNormalizedHash": "dc2b59e8243522c63d09bfc1fce71ec4d1da8545d1809cb976dbc6ac1020b504",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "cf9b25d78bf1b1de9955854b47735a1078e4ee29478ecf25a5564f4c67a48f22",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "76327120e62e8cde261cd27a3696e7633451612c321664e99f9c0470db95562e",
+      "currentProposal": {
+        "sourceIndex": 950,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-1 곱셈::2-1-1 (세 자리 수)×(한 자리 수) (1)",
+        "sourceFingerprint": "49ca65c2b85620ee60b63afe6cf7956ab28d866f2335e537b2853d887ff0a1c7",
+        "proposalFingerprint": "76327120e62e8cde261cd27a3696e7633451612c321664e99f9c0470db95562e",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-1-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$112\\times2=224$입니다. 이것을 이용해 $112\\times4$를 구하는 방법과 그렇게 해도 되는 까닭을 써 보세요.",
+        "bAnswer": "$4$는 $2$의 $2$배이므로 $112\\times4$는 $112\\times2$의 $2$배입니다. $224$의 $2$배인 $448$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$는 $2$의 $2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱도 $2$배($224$의 $2$배)"
+            ]
+          }
+        ],
+        "bGoal": "곱하는 수를 2배로 하면 곱도 2배가 됨",
+        "bReason": "일반 문장을 올림이 없는 식 112×2와 112×4로 자립시킴",
+        "cDecision": "rewrite",
+        "cAfter": "$112\\times2=224$이다. $112\\times4$의 곱은 $224$의 {$2$}배이다.",
+        "cReason": "'□도 2배가 된다'는 가려진 대상의 이름('곱')을 맞혀야 함. 실제 식을 주고 몇 배인지 쓰게 함",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "곱하는 수를 두 배로",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$112\\times2=224$이다. $112\\times4$의 곱은 $224$의 {$2$}배이다.",
+        "cStudentSentence": "$112\\times2=224$이다. $112\\times4$의 곱은 $224$의 □배이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$112\\times2=224$입니다. 이것을 이용해 $112\\times4$를 구하는 방법과 그렇게 해도 되는 까닭을 써 보세요.",
+          "answer": "$4$는 $2$의 $2$배이므로 $112\\times4$는 $112\\times2$의 $2$배입니다. $224$의 $2$배인 $448$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$는 $2$의 $2$배"
+              ]
+            },
+            {
+              "anyOf": [
+                "곱도 $2$배($224$의 $2$배)"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$112\\times2=224$이다. $112\\times4$의 곱은 $224$의 {$2$}배이다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-1-1-xc25",
+        "sourceIndex": 950,
+        "proposalFingerprint": "76327120e62e8cde261cd27a3696e7633451612c321664e99f9c0470db95562e",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "112 곱셈에서 곱하는 수와 곱의 두 배 관계를 설명한다.",
+        "cReason": "앞부분의 2배를 지워 실제 2와 4를 비교해야 한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "곱하는 수를 2배로 했다는 답 단서를 지웠다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-1-xc15",
+      "sourceIndex": 1805,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-1-xc15",
+          "grade": "초4",
+          "reviewedHash": "1d82cd5c5fd97dfc10a894ad03662d194319d53b973e3ad6a025528cf550da01",
+          "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+          "evidence": "cohort-2026-10-07T05-21-14-576Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-4-1-xc15",
+              "excluded",
+              "revise",
+              "none",
+              "C: 문장에서 '가로 이동과 세로 이동'을 나열해 이동이 두 번임을 보여 준다. 빈칸 '두'는 나열된 개수를 세면 되므로 답이 노출된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-1-xc15",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-1-xc15",
+              "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+              "term": "비스듬히 옮긴 점",
+              "kind": "방법",
+              "level": "중",
+              "definition": "점을 비스듬히 옮긴 것은 가로와 세로 {두 번의 이동}으로 나누어 설명한다."
+            },
+            "B": {
+              "excluded": "가로·세로 이동으로 나누는 목표가 xc13과 같음"
+            },
+            "C": {
+              "sentence": "점을 비스듬히 옮긴 것은 가로 이동과 세로 이동, 모두 {두} 번의 이동으로 나누어 설명한다.",
+              "acceptedAnswers": [
+                [
+                  "두",
+                  "$2$",
+                  "둘"
+                ]
+              ]
+            },
+            "goal": "비스듬한 이동 나누기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "1d82cd5c5fd97dfc10a894ad03662d194319d53b973e3ad6a025528cf550da01"
+          },
+          "currentNormalizedHash": "1d82cd5c5fd97dfc10a894ad03662d194319d53b973e3ad6a025528cf550da01",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "ad62b8b050b57c1c5e059f876f20876d7263f7bd3350f1da13fa937d9c38020c",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "31f502f38c763baaa0375f86c7835d70aa9bd90df1d60527189c0bd26d048844",
+      "currentProposal": {
+        "sourceIndex": 1805,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+        "sourceFingerprint": "c1c1b3487824eb8b8afb42462abae05678149c94382689243d2e56ac54f09381",
+        "proposalFingerprint": "31f502f38c763baaa0375f86c7835d70aa9bd90df1d60527189c0bd26d048844",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-1-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "비스듬한 이동 나누기",
+        "bReason": "가로·세로 이동으로 나누는 목표가 xc13과 같음",
+        "exclusionReason": "B: 비스듬한 이동을 가로와 세로로 나누어 설명하는 목표가 e4-1-4-1-xc13 B와 같아 중복된다.",
+        "cDecision": "rewrite",
+        "cAfter": "점을 오른쪽 위로 비스듬히 옮기려고 한다. 한 번에 가로나 세로 한 방향으로만 옮길 수 있다면 적어도 {두} 번 옮겨야 한다.",
+        "cReason": "□으로 나누어라는 답 범위가 불명확해 수 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "$2$",
+            "둘"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "비스듬히 옮긴 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "점을 오른쪽 위로 비스듬히 옮기려고 한다. 한 번에 가로나 세로 한 방향으로만 옮길 수 있다면 적어도 {두} 번 옮겨야 한다.",
+        "cStudentSentence": "점을 오른쪽 위로 비스듬히 옮기려고 한다. 한 번에 가로나 세로 한 방향으로만 옮길 수 있다면 적어도 □ 번 옮겨야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$",
+              "둘"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "점을 오른쪽 위로 비스듬히 옮기려고 한다. 한 번에 가로나 세로 한 방향으로만 옮길 수 있다면 적어도 {두} 번 옮겨야 한다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$",
+              "둘"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "가로·세로 이동으로 나누는 목표가 xc13과 같음"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-1-xc15",
+        "sourceIndex": 1805,
+        "proposalFingerprint": "31f502f38c763baaa0375f86c7835d70aa9bd90df1d60527189c0bd26d048844",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "가로 세로 분해 설명은 전체 ID를 적은 xc13에서 맡는다.",
+        "cReason": "비스듬한 위치에 가려면 한 방향씩 적어도 두 번이라는 조건이 분명하다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "한 번에 가로나 세로 한 방향만 옮긴다는 조건에서 최소 두 번을 판단하게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-1-xc16",
+      "sourceIndex": 1806,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-1-xc16",
+          "grade": "초4",
+          "reviewedHash": "2c0b32f77e77d3430720dd3e90c9785f76b3d83491be2cce543dfffe3afecc35",
+          "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+          "evidence": "cohort-2026-10-07T05-21-14-576Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-4-1-xc16",
+              "revise",
+              "pass",
+              "none",
+              "B: requiredIdeas의 '둘 다 4칸'은 물음에 이미 적힌 내용이다. 이것만 옮겨 써도 기준을 만족하므로 비교 결과 '같다'를 요구하는 기준으로 불충분하다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-1-xc16",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-1-xc16",
+              "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+              "term": "떨어진 칸 수 견주기",
+              "kind": "성질",
+              "level": "중",
+              "definition": "오른쪽으로 $4$칸 옮긴 점과 위쪽으로 $4$칸 옮긴 점은 처음 점에서 떨어진 칸 수가 {같다}."
+            },
+            "B": {
+              "prompt": "처음 점에서 오른쪽으로 $4$칸 옮긴 점과 위쪽으로 $4$칸 옮긴 점이 있다. 두 점이 처음 점에서 떨어진 칸 수를 비교하면 어떤가?",
+              "answer": "둘 다 $4$칸이므로 같다. 방향이 달라도 칸 수는 같다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "같다",
+                    "똑같다",
+                    "둘 다 $4$칸"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "오른쪽으로 $4$칸 옮긴 점과 위쪽으로 $4$칸 옮긴 점은 처음 점에서 떨어진 칸 수가 {같다}.",
+              "acceptedAnswers": [
+                [
+                  "같다",
+                  "똑같다"
+                ]
+              ]
+            },
+            "goal": "떨어진 칸 수 비교",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "2c0b32f77e77d3430720dd3e90c9785f76b3d83491be2cce543dfffe3afecc35"
+          },
+          "currentNormalizedHash": "2c0b32f77e77d3430720dd3e90c9785f76b3d83491be2cce543dfffe3afecc35",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "1f29c5e72bce1ff61d130c288691ba16532ee94145a6fd089dae90a455c6d692",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "44401c1297eda15ff6f2ac22c0e3404cd2e014f557d9040adc31230c94982a5d",
+      "currentProposal": {
+        "sourceIndex": 1806,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+        "sourceFingerprint": "54cd2bc67b11e6102fbf4ff7e23f3f5071568a1527e85aff69296ee8664e3ff0",
+        "proposalFingerprint": "44401c1297eda15ff6f2ac22c0e3404cd2e014f557d9040adc31230c94982a5d",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-1-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "처음 점에서 오른쪽으로 $4$칸 옮긴 점과 위쪽으로 $4$칸 옮긴 점이 있다. 두 점이 처음 점에서 떨어진 칸 수를 비교하면 어떤가?",
+        "bAnswer": "둘 다 $4$칸이므로 같다. 방향이 달라도 칸 수는 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "떨어진 칸 수가 같다",
+              "똑같다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "떨어진 칸 수 비교",
+        "bReason": "방향이 달라도 칸 수로 거리를 비교하는 점 확인",
+        "cDecision": "keep",
+        "cReason": "같다/다르다를 고르는 선명한 비교 빈칸",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "떨어진 칸 수 견주기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "오른쪽으로 $4$칸 옮긴 점과 위쪽으로 $4$칸 옮긴 점은 처음 점에서 떨어진 칸 수가 {같다}.",
+        "cStudentSentence": "오른쪽으로 $4$칸 옮긴 점과 위쪽으로 $4$칸 옮긴 점은 처음 점에서 떨어진 칸 수가 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "오른쪽으로 $4$칸 옮긴 점과 위쪽으로 $4$칸 옮긴 점은 처음 점에서 떨어진 칸 수가 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "처음 점에서 오른쪽으로 $4$칸 옮긴 점과 위쪽으로 $4$칸 옮긴 점이 있다. 두 점이 처음 점에서 떨어진 칸 수를 비교하면 어떤가?",
+          "answer": "둘 다 $4$칸이므로 같다. 방향이 달라도 칸 수는 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "떨어진 칸 수가 같다",
+                "똑같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "오른쪽으로 $4$칸 옮긴 점과 위쪽으로 $4$칸 옮긴 점은 처음 점에서 떨어진 칸 수가 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-1-xc16",
+        "sourceIndex": 1806,
+        "proposalFingerprint": "44401c1297eda15ff6f2ac22c0e3404cd2e014f557d9040adc31230c94982a5d",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "4칸을 베끼는 기준을 빼고 같다는 비교 판단만 필수로 남겼다.",
+        "cReason": "방향과 거리가 다른 성질임을 짧게 비교한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "둘 다4칸이라는 복사 기준을 지웠다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-1-2-xc3",
+      "sourceIndex": 954,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-1-2-xc3",
+          "grade": "초3",
+          "reviewedHash": "ad14f9620464a2dd68dcf2e78c06ff0fabcf5701879407b298c977026538b202",
+          "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+          "evidence": "cohort-2026-10-07T05-21-14-576Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-1-2-xc3",
+              "excluded",
+              "revise",
+              "none",
+              "C: B를 '표기 습관'이라는 이유로 제외했는데 C도 같은 표기 습관을 묻는다. 답 '십'은 xc1 C의 '십의 자리로 올린다'와 같은 올림 개념이라 중복이다. B와 함께 제외하거나 올림 개념을 묻는 것으로 바꿔야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-1-2-xc3",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-1-2-xc3",
+              "section": "초3::2-1 곱셈::2-1-2 (세 자리 수)×(한 자리 수) (2)",
+              "term": "올린 수를 적는 곳",
+              "kind": "방법",
+              "level": "하",
+              "definition": "아랫자리에서 올린 수는 {바로 윗자리 위}에 작게 적어 둔다."
+            },
+            "B": {
+              "excluded": "올린 수를 적어 두는 위치에 관한 표기 습관임"
+            },
+            "C": {
+              "sentence": "$128\\times3$에서 일의 자리에서 올린 수 $2$는 {십}의 자리 위에 작게 적어 둔다.",
+              "acceptedAnswers": [
+                [
+                  "십"
+                ]
+              ]
+            },
+            "goal": "procedure",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "ad14f9620464a2dd68dcf2e78c06ff0fabcf5701879407b298c977026538b202"
+          },
+          "currentNormalizedHash": "ad14f9620464a2dd68dcf2e78c06ff0fabcf5701879407b298c977026538b202",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "fa90662f94da253e6844e36502e20829ee0a448f0597f6cf28ce1877dd8c444e",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+      "currentProposal": {
+        "sourceIndex": 954,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-1 곱셈::2-1-2 (세 자리 수)×(한 자리 수) (2)",
+        "sourceFingerprint": "bd93dcde6cf71939d80329cd70584051ca40cdcb13b70b89a337f597420fdfb1",
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-2-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": null,
+        "bReason": "올린 수를 적어 두는 위치에 관한 표기 습관임",
+        "cDecision": "exclude",
+        "cReason": "올린 수가 십의 자리에 놓인다는 뜻은 e3-2-1-2-xc1에서 확인한다. 작은 숫자를 적는 위치만 따로 묻는 문항은 제외한다.",
+        "exclusionReason": "B/C: 올림의 자릿값은 e3-2-1-2-xc1에서 다루며 작은 숫자를 적는 위치만 묻는 문항은 별도 평가에서 제외한다.",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "올린 수를 적는 곳",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": null,
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "term": "올린 수를 적어 두는 위치에 관한 표기 습관임",
+          "cloze": "올린 수가 십의 자리에 놓인다는 뜻은 e3-2-1-2-xc1에서 확인한다. 작은 숫자를 적는 위치만 따로 묻는 문항은 제외한다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-1-2-xc3",
+        "sourceIndex": 954,
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "작게 적는 위치만의 설명형은 별도 학습 목표가 약하다.",
+        "cReason": "올림의 자릿값은 xc1에 남기고 표기 위치 중복을 제외했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "올림의 자릿값은 xc1에 남기고 적는 위치만 묻는 C를 제외했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-1-xc28",
+      "sourceIndex": 1814,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-1-xc28",
+          "grade": "초4",
+          "reviewedHash": "16477b83502453d210bc199553dd1c2eb32267ccdf79c1fcc0d4528fb2db6171",
+          "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+          "evidence": "cohort-2026-10-07T05-21-14-576Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-4-1-xc28",
+              "pass",
+              "revise",
+              "none",
+              "C: 문장에 예시 '오른쪽으로 2칸'이 있어 '방향과 칸 수'가 그대로 드러난다. 빈칸 '칸 수'는 예시에서 읽어 내면 되므로 답이 노출된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-1-xc28",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-1-xc28",
+              "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+              "term": "누구나 같은 곳을 찾게 말하기",
+              "kind": "방법",
+              "level": "상",
+              "definition": "조금 오른쪽이 아니라 오른쪽으로 $2$칸처럼 {방향과 칸 수}를 말해야 누구나 같은 위치를 찾는다."
+            },
+            "B": {
+              "prompt": "'조금 오른쪽으로 옮겨.'라고 말하면 사람마다 다른 곳에 놓을 수 있다. 누구나 같은 위치에 놓게 하려면 무엇을 말해야 하는가?",
+              "answer": "방향과 칸 수를 말한다. 예) 오른쪽으로 $2$칸.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "방향",
+                    "어느 쪽"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "칸 수",
+                    "몇 칸"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "'조금 오른쪽'이 아니라 '오른쪽으로 $2$칸'처럼 방향과 {칸 수}를 말해야 누구나 같은 위치를 찾는다.",
+              "acceptedAnswers": [
+                [
+                  "칸 수",
+                  "몇 칸",
+                  "거리"
+                ]
+              ]
+            },
+            "goal": "위치를 정확히 말하기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "16477b83502453d210bc199553dd1c2eb32267ccdf79c1fcc0d4528fb2db6171"
+          },
+          "currentNormalizedHash": "16477b83502453d210bc199553dd1c2eb32267ccdf79c1fcc0d4528fb2db6171",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "49385b97c053607b2c3df97604ffcfab900add89e2d407534cd765f4c9bf7852",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "49385b97c053607b2c3df97604ffcfab900add89e2d407534cd765f4c9bf7852",
+      "currentProposal": {
+        "sourceIndex": 1814,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+        "sourceFingerprint": "8ed6d56c5aeaf703cb2ebd819848a8f1f64bb299e5efd2510bfad17337d994a4",
+        "proposalFingerprint": "49385b97c053607b2c3df97604ffcfab900add89e2d407534cd765f4c9bf7852",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-1-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "'조금 오른쪽으로 옮겨.'라고 말하면 사람마다 다른 곳에 놓을 수 있다. 누구나 같은 위치에 놓게 하려면 무엇을 말해야 하는가?",
+        "bAnswer": "방향과 칸 수를 말한다. 예) 오른쪽으로 $2$칸.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "방향",
+              "어느 쪽"
+            ]
+          },
+          {
+            "anyOf": [
+              "칸 수",
+              "몇 칸"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "위치를 정확히 말하기",
+        "bReason": "애매한 말 대신 방향과 칸 수가 필요한 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "'조금 오른쪽'이 아니라 '오른쪽으로 $2$칸'처럼 방향과 {칸 수}를 말해야 누구나 같은 위치를 찾는다.",
+        "cReason": "긴 구절 빈칸을 칸 수 하나로 줄임",
+        "cSlotEquivalents": [
+          [
+            "몇 칸",
+            "거리"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "누구나 같은 곳을 찾게 말하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "'조금 오른쪽'이 아니라 '오른쪽으로 $2$칸'처럼 방향과 {칸 수}를 말해야 누구나 같은 위치를 찾는다.",
+        "cStudentSentence": "'조금 오른쪽'이 아니라 '오른쪽으로 $2$칸'처럼 방향과 □를 말해야 누구나 같은 위치를 찾는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "칸 수",
+            "equivalents": [
+              "몇 칸",
+              "거리"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "'조금 오른쪽으로 옮겨.'라고 말하면 사람마다 다른 곳에 놓을 수 있다. 누구나 같은 위치에 놓게 하려면 무엇을 말해야 하는가?",
+          "answer": "방향과 칸 수를 말한다. 예) 오른쪽으로 $2$칸.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "방향",
+                "어느 쪽"
+              ]
+            },
+            {
+              "anyOf": [
+                "칸 수",
+                "몇 칸"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "'조금 오른쪽'이 아니라 '오른쪽으로 $2$칸'처럼 방향과 {칸 수}를 말해야 누구나 같은 위치를 찾는다.",
+          "acceptedAnswers": [
+            [
+              "칸 수",
+              "몇 칸",
+              "거리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-1-xc28",
+          "sourceIndex": 1814,
+          "proposalFingerprint": "49385b97c053607b2c3df97604ffcfab900add89e2d407534cd765f4c9bf7852",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "누구나 같은 점을 찾기 위한 방향과 칸 수의 두 정보를 확인한다.",
+          "cReason": "방향에 더해 정확한 칸 수나 거리라는 두 번째 정보를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-4-1-xc28",
+        "sourceIndex": 1814,
+        "proposalFingerprint": "49385b97c053607b2c3df97604ffcfab900add89e2d407534cd765f4c9bf7852",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "정확한 위치 전달에 방향과 거리가 필요함을 묻는다.",
+        "cReason": "2칸을 칸 수라는 정보 종류로 읽는 목표로 숫자 자체를 복사하는 문항과 다르다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "오른쪽2칸을 방향과 거리 정보로 분석하는 목표이며 숫자2 자체를 빈칸에 복사하는 문항이 아니다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-1-3-xc1",
+      "sourceIndex": 965,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-1-3-xc1",
+          "grade": "초3",
+          "reviewedHash": "1345783e7cfcf206c986581345c186515efdde506355d0c38817032c815983e6",
+          "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+          "evidence": "cohort-2026-10-07T05-21-14-576Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-1-3-xc1",
+              "pass",
+              "revise",
+              "none",
+              "C: 문장에 '1200'이 있어 12 뒤에 0이 두 개 붙은 것이 보인다. 빈칸 '두 개'는 결과를 세면 되므로 답이 노출된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-1-3-xc1",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-1-3-xc1",
+              "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+              "term": "몇십끼리 곱하기",
+              "kind": "방법",
+              "level": "하",
+              "definition": "$30\\times40$은 $3\\times4=12$에 $0$을 {두 개} 붙여 $1200$이다."
+            },
+            "B": {
+              "prompt": "$30\\times40$을 구할 때 $3\\times4=12$ 뒤에 $0$을 두 개 붙이는 까닭을 써 보세요.",
+              "answer": "$30$은 십이 $3$개, $40$은 십이 $4$개이고 십과 십을 곱하면 백이 되므로 $30\\times40$은 백이 $12$개인 $1200$입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "십$\\times$십은 백"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "백이 $12$개($12$의 $100$배)"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$30\\times40$은 $3\\times4=12$에 $0$을 {두 개} 붙여 $1200$이다.",
+              "acceptedAnswers": [
+                [
+                  "두 개"
+                ]
+              ]
+            },
+            "goal": "(몇십)×(몇십)에서 0을 두 개 붙이는 까닭",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "1345783e7cfcf206c986581345c186515efdde506355d0c38817032c815983e6"
+          },
+          "currentNormalizedHash": "1345783e7cfcf206c986581345c186515efdde506355d0c38817032c815983e6",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "4425abfe03563408c84108950e050e9c4e0accf02ded5906275da56cf0d5447f",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "0410f927421155e35a97443430480b806b5518990a24e777bb7a1096a7d449fa",
+      "currentProposal": {
+        "sourceIndex": 965,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+        "sourceFingerprint": "bfd47b5300ca70306efbb37f947e772fd004f5de543671e75b5f42ecddfa4c01",
+        "proposalFingerprint": "0410f927421155e35a97443430480b806b5518990a24e777bb7a1096a7d449fa",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-3-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "$30\\times40$을 구할 때 $3\\times4=12$ 뒤에 $0$을 두 개 붙이는 까닭을 써 보세요.",
+        "bAnswer": "$30$은 십이 $3$개, $40$은 십이 $4$개이고 십과 십을 곱하면 백이 되므로 $30\\times40$은 백이 $12$개인 $1200$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "십$\\times$십은 백"
+            ]
+          },
+          {
+            "anyOf": [
+              "백이 $12$개($12$의 $100$배)"
+            ]
+          }
+        ],
+        "bGoal": "(몇십)×(몇십)에서 0을 두 개 붙이는 까닭",
+        "bReason": "원문 식을 살려 0을 두 개 붙이는 까닭만 좁혀 물음",
+        "cDecision": "rewrite",
+        "cReason": "식과 결과가 주어져 있고 붙이는 0의 개수만 쓰면 됨",
+        "answerNotes": "C는 '2개', '2'도 정답. B는 '$30\\times4=120$의 $10$배'로 설명해도 정답.",
+        "cAfter": "$30\\times40$의 곱은 $3\\times4=12$ 뒤에 $0$을 {두 개} 붙인 수이다.",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몇십끼리 곱하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$30\\times40$의 곱은 $3\\times4=12$ 뒤에 $0$을 {두 개} 붙인 수이다.",
+        "cStudentSentence": "$30\\times40$의 곱은 $3\\times4=12$ 뒤에 $0$을 □ 붙인 수이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "두 개",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$30\\times40$을 구할 때 $3\\times4=12$ 뒤에 $0$을 두 개 붙이는 까닭을 써 보세요.",
+          "answer": "$30$은 십이 $3$개, $40$은 십이 $4$개이고 십과 십을 곱하면 백이 되므로 $30\\times40$은 백이 $12$개인 $1200$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "십$\\times$십은 백"
+              ]
+            },
+            {
+              "anyOf": [
+                "백이 $12$개($12$의 $100$배)"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$30\\times40$의 곱은 $3\\times4=12$ 뒤에 $0$을 {두 개} 붙인 수이다.",
+          "acceptedAnswers": [
+            [
+              "두 개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-1-3-xc1",
+        "sourceIndex": 965,
+        "proposalFingerprint": "0410f927421155e35a97443430480b806b5518990a24e777bb7a1096a7d449fa",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "십 곱하기 십이 백이라는 자릿값 이유를 묻는다.",
+        "cReason": "완성된 1200을 지워 0의 개수를 답에서 세지 못하게 했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "1200을 지워 완성 답에서 0의 개수를 세지 못하게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-2-xc6",
+      "sourceIndex": 1820,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-2-xc6",
+          "grade": "초4",
+          "reviewedHash": "3219affcf10ae23451f39bbbe41ee4e947d3ab216e3ef998eaa0e2fb3e8ff8b3",
+          "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+          "evidence": "cohort-2026-10-07T05-21-14-576Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-4-2-xc6",
+              "revise",
+              "pass",
+              "none",
+              "B: 제외 이유 'xc28 B와 같은 목표'가 틀렸다. xc28은 방향과 칸 수로 위치를 말하는 내용이고 글자를 밀어도 읽힌다는 내용이 아니다. 실제로는 xc5의 모양 불변과 중복이라고 써야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-2-xc6",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-2-xc6",
+              "section": "초4::1-4 평면도형의 이동::1-4-2 평면도형 밀기",
+              "term": "글자를 밀 때",
+              "kind": "성질",
+              "level": "하",
+              "definition": "글자 가를 오른쪽으로 밀어도 글자는 {그대로} 읽힌다."
+            },
+            "B": {
+              "excluded": "읽히는 까닭은 xc28 B와 같은 목표"
+            },
+            "C": {
+              "sentence": "글자 가를 오른쪽으로 밀어도 글자는 {그대로} 읽힌다.",
+              "acceptedAnswers": [
+                [
+                  "그대로",
+                  "똑같이",
+                  "처음과 같이"
+                ]
+              ]
+            },
+            "goal": "글자를 밀어도 읽힘",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "3219affcf10ae23451f39bbbe41ee4e947d3ab216e3ef998eaa0e2fb3e8ff8b3"
+          },
+          "currentNormalizedHash": "3219affcf10ae23451f39bbbe41ee4e947d3ab216e3ef998eaa0e2fb3e8ff8b3",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "8385162f57a4277600defbebd6b110a22488673dcd8ce2a399457499b47d3f75",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "8385162f57a4277600defbebd6b110a22488673dcd8ce2a399457499b47d3f75",
+      "currentProposal": {
+        "sourceIndex": 1820,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-2 평면도형 밀기",
+        "sourceFingerprint": "62dbf9c619cea57d877a986d43d88fccb3d1b081977986ea1dd4d199c2331a77",
+        "proposalFingerprint": "8385162f57a4277600defbebd6b110a22488673dcd8ce2a399457499b47d3f75",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-2-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "글자를 밀어도 읽힘",
+        "bReason": "같은 소단원 e4-1-4-2-xc28에서 숫자 카드를 밀어도 그대로 읽히는 까닭을 설명한다.",
+        "exclusionReason": "B: 글자를 밀어도 방향과 모양이 같아 그대로 읽힌다는 까닭은 같은 소단원의 e4-1-4-2-xc28 B에서 숫자 카드로 설명하므로 중복된다.",
+        "cDecision": "keep",
+        "cReason": "그대로 읽힌다는 짧은 익숙한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "똑같이",
+            "처음과 같이"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "글자를 밀 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "글자 가를 오른쪽으로 밀어도 글자는 {그대로} 읽힌다.",
+        "cStudentSentence": "글자 가를 오른쪽으로 밀어도 글자는 □ 읽힌다.",
+        "cSlotAnswers": [
+          {
+            "expected": "그대로",
+            "equivalents": [
+              "똑같이",
+              "처음과 같이"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "글자 가를 오른쪽으로 밀어도 글자는 □ 읽힌다.",
+          "answers": [
+            "그대로"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "글자 가를 오른쪽으로 밀어도 글자는 {그대로} 읽힌다.",
+          "acceptedAnswers": [
+            [
+              "그대로",
+              "똑같이",
+              "처음과 같이"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "같은 소단원 e4-1-4-2-xc28에서 숫자 카드를 밀어도 그대로 읽히는 까닭을 설명한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-2-xc6",
+          "sourceIndex": 1820,
+          "proposalFingerprint": "8385162f57a4277600defbebd6b110a22488673dcd8ce2a399457499b47d3f75",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "글자의 향한 방향이 유지되는 이유를 맡는 실제 B와 겹치는 제외를 유지한다.",
+          "cReason": "글자 가의 읽기가 밀기로 그대로라는 예를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-4-2-xc6",
+        "sourceIndex": 1820,
+        "proposalFingerprint": "8385162f57a4277600defbebd6b110a22488673dcd8ce2a399457499b47d3f75",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "전체 ID로 같은 소단원의 숫자 카드 이동 문제를 지목했다.",
+        "cReason": "글자 모양이 이동해도 보존된다는 짧은 판단을 유지했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "같은 소단원 e4-1-4-2-xc28이라는 전체 ID를 명시했다. 검토가 다른 소단원 xc28과 혼동했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-1-3-xc5",
+      "sourceIndex": 967,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-1-3-xc5",
+          "grade": "초3",
+          "reviewedHash": "5f7ab28bf81475e646eac3bd21822b3201d98be22522ad2ef13a252f829e2d85",
+          "inputHash": "d4e3b7e6a55040896307e86ab9c1ea37a06b187d49b845a20fe78331f2cb19f4",
+          "evidence": "cohort-2026-10-07T05-21-14-576Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-1-3-xc5",
+              "excluded",
+              "revise",
+              "none",
+              "C: 문장 속 식 '20×10'에서 10배를 그대로 옮기면 맞다. 곱셈의 뜻을 확인하지 못하고 답이 노출된다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-1-3-xc5",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-1-3-xc5",
+              "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+              "term": "$10$을 곱한 곱",
+              "kind": "성질",
+              "level": "하",
+              "definition": "$20\\times10$은 $20$의 {$10$배}인 $200$이다."
+            },
+            "B": {
+              "excluded": "10을 곱하는 뜻은 e3-2-1-3-xc7의 B에서 묻고 있음"
+            },
+            "C": {
+              "sentence": "$20\\times10$은 $20$의 {$10$배}인 $200$이다.",
+              "acceptedAnswers": [
+                [
+                  "$10$배"
+                ]
+              ]
+            },
+            "goal": "reason",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "5f7ab28bf81475e646eac3bd21822b3201d98be22522ad2ef13a252f829e2d85"
+          },
+          "currentNormalizedHash": "5f7ab28bf81475e646eac3bd21822b3201d98be22522ad2ef13a252f829e2d85",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "c61d40fd2262338aadf3568f92b02f9b7ebe78326d2a3cec0fc2cea83dd82381",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "507206adde29e0f77a864ca9cd7b7ea7b94aae6c80c5f4567cc81f194878bd8b",
+      "currentProposal": {
+        "sourceIndex": 967,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+        "sourceFingerprint": "6d8ccbefec9370c31933a70e102287ea4aa86bf6a02fe88acd770b93c4cbcbe4",
+        "proposalFingerprint": "507206adde29e0f77a864ca9cd7b7ea7b94aae6c80c5f4567cc81f194878bd8b",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-3-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": null,
+        "bReason": "10을 곱하는 뜻은 e3-2-1-3-xc7의 B에서 묻고 있음",
+        "cDecision": "rewrite",
+        "cReason": "'20의 □인 200'으로 몇 배인지 쓰는 것이 분명함",
+        "exclusionReason": "한 번의 단순 계산이고 설명 목표가 e3-2-1-3-xc7의 B(10을 곱하면 0이 붙는 까닭)와 같음",
+        "answerNotes": "'열 배'도 정답.",
+        "cAfter": "$200$은 $20$의 {$10$배}이다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$10$을 곱한 곱",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$200$은 $20$의 {$10$배}이다.",
+        "cStudentSentence": "$200$은 $20$의 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$10$배",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$200$은 $20$의 {$10$배}이다.",
+          "acceptedAnswers": [
+            [
+              "$10$배"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "10을 곱하는 뜻은 e3-2-1-3-xc7의 B에서 묻고 있음"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-1-3-xc5",
+        "sourceIndex": 967,
+        "proposalFingerprint": "507206adde29e0f77a864ca9cd7b7ea7b94aae6c80c5f4567cc81f194878bd8b",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "10배 원리는 xc7의 B에서 설명한다.",
+        "cReason": "200과 20의 배 관계를 판단하며 답 10은 노출되지 않는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "곱셈식 대신200과20의 배 관계를 판단하게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-1-3-xc6",
+      "sourceIndex": 968,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-1-3-xc6",
+          "grade": "초3",
+          "reviewedHash": "5c8d8276d2e99f415b363ea0f831b53aed554cb705a6a5e957348206f2ea58e6",
+          "inputHash": "2811342c79d0545a9e4e88dcd137fe4d9b09331961805b6ed1627298622deb6c",
+          "evidence": "cohort-2026-10-07T05-21-14-626Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-1-3-xc6",
+              "revise",
+              "pass",
+              "none",
+              "B: 필수 둘째 '그래서 일의 자리가 0'은 물음이 이미 준 결론의 복사다. 첫째 '12×4의 10배(십이 48개)이므로 끝에 0이 붙는다'로 합쳐야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-1-3-xc6",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-1-3-xc6",
+              "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+              "term": "몇십을 곱한 곱의 일의 자리",
+              "kind": "성질",
+              "level": "하",
+              "definition": "$12\\times40$의 곱은 일의 자리 숫자가 {$0$}이다."
+            },
+            "B": {
+              "prompt": "$12\\times40$의 곱에서 일의 자리 숫자가 $0$인 까닭을 $12\\times4$를 이용해 써 보세요.",
+              "answer": "$12\\times40$은 $12\\times4=48$의 $10$배, 곧 십이 $48$개인 $480$이므로 일의 자리 숫자가 $0$입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$12\\times 4$의 $10$배(십이 $48$개)"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "그래서 일의 자리가 $0$"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$12\\times40$의 곱은 일의 자리 숫자가 {$0$}이다.",
+              "acceptedAnswers": [
+                [
+                  "$0$"
+                ]
+              ]
+            },
+            "goal": "몇십을 곱한 곱의 일의 자리가 0인 까닭",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "5c8d8276d2e99f415b363ea0f831b53aed554cb705a6a5e957348206f2ea58e6"
+          },
+          "currentNormalizedHash": "5c8d8276d2e99f415b363ea0f831b53aed554cb705a6a5e957348206f2ea58e6",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "464df23fa1fb021c7742f3d2a11b94c64505de731455f9048c444efe43a80702",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "81d20195095a44b33af7bc49bfa306b9d710507175477e57cc457dd59bf42b23",
+      "currentProposal": {
+        "sourceIndex": 968,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+        "sourceFingerprint": "5bac2d40312ca137311f398aab13544d418022a5464ec5c9246b644cd7e4aaa6",
+        "proposalFingerprint": "81d20195095a44b33af7bc49bfa306b9d710507175477e57cc457dd59bf42b23",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-3-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$12\\times40$의 곱에서 일의 자리 숫자가 $0$인 까닭을 $12\\times4$를 이용해 써 보세요.",
+        "bAnswer": "$12\\times40$은 $12\\times4=48$의 $10$배, 곧 십이 $48$개인 $480$이므로 일의 자리 숫자가 $0$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$12\\times4=48$의 $10$배, 곧 십이 $48$개인 $480$이기 때문이다"
+            ]
+          }
+        ],
+        "bGoal": "몇십을 곱한 곱의 일의 자리가 0인 까닭",
+        "bReason": "결과 0만 확인하지 않고 까닭을 쓰도록 이용할 식을 정해 줌",
+        "cDecision": "keep",
+        "cReason": "식이 주어져 있고 일의 자리 숫자 하나를 쓰는 분명한 문제임",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "몇십을 곱한 곱의 일의 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$12\\times40$의 곱은 일의 자리 숫자가 {$0$}이다.",
+        "cStudentSentence": "$12\\times40$의 곱은 일의 자리 숫자가 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$12\\times40$의 곱은 일의 자리 숫자가 □이다.",
+          "answers": [
+            "$0$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$12\\times40$의 곱에서 일의 자리 숫자가 $0$인 까닭을 $12\\times4$를 이용해 써 보세요.",
+          "answer": "$12\\times40$은 $12\\times4=48$의 $10$배, 곧 십이 $48$개인 $480$이므로 일의 자리 숫자가 $0$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$12\\times4=48$의 $10$배, 곧 십이 $48$개인 $480$이기 때문이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$12\\times40$의 곱은 일의 자리 숫자가 {$0$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-1-3-xc6",
+        "sourceIndex": 968,
+        "proposalFingerprint": "81d20195095a44b33af7bc49bfa306b9d710507175477e57cc457dd59bf42b23",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "이미 준 끝자리 결론을 필수에서 빼고 48의 10배라는 이유로 합쳤다.",
+        "cReason": "끝자리 0이라는 자릿값 결과는 명확하다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "주어진 결론을 필수에서 빼고10배라는 이유로 합쳤다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-1-3-xc8",
+      "sourceIndex": 970,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-1-3-xc8",
+          "grade": "초3",
+          "reviewedHash": "6c7fe306fed4082bc40751182e8f3cf38df3e50b000c7bef83dcf60bf9c28e93",
+          "inputHash": "2811342c79d0545a9e4e88dcd137fe4d9b09331961805b6ed1627298622deb6c",
+          "evidence": "cohort-2026-10-07T05-21-14-626Z-1",
+          "blind": [
+            [
+              "e3-2-1-3-xc8",
+              "C",
+              "240",
+              "revise",
+              "'4×6=24는 십이 24개'는 4×6 자체가 아니라 4×60에 대한 뜻이라 문장이 부정확함."
+            ]
+          ],
+          "key": [
+            [
+              "e3-2-1-3-xc8",
+              "pass",
+              "revise",
+              "none",
+              "C: '4×6=24는 십이 24개라는 뜻'은 부정확하다. 십이 24개인 것은 4×60이다. 이 문장 때문에 답 240이 그대로 노출되기도 한다. 수정하려면 '4×60은 십이 4×6=24(개)'로 써야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-1-3-xc8",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-1-3-xc8",
+              "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+              "term": "(몇)$\\times$(몇십)",
+              "kind": "방법",
+              "level": "하",
+              "definition": "(몇)$\\times$(몇십)에서 (몇)$\\times$(몇)의 곱은 {십의 묶음의 수}가 된다.",
+              "example": {
+                "prompt": "$4\\times60$이 $240$인 까닭은?",
+                "answer": "십의 묶음이 $24$개라서"
+              }
+            },
+            "B": {
+              "prompt": "$4\\times60$을 $4\\times6=24$를 이용해 구하는 방법과 그렇게 해도 되는 까닭을 써 보세요.",
+              "answer": "$60$은 십이 $6$개이므로 $4\\times60$은 십이 $4\\times6=24$(개)인 $240$입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$60$은 십이 $6$개"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "십이 $24$개이므로 $240$"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$4\\times60$에서 $4\\times6=24$는 십이 $24$개라는 뜻이므로 $4\\times60$의 곱은 {$240$}이다.",
+              "acceptedAnswers": [
+                [
+                  "$240$"
+                ]
+              ]
+            },
+            "goal": "(몇)×(몇십)에서 (몇)×(몇)의 곱이 십의 개수가 됨",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "6c7fe306fed4082bc40751182e8f3cf38df3e50b000c7bef83dcf60bf9c28e93"
+          },
+          "currentNormalizedHash": "6c7fe306fed4082bc40751182e8f3cf38df3e50b000c7bef83dcf60bf9c28e93",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "7f0fa2c12df5c138a431505f339cba453769651871214d22c9fe4fc070edaa59",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "c4b58172d63583d8b055a791c773c1223f82d3b33cd6e9aa7c419e953e4cc891",
+      "currentProposal": {
+        "sourceIndex": 970,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+        "sourceFingerprint": "f9f5b4f3d5094c706b693dc3c1769ca8ff768f330361db3916b140924e3fe319",
+        "proposalFingerprint": "c4b58172d63583d8b055a791c773c1223f82d3b33cd6e9aa7c419e953e4cc891",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-3-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$4\\times60$을 $4\\times6=24$를 이용해 구하는 방법과 그렇게 해도 되는 까닭을 써 보세요.",
+        "bAnswer": "$60$은 십이 $6$개이므로 $4\\times60$은 십이 $4\\times6=24$(개)인 $240$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60$은 십이 $6$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "십이 $24$개이므로 $240$"
+            ]
+          }
+        ],
+        "bGoal": "(몇)×(몇십)에서 (몇)×(몇)의 곱이 십의 개수가 됨",
+        "bReason": "원문 예제 4×60을 써서 방법과 까닭을 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$4\\times60$은 십이 $4\\times6=24$(개)인 수이므로 곱은 {$240$}이다.",
+        "cReason": "빈칸 '십의 묶음의 수'는 학생이 답의 종류를 알기 어려움. 구체 식의 곱을 쓰게 함",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "(몇)$\\times$(몇십)",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4\\times60$은 십이 $4\\times6=24$(개)인 수이므로 곱은 {$240$}이다.",
+        "cStudentSentence": "$4\\times60$은 십이 $4\\times6=24$(개)인 수이므로 곱은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$240$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4\\times60$을 $4\\times6=24$를 이용해 구하는 방법과 그렇게 해도 되는 까닭을 써 보세요.",
+          "answer": "$60$은 십이 $6$개이므로 $4\\times60$은 십이 $4\\times6=24$(개)인 $240$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$60$은 십이 $6$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "십이 $24$개이므로 $240$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4\\times60$은 십이 $4\\times6=24$(개)인 수이므로 곱은 {$240$}이다.",
+          "acceptedAnswers": [
+            [
+              "$240$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-1-3-xc8",
+        "sourceIndex": 970,
+        "proposalFingerprint": "c4b58172d63583d8b055a791c773c1223f82d3b33cd6e9aa7c419e953e4cc891",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "십 6개를 4배 한 십 24개라는 방법과 이유가 맞다.",
+        "cReason": "4곱하기6 자체가 십24개라고 읽히지 않도록 고쳤다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "십24개가 가리키는 식이4곱하기60임을 명시했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-1-3-xc23",
+      "sourceIndex": 977,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-1-3-xc23",
+          "grade": "초3",
+          "reviewedHash": "7765e8f5390ef47aef263bb06ea48c2283d37d64d4c2534d6abf0f27c5ea57fd",
+          "inputHash": "2811342c79d0545a9e4e88dcd137fe4d9b09331961805b6ed1627298622deb6c",
+          "evidence": "cohort-2026-10-07T05-21-14-626Z-1",
+          "blind": [
+            [
+              "e3-2-1-3-xc23",
+              "C",
+              "1200",
+              "revise",
+              "'3×4=12는 백이 12개'는 3×4 자체가 아니라 30×40에 대한 뜻이라 문장이 부정확함."
+            ]
+          ],
+          "key": [
+            [
+              "e3-2-1-3-xc23",
+              "revise",
+              "revise",
+              "none",
+              "B·C 공통: '3×4=12는 백이 12개라는 뜻'은 부정확하다. 12는 십 1개와 일 2개이고, 백이 12개인 것은 30×40이다. B의 필수 첫째와 C 문장 모두 '30×40은 백이 3×4=12(개)'로 고쳐야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-1-3-xc23",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-1-3-xc23",
+              "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+              "term": "$0$을 하나만 붙이는 잘못",
+              "kind": "성질",
+              "level": "상",
+              "definition": "(몇십)$\\times$(몇십)에서 (몇)$\\times$(몇)의 곱에 $0$을 하나만 붙이면 {백의 묶음을 십의 묶음으로} 잘못 본 것이다.",
+              "example": {
+                "prompt": "$30\\times40$을 $120$이라고 하면 무엇을 잘못 본 것인가?",
+                "answer": "백의 묶음 $12$개를 십으로"
+              }
+            },
+            "B": {
+              "prompt": "$30\\times40$을 $120$이라고 계산했습니다. 무엇을 잘못 생각했는지 쓰고, 바른 곱을 써 보세요.",
+              "answer": "$3\\times4=12$는 백이 $12$개라는 뜻인데 십이 $12$개인 것처럼 $0$을 하나만 붙였습니다. 바른 곱은 $1200$입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$12$는 백이 $12$개라는 뜻"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$0$을 하나만 붙였다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$1200$"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$30\\times40$을 $120$이라고 하면 틀린다. $3\\times4=12$는 백이 $12$개라는 뜻이므로 바른 곱은 {$1200$}이다.",
+              "acceptedAnswers": [
+                [
+                  "$1200$"
+                ]
+              ]
+            },
+            "goal": "0을 하나만 붙이는 잘못 고치기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "7765e8f5390ef47aef263bb06ea48c2283d37d64d4c2534d6abf0f27c5ea57fd"
+          },
+          "currentNormalizedHash": "7765e8f5390ef47aef263bb06ea48c2283d37d64d4c2534d6abf0f27c5ea57fd",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "ec9d3519fdb2af1350e40a2ec1e42d397cb3c7654bc9ba8c1f0e7e2186119081",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "70ca1395d1f3d901b262c160adff8c4410dde5cee7b15eec35cce383ec50eaeb",
+      "currentProposal": {
+        "sourceIndex": 977,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-1 곱셈::2-1-3 (몇십)×(몇십), (몇십몇)×(몇십), (몇)×(몇십몇)",
+        "sourceFingerprint": "c52fdd87045ebc04d6d75bced614072b509ac9b771cc56a764818fc7c8d456bd",
+        "proposalFingerprint": "70ca1395d1f3d901b262c160adff8c4410dde5cee7b15eec35cce383ec50eaeb",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-3-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$30\\times40$을 $120$이라고 계산했습니다. 무엇을 잘못 생각했는지 쓰고, 바른 곱을 써 보세요.",
+        "bAnswer": "$30\\times40$은 백이 $3\\times4=12$(개)인 수인데 십이 $12$개인 것처럼 $0$을 하나만 붙였습니다. 바른 곱은 $1200$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$30\\times40$은 백이 $12$개인데 십이 $12$개로 잘못 생각했다",
+              "곱이 $3\\times4$의 $100$배인데 $10$배만 했다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1200$"
+            ]
+          }
+        ],
+        "bGoal": "0을 하나만 붙이는 잘못 고치기",
+        "bReason": "원문 예제를 써서 잘못과 바른 곱을 함께 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$30\\times40$을 $120$이라고 하면 틀린다. $30\\times40$은 백이 $3\\times4=12$(개)인 수이므로 바른 곱은 {$1200$}이다.",
+        "cReason": "빈칸 '백의 묶음을 십의 묶음으로'는 긴 설명 구절임. 바른 곱을 쓰게 함",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0$을 하나만 붙이는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$30\\times40$을 $120$이라고 하면 틀린다. $30\\times40$은 백이 $3\\times4=12$(개)인 수이므로 바른 곱은 {$1200$}이다.",
+        "cStudentSentence": "$30\\times40$을 $120$이라고 하면 틀린다. $30\\times40$은 백이 $3\\times4=12$(개)인 수이므로 바른 곱은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1200$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$30\\times40$을 $120$이라고 계산했습니다. 무엇을 잘못 생각했는지 쓰고, 바른 곱을 써 보세요.",
+          "answer": "$30\\times40$은 백이 $3\\times4=12$(개)인 수인데 십이 $12$개인 것처럼 $0$을 하나만 붙였습니다. 바른 곱은 $1200$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$30\\times40$은 백이 $12$개인데 십이 $12$개로 잘못 생각했다",
+                "곱이 $3\\times4$의 $100$배인데 $10$배만 했다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1200$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$30\\times40$을 $120$이라고 하면 틀린다. $30\\times40$은 백이 $3\\times4=12$(개)인 수이므로 바른 곱은 {$1200$}이다.",
+          "acceptedAnswers": [
+            [
+              "$1200$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-1-3-xc23",
+        "sourceIndex": 977,
+        "proposalFingerprint": "70ca1395d1f3d901b262c160adff8c4410dde5cee7b15eec35cce383ec50eaeb",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "30곱하기40의 단위를 백으로 해석하는 잘못과 1200을 필수로 삼았다.",
+        "cReason": "백12개가 가리키는 식을 30곱하기40으로 바로잡았다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "백12개가 가리키는 식을30곱하기40으로 바로잡았다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-2-xc21",
+      "sourceIndex": 1834,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-2-xc21",
+          "grade": "초4",
+          "reviewedHash": "b061d36af5dfc528097acf1e6c567058af32135583bc5d388485556ee6a5e309",
+          "inputHash": "2811342c79d0545a9e4e88dcd137fe4d9b09331961805b6ed1627298622deb6c",
+          "evidence": "cohort-2026-10-07T05-21-14-626Z-1",
+          "blind": [
+            [
+              "e4-1-4-2-xc21",
+              "C",
+              "일정한 간격(한 줄)",
+              "revise",
+              "빈칸이 '일정한 간격으로', '한 줄로', '나란히' 등으로 갈려 의도한 답이 하나로 정해지지 않음."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-4-2-xc21",
+              "pass",
+              "revise",
+              "none",
+              "C: 빈칸이 '같은 간격으로', '일정하게', '한 줄로', '나란히' 등으로 갈려 의도한 답이 하나로 정해지지 않는다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-2-xc21",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-2-xc21",
+              "section": "초4::1-4 평면도형의 이동::1-4-2 평면도형 밀기",
+              "term": "밀어서 만든 무늬의 간격",
+              "kind": "성질",
+              "level": "상",
+              "definition": "같은 모양을 한 방향으로 같은 칸 수씩 계속 밀면 이웃한 모양들이 {같은 간격}으로 늘어선다."
+            },
+            "B": {
+              "prompt": "같은 모양을 오른쪽으로 $2$칸씩 계속 밀어서 늘어놓았다. 이웃한 모양 사이의 간격은 어떻게 되며, 왜 그런가?",
+              "answer": "모두 같다. 매번 같은 방향으로 같은 칸 수만큼 밀었기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "간격이 같다",
+                    "똑같다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "매번 같은 칸 수만큼 민다",
+                    "같은 방향 같은 칸 수로 밀었다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "같은 모양을 한 방향으로 같은 칸 수씩 계속 밀면 이웃한 모양들이 {같은 간격}으로 늘어선다.",
+              "acceptedAnswers": [
+                [
+                  "같은 간격",
+                  "똑같은 간격",
+                  "일정한 간격"
+                ]
+              ]
+            },
+            "goal": "밀기 무늬의 같은 간격",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "b061d36af5dfc528097acf1e6c567058af32135583bc5d388485556ee6a5e309"
+          },
+          "currentNormalizedHash": "b061d36af5dfc528097acf1e6c567058af32135583bc5d388485556ee6a5e309",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "ff76a19e94c544f4d985100e68f6c9edb6df5daf2f172451eb7c37ed44d03b42",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "ad1583a870726dee1de6aea5e86828a56d6314858a1a6727de4c0290b531c326",
+      "currentProposal": {
+        "sourceIndex": 1834,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-2 평면도형 밀기",
+        "sourceFingerprint": "f673815eaff83094de22f79b5a6492f5539702c6388d8c5e1ca668a5a785a65c",
+        "proposalFingerprint": "ad1583a870726dee1de6aea5e86828a56d6314858a1a6727de4c0290b531c326",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-2-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 모양을 오른쪽으로 $2$칸씩 계속 밀어서 늘어놓았다. 이웃한 모양 사이의 간격은 어떻게 되며, 왜 그런가?",
+        "bAnswer": "모두 같다. 매번 같은 방향으로 같은 칸 수만큼 밀었기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "간격이 같다",
+              "똑같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "매번 같은 칸 수만큼 민다",
+              "같은 방향 같은 칸 수로 밀었다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "밀기 무늬의 같은 간격",
+        "bReason": "같은 칸 수씩 밀면 간격이 같은 이유 확인",
+        "cDecision": "rewrite",
+        "cReason": "같은 간격은 익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "똑같다",
+            "일정하다"
+          ]
+        ],
+        "cAfter": "같은 모양을 한 방향으로 같은 칸 수씩 계속 밀어서 늘어놓으면, 이웃한 모양 사이의 간격은 {같다}.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "밀어서 만든 무늬의 간격",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 모양을 한 방향으로 같은 칸 수씩 계속 밀어서 늘어놓으면, 이웃한 모양 사이의 간격은 {같다}.",
+        "cStudentSentence": "같은 모양을 한 방향으로 같은 칸 수씩 계속 밀어서 늘어놓으면, 이웃한 모양 사이의 간격은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다",
+              "일정하다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 모양을 오른쪽으로 $2$칸씩 계속 밀어서 늘어놓았다. 이웃한 모양 사이의 간격은 어떻게 되며, 왜 그런가?",
+          "answer": "모두 같다. 매번 같은 방향으로 같은 칸 수만큼 밀었기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "간격이 같다",
+                "똑같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "매번 같은 칸 수만큼 민다",
+                "같은 방향 같은 칸 수로 밀었다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 모양을 한 방향으로 같은 칸 수씩 계속 밀어서 늘어놓으면, 이웃한 모양 사이의 간격은 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다",
+              "일정하다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-2-xc21",
+        "sourceIndex": 1834,
+        "proposalFingerprint": "ad1583a870726dee1de6aea5e86828a56d6314858a1a6727de4c0290b531c326",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "같은 칸 수씩 밀기와 같은 간격의 연결을 설명한다.",
+        "cReason": "모양의 배열 방식 대신 이웃한 모양의 간격만 비교하도록 좁혔다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "간격의 같음을 직접 물어 한 줄로 등의 다른 관점 답을 막았다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e3-2-2-1-xc3",
+      "sourceIndex": 994,
+      "originalIndependentEvents": [
+        {
+          "id": "e3-2-2-1-xc3",
+          "grade": "초3",
+          "reviewedHash": "2ce20abe732268a1f97c43c2fcb3e5bc6bcc78d416df86f43c677f9fead0e264",
+          "inputHash": "fbb201b244eeda658f3a49644f976b0098b825cbc72978c3bc2ee4e22a5e5a06",
+          "evidence": "cohort-2026-10-07T05-30-30-012Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e3-2-2-1-xc3",
+              "revise",
+              "pass",
+              "none",
+              "B: 물음이 '60÷3과 9÷3으로 나누어 구하는 방법'이라고 방법 자체를 알려 준다. requiredIdeas 1번('60과 9로 갈라 따로 나눈다')은 물음을 베끼기만 해도 충족되므로 독립 필수가 아니다. 물음에서 분해를 빼고 '십의 묶음과 낱개를 따로 나누는 까닭'을 묻거나, 필수 내용을 20+3=23 계산으로 줄여야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e3-2-2-1-xc3",
+            "grade": "초3",
+            "source": {
+              "id": "e3-2-2-1-xc3",
+              "section": "초3::2-2 나눗셈::2-2-1 내림이 없는 (몇십)÷(몇), (몇십몇)÷(몇)",
+              "term": "자리마다 나누어 모으기",
+              "kind": "방법",
+              "level": "하",
+              "definition": "내림이 없는 (몇십몇)$\\div$(몇)은 {십의 묶음과 낱개를 따로 나누어} 몫을 모은다.",
+              "example": {
+                "prompt": "$69\\div3$의 몫을 $20$과 $3$을 모아 구하는 까닭은?",
+                "answer": "십의 묶음과 낱개를 따로 나눠서"
+              }
+            },
+            "B": {
+              "prompt": "$69\\div3$을 $60\\div3$과 $9\\div3$으로 나누어 구하는 방법을 설명해 보세요.",
+              "answer": "$69$를 $60$과 $9$로 가릅니다. $60\\div3=20$, $9\\div3=3$을 구해 더하면 몫은 $23$입니다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "$60$과 $9$로 갈라 따로 나눈다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "$20$과 $3$을 더한다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$69\\div3$의 몫은 $60\\div3=20$과 $9\\div3=3$을 더한 {$23$}이다.",
+              "acceptedAnswers": [
+                [
+                  "$23$"
+                ]
+              ]
+            },
+            "goal": "내림이 없는 (몇십몇)÷(몇)을 자리마다 나누어 구하기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "2ce20abe732268a1f97c43c2fcb3e5bc6bcc78d416df86f43c677f9fead0e264"
+          },
+          "currentNormalizedHash": "2ce20abe732268a1f97c43c2fcb3e5bc6bcc78d416df86f43c677f9fead0e264",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "245237670adaaf238ddaed064980f2350330fddd267160a14bc2575f1021cd16",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "77df420d2814031c39164d3cfcd3ffe96c995327682a11362f4d8707f9e9b5db",
+      "currentProposal": {
+        "sourceIndex": 994,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-2 나눗셈::2-2-1 내림이 없는 (몇십)÷(몇), (몇십몇)÷(몇)",
+        "sourceFingerprint": "c141a05b7c5d176bcd7bec88f6cf7e2e54e6e19893f22d23869db2f83d77f549",
+        "proposalFingerprint": "77df420d2814031c39164d3cfcd3ffe96c995327682a11362f4d8707f9e9b5db",
+        "reviewStatus": "draft",
+        "id": "e3-2-2-1-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$69\\div3$을 $60\\div3$과 $9\\div3$으로 나누어 구하는 방법을 설명해 보세요.",
+        "bAnswer": "$69$를 $60$과 $9$로 가릅니다. $60\\div3=20$, $9\\div3=3$을 구해 더하면 몫은 $23$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60\\div3=20$, $9\\div3=3$을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫을 더하여 $20+3=23$을 구한다"
+            ]
+          }
+        ],
+        "bGoal": "내림이 없는 (몇십몇)÷(몇)을 자리마다 나누어 구하기",
+        "bReason": "원문 예제 69÷3을 써서 방법을 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "$69\\div3$의 몫은 $60\\div3=20$과 $9\\div3=3$을 더한 {$23$}이다.",
+        "cReason": "빈칸 '십의 묶음과 낱개를 따로 나누어'는 긴 구절임. 따로 나눈 몫을 보여 주고 합을 쓰게 함",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자리마다 나누어 모으기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$69\\div3$의 몫은 $60\\div3=20$과 $9\\div3=3$을 더한 {$23$}이다.",
+        "cStudentSentence": "$69\\div3$의 몫은 $60\\div3=20$과 $9\\div3=3$을 더한 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$23$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$69\\div3$을 $60\\div3$과 $9\\div3$으로 나누어 구하는 방법을 설명해 보세요.",
+          "answer": "$69$를 $60$과 $9$로 가릅니다. $60\\div3=20$, $9\\div3=3$을 구해 더하면 몫은 $23$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$60\\div3=20$, $9\\div3=3$을 구한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 몫을 더하여 $20+3=23$을 구한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$69\\div3$의 몫은 $60\\div3=20$과 $9\\div3=3$을 더한 {$23$}이다.",
+          "acceptedAnswers": [
+            [
+              "$23$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e3-2-2-1-xc3",
+        "sourceIndex": 994,
+        "proposalFingerprint": "77df420d2814031c39164d3cfcd3ffe96c995327682a11362f4d8707f9e9b5db",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "20과3을 구해 합하여23이 되는 과정으로 필수 기준을 고쳤다.",
+        "cReason": "주어진 부분 몫의 합을 실제 계산한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "주어진 분해가 아닌 실제 부분몫 계산과 합을 필수로 삼았다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-3-xc26",
+      "sourceIndex": 1864,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-3-xc26",
+          "grade": "초4",
+          "reviewedHash": "990d297183c2e366c02ac405b5b1944f093781a49e49c616143fef6b1a0dbc5a",
+          "inputHash": "1f8ac34116e7787185c8b1ba5e03ffa57a4b8dbfb98f0e7c22ab6349ad2d3183",
+          "evidence": "cohort-2026-10-07T05-30-30-050Z-1",
+          "blind": [
+            [
+              "e4-1-4-3-xc26",
+              "C",
+              "좌우(오른쪽 또는 왼쪽)",
+              "revise",
+              "거울을 글자 앞·옆·바닥 어디에 놓는지 조건이 없어 □이 오른쪽/왼쪽/위쪽/아래쪽 중 하나로 정해지지 않는다."
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-4-3-xc26",
+              "excluded",
+              "revise",
+              "revise",
+              "거울을 글자의 옆·위·아래 어디에 두는지 조건이 없다. 위나 아래에 놓으면 위아래가 뒤집히므로 '왼쪽이나 오른쪽으로 뒤집은 모양'은 일반적으로 참이 아니다. 빈칸이 하나로 정해지지 않으므로 C를 고쳐야 한다. 원문(source)도 같은 과일반화를 담고 있는데 coreAfter가 null이어서 교정되지 않았다. 거울이 글자의 옆에 있다는 조건을 명시해야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-3-xc26",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-3-xc26",
+              "section": "초4::1-4 평면도형의 이동::1-4-3 평면도형 뒤집기",
+              "term": "거울 글씨",
+              "kind": "성질",
+              "level": "상",
+              "definition": "거울에 비친 글자는 글자를 {왼쪽이나 오른쪽}으로 뒤집은 모양이다."
+            },
+            "B": {
+              "excluded": "좌우가 바뀌는 목표가 xc3 B와 같음"
+            },
+            "C": {
+              "sentence": "거울에 비친 글자는 글자를 {왼쪽이나 오른쪽}으로 뒤집은 모양이다.",
+              "acceptedAnswers": [
+                [
+                  "왼쪽이나 오른쪽",
+                  "왼쪽",
+                  "오른쪽",
+                  "좌우"
+                ]
+              ]
+            },
+            "goal": "거울 글씨",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "990d297183c2e366c02ac405b5b1944f093781a49e49c616143fef6b1a0dbc5a"
+          },
+          "currentNormalizedHash": "990d297183c2e366c02ac405b5b1944f093781a49e49c616143fef6b1a0dbc5a",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "c42932ca4b2106e99951880037d3ac455395e45d80348826744cad9393e6bab1",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "66caaefc73653a895338f61e3f2ad272528981758263d209f16995ccf57963ac",
+      "currentProposal": {
+        "sourceIndex": 1864,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-3 평면도형 뒤집기",
+        "sourceFingerprint": "8cf46c7cff74411c42a1023c7afdd0d8cdcf42417889ed8af402e2c4d0b630ea",
+        "proposalFingerprint": "66caaefc73653a895338f61e3f2ad272528981758263d209f16995ccf57963ac",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-3-xc26",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "거울 글씨",
+        "bReason": "좌우가 바뀌는 목표가 xc3 B와 같음",
+        "exclusionReason": "B: 좌우 뒤집기와 거울에 비친 모양의 관계를 e4-1-4-3-xc3 B에서 설명한다.",
+        "cDecision": "rewrite",
+        "cReason": "왼쪽/오른쪽을 고르는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "왼쪽",
+            "오른쪽",
+            "좌우"
+          ]
+        ],
+        "cAfter": "종이에 쓴 글자의 옆에 위아래 방향으로 선을 긋고, 그 선 위에 거울을 똑바로 세운다. 거울에 비친 글자는 그 선을 따라 {왼쪽이나 오른쪽}으로 뒤집은 모양이다.",
+        "coreAfter": "종이에 쓴 글자의 옆에 위아래 방향으로 선을 긋고, 그 선 위에 거울을 똑바로 세운다. 거울에 비친 글자는 그 선을 따라 {왼쪽이나 오른쪽}으로 뒤집은 모양이다.",
+        "coreReason": "원문은 거울을 놓는 방향을 생략해 위아래에 둔 거울에도 좌우 뒤집기가 된다고 일반화한다. 글자 옆의 세로선을 따라 거울을 세운 조건을 일반 설명과 C 모두에 명시한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "거울 글씨",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "종이에 쓴 글자의 옆에 위아래 방향으로 선을 긋고, 그 선 위에 거울을 똑바로 세운다. 거울에 비친 글자는 그 선을 따라 {왼쪽이나 오른쪽}으로 뒤집은 모양이다.",
+        "cStudentSentence": "종이에 쓴 글자의 옆에 위아래 방향으로 선을 긋고, 그 선 위에 거울을 똑바로 세운다. 거울에 비친 글자는 그 선을 따라 □으로 뒤집은 모양이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "왼쪽이나 오른쪽",
+            "equivalents": [
+              "왼쪽",
+              "오른쪽",
+              "좌우"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "종이에 쓴 글자의 옆에 위아래 방향으로 선을 긋고, 그 선 위에 거울을 똑바로 세운다. 거울에 비친 글자는 그 선을 따라 {왼쪽이나 오른쪽}으로 뒤집은 모양이다.",
+          "acceptedAnswers": [
+            [
+              "왼쪽이나 오른쪽",
+              "왼쪽",
+              "오른쪽",
+              "좌우"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "좌우가 바뀌는 목표가 xc3 B와 같음"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-3-xc26",
+        "sourceIndex": 1864,
+        "proposalFingerprint": "66caaefc73653a895338f61e3f2ad272528981758263d209f16995ccf57963ac",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "거울 뒤집기의 설명형은 xc3에 남기고 전체 ID를 적었다.",
+        "cReason": "거울을 글자 옆 세로선 위에 세우는 조건을 C와 일반 설명 모두에 넣었다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "거울의 위치와 방향 조건을 일반 설명과 C에 함께 보완했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-3-xc28",
+      "sourceIndex": 1866,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-3-xc28",
+          "grade": "초4",
+          "reviewedHash": "098b069015148cc7754a595d1fdb95a21468b9399e004d7fff6565f71cf62f2f",
+          "inputHash": "1f8ac34116e7787185c8b1ba5e03ffa57a4b8dbfb98f0e7c22ab6349ad2d3183",
+          "evidence": "cohort-2026-10-07T05-30-30-050Z-1",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-4-3-xc28",
+              "pass",
+              "revise",
+              "none",
+              "C의 빈칸 '꼭 맞게'는 부사 하나라서 수학 개념이 아니라 어휘를 복원하는 문항이다. 문장 자체가 '접었을 때 포개지는 무늬'라고 개념을 모두 보여 주므로, 빈칸이 선대칭이나 좌우 같음 같은 핵심을 묻지 못한다. 핵심 개념에 빈칸을 두어야 한다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-3-xc28",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-3-xc28",
+              "section": "초4::1-4 평면도형의 이동::1-4-3 평면도형 뒤집기",
+              "term": "뒤집어서 만든 무늬",
+              "kind": "방법",
+              "level": "상",
+              "definition": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 {왼쪽과 오른쪽이 같은} 무늬가 된다."
+            },
+            "B": {
+              "prompt": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 어떤 무늬가 되는가?",
+              "answer": "세로선을 기준으로 왼쪽과 오른쪽이 서로 같은 무늬가 되어, 세로선을 접으면 꼭 맞게 포개진다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "왼쪽과 오른쪽이 같은 무늬",
+                    "접으면 꼭 맞게 포개진다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 {꼭 맞게} 포개지는 무늬가 된다.",
+              "acceptedAnswers": [
+                [
+                  "꼭 맞게",
+                  "완전히",
+                  "똑같이"
+                ]
+              ]
+            },
+            "goal": "뒤집어 만든 무늬",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "098b069015148cc7754a595d1fdb95a21468b9399e004d7fff6565f71cf62f2f"
+          },
+          "currentNormalizedHash": "098b069015148cc7754a595d1fdb95a21468b9399e004d7fff6565f71cf62f2f",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "abd30ae2199d475e08fc3fd3568c4f0be141d39b698d51d87855d61a9a63b74d",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "abd30ae2199d475e08fc3fd3568c4f0be141d39b698d51d87855d61a9a63b74d",
+      "currentProposal": {
+        "sourceIndex": 1866,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-3 평면도형 뒤집기",
+        "sourceFingerprint": "5335056f6c625ca6045b8daa8231c6c60e62c68dec7baa430f8e6834515e120a",
+        "proposalFingerprint": "abd30ae2199d475e08fc3fd3568c4f0be141d39b698d51d87855d61a9a63b74d",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 어떤 무늬가 되는가?",
+        "bAnswer": "세로선을 기준으로 왼쪽과 오른쪽이 서로 같은 무늬가 되어, 세로선을 접으면 꼭 맞게 포개진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "왼쪽과 오른쪽이 같은 무늬",
+              "접으면 꼭 맞게 포개진다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "뒤집어 만든 무늬",
+        "bReason": "뒤집은 모양을 붙이면 좌우가 같은 무늬가 됨",
+        "exampleNeeded": "세로선 왼쪽에 간단한 모양(예: 나뭇잎)을 그린 그림",
+        "cDecision": "rewrite",
+        "cAfter": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 {꼭 맞게} 포개지는 무늬가 된다.",
+        "cReason": "왼쪽과 오른쪽이 같은이 불명확해 접어 포개지는 말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "완전히",
+            "똑같이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "뒤집어서 만든 무늬",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 {꼭 맞게} 포개지는 무늬가 된다.",
+        "cStudentSentence": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 □ 포개지는 무늬가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "꼭 맞게",
+            "equivalents": [
+              "완전히",
+              "똑같이"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 어떤 무늬가 되는가?",
+          "answer": "세로선을 기준으로 왼쪽과 오른쪽이 서로 같은 무늬가 되어, 세로선을 접으면 꼭 맞게 포개진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "왼쪽과 오른쪽이 같은 무늬",
+                "접으면 꼭 맞게 포개진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 {꼭 맞게} 포개지는 무늬가 된다.",
+          "acceptedAnswers": [
+            [
+              "꼭 맞게",
+              "완전히",
+              "똑같이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-3-xc28",
+          "sourceIndex": 1866,
+          "proposalFingerprint": "abd30ae2199d475e08fc3fd3568c4f0be141d39b698d51d87855d61a9a63b74d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "세로 접는 선을 명시하여 좌우가 맞게 포개지는 무늬를 설명한다.",
+          "cReason": "같은 세로선으로 접었을 때 겹치는 조건이 분명하며 무늬 그림이 있으면 좋다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "directReading": {
+        "id": "e4-1-4-3-xc28",
+        "sourceIndex": 1866,
+        "proposalFingerprint": "abd30ae2199d475e08fc3fd3568c4f0be141d39b698d51d87855d61a9a63b74d",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "접었을 때 일치하는 무늬라는 결과를 설명한다.",
+        "cReason": "꼭 맞게는 단순 부사가 아니라 부분 겹침과 구별되는 완전 일치 조건이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "retained-with-reason",
+      "reason": "꼭 맞게는 부분 겹침과 구별되는 완전 일치라는 수학적 조건이다. 선대칭이라는 아직 배우지 않은 용어로 바꾸지 않는다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-4-xc9",
+      "sourceIndex": 1875,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-4-xc9",
+          "grade": "초4",
+          "reviewedHash": "df257130cd3280c300bde5dc5da4f9efde198f9e2cc7d8780ef1c161b1392bc7",
+          "inputHash": "8f04b7a113c0e52d02d88a270bc5da87d9ba6cb46502a11c6cfcf2497edab96a",
+          "evidence": "cohort-2026-10-07T05-40-40-815Z-0",
+          "blind": [
+            [
+              "e4-1-4-4-xc9",
+              "C",
+              "도는(돌아가는)",
+              "revise",
+              "빈칸이 같은 문장의 '돌리기'라는 낱말을 동사형으로 바꿔 쓰는 복원이라 개념 확인이 약하고, 도는/돌아가는/회전하는 등 답이 열려 있음"
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-4-4-xc9",
+              "pass",
+              "revise",
+              "none",
+              "C의 빈칸은 같은 문장의 '돌리기'를 동사형으로 바꿔 쓰는 낱말 복원입니다. 도는, 돌아가는, 회전하는 등 답이 열려 있고 개념 확인이 약합니다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-4-xc9",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-4-xc9",
+              "section": "초4::1-4 평면도형의 이동::1-4-4 평면도형 돌리기",
+              "term": "생활 속 돌리기",
+              "kind": "성질",
+              "level": "하",
+              "definition": "한 점을 중심으로 {그 둘레를 도는} 움직임은 돌리기와 같다.",
+              "example": {
+                "prompt": "선풍기 날개가 움직이는 것이 돌리기인 까닭은?",
+                "answer": "가운데 점을 중심으로 돌아서"
+              }
+            },
+            "B": {
+              "prompt": "선풍기 날개가 돌아가는 움직임은 밀기, 뒤집기, 돌리기 중 무엇인가? 그 까닭도 쓰시오.",
+              "answer": "돌리기이다. 가운데 한 점을 중심으로 그 둘레를 돌기 때문이다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "돌리기"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "한 점을 중심으로 돈다",
+                    "가운데 점을 중심으로 돈다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "한 점을 중심으로 그 둘레를 {도는} 움직임은 돌리기와 같다.",
+              "acceptedAnswers": [
+                [
+                  "도는",
+                  "돌아가는",
+                  "빙빙 도는"
+                ]
+              ]
+            },
+            "goal": "생활 속 돌리기 판단",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "df257130cd3280c300bde5dc5da4f9efde198f9e2cc7d8780ef1c161b1392bc7"
+          },
+          "currentNormalizedHash": "df257130cd3280c300bde5dc5da4f9efde198f9e2cc7d8780ef1c161b1392bc7",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "6d9657caa3a05b0de0e271c2882fee614ac244dd37f49e29e7376d72122cd06b",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "69592f715e59809a9e744e79bd19182b88586d851d38e55a169759bf2413bbc4",
+      "currentProposal": {
+        "sourceIndex": 1875,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-4 평면도형 돌리기",
+        "sourceFingerprint": "7572d610183733d57e21b643ec6a343560201fcf2b2d09dde83b8e3540dd4be2",
+        "proposalFingerprint": "69592f715e59809a9e744e79bd19182b88586d851d38e55a169759bf2413bbc4",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-4-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "선풍기 날개가 돌아가는 움직임은 밀기, 뒤집기, 돌리기 중 무엇인가? 그 까닭도 쓰시오.",
+        "bAnswer": "돌리기이다. 가운데 한 점을 중심으로 그 둘레를 돌기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "돌리기"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 점을 중심으로 돈다",
+              "가운데 점을 중심으로 돈다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "생활 속 돌리기 판단",
+        "bReason": "한 점 중심으로 도는 움직임이 돌리기임을 판단",
+        "cDecision": "exclude",
+        "cReason": "돌리기를 도는 움직임으로 바꾸어 쓰는 빈칸은 어형 복원에 그친다. B에서 선풍기 날개의 움직임과 중심점을 설명하도록 남긴다.",
+        "exclusionReason": "C: 돌리기의 동사형만 복원하는 빈칸을 제외하며 B의 실제 움직임 분류와 까닭은 유지한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "생활 속 돌리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "선풍기 날개가 돌아가는 움직임은 밀기, 뒤집기, 돌리기 중 무엇인가? 그 까닭도 쓰시오.",
+          "answer": "돌리기이다. 가운데 한 점을 중심으로 그 둘레를 돌기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "돌리기"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 점을 중심으로 돈다",
+                "가운데 점을 중심으로 돈다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "돌리기를 도는 움직임으로 바꾸어 쓰는 빈칸은 어형 복원에 그친다. B에서 선풍기 날개의 움직임과 중심점을 설명하도록 남긴다."
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-4-xc9",
+        "sourceIndex": 1875,
+        "proposalFingerprint": "69592f715e59809a9e744e79bd19182b88586d851d38e55a169759bf2413bbc4",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "exclude",
+        "verdict": "retain-planning-proposal",
+        "bReason": "선풍기의 움직임과 중심점으로 돌리기를 설명한다.",
+        "cReason": "도는과 돌리기의 어형 복원만 남는 빈칸을 제외했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "돌리기를 도는으로 바꾸는 어형 복원 C는 제외했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-4-xc18",
+      "sourceIndex": 1884,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-4-xc18",
+          "grade": "초4",
+          "reviewedHash": "e9261df2b356604c5569990ccf3d888513fa960a3348a845af6ede30d288d72f",
+          "inputHash": "8f04b7a113c0e52d02d88a270bc5da87d9ba6cb46502a11c6cfcf2497edab96a",
+          "evidence": "cohort-2026-10-07T05-40-40-815Z-0",
+          "blind": [
+            [
+              "e4-1-4-4-xc18",
+              "C",
+              "뒤집지",
+              "revise",
+              "빈칸에 뒤집지/밀지/바꾸지 등 여러 동사가 들어갈 수 있어 답이 정해지지 않고 문법 복원에 가까움"
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-4-4-xc18",
+              "pass",
+              "revise",
+              "none",
+              "C의 빈칸에 뒤집지, 넘기지 외에 밀지, 옮기지 등도 들어갈 수 있어 답이 정해지지 않습니다. 동사 복원에 가깝고 돌리기와 뒤집기의 구별을 확인하지 못합니다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-4-xc18",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-4-xc18",
+              "section": "초4::1-4 평면도형의 이동::1-4-4 평면도형 돌리기",
+              "term": "돌리기와 뒤집기 가르기",
+              "kind": "성질",
+              "level": "중",
+              "definition": "돌리기는 도형을 {넘기지 않고} 한 점을 중심으로 방향만 바꾸는 이동이다."
+            },
+            "B": {
+              "prompt": "돌리기와 뒤집기는 도형을 움직이는 방법이 어떻게 다른가?",
+              "answer": "돌리기는 도형을 뒤집지 않고 한 점을 중심으로 돌려 방향을 바꾼다. 뒤집기는 도형을 넘겨 좌우나 위아래를 바꾼다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "돌리기는 한 점을 중심으로 돌리며 뒤집지 않는다"
+                  ]
+                },
+                {
+                  "anyOf": [
+                    "뒤집기는 도형을 넘겨 좌우나 위아래가 바뀐다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "돌리기는 도형을 {뒤집지} 않고 한 점을 중심으로 방향만 바꾸는 이동이다.",
+              "acceptedAnswers": [
+                [
+                  "뒤집지",
+                  "넘기지"
+                ]
+              ]
+            },
+            "goal": "돌리기와 뒤집기 구분",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "e9261df2b356604c5569990ccf3d888513fa960a3348a845af6ede30d288d72f"
+          },
+          "currentNormalizedHash": "e9261df2b356604c5569990ccf3d888513fa960a3348a845af6ede30d288d72f",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "dba696b8d5161391786332b9d3b3008f7804dcc0c22e3e9e7620f184868eb710",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "99cad28bc5780db543eb234c0b2ee430f69a384fd0cc33d330f52b774bdc4486",
+      "currentProposal": {
+        "sourceIndex": 1884,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-4 평면도형 돌리기",
+        "sourceFingerprint": "50b4403915b263d8b831e9f048ee21a7d32b925d4666f927ec6c0bc979dba237",
+        "proposalFingerprint": "99cad28bc5780db543eb234c0b2ee430f69a384fd0cc33d330f52b774bdc4486",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "돌리기와 뒤집기는 도형을 움직이는 방법이 어떻게 다른가?",
+        "bAnswer": "돌리기는 도형을 뒤집지 않고 한 점을 중심으로 돌려 방향을 바꾼다. 뒤집기는 도형을 넘겨 좌우나 위아래를 바꾼다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "돌리기는 한 점을 중심으로 돌리며 뒤집지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "뒤집기는 도형을 넘겨 좌우나 위아래가 바뀐다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "돌리기와 뒤집기 구분",
+        "bReason": "한 점 중심 회전과 넘기는 동작을 구분",
+        "cDecision": "rewrite",
+        "cAfter": "종이 도형의 앞면이 위로 보이는 채로 한 점을 고정하고 그 점 둘레에서 방향을 바꾸었다. 이 움직임은 밀기, 뒤집기, 돌리기 중 {돌리기}이다.",
+        "cReason": "넘기지 않고가 어려운 말이라 뒤집지로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "돌리기와 뒤집기 가르기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "종이 도형의 앞면이 위로 보이는 채로 한 점을 고정하고 그 점 둘레에서 방향을 바꾸었다. 이 움직임은 밀기, 뒤집기, 돌리기 중 {돌리기}이다.",
+        "cStudentSentence": "종이 도형의 앞면이 위로 보이는 채로 한 점을 고정하고 그 점 둘레에서 방향을 바꾸었다. 이 움직임은 밀기, 뒤집기, 돌리기 중 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "돌리기",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "돌리기와 뒤집기는 도형을 움직이는 방법이 어떻게 다른가?",
+          "answer": "돌리기는 도형을 뒤집지 않고 한 점을 중심으로 돌려 방향을 바꾼다. 뒤집기는 도형을 넘겨 좌우나 위아래를 바꾼다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "돌리기는 한 점을 중심으로 돌리며 뒤집지 않는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "뒤집기는 도형을 넘겨 좌우나 위아래가 바뀐다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "종이 도형의 앞면이 위로 보이는 채로 한 점을 고정하고 그 점 둘레에서 방향을 바꾸었다. 이 움직임은 밀기, 뒤집기, 돌리기 중 {돌리기}이다.",
+          "acceptedAnswers": [
+            [
+              "돌리기"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-4-xc18",
+        "sourceIndex": 1884,
+        "proposalFingerprint": "99cad28bc5780db543eb234c0b2ee430f69a384fd0cc33d330f52b774bdc4486",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "중심점 주위 이동과 앞뒤 넘기기의 차이를 설명한다.",
+        "cReason": "앞면을 유지하며 한 점 둘레에서 방향을 바꾸는 상황을 분류한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "앞면을 유지하며 한 점 주위로 방향을 바꾸는 실제 움직임을 분류하게 했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-4-xc22",
+      "sourceIndex": 1887,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-4-xc22",
+          "grade": "초4",
+          "reviewedHash": "c1ef5e352f5776b59542853faa3a5e87cce229d36c4d0211b5459d745335aec3",
+          "inputHash": "8f04b7a113c0e52d02d88a270bc5da87d9ba6cb46502a11c6cfcf2497edab96a",
+          "evidence": "cohort-2026-10-07T05-40-40-815Z-0",
+          "blind": [
+            [
+              "e4-1-4-4-xc22",
+              "C",
+              "반",
+              "revise",
+              "한 바퀴 돌려도 항상 처음과 같아 '반'만 정답으로 정해지지 않음. 앞 문장의 180°를 끌어오는 단서가 약함"
+            ]
+          ],
+          "key": [
+            [
+              "e4-1-4-4-xc22",
+              "pass",
+              "revise",
+              "none",
+              "C의 '{반} 바퀴'는 하나로 정해지지 않습니다. 위아래와 좌우가 같은 모양은 한 바퀴를 돌려도 항상 처음과 같으므로 '한'도 참인 문장이 됩니다. 앞 문장의 180°가 '반'을 가리키는 단서가 약합니다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-4-xc22",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-4-xc22",
+              "section": "초4::1-4 평면도형의 이동::1-4-4 평면도형 돌리기",
+              "term": "반 바퀴 돌려도 같은 모양",
+              "kind": "성질",
+              "level": "상",
+              "definition": "$180^\\circ$ 돌리면 위아래와 좌우가 모두 바뀌므로, {위아래도 똑같고 좌우도 똑같은} 모양은 가운데 점 둘레로 반 바퀴 돌려도 처음과 같다.",
+              "example": {
+                "prompt": "크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 $180^\\circ$ 돌려도 처음과 같은 까닭은?",
+                "answer": "위아래도 좌우도 똑같아서"
+              }
+            },
+            "B": {
+              "prompt": "크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 $180^\\circ$ 돌려도 처음과 같게 되는 까닭을 쓰시오.",
+              "answer": "$180^\\circ$ 돌리면 위아래와 좌우가 모두 바뀌는데, 이 모양은 위아래도 좌우도 똑같아서 달라지지 않는다.",
+              "requiredIdeas": [
+                {
+                  "anyOf": [
+                    "위아래도 좌우도 똑같아서",
+                    "바뀌어도 똑같다"
+                  ]
+                }
+              ]
+            },
+            "C": {
+              "sentence": "$180^\\circ$ 돌리면 위아래와 좌우가 모두 바뀌므로, 위아래도 좌우도 똑같은 모양은 가운데 점 둘레로 {반} 바퀴 돌려도 처음과 같다.",
+              "acceptedAnswers": [
+                [
+                  "반"
+                ]
+              ]
+            },
+            "goal": "반 바퀴 돌려도 같은 까닭",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "c1ef5e352f5776b59542853faa3a5e87cce229d36c4d0211b5459d745335aec3"
+          },
+          "currentNormalizedHash": "c1ef5e352f5776b59542853faa3a5e87cce229d36c4d0211b5459d745335aec3",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "5f819fa8e2462ea1e8eb1d9c95f63361c905685fc8698f8b1e4220ff48ed035f",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "1ca41864d465c6b9d7536774163d2010ac19aefa92b34802fe08d81917475740",
+      "currentProposal": {
+        "sourceIndex": 1887,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-4 평면도형 돌리기",
+        "sourceFingerprint": "965e932e9df0b1463c5d082b81cd13b9b2bdd12a2b9b9498833a18652e6baca7",
+        "proposalFingerprint": "1ca41864d465c6b9d7536774163d2010ac19aefa92b34802fe08d81917475740",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-4-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 $180^\\circ$ 돌려도 처음과 같게 되는 까닭을 쓰시오.",
+        "bAnswer": "위아래 두 원이 서로 자리를 바꾸지만 두 원의 크기와 모양이 같아서 처음과 같게 됩니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 같은 두 원이 서로 자리를 바꾸어도 같은 모양이기 때문이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "반 바퀴 돌려도 같은 까닭",
+        "bReason": "구체적으로 같은 원 두 개가 서로 자리를 바꾸는 경우를 설명한다. 모든 반 바퀴 대칭 모양이 반드시 좌우와 위아래 각각 대칭일 필요는 없다.",
+        "exampleNeeded": "크기가 같은 원 두 개를 위아래로 붙인 $8$ 모양 그림",
+        "cDecision": "rewrite",
+        "cAfter": "$180^\\circ$는 {반} 바퀴이다. 크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 이만큼 돌리면 두 원의 자리가 바뀌어도 처음과 같은 모양이 된다.",
+        "cReason": "긴 조건 구절 빈칸을 반 바퀴 한 낱말로 바꿈",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "반 바퀴 돌려도 같은 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$180^\\circ$는 {반} 바퀴이다. 크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 이만큼 돌리면 두 원의 자리가 바뀌어도 처음과 같은 모양이 된다.",
+        "cStudentSentence": "$180^\\circ$는 □ 바퀴이다. 크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 이만큼 돌리면 두 원의 자리가 바뀌어도 처음과 같은 모양이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "반",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 $180^\\circ$ 돌려도 처음과 같게 되는 까닭을 쓰시오.",
+          "answer": "위아래 두 원이 서로 자리를 바꾸지만 두 원의 크기와 모양이 같아서 처음과 같게 됩니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "크기가 같은 두 원이 서로 자리를 바꾸어도 같은 모양이기 때문이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$180^\\circ$는 {반} 바퀴이다. 크기가 같은 원 두 개를 위아래로 붙인 모양을 가운데 점 둘레로 이만큼 돌리면 두 원의 자리가 바뀌어도 처음과 같은 모양이 된다.",
+          "acceptedAnswers": [
+            [
+              "반"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-4-xc22",
+        "sourceIndex": 1887,
+        "proposalFingerprint": "1ca41864d465c6b9d7536774163d2010ac19aefa92b34802fe08d81917475740",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "같은 두 원이 자리를 바꿔도 일치한다는 구체적인 이유만 요구한다.",
+        "cReason": "180도에 직접 반 바퀴를 연결하여 한 바퀴라는 다른 답을 배제했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "180도가 반 바퀴임을 직접 물어 한 바퀴의 다른 참 답을 배제했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    },
+    {
+      "id": "e4-1-4-4-xc24",
+      "sourceIndex": 1889,
+      "originalIndependentEvents": [
+        {
+          "id": "e4-1-4-4-xc24",
+          "grade": "초4",
+          "reviewedHash": "ce2aee040f01101ce461a8e00a6474d3c955ae908e98fceb85ced43c5327ed83",
+          "inputHash": "8f04b7a113c0e52d02d88a270bc5da87d9ba6cb46502a11c6cfcf2497edab96a",
+          "evidence": "cohort-2026-10-07T05-40-40-815Z-0",
+          "blind": [],
+          "key": [
+            [
+              "e4-1-4-4-xc24",
+              "revise",
+              "pass",
+              "none",
+              "B 제외 사유 '두 방향 뒤집기와 돌리기의 연결 사실'은 주제만 적었을 뿐 제외 근거가 아닙니다. 다른 어떤 ID와 겹치는지도 밝히지 않았습니다. 180° 돌리기가 가로·세로 두 번 뒤집기와 같은 까닭은 설명형 B로 충분히 물을 수 있는 내용입니다."
+            ]
+          ],
+          "reviewedProposal": {
+            "id": "e4-1-4-4-xc24",
+            "grade": "초4",
+            "source": {
+              "id": "e4-1-4-4-xc24",
+              "section": "초4::1-4 평면도형의 이동::1-4-4 평면도형 돌리기",
+              "term": "돌리기와 두 번 뒤집기",
+              "kind": "성질",
+              "level": "상",
+              "definition": "도형을 $180^\\circ$ 돌린 모양은 오른쪽으로 뒤집고 다시 {아래쪽으로 뒤집은} 모양과 같다."
+            },
+            "B": {
+              "excluded": "두 방향 뒤집기와 돌리기의 연결 사실"
+            },
+            "C": {
+              "sentence": "도형을 $180^\\circ$ 돌린 모양은 오른쪽으로 뒤집고 다시 {아래쪽}으로 뒤집은 모양과 같다.",
+              "acceptedAnswers": [
+                [
+                  "아래쪽",
+                  "위쪽"
+                ]
+              ]
+            },
+            "goal": "돌리기와 두 번 뒤집기",
+            "coreAfter": null,
+            "coreReason": null,
+            "hash": "ce2aee040f01101ce461a8e00a6474d3c955ae908e98fceb85ced43c5327ed83"
+          },
+          "currentNormalizedHash": "ce2aee040f01101ce461a8e00a6474d3c955ae908e98fceb85ced43c5327ed83",
+          "matchesCurrentNormalizedHash": true,
+          "currentWorkerFingerprint": "8b44b36662aebb3adccfceab46a82d07497a05ff33ac01991498873fdda2bdf9",
+          "notEditorialApproval": true
+        }
+      ],
+      "currentProposalFingerprint": "6f5a42b6f5a8ca1fdea414730529335790165694a97f157254ac902cb5ea2d57",
+      "currentProposal": {
+        "sourceIndex": 1889,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-4 평면도형 돌리기",
+        "sourceFingerprint": "59eec1e42a990742d95a2839fcc859b2a39b8e675d1940d0cd2237858d622c2b",
+        "proposalFingerprint": "6f5a42b6f5a8ca1fdea414730529335790165694a97f157254ac902cb5ea2d57",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-4-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "도형을 오른쪽으로 뒤집고 다시 아래쪽으로 뒤집었다. 처음 도형을 반 바퀴 돌렸을 때와 모양이 같은지, 위아래와 왼쪽·오른쪽이 바뀌는 모습을 생각하여 설명하시오. 놓인 위치는 비교하지 않습니다.",
+        "bAnswer": "같은 모양입니다. 두 번 뒤집으면 왼쪽과 오른쪽, 위쪽과 아래쪽이 모두 바뀌는데 반 바퀴 돌려도 똑같이 바뀝니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 모양이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 번 뒤집기와 반 바퀴 돌리기 모두 좌우와 위아래가 바뀐다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "돌리기와 두 번 뒤집기",
+        "bReason": "두 방향 뒤집기와 반 바퀴 돌리기의 관계는 각각의 결과를 묻는 e4-1-4-3-xc19 및 e4-1-4-4-xc16과 구별되는 연결 목표이므로 B를 복원한다.",
+        "exclusionReason": null,
+        "cDecision": "rewrite",
+        "cAfter": "도형을 $180^\\circ$ 돌린 모양은 오른쪽으로 뒤집고 다시 {아래쪽}으로 뒤집은 모양과 같다.",
+        "cReason": "긴 구절 빈칸을 방향 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "위쪽"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "돌리기와 두 번 뒤집기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "도형을 $180^\\circ$ 돌린 모양은 오른쪽으로 뒤집고 다시 {아래쪽}으로 뒤집은 모양과 같다.",
+        "cStudentSentence": "도형을 $180^\\circ$ 돌린 모양은 오른쪽으로 뒤집고 다시 □으로 뒤집은 모양과 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "아래쪽",
+            "equivalents": [
+              "위쪽"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "도형을 오른쪽으로 뒤집고 다시 아래쪽으로 뒤집었다. 처음 도형을 반 바퀴 돌렸을 때와 모양이 같은지, 위아래와 왼쪽·오른쪽이 바뀌는 모습을 생각하여 설명하시오. 놓인 위치는 비교하지 않습니다.",
+          "answer": "같은 모양입니다. 두 번 뒤집으면 왼쪽과 오른쪽, 위쪽과 아래쪽이 모두 바뀌는데 반 바퀴 돌려도 똑같이 바뀝니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 모양이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 번 뒤집기와 반 바퀴 돌리기 모두 좌우와 위아래가 바뀐다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "도형을 $180^\\circ$ 돌린 모양은 오른쪽으로 뒤집고 다시 {아래쪽}으로 뒤집은 모양과 같다.",
+          "acceptedAnswers": [
+            [
+              "아래쪽",
+              "위쪽"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "directReading": {
+        "id": "e4-1-4-4-xc24",
+        "sourceIndex": 1889,
+        "proposalFingerprint": "6f5a42b6f5a8ca1fdea414730529335790165694a97f157254ac902cb5ea2d57",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "두 번 뒤집기와 반 바퀴 돌리기를 연결하는 목표는 별개여서 B를 복원했다.",
+        "cReason": "모양의 방향을 비교할 때 아래쪽과 위쪽 뒤집기는 같은 결과이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "directPlanningDisposition": "amended",
+      "reason": "두 변환 결과를 연결하는 독자적 설명 목표를 인정해 B를 복원했다.",
+      "isReleaseApproval": false,
+      "rootIndependentReviewStillRequired": true
+    }
+  ]
+}

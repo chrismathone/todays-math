@@ -175,6 +175,31 @@ export const textbookSourceFragmentSchema: z.ZodType<TextbookSourceFragment> =
   );
 export const textbookSemanticNodeSchema = z.discriminatedUnion("kind", [
   z.strictObject({
+    kind: z.literal("conceptQuestions"),
+    version: z.literal(1),
+    questions: z
+      .array(
+        z.strictObject({
+          entryId: textbookKeySchema,
+          // Frozen v1 vocabulary belongs to textbooks, independent of live bank schemas.
+          question: z.strictObject({
+            prompt: textbookTextSchema,
+            answer: textbookTextSchema,
+            requiredIdeas: z
+              .array(
+                z.strictObject({
+                  anyOf: z.array(textbookTextSchema).min(1).max(8),
+                }),
+              )
+              .min(1)
+              .max(6),
+          }),
+        }),
+      )
+      .min(1)
+      .max(2),
+  }),
+  z.strictObject({
     kind: z.literal("writing"),
     prompts: z.array(textbookTextSchema).min(1).max(100),
     lines: z.number().int().min(1).max(30),

@@ -1,0 +1,3709 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:49:33.588885+00:00",
+  "rows": [
+    {
+      "id": "e5-2-5-2-xc4",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정육면체의 꼭짓점의 수를 안다.",
+      "bReason": "꼭짓점 수 $8$ 하나만 답하는 사실이라 xc13에서 함께 묻는 것으로 충분하다.",
+      "exclusionReason": "단순한 수 하나라 B 가치가 낮다. e5-2-5-2-xc13 B로 대체한다.",
+      "cDecision": "keep",
+      "cAfter": "정육면체의 꼭짓점은 {$8$}개이다.",
+      "cReason": "꼭짓점 수 $8$을 묻는 짧고 분명한 빈칸이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1450,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc4",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체의 꼭짓점 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정육면체의 꼭짓점은 {$8$}개이다.",
+        "studentC": "정육면체의 꼭짓점은 □개이다.",
+        "answers": [
+          "$8$"
+        ]
+      },
+      "sourceFingerprint": "edff5d4234031fde5721b92f84e8dc9c39dec6ad6c626bd926012929d7c2dd90",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cFrozenDefinition": "정육면체의 꼭짓점은 {$8$}개이다.",
+      "cFrozenStudentSentence": "정육면체의 꼭짓점은 □개이다.",
+      "cProposedAnswers": [
+        "$8$"
+      ],
+      "cStudentAfter": "정육면체의 꼭짓점은 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체의 꼭짓점은 {$8$}개이다.",
+      "cStudentSentence": "정육면체의 꼭짓점은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정육면체의 꼭짓점은 {$8$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "단순한 수 하나라 B 가치가 낮다. e5-2-5-2-xc13 B로 대체한다."
+      },
+      "proposalFingerprint": "b9c0914bfcd25de88579b1f03ca47eda54492e9001156ef5d2f50ab34dfdf992",
+      "questionRevision": "planning-e5e6-20261006-b9c0914bfcd2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 모서리 $12$개의 길이는 서로 어떤 관계인지 쓰고, 면의 모양을 근거로 그 까닭을 설명하시오.",
+      "bAnswer": "모두 같다. 면이 모두 크기가 같은 정사각형이고 정사각형은 네 변의 길이가 같으므로, 면의 변인 모서리의 길이도 모두 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모서리의 길이가 모두 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "면이 모두 크기가 같은 정사각형이다",
+            "면이 정사각형이라 네 변의 길이가 같다"
+          ]
+        }
+      ],
+      "bGoal": "모서리 길이가 모두 같은 까닭을 정사각형 면과 연결한다.",
+      "bReason": "사실만 되묻지 않고 면의 모양에서 모서리 길이가 같음을 끌어내게 했다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 모서리 $12$개는 길이가 모두 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "같습니다"
+          ]
+        }
+      ],
+      "cReason": "'길이가 같다'라는 서술어 전체 대신 비교 낱말 하나만 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1451,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc5",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "모서리 길이가 모두 같음",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정육면체는 모든 모서리의 {길이가 같다}.",
+        "studentC": "정육면체는 모든 모서리의 □.",
+        "answers": [
+          "길이가 같다"
+        ]
+      },
+      "sourceFingerprint": "988d4ade6ffae9bcd80187f73bb790919d3add20390a1366f04588a9c0362977",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "정육면체의 모서리 $12$개는 길이가 모두 □.",
+      "cMarkedSentence": "정육면체의 모서리 $12$개는 길이가 모두 {같다}.",
+      "cStudentSentence": "정육면체의 모서리 $12$개는 길이가 모두 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "같습니다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 모서리 $12$개의 길이는 서로 어떤 관계인지 쓰고, 면의 모양을 근거로 그 까닭을 설명하시오.",
+        "answer": "모두 같다. 면이 모두 크기가 같은 정사각형이고 정사각형은 네 변의 길이가 같으므로, 면의 변인 모서리의 길이도 모두 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모서리의 길이가 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "면이 모두 크기가 같은 정사각형이다",
+              "면이 정사각형이라 네 변의 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체의 모서리 $12$개는 길이가 모두 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "같습니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a9d65de6b839c024febb5323d945665310a2421764f79f26e9771a223432f106",
+      "questionRevision": "planning-e5e6-20261006-a9d65de6b839",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc6",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "주변 물건에서 정육면체 모양을 찾는다.",
+      "bReason": "물건 이름을 대는 것만으로는 설명할 관계가 없고, 실제 각설탕은 정육면체가 아닌 것도 있다.",
+      "exclusionReason": "사소한 예 들기라 B 가치가 낮다. 판별 기준은 e5-2-5-2-xc7 B에서 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "여섯 면이 모두 크기가 같은 정사각형인 주사위는 {정육면체} 모양이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정육면체"
+          ]
+        }
+      ],
+      "cReason": "원문은 '직육면체'도 틀리지 않은 답이 되고 각설탕은 모양이 다양하므로, 면의 조건을 넣어 답을 하나로 정했다.",
+      "synonymNotes": "직육면체도 참인 포함 관계이지만, 면의 조건이 주어졌으므로 정답은 정육면체로 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1452,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc6",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "주변의 정육면체",
+        "kind": "성질",
+        "level": "하",
+        "definition": "주사위나 각설탕은 {정육면체} 모양이다.",
+        "studentC": "주사위나 각설탕은 □ 모양이다.",
+        "answers": [
+          "정육면체"
+        ]
+      },
+      "sourceFingerprint": "9f8458b3993d39b0a4c6b35c52cea6d391e925b824358e6808c6a12e75941e1d",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "정육면체"
+      ],
+      "cStudentAfter": "여섯 면이 모두 크기가 같은 정사각형인 주사위는 □ 모양이다.",
+      "cMarkedSentence": "여섯 면이 모두 크기가 같은 정사각형인 주사위는 {정육면체} 모양이다.",
+      "cStudentSentence": "여섯 면이 모두 크기가 같은 정사각형인 주사위는 □ 모양이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정육면체",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "여섯 면이 모두 크기가 같은 정사각형인 주사위는 {정육면체} 모양이다.",
+        "acceptedAnswers": [
+          [
+            "정육면체"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "사소한 예 들기라 B 가치가 낮다. 판별 기준은 e5-2-5-2-xc7 B에서 묻는다."
+      },
+      "proposalFingerprint": "4800659e8e6167620c63270abca0afda98046e88dd8e573897b613f79d1c15ed",
+      "questionRevision": "planning-e5e6-20261006-4800659e8e61",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc7",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "여섯 면으로 둘러싸인 도형이 정육면체인지 알아보려면 면의 무엇을 확인해야 하는지 설명하시오. 또 정사각형 $2$개와 정사각형이 아닌 직사각형 $4$개로 둘러싸인 상자는 정육면체인지 답하시오.",
+      "bAnswer": "여섯 면이 모두 크기가 같은 정사각형인지 확인한다. 이 상자는 정사각형이 아닌 면이 있으므로 정육면체가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면이 모두 정사각형인지 확인한다",
+            "여섯 면이 모두 크기가 같은 정사각형인지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 상자는 정육면체가 아니다"
+          ]
+        }
+      ],
+      "bGoal": "면의 모양으로 정육면체를 판별한다.",
+      "bReason": "확인할 대상을 면으로 좁히고 반례가 되는 상자를 붙여 판별을 적용하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형 $2$개와 정사각형이 아닌 직사각형 $4$개로 둘러싸인 도형은 정육면체가 {아니다}. 정육면체는 여섯 면이 모두 {정사각형}이어야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다",
+            "아닙니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        }
+      ],
+      "cReason": "긴 구절을 외워 쓰게 하는 대신 실제 도형의 판별과 기준이 되는 도형 이름을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1453,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc7",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체 알아보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "여섯 면으로 둘러싸인 도형에서 {면이 모두 크기가 같은 정사각형}인지 보면 정육면체인지 알 수 있다.",
+        "studentC": "여섯 면으로 둘러싸인 도형에서 □인지 보면 정육면체인지 알 수 있다.",
+        "answers": [
+          "면이 모두 크기가 같은 정사각형"
+        ]
+      },
+      "sourceFingerprint": "850715d5780112d361754647c57877a30921b2340af857ee870b7730af3e9d97",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "아니다",
+        "정사각형"
+      ],
+      "cStudentAfter": "정사각형 $2$개와 정사각형이 아닌 직사각형 $4$개로 둘러싸인 도형은 정육면체가 □. 정육면체는 여섯 면이 모두 □이어야 한다.",
+      "cMarkedSentence": "정사각형 $2$개와 정사각형이 아닌 직사각형 $4$개로 둘러싸인 도형은 정육면체가 {아니다}. 정육면체는 여섯 면이 모두 {정사각형}이어야 한다.",
+      "cStudentSentence": "정사각형 $2$개와 정사각형이 아닌 직사각형 $4$개로 둘러싸인 도형은 정육면체가 □. 정육면체는 여섯 면이 모두 □이어야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": [
+            "아닙니다"
+          ]
+        },
+        {
+          "key": "정사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "여섯 면으로 둘러싸인 도형이 정육면체인지 알아보려면 면의 무엇을 확인해야 하는지 설명하시오. 또 정사각형 $2$개와 정사각형이 아닌 직사각형 $4$개로 둘러싸인 상자는 정육면체인지 답하시오.",
+        "answer": "여섯 면이 모두 크기가 같은 정사각형인지 확인한다. 이 상자는 정사각형이 아닌 면이 있으므로 정육면체가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면이 모두 정사각형인지 확인한다",
+              "여섯 면이 모두 크기가 같은 정사각형인지 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 상자는 정육면체가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형 $2$개와 정사각형이 아닌 직사각형 $4$개로 둘러싸인 도형은 정육면체가 {아니다}. 정육면체는 여섯 면이 모두 {정사각형}이어야 한다.",
+        "acceptedAnswers": [
+          [
+            "아니다",
+            "아닙니다"
+          ],
+          [
+            "정사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "acf0136b19b407f89086d0a590c5527e832792f955c08355d02d23641f8b97c7",
+      "questionRevision": "planning-e5e6-20261006-acf0136b19b4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc8",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 꼭짓점에서 만나는 면의 수를 안다.",
+      "bReason": "그림 없이 수 하나를 세는 사실이라 설명할 관계가 없다.",
+      "exclusionReason": "단순한 수 하나라 B 가치가 낮다. 이 범위에 확인되는 대체 문항은 없다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 한 꼭짓점에서 만나는 면은 {$3$}개이고, 모서리도 {$3$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "cReason": "앞 내용을 가리키는 '에서도'를 빼고, 만나는 면과 모서리의 수를 함께 확인하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1454,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc8",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "한 꼭짓점의 면 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정육면체의 한 꼭짓점에서도 면 {세 개}가 만난다.",
+        "studentC": "정육면체의 한 꼭짓점에서도 면 □가 만난다.",
+        "answers": [
+          "세 개"
+        ]
+      },
+      "sourceFingerprint": "88f93cf16a223b68d03992c5db7ddc7079c6581affd2342e14685477fca7f2b0",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$3$"
+      ],
+      "cStudentAfter": "정육면체의 한 꼭짓점에서 만나는 면은 □개이고, 모서리도 □개이다.",
+      "cMarkedSentence": "정육면체의 한 꼭짓점에서 만나는 면은 {$3$}개이고, 모서리도 {$3$}개이다.",
+      "cStudentSentence": "정육면체의 한 꼭짓점에서 만나는 면은 □개이고, 모서리도 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        },
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정육면체의 한 꼭짓점에서 만나는 면은 {$3$}개이고, 모서리도 {$3$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "세"
+          ],
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "단순한 수 하나라 B 가치가 낮다. 이 범위에 확인되는 대체 문항은 없다."
+      },
+      "proposalFingerprint": "71481a72e261c596f7859cbae05e283779152c8d4d00602436efbc1e2f59aee8",
+      "questionRevision": "planning-e5e6-20261006-71481a72e261",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 한 면의 넓이를 한 모서리의 길이로 구하는 방법을 면의 모양을 들어 설명하시오. 또 한 모서리의 길이가 $6$ $\\mathrm{cm}$일 때 한 면의 넓이를 구하시오.",
+      "bAnswer": "한 면이 정사각형이므로 (한 모서리의 길이)$\\times$(한 모서리의 길이)로 구한다. $6\\times6=36$이므로 $36\\,\\text{cm}^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 면이 정사각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 모서리의 길이를 같은 수끼리 곱한다",
+            "(한 모서리의 길이)$\\times$(한 모서리의 길이)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36\\,\\text{cm}^2$",
+            "$36$"
+          ]
+        }
+      ],
+      "bGoal": "한 면이 정사각형임을 이용해 넓이를 구한다.",
+      "bReason": "면의 모양과 넓이 구하는 방법을 묻고 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "한 모서리의 길이가 $3$ $\\mathrm{cm}$인 정육면체의 한 면은 {정사각형}이므로, 한 면의 넓이는 $3\\times$ {$3$} $=$ {$9$} ($\\text{cm}^2$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "cReason": "'두 번 곱한 값'이라는 모호한 말 대신 실제 곱셈식으로 넓이를 구하게 했다.",
+      "coreAfter": "정육면체의 한 면은 {정사각형}이므로, 한 면의 넓이는 (한 모서리의 길이)$\\times$(한 모서리의 길이)이다.",
+      "coreReason": "'두 번 곱한 값'은 $2$를 곱하는 것으로 잘못 읽힐 수 있다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "이미 유효한 정사각형 표적을 유지한다. 두 번 곱한다는 모호한 말을 같은 모서리 길이끼리의 곱으로 쓴다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1455,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc9",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체의 한 면의 넓이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정육면체의 한 면은 {정사각형}이라, 넓이는 한 모서리의 길이를 두 번 곱한 값이다.",
+        "studentC": "정육면체의 한 면은 □이라, 넓이는 한 모서리의 길이를 두 번 곱한 값이다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "sourceFingerprint": "33f9ed95787f242c05ebd9b298aee102dc89e2e48c5b352a0e189c1f67654d8e",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "정사각형",
+        "$3$",
+        "$9$"
+      ],
+      "cStudentAfter": "한 모서리의 길이가 $3$ $\\mathrm{cm}$인 정육면체의 한 면은 □이므로, 한 면의 넓이는 $3\\times$ □ $=$ □ ($\\text{cm}^2$)이다.",
+      "cMarkedSentence": "한 모서리의 길이가 $3$ $\\mathrm{cm}$인 정육면체의 한 면은 {정사각형}이므로, 한 면의 넓이는 $3\\times$ {$3$} $=$ {$9$} ($\\text{cm}^2$)이다.",
+      "cStudentSentence": "한 모서리의 길이가 $3$ $\\mathrm{cm}$인 정육면체의 한 면은 □이므로, 한 면의 넓이는 $3\\times$ □ $=$ □ ($\\text{cm}^2$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정사각형",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 한 면의 넓이를 한 모서리의 길이로 구하는 방법을 면의 모양을 들어 설명하시오. 또 한 모서리의 길이가 $6$ $\\mathrm{cm}$일 때 한 면의 넓이를 구하시오.",
+        "answer": "한 면이 정사각형이므로 (한 모서리의 길이)$\\times$(한 모서리의 길이)로 구한다. $6\\times6=36$이므로 $36\\,\\text{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 면이 정사각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 모서리의 길이를 같은 수끼리 곱한다",
+              "(한 모서리의 길이)$\\times$(한 모서리의 길이)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36\\,\\text{cm}^2$",
+              "$36$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 모서리의 길이가 $3$ $\\mathrm{cm}$인 정육면체의 한 면은 {정사각형}이므로, 한 면의 넓이는 $3\\times$ {$3$} $=$ {$9$} ($\\text{cm}^2$)이다.",
+        "acceptedAnswers": [
+          [
+            "정사각형"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "215bdaa4a989bd71825bee4a8cce6f9b22f62054a8eb0ca5b276342a21812d27",
+      "questionRevision": "planning-e5e6-20261006-215bdaa4a989",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc10",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "세 길이가 같지 않은 직육면체는 정육면체가 아님을 안다.",
+      "bReason": "xc16 B가 조건과 반례 판단을 함께 물어 같은 내용을 다룬다.",
+      "exclusionReason": "B는 e5-2-5-2-xc16과 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $3$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $5$ $\\mathrm{cm}$인 직육면체는 정육면체가 {아니다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다",
+            "아닙니다"
+          ]
+        }
+      ],
+      "cReason": "'다른'이 모두 다른지 하나만 다른지 모호해, 두 길이만 같은 실제 예로 판단하게 했다.",
+      "coreAfter": "가로, 세로, 높이 중 길이가 다른 것이 하나라도 있는 직육면체는 {정육면체가 아니다}.",
+      "coreReason": "원문 '다른'은 세 길이가 모두 다른 경우로만 읽힐 수 있다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "현재 유효한 정육면체가 아니다 표적을 보존한다. 세 길이가 모두 달라야 한다는 오독을 피하도록 하나라도 다른 경우로 조건을 정한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1456,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc10",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체가 아닌 직육면체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "가로, 세로, 높이가 다른 직육면체는 {정육면체가 아니다}.",
+        "studentC": "가로, 세로, 높이가 다른 직육면체는 □.",
+        "answers": [
+          "정육면체가 아니다"
+        ]
+      },
+      "sourceFingerprint": "f4ebde2e9fc0f24a8e40707b58cff0aa0737eda002128d0359309c707fcbe904",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "아니다"
+      ],
+      "cStudentAfter": "가로 $3$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $5$ $\\mathrm{cm}$인 직육면체는 정육면체가 □.",
+      "cMarkedSentence": "가로 $3$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $5$ $\\mathrm{cm}$인 직육면체는 정육면체가 {아니다}.",
+      "cStudentSentence": "가로 $3$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $5$ $\\mathrm{cm}$인 직육면체는 정육면체가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": [
+            "아닙니다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가로 $3$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $5$ $\\mathrm{cm}$인 직육면체는 정육면체가 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "아니다",
+            "아닙니다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-2-xc16과 중복된다."
+      },
+      "proposalFingerprint": "53a339d84b2073ec7afca7803c86ad0cd4d10f39469bd76ea4e4feace02672b1",
+      "questionRevision": "planning-e5e6-20261006-53a339d84b20",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 모든 모서리 길이의 합을 알 때 한 모서리의 길이를 구하는 방법과, 그렇게 구할 수 있는 까닭을 설명하시오. 또 합이 $84$ $\\mathrm{cm}$일 때 한 모서리의 길이를 구하시오.",
+      "bAnswer": "모서리 $12$개의 길이가 모두 같으므로 합을 $12$로 나눈다. $84\\div12=7$이므로 $7$ $\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합을 $12$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리 $12$개의 길이가 모두 같다",
+            "모서리의 길이가 모두 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$ $\\mathrm{cm}$",
+            "$7$"
+          ]
+        }
+      ],
+      "bGoal": "모서리 길이의 합에서 한 모서리의 길이를 거꾸로 구한다.",
+      "bReason": "방법과 근거를 나누어 묻고 수로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "모든 모서리 길이의 합이 $60$ $\\mathrm{cm}$인 정육면체의 한 모서리의 길이는 $60\\div$ {$12$} $=$ {$5$} ($\\mathrm{cm}$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cReason": "'길이가 모두 같으므로'라는 이유 구절을 통째로 쓰게 하는 대신 나누는 수와 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1457,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc12",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "모서리 합으로 한 모서리 알기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정육면체의 모서리 $12$개는 {길이가 모두 같으므로}, 모든 모서리 길이의 합을 $12$로 나누면 한 모서리의 길이가 된다.",
+        "studentC": "정육면체의 모서리 $12$개는 □, 모든 모서리 길이의 합을 $12$로 나누면 한 모서리의 길이가 된다.",
+        "answers": [
+          "길이가 모두 같으므로"
+        ]
+      },
+      "sourceFingerprint": "6846535cdb481ad34b59d69a43bdb5fc325a51769c9becbdb99d2c76aecdabcc",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$5$"
+      ],
+      "cStudentAfter": "모든 모서리 길이의 합이 $60$ $\\mathrm{cm}$인 정육면체의 한 모서리의 길이는 $60\\div$ □ $=$ □ ($\\mathrm{cm}$)이다.",
+      "cMarkedSentence": "모든 모서리 길이의 합이 $60$ $\\mathrm{cm}$인 정육면체의 한 모서리의 길이는 $60\\div$ {$12$} $=$ {$5$} ($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "모든 모서리 길이의 합이 $60$ $\\mathrm{cm}$인 정육면체의 한 모서리의 길이는 $60\\div$ □ $=$ □ ($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 모든 모서리 길이의 합을 알 때 한 모서리의 길이를 구하는 방법과, 그렇게 구할 수 있는 까닭을 설명하시오. 또 합이 $84$ $\\mathrm{cm}$일 때 한 모서리의 길이를 구하시오.",
+        "answer": "모서리 $12$개의 길이가 모두 같으므로 합을 $12$로 나눈다. $84\\div12=7$이므로 $7$ $\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "합을 $12$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리 $12$개의 길이가 모두 같다",
+              "모서리의 길이가 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7$ $\\mathrm{cm}$",
+              "$7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모든 모서리 길이의 합이 $60$ $\\mathrm{cm}$인 정육면체의 한 모서리의 길이는 $60\\div$ {$12$} $=$ {$5$} ($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "428d4d4eb8f52c8b76821bf3baa3e4324599f895157bdab8665ac2bfec61c401",
+      "questionRevision": "planning-e5e6-20261006-428d4d4eb8f5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc13",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체와 정육면체의 면, 모서리, 꼭짓점의 수를 각각 쓰고, 두 도형에서 그 수가 서로 같은지 다른지 답하시오.",
+      "bAnswer": "두 도형 모두 면 $6$개, 모서리 $12$개, 꼭짓점 $8$개로 수가 서로 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면 $6$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리 $12$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점 $8$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 도형에서 수가 같다"
+          ]
+        }
+      ],
+      "bGoal": "두 도형의 같은 점을 구성 요소의 수로 말한다.",
+      "bReason": "xc2~xc4의 수 세 가지를 모아 두 도형의 같은 점으로 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체와 정육면체는 면, 모서리, 꼭짓점의 수가 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "같습니다"
+          ]
+        }
+      ],
+      "cReason": "'수가 같다' 전체 대신 비교 낱말 하나만 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1458,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc13",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "직육면체와 같은 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체와 정육면체는 면, 모서리, 꼭짓점의 {수가 같다}.",
+        "studentC": "직육면체와 정육면체는 면, 모서리, 꼭짓점의 □.",
+        "answers": [
+          "수가 같다"
+        ]
+      },
+      "sourceFingerprint": "5d19b1c88ed6c09305fa85996276d00667ec19d9eea35bd913c2a386e9da699a",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "직육면체와 정육면체는 면, 모서리, 꼭짓점의 수가 서로 □.",
+      "cMarkedSentence": "직육면체와 정육면체는 면, 모서리, 꼭짓점의 수가 서로 {같다}.",
+      "cStudentSentence": "직육면체와 정육면체는 면, 모서리, 꼭짓점의 수가 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "같습니다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체와 정육면체의 면, 모서리, 꼭짓점의 수를 각각 쓰고, 두 도형에서 그 수가 서로 같은지 다른지 답하시오.",
+        "answer": "두 도형 모두 면 $6$개, 모서리 $12$개, 꼭짓점 $8$개로 수가 서로 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면 $6$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리 $12$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점 $8$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 도형에서 수가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체와 정육면체는 면, 모서리, 꼭짓점의 수가 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "같습니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "353851688c0b7818461dc09710c8641a5d0deec7bddcea385bfa4c750d2abe6a",
+      "questionRevision": "planning-e5e6-20261006-353851688c0b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc14",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체와 정육면체의 다른 점을 면의 모양과 모서리의 길이로 나누어 설명하시오.",
+      "bAnswer": "직육면체의 면은 직사각형이고 정육면체의 면은 모두 정사각형이다. 직육면체는 평행한 모서리끼리 길이가 같고, 정육면체는 모서리 $12$개의 길이가 모두 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직육면체의 면은 직사각형이고 정육면체의 면은 정사각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정육면체는 모서리의 길이가 모두 같고 직육면체는 모두 같지는 않을 수 있다",
+            "직육면체는 평행한 모서리끼리만 길이가 같고 정육면체는 모두 같다"
+          ]
+        }
+      ],
+      "bGoal": "두 도형의 차이를 면과 모서리로 비교한다.",
+      "bReason": "비교할 기준 두 가지를 질문에 정해 답의 범위를 좁혔다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+      "cReason": "직사각형과 대비해 정육면체의 면 모양을 답하는 짧은 비교 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1459,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc14",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "면 모양의 차이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+        "studentC": "직육면체의 면은 직사각형이고 정육면체의 면은 □이다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "sourceFingerprint": "761fd61bd1b5f2d9b486dc410c97987bc4a2de2c3bcb4643a967a80722fc5536",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cFrozenDefinition": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+      "cFrozenStudentSentence": "직육면체의 면은 직사각형이고 정육면체의 면은 □이다.",
+      "cProposedAnswers": [
+        "정사각형"
+      ],
+      "cStudentAfter": "직육면체의 면은 직사각형이고 정육면체의 면은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+      "cStudentSentence": "직육면체의 면은 직사각형이고 정육면체의 면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체와 정육면체의 다른 점을 면의 모양과 모서리의 길이로 나누어 설명하시오.",
+        "answer": "직육면체의 면은 직사각형이고 정육면체의 면은 모두 정사각형이다. 직육면체는 평행한 모서리끼리 길이가 같고, 정육면체는 모서리 $12$개의 길이가 모두 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직육면체의 면은 직사각형이고 정육면체의 면은 정사각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정육면체는 모서리의 길이가 모두 같고 직육면체는 모두 같지는 않을 수 있다",
+              "직육면체는 평행한 모서리끼리만 길이가 같고 정육면체는 모두 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "정사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ecd4bd1a88ba1ada6333ff63789766533f713c3dcdf3994b76eb65fd9e4e643b",
+      "questionRevision": "planning-e5e6-20261006-ecd4bd1a88ba",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc16",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "직육면체가 정육면체가 되려면 가로, 세로, 높이가 어떤 관계여야 하는지 쓰시오. 또 가로 $4$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $5$ $\\mathrm{cm}$인 직육면체가 정육면체인지 판단하시오.",
+      "bAnswer": "가로, 세로, 높이가 모두 같아야 한다. 주어진 직육면체는 높이가 달라 정육면체가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로, 세로, 높이가 모두 같아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "주어진 직육면체는 정육면체가 아니다"
+          ]
+        }
+      ],
+      "bGoal": "세 길이의 관계로 직육면체가 정육면체인지 판단한다.",
+      "bReason": "조건을 말해 주지 않고 묻고, 두 길이만 같은 예로 '모두'의 뜻을 확인하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "가로, 세로, 높이가 모두 같은 직육면체는 {정육면체}이다.",
+      "cReason": "세 길이가 모두 같다는 조건이 분명하고 도형 이름 하나만 답하면 된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1460,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc16",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "세 길이가 같은 직육면체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "가로, 세로, 높이가 모두 같은 직육면체는 {정육면체}이다.",
+        "studentC": "가로, 세로, 높이가 모두 같은 직육면체는 □이다.",
+        "answers": [
+          "정육면체"
+        ]
+      },
+      "sourceFingerprint": "087d17b119bedc8a5f80bdc0ce1027f55810f70c008ee21ccaa7bb3b9540b2ed",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cFrozenDefinition": "가로, 세로, 높이가 모두 같은 직육면체는 {정육면체}이다.",
+      "cFrozenStudentSentence": "가로, 세로, 높이가 모두 같은 직육면체는 □이다.",
+      "cProposedAnswers": [
+        "정육면체"
+      ],
+      "cStudentAfter": "가로, 세로, 높이가 모두 같은 직육면체는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정육면체"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로, 세로, 높이가 모두 같은 직육면체는 {정육면체}이다.",
+      "cStudentSentence": "가로, 세로, 높이가 모두 같은 직육면체는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정육면체",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체가 정육면체가 되려면 가로, 세로, 높이가 어떤 관계여야 하는지 쓰시오. 또 가로 $4$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $5$ $\\mathrm{cm}$인 직육면체가 정육면체인지 판단하시오.",
+        "answer": "가로, 세로, 높이가 모두 같아야 한다. 주어진 직육면체는 높이가 달라 정육면체가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로, 세로, 높이가 모두 같아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "주어진 직육면체는 정육면체가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로, 세로, 높이가 모두 같은 직육면체는 {정육면체}이다.",
+        "acceptedAnswers": [
+          [
+            "정육면체"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5194498a46c8098c90b7a313a6fe316dfc7249219493879053312b16bfcab7da",
+      "questionRevision": "planning-e5e6-20261006-5194498a46c8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc17",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "여섯 면이 모양과 크기가 같음을 합동이라는 말로 나타낸다.",
+      "bReason": "면이 크기가 같은 정사각형이라는 c1의 내용을 낱말만 바꾼 것이다.",
+      "exclusionReason": "B는 e5-2-5-2-c1과 내용이 겹친다.",
+      "cDecision": "keep",
+      "cAfter": "정육면체의 여섯 면은 모두 서로 {합동}이다.",
+      "cReason": "앞서 배운 합동이라는 낱말로 여섯 면의 관계를 짧게 답하는 문장이다.",
+      "synonymNotes": "'모양과 크기가 같다'는 뜻은 맞지만, 빈칸 자리에는 합동이 들어간다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1461,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc17",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "여섯 면의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정육면체의 여섯 면은 모두 서로 {합동}이다.",
+        "studentC": "정육면체의 여섯 면은 모두 서로 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "2f587b0b92f5145a37b14ad5a426fd0a35d1874f951aec05a3a8c6811c3fdeda",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cFrozenDefinition": "정육면체의 여섯 면은 모두 서로 {합동}이다.",
+      "cFrozenStudentSentence": "정육면체의 여섯 면은 모두 서로 □이다.",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "정육면체의 여섯 면은 모두 서로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체의 여섯 면은 모두 서로 {합동}이다.",
+      "cStudentSentence": "정육면체의 여섯 면은 모두 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정육면체의 여섯 면은 모두 서로 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-2-c1과 내용이 겹친다."
+      },
+      "proposalFingerprint": "15ac5535dfbe5a640ab2f46e9cf98153cafa7a605333c0f836203c7a9f0250e7",
+      "questionRevision": "planning-e5e6-20261006-15ac5535dfbe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 한 꼭짓점에서 만나는 세 모서리의 길이가 모두 같으면 나머지 모서리의 길이는 어떻게 되는지, 평행한 모서리의 길이 관계를 이용해 설명하시오. 그때 이 직육면체는 어떤 도형인지도 쓰시오.",
+      "bAnswer": "직육면체에서 서로 평행한 모서리는 길이가 같으므로 나머지 모서리도 그 세 모서리와 길이가 같아진다. 모서리 $12$개의 길이가 모두 같으므로 정육면체이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 평행한 모서리는 길이가 같다",
+            "길이가 같은 모서리가 $4$개씩 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리 $12$개의 길이가 모두 같아진다",
+            "나머지 모서리도 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정육면체이다"
+          ]
+        }
+      ],
+      "bGoal": "세 모서리만 확인해도 정육면체임을 알 수 있는 까닭을 설명한다.",
+      "bReason": "xc16과 결론이 같으므로 여기서는 세 모서리로 충분한 이유를 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체에서 한 꼭짓점에서 만나는 모서리 {$3$}개의 길이가 모두 같으면 그 직육면체는 {정육면체}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        },
+        {
+          "anyOf": [
+            "정육면체"
+          ]
+        }
+      ],
+      "cReason": "'한 꼭짓점에 모인 세 모서리'라는 긴 구절 대신 개수와 도형 이름을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1462,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc19",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체 판별",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직육면체에서 {한 꼭짓점에 모인 세 모서리}의 길이가 같으면 정육면체이다.",
+        "studentC": "직육면체에서 □의 길이가 같으면 정육면체이다.",
+        "answers": [
+          "한 꼭짓점에 모인 세 모서리"
+        ]
+      },
+      "sourceFingerprint": "a39b2b599174fb3e00a98b0d9bce5567d9f0d0cc1d0405ab28d582653a615094",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "정육면체"
+      ],
+      "cStudentAfter": "직육면체에서 한 꼭짓점에서 만나는 모서리 □개의 길이가 모두 같으면 그 직육면체는 □이다.",
+      "cMarkedSentence": "직육면체에서 한 꼭짓점에서 만나는 모서리 {$3$}개의 길이가 모두 같으면 그 직육면체는 {정육면체}이다.",
+      "cStudentSentence": "직육면체에서 한 꼭짓점에서 만나는 모서리 □개의 길이가 모두 같으면 그 직육면체는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        },
+        {
+          "key": "정육면체",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 한 꼭짓점에서 만나는 세 모서리의 길이가 모두 같으면 나머지 모서리의 길이는 어떻게 되는지, 평행한 모서리의 길이 관계를 이용해 설명하시오. 그때 이 직육면체는 어떤 도형인지도 쓰시오.",
+        "answer": "직육면체에서 서로 평행한 모서리는 길이가 같으므로 나머지 모서리도 그 세 모서리와 길이가 같아진다. 모서리 $12$개의 길이가 모두 같으므로 정육면체이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 평행한 모서리는 길이가 같다",
+              "길이가 같은 모서리가 $4$개씩 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리 $12$개의 길이가 모두 같아진다",
+              "나머지 모서리도 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정육면체이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체에서 한 꼭짓점에서 만나는 모서리 {$3$}개의 길이가 모두 같으면 그 직육면체는 {정육면체}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "세"
+          ],
+          [
+            "정육면체"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e37aa47c258f4c8a1249a62021924521115e21fcbd5c1dbe736ca3bdd7b4321a",
+      "questionRevision": "planning-e5e6-20261006-e37aa47c258f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc20",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "가로 $3$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $5$ $\\mathrm{cm}$인 직육면체와 모든 모서리 길이의 합이 같은 정육면체가 있다. 이 정육면체의 한 모서리의 길이를 구하는 방법을 설명하고 값을 구하시오.",
+      "bAnswer": "직육면체의 모서리 길이의 합은 $(3+4+5)\\times4=48$ ($\\mathrm{cm}$)이고, 정육면체는 모서리 $12$개의 길이가 같으므로 $48\\div12=4$, 즉 $4$ $\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직육면체의 모서리 길이의 합 $48$ $\\mathrm{cm}$를 $12$로 나눈다",
+            "$(3+4+5)\\div3$으로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$ $\\mathrm{cm}$",
+            "$4$"
+          ]
+        }
+      ],
+      "bGoal": "직육면체와 정육면체의 모서리 길이의 합을 연결해 한 모서리의 길이를 구한다.",
+      "bReason": "원문의 일반 문장은 길어서 이해하기 어려우므로 실제 직육면체로 방법을 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $2$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $7$ $\\mathrm{cm}$인 직육면체의 모든 모서리 길이의 합은 $(2+3+7)\\times$ {$4$} $=48$ ($\\mathrm{cm}$)이다. 모든 모서리 길이의 합이 이와 같은 정육면체의 한 모서리의 길이는 $48\\div$ {$12$} $=$ {$4$} ($\\mathrm{cm}$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "긴 조건문 끝에 결론 구절을 쓰게 하던 것을 실제 계산의 단계별 수로 바꾸었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1463,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc20",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "모서리 합이 같은 정육면체와 직육면체",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 모서리가 직육면체의 가로, 세로, 높이의 합을 $3$으로 나눈 값인 정육면체는 그 직육면체와 {모든 모서리 길이의 합이 같다}.",
+        "studentC": "한 모서리가 직육면체의 가로, 세로, 높이의 합을 $3$으로 나눈 값인 정육면체는 그 직육면체와 □.",
+        "answers": [
+          "모든 모서리 길이의 합이 같다"
+        ]
+      },
+      "sourceFingerprint": "14891aca8d6f1417bf07777a9fd7761f2a4297e83292c58a5a1d641480114e58",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$12$",
+        "$4$"
+      ],
+      "cStudentAfter": "가로 $2$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $7$ $\\mathrm{cm}$인 직육면체의 모든 모서리 길이의 합은 $(2+3+7)\\times$ □ $=48$ ($\\mathrm{cm}$)이다. 모든 모서리 길이의 합이 이와 같은 정육면체의 한 모서리의 길이는 $48\\div$ □ $=$ □ ($\\mathrm{cm}$)이다.",
+      "cMarkedSentence": "가로 $2$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $7$ $\\mathrm{cm}$인 직육면체의 모든 모서리 길이의 합은 $(2+3+7)\\times$ {$4$} $=48$ ($\\mathrm{cm}$)이다. 모든 모서리 길이의 합이 이와 같은 정육면체의 한 모서리의 길이는 $48\\div$ {$12$} $=$ {$4$} ($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "가로 $2$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $7$ $\\mathrm{cm}$인 직육면체의 모든 모서리 길이의 합은 $(2+3+7)\\times$ □ $=48$ ($\\mathrm{cm}$)이다. 모든 모서리 길이의 합이 이와 같은 정육면체의 한 모서리의 길이는 $48\\div$ □ $=$ □ ($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로 $3$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$, 높이 $5$ $\\mathrm{cm}$인 직육면체와 모든 모서리 길이의 합이 같은 정육면체가 있다. 이 정육면체의 한 모서리의 길이를 구하는 방법을 설명하고 값을 구하시오.",
+        "answer": "직육면체의 모서리 길이의 합은 $(3+4+5)\\times4=48$ ($\\mathrm{cm}$)이고, 정육면체는 모서리 $12$개의 길이가 같으므로 $48\\div12=4$, 즉 $4$ $\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직육면체의 모서리 길이의 합 $48$ $\\mathrm{cm}$를 $12$로 나눈다",
+              "$(3+4+5)\\div3$으로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$ $\\mathrm{cm}$",
+              "$4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $2$ $\\mathrm{cm}$, 세로 $3$ $\\mathrm{cm}$, 높이 $7$ $\\mathrm{cm}$인 직육면체의 모든 모서리 길이의 합은 $(2+3+7)\\times$ {$4$} $=48$ ($\\mathrm{cm}$)이다. 모든 모서리 길이의 합이 이와 같은 정육면체의 한 모서리의 길이는 $48\\div$ {$12$} $=$ {$4$} ($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$12$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7f60e0623c134e455cca416cac32e3d609afc32049dd68abf941d6c101873562",
+      "questionRevision": "planning-e5e6-20261006-7f60e0623c13",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "크기가 같은 작은 정육면체를 빈틈없이 쌓아 큰 정육면체를 만들려면 가로, 세로, 높이 방향으로 놓는 개수가 어떤 관계여야 하는지 설명하시오. 또 한 방향에 $3$개씩 놓아 만들 때 필요한 작은 정육면체의 수를 구하시오.",
+      "bAnswer": "세 방향으로 놓는 개수가 모두 같아야 모서리의 길이가 모두 같아진다. 한 층에 $3\\times3=9$(개)씩 $3$층이므로 $27$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로, 세로, 높이 방향으로 놓는 개수가 모두 같아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$27$개",
+            "$27$"
+          ]
+        }
+      ],
+      "bGoal": "쌓아서 정육면체가 되는 조건을 세 방향의 개수로 설명한다.",
+      "bReason": "조건을 묻고, 층별로 셀 수 있는 작은 수의 예를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "크기가 같은 작은 정육면체를 한 층에 가로 $2$개, 세로 $2$개씩 놓고 {$2$}층으로 쌓으면 큰 정육면체가 되고, 이때 작은 정육면체는 모두 {$8$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cReason": "'개수가 모두 같으면'이라는 구절 대신 실제로 쌓는 층수와 전체 개수를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1464,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc21",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "작은 정육면체로 쌓은 큰 정육면체",
+        "kind": "방법",
+        "level": "상",
+        "definition": "크기가 같은 작은 정육면체를 줄과 층을 맞추어 빈틈없이 쌓을 때, 가로, 세로, 높이에 놓는 {개수가 모두 같으면} 큰 정육면체가 된다.",
+        "studentC": "크기가 같은 작은 정육면체를 줄과 층을 맞추어 빈틈없이 쌓을 때, 가로, 세로, 높이에 놓는 □ 큰 정육면체가 된다.",
+        "answers": [
+          "개수가 모두 같으면"
+        ]
+      },
+      "sourceFingerprint": "12bb17e4f594955c9aa1c66b78f25ca9748a6f11e66e8c2f631e0a37f4340dee",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$8$"
+      ],
+      "cStudentAfter": "크기가 같은 작은 정육면체를 한 층에 가로 $2$개, 세로 $2$개씩 놓고 □층으로 쌓으면 큰 정육면체가 되고, 이때 작은 정육면체는 모두 □개이다.",
+      "cMarkedSentence": "크기가 같은 작은 정육면체를 한 층에 가로 $2$개, 세로 $2$개씩 놓고 {$2$}층으로 쌓으면 큰 정육면체가 되고, 이때 작은 정육면체는 모두 {$8$}개이다.",
+      "cStudentSentence": "크기가 같은 작은 정육면체를 한 층에 가로 $2$개, 세로 $2$개씩 놓고 □층으로 쌓으면 큰 정육면체가 되고, 이때 작은 정육면체는 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "크기가 같은 작은 정육면체를 빈틈없이 쌓아 큰 정육면체를 만들려면 가로, 세로, 높이 방향으로 놓는 개수가 어떤 관계여야 하는지 설명하시오. 또 한 방향에 $3$개씩 놓아 만들 때 필요한 작은 정육면체의 수를 구하시오.",
+        "answer": "세 방향으로 놓는 개수가 모두 같아야 모서리의 길이가 모두 같아진다. 한 층에 $3\\times3=9$(개)씩 $3$층이므로 $27$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가로, 세로, 높이 방향으로 놓는 개수가 모두 같아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$27$개",
+              "$27$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "크기가 같은 작은 정육면체를 한 층에 가로 $2$개, 세로 $2$개씩 놓고 {$2$}층으로 쌓으면 큰 정육면체가 되고, 이때 작은 정육면체는 모두 {$8$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7b8a8ffcd6ae178c4887d9d98e9cbb722ff2df581cf93de0516ac5556534fcf7",
+      "questionRevision": "planning-e5e6-20261006-7b8a8ffcd6ae",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc22",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 모든 모서리를 똑같은 길이만큼 늘이면 모든 모서리 길이의 합은 얼마만큼 늘어나는지, 모서리의 수를 이용해 설명하시오. 또 $2$ $\\mathrm{cm}$씩 늘일 때 합이 늘어나는 길이를 구하시오.",
+      "bAnswer": "모서리가 $12$개이므로 늘인 길이의 $12$배만큼 늘어난다. $2\\times12=24$이므로 $24$ $\\mathrm{cm}$ 늘어난다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "늘인 길이의 $12$배만큼 늘어난다",
+            "늘인 길이에 $12$를 곱한 만큼 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$ $\\mathrm{cm}$",
+            "$24$"
+          ]
+        }
+      ],
+      "bGoal": "모서리마다 늘어난 길이가 합에 미치는 변화를 설명한다.",
+      "bReason": "답인 $12$배를 말해 주지 않고 모서리의 수와 관련지어 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 모든 모서리를 $2$ $\\mathrm{cm}$씩 늘이면 모든 모서리 길이의 합은 $2\\times$ {$12$} $=$ {$24$} ($\\mathrm{cm}$)만큼 늘어난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "cReason": "'늘인 길이의 $12$배'라는 구절 대신 실제 수의 곱셈으로 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1465,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc22",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "모서리를 모두 늘일 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정육면체의 모든 모서리를 같은 길이만큼 늘이면 모서리 길이의 합은 {늘인 길이의 $12$배}만큼 늘어난다.",
+        "studentC": "정육면체의 모든 모서리를 같은 길이만큼 늘이면 모서리 길이의 합은 □만큼 늘어난다.",
+        "answers": [
+          "늘인 길이의 $12$배"
+        ]
+      },
+      "sourceFingerprint": "cdb091014aab348ce1cf8bdd7bcccbceeaf887eca629e7ebd7ac2961d95ca54c",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$24$"
+      ],
+      "cStudentAfter": "정육면체의 모든 모서리를 $2$ $\\mathrm{cm}$씩 늘이면 모든 모서리 길이의 합은 $2\\times$ □ $=$ □ ($\\mathrm{cm}$)만큼 늘어난다.",
+      "cMarkedSentence": "정육면체의 모든 모서리를 $2$ $\\mathrm{cm}$씩 늘이면 모든 모서리 길이의 합은 $2\\times$ {$12$} $=$ {$24$} ($\\mathrm{cm}$)만큼 늘어난다.",
+      "cStudentSentence": "정육면체의 모든 모서리를 $2$ $\\mathrm{cm}$씩 늘이면 모든 모서리 길이의 합은 $2\\times$ □ $=$ □ ($\\mathrm{cm}$)만큼 늘어난다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 모든 모서리를 똑같은 길이만큼 늘이면 모든 모서리 길이의 합은 얼마만큼 늘어나는지, 모서리의 수를 이용해 설명하시오. 또 $2$ $\\mathrm{cm}$씩 늘일 때 합이 늘어나는 길이를 구하시오.",
+        "answer": "모서리가 $12$개이므로 늘인 길이의 $12$배만큼 늘어난다. $2\\times12=24$이므로 $24$ $\\mathrm{cm}$ 늘어난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "늘인 길이의 $12$배만큼 늘어난다",
+              "늘인 길이에 $12$를 곱한 만큼 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$ $\\mathrm{cm}$",
+              "$24$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체의 모든 모서리를 $2$ $\\mathrm{cm}$씩 늘이면 모든 모서리 길이의 합은 $2\\times$ {$12$} $=$ {$24$} ($\\mathrm{cm}$)만큼 늘어난다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9dfe40816099008222946572c5d3e37178f238e7f040cf54dfdb5d69b82b295b",
+      "questionRevision": "planning-e5e6-20261006-9dfe40816099",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc25",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "똑같은 정육면체 $2$개를 한 면이 꼭 맞게 겹치도록 붙여 만든 도형이 정육면체인지 판단하고, 모서리의 길이나 면의 모양을 들어 그 까닭을 설명하시오.",
+      "bAnswer": "정육면체가 아니다. 붙인 방향의 모서리 길이만 $2$배가 되어 모서리의 길이가 모두 같지 않고, 정사각형이 아닌 직사각형 면이 생기는 직육면체가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정육면체가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 방향의 모서리 길이만 $2$배가 된다",
+            "모서리의 길이가 모두 같지는 않다",
+            "정사각형이 아닌 직사각형 면이 생긴다"
+          ]
+        }
+      ],
+      "bGoal": "붙여 만든 도형이 정육면체가 아닌 까닭을 모서리나 면으로 설명한다.",
+      "bReason": "결론을 알려 주지 않고 판단과 근거를 묻되, 근거는 모서리와 면 중 어느 쪽도 허용했다.",
+      "cDecision": "revise",
+      "cAfter": "한 모서리의 길이가 $2$ $\\mathrm{cm}$인 똑같은 정육면체 두 개를 한 면이 꼭 맞게 겹치도록 붙이면, 세 모서리의 길이가 $2$ $\\mathrm{cm}$, $2$ $\\mathrm{cm}$, {$4$} $\\mathrm{cm}$인 {직육면체}가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "직육면체"
+          ]
+        }
+      ],
+      "cReason": "'한 면 전체가 겹치게'라는 구절을 외워 쓰게 하는 대신 붙인 뒤의 길이와 도형 이름을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1466,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc25",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "정육면체 두 개를 붙이면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "똑같은 정육면체 두 개를 {한 면 전체가 겹치게} 붙이면 정육면체가 아닌 {직육면체}가 된다.",
+        "studentC": "똑같은 정육면체 두 개를 □ 붙이면 정육면체가 아닌 □가 된다.",
+        "answers": [
+          "한 면 전체가 겹치게",
+          "직육면체"
+        ]
+      },
+      "sourceFingerprint": "c0884bd3fceb505e4d70dc8621a4c5d086ac232fb78cf7eb73b0dbfca52c26c7",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "직육면체"
+      ],
+      "cStudentAfter": "한 모서리의 길이가 $2$ $\\mathrm{cm}$인 똑같은 정육면체 두 개를 한 면이 꼭 맞게 겹치도록 붙이면, 세 모서리의 길이가 $2$ $\\mathrm{cm}$, $2$ $\\mathrm{cm}$, □ $\\mathrm{cm}$인 □가 된다.",
+      "cMarkedSentence": "한 모서리의 길이가 $2$ $\\mathrm{cm}$인 똑같은 정육면체 두 개를 한 면이 꼭 맞게 겹치도록 붙이면, 세 모서리의 길이가 $2$ $\\mathrm{cm}$, $2$ $\\mathrm{cm}$, {$4$} $\\mathrm{cm}$인 {직육면체}가 된다.",
+      "cStudentSentence": "한 모서리의 길이가 $2$ $\\mathrm{cm}$인 똑같은 정육면체 두 개를 한 면이 꼭 맞게 겹치도록 붙이면, 세 모서리의 길이가 $2$ $\\mathrm{cm}$, $2$ $\\mathrm{cm}$, □ $\\mathrm{cm}$인 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "직육면체",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "똑같은 정육면체 $2$개를 한 면이 꼭 맞게 겹치도록 붙여 만든 도형이 정육면체인지 판단하고, 모서리의 길이나 면의 모양을 들어 그 까닭을 설명하시오.",
+        "answer": "정육면체가 아니다. 붙인 방향의 모서리 길이만 $2$배가 되어 모서리의 길이가 모두 같지 않고, 정사각형이 아닌 직사각형 면이 생기는 직육면체가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정육면체가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 방향의 모서리 길이만 $2$배가 된다",
+              "모서리의 길이가 모두 같지는 않다",
+              "정사각형이 아닌 직사각형 면이 생긴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 모서리의 길이가 $2$ $\\mathrm{cm}$인 똑같은 정육면체 두 개를 한 면이 꼭 맞게 겹치도록 붙이면, 세 모서리의 길이가 $2$ $\\mathrm{cm}$, $2$ $\\mathrm{cm}$, {$4$} $\\mathrm{cm}$인 {직육면체}가 된다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "직육면체"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "63c83ed427eec50a046d105ee49252731656d215b5d549d89a77add3ad86665f",
+      "questionRevision": "planning-e5e6-20261006-63c83ed427ee",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 몇 배인지, 한 면의 둘레와 모서리 길이의 합을 각각 한 모서리의 길이로 나타내어 설명하시오.",
+      "bAnswer": "한 면의 둘레는 (한 모서리의 길이)$\\times4$이고 모서리 길이의 합은 (한 모서리의 길이)$\\times12$이므로 $3$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 면의 둘레는 한 모서리의 길이의 $4$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리 길이의 합은 한 모서리의 길이의 $12$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$배"
+          ]
+        }
+      ],
+      "bGoal": "둘레와 모서리 길이의 합을 한 모서리의 길이로 나타내어 비교한다.",
+      "bReason": "몇 배인지와 함께 두 양을 한 모서리의 길이로 나타내는 과정을 묻게 했다.",
+      "cDecision": "keep",
+      "cAfter": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 {$3$배}이다.",
+      "cReason": "두 양의 배 관계를 짧게 답하는 명확한 비교 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1467,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc26",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "한 면의 둘레와 모서리 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 {$3$배}이다.",
+        "studentC": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 □이다.",
+        "answers": [
+          "$3$배"
+        ]
+      },
+      "sourceFingerprint": "81e508dca80186b0a32a4e54dd01fa2e58cb3c2d7d4638edc77d88a2954cb5fa",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "cFrozenDefinition": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 {$3$배}이다.",
+      "cFrozenStudentSentence": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 □이다.",
+      "cProposedAnswers": [
+        "$3$배"
+      ],
+      "cStudentAfter": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 {$3$배}이다.",
+      "cStudentSentence": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 몇 배인지, 한 면의 둘레와 모서리 길이의 합을 각각 한 모서리의 길이로 나타내어 설명하시오.",
+        "answer": "한 면의 둘레는 (한 모서리의 길이)$\\times4$이고 모서리 길이의 합은 (한 모서리의 길이)$\\times12$이므로 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 면의 둘레는 한 모서리의 길이의 $4$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리 길이의 합은 한 모서리의 길이의 $12$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체의 모든 모서리 길이의 합은 한 면의 둘레의 {$3$배}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "83abd8bee1b85030d83fc5ad84fff9d8991bfbb073a840eb425bf524f8e68d26",
+      "questionRevision": "planning-e5e6-20261006-83abd8bee1b8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-2-xc27",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "모든 모서리 길이의 합이 같은 두 정육면체는 한 모서리의 길이가 서로 같은지 다른지 답하고, 그 까닭을 설명하시오.",
+      "bAnswer": "같다. 정육면체는 모서리 $12$개의 길이가 모두 같아서 한 모서리의 길이는 합을 $12$로 나눈 값인데, 합이 같으면 그 값도 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 모서리의 길이가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 모서리의 길이는 합을 $12$로 나눈 값이다",
+            "모서리 $12$개의 길이가 모두 같다"
+          ]
+        }
+      ],
+      "bGoal": "모서리 길이의 합이 같으면 한 모서리의 길이도 같음을 설명한다.",
+      "bReason": "입체도형의 합동은 배우지 않았으므로 한 모서리의 길이를 비교하는 물음으로 바꾸었다.",
+      "cDecision": "revise",
+      "cAfter": "모든 모서리 길이의 합이 $36$ $\\mathrm{cm}$로 같은 두 정육면체는 한 모서리의 길이가 모두 {$3$} $\\mathrm{cm}$로 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cReason": "입체도형에 '합동'을 쓰게 하지 않고 실제 합에서 한 모서리의 길이를 구하게 했다.",
+      "coreAfter": "모든 모서리 길이의 합이 같은 두 정육면체는 한 모서리의 길이가 같으므로 {모양과 크기가 같다}.",
+      "coreReason": "초5에서 합동은 평면도형에서만 배우므로 입체도형에 쓰는 것은 학년 범위를 벗어난다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "현재 유효한 표적을 유지한다. 초5에서 평면도형으로 배운 합동을 입체도형에 확장하지 않고 같은 입체 크기 관계를 쉬운 말로 설명한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1468,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc27",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "모서리 합이 같은 정육면체",
+        "kind": "성질",
+        "level": "상",
+        "definition": "모든 모서리 길이의 합이 같은 두 정육면체는 서로 {합동}이다.",
+        "studentC": "모든 모서리 길이의 합이 같은 두 정육면체는 서로 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "a60eb87b1e2f953ec0e37927e382d8d6e86e812aacbf93fcbb159d6dabfff76f",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "모든 모서리 길이의 합이 $36$ $\\mathrm{cm}$로 같은 두 정육면체는 한 모서리의 길이가 모두 □ $\\mathrm{cm}$로 같다.",
+      "cMarkedSentence": "모든 모서리 길이의 합이 $36$ $\\mathrm{cm}$로 같은 두 정육면체는 한 모서리의 길이가 모두 {$3$} $\\mathrm{cm}$로 같다.",
+      "cStudentSentence": "모든 모서리 길이의 합이 $36$ $\\mathrm{cm}$로 같은 두 정육면체는 한 모서리의 길이가 모두 □ $\\mathrm{cm}$로 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모든 모서리 길이의 합이 같은 두 정육면체는 한 모서리의 길이가 서로 같은지 다른지 답하고, 그 까닭을 설명하시오.",
+        "answer": "같다. 정육면체는 모서리 $12$개의 길이가 모두 같아서 한 모서리의 길이는 합을 $12$로 나눈 값인데, 합이 같으면 그 값도 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 모서리의 길이가 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 모서리의 길이는 합을 $12$로 나눈 값이다",
+              "모서리 $12$개의 길이가 모두 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모든 모서리 길이의 합이 $36$ $\\mathrm{cm}$로 같은 두 정육면체는 한 모서리의 길이가 모두 {$3$} $\\mathrm{cm}$로 같다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "70843146602afe8a227ad8defc7521194c1d520ef3cbc9e92d77a58cf48edd27",
+      "questionRevision": "planning-e5e6-20261006-70843146602a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc1",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "평행한 면이 $3$쌍임을 안다.",
+      "bReason": "쌍의 수와 까닭은 e5-2-5-3-c5의 B가 이미 묻는다.",
+      "exclusionReason": "B는 e5-2-5-3-c5와 겹쳐 제외하고 C만 둔다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체에는 서로 평행한 면이 {세 쌍} 있다.",
+      "cReason": "문장 안에 힌트 없이 평행한 면의 쌍 수만 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$3$쌍'도 같은 답이다.",
+      "sourceIndex": 1469,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc1",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "평행한 면의 쌍 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체에는 서로 평행한 면이 {세 쌍} 있다.",
+        "studentC": "직육면체에는 서로 평행한 면이 □ 있다.",
+        "answers": [
+          "세 쌍"
+        ]
+      },
+      "sourceFingerprint": "c6cbe63b48e9fc40eebb680b8bea80f64919c243ec5d75d28fe2ffe40c4ba6b5",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "직육면체에는 서로 평행한 면이 {세 쌍} 있다.",
+      "cFrozenStudentSentence": "직육면체에는 서로 평행한 면이 □ 있다.",
+      "cProposedAnswers": [
+        "세 쌍"
+      ],
+      "cStudentAfter": "직육면체에는 서로 평행한 면이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세 쌍"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체에는 서로 평행한 면이 {세 쌍} 있다.",
+      "cStudentSentence": "직육면체에는 서로 평행한 면이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "세 쌍",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체에는 서로 평행한 면이 {세 쌍} 있다.",
+        "acceptedAnswers": [
+          [
+            "세 쌍"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-c5와 겹쳐 제외하고 C만 둔다."
+      },
+      "proposalFingerprint": "1fe9647925f562772ab9dc13c7a52974a597fc98fcd6da53f8882c74d3bfd1ca",
+      "questionRevision": "planning-e5e6-20261006-1fe9647925f5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc2",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "평행한 두 면이 마주 보는 면임을 안다.",
+      "bReason": "마주 보는 면과 평행의 관계는 e5-2-5-3-c1, c2의 B가 이미 다룬다.",
+      "exclusionReason": "B는 e5-2-5-3-c1, c2와 겹쳐 제외한다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체에서 평행한 두 면은 서로 {마주 보는} 면이다.",
+      "cReason": "평행한 면의 위치를 '마주 보는'이라는 쉬운 말로 확인하는 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1470,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc2",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "평행한 면의 위치",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체에서 평행한 두 면은 서로 {마주 보는} 면이다.",
+        "studentC": "직육면체에서 평행한 두 면은 서로 □ 면이다.",
+        "answers": [
+          "마주 보는"
+        ]
+      },
+      "sourceFingerprint": "fd8fd34e34177f5e6021a88ab522556a7bf4d13b0d4665704a6b9924b7213855",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "직육면체에서 평행한 두 면은 서로 {마주 보는} 면이다.",
+      "cFrozenStudentSentence": "직육면체에서 평행한 두 면은 서로 □ 면이다.",
+      "cProposedAnswers": [
+        "마주 보는"
+      ],
+      "cStudentAfter": "직육면체에서 평행한 두 면은 서로 □ 면이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "마주 보는"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체에서 평행한 두 면은 서로 {마주 보는} 면이다.",
+      "cStudentSentence": "직육면체에서 평행한 두 면은 서로 □ 면이다.",
+      "cSlotAnswers": [
+        {
+          "key": "마주 보는",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체에서 평행한 두 면은 서로 {마주 보는} 면이다.",
+        "acceptedAnswers": [
+          [
+            "마주 보는"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-c1, c2와 겹쳐 제외한다."
+      },
+      "proposalFingerprint": "a315109adb579aaadbfada09955057d4a6ed3c2e5b74298283e150e35b4e35e7",
+      "questionRevision": "planning-e5e6-20261006-a315109adb57",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc3",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "밑면이 마주 보는 두 면으로 $2$개임을 안다.",
+      "bReason": "수 하나만 답하는 내용이고, 밑면의 뜻은 e5-2-5-3-c2의 B가 묻는다.",
+      "exclusionReason": "B는 단순한 수 확인이며 e5-2-5-3-c2와 겹친다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 {$2$}개이다.",
+      "cReason": "마주 보는 면도 밑면이라는 까닭이 함께 있어 수 '$2$'를 묻는 것이 의미 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1471,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc3",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "밑면의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 {$2$}개이다.",
+        "studentC": "직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 □개이다.",
+        "answers": [
+          "$2$"
+        ]
+      },
+      "sourceFingerprint": "03ff87da1b237f755d8d08c14663c1a9b3be4b806b6390cab2572a4a0ba5d625",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 {$2$}개이다.",
+      "cFrozenStudentSentence": "직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 □개이다.",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 {$2$}개이다.",
+      "cStudentSentence": "직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체에서 한 면을 밑면으로 정하면 그 면과 마주 보는 면도 밑면이므로 밑면은 {$2$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단순한 수 확인이며 e5-2-5-3-c2와 겹친다."
+      },
+      "proposalFingerprint": "88aa230d006cad992f166aaf104ec016474574851ef42e8cc77cca6b2de10a87",
+      "questionRevision": "planning-e5e6-20261006-88aa230d006c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc4",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "밑면 한 쌍을 정하면 옆면이 $4$개임을 안다.",
+      "bReason": "옆면의 뜻과 개수는 e5-2-5-3-c3의 B가 이미 묻는다.",
+      "exclusionReason": "B는 e5-2-5-3-c3과 겹쳐 제외한다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 {$4$}개이다.",
+      "cReason": "'밑면과 수직인 옆면'이라는 조건이 분명해 수 '$4$'로 답할 수 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1472,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc4",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "옆면의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 {$4$}개이다.",
+        "studentC": "직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 □개이다.",
+        "answers": [
+          "$4$"
+        ]
+      },
+      "sourceFingerprint": "0835236a450b5b0114f2e42e6f41d45a779bd4a136a53e1234dbf5f0d5b8f3bb",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 {$4$}개이다.",
+      "cFrozenStudentSentence": "직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 □개이다.",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 {$4$}개이다.",
+      "cStudentSentence": "직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체에서 한 쌍의 밑면을 정하면 그 밑면과 수직인 옆면은 {$4$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-c3과 겹쳐 제외한다."
+      },
+      "proposalFingerprint": "6ae9b51711a24df994ea6fe294a68b80991449cf26afefef985f0f455221d7eb",
+      "questionRevision": "planning-e5e6-20261006-6ae9b51711a2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "이웃한 두 면이 수직임을 안다.",
+      "bReason": "두 면이 수직으로 만나는 관계는 e5-2-5-3-c4와 xc23의 B가 묻는다.",
+      "exclusionReason": "B는 e5-2-5-3-c4, xc23과 겹쳐 제외한다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체에서 이웃한 두 면은 서로 {수직}이다.",
+      "cReason": "'이웃한 두 면'이라는 조건에 '수직' 한 낱말을 답하는 핵심 성질 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1473,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc5",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "이웃한 두 면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체에서 이웃한 두 면은 서로 {수직}이다.",
+        "studentC": "직육면체에서 이웃한 두 면은 서로 □이다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "54d96e4785f12ee664d66058d95304ad1f234edae4b1428a75a5e28c0bea611d",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "직육면체에서 이웃한 두 면은 서로 {수직}이다.",
+      "cFrozenStudentSentence": "직육면체에서 이웃한 두 면은 서로 □이다.",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "직육면체에서 이웃한 두 면은 서로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체에서 이웃한 두 면은 서로 {수직}이다.",
+      "cStudentSentence": "직육면체에서 이웃한 두 면은 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체에서 이웃한 두 면은 서로 {수직}이다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-c4, xc23과 겹쳐 제외한다."
+      },
+      "proposalFingerprint": "9efe1266a40c00052ff27931e1de5c7d228ab73e620b31c983fabadf7953b720",
+      "questionRevision": "planning-e5e6-20261006-9efe1266a40c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc6",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 한 면을 정했을 때, 그 면과 수직인 면은 몇 개인지 쓰고, 나머지 한 면은 그 면과 어떤 관계인지 쓰시오.",
+      "bAnswer": "수직인 면은 $4$개이고, 나머지 한 면은 그 면과 평행하다(마주 본다).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행하다",
+            "마주 보는 면이다"
+          ]
+        }
+      ],
+      "bGoal": "한 면을 뺀 다섯 면을 수직인 $4$개와 평행한 $1$개로 나눈다.",
+      "bReason": "수만 묻지 않도록 나머지 한 면의 관계도 함께 물었다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 한 면에 수직인 면은 {네 개}이다.",
+      "cReason": "한 면에 수직인 면의 수만 묻는 문장으로 조건이 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'$4$개'도 같은 답이다.",
+      "sourceIndex": 1474,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc6",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "한 면에 수직인 면의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직육면체의 한 면에 수직인 면은 {네 개}이다.",
+        "studentC": "직육면체의 한 면에 수직인 면은 □이다.",
+        "answers": [
+          "네 개"
+        ]
+      },
+      "sourceFingerprint": "b978d114d701f5bd824a8a0b62f493bf0fd6d336e3f22e2361095240a882e8cf",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "직육면체의 한 면에 수직인 면은 {네 개}이다.",
+      "cFrozenStudentSentence": "직육면체의 한 면에 수직인 면은 □이다.",
+      "cProposedAnswers": [
+        "네 개"
+      ],
+      "cStudentAfter": "직육면체의 한 면에 수직인 면은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "네 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 한 면에 수직인 면은 {네 개}이다.",
+      "cStudentSentence": "직육면체의 한 면에 수직인 면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "네 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 한 면을 정했을 때, 그 면과 수직인 면은 몇 개인지 쓰고, 나머지 한 면은 그 면과 어떤 관계인지 쓰시오.",
+        "answer": "수직인 면은 $4$개이고, 나머지 한 면은 그 면과 평행하다(마주 본다).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행하다",
+              "마주 보는 면이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 한 면에 수직인 면은 {네 개}이다.",
+        "acceptedAnswers": [
+          [
+            "네 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6006ae827e58bb970ad12b8e1e7508a3558172731654c33d02f00fc53662a184",
+      "questionRevision": "planning-e5e6-20261006-6006ae827e58",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc7",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직육면체 모양 상자에서 이웃한 두 면이 수직인지 삼각자로 확인하려면 어떻게 하면 되는지 쓰시오.",
+      "bAnswer": "삼각자의 직각 부분을 두 면이 만나는 곳에 대어 꼭 맞는지 본다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각자의 직각 부분을 두 면이 만나는 곳에 대어 본다",
+            "삼각자의 직각인 부분을 두 면에 맞대어 꼭 맞는지 본다"
+          ]
+        }
+      ],
+      "bGoal": "삼각자의 직각으로 두 면의 수직을 확인하는 방법을 말한다.",
+      "bReason": "상자와 삼각자라는 실제 상황을 넣어 확인 방법을 묻게 했다.",
+      "cDecision": "keep",
+      "cAfter": "두 면이 수직인지는 삼각자의 {직각}을 대어 확인할 수 있다.",
+      "cReason": "삼각자의 어느 부분을 쓰는지 '직각' 한 낱말로 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1475,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc7",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "수직 확인 방법",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 면이 수직인지는 삼각자의 {직각}을 대어 확인할 수 있다.",
+        "studentC": "두 면이 수직인지는 삼각자의 □을 대어 확인할 수 있다.",
+        "answers": [
+          "직각"
+        ]
+      },
+      "sourceFingerprint": "30e940850fdf9076d7c7a173e31260be781350104eca593b31782b637770c17c",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "두 면이 수직인지는 삼각자의 {직각}을 대어 확인할 수 있다.",
+      "cFrozenStudentSentence": "두 면이 수직인지는 삼각자의 □을 대어 확인할 수 있다.",
+      "cProposedAnswers": [
+        "직각"
+      ],
+      "cStudentAfter": "두 면이 수직인지는 삼각자의 □을 대어 확인할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직각"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 면이 수직인지는 삼각자의 {직각}을 대어 확인할 수 있다.",
+      "cStudentSentence": "두 면이 수직인지는 삼각자의 □을 대어 확인할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "직각",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체 모양 상자에서 이웃한 두 면이 수직인지 삼각자로 확인하려면 어떻게 하면 되는지 쓰시오.",
+        "answer": "삼각자의 직각 부분을 두 면이 만나는 곳에 대어 꼭 맞는지 본다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각자의 직각 부분을 두 면이 만나는 곳에 대어 본다",
+              "삼각자의 직각인 부분을 두 면에 맞대어 꼭 맞는지 본다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 면이 수직인지는 삼각자의 {직각}을 대어 확인할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "직각"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "faa68c1fddfe37adea0c300f98b24d33c111fac8d8c9f6a4a18743cfed2d3016",
+      "questionRevision": "planning-e5e6-20261006-faa68c1fddfe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc8",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "옆면이 직사각형임을 안다.",
+      "bReason": "직육면체의 모든 면이 직사각형이라는 정의를 되풀이하는 내용이다.",
+      "exclusionReason": "B는 직육면체 정의의 반복이라 가치가 낮고, 옆면의 크기는 e5-2-5-3-xc18이 다룬다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 옆면은 모두 {직사각형}이다.",
+      "cReason": "옆면의 모양을 낱말 하나로 확인하는 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'사각형'만 쓰면 부족하다.",
+      "sourceIndex": 1476,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc8",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "옆면의 모양",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체의 옆면은 모두 {직사각형}이다.",
+        "studentC": "직육면체의 옆면은 모두 □이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "c1a25c8fa6ac84c47d22f7c08668ce9c8562bafe0ec4bd94cea106d26fdf8f34",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "직육면체의 옆면은 모두 {직사각형}이다.",
+      "cFrozenStudentSentence": "직육면체의 옆면은 모두 □이다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "직육면체의 옆면은 모두 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 옆면은 모두 {직사각형}이다.",
+      "cStudentSentence": "직육면체의 옆면은 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 옆면은 모두 {직사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 직육면체 정의의 반복이라 가치가 낮고, 옆면의 크기는 e5-2-5-3-xc18이 다룬다."
+      },
+      "proposalFingerprint": "34c6b0bfbf7822d69728e3912f9801893d43e0b6d2f4c062c17afcc3fa41f29b",
+      "questionRevision": "planning-e5e6-20261006-34c6b0bfbf78",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc9",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 밑면과 평행한 면은 다른 밑면뿐임을 안다.",
+      "bReason": "한 면과 평행한 면이 하나, 수직인 면이 넷이라는 내용은 e5-2-5-3-xc6의 B가 묻는다.",
+      "exclusionReason": "B는 e5-2-5-3-xc6과 겹쳐 제외한다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체에서 한 밑면과 평행한 면은 다른 밑면 {$1$}개뿐이고, 옆면 $4$개는 모두 그 밑면과 {수직}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "한"
+          ]
+        },
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '다른 밑면'은 '마주 보는 면' 등 여러 답이 가능해, 수와 관계를 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1477,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc9",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "밑면과 평행한 면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 밑면과 평행한 면은 {다른 밑면} 하나뿐이다.",
+        "studentC": "한 밑면과 평행한 면은 □ 하나뿐이다.",
+        "answers": [
+          "다른 밑면"
+        ]
+      },
+      "sourceFingerprint": "f8f3bf66ee075b4097bb36eee42577c3adca30d3bbc386774351c9d4c59852a5",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "수직"
+      ],
+      "cStudentAfter": "직육면체에서 한 밑면과 평행한 면은 다른 밑면 □개뿐이고, 옆면 $4$개는 모두 그 밑면과 □이다.",
+      "cMarkedSentence": "직육면체에서 한 밑면과 평행한 면은 다른 밑면 {$1$}개뿐이고, 옆면 $4$개는 모두 그 밑면과 {수직}이다.",
+      "cStudentSentence": "직육면체에서 한 밑면과 평행한 면은 다른 밑면 □개뿐이고, 옆면 $4$개는 모두 그 밑면과 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "한"
+          ]
+        },
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체에서 한 밑면과 평행한 면은 다른 밑면 {$1$}개뿐이고, 옆면 $4$개는 모두 그 밑면과 {수직}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "한"
+          ],
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-xc6과 겹쳐 제외한다."
+      },
+      "proposalFingerprint": "9480992b7c22f4f5bb8d38ed1ae4162498554e8d36a8d89667b57f81ef928bf1",
+      "questionRevision": "planning-e5e6-20261006-9480992b7c22",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc10",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 평행한 두 면과 수직인 두 면은 함께 가지는 모서리가 있는지에서 어떻게 다른지 쓰시오.",
+      "bAnswer": "평행한 두 면은 함께 가지는 모서리가 없고, 수직인 두 면은 모서리 $1$개를 함께 가진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평행한 두 면은 함께 가지는 모서리가 없다",
+            "평행한 두 면은 서로 만나지 않아 모서리를 함께 가지지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "수직인 두 면은 모서리 $1$개를 함께 가진다",
+            "수직인 두 면은 함께 가지는 모서리가 있다"
+          ]
+        }
+      ],
+      "bGoal": "평행한 면과 수직인 면을 함께 가지는 모서리로 구별한다.",
+      "bReason": "xc10과 xc11의 내용을 한 번에 비교하게 해 겹치는 질문을 줄였다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체에서 평행한 두 면은 함께 가지는 모서리가 {없다}.",
+      "cReason": "평행한 두 면이라는 조건에 '없다'로 답하는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1478,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc10",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "평행한 두 면과 모서리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체에서 평행한 두 면은 함께 가지는 모서리가 {없다}.",
+        "studentC": "직육면체에서 평행한 두 면은 함께 가지는 모서리가 □.",
+        "answers": [
+          "없다"
+        ]
+      },
+      "sourceFingerprint": "909f4b6d12ba3f82d9b44f054f9660f18f35ee1f083a46e1bb460d87db53fde0",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "직육면체에서 평행한 두 면은 함께 가지는 모서리가 {없다}.",
+      "cFrozenStudentSentence": "직육면체에서 평행한 두 면은 함께 가지는 모서리가 □.",
+      "cProposedAnswers": [
+        "없다"
+      ],
+      "cStudentAfter": "직육면체에서 평행한 두 면은 함께 가지는 모서리가 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체에서 평행한 두 면은 함께 가지는 모서리가 {없다}.",
+      "cStudentSentence": "직육면체에서 평행한 두 면은 함께 가지는 모서리가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 평행한 두 면과 수직인 두 면은 함께 가지는 모서리가 있는지에서 어떻게 다른지 쓰시오.",
+        "answer": "평행한 두 면은 함께 가지는 모서리가 없고, 수직인 두 면은 모서리 $1$개를 함께 가진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 두 면은 함께 가지는 모서리가 없다",
+              "평행한 두 면은 서로 만나지 않아 모서리를 함께 가지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수직인 두 면은 모서리 $1$개를 함께 가진다",
+              "수직인 두 면은 함께 가지는 모서리가 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체에서 평행한 두 면은 함께 가지는 모서리가 {없다}.",
+        "acceptedAnswers": [
+          [
+            "없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0b51b7ac97a7fcc23e08d78b47d2716ea7b3017b3bc4e42a10f4cdbaabc4ced3",
+      "questionRevision": "planning-e5e6-20261006-0b51b7ac97a7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc11",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "수직인 두 면이 모서리 하나를 함께 가짐을 안다.",
+      "bReason": "평행한 면과 수직인 면의 모서리 비교는 e5-2-5-3-xc10의 B가 함께 묻는다.",
+      "exclusionReason": "B는 e5-2-5-3-xc10과 겹쳐 제외한다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체에서 서로 수직인 두 면은 모서리 {$1$}개를 함께 가진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "한"
+          ]
+        }
+      ],
+      "cReason": "원문은 '직육면체에서'라는 조건이 없고 빈칸이 구절이어서, 조건을 넣고 수만 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1479,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc11",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "수직인 두 면과 모서리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "서로 수직인 두 면은 {모서리 하나}를 함께 가진다.",
+        "studentC": "서로 수직인 두 면은 □를 함께 가진다.",
+        "answers": [
+          "모서리 하나"
+        ]
+      },
+      "sourceFingerprint": "382cdc93220179a907fdb270579bbaddf8fefc4bc0c9dbc4b42bac78dfe02bab",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "직육면체에서 서로 수직인 두 면은 모서리 □개를 함께 가진다.",
+      "cMarkedSentence": "직육면체에서 서로 수직인 두 면은 모서리 {$1$}개를 함께 가진다.",
+      "cStudentSentence": "직육면체에서 서로 수직인 두 면은 모서리 □개를 함께 가진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "한"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체에서 서로 수직인 두 면은 모서리 {$1$}개를 함께 가진다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "한"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-xc10과 겹쳐 제외한다."
+      },
+      "proposalFingerprint": "d7ab3d12dfde98c90fb498537c29494487bfe0accb45a1a7b64e585bf641c923",
+      "questionRevision": "planning-e5e6-20261006-d7ab3d12dfde",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 밑면으로 정한 두 면을 다른 쌍으로 바꾸면 옆면은 어떻게 되는지 쓰고, 그 까닭을 옆면이 정해지는 방법과 관련지어 설명하시오.",
+      "bAnswer": "옆면도 달라진다. 옆면은 밑면이 아닌 나머지 $4$개의 면(밑면과 수직인 면)이므로, 밑면이 바뀌면 옆면도 바뀐다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면도 달라진다",
+            "옆면이 되는 면이 바뀐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면은 밑면이 아닌 나머지 면이기 때문이다",
+            "옆면은 밑면과 수직인 면으로 정해지기 때문이다"
+          ]
+        }
+      ],
+      "bGoal": "옆면이 밑면에 따라 정해짐을 설명한다.",
+      "bReason": "제목 '밑면을 바꾸면'은 미완성 구절이어서, 결과와 까닭을 묻는 질문으로 바꿨다.",
+      "cDecision": "keep",
+      "cAfter": "밑면을 다른 쌍으로 정하면 {옆면}도 달라진다.",
+      "cReason": "밑면을 바꿀 때 함께 달라지는 것을 낱말 '옆면'으로 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1480,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc12",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "밑면을 바꾸면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면을 다른 쌍으로 정하면 {옆면}도 달라진다.",
+        "studentC": "밑면을 다른 쌍으로 정하면 □도 달라진다.",
+        "answers": [
+          "옆면"
+        ]
+      },
+      "sourceFingerprint": "5e3cf080c8a0ac2ba308d4f7b3429ce71fc815234a017c314e275a82e003153b",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "밑면을 다른 쌍으로 정하면 {옆면}도 달라진다.",
+      "cFrozenStudentSentence": "밑면을 다른 쌍으로 정하면 □도 달라진다.",
+      "cProposedAnswers": [
+        "옆면"
+      ],
+      "cStudentAfter": "밑면을 다른 쌍으로 정하면 □도 달라진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "옆면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면을 다른 쌍으로 정하면 {옆면}도 달라진다.",
+      "cStudentSentence": "밑면을 다른 쌍으로 정하면 □도 달라진다.",
+      "cSlotAnswers": [
+        {
+          "key": "옆면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 밑면으로 정한 두 면을 다른 쌍으로 바꾸면 옆면은 어떻게 되는지 쓰고, 그 까닭을 옆면이 정해지는 방법과 관련지어 설명하시오.",
+        "answer": "옆면도 달라진다. 옆면은 밑면이 아닌 나머지 $4$개의 면(밑면과 수직인 면)이므로, 밑면이 바뀌면 옆면도 바뀐다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면도 달라진다",
+              "옆면이 되는 면이 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면은 밑면이 아닌 나머지 면이기 때문이다",
+              "옆면은 밑면과 수직인 면으로 정해지기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면을 다른 쌍으로 정하면 {옆면}도 달라진다.",
+        "acceptedAnswers": [
+          [
+            "옆면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5da36c3bea5cfa460035ac32cacc4c0cc1be48f86252eac6997294f705538e30",
+      "questionRevision": "planning-e5e6-20261006-5da36c3bea5c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc13",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 서로 평행한 두 면의 모양과 크기를 비교하면 어떠한지 쓰시오.",
+      "bAnswer": "서로 평행한 두 면은 모양과 크기가 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모양과 크기가 같다",
+            "합동이다",
+            "똑같은 직사각형이다"
+          ]
+        }
+      ],
+      "bGoal": "평행한 두 면이 모양과 크기가 같음을 말한다.",
+      "bReason": "무엇을 비교하는지 질문에 넣고, 같은지는 학생이 답하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체에서 평행한 두 면은 {모양과 크기}가 같다.",
+      "cReason": "평행한 두 면에서 같은 것 두 가지를 짧게 묻는 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'크기와 모양'처럼 순서가 달라도 같은 답이다.",
+      "sourceIndex": 1481,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc13",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "평행한 면의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체에서 평행한 두 면은 {모양과 크기}가 같다.",
+        "studentC": "직육면체에서 평행한 두 면은 □가 같다.",
+        "answers": [
+          "모양과 크기"
+        ]
+      },
+      "sourceFingerprint": "33f468065a37fb9fae79e7e8ca4418a7257ca76b5a862afccdd1cc68b8d8f409",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "직육면체에서 평행한 두 면은 {모양과 크기}가 같다.",
+      "cFrozenStudentSentence": "직육면체에서 평행한 두 면은 □가 같다.",
+      "cProposedAnswers": [
+        "모양과 크기"
+      ],
+      "cStudentAfter": "직육면체에서 평행한 두 면은 □가 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모양과 크기"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체에서 평행한 두 면은 {모양과 크기}가 같다.",
+      "cStudentSentence": "직육면체에서 평행한 두 면은 □가 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "모양과 크기",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 서로 평행한 두 면의 모양과 크기를 비교하면 어떠한지 쓰시오.",
+        "answer": "서로 평행한 두 면은 모양과 크기가 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모양과 크기가 같다",
+              "합동이다",
+              "똑같은 직사각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체에서 평행한 두 면은 {모양과 크기}가 같다.",
+        "acceptedAnswers": [
+          [
+            "모양과 크기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9c80a3a814c27ff8840be79b5cfb43066f1b7cfa75ae14ee61c90dcc98b77c6d",
+      "questionRevision": "planning-e5e6-20261006-9c80a3a814c2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc14",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "평행한 면은 꼭짓점을 함께 가지지 않음을 안다.",
+      "bReason": "평행한 면이 만나지 않는다는 구별은 e5-2-5-3-xc10의 B가 모서리로 이미 묻는다.",
+      "exclusionReason": "B는 e5-2-5-3-xc10과 겹쳐 제외한다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체에서 한 면과 평행한 면은 그 면과 함께 가지는 꼭짓점이 {없는} 면이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "없는",
+            "하나도 없는"
+          ]
+        }
+      ],
+      "cReason": "원문의 긴 구절 빈칸은 외우기 어려워, '없는' 한 낱말만 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1482,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc14",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "평행한 면 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 면과 평행한 면은 그 면과 {같이 가진 꼭짓점이 없는} 면이다.",
+        "studentC": "한 면과 평행한 면은 그 면과 □ 면이다.",
+        "answers": [
+          "같이 가진 꼭짓점이 없는"
+        ]
+      },
+      "sourceFingerprint": "45c73b34a8a5525e02774bfa792caf06898a54515022350c72599b160059aeb8",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cProposedAnswers": [
+        "없는"
+      ],
+      "cStudentAfter": "직육면체에서 한 면과 평행한 면은 그 면과 함께 가지는 꼭짓점이 □ 면이다.",
+      "cMarkedSentence": "직육면체에서 한 면과 평행한 면은 그 면과 함께 가지는 꼭짓점이 {없는} 면이다.",
+      "cStudentSentence": "직육면체에서 한 면과 평행한 면은 그 면과 함께 가지는 꼭짓점이 □ 면이다.",
+      "cSlotAnswers": [
+        {
+          "key": "없는",
+          "equivalents": [
+            "하나도 없는"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체에서 한 면과 평행한 면은 그 면과 함께 가지는 꼭짓점이 {없는} 면이다.",
+        "acceptedAnswers": [
+          [
+            "없는",
+            "하나도 없는"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-xc10과 겹쳐 제외한다."
+      },
+      "proposalFingerprint": "68370be50049d475d0787b1ed575d03c000d46b5bb15b0bf428393f5ed81549a",
+      "questionRevision": "planning-e5e6-20261006-68370be50049",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc15",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "이웃한 두 옆면이 수직임을 안다.",
+      "bReason": "이웃한 두 면이 수직이라는 e5-2-5-3-xc5의 특수한 경우이다.",
+      "exclusionReason": "B는 e5-2-5-3-xc5, xc23과 겹쳐 제외한다.",
+      "cDecision": "keep",
+      "cAfter": "이웃한 두 옆면은 서로 {수직}으로 만난다.",
+      "cReason": "'이웃한'이라는 조건이 있어 마주 보는 옆면과 구별되고 답이 '수직'으로 정해진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1483,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc15",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "옆면끼리의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이웃한 두 옆면은 서로 {수직}으로 만난다.",
+        "studentC": "이웃한 두 옆면은 서로 □으로 만난다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "ebd8024f74d14ab7c95ec65018030f11714f110b8807685c0ab18d4f5e6dbeec",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cFrozenDefinition": "이웃한 두 옆면은 서로 {수직}으로 만난다.",
+      "cFrozenStudentSentence": "이웃한 두 옆면은 서로 □으로 만난다.",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "이웃한 두 옆면은 서로 □으로 만난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "이웃한 두 옆면은 서로 {수직}으로 만난다.",
+      "cStudentSentence": "이웃한 두 옆면은 서로 □으로 만난다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "이웃한 두 옆면은 서로 {수직}으로 만난다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-xc5, xc23과 겹쳐 제외한다."
+      },
+      "proposalFingerprint": "e14d2f848298c1aa370adb429f456904829e8e856e2fb70417c750de54517830",
+      "questionRevision": "planning-e5e6-20261006-e14d2f848298",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc16",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 면과 평행한 면 $1$개, 수직인 면 $4$개를 구별한다.",
+      "bReason": "같은 내용을 e5-2-5-3-xc6의 B가 이미 묻는다.",
+      "exclusionReason": "B는 e5-2-5-3-xc6과 겹쳐 제외한다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 한 면과 평행한 면은 {$1$}개, 수직인 면은 {$4$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "네"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '수직인 면은 넷'은 구절 전체를 외워야 해, 두 수만 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1484,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc16",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "평행한 면과 수직인 면의 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체의 한 면과 평행한 면은 하나, {수직인 면은 넷}이다.",
+        "studentC": "직육면체의 한 면과 평행한 면은 하나, □이다.",
+        "answers": [
+          "수직인 면은 넷"
+        ]
+      },
+      "sourceFingerprint": "68ffd52c084e5468308979f6e28bb1a48d70244a48b3ae96d5746522b112341e",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$4$"
+      ],
+      "cStudentAfter": "직육면체의 한 면과 평행한 면은 □개, 수직인 면은 □개이다.",
+      "cMarkedSentence": "직육면체의 한 면과 평행한 면은 {$1$}개, 수직인 면은 {$4$}개이다.",
+      "cStudentSentence": "직육면체의 한 면과 평행한 면은 □개, 수직인 면은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "한"
+          ]
+        },
+        {
+          "key": "$4$",
+          "equivalents": [
+            "네"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체의 한 면과 평행한 면은 {$1$}개, 수직인 면은 {$4$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "한"
+          ],
+          [
+            "$4$",
+            "네"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-xc6과 겹쳐 제외한다."
+      },
+      "proposalFingerprint": "cf5e4d53929c65b3ecf1ebf62940f639b717a33b74de8c5a91a0baea5f080beb",
+      "questionRevision": "planning-e5e6-20261006-cf5e4d53929c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc17",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 서로 수직인 두 면의 쌍은 모두 몇 쌍인지 구하고, 어떻게 세었는지 설명하시오.",
+      "bAnswer": "$12$쌍이다. 면 $6$개마다 수직인 면이 $4$개씩 있어 $6\\times4=24$이고, 한 쌍을 두 번씩 세었으므로 $24\\div2=12$(쌍)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$12$쌍"
+          ]
+        },
+        {
+          "anyOf": [
+            "면 $6$개마다 수직인 면이 $4$개씩이고 한 쌍을 두 번 세었으므로 $6\\times4\\div2$로 구한다",
+            "수직인 두 면은 모서리 $1$개를 함께 가지므로 모서리의 수 $12$와 같다",
+            "두 면을 고르는 $15$쌍에서 평행한 $3$쌍을 뺀다"
+          ]
+        }
+      ],
+      "bGoal": "수직인 두 면의 쌍을 겹치지 않게 세는 방법을 설명한다.",
+      "bReason": "세는 방법을 질문에서 알려 주지 않고, 학생이 고른 방법을 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 면 $6$개마다 수직인 면이 $4$개씩 있고 한 쌍을 두 번씩 세게 되므로, 수직인 두 면의 쌍은 $6\\times4\\div$ {$2$} $=$ {$12$}(쌍)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "cReason": "원문에는 면이 $6$개라는 조건과 식이 없어, 식을 보여 주고 나누는 수와 결과를 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1485,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc17",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "수직인 면의 쌍 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직육면체는 면마다 수직인 면이 $4$개이고 한 쌍을 두 번 세므로 수직인 두 면의 쌍은 {$12$}쌍이다.",
+        "studentC": "직육면체는 면마다 수직인 면이 $4$개이고 한 쌍을 두 번 세므로 수직인 두 면의 쌍은 □쌍이다.",
+        "answers": [
+          "$12$"
+        ]
+      },
+      "sourceFingerprint": "44b06e03dc978fb2cf15d59f4d72b4ea1cf521c3636c258e39671587dc674a5c",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$12$"
+      ],
+      "cStudentAfter": "직육면체의 면 $6$개마다 수직인 면이 $4$개씩 있고 한 쌍을 두 번씩 세게 되므로, 수직인 두 면의 쌍은 $6\\times4\\div$ □ $=$ □(쌍)이다.",
+      "cMarkedSentence": "직육면체의 면 $6$개마다 수직인 면이 $4$개씩 있고 한 쌍을 두 번씩 세게 되므로, 수직인 두 면의 쌍은 $6\\times4\\div$ {$2$} $=$ {$12$}(쌍)이다.",
+      "cStudentSentence": "직육면체의 면 $6$개마다 수직인 면이 $4$개씩 있고 한 쌍을 두 번씩 세게 되므로, 수직인 두 면의 쌍은 $6\\times4\\div$ □ $=$ □(쌍)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 서로 수직인 두 면의 쌍은 모두 몇 쌍인지 구하고, 어떻게 세었는지 설명하시오.",
+        "answer": "$12$쌍이다. 면 $6$개마다 수직인 면이 $4$개씩 있어 $6\\times4=24$이고, 한 쌍을 두 번씩 세었으므로 $24\\div2=12$(쌍)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$12$쌍"
+            ]
+          },
+          {
+            "anyOf": [
+              "면 $6$개마다 수직인 면이 $4$개씩이고 한 쌍을 두 번 세었으므로 $6\\times4\\div2$로 구한다",
+              "수직인 두 면은 모서리 $1$개를 함께 가지므로 모서리의 수 $12$와 같다",
+              "두 면을 고르는 $15$쌍에서 평행한 $3$쌍을 뺀다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 면 $6$개마다 수직인 면이 $4$개씩 있고 한 쌍을 두 번씩 세게 되므로, 수직인 두 면의 쌍은 $6\\times4\\div$ {$2$} $=$ {$12$}(쌍)이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "af25843445d4a671a8063f430d0ac0eaee365d10906e07093a96e6c2e4722c86",
+      "questionRevision": "planning-e5e6-20261006-af25843445d4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이고 높이가 $4\\,\\mathrm{cm}$인 직육면체가 있습니다. 옆면 $4$개가 각각 어떤 크기의 직사각형인지 쓰고, 옆면의 두 변의 길이가 밑면의 변, 높이와 어떻게 관련되는지 설명하시오.",
+      "bAnswer": "두 변이 $5\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 $2$개와 두 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 $2$개이다. 옆면의 한 변은 밑면의 한 변과 같고, 다른 한 변은 높이와 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 변이 $5\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 $2$개와 두 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 $2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면의 한 변은 밑면의 한 변과 같고 다른 한 변은 높이와 같다",
+            "옆면은 밑면의 가로와 높이, 또는 밑면의 세로와 높이를 두 변으로 한다"
+          ]
+        }
+      ],
+      "bGoal": "옆면의 변의 길이를 밑면의 변과 높이로 설명한다.",
+      "bReason": "원문 표현이 추상적이어서, 구체적인 길이를 주고 일반 관계도 함께 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "밑면이 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이고 높이가 $4\\,\\mathrm{cm}$인 직육면체의 옆면은, 두 변이 $5\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 {$2$}개와 두 변이 $3\\,\\mathrm{cm}$, {$4$}$\\,\\mathrm{cm}$인 직사각형 $2$개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "원문의 긴 구절 빈칸은 외우기 어려워, 실제 길이에서 개수와 한 변의 길이를 답하게 했다.",
+      "coreAfter": "직육면체의 밑면을 정하면 옆면은 {밑면의 가로와 높이}를 두 변으로 하는 직사각형 $2$개와 {밑면의 세로와 높이}를 두 변으로 하는 직사각형 $2$개이다.",
+      "coreReason": "원문 '가로와 높이, 세로와 높이로 된 직사각형'은 무엇이 변인지 불분명해 '두 변으로 하는'으로 풀어 썼다.",
+      "exampleNeeded": false,
+      "exampleReason": "필요한 길이 예는 질문 안에 모두 들어 있다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "원문의 긴 두 길이 조합 표적을 두 종류의 옆면 역할로 나눈다. 각 길이가 변의 길이임을 명시하고 두 면씩이라는 일반 성질을 보존한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1486,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc18",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "밑면을 정했을 때의 옆면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면을 정하면 옆면은 {밑면의 가로와 높이, 세로와 높이}로 된 직사각형이 두 개씩이다.",
+        "studentC": "밑면을 정하면 옆면은 □로 된 직사각형이 두 개씩이다.",
+        "answers": [
+          "밑면의 가로와 높이, 세로와 높이"
+        ]
+      },
+      "sourceFingerprint": "eebfad3da41af1fee17da588bd403b0c547287624a54de9d024cdda4f9474bc9",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$4$"
+      ],
+      "cStudentAfter": "밑면이 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이고 높이가 $4\\,\\mathrm{cm}$인 직육면체의 옆면은, 두 변이 $5\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 □개와 두 변이 $3\\,\\mathrm{cm}$, □$\\,\\mathrm{cm}$인 직사각형 $2$개이다.",
+      "cMarkedSentence": "밑면이 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이고 높이가 $4\\,\\mathrm{cm}$인 직육면체의 옆면은, 두 변이 $5\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 {$2$}개와 두 변이 $3\\,\\mathrm{cm}$, {$4$}$\\,\\mathrm{cm}$인 직사각형 $2$개이다.",
+      "cStudentSentence": "밑면이 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이고 높이가 $4\\,\\mathrm{cm}$인 직육면체의 옆면은, 두 변이 $5\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 □개와 두 변이 $3\\,\\mathrm{cm}$, □$\\,\\mathrm{cm}$인 직사각형 $2$개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이고 높이가 $4\\,\\mathrm{cm}$인 직육면체가 있습니다. 옆면 $4$개가 각각 어떤 크기의 직사각형인지 쓰고, 옆면의 두 변의 길이가 밑면의 변, 높이와 어떻게 관련되는지 설명하시오.",
+        "answer": "두 변이 $5\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 $2$개와 두 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 $2$개이다. 옆면의 한 변은 밑면의 한 변과 같고, 다른 한 변은 높이와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 변이 $5\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 $2$개와 두 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 $2$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면의 한 변은 밑면의 한 변과 같고 다른 한 변은 높이와 같다",
+              "옆면은 밑면의 가로와 높이, 또는 밑면의 세로와 높이를 두 변으로 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형이고 높이가 $4\\,\\mathrm{cm}$인 직육면체의 옆면은, 두 변이 $5\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$인 직사각형 {$2$}개와 두 변이 $3\\,\\mathrm{cm}$, {$4$}$\\,\\mathrm{cm}$인 직사각형 $2$개이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5d8fc0d10610841c7fca81b252dbbe9a6016369f100e029b77714c8aa86a026f",
+      "questionRevision": "planning-e5e6-20261006-5d8fc0d10610",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc19",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 한 꼭짓점에서 만나는 면은 몇 개인지 쓰고, 그 면들이 서로 어떤 관계인지 쓰시오.",
+      "bAnswer": "$3$개의 면이 만나고, 이 면들은 서로 수직이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "서로 수직이다",
+            "어느 두 면도 직각으로 만난다"
+          ]
+        }
+      ],
+      "bGoal": "한 꼭짓점에서 만나는 세 면이 서로 수직임을 말한다.",
+      "bReason": "면의 수와 관계를 모두 학생이 답하도록 질문에서 '세 면'을 뺐다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 한 꼭짓점에서 만나는 면은 {$3$}개이고, 이 면들은 서로 {수직}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        },
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cReason": "원문은 '직육면체'라는 조건이 없어, 조건을 넣고 수와 관계를 따로 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1487,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc19",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "한 꼭짓점의 세 면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 꼭짓점에서 만나는 세 면은 {서로 수직}이다.",
+        "studentC": "한 꼭짓점에서 만나는 세 면은 □이다.",
+        "answers": [
+          "서로 수직"
+        ]
+      },
+      "sourceFingerprint": "7339f1e8ea753c880606e22941c9377176a8e39b347613f0dbd4e96f2486e473",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "수직"
+      ],
+      "cStudentAfter": "직육면체의 한 꼭짓점에서 만나는 면은 □개이고, 이 면들은 서로 □이다.",
+      "cMarkedSentence": "직육면체의 한 꼭짓점에서 만나는 면은 {$3$}개이고, 이 면들은 서로 {수직}이다.",
+      "cStudentSentence": "직육면체의 한 꼭짓점에서 만나는 면은 □개이고, 이 면들은 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        },
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 한 꼭짓점에서 만나는 면은 몇 개인지 쓰고, 그 면들이 서로 어떤 관계인지 쓰시오.",
+        "answer": "$3$개의 면이 만나고, 이 면들은 서로 수직이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 수직이다",
+              "어느 두 면도 직각으로 만난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 한 꼭짓점에서 만나는 면은 {$3$}개이고, 이 면들은 서로 {수직}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "세"
+          ],
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8bace63ad7650f1fc878006fda406e32016751656fbabecef6261da97ec81853",
+      "questionRevision": "planning-e5e6-20261006-8bace63ad765",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc20",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 모서리 $12$개를 서로 평행한 것끼리 묶으면 몇 개씩 몇 묶음이 되는지 쓰시오.",
+      "bAnswer": "$4$개씩 $3$묶음이 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$개씩"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$묶음"
+          ]
+        }
+      ],
+      "bGoal": "평행한 모서리가 $4$개씩 $3$묶음임을 말한다.",
+      "bReason": "편집용 제목 '평행한 모서리 묶음' 대신 묶는 기준과 답의 형식을 질문에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 모서리 $12$개를 서로 평행한 것끼리 묶으면 {$4$}개씩 {$3$}묶음이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "네"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "cReason": "원문은 '세 묶음'이 드러나 있고 빈칸이 '네 개씩'뿐이어서, 두 수를 모두 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1488,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc20",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "평행한 모서리 묶음",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직육면체에서 서로 평행한 모서리는 {네 개씩} 세 묶음이다.",
+        "studentC": "직육면체에서 서로 평행한 모서리는 □ 세 묶음이다.",
+        "answers": [
+          "네 개씩"
+        ]
+      },
+      "sourceFingerprint": "1d1b23f4b1841dfa42703afd0f04364611e7f814932d57468728ca5a30aab16d",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$3$"
+      ],
+      "cStudentAfter": "직육면체의 모서리 $12$개를 서로 평행한 것끼리 묶으면 □개씩 □묶음이 된다.",
+      "cMarkedSentence": "직육면체의 모서리 $12$개를 서로 평행한 것끼리 묶으면 {$4$}개씩 {$3$}묶음이 된다.",
+      "cStudentSentence": "직육면체의 모서리 $12$개를 서로 평행한 것끼리 묶으면 □개씩 □묶음이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": [
+            "네"
+          ]
+        },
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 모서리 $12$개를 서로 평행한 것끼리 묶으면 몇 개씩 몇 묶음이 되는지 쓰시오.",
+        "answer": "$4$개씩 $3$묶음이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$개씩"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$묶음"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 모서리 $12$개를 서로 평행한 것끼리 묶으면 {$4$}개씩 {$3$}묶음이 된다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "네"
+          ],
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "257d7c1f499caad7ec2ab7f89cdee1d277368bb0a875871fb514af6e10d8ee04",
+      "questionRevision": "planning-e5e6-20261006-257d7c1f499c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "마주 보는 면의 눈의 수의 합이 $7$인 주사위가 있습니다. 눈의 수가 $2$인 면과 평행한 면의 눈의 수를 구하고, 구한 방법을 설명하시오.",
+      "bAnswer": "$5$이다. 평행한 면은 마주 보는 면이므로 $7-2=5$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행한 면은 마주 보는 면이므로 $7-2$로 구한다",
+            "마주 보는 면의 눈의 수의 합이 $7$이므로 $7$에서 $2$를 뺀다"
+          ]
+        }
+      ],
+      "bGoal": "평행한 면이 마주 보는 면임을 주사위에 적용한다.",
+      "bReason": "원문은 합 $7$을 외우게 할 뿐이어서, 조건을 주고 평행한 면의 눈을 구하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "마주 보는 면의 눈의 수의 합이 $7$인 주사위에서 눈의 수가 $3$인 면과 평행한 면의 눈의 수는 {$4$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "원문 '합이 일정하게 만든 보통 주사위'는 뜻이 흐려, 합 $7$을 조건으로 주고 값을 구하게 했다.",
+      "coreAfter": "각 면에 $1$부터 $6$까지 한 번씩 적고 마주 보는 면의 눈의 수 합이 일정한 주사위에서는, 평행한 두 면의 눈의 수 합이 {$7$}이다.",
+      "coreReason": "원문은 합이 왜 $7$인지 조건 없이 단정하고 표현이 불분명하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "7이라는 원문 수식 표적을 보존한다. 보통 주사위라는 숨은 관습 대신1부터6까지 한 번씩과 마주 보는 합 일정 조건을 명시해7을 직접 알려 주는 초안의 뜻 반복을 제거한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1489,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc21",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "주사위의 마주 보는 면",
+        "kind": "방법",
+        "level": "상",
+        "definition": "마주 보는 면의 눈의 합이 일정하게 만든 보통 주사위에서 평행한 두 면의 눈의 수를 더하면 {$7$}이다.",
+        "studentC": "마주 보는 면의 눈의 합이 일정하게 만든 보통 주사위에서 평행한 두 면의 눈의 수를 더하면 □이다.",
+        "answers": [
+          "$7$"
+        ]
+      },
+      "sourceFingerprint": "cba304d424f8e184cebc7c1005784b2c15f611163a74bccb1338728d74264f23",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "마주 보는 면의 눈의 수의 합이 $7$인 주사위에서 눈의 수가 $3$인 면과 평행한 면의 눈의 수는 □이다.",
+      "cMarkedSentence": "마주 보는 면의 눈의 수의 합이 $7$인 주사위에서 눈의 수가 $3$인 면과 평행한 면의 눈의 수는 {$4$}이다.",
+      "cStudentSentence": "마주 보는 면의 눈의 수의 합이 $7$인 주사위에서 눈의 수가 $3$인 면과 평행한 면의 눈의 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "마주 보는 면의 눈의 수의 합이 $7$인 주사위가 있습니다. 눈의 수가 $2$인 면과 평행한 면의 눈의 수를 구하고, 구한 방법을 설명하시오.",
+        "answer": "$5$이다. 평행한 면은 마주 보는 면이므로 $7-2=5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행한 면은 마주 보는 면이므로 $7-2$로 구한다",
+              "마주 보는 면의 눈의 수의 합이 $7$이므로 $7$에서 $2$를 뺀다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "마주 보는 면의 눈의 수의 합이 $7$인 주사위에서 눈의 수가 $3$인 면과 평행한 면의 눈의 수는 {$4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "448d8cc76d5174f010802707268e533f3297f18c8004edf71df822c9cd1ca816",
+      "questionRevision": "planning-e5e6-20261006-448d8cc76d51",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "studentDigest": "e594be5d73a48300b0f7ae14f07eb8d09e05c90999b8437e04a2a0497fc2e219",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "answer": "⑤",
+  "solution": "본문의 포물선은 위로 열려 있으므로 $a>0$이다. $y$축과 만나는 점이 $x$축 위쪽에 있으므로 $x=0$에서의 값 $-b>0$, 즉 $b<0$이다. 따라서 $y=-ax+b$의 기울기 $-a$와 $y$절편 $b$는 모두 음수여야 한다. 실제 보기 그래프 중 오른쪽으로 내려가면서 $y$축의 아래쪽을 지나는 것은 ⑤뿐이다.",
+  "evidence": {
+    "questionNumber": 4,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q04",
+    "input": {
+      "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/student-problems.json",
+      "studentProblemsSha256": "252ea8959ca5d96e13959ea9bf4b393fe00b0ff476f2b457b292c568fe6763b4",
+      "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/SOLVE-BRIEF.md",
+      "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    "figures": [
+      {
+        "role": "stem",
+        "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q04-1.svg",
+        "sha256": "642cdc2a3553acf03ec144666dd1548604eb608d945308275c0a859e79437268",
+        "hashMatchesStudentInput": true,
+        "visuallyInspected": true,
+        "observation": "위로 열린 포물선. y절편은 원점 위, 꼭짓점은 오른쪽 아래이고 두 x절편이 양수."
+      },
+      {
+        "role": "choice:1",
+        "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q04-2.svg",
+        "sha256": "c2d865d397d2ae8a42158f6b62c1c78f143a83e0488c8640cdc3d51fae0a74e1",
+        "hashMatchesStudentInput": true,
+        "visuallyInspected": true,
+        "observation": "choice:1은 오른쪽으로 증가하며 y절편 양수."
+      },
+      {
+        "role": "choice:2",
+        "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q04-3.svg",
+        "sha256": "ce356ff73613573dadbc8e8e2171fa59f243e8586b61c2ad8b9febd8e90eabdc",
+        "hashMatchesStudentInput": true,
+        "visuallyInspected": true,
+        "observation": "choice:2는 오른쪽으로 감소하며 y절편 양수."
+      },
+      {
+        "role": "choice:3",
+        "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q04-4.svg",
+        "sha256": "e75be1941f8d2496f9b38d6092ed393964fafb9c3e9bba83ffeea94c94457327",
+        "hashMatchesStudentInput": true,
+        "visuallyInspected": true,
+        "observation": "choice:3은 오른쪽으로 증가하며 y절편 음수."
+      },
+      {
+        "role": "choice:4",
+        "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q04-5.svg",
+        "sha256": "ff022f3e457a87623264344b26bb9a80bdeeb5aae7619b5b6806c7da3d73df06",
+        "hashMatchesStudentInput": true,
+        "visuallyInspected": true,
+        "observation": "choice:4는 오른쪽으로 감소하고 원점을 지난다."
+      },
+      {
+        "role": "choice:5",
+        "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q04-6.svg",
+        "sha256": "042d13de9847c8e2ac1b2d951aacf8ff06902a3e3c9fe63e9a37b3fc03024a73",
+        "hashMatchesStudentInput": true,
+        "visuallyInspected": true,
+        "observation": "choice:5는 오른쪽으로 감소하며 y절편 음수."
+      }
+    ],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "matches": false,
+        "reason": "기울기 양수, y절편 양수. 두 부호 모두 맞지 않는다."
+      },
+      {
+        "choice": 2,
+        "matches": false,
+        "reason": "기울기 음수이나 y절편이 양수이다."
+      },
+      {
+        "choice": 3,
+        "matches": false,
+        "reason": "y절편 음수이나 기울기가 양수이다."
+      },
+      {
+        "choice": 4,
+        "matches": false,
+        "reason": "기울기는 음수이나 원점을 지나 y절편이 0이다."
+      },
+      {
+        "choice": 5,
+        "matches": true,
+        "reason": "기울기와 y절편이 모두 음수이다."
+      }
+    ],
+    "codeCalculation": {
+      "tool": "Python sign classification and exact rational existence witness",
+      "observedChoiceSlopeInterceptSigns": [
+        [
+          1,
+          1
+        ],
+        [
+          -1,
+          1
+        ],
+        [
+          1,
+          -1
+        ],
+        [
+          -1,
+          0
+        ],
+        [
+          -1,
+          -1
+        ]
+      ],
+      "requiredSlopeInterceptSigns": [
+        -1,
+        -1
+      ],
+      "choiceMatches": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "existenceWitness": {
+        "a": "1",
+        "b": "-5",
+        "quadratic": "x²−6x+5",
+        "atZero": "5",
+        "vertex": [
+          "3",
+          "-4"
+        ],
+        "zeros": [
+          "1",
+          "5"
+        ],
+        "linear": "−x−5"
+      }
+    },
+    "existenceUniquenessAndDomain": "그림은 부호를 나타내는 개략도이므로 a,b의 수치나 정확한 기울기를 그림에서 읽지 않았다. a>0, b<0을 만족하는 실제 이차함수가 존재한다. 선택할 부호 조합은 ⑤ 하나이다.",
+    "blindness": {
+      "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+      "authorAnswerRead": false,
+      "authorSolutionRead": false,
+      "originalAnswersOrSolutionsRead": false,
+      "privateSpecOrPackageRead": false,
+      "parentHtmlOrSolutionPreviewRead": false,
+      "solverAuthoredThisCandidate": false
+    },
+    "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+  },
+  "status": "solved"
+}

@@ -1,0 +1,93 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceCommitFull": "13bf05dcec8c1781ab86321ecf9c3db65e5f96d7",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "completedAt": "2026-10-07T09:33:58.569678+00:00",
+  "planningOnly": true,
+  "releaseReady": false,
+  "totalSourceAndProposedRows": 2621,
+  "grades": {
+    "e5": 1430,
+    "e6": 1191
+  },
+  "parts": {
+    "e5": 197,
+    "e6": 196,
+    "e5plus": 1233,
+    "e6plus": 995
+  },
+  "bDecisions": {
+    "revise": 1984,
+    "exclude": 634,
+    "keep": 3
+  },
+  "cDecisions": {
+    "keep": 642,
+    "revise": 1730,
+    "exclude": 249
+  },
+  "coreAfterCount": 122,
+  "examplesFlagged": 28,
+  "currentFingerprintReadingCount": 2621,
+  "capturedPayloadEvidenceMatches": 2621,
+  "readerCounts": {
+    "legacy Codex direct-reading record; reader field absent": 151,
+    "Codex worker final direct reading": 2207,
+    "Root Codex direct final question/answer/criteria reading": 263
+  },
+  "unfinishedDraftIds": [],
+  "unfinishedEditorialIds": [],
+  "sourceOrderAndRawRowEquality": true,
+  "allSourceFingerprintsVerified": true,
+  "allProposalFingerprintsVerified": true,
+  "allCurrentReadingInputsExistAndMatch": true,
+  "compatibilityAliasRowsEqual": true,
+  "ownerApprovedCExactlyPreserved": [
+    {
+      "id": "e6-2-1-1-xc11",
+      "sentence": "$0$보다 큰 두 분수에서 나누어지는 분수가 나누는 분수보다 □ 몫은 $1$보다 작다.",
+      "answers": [
+        "작으면"
+      ],
+      "sourceFingerprint": "46766a1091ce81124eae46a0dc40e6cdcd856624fe7a5d4940d773ea2cb0d005"
+    },
+    {
+      "id": "e6-2-1-1-xc12",
+      "sentence": "$0$보다 큰 두 분수에서 나누어지는 분수가 나누는 분수보다 □ 몫은 $1$보다 크다.",
+      "answers": [
+        "크면"
+      ],
+      "sourceFingerprint": "b1b9fc0fa52333258ace0d00f17343e7993f6bf24e8a1c74a15f27263ab9f843"
+    }
+  ],
+  "validation": {
+    "sourceOrderProvenanceAndKatexFailures": 0,
+    "katexExpressionsChecked": 18032,
+    "contractDraftIssues": 0,
+    "currentIntegrationFailures": 0,
+    "currentEditorialFailures": 0,
+    "notationFaults": 0,
+    "blankClashes": 0,
+    "learningDefinitionsChecked": 2621,
+    "invalidLearningDefinitions": 0
+  },
+  "remainingCoordinatorWork": [
+    "Root/Claude independent review on current fingerprints and plan agreement",
+    "Decide any later illustration-supported form; current required-image exclusions stay excluded",
+    "Integrate proposals separately from general learning definitions; worksheet/student rendering checks",
+    "Deployment and production verification"
+  ],
+  "currentArtifactSha256": {
+    "audit.json": "f9befbeb5285399071fefdeb4e695cf7a2b786844fc48a0d47cf9839ca9183df",
+    "partial-audit.json": "d2723c5e7ef1579f9bc5455871ed3b5b4d581b6ddd5d3b28fb18a2ac9b9ce335",
+    "codex-final-editorial.json": "92171ac18d39f1e2d59d8e18cc73057d933d85d6baae8d61c830d87726b58e10",
+    "coverage.json": "4079e345526728f4cd750e35ab2dd5e80eaac6328e00fd1eca80ec1d346366fc",
+    "coverage-ledger.tsv": "45ee7cfda025533fd87782ab68ebfbb648519651dce251ddd6672830b7d2fc74",
+    "codex-overrides.json": "4c8b12befbefd37e7b4ad2478e09066cade2001968d81960c6c6887e68cd818f",
+    "validation.json": "24f5d574f12c26ead6d4042cfc627f09a02baab0d2ab11d571747470fa680543",
+    "core-definition-validation.json": "14cc26d3cafb414408ae8563024a28796bb34843191707a08fd48bf7db699fb1",
+    "evidence/current-validation-ctx-7fc6b4391c84.json": "e8ddc20e48a9011a12eecc928af8fdcb0c864d752f911f97021331c53b11ce8d"
+  },
+  "archivedSourceSha256": "97ba2708ca0efe97056e25ace61f16de297a50778a5ba6ed15eaa63c8b9e1123",
+  "archivedSourceRelation": "Exact source bytes plus one trailing LF; parsed JSON is identical. sourceSha256 names the original export bytes."
+}

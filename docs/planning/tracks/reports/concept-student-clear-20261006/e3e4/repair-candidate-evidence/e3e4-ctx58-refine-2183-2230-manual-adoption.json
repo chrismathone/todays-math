@@ -1,0 +1,187 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-2-1-xc23",
+      "sourceIndex": 2183,
+      "beforeProposal": {
+        "sourceIndex": 2183,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "0119c7cd4a0aedefa3d708cba5b81b07b81c9862bbb244437a4e7222852fddb9",
+        "proposalFingerprint": "c877fca4e0af9d475e7ac142b1c743b8951ab0dcfbea7f86c5f090df83b9e309",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형은 이등변삼각형이라고 할 수 있지만, 이등변삼각형이 모두 정삼각형은 아닌 까닭을 설명하시오.",
+        "bAnswer": "정삼각형은 세 변이 같아 두 변이 같다는 조건을 만족하지만, 이등변삼각형은 나머지 한 변이 달라도 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형은 세 변이 같아 두 변이 같다는 조건도 만족한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이등변삼각형은 나머지 한 변의 길이가 달라도 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정삼각형과 이등변삼각형의 관계",
+        "bReason": "포함 관계의 방향을 이유로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 {아니다}.",
+        "cReason": "긴 구절 빈칸을 '아니다' 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "포함 관계의 반대",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 {아니다}.",
+        "cStudentSentence": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "아니다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정삼각형은 이등변삼각형이라고 할 수 있지만, 이등변삼각형이 모두 정삼각형은 아닌 까닭을 설명하시오.",
+          "answer": "정삼각형은 세 변이 같아 두 변이 같다는 조건을 만족하지만, 이등변삼각형은 나머지 한 변이 달라도 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정삼각형은 세 변이 같아 두 변이 같다는 조건도 만족한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "이등변삼각형은 나머지 한 변의 길이가 달라도 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 {아니다}.",
+          "acceptedAnswers": [
+            [
+              "아니다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형은 나머지 한 변의 길이가 달라도 된다",
+              "두 변은 같지만 나머지 변이 다른 이등변삼각형도 있다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc21",
+      "sourceIndex": 2230,
+      "beforeProposal": {
+        "sourceIndex": 2230,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "4a1a8ed9422a920d64a9214f9e480e09958a0b6548aa0e87fda4bcddca9d9548",
+        "proposalFingerprint": "04d1436ffffbf205b6e4f310198c8398e81f71bae0d9209449ad27555c5a7328",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형의 한 각을 똑같이 둘로 나누면 나누어진 각 하나는 몇 도인지 식과 함께 쓰시오.",
+        "bAnswer": "$60^\\circ\\div2=30^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60^\\circ\\div2=30^\\circ$",
+              "정삼각형의 한 각 $60^\\circ$를 반으로 나누어 $30^\\circ$이다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "한 각을 둘로 나누기",
+        "bReason": "$60^\\circ$를 똑같이 나누는 선명한 계산 적용",
+        "cDecision": "keep",
+        "cReason": "각도 숫자 빈칸으로 계산이 선명",
+        "cSlotEquivalents": [
+          [
+            "$30$도"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형의 한 각을 둘로 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형의 한 각을 똑같이 둘로 나누면 각은 {$30^\\circ$}이다.",
+        "cStudentSentence": "정삼각형의 한 각을 똑같이 둘로 나누면 각은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$30^\\circ$",
+            "equivalents": [
+              "$30$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형의 한 각을 똑같이 둘로 나누면 각은 □이다.",
+          "answers": [
+            "$30^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형의 한 각을 똑같이 둘로 나누면 나누어진 각 하나는 몇 도인지 식과 함께 쓰시오.",
+          "answer": "$60^\\circ\\div2=30^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$60^\\circ\\div2=30^\\circ$",
+                "정삼각형의 한 각 $60^\\circ$를 반으로 나누어 $30^\\circ$이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형의 한 각을 똑같이 둘로 나누면 각은 {$30^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$30^\\circ$",
+              "$30$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60^\\circ\\div2=30^\\circ$",
+              "$60\\div2=30$이므로 $30^\\circ$이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

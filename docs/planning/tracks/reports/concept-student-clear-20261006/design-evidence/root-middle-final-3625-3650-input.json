@@ -1,0 +1,1028 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-middle-final-3625-3650-input.json",
+  "rows": [
+    {
+      "id": "m3-06-03-xc5",
+      "sourceIndex": 3625,
+      "proposalFingerprint": "a99e9441584e4366290d962e1cdfb4bdfcf622d414be14f865bf72368b6c8520",
+      "normalizedHash": "182b26fe77f9150a661e1bd540f22152e305ea1d0b7b3b645951cc7df5395105",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 원에서 호 $AB$를 하나 정했다. 이 호에 대한 중심각과 원주각은 각각 몇 개 그릴 수 있는가? 꼭짓점이 놓이는 곳을 근거로 쓰시오.",
+        "answer": "중심각은 꼭짓점이 될 수 있는 원의 중심이 하나뿐이라 $1$개이다. 원주각은 꼭짓점을 호 $AB$가 아닌 나머지 호 위 어느 점에나 잡을 수 있어 셀 수 없이 많다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "중심각은 $1$개이다",
+              "중심각은 하나뿐이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원주각은 셀 수 없이 많다",
+              "원주각은 무수히 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심은 하나이고, 원주각의 꼭짓점은 나머지 호 위 어디든 될 수 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 호에 대한 중심각은 {하나}뿐이지만, 원주각은 꼭짓점을 나머지 호 위 어디에 잡느냐에 따라 {셀 수 없이 많이} 그릴 수 있다.",
+        "acceptedAnswers": [
+          [
+            "하나",
+            "$1$개",
+            "한 개"
+          ],
+          [
+            "셀 수 없이 많이",
+            "무수히 많이",
+            "무수히",
+            "끝없이 많이"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "개수를 비교하도록 묻되, 답이 되는 개수는 질문에 드러내지 않았다.",
+      "cReason": "하나와 셀 수 없이 많이라는 짧은 비교 빈칸이 분명하다."
+    },
+    {
+      "id": "m3-06-03-xc6",
+      "sourceIndex": 3626,
+      "proposalFingerprint": "e7d78ef3e1a8b4e8c3ddb75209b43d3bcfa4e572111461d3223f823f52a245fd",
+      "normalizedHash": "5b1c653d77ee2be71149eac07d8015a646ba379f20057c0e4e11067ef03ae508",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$의 지름 $AB$의 양 끝과 원 위의 다른 점 $P$를 이어 $\\triangle APB$를 만들었다. $\\angle APB$의 크기와 그 까닭을 쓰고, $\\triangle APB$가 어떤 삼각형인지 쓰시오.",
+        "answer": "$\\angle APB=90^\\circ$이다. 호 $AB$는 반원이라 중심각 $\\angle AOB=180^\\circ$이고, 원주각은 그 절반이기 때문이다. 따라서 $\\triangle APB$는 직각삼각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle APB=90^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "호 $AB$에 대한 중심각이 $180^\\circ$라서 그 절반이다",
+              "반원에 대한 원주각이라서"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각삼각형"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "지름의 양 끝과 원 위의 다른 한 점을 이으면 그 점에서의 각은 {$90^\\circ$}이고, 생긴 삼각형은 {직각삼각형}이다.",
+        "acceptedAnswers": [
+          [
+            "$90^\\circ$",
+            "직각"
+          ],
+          [
+            "직각삼각형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "지름과 점 $P$를 명시해 각의 크기, 까닭, 삼각형 종류로 범위를 정했다.",
+      "cReason": "$90^\\circ$와 직각삼각형이라는 두 빈칸이 결론을 짧게 확인한다."
+    },
+    {
+      "id": "m3-06-03-xc7",
+      "sourceIndex": 3627,
+      "proposalFingerprint": "73033acc14f0c8a10ece613d7be5f2dba6b2df7c308be1a6f224ff457fbddb9c",
+      "normalizedHash": "ba423c8f84a53829bf5ce7344b2b3876c58fae74b92e75375ce2deef8dab850b",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 원에서 호 $AB$가 반원보다 작을 때, 반원일 때, 반원보다 클 때 호 $AB$에 대한 원주각은 각각 예각, 직각, 둔각 중 무엇인가? 중심각을 이용해 까닭도 쓰시오.",
+        "answer": "반원보다 작으면 중심각이 $180^\\circ$보다 작아 원주각은 $90^\\circ$보다 작은 예각이다. 반원이면 원주각은 중심각 $180^\\circ$의 절반인 직각이다. 반원보다 크면 중심각이 $180^\\circ$보다 커서 원주각은 $90^\\circ$보다 큰 둔각이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반원보다 작은 호이면 예각이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반원이면 직각이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반원보다 큰 호이면 둔각이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원주각은 중심각의 절반이므로 중심각을 $180^\\circ$와 비교한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "호가 반원보다 작으면 그 호에 대한 원주각은 {예각}이고, 반원보다 크면 {둔각}이다.",
+        "acceptedAnswers": [
+          [
+            "예각"
+          ],
+          [
+            "둔각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc16의 큰 호 경우까지 묶어 세 경우와 중심각 근거를 함께 묻게 했다.",
+      "cReason": "예각과 둔각이라는 짧은 비교 빈칸이 분명하다."
+    },
+    {
+      "id": "m3-06-03-xc8",
+      "sourceIndex": 3628,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "ffc4e0e537dedf5a28d4a9ef4fa021f1638597ff7bc1f2835bf119795a4f936c",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "꼭짓점의 위치는 c1 B 모범답과 c2 B에 이미 들어 있다."
+      },
+      "C": {
+        "excluded": "호 $AB$가 아닌이라는 구절에서 나머지가 바로 보여 평가 가치가 낮다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "꼭짓점의 위치는 c1 B 모범답과 c2 B에 이미 들어 있다.",
+      "cReason": "호 $AB$가 아닌이라는 구절에서 나머지가 바로 보여 평가 가치가 낮다."
+    },
+    {
+      "id": "m3-06-03-xc10",
+      "sourceIndex": 3629,
+      "proposalFingerprint": "39135727a28469fd14ae24e4bb31e2c3963b9c83a42b8b4ecbe747917b2d72f1",
+      "normalizedHash": "12953ca9dd98d72ea3eb70fceaf504c4d2bb9272a86f018f92103770a78e26ad",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원에 내접하는 $\\triangle ABC$의 세 내각 $\\angle A$, $\\angle B$, $\\angle C$를 각각 원주각으로 본다. 각 내각은 어느 호에 대한 원주각인가? 또 세 각의 합을 그 호들의 중심각으로 어떻게 구하는가?",
+        "answer": "$\\angle A$, $\\angle B$, $\\angle C$는 각각 꼭짓점을 포함하지 않는 호 $BC$, 호 $CA$, 호 $AB$에 대한 원주각이다. 세 호를 합치면 원 전체이므로 중심각의 합이 $360^\\circ$이다. 따라서 원주각의 합은 그 절반인 $180^\\circ$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle A$는 호 $BC$, $\\angle B$는 호 $CA$, $\\angle C$는 호 $AB$에 대한 원주각이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 호의 중심각의 합이 $360^\\circ$이다",
+              "세 호를 합치면 원 전체이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합은 그 절반인 $180^\\circ$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원에 내접하는 $\\triangle ABC$의 세 내각은 각각 마주 보는 호에 대한 {원주각}이므로 그 합은 {$180^\\circ$}이다.",
+        "acceptedAnswers": [
+          [
+            "원주각"
+          ],
+          [
+            "$180^\\circ$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "삼각형 내각의 합을 원주각으로 다시 보는 관점이므로 호의 대응과 중심각의 합을 묻게 했다.",
+      "cReason": "원주각과 $180^\\circ$라는 두 빈칸이 관점과 결과를 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-03-xc11",
+      "sourceIndex": 3630,
+      "proposalFingerprint": "0727ef477ed02e73975e6eb1468a32c31c6b4a036098760b710e3028880357ed",
+      "normalizedHash": "d77ec51ec672f0e550badb76c9fa03684cd54d8d26516cde08ec20965fd117ba",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 원에서 길이가 원둘레의 $\\frac{1}{n}$인 호가 있다. 이 호에 대한 중심각과 원주각의 크기를 차례로 $n$으로 나타내시오.",
+        "answer": "중심각은 $360^\\circ$의 $\\frac{1}{n}$인 $\\frac{360^\\circ}{n}$이다. 원주각은 그 절반인 $\\frac{180^\\circ}{n}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "중심각은 $\\frac{360^\\circ}{n}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원주각은 $\\frac{180^\\circ}{n}$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 전체에 대한 중심각은 $360^\\circ$이므로, 호의 길이가 원둘레의 $\\frac{1}{n}$이면 그 호에 대한 원주각은 {$\\frac{180^\\circ}{n}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{180^\\circ}{n}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "공식을 외우는 대신 중심각을 거쳐 원주각을 얻는 두 단계를 묻게 했다.",
+      "cReason": "일반 $n$에 대한 식 빈칸이라 단순 수치 암기가 아니다."
+    },
+    {
+      "id": "m3-06-03-xc12",
+      "sourceIndex": 3631,
+      "proposalFingerprint": "a0582ddbf0b79fbeaab22decea497a9a480f7bb314d334524cca71650705d5e4",
+      "normalizedHash": "f0d6fc87751fe9f9629d943eb78b2ec4e933e6cabe60c64d5a761eb7feb06171",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 원의 서로 다른 두 지름 $AC$, $BD$의 끝 점을 차례로 이어 사각형 $ABCD$를 만들었다. 이 사각형은 어떤 사각형인가? 원주각을 이용해 까닭과 함께 쓰시오.",
+        "answer": "직사각형이다. 예를 들어 $\\angle ABC$는 지름 $AC$로 나뉜 반원에 대한 원주각이라 $90^\\circ$이다. 같은 까닭으로 네 각이 모두 $90^\\circ$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각이 모두 반원(지름)에 대한 원주각이라 $90^\\circ$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 원의 서로 다른 두 지름의 끝 점을 차례로 이은 사각형은 네 각이 모두 {반원}에 대한 원주각이라 {직사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "반원"
+          ],
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 지름의 이름을 정해 사각형의 종류와 원주각 근거를 묻게 했다.",
+      "cReason": "반원과 직사각형이라는 두 빈칸이 근거와 결론을 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-03-xc13",
+      "sourceIndex": 3632,
+      "proposalFingerprint": "4bde047345bb3a87274c9ea5ebb4ab4217f5af56af0e24449806a6680e5bbb75",
+      "normalizedHash": "ce4a3ddaffbbeec8b19eee35027aa15c89c453dd5166055618c5b34c91eb331f",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "원 $O$에서 원주각 $\\angle APB$의 바깥에 중심 $O$가 있다. 점 $P$를 지나는 지름 $PQ$에 대하여 반직선 $PA$가 $\\angle QPB$의 안쪽에 있다. $\\angle APB=\\frac{1}{2}\\angle AOB$임을 보이는 과정을 쓰시오. (한 변이 지름인 원주각은 중심각의 절반이라는 사실을 써도 된다.)",
+        "answer": "$\\angle APB=\\angle QPB-\\angle QPA$이다. 각각 한 변이 지름이므로 $\\angle QPB=\\frac{1}{2}\\angle QOB$, $\\angle QPA=\\frac{1}{2}\\angle QOA$이다. 또 $\\angle QOB-\\angle QOA=\\angle AOB$이므로 $\\angle APB=\\frac{1}{2}\\angle AOB$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle APB=\\angle QPB-\\angle QPA$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle QPB=\\frac{1}{2}\\angle QOB$이고 $\\angle QPA=\\frac{1}{2}\\angle QOA$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle QOB-\\angle QOA=\\angle AOB$이므로 차가 $\\frac{1}{2}\\angle AOB$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원의 중심이 원주각 $\\angle APB$의 바깥에 있으면, $P$를 지나는 지름을 긋는다. 그리고 한 변이 지름인 두 원주각의 {차}로 $\\angle APB$를 나타내어 중심각의 절반임을 보인다.",
+        "acceptedAnswers": [
+          [
+            "차"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "바깥에 있어도라는 말만으로는 할 일이 없어 지름 $PQ$와 반직선의 위치를 주고 차로 보이게 했다.",
+      "cReason": "원문의 빈칸 절반은 c3과 같아 이 경우에만 쓰이는 차를 묻도록 바꿨다."
+    },
+    {
+      "id": "m3-06-03-xc14",
+      "sourceIndex": 3633,
+      "proposalFingerprint": "6b2c7245c2c12dd369a542cda8c47199707c0c7cdd7232980bab5cb12536309b",
+      "normalizedHash": "93bb4849c28d75904c2f57d148785ccf4ede4760460164697248347dd1ed30da",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "한 원에서 원주각 $\\angle APB$와 $\\angle CQD$의 크기가 같다. 각각에 대한 호 $AB$와 호 $CD$의 길이는 어떤 관계인가? 중심각을 이용해 까닭을 쓰시오.",
+        "answer": "두 호의 길이는 같다. 원주각이 같으면 그 $2$배인 중심각도 같고, 한 원에서 중심각이 같은 호는 길이가 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "호 $AB$와 호 $CD$의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원주각이 같으면 그 $2$배인 중심각도 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심각이 같은 호는 길이가 같다",
+              "호의 길이는 중심각에 정비례한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 원에서 크기가 같은 두 원주각에 대한 호는 길이가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c5와 반대 방향의 성질이므로 두 원주각을 기호로 주고 중심각을 거친 까닭을 묻게 했다.",
+      "cReason": "서로를 정한다는 메타 표현을 빼고 판단할 문장만 남겼다."
+    },
+    {
+      "id": "m3-06-03-xc15",
+      "sourceIndex": 3634,
+      "proposalFingerprint": "79d9ca2a016c876f9db65872aafaaf6e15134aec62e2cc95ab9ccae2d2732d61",
+      "normalizedHash": "6ab9f4c766a477caa32d97a5d1a8af5e378849d10a92fa595d1d1b2384bd98a1",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$에서 원주각 $\\angle APB$와 $\\angle CQD$의 크기가 같다. 현 $AB$와 현 $CD$의 길이는 어떤 관계인가? 까닭을 쓰시오.",
+        "answer": "두 현의 길이는 같다. 원주각이 같으면 중심각 $\\angle AOB$와 $\\angle COD$가 같다. 또 $\\overline{OA}=\\overline{OB}=\\overline{OC}=\\overline{OD}$이므로 $\\triangle AOB\\equiv\\triangle COD$($\\mathrm{SAS}$ 합동)이고, 따라서 $\\overline{AB}=\\overline{CD}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AB}=\\overline{CD}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심각이 같다",
+              "호의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle AOB\\equiv\\triangle COD$이다",
+              "중심각(호)이 같으면 현의 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 원에서 크기가 같은 원주각이 마주 보는 현의 길이는 {같다}. 여기서 현은 호의 두 끝점을 잇는 선분이다.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원주각과 현의 관계를 기호로 정하고, 중심각을 거친 까닭을 묻게 했다.",
+      "cReason": "현의 뜻이 덧붙어 있어 같은 원주각이면 현도 같음을 짧게 확인한다."
+    },
+    {
+      "id": "m3-06-03-xc16",
+      "sourceIndex": 3635,
+      "proposalFingerprint": "1c7f5c68cd198e7fdb00049b29c7c5f1fde0cad025a390a7846325b6c7a2c3f4",
+      "normalizedHash": "27876309464290a527c175a765c5de2119589543efea22b3a49b8b7d9ad76ace",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "큰 호에 대한 원주각이 둔각이라는 근거는 xc7 B의 세 경우 질문에 포함했다."
+      },
+      "C": {
+        "sentence": "반원보다 큰 호에 대한 중심각은 $180^\\circ$보다 크고, 그 원주각도 중심각의 {절반}이라 {$90^\\circ$}보다 크다.",
+        "acceptedAnswers": [
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "$90^\\circ$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "큰 호에 대한 원주각이 둔각이라는 근거는 xc7 B의 세 경우 질문에 포함했다.",
+      "cReason": "절반과 $90^\\circ$라는 빈칸이 중심각에서 원주각으로 가는 근거를 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-03-xc17",
+      "sourceIndex": 3636,
+      "proposalFingerprint": "240d3612341f57bcf8ded7b7c0723e9806659957635c0294c6366941d817539b",
+      "normalizedHash": "41f1b3c2e9bf130af629b060386fbf1c7faf00dbb84bbed4bb0a309fd3e2923b",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$에서 원주각 $\\angle APB$의 한 변 $PB$가 지름이다. $\\triangle OAP$를 이용하여 $\\angle AOB=2\\angle APB$인 까닭을 쓰시오.",
+        "answer": "$\\overline{OA}=\\overline{OP}$(반지름)이므로 $\\triangle OAP$는 이등변삼각형이다. 따라서 $\\angle OAP=\\angle OPA=\\angle APB$이다. $\\angle AOB$는 $\\triangle OAP$의 꼭짓점 $O$에서의 외각이므로 $\\angle AOB=\\angle OAP+\\angle OPA=2\\angle APB$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{OA}=\\overline{OP}$이므로 $\\angle OAP=\\angle OPA$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle AOB$는 $\\triangle OAP$의 외각이므로 두 내각의 합과 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원주각의 한 변이 지름이면 중심각은 이등변삼각형의 한 {외각}이 되어 원주각의 {$2$}배임이 바로 보인다.",
+        "acceptedAnswers": [
+          [
+            "외각"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "증명의 기본 경우이므로 지름 $PB$와 $\\triangle OAP$를 지정해 이등변삼각형과 외각 근거를 묻게 했다.",
+      "cReason": "외각과 $2$라는 두 빈칸이 근거와 결론을 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-03-xc18",
+      "sourceIndex": 3637,
+      "proposalFingerprint": "ebf9ec443406e60eb82f73c3fcbecd8f08fd7577e3df891d2bbe7a68a471d43e",
+      "normalizedHash": "505087295500c2270146730199353155374e18d64937b1928feb24931bb52ab8",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 위에 네 점 $A$, $B$, $C$, $D$가 이 순서로 있고, 두 현 $AC$, $BD$가 원 안의 점 $P$에서 만난다. $\\angle APB$를 $\\angle ADB$와 $\\angle CAD$로 나타내시오. 또 $\\overline{AD}$를 그어 그 까닭을 쓰시오.",
+        "answer": "$\\angle APB=\\angle ADB+\\angle CAD$이다. $\\angle APB$는 $\\triangle APD$의 꼭짓점 $P$에서의 외각이므로 $\\angle PDA+\\angle PAD$와 같다. 그런데 $\\angle PDA=\\angle ADB$이고 $\\angle PAD=\\angle CAD$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle APB=\\angle ADB+\\angle CAD$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle APB$는 $\\triangle APD$의 외각이다",
+              "삼각형 $APD$의 외각 성질을 쓴다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 현 $AC$, $BD$가 원 안의 점 $P$에서 만나면 $\\angle APB$는 $\\angle ADB$와 $\\angle CAD$의 {합}과 같다 — $\\overline{AD}$를 그으면 $\\angle APB$가 $\\triangle APD$의 {외각}이기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "외각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "그림이 없어 네 점의 순서와 교점을 밝히고, 각 사이의 식과 외각 근거를 묻게 했다.",
+      "cReason": "점과 보조선이 문장에 있어 합과 외각이라는 빈칸이 분명하다."
+    },
+    {
+      "id": "m3-06-03-xc19",
+      "sourceIndex": 3638,
+      "proposalFingerprint": "cfbfe1a839fb9b5eaed6971d369010d5f519e5cb25923bf8e34b956be02ae283",
+      "normalizedHash": "ca740545dd49b667a986a5b7d8e30076d89f3d030708272f3b9b3b630c5f08ab",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "원 위의 네 점 $A$, $B$, $C$, $D$에 대하여 직선 $AB$와 직선 $DC$가 원 밖의 점 $P$에서 만난다. $B$는 $A$와 $P$ 사이에, $C$는 $D$와 $P$ 사이에 있다. $\\angle APD$를 $\\angle ACD$와 $\\angle BAC$로 나타내고, $\\triangle ACP$를 이용해 까닭을 쓰시오.",
+        "answer": "$\\angle APD=\\angle ACD-\\angle BAC$이다. $\\triangle ACP$에서 $\\angle ACD$는 꼭짓점 $C$에서의 외각이므로 $\\angle ACD=\\angle CAP+\\angle APC$이다. 그런데 $\\angle CAP=\\angle BAC$이고 $\\angle APC=\\angle APD$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle APD=\\angle ACD-\\angle BAC$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle ACD$는 $\\triangle ACP$의 외각이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 위의 네 점 $A$, $B$, $C$, $D$에 대하여 직선 $AB$와 직선 $DC$가 원 밖의 점 $P$에서 만나고, $B$는 $A$와 $P$ 사이, $C$는 $D$와 $P$ 사이에 있다고 하자. 이때 $\\angle APD$는 $\\angle ACD$와 $\\angle BAC$의 {차}와 같다. $\\angle ACD$가 $\\triangle ACP$의 {외각}이기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "차"
+          ],
+          [
+            "외각"
+          ]
+        ]
+      },
+      "coreBefore": "두 현의 연장선이 원 밖의 점 $P$에서 만나면 $\\angle P$는 $P$에서 먼 쪽 호와 가까운 쪽 호에 대한 원주각의 {차}와 같다.",
+      "coreAfter": "한 원에서 두 현 $AB$, $DC$의 연장선이 원 밖의 점 $P$에서 만나고, $B$는 $A$와 $P$ 사이, $C$는 $D$와 $P$ 사이에 있다. $\\angle APD$는 먼 호 $AD$에 대한 원주각 $\\angle ACD$와 가까운 호 $BC$에 대한 원주각 $\\angle BAC$의 {차}와 같다.",
+      "coreReason": "원주각을 빼는 실제 호와 점의 순서를 밝히며, 삼각형 ACP의 외각 ACD에서 CAP를 빼면 APC인 일반 의미를 유지한다.",
+      "bReason": "먼 호와 가까운 호가 그림 없이는 모호해서 네 점의 순서를 정하고 식으로 묻게 했다.",
+      "cReason": "먼 쪽 호와 가까운 쪽 호가 그림 없이 정해지지 않아 점의 순서와 두 원주각을 밝혔다."
+    },
+    {
+      "id": "m3-06-03-xc20",
+      "sourceIndex": 3639,
+      "proposalFingerprint": "edc2706450f794a4e504e0d2ef390d0afcb8c15f062862eb1d3aa393151ec979",
+      "normalizedHash": "3315a0ceefb2cdf6f88fc6531bdc5213c7ad15c8c31898b509f531debe8bae22",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 위의 세 점 $A$, $B$, $C$가 원둘레를 세 호로 나눈다. 점 $C$, $A$, $B$를 각각 포함하지 않는 호 $AB$, 호 $BC$, 호 $CA$의 길이의 비가 $2:3:4$이다. $\\angle ACB$, $\\angle BAC$, $\\angle CBA$의 크기를 구하시오. 또 $360^\\circ$가 아니라 $180^\\circ$를 이 비로 나누는 까닭을 쓰시오.",
+        "answer": "세 원주각의 합은 세 호의 중심각의 합 $360^\\circ$의 절반인 $180^\\circ$이다. 원주각은 호의 길이에 정비례하므로 $\\angle ACB=180^\\circ\\times\\frac{2}{9}=40^\\circ$, $\\angle BAC=60^\\circ$, $\\angle CBA=80^\\circ$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세 원주각의 합이 $180^\\circ$(중심각의 합 $360^\\circ$의 절반)이다",
+              "원주각은 중심각의 절반이기 때문이다",
+              "세 각이 $\\triangle ABC$의 내각이라 합이 $180^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle ACB=40^\\circ$, $\\angle BAC=60^\\circ$, $\\angle CBA=80^\\circ$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 위의 세 점이 원둘레를 나눈 세 호에 대한 원주각의 합은 {$180^\\circ$}이고 원주각은 호의 길이에 정비례하므로, $180^\\circ$를 세 호의 {길이의 비}로 나눈다.",
+        "acceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "길이의 비"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비례 배분 방법은 구체적인 비가 있어야 드러나므로 $2:3:4$와 각의 이름을 넣었다.",
+      "cReason": "$180^\\circ$와 길이의 비라는 두 빈칸이 방법의 핵심을 묻는다."
+    },
+    {
+      "id": "m3-06-03-xc21",
+      "sourceIndex": 3640,
+      "proposalFingerprint": "a29ef455ef78d59c4d59db0735e3e481d0d828beeb804bd891e67b88c725b598",
+      "normalizedHash": "ab8c2ae4059aa958d02369805c8692f486a88c9d03a070c043e08050ba8397cb",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "exclude",
+      "B": {
+        "prompt": "정$n$각형의 외접원에서 한 변이 자르는 두 호 가운데 짧은 호는 원둘레의 몇 분의 몇인가? 그 까닭을 쓰고, 이 호에 대한 원주각의 크기를 $n$으로 나타내시오.",
+        "answer": "정$n$각형의 $n$개의 변은 길이가 같은 현이므로, 이 현들이 자르는 짧은 호의 길이도 모두 같다. 따라서 한 호는 원둘레의 $\\frac{1}{n}$이다. 중심각은 $\\frac{360^\\circ}{n}$, 원주각은 $\\frac{180^\\circ}{n}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원둘레의 $\\frac{1}{n}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이가 같은 현(변)이 자르는 호는 길이가 같다",
+              "$n$개의 짧은 호가 원 전체를 똑같이 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{180^\\circ}{n}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "excluded": "빈칸 식이 xc11과 같고, 뒤 구절이 원둘레의 $\\frac{1}{n}$을 알려 준다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc11의 공식과 달리, 변의 길이가 같아서 호가 $\\frac{1}{n}$이 되는 까닭을 묻게 했다.",
+      "cReason": "빈칸 식이 xc11과 같고, 뒤 구절이 원둘레의 $\\frac{1}{n}$을 알려 준다."
+    },
+    {
+      "id": "m3-06-03-xc22",
+      "sourceIndex": 3641,
+      "proposalFingerprint": "4fff80af6c901d2f7946665e5a04b18a48cea25a772cf7f90c22293b303026bb",
+      "normalizedHash": "5b3773a64663c5c3c3a93328cfb1f9df840b5937143afdc40a689a585310fbf2",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원의 지름 $AB$와 원 위의 다른 점 $P$로 $\\triangle APB$를 만들었다. $\\overline{AP}$, $\\overline{BP}$, $\\overline{AB}$의 길이 사이의 관계식을 쓰고 그 까닭을 쓰시오.",
+        "answer": "$\\overline{AP}^2+\\overline{BP}^2=\\overline{AB}^2$이다. $\\angle APB$는 반원에 대한 원주각이라 $90^\\circ$이다. 따라서 $\\overline{AB}$가 빗변인 직각삼각형에서 피타고라스 정리를 쓸 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AP}^2+\\overline{BP}^2=\\overline{AB}^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle APB=90^\\circ$(반원에 대한 원주각)이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "지름 $AB$와 원 위의 다른 점 $P$가 만드는 삼각형에서 $\\angle APB$는 {반원에 대한 원주각}이라 {직각}이므로, $\\overline{AB}$를 {빗변}으로 하여 피타고라스 정리를 쓸 수 있다.",
+        "acceptedAnswers": [
+          [
+            "반원에 대한 원주각"
+          ],
+          [
+            "직각",
+            "$90^\\circ$"
+          ],
+          [
+            "빗변"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "계산 하나로 줄이지 않고, 일반 관계식과 직각의 근거를 함께 묻게 했다.",
+      "cReason": "근거, 직각, 빗변이라는 세 빈칸이 적용 순서를 분명히 보여 준다."
+    },
+    {
+      "id": "m3-06-03-xc23",
+      "sourceIndex": 3642,
+      "proposalFingerprint": "c946795250ad27f774397cd09500fbc770c0b54bff328ea4e2a2c88a89096a45",
+      "normalizedHash": "c282393a46d75f42fcd3d74c2fd7b81f56aa1bba75582b44dcefcccca8a3ab46",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$ 위의 세 점 $A$, $B$, $P$에 대하여 $\\angle APB=90^\\circ$이다. 선분 $AB$는 이 원에서 어떤 선분인가? 중심각을 이용해 까닭도 쓰시오.",
+        "answer": "선분 $AB$는 지름이다. 호 $AB$에 대한 중심각 $\\angle AOB$는 원주각의 $2$배인 $180^\\circ$이므로 $A$, $O$, $B$가 한 직선 위에 있다. 즉 $\\overline{AB}$는 중심을 지난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "지름"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심각이 $180^\\circ$이다",
+              "$A$, $O$, $B$가 한 직선 위에 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 위의 세 점 $A$, $B$, $P$에 대하여 $\\angle APB=90^\\circ$이면 $\\overline{AB}$는 그 원의 {지름}이다 — 반원에 대한 원주각의 성질을 {거꾸로} 쓴 것이다.",
+        "acceptedAnswers": [
+          [
+            "지름"
+          ],
+          [
+            "거꾸로",
+            "반대로",
+            "역으로"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "반원 성질의 역이므로 선분의 이름을 묻고 중심각 $180^\\circ$ 근거를 요구했다.",
+      "cReason": "지름 빈칸이 결론을, 거꾸로 빈칸이 역의 관계를 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-03-xc24",
+      "sourceIndex": 3643,
+      "proposalFingerprint": "120464c60b942940ad52c4a373513a56efa5ee6a959860416c94053d1c7c58ce",
+      "normalizedHash": "bf8a849db4eaa8ea0c828707ea33fd0ab2e7c9a023a064f99a7f4e4a8c642364",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "반지름이 $6$인 원에서 호 $AB$에 대한 원주각이 $30^\\circ$이다. 호 $AB$의 길이를 구하는 과정과 답을 쓰시오.",
+        "answer": "중심각은 원주각의 $2$배인 $60^\\circ$이다. 따라서 호 $AB$의 길이는 $2\\pi\\times6\\times\\frac{60}{360}=2\\pi$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "중심각 $60^\\circ$를 쓴다",
+              "원주각의 $2$배인 중심각으로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\pi$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 원에서 호의 길이와 원둘레의 비는 {중심각}과 $360^\\circ$의 비와 같고, 원주각은 그 중심각의 {절반}이다.",
+        "acceptedAnswers": [
+          [
+            "중심각"
+          ],
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원주각을 중심각으로 바꾸는 절차가 핵심이므로 반지름과 각을 준 예로 특정했다.",
+      "cReason": "중심각과 절반이라는 두 빈칸이 계산에서 주의할 점을 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc2",
+      "sourceIndex": 3644,
+      "proposalFingerprint": "52bd02c92fb6e35d5f7a8c4782a1708898078ec0fc5ae7b5859b0e414614addf",
+      "normalizedHash": "427ec376368387e6a859bdb5cbe3f14898e3b9185a54840b35d228e32e5ffcef",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "모든 사각형이 원에 내접하는가? 판단하고, 원에 내접하지 않는 사각형의 예를 하나 들어 까닭을 쓰시오.",
+        "answer": "아니다. 예를 들어 한 내각이 $60^\\circ$인 평행사변형(직사각형이 아닌 것)은 대각의 크기가 $60^\\circ$, $60^\\circ$로 그 합이 $180^\\circ$가 아니다. 따라서 원에 내접하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "아니다",
+              "모든 사각형이 내접하지는 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각의 합이 $180^\\circ$가 아닌 사각형의 예",
+              "네 꼭짓점을 모두 지나는 원이 없는 사각형의 예"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 {내접}하므로, 모든 사각형이 원에 내접하는 것은 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "내접"
+          ],
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "아니다라고만 답하지 않도록 반례와 대각에 의한 근거를 요구했다.",
+      "cReason": "내접과 아니다라는 두 빈칸이 판단을 짧게 확인한다."
+    },
+    {
+      "id": "m3-06-04-xc3",
+      "sourceIndex": 3645,
+      "proposalFingerprint": "3b36c01cd345b0d6c06b38f58c3a15734d5e190cc414645321edf351794bebb8",
+      "normalizedHash": "f6f58d0362ccb3184497e988a112d45a8f268944a28f66504ca3e63e176df79c",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "꼭짓점과 변의 이름만 묻는 조각 정의로, c5 B의 상황에 포함된다."
+      },
+      "C": {
+        "sentence": "접선과 현이 이루는 각의 꼭짓점은 {접점}이고, 그 각의 한 변은 접선, 다른 한 변은 {현}이다.",
+        "acceptedAnswers": [
+          [
+            "접점"
+          ],
+          [
+            "현"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "꼭짓점과 변의 이름만 묻는 조각 정의로, c5 B의 상황에 포함된다.",
+      "cReason": "접점과 현이라는 두 빈칸이 각의 구성 요소를 짧게 확인한다."
+    },
+    {
+      "id": "m3-06-04-xc5",
+      "sourceIndex": 3646,
+      "proposalFingerprint": "57edbfe4187a357041f7c270d009510132f5010e5ac2c0d9ca09dc790c196a4c",
+      "normalizedHash": "e248a547cfdebb8cca596a1f4e83b23ac76da48a732041d070b66e54ca5d5889",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직사각형은 항상 원에 내접하는가? 사각형이 원에 내접하는 조건을 이용해 까닭과 함께 쓰시오.",
+        "answer": "항상 내접한다. 직사각형은 마주 보는 두 각이 모두 $90^\\circ$라 그 합이 $180^\\circ$이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 내접한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각의 합이 $90^\\circ+90^\\circ=180^\\circ$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직사각형은 마주 보는 두 각이 모두 $90^\\circ$라 합이 {$180^\\circ$}이므로 언제나 원에 {내접}한다.",
+        "acceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "내접"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "판정 조건을 적용하는지 확인하도록 내접 여부와 대각 합 근거를 묻게 했다.",
+      "cReason": "$180^\\circ$와 내접이라는 두 빈칸이 근거와 결론을 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc7",
+      "sourceIndex": 3647,
+      "proposalFingerprint": "aa7b1afd410f4682c061df97f3ed2f41c802a64b7b7f08aecb3828bfbf0baeb9",
+      "normalizedHash": "c0359326c580e9ae20705fe2bd30fac7ea44729cdd6f106a6a655aa5a25ceb8c",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "대각의 합이 $180^\\circ$라는 결론은 c2 B와 목표가 같다."
+      },
+      "C": {
+        "sentence": "원에 내접한 사각형도 네 내각의 합은 {$360^\\circ$}이고, 마주 보는 두 쌍이 각각 {$180^\\circ$}씩 나눠 가진다.",
+        "acceptedAnswers": [
+          [
+            "$360^\\circ$"
+          ],
+          [
+            "$180^\\circ$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "대각의 합이 $180^\\circ$라는 결론은 c2 B와 목표가 같다.",
+      "cReason": "$360^\\circ$와 $180^\\circ$라는 두 계산 빈칸이 내각의 합과 대각의 합을 비교한다."
+    },
+    {
+      "id": "m3-06-04-xc8",
+      "sourceIndex": 3648,
+      "proposalFingerprint": "3e5b66abad3de79fdda045c5d121f77862c0c36d66a96b306921abfc73acd431",
+      "normalizedHash": "0e6c39707f611814db8a6495d5c84c367da6e0ce81949cb70176670db090c71e",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$ 위의 점 $A$에서의 접선과 현 $AB$가 이루는 각의 크기가 $x$이다. 그 각의 안쪽에 놓인 호 $AB$에 대한 중심각 $\\angle AOB$를 $x$로 나타내고 까닭을 쓰시오.",
+        "answer": "$\\angle AOB=2x$이다. 접선과 현이 이루는 각은 그 호에 대한 원주각과 같으므로 원주각이 $x$이고, 중심각은 원주각의 $2$배이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle AOB=2x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 호에 대한 원주각이 $x$이고 중심각은 그 $2$배이다",
+              "$\\angle OAB=90^\\circ-x$이므로 $\\angle AOB=180^\\circ-2(90^\\circ-x)$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 {중심각}은 {$2x$}이다.",
+        "acceptedAnswers": [
+          [
+            "중심각"
+          ],
+          [
+            "$2x$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "접선과 현이 이루는 각을 $x$로 두고 중심각을 식과 근거로 묻게 했다.",
+      "cReason": "중심각과 $2x$라는 두 빈칸이 관계를 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc9",
+      "sourceIndex": 3649,
+      "proposalFingerprint": "3542cc02513537af0627880da8d0a1eb5ffc2459c3322c1d3fd093fec35a3563",
+      "normalizedHash": "684b94d3250a32b2626987f1b1cb0d8d94096c1b3fc18eaf9faf75acf889c047",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원에 내접하는 평행사변형은 어떤 사각형인가? 각의 크기를 이용해 까닭과 함께 쓰시오.",
+        "answer": "직사각형이다. 평행사변형은 대각의 크기가 같은데, 원에 내접하면 대각의 합이 $180^\\circ$이므로 각 각이 $90^\\circ$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각의 크기가 같고 합이 $180^\\circ$이므로 각각 $90^\\circ$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "평행사변형은 마주 보는 두 각이 같으므로, 원에 내접하려면 두 각이 모두 {$90^\\circ$}여야 해 {직사각형}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$90^\\circ$"
+          ],
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "평행사변형의 성질과 내접 조건을 결합하는 까닭을 묻게 했다.",
+      "cReason": "$90^\\circ$와 직사각형이라는 두 빈칸이 결론을 짧게 확인한다."
+    }
+  ]
+}

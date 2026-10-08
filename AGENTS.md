@@ -8,6 +8,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
+# Workspace design entrypoint
+
+Before changing teacher/admin workspace UI, read the standalone specification
+[DESIGN.md](DESIGN.md) and the [menu implementation map](docs/design/workspace-ui-rules-20261008.md).
+DESIGN.md owns shared tokens, composition, states, responsive behavior and review
+criteria; the menu map owns current files, feature boundaries and remaining differences.
+Use the current Math workroom as the English alignment reference; distinguish
+observed implementation from unification decisions. `Workroom.module.css` is
+the active shell stylesheet; `Workspace.module.css` is legacy. Preserve the
+documented student-app and print exceptions.
+
 # Orca — default parallel workflow
 
 If work can be split into independent sessions, do that with Orca by default
@@ -126,6 +137,21 @@ They use the existing "SRS 현황" gate, roster and branch scope. That screen is
 workspace design (`05`), not v2, and goes through the Wire → Hi-fi steps; do
 not show a blended score, and do not label `passed` as an accuracy rate.
 The test console's partial reset has a new part, "오늘의 기억(새)".
+
+# Shared concept content
+
+The student-first concept questions live in the 14 bank assessment JSON tables,
+separately from general concept definitions. The 2026-10-08 recovery covers all
+9,119 IDs in the seven supported grades. Preserve IDs, source order and student
+records; a numerical B/C example does not automatically replace a general
+definition. Textbook bank-source turns follow the separately reviewed definition
+changes. Same-size paper partitions use equal area; congruence is sufficient but
+is not required. The authored trap table currently contains 43 accepted candidates
+and 21 rejected candidates; its captured current-group rereads are in
+`docs/planning/tracks/reports/concept-student-clear-20261006/design-evidence/`.
+Concept source changes require actual text/digest correspondence checks before
+regeneration. These content reviews do not claim complete official achievement
+standard alignment or measured student learning effects.
 
 # Check the remote before every push
 

@@ -1,0 +1,377 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q03",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "어떤 이차함수의 그래프를 조사하여 다음 기록표를 만들었다.\n\n| 항목 | 기록 |\n| --- | --- |\n| 축의 방정식 | $x=-2$ |\n| 꼭짓점의 위치 | $x$축 위 |\n| $y$축과 만나는 점 | $(0,20)$ |\n| 그래프 위의 다른 점 | $(-3,t)$ |\n\n이 기록표에서 $t$의 값은?",
+  "choices": [
+    "$-5$",
+    "$-1$",
+    "$1$",
+    "$5$",
+    "$20$"
+  ],
+  "answer": "④",
+  "solution": "축의 방정식이 $x=-2$이고 꼭짓점이 $x$축 위에 있으므로 꼭짓점의 좌표는 $(-2,0)$이다.\n따라서 이차함수의 식을 $y=a(x+2)^{2}$ $(a\\ne0)$으로 놓을 수 있다.\n그래프가 $y$축과 점 $(0,20)$에서 만나므로 $x=0$, $y=20$을 대입하면\n$20=a(0+2)^{2}=4a$이므로 $a=5$이다.\n따라서 이차함수의 식은 $y=5(x+2)^{2}$이다.\n$x=-3$을 대입하면 $t=5(-3+2)^{2}=5\\times(-1)^{2}=5$이다.\n그러므로 정답은 ④이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "axisX": -2,
+    "vertex": [
+      -2,
+      0
+    ],
+    "yIntercept": [
+      0,
+      20
+    ],
+    "targetX": -3,
+    "coefficientDeterminingFactor": 4,
+    "coefficient": 5,
+    "targetY": 5,
+    "equation": "y=5(x+2)^2",
+    "nativeTable": true
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target"
+    ],
+    "before": "축·x축 위 꼭짓점·다른 점의 좌표를 글머리표로 주고 y축과 만나는 점의 좌표를 묻는다.",
+    "after": "축·꼭짓점 위치·y절편 (0,20)을 기록표에 주고, x=-3일 때 빠진 y좌표 t를 묻는다.",
+    "sharedConcept": "이차함수의 축·꼭짓점과 한 점으로 이차함수의 식을 정하기",
+    "sharedProcedure": "축과 꼭짓점에서 y=a(x+2)^2를 세우고 알려진 점을 대입해 a를 정한 뒤 다른 x에서 y를 계산한다. 원문의 조건인 다른 점과 질문 대상인 y절편의 역할을 뒤집는다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-10",
+      "9수03-01",
+      "9수02-02"
+    ],
+    "allowedProcedure": [
+      "축 x=-2와 x축 위 꼭짓점에서 꼭짓점 (-2,0)을 정한다.",
+      "수평 평행이동형 y=a(x+2)^2에 y절편의 좌표 (0,20)을 대입해 4a=20을 푼다.",
+      "계수 a=5를 확인하고 x=-3을 대입해 식의 값을 구한다."
+    ],
+    "forbiddenAvoided": [
+      "도함수·미분·최적화",
+      "판별식·근과 계수의 관계",
+      "포물선의 초점·준선·일반 이차곡선 이론",
+      "벡터·내적·좌표 거리 공식",
+      "일반형의 축을 상위 학년 공식으로 구하는 풀이"
+    ],
+    "surfaceScope": {
+      "stem": "축의 방정식·꼭짓점 위치·y절편·좌표 기록표",
+      "choices": "정수인 식의 값",
+      "figureAndNotation": "그림 없이 네이티브 표와 순서쌍·x축·y축·이차함수식만 사용한다.",
+      "studentSolution": "꼭짓점형의 식 세우기·좌표 대입·일차식 계산·음수의 제곱",
+      "prerequisites": "순서쌍, 좌표축 위 점, 이차함수의 축·꼭짓점, 식의 값, 일차식 계산"
+    },
+    "status": "author-proposed",
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "mappingJsonPointer": "/question_mappings/2",
+      "standards": [
+        {
+          "code": "9수02-02",
+          "verified_text": "식의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-01",
+          "verified_text": "순서쌍과 좌표를 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4102,
+            "record_offset_in_uncompressed_stream": 208503,
+            "extracted_paragraph_1based": 838
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수03-10",
+          "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4150,
+            "record_offset_in_uncompressed_stream": 210353,
+            "extracted_paragraph_1based": 850
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              36
+            ],
+            "printed_pages": [
+              32
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "bandCaveat": {
+        "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+        "source_id": "moe-2020-236-math-hwp",
+        "locator": {
+          "stream": "BodyText/Section0",
+          "record_1based": 3713,
+          "record_offset_in_uncompressed_stream": 190162,
+          "text": "[중학교 1~3학년]"
+        },
+        "original_pdf_page_1based": 32,
+        "original_pdf_printed_page": 28
+      },
+      "versionLimitations": {
+        "verified_math_editions": [
+          "2015-74 book8 PDF",
+          "2020-236 amended book8 HWP"
+        ],
+        "post_2020_complete_amendment_chain_audited": false,
+        "final_candidate_approval_allowed": false,
+        "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+      }
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-3",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 3,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "f7ee190e7954eae8043432f151f71985f10011ebf808a3a49888b8961fa5d2a1",
+    "sourceObservation": "꼭짓점은 x축 위, 축은 x=-2, 다른 점은 (-3,3), 목표는 y절편이다.",
+    "sharedConceptProcedure": "꼭짓점의 x좌표를 축에서 정하고 다른 한 점을 대입해 계수를 정한 뒤 x=0을 대입한다.",
+    "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "referenceJsonPointer": "/2/content",
+    "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "계산",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑴|14",
+      "currentUnit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "currentRegistryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑴|14",
+        "grade": "중3",
+        "unitSection": "이차함수와 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑴",
+        "rpmType": "14",
+        "rpmTitle": "이차함수의 식 구하기"
+      },
+      "liveCount": 24,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "x축 위의 꼭짓점과 축을 이용해 y=a(x-p)²로 놓고 다른 한 점으로 a를 정한다. 일반형 완전제곱보다 수평 이동형 식 결정이 주된 절차다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-10",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수03-01",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4102,
+          "record_offset_in_uncompressed_stream": 208503,
+          "extracted_paragraph_1based": 838
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-02",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3900,
+          "record_offset_in_uncompressed_stream": 199304,
+          "extracted_paragraph_1based": 793
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "축 x=-2와 x축 위 꼭짓점에서 꼭짓점 (-2,0)을 정한다. 수평 평행이동형 y=a(x+2)^2에 y절편의 좌표 (0,20)을 대입해 4a=20을 푼다. 계수 a=5를 확인하고 x=-3을 대입해 식의 값을 구한다.",
+    "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": [
+        "D:/todays-math/src/lib/middle/m3Func.ts:1076"
+      ],
+      "authorObservation": {
+        "status": "author-proposed",
+        "path": "src/lib/middle/m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "familyType": "14",
+        "matchingMode": 0,
+        "line": 1076,
+        "scope": "procedure-read-only; metadata-assignment-not-approved",
+        "familyDifficulty": "application",
+        "candidateDifficultyStatus": "pending-parent-review"
+      }
+    },
+    "source": "transformed",
+    "originProblemId": null,
+    "problemCode": null,
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate"
+    },
+    "publicationStatus": "author-proposed-not-approved",
+    "independentVerificationStatus": "pending-parent-blind-verification",
+    "gradeApprovalStatus": "pending-parent-review",
+    "rightsReviewStatus": "pending-parent-review",
+    "similarityReviewStatus": "pending-parent-review",
+    "directUseAllowed": false,
+    "curriculumSourceMethodProposal": "축과 꼭짓점에서 y=a(x-p)²+q를 구성하고 주어진 점, x=0을 차례로 대입한다.",
+    "sourceCurriculumSpecificHold": "도함수·최적화·포물선의 초점/준선 이론은 제외.",
+    "authorChecks": {
+      "status": "completed-author-self-check-only",
+      "requiredFields": "present",
+      "choiceCount": 5,
+      "uniqueCorrectChoice": "④",
+      "mathSyntax": "katex-strict-pass",
+      "independent": false
+    }
+  }
+}

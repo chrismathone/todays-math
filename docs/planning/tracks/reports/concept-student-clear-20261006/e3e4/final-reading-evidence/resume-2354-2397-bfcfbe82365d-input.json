@@ -1,0 +1,4584 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2354,
+  "end": 2397,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2354,
+        "sourceFingerprint": "be5d595e972bafa6a0a602316b03fa117242cbcefd6f318a0307a1b96b1a358f",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc14",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "더하는 순서 바꾸기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$2.6+1.4$와 $1.4+2.6$은 합이 {같다}.",
+        "studentC": "$2.6+1.4$와 $1.4+2.6$은 합이 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2354,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "be5d595e972bafa6a0a602316b03fa117242cbcefd6f318a0307a1b96b1a358f",
+        "proposalFingerprint": "e0f381418cd85d9415c818df8ddb5dafd4def91d6dac7626d6eeeebb5b02557b",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$2.6+1.4$와 $1.4+2.6$의 합을 각각 구하고 두 합을 비교하시오.",
+        "bAnswer": "둘 다 $4$로 합이 같다. 더하는 순서를 바꾸어도 합은 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 합은 각각 $4$와 $4$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합이 같다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "더하는 순서와 합",
+        "bReason": "두 식을 직접 계산해 비교",
+        "cDecision": "keep",
+        "cReason": "'같다' 짧은 비교 빈칸",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "더하는 순서 바꾸기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2.6+1.4$와 $1.4+2.6$은 합이 {같다}.",
+        "cStudentSentence": "$2.6+1.4$와 $1.4+2.6$은 합이 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$2.6+1.4$와 $1.4+2.6$은 합이 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$2.6+1.4$와 $1.4+2.6$의 합을 각각 구하고 두 합을 비교하시오.",
+          "answer": "둘 다 $4$로 합이 같다. 더하는 순서를 바꾸어도 합은 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 합은 각각 $4$와 $4$이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "합이 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2.6+1.4$와 $1.4+2.6$은 합이 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2355,
+        "sourceFingerprint": "c50b7b51b6388085694486bf165c7d588d29e90a2e9332c6efe44c6db52ca8df",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc15",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "빈칸이 있는 덧셈식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "덧셈식에서 모르는 더하는 수는 {아는 수에 더해 합이 되게 하는 양}이다.",
+        "example": {
+          "prompt": "$\\square+0.7=1.5$에서 빈칸은 어떤 양인가?",
+          "answer": "$0.7$에 더해 $1.5$가 되는 양"
+        },
+        "studentC": "덧셈식에서 모르는 더하는 수는 □이다.",
+        "answers": [
+          "아는 수에 더해 합이 되게 하는 양"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2355,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "c50b7b51b6388085694486bf165c7d588d29e90a2e9332c6efe44c6db52ca8df",
+        "proposalFingerprint": "4ab55262f2bc7c2247d9ccd7bc5d540282cca33a1cf09e0104c5a136a1e7ce2c",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\square+0.7=1.5$에서 $\\square$가 어떤 수인지 설명하고 값을 구하시오.",
+        "bAnswer": "$\\square$는 $0.7$에 더해 $1.5$가 되는 수이다. $\\square=0.8$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.7$에 더해 $1.5$가 되는 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.8$"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "모르는 더하는 수의 뜻",
+        "bReason": "빈칸의 의미와 값을 구체 식으로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 {$0.8$}이다.",
+        "cReason": "중괄호를 수식 안에 넣어 빈칸이 사라진 오류를 고치고 모르는 수 기호 없이 상황을 쓴다.",
+        "cSlotEquivalents": [],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빈칸이 있는 덧셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 {$0.8$}이다.",
+        "cStudentSentence": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0.8$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\square+0.7=1.5$에서 $\\square$가 어떤 수인지 설명하고 값을 구하시오.",
+          "answer": "$\\square$는 $0.7$에 더해 $1.5$가 되는 수이다. $\\square=0.8$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.7$에 더해 $1.5$가 되는 수"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.8$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 {$0.8$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0.8$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc15",
+          "sourceIndex": 2355,
+          "proposalFingerprint": "4ab55262f2bc7c2247d9ccd7bc5d540282cca33a1cf09e0104c5a136a1e7ce2c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "더할수를찾는식의뜻과실제0.8을함께요청한다.",
+          "cReason": "원래수에0.7을더한1.5에서0.8을구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2356,
+        "sourceFingerprint": "ac6742a6d6b180201fae971aacc8f6d089df37440ecbf74a8ab8d26474bcd0ae",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc16",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "영점일의 개수로 바꾸어 더하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "example": {
+          "prompt": "$2.7+3.5$를 $27+35$로 볼 때 $27$과 $35$는 무엇의 개수인가?",
+          "answer": "$0.1$의 개수"
+        },
+        "studentC": "소수 한 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+        "answers": [
+          "$0.1$의 개수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2356,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "ac6742a6d6b180201fae971aacc8f6d089df37440ecbf74a8ab8d26474bcd0ae",
+        "proposalFingerprint": "cfd813ed62488df0ec6d4712ba3628a275121b0d0341084ccc7418ea995fb343",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$2.7+3.5$를 $27+35$로 계산할 수 있는 까닭을 쓰고, 합을 구하시오.",
+        "bAnswer": "$6.2$. $2.7$은 $0.1$이 $27$개, $3.5$는 $0.1$이 $35$개라서 $0.1$이 $62$개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6.2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $27$개와 $35$개",
+              "$27$과 $35$는 $0.1$의 개수"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$0.1$ 개수로 소수 덧셈",
+        "bReason": "자연수 계산이 가능한 이유를 묻는다",
+        "cDecision": "keep",
+        "cReason": "'$0.1$의 개수' 짧은 단위 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$0.1$이 몇 개인지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "영점일의 개수로 바꾸어 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "cStudentSentence": "소수 한 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0.1$의 개수",
+            "equivalents": [
+              "$0.1$이 몇 개인지"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 한 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+          "answers": [
+            "$0.1$의 개수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$2.7+3.5$를 $27+35$로 계산할 수 있는 까닭을 쓰고, 합을 구하시오.",
+          "answer": "$6.2$. $2.7$은 $0.1$이 $27$개, $3.5$는 $0.1$이 $35$개라서 $0.1$이 $62$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6.2$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.1$이 $27$개와 $35$개",
+                "$27$과 $35$는 $0.1$의 개수"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$0.1$의 개수",
+              "$0.1$이 몇 개인지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc16",
+          "sourceIndex": 2356,
+          "proposalFingerprint": "cfd813ed62488df0ec6d4712ba3628a275121b0d0341084ccc7418ea995fb343",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두수를같은0.1단위개수27·35로계산하여6.2인까닭이다.",
+          "cReason": "자연수계산으로바꾸기전0.1의개수를명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2357,
+        "sourceFingerprint": "52588a759f05fd803b558f93328840a91364b831f5a245f36f6e0d3a1dccf7c5",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc17",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "단위를 맞추어 더하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "단위가 다른 두 양을 더하려면 {같은 단위로 바꾼} 뒤 더한다.",
+        "example": {
+          "prompt": "$1.5\\,\\mathrm{m}$와 $70\\,\\mathrm{cm}$의 합을 $71.5\\,\\mathrm{m}$라 하면 틀리는 까닭은?",
+          "answer": "$70\\,\\mathrm{cm}$를 $70\\,\\mathrm{m}$로 보아서"
+        },
+        "studentC": "단위가 다른 두 양을 더하려면 □ 뒤 더한다.",
+        "answers": [
+          "같은 단위로 바꾼"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2357,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "52588a759f05fd803b558f93328840a91364b831f5a245f36f6e0d3a1dccf7c5",
+        "proposalFingerprint": "07be8860dfe60362d0e8d674c3c954735dd7737267f5ad9c2f0e19c587db917a",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.5\\,\\mathrm{m}$와 $70\\,\\mathrm{cm}$의 합을 $\\mathrm{m}$ 단위로 구하고, 단위를 어떻게 해야 하는지 쓰시오.",
+        "bAnswer": "$2.2\\,\\mathrm{m}$. $70\\,\\mathrm{cm}$를 $0.7\\,\\mathrm{m}$로 바꾸어 단위를 같게 한 뒤 더한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.2\\,\\mathrm{m}$",
+              "$2.2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$70\\,\\mathrm{cm}$를 $0.7\\,\\mathrm{m}$로 바꾼다",
+              "같은 단위로 바꾸어 더한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "단위를 맞춘 덧셈",
+        "bReason": "단위 바꾸기와 계산 결과를 확인",
+        "cDecision": "rewrite",
+        "cAfter": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "cReason": "긴 구절 정답을 '같은' 한 낱말로",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단위를 맞추어 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "cStudentSentence": "단위가 다른 두 양을 더하려면 □ 단위로 바꾼 뒤 더한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1.5\\,\\mathrm{m}$와 $70\\,\\mathrm{cm}$의 합을 $\\mathrm{m}$ 단위로 구하고, 단위를 어떻게 해야 하는지 쓰시오.",
+          "answer": "$2.2\\,\\mathrm{m}$. $70\\,\\mathrm{cm}$를 $0.7\\,\\mathrm{m}$로 바꾸어 단위를 같게 한 뒤 더한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.2\\,\\mathrm{m}$",
+                "$2.2$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$70\\,\\mathrm{cm}$를 $0.7\\,\\mathrm{m}$로 바꾼다",
+                "같은 단위로 바꾸어 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc17",
+          "sourceIndex": 2357,
+          "proposalFingerprint": "07be8860dfe60362d0e8d674c3c954735dd7737267f5ad9c2f0e19c587db917a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "70cm를0.7m로맞추어2.2m를구하는방법이다.",
+          "cReason": "단위가다른양을같은단위로맞추는조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2358,
+        "sourceFingerprint": "a6a0636a791d7080605037c1bf52ed37c6815376dbb2788cd62b00c3e6220d38",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc18",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "합 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 한 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "example": {
+          "prompt": "$3.9+2.8$을 $4+3$으로 어림하는 까닭은?",
+          "answer": "두 수가 $4$와 $3$에 가까워서"
+        },
+        "studentC": "소수 한 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+        "answers": [
+          "가까운 자연수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2358,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "a6a0636a791d7080605037c1bf52ed37c6815376dbb2788cd62b00c3e6220d38",
+        "proposalFingerprint": "e04d39e3bcc58095f01a05c90a6c4d6a08f64230fa316e050ed86f9fabad42cf",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$3.9$와 $2.8$을 각각 가장 가까운 자연수로 어림하여 $3.9+2.8$의 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+        "bAnswer": "$3.9$는 $4$, $2.8$은 $3$에 가까우므로 $4+3=7$쯤이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가까운 자연수로 바꾼다",
+              "$3.9$를 $4$로, $2.8$을 $3$으로"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "합을 어림하는 방법",
+        "bReason": "가까운 자연수로 바꿔 어림값 구함",
+        "cDecision": "keep",
+        "cReason": "'가까운 자연수' 익숙한 구절 빈칸",
+        "cSlotEquivalents": [
+          [
+            "가장 가까운 자연수"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 한 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "cStudentSentence": "소수 한 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가까운 자연수",
+            "equivalents": [
+              "가장 가까운 자연수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 한 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+          "answers": [
+            "가까운 자연수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3.9$와 $2.8$을 각각 가장 가까운 자연수로 어림하여 $3.9+2.8$의 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+          "answer": "$3.9$는 $4$, $2.8$은 $3$에 가까우므로 $4+3=7$쯤이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "가까운 자연수로 바꾼다",
+                "$3.9$를 $4$로, $2.8$을 $3$으로"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 한 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "가까운 자연수",
+              "가장 가까운 자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2359,
+        "sourceFingerprint": "4268925c98301ef1b97d63e699da9296bea082c5a97af773383fdec5623eaa7b",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc19",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "합이 자연수가 되는 덧셈",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$2.3+4.7$처럼 소수 한 자리 수끼리 더할 때 소수 첫째 자리 {숫자의 합이 $10$이면} 합은 자연수이다.",
+        "studentC": "$2.3+4.7$처럼 소수 한 자리 수끼리 더할 때 소수 첫째 자리 □ 합은 자연수이다.",
+        "answers": [
+          "숫자의 합이 $10$이면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2359,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "4268925c98301ef1b97d63e699da9296bea082c5a97af773383fdec5623eaa7b",
+        "proposalFingerprint": "eb120e0c5c852756be3c65411593de5385f64d444418a694015d64819afb0ffe",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$2.3+4.7$의 합을 구하고, 합이 자연수가 되는 까닭을 소수 첫째 자리와 관련지어 쓰시오.",
+        "bAnswer": "$7$. $3+7=10$이라서 $1$이 일의 자리로 올라가고 소수 첫째 자리는 $0$이 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 첫째 자리 숫자의 합이 $10$",
+              "$3+7=10$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "합이 자연수가 되는 조건",
+        "bReason": "첫째 자리 합 $10$으로 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$2.3+4.7$처럼 소수 첫째 자리 숫자의 합이 {$10$}이면 합은 자연수이다.",
+        "cReason": "가려진 조건 대신 숫자 $10$ 하나만",
+        "cSlotEquivalents": [
+          [
+            "열"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "합이 자연수가 되는 덧셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2.3+4.7$처럼 소수 첫째 자리 숫자의 합이 {$10$}이면 합은 자연수이다.",
+        "cStudentSentence": "$2.3+4.7$처럼 소수 첫째 자리 숫자의 합이 □이면 합은 자연수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$10$",
+            "equivalents": [
+              "열"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2.3+4.7$의 합을 구하고, 합이 자연수가 되는 까닭을 소수 첫째 자리와 관련지어 쓰시오.",
+          "answer": "$7$. $3+7=10$이라서 $1$이 일의 자리로 올라가고 소수 첫째 자리는 $0$이 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "소수 첫째 자리 숫자의 합이 $10$",
+                "$3+7=10$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2.3+4.7$처럼 소수 첫째 자리 숫자의 합이 {$10$}이면 합은 자연수이다.",
+          "acceptedAnswers": [
+            [
+              "$10$",
+              "열"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc19",
+          "sourceIndex": 2359,
+          "proposalFingerprint": "eb120e0c5c852756be3c65411593de5385f64d444418a694015d64819afb0ffe",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "3+7=10으로소수첫째0과일의올림1이되어7인까닭이다.",
+          "cReason": "두소수의첫째숫자합10과자연수결과관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2360,
+        "sourceFingerprint": "b85304dee301704b652778df0a2f812f553edda6fc35f4e49ad5428a57f1f4ca",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc20",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "합이 가장 큰 덧셈식 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "숫자 카드 네 장을 한 번씩 써서 $\\square.\\square$ 꼴의 두 수를 만들 때는 {큰 숫자 두 장을 일의 자리}에 놓아야 합이 가장 크다.",
+        "studentC": "숫자 카드 네 장을 한 번씩 써서 $\\square.\\square$ 꼴의 두 수를 만들 때는 □에 놓아야 합이 가장 크다.",
+        "answers": [
+          "큰 숫자 두 장을 일의 자리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2360,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "b85304dee301704b652778df0a2f812f553edda6fc35f4e49ad5428a57f1f4ca",
+        "proposalFingerprint": "89a3ab02068f43cdeb5b316e9dc393f86e14bdf4d933953a9dc4328e0707bb02",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "숫자 카드 $1$, $3$, $5$, $8$을 한 번씩 써서 $\\square.\\square$ 꼴의 두 수를 만들어 합이 가장 큰 덧셈식을 만드시오. 어떤 숫자를 일의 자리에 놓는지 쓰시오.",
+        "bAnswer": "예를 들어 $8.3+5.1$ 또는 $8.1+5.3$이다. 큰 숫자 $8$과 $5$를 일의 자리에 놓는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8.3+5.1$ 또는 순서를 바꾼 식",
+              "$8.1+5.3$ 또는 순서를 바꾼 식"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$과 $5$를 일의 자리에 놓는다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "합이 가장 큰 덧셈식 만들기",
+        "bReason": "일의 자리에 큰 수를 놓는 이유 적용",
+        "cDecision": "rewrite",
+        "cAfter": "카드 네 장을 한 번씩 써서 소수 한 자리 수 두 개를 만들 때 합이 가장 크려면 큰 숫자 두 장을 {일의} 자리에 놓는다.",
+        "cReason": "빈칸 기호와 겹치는 $\\square.\\square$를 없앰",
+        "cSlotEquivalents": [
+          [
+            "$1$의"
+          ]
+        ],
+        "answerNotes": "소수 첫째 자리에는 남은 작은 숫자 두 장을 놓으며 $8.3+5.1$, $8.1+5.3$ 모두 합이 같다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합이 가장 큰 덧셈식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "카드 네 장을 한 번씩 써서 소수 한 자리 수 두 개를 만들 때 합이 가장 크려면 큰 숫자 두 장을 {일의} 자리에 놓는다.",
+        "cStudentSentence": "카드 네 장을 한 번씩 써서 소수 한 자리 수 두 개를 만들 때 합이 가장 크려면 큰 숫자 두 장을 □ 자리에 놓는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "일의",
+            "equivalents": [
+              "$1$의"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "숫자 카드 $1$, $3$, $5$, $8$을 한 번씩 써서 $\\square.\\square$ 꼴의 두 수를 만들어 합이 가장 큰 덧셈식을 만드시오. 어떤 숫자를 일의 자리에 놓는지 쓰시오.",
+          "answer": "예를 들어 $8.3+5.1$ 또는 $8.1+5.3$이다. 큰 숫자 $8$과 $5$를 일의 자리에 놓는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$8.3+5.1$ 또는 순서를 바꾼 식",
+                "$8.1+5.3$ 또는 순서를 바꾼 식"
+              ]
+            },
+            {
+              "anyOf": [
+                "$8$과 $5$를 일의 자리에 놓는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "카드 네 장을 한 번씩 써서 소수 한 자리 수 두 개를 만들 때 합이 가장 크려면 큰 숫자 두 장을 {일의} 자리에 놓는다.",
+          "acceptedAnswers": [
+            [
+              "일의",
+              "$1$의"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2361,
+        "sourceFingerprint": "8cd823a413f46d9a95615660cac1da6a330c986fb28322fa41a6e0e80e8d7c1f",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc21",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "소수점을 빠뜨리는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$2.5+3.8=63$으로 쓰면 {소수점을 찍지 않은} 잘못이다.",
+        "studentC": "$2.5+3.8=63$으로 쓰면 □ 잘못이다.",
+        "answers": [
+          "소수점을 찍지 않은"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2361,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "8cd823a413f46d9a95615660cac1da6a330c986fb28322fa41a6e0e80e8d7c1f",
+        "proposalFingerprint": "e4bb74de2b2de147659bc421911bf173324279b49eb4363527e41a13d9446a17",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$2.5+3.8=63$이라고 쓴 계산의 잘못을 쓰고, 바른 합을 쓰시오.",
+        "bAnswer": "$6.3$. 합에 소수점을 찍지 않은 잘못이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6.3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수점을 찍지 않았다",
+              "소수점을 빠뜨렸다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "소수점 빠뜨린 오류 찾기",
+        "bReason": "오류 이유와 바른 값을 함께 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$2.5+3.8=63$으로 쓰면 합에 {소수점}을 찍지 않은 잘못이다.",
+        "cReason": "문장 정답을 한 낱말 '소수점'으로",
+        "cSlotEquivalents": [
+          [
+            "소수점을"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "소수점을 빠뜨리는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2.5+3.8=63$으로 쓰면 합에 {소수점}을 찍지 않은 잘못이다.",
+        "cStudentSentence": "$2.5+3.8=63$으로 쓰면 합에 □을 찍지 않은 잘못이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "소수점",
+            "equivalents": [
+              "소수점을"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2.5+3.8=63$이라고 쓴 계산의 잘못을 쓰고, 바른 합을 쓰시오.",
+          "answer": "$6.3$. 합에 소수점을 찍지 않은 잘못이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6.3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "소수점을 찍지 않았다",
+                "소수점을 빠뜨렸다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2.5+3.8=63$으로 쓰면 합에 {소수점}을 찍지 않은 잘못이다.",
+          "acceptedAnswers": [
+            [
+              "소수점",
+              "소수점을"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc21",
+          "sourceIndex": 2361,
+          "proposalFingerprint": "e4bb74de2b2de147659bc421911bf173324279b49eb4363527e41a13d9446a17",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "소수점누락오류와바른6.3의두요청이분명하다.",
+          "cReason": "63으로쓴소수점누락의대상을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2362,
+        "sourceFingerprint": "402e9fd567198040f4403fd3a15ae7bb21606535ac5cd54d02be733fa3934daf",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc22",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "받아올림을 잘못 쓰는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0.9+0.4=0.13$은 받아올림한 $1$을 {일의 자리로 올리지 않은} 잘못이다.",
+        "studentC": "$0.9+0.4=0.13$은 받아올림한 $1$을 □ 잘못이다.",
+        "answers": [
+          "일의 자리로 올리지 않은"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2362,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "402e9fd567198040f4403fd3a15ae7bb21606535ac5cd54d02be733fa3934daf",
+        "proposalFingerprint": "3e973429dd9ce065c838ea336a59c64fc0a299abe7f358373ab7131d43c742c3",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.9+0.4=0.13$이 틀린 까닭을 쓰고, 바른 합을 쓰시오.",
+        "bAnswer": "$1.3$. $9+4=13$에서 받아올림한 $1$을 일의 자리로 올리지 않았다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "받아올림한 $1$을 일의 자리로 올리지 않았다",
+              "$1$을 일의 자리에 써야 한다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "받아올림 위치 오류",
+        "bReason": "받아올림 위치 오류를 구체 식으로 진단",
+        "cDecision": "rewrite",
+        "cAfter": "$0.9+0.4=0.13$은 받아올림한 $1$을 {일의} 자리로 올리지 않은 잘못이다.",
+        "cReason": "긴 구절 정답을 '일의' 한 낱말로",
+        "cSlotEquivalents": [
+          [
+            "$1$의"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "받아올림을 잘못 쓰는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.9+0.4=0.13$은 받아올림한 $1$을 {일의} 자리로 올리지 않은 잘못이다.",
+        "cStudentSentence": "$0.9+0.4=0.13$은 받아올림한 $1$을 □ 자리로 올리지 않은 잘못이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "일의",
+            "equivalents": [
+              "$1$의"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.9+0.4=0.13$이 틀린 까닭을 쓰고, 바른 합을 쓰시오.",
+          "answer": "$1.3$. $9+4=13$에서 받아올림한 $1$을 일의 자리로 올리지 않았다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "받아올림한 $1$을 일의 자리로 올리지 않았다",
+                "$1$을 일의 자리에 써야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.9+0.4=0.13$은 받아올림한 $1$을 {일의} 자리로 올리지 않은 잘못이다.",
+          "acceptedAnswers": [
+            [
+              "일의",
+              "$1$의"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc22",
+          "sourceIndex": 2362,
+          "proposalFingerprint": "3e973429dd9ce065c838ea336a59c64fc0a299abe7f358373ab7131d43c742c3",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "첫째에서올린1의일의자리위치와1.3결과를설명한다.",
+          "cReason": "올린1을넣어야할일의자리를확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2363,
+        "sourceFingerprint": "bf50145743c01efeff012555bc127369838265be334aaa1f7fb487598e5c1d79",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc23",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "받아올림이 이어질 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소수 첫째 자리에서 올린 $1$로 일의 자리가 $10$이 되면 {다시 십의 자리로} 받아올린다.",
+        "example": {
+          "prompt": "$9.6+0.7$에서 소수 첫째 자리에서 $1$을 올린 뒤 십의 자리로 다시 받아올리는 까닭은?",
+          "answer": "일의 자리가 $9+1=10$이 돼서"
+        },
+        "studentC": "소수 첫째 자리에서 올린 $1$로 일의 자리가 $10$이 되면 □ 받아올린다.",
+        "answers": [
+          "다시 십의 자리로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2363,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "bf50145743c01efeff012555bc127369838265be334aaa1f7fb487598e5c1d79",
+        "proposalFingerprint": "c2dd3b4048791a75f69ed907b0e9c7f59ca1f9bb7ee99368dbba0fb76de0b6a1",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$9.6+0.7$을 계산할 때 받아올림이 두 번 일어나는 과정을 쓰고, 합을 구하시오.",
+        "bAnswer": "$10.3$. $6+7=13$이라 $1$을 일의 자리로 올리고, 일의 자리가 $9+1=10$이 되어 십의 자리로 다시 올린다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10.3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 첫째 자리의 $6+7=13$에서 $1$을 일의 자리로 올린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "일의 자리에서 $9+1=10$이 되어 $1$을 십의 자리로 올린다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "이어지는 받아올림 과정",
+        "bReason": "받아올림이 이어지는 이유를 단계별로",
+        "cDecision": "rewrite",
+        "cAfter": "소수 첫째 자리에서 올린 $1$로 일의 자리가 $10$이 되면 {십}의 자리로 다시 받아올린다.",
+        "cReason": "문장 정답을 한 낱말 '십'으로",
+        "cSlotEquivalents": [
+          [
+            "$10$"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "받아올림이 이어질 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 첫째 자리에서 올린 $1$로 일의 자리가 $10$이 되면 {십}의 자리로 다시 받아올린다.",
+        "cStudentSentence": "소수 첫째 자리에서 올린 $1$로 일의 자리가 $10$이 되면 □의 자리로 다시 받아올린다.",
+        "cSlotAnswers": [
+          {
+            "expected": "십",
+            "equivalents": [
+              "$10$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$9.6+0.7$을 계산할 때 받아올림이 두 번 일어나는 과정을 쓰고, 합을 구하시오.",
+          "answer": "$10.3$. $6+7=13$이라 $1$을 일의 자리로 올리고, 일의 자리가 $9+1=10$이 되어 십의 자리로 다시 올린다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$10.3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "소수 첫째 자리의 $6+7=13$에서 $1$을 일의 자리로 올린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "일의 자리에서 $9+1=10$이 되어 $1$을 십의 자리로 올린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 첫째 자리에서 올린 $1$로 일의 자리가 $10$이 되면 {십}의 자리로 다시 받아올린다.",
+          "acceptedAnswers": [
+            [
+              "십",
+              "$10$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2364,
+        "sourceFingerprint": "cdfecae27da5cf2d62a630209bd68cf0de57ca87e575e973eb3bcee8998248a0",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc27",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "받아올림을 거꾸로 알아내기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합의 일의 자리 숫자가 두 수의 일의 자리 숫자의 합보다 $1$ 크면 {소수 첫째 자리에서 받아올림}이 있었다.",
+        "example": {
+          "prompt": "$3.\\square+1.6=5.4$에서 받아올림이 있었다고 아는 까닭은?",
+          "answer": "$3+1$보다 $1$ 커서"
+        },
+        "studentC": "합의 일의 자리 숫자가 두 수의 일의 자리 숫자의 합보다 $1$ 크면 □이 있었다.",
+        "answers": [
+          "소수 첫째 자리에서 받아올림"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2364,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "cdfecae27da5cf2d62a630209bd68cf0de57ca87e575e973eb3bcee8998248a0",
+        "proposalFingerprint": "b2a6b2e09ed72ed89117c5fc25a9ef625bb5b5edf8786f38ae275c1f1f95da13",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "$3.\\square+1.6=5.4$에서 $\\square$에 들어갈 수를 구하고, 소수 첫째 자리에서 받아올림이 있었다고 아는 까닭을 쓰시오.",
+        "bAnswer": "$\\square=8$. 일의 자리 $3+1=4$인데 합의 일의 자리는 $5$로 $1$ 크기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3+1=4$보다 합의 일의 자리 $5$가 $1$ 크다",
+              "일의 자리가 $1$ 늘었다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "받아올림 거꾸로 알아내기",
+        "bReason": "일의 자리 합과 결과를 비교해 추론",
+        "cDecision": "rewrite",
+        "cAfter": "합의 일의 자리 숫자가 두 수의 일의 자리 숫자의 합보다 $1$ 크면 소수 첫째 자리에서 {받아올림}이 있었다.",
+        "cReason": "문장 정답을 낱말 '받아올림'으로",
+        "cSlotEquivalents": [
+          [
+            "올림"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "받아올림을 거꾸로 알아내기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "합의 일의 자리 숫자가 두 수의 일의 자리 숫자의 합보다 $1$ 크면 소수 첫째 자리에서 {받아올림}이 있었다.",
+        "cStudentSentence": "합의 일의 자리 숫자가 두 수의 일의 자리 숫자의 합보다 $1$ 크면 소수 첫째 자리에서 □이 있었다.",
+        "cSlotAnswers": [
+          {
+            "expected": "받아올림",
+            "equivalents": [
+              "올림"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$3.\\square+1.6=5.4$에서 $\\square$에 들어갈 수를 구하고, 소수 첫째 자리에서 받아올림이 있었다고 아는 까닭을 쓰시오.",
+          "answer": "$\\square=8$. 일의 자리 $3+1=4$인데 합의 일의 자리는 $5$로 $1$ 크기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$8$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3+1=4$보다 합의 일의 자리 $5$가 $1$ 크다",
+                "일의 자리가 $1$ 늘었다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "합의 일의 자리 숫자가 두 수의 일의 자리 숫자의 합보다 $1$ 크면 소수 첫째 자리에서 {받아올림}이 있었다.",
+          "acceptedAnswers": [
+            [
+              "받아올림",
+              "올림"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-4-xc27",
+          "sourceIndex": 2364,
+          "proposalFingerprint": "b2a6b2e09ed72ed89117c5fc25a9ef625bb5b5edf8786f38ae275c1f1f95da13",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "합의일의5가3+1보다1커받아올림을아는까닭과빈숫자8이다.",
+          "cReason": "일의자리합1증가로첫째자리의받아올림을역추론한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2365,
+        "sourceFingerprint": "04eed7de70a70035782ad5b20e8b5d54d06fea98f4834dc16c0c898f3901745f",
+        "part": "e4plus",
+        "id": "e4-2-3-4-xc28",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "합이 $1$인 두 소수의 규칙",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0$보다 크고 $1$보다 작은 두 소수 한 자리 수의 합이 $1$이면 $0.3$과 $0.7$처럼 소수 첫째 자리 숫자의 합이 {$10$}이다.",
+        "studentC": "$0$보다 크고 $1$보다 작은 두 소수 한 자리 수의 합이 $1$이면 $0.3$과 $0.7$처럼 소수 첫째 자리 숫자의 합이 □이다.",
+        "answers": [
+          "$10$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2365,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "sourceFingerprint": "04eed7de70a70035782ad5b20e8b5d54d06fea98f4834dc16c0c898f3901745f",
+        "proposalFingerprint": "111ec164d7a793f83a828eecb9d5a9fb345fe4d5ea3a2f589e4186e3da63ef73",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-4-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.3+0.7$의 합을 구하시오. 이처럼 $0$보다 크고 $1$보다 작은 소수 한 자리 수 두 개의 합이 $1$일 때, 소수 첫째 자리 숫자의 합은 얼마인지 쓰시오.",
+        "bAnswer": "$1$. 소수 첫째 자리 숫자의 합은 $10$이다. $0.1$이 $10$개면 $1$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.3+0.7=1$",
+              "두 수의 합은 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 첫째 자리 숫자의 합은 $10$"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "합이 $1$인 두 소수의 규칙",
+        "bReason": "$0.1$이 $10$개라는 근거를 확인",
+        "cDecision": "keep",
+        "cReason": "짧은 수 $10$ 빈칸으로 명확",
+        "cSlotEquivalents": [
+          [
+            "열"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "합이 $1$인 두 소수의 규칙",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0$보다 크고 $1$보다 작은 두 소수 한 자리 수의 합이 $1$이면 $0.3$과 $0.7$처럼 소수 첫째 자리 숫자의 합이 {$10$}이다.",
+        "cStudentSentence": "$0$보다 크고 $1$보다 작은 두 소수 한 자리 수의 합이 $1$이면 $0.3$과 $0.7$처럼 소수 첫째 자리 숫자의 합이 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$10$",
+            "equivalents": [
+              "열"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0$보다 크고 $1$보다 작은 두 소수 한 자리 수의 합이 $1$이면 $0.3$과 $0.7$처럼 소수 첫째 자리 숫자의 합이 □이다.",
+          "answers": [
+            "$10$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.3+0.7$의 합을 구하시오. 이처럼 $0$보다 크고 $1$보다 작은 소수 한 자리 수 두 개의 합이 $1$일 때, 소수 첫째 자리 숫자의 합은 얼마인지 쓰시오.",
+          "answer": "$1$. 소수 첫째 자리 숫자의 합은 $10$이다. $0.1$이 $10$개면 $1$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.3+0.7=1$",
+                "두 수의 합은 $1$"
+              ]
+            },
+            {
+              "anyOf": [
+                "소수 첫째 자리 숫자의 합은 $10$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0$보다 크고 $1$보다 작은 두 소수 한 자리 수의 합이 $1$이면 $0.3$과 $0.7$처럼 소수 첫째 자리 숫자의 합이 {$10$}이다.",
+          "acceptedAnswers": [
+            [
+              "$10$",
+              "열"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2366,
+        "sourceFingerprint": "1fdc2c9a72fc169cfa9b5fd2c96679ac9cba419b09532331f52b0a994b06951c",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc2",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "차에 소수점 찍기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 뺄셈을 세로로 계산하면 차에도 소수점을 {같은 자리에 맞추어} 찍는다.",
+        "studentC": "소수 뺄셈을 세로로 계산하면 차에도 소수점을 □ 찍는다.",
+        "answers": [
+          "같은 자리에 맞추어"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2366,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "1fdc2c9a72fc169cfa9b5fd2c96679ac9cba419b09532331f52b0a994b06951c",
+        "proposalFingerprint": "070e0cf13ae4bf40d248ddadb4f753d6cdcb10c3d8911609410b3f8b7b6f323d",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$4.7-2.3$을 세로셈으로 계산할 때 차의 소수점을 어디에 찍는지 쓰고, 차를 구하시오.",
+        "bAnswer": "$2.4$. 소수점을 맞춘 같은 자리에 차의 소수점을 찍는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 자리에 소수점",
+              "소수점을 맞춘 자리에"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "차의 소수점 찍기",
+        "bReason": "차의 소수점 위치를 직접 확인",
+        "cDecision": "rewrite",
+        "cAfter": "소수 뺄셈을 세로로 계산하면 차의 소수점은 빼어지는 수의 소수점과 {같은 자리}에 찍는다.",
+        "cReason": "모호한 '맞추어'를 쉬운 구절로 보정",
+        "cSlotEquivalents": [
+          [
+            "같은 줄",
+            "같은 위치"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차에 소수점 찍기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 뺄셈을 세로로 계산하면 차의 소수점은 빼어지는 수의 소수점과 {같은 자리}에 찍는다.",
+        "cStudentSentence": "소수 뺄셈을 세로로 계산하면 차의 소수점은 빼어지는 수의 소수점과 □에 찍는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 자리",
+            "equivalents": [
+              "같은 줄",
+              "같은 위치"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4.7-2.3$을 세로셈으로 계산할 때 차의 소수점을 어디에 찍는지 쓰고, 차를 구하시오.",
+          "answer": "$2.4$. 소수점을 맞춘 같은 자리에 차의 소수점을 찍는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.4$"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 자리에 소수점",
+                "소수점을 맞춘 자리에"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 뺄셈을 세로로 계산하면 차의 소수점은 빼어지는 수의 소수점과 {같은 자리}에 찍는다.",
+          "acceptedAnswers": [
+            [
+              "같은 자리",
+              "같은 줄",
+              "같은 위치"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc2",
+          "sourceIndex": 2366,
+          "proposalFingerprint": "070e0cf13ae4bf40d248ddadb4f753d6cdcb10c3d8911609410b3f8b7b6f323d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "차의소수점같은위치와4.7-2.3의2.4를구한다.",
+          "cReason": "차소수점의같은자리조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2367,
+        "sourceFingerprint": "bd398ce64821c195a669e8fe0e7510149fb0291e9052c860c11fd2dcc8cddf49",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc3",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "같은 자리끼리 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수의 뺄셈은 소수점을 맞추어 {같은 자리 숫자끼리} 뺀다.",
+        "example": {
+          "prompt": "$3.8-1.5$에서 $8$에서 $5$를 빼는 까닭은?",
+          "answer": "둘 다 $0.1$의 개수라서"
+        },
+        "studentC": "소수의 뺄셈은 소수점을 맞추어 □ 뺀다.",
+        "answers": [
+          "같은 자리 숫자끼리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2367,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "bd398ce64821c195a669e8fe0e7510149fb0291e9052c860c11fd2dcc8cddf49",
+        "proposalFingerprint": "ae4a4c5f8319cfce00c0995bcee451bef8afe991b45be3080fc4418a962b4d3f",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$3.8-1.5$에서 $8$에서 $5$를 빼는 까닭을 쓰고, 차를 구하시오.",
+        "bAnswer": "$2.3$. $8$과 $5$는 둘 다 소수 첫째 자리, 즉 $0.1$의 개수라서 뺀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘 다 소수 첫째 자리",
+              "둘 다 $0.1$의 개수",
+              "같은 자리 숫자끼리"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "같은 자리끼리 빼는 이유",
+        "bReason": "자리값이 같은 숫자끼리 뺀다는 근거",
+        "cDecision": "keep",
+        "cReason": "'같은 자리 숫자끼리' 친숙한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "같은 자리끼리"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 자리끼리 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수의 뺄셈은 소수점을 맞추어 {같은 자리 숫자끼리} 뺀다.",
+        "cStudentSentence": "소수의 뺄셈은 소수점을 맞추어 □ 뺀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 자리 숫자끼리",
+            "equivalents": [
+              "같은 자리끼리"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수의 뺄셈은 소수점을 맞추어 □ 뺀다.",
+          "answers": [
+            "같은 자리 숫자끼리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$3.8-1.5$에서 $8$에서 $5$를 빼는 까닭을 쓰고, 차를 구하시오.",
+          "answer": "$2.3$. $8$과 $5$는 둘 다 소수 첫째 자리, 즉 $0.1$의 개수라서 뺀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "둘 다 소수 첫째 자리",
+                "둘 다 $0.1$의 개수",
+                "같은 자리 숫자끼리"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수의 뺄셈은 소수점을 맞추어 {같은 자리 숫자끼리} 뺀다.",
+          "acceptedAnswers": [
+            [
+              "같은 자리 숫자끼리",
+              "같은 자리끼리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc3",
+          "sourceIndex": 2367,
+          "proposalFingerprint": "ae4a4c5f8319cfce00c0995bcee451bef8afe991b45be3080fc4418a962b4d3f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "0.1개수8과5의같은단위로빼는까닭과차2.3이다.",
+          "cReason": "소수점맞춤으로같은자리숫자끼리빼는방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2368,
+        "sourceFingerprint": "64a1aa1e251194ab7fab3417e5e92799cad762ed87b153b770fc0cf550e78079",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc4",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "$1$에서 소수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$1$에서 소수 한 자리 수를 뺄 때는 $1$을 {$0.1$이 $10$개인 수}로 본다.",
+        "example": {
+          "prompt": "$1-0.4$가 $0.6$인 까닭은?",
+          "answer": "$0.1$ 열 개에서 넷을 빼서"
+        },
+        "studentC": "$1$에서 소수 한 자리 수를 뺄 때는 $1$을 □로 본다.",
+        "answers": [
+          "$0.1$이 $10$개인 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2368,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "64a1aa1e251194ab7fab3417e5e92799cad762ed87b153b770fc0cf550e78079",
+        "proposalFingerprint": "2f1290f097c45b2d8d1ba0fafc744f7c571a772040389aeef1b5e81c3a95fe6c",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$1-0.4$를 계산하고, $1$을 어떻게 보고 계산하는지 쓰시오.",
+        "bAnswer": "$0.6$. $1$을 $0.1$이 $10$개인 수로 보고 $4$개를 빼면 $6$개가 남는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$을 $0.1$이 $10$개인 수로 본다",
+              "$0.1$ 열 개에서 $4$개를 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$1$에서 소수 빼기",
+        "bReason": "$1$을 $0.1$ 열 개로 바꾸는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$1$은 $0.1$이 {$10$}개인 수이므로 $1-0.4$는 $0.1$이 몇 개 남는지로 구할 수 있다.",
+        "cReason": "긴 구절 정답을 수 $10$ 빈칸으로",
+        "cSlotEquivalents": [
+          [
+            "열"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$1$에서 소수 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$1$은 $0.1$이 {$10$}개인 수이므로 $1-0.4$는 $0.1$이 몇 개 남는지로 구할 수 있다.",
+        "cStudentSentence": "$1$은 $0.1$이 □개인 수이므로 $1-0.4$는 $0.1$이 몇 개 남는지로 구할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$10$",
+            "equivalents": [
+              "열"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1-0.4$를 계산하고, $1$을 어떻게 보고 계산하는지 쓰시오.",
+          "answer": "$0.6$. $1$을 $0.1$이 $10$개인 수로 보고 $4$개를 빼면 $6$개가 남는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.6$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1$을 $0.1$이 $10$개인 수로 본다",
+                "$0.1$ 열 개에서 $4$개를 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$1$은 $0.1$이 {$10$}개인 수이므로 $1-0.4$는 $0.1$이 몇 개 남는지로 구할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$10$",
+              "열"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc4",
+          "sourceIndex": 2368,
+          "proposalFingerprint": "2f1290f097c45b2d8d1ba0fafc744f7c571a772040389aeef1b5e81c3a95fe6c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "전체1을0.1열개로보고네개를빼0.6을구한다.",
+          "cReason": "1을이루는0.1열개의관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2369,
+        "sourceFingerprint": "1ea83c1e2a6e7d91dbbc993e003ee76745190fd5c5cfe19cee7aed6f56d2cd89",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc5",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "같은 소수끼리의 차",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$2.5-2.5$는 {$0$}이다.",
+        "studentC": "$2.5-2.5$는 □이다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2369,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "1ea83c1e2a6e7d91dbbc993e003ee76745190fd5c5cfe19cee7aed6f56d2cd89",
+        "proposalFingerprint": "f822404f18ae203929545b22feb409e19887c857b09d313cbf9b5303db1a6887",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "같은 소수끼리 빼기",
+        "bReason": "일반 설명 목표가 약한 단순 계산",
+        "exclusionReason": "$2.5-2.5=0$은 단순 계산이고 따로 설명시킬 일반 목표가 없다.",
+        "cDecision": "keep",
+        "cReason": "짧고 선명한 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 소수끼리의 차",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2.5-2.5$는 {$0$}이다.",
+        "cStudentSentence": "$2.5-2.5$는 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$2.5-2.5$는 □이다.",
+          "answers": [
+            "$0$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$2.5-2.5$는 {$0$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "일반 설명 목표가 약한 단순 계산"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc5",
+          "sourceIndex": 2369,
+          "proposalFingerprint": "f822404f18ae203929545b22feb409e19887c857b09d313cbf9b5303db1a6887",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은소수차의단순계산은B에서제외한다.",
+          "cReason": "2.5-2.5의차0을계산한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2370,
+        "sourceFingerprint": "02dd18a7f5800db4d83dc305790f1f8df9a6418e6b52ee53066fa9fc2dea59f3",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc6",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "한 칸이 $0.1$인 수직선에서 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "눈금 한 칸이 $0.1$인 수직선에서 소수를 빼면 {빼는 수의 $0.1$ 개수만큼} 왼쪽으로 간다.",
+        "example": {
+          "prompt": "한 칸이 $0.1$인 수직선에서 $0.9-0.4$가 $0.9$에서 왼쪽으로 $4$칸 간 곳인 까닭은?",
+          "answer": "$0.4$가 $0.1$의 $4$개라서"
+        },
+        "studentC": "눈금 한 칸이 $0.1$인 수직선에서 소수를 빼면 □ 왼쪽으로 간다.",
+        "answers": [
+          "빼는 수의 $0.1$ 개수만큼"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2370,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "02dd18a7f5800db4d83dc305790f1f8df9a6418e6b52ee53066fa9fc2dea59f3",
+        "proposalFingerprint": "bc54da2ef9d646aa4bfcbe11ab75fcbf713a395c4de92e39ea98b204d13d2963",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "한 칸이 $0.1$인 수직선에서 $0.9-0.4$를 어떻게 구하는지 쓰고, 차를 쓰시오.",
+        "bAnswer": "$0.9$에서 왼쪽으로 $4$칸 가므로 $0.5$이다. $0.4$는 $0.1$이 $4$개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.9$에서 왼쪽으로 $4$칸 간다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "수직선에서 소수 빼기",
+        "bReason": "빼는 수의 칸 수와 방향을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "한 칸이 $0.1$인 수직선에서 $0.9-0.4$는 $0.9$에서 왼쪽으로 {$4$}칸 간 곳이다.",
+        "cReason": "긴 구절 정답을 구체 칸 수로",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "한 칸이 $0.1$인 수직선에서 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 칸이 $0.1$인 수직선에서 $0.9-0.4$는 $0.9$에서 왼쪽으로 {$4$}칸 간 곳이다.",
+        "cStudentSentence": "한 칸이 $0.1$인 수직선에서 $0.9-0.4$는 $0.9$에서 왼쪽으로 □칸 간 곳이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 칸이 $0.1$인 수직선에서 $0.9-0.4$를 어떻게 구하는지 쓰고, 차를 쓰시오.",
+          "answer": "$0.9$에서 왼쪽으로 $4$칸 가므로 $0.5$이다. $0.4$는 $0.1$이 $4$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.5$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.9$에서 왼쪽으로 $4$칸 간다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 칸이 $0.1$인 수직선에서 $0.9-0.4$는 $0.9$에서 왼쪽으로 {$4$}칸 간 곳이다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2371,
+        "sourceFingerprint": "2eae149c948d0ef12d3472ba5adb771f5874e4ae5dbf5ca9bbba530c7f9e75ee",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc9",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "소수에서 자연수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수에서 자연수를 빼면 {자연수 부분에서만} 빼고 소수 부분은 그대로 둔다.",
+        "example": {
+          "prompt": "$5.7-2$가 $5.5$가 아닌 까닭은?",
+          "answer": "$2$는 일의 자리 수라서"
+        },
+        "studentC": "소수에서 자연수를 빼면 □ 빼고 소수 부분은 그대로 둔다.",
+        "answers": [
+          "자연수 부분에서만"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2371,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "2eae149c948d0ef12d3472ba5adb771f5874e4ae5dbf5ca9bbba530c7f9e75ee",
+        "proposalFingerprint": "37bbe6f5f883025213b555151c6299e882d5f3174139ada95b9b864179e96cb3",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$5.7-2$를 계산하고, $5.5$가 아닌 까닭을 쓰시오.",
+        "bAnswer": "$3.7$. $2$는 일의 자리 수라서 자연수 부분 $5$에서만 빼고 소수 부분은 그대로 둔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 일의 자리 수",
+              "자연수 부분에서만 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "소수에서 자연수 빼기",
+        "bReason": "자리 착각을 구체 식으로 점검",
+        "cDecision": "rewrite",
+        "cAfter": "소수에서 자연수를 빼면 {자연수} 부분에서만 빼고 소수 부분은 그대로 둔다.",
+        "cReason": "긴 구절 정답을 '자연수' 한 낱말로",
+        "cSlotEquivalents": [
+          []
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "소수에서 자연수 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수에서 자연수를 빼면 {자연수} 부분에서만 빼고 소수 부분은 그대로 둔다.",
+        "cStudentSentence": "소수에서 자연수를 빼면 □ 부분에서만 빼고 소수 부분은 그대로 둔다.",
+        "cSlotAnswers": [
+          {
+            "expected": "자연수",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5.7-2$를 계산하고, $5.5$가 아닌 까닭을 쓰시오.",
+          "answer": "$3.7$. $2$는 일의 자리 수라서 자연수 부분 $5$에서만 빼고 소수 부분은 그대로 둔다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$2$는 일의 자리 수",
+                "자연수 부분에서만 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수에서 자연수를 빼면 {자연수} 부분에서만 빼고 소수 부분은 그대로 둔다.",
+          "acceptedAnswers": [
+            [
+              "자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2372,
+        "sourceFingerprint": "43984f8b71c22b299e37ea86b2e4980adc4138153ef54fd307dbb9257fa88dc8",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc11",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "자연수에서 소수 빼기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수는 {소수 첫째 자리가 $0$인 수}로 볼 수 있어, 빼는 수의 소수 첫째 자리 숫자가 $0$보다 크면 $1$을 $0.1$ 열 개로 바꾸어 뺀다.",
+        "example": {
+          "prompt": "$4-1.3$에서 받아내린 뒤 일의 자리에 $3$이 남는 까닭은?",
+          "answer": "$1$을 $0.1$ 열 개로 바꿔서"
+        },
+        "studentC": "자연수는 □로 볼 수 있어, 빼는 수의 소수 첫째 자리 숫자가 $0$보다 크면 $1$을 $0.1$ 열 개로 바꾸어 뺀다.",
+        "answers": [
+          "소수 첫째 자리가 $0$인 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2372,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "43984f8b71c22b299e37ea86b2e4980adc4138153ef54fd307dbb9257fa88dc8",
+        "proposalFingerprint": "eacf236141ef437ae8588785f4b6a266c2821e6b19ccb75a8688240fbc79a478",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$4-1.3$을 계산하는 방법을 쓰고, 차를 구하시오.",
+        "bAnswer": "$2.7$. $4$를 $4.0$으로 보고 $1$을 $0.1$ 열 개로 바꾸어 받아내림한 뒤 뺀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$에서 $1$을 $0.1$ 열 개로 바꾸어 받아내린 뒤 뺀다",
+              "$0.1$의 개수로 $40-13=27$을 구한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "자연수에서 소수 빼기",
+        "bReason": "받아내림 이유를 $0.1$ 열 개로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$4$는 $4.0$처럼 소수 첫째 자리가 {$0$}인 수로 볼 수 있어, $4-1.3$에서는 $1$을 $0.1$ 열 개로 바꾸어 뺀다.",
+        "cReason": "긴 구절 정답을 숫자 $0$으로 좁힘",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자연수에서 소수 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$4$는 $4.0$처럼 소수 첫째 자리가 {$0$}인 수로 볼 수 있어, $4-1.3$에서는 $1$을 $0.1$ 열 개로 바꾸어 뺀다.",
+        "cStudentSentence": "$4$는 $4.0$처럼 소수 첫째 자리가 □인 수로 볼 수 있어, $4-1.3$에서는 $1$을 $0.1$ 열 개로 바꾸어 뺀다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$4-1.3$을 계산하는 방법을 쓰고, 차를 구하시오.",
+          "answer": "$2.7$. $4$를 $4.0$으로 보고 $1$을 $0.1$ 열 개로 바꾸어 받아내림한 뒤 뺀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4$에서 $1$을 $0.1$ 열 개로 바꾸어 받아내린 뒤 뺀다",
+                "$0.1$의 개수로 $40-13=27$을 구한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$4$는 $4.0$처럼 소수 첫째 자리가 {$0$}인 수로 볼 수 있어, $4-1.3$에서는 $1$을 $0.1$ 열 개로 바꾸어 뺀다.",
+          "acceptedAnswers": [
+            [
+              "$0$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2373,
+        "sourceFingerprint": "5f9090ad28880c95fd1c619cf187c58ae557caad64fed718c46a948925b1643d",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc12",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "덧셈으로 뺄셈 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$6.1-2.4=3.7$은 $3.7+2.4=6.1$로 {확인한다}.",
+        "studentC": "$6.1-2.4=3.7$은 $3.7+2.4=6.1$로 □.",
+        "answers": [
+          "확인한다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2373,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "5f9090ad28880c95fd1c619cf187c58ae557caad64fed718c46a948925b1643d",
+        "proposalFingerprint": "6596cf600c654c9445548ba56939ecfe20f2a90e0067c42299ea68b629261fb9",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$6.1-2.4=3.7$이 맞는지 덧셈식으로 확인하는 방법을 쓰시오.",
+        "bAnswer": "차 $3.7$에 빼는 수 $2.4$를 더해 $3.7+2.4=6.1$이 되는지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3.7+2.4$를 계산한다",
+              "차에 빼는 수를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6.1$이 된다",
+              "처음 수와 같다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "덧셈으로 뺄셈 검산",
+        "bReason": "검산 식과 확인 기준을 묻는다",
+        "cDecision": "rewrite",
+        "cReason": "확인한다라는 행동 이름 대신 차와 빼는 수를 더한 값으로 실제 계산이 맞는지 판단하게 한다.",
+        "cSlotEquivalents": [
+          [
+            "잘못되었다",
+            "맞지 않다"
+          ]
+        ],
+        "cAfter": "$6.1-2.4$의 차를 $3.6$이라고 구했다. 확인해 보니 $3.6+2.4=6.0$이므로 뺄셈 계산은 {틀렸다}.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "덧셈으로 뺄셈 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$6.1-2.4$의 차를 $3.6$이라고 구했다. 확인해 보니 $3.6+2.4=6.0$이므로 뺄셈 계산은 {틀렸다}.",
+        "cStudentSentence": "$6.1-2.4$의 차를 $3.6$이라고 구했다. 확인해 보니 $3.6+2.4=6.0$이므로 뺄셈 계산은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "틀렸다",
+            "equivalents": [
+              "잘못되었다",
+              "맞지 않다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$6.1-2.4=3.7$이 맞는지 덧셈식으로 확인하는 방법을 쓰시오.",
+          "answer": "차 $3.7$에 빼는 수 $2.4$를 더해 $3.7+2.4=6.1$이 되는지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3.7+2.4$를 계산한다",
+                "차에 빼는 수를 더한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$6.1$이 된다",
+                "처음 수와 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$6.1-2.4$의 차를 $3.6$이라고 구했다. 확인해 보니 $3.6+2.4=6.0$이므로 뺄셈 계산은 {틀렸다}.",
+          "acceptedAnswers": [
+            [
+              "틀렸다",
+              "잘못되었다",
+              "맞지 않다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2374,
+        "sourceFingerprint": "82e1f593156a91456f6958ba928a250e33d4f1ba24bd7215f7bc33c69e035153",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc13",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "영점일의 개수로 바꾸어 빼기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 한 자리 수의 뺄셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 뺄 수 있다.",
+        "example": {
+          "prompt": "$72-45=27$로 $7.2-4.5$가 $2.7$인 까닭은?",
+          "answer": "$0.1$이 $27$개 남아서"
+        },
+        "studentC": "소수 한 자리 수의 뺄셈은 두 수를 □로 바꾸어 자연수처럼 뺄 수 있다.",
+        "answers": [
+          "$0.1$의 개수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2374,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "82e1f593156a91456f6958ba928a250e33d4f1ba24bd7215f7bc33c69e035153",
+        "proposalFingerprint": "eb13094724af4b5485c8a39db888d4e20a5a91a2669bb5f8e8ba539fa6383381",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$7.2-4.5$를 $72-45$로 계산할 수 있는 까닭을 쓰고, 차를 구하시오.",
+        "bAnswer": "$2.7$. $7.2$는 $0.1$이 $72$개, $4.5$는 $0.1$이 $45$개라서 $0.1$이 $27$개 남는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $72$개와 $45$개",
+              "$72$와 $45$는 $0.1$의 개수"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "$0.1$ 개수로 소수 뺄셈",
+        "bReason": "자연수 계산이 가능한 이유를 묻는다",
+        "cDecision": "keep",
+        "cReason": "'$0.1$의 개수' 짧은 단위 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$0.1$이 몇 개인지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "영점일의 개수로 바꾸어 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 한 자리 수의 뺄셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 뺄 수 있다.",
+        "cStudentSentence": "소수 한 자리 수의 뺄셈은 두 수를 □로 바꾸어 자연수처럼 뺄 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0.1$의 개수",
+            "equivalents": [
+              "$0.1$이 몇 개인지"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 한 자리 수의 뺄셈은 두 수를 □로 바꾸어 자연수처럼 뺄 수 있다.",
+          "answers": [
+            "$0.1$의 개수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$7.2-4.5$를 $72-45$로 계산할 수 있는 까닭을 쓰고, 차를 구하시오.",
+          "answer": "$2.7$. $7.2$는 $0.1$이 $72$개, $4.5$는 $0.1$이 $45$개라서 $0.1$이 $27$개 남는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.1$이 $72$개와 $45$개",
+                "$72$와 $45$는 $0.1$의 개수"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 한 자리 수의 뺄셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 뺄 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$0.1$의 개수",
+              "$0.1$이 몇 개인지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc13",
+          "sourceIndex": 2374,
+          "proposalFingerprint": "eb13094724af4b5485c8a39db888d4e20a5a91a2669bb5f8e8ba539fa6383381",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "0.1의개수72와45로빼차2.7인까닭이다.",
+          "cReason": "소수한자리수를0.1의개수로바꾸는방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2375,
+        "sourceFingerprint": "df39dc0b44e310c02245e7a4b6ced164d368e7bebd16e1a2c9398f1749c52ddc",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc14",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "빼는 수를 모를 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "뺄셈식에서 빼는 수를 모르면 {처음 수에서 차를 빼서} 구한다.",
+        "example": {
+          "prompt": "$2.4-\\square=0.8$의 $\\square$를 $2.4-0.8$로 구하는 까닭은?",
+          "answer": "남은 양을 빼면 덜어 낸 양이라서"
+        },
+        "studentC": "뺄셈식에서 빼는 수를 모르면 □ 구한다.",
+        "answers": [
+          "처음 수에서 차를 빼서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2375,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "df39dc0b44e310c02245e7a4b6ced164d368e7bebd16e1a2c9398f1749c52ddc",
+        "proposalFingerprint": "b8f3dfc1c8833c900c15ed46e1a8e97ee2b0c40e89f3593819b04f1eaf90fb9d",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$2.4-\\square=0.8$에서 $\\square$를 구하는 식을 쓰고, 그 식으로 구하는 까닭을 쓰시오.",
+        "bAnswer": "$2.4-0.8=1.6$. $2.4$에서 덜어 내고 $0.8$이 남았으므로 덜어 낸 양은 $2.4-0.8$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.4-0.8=1.6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 수에서 남은 수를 빼면 덜어 낸 양을 구한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "빼는 수를 모를 때",
+        "bReason": "덜어 낸 양 의미로 식을 설명",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수를 $2.4$에서 뺐더니 $0.8$이 남았다. 뺀 수는 {$1.6$}이다.",
+        "cReason": "실제 빈칸을 수식 밖에 두고 어떤 양을 구하는지 말로 나타낸다.",
+        "cSlotEquivalents": [],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빼는 수를 모를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수를 $2.4$에서 뺐더니 $0.8$이 남았다. 뺀 수는 {$1.6$}이다.",
+        "cStudentSentence": "어떤 수를 $2.4$에서 뺐더니 $0.8$이 남았다. 뺀 수는 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1.6$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2.4-\\square=0.8$에서 $\\square$를 구하는 식을 쓰고, 그 식으로 구하는 까닭을 쓰시오.",
+          "answer": "$2.4-0.8=1.6$. $2.4$에서 덜어 내고 $0.8$이 남았으므로 덜어 낸 양은 $2.4-0.8$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.4-0.8=1.6$"
+              ]
+            },
+            {
+              "anyOf": [
+                "처음 수에서 남은 수를 빼면 덜어 낸 양을 구한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수를 $2.4$에서 뺐더니 $0.8$이 남았다. 뺀 수는 {$1.6$}이다.",
+          "acceptedAnswers": [
+            [
+              "$1.6$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2376,
+        "sourceFingerprint": "9a0051ab29c4ccabf8014cd42a107b78658502005fc6f72d226dc1935ee4db24",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc15",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "처음 수를 모를 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "뺄셈식에서 빼어지는 수를 모르면 {차에 빼는 수를 더해서} 구한다.",
+        "example": {
+          "prompt": "$\\square-1.9=2.3$의 $\\square$를 덧셈으로 구하는 까닭은?",
+          "answer": "덜어 낸 것을 되돌려서"
+        },
+        "studentC": "뺄셈식에서 빼어지는 수를 모르면 □ 구한다.",
+        "answers": [
+          "차에 빼는 수를 더해서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2376,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "9a0051ab29c4ccabf8014cd42a107b78658502005fc6f72d226dc1935ee4db24",
+        "proposalFingerprint": "c184bf8cfcd5a513275de138fea9105383862630afebf1ede76a670afb2d2b4d",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\square-1.9=2.3$에서 $\\square$를 구하는 식을 쓰고, 그 식으로 구하는 까닭을 쓰시오.",
+        "bAnswer": "$2.3+1.9=4.2$. 덜어 낸 $1.9$를 남은 $2.3$에 다시 더하면 처음 수가 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.3+1.9=4.2$",
+              "$1.9+2.3=4.2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "덜어 낸 것을 남은 양에 되돌려 더하면 처음 수가 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "처음 수를 모를 때",
+        "bReason": "덜어 낸 양을 되돌리는 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수에서 $1.9$를 뺐더니 $2.3$이 남았다. 처음 수는 {$4.2$}이다.",
+        "cReason": "실제 빈칸을 수식 밖에 두고 처음 수를 되찾는 상황을 쓴다.",
+        "cSlotEquivalents": [],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "처음 수를 모를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수에서 $1.9$를 뺐더니 $2.3$이 남았다. 처음 수는 {$4.2$}이다.",
+        "cStudentSentence": "어떤 수에서 $1.9$를 뺐더니 $2.3$이 남았다. 처음 수는 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4.2$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\square-1.9=2.3$에서 $\\square$를 구하는 식을 쓰고, 그 식으로 구하는 까닭을 쓰시오.",
+          "answer": "$2.3+1.9=4.2$. 덜어 낸 $1.9$를 남은 $2.3$에 다시 더하면 처음 수가 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.3+1.9=4.2$",
+                "$1.9+2.3=4.2$"
+              ]
+            },
+            {
+              "anyOf": [
+                "덜어 낸 것을 남은 양에 되돌려 더하면 처음 수가 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수에서 $1.9$를 뺐더니 $2.3$이 남았다. 처음 수는 {$4.2$}이다.",
+          "acceptedAnswers": [
+            [
+              "$4.2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2377,
+        "sourceFingerprint": "24b6fb5ee55162d741408a763b3733af2464929f0c4cfd2afca2c579bb1d0b13",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc16",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "단위를 맞추어 빼기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "단위가 다른 두 양의 차는 {같은 단위로 바꾼} 뒤 구한다.",
+        "example": {
+          "prompt": "$2\\,\\mathrm{m}$에서 $30\\,\\mathrm{cm}$를 뺄 때 $30$을 $0.3$으로 바꾸는 까닭은?",
+          "answer": "단위를 맞추려고"
+        },
+        "studentC": "단위가 다른 두 양의 차는 □ 뒤 구한다.",
+        "answers": [
+          "같은 단위로 바꾼"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2377,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "24b6fb5ee55162d741408a763b3733af2464929f0c4cfd2afca2c579bb1d0b13",
+        "proposalFingerprint": "3768357e37b78594e94484e8cf72d2a672241df1db9582c9fdb7d469873b529d",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\,\\mathrm{m}$에서 $30\\,\\mathrm{cm}$를 빼 $\\mathrm{m}$ 단위로 쓰고, $30$을 $0.3$으로 바꾸는 까닭을 쓰시오.",
+        "bAnswer": "$1.7\\,\\mathrm{m}$. $30\\,\\mathrm{cm}=0.3\\,\\mathrm{m}$로 단위를 맞추어 $2-0.3$을 계산한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.7\\,\\mathrm{m}$",
+              "$1.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위를 맞추려고",
+              "$30\\,\\mathrm{cm}$를 $0.3\\,\\mathrm{m}$로 바꾼다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "단위를 맞춘 뺄셈",
+        "bReason": "단위 바꾸기와 계산 결과 확인",
+        "cDecision": "rewrite",
+        "cAfter": "단위가 다른 두 양의 차는 {같은} 단위로 바꾼 뒤 구한다.",
+        "cReason": "긴 구절 정답을 '같은' 한 낱말로",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단위를 맞추어 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "단위가 다른 두 양의 차는 {같은} 단위로 바꾼 뒤 구한다.",
+        "cStudentSentence": "단위가 다른 두 양의 차는 □ 단위로 바꾼 뒤 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2\\,\\mathrm{m}$에서 $30\\,\\mathrm{cm}$를 빼 $\\mathrm{m}$ 단위로 쓰고, $30$을 $0.3$으로 바꾸는 까닭을 쓰시오.",
+          "answer": "$1.7\\,\\mathrm{m}$. $30\\,\\mathrm{cm}=0.3\\,\\mathrm{m}$로 단위를 맞추어 $2-0.3$을 계산한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.7\\,\\mathrm{m}$",
+                "$1.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "단위를 맞추려고",
+                "$30\\,\\mathrm{cm}$를 $0.3\\,\\mathrm{m}$로 바꾼다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "단위가 다른 두 양의 차는 {같은} 단위로 바꾼 뒤 구한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc16",
+          "sourceIndex": 2377,
+          "proposalFingerprint": "3768357e37b78594e94484e8cf72d2a672241df1db9582c9fdb7d469873b529d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "cm를m로맞추어1.7m인차와단위환산이유를설명한다.",
+          "cReason": "차도같은단위로맞춘뒤구하는조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2378,
+        "sourceFingerprint": "b39f56751c7a880c4a4034c62c817562e89ef072d3194f321e60e72e56619977",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc17",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "차 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 한 자리 수의 차는 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "example": {
+          "prompt": "$8.1-2.9$를 $8-3$으로 어림하는 까닭은?",
+          "answer": "두 수가 $8$과 $3$에 가까워서"
+        },
+        "studentC": "소수 한 자리 수의 차는 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+        "answers": [
+          "가까운 자연수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2378,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "b39f56751c7a880c4a4034c62c817562e89ef072d3194f321e60e72e56619977",
+        "proposalFingerprint": "0e09f743e8400b716d111459e697064067887195c8b2665959c10aadbf1918d6",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$8.1$과 $2.9$를 각각 가장 가까운 자연수로 어림하여 $8.1-2.9$의 차를 어림하시오. 어떤 수로 바꾸었는지와 어림한 차를 쓰시오.",
+        "bAnswer": "$8.1$은 $8$, $2.9$는 $3$에 가까우므로 $8-3=5$쯤이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가까운 자연수로 바꾼다",
+              "$8.1$을 $8$로, $2.9$를 $3$으로"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "차를 어림하는 방법",
+        "bReason": "가까운 자연수로 바꿔 차를 어림",
+        "cDecision": "keep",
+        "cReason": "'가까운 자연수' 익숙한 구절 빈칸",
+        "cSlotEquivalents": [
+          [
+            "가장 가까운 자연수"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차 어림하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 한 자리 수의 차는 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "cStudentSentence": "소수 한 자리 수의 차는 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가까운 자연수",
+            "equivalents": [
+              "가장 가까운 자연수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 한 자리 수의 차는 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+          "answers": [
+            "가까운 자연수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$8.1$과 $2.9$를 각각 가장 가까운 자연수로 어림하여 $8.1-2.9$의 차를 어림하시오. 어떤 수로 바꾸었는지와 어림한 차를 쓰시오.",
+          "answer": "$8.1$은 $8$, $2.9$는 $3$에 가까우므로 $8-3=5$쯤이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5$"
+              ]
+            },
+            {
+              "anyOf": [
+                "가까운 자연수로 바꾼다",
+                "$8.1$을 $8$로, $2.9$를 $3$으로"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 한 자리 수의 차는 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "가까운 자연수",
+              "가장 가까운 자연수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2379,
+        "sourceFingerprint": "5e9c08d3288d631b1235f4d4b6019e2f880a95f8ce3088967e350847fe94ecb3",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc18",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "차례로 빼기와 한꺼번에 빼기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 수에서 두 소수를 차례로 빼는 것은 {두 소수의 합을 한 번에 빼는 것}과 같다.",
+        "example": {
+          "prompt": "$5.6-1.2-2.3$을 $5.6-3.5$로 계산해도 되는 까닭은?",
+          "answer": "덜어 낸 양이 모두 $3.5$라서"
+        },
+        "studentC": "같은 수에서 두 소수를 차례로 빼는 것은 □과 같다.",
+        "answers": [
+          "두 소수의 합을 한 번에 빼는 것"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2379,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "5e9c08d3288d631b1235f4d4b6019e2f880a95f8ce3088967e350847fe94ecb3",
+        "proposalFingerprint": "2b85306d87e831956b8e6887ca28b3013cedffde7e0f366c75cd9546bda8b41c",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$5.6-1.2-2.3$을 $5.6-3.5$로 계산해도 되는 까닭을 쓰고, 값을 구하시오.",
+        "bAnswer": "$2.1$. 덜어 낸 양이 $1.2+2.3=3.5$이므로 한 번에 $3.5$를 빼는 것과 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.2$와 $2.3$의 합 $3.5$를 한 번에 뺀다",
+              "덜어 낸 양이 모두 $3.5$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차례로 빼기와 한꺼번에 빼기",
+        "bReason": "덜어 낸 양의 합으로 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$5.6-1.2-2.3$은 $5.6$에서 $1.2$와 $2.3$의 합 {$3.5$}를 한 번에 빼는 것과 같다.",
+        "cReason": "긴 구절 정답을 구체 합으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차례로 빼기와 한꺼번에 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5.6-1.2-2.3$은 $5.6$에서 $1.2$와 $2.3$의 합 {$3.5$}를 한 번에 빼는 것과 같다.",
+        "cStudentSentence": "$5.6-1.2-2.3$은 $5.6$에서 $1.2$와 $2.3$의 합 □를 한 번에 빼는 것과 같다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3.5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5.6-1.2-2.3$을 $5.6-3.5$로 계산해도 되는 까닭을 쓰고, 값을 구하시오.",
+          "answer": "$2.1$. 덜어 낸 양이 $1.2+2.3=3.5$이므로 한 번에 $3.5$를 빼는 것과 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.1$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1.2$와 $2.3$의 합 $3.5$를 한 번에 뺀다",
+                "덜어 낸 양이 모두 $3.5$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5.6-1.2-2.3$은 $5.6$에서 $1.2$와 $2.3$의 합 {$3.5$}를 한 번에 빼는 것과 같다.",
+          "acceptedAnswers": [
+            [
+              "$3.5$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc18",
+          "sourceIndex": 2379,
+          "proposalFingerprint": "2b85306d87e831956b8e6887ca28b3013cedffde7e0f366c75cd9546bda8b41c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "전체덜어낸양3.5를한번에빼차2.1인까닭이다.",
+          "cReason": "차례로덜어내는1.2와2.3의합3.5를구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2380,
+        "sourceFingerprint": "bdc36ccc068319d47410a98faebbb4982c1ec911a1de43e89578af000d85adc2",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc19",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "차가 자연수가 되는 뺄셈",
+        "kind": "성질",
+        "level": "상",
+        "definition": "큰 소수 한 자리 수에서 작은 소수 한 자리 수를 뺄 때 $6.4-2.4$처럼 {소수 첫째 자리 숫자가 같으면} 차는 자연수이다.",
+        "studentC": "큰 소수 한 자리 수에서 작은 소수 한 자리 수를 뺄 때 $6.4-2.4$처럼 □ 차는 자연수이다.",
+        "answers": [
+          "소수 첫째 자리 숫자가 같으면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2380,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "bdc36ccc068319d47410a98faebbb4982c1ec911a1de43e89578af000d85adc2",
+        "proposalFingerprint": "8a41fdb136ab512f964eb10595bd8216b8e8c72d8790b4c8c40b6e1b86ee8878",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$6.4-2.4$의 차를 구하고, 차가 자연수가 되는 까닭을 소수 부분과 관련지어 쓰시오.",
+        "bAnswer": "$4$. 소수 부분 $0.4$가 서로 같아 빼면 $0$이 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 첫째 자리 숫자가 같다",
+              "소수 부분이 같아 $0$이 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "차가 자연수가 되는 조건",
+        "bReason": "같은 소수 부분이 없어지는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "큰 소수 한 자리 수에서 작은 소수 한 자리 수를 뺄 때 $6.4-2.4$처럼 소수 첫째 자리 숫자가 {같으면} 차는 자연수이다.",
+        "cReason": "가려진 조건 구절을 '같으면' 한 낱말로",
+        "cSlotEquivalents": [
+          [
+            "같을 때",
+            "같다면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차가 자연수가 되는 뺄셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "큰 소수 한 자리 수에서 작은 소수 한 자리 수를 뺄 때 $6.4-2.4$처럼 소수 첫째 자리 숫자가 {같으면} 차는 자연수이다.",
+        "cStudentSentence": "큰 소수 한 자리 수에서 작은 소수 한 자리 수를 뺄 때 $6.4-2.4$처럼 소수 첫째 자리 숫자가 □ 차는 자연수이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으면",
+            "equivalents": [
+              "같을 때",
+              "같다면"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$6.4-2.4$의 차를 구하고, 차가 자연수가 되는 까닭을 소수 부분과 관련지어 쓰시오.",
+          "answer": "$4$. 소수 부분 $0.4$가 서로 같아 빼면 $0$이 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$"
+              ]
+            },
+            {
+              "anyOf": [
+                "소수 첫째 자리 숫자가 같다",
+                "소수 부분이 같아 $0$이 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "큰 소수 한 자리 수에서 작은 소수 한 자리 수를 뺄 때 $6.4-2.4$처럼 소수 첫째 자리 숫자가 {같으면} 차는 자연수이다.",
+          "acceptedAnswers": [
+            [
+              "같으면",
+              "같을 때",
+              "같다면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc19",
+          "sourceIndex": 2380,
+          "proposalFingerprint": "8a41fdb136ab512f964eb10595bd8216b8e8c72d8790b4c8c40b6e1b86ee8878",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은소수부분0.4를모두빼자연수4만남는까닭이다.",
+          "cReason": "큰수에서작은수를빼는조건으로자연수차를보장한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2381,
+        "sourceFingerprint": "31b6b656315b78cbef7a934e1408d838de288eae89a4cf071e0e109a8a771c8d",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc20",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "차가 큰 뺄셈식 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "카드 네 장을 한 번씩 써서 $\\square.\\square-\\square.\\square$를 만들 때 차를 크게 하려면 빼어지는 수의 {일의 자리}에 가장 큰 숫자를 놓는다.",
+        "studentC": "카드 네 장을 한 번씩 써서 $\\square.\\square-\\square.\\square$를 만들 때 차를 크게 하려면 빼어지는 수의 □에 가장 큰 숫자를 놓는다.",
+        "answers": [
+          "일의 자리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2381,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "31b6b656315b78cbef7a934e1408d838de288eae89a4cf071e0e109a8a771c8d",
+        "proposalFingerprint": "c9af56d2c60fce6c640d900653a1b3159349cf8c7e677dc2e2e34372cf74aceb",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "카드 $1$, $3$, $6$, $9$를 한 번씩 써서 $\\square.\\square-\\square.\\square$ 꼴에서 차가 가장 큰 뺄셈식을 만들고, 빼어지는 수의 일의 자리에 놓는 숫자를 쓰시오.",
+        "bAnswer": "$9.6-1.3=8.3$. 빼어지는 수의 일의 자리에 가장 큰 숫자 $9$를 놓는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9.6-1.3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "빼어지는 수의 일의 자리에 $9$를 놓는다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "차가 큰 뺄셈식 만들기",
+        "bReason": "빼어지는 수에 큰 수를 놓는 이유 적용",
+        "cDecision": "rewrite",
+        "cAfter": "카드 네 장으로 소수 한 자리 수 두 개를 만들어 뺄 때 차를 크게 하려면 빼어지는 수의 {일의} 자리에 가장 큰 숫자를 놓는다.",
+        "cReason": "빈칸 기호와 겹치는 $\\square$ 표기를 없앰",
+        "cSlotEquivalents": [
+          [
+            "$1$의"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "차가 큰 뺄셈식 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "카드 네 장으로 소수 한 자리 수 두 개를 만들어 뺄 때 차를 크게 하려면 빼어지는 수의 {일의} 자리에 가장 큰 숫자를 놓는다.",
+        "cStudentSentence": "카드 네 장으로 소수 한 자리 수 두 개를 만들어 뺄 때 차를 크게 하려면 빼어지는 수의 □ 자리에 가장 큰 숫자를 놓는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "일의",
+            "equivalents": [
+              "$1$의"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "카드 $1$, $3$, $6$, $9$를 한 번씩 써서 $\\square.\\square-\\square.\\square$ 꼴에서 차가 가장 큰 뺄셈식을 만들고, 빼어지는 수의 일의 자리에 놓는 숫자를 쓰시오.",
+          "answer": "$9.6-1.3=8.3$. 빼어지는 수의 일의 자리에 가장 큰 숫자 $9$를 놓는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$9.6-1.3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "빼어지는 수의 일의 자리에 $9$를 놓는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "카드 네 장으로 소수 한 자리 수 두 개를 만들어 뺄 때 차를 크게 하려면 빼어지는 수의 {일의} 자리에 가장 큰 숫자를 놓는다.",
+          "acceptedAnswers": [
+            [
+              "일의",
+              "$1$의"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2382,
+        "sourceFingerprint": "6e82ad7f79fda6464f34eda6b4b0dfc6ed88ac2cbbdd0b8db54323448ba12f19",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc21",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "거꾸로 빼는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$3.2-1.5$에서 $5-2$로 거꾸로 빼 $2.3$을 얻으면 {받아내림을 하지 않은} 잘못이다.",
+        "studentC": "$3.2-1.5$에서 $5-2$로 거꾸로 빼 $2.3$을 얻으면 □ 잘못이다.",
+        "answers": [
+          "받아내림을 하지 않은"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2382,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "6e82ad7f79fda6464f34eda6b4b0dfc6ed88ac2cbbdd0b8db54323448ba12f19",
+        "proposalFingerprint": "f2e2a72c7a10189ce8aa3057841bd635fe7cf1d79a82ab9cc21064fb7643f3f2",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "한 학생이 $3.2-1.5$를 계산하면서 일의 자리에서는 $3-1=2$, 소수 첫째 자리에서는 $5-2=3$으로 계산하여 $2.3$이라고 썼다. 무엇을 잘못했는지 쓰고, 바른 차를 구하시오.",
+        "bAnswer": "$1.7$. $2$에서 $5$를 뺄 수 없으니 받아내림을 해야 하는데 $5-2$로 거꾸로 뺐다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "받아내림을 하지 않았다",
+              "$2$에서 $5$를 뺄 수 없는데 거꾸로 뺐다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "거꾸로 빼는 오류 점검",
+        "bReason": "받아내림이 필요한 이유를 오류로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$3.2-1.5$에서 $5-2$로 거꾸로 빼 $2.3$을 얻으면 {받아내림}을 하지 않은 잘못이다.",
+        "cReason": "긴 구절 정답을 '받아내림' 낱말로",
+        "cSlotEquivalents": [
+          [
+            "내림"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "거꾸로 빼는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3.2-1.5$에서 $5-2$로 거꾸로 빼 $2.3$을 얻으면 {받아내림}을 하지 않은 잘못이다.",
+        "cStudentSentence": "$3.2-1.5$에서 $5-2$로 거꾸로 빼 $2.3$을 얻으면 □을 하지 않은 잘못이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "받아내림",
+            "equivalents": [
+              "내림"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 학생이 $3.2-1.5$를 계산하면서 일의 자리에서는 $3-1=2$, 소수 첫째 자리에서는 $5-2=3$으로 계산하여 $2.3$이라고 썼다. 무엇을 잘못했는지 쓰고, 바른 차를 구하시오.",
+          "answer": "$1.7$. $2$에서 $5$를 뺄 수 없으니 받아내림을 해야 하는데 $5-2$로 거꾸로 뺐다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.7$"
+              ]
+            },
+            {
+              "anyOf": [
+                "받아내림을 하지 않았다",
+                "$2$에서 $5$를 뺄 수 없는데 거꾸로 뺐다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$3.2-1.5$에서 $5-2$로 거꾸로 빼 $2.3$을 얻으면 {받아내림}을 하지 않은 잘못이다.",
+          "acceptedAnswers": [
+            [
+              "받아내림",
+              "내림"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2383,
+        "sourceFingerprint": "1e2c7ba8df1a4fa7d11400043dcea82a67798dc34924a28fd4f0e234475db426",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc25",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "받아내림을 거꾸로 알아내기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "차의 일의 자리 숫자가 두 수의 일의 자리 숫자의 차보다 $1$ 작으면 {소수 첫째 자리에서 받아내림}이 있었다.",
+        "example": {
+          "prompt": "$7.\\square-2.5=4.8$에서 일의 자리가 하나 줄어든 까닭은?",
+          "answer": "$1$을 $0.1$ 열 개로 옮겨서"
+        },
+        "studentC": "차의 일의 자리 숫자가 두 수의 일의 자리 숫자의 차보다 $1$ 작으면 □이 있었다.",
+        "answers": [
+          "소수 첫째 자리에서 받아내림"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2383,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "1e2c7ba8df1a4fa7d11400043dcea82a67798dc34924a28fd4f0e234475db426",
+        "proposalFingerprint": "420098f4e1ceb4abe6fa26d3b46fc20eda8ab42a49e63f7285d4c25c748b9531",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$7.\\square-2.5=4.8$에서 $\\square$에 들어갈 수를 구하고, 소수 첫째 자리에서 받아내림이 있었다고 아는 까닭을 쓰시오.",
+        "bAnswer": "$\\square=3$. 일의 자리 $7-2=5$인데 차의 일의 자리는 $4$로 $1$ 작기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7-2=5$보다 차의 일의 자리 $4$가 $1$ 작다",
+              "일의 자리가 $1$ 줄었다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "받아내림 거꾸로 알아내기",
+        "bReason": "일의 자리 차와 결과를 비교해 추론",
+        "cDecision": "rewrite",
+        "cAfter": "차의 일의 자리 숫자가 두 수의 일의 자리 숫자의 차보다 $1$ 작으면 소수 첫째 자리에서 {받아내림}이 있었다.",
+        "cReason": "문장 정답을 '받아내림' 낱말로",
+        "cSlotEquivalents": [
+          [
+            "내림"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "받아내림을 거꾸로 알아내기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "차의 일의 자리 숫자가 두 수의 일의 자리 숫자의 차보다 $1$ 작으면 소수 첫째 자리에서 {받아내림}이 있었다.",
+        "cStudentSentence": "차의 일의 자리 숫자가 두 수의 일의 자리 숫자의 차보다 $1$ 작으면 소수 첫째 자리에서 □이 있었다.",
+        "cSlotAnswers": [
+          {
+            "expected": "받아내림",
+            "equivalents": [
+              "내림"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$7.\\square-2.5=4.8$에서 $\\square$에 들어갈 수를 구하고, 소수 첫째 자리에서 받아내림이 있었다고 아는 까닭을 쓰시오.",
+          "answer": "$\\square=3$. 일의 자리 $7-2=5$인데 차의 일의 자리는 $4$로 $1$ 작기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$7-2=5$보다 차의 일의 자리 $4$가 $1$ 작다",
+                "일의 자리가 $1$ 줄었다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "차의 일의 자리 숫자가 두 수의 일의 자리 숫자의 차보다 $1$ 작으면 소수 첫째 자리에서 {받아내림}이 있었다.",
+          "acceptedAnswers": [
+            [
+              "받아내림",
+              "내림"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc25",
+          "sourceIndex": 2383,
+          "proposalFingerprint": "420098f4e1ceb4abe6fa26d3b46fc20eda8ab42a49e63f7285d4c25c748b9531",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "일의차5보다4가1작아받아내림을아는이유와빈숫자3이다.",
+          "cReason": "일의숫자1감소로첫째자리받아내림을역추론한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2384,
+        "sourceFingerprint": "68a711615501f29f8ae5d99f573d1920fb0573341dd533a53257973488b28284",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc27",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "잘못 더한 값 바로잡기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "빼야 할 수를 잘못 더했으면 그 결과에서 {그 수를 두 번} 빼야 바른 차가 된다.",
+        "example": {
+          "prompt": "$1.4$를 빼야 할 것을 더했을 때 $1.4$를 두 번 빼는 까닭은?",
+          "answer": "더한 것을 되돌리고 또 빼서"
+        },
+        "studentC": "빼야 할 수를 잘못 더했으면 그 결과에서 □ 빼야 바른 차가 된다.",
+        "answers": [
+          "그 수를 두 번"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2384,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "68a711615501f29f8ae5d99f573d1920fb0573341dd533a53257973488b28284",
+        "proposalFingerprint": "941d092942128fb5f6d8f8dedf1618ef4578462d97ea9f42bfe767f43c438aba",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 수에서 $1.4$를 빼야 하는데 잘못 더했더니 $5.2$가 되었습니다. 바른 차를 구하고, $1.4$를 두 번 빼는 까닭을 쓰시오.",
+        "bAnswer": "$2.4$. 더한 $1.4$를 한 번 빼서 되돌리고, 원래 해야 할 뺄셈으로 한 번 더 빼기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "잘못 더한 $1.4$를 한 번 빼서 처음 수로 되돌리고 원래 빼야 할 $1.4$를 한 번 더 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "잘못 더한 값 바로잡기",
+        "bReason": "되돌리기와 뺄셈을 모두 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "빼야 할 수를 잘못 더했으면 그 결과에서 그 수를 {두} 번 빼야 바른 차가 된다.",
+        "cReason": "긴 구절 정답을 '두' 한 낱말로",
+        "cSlotEquivalents": [
+          [
+            "$2$"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "잘못 더한 값 바로잡기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "빼야 할 수를 잘못 더했으면 그 결과에서 그 수를 {두} 번 빼야 바른 차가 된다.",
+        "cStudentSentence": "빼야 할 수를 잘못 더했으면 그 결과에서 그 수를 □ 번 빼야 바른 차가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "어떤 수에서 $1.4$를 빼야 하는데 잘못 더했더니 $5.2$가 되었습니다. 바른 차를 구하고, $1.4$를 두 번 빼는 까닭을 쓰시오.",
+          "answer": "$2.4$. 더한 $1.4$를 한 번 빼서 되돌리고, 원래 해야 할 뺄셈으로 한 번 더 빼기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.4$"
+              ]
+            },
+            {
+              "anyOf": [
+                "잘못 더한 $1.4$를 한 번 빼서 처음 수로 되돌리고 원래 빼야 할 $1.4$를 한 번 더 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "빼야 할 수를 잘못 더했으면 그 결과에서 그 수를 {두} 번 빼야 바른 차가 된다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2385,
+        "sourceFingerprint": "ea730d348b99456bb8661519de9748a6bb92c35ade8a1f3634d5394eca35ae1e",
+        "part": "e4plus",
+        "id": "e4-2-3-5-xc28",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "차가 놓이는 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수 첫째 자리에서 받아내림이 있는 뺄셈의 차는 두 수의 {자연수 부분의 차}보다 {작다}.",
+        "example": {
+          "prompt": "$5.3-2.8$의 차가 $3$보다 작은 까닭은?",
+          "answer": "$0.3$에서 $0.8$을 덜 수 없어서"
+        },
+        "studentC": "소수 첫째 자리에서 받아내림이 있는 뺄셈의 차는 두 수의 □보다 □.",
+        "answers": [
+          "자연수 부분의 차",
+          "작다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2385,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "sourceFingerprint": "ea730d348b99456bb8661519de9748a6bb92c35ade8a1f3634d5394eca35ae1e",
+        "proposalFingerprint": "a5169fb2c55b1c79a73cff541c9cc0924ab6ebfbaaadc63449f1d37a3ad977f4",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-5-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "$5.3-2.8$의 차가 $3$보다 큰지 작은지 쓰고, 까닭을 쓰시오.",
+        "bAnswer": "$3$보다 작다($2.5$). $0.3$에서 $0.8$을 뺄 수 없어 받아내림을 하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$보다 작다",
+              "$2.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.3$에서 $0.8$을 뺄 수 없다",
+              "받아내림이 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "받아내림 있는 차의 범위",
+        "bReason": "자연수 부분의 차와 비교해 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "$5.3-2.8$처럼 소수 첫째 자리에서 받아내림이 있으면 차는 자연수 부분의 차인 {$3$}보다 {작다}.",
+        "cReason": "긴 구절 정답을 수와 비교말 빈칸으로",
+        "cSlotEquivalents": [
+          [],
+          [
+            "더 작다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "차가 놓이는 범위",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5.3-2.8$처럼 소수 첫째 자리에서 받아내림이 있으면 차는 자연수 부분의 차인 {$3$}보다 {작다}.",
+        "cStudentSentence": "$5.3-2.8$처럼 소수 첫째 자리에서 받아내림이 있으면 차는 자연수 부분의 차인 □보다 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": []
+          },
+          {
+            "expected": "작다",
+            "equivalents": [
+              "더 작다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$5.3-2.8$의 차가 $3$보다 큰지 작은지 쓰고, 까닭을 쓰시오.",
+          "answer": "$3$보다 작다($2.5$). $0.3$에서 $0.8$을 뺄 수 없어 받아내림을 하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$보다 작다",
+                "$2.5$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.3$에서 $0.8$을 뺄 수 없다",
+                "받아내림이 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$5.3-2.8$처럼 소수 첫째 자리에서 받아내림이 있으면 차는 자연수 부분의 차인 {$3$}보다 {작다}.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ],
+            [
+              "작다",
+              "더 작다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-5-xc28",
+          "sourceIndex": 2385,
+          "proposalFingerprint": "a5169fb2c55b1c79a73cff541c9cc0924ab6ebfbaaadc63449f1d37a3ad977f4",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "첫째0.3보다0.8이커받아내리므로차가3미만인까닭이다.",
+          "cReason": "실제자연수부분차3과대소작음을동시확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2386,
+        "sourceFingerprint": "1d3cc13002045ef727c371e5e70622dfd6c38415d9df58b4d4123e668554056e",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc3",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "결과의 소수점 자리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "세로셈에서 소수점을 맞추어 쓰고 결과에도 {같은 자리}에 소수점을 찍는다.",
+        "studentC": "세로셈에서 소수점을 맞추어 쓰고 결과에도 □에 소수점을 찍는다.",
+        "answers": [
+          "같은 자리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2386,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "1d3cc13002045ef727c371e5e70622dfd6c38415d9df58b4d4123e668554056e",
+        "proposalFingerprint": "9feb0d042626765fc0c633f0da984701f84a2d2a4b259d82d8dc8555af4145f7",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.25+2.37$을 세로셈으로 계산할 때 합의 소수점을 어디에 찍는지 쓰고, 합을 구하시오.",
+        "bAnswer": "$3.62$. 더하는 수들의 소수점과 같은 자리에 소수점을 찍는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3.62$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 자리에 소수점",
+              "소수점을 맞춘 같은 줄"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "합의 소수점 위치",
+        "bReason": "소수 두 자리 합의 소수점 위치 확인",
+        "cDecision": "keep",
+        "cReason": "'같은 자리' 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "같은 줄"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "결과의 소수점 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세로셈에서 소수점을 맞추어 쓰고 결과에도 {같은 자리}에 소수점을 찍는다.",
+        "cStudentSentence": "세로셈에서 소수점을 맞추어 쓰고 결과에도 □에 소수점을 찍는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 자리",
+            "equivalents": [
+              "같은 줄"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세로셈에서 소수점을 맞추어 쓰고 결과에도 □에 소수점을 찍는다.",
+          "answers": [
+            "같은 자리"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1.25+2.37$을 세로셈으로 계산할 때 합의 소수점을 어디에 찍는지 쓰고, 합을 구하시오.",
+          "answer": "$3.62$. 더하는 수들의 소수점과 같은 자리에 소수점을 찍는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3.62$"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 자리에 소수점",
+                "소수점을 맞춘 같은 줄"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세로셈에서 소수점을 맞추어 쓰고 결과에도 {같은 자리}에 소수점을 찍는다.",
+          "acceptedAnswers": [
+            [
+              "같은 자리",
+              "같은 줄"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc3",
+          "sourceIndex": 2386,
+          "proposalFingerprint": "9feb0d042626765fc0c633f0da984701f84a2d2a4b259d82d8dc8555af4145f7",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은소수점위치와합3.62를구한다.",
+          "cReason": "같은세로위치에결과소수점을찍는방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2387,
+        "sourceFingerprint": "0b2c22836aa8715353cb83976a8c09e20150e355cb918ea8f1ffd33a15154581",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc4",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "$0.01$의 개수로 보기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수 두 자리 수의 덧셈은 $0.01$이 {모두 몇 개인지} 세는 것과 같다.",
+        "studentC": "소수 두 자리 수의 덧셈은 $0.01$이 □ 세는 것과 같다.",
+        "answers": [
+          "모두 몇 개인지"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2387,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "0b2c22836aa8715353cb83976a8c09e20150e355cb918ea8f1ffd33a15154581",
+        "proposalFingerprint": "1c9fb1a520f78728b6d1e184dd1a461eb1f1d71369bc408da64c8484bd6e69ec",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.25+0.13$을 $0.01$이 몇 개인지로 생각해 계산하는 방법과 합을 쓰시오.",
+        "bAnswer": "$0.01$이 $25$개와 $13$개이므로 모두 $38$개이고 합은 $0.38$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.38$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.01$이 $25$개와 $13$개",
+              "$0.01$의 개수 $25+13=38$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "$0.01$ 개수로 덧셈",
+        "bReason": "소수 덧셈을 단위 개수 세기로 이해",
+        "cDecision": "rewrite",
+        "cAfter": "$0.25+0.13$은 $0.01$이 $25$개와 $13$개이므로 $0.01$이 모두 {$38$}개이다.",
+        "cReason": "긴 구절 정답을 구체 계산 빈칸으로",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$0.01$의 개수로 보기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.25+0.13$은 $0.01$이 $25$개와 $13$개이므로 $0.01$이 모두 {$38$}개이다.",
+        "cStudentSentence": "$0.25+0.13$은 $0.01$이 $25$개와 $13$개이므로 $0.01$이 모두 □개이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$38$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.25+0.13$을 $0.01$이 몇 개인지로 생각해 계산하는 방법과 합을 쓰시오.",
+          "answer": "$0.01$이 $25$개와 $13$개이므로 모두 $38$개이고 합은 $0.38$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.38$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.01$이 $25$개와 $13$개",
+                "$0.01$의 개수 $25+13=38$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.25+0.13$은 $0.01$이 $25$개와 $13$개이므로 $0.01$이 모두 {$38$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$38$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc4",
+          "sourceIndex": 2387,
+          "proposalFingerprint": "1c9fb1a520f78728b6d1e184dd1a461eb1f1d71369bc408da64c8484bd6e69ec",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "동일0.01단위25개와13개를합쳐0.38인방법이다.",
+          "cReason": "개수25+13의전체38을구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2388,
+        "sourceFingerprint": "73bac6066568fa518c91de3fd48c970972423526c94c97a3b88a0f3c386d0e3f",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc5",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "합이 $1$이 되는 두 소수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수 두 자리 수 두 개의 합이 $1$이면 두 수의 {$0.01$ 개수를 합한 것이 $100$}이다.",
+        "example": {
+          "prompt": "$0.35+0.65$가 $1$인 까닭은?",
+          "answer": "$0.01$이 $100$개라서"
+        },
+        "studentC": "소수 두 자리 수 두 개의 합이 $1$이면 두 수의 □이다.",
+        "answers": [
+          "$0.01$ 개수를 합한 것이 $100$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2388,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "73bac6066568fa518c91de3fd48c970972423526c94c97a3b88a0f3c386d0e3f",
+        "proposalFingerprint": "7fd9c8916736e9c5850f1375f123227014acf25c4dfc82dcbcdf96212851ac0c",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.35+0.65$가 $1$이 되는 까닭을 $0.01$의 개수로 쓰시오.",
+        "bAnswer": "$0.35$는 $0.01$이 $35$개, $0.65$는 $65$개라서 모두 $100$개이고, $0.01$이 $100$개가 $1$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$35+65=100$개",
+              "$0.01$이 모두 $100$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.01$이 $100$개가 $1$"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "합이 $1$인 두 소수의 까닭",
+        "bReason": "$100$개가 $1$임을 이용해 설명",
+        "cDecision": "rewrite",
+        "cAfter": "합이 $1$인 두 소수 두 자리 수는 $0.01$의 개수를 더하면 {$100$}개가 된다.",
+        "cReason": "긴 구절 정답을 수 $100$ 빈칸으로",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "합이 $1$이 되는 두 소수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "합이 $1$인 두 소수 두 자리 수는 $0.01$의 개수를 더하면 {$100$}개가 된다.",
+        "cStudentSentence": "합이 $1$인 두 소수 두 자리 수는 $0.01$의 개수를 더하면 □개가 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$100$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.35+0.65$가 $1$이 되는 까닭을 $0.01$의 개수로 쓰시오.",
+          "answer": "$0.35$는 $0.01$이 $35$개, $0.65$는 $65$개라서 모두 $100$개이고, $0.01$이 $100$개가 $1$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$35+65=100$개",
+                "$0.01$이 모두 $100$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.01$이 $100$개가 $1$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "합이 $1$인 두 소수 두 자리 수는 $0.01$의 개수를 더하면 {$100$}개가 된다.",
+          "acceptedAnswers": [
+            [
+              "$100$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc5",
+          "sourceIndex": 2388,
+          "proposalFingerprint": "7fd9c8916736e9c5850f1375f123227014acf25c4dfc82dcbcdf96212851ac0c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "35+65의백개와0.01백개가1임을함께설명한다.",
+          "cReason": "합1의소수두자리수전체0.01백개관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2389,
+        "sourceFingerprint": "62c208943a23a2cdd4d7cd834b90102ceb379b6bbe69175cc58ea129351883b3",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc7",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "자연수와 소수 두 자리 수의 덧셈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수 부분은 그대로} 남는다.",
+        "example": {
+          "prompt": "$2+0.35$가 $0.37$이 아닌 까닭은?",
+          "answer": "$2$는 일의 자리 수라서"
+        },
+        "studentC": "자연수와 소수를 더하면 자연수 부분에만 더해지고 □ 남는다.",
+        "answers": [
+          "소수 부분은 그대로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2389,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "62c208943a23a2cdd4d7cd834b90102ceb379b6bbe69175cc58ea129351883b3",
+        "proposalFingerprint": "43eb26c5444a7843f51f47d27bcec518898e7224fc1f7538c7fe232b2e054731",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$2+0.35$를 계산하고, $0.37$이 아닌 까닭을 쓰시오.",
+        "bAnswer": "$2.35$. $2$는 일의 자리 수라서 자연수 부분에 더해지고 소수 부분 $0.35$는 그대로 남는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2.35$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 일의 자리 수이므로 자연수 부분에 더해야 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자연수와 소수의 덧셈",
+        "bReason": "$2$를 소수 부분에 더한 실수를 진단",
+        "cDecision": "rewrite",
+        "cAfter": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수} 부분은 그대로 남는다.",
+        "cReason": "긴 구절 정답을 '소수' 한 낱말로",
+        "cSlotEquivalents": [
+          [
+            "소수점 아래"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자연수와 소수 두 자리 수의 덧셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수} 부분은 그대로 남는다.",
+        "cStudentSentence": "자연수와 소수를 더하면 자연수 부분에만 더해지고 □ 부분은 그대로 남는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "소수",
+            "equivalents": [
+              "소수점 아래"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2+0.35$를 계산하고, $0.37$이 아닌 까닭을 쓰시오.",
+          "answer": "$2.35$. $2$는 일의 자리 수라서 자연수 부분에 더해지고 소수 부분 $0.35$는 그대로 남는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2.35$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$2$는 일의 자리 수이므로 자연수 부분에 더해야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수} 부분은 그대로 남는다.",
+          "acceptedAnswers": [
+            [
+              "소수",
+              "소수점 아래"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2390,
+        "sourceFingerprint": "6253a35fece27f677d553d3203bdf6ef83922ed671e54ab69c9539b3862fb060",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc8",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "모눈 그림으로 더하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 장을 $1$로 정한 $100$칸 모눈에서 한 칸은 $0.01$이므로 두 수만큼 색칠한 칸 수를 합하면 {합}을 알 수 있다. 칸이 모자라면 여러 장을 쓴다.",
+        "studentC": "한 장을 $1$로 정한 $100$칸 모눈에서 한 칸은 $0.01$이므로 두 수만큼 색칠한 칸 수를 합하면 □을 알 수 있다. 칸이 모자라면 여러 장을 쓴다.",
+        "answers": [
+          "합"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2390,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "6253a35fece27f677d553d3203bdf6ef83922ed671e54ab69c9539b3862fb060",
+        "proposalFingerprint": "e1f2dd56226b6c26b6793f26fde6acfa0031a15db742aa91bb1ca20d04e48361",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "한 장을 $1$로 정한 $100$칸 모눈 그림으로 $0.65+0.48$을 구하는 방법을 쓰고, 합을 쓰시오.",
+        "bAnswer": "한 칸은 $0.01$이다. $65$칸을 색칠한 뒤 겹치지 않게 $48$칸을 더 색칠하면 모두 $113$칸이다. 모눈 두 장을 써서 나타내면 한 장과 $13$칸이므로 합은 $1.13$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.13$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$65$칸과 $48$칸을 겹치지 않게 색칠해 모두 $113$칸을 센다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈 그림으로 소수 덧셈",
+        "bReason": "칸이 모자라면 여러 장 쓰는 경우 포함",
+        "cDecision": "rewrite",
+        "cAfter": "한 장을 $1$로 정한 $100$칸 모눈에서 한 칸은 $0.01$이므로 두 수만큼 색칠한 칸 수를 더하면 두 수의 {합}을 알 수 있다. 칸이 모자라면 여러 장을 쓴다.",
+        "cReason": "'합하면'과 정답이 겹치는 문장을 다듬음",
+        "cSlotEquivalents": [
+          [
+            "더한 값"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈 그림으로 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 장을 $1$로 정한 $100$칸 모눈에서 한 칸은 $0.01$이므로 두 수만큼 색칠한 칸 수를 더하면 두 수의 {합}을 알 수 있다. 칸이 모자라면 여러 장을 쓴다.",
+        "cStudentSentence": "한 장을 $1$로 정한 $100$칸 모눈에서 한 칸은 $0.01$이므로 두 수만큼 색칠한 칸 수를 더하면 두 수의 □을 알 수 있다. 칸이 모자라면 여러 장을 쓴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "합",
+            "equivalents": [
+              "더한 값"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 장을 $1$로 정한 $100$칸 모눈 그림으로 $0.65+0.48$을 구하는 방법을 쓰고, 합을 쓰시오.",
+          "answer": "한 칸은 $0.01$이다. $65$칸을 색칠한 뒤 겹치지 않게 $48$칸을 더 색칠하면 모두 $113$칸이다. 모눈 두 장을 써서 나타내면 한 장과 $13$칸이므로 합은 $1.13$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.13$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$65$칸과 $48$칸을 겹치지 않게 색칠해 모두 $113$칸을 센다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 장을 $1$로 정한 $100$칸 모눈에서 한 칸은 $0.01$이므로 두 수만큼 색칠한 칸 수를 더하면 두 수의 {합}을 알 수 있다. 칸이 모자라면 여러 장을 쓴다.",
+          "acceptedAnswers": [
+            [
+              "합",
+              "더한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2391,
+        "sourceFingerprint": "c05cebe8542a7d36354d25bd5b4810c5e01db379950c6b60950c1a946b08693b",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc11",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "받아올림이 두 번 있을 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 둘째 자리에서 올린 $1$을 더해 첫째 자리 숫자의 합이 {$10$ 이상}이면 일의 자리로 다시 받아올린다.",
+        "example": {
+          "prompt": "$0.68+0.47$이 $1$보다 큰 까닭은?",
+          "answer": "$0.1$ 열 개가 $1$이 되고 더 남아서"
+        },
+        "studentC": "소수 둘째 자리에서 올린 $1$을 더해 첫째 자리 숫자의 합이 □이면 일의 자리로 다시 받아올린다.",
+        "answers": [
+          "$10$ 이상"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2391,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "c05cebe8542a7d36354d25bd5b4810c5e01db379950c6b60950c1a946b08693b",
+        "proposalFingerprint": "823e5f022e333f2fd922f078f0b2675f99b253da50121cf9f1371b854a196aeb",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.68+0.47$을 계산할 때 받아올림이 두 번 일어나는 과정을 쓰고, 합을 구하시오.",
+        "bAnswer": "$1.15$. $8+7=15$라서 $1$을 올리고, 첫째 자리 $6+4+1=11$이 되어 일의 자리로 다시 올린다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.15$"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 둘째 자리의 $8+7=15$에서 $1$을 소수 첫째 자리로 올린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 첫째 자리의 $6+4+1=11$에서 $1$을 일의 자리로 올린다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "받아올림이 두 번 있는 계산",
+        "bReason": "올림이 이어지는 이유를 단계별로",
+        "cDecision": "keep",
+        "cReason": "'$10$ 이상' 조건 빈칸이 짧다",
+        "cSlotEquivalents": [
+          [
+            "$10$이거나 $10$보다 큰 수",
+            "$10$보다 크거나 같은 수"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "받아올림이 두 번 있을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 둘째 자리에서 올린 $1$을 더해 첫째 자리 숫자의 합이 {$10$ 이상}이면 일의 자리로 다시 받아올린다.",
+        "cStudentSentence": "소수 둘째 자리에서 올린 $1$을 더해 첫째 자리 숫자의 합이 □이면 일의 자리로 다시 받아올린다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$10$ 이상",
+            "equivalents": [
+              "$10$이거나 $10$보다 큰 수",
+              "$10$보다 크거나 같은 수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 둘째 자리에서 올린 $1$을 더해 첫째 자리 숫자의 합이 □이면 일의 자리로 다시 받아올린다.",
+          "answers": [
+            "$10$ 이상"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.68+0.47$을 계산할 때 받아올림이 두 번 일어나는 과정을 쓰고, 합을 구하시오.",
+          "answer": "$1.15$. $8+7=15$라서 $1$을 올리고, 첫째 자리 $6+4+1=11$이 되어 일의 자리로 다시 올린다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.15$"
+              ]
+            },
+            {
+              "anyOf": [
+                "소수 둘째 자리의 $8+7=15$에서 $1$을 소수 첫째 자리로 올린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "소수 첫째 자리의 $6+4+1=11$에서 $1$을 일의 자리로 올린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "소수 둘째 자리에서 올린 $1$을 더해 첫째 자리 숫자의 합이 {$10$ 이상}이면 일의 자리로 다시 받아올린다.",
+          "acceptedAnswers": [
+            [
+              "$10$ 이상",
+              "$10$이거나 $10$보다 큰 수",
+              "$10$보다 크거나 같은 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2392,
+        "sourceFingerprint": "ff28781001e2716101537008f8051ca8e4c3d08181817cdd5fa953522b922da5",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc12",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "끝에 $0$을 붙여 맞추기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자릿수가 다른 두 소수는 끝에 {$0$}을 붙여 자릿수를 맞추면 계산하기 쉽다.",
+        "studentC": "자릿수가 다른 두 소수는 끝에 □을 붙여 자릿수를 맞추면 계산하기 쉽다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2392,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "ff28781001e2716101537008f8051ca8e4c3d08181817cdd5fa953522b922da5",
+        "proposalFingerprint": "dd3dc471e58603efe4f7189d71534d000715c88037d7df2ce5eb56be296e5dce",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.5+0.27$을 세로셈으로 계산할 때 자릿수를 맞추려고 $1.5$를 어떻게 바꾸어 쓰는지 쓰고, 합을 구하시오.",
+        "bAnswer": "$1.5$를 $1.50$으로 쓴다. 합은 $1.77$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.50$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.77$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "끝에 0을 붙여 자릿수 맞춤",
+        "bReason": "자릿수 맞춤과 계산 결과 확인",
+        "cDecision": "keep",
+        "cReason": "숫자 $0$ 하나만 묻는 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "끝에 $0$을 붙여 맞추기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "자릿수가 다른 두 소수는 끝에 {$0$}을 붙여 자릿수를 맞추면 계산하기 쉽다.",
+        "cStudentSentence": "자릿수가 다른 두 소수는 끝에 □을 붙여 자릿수를 맞추면 계산하기 쉽다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "자릿수가 다른 두 소수는 끝에 □을 붙여 자릿수를 맞추면 계산하기 쉽다.",
+          "answers": [
+            "$0$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$1.5+0.27$을 세로셈으로 계산할 때 자릿수를 맞추려고 $1.5$를 어떻게 바꾸어 쓰는지 쓰고, 합을 구하시오.",
+          "answer": "$1.5$를 $1.50$으로 쓴다. 합은 $1.77$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.50$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1.77$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "자릿수가 다른 두 소수는 끝에 {$0$}을 붙여 자릿수를 맞추면 계산하기 쉽다.",
+          "acceptedAnswers": [
+            [
+              "$0$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc12",
+          "sourceIndex": 2392,
+          "proposalFingerprint": "dd3dc471e58603efe4f7189d71534d000715c88037d7df2ce5eb56be296e5dce",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "1.50표기와합1.77의두요청이분명하다.",
+          "cReason": "끝0을붙여다른소수자릿수를맞추는방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2393,
+        "sourceFingerprint": "d5ff67a905e3519159d91a5f0bde34fe4e5b0ad36668f5476cc524b1c668cc64",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc13",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "영점영일의 개수로 바꾸어 더하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "example": {
+          "prompt": "$125+238=363$으로 $1.25+2.38$이 $3.63$인 까닭은?",
+          "answer": "$0.01$이 $363$개라서"
+        },
+        "studentC": "소수 두 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+        "answers": [
+          "$0.01$의 개수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2393,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "d5ff67a905e3519159d91a5f0bde34fe4e5b0ad36668f5476cc524b1c668cc64",
+        "proposalFingerprint": "b93c8f222249ad5381e725ec24e43a852d261b1f236ea0afd4f7682f0b799dfb",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "$0.01$의 개수로 더하기",
+        "bReason": "xc4 B와 같은 $0.01$ 개수 덧셈",
+        "exclusionReason": "xc4 B가 $0.01$의 개수로 소수 두 자리 수를 더하는 같은 목표를 다룬다.",
+        "cDecision": "keep",
+        "cReason": "'$0.01$의 개수' 짧은 단위 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$0.01$이 몇 개인지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "영점영일의 개수로 바꾸어 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "cStudentSentence": "소수 두 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0.01$의 개수",
+            "equivalents": [
+              "$0.01$이 몇 개인지"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "소수 두 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+          "answers": [
+            "$0.01$의 개수"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$0.01$의 개수",
+              "$0.01$이 몇 개인지"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc4 B와 같은 $0.01$ 개수 덧셈"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc13",
+          "sourceIndex": 2393,
+          "proposalFingerprint": "b93c8f222249ad5381e725ec24e43a852d261b1f236ea0afd4f7682f0b799dfb",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "0.01개수로더하는기존B와중복이다.",
+          "cReason": "소수두자리수의공통단위0.01개수방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2394,
+        "sourceFingerprint": "ef42f4303a5b1c071ee58471335ef54b4e153e4e9b22ca77742c79038b97c443",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc14",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "더하는 수 하나를 모를 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "덧셈식에서 더하는 수 하나를 모르면 {합에서 아는 수를 빼서} 구한다.",
+        "example": {
+          "prompt": "$\\square+0.36=0.9$의 $\\square$를 $0.9-0.36$으로 구하는 까닭은?",
+          "answer": "합에서 $0.36$을 빼면 $\\square$만 남아서"
+        },
+        "studentC": "덧셈식에서 더하는 수 하나를 모르면 □ 구한다.",
+        "answers": [
+          "합에서 아는 수를 빼서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2394,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "ef42f4303a5b1c071ee58471335ef54b4e153e4e9b22ca77742c79038b97c443",
+        "proposalFingerprint": "546dfa7a89c39610a5309c776ce86a5bd88aba951105c565e72869a78ea7d53a",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\square+0.36=0.9$에서 $\\square$를 구하는 식을 쓰고, 그 식으로 구하는 까닭을 쓰시오.",
+        "bAnswer": "$0.9-0.36=0.54$. 합 $0.9$에서 아는 수 $0.36$을 빼면 $\\square$만 남는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.9-0.36=0.54$"
+            ]
+          },
+          {
+            "anyOf": [
+              "합에서 아는 수를 빼면 모르는 수가 남는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "모르는 더하는 수 구하기",
+        "bReason": "합에서 아는 수를 빼는 이유 설명",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 수에 $0.36$을 더했더니 $0.9$가 되었다. 처음 수는 {$0.54$}이다.",
+        "cReason": "실제 빈칸을 수식 밖에 두고 구해야 할 수를 명확히 한다.",
+        "cSlotEquivalents": [],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "더하는 수 하나를 모를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어떤 수에 $0.36$을 더했더니 $0.9$가 되었다. 처음 수는 {$0.54$}이다.",
+        "cStudentSentence": "어떤 수에 $0.36$을 더했더니 $0.9$가 되었다. 처음 수는 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$0.54$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\square+0.36=0.9$에서 $\\square$를 구하는 식을 쓰고, 그 식으로 구하는 까닭을 쓰시오.",
+          "answer": "$0.9-0.36=0.54$. 합 $0.9$에서 아는 수 $0.36$을 빼면 $\\square$만 남는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.9-0.36=0.54$"
+              ]
+            },
+            {
+              "anyOf": [
+                "합에서 아는 수를 빼면 모르는 수가 남는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "어떤 수에 $0.36$을 더했더니 $0.9$가 되었다. 처음 수는 {$0.54$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0.54$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2395,
+        "sourceFingerprint": "5fdb0fd9ef717561f320c16d9e396818de8d62f606631e0669fc389ece735a43",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc15",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "단위를 맞추어 더하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "단위가 다른 두 양을 더하려면 {같은 단위로 바꾼} 뒤 더한다.",
+        "example": {
+          "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 더할 때 $35$를 $0.35$로 바꾸는 까닭은?",
+          "answer": "단위를 맞추려고"
+        },
+        "studentC": "단위가 다른 두 양을 더하려면 □ 뒤 더한다.",
+        "answers": [
+          "같은 단위로 바꾼"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2395,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "5fdb0fd9ef717561f320c16d9e396818de8d62f606631e0669fc389ece735a43",
+        "proposalFingerprint": "901b2bf8bc3c8681aa14ff7681643cc9155b79b52787f7c2e27bc6dddbabefe1",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하고, $35$를 $0.35$로 바꾸는 까닭을 쓰시오.",
+        "bAnswer": "$1.55\\,\\mathrm{m}$. $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$로 단위를 맞추어 더하기 위해서이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.55\\,\\mathrm{m}$",
+              "$1.55$"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위를 맞추려고",
+              "$35\\,\\mathrm{cm}$를 $0.35\\,\\mathrm{m}$로 바꾼다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "단위를 맞춘 덧셈",
+        "bReason": "단위 바꾸기 이유와 결과 확인",
+        "cDecision": "rewrite",
+        "cAfter": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "cReason": "긴 구절 정답을 '같은' 한 낱말로",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단위를 맞추어 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "cStudentSentence": "단위가 다른 두 양을 더하려면 □ 단위로 바꾼 뒤 더한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하고, $35$를 $0.35$로 바꾸는 까닭을 쓰시오.",
+          "answer": "$1.55\\,\\mathrm{m}$. $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$로 단위를 맞추어 더하기 위해서이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.55\\,\\mathrm{m}$",
+                "$1.55$"
+              ]
+            },
+            {
+              "anyOf": [
+                "단위를 맞추려고",
+                "$35\\,\\mathrm{cm}$를 $0.35\\,\\mathrm{m}$로 바꾼다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc15",
+          "sourceIndex": 2395,
+          "proposalFingerprint": "901b2bf8bc3c8681aa14ff7681643cc9155b79b52787f7c2e27bc6dddbabefe1",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "35cm를0.35m로맞추어합1.55m인단위이유이다.",
+          "cReason": "같은단위로맞춘뒤더하는조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2396,
+        "sourceFingerprint": "f1a94ec56582dadab0826cad809719cdfe60eedc6ff49b0330ce81f3cc332acc",
+        "part": "e4plus",
+        "id": "e4-2-3-6-xc17",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "합이 $1$인 둘을 먼저 더하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$0.47$과 $0.53$을 먼저 더하면 합이 {$1$}이므로 $0.47+0.8+0.53$을 이 합과 $0.8$의 덧셈으로 쉽게 계산할 수 있다.",
+        "studentC": "$0.47$과 $0.53$을 먼저 더하면 합이 □이므로 $0.47+0.8+0.53$을 이 합과 $0.8$의 덧셈으로 쉽게 계산할 수 있다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2396,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "f1a94ec56582dadab0826cad809719cdfe60eedc6ff49b0330ce81f3cc332acc",
+        "proposalFingerprint": "daed2c1059fdb5f692dab9aed446a8cbb60378ed03df1b3f97acad6e361d6c0f",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.47+0.8+0.53$에서 합이 $1$이 되는 두 수를 먼저 더하려고 한다. 어떤 두 수를 먼저 더할지 쓰고, 그 방법으로 전체 합을 구하시오.",
+        "bAnswer": "$0.47$과 $0.53$을 먼저 더하면 $1$이므로 $1+0.8=1.8$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.47$과 $0.53$을 먼저 더한다",
+              "합이 $1$인 두 수를 먼저 더한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "합이 $1$인 둘 먼저 더하기",
+        "bReason": "계산이 쉬워지는 순서를 직접 설명",
+        "cDecision": "keep",
+        "cReason": "수 $1$ 하나만 묻는 선명한 빈칸",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합이 $1$인 둘을 먼저 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.47$과 $0.53$을 먼저 더하면 합이 {$1$}이므로 $0.47+0.8+0.53$을 이 합과 $0.8$의 덧셈으로 쉽게 계산할 수 있다.",
+        "cStudentSentence": "$0.47$과 $0.53$을 먼저 더하면 합이 □이므로 $0.47+0.8+0.53$을 이 합과 $0.8$의 덧셈으로 쉽게 계산할 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$1$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0.47$과 $0.53$을 먼저 더하면 합이 □이므로 $0.47+0.8+0.53$을 이 합과 $0.8$의 덧셈으로 쉽게 계산할 수 있다.",
+          "answers": [
+            "$1$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$0.47+0.8+0.53$에서 합이 $1$이 되는 두 수를 먼저 더하려고 한다. 어떤 두 수를 먼저 더할지 쓰고, 그 방법으로 전체 합을 구하시오.",
+          "answer": "$0.47$과 $0.53$을 먼저 더하면 $1$이므로 $1+0.8=1.8$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.8$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.47$과 $0.53$을 먼저 더한다",
+                "합이 $1$인 두 수를 먼저 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.47$과 $0.53$을 먼저 더하면 합이 {$1$}이므로 $0.47+0.8+0.53$을 이 합과 $0.8$의 덧셈으로 쉽게 계산할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1843 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 11,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q11",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "content": "직각삼각형을 두 부분으로 나눈 측정 기록에서 높이만 남아 있다. 점 $\\mathrm{D}$는 선분 $BC$의 내부에 있고, 세 점 $\\mathrm{B},\\mathrm{D},\\mathrm{C}$는 이 순서로 한 직선 위에 있다.\n\n측정 기록\n∘ $\\angle ACB=90^\\circ$\n∘ $\\angle ABD=15^\\circ$, $\\angle ADC=30^\\circ$\n∘ 높이 $\\overline{AC}=3\\,\\mathrm{cm}$\n\n이 기록에 맞게 밑변 $\\overline{BC}$의 길이를 복구한 값은?",
+      "choices": [
+        "$(3+3\\sqrt3)\\,\\mathrm{cm}$",
+        "$(6+3\\sqrt3)\\,\\mathrm{cm}$",
+        "$(6+6\\sqrt3)\\,\\mathrm{cm}$",
+        "$(9+3\\sqrt3)\\,\\mathrm{cm}$",
+        "$(12+3\\sqrt3)\\,\\mathrm{cm}$"
+      ],
+      "answer": "②",
+      "solution": "세 점 $\\mathrm{B},\\mathrm{D},\\mathrm{C}$가 이 순서로 한 직선 위에 있으므로 $\\angle ADB=180^\\circ-30^\\circ=150^\\circ$이다.\n삼각형 $\\mathrm{ABD}$에서 $\\angle BAD=180^\\circ-150^\\circ-15^\\circ=15^\\circ$이다. 따라서 $\\angle BAD=\\angle ABD$이고, 이 두 각에 마주 보는 변의 길이가 같으므로 $\\overline{AD}=\\overline{BD}$이다.\n직각삼각형 $\\mathrm{ADC}$에서 $30^\\circ$의 삼각비를 이용하면 $\\frac{\\overline{AC}}{\\overline{AD}}=\\frac12$이므로 $\\overline{AD}=6\\,\\mathrm{cm}$이다. 또 $\\frac{\\overline{DC}}{\\overline{AD}}=\\frac{\\sqrt3}{2}$이므로 $\\overline{DC}=3\\sqrt3\\,\\mathrm{cm}$이다.\n따라서 $\\overline{BD}=\\overline{AD}=6\\,\\mathrm{cm}$이고 $\\overline{BC}=\\overline{BD}+\\overline{DC}=6+3\\sqrt3\\,\\mathrm{cm}$이므로 정답은 ②이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "unit": "cm",
+        "triangle": "ABC",
+        "pointOrder": "D는 BC의 내부이며 B-D-C 순서로 공선",
+        "rightAngleACB": "90°",
+        "angleABD": "15°",
+        "angleADC": "30°",
+        "heightAC": "3",
+        "target": "밑변 BC의 길이를 복구"
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 66,
+          "specSha256": "55c992ae55620c0f3137b2b8e4e56c00a0c32659b72d4bfbde06313697bfdb36",
+          "renderMode": "local-renderFigureSpec-strict",
+          "svgSha256": "7f29f3386f364319ab0c686ae371816523830751f35e42cb5392be7a612e3c02",
+          "renderResult": {
+            "ok": true,
+            "strict": true,
+            "localOnly": true,
+            "typeset": true,
+            "droppedDimensions": []
+          }
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target",
+          "representation"
+        ],
+        "before": "BD를 주고 이등변 관계와 30° 직각삼각형에서 tan15°의 값을 구한다.",
+        "after": "측정 기록에서 AC만을 알려진 길이로 두고 밑변 BC를 복구한다. 주는 길이를 BD에서 AC로, 질문을 각의 삼각비에서 선분의 실제 길이로 역전하였다.",
+        "sharedConcept": "각의 관계, 이등변삼각형, 30° 직각삼각형의 삼각비, 공선인 선분 길이의 합",
+        "sharedProcedure": "∠ADB=150° → ∠BAD=∠ABD=15° → AD=BD → 30° 삼각형에서 AD와 DC → BC=BD+DC. 올바른 이등변 관계는 AD=BD이며 AB=BD가 아니다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-18",
+          "9수04-17",
+          "9수04-05",
+          "9수04-10",
+          "9수01-10"
+        ],
+        "allowedProcedure": [
+          "B-D-C 공선에서 이웃한 각의 합 180°",
+          "삼각형 내각 합과 이등변삼각형으로 AD=BD 유도",
+          "30° 직각삼각형의 변의 비 AC/AD=1/2, DC/AD=√3/2",
+          "양의 선분 길이의 덧셈 BC=BD+DC"
+        ],
+        "forbiddenAvoided": [
+          "삼각비 사이의 항등식",
+          "삼각비의 덧셈·뺄셈·반각 공식",
+          "사인 법칙·코사인 법칙",
+          "일반 삼각함수·라디안·90° 밖의 삼각비",
+          "거듭제곱 정리·원과 비례",
+          "학생용 벡터·좌표 회전/반사 공식"
+        ],
+        "status": "author-proposed",
+        "standardEvidence": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4272,
+              "record_offset_in_uncompressed_stream": 216602,
+              "extracted_paragraph_1based": 874
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4300,
+              "record_offset_in_uncompressed_stream": 217636,
+              "extracted_paragraph_1based": 881
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수01-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3788,
+              "record_offset_in_uncompressed_stream": 193301,
+              "extracted_paragraph_1based": 771
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                33
+              ],
+              "printed_pages": [
+                29
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "gradeBandCaveat": "9수 기준은 중1~중3 학년군이다. 중3 단원·실제 새 풀이·생성 규칙과 함께 별도 검토해야 하며 학교 출제나 학년군 코드만으로 승인하지 않는다.",
+        "surfaces": {
+          "content": {
+            "status": "author-proposed",
+            "evidence": "직각·공선·D의 내부 위치·15°/30°와 양의 높이만 제시한다."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "정확한 근호 길이 다섯 개와 cm 단위."
+          },
+          "figure": {
+            "status": "author-proposed",
+            "evidence": "새 높이와 실제 15°/30°를 갖는 분할 직각삼각형. AD=BD 등변 표시는 답의 절차이므로 넣지 않는다."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "정확한 근호 길이가 담긴 보기의 원문자."
+          },
+          "solution": {
+            "status": "author-proposed",
+            "evidence": "각의 합 → AD=BD → 30° 직각삼각형의 비 → 밑변 합. AB=BD로 잘못 옮기지 않는다."
+          },
+          "requiredProcedure": {
+            "status": "author-proposed",
+            "evidence": "15°의 삼각비를 공식으로 계산하지 않고 보조 이등변 관계를 쓴다."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "중학교 각·삼각형의 내각·이등변삼각형·특수각 삼각비·근호 계산."
+          }
+        },
+        "gate": {
+          "scope": [
+            "content",
+            "choices",
+            "figure",
+            "answer",
+            "solution",
+            "requiredProcedure",
+            "prerequisites"
+          ],
+          "outOfGrade": "reject",
+          "unclear": "hold",
+          "independentGradeApproval": false
+        }
+      },
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-11",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 11,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "6a46ae922a34c384d8a24c6b9567f3518bb55930ba97644c8d6a0a1494102e3c",
+        "sourceObservation": "직각삼각형 ABC에 B-D-C가 일직선이며 ∠ABD=15°, ∠ADC=30°, BD=4다.",
+        "sharedConceptProcedure": "각의 관계로 △ABD의 같은 변 관계를 찾고 30° 직각삼각형에서 변 길이를 표현한 뒤 tan 15°의 변의 비를 만든다.",
+        "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q11",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+        "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "answerFreeContentSha256": "6a46ae922a34c384d8a24c6b9567f3518bb55930ba97644c8d6a0a1494102e3c",
+        "referenceFigures": [
+          {
+            "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q11.png",
+            "sha256": "0d3eb2208792322477a39549fa0da6221e16fc8bdb3bcfc5bfaa1aec6bbb2ed6",
+            "role": "source-reference-only"
+          }
+        ],
+        "sourceAnswersSolutionsAccessed": false,
+        "geometryInterpretationNote": "각의 합으로 얻는 올바른 같은 변 관계는 AD=BD이다. AB=BD로 해석하지 않는다. 원본 답은 읽지 않았다."
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "활용",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "pending",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 값",
+            "semester": 2,
+            "orderIndex": 482,
+            "problemCodePrefix": "J30502"
+          },
+          "currentRegistryMatch": null,
+          "liveCount": null,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "15°를 직접 특수각 표에 대입할 수 없고 보조 이등변삼각형을 찾아 30° 직각삼각형 길이와 결합해야 한다. 기존 특수각 변 길이 유형만으로 이 핵심 보조 구성까지 같은 family라고 확신하기 어렵다.",
+          "candidates": [
+            {
+              "registryKey": "3-2|삼각비|10",
+              "registryTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기",
+              "section": "삼각비의 값",
+              "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family": "mid:3-2|삼각비|10",
+              "confidence": "low",
+              "evidence": "특수각 삼각비로 변의 길이를 구하는 부분은 일치하지만 이등변 관계를 거쳐 15°의 비를 도출하는 단계가 추가된다.",
+              "sameUnitLiveCount": 20,
+              "currentUnit": {
+                "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                "grade": "중3",
+                "chapter": "5. 삼각비",
+                "section": "삼각비의 값",
+                "semester": 2,
+                "orderIndex": 482,
+                "problemCodePrefix": "J30502"
+              },
+              "currentRegistryMatch": {
+                "key": "3-2|삼각비|10",
+                "grade": "중3",
+                "unitSection": "삼각비의 값",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비",
+                "rpmType": "10",
+                "rpmTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기"
+              },
+              "currentLiveCount": 20
+            }
+          ]
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4272,
+              "record_offset_in_uncompressed_stream": 216602,
+              "extracted_paragraph_1based": 874
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4300,
+              "record_offset_in_uncompressed_stream": 217636,
+              "extracted_paragraph_1based": 881
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수01-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3788,
+              "record_offset_in_uncompressed_stream": 193301,
+              "extracted_paragraph_1based": 771
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                33
+              ],
+              "printed_pages": [
+                29
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "B-D-C 공선에서 이웃한 각의 합 180° → 삼각형 내각 합과 이등변삼각형으로 AD=BD 유도 → 30° 직각삼각형의 변의 비 AC/AD=1/2, DC/AD=√3/2 → 양의 선분 길이의 덧셈 BC=BD+DC",
+        "curriculumSpecificHold": "taxonomy는 pending/familyKey=null이다. 새 후보의 전체 교육과정·복잡도·독립 검산과 출처 검토 전이며 원본 학교의 출제로 승인하지 않는다.",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Trig.ts:1270"
+          ]
+        },
+        "authoringStatus": "author-proposed",
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate",
+          "candidateDisplayOccurrences": 0
+        }
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\package\\private\\q11\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\package\\private\\q11\\figure-1.svg",
+        "specSha256": "55c992ae55620c0f3137b2b8e4e56c00a0c32659b72d4bfbde06313697bfdb36",
+        "svgSha256": "7f29f3386f364319ab0c686ae371816523830751f35e42cb5392be7a612e3c02",
+        "intendedWidthMm": 66,
+        "studentPath": "figures/q11-1.svg"
+      }
+    ],
+    "studentDigest": "570ab4369989cd77285dad0e26313d0e9282f0cec12e2b9568525bf8c728c2e4",
+    "candidateDigest": "961080f2067eb9678490212d04904e0689418e2780768c21e682fa483148cbbd",
+    "assetDigest": "c0b12b89505f32f2756fd468f05da7b2a5862c6b1dcf67a8eee0634623266fed",
+    "independentSolve": {
+      "studentDigest": "570ab4369989cd77285dad0e26313d0e9282f0cec12e2b9568525bf8c728c2e4",
+      "solverId": "orca-codex-exam-twin-source-identity-20261008",
+      "answer": "②",
+      "solution": "삼각형 ADC는 ∠ACD=90°, ∠ADC=30°인 직각삼각형이다. 30°에 대한 직각삼각형의 변의 비를 이용하면 AD=2AC=6 cm, DC=√3·AC=3√3 cm이다.\nB, D, C가 이 순서로 한 직선 위에 있으므로 ∠ADB=180°-30°=150°이다. 삼각형 ABD에서 ∠BAD=180°-150°-15°=15°이다. ∠BAD=∠ABD이므로 BD=AD=6 cm이다.\n따라서 BC=BD+DC=(6+3√3) cm이므로 정답은 ②이다.",
+      "evidence": {
+        "questionNumber": 11,
+        "method": "independent-student-only-solve-before-author-answer-exposure",
+        "allowedInputHashes": [
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\blind\\SOLVE-BRIEF.md",
+            "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\blind\\student-problems.json",
+            "sha256": "72a8c16f5522a17ebe92f73bca4ae232bcd4c7a20143581ec34b73e97e58ec72"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\review-preview\\q11.png",
+            "sha256": "d6c32d9f2115165a105d474107ada2b16ab789e4c11ec6e36142945891853400"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\review-preview\\q14.png",
+            "sha256": "9b54480fe363db68649f20c40dadab8f567745bd3fd0ee890df4bda1fa2de484"
+          }
+        ],
+        "candidateAnswerBlindness": {
+          "newQ11AndQ14AuthorAnswersSeen": false,
+          "authorCandidateNotesOrSolutionsRead": false,
+          "parentPackagePrivateOrPreviewHtmlRead": false,
+          "solutionPngsRead": false,
+          "originalAnswerUsedAsEvidence": false,
+          "questionOnlyPreviewNamesViewed": [
+            "q11.png",
+            "q14.png"
+          ],
+          "questionOnlyPreviewViewedWith": "view_image",
+          "directoryEnumerationLimit": "PNG filenames were listed to locate the two question-only images; only q11.png and q14.png were opened. Both answer/solution accordions were visibly closed."
+        },
+        "independentCalculation": {
+          "runtime": "Python standard library fractions.Fraction, math and ElementTree; no model/API calls",
+          "executedCode": "import json,math,pathlib,hashlib,xml.etree.ElementTree as ET\nfrom fractions import Fraction as F\nbase=pathlib.Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r4')\nstudent=json.loads((base/'blind/student-problems.json').read_text(encoding='utf-8'))\ndef sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()\ndef pair_value(p):return float(p[0])+float(p[1])*math.sqrt(3)\ndef pair_text(p):return {'rational':str(p[0]),'sqrt3Coefficient':str(p[1])}\nchoices11=[(F(3),F(3)),(F(6),F(3)),(F(6),F(6)),(F(9),F(3)),(F(12),F(3))]\ndc=(F(0),F(3));ad=F(6);bc=(F(6),F(3))\nchecks11=[]\nfor i,L in enumerate(choices11,1):\n bd=(L[0]-dc[0],L[1]-dc[1]);res=(bd[0]-ad,bd[1])\n checks11.append({'number':i,'BC':pair_text(L),'BD':pair_text(bd),'BDMinusAD':pair_text(res),'BDPositive':pair_value(bd)>0,'matchesIsoscelesCondition':res==(0,0),'outerAngleDegreesAuxiliary':math.degrees(math.atan2(3,pair_value(L)))})\nassert [c['number'] for c in checks11 if c['matchesIsoscelesCondition']]==[2]\nassert 3**2+27==ad**2 and 180-150-15==15\ns=(F(3)**2+F(1)**2)/(2*F(1))\nassert s==5 and s*s==(s-1)**2+9\nchecks14=[{'number':i,'APCm':v,'QKCm':'1','KCCm':str(F(v)-1),'rightTriangleResidualCm2':str(F(v)**2-(F(v)-1)**2-9),'positiveKC':F(v)>1,'valid':F(v)**2-(F(v)-1)**2-9==0} for i,v in enumerate((3,4,5,6,9),1)]\nassert [c['number'] for c in checks14 if c['valid']]==[3]\nA=(F(0),F(3));B=(F(0),F(0));C=(F(9),F(0));D=(F(9),F(3));P=(F(5),F(3));Q=(F(4),F(0));K=(F(5),F(0));BP=(F(36,5),F(-12,5))\ndef dist2(U,V):return sum((a-b)**2 for a,b in zip(U,V))\ndef mid(U,V):return tuple((a+b)/2 for a,b in zip(U,V))\ndef on_crease(U):return U[1]==3*(U[0]-4)\nH=mid(A,C);J=mid(B,BP)\nassert dist2(P,A)==dist2(P,C)==dist2(Q,A)==dist2(Q,C)==25\nassert on_crease(H) and on_crease(J) and on_crease(P) and on_crease(Q)\nassert dist2(P,A)==dist2(P,C) and dist2(Q,A)==dist2(Q,C)\nassert dist2(P,B)==dist2(P,BP) and dist2(Q,B)==dist2(Q,BP)\nassert dist2(C,BP)==9 and dist2(Q,BP)==16\nassert dist2(P,C)+dist2(C,BP)==dist2(P,BP)==34\nassert 0<P[0]<D[0] and 0<Q[0]<C[0] and 0<Q[0]<K[0]<C[0]\nassert dist2(P,Q)==10 and dist2(P,C)==dist2(C,Q)==25\nassert 0<H[0]-Q[0]<P[0]-Q[0]\ndef area(poly):\n return abs(sum(poly[i][0]*poly[(i+1)%len(poly)][1]-poly[(i+1)%len(poly)][0]*poly[i][1] for i in range(len(poly)))/2)\nassert area([A,P,Q,B])==area([C,P,Q,BP])==F(27,2)\nx=math.degrees(math.atan(3))\nassert 45<x<90 and 0<180-2*x<90\nfigs={}\nfor row in student:\n for fig in row['figures']:\n  file=base/'blind'/fig['svgPath'];assert sha(file)==fig['sha256']\n  tree=ET.fromstring(file.read_bytes())\n  labels={e.attrib['data-label']:(F(e.attrib['data-px']),F(e.attrib['data-py'])) for e in tree.iter() if 'data-label' in e.attrib and e.attrib.get('data-px')!='0.000'}\n  figs[file.stem]={'sha256':sha(file),'labels':{k:[str(a),str(b)] for k,(a,b) in labels.items()},'points':labels}\ng11=figs['q11-1']['points']\nh=float(g11['C'][1]-g11['A'][1]);length=float(g11['C'][0]-g11['B'][0]);inner=float(g11['C'][0]-g11['D'][0]);baseleft=float(g11['D'][0]-g11['B'][0])\nassert h==48 and baseleft==96 and abs(inner-48*math.sqrt(3))<0.001\nassert g11['B'][1]==g11['D'][1]==g11['C'][1] and g11['A'][0]==g11['C'][0]\nfigs['q11-1']['geometry']={'ACPixels':h,'BDPixels':baseleft,'DCPixels':inner,'BCPixels':length,'scalePixelsPerCmAfterSolve':16,'DCExpectedPixels':48*math.sqrt(3),'DCErrorPixels':inner-48*math.sqrt(3),'outerAngleDegrees':math.degrees(math.atan2(h,length)),'innerAngleDegrees':math.degrees(math.atan2(h,inner))}\ng1=figs['q14-1']['points'];g2=figs['q14-2']['points']\nfor a,b in [('P','P'),('Q','Q'),('D','D'),('C','C(A)')]:\n delta=tuple(g2[b][i]-g1[a][i] for i in (0,1))\n assert delta==(F('-105.611'),F('0.573'))\nassert g1['A'][1]==g1['P'][1]==g1['D'][1] and g1['B'][1]==g1['Q'][1]==g1['C'][1]\nassert float(g1['P'][0]-g1['A'][0])==100 and float(g1['D'][0]-g1['P'][0])==80\nassert float(g1['C'][1]-g1['D'][1])==60 and float(g1['Q'][0]-g1['B'][0])==80\nbp_svg=(g2['Q'][0]+20*(BP[0]-4),g2['Q'][1]-20*BP[1])\nassert bp_svg==g2['B\\u2032']\nfigs['q14-1']['geometry']={'scalePixelsPerCmAfterSolve':20,'ABPixels':60,'APPixels':100,'PDPixels':80,'BCPixels':180,'BQPixels':80,'QCPixels':100,'PQSquaredPixels2':4000,'PAndQInterior':True}\nfigs['q14-2']['geometry']={'translationFromBeforeFoldSvg':['-105.611','0.573'],'BPExactExpectedSvg':[str(v) for v in bp_svg],'BPMatchesDrawnLabelPoint':True,'CPcm':'5','CQcm':'5','CBPrimeCm':'3','QBPrimeCm':'4','foldedAreaCm2':'27/2','originalLeftAreaCm2':'27/2','rightAngleAtCVerifiedByPythagoras':True}\nfor f in figs.values():del f['points']\noutput={'q11':{'results':{'ACcm':'3','ADcm':'6','DCcm':'3sqrt(3)','BDcm':'6','BCcm':'6+3sqrt(3)','angleADB':'150','angleBAD':'15','angleDAC':'60','angleBAC':'75','validChoiceNumbers':[2],'BCapproxCm':pair_value(bc)},'choiceChecks':checks11,'existenceCoordinatesAuxiliary':{'B':['0','0'],'D':['6','0'],'C':['6+3sqrt(3)','0'],'A':['6+3sqrt(3)','3']}},\n'q14':{'results':{'APcm':'5','PCcm':'5','QCcm':'5','QKcm':'1','KCcm':'4','PKcm':'3','ADcm':'9','BCcm':'9','PDcm':'4','BQcm':'4','PQSquaredCm2':'10','xApproxDegrees':x,'anglePCQApproxDegrees':180-2*x,'validChoiceNumbers':[3],'positiveLinearEquation':'2s=10'},'choiceChecks':checks14,'existenceCoordinatesAuxiliary':{k:[str(v) for v in p] for k,p in {'A':A,'B':B,'C':C,'D':D,'P':P,'Q':Q,'K':K,'BPrime':BP,'HMidAC':H,'JMidBBPrime':J}.items()},'foldDistanceSquaresCm2':{'PA2':'25','PC2':'25','QA2':'25','QC2':'25','PB2':'34','PBPrime2':'34','QB2':'16','QBPrime2':'16','CBPrime2':'9'},'leftPanelAreaBeforeAndAfterCm2':'27/2'},\n'figures':figs,'inputHashes':[{'path':str(f),'sha256':sha(f)} for f in [base/'blind/SOLVE-BRIEF.md',base/'blind/student-problems.json',base/'review-preview/q11.png',base/'review-preview/q14.png']]}\nprint(json.dumps(output,ensure_ascii=True))",
+          "codeAssertionsPassed": true,
+          "calculationOrder": "Angle/fold relations and student solution were independently derived first. The displayed SVG coordinates were then compared with that solution. Diagram scale was not used to discover the answer."
+        },
+        "gradeAndMethodLimit": {
+          "target": "middle3 / 2015",
+          "studentMethod": "Elementary angle sums, equal angles/equal sides, 30-degree right-triangle ratios, reflection by a paper fold, parallel lines, right-triangle tangent, Pythagoras and first-degree equations.",
+          "upperGradeMethodsRequired": false,
+          "methodsAvoided": [
+            "tan(15 degrees) identity",
+            "double-angle or addition formulas",
+            "sine/cosine laws",
+            "vectors or dot products in student solution",
+            "coordinate reflection formula in student solution",
+            "calculus"
+          ],
+          "formalCurriculumVerification": "Not a seven-surface approval or author review. No additional curriculum/registry/private files were opened under this blind-only brief; target-edition classification/publication gates are outside this solve."
+        },
+        "historicalExposureLimit": "Earlier source-identity work on other selected questions exposed some scan annotations, as already disclosed. This task reads no original question/answer/solution and uses no original-answer evidence or remembered original numeric answer.",
+        "originalBlindAndReviewFilesEdited": false,
+        "actualResults": {
+          "ACcm": "3",
+          "ADcm": "6",
+          "DCcm": "3sqrt(3)",
+          "BDcm": "6",
+          "BCcm": "6+3sqrt(3)",
+          "angleADB": "150",
+          "angleBAD": "15",
+          "angleDAC": "60",
+          "angleBAC": "75",
+          "validChoiceNumbers": [
+            2
+          ],
+          "BCapproxCm": 11.196152422706632
+        },
+        "choiceChecks": [
+          {
+            "number": 1,
+            "BC": {
+              "rational": "3",
+              "sqrt3Coefficient": "3"
+            },
+            "BD": {
+              "rational": "3",
+              "sqrt3Coefficient": "0"
+            },
+            "BDMinusAD": {
+              "rational": "-3",
+              "sqrt3Coefficient": "0"
+            },
+            "BDPositive": true,
+            "matchesIsoscelesCondition": false,
+            "outerAngleDegreesAuxiliary": 20.1039093610171
+          },
+          {
+            "number": 2,
+            "BC": {
+              "rational": "6",
+              "sqrt3Coefficient": "3"
+            },
+            "BD": {
+              "rational": "6",
+              "sqrt3Coefficient": "0"
+            },
+            "BDMinusAD": {
+              "rational": "0",
+              "sqrt3Coefficient": "0"
+            },
+            "BDPositive": true,
+            "matchesIsoscelesCondition": true,
+            "outerAngleDegreesAuxiliary": 14.999999999999998
+          },
+          {
+            "number": 3,
+            "BC": {
+              "rational": "6",
+              "sqrt3Coefficient": "6"
+            },
+            "BD": {
+              "rational": "6",
+              "sqrt3Coefficient": "3"
+            },
+            "BDMinusAD": {
+              "rational": "0",
+              "sqrt3Coefficient": "3"
+            },
+            "BDPositive": true,
+            "matchesIsoscelesCondition": false,
+            "outerAngleDegreesAuxiliary": 10.371083362008545
+          },
+          {
+            "number": 4,
+            "BC": {
+              "rational": "9",
+              "sqrt3Coefficient": "3"
+            },
+            "BD": {
+              "rational": "9",
+              "sqrt3Coefficient": "0"
+            },
+            "BDMinusAD": {
+              "rational": "3",
+              "sqrt3Coefficient": "0"
+            },
+            "BDPositive": true,
+            "matchesIsoscelesCondition": false,
+            "outerAngleDegreesAuxiliary": 11.932462708024957
+          },
+          {
+            "number": 5,
+            "BC": {
+              "rational": "12",
+              "sqrt3Coefficient": "3"
+            },
+            "BD": {
+              "rational": "12",
+              "sqrt3Coefficient": "0"
+            },
+            "BDMinusAD": {
+              "rational": "6",
+              "sqrt3Coefficient": "0"
+            },
+            "BDPositive": true,
+            "matchesIsoscelesCondition": false,
+            "outerAngleDegreesAuxiliary": 9.896090638982901
+          }
+        ],
+        "answerValue": "(6+3sqrt(3)) cm",
+        "existence": "Construct a right triangle ADC with AC=3 and angle ADC=30 degrees, so AD=6 and DC=3sqrt(3). Extend the ray CD beyond D by BD=6. Then AD=BD and included angle ADB=150 degrees, giving both base angles of triangle ABD as 15 degrees. B-D-C are strictly ordered and the outer triangle has the required right angle at C. Thus all conditions can hold simultaneously.",
+        "uniqueness": "The fixed 30-degree right triangle and AC=3 uniquely give AD=6 and DC=3sqrt(3). Supplementary and triangle-angle sums uniquely force BD=AD=6. Hence BC=6+3sqrt(3); exactly one listed choice has BD-AD=0.",
+        "positiveLengthsAnglesAndUnits": "AC=3, AD=BD=6, DC=3sqrt(3), BC=6+3sqrt(3) are all positive cm. D lies strictly between B and C. Triangle ABD angles are 15,150,15 degrees; triangle ADC angles are 60,30,90 degrees; outer triangle angles are 75,15,90 degrees. No degenerate or negative branch survives.",
+        "figure": {
+          "inputPath": "figures/q11-1.svg",
+          "providedHashMatched": true,
+          "sha256": "7f29f3386f364319ab0c686ae371816523830751f35e42cb5392be7a612e3c02",
+          "labels": {
+            "A": [
+              "27136/125",
+              "29377/1000"
+            ],
+            "B": [
+              "759/20",
+              "77377/1000"
+            ],
+            "C": [
+              "27136/125",
+              "77377/1000"
+            ],
+            "D": [
+              "2679/20",
+              "77377/1000"
+            ]
+          },
+          "geometry": {
+            "ACPixels": 48,
+            "BDPixels": 96,
+            "DCPixels": 83.138,
+            "BCPixels": 179.138,
+            "scalePixelsPerCmAfterSolve": 16,
+            "DCExpectedPixels": 83.13843876330611,
+            "DCErrorPixels": -0.0004387633061071483,
+            "outerAngleDegrees": 15.000035083680626,
+            "innerAngleDegrees": 30.000130934297655
+          },
+          "viewImageReviewedViaQuestionPreview": true,
+          "visualObservations": [
+            "B, D and C are drawn in that order on one horizontal baseline.",
+            "A is above C; the right-angle mark is at C.",
+            "The 15-degree leader identifies the B angle, the 30-degree leader identifies ADC, and AC is labelled 3 cm.",
+            "No answer value is printed on the baseline."
+          ],
+          "roundingLimit": "SVG positions are rounded to 0.001 units. The DC error is below 0.001 SVG unit and drawn angles differ from 15/30 degrees by less than 0.001 degree; this is a diagram check only."
+        },
+        "auxiliaryExistenceCoordinates": {
+          "B": [
+            "0",
+            "0"
+          ],
+          "D": [
+            "6",
+            "0"
+          ],
+          "C": [
+            "6+3sqrt(3)",
+            "0"
+          ],
+          "A": [
+            "6+3sqrt(3)",
+            "3"
+          ]
+        },
+        "limits": [
+          "The student proof does not compute tan 15 degrees; the equal-angle isosceles triangle supplies BD.",
+          "Floating point atan2 values in the evidence are auxiliary checks of choices and drawing angles; exact irrational coefficients and elementary geometry decide the answer.",
+          "No author agreement or original answer was used to label this solved."
+        ]
+      },
+      "status": "solved"
+    },
+    "solveDigest": "01cee7b7686f54fedfcbea240bf55b5ede5e36d712356f92f5ca9efa07ad5912"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 14,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q14",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "content": "직사각형 종이띠 $\\mathrm{ABCD}$에서 왼쪽 위 꼭짓점을 $\\mathrm{A}$, 왼쪽 아래를 $\\mathrm{B}$, 오른쪽 아래를 $\\mathrm{C}$, 오른쪽 위를 $\\mathrm{D}$라 하였다. $\\mathrm{P}$는 선분 $AD$의 내부, $\\mathrm{Q}$는 선분 $BC$의 내부에 있다.\n첫 번째 그림은 접기 전의 종이띠이고, 두 번째 그림은 선분 $PQ$를 따라 왼쪽 부분을 접어 점 $\\mathrm{A}$를 점 $\\mathrm{C}$와 일치시킨 모습이다. 접은 뒤 $\\mathrm{B}$의 위치를 $\\mathrm{B}'$로 표시하였다.\n\n접기 기록\n∘ 종이띠의 폭 $\\overline{AB}=3\\,\\mathrm{cm}$\n∘ 접은 뒤의 $\\angle CPQ=x$, $0^\\circ<x<90^\\circ$\n∘ $\\tan x=3$\n\n이 접기 기록을 만족하는 접기 전 선분 $\\overline{AP}$의 길이는?",
+      "choices": [
+        "$3\\,\\mathrm{cm}$",
+        "$4\\,\\mathrm{cm}$",
+        "$5\\,\\mathrm{cm}$",
+        "$6\\,\\mathrm{cm}$",
+        "$9\\,\\mathrm{cm}$"
+      ],
+      "answer": "③",
+      "solution": "접기 전후에 길이와 각의 크기가 보존되므로 $\\overline{PA}=\\overline{PC}$이고 $\\angle APQ=\\angle CPQ=x$이다. 또 점 $\\mathrm{A}$를 점 $\\mathrm{C}$에 겹치도록 접었으므로 접는 선 $PQ$는 선분 $AC$의 수직이등분선이다.\n선분 $AC$와 $PQ$의 교점을 $\\mathrm{K}$라 하자. 직각삼각형 $\\mathrm{APK}$에서 $\\angle APK=x$이므로 $\\angle PAK=90^\\circ-x$이다. $\\angle BAP=90^\\circ$이므로 $\\angle BAC=90^\\circ-(90^\\circ-x)=x$이다.\n접기 전 직각삼각형 $\\mathrm{ABC}$에서 삼각비의 정의를 적용하면 $\\tan x=\\frac{\\overline{BC}}{\\overline{AB}}=\\frac{\\overline{BC}}3=3$이다. 따라서 $\\overline{BC}=\\overline{AD}=9\\,\\mathrm{cm}$이다.\n$\\overline{AP}=t\\,\\mathrm{cm}$라 하면 $\\mathrm{P}$가 선분 $AD$의 내부에 있으므로 $0<t<9$이고, $\\overline{PD}=(9-t)\\,\\mathrm{cm}$이다. 접기에서 $\\overline{PC}=\\overline{PA}=t\\,\\mathrm{cm}$이고 $\\overline{DC}=\\overline{AB}=3\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{PDC}$에서 피타고라스 정리를 적용하면 $t^2=(9-t)^2+3^2$이다. 전개하여 정리하면 $18t=90$이므로 $t=5$이다.\n따라서 접기 전 $\\overline{AP}$의 길이는 $5\\,\\mathrm{cm}$이므로 정답은 ③이다.",
+      "score": 5,
+      "questionType": "객관식",
+      "facts": {
+        "unit": "cm",
+        "paper": "직사각형 종이띠 ABCD",
+        "cornerOrder": "A 왼쪽 위, B 왼쪽 아래, C 오른쪽 아래, D 오른쪽 위",
+        "P": "선분 AD 내부",
+        "Q": "선분 BC 내부",
+        "fold": "PQ를 따라 왼쪽 부분을 접어 A를 C에 일치시킨다",
+        "imageOfB": "B'",
+        "widthAB": "3",
+        "angleCPQ": "x",
+        "angleRange": "0° < x < 90°",
+        "givenTanX": "3",
+        "target": "접기 전 AP의 길이"
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 66,
+          "specSha256": "c1b1082fa6fd40463322cfc049102620983a24457930ad9067c433d502ee7c00",
+          "renderMode": "local-renderFigureSpec-strict",
+          "svgSha256": "e2b2ef401c08f88ada3b7b8df350fa9f5504a3e7fd32c923434187b029b8d623",
+          "renderResult": {
+            "ok": true,
+            "strict": true,
+            "localOnly": true,
+            "typeset": true,
+            "droppedDimensions": []
+          }
+        },
+        {
+          "role": "stem",
+          "specPath": "figure-2.spec.json",
+          "svgPath": "figure-2.svg",
+          "intendedWidthMm": 45,
+          "specSha256": "e3ad26b17d433131a2eb1276baef8fa1567aeeacfe49368787d00ef1ef2068db",
+          "renderMode": "local-renderFigureSpec-strict",
+          "svgSha256": "5825d50a282c4432beba489d50560506719b3cea76c6cdb75e64dfef2a7dabaa",
+          "renderResult": {
+            "ok": true,
+            "strict": true,
+            "localOnly": true,
+            "typeset": true,
+            "droppedDimensions": []
+          }
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target",
+          "representation"
+        ],
+        "before": "접힌 한 도형에서 폭과 AP를 주고 tan x를 고른다.",
+        "after": "접기 전후의 두 도형과 기록을 주고 폭·tan x에서 빠진 AP를 복구한다. 접기 전 대각선 AC를 보이게 하여 보조 관계를 추적하고 계산의 방향을 뒤집었다.",
+        "sharedConcept": "접기 합동의 길이·각 보존, 수직이등분선, 직각삼각형의 예각 삼각비와 피타고라스 정리",
+        "sharedProcedure": "접기에서 PA=PC와 ∠APQ=∠CPQ → 접는 선과 대각선의 수직 관계 → 직각삼각형의 삼각비 → 피타고라스와 일차방정식. 같은 폭·접는 위치·tan x의 관계를 역으로 사용한다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-18",
+          "9수04-04",
+          "9수04-12",
+          "9수04-16",
+          "9수02-05",
+          "9수01-10",
+          "9수04-17"
+        ],
+        "allowedProcedure": [
+          "접기 합동에서 PA=PC, QA=QC 및 각의 보존",
+          "접는 선이 겹치는 두 점 AC의 수직이등분선임을 사용",
+          "이미 그린 대각선 AC와 접는 선 PQ의 교점 K만 도입",
+          "두 직각삼각형의 내각으로 ∠BAC=x 유도",
+          "접기 전 직각삼각형 ABC에서 tan x=BC/AB의 정의",
+          "직각삼각형 PDC의 피타고라스 정리",
+          "한 미지수 t의 제곱항이 소거된 일차방정식 풀이"
+        ],
+        "forbiddenAvoided": [
+          "삼각비 사이의 항등식",
+          "삼각비의 덧셈·뺄셈·반각 공식",
+          "사인 법칙·코사인 법칙",
+          "일반 삼각함수·라디안·90° 밖의 삼각비",
+          "거듭제곱 정리·원과 비례",
+          "학생용 벡터·좌표 회전/반사 공식"
+        ],
+        "status": "author-proposed",
+        "standardEvidence": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-04",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4264,
+              "record_offset_in_uncompressed_stream": 216294,
+              "extracted_paragraph_1based": 872
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-12",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4308,
+              "record_offset_in_uncompressed_stream": 217962,
+              "extracted_paragraph_1based": 883
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-16",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4333,
+              "record_offset_in_uncompressed_stream": 218866,
+              "extracted_paragraph_1based": 889
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3916,
+              "record_offset_in_uncompressed_stream": 199888,
+              "extracted_paragraph_1based": 797
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수01-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3788,
+              "record_offset_in_uncompressed_stream": 193301,
+              "extracted_paragraph_1based": 771
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                33
+              ],
+              "printed_pages": [
+                29
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "prerequisite-author-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "author-proposal-not-candidate-approval"
+          }
+        ],
+        "gradeBandCaveat": "9수 기준은 중1~중3 학년군이다. 중3 단원·실제 새 풀이·생성 규칙과 함께 별도 검토해야 하며 학교 출제나 학년군 코드만으로 승인하지 않는다.",
+        "surfaces": {
+          "content": {
+            "status": "author-proposed",
+            "evidence": "접기 전후 대응·폭·예각 범위·단일 tan 값만 제공한다."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "새로 작성한 정수 길이 다섯 개와 cm 단위."
+          },
+          "figure": {
+            "status": "author-proposed",
+            "evidence": "한 배율의 접기 전 직사각형·대각선·접는 선, 정확히 반사된 접기 후 도형. 답 AP와 파생 전체 길이·Q 위치는 숫자로 적지 않는다."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "정수 길이가 담긴 보기의 원문자."
+          },
+          "solution": {
+            "status": "author-proposed",
+            "evidence": "합동·수직이등분선·직각의 보각·예각 tan의 정의·피타고라스·일차방정식만 사용한다."
+          },
+          "requiredProcedure": {
+            "status": "author-proposed",
+            "evidence": "반각/덧셈 공식·삼각비 사이의 항등식·벡터/좌표 반사 공식을 학생에게 요구하지 않는다."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "중학교 합동·수직이등분선·직사각형·직각삼각형 각·삼각비·피타고라스·일차방정식."
+          }
+        },
+        "gate": {
+          "scope": [
+            "content",
+            "choices",
+            "figure",
+            "answer",
+            "solution",
+            "requiredProcedure",
+            "prerequisites"
+          ],
+          "outOfGrade": "reject",
+          "unclear": "hold",
+          "independentGradeApproval": false
+        },
+        "wholeCurriculumMethodAudit": {
+          "status": "author-proposed-pending-independent-review",
+          "evidencePath": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+          "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "officialRestrictions": [
+            {
+              "id": "no_ratio_identities",
+              "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "record_1based": 4440,
+                "record_offset_in_uncompressed_stream": 224820,
+                "extracted_paragraph_1based": 908
+              },
+              "original_2015_pdf_locator": {
+                "physical_pages_1based": [
+                  39
+                ],
+                "printed_pages": [
+                  35
+                ]
+              }
+            },
+            {
+              "id": "angle_range",
+              "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "record_1based": 4444,
+                "record_offset_in_uncompressed_stream": 224946,
+                "extracted_paragraph_1based": 909
+              },
+              "original_2015_pdf_locator": {
+                "physical_pages_1based": [
+                  39
+                ],
+                "printed_pages": [
+                  35
+                ]
+              }
+            },
+            {
+              "id": "no_complex_equation_applications",
+              "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "record_1based": 4071,
+                "record_offset_in_uncompressed_stream": 206968,
+                "extracted_paragraph_1based": 832
+              },
+              "original_2015_pdf_locator": {
+                "physical_pages_1based": [
+                  35
+                ],
+                "printed_pages": [
+                  31
+                ]
+              }
+            },
+            {
+              "id": "no_complex_geometry_measurement",
+              "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "record_1based": 4472,
+                "record_offset_in_uncompressed_stream": 226554,
+                "extracted_paragraph_1based": 916
+              },
+              "original_2015_pdf_locator": {
+                "physical_pages_1based": [
+                  39
+                ],
+                "printed_pages": [
+                  35
+                ]
+              }
+            }
+          ],
+          "methodScope": "합동·수직이등분선·직각삼각형 내각·0°~90° 안의 tan 정의·피타고라스·일차방정식으로 학생용 풀이를 제시했다. 원본 학교 출제는 허용 근거로 사용하지 않았다.",
+          "auxiliaryConstruction": {
+            "count": 1,
+            "object": "이미 그린 AC와 PQ의 교점 K",
+            "purpose": "직각삼각형 APK의 각에서 ∠BAC=x를 설명",
+            "newPerpendiculars": 0,
+            "extraHiddenPoints": 0
+          },
+          "foldingJustification": "PA=PC, QA=QC와 PQ 공통으로 △APQ≅△CPQ(SSS), 따라서 PQ가 ∠APC를 이등분한다. K에서 △APK≅△CPK(SAS)이므로 ∠AKP=∠CKP=90°이고 AK=CK다. 좌표 반사 공식은 학생용 풀이가 아니다.",
+          "algebraComplexity": "미지수 하나. t²=(9−t)²+9의 양변 제곱항이 소거되어 일차식 18t=90이 된다. 근의 공식·항등식·연립 비선형식이 필요하지 않다.",
+          "geometryRestrictionApplicability": "공식 복잡 도형 문구의 직접 대상은 넓이·둘레·겉넓이·부피이며 이 후보는 선분 길이이다. 이를 자동 승인 근거로 삼지 않고 접기 도형·교점·식 전개의 전체 복잡도도 별도 검토한다.",
+          "authorConclusion": "위 범위의 학생용 풀이가 있는 실제 저자 후보를 작성했다. taxonomy와 전체 교육과정/복잡도에 대한 독립 판정은 보류한다. 그 검토에서 과도한 작도 또는 학년 밖 방법이 필수라고 확인되면 hold/reject한다.",
+          "sourceSchoolIsApprovalEvidence": false,
+          "releaseStatus": "held-pending-taxonomy-and-whole-curriculum-review"
+        }
+      },
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-14",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 14,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "d85d7968d03bd611708edd8a7a8a8e41f21d66a76aa480cd9f2fe29d6f4b8eec",
+        "sourceObservation": "AB=2, AP=6인 직사각형 종이띠를 PQ로 접어 A와 C가 겹치며 ∠CPQ=x다.",
+        "sharedConceptProcedure": "접기 전후의 같은 길이·각을 이용해 보조 길이와 각 관계를 만든 뒤 tan x의 변의 비를 구한다.",
+        "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q14",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+        "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "answerFreeContentSha256": "d85d7968d03bd611708edd8a7a8a8e41f21d66a76aa480cd9f2fe29d6f4b8eec",
+        "referenceFigures": [
+          {
+            "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q14.png",
+            "sha256": "4e557c5919d0f2c08d3a75adf2ba3e37f6876ffd305bd00ccd9296757e6fa2b7",
+            "role": "source-reference-only"
+          }
+        ],
+        "sourceAnswersSolutionsAccessed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 5,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "활용",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "pending",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "familyKey": null,
+          "currentUnit": {
+            "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 활용",
+            "semester": 2,
+            "orderIndex": 483,
+            "problemCodePrefix": "J30503"
+          },
+          "currentRegistryMatch": null,
+          "liveCount": null,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "종이띠 접기의 반사·길이 보존과 접는 선의 각 관계가 필수다. 현재 삼각비 등록 제목·절차에서 같은 접기 구조를 확인하지 못해 단순 직각삼각형 family로 고정하지 않는다.",
+          "candidates": [
+            {
+              "registryKey": "3-2|삼각비의 활용|01",
+              "registryTitle": "직각삼각형의 변의 길이 구하기",
+              "section": "삼각비의 활용",
+              "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family": "mid:3-2|삼각비의 활용|01",
+              "confidence": "low",
+              "evidence": "최종 직각삼각형 길이 계산은 관련되지만 접기에서 보조 길이와 각을 만드는 핵심 단계가 없다.",
+              "sameUnitLiveCount": 24,
+              "currentUnit": {
+                "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                "grade": "중3",
+                "chapter": "5. 삼각비",
+                "section": "삼각비의 활용",
+                "semester": 2,
+                "orderIndex": 483,
+                "problemCodePrefix": "J30503"
+              },
+              "currentRegistryMatch": {
+                "key": "3-2|삼각비의 활용|01",
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기"
+              },
+              "currentLiveCount": 24
+            }
+          ]
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-04",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4264,
+              "record_offset_in_uncompressed_stream": 216294,
+              "extracted_paragraph_1based": 872
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-12",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4308,
+              "record_offset_in_uncompressed_stream": 217962,
+              "extracted_paragraph_1based": 883
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-16",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4333,
+              "record_offset_in_uncompressed_stream": 218866,
+              "extracted_paragraph_1based": 889
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3916,
+              "record_offset_in_uncompressed_stream": 199888,
+              "extracted_paragraph_1based": 797
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수01-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3788,
+              "record_offset_in_uncompressed_stream": 193301,
+              "extracted_paragraph_1based": 771
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                33
+              ],
+              "printed_pages": [
+                29
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "prerequisite-author-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "author-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "접기 합동에서 PA=PC, QA=QC 및 각의 보존 → 접는 선이 겹치는 두 점 AC의 수직이등분선임을 사용 → 이미 그린 대각선 AC와 접는 선 PQ의 교점 K만 도입 → 두 직각삼각형의 내각으로 ∠BAC=x 유도 → 접기 전 직각삼각형 ABC에서 tan x=BC/AB의 정의 → 직각삼각형 PDC의 피타고라스 정리 → 한 미지수 t의 제곱항이 소거된 일차방정식 풀이",
+        "curriculumSpecificHold": "taxonomy는 pending/familyKey=null이다. 새 후보의 전체 교육과정·복잡도·독립 검산과 출처 검토 전이며 원본 학교의 출제로 승인하지 않는다.",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": []
+        },
+        "authoringStatus": "author-proposed",
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate",
+          "candidateDisplayOccurrences": 0
+        }
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\package\\private\\q14\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\package\\private\\q14\\figure-1.svg",
+        "specSha256": "c1b1082fa6fd40463322cfc049102620983a24457930ad9067c433d502ee7c00",
+        "svgSha256": "e2b2ef401c08f88ada3b7b8df350fa9f5504a3e7fd32c923434187b029b8d623",
+        "intendedWidthMm": 66,
+        "studentPath": "figures/q14-1.svg"
+      },
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\package\\private\\q14\\figure-2.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\package\\private\\q14\\figure-2.svg",
+        "specSha256": "e3ad26b17d433131a2eb1276baef8fa1567aeeacfe49368787d00ef1ef2068db",
+        "svgSha256": "5825d50a282c4432beba489d50560506719b3cea76c6cdb75e64dfef2a7dabaa",
+        "intendedWidthMm": 45,
+        "studentPath": "figures/q14-2.svg"
+      }
+    ],
+    "studentDigest": "122a3917ecccd86d1f12da18984bbedec0fe1f22e1eeca58e55212f4d90fdb83",
+    "candidateDigest": "6e454ec679de4c789ed4f12afd2801ababc93fe4bc8435b727f4b08bc1351755",
+    "assetDigest": "84082131910c3fd5db77cdc5da13c5f5d70393a411c8d5798b2f2a2213f8a702",
+    "independentSolve": {
+      "studentDigest": "122a3917ecccd86d1f12da18984bbedec0fe1f22e1eeca58e55212f4d90fdb83",
+      "solverId": "orca-codex-exam-twin-source-identity-20261008",
+      "answer": "③",
+      "solution": "접는 선 PQ 위의 P는 움직이지 않고 A가 C로 옮겨지므로 AP=CP이고 ∠APQ=∠CPQ=x이다. AD와 BC가 평행하므로 ∠PQC=∠APQ=x이다. 따라서 삼각형 PCQ는 두 밑각이 같아 PC=QC이다.\nP에서 BC에 내린 수선의 발을 K라 하자. P가 AD의 내부에 있고 x가 예각이므로 K는 Q와 C 사이에 있다. 직사각형의 폭이 3 cm이므로 PK=3 cm이다. 직각삼각형 PQK에서 tan x=PK/QK=3이므로 QK=1 cm이다.\nAP=PC=QC=s cm라 하면 KC=QC-QK=(s-1) cm이다. 직각삼각형 PKC에 피타고라스 정리를 적용하면 s²=3²+(s-1)²이다. 정리하면 2s=10이므로 s=5이다.\n따라서 접기 전 AP의 길이는 5 cm이며 정답은 ③이다.",
+      "evidence": {
+        "questionNumber": 14,
+        "method": "independent-student-only-solve-before-author-answer-exposure",
+        "allowedInputHashes": [
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\blind\\SOLVE-BRIEF.md",
+            "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\blind\\student-problems.json",
+            "sha256": "72a8c16f5522a17ebe92f73bca4ae232bcd4c7a20143581ec34b73e97e58ec72"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\review-preview\\q11.png",
+            "sha256": "d6c32d9f2115165a105d474107ada2b16ab789e4c11ec6e36142945891853400"
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\review-preview\\q14.png",
+            "sha256": "9b54480fe363db68649f20c40dadab8f567745bd3fd0ee890df4bda1fa2de484"
+          }
+        ],
+        "candidateAnswerBlindness": {
+          "newQ11AndQ14AuthorAnswersSeen": false,
+          "authorCandidateNotesOrSolutionsRead": false,
+          "parentPackagePrivateOrPreviewHtmlRead": false,
+          "solutionPngsRead": false,
+          "originalAnswerUsedAsEvidence": false,
+          "questionOnlyPreviewNamesViewed": [
+            "q11.png",
+            "q14.png"
+          ],
+          "questionOnlyPreviewViewedWith": "view_image",
+          "directoryEnumerationLimit": "PNG filenames were listed to locate the two question-only images; only q11.png and q14.png were opened. Both answer/solution accordions were visibly closed."
+        },
+        "independentCalculation": {
+          "runtime": "Python standard library fractions.Fraction, math and ElementTree; no model/API calls",
+          "executedCode": "import json,math,pathlib,hashlib,xml.etree.ElementTree as ET\nfrom fractions import Fraction as F\nbase=pathlib.Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r4')\nstudent=json.loads((base/'blind/student-problems.json').read_text(encoding='utf-8'))\ndef sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()\ndef pair_value(p):return float(p[0])+float(p[1])*math.sqrt(3)\ndef pair_text(p):return {'rational':str(p[0]),'sqrt3Coefficient':str(p[1])}\nchoices11=[(F(3),F(3)),(F(6),F(3)),(F(6),F(6)),(F(9),F(3)),(F(12),F(3))]\ndc=(F(0),F(3));ad=F(6);bc=(F(6),F(3))\nchecks11=[]\nfor i,L in enumerate(choices11,1):\n bd=(L[0]-dc[0],L[1]-dc[1]);res=(bd[0]-ad,bd[1])\n checks11.append({'number':i,'BC':pair_text(L),'BD':pair_text(bd),'BDMinusAD':pair_text(res),'BDPositive':pair_value(bd)>0,'matchesIsoscelesCondition':res==(0,0),'outerAngleDegreesAuxiliary':math.degrees(math.atan2(3,pair_value(L)))})\nassert [c['number'] for c in checks11 if c['matchesIsoscelesCondition']]==[2]\nassert 3**2+27==ad**2 and 180-150-15==15\ns=(F(3)**2+F(1)**2)/(2*F(1))\nassert s==5 and s*s==(s-1)**2+9\nchecks14=[{'number':i,'APCm':v,'QKCm':'1','KCCm':str(F(v)-1),'rightTriangleResidualCm2':str(F(v)**2-(F(v)-1)**2-9),'positiveKC':F(v)>1,'valid':F(v)**2-(F(v)-1)**2-9==0} for i,v in enumerate((3,4,5,6,9),1)]\nassert [c['number'] for c in checks14 if c['valid']]==[3]\nA=(F(0),F(3));B=(F(0),F(0));C=(F(9),F(0));D=(F(9),F(3));P=(F(5),F(3));Q=(F(4),F(0));K=(F(5),F(0));BP=(F(36,5),F(-12,5))\ndef dist2(U,V):return sum((a-b)**2 for a,b in zip(U,V))\ndef mid(U,V):return tuple((a+b)/2 for a,b in zip(U,V))\ndef on_crease(U):return U[1]==3*(U[0]-4)\nH=mid(A,C);J=mid(B,BP)\nassert dist2(P,A)==dist2(P,C)==dist2(Q,A)==dist2(Q,C)==25\nassert on_crease(H) and on_crease(J) and on_crease(P) and on_crease(Q)\nassert dist2(P,A)==dist2(P,C) and dist2(Q,A)==dist2(Q,C)\nassert dist2(P,B)==dist2(P,BP) and dist2(Q,B)==dist2(Q,BP)\nassert dist2(C,BP)==9 and dist2(Q,BP)==16\nassert dist2(P,C)+dist2(C,BP)==dist2(P,BP)==34\nassert 0<P[0]<D[0] and 0<Q[0]<C[0] and 0<Q[0]<K[0]<C[0]\nassert dist2(P,Q)==10 and dist2(P,C)==dist2(C,Q)==25\nassert 0<H[0]-Q[0]<P[0]-Q[0]\ndef area(poly):\n return abs(sum(poly[i][0]*poly[(i+1)%len(poly)][1]-poly[(i+1)%len(poly)][0]*poly[i][1] for i in range(len(poly)))/2)\nassert area([A,P,Q,B])==area([C,P,Q,BP])==F(27,2)\nx=math.degrees(math.atan(3))\nassert 45<x<90 and 0<180-2*x<90\nfigs={}\nfor row in student:\n for fig in row['figures']:\n  file=base/'blind'/fig['svgPath'];assert sha(file)==fig['sha256']\n  tree=ET.fromstring(file.read_bytes())\n  labels={e.attrib['data-label']:(F(e.attrib['data-px']),F(e.attrib['data-py'])) for e in tree.iter() if 'data-label' in e.attrib and e.attrib.get('data-px')!='0.000'}\n  figs[file.stem]={'sha256':sha(file),'labels':{k:[str(a),str(b)] for k,(a,b) in labels.items()},'points':labels}\ng11=figs['q11-1']['points']\nh=float(g11['C'][1]-g11['A'][1]);length=float(g11['C'][0]-g11['B'][0]);inner=float(g11['C'][0]-g11['D'][0]);baseleft=float(g11['D'][0]-g11['B'][0])\nassert h==48 and baseleft==96 and abs(inner-48*math.sqrt(3))<0.001\nassert g11['B'][1]==g11['D'][1]==g11['C'][1] and g11['A'][0]==g11['C'][0]\nfigs['q11-1']['geometry']={'ACPixels':h,'BDPixels':baseleft,'DCPixels':inner,'BCPixels':length,'scalePixelsPerCmAfterSolve':16,'DCExpectedPixels':48*math.sqrt(3),'DCErrorPixels':inner-48*math.sqrt(3),'outerAngleDegrees':math.degrees(math.atan2(h,length)),'innerAngleDegrees':math.degrees(math.atan2(h,inner))}\ng1=figs['q14-1']['points'];g2=figs['q14-2']['points']\nfor a,b in [('P','P'),('Q','Q'),('D','D'),('C','C(A)')]:\n delta=tuple(g2[b][i]-g1[a][i] for i in (0,1))\n assert delta==(F('-105.611'),F('0.573'))\nassert g1['A'][1]==g1['P'][1]==g1['D'][1] and g1['B'][1]==g1['Q'][1]==g1['C'][1]\nassert float(g1['P'][0]-g1['A'][0])==100 and float(g1['D'][0]-g1['P'][0])==80\nassert float(g1['C'][1]-g1['D'][1])==60 and float(g1['Q'][0]-g1['B'][0])==80\nbp_svg=(g2['Q'][0]+20*(BP[0]-4),g2['Q'][1]-20*BP[1])\nassert bp_svg==g2['B\\u2032']\nfigs['q14-1']['geometry']={'scalePixelsPerCmAfterSolve':20,'ABPixels':60,'APPixels':100,'PDPixels':80,'BCPixels':180,'BQPixels':80,'QCPixels':100,'PQSquaredPixels2':4000,'PAndQInterior':True}\nfigs['q14-2']['geometry']={'translationFromBeforeFoldSvg':['-105.611','0.573'],'BPExactExpectedSvg':[str(v) for v in bp_svg],'BPMatchesDrawnLabelPoint':True,'CPcm':'5','CQcm':'5','CBPrimeCm':'3','QBPrimeCm':'4','foldedAreaCm2':'27/2','originalLeftAreaCm2':'27/2','rightAngleAtCVerifiedByPythagoras':True}\nfor f in figs.values():del f['points']\noutput={'q11':{'results':{'ACcm':'3','ADcm':'6','DCcm':'3sqrt(3)','BDcm':'6','BCcm':'6+3sqrt(3)','angleADB':'150','angleBAD':'15','angleDAC':'60','angleBAC':'75','validChoiceNumbers':[2],'BCapproxCm':pair_value(bc)},'choiceChecks':checks11,'existenceCoordinatesAuxiliary':{'B':['0','0'],'D':['6','0'],'C':['6+3sqrt(3)','0'],'A':['6+3sqrt(3)','3']}},\n'q14':{'results':{'APcm':'5','PCcm':'5','QCcm':'5','QKcm':'1','KCcm':'4','PKcm':'3','ADcm':'9','BCcm':'9','PDcm':'4','BQcm':'4','PQSquaredCm2':'10','xApproxDegrees':x,'anglePCQApproxDegrees':180-2*x,'validChoiceNumbers':[3],'positiveLinearEquation':'2s=10'},'choiceChecks':checks14,'existenceCoordinatesAuxiliary':{k:[str(v) for v in p] for k,p in {'A':A,'B':B,'C':C,'D':D,'P':P,'Q':Q,'K':K,'BPrime':BP,'HMidAC':H,'JMidBBPrime':J}.items()},'foldDistanceSquaresCm2':{'PA2':'25','PC2':'25','QA2':'25','QC2':'25','PB2':'34','PBPrime2':'34','QB2':'16','QBPrime2':'16','CBPrime2':'9'},'leftPanelAreaBeforeAndAfterCm2':'27/2'},\n'figures':figs,'inputHashes':[{'path':str(f),'sha256':sha(f)} for f in [base/'blind/SOLVE-BRIEF.md',base/'blind/student-problems.json',base/'review-preview/q11.png',base/'review-preview/q14.png']]}\nprint(json.dumps(output,ensure_ascii=True))",
+          "codeAssertionsPassed": true,
+          "calculationOrder": "Angle/fold relations and student solution were independently derived first. The displayed SVG coordinates were then compared with that solution. Diagram scale was not used to discover the answer."
+        },
+        "gradeAndMethodLimit": {
+          "target": "middle3 / 2015",
+          "studentMethod": "Elementary angle sums, equal angles/equal sides, 30-degree right-triangle ratios, reflection by a paper fold, parallel lines, right-triangle tangent, Pythagoras and first-degree equations.",
+          "upperGradeMethodsRequired": false,
+          "methodsAvoided": [
+            "tan(15 degrees) identity",
+            "double-angle or addition formulas",
+            "sine/cosine laws",
+            "vectors or dot products in student solution",
+            "coordinate reflection formula in student solution",
+            "calculus"
+          ],
+          "formalCurriculumVerification": "Not a seven-surface approval or author review. No additional curriculum/registry/private files were opened under this blind-only brief; target-edition classification/publication gates are outside this solve."
+        },
+        "historicalExposureLimit": "Earlier source-identity work on other selected questions exposed some scan annotations, as already disclosed. This task reads no original question/answer/solution and uses no original-answer evidence or remembered original numeric answer.",
+        "originalBlindAndReviewFilesEdited": false,
+        "actualResults": {
+          "APcm": "5",
+          "PCcm": "5",
+          "QCcm": "5",
+          "QKcm": "1",
+          "KCcm": "4",
+          "PKcm": "3",
+          "ADcm": "9",
+          "BCcm": "9",
+          "PDcm": "4",
+          "BQcm": "4",
+          "PQSquaredCm2": "10",
+          "xApproxDegrees": 71.56505117707799,
+          "anglePCQApproxDegrees": 36.86989764584402,
+          "validChoiceNumbers": [
+            3
+          ],
+          "positiveLinearEquation": "2s=10"
+        },
+        "choiceChecks": [
+          {
+            "number": 1,
+            "APCm": 3,
+            "QKCm": "1",
+            "KCCm": "2",
+            "rightTriangleResidualCm2": "-4",
+            "positiveKC": true,
+            "valid": false
+          },
+          {
+            "number": 2,
+            "APCm": 4,
+            "QKCm": "1",
+            "KCCm": "3",
+            "rightTriangleResidualCm2": "-2",
+            "positiveKC": true,
+            "valid": false
+          },
+          {
+            "number": 3,
+            "APCm": 5,
+            "QKCm": "1",
+            "KCCm": "4",
+            "rightTriangleResidualCm2": "0",
+            "positiveKC": true,
+            "valid": true
+          },
+          {
+            "number": 4,
+            "APCm": 6,
+            "QKCm": "1",
+            "KCCm": "5",
+            "rightTriangleResidualCm2": "2",
+            "positiveKC": true,
+            "valid": false
+          },
+          {
+            "number": 5,
+            "APCm": 9,
+            "QKCm": "1",
+            "KCCm": "8",
+            "rightTriangleResidualCm2": "8",
+            "positiveKC": true,
+            "valid": false
+          }
+        ],
+        "answerValue": "5 cm",
+        "foldReasoning": "The crease fixes P and Q and maps A to C, so AP=PC and angle APQ=angle CPQ=x. Since AP is parallel to QC, angle PQC=x. Thus triangle PCQ is isosceles with PC=QC, and AP=PC=QC. This equality is derived from the fold and parallel sides, not presumed from the sketch.",
+        "auxiliaryPointLocation": "Let K be the foot of P on BC. The ray PA points toward A along AD. The acute angle APQ=x forces Q to lie to the left of K, and P interior to AD forces K strictly left of C. Thus Q-K-C are ordered, permitting KC=QC-QK with positive lengths.",
+        "existence": "A 9-by-3 rectangle with AP=5 and BQ=4 gives PD=4, QC=5 and QK=1. Pythagoras gives PC=5 and QA=5, while PA=QC=5. Both distinct crease points P,Q are equidistant from A,C, so their line is the perpendicular bisector of AC and really folds A onto C. In triangle PQK, PK/QK=3 and the angle at Q is acute; in isosceles PCQ it equals CPQ. The reflected B position also matches the second figure, preserves AB and BQ, and preserves the corner right angle.",
+        "uniqueness": "On the required acute branch, QK=PK/tan(x)=1. The fold relations imply s=AP=PC=QC, hence KC=s-1>0. Expanding s²=9+(s-1)² cancels the square and gives 2s=10, with the unique admissible value s=5. This also uniquely recovers PD=4, BC=9 and BQ=4, so omitted overall width does not leave an answer continuum.",
+        "positiveLengthsAnglesAndUnits": "AP=PC=QC=5, AB=CD=PK=3, QK=1, KC=PD=BQ=4, BC=AD=9 and PQ=sqrt(10) are positive cm. 0<AP<AD and 0<BQ<BC put P,Q strictly inside the prescribed segments. The acute x is approximately 71.565 degrees, and angle PCQ=180-2x is approximately 36.870 degrees; both are valid. Negative lengths and the zero/90-degree branches are excluded by the prompt.",
+        "foldedGeometryComplexity": {
+          "studentSteps": [
+            "Transfer length and angle through the fold.",
+            "Transfer the crease angle with parallel rectangle edges.",
+            "Infer PC=QC from equal base angles.",
+            "Draw one perpendicular PK and use tan x to find QK.",
+            "Use Pythagoras and cancel squared terms to obtain one linear equation."
+          ],
+          "requiredAuxiliarySegments": 1,
+          "mainUnknowns": 1,
+          "caseHandling": "The stated acute x and interior P,Q identify Q-K-C; no alternative fold orientation is imported from an unstated sketch condition.",
+          "difficultyLimit": "This is a multi-step fold problem, not a direct tangent substitution. No empirical difficulty or score approval is made in this blind solve."
+        },
+        "figures": [
+          {
+            "inputPath": "figures/q14-1.svg",
+            "providedHashMatched": true,
+            "sha256": "e2b2ef401c08f88ada3b7b8df350fa9f5504a3e7fd32c923434187b029b8d623",
+            "labels": {
+              "A": [
+                "5487/100",
+                "29377/1000"
+              ],
+              "B": [
+                "5487/100",
+                "89377/1000"
+              ],
+              "C": [
+                "23487/100",
+                "89377/1000"
+              ],
+              "D": [
+                "23487/100",
+                "29377/1000"
+              ],
+              "P": [
+                "15487/100",
+                "29377/1000"
+              ],
+              "Q": [
+                "13487/100",
+                "89377/1000"
+              ]
+            },
+            "geometry": {
+              "scalePixelsPerCmAfterSolve": 20,
+              "ABPixels": 60,
+              "APPixels": 100,
+              "PDPixels": 80,
+              "BCPixels": 180,
+              "BQPixels": 80,
+              "QCPixels": 100,
+              "PQSquaredPixels2": 4000,
+              "PAndQInterior": true
+            },
+            "viewImageReviewedViaQuestionPreview": true,
+            "visualObservations": [
+              "The first image shows A top-left, B bottom-left, C bottom-right and D top-right.",
+              "P lies inside AD, Q lies inside BC; dashed PQ is the crease and dashed AC is the diagonal.",
+              "Only the width 3 cm is numerically labelled."
+            ]
+          },
+          {
+            "inputPath": "figures/q14-2.svg",
+            "providedHashMatched": true,
+            "sha256": "5825d50a282c4432beba489d50560506719b3cea76c6cdb75e64dfef2a7dabaa",
+            "labels": {
+              "C(A)": [
+                "129259/1000",
+                "1799/20"
+              ],
+              "D": [
+                "129259/1000",
+                "599/20"
+              ],
+              "P": [
+                "49259/1000",
+                "599/20"
+              ],
+              "Q": [
+                "29259/1000",
+                "1799/20"
+              ],
+              "B′": [
+                "93259/1000",
+                "2759/20"
+              ]
+            },
+            "geometry": {
+              "translationFromBeforeFoldSvg": [
+                "-105.611",
+                "0.573"
+              ],
+              "BPExactExpectedSvg": [
+                "93259/1000",
+                "2759/20"
+              ],
+              "BPMatchesDrawnLabelPoint": true,
+              "CPcm": "5",
+              "CQcm": "5",
+              "CBPrimeCm": "3",
+              "QBPrimeCm": "4",
+              "foldedAreaCm2": "27/2",
+              "originalLeftAreaCm2": "27/2",
+              "rightAngleAtCVerifiedByPythagoras": true
+            },
+            "viewImageReviewedViaQuestionPreview": true,
+            "visualObservations": [
+              "C(A) identifies the image of A at C.",
+              "P, Q, C and D retain their corresponding positions up to a common translation.",
+              "B-prime lies below the original bottom edge; the reflected left panel is shaded.",
+              "x is marked between PC and PQ, and the reflected right angle at C is drawn."
+            ]
+          }
+        ],
+        "auxiliaryExistenceCoordinates": {
+          "A": [
+            "0",
+            "3"
+          ],
+          "B": [
+            "0",
+            "0"
+          ],
+          "C": [
+            "9",
+            "0"
+          ],
+          "D": [
+            "9",
+            "3"
+          ],
+          "P": [
+            "5",
+            "3"
+          ],
+          "Q": [
+            "4",
+            "0"
+          ],
+          "K": [
+            "5",
+            "0"
+          ],
+          "BPrime": [
+            "36/5",
+            "-12/5"
+          ],
+          "HMidAC": [
+            "9/2",
+            "3/2"
+          ],
+          "JMidBBPrime": [
+            "18/5",
+            "-6/5"
+          ]
+        },
+        "foldDistanceSquaresCm2": {
+          "PA2": "25",
+          "PC2": "25",
+          "QA2": "25",
+          "QC2": "25",
+          "PB2": "34",
+          "PBPrime2": "34",
+          "QB2": "16",
+          "QBPrime2": "16",
+          "CBPrime2": "9"
+        },
+        "leftPanelAreaBeforeAndAfterCm2": "27/2",
+        "limits": [
+          "No double-angle tangent formula, general sine/cosine law or coordinate-reflection formula is needed in the student solution.",
+          "Exact rational coordinates, distances, crease midpoint membership and polygon area in code are auxiliary existence/figure checks after the elementary solution; they do not substitute an upper-grade student method.",
+          "The code verifies B and B-prime are equidistant from P,Q on the opposite sides of their crease and have the expected midpoint; the drawn folded panel is therefore compatible with the same actual fold.",
+          "No author agreement or original answer was used to label this solved."
+        ]
+      },
+      "status": "solved"
+    },
+    "solveDigest": "6e6fb89035023afd4485089be72ba4ecd491b823b6e51895569c7685a9d955ed"
+  }
+]

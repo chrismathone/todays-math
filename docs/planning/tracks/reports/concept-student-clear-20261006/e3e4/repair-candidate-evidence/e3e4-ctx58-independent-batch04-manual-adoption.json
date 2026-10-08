@@ -1,0 +1,1731 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e3-1-6-2-xc10",
+      "sourceIndex": 845,
+      "beforeProposal": {
+        "sourceIndex": 845,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-2 분수 알아보기(1)",
+        "sourceFingerprint": "b7e2412ee2fd03cc1b77640bd304f1ff82c13c050c9f7b64bf19e56a030319d8",
+        "proposalFingerprint": "b124826240900c46d785ca1bce089f0946d369861d4f8daa309011b7fa13f504",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-2-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{4}$과 $\\frac{1}{8}$ 가운데 전체를 더 많은 조각으로 나눈 것은 어느 것인지 쓰고, 어떻게 알 수 있는지 쓰세요.",
+        "bAnswer": "$\\frac{1}{8}$이다. 분모는 전체를 똑같이 나눈 수인데 $8$이 $4$보다 크기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{8}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 전체를 나눈 수"
+            ]
+          }
+        ],
+        "bGoal": "분모의 크기와 나눈 수의 관계",
+        "bReason": "두 분수를 견주어 분모의 뜻을 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "분모가 클수록 전체를 더 {많은} 조각으로 똑같이 나눈 것이다.",
+        "cReason": "'더 많이' 빈칸은 '잘게', '작게' 등으로 흩어져 '조각'을 밝히고 한 낱말만 쓰게 함",
+        "answerNotes": "'많은', '여러' 인정. '큰'은 오답.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "분모의 크기와 나눈 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 클수록 전체를 더 {많은} 조각으로 똑같이 나눈 것이다.",
+        "cStudentSentence": "분모가 클수록 전체를 더 □ 조각으로 똑같이 나눈 것이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "많은",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{1}{4}$과 $\\frac{1}{8}$ 가운데 전체를 더 많은 조각으로 나눈 것은 어느 것인지 쓰고, 어떻게 알 수 있는지 쓰세요.",
+          "answer": "$\\frac{1}{8}$이다. 분모는 전체를 똑같이 나눈 수인데 $8$이 $4$보다 크기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\frac{1}{8}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분모는 전체를 나눈 수"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모가 클수록 전체를 더 {많은} 조각으로 똑같이 나눈 것이다.",
+          "acceptedAnswers": [
+            [
+              "많은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-2-xc10",
+          "sourceIndex": 845,
+          "proposalFingerprint": "b124826240900c46d785ca1bce089f0946d369861d4f8daa309011b7fa13f504",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "조각 수만을 비교하는 질문이므로 전체 크기를 추가로 같게 할 필요 없이8등분을 고른다.",
+          "cReason": "분모가 클수록 더 많은 조각으로 나누었다는 수 의미다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{8}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모가 전체를 똑같이 나눈 조각 수이고 $8$이 $4$보다 크다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-4-xc13",
+      "sourceIndex": 1721,
+      "beforeProposal": {
+        "sourceIndex": 1721,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-4 몇십으로 나누기",
+        "sourceFingerprint": "499e29265dfe3f118f9458aadc5a2d9513e98007d8525a498e4281c77bf01563",
+        "proposalFingerprint": "392fb76a9b6924dcd3812394159ed8617e27a872566422f24293ebaea974d3e6",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-4-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$130\\div40$에서 몫을 $2$로 하면 나머지가 $50$이다. 몫을 어떻게 고쳐야 하고, 그 까닭은 무엇인가?",
+        "bAnswer": "몫을 $3$으로 크게 고친다. 나머지 $50$이 나누는 수 $40$보다 커서 한 묶음을 더 만들 수 있기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "몫을 $3$으로 크게 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지 $50$이 $40$보다 커서 한 묶음을 더 만들 수 있다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "나머지가 클 때 몫 고치기",
+        "bReason": "고치는 방향과 이유를 함께 확인",
+        "cDecision": "keep",
+        "cReason": "크게/작게 방향이 분명한 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "몫을 늘려",
+            "몫을 더 크게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "나머지가 너무 클 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "나머지가 나누는 수와 같거나 크면 나머지가 나누는 수보다 작아질 때까지 {몫을 크게} 고친다.",
+        "cStudentSentence": "나머지가 나누는 수와 같거나 크면 나머지가 나누는 수보다 작아질 때까지 □ 고친다.",
+        "cSlotAnswers": [
+          {
+            "expected": "몫을 크게",
+            "equivalents": [
+              "몫을 늘려",
+              "몫을 더 크게"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "나머지가 나누는 수와 같거나 크면 나머지가 나누는 수보다 작아질 때까지 □ 고친다.",
+          "answers": [
+            "몫을 크게"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$130\\div40$에서 몫을 $2$로 하면 나머지가 $50$이다. 몫을 어떻게 고쳐야 하고, 그 까닭은 무엇인가?",
+          "answer": "몫을 $3$으로 크게 고친다. 나머지 $50$이 나누는 수 $40$보다 커서 한 묶음을 더 만들 수 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "몫을 $3$으로 크게 고친다"
+              ]
+            },
+            {
+              "anyOf": [
+                "나머지 $50$이 $40$보다 커서 한 묶음을 더 만들 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "나머지가 나누는 수와 같거나 크면 나머지가 나누는 수보다 작아질 때까지 {몫을 크게} 고친다.",
+          "acceptedAnswers": [
+            [
+              "몫을 크게",
+              "몫을 늘려",
+              "몫을 더 크게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-4-xc13",
+          "sourceIndex": 1721,
+          "proposalFingerprint": "392fb76a9b6924dcd3812394159ed8617e27a872566422f24293ebaea974d3e6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "남은 50으로 40의 한 묶음이 더 가능한 이유와 몫 3의 수정을 확인한다.",
+          "cReason": "나머지가 나누는 수보다 작아질 때까지 몫을 늘이는 방향이 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "나머지가 나누는 수와 같거나 크면, 나머지가 나누는 수보다 작아질 때까지 몫을 {크게} 고친다.",
+        "cSlotEquivalents": [
+          [
+            "더 크게"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-4-xc5",
+      "sourceIndex": 873,
+      "beforeProposal": {
+        "sourceIndex": 873,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-4 분모가 같은 분수의 크기 비교",
+        "sourceFingerprint": "ba0d3566fbf35645d7a673209523a836e597b5d79a5c64f70f1aa2b4ea8b068c",
+        "proposalFingerprint": "3edb6418aaf9ed7ae9753dc26081745d042dc27768f328a17e949ff3381f323e",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-4-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "분모와 분자가 모두 같은 두 분수의 크기",
+        "bReason": "같은 분수는 크기가 같다는 사실 하나뿐인 내용",
+        "exclusionReason": "B에서는 '같은 분수라서 같다'는 말밖에 쓸 것이 없어 설명할 뜻·까닭·방법이 없음",
+        "cDecision": "keep",
+        "cReason": "조건이 드러난 짧은 비교(같다) 문장",
+        "answerNotes": "'같다' 정답.",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "크기가 같은 두 분수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모와 분자가 모두 같은 두 분수는 크기가 {같다}.",
+        "cStudentSentence": "분모와 분자가 모두 같은 두 분수는 크기가 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모와 분자가 모두 같은 두 분수는 크기가 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "분모와 분자가 모두 같은 두 분수는 크기가 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "같은 분수는 크기가 같다는 사실 하나뿐인 내용"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-4-xc5",
+          "sourceIndex": 873,
+          "proposalFingerprint": "3edb6418aaf9ed7ae9753dc26081745d042dc27768f328a17e949ff3381f323e",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은 분수라 같다는 반복 B를 제외한다.",
+          "cReason": "분자·분모 모두 같은 분수의 크기 같음이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "분자 분모가 모두 같은 분수의 크기도 같다는 동일성 반복만으로는 이 항목의 별도 평가 가치가 낮다.",
+        "exclusionReason": "B/C: 같은 분수는 같다는 동일성 반복을 제외한다. 원래 일반 설명은 보존한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-4-xc7",
+      "sourceIndex": 875,
+      "beforeProposal": {
+        "sourceIndex": 875,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-4 분모가 같은 분수의 크기 비교",
+        "sourceFingerprint": "3ab57463f3c9b933f05a38f8ed4ebdb9f447e7a1388e11b754c5783c03090bcc",
+        "proposalFingerprint": "c853b6a985964ca4cc5e413002957f87faa2a74b0fefebe3548edd5116375b23",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-4-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "분모가 같은 분수 가운데 가장 큰 분수 고르기",
+        "bReason": "e3-1-6-4-xc11에서 구체 분수로 같은 방법과 까닭을 물음",
+        "exclusionReason": "B에서는 e3-1-6-4-xc11($\\frac{2}{8}$, $\\frac{7}{8}$, $\\frac{5}{8}$ 가운데 가장 큰 분수와 까닭)과 설명 목표가 같음",
+        "cDecision": "keep",
+        "cReason": "조건이 모두 드러난 짧은 비교 문장",
+        "answerNotes": "'가장 크다', '제일 크다' 인정.",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가장 큰 분수 고르기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분모가 같은 분수 가운데 분자가 가장 큰 분수가 {가장 크다}.",
+        "cStudentSentence": "분모가 같은 분수 가운데 분자가 가장 큰 분수가 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "가장 크다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "분모가 같은 분수 가운데 분자가 가장 큰 분수가 □.",
+          "answers": [
+            "가장 크다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "분모가 같은 분수 가운데 분자가 가장 큰 분수가 {가장 크다}.",
+          "acceptedAnswers": [
+            [
+              "가장 크다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "e3-1-6-4-xc11에서 구체 분수로 같은 방법과 까닭을 물음"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-4-xc7",
+          "sourceIndex": 875,
+          "proposalFingerprint": "c853b6a985964ca4cc5e413002957f87faa2a74b0fefebe3548edd5116375b23",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "세 실제 후보의 최대 설명은877과 겹친다.",
+          "cReason": "같은 분모에서 큰 분자와 가장 큰 분수의 관계다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{2}{9}$, $\\frac{5}{9}$, $\\frac{8}{9}$ 가운데 가장 큰 분수는 {$\\frac{8}{9}$}이다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-5-xc9",
+      "sourceIndex": 1739,
+      "beforeProposal": {
+        "sourceIndex": 1739,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-5 몇십몇으로 나누기 (1)",
+        "sourceFingerprint": "a5dc87088daf029e22bfae68b3b7f4faa0ea3d86af54e8df349309d8f2afc80a",
+        "proposalFingerprint": "c4f20dd31f8cf5b95ec1d16fae87cb1e59a575a5ead76a418900c47991c3390b",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-5-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$75\\div25$의 몫을 곱셈으로 어떻게 찾을 수 있는지 식과 함께 쓰시오.",
+        "bAnswer": "$25\\times3=75$이므로 몫은 $3$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$25\\times3=75$",
+              "$25$에 $3$을 곱하면 $75$"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $3$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "곱셈으로 몫 찾기",
+        "bReason": "곱셈식을 직접 세우는지 확인",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "곱셈식",
+            "곱하기"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 자리 수끼리의 나눗셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$75\\div25$처럼 두 자리 수끼리 나눌 때에도 {곱셈}을 이용해 몫을 찾는다.",
+        "cStudentSentence": "$75\\div25$처럼 두 자리 수끼리 나눌 때에도 □을 이용해 몫을 찾는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "곱셈",
+            "equivalents": [
+              "곱셈식",
+              "곱하기"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$75\\div25$처럼 두 자리 수끼리 나눌 때에도 □을 이용해 몫을 찾는다.",
+          "answers": [
+            "곱셈"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$75\\div25$의 몫을 곱셈으로 어떻게 찾을 수 있는지 식과 함께 쓰시오.",
+          "answer": "$25\\times3=75$이므로 몫은 $3$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$25\\times3=75$",
+                "$25$에 $3$을 곱하면 $75$"
+              ]
+            },
+            {
+              "anyOf": [
+                "몫은 $3$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$75\\div25$처럼 두 자리 수끼리 나눌 때에도 {곱셈}을 이용해 몫을 찾는다.",
+          "acceptedAnswers": [
+            [
+              "곱셈",
+              "곱셈식",
+              "곱하기"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-5-xc9",
+          "sourceIndex": 1739,
+          "proposalFingerprint": "c4f20dd31f8cf5b95ec1d16fae87cb1e59a575a5ead76a418900c47991c3390b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "몫을 찾는 실제 곱셈식과 결과를 함께 확인한다.",
+          "cReason": "곱셈을 이용해 몫을 찾는 두 자리 나눗셈의 방법을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$75\\div25$의 몫을 찾으려고 $25$에 어떤 수를 곱하면 $75$가 되는지 생각했다. 이렇게 {곱셈}을 이용해 몫을 구할 수 있다.",
+        "cSlotEquivalents": [
+          [
+            "곱하기",
+            "곱셈식"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-5-xc11",
+      "sourceIndex": 1741,
+      "beforeProposal": {
+        "sourceIndex": 1741,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-5 몇십몇으로 나누기 (1)",
+        "sourceFingerprint": "73c70d2987fa152adce778279d3050262126fd424303f6d52f0957aee47b1d93",
+        "proposalFingerprint": "c623e8d429bf53dbf2008d6f4d6aa7b7e4081c544339bf6eb99d1f18ec43277d",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-5-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$150\\div24$에서 몫을 $5$로 짐작해 $24\\times5=120$을 뺐더니 $30$이 남았다. 몫을 어떻게 고쳐야 하고, 그 까닭은 무엇인가?",
+        "bAnswer": "남은 $30$이 나누는 수 $24$보다 커서 몫을 $6$으로 크게 고친다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "남은 $30$이 $24$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫을 $6$으로 크게 고친다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "작게 짐작한 몫 고치기",
+        "bReason": "나머지가 클 때 늘리는 방법 확인",
+        "cDecision": "keep",
+        "cReason": "크게/작게 방향이 분명한 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "몫을 늘려",
+            "몫을 더 크게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몫을 작게 짐작했을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "뺀 나머지가 나누는 수와 같거나 크면 나머지가 나누는 수보다 작아질 때까지 {몫을 크게} 고친다.",
+        "cStudentSentence": "뺀 나머지가 나누는 수와 같거나 크면 나머지가 나누는 수보다 작아질 때까지 □ 고친다.",
+        "cSlotAnswers": [
+          {
+            "expected": "몫을 크게",
+            "equivalents": [
+              "몫을 늘려",
+              "몫을 더 크게"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "뺀 나머지가 나누는 수와 같거나 크면 나머지가 나누는 수보다 작아질 때까지 □ 고친다.",
+          "answers": [
+            "몫을 크게"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$150\\div24$에서 몫을 $5$로 짐작해 $24\\times5=120$을 뺐더니 $30$이 남았다. 몫을 어떻게 고쳐야 하고, 그 까닭은 무엇인가?",
+          "answer": "남은 $30$이 나누는 수 $24$보다 커서 몫을 $6$으로 크게 고친다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "남은 $30$이 $24$보다 크다"
+              ]
+            },
+            {
+              "anyOf": [
+                "몫을 $6$으로 크게 고친다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "뺀 나머지가 나누는 수와 같거나 크면 나머지가 나누는 수보다 작아질 때까지 {몫을 크게} 고친다.",
+          "acceptedAnswers": [
+            [
+              "몫을 크게",
+              "몫을 늘려",
+              "몫을 더 크게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-5-xc11",
+          "sourceIndex": 1741,
+          "proposalFingerprint": "c623e8d429bf53dbf2008d6f4d6aa7b7e4081c544339bf6eb99d1f18ec43277d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "남은 30이 24보다 커서 몫을 6으로 늘이는 이유와 행동을 확인한다.",
+          "cReason": "나머지가 나누는 수보다 작아질 때까지 몫을 늘이는 관계가 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "짐작한 몫으로 곱하여 뺀 나머지가 나누는 수와 같거나 크면, 나머지가 나누는 수보다 작아질 때까지 몫을 {크게} 고친다.",
+        "cSlotEquivalents": [
+          [
+            "더 크게"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-5-xc21",
+      "sourceIndex": 1748,
+      "beforeProposal": {
+        "sourceIndex": 1748,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-5 몇십몇으로 나누기 (1)",
+        "sourceFingerprint": "338a973362e0b578907ca0e7471a49e190f4f2406b0cc5a4568ca96b456e4c91",
+        "proposalFingerprint": "d55540e853607650112242136a4793833fcbbce2421495ccb4b71034aee92acd",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-5-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "나누는 수의 크기와 몫",
+        "bReason": "1-3-4 xc18과 같은 관계",
+        "exclusionReason": "나누는 수가 커지면 몫이 작아지거나 같다는 e4-1-3-4-xc18과 같은 목표의 반복이다.",
+        "cDecision": "keep",
+        "cReason": "비교 빈칸이고 한 묶음 설명이 있어 유지",
+        "cSlotEquivalents": [
+          [
+            "커지지 않는다",
+            "줄어들거나 같다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "나누는 수의 크기와 몫",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 수를 나눌 때 나누는 수가 커지면 한 묶음이 커져 몫은 {작아지거나 같다}.",
+        "cStudentSentence": "같은 수를 나눌 때 나누는 수가 커지면 한 묶음이 커져 몫은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아지거나 같다",
+            "equivalents": [
+              "커지지 않는다",
+              "줄어들거나 같다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 수를 나눌 때 나누는 수가 커지면 한 묶음이 커져 몫은 □.",
+          "answers": [
+            "작아지거나 같다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "같은 수를 나눌 때 나누는 수가 커지면 한 묶음이 커져 몫은 {작아지거나 같다}.",
+          "acceptedAnswers": [
+            [
+              "작아지거나 같다",
+              "커지지 않는다",
+              "줄어들거나 같다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "1-3-4 xc18과 같은 관계"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-5-xc21",
+          "sourceIndex": 1748,
+          "proposalFingerprint": "d55540e853607650112242136a4793833fcbbce2421495ccb4b71034aee92acd",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "나누는 수와 정수 몫의 관계를 설명하는 기존 B와 중복되는 제외를 유지한다.",
+          "cReason": "몫이 작아지거나 같다는 표현으로 같은 몫도 허용한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "같은 자연수를 나눌 때 몫을 일의 자리까지만 구하고 남은 양은 나머지로 둔다. 나누는 수가 커지면 몫은 {작아지거나 같다}.",
+        "cSlotEquivalents": [
+          [
+            "커지지 않는다",
+            "줄어들거나 같다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-6-xc2",
+      "sourceIndex": 1753,
+      "beforeProposal": {
+        "sourceIndex": 1753,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-6 몇십몇으로 나누기 (2)",
+        "sourceFingerprint": "087f5b5585f23e27e9a545487c8db1381d200a64ff10be6ebc5db4f04b0064a9",
+        "proposalFingerprint": "ef5384cc259fee828b41513d830e7a4016652f4d8cb6e6dda2ec8c22d0706771",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-6-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "먼저 구하는 몫의 자리",
+        "bReason": "xc13이 방법을 묻는다",
+        "exclusionReason": "몫의 십의 자리부터 구하는 방법과 이유는 e4-1-3-6-xc13에서 묻는다.",
+        "cDecision": "keep",
+        "cReason": "자리 이름을 쓰는 익숙한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "십의 자리",
+            "몫의 십의 자리 숫자"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몫이 두 자리 수일 때 먼저 구하는 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "몫이 두 자리 수이면 먼저 {몫의 십의 자리}를 구한다.",
+        "cStudentSentence": "몫이 두 자리 수이면 먼저 □를 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "몫의 십의 자리",
+            "equivalents": [
+              "십의 자리",
+              "몫의 십의 자리 숫자"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "몫이 두 자리 수이면 먼저 □를 구한다.",
+          "answers": [
+            "몫의 십의 자리"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "몫이 두 자리 수이면 먼저 {몫의 십의 자리}를 구한다.",
+          "acceptedAnswers": [
+            [
+              "몫의 십의 자리",
+              "십의 자리",
+              "몫의 십의 자리 숫자"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc13이 방법을 묻는다"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-6-xc2",
+          "sourceIndex": 1753,
+          "proposalFingerprint": "ef5384cc259fee828b41513d830e7a4016652f4d8cb6e6dda2ec8c22d0706771",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "십의 자리부터 구하는 이유를 맡는 실제 대응 B와 중복되는 제외를 유지한다.",
+          "cReason": "두 자리 몫에서 먼저 구할 십의 자리라는 순서를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "몫이 두 자리 수인 세로 나눗셈에서는 먼저 몫의 {십}의 자리 숫자를 구한다.",
+        "cSlotEquivalents": [
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-6-xc3",
+      "sourceIndex": 1754,
+      "beforeProposal": {
+        "sourceIndex": 1754,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-6 몇십몇으로 나누기 (2)",
+        "sourceFingerprint": "dcf322b8983de5ea2a1f8afca19ad25c85f2d0bcfad74cc63c6f6f57e6a1cae0",
+        "proposalFingerprint": "75da0050510478a14f9bbf639fb404df978b4f93931e358e05a2ae072d6fd679",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-6-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "다음 자리 숫자 내려 쓰기",
+        "bReason": "xc14가 같은 뜻을 묻는다",
+        "exclusionReason": "숫자를 내려 쓰는 까닭은 e4-1-3-6-xc14의 내려 쓴 수의 뜻과 같은 목표이다.",
+        "cDecision": "keep",
+        "cReason": "세로셈의 익숙한 동작 빈칸",
+        "cSlotEquivalents": [
+          [
+            "내려 적는다",
+            "내린다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "다음 자리 숫자 내려 쓰기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "앞에서 나누고 남은 수 옆에 나누어지는 수의 다음 자리 숫자를 {내려 쓴다}.",
+        "cStudentSentence": "앞에서 나누고 남은 수 옆에 나누어지는 수의 다음 자리 숫자를 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "내려 쓴다",
+            "equivalents": [
+              "내려 적는다",
+              "내린다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "앞에서 나누고 남은 수 옆에 나누어지는 수의 다음 자리 숫자를 □.",
+          "answers": [
+            "내려 쓴다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "앞에서 나누고 남은 수 옆에 나누어지는 수의 다음 자리 숫자를 {내려 쓴다}.",
+          "acceptedAnswers": [
+            [
+              "내려 쓴다",
+              "내려 적는다",
+              "내린다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc14가 같은 뜻을 묻는다"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-6-xc3",
+          "sourceIndex": 1754,
+          "proposalFingerprint": "75da0050510478a14f9bbf639fb404df978b4f93931e358e05a2ae072d6fd679",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "내려 쓴 수의 뜻을 설명하는 실제 대응 B와 중복되는 제외를 유지한다.",
+          "cReason": "남은 수 옆으로 다음 자리 숫자를 내려 쓰는 행동이 구체적이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "다음 숫자를 내려 쓴다는 동작 표현만 복원하므로 내려 쓴 수의 뜻을 확인하는 e4-1-3-6-xc14에 맡긴다.",
+        "exclusionReason": "B/C: e4-1-3-6-xc14의 내려 쓴 수의 뜻과 중복이며 동작 말만 복원하는 빈칸은 제외한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-6-xc15",
+      "sourceIndex": 1763,
+      "beforeProposal": {
+        "sourceIndex": 1763,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-6 몇십몇으로 나누기 (2)",
+        "sourceFingerprint": "c07c6d868d8927c603b1f85de44b6e5a8c15297935b3f3ca6470478015444b92",
+        "proposalFingerprint": "981a19ae2f21afd2a6d04449f145c4575256083d83549742c39c8b78213c304c",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-6-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$325\\div24=14\\cdots13$이라고 계산했다. 검산식을 쓰고 결과를 말한 뒤, 맞지 않으면 어떻게 해야 하는지 쓰시오.",
+        "bAnswer": "$24\\times14+13=349$로 $325$와 달라 틀렸다. 몫이나 나머지를 다시 구하고 검산 계산도 다시 살핀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$24\\times14+13=349$가 $325$와 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫이나 나머지를 다시 구한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "검산이 틀릴 때 할 일",
+        "bReason": "검산식 결과와 수정 방법을 함께 확인",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "몫과 나머지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "검산이 맞지 않을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "검산한 값이 나누어지는 수와 다르면 {몫이나 나머지}를 다시 구하고, 검산한 계산도 다시 살핀다.",
+        "cStudentSentence": "검산한 값이 나누어지는 수와 다르면 □를 다시 구하고, 검산한 계산도 다시 살핀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "몫이나 나머지",
+            "equivalents": [
+              "몫과 나머지"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "검산한 값이 나누어지는 수와 다르면 □를 다시 구하고, 검산한 계산도 다시 살핀다.",
+          "answers": [
+            "몫이나 나머지"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$325\\div24=14\\cdots13$이라고 계산했다. 검산식을 쓰고 결과를 말한 뒤, 맞지 않으면 어떻게 해야 하는지 쓰시오.",
+          "answer": "$24\\times14+13=349$로 $325$와 달라 틀렸다. 몫이나 나머지를 다시 구하고 검산 계산도 다시 살핀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$24\\times14+13=349$가 $325$와 다르다"
+              ]
+            },
+            {
+              "anyOf": [
+                "몫이나 나머지를 다시 구한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "검산한 값이 나누어지는 수와 다르면 {몫이나 나머지}를 다시 구하고, 검산한 계산도 다시 살핀다.",
+          "acceptedAnswers": [
+            [
+              "몫이나 나머지",
+              "몫과 나머지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-6-xc15",
+          "sourceIndex": 1763,
+          "proposalFingerprint": "981a19ae2f21afd2a6d04449f145c4575256083d83549742c39c8b78213c304c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "실제 틀린 확인식과 다른 결과 및 다시 계산하는 행동을 확인한다.",
+          "cReason": "몫이나 나머지를 구하고 확인 계산도 살피는 구체적인 점검을 제시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$325\\div24$의 몫을 $14$, 나머지를 $13$이라고 구했다. 검산한 값은 $24\\times14+13=349$로 $325$와 다르므로 나눗셈의 결과는 {틀렸다}.",
+        "cSlotEquivalents": [
+          [
+            "잘못되었다",
+            "잘못됐다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-6-xc19",
+      "sourceIndex": 1765,
+      "beforeProposal": {
+        "sourceIndex": 1765,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-6 몇십몇으로 나누기 (2)",
+        "sourceFingerprint": "9119db874398e7bb548351cb921ca203030c556a67e47dd7ecfc8b11d5f962a7",
+        "proposalFingerprint": "1b045e8d0c5ee54b8f451df16cf32044d0805d7bf306e7b6f87c0cf160ebdf2a",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-6-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "몫의 자릿수 잘못 판단",
+        "bReason": "1-3-5 xc14와 같은 목표",
+        "exclusionReason": "앞 두 자리가 나누는 수보다 작으면 몫이 한 자리라는 e4-1-3-5-xc14와 같은 목표이다.",
+        "cDecision": "rewrite",
+        "cAfter": "$231\\div24$에서 앞 두 자리 수 $23$이 나누는 수 $24$보다 작으므로 몫은 {한 자리 수}이다.",
+        "cReason": "조건과 결론 동시 가림을 결론 한 칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "$1$자리 수",
+            "한 자리"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "몫의 자릿수 잘못 판단하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$231\\div24$에서 앞 두 자리 수 $23$이 나누는 수 $24$보다 작으므로 몫은 {한 자리 수}이다.",
+        "cStudentSentence": "$231\\div24$에서 앞 두 자리 수 $23$이 나누는 수 $24$보다 작으므로 몫은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "한 자리 수",
+            "equivalents": [
+              "$1$자리 수",
+              "한 자리"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$231\\div24$에서 앞 두 자리 수 $23$이 나누는 수 $24$보다 작으므로 몫은 {한 자리 수}이다.",
+          "acceptedAnswers": [
+            [
+              "한 자리 수",
+              "$1$자리 수",
+              "한 자리"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "1-3-5 xc14와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-6-xc19",
+          "sourceIndex": 1765,
+          "proposalFingerprint": "1b045e8d0c5ee54b8f451df16cf32044d0805d7bf306e7b6f87c0cf160ebdf2a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "앞 두 자리 비교의 기존 설명 B와 중복되는 제외를 유지한다.",
+          "cReason": "23과 24의 실제 비교로 한 자리 몫을 판단한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$231\\div24$에서 앞 두 자리 수 $23$이 나누는 수 $24$보다 작으므로 몫은 {한} 자리 수이다.",
+        "cSlotEquivalents": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-6-xc20",
+      "sourceIndex": 1766,
+      "beforeProposal": {
+        "sourceIndex": 1766,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-6 몇십몇으로 나누기 (2)",
+        "sourceFingerprint": "54204f9b07c077882001bef2c79747e2867597969b8b841606626ab71ecfcb63",
+        "proposalFingerprint": "707d5eb02fd8383d439ef17c8bbaa281307c162169fc892e66f94c7d0a6314cc",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-6-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "$648\\div32$의 몫을 $2$라고 쓰면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "$32$가 $20$번 들어가므로 몫은 $20$이고, $0$을 빠뜨리면 값이 달라지기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$32$가 $20$번 들어가므로 몫은 $20$이다",
+              "$0$을 빠뜨리면 몫의 값이 달라진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "몫의 0을 빠뜨린 잘못",
+        "bReason": "0을 빼면 몫의 값이 달라짐을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$648\\div32$의 몫 $20$에서 일의 자리 $0$을 빠뜨리고 $2$라고 쓰면 몫이 실제보다 {작게} 나온다.",
+        "cReason": "'$10$배 작게' 어려운 말을 예로 고침",
+        "cSlotEquivalents": [
+          [
+            "적게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "몫의 일의 자리 $0$을 빠뜨리는 잘못",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$648\\div32$의 몫 $20$에서 일의 자리 $0$을 빠뜨리고 $2$라고 쓰면 몫이 실제보다 {작게} 나온다.",
+        "cStudentSentence": "$648\\div32$의 몫 $20$에서 일의 자리 $0$을 빠뜨리고 $2$라고 쓰면 몫이 실제보다 □ 나온다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작게",
+            "equivalents": [
+              "적게"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$648\\div32$의 몫을 $2$라고 쓰면 안 되는 까닭을 쓰시오.",
+          "answer": "$32$가 $20$번 들어가므로 몫은 $20$이고, $0$을 빠뜨리면 값이 달라지기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$32$가 $20$번 들어가므로 몫은 $20$이다",
+                "$0$을 빠뜨리면 몫의 값이 달라진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$648\\div32$의 몫 $20$에서 일의 자리 $0$을 빠뜨리고 $2$라고 쓰면 몫이 실제보다 {작게} 나온다.",
+          "acceptedAnswers": [
+            [
+              "작게",
+              "적게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-6-xc20",
+          "sourceIndex": 1766,
+          "proposalFingerprint": "707d5eb02fd8383d439ef17c8bbaa281307c162169fc892e66f94c7d0a6314cc",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "20을 2로 잘못 써 값이 달라지는 이유를 설명한다.",
+          "cReason": "0을 빠뜨린 실제 몫이 작아지는 방향을 비교한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$32$가 $20$번 들어가므로 몫은 $20$이고, 십의 자리의 $2$를 일의 자리 $2$로 쓰면 안 된다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-7-xc10",
+      "sourceIndex": 1777,
+      "beforeProposal": {
+        "sourceIndex": 1777,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+        "sourceFingerprint": "7120df01e5b3feafe9ebf33bc63d7a0baade1308496cd29aa3654db072178f2d",
+        "proposalFingerprint": "d73207712486b0f61456b5339261556f48de1263edc4ab7afd26c8bf83f8ec73",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-7-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$598$은 그대로 두고 $31$을 $40$으로 크게 어림해 $598\\div40$을 계산하면 몫이 실제 몫 $598\\div31$보다 커질까, 작아질까? 까닭도 쓰시오.",
+        "bAnswer": "작아지거나 같다. 한 묶음을 크게 하면 만들 수 있는 묶음 수가 줄기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "작아지거나 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 묶음을 크게 하면 묶음 수가 줄어든다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "나누는 수를 크게 어림한 영향",
+        "bReason": "몫의 방향과 묶음 이유를 함께 확인",
+        "cDecision": "keep",
+        "cReason": "비교 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "작거나 같다",
+            "커지지 않는다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "나누는 수를 크게 어림할 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "나누어지는 수는 그대로 두고 나누는 수를 크게 어림하면 어림한 몫은 실제 몫보다 {작아지거나 같다}.",
+        "cStudentSentence": "나누어지는 수는 그대로 두고 나누는 수를 크게 어림하면 어림한 몫은 실제 몫보다 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "작아지거나 같다",
+            "equivalents": [
+              "작거나 같다",
+              "커지지 않는다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "나누어지는 수는 그대로 두고 나누는 수를 크게 어림하면 어림한 몫은 실제 몫보다 □.",
+          "answers": [
+            "작아지거나 같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$598$은 그대로 두고 $31$을 $40$으로 크게 어림해 $598\\div40$을 계산하면 몫이 실제 몫 $598\\div31$보다 커질까, 작아질까? 까닭도 쓰시오.",
+          "answer": "작아지거나 같다. 한 묶음을 크게 하면 만들 수 있는 묶음 수가 줄기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "작아지거나 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 묶음을 크게 하면 묶음 수가 줄어든다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "나누어지는 수는 그대로 두고 나누는 수를 크게 어림하면 어림한 몫은 실제 몫보다 {작아지거나 같다}.",
+          "acceptedAnswers": [
+            [
+              "작아지거나 같다",
+              "작거나 같다",
+              "커지지 않는다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-7-xc10",
+          "sourceIndex": 1777,
+          "proposalFingerprint": "d73207712486b0f61456b5339261556f48de1263edc4ab7afd26c8bf83f8ec73",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은 전체에서 묶음을 크게 하여 정수 몫이 작아지거나 같은 이유를 설명한다.",
+          "cReason": "전체를 고정하는 조건과 몫이 같은 경우를 모두 보존한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$598$은 그대로 두고 $31$을 $40$으로 크게 어림해 $598\\div40$을 계산한다. 몫을 일의 자리까지 구하고 남은 양은 나머지로 둘 때, 두 나눗셈의 몫을 구해 비교하고 묶음의 크기와 개수로 그 까닭을 설명하시오.",
+        "bAnswer": "$598\\div40$의 몫은 $14$이고 $598\\div31$의 몫은 $19$이므로 작아진다. 전체는 같은데 한 묶음의 크기를 $31$에서 $40$으로 키우면 만들 수 있는 묶음 수가 줄어든다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 몫은 $14$와 $19$이므로 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체가 같을 때 한 묶음이 커져 만들 수 있는 묶음 수가 줄어든다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "몫을 일의 자리까지만 구하고 남은 양은 나머지로 둔다. 나누어지는 자연수는 그대로 두고 나누는 수를 크게 어림하면 몫은 원래 몫보다 {작아지거나 같다}."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-7-xc11",
+      "sourceIndex": 1778,
+      "beforeProposal": {
+        "sourceIndex": 1778,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+        "sourceFingerprint": "1c6dfd4e9063aa0d6b1d46039f12d4d465e1e6c1f99e3df123a8e709645d702a",
+        "proposalFingerprint": "da4c00ee07e3b39ca7e1e16f5e16f8d580b13ab0548a270e44145ed943044ff0",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-7-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$31$은 그대로 두고 $598$을 $600$으로 크게 어림해 $600\\div31$을 계산하면 몫이 실제 몫 $598\\div31$보다 커질까, 작아질까? 까닭도 쓰시오.",
+        "bAnswer": "커지거나 같다. 전체 양을 늘리면 만들 수 있는 묶음 수가 줄지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "커지거나 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 양을 늘리면 묶음 수가 줄지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "나누어지는 수를 크게 어림한 영향",
+        "bReason": "몫이 줄지 않는 이유를 묶음으로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "나누는 수는 그대로 두고 나누어지는 수를 크게 어림하면 어림한 몫은 실제 몫보다 {커지거나 같다}.",
+        "cReason": "'어림한 몫은 □'의 비교 대상이 빠져 보충",
+        "cSlotEquivalents": [
+          [
+            "크거나 같다",
+            "작아지지 않는다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "나누어지는 수를 크게 어림할 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "나누는 수는 그대로 두고 나누어지는 수를 크게 어림하면 어림한 몫은 실제 몫보다 {커지거나 같다}.",
+        "cStudentSentence": "나누는 수는 그대로 두고 나누어지는 수를 크게 어림하면 어림한 몫은 실제 몫보다 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "커지거나 같다",
+            "equivalents": [
+              "크거나 같다",
+              "작아지지 않는다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$31$은 그대로 두고 $598$을 $600$으로 크게 어림해 $600\\div31$을 계산하면 몫이 실제 몫 $598\\div31$보다 커질까, 작아질까? 까닭도 쓰시오.",
+          "answer": "커지거나 같다. 전체 양을 늘리면 만들 수 있는 묶음 수가 줄지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "커지거나 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체 양을 늘리면 묶음 수가 줄지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "나누는 수는 그대로 두고 나누어지는 수를 크게 어림하면 어림한 몫은 실제 몫보다 {커지거나 같다}.",
+          "acceptedAnswers": [
+            [
+              "커지거나 같다",
+              "크거나 같다",
+              "작아지지 않는다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-7-xc11",
+          "sourceIndex": 1778,
+          "proposalFingerprint": "da4c00ee07e3b39ca7e1e16f5e16f8d580b13ab0548a270e44145ed943044ff0",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "묶음 크기를 고정하고 전체를 늘려 정수 몫이 줄지 않는 이유를 설명한다.",
+          "cReason": "나누는 수를 고정하는 조건과 몫이 같은 경우를 보존한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$31$은 그대로 두고 $598$을 $600$으로 크게 어림해 $600\\div31$을 계산한다. 몫을 일의 자리까지 구하고 남은 양은 나머지로 둘 때, 두 나눗셈의 몫을 구해 비교하고 왜 그런지 쓰시오.",
+        "bAnswer": "두 몫은 모두 $19$로 같다. $31$개씩 $19$묶음은 $589$개이고 $20$묶음은 $620$개여서, $598$개와 $600$개 모두 $19$묶음만 만들 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 몫이 모두 $19$로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$31$개씩 $19$묶음은 만들 수 있지만 $20$묶음의 $620$개에는 둘 다 모자란다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "몫을 일의 자리까지만 구하고 남은 양은 나머지로 둔다. 나누는 수는 그대로 두고 나누어지는 자연수를 크게 어림하면 몫은 원래 몫보다 {커지거나 같다}."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-7-xc26",
+      "sourceIndex": 1788,
+      "beforeProposal": {
+        "sourceIndex": 1788,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+        "sourceFingerprint": "339e30dbcc61e2ab6724de9dec367e15e03044e2205f4657cf24eaf91ee8cf46",
+        "proposalFingerprint": "16a95aee3c15e1e81e26cfa89314ea47b69ac6ea54bd52053cd9b2c699162cea",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-7-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "$145\\div15$를 $100\\div20$으로 어림하면 $5$인데 실제 몫은 $9$이다. 어떻게 어림하면 좋은지 쓰시오.",
+        "bAnswer": "원래 수에 더 가까운 수로 어림한다. $150\\div15=10$처럼 $145$를 $150$으로 보면 실제 몫 $9$에 가깝다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원래 수에 더 가까운 수로 어림한다",
+              "$150\\div15=10$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "빗나간 어림 고치기",
+        "bReason": "더 가까운 수로 다시 어림하는 방법",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "가까운 수",
+            "원래 수에 더 가까운 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "빗나간 어림 고치기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$145\\div15$를 $100\\div20$으로 어림하면 실제 몫 $9$와 많이 달라 $150\\div15$처럼 {더 가까운 수}로 어림한다.",
+        "cStudentSentence": "$145\\div15$를 $100\\div20$으로 어림하면 실제 몫 $9$와 많이 달라 $150\\div15$처럼 □로 어림한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "더 가까운 수",
+            "equivalents": [
+              "가까운 수",
+              "원래 수에 더 가까운 수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$145\\div15$를 $100\\div20$으로 어림하면 실제 몫 $9$와 많이 달라 $150\\div15$처럼 □로 어림한다.",
+          "answers": [
+            "더 가까운 수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$145\\div15$를 $100\\div20$으로 어림하면 $5$인데 실제 몫은 $9$이다. 어떻게 어림하면 좋은지 쓰시오.",
+          "answer": "원래 수에 더 가까운 수로 어림한다. $150\\div15=10$처럼 $145$를 $150$으로 보면 실제 몫 $9$에 가깝다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "원래 수에 더 가까운 수로 어림한다",
+                "$150\\div15=10$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$145\\div15$를 $100\\div20$으로 어림하면 실제 몫 $9$와 많이 달라 $150\\div15$처럼 {더 가까운 수}로 어림한다.",
+          "acceptedAnswers": [
+            [
+              "더 가까운 수",
+              "가까운 수",
+              "원래 수에 더 가까운 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-7-xc26",
+          "sourceIndex": 1788,
+          "proposalFingerprint": "16a95aee3c15e1e81e26cfa89314ea47b69ac6ea54bd52053cd9b2c699162cea",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "원래 값에 가까운 수로 바꾸는 일반 방법 또는 실제 150 나누기 15의 예를 허용한다.",
+          "cReason": "잘못 잡은 100과 20보다 가까운 어림값으로 고치는 목표가 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$145\\div15$의 몫을 어림하려고 한다. $15$는 그대로 두고, $145$를 $15$로 남김없이 나누어지는 가장 가까운 수로 바꾸시오. 바꾼 수와 어림한 몫을 식으로 쓰시오.",
+        "bAnswer": "$145$를 $150$으로 바꾸면 $150\\div15=10$이므로 어림한 몫은 $10$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$145$를 $150$으로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$150\\div15=10$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$145\\div15$의 몫을 어림할 때 $15$는 그대로 두고, $145$를 $15$로 남김없이 나누어지는 가장 가까운 수 {$150$}으로 바꾸면 계산하기 쉽다.",
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-3-7-xc27",
+      "sourceIndex": 1789,
+      "beforeProposal": {
+        "sourceIndex": 1789,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-7 나눗셈의 어림셈",
+        "sourceFingerprint": "3978be5853e274f534cd3f456c9cd0105df1f4e5f7ee836b07bb84bd1d60c205",
+        "proposalFingerprint": "ae24ca571f742ee39cbdc3c3663e38ac46d5a23a6fde6da13f12cc30b49ee434",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-7-xc27",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "어림셈의 좋은 점",
+        "bReason": "xc4와 같은 쓰임",
+        "exclusionReason": "계산하기 전에 답의 크기를 안다는 쓰임은 e4-1-3-7-xc4의 어림 몫 점검과 같은 목표이다.",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "대강의 답",
+            "결과의 크기"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "어림셈의 좋은 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "어림셈은 계산하기 전에 {답의 크기}를 미리 알려 준다.",
+        "cStudentSentence": "어림셈은 계산하기 전에 □를 미리 알려 준다.",
+        "cSlotAnswers": [
+          {
+            "expected": "답의 크기",
+            "equivalents": [
+              "대강의 답",
+              "결과의 크기"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "어림셈은 계산하기 전에 □를 미리 알려 준다.",
+          "answers": [
+            "답의 크기"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "어림셈은 계산하기 전에 {답의 크기}를 미리 알려 준다.",
+          "acceptedAnswers": [
+            [
+              "답의 크기",
+              "대강의 답",
+              "결과의 크기"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc4와 같은 쓰임"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-7-xc27",
+          "sourceIndex": 1789,
+          "proposalFingerprint": "ae24ca571f742ee39cbdc3c3663e38ac46d5a23a6fde6da13f12cc30b49ee434",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "답의 크기를 미리 점검하는 실제 대응 B와 중복되는 제외를 유지한다.",
+          "cReason": "정확한 답 대신 대강의 크기를 아는 어림셈의 이점을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "답의 크기 결과 값 등으로 열린 표현만 복원한다. 어림한 몫으로 실제 계산을 점검하는 e4-1-3-7-xc4에서 쓰임을 확인한다.",
+        "exclusionReason": "B/C: 어림셈의 일반 효용 문구만 외우는 항목을 제외하고 e4-1-3-7-xc4에서 실제 몫 점검에 적용한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-4-1-xc6",
+      "sourceIndex": 1796,
+      "beforeProposal": {
+        "sourceIndex": 1796,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+        "sourceFingerprint": "a20094550442c2d2e98dbad8ab69dc50a28674eb3d9adfe5bfc9495d5e7f0c95",
+        "proposalFingerprint": "9f6aa72e01693cccedb862e441d09e9420b9b7085bd0b1d92442f265acd67457",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-1-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "처음 위치와 옮긴 위치",
+        "bReason": "두 낱말 이름 확인",
+        "exclusionReason": "처음 위치와 옮긴 위치라는 낱말 이름만 확인하는 단순 용어라 C로 충분하다.",
+        "cDecision": "keep",
+        "cReason": "짝이 분명한 익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "처음 자리",
+            "원래 위치"
+          ],
+          [
+            "옮긴 자리",
+            "도착 위치"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "처음 위치와 옮긴 위치",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "점이 옮기기 전 자리는 {처음 위치}, 옮긴 뒤 자리는 {옮긴 위치}라고 한다.",
+        "cStudentSentence": "점이 옮기기 전 자리는 □, 옮긴 뒤 자리는 □라고 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "처음 위치",
+            "equivalents": [
+              "처음 자리",
+              "원래 위치"
+            ]
+          },
+          {
+            "expected": "옮긴 위치",
+            "equivalents": [
+              "옮긴 자리",
+              "도착 위치"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "점이 옮기기 전 자리는 □, 옮긴 뒤 자리는 □라고 한다.",
+          "answers": [
+            "처음 위치",
+            "옮긴 위치"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "점이 옮기기 전 자리는 {처음 위치}, 옮긴 뒤 자리는 {옮긴 위치}라고 한다.",
+          "acceptedAnswers": [
+            [
+              "처음 위치",
+              "처음 자리",
+              "원래 위치"
+            ],
+            [
+              "옮긴 위치",
+              "옮긴 자리",
+              "도착 위치"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "두 낱말 이름 확인"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-1-xc6",
+          "sourceIndex": 1796,
+          "proposalFingerprint": "9f6aa72e01693cccedb862e441d09e9420b9b7085bd0b1d92442f265acd67457",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "원래 위치와 옮긴 위치라는 이름만 반복하는 B 제외를 유지한다.",
+          "cReason": "이동 전후의 두 위치를 구별하는 빈칸은 순서가 명시되어 있다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "처음 위치와 옮긴 위치는 이 수업의 임의 표현으로 여러 일상말이 가능하며 이동의 수학적 성질을 확인하지 못한다.",
+        "exclusionReason": "B/C: 이동 전후 자리를 부르는 임의 용어 암기는 제외한다. 원래 일반 설명은 보존한다."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

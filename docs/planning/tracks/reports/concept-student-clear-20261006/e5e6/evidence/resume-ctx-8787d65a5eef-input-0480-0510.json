@@ -1,0 +1,3297 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T05:22:12.139123+00:00",
+  "rows": [
+    {
+      "id": "e5-1-2-1-xc10",
+      "bDecision": "revise",
+      "bPrompt": "나누어떨어지는 나눗셈에서 나누어지는 수와 나누는 수는 어떤 관계인지, 나눗셈식을 곱셈식으로 바꾸어 설명하시오. $35\\div7=5$를 예로 드시오.",
+      "bAnswer": "나누어지는 수는 나누는 수의 배수이다(나누는 수는 나누어지는 수의 약수이다). 나누어떨어지면 (나누어지는 수)$=$(나누는 수)$\\times$(몫)으로 쓸 수 있기 때문이다. $35\\div7=5$는 $35=7\\times5$로 바꿀 수 있으므로 $35$는 $7$의 배수이다.",
+      "bGoal": "나누어떨어지는 나눗셈식을 곱셈식으로 바꾸어 배수 관계를 설명한다.",
+      "bReason": "'배수'라는 결론을 질문에 넣지 않고 두 수의 관계를 학생이 말하게 했다. 설명 방법은 '곱셈식으로 바꾸기'로 정해 주었다.",
+      "studentLabel": "나누어떨어지는 나눗셈과 배수",
+      "cDecision": "revise",
+      "cAfter": "$35\\div7=5$로 나누어떨어지므로 $35=7\\times${$5$}로 쓸 수 있다. 따라서 $35$는 $7$의 {배수}이다.",
+      "cReason": "빈칸 '나누는 수의 배수'는 추상적인 역할 이름을 외워야 한다. 실제 나눗셈식과 곱셈식을 보여 주고 값과 낱말만 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "B 답에서 '35는 7의 배수'와 '7은 35의 약수'는 같은 관계이므로 둘 다 인정한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수는 나누는 수의 배수이다",
+            "$35$는 $7$의 배수이다",
+            "나누는 수는 나누어지는 수의 약수이다",
+            "$7$은 $35$의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눗셈식을 곱셈식으로 바꾸면 (나누는 수)$\\times$(몫)이 된다",
+            "$35=7\\times5$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 480,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc10",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "나누어떨어짐과 배수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "어떤 수가 다른 수로 나누어떨어지면 (나누는 수)$\\times$(몫)으로 쓸 수 있으므로 {나누는 수의 배수}이다.",
+        "example": {
+          "prompt": "$35\\div7=5$를 보고 $35$가 $7$의 배수임을 아는 까닭은?",
+          "answer": "$35=7\\times5$로 쓸 수 있다"
+        },
+        "studentC": "어떤 수가 다른 수로 나누어떨어지면 (나누는 수)$\\times$(몫)으로 쓸 수 있으므로 □이다.",
+        "answers": [
+          "나누는 수의 배수"
+        ]
+      },
+      "sourceFingerprint": "7323a8288f4262afb97f5665ca63187dd4ea140c2f556e80743e0253b0aacb02",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "배수"
+      ],
+      "cStudentAfter": "$35\\div7=5$로 나누어떨어지므로 $35=7\\times$□로 쓸 수 있다. 따라서 $35$는 $7$의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$35\\div7=5$로 나누어떨어지므로 $35=7\\times${$5$}로 쓸 수 있다. 따라서 $35$는 $7$의 {배수}이다.",
+      "cStudentSentence": "$35\\div7=5$로 나누어떨어지므로 $35=7\\times$□로 쓸 수 있다. 따라서 $35$는 $7$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어떨어지는 나눗셈에서 나누어지는 수와 나누는 수는 어떤 관계인지, 나눗셈식을 곱셈식으로 바꾸어 설명하시오. $35\\div7=5$를 예로 드시오.",
+        "answer": "나누어지는 수는 나누는 수의 배수이다(나누는 수는 나누어지는 수의 약수이다). 나누어떨어지면 (나누어지는 수)$=$(나누는 수)$\\times$(몫)으로 쓸 수 있기 때문이다. $35\\div7=5$는 $35=7\\times5$로 바꿀 수 있으므로 $35$는 $7$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수는 나누는 수의 배수이다",
+              "$35$는 $7$의 배수이다",
+              "나누는 수는 나누어지는 수의 약수이다",
+              "$7$은 $35$의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눗셈식을 곱셈식으로 바꾸면 (나누는 수)$\\times$(몫)이 된다",
+              "$35=7\\times5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$35\\div7=5$로 나누어떨어지므로 $35=7\\times${$5$}로 쓸 수 있다. 따라서 $35$는 $7$의 {배수}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b94a14390f4ee5ea5db87da85f55a6c268ec212d8657ae9bfb4b0273be9c1d15",
+      "questionRevision": "planning-e5e6-20261006-b94a14390f4e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc11",
+      "bDecision": "revise",
+      "bPrompt": "어떤 자연수보다 큰 수가 그 자연수의 약수가 될 수 있는지 판단하고, 그 이유를 나눗셈의 나머지로 설명하시오. $16$을 $20$으로 나누는 경우를 예로 드시오.",
+      "bAnswer": "될 수 없다. 자기보다 큰 수로 나누면 한 번도 덜어 낼 수 없어 몫이 $0$이고 나누어지는 수가 그대로 나머지로 남는다. $16\\div20$은 몫이 $0$, 나머지가 $16$이므로 $20$은 $16$의 약수가 아니다. 그래서 약수는 모두 그 수보다 작거나 같다.",
+      "bGoal": "약수가 그 수보다 클 수 없는 까닭을 나머지로 설명한다.",
+      "bReason": "xc3이 양 끝의 약수를 묻는다면 이 문항은 '더 큰 수는 왜 안 되는가'를 묻는다. 원문 예시의 '큰 수로 나누면 남아서'를 구체화했다.",
+      "studentLabel": "약수의 크기",
+      "cDecision": "keep",
+      "cAfter": "어떤 자연수의 약수는 모두 그 수보다 {작거나 같다}.",
+      "cReason": "약수와 그 수의 크기를 비교하는 짧은 문장이다. '같다'까지 넣어야 한다는 점을 확인할 수 있다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'작거나 같다', '같거나 작다', '크지 않다'를 인정한다. '작다'만 쓰면 자기 자신이 빠지므로 틀린 답이다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "될 수 없다",
+            "약수가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자기보다 큰 수로 나누면 나머지가 남아 나누어떨어지지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16\\div20$은 몫이 $0$이고 나머지가 $16$이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작거나 같다",
+            "같거나 작다",
+            "크지 않다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 481,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc11",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "약수의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "어떤 자연수의 약수는 모두 그 수보다 {작거나 같다}.",
+        "example": {
+          "prompt": "$16$의 약수 중 $16$보다 큰 수가 없는 까닭은?",
+          "answer": "큰 수로 나누면 남아서"
+        },
+        "studentC": "어떤 자연수의 약수는 모두 그 수보다 □.",
+        "answers": [
+          "작거나 같다"
+        ]
+      },
+      "sourceFingerprint": "3c011b41f932a33935df13414e4331785c0435a4b6a0567f90195648832f219c",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cFrozenDefinition": "어떤 자연수의 약수는 모두 그 수보다 {작거나 같다}.",
+      "cFrozenStudentSentence": "어떤 자연수의 약수는 모두 그 수보다 □.",
+      "cProposedAnswers": [
+        "작거나 같다"
+      ],
+      "cStudentAfter": "어떤 자연수의 약수는 모두 그 수보다 □.",
+      "cMarkedSentence": "어떤 자연수의 약수는 모두 그 수보다 {작거나 같다}.",
+      "cStudentSentence": "어떤 자연수의 약수는 모두 그 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작거나 같다",
+          "equivalents": [
+            "같거나 작다",
+            "크지 않다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 자연수보다 큰 수가 그 자연수의 약수가 될 수 있는지 판단하고, 그 이유를 나눗셈의 나머지로 설명하시오. $16$을 $20$으로 나누는 경우를 예로 드시오.",
+        "answer": "될 수 없다. 자기보다 큰 수로 나누면 한 번도 덜어 낼 수 없어 몫이 $0$이고 나누어지는 수가 그대로 나머지로 남는다. $16\\div20$은 몫이 $0$, 나머지가 $16$이므로 $20$은 $16$의 약수가 아니다. 그래서 약수는 모두 그 수보다 작거나 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "될 수 없다",
+              "약수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자기보다 큰 수로 나누면 나머지가 남아 나누어떨어지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$16\\div20$은 몫이 $0$이고 나머지가 $16$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 자연수의 약수는 모두 그 수보다 {작거나 같다}.",
+        "acceptedAnswers": [
+          [
+            "작거나 같다",
+            "같거나 작다",
+            "크지 않다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9e9cf683bfd7b95e6eac195e9b0af55d8d730e056f19d2431cec8f646b4c8b2e",
+      "questionRevision": "planning-e5e6-20261006-9e9cf683bfd7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc12",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "원래 목표는 배수가 모두 그 수보다 크거나 같다는 것이다.",
+      "bReason": "가장 작은 배수가 자기 자신이라는 xc4와 같은 내용이다.",
+      "cDecision": "keep",
+      "cAfter": "어떤 자연수의 배수는 모두 그 수보다 {크거나 같다}.",
+      "cReason": "xc11의 '작거나 같다'와 짝을 이루는 비교 문장이다. 약수와 배수의 크기 방향을 구별하는 데 쓸 수 있다.",
+      "exclusionReason": "B만 제외한다. 대체: e5-1-2-1-xc4.",
+      "exampleNeeded": false,
+      "synonymNotes": "'크거나 같다', '같거나 크다', '작지 않다'를 인정한다. '크다'만 쓰면 $1$배인 자기 자신이 빠지므로 틀린 답이다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크거나 같다",
+            "같거나 크다",
+            "작지 않다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 482,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc12",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "배수의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "어떤 자연수의 배수는 모두 그 수보다 {크거나 같다}.",
+        "studentC": "어떤 자연수의 배수는 모두 그 수보다 □.",
+        "answers": [
+          "크거나 같다"
+        ]
+      },
+      "sourceFingerprint": "5ec94e62c0b3e189b2035c8e88d88d0bfee61e7a014be09b101634f1b705ee12",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cFrozenDefinition": "어떤 자연수의 배수는 모두 그 수보다 {크거나 같다}.",
+      "cFrozenStudentSentence": "어떤 자연수의 배수는 모두 그 수보다 □.",
+      "cProposedAnswers": [
+        "크거나 같다"
+      ],
+      "cStudentAfter": "어떤 자연수의 배수는 모두 그 수보다 □.",
+      "cMarkedSentence": "어떤 자연수의 배수는 모두 그 수보다 {크거나 같다}.",
+      "cStudentSentence": "어떤 자연수의 배수는 모두 그 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크거나 같다",
+          "equivalents": [
+            "같거나 크다",
+            "작지 않다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "어떤 자연수의 배수는 모두 그 수보다 {크거나 같다}.",
+        "acceptedAnswers": [
+          [
+            "크거나 같다",
+            "같거나 크다",
+            "작지 않다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체: e5-1-2-1-xc4."
+      },
+      "proposalFingerprint": "036d5c76c3c4d109e420385ae79ef62599f6e6aca8851b697cc5011838c547f0",
+      "questionRevision": "planning-e5e6-20261006-036d5c76c3c4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc13",
+      "bDecision": "revise",
+      "bPrompt": "약수가 $1$개뿐인 자연수는 무엇인지 쓰고, 다른 자연수는 모두 약수가 $2$개 이상인 이유를 설명하시오. $5$를 예로 드시오.",
+      "bAnswer": "약수가 $1$개뿐인 자연수는 $1$이다($1$의 약수는 $1$뿐). $1$보다 큰 자연수는 $1$과 자기 자신이 서로 다른 약수이므로 약수가 적어도 $2$개이다. $5$의 약수는 $1$과 $5$로 $2$개이다.",
+      "bGoal": "$1$만 약수가 하나이고 다른 자연수는 약수가 둘 이상임을 이유와 함께 말한다.",
+      "bReason": "원문 예시의 까닭은 xc11과 겹친다. '약수가 하나뿐인 수'라는 $1$의 특별함을 다른 수와 비교하게 했다.",
+      "studentLabel": "$1$의 약수",
+      "cDecision": "revise",
+      "cAfter": "$1$을 $1$보다 큰 자연수로 나누면 나머지가 {$1$}이 되어 나누어떨어지지 않는다. 그래서 $1$의 약수는 모두 {$1$}개이다.",
+      "cReason": "원문은 바로 앞에 '$1$뿐이라'가 있어 빈칸 답이 그대로 드러난다. 이유가 되는 나머지와 약수의 개수를 따로 묻게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약수가 $1$개뿐인 자연수는 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$보다 큰 자연수는 $1$과 자기 자신이 서로 다른 약수라 약수가 $2$개 이상이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$의 약수는 $1$, $5$로 $2$개이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 483,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc13",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "$1$의 약수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$1$을 나누어떨어지게 하는 자연수는 $1$뿐이라 $1$의 약수는 {$1$ 하나}이다.",
+        "example": {
+          "prompt": "$1$의 약수가 $1$뿐인 까닭은?",
+          "answer": "더 큰 수로 나누면 $1$이 남아서"
+        },
+        "studentC": "$1$을 나누어떨어지게 하는 자연수는 $1$뿐이라 $1$의 약수는 □이다.",
+        "answers": [
+          "$1$ 하나"
+        ]
+      },
+      "sourceFingerprint": "dc518d2f430feaf97a3cad407b876734f105a05b4860e1e5c0ec42fde00e8d74",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$1$"
+      ],
+      "cStudentAfter": "$1$을 $1$보다 큰 자연수로 나누면 나머지가 □이 되어 나누어떨어지지 않는다. 그래서 $1$의 약수는 모두 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1$을 $1$보다 큰 자연수로 나누면 나머지가 {$1$}이 되어 나누어떨어지지 않는다. 그래서 $1$의 약수는 모두 {$1$}개이다.",
+      "cStudentSentence": "$1$을 $1$보다 큰 자연수로 나누면 나머지가 □이 되어 나누어떨어지지 않는다. 그래서 $1$의 약수는 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "약수가 $1$개뿐인 자연수는 무엇인지 쓰고, 다른 자연수는 모두 약수가 $2$개 이상인 이유를 설명하시오. $5$를 예로 드시오.",
+        "answer": "약수가 $1$개뿐인 자연수는 $1$이다($1$의 약수는 $1$뿐). $1$보다 큰 자연수는 $1$과 자기 자신이 서로 다른 약수이므로 약수가 적어도 $2$개이다. $5$의 약수는 $1$과 $5$로 $2$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "약수가 $1$개뿐인 자연수는 $1$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$보다 큰 자연수는 $1$과 자기 자신이 서로 다른 약수라 약수가 $2$개 이상이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$의 약수는 $1$, $5$로 $2$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$을 $1$보다 큰 자연수로 나누면 나머지가 {$1$}이 되어 나누어떨어지지 않는다. 그래서 $1$의 약수는 모두 {$1$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d30e510c482d77520038895b83e4f0be22630d6874e1a5465491c2174cc8c500",
+      "questionRevision": "planning-e5e6-20261006-d30e510c482d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "원래 목표는 $1$이 모든 자연수의 약수라는 것이다.",
+      "bReason": "xc3에서 $1$이 언제나 약수인 이유를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "{$1$}은 어떤 자연수든 나누어떨어지게 하므로 모든 자연수의 약수이다.",
+      "cReason": "'어떤 자연수든 나누어떨어지게 한다'는 이유가 문장에 있고 답이 수 하나라 짧게 확인하기 좋다. xc3 C는 $1$을 보여 주고 다른 칸을 묻기 때문에 겹치지 않는다.",
+      "exclusionReason": "B만 제외한다. 대체: e5-1-2-1-xc3.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 484,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc14",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "모든 자연수의 약수인 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "{$1$}은 어떤 자연수든 나누어떨어지게 하므로 모든 자연수의 약수이다.",
+        "studentC": "□은 어떤 자연수든 나누어떨어지게 하므로 모든 자연수의 약수이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "e1c9907bd9e2c6261495b7717d9a694463187de4f7e7fc76165df29fe01214f3",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cFrozenDefinition": "{$1$}은 어떤 자연수든 나누어떨어지게 하므로 모든 자연수의 약수이다.",
+      "cFrozenStudentSentence": "□은 어떤 자연수든 나누어떨어지게 하므로 모든 자연수의 약수이다.",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "□은 어떤 자연수든 나누어떨어지게 하므로 모든 자연수의 약수이다.",
+      "cMarkedSentence": "{$1$}은 어떤 자연수든 나누어떨어지게 하므로 모든 자연수의 약수이다.",
+      "cStudentSentence": "□은 어떤 자연수든 나누어떨어지게 하므로 모든 자연수의 약수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "{$1$}은 어떤 자연수든 나누어떨어지게 하므로 모든 자연수의 약수이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체: e5-1-2-1-xc3."
+      },
+      "proposalFingerprint": "cbabe39c5c99dc7c09a6e5dbf2d7889ca2fe1fc9a5bd954e966a49f26cec0f01",
+      "questionRevision": "planning-e5e6-20261006-cbabe39c5c99",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc15",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "원래 목표는 어떤 자연수든 $1$배가 자기 자신이므로 자기 자신의 배수라는 것이다.",
+      "bReason": "xc4와 같은 $1$배 이유가 이미 들어 있다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '$1$배 한 값'은 학생이 떠올리기 어려운 임의 구절이다. 고쳐 쓰면 xc4 문장과 같은 내용이 된다.",
+      "exclusionReason": "B·C 모두 xc4와 중복이다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 485,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc15",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "자기 자신의 배수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "어떤 자연수든 {$1$배 한 값}은 자기 자신이므로 자기 자신의 배수이다.",
+        "studentC": "어떤 자연수든 □은 자기 자신이므로 자기 자신의 배수이다.",
+        "answers": [
+          "$1$배 한 값"
+        ]
+      },
+      "sourceFingerprint": "943b0c8cd9a2a8fe783264edd47ea2c1daed2faa90fca79db3ae19b838a79d88",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 모두 xc4와 중복이다.",
+        "cloze": "B·C 모두 xc4와 중복이다."
+      },
+      "proposalFingerprint": "846dde12c3e7555edca7a3b914adbb8f0a3aabc0970a3ae504560afefa71e433",
+      "questionRevision": "planning-e5e6-20261006-846dde12c3e7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "어떤 자연수가 다른 자연수의 배수인지 나눗셈으로 알아보는 방법을 설명하고, $52$와 $54$가 각각 $4$의 배수인지 판단하시오.",
+      "bAnswer": "배수인지 알아볼 수를 다른 자연수로 나누어, 나누어떨어지면 배수이고 나머지가 있으면 배수가 아니다. $52\\div4=13$으로 나누어떨어지므로 $52$는 $4$의 배수이다. $54\\div4$는 몫이 $13$, 나머지가 $2$이므로 $54$는 $4$의 배수가 아니다.",
+      "bGoal": "배수인지 판단하는 나눗셈 절차를 말하고 실제 수에 적용한다.",
+      "bReason": "xc10은 이유(곱셈식), 이 문항은 판단 절차다. 배수인 수와 아닌 수를 하나씩 넣어 기준을 쓰게 했다.",
+      "studentLabel": "배수인지 알아보기",
+      "cDecision": "revise",
+      "cAfter": "$52$가 $4$의 배수인지 알아보려면 $52$를 $4$로 나누어 본다. 나머지가 {$0$}이므로 $52$는 $4$의 배수이다. $54$를 $4$로 나누면 나머지가 {$2$}이므로 $54$는 $4$의 배수가 아니다.",
+      "cReason": "원문의 '그 수로 나누어'는 어느 수로 나누는지 불분명하다. 원문 예시 $52\\div4$로 나눗셈 방향을 보여 주고 나머지 값으로 판단하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "알아볼 수를 다른 자연수로 나누어 나누어떨어지는지 본다",
+            "알아볼 수를 나눈 나머지가 $0$이면 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$52$는 $4$의 배수이다",
+            "$52\\div4=13$으로 나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$54$는 $4$의 배수가 아니다",
+            "$54\\div4$는 나머지가 $2$이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 486,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc16",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "배수인지 알아보기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "어떤 수가 다른 수의 배수인지 알려면 그 수로 나누어 {나누어떨어지는지} 본다.",
+        "example": {
+          "prompt": "$52$가 $4$의 배수인지 나눗셈으로 알아볼 때 무엇을 보는가?",
+          "answer": "$52\\div4$가 나누어떨어지는지"
+        },
+        "studentC": "어떤 수가 다른 수의 배수인지 알려면 그 수로 나누어 □ 본다.",
+        "answers": [
+          "나누어떨어지는지"
+        ]
+      },
+      "sourceFingerprint": "638b75665b7d249d57c73dc0c2953a6c35926cda61e630c7c06a54735bc37c2e",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "$0$",
+        "$2$"
+      ],
+      "cStudentAfter": "$52$가 $4$의 배수인지 알아보려면 $52$를 $4$로 나누어 본다. 나머지가 □이므로 $52$는 $4$의 배수이다. $54$를 $4$로 나누면 나머지가 □이므로 $54$는 $4$의 배수가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$52$가 $4$의 배수인지 알아보려면 $52$를 $4$로 나누어 본다. 나머지가 {$0$}이므로 $52$는 $4$의 배수이다. $54$를 $4$로 나누면 나머지가 {$2$}이므로 $54$는 $4$의 배수가 아니다.",
+      "cStudentSentence": "$52$가 $4$의 배수인지 알아보려면 $52$를 $4$로 나누어 본다. 나머지가 □이므로 $52$는 $4$의 배수이다. $54$를 $4$로 나누면 나머지가 □이므로 $54$는 $4$의 배수가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 자연수가 다른 자연수의 배수인지 나눗셈으로 알아보는 방법을 설명하고, $52$와 $54$가 각각 $4$의 배수인지 판단하시오.",
+        "answer": "배수인지 알아볼 수를 다른 자연수로 나누어, 나누어떨어지면 배수이고 나머지가 있으면 배수가 아니다. $52\\div4=13$으로 나누어떨어지므로 $52$는 $4$의 배수이다. $54\\div4$는 몫이 $13$, 나머지가 $2$이므로 $54$는 $4$의 배수가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "알아볼 수를 다른 자연수로 나누어 나누어떨어지는지 본다",
+              "알아볼 수를 나눈 나머지가 $0$이면 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$52$는 $4$의 배수이다",
+              "$52\\div4=13$으로 나누어떨어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$54$는 $4$의 배수가 아니다",
+              "$54\\div4$는 나머지가 $2$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$52$가 $4$의 배수인지 알아보려면 $52$를 $4$로 나누어 본다. 나머지가 {$0$}이므로 $52$는 $4$의 배수이다. $54$를 $4$로 나누면 나머지가 {$2$}이므로 $54$는 $4$의 배수가 아니다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "85af0760adcf9974adb3a45441b0212e51bf4dbeacba27cd43313eb3a97011c6",
+      "questionRevision": "planning-e5e6-20261006-85af0760adcf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc17",
+      "bDecision": "revise",
+      "bPrompt": "$10$의 배수는 일의 자리 숫자에 어떤 공통점이 있는지 쓰고, 그 이유를 $10$개씩 묶음과 낱개로 설명하시오. $130$을 예로 드시오.",
+      "bAnswer": "일의 자리 숫자가 모두 $0$이다. $10$의 배수는 $10$개씩 묶음만으로 이루어져 낱개가 남지 않기 때문이다. $130=10\\times13$은 $10$개씩 $13$묶음이고 낱개가 $0$개이다.",
+      "bGoal": "$10$의 배수의 일의 자리가 $0$인 까닭을 묶음과 낱개로 설명한다.",
+      "bReason": "원문 예시는 답($0$)을 질문에 넣었다. 공통점을 학생이 쓰게 하고 설명 방법만 '묶음과 낱개'로 정해 주었다.",
+      "studentLabel": "$10$의 배수의 일의 자리",
+      "cDecision": "keep",
+      "cAfter": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+      "cReason": "대상($10$의 배수)과 물음(일의 자리 숫자)이 분명하고 답이 숫자 하나다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일의 자리 숫자가 모두 $0$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$개씩 묶음만 있어 낱개가 남지 않는다",
+            "$130$은 $10$개씩 $13$묶음이고 낱개가 $0$개이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 487,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc17",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "$10$의 배수의 일의 자리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+        "example": {
+          "prompt": "$10$의 배수의 일의 자리 숫자가 $0$인 까닭을 묶음으로 설명하시오.",
+          "answer": "$10$개씩 묶고 나면 낱개가 없어서"
+        },
+        "studentC": "$10$의 배수는 일의 자리 숫자가 모두 □이다.",
+        "answers": [
+          "$0$"
+        ]
+      },
+      "sourceFingerprint": "773e0968c1c8e6cda900114a37edab77173e767d6d409680b915b6373a1c77e8",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cFrozenDefinition": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+      "cFrozenStudentSentence": "$10$의 배수는 일의 자리 숫자가 모두 □이다.",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "$10$의 배수는 일의 자리 숫자가 모두 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+      "cStudentSentence": "$10$의 배수는 일의 자리 숫자가 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$10$의 배수는 일의 자리 숫자에 어떤 공통점이 있는지 쓰고, 그 이유를 $10$개씩 묶음과 낱개로 설명하시오. $130$을 예로 드시오.",
+        "answer": "일의 자리 숫자가 모두 $0$이다. $10$의 배수는 $10$개씩 묶음만으로 이루어져 낱개가 남지 않기 때문이다. $130=10\\times13$은 $10$개씩 $13$묶음이고 낱개가 $0$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리 숫자가 모두 $0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$개씩 묶음만 있어 낱개가 남지 않는다",
+              "$130$은 $10$개씩 $13$묶음이고 낱개가 $0$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10$의 배수는 일의 자리 숫자가 모두 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "892cdfb1c326eebca13c058b02e0c8288c0d6fcc903126942193750b4bcd1166",
+      "questionRevision": "planning-e5e6-20261006-892cdfb1c326",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc18",
+      "bDecision": "revise",
+      "bPrompt": "$5$의 배수는 일의 자리 숫자가 어떤 숫자가 되는지 쓰고, 그 이유를 $5$의 배수를 작은 것부터 늘어놓아 설명하시오. 또 $73$, $85$, $120$ 가운데 $5$의 배수를 모두 고르시오.",
+      "bAnswer": "일의 자리 숫자는 $0$ 또는 $5$이다. $5$, $10$, $15$, $20$, ……처럼 $5$씩 커지는데 $5$를 두 번 더하면 $10$이 되므로 일의 자리가 $5$, $0$, $5$, $0$으로 되풀이된다. $5$의 배수는 $85$와 $120$이다.",
+      "bGoal": "$5$의 배수의 일의 자리 규칙과 그 까닭을 말하고 수를 가려낸다.",
+      "bReason": "원문 예시는 '$0$ 또는 $5$'를 질문에 넣었다. 규칙을 학생이 쓰게 하고 늘어놓기로 이유를 설명하게 했다.",
+      "studentLabel": "$5$의 배수의 일의 자리",
+      "cDecision": "revise",
+      "cAfter": "$5$의 배수는 일의 자리 숫자가 $0$ 또는 {$5$}이다. 그래서 $73$, $85$, $91$ 가운데 $5$의 배수는 {$85$}이다.",
+      "cReason": "'번갈아 가진다'는 어색하고, '$0$과 $5$'를 한 칸에 쓰면 순서와 표기가 흔들린다. 숫자 하나와 규칙을 적용한 답으로 나누었다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "일의 자리 숫자는 $0$ 또는 $5$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$씩 커지고 $5$를 두 번 더하면 $10$이 되어 일의 자리가 $5$, $0$으로 되풀이된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$85$, $120$",
+            "$85$와 $120$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$85$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 488,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc18",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "$5$의 배수의 일의 자리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$5$의 배수는 $5$씩 커지므로 일의 자리 숫자로 {$0$과 $5$}를 번갈아 가진다.",
+        "example": {
+          "prompt": "$5$의 배수의 일의 자리 숫자가 $0$ 또는 $5$인 까닭은?",
+          "answer": "$5$씩 두 묶음이 $10$이라서"
+        },
+        "studentC": "$5$의 배수는 $5$씩 커지므로 일의 자리 숫자로 □를 번갈아 가진다.",
+        "answers": [
+          "$0$과 $5$"
+        ]
+      },
+      "sourceFingerprint": "522bb15a0679fe00da72ac5047ab52c19c597dff5a1094a8000c06e2ff463e1c",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$85$"
+      ],
+      "cStudentAfter": "$5$의 배수는 일의 자리 숫자가 $0$ 또는 □이다. 그래서 $73$, $85$, $91$ 가운데 $5$의 배수는 □이다.",
+      "cMarkedSentence": "$5$의 배수는 일의 자리 숫자가 $0$ 또는 {$5$}이다. 그래서 $73$, $85$, $91$ 가운데 $5$의 배수는 {$85$}이다.",
+      "cStudentSentence": "$5$의 배수는 일의 자리 숫자가 $0$ 또는 □이다. 그래서 $73$, $85$, $91$ 가운데 $5$의 배수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$85$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$5$의 배수는 일의 자리 숫자가 어떤 숫자가 되는지 쓰고, 그 이유를 $5$의 배수를 작은 것부터 늘어놓아 설명하시오. 또 $73$, $85$, $120$ 가운데 $5$의 배수를 모두 고르시오.",
+        "answer": "일의 자리 숫자는 $0$ 또는 $5$이다. $5$, $10$, $15$, $20$, ……처럼 $5$씩 커지는데 $5$를 두 번 더하면 $10$이 되므로 일의 자리가 $5$, $0$, $5$, $0$으로 되풀이된다. $5$의 배수는 $85$와 $120$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "일의 자리 숫자는 $0$ 또는 $5$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$씩 커지고 $5$를 두 번 더하면 $10$이 되어 일의 자리가 $5$, $0$으로 되풀이된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$85$, $120$",
+              "$85$와 $120$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5$의 배수는 일의 자리 숫자가 $0$ 또는 {$5$}이다. 그래서 $73$, $85$, $91$ 가운데 $5$의 배수는 {$85$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$85$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bf5d1c14970ed272d40a0354682b85d0ab59d47d850886bd6d7263ce7ada400a",
+      "questionRevision": "planning-e5e6-20261006-bf5d1c14970e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$2$의 배수는 일의 자리 숫자가 어떤 숫자들인지 쓰고, 십의 자리 숫자와 관계없이 그렇게 되는 이유를 $10$을 $2$씩 묶어 설명하시오. $74$를 예로 드시오.",
+      "bAnswer": "일의 자리 숫자는 $0$, $2$, $4$, $6$, $8$ 가운데 하나이다. $10$은 $2$씩 $5$묶음으로 남김없이 묶이므로 $10$개씩 묶음 부분은 언제나 $2$의 배수이고, 낱개인 일의 자리만 $2$씩 묶이는지 보면 된다. $74=70+4$에서 $70=2\\times35$, $4=2\\times2$이므로 $74=2\\times37$로 $2$의 배수이다.",
+      "bGoal": "$2$의 배수를 일의 자리만으로 가려낼 수 있는 까닭을 '10은 2씩 묶인다'로 설명한다.",
+      "bReason": "원문 예시의 까닭('10은 2씩 묶이니까')을 살리되, 숫자 목록은 학생이 쓰게 하고 $74$를 묶음과 낱개로 나누어 보이게 했다.",
+      "studentLabel": "$2$의 배수의 일의 자리",
+      "cDecision": "keep",
+      "cAfter": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+      "cReason": "다섯 숫자는 임의 구절이 아니라 $2$의 배수를 가려내는 기준 그 자체이므로 떠올려 쓰게 할 가치가 있다.",
+      "exampleNeeded": false,
+      "synonymNotes": "다섯 숫자의 순서는 따지지 않는다. '짝수'라고 쓴 답은 뜻은 맞지만 초등에서 $0$을 짝수로 분명히 다루지 않으므로, 숫자를 나열하도록 안내한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0$, $2$, $4$, $6$, $8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$은 $2$씩 남김없이 묶이므로 십의 자리 이상은 언제나 $2$의 배수이고 일의 자리만 보면 된다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$, $2$, $4$, $6$, $8$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 489,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc19",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "$2$의 배수의 일의 자리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+        "example": {
+          "prompt": "$2$의 배수인지를 일의 자리 숫자만 보고 알 수 있는 까닭은?",
+          "answer": "$10$은 $2$씩 묶이니까"
+        },
+        "studentC": "$2$의 배수는 일의 자리 숫자가 □ 가운데 하나이다.",
+        "answers": [
+          "$0$, $2$, $4$, $6$, $8$"
+        ]
+      },
+      "sourceFingerprint": "46abfda3f988da8f53feae6184d9cb390faef018189a130b8e3b28906e5b073d",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cFrozenDefinition": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+      "cFrozenStudentSentence": "$2$의 배수는 일의 자리 숫자가 □ 가운데 하나이다.",
+      "cProposedAnswers": [
+        "$0$, $2$, $4$, $6$, $8$"
+      ],
+      "cStudentAfter": "$2$의 배수는 일의 자리 숫자가 □ 가운데 하나이다.",
+      "cMarkedSentence": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+      "cStudentSentence": "$2$의 배수는 일의 자리 숫자가 □ 가운데 하나이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$, $2$, $4$, $6$, $8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2$의 배수는 일의 자리 숫자가 어떤 숫자들인지 쓰고, 십의 자리 숫자와 관계없이 그렇게 되는 이유를 $10$을 $2$씩 묶어 설명하시오. $74$를 예로 드시오.",
+        "answer": "일의 자리 숫자는 $0$, $2$, $4$, $6$, $8$ 가운데 하나이다. $10$은 $2$씩 $5$묶음으로 남김없이 묶이므로 $10$개씩 묶음 부분은 언제나 $2$의 배수이고, 낱개인 일의 자리만 $2$씩 묶이는지 보면 된다. $74=70+4$에서 $70=2\\times35$, $4=2\\times2$이므로 $74=2\\times37$로 $2$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0$, $2$, $4$, $6$, $8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$은 $2$씩 남김없이 묶이므로 십의 자리 이상은 언제나 $2$의 배수이고 일의 자리만 보면 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2$의 배수는 일의 자리 숫자가 {$0$, $2$, $4$, $6$, $8$} 가운데 하나이다.",
+        "acceptedAnswers": [
+          [
+            "$0$, $2$, $4$, $6$, $8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fc40268324cdd225df1925d1a01bf0f172006bc13c1436847313aa075ac2cbb4",
+      "questionRevision": "planning-e5e6-20261006-fc40268324cd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc20",
+      "bDecision": "revise",
+      "bPrompt": "곱해서 어떤 자연수가 되는 두 수를 짝지어 약수를 찾을 때, 작은 쪽 수를 어디까지 알아보면 약수를 모두 찾은 것인지 이유와 함께 설명하시오. 이 방법으로 $30$의 약수를 모두 구하시오.",
+      "bAnswer": "작은 쪽 수가 짝이 되는 수보다 커지기 전까지만 알아보면 된다. 그보다 큰 약수는 이미 앞에서 짝으로 찾았기 때문이다. $30=1\\times30=2\\times15=3\\times10=5\\times6$이고 다음 수 $6$은 이미 $5$의 짝으로 나왔으므로 멈춘다. $30$의 약수는 $1$, $2$, $3$, $5$, $6$, $10$, $15$, $30$이다.",
+      "bGoal": "약수를 짝지어 찾을 때 멈추는 때와 그 까닭을 말한다.",
+      "bReason": "원문 예시는 '$5\\times6$까지'를 알려 준다. 멈추는 때를 학생이 판단하게 하고 $30$의 약수 전체로 확인하게 했다.",
+      "studentLabel": "약수를 짝지어 찾기",
+      "cDecision": "revise",
+      "cAfter": "$30$의 약수를 곱셈식으로 짝지어 찾으면 $1\\times30$, $2\\times15$, $3\\times10$, $5\\times${$6$}이다. 그다음 수는 이미 $5$의 짝으로 찾았으므로 더 나누어 보지 않아도 되고, $30$의 약수는 모두 {$8$}개이다.",
+      "cReason": "빈칸 '짝이 되는 수보다 커지면'은 긴 조건절을 통째로 외워야 한다. 실제 짝 목록에서 마지막 짝과 약수의 개수를 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 쪽 수가 짝이 되는 수보다 커지기 전까지만 알아본다",
+            "작은 쪽 수가 짝이 되는 수보다 커지면 멈춘다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그보다 큰 약수는 이미 앞에서 짝으로 찾았기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$, $2$, $3$, $5$, $6$, $10$, $15$, $30$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 490,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc20",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "약수 찾기를 멈추는 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "약수를 작은 수부터 짝지어 찾을 때 작은 쪽 수가 {짝이 되는 수보다 커지면} 더 찾지 않아도 약수를 모두 찾은 것이다.",
+        "example": {
+          "prompt": "$30$의 약수를 짝지어 찾을 때 $5\\times6$까지만 찾으면 되는 까닭은?",
+          "answer": "$6$ 이상인 약수는 짝으로 찾아서"
+        },
+        "studentC": "약수를 작은 수부터 짝지어 찾을 때 작은 쪽 수가 □ 더 찾지 않아도 약수를 모두 찾은 것이다.",
+        "answers": [
+          "짝이 되는 수보다 커지면"
+        ]
+      },
+      "sourceFingerprint": "1434b9f788555b642b95c5bef8077de8f1481b3c59607dd407ba27daf6529f86",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$8$"
+      ],
+      "cStudentAfter": "$30$의 약수를 곱셈식으로 짝지어 찾으면 $1\\times30$, $2\\times15$, $3\\times10$, $5\\times$□이다. 그다음 수는 이미 $5$의 짝으로 찾았으므로 더 나누어 보지 않아도 되고, $30$의 약수는 모두 □개이다.",
+      "cMarkedSentence": "$30$의 약수를 곱셈식으로 짝지어 찾으면 $1\\times30$, $2\\times15$, $3\\times10$, $5\\times${$6$}이다. 그다음 수는 이미 $5$의 짝으로 찾았으므로 더 나누어 보지 않아도 되고, $30$의 약수는 모두 {$8$}개이다.",
+      "cStudentSentence": "$30$의 약수를 곱셈식으로 짝지어 찾으면 $1\\times30$, $2\\times15$, $3\\times10$, $5\\times$□이다. 그다음 수는 이미 $5$의 짝으로 찾았으므로 더 나누어 보지 않아도 되고, $30$의 약수는 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "곱해서 어떤 자연수가 되는 두 수를 짝지어 약수를 찾을 때, 작은 쪽 수를 어디까지 알아보면 약수를 모두 찾은 것인지 이유와 함께 설명하시오. 이 방법으로 $30$의 약수를 모두 구하시오.",
+        "answer": "작은 쪽 수가 짝이 되는 수보다 커지기 전까지만 알아보면 된다. 그보다 큰 약수는 이미 앞에서 짝으로 찾았기 때문이다. $30=1\\times30=2\\times15=3\\times10=5\\times6$이고 다음 수 $6$은 이미 $5$의 짝으로 나왔으므로 멈춘다. $30$의 약수는 $1$, $2$, $3$, $5$, $6$, $10$, $15$, $30$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "작은 쪽 수가 짝이 되는 수보다 커지기 전까지만 알아본다",
+              "작은 쪽 수가 짝이 되는 수보다 커지면 멈춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그보다 큰 약수는 이미 앞에서 짝으로 찾았기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$, $2$, $3$, $5$, $6$, $10$, $15$, $30$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$30$의 약수를 곱셈식으로 짝지어 찾으면 $1\\times30$, $2\\times15$, $3\\times10$, $5\\times${$6$}이다. 그다음 수는 이미 $5$의 짝으로 찾았으므로 더 나누어 보지 않아도 되고, $30$의 약수는 모두 {$8$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b6d8e30403cb9bd5dd5f748a999d1e99435f8e8f401e416c7b45e02435a682ec",
+      "questionRevision": "planning-e5e6-20261006-b6d8e30403cb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "$1$부터 어떤 수까지의 자연수 가운데 어떤 자연수의 배수가 몇 개인지를 나눗셈으로 구하는 방법과, 그렇게 구할 수 있는 이유를 설명하시오. $1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수를 예로 드시오.",
+      "bAnswer": "끝 수를 그 자연수로 나눈 몫이 배수의 개수이다. 배수는 (그 수)$\\times1$, (그 수)$\\times2$, ……이므로 끝 수 안에 그 수가 몇 번 들어가는지가 곧 배수의 개수이기 때문이다. $50\\div6$은 몫이 $8$, 나머지가 $2$이므로 $6$의 배수는 $6\\times1$부터 $6\\times8=48$까지 $8$개이다.",
+      "bGoal": "범위 안의 배수 개수를 나눗셈의 몫으로 구하는 방법과 까닭을 말한다.",
+      "bReason": "원문 예시는 '$50\\div6$의 몫'이라는 방법을 알려 준다. 방법과 이유를 모두 학생이 말하게 하고, 범위를 '1부터'로 분명히 했다.",
+      "studentLabel": "범위 안의 배수 개수",
+      "cDecision": "revise",
+      "cAfter": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$의 {몫}과 같다. 그래서 $6$의 배수는 모두 {$8$}개이고, 그중 가장 큰 수는 $48$이다.",
+      "cReason": "'끝 수', '배수의 기준 수'는 편집용 말이라 학생이 가리키는 수를 알기 어렵다. 실제 범위와 수를 넣어 낱말과 계산값을 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "첫 빈칸은 '몫'만 맞다. '나머지', '값'은 다른 답이다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "끝 수를 그 자연수로 나눈 몫이 배수의 개수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "끝 수 안에 그 수가 몇 번 들어가는지가 곧 배수의 개수이다",
+            "배수는 (그 수)$\\times1$, (그 수)$\\times2$, ...이므로 곱하는 수의 개수가 몫이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$50\\div6$의 몫이 $8$이므로 $6$의 배수는 $8$개이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "몫"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 491,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc21",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "어느 수까지의 배수 세기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어느 수까지 있는 배수를 셀 때는 그 끝 수를 배수의 기준 수로 {나눈 몫}을 이용한다.",
+        "example": {
+          "prompt": "$50$까지의 $6$의 배수의 개수를 $50\\div6$의 몫으로 아는 까닭은?",
+          "answer": "$6$씩 한 묶음에 배수 하나라서"
+        },
+        "studentC": "어느 수까지 있는 배수를 셀 때는 그 끝 수를 배수의 기준 수로 □을 이용한다.",
+        "answers": [
+          "나눈 몫"
+        ]
+      },
+      "sourceFingerprint": "17b608e713dcef500e6aac8f5172edfdd2ecf7bab5a6d07a52e02ef8af93b1b7",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "몫",
+        "$8$"
+      ],
+      "cStudentAfter": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$의 □과 같다. 그래서 $6$의 배수는 모두 □개이고, 그중 가장 큰 수는 $48$이다.",
+      "cMarkedSentence": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$의 {몫}과 같다. 그래서 $6$의 배수는 모두 {$8$}개이고, 그중 가장 큰 수는 $48$이다.",
+      "cStudentSentence": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$의 □과 같다. 그래서 $6$의 배수는 모두 □개이고, 그중 가장 큰 수는 $48$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "몫",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$부터 어떤 수까지의 자연수 가운데 어떤 자연수의 배수가 몇 개인지를 나눗셈으로 구하는 방법과, 그렇게 구할 수 있는 이유를 설명하시오. $1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수를 예로 드시오.",
+        "answer": "끝 수를 그 자연수로 나눈 몫이 배수의 개수이다. 배수는 (그 수)$\\times1$, (그 수)$\\times2$, ……이므로 끝 수 안에 그 수가 몇 번 들어가는지가 곧 배수의 개수이기 때문이다. $50\\div6$은 몫이 $8$, 나머지가 $2$이므로 $6$의 배수는 $6\\times1$부터 $6\\times8=48$까지 $8$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "끝 수를 그 자연수로 나눈 몫이 배수의 개수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝 수 안에 그 수가 몇 번 들어가는지가 곧 배수의 개수이다",
+              "배수는 (그 수)$\\times1$, (그 수)$\\times2$, ...이므로 곱하는 수의 개수가 몫이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50\\div6$의 몫이 $8$이므로 $6$의 배수는 $8$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$부터 $50$까지의 자연수 가운데 $6$의 배수의 개수는 $50\\div6$의 {몫}과 같다. 그래서 $6$의 배수는 모두 {$8$}개이고, 그중 가장 큰 수는 $48$이다.",
+        "acceptedAnswers": [
+          [
+            "몫"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0a722bbdf6fe37991acfa2dc34f7752ddca82b81aa74c48cde05caa882404c6d",
+      "questionRevision": "planning-e5e6-20261006-0a722bbdf6fe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc22",
+      "bDecision": "revise",
+      "bPrompt": "물건 여러 개를 몇 명에게 남김없이 똑같이 나누어 주려면 사람 수와 전체 개수가 어떤 관계여야 하는지 설명하시오. 구슬 $18$개를 $4$명과 $6$명에게 각각 남김없이 똑같이 나누어 줄 수 있는지 판단하시오.",
+      "bAnswer": "사람 수가 전체 개수의 약수여야 한다(전체 개수를 사람 수로 나누면 나누어떨어져야 한다). $18\\div4$는 몫이 $4$, 나머지가 $2$이므로 $4$명에게는 나누어 줄 수 없다. $18\\div6=3$이므로 $6$명에게는 $3$개씩 나누어 줄 수 있다.",
+      "bGoal": "남김없이 똑같이 나누는 상황을 약수와 연결해 판단한다.",
+      "bReason": "원문 예시는 안 되는 경우만 묻는다. 관계를 먼저 말하게 하고 되는 경우와 안 되는 경우를 함께 판단하게 했다.",
+      "studentLabel": "남김없이 똑같이 나누기",
+      "cDecision": "keep",
+      "cAfter": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+      "cReason": "'남김없이 똑같이'라는 조건이 문장에 있고 답이 용어 하나다. 생활 상황을 약수와 잇는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'약수'만 맞다. '배수'는 관계가 거꾸로다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사람 수가 전체 개수의 약수여야 한다",
+            "전체 개수를 사람 수로 나누면 나누어떨어져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$명에게는 나누어 줄 수 없다",
+            "$18\\div4$는 나머지가 $2$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$명에게는 나누어 줄 수 있다",
+            "$18\\div6=3$이므로 $3$개씩 나누어 줄 수 있다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 492,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc22",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "남김없이 똑같이 나누는 사람 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+        "example": {
+          "prompt": "구슬 $18$개를 $4$명에게 남김없이 똑같이 나눌 수 없는 까닭은?",
+          "answer": "$4$가 $18$의 약수가 아니다"
+        },
+        "studentC": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 □이다.",
+        "answers": [
+          "약수"
+        ]
+      },
+      "sourceFingerprint": "455390ec776fd9059e3a3ebdf7e56dc734ef7e5c8bf287da18e750683dd73a41",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cFrozenDefinition": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+      "cFrozenStudentSentence": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 □이다.",
+      "cProposedAnswers": [
+        "약수"
+      ],
+      "cStudentAfter": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 □이다.",
+      "cMarkedSentence": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+      "cStudentSentence": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "물건 여러 개를 몇 명에게 남김없이 똑같이 나누어 주려면 사람 수와 전체 개수가 어떤 관계여야 하는지 설명하시오. 구슬 $18$개를 $4$명과 $6$명에게 각각 남김없이 똑같이 나누어 줄 수 있는지 판단하시오.",
+        "answer": "사람 수가 전체 개수의 약수여야 한다(전체 개수를 사람 수로 나누면 나누어떨어져야 한다). $18\\div4$는 몫이 $4$, 나머지가 $2$이므로 $4$명에게는 나누어 줄 수 없다. $18\\div6=3$이므로 $6$명에게는 $3$개씩 나누어 줄 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사람 수가 전체 개수의 약수여야 한다",
+              "전체 개수를 사람 수로 나누면 나누어떨어져야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$명에게는 나누어 줄 수 없다",
+              "$18\\div4$는 나머지가 $2$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$명에게는 나누어 줄 수 있다",
+              "$18\\div6=3$이므로 $3$개씩 나누어 줄 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "물건을 남김없이 똑같이 나눌 수 있는 사람 수는 전체 개수의 {약수}이다.",
+        "acceptedAnswers": [
+          [
+            "약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "48981607edd19e70623d508302a4a32a8d5a3966245be6d3c87fc6e6c3d691cc",
+      "questionRevision": "planning-e5e6-20261006-48981607edd1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc23",
+      "bDecision": "revise",
+      "bPrompt": "어느 달 $4$일에 처음 화분에 물을 주고, 그 뒤로 $4$일마다 물을 준다. 물을 주는 날짜들은 $4$와 어떤 관계인 수인지 설명하고, $10$일과 $20$일에 물을 주는지 각각 판단하시오.",
+      "bAnswer": "물을 주는 날짜는 $4$, $8$, $12$, $16$, $20$, ……으로 모두 $4$의 배수이다. $10\\div4$는 몫이 $2$, 나머지가 $2$라서 $10$은 $4$의 배수가 아니므로 $10$일에는 주지 않는다. $20=4\\times5$이므로 $20$일에는 준다.",
+      "bGoal": "일정한 간격으로 되풀이되는 날짜를 배수로 설명하고 판단한다.",
+      "bReason": "일반 문장은 초5 학생이 읽기 어려워 원문 예시의 물 주기 상황을 질문에 온전히 넣었다. '첫날이 간격과 같다'는 조건도 살렸다.",
+      "studentLabel": "며칠마다 되풀이되는 날",
+      "cDecision": "revise",
+      "cAfter": "어느 달 $4$일에 처음 화분에 물을 주고 그 뒤로 $4$일마다 물을 준다. 물을 주는 날짜 $4$일, $8$일, $12$일, ……은 모두 $4$의 {배수}이다. $10$일은 물을 주는 날이 {아니다}.",
+      "cReason": "'어떤 수만큼의 간격으로 … 그 수째 날에 처음 있으면'은 조건이 겹쳐 읽기 어렵고 빈칸도 '그 수의 배수'로 추상적이다. 실제 날짜로 풀어 썼다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "물을 주는 날짜는 모두 $4$의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$일에는 주지 않는다",
+            "$10$은 $4$의 배수가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$일에는 준다",
+            "$20=4\\times5$이므로 $4$의 배수이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 493,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc23",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "일정한 간격으로 되풀이되는 날",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어떤 수만큼의 간격으로 되풀이되는 일이 그 수째 날에 처음 있으면, 그 일이 있는 날은 모두 {그 수의 배수}이다.",
+        "example": {
+          "prompt": "$4$일에 처음 물을 주고 $4$일마다 준다. $10$일에 물을 주지 않는 까닭은?",
+          "answer": "$10$은 $4$의 배수가 아니다"
+        },
+        "studentC": "어떤 수만큼의 간격으로 되풀이되는 일이 그 수째 날에 처음 있으면, 그 일이 있는 날은 모두 □이다.",
+        "answers": [
+          "그 수의 배수"
+        ]
+      },
+      "sourceFingerprint": "ef0f6578e1038fd9baf0555e80096479f7720d435496a0097feba125b7569dad",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "배수",
+        "아니다"
+      ],
+      "cStudentAfter": "어느 달 $4$일에 처음 화분에 물을 주고 그 뒤로 $4$일마다 물을 준다. 물을 주는 날짜 $4$일, $8$일, $12$일, ……은 모두 $4$의 □이다. $10$일은 물을 주는 날이 □.",
+      "cMarkedSentence": "어느 달 $4$일에 처음 화분에 물을 주고 그 뒤로 $4$일마다 물을 준다. 물을 주는 날짜 $4$일, $8$일, $12$일, ……은 모두 $4$의 {배수}이다. $10$일은 물을 주는 날이 {아니다}.",
+      "cStudentSentence": "어느 달 $4$일에 처음 화분에 물을 주고 그 뒤로 $4$일마다 물을 준다. 물을 주는 날짜 $4$일, $8$일, $12$일, ……은 모두 $4$의 □이다. $10$일은 물을 주는 날이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        },
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어느 달 $4$일에 처음 화분에 물을 주고, 그 뒤로 $4$일마다 물을 준다. 물을 주는 날짜들은 $4$와 어떤 관계인 수인지 설명하고, $10$일과 $20$일에 물을 주는지 각각 판단하시오.",
+        "answer": "물을 주는 날짜는 $4$, $8$, $12$, $16$, $20$, ……으로 모두 $4$의 배수이다. $10\\div4$는 몫이 $2$, 나머지가 $2$라서 $10$은 $4$의 배수가 아니므로 $10$일에는 주지 않는다. $20=4\\times5$이므로 $20$일에는 준다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "물을 주는 날짜는 모두 $4$의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$일에는 주지 않는다",
+              "$10$은 $4$의 배수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$일에는 준다",
+              "$20=4\\times5$이므로 $4$의 배수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어느 달 $4$일에 처음 화분에 물을 주고 그 뒤로 $4$일마다 물을 준다. 물을 주는 날짜 $4$일, $8$일, $12$일, ……은 모두 $4$의 {배수}이다. $10$일은 물을 주는 날이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a59b8d405f622995f269746bdfecbbbc19da424fe8e3025f0a4f6e0d3ac6ac61",
+      "questionRevision": "planning-e5e6-20261006-a59b8d405f62",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc24",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "원래 목표는 약수와 배수를 자연수 범위에서만 생각한다는 약속을 아는 것이다.",
+      "bReason": "범위 약속만 떠올리는 문항이라 서술할 관계가 없다.",
+      "cDecision": "keep",
+      "cAfter": "약수와 배수를 말할 때는 $0$을 빼고 {자연수}끼리만 생각한다.",
+      "cReason": "'$0$을 빼고'라는 조건이 있고 답이 용어 '자연수' 하나다. 약수·배수를 다루는 수의 범위를 짧게 확인할 수 있다.",
+      "exclusionReason": "B만 제외한다. 대체: e5-1-2-1-c1, e5-1-2-1-c2.",
+      "exampleNeeded": false,
+      "synonymNotes": "'자연수'만 맞다. '정수', '수'는 다른 답이다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자연수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 494,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc24",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "약수와 배수를 생각하는 수의 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "약수와 배수를 말할 때는 $0$을 빼고 {자연수}끼리만 생각한다.",
+        "studentC": "약수와 배수를 말할 때는 $0$을 빼고 □끼리만 생각한다.",
+        "answers": [
+          "자연수"
+        ]
+      },
+      "sourceFingerprint": "b5242dad2af3bad2f9c21b99d6d4095b1cf22f8b571a22af59816efc2fdd1c66",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cFrozenDefinition": "약수와 배수를 말할 때는 $0$을 빼고 {자연수}끼리만 생각한다.",
+      "cFrozenStudentSentence": "약수와 배수를 말할 때는 $0$을 빼고 □끼리만 생각한다.",
+      "cProposedAnswers": [
+        "자연수"
+      ],
+      "cStudentAfter": "약수와 배수를 말할 때는 $0$을 빼고 □끼리만 생각한다.",
+      "cMarkedSentence": "약수와 배수를 말할 때는 $0$을 빼고 {자연수}끼리만 생각한다.",
+      "cStudentSentence": "약수와 배수를 말할 때는 $0$을 빼고 □끼리만 생각한다.",
+      "cSlotAnswers": [
+        {
+          "key": "자연수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "약수와 배수를 말할 때는 $0$을 빼고 {자연수}끼리만 생각한다.",
+        "acceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외한다. 대체: e5-1-2-1-c1, e5-1-2-1-c2."
+      },
+      "proposalFingerprint": "ac6324b1c2a23217d0822a7dcbd89722ae1f3890515951bb81fbaa95ec4a6668",
+      "questionRevision": "planning-e5e6-20261006-ac6324b1c2a2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc25",
+      "bDecision": "revise",
+      "bPrompt": "같은 자연수의 배수 두 개를 더한 수는 그 자연수와 어떤 관계인지 쓰고, 그 이유를 묶음의 수로 설명하시오. $6$의 배수인 $12$와 $18$을 예로 드시오.",
+      "bAnswer": "더한 수도 그 자연수의 배수이다. $12$는 $6$씩 $2$묶음, $18$은 $6$씩 $3$묶음이므로 합은 $6$씩 $5$묶음이다. $12+18=30=6\\times5$이므로 $30$은 $6$의 배수이다.",
+      "bGoal": "같은 수의 배수끼리 더하면 다시 그 수의 배수가 됨을 묶음으로 설명한다.",
+      "bReason": "원문에 예시가 없어 $12+18$을 넣었다. 결론은 학생이 쓰게 하고 설명 방법을 '묶음의 수'로 정해 주었다.",
+      "studentLabel": "같은 수의 배수끼리 더하기",
+      "cDecision": "revise",
+      "cAfter": "$6$의 배수끼리 더한 수도 $6$의 {배수}이다. 예를 들어 $12+18=30$이고 $30=6\\times${$5$}이다.",
+      "cReason": "원문은 '어떤 수', '그 수'가 되풀이되고 빈칸 답이 앞 구절과 같은 말이다. 실제 수로 바꿔 관계 낱말과 묶음 수를 묻게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "더한 수도 그 자연수의 배수이다",
+            "$30$은 $6$의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "묶음의 수끼리 더해진다",
+            "$6$씩 $2$묶음과 $3$묶음을 더하면 $5$묶음이다",
+            "$12+18=30=6\\times5$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 495,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc25",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "같은 수의 배수끼리 더하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어떤 수의 배수에 그 수의 배수를 더해도 {그 수의 배수}이다.",
+        "studentC": "어떤 수의 배수에 그 수의 배수를 더해도 □이다.",
+        "answers": [
+          "그 수의 배수"
+        ]
+      },
+      "sourceFingerprint": "8e5c2a8de6b74e607335fcf3b9b7716b4305fdfaa55d41056d10fb80177ea657",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "배수",
+        "$5$"
+      ],
+      "cStudentAfter": "$6$의 배수끼리 더한 수도 $6$의 □이다. 예를 들어 $12+18=30$이고 $30=6\\times$□이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$6$의 배수끼리 더한 수도 $6$의 {배수}이다. 예를 들어 $12+18=30$이고 $30=6\\times${$5$}이다.",
+      "cStudentSentence": "$6$의 배수끼리 더한 수도 $6$의 □이다. 예를 들어 $12+18=30$이고 $30=6\\times$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 자연수의 배수 두 개를 더한 수는 그 자연수와 어떤 관계인지 쓰고, 그 이유를 묶음의 수로 설명하시오. $6$의 배수인 $12$와 $18$을 예로 드시오.",
+        "answer": "더한 수도 그 자연수의 배수이다. $12$는 $6$씩 $2$묶음, $18$은 $6$씩 $3$묶음이므로 합은 $6$씩 $5$묶음이다. $12+18=30=6\\times5$이므로 $30$은 $6$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "더한 수도 그 자연수의 배수이다",
+              "$30$은 $6$의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "묶음의 수끼리 더해진다",
+              "$6$씩 $2$묶음과 $3$묶음을 더하면 $5$묶음이다",
+              "$12+18=30=6\\times5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6$의 배수끼리 더한 수도 $6$의 {배수}이다. 예를 들어 $12+18=30$이고 $30=6\\times${$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "19b4b2d3e9f158582b1fce9d0da23043714f53941a97941036b576dd000bd07f",
+      "questionRevision": "planning-e5e6-20261006-19b4b2d3e9f1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc26",
+      "bDecision": "revise",
+      "bPrompt": "어떤 자연수의 배수를 하나 고르고 다시 그 수의 배수를 구하면, 구한 수는 처음 자연수와 어떤 관계인지 쓰고 곱셈식으로 이유를 설명하시오. $4$의 배수 $8$과 $8$의 배수 $24$를 예로 드시오.",
+      "bAnswer": "구한 수는 처음 자연수의 배수이다. $24=8\\times3$이고 $8=4\\times2$이므로 $24=4\\times2\\times3=4\\times6$이다. 따라서 $24$는 $4$의 배수이다.",
+      "bGoal": "배수의 배수가 처음 수의 배수임을 곱셈식으로 설명한다.",
+      "bReason": "'배수의 배수'라는 말은 학생에게 낯설어 과정을 풀어 썼다. 원문 예시의 $4$, $8$, $24$로 곱셈식을 잇게 했다.",
+      "studentLabel": "배수의 배수",
+      "cDecision": "revise",
+      "cAfter": "$8$은 $4$의 배수이고 $24$는 $8$의 배수이다. $24=8\\times3=4\\times2\\times3=4\\times${$6$}이므로 $24$는 $4$의 {배수}이다.",
+      "cReason": "빈칸 '처음 수의 배수'와 '거듭 곱한 수'는 맥락 없이 읽기 어렵다. 곱셈식 전개를 보여 주고 곱하는 수와 관계 낱말을 묻게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구한 수는 처음 자연수의 배수이다",
+            "$24$는 $4$의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24=8\\times3=4\\times2\\times3=4\\times6$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 496,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc26",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "배수의 배수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어떤 수의 배수의 배수는 {처음 수의 배수}이다 — 처음 수에 자연수를 거듭 곱한 수이기 때문이다.",
+        "example": {
+          "prompt": "$24$는 $8$의 배수이고 $8$은 $4$의 배수이다. $24$가 $4$의 배수인 까닭은?",
+          "answer": "$24=8\\times3=4\\times2\\times3$이다"
+        },
+        "studentC": "어떤 수의 배수의 배수는 □이다 — 처음 수에 자연수를 거듭 곱한 수이기 때문이다.",
+        "answers": [
+          "처음 수의 배수"
+        ]
+      },
+      "sourceFingerprint": "8fe2532574167359d333812bb64d77ca6a1c43ee98aa241c6c3cb93d9957fdf7",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "배수"
+      ],
+      "cStudentAfter": "$8$은 $4$의 배수이고 $24$는 $8$의 배수이다. $24=8\\times3=4\\times2\\times3=4\\times$□이므로 $24$는 $4$의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$8$은 $4$의 배수이고 $24$는 $8$의 배수이다. $24=8\\times3=4\\times2\\times3=4\\times${$6$}이므로 $24$는 $4$의 {배수}이다.",
+      "cStudentSentence": "$8$은 $4$의 배수이고 $24$는 $8$의 배수이다. $24=8\\times3=4\\times2\\times3=4\\times$□이므로 $24$는 $4$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 자연수의 배수를 하나 고르고 다시 그 수의 배수를 구하면, 구한 수는 처음 자연수와 어떤 관계인지 쓰고 곱셈식으로 이유를 설명하시오. $4$의 배수 $8$과 $8$의 배수 $24$를 예로 드시오.",
+        "answer": "구한 수는 처음 자연수의 배수이다. $24=8\\times3$이고 $8=4\\times2$이므로 $24=4\\times2\\times3=4\\times6$이다. 따라서 $24$는 $4$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구한 수는 처음 자연수의 배수이다",
+              "$24$는 $4$의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24=8\\times3=4\\times2\\times3=4\\times6$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$8$은 $4$의 배수이고 $24$는 $8$의 배수이다. $24=8\\times3=4\\times2\\times3=4\\times${$6$}이므로 $24$는 $4$의 {배수}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "57bec470be7b5726abbd602e6d99dd1e988055492bf773fd35c4d34fe333a687",
+      "questionRevision": "planning-e5e6-20261006-57bec470be7b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-1-xc27",
+      "bDecision": "revise",
+      "bPrompt": "어떤 자연수의 약수를 하나 고르고 다시 그 수의 약수를 구하면, 구한 수는 처음 자연수와 어떤 관계인지 쓰고 곱셈식으로 이유를 설명하시오. $18$의 약수 $6$과 $6$의 약수 $3$을 예로 드시오.",
+      "bAnswer": "구한 수는 처음 자연수의 약수이다. $18=6\\times3$이고 $6=3\\times2$이므로 $18=3\\times2\\times3=3\\times6$이다. $18\\div3=6$으로 나누어떨어지므로 $3$은 $18$의 약수이다.",
+      "bGoal": "약수의 약수가 처음 수의 약수임을 곱셈식으로 설명한다.",
+      "bReason": "'약수의 약수'라는 겹친 표현을 과정으로 풀어 썼다. 원문 예시의 $3$, $6$, $18$로 이유를 식으로 보이게 했다.",
+      "studentLabel": "약수의 약수",
+      "cDecision": "revise",
+      "cAfter": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times${$6$}이므로 $3$은 $18$의 {약수}이다.",
+      "cReason": "원문은 '약수의 약수', '처음 수'가 무엇을 가리키는지 맥락 없이 알기 어렵다. xc26과 같은 틀로 실제 수와 식을 넣었다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구한 수는 처음 자연수의 약수이다",
+            "$3$은 $18$의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18=6\\times3=3\\times2\\times3=3\\times6$",
+            "$18\\div3=6$으로 나누어떨어진다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-003-rubric.json",
+      "sourceIndex": 497,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-1-xc27",
+        "section": "초5::1-2 약수와 배수::1-2-1 약수와 배수",
+        "term": "약수의 약수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "어떤 수의 약수의 약수는 {처음 수의 약수}이다.",
+        "example": {
+          "prompt": "$3$은 $6$의 약수이고 $6$은 $18$의 약수이다. $3$이 $18$의 약수인 까닭은?",
+          "answer": "$18=3\\times2\\times3$이라서"
+        },
+        "studentC": "어떤 수의 약수의 약수는 □이다.",
+        "answers": [
+          "처음 수의 약수"
+        ]
+      },
+      "sourceFingerprint": "96016265e4d5e63ae797a1ddd1df7eb3ce1dbca823aae5734b728376bb501054",
+      "draftEvidence": "evidence/section-003-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "약수"
+      ],
+      "cStudentAfter": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times$□이므로 $3$은 $18$의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "약수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times${$6$}이므로 $3$은 $18$의 {약수}이다.",
+      "cStudentSentence": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times$□이므로 $3$은 $18$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 자연수의 약수를 하나 고르고 다시 그 수의 약수를 구하면, 구한 수는 처음 자연수와 어떤 관계인지 쓰고 곱셈식으로 이유를 설명하시오. $18$의 약수 $6$과 $6$의 약수 $3$을 예로 드시오.",
+        "answer": "구한 수는 처음 자연수의 약수이다. $18=6\\times3$이고 $6=3\\times2$이므로 $18=3\\times2\\times3=3\\times6$이다. $18\\div3=6$으로 나누어떨어지므로 $3$은 $18$의 약수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구한 수는 처음 자연수의 약수이다",
+              "$3$은 $18$의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18=6\\times3=3\\times2\\times3=3\\times6$",
+              "$18\\div3=6$으로 나누어떨어진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6$은 $18$의 약수이고 $3$은 $6$의 약수이다. $18=6\\times3=3\\times2\\times3=3\\times${$6$}이므로 $3$은 $18$의 {약수}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ce985036ac534a0d33eafb88c18f2f6406606548b26baa9c54f0f9407c41e4d9",
+      "questionRevision": "planning-e5e6-20261006-ce985036ac53",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc1",
+      "bDecision": "revise",
+      "bPrompt": "두 자연수를 곱한 값이 곱한 두 수 각각의 배수가 되는 까닭을 '몇 배'라는 말을 써서 설명하시오. $6\\times3=18$을 예로 드시오.",
+      "bAnswer": "곱은 한 수를 다른 수만큼 배 한 수이기 때문이다. $18$은 $6$을 $3$배 한 수이므로 $6$의 배수이고, $3$을 $6$배 한 수이므로 $3$의 배수이다.",
+      "bGoal": "곱이 배수가 되는 까닭을 배수의 뜻(어떤 수를 몇 배 한 수)으로 설명한다.",
+      "bReason": "'곱은 배수'라는 사실 자체는 c1과 겹친다. 이 행은 그 까닭을 배수의 뜻으로 설명하게 해 역할을 나누었다.",
+      "studentLabel": "곱이 배수인 까닭",
+      "cDecision": "revise",
+      "cAfter": "$6\\times3=18$에서 $18$은 $6$을 {$3$}배 한 수이고 $3$을 {$6$}배 한 수이므로, $6$과 $3$의 {배수}이다.",
+      "cReason": "원문은 c1의 둘째 빈칸과 숫자만 다르다. 배수의 뜻인 '몇 배'를 채우게 해서 곱이 왜 두 수 모두의 배수인지 드러나게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 한 수를 다른 수만큼 배 한 수이다",
+            "배수는 어떤 수를 몇 배 한 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$은 $6$을 $3$배 한 수이므로 $6$의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$은 $3$을 $6$배 한 수이므로 $3$의 배수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 498,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc1",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "곱셈식 속의 배수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$4\\times5=20$에서 곱 $20$은 $4$와 $5$의 {배수}이다.",
+        "example": {
+          "prompt": "$6\\times3=18$에서 $18$은 $6$의 무엇인가?",
+          "answer": "배수"
+        },
+        "studentC": "$4\\times5=20$에서 곱 $20$은 $4$와 $5$의 □이다.",
+        "answers": [
+          "배수"
+        ]
+      },
+      "sourceFingerprint": "2ea8a2a7e3bf870a888b946b656e4a57b7cb3393327a12d2457e4be7b1b2dca6",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$6$",
+        "배수"
+      ],
+      "cStudentAfter": "$6\\times3=18$에서 $18$은 $6$을 □배 한 수이고 $3$을 □배 한 수이므로, $6$과 $3$의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$6\\times3=18$에서 $18$은 $6$을 {$3$}배 한 수이고 $3$을 {$6$}배 한 수이므로, $6$과 $3$의 {배수}이다.",
+      "cStudentSentence": "$6\\times3=18$에서 $18$은 $6$을 □배 한 수이고 $3$을 □배 한 수이므로, $6$과 $3$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 자연수를 곱한 값이 곱한 두 수 각각의 배수가 되는 까닭을 '몇 배'라는 말을 써서 설명하시오. $6\\times3=18$을 예로 드시오.",
+        "answer": "곱은 한 수를 다른 수만큼 배 한 수이기 때문이다. $18$은 $6$을 $3$배 한 수이므로 $6$의 배수이고, $3$을 $6$배 한 수이므로 $3$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱은 한 수를 다른 수만큼 배 한 수이다",
+              "배수는 어떤 수를 몇 배 한 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$은 $6$을 $3$배 한 수이므로 $6$의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$은 $3$을 $6$배 한 수이므로 $3$의 배수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6\\times3=18$에서 $18$은 $6$을 {$3$}배 한 수이고 $3$을 {$6$}배 한 수이므로, $6$과 $3$의 {배수}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$6$"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0fdc0db381c666b48c9ae5fa0c9c754a8a7f5bb6cc2f7c04a6b090c352812970",
+      "questionRevision": "planning-e5e6-20261006-0fdc0db381c6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "곱한 두 수가 곱의 약수임을 안다(다른 문항에서 다룸).",
+      "bReason": "곱한 두 수가 곱의 약수라는 사실은 c1의 B가, 나눗셈으로 확인하는 까닭은 xc11의 B가 이미 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "$4\\times5=20$에서 약수를 채우는 문장은 c1의 첫 빈칸과 수만 다르고 같다. 나눗셈으로 확인하는 내용으로 바꾸면 xc11과 겹친다.",
+      "exclusionReason": "중복이다. B는 e5-1-2-2-c1과 e5-1-2-2-xc11로 대체한다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 499,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc2",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "곱셈식 속의 약수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$4\\times5=20$에서 곱한 두 수 $4$와 $5$는 $20$의 {약수}이다.",
+        "example": {
+          "prompt": "$7\\times2=14$에서 곱하는 두 수는 $14$의 무엇인가?",
+          "answer": "약수"
+        },
+        "studentC": "$4\\times5=20$에서 곱한 두 수 $4$와 $5$는 $20$의 □이다.",
+        "answers": [
+          "약수"
+        ]
+      },
+      "sourceFingerprint": "7cb2a1e5233d9ad407e17070d3b809951f55276c18748f6477683994dbf65ab3",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "중복이다. B는 e5-1-2-2-c1과 e5-1-2-2-xc11로 대체한다.",
+        "cloze": "중복이다. B는 e5-1-2-2-c1과 e5-1-2-2-xc11로 대체한다."
+      },
+      "proposalFingerprint": "0b8d1030d59f8315c8274aa6dc89adf4ad42a983ca39502f0651c2c4e3764b35",
+      "questionRevision": "planning-e5e6-20261006-0b8d1030d59f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc3",
+      "bDecision": "revise",
+      "bPrompt": "'$6$은 약수이다.'라고만 말하면 뜻이 분명하지 않다. 약수나 배수라는 말을 쓸 때 무엇을 함께 말해야 하는지 쓰고, $6$이 약수가 되는 문장과 배수가 되는 문장을 하나씩 만드시오.",
+      "bAnswer": "어떤 수의 약수(배수)인지, 관계를 이루는 다른 수를 함께 말해야 한다. 약수와 배수는 두 수 사이의 관계를 나타내는 말이기 때문이다. 예: $6$은 $12$의 약수이다. $6$은 $3$의 배수이다. (조건에 맞는 다른 문장도 정답)",
+      "bGoal": "약수·배수는 한 수만으로 정해지지 않고 어떤 수에 대한 것인지 함께 말해야 함을 실제 문장으로 보인다.",
+      "bReason": "'두 수를 함께 말하는 관계'는 추상적인 말이라 학생이 답할 범위를 알 수 없다. 틀린 말하기 예를 고치는 과제로 구체화했다.",
+      "studentLabel": "약수·배수를 바르게 말하기",
+      "cDecision": "revise",
+      "cAfter": "'$6$은 약수이다.'라고만 하면 뜻이 정해지지 않는다. $6$은 $12$의 {약수}이면서 $3$의 {배수}이므로, 어느 수에 대한 것인지 함께 말해야 한다.",
+      "cReason": "원문 빈칸 '두 수 사이의 관계'는 외워야만 쓸 수 있는 구절이다. 같은 수가 상대에 따라 약수도 배수도 되는 예로 바꾸어 낱말로 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "B의 예시 문장은 수가 달라도 관계가 맞으면 정답이다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어떤 수의 약수(배수)인지 상대가 되는 다른 수를 함께 말해야 한다",
+            "약수와 배수는 두 수 사이의 관계이므로 두 수를 함께 말해야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$이 약수가 되는 옳은 문장을 만든다(예: $6$은 $12$의 약수이다)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$이 배수가 되는 옳은 문장을 만든다(예: $6$은 $3$의 배수이다)"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 500,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc3",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "두 수를 함께 말하는 관계",
+        "kind": "정의",
+        "level": "하",
+        "definition": "약수와 배수는 {두 수 사이의 관계}를 나타내는 말이라 두 수를 함께 말해야 뜻이 정해진다.",
+        "studentC": "약수와 배수는 □를 나타내는 말이라 두 수를 함께 말해야 뜻이 정해진다.",
+        "answers": [
+          "두 수 사이의 관계"
+        ]
+      },
+      "sourceFingerprint": "a857e1bfc700bda5b6785b3a1ec82c17665e69365dd207572b9c49f93aef47bf",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [
+        "약수",
+        "배수"
+      ],
+      "cStudentAfter": "'$6$은 약수이다.'라고만 하면 뜻이 정해지지 않는다. $6$은 $12$의 □이면서 $3$의 □이므로, 어느 수에 대한 것인지 함께 말해야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "'$6$은 약수이다.'라고만 하면 뜻이 정해지지 않는다. $6$은 $12$의 {약수}이면서 $3$의 {배수}이므로, 어느 수에 대한 것인지 함께 말해야 한다.",
+      "cStudentSentence": "'$6$은 약수이다.'라고만 하면 뜻이 정해지지 않는다. $6$은 $12$의 □이면서 $3$의 □이므로, 어느 수에 대한 것인지 함께 말해야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "약수",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "'$6$은 약수이다.'라고만 말하면 뜻이 분명하지 않다. 약수나 배수라는 말을 쓸 때 무엇을 함께 말해야 하는지 쓰고, $6$이 약수가 되는 문장과 배수가 되는 문장을 하나씩 만드시오.",
+        "answer": "어떤 수의 약수(배수)인지, 관계를 이루는 다른 수를 함께 말해야 한다. 약수와 배수는 두 수 사이의 관계를 나타내는 말이기 때문이다. 예: $6$은 $12$의 약수이다. $6$은 $3$의 배수이다. (조건에 맞는 다른 문장도 정답)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어떤 수의 약수(배수)인지 상대가 되는 다른 수를 함께 말해야 한다",
+              "약수와 배수는 두 수 사이의 관계이므로 두 수를 함께 말해야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$이 약수가 되는 옳은 문장을 만든다(예: $6$은 $12$의 약수이다)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$이 배수가 되는 옳은 문장을 만든다(예: $6$은 $3$의 배수이다)"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "'$6$은 약수이다.'라고만 하면 뜻이 정해지지 않는다. $6$은 $12$의 {약수}이면서 $3$의 {배수}이므로, 어느 수에 대한 것인지 함께 말해야 한다.",
+        "acceptedAnswers": [
+          [
+            "약수"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6f61955b0de2dd15ed4a44e7f68a2a276abe56cd500083024f05e63c66a8d9fa",
+      "questionRevision": "planning-e5e6-20261006-6f61955b0de2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc4",
+      "bDecision": "revise",
+      "bPrompt": "나눗셈식을 보고 나누는 수가 나누어지는 수의 약수인지 아닌지 어떻게 판단하는지 쓰시오. $30\\div5$와 $30\\div4$를 계산하여 각각 판단하시오.",
+      "bAnswer": "나누어떨어지면 나누는 수는 나누어지는 수의 약수이고, 나머지가 있으면 약수가 아니다. $30\\div5=6$이므로 $5$는 $30$의 약수이다. $30\\div4=7\\cdots2$이므로 $4$는 $30$의 약수가 아니다.",
+      "bGoal": "나눗셈에서 나누어떨어지는지로 약수 여부를 판단한다.",
+      "bReason": "되는 경우만 보면 낱말 맞히기가 된다. 나누어떨어지는 예와 나머지가 있는 예를 함께 판단하게 해 기준을 설명하게 했다.",
+      "studentLabel": "나눗셈식으로 약수 판단하기",
+      "cDecision": "keep",
+      "cAfter": "$24\\div8=3$처럼 나누어떨어지면 나누는 수 $8$은 $24$의 {약수}이다.",
+      "cReason": "'나누어떨어지면'이라는 조건과 실제 식 $24\\div8=3$이 함께 있어 약수의 뜻을 바로 확인하는 짧은 문장이다. 빈칸도 낱말 하나로 분명하다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어떨어지면 나누는 수는 나누어지는 수의 약수이고 나머지가 있으면 약수가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30\\div5=6$이므로 $5$는 $30$의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30\\div4=7\\cdots2$이므로 $4$는 $30$의 약수가 아니다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 501,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc4",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "나눗셈식 속의 약수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$24\\div8=3$처럼 나누어떨어지면 나누는 수 $8$은 $24$의 {약수}이다.",
+        "example": {
+          "prompt": "$30\\div5=6$에서 $5$는 $30$의 무엇인가?",
+          "answer": "약수"
+        },
+        "studentC": "$24\\div8=3$처럼 나누어떨어지면 나누는 수 $8$은 $24$의 □이다.",
+        "answers": [
+          "약수"
+        ]
+      },
+      "sourceFingerprint": "b05e135765e156218b8e43ec6dab13bbcdf4a71ea4497d6752f201aeb1914685",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cFrozenDefinition": "$24\\div8=3$처럼 나누어떨어지면 나누는 수 $8$은 $24$의 {약수}이다.",
+      "cFrozenStudentSentence": "$24\\div8=3$처럼 나누어떨어지면 나누는 수 $8$은 $24$의 □이다.",
+      "cProposedAnswers": [
+        "약수"
+      ],
+      "cStudentAfter": "$24\\div8=3$처럼 나누어떨어지면 나누는 수 $8$은 $24$의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$24\\div8=3$처럼 나누어떨어지면 나누는 수 $8$은 $24$의 {약수}이다.",
+      "cStudentSentence": "$24\\div8=3$처럼 나누어떨어지면 나누는 수 $8$은 $24$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나눗셈식을 보고 나누는 수가 나누어지는 수의 약수인지 아닌지 어떻게 판단하는지 쓰시오. $30\\div5$와 $30\\div4$를 계산하여 각각 판단하시오.",
+        "answer": "나누어떨어지면 나누는 수는 나누어지는 수의 약수이고, 나머지가 있으면 약수가 아니다. $30\\div5=6$이므로 $5$는 $30$의 약수이다. $30\\div4=7\\cdots2$이므로 $4$는 $30$의 약수가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어떨어지면 나누는 수는 나누어지는 수의 약수이고 나머지가 있으면 약수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30\\div5=6$이므로 $5$는 $30$의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30\\div4=7\\cdots2$이므로 $4$는 $30$의 약수가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$24\\div8=3$처럼 나누어떨어지면 나누는 수 $8$은 $24$의 {약수}이다.",
+        "acceptedAnswers": [
+          [
+            "약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e9e970e4d7c153f305954fe8dd44ec9d48888244fc99572f00c649b2319b0a61",
+      "questionRevision": "planning-e5e6-20261006-e9e970e4d7c1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc5",
+      "bDecision": "revise",
+      "bPrompt": "나누어떨어지는 나눗셈식에서 나누어지는 수는 나누는 수와 배수로 어떤 관계인지 쓰시오. 그 까닭을 $42\\div7=6$을 곱셈식으로 바꾸어 설명하시오.",
+      "bAnswer": "나누어지는 수는 나누는 수의 배수이다. $42\\div7=6$이면 $7\\times6=42$이므로 $42$는 $7$을 $6$배 한 수, 곧 $7$의 배수이다.",
+      "bGoal": "나누어떨어지는 나눗셈을 곱셈으로 바꾸어 나누어지는 수가 배수임을 설명한다.",
+      "bReason": "배수는 곱셈으로 배웠다. 나눗셈식에서 배수를 읽으려면 곱셈식으로 바꾸는 연결이 필요해 그 과정을 설명하게 했다.",
+      "studentLabel": "나눗셈식에서 배수 읽기",
+      "cDecision": "revise",
+      "cAfter": "$24\\div8=3$처럼 나누어떨어지면 $24$는 $8$을 {$3$}배 한 수이므로 $8$의 {배수}이다.",
+      "cReason": "원문은 낱말만 채우게 되어 xc4와 짝 맞추기로 끝난다. 몫을 '몇 배'로 바꾸어 읽는 빈칸을 더해 배수의 뜻과 이었다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 수는 나누는 수의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$42\\div7=6$이면 $7\\times6=42$이다",
+            "$42$는 $7$을 $6$배 한 수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 502,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc5",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "나눗셈식 속의 배수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$24\\div8=3$처럼 나누어떨어지면 나누어지는 수 $24$는 $8$의 {배수}이다.",
+        "example": {
+          "prompt": "$42\\div7=6$에서 $42$는 $7$의 무엇인가?",
+          "answer": "배수"
+        },
+        "studentC": "$24\\div8=3$처럼 나누어떨어지면 나누어지는 수 $24$는 $8$의 □이다.",
+        "answers": [
+          "배수"
+        ]
+      },
+      "sourceFingerprint": "3cdf170eda8bc353ffcde81f2c0f26610be80d8d68bd57a10b1a5031b3c96ffd",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "배수"
+      ],
+      "cStudentAfter": "$24\\div8=3$처럼 나누어떨어지면 $24$는 $8$을 □배 한 수이므로 $8$의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$24\\div8=3$처럼 나누어떨어지면 $24$는 $8$을 {$3$}배 한 수이므로 $8$의 {배수}이다.",
+      "cStudentSentence": "$24\\div8=3$처럼 나누어떨어지면 $24$는 $8$을 □배 한 수이므로 $8$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어떨어지는 나눗셈식에서 나누어지는 수는 나누는 수와 배수로 어떤 관계인지 쓰시오. 그 까닭을 $42\\div7=6$을 곱셈식으로 바꾸어 설명하시오.",
+        "answer": "나누어지는 수는 나누는 수의 배수이다. $42\\div7=6$이면 $7\\times6=42$이므로 $42$는 $7$을 $6$배 한 수, 곧 $7$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 수는 나누는 수의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$42\\div7=6$이면 $7\\times6=42$이다",
+              "$42$는 $7$을 $6$배 한 수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$24\\div8=3$처럼 나누어떨어지면 $24$는 $8$을 {$3$}배 한 수이므로 $8$의 {배수}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ce7a1ed9d9dfea0643f8bc909d08567b6893810db2f6783ab0b622a347e614b9",
+      "questionRevision": "planning-e5e6-20261006-ce7a1ed9d9df",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "한 수가 다른 수의 약수일 때, 같은 관계를 '배수'라는 말로 바꾸어 말하는 방법을 쓰시오. '$9$는 $27$의 약수이다.'를 바꾸어 말하고, 두 말이 같은 뜻인 까닭을 곱셈식으로 보이시오.",
+      "bAnswer": "두 수의 자리를 바꾸어 '다른 수는 그 수의 배수이다.'라고 말한다. $27$은 $9$의 배수이다. $9\\times3=27$이라는 한 식에서 $9$는 $27$의 약수이고 $27$은 $9$의 배수이기 때문이다.",
+      "bGoal": "약수로 말한 관계를 배수로 바꾸어 말하고, 두 말이 한 곱셈식에서 나온다는 것을 설명한다.",
+      "bReason": "제목 '한 관계를 두 가지로 말하기'는 대상이 없다. 바꾸어 말할 문장과 근거가 될 식의 종류를 질문에 넣었다.",
+      "studentLabel": "약수를 배수로 바꾸어 말하기",
+      "cDecision": "keep",
+      "cAfter": "$5$가 $15$의 약수라는 말은 $15$가 $5$의 {배수}라는 말과 같다.",
+      "cReason": "$5$와 $15$라는 실제 두 수로 약수에서 배수로 바꾸어 말하는 짧은 문장이다. 빈칸이 낱말 하나이고 다른 답이 생길 여지가 없다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 자리를 바꾸어 다른 수는 그 수의 배수라고 말한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$27$은 $9$의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9\\times3=27$ 한 곱셈식에서 $9$는 $27$의 약수이고 $27$은 $9$의 배수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 503,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc6",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "한 관계를 두 가지로 말하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$5$가 $15$의 약수라는 말은 $15$가 $5$의 {배수}라는 말과 같다.",
+        "example": {
+          "prompt": "$9$가 $27$의 약수이면 $27$은 $9$의 무엇인가?",
+          "answer": "배수"
+        },
+        "studentC": "$5$가 $15$의 약수라는 말은 $15$가 $5$의 □라는 말과 같다.",
+        "answers": [
+          "배수"
+        ]
+      },
+      "sourceFingerprint": "f9e518c19a5bb130410bb6c09106024f56051620049a6bf76a5469f4054982db",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cFrozenDefinition": "$5$가 $15$의 약수라는 말은 $15$가 $5$의 {배수}라는 말과 같다.",
+      "cFrozenStudentSentence": "$5$가 $15$의 약수라는 말은 $15$가 $5$의 □라는 말과 같다.",
+      "cProposedAnswers": [
+        "배수"
+      ],
+      "cStudentAfter": "$5$가 $15$의 약수라는 말은 $15$가 $5$의 □라는 말과 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$5$가 $15$의 약수라는 말은 $15$가 $5$의 {배수}라는 말과 같다.",
+      "cStudentSentence": "$5$가 $15$의 약수라는 말은 $15$가 $5$의 □라는 말과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 수가 다른 수의 약수일 때, 같은 관계를 '배수'라는 말로 바꾸어 말하는 방법을 쓰시오. '$9$는 $27$의 약수이다.'를 바꾸어 말하고, 두 말이 같은 뜻인 까닭을 곱셈식으로 보이시오.",
+        "answer": "두 수의 자리를 바꾸어 '다른 수는 그 수의 배수이다.'라고 말한다. $27$은 $9$의 배수이다. $9\\times3=27$이라는 한 식에서 $9$는 $27$의 약수이고 $27$은 $9$의 배수이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 자리를 바꾸어 다른 수는 그 수의 배수라고 말한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$27$은 $9$의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9\\times3=27$ 한 곱셈식에서 $9$는 $27$의 약수이고 $27$은 $9$의 배수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5$가 $15$의 약수라는 말은 $15$가 $5$의 {배수}라는 말과 같다.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4e7005b51c171e8c5a9abff24eeab413e94b525c497e0269085b802d3e02e566",
+      "questionRevision": "planning-e5e6-20261006-4e7005b51c17",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc7",
+      "bDecision": "revise",
+      "bPrompt": "$1$과 다른 자연수 사이에는 약수와 배수로 어떤 관계가 항상 성립하는지 쓰시오. $37$을 예로 곱셈식을 써서 까닭을 설명하시오.",
+      "bAnswer": "모든 자연수는 $1$의 배수이고, $1$은 모든 자연수의 약수이다. $37=1\\times37$이므로 $37$은 $1$의 배수이고 $1$은 $37$의 약수이다.",
+      "bGoal": "어떤 자연수든 $1$에 그 수를 곱한 식으로 쓸 수 있어 $1$의 배수이고 $1$을 약수로 가짐을 설명한다.",
+      "bReason": "원래 예시는 배수 쪽만 물었다. 같은 식에서 나오는 '1은 약수'까지 함께 답하도록 범위를 정했다.",
+      "studentLabel": "1과 자연수의 관계",
+      "cDecision": "revise",
+      "cAfter": "$37=1\\times37$처럼 어떤 자연수든 $1$에 그 수를 곱한 값이므로, 모든 자연수는 $1$의 {배수}이고 $1$은 모든 자연수의 {약수}이다.",
+      "cReason": "원문 빈칸 '1의 배수'는 문장 앞부분을 옮겨 쓰는 꼴이다. 실제 식을 붙이고 배수·약수 두 방향을 낱말로 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모든 자연수는 $1$의 배수이다",
+            "$37$은 $1$의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$은 모든 자연수의 약수이다",
+            "$1$은 $37$의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$37=1\\times37$로 쓸 수 있다",
+            "$1\\times37=37$이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 504,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc7",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "모든 자연수와 $1$의 관계",
+        "kind": "성질",
+        "level": "하",
+        "definition": "어떤 자연수든 $1$에 그 수를 곱한 값이므로 모든 자연수는 {$1$의 배수}이다.",
+        "example": {
+          "prompt": "$37$이 $1$의 배수인 까닭을 배수의 뜻으로 설명하시오.",
+          "answer": "$1\\times37$로 쓸 수 있어서"
+        },
+        "studentC": "어떤 자연수든 $1$에 그 수를 곱한 값이므로 모든 자연수는 □이다.",
+        "answers": [
+          "$1$의 배수"
+        ]
+      },
+      "sourceFingerprint": "d193767a0afb26b27105536a36ba59fd730adf4015236d5d5d31c0b87f68f1f1",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [
+        "배수",
+        "약수"
+      ],
+      "cStudentAfter": "$37=1\\times37$처럼 어떤 자연수든 $1$에 그 수를 곱한 값이므로, 모든 자연수는 $1$의 □이고 $1$은 모든 자연수의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "약수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$37=1\\times37$처럼 어떤 자연수든 $1$에 그 수를 곱한 값이므로, 모든 자연수는 $1$의 {배수}이고 $1$은 모든 자연수의 {약수}이다.",
+      "cStudentSentence": "$37=1\\times37$처럼 어떤 자연수든 $1$에 그 수를 곱한 값이므로, 모든 자연수는 $1$의 □이고 $1$은 모든 자연수의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        },
+        {
+          "key": "약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1$과 다른 자연수 사이에는 약수와 배수로 어떤 관계가 항상 성립하는지 쓰시오. $37$을 예로 곱셈식을 써서 까닭을 설명하시오.",
+        "answer": "모든 자연수는 $1$의 배수이고, $1$은 모든 자연수의 약수이다. $37=1\\times37$이므로 $37$은 $1$의 배수이고 $1$은 $37$의 약수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모든 자연수는 $1$의 배수이다",
+              "$37$은 $1$의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$은 모든 자연수의 약수이다",
+              "$1$은 $37$의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$37=1\\times37$로 쓸 수 있다",
+              "$1\\times37=37$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$37=1\\times37$처럼 어떤 자연수든 $1$에 그 수를 곱한 값이므로, 모든 자연수는 $1$의 {배수}이고 $1$은 모든 자연수의 {약수}이다.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "543b87bd0028b3d64cbc11e73c75469cb11834a1c77c5b923d7e60fc76cd35d6",
+      "questionRevision": "planning-e5e6-20261006-543b87bd0028",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc8",
+      "bDecision": "revise",
+      "bPrompt": "어떤 자연수는 자기 자신의 약수인지, 배수인지 판단하시오. $8$을 예로 나눗셈식과 곱셈식을 써서 까닭을 설명하시오.",
+      "bAnswer": "자기 자신의 약수이기도 하고 배수이기도 하다. $8\\div8=1$로 나누어떨어지므로 $8$은 $8$의 약수이고, $8\\times1=8$이므로 $8$은 $8$의 배수($1$배)이다.",
+      "bGoal": "자기 자신이 약수이면서 배수임을 약수·배수의 뜻에 맞는 식으로 각각 보인다.",
+      "bReason": "원래 예시는 '둘 다'로 끝나 이유가 남지 않는다. 약수는 나눗셈식, 배수는 곱셈식으로 근거를 쓰게 했다.",
+      "studentLabel": "자기 자신과의 약수·배수 관계",
+      "cDecision": "revise",
+      "cAfter": "$8\\div8=1$로 나누어떨어지므로 $8$은 $8$의 {약수}이고, $8\\times1=8$이므로 $8$은 $8$의 {배수}이다.",
+      "cReason": "원문 '서로 약수이면서 배수인 관계'는 구절 전체를 외워 써야 한다. 식마다 근거를 붙여 두 빈칸의 순서가 정해지게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자기 자신의 약수이다",
+            "$8$은 $8$의 약수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\div8=1$로 나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자기 자신의 배수이다",
+            "$8$은 $8$의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\times1=8$이다",
+            "$8$은 $8$을 $1$배 한 수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 505,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc8",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "자기 자신과의 관계",
+        "kind": "성질",
+        "level": "하",
+        "definition": "어떤 수와 그 수 자신은 서로 {약수이면서 배수}인 관계이다.",
+        "example": {
+          "prompt": "$8$은 $8$의 약수인가, 배수인가?",
+          "answer": "둘 다"
+        },
+        "studentC": "어떤 수와 그 수 자신은 서로 □인 관계이다.",
+        "answers": [
+          "약수이면서 배수"
+        ]
+      },
+      "sourceFingerprint": "970fdbf0c0f3ca9de68ae752a5175efde338617c808494bb500d2aa5fecbc9ff",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [
+        "약수",
+        "배수"
+      ],
+      "cStudentAfter": "$8\\div8=1$로 나누어떨어지므로 $8$은 $8$의 □이고, $8\\times1=8$이므로 $8$은 $8$의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$8\\div8=1$로 나누어떨어지므로 $8$은 $8$의 {약수}이고, $8\\times1=8$이므로 $8$은 $8$의 {배수}이다.",
+      "cStudentSentence": "$8\\div8=1$로 나누어떨어지므로 $8$은 $8$의 □이고, $8\\times1=8$이므로 $8$은 $8$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "약수",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 자연수는 자기 자신의 약수인지, 배수인지 판단하시오. $8$을 예로 나눗셈식과 곱셈식을 써서 까닭을 설명하시오.",
+        "answer": "자기 자신의 약수이기도 하고 배수이기도 하다. $8\\div8=1$로 나누어떨어지므로 $8$은 $8$의 약수이고, $8\\times1=8$이므로 $8$은 $8$의 배수($1$배)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자기 자신의 약수이다",
+              "$8$은 $8$의 약수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\div8=1$로 나누어떨어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자기 자신의 배수이다",
+              "$8$은 $8$의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\times1=8$이다",
+              "$8$은 $8$을 $1$배 한 수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$8\\div8=1$로 나누어떨어지므로 $8$은 $8$의 {약수}이고, $8\\times1=8$이므로 $8$은 $8$의 {배수}이다.",
+        "acceptedAnswers": [
+          [
+            "약수"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0e88ecc825201faa3a2a33ea49f086542a10d914a5dabff06ef52a60da0de8b0",
+      "questionRevision": "planning-e5e6-20261006-0e88ecc82520",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc9",
+      "bDecision": "revise",
+      "bPrompt": "두 자연수 가운데 큰 수를 작은 수로 나누었을 때 결과가 어떠하면 두 수는 약수와 배수의 관계가 아닌지 쓰시오. $6$과 $15$로 확인하시오.",
+      "bAnswer": "나머지가 생기면(나누어떨어지지 않으면) 약수와 배수의 관계가 아니다. $15\\div6=2\\cdots3$으로 나머지가 $3$이므로 $6$은 $15$의 약수가 아니고 $15$는 $6$의 배수가 아니다.",
+      "bGoal": "나머지가 생기는 두 수는 약수와 배수의 관계가 아님을 나눗셈으로 판단한다.",
+      "bReason": "'관계가 아닌 두 수'는 어떤 관계인지조차 빠져 있다. 판단 기준인 나눗셈 결과를 묻고 $6$과 $15$로 확인하게 했다.",
+      "studentLabel": "약수와 배수의 관계가 아닌 경우",
+      "cDecision": "revise",
+      "cAfter": "$9\\div4=2\\cdots$ {$1$}처럼 큰 수를 작은 수로 나눌 때 나머지가 생기면, $4$는 $9$의 {약수}가 아니고 $9$는 $4$의 {배수}가 아니다.",
+      "cReason": "원문 빈칸 '약수와 배수의 관계'는 길다. 실제 나머지를 구하고 어느 수가 무엇이 아닌지를 낱말로 답하게 풀었다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 수를 작은 수로 나누었을 때 나머지가 생기면 약수와 배수의 관계가 아니다",
+            "나누어떨어지지 않으면 약수와 배수의 관계가 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15\\div6=2\\cdots3$으로 나머지가 있으므로 $6$과 $15$는 약수와 배수의 관계가 아니다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 506,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc9",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "관계가 아닌 두 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$4$와 $9$처럼 큰 수를 작은 수로 나눌 때 나머지가 생기면 {약수와 배수의 관계}로 볼 수 없다.",
+        "example": {
+          "prompt": "$6$과 $15$가 약수와 배수의 관계가 아닌 까닭은?",
+          "answer": "$15\\div6$은 나머지가 남아서"
+        },
+        "studentC": "$4$와 $9$처럼 큰 수를 작은 수로 나눌 때 나머지가 생기면 □로 볼 수 없다.",
+        "answers": [
+          "약수와 배수의 관계"
+        ]
+      },
+      "sourceFingerprint": "49dec75ed4aef51bc5d35a6837efb4d1031efb683e8963b6ff0b183121ea3691",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "약수",
+        "배수"
+      ],
+      "cStudentAfter": "$9\\div4=2\\cdots$ □처럼 큰 수를 작은 수로 나눌 때 나머지가 생기면, $4$는 $9$의 □가 아니고 $9$는 $4$의 □가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$9\\div4=2\\cdots$ {$1$}처럼 큰 수를 작은 수로 나눌 때 나머지가 생기면, $4$는 $9$의 {약수}가 아니고 $9$는 $4$의 {배수}가 아니다.",
+      "cStudentSentence": "$9\\div4=2\\cdots$ □처럼 큰 수를 작은 수로 나눌 때 나머지가 생기면, $4$는 $9$의 □가 아니고 $9$는 $4$의 □가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "약수",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 자연수 가운데 큰 수를 작은 수로 나누었을 때 결과가 어떠하면 두 수는 약수와 배수의 관계가 아닌지 쓰시오. $6$과 $15$로 확인하시오.",
+        "answer": "나머지가 생기면(나누어떨어지지 않으면) 약수와 배수의 관계가 아니다. $15\\div6=2\\cdots3$으로 나머지가 $3$이므로 $6$은 $15$의 약수가 아니고 $15$는 $6$의 배수가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 수를 작은 수로 나누었을 때 나머지가 생기면 약수와 배수의 관계가 아니다",
+              "나누어떨어지지 않으면 약수와 배수의 관계가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$15\\div6=2\\cdots3$으로 나머지가 있으므로 $6$과 $15$는 약수와 배수의 관계가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$9\\div4=2\\cdots$ {$1$}처럼 큰 수를 작은 수로 나눌 때 나머지가 생기면, $4$는 $9$의 {약수}가 아니고 $9$는 $4$의 {배수}가 아니다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "약수"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "79ffd0f156ecb2fda67533e35dbaf5e4b608c6382e3ad9cbfed9ae831db08f2e",
+      "questionRevision": "planning-e5e6-20261006-79ffd0f156ec",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc10",
+      "bDecision": "revise",
+      "bPrompt": "두 자연수가 약수와 배수의 관계인지 알아보려면 어떤 계산을 하고 무엇을 확인해야 하는지 쓰시오. $13$과 $52$를 예로 판단하시오.",
+      "bAnswer": "큰 수를 작은 수로 나누어 나누어떨어지는지 확인한다. $52\\div13=4$로 나누어떨어지므로 $13$은 $52$의 약수이고 $52$는 $13$의 배수이다.",
+      "bGoal": "두 수의 관계를 알아보는 절차(큰 수 ÷ 작은 수, 나누어떨어지는지 확인)를 말하고 적용한다.",
+      "bReason": "원래 예시는 $52\\div13$을 이미 보여 주어 방법을 알려 준다. 어떤 계산을 할지부터 학생이 정하게 했다.",
+      "studentLabel": "약수와 배수의 관계 알아보기",
+      "cDecision": "revise",
+      "cAfter": "$13$과 $52$가 약수와 배수의 관계인지 알아보려면 {$52$} $\\div$ {$13$}을 계산하여 나누어떨어지는지 본다.",
+      "cReason": "원문 빈칸 '큰 수를 작은 수로'는 조사까지 맞춰 써야 한다. 실제 두 수로 나눗셈식을 세우게 해 나누는 방향을 수로 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 수를 작은 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어떨어지는지 확인한다",
+            "나머지가 없는지 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$52\\div13=4$로 나누어떨어지므로 $13$은 $52$의 약수이고 $52$는 $13$의 배수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 507,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc10",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "관계를 알아보는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 수의 관계를 알려면 {큰 수를 작은 수로} 나누어 나누어떨어지는지 본다.",
+        "example": {
+          "prompt": "$13$과 $52$의 관계를 알아보려고 $52\\div13$을 하는 까닭은?",
+          "answer": "$13$의 배수인지 보려고"
+        },
+        "studentC": "두 수의 관계를 알려면 □ 나누어 나누어떨어지는지 본다.",
+        "answers": [
+          "큰 수를 작은 수로"
+        ]
+      },
+      "sourceFingerprint": "f3e42c17fd752d57a2e817206f532a1d09625ebd126d3e15fa6a115c8b478f41",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [
+        "$52$",
+        "$13$"
+      ],
+      "cStudentAfter": "$13$과 $52$가 약수와 배수의 관계인지 알아보려면 □ $\\div$ □을 계산하여 나누어떨어지는지 본다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$52$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$13$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$13$과 $52$가 약수와 배수의 관계인지 알아보려면 {$52$} $\\div$ {$13$}을 계산하여 나누어떨어지는지 본다.",
+      "cStudentSentence": "$13$과 $52$가 약수와 배수의 관계인지 알아보려면 □ $\\div$ □을 계산하여 나누어떨어지는지 본다.",
+      "cSlotAnswers": [
+        {
+          "key": "$52$",
+          "equivalents": []
+        },
+        {
+          "key": "$13$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 자연수가 약수와 배수의 관계인지 알아보려면 어떤 계산을 하고 무엇을 확인해야 하는지 쓰시오. $13$과 $52$를 예로 판단하시오.",
+        "answer": "큰 수를 작은 수로 나누어 나누어떨어지는지 확인한다. $52\\div13=4$로 나누어떨어지므로 $13$은 $52$의 약수이고 $52$는 $13$의 배수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 수를 작은 수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어떨어지는지 확인한다",
+              "나머지가 없는지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$52\\div13=4$로 나누어떨어지므로 $13$은 $52$의 약수이고 $52$는 $13$의 배수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$13$과 $52$가 약수와 배수의 관계인지 알아보려면 {$52$} $\\div$ {$13$}을 계산하여 나누어떨어지는지 본다.",
+        "acceptedAnswers": [
+          [
+            "$52$"
+          ],
+          [
+            "$13$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4da0fd4eee1cc50643ac4d5e133e8d04527b3dda43332fe6da069e40af8abbcb",
+      "questionRevision": "planning-e5e6-20261006-4da0fd4eee1c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "두 자연수를 곱한 식에서 곱한 두 수가 모두 곱의 약수가 되는 까닭을, 곱셈식을 나눗셈식으로 바꾸어 약수의 뜻으로 설명하시오. $2\\times9=18$을 예로 드시오.",
+      "bAnswer": "곱을 곱한 수 하나로 나누면 다른 수가 몫이 되어 나누어떨어지기 때문이다. $18\\div2=9$, $18\\div9=2$로 모두 나누어떨어지므로 $2$와 $9$는 $18$의 약수이다.",
+      "bGoal": "곱셈식 하나에서 나눗셈식 두 개를 만들어, 곱한 두 수가 약수가 되는 까닭을 약수의 뜻으로 설명한다.",
+      "bReason": "약수는 나눗셈으로 뜻을 배웠다. 곱셈식에서 약수를 읽는 근거를 나눗셈으로 바꾸어 대게 했고, 제외한 xc2의 내용도 여기서 다룬다.",
+      "studentLabel": "곱셈식을 나눗셈식으로 바꾸어 약수 확인하기",
+      "cDecision": "revise",
+      "cAfter": "$2\\times9=18$이므로 $18\\div2=$ {$9$}, $18\\div9=$ {$2$}로 모두 나누어떨어진다. 따라서 곱한 두 수는 모두 $18$의 {약수}이다.",
+      "cReason": "원문은 빈칸의 답 $9$, $2$가 바로 뒤 문장에 다시 나오고, 결론 부분이 길다. 뒤 문장을 줄이고 결론 낱말을 빈칸으로 옮겼다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$18\\div2=9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18\\div9=2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 나눗셈이 모두 나누어떨어지므로 $2$와 $9$는 $18$의 약수이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 508,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc11",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "곱셈식 하나로 읽는 두 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "곱셈식 $2\\times9=18$에서 $18\\div2=$ {$9$}, $18\\div9=$ {$2$}이다. 따라서 $2$와 $9$는 $18$의 약수이고 $18$은 두 수의 배수라는 두 관계를 함께 읽을 수 있다.",
+        "studentC": "곱셈식 $2\\times9=18$에서 $18\\div2=$ □, $18\\div9=$ □이다. 따라서 $2$와 $9$는 $18$의 약수이고 $18$은 두 수의 배수라는 두 관계를 함께 읽을 수 있다.",
+        "answers": [
+          "$9$",
+          "$2$"
+        ]
+      },
+      "sourceFingerprint": "6181db022bc3b0a83c5e5b5845152ad9b810add09eb671e998e9f5103f9ed10c",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [
+        "$9$",
+        "$2$",
+        "약수"
+      ],
+      "cStudentAfter": "$2\\times9=18$이므로 $18\\div2=$ □, $18\\div9=$ □로 모두 나누어떨어진다. 따라서 곱한 두 수는 모두 $18$의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "약수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2\\times9=18$이므로 $18\\div2=$ {$9$}, $18\\div9=$ {$2$}로 모두 나누어떨어진다. 따라서 곱한 두 수는 모두 $18$의 {약수}이다.",
+      "cStudentSentence": "$2\\times9=18$이므로 $18\\div2=$ □, $18\\div9=$ □로 모두 나누어떨어진다. 따라서 곱한 두 수는 모두 $18$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 자연수를 곱한 식에서 곱한 두 수가 모두 곱의 약수가 되는 까닭을, 곱셈식을 나눗셈식으로 바꾸어 약수의 뜻으로 설명하시오. $2\\times9=18$을 예로 드시오.",
+        "answer": "곱을 곱한 수 하나로 나누면 다른 수가 몫이 되어 나누어떨어지기 때문이다. $18\\div2=9$, $18\\div9=2$로 모두 나누어떨어지므로 $2$와 $9$는 $18$의 약수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$18\\div2=9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18\\div9=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 나눗셈이 모두 나누어떨어지므로 $2$와 $9$는 $18$의 약수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\times9=18$이므로 $18\\div2=$ {$9$}, $18\\div9=$ {$2$}로 모두 나누어떨어진다. 따라서 곱한 두 수는 모두 $18$의 {약수}이다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "259dc9ce2360e02c5799b629fb7f7c9b1928696fe831e766a8bef973b76e0afd",
+      "questionRevision": "planning-e5e6-20261006-259dc9ce2360",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-2-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수를 두 자연수의 곱으로 나타낸 식을 빠짐없이 찾으면 그 수의 약수도 빠짐없이 찾게 된다. 그 까닭을 설명하고, 이 방법으로 $18$의 약수를 모두 구하시오.",
+      "bAnswer": "어떤 약수든 그 수를 그 약수로 나눈 몫과 곱하면 그 수가 되므로, 모든 약수는 곱셈식 가운데 하나에 반드시 나온다. $18=1\\times18=2\\times9=3\\times6$이므로 $18$의 약수는 $1$, $2$, $3$, $6$, $9$, $18$이다.",
+      "bGoal": "곱셈식을 모두 찾으면 약수를 빠뜨리지 않는 까닭을 알고, 그 방법으로 약수를 모두 구한다.",
+      "bReason": "원래 예시의 답 '약수마다 짝이 있어서'는 '짝'의 뜻이 풀려 있지 않다. 약수와 몫의 곱으로 설명하고 실제로 구해 보게 했다.",
+      "studentLabel": "곱셈식을 모두 찾아 약수 구하기",
+      "cDecision": "revise",
+      "cAfter": "$12=1\\times12=2\\times6=3\\times4$이므로 $12$의 약수를 작은 수부터 모두 쓰면 $1$, $2$, {$3$}, {$4$}, {$6$}, $12$이다.",
+      "cReason": "원문 빈칸 '약수를 모두'는 낱말 맞히기에 그친다. 주어진 곱셈식에서 약수를 직접 뽑아 차례로 쓰게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어떤 약수든 그 수를 그 약수로 나눈 몫과 곱하면 그 수가 되므로 모든 약수가 곱셈식에 나온다",
+            "약수는 곱해서 그 수가 되는 짝이 있어 곱셈식 가운데 하나에 반드시 나온다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$의 약수는 $1$, $2$, $3$, $6$, $9$, $18$이다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-004-rubric.json",
+      "sourceIndex": 509,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-2-2-xc12",
+        "section": "초5::1-2 약수와 배수::1-2-2 약수와 배수의 관계",
+        "term": "곱셈식을 모두 만들어 약수 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$12=1\\times12=2\\times6=3\\times4$처럼 곱셈식을 모두 만들면 {약수를 모두} 찾을 수 있다.",
+        "example": {
+          "prompt": "곱셈식을 빠짐없이 찾으면 약수도 모두 찾게 되는 까닭은?",
+          "answer": "약수마다 짝이 있어서"
+        },
+        "studentC": "$12=1\\times12=2\\times6=3\\times4$처럼 곱셈식을 모두 만들면 □ 찾을 수 있다.",
+        "answers": [
+          "약수를 모두"
+        ]
+      },
+      "sourceFingerprint": "77c86a19d60a1bb97959713099241eb7cd6d050e5cc3f4cafb98d39e307fda6d",
+      "draftEvidence": "evidence/section-004-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$4$",
+        "$6$"
+      ],
+      "cStudentAfter": "$12=1\\times12=2\\times6=3\\times4$이므로 $12$의 약수를 작은 수부터 모두 쓰면 $1$, $2$, □, □, □, $12$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$12=1\\times12=2\\times6=3\\times4$이므로 $12$의 약수를 작은 수부터 모두 쓰면 $1$, $2$, {$3$}, {$4$}, {$6$}, $12$이다.",
+      "cStudentSentence": "$12=1\\times12=2\\times6=3\\times4$이므로 $12$의 약수를 작은 수부터 모두 쓰면 $1$, $2$, □, □, □, $12$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수를 두 자연수의 곱으로 나타낸 식을 빠짐없이 찾으면 그 수의 약수도 빠짐없이 찾게 된다. 그 까닭을 설명하고, 이 방법으로 $18$의 약수를 모두 구하시오.",
+        "answer": "어떤 약수든 그 수를 그 약수로 나눈 몫과 곱하면 그 수가 되므로, 모든 약수는 곱셈식 가운데 하나에 반드시 나온다. $18=1\\times18=2\\times9=3\\times6$이므로 $18$의 약수는 $1$, $2$, $3$, $6$, $9$, $18$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어떤 약수든 그 수를 그 약수로 나눈 몫과 곱하면 그 수가 되므로 모든 약수가 곱셈식에 나온다",
+              "약수는 곱해서 그 수가 되는 짝이 있어 곱셈식 가운데 하나에 반드시 나온다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$의 약수는 $1$, $2$, $3$, $6$, $9$, $18$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12=1\\times12=2\\times6=3\\times4$이므로 $12$의 약수를 작은 수부터 모두 쓰면 $1$, $2$, {$3$}, {$4$}, {$6$}, $12$이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "85b47a500b4c09bc48c2bcb34e754e7acf965d621810af4c684bdbdb2380213a",
+      "questionRevision": "planning-e5e6-20261006-85b47a500b4c",
+      "requiresIndependentReview": true
+    }
+  ]
+}

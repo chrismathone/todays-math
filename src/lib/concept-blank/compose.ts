@@ -10,6 +10,12 @@ import {
 import { sectionStock } from "./bank/stock";
 import { getBlankSection, sectionTitleTex } from "./sections";
 import { composeExactSheets, type ResolvedBlankSection } from "./exactPick";
+import {
+  conceptSupportsForm,
+  mapQuestionMode,
+  MAP_NODES_PER_PAGE,
+  QUESTION_MAP_NODES_PER_PAGE,
+} from "./questions";
 
 /**
  * 고르기 → 지면(D-150). 🔴 고정이다: 무작위 없이 «소단원 순서(교육과정) → 은행 파일 순서»로 세우고,
@@ -83,7 +89,7 @@ function defaultTitle(sections: string[]): string {
     : `${stripCode(chapters[0]!)} 외 ${chapters.length - 1}단원`;
 }
 
-export const MAP_NODES_PER_PAGE = 6;
+export { MAP_NODES_PER_PAGE } from "./questions";
 
 export function composeSheets(
   selection: ConceptBlankSelection,
@@ -144,7 +150,10 @@ export function composeSheets(
             {
               form,
               header: header(form),
-              terms: takeByLevel(all("concepts"), counts),
+              terms: takeByLevel(
+                all("concepts").filter((c) => conceptSupportsForm(c, "term")),
+                counts,
+              ),
               ox: takeByLevel(all("ox"), extras),
             },
           ];
@@ -153,14 +162,20 @@ export function composeSheets(
             {
               form,
               header: header(form),
-              sentences: takeByLevel(all("concepts"), counts),
+              sentences: takeByLevel(
+                all("concepts").filter((c) => conceptSupportsForm(c, "cloze")),
+                counts,
+              ),
               apply: takeByLevel(all("apply"), extras),
             },
           ];
         case "map": {
           // 대단원마다 지도 한 장, 가지는 여섯까지 — 넘치면 같은 대단원의 다음 지도로.
           const chosen = new Set(
-            takeByLevel(all("concepts"), counts).map((c) => c.id),
+            takeByLevel(
+              all("concepts").filter((c) => conceptSupportsForm(c, "map")),
+              counts,
+            ).map((c) => c.id),
           );
           const byChapter = new Map<string, ConceptEntry[]>();
           for (const s of stock) {
@@ -170,20 +185,31 @@ export function composeSheets(
               ...s.concepts.filter((c) => chosen.has(c.id)),
             ]);
           }
+          const questionMode = mapQuestionMode([...byChapter.values()].flat());
+          const limit = questionMode
+            ? QUESTION_MAP_NODES_PER_PAGE
+            : MAP_NODES_PER_PAGE;
           const maps = [...byChapter].flatMap(([ch, nodes]) => {
             const pages: { hub: string; nodes: ConceptEntry[] }[] = [];
-            for (let i = 0; i < nodes.length; i += MAP_NODES_PER_PAGE)
+            for (let i = 0; i < nodes.length; i += limit)
               pages.push({
                 hub:
                   stripCode(ch) +
-                  (nodes.length > MAP_NODES_PER_PAGE
-                    ? ` (${i / MAP_NODES_PER_PAGE + 1})`
-                    : ""),
-                nodes: nodes.slice(i, i + MAP_NODES_PER_PAGE),
+                  (nodes.length > limit ? ` (${i / limit + 1})` : ""),
+                nodes: nodes.slice(i, i + limit),
               });
             return pages;
           });
-          return maps.length ? [{ form, header: header(form), maps }] : [];
+          return maps.length
+            ? [
+                {
+                  form,
+                  header: header(form),
+                  maps,
+                  ...(questionMode ? { questionMode: true as const } : {}),
+                },
+              ]
+            : [];
         }
         case "figure": {
           const figures = takeByLevel(all("figures"), counts);
@@ -227,6 +253,9 @@ export function stockTable(bank: ConceptBlankBank): Map<string, StockCounts> {
       const zero = () => ({ 하: 0, 중: 0, 상: 0 });
       r = {
         concepts: zero(),
+        term: zero(),
+        cloze: zero(),
+        map: zero(),
         recall: zero(),
         ox: zero(),
         apply: zero(),
@@ -243,8 +272,13 @@ export function stockTable(bank: ConceptBlankBank): Map<string, StockCounts> {
       r[kind][item.level] += 1;
       r.total += 1;
     }
-  for (const concept of bank.concepts)
-    if (recallable(concept)) row(concept.section).recall[concept.level] += 1;
+  for (const concept of bank.concepts) {
+    const r = row(concept.section);
+    if (recallable(concept)) r.recall[concept.level] += 1;
+    if (conceptSupportsForm(concept, "term")) r.term[concept.level] += 1;
+    if (conceptSupportsForm(concept, "cloze")) r.cloze[concept.level] += 1;
+    if (conceptSupportsForm(concept, "map")) r.map[concept.level] += 1;
+  }
   return table;
 }
 
@@ -257,6 +291,15 @@ export function stockCounts(key: string, bank: ConceptBlankBank) {
     ) as LevelCounts;
   return {
     concepts: byLevel(s.concepts),
+    map: byLevel(
+      s.concepts.filter((entry) => conceptSupportsForm(entry, "map")),
+    ),
+    term: byLevel(
+      s.concepts.filter((entry) => conceptSupportsForm(entry, "term")),
+    ),
+    cloze: byLevel(
+      s.concepts.filter((entry) => conceptSupportsForm(entry, "cloze")),
+    ),
     /** A(완전 백지)에 실을 수 있는 개념 — 사례 문항을 뺀 수(`total` 에는 더하지 않는다). */
     recall: byLevel(s.concepts.filter(recallable)),
     ox: byLevel(s.ox),

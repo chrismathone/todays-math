@@ -1,0 +1,2290 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-1362-1391.json",
+  "changes": [
+    {
+      "id": "m1-03-09-xc18",
+      "cAfter": "현재 두 사람의 나이의 비가 $a:b$일 때, $a$와 $b$에 공통으로 곱하는 수를 $x$라고 놓으면 두 사람의 나이는 차례로 {$ax$살}, {$bx$살}이다.",
+      "cReason": "x가 임의의 한 사람 나이인지 공통배율인지 지정되지 않아 다른 표현도 가능하므로 역할을 명시한다."
+    },
+    {
+      "id": "m1-03-09-xc19",
+      "cAfter": "긴 의자 $x$개에 빈 의자 없이 $a$명씩 앉았더니 마지막 의자에만 $r$명이 앉았다. $r$는 $0$보다 크고 $a$보다 작다. 나머지 $(x-1)$개 의자는 꽉 찼으므로 학생 수는 {$a(x-1)+r$}명이다.",
+      "cAcceptedAnswers": [
+        [
+          "$a(x-1)+r$",
+          "$ax-a+r$"
+        ]
+      ],
+      "cReason": "빈 의자가 더 있거나 마지막 의자가 비어 있는 경우를 제외해야 x-1개가 모두 꽉 찼다고 할 수 있다."
+    },
+    {
+      "id": "m1-03-09-xc20",
+      "cAfter": "두 사람의 예금액의 차가 처음에는 $D$원이고 매달 입금 후 $d$원씩 줄어든다. $D$, $d$가 양수이고 $D$가 $d$로 나누어떨어질 때, {$D\\div d$}개월 뒤에 두 예금액이 같아진다.",
+      "cAcceptedAnswers": [
+        [
+          "$D\\div d$",
+          "$\\frac{D}{d}$"
+        ]
+      ],
+      "cReason": "매달 입금하는 상황에서 나눈 값이 정수 개월이어야 실제 입금 직후 같아지므로 양수와 나누어떨어짐 조건을 붙인다.",
+      "coreAfter": "처음 예금 차가 $D$원이고 매달 입금 후 그 차가 $d$원씩 줄어든다고 하자. $D$, $d$가 양수이고 $D$가 $d$로 나누어떨어지면 {$D\\div d$}개월 뒤에 예금이 {같아진다}.",
+      "coreReason": "매달 한 번씩 변하는 예금에서 분수 개월 해를 무조건 실제 시점으로 해석하지 않게 조건을 한정한다."
+    },
+    {
+      "id": "m1-03-09-xc22",
+      "cAfter": "같은 사람들에게 물건을 $a$개씩 주면 $p$개 남고 $b$개씩 주면 $q$개 모자라며, $b$는 $a$보다 크다. 사람 수를 $x$명이라 하면 $ax+p=bx-q$이므로 사람 수는 {$\\frac{p+q}{b-a}$}명이다.",
+      "cReason": "누구에게 같은 전체물건을 나누는지와 분모가 양수인 b>a 조건을 실제 C에 밝힌다."
+    },
+    {
+      "id": "m1-03-10-xc1",
+      "cAcceptedAnswers": [
+        [
+          "할인"
+        ],
+        [
+          "판매 가격",
+          "판매가격",
+          "판매가"
+        ]
+      ],
+      "cReason": "판매 가격과 판매가라는 같은 뜻의 통상 표현을 인정한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-03-09-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "할머니의 나이는 손녀의 나이의 $6$배이고, 어머니는 손녀보다 $30$살 많다. 세 사람의 나이의 합은 $126$살이다. 누구의 나이를 $x$살로 놓으면 좋은지 이유와 함께 쓰고, 방정식을 세워 손녀의 나이를 구하시오.",
+      "bAnswer": "할머니와 어머니의 나이가 모두 손녀를 기준으로 주어졌으므로 손녀를 $x$살로 놓는다. $6x+(x+30)+x=126$에서 $8x=96$, $x=12$이므로 손녀는 $12$살이다.",
+      "bGoal": "세 사람의 나이 관계에서 기준이 되는 사람을 미지수로 정해 방정식을 세운다.",
+      "bReason": "제목 '세 사람의 나이'에는 관계가 없다. 세 사람의 관계와 합을 주고 미지수 선택의 이유까지 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "할머니의 나이는 손녀의 $6$배이고 어머니는 손녀보다 $30$살 많을 때, 다른 두 사람의 나이를 정하는 기준이 되는 {손녀}의 나이를 $x$살로 놓고 나머지 두 사람의 나이를 $x$에 대한 식으로 나타낸다.",
+      "cAnswers": [
+        "손녀"
+      ],
+      "cReason": "원문의 빈칸 '기준이 되는', '나타낸다'는 떠올릴 단서가 없는 설명용 낱말이다. 구체 관계를 주고 누구를 $x$로 놓을지 판단하게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "손녀의 나이를 $x$살로 놓는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이유: 할머니와 어머니의 나이가 모두 손녀를 기준으로 주어져 있음"
+          ]
+        },
+        {
+          "anyOf": [
+            "방정식 $6x+(x+30)+x=126$ (동치인 식 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "손녀 $12$살"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "application",
+      "roleReason": "기준인 사람을 x살로",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1362,
+      "part": "m1plus",
+      "sourceFingerprint": "7311a6b094b28f2113a8408c361883af26db794891c8f479d5083c555d6394c6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1362
+      },
+      "directReview": null,
+      "cMarkedSentence": "할머니의 나이는 손녀의 $6$배이고 어머니는 손녀보다 $30$살 많을 때, 다른 두 사람의 나이를 정하는 기준이 되는 {손녀}의 나이를 $x$살로 놓고 나머지 두 사람의 나이를 $x$에 대한 식으로 나타낸다.",
+      "cSlotAnswers": [
+        "손녀"
+      ],
+      "cStudentSentence": "할머니의 나이는 손녀의 $6$배이고 어머니는 손녀보다 $30$살 많을 때, 다른 두 사람의 나이를 정하는 기준이 되는 □의 나이를 $x$살로 놓고 나머지 두 사람의 나이를 $x$에 대한 식으로 나타낸다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "손녀",
+          "equivalentAnswers": [
+            "손녀"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "손녀"
+        ]
+      ],
+      "proposalFingerprint": "2030a7b882c2b7df4a3b8bcd18fcefc87e015079ac4bb1af66f5f789193bd4dd"
+    },
+    {
+      "id": "m1-03-09-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "두 사람의 현재 나이의 비가 $5:2$이다. 두 사람의 현재 나이를 문자 $x$ 하나를 사용하여 각각 나타내시오. 또 $6$년 뒤 두 사람의 나이의 비가 $2:1$이 될 때, 두 사람의 현재 나이를 구하시오.",
+      "bAnswer": "$5x$살, $2x$살로 놓는다. $6$년 뒤 나이의 비가 $2:1$이므로 $5x+6=2(2x+6)$, $x=6$. 현재 나이는 $30$살, $12$살이다.",
+      "bGoal": "나이의 비가 주어질 때 두 나이를 $ax$, $bx$ 꼴로 놓아 방정식을 세운다.",
+      "bReason": "제목은 조건의 종류만 말한다. 구체적인 비와 몇 년 뒤의 비를 주어 놓는 방법과 풀이를 모두 답하게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "x가 임의의 한 사람 나이인지 공통배율인지 지정되지 않아 다른 표현도 가능하므로 역할을 명시한다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "현재 나이를 $5x$살, $2x$살로 놓는다 (비가 $5:2$가 되는 다른 올바른 표현도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$년 뒤 조건으로 $5x+6=2(2x+6)$ (동치인 식 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "현재 나이 $30$살, $12$살"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "application",
+      "roleReason": "나이 비는 ax살, bx살",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1363,
+      "part": "m1plus",
+      "sourceFingerprint": "53e21072f769f1096a6f771785588f61c0f5cfc3a46f7877e05002b8b8a1154c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1363
+      },
+      "directReview": null,
+      "cMarkedSentence": "현재 두 사람의 나이의 비가 $a:b$일 때, $a$와 $b$에 공통으로 곱하는 수를 $x$라고 놓으면 두 사람의 나이는 차례로 {$ax$살}, {$bx$살}이다.",
+      "cSlotAnswers": [
+        "$ax$살",
+        "$bx$살"
+      ],
+      "cStudentSentence": "현재 두 사람의 나이의 비가 $a:b$일 때, $a$와 $b$에 공통으로 곱하는 수를 $x$라고 놓으면 두 사람의 나이는 차례로 □, □이다.",
+      "cAnswers": [
+        "$ax$살",
+        "$bx$살"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$ax$살",
+          "equivalentAnswers": [
+            "$ax$살"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$bx$살",
+          "equivalentAnswers": [
+            "$bx$살"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$ax$살"
+        ],
+        [
+          "$bx$살"
+        ]
+      ],
+      "proposalFingerprint": "75a3bf7c7deee37b4c441c67d8d927a9f4257a74dc7078782bf9cdff2099b7c1",
+      "cAfter": "현재 두 사람의 나이의 비가 $a:b$일 때, $a$와 $b$에 공통으로 곱하는 수를 $x$라고 놓으면 두 사람의 나이는 차례로 {$ax$살}, {$bx$살}이다."
+    },
+    {
+      "id": "m1-03-09-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "긴 의자가 $x$개 있다. 한 의자에 $6$명씩 앉으면 $4$명이 앉지 못하고, $7$명씩 앉으면 빈 의자 없이 마지막 의자에만 $3$명이 앉는다. $7$명씩 앉을 때의 학생 수를 $x$를 사용한 식으로 나타내고, 의자 수를 구하시오.",
+      "bAnswer": "$7$명이 꽉 찬 의자는 $(x-1)$개이므로 학생 수는 $7(x-1)+3$이다. $6x+4=7(x-1)+3$에서 $x=8$이므로 의자는 $8$개이다.",
+      "bGoal": "마지막 의자에 일부만 앉는 경우 꽉 찬 의자 수와 마지막 의자의 인원을 나누어 학생 수를 식으로 나타낸다.",
+      "bReason": "그림이 없으므로 의자 수, 앉는 인원, 마지막 의자의 인원을 문장으로 모두 밝혔다. 제목만으로는 이 조건들을 알 수 없다.",
+      "cDecision": "rewrite",
+      "cAfter": "긴 의자 $x$개에 빈 의자 없이 $a$명씩 앉았더니 마지막 의자에만 $r$명이 앉았다. $r$는 $0$보다 크고 $a$보다 작다. 나머지 $(x-1)$개 의자는 꽉 찼으므로 학생 수는 {$a(x-1)+r$}명이다.",
+      "cAnswers": [
+        "$a(x-1)+r$"
+      ],
+      "cReason": "빈 의자가 더 있거나 마지막 의자가 비어 있는 경우를 제외해야 x-1개가 모두 꽉 찼다고 할 수 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$7$명씩 앉을 때 학생 수 $7(x-1)+3$ (동치인 $7x-4$ 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "방정식 $6x+4=7(x-1)+3$ (동치인 식 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "의자 $8$개"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "application",
+      "roleReason": "꽉 찬 의자는 x-1개",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1364,
+      "part": "m1plus",
+      "sourceFingerprint": "e97a505b354aa90e48a0bfe0a745357969cb21fd756170b2ce38ac23fdad18f1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1364
+      },
+      "directReview": null,
+      "cMarkedSentence": "긴 의자 $x$개에 빈 의자 없이 $a$명씩 앉았더니 마지막 의자에만 $r$명이 앉았다. $r$는 $0$보다 크고 $a$보다 작다. 나머지 $(x-1)$개 의자는 꽉 찼으므로 학생 수는 {$a(x-1)+r$}명이다.",
+      "cSlotAnswers": [
+        "$a(x-1)+r$"
+      ],
+      "cStudentSentence": "긴 의자 $x$개에 빈 의자 없이 $a$명씩 앉았더니 마지막 의자에만 $r$명이 앉았다. $r$는 $0$보다 크고 $a$보다 작다. 나머지 $(x-1)$개 의자는 꽉 찼으므로 학생 수는 □명이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a(x-1)+r$",
+          "equivalentAnswers": [
+            "$a(x-1)+r$",
+            "$ax-a+r$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$a(x-1)+r$",
+          "accept": [
+            "$ax-a+r$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$a(x-1)+r$",
+          "$ax-a+r$"
+        ]
+      ],
+      "proposalFingerprint": "99d48432006048088b3edebe3d58136bd85b01ebe1cfa6e901ca4f193dc9246b"
+    },
+    {
+      "id": "m1-03-09-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "현재 언니의 예금액이 동생의 예금액보다 $6000$원 많다. 동생이 매달 언니보다 $1500$원씩 더 저금하여 두 사람의 예금액의 차가 매달 $1500$원씩 줄어든다. 몇 개월 뒤에 두 사람의 예금액이 같아지는지 구하고, 어떤 계산으로 구했는지 쓰시오.",
+      "bAnswer": "$6000\\div1500=4$이므로 $4$개월 뒤이다. 처음 예금액의 차를 매달 줄어드는 금액으로 나누었다.",
+      "bGoal": "예금액의 차와 매달 줄어드는 금액으로 같아지는 때를 구한다.",
+      "bReason": "제목의 '빠르기'는 무엇을 구하는지 알기 어렵다. 처음 차와 매달 줄어드는 금액을 주고 같아지는 때와 계산 방법을 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 사람의 예금액의 차가 처음에는 $D$원이고 매달 입금 후 $d$원씩 줄어든다. $D$, $d$가 양수이고 $D$가 $d$로 나누어떨어질 때, {$D\\div d$}개월 뒤에 두 예금액이 같아진다.",
+      "cAnswers": [
+        "$D\\div d$"
+      ],
+      "cReason": "매달 입금하는 상황에서 나눈 값이 정수 개월이어야 실제 입금 직후 같아지므로 양수와 나누어떨어짐 조건을 붙인다.",
+      "studentLabel": "예금액의 차가 매달 줄어들 때",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$개월 뒤"
+          ]
+        },
+        {
+          "anyOf": [
+            "계산: 처음 예금액의 차를 매달 줄어드는 금액으로 나눔, $6000\\div1500=4$ ($6000-1500x=0$ 같은 방정식으로 구한 설명도 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "application",
+      "roleReason": "예금 차÷줄어드는 금액",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1365,
+      "part": "m1plus",
+      "sourceFingerprint": "c4f6129a7f1afea8eb2d0be13ad400c4344bb20aff79cfece63b49eac2c51b7f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1365
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 사람의 예금액의 차가 처음에는 $D$원이고 매달 입금 후 $d$원씩 줄어든다. $D$, $d$가 양수이고 $D$가 $d$로 나누어떨어질 때, {$D\\div d$}개월 뒤에 두 예금액이 같아진다.",
+      "cSlotAnswers": [
+        "$D\\div d$"
+      ],
+      "cStudentSentence": "두 사람의 예금액의 차가 처음에는 $D$원이고 매달 입금 후 $d$원씩 줄어든다. $D$, $d$가 양수이고 $D$가 $d$로 나누어떨어질 때, □개월 뒤에 두 예금액이 같아진다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$D\\div d$",
+          "equivalentAnswers": [
+            "$D\\div d$",
+            "$\\frac{D}{d}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$D\\div d$",
+          "accept": [
+            "$\\frac{D}{d}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$D\\div d$",
+          "$\\frac{D}{d}$"
+        ]
+      ],
+      "proposalFingerprint": "72e452650f706bef3fb60bbd1021952f277f1fa6dede2ec5aa7392a2fc5da44f",
+      "coreAfter": "처음 예금 차가 $D$원이고 매달 입금 후 그 차가 $d$원씩 줄어든다고 하자. $D$, $d$가 양수이고 $D$가 $d$로 나누어떨어지면 {$D\\div d$}개월 뒤에 예금이 {같아진다}.",
+      "coreReason": "매달 한 번씩 변하는 예금에서 분수 개월 해를 무조건 실제 시점으로 해석하지 않게 조건을 한정한다."
+    },
+    {
+      "id": "m1-03-09-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "어머니와 딸의 나이의 차는 $25$살이다. 어머니의 나이가 딸의 나이의 $2$배가 되는 해에 딸의 나이는 몇 살인지 구하고, 그 까닭을 나이의 차를 이용해 설명하시오.",
+      "bAnswer": "$25$살이다. 그해 딸을 $x$살이라 하면 어머니는 $2x$살이고, 나이의 차는 $2x-x=x$이다. 나이의 차는 변하지 않으므로 $x=25$이다.",
+      "bGoal": "나이의 차가 일정함을 이용해 $2$배가 되는 때의 나이를 구한다.",
+      "bReason": "제목 '나이가 두 배가 되는 때'에는 누구의 나이가 누구의 두 배인지와 나이 차가 없다. 조건을 넣고 값과 이유를 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "나이가 많은 사람의 나이가 어린 사람의 나이의 $2$배가 되는 해에는, 어린 사람의 나이가 두 사람의 {나이의 차}와 같다.",
+      "cAnswers": [
+        "나이의 차"
+      ],
+      "cReason": "원문은 첫머리 '나이 차는 그대로이므로'에 첫 빈칸의 답이 그대로 있고, '같다' 빈칸은 내용이 없다. 첫머리를 빼고 한 가지만 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "딸의 나이 $25$살"
+          ]
+        },
+        {
+          "anyOf": [
+            "까닭: 그해 딸이 $x$살이면 어머니는 $2x$살이라 나이의 차가 $x$이고, 나이의 차는 변하지 않으므로 $x=25$ (같은 뜻의 설명 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "reason",
+      "roleReason": "나이 차는 변하지 않음",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1366,
+      "part": "m1plus",
+      "sourceFingerprint": "716d65b00843c7c6edc226551d0625711ba1db95070ecf1bcc5a009029e66290",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1366
+      },
+      "directReview": null,
+      "cMarkedSentence": "나이가 많은 사람의 나이가 어린 사람의 나이의 $2$배가 되는 해에는, 어린 사람의 나이가 두 사람의 {나이의 차}와 같다.",
+      "cSlotAnswers": [
+        "나이의 차"
+      ],
+      "cStudentSentence": "나이가 많은 사람의 나이가 어린 사람의 나이의 $2$배가 되는 해에는, 어린 사람의 나이가 두 사람의 □와 같다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "나이의 차",
+          "equivalentAnswers": [
+            "나이의 차",
+            "나이 차"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "나이의 차",
+          "accept": [
+            "나이 차"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "나이의 차",
+          "나이 차"
+        ]
+      ],
+      "proposalFingerprint": "e32c49c1a5d434b2dd3d1ae6003144bf4861c2f76b38d9f4f27effbbc02b5f86"
+    },
+    {
+      "id": "m1-03-09-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "물건을 $x$명에게 $a$개씩 주면 $p$개가 남고, $b$개씩 주면 $q$개가 모자란다(단, $b$는 $a$보다 크다). 전체 개수를 두 식으로 나타내어 방정식을 세우고, 사람 수 $x$를 $a$, $b$, $p$, $q$를 사용한 식으로 나타내시오.",
+      "bAnswer": "$ax+p=bx-q$에서 $p+q=(b-a)x$이므로 $x=\\frac{p+q}{b-a}$이다.",
+      "bGoal": "남고 모자라는 조건에서 사람 수를 구하는 식을 방정식에서 끌어낸다.",
+      "bReason": "제목이 조건을 그대로 담고 있지만 무엇을 답할지 말하지 않는다. 공식을 외워 쓰게 하지 않고 방정식을 세워 끌어내도록 했다.",
+      "cDecision": "rewrite",
+      "cReason": "누구에게 같은 전체물건을 나누는지와 분모가 양수인 b>a 조건을 실제 C에 밝힌다.",
+      "studentLabel": "남고 모자라는 개수로 사람 수 구하는 식",
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "방정식 $ax+p=bx-q$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=\\frac{p+q}{b-a}$ (동치인 식 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "reason",
+      "roleReason": "ax+p=bx-q에서 유도",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1367,
+      "part": "m1plus",
+      "sourceFingerprint": "ee65778ddac7bb6427f4fb6f7b483d9448fb9bd2264e8b1c9f00abd55f3bc8e4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1367
+      },
+      "directReview": null,
+      "cMarkedSentence": "같은 사람들에게 물건을 $a$개씩 주면 $p$개 남고 $b$개씩 주면 $q$개 모자라며, $b$는 $a$보다 크다. 사람 수를 $x$명이라 하면 $ax+p=bx-q$이므로 사람 수는 {$\\frac{p+q}{b-a}$}명이다.",
+      "cSlotAnswers": [
+        "$\\frac{p+q}{b-a}$"
+      ],
+      "cStudentSentence": "같은 사람들에게 물건을 $a$개씩 주면 $p$개 남고 $b$개씩 주면 $q$개 모자라며, $b$는 $a$보다 크다. 사람 수를 $x$명이라 하면 $ax+p=bx-q$이므로 사람 수는 □명이다.",
+      "cAnswers": [
+        "$\\frac{p+q}{b-a}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{p+q}{b-a}$",
+          "equivalentAnswers": [
+            "$\\frac{p+q}{b-a}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{p+q}{b-a}$"
+        ]
+      ],
+      "proposalFingerprint": "40405155010b352b828259cb2ce6478a7caccaf55fa90e7bc5acab8a65c9654b",
+      "cAfter": "같은 사람들에게 물건을 $a$개씩 주면 $p$개 남고 $b$개씩 주면 $q$개 모자라며, $b$는 $a$보다 크다. 사람 수를 $x$명이라 하면 $ax+p=bx-q$이므로 사람 수는 {$\\frac{p+q}{b-a}$}명이다."
+    },
+    {
+      "id": "m1-03-09-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "$2$만 원을 가지고 있고 한 주에 $2500$원씩 쓴다. 몇 주 뒤에 $5000$원이 남는지 구하려고 한다. 방정식을 세우기 전에 먼저 고쳐야 할 것을 쓰고, 방정식을 세워 답을 구하시오.",
+      "bAnswer": "$2$만 원을 $20000$원으로 고쳐 단위를 원으로 맞춘다. $x$주 뒤라 하면 $20000-2500x=5000$, $x=6$이므로 $6$주 뒤이다.",
+      "bGoal": "단위가 섞인 문제에서 단위를 하나로 맞춘 뒤 방정식을 세운다.",
+      "bReason": "제목 '단위를 맞춘 예금 문제'는 무엇을 하라는지 불분명하다. 단위가 섞인 예를 넣어 먼저 할 일과 풀이를 답하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "만 원과 원, 일과 주처럼 단위가 섞여 있으면 먼저 {같은 단위}로 고친 뒤 방정식을 세운다.",
+      "cAnswers": [
+        "같은 단위"
+      ],
+      "cReason": "원문의 둘째 빈칸 '방정식'은 이 문장의 요점이 아니어서 군더더기다. 요점인 단위 통일만 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "단위를 하나로 맞춘다: $2$만 원을 $20000$원으로 고침 (모두 같은 단위로 바르게 맞춘 다른 방법도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "방정식 $20000-2500x=5000$ (동치인 식 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$주 뒤"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "procedure",
+      "roleReason": "단위 맞춘 뒤 식 세움",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1368,
+      "part": "m1plus",
+      "sourceFingerprint": "0899f033d955866e45845912da33a4d2a5b386b7be046624fbcceb4d235bbf1a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1368
+      },
+      "directReview": null,
+      "cMarkedSentence": "만 원과 원, 일과 주처럼 단위가 섞여 있으면 먼저 {같은 단위}로 고친 뒤 방정식을 세운다.",
+      "cSlotAnswers": [
+        "같은 단위"
+      ],
+      "cStudentSentence": "만 원과 원, 일과 주처럼 단위가 섞여 있으면 먼저 □로 고친 뒤 방정식을 세운다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같은 단위",
+          "equivalentAnswers": [
+            "같은 단위",
+            "하나의 단위",
+            "한 가지 단위"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "같은 단위",
+          "accept": [
+            "하나의 단위",
+            "한 가지 단위"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같은 단위",
+          "하나의 단위",
+          "한 가지 단위"
+        ]
+      ],
+      "proposalFingerprint": "a251a1df02fc1dd96093a2fd3b026538d5520ae0cf5f1367ffaaaedc7e24d375"
+    },
+    {
+      "id": "m1-03-09-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "현재 두 사람의 나이의 합이 $40$살이다. $x$년 뒤 두 사람의 나이의 합을 $x$를 사용한 식으로 나타내고, 현재의 합에 $x$만 더하면 안 되는 이유를 쓰시오. 또 나이의 합이 $56$살이 되는 것은 몇 년 뒤인지 구하시오.",
+      "bAnswer": "$(40+2x)$살이다. 두 사람이 각각 $x$살씩 늘어나므로 합은 $2x$만큼 늘어난다. $40+2x=56$에서 $x=8$이므로 $8$년 뒤이다.",
+      "bGoal": "$x$년 뒤 두 사람의 나이의 합은 현재 합에 $2x$를 더한 것임을 이유와 함께 안다.",
+      "bReason": "제목만으로는 현재 나이의 합이 없어 식을 쓸 수 없다. 합을 주고 식, 이유, 적용을 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 사람의 $x$년 뒤 나이의 합은 현재 나이의 합에 {$2x$}를 더한 것이다.",
+      "cAnswers": [
+        "$2x$"
+      ],
+      "cReason": "원문의 둘째 빈칸 '더한'은 내용 없는 낱말 빈칸이다. 핵심인 $2x$만 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$년 뒤 나이의 합 $(40+2x)$살"
+          ]
+        },
+        {
+          "anyOf": [
+            "이유: 두 사람이 각각 $x$살씩 늘어나므로 합은 $2x$만큼 늘어남"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40+2x=56$에서 $8$년 뒤"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "reason",
+      "roleReason": "두 사람 모두 x살씩 늘어남",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1369,
+      "part": "m1plus",
+      "sourceFingerprint": "dc247fa57b0d5c012f3f93f2186371b507415c1bd318b7c302069f10e1a61567",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1369
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 사람의 $x$년 뒤 나이의 합은 현재 나이의 합에 {$2x$}를 더한 것이다.",
+      "cSlotAnswers": [
+        "$2x$"
+      ],
+      "cStudentSentence": "두 사람의 $x$년 뒤 나이의 합은 현재 나이의 합에 □를 더한 것이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2x$",
+          "equivalentAnswers": [
+            "$2x$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2x$"
+        ]
+      ],
+      "proposalFingerprint": "598b8036bdb76f99a7a5b82f38250da3e40c6700b13eaffe17b4e07abd8ca9dc"
+    },
+    {
+      "id": "m1-03-09-xc25",
+      "bDecision": "rewrite",
+      "bPrompt": "'사탕을 $3$개씩 주면 $4$개가 남고 $4$개씩 주면 $2$개가 모자란다'는 문제에서 사람 수를 $6$명으로 구했다. 이 답이 맞는지 확인하는 방법을 쓰고 실제로 확인하시오.",
+      "bAnswer": "전체 개수를 나타낸 두 식 $3x+4$, $4x-2$에 $x=6$을 대입해 값이 같은지 본다. $3\\times6+4=22$, $4\\times6-2=22$로 같으므로 맞다.",
+      "bGoal": "구한 사람 수를 두 식에 대입해 전체 개수가 같은지 확인한다.",
+      "bReason": "제목 '과부족의 답 확인'은 어떤 문제의 어떤 답인지 없다. 문제와 구한 답을 주고 확인 방법과 계산을 요구했다.",
+      "cDecision": "rewrite",
+      "cAfter": "남거나 모자라는 문제에서 구한 사람 수를, 전체 개수를 나타낸 두 식에 각각 대입하여 두 식의 값이 서로 {같게} 나오는지 확인한다.",
+      "cAnswers": [
+        "같게"
+      ],
+      "cReason": "원문의 '두 식'이 어떤 식인지 문장 안에 없어 숨은 제목 없이는 상황을 알 수 없다. 두 식의 정체를 밝히고 한 가지만 묻는다.",
+      "studentLabel": "남거나 모자라는 문제의 답 확인",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "확인 방법: $x=6$을 전체 개수를 나타낸 두 식 $3x+4$, $4x-2$에 대입해 값이 같은지 본다 (사탕 $22$개로 두 조건을 직접 확인하는 설명도 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\times6+4=22$, $4\\times6-2=22$로 같으므로 맞다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "procedure",
+      "roleReason": "두 식의 값이 같은지 확인",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1370,
+      "part": "m1plus",
+      "sourceFingerprint": "a050f0da50f0de593086fa4ec5e87dd64d3009f9010b91da5b71984f9821f354",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1370
+      },
+      "directReview": null,
+      "cMarkedSentence": "남거나 모자라는 문제에서 구한 사람 수를, 전체 개수를 나타낸 두 식에 각각 대입하여 두 식의 값이 서로 {같게} 나오는지 확인한다.",
+      "cSlotAnswers": [
+        "같게"
+      ],
+      "cStudentSentence": "남거나 모자라는 문제에서 구한 사람 수를, 전체 개수를 나타낸 두 식에 각각 대입하여 두 식의 값이 서로 □ 나오는지 확인한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같게",
+          "equivalentAnswers": [
+            "같게",
+            "똑같이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "같게",
+          "accept": [
+            "똑같이"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같게",
+          "똑같이"
+        ]
+      ],
+      "proposalFingerprint": "bd6fed4f202f7fd60760a714aa75625bfaf5228e12f06ebd5c23d264080ae8b9"
+    },
+    {
+      "id": "m1-03-10-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "정가가 $3000$원인 물건을 $500$원 깎아서 팔았다. 이때 '할인'과 '판매 가격'이 각각 무엇을 뜻하는지 쓰고, 이 물건의 판매 가격을 구하시오.",
+      "bAnswer": "할인은 정가에서 얼마를 깎아 주는 것이고, 판매 가격은 깎아 준 뒤 실제로 받는 값이다. 판매 가격은 $3000-500=2500$(원)이다.",
+      "bGoal": "할인과 판매 가격의 뜻을 알고 판매 가격을 구한다.",
+      "bReason": "제목은 두 용어만 나열한다. c5의 B는 관계식을 묻고, 이 항목은 용어의 뜻을 구체 상황에서 쓰게 하여 역할을 나누었다.",
+      "cDecision": "keep",
+      "cReason": "판매 가격과 판매가라는 같은 뜻의 통상 표현을 인정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "할인: 정가에서 얼마를 깎아 주는 것 (같은 뜻의 표현 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "판매 가격: 깎아 준 뒤 실제로 받는 값 (같은 뜻의 표현 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "판매 가격 $3000-500=2500$(원)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "definition",
+      "roleReason": "할인과 판매 가격의 뜻",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1371,
+      "part": "m1plus",
+      "sourceFingerprint": "369e6fa52c0fc1f6e170ab42b63fcffc318ea50f5ad9a1acae4cbec0cf11c417",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1371
+      },
+      "directReview": null,
+      "cFrozenSentence": "정가에서 얼마를 깎아 주는 것을 □이라 하고, 깎아 준 뒤 실제로 받는 값을 □이라 한다.",
+      "cFrozenDefinition": "정가에서 얼마를 깎아 주는 것을 {할인}이라 하고, 깎아 준 뒤 실제로 받는 값을 {판매 가격}이라 한다.",
+      "cFrozenAnswers": [
+        "할인",
+        "판매 가격"
+      ],
+      "cMarkedSentence": "정가에서 얼마를 깎아 주는 것을 {할인}이라 하고, 깎아 준 뒤 실제로 받는 값을 {판매 가격}이라 한다.",
+      "cSlotAnswers": [
+        "할인",
+        "판매 가격"
+      ],
+      "cStudentSentence": "정가에서 얼마를 깎아 주는 것을 □이라 하고, 깎아 준 뒤 실제로 받는 값을 □이라 한다.",
+      "cAnswers": [
+        "할인",
+        "판매 가격"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "할인",
+          "equivalentAnswers": [
+            "할인"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "판매 가격",
+          "equivalentAnswers": [
+            "판매 가격",
+            "판매가격",
+            "판매가"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "할인"
+        ],
+        [
+          "판매 가격",
+          "판매가격",
+          "판매가"
+        ]
+      ],
+      "proposalFingerprint": "5745f2369bf086f7d242e4f458687a89e3b4adf4cd4ea634fd5c819073cf32aa"
+    },
+    {
+      "id": "m1-03-10-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "이익이 판매 가격과 원가의 차임을 안다.",
+      "bReason": "m1-03-10-c5의 B가 '이익은 판매 가격에서 원가를 뺀 값'을 구체 값으로 이미 묻는다. 같은 관계를 되묻게 되어 현재 형식에서는 제외하고 연습용 제안만 남긴다.",
+      "cDecision": "rewrite",
+      "cAfter": "판매 가격이 원가보다 많을 때, 판매 가격에서 원가를 뺀 값을 {이익}이라 한다.",
+      "cAnswers": [
+        "이익"
+      ],
+      "cReason": "원문은 관계(차)와 용어(이익)를 모두 가려 무엇을 정의하는 문장인지 알 수 없다. 관계를 보여 주고 용어만 묻는다.",
+      "exclusionReason": "B 제외: m1-03-10-c5의 B와 같은 관계(이익 = 판매 가격 − 원가)를 묻는 질문의 중복이다. C는 용어 빈칸으로 고쳐 유지한다.",
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "definition",
+      "roleReason": "이익은 판매가-원가",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1372,
+      "part": "m1plus",
+      "sourceFingerprint": "683fe5964d9dbab211d62643c58e1ca83a20dde4888756a0de3a095fe3270c2a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1372
+      },
+      "directReview": null,
+      "cMarkedSentence": "판매 가격이 원가보다 많을 때, 판매 가격에서 원가를 뺀 값을 {이익}이라 한다.",
+      "cSlotAnswers": [
+        "이익"
+      ],
+      "cStudentSentence": "판매 가격이 원가보다 많을 때, 판매 가격에서 원가를 뺀 값을 □이라 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "이익",
+          "equivalentAnswers": [
+            "이익"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "이익"
+        ]
+      ],
+      "proposalFingerprint": "57128f4ee18d8de0b83ef2b7aea583106caf99c26aa52146bdc01ad76f19f22b"
+    },
+    {
+      "id": "m1-03-10-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\%$를 분수로 나타내시오. 또 그것을 이용해 $6000$원의 $15\\%$를 구하는 식을 쓰고 계산하시오.",
+      "bAnswer": "$a\\%$는 $\\frac{a}{100}$이다. $6000\\times\\frac{15}{100}=900$(원)이다.",
+      "bGoal": "퍼센트를 분수로 고쳐 어떤 양의 $a\\%$를 구한다.",
+      "bReason": "제목 '퍼센트를 분수로'는 무엇을 분수로 고치는지 대상이 없다. $a\\%$와 구체 계산을 함께 묻는다.",
+      "cDecision": "keep",
+      "cReason": "$a\\%$를 분수로 쓰는 분명한 식 빈칸이고 뒤 문장이 쓰임을 알려 준다.",
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a\\%=\\frac{a}{100}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "식: $6000\\times\\frac{15}{100}$ ($6000\\times0.15$ 등 동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$900$원"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "definition",
+      "roleReason": "a%는 100분의 a",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1373,
+      "part": "m1plus",
+      "sourceFingerprint": "c7c128737c0cec1ee6c17cbcab3cd7a3db8883dc83ab60d2d5d0d60bdda94563",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1373
+      },
+      "directReview": null,
+      "cFrozenSentence": "$a\\%$는 □이므로 어떤 양의 $a\\%$는 그 양에 이 비율을 곱해 구한다.",
+      "cFrozenDefinition": "$a\\%$는 {$\\frac{a}{100}$}이므로 어떤 양의 $a\\%$는 그 양에 이 비율을 곱해 구한다.",
+      "cFrozenAnswers": [
+        "$\\frac{a}{100}$"
+      ],
+      "cMarkedSentence": "$a\\%$는 {$\\frac{a}{100}$}이므로 어떤 양의 $a\\%$는 그 양에 이 비율을 곱해 구한다.",
+      "cSlotAnswers": [
+        "$\\frac{a}{100}$"
+      ],
+      "cStudentSentence": "$a\\%$는 □이므로 어떤 양의 $a\\%$는 그 양에 이 비율을 곱해 구한다.",
+      "cAnswers": [
+        "$\\frac{a}{100}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{a}{100}$",
+          "equivalentAnswers": [
+            "$\\frac{a}{100}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{a}{100}$"
+        ]
+      ],
+      "proposalFingerprint": "0812cd288113aedb4d059787d164d535be41167d98a4d00d2ae47b4bf82f11f4"
+    },
+    {
+      "id": "m1-03-10-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "원가가 $x$원인 물건에 원가의 $a\\%$만큼 이익을 붙여 정가를 정했다. 정가를 $x$와 $a$를 사용한 식으로 나타내고, $a=10$일 때의 정가를 $x$에 대한 간단한 식으로 쓰시오.",
+      "bAnswer": "$\\left(x+\\frac{a}{100}x\\right)$원이다. $a=10$이면 $x+\\frac{10}{100}x=\\frac{11}{10}x$(원)이다.",
+      "bGoal": "이익을 붙인 정가를 문자식으로 나타낸다.",
+      "bReason": "제목이 조건을 담고 있지만 물음이 아니다. c2의 B는 수로 계산하고, 이 항목은 문자식으로 나타내도록 역할을 나누었다.",
+      "cDecision": "keep",
+      "cReason": "문자의 뜻이 문장에 있고 정가의 식 하나를 묻는 분명한 빈칸이다.",
+      "studentLabel": "이익을 붙인 정가의 식",
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정가: $x+\\frac{a}{100}x$(원) (동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=10$일 때 $\\frac{11}{10}x$원 ($1.1x$원 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "application",
+      "roleReason": "원가에 이익 더한 정가",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1374,
+      "part": "m1plus",
+      "sourceFingerprint": "6fa0d020eee3d50c07e9db27ba9c944d2f55740aa501c17f2b2bd27302e1367d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1374
+      },
+      "directReview": null,
+      "cFrozenSentence": "원가 $x$원에 $a\\%$의 이익을 붙인 정가는 □원이다.",
+      "cFrozenDefinition": "원가 $x$원에 $a\\%$의 이익을 붙인 정가는 {$x+\\frac{a}{100}x$}원이다.",
+      "cFrozenAnswers": [
+        "$x+\\frac{a}{100}x$"
+      ],
+      "cMarkedSentence": "원가 $x$원에 $a\\%$의 이익을 붙인 정가는 {$x+\\frac{a}{100}x$}원이다.",
+      "cSlotAnswers": [
+        "$x+\\frac{a}{100}x$"
+      ],
+      "cStudentSentence": "원가 $x$원에 $a\\%$의 이익을 붙인 정가는 □원이다.",
+      "cAnswers": [
+        "$x+\\frac{a}{100}x$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x+\\frac{a}{100}x$",
+          "equivalentAnswers": [
+            "$x+\\frac{a}{100}x$",
+            "$\\left(1+\\frac{a}{100}\\right)x$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$x+\\frac{a}{100}x$",
+          "accept": [
+            "$\\left(1+\\frac{a}{100}\\right)x$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$x+\\frac{a}{100}x$",
+          "$\\left(1+\\frac{a}{100}\\right)x$"
+        ]
+      ],
+      "proposalFingerprint": "bfbd62b8ec7f1a1c16c6ecef4b4034c6492dcb2ccc5e91507dee4a4cfbd12004"
+    },
+    {
+      "id": "m1-03-10-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "정가가 $x$원인 물건을 정가의 $a\\%$만큼 할인하여 팔았다. 판매 가격을 $x$와 $a$를 사용한 식으로 나타내고, $a=20$일 때의 판매 가격을 $x$에 대한 간단한 식으로 쓰시오.",
+      "bAnswer": "$\\left(x-\\frac{a}{100}x\\right)$원이다. $a=20$이면 $x-\\frac{20}{100}x=\\frac{4}{5}x$(원)이다.",
+      "bGoal": "할인한 판매 가격을 문자식으로 나타낸다.",
+      "bReason": "제목이 조건을 담고 있지만 물음이 아니다. 할인이 정가를 기준으로 함을 밝히고 식과 간단한 꼴을 묻는다.",
+      "cDecision": "keep",
+      "cReason": "문자의 뜻이 문장에 있고 판매 가격의 식 하나를 묻는 분명한 빈칸이다.",
+      "studentLabel": "할인한 판매 가격의 식",
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "판매 가격: $x-\\frac{a}{100}x$(원) (동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=20$일 때 $\\frac{4}{5}x$원 ($0.8x$원 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "application",
+      "roleReason": "정가에서 할인액 뺀 값",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1375,
+      "part": "m1plus",
+      "sourceFingerprint": "57204a36050da196d692084ae8bbb46e8ad9322cb7e9948e8889ccce6abd56ed",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1375
+      },
+      "directReview": null,
+      "cFrozenSentence": "정가 $x$원에서 $a\\%$ 할인한 판매 가격은 □원이다.",
+      "cFrozenDefinition": "정가 $x$원에서 $a\\%$ 할인한 판매 가격은 {$x-\\frac{a}{100}x$}원이다.",
+      "cFrozenAnswers": [
+        "$x-\\frac{a}{100}x$"
+      ],
+      "cMarkedSentence": "정가 $x$원에서 $a\\%$ 할인한 판매 가격은 {$x-\\frac{a}{100}x$}원이다.",
+      "cSlotAnswers": [
+        "$x-\\frac{a}{100}x$"
+      ],
+      "cStudentSentence": "정가 $x$원에서 $a\\%$ 할인한 판매 가격은 □원이다.",
+      "cAnswers": [
+        "$x-\\frac{a}{100}x$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x-\\frac{a}{100}x$",
+          "equivalentAnswers": [
+            "$x-\\frac{a}{100}x$",
+            "$\\left(1-\\frac{a}{100}\\right)x$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$x-\\frac{a}{100}x$",
+          "accept": [
+            "$\\left(1-\\frac{a}{100}\\right)x$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$x-\\frac{a}{100}x$",
+          "$\\left(1-\\frac{a}{100}\\right)x$"
+        ]
+      ],
+      "proposalFingerprint": "f45ad654ea74a6377687fedd07823f9456c64ca42c16e32881d6a6f9d3b62d3b"
+    },
+    {
+      "id": "m1-03-10-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 양이 처음보다 $a\\%$ 늘었다. 늘어난 뒤의 양은 처음 양의 몇 $\\%$인지 $a$를 사용해 나타내고, 이를 이용해 $300$에서 $20\\%$ 늘어난 뒤의 양을 구하시오.",
+      "bAnswer": "처음 양의 $(100+a)\\%$이다. $300\\times\\frac{120}{100}=360$이다.",
+      "bGoal": "$a\\%$ 늘어난 뒤의 양을 처음 양에 대한 퍼센트로 본다.",
+      "bReason": "c3의 B는 늘어난 양을 더하는 식을 묻는다. 이 항목은 '처음 양의 몇 퍼센트인가'라는 다른 관점으로 물어 겹치지 않게 했다.",
+      "cDecision": "keep",
+      "cReason": "처음 양의 몇 퍼센트인지를 식으로 쓰는 짧고 분명한 빈칸이다.",
+      "studentLabel": "늘어난 뒤의 양은 처음 양의 몇 퍼센트인가",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "늘어난 뒤의 양은 처음 양의 $(100+a)\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$300\\times\\frac{120}{100}=360$ (올바른 다른 계산식 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "application",
+      "roleReason": "늘어난 뒤는 (100+a)%",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1376,
+      "part": "m1plus",
+      "sourceFingerprint": "78d735f11efc26935bbd43008845fa6757eb7c84d09513e1ea71d057196d4002",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1376
+      },
+      "directReview": null,
+      "cFrozenSentence": "'$a\\%$ 늘었다'면 늘어난 뒤의 양은 처음 양의 □이다.",
+      "cFrozenDefinition": "'$a\\%$ 늘었다'면 늘어난 뒤의 양은 처음 양의 {$(100+a)\\%$}이다.",
+      "cFrozenAnswers": [
+        "$(100+a)\\%$"
+      ],
+      "cMarkedSentence": "'$a\\%$ 늘었다'면 늘어난 뒤의 양은 처음 양의 {$(100+a)\\%$}이다.",
+      "cSlotAnswers": [
+        "$(100+a)\\%$"
+      ],
+      "cStudentSentence": "'$a\\%$ 늘었다'면 늘어난 뒤의 양은 처음 양의 □이다.",
+      "cAnswers": [
+        "$(100+a)\\%$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(100+a)\\%$",
+          "equivalentAnswers": [
+            "$(100+a)\\%$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(100+a)\\%$"
+        ]
+      ],
+      "proposalFingerprint": "86f9a2868f884e1796337baf3e6a5032abd7e6050e5a4174d7533a6269e9461f"
+    },
+    {
+      "id": "m1-03-10-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 양이 처음보다 $a\\%$ 줄었다. 줄어든 뒤의 양은 처음 양의 몇 $\\%$인지 $a$를 사용해 나타내고, 이를 이용해 $500$에서 $30\\%$ 줄어든 뒤의 양을 구하시오.",
+      "bAnswer": "처음 양의 $(100-a)\\%$이다. $500\\times\\frac{70}{100}=350$이다.",
+      "bGoal": "$a\\%$ 줄어든 뒤의 양을 처음 양에 대한 퍼센트로 본다.",
+      "bReason": "c4의 B는 줄어든 양을 빼는 식을 묻는다. 이 항목은 남은 양이 처음 양의 몇 퍼센트인지 묻는 관점으로 구별했다.",
+      "cDecision": "keep",
+      "cReason": "처음 양의 몇 퍼센트인지를 식으로 쓰는 짧고 분명한 빈칸이다.",
+      "studentLabel": "줄어든 뒤의 양은 처음 양의 몇 퍼센트인가",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "줄어든 뒤의 양은 처음 양의 $(100-a)\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$500\\times\\frac{70}{100}=350$ (올바른 다른 계산식 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "definition",
+      "roleReason": "남은 양은 처음의 (100-a)%",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1377,
+      "part": "m1plus",
+      "sourceFingerprint": "d09bd0b9b3fbca6c5696c92b9248528c283b47c9ef55e15b6456b1b2c6e0a919",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1377
+      },
+      "directReview": null,
+      "cFrozenSentence": "'$a\\%$ 줄었다'면 줄어든 뒤의 양은 처음 양의 □이다.",
+      "cFrozenDefinition": "'$a\\%$ 줄었다'면 줄어든 뒤의 양은 처음 양의 {$(100-a)\\%$}이다.",
+      "cFrozenAnswers": [
+        "$(100-a)\\%$"
+      ],
+      "cMarkedSentence": "'$a\\%$ 줄었다'면 줄어든 뒤의 양은 처음 양의 {$(100-a)\\%$}이다.",
+      "cSlotAnswers": [
+        "$(100-a)\\%$"
+      ],
+      "cStudentSentence": "'$a\\%$ 줄었다'면 줄어든 뒤의 양은 처음 양의 □이다.",
+      "cAnswers": [
+        "$(100-a)\\%$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(100-a)\\%$",
+          "equivalentAnswers": [
+            "$(100-a)\\%$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(100-a)\\%$"
+        ]
+      ],
+      "proposalFingerprint": "c96de6fb9421b78d3ab8e669f1f03697c09fd2f54c08584e4c83adf8b863c602"
+    },
+    {
+      "id": "m1-03-10-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "'올해 학생 수는 작년보다 $10\\%$ 늘었다'는 문제에서 작년 학생 수와 올해 학생 수 중 어느 것을 $x$명으로 놓는 것이 좋은지 이유와 함께 쓰시오. 또 그때 올해 학생 수를 $x$를 사용한 식으로 나타내시오.",
+      "bAnswer": "작년 학생 수를 $x$명으로 놓는다. $10\\%$는 작년 학생 수를 기준으로 한 비율이기 때문이다. 올해 학생 수는 $x+\\frac{10}{100}x=\\frac{11}{10}x$(명)이다.",
+      "bGoal": "증가·감소 문제에서 비율의 기준이 되는 처음 양을 미지수로 놓는다.",
+      "bReason": "제목 '처음 양을 미지수로'는 어떤 문제에서의 '처음'인지 없다. 구체 문장을 주고 미지수 선택과 이유를 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "'올해 학생 수는 작년보다 $10\\%$ 늘었다'와 같은 문제에서는 비율의 기준이 되는 {작년}의 학생 수를 $x$명으로 놓는다.",
+      "cAnswers": [
+        "작년"
+      ],
+      "cReason": "원문은 '□이나 □의 양'으로 두 낱말을 나란히 가려 무엇을 써야 할지 단서가 없다. 구체 문장을 주고 올해와 작년 중에서 고르게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작년 학생 수를 $x$명으로 놓음"
+          ]
+        },
+        {
+          "anyOf": [
+            "이유: $10\\%$가 작년 학생 수를 기준으로 한 비율이기 때문 (작년 수를 알아야 늘어난 수를 식으로 쓸 수 있다는 등 같은 취지 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "올해 학생 수: $x+\\frac{10}{100}x$명 ($\\frac{11}{10}x$, $1.1x$ 등 동치인 식 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "비율의 기준인 처음 양을 x로",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1378,
+      "part": "m1plus",
+      "sourceFingerprint": "d1f7e6c150a65e0eb5412fec5747032f411ef1ff846bfac54127a190e7d3cd96",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1378
+      },
+      "directReview": null,
+      "cMarkedSentence": "'올해 학생 수는 작년보다 $10\\%$ 늘었다'와 같은 문제에서는 비율의 기준이 되는 {작년}의 학생 수를 $x$명으로 놓는다.",
+      "cSlotAnswers": [
+        "작년"
+      ],
+      "cStudentSentence": "'올해 학생 수는 작년보다 $10\\%$ 늘었다'와 같은 문제에서는 비율의 기준이 되는 □의 학생 수를 $x$명으로 놓는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작년",
+          "equivalentAnswers": [
+            "작년",
+            "지난해"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "작년",
+          "accept": [
+            "지난해"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작년",
+          "지난해"
+        ]
+      ],
+      "proposalFingerprint": "b7cca6c8641c9d3ebfbc4bce4c2a1547e2de0652fed8387c46115098b8b78d6a"
+    },
+    {
+      "id": "m1-03-10-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "원가가 $7000$원인 물건의 정가를 모른다. 정가를 $x$원으로 놓고, 정가에서 $10\\%$ 할인한 판매 가격과 그때의 이익을 차례로 $x$를 사용한 식으로 나타내시오. 또 이 판매 가격이 $9000$원일 때 정가를 구하시오.",
+      "bAnswer": "판매 가격은 $x-\\frac{10}{100}x=\\frac{9}{10}x$(원), 이익은 $\\left(\\frac{9}{10}x-7000\\right)$원이다. $\\frac{9}{10}x=9000$에서 $x=10000$이므로 정가는 $10000$원이다.",
+      "bGoal": "정가를 미지수로 놓고 판매 가격과 이익을 차례로 식으로 나타낸다.",
+      "bReason": "제목 '정가를 미지수로'는 그다음에 무엇을 하는지 없다. 원가와 할인율을 주고 판매 가격과 이익을 식으로 쓰는 순서를 따르게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "정가를 모를 때는 정가를 $x$원으로 놓고, 할인한 뒤의 {판매 가격}을 먼저 $x$에 대한 식으로 쓴 다음, 거기서 원가를 뺀 {이익}을 식으로 쓴다.",
+      "cAnswers": [
+        "판매 가격",
+        "이익"
+      ],
+      "cReason": "원문은 '□과 □을 차례로'만 있어 두 빈칸에 무엇이 들어갈지 단서가 없다. 각 빈칸 앞에 그 값의 뜻을 붙였다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "판매 가격: $x-\\frac{10}{100}x=\\frac{9}{10}x$(원) (동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "이익: $\\frac{9}{10}x-7000$(원) (동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{9}{10}x=9000$에서 정가 $10000$원"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "정가 x로 판매가·이익 차례로",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1379,
+      "part": "m1plus",
+      "sourceFingerprint": "150f53666cc6429b4c04f2b2675806942a94b4fe7982127699e41cee9beeaa52",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1379
+      },
+      "directReview": null,
+      "cMarkedSentence": "정가를 모를 때는 정가를 $x$원으로 놓고, 할인한 뒤의 {판매 가격}을 먼저 $x$에 대한 식으로 쓴 다음, 거기서 원가를 뺀 {이익}을 식으로 쓴다.",
+      "cSlotAnswers": [
+        "판매 가격",
+        "이익"
+      ],
+      "cStudentSentence": "정가를 모를 때는 정가를 $x$원으로 놓고, 할인한 뒤의 □을 먼저 $x$에 대한 식으로 쓴 다음, 거기서 원가를 뺀 □을 식으로 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "판매 가격",
+          "equivalentAnswers": [
+            "판매 가격",
+            "판매가"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "이익",
+          "equivalentAnswers": [
+            "이익"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "판매 가격",
+          "accept": [
+            "판매가"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "판매 가격",
+          "판매가"
+        ],
+        [
+          "이익"
+        ]
+      ],
+      "proposalFingerprint": "24a6ee2439dc67873c3fbfcec518729499bdb6f81a8b31a9f848075327c90588"
+    },
+    {
+      "id": "m1-03-10-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "원가가 $x$원인 물건에 원가의 $25\\%$만큼 이익을 붙여 정한 값 그대로 팔았더니 $500$원의 이익이 생겼다. 판매 가격, 원가, 이익 사이의 관계를 이용해 방정식을 세우고 원가를 구하시오.",
+      "bAnswer": "(판매 가격)$-$(원가)$=$(이익)이므로 $\\left(x+\\frac{25}{100}x\\right)-x=500$, $\\frac{1}{4}x=500$, $x=2000$. 원가는 $2000$원이다.",
+      "bGoal": "이익이 주어질 때 (판매 가격)$-$(원가)$=$(이익)으로 방정식을 세워 원가를 구한다.",
+      "bReason": "제목 '이익으로 원가 구하기'에는 이익과 판매 조건이 없다. 조건을 넣고 관계식에서 방정식을 세우게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "이익이 얼마인지 주어지고 원가를 모를 때는 원가를 $x$원으로 놓고, ({판매 가격})$-$(원가)$=$(이익)이라는 관계로 방정식을 세운다.",
+      "cAnswers": [
+        "판매 가격"
+      ],
+      "cReason": "원문의 빈칸 '방정식'은 내용이 없고, '원가'는 같은 문장의 관계식에서 베낄 수 있다. 관계식에서 빼어지는 값을 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(판매 가격)$-$(원가)$=$(이익)을 이용한 방정식: $\\left(x+\\frac{25}{100}x\\right)-x=500$ ($\\frac{1}{4}x=500$ 등 동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "원가 $2000$원"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "판매가-원가=이익으로 원가",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1380,
+      "part": "m1plus",
+      "sourceFingerprint": "4f010063de46c5c4d6d4128171f040886b0309c617e51279220f41c5335816f7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1380
+      },
+      "directReview": null,
+      "cMarkedSentence": "이익이 얼마인지 주어지고 원가를 모를 때는 원가를 $x$원으로 놓고, ({판매 가격})$-$(원가)$=$(이익)이라는 관계로 방정식을 세운다.",
+      "cSlotAnswers": [
+        "판매 가격"
+      ],
+      "cStudentSentence": "이익이 얼마인지 주어지고 원가를 모를 때는 원가를 $x$원으로 놓고, (□)$-$(원가)$=$(이익)이라는 관계로 방정식을 세운다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "판매 가격",
+          "equivalentAnswers": [
+            "판매 가격",
+            "판매가"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "판매 가격",
+          "accept": [
+            "판매가"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "판매 가격",
+          "판매가"
+        ]
+      ],
+      "proposalFingerprint": "470dfaa3d0c02a26f81ab3756433fa4761c64ac1a17ac8aab1c72a65a0b1e905"
+    },
+    {
+      "id": "m1-03-10-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "작년 전체 학생 수는 $500$명이고, 올해 남학생 수와 여학생 수가 서로 다른 비율로 변했다. 작년 남학생 수를 $x$명으로 놓을 때 작년 여학생 수를 $x$를 사용한 식으로 나타내고, 그렇게 놓으면 좋은 이유를 쓰시오.",
+      "bAnswer": "$(500-x)$명이다. 남학생 수와 여학생 수의 합이 $500$명이므로 문자 하나로 두 집단을 모두 나타낼 수 있어 일차방정식을 세울 수 있다.",
+      "bGoal": "합이 주어진 두 집단의 인원을 $x$와 (전체)$-x$로 놓는다.",
+      "bReason": "제목 '두 집단의 증감'은 무엇을 답할지 없다. 전체 인원을 주고 두 집단을 한 문자로 나타내는 방법과 이유를 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "작년 전체 학생 수가 $T$명이고 남학생 수와 여학생 수가 서로 다른 비율로 변했다면, 작년 남학생 수를 $x$명으로 놓고 작년 여학생 수를 {$(T-x)$명}으로 놓는다.",
+      "cAnswers": [
+        "$(T-x)$명"
+      ],
+      "cReason": "원문은 전체 인원을 나타내는 문자가 없어 '(전체)$-x$'처럼 말이 섞인 답을 써야 하고, 첫 빈칸 '$x$'는 근거 없이 정해야 한다. 전체를 $T$명으로 밝혔다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작년 여학생 수: $(500-x)$명"
+          ]
+        },
+        {
+          "anyOf": [
+            "이유: 남학생 수와 여학생 수의 합이 $500$명이어서 문자 하나로 두 집단을 모두 나타낼 수 있음 (미지수가 하나인 방정식을 세울 수 있다는 취지면 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "두 집단을 x와 전체-x로",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1381,
+      "part": "m1plus",
+      "sourceFingerprint": "8976a70201c0c4e14ceed61dc67ff0aa85a16c78baf8012852a0a22098403375",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1381
+      },
+      "directReview": null,
+      "cMarkedSentence": "작년 전체 학생 수가 $T$명이고 남학생 수와 여학생 수가 서로 다른 비율로 변했다면, 작년 남학생 수를 $x$명으로 놓고 작년 여학생 수를 {$(T-x)$명}으로 놓는다.",
+      "cSlotAnswers": [
+        "$(T-x)$명"
+      ],
+      "cStudentSentence": "작년 전체 학생 수가 $T$명이고 남학생 수와 여학생 수가 서로 다른 비율로 변했다면, 작년 남학생 수를 $x$명으로 놓고 작년 여학생 수를 □으로 놓는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(T-x)$명",
+          "equivalentAnswers": [
+            "$(T-x)$명"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(T-x)$명"
+        ]
+      ],
+      "proposalFingerprint": "e8fc2b3e61712e21083a0da2f3a8723e6eb4594bb468d601a60fb6b8d97d8af7"
+    },
+    {
+      "id": "m1-03-10-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "원가가 $2000$원, 정가가 $3000$원인 물건을 $10\\%$ 할인하여 판다. 할인 금액은 원가와 정가 중 어느 값에 $10\\%$를 곱해 구하는지 쓰고, 할인 금액을 구하시오.",
+      "bAnswer": "정가에 곱한다. 할인 금액은 $3000\\times\\frac{10}{100}=300$(원)이다.",
+      "bGoal": "할인 금액은 정가를 기준으로 계산함을 안다.",
+      "bReason": "제목 '할인 금액의 기준'에서 '기준'은 학생에게 모호한 말이다. 원가와 정가를 둘 다 주고 어느 값에 곱하는지 고르게 했다.",
+      "cDecision": "keep",
+      "cReason": "정가와 원가를 맞바꾸기 쉬운 지점을 짧게 대비시킨 문장이고, '~이지, ~이 아니다' 구조로 각 빈칸의 역할이 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "할인 금액은 원가가 아니라 정가에 $10\\%$를 곱해 구함"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3000\\times\\frac{10}{100}=300$(원)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "definition",
+      "roleReason": "할인액의 기준은 정가",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1382,
+      "part": "m1plus",
+      "sourceFingerprint": "f37a7ae37b2aa623e5996892f04239da8d295a46a4480d92280be361035e3423",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1382
+      },
+      "directReview": null,
+      "cFrozenSentence": "할인 금액은 □에 할인율을 곱한 것이지, □에 곱한 것이 아니다.",
+      "cFrozenDefinition": "할인 금액은 {정가}에 할인율을 곱한 것이지, {원가}에 곱한 것이 아니다.",
+      "cFrozenAnswers": [
+        "정가",
+        "원가"
+      ],
+      "cMarkedSentence": "할인 금액은 {정가}에 할인율을 곱한 것이지, {원가}에 곱한 것이 아니다.",
+      "cSlotAnswers": [
+        "정가",
+        "원가"
+      ],
+      "cStudentSentence": "할인 금액은 □에 할인율을 곱한 것이지, □에 곱한 것이 아니다.",
+      "cAnswers": [
+        "정가",
+        "원가"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "정가",
+          "equivalentAnswers": [
+            "정가"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "원가",
+          "equivalentAnswers": [
+            "원가"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "정가"
+        ],
+        [
+          "원가"
+        ]
+      ],
+      "proposalFingerprint": "98d10f15f490e54fa9b089ca0f690ba297505164777062269b5ebadc3172e51e"
+    },
+    {
+      "id": "m1-03-10-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "원가가 $2000$원인 물건을 팔아 $300$원의 이익을 얻었다. 이익이 원가의 몇 $\\%$인지 구하는 계산 방법을 쓰고 구하시오.",
+      "bAnswer": "이익을 원가로 나눈 뒤 $100$을 곱한다. $\\frac{300}{2000}\\times100=15$이므로 $15\\%$이다.",
+      "bGoal": "이익이 원가의 몇 퍼센트인지 구한다.",
+      "bReason": "제목이 물음 꼴이지만 이익과 원가의 값이 없어 답할 수 없다. 값을 넣고 방법과 계산을 함께 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "이익을 원가로 나눈 뒤 {$100$}을 곱하면 이익이 원가의 몇 $\\%$인지 알 수 있다.",
+      "cAnswers": [
+        "$100$"
+      ],
+      "cReason": "원문의 둘째 빈칸은 기호 '$\\%$'를 쓰게 하는 것이라 수학 내용이 아니다. 곱하는 수만 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "방법: 이익을 원가로 나눈 뒤 $100$을 곱함 (같은 뜻의 비율 계산 설명 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{300}{2000}\\times100=15$이므로 $15\\%$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "이익÷원가×100으로 % 구함",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1383,
+      "part": "m1plus",
+      "sourceFingerprint": "cfec4c0b33dfd938a6ec0fd5152335ceb9a2a6300708050b998b504b6760d479",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1383
+      },
+      "directReview": null,
+      "cMarkedSentence": "이익을 원가로 나눈 뒤 {$100$}을 곱하면 이익이 원가의 몇 $\\%$인지 알 수 있다.",
+      "cSlotAnswers": [
+        "$100$"
+      ],
+      "cStudentSentence": "이익을 원가로 나눈 뒤 □을 곱하면 이익이 원가의 몇 $\\%$인지 알 수 있다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$100$",
+          "equivalentAnswers": [
+            "$100$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$100$"
+        ]
+      ],
+      "proposalFingerprint": "00d9f7efe55e88a4f735aa9f2a62604830b899f487d68d6f831b9e79bf62e3ab"
+    },
+    {
+      "id": "m1-03-10-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 양이 처음보다 $20\\%$ 늘어서 $360$이 되었다. 처음 양을 $x$로 놓고 방정식을 세워 처음 양을 구하시오.",
+      "bAnswer": "$\\left(1+\\frac{20}{100}\\right)x=360$, 즉 $\\frac{6}{5}x=360$에서 $x=300$. 처음 양은 $300$이다.",
+      "bGoal": "늘어난 뒤의 양이 주어질 때 처음 양을 미지수로 놓아 방정식으로 구한다.",
+      "bReason": "제목이 길지만 $a$와 늘어난 뒤의 양의 값이 없어 풀 수 없다. 구체 수를 넣어 방정식과 해를 구하게 했다.",
+      "cDecision": "keep",
+      "cReason": "문자의 뜻과 상황이 문장에 있고 등식의 한쪽 식만 묻는 분명한 빈칸이다.",
+      "studentLabel": "늘어난 뒤의 양으로 처음 양 구하기",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "방정식: $\\left(1+\\frac{20}{100}\\right)x=360$ ($x+\\frac{20}{100}x=360$, $\\frac{6}{5}x=360$ 등 동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 양 $300$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "(1+a/100)x를 늘어난 양과 같게",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1384,
+      "part": "m1plus",
+      "sourceFingerprint": "c6ecc506323cacd418e3a4a8c328c1438ee5d485b206f5e6c69eb2b8c58ba35f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1384
+      },
+      "directReview": null,
+      "cFrozenSentence": "처음 양보다 $a\\%$ 늘어난 뒤의 양이 주어지면, 처음 양을 $x$로 놓고 □가 늘어난 뒤의 양과 같다고 놓는다.",
+      "cFrozenDefinition": "처음 양보다 $a\\%$ 늘어난 뒤의 양이 주어지면, 처음 양을 $x$로 놓고 {$\\left(1+\\frac{a}{100}\\right)x$}가 늘어난 뒤의 양과 같다고 놓는다.",
+      "cFrozenAnswers": [
+        "$\\left(1+\\frac{a}{100}\\right)x$"
+      ],
+      "cMarkedSentence": "처음 양보다 $a\\%$ 늘어난 뒤의 양이 주어지면, 처음 양을 $x$로 놓고 {$\\left(1+\\frac{a}{100}\\right)x$}가 늘어난 뒤의 양과 같다고 놓는다.",
+      "cSlotAnswers": [
+        "$\\left(1+\\frac{a}{100}\\right)x$"
+      ],
+      "cStudentSentence": "처음 양보다 $a\\%$ 늘어난 뒤의 양이 주어지면, 처음 양을 $x$로 놓고 □가 늘어난 뒤의 양과 같다고 놓는다.",
+      "cAnswers": [
+        "$\\left(1+\\frac{a}{100}\\right)x$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\left(1+\\frac{a}{100}\\right)x$",
+          "equivalentAnswers": [
+            "$\\left(1+\\frac{a}{100}\\right)x$",
+            "$x+\\frac{a}{100}x$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\left(1+\\frac{a}{100}\\right)x$",
+          "accept": [
+            "$x+\\frac{a}{100}x$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\left(1+\\frac{a}{100}\\right)x$",
+          "$x+\\frac{a}{100}x$"
+        ]
+      ],
+      "proposalFingerprint": "06b1b9b85aa267610d9702dd236c0c6d903c12a5270985f174986898d716bbb6"
+    },
+    {
+      "id": "m1-03-10-xc15",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "늘어난 수와 줄어든 수의 차로 전체 변화를 구한다.",
+      "bReason": "m1-03-10-c6의 B가 (늘어난 양)$-$(줄어든 양)$=$(전체 변화량)을 이미 묻고, xc18의 B가 구체 문제에 적용한다. 같은 관계의 반복이라 현재 형식에서는 제외한다.",
+      "cDecision": "rewrite",
+      "cAfter": "전체를 이루는 두 집단 중 한 집단이 $a$명 늘고 다른 집단이 $b$명 줄었다면, 전체 인원의 변화는 (늘어난 수)$-$(줄어든 수)인 {$(a-b)$}명이고, 이 값이 음수이면 전체가 줄어든 것이다.",
+      "cAnswers": [
+        "$(a-b)$"
+      ],
+      "cReason": "원문의 '한쪽', '다른 쪽'이 무엇인지 없고, $a-b$가 음수일 때의 뜻도 없다. 두 집단이 전체를 이룬다는 상황과 부호의 뜻을 넣었다.",
+      "exclusionReason": "B 제외: m1-03-10-c6의 B와 같은 관계(늘어난 양 − 줄어든 양 = 전체 변화량)를 묻는 질문의 중복이다. C는 고쳐서 유지한다.",
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "늘어난 수-줄어든 수가 전체 변화",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1385,
+      "part": "m1plus",
+      "sourceFingerprint": "de11984bea9b62f3ef129bbb34e4b5a5cd887d2e46774f14f6bdd953f76264fb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1385
+      },
+      "directReview": null,
+      "cMarkedSentence": "전체를 이루는 두 집단 중 한 집단이 $a$명 늘고 다른 집단이 $b$명 줄었다면, 전체 인원의 변화는 (늘어난 수)$-$(줄어든 수)인 {$(a-b)$}명이고, 이 값이 음수이면 전체가 줄어든 것이다.",
+      "cSlotAnswers": [
+        "$(a-b)$"
+      ],
+      "cStudentSentence": "전체를 이루는 두 집단 중 한 집단이 $a$명 늘고 다른 집단이 $b$명 줄었다면, 전체 인원의 변화는 (늘어난 수)$-$(줄어든 수)인 □명이고, 이 값이 음수이면 전체가 줄어든 것이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(a-b)$",
+          "equivalentAnswers": [
+            "$(a-b)$",
+            "$a-b$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$(a-b)$",
+          "accept": [
+            "$a-b$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$(a-b)$",
+          "$a-b$"
+        ]
+      ],
+      "proposalFingerprint": "053b54dad92775694aeb6bf69628020e021bf73010e6662db53850f6c398b168"
+    },
+    {
+      "id": "m1-03-10-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "원가가 $x$원인 물건에 원가의 $30\\%$만큼 이익을 붙여 정가를 정한 뒤, 정가에서 $600$원을 할인하여 팔았더니 $300$원의 이익이 남았다. 이익을 $x$를 사용한 식으로 나타내고, 원가를 구하시오.",
+      "bAnswer": "판매 가격은 $x+\\frac{30}{100}x-600$이므로 이익은 $\\frac{30}{100}x-600$(원)이다. $\\frac{3}{10}x-600=300$에서 $x=3000$이므로 원가는 $3000$원이다.",
+      "bGoal": "이익을 붙이고 할인해 판 물건의 이익을 식으로 나타내어 원가를 구한다.",
+      "bReason": "제목이 조건을 담고 있지만 물음이 아니며 값이 없어 풀 수 없다. 구체 수를 넣어 이익의 식과 원가를 구하게 했다.",
+      "cDecision": "keep",
+      "cReason": "문자 $x$, $a$, $b$의 뜻이 문장에 모두 있고 이익의 식 하나를 묻는 분명한 빈칸이다.",
+      "studentLabel": "이익을 붙이고 할인해 판 물건의 이익",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "이익: $\\frac{30}{100}x-600$(원) ($\\left(x+\\frac{30}{100}x-600\\right)-x$ 등 동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "방정식 $\\frac{3}{10}x-600=300$ (동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "원가 $3000$원"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "붙인 이익에서 할인액을 뺌",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1386,
+      "part": "m1plus",
+      "sourceFingerprint": "5baa57974ea5ef62ae2baa2c9773b2df76574d65cc546d849f7b7324e17cae46",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1386
+      },
+      "directReview": null,
+      "cFrozenSentence": "원가 $x$원에 $a\\%$ 이익을 붙인 정가에서 $b$원 할인해 팔았을 때의 이익은 □원이다.",
+      "cFrozenDefinition": "원가 $x$원에 $a\\%$ 이익을 붙인 정가에서 $b$원 할인해 팔았을 때의 이익은 {$\\frac{a}{100}x-b$}원이다.",
+      "cFrozenAnswers": [
+        "$\\frac{a}{100}x-b$"
+      ],
+      "cMarkedSentence": "원가 $x$원에 $a\\%$ 이익을 붙인 정가에서 $b$원 할인해 팔았을 때의 이익은 {$\\frac{a}{100}x-b$}원이다.",
+      "cSlotAnswers": [
+        "$\\frac{a}{100}x-b$"
+      ],
+      "cStudentSentence": "원가 $x$원에 $a\\%$ 이익을 붙인 정가에서 $b$원 할인해 팔았을 때의 이익은 □원이다.",
+      "cAnswers": [
+        "$\\frac{a}{100}x-b$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{a}{100}x-b$",
+          "equivalentAnswers": [
+            "$\\frac{a}{100}x-b$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{a}{100}x-b$"
+        ]
+      ],
+      "proposalFingerprint": "e3a4184b0f6334f5730b13e7b9886aca3c88657ffa6465b5e9d3ed71c42ec568"
+    },
+    {
+      "id": "m1-03-10-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$1000$원인 물건값을 $20\\%$ 올린 뒤, 올린 값에서 다시 $20\\%$를 내렸다. 마지막 값을 구하고, 처음 값 $1000$원으로 돌아오지 않는 이유를 쓰시오.",
+      "bAnswer": "$1000\\times\\frac{120}{100}=1200$, $1200\\times\\frac{80}{100}=960$이므로 $960$원이다. 내릴 때의 $20\\%$는 $1000$원이 아니라 $1200$원의 $20\\%$인 $240$원이어서, 올린 $200$원보다 더 많이 내려가기 때문이다.",
+      "bGoal": "늘린 뒤 줄이면 기준이 달라져 처음 양과 같지 않을 수 있음을 계산으로 확인한다.",
+      "bReason": "제목 '연이은 증감'은 어려운 말이고 상황이 없다. 같은 비율로 올렸다 내리는 구체 예로 값과 이유를 답하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 양을 $a\\%$ 늘린 뒤 그 결과를 $b\\%$ 줄이면 처음 양의 $\\left(1+\\frac{a}{100}\\right)\\left(1-\\frac{b}{100}\\right)$배가 된다. 예를 들어 $20\\%$ 늘린 뒤 $20\\%$ 줄이면 처음 양의 {$\\frac{96}{100}$}배가 되어 처음 양과 같지 않다.",
+      "cAnswers": [
+        "$\\frac{96}{100}$"
+      ],
+      "cReason": "원문의 빈칸 '같지 않을'은 어색한 말토막이라 떠올리기 어렵다. 일반식은 그대로 두고 그 식을 써 보는 구체 예를 빈칸으로 삼았다.",
+      "studentLabel": "늘렸다가 줄인 양",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "마지막 값: $1000\\to1200\\to960$이므로 $960$원"
+          ]
+        },
+        {
+          "anyOf": [
+            "이유: 내릴 때의 $20\\%$는 $1000$원이 아니라 올린 값 $1200$원을 기준으로 한 $240$원이어서 올린 $200$원과 다름 (기준이 되는 값이 달라졌다는 취지면 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "reason",
+      "roleReason": "줄일 때 기준이 늘린 값이라 다름",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1387,
+      "part": "m1plus",
+      "sourceFingerprint": "cee00edaf8e4a61f5c1af9e4a8b63ab171c6af5e6abcce504f5ec4c5c7fde7e6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1387
+      },
+      "directReview": null,
+      "cMarkedSentence": "어떤 양을 $a\\%$ 늘린 뒤 그 결과를 $b\\%$ 줄이면 처음 양의 $\\left(1+\\frac{a}{100}\\right)\\left(1-\\frac{b}{100}\\right)$배가 된다. 예를 들어 $20\\%$ 늘린 뒤 $20\\%$ 줄이면 처음 양의 {$\\frac{96}{100}$}배가 되어 처음 양과 같지 않다.",
+      "cSlotAnswers": [
+        "$\\frac{96}{100}$"
+      ],
+      "cStudentSentence": "어떤 양을 $a\\%$ 늘린 뒤 그 결과를 $b\\%$ 줄이면 처음 양의 $\\left(1+\\frac{a}{100}\\right)\\left(1-\\frac{b}{100}\\right)$배가 된다. 예를 들어 $20\\%$ 늘린 뒤 $20\\%$ 줄이면 처음 양의 □배가 되어 처음 양과 같지 않다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{96}{100}$",
+          "equivalentAnswers": [
+            "$\\frac{96}{100}$",
+            "$\\frac{24}{25}$",
+            "$0.96$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{96}{100}$",
+          "accept": [
+            "$\\frac{24}{25}$",
+            "$0.96$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{96}{100}$",
+          "$\\frac{24}{25}$",
+          "$0.96$"
+        ]
+      ],
+      "proposalFingerprint": "789fb77eae1662c96cb6b9d07429e19d3477c717edf8646cc0b88b5ad3d02ded"
+    },
+    {
+      "id": "m1-03-10-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "작년 전체 학생 수는 $500$명이고 그중 남학생은 $x$명이었다. 올해 남학생은 $10\\%$ 늘고 여학생은 $6\\%$ 줄어 전체 학생 수가 $2$명 늘었다. 늘어난 남학생 수와 줄어든 여학생 수를 각각 식으로 나타내고, 방정식을 세워 $x$를 구하시오.",
+      "bAnswer": "늘어난 남학생 수는 $\\frac{10}{100}x$, 줄어든 여학생 수는 $\\frac{6}{100}(500-x)$이다. $\\frac{10}{100}x-\\frac{6}{100}(500-x)=2$에서 $16x=3200$, $x=200$이다.",
+      "bGoal": "두 집단의 증감에서 변화량의 차로 방정식을 세워 푼다.",
+      "bReason": "c6의 B는 원리를, xc11의 B는 두 집단을 놓는 방법을 묻는다. 이 항목은 구체 수로 방정식 전체를 세워 푸는 종합 질문으로 구별했다.",
+      "cDecision": "rewrite",
+      "cAfter": "작년 전체 $500$명 중 남학생이 $x$명이었고, 올해 남학생은 $10\\%$ 늘고 여학생은 $6\\%$ 줄어 전체가 $2$명 늘었다면, 방정식은 $\\frac{10}{100}x-$ {$\\frac{6}{100}(500-x)$} $=2$이다.",
+      "cAnswers": [
+        "$\\frac{6}{100}(500-x)$"
+      ],
+      "cReason": "원문의 빈칸 '변화량'은 c6의 C와 같은 낱말을 되묻고, '(전체)$-x$'도 문자가 없어 추상적이다. 구체 수를 넣어 줄어든 수의 식을 쓰게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "늘어난 남학생 수: $\\frac{10}{100}x$ (동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "줄어든 여학생 수: $\\frac{6}{100}(500-x)$ (동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "방정식 $\\frac{10}{100}x-\\frac{6}{100}(500-x)=2$ (올해 전체 $502$명으로 세운 동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=200$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "증감 수의 차를 전체 변화로",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1388,
+      "part": "m1plus",
+      "sourceFingerprint": "da3c172859a8d798b7d57f3439eadda9d6d4f7c60dd38d9bc3b47d9c741c834d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1388
+      },
+      "directReview": null,
+      "cMarkedSentence": "작년 전체 $500$명 중 남학생이 $x$명이었고, 올해 남학생은 $10\\%$ 늘고 여학생은 $6\\%$ 줄어 전체가 $2$명 늘었다면, 방정식은 $\\frac{10}{100}x-$ {$\\frac{6}{100}(500-x)$} $=2$이다.",
+      "cSlotAnswers": [
+        "$\\frac{6}{100}(500-x)$"
+      ],
+      "cStudentSentence": "작년 전체 $500$명 중 남학생이 $x$명이었고, 올해 남학생은 $10\\%$ 늘고 여학생은 $6\\%$ 줄어 전체가 $2$명 늘었다면, 방정식은 $\\frac{10}{100}x-$ □ $=2$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{6}{100}(500-x)$",
+          "equivalentAnswers": [
+            "$\\frac{6}{100}(500-x)$",
+            "$\\frac{3}{50}(500-x)$",
+            "$0.06(500-x)$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{6}{100}(500-x)$",
+          "accept": [
+            "$\\frac{3}{50}(500-x)$",
+            "$0.06(500-x)$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{6}{100}(500-x)$",
+          "$\\frac{3}{50}(500-x)$",
+          "$0.06(500-x)$"
+        ]
+      ],
+      "proposalFingerprint": "4c3c5bc5905eec186ab2383774f303f4e5050d6d96ae964fbd48f9016a2853cc"
+    },
+    {
+      "id": "m1-03-10-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "원가가 $5000$원인 물건을 정가에서 $1000$원 할인하여 팔아도 $500$원의 이익이 남게 하려고 한다. 정가를 얼마로 정해야 하는지 구하고, 정가가 원가보다 얼마만큼 높아야 하는지 설명하시오.",
+      "bAnswer": "정가를 $x$원이라 하면 $(x-1000)-5000=500$, $x=6500$이므로 정가는 $6500$원이다. 정가는 원가보다 할인 금액 $1000$원과 이익 $500$원을 합한 $1500$원만큼 높아야 한다.",
+      "bGoal": "할인 뒤에도 이익이 남도록 정가를 정하는 방법을 안다.",
+      "bReason": "제목만으로는 원가, 할인 금액, 이익이 없어 답할 수 없다. 세 값을 주고 정가와 그 이유를 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "원가가 $c$원인 물건을 정가에서 $d$원 할인해 팔아도 $p$원의 이익을 남기려면, 정가는 {$(c+d+p)$}원으로 매겨야 한다.",
+      "cAnswers": [
+        "$(c+d+p)$"
+      ],
+      "cReason": "원문의 빈칸 '합한', '높게'는 설명용 낱말이라 내용을 묻지 못한다. 세 값에 문자를 주고 정가의 식을 쓰게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정가 $6500$원 ($(x-1000)-5000=500$ 또는 $5000+1000+500$ 등 올바른 풀이 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "정가는 원가보다 할인 금액 $1000$원과 이익 $500$원을 합한 $1500$원만큼 높아야 함"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "정가=원가+할인액+이익",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1389,
+      "part": "m1plus",
+      "sourceFingerprint": "daed6c56c6187ae066c6d300bee6645aa9d82698368dfe3a1c4d3cfd461e9b9a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1389
+      },
+      "directReview": null,
+      "cMarkedSentence": "원가가 $c$원인 물건을 정가에서 $d$원 할인해 팔아도 $p$원의 이익을 남기려면, 정가는 {$(c+d+p)$}원으로 매겨야 한다.",
+      "cSlotAnswers": [
+        "$(c+d+p)$"
+      ],
+      "cStudentSentence": "원가가 $c$원인 물건을 정가에서 $d$원 할인해 팔아도 $p$원의 이익을 남기려면, 정가는 □원으로 매겨야 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(c+d+p)$",
+          "equivalentAnswers": [
+            "$(c+d+p)$",
+            "$c+d+p$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$(c+d+p)$",
+          "accept": [
+            "$c+d+p$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$(c+d+p)$",
+          "$c+d+p$"
+        ]
+      ],
+      "proposalFingerprint": "fb23506bc1c0bda6a6e9f47a13fd6e6499d98ac5d3f439a7ebfbd8d6be7b6615"
+    },
+    {
+      "id": "m1-03-10-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "두 물건의 처음 값의 합은 $10000$원이다. 한 물건은 $10\\%$, 다른 물건은 $20\\%$ 값이 올라 두 물건의 값의 합이 $1500$원 늘었다. $10\\%$ 오른 물건의 처음 값을 $x$원으로 놓고 방정식을 세워 $x$를 구하시오.",
+      "bAnswer": "다른 물건의 처음 값은 $(10000-x)$원이다. $\\frac{10}{100}x+\\frac{20}{100}(10000-x)=1500$에서 $20000-x=15000$, $x=5000$이다.",
+      "bGoal": "오르는 비율이 다른 두 값에서 오른 금액의 합으로 방정식을 세운다.",
+      "bReason": "제목 '오르는 비율이 다른 두 값'은 조건이 없다. 합, 두 비율, 늘어난 금액을 모두 주고 미지수까지 정해 주었다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 물건의 처음 값을 더하면 $S$원이고 두 값이 각각 다른 비율로 올랐다면, 처음 값을 $x$원, $(S-x)$원으로 놓고 두 물건의 오른 금액의 {합}이 전체 오른 금액과 같다는 방정식을 세운다.",
+      "cAnswers": [
+        "합"
+      ],
+      "cReason": "원문의 '(합)$-x$'는 무엇의 합인지 없고, '방정식' 빈칸은 내용이 없다. 합을 $S$원으로 밝히고 오른 금액을 어떻게 다루는지만 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 물건의 처음 값: $(10000-x)$원"
+          ]
+        },
+        {
+          "anyOf": [
+            "방정식: $\\frac{10}{100}x+\\frac{20}{100}(10000-x)=1500$ (오른 뒤 값의 합을 $11500$원으로 놓은 동치인 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=5000$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "오른 금액의 합으로 방정식",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1390,
+      "part": "m1plus",
+      "sourceFingerprint": "415edda37815f9d22ca7d308a4a2b5ba5ce5a91e38f705fc3eedc05d0951f26d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1390
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 물건의 처음 값을 더하면 $S$원이고 두 값이 각각 다른 비율로 올랐다면, 처음 값을 $x$원, $(S-x)$원으로 놓고 두 물건의 오른 금액의 {합}이 전체 오른 금액과 같다는 방정식을 세운다.",
+      "cSlotAnswers": [
+        "합"
+      ],
+      "cStudentSentence": "두 물건의 처음 값을 더하면 $S$원이고 두 값이 각각 다른 비율로 올랐다면, 처음 값을 $x$원, $(S-x)$원으로 놓고 두 물건의 오른 금액의 □이 전체 오른 금액과 같다는 방정식을 세운다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "합",
+          "equivalentAnswers": [
+            "합",
+            "총합"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "합",
+          "accept": [
+            "총합"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "합",
+          "총합"
+        ]
+      ],
+      "proposalFingerprint": "ea33dc94e1a2206fab0fb60e16194c7a4ffffa2d21918d963179515f33b121cf"
+    },
+    {
+      "id": "m1-03-10-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 물건 $40$개 중 $30$개는 정가대로 팔아 한 개에 $200$원씩 이익을 얻었고, 나머지 $10$개는 할인하여 팔아 한 개에 $50$원씩 이익을 얻었다. 전체 이익을 구하는 방법을 쓰고 구하시오.",
+      "bAnswer": "정가로 판 부분과 할인해 판 부분의 이익을 따로 구해 더한다. $200\\times30+50\\times10=6500$(원)이다.",
+      "bGoal": "나누어 판 물건의 전체 이익을 부분별 이익의 합으로 구한다.",
+      "bReason": "제목 '나누어 판 물건의 이익'은 어떻게 나누어 팔았는지 없다. 개수와 한 개당 이익을 주고 방법과 값을 묻는다.",
+      "cDecision": "rewrite",
+      "cAfter": "같은 물건을 정가대로 $m$개 팔아 한 개에 $p$원씩, 할인하여 $n$개 팔아 한 개에 $q$원씩 이익을 얻었다면, 전체 이익은 두 부분의 이익을 따로 구해 더한 {$(pm+qn)$}원이다.",
+      "cAnswers": [
+        "$(pm+qn)$"
+      ],
+      "cReason": "원문의 빈칸 '두 부분', '전체 이익'은 문장 흐름에서 정하기 어려운 임의의 낱말이다. 문자의 뜻을 주고 전체 이익의 식을 쓰게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 9,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "방법: 정가로 판 부분과 할인해 판 부분의 이익을 따로 구해 더함"
+          ]
+        },
+        {
+          "anyOf": [
+            "$200\\times30+50\\times10=6500$(원)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-006",
+      "learningRole": "procedure",
+      "roleReason": "부분별 이익을 구해 더함",
+      "enrichmentEvidence": "enrichment/enrich-007",
+      "sourceIndex": 1391,
+      "part": "m1plus",
+      "sourceFingerprint": "987b71b0532c9b778e6664ce65f6af202c20e5765d0e48a9c4f977304d1a5477",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1391
+      },
+      "directReview": null,
+      "cMarkedSentence": "같은 물건을 정가대로 $m$개 팔아 한 개에 $p$원씩, 할인하여 $n$개 팔아 한 개에 $q$원씩 이익을 얻었다면, 전체 이익은 두 부분의 이익을 따로 구해 더한 {$(pm+qn)$}원이다.",
+      "cSlotAnswers": [
+        "$(pm+qn)$"
+      ],
+      "cStudentSentence": "같은 물건을 정가대로 $m$개 팔아 한 개에 $p$원씩, 할인하여 $n$개 팔아 한 개에 $q$원씩 이익을 얻었다면, 전체 이익은 두 부분의 이익을 따로 구해 더한 □원이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(pm+qn)$",
+          "equivalentAnswers": [
+            "$(pm+qn)$",
+            "$pm+qn$",
+            "$mp+nq$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$(pm+qn)$",
+          "accept": [
+            "$pm+qn$",
+            "$mp+nq$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$(pm+qn)$",
+          "$pm+qn$",
+          "$mp+nq$"
+        ]
+      ],
+      "proposalFingerprint": "d7d70f0593495ede1a26335deacb224820b302b7da1d7d455da238786a714fdd"
+    }
+  ]
+}

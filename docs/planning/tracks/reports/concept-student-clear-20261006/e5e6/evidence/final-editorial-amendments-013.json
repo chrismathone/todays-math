@@ -1,0 +1,481 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-06T17:30:44.626345+00:00",
+  "scope": "Current amended questions captured for direct reading; not an editorial verdict.",
+  "rows": [
+    {
+      "id": "e6-1-3-2-c3",
+      "sourceIndex": 233,
+      "grade": "e6",
+      "part": "e6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$0.6\\div2$의 몫은 $1$보다 큰가, 작은가? 몫이 $1$이 되려면 나누어지는 수가 얼마여야 하는지를 이용해 까닭을 설명하시오.",
+        "answer": "$1$보다 작다. $\\square\\div2=1$이 되려면 나누어지는 수가 $2$여야 하는데 $0.6$은 $2$보다 작기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $1$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫이 $1$이 되려면 나누어지는 수가 $2$여야 한다",
+              "몫이 $1$이 되려면 나누는 수만큼 필요하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.6$은 $2$보다 작다",
+              "나누어지는 수가 필요한 양보다 적다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "몫이 $1$이 되는 양을 기준으로 몫이 $1$보다 작은 까닭을 설명한다.",
+      "bReason": "결론만 말하지 않고 몫 $1$에 필요한 양과 비교하는 추론 과정을 요구한다. 새 질문의 수식 안 미지수 □만 표준 KaTeX square로 고치며 값과 뜻은 바꾸지 않는다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "cStudentSentence": "$0$보다 큰 수를 자연수로 나눌 때, 몫이 $1$이 되려면 나누는 수만큼의 양이 있어야 한다. 나누어지는 수가 나누는 수보다 작으면 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "cReason": "몫 $1$에 필요한 양을 먼저 제시한 뒤 '작으면 $1$보다 작다'를 묻는 명확한 비교 문장이라 유지한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ec9862acbfec8bd4ddbd044c37b55d462154a49a47674206e637c59c8d39af1b",
+      "proposalFingerprint": "9d1f3a17c31ccf02978dd9374387d10505808f8e85ebd3efd3c246f6925178e3",
+      "questionRevision": "planning-e5e6-20261006-9d1f3a17c31c",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e6-2-1-1-c1",
+      "sourceIndex": 292,
+      "grade": "e6",
+      "part": "e6",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "진분수나 가분수로 나타낸 두 분수의 분모가 같고 나누는 분수는 $0$이 아니다. 나눗셈에서 분자와 분모 중 어떤 수끼리 나누어 몫을 구하나요? $\\frac{6}{7}\\div\\frac{2}{7}$를 예로 들어 몫까지 쓰세요.",
+        "answer": "두 분수의 분자끼리 나눕니다. $6\\div2=3$이므로 몫은 $3$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자끼리 나눈다",
+              "분자를 서로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $3$",
+              "$6\\div2=3$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분모가 같은 분수의 나눗셈을 분자끼리의 나눗셈으로 바꾸어 계산한다.",
+      "bReason": "일반 방법의 진분수·가분수 표현과0이 아닌 나누는 수 조건을 문장에 명시한다. 분자·분모 중 나눌 대상과 실제 몫3을 묻는 범위는 유지한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{8}\\div\\frac{2}{8}$를 계산하면 {$2.5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2.5$",
+            "$\\frac{5}{2}$",
+            "$2\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{5}{8}\\div\\frac{2}{8}$를 계산하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2.5$",
+          "equivalents": [
+            "$\\frac{5}{2}$",
+            "$2\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cReason": "원문 배 관계·조각의개수라는 추상적인 구절을 구체적인 같은 분모 분수의 몫으로 바꾼다. 계산 결과는 소수·가분수·대분수의 같은 값으로 인정한다.",
+      "coreAfter": "진분수나 가분수로 나타낸 두 분수의 분모가 같고 나누는 분수가 $0$이 아니면, 두 분수의 {분자}끼리 나누어 몫을 구한다.",
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "037a03e2d84f46dee607fea3f45fa23095c8ca6b70c310ca964271d28eb274c9",
+      "proposalFingerprint": "686ed7243023c90efaf267cab957ac90038e49f797d415845c9854d3b241b3ba",
+      "questionRevision": "planning-e5e6-20261006-686ed7243023",
+      "draftEvidence": "evidence/section-083-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-1-1-xc9",
+      "sourceIndex": 401,
+      "grade": "e5",
+      "part": "e5plus",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "등호 $=$는 무엇을 나타내는 기호인지 쓰고, 그 뜻을 이용하여 $9+6=10+\\square$의 $\\square$에 알맞은 수를 구하시오.",
+        "answer": "등호는 왼쪽과 오른쪽의 값이 같음을 나타낸다. $9+6=15$이므로 $10+\\square=15$이고 $\\square$는 $5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "등호는 양쪽의 값이 같다는 표시이다",
+              "등호는 왼쪽과 오른쪽의 값이 같음을 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "등호를 '답을 쓰는 자리'가 아니라 양쪽 값이 같다는 표시로 이해하고 적용한다.",
+      "bReason": "잘못 이어 쓴 식을 고치는 것은 xc14가 맡으므로, 여기서는 등호의 뜻과 양쪽이 같아지는 수 찾기로 좁혔다. 새 질문의 수식 안 미지수 □만 표준 KaTeX square로 고치며 값과 뜻은 바꾸지 않는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "등호 $=$는 왼쪽과 오른쪽의 값이 서로 {같다}는 것을 나타내는 기호이다.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "cStudentSentence": "등호 $=$는 왼쪽과 오른쪽의 값이 서로 □는 것을 나타내는 기호이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "같음은 뒤의는과붙으면같음는이 되어 문법상맞지 않는다. 같은뜻이며실제문장에들어맞는같다·똑같다만인정한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "e3986eaa9f0d7e0b9959ffaa892c77ea86d25f59b07a301d737c1f72ab477a34",
+      "proposalFingerprint": "c9307ae406797b03e2b6cdbf18f5ef902fe9e1ac683248df4507e2b660349964",
+      "questionRevision": "planning-e5e6-20261006-c9307ae40679",
+      "draftEvidence": "evidence/section-000-draft.json",
+      "rubricEvidence": "evidence/section-000-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e6-2-1-1-xc13",
+      "sourceIndex": 2170,
+      "grade": "e6",
+      "part": "e6plus",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{15}{4}\\div\\frac{5}{4}$처럼 분모가 같은 가분수끼리의 나눗셈도 진분수와 같은 방법으로 계산할 수 있나요? 몫을 구하고 이유를 쓰세요.",
+        "answer": "네, 분자끼리 $15\\div5=3$으로 나누면 몫은 $3$입니다. 두 분수 모두 $\\frac{1}{4}$이 몇 개인지로 나타내므로 개수끼리 나누면 됩니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "진분수와 같은 방법으로 계산할 수 있다",
+              "분자끼리 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $3$",
+              "$15\\div5=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 단위분수의 개수끼리 나눈다",
+              "$\\frac{1}{4}$이 몇 개인지 비교한다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "가분수에도 분자끼리 나누는 방법이 적용됨을 이해한다.",
+      "bReason": "가분수끼리라는 질문에 진분수3/4를 포함한 예를 쓰던 사실 불일치를 고친다.15/4와5/4는 둘 다 가분수이고 원래 결과3을 보존한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{15}{4}\\div\\frac{5}{4}$는 분자끼리 $15\\div5$를 하는 것과 같으므로 몫은 {$3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{15}{4}\\div\\frac{5}{4}$는 분자끼리 $15\\div5$를 하는 것과 같으므로 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "가분수끼리라는 원래 확인 목표에 두 피연산자 모두가 해당하는15/4·5/4를 사용한다. 결과3은 식의 다른 부분에 나오지 않는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "52c5be8d68973db554f00b06430824929a09b1ec4675c121676d7abaa145a61f",
+      "proposalFingerprint": "c3766956ceac695352dd5a7ced5baf7d889cde5d53033629a479ffe52ea60af0",
+      "questionRevision": "planning-e5e6-20261006-c3766956ceac",
+      "draftEvidence": "evidence/section-083-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e6-2-1-1-xc16",
+      "sourceIndex": 2173,
+      "grade": "e6",
+      "part": "e6plus",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{7}{9}$에서 $\\frac{2}{9}$를 $3$번 덜어 내면 $\\frac{1}{9}$이 남습니다. 이 결과로 $\\frac{7}{9}\\div\\frac{2}{9}$의 몫을 어떻게 구하는지 설명하고 몫을 쓰세요.",
+        "answer": "남은 $\\frac{1}{9}$을 $\\frac{2}{9}$로 나눈 값 $\\frac{1}{2}$을 덜어 낸 횟수 $3$에 더합니다. 몫은 $3\\frac{1}{2}\\left(=\\frac{7}{2}\\right)$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "남은 양을 나누는 분수로 나눈다",
+              "$\\frac{1}{9}\\div\\frac{2}{9}=\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "덜어 낸 횟수에 더한다",
+              "$3+\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\frac{1}{2}$",
+              "$\\frac{7}{2}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "남는 양이 있을 때 횟수와 남은 양의 나눗셈 결과를 합해 몫을 구한다.",
+      "bReason": "덜어 낸 횟수에 남은 양의 몫을 더한다는 방법과 값을 함께 확인한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{7}{9}$에서 $\\frac{2}{9}$를 $3$번 덜어 내고 남은 $\\frac{1}{9}$을 $\\frac{2}{9}$로 나누면 $\\frac{1}{2}$이다. 몫은 $3$과 $\\frac{1}{2}$을 더한 {$3\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3\\frac{1}{2}$",
+            "$\\frac{7}{2}$",
+            "$3.5$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{7}{9}$에서 $\\frac{2}{9}$를 $3$번 덜어 내고 남은 $\\frac{1}{9}$을 $\\frac{2}{9}$로 나누면 $\\frac{1}{2}$이다. 몫은 $3$과 $\\frac{1}{2}$을 더한 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3\\frac{1}{2}$",
+          "equivalents": [
+            "$\\frac{7}{2}$",
+            "$3.5$"
+          ]
+        }
+      ],
+      "cReason": "첫 빈칸의1/2가 뒤 본문에 그대로 노출되던 문제를 없앤다. 남은 양의 나눗셈 결과는 주고 덜어 낸 횟수와 합한 최종 몫만 묻는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "8c9da7d322a871e7469926896daec1288778fe9fd672df719439770006130911",
+      "proposalFingerprint": "ab95e75182ad2d45e6e8a7c59e4e786e0001c221a4d221af8897a68adb7e031b",
+      "questionRevision": "planning-e5e6-20261006-ab95e75182ad",
+      "draftEvidence": "evidence/section-083-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e6-2-1-1-xc17",
+      "sourceIndex": 2174,
+      "grade": "e6",
+      "part": "e6plus",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{8}{11}\\div\\frac{2}{11}$ 계산에서 통분을 하지 않아도 되는 까닭을 쓰고, 몫을 구하세요.",
+        "answer": "이미 분모가 같아 조각의 크기가 같기 때문입니다. 분자끼리 $8\\div2=4$이므로 몫은 $4$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 이미 같다",
+              "조각의 크기가 이미 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $4$",
+              "$8\\div2=4$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분모가 같으면 통분이 필요 없는 까닭을 안다.",
+      "bReason": "통분이 왜 불필요한지와 실제 계산 결과를 함께 묻는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "분모가 같고 나누는 분수가 $0$이 아닌 두 분수의 나눗셈에서는, 두 분수의 분모가 이미 같으므로 {통분} 과정을 생략할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "통분"
+          ]
+        ]
+      },
+      "cStudentSentence": "분모가 같고 나누는 분수가 $0$이 아닌 두 분수의 나눗셈에서는, 두 분수의 분모가 이미 같으므로 □ 과정을 생략할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "통분",
+          "equivalents": []
+        }
+      ],
+      "cReason": "미설명 조각 비유를 끼우지 않고 분모를 같게 하는 과정이 필요 없는 실제 조건을 직접 말한다. 통분이라는 원래 배운 이름은 보존한다.",
+      "coreAfter": "분모가 같고 나누는 분수가 $0$이 아닌 두 분수의 나눗셈에서는, 두 분수의 분모가 이미 같으므로 {통분} 과정을 생략할 수 있다.",
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "e38264a881d53ad6a402a963aa012c41ae6673d2d916bd46d893171aafd46406",
+      "proposalFingerprint": "bb62cac6d5fedf59bb85dd04e05a14d1fc4cc9d9ea556d25a6c1d3363b7d1c42",
+      "questionRevision": "planning-e5e6-20261006-bb62cac6d5fe",
+      "draftEvidence": "evidence/section-083-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e6-2-1-1-xc22",
+      "sourceIndex": 2177,
+      "grade": "e6",
+      "part": "e6plus",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "나누는 분수가 $0$이 아닐 때, 분수의 나눗셈 몫은 두 분수 사이의 어떤 관계를 나타내나요? $\\frac{6}{7}\\div\\frac{2}{7}=3$이라면 이 $3$의 뜻도 말하세요.",
+        "answer": "나누어지는 분수가 나누는 분수의 몇 배인지를 나타냅니다. $\\frac{6}{7}$은 $\\frac{2}{7}$의 $3$배입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 분수가 나누는 분수의 몇 배",
+              "나누는 분수의 몇 배인지"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{6}{7}$은 $\\frac{2}{7}$의 $3$배",
+              "$3$배"
+            ]
+          }
+        ]
+      },
+      "bGoal": "몫을 두 분수의 배 관계로 해석한다.",
+      "bReason": "몫의 의미와 예의 해석을 함께 확인한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{8}{9}$은 $\\frac{2}{9}$의 {$4$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{8}{9}$은 $\\frac{2}{9}$의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "몇배인지라는 문법만으로 배를 복원하던 C를 두 분수의 실제 배수 값을 구하는 짧은 비교로 바꾼다.4는 다른 곳에 제시하지 않는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "be287ec13e8a5eed0511a0936af03ebb050ed6dac60142e56665f9869cdfede0",
+      "proposalFingerprint": "c008dd5f477a85fcdd32e01b68e2248e95e17514e82b936256a238cc8fec4f2b",
+      "questionRevision": "planning-e5e6-20261006-c008dd5f477a",
+      "draftEvidence": "evidence/section-083-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e6-2-1-1-xc26",
+      "sourceIndex": 2178,
+      "grade": "e6",
+      "part": "e6plus",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{6}{7}\\div\\frac{2}{7}$에서 분자끼리 $6\\div2$로 몫을 구할 수 있는 까닭을, 두 분수를 각각 $\\frac{1}{7}$이 몇 개인 수로 보고 설명하세요.",
+        "answer": "$\\frac{6}{7}$은 $\\frac{1}{7}$이 $6$개이고 $\\frac{2}{7}$는 $\\frac{1}{7}$이 $2$개입니다. 같은 단위분수의 개수인 자연수끼리 나누면 되므로 $6\\div2=3$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{6}{7}$은 $\\frac{1}{7}$이 $6$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{7}$는 $\\frac{1}{7}$이 $2$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 양을 같은 크기의 단위분수로 센 개수이므로 그 개수끼리 나누어 비교할 수 있다",
+              "두 분수를 모두 $\\frac{1}{7}$을 단위로 센 개수라서 그 개수끼리 나누면 된다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분수의 나눗셈이 단위분수 개수의 나눗셈이 되는 까닭을 설명한다.",
+      "bReason": "물음에 주어진6÷2나 몫3만으로 이유 기준을 통과시키지 않는다. 두 양을 같은 크기의 단위로 센 개수이므로 개수끼리 나눌 수 있다는 실제 이유를 평가한다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "분모가 같은 $0$보다 큰 두 진분수나 가분수는 같은 단위분수의 개수로 나타낼 수 있다. 이 개수는 모두 {자연수}이므로, 분자끼리 나누어 몫을 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "cStudentSentence": "분모가 같은 $0$보다 큰 두 진분수나 가분수는 같은 단위분수의 개수로 나타낼 수 있다. 이 개수는 모두 □이므로, 분자끼리 나누어 몫을 구할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "자연수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "같은 단위분수의 개수라는 설명이 있고 빈칸이 '자연수' 하나라 이유를 짧게 확인한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "b5796047318579cc137a98c8108483928fde9d0308af02d952f308e3797b2f8f",
+      "proposalFingerprint": "54fa0ae8a80c92aa6ed6376d56e0fd452bf9f67338ee991da2a69b4c84fc7b51",
+      "questionRevision": "planning-e5e6-20261006-54fa0ae8a80c",
+      "draftEvidence": "evidence/section-083-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    }
+  ]
+}

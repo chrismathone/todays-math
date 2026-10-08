@@ -1,0 +1,1137 @@
+{
+  "inputFile": "root-middle-final-3060-3090-input.json",
+  "inputSha256": "492ba32795665d9303ab12de2b6f46d2fa6cfa0c302090cfda153b23d2c9ac18",
+  "reader": "Root Codex direct final question/answer/criteria reading",
+  "notIndependentClaudeApproval": true,
+  "rows": [
+    {
+      "id": "m2-07-03-xc23",
+      "sourceIndex": 3060,
+      "proposalFingerprint": "ee1a963ac8572165452cd3c09e33fbf890e22ae897dc111803de93ed76e13b54",
+      "normalizedHash": "ba6f9d5e49d6507b9563c305ef4b56f17e33e1093551d892e8aa820158701e1c",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "서로 평행한 세 직선을 직선 $p$가 차례로 점 $A$, $B$, $C$에서, 직선 $q$가 차례로 점 $D$, $E$, $F$에서 만난다. $\\overline{AB}=4$, $\\overline{BC}=6$, $\\overline{DE}=x$, $\\overline{EF}=9$일 때 한 학생이 $4:6=9:x$라고 썼다. 잘못된 점을 쓰고, 바른 비례식으로 $x$를 구하시오.",
+        "answer": "$\\overline{AB}$와 대응하는 $\\overline{DE}$가 앞항에 와야 하는데 $\\overline{EF}$를 앞항에 두었다. 바른 비례식은 $4:6=x:9$이고 $x=6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞 조각 $\\overline{DE}$가 앞항에 와야 한다",
+              "대응하는 차례가 뒤바뀌었다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4:6=x:9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=6$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 직선의 조각으로 비례식을 세울 때 양쪽 모두 {앞 조각}을 앞항에, 뒤 조각을 뒤항에 같은 차례로 두면 비례식이 맞는다.",
+        "acceptedAnswers": [
+          [
+            "앞 조각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'대응 오류'가 무엇인지 보이도록, 실제로 틀린 식을 주고 고치게 했다.",
+      "cReason": "앞 조각을 앞항에 둔다는 규칙을 한 빈칸으로 묻는다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 세 평행선의 실제 교점과 4:6=9:x 오류를 주어 대응 순서와 바른 식, x6을 확인한다. C는 평행선이라는 조건도 없이 두 직선의 앞뒤 부분을 같은 차례로 놓기만 하면 비례식이 맞는다고 한다. 세 평행선 및 실제 대응 부분의 조건을 넣는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-03-xc24",
+      "sourceIndex": 3061,
+      "proposalFingerprint": "d685371ba64e6ab4038f1e622663552bfcf439b6c948ab245c6f82b2f875d7fd",
+      "normalizedHash": "3c9944193259efa3f50c78a62b1a8c765e2af94a7e2d95389e4b76d948ba8780",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "세 직선 $l$, $m$, $n$을 두 직선 $p$, $q$가 가로지른다. $p$는 세 직선과 차례로 점 $A$, $B$, $C$에서, $q$는 차례로 점 $D$, $E$, $F$에서 만나고 $\\overline{AB}:\\overline{BC}=\\overline{DE}:\\overline{EF}$이다. 이것만으로 $l$, $m$, $n$이 모두 평행하다고 할 수 있는지 쓰고 그 까닭을 쓰시오.",
+        "answer": "할 수 없다. 예를 들어 서로 평행한 $p$, $q$ 위에 $\\overline{AB}=\\overline{BC}=1$, $\\overline{DE}=\\overline{EF}=2$가 되도록 점을 잡으면 비는 $1:1$로 같다. 그런데 직선 $AD$와 $BE$가 평행하다면 $ABED$가 평행사변형이 되어 $\\overline{AB}=\\overline{DE}$여야 하므로, 두 직선은 평행하지 않다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "할 수 없다",
+              "모두 평행하다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비가 같아도 세 직선이 평행하지 않은 예를 들 수 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 직선의 조각 비가 같다는 사실만으로 임의의 세 직선이 {모두 평행}하다고 결론 낼 수는 없다.",
+        "acceptedAnswers": [
+          [
+            "모두 평행"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "성질의 '한계'가 무엇인지 드러나도록 조건과 결론을 나누고, 반례로 판단하게 했다.",
+      "cReason": "함부로 내릴 수 없는 결론이 무엇인지 한 빈칸으로 묻는다.",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B의 반례 자체는 가능하나 기준은 반례를 들 수 있다는 일반 주장만 확인해 실제 까닭 없이 통과한다. 구체 반례를 요청·확인한다. C는 임의의 세 직선에 내릴 수 없는 결론을 열린 빈칸으로 두어 평행 외의 다른 틀린 결론도 참 문장을 만든다. 평행을 단정할 수 있는지 판단하도록 묻는 대상을 고정한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-03-xc25",
+      "sourceIndex": 3062,
+      "proposalFingerprint": "64a9e03beaa2df3f69fe94c26423c292e99ad6beeb0fdc1f646c1a8e99fbe504",
+      "normalizedHash": "f61d3840638dd0773c4f988bc70815b0553d663dd4890b7314542e3d3372b48f",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "보조선으로 삼각형을 만들어 설명하는 목표는 c5의 까닭 질문과 같다."
+      },
+      "C": {
+        "sentence": "평행선의 길이 비를 설명할 때 보조선을 그어 만든 두 삼각형에서 같은 {각}들을 찾아 닮음을 이용한다.",
+        "acceptedAnswers": [
+          [
+            "각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "보조선으로 삼각형을 만들어 설명하는 목표는 c5의 까닭 질문과 같다.",
+      "cReason": "닮음을 찾는 근거가 '각'임을 짧게 확인한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "평행선 성질의 증명에서 보조선으로 만든 삼각형의 같은 각을 찾아 닮음을 사용하는 이유는 타당하다. B는 같은 목표의 c5로 통합했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc1",
+      "sourceIndex": 3063,
+      "proposalFingerprint": "61a01f00ce19a70814394eb679648dd2057a140efebfd1e2ce6768f85df343b1",
+      "normalizedHash": "6c400a2f61d02f0e08440d70665a3e3b8965db629dd1255274e428a636c0cd19",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "c1 중점 정의의 '같은 거리'를 다시 묻는 조각 제목이다."
+      },
+      "C": {
+        "sentence": "$M$이 $\\overline{AB}$의 중점이면 $\\overline{AM}$과 $\\overline{MB}$는 각각 $\\overline{AB}$의 {절반}이다.",
+        "acceptedAnswers": [
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c1 중점 정의의 '같은 거리'를 다시 묻는 조각 제목이다.",
+      "cReason": "기호로 대상이 분명한 짧은 비교 빈칸이라 유지한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중점 M의 양쪽 길이가 전체 AB의 절반임을 이름과 기호로 확인하며 반·1/2 동치 표현을 받는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc2",
+      "sourceIndex": 3064,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "2a42a779936a1e6830a705352e7eeb2375b0b7d42eb297d4ab6d27c8b392a7eb",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "c2 질문의 전제를 되풀이하는 작도 조각이다."
+      },
+      "C": {
+        "excluded": "답 '선분'이 일반 어휘라 중점 개념을 평가하지 못한다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c2 질문의 전제를 되풀이하는 작도 조각이다.",
+      "cReason": "답 '선분'이 일반 어휘라 중점 개념을 평가하지 못한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "선분이라는 일반 명사만 쓰는 작도 조각은 중점 학습을 확인하지 못해 두 형식에서 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc3",
+      "sourceIndex": 3065,
+      "proposalFingerprint": "8433f7eb5e032b0ee0e4b049ea5731be253299c823394ae24c5a5231b5f6454c",
+      "normalizedHash": "72d3ee855c1086155f4526a52ad316bac56e7b13442ec4d99a320eaac830bb17",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "c2의 평행 관계, xc9의 대응변 고르기와 같은 목표이다."
+      },
+      "C": {
+        "sentence": "삼각형의 두 변의 중점을 이은 선분은 중점을 잡지 않은 {나머지 한 변}과 평행하다.",
+        "acceptedAnswers": [
+          [
+            "나머지 한 변",
+            "나머지 변",
+            "셋째 변"
+          ]
+        ]
+      },
+      "coreBefore": "두 중점을 이은 선분은 중점을 잡지 않은 {나머지 변}과 나란하다.",
+      "coreAfter": "삼각형의 두 변의 중점을 이은 선분은 중점을 잡지 않은 {나머지 한 변}과 평행하다.",
+      "coreReason": "'두 중점'과 '나란하다'만으로는 어느 도형의 어느 변인지 불명확하다.",
+      "bReason": "c2의 평행 관계, xc9의 대응변 고르기와 같은 목표이다.",
+      "cReason": "'두 중점'이 어느 도형의 점인지 없어서 삼각형을 밝혔다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "교정 일반 설명과 C는 삼각형의 두 변의 중점이라고 도형을 명시하고 나머지 변과 평행임을 확인한다. 기존 일반 표적도 보존했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc4",
+      "sourceIndex": 3066,
+      "proposalFingerprint": "246e4281710fc7bfb4b57a9f30029fb76564d2b70cc4f8968118e3565ebff638",
+      "normalizedHash": "099f4eb015895c7e3bcd06f37d3bac758c2fb9fb695a8f31d94665b89c8875b0",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "c2의 '절반' 관계를 거꾸로 쓴 같은 사실이다."
+      },
+      "C": {
+        "sentence": "삼각형의 두 변의 중점을 이은 선분의 길이를 {$2$}배 하면, 그 선분과 평행한 나머지 한 변의 길이가 된다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c2의 '절반' 관계를 거꾸로 쓴 같은 사실이다.",
+      "cReason": "'두 중점', '나란한 원래 변'이 모호해 어느 변인지 밝혔다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "삼각형 두 중점을 이은 선분과 평행한 나머지 변을 특정하여 길이 두 배 관계를 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc5",
+      "sourceIndex": 3067,
+      "proposalFingerprint": "ed5ec11810ac7489e11529b74f2e88ab018aa6148b9377779d2b1da5a585a469",
+      "normalizedHash": "0c33aa5d0eced90f75bbe61d1269b8e990bd44cbd8c73de88067f596a2d39f4e",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "선분 $AB$ 위의 점 $M$이 $\\overline{AB}$의 중점이라는 조건을 선분의 길이에 대한 등식으로 쓰시오.",
+        "answer": "$\\overline{AM}=\\overline{MB}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AM}=\\overline{MB}$",
+              "$\\overline{AM}=\\frac{1}{2}\\overline{AB}$",
+              "$\\overline{AB}=2\\overline{AM}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "선분 위의 점이 중점이라는 조건은 그 점에서 {양 끝 점}까지의 길이가 {같다}는 식으로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "양 끝 점"
+          ],
+          [
+            "같다",
+            "서로 같다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "등식을 쓰려면 점의 이름이 필요하므로 선분 $AB$와 점 $M$을 제시했다.",
+      "cReason": "일반 조건을 두 빈칸으로 묻는 문장이며 대상이 분명하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "AB 위 M을 제시해 AM=MB 및 동치 길이식을 쓰게 한다. C도 선분 위 점과 양 끝점 사이 거리 같음을 밝혀 중점 조건을 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc6",
+      "sourceIndex": 3068,
+      "proposalFingerprint": "3bbbd8ece99ceb36b0fa9cdfcf2dfae47687a219f24a8137e0f8f98a910db158",
+      "normalizedHash": "0ad2e89c356d5abc39b6ae57a2c5d2dbc9b5c007817f5021344fac0d7d65d2be",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "xc1의 절반, c1의 같은 거리를 비로 바꾼 것뿐이다."
+      },
+      "C": {
+        "sentence": "점 $M$이 $\\overline{AB}$의 중점이면 $\\overline{AM}:\\overline{MB}$는 {$1:1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1:1$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc1의 절반, c1의 같은 거리를 비로 바꾼 것뿐이다.",
+      "cReason": "'조각을 차례로 비교한 비'가 메타 표현이라 기호로 비교 대상을 밝혔다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "M이 AB의 중점이라는 조건에서 AM:MB를1:1로 쓰는 간단하고 특정된 빈칸이다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc7",
+      "sourceIndex": 3069,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "d4f6937be4acad153d7352746eea283a2c382c5aaef12fb53b890ae49ac971b6",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "세 변에 하나씩이므로 세 개라는 단순 개수 암기이다."
+      },
+      "C": {
+        "excluded": "답 '세 개'가 문장의 '세 변'에서 그대로 보인다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "세 변에 하나씩이므로 세 개라는 단순 개수 암기이다.",
+      "cReason": "답 '세 개'가 문장의 '세 변'에서 그대로 보인다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "세 변에 하나씩 있는 중점의 개수만 외우거나 주어진 세 변에서 베끼는 문항을 두 형식에서 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc8",
+      "sourceIndex": 3070,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "47c89fff34420be1ace5ce13b69c6548844d8be4907483a10b73530f12aa50be",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "작은 삼각형이 생긴다는 말에서 바로 나오는 단순 개수이다."
+      },
+      "C": {
+        "excluded": "'세 중점', '삼각형'에서 답 '세 개'를 베낄 수 있다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "작은 삼각형이 생긴다는 말에서 바로 나오는 단순 개수이다.",
+      "cReason": "'세 중점', '삼각형'에서 답 '세 개'를 베낄 수 있다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중점을 이은 선분 세 개라는 주어진 개수의 반복을 평가에서 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc9",
+      "sourceIndex": 3071,
+      "proposalFingerprint": "a1b729a2b000caf4d8753e706ccbcd743205ca871f6771302f7f0b13dca5f221",
+      "normalizedHash": "516beb7f923e711208f17f1c98f3cdb7c689ab719a08426b29f7ab2e9dda520b",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 하자. 중점 연결 성질에서 $\\overline{MN}$과 길이를 비교하는 변은 어느 변인지 쓰고, 그 변이 $\\overline{MN}$과 만나는지 쓰시오.",
+        "answer": "$\\overline{BC}$이다. $\\overline{BC}$는 $\\overline{MN}$과 만나지 않는다(평행하다). $\\overline{AB}$, $\\overline{AC}$는 $\\overline{MN}$의 끝점에서 만난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "만나지 않는다",
+              "평행하다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 두 변의 중점을 이은 선분과 길이를 비교하는 변은 그 선분과 {만나지 않는} 변이다. 중점이 놓인 두 변은 그 선분의 {끝점}에서 만난다.",
+        "acceptedAnswers": [
+          [
+            "만나지 않는"
+          ],
+          [
+            "끝점",
+            "한 끝",
+            "한 끝점"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "대응변을 고르는 기준을 구체적인 삼각형으로 확인하게 했다.",
+      "cReason": "'삼각형'이 빠져 있고 '견주는', '한 끝'이 어색해 보완했다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "MN과 BC가 평행하고 다른 두 변은 중점 끝에서 만난다는 중점 연결 성질의 대상을 비교한다. C도 삼각형과 두 중점 선분 및 끝점을 밝힌다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc10",
+      "sourceIndex": 3072,
+      "proposalFingerprint": "2c0eca4c133ee923b0a5b89010b3b6d6a23808561ba72281b64a7f668e86a4fa",
+      "normalizedHash": "610c2a4e5475ab8122c4710e223e83a1ce5829119a21ffff9b2251067f7fbafa",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 할 때, $\\triangle AMN$과 $\\triangle ABC$의 닮음비를 $\\triangle AMN$ 쪽부터 쓰고, 그 비를 확인할 수 있는 대응변의 길이 비 하나를 쓰시오.",
+        "answer": "$1:2$. 예를 들어 $\\overline{AM}=\\frac{1}{2}\\overline{AB}$이므로 $\\overline{AM}:\\overline{AB}=1:2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1:2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AM}:\\overline{AB}=1:2$",
+              "$\\overline{AN}:\\overline{AC}=1:2$",
+              "$\\overline{MN}:\\overline{BC}=1:2$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 두 변의 중점을 연결하여 꼭짓점 쪽에 생긴 삼각형과 원래 삼각형의 닮음비는 {$1:2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1:2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비의 순서를 정해 주고, 비의 근거가 되는 대응변까지 쓰게 했다.",
+      "cReason": "작은 삼각형부터 쓰는 순서가 문장에 드러난 짧은 비 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "작은 AMN부터 쓰는 닮음비1:2와 실제 대응변의 한 비를 요구한다. C도 작은 삼각형과 처음 삼각형의 순서가 명시된다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc11",
+      "sourceIndex": 3073,
+      "proposalFingerprint": "bea620cc711cbf3a4c8a9f3e4981374b72bf47e438b3906cbe118fa71ffc9d80",
+      "normalizedHash": "ae32fab5ff60275ec2a9a552b8eefcb65898082e1f55acd8fa8670f9f9ea5b9b",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 할 때, $\\triangle AMN$과 $\\triangle ABC$가 어떤 닮음 조건으로 닮음인지 쓰고, 그 조건에 해당하는 변의 비와 각을 쓰시오.",
+        "answer": "$\\mathrm{SAS}$ 닮음이다. $\\overline{AM}:\\overline{AB}=\\overline{AN}:\\overline{AC}=1:2$이고, 끼인각 $\\angle A$가 공통이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\mathrm{SAS}$ 닮음"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AM}:\\overline{AB}=\\overline{AN}:\\overline{AC}$",
+              "두 변의 비가 $1:2$로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle A$가 공통이다",
+              "끼인각이 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 $M$, $N$이라 하면 $\\triangle AMN$과 $\\triangle ABC$는 두 변의 길이의 비가 같고 그 {끼인각}인 $\\angle A$가 공통이므로 {$\\mathrm{SAS}$} 닮음이다.",
+        "acceptedAnswers": [
+          [
+            "끼인각"
+          ],
+          [
+            "$\\mathrm{SAS}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'같은 꼭짓점의 각'이 무엇에 쓰이는지 닮음 조건으로 특정했다.",
+      "cReason": "'두 중점과 공통 꼭짓점'이 지칭이 모호하고 메타적이라 기호로 바꿨다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 어떤 닮음 조건인지 자유롭게 묻지만 SAS만 받는다. 이미 배운 중점 연결 평행·길이 성질로 AA나 SSS를 타당하게 설명할 수도 있다. 두 중점에서 얻는 두 변의 비와 공통 끼인각을 이용한다는 범위를 지정하거나 다른 타당한 증명도 받는다. C는 그 두 변과 끼인각을 명시해 SAS 기준을 정확히 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc12",
+      "sourceIndex": 3074,
+      "proposalFingerprint": "7ae6a0aa3ab0525bec72812de28449ef7993ae2860a5386b2a92b1e9435adcfd",
+      "normalizedHash": "cdaab58c8109d56c7b3f3faef078833902bc0cddc20eb3a27a356ea1fcc7e7f5",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}$의 중점 $M$을 지나고 $\\overline{BC}$에 평행한 직선이 $\\overline{AC}$와 만나는 점을 $N$이라 하자. $N$이 $\\overline{AC}$의 중점인 이유를 쓰시오.",
+        "answer": "$\\overline{MN}\\parallel\\overline{BC}$이므로 $\\overline{AM}:\\overline{MB}=\\overline{AN}:\\overline{NC}$이다. $\\overline{AM}:\\overline{MB}=1:1$이므로 $\\overline{AN}:\\overline{NC}=1:1$이고, $N$은 중점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AM}:\\overline{MB}=\\overline{AN}:\\overline{NC}$",
+              "평행선이 두 변을 같은 비로 나눈다",
+              "$\\triangle AMN\\sim\\triangle ABC$이므로 $\\overline{AN}:\\overline{AC}=\\overline{AM}:\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AN}:\\overline{NC}=1:1$",
+              "$\\overline{AN}=\\frac{1}{2}\\overline{AC}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형에서 한 변의 중점을 지나 다른 한 변에 평행한 직선은 그 직선이 지나는 두 변을 같은 비로 나누므로, 나머지 한 변도 {$1:1$}로 나뉜다.",
+        "acceptedAnswers": [
+          [
+            "$1:1$"
+          ]
+        ]
+      },
+      "coreBefore": "한 변의 중점을 지나 다른 한 변에 평행한 직선은 두 변을 같은 비로 나누므로, 나머지 변도 {반}으로 나뉨을 확인한다.",
+      "coreAfter": "삼각형에서 한 변의 중점을 지나 다른 한 변에 평행한 직선은 그 직선이 지나는 두 변을 같은 비로 나누므로, 나머지 한 변도 {반}으로 나뉜다.",
+      "coreReason": "'삼각형'이 없고 '두 변'이 어느 변인지 불명확하다.",
+      "bReason": "c3은 결론을 묻고, 이 항목은 같은 그림에서 그 이유를 묻도록 구분했다.",
+      "cReason": "'두 변'이 어느 변인지 모호하고 '확인한다'가 메타 표현이라 고쳤다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "평행선과 중점의1:1 분할에서 다른 변의 중점을 얻는 이유를 확인한다. 교정 일반 설명은 삼각형과 직선이 지나는 두 변을 밝히며 반이라는 일반 표적을 유지한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc13",
+      "sourceIndex": 3075,
+      "proposalFingerprint": "3001755f560695f8db383ff3d9633d26dbaec41bf9fe6843dc62ac84660da0ce",
+      "normalizedHash": "a95c03653f373131a3b9da72bd93e8dc14d03d613e3b6d3d9eae45781b8ae484",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "c2를 각 변에 적용한 것으로 c5 둘레 질문과 겹친다."
+      },
+      "C": {
+        "sentence": "삼각형의 세 변의 중점을 이어 만든 삼각형의 각 변의 길이는 그 변과 평행한 처음 삼각형의 변의 길이의 {절반}이다.",
+        "acceptedAnswers": [
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c2를 각 변에 적용한 것으로 c5 둘레 질문과 겹친다.",
+      "cReason": "'세 중점', '나란한 변'에 삼각형과 평행이라는 말을 밝혔다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "세 변의 중점을 이은 각 선분이 평행한 원래 변의 절반임을 특정하여 길이 비교를 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc14",
+      "sourceIndex": 3076,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "8a07d3909399cc1356a3904f5e47e5f7c0499d0824ea40fca48777e3e8ed79a0",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "c5 '둘레 절반'의 역산일 뿐이다."
+      },
+      "C": {
+        "excluded": "c5 C의 둘레 절반을 거꾸로 묻는 같은 사실이다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c5 '둘레 절반'의 역산일 뿐이다.",
+      "cReason": "c5 C의 둘레 절반을 거꾸로 묻는 같은 사실이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "둘레 절반이라는 c5의 역산을 반복하는 B/C를 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc15",
+      "sourceIndex": 3077,
+      "proposalFingerprint": "a6d9a54b890570b2e56b6bbb7c95046306b97a7de46b3c8aad1193761de9d26f",
+      "normalizedHash": "a485cee3176d61ddc88b15fec0237a5b40d0d6032912313b50ae678a9436bf19",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 세 변의 중점을 이어 $\\triangle DEF$를 만들고, 다시 $\\triangle DEF$의 세 변의 중점을 이어 $\\triangle PQR$을 만들었다. $\\triangle PQR$의 한 변의 길이는 그 변과 평행한 $\\triangle ABC$의 변의 길이의 몇 배인지 쓰고 이유를 쓰시오.",
+        "answer": "$\\frac{1}{4}$배이다. 중점을 이을 때마다 평행한 변의 길이가 $\\frac{1}{2}$이 되므로 $\\frac{1}{2}\\times\\frac{1}{2}=\\frac{1}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "매번 $\\frac{1}{2}$이 된다",
+              "$\\frac{1}{2}\\times\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 세 변의 중점을 이어 만든 삼각형에서 다시 세 변의 중점을 이어 삼각형을 만들면, 새 삼각형의 각 변의 길이는 그 변과 평행한 처음 삼각형의 변의 길이의 {$\\frac{1}{4}$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$",
+            "$0.25$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'한 번 더'가 무엇인지 두 단계의 삼각형으로 밝혀 비교 대상을 정했다.",
+      "cReason": "'중점들', '대응변'이 어떤 대상인지 모호해 두 단계를 명시했다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중점 삼각형을 두 번 만드는 구성을 밝혀 원래 대응변 길이의1/4배와 두 번 절반이 되는 이유를 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc16",
+      "sourceIndex": 3078,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "dd6dcfe18750705e8a498378c88409ce74286b9a306d4f3fa72e88c1289301bc",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "위치와 무관하다는 메타 진술로 c2 이상의 새 목표가 없다."
+      },
+      "C": {
+        "excluded": "답 '평행 관계', '길이 비'가 메타 용어이고 c2와 같은 사실이다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "위치와 무관하다는 메타 진술로 c2 이상의 새 목표가 없다.",
+      "cReason": "답 '평행 관계', '길이 비'가 메타 용어이고 c2와 같은 사실이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "위치와 무관하다는 메타 진술 및 평행 관계·길이 비라는 제목 복원의 중복을 두 형태에서 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc17",
+      "sourceIndex": 3079,
+      "proposalFingerprint": "54f131ae3bfcc512063a819a92d5beebcc38da39c431dc83ae3eacc0191ba8dd",
+      "normalizedHash": "f11dbe7d9dc2d5e23b246233bc0dc607f5a2bb5d93d11bc1f0f24c6e732a3e11",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 세 변 $\\overline{AB}$, $\\overline{BC}$, $\\overline{CA}$의 중점을 각각 $D$, $E$, $F$라 하고 세 점을 서로 이으면 $\\triangle ADF$, $\\triangle DBE$, $\\triangle FEC$, $\\triangle EFD$가 생긴다. 이 네 삼각형이 서로 합동인 이유를 쓰시오.",
+        "answer": "중점이므로 $\\overline{AD}=\\overline{DB}=\\frac{1}{2}\\overline{AB}$ 등이 성립하고, 중점 연결 성질로 $\\overline{EF}=\\frac{1}{2}\\overline{AB}$, $\\overline{DF}=\\frac{1}{2}\\overline{BC}$, $\\overline{DE}=\\frac{1}{2}\\overline{CA}$이다. 네 삼각형의 세 변의 길이가 모두 $\\frac{1}{2}\\overline{AB}$, $\\frac{1}{2}\\overline{BC}$, $\\frac{1}{2}\\overline{CA}$이므로 $\\mathrm{SSS}$ 합동이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 삼각형의 세 변이 원래 세 변의 절반이다",
+              "중점 연결 선분이 원래 변의 $\\frac{1}{2}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변의 길이가 같아 $\\mathrm{SSS}$ 합동",
+              "$\\mathrm{SSS}$ 합동"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 세 변의 중점을 모두 이었을 때 생기는 네 삼각형은 대응하는 세 변의 길이가 각각 같으므로 {$\\mathrm{SSS}$ 합동}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{SSS}$ 합동",
+            "$\\mathrm{SSS}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "네 삼각형의 이름을 주고, 변의 길이 근거와 합동 조건을 묻게 했다.",
+      "cReason": "'세 중점'에 삼각형이 빠져 있고 '세 쌍을 하나씩 비교'가 모호해 다듬었다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "네 삼각형의 이름과 각 변이 원래 세 변의 절반이라는 관계를 제공하여 SSS 합동 이유를 확인한다. C도 대응 세 변이 같다는 근거가 명시된다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc18",
+      "sourceIndex": 3080,
+      "proposalFingerprint": "865edf00f49dbe6a455d78c82115b63806b9d9db65e448115b047502ad6bba85",
+      "normalizedHash": "a284af1a58d7e562cb661207e9bbd293d1b30626edd4d411ae26515c8019c45d",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\overline{AB}$, $\\overline{DC}$의 중점을 각각 $M$, $N$이라 하고, 대각선 $\\overline{AC}$와 $\\overline{MN}$의 교점을 $P$라 하자. 단, $P$는 $\\overline{AC}$의 중점이다. $\\overline{MP}$, $\\overline{PN}$을 각각 밑변의 길이로 나타내고, 이를 이용해 $\\overline{MN}$의 길이를 구하시오.",
+        "answer": "$\\triangle ABC$에서 $M$, $P$는 두 변의 중점이므로 $\\overline{MP}=\\frac{1}{2}\\overline{BC}$이다. $\\triangle ACD$에서 $P$, $N$은 두 변의 중점이므로 $\\overline{PN}=\\frac{1}{2}\\overline{AD}$이다. 따라서 $\\overline{MN}=\\frac{1}{2}(\\overline{AD}+\\overline{BC})$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{MP}=\\frac{1}{2}\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{PN}=\\frac{1}{2}\\overline{AD}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{MN}=\\frac{1}{2}(\\overline{AD}+\\overline{BC})$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "사다리꼴의 두 옆변의 중점을 이은 선분은 대각선 하나에 의해 두 부분으로 나뉘고, 각 부분은 대각선이 만든 삼각형에서 {두 변의 중점}을 이은 선분이므로 그 길이는 각각 한 밑변의 길이의 {절반}이다.",
+        "acceptedAnswers": [
+          [
+            "두 변의 중점"
+          ],
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "대각선과 교점을 지정해 두 삼각형에서 각각 중점 성질을 쓰게 했다.",
+      "cReason": "답 '중점 연결 선분'이 메타 명칭이라 길이 관계까지 드러나게 고쳤다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "사다리꼴 옆변의 중점·대각선 교점 및 그 중점 조건을 밝혀 MP=BC/2, PN=AD/2, MN의 합을 구한다. C도 대각선의 두 삼각형에서 중점 연결 선분임을 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc19",
+      "sourceIndex": 3081,
+      "proposalFingerprint": "25a14dc251910d658379b09213372d7ad7c771018a6a5de779407f2e3d65c08e",
+      "normalizedHash": "158dcb232a1b247dd819fa014e9fafe0a947e837e0f3f44f20ce6045ca08a3a9",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "사다리꼴에서 두 옆변의 중점을 이은 선분의 길이가 $m$, 한 밑변의 길이가 $a$일 때, 다른 밑변의 길이를 $m$, $a$를 사용한 식으로 나타내고 그 이유를 쓰시오.",
+        "answer": "$2m-a$이다. 다른 밑변을 $b$라 하면 $m=\\frac{1}{2}(a+b)$이므로 $a+b=2m$, $b=2m-a$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2m-a$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$m=\\frac{1}{2}(a+b)$",
+              "두 밑변의 합이 $2m$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "사다리꼴의 두 옆변의 중점을 이은 선분의 길이를 {$2$}배 한 값에서 한 밑변의 길이를 {빼면} 다른 밑변의 길이가 된다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "빼면"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "문자를 주어 특정 수치가 아닌 일반 역산 식과 근거를 묻게 했다.",
+      "cReason": "'옆변 중점을 이은 길이'를 선분의 길이로 고쳤다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중점 연결 선분m과 한 밑변a에서 다른 밑변2m-a를 구하고 두 밑변 합이2m이라는 이유를 확인한다. C의 두 배와 빼기도 대상이 분명하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc20",
+      "sourceIndex": 3082,
+      "proposalFingerprint": "2ce3c4362b9cfc5d14303674eedd03d7511390166907d1c48b3abf607b33a441",
+      "normalizedHash": "daf759046e1276dc9dbbb71b7bc243da99597c378e5ad2863e2a091dd110a7a0",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "볼록사각형 $ABCD$의 네 변 $\\overline{AB}$, $\\overline{BC}$, $\\overline{CD}$, $\\overline{DA}$의 중점을 각각 $P$, $Q$, $R$, $S$라 하고 차례로 이었다. 사각형 $PQRS$는 어떤 사각형인지 쓰고, 대각선을 이용하여 이유를 쓰시오.",
+        "answer": "평행사변형이다. $\\triangle ABC$에서 $\\overline{PQ}\\parallel\\overline{AC}$, $\\overline{PQ}=\\frac{1}{2}\\overline{AC}$이고, $\\triangle ACD$에서 $\\overline{SR}\\parallel\\overline{AC}$, $\\overline{SR}=\\frac{1}{2}\\overline{AC}$이다. 한 쌍의 대변이 평행하고 길이가 같으므로 평행사변형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행사변형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{PQ}$, $\\overline{SR}$가 모두 $\\overline{AC}$와 평행하고 길이가 $\\frac{1}{2}\\overline{AC}$",
+              "$\\overline{PS}$, $\\overline{QR}$가 모두 $\\overline{BD}$와 평행하고 길이가 $\\frac{1}{2}\\overline{BD}$",
+              "마주 보는 두 쌍의 변이 각각 대각선에 평행하다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "볼록사각형의 변마다 중점을 잡아 차례로 이으면 마주 보는 변이 같은 대각선에 평행하므로 {평행사변형}이 된다.",
+        "acceptedAnswers": [
+          [
+            "평행사변형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "꼭짓점 순서와 중점의 이름을 정해 대각선과 마주 보는 변의 관계를 묻게 했다.",
+      "cReason": "근거와 결론이 한 문장에 분명하고, 도형 이름 빈칸이 유용하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "볼록사각형의 네 변 중점을 차례로 잇는다고 구성하고 대각선에 평행한 대변으로 평행사변형을 증명한다. C도 변마다 중점을 잡는 구성을 명시한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc21",
+      "sourceIndex": 3083,
+      "proposalFingerprint": "50fe58a1a056875b5b85d2587d074c414156125c998a34614260ef14575a8450",
+      "normalizedHash": "83741888fd5dcf797b64caee3fb1bf0fb23773398674520f6d6e41a7a9c0c8ed",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "볼록사각형 $ABCD$의 네 변의 중점을 차례로 이어 만든 사각형의 둘레를 대각선 $\\overline{AC}$, $\\overline{BD}$의 길이로 나타내고 이유를 쓰시오.",
+        "answer": "$\\overline{AC}+\\overline{BD}$이다. 마주 보는 두 변은 각각 $\\frac{1}{2}\\overline{AC}$이고 나머지 두 변은 각각 $\\frac{1}{2}\\overline{BD}$이므로, 둘레는 $\\overline{AC}+\\overline{BD}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AC}+\\overline{BD}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 변이 대각선의 $\\frac{1}{2}$이다",
+              "두 변은 $\\frac{1}{2}\\overline{AC}$, 두 변은 $\\frac{1}{2}\\overline{BD}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "볼록사각형의 네 중점을 차례로 이은 도형의 둘레는 원래 사각형의 두 {대각선 길이의 합}과 같다.",
+        "acceptedAnswers": [
+          [
+            "대각선 길이의 합",
+            "대각선의 길이의 합"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "대각선의 이름을 주어 둘레를 식으로 나타내게 했다.",
+      "cReason": "원래 사각형의 두 대각선이라는 지칭이 분명한 짧은 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 네 변의 중점을 차례로 잇는 구성과 대각선 합인 둘레를 명확히 묻는다. C는 네 중점이 어느 선분의 중점인지 밝히지 않는다. 원래 사각형의 네 변의 중점을 차례로 잇는다는 구성을 넣는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc22",
+      "sourceIndex": 3084,
+      "proposalFingerprint": "e48a5b450daa7b144df93ddf45971c9314003062d421cc56d5299c68c3306187",
+      "normalizedHash": "2e5c70ac0bf942afe3798bba249aedc651951d3c8a820b0e4db42a1d5c48f0e4",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직사각형 $ABCD$의 네 변의 중점을 차례로 이어 만든 사각형은 어떤 사각형인지 쓰고, 직사각형의 대각선의 성질을 이용하여 이유를 쓰시오.",
+        "answer": "마름모이다. 중점 사각형의 각 변은 $\\frac{1}{2}\\overline{AC}$ 또는 $\\frac{1}{2}\\overline{BD}$인데, 직사각형은 $\\overline{AC}=\\overline{BD}$이므로 네 변의 길이가 모두 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "마름모"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선의 길이가 같아 네 변의 길이가 같다",
+              "$\\overline{AC}=\\overline{BD}$이므로 네 변이 모두 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직사각형에 그은 대각선은 어느 쪽이나 길이가 같으므로 네 중점을 이은 사각형의 네 변도 같아 {마름모}가 된다.",
+        "acceptedAnswers": [
+          [
+            "마름모"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어떤 대각선 성질이 결론으로 이어지는지 이유를 함께 묻게 했다.",
+      "cReason": "근거와 결론이 분명하고 도형 이름 빈칸이 유용하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 네 변의 중점과 같은 대각선 길이로 마름모가 됨을 확인한다. C는 네 중점의 소속과 연결 순서가 없으므로 네 변의 중점을 차례로 잇는다고 명시한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc23",
+      "sourceIndex": 3085,
+      "proposalFingerprint": "5045dd3bc345a9ce7b5c5f264a93bfd07ecdaaf8a3099b1e408e00213401551f",
+      "normalizedHash": "a2261240af934569bc75e92115cf8c811365c2aaec388c3a3ae4ed3b6b825c43",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "마름모 $ABCD$의 네 변의 중점을 차례로 이어 만든 사각형은 어떤 사각형인지 쓰고, 마름모의 대각선의 성질을 이용하여 이유를 쓰시오.",
+        "answer": "직사각형이다. 중점 사각형의 변은 각각 $\\overline{AC}$ 또는 $\\overline{BD}$에 평행한데, 마름모는 $\\overline{AC}\\perp\\overline{BD}$이므로 이웃한 두 변이 수직이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선이 수직이라 이웃한 변이 수직이다",
+              "$\\overline{AC}\\perp\\overline{BD}$이므로 한 내각이 직각이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "마름모의 대각선은 수직이므로 네 중점을 이은 사각형의 이웃한 변도 수직이어서 {직사각형}이 된다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "수직이라는 대각선 성질이 변의 수직으로 이어지는 이유를 묻게 했다.",
+      "cReason": "근거와 결론이 분명한 도형 이름 빈칸이라 유지한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 네 변의 중점을 차례로 잇는 구성과 수직 대각선으로 직사각형을 증명한다. C도 네 중점이 원래 마름모의 각 변의 중점이고 차례로 잇는다는 조건을 밝힌다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc24",
+      "sourceIndex": 3086,
+      "proposalFingerprint": "2f2c68bb180252c5d3d577847b9b9f6d494b927509585aa8c10b529ef328a820",
+      "normalizedHash": "9062b3b20f234446cf39527b720a85cbfae0ce27c047752760a6fdc74146cba1",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 세 변의 중점을 이어 만든 가운데 삼각형의 넓이는 $\\triangle ABC$의 넓이의 몇 배인지 쓰고 이유를 쓰시오.",
+        "answer": "$\\frac{1}{4}$배이다. 세 중점을 이으면 $\\triangle ABC$가 서로 합동인 네 삼각형으로 나뉘고, 가운데 삼각형은 그중 하나이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "합동인 네 삼각형 중 하나이다",
+              "닮음비가 $1:2$이므로 넓이의 비가 $1:4$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 세 변의 중점을 이으면 처음 삼각형이 합동인 삼각형 네 개로 나뉘므로, 가운데 삼각형의 넓이는 처음 삼각형의 넓이의 {$\\frac{1}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비교 대상(가운데 삼각형과 처음 삼각형)과 이유를 함께 묻게 했다.",
+      "cReason": "'세 중점', '전체'의 대상이 모호해 처음 삼각형을 밝혔다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "세 변의 중점을 이어 생기는 합동 네 삼각형에서 가운데 넓이가 전체의1/4임을 확인한다. B는 닮음비에 따른 넓이비라는 다른 타당한 이유도 받는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-04-xc25",
+      "sourceIndex": 3087,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "19784f8d211acb200dae2312c4a15ffb38a60b43511fca9c3c4e18d1e863d956",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "xc15와 같은 두 단계 구조에서 길이를 둘레로만 바꿨다."
+      },
+      "C": {
+        "excluded": "xc15 C의 $\\frac{1}{4}$ 결론과 같은 사실이다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc15와 같은 두 단계 구조에서 길이를 둘레로만 바꿨다.",
+      "cReason": "xc15 C의 $\\frac{1}{4}$ 결론과 같은 사실이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중점 삼각형 두 번의 길이1/4배에서 둘레로만 바꾼 반복을 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc1",
+      "sourceIndex": 3088,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "aaf82ebdd312233389360b6e6037bbd412bfe78acd81ed049a9e2a7877920abb",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "c1 중선 정의의 '중점'을 다시 묻는 절차 조각이다."
+      },
+      "C": {
+        "excluded": "c1 C의 첫 빈칸 '중점'과 같은 답의 중복이다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c1 중선 정의의 '중점'을 다시 묻는 절차 조각이다.",
+      "cReason": "c1 C의 첫 빈칸 '중점'과 같은 답의 중복이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중선 정의의 중점과 같은 답을 반복하는 절차 조각을 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc2",
+      "sourceIndex": 3089,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "f3f0049d5928bf91db9d61101f9ba1d6f5e96869020089a9c33e06353df63603",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "삼각형의 꼭짓점 수에서 나오는 단순 개수이다."
+      },
+      "C": {
+        "excluded": "답 '세 개'가 단순 개수이고 '세 중선'이라는 표현에서 이미 드러난다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "삼각형의 꼭짓점 수에서 나오는 단순 개수이다.",
+      "cReason": "답 '세 개'가 단순 개수이고 '세 중선'이라는 표현에서 이미 드러난다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "세 중선이라는 말에서 그대로 얻는 단순 개수 질문을 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    }
+  ]
+}

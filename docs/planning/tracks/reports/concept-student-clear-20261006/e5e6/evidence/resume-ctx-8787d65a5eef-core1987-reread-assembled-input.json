@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "13bf05dce",
+  "scope": "Actual assembled learning definitions read by Codex; capture alone is not adoption.",
+  "rows": [
+    {
+      "id": "e6-1-4-6-xc11",
+      "sourceIndex": 1987,
+      "sourceFingerprint": "3a1c8fc97c9d916775d19e93f4cc105985b0b229d16a57e8e0659edd5922657f",
+      "proposalFingerprint": "db8ae7487a6f102077b15722e67be6cd69e749f525e2fab0259187f3cd131f56",
+      "proposed": true,
+      "definition": "할인율이 $0\\%$ 이상 $100\\%$ 미만이면, 할인 후 실제로 내는 금액은 원래 가격의 {$100\\%$에서 할인율을 뺀 비율}에 해당한다. 이 백분율을 비율로 바꾼 뒤, 실제로 내는 금액을 그 비율로 나누면 원래 가격을 구한다.",
+      "definitionFingerprint": "17991c35df27adbb66d4967577c49457b3cf84d6abeae7c0f4e901d996a0beab",
+      "visibleLength": 121,
+      "targets": [
+        "$100\\%$에서 할인율을 뺀 비율"
+      ],
+      "valid": true,
+      "issues": []
+    }
+  ]
+}

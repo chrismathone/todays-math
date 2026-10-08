@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "canvas": {
+    "width": 380,
+    "height": 370
+  },
+  "points": {
+    "A": [
+      55,
+      175
+    ],
+    "B": [
+      168.1370849898476,
+      288.1370849898476
+    ],
+    "C": [
+      281.2741699796952,
+      175
+    ],
+    "D": [
+      221.27416997969522,
+      71.07695154586737
+    ],
+    "H": [
+      221.27416997969522,
+      175
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "BC": [
+      "B",
+      "C"
+    ],
+    "CD": [
+      "C",
+      "D"
+    ],
+    "DA": [
+      "D",
+      "A"
+    ],
+    "AC": [
+      "A",
+      "C"
+    ],
+    "DH": {
+      "points": [
+        "D",
+        "H"
+      ],
+      "dash": "6 4"
+    }
+  },
+  "angles": {
+    "rightB": {
+      "vertex": "B",
+      "points": [
+        "A",
+        "C"
+      ],
+      "right": true
+    },
+    "angleA": {
+      "vertex": "A",
+      "points": [
+        "C",
+        "B"
+      ],
+      "label": "$45^{\\circ}$",
+      "radius": 18,
+      "label_distance": 40
+    },
+    "angleC": {
+      "vertex": "C",
+      "points": [
+        "A",
+        "D"
+      ],
+      "label": "$60^{\\circ}$",
+      "radius": 18,
+      "label_distance": 36
+    },
+    "rightH": {
+      "vertex": "H",
+      "points": [
+        "D",
+        "C"
+      ],
+      "right": true,
+      "radius": 10
+    }
+  },
+  "dimensions": {
+    "sideBC": {
+      "points": [
+        "B",
+        "C"
+      ],
+      "label": "$8\\,\\mathrm{cm}$",
+      "side": "auto"
+    }
+  },
+  "labels": {
+    "A": "$\\mathrm{A}$",
+    "B": "$\\mathrm{B}$",
+    "C": "$\\mathrm{C}$",
+    "D": "$\\mathrm{D}$",
+    "H": "$\\mathrm{H}$"
+  }
+}

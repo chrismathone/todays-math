@@ -1,0 +1,1811 @@
+{
+  "preparedAt": "2026-10-07T10:01:50.744Z",
+  "changes": [
+    {
+      "id": "m1-07-02-xc16",
+      "sourceIndex": 1879,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "6개가 모이면 각의 합이 $360^\\circ$여서 평면이 되어 입체를 만들지 못한다",
+      "faults": [
+        {
+          "id": "m1-07-02-xc16",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "6"
+        }
+      ],
+      "after": "$6$개가 모이면 각의 합이 $360^\\circ$여서 평면이 되어 입체를 만들지 못한다"
+    },
+    {
+      "id": "m1-07-02-xc16",
+      "sourceIndex": 1879,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "3개 모이면 정사면체",
+      "faults": [
+        {
+          "id": "m1-07-02-xc16",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "$3$개 모이면 정사면체"
+    },
+    {
+      "id": "m1-07-02-xc16",
+      "sourceIndex": 1879,
+      "field": "bQuestion.requiredIdeas.2.0",
+      "value": "4개 모이면 정팔면체",
+      "faults": [
+        {
+          "id": "m1-07-02-xc16",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "$4$개 모이면 정팔면체"
+    },
+    {
+      "id": "m1-07-02-xc16",
+      "sourceIndex": 1879,
+      "field": "bQuestion.requiredIdeas.3.0",
+      "value": "5개 모이면 정이십면체",
+      "faults": [
+        {
+          "id": "m1-07-02-xc16",
+          "field": "bQuestion.requiredIdeas.3.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        }
+      ],
+      "after": "$5$개 모이면 정이십면체"
+    },
+    {
+      "id": "m1-07-02-xc17",
+      "sourceIndex": 1880,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "꼭짓점을 3번씩 세었으므로 $60\\div3=20$",
+      "faults": [
+        {
+          "id": "m1-07-02-xc17",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "꼭짓점을 $3$번씩 세었으므로 $60\\div3=20$"
+    },
+    {
+      "id": "m1-07-02-xc17",
+      "sourceIndex": 1880,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "중복하여 센 꼭짓점을 3으로 나누어 20개",
+      "faults": [
+        {
+          "id": "m1-07-02-xc17",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        },
+        {
+          "id": "m1-07-02-xc17",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "20"
+        }
+      ],
+      "after": "중복하여 센 꼭짓점을 $3$으로 나누어 $20$개"
+    },
+    {
+      "id": "m1-07-02-xc18",
+      "sourceIndex": 1881,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "모서리를 2번씩 세었으므로 $60\\div2=30$",
+      "faults": [
+        {
+          "id": "m1-07-02-xc18",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "모서리를 $2$번씩 세었으므로 $60\\div2=30$"
+    },
+    {
+      "id": "m1-07-02-xc18",
+      "sourceIndex": 1881,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "중복하여 센 모서리를 2로 나누어 30개",
+      "faults": [
+        {
+          "id": "m1-07-02-xc18",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m1-07-02-xc18",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "30"
+        }
+      ],
+      "after": "중복하여 센 모서리를 $2$로 나누어 $30$개"
+    },
+    {
+      "id": "m1-07-02-xc22",
+      "sourceIndex": 1885,
+      "field": "bQuestion.requiredIdeas.0.1",
+      "value": "세 식의 값이 모두 24이다",
+      "faults": [
+        {
+          "id": "m1-07-02-xc22",
+          "field": "bQuestion.requiredIdeas.0.1",
+          "rule": "수식 밖 숫자",
+          "what": "24"
+        }
+      ],
+      "after": "세 식의 값이 모두 $24$이다"
+    },
+    {
+      "id": "m1-07-02-xc24",
+      "sourceIndex": 1887,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "합동인 면 20개의 넓이가 모두 같기 때문이다",
+      "faults": [
+        {
+          "id": "m1-07-02-xc24",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "20"
+        }
+      ],
+      "after": "합동인 면 $20$개의 넓이가 모두 같기 때문이다"
+    },
+    {
+      "id": "m1-07-04-xc7",
+      "sourceIndex": 1913,
+      "field": "definition",
+      "value": "옆모서리가 밑면에 수직인 사각기둥의 옆넓이는 옆면인 직사각형 {4}개의 넓이를 모두 {더한} 값이다.",
+      "faults": [
+        {
+          "id": "m1-07-04-xc7",
+          "field": "definition",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "옆모서리가 밑면에 수직인 사각기둥의 옆넓이는 옆면인 직사각형 {$4$}개의 넓이를 모두 {더한} 값이다."
+    },
+    {
+      "id": "m1-07-04-xc7",
+      "sourceIndex": 1913,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "옆면은 직사각형 4개이다",
+      "faults": [
+        {
+          "id": "m1-07-04-xc7",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "옆면은 직사각형 $4$개이다"
+    },
+    {
+      "id": "m1-07-04-xc12",
+      "sourceIndex": 1918,
+      "field": "clozeQuestion.sentence",
+      "value": "옆모서리가 밑면에 수직인 각기둥의 겉넓이에서 밑넓이의 2배를 빼면 {옆넓이}가 되고, 이것을 밑면의 {둘레}로 나누면 기둥의 {높이}가 된다.",
+      "faults": [
+        {
+          "id": "m1-07-04-xc12",
+          "field": "clozeQuestion.sentence",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "옆모서리가 밑면에 수직인 각기둥의 겉넓이에서 밑넓이의 $2$배를 빼면 {옆넓이}가 되고, 이것을 밑면의 {둘레}로 나누면 기둥의 {높이}가 된다."
+    },
+    {
+      "id": "m1-07-05-xc3",
+      "sourceIndex": 1933,
+      "field": "clozeQuestion.acceptedAnswers.0.2",
+      "value": "3분의 1",
+      "faults": [
+        {
+          "id": "m1-07-05-xc3",
+          "field": "clozeQuestion.acceptedAnswers.0.2",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        },
+        {
+          "id": "m1-07-05-xc3",
+          "field": "clozeQuestion.acceptedAnswers.0.2",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        }
+      ],
+      "after": "$3$분의 $1$"
+    },
+    {
+      "id": "m1-07-05-xc10",
+      "sourceIndex": 1940,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "합동인 옆면 4개의 넓이를 더하면 $\\frac12\\times4a\\times h$이고 $4a$가 밑면의 둘레이다",
+      "faults": [
+        {
+          "id": "m1-07-05-xc10",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "합동인 옆면 $4$개의 넓이를 더하면 $\\frac12\\times4a\\times h$이고 $4a$가 밑면의 둘레이다"
+    },
+    {
+      "id": "m1-07-05-xc20",
+      "sourceIndex": 1950,
+      "field": "definition",
+      "value": "정육면체는 한가운데 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 {6}개로 {나눌} 수 있다.",
+      "faults": [
+        {
+          "id": "m1-07-05-xc20",
+          "field": "definition",
+          "rule": "수식 밖 숫자",
+          "what": "6"
+        }
+      ],
+      "after": "정육면체는 한가운데 점을 꼭짓점으로 하고 각 면을 밑면으로 하는 합동인 사각뿔 {$6$}개로 {나눌} 수 있다."
+    },
+    {
+      "id": "m1-07-05-xc20",
+      "sourceIndex": 1950,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "합동인 사각뿔 6개",
+      "faults": [
+        {
+          "id": "m1-07-05-xc20",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "6"
+        }
+      ],
+      "after": "합동인 사각뿔 $6$개"
+    },
+    {
+      "id": "m1-07-06-xc1",
+      "sourceIndex": 1955,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "반지름은 2이므로 $4\\pi\\times2^2=16\\pi$",
+      "faults": [
+        {
+          "id": "m1-07-06-xc1",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "반지름은 $2$이므로 $4\\pi\\times2^2=16\\pi$"
+    },
+    {
+      "id": "m1-07-06-xc2",
+      "sourceIndex": 1956,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "중심 단면은 구와 반지름이 같은 원이라 넓이가 $\\pi r^2$이고 구 겉넓이는 $4\\pi r^2$여서 4배이다",
+      "faults": [
+        {
+          "id": "m1-07-06-xc2",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "중심 단면은 구와 반지름이 같은 원이라 넓이가 $\\pi r^2$이고 구 겉넓이는 $4\\pi r^2$여서 $4$배이다"
+    },
+    {
+      "id": "m1-07-06-xc4",
+      "sourceIndex": 1958,
+      "field": "clozeQuestion.acceptedAnswers.0.1",
+      "value": "3번",
+      "faults": [
+        {
+          "id": "m1-07-06-xc4",
+          "field": "clozeQuestion.acceptedAnswers.0.1",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "$3$번"
+    },
+    {
+      "id": "m1-07-06-xc10",
+      "sourceIndex": 1964,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "반지름의 길이는 4이다",
+      "faults": [
+        {
+          "id": "m1-07-06-xc10",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "반지름의 길이는 $4$이다"
+    },
+    {
+      "id": "m1-07-06-xc14",
+      "sourceIndex": 1968,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "둥근 면의 넓이에 반원 2개의 넓이를 더한다",
+      "faults": [
+        {
+          "id": "m1-07-06-xc14",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "둥근 면의 넓이에 반원 $2$개의 넓이를 더한다"
+    },
+    {
+      "id": "m1-07-06-xc15",
+      "sourceIndex": 1969,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "구의 지름이 안쪽 모서리 길이4와 같아 반지름은2이다",
+      "faults": [
+        {
+          "id": "m1-07-06-xc15",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        },
+        {
+          "id": "m1-07-06-xc15",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "구의 지름이 안쪽 모서리 길이$4$와 같아 반지름은$2$이다"
+    },
+    {
+      "id": "m1-07-06-xc17",
+      "sourceIndex": 1971,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "반지름이 3배라 부피는 $3^3=27$배이다",
+      "faults": [
+        {
+          "id": "m1-07-06-xc17",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "반지름이 $3$배라 부피는 $3^3=27$배이다"
+    },
+    {
+      "id": "m1-07-06-xc17",
+      "sourceIndex": 1971,
+      "field": "bQuestion.requiredIdeas.2.0",
+      "value": "27개",
+      "faults": [
+        {
+          "id": "m1-07-06-xc17",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "27"
+        }
+      ],
+      "after": "$27$개"
+    },
+    {
+      "id": "m1-07-06-xc18",
+      "sourceIndex": 1972,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "높이는4이다",
+      "faults": [
+        {
+          "id": "m1-07-06-xc18",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "높이는$4$이다"
+    },
+    {
+      "id": "m1-08-01-xc5",
+      "sourceIndex": 1983,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "평균은 가장 큰 변량10보다 클 수 없는데12는10보다 크기 때문이다",
+      "faults": [
+        {
+          "id": "m1-08-01-xc5",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "10"
+        },
+        {
+          "id": "m1-08-01-xc5",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "12"
+        },
+        {
+          "id": "m1-08-01-xc5",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "10"
+        }
+      ],
+      "after": "평균은 가장 큰 변량$10$보다 클 수 없는데$12$는$10$보다 크기 때문이다"
+    },
+    {
+      "id": "m1-08-01-xc11",
+      "sourceIndex": 1989,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "평균과 중앙값 모두3배",
+      "faults": [
+        {
+          "id": "m1-08-01-xc11",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "평균과 중앙값 모두$3$배"
+    },
+    {
+      "id": "m1-08-01-xc11",
+      "sourceIndex": 1989,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "총합이3배이고 개수는 같아 평균도3배",
+      "faults": [
+        {
+          "id": "m1-08-01-xc11",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        },
+        {
+          "id": "m1-08-01-xc11",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "총합이$3$배이고 개수는 같아 평균도$3$배"
+    },
+    {
+      "id": "m1-08-01-xc11",
+      "sourceIndex": 1989,
+      "field": "bQuestion.requiredIdeas.2.0",
+      "value": "크기순은 같고 가운데 값이 각각3배라 중앙값도3배",
+      "faults": [
+        {
+          "id": "m1-08-01-xc11",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        },
+        {
+          "id": "m1-08-01-xc11",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "크기순은 같고 가운데 값이 각각$3$배라 중앙값도$3$배"
+    },
+    {
+      "id": "m1-08-01-xc11",
+      "sourceIndex": 1989,
+      "field": "bQuestion.requiredIdeas.3.0",
+      "value": "새 평균12, 새 중앙값15",
+      "faults": [
+        {
+          "id": "m1-08-01-xc11",
+          "field": "bQuestion.requiredIdeas.3.0",
+          "rule": "수식 밖 숫자",
+          "what": "12"
+        },
+        {
+          "id": "m1-08-01-xc11",
+          "field": "bQuestion.requiredIdeas.3.0",
+          "rule": "수식 밖 숫자",
+          "what": "15"
+        }
+      ],
+      "after": "새 평균$12$, 새 중앙값$15$"
+    },
+    {
+      "id": "m1-08-01-xc14",
+      "sourceIndex": 1992,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "x가5보다 작으면 중앙값은5이하",
+      "faults": [
+        {
+          "id": "m1-08-01-xc14",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        },
+        {
+          "id": "m1-08-01-xc14",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        }
+      ],
+      "after": "$x$가$5$보다 작으면 중앙값은$5$이하"
+    },
+    {
+      "id": "m1-08-01-xc14",
+      "sourceIndex": 1992,
+      "field": "bQuestion.requiredIdeas.0.1",
+      "value": "x가가운데두값에들지않으면 중앙값은3.5또는7이어서6이아니다",
+      "faults": [
+        {
+          "id": "m1-08-01-xc14",
+          "field": "bQuestion.requiredIdeas.0.1",
+          "rule": "수식 밖 숫자",
+          "what": "3.5"
+        },
+        {
+          "id": "m1-08-01-xc14",
+          "field": "bQuestion.requiredIdeas.0.1",
+          "rule": "수식 밖 숫자",
+          "what": "7"
+        },
+        {
+          "id": "m1-08-01-xc14",
+          "field": "bQuestion.requiredIdeas.0.1",
+          "rule": "수식 밖 숫자",
+          "what": "6"
+        }
+      ],
+      "after": "$x$가가운데두값에들지않으면 중앙값은$3.5$또는$7$이어서$6$이아니다"
+    },
+    {
+      "id": "m1-08-01-xc14",
+      "sourceIndex": 1992,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "x가9이상이면 중앙값7",
+      "faults": [
+        {
+          "id": "m1-08-01-xc14",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "9"
+        },
+        {
+          "id": "m1-08-01-xc14",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "7"
+        }
+      ],
+      "after": "$x$가$9$이상이면 중앙값$7$"
+    },
+    {
+      "id": "m1-08-01-xc21",
+      "sourceIndex": 1999,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "가장 큰 중앙값은7",
+      "faults": [
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "7"
+        }
+      ],
+      "after": "가장 큰 중앙값은$7$"
+    },
+    {
+      "id": "m1-08-01-xc21",
+      "sourceIndex": 1999,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "x가9이상이면 가운데5와9의 평균7이다",
+      "faults": [
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "9"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "9"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "7"
+        }
+      ],
+      "after": "$x$가$9$이상이면 가운데$5$와$9$의 평균$7$이다"
+    },
+    {
+      "id": "m1-08-01-xc21",
+      "sourceIndex": 1999,
+      "field": "bQuestion.requiredIdeas.2.0",
+      "value": "5≤x<9이면중앙값(5+x)/2<7이고 x<5이면중앙값5미만이다",
+      "faults": [
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "9"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "7"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        },
+        {
+          "id": "m1-08-01-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 기호",
+          "what": "≤"
+        }
+      ],
+      "after": "$5\\le x<9$이면 중앙값은 $(5+x)/2<7$이고 $x<5$이면 중앙값은 $5$ 미만이다"
+    },
+    {
+      "id": "m1-08-02-xc5",
+      "sourceIndex": 2005,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "줄기1,2,3을 모두 쓴다",
+      "faults": [
+        {
+          "id": "m1-08-02-xc5",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        },
+        {
+          "id": "m1-08-02-xc5",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m1-08-02-xc5",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "줄기$1$,$2$,$3$을 모두 쓴다"
+    },
+    {
+      "id": "m1-08-02-xc5",
+      "sourceIndex": 2005,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "줄기2의 잎 칸을 비워 둔다",
+      "faults": [
+        {
+          "id": "m1-08-02-xc5",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "줄기$2$의 잎 칸을 비워 둔다"
+    },
+    {
+      "id": "m1-08-02-xc7",
+      "sourceIndex": 2007,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "7.4는 줄기7, 잎4이다",
+      "faults": [
+        {
+          "id": "m1-08-02-xc7",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "7.4"
+        },
+        {
+          "id": "m1-08-02-xc7",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "7"
+        },
+        {
+          "id": "m1-08-02-xc7",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "$7.4$는 줄기$7$, 잎$4$이다"
+    },
+    {
+      "id": "m1-08-02-xc8",
+      "sourceIndex": 2008,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "27이상 변량3개",
+      "faults": [
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "27"
+        },
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "$27$이상 변량$3$개"
+    },
+    {
+      "id": "m1-08-02-xc8",
+      "sourceIndex": 2008,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "줄기2의잎7과 줄기3의잎1,5를센다",
+      "faults": [
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "7"
+        },
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        },
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        },
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        }
+      ],
+      "after": "줄기$2$의잎$7$과 줄기$3$의잎$1$,$5$를센다"
+    },
+    {
+      "id": "m1-08-02-xc8",
+      "sourceIndex": 2008,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "27,31,35를센다",
+      "faults": [
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "27"
+        },
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "31"
+        },
+        {
+          "id": "m1-08-02-xc8",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "35"
+        }
+      ],
+      "after": "$27$,$31$,$35$를센다"
+    },
+    {
+      "id": "m1-08-02-xc22",
+      "sourceIndex": 2022,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "26부터33까지의 자연수",
+      "faults": [
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "26"
+        },
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "33"
+        }
+      ],
+      "after": "$26$부터$33$까지의 자연수"
+    },
+    {
+      "id": "m1-08-02-xc22",
+      "sourceIndex": 2022,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "x가25이하이면25,33,40을포함해3개이상이된다",
+      "faults": [
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "25"
+        },
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "25"
+        },
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "33"
+        },
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "40"
+        },
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "$x$가$25$이하이면$25$,$33$,$40$을포함해$3$개이상이된다"
+    },
+    {
+      "id": "m1-08-02-xc22",
+      "sourceIndex": 2022,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "x가25일때3개이므로25보다커야한다",
+      "faults": [
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "25"
+        },
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        },
+        {
+          "id": "m1-08-02-xc22",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "25"
+        }
+      ],
+      "after": "$x$가$25$일때$3$개이므로$25$보다커야한다"
+    },
+    {
+      "id": "m1-08-06-xc7",
+      "sourceIndex": 2105,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "100을 곱한 수에 퍼센트 기호를 붙인다",
+      "faults": [
+        {
+          "id": "m1-08-06-xc7",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "100"
+        }
+      ],
+      "after": "$100$을 곱한 수에 퍼센트 기호를 붙인다"
+    },
+    {
+      "id": "m1-08-06-xc22",
+      "sourceIndex": 2120,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "B의 계급에는 20 이상 30 미만도 포함된다",
+      "faults": [
+        {
+          "id": "m1-08-06-xc22",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "20"
+        },
+        {
+          "id": "m1-08-06-xc22",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "30"
+        }
+      ],
+      "after": "$B$의 계급에는 $20$ 이상 $30$ 미만도 포함된다"
+    },
+    {
+      "id": "m1-08-06-xc22",
+      "sourceIndex": 2120,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "B의 10 이상 20 미만에 해당하는 비율이 따로 주어지지 않았다",
+      "faults": [
+        {
+          "id": "m1-08-06-xc22",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "10"
+        },
+        {
+          "id": "m1-08-06-xc22",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "20"
+        }
+      ],
+      "after": "$B$의 $10$ 이상 $20$ 미만에 해당하는 비율이 따로 주어지지 않았다"
+    },
+    {
+      "id": "m2-01-01-xc2",
+      "sourceIndex": 2122,
+      "field": "bQuestion.requiredIdeas.0.1",
+      "value": "$-4=-\\frac{8}{2}$처럼 -4를 정수/0아닌정수 꼴로 나타낸다",
+      "faults": [
+        {
+          "id": "m2-01-01-xc2",
+          "field": "bQuestion.requiredIdeas.0.1",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        },
+        {
+          "id": "m2-01-01-xc2",
+          "field": "bQuestion.requiredIdeas.0.1",
+          "rule": "수식 밖 숫자",
+          "what": "0"
+        }
+      ],
+      "after": "$-4=-\\frac82$처럼 $-4$를 정수를 $0$이 아닌 정수로 나눈 분수로 나타낸다"
+    },
+    {
+      "id": "m2-01-01-xc2",
+      "sourceIndex": 2122,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "모든 정수는 분모가1인 분수로 쓸 수 있다",
+      "faults": [
+        {
+          "id": "m2-01-01-xc2",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        }
+      ],
+      "after": "모든 정수는 분모가$1$인 분수로 쓸 수 있다"
+    },
+    {
+      "id": "m2-01-01-xc15",
+      "sourceIndex": 2135,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "분모8의 소인수는2뿐이다",
+      "faults": [
+        {
+          "id": "m2-01-01-xc15",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "8"
+        },
+        {
+          "id": "m2-01-01-xc15",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "분모$8$의 소인수는$2$뿐이다"
+    },
+    {
+      "id": "m2-01-01-xc24",
+      "sourceIndex": 2144,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "$\\frac56\\times\\frac9{10}=\\frac34$로 약분되며 분모의 소인수는2뿐이다",
+      "faults": [
+        {
+          "id": "m2-01-01-xc24",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "$\\frac56\\times\\frac9{10}=\\frac34$로 약분되며 분모의 소인수는$2$뿐이다"
+    },
+    {
+      "id": "m2-01-02-xc9",
+      "sourceIndex": 2153,
+      "field": "clozeQuestion.sentence",
+      "value": "$0.123123123\\cdots$를 점을 찍어 나타낼 때, 순환마디의 첫 숫자 {$1$}와 끝 숫자 {$3$} 위에만 점을 찍는다.",
+      "faults": [
+        {
+          "id": "m2-01-02-xc9",
+          "field": "clozeQuestion.sentence",
+          "rule": "수식 뒤 조사",
+          "what": "$1$와"
+        }
+      ],
+      "after": "$0.123123123\\cdots$를 점을 찍어 나타낼 때, 순환마디의 첫 숫자 {$1$}과 끝 숫자 {$3$} 위에만 점을 찍는다."
+    },
+    {
+      "id": "m2-01-02-xc19",
+      "sourceIndex": 2163,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "순환마디385가10번 되풀이되어 끝나는 자리이다",
+      "faults": [
+        {
+          "id": "m2-01-02-xc19",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "385"
+        },
+        {
+          "id": "m2-01-02-xc19",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "10"
+        }
+      ],
+      "after": "순환마디$385$가$10$번 되풀이되어 끝나는 자리이다"
+    },
+    {
+      "id": "m2-01-02-xc21",
+      "sourceIndex": 2165,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "20의 소인수는2와5뿐이다",
+      "faults": [
+        {
+          "id": "m2-01-02-xc21",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "20"
+        },
+        {
+          "id": "m2-01-02-xc21",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m2-01-02-xc21",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        }
+      ],
+      "after": "$20$의 소인수는$2$와$5$뿐이다"
+    },
+    {
+      "id": "m2-01-02-xc21",
+      "sourceIndex": 2165,
+      "field": "bQuestion.requiredIdeas.3.0",
+      "value": "12에는2와5가 아닌 소인수3이 있다",
+      "faults": [
+        {
+          "id": "m2-01-02-xc21",
+          "field": "bQuestion.requiredIdeas.3.0",
+          "rule": "수식 밖 숫자",
+          "what": "12"
+        },
+        {
+          "id": "m2-01-02-xc21",
+          "field": "bQuestion.requiredIdeas.3.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m2-01-02-xc21",
+          "field": "bQuestion.requiredIdeas.3.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        },
+        {
+          "id": "m2-01-02-xc21",
+          "field": "bQuestion.requiredIdeas.3.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "$12$에는$2$와$5$가 아닌 소인수$3$이 있다"
+    },
+    {
+      "id": "m2-01-03-xc12",
+      "sourceIndex": 2180,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "빼는식x의정수부분이3이므로그3을뺀다",
+      "faults": [
+        {
+          "id": "m2-01-03-xc12",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        },
+        {
+          "id": "m2-01-03-xc12",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "빼는식$x$의정수부분이$3$이므로그$3$을뺀다"
+    },
+    {
+      "id": "m2-01-03-xc16",
+      "sourceIndex": 2184,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "빼는식10x의정수부분이1이므로그1을뺀다",
+      "faults": [
+        {
+          "id": "m2-01-03-xc16",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "10"
+        },
+        {
+          "id": "m2-01-03-xc16",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        },
+        {
+          "id": "m2-01-03-xc16",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        }
+      ],
+      "after": "빼는 식 $10x$의 정수 부분이 $1$이므로 그 $1$을 뺀다"
+    },
+    {
+      "id": "m2-01-03-xc20",
+      "sourceIndex": 2187,
+      "field": "clozeQuestion.sentence",
+      "value": "$0.333\\cdots$의 반복 묶음을 임시로 $33$으로 잡아 얻은 $\\frac{33}{99}$를 기약분수로 고치면 {$\\frac13$}로 값은 같다. 가장 짧은 묶음 $3$을 사용하면 약분이 간단하다.",
+      "faults": [
+        {
+          "id": "m2-01-03-xc20",
+          "field": "clozeQuestion.sentence",
+          "rule": "수식 뒤 조사",
+          "what": "$\\frac{33}{99}$를"
+        },
+        {
+          "id": "m2-01-03-xc20",
+          "field": "clozeQuestion.sentence",
+          "rule": "수식 뒤 조사",
+          "what": "$\\frac13$로"
+        }
+      ],
+      "after": "$0.333\\cdots$의 반복 묶음을 임시로 $33$으로 잡아 얻은 $\\frac{33}{99}$을 기약분수로 고치면 {$\\frac13$}이 되어 값은 같다. 가장 짧은 묶음 $3$을 사용하면 약분이 간단하다."
+    },
+    {
+      "id": "m2-01-03-xc26",
+      "sourceIndex": 2192,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "45와99의최대공약수9로나눈다",
+      "faults": [
+        {
+          "id": "m2-01-03-xc26",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "45"
+        },
+        {
+          "id": "m2-01-03-xc26",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "99"
+        },
+        {
+          "id": "m2-01-03-xc26",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "9"
+        }
+      ],
+      "after": "$45$와$99$의최대공약수$9$로나눈다"
+    },
+    {
+      "id": "m2-01-04-xc11",
+      "sourceIndex": 2203,
+      "field": "bQuestion.requiredIdeas.1.2",
+      "value": "양변에9를곱한뒤양변을2로나누는등등식의성질을이용한올바른계산과정을보인다",
+      "faults": [
+        {
+          "id": "m2-01-04-xc11",
+          "field": "bQuestion.requiredIdeas.1.2",
+          "rule": "수식 밖 숫자",
+          "what": "9"
+        },
+        {
+          "id": "m2-01-04-xc11",
+          "field": "bQuestion.requiredIdeas.1.2",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "양변에$9$를곱한뒤양변을$2$로나누는등등식의성질을이용한올바른계산과정을보인다"
+    },
+    {
+      "id": "m2-01-04-xc16",
+      "sourceIndex": 2208,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "분모에2와5가아닌소인수3이있다",
+      "faults": [
+        {
+          "id": "m2-01-04-xc16",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m2-01-04-xc16",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        },
+        {
+          "id": "m2-01-04-xc16",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "분모에$2$와$5$가아닌소인수$3$이있다"
+    },
+    {
+      "id": "m2-01-04-xc19",
+      "sourceIndex": 2211,
+      "field": "clozeQuestion.acceptedAnswers.0.2",
+      "value": "1번째 자리",
+      "faults": [
+        {
+          "id": "m2-01-04-xc19",
+          "field": "clozeQuestion.acceptedAnswers.0.2",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        }
+      ],
+      "after": "$1$번째 자리"
+    },
+    {
+      "id": "m2-01-04-xc22",
+      "sourceIndex": 2214,
+      "field": "bQuestion.answer",
+      "value": "항상 유리수이다. 순환소수는 분자와 분모가 정수인 분수로 나타낼 수 있고, 분수끼리 사칙계산한 결과도 그런 분수로 나타낼 수 있다. 나누는 수는0이 아니어야 한다.",
+      "faults": [
+        {
+          "id": "m2-01-04-xc22",
+          "field": "bQuestion.answer",
+          "rule": "수식 밖 숫자",
+          "what": "0"
+        }
+      ],
+      "after": "항상 유리수이다. 순환소수는 분자와 분모가 정수인 분수로 나타낼 수 있고, 분수끼리 사칙계산한 결과도 그런 분수로 나타낼 수 있다. 나누는 수는$0$이 아니어야 한다."
+    },
+    {
+      "id": "m2-01-05-xc14",
+      "sourceIndex": 2231,
+      "field": "bQuestion.requiredIdeas.2.0",
+      "value": "분모에 a가 3개 남는다",
+      "faults": [
+        {
+          "id": "m2-01-05-xc14",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "분모에 $a$가 $3$개 남는다"
+    },
+    {
+      "id": "m2-01-05-xc20",
+      "sourceIndex": 2237,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "4자리",
+      "faults": [
+        {
+          "id": "m2-01-05-xc20",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "$4$자리"
+    },
+    {
+      "id": "m2-01-05-xc21",
+      "sourceIndex": 2238,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "곱하는 순서를 바꾸어 (2×5)를 4묶음으로 만든다",
+      "faults": [
+        {
+          "id": "m2-01-05-xc21",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m2-01-05-xc21",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "5"
+        },
+        {
+          "id": "m2-01-05-xc21",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        },
+        {
+          "id": "m2-01-05-xc21",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 기호",
+          "what": "×"
+        }
+      ],
+      "after": "곱하는 순서를 바꾸어 $(2\\times5)$를 $4$묶음으로 만든다"
+    },
+    {
+      "id": "m2-04-04-xc17",
+      "sourceIndex": 2701,
+      "field": "clozeQuestion.acceptedAnswers.0.2",
+      "value": "제1사분면과 제3사분면",
+      "faults": [
+        {
+          "id": "m2-04-04-xc17",
+          "field": "clozeQuestion.acceptedAnswers.0.2",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        },
+        {
+          "id": "m2-04-04-xc17",
+          "field": "clozeQuestion.acceptedAnswers.0.2",
+          "rule": "수식 밖 숫자",
+          "what": "3"
+        }
+      ],
+      "after": "제$1$사분면과 제$3$사분면"
+    },
+    {
+      "id": "m2-04-04-xc17",
+      "sourceIndex": 2701,
+      "field": "clozeQuestion.acceptedAnswers.1.2",
+      "value": "제2사분면과 제4사분면",
+      "faults": [
+        {
+          "id": "m2-04-04-xc17",
+          "field": "clozeQuestion.acceptedAnswers.1.2",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m2-04-04-xc17",
+          "field": "clozeQuestion.acceptedAnswers.1.2",
+          "rule": "수식 밖 숫자",
+          "what": "4"
+        }
+      ],
+      "after": "제$2$사분면과 제$4$사분면"
+    },
+    {
+      "id": "m3-03-01-xc8",
+      "sourceIndex": 3403,
+      "field": "bQuestion.requiredIdeas.1.1",
+      "value": "0인 경우와 0이 아닌 경우를 나누어 해 $0$, $4$를 모두 구한다",
+      "faults": [
+        {
+          "id": "m3-03-01-xc8",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "0"
+        },
+        {
+          "id": "m3-03-01-xc8",
+          "field": "bQuestion.requiredIdeas.1.1",
+          "rule": "수식 밖 숫자",
+          "what": "0"
+        }
+      ],
+      "after": "$0$인 경우와 $0$이 아닌 경우를 나누어 해 $0$, $4$를 모두 구한다"
+    },
+    {
+      "id": "m3-05-01-xc8",
+      "sourceIndex": 3526,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "$0<\\sin A<1$와 $0<\\cos A<1$를 모두 부등호로 쓴다",
+      "faults": [
+        {
+          "id": "m3-05-01-xc8",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 뒤 조사",
+          "what": "$0<\\sin A<1$와"
+        },
+        {
+          "id": "m3-05-01-xc8",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 뒤 조사",
+          "what": "$0<\\cos A<1$를"
+        }
+      ],
+      "after": "$0<\\sin A<1$과 $0<\\cos A<1$을 모두 부등호로 쓴다"
+    },
+    {
+      "id": "m3-05-01-xc11",
+      "sourceIndex": 3529,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "cm를mm로 바꾸면 분자와 분모의 길이 수치가 모두10배라 비는 그대로이다",
+      "faults": [
+        {
+          "id": "m3-05-01-xc11",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "10"
+        }
+      ],
+      "after": "$\\mathrm{cm}$를 $\\mathrm{mm}$로 바꾸면 분자와 분모의 길이 수치가 모두 $10$배라 비는 그대로이다"
+    },
+    {
+      "id": "m3-05-02-xc5",
+      "sourceIndex": 3543,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "cos30도는30도에 붙은 빗변 아닌 변의 길이를 빗변 길이로 나눈 값이다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc5",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "30"
+        },
+        {
+          "id": "m3-05-02-xc5",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "30"
+        }
+      ],
+      "after": "$\\cos30^\\circ$는 $30^\\circ$에 붙은 빗변 아닌 변의 길이를 빗변 길이로 나눈 값이다"
+    },
+    {
+      "id": "m3-05-02-xc5",
+      "sourceIndex": 3543,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "sin60도는60도와 마주 보는 변의 길이를 빗변 길이로 나눈 값이다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc5",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "60"
+        },
+        {
+          "id": "m3-05-02-xc5",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "60"
+        }
+      ],
+      "after": "$\\sin60^\\circ$는 $60^\\circ$와 마주 보는 변의 길이를 빗변 길이로 나눈 값이다"
+    },
+    {
+      "id": "m3-05-02-xc6",
+      "sourceIndex": 3544,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "0.7071은 어림값이다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc6",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "0.7071"
+        }
+      ],
+      "after": "$0.7071$은 어림값이다"
+    },
+    {
+      "id": "m3-05-02-xc6",
+      "sourceIndex": 3544,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "루트2/2는 무리수여서 소수점 아래가 끝없이 이어져 유한한 네 자리만으로 정확히 적을 수 없다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc6",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        },
+        {
+          "id": "m3-05-02-xc6",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "2"
+        }
+      ],
+      "after": "$\\sqrt2/2$는 무리수여서 소수점 아래가 끝없이 이어져 유한한 네 자리만으로 정확히 적을 수 없다"
+    },
+    {
+      "id": "m3-05-02-xc13",
+      "sourceIndex": 3550,
+      "field": "bQuestion.answer",
+      "value": "사인 세로줄에서0.4226이 적힌 칸을 찾고, 그 칸과 같은 가로줄 맨 왼쪽의 각도를 읽는다. 표의 사인값이 반올림되어 있으므로 읽은 각도는x의 어림값이다.",
+      "faults": [
+        {
+          "id": "m3-05-02-xc13",
+          "field": "bQuestion.answer",
+          "rule": "수식 밖 숫자",
+          "what": "0.4226"
+        }
+      ],
+      "after": "사인 세로줄에서$0.4226$이 적힌 칸을 찾고, 그 칸과 같은 가로줄 맨 왼쪽의 각도를 읽는다. 표의 사인값이 반올림되어 있으므로 읽은 각도는$x$의 어림값이다."
+    },
+    {
+      "id": "m3-05-02-xc13",
+      "sourceIndex": 3550,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "사인 세로줄에서0.4226칸을 찾는다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc13",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "0.4226"
+        }
+      ],
+      "after": "사인 세로줄에서$0.4226$칸을 찾는다"
+    },
+    {
+      "id": "m3-05-02-xc18",
+      "sourceIndex": 3554,
+      "field": "bQuestion.requiredIdeas.2.0",
+      "value": "직각이등변삼각형이므로 두 예각이45도이다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc18",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "45"
+        }
+      ],
+      "after": "직각이등변삼각형이므로 두 예각이 $45^\\circ$이다"
+    },
+    {
+      "id": "m3-05-02-xc19",
+      "sourceIndex": 3555,
+      "field": "bQuestion.requiredIdeas.2.0",
+      "value": "45도미만일 때x맞은편 직각변이 짧고45도초과일 때 길다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc19",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "45"
+        },
+        {
+          "id": "m3-05-02-xc19",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "45"
+        }
+      ],
+      "after": "$45^\\circ$ 미만일 때 $x$의 맞은편 직각변이 짧고 $45^\\circ$ 초과일 때 길다"
+    },
+    {
+      "id": "m3-05-02-xc21",
+      "sourceIndex": 3557,
+      "field": "bQuestion.requiredIdeas.0.0",
+      "value": "사인과 코사인은0이상1이하이다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc21",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "0"
+        },
+        {
+          "id": "m3-05-02-xc21",
+          "field": "bQuestion.requiredIdeas.0.0",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        }
+      ],
+      "after": "사인과 코사인은$0$이상$1$이하이다"
+    },
+    {
+      "id": "m3-05-02-xc21",
+      "sourceIndex": 3557,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "탄젠트는1보다 커질 수 있다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc21",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "1"
+        }
+      ],
+      "after": "탄젠트는$1$보다 커질 수 있다"
+    },
+    {
+      "id": "m3-05-02-xc21",
+      "sourceIndex": 3557,
+      "field": "bQuestion.requiredIdeas.2.0",
+      "value": "90도보다작은각이90도에 가까워질수록 탄젠트는 끝없이 커진다",
+      "faults": [
+        {
+          "id": "m3-05-02-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "90"
+        },
+        {
+          "id": "m3-05-02-xc21",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "90"
+        }
+      ],
+      "after": "$90^\\circ$보다 작은 각이 $90^\\circ$에 가까워질수록 탄젠트는 끝없이 커진다"
+    },
+    {
+      "id": "m3-06-01-xc2",
+      "sourceIndex": 3581,
+      "field": "bQuestion.requiredIdeas.2.1",
+      "value": "중심까지 거리d일 때 현 길이 $2\\sqrt{r^2-d^2}$는 d가커지면작아져 d=0인 지름이 가장 길다",
+      "faults": [
+        {
+          "id": "m3-06-01-xc2",
+          "field": "bQuestion.requiredIdeas.2.1",
+          "rule": "수식 밖 숫자",
+          "what": "0"
+        }
+      ],
+      "after": "중심까지 거리 $d$일 때 현 길이 $2\\sqrt{r^2-d^2}$는 $d$가 커지면 작아져 $d=0$인 지름이 가장 길다"
+    },
+    {
+      "id": "m3-06-01-xc7",
+      "sourceIndex": 3586,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "OA=OB,AM=BM,OM공통이므로SSS합동이고 중점M의 같은 두 각 합180도여서 각각90도이다",
+      "faults": [
+        {
+          "id": "m3-06-01-xc7",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "180"
+        },
+        {
+          "id": "m3-06-01-xc7",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "90"
+        }
+      ],
+      "after": "$OA=OB$, $AM=BM$, $OM$ 공통이므로 $\\mathrm{SSS}$ 합동이고 중점 $M$의 같은 두 각의 합이 $180^\\circ$여서 각각 $90^\\circ$이다"
+    },
+    {
+      "id": "m3-06-03-xc4",
+      "sourceIndex": 3624,
+      "field": "bQuestion.requiredIdeas.0.1",
+      "value": "원주각은0도보다크고180도보다작다",
+      "faults": [
+        {
+          "id": "m3-06-03-xc4",
+          "field": "bQuestion.requiredIdeas.0.1",
+          "rule": "수식 밖 숫자",
+          "what": "0"
+        },
+        {
+          "id": "m3-06-03-xc4",
+          "field": "bQuestion.requiredIdeas.0.1",
+          "rule": "수식 밖 숫자",
+          "what": "180"
+        }
+      ],
+      "after": "원주각은 $0^\\circ$보다 크고 $180^\\circ$보다 작다"
+    },
+    {
+      "id": "m3-06-03-xc4",
+      "sourceIndex": 3624,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "같은호중심각은0도초과360도미만이고원주각은그절반이다",
+      "faults": [
+        {
+          "id": "m3-06-03-xc4",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "0"
+        },
+        {
+          "id": "m3-06-03-xc4",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "360"
+        }
+      ],
+      "after": "같은 호의 중심각은 $0^\\circ$ 초과 $360^\\circ$ 미만이고 원주각은 그 절반이다"
+    },
+    {
+      "id": "m3-06-04-xc2",
+      "sourceIndex": 3644,
+      "field": "bQuestion.requiredIdeas.1.0",
+      "value": "한내각60도인평행사변형처럼실제내접하지않는사각형의예를정한다",
+      "faults": [
+        {
+          "id": "m3-06-04-xc2",
+          "field": "bQuestion.requiredIdeas.1.0",
+          "rule": "수식 밖 숫자",
+          "what": "60"
+        }
+      ],
+      "after": "한 내각이 $60^\\circ$인 평행사변형처럼 실제로 내접하지 않는 사각형의 예를 정한다"
+    },
+    {
+      "id": "m3-06-04-xc2",
+      "sourceIndex": 3644,
+      "field": "bQuestion.requiredIdeas.2.0",
+      "value": "그예에서마주보는두각의합이180도가아님을확인한다",
+      "faults": [
+        {
+          "id": "m3-06-04-xc2",
+          "field": "bQuestion.requiredIdeas.2.0",
+          "rule": "수식 밖 숫자",
+          "what": "180"
+        }
+      ],
+      "after": "그 예에서 마주 보는 두 각의 합이 $180^\\circ$가 아님을 확인한다"
+    }
+  ]
+}

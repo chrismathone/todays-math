@@ -1,0 +1,1171 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-4-4-xc18",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "크기가 다른 두 분수 사이에 있는 분수를 찾으려 합니다. 두 분수를 통분한 뒤 분자를 어떻게 고르면 되나요? 통분한 두 분자 사이에 자연수가 없다면 어떻게 하면 될지도 설명하세요. 이 방법으로 $\\frac{1}{5}$보다 크고 $\\frac{1}{2}$보다 작은 분수를 하나 찾으세요.",
+      "bAnswer": "두 분수를 통분하고, 분자가 두 분자 사이의 자연수인 분수를 고른다. 사이에 자연수가 없으면 공통분모를 더 큰 공배수로 바꾸어 다시 찾는다. $\\frac{1}{5}=\\frac{2}{10}$, $\\frac{1}{2}=\\frac{5}{10}$이므로 $\\frac{3}{10}$이나 $\\frac{4}{10}$을 고를 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자가 두 분자 사이의 수인 분수를 고른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "사이에 자연수가 없으면 더 큰 공배수를 공통분모로 하여 두 분자 사이에 자연수가 생기도록 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{10}$",
+            "$\\frac{4}{10}$",
+            "$\\frac{1}{5}$보다 크고 $\\frac{1}{2}$보다 작은 다른 분수 하나"
+          ]
+        }
+      ],
+      "bGoal": "통분을 이용해 두 분수 사이의 분수를 찾는다.",
+      "bReason": "원문 예는 이미 분모가 같아 통분이 필요 없으므로 분모가 다른 예로 절차 전체를 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{5}$과 $\\frac{1}{2}$을 통분하면 $\\frac{2}{10}$와 $\\frac{5}{10}$이다. 두 분수 사이에 있는 분모가 $10$인 분수는 $\\frac{3}{10}$과 {$\\frac{4}{10}$}이다.",
+      "cReason": "'분자 사이의 자연수'라는 긴 구절 대신 통분한 두 분수 사이의 분수를 직접 쓰게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "e4ddc4acda3d00f9af388e35bbab55b67e78ca58b18642a72b0a1481215bb383",
+      "sourceIndex": 791,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc18",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "두 분수 사이의 분수 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "크기가 다른 두 분수를 통분한 뒤 {분자 사이의 자연수}를 분자로 하면 그 사이의 분수를 찾을 수 있고, 사이에 자연수가 없으면 더 큰 공통분모로 통분한다.",
+        "example": {
+          "prompt": "$\\frac{1}{5}$과 $\\frac{3}{5}$ 사이에 있는 분모가 $5$인 분수는?",
+          "answer": "$\\frac{2}{5}$"
+        },
+        "studentC": "크기가 다른 두 분수를 통분한 뒤 □를 분자로 하면 그 사이의 분수를 찾을 수 있고, 사이에 자연수가 없으면 더 큰 공통분모로 통분한다.",
+        "answers": [
+          "분자 사이의 자연수"
+        ]
+      },
+      "sourceFingerprint": "da9cc6993faa827c569b3f654119fbef749aa902f4328b3d8469883baf2b0895",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{4}{10}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{5}$과 $\\frac{1}{2}$을 통분하면 $\\frac{2}{10}$와 $\\frac{5}{10}$이다. 두 분수 사이에 있는 분모가 $10$인 분수는 $\\frac{3}{10}$과 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{4}{10}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{1}{5}$과 $\\frac{1}{2}$을 통분하면 $\\frac{2}{10}$와 $\\frac{5}{10}$이다. 두 분수 사이에 있는 분모가 $10$인 분수는 $\\frac{3}{10}$과 {$\\frac{4}{10}$}이다.",
+      "cStudentSentence": "$\\frac{1}{5}$과 $\\frac{1}{2}$을 통분하면 $\\frac{2}{10}$와 $\\frac{5}{10}$이다. 두 분수 사이에 있는 분모가 $10$인 분수는 $\\frac{3}{10}$과 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{4}{10}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "크기가 다른 두 분수 사이에 있는 분수를 찾으려 합니다. 두 분수를 통분한 뒤 분자를 어떻게 고르면 되나요? 통분한 두 분자 사이에 자연수가 없다면 어떻게 하면 될지도 설명하세요. 이 방법으로 $\\frac{1}{5}$보다 크고 $\\frac{1}{2}$보다 작은 분수를 하나 찾으세요.",
+        "answer": "두 분수를 통분하고, 분자가 두 분자 사이의 자연수인 분수를 고른다. 사이에 자연수가 없으면 공통분모를 더 큰 공배수로 바꾸어 다시 찾는다. $\\frac{1}{5}=\\frac{2}{10}$, $\\frac{1}{2}=\\frac{5}{10}$이므로 $\\frac{3}{10}$이나 $\\frac{4}{10}$을 고를 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자가 두 분자 사이의 수인 분수를 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "사이에 자연수가 없으면 더 큰 공배수를 공통분모로 하여 두 분자 사이에 자연수가 생기도록 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{10}$",
+              "$\\frac{4}{10}$",
+              "$\\frac{1}{5}$보다 크고 $\\frac{1}{2}$보다 작은 다른 분수 하나"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{5}$과 $\\frac{1}{2}$을 통분하면 $\\frac{2}{10}$와 $\\frac{5}{10}$이다. 두 분수 사이에 있는 분모가 $10$인 분수는 $\\frac{3}{10}$과 {$\\frac{4}{10}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{4}{10}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ff6bc48a63caca08ff43b5be2938d6061afb28b6faef485240dfc498ec2309d5",
+      "questionRevision": "planning-e5e6-20261006-ff6bc48a63ca",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc25",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "어떤 분수가 $\\frac{1}{2}$보다 큰지를 통분하지 않고 분자와 분모만 보고 알아내는 방법을 쓰세요. 그 방법으로 $\\frac{5}{9}$가 $\\frac{1}{2}$보다 큰지 확인하세요.",
+      "bAnswer": "분자의 $2$배가 분모보다 크면(분자가 분모의 절반보다 크면) $\\frac{1}{2}$보다 크다. $5\\times2=10$이 $9$보다 크므로 $\\frac{5}{9}$는 $\\frac{1}{2}$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자의 $2$배가 분모보다 크면 $\\frac{1}{2}$보다 크다",
+            "분자가 분모의 절반보다 크면 $\\frac{1}{2}$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\times2=10$이 $9$보다 커서 $\\frac{5}{9}>\\frac{1}{2}$이다",
+            "$5$가 $9$의 절반 $4.5$보다 커서 $\\frac{5}{9}>\\frac{1}{2}$이다"
+          ]
+        }
+      ],
+      "bGoal": "분자와 분모의 관계로 $\\frac{1}{2}$보다 큰지 빠르게 판단한다.",
+      "bReason": "편집용 제목 대신 판단 기준을 직접 쓰게 하고 예로 확인하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "분자의 $2$배가 분모보다 크면 그 분수는 {$\\frac{1}{2}$보다 크다}.",
+      "cReason": "조건(분자의 $2$배가 분모보다 큼)이 분명하고 결론을 짧게 답하는 유용한 판단 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "bb2a318c66ac1cb592454fc6a9f97a891a5359c845ef25e705254abb6d93334f",
+      "sourceIndex": 798,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc25",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "절반보다 큰지 빨리 보기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분자의 $2$배가 분모보다 크면 그 분수는 {$\\frac{1}{2}$보다 크다}.",
+        "example": {
+          "prompt": "$\\frac{5}{9}$는 $\\frac{1}{2}$보다 큰가?",
+          "answer": "그렇다"
+        },
+        "studentC": "분자의 $2$배가 분모보다 크면 그 분수는 □.",
+        "answers": [
+          "$\\frac{1}{2}$보다 크다"
+        ]
+      },
+      "sourceFingerprint": "f1b3a56839884f9185eca064acf68846bf7213d47e5fae01dcaf75044913f83f",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "분자의 $2$배가 분모보다 크면 그 분수는 {$\\frac{1}{2}$보다 크다}.",
+      "cFrozenStudentSentence": "분자의 $2$배가 분모보다 크면 그 분수는 □.",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$보다 크다"
+      ],
+      "cStudentAfter": "분자의 $2$배가 분모보다 크면 그 분수는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$보다 크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분자의 $2$배가 분모보다 크면 그 분수는 {$\\frac{1}{2}$보다 크다}.",
+      "cStudentSentence": "분자의 $2$배가 분모보다 크면 그 분수는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$보다 크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 분수가 $\\frac{1}{2}$보다 큰지를 통분하지 않고 분자와 분모만 보고 알아내는 방법을 쓰세요. 그 방법으로 $\\frac{5}{9}$가 $\\frac{1}{2}$보다 큰지 확인하세요.",
+        "answer": "분자의 $2$배가 분모보다 크면(분자가 분모의 절반보다 크면) $\\frac{1}{2}$보다 크다. $5\\times2=10$이 $9$보다 크므로 $\\frac{5}{9}$는 $\\frac{1}{2}$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자의 $2$배가 분모보다 크면 $\\frac{1}{2}$보다 크다",
+              "분자가 분모의 절반보다 크면 $\\frac{1}{2}$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\times2=10$이 $9$보다 커서 $\\frac{5}{9}>\\frac{1}{2}$이다",
+              "$5$가 $9$의 절반 $4.5$보다 커서 $\\frac{5}{9}>\\frac{1}{2}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분자의 $2$배가 분모보다 크면 그 분수는 {$\\frac{1}{2}$보다 크다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$보다 크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "19c3dcd8286858fb1c644043c3ac978cd3e8c21dfa112d0c770d09334590461a",
+      "questionRevision": "planning-e5e6-20261006-19c3dcd82868",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc26",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "수 카드 $3$, $5$, $8$ 중 두 장을 골라 만들 수 있는 진분수를 모두 쓰고, 크기를 비교하여 그중 가장 큰 진분수를 찾으세요.",
+      "bAnswer": "만들 수 있는 진분수는 $\\frac{3}{5}$, $\\frac{3}{8}$, $\\frac{5}{8}$이다. $\\frac{3}{8}<\\frac{5}{8}$이고, $\\frac{3}{5}=\\frac{24}{40}$, $\\frac{5}{8}=\\frac{25}{40}$이므로 가장 큰 진분수는 $\\frac{5}{8}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$, $\\frac{3}{8}$, $\\frac{5}{8}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{8}$보다 $\\frac{5}{8}$이 크고, $\\frac{3}{5}=\\frac{24}{40}<\\frac{25}{40}=\\frac{5}{8}$이므로 $\\frac{5}{8}$이 가장 크다",
+            "세 진분수의 크기를 타당한 방법으로 비교하여$\\frac{5}{8}$이 가장 큼을 보인다"
+          ]
+        }
+      ],
+      "bGoal": "만들 수 있는 진분수를 빠짐없이 찾아 크기를 비교한다.",
+      "bReason": "'서로 견주어 정한다'는 추상적 지침을 실제로 모두 만들어 비교하는 활동으로 바꾸었다.",
+      "cDecision": "revise",
+      "cAfter": "수 카드 $3$, $5$, $8$ 중 두 장으로 만들 수 있는 진분수는 $\\frac{3}{5}$, $\\frac{3}{8}$, $\\frac{5}{8}$이다. $\\frac{3}{5}=\\frac{24}{40}$, $\\frac{5}{8}=${$\\frac{25}{40}$}이므로 가장 큰 진분수는 {$\\frac{5}{8}$}이다.",
+      "cReason": "'서로 견주어'는 답으로서 의미가 약해 통분한 값과 결과를 쓰게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "e79817d1d9167feb3e7ec8d5dce4222f3ee1d9965fb12b4edf2569f8d4aa2ba2",
+      "sourceIndex": 799,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc26",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "가장 큰 진분수 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "수 카드로 가장 큰 진분수를 찾을 때는 분자가 큰 것만 보지 않고, 만들 수 있는 진분수를 {서로 견주어} 정한다.",
+        "example": {
+          "prompt": "$3$, $5$, $8$ 중 두 장으로 만드는 가장 큰 진분수는?",
+          "answer": "$\\frac{5}{8}$"
+        },
+        "studentC": "수 카드로 가장 큰 진분수를 찾을 때는 분자가 큰 것만 보지 않고, 만들 수 있는 진분수를 □ 정한다.",
+        "answers": [
+          "서로 견주어"
+        ]
+      },
+      "sourceFingerprint": "7cf9e6442ed656e800a8691a2b3bc133e64885556cd7db2afa142f4398402026",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{25}{40}$",
+        "$\\frac{5}{8}$"
+      ],
+      "cStudentAfter": "수 카드 $3$, $5$, $8$ 중 두 장으로 만들 수 있는 진분수는 $\\frac{3}{5}$, $\\frac{3}{8}$, $\\frac{5}{8}$이다. $\\frac{3}{5}=\\frac{24}{40}$, $\\frac{5}{8}=$□이므로 가장 큰 진분수는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{25}{40}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{8}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "수 카드 $3$, $5$, $8$ 중 두 장으로 만들 수 있는 진분수는 $\\frac{3}{5}$, $\\frac{3}{8}$, $\\frac{5}{8}$이다. $\\frac{3}{5}=\\frac{24}{40}$, $\\frac{5}{8}=${$\\frac{25}{40}$}이므로 가장 큰 진분수는 {$\\frac{5}{8}$}이다.",
+      "cStudentSentence": "수 카드 $3$, $5$, $8$ 중 두 장으로 만들 수 있는 진분수는 $\\frac{3}{5}$, $\\frac{3}{8}$, $\\frac{5}{8}$이다. $\\frac{3}{5}=\\frac{24}{40}$, $\\frac{5}{8}=$□이므로 가장 큰 진분수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{25}{40}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{5}{8}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "수 카드 $3$, $5$, $8$ 중 두 장을 골라 만들 수 있는 진분수를 모두 쓰고, 크기를 비교하여 그중 가장 큰 진분수를 찾으세요.",
+        "answer": "만들 수 있는 진분수는 $\\frac{3}{5}$, $\\frac{3}{8}$, $\\frac{5}{8}$이다. $\\frac{3}{8}<\\frac{5}{8}$이고, $\\frac{3}{5}=\\frac{24}{40}$, $\\frac{5}{8}=\\frac{25}{40}$이므로 가장 큰 진분수는 $\\frac{5}{8}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{5}$, $\\frac{3}{8}$, $\\frac{5}{8}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{8}$보다 $\\frac{5}{8}$이 크고, $\\frac{3}{5}=\\frac{24}{40}<\\frac{25}{40}=\\frac{5}{8}$이므로 $\\frac{5}{8}$이 가장 크다",
+              "세 진분수의 크기를 타당한 방법으로 비교하여$\\frac{5}{8}$이 가장 큼을 보인다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수 카드 $3$, $5$, $8$ 중 두 장으로 만들 수 있는 진분수는 $\\frac{3}{5}$, $\\frac{3}{8}$, $\\frac{5}{8}$이다. $\\frac{3}{5}=\\frac{24}{40}$, $\\frac{5}{8}=${$\\frac{25}{40}$}이므로 가장 큰 진분수는 {$\\frac{5}{8}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{25}{40}$"
+          ],
+          [
+            "$\\frac{5}{8}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bd5e3a70e36344484b655654ece0e9378acbb7f9e57ada00f7ab3617e3dafb6f",
+      "questionRevision": "planning-e5e6-20261006-bd5e3a70e363",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-5-xc2",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "소수 두 자리 수를 분수로 바꾸려고 합니다. 소수점만 없앤 수를 분자에 쓰면 분모에는 얼마를 써야 하나요? 이 방법으로 $0.39$와 $0.07$을 각각 분수로 나타내세요.",
+      "bAnswer": "분모가 $100$인 분수가 된다. $0.39=\\frac{39}{100}$, $0.07=\\frac{7}{100}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 $100$",
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.39$는 $\\frac{39}{100}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.07$은 $\\frac{7}{100}$"
+          ]
+        }
+      ],
+      "bGoal": "소수 두 자리 수를 분모가 100인 분수로 바꾼다.",
+      "bReason": "0.07을 7/10로 쓰는 실수를 확인하려고 예를 두 개 넣었다.",
+      "cDecision": "keep",
+      "cAfter": "소수 두 자리 수는 분모가 {$100$}인 분수로 바꿀 수 있다.",
+      "cReason": "소수 두 자리 수와 분모 100의 대응을 수 하나로 답하는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "98b78971d7c16f3e8da0afc6f9701b8d5819e174439cd46b3f1bc15dcb94fd58",
+      "sourceIndex": 802,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-5-xc2",
+        "section": "초5::1-4 약분과 통분::1-4-5 분수와 소수의 크기 비교",
+        "term": "소수 두 자리 수를 분수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수 두 자리 수는 분모가 {$100$}인 분수로 바꿀 수 있다.",
+        "example": {
+          "prompt": "$0.39$를 분수로 나타내면?",
+          "answer": "$\\frac{39}{100}$"
+        },
+        "studentC": "소수 두 자리 수는 분모가 □인 분수로 바꿀 수 있다.",
+        "answers": [
+          "$100$"
+        ]
+      },
+      "sourceFingerprint": "98722b94da2b064112e79d57940514576437b54587f5edf7a39a542337e1a38b",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "소수 두 자리 수는 분모가 {$100$}인 분수로 바꿀 수 있다.",
+      "cFrozenStudentSentence": "소수 두 자리 수는 분모가 □인 분수로 바꿀 수 있다.",
+      "cProposedAnswers": [
+        "$100$"
+      ],
+      "cStudentAfter": "소수 두 자리 수는 분모가 □인 분수로 바꿀 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수 두 자리 수는 분모가 {$100$}인 분수로 바꿀 수 있다.",
+      "cStudentSentence": "소수 두 자리 수는 분모가 □인 분수로 바꿀 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 두 자리 수를 분수로 바꾸려고 합니다. 소수점만 없앤 수를 분자에 쓰면 분모에는 얼마를 써야 하나요? 이 방법으로 $0.39$와 $0.07$을 각각 분수로 나타내세요.",
+        "answer": "분모가 $100$인 분수가 된다. $0.39=\\frac{39}{100}$, $0.07=\\frac{7}{100}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 $100$",
+              "$100$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.39$는 $\\frac{39}{100}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.07$은 $\\frac{7}{100}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 두 자리 수는 분모가 {$100$}인 분수로 바꿀 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a8ff6d8b5475026152e2c311a0a0f5e0c99ceff2d55980e182dcd86a2b6ec909",
+      "questionRevision": "planning-e5e6-20261006-a8ff6d8b5475",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-5-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{10}$과 $\\frac{1}{100}$은 각각 소수 몇째 자리의 단위인가요? $\\frac{3}{100}$을 소수로 나타내고 소수 첫째 자리에 어떤 숫자를 써야 하는지도 말해 보세요.",
+      "bAnswer": "$\\frac{1}{10}$은 소수 첫째 자리의 단위이고 $\\frac{1}{100}$은 소수 둘째 자리의 단위이다. $\\frac{3}{100}=0.03$이며 소수 첫째 자리에는 $0$을 쓴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{10}$은 소수 첫째 자리의 단위이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{100}$은 소수 둘째 자리의 단위이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{100}=0.03$이며 소수 첫째 자리는 $0$이다"
+          ]
+        }
+      ],
+      "bGoal": "분모 10, 100과 소수 자릿수의 대응을 알고 3/100을 0.03으로 쓴다.",
+      "bReason": "xc3과 묶어 한 번에 묻고, 0.3으로 잘못 쓰기 쉬운 3/100을 예로 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{47}{100}$은 $0.01$이 {$47$}개인 수이므로 소수로 쓰면 {$0.47$}이고, $\\frac{3}{100}$을 소수로 쓰면 {$0.03$}이다.",
+      "cReason": "'둘째 자리까지의 소수'라는 구절 대신 실제 값을 쓰게 하고 0을 채우는 경우를 넣었다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "fd1455bfecf45715aa0f83bb04ae6340f7543baf9e8878c91792f8c7ee9d1632",
+      "sourceIndex": 804,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-5-xc4",
+        "section": "초5::1-4 약분과 통분::1-4-5 분수와 소수의 크기 비교",
+        "term": "분모가 $100$인 분수를 소수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 $100$인 분수는 소수 {둘째 자리}까지의 소수로 쓴다.",
+        "example": {
+          "prompt": "$\\frac{47}{100}$을 소수로 나타내면?",
+          "answer": "$0.47$"
+        },
+        "studentC": "분모가 $100$인 분수는 소수 □까지의 소수로 쓴다.",
+        "answers": [
+          "둘째 자리"
+        ]
+      },
+      "sourceFingerprint": "82e6fab88702fd396f2a3fd301286f0abf1ec2444c1215cd523d2df1242f13bc",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$47$",
+        "$0.47$",
+        "$0.03$"
+      ],
+      "cStudentAfter": "$\\frac{47}{100}$은 $0.01$이 □개인 수이므로 소수로 쓰면 □이고, $\\frac{3}{100}$을 소수로 쓰면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$47$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.47$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.03$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{47}{100}$은 $0.01$이 {$47$}개인 수이므로 소수로 쓰면 {$0.47$}이고, $\\frac{3}{100}$을 소수로 쓰면 {$0.03$}이다.",
+      "cStudentSentence": "$\\frac{47}{100}$은 $0.01$이 □개인 수이므로 소수로 쓰면 □이고, $\\frac{3}{100}$을 소수로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$47$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.47$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.03$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{1}{10}$과 $\\frac{1}{100}$은 각각 소수 몇째 자리의 단위인가요? $\\frac{3}{100}$을 소수로 나타내고 소수 첫째 자리에 어떤 숫자를 써야 하는지도 말해 보세요.",
+        "answer": "$\\frac{1}{10}$은 소수 첫째 자리의 단위이고 $\\frac{1}{100}$은 소수 둘째 자리의 단위이다. $\\frac{3}{100}=0.03$이며 소수 첫째 자리에는 $0$을 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{10}$은 소수 첫째 자리의 단위이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{100}$은 소수 둘째 자리의 단위이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{100}=0.03$이며 소수 첫째 자리는 $0$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{47}{100}$은 $0.01$이 {$47$}개인 수이므로 소수로 쓰면 {$0.47$}이고, $\\frac{3}{100}$을 소수로 쓰면 {$0.03$}이다.",
+        "acceptedAnswers": [
+          [
+            "$47$"
+          ],
+          [
+            "$0.47$"
+          ],
+          [
+            "$0.03$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bb5237e4bd2b32ef1b8aa20fa4d58e30c25da15b254c4f5a62575ceadc28d90c",
+      "questionRevision": "planning-e5e6-20261006-bb5237e4bd2b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-5-xc5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 $2$인 분수와 분모가 $5$인 분수를 각각 분모가 $10$인 분수로 바꾸려 합니다. 분모와 분자에 각각 얼마를 곱하면 되는지 쓰고, 이 방법으로 $\\frac{4}{5}$를 소수로 나타내세요.",
+      "bAnswer": "분모가 $2$이면 $5$를, 분모가 $5$이면 $2$를 곱해 분모를 $10$으로 만든다. $\\frac{4}{5}=\\frac{8}{10}=0.8$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 $2$이면 $5$를 곱한다",
+            "$2 \\times 5 = 10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모가 $5$이면 $2$를 곱한다",
+            "$5 \\times 2 = 10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.8$"
+          ]
+        }
+      ],
+      "bGoal": "분모 2, 5인 분수를 분모 10인 분수로 바꾸어 소수로 쓴다.",
+      "bReason": "질문에 10을 말해 주지 않고 곱할 수를 직접 찾게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}$은 분모와 분자에 {$5$}를 곱하면 $\\frac{5}{10}$가 되므로 소수로 쓰면 {$0.5$}이다.",
+      "cReason": "원문 빈칸은 100이나 1000도 틀리지 않으므로 답이 하나인 실제 계산으로 바꾸었다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "c3b6561e664ad298c2b17bedfdc599c79d9336cfed9aab06d32c68a74652b570",
+      "sourceIndex": 805,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-5-xc5",
+        "section": "초5::1-4 약분과 통분::1-4-5 분수와 소수의 크기 비교",
+        "term": "분모가 $2$나 $5$인 분수를 소수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 $2$나 $5$인 분수는 분모를 {$10$}으로 바꾸면 소수로 쓸 수 있다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}$을 소수로 나타내면?",
+          "answer": "$0.5$"
+        },
+        "studentC": "분모가 $2$나 $5$인 분수는 분모를 □으로 바꾸면 소수로 쓸 수 있다.",
+        "answers": [
+          "$10$"
+        ]
+      },
+      "sourceFingerprint": "0a9a1723f97372ba480a845502ba0ff59b65f100dcc7817e89c6197b986ae06c",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$0.5$"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}$은 분모와 분자에 □를 곱하면 $\\frac{5}{10}$가 되므로 소수로 쓰면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{1}{2}$은 분모와 분자에 {$5$}를 곱하면 $\\frac{5}{10}$가 되므로 소수로 쓰면 {$0.5$}이다.",
+      "cStudentSentence": "$\\frac{1}{2}$은 분모와 분자에 □를 곱하면 $\\frac{5}{10}$가 되므로 소수로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 $2$인 분수와 분모가 $5$인 분수를 각각 분모가 $10$인 분수로 바꾸려 합니다. 분모와 분자에 각각 얼마를 곱하면 되는지 쓰고, 이 방법으로 $\\frac{4}{5}$를 소수로 나타내세요.",
+        "answer": "분모가 $2$이면 $5$를, 분모가 $5$이면 $2$를 곱해 분모를 $10$으로 만든다. $\\frac{4}{5}=\\frac{8}{10}=0.8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 $2$이면 $5$를 곱한다",
+              "$2 \\times 5 = 10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모가 $5$이면 $2$를 곱한다",
+              "$5 \\times 2 = 10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}$은 분모와 분자에 {$5$}를 곱하면 $\\frac{5}{10}$가 되므로 소수로 쓰면 {$0.5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$0.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "26aa2191d360e557863c334205ccc874934a2298004bab08bdae6ced74d78292",
+      "questionRevision": "planning-e5e6-20261006-26aa2191d360",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-5-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분모가 $4$인 분수는 분모와 분자에 자연수를 곱해 분모를 $10$으로 만들 수 없습니다. 그 까닭을 쓰고, 분모를 $100$으로 바꾸는 방법으로 $\\frac{3}{4}$을 소수로 나타내세요.",
+      "bAnswer": "$10$은 $4$의 배수가 아니어서 $4$에 자연수를 곱해 $10$을 만들 수 없다. $4\\times25=100$이므로 분모를 $100$으로 만든다. $\\frac{3}{4}=\\frac{75}{100}=0.75$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$은 $4$의 배수가 아니다",
+            "$4$에 자연수를 곱해 $10$이 될 수 없다",
+            "$10$은 $4$로 나누어떨어지지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모를 $100$으로 만든다",
+            "$4 \\times 25 = 100$",
+            "$\\frac{75}{100}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.75$"
+          ]
+        }
+      ],
+      "bGoal": "분모 4는 10이 아닌 100으로 바꾸어야 하는 까닭을 배수 관계로 설명한다.",
+      "bReason": "xc5와 같은 절차의 반복을 피하려고 10이 안 되는 까닭을 묻는 문항으로 잡았다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{7}{25}$은 분모와 분자에 {$4$}를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 {$0.28$}이다.",
+      "cReason": "원문 빈칸은 1000도 가능하므로 분모 25인 실제 분수로 곱할 수와 값을 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "342cd3bfe12fe75b4e9a15e5be88eb56d29a5ec5608253b36863c69ceb63a860",
+      "sourceIndex": 806,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-5-xc6",
+        "section": "초5::1-4 약분과 통분::1-4-5 분수와 소수의 크기 비교",
+        "term": "분모가 $4$나 $25$인 분수를 소수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 $4$나 $25$인 분수는 분모를 {$100$}으로 바꾸어 소수로 쓴다.",
+        "example": {
+          "prompt": "$\\frac{1}{4}$을 소수로 나타내면?",
+          "answer": "$0.25$"
+        },
+        "studentC": "분모가 $4$나 $25$인 분수는 분모를 □으로 바꾸어 소수로 쓴다.",
+        "answers": [
+          "$100$"
+        ]
+      },
+      "sourceFingerprint": "ae79af2f3470bbee8bff1fd4f7ae23ffb79c5023cd2849033a531e6950e40b34",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$0.28$"
+      ],
+      "cStudentAfter": "$\\frac{7}{25}$은 분모와 분자에 □를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.28$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{7}{25}$은 분모와 분자에 {$4$}를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 {$0.28$}이다.",
+      "cStudentSentence": "$\\frac{7}{25}$은 분모와 분자에 □를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.28$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 $4$인 분수는 분모와 분자에 자연수를 곱해 분모를 $10$으로 만들 수 없습니다. 그 까닭을 쓰고, 분모를 $100$으로 바꾸는 방법으로 $\\frac{3}{4}$을 소수로 나타내세요.",
+        "answer": "$10$은 $4$의 배수가 아니어서 $4$에 자연수를 곱해 $10$을 만들 수 없다. $4\\times25=100$이므로 분모를 $100$으로 만든다. $\\frac{3}{4}=\\frac{75}{100}=0.75$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$은 $4$의 배수가 아니다",
+              "$4$에 자연수를 곱해 $10$이 될 수 없다",
+              "$10$은 $4$로 나누어떨어지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모를 $100$으로 만든다",
+              "$4 \\times 25 = 100$",
+              "$\\frac{75}{100}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.75$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{7}{25}$은 분모와 분자에 {$4$}를 곱하면 $\\frac{28}{100}$이 되므로 소수로 쓰면 {$0.28$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$0.28$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a8e0982df78993cdcce95c1fcf838552b9e69c2a4565797cab1c83f1346b1b3b",
+      "questionRevision": "planning-e5e6-20261006-a8e0982df789",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-5-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 학생이 $0.3$을 분수로 $\\frac{1}{3}$이라고 썼다. 이것이 틀린 까닭을 $0.3$의 숫자 $3$이 나타내는 것을 이용해 설명하고, $0.3$을 분수로 바르게 쓰시오.",
+      "bAnswer": "$0.3$의 $3$은 $\\frac{1}{10}$($0.1$)이 $3$개라는 뜻이지 분모가 아니다. 바르게 쓰면 $\\frac{3}{10}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.3$의 $3$은 $\\frac{1}{10}$이 $3$개라는 뜻이다",
+            "$0.3$은 $0.1$이 $3$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{10}$"
+          ]
+        }
+      ],
+      "bGoal": "소수 첫째 자리 숫자가 1/10의 개수임을 근거로 잘못된 변환을 바로잡는다.",
+      "bReason": "흔한 오개념을 직접 다루는 문항이라 잘못과 바른 답을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$0.3$의 $3$은 $\\frac{1}{10}$이 {$3$}개라는 뜻이므로 $0.3$을 분수로 쓰면 {$\\frac{3}{10}$}이다.",
+      "cReason": "'1/10이 몇 개인지'라는 구절을 통째로 쓰게 하는 대신 개수와 분수를 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "9e189cb9e27077abc3e3cf1cd1ebf84d20d8143c187c3a05402489d0267229ab",
+      "sourceIndex": 815,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-5-xc16",
+        "section": "초5::1-4 약분과 통분::1-4-5 분수와 소수의 크기 비교",
+        "term": "소수의 숫자를 분모로 쓰는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수 첫째 자리 숫자는 {$\\frac{1}{10}$이 몇 개인지}를 나타내므로, 그 숫자를 분모로 옮겨 쓰면 틀린다.",
+        "example": {
+          "prompt": "$0.3$을 $\\frac{1}{3}$로 쓰면 틀리는 까닭은?",
+          "answer": "$0.3$은 $\\frac{1}{10}$이 $3$개라서"
+        },
+        "studentC": "소수 첫째 자리 숫자는 □를 나타내므로, 그 숫자를 분모로 옮겨 쓰면 틀린다.",
+        "answers": [
+          "$\\frac{1}{10}$이 몇 개인지"
+        ]
+      },
+      "sourceFingerprint": "2f9be52a44051ba812533d093dfdff5bdfd3d203d14b27b63c6ecf3931fe2d11",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$\\frac{3}{10}$"
+      ],
+      "cStudentAfter": "$0.3$의 $3$은 $\\frac{1}{10}$이 □개라는 뜻이므로 $0.3$을 분수로 쓰면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{10}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0.3$의 $3$은 $\\frac{1}{10}$이 {$3$}개라는 뜻이므로 $0.3$을 분수로 쓰면 {$\\frac{3}{10}$}이다.",
+      "cStudentSentence": "$0.3$의 $3$은 $\\frac{1}{10}$이 □개라는 뜻이므로 $0.3$을 분수로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{3}{10}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 학생이 $0.3$을 분수로 $\\frac{1}{3}$이라고 썼다. 이것이 틀린 까닭을 $0.3$의 숫자 $3$이 나타내는 것을 이용해 설명하고, $0.3$을 분수로 바르게 쓰시오.",
+        "answer": "$0.3$의 $3$은 $\\frac{1}{10}$($0.1$)이 $3$개라는 뜻이지 분모가 아니다. 바르게 쓰면 $\\frac{3}{10}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.3$의 $3$은 $\\frac{1}{10}$이 $3$개라는 뜻이다",
+              "$0.3$은 $0.1$이 $3$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{10}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.3$의 $3$은 $\\frac{1}{10}$이 {$3$}개라는 뜻이므로 $0.3$을 분수로 쓰면 {$\\frac{3}{10}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$\\frac{3}{10}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "35e0520f374e4a62495329ee1db9f22e8d3f1a80e8c8561f1560ae32b19075e8",
+      "questionRevision": "planning-e5e6-20261006-35e0520f374e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-5-xc19",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 $8$인 분수의 분모와 분자에 같은 자연수를 곱해 분모를 $10$, $100$, $1000$ 중 하나로 바꾸려고 합니다. 어느 수로 바꿀 수 있는지와 곱해야 하는 수를 쓰고, 이 방법으로 $\\frac{3}{8}$을 소수로 나타내세요.",
+      "bAnswer": "분모와 분자에 $125$를 곱해 분모를 $1000$으로 만든다. $\\frac{3}{8}=\\frac{375}{1000}=0.375$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모를 $1000$으로 만든다",
+            "$8 \\times 125 = 1000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$125$를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.375$"
+          ]
+        }
+      ],
+      "bGoal": "분모 8인 분수를 분모 1000으로 바꾸어 소수 세 자리 수로 쓴다.",
+      "bReason": "10이나 100으로 안 되는 분모라 1000과 125를 직접 찾게 한다.",
+      "cDecision": "keep",
+      "cAfter": "분모가 $8$인 분수는 분모와 분자에 $125$를 곱해 분모를 {$1000$}으로 만든다.",
+      "cReason": "곱할 수 125가 주어져 있어 8×125를 계산해 1000을 답하는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "ce71dcffafa69de63baccff8158a9a3e3fd640fb0aff6fd23340b98dd5b21f37",
+      "sourceIndex": 818,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-5-xc19",
+        "section": "초5::1-4 약분과 통분::1-4-5 분수와 소수의 크기 비교",
+        "term": "분모가 $8$인 분수를 소수로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분모가 $8$인 분수는 분모와 분자에 $125$를 곱해 분모를 {$1000$}으로 만든다.",
+        "example": {
+          "prompt": "$\\frac{3}{8}$을 소수로 나타내면?",
+          "answer": "$0.375$"
+        },
+        "studentC": "분모가 $8$인 분수는 분모와 분자에 $125$를 곱해 분모를 □으로 만든다.",
+        "answers": [
+          "$1000$"
+        ]
+      },
+      "sourceFingerprint": "7d9f8eab77163b074e70859b5e447c0f60de372a219e693265560945b167e02b",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "분모가 $8$인 분수는 분모와 분자에 $125$를 곱해 분모를 {$1000$}으로 만든다.",
+      "cFrozenStudentSentence": "분모가 $8$인 분수는 분모와 분자에 $125$를 곱해 분모를 □으로 만든다.",
+      "cProposedAnswers": [
+        "$1000$"
+      ],
+      "cStudentAfter": "분모가 $8$인 분수는 분모와 분자에 $125$를 곱해 분모를 □으로 만든다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1000$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모가 $8$인 분수는 분모와 분자에 $125$를 곱해 분모를 {$1000$}으로 만든다.",
+      "cStudentSentence": "분모가 $8$인 분수는 분모와 분자에 $125$를 곱해 분모를 □으로 만든다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1000$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 $8$인 분수의 분모와 분자에 같은 자연수를 곱해 분모를 $10$, $100$, $1000$ 중 하나로 바꾸려고 합니다. 어느 수로 바꿀 수 있는지와 곱해야 하는 수를 쓰고, 이 방법으로 $\\frac{3}{8}$을 소수로 나타내세요.",
+        "answer": "분모와 분자에 $125$를 곱해 분모를 $1000$으로 만든다. $\\frac{3}{8}=\\frac{375}{1000}=0.375$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모를 $1000$으로 만든다",
+              "$8 \\times 125 = 1000$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$125$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.375$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 $8$인 분수는 분모와 분자에 $125$를 곱해 분모를 {$1000$}으로 만든다.",
+        "acceptedAnswers": [
+          [
+            "$1000$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "318153ff41e6c51bb9534e8fbef868a2a7cdfc831017e7d2c869c849dad97a10",
+      "questionRevision": "planning-e5e6-20261006-318153ff41e6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-5-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{3}$은 분모와 분자에 같은 자연수를 곱해 분모를 $10$, $100$, $1000$으로 만들 수 없다. 그 까닭을 $3$과 이 수들의 관계로 설명하시오.",
+      "bAnswer": "$10$, $100$, $1000$은 모두 $3$의 배수가 아니다($3$으로 나누면 $1$이 남는다). 그래서 $3$에 어떤 자연수를 곱해도 이 수들이 되지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$, $100$, $1000$은 $3$의 배수가 아니다",
+            "$10$, $100$, $1000$은 $3$으로 나누어떨어지지 않는다",
+            "$3$은 $10$, $100$, $1000$의 약수가 아니다"
+          ]
+        }
+      ],
+      "bGoal": "1/3의 분모를 10, 100, 1000으로 바꿀 수 없는 까닭을 배수 관계로 설명한다.",
+      "bReason": "결론은 질문에 주고 설명할 관계를 '3과 이 수들'로 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "$10$, $100$, $1000$을 $3$으로 나누면 나머지가 모두 {$1$}이므로 이 수들은 $3$의 {배수}가 아니다. 그래서 $\\frac{1}{3}$은 분모를 $10$, $100$, $1000$으로 바꿀 수 없다.",
+      "cReason": "'3의 배수가 아니어서'라는 구절 대신 나머지와 낱말 하나를 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0790-0820.json",
+      "codexFinalAmendedFromFingerprint": "561e22c1174c7e95cfc9cc594f0c22ba2479f8e3fbc1e1eb5a07a5fb3dd01e3d",
+      "sourceIndex": 819,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-5-xc20",
+        "section": "초5::1-4 약분과 통분::1-4-5 분수와 소수의 크기 비교",
+        "term": "$\\frac{1}{3}$의 분모를 $10$, $100$으로 바꿀 수 없는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$10$, $100$, $1000$처럼 $1$ 뒤에 $0$만 붙는 수는 모두 {$3$의 배수가 아니어서} $\\frac{1}{3}$은 분모를 바꾸는 방법으로 소수로 쓸 수 없다.",
+        "studentC": "$10$, $100$, $1000$처럼 $1$ 뒤에 $0$만 붙는 수는 모두 □ $\\frac{1}{3}$은 분모를 바꾸는 방법으로 소수로 쓸 수 없다.",
+        "answers": [
+          "$3$의 배수가 아니어서"
+        ]
+      },
+      "sourceFingerprint": "a13956e1f8223761c7bb59a9b40f65070a4a6647b9542facd158c8c6ee29e92e",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1$",
+        "배수"
+      ],
+      "cStudentAfter": "$10$, $100$, $1000$을 $3$으로 나누면 나머지가 모두 □이므로 이 수들은 $3$의 □가 아니다. 그래서 $\\frac{1}{3}$은 분모를 $10$, $100$, $1000$으로 바꿀 수 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$10$, $100$, $1000$을 $3$으로 나누면 나머지가 모두 {$1$}이므로 이 수들은 $3$의 {배수}가 아니다. 그래서 $\\frac{1}{3}$은 분모를 $10$, $100$, $1000$으로 바꿀 수 없다.",
+      "cStudentSentence": "$10$, $100$, $1000$을 $3$으로 나누면 나머지가 모두 □이므로 이 수들은 $3$의 □가 아니다. 그래서 $\\frac{1}{3}$은 분모를 $10$, $100$, $1000$으로 바꿀 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{1}{3}$은 분모와 분자에 같은 자연수를 곱해 분모를 $10$, $100$, $1000$으로 만들 수 없다. 그 까닭을 $3$과 이 수들의 관계로 설명하시오.",
+        "answer": "$10$, $100$, $1000$은 모두 $3$의 배수가 아니다($3$으로 나누면 $1$이 남는다). 그래서 $3$에 어떤 자연수를 곱해도 이 수들이 되지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$, $100$, $1000$은 $3$의 배수가 아니다",
+              "$10$, $100$, $1000$은 $3$으로 나누어떨어지지 않는다",
+              "$3$은 $10$, $100$, $1000$의 약수가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10$, $100$, $1000$을 $3$으로 나누면 나머지가 모두 {$1$}이므로 이 수들은 $3$의 {배수}가 아니다. 그래서 $\\frac{1}{3}$은 분모를 $10$, $100$, $1000$으로 바꿀 수 없다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6b7ac2806ddbf8bfc84b56ebd1021471e52198037aec2cbf8f54cd4dbf28d4b3",
+      "questionRevision": "planning-e5e6-20261006-6b7ac2806ddb",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,1265 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-3-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양은 쌓기나무가 가로로 $2$칸 놓인 모양입니다. 앞에서 보니 왼쪽 줄은 $2$층, 오른쪽 줄은 $1$층입니다. 쌓기나무는 모두 몇 개인지 구하고, 위에서 본 모양과 앞에서 본 모양을 각각 어떻게 사용했는지 설명하시오.",
+      "bAnswer": "$3$개이다. 위에서 본 모양으로 쌓기나무가 놓인 자리를 알고, 앞에서 본 모양으로 각 자리의 층수를 알아 $2+1=3$으로 구한다.",
+      "bGoal": "위에서 본 모양은 놓인 자리, 앞에서 본 모양은 높이를 알려 줌을 함께 활용한다.",
+      "bReason": "추상적인 '조건 맞추기' 대신 두 방향 정보의 역할을 구분하는 문항으로 바꾼다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위에서 본 모양으로 놓인 자리를 안다",
+            "위에서 본 모양은 쌓기나무가 놓인 칸을 알려 준다"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞에서 본 모양으로 높이를 안다",
+            "앞에서 본 모양은 각 줄의 층수를 알려 준다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$개"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 그림은 쌓기나무가 놓인 {자리}를 알려 준다. 앞에서 본 그림은 앞뒤로 겹치는 기둥들이 한 줄로 보일 때 그 줄의 보이는 {높이}를 알려 준다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자리",
+            "칸",
+            "위치"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이",
+            "층수"
+          ]
+        }
+      ],
+      "cReason": "C만읽어도쌓기나무그림의대상이보이게하고앞모양의높이는겹친줄의보이는높이라고명시한다. 숨은칸대응그림이나각자리실제높이를가정하지않는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "6f9b2bf97c45c324ac7b6da0370e4305afde222115c190c13386d5a960e0c456",
+      "sourceIndex": 330,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-3-c3",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "level": "상",
+        "kind": "방법",
+        "term": "여러 방향의 조건 맞추기",
+        "definition": "위·앞·옆에서 본 모양을 함께 써서 {모든 방향의 조건}을 만족하는 쌓기를 찾는다.",
+        "studentC": "위·앞·옆에서 본 모양을 함께 써서 □을 만족하는 쌓기를 찾는다.",
+        "answers": [
+          "모든 방향의 조건"
+        ]
+      },
+      "sourceFingerprint": "765fa6bcaa0eaa3bd9c713d34b4675323191558e66f0f578d4815614e6195b3d",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "자리",
+        "높이"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 그림은 쌓기나무가 놓인 □를 알려 준다. 앞에서 본 그림은 앞뒤로 겹치는 기둥들이 한 줄로 보일 때 그 줄의 보이는 □를 알려 준다.",
+      "cMarkedSentence": "쌓기나무를 위에서 본 그림은 쌓기나무가 놓인 {자리}를 알려 준다. 앞에서 본 그림은 앞뒤로 겹치는 기둥들이 한 줄로 보일 때 그 줄의 보이는 {높이}를 알려 준다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 그림은 쌓기나무가 놓인 □를 알려 준다. 앞에서 본 그림은 앞뒤로 겹치는 기둥들이 한 줄로 보일 때 그 줄의 보이는 □를 알려 준다.",
+      "cSlotAnswers": [
+        {
+          "key": "자리",
+          "equivalents": [
+            "칸",
+            "위치"
+          ]
+        },
+        {
+          "key": "높이",
+          "equivalents": [
+            "층수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양은 쌓기나무가 가로로 $2$칸 놓인 모양입니다. 앞에서 보니 왼쪽 줄은 $2$층, 오른쪽 줄은 $1$층입니다. 쌓기나무는 모두 몇 개인지 구하고, 위에서 본 모양과 앞에서 본 모양을 각각 어떻게 사용했는지 설명하시오.",
+        "answer": "$3$개이다. 위에서 본 모양으로 쌓기나무가 놓인 자리를 알고, 앞에서 본 모양으로 각 자리의 층수를 알아 $2+1=3$으로 구한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위에서 본 모양으로 놓인 자리를 안다",
+              "위에서 본 모양은 쌓기나무가 놓인 칸을 알려 준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞에서 본 모양으로 높이를 안다",
+              "앞에서 본 모양은 각 줄의 층수를 알려 준다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 그림은 쌓기나무가 놓인 {자리}를 알려 준다. 앞에서 본 그림은 앞뒤로 겹치는 기둥들이 한 줄로 보일 때 그 줄의 보이는 {높이}를 알려 준다.",
+        "acceptedAnswers": [
+          [
+            "자리",
+            "칸",
+            "위치"
+          ],
+          [
+            "높이",
+            "층수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b188dfafb5959170bf46058c3ac327c6d82f3b1e7b73e439aadb9c98f75d0185",
+      "questionRevision": "planning-e5e6-20261006-b188dfafb595",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-c2",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양의 각 칸에 쌓인 쌓기나무 개수가 적혀 있다. 쌓기나무의 전체 개수를 구하는 방법을 쓰시오.",
+      "bAnswer": "각 칸에 적힌 수를 모두 더한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 칸의 수를 모두 더한다",
+            "적힌 수의 합을 구한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "칸마다 쌓은 개수를 합해 전체 개수를 구하는 방법을 말한다.",
+      "bReason": "수의 의미를 전체 개수 계산에 연결하는 기본 방법이다.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 그림의 각 칸에 그 자리에 쌓은 개수를 적었다. 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 {$6$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$",
+            "$6$개"
+          ]
+        }
+      ],
+      "cReason": "숫자가각자리의쌓은개수라는뜻을C에도명시해야전체합으로읽을수있다. 그림없이세자리의합6을확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "a31fc3d062d637e9bca822b14df0638614104ee12faebf8b2344dcff67cff74f",
+      "sourceIndex": 332,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-4-c2",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "level": "중",
+        "kind": "방법",
+        "term": "높이 수로 전체 개수 구하기",
+        "definition": "위에서 본 각 칸의 수를 {모두 더하면} 쌓기나무의 전체 개수를 알 수 있다.",
+        "studentC": "위에서 본 각 칸의 수를 □ 쌓기나무의 전체 개수를 알 수 있다.",
+        "answers": [
+          "모두 더하면"
+        ]
+      },
+      "sourceFingerprint": "4c875edc0e75d7472223bffa35458287fc2a27f727081f7ce94f7f0bba672e10",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$6$"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 그림의 각 칸에 그 자리에 쌓은 개수를 적었다. 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 □개이다.",
+      "cMarkedSentence": "쌓기나무를 위에서 본 그림의 각 칸에 그 자리에 쌓은 개수를 적었다. 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 {$6$}개이다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 그림의 각 칸에 그 자리에 쌓은 개수를 적었다. 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": [
+            "$6$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양의 각 칸에 쌓인 쌓기나무 개수가 적혀 있다. 쌓기나무의 전체 개수를 구하는 방법을 쓰시오.",
+        "answer": "각 칸에 적힌 수를 모두 더한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 칸의 수를 모두 더한다",
+              "적힌 수의 합을 구한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 그림의 각 칸에 그 자리에 쌓은 개수를 적었다. 세 칸에 $2$, $1$, $3$이 적혀 있으면 쌓기나무는 모두 {$6$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$6$",
+            "$6$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "42afdd9bfd653cf9e2e2ccf03ef1d007670c70c99b6e36413da6306746770ccd",
+      "questionRevision": "planning-e5e6-20261006-42afdd9bfd65",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "위에서 본 모양의 각 칸에 쌓인 쌓기나무 개수가 적혀 있다. 이 모양을 앞에서 볼 때, 앞뒤로 겹치는 칸들이 있으면 그 줄의 높이를 어떻게 정하는지 설명하시오.",
+      "bAnswer": "앞뒤로 겹치는 칸들에 적힌 수 중 가장 큰 수만큼의 높이로 그린다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "겹치는 칸들 중 가장 큰 수",
+            "겹치는 칸 중 가장 높은 쌓기나무의 높이",
+            "겹치는 칸 수들의 최댓값"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "겹치는 칸 중 가장 높은 것으로 앞이나 옆에서 본 높이를 정하는 방법을 말한다.",
+      "bReason": "앞·옆 모양 그리기의 중심 방법이라 일반 규칙으로 묻고 xc10, xc11 B를 대신한다.",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위에서 본 그림의 각 칸에는 그 자리에 쌓은 개수가 적혀 있다. 앞에서 본 모양을 그리려면, 앞뒤로 겹치는 칸에 적힌 수 중 {가장 큰 수}만큼의 높이로 그린다.",
+      "cReason": "C원문은칸의수와그림종류가없어무슨큰수를골라야하는지모호했다. 위그림의개수와앞뒤겹침조건을명시하고최댓값이라는같은선택을인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 큰 수",
+            "제일 큰 수",
+            "최댓값"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "19d724c94a4ccae0c6a0d75058262288ae5ca99c7db59b41b9d42c039c6aa1ac",
+      "sourceIndex": 333,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-4-c3",
+        "section": "초6::2-3 공간과 입체::2-3-4 쌓은 모양과 쌓기나무의 개수 알아보기 (3)",
+        "level": "상",
+        "kind": "방법",
+        "term": "위에서 본 모양에 수를 쓴 것으로 앞·옆 모양 그리기",
+        "definition": "바라보는 방향으로 겹치는 칸들에서 {가장 큰 수}를 골라, 그만큼의 높이를 그린다.",
+        "studentC": "바라보는 방향으로 겹치는 칸들에서 □를 골라, 그만큼의 높이를 그린다.",
+        "answers": [
+          "가장 큰 수"
+        ]
+      },
+      "sourceFingerprint": "9a5d6c843391405daa8f623a8d0e68e694e3d672d3d1eaa95de17844c4fb8315",
+      "draftEvidence": "evidence/section-096-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "가장 큰 수"
+      ],
+      "cStudentAfter": "쌓기나무를 위에서 본 그림의 각 칸에는 그 자리에 쌓은 개수가 적혀 있다. 앞에서 본 모양을 그리려면, 앞뒤로 겹치는 칸에 적힌 수 중 □만큼의 높이로 그린다.",
+      "cMarkedSentence": "쌓기나무를 위에서 본 그림의 각 칸에는 그 자리에 쌓은 개수가 적혀 있다. 앞에서 본 모양을 그리려면, 앞뒤로 겹치는 칸에 적힌 수 중 {가장 큰 수}만큼의 높이로 그린다.",
+      "cStudentSentence": "쌓기나무를 위에서 본 그림의 각 칸에는 그 자리에 쌓은 개수가 적혀 있다. 앞에서 본 모양을 그리려면, 앞뒤로 겹치는 칸에 적힌 수 중 □만큼의 높이로 그린다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 큰 수",
+          "equivalents": [
+            "제일 큰 수",
+            "최댓값"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "위에서 본 모양의 각 칸에 쌓인 쌓기나무 개수가 적혀 있다. 이 모양을 앞에서 볼 때, 앞뒤로 겹치는 칸들이 있으면 그 줄의 높이를 어떻게 정하는지 설명하시오.",
+        "answer": "앞뒤로 겹치는 칸들에 적힌 수 중 가장 큰 수만큼의 높이로 그린다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "겹치는 칸들 중 가장 큰 수",
+              "겹치는 칸 중 가장 높은 쌓기나무의 높이",
+              "겹치는 칸 수들의 최댓값"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위에서 본 그림의 각 칸에는 그 자리에 쌓은 개수가 적혀 있다. 앞에서 본 모양을 그리려면, 앞뒤로 겹치는 칸에 적힌 수 중 {가장 큰 수}만큼의 높이로 그린다.",
+        "acceptedAnswers": [
+          [
+            "가장 큰 수",
+            "제일 큰 수",
+            "최댓값"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b95d3cebc2217ba926141a064f6f8fa51f86a1403a58a25da261cdeae5be0d8e",
+      "questionRevision": "planning-e5e6-20261006-b95d3cebc221",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-6-c1",
+      "bDecision": "revise",
+      "bPrompt": "같은 크기의 쌓기나무를 면 전체가 맞닿도록 붙여 한 덩어리로 만든다. 돌려서 꼭 맞게 포개지는 모양은 같은 모양으로 본다. $2$개로 만든 모양은 한 가지뿐이다. 개수는 같지만 서로 다른 모양을 만들려면 적어도 몇 개가 필요한지 쓰고, 다른 모양을 만드는 방법을 설명하시오.",
+      "bAnswer": "쌓기나무가 $3$개 이상 필요하다. 개수는 그대로 두고 붙이는 위치를 바꾸어 만든다.",
+      "bGoal": "모양을 바꾸려면 개수가 아니라 붙이는 위치를 바꾼다는 것과 최소 개수 $3$개를 이해한다.",
+      "bReason": "두블록한모양이라는사실은면전체연결과돌림에따른동일모양약속이있어야맞다. 실제질문에그조건을보여다른붙임위치를찾는목표를남긴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$개 이상"
+          ]
+        },
+        {
+          "anyOf": [
+            "붙이는 위치를 바꾼다",
+            "붙이는 자리를 바꾼다",
+            "붙이는 방법을 바꾼다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "같은 크기의 쌓기나무를 면 전체가 맞닿게 붙여 한 덩어리로 만든다. 돌려서 꼭 맞게 포개지는 모양은 같은 것으로 보면 $2$개로는 한 모양뿐이지만, {$3$}개 이상이면 붙이는 {위치}를 바꾸어 다른 모양을 만들 수 있다.",
+      "cReason": "면전체연결과돌린모양의동일성약속을C에도명시하여개수3과붙이는위치의목표가숨은조건에기대지않게한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "위치",
+            "자리",
+            "붙이는 위치"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "2d22cd73795358e4c40b3bfcf27c6e9b3527722ed9d8a250eecb4b330b0ca6fd",
+      "sourceIndex": 337,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-6-c1",
+        "section": "초6::2-3 공간과 입체::2-3-6 여러 가지 모양 만들기",
+        "level": "하",
+        "kind": "방법",
+        "term": "쌓기나무 모양 바꾸기",
+        "definition": "쌓기나무가 {$3$개 이상}이면, 개수를 그대로 두고 {붙이는 위치를 바꾸어} 다른 모양을 만들 수 있다.",
+        "studentC": "쌓기나무가 □이면, 개수를 그대로 두고 □ 다른 모양을 만들 수 있다.",
+        "answers": [
+          "$3$개 이상",
+          "붙이는 위치를 바꾸어"
+        ]
+      },
+      "sourceFingerprint": "7fc3fb4e921a8cc7a0735b62c330a6db4ff1633ed3f8072453215378fc037239",
+      "draftEvidence": "evidence/section-098-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "위치"
+      ],
+      "cStudentAfter": "같은 크기의 쌓기나무를 면 전체가 맞닿게 붙여 한 덩어리로 만든다. 돌려서 꼭 맞게 포개지는 모양은 같은 것으로 보면 $2$개로는 한 모양뿐이지만, □개 이상이면 붙이는 □를 바꾸어 다른 모양을 만들 수 있다.",
+      "cMarkedSentence": "같은 크기의 쌓기나무를 면 전체가 맞닿게 붙여 한 덩어리로 만든다. 돌려서 꼭 맞게 포개지는 모양은 같은 것으로 보면 $2$개로는 한 모양뿐이지만, {$3$}개 이상이면 붙이는 {위치}를 바꾸어 다른 모양을 만들 수 있다.",
+      "cStudentSentence": "같은 크기의 쌓기나무를 면 전체가 맞닿게 붙여 한 덩어리로 만든다. 돌려서 꼭 맞게 포개지는 모양은 같은 것으로 보면 $2$개로는 한 모양뿐이지만, □개 이상이면 붙이는 □를 바꾸어 다른 모양을 만들 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "위치",
+          "equivalents": [
+            "자리",
+            "붙이는 위치"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 크기의 쌓기나무를 면 전체가 맞닿도록 붙여 한 덩어리로 만든다. 돌려서 꼭 맞게 포개지는 모양은 같은 모양으로 본다. $2$개로 만든 모양은 한 가지뿐이다. 개수는 같지만 서로 다른 모양을 만들려면 적어도 몇 개가 필요한지 쓰고, 다른 모양을 만드는 방법을 설명하시오.",
+        "answer": "쌓기나무가 $3$개 이상 필요하다. 개수는 그대로 두고 붙이는 위치를 바꾸어 만든다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개 이상"
+            ]
+          },
+          {
+            "anyOf": [
+              "붙이는 위치를 바꾼다",
+              "붙이는 자리를 바꾼다",
+              "붙이는 방법을 바꾼다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 크기의 쌓기나무를 면 전체가 맞닿게 붙여 한 덩어리로 만든다. 돌려서 꼭 맞게 포개지는 모양은 같은 것으로 보면 $2$개로는 한 모양뿐이지만, {$3$}개 이상이면 붙이는 {위치}를 바꾸어 다른 모양을 만들 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "위치",
+            "자리",
+            "붙이는 위치"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "191e2bcbc2b7d2ec3a7382bbbb280260233396ff00f89cb9d61e5aab74f91d53",
+      "questionRevision": "planning-e5e6-20261006-191e2bcbc2b7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-c4",
+      "bDecision": "revise",
+      "bPrompt": "비 $3:5$의 두 항에 $0$을 곱하면 어떤 비가 되는지 쓰고, 이 비가 처음 비의 비율을 나타내지 못하는 까닭을 설명하시오.",
+      "bAnswer": "$0:0$이 된다. 기준량이 $0$이 되어 $0\\div0$을 계산할 수 없으므로 처음 비의 비율 $\\frac{3}{5}$을 나타내지 못한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0:0$이 된다",
+            "두 항이 모두 $0$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "기준량이 $0$이 되어 $0$으로 나눌 수 없으므로 비율을 구할 수 없다",
+            "$0\\div0$은 구할 수 없어 처음 비율을 나타내지 못한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "$0$을 곱하면 비의 정보가 사라져 비의 성질에 쓸 수 없음을 설명한다.",
+      "bReason": "처음비와같은관계가아니다는단순결론대신기준량0으로나눌수없다는원인을설명한다. 모범답도그원인에맞춘다.",
+      "cDecision": "revise",
+      "cAfter": "비 $3:5$의 두 항에 $0$을 곱하면 {$0:0$}이 되어 처음 비의 비율을 {구할 수 없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0:0$",
+            "$0$ 대 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "구할 수 없다",
+            "나타낼 수 없다",
+            "알 수 없다"
+          ]
+        }
+      ],
+      "cReason": "기준이 되는 양이라는 맥락 없는 빈칸을 실제 비의 결과와 결론으로 바꾸었다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "0d48e709cd8c1fb9591e895323503798442f02c67efe72bd651f4a55590f5695",
+      "sourceIndex": 341,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-1-c4",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "$0$으로 곱하면 안 되는 까닭",
+        "definition": "비의 두 항에 $0$을 곱하면 {기준이 되는 양도 $0$}이 되어 원래의 비율을 나타낼 수 없다.",
+        "studentC": "비의 두 항에 $0$을 곱하면 □이 되어 원래의 비율을 나타낼 수 없다.",
+        "answers": [
+          "기준이 되는 양도 $0$"
+        ]
+      },
+      "sourceFingerprint": "8c3ac157166b21a098990b95f07bb73ddf3db20ebabef53d364a05a832b3a97e",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$0:0$",
+        "구할 수 없다"
+      ],
+      "cStudentAfter": "비 $3:5$의 두 항에 $0$을 곱하면 □이 되어 처음 비의 비율을 □.",
+      "cMarkedSentence": "비 $3:5$의 두 항에 $0$을 곱하면 {$0:0$}이 되어 처음 비의 비율을 {구할 수 없다}.",
+      "cStudentSentence": "비 $3:5$의 두 항에 $0$을 곱하면 □이 되어 처음 비의 비율을 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$0:0$",
+          "equivalents": [
+            "$0$ 대 $0$"
+          ]
+        },
+        {
+          "key": "구할 수 없다",
+          "equivalents": [
+            "나타낼 수 없다",
+            "알 수 없다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $3:5$의 두 항에 $0$을 곱하면 어떤 비가 되는지 쓰고, 이 비가 처음 비의 비율을 나타내지 못하는 까닭을 설명하시오.",
+        "answer": "$0:0$이 된다. 기준량이 $0$이 되어 $0\\div0$을 계산할 수 없으므로 처음 비의 비율 $\\frac{3}{5}$을 나타내지 못한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0:0$이 된다",
+              "두 항이 모두 $0$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준량이 $0$이 되어 $0$으로 나눌 수 없으므로 비율을 구할 수 없다",
+              "$0\\div0$은 구할 수 없어 처음 비율을 나타내지 못한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비 $3:5$의 두 항에 $0$을 곱하면 {$0:0$}이 되어 처음 비의 비율을 {구할 수 없다}.",
+        "acceptedAnswers": [
+          [
+            "$0:0$",
+            "$0$ 대 $0$"
+          ],
+          [
+            "구할 수 없다",
+            "나타낼 수 없다",
+            "알 수 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "066ce4a92d136600f086daaefe5bb0cb3c7d7141032d5afa4798419216562e94",
+      "questionRevision": "planning-e5e6-20261006-066ce4a92d13",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "두 항이 소수인 비 $0.6:0.9$를 간단한 자연수의 비로 나타내려고 한다. 소수를 없애기 위해 두 항에 어떻게 해야 하는지, 그다음 무엇을 해야 하는지 설명하고 결과를 쓰시오.",
+      "bAnswer": "두 항에 같은 수 $10$을 곱해 $6:9$로 만든 뒤, 두 수를 최대공약수 $3$으로 나누어 $2:3$으로 나타낸다.",
+      "bGoal": "소수의 비를 같은 수 곱하기와 약분으로 자연수의 비로 바꾸는 과정을 설명한다.",
+      "bReason": "100배후60:90을공약수30으로나누는방법도같은간단한비2:3이다.10배·공약수3만강요하지않고자연수화와공약수나눔의일반방법을인정한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 항에 같은 $10$의 배수를 곱해 둘 다 자연수로 만든다",
+            "두 항에 같은 수를 곱해 자연수로 만든다",
+            "두 항에 $10$을 곱해 자연수로 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수가 된 두 수를 공약수로 나눈다",
+            "자연수가 된 두 수를 최대공약수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$0.6:0.9$의 두 항에 같은 수 {$10$}을 곱하면 $6:9$가 되고, 최대공약수 {$3$}으로 나누면 {$2:3$}이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$",
+            "$2 : 3$"
+          ]
+        }
+      ],
+      "cReason": "'오른쪽' 한 낱말보다 실제 곱셈과 약분의 값을 채우게 하는 편이 과정 이해에 맞다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "8eaf5b64e34a566191710033add9fb2bd29e38b40d2f3a770746c96cff48f4c4",
+      "sourceIndex": 345,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-2-c2",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "level": "중",
+        "kind": "방법",
+        "term": "소수의 비 고치기",
+        "definition": "두 항이 $0$보다 큰 소수인 비를 간단한 자연수의 비로 고치려면 두 항에 같은 $10$, $100$, $1000$ 등을 곱해 소수점을 {오른쪽}으로 옮겨 모두 자연수로 만든 뒤, 최대공약수로 나눈다.",
+        "studentC": "두 항이 $0$보다 큰 소수인 비를 간단한 자연수의 비로 고치려면 두 항에 같은 $10$, $100$, $1000$ 등을 곱해 소수점을 □으로 옮겨 모두 자연수로 만든 뒤, 최대공약수로 나눈다.",
+        "answers": [
+          "오른쪽"
+        ]
+      },
+      "sourceFingerprint": "ade976f41a99526c3adeea6c8838245a2dd012b45cdbc0a3f714cb6e7b25e3cb",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$3$",
+        "$2:3$"
+      ],
+      "cStudentAfter": "$0.6:0.9$의 두 항에 같은 수 □을 곱하면 $6:9$가 되고, 최대공약수 □으로 나누면 □이 된다.",
+      "cMarkedSentence": "$0.6:0.9$의 두 항에 같은 수 {$10$}을 곱하면 $6:9$가 되고, 최대공약수 {$3$}으로 나누면 {$2:3$}이 된다.",
+      "cStudentSentence": "$0.6:0.9$의 두 항에 같은 수 □을 곱하면 $6:9$가 되고, 최대공약수 □으로 나누면 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$2:3$",
+          "equivalents": [
+            "$2 : 3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 항이 소수인 비 $0.6:0.9$를 간단한 자연수의 비로 나타내려고 한다. 소수를 없애기 위해 두 항에 어떻게 해야 하는지, 그다음 무엇을 해야 하는지 설명하고 결과를 쓰시오.",
+        "answer": "두 항에 같은 수 $10$을 곱해 $6:9$로 만든 뒤, 두 수를 최대공약수 $3$으로 나누어 $2:3$으로 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 항에 같은 $10$의 배수를 곱해 둘 다 자연수로 만든다",
+              "두 항에 같은 수를 곱해 자연수로 만든다",
+              "두 항에 $10$을 곱해 자연수로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수가 된 두 수를 공약수로 나눈다",
+              "자연수가 된 두 수를 최대공약수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.6:0.9$의 두 항에 같은 수 {$10$}을 곱하면 $6:9$가 되고, 최대공약수 {$3$}으로 나누면 {$2:3$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$2:3$",
+            "$2 : 3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d199dce0d401a3becac592b732fe4027f0d91f20b0885c41ee641f9d53ccfaef",
+      "questionRevision": "planning-e5e6-20261006-d199dce0d401",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "분수로 된 비 $\\frac{1}{2}:\\frac{2}{3}$를 자연수의 비로 바꾸려고 한다. 두 항에 같은 수를 곱하는 방법을 그 수와 두 분모의 관계로 설명하고, 가장 간단한 자연수의 비까지 나타내시오.",
+      "bAnswer": "두 분모 $2$와 $3$의 공배수인 $6$을 두 항에 곱한다. $\\frac{1}{2}:\\frac{2}{3}=3:4$이다.",
+      "bGoal": "분모의 공배수를 곱해 분수의 비를 자연수의 비로 바꾸는 방법을 안다.",
+      "bReason": "공배수12를곱하면6:8도자연수의비로맞다. 최종답3:4만채점하려면가장간단한자연수비까지요청해야하며공배수선택의일반방법은그대로허용한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분모의 공배수를 두 항에 곱한다",
+            "분모 $2$와 $3$의 공배수 $6$을 곱한다",
+            "두 분모의 최소공배수를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3:4$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 {$3:4$}가 된다. $6$은 분모 $2$와 $3$의 {공배수}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3:4$",
+            "$3 : 4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "공배수",
+            "최소공배수"
+          ]
+        }
+      ],
+      "cReason": "맥락 없는 '□를 곱한다'를 실제 분수의 비와 곱셈으로 바꾸어 판단 근거를 준다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "2bbc6cc7d8164ea38fae0190e387f7f67eef5a6008c1c9a8e82a6db913a124fb",
+      "sourceIndex": 346,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-2-c3",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "level": "상",
+        "kind": "방법",
+        "term": "분수의 비 고치기",
+        "definition": "분수로 된 두 항에 분모들의 {공배수}를 함께 곱하면 자연수의 비로 바꿀 수 있다.",
+        "studentC": "분수로 된 두 항에 분모들의 □를 함께 곱하면 자연수의 비로 바꿀 수 있다.",
+        "answers": [
+          "공배수"
+        ]
+      },
+      "sourceFingerprint": "5aa06f0bc34776b6b5e76a24f7336c813a57a7f2147b8ec5f3c23aa6eb4750fb",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3:4$",
+        "공배수"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 □가 된다. $6$은 분모 $2$와 $3$의 □이다.",
+      "cMarkedSentence": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 {$3:4$}가 된다. $6$은 분모 $2$와 $3$의 {공배수}이다.",
+      "cStudentSentence": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 □가 된다. $6$은 분모 $2$와 $3$의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3:4$",
+          "equivalents": [
+            "$3 : 4$"
+          ]
+        },
+        {
+          "key": "공배수",
+          "equivalents": [
+            "최소공배수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수로 된 비 $\\frac{1}{2}:\\frac{2}{3}$를 자연수의 비로 바꾸려고 한다. 두 항에 같은 수를 곱하는 방법을 그 수와 두 분모의 관계로 설명하고, 가장 간단한 자연수의 비까지 나타내시오.",
+        "answer": "두 분모 $2$와 $3$의 공배수인 $6$을 두 항에 곱한다. $\\frac{1}{2}:\\frac{2}{3}=3:4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 분모의 공배수를 두 항에 곱한다",
+              "분모 $2$와 $3$의 공배수 $6$을 곱한다",
+              "두 분모의 최소공배수를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3:4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}:\\frac{2}{3}$의 두 항에 $6$을 곱하면 자연수의 비 {$3:4$}가 된다. $6$은 분모 $2$와 $3$의 {공배수}이다.",
+        "acceptedAnswers": [
+          [
+            "$3:4$",
+            "$3 : 4$"
+          ],
+          [
+            "공배수",
+            "최소공배수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "08b84c054a1956f731733fdd86885170c422655550a25e761246b4b2d9c3eb46",
+      "questionRevision": "planning-e5e6-20261006-08b84c054a19",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "비례식에서 왼쪽 비의 비율과 오른쪽 비의 비율은 서로 어떤 관계인가? $3:4=6:8$에서 두 비의 비율을 각각 구하시오.",
+      "bAnswer": "두 비의 비율은 서로 같다. $3:4$의 비율은 $\\frac{3}{4}$이고, $6:8$의 비율은 $\\frac{6}{8}=\\frac{3}{4}$이다.",
+      "bGoal": "비례식의 두 비율이 같다는 관계를 예로 확인한다.",
+      "bReason": "각각비율값을쓰라는요청에두값의대응을명시하되같은소수0.75도인정한다. 분수만쓰라는불필요한형태제한을없앤다.",
+      "cDecision": "revise",
+      "cAfter": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 {같다}.",
+      "cReason": "원문 빈칸 '몇 배인지'는 맥락 없이 어색해 구체적인 두 비율 비교로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "서로 같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 비의 비율이 같다",
+            "두 비율이 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "왼쪽 비율은 $\\frac{3}{4}$이고 오른쪽 비율도 $\\frac{6}{8}=\\frac{3}{4}$이다",
+            "두 비율은 모두 $0.75$이다",
+            "두 비율은 모두 $\\frac{3}{4}$이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "060d6da564a2a7e49d0a3e3b8352a31b03f2a4b54dc8c6716a942e441c186325",
+      "sourceIndex": 348,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-3-c2",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "level": "중",
+        "kind": "정의",
+        "term": "비율",
+        "definition": "비례식의 양쪽 비에서 비교하는 양이 기준량의 {몇 배인지} 나타낸 값은 서로 같다.",
+        "studentC": "비례식의 양쪽 비에서 비교하는 양이 기준량의 □ 나타낸 값은 서로 같다.",
+        "answers": [
+          "몇 배인지"
+        ]
+      },
+      "sourceFingerprint": "dff0fefeddecee4b0e30cba5da9f150351d6f352680e513b03662006378c32e9",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 □.",
+      "cMarkedSentence": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 {같다}.",
+      "cStudentSentence": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "서로 같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식에서 왼쪽 비의 비율과 오른쪽 비의 비율은 서로 어떤 관계인가? $3:4=6:8$에서 두 비의 비율을 각각 구하시오.",
+        "answer": "두 비의 비율은 서로 같다. $3:4$의 비율은 $\\frac{3}{4}$이고, $6:8$의 비율은 $\\frac{6}{8}=\\frac{3}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 비의 비율이 같다",
+              "두 비율이 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "왼쪽 비율은 $\\frac{3}{4}$이고 오른쪽 비율도 $\\frac{6}{8}=\\frac{3}{4}$이다",
+              "두 비율은 모두 $0.75$이다",
+              "두 비율은 모두 $\\frac{3}{4}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비례식 $3:4=6:8$에서 두 비의 비율 $\\frac{3}{4}$과 $\\frac{6}{8}$은 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "서로 같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b027a9eba95c91c7e9f30284c7c26a38cd6e430fd24806059a21c85500e75ce8",
+      "questionRevision": "planning-e5e6-20261006-b027a9eba95c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "비 $3:5$의 비율을 구하려면 비교하는 양과 기준량 중 어느 것을 어느 것으로 나누어야 하는지 설명하시오. 그리고 $3:5$의 비율을 구하시오.",
+      "bAnswer": "비교하는 양을 기준량으로 나눈다. $3:5$에서 기준량은 $5$이므로 비율은 $\\frac{3}{5}$이다.",
+      "bGoal": "비율을 구하는 나눗셈의 방향을 설명하고 적용한다.",
+      "bReason": "분수3/5와소수0.6을같은비율로인정하는기준에맞게분수형태만쓰라는제한을없앤다. 비율의나눗셈방법과실제값은모두요청한다.",
+      "cDecision": "keep",
+      "cAfter": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+      "cReason": "비율 구하는 방법을 묻는 짧은 문장이고 '기준량으로 나눈'이 핵심 방법이라 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'기준량으로 나눈', '기준량으로 나누어 구한'은 같은 뜻이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비교하는 양을 기준량으로 나눈다",
+            "비교하는 양$\\div$기준량",
+            "기준량으로 비교하는 양을 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$",
+            "$0.6$",
+            "$3\\div5$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "58145d850410a3f11ef6565bffe3d1962619d65211d57eddfee9e08d780a1e40",
+      "sourceIndex": 349,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-3-c3",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "level": "중",
+        "kind": "공식",
+        "term": "비율을 구하는 식",
+        "definition": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+        "studentC": "각 비의 비율은 비교하는 양을 □ 값으로 확인한다.",
+        "answers": [
+          "기준량으로 나눈"
+        ]
+      },
+      "sourceFingerprint": "9d6869478dc495f6c4ef849fd8ff6c27d675d86b1a875cf4e4a9d6fc669df9df",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+      "cFrozenStudentSentence": "각 비의 비율은 비교하는 양을 □ 값으로 확인한다.",
+      "cProposedAnswers": [
+        "기준량으로 나눈"
+      ],
+      "cStudentAfter": "각 비의 비율은 비교하는 양을 □ 값으로 확인한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "기준량으로 나눈"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+      "cStudentSentence": "각 비의 비율은 비교하는 양을 □ 값으로 확인한다.",
+      "cSlotAnswers": [
+        {
+          "key": "기준량으로 나눈",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $3:5$의 비율을 구하려면 비교하는 양과 기준량 중 어느 것을 어느 것으로 나누어야 하는지 설명하시오. 그리고 $3:5$의 비율을 구하시오.",
+        "answer": "비교하는 양을 기준량으로 나눈다. $3:5$에서 기준량은 $5$이므로 비율은 $\\frac{3}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비교하는 양을 기준량으로 나눈다",
+              "비교하는 양$\\div$기준량",
+              "기준량으로 비교하는 양을 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{5}$",
+              "$0.6$",
+              "$3\\div5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각 비의 비율은 비교하는 양을 {기준량으로 나눈} 값으로 확인한다.",
+        "acceptedAnswers": [
+          [
+            "기준량으로 나눈"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6c555a81f38dea050a7fc28d765ec8c79c4b13c272e7499a59ba4ece6d6cf1a5",
+      "questionRevision": "planning-e5e6-20261006-6c555a81f38d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "비례식에서 빈칸이 있을 때, 양 끝의 곱과 가운데의 곱이 같다는 것을 이용해 빈칸을 구하는 방법을 설명하시오. $3:5=\\square:20$에서 $\\square$는 얼마입니까?",
+      "bAnswer": "두 곱을 식으로 쓰면 $5\\times\\square=3\\times20=60$이다. 빈칸에 곱해진 $5$가 $0$이 아니므로 $60$을 $5$로 나누어 $\\square=12$이다.",
+      "bGoal": "두 곱이 같다는 식을 세워 곱셈식에서 빈칸을 나눗셈으로 구하기",
+      "bReason": "절차(곱 식 세우기→나누기)를 설명하게 하고 예의 정확한 값도 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 {나누어} $\\square$를 구한다. 이때 $\\square$는 {$12$}이다.",
+      "cReason": "C슬롯뒤에빈칸을구한다가이어지므로나눈다는문장을끊는다. 나누어·나누면은계산방법을연결하는유효한표현이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어",
+            "나누면"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빈칸이 들어간 곱과 다른 쪽 곱이 같다는 식을 세운다",
+            "$5\\times\\square=3\\times20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱해진 수 $5$로 나눈다",
+            "$60$을 $5$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square=12$",
+            "$12$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "3aab117e420c4707ef3805dbbe7f28bc93dd7c2ab57a95d8fa7c06a39c133976",
+      "sourceIndex": 353,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-4-c3",
+        "section": "초6::2-4 비례식과 비례배분::2-4-4 비례식의 성질 알아보기",
+        "level": "상",
+        "kind": "방법",
+        "term": "비례식의 빈칸",
+        "definition": "곱의 같음을 이용해 빈칸과 한 수의 곱을 구한 뒤, 그 수가 $0$이 아니면 그 수로 {나누어} 빈칸을 찾는다.",
+        "studentC": "곱의 같음을 이용해 빈칸과 한 수의 곱을 구한 뒤, 그 수가 $0$이 아니면 그 수로 □ 빈칸을 찾는다.",
+        "answers": [
+          "나누어"
+        ]
+      },
+      "sourceFingerprint": "2da338df4c0cca146b6e8251465034bcc1dbaca5a96e856605c8ff140cd01013",
+      "draftEvidence": "evidence/section-102-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "나누어",
+        "$12$"
+      ],
+      "cStudentAfter": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 □ $\\square$를 구한다. 이때 $\\square$는 □이다.",
+      "cMarkedSentence": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 {나누어} $\\square$를 구한다. 이때 $\\square$는 {$12$}이다.",
+      "cStudentSentence": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 □ $\\square$를 구한다. 이때 $\\square$는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누어",
+          "equivalents": [
+            "나누면"
+          ]
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식에서 빈칸이 있을 때, 양 끝의 곱과 가운데의 곱이 같다는 것을 이용해 빈칸을 구하는 방법을 설명하시오. $3:5=\\square:20$에서 $\\square$는 얼마입니까?",
+        "answer": "두 곱을 식으로 쓰면 $5\\times\\square=3\\times20=60$이다. 빈칸에 곱해진 $5$가 $0$이 아니므로 $60$을 $5$로 나누어 $\\square=12$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "빈칸이 들어간 곱과 다른 쪽 곱이 같다는 식을 세운다",
+              "$5\\times\\square=3\\times20$"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱해진 수 $5$로 나눈다",
+              "$60$을 $5$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square=12$",
+              "$12$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\square\\times5=60$에서 $5$는 $0$이 아니므로 $60$을 $5$로 {나누어} $\\square$를 구한다. 이때 $\\square$는 {$12$}이다.",
+        "acceptedAnswers": [
+          [
+            "나누어",
+            "나누면"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3407865d403fcbcbf8440f99b945c6e5a8c913fea004ba9529fc9c47a33fa207",
+      "questionRevision": "planning-e5e6-20261006-3407865d403f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-5-c1",
+      "bDecision": "revise",
+      "bPrompt": "정해진 전체 양을 주어진 비로 나누는 일을 비례배분이라고 한다. 사탕 $20$개를 $2:3$으로 비례배분할 때, 나눈 두 몫이 만족해야 하는 조건을 설명하고 두 몫을 구하세요.",
+      "bAnswer": "나눈 두 몫의 비가 주어진 비 $2:3$과 같아야 한다. 두 몫은 $8$개와 $12$개이다.",
+      "bGoal": "비례배분은 몫들의 비가 주어진 비와 같게 전체를 나누는 일임을 이해한다.",
+      "bReason": "몫을간단히한다가아니라두몫의비를간단히한다는뜻을정확하게쓴다. 두몫의비조건과8·12개라는실제답을남긴다.",
+      "cDecision": "keep",
+      "cAfter": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+      "cReason": "짧은 정의 문장이고 몫의 비가 주어진 비와 같다는 조건만 묻는 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나눈 두 몫의 비가 주어진 비 $2:3$과 같다",
+            "두 몫의 비를 간단히 하면 $2:3$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 몫은 $8$개와 $12$개이다",
+            "$8$개, $12$개"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "synonymNotes": "C 답은 '주어진 비와 같게'와 같은 뜻이면 인정한다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0330-0360.json",
+      "codexFinalAmendedFromFingerprint": "d70bca426451ca9d5d10b05fe9c5b8b6a5f9a8c7fae8d0441bc0bd719cd12164",
+      "sourceIndex": 354,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-4-5-c1",
+        "section": "초6::2-4 비례식과 비례배분::2-4-5 비례배분",
+        "level": "하",
+        "kind": "정의",
+        "term": "비례배분",
+        "definition": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+        "studentC": "정해진 전체 양을 나눈 몫들의 비가 □ 나누는 일이 비례배분이다.",
+        "answers": [
+          "주어진 비와 같게"
+        ]
+      },
+      "sourceFingerprint": "7c01e50e25dcdfa40dabe88853471f4d1b5272311b6a5f08923eb293e3d113a4",
+      "draftEvidence": "evidence/section-103-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+      "cFrozenStudentSentence": "정해진 전체 양을 나눈 몫들의 비가 □ 나누는 일이 비례배분이다.",
+      "cProposedAnswers": [
+        "주어진 비와 같게"
+      ],
+      "cStudentAfter": "정해진 전체 양을 나눈 몫들의 비가 □ 나누는 일이 비례배분이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "주어진 비와 같게"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+      "cStudentSentence": "정해진 전체 양을 나눈 몫들의 비가 □ 나누는 일이 비례배분이다.",
+      "cSlotAnswers": [
+        {
+          "key": "주어진 비와 같게",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정해진 전체 양을 주어진 비로 나누는 일을 비례배분이라고 한다. 사탕 $20$개를 $2:3$으로 비례배분할 때, 나눈 두 몫이 만족해야 하는 조건을 설명하고 두 몫을 구하세요.",
+        "answer": "나눈 두 몫의 비가 주어진 비 $2:3$과 같아야 한다. 두 몫은 $8$개와 $12$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나눈 두 몫의 비가 주어진 비 $2:3$과 같다",
+              "두 몫의 비를 간단히 하면 $2:3$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 몫은 $8$개와 $12$개이다",
+              "$8$개, $12$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정해진 전체 양을 나눈 몫들의 비가 {주어진 비와 같게} 나누는 일이 비례배분이다.",
+        "acceptedAnswers": [
+          [
+            "주어진 비와 같게"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "46657136cc246d8e6f507f13400ef7274d3c1e2ec41178293e1e9d47baa81b6b",
+      "questionRevision": "planning-e5e6-20261006-46657136cc24",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,311 @@
+{
+  "studentDigest": "122a3917ecccd86d1f12da18984bbedec0fe1f22e1eeca58e55212f4d90fdb83",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "answer": "③",
+  "solution": "접는 선 PQ 위의 P는 움직이지 않고 A가 C로 옮겨지므로 AP=CP이고 ∠APQ=∠CPQ=x이다. AD와 BC가 평행하므로 ∠PQC=∠APQ=x이다. 따라서 삼각형 PCQ는 두 밑각이 같아 PC=QC이다.\nP에서 BC에 내린 수선의 발을 K라 하자. P가 AD의 내부에 있고 x가 예각이므로 K는 Q와 C 사이에 있다. 직사각형의 폭이 3 cm이므로 PK=3 cm이다. 직각삼각형 PQK에서 tan x=PK/QK=3이므로 QK=1 cm이다.\nAP=PC=QC=s cm라 하면 KC=QC-QK=(s-1) cm이다. 직각삼각형 PKC에 피타고라스 정리를 적용하면 s²=3²+(s-1)²이다. 정리하면 2s=10이므로 s=5이다.\n따라서 접기 전 AP의 길이는 5 cm이며 정답은 ③이다.",
+  "evidence": {
+    "questionNumber": 14,
+    "method": "independent-student-only-solve-before-author-answer-exposure",
+    "allowedInputHashes": [
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\blind\\SOLVE-BRIEF.md",
+        "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\blind\\student-problems.json",
+        "sha256": "72a8c16f5522a17ebe92f73bca4ae232bcd4c7a20143581ec34b73e97e58ec72"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\review-preview\\q11.png",
+        "sha256": "d6c32d9f2115165a105d474107ada2b16ab789e4c11ec6e36142945891853400"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\review-preview\\q14.png",
+        "sha256": "9b54480fe363db68649f20c40dadab8f567745bd3fd0ee890df4bda1fa2de484"
+      }
+    ],
+    "candidateAnswerBlindness": {
+      "newQ11AndQ14AuthorAnswersSeen": false,
+      "authorCandidateNotesOrSolutionsRead": false,
+      "parentPackagePrivateOrPreviewHtmlRead": false,
+      "solutionPngsRead": false,
+      "originalAnswerUsedAsEvidence": false,
+      "questionOnlyPreviewNamesViewed": [
+        "q11.png",
+        "q14.png"
+      ],
+      "questionOnlyPreviewViewedWith": "view_image",
+      "directoryEnumerationLimit": "PNG filenames were listed to locate the two question-only images; only q11.png and q14.png were opened. Both answer/solution accordions were visibly closed."
+    },
+    "independentCalculation": {
+      "runtime": "Python standard library fractions.Fraction, math and ElementTree; no model/API calls",
+      "executedCode": "import json,math,pathlib,hashlib,xml.etree.ElementTree as ET\nfrom fractions import Fraction as F\nbase=pathlib.Path('C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r4')\nstudent=json.loads((base/'blind/student-problems.json').read_text(encoding='utf-8'))\ndef sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()\ndef pair_value(p):return float(p[0])+float(p[1])*math.sqrt(3)\ndef pair_text(p):return {'rational':str(p[0]),'sqrt3Coefficient':str(p[1])}\nchoices11=[(F(3),F(3)),(F(6),F(3)),(F(6),F(6)),(F(9),F(3)),(F(12),F(3))]\ndc=(F(0),F(3));ad=F(6);bc=(F(6),F(3))\nchecks11=[]\nfor i,L in enumerate(choices11,1):\n bd=(L[0]-dc[0],L[1]-dc[1]);res=(bd[0]-ad,bd[1])\n checks11.append({'number':i,'BC':pair_text(L),'BD':pair_text(bd),'BDMinusAD':pair_text(res),'BDPositive':pair_value(bd)>0,'matchesIsoscelesCondition':res==(0,0),'outerAngleDegreesAuxiliary':math.degrees(math.atan2(3,pair_value(L)))})\nassert [c['number'] for c in checks11 if c['matchesIsoscelesCondition']]==[2]\nassert 3**2+27==ad**2 and 180-150-15==15\ns=(F(3)**2+F(1)**2)/(2*F(1))\nassert s==5 and s*s==(s-1)**2+9\nchecks14=[{'number':i,'APCm':v,'QKCm':'1','KCCm':str(F(v)-1),'rightTriangleResidualCm2':str(F(v)**2-(F(v)-1)**2-9),'positiveKC':F(v)>1,'valid':F(v)**2-(F(v)-1)**2-9==0} for i,v in enumerate((3,4,5,6,9),1)]\nassert [c['number'] for c in checks14 if c['valid']]==[3]\nA=(F(0),F(3));B=(F(0),F(0));C=(F(9),F(0));D=(F(9),F(3));P=(F(5),F(3));Q=(F(4),F(0));K=(F(5),F(0));BP=(F(36,5),F(-12,5))\ndef dist2(U,V):return sum((a-b)**2 for a,b in zip(U,V))\ndef mid(U,V):return tuple((a+b)/2 for a,b in zip(U,V))\ndef on_crease(U):return U[1]==3*(U[0]-4)\nH=mid(A,C);J=mid(B,BP)\nassert dist2(P,A)==dist2(P,C)==dist2(Q,A)==dist2(Q,C)==25\nassert on_crease(H) and on_crease(J) and on_crease(P) and on_crease(Q)\nassert dist2(P,A)==dist2(P,C) and dist2(Q,A)==dist2(Q,C)\nassert dist2(P,B)==dist2(P,BP) and dist2(Q,B)==dist2(Q,BP)\nassert dist2(C,BP)==9 and dist2(Q,BP)==16\nassert dist2(P,C)+dist2(C,BP)==dist2(P,BP)==34\nassert 0<P[0]<D[0] and 0<Q[0]<C[0] and 0<Q[0]<K[0]<C[0]\nassert dist2(P,Q)==10 and dist2(P,C)==dist2(C,Q)==25\nassert 0<H[0]-Q[0]<P[0]-Q[0]\ndef area(poly):\n return abs(sum(poly[i][0]*poly[(i+1)%len(poly)][1]-poly[(i+1)%len(poly)][0]*poly[i][1] for i in range(len(poly)))/2)\nassert area([A,P,Q,B])==area([C,P,Q,BP])==F(27,2)\nx=math.degrees(math.atan(3))\nassert 45<x<90 and 0<180-2*x<90\nfigs={}\nfor row in student:\n for fig in row['figures']:\n  file=base/'blind'/fig['svgPath'];assert sha(file)==fig['sha256']\n  tree=ET.fromstring(file.read_bytes())\n  labels={e.attrib['data-label']:(F(e.attrib['data-px']),F(e.attrib['data-py'])) for e in tree.iter() if 'data-label' in e.attrib and e.attrib.get('data-px')!='0.000'}\n  figs[file.stem]={'sha256':sha(file),'labels':{k:[str(a),str(b)] for k,(a,b) in labels.items()},'points':labels}\ng11=figs['q11-1']['points']\nh=float(g11['C'][1]-g11['A'][1]);length=float(g11['C'][0]-g11['B'][0]);inner=float(g11['C'][0]-g11['D'][0]);baseleft=float(g11['D'][0]-g11['B'][0])\nassert h==48 and baseleft==96 and abs(inner-48*math.sqrt(3))<0.001\nassert g11['B'][1]==g11['D'][1]==g11['C'][1] and g11['A'][0]==g11['C'][0]\nfigs['q11-1']['geometry']={'ACPixels':h,'BDPixels':baseleft,'DCPixels':inner,'BCPixels':length,'scalePixelsPerCmAfterSolve':16,'DCExpectedPixels':48*math.sqrt(3),'DCErrorPixels':inner-48*math.sqrt(3),'outerAngleDegrees':math.degrees(math.atan2(h,length)),'innerAngleDegrees':math.degrees(math.atan2(h,inner))}\ng1=figs['q14-1']['points'];g2=figs['q14-2']['points']\nfor a,b in [('P','P'),('Q','Q'),('D','D'),('C','C(A)')]:\n delta=tuple(g2[b][i]-g1[a][i] for i in (0,1))\n assert delta==(F('-105.611'),F('0.573'))\nassert g1['A'][1]==g1['P'][1]==g1['D'][1] and g1['B'][1]==g1['Q'][1]==g1['C'][1]\nassert float(g1['P'][0]-g1['A'][0])==100 and float(g1['D'][0]-g1['P'][0])==80\nassert float(g1['C'][1]-g1['D'][1])==60 and float(g1['Q'][0]-g1['B'][0])==80\nbp_svg=(g2['Q'][0]+20*(BP[0]-4),g2['Q'][1]-20*BP[1])\nassert bp_svg==g2['B\\u2032']\nfigs['q14-1']['geometry']={'scalePixelsPerCmAfterSolve':20,'ABPixels':60,'APPixels':100,'PDPixels':80,'BCPixels':180,'BQPixels':80,'QCPixels':100,'PQSquaredPixels2':4000,'PAndQInterior':True}\nfigs['q14-2']['geometry']={'translationFromBeforeFoldSvg':['-105.611','0.573'],'BPExactExpectedSvg':[str(v) for v in bp_svg],'BPMatchesDrawnLabelPoint':True,'CPcm':'5','CQcm':'5','CBPrimeCm':'3','QBPrimeCm':'4','foldedAreaCm2':'27/2','originalLeftAreaCm2':'27/2','rightAngleAtCVerifiedByPythagoras':True}\nfor f in figs.values():del f['points']\noutput={'q11':{'results':{'ACcm':'3','ADcm':'6','DCcm':'3sqrt(3)','BDcm':'6','BCcm':'6+3sqrt(3)','angleADB':'150','angleBAD':'15','angleDAC':'60','angleBAC':'75','validChoiceNumbers':[2],'BCapproxCm':pair_value(bc)},'choiceChecks':checks11,'existenceCoordinatesAuxiliary':{'B':['0','0'],'D':['6','0'],'C':['6+3sqrt(3)','0'],'A':['6+3sqrt(3)','3']}},\n'q14':{'results':{'APcm':'5','PCcm':'5','QCcm':'5','QKcm':'1','KCcm':'4','PKcm':'3','ADcm':'9','BCcm':'9','PDcm':'4','BQcm':'4','PQSquaredCm2':'10','xApproxDegrees':x,'anglePCQApproxDegrees':180-2*x,'validChoiceNumbers':[3],'positiveLinearEquation':'2s=10'},'choiceChecks':checks14,'existenceCoordinatesAuxiliary':{k:[str(v) for v in p] for k,p in {'A':A,'B':B,'C':C,'D':D,'P':P,'Q':Q,'K':K,'BPrime':BP,'HMidAC':H,'JMidBBPrime':J}.items()},'foldDistanceSquaresCm2':{'PA2':'25','PC2':'25','QA2':'25','QC2':'25','PB2':'34','PBPrime2':'34','QB2':'16','QBPrime2':'16','CBPrime2':'9'},'leftPanelAreaBeforeAndAfterCm2':'27/2'},\n'figures':figs,'inputHashes':[{'path':str(f),'sha256':sha(f)} for f in [base/'blind/SOLVE-BRIEF.md',base/'blind/student-problems.json',base/'review-preview/q11.png',base/'review-preview/q14.png']]}\nprint(json.dumps(output,ensure_ascii=True))",
+      "codeAssertionsPassed": true,
+      "calculationOrder": "Angle/fold relations and student solution were independently derived first. The displayed SVG coordinates were then compared with that solution. Diagram scale was not used to discover the answer."
+    },
+    "gradeAndMethodLimit": {
+      "target": "middle3 / 2015",
+      "studentMethod": "Elementary angle sums, equal angles/equal sides, 30-degree right-triangle ratios, reflection by a paper fold, parallel lines, right-triangle tangent, Pythagoras and first-degree equations.",
+      "upperGradeMethodsRequired": false,
+      "methodsAvoided": [
+        "tan(15 degrees) identity",
+        "double-angle or addition formulas",
+        "sine/cosine laws",
+        "vectors or dot products in student solution",
+        "coordinate reflection formula in student solution",
+        "calculus"
+      ],
+      "formalCurriculumVerification": "Not a seven-surface approval or author review. No additional curriculum/registry/private files were opened under this blind-only brief; target-edition classification/publication gates are outside this solve."
+    },
+    "historicalExposureLimit": "Earlier source-identity work on other selected questions exposed some scan annotations, as already disclosed. This task reads no original question/answer/solution and uses no original-answer evidence or remembered original numeric answer.",
+    "originalBlindAndReviewFilesEdited": false,
+    "actualResults": {
+      "APcm": "5",
+      "PCcm": "5",
+      "QCcm": "5",
+      "QKcm": "1",
+      "KCcm": "4",
+      "PKcm": "3",
+      "ADcm": "9",
+      "BCcm": "9",
+      "PDcm": "4",
+      "BQcm": "4",
+      "PQSquaredCm2": "10",
+      "xApproxDegrees": 71.56505117707799,
+      "anglePCQApproxDegrees": 36.86989764584402,
+      "validChoiceNumbers": [
+        3
+      ],
+      "positiveLinearEquation": "2s=10"
+    },
+    "choiceChecks": [
+      {
+        "number": 1,
+        "APCm": 3,
+        "QKCm": "1",
+        "KCCm": "2",
+        "rightTriangleResidualCm2": "-4",
+        "positiveKC": true,
+        "valid": false
+      },
+      {
+        "number": 2,
+        "APCm": 4,
+        "QKCm": "1",
+        "KCCm": "3",
+        "rightTriangleResidualCm2": "-2",
+        "positiveKC": true,
+        "valid": false
+      },
+      {
+        "number": 3,
+        "APCm": 5,
+        "QKCm": "1",
+        "KCCm": "4",
+        "rightTriangleResidualCm2": "0",
+        "positiveKC": true,
+        "valid": true
+      },
+      {
+        "number": 4,
+        "APCm": 6,
+        "QKCm": "1",
+        "KCCm": "5",
+        "rightTriangleResidualCm2": "2",
+        "positiveKC": true,
+        "valid": false
+      },
+      {
+        "number": 5,
+        "APCm": 9,
+        "QKCm": "1",
+        "KCCm": "8",
+        "rightTriangleResidualCm2": "8",
+        "positiveKC": true,
+        "valid": false
+      }
+    ],
+    "answerValue": "5 cm",
+    "foldReasoning": "The crease fixes P and Q and maps A to C, so AP=PC and angle APQ=angle CPQ=x. Since AP is parallel to QC, angle PQC=x. Thus triangle PCQ is isosceles with PC=QC, and AP=PC=QC. This equality is derived from the fold and parallel sides, not presumed from the sketch.",
+    "auxiliaryPointLocation": "Let K be the foot of P on BC. The ray PA points toward A along AD. The acute angle APQ=x forces Q to lie to the left of K, and P interior to AD forces K strictly left of C. Thus Q-K-C are ordered, permitting KC=QC-QK with positive lengths.",
+    "existence": "A 9-by-3 rectangle with AP=5 and BQ=4 gives PD=4, QC=5 and QK=1. Pythagoras gives PC=5 and QA=5, while PA=QC=5. Both distinct crease points P,Q are equidistant from A,C, so their line is the perpendicular bisector of AC and really folds A onto C. In triangle PQK, PK/QK=3 and the angle at Q is acute; in isosceles PCQ it equals CPQ. The reflected B position also matches the second figure, preserves AB and BQ, and preserves the corner right angle.",
+    "uniqueness": "On the required acute branch, QK=PK/tan(x)=1. The fold relations imply s=AP=PC=QC, hence KC=s-1>0. Expanding s²=9+(s-1)² cancels the square and gives 2s=10, with the unique admissible value s=5. This also uniquely recovers PD=4, BC=9 and BQ=4, so omitted overall width does not leave an answer continuum.",
+    "positiveLengthsAnglesAndUnits": "AP=PC=QC=5, AB=CD=PK=3, QK=1, KC=PD=BQ=4, BC=AD=9 and PQ=sqrt(10) are positive cm. 0<AP<AD and 0<BQ<BC put P,Q strictly inside the prescribed segments. The acute x is approximately 71.565 degrees, and angle PCQ=180-2x is approximately 36.870 degrees; both are valid. Negative lengths and the zero/90-degree branches are excluded by the prompt.",
+    "foldedGeometryComplexity": {
+      "studentSteps": [
+        "Transfer length and angle through the fold.",
+        "Transfer the crease angle with parallel rectangle edges.",
+        "Infer PC=QC from equal base angles.",
+        "Draw one perpendicular PK and use tan x to find QK.",
+        "Use Pythagoras and cancel squared terms to obtain one linear equation."
+      ],
+      "requiredAuxiliarySegments": 1,
+      "mainUnknowns": 1,
+      "caseHandling": "The stated acute x and interior P,Q identify Q-K-C; no alternative fold orientation is imported from an unstated sketch condition.",
+      "difficultyLimit": "This is a multi-step fold problem, not a direct tangent substitution. No empirical difficulty or score approval is made in this blind solve."
+    },
+    "figures": [
+      {
+        "inputPath": "figures/q14-1.svg",
+        "providedHashMatched": true,
+        "sha256": "e2b2ef401c08f88ada3b7b8df350fa9f5504a3e7fd32c923434187b029b8d623",
+        "labels": {
+          "A": [
+            "5487/100",
+            "29377/1000"
+          ],
+          "B": [
+            "5487/100",
+            "89377/1000"
+          ],
+          "C": [
+            "23487/100",
+            "89377/1000"
+          ],
+          "D": [
+            "23487/100",
+            "29377/1000"
+          ],
+          "P": [
+            "15487/100",
+            "29377/1000"
+          ],
+          "Q": [
+            "13487/100",
+            "89377/1000"
+          ]
+        },
+        "geometry": {
+          "scalePixelsPerCmAfterSolve": 20,
+          "ABPixels": 60,
+          "APPixels": 100,
+          "PDPixels": 80,
+          "BCPixels": 180,
+          "BQPixels": 80,
+          "QCPixels": 100,
+          "PQSquaredPixels2": 4000,
+          "PAndQInterior": true
+        },
+        "viewImageReviewedViaQuestionPreview": true,
+        "visualObservations": [
+          "The first image shows A top-left, B bottom-left, C bottom-right and D top-right.",
+          "P lies inside AD, Q lies inside BC; dashed PQ is the crease and dashed AC is the diagonal.",
+          "Only the width 3 cm is numerically labelled."
+        ]
+      },
+      {
+        "inputPath": "figures/q14-2.svg",
+        "providedHashMatched": true,
+        "sha256": "5825d50a282c4432beba489d50560506719b3cea76c6cdb75e64dfef2a7dabaa",
+        "labels": {
+          "C(A)": [
+            "129259/1000",
+            "1799/20"
+          ],
+          "D": [
+            "129259/1000",
+            "599/20"
+          ],
+          "P": [
+            "49259/1000",
+            "599/20"
+          ],
+          "Q": [
+            "29259/1000",
+            "1799/20"
+          ],
+          "B′": [
+            "93259/1000",
+            "2759/20"
+          ]
+        },
+        "geometry": {
+          "translationFromBeforeFoldSvg": [
+            "-105.611",
+            "0.573"
+          ],
+          "BPExactExpectedSvg": [
+            "93259/1000",
+            "2759/20"
+          ],
+          "BPMatchesDrawnLabelPoint": true,
+          "CPcm": "5",
+          "CQcm": "5",
+          "CBPrimeCm": "3",
+          "QBPrimeCm": "4",
+          "foldedAreaCm2": "27/2",
+          "originalLeftAreaCm2": "27/2",
+          "rightAngleAtCVerifiedByPythagoras": true
+        },
+        "viewImageReviewedViaQuestionPreview": true,
+        "visualObservations": [
+          "C(A) identifies the image of A at C.",
+          "P, Q, C and D retain their corresponding positions up to a common translation.",
+          "B-prime lies below the original bottom edge; the reflected left panel is shaded.",
+          "x is marked between PC and PQ, and the reflected right angle at C is drawn."
+        ]
+      }
+    ],
+    "auxiliaryExistenceCoordinates": {
+      "A": [
+        "0",
+        "3"
+      ],
+      "B": [
+        "0",
+        "0"
+      ],
+      "C": [
+        "9",
+        "0"
+      ],
+      "D": [
+        "9",
+        "3"
+      ],
+      "P": [
+        "5",
+        "3"
+      ],
+      "Q": [
+        "4",
+        "0"
+      ],
+      "K": [
+        "5",
+        "0"
+      ],
+      "BPrime": [
+        "36/5",
+        "-12/5"
+      ],
+      "HMidAC": [
+        "9/2",
+        "3/2"
+      ],
+      "JMidBBPrime": [
+        "18/5",
+        "-6/5"
+      ]
+    },
+    "foldDistanceSquaresCm2": {
+      "PA2": "25",
+      "PC2": "25",
+      "QA2": "25",
+      "QC2": "25",
+      "PB2": "34",
+      "PBPrime2": "34",
+      "QB2": "16",
+      "QBPrime2": "16",
+      "CBPrime2": "9"
+    },
+    "leftPanelAreaBeforeAndAfterCm2": "27/2",
+    "limits": [
+      "No double-angle tangent formula, general sine/cosine law or coordinate-reflection formula is needed in the student solution.",
+      "Exact rational coordinates, distances, crease midpoint membership and polygon area in code are auxiliary existence/figure checks after the elementary solution; they do not substitute an upper-grade student method.",
+      "The code verifies B and B-prime are equidistant from P,Q on the opposite sides of their crease and have the expected midpoint; the drawn folded panel is therefore compatible with the same actual fold.",
+      "No author agreement or original answer was used to label this solved."
+    ]
+  },
+  "status": "solved"
+}

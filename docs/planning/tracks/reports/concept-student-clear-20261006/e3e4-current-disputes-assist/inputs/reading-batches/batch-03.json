@@ -1,0 +1,4535 @@
+[
+  {
+    "raw": {
+      "sourceIndex": 2294,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+      "sourceFingerprint": "61ff547a678af2d94a8d30414253f05ded7d20a6d624bab87b9d0fa9a8e8a826",
+      "proposalFingerprint": "72233460ff4c0646239b75a2043b7e23cbab1d46c00771ad3fe459751bfeaf00",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-1-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "소수 $4.25$에서 소수점의 왼쪽에 있는 수 $4$를 무엇이라 부르는지 쓰시오.",
+      "bAnswer": "자연수 부분",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 부분"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "bGoal": "소수의 자연수 부분",
+      "bReason": "소수점 왼쪽 수의 이름이라는 보통 이름 확인",
+      "cDecision": "keep",
+      "cReason": "익숙한 낱말 빈칸이고 예시 $4.25$가 보임",
+      "cSlotEquivalents": [
+        []
+      ],
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "정의",
+        "sourceTerm": "자연수 부분",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다.",
+      "cStudentSentence": "$4.25$에서 소수점 왼쪽의 $4$를 □이라 한다.",
+      "cSlotAnswers": [
+        {
+          "expected": "자연수 부분",
+          "equivalents": []
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "$4.25$에서 소수점 왼쪽의 $4$를 □이라 한다.",
+        "answers": [
+          "자연수 부분"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "소수 $4.25$에서 소수점의 왼쪽에 있는 수 $4$를 무엇이라 부르는지 쓰시오.",
+        "answer": "자연수 부분",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "자연수 부분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-1-xc6",
+        "sourceIndex": 2294,
+        "proposalFingerprint": "72233460ff4c0646239b75a2043b7e23cbab1d46c00771ad3fe459751bfeaf00",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "naming",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "4.25의 왼쪽 4를 가리켜 자연수 부분이라는 이름을 묻는다.",
+        "cReason": "자연수와 자연수 부분을 구별하여 이름이 다른 답을 동의어에서 뺐다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-1-xc6",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+      "term": "자연수 부분",
+      "kind": "정의",
+      "level": "하",
+      "definition": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다."
+    },
+    "normalized": {
+      "id": "e4-2-3-1-xc6",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-1-xc6",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+        "term": "자연수 부분",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다."
+      },
+      "B": {
+        "prompt": "소수 $4.25$에서 소수점의 왼쪽에 있는 수 $4$를 무엇이라 부르는지 쓰시오.",
+        "answer": "자연수 부분",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "자연수 부분"
+          ]
+        ]
+      },
+      "goal": "소수의 자연수 부분",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "0d6cd1a97bafa887530e76962ecf97996784e99c23a60afc6d1f7f0d41790c30"
+    },
+    "ledger": {
+      "id": "e4-2-3-1-xc6",
+      "sourceIndex": 2294,
+      "proposalFingerprint": "72233460ff4c0646239b75a2043b7e23cbab1d46c00771ad3fe459751bfeaf00",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "naming",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "4.25의 왼쪽 4를 가리켜 자연수 부분이라는 이름을 묻는다.",
+      "cReason": "자연수와 자연수 부분을 구별하여 이름이 다른 답을 동의어에서 뺐다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "72233460ff4c0646239b75a2043b7e23cbab1d46c00771ad3fe459751bfeaf00",
+    "normalizedHash": "0d6cd1a97bafa887530e76962ecf97996784e99c23a60afc6d1f7f0d41790c30",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-1-xc6",
+        "grade": "초4",
+        "reviewedHash": "0d6cd1a97bafa887530e76962ecf97996784e99c23a60afc6d1f7f0d41790c30",
+        "inputHash": "bf110b631834c2d91816be8f1a7ba43103c2b7669b0b2a9bf66bc9713c46b9f6",
+        "evidence": "cohort-2026-10-07T08-17-44-234Z-1",
+        "blind": [
+          [
+            "e4-2-3-1-xc6",
+            "B",
+            "자연수 부분(일의 자리 수)",
+            "revise",
+            "소수점 왼쪽 수의 명칭 암기 문항이며, 자연수 부분/일의 자리/정수 부분 중 무엇을 요구하는지 물음만으로 정해지지 않는다"
+          ],
+          [
+            "e4-2-3-1-xc6",
+            "C",
+            "자연수 부분",
+            "revise",
+            "낯선 용어 암기이고 같은 뜻 후보가 여럿이라 요구하는 명칭이 불분명하다"
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-3-1-xc6",
+            "revise",
+            "revise",
+            "none",
+            "B·C 공통: 소수점 왼쪽 수의 명칭 암기 문항이다. 자연수 부분, 정수 부분, 일의 자리 수가 모두 가능해 물음만으로 요구 명칭이 정해지지 않고, 인정 답이 '자연수 부분' 하나뿐이면 같은 뜻의 답을 오답 처리하게 된다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-1-xc6",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-1-xc6",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-1 소수 두 자리 수, 세 자리 수 알아보기",
+            "term": "자연수 부분",
+            "kind": "정의",
+            "level": "하",
+            "definition": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다."
+          },
+          "B": {
+            "prompt": "소수 $4.25$에서 소수점의 왼쪽에 있는 수 $4$를 무엇이라 부르는지 쓰시오.",
+            "answer": "자연수 부분",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "자연수 부분"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "$4.25$에서 소수점 왼쪽의 $4$를 {자연수 부분}이라 한다.",
+            "acceptedAnswers": [
+              [
+                "자연수 부분"
+              ]
+            ]
+          },
+          "goal": "소수의 자연수 부분",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "0d6cd1a97bafa887530e76962ecf97996784e99c23a60afc6d1f7f0d41790c30"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-1-xc6",
+        "contentHash": "0d6cd1a97bafa887530e76962ecf97996784e99c23a60afc6d1f7f0d41790c30",
+        "packet": "cohort-2026-10-07T08-17-44-234Z-1",
+        "inputHash": "bf110b631834c2d91816be8f1a7ba43103c2b7669b0b2a9bf66bc9713c46b9f6",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-B: 소수점 왼쪽 수의 명칭 암기 문항이며, 자연수 부분/일의 자리/정수 부분 중 무엇을 요구하는지 물음만으로 정해지지 않는다",
+          "blind-C: 낯선 용어 암기이고 같은 뜻 후보가 여럿이라 요구하는 명칭이 불분명하다",
+          "B의 실제 결정과 2차 판정이 다름",
+          "C의 실제 결정과 2차 판정이 다름",
+          "B·C 공통: 소수점 왼쪽 수의 명칭 암기 문항이다. 자연수 부분, 정수 부분, 일의 자리 수가 모두 가능해 물음만으로 요구 명칭이 정해지지 않고, 인정 답이 '자연수 부분' 하나뿐이면 같은 뜻의 답을 오답 처리하게 된다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2345,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+      "sourceFingerprint": "30580bb9a9503d30ee0bccb887f918c0fc25b3aee3b54ec5c2156a444752c333",
+      "proposalFingerprint": "3df448b462462352f892006655f1c738b9edf7db825fd31c57cdbf76e8709663",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-3-xc26",
+      "bDecision": "rewrite",
+      "bPrompt": "$4.8$은 $0.048$의 몇 배인지 쓰고, 그 까닭을 각 숫자의 값으로 쓰시오.",
+      "bAnswer": "$100$배이다. $4$가 나타내는 값은 $0.04$에서 $4$로, $8$이 나타내는 값은 $0.008$에서 $0.8$로 모두 $100$배가 되었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100$배",
+            "백 배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$의 값은 $0.04$에서 $4$로, $8$의 값은 $0.008$에서 $0.8$로 모두 $100$배가 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "숫자 값 배수로 전체 배수",
+      "bReason": "전체 수와 자리값의 배수를 연결",
+      "cDecision": "rewrite",
+      "cAfter": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+      "cReason": "'같은' 한 낱말로 빈칸 범위를 좁힘",
+      "cSlotEquivalents": [
+        [
+          "똑같은"
+        ]
+      ],
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "몇 배인지 알아보기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+      "cStudentSentence": "각 숫자가 나타내는 값이 모두 □ 배가 되면 전체 수도 그 배가 된다.",
+      "cSlotAnswers": [
+        {
+          "expected": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$4.8$은 $0.048$의 몇 배인지 쓰고, 그 까닭을 각 숫자의 값으로 쓰시오.",
+        "answer": "$100$배이다. $4$가 나타내는 값은 $0.04$에서 $4$로, $8$이 나타내는 값은 $0.008$에서 $0.8$로 모두 $100$배가 되었다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100$배",
+              "백 배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$의 값은 $0.04$에서 $4$로, $8$의 값은 $0.008$에서 $0.8$로 모두 $100$배가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-3-xc26",
+        "sourceIndex": 2345,
+        "proposalFingerprint": "3df448b462462352f892006655f1c738b9edf7db825fd31c57cdbf76e8709663",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "100배와 두 숫자의 실제 자리값 변화를 질문 답안 기준 모두에 맞췄다.",
+        "cReason": "모든 숫자의 값이 같은 배가 되는 관계를 보존한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-3-xc26",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+      "term": "몇 배인지 알아보기",
+      "kind": "성질",
+      "level": "상",
+      "definition": "각 숫자가 나타내는 값이 모두 {같은 배}가 되면 전체 수도 그 배가 된다.",
+      "example": {
+        "prompt": "$4.8$이 $0.048$의 $100$배인 까닭은?",
+        "answer": "각 숫자의 값이 $100$배라서"
+      }
+    },
+    "normalized": {
+      "id": "e4-2-3-3-xc26",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-3-xc26",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+        "term": "몇 배인지 알아보기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각 숫자가 나타내는 값이 모두 {같은 배}가 되면 전체 수도 그 배가 된다.",
+        "example": {
+          "prompt": "$4.8$이 $0.048$의 $100$배인 까닭은?",
+          "answer": "각 숫자의 값이 $100$배라서"
+        }
+      },
+      "B": {
+        "prompt": "$4.8$은 $0.048$의 몇 배인지 쓰고, 그 까닭을 각 숫자의 값으로 쓰시오.",
+        "answer": "$100$배이다. $4$가 나타내는 값은 $0.04$에서 $4$로, $8$이 나타내는 값은 $0.008$에서 $0.8$로 모두 $100$배가 되었다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100$배",
+              "백 배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$의 값은 $0.04$에서 $4$로, $8$의 값은 $0.008$에서 $0.8$로 모두 $100$배가 된다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "goal": "숫자 값 배수로 전체 배수",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "22cbabf967a1ec2ed9463f4a66108033d5747bd4df438f710fa254be4ef9f3bc"
+    },
+    "ledger": {
+      "id": "e4-2-3-3-xc26",
+      "sourceIndex": 2345,
+      "proposalFingerprint": "3df448b462462352f892006655f1c738b9edf7db825fd31c57cdbf76e8709663",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "100배와 두 숫자의 실제 자리값 변화를 질문 답안 기준 모두에 맞췄다.",
+      "cReason": "모든 숫자의 값이 같은 배가 되는 관계를 보존한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "3df448b462462352f892006655f1c738b9edf7db825fd31c57cdbf76e8709663",
+    "normalizedHash": "22cbabf967a1ec2ed9463f4a66108033d5747bd4df438f710fa254be4ef9f3bc",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-3-xc26",
+        "grade": "초4",
+        "reviewedHash": "22cbabf967a1ec2ed9463f4a66108033d5747bd4df438f710fa254be4ef9f3bc",
+        "inputHash": "ed4d7fa928355431b9a988a4ba82690bc092a711038d6d1ee58e6252ca51e2b8",
+        "evidence": "cohort-2026-10-07T08-25-17-578Z-1",
+        "blind": [
+          [
+            "e4-2-3-3-xc26",
+            "C",
+            "같은 수(똑같이 몇)",
+            "revise",
+            "'모두 □ 배'는 어떤 수를 넣어도 참이 된다(예: 모두 10배면 전체도 10배). 핵심은 '모두 같은 배'이므로 빈칸이 정답을 구별하지 못한다. 같은 배라는 조건을 문장에 주고 구체적인 수를 묻거나 '같다'를 요구하도록 고쳐야 한다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-3-3-xc26",
+            "pass",
+            "revise",
+            "none",
+            "C의 '모두 {같은} 배가 되면 전체 수도 그 배가 된다'는 '그 배'라는 지시어만으로 '같은'이 복원된다. 문장은 어떤 배수(예: 10)를 넣어도 참이므로 빈칸이 정답을 구별하지 못한다. 목록에 없는 올바른 답이 오답 처리될 위험도 있다. 같은 배라는 조건을 주고 4.8이 0.048의 몇 배인지 묻는 식으로 구체적인 수를 요구해야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-3-xc26",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-3-xc26",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-3 소수 사이의 관계",
+            "term": "몇 배인지 알아보기",
+            "kind": "성질",
+            "level": "상",
+            "definition": "각 숫자가 나타내는 값이 모두 {같은 배}가 되면 전체 수도 그 배가 된다.",
+            "example": {
+              "prompt": "$4.8$이 $0.048$의 $100$배인 까닭은?",
+              "answer": "각 숫자의 값이 $100$배라서"
+            }
+          },
+          "B": {
+            "prompt": "$4.8$은 $0.048$의 몇 배인지 쓰고, 그 까닭을 각 숫자의 값으로 쓰시오.",
+            "answer": "$100$배이다. $4$가 나타내는 값은 $0.04$에서 $4$로, $8$이 나타내는 값은 $0.008$에서 $0.8$로 모두 $100$배가 되었다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "$100$배",
+                  "백 배"
+                ]
+              },
+              {
+                "anyOf": [
+                  "$4$의 값은 $0.04$에서 $4$로, $8$의 값은 $0.008$에서 $0.8$로 모두 $100$배가 된다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "각 숫자가 나타내는 값이 모두 {같은} 배가 되면 전체 수도 그 배가 된다.",
+            "acceptedAnswers": [
+              [
+                "같은",
+                "똑같은"
+              ]
+            ]
+          },
+          "goal": "숫자 값 배수로 전체 배수",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "22cbabf967a1ec2ed9463f4a66108033d5747bd4df438f710fa254be4ef9f3bc"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-3-xc26",
+        "contentHash": "22cbabf967a1ec2ed9463f4a66108033d5747bd4df438f710fa254be4ef9f3bc",
+        "packet": "cohort-2026-10-07T08-25-17-578Z-1",
+        "inputHash": "ed4d7fa928355431b9a988a4ba82690bc092a711038d6d1ee58e6252ca51e2b8",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '모두 □ 배'는 어떤 수를 넣어도 참이 된다(예: 모두 10배면 전체도 10배). 핵심은 '모두 같은 배'이므로 빈칸이 정답을 구별하지 못한다. 같은 배라는 조건을 문장에 주고 구체적인 수를 묻거나 '같다'를 요구하도록 고쳐야 한다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C의 '모두 {같은} 배가 되면 전체 수도 그 배가 된다'는 '그 배'라는 지시어만으로 '같은'이 복원된다. 문장은 어떤 배수(예: 10)를 넣어도 참이므로 빈칸이 정답을 구별하지 못한다. 목록에 없는 올바른 답이 오답 처리될 위험도 있다. 같은 배라는 조건을 주고 4.8이 0.048의 몇 배인지 묻는 식으로 구체적인 수를 요구해야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2355,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+      "sourceFingerprint": "c50b7b51b6388085694486bf165c7d588d29e90a2e9332c6efe44c6db52ca8df",
+      "proposalFingerprint": "4ab55262f2bc7c2247d9ccd7bc5d540282cca33a1cf09e0104c5a136a1e7ce2c",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-4-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\square+0.7=1.5$에서 $\\square$가 어떤 수인지 설명하고 값을 구하시오.",
+      "bAnswer": "$\\square$는 $0.7$에 더해 $1.5$가 되는 수이다. $\\square=0.8$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.7$에 더해 $1.5$가 되는 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.8$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "모르는 더하는 수의 뜻",
+      "bReason": "빈칸의 의미와 값을 구체 식으로 확인",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 {$0.8$}이다.",
+      "cReason": "중괄호를 수식 안에 넣어 빈칸이 사라진 오류를 고치고 모르는 수 기호 없이 상황을 쓴다.",
+      "cSlotEquivalents": [],
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "빈칸이 있는 덧셈식",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 {$0.8$}이다.",
+      "cStudentSentence": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "expected": "$0.8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\square+0.7=1.5$에서 $\\square$가 어떤 수인지 설명하고 값을 구하시오.",
+        "answer": "$\\square$는 $0.7$에 더해 $1.5$가 되는 수이다. $\\square=0.8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.7$에 더해 $1.5$가 되는 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 {$0.8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0.8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-4-xc15",
+        "sourceIndex": 2355,
+        "proposalFingerprint": "4ab55262f2bc7c2247d9ccd7bc5d540282cca33a1cf09e0104c5a136a1e7ce2c",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "더할수를찾는식의뜻과실제0.8을함께요청한다.",
+        "cReason": "원래수에0.7을더한1.5에서0.8을구한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-4-xc15",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+      "term": "빈칸이 있는 덧셈식",
+      "kind": "방법",
+      "level": "중",
+      "definition": "덧셈식에서 모르는 더하는 수는 {아는 수에 더해 합이 되게 하는 양}이다.",
+      "example": {
+        "prompt": "$\\square+0.7=1.5$에서 빈칸은 어떤 양인가?",
+        "answer": "$0.7$에 더해 $1.5$가 되는 양"
+      }
+    },
+    "normalized": {
+      "id": "e4-2-3-4-xc15",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-4-xc15",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "빈칸이 있는 덧셈식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "덧셈식에서 모르는 더하는 수는 {아는 수에 더해 합이 되게 하는 양}이다.",
+        "example": {
+          "prompt": "$\\square+0.7=1.5$에서 빈칸은 어떤 양인가?",
+          "answer": "$0.7$에 더해 $1.5$가 되는 양"
+        }
+      },
+      "B": {
+        "prompt": "$\\square+0.7=1.5$에서 $\\square$가 어떤 수인지 설명하고 값을 구하시오.",
+        "answer": "$\\square$는 $0.7$에 더해 $1.5$가 되는 수이다. $\\square=0.8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.7$에 더해 $1.5$가 되는 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.8$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 {$0.8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0.8$"
+          ]
+        ]
+      },
+      "goal": "모르는 더하는 수의 뜻",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "2364bf1fb71309a5db29ca802399470a636d66c05f06b5627b0c90615ad5620d"
+    },
+    "ledger": {
+      "id": "e4-2-3-4-xc15",
+      "sourceIndex": 2355,
+      "proposalFingerprint": "4ab55262f2bc7c2247d9ccd7bc5d540282cca33a1cf09e0104c5a136a1e7ce2c",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "더할수를찾는식의뜻과실제0.8을함께요청한다.",
+      "cReason": "원래수에0.7을더한1.5에서0.8을구한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "4ab55262f2bc7c2247d9ccd7bc5d540282cca33a1cf09e0104c5a136a1e7ce2c",
+    "normalizedHash": "2364bf1fb71309a5db29ca802399470a636d66c05f06b5627b0c90615ad5620d",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-4-xc15",
+        "grade": "초4",
+        "reviewedHash": "2364bf1fb71309a5db29ca802399470a636d66c05f06b5627b0c90615ad5620d",
+        "inputHash": "930db23d21514a34bef14c2ec4445a257c586ce4fa5095f929c0fc73e5363580",
+        "evidence": "cohort-2026-10-07T08-48-40-255Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-3-4-xc15",
+            "revise",
+            "pass",
+            "none",
+            "B 필수 요소 '0.7에 더해 1.5가 되는 수'는 문제의 식 □+0.7=1.5를 말로 읽은 것이어서 문구 복사만으로 충족된다. '□가 어떤 수인지 설명'이라는 요구가 사실상 검사되지 않고, 실제 검사는 값 0.8뿐이다. 덧셈식을 뺄셈식으로 바꾸는 이유처럼 새 내용을 요구해야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-4-xc15",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-4-xc15",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+            "term": "빈칸이 있는 덧셈식",
+            "kind": "방법",
+            "level": "중",
+            "definition": "덧셈식에서 모르는 더하는 수는 {아는 수에 더해 합이 되게 하는 양}이다.",
+            "example": {
+              "prompt": "$\\square+0.7=1.5$에서 빈칸은 어떤 양인가?",
+              "answer": "$0.7$에 더해 $1.5$가 되는 양"
+            }
+          },
+          "B": {
+            "prompt": "$\\square+0.7=1.5$에서 $\\square$가 어떤 수인지 설명하고 값을 구하시오.",
+            "answer": "$\\square$는 $0.7$에 더해 $1.5$가 되는 수이다. $\\square=0.8$이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "$0.7$에 더해 $1.5$가 되는 수"
+                ]
+              },
+              {
+                "anyOf": [
+                  "$0.8$"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "어떤 수에 $0.7$을 더했더니 $1.5$가 되었다. 처음 수는 {$0.8$}이다.",
+            "acceptedAnswers": [
+              [
+                "$0.8$"
+              ]
+            ]
+          },
+          "goal": "모르는 더하는 수의 뜻",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "2364bf1fb71309a5db29ca802399470a636d66c05f06b5627b0c90615ad5620d"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-4-xc15",
+        "contentHash": "2364bf1fb71309a5db29ca802399470a636d66c05f06b5627b0c90615ad5620d",
+        "packet": "cohort-2026-10-07T08-48-40-255Z-0",
+        "inputHash": "930db23d21514a34bef14c2ec4445a257c586ce4fa5095f929c0fc73e5363580",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B 필수 요소 '0.7에 더해 1.5가 되는 수'는 문제의 식 □+0.7=1.5를 말로 읽은 것이어서 문구 복사만으로 충족된다. '□가 어떤 수인지 설명'이라는 요구가 사실상 검사되지 않고, 실제 검사는 값 0.8뿐이다. 덧셈식을 뺄셈식으로 바꾸는 이유처럼 새 내용을 요구해야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2356,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+      "sourceFingerprint": "ac6742a6d6b180201fae971aacc8f6d089df37440ecbf74a8ab8d26474bcd0ae",
+      "proposalFingerprint": "cfd813ed62488df0ec6d4712ba3628a275121b0d0341084ccc7418ea995fb343",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-4-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$2.7+3.5$를 $27+35$로 계산할 수 있는 까닭을 쓰고, 합을 구하시오.",
+      "bAnswer": "$6.2$. $2.7$은 $0.1$이 $27$개, $3.5$는 $0.1$이 $35$개라서 $0.1$이 $62$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6.2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.1$이 $27$개와 $35$개",
+            "$27$과 $35$는 $0.1$의 개수"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "$0.1$ 개수로 소수 덧셈",
+      "bReason": "자연수 계산이 가능한 이유를 묻는다",
+      "cDecision": "keep",
+      "cReason": "'$0.1$의 개수' 짧은 단위 빈칸",
+      "cSlotEquivalents": [
+        [
+          "$0.1$이 몇 개인지"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "영점일의 개수로 바꾸어 더하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+      "cStudentSentence": "소수 한 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "expected": "$0.1$의 개수",
+          "equivalents": [
+            "$0.1$이 몇 개인지"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "소수 한 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+        "answers": [
+          "$0.1$의 개수"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "$2.7+3.5$를 $27+35$로 계산할 수 있는 까닭을 쓰고, 합을 구하시오.",
+        "answer": "$6.2$. $2.7$은 $0.1$이 $27$개, $3.5$는 $0.1$이 $35$개라서 $0.1$이 $62$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6.2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $27$개와 $35$개",
+              "$27$과 $35$는 $0.1$의 개수"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$0.1$의 개수",
+            "$0.1$이 몇 개인지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-4-xc16",
+        "sourceIndex": 2356,
+        "proposalFingerprint": "cfd813ed62488df0ec6d4712ba3628a275121b0d0341084ccc7418ea995fb343",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "두수를같은0.1단위개수27·35로계산하여6.2인까닭이다.",
+        "cReason": "자연수계산으로바꾸기전0.1의개수를명시한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-4-xc16",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+      "term": "영점일의 개수로 바꾸어 더하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+      "example": {
+        "prompt": "$2.7+3.5$를 $27+35$로 볼 때 $27$과 $35$는 무엇의 개수인가?",
+        "answer": "$0.1$의 개수"
+      }
+    },
+    "normalized": {
+      "id": "e4-2-3-4-xc16",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-4-xc16",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+        "term": "영점일의 개수로 바꾸어 더하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "example": {
+          "prompt": "$2.7+3.5$를 $27+35$로 볼 때 $27$과 $35$는 무엇의 개수인가?",
+          "answer": "$0.1$의 개수"
+        }
+      },
+      "B": {
+        "prompt": "$2.7+3.5$를 $27+35$로 계산할 수 있는 까닭을 쓰고, 합을 구하시오.",
+        "answer": "$6.2$. $2.7$은 $0.1$이 $27$개, $3.5$는 $0.1$이 $35$개라서 $0.1$이 $62$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6.2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $27$개와 $35$개",
+              "$27$과 $35$는 $0.1$의 개수"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$0.1$의 개수",
+            "$0.1$이 몇 개인지"
+          ]
+        ]
+      },
+      "goal": "$0.1$ 개수로 소수 덧셈",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "eb3028bf3ce5a5b008f2f735f5b4adb9f9a3dcfa9c7823c60fb06cfee5abde5c"
+    },
+    "ledger": {
+      "id": "e4-2-3-4-xc16",
+      "sourceIndex": 2356,
+      "proposalFingerprint": "cfd813ed62488df0ec6d4712ba3628a275121b0d0341084ccc7418ea995fb343",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "두수를같은0.1단위개수27·35로계산하여6.2인까닭이다.",
+      "cReason": "자연수계산으로바꾸기전0.1의개수를명시한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "cfd813ed62488df0ec6d4712ba3628a275121b0d0341084ccc7418ea995fb343",
+    "normalizedHash": "eb3028bf3ce5a5b008f2f735f5b4adb9f9a3dcfa9c7823c60fb06cfee5abde5c",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-4-xc16",
+        "grade": "초4",
+        "reviewedHash": "eb3028bf3ce5a5b008f2f735f5b4adb9f9a3dcfa9c7823c60fb06cfee5abde5c",
+        "inputHash": "930db23d21514a34bef14c2ec4445a257c586ce4fa5095f929c0fc73e5363580",
+        "evidence": "cohort-2026-10-07T08-48-40-255Z-0",
+        "blind": [
+          [
+            "e4-2-3-4-xc16",
+            "C",
+            "자연수(10배한 수)",
+            "revise",
+            "'자연수처럼 더할 수 있다' 앞의 '□로 바꾸어'는 '자연수' 문법 복원만으로 맞고, 10배인지 0.1의 개수인지 무엇을 요구하는지 불분명하다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-3-4-xc16",
+            "pass",
+            "pass",
+            "none",
+            ""
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-4-xc16",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-4-xc16",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-4 소수 한 자리 수의 덧셈",
+            "term": "영점일의 개수로 바꾸어 더하기",
+            "kind": "방법",
+            "level": "중",
+            "definition": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+            "example": {
+              "prompt": "$2.7+3.5$를 $27+35$로 볼 때 $27$과 $35$는 무엇의 개수인가?",
+              "answer": "$0.1$의 개수"
+            }
+          },
+          "B": {
+            "prompt": "$2.7+3.5$를 $27+35$로 계산할 수 있는 까닭을 쓰고, 합을 구하시오.",
+            "answer": "$6.2$. $2.7$은 $0.1$이 $27$개, $3.5$는 $0.1$이 $35$개라서 $0.1$이 $62$개이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "$6.2$"
+                ]
+              },
+              {
+                "anyOf": [
+                  "$0.1$이 $27$개와 $35$개",
+                  "$27$과 $35$는 $0.1$의 개수"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "소수 한 자리 수의 덧셈은 두 수를 {$0.1$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+            "acceptedAnswers": [
+              [
+                "$0.1$의 개수",
+                "$0.1$이 몇 개인지"
+              ]
+            ]
+          },
+          "goal": "$0.1$ 개수로 소수 덧셈",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "eb3028bf3ce5a5b008f2f735f5b4adb9f9a3dcfa9c7823c60fb06cfee5abde5c"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-4-xc16",
+        "contentHash": "eb3028bf3ce5a5b008f2f735f5b4adb9f9a3dcfa9c7823c60fb06cfee5abde5c",
+        "packet": "cohort-2026-10-07T08-48-40-255Z-0",
+        "inputHash": "930db23d21514a34bef14c2ec4445a257c586ce4fa5095f929c0fc73e5363580",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '자연수처럼 더할 수 있다' 앞의 '□로 바꾸어'는 '자연수' 문법 복원만으로 맞고, 10배인지 0.1의 개수인지 무엇을 요구하는지 불분명하다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2371,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+      "sourceFingerprint": "2eae149c948d0ef12d3472ba5adb771f5874e4ae5dbf5ca9bbba530c7f9e75ee",
+      "proposalFingerprint": "37bbe6f5f883025213b555151c6299e882d5f3174139ada95b9b864179e96cb3",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-5-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "$5.7-2$를 계산하고, $5.5$가 아닌 까닭을 쓰시오.",
+      "bAnswer": "$3.7$. $2$는 일의 자리 수라서 자연수 부분 $5$에서만 빼고 소수 부분은 그대로 둔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3.7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$는 일의 자리 수",
+            "자연수 부분에서만 뺀다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "소수에서 자연수 빼기",
+      "bReason": "자리 착각을 구체 식으로 점검",
+      "cDecision": "rewrite",
+      "cAfter": "소수에서 자연수를 빼면 {자연수} 부분에서만 빼고 소수 부분은 그대로 둔다.",
+      "cReason": "긴 구절 정답을 '자연수' 한 낱말로",
+      "cSlotEquivalents": [
+        []
+      ],
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "소수에서 자연수 빼기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "소수에서 자연수를 빼면 {자연수} 부분에서만 빼고 소수 부분은 그대로 둔다.",
+      "cStudentSentence": "소수에서 자연수를 빼면 □ 부분에서만 빼고 소수 부분은 그대로 둔다.",
+      "cSlotAnswers": [
+        {
+          "expected": "자연수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$5.7-2$를 계산하고, $5.5$가 아닌 까닭을 쓰시오.",
+        "answer": "$3.7$. $2$는 일의 자리 수라서 자연수 부분 $5$에서만 빼고 소수 부분은 그대로 둔다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 일의 자리 수",
+              "자연수 부분에서만 뺀다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수에서 자연수를 빼면 {자연수} 부분에서만 빼고 소수 부분은 그대로 둔다.",
+        "acceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-5-xc9",
+        "sourceIndex": 2371,
+        "proposalFingerprint": "37bbe6f5f883025213b555151c6299e882d5f3174139ada95b9b864179e96cb3",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "자연수 2를 일의 자리에서 빼야 하는 이유와 차 3.7이 연결된다.",
+        "cReason": "자연수 부분과 뜻이 다른 일의 자리라는 별칭을 제거했다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-5-xc9",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+      "term": "소수에서 자연수 빼기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "소수에서 자연수를 빼면 {자연수 부분에서만} 빼고 소수 부분은 그대로 둔다.",
+      "example": {
+        "prompt": "$5.7-2$가 $5.5$가 아닌 까닭은?",
+        "answer": "$2$는 일의 자리 수라서"
+      }
+    },
+    "normalized": {
+      "id": "e4-2-3-5-xc9",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-5-xc9",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+        "term": "소수에서 자연수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "소수에서 자연수를 빼면 {자연수 부분에서만} 빼고 소수 부분은 그대로 둔다.",
+        "example": {
+          "prompt": "$5.7-2$가 $5.5$가 아닌 까닭은?",
+          "answer": "$2$는 일의 자리 수라서"
+        }
+      },
+      "B": {
+        "prompt": "$5.7-2$를 계산하고, $5.5$가 아닌 까닭을 쓰시오.",
+        "answer": "$3.7$. $2$는 일의 자리 수라서 자연수 부분 $5$에서만 빼고 소수 부분은 그대로 둔다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3.7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 일의 자리 수",
+              "자연수 부분에서만 뺀다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "소수에서 자연수를 빼면 {자연수} 부분에서만 빼고 소수 부분은 그대로 둔다.",
+        "acceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "goal": "소수에서 자연수 빼기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "48e0d2a55fd7b590f53fbd7fe178f9a5b1b528ee565a30d05cb08f5ee5c278c8"
+    },
+    "ledger": {
+      "id": "e4-2-3-5-xc9",
+      "sourceIndex": 2371,
+      "proposalFingerprint": "37bbe6f5f883025213b555151c6299e882d5f3174139ada95b9b864179e96cb3",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "자연수 2를 일의 자리에서 빼야 하는 이유와 차 3.7이 연결된다.",
+      "cReason": "자연수 부분과 뜻이 다른 일의 자리라는 별칭을 제거했다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "37bbe6f5f883025213b555151c6299e882d5f3174139ada95b9b864179e96cb3",
+    "normalizedHash": "48e0d2a55fd7b590f53fbd7fe178f9a5b1b528ee565a30d05cb08f5ee5c278c8",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-5-xc9",
+        "grade": "초4",
+        "reviewedHash": "48e0d2a55fd7b590f53fbd7fe178f9a5b1b528ee565a30d05cb08f5ee5c278c8",
+        "inputHash": "035ceffa7fe9a17e3c8a94f59ae33fe1db47e792221a4c9deb0584b688e8213e",
+        "evidence": "cohort-2026-10-07T08-48-40-284Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-3-5-xc9",
+            "pass",
+            "revise",
+            "none",
+            "C의 빈칸 정답 '자연수'가 같은 문장 앞부분 '소수에서 자연수를 빼면'에 그대로 있다. 바로 뒤에 '소수 부분은 그대로'가 있어 남는 낱말을 복사하면 맞는다. 5.7-2에서 2를 어느 자리에서 빼는지 직접 판단하게 하는 빈칸(예: 5.7-2=□.7의 □)으로 바꿔야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-5-xc9",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-5-xc9",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-5 소수 한 자리 수의 뺄셈",
+            "term": "소수에서 자연수 빼기",
+            "kind": "방법",
+            "level": "하",
+            "definition": "소수에서 자연수를 빼면 {자연수 부분에서만} 빼고 소수 부분은 그대로 둔다.",
+            "example": {
+              "prompt": "$5.7-2$가 $5.5$가 아닌 까닭은?",
+              "answer": "$2$는 일의 자리 수라서"
+            }
+          },
+          "B": {
+            "prompt": "$5.7-2$를 계산하고, $5.5$가 아닌 까닭을 쓰시오.",
+            "answer": "$3.7$. $2$는 일의 자리 수라서 자연수 부분 $5$에서만 빼고 소수 부분은 그대로 둔다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "$3.7$"
+                ]
+              },
+              {
+                "anyOf": [
+                  "$2$는 일의 자리 수",
+                  "자연수 부분에서만 뺀다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "소수에서 자연수를 빼면 {자연수} 부분에서만 빼고 소수 부분은 그대로 둔다.",
+            "acceptedAnswers": [
+              [
+                "자연수"
+              ]
+            ]
+          },
+          "goal": "소수에서 자연수 빼기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "48e0d2a55fd7b590f53fbd7fe178f9a5b1b528ee565a30d05cb08f5ee5c278c8"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-5-xc9",
+        "contentHash": "48e0d2a55fd7b590f53fbd7fe178f9a5b1b528ee565a30d05cb08f5ee5c278c8",
+        "packet": "cohort-2026-10-07T08-48-40-284Z-1",
+        "inputHash": "035ceffa7fe9a17e3c8a94f59ae33fe1db47e792221a4c9deb0584b688e8213e",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C의 빈칸 정답 '자연수'가 같은 문장 앞부분 '소수에서 자연수를 빼면'에 그대로 있다. 바로 뒤에 '소수 부분은 그대로'가 있어 남는 낱말을 복사하면 맞는다. 5.7-2에서 2를 어느 자리에서 빼는지 직접 판단하게 하는 빈칸(예: 5.7-2=□.7의 □)으로 바꿔야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2389,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+      "sourceFingerprint": "62c208943a23a2cdd4d7cd834b90102ceb379b6bbe69175cc58ea129351883b3",
+      "proposalFingerprint": "43eb26c5444a7843f51f47d27bcec518898e7224fc1f7538c7fe232b2e054731",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-6-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "$2+0.35$를 계산하고, $0.37$이 아닌 까닭을 쓰시오.",
+      "bAnswer": "$2.35$. $2$는 일의 자리 수라서 자연수 부분에 더해지고 소수 부분 $0.35$는 그대로 남는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2.35$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$는 일의 자리 수이므로 자연수 부분에 더해야 한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "자연수와 소수의 덧셈",
+      "bReason": "$2$를 소수 부분에 더한 실수를 진단",
+      "cDecision": "rewrite",
+      "cAfter": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수} 부분은 그대로 남는다.",
+      "cReason": "긴 구절 정답을 '소수' 한 낱말로",
+      "cSlotEquivalents": [
+        [
+          "소수점 아래"
+        ]
+      ],
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "자연수와 소수 두 자리 수의 덧셈",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수} 부분은 그대로 남는다.",
+      "cStudentSentence": "자연수와 소수를 더하면 자연수 부분에만 더해지고 □ 부분은 그대로 남는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "소수",
+          "equivalents": [
+            "소수점 아래"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2+0.35$를 계산하고, $0.37$이 아닌 까닭을 쓰시오.",
+        "answer": "$2.35$. $2$는 일의 자리 수라서 자연수 부분에 더해지고 소수 부분 $0.35$는 그대로 남는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2.35$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 일의 자리 수이므로 자연수 부분에 더해야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수} 부분은 그대로 남는다.",
+        "acceptedAnswers": [
+          [
+            "소수",
+            "소수점 아래"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-6-xc7",
+        "sourceIndex": 2389,
+        "proposalFingerprint": "43eb26c5444a7843f51f47d27bcec518898e7224fc1f7538c7fe232b2e054731",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "일의 자리 수 2를 자연수 부분에 더하는 이유와 2.35를 연결한다.",
+        "cReason": "자연수를 더할 때 그대로인 소수 부분을 묻는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-6-xc7",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+      "term": "자연수와 소수 두 자리 수의 덧셈",
+      "kind": "방법",
+      "level": "하",
+      "definition": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수 부분은 그대로} 남는다.",
+      "example": {
+        "prompt": "$2+0.35$가 $0.37$이 아닌 까닭은?",
+        "answer": "$2$는 일의 자리 수라서"
+      }
+    },
+    "normalized": {
+      "id": "e4-2-3-6-xc7",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-6-xc7",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "자연수와 소수 두 자리 수의 덧셈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수 부분은 그대로} 남는다.",
+        "example": {
+          "prompt": "$2+0.35$가 $0.37$이 아닌 까닭은?",
+          "answer": "$2$는 일의 자리 수라서"
+        }
+      },
+      "B": {
+        "prompt": "$2+0.35$를 계산하고, $0.37$이 아닌 까닭을 쓰시오.",
+        "answer": "$2.35$. $2$는 일의 자리 수라서 자연수 부분에 더해지고 소수 부분 $0.35$는 그대로 남는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2.35$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$는 일의 자리 수이므로 자연수 부분에 더해야 한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수} 부분은 그대로 남는다.",
+        "acceptedAnswers": [
+          [
+            "소수",
+            "소수점 아래"
+          ]
+        ]
+      },
+      "goal": "자연수와 소수의 덧셈",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "54c9f4bc0a70c6fe02adcd35903362c2eb63fef6810ad9abeeeb0e17c03b20a9"
+    },
+    "ledger": {
+      "id": "e4-2-3-6-xc7",
+      "sourceIndex": 2389,
+      "proposalFingerprint": "43eb26c5444a7843f51f47d27bcec518898e7224fc1f7538c7fe232b2e054731",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "일의 자리 수 2를 자연수 부분에 더하는 이유와 2.35를 연결한다.",
+      "cReason": "자연수를 더할 때 그대로인 소수 부분을 묻는다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "43eb26c5444a7843f51f47d27bcec518898e7224fc1f7538c7fe232b2e054731",
+    "normalizedHash": "54c9f4bc0a70c6fe02adcd35903362c2eb63fef6810ad9abeeeb0e17c03b20a9",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-6-xc7",
+        "grade": "초4",
+        "reviewedHash": "54c9f4bc0a70c6fe02adcd35903362c2eb63fef6810ad9abeeeb0e17c03b20a9",
+        "inputHash": "035ceffa7fe9a17e3c8a94f59ae33fe1db47e792221a4c9deb0584b688e8213e",
+        "evidence": "cohort-2026-10-07T08-48-40-284Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-3-6-xc7",
+            "pass",
+            "revise",
+            "none",
+            "C의 빈칸 정답 '소수'가 같은 문장 앞부분 '자연수와 소수를 더하면'에 그대로 있다. 바로 앞의 '자연수 부분에만 더해지고'로 남는 낱말을 골라 복사하면 맞는다. 2+0.35처럼 어느 부분이 그대로 남는지 값으로 묻는 빈칸으로 바꿔야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-6-xc7",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-6-xc7",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+            "term": "자연수와 소수 두 자리 수의 덧셈",
+            "kind": "방법",
+            "level": "하",
+            "definition": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수 부분은 그대로} 남는다.",
+            "example": {
+              "prompt": "$2+0.35$가 $0.37$이 아닌 까닭은?",
+              "answer": "$2$는 일의 자리 수라서"
+            }
+          },
+          "B": {
+            "prompt": "$2+0.35$를 계산하고, $0.37$이 아닌 까닭을 쓰시오.",
+            "answer": "$2.35$. $2$는 일의 자리 수라서 자연수 부분에 더해지고 소수 부분 $0.35$는 그대로 남는다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "$2.35$"
+                ]
+              },
+              {
+                "anyOf": [
+                  "$2$는 일의 자리 수이므로 자연수 부분에 더해야 한다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "자연수와 소수를 더하면 자연수 부분에만 더해지고 {소수} 부분은 그대로 남는다.",
+            "acceptedAnswers": [
+              [
+                "소수",
+                "소수점 아래"
+              ]
+            ]
+          },
+          "goal": "자연수와 소수의 덧셈",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "54c9f4bc0a70c6fe02adcd35903362c2eb63fef6810ad9abeeeb0e17c03b20a9"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-6-xc7",
+        "contentHash": "54c9f4bc0a70c6fe02adcd35903362c2eb63fef6810ad9abeeeb0e17c03b20a9",
+        "packet": "cohort-2026-10-07T08-48-40-284Z-1",
+        "inputHash": "035ceffa7fe9a17e3c8a94f59ae33fe1db47e792221a4c9deb0584b688e8213e",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C의 빈칸 정답 '소수'가 같은 문장 앞부분 '자연수와 소수를 더하면'에 그대로 있다. 바로 앞의 '자연수 부분에만 더해지고'로 남는 낱말을 골라 복사하면 맞는다. 2+0.35처럼 어느 부분이 그대로 남는지 값으로 묻는 빈칸으로 바꿔야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2393,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+      "sourceFingerprint": "d5ff67a905e3519159d91a5f0bde34fe4e5b0ad36668f5476cc524b1c668cc64",
+      "proposalFingerprint": "b93c8f222249ad5381e725ec24e43a852d261b1f236ea0afd4f7682f0b799dfb",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-6-xc13",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "$0.01$의 개수로 더하기",
+      "bReason": "xc4 B와 같은 $0.01$ 개수 덧셈",
+      "exclusionReason": "xc4 B가 $0.01$의 개수로 소수 두 자리 수를 더하는 같은 목표를 다룬다.",
+      "cDecision": "keep",
+      "cReason": "'$0.01$의 개수' 짧은 단위 빈칸",
+      "cSlotEquivalents": [
+        [
+          "$0.01$이 몇 개인지"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "영점영일의 개수로 바꾸어 더하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+      "cStudentSentence": "소수 두 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "expected": "$0.01$의 개수",
+          "equivalents": [
+            "$0.01$이 몇 개인지"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "소수 두 자리 수의 덧셈은 두 수를 □로 바꾸어 자연수처럼 더할 수 있다.",
+        "answers": [
+          "$0.01$의 개수"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$0.01$의 개수",
+            "$0.01$이 몇 개인지"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc4 B와 같은 $0.01$ 개수 덧셈"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-6-xc13",
+        "sourceIndex": 2393,
+        "proposalFingerprint": "b93c8f222249ad5381e725ec24e43a852d261b1f236ea0afd4f7682f0b799dfb",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "0.01개수로더하는기존B와중복이다.",
+        "cReason": "소수두자리수의공통단위0.01개수방법이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-6-xc13",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+      "term": "영점영일의 개수로 바꾸어 더하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+      "example": {
+        "prompt": "$125+238=363$으로 $1.25+2.38$이 $3.63$인 까닭은?",
+        "answer": "$0.01$이 $363$개라서"
+      }
+    },
+    "normalized": {
+      "id": "e4-2-3-6-xc13",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-6-xc13",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "영점영일의 개수로 바꾸어 더하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "example": {
+          "prompt": "$125+238=363$으로 $1.25+2.38$이 $3.63$인 까닭은?",
+          "answer": "$0.01$이 $363$개라서"
+        }
+      },
+      "B": {
+        "excluded": "xc4 B와 같은 $0.01$ 개수 덧셈"
+      },
+      "C": {
+        "sentence": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$0.01$의 개수",
+            "$0.01$이 몇 개인지"
+          ]
+        ]
+      },
+      "goal": "$0.01$의 개수로 더하기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "d0bd105ab1de7207855bffaecb7ce0cff12faf3a3f85c24ef6776d450566f5f8"
+    },
+    "ledger": {
+      "id": "e4-2-3-6-xc13",
+      "sourceIndex": 2393,
+      "proposalFingerprint": "b93c8f222249ad5381e725ec24e43a852d261b1f236ea0afd4f7682f0b799dfb",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "0.01개수로더하는기존B와중복이다.",
+      "cReason": "소수두자리수의공통단위0.01개수방법이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "b93c8f222249ad5381e725ec24e43a852d261b1f236ea0afd4f7682f0b799dfb",
+    "normalizedHash": "d0bd105ab1de7207855bffaecb7ce0cff12faf3a3f85c24ef6776d450566f5f8",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-6-xc13",
+        "grade": "초4",
+        "reviewedHash": "d0bd105ab1de7207855bffaecb7ce0cff12faf3a3f85c24ef6776d450566f5f8",
+        "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+        "evidence": "cohort-2026-10-07T08-57-39-579Z-0",
+        "blind": [
+          [
+            "e4-2-3-6-xc13",
+            "C",
+            "100배 한 수(0.01이 몇 개인 수)",
+            "revise",
+            "□에 들어갈 말이 '100배 한 수', '0.01의 개수', '자연수' 등으로 갈려 답 범위가 정해지지 않는다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-3-6-xc13",
+            "excluded",
+            "revise",
+            "none",
+            "C: 빈칸이 '0.01의 개수'로 정해지지 않는다. '자연수처럼 더할 수 있다'는 문맥만으로는 '100배 한 수', '자연수'도 답이 될 수 있어 핵심 개념을 확인하지 못한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-6-xc13",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-6-xc13",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+            "term": "영점영일의 개수로 바꾸어 더하기",
+            "kind": "방법",
+            "level": "중",
+            "definition": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+            "example": {
+              "prompt": "$125+238=363$으로 $1.25+2.38$이 $3.63$인 까닭은?",
+              "answer": "$0.01$이 $363$개라서"
+            }
+          },
+          "B": {
+            "excluded": "xc4 B와 같은 $0.01$ 개수 덧셈"
+          },
+          "C": {
+            "sentence": "소수 두 자리 수의 덧셈은 두 수를 {$0.01$의 개수}로 바꾸어 자연수처럼 더할 수 있다.",
+            "acceptedAnswers": [
+              [
+                "$0.01$의 개수",
+                "$0.01$이 몇 개인지"
+              ]
+            ]
+          },
+          "goal": "$0.01$의 개수로 더하기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "d0bd105ab1de7207855bffaecb7ce0cff12faf3a3f85c24ef6776d450566f5f8"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-6-xc13",
+        "contentHash": "d0bd105ab1de7207855bffaecb7ce0cff12faf3a3f85c24ef6776d450566f5f8",
+        "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+        "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: □에 들어갈 말이 '100배 한 수', '0.01의 개수', '자연수' 등으로 갈려 답 범위가 정해지지 않는다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: 빈칸이 '0.01의 개수'로 정해지지 않는다. '자연수처럼 더할 수 있다'는 문맥만으로는 '100배 한 수', '자연수'도 답이 될 수 있어 핵심 개념을 확인하지 못한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2395,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+      "sourceFingerprint": "5fdb0fd9ef717561f320c16d9e396818de8d62f606631e0669fc389ece735a43",
+      "proposalFingerprint": "901b2bf8bc3c8681aa14ff7681643cc9155b79b52787f7c2e27bc6dddbabefe1",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-6-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하고, $35$를 $0.35$로 바꾸는 까닭을 쓰시오.",
+      "bAnswer": "$1.55\\,\\mathrm{m}$. $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$로 단위를 맞추어 더하기 위해서이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1.55\\,\\mathrm{m}$",
+            "$1.55$"
+          ]
+        },
+        {
+          "anyOf": [
+            "단위를 맞추려고",
+            "$35\\,\\mathrm{cm}$를 $0.35\\,\\mathrm{m}$로 바꾼다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "단위를 맞춘 덧셈",
+      "bReason": "단위 바꾸기 이유와 결과 확인",
+      "cDecision": "rewrite",
+      "cAfter": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+      "cReason": "긴 구절 정답을 '같은' 한 낱말로",
+      "cSlotEquivalents": [
+        [
+          "똑같은"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "단위를 맞추어 더하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+      "cStudentSentence": "단위가 다른 두 양을 더하려면 □ 단위로 바꾼 뒤 더한다.",
+      "cSlotAnswers": [
+        {
+          "expected": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하고, $35$를 $0.35$로 바꾸는 까닭을 쓰시오.",
+        "answer": "$1.55\\,\\mathrm{m}$. $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$로 단위를 맞추어 더하기 위해서이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1.55\\,\\mathrm{m}$",
+              "$1.55$"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위를 맞추려고",
+              "$35\\,\\mathrm{cm}$를 $0.35\\,\\mathrm{m}$로 바꾼다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-6-xc15",
+        "sourceIndex": 2395,
+        "proposalFingerprint": "901b2bf8bc3c8681aa14ff7681643cc9155b79b52787f7c2e27bc6dddbabefe1",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "35cm를0.35m로맞추어합1.55m인단위이유이다.",
+        "cReason": "같은단위로맞춘뒤더하는조건이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-6-xc15",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+      "term": "단위를 맞추어 더하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "단위가 다른 두 양을 더하려면 {같은 단위로 바꾼} 뒤 더한다.",
+      "example": {
+        "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 더할 때 $35$를 $0.35$로 바꾸는 까닭은?",
+        "answer": "단위를 맞추려고"
+      }
+    },
+    "normalized": {
+      "id": "e4-2-3-6-xc15",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-6-xc15",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "단위를 맞추어 더하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "단위가 다른 두 양을 더하려면 {같은 단위로 바꾼} 뒤 더한다.",
+        "example": {
+          "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 더할 때 $35$를 $0.35$로 바꾸는 까닭은?",
+          "answer": "단위를 맞추려고"
+        }
+      },
+      "B": {
+        "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하고, $35$를 $0.35$로 바꾸는 까닭을 쓰시오.",
+        "answer": "$1.55\\,\\mathrm{m}$. $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$로 단위를 맞추어 더하기 위해서이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1.55\\,\\mathrm{m}$",
+              "$1.55$"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위를 맞추려고",
+              "$35\\,\\mathrm{cm}$를 $0.35\\,\\mathrm{m}$로 바꾼다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "goal": "단위를 맞춘 덧셈",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "a55e6f71390a86a6fb6123a6b0648f27f9538ee40941fba8a14a991e80c45266"
+    },
+    "ledger": {
+      "id": "e4-2-3-6-xc15",
+      "sourceIndex": 2395,
+      "proposalFingerprint": "901b2bf8bc3c8681aa14ff7681643cc9155b79b52787f7c2e27bc6dddbabefe1",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "35cm를0.35m로맞추어합1.55m인단위이유이다.",
+      "cReason": "같은단위로맞춘뒤더하는조건이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "901b2bf8bc3c8681aa14ff7681643cc9155b79b52787f7c2e27bc6dddbabefe1",
+    "normalizedHash": "a55e6f71390a86a6fb6123a6b0648f27f9538ee40941fba8a14a991e80c45266",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-6-xc15",
+        "grade": "초4",
+        "reviewedHash": "a55e6f71390a86a6fb6123a6b0648f27f9538ee40941fba8a14a991e80c45266",
+        "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+        "evidence": "cohort-2026-10-07T08-57-39-579Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-3-6-xc15",
+            "revise",
+            "pass",
+            "none",
+            "B: 물음은 '35를 0.35로 바꾸는 까닭'을 묻는데 requiredIdeas의 anyOf에 '35cm를 0.35m로 바꾼다'가 들어 있다. 이것은 까닭이 아니라 물음의 전제를 되풀이한 것이므로, 문구를 복사해도 기준이 충족된다. 까닭(단위를 맞추려고)만 필수로 남겨야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-6-xc15",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-6-xc15",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+            "term": "단위를 맞추어 더하기",
+            "kind": "방법",
+            "level": "중",
+            "definition": "단위가 다른 두 양을 더하려면 {같은 단위로 바꾼} 뒤 더한다.",
+            "example": {
+              "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 더할 때 $35$를 $0.35$로 바꾸는 까닭은?",
+              "answer": "단위를 맞추려고"
+            }
+          },
+          "B": {
+            "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하고, $35$를 $0.35$로 바꾸는 까닭을 쓰시오.",
+            "answer": "$1.55\\,\\mathrm{m}$. $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$로 단위를 맞추어 더하기 위해서이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "$1.55\\,\\mathrm{m}$",
+                  "$1.55$"
+                ]
+              },
+              {
+                "anyOf": [
+                  "단위를 맞추려고",
+                  "$35\\,\\mathrm{cm}$를 $0.35\\,\\mathrm{m}$로 바꾼다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+            "acceptedAnswers": [
+              [
+                "같은",
+                "똑같은"
+              ]
+            ]
+          },
+          "goal": "단위를 맞춘 덧셈",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "a55e6f71390a86a6fb6123a6b0648f27f9538ee40941fba8a14a991e80c45266"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-6-xc15",
+        "contentHash": "a55e6f71390a86a6fb6123a6b0648f27f9538ee40941fba8a14a991e80c45266",
+        "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+        "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B: 물음은 '35를 0.35로 바꾸는 까닭'을 묻는데 requiredIdeas의 anyOf에 '35cm를 0.35m로 바꾼다'가 들어 있다. 이것은 까닭이 아니라 물음의 전제를 되풀이한 것이므로, 문구를 복사해도 기준이 충족된다. 까닭(단위를 맞추려고)만 필수로 남겨야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2397,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+      "sourceFingerprint": "bb5f6206f50eb9d1931ba7644698c19fa8af02bf700ae8f26593523e74d57c15",
+      "proposalFingerprint": "1835aae4c210bc8ca428e6b38fbedfaa8776524e7b5e2d35c97aa5800327ebe6",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-6-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+      "bAnswer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$쯤"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "소수 두 자리 합 어림",
+      "bReason": "가까운 자연수로 어림하는 방법 확인",
+      "cDecision": "keep",
+      "cReason": "'가까운 자연수' 익숙한 구절 빈칸",
+      "cSlotEquivalents": [
+        [
+          "가장 가까운 자연수"
+        ]
+      ],
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "합 어림하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+      "cStudentSentence": "소수 두 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "expected": "가까운 자연수",
+          "equivalents": [
+            "가장 가까운 자연수"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "소수 두 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+        "answers": [
+          "가까운 자연수"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+        "answer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$쯤"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "가까운 자연수",
+            "가장 가까운 자연수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-6-xc18",
+        "sourceIndex": 2397,
+        "proposalFingerprint": "1835aae4c210bc8ca428e6b38fbedfaa8776524e7b5e2d35c97aa5800327ebe6",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "이점구육과의 조사로 고쳤고 3과 1로 어림한 합 4라는 질문과 기준은 맞는다.",
+        "cReason": "가까운 자연수로 합을 어림하는 빈칸은 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-6-xc18",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+      "term": "합 어림하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+      "example": {
+        "prompt": "$2.96+1.03$을 $3+1$로 어림하는 까닭은?",
+        "answer": "두 수가 $3$과 $1$에 가까워서"
+      }
+    },
+    "normalized": {
+      "id": "e4-2-3-6-xc18",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-6-xc18",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "합 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "example": {
+          "prompt": "$2.96+1.03$을 $3+1$로 어림하는 까닭은?",
+          "answer": "두 수가 $3$과 $1$에 가까워서"
+        }
+      },
+      "B": {
+        "prompt": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+        "answer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$쯤"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "가까운 자연수",
+            "가장 가까운 자연수"
+          ]
+        ]
+      },
+      "goal": "소수 두 자리 합 어림",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "83fcd110d520015cdb7140332034c0a779559caf22cff986c24001cef36b08e9"
+    },
+    "ledger": {
+      "id": "e4-2-3-6-xc18",
+      "sourceIndex": 2397,
+      "proposalFingerprint": "1835aae4c210bc8ca428e6b38fbedfaa8776524e7b5e2d35c97aa5800327ebe6",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "이점구육과의 조사로 고쳤고 3과 1로 어림한 합 4라는 질문과 기준은 맞는다.",
+      "cReason": "가까운 자연수로 합을 어림하는 빈칸은 유지한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "1835aae4c210bc8ca428e6b38fbedfaa8776524e7b5e2d35c97aa5800327ebe6",
+    "normalizedHash": "83fcd110d520015cdb7140332034c0a779559caf22cff986c24001cef36b08e9",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-6-xc18",
+        "grade": "초4",
+        "reviewedHash": "83fcd110d520015cdb7140332034c0a779559caf22cff986c24001cef36b08e9",
+        "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+        "evidence": "cohort-2026-10-07T08-57-39-579Z-0",
+        "blind": [
+          [
+            "e4-2-3-6-xc18",
+            "C",
+            "가까운 자연수",
+            "revise",
+            "어림 방법(자연수, 소수 첫째 자리 등)이 정해지지 않아 □ 답 범위가 열려 있다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-3-6-xc18",
+            "pass",
+            "revise",
+            "none",
+            "C: '각 수를 □로 어림해'에서 가까운 자연수, 반올림한 수, 소수 첫째 자리 수 등이 모두 가능해 어림 방법이 정해지지 않는다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-6-xc18",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-6-xc18",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+            "term": "합 어림하기",
+            "kind": "방법",
+            "level": "중",
+            "definition": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+            "example": {
+              "prompt": "$2.96+1.03$을 $3+1$로 어림하는 까닭은?",
+              "answer": "두 수가 $3$과 $1$에 가까워서"
+            }
+          },
+          "B": {
+            "prompt": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+            "answer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "$4$쯤"
+                ]
+              },
+              {
+                "anyOf": [
+                  "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+            "acceptedAnswers": [
+              [
+                "가까운 자연수",
+                "가장 가까운 자연수"
+              ]
+            ]
+          },
+          "goal": "소수 두 자리 합 어림",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "83fcd110d520015cdb7140332034c0a779559caf22cff986c24001cef36b08e9"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-6-xc18",
+        "contentHash": "83fcd110d520015cdb7140332034c0a779559caf22cff986c24001cef36b08e9",
+        "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+        "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: 어림 방법(자연수, 소수 첫째 자리 등)이 정해지지 않아 □ 답 범위가 열려 있다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: '각 수를 □로 어림해'에서 가까운 자연수, 반올림한 수, 소수 첫째 자리 수 등이 모두 가능해 어림 방법이 정해지지 않는다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2403,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+      "sourceFingerprint": "5cc78cf3c7924f921658ef0f7330c4b3d0566ac740a950316d5d95d5b7b6f730",
+      "proposalFingerprint": "217b8170483f5292170bd9fff1a61420bffd180e384e3856eff501b14a5125ee",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-7-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "세로셈으로 $3.84-1.27$을 계산할 때 차의 소수점을 어디에 찍어야 하는지 쓰시오.",
+      "bAnswer": "위의 수의 소수점과 위아래로 같은 자리에 찍는다. 차는 $2.57$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위의 소수점과 같은 자리",
+            "소수점끼리 위아래로 맞추어 찍는다",
+            "위의 소수점 바로 아래"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "세로셈 차의 소수점 위치",
+      "bReason": "구체 식으로 소수점 위치를 직접 묻는다",
+      "cDecision": "rewrite",
+      "cAfter": "세로셈에서 차의 소수점은 위의 소수점과 같은 {자리}에 찍는다.",
+      "cReason": "긴 구절 빈칸을 한 낱말 빈칸으로 줄임",
+      "cSlotEquivalents": [
+        [
+          "곳",
+          "줄",
+          "위치",
+          "세로줄"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "차의 소수점 자리",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "세로셈에서 차의 소수점은 위의 소수점과 같은 {자리}에 찍는다.",
+      "cStudentSentence": "세로셈에서 차의 소수점은 위의 소수점과 같은 □에 찍는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "자리",
+          "equivalents": [
+            "곳",
+            "줄",
+            "위치",
+            "세로줄"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세로셈으로 $3.84-1.27$을 계산할 때 차의 소수점을 어디에 찍어야 하는지 쓰시오.",
+        "answer": "위의 수의 소수점과 위아래로 같은 자리에 찍는다. 차는 $2.57$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위의 소수점과 같은 자리",
+              "소수점끼리 위아래로 맞추어 찍는다",
+              "위의 소수점 바로 아래"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "세로셈에서 차의 소수점은 위의 소수점과 같은 {자리}에 찍는다.",
+        "acceptedAnswers": [
+          [
+            "자리",
+            "곳",
+            "줄",
+            "위치",
+            "세로줄"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-7-xc3",
+        "sourceIndex": 2403,
+        "proposalFingerprint": "217b8170483f5292170bd9fff1a61420bffd180e384e3856eff501b14a5125ee",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "소수점위치만요청하여미요청차2.57을기준으로강제하지않는다.",
+        "cReason": "위소수점과같은세로자리라는위치를확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-7-xc3",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+      "term": "차의 소수점 자리",
+      "kind": "방법",
+      "level": "하",
+      "definition": "세로셈에서 차의 소수점은 위의 {소수점과 같은 자리}에 찍는다."
+    },
+    "normalized": {
+      "id": "e4-2-3-7-xc3",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-7-xc3",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "차의 소수점 자리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "세로셈에서 차의 소수점은 위의 {소수점과 같은 자리}에 찍는다."
+      },
+      "B": {
+        "prompt": "세로셈으로 $3.84-1.27$을 계산할 때 차의 소수점을 어디에 찍어야 하는지 쓰시오.",
+        "answer": "위의 수의 소수점과 위아래로 같은 자리에 찍는다. 차는 $2.57$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위의 소수점과 같은 자리",
+              "소수점끼리 위아래로 맞추어 찍는다",
+              "위의 소수점 바로 아래"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "세로셈에서 차의 소수점은 위의 소수점과 같은 {자리}에 찍는다.",
+        "acceptedAnswers": [
+          [
+            "자리",
+            "곳",
+            "줄",
+            "위치",
+            "세로줄"
+          ]
+        ]
+      },
+      "goal": "세로셈 차의 소수점 위치",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "fe905713911b4b6d44489d98abcd59233bf0b4f602040ab11ffb657c58f1957e"
+    },
+    "ledger": {
+      "id": "e4-2-3-7-xc3",
+      "sourceIndex": 2403,
+      "proposalFingerprint": "217b8170483f5292170bd9fff1a61420bffd180e384e3856eff501b14a5125ee",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "소수점위치만요청하여미요청차2.57을기준으로강제하지않는다.",
+      "cReason": "위소수점과같은세로자리라는위치를확인한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "217b8170483f5292170bd9fff1a61420bffd180e384e3856eff501b14a5125ee",
+    "normalizedHash": "fe905713911b4b6d44489d98abcd59233bf0b4f602040ab11ffb657c58f1957e",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-7-xc3",
+        "grade": "초4",
+        "reviewedHash": "fe905713911b4b6d44489d98abcd59233bf0b4f602040ab11ffb657c58f1957e",
+        "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+        "evidence": "cohort-2026-10-07T08-57-39-579Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-3-7-xc3",
+            "pass",
+            "revise",
+            "none",
+            "C: '위의 소수점과 같은'이 이미 문장에 있고 빈칸은 명사 '자리'뿐이다. 위치 개념은 확인하지 못하고 문법 복원에 그친다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-7-xc3",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-7-xc3",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+            "term": "차의 소수점 자리",
+            "kind": "방법",
+            "level": "하",
+            "definition": "세로셈에서 차의 소수점은 위의 {소수점과 같은 자리}에 찍는다."
+          },
+          "B": {
+            "prompt": "세로셈으로 $3.84-1.27$을 계산할 때 차의 소수점을 어디에 찍어야 하는지 쓰시오.",
+            "answer": "위의 수의 소수점과 위아래로 같은 자리에 찍는다. 차는 $2.57$이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "위의 소수점과 같은 자리",
+                  "소수점끼리 위아래로 맞추어 찍는다",
+                  "위의 소수점 바로 아래"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "세로셈에서 차의 소수점은 위의 소수점과 같은 {자리}에 찍는다.",
+            "acceptedAnswers": [
+              [
+                "자리",
+                "곳",
+                "줄",
+                "위치",
+                "세로줄"
+              ]
+            ]
+          },
+          "goal": "세로셈 차의 소수점 위치",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "fe905713911b4b6d44489d98abcd59233bf0b4f602040ab11ffb657c58f1957e"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-7-xc3",
+        "contentHash": "fe905713911b4b6d44489d98abcd59233bf0b4f602040ab11ffb657c58f1957e",
+        "packet": "cohort-2026-10-07T08-57-39-579Z-0",
+        "inputHash": "1cdbbe0293e26b0336aab8d12ae27928099bbf22144d459053ed85cb71c5f4b0",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: '위의 소수점과 같은'이 이미 문장에 있고 빈칸은 명사 '자리'뿐이다. 위치 개념은 확인하지 못하고 문법 복원에 그친다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2421,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+      "sourceFingerprint": "dc2ffa1f3ebf1bd9241a2ad3715e5879dd1458799f35021832bb2d7240f964e1",
+      "proposalFingerprint": "7dfcfabdb60000ab82a53926c90e48f7d7da390dbb08abee7857d0a6017b0383",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-7-xc28",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.53-0.28$을 계산하면서 소수 둘째 자리로 $0.1$을 내어 주고도 소수 첫째 자리 숫자 $5$를 줄이지 않아 $0.35$가 되었습니다. 바른 차는 $0.25$입니다. 틀린 값은 바른 값보다 얼마나 크거나 작은지, 그 까닭과 함께 쓰시오.",
+      "bAnswer": "$0.1$ 더 크다. 내어 준 $0.1$을 줄이지 않아 $0.1$을 더 가진 채 계산했기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.1$ 크다",
+            "$0.1$ 더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "내어 준 $0.1$을 줄이지 않았다",
+            "$0.1$을 더 가지고 계산했다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "줄이지 않은 받아내림 오류",
+      "bReason": "새 계산 예로 오류 크기와 까닭을 묻는다",
+      "cDecision": "rewrite",
+      "cAfter": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 {$0.1$} 커진다.",
+      "cReason": "긴 결론 구절 대신 크기만 빈칸",
+      "cSlotEquivalents": [
+        [
+          "영 점 일"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "내어 준 양을 줄이지 않은 잘못",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 {$0.1$} 커진다.",
+      "cStudentSentence": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 □ 커진다.",
+      "cSlotAnswers": [
+        {
+          "expected": "$0.1$",
+          "equivalents": [
+            "영 점 일"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.53-0.28$을 계산하면서 소수 둘째 자리로 $0.1$을 내어 주고도 소수 첫째 자리 숫자 $5$를 줄이지 않아 $0.35$가 되었습니다. 바른 차는 $0.25$입니다. 틀린 값은 바른 값보다 얼마나 크거나 작은지, 그 까닭과 함께 쓰시오.",
+        "answer": "$0.1$ 더 크다. 내어 준 $0.1$을 줄이지 않아 $0.1$을 더 가진 채 계산했기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.1$ 크다",
+              "$0.1$ 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "내어 준 $0.1$을 줄이지 않았다",
+              "$0.1$을 더 가지고 계산했다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 {$0.1$} 커진다.",
+        "acceptedAnswers": [
+          [
+            "$0.1$",
+            "영 점 일"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-7-xc28",
+        "sourceIndex": 2421,
+        "proposalFingerprint": "7dfcfabdb60000ab82a53926c90e48f7d7da390dbb08abee7857d0a6017b0383",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "내어준0.1을줄이지않아그만큼차가큰이유와크기를요청한다.",
+        "cReason": "내어준양누락이차를0.1크게만드는실제크기이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-3-7-xc28",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+      "term": "내어 준 양을 줄이지 않은 잘못",
+      "kind": "성질",
+      "level": "상",
+      "definition": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 {바른 값보다 $0.1$ 커진다}."
+    },
+    "normalized": {
+      "id": "e4-2-3-7-xc28",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-7-xc28",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+        "term": "내어 준 양을 줄이지 않은 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 {바른 값보다 $0.1$ 커진다}."
+      },
+      "B": {
+        "prompt": "$0.53-0.28$을 계산하면서 소수 둘째 자리로 $0.1$을 내어 주고도 소수 첫째 자리 숫자 $5$를 줄이지 않아 $0.35$가 되었습니다. 바른 차는 $0.25$입니다. 틀린 값은 바른 값보다 얼마나 크거나 작은지, 그 까닭과 함께 쓰시오.",
+        "answer": "$0.1$ 더 크다. 내어 준 $0.1$을 줄이지 않아 $0.1$을 더 가진 채 계산했기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.1$ 크다",
+              "$0.1$ 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "내어 준 $0.1$을 줄이지 않았다",
+              "$0.1$을 더 가지고 계산했다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 {$0.1$} 커진다.",
+        "acceptedAnswers": [
+          [
+            "$0.1$",
+            "영 점 일"
+          ]
+        ]
+      },
+      "goal": "줄이지 않은 받아내림 오류",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "23b817fd3c40d657f92ed69c74a3a5548e60cb6aedf957f2da17123e3e96915a"
+    },
+    "ledger": {
+      "id": "e4-2-3-7-xc28",
+      "sourceIndex": 2421,
+      "proposalFingerprint": "7dfcfabdb60000ab82a53926c90e48f7d7da390dbb08abee7857d0a6017b0383",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "내어준0.1을줄이지않아그만큼차가큰이유와크기를요청한다.",
+      "cReason": "내어준양누락이차를0.1크게만드는실제크기이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "7dfcfabdb60000ab82a53926c90e48f7d7da390dbb08abee7857d0a6017b0383",
+    "normalizedHash": "23b817fd3c40d657f92ed69c74a3a5548e60cb6aedf957f2da17123e3e96915a",
+    "currentNegatives": [
+      {
+        "id": "e4-2-3-7-xc28",
+        "grade": "초4",
+        "reviewedHash": "23b817fd3c40d657f92ed69c74a3a5548e60cb6aedf957f2da17123e3e96915a",
+        "inputHash": "90d7c1f51a07b8bf893808f923a8ba1b362fac4ae9627e4f1345eeed0506552f",
+        "evidence": "cohort-2026-10-07T08-57-39-605Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-3-7-xc28",
+            "revise",
+            "pass",
+            "none",
+            "B 물음이 바른 값 0.25와 틀린 값 0.35를 모두 주므로 0.1 차이는 뺄셈만으로 나온다. 둘째 필수 '내어 준 0.1을 줄이지 않았다'는 물음 본문 문구 그대로라 복사로 만족된다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-3-7-xc28",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-3-7-xc28",
+            "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-7 소수 두 자리 수의 뺄셈",
+            "term": "내어 준 양을 줄이지 않은 잘못",
+            "kind": "성질",
+            "level": "상",
+            "definition": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 {바른 값보다 $0.1$ 커진다}."
+          },
+          "B": {
+            "prompt": "$0.53-0.28$을 계산하면서 소수 둘째 자리로 $0.1$을 내어 주고도 소수 첫째 자리 숫자 $5$를 줄이지 않아 $0.35$가 되었습니다. 바른 차는 $0.25$입니다. 틀린 값은 바른 값보다 얼마나 크거나 작은지, 그 까닭과 함께 쓰시오.",
+            "answer": "$0.1$ 더 크다. 내어 준 $0.1$을 줄이지 않아 $0.1$을 더 가진 채 계산했기 때문이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "$0.1$ 크다",
+                  "$0.1$ 더 크다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "내어 준 $0.1$을 줄이지 않았다",
+                  "$0.1$을 더 가지고 계산했다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "소수 둘째 자리로 $0.1$을 내어 주고 첫째 자리에서 그만큼 줄이지 않으면 차가 바른 값보다 {$0.1$} 커진다.",
+            "acceptedAnswers": [
+              [
+                "$0.1$",
+                "영 점 일"
+              ]
+            ]
+          },
+          "goal": "줄이지 않은 받아내림 오류",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "23b817fd3c40d657f92ed69c74a3a5548e60cb6aedf957f2da17123e3e96915a"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-3-7-xc28",
+        "contentHash": "23b817fd3c40d657f92ed69c74a3a5548e60cb6aedf957f2da17123e3e96915a",
+        "packet": "cohort-2026-10-07T08-57-39-605Z-1",
+        "inputHash": "90d7c1f51a07b8bf893808f923a8ba1b362fac4ae9627e4f1345eeed0506552f",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "B의 실제 결정과 2차 판정이 다름",
+          "B 물음이 바른 값 0.25와 틀린 값 0.35를 모두 주므로 0.1 차이는 뺄셈만으로 나온다. 둘째 필수 '내어 준 0.1을 줄이지 않았다'는 물음 본문 문구 그대로라 복사로 만족된다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2445,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+      "sourceFingerprint": "c2b191e1130b7a9f5a3d352f95ddeef3bd019a8e584a79ac3c9b56796cff9094",
+      "proposalFingerprint": "e1fd386ddda7b651dc792787c8e0c3814debeea41569e325e817b383512f7a43",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-1-xc27",
+      "bDecision": "rewrite",
+      "bPrompt": "직선 밖의 한 점을 지나는 그 직선의 수선을 삼각자로 긋는 방법을 쓰시오.",
+      "bAnswer": "삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 그 점을 지나도록 삼각자를 옮겨 그 변을 따라 긋는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직각을 낀 한 변을 직선에 맞춘다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다른 한 변이 점을 지나도록 옮겨 긋는다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "직선 밖 점에서 수선 긋기",
+      "bReason": "점이 직선 밖일 때 작도 순서를 묻는다",
+      "cDecision": "rewrite",
+      "cAfter": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 {점}을 지나도록 옮겨 긋는다.",
+      "cReason": "어색한 구절 대신 '점' 낱말만 빈칸",
+      "cSlotEquivalents": [
+        [
+          "한 점"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "직선 밖의 점에서 수선 긋기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 {점}을 지나도록 옮겨 긋는다.",
+      "cStudentSentence": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 □을 지나도록 옮겨 긋는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "점",
+          "equivalents": [
+            "한 점"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직선 밖의 한 점을 지나는 그 직선의 수선을 삼각자로 긋는 방법을 쓰시오.",
+        "answer": "삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 그 점을 지나도록 삼각자를 옮겨 그 변을 따라 긋는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 한 변을 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 한 변이 점을 지나도록 옮겨 긋는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 {점}을 지나도록 옮겨 긋는다.",
+        "acceptedAnswers": [
+          [
+            "점",
+            "한 점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-1-xc27",
+        "sourceIndex": 2445,
+        "proposalFingerprint": "e1fd386ddda7b651dc792787c8e0c3814debeea41569e325e817b383512f7a43",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "한변맞춤과다른변이지정점을지나도록평행이동하는수선작도이다.",
+        "cReason": "밖의지정점을지나는조건을확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-1-xc27",
+      "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+      "term": "직선 밖의 점에서 수선 긋기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고 다른 한 변이 {그 점을 지나도록} 옮겨 긋는다."
+    },
+    "normalized": {
+      "id": "e4-2-4-1-xc27",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-1-xc27",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직선 밖의 점에서 수선 긋기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고 다른 한 변이 {그 점을 지나도록} 옮겨 긋는다."
+      },
+      "B": {
+        "prompt": "직선 밖의 한 점을 지나는 그 직선의 수선을 삼각자로 긋는 방법을 쓰시오.",
+        "answer": "삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 그 점을 지나도록 삼각자를 옮겨 그 변을 따라 긋는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 한 변을 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 한 변이 점을 지나도록 옮겨 긋는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 {점}을 지나도록 옮겨 긋는다.",
+        "acceptedAnswers": [
+          [
+            "점",
+            "한 점"
+          ]
+        ]
+      },
+      "goal": "직선 밖 점에서 수선 긋기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "9955436a7ab84fb9a0757849c312341f4a8780819a18b63fedb12ced6cc1c0dc"
+    },
+    "ledger": {
+      "id": "e4-2-4-1-xc27",
+      "sourceIndex": 2445,
+      "proposalFingerprint": "e1fd386ddda7b651dc792787c8e0c3814debeea41569e325e817b383512f7a43",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "한변맞춤과다른변이지정점을지나도록평행이동하는수선작도이다.",
+      "cReason": "밖의지정점을지나는조건을확인한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "e1fd386ddda7b651dc792787c8e0c3814debeea41569e325e817b383512f7a43",
+    "normalizedHash": "9955436a7ab84fb9a0757849c312341f4a8780819a18b63fedb12ced6cc1c0dc",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-1-xc27",
+        "grade": "초4",
+        "reviewedHash": "9955436a7ab84fb9a0757849c312341f4a8780819a18b63fedb12ced6cc1c0dc",
+        "inputHash": "c3551998733a897159e9e36c8084b7b09a835a5f54845c96339c2d3aa32d8deb",
+        "evidence": "cohort-2026-10-07T09-06-25-656Z-0",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-4-1-xc27",
+            "pass",
+            "revise",
+            "none",
+            "C: 첫 구절 '직선 밖의 한 점을 지나는'에 이미 나온 '점'을 빈칸에 되풀이하면 정답이다. 삼각자를 어떻게 옮기는지에 대한 판단이 필요 없다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-1-xc27",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-1-xc27",
+            "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+            "term": "직선 밖의 점에서 수선 긋기",
+            "kind": "방법",
+            "level": "상",
+            "definition": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고 다른 한 변이 {그 점을 지나도록} 옮겨 긋는다."
+          },
+          "B": {
+            "prompt": "직선 밖의 한 점을 지나는 그 직선의 수선을 삼각자로 긋는 방법을 쓰시오.",
+            "answer": "삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 그 점을 지나도록 삼각자를 옮겨 그 변을 따라 긋는다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "직각을 낀 한 변을 직선에 맞춘다"
+                ]
+              },
+              {
+                "anyOf": [
+                  "다른 한 변이 점을 지나도록 옮겨 긋는다"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 직선 밖의 {점}을 지나도록 옮겨 긋는다.",
+            "acceptedAnswers": [
+              [
+                "점",
+                "한 점"
+              ]
+            ]
+          },
+          "goal": "직선 밖 점에서 수선 긋기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "9955436a7ab84fb9a0757849c312341f4a8780819a18b63fedb12ced6cc1c0dc"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-1-xc27",
+        "contentHash": "9955436a7ab84fb9a0757849c312341f4a8780819a18b63fedb12ced6cc1c0dc",
+        "packet": "cohort-2026-10-07T09-06-25-656Z-0",
+        "inputHash": "c3551998733a897159e9e36c8084b7b09a835a5f54845c96339c2d3aa32d8deb",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: 첫 구절 '직선 밖의 한 점을 지나는'에 이미 나온 '점'을 빈칸에 되풀이하면 정답이다. 삼각자를 어떻게 옮기는지에 대한 판단이 필요 없다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2452,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "2dcc6936bb7f9ca658abbfaba4a756800e905bb04fa0a088deb5d07655befe9e",
+      "proposalFingerprint": "a9ff6ad3291124b782b27946669323cda8c398d42c2683576e9c480fc4bfab5d",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "만나면 평행 아님",
+      "bReason": "xc3과 같은 목표",
+      "exclusionReason": "평행선의 반대 표현으로 xc3 평행선 정의 B와 같다",
+      "cDecision": "keep",
+      "cReason": "짧은 부정 빈칸이라 유지",
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "평행하지 않은 두 직선",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}.",
+      "cStudentSentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 □.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "않다",
+          "equivalents": []
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 □.",
+        "answers": [
+          "않다"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}.",
+        "acceptedAnswers": [
+          [
+            "않다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc3과 같은 목표"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc7",
+        "sourceIndex": 2452,
+        "proposalFingerprint": "a9ff6ad3291124b782b27946669323cda8c398d42c2683576e9c480fc4bfab5d",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "평행정의의반대표현B는중복이다.",
+        "cReason": "늘이면만나는두직선평행아님이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-2-xc7",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "term": "평행하지 않은 두 직선",
+      "kind": "성질",
+      "level": "하",
+      "definition": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}."
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc7",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc7",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행하지 않은 두 직선",
+        "kind": "성질",
+        "level": "하",
+        "definition": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}."
+      },
+      "B": {
+        "excluded": "xc3과 같은 목표"
+      },
+      "C": {
+        "sentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}.",
+        "acceptedAnswers": [
+          [
+            "않다"
+          ]
+        ]
+      },
+      "goal": "만나면 평행 아님",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "3cfd7f331c9a470fd9eacd53975e292b252d6b263bfe8b3ac36da729fdab5b71"
+    },
+    "ledger": {
+      "id": "e4-2-4-2-xc7",
+      "sourceIndex": 2452,
+      "proposalFingerprint": "a9ff6ad3291124b782b27946669323cda8c398d42c2683576e9c480fc4bfab5d",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "평행정의의반대표현B는중복이다.",
+      "cReason": "늘이면만나는두직선평행아님이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "a9ff6ad3291124b782b27946669323cda8c398d42c2683576e9c480fc4bfab5d",
+    "normalizedHash": "3cfd7f331c9a470fd9eacd53975e292b252d6b263bfe8b3ac36da729fdab5b71",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-2-xc7",
+        "grade": "초4",
+        "reviewedHash": "3cfd7f331c9a470fd9eacd53975e292b252d6b263bfe8b3ac36da729fdab5b71",
+        "inputHash": "c3551998733a897159e9e36c8084b7b09a835a5f54845c96339c2d3aa32d8deb",
+        "evidence": "cohort-2026-10-07T09-06-25-656Z-0",
+        "blind": [
+          [
+            "e4-2-4-2-xc7",
+            "C",
+            "않다",
+            "revise",
+            "'평행하지 □'에는 문법상 '않다'만 들어갈 수 있어 수학적 판단 없이 문장 복원만으로 답이 나온다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-4-2-xc7",
+            "excluded",
+            "revise",
+            "none",
+            "C: '평행하지 □'에는 문법상 '않다'만 들어간다. 수학 판단 없이 문장 복원만으로 답이 나온다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-2-xc7",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-2-xc7",
+            "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+            "term": "평행하지 않은 두 직선",
+            "kind": "성질",
+            "level": "하",
+            "definition": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}."
+          },
+          "B": {
+            "excluded": "xc3과 같은 목표"
+          },
+          "C": {
+            "sentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}.",
+            "acceptedAnswers": [
+              [
+                "않다"
+              ]
+            ]
+          },
+          "goal": "만나면 평행 아님",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "3cfd7f331c9a470fd9eacd53975e292b252d6b263bfe8b3ac36da729fdab5b71"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-2-xc7",
+        "contentHash": "3cfd7f331c9a470fd9eacd53975e292b252d6b263bfe8b3ac36da729fdab5b71",
+        "packet": "cohort-2026-10-07T09-06-25-656Z-0",
+        "inputHash": "c3551998733a897159e9e36c8084b7b09a835a5f54845c96339c2d3aa32d8deb",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '평행하지 □'에는 문법상 '않다'만 들어갈 수 있어 수학적 판단 없이 문장 복원만으로 답이 나온다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C: '평행하지 □'에는 문법상 '않다'만 들어간다. 수학 판단 없이 문장 복원만으로 답이 나온다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2459,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "89e93cf642225e543a14e9fdddd1fedc378503c10992d25c267d03b1c974fd22",
+      "proposalFingerprint": "0519119ade41e9356b4891f265152623459c8b47a026bfa30b66c83e7cb7e001",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "선분을 늘인 직선도 평행",
+      "bReason": "독립된 이유가 없는 정의 반복",
+      "exclusionReason": "평행한 선분의 뜻이 곧 늘인 직선의 평행이라 설명할 별도 이유가 없다",
+      "cDecision": "rewrite",
+      "cAfter": "평행한 두 선분을 양쪽으로 길게 {늘인} 두 직선도 서로 평행하다.",
+      "cReason": "긴 구절 빈칸을 동사 하나로 줄임",
+      "cSlotEquivalents": [
+        [
+          "늘여서 만든"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "평행한 선분을 늘인 직선",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "평행한 두 선분을 양쪽으로 길게 {늘인} 두 직선도 서로 평행하다.",
+      "cStudentSentence": "평행한 두 선분을 양쪽으로 길게 □ 두 직선도 서로 평행하다.",
+      "cSlotAnswers": [
+        {
+          "expected": "늘인",
+          "equivalents": [
+            "늘여서 만든"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "평행한 두 선분을 양쪽으로 길게 {늘인} 두 직선도 서로 평행하다.",
+        "acceptedAnswers": [
+          [
+            "늘인",
+            "늘여서 만든"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "독립된 이유가 없는 정의 반복"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc14",
+        "sourceIndex": 2459,
+        "proposalFingerprint": "0519119ade41e9356b4891f265152623459c8b47a026bfa30b66c83e7cb7e001",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "평행선분정의의반복B는제외한다.",
+        "cReason": "평행선분을늘인직선의관계를확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-2-xc14",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "term": "평행한 선분을 늘인 직선",
+      "kind": "성질",
+      "level": "중",
+      "definition": "평행한 두 선분을 {길게 늘인 두 직선}도 서로 평행하다."
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc14",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc14",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행한 선분을 늘인 직선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행한 두 선분을 {길게 늘인 두 직선}도 서로 평행하다."
+      },
+      "B": {
+        "excluded": "독립된 이유가 없는 정의 반복"
+      },
+      "C": {
+        "sentence": "평행한 두 선분을 양쪽으로 길게 {늘인} 두 직선도 서로 평행하다.",
+        "acceptedAnswers": [
+          [
+            "늘인",
+            "늘여서 만든"
+          ]
+        ]
+      },
+      "goal": "선분을 늘인 직선도 평행",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "48268aa9c8be34ca15a69af64cdbdf98cc30b2e19a6b3669fd3aa40659c1e271"
+    },
+    "ledger": {
+      "id": "e4-2-4-2-xc14",
+      "sourceIndex": 2459,
+      "proposalFingerprint": "0519119ade41e9356b4891f265152623459c8b47a026bfa30b66c83e7cb7e001",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "평행선분정의의반복B는제외한다.",
+      "cReason": "평행선분을늘인직선의관계를확인한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "0519119ade41e9356b4891f265152623459c8b47a026bfa30b66c83e7cb7e001",
+    "normalizedHash": "48268aa9c8be34ca15a69af64cdbdf98cc30b2e19a6b3669fd3aa40659c1e271",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-2-xc14",
+        "grade": "초4",
+        "reviewedHash": "48268aa9c8be34ca15a69af64cdbdf98cc30b2e19a6b3669fd3aa40659c1e271",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "evidence": "cohort-2026-10-07T09-06-25-688Z-1",
+        "blind": [
+          [
+            "e4-2-4-2-xc14",
+            "C",
+            "늘여도(늘인)",
+            "revise",
+            "빈칸이 '늘이다'의 활용형뿐이라 수학적 관계를 적용하지 않고 문법만 복원하게 된다. 늘인 직선이 평행한지 판단하는 요구로 바꿔야 한다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-4-2-xc14",
+            "excluded",
+            "revise",
+            "none",
+            "C의 빈칸 '늘인'은 '늘이다'의 활용형이라 문법만 복원하게 된다. 늘인 두 직선이 평행한지 판단하게 하거나 평행선의 성질을 고르게 하는 요구로 바꿔야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-2-xc14",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-2-xc14",
+            "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+            "term": "평행한 선분을 늘인 직선",
+            "kind": "성질",
+            "level": "중",
+            "definition": "평행한 두 선분을 {길게 늘인 두 직선}도 서로 평행하다."
+          },
+          "B": {
+            "excluded": "독립된 이유가 없는 정의 반복"
+          },
+          "C": {
+            "sentence": "평행한 두 선분을 양쪽으로 길게 {늘인} 두 직선도 서로 평행하다.",
+            "acceptedAnswers": [
+              [
+                "늘인",
+                "늘여서 만든"
+              ]
+            ]
+          },
+          "goal": "선분을 늘인 직선도 평행",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "48268aa9c8be34ca15a69af64cdbdf98cc30b2e19a6b3669fd3aa40659c1e271"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-2-xc14",
+        "contentHash": "48268aa9c8be34ca15a69af64cdbdf98cc30b2e19a6b3669fd3aa40659c1e271",
+        "packet": "cohort-2026-10-07T09-06-25-688Z-1",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: 빈칸이 '늘이다'의 활용형뿐이라 수학적 관계를 적용하지 않고 문법만 복원하게 된다. 늘인 직선이 평행한지 판단하는 요구로 바꿔야 한다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "C의 빈칸 '늘인'은 '늘이다'의 활용형이라 문법만 복원하게 된다. 늘인 두 직선이 평행한지 판단하게 하거나 평행선의 성질을 고르게 하는 요구로 바꿔야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2466,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "ea5cd0b474f540910b0eecf085bceacf3eec683d74e85f4d75666acb2f5458cf",
+      "proposalFingerprint": "cc7a9b47eefdcff8f4b27109bec20cfee76378647d608cafea307b8306c4b6df",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc22",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "평행선과 만나는 직선",
+      "bReason": "학년에 맞는 이유 설명이 억지",
+      "exclusionReason": "까닭이 평행의 유일성 논증이라 초4 눈높이에 억지 이유 질문이 된다",
+      "cDecision": "keep",
+      "cReason": "만난다 빈칸이 짧아 유지",
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "평행선과 만나는 직선",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}.",
+      "cStudentSentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 □.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "만난다",
+          "equivalents": []
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 □.",
+        "answers": [
+          "만난다"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}.",
+        "acceptedAnswers": [
+          [
+            "만난다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "학년에 맞는 이유 설명이 억지"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc22",
+        "sourceIndex": 2466,
+        "proposalFingerprint": "cc7a9b47eefdcff8f4b27109bec20cfee76378647d608cafea307b8306c4b6df",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "유일성논증의억지B설명은제외한다.",
+        "cReason": "한평행선과만나는직선이다른평행선과도만남이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-2-xc22",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "term": "평행선과 만나는 직선",
+      "kind": "성질",
+      "level": "상",
+      "definition": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}."
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc22",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc22",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행선과 만나는 직선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}."
+      },
+      "B": {
+        "excluded": "학년에 맞는 이유 설명이 억지"
+      },
+      "C": {
+        "sentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}.",
+        "acceptedAnswers": [
+          [
+            "만난다"
+          ]
+        ]
+      },
+      "goal": "평행선과 만나는 직선",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "d4e7d93d146e7dc91ad7a8283a3868f772a0ca1eabb10f9c5c921a95369f7f6b"
+    },
+    "ledger": {
+      "id": "e4-2-4-2-xc22",
+      "sourceIndex": 2466,
+      "proposalFingerprint": "cc7a9b47eefdcff8f4b27109bec20cfee76378647d608cafea307b8306c4b6df",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "유일성논증의억지B설명은제외한다.",
+      "cReason": "한평행선과만나는직선이다른평행선과도만남이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "cc7a9b47eefdcff8f4b27109bec20cfee76378647d608cafea307b8306c4b6df",
+    "normalizedHash": "d4e7d93d146e7dc91ad7a8283a3868f772a0ca1eabb10f9c5c921a95369f7f6b",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-2-xc22",
+        "grade": "초4",
+        "reviewedHash": "d4e7d93d146e7dc91ad7a8283a3868f772a0ca1eabb10f9c5c921a95369f7f6b",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "evidence": "cohort-2026-10-07T09-06-25-688Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-4-2-xc22",
+            "excluded",
+            "revise",
+            "revise",
+            "원문과 C 모두 '같은 평면 위에서'라는 조건이 없다. 공간에서는 평행한 두 직선 중 하나와 만나는 직선이 다른 직선과 꼬인 위치에 있을 수 있어 명제가 거짓이다. 같은 계열의 xc16과 xc27은 평면 조건을 명시하는데 이 문항만 누락됐다. coreAfter가 null이라 교정이 없다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-2-xc22",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-2-xc22",
+            "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+            "term": "평행선과 만나는 직선",
+            "kind": "성질",
+            "level": "상",
+            "definition": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}."
+          },
+          "B": {
+            "excluded": "학년에 맞는 이유 설명이 억지"
+          },
+          "C": {
+            "sentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}.",
+            "acceptedAnswers": [
+              [
+                "만난다"
+              ]
+            ]
+          },
+          "goal": "평행선과 만나는 직선",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "d4e7d93d146e7dc91ad7a8283a3868f772a0ca1eabb10f9c5c921a95369f7f6b"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-2-xc22",
+        "contentHash": "d4e7d93d146e7dc91ad7a8283a3868f772a0ca1eabb10f9c5c921a95369f7f6b",
+        "packet": "cohort-2026-10-07T09-06-25-688Z-1",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "일반 설명 교정의 독립 검토가 통과하지 않음",
+          "원문과 C 모두 '같은 평면 위에서'라는 조건이 없다. 공간에서는 평행한 두 직선 중 하나와 만나는 직선이 다른 직선과 꼬인 위치에 있을 수 있어 명제가 거짓이다. 같은 계열의 xc16과 xc27은 평면 조건을 명시하는데 이 문항만 누락됐다. coreAfter가 null이라 교정이 없다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2468,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "56f643ec27f25f473e34f4ee4ba034e9572ad14453c8ba3cb2202a1550f69736",
+      "proposalFingerprint": "9d7469b842b6217d4b21ffa692191c53f485a62aec26df0b41e76cec1d9e958a",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc24",
+      "bDecision": "exclude",
+      "bPrompt": "",
+      "bAnswer": "",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "평행한 변이 없는 사각형",
+      "bReason": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다.",
+      "cDecision": "keep",
+      "cReason": "짧은 낱말 빈칸이라 유지",
+      "exclusionReason": "B: 평행한 변이 없는 사각형 그림이나 직접 그리기 응답을 지원한 뒤 반례를 확인하는 문제로 다시 검토한다. C와 원래 일반 설명은 유지한다.",
+      "exampleNeeded": "평행한 변이 한 쌍도 없는 사각형을 그리고 마주 보는 두 쌍의 변을 각각 늘인 보조선을 보여 줄 것. 예시는 두 쌍 모두 만나도록 검증해야 한다.",
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "평행한 변이 없는 사각형",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다.",
+      "cStudentSentence": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "없는",
+          "equivalents": []
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+        "answers": [
+          "없는"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다.",
+        "acceptedAnswers": [
+          [
+            "없는"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다."
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc24",
+        "sourceIndex": 2468,
+        "proposalFingerprint": "9d7469b842b6217d4b21ffa692191c53f485a62aec26df0b41e76cec1d9e958a",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "실제 반례를 확인할 그림이 없는 B는 제외하고 다시 쓸 때 필요한 구체 그림을 기록했다.",
+        "cReason": "평행한 변이 한 쌍도 없는 사각형의 존재를 나타내는 원문은 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-2-xc24",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "term": "평행한 변이 없는 사각형",
+      "kind": "성질",
+      "level": "상",
+      "definition": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다."
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc24",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc24",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행한 변이 없는 사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다."
+      },
+      "B": {
+        "excluded": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다."
+      },
+      "C": {
+        "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다.",
+        "acceptedAnswers": [
+          [
+            "없는"
+          ]
+        ]
+      },
+      "goal": "평행한 변이 없는 사각형",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "acccc21c7328bb0d7182445d0993523e23d1ab393e9cd95eb564ac00c7108022"
+    },
+    "ledger": {
+      "id": "e4-2-4-2-xc24",
+      "sourceIndex": 2468,
+      "proposalFingerprint": "9d7469b842b6217d4b21ffa692191c53f485a62aec26df0b41e76cec1d9e958a",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "실제 반례를 확인할 그림이 없는 B는 제외하고 다시 쓸 때 필요한 구체 그림을 기록했다.",
+      "cReason": "평행한 변이 한 쌍도 없는 사각형의 존재를 나타내는 원문은 유지한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "9d7469b842b6217d4b21ffa692191c53f485a62aec26df0b41e76cec1d9e958a",
+    "normalizedHash": "acccc21c7328bb0d7182445d0993523e23d1ab393e9cd95eb564ac00c7108022",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-2-xc24",
+        "grade": "초4",
+        "reviewedHash": "acccc21c7328bb0d7182445d0993523e23d1ab393e9cd95eb564ac00c7108022",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "evidence": "cohort-2026-10-07T09-06-25-688Z-1",
+        "blind": [
+          [
+            "e4-2-4-2-xc24",
+            "C",
+            "없는",
+            "revise",
+            "'한 쌍도 □ 것도 있다'에서 부정형 '없는'만 문법상 들어가므로 문법 복원에 가깝다. 평행한 변이 없는 사각형을 예로 찾거나 판단하게 바꿔야 한다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-4-2-xc24",
+            "excluded",
+            "revise",
+            "none",
+            "'한 쌍도 □ 것도 있다'에서 부정 호응 때문에 '없는'만 문법상 들어가므로 문법 복원에 가깝다. 평행한 변이 없는 사각형의 예를 찾거나 판단하게 바꿔야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-2-xc24",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-2-xc24",
+            "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+            "term": "평행한 변이 없는 사각형",
+            "kind": "성질",
+            "level": "상",
+            "definition": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다."
+          },
+          "B": {
+            "excluded": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다."
+          },
+          "C": {
+            "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다.",
+            "acceptedAnswers": [
+              [
+                "없는"
+              ]
+            ]
+          },
+          "goal": "평행한 변이 없는 사각형",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "acccc21c7328bb0d7182445d0993523e23d1ab393e9cd95eb564ac00c7108022"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-2-xc24",
+        "contentHash": "acccc21c7328bb0d7182445d0993523e23d1ab393e9cd95eb564ac00c7108022",
+        "packet": "cohort-2026-10-07T09-06-25-688Z-1",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '한 쌍도 □ 것도 있다'에서 부정형 '없는'만 문법상 들어가므로 문법 복원에 가깝다. 평행한 변이 없는 사각형을 예로 찾거나 판단하게 바꿔야 한다.",
+          "C의 실제 결정과 2차 판정이 다름",
+          "'한 쌍도 □ 것도 있다'에서 부정 호응 때문에 '없는'만 문법상 들어가므로 문법 복원에 가깝다. 평행한 변이 없는 사각형의 예를 찾거나 판단하게 바꿔야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2469,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "823705269062a08756a84f390fd94041503b6dfc188ca46d7c26427b9a2f307b",
+      "proposalFingerprint": "7af6bf4651b002ad6e1b3e9b384aad1f377db1483d1c3ff0f4ca7c31d7c6278e",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc25",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "밖의 점 지나는 평행선 긋기",
+      "bReason": "xc4와 같은 목표",
+      "exclusionReason": "삼각자 두 개를 밀어 평행선을 긋는 방법이 xc4 B와 같다",
+      "cDecision": "rewrite",
+      "cAfter": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 {점}을 지나도록 밀어 옮긴 뒤 긋는다.",
+      "cReason": "긴 구절 빈칸을 낱말 하나로 줄임",
+      "cSlotEquivalents": [
+        [
+          "한 점"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "직선 밖의 점을 지나는 평행선 긋기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 {점}을 지나도록 밀어 옮긴 뒤 긋는다.",
+      "cStudentSentence": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 □을 지나도록 밀어 옮긴 뒤 긋는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "점",
+          "equivalents": [
+            "한 점"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 {점}을 지나도록 밀어 옮긴 뒤 긋는다.",
+        "acceptedAnswers": [
+          [
+            "점",
+            "한 점"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc4와 같은 목표"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc25",
+        "sourceIndex": 2469,
+        "proposalFingerprint": "7af6bf4651b002ad6e1b3e9b384aad1f377db1483d1c3ff0f4ca7c31d7c6278e",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "삼각자로평행선긋는기존B와중복이다.",
+        "cReason": "밖의지정점을지나도록삼각자를미는조건이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-2-xc25",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "term": "직선 밖의 점을 지나는 평행선 긋기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 {그 점까지} 밀어 옮긴 뒤 긋는다."
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc25",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc25",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "직선 밖의 점을 지나는 평행선 긋기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 {그 점까지} 밀어 옮긴 뒤 긋는다."
+      },
+      "B": {
+        "excluded": "xc4와 같은 목표"
+      },
+      "C": {
+        "sentence": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 {점}을 지나도록 밀어 옮긴 뒤 긋는다.",
+        "acceptedAnswers": [
+          [
+            "점",
+            "한 점"
+          ]
+        ]
+      },
+      "goal": "밖의 점 지나는 평행선 긋기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "8ae6a4ff2492a46920d8352a7e60629adba1c673b3beaa1a6f43dd5bebeda874"
+    },
+    "ledger": {
+      "id": "e4-2-4-2-xc25",
+      "sourceIndex": 2469,
+      "proposalFingerprint": "7af6bf4651b002ad6e1b3e9b384aad1f377db1483d1c3ff0f4ca7c31d7c6278e",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "삼각자로평행선긋는기존B와중복이다.",
+      "cReason": "밖의지정점을지나도록삼각자를미는조건이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "7af6bf4651b002ad6e1b3e9b384aad1f377db1483d1c3ff0f4ca7c31d7c6278e",
+    "normalizedHash": "8ae6a4ff2492a46920d8352a7e60629adba1c673b3beaa1a6f43dd5bebeda874",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-2-xc25",
+        "grade": "초4",
+        "reviewedHash": "8ae6a4ff2492a46920d8352a7e60629adba1c673b3beaa1a6f43dd5bebeda874",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "evidence": "cohort-2026-10-07T09-06-25-688Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-4-2-xc25",
+            "excluded",
+            "revise",
+            "none",
+            "빈칸 '점'은 같은 문장 앞의 '직선 밖의 한 점'을 그대로 반복한 것이라 복사만으로 맞는다. 삼각자를 어느 방향으로 어떻게 밀어 옮기는지 등 절차의 핵심을 묻도록 바꿔야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-2-xc25",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-2-xc25",
+            "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+            "term": "직선 밖의 점을 지나는 평행선 긋기",
+            "kind": "방법",
+            "level": "상",
+            "definition": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 {그 점까지} 밀어 옮긴 뒤 긋는다."
+          },
+          "B": {
+            "excluded": "xc4와 같은 목표"
+          },
+          "C": {
+            "sentence": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 {점}을 지나도록 밀어 옮긴 뒤 긋는다.",
+            "acceptedAnswers": [
+              [
+                "점",
+                "한 점"
+              ]
+            ]
+          },
+          "goal": "밖의 점 지나는 평행선 긋기",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "8ae6a4ff2492a46920d8352a7e60629adba1c673b3beaa1a6f43dd5bebeda874"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-2-xc25",
+        "contentHash": "8ae6a4ff2492a46920d8352a7e60629adba1c673b3beaa1a6f43dd5bebeda874",
+        "packet": "cohort-2026-10-07T09-06-25-688Z-1",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "빈칸 '점'은 같은 문장 앞의 '직선 밖의 한 점'을 그대로 반복한 것이라 복사만으로 맞는다. 삼각자를 어느 방향으로 어떻게 밀어 옮기는지 등 절차의 핵심을 묻도록 바꿔야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2475,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "sourceFingerprint": "1475779ce3f1915144f7cdbe4f845dbeb96ec3942ddd43d07dfd55b2d20138b7",
+      "proposalFingerprint": "7479ec69072f7561971079827a45075da4f47625472715d0f53c7348698a73cd",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-3-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "직사각형 변 사이 거리",
+      "bReason": "xc14와 같은 목표",
+      "exclusionReason": "직사각형 변 사이 거리는 xc14 B에서 가로·세로 값으로 다룬다",
+      "coreAfter": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+      "coreReason": "길이라는 원래표적을보존하며나머지한변을선택할기준을수직인변으로명시한다.",
+      "cDecision": "rewrite",
+      "cAfter": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+      "cReason": "'나머지 한 변' 모호함을 수직인 변으로 고침",
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "직사각형의 마주 보는 변 사이의 거리",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+      "cStudentSentence": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 □와 같다.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "길이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+        "acceptedAnswers": [
+          [
+            "길이"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc14와 같은 목표"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-3-xc4",
+        "sourceIndex": 2475,
+        "proposalFingerprint": "7479ec69072f7561971079827a45075da4f47625472715d0f53c7348698a73cd",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "직사각형거리B는기존값구하기와중복이다.",
+        "cReason": "수직인이웃변길이를거리로삼으며바뀐일반설명도이를명시한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-3-xc4",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "term": "직사각형의 마주 보는 변 사이의 거리",
+      "kind": "성질",
+      "level": "하",
+      "definition": "직사각형에서 마주 보는 두 변 사이의 거리는 나머지 한 변의 {길이}와 같다."
+    },
+    "normalized": {
+      "id": "e4-2-4-3-xc4",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-3-xc4",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "직사각형의 마주 보는 변 사이의 거리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직사각형에서 마주 보는 두 변 사이의 거리는 나머지 한 변의 {길이}와 같다."
+      },
+      "B": {
+        "excluded": "xc14와 같은 목표"
+      },
+      "C": {
+        "sentence": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+        "acceptedAnswers": [
+          [
+            "길이"
+          ]
+        ]
+      },
+      "goal": "직사각형 변 사이 거리",
+      "coreAfter": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+      "coreReason": "길이라는 원래표적을보존하며나머지한변을선택할기준을수직인변으로명시한다.",
+      "hash": "da02a730e76f3346a8c7e3175b5d96ebab04096f9964d19c1d22ac4377e71f0c"
+    },
+    "ledger": {
+      "id": "e4-2-4-3-xc4",
+      "sourceIndex": 2475,
+      "proposalFingerprint": "7479ec69072f7561971079827a45075da4f47625472715d0f53c7348698a73cd",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "직사각형거리B는기존값구하기와중복이다.",
+      "cReason": "수직인이웃변길이를거리로삼으며바뀐일반설명도이를명시한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "7479ec69072f7561971079827a45075da4f47625472715d0f53c7348698a73cd",
+    "normalizedHash": "da02a730e76f3346a8c7e3175b5d96ebab04096f9964d19c1d22ac4377e71f0c",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-3-xc4",
+        "grade": "초4",
+        "reviewedHash": "da02a730e76f3346a8c7e3175b5d96ebab04096f9964d19c1d22ac4377e71f0c",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "evidence": "cohort-2026-10-07T09-06-25-688Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-4-3-xc4",
+            "excluded",
+            "revise",
+            "pass",
+            "C의 '수직인 변의 □와 같다'에서 빈칸 '길이'는 거리가 곧 길이라는 동어반복이다. 핵심 내용인 수직인 변은 이미 문장에 주어져 있어 개념 이해를 확인하지 못한다. 거리를 구하게 하거나 어느 변의 길이인지 고르게 해야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-3-xc4",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-3-xc4",
+            "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+            "term": "직사각형의 마주 보는 변 사이의 거리",
+            "kind": "성질",
+            "level": "하",
+            "definition": "직사각형에서 마주 보는 두 변 사이의 거리는 나머지 한 변의 {길이}와 같다."
+          },
+          "B": {
+            "excluded": "xc14와 같은 목표"
+          },
+          "C": {
+            "sentence": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+            "acceptedAnswers": [
+              [
+                "길이"
+              ]
+            ]
+          },
+          "goal": "직사각형 변 사이 거리",
+          "coreAfter": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+          "coreReason": "길이라는 원래표적을보존하며나머지한변을선택할기준을수직인변으로명시한다.",
+          "hash": "da02a730e76f3346a8c7e3175b5d96ebab04096f9964d19c1d22ac4377e71f0c"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-3-xc4",
+        "contentHash": "da02a730e76f3346a8c7e3175b5d96ebab04096f9964d19c1d22ac4377e71f0c",
+        "packet": "cohort-2026-10-07T09-06-25-688Z-1",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C의 '수직인 변의 □와 같다'에서 빈칸 '길이'는 거리가 곧 길이라는 동어반복이다. 핵심 내용인 수직인 변은 이미 문장에 주어져 있어 개념 이해를 확인하지 못한다. 거리를 구하게 하거나 어느 변의 길이인지 고르게 해야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2476,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "sourceFingerprint": "ea4ae37c2deafb5d94069ecff4936cbb0d45dcb01d92582237b23dc255867d3e",
+      "proposalFingerprint": "9316853e10c9cc124a472fb76f606b4c15b6f1e6398bbb34e55e92c000c8c2c8",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-3-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "정사각형 변 사이 거리",
+      "bReason": "xc14와 같은 목표",
+      "exclusionReason": "정사각형 변 사이 거리는 xc14 직사각형 B와 같은 목표다",
+      "cDecision": "keep",
+      "cReason": "선명한 값 빈칸이라 유지",
+      "cSlotEquivalents": [
+        [
+          "$5$"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "정사각형의 마주 보는 변 사이의 거리",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다.",
+      "cStudentSentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 □이다.",
+      "cSlotAnswers": [
+        {
+          "expected": "$5\\,\\mathrm{cm}$",
+          "equivalents": [
+            "$5$"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 □이다.",
+        "answers": [
+          "$5\\,\\mathrm{cm}$"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5\\,\\mathrm{cm}$",
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc14와 같은 목표"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-3-xc5",
+        "sourceIndex": 2476,
+        "proposalFingerprint": "9316853e10c9cc124a472fb76f606b4c15b6f1e6398bbb34e55e92c000c8c2c8",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "application",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "정사각형의거리는직사각형성질B와중복이다.",
+        "cReason": "같은한변5cm인정사각형거리값이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-3-xc5",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "term": "정사각형의 마주 보는 변 사이의 거리",
+      "kind": "성질",
+      "level": "하",
+      "definition": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다."
+    },
+    "normalized": {
+      "id": "e4-2-4-3-xc5",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-3-xc5",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "정사각형의 마주 보는 변 사이의 거리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다."
+      },
+      "B": {
+        "excluded": "xc14와 같은 목표"
+      },
+      "C": {
+        "sentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$5\\,\\mathrm{cm}$",
+            "$5$"
+          ]
+        ]
+      },
+      "goal": "정사각형 변 사이 거리",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "6792d50de3db309b96e1af11d17506df3c0081c8257b9aa787edc48fd62d2422"
+    },
+    "ledger": {
+      "id": "e4-2-4-3-xc5",
+      "sourceIndex": 2476,
+      "proposalFingerprint": "9316853e10c9cc124a472fb76f606b4c15b6f1e6398bbb34e55e92c000c8c2c8",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "verdict": "retain-planning-proposal",
+      "bReason": "정사각형의거리는직사각형성질B와중복이다.",
+      "cReason": "같은한변5cm인정사각형거리값이다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "9316853e10c9cc124a472fb76f606b4c15b6f1e6398bbb34e55e92c000c8c2c8",
+    "normalizedHash": "6792d50de3db309b96e1af11d17506df3c0081c8257b9aa787edc48fd62d2422",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-3-xc5",
+        "grade": "초4",
+        "reviewedHash": "6792d50de3db309b96e1af11d17506df3c0081c8257b9aa787edc48fd62d2422",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "evidence": "cohort-2026-10-07T09-06-25-688Z-1",
+        "blind": [
+          [
+            "e4-2-4-3-xc5",
+            "C",
+            "5 cm",
+            "revise",
+            "'한 변의 길이와 같은 □'에 '길이'라는 동어반복도 참이 되어 답 범위가 둘로 갈린다. 거리를 cm로 구하라고 직접 묻도록 고쳐야 한다."
+          ]
+        ],
+        "key": [
+          [
+            "e4-2-4-3-xc5",
+            "excluded",
+            "pass",
+            "none",
+            ""
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-3-xc5",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-3-xc5",
+            "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+            "term": "정사각형의 마주 보는 변 사이의 거리",
+            "kind": "성질",
+            "level": "하",
+            "definition": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다."
+          },
+          "B": {
+            "excluded": "xc14와 같은 목표"
+          },
+          "C": {
+            "sentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다.",
+            "acceptedAnswers": [
+              [
+                "$5\\,\\mathrm{cm}$",
+                "$5$"
+              ]
+            ]
+          },
+          "goal": "정사각형 변 사이 거리",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "6792d50de3db309b96e1af11d17506df3c0081c8257b9aa787edc48fd62d2422"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-3-xc5",
+        "contentHash": "6792d50de3db309b96e1af11d17506df3c0081c8257b9aa787edc48fd62d2422",
+        "packet": "cohort-2026-10-07T09-06-25-688Z-1",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "blind-C: '한 변의 길이와 같은 □'에 '길이'라는 동어반복도 참이 되어 답 범위가 둘로 갈린다. 거리를 cm로 구하라고 직접 묻도록 고쳐야 한다."
+        ]
+      }
+    ]
+  },
+  {
+    "raw": {
+      "sourceIndex": 2478,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "sourceFingerprint": "d01a0aaeb4a5cb9ed3e0f60e629dad18708679a4c7b4ad467198a78fc4adb541",
+      "proposalFingerprint": "ec1afdb3ebf7a823f3b2feb0955e7082ca1926a4f320e79bf5f9e219c4bf48ba",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-3-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+      "bAnswer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 직선에 수직인 선분",
+            "수선"
+          ]
+        },
+        {
+          "anyOf": [
+            "만나는 두 점 사이의 길이",
+            "수선의 길이"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "평행선 사이 거리의 뜻",
+      "bReason": "거리를 어떤 선분으로 재는지 묻는다",
+      "cDecision": "rewrite",
+      "cAfter": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+      "cReason": "긴 구절 빈칸을 길이 한 낱말로 줄임",
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "거리를 재는 두 점",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+      "cStudentSentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 □이다.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "길이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+        "answer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 직선에 수직인 선분",
+              "수선"
+            ]
+          },
+          {
+            "anyOf": [
+              "만나는 두 점 사이의 길이",
+              "수선의 길이"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+        "acceptedAnswers": [
+          [
+            "길이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-3-xc7",
+        "sourceIndex": 2478,
+        "proposalFingerprint": "ec1afdb3ebf7a823f3b2feb0955e7082ca1926a4f320e79bf5f9e219c4bf48ba",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "수직으로만나는두점을끝점으로한선분의길이로거리를정의한다.",
+        "cReason": "평행선거리의길이값대상을확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "original": {
+      "id": "e4-2-4-3-xc7",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "term": "거리를 재는 두 점",
+      "kind": "방법",
+      "level": "하",
+      "definition": "평행선 사이의 거리는 수선이 두 직선과 {만나는 두 점} 사이를 잰 것이다."
+    },
+    "normalized": {
+      "id": "e4-2-4-3-xc7",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-3-xc7",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리를 재는 두 점",
+        "kind": "방법",
+        "level": "하",
+        "definition": "평행선 사이의 거리는 수선이 두 직선과 {만나는 두 점} 사이를 잰 것이다."
+      },
+      "B": {
+        "prompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+        "answer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 직선에 수직인 선분",
+              "수선"
+            ]
+          },
+          {
+            "anyOf": [
+              "만나는 두 점 사이의 길이",
+              "수선의 길이"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+        "acceptedAnswers": [
+          [
+            "길이"
+          ]
+        ]
+      },
+      "goal": "평행선 사이 거리의 뜻",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "fcc7470635ff74a987fbf357f3bf8a6b85efe761266fc7c330805e1f7d5e1340"
+    },
+    "ledger": {
+      "id": "e4-2-4-3-xc7",
+      "sourceIndex": 2478,
+      "proposalFingerprint": "ec1afdb3ebf7a823f3b2feb0955e7082ca1926a4f320e79bf5f9e219c4bf48ba",
+      "reader": "Codex direct final question/answer/criteria reading",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "verdict": "retain-planning-proposal",
+      "bReason": "수직으로만나는두점을끝점으로한선분의길이로거리를정의한다.",
+      "cReason": "평행선거리의길이값대상을확인한다.",
+      "issues": [],
+      "isReleaseApproval": false
+    },
+    "currentRawFingerprint": "ec1afdb3ebf7a823f3b2feb0955e7082ca1926a4f320e79bf5f9e219c4bf48ba",
+    "normalizedHash": "fcc7470635ff74a987fbf357f3bf8a6b85efe761266fc7c330805e1f7d5e1340",
+    "currentNegatives": [
+      {
+        "id": "e4-2-4-3-xc7",
+        "grade": "초4",
+        "reviewedHash": "fcc7470635ff74a987fbf357f3bf8a6b85efe761266fc7c330805e1f7d5e1340",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "evidence": "cohort-2026-10-07T09-06-25-688Z-1",
+        "blind": [],
+        "key": [
+          [
+            "e4-2-4-3-xc7",
+            "pass",
+            "revise",
+            "none",
+            "C의 '두 직선에 수직으로 그은 선분의 □'에서 빈칸 '길이'는 거리의 뜻 그대로인 동어반복이다. 수직이라는 핵심 조건이 이미 주어져 개념 이해를 확인하지 못한다. 선분의 수직 여부나 두 점 사이를 고르게 하는 문항으로 바꿔야 한다."
+          ]
+        ],
+        "reviewedProposal": {
+          "id": "e4-2-4-3-xc7",
+          "grade": "초4",
+          "source": {
+            "id": "e4-2-4-3-xc7",
+            "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+            "term": "거리를 재는 두 점",
+            "kind": "방법",
+            "level": "하",
+            "definition": "평행선 사이의 거리는 수선이 두 직선과 {만나는 두 점} 사이를 잰 것이다."
+          },
+          "B": {
+            "prompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+            "answer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+            "requiredIdeas": [
+              {
+                "anyOf": [
+                  "두 직선에 수직인 선분",
+                  "수선"
+                ]
+              },
+              {
+                "anyOf": [
+                  "만나는 두 점 사이의 길이",
+                  "수선의 길이"
+                ]
+              }
+            ]
+          },
+          "C": {
+            "sentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+            "acceptedAnswers": [
+              [
+                "길이"
+              ]
+            ]
+          },
+          "goal": "평행선 사이 거리의 뜻",
+          "coreAfter": null,
+          "coreReason": null,
+          "hash": "fcc7470635ff74a987fbf357f3bf8a6b85efe761266fc7c330805e1f7d5e1340"
+        }
+      }
+    ],
+    "historicalNegatives": [],
+    "currentIndependent": [
+      {
+        "id": "e4-2-4-3-xc7",
+        "contentHash": "fcc7470635ff74a987fbf357f3bf8a6b85efe761266fc7c330805e1f7d5e1340",
+        "packet": "cohort-2026-10-07T09-06-25-688Z-1",
+        "inputHash": "b2356a3418082be65549f613b93d9a061a7c365b9cf95ededee31e23cea05c6b",
+        "blindProvider": "claude",
+        "blindModel": "sonnet",
+        "keyProvider": "claude",
+        "keyModel": "sonnet",
+        "accepted": false,
+        "issues": [
+          "C의 실제 결정과 2차 판정이 다름",
+          "C의 '두 직선에 수직으로 그은 선분의 □'에서 빈칸 '길이'는 거리의 뜻 그대로인 동어반복이다. 수직이라는 핵심 조건이 이미 주어져 개념 이해를 확인하지 못한다. 선분의 수직 여부나 두 점 사이를 고르게 하는 문항으로 바꿔야 한다."
+        ]
+      }
+    ]
+  }
+]

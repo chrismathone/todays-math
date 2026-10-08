@@ -1,0 +1,1623 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-4-1-xc5",
+      "bDecision": "revise",
+      "bPrompt": "비 $2:3$의 앞의 수에만 $2$를 곱해 $4:3$을 만들었다. 두 비의 비율을 구해 비교하고, 이처럼 앞의 수에만 $2$를 곱하면 비율이 어떻게 되는지 쓰시오.",
+      "bAnswer": "비율이 $\\frac{2}{3}$과 $\\frac{4}{3}$으로 서로 다르다. $2:3$의 앞의 수에만 $2$를 곱하면 비율도 $2$배가 되어 달라진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 비율은 $\\frac{2}{3}$와 $\\frac{4}{3}$로 서로 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞의 수에만 $2$를 곱하면 비율이 달라진다",
+            "앞의 수에만 $2$를 곱하면 비율이 $2$배가 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "두 수에 같이 곱해야 비율이 유지됨을 반례로 확인한다.",
+      "bReason": "곱하는 수가 1인 예외까지 한꺼번에 일반화하지 않고 이 문항의 2배 상황에서 비율이 달라짐을 설명한다.",
+      "cDecision": "revise",
+      "cAfter": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 {달라진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "달라진다",
+            "변한다"
+          ]
+        }
+      ],
+      "cReason": "긴 수 조건 빈칸 대신 실제 비율 변화를 확인하는 한 빈칸으로 줄였다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "612d64e380aeff93ef909e840b306285342e21a257529403ac03fe227d4f4d2e",
+      "sourceIndex": 2420,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-1-xc5",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "term": "한쪽에만 곱한 비",
+        "kind": "성질",
+        "level": "하",
+        "definition": "비의 두 수가 모두 $0$이 아닐 때, 한쪽 수에만 {$0$도 $1$도 아닌 수}를 곱하거나 나누면 {비율이 달라진다}.",
+        "studentC": "비의 두 수가 모두 $0$이 아닐 때, 한쪽 수에만 □를 곱하거나 나누면 □.",
+        "answers": [
+          "$0$도 $1$도 아닌 수",
+          "비율이 달라진다"
+        ]
+      },
+      "sourceFingerprint": "16824a81e9c4f34a61a555f681b740054cb747c47a22e93f941682aa4a45d175",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "달라진다"
+      ],
+      "cStudentAfter": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 □.",
+      "cMarkedSentence": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 {달라진다}.",
+      "cStudentSentence": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "달라진다",
+          "equivalents": [
+            "변한다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $2:3$의 앞의 수에만 $2$를 곱해 $4:3$을 만들었다. 두 비의 비율을 구해 비교하고, 이처럼 앞의 수에만 $2$를 곱하면 비율이 어떻게 되는지 쓰시오.",
+        "answer": "비율이 $\\frac{2}{3}$과 $\\frac{4}{3}$으로 서로 다르다. $2:3$의 앞의 수에만 $2$를 곱하면 비율도 $2$배가 되어 달라진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 비율은 $\\frac{2}{3}$와 $\\frac{4}{3}$로 서로 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞의 수에만 $2$를 곱하면 비율이 달라진다",
+              "앞의 수에만 $2$를 곱하면 비율이 $2$배가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비 $2:3$의 앞의 수에만 $2$를 곱하면 $4:3$이 되고, 비율은 $\\frac{2}{3}$에서 $\\frac{4}{3}$로 {달라진다}.",
+        "acceptedAnswers": [
+          [
+            "달라진다",
+            "변한다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9e6c0f40462fb6c9af9af4e6027562422e550787d4fbebc601d862425fea6ed9",
+      "questionRevision": "planning-e5e6-20261006-9e6c0f40462f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-xc8",
+      "bDecision": "revise",
+      "bPrompt": "두 비 $2:5$와 $6:15$가 비율이 같은 비인지 확인하려면 어떻게 하면 되는지 쓰고, 결과를 쓰시오.",
+      "bAnswer": "두 비의 비율을 각각 구해 비교한다. $\\frac{2}{5}$와 $\\frac{6}{15}=\\frac{2}{5}$로 같으므로 비율이 같은 비이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 비의 비율을 각각 구해 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 비율이 모두 $\\frac{2}{5}$로 같다",
+            "비율이 같다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "비율을 구해 비교하는 방법으로 비의 성질을 확인한다.",
+      "bReason": "확인 방법과 결과를 구체적 두 비로 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$6:15$의 비율 $\\frac{6}{15}$을 기약분수로 나타내면 {$\\frac{2}{5}$}이므로 $2:5$와 비율이 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "비율을 구해 같은지 보는 과정을 직접 계산하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "fa779a9cb8a2a6235b270afa92ffc98dd56cbcb00cabd19805bd43180f00da0b",
+      "sourceIndex": 2421,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-1-xc8",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "term": "비율로 비의 성질 확인",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 비의 비율을 각각 구해 {같은지} 보면 비의 성질로 만든 비인지 확인할 수 있다.",
+        "studentC": "두 비의 비율을 각각 구해 □ 보면 비의 성질로 만든 비인지 확인할 수 있다.",
+        "answers": [
+          "같은지"
+        ]
+      },
+      "sourceFingerprint": "6a3f852fc68e11c29c6099e93f86f76b62a474ede1e0871fca6a46b2790f603d",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{2}{5}$",
+        "같다"
+      ],
+      "cStudentAfter": "$6:15$의 비율 $\\frac{6}{15}$을 기약분수로 나타내면 □이므로 $2:5$와 비율이 □.",
+      "cMarkedSentence": "$6:15$의 비율 $\\frac{6}{15}$을 기약분수로 나타내면 {$\\frac{2}{5}$}이므로 $2:5$와 비율이 {같다}.",
+      "cStudentSentence": "$6:15$의 비율 $\\frac{6}{15}$을 기약분수로 나타내면 □이므로 $2:5$와 비율이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{2}{5}$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 비 $2:5$와 $6:15$가 비율이 같은 비인지 확인하려면 어떻게 하면 되는지 쓰고, 결과를 쓰시오.",
+        "answer": "두 비의 비율을 각각 구해 비교한다. $\\frac{2}{5}$와 $\\frac{6}{15}=\\frac{2}{5}$로 같으므로 비율이 같은 비이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 비의 비율을 각각 구해 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 비율이 모두 $\\frac{2}{5}$로 같다",
+              "비율이 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6:15$의 비율 $\\frac{6}{15}$을 기약분수로 나타내면 {$\\frac{2}{5}$}이므로 $2:5$와 비율이 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{5}$"
+          ],
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a30440f6db94e379d17541c41d315e77efdc5ed49fae598e7cb14b6dd7578b7d",
+      "questionRevision": "planning-e5e6-20261006-a30440f6db94",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-xc14",
+      "bDecision": "revise",
+      "bPrompt": "비 $2:3$과 비율이 같은 다른 비를 세 개 쓰세요. 두 수에 같은 자연수를 곱하는 방법으로 그런 비를 어떻게 만드는지, 얼마나 많이 만들 수 있는지 설명하세요.",
+      "bAnswer": "두 수에 같은 자연수를 곱한다. 예를 들어 $4:6$, $6:9$, $8:12$이다. 곱하는 자연수를 계속 바꿀 수 있으므로 끝없이 많이 만들 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수에 같은 자연수를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$과 비율이 같은 서로 다른 비 세 개를 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "끝없이 만들 수 있다",
+            "무수히 많다",
+            "얼마든지 만들 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "곱하는 수를 바꾸어 같은 비율의 비를 많이 만든다.",
+      "bReason": "요청한 실제 비 세 개를 필수 기준에 넣고 0을 곱하는 예외가 없도록 자연수 범위를 명시했다.",
+      "cDecision": "revise",
+      "cAfter": "비 $2:3$의 두 수에 같은 자연수를 곱하되 곱하는 자연수를 계속 바꾸면, 비율이 같은 비를 {끝없이} 만들 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "끝없이",
+            "무수히",
+            "얼마든지"
+          ]
+        }
+      ],
+      "cReason": "곱하는 수를 바꾼다는 답을 주지 않고 개수 범위만 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "끝없이, 무수히, 얼마든지는 같은 뜻으로 본다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "b810f27b7220351b9c6b046f06f2d63cb034f7e2927f6ddcb9fdc28efbf9bafa",
+      "sourceIndex": 2423,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-1-xc14",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "term": "끝없이 만들 수 있는 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 비와 비율이 같은 비는 {곱하는 수를 바꾸어} 끝없이 만들 수 있다.",
+        "studentC": "한 비와 비율이 같은 비는 □ 끝없이 만들 수 있다.",
+        "answers": [
+          "곱하는 수를 바꾸어"
+        ]
+      },
+      "sourceFingerprint": "ede7040f0039fda71b4f175beb6833d785de42dc0122c06b400bea5e3d393567",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "끝없이"
+      ],
+      "cStudentAfter": "비 $2:3$의 두 수에 같은 자연수를 곱하되 곱하는 자연수를 계속 바꾸면, 비율이 같은 비를 □ 만들 수 있다.",
+      "cMarkedSentence": "비 $2:3$의 두 수에 같은 자연수를 곱하되 곱하는 자연수를 계속 바꾸면, 비율이 같은 비를 {끝없이} 만들 수 있다.",
+      "cStudentSentence": "비 $2:3$의 두 수에 같은 자연수를 곱하되 곱하는 자연수를 계속 바꾸면, 비율이 같은 비를 □ 만들 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "끝없이",
+          "equivalents": [
+            "무수히",
+            "얼마든지"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $2:3$과 비율이 같은 다른 비를 세 개 쓰세요. 두 수에 같은 자연수를 곱하는 방법으로 그런 비를 어떻게 만드는지, 얼마나 많이 만들 수 있는지 설명하세요.",
+        "answer": "두 수에 같은 자연수를 곱한다. 예를 들어 $4:6$, $6:9$, $8:12$이다. 곱하는 자연수를 계속 바꿀 수 있으므로 끝없이 많이 만들 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수에 같은 자연수를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:3$과 비율이 같은 서로 다른 비 세 개를 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝없이 만들 수 있다",
+              "무수히 많다",
+              "얼마든지 만들 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비 $2:3$의 두 수에 같은 자연수를 곱하되 곱하는 자연수를 계속 바꾸면, 비율이 같은 비를 {끝없이} 만들 수 있다.",
+        "acceptedAnswers": [
+          [
+            "끝없이",
+            "무수히",
+            "얼마든지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bb2e979cd8af7101cc74e93a7df50525358e70f9c0c00ed14637799139ea500e",
+      "questionRevision": "planning-e5e6-20261006-bb2e979cd8af",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-xc15",
+      "bDecision": "revise",
+      "bPrompt": "두 비 $4:6$과 $10:15$를 각각 비의 성질로 가장 간단한 자연수의 비로 바꾸시오. 이 결과로 두 비의 비율이 같은지 어떻게 판단하는지 쓰시오.",
+      "bAnswer": "$4:6=2:3$, $10:15=2:3$이다. 똑같은 비로 나타나므로 두 비의 비율은 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 비 모두 $2:3$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "똑같은 비가 되므로 비율이 같다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "같은 비로 바꾸어 비율을 비교하는 방법을 쓴다.",
+      "bReason": "구체적인 두 비로 간단히 하는 과정과 판단 이유를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$4:6$과 $10:15$를 각각 가장 간단한 자연수의 비로 나타내면 모두 {$2:3$}이 되므로 두 비의 비율은 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2:3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "실제 비를 간단히 하는 계산과 결론으로 바꾸어 이해하기 쉽다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "55ecf4432d57fc15966019ee53db569d7d79c9942b825edb4dbaa30e1e5bae8b",
+      "sourceIndex": 2424,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-1-xc15",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "term": "같은 비로 바꾸어 비교하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 비를 각각 비의 성질로 바꾸어 {똑같은 비로 나타낼 수 있으면}, 두 비는 {비율이 같다}.",
+        "studentC": "두 비를 각각 비의 성질로 바꾸어 □, 두 비는 □.",
+        "answers": [
+          "똑같은 비로 나타낼 수 있으면",
+          "비율이 같다"
+        ]
+      },
+      "sourceFingerprint": "206b1f88571fba798728f7a07feb09d008813ca81a0399384984337b0ad82740",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2:3$",
+        "같다"
+      ],
+      "cStudentAfter": "$4:6$과 $10:15$를 각각 가장 간단한 자연수의 비로 나타내면 모두 □이 되므로 두 비의 비율은 □.",
+      "cMarkedSentence": "$4:6$과 $10:15$를 각각 가장 간단한 자연수의 비로 나타내면 모두 {$2:3$}이 되므로 두 비의 비율은 {같다}.",
+      "cStudentSentence": "$4:6$과 $10:15$를 각각 가장 간단한 자연수의 비로 나타내면 모두 □이 되므로 두 비의 비율은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$2:3$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 비 $4:6$과 $10:15$를 각각 비의 성질로 가장 간단한 자연수의 비로 바꾸시오. 이 결과로 두 비의 비율이 같은지 어떻게 판단하는지 쓰시오.",
+        "answer": "$4:6=2:3$, $10:15=2:3$이다. 똑같은 비로 나타나므로 두 비의 비율은 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 비 모두 $2:3$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "똑같은 비가 되므로 비율이 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$4:6$과 $10:15$를 각각 가장 간단한 자연수의 비로 나타내면 모두 {$2:3$}이 되므로 두 비의 비율은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$2:3$"
+          ],
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "38dba55a426398af2e44a23bfbfd3ce57840c3004ea8aeb37ebe7749bba8a777",
+      "questionRevision": "planning-e5e6-20261006-38dba55a4263",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "비 $2:3$의 두 수에 $1$씩 더해 $3:4$를 만들었다. 두 비의 비율을 비교하고, 같은 수를 더하는 것을 비의 성질로 쓸 수 있는지 쓰시오.",
+      "bAnswer": "비율이 $\\frac{2}{3}$와 $\\frac{3}{4}$으로 서로 다르다. 같은 수를 더하면 비율이 달라질 수 있어 비의 성질로 쓸 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율이 $\\frac{2}{3}$와 $\\frac{3}{4}$으로 서로 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비율이 달라질 수 있으므로 쓸 수 없다",
+            "비의 성질이 아니다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "더하기는 비율을 유지하지 못함을 반례로 이해한다.",
+      "bReason": "흔한 오개념인 같은 수 더하기를 직접 비교하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "비 $2:3$의 두 수에 $1$씩 더하면 $3:4$가 되어 비율이 $\\frac{2}{3}$에서 $\\frac{3}{4}$으로 {달라진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "달라진다",
+            "변한다"
+          ]
+        }
+      ],
+      "cReason": "성질이 아니라는 설명을 실제 비율 변화로 확인하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "03d9d97bcbafee30274b481f891f30db93823e7b74698d581d54417e58963a5f",
+      "sourceIndex": 2425,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-1-xc16",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "term": "같은 수를 더한 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "비의 두 수에 같은 수를 더하는 것은 비의 성질이 아니어서 비율이 {달라질 수 있다}.",
+        "studentC": "비의 두 수에 같은 수를 더하는 것은 비의 성질이 아니어서 비율이 □.",
+        "answers": [
+          "달라질 수 있다"
+        ]
+      },
+      "sourceFingerprint": "7bff5642aab425676324ecbe65ccf721dc45a9422493341048b1abdb2ae0ef1a",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bRequiredIdeas[0].anyOf[0]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "달라진다"
+      ],
+      "cStudentAfter": "비 $2:3$의 두 수에 $1$씩 더하면 $3:4$가 되어 비율이 $\\frac{2}{3}$에서 $\\frac{3}{4}$으로 □.",
+      "cMarkedSentence": "비 $2:3$의 두 수에 $1$씩 더하면 $3:4$가 되어 비율이 $\\frac{2}{3}$에서 $\\frac{3}{4}$으로 {달라진다}.",
+      "cStudentSentence": "비 $2:3$의 두 수에 $1$씩 더하면 $3:4$가 되어 비율이 $\\frac{2}{3}$에서 $\\frac{3}{4}$으로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "달라진다",
+          "equivalents": [
+            "변한다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $2:3$의 두 수에 $1$씩 더해 $3:4$를 만들었다. 두 비의 비율을 비교하고, 같은 수를 더하는 것을 비의 성질로 쓸 수 있는지 쓰시오.",
+        "answer": "비율이 $\\frac{2}{3}$와 $\\frac{3}{4}$으로 서로 다르다. 같은 수를 더하면 비율이 달라질 수 있어 비의 성질로 쓸 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율이 $\\frac{2}{3}$와 $\\frac{3}{4}$으로 서로 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율이 달라질 수 있으므로 쓸 수 없다",
+              "비의 성질이 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비 $2:3$의 두 수에 $1$씩 더하면 $3:4$가 되어 비율이 $\\frac{2}{3}$에서 $\\frac{3}{4}$으로 {달라진다}.",
+        "acceptedAnswers": [
+          [
+            "달라진다",
+            "변한다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5aa5aa9c79aaff9009e2f2a15cf004fb2ea01e9cebafd97ce3a5251f7a46d307",
+      "questionRevision": "planning-e5e6-20261006-5aa5aa9c79aa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "비 $12:18$의 두 수를 $6$으로 나눈 뒤 다시 두 수에 $4$를 곱하면 어떤 비가 되는지 쓰시오. 이 비의 비율은 처음 비의 비율과 어떤 관계인지 쓰시오.",
+      "bAnswer": "$12:18$을 $6$으로 나누면 $2:3$이고, $4$를 곱하면 $8:12$이다. 비율은 처음과 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$8:12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "비율은 처음과 같다",
+            "비율은 변하지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "같은 수로 나누고 곱해도 비율이 유지됨을 확인한다.",
+      "bReason": "반복해서 쓰는 비의 성질을 한 번의 연속 계산으로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$12:18$의 두 수를 $6$으로 나눈 뒤 $4$를 곱하면 {$8:12$}가 되고, 이 비의 비율은 처음 비의 비율과 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8:12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cReason": "세 개 빈칸 반복 대신 실제 계산과 결론만 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "131bf3bc06608e42eecb6943d98f6eceb4feb1cf9ed634c902526b7672c7e4ad",
+      "sourceIndex": 2428,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-1-xc19",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "term": "나누고 다시 곱해도 같은 비율",
+        "kind": "성질",
+        "level": "상",
+        "definition": "비의 두 수를 {$0$이 아닌 같은 수}로 나눈 뒤, 두 수에 다시 {$0$이 아닌 같은 수}를 곱해도 {비율은 처음과 같다}.",
+        "studentC": "비의 두 수를 □로 나눈 뒤, 두 수에 다시 □를 곱해도 □.",
+        "answers": [
+          "$0$이 아닌 같은 수",
+          "$0$이 아닌 같은 수",
+          "비율은 처음과 같다"
+        ]
+      },
+      "sourceFingerprint": "ffeebd299cd45760996432b2e6e897de4ba6350650c5d836ac5f41fbe0ecf04c",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$8:12$",
+        "같다"
+      ],
+      "cStudentAfter": "$12:18$의 두 수를 $6$으로 나눈 뒤 $4$를 곱하면 □가 되고, 이 비의 비율은 처음 비의 비율과 □.",
+      "cMarkedSentence": "$12:18$의 두 수를 $6$으로 나눈 뒤 $4$를 곱하면 {$8:12$}가 되고, 이 비의 비율은 처음 비의 비율과 {같다}.",
+      "cStudentSentence": "$12:18$의 두 수를 $6$으로 나눈 뒤 $4$를 곱하면 □가 되고, 이 비의 비율은 처음 비의 비율과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$8:12$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $12:18$의 두 수를 $6$으로 나눈 뒤 다시 두 수에 $4$를 곱하면 어떤 비가 되는지 쓰시오. 이 비의 비율은 처음 비의 비율과 어떤 관계인지 쓰시오.",
+        "answer": "$12:18$을 $6$으로 나누면 $2:3$이고, $4$를 곱하면 $8:12$이다. 비율은 처음과 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$8:12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비율은 처음과 같다",
+              "비율은 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12:18$의 두 수를 $6$으로 나눈 뒤 $4$를 곱하면 {$8:12$}가 되고, 이 비의 비율은 처음 비의 비율과 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$8:12$"
+          ],
+          [
+            "같다",
+            "똑같다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3a9cb0f01e522b36f2f1c7d273718548d461a69c663ea83627bc5de0024c9c0b",
+      "questionRevision": "planning-e5e6-20261006-3a9cb0f01e52",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-1-xc24",
+      "bDecision": "revise",
+      "bPrompt": "비율이 같은 두 비 $3:4$와 $12:16$이 있다. 한쪽 비에서 다른 쪽 비를 만드는 방법을 비의 성질을 이용해 쓰시오.",
+      "bAnswer": "$3:4$의 두 수에 $4$를 곱하면 $12:16$이 된다. 또는 $12:16$의 두 수를 $4$로 나누면 $3:4$가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3:4$의 두 수에 $4$를 곱한다",
+            "$12:16$의 두 수를 $4$로 나눈다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "비율이 같은 비끼리 곱하기나 나누기로 연결됨을 안다.",
+      "bReason": "두 방향 중 하나를 쓰면 되므로 한 가지 표현을 강요하지 않는다.",
+      "cDecision": "revise",
+      "cAfter": "$3:4$와 $12:16$은 비율이 같으므로 $3:4$의 두 수에 {$4$}를 곱해 $12:16$을 만들 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 실제 두 비를 잇는 곱하는 수를 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "곱셈 방향과 나눗셈 방향 모두 정답으로 본다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "e747dd9101049fa48ba240f4c4034aff217ee2d4368102b059546f53105b4a61",
+      "sourceIndex": 2431,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-1-xc24",
+        "section": "초6::2-4 비례식과 비례배분::2-4-1 비의 성질 알아보기",
+        "term": "비율로 이어진 두 비",
+        "kind": "방법",
+        "level": "상",
+        "definition": "비율이 같은 두 비는 {한쪽 비를 비의 성질로 바꾸어} 다른 쪽 비를 만들 수 있다.",
+        "studentC": "비율이 같은 두 비는 □ 다른 쪽 비를 만들 수 있다.",
+        "answers": [
+          "한쪽 비를 비의 성질로 바꾸어"
+        ]
+      },
+      "sourceFingerprint": "cda693fda4c14313ffd41e619a2e958a7d9bde3561fb38e2cd507d499190da7e",
+      "draftEvidence": "evidence/section-099-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "$3:4$와 $12:16$은 비율이 같으므로 $3:4$의 두 수에 □를 곱해 $12:16$을 만들 수 있다.",
+      "cMarkedSentence": "$3:4$와 $12:16$은 비율이 같으므로 $3:4$의 두 수에 {$4$}를 곱해 $12:16$을 만들 수 있다.",
+      "cStudentSentence": "$3:4$와 $12:16$은 비율이 같으므로 $3:4$의 두 수에 □를 곱해 $12:16$을 만들 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비율이 같은 두 비 $3:4$와 $12:16$이 있다. 한쪽 비에서 다른 쪽 비를 만드는 방법을 비의 성질을 이용해 쓰시오.",
+        "answer": "$3:4$의 두 수에 $4$를 곱하면 $12:16$이 된다. 또는 $12:16$의 두 수를 $4$로 나누면 $3:4$가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3:4$의 두 수에 $4$를 곱한다",
+              "$12:16$의 두 수를 $4$로 나눈다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3:4$와 $12:16$은 비율이 같으므로 $3:4$의 두 수에 {$4$}를 곱해 $12:16$을 만들 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0d8032d2ccd6ac836b1691fe6611bfc1706c538cbe93f26aa24b8e91cd1b855a",
+      "questionRevision": "planning-e5e6-20261006-0d8032d2ccd6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-xc2",
+      "bDecision": "revise",
+      "bPrompt": "두 항이 자연수인 비가 가장 간단한 자연수의 비이려면 두 항이 어떤 조건을 만족해야 하는지 쓰시오.",
+      "bAnswer": "두 수의 공약수가 $1$뿐이어야 한다.",
+      "bGoal": "가장 간단한 자연수의 비의 조건을 공약수로 말한다.",
+      "bReason": "용어 이름 맞히기 대신 정의의 조건을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 공약수가 $1$뿐이다",
+            "두 수에 $1$보다 큰 공약수가 없다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸이 용어 이름 자체라 암기에 가깝고 c1과 xc9가 같은 내용을 다룬다.",
+      "exclusionReason": "용어 암기 빈칸이며 e6-2-4-2-c1로 대체 가능하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "12fbc7a27130729cb452de0fadb719898650a38a3bfc365ef3b5aa1b73411582",
+      "sourceIndex": 2433,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-2-xc2",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "term": "가장 간단한 자연수의 비",
+        "kind": "정의",
+        "level": "하",
+        "definition": "두 수의 공약수가 $1$뿐인 자연수의 비를 {가장 간단한 자연수의 비}라 한다.",
+        "studentC": "두 수의 공약수가 $1$뿐인 자연수의 비를 □라 한다.",
+        "answers": [
+          "가장 간단한 자연수의 비"
+        ]
+      },
+      "sourceFingerprint": "c47ff8e1948c1cb3ec5bbec874a9ef0d1747cd4b7b1ae4d831e049fdde754679",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "두 항이 자연수인 비가 가장 간단한 자연수의 비이려면 두 항이 어떤 조건을 만족해야 하는지 쓰시오.",
+        "answer": "두 수의 공약수가 $1$뿐이어야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 공약수가 $1$뿐이다",
+              "두 수에 $1$보다 큰 공약수가 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "용어 암기 빈칸이며 e6-2-4-2-c1로 대체 가능하다."
+      },
+      "proposalFingerprint": "21774e46ca565526cd7f3d692f0b7b8a44f4dcd9152c77ac96dc91141d80c733",
+      "questionRevision": "planning-e5e6-20261006-21774e46ca56",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "비 $12:18$을 $2:3$으로 간단히 하면 비율이 달라지는지 쓰고, 그 까닭을 두 항에 한 일로 설명하시오.",
+      "bAnswer": "비율은 같다. 두 항을 같은 수 $6$으로 나눈 것이므로 $\\frac{12}{18}=\\frac{2}{3}$로 변하지 않는다.",
+      "bGoal": "간단히 하는 것이 두 항에 같은 수를 나누는 일이라 비율이 유지됨을 설명한다.",
+      "bReason": "결과만이 아니라 같은 수로 나눈다는 이유를 요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율은 같다",
+            "비율이 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 항을 같은 수로 나누었기 때문이다",
+            "약분한 것과 같기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$12:18$의 비율 $\\frac{12}{18}$을 기약분수로 나타내면 {$\\frac{2}{3}$}이다. 이를 $2:3$의 비율과 비교하면 두 비율은 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "'처음과 같다' 한 구절 대신 실제 비율을 계산해 확인하게 한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'같다', '변하지 않는다', '그대로이다'는 같은 의미로 인정한다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "6b4583b40857a84bddd02bc9b09dbddac35912fe060c1162af59fc8bfe9a3f13",
+      "sourceIndex": 2436,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-2-xc6",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "term": "간단히 해도 같은 비율",
+        "kind": "성질",
+        "level": "하",
+        "definition": "간단한 자연수의 비로 바꾸어도 비율은 {처음과 같다}.",
+        "studentC": "간단한 자연수의 비로 바꾸어도 비율은 □.",
+        "answers": [
+          "처음과 같다"
+        ]
+      },
+      "sourceFingerprint": "41b5547956f1864b9b7856cf88af5f88da8d6666df462c1291531f0ab8a0280c",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{2}{3}$",
+        "같다"
+      ],
+      "cStudentAfter": "$12:18$의 비율 $\\frac{12}{18}$을 기약분수로 나타내면 □이다. 이를 $2:3$의 비율과 비교하면 두 비율은 □.",
+      "cMarkedSentence": "$12:18$의 비율 $\\frac{12}{18}$을 기약분수로 나타내면 {$\\frac{2}{3}$}이다. 이를 $2:3$의 비율과 비교하면 두 비율은 {같다}.",
+      "cStudentSentence": "$12:18$의 비율 $\\frac{12}{18}$을 기약분수로 나타내면 □이다. 이를 $2:3$의 비율과 비교하면 두 비율은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{2}{3}$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $12:18$을 $2:3$으로 간단히 하면 비율이 달라지는지 쓰고, 그 까닭을 두 항에 한 일로 설명하시오.",
+        "answer": "비율은 같다. 두 항을 같은 수 $6$으로 나눈 것이므로 $\\frac{12}{18}=\\frac{2}{3}$로 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율은 같다",
+              "비율이 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 항을 같은 수로 나누었기 때문이다",
+              "약분한 것과 같기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12:18$의 비율 $\\frac{12}{18}$을 기약분수로 나타내면 {$\\frac{2}{3}$}이다. 이를 $2:3$의 비율과 비교하면 두 비율은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{3}$"
+          ],
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "00f3c452ff28d72a63d9b487eec5614e6f35b1b867c382c5e95112a24a149276",
+      "questionRevision": "planning-e5e6-20261006-00f3c452ff28",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-xc7",
+      "bDecision": "revise",
+      "bPrompt": "비 $24:36$을 $2$로 나누어 $12:18$을 얻었다. 이것이 가장 간단한 비인지 판단하고, 아니라면 어떻게 해야 하는지 쓴 뒤 최종 결과를 쓰시오.",
+      "bAnswer": "가장 간단한 비가 아니다. $12$와 $18$에 $1$이 아닌 공약수가 남아 있으므로 계속 나누어야 하며, 결과는 $2:3$이다.",
+      "bGoal": "공약수로 나눈 뒤 남은 공약수를 확인해 끝까지 나누어야 함을 안다.",
+      "bReason": "한 번 나누고 멈추는 오류를 구체적 비로 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 간단한 비가 아니다",
+            "더 간단히 할 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$이 아닌 공약수가 남아 있으면 다시 나눈다",
+            "남은 공약수로 더 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$24:36$을 $2$로 나누어 얻은 $12:18$은 두 수의 최대공약수 {$6$}으로 더 나눌 수 있다. 가장 간단한 자연수의 비로 나타내면 {$2:3$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:3$"
+          ]
+        }
+      ],
+      "cReason": "공약수 2·3·6은 서로 다른 정답이지 동의어가 아니므로 최대공약수로 질문 범위를 좁혀 답을 6으로 정했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "7ce6a2977829961e940779ad4caff54620c76bde59ee4e368fea7776b3da8cc6",
+      "sourceIndex": 2437,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-2-xc7",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "term": "끝까지 나누기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "공약수로 나눈 뒤에도 {$1$이 아닌 공약수가 남아 있으면} 다시 나누어야 가장 간단한 비가 된다.",
+        "studentC": "공약수로 나눈 뒤에도 □ 다시 나누어야 가장 간단한 비가 된다.",
+        "answers": [
+          "$1$이 아닌 공약수가 남아 있으면"
+        ]
+      },
+      "sourceFingerprint": "1381c78c9062d505a4fae6f646009d4ef5d8c4d4cb85c05873ffc32c3ccc8078",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$2:3$"
+      ],
+      "cStudentAfter": "$24:36$을 $2$로 나누어 얻은 $12:18$은 두 수의 최대공약수 □으로 더 나눌 수 있다. 가장 간단한 자연수의 비로 나타내면 □이다.",
+      "cMarkedSentence": "$24:36$을 $2$로 나누어 얻은 $12:18$은 두 수의 최대공약수 {$6$}으로 더 나눌 수 있다. 가장 간단한 자연수의 비로 나타내면 {$2:3$}이다.",
+      "cStudentSentence": "$24:36$을 $2$로 나누어 얻은 $12:18$은 두 수의 최대공약수 □으로 더 나눌 수 있다. 가장 간단한 자연수의 비로 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$2:3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $24:36$을 $2$로 나누어 $12:18$을 얻었다. 이것이 가장 간단한 비인지 판단하고, 아니라면 어떻게 해야 하는지 쓴 뒤 최종 결과를 쓰시오.",
+        "answer": "가장 간단한 비가 아니다. $12$와 $18$에 $1$이 아닌 공약수가 남아 있으므로 계속 나누어야 하며, 결과는 $2:3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 간단한 비가 아니다",
+              "더 간단히 할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$이 아닌 공약수가 남아 있으면 다시 나눈다",
+              "남은 공약수로 더 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$24:36$을 $2$로 나누어 얻은 $12:18$은 두 수의 최대공약수 {$6$}으로 더 나눌 수 있다. 가장 간단한 자연수의 비로 나타내면 {$2:3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$2:3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "df9da8e4876c9c4e7bec65cce8ca4c33ef91076a667bbc1e5e427d4ab0b77081",
+      "questionRevision": "planning-e5e6-20261006-df9da8e4876c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$0.5:0.25$를 자연수의 비로 고치려고 합니다. 두 수에 $10$, $100$, $1000$ 중 같은 수를 곱할 때, 두 수가 모두 자연수가 되는 가장 작은 수를 고르고 까닭을 설명하세요. 이어서 가장 간단한 자연수의 비로 나타내세요.",
+      "bAnswer": "$100$을 고른다. $10$을 곱하면 $0.25$가 $2.5$여서 자연수가 아니지만 $100$을 곱하면 두 수가 $50$과 $25$가 된다. $50:25$를 간단히 하면 $2:1$이다.",
+      "bGoal": "자릿수가 다른 소수의 비에서 곱할 수를 소수 자리가 많은 쪽에 맞추어 정한다.",
+      "bReason": "4를 곱하는 유효한 방법을 오답 처리하지 않도록 선택 범위를 10·100·1000으로 명시했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100$을 고른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$을 곱하면 $0.25$가 자연수가 되지 않지만 $100$을 곱하면 두 수 모두 자연수가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:1$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$0.5:0.25$의 두 수에 같은 수 {$100$}을 곱하면 $50:25$가 되고, 간단히 하면 {$2:1$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:1$"
+          ]
+        }
+      ],
+      "cReason": "50:25가 되는 승수는 100이며, 1000은 500:250이 되므로 동의답이 아니다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "6235e93ec12ac6b8562b57caa1750026d0a702226ec2a66ecd5abe2176d09f36",
+      "sourceIndex": 2439,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-2-xc12",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "term": "자릿수가 다른 소수의 비",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 수에 같은 수를 곱해야 비율이 유지되므로, {소수 자리가 더 많은 수}까지 자연수가 되는 수를 두 수에 함께 곱한다.",
+        "studentC": "두 수에 같은 수를 곱해야 비율이 유지되므로, □까지 자연수가 되는 수를 두 수에 함께 곱한다.",
+        "answers": [
+          "소수 자리가 더 많은 수"
+        ]
+      },
+      "sourceFingerprint": "7018aa4f1666120cd5487a9765ec4dfeef57712390054c626531695b299ced90",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$100$",
+        "$2:1$"
+      ],
+      "cStudentAfter": "$0.5:0.25$의 두 수에 같은 수 □을 곱하면 $50:25$가 되고, 간단히 하면 □이다.",
+      "cMarkedSentence": "$0.5:0.25$의 두 수에 같은 수 {$100$}을 곱하면 $50:25$가 되고, 간단히 하면 {$2:1$}이다.",
+      "cStudentSentence": "$0.5:0.25$의 두 수에 같은 수 □을 곱하면 $50:25$가 되고, 간단히 하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": []
+        },
+        {
+          "key": "$2:1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.5:0.25$를 자연수의 비로 고치려고 합니다. 두 수에 $10$, $100$, $1000$ 중 같은 수를 곱할 때, 두 수가 모두 자연수가 되는 가장 작은 수를 고르고 까닭을 설명하세요. 이어서 가장 간단한 자연수의 비로 나타내세요.",
+        "answer": "$100$을 고른다. $10$을 곱하면 $0.25$가 $2.5$여서 자연수가 아니지만 $100$을 곱하면 두 수가 $50$과 $25$가 된다. $50:25$를 간단히 하면 $2:1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100$을 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$을 곱하면 $0.25$가 자연수가 되지 않지만 $100$을 곱하면 두 수 모두 자연수가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.5:0.25$의 두 수에 같은 수 {$100$}을 곱하면 $50:25$가 되고, 간단히 하면 {$2:1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ],
+          [
+            "$2:1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9285f57ad08fe80458eb2246bb139b04aaaec8017d40fbec349e544992c3b15d",
+      "questionRevision": "planning-e5e6-20261006-9285f57ad08f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-2-xc18",
+      "bDecision": "revise",
+      "bPrompt": "길이 $2$ $\\mathrm{m}$와 $50$ $\\mathrm{cm}$의 비를 나타내려고 한다. 비를 쓰기 전에 두 길이를 어떻게 해야 하는지 설명하고, 간단한 자연수의 비로 쓰시오.",
+      "bAnswer": "두 길이를 같은 단위로 고친다. $2$ $\\mathrm{m}$를 $200$ $\\mathrm{cm}$로 고치면 $200:50=4:1$이다.",
+      "bGoal": "같은 종류의 양을 비로 나타내기 전에 단위를 통일해야 함을 안다.",
+      "bReason": "단위가 다를 때의 처리 방법과 실제 변환 결과를 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 단위로 고친다",
+            "$2$ $\\mathrm{m}$를 $200$ $\\mathrm{cm}$로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4:1$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$2\\,\\mathrm{m}$와 $50\\,\\mathrm{cm}$의 비를 구하려면 $2\\,\\mathrm{m}$를 {$200$} $\\mathrm{cm}$로 고쳐 단위를 맞춘다. 가장 간단한 자연수의 비는 {$4:1$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$200$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4:1$",
+            "$4 : 1$"
+          ]
+        }
+      ],
+      "cReason": "추상적 '같은 단위' 대신 단위 변환값을 직접 채우게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "10bc2f926faf0a0fa4c802757a32d8dfe8097f08b589b9f91dc79e9a36b11e91",
+      "sourceIndex": 2443,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-2-xc18",
+        "section": "초6::2-4 비례식과 비례배분::2-4-2 간단한 자연수의 비로 나타내기",
+        "term": "단위가 다른 같은 종류의 양",
+        "kind": "방법",
+        "level": "중",
+        "definition": "같은 종류의 두 양을 서로 다른 단위로 나타냈으면 {같은 단위로 고친 뒤} 비로 나타낸다.",
+        "studentC": "같은 종류의 두 양을 서로 다른 단위로 나타냈으면 □ 비로 나타낸다.",
+        "answers": [
+          "같은 단위로 고친 뒤"
+        ]
+      },
+      "sourceFingerprint": "9de2621407222ef6e06f119f455fded7bb7596f5e2ee3b091fc12a83dfa9ae3c",
+      "draftEvidence": "evidence/section-100-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$200$",
+        "$4:1$"
+      ],
+      "cStudentAfter": "$2\\,\\mathrm{m}$와 $50\\,\\mathrm{cm}$의 비를 구하려면 $2\\,\\mathrm{m}$를 □ $\\mathrm{cm}$로 고쳐 단위를 맞춘다. 가장 간단한 자연수의 비는 □이다.",
+      "cMarkedSentence": "$2\\,\\mathrm{m}$와 $50\\,\\mathrm{cm}$의 비를 구하려면 $2\\,\\mathrm{m}$를 {$200$} $\\mathrm{cm}$로 고쳐 단위를 맞춘다. 가장 간단한 자연수의 비는 {$4:1$}이다.",
+      "cStudentSentence": "$2\\,\\mathrm{m}$와 $50\\,\\mathrm{cm}$의 비를 구하려면 $2\\,\\mathrm{m}$를 □ $\\mathrm{cm}$로 고쳐 단위를 맞춘다. 가장 간단한 자연수의 비는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$200$",
+          "equivalents": []
+        },
+        {
+          "key": "$4:1$",
+          "equivalents": [
+            "$4 : 1$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "길이 $2$ $\\mathrm{m}$와 $50$ $\\mathrm{cm}$의 비를 나타내려고 한다. 비를 쓰기 전에 두 길이를 어떻게 해야 하는지 설명하고, 간단한 자연수의 비로 쓰시오.",
+        "answer": "두 길이를 같은 단위로 고친다. $2$ $\\mathrm{m}$를 $200$ $\\mathrm{cm}$로 고치면 $200:50=4:1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 단위로 고친다",
+              "$2$ $\\mathrm{m}$를 $200$ $\\mathrm{cm}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4:1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\,\\mathrm{m}$와 $50\\,\\mathrm{cm}$의 비를 구하려면 $2\\,\\mathrm{m}$를 {$200$} $\\mathrm{cm}$로 고쳐 단위를 맞춘다. 가장 간단한 자연수의 비는 {$4:1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$200$"
+          ],
+          [
+            "$4:1$",
+            "$4 : 1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "450aa206cec66218eaf8279f72c157fd5158e643483386f75eb6b2dcd9976f15",
+      "questionRevision": "planning-e5e6-20261006-450aa206cec6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-xc7",
+      "bDecision": "revise",
+      "bPrompt": "비 $2:5$와 비율이 같은 비를 만들려면 두 수에 어떻게 해야 하는지 설명하시오. 곱하거나 나눌 때 쓰면 안 되는 수가 있다면 쓰고, 그 방법으로 비례식 하나를 만드시오.",
+      "bAnswer": "앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하거나 나눈다. $0$은 쓸 수 없다. 예: $2:5=6:15$",
+      "bGoal": "비의 두 수에 같은 수를 곱하거나 나누어 비례식을 만든다.",
+      "bReason": "방법과 $0$ 제외 조건, 예 만들기를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "비의 두 수에 같은 수를 곱하거나 나누어 비율이 같은 비를 만들 수 있다. 이때 곱하거나 나누는 수로 쓰면 안 되는 수는 {$0$}이다.",
+      "cReason": "조건과 결과를 함께 바꿀 수 있는 두 빈칸 대신 쓸 수 없는 수 0을 하나의 짧은 빈칸으로 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$",
+            "영"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수에 같은 수를 곱한다",
+            "두 수를 같은 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$이 아닌 수",
+            "$0$은 안 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2:5$와 비율이 같은 비로 만든 올바른 비례식"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "48a79b644f894ec81672801cc83660d125b85cf43caa25b160ba4cf36d6e4dfc",
+      "sourceIndex": 2451,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-3-xc7",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "term": "비의 성질로 비례식 만들기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 비의 두 수에 {$0$이 아닌 같은 수}를 곱하거나 나눈 비는 비율이 같아, 처음 비와 등호로 이으면 비례식이 된다.",
+        "studentC": "한 비의 두 수에 □를 곱하거나 나눈 비는 비율이 같아, 처음 비와 등호로 이으면 비례식이 된다.",
+        "answers": [
+          "$0$이 아닌 같은 수"
+        ]
+      },
+      "sourceFingerprint": "3fa3860ef038d227bde82d321ed310952c0e2055179fafd825d9bd3030c6dd99",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$0$"
+      ],
+      "cStudentAfter": "비의 두 수에 같은 수를 곱하거나 나누어 비율이 같은 비를 만들 수 있다. 이때 곱하거나 나누는 수로 쓰면 안 되는 수는 □이다.",
+      "cMarkedSentence": "비의 두 수에 같은 수를 곱하거나 나누어 비율이 같은 비를 만들 수 있다. 이때 곱하거나 나누는 수로 쓰면 안 되는 수는 {$0$}이다.",
+      "cStudentSentence": "비의 두 수에 같은 수를 곱하거나 나누어 비율이 같은 비를 만들 수 있다. 이때 곱하거나 나누는 수로 쓰면 안 되는 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": [
+            "영"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비 $2:5$와 비율이 같은 비를 만들려면 두 수에 어떻게 해야 하는지 설명하시오. 곱하거나 나눌 때 쓰면 안 되는 수가 있다면 쓰고, 그 방법으로 비례식 하나를 만드시오.",
+        "answer": "앞의 수와 뒤의 수에 $0$이 아닌 같은 수를 곱하거나 나눈다. $0$은 쓸 수 없다. 예: $2:5=6:15$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수에 같은 수를 곱한다",
+              "두 수를 같은 수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$이 아닌 수",
+              "$0$은 안 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:5$와 비율이 같은 비로 만든 올바른 비례식"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비의 두 수에 같은 수를 곱하거나 나누어 비율이 같은 비를 만들 수 있다. 이때 곱하거나 나누는 수로 쓰면 안 되는 수는 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$",
+            "영"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a224117c7374c8de29144e336a69ba0223e80dba94011fc404b1528a4a3e24af",
+      "questionRevision": "planning-e5e6-20261006-a224117c7374",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-xc16",
+      "bDecision": "revise",
+      "bPrompt": "사탕 $2$개에 $600$원이고 사탕 $6$개에 $1800$원이다. ($1$) 개수와 값처럼 비례식으로 나타낼 수 있는 두 양은 어떤 관계인지 설명하시오. ($2$) 이 상황을 비례식으로 쓰시오.",
+      "bAnswer": "($1$) 한쪽이 몇 배가 되면 다른 쪽도 같은 배가 된다. ($2$) $2:600=6:1800$",
+      "bGoal": "같은 배로 변하는 두 양을 비례식으로 나타낸다.",
+      "bReason": "나열된 세 형태 외에도 수량의 대응과 비율이 맞는 올바른 비례식을 허용한다.",
+      "cDecision": "keep",
+      "cAfter": "개수와 값처럼 한쪽이 몇 배가 되면 다른 쪽도 {같은 배가 되는} 두 양은 비례식으로 나타낼 수 있다.",
+      "cReason": "'같은 배가 되는'은 문맥으로 이해 가능한 핵심 관계라 유지한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한쪽이 몇 배가 되면 다른 쪽도 같은 배가 된다",
+            "한쪽이 늘어나는 배만큼 다른 쪽도 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "사탕의 개수와 값의 대응이 맞고 비율이 같은 두 비를 잇는 올바른 비례식",
+            "$2:600 = 6:1800$",
+            "$600:2 = 1800:6$",
+            "$2:6 = 600:1800$",
+            "$6:2 = 1800:600$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "a4aecda706c888792e1fa1459de001b12a7985f8674300ccb2f86acc9c3e4396",
+      "sourceIndex": 2456,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-3-xc16",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "term": "상황을 비례식으로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "개수와 값처럼 한쪽이 몇 배가 되면 다른 쪽도 {같은 배가 되는} 두 양은 비례식으로 나타낼 수 있다.",
+        "studentC": "개수와 값처럼 한쪽이 몇 배가 되면 다른 쪽도 □ 두 양은 비례식으로 나타낼 수 있다.",
+        "answers": [
+          "같은 배가 되는"
+        ]
+      },
+      "sourceFingerprint": "99945c7cfc6fc08d22dd7de1fa817a0ca1e4b90481de89b453243b8ca6b53011",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "개수와 값처럼 한쪽이 몇 배가 되면 다른 쪽도 {같은 배가 되는} 두 양은 비례식으로 나타낼 수 있다.",
+      "cFrozenStudentSentence": "개수와 값처럼 한쪽이 몇 배가 되면 다른 쪽도 □ 두 양은 비례식으로 나타낼 수 있다.",
+      "cProposedAnswers": [
+        "같은 배가 되는"
+      ],
+      "cStudentAfter": "개수와 값처럼 한쪽이 몇 배가 되면 다른 쪽도 □ 두 양은 비례식으로 나타낼 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은 배가 되는"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "개수와 값처럼 한쪽이 몇 배가 되면 다른 쪽도 {같은 배가 되는} 두 양은 비례식으로 나타낼 수 있다.",
+      "cStudentSentence": "개수와 값처럼 한쪽이 몇 배가 되면 다른 쪽도 □ 두 양은 비례식으로 나타낼 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은 배가 되는",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "사탕 $2$개에 $600$원이고 사탕 $6$개에 $1800$원이다. ($1$) 개수와 값처럼 비례식으로 나타낼 수 있는 두 양은 어떤 관계인지 설명하시오. ($2$) 이 상황을 비례식으로 쓰시오.",
+        "answer": "($1$) 한쪽이 몇 배가 되면 다른 쪽도 같은 배가 된다. ($2$) $2:600=6:1800$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한쪽이 몇 배가 되면 다른 쪽도 같은 배가 된다",
+              "한쪽이 늘어나는 배만큼 다른 쪽도 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "사탕의 개수와 값의 대응이 맞고 비율이 같은 두 비를 잇는 올바른 비례식",
+              "$2:600 = 6:1800$",
+              "$600:2 = 1800:6$",
+              "$2:6 = 600:1800$",
+              "$6:2 = 1800:600$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "개수와 값처럼 한쪽이 몇 배가 되면 다른 쪽도 {같은 배가 되는} 두 양은 비례식으로 나타낼 수 있다.",
+        "acceptedAnswers": [
+          [
+            "같은 배가 되는"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6d3cbf62131807185128be41883ac8f2c546120b6b344236e56cd9eaa6b81d50",
+      "questionRevision": "planning-e5e6-20261006-6d3cbf621318",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-4-3-xc18",
+      "bDecision": "revise",
+      "bPrompt": "비례식 $2:3=4:6$의 네 수 중 $3$과 $4$의 자리를 서로 바꾼 $2:4=3:6$은 비례식인가? 비율로 확인하시오. 아무 두 수나 바꾸어도 항상 비례식이 되는지도 쓰시오.",
+      "bAnswer": "비례식이다. $2:4$와 $3:6$의 비율이 모두 $\\frac{1}{2}$이다. 아무 두 수나 바꾸면 항상 되는 것은 아니다. 예: $2$와 $3$을 바꾼 $3:2=4:6$은 비율이 다르다.",
+      "bGoal": "네 수의 자리를 바꾸어 다른 비례식을 만들 때 조건을 안다.",
+      "bReason": "비율로 확인하라는 요구에 맞게 두 비율이 1/2임을 기준에 포함하고 C의 중복 답을 정리했다.",
+      "cDecision": "revise",
+      "cAfter": "$2:3=4:6$에서 안쪽의 두 수 $3$과 $4$의 자리를 바꾼 $2:4=3:6$의 두 비율은 모두 {$\\frac{1}{2}$}이다.",
+      "cReason": "원문은 자리 바꾸기의 범위가 모호하므로 구체적 식으로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$0.5$"
+          ]
+        }
+      ],
+      "coreAfter": "네 수가 모두 $0$이 아니고 서로 다른 비례식에서는 일부 수의 {자리를 알맞게 바꾸어} 다른 비례식을 만들 수 있다. 예를 들어 $2:3=4:6$의 안쪽 두 수를 바꾸면 $2:4=3:6$이다. 아무렇게나 바꾸면 안 된다.",
+      "coreReason": "원문은 아무 자리 바꾸기나 가능한 것처럼 읽힐 수 있어 수정한다.",
+      "exampleNeeded": false,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2:4$와 $3:6$의 비율이 모두 $\\frac{1}{2}$이므로 비례식이다",
+            "두 비율이 모두 $0.5$로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "항상 되는 것은 아니다",
+            "아무렇게나 바꾸면 안 된다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "자리를 바꾸어라는 원문 표적을 보존하고 알맞은 교환과 예를 명시한다. 서로 다른 네 수라는 원문 조건을 복원하여1:1=1:1에서 다른 식을 만들 수 있다는 잘못된 일반화를 피한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2420-patch.json",
+      "codexFinalAmendedFromFingerprint": "794ca5c9967dcf7f5dc2a861131252258f8f255fdf3891a45202c22dda7c6486",
+      "sourceIndex": 2458,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-4-3-xc18",
+        "section": "초6::2-4 비례식과 비례배분::2-4-3 비례식 알아보기",
+        "term": "네 수로 만드는 비례식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "네 수가 $0$이 아니고 서로 다른 비례식은 네 수의 {자리를 바꾸어} 다른 비례식을 여러 개 만들 수 있다.",
+        "studentC": "네 수가 $0$이 아니고 서로 다른 비례식은 네 수의 □ 다른 비례식을 여러 개 만들 수 있다.",
+        "answers": [
+          "자리를 바꾸어"
+        ]
+      },
+      "sourceFingerprint": "dd50b3040e28abad4541757be7bdf31dc65e3462898cdd97cbf2ea7dfaa3271a",
+      "draftEvidence": "evidence/section-101-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$2:3=4:6$에서 안쪽의 두 수 $3$과 $4$의 자리를 바꾼 $2:4=3:6$의 두 비율은 모두 □이다.",
+      "cMarkedSentence": "$2:3=4:6$에서 안쪽의 두 수 $3$과 $4$의 자리를 바꾼 $2:4=3:6$의 두 비율은 모두 {$\\frac{1}{2}$}이다.",
+      "cStudentSentence": "$2:3=4:6$에서 안쪽의 두 수 $3$과 $4$의 자리를 바꾼 $2:4=3:6$의 두 비율은 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$0.5$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비례식 $2:3=4:6$의 네 수 중 $3$과 $4$의 자리를 서로 바꾼 $2:4=3:6$은 비례식인가? 비율로 확인하시오. 아무 두 수나 바꾸어도 항상 비례식이 되는지도 쓰시오.",
+        "answer": "비례식이다. $2:4$와 $3:6$의 비율이 모두 $\\frac{1}{2}$이다. 아무 두 수나 바꾸면 항상 되는 것은 아니다. 예: $2$와 $3$을 바꾼 $3:2=4:6$은 비율이 다르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2:4$와 $3:6$의 비율이 모두 $\\frac{1}{2}$이므로 비례식이다",
+              "두 비율이 모두 $0.5$로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "항상 되는 것은 아니다",
+              "아무렇게나 바꾸면 안 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2:3=4:6$에서 안쪽의 두 수 $3$과 $4$의 자리를 바꾼 $2:4=3:6$의 두 비율은 모두 {$\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$",
+            "$0.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a14c5902129178dab6bcc4b63ac3f36c4af1382b260f71736e347efc7f439333",
+      "questionRevision": "planning-e5e6-20261006-a14c59021291",
+      "requiresIndependentReview": true
+    }
+  ]
+}

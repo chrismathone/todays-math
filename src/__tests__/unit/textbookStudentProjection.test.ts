@@ -121,4 +121,87 @@ describe("textbook student projection from actual frozen bank entries", () => {
     expect(dto.response).toBeNull();
     expect(JSON.stringify(dto)).not.toContain("비공개");
   });
+
+  it("projects the frozen B/C questions without giving the student the model answer, criteria, alternatives or a C answer title", () => {
+    const updated = structuredClone(concept);
+    const payload = {
+      ...entry,
+      term: "표시하면 안 되는 편집 제목",
+      questionRevision: "student-clear-test-v1",
+      bQuestion: {
+        prompt: "3/4÷1/4=3이 맞는지 곱셈식으로 확인하세요.",
+        answer: "3×1/4=3/4이므로 계산이 옳다.",
+        requiredIdeas: [{ anyOf: ["곱이 처음 양과 같다"] }],
+      },
+      clozeQuestion: {
+        sentence: "3/5÷1/5의 몫을 2라고 쓴 답을 확인하면 2×1/5={2/5}이다.",
+        acceptedAnswers: [["2/5", "0.4"]],
+      },
+    };
+    updated.frozen!.entries = [{ entryKind: "concept", payload }];
+    updated.frozen!.selection = ["term", "cloze"].map((form) => ({
+      ...updated.frozen!.selection[0],
+      form: form as "term" | "cloze",
+    }));
+    const dto = studentConceptOf(id, updated, {
+      available: false,
+      reasonCode: "unrecorded",
+    });
+    const json = JSON.stringify(dto);
+    expect(dto.blanks[0].prompts[0].pieces).toEqual([
+      { kind: "text", text: payload.bQuestion.prompt },
+      { kind: "blank", index: 0 },
+    ]);
+    expect(
+      dto.blanks[1].prompts[0].pieces.some((p) => p.kind === "blank"),
+    ).toBe(true);
+    expect(json).not.toContain(payload.term);
+    for (const hidden of [
+      payload.bQuestion.answer,
+      "requiredIdeas",
+      "acceptedAnswers",
+      "0.4",
+      "2/5",
+    ])
+      expect(json).not.toContain(hidden);
+    expect(dto.frozenHash).toBe(hash);
+  });
+
+  it("keeps long math markup in the student question pieces rather than the limited label field", () => {
+    const updated = structuredClone(concept);
+    const prompt =
+      "다음 식의 의미를 쓰세요. " +
+      String.raw`$\displaystyle\frac{123}{456}$ `.repeat(15);
+    updated.frozen!.entries = [
+      {
+        entryKind: "concept",
+        payload: {
+          ...entry,
+          questionRevision: "student-clear-test-v1",
+          bQuestion: {
+            prompt,
+            answer: "서로 같은 분수를 나타낸다.",
+            requiredIdeas: [{ anyOf: ["동치인 분수"] }],
+          },
+          clozeQuestion: {
+            sentence: entry.definition,
+            acceptedAnswers: blankKeywords(entry.definition).map((key) => [
+              key,
+            ]),
+          },
+        },
+      },
+    ];
+    updated.frozen!.selection[0].form = "term";
+    const dto = studentConceptOf(id, updated, {
+      available: false,
+      reasonCode: "unrecorded",
+    });
+    expect(prompt.length).toBeGreaterThan(300);
+    expect(dto.blanks[0].prompts[0].label).toBe("문항 1");
+    expect(dto.blanks[0].prompts[0].pieces[0]).toEqual({
+      kind: "text",
+      text: prompt,
+    });
+  });
 });

@@ -1,0 +1,538 @@
+{
+  "sourceCommit": "13bf05dce",
+  "proposedCount": 1436,
+  "method": "Candidate locator only; neither completeness nor failure judgment. All original source rows were directly read separately.",
+  "flags": [
+    {
+      "id": "e5-1-1-3-c1",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "덧셈, 뺄셈, 곱셈, 나눗셈이 섞여 있고 괄호가 없는 식에서는 □을 먼저 계산하고, 그다음에 덧셈과 뺄셈을 계산한다.",
+      "draftEvidence": "evidence/section-002-draft.json"
+    },
+    {
+      "id": "e5-2-1-4-c1",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "올림할 때는 정한 자리 아래에 $0$이 아닌 숫자가 있으면 정한 자리의 수에 □을 보태고 아래 자리를 $0$으로 처리한다.",
+      "draftEvidence": "evidence/section-029-draft.json"
+    },
+    {
+      "id": "e5-2-1-5-c1",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$3456$을 버림하여 백의 자리까지 나타내면 백의 자리 아래의 수 □을 버려 □이 된다.",
+      "draftEvidence": "evidence/section-030-draft.json"
+    },
+    {
+      "id": "e5-2-2-3-c1",
+      "form": "B",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "단위분수끼리 곱할 때 곱의 분자와 분모는 각각 어떻게 정해지는지 쓰고, $\\frac{1}{3}\\times\\frac{1}{5}$을 계산하시오.",
+      "draftEvidence": "evidence/section-034-draft.json"
+    },
+    {
+      "id": "e5-2-2-3-c1",
+      "form": "C",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "단위분수끼리 곱하면 분자는 □이고, 분모는 □이다.",
+      "draftEvidence": "evidence/section-034-draft.json"
+    },
+    {
+      "id": "e5-2-3-1-c1",
+      "form": "B",
+      "flags": [
+        "short_B_scope_review"
+      ],
+      "studentText": "두 도형이 서로 합동이라는 것은 무슨 뜻인지 설명하시오.",
+      "draftEvidence": "evidence/section-036-draft.json"
+    },
+    {
+      "id": "e5-2-5-4-c1",
+      "form": "C",
+      "flags": [
+        "visible_figure_reference"
+      ],
+      "studentText": "입체를 비스듬히 본 모습으로 그리고 보이지 않는 모서리까지 나타내어, 모양을 한눈에 알 수 있게 한 그림을 □라 한다.",
+      "draftEvidence": "evidence/section-050-draft.json"
+    },
+    {
+      "id": "e5-2-5-4-c3",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "직육면체의 겨냥도에서 그림 위의 선을 자로 잰 길이를 실제 모서리의 길이로 쓰면 안 되는 까닭을, 겨냥도가 직육면체를 어떻게 본 모습인지와 관련지어 쓰시오.",
+      "draftEvidence": "evidence/section-050-draft.json"
+    },
+    {
+      "id": "e5-2-5-4-c3",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "겨냥도는 직육면체를 비스듬히 본 모습으로 그리므로, 그림 위의 선의 길이는 실제 모서리의 길이와 □ 수 있다.",
+      "draftEvidence": "evidence/section-050-draft.json"
+    },
+    {
+      "id": "e5-2-5-5-c1",
+      "form": "C",
+      "flags": [
+        "visible_figure_reference"
+      ],
+      "studentText": "입체의 모서리 일부를 잘라 면들이 이어진 채 평평하게 펼친 그림을 □라 한다.",
+      "draftEvidence": "evidence/section-051-draft.json"
+    },
+    {
+      "id": "e5-2-5-6-c1",
+      "form": "C",
+      "flags": [
+        "visible_figure_reference"
+      ],
+      "studentText": "직육면체의 모서리를 잘라서 평면 위에 펼친 그림을 직육면체의 □라고 한다.",
+      "draftEvidence": "evidence/section-052-draft.json"
+    },
+    {
+      "id": "e5-1-1-1-xc6",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$50+14-9$를 앞에서부터 계산할 때, $50+14=64$를 구한 다음에 계산하는 식은 □이고 그 값은 □이다.",
+      "draftEvidence": "evidence/section-000-draft.json"
+    },
+    {
+      "id": "e5-1-1-1-xc15",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$24\\div4\\times2$를 앞에서부터 계산하면 값은 □이다. 뒤의 $4\\times2$를 먼저 계산하면 $24\\div8=$□이 되어 처음 식과 다른 값이 나온다.",
+      "draftEvidence": "evidence/section-000-draft.json"
+    },
+    {
+      "id": "e5-1-1-1-xc22",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "곱셈 기호 바로 뒤의 괄호 안이 나눗셈인 식에서 괄호를 지우고 앞에서부터 계산하면 값이 달라지는지 쓰시오. $12\\times(6\\div3)$과 $12\\times6\\div3$을 각각 계산하고, 두 식에서 $12$가 결국 몇 배가 되는지로 설명하시오.",
+      "draftEvidence": "evidence/section-000-draft.json"
+    },
+    {
+      "id": "e5-1-1-1-xc23",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$40-10+5$를 $40-15=25$로 계산한 것은 □를 먼저 계산했기 때문에 틀렸다. 앞에서부터 바르게 계산한 값은 □이다.",
+      "draftEvidence": "evidence/section-000-draft.json"
+    },
+    {
+      "id": "e5-1-1-2-xc13",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "괄호가 없는 식에서 뺄셈 뒤에 곱셈이 있을 때 앞의 뺄셈부터 계산하면 어떤 잘못이 생기는지 설명하시오. $12-2\\times4$를 앞에서부터 계산한 값과 바르게 계산한 값을 구하고, 앞에서부터 계산한 것이 어떤 식을 계산한 것과 같은지 괄호를 써서 나타내시오.",
+      "draftEvidence": "evidence/section-001-draft.json"
+    },
+    {
+      "id": "e5-1-1-2-xc13",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$10-2\\times3$을 앞에서부터 차례로 계산하면 □을 계산한 것이 되어 $24$가 나온다. 곱셈을 먼저 한 바른 값은 □이다.",
+      "draftEvidence": "evidence/section-001-draft.json"
+    },
+    {
+      "id": "e5-1-1-3-xc5",
+      "form": "B",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "식에 괄호 ( )가 있을 때 괄호 안을 계산한 결과는 나머지 계산에서 어떻게 쓰이는지 설명하고, $(8+4)\\div3\\times2$에서 $3$으로 나누어지는 수와 식의 값을 구하시오.",
+      "draftEvidence": "evidence/section-002-draft.json"
+    },
+    {
+      "id": "e5-1-1-3-xc11",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "괄호가 없는 식 가운데 앞에서부터 차례로 계산해도 올바른 값이 나오는 식은 곱셈·나눗셈과 덧셈·뺄셈이 어떤 위치에 놓인 식인지 설명하시오. 그리고 $6\\div3\\times2+12$와 $12+6\\div3\\times2$ 중 어느 식이 그런 식인지 값을 구해 확인하시오.",
+      "draftEvidence": "evidence/section-002-draft.json"
+    },
+    {
+      "id": "e5-1-1-3-xc11",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$6\\div3\\times2+12$는 앞에서부터 차례로 계산해도 올바른 값 □이 나온다. 그러나 $12+6\\div3\\times2$를 앞에서부터 차례로 계산하면 □가 나와 올바른 값 $16$과 다르다.",
+      "draftEvidence": "evidence/section-002-draft.json"
+    },
+    {
+      "id": "e5-1-2-1-xc10",
+      "form": "B",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "나누어떨어지는 나눗셈에서 나누어지는 수와 나누는 수는 어떤 관계인지, 나눗셈식을 곱셈식으로 바꾸어 설명하시오. $35\\div7=5$를 예로 드시오.",
+      "draftEvidence": "evidence/section-003-draft.json"
+    },
+    {
+      "id": "e5-1-2-2-xc4",
+      "form": "B",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "나눗셈식을 보고 나누는 수가 나누어지는 수의 약수인지 아닌지 어떻게 판단하는지 쓰시오. $30\\div5$와 $30\\div4$를 계산하여 각각 판단하시오.",
+      "draftEvidence": "evidence/section-004-draft.json"
+    },
+    {
+      "id": "e5-1-2-2-xc5",
+      "form": "B",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "나누어떨어지는 나눗셈식에서 나누어지는 수는 나누는 수와 배수로 어떤 관계인지 쓰시오. 그 까닭을 $42\\div7=6$을 곱셈식으로 바꾸어 설명하시오.",
+      "draftEvidence": "evidence/section-004-draft.json"
+    },
+    {
+      "id": "e5-1-2-6-xc26",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "두 알람이 지금 함께 울렸고 하나는 $8$분마다, 다른 하나는 $12$분마다 울린다. 다음에 처음으로 함께 울릴 때까지 걸리는 시간은 $8$과 $12$의 무엇을 구하면 되는지 까닭과 함께 설명하고, 몇 분 뒤인지 구하시오.",
+      "draftEvidence": "evidence/section-008-draft.json"
+    },
+    {
+      "id": "e5-1-2-6-xc26",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "두 버스가 지금 함께 출발했고 한 버스는 $6$분마다, 다른 버스는 $9$분마다 출발한다. 다음에 처음으로 함께 출발할 때까지의 시간은 $6$과 $9$의 □인 □분이다.",
+      "draftEvidence": "evidence/section-008-draft.json"
+    },
+    {
+      "id": "e5-1-4-1-xc1",
+      "form": "B",
+      "flags": [
+        "visible_figure_reference"
+      ],
+      "studentText": "크기가 같은 직사각형 두 개가 있다. 하나는 똑같이 $2$칸으로 나누어 $1$칸을, 다른 하나는 똑같이 $4$칸으로 나누어 $2$칸을 색칠했다. $\\frac{1}{2}$과 $\\frac{2}{4}$의 크기가 같은지 알려면 두 그림에서 무엇을 비교해야 하는지 쓰고, 두 직사각형의 크기가 같아야 하는 까닭을 설명하시오.",
+      "draftEvidence": "evidence/section-012-draft.json"
+    },
+    {
+      "id": "e5-1-4-1-xc6",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "분수에서 가로선 아래의 수를 분모, 위의 수를 □라 한다.",
+      "draftEvidence": "evidence/section-012-draft.json"
+    },
+    {
+      "id": "e5-1-4-1-xc12",
+      "form": "B",
+      "flags": [
+        "visible_figure_reference"
+      ],
+      "studentText": "그림을 그리지 않고 두 분수의 크기가 같은지 확인하려면 한 분수의 분모와 분자에 어떤 계산을 해 보면 되는지 설명하고, $\\frac{10}{15}$과 $\\frac{2}{3}$의 크기가 같은지 확인하시오.",
+      "draftEvidence": "evidence/section-012-draft.json"
+    },
+    {
+      "id": "e5-1-4-1-xc26",
+      "form": "C",
+      "flags": [
+        "visible_figure_reference"
+      ],
+      "studentText": "$\\frac{2}{3}$만큼 색칠한 그림의 모든 칸을 똑같이 둘로 나누면 전체 칸은 □칸, 색칠한 칸은 □칸이 된다. 색칠한 부분의 넓이는 변하지 않으므로 $\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 □.",
+      "draftEvidence": "evidence/section-012-draft.json"
+    },
+    {
+      "id": "e5-1-4-3-xc9",
+      "form": "B",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "두 분수를 통분할 때 두 분모의 곱을 공통분모로 하는 방법과 두 분모의 최소공배수를 공통분모로 하는 방법은 각각 어떤 점이 편리한지 비교하여 쓰시오.",
+      "draftEvidence": "evidence/section-014-draft.json"
+    },
+    {
+      "id": "e5-1-4-4-xc4",
+      "form": "B",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "단위분수 두 개의 크기를 비교할 때 분모가 큰 쪽과 작은 쪽 중 어느 쪽이 더 큰가요? 같은 전체를 똑같이 나누는 상황으로 까닭을 설명하세요.",
+      "draftEvidence": "evidence/section-015-draft.json"
+    },
+    {
+      "id": "e5-1-4-4-xc4",
+      "form": "C",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "단위분수는 분모가 □수록 더 크다. 그래서 $\\frac{1}{3}$과 $\\frac{1}{8}$ 중 더 큰 분수는 □이다.",
+      "draftEvidence": "evidence/section-015-draft.json"
+    },
+    {
+      "id": "e5-1-4-4-xc5",
+      "form": "B",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "$\\frac{4}{8}$, $\\frac{5}{10}$처럼 분자가 분모의 절반인 분수는 모두 어떤 단위분수와 크기가 같은가요? 분모와 분자를 같은 수로 나누는 방법으로 까닭을 설명하세요.",
+      "draftEvidence": "evidence/section-015-draft.json"
+    },
+    {
+      "id": "e5-1-5-1-xc19",
+      "form": "C",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "두 단위분수를 분모의 곱으로 통분해 더하면 분자는 두 분모의 □, 분모는 두 분모의 곱이 된다.",
+      "draftEvidence": "evidence/section-017-draft.json"
+    },
+    {
+      "id": "e5-1-6-4-xc3",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 밑변이나 밑변을 늘인 선까지 □으로 잰 길이이다.",
+      "draftEvidence": "evidence/section-024-draft.json"
+    },
+    {
+      "id": "e5-1-6-4-xc23",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "직사각형의 한 변을 밑변으로 하고, 마주 보는 변 위의 한 점을 꼭짓점으로 하는 삼각형의 넓이는 직사각형의 넓이와 어떤 관계인가요? 삼각형의 밑변과 높이를 직사각형의 가로, 세로와 비교해 설명하고, 가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형에서 가로를 밑변으로 하는 이런 삼각형의 넓이를 구하세요.",
+      "draftEvidence": "evidence/section-024-draft.json"
+    },
+    {
+      "id": "e5-2-1-1-xc9",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "‘$3$ 이상 $7$ 이하인 수’에는 $3$과 $7$이 모두 □. 이 범위의 자연수 중 가장 작은 수는 □, 가장 큰 수는 □이다.",
+      "draftEvidence": "evidence/section-026-draft.json"
+    },
+    {
+      "id": "e5-2-1-2-xc9",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "‘$10$ 초과 $15$ 미만인 수’처럼 두 수를 써서 범위를 나타낼 때, 두 기준 수 $10$과 $15$가 범위에 들어가는지 설명하고, 이 범위의 자연수를 모두 쓰시오.",
+      "draftEvidence": "evidence/section-027-draft.json"
+    },
+    {
+      "id": "e5-2-1-3-xc16",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "어떤 값이 범위의 기준이 되는 수와 똑같을 때, 그 값이 범위에 드는지는 무엇을 보고 어떻게 판단하는지 설명하시오. 또 '$15$ 초과 $20$ 이하인 수'에 $15$와 $20$이 각각 드는지 쓰시오.",
+      "draftEvidence": "evidence/section-028-draft.json"
+    },
+    {
+      "id": "e5-2-1-3-xc23",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$\\square$는 자연수이고 $\\square$ 이상 $15$ 미만인 자연수가 $5$개이면, 이 범위에서 가장 큰 자연수는 □이고 $\\square$는 □이다.",
+      "draftEvidence": "evidence/section-028-draft.json"
+    },
+    {
+      "id": "e5-2-1-3-xc26",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "반올림하여 십의 자리까지 나타내면 $30$이 되는 수의 범위를 이상과 미만을 써서 나타내시오. 또 그 범위의 양 끝 수를 각각 반올림하면 얼마가 되는지 쓰시오.",
+      "draftEvidence": "evidence/section-028-draft.json"
+    },
+    {
+      "id": "e5-2-1-5-xc6",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$700$을 버림하여 백의 자리까지 나타내면 □이다. 이처럼 나타낼 자리 아래의 숫자가 모두 □이면 버림해도 수가 그대로이다.",
+      "draftEvidence": "evidence/section-030-draft.json"
+    },
+    {
+      "id": "e5-2-1-5-xc19",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "어떤 자연수를 버림하여 백의 자리까지 나타내었더니 $300$이 되었습니다. 처음 수가 될 수 있는 수의 범위를 쓰고, 그 범위에서 가장 작은 수와 가장 큰 수를 써서 까닭을 설명하세요.",
+      "draftEvidence": "evidence/section-030-draft.json"
+    },
+    {
+      "id": "e5-2-1-5-xc25",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "어떤 소수를 버림하여 소수 첫째 자리까지 나타내었더니 $2.3$이 되었습니다. 처음 수의 범위를 쓰고, 이 범위의 끝을 '$2.39$ 이하'라고 쓰면 안 되는 까닭을 설명하세요.",
+      "draftEvidence": "evidence/section-030-draft.json"
+    },
+    {
+      "id": "e5-2-2-3-xc7",
+      "form": "C",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "$\\frac{1}{3}\\times\\frac{1}{4}=\\frac{1}{12}$처럼 $1$보다 작은 단위분수끼리 곱하면 곱의 분모는 처음 두 분모보다 □, 곱의 크기는 처음 두 단위분수보다 □.",
+      "draftEvidence": "evidence/section-034-draft.json"
+    },
+    {
+      "id": "e5-2-2-3-xc12",
+      "form": "B",
+      "flags": [
+        "grade_language_review"
+      ],
+      "studentText": "단위분수끼리 곱한 두 식 $\\frac{1}{2}\\times\\frac{1}{6}$과 $\\frac{1}{3}\\times\\frac{1}{4}$의 크기를 비교하고, 그렇게 되는 까닭을 두 식의 분모와 관련지어 설명하시오.",
+      "draftEvidence": "evidence/section-034-draft.json"
+    },
+    {
+      "id": "e5-2-2-3-xc14",
+      "form": "C",
+      "flags": [
+        "visible_figure_reference"
+      ],
+      "studentText": "색종이 전체의 $\\frac{1}{2}$을 쓰고, 쓴 부분의 $\\frac{1}{3}$에 그림을 그렸다. 이때 $\\frac{1}{3}$은 색종이 전체가 아니라 □을 똑같이 $3$으로 나눈 것 중의 $1$이므로, 그림을 그린 부분은 색종이 전체의 □이다.",
+      "draftEvidence": "evidence/section-034-draft.json"
+    },
+    {
+      "id": "e5-2-3-4-xc11",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "점대칭도형에서 대칭의 중심 ㅇ과 도형 위의 한 점 ㄱ이 주어졌을 때, 점 ㄱ의 대응점의 위치를 어떻게 찾는지 설명하시오.",
+      "draftEvidence": "evidence/section-039-draft.json"
+    },
+    {
+      "id": "e5-2-4-7-xc23",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$0.3\\times 0.4$를 계산하면서 $3\\times 4=12$에서 소수점 아래를 한 자리만 잡아 $1.2$라고 답했습니다. 소수점 위치를 정한 방법에서 잘못된 점을 설명하고 바른 값을 구하시오.",
+      "draftEvidence": "evidence/section-046-draft.json"
+    },
+    {
+      "id": "e5-2-4-7-xc23",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "$0.3\\times 0.4$를 $3\\times 4=12$로 계산한 뒤 소수점 아래를 한 자리만 잡으면 $1.2$가 되어 바른 값 □보다 □.",
+      "draftEvidence": "evidence/section-046-draft.json"
+    },
+    {
+      "id": "e5-2-5-1-xc11",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "직육면체의 꼭짓점 수를 위에 있는 면과 아래에 있는 면으로 나누어 세는 방법을 설명해 보세요.",
+      "draftEvidence": "evidence/section-047-draft.json"
+    },
+    {
+      "id": "e5-2-5-1-xc12",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "직육면체의 모서리를 위에 있는 면의 모서리, 아래에 있는 면의 모서리, 두 면을 잇는 모서리로 나누어 세면 각각 몇 개이고 모두 몇 개인지 설명해 보세요.",
+      "draftEvidence": "evidence/section-047-draft.json"
+    },
+    {
+      "id": "e5-2-5-1-xc12",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "직육면체의 모서리는 위에 있는 면에 $4$개, 아래에 있는 면에 $4$개, 위와 아래의 면을 잇는 모서리가 □개이므로 모두 □개이다.",
+      "draftEvidence": "evidence/section-047-draft.json"
+    },
+    {
+      "id": "e5-2-5-3-xc21",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "마주 보는 면의 눈의 수의 합이 $7$인 주사위에서 눈의 수가 $3$인 면과 평행한 면의 눈의 수는 □이다.",
+      "draftEvidence": "evidence/section-049-draft.json"
+    },
+    {
+      "id": "e5-2-5-3-xc25",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "마주 보는 면의 눈의 수의 합이 $7$인 주사위에서 눈의 수가 $1$인 면과 수직인 면은, 눈의 수가 $1$인 면과 □인 면을 뺀 나머지 □개의 면이다.",
+      "draftEvidence": "evidence/section-049-draft.json"
+    },
+    {
+      "id": "e5-2-5-4-xc19",
+      "form": "C",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "직육면체의 겨냥도에서 한 모서리 옆에 $5$ cm라고 적혀 있고, 그림 위에서 그 선을 자로 재면 $3$ cm이다. 이 모서리의 실제 길이는 □ cm이다.",
+      "draftEvidence": "evidence/section-050-draft.json"
+    },
+    {
+      "id": "e5-2-5-5-xc11",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "주사위에서 마주 보는 두 면의 눈의 수 사이에는 어떤 규칙이 있는지 쓰고, 눈이 $2$인 면과 마주 보는 면의 눈의 수를 구하시오.",
+      "draftEvidence": "evidence/section-051-draft.json"
+    },
+    {
+      "id": "e5-2-5-5-xc24",
+      "form": "B",
+      "flags": [
+        "visible_figure_reference"
+      ],
+      "studentText": "그림의 전개도에서 테두리가 안쪽으로 꺾여 직각을 이루는 곳에 표시한 두 선분은 접으면 어떻게 되는지 쓰고, 두 선분이 한 점에서 만나고 있다는 점을 이용하여 까닭을 설명하시오.",
+      "draftEvidence": "evidence/section-051-draft.json"
+    },
+    {
+      "id": "e5-2-6-2-xc26",
+      "form": "B",
+      "flags": [
+        "possible_unseen_referent"
+      ],
+      "studentText": "평균이 서로 다른 두 모둠을 합친 전체의 평균은 두 모둠의 평균과 견주어 어떤 범위의 값인지 쓰시오. 또 평균이 $60$점인 모둠과 $80$점인 모둠을 합친 평균이 $85$점이 될 수 있는지 판단하시오.",
+      "draftEvidence": "evidence/section-054-draft.json"
+    }
+  ]
+}

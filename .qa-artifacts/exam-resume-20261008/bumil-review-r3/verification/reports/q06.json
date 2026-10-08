@@ -1,0 +1,403 @@
+{
+  "status": "verified",
+  "studentDigest": "2bd42ccd5098fb0d9b9349e2d815b7d447a11625be456fa23aa8f30bfc533dd8",
+  "candidateDigest": "47ebed960014bc5409cb8152f8c3c73ed920bb23d23ad25ab7a7b4f745164f7e",
+  "assetDigest": "e6887d771941784d10e83857bb099cbf68e25bc9d91725c71bef9a87d4d85598",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "solveDigest": "a0c28612f366747eda4b0b922c7bdd1c4667b7df5df67739fcf5588259108919",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 6,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q06",
+    "reviewedAtKst": "2026-10-08",
+    "independence": {
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "verifierIsDifferentAuthor": true,
+      "blindSolveCommit": "c998ea12a6447970c71679e6dd97d06d0fa3dc6b",
+      "answerExposure": "only after parent copied/hash-fixed this solver independent result",
+      "solveRawFileSha256": "4b031c0ef42eb61ee3200578af178338ac23b77ebf97bcffd07dfeb91235a884",
+      "solveRawBytesMatchParent": true,
+      "solveFileUneditedSinceCommit": true,
+      "originalAnswersOrSolutionsRead": false,
+      "geometryAuthorCandidatesReviewed": false
+    },
+    "binding": {
+      "contract": "parent scripts/import/exam-twin/candidatePack.mjs bindCandidate(candidate.json); digest(independentSolve)",
+      "candidateObjectAndAssetBindingsRecomputed": true,
+      "allFourProvidedDigestsMatch": true,
+      "candidateFileSha256": "f315fb6af5e1fbfdf66fe3d7fdd573e070be06e4d7db8504764b5921cec6240a",
+      "verificationInputsPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\verification\\verification-inputs.json",
+      "verificationInputsSha256": "7a65c7e1dafec63917ad2ce53b0ba6e88dd1d70c58fe86640976fce44142c145",
+      "manifestInputHashMatched": true,
+      "alteredBytesPolicy": "fail closed; no altered candidate/student/spec/svg/solve detected",
+      "contractFileSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59"
+    },
+    "checkEvidence": {
+      "answerCorrect": {
+        "authorAnswer": "⑤",
+        "sealedIndependentAnswer": "⑤",
+        "codeChoiceMatches": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "calculation": {
+          "requiredRatios": [
+            "QR/PR",
+            "ST/SU",
+            "WX/VW"
+          ],
+          "denominators": "positive sides of nondegenerate right triangles, theta acute"
+        }
+      },
+      "solutionCorrect": "Q,T,W의 직각을 기준으로 PR,SU,VX를 빗변으로 정한다. θ=P,S,V에 대한 대변·이웃변을 각각 읽어 sinθ=QR/PR, cosθ=ST/SU, tanθ=WX/VW를 얻는다. 동일 각도는 주어진 조건으로 사용하고 삼각비 사이의 항등식을 만들지 않는다.",
+      "existenceUniqueness": "θ는 예각이므로 높이·밑변·빗변은 모두 양수이다. 각 직각삼각형의 빗변은 두 직각변보다 길다. 따라서 잘못 바꾼 분모/역수는 예각에서 우연히 정답과 같아지지 않으며 세 정의에 맞는 보기는 ⑤ 하나이다. 삼각비 사이의 항등식은 쓰지 않았다.",
+      "choicesCorrect": {
+        "allFiveChecked": true,
+        "details": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "첫 비가 빗변/높이로 거꾸로 되어 있다."
+          },
+          {
+            "choice": 2,
+            "matches": false,
+            "reason": "두 번째 비의 분모 TU는 빗변 SU가 아니다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "세 번째 비의 분모 VX는 빗변이며 tan의 밑변 VW가 아니다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "첫 비의 분모 PQ는 빗변 PR이 아니고, 세 번째 비도 빗변/밑변으로 틀렸다."
+          },
+          {
+            "choice": 5,
+            "matches": true,
+            "reason": "높이/빗변, 밑변/빗변, 높이/밑변이 각 그림의 θ 위치에 모두 맞다."
+          }
+        ],
+        "codeMatchesSealedBlindChoiceChecks": true
+      },
+      "figureConsistent": "PQR/STU/VWX 세 분리 삼각형의 직각 Q/T/W와 θ 위치 P/S/V를 실제 SVG에서 확인했다. S의 세로 방향과 V의 오른쪽 방향에서도 라벨과 대변을 혼동하지 않았다. 표의 삼각비/삼각형 열 순서가 일치한다.",
+      "sameCoreConceptAndProcedure": "원본은 공통 각을 갖는 여러 직각삼각형에서 해당 변의 길이 비를 선택한다. 새 문항도 표시 각에 대한 빗변·대변·이웃변을 찾아 정의로 비를 판정한다.",
+      "distinctPresentation": "원본의 중첩 삼각형/개별 등식 선택을 서로 다른 방향의 독립 삼각형 세 개와 sin·cos·tan 삼중 기록으로 바꿨다. 각 위치가 달라져 변 역할을 실제로 다시 읽어야 한다.",
+      "naturalKorean": "표시한 예각이 모두 θ이고 사용할 삼각형과 삼각비를 표에서 각각 지정해 읽는 순서가 명확하다.",
+      "curriculumAppropriate": "직각삼각형과 주어진 예각 θ의 삼각비 정의이다. θ 값 계산이나 닮음의 증명을 요구하지 않는다. 직각삼각형의 빗변 판별과 각에 마주 보는 변/이웃변 구별만 필요하다. 닮음은 정의의 배경이며 이 문항에서 별도 판정/증명을 요구하지 않는다. 학교·AI·family 존재가 아니라 아래 공식 문구 및 실제 요구 절차로 판정했다.",
+      "allStudentSurfacesInScope": {
+        "stem": "직각삼각형과 주어진 예각 θ의 삼각비 정의이다. θ 값 계산이나 닮음의 증명을 요구하지 않는다.",
+        "choices": "다섯 세 분수 모두 양의 선분 길이 비이다. 역수/빗변 혼동도 같은 정의 범위의 오답이며 세 변 역할을 독립 풀이에서 모두 대조했다.",
+        "figuresAndTables": "PQR/STU/VWX 세 분리 삼각형의 직각 Q/T/W와 θ 위치 P/S/V를 실제 SVG에서 확인했다. S의 세로 방향과 V의 오른쪽 방향에서도 라벨과 대변을 혼동하지 않았다. 표의 삼각비/삼각형 열 순서가 일치한다.",
+        "notation": "예각 θ, sin/cos/tan, 선분 위 가로선, 분수 및 90° 표기이다.",
+        "answer": "QR/PR, ST/SU, WX/VW 및 ⑤. 각 사이 관계 공식이 없다.",
+        "studentSolution": "Q,T,W의 직각을 기준으로 PR,SU,VX를 빗변으로 정한다. θ=P,S,V에 대한 대변·이웃변을 각각 읽어 sinθ=QR/PR, cosθ=ST/SU, tanθ=WX/VW를 얻는다. 동일 각도는 주어진 조건으로 사용하고 삼각비 사이의 항등식을 만들지 않는다.",
+        "prerequisites": "직각삼각형의 빗변 판별과 각에 마주 보는 변/이웃변 구별만 필요하다. 닮음은 정의의 배경이며 이 문항에서 별도 판정/증명을 요구하지 않는다."
+      },
+      "unitFamilyFit": "live 삼각비01은 θ에 대한 대변/빗변·이웃변/빗변·대변/이웃변 세 정의를 명시한다. live 수치판에서 빗변 계산을 먼저 하는 선택은 여기서 불필요하지만 주 개념인 세 비의 정의와 변 역할 판정은 동일하다.",
+      "scoreAppropriate": "응용 제안은 하단 경계로 수용 가능하다. 세 방향에서 세 종류의 비를 동시에 매칭하지만 추가 구성·수치 계산은 없어 기본 상단~응용 하단 부담이다. 4점 객관식은 적정하며 경험적 정답률이나 live 난이도 라벨로 승인하지 않았다."
+    },
+    "deterministicMath": {
+      "tool": "Python fractions.Fraction / decimal.Decimal / exact sign and symbolic-side classifications",
+      "executed": true,
+      "sourceOfInputs": "already blinded student statement/figures, not author facts or old answers",
+      "calculationCode": "classify hypotenuse/opposite/adjacent at angles P,S,V from actual right-angle markers Q,T,W; compare each displayed ratio tuple",
+      "results": {
+        "requiredRatios": [
+          "QR/PR",
+          "ST/SU",
+          "WX/VW"
+        ],
+        "denominators": "positive sides of nondegenerate right triangles, theta acute"
+      },
+      "choiceMatches": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "matchesPreExposureSolve": true
+    },
+    "studentRenderReview": {
+      "localChromium": true,
+      "networkRequestsBlocked": true,
+      "katexThrowOnError": true,
+      "mathSpanCount": 28,
+      "reviewerViewedFullStemChoicesTablesFiguresAndNewSolution": true,
+      "inspectionPngSha256": "1edd10c6a4239266f15b0300183facc9ed9ed96e6827931f010f2c5ece367240",
+      "inspectionArtifactRetained": false,
+      "layoutScope": "temporary neutral local review layout; no claim to parent production pagination",
+      "observations": "PQR/STU/VWX 세 분리 삼각형의 직각 Q/T/W와 θ 위치 P/S/V를 실제 SVG에서 확인했다. S의 세로 방향과 V의 오른쪽 방향에서도 라벨과 대변을 혼동하지 않았다. 표의 삼각비/삼각형 열 순서가 일치한다.",
+      "assets": [
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q06\\figure-1.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q06\\figure-1.svg",
+          "specSha256": "f23f6146443bd79347326eba1fa58fa3097cb9a119b300ba5b084ffbdd2fb27e",
+          "svgSha256": "6753257982880fe3cd5782a38a5120d987c3ff90e365edb2b51a959ac10b3a3c",
+          "intendedWidthMm": 90,
+          "studentPath": "figures/q06-1.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        }
+      ]
+    },
+    "sourceComparison": {
+      "referencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\problems.json",
+      "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "questionNumber": 6,
+      "contentSha256": "463f8baedf5ae2fed8172af0118542eafc45ec1a8a4dcb1cba7de406ac603113",
+      "contentHashMatched": true,
+      "redactedAnswerFree": true,
+      "originalAnswerOrSolutionNotAccessed": true,
+      "figures": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\figures\\q06.png",
+          "sha256": "d4903a150ce941ce3790c997c9e1ae3dabdec623d1800eee0bf95a4770b546ba",
+          "purpose": "answer-free reference, no copied stem/choice asset",
+          "visuallyReviewed": true
+        }
+      ],
+      "sameProcedure": "원본은 공통 각을 갖는 여러 직각삼각형에서 해당 변의 길이 비를 선택한다. 새 문항도 표시 각에 대한 빗변·대변·이웃변을 찾아 정의로 비를 판정한다.",
+      "substantiveDelta": "원본의 중첩 삼각형/개별 등식 선택을 서로 다른 방향의 독립 삼각형 세 개와 sin·cos·tan 삼중 기록으로 바꿨다. 각 위치가 달라져 변 역할을 실제로 다시 읽어야 한다."
+    },
+    "curriculum": {
+      "targetGrade": "중3",
+      "targetEdition": "2015",
+      "status": "independently-reviewed-selected-student-surfaces",
+      "official2015Pdf": {
+        "id": "moe-2015-74-math-pdf",
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+        "archive_member": "별책8_수학과 교육과정.pdf",
+        "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "bytes": 2533289,
+        "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "primary": true,
+        "retrieved_date_kst": "2026-10-08",
+        "format": "pdf"
+      },
+      "evidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardRefs": [
+        {
+          "code": "9수04-17",
+          "verifiedText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "physicalPages1Based": [
+            38
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수04-13",
+          "verifiedText": "도형의 닮음의 의미와 닮은 도형의 성질을 이해한다.",
+          "physicalPages1Based": [
+            38
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수04-14",
+          "verifiedText": "삼각형의 닮음 조건을 이해하고, 이를 이용하여 두 삼각형이 닮음인지 판별할 수 있다.",
+          "physicalPages1Based": [
+            38
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        }
+      ],
+      "restrictionsVerified": [
+        {
+          "id": "no_vieta",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_ratio_identities",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "angle_range",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "real_quadratic_roots",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_function_applications",
+          "physicalPages1Based": [
+            37
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        }
+      ],
+      "surfaceEvidence": {
+        "stem": "직각삼각형과 주어진 예각 θ의 삼각비 정의이다. θ 값 계산이나 닮음의 증명을 요구하지 않는다.",
+        "choices": "다섯 세 분수 모두 양의 선분 길이 비이다. 역수/빗변 혼동도 같은 정의 범위의 오답이며 세 변 역할을 독립 풀이에서 모두 대조했다.",
+        "figuresAndTables": "PQR/STU/VWX 세 분리 삼각형의 직각 Q/T/W와 θ 위치 P/S/V를 실제 SVG에서 확인했다. S의 세로 방향과 V의 오른쪽 방향에서도 라벨과 대변을 혼동하지 않았다. 표의 삼각비/삼각형 열 순서가 일치한다.",
+        "notation": "예각 θ, sin/cos/tan, 선분 위 가로선, 분수 및 90° 표기이다.",
+        "answer": "QR/PR, ST/SU, WX/VW 및 ⑤. 각 사이 관계 공식이 없다.",
+        "studentSolution": "Q,T,W의 직각을 기준으로 PR,SU,VX를 빗변으로 정한다. θ=P,S,V에 대한 대변·이웃변을 각각 읽어 sinθ=QR/PR, cosθ=ST/SU, tanθ=WX/VW를 얻는다. 동일 각도는 주어진 조건으로 사용하고 삼각비 사이의 항등식을 만들지 않는다.",
+        "prerequisites": "직각삼각형의 빗변 판별과 각에 마주 보는 변/이웃변 구별만 필요하다. 닮음은 정의의 배경이며 이 문항에서 별도 판정/증명을 요구하지 않는다."
+      },
+      "rolloutSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "phaseInTextChecked": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "phaseInTextChecked": true
+        }
+      ],
+      "phaseInConclusion": "2015 중3 적용은 2020-03-01, 2022 중3 적용은 2027-03-01. 자료의 2025/2026 출처 연도 차이는 이 범위의 2015 적용 결론을 바꾸지 않는다. 출처 확정은 별도 보류.",
+      "normalization": "PDF 추출의 공백/줄바꿈/U+0001 제어 구분자만 제거하여 제공된 2020 HWP 추출 증거의 해당 문구와 2015 PDF를 대조했다. 새 HWP 추출을 수행했다고 주장하지 않는다.",
+      "amendmentReviewBoundary": "선택 문항의 기준·각도 범위·금지 방법·복잡도 제한 및 시행 시점에 한정했다. 관련 문구에서 실질 변경/불확실성은 발견되지 않았다. 전체 2015 개정 고시 연혁을 감사하거나 2022 재출판을 승인한 결과는 아니다.",
+      "specificForbiddenMethodsAvoided": "미분, 근과 계수 관계, 삼각비 항등식, 90° 밖 삼각비, 사인/코사인 법칙, 일반 삼각형 사인 넓이 암기식, 원과 비례/원의 거듭제곱, 라디안, 정사영/벡터 없음. q12 수선 높이와 q13 명시 단면만 사용."
+    },
+    "taxonomy": {
+      "unitSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+      "unitSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotScope": "parent supplied read-only 2026-10-07 snapshot; no DB call or claim of later live recapture",
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "unitAppropriate": true,
+      "familyKey": "mid:3-2|삼각비|01",
+      "registryMatch": {
+        "key": "3-2|삼각비|01",
+        "grade": "중3",
+        "unitSection": "삼각비의 뜻",
+        "rpmBook": "3-2",
+        "rpmMinor": "삼각비",
+        "rpmType": "01",
+        "rpmTitle": "삼각비의 값"
+      },
+      "liveCount": 24,
+      "liveFamilySnapshotMatch": true,
+      "generator": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "mode": "read-only relevant family source, no generator execution or edits",
+        "relevantLines1Based": [
+          949,
+          972
+        ]
+      },
+      "semanticDecision": "matched",
+      "reason": "live 삼각비01은 θ에 대한 대변/빗변·이웃변/빗변·대변/이웃변 세 정의를 명시한다. live 수치판에서 빗변 계산을 먼저 하는 선택은 여기서 불필요하지만 주 개념인 세 비의 정의와 변 역할 판정은 동일하다."
+    },
+    "objectiveDifficultyAndScore": {
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyBand": "기본 상단~응용 하단",
+      "candidateScore": 4,
+      "scoreAppropriate": true,
+      "candidateQuestionType": "객관식",
+      "authorProblemTypeProposal": "개념",
+      "reviewerProblemType": "개념",
+      "reason": "응용 제안은 하단 경계로 수용 가능하다. 세 방향에서 세 종류의 비를 동시에 매칭하지만 추가 구성·수치 계산은 없어 기본 상단~응용 하단 부담이다. 4점 객관식은 적정하며 경험적 정답률이나 live 난이도 라벨로 승인하지 않았다.",
+      "empiricalCalibrationClaimed": false,
+      "sourceOrGeneratorDifficultyAutoApplied": false
+    },
+    "holds": [],
+    "nonblockingSuggestions": [],
+    "releaseBoundary": {
+      "reviewStatusCovers": "only these selected independent mathematics, full student-surface curriculum, presentation/language, difficulty/score and taxonomy dimensions",
+      "nativeProvenance": "blocked-parent-owned",
+      "rights": "blocked-parent-owned",
+      "sourceIdentity": "pending-parent-attestation",
+      "productionUseApproved": false,
+      "DBWrites": false,
+      "paidCalls": false,
+      "pushes": false,
+      "inferenceAPICalls": false
+    },
+    "consumerValidation": {
+      "module": "parent candidatePack.mjs evaluateReview",
+      "executed": true,
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "productionWrites": false,
+      "selectedReviewReasons": [],
+      "effect": "technical dimensions preserved separately; no production approval"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "importedAt": "2026-10-07T08:54:43.048Z",
+  "dispatchId": "ctx_9cb9b54195a9",
+  "notIndependentClaudeApproval": true,
+  "importedIds": [
+    "m3-06-01-xc23",
+    "m3-06-02-xc1",
+    "m3-06-02-xc2",
+    "m3-06-02-xc3",
+    "m3-06-02-xc4",
+    "m3-06-02-xc5",
+    "m3-06-02-xc6",
+    "m3-06-02-xc7",
+    "m3-06-02-xc8",
+    "m3-06-02-xc9",
+    "m3-06-02-xc10",
+    "m3-06-02-xc12",
+    "m3-06-02-xc13",
+    "m3-06-02-xc15",
+    "m3-06-02-xc17",
+    "m3-06-02-xc18",
+    "m3-06-02-xc21",
+    "m3-06-02-xc22",
+    "m3-06-03-xc1",
+    "m3-06-03-xc2"
+  ],
+  "pending": [
+    {
+      "id": "m3-06-02-xc11",
+      "sourceIndex": 3611,
+      "proposalFingerprint": "65d01f0dad4f42bfa3bc6756438bbf83fcc4ff27dd020fd0a5c94e57f89df303",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 삼각형 종류와 같은 두 각만 묻는데 기준은 PA=PB라는 근거까지 필수로 요구한다. 왜 그 삼각형인지도 쓰라고 질문을 맞추거나 요청한 답만 기준으로 받는다. C의 같은 두 접선길이와 이등변삼각형 관계는 타당하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3600-3625-20261007/root-middle-final-3600-3625-verdicts.json"
+    },
+    {
+      "id": "m3-06-02-xc14",
+      "sourceIndex": 3614,
+      "proposalFingerprint": "2ace629ff77571339aa9a664d54c4e12f9fe53a86eec01f42248ca9a9f5a0c61",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 사각형의 종류와 이유만 묻는데 한 변의 길이r도 별도 필수 기준으로 요구한다. 변의 길이도 쓰라고 질문에 명시하거나 네 직각과 같은 이웃변으로 정사각형을 설명한 답을 받는다. C는 어느 네 점인지와 반지름 관계가 명확하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3600-3625-20261007/root-middle-final-3600-3625-verdicts.json"
+    },
+    {
+      "id": "m3-06-02-xc16",
+      "sourceIndex": 3616,
+      "proposalFingerprint": "c100162e32d7cc00fd1a3c51fc4fa7f85c7d5751fcda6af030a9c1564e67bbd8",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B는 접선길이를 이용한 까닭을 요구하므로 직각꼭짓점의 접선길이가r이라는 사실에서 빗변c=(a-r)+(b-r)로 연결하는 이유를 확인한다. r이라고만 쓰는 기준은 불충분하다. C의 설명에 r이 정의되지 않아 반지름을r이라고 한다고 밝혀야 한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3600-3625-20261007/root-middle-final-3600-3625-verdicts.json"
+    },
+    {
+      "id": "m3-06-02-xc19",
+      "sourceIndex": 3619,
+      "proposalFingerprint": "706878b0d45612955f50470eef69fb656efe9b4fdfd8b5472e85f0b05601b682",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 평행하지 않은 변을 다리라고 질문 안에서 정의하여 두 밑변합 절반을 구할 수 있다. C는 그 정의 없이 다리라는 비표준적 이름을 빈칸으로 요구한다. 평행하지 않은 두 변이라고 직접 부르고 두 변합과 절반이라는 실제 수량 관계를 묻는다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3600-3625-20261007/root-middle-final-3600-3625-verdicts.json"
+    },
+    {
+      "id": "m3-06-03-xc4",
+      "sourceIndex": 3624,
+      "proposalFingerprint": "7755485b17fd6fbe9809643f6ece7a7e892958422d51f02809f17853cf7b1aef",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 원주각의 범위를 묻지만 기준은180도보다작다는 상한만 쓰면 충족한다.0도보다크다는 하한도 포함한 범위와 중심각 절반의 이유를 확인한다. C는 하한을 이미 주어 상한180도 및 작다를 묻는다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3600-3625-20261007/root-middle-final-3600-3625-verdicts.json"
+    }
+  ],
+  "inputSha256": "8fd3cfc71947414600cd0bc49a9a3d53b554d4e908c4e02c545eb74513760db2",
+  "verdictSha256": "5c549ee03d5531df02284eb13ddbaef7b7268cdf1607fdd1ea98974788cc3134"
+}

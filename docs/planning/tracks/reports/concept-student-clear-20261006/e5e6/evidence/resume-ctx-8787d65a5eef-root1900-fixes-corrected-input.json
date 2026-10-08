@@ -1,0 +1,861 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-4-1-xc17",
+      "bDecision": "revise",
+      "bPrompt": "앞 수가 뒤 수의 몇 배인지를 구할 때 앞 수를 뒤 수로 나누는 까닭을, 뒤 수를 어떻게 보는지와 무엇을 세는지를 넣어 설명하시오. $12$는 $4$의 몇 배인지도 구하시오.",
+      "bAnswer": "뒤 수를 한 묶음으로 보고 앞 수 안에 그 묶음이 몇 번 들어 있는지 세므로 나눗셈을 한다. $12\\div4=3$이므로 $12$는 $4$의 $3$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "뒤 수를 한 묶음(기준)으로 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞 수에 그 묶음이 몇 번 들어 있는지 구하므로 나눗셈이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$배"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "몇 배를 묶음 개수로 이해해 나눗셈 식을 세운다.",
+      "bReason": "원문의 핵심 의미를 묻고 예의 답도 함께 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$20$은 $5$의 {$4$}배이고, 이처럼 몇 배인지 구하는 계산은 {나눗셈}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눗셈",
+            "나누기",
+            "$20\\div5$"
+          ]
+        }
+      ],
+      "cReason": "앞에서4묶음을인쇄하지않고20을5와견주어몇배인지직접구하게한다. 비교방법인나눗셈이라는짧은이름도남긴다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1900-fixes.json",
+      "codexFinalAmendedFromFingerprint": "c1ab639411bd392d785efa795ea6d938fc7a5634e404f752b2c347731467ee8f",
+      "sourceIndex": 1903,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc17",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "몇 배인지 구하는 식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "앞 수가 뒤 수의 몇 배인지는 $0$이 아닌 {뒤 수를 한 묶음}으로 보아 앞 수에 {그 묶음이 얼마만큼 있는지}를 나타내므로 앞 수를 뒤 수로 나눈다.",
+        "studentC": "앞 수가 뒤 수의 몇 배인지는 $0$이 아닌 □으로 보아 앞 수에 □를 나타내므로 앞 수를 뒤 수로 나눈다.",
+        "answers": [
+          "뒤 수를 한 묶음",
+          "그 묶음이 얼마만큼 있는지"
+        ]
+      },
+      "sourceFingerprint": "9429fb148f2ad5552395ed6ac3d00647852f0def437780d801432cb9c776e0de",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$",
+        "나눗셈"
+      ],
+      "cStudentAfter": "$20$은 $5$의 □배이고, 이처럼 몇 배인지 구하는 계산은 □이다.",
+      "cMarkedSentence": "$20$은 $5$의 {$4$}배이고, 이처럼 몇 배인지 구하는 계산은 {나눗셈}이다.",
+      "cStudentSentence": "$20$은 $5$의 □배이고, 이처럼 몇 배인지 구하는 계산은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "나눗셈",
+          "equivalents": [
+            "나누기",
+            "$20\\div5$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "앞 수가 뒤 수의 몇 배인지를 구할 때 앞 수를 뒤 수로 나누는 까닭을, 뒤 수를 어떻게 보는지와 무엇을 세는지를 넣어 설명하시오. $12$는 $4$의 몇 배인지도 구하시오.",
+        "answer": "뒤 수를 한 묶음으로 보고 앞 수 안에 그 묶음이 몇 번 들어 있는지 세므로 나눗셈을 한다. $12\\div4=3$이므로 $12$는 $4$의 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "뒤 수를 한 묶음(기준)으로 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "앞 수에 그 묶음이 몇 번 들어 있는지 구하므로 나눗셈이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$20$은 $5$의 {$4$}배이고, 이처럼 몇 배인지 구하는 계산은 {나눗셈}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "나눗셈",
+            "나누기",
+            "$20\\div5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7f05115ecd4f65fbf9c8f2edcb7261d48c24c3727eb525e574ab46dd2fd3fafe",
+      "questionRevision": "planning-e5e6-20261006-7f05115ecd4f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-xc18",
+      "bDecision": "revise",
+      "bPrompt": "$0$이 아닌 두 수가 같을 때 두 수의 차와 한 수를 다른 수로 나눈 값은 각각 얼마인지 말하고, 그 까닭을 설명하시오.",
+      "bAnswer": "차는 $0$이고 나눈 값은 $1$이다. 같은 수를 빼면 남는 것이 없고, 한 수 안에 같은 수가 꼭 한 번 들어 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차는 $0$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눈 값은 $1$이다",
+            "$1$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 수를 빼면 남는 양이 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 수 안에 같은 수가 꼭 한 번 들어 있다",
+            "$0$이 아닌 수를 자기 자신으로 나누면 $1$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "같은 수의 차는 $0$, 몇 배는 $1$임을 이해한다.",
+      "bReason": "질문에서차0·몫1의두이유를요청하므로각이유도독립의미로확인한다.0아닌같은두수조건은보존한다.",
+      "cDecision": "keep",
+      "cAfter": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 {$1$}이다.",
+      "cReason": "$0$이 아니라는 조건이 있고 값 하나를 채우는 짧은 문장이라 원문 유지.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1900-fixes.json",
+      "codexFinalAmendedFromFingerprint": "f9b67a3c9b4f2f6e0d7de48fde8ad7219e04de2a7f1e0183e8a4bf46a101d9b9",
+      "sourceIndex": 1904,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc18",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "차가 $0$인 두 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 {$1$}이다.",
+        "studentC": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 □이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "a797dbb6005d4e728191532d42f3f51d8bd491ccc3355d8568bb1d9c0d396867",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 {$1$}이다.",
+      "cFrozenStudentSentence": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 □이다.",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 {$1$}이다.",
+      "cStudentSentence": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$이 아닌 두 수가 같을 때 두 수의 차와 한 수를 다른 수로 나눈 값은 각각 얼마인지 말하고, 그 까닭을 설명하시오.",
+        "answer": "차는 $0$이고 나눈 값은 $1$이다. 같은 수를 빼면 남는 것이 없고, 한 수 안에 같은 수가 꼭 한 번 들어 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "차는 $0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눈 값은 $1$이다",
+              "$1$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 수를 빼면 남는 양이 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 수 안에 같은 수가 꼭 한 번 들어 있다",
+              "$0$이 아닌 수를 자기 자신으로 나누면 $1$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$이 아닌 두 수의 차가 $0$이면 두 수는 같고, 한 수를 다른 수로 나눈 값은 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "147bf7b27145fda9cabfdc12f8acbcc02f7ec01803c933d9a770a1363dc56995",
+      "questionRevision": "planning-e5e6-20261006-147bf7b27145",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "연필 한 자루는 $2000$원이고 가방은 $6000$원이다. 두 가격의 차는 얼마이고, 가방의 가격은 연필 가격의 몇 배인지 각각 어떤 계산으로 알아보는지 쓰고 값도 구하시오.",
+      "bAnswer": "가격 차는 뺄셈으로 $6000-2000=4000$이므로 $4000$원이다. 가방 가격이 연필 가격의 몇 배인지는 나눗셈으로 $6000\\div2000=3$이므로 $3$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가격 차는 뺄셈으로 구한다",
+            "$6000-2000$으로 차를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몇 배인지는 나눗셈으로 구한다",
+            "$6000\\div2000$으로 몇 배인지 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4000$원"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$배"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "생활 상황에서 뺄셈과 나눗셈 비교를 골라 쓴다.",
+      "bReason": "몇배비싸다는말대신가방가격이연필가격의몇배인지로대상을정한다. 서로다른답4000원과3배를동의대안으로묶지않고독립기준으로확인한다.",
+      "cDecision": "revise",
+      "cAfter": "연필 한 자루는 $2000$원이고 가방은 $6000$원이다. 두 가격의 차는 {$4000$}원이고, 가방의 가격은 연필 가격의 {$3$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4000$",
+            "$4000$원"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "$3$배",
+            "세"
+          ]
+        }
+      ],
+      "cReason": "어떤물건을얼마나더사는지없는추상적인C를실제두가격의차와배관계를구하는두값으로바꾼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1900-fixes.json",
+      "codexFinalAmendedFromFingerprint": "aeca9f581425c9b89d1a227761580da0b9551150e1b29453efd7a40962730988",
+      "sourceIndex": 1905,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc19",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "생활에서 비교 방법 고르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "물건을 몇 개 더 사야 하는지는 {뺄셈}으로, 몇 배 비싼지는 나눗셈으로 비교한다.",
+        "studentC": "물건을 몇 개 더 사야 하는지는 □으로, 몇 배 비싼지는 나눗셈으로 비교한다.",
+        "answers": [
+          "뺄셈"
+        ]
+      },
+      "sourceFingerprint": "816dc89fe0dfe711223356ff129ea0ae5d764d9e2af3287b309988ac7d3e3518",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4000$",
+        "$3$"
+      ],
+      "cStudentAfter": "연필 한 자루는 $2000$원이고 가방은 $6000$원이다. 두 가격의 차는 □원이고, 가방의 가격은 연필 가격의 □배이다.",
+      "cMarkedSentence": "연필 한 자루는 $2000$원이고 가방은 $6000$원이다. 두 가격의 차는 {$4000$}원이고, 가방의 가격은 연필 가격의 {$3$}배이다.",
+      "cStudentSentence": "연필 한 자루는 $2000$원이고 가방은 $6000$원이다. 두 가격의 차는 □원이고, 가방의 가격은 연필 가격의 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4000$",
+          "equivalents": [
+            "$4000$원"
+          ]
+        },
+        {
+          "key": "$3$",
+          "equivalents": [
+            "$3$배",
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "연필 한 자루는 $2000$원이고 가방은 $6000$원이다. 두 가격의 차는 얼마이고, 가방의 가격은 연필 가격의 몇 배인지 각각 어떤 계산으로 알아보는지 쓰고 값도 구하시오.",
+        "answer": "가격 차는 뺄셈으로 $6000-2000=4000$이므로 $4000$원이다. 가방 가격이 연필 가격의 몇 배인지는 나눗셈으로 $6000\\div2000=3$이므로 $3$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가격 차는 뺄셈으로 구한다",
+              "$6000-2000$으로 차를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몇 배인지는 나눗셈으로 구한다",
+              "$6000\\div2000$으로 몇 배인지 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4000$원"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "연필 한 자루는 $2000$원이고 가방은 $6000$원이다. 두 가격의 차는 {$4000$}원이고, 가방의 가격은 연필 가격의 {$3$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$4000$",
+            "$4000$원"
+          ],
+          [
+            "$3$",
+            "$3$배",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "18f7002d7704ad7769700ca53b4026d83c5d58a1ff873bc04a4dd3d181e06011",
+      "questionRevision": "planning-e5e6-20261006-18f7002d7704",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "학생 $4$명과 공 $2$개를 한 모둠으로 하여 모둠이 $1$개, $2$개, $3$개로 늘 때, 학생 수가 공 수의 몇 배인지 구하고 모둠 수가 달라도 그 값이 같은 까닭을 설명하시오.",
+      "bAnswer": "학생 수는 $4$, $8$, $12$이고 공 수는 $2$, $4$, $6$이다. $4\\div2$, $8\\div4$, $12\\div6$이 모두 $2$이므로 항상 $2$배이다. 모둠 수가 늘면 두 수가 같은 배로 늘어 몇 배인지도 변하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 $2$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수가 같은 배로 늘어 몇 배인지가 같다",
+            "두 수가 같은 배로 늘어나도 나눈 값은 변하지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "일정한 관계를 나눗셈 한 값으로 나타내는 장점을 이해한다.",
+      "bReason": "좋은점이라는열린질문을빼고모둠수변화에서도배관계가일정한이유라는학습목표로응답범위를정한다.",
+      "cDecision": "revise",
+      "cAfter": "학생 $4$명과 공 $2$개를 한 모둠으로 하면 모둠 수가 달라도 학생 수는 공 수의 항상 {$2$}배이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "긴 키워드 빈칸 대신 모둠 장면에서 일정한 배를 직접 구하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1900-fixes.json",
+      "codexFinalAmendedFromFingerprint": "5e0a61403b1fa982bec0a30cfaeeb3fb08df8b4e57c2efe884e9351bde667a2b",
+      "sourceIndex": 1907,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc21",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "나눗셈 비교가 쓸모 있는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "모둠마다 학생 수와 공 수가 각각 일정하고 $0$이 아니면, 모둠 수가 달라도 몇 배인지는 같아서 나눗셈 비교로 {일정한 관계를 한 수로} 나타낼 수 있다.",
+        "studentC": "모둠마다 학생 수와 공 수가 각각 일정하고 $0$이 아니면, 모둠 수가 달라도 몇 배인지는 같아서 나눗셈 비교로 □ 나타낼 수 있다.",
+        "answers": [
+          "일정한 관계를 한 수로"
+        ]
+      },
+      "sourceFingerprint": "13c79ce3c8c7468b124f5b058354d2890a7e4740eadc4c7229ed9390245289de",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "학생 $4$명과 공 $2$개를 한 모둠으로 하면 모둠 수가 달라도 학생 수는 공 수의 항상 □배이다.",
+      "cMarkedSentence": "학생 $4$명과 공 $2$개를 한 모둠으로 하면 모둠 수가 달라도 학생 수는 공 수의 항상 {$2$}배이다.",
+      "cStudentSentence": "학생 $4$명과 공 $2$개를 한 모둠으로 하면 모둠 수가 달라도 학생 수는 공 수의 항상 □배이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "학생 $4$명과 공 $2$개를 한 모둠으로 하여 모둠이 $1$개, $2$개, $3$개로 늘 때, 학생 수가 공 수의 몇 배인지 구하고 모둠 수가 달라도 그 값이 같은 까닭을 설명하시오.",
+        "answer": "학생 수는 $4$, $8$, $12$이고 공 수는 $2$, $4$, $6$이다. $4\\div2$, $8\\div4$, $12\\div6$이 모두 $2$이므로 항상 $2$배이다. 모둠 수가 늘면 두 수가 같은 배로 늘어 몇 배인지도 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 $2$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수가 같은 배로 늘어 몇 배인지가 같다",
+              "두 수가 같은 배로 늘어나도 나눈 값은 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "학생 $4$명과 공 $2$개를 한 모둠으로 하면 모둠 수가 달라도 학생 수는 공 수의 항상 {$2$}배이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7381ef3d42b6089bb890c87b53a555ac07e68ef7fbdbed592ffa54a8d209ac93",
+      "questionRevision": "planning-e5e6-20261006-7381ef3d42b6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-xc27",
+      "bDecision": "revise",
+      "bPrompt": "$4$와 $12$의 차를 큰 수에서 작은 수를 뺀 값으로 구하시오. $12$는 $4$의 몇 배이고 $4$는 $12$의 몇 배인지도 각각 구하고, 몇 배인지 구할 때 기준으로 삼는 수를 바꾸면 어떤 차이가 생기는지 설명하시오.",
+      "bAnswer": "차는 $12-4=8$이다. $12$는 $4$의 $3$배이고 $4$는 $12$의 $\\frac{1}{3}$배이다. 같은 두 수라도 기준을 $4$로 삼는지 $12$로 삼는지에 따라 몇 배인지가 달라진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 차는 $12-4=8$이다",
+            "차는 $8$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$는 $4$의 $3$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$는 $12$의 $\\frac{1}{3}$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몇 배인지는 기준으로 삼는 수에 따라 달라진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "차는 순서에 상관없지만 몇 배는 기준에 따라 달라짐을 이해한다.",
+      "bReason": "두양의차를큰수에서작은수뺀값으로정하여뺄셈순서불변이라고가르치지않는다. 기준변경에따른3배와1/3배를각각확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$12$와 $4$의 차는 큰 수 $12$에서 작은 수 $4$를 뺀 값인 {$8$}이다. $12$는 $4$의 {$3$}배이고 $4$는 $12$의 {$\\frac{1}{3}$}배이므로, 몇 배인지는 기준으로 삼는 수에 따라 달라진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "cReason": "차의의미를큰수에서작은수뺌으로명시하고실제8과두배관계를계산하게한다. 비교순서와뺄셈순서를혼동시키는일반문장을없앤다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreAfter": "$0$보다 크고 서로 다른 두 양의 차는 큰 양에서 작은 양을 뺀 값이다. 한 양이 다른 양의 몇 배인지는 {기준으로 삼는 수}에 따라 달라진다.",
+      "coreReason": "비교 순서를 바꿔도 차가 같다는 원문은 뺄셈 순서를 바꿔도 값이 같다는 오해를 일으킨다. 두 양의 차를 큰 양에서 작은 양을 뺀 값으로 정의하고, 배의 관계는 기준으로 삼는 수에 따라 달라진다는 원래 목표를 보존한다.",
+      "coreTargetReason": "원문의 기준으로 삼는 수 한 표적을 보존한다. 차의 비교순서와 실제 뺄셈순서를 구분하도록 큰 양에서 작은 양을 뺀 값이라는 뜻을 일반 설명에 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1900-fixes.json",
+      "codexFinalAmendedFromFingerprint": "53acced4350bbba3904f6acea1e63f842ddffcd9ed336ff35cecb820a490594f",
+      "sourceIndex": 1909,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc27",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "비교하는 순서와 차 · 몇 배",
+        "kind": "성질",
+        "level": "상",
+        "definition": "서로 다르고 $0$이 아닌 두 수의 차는 비교 순서를 바꿔도 같지만, 몇 배인지는 {기준으로 삼는 수}에 따라 달라진다.",
+        "studentC": "서로 다르고 $0$이 아닌 두 수의 차는 비교 순서를 바꿔도 같지만, 몇 배인지는 □에 따라 달라진다.",
+        "answers": [
+          "기준으로 삼는 수"
+        ]
+      },
+      "sourceFingerprint": "0ca2256e24506119f05d7cfd634d781b346a1a232152690b486a37048b5363a0",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$8$",
+        "$3$",
+        "$\\frac{1}{3}$"
+      ],
+      "cStudentAfter": "$12$와 $4$의 차는 큰 수 $12$에서 작은 수 $4$를 뺀 값인 □이다. $12$는 $4$의 □배이고 $4$는 $12$의 □배이므로, 몇 배인지는 기준으로 삼는 수에 따라 달라진다.",
+      "cMarkedSentence": "$12$와 $4$의 차는 큰 수 $12$에서 작은 수 $4$를 뺀 값인 {$8$}이다. $12$는 $4$의 {$3$}배이고 $4$는 $12$의 {$\\frac{1}{3}$}배이므로, 몇 배인지는 기준으로 삼는 수에 따라 달라진다.",
+      "cStudentSentence": "$12$와 $4$의 차는 큰 수 $12$에서 작은 수 $4$를 뺀 값인 □이다. $12$는 $4$의 □배이고 $4$는 $12$의 □배이므로, 몇 배인지는 기준으로 삼는 수에 따라 달라진다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{3}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$4$와 $12$의 차를 큰 수에서 작은 수를 뺀 값으로 구하시오. $12$는 $4$의 몇 배이고 $4$는 $12$의 몇 배인지도 각각 구하고, 몇 배인지 구할 때 기준으로 삼는 수를 바꾸면 어떤 차이가 생기는지 설명하시오.",
+        "answer": "차는 $12-4=8$이다. $12$는 $4$의 $3$배이고 $4$는 $12$의 $\\frac{1}{3}$배이다. 같은 두 수라도 기준을 $4$로 삼는지 $12$로 삼는지에 따라 몇 배인지가 달라진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 차는 $12-4=8$이다",
+              "차는 $8$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$는 $4$의 $3$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$는 $12$의 $\\frac{1}{3}$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몇 배인지는 기준으로 삼는 수에 따라 달라진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$12$와 $4$의 차는 큰 수 $12$에서 작은 수 $4$를 뺀 값인 {$8$}이다. $12$는 $4$의 {$3$}배이고 $4$는 $12$의 {$\\frac{1}{3}$}배이므로, 몇 배인지는 기준으로 삼는 수에 따라 달라진다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$\\frac{1}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "de20b36c3067e0ce97e0a2c84e61673c54b9135c7d0e6316e6fcf05eb58939bf",
+      "questionRevision": "planning-e5e6-20261006-de20b36c3067",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "전체에 대한 부분의 비를 쓸 때 기준이 되는 양은 무엇이고 두 수를 어떤 순서로 쓰는가? 전체가 $10$명이고 그중 $4$명이 안경을 썼을 때, 전체에 대한 안경을 쓴 학생 수의 비를 쓰시오.",
+      "bAnswer": "전체가 기준이므로 부분의 수를 앞에, 전체의 수를 뒤에 쓴다. 따라서 $4:10$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기준은 전체이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "부분을 앞에 전체를 뒤에 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4:10$",
+            "$2:5$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "전체를 기준으로 부분의 수를 앞에 쓰는 비를 만든다.",
+      "bReason": "전체가기준·부분앞전체뒤·실제비의세요청을독립기준으로확인한다. 같은비율의4:10과2:5는모두타당한비표현이다.",
+      "cDecision": "revise",
+      "cAfter": "전체가 $10$명이고 안경을 쓴 학생이 $4$명일 때, 전체에 대한 안경을 쓴 학생 수의 비는 {$4:10$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4:10$",
+            "$2:5$",
+            "$8:20$"
+          ]
+        }
+      ],
+      "cReason": "전체10명에대한부분4명의비는4:10이며비율이같은2:5·8:20도같은두양관계의입력으로인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1900-fixes.json",
+      "codexFinalAmendedFromFingerprint": "c5c466df7c4ac569f474e8f96302f4365f4d2d994aa99c96dc93d7313f90335e",
+      "sourceIndex": 1917,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-2-xc12",
+        "section": "초6::1-4 비와 비율::1-4-2 비",
+        "term": "전체에 대한 부분의 비",
+        "kind": "방법",
+        "level": "중",
+        "definition": "전체에 대한 부분의 비에서는 전체가 {기준}이므로 부분의 수를 앞에, 전체의 수를 뒤에 쓴다.",
+        "studentC": "전체에 대한 부분의 비에서는 전체가 □이므로 부분의 수를 앞에, 전체의 수를 뒤에 쓴다.",
+        "answers": [
+          "기준"
+        ]
+      },
+      "sourceFingerprint": "644b12b3ff6bebc0ff66eacda8c0c31fd8111260a80a9f8fbaf253292575a228",
+      "draftEvidence": "evidence/section-070-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4:10$"
+      ],
+      "cStudentAfter": "전체가 $10$명이고 안경을 쓴 학생이 $4$명일 때, 전체에 대한 안경을 쓴 학생 수의 비는 □이다.",
+      "cMarkedSentence": "전체가 $10$명이고 안경을 쓴 학생이 $4$명일 때, 전체에 대한 안경을 쓴 학생 수의 비는 {$4:10$}이다.",
+      "cStudentSentence": "전체가 $10$명이고 안경을 쓴 학생이 $4$명일 때, 전체에 대한 안경을 쓴 학생 수의 비는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4:10$",
+          "equivalents": [
+            "$2:5$",
+            "$8:20$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체에 대한 부분의 비를 쓸 때 기준이 되는 양은 무엇이고 두 수를 어떤 순서로 쓰는가? 전체가 $10$명이고 그중 $4$명이 안경을 썼을 때, 전체에 대한 안경을 쓴 학생 수의 비를 쓰시오.",
+        "answer": "전체가 기준이므로 부분의 수를 앞에, 전체의 수를 뒤에 쓴다. 따라서 $4:10$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기준은 전체이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "부분을 앞에 전체를 뒤에 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4:10$",
+              "$2:5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전체가 $10$명이고 안경을 쓴 학생이 $4$명일 때, 전체에 대한 안경을 쓴 학생 수의 비는 {$4:10$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4:10$",
+            "$2:5$",
+            "$8:20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6bdfdf0099487b84660c646a5a484f78775b7db68abed5a510b7a7ecbf17ffcf",
+      "questionRevision": "planning-e5e6-20261006-6bdfdf009948",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-2-xc27",
+      "bDecision": "revise",
+      "bPrompt": "두 양의 비가 $2:3$이다. 앞의 양이 뒤의 양의 몇 배인지 구하시오. 또 이 비를 나타내는 서로 다른 두 수의 쌍을 예로 쓰고, 비만 알면 두 양이 각각 얼마인지 하나로 정할 수 있는지 설명하시오.",
+      "bAnswer": "앞의 양은 뒤의 양의 $\\frac{2}{3}$배이다. 비가 $2:3$인 두 수는 $4$와 $6$일 수도 있고 $8$과 $12$일 수도 있다. 몇 배인지의 관계는 같아도 실제 두 수는 다르므로 비만으로 각각의 크기를 하나로 정할 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞의 양은 뒤의 양의 $\\frac{2}{3}$배이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비가 $2:3$인 서로 다른 두 수의 쌍을 쓴다(예: $4$와 $6$, $8$과 $12$)"
+          ]
+        },
+        {
+          "anyOf": [
+            "비가 같아도 실제 두 수는 여러 쌍이므로 각각의 크기를 하나로 정할 수 없다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "비가 관계만 나타내고 실제 양은 정하지 못함을 구분한다.",
+      "bReason": "알수있는것이라는열린목록을몇배값·두유효예·실제크기유일성으로응답범위를구체화한다. 정해지지않음의이유도보이는두쌍으로설명하게한다.",
+      "cDecision": "revise",
+      "cAfter": "비가 $2:3$인 두 양은 $4$와 $6$일 수도 있고 $8$과 $12$일 수도 있다. 따라서 이 비만으로는 두 양이 각각 얼마인지 {정할 수 없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정할 수 없다",
+            "알 수 없다",
+            "하나로 정할 수 없다"
+          ]
+        }
+      ],
+      "cReason": "각각얼마인지즉실제크기라는문법복원칸대신실제로다른두쌍을보여비만으로크기를정할수없다는판단을확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1900-fixes.json",
+      "codexFinalAmendedFromFingerprint": "b12844570d078ee5184f1d26acae2515b415acdfceb9fc4ac82c75095fff40ac",
+      "sourceIndex": 1925,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-2-xc27",
+        "section": "초6::1-4 비와 비율::1-4-2 비",
+        "term": "비만으로 알 수 없는 것",
+        "kind": "성질",
+        "level": "상",
+        "definition": "비는 두 양의 {배 관계}를 나타내므로, 비만으로는 각 양의 {실제 크기}를 정할 수 없다.",
+        "studentC": "비는 두 양의 □를 나타내므로, 비만으로는 각 양의 □를 정할 수 없다.",
+        "answers": [
+          "배 관계",
+          "실제 크기"
+        ]
+      },
+      "sourceFingerprint": "3a2c860ecbff73876474fc75681c3a0355dbfb6c42e15df4125728460fff4e74",
+      "draftEvidence": "evidence/section-070-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "정할 수 없다"
+      ],
+      "cStudentAfter": "비가 $2:3$인 두 양은 $4$와 $6$일 수도 있고 $8$과 $12$일 수도 있다. 따라서 이 비만으로는 두 양이 각각 얼마인지 □.",
+      "cMarkedSentence": "비가 $2:3$인 두 양은 $4$와 $6$일 수도 있고 $8$과 $12$일 수도 있다. 따라서 이 비만으로는 두 양이 각각 얼마인지 {정할 수 없다}.",
+      "cStudentSentence": "비가 $2:3$인 두 양은 $4$와 $6$일 수도 있고 $8$과 $12$일 수도 있다. 따라서 이 비만으로는 두 양이 각각 얼마인지 □.",
+      "cSlotAnswers": [
+        {
+          "key": "정할 수 없다",
+          "equivalents": [
+            "알 수 없다",
+            "하나로 정할 수 없다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 양의 비가 $2:3$이다. 앞의 양이 뒤의 양의 몇 배인지 구하시오. 또 이 비를 나타내는 서로 다른 두 수의 쌍을 예로 쓰고, 비만 알면 두 양이 각각 얼마인지 하나로 정할 수 있는지 설명하시오.",
+        "answer": "앞의 양은 뒤의 양의 $\\frac{2}{3}$배이다. 비가 $2:3$인 두 수는 $4$와 $6$일 수도 있고 $8$과 $12$일 수도 있다. 몇 배인지의 관계는 같아도 실제 두 수는 다르므로 비만으로 각각의 크기를 하나로 정할 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞의 양은 뒤의 양의 $\\frac{2}{3}$배이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "비가 $2:3$인 서로 다른 두 수의 쌍을 쓴다(예: $4$와 $6$, $8$과 $12$)"
+            ]
+          },
+          {
+            "anyOf": [
+              "비가 같아도 실제 두 수는 여러 쌍이므로 각각의 크기를 하나로 정할 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비가 $2:3$인 두 양은 $4$와 $6$일 수도 있고 $8$과 $12$일 수도 있다. 따라서 이 비만으로는 두 양이 각각 얼마인지 {정할 수 없다}.",
+        "acceptedAnswers": [
+          [
+            "정할 수 없다",
+            "알 수 없다",
+            "하나로 정할 수 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6d3cda90fa86b6f4e2a13d8b7c95e5fd259bc20c79aadd5a2a9b42c2c6907d00",
+      "questionRevision": "planning-e5e6-20261006-6d3cda90fa86",
+      "requiresIndependentReview": true
+    }
+  ]
+}

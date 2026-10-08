@@ -1,0 +1,1278 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-2-3-xc17",
+      "bDecision": "revise",
+      "bPrompt": "굵기가 어디나 같은 철사 $0.4$ $\\mathrm{m}$의 무게가 $6$ $\\mathrm{g}$이다. 철사 $1$ $\\mathrm{m}$의 무게를 구하는 식과 값을 쓰고 왜 나눗셈을 쓰는지 설명하시오.",
+      "bAnswer": "$6\\div0.4=15$이므로 $15$ $\\mathrm{g}$이다. 굵기가 같아 $1$ $\\mathrm{m}$당 무게가 일정하고 $0.4$ $\\mathrm{m}$는 $1$ $\\mathrm{m}$의 $0.4$배이므로 $6$ $\\mathrm{g}$을 $0.4$로 나눈다.",
+      "bGoal": "$1$만큼에 대한 값이 일정할 때 소수만큼의 양을 그 소수로 나누어 $1$만큼의 값을 구한다.",
+      "bReason": "추상적 원문을 철사 무게 상황으로 풀어 나눗셈의 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6\\div0.4$로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$ $\\mathrm{m}$의 무게는 $15$ $\\mathrm{g}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$ $\\mathrm{m}$당 무게가 일정하다",
+            "$0.4$ $\\mathrm{m}$는 $1$ $\\mathrm{m}$의 $0.4$배이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "굵기가 같은 철사 $0.4$ $\\mathrm{m}$의 무게가 $6$ $\\mathrm{g}$일 때 $1$ $\\mathrm{m}$의 무게는 $6$을 $0.4$로 {나누어} 구하며 그 값은 {$15$} $\\mathrm{g}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어",
+            "나누면"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "cReason": "추상 빈칸을 실제 상황의 연산과 값으로 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "32940e82b5a5662df624e568f75b9c129b30b3b2fe7c32c844950540ea555215",
+      "sourceIndex": 2261,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-3-xc17",
+        "section": "초6::2-2 소수의 나눗셈::2-2-3 (자연수)÷(소수) 알아보기",
+        "term": "$1$만큼에 대한 값",
+        "kind": "방법",
+        "level": "중",
+        "definition": "{$1$만큼에 대한 값이 일정할 때}, $0$보다 큰 소수만큼의 양에 대한 값을 {그 소수로 나누면} $1$만큼에 대한 값이 된다.",
+        "studentC": "□, $0$보다 큰 소수만큼의 양에 대한 값을 □ $1$만큼에 대한 값이 된다.",
+        "answers": [
+          "$1$만큼에 대한 값이 일정할 때",
+          "그 소수로 나누면"
+        ]
+      },
+      "sourceFingerprint": "a6ba12eff80b37e5ba076dc2acad9991b2034259b4fd782090146a4d09dc28c3",
+      "draftEvidence": "evidence/section-090-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "나누어",
+        "$15$"
+      ],
+      "cStudentAfter": "굵기가 같은 철사 $0.4$ $\\mathrm{m}$의 무게가 $6$ $\\mathrm{g}$일 때 $1$ $\\mathrm{m}$의 무게는 $6$을 $0.4$로 □ 구하며 그 값은 □ $\\mathrm{g}$이다.",
+      "cMarkedSentence": "굵기가 같은 철사 $0.4$ $\\mathrm{m}$의 무게가 $6$ $\\mathrm{g}$일 때 $1$ $\\mathrm{m}$의 무게는 $6$을 $0.4$로 {나누어} 구하며 그 값은 {$15$} $\\mathrm{g}$이다.",
+      "cStudentSentence": "굵기가 같은 철사 $0.4$ $\\mathrm{m}$의 무게가 $6$ $\\mathrm{g}$일 때 $1$ $\\mathrm{m}$의 무게는 $6$을 $0.4$로 □ 구하며 그 값은 □ $\\mathrm{g}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누어",
+          "equivalents": [
+            "나누면"
+          ]
+        },
+        {
+          "key": "$15$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "굵기가 어디나 같은 철사 $0.4$ $\\mathrm{m}$의 무게가 $6$ $\\mathrm{g}$이다. 철사 $1$ $\\mathrm{m}$의 무게를 구하는 식과 값을 쓰고 왜 나눗셈을 쓰는지 설명하시오.",
+        "answer": "$6\\div0.4=15$이므로 $15$ $\\mathrm{g}$이다. 굵기가 같아 $1$ $\\mathrm{m}$당 무게가 일정하고 $0.4$ $\\mathrm{m}$는 $1$ $\\mathrm{m}$의 $0.4$배이므로 $6$ $\\mathrm{g}$을 $0.4$로 나눈다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6\\div0.4$로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$ $\\mathrm{m}$의 무게는 $15$ $\\mathrm{g}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$ $\\mathrm{m}$당 무게가 일정하다",
+              "$0.4$ $\\mathrm{m}$는 $1$ $\\mathrm{m}$의 $0.4$배이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "굵기가 같은 철사 $0.4$ $\\mathrm{m}$의 무게가 $6$ $\\mathrm{g}$일 때 $1$ $\\mathrm{m}$의 무게는 $6$을 $0.4$로 {나누어} 구하며 그 값은 {$15$} $\\mathrm{g}$이다.",
+        "acceptedAnswers": [
+          [
+            "나누어",
+            "나누면"
+          ],
+          [
+            "$15$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9e2abf8f26de26a0fd504ba3946deddeacae90429c0d4afa8b9fdbd4b28f147c",
+      "questionRevision": "planning-e5e6-20261006-9e2abf8f26de",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-3-xc27",
+      "bDecision": "revise",
+      "bPrompt": "$3$ $\\mathrm{m}$ 길이의 끈을 $60$ $\\mathrm{cm}$씩 자르면 몇 도막인지 구하려고 한다. 두 길이의 단위를 미터로 맞추어 나눗셈식과 답을 쓰고 단위를 맞추어야 하는 이유도 설명하시오.",
+      "bAnswer": "$60$ $\\mathrm{cm} =0.6$ $\\mathrm{m}$이므로 $3\\div0.6=5$, $5$도막이다. 같은 단위여야 한 도막 길이가 전체 안에 몇 번 들어가는지 비교할 수 있다.",
+      "bGoal": "단위를 같게 고쳐 (자연수)÷(소수)의 나눗셈식을 세운다.",
+      "bReason": "cm를 m로 고쳐 식을 세우는 과정을 구체적으로 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$60$ $\\mathrm{cm}$를 $0.6$ $\\mathrm{m}$로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\div0.6$으로 식을 세운다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$도막이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 단위여야 비교할 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$3\\,\\mathrm{m}$의 끈을 $60\\,\\mathrm{cm}$씩 자르려면 $60\\,\\mathrm{cm}$를 {$0.6$} $\\mathrm{m}$로 고친 뒤 같은 단위끼리 나눈다. 끈은 {$5$}개가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cReason": "나누는 수를 식에 다시 적어 첫 빈칸의 답을 노출하던 부분을 없애고 단위 변환과 조각 수를 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "bafe897e2a3343742b5360bc77a0003b11edb20440be8d6b93a36a8325bd73bb",
+      "sourceIndex": 2265,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-3-xc27",
+        "section": "초6::2-2 소수의 나눗셈::2-2-3 (자연수)÷(소수) 알아보기",
+        "term": "단위를 맞추어 식 세우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 길이의 단위가 다르면 {같은 단위로 고쳐} 나눗셈식을 세운다. 센티미터를 미터로 고치면 (자연수)$\\div$(소수)가 되기도 한다.",
+        "studentC": "두 길이의 단위가 다르면 □ 나눗셈식을 세운다. 센티미터를 미터로 고치면 (자연수)$\\div$(소수)가 되기도 한다.",
+        "answers": [
+          "같은 단위로 고쳐"
+        ]
+      },
+      "sourceFingerprint": "ec1a9840fdccc54f764b27904926b2cd29b70110cf25d90cd239082b52efbbc1",
+      "draftEvidence": "evidence/section-090-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$0.6$",
+        "$5$"
+      ],
+      "cStudentAfter": "$3\\,\\mathrm{m}$의 끈을 $60\\,\\mathrm{cm}$씩 자르려면 $60\\,\\mathrm{cm}$를 □ $\\mathrm{m}$로 고친 뒤 같은 단위끼리 나눈다. 끈은 □개가 된다.",
+      "cMarkedSentence": "$3\\,\\mathrm{m}$의 끈을 $60\\,\\mathrm{cm}$씩 자르려면 $60\\,\\mathrm{cm}$를 {$0.6$} $\\mathrm{m}$로 고친 뒤 같은 단위끼리 나눈다. 끈은 {$5$}개가 된다.",
+      "cStudentSentence": "$3\\,\\mathrm{m}$의 끈을 $60\\,\\mathrm{cm}$씩 자르려면 $60\\,\\mathrm{cm}$를 □ $\\mathrm{m}$로 고친 뒤 같은 단위끼리 나눈다. 끈은 □개가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.6$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3$ $\\mathrm{m}$ 길이의 끈을 $60$ $\\mathrm{cm}$씩 자르면 몇 도막인지 구하려고 한다. 두 길이의 단위를 미터로 맞추어 나눗셈식과 답을 쓰고 단위를 맞추어야 하는 이유도 설명하시오.",
+        "answer": "$60$ $\\mathrm{cm} =0.6$ $\\mathrm{m}$이므로 $3\\div0.6=5$, $5$도막이다. 같은 단위여야 한 도막 길이가 전체 안에 몇 번 들어가는지 비교할 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$60$ $\\mathrm{cm}$를 $0.6$ $\\mathrm{m}$로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\div0.6$으로 식을 세운다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$도막이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 단위여야 비교할 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\,\\mathrm{m}$의 끈을 $60\\,\\mathrm{cm}$씩 자르려면 $60\\,\\mathrm{cm}$를 {$0.6$} $\\mathrm{m}$로 고친 뒤 같은 단위끼리 나눈다. 끈은 {$5$}개가 된다.",
+        "acceptedAnswers": [
+          [
+            "$0.6$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "75da05e6ca2edcef06816c414687234608739e588c0fe552b22cdfd3dd91cbf1",
+      "questionRevision": "planning-e5e6-20261006-75da05e6ca2e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-4-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "끝없는 몫을 간단히 나타내는 방법을 안다.",
+      "bReason": "반올림하면 된다는 한 낱말 답이라 c1과 xc10에 비해 가치가 낮다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "cDecision": "keep",
+      "cAfter": "$1\\div3$처럼 나누어떨어지지 않는 몫은 {반올림}하여 간단히 나타낸다.",
+      "cReason": "간단히 나타낸다는 말만으로 버림·올림도 가능하던 범위를 반올림의 실제 방법으로 한정한다.",
+      "exclusionReason": "c1과 xc10이 반올림의 방법과 끝없는 몫의 처리를 더 구체적으로 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "a8ec3ffb7c45ccb892c642f9539f3d27634defc5360e352593fc59f0aee29759",
+      "sourceIndex": 2266,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-4-xc4",
+        "section": "초6::2-2 소수의 나눗셈::2-2-4 몫을 반올림하여 나타내기",
+        "term": "끝없는 몫 나타내기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$1\\div3$처럼 나누어떨어지지 않는 몫은 {반올림}하여 간단히 나타낸다.",
+        "studentC": "$1\\div3$처럼 나누어떨어지지 않는 몫은 □하여 간단히 나타낸다.",
+        "answers": [
+          "반올림"
+        ]
+      },
+      "sourceFingerprint": "412ef02eb7f12ecb32bae3479eec41169a141f57cb5a4d11a245a4e20c278008",
+      "draftEvidence": "evidence/section-091-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "$1\\div3$처럼 나누어떨어지지 않는 몫은 {반올림}하여 간단히 나타낸다.",
+      "cFrozenStudentSentence": "$1\\div3$처럼 나누어떨어지지 않는 몫은 □하여 간단히 나타낸다.",
+      "cProposedAnswers": [
+        "반올림"
+      ],
+      "cStudentAfter": "$1\\div3$처럼 나누어떨어지지 않는 몫은 □하여 간단히 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "반올림"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\div3$처럼 나누어떨어지지 않는 몫은 {반올림}하여 간단히 나타낸다.",
+      "cStudentSentence": "$1\\div3$처럼 나누어떨어지지 않는 몫은 □하여 간단히 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "반올림",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1\\div3$처럼 나누어떨어지지 않는 몫은 {반올림}하여 간단히 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "반올림"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c1과 xc10이 반올림의 방법과 끝없는 몫의 처리를 더 구체적으로 묻는다."
+      },
+      "proposalFingerprint": "a8ec3ffb7c45ccb892c642f9539f3d27634defc5360e352593fc59f0aee29759",
+      "questionRevision": "planning-e5e6-20261006-a8ec3ffb7c45",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-4-xc14",
+      "bDecision": "revise",
+      "bPrompt": "나누는 수가 $0$보다 큰 수일 때, 반올림한 몫이 정확한 몫보다 크면 그 몫에 나누는 수를 곱한 값은 나누어지는 수보다 큰가, 작은가? 반올림한 몫이 정확한 몫보다 작은 경우도 쓰시오.",
+      "bAnswer": "반올림한 몫이 정확한 몫보다 크면 곱한 값은 나누어지는 수보다 크다. 정확한 몫보다 작으면 곱한 값은 나누어지는 수보다 작다.",
+      "bGoal": "반올림한 몫의 크기에 따라 곱셈 확인 값이 어떻게 달라지는지 말할 수 있다.",
+      "bReason": "양수 조건을 넣고 두 경우를 모두 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정확한 몫보다 크면 곱한 값이 더 크다",
+            "더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정확한 몫보다 작으면 곱한 값이 더 작다",
+            "더 작다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "$2\\div3$의 몫을 소수 둘째 자리까지 반올림한 $0.67$에 $3$을 곱한 $2.01$은 $2$보다 {크다}. $7\\div3$의 몫을 소수 첫째 자리까지 반올림한 $2.3$에 $3$을 곱한 $6.9$는 $7$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다",
+            "더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "더 작다"
+          ]
+        }
+      ],
+      "cReason": "실제 곱셈 결과와 나누어지는 수를 비교하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "a65f93b298ceecb4e5d5d58e777cfab9d96dbc6683142a40131b72100f4f6fae",
+      "sourceIndex": 2272,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-4-xc14",
+        "section": "초6::2-2 소수의 나눗셈::2-2-4 몫을 반올림하여 나타내기",
+        "term": "반올림한 몫으로 곱한 값의 크기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "반올림한 몫에 나누는 수를 곱하면, 반올림한 몫이 정확한 몫보다 클 때는 나누어지는 수보다 {크고}, 작을 때는 {작다}.",
+        "studentC": "반올림한 몫에 나누는 수를 곱하면, 반올림한 몫이 정확한 몫보다 클 때는 나누어지는 수보다 □, 작을 때는 □.",
+        "answers": [
+          "크고",
+          "작다"
+        ]
+      },
+      "sourceFingerprint": "db4da4513af4817b980b4bf8fffb6949a2b48cc28501400ef9cbbb7a34de48bb",
+      "draftEvidence": "evidence/section-091-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "크다",
+        "작다"
+      ],
+      "cStudentAfter": "$2\\div3$의 몫을 소수 둘째 자리까지 반올림한 $0.67$에 $3$을 곱한 $2.01$은 $2$보다 □. $7\\div3$의 몫을 소수 첫째 자리까지 반올림한 $2.3$에 $3$을 곱한 $6.9$는 $7$보다 □.",
+      "cMarkedSentence": "$2\\div3$의 몫을 소수 둘째 자리까지 반올림한 $0.67$에 $3$을 곱한 $2.01$은 $2$보다 {크다}. $7\\div3$의 몫을 소수 첫째 자리까지 반올림한 $2.3$에 $3$을 곱한 $6.9$는 $7$보다 {작다}.",
+      "cStudentSentence": "$2\\div3$의 몫을 소수 둘째 자리까지 반올림한 $0.67$에 $3$을 곱한 $2.01$은 $2$보다 □. $7\\div3$의 몫을 소수 첫째 자리까지 반올림한 $2.3$에 $3$을 곱한 $6.9$는 $7$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": [
+            "더 크다"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누는 수가 $0$보다 큰 수일 때, 반올림한 몫이 정확한 몫보다 크면 그 몫에 나누는 수를 곱한 값은 나누어지는 수보다 큰가, 작은가? 반올림한 몫이 정확한 몫보다 작은 경우도 쓰시오.",
+        "answer": "반올림한 몫이 정확한 몫보다 크면 곱한 값은 나누어지는 수보다 크다. 정확한 몫보다 작으면 곱한 값은 나누어지는 수보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정확한 몫보다 크면 곱한 값이 더 크다",
+              "더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정확한 몫보다 작으면 곱한 값이 더 작다",
+              "더 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\div3$의 몫을 소수 둘째 자리까지 반올림한 $0.67$에 $3$을 곱한 $2.01$은 $2$보다 {크다}. $7\\div3$의 몫을 소수 첫째 자리까지 반올림한 $2.3$에 $3$을 곱한 $6.9$는 $7$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "크다",
+            "더 크다"
+          ],
+          [
+            "작다",
+            "더 작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6215a3641a560b1705c694b9acc58b454b2892115510db059d2f0669b714b685",
+      "questionRevision": "planning-e5e6-20261006-6215a3641a56",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-5-xc6",
+      "bDecision": "revise",
+      "bPrompt": "전체 양을 일정한 양씩 나눈 뒤 몫의 자연수 부분과 남는 양을 구했습니다. 곱셈과 덧셈으로 결과를 확인하는 방법을 설명하세요. $7.5 \\div 2$에서 몫의 자연수 부분이 $3$이고 남는 양이 $1.5$일 때 확인하는 식도 쓰세요.",
+      "bAnswer": "한 번에 나누어 주는 양에 몫의 자연수 부분을 곱하고 남는 양을 더해 전체 양과 같은지 확인한다. $2 \\times 3 + 1.5 = 7.5$이므로 맞다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 번에 나누어 주는 양에 몫의 자연수 부분을 곱하고 남는 양을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "합이 전체 양과 같은지 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2 \\times 3 + 1.5 = 7.5$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "몫과 남는 양을 곱셈과 덧셈으로 검산한다.",
+      "bReason": "몫과 몫의 자연수 부분을 구별하고 한 번에 나누는 양을 명확히 했다. 질문에서 요구한 실제 확인식도 필수 기준에 넣었다.",
+      "cDecision": "revise",
+      "cAfter": "$7.5 \\div 2$에서 몫의 자연수 부분이 $3$이고 남는 양이 $1.5$이면, $2 \\times 3 + 1.5 =${$7.5$}이므로 계산이 맞다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$7.5$"
+          ]
+        }
+      ],
+      "cReason": "소수인 실제 몫과 자연수 부분을 구별하고 주어지지 않은 L 단위 대체답을 제거했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "336dacf0672c75fcf46c5c08b0e4a268e56010bb0e86f1cd8a740a472e3eca30",
+      "sourceIndex": 2284,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-5-xc6",
+        "section": "초6::2-2 소수의 나눗셈::2-2-5 나누어 주고 남는 양 알아보기",
+        "term": "곱하고 더하여 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "(나누어 준 양)$\\times$(몫)$+$(남는 양)이 {전체 양}이 되는지 확인한다.",
+        "studentC": "(나누어 준 양)$\\times$(몫)$+$(남는 양)이 □이 되는지 확인한다.",
+        "answers": [
+          "전체 양"
+        ]
+      },
+      "sourceFingerprint": "cf17318a1fd078ea44bec56c85392c8015ec9f27e32544a1839814bba3add0f8",
+      "draftEvidence": "evidence/section-092-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$7.5$"
+      ],
+      "cStudentAfter": "$7.5 \\div 2$에서 몫의 자연수 부분이 $3$이고 남는 양이 $1.5$이면, $2 \\times 3 + 1.5 =$□이므로 계산이 맞다.",
+      "cMarkedSentence": "$7.5 \\div 2$에서 몫의 자연수 부분이 $3$이고 남는 양이 $1.5$이면, $2 \\times 3 + 1.5 =${$7.5$}이므로 계산이 맞다.",
+      "cStudentSentence": "$7.5 \\div 2$에서 몫의 자연수 부분이 $3$이고 남는 양이 $1.5$이면, $2 \\times 3 + 1.5 =$□이므로 계산이 맞다.",
+      "cSlotAnswers": [
+        {
+          "key": "$7.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체 양을 일정한 양씩 나눈 뒤 몫의 자연수 부분과 남는 양을 구했습니다. 곱셈과 덧셈으로 결과를 확인하는 방법을 설명하세요. $7.5 \\div 2$에서 몫의 자연수 부분이 $3$이고 남는 양이 $1.5$일 때 확인하는 식도 쓰세요.",
+        "answer": "한 번에 나누어 주는 양에 몫의 자연수 부분을 곱하고 남는 양을 더해 전체 양과 같은지 확인한다. $2 \\times 3 + 1.5 = 7.5$이므로 맞다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 번에 나누어 주는 양에 몫의 자연수 부분을 곱하고 남는 양을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합이 전체 양과 같은지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2 \\times 3 + 1.5 = 7.5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$7.5 \\div 2$에서 몫의 자연수 부분이 $3$이고 남는 양이 $1.5$이면, $2 \\times 3 + 1.5 =${$7.5$}이므로 계산이 맞다.",
+        "acceptedAnswers": [
+          [
+            "$7.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2832af7f754ef9b3243d279bc1f716d6dc4af951721772e85c28ad224c1bf10c",
+      "questionRevision": "planning-e5e6-20261006-2832af7f754e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-5-xc9",
+      "bDecision": "revise",
+      "bPrompt": "$7.5$ $\\mathrm{L}$를 $2$ $\\mathrm{L}$ 병에 가득 채울 때 $7.5\\div2=3.75$이다. 가득 채운 병의 수를 구할 때 몫을 자연수까지만 쓰는 까닭을 설명하고, 가득 찬 병이 몇 개인지 쓰세요.",
+      "bAnswer": "병은 쪼개서 셀 수 없고 가득 찬 병만 세기 때문이다. 가득 찬 병은 $3$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "병은 쪼갤 수 없다",
+            "가득 찬 병만 세므로 소수 부분은 세지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$개",
+            "$3$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "쪼갤 수 없는 대상의 수는 몫의 자연수 부분만 쓰는 까닭을 안다.",
+      "bReason": "까닭을 묻되 병이라는 구체적 대상과 계산을 함께 주어 막연한 '왜' 질문을 피했다.",
+      "cDecision": "revise",
+      "cAfter": "물 $7.5\\,\\mathrm{L}$를 한 병에 $2\\,\\mathrm{L}$씩 가득 담는다. $7.5 \\div 2 = 3.75$이지만, 가득 채운 병은 {$3$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "$3$개"
+          ]
+        }
+      ],
+      "cReason": "다른 문항을 보지 않아도 병의 용량과 전체 물의 양을 알 수 있게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "63c91c66aa71acaf275de78bd6c622ee74c612f5cb157db638ac438e62f07ea1",
+      "sourceIndex": 2285,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-5-xc9",
+        "section": "초6::2-2 소수의 나눗셈::2-2-5 나누어 주고 남는 양 알아보기",
+        "term": "자연수 몫만 쓰는 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사람이나 가득 채운 병처럼 {쪼갤 수 없는 것}의 수를 구할 때는 몫을 자연수까지만 구한다.",
+        "studentC": "사람이나 가득 채운 병처럼 □의 수를 구할 때는 몫을 자연수까지만 구한다.",
+        "answers": [
+          "쪼갤 수 없는 것"
+        ]
+      },
+      "sourceFingerprint": "859ba1c48948391c32905bce4c267120b2bfec26faef65eb7a58c316aca15d0f",
+      "draftEvidence": "evidence/section-092-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "물 $7.5\\,\\mathrm{L}$를 한 병에 $2\\,\\mathrm{L}$씩 가득 담는다. $7.5 \\div 2 = 3.75$이지만, 가득 채운 병은 □개이다.",
+      "cMarkedSentence": "물 $7.5\\,\\mathrm{L}$를 한 병에 $2\\,\\mathrm{L}$씩 가득 담는다. $7.5 \\div 2 = 3.75$이지만, 가득 채운 병은 {$3$}개이다.",
+      "cStudentSentence": "물 $7.5\\,\\mathrm{L}$를 한 병에 $2\\,\\mathrm{L}$씩 가득 담는다. $7.5 \\div 2 = 3.75$이지만, 가득 채운 병은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "$3$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$7.5$ $\\mathrm{L}$를 $2$ $\\mathrm{L}$ 병에 가득 채울 때 $7.5\\div2=3.75$이다. 가득 채운 병의 수를 구할 때 몫을 자연수까지만 쓰는 까닭을 설명하고, 가득 찬 병이 몇 개인지 쓰세요.",
+        "answer": "병은 쪼개서 셀 수 없고 가득 찬 병만 세기 때문이다. 가득 찬 병은 $3$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "병은 쪼갤 수 없다",
+              "가득 찬 병만 세므로 소수 부분은 세지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$개",
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "물 $7.5\\,\\mathrm{L}$를 한 병에 $2\\,\\mathrm{L}$씩 가득 담는다. $7.5 \\div 2 = 3.75$이지만, 가득 채운 병은 {$3$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "$3$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0dd2e7a9177a151e8fea2bad2574b1bb2f48b55cc5987a0c198905fee8bf12ce",
+      "questionRevision": "planning-e5e6-20261006-0dd2e7a9177a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-5-xc15",
+      "bDecision": "revise",
+      "bPrompt": "$2$ $\\mathrm{L}$ 들이 그릇에 어떤 양을 남김없이 모두 담으려고 한다. 남는 양이 $0$일 때와 $0$보다 클 때 최소한 필요한 그릇 수는 자연수 몫과 어떻게 다른가요? $7.5\\div2$의 몫이 $3$, 남는 양이 $1.5$일 때 최소한 필요한 그릇 수도 쓰세요.",
+      "bAnswer": "남는 양이 $0$이면 자연수 몫만큼, 남는 양이 있으면 자연수 몫보다 $1$개 더 필요하다. $7.5$ $\\mathrm{L}$에는 $3+1=4$개가 필요하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남는 양이 $0$이면 자연수 몫만큼 필요하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "남는 양이 있으면 자연수 몫보다 하나 더 필요하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$개",
+            "$4$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "남는 양의 유무에 따라 모두 담는 데 필요한 그릇 수를 정한다.",
+      "bReason": "두 경우를 비교해 설명하고 예로 확인하므로 개념 이해를 점검한다.",
+      "cDecision": "revise",
+      "cAfter": "물 $6\\,\\mathrm{L}$를 용량이 $2\\,\\mathrm{L}$인 병에 모두 담으려면 병은 최소 {$3$}개 필요하다. 같은 병에 물 $7.5\\,\\mathrm{L}$를 모두 담으려면 병은 최소 {$4$}개 필요하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "$3$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "$4$개"
+          ]
+        }
+      ],
+      "cReason": "숫자만 있던 식 대신 물의 양과 병 용량을 주어 나머지가 있을 때 한 병 더 필요한 상황을 스스로 해석하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "5c68bfcdbde45343c4fed28efaefcf507cf5d1af41683dc1115e88c1da401fd1",
+      "sourceIndex": 2287,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-5-xc15",
+        "section": "초6::2-2 소수의 나눗셈::2-2-5 나누어 주고 남는 양 알아보기",
+        "term": "모두 담는 데 필요한 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "같은 크기의 그릇에 모두 담으려면, 남는 양이 $0$일 때는 {자연수 몫만큼}, 남는 양이 있으면 {자연수 몫보다 하나 더} 필요하다.",
+        "studentC": "같은 크기의 그릇에 모두 담으려면, 남는 양이 $0$일 때는 □, 남는 양이 있으면 □ 필요하다.",
+        "answers": [
+          "자연수 몫만큼",
+          "자연수 몫보다 하나 더"
+        ]
+      },
+      "sourceFingerprint": "7f23c2cf473a2a3f28ebbd38cbd61b821363e2f30539d497fae6a3ce11d9d083",
+      "draftEvidence": "evidence/section-092-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$4$"
+      ],
+      "cStudentAfter": "물 $6\\,\\mathrm{L}$를 용량이 $2\\,\\mathrm{L}$인 병에 모두 담으려면 병은 최소 □개 필요하다. 같은 병에 물 $7.5\\,\\mathrm{L}$를 모두 담으려면 병은 최소 □개 필요하다.",
+      "cMarkedSentence": "물 $6\\,\\mathrm{L}$를 용량이 $2\\,\\mathrm{L}$인 병에 모두 담으려면 병은 최소 {$3$}개 필요하다. 같은 병에 물 $7.5\\,\\mathrm{L}$를 모두 담으려면 병은 최소 {$4$}개 필요하다.",
+      "cStudentSentence": "물 $6\\,\\mathrm{L}$를 용량이 $2\\,\\mathrm{L}$인 병에 모두 담으려면 병은 최소 □개 필요하다. 같은 병에 물 $7.5\\,\\mathrm{L}$를 모두 담으려면 병은 최소 □개 필요하다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "$3$개"
+          ]
+        },
+        {
+          "key": "$4$",
+          "equivalents": [
+            "$4$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2$ $\\mathrm{L}$ 들이 그릇에 어떤 양을 남김없이 모두 담으려고 한다. 남는 양이 $0$일 때와 $0$보다 클 때 최소한 필요한 그릇 수는 자연수 몫과 어떻게 다른가요? $7.5\\div2$의 몫이 $3$, 남는 양이 $1.5$일 때 최소한 필요한 그릇 수도 쓰세요.",
+        "answer": "남는 양이 $0$이면 자연수 몫만큼, 남는 양이 있으면 자연수 몫보다 $1$개 더 필요하다. $7.5$ $\\mathrm{L}$에는 $3+1=4$개가 필요하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "남는 양이 $0$이면 자연수 몫만큼 필요하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남는 양이 있으면 자연수 몫보다 하나 더 필요하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$개",
+              "$4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "물 $6\\,\\mathrm{L}$를 용량이 $2\\,\\mathrm{L}$인 병에 모두 담으려면 병은 최소 {$3$}개 필요하다. 같은 병에 물 $7.5\\,\\mathrm{L}$를 모두 담으려면 병은 최소 {$4$}개 필요하다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "$3$개"
+          ],
+          [
+            "$4$",
+            "$4$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "792102947fb9a1d91b70bdbf30b4cf9acd2d18b055f4e0aa89adb1ddfa89652c",
+      "questionRevision": "planning-e5e6-20261006-792102947fb9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-5-xc17",
+      "bDecision": "revise",
+      "bPrompt": "나누어 주고 남는 양이 $0$이면 그 나눗셈을 어떻게 말하나요? $7.5\\div2.5$에서 확인해 보세요.",
+      "bAnswer": "나누어떨어진다고 한다. $7.5\\div2.5=3$이고 남는 양이 $0$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어떨어진다",
+            "남김없이 나누어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7.5 \\div 2.5 = 3$이고 남는 양이 $0$이다",
+            "$2.5 \\times 3 = 7.5$이므로 남는 양이 $0$이다"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "bGoal": "남는 양이 $0$인 나눗셈을 '나누어떨어진다'고 말한다.",
+      "bReason": "뜻만 말해도 통과하던 기준에 질문에서 요청한 실제 계산과 남는 양 0의 확인을 추가했다.",
+      "cDecision": "keep",
+      "cAfter": "남는 양이 $0$이면 {나누어떨어진} 것이다.",
+      "cReason": "조건이 명확하고 문장이 짧은 낱말 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'남김없이 나누어진' 같은 같은 뜻 표현도 허용한다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "9995c246a8cbeb80f437c80679f4259ed6c5af168404e5163828e82674d3e06b",
+      "sourceIndex": 2289,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-5-xc17",
+        "section": "초6::2-2 소수의 나눗셈::2-2-5 나누어 주고 남는 양 알아보기",
+        "term": "남는 양이 $0$일 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "남는 양이 $0$이면 {나누어떨어진} 것이다.",
+        "studentC": "남는 양이 $0$이면 □ 것이다.",
+        "answers": [
+          "나누어떨어진"
+        ]
+      },
+      "sourceFingerprint": "7da8ba734e07fa29864a11f47cd48f53703869e13771c54b92f9a5ea9a7e6a75",
+      "draftEvidence": "evidence/section-092-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "남는 양이 $0$이면 {나누어떨어진} 것이다.",
+      "cFrozenStudentSentence": "남는 양이 $0$이면 □ 것이다.",
+      "cProposedAnswers": [
+        "나누어떨어진"
+      ],
+      "cStudentAfter": "남는 양이 $0$이면 □ 것이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어떨어진"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "남는 양이 $0$이면 {나누어떨어진} 것이다.",
+      "cStudentSentence": "남는 양이 $0$이면 □ 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누어떨어진",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어 주고 남는 양이 $0$이면 그 나눗셈을 어떻게 말하나요? $7.5\\div2.5$에서 확인해 보세요.",
+        "answer": "나누어떨어진다고 한다. $7.5\\div2.5=3$이고 남는 양이 $0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어떨어진다",
+              "남김없이 나누어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7.5 \\div 2.5 = 3$이고 남는 양이 $0$이다",
+              "$2.5 \\times 3 = 7.5$이므로 남는 양이 $0$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "남는 양이 $0$이면 {나누어떨어진} 것이다.",
+        "acceptedAnswers": [
+          [
+            "나누어떨어진"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2fafa5320d9554aa74410f72abc9910d14d4635d32a14465a4f6a639b85ec921",
+      "questionRevision": "planning-e5e6-20261006-2fafa5320d95",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-5-xc18",
+      "bDecision": "revise",
+      "bPrompt": "$7.5$ $\\mathrm{L}$를 $2$ $\\mathrm{L}$씩 나누어 줄 때 몫과 남는 양을 구하는 차례를 설명하세요. 몫과 남는 양도 쓰세요.",
+      "bAnswer": "먼저 가장 많이 나누어 줄 수 있는 자연수 몫을 정하고, 나누어 준 양 $2\\times3=6$을 전체에서 뺀다. 몫은 $3$, 남는 양은 $7.5-6=1.5$ ($\\mathrm{L}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 자연수 몫을 정한다",
+            "가장 큰 자연수 몫을 먼저 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어 준 양을 전체에서 뺀다",
+            "전체 양에서 몫만큼 나누어 준 양을 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫 $3$, 남는 양 $1.5$ $\\mathrm{L}$",
+            "$3$과 $1.5$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "몫을 먼저 정한 뒤 나누어 준 양을 빼서 남는 양을 구하는 차례를 안다.",
+      "bReason": "두 단계의 순서와 실제 값이 필요해 빈칸 두 개보다 이해를 더 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "물 $7.5\\,\\mathrm{L}$를 한 그릇에 $2\\,\\mathrm{L}$씩 가득 담는다. 가득 채운 그릇은 {$3$}개이고, 남는 물은 $7.5 - 2 \\times 3 =${$1.5$} $\\mathrm{L}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.5$",
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "cReason": "나머지의 L 단위가 어디서 오는지 알 수 있도록 전체 물의 양과 한 그릇 양을 제시한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "b893574b76e18886bb781d7cb2cc93a04c969bc34b3bbc7a1f81c0b8328ad5b5",
+      "sourceIndex": 2290,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-5-xc18",
+        "section": "초6::2-2 소수의 나눗셈::2-2-5 나누어 주고 남는 양 알아보기",
+        "term": "몫과 남는 양을 구하는 차례",
+        "kind": "방법",
+        "level": "중",
+        "definition": "먼저 {자연수 몫}을 정하고, 그만큼 나누어 준 양을 {전체에서 빼서} 남는 양을 구한다.",
+        "studentC": "먼저 □을 정하고, 그만큼 나누어 준 양을 □ 남는 양을 구한다.",
+        "answers": [
+          "자연수 몫",
+          "전체에서 빼서"
+        ]
+      },
+      "sourceFingerprint": "a651ab1510740dbc890c0c8991647deb299a4211359166cbebabab46f1ba469b",
+      "draftEvidence": "evidence/section-092-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$1.5$"
+      ],
+      "cStudentAfter": "물 $7.5\\,\\mathrm{L}$를 한 그릇에 $2\\,\\mathrm{L}$씩 가득 담는다. 가득 채운 그릇은 □개이고, 남는 물은 $7.5 - 2 \\times 3 =$□ $\\mathrm{L}$이다.",
+      "cMarkedSentence": "물 $7.5\\,\\mathrm{L}$를 한 그릇에 $2\\,\\mathrm{L}$씩 가득 담는다. 가득 채운 그릇은 {$3$}개이고, 남는 물은 $7.5 - 2 \\times 3 =${$1.5$} $\\mathrm{L}$이다.",
+      "cStudentSentence": "물 $7.5\\,\\mathrm{L}$를 한 그릇에 $2\\,\\mathrm{L}$씩 가득 담는다. 가득 채운 그릇은 □개이고, 남는 물은 $7.5 - 2 \\times 3 =$□ $\\mathrm{L}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$1.5$",
+          "equivalents": [
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$7.5$ $\\mathrm{L}$를 $2$ $\\mathrm{L}$씩 나누어 줄 때 몫과 남는 양을 구하는 차례를 설명하세요. 몫과 남는 양도 쓰세요.",
+        "answer": "먼저 가장 많이 나누어 줄 수 있는 자연수 몫을 정하고, 나누어 준 양 $2\\times3=6$을 전체에서 뺀다. 몫은 $3$, 남는 양은 $7.5-6=1.5$ ($\\mathrm{L}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 자연수 몫을 정한다",
+              "가장 큰 자연수 몫을 먼저 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어 준 양을 전체에서 뺀다",
+              "전체 양에서 몫만큼 나누어 준 양을 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫 $3$, 남는 양 $1.5$ $\\mathrm{L}$",
+              "$3$과 $1.5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "물 $7.5\\,\\mathrm{L}$를 한 그릇에 $2\\,\\mathrm{L}$씩 가득 담는다. 가득 채운 그릇은 {$3$}개이고, 남는 물은 $7.5 - 2 \\times 3 =${$1.5$} $\\mathrm{L}$이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$1.5$",
+            "$\\frac{3}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b767cd8aaaa8df3f83fbee2c8120ae4baadffaa45081035ffb422df9d5372b78",
+      "questionRevision": "planning-e5e6-20261006-b767cd8aaaa8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-5-xc23",
+      "bDecision": "revise",
+      "bPrompt": "한 그릇에 $2$ $\\mathrm{L}$씩 담는데 마지막 그릇에 $1.5$ $\\mathrm{L}$만 담았다. 마지막 그릇을 가득 채우려면 더 필요한 양을 어떻게 구하고, 얼마인가요?",
+      "bAnswer": "한 그릇에 담는 양에서 이미 담은 양을 뺀다. $2-1.5=0.5$ ($\\mathrm{L}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 그릇분에서 이미 담은 양을 뺀다",
+            "한 그릇의 양 $-$ 이미 담은 양"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.5$ $\\mathrm{L}$",
+            "$0.5$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "남는 양과 한 그릇분의 차로 더 필요한 양을 구한다.",
+      "bReason": "원문 조건 '0보다 크고 한 그릇분보다 작음'을 구체적 양으로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "한 그릇이 $2$ $\\mathrm{L}$이고 남은 양이 $1.5$ $\\mathrm{L}$이면 한 그릇을 채우는 데 {$0.5$} $\\mathrm{L}$가 더 필요하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 필요한 양 하나를 값으로 답하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "165428b1a64e40915b12adf0c62cf7e3ab6c0d96e13b60e8f6baa828391da1a5",
+      "sourceIndex": 2291,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-5-xc23",
+        "section": "초6::2-2 소수의 나눗셈::2-2-5 나누어 주고 남는 양 알아보기",
+        "term": "남은 양으로 한 그릇을 채우는 데 더 필요한 양",
+        "kind": "방법",
+        "level": "상",
+        "definition": "남는 양이 $0$보다 크고 한 그릇분보다 작을 때, 한 그릇을 채우려면 {한 그릇분에서 남는 양을 뺀 만큼} 더 필요하다.",
+        "studentC": "남는 양이 $0$보다 크고 한 그릇분보다 작을 때, 한 그릇을 채우려면 □ 더 필요하다.",
+        "answers": [
+          "한 그릇분에서 남는 양을 뺀 만큼"
+        ]
+      },
+      "sourceFingerprint": "bc7b7bdc052f79fa606b9672be2fcc7321926878d1cfdd221da5827dfb22900b",
+      "draftEvidence": "evidence/section-092-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$0.5$"
+      ],
+      "cStudentAfter": "한 그릇이 $2$ $\\mathrm{L}$이고 남은 양이 $1.5$ $\\mathrm{L}$이면 한 그릇을 채우는 데 □ $\\mathrm{L}$가 더 필요하다.",
+      "cMarkedSentence": "한 그릇이 $2$ $\\mathrm{L}$이고 남은 양이 $1.5$ $\\mathrm{L}$이면 한 그릇을 채우는 데 {$0.5$} $\\mathrm{L}$가 더 필요하다.",
+      "cStudentSentence": "한 그릇이 $2$ $\\mathrm{L}$이고 남은 양이 $1.5$ $\\mathrm{L}$이면 한 그릇을 채우는 데 □ $\\mathrm{L}$가 더 필요하다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.5$",
+          "equivalents": [
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 그릇에 $2$ $\\mathrm{L}$씩 담는데 마지막 그릇에 $1.5$ $\\mathrm{L}$만 담았다. 마지막 그릇을 가득 채우려면 더 필요한 양을 어떻게 구하고, 얼마인가요?",
+        "answer": "한 그릇에 담는 양에서 이미 담은 양을 뺀다. $2-1.5=0.5$ ($\\mathrm{L}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 그릇분에서 이미 담은 양을 뺀다",
+              "한 그릇의 양 $-$ 이미 담은 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.5$ $\\mathrm{L}$",
+              "$0.5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 그릇이 $2$ $\\mathrm{L}$이고 남은 양이 $1.5$ $\\mathrm{L}$이면 한 그릇을 채우는 데 {$0.5$} $\\mathrm{L}$가 더 필요하다.",
+        "acceptedAnswers": [
+          [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ff852305c7c8f0fd8764939a487e369e78b10a21d84e14279d5c740f819b4c5f",
+      "questionRevision": "planning-e5e6-20261006-ff852305c7c8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-xc5",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 앞에서 볼 때, 앞뒤로 같은 줄에 놓인 쌓기나무들은 몇 층까지 보이는지 설명하시오.",
+      "bAnswer": "그 줄에서 가장 높게 쌓은 층까지 보인다.",
+      "bGoal": "앞에서 보면 같은 줄에서는 가장 높은 층까지 보인다는 것을 설명한다.",
+      "bReason": "'각 줄'이라는 모호한 말 대신 앞뒤로 같은 줄이라고 대상을 분명히 했다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 줄에서 가장 높게 쌓은 층까지 보인다",
+            "그 줄에서 가장 높은 층의 높이로 보인다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 앞에서 볼 때 앞뒤로 같은 줄에 놓인 쌓기나무는 그중 {가장 높게} 쌓은 층까지 보인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 높게",
+            "제일 높게",
+            "가장 높이"
+          ]
+        }
+      ],
+      "cReason": "원문 '각 줄'이 앞뒤 줄인지 좌우 줄인지 불분명하므로 앞뒤로 같은 줄이라고 분명히 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "7f6ae93fab2a7c95b31393293ce200e3661cc34e56e428452985577676a22710",
+      "sourceIndex": 2298,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-1-xc5",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "term": "앞에서 보이는 높이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "쌓기나무를 앞에서 보면 각 줄에서 {가장 높이} 쌓은 층까지 보인다.",
+        "studentC": "쌓기나무를 앞에서 보면 각 줄에서 □ 쌓은 층까지 보인다.",
+        "answers": [
+          "가장 높이"
+        ]
+      },
+      "sourceFingerprint": "047cb7258794e3b519de6f45c8e0450a0d7b5e7600146644086da12c6ac81cbf",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "가장 높게"
+      ],
+      "cStudentAfter": "쌓기나무를 앞에서 볼 때 앞뒤로 같은 줄에 놓인 쌓기나무는 그중 □ 쌓은 층까지 보인다.",
+      "cMarkedSentence": "쌓기나무를 앞에서 볼 때 앞뒤로 같은 줄에 놓인 쌓기나무는 그중 {가장 높게} 쌓은 층까지 보인다.",
+      "cStudentSentence": "쌓기나무를 앞에서 볼 때 앞뒤로 같은 줄에 놓인 쌓기나무는 그중 □ 쌓은 층까지 보인다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 높게",
+          "equivalents": [
+            "제일 높게",
+            "가장 높이"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무를 앞에서 볼 때, 앞뒤로 같은 줄에 놓인 쌓기나무들은 몇 층까지 보이는지 설명하시오.",
+        "answer": "그 줄에서 가장 높게 쌓은 층까지 보인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 줄에서 가장 높게 쌓은 층까지 보인다",
+              "그 줄에서 가장 높은 층의 높이로 보인다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 앞에서 볼 때 앞뒤로 같은 줄에 놓인 쌓기나무는 그중 {가장 높게} 쌓은 층까지 보인다.",
+        "acceptedAnswers": [
+          [
+            "가장 높게",
+            "제일 높게",
+            "가장 높이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e4a675c0a43f1d6678b732b95c0acdb35821f1c3ef7d159bde8057cea1b7ad07",
+      "questionRevision": "planning-e5e6-20261006-e4a675c0a43f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-xc6",
+      "bDecision": "revise",
+      "bPrompt": "여러 물체가 놓인 모습을 사진으로 찍었다. 물체가 실제로 놓인 자리를 알고 있을 때, 사진에서 어떤 점을 살펴보면 사진을 찍은 방향을 알아낼 수 있는지 한 가지 이상 쓰시오.",
+      "bAnswer": "물체가 사진에서 왼쪽과 오른쪽 중 어디에 보이는지, 또는 어느 물체가 다른 물체를 가리는지 실제 놓인 위치와 비교한다.",
+      "bGoal": "사진 속 단서를 실제 놓인 자리와 비교해 찍은 방향을 추론한다.",
+      "bReason": "실제 크기가 다른 물체에도 가까우면 크게 보인다는 단서를 적용하던 답을 빼고 위치·가림 관계라는 관찰 범위를 유지했다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "물체의 왼쪽과 오른쪽 순서를 실제 위치와 비교한다",
+            "어느 물체가 다른 물체를 가리는지 실제 위치와 비교한다"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답이 '좌우 순서·가려진 부분' 두 의미를 함께 강요해 정답이 하나로 정해지지 않는다.",
+      "exclusionReason": "C는 여러 의미를 한 빈칸에 묻는다. 대체: e6-2-3-1-xc14, e6-2-3-1-xc23.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2260-patch.json",
+      "codexFinalAmendedFromFingerprint": "7360577a177e75607ca346d91cec98370697a5fa6e0164117a9fe855c5dd4f90",
+      "sourceIndex": 2299,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-1-xc6",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "term": "찍은 방향 알아내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "물체가 놓인 자리와 사진 속 {좌우 순서·가려진 부분}을 비교하면 찍은 방향을 알아내는 데 도움이 된다.",
+        "studentC": "물체가 놓인 자리와 사진 속 □을 비교하면 찍은 방향을 알아내는 데 도움이 된다.",
+        "answers": [
+          "좌우 순서·가려진 부분"
+        ]
+      },
+      "sourceFingerprint": "455ba0ad51f20e384581bb155c059944e47cffadec6ac58a3a13b241d7d9e920",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "여러 물체가 놓인 모습을 사진으로 찍었다. 물체가 실제로 놓인 자리를 알고 있을 때, 사진에서 어떤 점을 살펴보면 사진을 찍은 방향을 알아낼 수 있는지 한 가지 이상 쓰시오.",
+        "answer": "물체가 사진에서 왼쪽과 오른쪽 중 어디에 보이는지, 또는 어느 물체가 다른 물체를 가리는지 실제 놓인 위치와 비교한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "물체의 왼쪽과 오른쪽 순서를 실제 위치와 비교한다",
+              "어느 물체가 다른 물체를 가리는지 실제 위치와 비교한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C는 여러 의미를 한 빈칸에 묻는다. 대체: e6-2-3-1-xc14, e6-2-3-1-xc23."
+      },
+      "proposalFingerprint": "df59a3cf473798fa6c399cc9c27e9cccc6d4be4f23d5d36dac7947eec7694f5c",
+      "questionRevision": "planning-e5e6-20261006-df59a3cf4737",
+      "requiresIndependentReview": true
+    }
+  ]
+}

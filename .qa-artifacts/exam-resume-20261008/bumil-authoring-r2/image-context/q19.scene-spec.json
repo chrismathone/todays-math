@@ -1,0 +1,41 @@
+{
+  "kind": "immutable-imagegen-scene/v1",
+  "rasterSha256": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+  "generationSha256": "ee091600287b19fff886e399d48e19e1a863f201b781b620aa13ca14eeb548af",
+  "mathBindingSha256": "ab828d3f5fddd23e5e355968e66cef6ea2672a94f1a37cd6d6b7eb63a0ef1e7f",
+  "rasterRole": "illustration only; separate engine figure provides all mathematical relations",
+  "mathematicalBinding": {
+    "curriculum": {
+      "grade": "중3",
+      "edition": "2015",
+      "status": "pending"
+    },
+    "calculationAuthority": "explicit-math-facts-not-image-pixels",
+    "pointRoles": {
+      "A": "첫 번째 측량 표지",
+      "B": "두 번째 측량 표지",
+      "C": "관개 제어함"
+    },
+    "facts": {
+      "givenBC": "30*sqrt(6)",
+      "angleA": 45,
+      "angleB": 75,
+      "angleC": 60,
+      "targetAB": 90
+    },
+    "factRelations": [
+      "drop perpendicular BH to AC",
+      "BH=BC*sin60=45sqrt2",
+      "AB=BH/sin45=90"
+    ],
+    "constraints": [
+      "45+75+60=180",
+      "positive lengths",
+      "H lies inside AC",
+      "unique triangle up to reflection/congruence; unique AB",
+      "no trig laws or addition relations in student solution"
+    ],
+    "rasterRole": "park setting only; named point roles and all conditions are in the separate diagram/record"
+  },
+  "sourceFigureNotReused": true
+}

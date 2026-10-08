@@ -1,0 +1,90 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-07T19:48:51.800Z",
+  "questionNumbers": [
+    10,
+    19
+  ],
+  "packageDigest": "785a7e437f0aff5b75ce1430b7b4672300b213b88ee0bbfb90b01aa11c9be605",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "privateCandidatePath": "private/q10/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r2\\image-context\\q10.json",
+        "sha256": "75e82d33f3d27ad9084a084f8168fcaa0930c21857cd4fd59740a4c4067003dc"
+      },
+      "candidateFileSha256": "a9ca9c47eb52145bf7d1697bf23fb179fbefe90622ab62c3a1c3366494d2720c",
+      "candidateDigest": "a44d112ea0647bc9858e5f9199da0d23718e833fab7ee1339f70cbbb050089f8",
+      "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+      "assetDigest": "6e051c4bd40203816b3208f73cf93dd6be3f212357583d69bd906b6f379640f4",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "0f139d0a29202278d30f110547d365ed616a6d46df084e6604052bf2032fb484",
+          "svgSha256": "a0924a0c32ceb18d08f1126358a0ecfe495dfb02a3e462e72d14507257337cd3",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q10-1.svg",
+          "resources": [
+            {
+              "rasterSha256": "72c2deb6fd213e9e372af15bdf7e108e79aaf538c448be8860b1a565b478d7ba",
+              "generationSha256": "ac77edc7e2d7712cdb2a0cb45a4bdec2b527f033fafd812d3537a0b7341de155",
+              "widthPx": 1536,
+              "heightPx": 1024
+            }
+          ]
+        },
+        {
+          "role": "stem",
+          "specSha256": "977b2bf1c01715ab6f37b513e91af8d3acd3f06f8ad8ac0f67dfb2558ab975fd",
+          "svgSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q10-2.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q19/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r2\\image-context\\q19.json",
+        "sha256": "4189ede185564ff2de94bac1c8ef7d6ca96f9f1b13d8073e4818d86d91d5ce62"
+      },
+      "candidateFileSha256": "0dcab8b732f2a047369e6244b584b956035ccc874f6e786abc5bc39295605b64",
+      "candidateDigest": "4241865fd9d1676dbe7dd30ea55459f4da6d8fa98f2bb8c7cb64bcb13964354e",
+      "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+      "assetDigest": "26cfe0d9c548d205dc6650a634e29df73e8d605b0b53743022d5eae9d9d889e5",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "dc7ef00c9f87c4b58b70e7758724a60e6457a083dca7f07738a526f8c73f782b",
+          "svgSha256": "0c1e6d3c4ab1c275f1f87b238b504830a92b5ca24e15af527b5a46bb43ffa0ae",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q19-1.svg",
+          "resources": [
+            {
+              "rasterSha256": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+              "generationSha256": "ee091600287b19fff886e399d48e19e1a863f201b781b620aa13ca14eeb548af",
+              "widthPx": 1536,
+              "heightPx": 1024
+            }
+          ]
+        },
+        {
+          "role": "stem",
+          "specSha256": "3f848d72b5c17f39c4f6b0d56a493258cd653a54ebbd6cf583dcd97f545337e3",
+          "svgSha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q19-2.svg"
+        }
+      ]
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

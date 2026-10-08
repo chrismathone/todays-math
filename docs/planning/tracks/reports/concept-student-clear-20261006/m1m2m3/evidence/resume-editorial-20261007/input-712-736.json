@@ -1,0 +1,2563 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:09:39.391Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c7",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "피타고라스의 방법",
+        "kind": "방법",
+        "level": "상",
+        "definition": "피타고라스 정리의 한 증명에서는 합동인 직각삼각형 네 개를 같은 큰 정사각형 안에 두 가지로 놓는다. 두 경우 모두 같은 큰 정사각형에서 같은 네 삼각형을 덜어 낸 것이므로 남는 부분의 {넓이}가 같다.",
+        "studentC": "피타고라스 정리의 한 증명에서는 합동인 직각삼각형 네 개를 같은 큰 정사각형 안에 두 가지로 놓는다. 두 경우 모두 같은 큰 정사각형에서 같은 네 삼각형을 덜어 낸 것이므로 남는 부분의 □가 같다.",
+        "answers": [
+          "넓이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c7",
+        "learningRole": "reason",
+        "roleReason": "같은 정사각형에서 같은 네 삼각형을 뺀 나머지 넓이가 같다",
+        "bDecision": "rewrite",
+        "bPrompt": "직각을 낀 두 변의 길이가 $a$, $b$이고 빗변의 길이가 $c$인 합동인 직각삼각형 $4$개를 한 변의 길이가 $a+b$인 정사각형 안에 두 가지로 놓았다. 첫째 배치에서는 한 변이 $c$인 정사각형 하나가 남고, 둘째 배치에서는 한 변이 $a$인 정사각형과 한 변이 $b$인 정사각형이 남는다. 남은 부분의 넓이를 비교하여 얻는 식과 그 까닭을 쓰시오.",
+        "bAnswer": "두 경우 모두 같은 큰 정사각형에서 같은 네 삼각형을 덜어 낸 나머지이므로 남은 넓이가 같다. 따라서 $c^2=a^2+b^2$이다.",
+        "bGoal": "피타고라스의 방법의 논리 이해",
+        "bReason": "그림이 없으므로 두 배치에서 남는 도형의 변 길이를 질문에 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a^2+b^2=c^2$",
+              "$c^2=a^2+b^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 큰 정사각형에서 같은 네 삼각형을 뺐다",
+              "전체 넓이와 네 삼각형의 넓이가 같아 남은 넓이가 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "덜어 낸 뒤 '넓이'가 같다는 결론 하나를 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 712,
+        "part": "m2",
+        "sourceFingerprint": "8650e355b81114beefe1943384b6678c6a81b1012220e984026b1224aa59d006",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 712
+        },
+        "directReview": null,
+        "cFrozenSentence": "피타고라스 정리의 한 증명에서는 합동인 직각삼각형 네 개를 같은 큰 정사각형 안에 두 가지로 놓는다. 두 경우 모두 같은 큰 정사각형에서 같은 네 삼각형을 덜어 낸 것이므로 남는 부분의 □가 같다.",
+        "cFrozenDefinition": "피타고라스 정리의 한 증명에서는 합동인 직각삼각형 네 개를 같은 큰 정사각형 안에 두 가지로 놓는다. 두 경우 모두 같은 큰 정사각형에서 같은 네 삼각형을 덜어 낸 것이므로 남는 부분의 {넓이}가 같다.",
+        "cFrozenAnswers": [
+          "넓이"
+        ],
+        "cMarkedSentence": "피타고라스 정리의 한 증명에서는 합동인 직각삼각형 네 개를 같은 큰 정사각형 안에 두 가지로 놓는다. 두 경우 모두 같은 큰 정사각형에서 같은 네 삼각형을 덜어 낸 것이므로 남는 부분의 {넓이}가 같다.",
+        "cSlotAnswers": [
+          "넓이"
+        ],
+        "cStudentSentence": "피타고라스 정리의 한 증명에서는 합동인 직각삼각형 네 개를 같은 큰 정사각형 안에 두 가지로 놓는다. 두 경우 모두 같은 큰 정사각형에서 같은 네 삼각형을 덜어 낸 것이므로 남는 부분의 □가 같다.",
+        "cAnswers": [
+          "넓이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "넓이",
+            "equivalentAnswers": [
+              "넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "넓이"
+          ]
+        ],
+        "proposalFingerprint": "a01a5c07f091fee6136be8b810cff953b84247a4c99254346d7f42516eee88d3"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c8",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "바스카라의 방법",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합동인 직각삼각형 네 개를 빗변이 바깥에 오게 놓아 {정사각형}을 만들고, 네 삼각형과 가운데 남는 부분의 {넓이}로 식을 세우는 증명이다. 직각을 낀 두 변이 같으면 가운데 남는 넓이는 없다.",
+        "studentC": "합동인 직각삼각형 네 개를 빗변이 바깥에 오게 놓아 □을 만들고, 네 삼각형과 가운데 남는 부분의 □로 식을 세우는 증명이다. 직각을 낀 두 변이 같으면 가운데 남는 넓이는 없다.",
+        "answers": [
+          "정사각형",
+          "넓이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c8",
+        "learningRole": "reason",
+        "roleReason": "큰 정사각형 넓이=네 삼각형+가운데 정사각형 넓이",
+        "bDecision": "rewrite",
+        "bPrompt": "직각을 낀 두 변의 길이가 $3$, $4$이고 빗변의 길이가 $5$인 합동인 직각삼각형 $4$개를 빗변이 바깥쪽 변이 되도록 놓으면 한 변이 $5$인 큰 정사각형이 되고, 가운데에 한 변이 $4-3=1$인 정사각형이 남는다. 큰 정사각형의 넓이를 두 가지로 나타내어 비교하시오.",
+        "bAnswer": "큰 정사각형의 넓이는 $5^2=25$이고, 네 삼각형과 가운데 정사각형의 넓이의 합은 $4\\times\\frac{1}{2}\\times3\\times4+1^2=24+1=25$이다. 두 값이 같으므로 $3^2+4^2=5^2$임을 확인할 수 있다.",
+        "bGoal": "바스카라의 방법으로 넓이 식 세우기",
+        "bReason": "일반식 전개는 중3 내용이라 $3$, $4$, $5$ 예로 넓이 비교를 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5^2=25$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\times\\frac{1}{2}\\times3\\times4+1^2=25$",
+              "$24+1=25$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "합동인 직각삼각형 네 개를 빗변이 바깥쪽 변이 되도록 놓아 큰 {정사각형}을 만들고, 그 넓이를 네 삼각형과 가운데 남는 부분의 넓이의 {합}으로 나타내어 식을 세우는 증명이다.",
+        "cAnswers": [
+          "정사각형",
+          "합"
+        ],
+        "cReason": "마지막 문장의 '남는 넓이'가 '넓이' 빈칸 답을 드러내 빈칸을 바꿨다.",
+        "exampleNeeded": true,
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 713,
+        "part": "m2",
+        "sourceFingerprint": "e66a7e68e074edc82a7bd02c0dfd5508cb3bed4ba3c33d853af295da0dd09484",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 713
+        },
+        "directReview": null,
+        "cMarkedSentence": "합동인 직각삼각형 네 개를 빗변이 바깥쪽 변이 되도록 놓아 큰 {정사각형}을 만들고, 그 넓이를 네 삼각형과 가운데 남는 부분의 넓이의 {합}으로 나타내어 식을 세우는 증명이다.",
+        "cSlotAnswers": [
+          "정사각형",
+          "합"
+        ],
+        "cStudentSentence": "합동인 직각삼각형 네 개를 빗변이 바깥쪽 변이 되도록 놓아 큰 □을 만들고, 그 넓이를 네 삼각형과 가운데 남는 부분의 넓이의 □으로 나타내어 식을 세우는 증명이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정사각형",
+            "equivalentAnswers": [
+              "정사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정사각형"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "02dbf0b436f3d580eb42f06101518bd2b7612d79cdf3701bc5b79772dc829b39"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c9",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "삼각형의 변의 길이와 각의 크기 사이의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가장 긴 변의 길이가 $c$일 때 $c^2$이 $a^2+b^2$보다 작으면 {예각}삼각형, 같으면 {직각}삼각형, 크면 {둔각}삼각형이다.",
+        "example": {
+          "prompt": "세 변이 $4$, $5$, $7$인 삼각형의 종류",
+          "answer": "둔각삼각형"
+        },
+        "studentC": "가장 긴 변의 길이가 $c$일 때 $c^2$이 $a^2+b^2$보다 작으면 □삼각형, 같으면 □삼각형, 크면 □삼각형이다.",
+        "answers": [
+          "예각",
+          "직각",
+          "둔각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c9",
+        "learningRole": "definition",
+        "roleReason": "$c^2$과 $a^2+b^2$의 대소로 삼각형의 종류를 판별",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 가장 긴 변의 길이를 $c$, 나머지 두 변의 길이를 $a$, $b$라 하자. $c^2$과 $a^2+b^2$의 크기를 비교하여 예각삼각형, 직각삼각형, 둔각삼각형을 판별하는 기준을 쓰시오.",
+        "bAnswer": "$c^2<a^2+b^2$이면 예각삼각형, $c^2=a^2+b^2$이면 직각삼각형, $c^2>a^2+b^2$이면 둔각삼각형이다.",
+        "bGoal": "변의 길이로 삼각형의 종류 판별",
+        "bReason": "$c$가 가장 긴 변이라는 조건과 세 경우를 모두 묻도록 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$c^2<a^2+b^2$이면 예각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$c^2=a^2+b^2$이면 직각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$c^2>a^2+b^2$이면 둔각삼각형"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 가장 긴 변의 길이가 $c$이고 나머지 두 변의 길이가 $a$, $b$일 때, $c^2<a^2+b^2$이면 {예각}삼각형, $c^2=a^2+b^2$이면 {직각}삼각형, $c^2>a^2+b^2$이면 {둔각}삼각형이다.",
+        "cAnswers": [
+          "예각",
+          "직각",
+          "둔각"
+        ],
+        "cReason": "원문에 $a$, $b$의 뜻이 없어 나머지 두 변임을 밝히고 부등호로 정리했다.",
+        "coreAfter": "삼각형의 가장 긴 변의 길이가 $c$이고 나머지 두 변의 길이가 $a$, $b$일 때, $c^2$이 $a^2+b^2$보다 작으면 {예각}삼각형, 같으면 {직각}삼각형, 크면 {둔각}삼각형이다.",
+        "coreReason": "$a$, $b$가 어느 변의 길이인지 정의되지 않았다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 714,
+        "part": "m2",
+        "sourceFingerprint": "94c18cd55bde8cc49f92286c55f07702bea5adbf846f3f7802585859f7282824",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 714
+        },
+        "directReview": null,
+        "coreBeforeRepair": "삼각형의 가장 긴 변의 길이가 $c$이고 나머지 두 변의 길이가 $a$, $b$일 때, $c^2$이 $a^2+b^2$보다 작으면 {예각}삼각형, 같으면 {직각}삼각형, 크면 {둔각}삼각형이다.",
+        "coreRepairReason": "$a$, $b$를 나머지 두 변의 길이로 정의해 세 경우의 판별 관계를 그대로 살렸다. 원본 핵심어 {예각}, {직각}, {둔각}은 유지했다. 이미 좋은 형식이라 보존한다.",
+        "coreRepairEvidence": "core-repair/core-005",
+        "cMarkedSentence": "삼각형의 가장 긴 변의 길이가 $c$이고 나머지 두 변의 길이가 $a$, $b$일 때, $c^2<a^2+b^2$이면 {예각}삼각형, $c^2=a^2+b^2$이면 {직각}삼각형, $c^2>a^2+b^2$이면 {둔각}삼각형이다.",
+        "cSlotAnswers": [
+          "예각",
+          "직각",
+          "둔각"
+        ],
+        "cStudentSentence": "삼각형의 가장 긴 변의 길이가 $c$이고 나머지 두 변의 길이가 $a$, $b$일 때, $c^2<a^2+b^2$이면 □삼각형, $c^2=a^2+b^2$이면 □삼각형, $c^2>a^2+b^2$이면 □삼각형이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "예각",
+            "equivalentAnswers": [
+              "예각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "직각",
+            "equivalentAnswers": [
+              "직각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "둔각",
+            "equivalentAnswers": [
+              "둔각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "예각"
+          ],
+          [
+            "직각"
+          ],
+          [
+            "둔각"
+          ]
+        ],
+        "proposalFingerprint": "18c7ceb22f78c4f5685965c20c649a2fdcd988f9b5041a01df2a7ff8abf1f3c0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c1",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "직사각형의 대각선",
+        "kind": "공식",
+        "level": "하",
+        "definition": "가로와 세로의 길이가 $a,\\ b$인 직사각형의 대각선은 {직각삼각형}의 {빗변}이므로 그 길이의 제곱은 $a^2+b^2$이다.",
+        "example": {
+          "prompt": "가로 $4$, 세로 $3$인 직사각형의 대각선의 길이",
+          "answer": "$5$"
+        },
+        "studentC": "가로와 세로의 길이가 $a,\\ b$인 직사각형의 대각선은 □의 □이므로 그 길이의 제곱은 $a^2+b^2$이다.",
+        "answers": [
+          "직각삼각형",
+          "빗변"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "가로의 길이가 $a$, 세로의 길이가 $b$인 직사각형에서 대각선의 길이의 제곱을 $a$, $b$로 나타내고, 그렇게 되는 이유를 직각삼각형과 관련지어 쓰시오.",
+        "bAnswer": "$a^2+b^2$이다. 대각선은 가로와 세로를 직각을 낀 두 변으로 하는 직각삼각형의 빗변이므로 피타고라스 정리에 의해 (대각선)$^2=a^2+b^2$이다.",
+        "bGoal": "직사각형의 대각선을 피타고라스 정리로 나타내기",
+        "bReason": "길이와 제곱 중 무엇을 답할지 모호해 변의 문자와 제곱 형태를 지정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a^2+b^2$",
+              "(대각선)$^2=a^2+b^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각선이 직각삼각형의 빗변이다",
+              "가로와 세로가 직각을 낀 두 변이고 대각선이 빗변이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건 $a,\\ b$와 결론 $a^2+b^2$이 보이고 빈칸이 이유의 핵심이라 유지",
+        "learningRole": "application",
+        "roleReason": "직사각형의 대각선을 직각삼각형의 빗변으로 보고 정리 적용",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 715,
+        "part": "m2",
+        "sourceFingerprint": "18041737d00757f7f388242c9f3de01c9c1daac2a94b8de6d1d88d6e6eab0116",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 715
+        },
+        "directReview": null,
+        "cFrozenSentence": "가로와 세로의 길이가 $a,\\ b$인 직사각형의 대각선은 □의 □이므로 그 길이의 제곱은 $a^2+b^2$이다.",
+        "cFrozenDefinition": "가로와 세로의 길이가 $a,\\ b$인 직사각형의 대각선은 {직각삼각형}의 {빗변}이므로 그 길이의 제곱은 $a^2+b^2$이다.",
+        "cFrozenAnswers": [
+          "직각삼각형",
+          "빗변"
+        ],
+        "cMarkedSentence": "가로와 세로의 길이가 $a,\\ b$인 직사각형의 대각선은 {직각삼각형}의 {빗변}이므로 그 길이의 제곱은 $a^2+b^2$이다.",
+        "cSlotAnswers": [
+          "직각삼각형",
+          "빗변"
+        ],
+        "cStudentSentence": "가로와 세로의 길이가 $a,\\ b$인 직사각형의 대각선은 □의 □이므로 그 길이의 제곱은 $a^2+b^2$이다.",
+        "cAnswers": [
+          "직각삼각형",
+          "빗변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직각삼각형",
+            "equivalentAnswers": [
+              "직각삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직각삼각형"
+          ],
+          [
+            "빗변"
+          ]
+        ],
+        "proposalFingerprint": "9defdc8b1cf81634be1149064fa8ade86a4775ccd0865bcc309572826f240d4f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c2",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "이등변삼각형의 높이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "이등변삼각형의 높이는 꼭지각에서 밑변에 수선을 그어 생기는 {직각삼각형}으로 구한다. 이때 수선은 밑변을 {이등분}한다.",
+        "example": {
+          "prompt": "두 변이 $5$, 밑변이 $6$인 이등변삼각형의 높이",
+          "answer": "$4$"
+        },
+        "studentC": "이등변삼각형의 높이는 꼭지각에서 밑변에 수선을 그어 생기는 □으로 구한다. 이때 수선은 밑변을 □한다.",
+        "answers": [
+          "직각삼각형",
+          "이등분"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 두 변의 길이가 $a$, 밑변의 길이가 $b$인 이등변삼각형에서 꼭지각의 꼭짓점에서 밑변에 수선을 그었다. 이 수선이 밑변을 어떻게 나누는지 쓰고, 높이를 $h$라 할 때 $h^2$을 $a$, $b$로 나타내시오.",
+        "bAnswer": "수선은 밑변을 이등분한다. 빗변이 $a$이고 한 변이 $\\frac{b}{2}$인 직각삼각형에서 $h^2=a^2-\\left(\\frac{b}{2}\\right)^2$이다.",
+        "bGoal": "이등변삼각형의 높이를 수선과 피타고라스 정리로 구하기",
+        "bReason": "높이를 무엇으로 나타낼지 없어 변의 문자와 수선의 역할, $h^2$ 형태를 지정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수선이 밑변을 이등분한다",
+              "수선의 발이 밑변의 중점이다",
+              "밑변을 $\\frac{b}{2}$씩 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$h^2=a^2-\\left(\\frac{b}{2}\\right)^2$",
+              "$h^2=a^2-\\frac{b^2}{4}$",
+              "$h^2+\\left(\\frac{b}{2}\\right)^2=a^2$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "수선이 만드는 도형과 밑변의 이등분이라는 두 핵심이 짧게 드러나 유지",
+        "learningRole": "procedure",
+        "roleReason": "수선으로 직각삼각형을 만들어 높이를 구하는 절차",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 716,
+        "part": "m2",
+        "sourceFingerprint": "826b7894d67ea46371d026a72be64776d117f30fc941c39e42fc1bc604f0b7bf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 716
+        },
+        "directReview": null,
+        "cFrozenSentence": "이등변삼각형의 높이는 꼭지각에서 밑변에 수선을 그어 생기는 □으로 구한다. 이때 수선은 밑변을 □한다.",
+        "cFrozenDefinition": "이등변삼각형의 높이는 꼭지각에서 밑변에 수선을 그어 생기는 {직각삼각형}으로 구한다. 이때 수선은 밑변을 {이등분}한다.",
+        "cFrozenAnswers": [
+          "직각삼각형",
+          "이등분"
+        ],
+        "cMarkedSentence": "이등변삼각형의 높이는 꼭지각에서 밑변에 수선을 그어 생기는 {직각삼각형}으로 구한다. 이때 수선은 밑변을 {이등분}한다.",
+        "cSlotAnswers": [
+          "직각삼각형",
+          "이등분"
+        ],
+        "cStudentSentence": "이등변삼각형의 높이는 꼭지각에서 밑변에 수선을 그어 생기는 □으로 구한다. 이때 수선은 밑변을 □한다.",
+        "cAnswers": [
+          "직각삼각형",
+          "이등분"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직각삼각형",
+            "equivalentAnswers": [
+              "직각삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이등분",
+            "equivalentAnswers": [
+              "이등분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직각삼각형"
+          ],
+          [
+            "이등분"
+          ]
+        ],
+        "proposalFingerprint": "f6f24ec118ca7f236574ed8afdf4e266d6b3da720dac38cd787ae491f9821bf9"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c3",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "빗변 위의 높이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "빗변을 밑변으로 볼 때의 높이는, 직각을 낀 두 변의 길이의 {곱}을 빗변의 길이로 {나누어} 구한다.",
+        "example": {
+          "prompt": "세 변이 $3$, $4$, $5$인 직각삼각형에서 빗변 위의 높이",
+          "answer": "$\\frac{12}{5}$"
+        },
+        "studentC": "빗변을 밑변으로 볼 때의 높이는, 직각을 낀 두 변의 길이의 □을 빗변의 길이로 □ 구한다.",
+        "answers": [
+          "곱",
+          "나누어"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 직각을 낀 두 변의 길이가 $a$, $b$이고 빗변의 길이가 $c$이다. 빗변을 밑변으로 볼 때의 높이 $h$를 $a$, $b$, $c$로 나타내고, 그 식이 성립하는 이유를 삼각형의 넓이를 이용해 쓰시오.",
+        "bAnswer": "$h=\\frac{ab}{c}$이다. 같은 삼각형의 넓이를 $\\frac{1}{2}ab$와 $\\frac{1}{2}ch$의 두 가지로 나타낼 수 있으므로 $ab=ch$이다.",
+        "bGoal": "빗변 위의 높이를 넓이의 두 표현으로 구하기",
+        "bReason": "어느 삼각형의 어느 높이인지 문자로 밝히고 근거 범위를 넓이로 한정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$h=\\frac{ab}{c}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이를 $\\frac{1}{2}ab$와 $\\frac{1}{2}ch$로 나타내어 같다고 놓는다",
+              "직각을 낀 두 변으로 구한 넓이와 빗변과 높이로 구한 넓이가 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직각삼각형에서 빗변을 밑변으로 볼 때의 높이는 직각을 낀 두 변의 길이의 {곱}을 빗변의 길이로 {나누어} 구한다.",
+        "cAnswers": [
+          "곱",
+          "나누어"
+        ],
+        "cReason": "원문은 어느 도형의 빗변인지 주어가 없어 '직각삼각형에서'를 보충함",
+        "learningRole": "procedure",
+        "roleReason": "직각을 낀 두 변의 곱을 빗변으로 나누어 높이 구하기",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 717,
+        "part": "m2",
+        "sourceFingerprint": "f61190b47c129897daac2a0fbc4d5d435e0a9a672dc41b298d285037da7bf29a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 717
+        },
+        "directReview": null,
+        "cMarkedSentence": "직각삼각형에서 빗변을 밑변으로 볼 때의 높이는 직각을 낀 두 변의 길이의 {곱}을 빗변의 길이로 {나누어} 구한다.",
+        "cSlotAnswers": [
+          "곱",
+          "나누어"
+        ],
+        "cStudentSentence": "직각삼각형에서 빗변을 밑변으로 볼 때의 높이는 직각을 낀 두 변의 길이의 □을 빗변의 길이로 □ 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "나누어",
+            "equivalentAnswers": [
+              "나누어",
+              "나눠"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "나누어",
+            "accept": [
+              "나눠"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ],
+          [
+            "나누어",
+            "나눠"
+          ]
+        ],
+        "proposalFingerprint": "de04b50facdfc6c80f0f9d08e2db7a8d4456216f0d85717c605a94959ecca970"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c4",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "두 대각선이 직교하는 사각형의 성질",
+        "kind": "성질",
+        "level": "중",
+        "definition": "사각형의 두 대각선이 서로 {수직}이면, 마주 보는 두 변의 길이의 {제곱의 합}이 서로 같다.",
+        "example": {
+          "prompt": "두 대각선이 수직인 사각형 $ABCD$에서 $\\overline{AB}=3,\\ \\overline{CD}=6,\\ \\overline{AD}=5$일 때 $\\overline{BC}^2$",
+          "answer": "$20$"
+        },
+        "studentC": "사각형의 두 대각선이 서로 □이면, 마주 보는 두 변의 길이의 □이 서로 같다.",
+        "answers": [
+          "수직",
+          "제곱의 합"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형 $ABCD$의 두 대각선 $\\overline{AC}$와 $\\overline{BD}$가 점 $O$에서 서로 수직으로 만난다. 네 변 $\\overline{AB}$, $\\overline{BC}$, $\\overline{CD}$, $\\overline{DA}$의 길이 사이에 항상 성립하는 관계를 식으로 쓰고, 그 이유를 쓰시오.",
+        "bAnswer": "$\\overline{AB}^2+\\overline{CD}^2=\\overline{AD}^2+\\overline{BC}^2$이다. 네 직각삼각형 $AOB$, $BOC$, $COD$, $DOA$에서 피타고라스 정리를 쓰면 양변이 모두 $\\overline{OA}^2+\\overline{OB}^2+\\overline{OC}^2+\\overline{OD}^2$과 같다.",
+        "bGoal": "대각선이 수직인 사각형의 변 사이 관계와 근거",
+        "bReason": "그림이 없어 대각선의 교점 $O$와 네 변 이름을 밝혀 관계식으로 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AB}^2+\\overline{CD}^2=\\overline{AD}^2+\\overline{BC}^2$",
+              "$\\overline{AB}^2+\\overline{CD}^2=\\overline{BC}^2+\\overline{DA}^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "양변이 모두 $\\overline{OA}^2+\\overline{OB}^2+\\overline{OC}^2+\\overline{OD}^2$이다",
+              "네 직각삼각형에 피타고라스 정리를 쓰면 양쪽에 대각선 조각의 제곱이 한 번씩 모두 나온다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건 '수직'과 결론 '제곱의 합'이 짧은 성질 문장으로 분명해 유지",
+        "studentLabel": "두 대각선이 수직인 사각형의 성질",
+        "learningRole": "reason",
+        "roleReason": "네 직각삼각형으로 마주 보는 변의 제곱의 합이 같음을 보임",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 718,
+        "part": "m2",
+        "sourceFingerprint": "d931a40d2f266d30f24649334ed7355a202030e21d256312b1e356bf9233c8b9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 718
+        },
+        "directReview": null,
+        "cFrozenSentence": "사각형의 두 대각선이 서로 □이면, 마주 보는 두 변의 길이의 □이 서로 같다.",
+        "cFrozenDefinition": "사각형의 두 대각선이 서로 {수직}이면, 마주 보는 두 변의 길이의 {제곱의 합}이 서로 같다.",
+        "cFrozenAnswers": [
+          "수직",
+          "제곱의 합"
+        ],
+        "cMarkedSentence": "사각형의 두 대각선이 서로 {수직}이면, 마주 보는 두 변의 길이의 {제곱의 합}이 서로 같다.",
+        "cSlotAnswers": [
+          "수직",
+          "제곱의 합"
+        ],
+        "cStudentSentence": "사각형의 두 대각선이 서로 □이면, 마주 보는 두 변의 길이의 □이 서로 같다.",
+        "cAnswers": [
+          "수직",
+          "제곱의 합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "수직",
+            "equivalentAnswers": [
+              "수직"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱의 합",
+            "equivalentAnswers": [
+              "제곱의 합",
+              "제곱한 값의 합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "제곱의 합",
+            "accept": [
+              "제곱한 값의 합"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "수직"
+          ],
+          [
+            "제곱의 합",
+            "제곱한 값의 합"
+          ]
+        ],
+        "proposalFingerprint": "d1b5bec007366a7d39532d1529da53540b56fab14b587f1d638b549fc1cdc3fc"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c5",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "직각삼각형의 세 반원 사이의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직각삼각형의 세 변을 {지름}으로 하는 반원에서, 작은 두 반원의 넓이의 {합}은 가장 큰 반원의 넓이와 같다.",
+        "example": {
+          "prompt": "직각삼각형의 세 변을 지름으로 하는 반원 중 작은 두 반원의 넓이가 $3$, $5$일 때 큰 반원의 넓이",
+          "answer": "$8$"
+        },
+        "studentC": "직각삼각형의 세 변을 □으로 하는 반원에서, 작은 두 반원의 넓이의 □은 가장 큰 반원의 넓이와 같다.",
+        "answers": [
+          "지름",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 $\\overline{BC}=a$, $\\overline{CA}=b$, $\\overline{AB}=c$이다. 세 변을 각각 지름으로 하는 반원의 넓이를 차례로 $S_1$, $S_2$, $S_3$이라 할 때, $S_1$, $S_2$, $S_3$ 사이의 관계식을 쓰고, 반원의 넓이를 지름으로 나타내어 그 이유를 쓰시오.",
+        "bAnswer": "$S_1+S_2=S_3$이다. 지름이 $d$인 반원의 넓이는 $\\frac{\\pi}{8}d^2$이므로 $S_1+S_2=\\frac{\\pi}{8}(a^2+b^2)=\\frac{\\pi}{8}c^2=S_3$이다.",
+        "bGoal": "세 반원의 넓이 관계를 피타고라스 정리로 설명하기",
+        "bReason": "세 반원의 넓이에 이름을 붙여 관계식과 근거를 함께 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$S_1+S_2=S_3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "반원의 넓이가 지름의 제곱에 같은 수 $\\frac{\\pi}{8}$을 곱한 값이므로 $a^2+b^2=c^2$에서 따라 나온다",
+              "$\\frac{\\pi}{8}a^2+\\frac{\\pi}{8}b^2=\\frac{\\pi}{8}c^2$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "지름이라는 조건과 '합' 관계가 짧고 분명해 유지",
+        "learningRole": "reason",
+        "roleReason": "반원 넓이가 지름의 제곱에 비례함을 이용한 관계",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 719,
+        "part": "m2",
+        "sourceFingerprint": "23743f8801b887e8b52f20f39f37e658f232844f9afe83854ad9014506f8ac4e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 719
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형의 세 변을 □으로 하는 반원에서, 작은 두 반원의 넓이의 □은 가장 큰 반원의 넓이와 같다.",
+        "cFrozenDefinition": "직각삼각형의 세 변을 {지름}으로 하는 반원에서, 작은 두 반원의 넓이의 {합}은 가장 큰 반원의 넓이와 같다.",
+        "cFrozenAnswers": [
+          "지름",
+          "합"
+        ],
+        "cMarkedSentence": "직각삼각형의 세 변을 {지름}으로 하는 반원에서, 작은 두 반원의 넓이의 {합}은 가장 큰 반원의 넓이와 같다.",
+        "cSlotAnswers": [
+          "지름",
+          "합"
+        ],
+        "cStudentSentence": "직각삼각형의 세 변을 □으로 하는 반원에서, 작은 두 반원의 넓이의 □은 가장 큰 반원의 넓이와 같다.",
+        "cAnswers": [
+          "지름",
+          "합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지름",
+            "equivalentAnswers": [
+              "지름"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지름"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "4ea935fab657d5376ce19ed9ea48c9e328cbc3577670a0303538356dbf57fe5b"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c6",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "피타고라스 정리를 이용한 직각삼각형의 성질",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직각삼각형의 직각을 낀 두 변 위에 점을 하나씩 잡으면, 두 점을 이은 선분과 {빗변}에서 길이의 제곱의 합은 각 점과 맞은편 꼭짓점을 {엇갈려 이은} 두 선분에서의 그 합과 같다.",
+        "example": {
+          "prompt": "$\\angle A=90^\\circ$인 $\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}=2,\\ \\overline{BC}=9,\\ \\overline{BE}=6$일 때 $\\overline{CD}^2$",
+          "answer": "$49$"
+        },
+        "studentC": "직각삼각형의 직각을 낀 두 변 위에 점을 하나씩 잡으면, 두 점을 이은 선분과 □에서 길이의 제곱의 합은 각 점과 맞은편 꼭짓점을 □ 두 선분에서의 그 합과 같다.",
+        "answers": [
+          "빗변",
+          "엇갈려 이은"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle A=90^\\circ$인 직각삼각형 $ABC$에서 변 $AB$ 위에 점 $D$, 변 $AC$ 위에 점 $E$를 잡았다. $\\overline{DE}^2+\\overline{BC}^2$과 항상 같은 값을 갖는 식을 점 $B$, $C$, $D$, $E$ 중 두 점을 이은 다른 두 선분으로 쓰고, 그 이유를 쓰시오.",
+        "bAnswer": "$\\overline{BE}^2+\\overline{CD}^2$이다. 피타고라스 정리에 의해 $\\overline{DE}^2+\\overline{BC}^2$과 $\\overline{BE}^2+\\overline{CD}^2$이 모두 $\\overline{AD}^2+\\overline{AE}^2+\\overline{AB}^2+\\overline{AC}^2$과 같다.",
+        "bGoal": "엇갈려 이은 선분의 제곱의 합이 같음을 보이기",
+        "bReason": "'맞은편·엇갈려'는 그림 없이 모호해 점의 위치를 밝히고 식으로 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BE}^2+\\overline{CD}^2$",
+              "$\\overline{CD}^2+\\overline{BE}^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "양쪽 모두 $\\overline{AD}^2+\\overline{AE}^2+\\overline{AB}^2+\\overline{AC}^2$이다",
+              "네 선분이 모두 점 $A$에서 직각을 이루는 직각삼각형의 빗변이어서 각 제곱을 $A$에서 나간 두 선분의 제곱의 합으로 나타내면 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\angle A=90^\\circ$인 직각삼각형 $ABC$의 변 $AB$ 위에 점 $D$, 변 $AC$ 위에 점 $E$를 잡으면, $\\overline{DE}^2+\\overline{BC}^2$은 선분 $BE$와 선분 {$CD$}의 길이의 제곱의 합과 같다. 네 선분이 모두 점 $A$에서 직각을 이루는 직각삼각형의 {빗변}이기 때문이다.",
+        "cAnswers": [
+          "$CD$",
+          "빗변"
+        ],
+        "cReason": "어느 점과 어느 꼭짓점을 잇는지 모호해 점 이름으로 지칭을 밝힘",
+        "studentLabel": "직각을 낀 두 변 위의 두 점과 제곱의 합",
+        "coreAfter": "$\\angle A=90^\\circ$인 직각삼각형 $ABC$의 변 $AB$ 위에 점 $D$, 변 $AC$ 위에 점 $E$를 잡으면, 선분 $DE$와 {빗변} $BC$의 길이의 제곱의 합은 $D$와 $C$, $E$와 $B$를 {엇갈려 이은} 두 선분의 길이의 제곱의 합과 같다.",
+        "coreReason": "'맞은편 꼭짓점'이 어느 꼭짓점인지 그림 없이 불명확함",
+        "learningRole": "reason",
+        "roleReason": "네 선분을 모두 빗변으로 보아 제곱의 합이 같음을 설명",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 720,
+        "part": "m2",
+        "sourceFingerprint": "2d36e3c6cee898f1c74e6cb6c830ccc1f1f9e3bc459c05976373fb0177cff7a7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 720
+        },
+        "directReview": null,
+        "coreBeforeRepair": "$\\angle A=90^\\circ$인 직각삼각형 $ABC$의 변 $AB$ 위에 점 $D$, 변 $AC$ 위에 점 $E$를 잡으면, 선분 $DE$와 {빗변} $BC$의 길이의 제곱의 합은 $D$와 $C$, $E$와 $B$를 {엇갈려 이은} 두 선분의 길이의 제곱의 합과 같다.",
+        "coreRepairReason": "숫자 예가 아니라 점 이름으로 일반 관계를 나타냈다. '맞은편 꼭짓점'을 $D$–$C$, $E$–$B$로 구체화했다. 원본 핵심어 {빗변}, {엇갈려 이은}은 보존했다. 형식이 좋아 그대로 둔다.",
+        "coreRepairEvidence": "core-repair/core-005",
+        "cMarkedSentence": "$\\angle A=90^\\circ$인 직각삼각형 $ABC$의 변 $AB$ 위에 점 $D$, 변 $AC$ 위에 점 $E$를 잡으면, $\\overline{DE}^2+\\overline{BC}^2$은 선분 $BE$와 선분 {$CD$}의 길이의 제곱의 합과 같다. 네 선분이 모두 점 $A$에서 직각을 이루는 직각삼각형의 {빗변}이기 때문이다.",
+        "cSlotAnswers": [
+          "$CD$",
+          "빗변"
+        ],
+        "cStudentSentence": "$\\angle A=90^\\circ$인 직각삼각형 $ABC$의 변 $AB$ 위에 점 $D$, 변 $AC$ 위에 점 $E$를 잡으면, $\\overline{DE}^2+\\overline{BC}^2$은 선분 $BE$와 선분 □의 길이의 제곱의 합과 같다. 네 선분이 모두 점 $A$에서 직각을 이루는 직각삼각형의 □이기 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$CD$",
+            "equivalentAnswers": [
+              "$CD$",
+              "$DC$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$CD$",
+            "accept": [
+              "$DC$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$CD$",
+            "$DC$"
+          ],
+          [
+            "빗변"
+          ]
+        ],
+        "proposalFingerprint": "764dddfeefae7a9ff59ce7dfe1d400a04b7b63fc02c1f710670eb643c371fb5f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c7",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "피타고라스 정리를 이용한 직사각형의 성질",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, {마주 보는} 두 꼭짓점까지의 길이의 {제곱의 합}이 서로 같다.",
+        "example": {
+          "prompt": "직사각형 $ABCD$ 안의 점 $P$에 대해 $\\overline{AP}=3,\\ \\overline{CP}=4,\\ \\overline{BP}=2$일 때 $\\overline{DP}^2$",
+          "answer": "$21$"
+        },
+        "studentC": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, □ 두 꼭짓점까지의 길이의 □이 서로 같다.",
+        "answers": [
+          "마주 보는",
+          "제곱의 합"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형 $ABCD$의 꼭짓점은 $A$, $B$, $C$, $D$ 순서로 둘레를 따라 놓여 있다. 직사각형 내부의 한 점 $P$에 대해 $\\overline{PA}^2+\\overline{PC}^2$과 항상 같은 값을 갖는 식을 쓰고, 그 이유를 쓰시오.",
+        "bAnswer": "$\\overline{PB}^2+\\overline{PD}^2$이다. $P$에서 변 $AB$, $BC$, $CD$, $DA$에 내린 수선의 길이를 $p$, $q$, $r$, $s$라 하면 $\\overline{PA}^2=p^2+s^2$, $\\overline{PC}^2=q^2+r^2$, $\\overline{PB}^2=p^2+q^2$, $\\overline{PD}^2=r^2+s^2$이므로 양쪽 모두 $p^2+q^2+r^2+s^2$이다.",
+        "bGoal": "직사각형 안의 점에서 마주 보는 꼭짓점 짝의 제곱의 합이 같음",
+        "bReason": "꼭짓점 순서와 점 $P$의 위치를 밝혀 짝지을 식을 학생이 찾게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{PB}^2+\\overline{PD}^2$",
+              "$\\overline{PD}^2+\\overline{PB}^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$P$에서 네 변에 수선을 내리면 양쪽 모두 네 수선 길이의 제곱의 합이 된다",
+              "각 꼭짓점까지의 거리의 제곱을 $P$에서 두 변까지의 거리의 제곱의 합으로 나타내면 양쪽이 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'마주 보는'과 '제곱의 합' 두 핵심이 짧은 문장에 드러나 유지",
+        "studentLabel": "직사각형 안의 점과 네 꼭짓점",
+        "learningRole": "reason",
+        "roleReason": "수선으로 나눈 직각삼각형으로 두 합이 같음을 설명",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 721,
+        "part": "m2",
+        "sourceFingerprint": "404d8d5dfa60931ebf6e0e23cc2a86605fe33008e266e5142e5102def14908ac",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 721
+        },
+        "directReview": null,
+        "cFrozenSentence": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, □ 두 꼭짓점까지의 길이의 □이 서로 같다.",
+        "cFrozenDefinition": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, {마주 보는} 두 꼭짓점까지의 길이의 {제곱의 합}이 서로 같다.",
+        "cFrozenAnswers": [
+          "마주 보는",
+          "제곱의 합"
+        ],
+        "cMarkedSentence": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, {마주 보는} 두 꼭짓점까지의 길이의 {제곱의 합}이 서로 같다.",
+        "cSlotAnswers": [
+          "마주 보는",
+          "제곱의 합"
+        ],
+        "cStudentSentence": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, □ 두 꼭짓점까지의 길이의 □이 서로 같다.",
+        "cAnswers": [
+          "마주 보는",
+          "제곱의 합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "마주 보는",
+            "equivalentAnswers": [
+              "마주 보는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱의 합",
+            "equivalentAnswers": [
+              "제곱의 합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "마주 보는"
+          ],
+          [
+            "제곱의 합"
+          ]
+        ],
+        "proposalFingerprint": "9d08a296fb8293f963196920890b785eaa83be91b66edb935b422f75fa820f6c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c8",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "히포크라테스의 원의 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직각삼각형의 직각을 낀 두 변을 지름으로 하는 반원을 바깥쪽에, 빗변을 지름으로 하는 반원을 삼각형 쪽에 그렸을 때 큰 반원 밖에 남는 {초승달 모양} 두 개의 넓이의 합은 {직각삼각형}의 넓이와 같다.",
+        "example": {
+          "prompt": "직각을 낀 두 변이 $6$, $8$인 직각삼각형에서 히포크라테스의 초승달 두 개의 넓이의 합",
+          "answer": "$24$"
+        },
+        "studentC": "직각삼각형의 직각을 낀 두 변을 지름으로 하는 반원을 바깥쪽에, 빗변을 지름으로 하는 반원을 삼각형 쪽에 그렸을 때 큰 반원 밖에 남는 □ 두 개의 넓이의 합은 □의 넓이와 같다.",
+        "answers": [
+          "초승달 모양",
+          "직각삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 변 $BC$, $CA$를 각각 지름으로 하는 반원을 삼각형 바깥쪽에 그리고, 빗변 $AB$를 지름으로 하는 반원을 점 $C$가 있는 쪽에 그렸다. 작은 두 반원에서 큰 반원 바깥에 남는 초승달 모양 두 부분의 넓이의 합은 어떤 도형의 넓이와 같은지 쓰고, 그 이유를 쓰시오. 단, 작은 두 반원의 넓이의 합이 큰 반원의 넓이와 같다는 사실은 이용해도 된다.",
+        "bAnswer": "직각삼각형 $ABC$의 넓이와 같다. 전체 도형의 넓이는 (작은 두 반원)$+$(삼각형 $ABC$)이면서 (큰 반원)$+$(두 초승달)이다. 작은 두 반원의 넓이의 합과 큰 반원의 넓이가 같으므로 이를 양쪽에서 빼면 두 초승달의 넓이의 합은 삼각형 $ABC$의 넓이와 같다.",
+        "bGoal": "히포크라테스의 초승달 넓이가 삼각형 넓이와 같음을 설명",
+        "bReason": "그림이 없어 반원을 그리는 변과 방향을 밝히고 결과와 근거를 함께 물음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형 $ABC$의 넓이",
+              "$\\frac{1}{2}\\times\\overline{BC}\\times\\overline{CA}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 넓이를 (작은 두 반원)$+$(삼각형)과 (큰 반원)$+$(두 초승달)로 나타내고 같은 반원 넓이를 뺀다",
+              "작은 두 반원의 넓이의 합과 큰 반원의 넓이가 같아 겹친 부분을 빼면 초승달과 삼각형만 남는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "그리는 방향이 문장에 밝혀져 있고 결론 도형이 빈칸이라 유지",
+        "studentLabel": "히포크라테스의 초승달",
+        "learningRole": "reason",
+        "roleReason": "같은 넓이를 빼서 초승달과 삼각형 넓이를 연결",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 722,
+        "part": "m2",
+        "sourceFingerprint": "8669b4a958f7fbd64a48e44852a5b79b6b30a048ae453c2a3bab479ce129c98d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 722
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형의 직각을 낀 두 변을 지름으로 하는 반원을 바깥쪽에, 빗변을 지름으로 하는 반원을 삼각형 쪽에 그렸을 때 큰 반원 밖에 남는 □ 두 개의 넓이의 합은 □의 넓이와 같다.",
+        "cFrozenDefinition": "직각삼각형의 직각을 낀 두 변을 지름으로 하는 반원을 바깥쪽에, 빗변을 지름으로 하는 반원을 삼각형 쪽에 그렸을 때 큰 반원 밖에 남는 {초승달 모양} 두 개의 넓이의 합은 {직각삼각형}의 넓이와 같다.",
+        "cFrozenAnswers": [
+          "초승달 모양",
+          "직각삼각형"
+        ],
+        "cMarkedSentence": "직각삼각형의 직각을 낀 두 변을 지름으로 하는 반원을 바깥쪽에, 빗변을 지름으로 하는 반원을 삼각형 쪽에 그렸을 때 큰 반원 밖에 남는 {초승달 모양} 두 개의 넓이의 합은 {직각삼각형}의 넓이와 같다.",
+        "cSlotAnswers": [
+          "초승달 모양",
+          "직각삼각형"
+        ],
+        "cStudentSentence": "직각삼각형의 직각을 낀 두 변을 지름으로 하는 반원을 바깥쪽에, 빗변을 지름으로 하는 반원을 삼각형 쪽에 그렸을 때 큰 반원 밖에 남는 □ 두 개의 넓이의 합은 □의 넓이와 같다.",
+        "cAnswers": [
+          "초승달 모양",
+          "직각삼각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "초승달 모양",
+            "equivalentAnswers": [
+              "초승달 모양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "직각삼각형",
+            "equivalentAnswers": [
+              "직각삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "초승달 모양"
+          ],
+          [
+            "직각삼각형"
+          ]
+        ],
+        "proposalFingerprint": "88fca73ac7900ccd65c43f236180e0611e05090a8f8431784a2b31d705b31712"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c9",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "겉면을 따라 가는 가장 짧은 길",
+        "kind": "방법",
+        "level": "상",
+        "definition": "입체도형의 겉면을 따라 두 점을 잇는 가장 짧은 길은, 지나는 면들을 펼친 전개도에서 그 면들을 벗어나지 않고 두 점을 곧게 이은 {선분}이다. 지나는 면을 고르는 방법이 여럿이면 그 가운데 {가장 짧은 것}을 택한다.",
+        "studentC": "입체도형의 겉면을 따라 두 점을 잇는 가장 짧은 길은, 지나는 면들을 펼친 전개도에서 그 면들을 벗어나지 않고 두 점을 곧게 이은 □이다. 지나는 면을 고르는 방법이 여럿이면 그 가운데 □을 택한다.",
+        "answers": [
+          "선분",
+          "가장 짧은 것"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c9",
+        "bDecision": "rewrite",
+        "bPrompt": "입체도형의 겉면을 따라 두 점을 잇는 가장 짧은 길을 구하는 방법을 쓰시오. 전개도를 어떻게 이용하는지와, 지나는 면을 고르는 방법이 여러 가지일 때 어떻게 하는지를 함께 쓰시오.",
+        "bAnswer": "지나는 면들을 펼친 전개도에서 두 점을 선분으로 잇되, 그 선분이 펼친 면들을 벗어나지 않아야 하며 그 길이를 피타고라스 정리로 구한다. 면을 고르는 방법이 여러 가지이면 각각의 선분의 길이를 구해 가장 짧은 것을 택한다.",
+        "bGoal": "겉면 최단 경로를 전개도의 선분으로 구하는 방법",
+        "bReason": "제목만으로는 답할 범위가 없어 전개도 이용과 여러 경로 비교 두 가지를 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "펼친 전개도에서 두 점을 이은 선분이 가장 짧은 길이다",
+              "전개도에서 두 점을 곧게 잇는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "여러 방법의 길이를 비교해 가장 짧은 것을 택한다",
+              "면을 고르는 경우마다 길이를 구해 최솟값을 고른다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "전개도의 선분과 여러 경로 중 최소 선택이 분명한 문장이라 유지",
+        "learningRole": "procedure",
+        "roleReason": "면을 펼쳐 선분으로 잇고 경우를 비교하는 절차",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 723,
+        "part": "m2",
+        "sourceFingerprint": "52d60af476eadde46b9b86e53ae89f672d71e236d476462f3c2ca8852fbecc98",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 723
+        },
+        "directReview": null,
+        "cFrozenSentence": "입체도형의 겉면을 따라 두 점을 잇는 가장 짧은 길은, 지나는 면들을 펼친 전개도에서 그 면들을 벗어나지 않고 두 점을 곧게 이은 □이다. 지나는 면을 고르는 방법이 여럿이면 그 가운데 □을 택한다.",
+        "cFrozenDefinition": "입체도형의 겉면을 따라 두 점을 잇는 가장 짧은 길은, 지나는 면들을 펼친 전개도에서 그 면들을 벗어나지 않고 두 점을 곧게 이은 {선분}이다. 지나는 면을 고르는 방법이 여럿이면 그 가운데 {가장 짧은 것}을 택한다.",
+        "cFrozenAnswers": [
+          "선분",
+          "가장 짧은 것"
+        ],
+        "cMarkedSentence": "입체도형의 겉면을 따라 두 점을 잇는 가장 짧은 길은, 지나는 면들을 펼친 전개도에서 그 면들을 벗어나지 않고 두 점을 곧게 이은 {선분}이다. 지나는 면을 고르는 방법이 여럿이면 그 가운데 {가장 짧은 것}을 택한다.",
+        "cSlotAnswers": [
+          "선분",
+          "가장 짧은 것"
+        ],
+        "cStudentSentence": "입체도형의 겉면을 따라 두 점을 잇는 가장 짧은 길은, 지나는 면들을 펼친 전개도에서 그 면들을 벗어나지 않고 두 점을 곧게 이은 □이다. 지나는 면을 고르는 방법이 여럿이면 그 가운데 □을 택한다.",
+        "cAnswers": [
+          "선분",
+          "가장 짧은 것"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "선분",
+            "equivalentAnswers": [
+              "선분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "가장 짧은 것",
+            "equivalentAnswers": [
+              "가장 짧은 것",
+              "가장 짧은 길"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "가장 짧은 것",
+            "accept": [
+              "가장 짧은 길"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "선분"
+          ],
+          [
+            "가장 짧은 것",
+            "가장 짧은 길"
+          ]
+        ],
+        "proposalFingerprint": "f10eb7d5cf7029d33109f61b08ff2656fe792b6e205fbd423a24fea94afd49a5"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-01-c1",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "사건",
+        "kind": "정의",
+        "level": "하",
+        "definition": "조건을 똑같이 두고 여러 번 해 볼 수 있는 실험 · 관찰에서 얻는 {결과}를 {사건}이라 한다.",
+        "example": {
+          "prompt": "주사위를 던져 짝수의 눈이 나오는 것은 무엇인가?",
+          "answer": "사건"
+        },
+        "studentC": "조건을 똑같이 두고 여러 번 해 볼 수 있는 실험 · 관찰에서 얻는 □를 □이라 한다.",
+        "answers": [
+          "결과",
+          "사건"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "확률 단원에서 말하는 '사건'의 뜻을 쓰고, 주사위 한 개를 던지는 실험에서 사건의 예를 하나 쓰시오.",
+        "bAnswer": "같은 조건에서 여러 번 반복할 수 있는 실험이나 관찰에서 나타나는 결과를 사건이라 한다. 예: 짝수의 눈이 나온다.",
+        "bGoal": "사건의 뜻과 예",
+        "bReason": "일상어 '사건'과 구별되도록 단원과 실험을 지정하고 예를 함께 요구함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 조건에서 반복할 수 있는 실험이나 관찰의 결과",
+              "실험·관찰에서 나타나는 결과"
+            ]
+          },
+          {
+            "anyOf": [
+              "짝수의 눈이 나온다",
+              "$3$의 눈이 나온다",
+              "$4$ 이상의 눈이 나온다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "정의의 핵심어 '결과'와 용어 '사건'이 짧은 문장에 분명해 유지",
+        "learningRole": "definition",
+        "roleReason": "실험·관찰의 결과로서의 사건의 뜻",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 724,
+        "part": "m2",
+        "sourceFingerprint": "fcd621b7490f006eff93d38c6025c86c7c9d85364c15afb065931122ad52955a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 724
+        },
+        "directReview": null,
+        "cFrozenSentence": "조건을 똑같이 두고 여러 번 해 볼 수 있는 실험 · 관찰에서 얻는 □를 □이라 한다.",
+        "cFrozenDefinition": "조건을 똑같이 두고 여러 번 해 볼 수 있는 실험 · 관찰에서 얻는 {결과}를 {사건}이라 한다.",
+        "cFrozenAnswers": [
+          "결과",
+          "사건"
+        ],
+        "cMarkedSentence": "조건을 똑같이 두고 여러 번 해 볼 수 있는 실험 · 관찰에서 얻는 {결과}를 {사건}이라 한다.",
+        "cSlotAnswers": [
+          "결과",
+          "사건"
+        ],
+        "cStudentSentence": "조건을 똑같이 두고 여러 번 해 볼 수 있는 실험 · 관찰에서 얻는 □를 □이라 한다.",
+        "cAnswers": [
+          "결과",
+          "사건"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "결과",
+            "equivalentAnswers": [
+              "결과"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "사건",
+            "equivalentAnswers": [
+              "사건"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "결과"
+          ],
+          [
+            "사건"
+          ]
+        ],
+        "proposalFingerprint": "3b1c10b86da75a4e81f6df0b5baed9d62331e2159389205deb7de81f8594a95c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-01-c2",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "경우의 수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "어떤 사건이 일어날 수 있는 경우를 빠짐없이 센 {가짓수}가 {경우의 수}이다.",
+        "example": {
+          "prompt": "주사위를 던져 짝수의 눈이 나오는 경우의 수",
+          "answer": "$3$"
+        },
+        "studentC": "어떤 사건이 일어날 수 있는 경우를 빠짐없이 센 □가 □이다.",
+        "answers": [
+          "가짓수",
+          "경우의 수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "'경우의 수'의 뜻을 쓰고, 주사위 한 개를 던질 때 $3$의 배수의 눈이 나오는 경우의 수를 구하시오.",
+        "bAnswer": "어떤 사건이 일어날 수 있는 경우를 빠짐없이 센 가짓수이다. $3$의 배수의 눈은 $3$, $6$이므로 경우의 수는 $2$이다.",
+        "bGoal": "경우의 수의 뜻과 간단한 적용",
+        "bReason": "정의만 되풀이하지 않도록 뜻과 짧은 적용을 함께 묻도록 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사건이 일어나는 경우를 빠짐없이 센 가짓수",
+              "사건이 일어날 수 있는 경우의 개수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'가짓수'와 용어 이름을 짧게 확인하는 분명한 정의 빈칸이라 유지",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "사건이 일어나는 가짓수로서의 경우의 수",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 725,
+        "part": "m2",
+        "sourceFingerprint": "857c1f293c6ddbb67bc43b4e9085fdba5c2163e2ee9b33eb311e8b4fe6af247e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 725
+        },
+        "directReview": null,
+        "cFrozenSentence": "어떤 사건이 일어날 수 있는 경우를 빠짐없이 센 □가 □이다.",
+        "cFrozenDefinition": "어떤 사건이 일어날 수 있는 경우를 빠짐없이 센 {가짓수}가 {경우의 수}이다.",
+        "cFrozenAnswers": [
+          "가짓수",
+          "경우의 수"
+        ],
+        "cMarkedSentence": "어떤 사건이 일어날 수 있는 경우를 빠짐없이 센 {가짓수}가 {경우의 수}이다.",
+        "cSlotAnswers": [
+          "가짓수",
+          "경우의 수"
+        ],
+        "cStudentSentence": "어떤 사건이 일어날 수 있는 경우를 빠짐없이 센 □가 □이다.",
+        "cAnswers": [
+          "가짓수",
+          "경우의 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가짓수",
+            "equivalentAnswers": [
+              "가짓수",
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "경우의 수",
+            "equivalentAnswers": [
+              "경우의 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "가짓수",
+            "accept": [
+              "개수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가짓수",
+            "개수"
+          ],
+          [
+            "경우의 수"
+          ]
+        ],
+        "proposalFingerprint": "3307bea32d057a39536517c651fa49da5a0c0a867dfc3c7accf95621553012b8"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-01-c3",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "경우를 세는 방법",
+        "kind": "방법",
+        "level": "중",
+        "definition": "경우를 셀 때는 {중복}되거나 {빠지는} 것이 없도록 나뭇가지 그림이나 표로 차례대로 적는다.",
+        "studentC": "경우를 셀 때는 □되거나 □ 것이 없도록 나뭇가지 그림이나 표로 차례대로 적는다.",
+        "answers": [
+          "중복",
+          "빠지는"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "경우의 수를 셀 때 나뭇가지 그림이나 표를 이용해 차례대로 적는 까닭을 쓰시오.",
+        "bAnswer": "같은 경우를 두 번 세거나 어떤 경우를 빠뜨리는 일이 없도록 하기 위해서이다.",
+        "bGoal": "체계적으로 세는 이유 이해",
+        "bReason": "방법 이름 대신 그 방법을 쓰는 목적을 묻도록 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "중복되지 않게",
+              "같은 경우를 두 번 세지 않게"
+            ]
+          },
+          {
+            "anyOf": [
+              "빠뜨리지 않게",
+              "빠지는 경우가 없게"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "중복과 누락이라는 두 핵심이 짧은 빈칸으로 드러나 유지",
+        "learningRole": "reason",
+        "roleReason": "나뭇가지 그림·표를 쓰는 목적",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 726,
+        "part": "m2",
+        "sourceFingerprint": "598daf75ff932e1b7a8048541b881b7291e37c0066ff48d4cfe1015d7534cd15",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 726
+        },
+        "directReview": null,
+        "cFrozenSentence": "경우를 셀 때는 □되거나 □ 것이 없도록 나뭇가지 그림이나 표로 차례대로 적는다.",
+        "cFrozenDefinition": "경우를 셀 때는 {중복}되거나 {빠지는} 것이 없도록 나뭇가지 그림이나 표로 차례대로 적는다.",
+        "cFrozenAnswers": [
+          "중복",
+          "빠지는"
+        ],
+        "cMarkedSentence": "경우를 셀 때는 {중복}되거나 {빠지는} 것이 없도록 나뭇가지 그림이나 표로 차례대로 적는다.",
+        "cSlotAnswers": [
+          "중복",
+          "빠지는"
+        ],
+        "cStudentSentence": "경우를 셀 때는 □되거나 □ 것이 없도록 나뭇가지 그림이나 표로 차례대로 적는다.",
+        "cAnswers": [
+          "중복",
+          "빠지는"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중복",
+            "equivalentAnswers": [
+              "중복"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빠지는",
+            "equivalentAnswers": [
+              "빠지는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중복"
+          ],
+          [
+            "빠지는"
+          ]
+        ],
+        "proposalFingerprint": "1c1916ad942dd5a0d6b0627377f9bbbae18265d3371cb0e32ae007cd8fc724a3"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-01-c4",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "사건 $A$ 또는 사건 $B$가 일어나는 경우의 수",
+        "kind": "법칙",
+        "level": "중",
+        "definition": "두 사건이 {함께 일어나는 일이 없을} 때, 둘 중 하나가 일어나는 경우의 수는 각 경우의 수를 {더한} 값이다.",
+        "example": {
+          "prompt": "빵 $2$종류 또는 과자 $3$종류 중 하나를 고르는 경우의 수",
+          "answer": "$5$"
+        },
+        "studentC": "두 사건이 □ 때, 둘 중 하나가 일어나는 경우의 수는 각 경우의 수를 □ 값이다.",
+        "answers": [
+          "함께 일어나는 일이 없을",
+          "더한"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "두 사건 $A$, $B$가 동시에 일어나지 않는다. 사건 $A$가 일어나는 경우의 수가 $m$, 사건 $B$가 일어나는 경우의 수가 $n$일 때, 사건 $A$ 또는 사건 $B$가 일어나는 경우의 수를 $m$, $n$으로 나타내시오.",
+        "bAnswer": "$m+n$",
+        "bGoal": "합의 법칙",
+        "bReason": "동시에 일어나지 않는 조건과 문자 $m$, $n$을 주어 식으로 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$m+n$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건 '함께 일어나지 않음'과 '더함'이 짧게 대응되어 유지",
+        "learningRole": "procedure",
+        "roleReason": "겹치지 않는 사건의 경우의 수를 더하는 법칙",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 727,
+        "part": "m2",
+        "sourceFingerprint": "a8c2d9b48971359b8a1671eb5e32aeb7348fd9cfc3f76002d3c0bc9a94b2342e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 727
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 사건이 □ 때, 둘 중 하나가 일어나는 경우의 수는 각 경우의 수를 □ 값이다.",
+        "cFrozenDefinition": "두 사건이 {함께 일어나는 일이 없을} 때, 둘 중 하나가 일어나는 경우의 수는 각 경우의 수를 {더한} 값이다.",
+        "cFrozenAnswers": [
+          "함께 일어나는 일이 없을",
+          "더한"
+        ],
+        "cMarkedSentence": "두 사건이 {함께 일어나는 일이 없을} 때, 둘 중 하나가 일어나는 경우의 수는 각 경우의 수를 {더한} 값이다.",
+        "cSlotAnswers": [
+          "함께 일어나는 일이 없을",
+          "더한"
+        ],
+        "cStudentSentence": "두 사건이 □ 때, 둘 중 하나가 일어나는 경우의 수는 각 경우의 수를 □ 값이다.",
+        "cAnswers": [
+          "함께 일어나는 일이 없을",
+          "더한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "함께 일어나는 일이 없을",
+            "equivalentAnswers": [
+              "함께 일어나는 일이 없을",
+              "동시에 일어나지 않을"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더한",
+            "equivalentAnswers": [
+              "더한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "함께 일어나는 일이 없을",
+            "accept": [
+              "동시에 일어나지 않을"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "함께 일어나는 일이 없을",
+            "동시에 일어나지 않을"
+          ],
+          [
+            "더한"
+          ]
+        ],
+        "proposalFingerprint": "0699fd04fe68712b66af637685ed0d536c0696d2b09c88e27d557823f601b29e"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-01-c5",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "두 사건 $A$, $B$가 동시에 일어나는 경우의 수",
+        "kind": "법칙",
+        "level": "중",
+        "definition": "한 사건의 {각 경우마다} 다른 사건의 경우의 수가 똑같으면, 둘이 잇달아 일어나는 경우의 수는 두 수를 {곱한} 값이다.",
+        "example": {
+          "prompt": "상의 $2$벌, 하의 $3$벌을 하나씩 짝짓는 경우의 수",
+          "answer": "$6$"
+        },
+        "studentC": "한 사건의 □ 다른 사건의 경우의 수가 똑같으면, 둘이 잇달아 일어나는 경우의 수는 두 수를 □ 값이다.",
+        "answers": [
+          "각 경우마다",
+          "곱한"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "사건 $A$가 일어나는 경우의 수가 $m$이고, 그 각각에 대하여 사건 $B$가 일어나는 경우의 수가 $n$이다. 두 사건 $A$와 $B$가 동시에 일어나는 경우의 수를 $m$, $n$으로 나타내시오.",
+        "bAnswer": "$m\\times n$",
+        "bGoal": "곱의 법칙",
+        "bReason": "'각각에 대하여' 조건과 문자를 주어 곱의 법칙을 식으로 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$m\\times n$",
+              "$mn$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건 '각 경우마다'와 '곱함'이 짧은 문장에 분명해 유지",
+        "learningRole": "procedure",
+        "roleReason": "각 경우마다 같은 수가 이어질 때 곱하는 법칙",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 728,
+        "part": "m2",
+        "sourceFingerprint": "a2d52bc919f797c037ffc3b32480f807572f89a93bfa9e0144074b625dc63b17",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 728
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 사건의 □ 다른 사건의 경우의 수가 똑같으면, 둘이 잇달아 일어나는 경우의 수는 두 수를 □ 값이다.",
+        "cFrozenDefinition": "한 사건의 {각 경우마다} 다른 사건의 경우의 수가 똑같으면, 둘이 잇달아 일어나는 경우의 수는 두 수를 {곱한} 값이다.",
+        "cFrozenAnswers": [
+          "각 경우마다",
+          "곱한"
+        ],
+        "cMarkedSentence": "한 사건의 {각 경우마다} 다른 사건의 경우의 수가 똑같으면, 둘이 잇달아 일어나는 경우의 수는 두 수를 {곱한} 값이다.",
+        "cSlotAnswers": [
+          "각 경우마다",
+          "곱한"
+        ],
+        "cStudentSentence": "한 사건의 □ 다른 사건의 경우의 수가 똑같으면, 둘이 잇달아 일어나는 경우의 수는 두 수를 □ 값이다.",
+        "cAnswers": [
+          "각 경우마다",
+          "곱한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "각 경우마다",
+            "equivalentAnswers": [
+              "각 경우마다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱한",
+            "equivalentAnswers": [
+              "곱한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "각 경우마다"
+          ],
+          [
+            "곱한"
+          ]
+        ],
+        "proposalFingerprint": "ee93ccdbadb8c013f69ff1d6c8b76f7aa3ec4fdb5bc8a2d4df68743e499f0da5"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-01-c6",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "더할 때와 곱할 때 가르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "겹치지 않는 두 갈래 가운데 {하나만} 고르면 각 경우의 수를 더하고, 앞의 각 경우마다 뒤의 경우의 수가 같은 두 가지를 {잇달아 모두} 고르면 곱한다.",
+        "studentC": "겹치지 않는 두 갈래 가운데 □ 고르면 각 경우의 수를 더하고, 앞의 각 경우마다 뒤의 경우의 수가 같은 두 가지를 □ 고르면 곱한다.",
+        "answers": [
+          "하나만",
+          "잇달아 모두"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "빵 $2$종류와 우유 $3$종류가 있다. ㉠ 빵이나 우유 중 한 가지만 고르는 경우의 수와 ㉡ 빵과 우유를 하나씩 모두 고르는 경우의 수를 각각 구하고, ㉠과 ㉡에서 계산 방법이 다른 까닭을 쓰시오.",
+        "bAnswer": "㉠ $2+3=5$, ㉡ $2\\times3=6$이다. ㉠은 겹치지 않는 두 종류 중 하나만 고르므로 더하고, ㉡은 빵의 각 경우마다 우유를 $3$가지씩 잇달아 고르므로 곱한다.",
+        "bGoal": "더할 때와 곱할 때 구별하기",
+        "bReason": "추상 비교만으로는 모호해 같은 재료로 두 상황을 대비시켜 구별 기준을 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "㉠ $5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "㉡ $6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "하나만 고르면 더하고 하나씩 모두 고르면 곱한다",
+              "한 가지만 고르면 합, 잇달아 모두 고르면 곱"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'하나만'과 '잇달아 모두'의 대비가 짧은 빈칸으로 분명해 유지",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "상황에 따라 합과 곱을 고르는 기준",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 729,
+        "part": "m2",
+        "sourceFingerprint": "8294004df08158d16a90297cdef033a822aa1a6ba20b904c628d25e912885705",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 729
+        },
+        "directReview": null,
+        "cFrozenSentence": "겹치지 않는 두 갈래 가운데 □ 고르면 각 경우의 수를 더하고, 앞의 각 경우마다 뒤의 경우의 수가 같은 두 가지를 □ 고르면 곱한다.",
+        "cFrozenDefinition": "겹치지 않는 두 갈래 가운데 {하나만} 고르면 각 경우의 수를 더하고, 앞의 각 경우마다 뒤의 경우의 수가 같은 두 가지를 {잇달아 모두} 고르면 곱한다.",
+        "cFrozenAnswers": [
+          "하나만",
+          "잇달아 모두"
+        ],
+        "cMarkedSentence": "겹치지 않는 두 갈래 가운데 {하나만} 고르면 각 경우의 수를 더하고, 앞의 각 경우마다 뒤의 경우의 수가 같은 두 가지를 {잇달아 모두} 고르면 곱한다.",
+        "cSlotAnswers": [
+          "하나만",
+          "잇달아 모두"
+        ],
+        "cStudentSentence": "겹치지 않는 두 갈래 가운데 □ 고르면 각 경우의 수를 더하고, 앞의 각 경우마다 뒤의 경우의 수가 같은 두 가지를 □ 고르면 곱한다.",
+        "cAnswers": [
+          "하나만",
+          "잇달아 모두"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "하나만",
+            "equivalentAnswers": [
+              "하나만"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "잇달아 모두",
+            "equivalentAnswers": [
+              "잇달아 모두"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "하나만"
+          ],
+          [
+            "잇달아 모두"
+          ]
+        ],
+        "proposalFingerprint": "ea602e8f6c2147c6f53b03d6feff83e637275fc3f16b086dfc842fdbbb9d9451"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-01-c7",
+        "section": "중2::9. 확률::경우의 수",
+        "term": "겹치는 경우가 있을 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 사건에 {공통인 경우}가 있으면, 각 경우의 수를 더한 뒤 겹친 만큼 {뺀다}.",
+        "example": {
+          "prompt": "$1$부터 $10$까지의 수 중 $2$의 배수 또는 $5$의 배수의 개수",
+          "answer": "$6$"
+        },
+        "studentC": "두 사건에 □가 있으면, 각 경우의 수를 더한 뒤 겹친 만큼 □.",
+        "answers": [
+          "공통인 경우",
+          "뺀다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-01-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$부터 $10$까지의 자연수 중에서 $2$의 배수 또는 $5$의 배수인 수의 개수를 구하고, $2$의 배수의 개수와 $5$의 배수의 개수를 단순히 더하면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "$5+2-1=6$이다. $10$은 $2$의 배수이면서 $5$의 배수라 두 번 세어지므로 겹친 $1$개를 한 번 뺀다.",
+        "bGoal": "겹치는 경우를 빼서 세기",
+        "bReason": "겹침이 실제로 생기는 예를 주어 결과와 빼는 이유를 함께 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$이 두 번 세어져 한 번 뺀다",
+              "두 조건을 모두 만족하는 수가 겹쳐 그만큼 뺀다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "공통인 경우와 빼기라는 두 핵심이 짧게 드러나 유지",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "공통인 경우를 빼서 또는의 경우의 수 구하기",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 730,
+        "part": "m2",
+        "sourceFingerprint": "036c1eeaef171dad1d2b811b5fb3ebbc4bda3b9d9bc662e83a5d9eacedb2d553",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 730
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 사건에 □가 있으면, 각 경우의 수를 더한 뒤 겹친 만큼 □.",
+        "cFrozenDefinition": "두 사건에 {공통인 경우}가 있으면, 각 경우의 수를 더한 뒤 겹친 만큼 {뺀다}.",
+        "cFrozenAnswers": [
+          "공통인 경우",
+          "뺀다"
+        ],
+        "cMarkedSentence": "두 사건에 {공통인 경우}가 있으면, 각 경우의 수를 더한 뒤 겹친 만큼 {뺀다}.",
+        "cSlotAnswers": [
+          "공통인 경우",
+          "뺀다"
+        ],
+        "cStudentSentence": "두 사건에 □가 있으면, 각 경우의 수를 더한 뒤 겹친 만큼 □.",
+        "cAnswers": [
+          "공통인 경우",
+          "뺀다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공통인 경우",
+            "equivalentAnswers": [
+              "공통인 경우",
+              "겹치는 경우"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "뺀다",
+            "equivalentAnswers": [
+              "뺀다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "공통인 경우",
+            "accept": [
+              "겹치는 경우"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공통인 경우",
+            "겹치는 경우"
+          ],
+          [
+            "뺀다"
+          ]
+        ],
+        "proposalFingerprint": "ec3da7c6dfbbe0a2989bea2433f4755be42edab7286d5a7f9c8a0e3c4f0d3133"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-02-c1",
+        "section": "중2::9. 확률::여러 가지 경우의 수",
+        "term": "한 줄로 세우는 경우의 수",
+        "kind": "공식",
+        "level": "하",
+        "definition": "$n$명이 한 줄로 서는 경우의 수는 $n$에서 시작해 {$1$씩 줄여 가며} $1$까지 모두 {곱한} 값이다.",
+        "example": {
+          "prompt": "$3$명이 한 줄로 서는 경우의 수",
+          "answer": "$6$"
+        },
+        "studentC": "$n$명이 한 줄로 서는 경우의 수는 $n$에서 시작해 □ $1$까지 모두 □ 값이다.",
+        "answers": [
+          "$1$씩 줄여 가며",
+          "곱한"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-02-c1",
+        "learningRole": "procedure",
+        "roleReason": "자리를 차례로 채우며 후보 수를 곱하는 절차",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 다른 $n$명이 한 줄로 서는 경우의 수를 $n$을 써서 곱의 꼴로 나타내시오. 또 맨 앞자리부터 차례로 채운다고 생각하여 그렇게 곱하는 이유를 쓰시오.",
+        "bAnswer": "경우의 수는 $n\\times(n-1)\\times(n-2)\\times\\cdots\\times2\\times1$이다. 맨 앞자리에는 $n$명이 올 수 있다. 다음 자리에는 이미 선 사람을 뺀 $n-1$명이 올 수 있고, 마지막 자리에는 남은 $1$명만 올 수 있다. 각 자리의 선택이 잇달아 일어나므로 곱한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$n\\times(n-1)\\times\\cdots\\times2\\times1$",
+              "$n$부터 $1$까지 $1$씩 줄어드는 수를 모두 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 자리를 채울 때마다 남은 사람이 한 명씩 줄어든다",
+              "이미 선 사람은 다음 자리에 설 수 없어 후보가 $1$씩 준다"
+            ]
+          }
+        ],
+        "bGoal": "$n$명을 줄 세우는 곱 공식과 그 이유",
+        "bReason": "사람이 서로 다르다는 조건과 자리 채우기 관점을 넣어 공식과 이유를 함께 묻는다.",
+        "cDecision": "keep",
+        "cReason": "$n$에서 $1$까지 줄어드는 과정과 곱셈을 각각 묻는 분명한 두 빈칸이다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 731,
+        "part": "m2",
+        "sourceFingerprint": "9e9111082915936e3237b2735fe3dbe95fd66cb0441a3b9053913a7e38931fb9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 731
+        },
+        "directReview": null,
+        "cFrozenSentence": "$n$명이 한 줄로 서는 경우의 수는 $n$에서 시작해 □ $1$까지 모두 □ 값이다.",
+        "cFrozenDefinition": "$n$명이 한 줄로 서는 경우의 수는 $n$에서 시작해 {$1$씩 줄여 가며} $1$까지 모두 {곱한} 값이다.",
+        "cFrozenAnswers": [
+          "$1$씩 줄여 가며",
+          "곱한"
+        ],
+        "cMarkedSentence": "$n$명이 한 줄로 서는 경우의 수는 $n$에서 시작해 {$1$씩 줄여 가며} $1$까지 모두 {곱한} 값이다.",
+        "cSlotAnswers": [
+          "$1$씩 줄여 가며",
+          "곱한"
+        ],
+        "cStudentSentence": "$n$명이 한 줄로 서는 경우의 수는 $n$에서 시작해 □ $1$까지 모두 □ 값이다.",
+        "cAnswers": [
+          "$1$씩 줄여 가며",
+          "곱한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$씩 줄여 가며",
+            "equivalentAnswers": [
+              "$1$씩 줄여 가며"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱한",
+            "equivalentAnswers": [
+              "곱한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$씩 줄여 가며"
+          ],
+          [
+            "곱한"
+          ]
+        ],
+        "proposalFingerprint": "51f2225e3e3fdb8ece9b7ab7d0064e4a948d4c2cbbda678bfa3e92be230cbf29"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-02-c2",
+        "section": "중2::9. 확률::여러 가지 경우의 수",
+        "term": "일부만 뽑아 한 줄로 세우기",
+        "kind": "공식",
+        "level": "중",
+        "definition": "$n$명 중 $2$명을 뽑아 한 줄로 세우는 경우의 수는 $n\\times(n-1)$이다. 첫 자리를 정하면 둘째 자리에는 {한 명이 줄어든} 수만큼 올 수 있다.",
+        "example": {
+          "prompt": "$5$명 중 $2$명을 뽑아 한 줄로 세우는 경우의 수",
+          "answer": "$20$"
+        },
+        "studentC": "$n$명 중 $2$명을 뽑아 한 줄로 세우는 경우의 수는 $n\\times(n-1)$이다. 첫 자리를 정하면 둘째 자리에는 □ 수만큼 올 수 있다.",
+        "answers": [
+          "한 명이 줄어든"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-02-c2",
+        "learningRole": "procedure",
+        "roleReason": "둘째 자리 후보가 $n-1$명이 되는 계산",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 다른 $n$명 중 $2$명을 뽑아 한 줄로 세우는 경우의 수를 $n$으로 나타내시오. 또 둘째 자리에 올 수 있는 사람 수가 그렇게 되는 이유를 쓰시오.",
+        "bAnswer": "경우의 수는 $n\\times(n-1)$이다. 첫째 자리에 선 사람은 다시 설 수 없으므로 둘째 자리에는 $n-1$명이 올 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$n\\times(n-1)$",
+              "$n(n-1)$",
+              "$n^2-n$"
+            ]
+          },
+          {
+            "anyOf": [
+              "첫째 자리에 선 사람을 빼므로 둘째 자리 후보는 $n-1$명이다",
+              "둘째 자리에는 한 명이 줄어든 수만큼 올 수 있다"
+            ]
+          }
+        ],
+        "bGoal": "일부를 뽑아 줄 세우는 경우의 수와 그 이유",
+        "bReason": "뽑는 인원 $2$명과 서로 다르다는 조건을 밝혀 식과 둘째 자리 후보의 이유를 묻는다.",
+        "cDecision": "keep",
+        "cReason": "식이 주어진 상태에서 둘째 자리 후보가 줄어드는 이유를 묻는 좋은 빈칸이다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 732,
+        "part": "m2",
+        "sourceFingerprint": "504a2ee3a8034205af79db0b2708c24ac83ba067ac34556edba0c263bdeb90cf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 732
+        },
+        "directReview": null,
+        "cFrozenSentence": "$n$명 중 $2$명을 뽑아 한 줄로 세우는 경우의 수는 $n\\times(n-1)$이다. 첫 자리를 정하면 둘째 자리에는 □ 수만큼 올 수 있다.",
+        "cFrozenDefinition": "$n$명 중 $2$명을 뽑아 한 줄로 세우는 경우의 수는 $n\\times(n-1)$이다. 첫 자리를 정하면 둘째 자리에는 {한 명이 줄어든} 수만큼 올 수 있다.",
+        "cFrozenAnswers": [
+          "한 명이 줄어든"
+        ],
+        "cMarkedSentence": "$n$명 중 $2$명을 뽑아 한 줄로 세우는 경우의 수는 $n\\times(n-1)$이다. 첫 자리를 정하면 둘째 자리에는 {한 명이 줄어든} 수만큼 올 수 있다.",
+        "cSlotAnswers": [
+          "한 명이 줄어든"
+        ],
+        "cStudentSentence": "$n$명 중 $2$명을 뽑아 한 줄로 세우는 경우의 수는 $n\\times(n-1)$이다. 첫 자리를 정하면 둘째 자리에는 □ 수만큼 올 수 있다.",
+        "cAnswers": [
+          "한 명이 줄어든"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 명이 줄어든",
+            "equivalentAnswers": [
+              "한 명이 줄어든",
+              "$1$명이 줄어든",
+              "한 명 적은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "한 명이 줄어든",
+            "accept": [
+              "$1$명이 줄어든",
+              "한 명 적은"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "한 명이 줄어든",
+            "$1$명이 줄어든",
+            "한 명 적은"
+          ]
+        ],
+        "proposalFingerprint": "6833cb2c98544b8c3facc30f5e4f152dfe2bfcf83deebfd1ad074ec7ee610d42"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-02-c4",
+        "section": "중2::9. 확률::여러 가지 경우의 수",
+        "term": "대표를 뽑는 경우의 수 — 자격이 다를 때",
+        "kind": "공식",
+        "level": "중",
+        "definition": "$n$명 중 자격이 {다른} 대표 $2$명을 뽑는 경우의 수는 $n\\times(n-1)$이다. 누가 어느 {자리}를 맡는지가 구별되기 때문이다.",
+        "example": {
+          "prompt": "$4$명 중 회장 $1$명, 부회장 $1$명을 뽑는 경우의 수",
+          "answer": "$12$"
+        },
+        "studentC": "$n$명 중 자격이 □ 대표 $2$명을 뽑는 경우의 수는 $n\\times(n-1)$이다. 누가 어느 □를 맡는지가 구별되기 때문이다.",
+        "answers": [
+          "다른",
+          "자리"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-02-c4",
+        "learningRole": "reason",
+        "roleReason": "역할이 구별되어 순서를 따지는 이유",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 다른 $n$명 중 회장 $1$명과 부회장 $1$명을 뽑는 경우의 수를 $n$으로 나타내시오. 또 같은 두 사람이 뽑혔더라도 따로 세어야 하는 경우가 있는 이유를 쓰시오.",
+        "bAnswer": "경우의 수는 $n\\times(n-1)$이다. 갑이 회장이고 을이 부회장인 경우와 을이 회장이고 갑이 부회장인 경우는 누가 어느 자리를 맡는지가 다르다. 따라서 서로 다른 결과로 센다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$n\\times(n-1)$",
+              "$n(n-1)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 사람이 맡은 자리를 서로 바꾸면 다른 결과가 된다",
+              "누가 회장이고 누가 부회장인지가 구별된다"
+            ]
+          }
+        ],
+        "bGoal": "자격이 다른 대표 뽑기와 순서 구별",
+        "bReason": "자격이 다르다는 말을 회장·부회장으로 구체화하고, 같은 두 사람을 따로 세는 이유를 묻는다.",
+        "cDecision": "keep",
+        "cReason": "자격이 다르다는 조건과 자리 구별이라는 이유를 각각 묻는 분명한 빈칸이다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 733,
+        "part": "m2",
+        "sourceFingerprint": "257e648728e54cfde09dd6e31ad6a5e96e82ce5323e55ae07f59e015a712bb9e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 733
+        },
+        "directReview": null,
+        "cFrozenSentence": "$n$명 중 자격이 □ 대표 $2$명을 뽑는 경우의 수는 $n\\times(n-1)$이다. 누가 어느 □를 맡는지가 구별되기 때문이다.",
+        "cFrozenDefinition": "$n$명 중 자격이 {다른} 대표 $2$명을 뽑는 경우의 수는 $n\\times(n-1)$이다. 누가 어느 {자리}를 맡는지가 구별되기 때문이다.",
+        "cFrozenAnswers": [
+          "다른",
+          "자리"
+        ],
+        "cMarkedSentence": "$n$명 중 자격이 {다른} 대표 $2$명을 뽑는 경우의 수는 $n\\times(n-1)$이다. 누가 어느 {자리}를 맡는지가 구별되기 때문이다.",
+        "cSlotAnswers": [
+          "다른",
+          "자리"
+        ],
+        "cStudentSentence": "$n$명 중 자격이 □ 대표 $2$명을 뽑는 경우의 수는 $n\\times(n-1)$이다. 누가 어느 □를 맡는지가 구별되기 때문이다.",
+        "cAnswers": [
+          "다른",
+          "자리"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다른",
+            "equivalentAnswers": [
+              "다른"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "자리",
+            "equivalentAnswers": [
+              "자리",
+              "역할"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "자리",
+            "accept": [
+              "역할"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다른"
+          ],
+          [
+            "자리",
+            "역할"
+          ]
+        ],
+        "proposalFingerprint": "620754cadc7bed10550afaba5a4a24f9bb7d77d2276f0643eec45f9790dc9c89"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-03-c1",
+        "section": "중2::9. 확률::확률의 뜻과 성질",
+        "term": "확률",
+        "kind": "정의",
+        "level": "하",
+        "definition": "같은 실험을 아주 여러 번 되풀이하면 한 사건의 {상대도수}가 {일정한 값}에 가까워지는데, 그 값이 그 사건의 확률이다.",
+        "studentC": "같은 실험을 아주 여러 번 되풀이하면 한 사건의 □가 □에 가까워지는데, 그 값이 그 사건의 확률이다.",
+        "answers": [
+          "상대도수",
+          "일정한 값"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-03-c1",
+        "learningRole": "definition",
+        "roleReason": "상대도수가 가까워지는 값으로서의 확률",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 실험을 아주 여러 번 되풀이하는 상황을 이용하여, 한 사건의 확률이 무엇인지 설명하시오.",
+        "bAnswer": "실험 횟수를 늘려 가면 그 사건이 일어난 상대도수(일어난 횟수$\\div$전체 횟수)가 일정한 값에 가까워진다. 그 값이 그 사건의 확률이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사건이 일어난 상대도수",
+              "일어난 횟수를 전체 횟수로 나눈 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 값이 가까워지는 일정한 값이 확률이다"
+            ]
+          }
+        ],
+        "bGoal": "반복 실험으로 확률의 뜻 설명하기",
+        "bReason": "질문에 '상대도수'라는 말을 쓰지 않고, 반복 실험의 상황만 주어 핵심 개념을 학생이 떠올리게 한다.",
+        "cDecision": "keep",
+        "cReason": "상대도수와 일정한 값이라는 두 핵심 용어를 묻는 분명한 정의 빈칸이다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 734,
+        "part": "m2",
+        "sourceFingerprint": "06083b32341486a30c267d5b72952049eb63b53c1c3c6cf3caa0d82ea7fd74e8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 734
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 실험을 아주 여러 번 되풀이하면 한 사건의 □가 □에 가까워지는데, 그 값이 그 사건의 확률이다.",
+        "cFrozenDefinition": "같은 실험을 아주 여러 번 되풀이하면 한 사건의 {상대도수}가 {일정한 값}에 가까워지는데, 그 값이 그 사건의 확률이다.",
+        "cFrozenAnswers": [
+          "상대도수",
+          "일정한 값"
+        ],
+        "cMarkedSentence": "같은 실험을 아주 여러 번 되풀이하면 한 사건의 {상대도수}가 {일정한 값}에 가까워지는데, 그 값이 그 사건의 확률이다.",
+        "cSlotAnswers": [
+          "상대도수",
+          "일정한 값"
+        ],
+        "cStudentSentence": "같은 실험을 아주 여러 번 되풀이하면 한 사건의 □가 □에 가까워지는데, 그 값이 그 사건의 확률이다.",
+        "cAnswers": [
+          "상대도수",
+          "일정한 값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상대도수",
+            "equivalentAnswers": [
+              "상대도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "일정한 값",
+            "equivalentAnswers": [
+              "일정한 값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상대도수"
+          ],
+          [
+            "일정한 값"
+          ]
+        ],
+        "proposalFingerprint": "84ddd7f36f492a620812ce0d9438bc5b94952a1ea4272d2f6d3ed0d28eeb0d97"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-03-c2",
+        "section": "중2::9. 확률::확률의 뜻과 성질",
+        "term": "사건 $A$가 일어날 확률",
+        "kind": "공식",
+        "level": "하",
+        "definition": "모든 경우가 똑같은 가능성으로 일어난다면, 확률은 그 사건에 해당하는 {경우의 수}를 {모든 경우의 수}로 나눈 값이다.",
+        "example": {
+          "prompt": "주사위를 던져 짝수의 눈이 나올 확률",
+          "answer": "$\\frac{1}{2}$"
+        },
+        "studentC": "모든 경우가 똑같은 가능성으로 일어난다면, 확률은 그 사건에 해당하는 □를 □로 나눈 값이다.",
+        "answers": [
+          "경우의 수",
+          "모든 경우의 수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-03-c2",
+        "learningRole": "definition",
+        "roleReason": "같은 가능성일 때 경우의 수로 확률 구하기",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 경우가 같은 가능성으로 일어나는 실험에서 사건 $A$가 일어날 확률을 구하는 방법을 쓰시오.",
+        "bAnswer": "사건 $A$가 일어나는 경우의 수를 모든 경우의 수로 나눈다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사건 $A$가 일어나는 경우의 수를 모든 경우의 수로 나눈다",
+              "$\\frac{(\\text{사건 }A\\text{가 일어나는 경우의 수})}{(\\text{모든 경우의 수})}$"
+            ]
+          }
+        ],
+        "bGoal": "경우의 수로 확률 구하기",
+        "bReason": "같은 가능성이라는 전제를 밝히고, 나누는 수와 나뉘는 수를 바르게 쓰는지 확인한다.",
+        "cDecision": "keep",
+        "cReason": "분자와 분모에 해당하는 경우의 수를 구별해 묻는 분명한 빈칸이다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 735,
+        "part": "m2",
+        "sourceFingerprint": "936a8ce422ee60721cdb15f1dab8a426dc101dbc037814c5463e652c377254c1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 735
+        },
+        "directReview": null,
+        "cFrozenSentence": "모든 경우가 똑같은 가능성으로 일어난다면, 확률은 그 사건에 해당하는 □를 □로 나눈 값이다.",
+        "cFrozenDefinition": "모든 경우가 똑같은 가능성으로 일어난다면, 확률은 그 사건에 해당하는 {경우의 수}를 {모든 경우의 수}로 나눈 값이다.",
+        "cFrozenAnswers": [
+          "경우의 수",
+          "모든 경우의 수"
+        ],
+        "cMarkedSentence": "모든 경우가 똑같은 가능성으로 일어난다면, 확률은 그 사건에 해당하는 {경우의 수}를 {모든 경우의 수}로 나눈 값이다.",
+        "cSlotAnswers": [
+          "경우의 수",
+          "모든 경우의 수"
+        ],
+        "cStudentSentence": "모든 경우가 똑같은 가능성으로 일어난다면, 확률은 그 사건에 해당하는 □를 □로 나눈 값이다.",
+        "cAnswers": [
+          "경우의 수",
+          "모든 경우의 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "경우의 수",
+            "equivalentAnswers": [
+              "경우의 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "모든 경우의 수",
+            "equivalentAnswers": [
+              "모든 경우의 수",
+              "전체 경우의 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모든 경우의 수",
+            "accept": [
+              "전체 경우의 수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "경우의 수"
+          ],
+          [
+            "모든 경우의 수",
+            "전체 경우의 수"
+          ]
+        ],
+        "proposalFingerprint": "cc30d42e811f1e4e49361e351f2bd9f14cda2174720f1c7edcd8b53a6b1a5798"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-09-03-c3",
+        "section": "중2::9. 확률::확률의 뜻과 성질",
+        "term": "확률의 성질 — 범위",
+        "kind": "성질",
+        "level": "중",
+        "definition": "확률 $p$는 어느 사건에서나 {$0$} 이상 {$1$} 이하이다.",
+        "studentC": "확률 $p$는 어느 사건에서나 □ 이상 □ 이하이다.",
+        "answers": [
+          "$0$",
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-09-03-c3",
+        "learningRole": "reason",
+        "roleReason": "확률이 $0$ 이상 $1$ 이하인 이유",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 경우가 같은 가능성으로 일어나는 실험에서 어떤 사건이 일어날 확률을 $p$라 하자. $p$의 값의 범위를 부등식으로 쓰고, 그 이유를 경우의 수를 이용해 설명하시오.",
+        "bAnswer": "$0\\le p\\le1$이다. 사건의 경우의 수는 $0$ 이상이고 모든 경우의 수보다 클 수 없다. 따라서 (사건의 경우의 수)$\\div$(모든 경우의 수)는 $0$ 이상 $1$ 이하이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0\\le p\\le1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "사건의 경우의 수는 $0$ 이상이고 모든 경우의 수 이하이다"
+            ]
+          }
+        ],
+        "bGoal": "확률의 범위와 그 이유",
+        "bReason": "범위만 외우지 않도록, 분자와 분모의 크기 관계로 이유를 쓰게 한다.",
+        "cDecision": "keep",
+        "cReason": "확률 범위의 양 끝값을 묻는 짧고 분명한 빈칸이다.",
+        "authorBatch": 51,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 736,
+        "part": "m2",
+        "sourceFingerprint": "dbe89381ced508954ef83d7493a5988a56704e2db50c073c67303a3cc26912c0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 736
+        },
+        "directReview": null,
+        "cFrozenSentence": "확률 $p$는 어느 사건에서나 □ 이상 □ 이하이다.",
+        "cFrozenDefinition": "확률 $p$는 어느 사건에서나 {$0$} 이상 {$1$} 이하이다.",
+        "cFrozenAnswers": [
+          "$0$",
+          "$1$"
+        ],
+        "cMarkedSentence": "확률 $p$는 어느 사건에서나 {$0$} 이상 {$1$} 이하이다.",
+        "cSlotAnswers": [
+          "$0$",
+          "$1$"
+        ],
+        "cStudentSentence": "확률 $p$는 어느 사건에서나 □ 이상 □ 이하이다.",
+        "cAnswers": [
+          "$0$",
+          "$1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "b7b7d5707c33b25cb67f519eb66342e2edb43a8a948d551f57deda423a905dc1"
+      }
+    }
+  ]
+}

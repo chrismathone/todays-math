@@ -1,0 +1,443 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 21,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q21",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "반원의 접선 길이를 측정한 기록에서 왼쪽 높이만 빠져 있다. 그림과 같이 지름 $\\overline{AB}$를 수평으로 놓고, 왼쪽 끝점을 $\\mathrm{A}$, 오른쪽 끝점을 $\\mathrm{B}$라 하였다. $\\overline{AD}$와 $\\overline{BC}$는 각각 $\\mathrm{A},\\mathrm{B}$에서의 접선이며, $\\mathrm{D}$와 $\\mathrm{C}$는 직선 $AB$의 위쪽, 즉 반원이 있는 쪽에 있다. $\\overline{CD}$는 반원에 $\\mathrm{E}$에서 접하고, $\\mathrm{E}$는 선분 $CD$의 두 끝점 사이에 있다. 또한 $\\overline{AD}>\\overline{BC}>0$이다.\n\n측정 기록\n∘ 지름 $\\overline{AB}$의 길이: $10\\,\\mathrm{cm}$\n∘ 오른쪽 접선 $\\overline{BC}$의 길이: $\\frac{25}{8}\\,\\mathrm{cm}$\n\n왼쪽 접선 $\\overline{AD}$의 길이를 구하고, 접선의 성질과 피타고라스 정리를 이용한 풀이 과정을 쓰시오.",
+  "choices": [],
+  "answer": "$8\\,\\mathrm{cm}$",
+  "solution": "원의 밖의 한 점에서 그은 두 접선의 길이는 같으므로 $\\overline{DE}=\\overline{DA}$, $\\overline{CE}=\\overline{CB}$이다. $\\mathrm{E}$가 선분 $CD$의 두 끝점 사이에 있으므로\n$\\overline{CD}=\\overline{DE}+\\overline{EC}=\\overline{AD}+\\overline{BC}$이다.\n접선은 접점의 반지름과 수직이므로 $\\overline{AD}$와 $\\overline{BC}$는 모두 $\\overline{AB}$에 수직이다. $\\mathrm{C}$에서 $\\overline{AD}$에 내린 수선의 발을 $\\mathrm{H}$라 하자. $\\overline{AD}>\\overline{BC}$이므로 $\\mathrm{H}$는 선분 $AD$의 내부에 있다. 사각형 $\\mathrm{ABCH}$는 직사각형이므로 $\\overline{HC}=\\overline{AB}=10\\,\\mathrm{cm}$, $\\overline{AH}=\\overline{BC}=\\frac{25}{8}\\,\\mathrm{cm}$이다.\n$\\overline{AD}=x\\,\\mathrm{cm}$라 하면 $\\overline{DH}=\\left(x-\\frac{25}{8}\\right)\\,\\mathrm{cm}$, $\\overline{CD}=\\left(x+\\frac{25}{8}\\right)\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{DHC}$에서 피타고라스 정리를 적용하면\n$\\left(x+\\frac{25}{8}\\right)^2=10^2+\\left(x-\\frac{25}{8}\\right)^2$이다.\n양변을 전개하여 정리하면 $\\frac{25}{2}x=100$이므로 $x=8$이다.\n따라서 왼쪽 접선 $\\overline{AD}$의 길이는 $8\\,\\mathrm{cm}$이다. 이는 $8>\\frac{25}{8}>0$을 만족한다.",
+  "score": 8,
+  "questionType": "서술형",
+  "facts": {
+    "unit": "cm",
+    "diameterAB": "10",
+    "rightTangentBC": "25/8",
+    "endpointOrder": "A는 왼쪽, B는 오른쪽",
+    "halfPlaneCondition": "C,D는 수평선 AB 위쪽의 반원이 있는 쪽",
+    "tangencies": [
+      "AD는 A에서 접한다",
+      "BC는 B에서 접한다",
+      "CD는 E에서 접한다"
+    ],
+    "E": "선분 CD의 두 끝점 사이에 있는 접점",
+    "heightOrder": "AD > BC > 0",
+    "target": "왼쪽 접선 AD의 길이와 풀이"
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 62,
+      "specSha256": "e1eb1787df56f758f8336984dd8826f954681530ecec1f75fc235aa9bdac106a",
+      "renderMode": "local-renderFigureSpec-strict",
+      "svgSha256": "ad84c6b289eef08dd2679624c2d7eb4279e97becb5e9cbe50c1921f06e573861",
+      "renderResult": {
+        "ok": true,
+        "strict": true,
+        "localOnly": true,
+        "typeset": true,
+        "droppedDimensions": []
+      }
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target"
+    ],
+    "before": "반원의 지름과 왼쪽 접선 높이를 주고 오른쪽 접선 길이를 구한다.",
+    "after": "측정 기록의 지름과 오른쪽 접선 높이를 주고 빠진 왼쪽 높이를 복구한다. 좌우 위치·같은 반평면·높이 순서·선분 CD 내부의 접점을 본문에서 명시한다.",
+    "sharedConcept": "한 외부점에서 그은 두 접선의 길이, 접선과 반지름의 수직 관계, 직사각형과 피타고라스 정리",
+    "sharedProcedure": "DE=DA, CE=CB와 E의 내부 조건으로 CD=AD+BC를 먼저 세운다. 두 접선 높이의 차와 지름으로 만든 직각삼각형에 피타고라스 정리를 적용해 일차방정식으로 미지의 높이를 구한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-16",
+      "9수04-12",
+      "9수02-05"
+    ],
+    "allowedProcedure": [
+      "같은 외부점에서 그은 접선 길이의 같음",
+      "E가 CD 내부라는 조건으로 CD=DE+EC=AD+BC 유도",
+      "접선과 반지름의 수직 관계로 AD∥BC 확인",
+      "C에서 AD에 수선을 내려 직사각형과 직각삼각형 구성",
+      "피타고라스 정리와 식의 전개",
+      "제곱항이 소거된 일차방정식 풀이"
+    ],
+    "forbiddenAvoided": [
+      "접선-할선 또는 할선-할선의 거듭제곱 정리",
+      "원과 비례에 관한 곱의 정리",
+      "원의 방정식·좌표를 이용한 학생용 접점 계산",
+      "미분·벡터·고등학교 삼각함수"
+    ],
+    "status": "author-proposed",
+    "standardEvidence": [
+      {
+        "code": "9수04-19",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4353,
+          "record_offset_in_uncompressed_stream": 219558,
+          "extracted_paragraph_1based": 894
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-16",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4333,
+          "record_offset_in_uncompressed_stream": 218866,
+          "extracted_paragraph_1based": 889
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-12",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4308,
+          "record_offset_in_uncompressed_stream": 217962,
+          "extracted_paragraph_1based": 883
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "gradeBandCaveat": "9수 성취기준은 중1~중3 학년군이며, 중3 지정은 v2의 중3 Unit/live family 제안과 함께 검토해야 한다. 학년군 코드만으로 개별 학년 승인으로 간주하지 않는다.",
+    "surfaces": {
+      "content": {
+        "status": "author-proposed",
+        "evidence": "반원·지름·접점·접선·수직 높이와 유리수 길이만 사용한다. E의 내부 조건과 높이 순서를 명시한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "서술형으로 보기 없음."
+      },
+      "figure": {
+        "status": "author-proposed",
+        "evidence": "정확한 반원과 실제 접점 E, 지름 양끝의 수직 접선, 공통 접선만 그린다. 주어진 BC만 치수로 적고 미지 AD는 적지 않는다. H와 보조선은 학생이 도입한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "정확한 정수 길이와 cm 단위."
+      },
+      "solution": {
+        "status": "author-proposed",
+        "evidence": "CD=AD+BC를 접선의 성질로 유도한 뒤 직사각형·피타고라스·전개·일차방정식만 사용한다."
+      },
+      "requiredProcedure": {
+        "status": "author-proposed",
+        "evidence": "접선-할선 곱, 원과 비례, 거듭제곱 정리를 쓰지 않는다. 접선 길이의 합과 높이 차로 직접 유도한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중학교 사각형의 성질·피타고라스 정리·유리수 계산·다항식 전개·일차방정식."
+      }
+    },
+    "gate": {
+      "scope": [
+        "content",
+        "choices",
+        "figure",
+        "answer",
+        "solution",
+        "requiredProcedure",
+        "prerequisites"
+      ],
+      "outOfGrade": "reject",
+      "unclear": "hold",
+      "independentGradeApproval": false
+    }
+  },
+  "sourceReference": {
+    "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-21",
+    "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+    "school": "범일중",
+    "questionNumber": 21,
+    "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+    "sourceContentSha256": "d3fcd3d376cc3fd415b847fff83307b3a86684e4af394d33e766a371cdfab1bd",
+    "sourceObservation": "반원 지름 AB=12cm, AD=10cm이고 AD·BC·CD가 접선이며 CD의 접점은 E다.",
+    "sharedConceptProcedure": "같은 외부점의 접선 길이를 이용해 CD를 두 수직 높이의 합으로 표현하고 직각삼각형 관계를 적용한다.",
+    "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+    "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q21",
+    "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+    "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+    "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "answerFreeContentSha256": "d3fcd3d376cc3fd415b847fff83307b3a86684e4af394d33e766a371cdfab1bd",
+    "referenceFigures": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q21.png",
+        "sha256": "459d488b81244e031d7625cbca7bda2927802a5d09854d26d50878dd645b2504",
+        "role": "source-reference-only"
+      }
+    ],
+    "sourceAnswersSolutionsAccessed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "서술형",
+    "score": 8,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-new-candidate-review",
+    "problemTypeProposal": "서술형",
+    "problemTypeStatus": "pending-new-candidate-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "familyKey": "mid:3-2|원과 직선|11",
+      "currentUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "currentRegistryMatch": {
+        "key": "3-2|원과 직선|11",
+        "grade": "중3",
+        "unitSection": "원의 접선",
+        "rpmBook": "3-2",
+        "rpmMinor": "원과 직선",
+        "rpmType": "11",
+        "rpmTitle": "반원에서의 접선"
+      },
+      "liveCount": 46,
+      "checkedAt": "2026-10-07 15:57:15.290971+00",
+      "evidence": "지름 양끝의 수직 접선과 공통 접선 CD를 가진 반원 구조가 유형11과 정확히 일치한다. 같은 외부점의 접선 길이와 직각삼각형 관계로 다른 높이를 정한다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수04-19",
+        "role": "primary-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4353,
+          "record_offset_in_uncompressed_stream": 219558,
+          "extracted_paragraph_1based": 894
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-16",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4333,
+          "record_offset_in_uncompressed_stream": 218866,
+          "extracted_paragraph_1based": 889
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수04-12",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4308,
+          "record_offset_in_uncompressed_stream": 217962,
+          "extracted_paragraph_1based": 883
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      },
+      {
+        "code": "9수02-05",
+        "role": "prerequisite-proposal",
+        "sourceId": "moe-2020-236-math-hwp",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "pdfLocator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "status": "expert-proposal-not-candidate-approval"
+      }
+    ],
+    "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+    "curriculumMethodProposal": "같은 외부점에서 그은 접선 길이의 같음 → E가 CD 내부라는 조건으로 CD=DE+EC=AD+BC 유도 → 접선과 반지름의 수직 관계로 AD∥BC 확인 → C에서 AD에 수선을 내려 직사각형과 직각삼각형 구성 → 피타고라스 정리와 식의 전개 → 제곱항이 소거된 일차방정식 풀이",
+    "curriculumSpecificHold": "새 후보 전체의 학년 적합성·Unit/live family 적합성·생성 규칙 일치에 대한 별도 검수 전이며 승인되지 않았다. preparation v2의 실제 출처 확인 보류도 유지한다.",
+    "sourceIdentityReview": {
+      "status": "pending-attestation",
+      "nominalSourceSchool": "범일중",
+      "nominalExamYear": 2025,
+      "observations": [
+        "PDF header2025; editorial footer26년",
+        "Filename school범일중; document anonymizedBI중"
+      ],
+      "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+    },
+    "generatorRuleReview": {
+      "status": "pending-semantic-match",
+      "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "historicalSourceSuggestions": [
+        "D:/todays-math/src/lib/middle/m3Tangent.ts:260",
+        "D:/todays-math/src/lib/middle/m3Tangent.ts:1081"
+      ]
+    },
+    "authoringStatus": "author-proposed",
+    "schoolNamePolicy": {
+      "actual": "범일중",
+      "display": "새봄누리중학교",
+      "role": "fictional-display-alias-only",
+      "originalOccurrencesInStem": 0,
+      "surfaces": [
+        "content",
+        "choices",
+        "tables",
+        "figureLabels",
+        "solution"
+      ],
+      "review": "pending-new-candidate",
+      "candidateDisplayOccurrences": 0
+    }
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "gradeCurriculum": "pending",
+    "equivalentConceptAndMethod": "pending",
+    "distinctPresentation": "pending",
+    "naturalKorean": "pending",
+    "mathematicalCorrectness": "pending",
+    "figure": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  },
+  "directUseAllowed": false
+}

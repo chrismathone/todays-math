@@ -1,0 +1,57 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "A": [
+      20,
+      150
+    ],
+    "B": [
+      200,
+      150
+    ],
+    "C": [
+      161.96152422706632,
+      8.03847577293368
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "BC": [
+      "B",
+      "C"
+    ],
+    "CA": [
+      "C",
+      "A"
+    ]
+  },
+  "angles": {
+    "a": {
+      "vertex": "A",
+      "points": [
+        "B",
+        "C"
+      ],
+      "radius": 22,
+      "label": "45^\\circ"
+    },
+    "b": {
+      "vertex": "B",
+      "points": [
+        "C",
+        "A"
+      ],
+      "radius": 22,
+      "label": "75^\\circ"
+    }
+  },
+  "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C"
+  }
+}

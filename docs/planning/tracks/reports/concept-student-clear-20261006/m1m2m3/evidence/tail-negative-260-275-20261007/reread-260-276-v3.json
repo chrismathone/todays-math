@@ -1,0 +1,143 @@
+{
+  "reader": "Codex direct actual normalized B/C/all answers/all criteria/generalDefinition rereading in tool output, no independent approval",
+  "readAt": "2026-10-07T11:44:54.238Z",
+  "candidateArtifact": {
+    "path": "candidates-260-276-v3.json",
+    "byteSha256": "6bbc902b82c9e7d17f90ea3663faaeb05bbcfc19b8cb2ffa83cca2392707a71b"
+  },
+  "actualOutput": {
+    "path": "after-260-276-v3.txt",
+    "byteSha256": "bd455a276fae86c5904d3db3d53d3efaf8ed6160134038aba42261258b38177a",
+    "truncated": false
+  },
+  "rows": [
+    {
+      "originalDisputeIndex": 260,
+      "id": "m2-01-06-xc24",
+      "candidateFingerprint": "2a03ec41c8c3393d5bf354d3bed8b1ec986efa77c0833d169147dd0019d26dad",
+      "candidateNormalizedHash": "dda585e66438a5a55afe328321444e58328e1493f3ed2d437327a64337178674",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 '나누는' 자리가 전체·원래로도 읽힐 수 있으므로 실제 나누는 식과 올바른 결과를 묻는다. 일반 설명에도 괄호가 없이 곱셈·나눗셈만 있는 경우라는 적용 조건을 보완한다. B의 오류 이유와 결과는 유지한다."
+    },
+    {
+      "originalDisputeIndex": 261,
+      "id": "m1-08-06-xc20",
+      "candidateFingerprint": "9e4522b3ae29a615b89fb57d08a37bd6c7b3964374356f5e380baaa4330e8532",
+      "candidateNormalizedHash": "709e52a554a8d5e8797b6a02e989fa980613a95e8968d4abb4239623a9c2bc39",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 key는 B·C pass이다. 실제 둘째 키는 '다를 수 있다'로 가능성을 말하며 항상 다르다고 주장하지 않는다. 반올림 합이1보다 작거나 크거나 같을 수도 있다는 blind의 관찰과 모순되지 않는다. B의 세 상대도수0.33 합0.99와 일반 설명도 정확하여 유지한다."
+    },
+    {
+      "originalDisputeIndex": 262,
+      "id": "m2-01-07-xc23",
+      "candidateFingerprint": "cc54845a73b5d1dd6ca2bd2dff0dc5e50b9938ae212524492eb01a4abc9cfd17",
+      "candidateNormalizedHash": "6b602e14b4517976b231cadfb6f99b8aa59058398a106a3daa6152336af69e9a",
+      "verdict": "candidate-text-reread",
+      "reason": "C 최종 결과6a-4가 앞의 합과 배수 칸을 역으로 채울 단서를 준다. 결과를 제거하여 가로·세로에서 합과 둘레 배수를 구하게 한다. B의 a>3 조건과 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 263,
+      "id": "m2-01-08-xc8",
+      "candidateFingerprint": "270d316d6338df83f1a45ec0bfef1d1a583993496cf5b415affe543dde50cec0",
+      "candidateNormalizedHash": "7abb2582192f512c518d1d1f2237f7117fc879f5fe0d4e9936bfd4197bcd2146",
+      "verdict": "candidate-text-reread",
+      "reason": "분배법칙·약분 등 열린 작업 이름 대신 실제 역수와 결과를 묻는다. 일반 설명의 나눗셈 표기도 괄호와 x≠0을 추가해 문자까지 포함한 단항식 전체가 나누는 식임을 명확히 한다. B는 이미 같은 조건으로 올바르게 묻는다."
+    },
+    {
+      "originalDisputeIndex": 264,
+      "id": "m2-02-04-xc17",
+      "candidateFingerprint": "11aca0ef29fb9875ccd8e218e97599832f19056d8849c024ff89fb68b67722e3",
+      "candidateNormalizedHash": "b1be56bbc7ac4afb6c0a02f9554c8c809068d410a7698d1879af1290905e2c21",
+      "verdict": "candidate-text-reread",
+      "reason": "할인율0을 포함하는지 물음에서 정해주지 않았다. x가0 이상100 이하이고0은 할인하지 않는 경우도 포함함을 명시해 기존 범위 기준과 일치시킨다. C와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 265,
+      "id": "m2-02-05-xc8",
+      "candidateFingerprint": "aa3735dbed3bbf6f1e08f632e77e9867d78ef0994df172cf02fe2ea47e0405e2",
+      "candidateNormalizedHash": "6215906e1223aca21b43d555c68b170a28a7562aceeddd1decb8e533d0511b8f",
+      "verdict": "candidate-text-reread",
+      "reason": "두 종류를 모두 사야 한다는 조건으로 읽으면 양 끝0,n을 배제할 수 있다. 한 종류를0개 사도 된다는 허용을 C에 명시해 범위를 고정한다. 후보 재독에서 일반 설명에도 같은 조건이 필요함을 확인하여 조건만 추가하고 기존 나머지 개수·정수 관계는 보존한다. B 제외는 유지한다."
+    },
+    {
+      "originalDisputeIndex": 266,
+      "id": "m2-09-02-xc24",
+      "candidateFingerprint": "d350fcd34e0b667cdfc7885533328889e1fbfcf4879ecbcfa087c2460658512a",
+      "candidateNormalizedHash": "2b6dae819bfcdb0550c475f2f116b0cf29e049acd005158196a4d2c87831e4a3",
+      "verdict": "candidate-text-reread",
+      "reason": "일치하는지라는 문법 복원을 실제 역할별 순서 있는 목록과 곱셈 수의 비교로 바꾼다. 서로 다른 두 사람을 고르는 조건을 명시하고 B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 267,
+      "id": "m2-09-03-xc4",
+      "candidateFingerprint": "7781cfb7b3df466926e2da3731b0d0e7b9612f97c1c625fda389a1cb84c232e0",
+      "candidateNormalizedHash": "5fbde597b9895d9d4c3baac06c3d3fd89b6d2b5c77195d245839f74bea383d21",
+      "verdict": "candidate-text-reread",
+      "reason": "서술어 전체가 열린 자리이므로 공정한 동전의 앞면과 뒷면 확률을 각각 수치로 묻는다. 공정함의 정의를 활용한 쉬운 확률 계산은 정상 평가이다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 268,
+      "id": "m2-09-03-xc9",
+      "candidateFingerprint": "87aa180bec4606deae3aa14c074228a720c39165529b92a91ae74be0bba7cc98",
+      "candidateNormalizedHash": "31e1e9e3e4e762bbdcb4958e6e5c100e241b096a3748193e167a8d491a1945c2",
+      "verdict": "candidate-text-reread",
+      "reason": "서술어 전체가 열린 C를 사건 경우 수m과 전체 경우 수n의 항상 성립하는 대소관계 기호로 고정한다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 269,
+      "id": "m2-09-03-xc15",
+      "candidateFingerprint": "446c7252200dd7df543ba056f9222c7da8b0de7670e9588dd705808118b284b1",
+      "candidateNormalizedHash": "1542f909ac9d12aa5c6273ca8c0842304e70d1b604ea4e75237abf6f5e3a3456",
+      "verdict": "candidate-text-reread",
+      "reason": "개수만이라는 조사 포함 낱말 복원 대신 개수비를 확률로 쓸 수 있는 조건 자체를 묻는다. B의 색이 아닌 공4개를 같은 가능성 결과로 세는 근거와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 270,
+      "id": "m2-09-03-xc22",
+      "candidateFingerprint": "33137e00b23bd06274d33e83e21a23e44d9462a76f14b22dbfb19e650d855218",
+      "candidateNormalizedHash": "4e692513288a46276736b885d3bfe468bb82a5ae2be20ed7f0fcb993e83b5026",
+      "verdict": "candidate-text-reread",
+      "reason": "정해진 횟수라는 일반 명사의 복원을 구체적인 동전 반복에서 예상과 보장되는 결과를 구별하는 판단으로 바꾼다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 271,
+      "id": "m2-09-04-xc13",
+      "candidateFingerprint": "1fa79b977e6212f8a96edd87747872902f1b3d8019d6ac7efc775e3bcc1948e3",
+      "candidateNormalizedHash": "eaabc9e01e7e562c0007221fe65618815e88ea329f55142826a718a9802c9403",
+      "verdict": "candidate-text-reread",
+      "reason": "답에 쓸 핵심어를 미리 지정하지 않아도 설명할 수 있으므로 B 물음에서 '각 공이 뽑힐 가능성'이라는 단어 사용 지시를 제거한다. 기존 기준은 공을 돌려놓은 구성과 실제 선택 가능성의 차이를 묻는 타당한 이유이다. C와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 272,
+      "id": "m2-02-05-xc24",
+      "candidateFingerprint": "3f31090629aa2171a06900d2044647202686d67259d09076f8985d7c4aff7286",
+      "candidateNormalizedHash": "df766eaed6ba0157485fdbce7dc21866e79c75e480707da153a36ff9fd793146",
+      "verdict": "candidate-text-reread",
+      "reason": "B의 한 종류를 사지 않아도 된다는 조건이 C와 일반 설명에서는 빠졌다. 두 지면에도 같은 허용 조건을 추가하여0,n 포함을 명확하게 한다. 부등식 해와 개수 조건의 교집합 및 정수 여부라는 일반 설명을 보존한다."
+    },
+    {
+      "originalDisputeIndex": 273,
+      "id": "m2-03-01-xc10",
+      "candidateFingerprint": "3077aec58c615663745efcac87727c9d2e97f8d46afbedfc6cd81b16a49b716f",
+      "candidateNormalizedHash": "d3ab35d3d4711dad5548f439985b83597892fd83379c80004c756deb72bec249",
+      "verdict": "candidate-text-reread",
+      "reason": "미지수의 범위를 제한하면 해가 유한할 수 있다. B의 무제한 수 범위와 일치하도록 C와 일반 설명 모두 x,y가 실수 전체라는 조건을 명시한다. 다른 관계가 독립된 정보여야 한다는 일반 설명은 보존한다."
+    },
+    {
+      "originalDisputeIndex": 274,
+      "id": "m2-03-01-xc21",
+      "candidateFingerprint": "8e127df0aade80cf2b26236146436b7e26f53953297c9902c7fd2f35ad4fcba2",
+      "candidateNormalizedHash": "b5e87182415c0db730d05864affc9a460733ae2afc04c0126002f3440494e5ef",
+      "verdict": "candidate-text-reread",
+      "reason": "식 하나씩으로라는 어색한 조사와 두 관계라는 열린 범위를 닭·토끼의 마리 수, 다리 수 관계식으로 고정한다. B의 두 식과 각 의미를 묻는 내용 및 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 275,
+      "id": "m2-03-03-xc14",
+      "candidateFingerprint": "45fa1b1da73fc8cf15e20985d813508d97e5b7ee0d96bbc77cf9e4a7095e4197",
+      "candidateNormalizedHash": "987d7e40b77da8b510a1186f8160378b446e0569b78784b0f8c289463239cfae",
+      "verdict": "candidate-text-reread",
+      "reason": "앞의 두 식이 각각5와 같다고 직접 지정하는 요구를 제거하고 편리한 식 선택·이유·해를 쓰게 한다. 타당한 다른 동치 두 식도 인정하도록 기준을 명시한다. C는 B에서 해당 절차를 확인하는 제외 근거를 읽기 쉬운 문장으로 고치며 일반 설명은 유지한다."
+    }
+  ]
+}

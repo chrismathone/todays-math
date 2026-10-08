@@ -42,7 +42,7 @@ import {
 } from "@/contracts/english.contract";
 
 import EnglishDialog from "./EnglishDialog";
-import EnglishEditor from "./EnglishEditor";
+import EnglishEditor, { type EnglishEditorHandle } from "./EnglishEditor";
 import EnglishExamPicker from "./EnglishExamPicker";
 import EnglishLibraryView from "./EnglishLibraryView";
 import EnglishQuestionBank from "./EnglishQuestionBank";
@@ -145,6 +145,11 @@ export default function EnglishStudio({
     Record<string, Load<EnglishSetSummary[]> | undefined>
   >({});
   const [editor, setEditor] = useState<EditorSeed | null>(null);
+  const editorRef = useRef<EnglishEditorHandle>(null);
+  const editorId = useRef<string | null>(null);
+  useEffect(() => {
+    editorId.current = editor?.id ?? null;
+  }, [editor?.id]);
   const [bankVersion, setBankVersion] = useState(0);
   const [readyBankSeed, setReadyBankSeed] = useState<EnglishBankMakerSeed>();
   const examsVersion = useRef(0);
@@ -235,6 +240,24 @@ export default function EnglishStudio({
     setRequestedExamId(id);
     storeExam(id);
   }, []);
+  const requestEditor = useCallback(
+    (next: EditorSeed) => {
+      const open = () => {
+        selectExam(next.examId);
+        setEditor(next);
+        callbacks.current.onNavigate("english-library");
+      };
+      // Reopening the same set only reveals its preserved draft.
+      if (editorId.current === next.id) {
+        callbacks.current.onNavigate("english-library");
+      } else if (editorRef.current) {
+        editorRef.current.requestLeave(open);
+      } else {
+        open();
+      }
+    },
+    [selectExam],
+  );
   const acceptBankSeed = useCallback(
     (id: string) => {
       selectExam(id);
@@ -330,13 +353,11 @@ export default function EnglishStudio({
           await requestEnglish(`/api/english/sets/${linkedId}`),
         );
         if (cancelled) return;
-        selectExam(body.data.examId);
-        setEditor({
+        requestEditor({
           id: body.data.id,
           examId: body.data.examId,
           set: body.data,
         });
-        callbacks.current.onNavigate("english-library");
       } catch (error) {
         if (cancelled) return;
         callbacks.current.onNotice(
@@ -352,15 +373,14 @@ export default function EnglishStudio({
     return () => {
       cancelled = true;
     };
-  }, [linkedId, linkedVersion, selectExam, canLibrary]);
+  }, [linkedId, linkedVersion, requestEditor, canLibrary]);
 
   const openSet = useCallback(
     (id: string) => {
       if (!canLibrary || !examId) return;
-      setEditor({ id, examId });
-      onNavigate("english-library");
+      requestEditor({ id, examId });
     },
-    [onNavigate, canLibrary, examId],
+    [requestEditor, canLibrary, examId],
   );
 
   const patchExam = useCallback((next: EnglishExam) => {
@@ -392,7 +412,6 @@ export default function EnglishStudio({
         // 목록이 없던 채로 등록했으면 나머지를 다시 읽는다 — 실패해도 방금 등록한 시험은 남는다(loadExams)
         if (!hadList) void loadExams();
         selectExam(created.id);
-        setEditor(null);
         onNewExamClose();
         onNotice("시험을 등록했습니다.");
       }}
@@ -443,9 +462,7 @@ export default function EnglishStudio({
             refreshKey={bankVersion}
             onMake={canMake ? () => onNavigate("english-maker") : undefined}
             onOpenSet={(item) => {
-              selectExam(item.examId);
-              setEditor({ id: item.setId, examId: item.examId });
-              onNavigate("english-library");
+              requestEditor({ id: item.setId, examId: item.examId });
             }}
           />
         </PersistentView>
@@ -495,6 +512,7 @@ export default function EnglishStudio({
             {canLibrary && editor && (
               <div hidden={view !== "english-library"}>
                 <EnglishEditor
+                  ref={editorRef}
                   key={editor.id}
                   setId={editor.id}
                   initialSet={editor.set}

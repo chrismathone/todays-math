@@ -1,0 +1,2504 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:39:16.730Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-02-c6",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "상관관계의 강약",
+        "kind": "성질",
+        "level": "중",
+        "definition": "점들이 오른쪽 위나 오른쪽 아래로 향하는 한 {직선} 둘레에 촘촘히 모이면 {강한} 상관관계, 넓게 퍼지면 약한 상관관계이다.",
+        "studentC": "점들이 오른쪽 위나 오른쪽 아래로 향하는 한 □ 둘레에 촘촘히 모이면 □ 상관관계, 넓게 퍼지면 약한 상관관계이다.",
+        "answers": [
+          "직선",
+          "강한"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "점들이 같은 방향(모두 오른쪽 위 또는 모두 오른쪽 아래)으로 향하는 두 산점도에서 상관관계가 더 강한 쪽을 어떻게 판단하는지 쓰시오.",
+        "bAnswer": "점들이 한 직선 둘레에 더 촘촘히 모여 있을수록 강한 상관관계이고, 넓게 퍼져 있을수록 약한 상관관계이다.",
+        "bGoal": "상관관계의 강약 판단 기준",
+        "bReason": "방향이 같은 두 산점도를 비교하는 상황으로 강약 기준만 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 직선 둘레에 촘촘히 모일수록 강하다",
+              "직선 가까이 모일수록 강하다",
+              "좁은 띠일수록 강하다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "직선 둘레와 강함을 연결하는 짧은 빈칸으로 분명함",
+        "learningRole": "procedure",
+        "roleReason": "직선 둘레 모인 정도로 강약 판단",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 912,
+        "part": "m3",
+        "sourceFingerprint": "de87b1ec3819c6584666c0781c9589d0d1184cf346ea86cece127c87f3dbd2ce",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 912
+        },
+        "directReview": null,
+        "cFrozenSentence": "점들이 오른쪽 위나 오른쪽 아래로 향하는 한 □ 둘레에 촘촘히 모이면 □ 상관관계, 넓게 퍼지면 약한 상관관계이다.",
+        "cFrozenDefinition": "점들이 오른쪽 위나 오른쪽 아래로 향하는 한 {직선} 둘레에 촘촘히 모이면 {강한} 상관관계, 넓게 퍼지면 약한 상관관계이다.",
+        "cFrozenAnswers": [
+          "직선",
+          "강한"
+        ],
+        "cMarkedSentence": "점들이 오른쪽 위나 오른쪽 아래로 향하는 한 {직선} 둘레에 촘촘히 모이면 {강한} 상관관계, 넓게 퍼지면 약한 상관관계이다.",
+        "cSlotAnswers": [
+          "직선",
+          "강한"
+        ],
+        "cStudentSentence": "점들이 오른쪽 위나 오른쪽 아래로 향하는 한 □ 둘레에 촘촘히 모이면 □ 상관관계, 넓게 퍼지면 약한 상관관계이다.",
+        "cAnswers": [
+          "직선",
+          "강한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직선",
+            "equivalentAnswers": [
+              "직선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "강한",
+            "equivalentAnswers": [
+              "강한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직선"
+          ],
+          [
+            "강한"
+          ]
+        ],
+        "proposalFingerprint": "bad849225d2ae9ae12187595c989490556cd7c7ac797e89161dd1db3ad4ac3a9"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-02-c7",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "상관관계와 원인 · 결과",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 변량이 함께 변하는 경향이 있어도 한쪽이 다른 쪽의 {원인}이라고 단정할 수는 {없다}.",
+        "studentC": "두 변량이 함께 변하는 경향이 있어도 한쪽이 다른 쪽의 □이라고 단정할 수는 □.",
+        "answers": [
+          "원인",
+          "없다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "두 변량 사이에 강한 양의 상관관계가 있으면 한 변량이 다른 변량의 원인이라고 말할 수 있는지 쓰고, 그 이유를 쓰시오.",
+        "bAnswer": "말할 수 없다. 상관관계는 두 변량이 함께 변하는 경향만 보여 줄 뿐, 다른 요인 때문에 함께 변했을 수도 있으므로 원인이라고 단정할 수 없다.",
+        "bGoal": "상관관계와 인과 구분",
+        "bReason": "강한 상관이 있을 때도 인과를 단정하지 못하는지 판단과 이유를 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "말할 수 없다",
+              "단정할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "함께 변하는 경향만 나타낸다",
+              "다른 원인이 있을 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "원인과 '없다'를 묻는 짧은 문장으로 핵심이 분명함",
+        "studentLabel": "상관관계와 원인",
+        "learningRole": "reason",
+        "roleReason": "상관이 인과를 보장하지 않음",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 913,
+        "part": "m3",
+        "sourceFingerprint": "f7d5d6849d442213badfda0c4350308929a4eae7b58a98575b8aa67812387c4d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 913
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 변량이 함께 변하는 경향이 있어도 한쪽이 다른 쪽의 □이라고 단정할 수는 □.",
+        "cFrozenDefinition": "두 변량이 함께 변하는 경향이 있어도 한쪽이 다른 쪽의 {원인}이라고 단정할 수는 {없다}.",
+        "cFrozenAnswers": [
+          "원인",
+          "없다"
+        ],
+        "cMarkedSentence": "두 변량이 함께 변하는 경향이 있어도 한쪽이 다른 쪽의 {원인}이라고 단정할 수는 {없다}.",
+        "cSlotAnswers": [
+          "원인",
+          "없다"
+        ],
+        "cStudentSentence": "두 변량이 함께 변하는 경향이 있어도 한쪽이 다른 쪽의 □이라고 단정할 수는 □.",
+        "cAnswers": [
+          "원인",
+          "없다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "원인",
+            "equivalentAnswers": [
+              "원인"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "원인"
+          ],
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "e5b471cd07fc7368b01b7564fbe61ed58c3d77126eee22105628dec819aa472b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-02-c8",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "대각선으로 산점도 읽기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 변량의 단위가 같을 때 직선 $y=x$를 그으면, 그 {위쪽} 점은 $y$가 더 큰 자료이고 {아래쪽} 점은 $x$가 더 큰 자료이다.",
+        "studentC": "두 변량의 단위가 같을 때 직선 $y=x$를 그으면, 그 □ 점은 $y$가 더 큰 자료이고 □ 점은 $x$가 더 큰 자료이다.",
+        "answers": [
+          "위쪽",
+          "아래쪽"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "가로축에 $1$차 점수 $x$, 세로축에 $2$차 점수 $y$를 놓은 산점도에 직선 $y=x$를 그었다. 이 직선보다 위쪽에 있는 점과 아래쪽에 있는 점은 각각 어떤 학생을 나타내는지 쓰시오.",
+        "bAnswer": "위쪽의 점은 $2$차 점수가 $1$차 점수보다 높은 학생, 아래쪽의 점은 $1$차 점수가 $2$차 점수보다 높은 학생이다.",
+        "bGoal": "직선 $y=x$로 두 값의 대소 읽기",
+        "bReason": "단위가 같은 두 변량과 축 배치를 밝혀 위·아래의 뜻을 해석하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "위쪽은 $2$차 점수가 더 높다",
+              "위쪽은 $y>x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래쪽은 $1$차 점수가 더 높다",
+              "아래쪽은 $x>y$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "위쪽과 아래쪽을 두 값의 대소에 대응시키는 분명한 빈칸임",
+        "learningRole": "application",
+        "roleReason": "$y=x$ 기준 위·아래 해석",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 914,
+        "part": "m3",
+        "sourceFingerprint": "f4717aff89fe59a818830d3f35a096e841d7edea458a3f14409cb2c2d01c1a6b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 914
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 변량의 단위가 같을 때 직선 $y=x$를 그으면, 그 □ 점은 $y$가 더 큰 자료이고 □ 점은 $x$가 더 큰 자료이다.",
+        "cFrozenDefinition": "두 변량의 단위가 같을 때 직선 $y=x$를 그으면, 그 {위쪽} 점은 $y$가 더 큰 자료이고 {아래쪽} 점은 $x$가 더 큰 자료이다.",
+        "cFrozenAnswers": [
+          "위쪽",
+          "아래쪽"
+        ],
+        "cMarkedSentence": "두 변량의 단위가 같을 때 직선 $y=x$를 그으면, 그 {위쪽} 점은 $y$가 더 큰 자료이고 {아래쪽} 점은 $x$가 더 큰 자료이다.",
+        "cSlotAnswers": [
+          "위쪽",
+          "아래쪽"
+        ],
+        "cStudentSentence": "두 변량의 단위가 같을 때 직선 $y=x$를 그으면, 그 □ 점은 $y$가 더 큰 자료이고 □ 점은 $x$가 더 큰 자료이다.",
+        "cAnswers": [
+          "위쪽",
+          "아래쪽"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "위쪽",
+            "equivalentAnswers": [
+              "위쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "아래쪽",
+            "equivalentAnswers": [
+              "아래쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "위쪽"
+          ],
+          [
+            "아래쪽"
+          ]
+        ],
+        "proposalFingerprint": "f1f9107340a1b05837200ca58147b04cd7da3e819392c619668fb2226bba1f55"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c1",
+        "section": "중3::7. 통계::상자그림",
+        "term": "중앙값",
+        "kind": "정의",
+        "level": "하",
+        "definition": "변량을 작은 것부터 늘어놓고 {한가운데} 값을 읽은 것이 중앙값이다 — 개수가 짝수이면 가운데 두 값의 {평균}.",
+        "studentC": "변량을 작은 것부터 늘어놓고 □ 값을 읽은 것이 중앙값이다 — 개수가 짝수이면 가운데 두 값의 □.",
+        "answers": [
+          "한가운데",
+          "평균"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "자료의 중앙값은 어떻게 구하는지, 변량의 개수가 홀수일 때와 짝수일 때로 나누어 설명하시오.",
+        "bAnswer": "변량을 작은 값부터 크기순으로 늘어놓는다. 변량이 홀수 개이면 한가운데 값이 중앙값이고, 짝수 개이면 가운데 두 값의 평균이 중앙값이다.",
+        "bGoal": "중앙값을 구하는 절차 설명",
+        "bReason": "뜻과 구하는 법 중 무엇을 묻는지 몰라 홀수·짝수 경우로 답할 범위를 정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "크기순으로 늘어놓기"
+            ]
+          },
+          {
+            "anyOf": [
+              "홀수 개이면 한가운데 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "짝수 개이면 가운데 두 값의 평균"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "늘어놓은 뒤 읽는 자리와 짝수일 때의 처리를 짧게 묻는 분명한 빈칸임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "크기순 한가운데 값",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 915,
+        "part": "m3",
+        "sourceFingerprint": "9f5d4bea6ccbef5a49529312447bf715af25655bc6ef1e800794b3b8a604eca9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 915
+        },
+        "directReview": null,
+        "cFrozenSentence": "변량을 작은 것부터 늘어놓고 □ 값을 읽은 것이 중앙값이다 — 개수가 짝수이면 가운데 두 값의 □.",
+        "cFrozenDefinition": "변량을 작은 것부터 늘어놓고 {한가운데} 값을 읽은 것이 중앙값이다 — 개수가 짝수이면 가운데 두 값의 {평균}.",
+        "cFrozenAnswers": [
+          "한가운데",
+          "평균"
+        ],
+        "cMarkedSentence": "변량을 작은 것부터 늘어놓고 {한가운데} 값을 읽은 것이 중앙값이다 — 개수가 짝수이면 가운데 두 값의 {평균}.",
+        "cSlotAnswers": [
+          "한가운데",
+          "평균"
+        ],
+        "cStudentSentence": "변량을 작은 것부터 늘어놓고 □ 값을 읽은 것이 중앙값이다 — 개수가 짝수이면 가운데 두 값의 □.",
+        "cAnswers": [
+          "한가운데",
+          "평균"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한가운데",
+            "equivalentAnswers": [
+              "한가운데",
+              "가운데",
+              "정가운데",
+              "중앙"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평균",
+            "equivalentAnswers": [
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한가운데",
+            "accept": [
+              "가운데",
+              "정가운데",
+              "중앙"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한가운데",
+            "가운데",
+            "정가운데",
+            "중앙"
+          ],
+          [
+            "평균"
+          ]
+        ],
+        "proposalFingerprint": "26eaba69fa6dfae106693fefce3f427396b36e5afd04bd6f4140006033d03f4b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c2",
+        "section": "중3::7. 통계::상자그림",
+        "term": "사분위수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "크기순으로 늘어놓은 자료를 {$4$}등분하는 자리에 놓인 {세} 값을 통틀어 사분위수라 한다.",
+        "studentC": "크기순으로 늘어놓은 자료를 □등분하는 자리에 놓인 □ 값을 통틀어 사분위수라 한다.",
+        "answers": [
+          "$4$",
+          "세"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "사분위수란 무엇인지, 자료를 어떻게 나누는 값이고 모두 몇 개인지 넣어 설명하시오.",
+        "bAnswer": "자료를 크기순으로 늘어놓고 $4$등분할 때, 나누는 자리에 놓인 세 값을 통틀어 사분위수라 한다. 작은 것부터 제$1$사분위수, 제$2$사분위수, 제$3$사분위수이다.",
+        "bGoal": "사분위수의 뜻과 개수 설명",
+        "bReason": "묻지 않은 '크기순'을 따로 요구하지 않음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자료를 $4$등분하는 값",
+              "크기순으로 늘어놓은 자료를 네 부분으로 똑같이 나누는 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "모두 세 개",
+              "$3$개"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "등분 수와 값의 개수를 묻는 짧고 분명한 정의 빈칸임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "자료를 4등분하는 세 값",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 916,
+        "part": "m3",
+        "sourceFingerprint": "4310777ef0e1f9299e08e4269e6ec7fee4c61c0ae34203d07ec13865b8bc3f75",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 916
+        },
+        "directReview": null,
+        "cFrozenSentence": "크기순으로 늘어놓은 자료를 □등분하는 자리에 놓인 □ 값을 통틀어 사분위수라 한다.",
+        "cFrozenDefinition": "크기순으로 늘어놓은 자료를 {$4$}등분하는 자리에 놓인 {세} 값을 통틀어 사분위수라 한다.",
+        "cFrozenAnswers": [
+          "$4$",
+          "세"
+        ],
+        "cMarkedSentence": "크기순으로 늘어놓은 자료를 {$4$}등분하는 자리에 놓인 {세} 값을 통틀어 사분위수라 한다.",
+        "cSlotAnswers": [
+          "$4$",
+          "세"
+        ],
+        "cStudentSentence": "크기순으로 늘어놓은 자료를 □등분하는 자리에 놓인 □ 값을 통틀어 사분위수라 한다.",
+        "cAnswers": [
+          "$4$",
+          "세"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$",
+              "$4$",
+              "사",
+              "네"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "세",
+            "equivalentAnswers": [
+              "세",
+              "$3$",
+              "$3$",
+              "세 개의"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$4$",
+            "accept": [
+              "4",
+              "사",
+              "네"
+            ]
+          },
+          {
+            "answer": "세",
+            "accept": [
+              "$3$",
+              "3",
+              "세 개의"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$4$",
+            "사",
+            "네"
+          ],
+          [
+            "세",
+            "$3$",
+            "세 개의"
+          ]
+        ],
+        "proposalFingerprint": "9edd2883f3bd2122b182995045d481863725714e47035105c8da5f7327035c97"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c3",
+        "section": "중3::7. 통계::상자그림",
+        "term": "제$2$사분위수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "세 사분위수 가운데 두 번째 값으로, 자료 전체의 {중앙값}과 같다 — 아래에서 {$50$}$\\%$ 자리.",
+        "studentC": "세 사분위수 가운데 두 번째 값으로, 자료 전체의 □과 같다 — 아래에서 □$\\%$ 자리.",
+        "answers": [
+          "중앙값",
+          "$50$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "제$2$사분위수는 자료의 어떤 값과 같은지 쓰고, 크기순으로 늘어놓았을 때 아래에서 약 몇 $\\%$ 자리의 값인지 쓰시오.",
+        "bAnswer": "제$2$사분위수는 자료 전체의 중앙값과 같고, 크기순으로 아래에서 약 $50\\%$ 자리의 값이다.",
+        "bGoal": "제2사분위수와 중앙값의 관계 알기",
+        "bReason": "같은 값의 이름과 자리의 비율, 두 가지를 답하도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "중앙값과 같음"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래에서 약 $50$% 자리"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "제$2$사분위수는 세 사분위수 가운데 두 번째 값으로, 자료 전체의 {중앙값}과 같다 — 크기순으로 아래에서 {$50$}$\\%$ 자리의 값이다.",
+        "cAnswers": [
+          "중앙값",
+          "$50$"
+        ],
+        "cReason": "주어가 숨은 제목에만 있어 무엇을 말하는 문장인지 알 수 없었음.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "둘째 사분위수는 중앙값",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 917,
+        "part": "m3",
+        "sourceFingerprint": "d0c02def840c52c15736a84b921c8213059957a8e1f215d0ca67ef4fd26b1aa9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 917
+        },
+        "directReview": null,
+        "cMarkedSentence": "제$2$사분위수는 세 사분위수 가운데 두 번째 값으로, 자료 전체의 {중앙값}과 같다 — 크기순으로 아래에서 {$50$}$\\%$ 자리의 값이다.",
+        "cSlotAnswers": [
+          "중앙값",
+          "$50$"
+        ],
+        "cStudentSentence": "제$2$사분위수는 세 사분위수 가운데 두 번째 값으로, 자료 전체의 □과 같다 — 크기순으로 아래에서 □$\\%$ 자리의 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중앙값",
+            "equivalentAnswers": [
+              "중앙값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$50$",
+            "equivalentAnswers": [
+              "$50$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중앙값"
+          ],
+          [
+            "$50$"
+          ]
+        ],
+        "proposalFingerprint": "40e3cb54cb486f085a75ff27665fc2d272b3590bebf3dd3449b0c682fb420387"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c4",
+        "section": "중3::7. 통계::상자그림",
+        "term": "상자그림",
+        "kind": "정의",
+        "level": "하",
+        "definition": "{최솟값}과 {최댓값}, 그리고 세 사분위수(가운데가 {중앙값})까지 다섯 값으로 자료의 분포를 나타낸 그림이 상자그림이다.",
+        "studentC": "□과 □, 그리고 세 사분위수(가운데가 □)까지 다섯 값으로 자료의 분포를 나타낸 그림이 상자그림이다.",
+        "answers": [
+          "최솟값",
+          "최댓값",
+          "중앙값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "상자그림은 자료의 어떤 다섯 값을 써서 무엇을 나타내는 그림인지 설명하시오.",
+        "bAnswer": "최솟값, 제$1$사분위수, 중앙값(제$2$사분위수), 제$3$사분위수, 최댓값의 다섯 값을 수직선 위에 상자와 선으로 표시하여 자료의 분포를 나타낸 그림이다.",
+        "bGoal": "상자그림을 이루는 다섯 값과 쓰임 설명",
+        "bReason": "'가운데는 중앙값'이라는 부연을 강요하지 않음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최솟값과 최댓값"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 사분위수",
+              "제$1$사분위수, 중앙값, 제$3$사분위수"
+            ]
+          },
+          {
+            "anyOf": [
+              "자료의 분포를 나타낸다",
+              "자료가 퍼진 모양을 나타낸다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "상자그림은 자료의 {최솟값}, 제$1$사분위수, {중앙값}, 제$3$사분위수, {최댓값}의 다섯 값으로 자료의 분포를 나타낸 그림이다.",
+        "cAnswers": [
+          "최솟값",
+          "중앙값",
+          "최댓값"
+        ],
+        "cReason": "문장이 단서 없이 빈칸 둘로 시작하고 '가운데가 □'의 지칭이 모호해 크기순 나열로 바꿈.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "다섯 값으로 분포 나타냄",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 918,
+        "part": "m3",
+        "sourceFingerprint": "7cc887208980583b7040a6bfd73cdbe6504fa06e3a0d1265255d625c44e1dc92",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 918
+        },
+        "directReview": null,
+        "cMarkedSentence": "상자그림은 자료의 {최솟값}, 제$1$사분위수, {중앙값}, 제$3$사분위수, {최댓값}의 다섯 값으로 자료의 분포를 나타낸 그림이다.",
+        "cSlotAnswers": [
+          "최솟값",
+          "중앙값",
+          "최댓값"
+        ],
+        "cStudentSentence": "상자그림은 자료의 □, 제$1$사분위수, □, 제$3$사분위수, □의 다섯 값으로 자료의 분포를 나타낸 그림이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최솟값",
+            "equivalentAnswers": [
+              "최솟값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중앙값",
+            "equivalentAnswers": [
+              "중앙값",
+              "제$2$사분위수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "최댓값",
+            "equivalentAnswers": [
+              "최댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "중앙값",
+            "accept": [
+              "제$2$사분위수"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "최솟값"
+          ],
+          [
+            "중앙값",
+            "제$2$사분위수"
+          ],
+          [
+            "최댓값"
+          ]
+        ],
+        "proposalFingerprint": "ee76c7af07bafc21a76bcea4e8bda92396291706c17bb45c8e1368ed0a4f9733"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c5",
+        "section": "중3::7. 통계::상자그림",
+        "term": "제$1$사분위수",
+        "kind": "정의",
+        "level": "중",
+        "definition": "크기순으로 늘어놓은 자료에서 중앙값보다 앞에 놓인 {작은} 쪽 절반의 {중앙값}이 제$1$사분위수이다 — 아래에서 $25\\%$ 자리.",
+        "studentC": "크기순으로 늘어놓은 자료에서 중앙값보다 앞에 놓인 □ 쪽 절반의 □이 제$1$사분위수이다 — 아래에서 $25\\%$ 자리.",
+        "answers": [
+          "작은",
+          "중앙값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "크기순으로 늘어놓은 자료에서 제$1$사분위수는 어떻게 정하는 값인지 중앙값을 기준으로 설명하고, 아래에서 약 몇 $\\%$ 자리의 값인지 쓰시오.",
+        "bAnswer": "자료 전체의 중앙값보다 앞에 놓인 작은 쪽 절반의 중앙값이 제$1$사분위수이다. 크기순으로 아래에서 약 $25\\%$ 자리의 값이다.",
+        "bGoal": "제1사분위수를 정하는 방법 설명",
+        "bReason": "중앙값을 기준으로 한 정하는 법과 자리의 비율을 답하도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "중앙값보다 앞의 작은 쪽 절반"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 절반의 중앙값"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래에서 약 $25$% 자리"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "앞의 중앙값은 전체 자료의 것이고 빈칸은 절반의 중앙값이라 단순 베끼기가 아님.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "작은 쪽 절반의 중앙값",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 919,
+        "part": "m3",
+        "sourceFingerprint": "5c1ac15beee7df5394654899c4c719c2390c38f9382cb63b77d83e3c61bfd26a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 919
+        },
+        "directReview": null,
+        "cFrozenSentence": "크기순으로 늘어놓은 자료에서 중앙값보다 앞에 놓인 □ 쪽 절반의 □이 제$1$사분위수이다 — 아래에서 $25\\%$ 자리.",
+        "cFrozenDefinition": "크기순으로 늘어놓은 자료에서 중앙값보다 앞에 놓인 {작은} 쪽 절반의 {중앙값}이 제$1$사분위수이다 — 아래에서 $25\\%$ 자리.",
+        "cFrozenAnswers": [
+          "작은",
+          "중앙값"
+        ],
+        "cMarkedSentence": "크기순으로 늘어놓은 자료에서 중앙값보다 앞에 놓인 {작은} 쪽 절반의 {중앙값}이 제$1$사분위수이다 — 아래에서 $25\\%$ 자리.",
+        "cSlotAnswers": [
+          "작은",
+          "중앙값"
+        ],
+        "cStudentSentence": "크기순으로 늘어놓은 자료에서 중앙값보다 앞에 놓인 □ 쪽 절반의 □이 제$1$사분위수이다 — 아래에서 $25\\%$ 자리.",
+        "cAnswers": [
+          "작은",
+          "중앙값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작은",
+            "equivalentAnswers": [
+              "작은",
+              "아래"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중앙값",
+            "equivalentAnswers": [
+              "중앙값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작은",
+            "accept": [
+              "아래"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작은",
+            "아래"
+          ],
+          [
+            "중앙값"
+          ]
+        ],
+        "proposalFingerprint": "f0d7f4b81f09cfa005b6b54543b855bad115da0c58deb1ba0d99f7c32a3c852e"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c6",
+        "section": "중3::7. 통계::상자그림",
+        "term": "제$3$사분위수",
+        "kind": "정의",
+        "level": "중",
+        "definition": "크기순으로 늘어놓은 자료에서 중앙값보다 뒤에 놓인 {큰} 쪽 절반의 {중앙값}이 제$3$사분위수이다 — 아래에서 $75\\%$ 자리.",
+        "studentC": "크기순으로 늘어놓은 자료에서 중앙값보다 뒤에 놓인 □ 쪽 절반의 □이 제$3$사분위수이다 — 아래에서 $75\\%$ 자리.",
+        "answers": [
+          "큰",
+          "중앙값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "크기순으로 늘어놓은 자료에서 제$3$사분위수는 어떻게 정하는 값인지 중앙값을 기준으로 설명하고, 아래에서 약 몇 $\\%$ 자리의 값인지 쓰시오.",
+        "bAnswer": "자료 전체의 중앙값보다 뒤에 놓인 큰 쪽 절반의 중앙값이 제$3$사분위수이다. 크기순으로 아래에서 약 $75\\%$ 자리의 값이다.",
+        "bGoal": "제3사분위수를 정하는 방법 설명",
+        "bReason": "중앙값을 기준으로 한 정하는 법과 자리의 비율을 답하도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "중앙값보다 뒤의 큰 쪽 절반"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 절반의 중앙값"
+            ]
+          },
+          {
+            "anyOf": [
+              "아래에서 약 $75$% 자리"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "어느 쪽 절반의 어떤 값인지 묻는 짧은 빈칸으로, 제1사분위수 문항과 대비됨.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "큰 쪽 절반의 중앙값",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 920,
+        "part": "m3",
+        "sourceFingerprint": "9a176724a0d283bb922d3a3af743bded955ecb47be02b13155740cf9c99997ca",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 920
+        },
+        "directReview": null,
+        "cFrozenSentence": "크기순으로 늘어놓은 자료에서 중앙값보다 뒤에 놓인 □ 쪽 절반의 □이 제$3$사분위수이다 — 아래에서 $75\\%$ 자리.",
+        "cFrozenDefinition": "크기순으로 늘어놓은 자료에서 중앙값보다 뒤에 놓인 {큰} 쪽 절반의 {중앙값}이 제$3$사분위수이다 — 아래에서 $75\\%$ 자리.",
+        "cFrozenAnswers": [
+          "큰",
+          "중앙값"
+        ],
+        "cMarkedSentence": "크기순으로 늘어놓은 자료에서 중앙값보다 뒤에 놓인 {큰} 쪽 절반의 {중앙값}이 제$3$사분위수이다 — 아래에서 $75\\%$ 자리.",
+        "cSlotAnswers": [
+          "큰",
+          "중앙값"
+        ],
+        "cStudentSentence": "크기순으로 늘어놓은 자료에서 중앙값보다 뒤에 놓인 □ 쪽 절반의 □이 제$3$사분위수이다 — 아래에서 $75\\%$ 자리.",
+        "cAnswers": [
+          "큰",
+          "중앙값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰",
+              "위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중앙값",
+            "equivalentAnswers": [
+              "중앙값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "큰",
+            "accept": [
+              "위"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "큰",
+            "위"
+          ],
+          [
+            "중앙값"
+          ]
+        ],
+        "proposalFingerprint": "cfa01be74fc9eeba13b8ad41679ae6a73ec986aae441985c5dfb2f3f376b2e88"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c7",
+        "section": "중3::7. 통계::상자그림",
+        "term": "상자의 길이",
+        "kind": "정의",
+        "level": "중",
+        "definition": "상자그림에서 상자의 길이는 {제$3$사분위수}에서 {제$1$사분위수}를 뺀 값이고, 가운데 $50\\%$ 자료가 퍼진 폭을 나타낸다.",
+        "studentC": "상자그림에서 상자의 길이는 □에서 □를 뺀 값이고, 가운데 $50\\%$ 자료가 퍼진 폭을 나타낸다.",
+        "answers": [
+          "제$3$사분위수",
+          "제$1$사분위수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "상자그림에서 상자의 길이는 어떤 두 값의 차인지 쓰고, 그 길이가 자료의 무엇을 나타내는지 설명하시오.",
+        "bAnswer": "상자의 길이는 제$3$사분위수에서 제$1$사분위수를 뺀 값이다. 크기순으로 가운데 약 $50\\%$의 자료가 퍼진 폭을 나타낸다.",
+        "bGoal": "상자의 길이를 구하는 식과 뜻 설명",
+        "bReason": "두 값의 차와 그 길이의 뜻, 두 가지를 답하도록 범위를 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "제$3$사분위수에서 제$1$사분위수를 뺌"
+            ]
+          },
+          {
+            "anyOf": [
+              "가운데 약 $50$% 자료가 퍼진 폭"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "빼는 순서가 드러나는 분명한 계산식 빈칸이고 상자그림 맥락도 문장에 있음.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "제3·제1사분위수의 차",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 921,
+        "part": "m3",
+        "sourceFingerprint": "092017f4c44048f5d2c718fe76276a053f7d41b2b20688a84cf489be2c5799aa",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 921
+        },
+        "directReview": null,
+        "cFrozenSentence": "상자그림에서 상자의 길이는 □에서 □를 뺀 값이고, 가운데 $50\\%$ 자료가 퍼진 폭을 나타낸다.",
+        "cFrozenDefinition": "상자그림에서 상자의 길이는 {제$3$사분위수}에서 {제$1$사분위수}를 뺀 값이고, 가운데 $50\\%$ 자료가 퍼진 폭을 나타낸다.",
+        "cFrozenAnswers": [
+          "제$3$사분위수",
+          "제$1$사분위수"
+        ],
+        "cMarkedSentence": "상자그림에서 상자의 길이는 {제$3$사분위수}에서 {제$1$사분위수}를 뺀 값이고, 가운데 $50\\%$ 자료가 퍼진 폭을 나타낸다.",
+        "cSlotAnswers": [
+          "제$3$사분위수",
+          "제$1$사분위수"
+        ],
+        "cStudentSentence": "상자그림에서 상자의 길이는 □에서 □를 뺀 값이고, 가운데 $50\\%$ 자료가 퍼진 폭을 나타낸다.",
+        "cAnswers": [
+          "제$3$사분위수",
+          "제$1$사분위수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제$3$사분위수",
+            "equivalentAnswers": [
+              "제$3$사분위수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제$1$사분위수",
+            "equivalentAnswers": [
+              "제$1$사분위수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제$3$사분위수"
+          ],
+          [
+            "제$1$사분위수"
+          ]
+        ],
+        "proposalFingerprint": "913f9b2fba03824e8ecf44578d04133697a2cab302c61fa4ffdec7f3984267d1"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c8",
+        "section": "중3::7. 통계::상자그림",
+        "term": "상자그림의 눈금",
+        "kind": "방법",
+        "level": "중",
+        "definition": "상자그림은 눈금 간격이 {일정한} 수직선 위에 그린다 — 같은 길이가 같은 값의 차를 나타내야 상자와 수염의 길이로 자료가 {퍼진 폭}을 견줄 수 있다.",
+        "studentC": "상자그림은 눈금 간격이 □ 수직선 위에 그린다 — 같은 길이가 같은 값의 차를 나타내야 상자와 수염의 길이로 자료가 □을 견줄 수 있다.",
+        "answers": [
+          "일정한",
+          "퍼진 폭"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "상자그림을 그리는 수직선의 눈금 간격은 어떠해야 하는지 쓰고, 그 까닭을 상자와 수염(상자 양쪽으로 뻗은 선)의 길이와 관련지어 설명하시오.",
+        "bAnswer": "눈금 간격이 일정해야 한다. 같은 길이가 같은 값의 차를 나타내야 상자와 수염의 길이로 자료가 퍼진 폭을 비교할 수 있기 때문이다.",
+        "bGoal": "눈금 간격이 일정해야 하는 까닭 설명",
+        "bReason": "한 까닭을 둘로 쪼개 모두 요구하던 것을 묶음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "눈금 간격이 일정해야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 길이가 같은 값의 차를 나타내야 한다",
+              "상자와 수염의 길이로 퍼진 폭을 비교할 수 있어야 한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "상자그림은 눈금 간격이 {일정한} 수직선 위에 그린다 — 그래야 같은 길이가 같은 값의 {차}를 나타내어 상자와 수염의 길이로 자료가 퍼진 정도를 비교할 수 있다.",
+        "cAnswers": [
+          "일정한",
+          "차"
+        ],
+        "cReason": "'퍼진 폭'은 임의 표현이고 '자료가 □을 견줄'의 문장 호응도 어색했음.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "길이로 퍼진 폭 비교하려고",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 922,
+        "part": "m3",
+        "sourceFingerprint": "3e2a72fd5e474fcd887ce4c8db33e54054810bb0621647f34c97e25a064b04f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 922
+        },
+        "directReview": null,
+        "cMarkedSentence": "상자그림은 눈금 간격이 {일정한} 수직선 위에 그린다 — 그래야 같은 길이가 같은 값의 {차}를 나타내어 상자와 수염의 길이로 자료가 퍼진 정도를 비교할 수 있다.",
+        "cSlotAnswers": [
+          "일정한",
+          "차"
+        ],
+        "cStudentSentence": "상자그림은 눈금 간격이 □ 수직선 위에 그린다 — 그래야 같은 길이가 같은 값의 □를 나타내어 상자와 수염의 길이로 자료가 퍼진 정도를 비교할 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "일정한",
+            "equivalentAnswers": [
+              "일정한",
+              "같은",
+              "똑같은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "차",
+            "equivalentAnswers": [
+              "차",
+              "차이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "일정한",
+            "accept": [
+              "같은",
+              "똑같은"
+            ]
+          },
+          {
+            "answer": "차",
+            "accept": [
+              "차이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "일정한",
+            "같은",
+            "똑같은"
+          ],
+          [
+            "차",
+            "차이"
+          ]
+        ],
+        "proposalFingerprint": "a2a50047d0d475f2c013d0e6910bc0db182cb1b0f9b0055f124ea3fb231da7e9"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c9",
+        "section": "중3::7. 통계::상자그림",
+        "term": "상자그림의 특징",
+        "kind": "성질",
+        "level": "상",
+        "definition": "상자는 {제$1$사분위수}부터 {제$3$사분위수}까지이고, 크기순으로 가운데 절반인 자료가 {퍼진 폭}을 나타낸다 — 상자가 길수록 가운데 절반이 넓게 퍼져 있다.",
+        "studentC": "상자는 □부터 □까지이고, 크기순으로 가운데 절반인 자료가 □을 나타낸다 — 상자가 길수록 가운데 절반이 넓게 퍼져 있다.",
+        "answers": [
+          "제$1$사분위수",
+          "제$3$사분위수",
+          "퍼진 폭"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "상자 구간과 가운데 절반 자료의 퍼진 정도 해석",
+        "bReason": "m3-07-03-c7이 상자 길이 Q3−Q1와 가운데 50%의 폭을 이미 묻고, m3-07-03-xc9가 짧은 상자의 해석을 묻는다.",
+        "cDecision": "exclude",
+        "cAfter": "상자그림에서 상자는 {제$1$사분위수}부터 {제$3$사분위수}까지이고, 상자가 길수록 크기순으로 가운데 절반인 자료가 더 {넓게} 퍼져 있다.",
+        "cAnswers": [
+          "제$1$사분위수",
+          "제$3$사분위수",
+          "넓게"
+        ],
+        "cReason": "m3-07-03-c7과 같은 사분위수 두 이름과 가운데 절반의 폭을 반복한다.",
+        "exclusionReason": "B·C: m3-07-03-c7의 상자 길이·가운데 절반 폭과 중복이다. 길이에 따른 해석은 m3-07-03-xc9와 xc17에서 확인하며 이 ID와 일반 설명은 삭제하지 않는다.",
+        "studentLabel": "상자가 나타내는 구간",
+        "synonyms": [
+          {
+            "answer": "넓게",
+            "accept": [
+              "널리"
+            ]
+          }
+        ],
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "가운데 절반의 분포 폭 해석",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "bRequiredIdeas": null,
+        "directReviewNote": "막연한 제목이라는 이유로 제외하지 않고, 현재 같은 형식의 실제 중복 ID와 목표를 비교했다.",
+        "sourceIndex": 923,
+        "part": "m3",
+        "sourceFingerprint": "fd8f0c5b998c6421095074532cb06920f5c9d1742d139c076ce17dca83db51e2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 923
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-07-03-c9"
+        },
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-07-03-c10",
+        "section": "중3::7. 통계::상자그림",
+        "term": "상자그림의 네 구간",
+        "kind": "성질",
+        "level": "상",
+        "definition": "값이 모두 다른 자료에서는 상자그림의 네 구간(수염 둘 · 상자 두 칸)에 길이와 상관없이 자료가 약 {$25$}$\\%$씩 들어 있다 — 짧은 구간은 자료가 {촘촘한} 곳이다.",
+        "studentC": "값이 모두 다른 자료에서는 상자그림의 네 구간(수염 둘 · 상자 두 칸)에 길이와 상관없이 자료가 약 □$\\%$씩 들어 있다 — 짧은 구간은 자료가 □ 곳이다.",
+        "answers": [
+          "$25$",
+          "촘촘한"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-c10",
+        "bDecision": "rewrite",
+        "bPrompt": "값이 모두 다른 자료의 상자그림은 왼쪽 수염, 상자의 왼쪽 칸, 상자의 오른쪽 칸, 오른쪽 수염의 네 구간으로 나뉜다. 각 구간에 전체 자료의 약 몇 $\\%$가 들어 있는지 쓰고, 길이가 짧은 구간은 자료가 어떻게 놓인 곳인지 설명하시오.",
+        "bAnswer": "구간의 길이와 상관없이 각 구간에 약 $25\\%$씩 들어 있다. 짧은 구간은 같은 비율의 자료가 좁은 범위에 있으므로 자료가 촘촘하게 모여 있는 곳이다.",
+        "bGoal": "네 구간의 자료 비율과 길이의 뜻 해석",
+        "bReason": "짝은이라는 기준 오타를 고치고 구간의 같은 비율과 좁은 범위의 밀집을 구별한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 구간에는 전체 자료의 약 $25\\%$가 들어 있다",
+              "각 구간에는 전체 자료의 약 $4$분의 $1$이 들어 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "짧은 구간은 같은 비율의 자료가 좁은 범위에 모여 있다",
+              "짧은 구간에는 자료가 촘촘하게 모여 있다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건과 네 구간의 뜻이 문장에 있고 비율과 해석을 짧게 묻는 빈칸임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "구간 길이로 밀집 읽기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 924,
+        "part": "m3",
+        "sourceFingerprint": "3890c09adc1416b613fa16a6758175ea71e9202c30e10eb8ff7c08d0a19811b5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 924
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-07-03-c10"
+        },
+        "cFrozenSentence": "값이 모두 다른 자료에서는 상자그림의 네 구간(수염 둘 · 상자 두 칸)에 길이와 상관없이 자료가 약 □$\\%$씩 들어 있다 — 짧은 구간은 자료가 □ 곳이다.",
+        "cFrozenDefinition": "값이 모두 다른 자료에서는 상자그림의 네 구간(수염 둘 · 상자 두 칸)에 길이와 상관없이 자료가 약 {$25$}$\\%$씩 들어 있다 — 짧은 구간은 자료가 {촘촘한} 곳이다.",
+        "cFrozenAnswers": [
+          "$25$",
+          "촘촘한"
+        ],
+        "cMarkedSentence": "값이 모두 다른 자료에서는 상자그림의 네 구간(수염 둘 · 상자 두 칸)에 길이와 상관없이 자료가 약 {$25$}$\\%$씩 들어 있다 — 짧은 구간은 자료가 {촘촘한} 곳이다.",
+        "cSlotAnswers": [
+          "$25$",
+          "촘촘한"
+        ],
+        "cStudentSentence": "값이 모두 다른 자료에서는 상자그림의 네 구간(수염 둘 · 상자 두 칸)에 길이와 상관없이 자료가 약 □$\\%$씩 들어 있다 — 짧은 구간은 자료가 □ 곳이다.",
+        "cAnswers": [
+          "$25$",
+          "촘촘한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$25$",
+            "equivalentAnswers": [
+              "$25$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "촘촘한",
+            "equivalentAnswers": [
+              "촘촘한",
+              "빽빽한",
+              "모여 있는",
+              "몰려 있는",
+              "밀집한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "촘촘한",
+            "accept": [
+              "빽빽한",
+              "모여 있는",
+              "몰려 있는",
+              "밀집한"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$25$"
+          ],
+          [
+            "촘촘한",
+            "빽빽한",
+            "모여 있는",
+            "몰려 있는",
+            "밀집한"
+          ]
+        ],
+        "proposalFingerprint": "270863761aa41cecd3dbd2e6a4079cbf7b8719fc7ecfc2335b847b1fc557a75c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc1",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "소수의 약수의 개수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소수는 약수가 정확히 {$2$개}인 자연수이다.",
+        "example": {
+          "prompt": "$13$의 약수를 모두 쓰면?",
+          "answer": "$1$, $13$"
+        },
+        "studentC": "소수는 약수가 정확히 □인 자연수이다.",
+        "answers": [
+          "$2$개"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": "소수의 약수가 $1$과 자기 자신으로 $2$개임을 확인한다.",
+        "bReason": "소수의 약수가 $2$개라는 내용은 소수의 정의 질문(m1-01-01-c1)과 약수의 개수로 나누는 질문(m1-01-01-xc12)의 답에 그대로 들어 있다. 서술형으로 한 번 더 물으면 같은 답을 되풀이하게 된다.",
+        "cDecision": "keep",
+        "cReason": "주어가 '소수'로 분명하고 약수의 개수만 묻는 한 줄 빈칸이라 빠른 확인용으로 유용하다.",
+        "exclusionReason": "B 제외: 서술형 B 형식에서 m1-01-01-c1(소수의 정의)과 m1-01-01-xc12(약수의 개수로 나누기)의 질문·답과 겹친다. C는 제외하지 않고 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": null,
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "약수가 정확히 2개",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 925,
+        "part": "m1plus",
+        "sourceFingerprint": "3ed31310190b66a0d9a18a740b97bd47a16af3e1427400e904c5f890fa1f3f16",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 925
+        },
+        "directReview": null,
+        "cFrozenSentence": "소수는 약수가 정확히 □인 자연수이다.",
+        "cFrozenDefinition": "소수는 약수가 정확히 {$2$개}인 자연수이다.",
+        "cFrozenAnswers": [
+          "$2$개"
+        ],
+        "cMarkedSentence": "소수는 약수가 정확히 {$2$개}인 자연수이다.",
+        "cSlotAnswers": [
+          "$2$개"
+        ],
+        "cStudentSentence": "소수는 약수가 정확히 □인 자연수이다.",
+        "cAnswers": [
+          "$2$개"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$개",
+            "equivalentAnswers": [
+              "$2$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$개"
+          ]
+        ],
+        "proposalFingerprint": "52f756626af9a783d36e360c73680cdb5c4121ce13ac3c79c88edab94c105546"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc2",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "합성수의 약수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "합성수는 $1$과 자기 자신 말고도 {다른 약수}를 가진다.",
+        "example": {
+          "prompt": "$21$의 약수 가운데 $1$과 $21$이 아닌 것은?",
+          "answer": "$3$, $7$"
+        },
+        "studentC": "합성수는 $1$과 자기 자신 말고도 □를 가진다.",
+        "answers": [
+          "다른 약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$21$의 약수를 모두 구하여 $21$이 소수인지 합성수인지 판단하세요. 그리고 합성수의 약수에는 소수의 약수와 달리 어떤 것이 더 있는지 설명하세요.",
+        "bAnswer": "$21$의 약수는 $1$, $3$, $7$, $21$이다. $1$과 $21$ 말고 $3$, $7$이 있으므로 합성수이다. 합성수는 $1$과 자기 자신 말고도 다른 약수를 가진다.",
+        "bGoal": "합성수는 $1$과 자기 자신 말고 다른 약수가 있음을 구체적인 수로 확인한다.",
+        "bReason": "제목 '합성수의 약수'는 개수를 묻는지 종류를 묻는지 알 수 없고, 정의 질문(c2)과 구별되지도 않는다. 구체적인 수 $21$로 약수를 찾아 판단하는 질문으로 바꾸어 관점을 달리했다.",
+        "cDecision": "rewrite",
+        "cAfter": "합성수는 $1$과 자기 자신 말고도 다른 {약수}를 가진다.",
+        "cAnswers": [
+          "약수"
+        ],
+        "cReason": "원문 빈칸 답 '다른 약수'는 '또 다른 약수', '약수' 등으로 쓰는 폭이 넓어 맞고 틀림을 가리기 어렵다. 핵심어 '약수' 한 단어만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$21$의 약수: $1$, $3$, $7$, $21$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$21$은 합성수"
+            ]
+          },
+          {
+            "anyOf": [
+              "합성수는 $1$과 자기 자신 말고 다른 약수가 더 있다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "1과 자신 외 약수 있음",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 926,
+        "part": "m1plus",
+        "sourceFingerprint": "895c1d44f4f43c014a634bab5f0314fa5ea776d48262796349c9988e27ca9282",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 926
+        },
+        "directReview": null,
+        "cMarkedSentence": "합성수는 $1$과 자기 자신 말고도 다른 {약수}를 가진다.",
+        "cSlotAnswers": [
+          "약수"
+        ],
+        "cStudentSentence": "합성수는 $1$과 자기 자신 말고도 다른 □를 가진다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약수",
+            "equivalentAnswers": [
+              "약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약수"
+          ]
+        ],
+        "proposalFingerprint": "f38c5dcb18709f9709f6915dfae4a58f31887cb65a7587b5f960689818460ab3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc3",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "자연수의 세 갈래",
+        "kind": "성질",
+        "level": "하",
+        "definition": "자연수는 {$1$}, {소수}, {합성수}의 세 갈래로 빠짐없이 나뉜다.",
+        "example": {
+          "prompt": "$9$는 자연수의 세 갈래 가운데 어디에 드는가?",
+          "answer": "합성수"
+        },
+        "studentC": "자연수는 □, □, □의 세 갈래로 빠짐없이 나뉜다.",
+        "answers": [
+          "$1$",
+          "소수",
+          "합성수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 자연수는 세 갈래 가운데 꼭 하나에 속합니다. 그 세 갈래를 쓰고, $1$, $7$, $9$가 각각 어디에 속하는지 쓰세요.",
+        "bAnswer": "자연수는 $1$, 소수, 합성수로 나뉜다. $1$은 '$1$', $7$은 소수, $9$는 합성수($9=3\\times3$)이다.",
+        "bGoal": "자연수가 $1$, 소수, 합성수로 빠짐없이 나뉨을 알고 수를 분류한다.",
+        "bReason": "제목 '자연수의 세 갈래'는 나누는 기준도 답할 형태도 말하지 않는다. 세 이름을 쓰고 수 세 개를 실제로 분류하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "자연수는 {$1$}, 소수, {합성수}의 세 갈래로 빠짐없이 나뉜다.",
+        "cAnswers": [
+          "$1$",
+          "합성수"
+        ],
+        "cReason": "원문은 세 갈래가 모두 빈칸이라 문장 안에 단서가 하나도 없다. '소수'를 보여 주고 나머지 둘을 묻도록 줄였다.",
+        "studentLabel": "자연수를 나누는 세 갈래",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 갈래: $1$, 소수, 합성수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$은 $1$(소수도 합성수도 아님), $7$은 소수, $9$는 합성수"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "1·소수·합성수로 분류",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 927,
+        "part": "m1plus",
+        "sourceFingerprint": "155c6f944873b544c7b807023f5941f0865c2378205b29ba6faf7b7414ab2ac4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 927
+        },
+        "directReview": null,
+        "cMarkedSentence": "자연수는 {$1$}, 소수, {합성수}의 세 갈래로 빠짐없이 나뉜다.",
+        "cSlotAnswers": [
+          "$1$",
+          "합성수"
+        ],
+        "cStudentSentence": "자연수는 □, 소수, □의 세 갈래로 빠짐없이 나뉜다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합성수",
+            "equivalentAnswers": [
+              "합성수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "합성수"
+          ]
+        ],
+        "proposalFingerprint": "4efa31e77b41dee1d78c921edf9ad17b7a24e31820662387ea12fab4ef7d160d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc4",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "거듭제곱 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$a^n$은 '$a$의 {$n$제곱}'이라 읽는다.",
+        "example": {
+          "prompt": "$7^5$을 읽으면?",
+          "answer": "$7$의 $5$제곱"
+        },
+        "studentC": "$a^n$은 '$a$의 □'이라 읽는다.",
+        "answers": [
+          "$n$제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "자연수 $n$에 대하여 $a^n$은 어떻게 읽는지 쓰고, $7^5$을 읽어 보세요.",
+        "bAnswer": "$a^n$은 '$a$의 $n$제곱'이라 읽는다. $7^5$은 '$7$의 $5$제곱'이다.",
+        "bGoal": "일반적인 거듭제곱 $a^n$의 읽는 법을 알고 구체적인 수에 적용한다.",
+        "bReason": "제목 '거듭제곱 읽기'에는 읽을 식이 없다. $a^n$과 $7^5$을 질문에 넣어 무엇을 읽는지 정했다.",
+        "cDecision": "keep",
+        "cReason": "읽을 식 $a^n$이 문장에 있고 빈칸이 읽는 말 하나로 정해진다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a^n$: '$a$의 $n$제곱'"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7^5$: '$7$의 $5$제곱'(다섯제곱 표기 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "naming",
+        "roleReason": "a의 n제곱으로 읽기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 928,
+        "part": "m1plus",
+        "sourceFingerprint": "6cb852c8c4b01de27b25c6f918cb7a00025a7d823f6743024ffa5d84e0ab5277",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 928
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a^n$은 '$a$의 □'이라 읽는다.",
+        "cFrozenDefinition": "$a^n$은 '$a$의 {$n$제곱}'이라 읽는다.",
+        "cFrozenAnswers": [
+          "$n$제곱"
+        ],
+        "cMarkedSentence": "$a^n$은 '$a$의 {$n$제곱}'이라 읽는다.",
+        "cSlotAnswers": [
+          "$n$제곱"
+        ],
+        "cStudentSentence": "$a^n$은 '$a$의 □'이라 읽는다.",
+        "cAnswers": [
+          "$n$제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n$제곱",
+            "equivalentAnswers": [
+              "$n$제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n$제곱"
+          ]
+        ],
+        "proposalFingerprint": "229b965e04269d6c257bf53b5a7e9c497d55468d6997252cc2467b21ed8b0da8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc5",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "거듭제곱으로 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "같은 수를 여러 번 곱한 식은 그 수를 {밑}으로, 곱한 횟수를 {지수}로 하여 짧게 쓴다.",
+        "example": {
+          "prompt": "$6\\times6\\times6\\times6$을 거듭제곱으로 쓰면?",
+          "answer": "$6^4$"
+        },
+        "studentC": "같은 수를 여러 번 곱한 식은 그 수를 □으로, 곱한 횟수를 □로 하여 짧게 쓴다.",
+        "answers": [
+          "밑",
+          "지수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$6\\times6\\times6\\times6$을 거듭제곱으로 나타내세요. 이때 밑과 지수를 각각 어떻게 정했는지 설명하세요.",
+        "bAnswer": "$6^4$이다. 거듭 곱한 수 $6$을 밑으로, 곱한 횟수 $4$를 지수로 한다.",
+        "bGoal": "같은 수를 여러 번 곱한 식을 밑과 지수를 정해 거듭제곱으로 바꾸어 쓴다.",
+        "bReason": "제목 '거듭제곱으로 나타내기'에는 나타낼 식이 없어 답을 쓸 수 없다. 구체적인 곱셈식을 주고 밑·지수를 정하는 근거까지 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "'그 수'와 '곱한 횟수'가 각각 무엇이 되는지 묻는 문장이 분명하고, 빈칸이 용어 두 개로 짧다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6^4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "거듭 곱한 수 $6$이 밑"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱한 횟수 $4$가 지수"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "곱한 수는 밑, 횟수는 지수",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 929,
+        "part": "m1plus",
+        "sourceFingerprint": "f396e57bc8277c11b150aeeb4f922d38849f8ef50ca5ff6ecfae7244982d8da0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 929
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 수를 여러 번 곱한 식은 그 수를 □으로, 곱한 횟수를 □로 하여 짧게 쓴다.",
+        "cFrozenDefinition": "같은 수를 여러 번 곱한 식은 그 수를 {밑}으로, 곱한 횟수를 {지수}로 하여 짧게 쓴다.",
+        "cFrozenAnswers": [
+          "밑",
+          "지수"
+        ],
+        "cMarkedSentence": "같은 수를 여러 번 곱한 식은 그 수를 {밑}으로, 곱한 횟수를 {지수}로 하여 짧게 쓴다.",
+        "cSlotAnswers": [
+          "밑",
+          "지수"
+        ],
+        "cStudentSentence": "같은 수를 여러 번 곱한 식은 그 수를 □으로, 곱한 횟수를 □로 하여 짧게 쓴다.",
+        "cAnswers": [
+          "밑",
+          "지수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑",
+            "equivalentAnswers": [
+              "밑"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "지수",
+            "equivalentAnswers": [
+              "지수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑"
+          ],
+          [
+            "지수"
+          ]
+        ],
+        "proposalFingerprint": "71c8e83480b70169e2c9440755a20147dba4e3f5c09ed9aa3a33524d3bf2d69d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc6",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "가장 작은 소수와 합성수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "가장 작은 소수는 {$2$}이고, 가장 작은 합성수는 {$4$}이다.",
+        "example": {
+          "prompt": "가장 작은 홀수인 소수는?",
+          "answer": "$3$"
+        },
+        "studentC": "가장 작은 소수는 □이고, 가장 작은 합성수는 □이다.",
+        "answers": [
+          "$2$",
+          "$4$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "가장 작은 소수와 가장 작은 합성수를 각각 쓰고, 그렇게 되는 까닭을 약수로 설명하세요.",
+        "bAnswer": "가장 작은 소수는 $2$이다. $1$은 소수가 아니고 $2$의 약수는 $1$, $2$뿐이다. 가장 작은 합성수는 $4$이다. $2$, $3$은 소수이고 $4$의 약수는 $1$, $2$, $4$로 $3$개이다.",
+        "bGoal": "가장 작은 소수와 합성수를 정의에 따라 찾아낸다.",
+        "bReason": "한 문장에 묶인 여러 조건을 답과 까닭으로 나눔",
+        "cDecision": "keep",
+        "cReason": "두 빈칸이 각각 무엇의 값인지 문장에 드러나 있고, 정의를 떠올려 답하는 짧은 빈칸이다.",
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 소수는 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$의 약수는 $1$과 $2$뿐이다",
+              "$1$은 약수가 $1$개라 소수가 아니고 $2$는 약수가 $2$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 합성수는 $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$의 약수는 $1$, $2$, $4$로 $3$개이다",
+              "$4=2\\times2$로 $1$과 자기 자신 말고 약수 $2$가 있다",
+              "$2$와 $3$은 소수이고 $4$는 약수가 $3$개이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "약수 개수로 2와 4 확인",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 930,
+        "part": "m1plus",
+        "sourceFingerprint": "d5633ca07988d8337567b4da9e843c654cd9398fd41b7404760ac89eea67e5eb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 930
+        },
+        "directReview": null,
+        "cFrozenSentence": "가장 작은 소수는 □이고, 가장 작은 합성수는 □이다.",
+        "cFrozenDefinition": "가장 작은 소수는 {$2$}이고, 가장 작은 합성수는 {$4$}이다.",
+        "cFrozenAnswers": [
+          "$2$",
+          "$4$"
+        ],
+        "cMarkedSentence": "가장 작은 소수는 {$2$}이고, 가장 작은 합성수는 {$4$}이다.",
+        "cSlotAnswers": [
+          "$2$",
+          "$4$"
+        ],
+        "cStudentSentence": "가장 작은 소수는 □이고, 가장 작은 합성수는 □이다.",
+        "cAnswers": [
+          "$2$",
+          "$4$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$4$"
+          ]
+        ],
+        "proposalFingerprint": "d06fa22a6e342cb4665c698d7e5248126154b2db74f982c52dadb5b996a2b781"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc7",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "소수인지 알아보는 방법",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 {약수}가 있는지 작은 {소수}부터 나누어 본다.",
+        "example": {
+          "prompt": "$91$은 소수인가?",
+          "answer": "아니다($91=7\\times13$)"
+        },
+        "studentC": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 □가 있는지 작은 □부터 나누어 본다.",
+        "answers": [
+          "약수",
+          "소수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$91$이 소수인지 아닌지 알아보려고 합니다. 어떤 수들로 나누어 보는지 방법을 설명하고, $91$이 소수인지 판단하세요.",
+        "bAnswer": "$1$과 자기 자신이 아닌 약수가 있는지 작은 소수 $2$, $3$, $5$, $7$, …의 차례로 나누어 본다. $91=7\\times13$으로 $7$로 나누어떨어지므로 $91$은 소수가 아니다(합성수이다).",
+        "bGoal": "작은 소수부터 나누어 보아 소수인지 판단하는 방법을 쓰고 실제로 적용한다.",
+        "bReason": "제목 '소수인지 알아보는 방법'은 대상 수가 없어 방법을 추상적으로만 쓰게 된다. 틀리기 쉬운 $91$을 주어 절차와 판단을 함께 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "대상('$1$보다 큰 자연수')과 목적이 문장에 있고, 무엇이 있는지와 무엇으로 나누는지를 묻는 두 빈칸이 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "작은 소수 $2$, $3$, $5$, $7$, …의 차례로 나누어 나누어떨어지는지 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$91$은 $7$로 나누어떨어진다($91=7\\times13$)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$91$은 소수가 아니다(합성수)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "작은 소수부터 나눠 보기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 931,
+        "part": "m1plus",
+        "sourceFingerprint": "e168cb941ae6e0b24c38892c799ce7af45d8bfa23424be7cddb0e15d2ad652ed",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 931
+        },
+        "directReview": null,
+        "cFrozenSentence": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 □가 있는지 작은 □부터 나누어 본다.",
+        "cFrozenDefinition": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 {약수}가 있는지 작은 {소수}부터 나누어 본다.",
+        "cFrozenAnswers": [
+          "약수",
+          "소수"
+        ],
+        "cMarkedSentence": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 {약수}가 있는지 작은 {소수}부터 나누어 본다.",
+        "cSlotAnswers": [
+          "약수",
+          "소수"
+        ],
+        "cStudentSentence": "$1$보다 큰 자연수가 소수인지 보려면 $1$과 자기 자신이 아닌 □가 있는지 작은 □부터 나누어 본다.",
+        "cAnswers": [
+          "약수",
+          "소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "약수",
+            "equivalentAnswers": [
+              "약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "약수"
+          ],
+          [
+            "소수"
+          ]
+        ],
+        "proposalFingerprint": "ad9f02e09b66941c203275ecb40dcf363f4b3639975a21a14ac7e4182ae0d0bf"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc8",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "지수가 $1$ 커질 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 {밑}을 한 번 더 {곱한} 것이 된다.",
+        "example": {
+          "prompt": "$2^5$은 $2^4$의 몇 배인가?",
+          "answer": "$2$배"
+        },
+        "studentC": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 □을 한 번 더 □ 것이 된다.",
+        "answers": [
+          "밑",
+          "곱한"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^4$과 $2^5$을 곱셈식으로 풀어 써서 비교하고, 밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값이 어떻게 달라지는지 설명하세요.",
+        "bAnswer": "$2^4=2\\times2\\times2\\times2$, $2^5=2\\times2\\times2\\times2\\times2=2^4\\times2$이다. 지수가 $1$ 커지면 처음 값에 밑을 한 번 더 곱한 값이 된다. 그래서 $2^5$은 $2^4$의 $2$배이다.",
+        "bGoal": "지수가 $1$ 커지는 것은 밑을 한 번 더 곱하는 것임을 설명한다.",
+        "bReason": "제목 '지수가 $1$ 커질 때'는 문장이 끝나지 않아 무엇을 답할지 알 수 없다. 견줄 두 거듭제곱을 주고 값의 변화를 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 처음 값에 {밑}을 한 번 더 곱한 것이 된다.",
+        "cAnswers": [
+          "밑"
+        ],
+        "cReason": "원문은 '□을 한 번 더 □ 것'으로 결론이 통째로 가려져 있고, 무엇에 곱하는지도 없다. '처음 값에'를 넣고 곱하는 대상 하나만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2^4=2\\times2\\times2\\times2$, $2^5=2\\times2\\times2\\times2\\times2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "지수가 $1$ 커지면 밑을 한 번 더 곱한 값이 된다($2^5=2^4\\times2$, 곧 $2$배)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "밑을 한 번 더 곱함",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 932,
+        "part": "m1plus",
+        "sourceFingerprint": "9515d7d2c6fc5d3e265630cffd12e647dc5c7738100e4204fb2e0f1b4f9afb76",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 932
+        },
+        "directReview": null,
+        "cMarkedSentence": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 처음 값에 {밑}을 한 번 더 곱한 것이 된다.",
+        "cSlotAnswers": [
+          "밑"
+        ],
+        "cStudentSentence": "밑이 같은 거듭제곱에서 지수가 $1$ 커지면 값은 처음 값에 □을 한 번 더 곱한 것이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑",
+            "equivalentAnswers": [
+              "밑"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑"
+          ]
+        ],
+        "proposalFingerprint": "12178038d6573da7dcd5b5875b244cbd57b09c8d95cfa36499937b0d212567bb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc9",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "밑이 다른 수가 섞인 곱",
+        "kind": "방법",
+        "level": "중",
+        "definition": "밑이 다른 수가 섞인 곱은 같은 수끼리 모아 각각 {거듭제곱}으로 쓰고 {곱셈 기호}로 잇는다.",
+        "example": {
+          "prompt": "$2\\times5\\times2\\times5\\times5$를 거듭제곱으로 쓰면?",
+          "answer": "$2^2\\times5^3$"
+        },
+        "studentC": "밑이 다른 수가 섞인 곱은 같은 수끼리 모아 각각 □으로 쓰고 □로 잇는다.",
+        "answers": [
+          "거듭제곱",
+          "곱셈 기호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\times5\\times2\\times5\\times5$처럼 서로 다른 수가 섞여 여러 번 곱해진 식을 거듭제곱을 써서 나타내는 방법을 설명하고, 이 식을 나타내 보세요.",
+        "bAnswer": "같은 수끼리 모아 각각 거듭제곱으로 쓰고 곱셈 기호로 잇는다. $2$가 $2$번, $5$가 $3$번 곱해졌으므로 $2^2\\times5^3$이다.",
+        "bGoal": "서로 다른 수가 섞인 곱을 수별로 묶어 거듭제곱의 곱으로 나타낸다.",
+        "bReason": "결과식에 드러나는 횟수 세기를 따로 요구하지 않음",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\times5\\times2\\times5\\times5$처럼 서로 다른 수가 섞여 곱해진 식은 같은 수끼리 모아 각각 {거듭제곱}으로 쓰고 곱셈 기호로 이어 $2^2\\times5^3$과 같이 나타낸다.",
+        "cAnswers": [
+          "거듭제곱"
+        ],
+        "cReason": "원문의 '밑이 다른 수가 섞인 곱'은 예 없이는 어떤 식인지 알기 어렵고, 둘째 빈칸 '곱셈 기호'는 임의로 고른 낱말이다. 예시 식을 넣고 핵심어 하나만 묻게 했다.",
+        "studentLabel": "서로 다른 수가 섞인 곱을 거듭제곱으로 나타내기",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 수끼리 모아 각각 거듭제곱으로 쓴다",
+              "같은 수가 곱해진 횟수를 세어 지수로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^2\\times5^3$",
+              "$5^3\\times2^2$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "같은 수끼리 모아 거듭제곱",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 933,
+        "part": "m1plus",
+        "sourceFingerprint": "afdb7315f38a7aab3b078505a7922a8d3460e360eed1b13b2439f8f114241c8d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 933
+        },
+        "directReview": null,
+        "cMarkedSentence": "$2\\times5\\times2\\times5\\times5$처럼 서로 다른 수가 섞여 곱해진 식은 같은 수끼리 모아 각각 {거듭제곱}으로 쓰고 곱셈 기호로 이어 $2^2\\times5^3$과 같이 나타낸다.",
+        "cSlotAnswers": [
+          "거듭제곱"
+        ],
+        "cStudentSentence": "$2\\times5\\times2\\times5\\times5$처럼 서로 다른 수가 섞여 곱해진 식은 같은 수끼리 모아 각각 □으로 쓰고 곱셈 기호로 이어 $2^2\\times5^3$과 같이 나타낸다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "거듭제곱",
+            "equivalentAnswers": [
+              "거듭제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "거듭제곱"
+          ]
+        ],
+        "proposalFingerprint": "074d19f936abad8d9c6ab8e24dd275c7ef420c5911d6d82d87ccb3cef30dd213"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc10",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "밑이 분수인 거듭제곱",
+        "kind": "방법",
+        "level": "중",
+        "definition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}\\times\\frac{2}{3}\\times\\frac{2}{3}$를 거듭제곱으로 쓰면?",
+          "answer": "$\\left(\\frac{2}{3}\\right)^3$"
+        },
+        "studentC": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+        "answers": [
+          "괄호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{2}{3}\\times\\frac{2}{3}\\times\\frac{2}{3}$를 거듭제곱으로 나타내세요. 밑이 분수일 때는 어떻게 써야 하는지도 설명하세요.",
+        "bAnswer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+        "bGoal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "bReason": "제목만으로는 계산을 묻는지 표기를 묻는지 알 수 없다. 구체적인 분수의 곱을 주고 표기법(괄호)을 묻는 질문으로 정했다.",
+        "cDecision": "keep",
+        "cReason": "상황(같은 분수를 거듭 곱함)과 빈칸의 역할(무엇으로 묶는지)이 분명하고 답이 한 단어이다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\left(\\frac{2}{3}\\right)^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 전체를 괄호로 묶어 밑으로 쓴다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "naming",
+        "roleReason": "분수 전체를 괄호로 밑 표기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 934,
+        "part": "m1plus",
+        "sourceFingerprint": "9444e5697a2e46743f0f76d77ed3776897eb0c7fa8ff5c7c8fe57c43e1ce8f95",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 934
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+        "cFrozenDefinition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+        "cFrozenAnswers": [
+          "괄호"
+        ],
+        "cMarkedSentence": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+        "cSlotAnswers": [
+          "괄호"
+        ],
+        "cStudentSentence": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+        "cAnswers": [
+          "괄호"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ]
+        ],
+        "proposalFingerprint": "b988dc9ed051ae6ce491d0bb7c18cfaf6b8d4648dffbeadc8b13c7cade78f637"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc11",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "홀수인 합성수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "홀수라고 모두 {소수}는 아니다. 홀수이면서 합성수인 수도 있다.",
+        "example": {
+          "prompt": "$20$보다 작은 홀수인 합성수를 모두 쓰면?",
+          "answer": "$9$, $15$"
+        },
+        "studentC": "홀수라고 모두 □는 아니다. 홀수이면서 합성수인 수도 있다.",
+        "answers": [
+          "소수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "'홀수는 모두 소수이다'라는 말이 옳은지 판단하고, 예를 들어 까닭을 설명하세요.",
+        "bAnswer": "옳지 않다. $9=3\\times3$, $15=3\\times5$처럼 홀수이면서 합성수인 수가 있다. 또 $1$도 홀수이지만 소수가 아니다.",
+        "bGoal": "홀수와 소수를 같은 것으로 여기는 잘못을 반례로 바로잡는다.",
+        "bReason": "'또는'으로 뭉친 반례를 anyOf로 나눔",
+        "cDecision": "keep",
+        "cReason": "두 문장이 서로 뜻을 받쳐 주어 빈칸 '소수'가 하나로 정해지고, 읽기에 어렵지 않다.",
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "옳지 않다",
+              "틀린 말이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9=3\\times3$은 홀수이지만 합성수이다",
+              "$15=3\\times5$는 홀수이지만 합성수이다",
+              "$1$은 홀수이지만 소수가 아니다",
+              "홀수이면서 소수가 아닌 옳은 다른 예"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "홀수 합성수 반례 들기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 935,
+        "part": "m1plus",
+        "sourceFingerprint": "a5c57445efbd30b978fc4a7781b4cc44f311f9b03030d11d9d2f49688a033665",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 935
+        },
+        "directReview": null,
+        "cFrozenSentence": "홀수라고 모두 □는 아니다. 홀수이면서 합성수인 수도 있다.",
+        "cFrozenDefinition": "홀수라고 모두 {소수}는 아니다. 홀수이면서 합성수인 수도 있다.",
+        "cFrozenAnswers": [
+          "소수"
+        ],
+        "cMarkedSentence": "홀수라고 모두 {소수}는 아니다. 홀수이면서 합성수인 수도 있다.",
+        "cSlotAnswers": [
+          "소수"
+        ],
+        "cStudentSentence": "홀수라고 모두 □는 아니다. 홀수이면서 합성수인 수도 있다.",
+        "cAnswers": [
+          "소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소수"
+          ]
+        ],
+        "proposalFingerprint": "67ac8795ba714e5ce8ce96a64b53220274ceeae6139e1c10eacf5e38baa9f38e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-01-xc12",
+        "section": "중1::1. 소인수분해::소수와 거듭제곱",
+        "term": "약수의 개수로 가르기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "약수가 $1$개인 수는 {$1$}뿐이고, $2$개이면 {소수}, $3$개 이상이면 {합성수}이다.",
+        "example": {
+          "prompt": "약수가 $2$개인 두 자리 자연수 가운데 가장 작은 것은?",
+          "answer": "$11$"
+        },
+        "studentC": "약수가 $1$개인 수는 □뿐이고, $2$개이면 □, $3$개 이상이면 □이다.",
+        "answers": [
+          "$1$",
+          "소수",
+          "합성수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-01-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "자연수를 약수의 개수에 따라 나누려고 합니다. 약수가 $1$개인 수, $2$개인 수, $3$개 이상인 수는 각각 어떤 수인지 쓰세요.",
+        "bAnswer": "약수가 $1$개인 수는 $1$뿐이다. 약수가 $2$개인 수는 소수이고, $3$개 이상인 수는 합성수이다.",
+        "bGoal": "약수의 개수 $1$개, $2$개, $3$개 이상을 $1$, 소수, 합성수와 대응시킨다.",
+        "bReason": "제목 '약수의 개수로 가르기'는 무엇을 가르는지 대상이 없다. 자연수를 대상으로 밝히고 세 경우를 조건으로 주어 각각의 이름을 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "빈칸마다 앞에 약수의 개수 조건이 붙어 있어 무엇을 답할지 분명하다. 세 빈칸이지만 조건과 결론이 짝지어져 있다.",
+        "studentLabel": "약수의 개수로 자연수 나누기",
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "약수가 $1$개인 수: $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "약수가 $2$개인 수: 소수"
+            ]
+          },
+          {
+            "anyOf": [
+              "약수가 $3$개 이상인 수: 합성수"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "약수 개수로 세 갈래 구분",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 936,
+        "part": "m1plus",
+        "sourceFingerprint": "b28f981e35a40d1508ef1d2e808109d7da3b83edeeade99d367a98a40a71376b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 936
+        },
+        "directReview": null,
+        "cFrozenSentence": "약수가 $1$개인 수는 □뿐이고, $2$개이면 □, $3$개 이상이면 □이다.",
+        "cFrozenDefinition": "약수가 $1$개인 수는 {$1$}뿐이고, $2$개이면 {소수}, $3$개 이상이면 {합성수}이다.",
+        "cFrozenAnswers": [
+          "$1$",
+          "소수",
+          "합성수"
+        ],
+        "cMarkedSentence": "약수가 $1$개인 수는 {$1$}뿐이고, $2$개이면 {소수}, $3$개 이상이면 {합성수}이다.",
+        "cSlotAnswers": [
+          "$1$",
+          "소수",
+          "합성수"
+        ],
+        "cStudentSentence": "약수가 $1$개인 수는 □뿐이고, $2$개이면 □, $3$개 이상이면 □이다.",
+        "cAnswers": [
+          "$1$",
+          "소수",
+          "합성수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소수",
+            "equivalentAnswers": [
+              "소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "합성수",
+            "equivalentAnswers": [
+              "합성수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "소수"
+          ],
+          [
+            "합성수"
+          ]
+        ],
+        "proposalFingerprint": "ead6495d9a4b3f6ca48f0d9741207bc8ea74906a98b8f3ddbe554234cdb56623"
+      }
+    }
+  ]
+}

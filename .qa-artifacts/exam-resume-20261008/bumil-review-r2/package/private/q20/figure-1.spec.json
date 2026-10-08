@@ -1,0 +1,92 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "A": [
+      30,
+      150
+    ],
+    "O": [
+      120,
+      150
+    ],
+    "B": [
+      210,
+      150
+    ],
+    "C": [
+      75,
+      72.05771365940052
+    ]
+  },
+  "circles": {
+    "semicircleSupport": {
+      "center": "O",
+      "radius": 90,
+      "draw": false
+    }
+  },
+  "arcs": {
+    "upperSemicircle": {
+      "circle": "semicircleSupport",
+      "from": "B",
+      "to": "A",
+      "dir": "ccw"
+    }
+  },
+  "segments": {
+    "diameterAB": [
+      "A",
+      "B"
+    ],
+    "chordCB": [
+      "C",
+      "B"
+    ],
+    "radiusOC": {
+      "points": [
+        "O",
+        "C"
+      ],
+      "dash": "5 3"
+    }
+  },
+  "regions": {
+    "minorSegmentCB": {
+      "boundary": [
+        {
+          "seg": [
+            "C",
+            "B"
+          ]
+        },
+        {
+          "arc": {
+            "circle": "semicircleSupport",
+            "from": "B",
+            "to": "C",
+            "dir": "ccw"
+          }
+        }
+      ],
+      "fill": "#dedede"
+    }
+  },
+  "angles": {
+    "givenABC": {
+      "vertex": "B",
+      "points": [
+        "A",
+        "C"
+      ],
+      "label": "30°",
+      "radius": 25
+    }
+  },
+  "labels": {
+    "A": "A",
+    "O": "O",
+    "B": "B",
+    "C": "C"
+  }
+}

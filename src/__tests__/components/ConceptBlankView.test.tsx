@@ -233,7 +233,7 @@ describe("형식 카드 다섯", () => {
     renderView();
     for (const label of [
       "완전 백지",
-      "용어 → 뜻",
+      "개념 질문",
       "문장 빈칸",
       "개념 지도",
       "그림 보고 쓰기",
@@ -274,8 +274,8 @@ describe("형식 카드 다섯", () => {
     expect(
       Number(count("완전 백지 개념 수 하").getAttribute("max")),
     ).toBeGreaterThanOrEqual(12);
-    expect(count("용어 → 뜻 용어 하").value).toBe("10");
-    expect(count("용어 → 뜻 ○× 하").value).toBe("10");
+    expect(count("개념 질문 질문 하").value).toBe("10");
+    expect(count("개념 질문 ○× 하").value).toBe("10");
     // 재고가 10 보다 적은 칸은 재고만큼
     const mid = Number(count("완전 백지 개념 수 중").getAttribute("max"));
     expect(mid).toBeLessThan(10);
@@ -306,8 +306,8 @@ describe("형식 카드 다섯", () => {
     expect(count("완전 백지 개념 수 하").value).toBe("0");
 
     // B 는 ○× 줄, C 는 적용 줄이 하나 더 — 재고 0 인 칸은 0 에 묶인다
-    expect(count("용어 → 뜻 ○× 중").value).toBe("1");
-    expect(count("용어 → 뜻 ○× 하")).toBeDisabled();
+    expect(count("개념 질문 ○× 중").value).toBe("1");
+    expect(count("개념 질문 ○× 하")).toBeDisabled();
     expect(count("문장 빈칸 적용 상").value).toBe("0");
     expect(count("그림 보고 쓰기 그림 하").value).toBe("1");
     expect(count("그림 보고 쓰기 그림 중").value).toBe("1");
@@ -514,9 +514,9 @@ describe("주소로 고르기 되살리기", () => {
     );
     expect(box("2-3-3 선대칭도형과 그 성질 알아보기")).toBeChecked();
     expect(box("2-3-1 도형의 합동 알아보기")).not.toBeChecked();
-    expect(formSwitch("용어 → 뜻")).toBeChecked();
+    expect(formSwitch("개념 질문")).toBeChecked();
     expect(formSwitch("완전 백지")).not.toBeChecked();
-    expect(count("용어 → 뜻 용어 하").value).toBe("1");
+    expect(count("개념 질문 질문 하").value).toBe("1");
     expect(screen.getByRole("textbox", { name: "제목" })).toHaveValue("대칭");
     // 날짜를 안 실은 주소면 오늘(한국 시간)이 들어간다 — 원장님 2026-10-01 «디폴트 오늘 날짜»
     expect(printedSelection()).toEqual({
@@ -877,8 +877,8 @@ describe("내 시험지에 저장 · 다시 열기", () => {
         "새 이름",
       );
       expect(saveButton()).toHaveTextContent("저장됨");
-      fireEvent.change(count("용어 → 뜻 용어 하"), { target: { value: "0" } });
-      fireEvent.change(count("용어 → 뜻 용어 상"), { target: { value: "1" } });
+      fireEvent.change(count("개념 질문 질문 하"), { target: { value: "0" } });
+      fireEvent.change(count("개념 질문 질문 상"), { target: { value: "1" } });
       await act(async () => {
         fireEvent.click(saveButton());
       });

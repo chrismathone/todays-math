@@ -1,0 +1,428 @@
+{
+  "status": "Structural, notation and editorial evidence verification; not independent approval or activation",
+  "taskId": "task_c687f2c40ea2",
+  "dispatchId": "ctx_b868a7c064eb",
+  "checkedAt": "2026-10-07T14:25:27.861Z",
+  "count": 27,
+  "sourceChecks": [
+    {
+      "id": "m2-05-04-c9",
+      "sourceIndex": 602,
+      "sourceFingerprint": "789d8d360398c284d75acdcc2f39d79d24ebf6c048bdeff39acf3e6190b27b74",
+      "beforeNormalizedHash": "b9fc494cf16b864959203a2ab9ef65488b6937c20afc172993806d4cbe3f095c",
+      "afterNormalizedHash": "a97821f322a3f5fb9c87ab357bb266f78412171d49765dce690f3d4e96f60289",
+      "workerFingerprint": "b93d84ee24761702294bc9136b8c7ec43317c455d4b50834e1e2024f64182e02",
+      "fullRawFingerprint": "24ff973a3ee266d39cf93629990c8a3ae61e5068e8a8db2ec1bb194f083132ce",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m3-05-02-c2",
+      "sourceIndex": 856,
+      "sourceFingerprint": "af4582349118da916f28be5d3040bff99b93219a769f589d8c8891ee9b4709c8",
+      "beforeNormalizedHash": "a0c55c4231e867ab2a9021fee6db6f06407e3bf27c55d425164ed2287cb76155",
+      "afterNormalizedHash": "7642aa466f937bf52016c41869a4f13272a95f462309c1d21d17ec00d3bfaa5e",
+      "workerFingerprint": "2382f465ce1871c64b79f540e9da85bdf2af6b7439888cb0cd71aed147b9b28f",
+      "fullRawFingerprint": "c3a42c495b97eb4465fbaad12143aa8d4510ce1d3b71abb0a0deb7035dd49f99",
+      "currentLearningRole": "application"
+    },
+    {
+      "id": "m3-05-02-c9",
+      "sourceIndex": 863,
+      "sourceFingerprint": "bbf509d62bdcc96010a7a07d937e56b174c190e8088a72c064988e0ad522fa54",
+      "beforeNormalizedHash": "5d83fc6f6b52a65b2956438d88afa967576fb5924ada659f9675bc7cdd4e198e",
+      "afterNormalizedHash": "d8917f29766e053b5d6538c6f81fa20189fe0c23683bad351825fdd472182e6f",
+      "workerFingerprint": "73e75d7b87c09372db06e8dd16dd4c72d5d0f2aa7c35f7ba3588cb4e0921e027",
+      "fullRawFingerprint": "7e6047e74bed350802d4b1e9cc58434ef3aea12679a5b08e1109e83105bb209c",
+      "currentLearningRole": "definition"
+    },
+    {
+      "id": "m1-02-02-xc15",
+      "sourceIndex": 1079,
+      "sourceFingerprint": "b48f19fc7adb1487325195e9289de6493a21e30e5c182ec65a4cf8ecb03e8755",
+      "beforeNormalizedHash": "8932081f0275fc12435dccfaa117682cbf196bcc4f89a3971dbede23a9de18a2",
+      "afterNormalizedHash": "7066467da7e6404d88cd4f6b1c46f4b6433e02a159526595645b8961a040830d",
+      "workerFingerprint": "9cd7644d6a1c45c516bf266f098217da808c9800844fe655615cd0673ab031dd",
+      "fullRawFingerprint": "47688a4ba3b3a1bb790cd824ef0fa2d2aba6e8d97070d60c07479ce46caa9351",
+      "currentLearningRole": "procedure"
+    },
+    {
+      "id": "m1-02-04-xc24",
+      "sourceIndex": 1134,
+      "sourceFingerprint": "2cfd269f4a011331edb2b528e042815b3b0c84335866cc83b8b5f451ad2a9f11",
+      "beforeNormalizedHash": "f889d4d6ec8656dfab7bd4f718fd6d079ead1019caa13e4b070f99d3ad325471",
+      "afterNormalizedHash": "bb26dc1f2ed95827c9674b46c500f587cde9add669f3ed4e1062c72850875c00",
+      "workerFingerprint": "e61b2c923c7e93b4b35ac06fd1964131033809daf3d4e11a6465768eebe7a5d1",
+      "fullRawFingerprint": "3234fae224c55cd57075f142b8eacd899d0dd87ce88501498baa682d6a3a26a5",
+      "currentLearningRole": "procedure"
+    },
+    {
+      "id": "m1-03-02-xc9",
+      "sourceIndex": 1190,
+      "sourceFingerprint": "737c5c3080e5130a0c0ad98337a9a8519aeadc67e562bc46354c9ef1c5e6981b",
+      "beforeNormalizedHash": "ea05609c2dec384fbbb6ba2d3af1a5e02aa88520789131a8462dedf1e7e0cffa",
+      "afterNormalizedHash": "e5c46d67b7f3022493c35a0de1769690ba463552d6d77f5addcb93363ad84e03",
+      "workerFingerprint": "67b7d229ff82d14a721c350bd4a9aeea3cd9ad731d4f52e71d1bb44d65735fe8",
+      "fullRawFingerprint": "f528eb052f05bbe3728259da3fdf790dd84384bb347baba0fa220463dccaa5e6",
+      "currentLearningRole": "definition"
+    },
+    {
+      "id": "m1-03-04-xc19",
+      "sourceIndex": 1243,
+      "sourceFingerprint": "f8f34940dbc7deff9ef2437019a886c4243c84b0f8d926d678951af1ffddda82",
+      "beforeNormalizedHash": "3abe8a543e69ea5ad98d2ac83a62df7778f18bb8184015ba958bab95e21091d3",
+      "afterNormalizedHash": "c51f2763be311bb603b6da27ad8f54bd18976966141a7e9ac6bd341d3d0c6fdc",
+      "workerFingerprint": "dc1024aea0fce734d421f1170ac175ccd6498df3ed3b6c65e92b7d8c21212eea",
+      "fullRawFingerprint": "718a1817e081223f7150d10aa0ead0b95917d93987b357559ead1a898d9514e1",
+      "currentLearningRole": "application"
+    },
+    {
+      "id": "m1-03-05-xc24",
+      "sourceIndex": 1271,
+      "sourceFingerprint": "12e0f79e60edf940f7e6e4aaf09733f0f81dd5469f196a56ba0d882836f7555f",
+      "beforeNormalizedHash": "cb6ace3fc78138bd792ecd8b4cb173b65b0ecad34592c35fa281325e6e5c444b",
+      "afterNormalizedHash": "439108cf6b1f301e65f5766fb79198411a2208196c49a22382e12a61f3debfda",
+      "workerFingerprint": "584df3d9e8b205ed8fe1793e1cda8ca50f67db490549257c77c9e694ef778b90",
+      "fullRawFingerprint": "7cb304a45af9ae365b9ebcc57ec7d10b78ce6bb581bba1f90449a9ea133dd464",
+      "currentLearningRole": "procedure"
+    },
+    {
+      "id": "m1-05-03-xc22",
+      "sourceIndex": 1638,
+      "sourceFingerprint": "6d0325e7d97cd23ac092e2a6bd7e493d7a8cf57c06af2fd8057c3bdce8e0cd40",
+      "beforeNormalizedHash": "98bfeb15204f76616f9b590d7a844b217d13aeb2a24aeeb3c76b2d1e95655920",
+      "afterNormalizedHash": "1edb2251b133fc180baafad0086fbdde1bba18caafc585cc41b971f59f9d46ae",
+      "workerFingerprint": "84c46b9ba425f3b68216ca1b61686df993cd660de6af34a3c9c730dbd81cca84",
+      "fullRawFingerprint": "3afd42c2d01c65c16935f946e517ad87c1da0a231807439f8fb789379698a4d4",
+      "currentLearningRole": "application"
+    },
+    {
+      "id": "m1-07-02-xc22",
+      "sourceIndex": 1885,
+      "sourceFingerprint": "ede5c7e18f95b25a8da25d4c2bc16770bc624d6114080743a168a9cd401bd7f1",
+      "beforeNormalizedHash": "31fee9fa0732f7de170d29849e8eefb68546546ca82c9fe324722dfafee75dad",
+      "afterNormalizedHash": "11ed99cb856ac45bbb15599d17f9c62e77319b9963746eb14500925c05c68966",
+      "workerFingerprint": "b1bdaecef7e2e85d983da0b926c7cb2cd1a1532ae8b92d6549d9185be594bd4c",
+      "fullRawFingerprint": "c3f3074b0a059659bdfc25a8ab24ec3c2bee619f1d7a364748e211ba4f8235d6",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m1-08-03-xc17",
+      "sourceIndex": 2042,
+      "sourceFingerprint": "6f62db4babaa82427ce1077a1b52c45f0a2b5fc73bd692b22d253badcb2731a5",
+      "beforeNormalizedHash": "43a13353759f2756a3895ad3097cac775ea51e235d729fb4c26c9f60b34af5f9",
+      "afterNormalizedHash": "2d4d1219fc30c95550e84de9df5cbd60324d0725e77e738c6c24e6d39e3ca9c9",
+      "workerFingerprint": "3bced476de08c28eeb4dc8b859c5082ca88392d2c97ff2f519905012ed2665a5",
+      "fullRawFingerprint": "22af3f6292345a484053067529745a58cfbf3bdf2fcbbb6243b819ba7579587c",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m1-08-05-xc9",
+      "sourceIndex": 2082,
+      "sourceFingerprint": "dbb60559ff9f7ae229553cba6a08b74df007fec228b9f525e6f93969cf34b6cf",
+      "beforeNormalizedHash": "6159b1c9c18d68d9c6088f8cbdc81155fd566a14f882363430e7ff6ecd39b282",
+      "afterNormalizedHash": "93821a6ff1b9a1a6df3d12205e0c43058cfa761f260679ce45f00c265d1b567b",
+      "workerFingerprint": "57d54869ccb61ee59d7769764e559227723622b40e0e8d1f5d35ad3559d66087",
+      "fullRawFingerprint": "8fa7f694ac63756f8ca07ea238c2519de2605a67a9ad7129070f17703385abf0",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m1-08-06-xc20",
+      "sourceIndex": 2118,
+      "sourceFingerprint": "317313cff1478e1303aaf04398b53f892081fbcc88c6f0e20177dab578f1b74c",
+      "beforeNormalizedHash": "709e52a554a8d5e8797b6a02e989fa980613a95e8968d4abb4239623a9c2bc39",
+      "afterNormalizedHash": "2bec10ee05882f85225a79735aab6c7cd99dab7ee4983730493c744bc55b1e73",
+      "workerFingerprint": "1e1221333031342763dbd49bb5c7b9c45df697a3e6bbdee3d87377224ec83018",
+      "fullRawFingerprint": "cba2659777f13e435543fbbe67aeb59eb39d3e9e55b12f57ecb45938bc0b3cee",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m1-08-06-xc22",
+      "sourceIndex": 2120,
+      "sourceFingerprint": "f4d525a018c15d917abd2eb3a665db8622f69a0226312520ae2aecbd48a256f0",
+      "beforeNormalizedHash": "b56ca6daabfd28df5bfab10e1670dca16d579018b3005d72c73d02b8527027a4",
+      "afterNormalizedHash": "3718afce14c3e7ce30fd217472e441534d9cabb722a40245d227dc76dc24bbe8",
+      "workerFingerprint": "78207206f9e826546705e956ba207d8c3ab2c661e526e2695230e249ef79de59",
+      "fullRawFingerprint": "98f52c2783ee767c5e3c175fb5aa3477cdac70b0339c5e213821830072f9c025",
+      "currentLearningRole": "procedure"
+    },
+    {
+      "id": "m2-01-01-xc22",
+      "sourceIndex": 2142,
+      "sourceFingerprint": "e240f19eb0a4cac9d19e8344f0737fd6bd327588105bbe7580751655077ffcd8",
+      "beforeNormalizedHash": "971b58b7b2e3ea197d510e83d44428694b884db429a1975a61b1471ac4f0c7e2",
+      "afterNormalizedHash": "1733c28472004e395ab9701d326f548541f6fee08a3f1179bda2764e6df013df",
+      "workerFingerprint": "19dd03dc650e3ada22a81ee05556510ab529eac2387e503c3fd922e250ea755d",
+      "fullRawFingerprint": "7bb6a14ab83ba1b255f0ce7371cb27017dbe871c198651b678bffb0ecd0d5102",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m2-01-02-xc14",
+      "sourceIndex": 2158,
+      "sourceFingerprint": "fcb2803cbc2e7958b411470d97bad94cc0a6bea29f6ad477d840868dde9bb2f1",
+      "beforeNormalizedHash": "faa9e13701dc80802425724e4aecd371d297ffd5b18fa7542757ad95c5078008",
+      "afterNormalizedHash": "201a620cdbf9ea34df970f798dc082bd11b00817f46021040b84e9de0a3b8aa5",
+      "workerFingerprint": "322bac03793143e421ff5f4f8d37332796c71dcf5ea23b39512a1fd247798d08",
+      "fullRawFingerprint": "64f82e524f291c88a504927cac72018b665f24a47cf9389881a1f850bea0bb2e",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m2-01-06-xc10",
+      "sourceIndex": 2249,
+      "sourceFingerprint": "d2c36bc3f9e417b2d555f47135186f01ea1d46d45ea191e3c811267e69182c87",
+      "beforeNormalizedHash": "8ecfb1cea0f2013d939b398054938b32ad225c1da98d226c18468b6a706c7199",
+      "afterNormalizedHash": "ac35d723175a891ab5cd8fd9a1640804037a58e314810db5c9c945e4e50e1891",
+      "workerFingerprint": "cf6a72d5f144195c86715c3b714b0f78e6f3be4e90edfe48243986cc6b370cd8",
+      "fullRawFingerprint": "ebd24eeadf0b019761ab9f2ec0a3cfa8796899e91e6be53cd264ed1da9c2b3c3",
+      "currentLearningRole": "procedure"
+    },
+    {
+      "id": "m2-03-06-xc20",
+      "sourceIndex": 2578,
+      "sourceFingerprint": "dec21586a8427eba4ce94f5591880844f77c8a559071ff54f5bb142599a508f1",
+      "beforeNormalizedHash": "fd42a78e5e57adc5317c7e679587699f7d053f716f3d5be301d2b8d4207376f6",
+      "afterNormalizedHash": "2ba8814bfd03d2f1d056f0129ad6e2d7ce0ede6450b5922eb4a1d138fedd123a",
+      "workerFingerprint": "b166e00090d29e160c523a19ab1eec9f495b9cadafebe52a2000d8fde2890e93",
+      "fullRawFingerprint": "c6d7d4dc1b7a7c7be390cd288932a96fcff5ffe5c626e06bd90c466829af3a98",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m2-04-01-xc15",
+      "sourceIndex": 2654,
+      "sourceFingerprint": "e68fa16cc022cb9a92339143cfbd6ce882ab8f84cc43a72a6c42df86f8e8493b",
+      "beforeNormalizedHash": "ead13bb101399a5ccf19bebcd7fc0e146ffbd072505e859fd96f23a584f654c5",
+      "afterNormalizedHash": "4a7faffb274cdfbb17a8bdefcb0b5fc5f006690f5bd38980dbbc4cd32b3e4b5c",
+      "workerFingerprint": "fbc3177293846009e9c7f6ab76568dfd70abf5b3b373369e0f8f501ac89795a5",
+      "fullRawFingerprint": "89d3798889da69a0828f249b95249d3e1fab2c1424837c81cd67afa684709c50",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m2-04-06-xc6",
+      "sourceIndex": 2721,
+      "sourceFingerprint": "06e937feaa79c04861fe0bfc7649e5857d961f77184e2d0241be213354a43121",
+      "beforeNormalizedHash": "259eea27ee1bbf8fba333e8c60dd7452dc64c92fc4581530e066088c424c84d3",
+      "afterNormalizedHash": "5c02deb44a9b0b450393d1478a312d4a003bded38b7133aee2130d7f0b777d48",
+      "workerFingerprint": "4410ef7bfa3aed79336253c58a6a88dba8c35d508a346f2bff75cfe46f1330e3",
+      "fullRawFingerprint": "18a1d01aac2671d2903319b6e6ced868a795a1d06e0905dc4112975c62c5d50a",
+      "currentLearningRole": "application"
+    },
+    {
+      "id": "m2-04-08-xc9",
+      "sourceIndex": 2755,
+      "sourceFingerprint": "c09338355705156258932d212294677810fa038cca94fcb5e02ddd86b155b0a2",
+      "beforeNormalizedHash": "2ca69e3691fc3de3897b3d1a5a9ff132f106f340feb1d9a272065638eca717e4",
+      "afterNormalizedHash": "cc036da826fde5940e9931414a7a21ce0ef710ae6cf912783860887ea3ee4daa",
+      "workerFingerprint": "43d5ffb0e1ccacc75fc0be2dece8e2c54d6512f7f8ea179916d7cabb1722b271",
+      "fullRawFingerprint": "5c128b63ff62be7cab6f52954f18e6541610abf612034b30dd622c6ec4572194",
+      "currentLearningRole": "procedure"
+    },
+    {
+      "id": "m2-05-01-xc6",
+      "sourceIndex": 2790,
+      "sourceFingerprint": "7dde6349050b27f3b38a2f8f9cdbcb3b71eefd0d1d627f0f36ae379f23ba69e8",
+      "beforeNormalizedHash": "105aab3ba1fa68826527acdc5b201368ab9d4116222cefa471be86f18373f7d9",
+      "afterNormalizedHash": "2ee738dcc09871a57c9506fa2f1c27d571cea6f942a86f7139c02d8e9f78bbe6",
+      "workerFingerprint": "dea0a5743c185bb94a13c5bf479c415ecd8998c6be9fca9f2c26cce63aadaa9d",
+      "fullRawFingerprint": "acbc50181982fb4d086dc9085d9b4a8b73b519a9238debf5f42920f98f74b2d0",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m2-05-02-xc16",
+      "sourceIndex": 2816,
+      "sourceFingerprint": "853d328ac290dff7de6651a49a220db927decac35b61e960dd04b187e66a3ad1",
+      "beforeNormalizedHash": "1e398a39a6178e7ab7c56843e876796e8766e6d3a2075e39a5dbbbe68ba3f79c",
+      "afterNormalizedHash": "023b5d93c040f574c8613d67558863d6001f682c3f14be07e8b686a5ddced872",
+      "workerFingerprint": "29696b2dea3d494a08aec545bdaefdb206905c2b3af389fce0b0db89fa391a4f",
+      "fullRawFingerprint": "d5c3e2e0ad09a6201fa55a74f81dca9fcda2a3e8f49dd305203ac454d1afb237",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m2-05-08-xc10",
+      "sourceIndex": 2920,
+      "sourceFingerprint": "86160d5d3607436ef87314e8773a2c8bba2fd320e10ca34b3c23b8f88a023f08",
+      "beforeNormalizedHash": "2e9b8f215f3b71f6f598b4a075f370badbc547603ceb6f91b2fb7178a9f5ac36",
+      "afterNormalizedHash": "7b55c1330b51622e190cc7221c4eb592f78a2c8e064fb774be130a95258c98dd",
+      "workerFingerprint": "6aacc6b970e45fff700d14fdd41875ad3320d6cdc241c4669497e456f79b3488",
+      "fullRawFingerprint": "318edbd99bacfbd5cf7eb3e265f48325f63c06e03f0651a4a6c21b3a8092ec77",
+      "currentLearningRole": "reason"
+    },
+    {
+      "id": "m2-09-04-xc22",
+      "sourceIndex": 3267,
+      "sourceFingerprint": "bb5aeab25aa4fbcbc29dd804bc0a81707c16b49ca5dab26df134431686ecda14",
+      "beforeNormalizedHash": "e65c5115fea59426a791e8c4c69cde9e7c7984762f79cc4d5c6715865c6876b7",
+      "afterNormalizedHash": "7ca32f830a00d48da4887fdccc1da789947a808bca99a77758b283bcbba59027",
+      "workerFingerprint": "054044356777f0ae948565bfe8d9c3845d5ecbe4ffa40396fe81559297f1fa7a",
+      "fullRawFingerprint": "2487818c360991d035863047b1abb914d40c9358e14efddf221768f0b50793af",
+      "currentLearningRole": "procedure"
+    },
+    {
+      "id": "m3-02-03-xc23",
+      "sourceIndex": 3394,
+      "sourceFingerprint": "fcaba6fbca02c9c9c0a8c586bd4b7d0a355dc76bf6e4255d5578dfa81ac744cf",
+      "beforeNormalizedHash": "83109f5ae78e47b1fce515d6f4a5270ff85afe6e9c6ebf7519ebe450cde8a76a",
+      "afterNormalizedHash": "655da38933971df86fe254b14726ba077798c0630c8f9b91ecf7c6a491fc0e40",
+      "workerFingerprint": "9339975dd189287ffe67f579638a1008be0544215affd4728dcdfc9394244185",
+      "fullRawFingerprint": "8f51aa47c5f3010baa5fbf1e00a1c68985f93431091d21e1fa98210cfb1839dc",
+      "currentLearningRole": "application"
+    },
+    {
+      "id": "m3-05-01-xc16",
+      "sourceIndex": 3533,
+      "sourceFingerprint": "d02e38359a6be99afbd5d4d6b8e84739dbd0433b21ecb2a4916050f748506975",
+      "beforeNormalizedHash": "60fe9144a8ab62e49e9ebd1c2874a4560002309d73e7764f311b23d7f592f068",
+      "afterNormalizedHash": "1e3f8548e8373a7fbe353159de1db4e2c9ab34800310e7c79fb53fb55841d596",
+      "workerFingerprint": "7742a22bc0c66eefcc052ac11d218413ff386a9504c3ffa02dc55b606b0121bd",
+      "fullRawFingerprint": "9691fee1cef49552be753d40a91c7611226069bf943fe35a0ff5aa5aa42ad5fb",
+      "currentLearningRole": "reason"
+    }
+  ],
+  "snapshotChecks": [
+    {
+      "name": "input",
+      "expected": "b3134542e304352c598b4aace56761c191ccfc5f222ede50eaf1b799f7593738",
+      "actual": "b3134542e304352c598b4aace56761c191ccfc5f222ede50eaf1b799f7593738"
+    },
+    {
+      "name": "baseline",
+      "expected": "418e1f5267457a82175fd114b9dcd7e4b893de8a7d883ebbe0d41155012e81bb",
+      "actual": "418e1f5267457a82175fd114b9dcd7e4b893de8a7d883ebbe0d41155012e81bb"
+    },
+    {
+      "name": "scope",
+      "expected": "8f626f45ef692a11e0f9b7c44e8f996c76f2e4b6ec0468808722a863cf56f64b",
+      "actual": "8f626f45ef692a11e0f9b7c44e8f996c76f2e4b6ec0468808722a863cf56f64b"
+    }
+  ],
+  "rootBankCaptureSha256": "7c00329f2f7c11fdd0b871a77ecaa3ff5da9b09617f9691c606d2a3a7161d6a3",
+  "targetFaults": [],
+  "targetClashes": [],
+  "fullBankFaults": [
+    {
+      "id": "m2-01-01-xc20",
+      "field": "example.prompt",
+      "rule": "수식 뒤 조사",
+      "what": "$\\frac{3}{2\\times a}$가"
+    }
+  ],
+  "preexistingFullBankFaults": [
+    {
+      "id": "m2-01-01-xc20",
+      "field": "example.prompt",
+      "rule": "수식 뒤 조사",
+      "what": "$\\frac{3}{2\\times a}$가"
+    }
+  ],
+  "introducedFaults": [],
+  "fullBankClashes": [],
+  "introducedClashes": [],
+  "editorial": [
+    {
+      "id": "m2-05-04-c9",
+      "issues": []
+    },
+    {
+      "id": "m3-05-02-c2",
+      "issues": []
+    },
+    {
+      "id": "m3-05-02-c9",
+      "issues": []
+    },
+    {
+      "id": "m1-02-02-xc15",
+      "issues": []
+    },
+    {
+      "id": "m1-02-04-xc24",
+      "issues": []
+    },
+    {
+      "id": "m1-03-02-xc9",
+      "issues": []
+    },
+    {
+      "id": "m1-03-04-xc19",
+      "issues": []
+    },
+    {
+      "id": "m1-03-05-xc24",
+      "issues": []
+    },
+    {
+      "id": "m1-05-03-xc22",
+      "issues": []
+    },
+    {
+      "id": "m1-07-02-xc22",
+      "issues": []
+    },
+    {
+      "id": "m1-08-03-xc17",
+      "issues": []
+    },
+    {
+      "id": "m1-08-05-xc9",
+      "issues": []
+    },
+    {
+      "id": "m1-08-06-xc20",
+      "issues": []
+    },
+    {
+      "id": "m1-08-06-xc22",
+      "issues": []
+    },
+    {
+      "id": "m2-01-01-xc22",
+      "issues": []
+    },
+    {
+      "id": "m2-01-02-xc14",
+      "issues": []
+    },
+    {
+      "id": "m2-01-06-xc10",
+      "issues": []
+    },
+    {
+      "id": "m2-03-06-xc20",
+      "issues": []
+    },
+    {
+      "id": "m2-04-01-xc15",
+      "issues": []
+    },
+    {
+      "id": "m2-04-06-xc6",
+      "issues": []
+    },
+    {
+      "id": "m2-04-08-xc9",
+      "issues": []
+    },
+    {
+      "id": "m2-05-01-xc6",
+      "issues": []
+    },
+    {
+      "id": "m2-05-02-xc16",
+      "issues": []
+    },
+    {
+      "id": "m2-05-08-xc10",
+      "issues": []
+    },
+    {
+      "id": "m2-09-04-xc22",
+      "issues": []
+    },
+    {
+      "id": "m3-02-03-xc23",
+      "issues": []
+    },
+    {
+      "id": "m3-05-01-xc16",
+      "issues": []
+    }
+  ]
+}

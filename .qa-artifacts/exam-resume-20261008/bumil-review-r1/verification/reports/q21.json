@@ -1,0 +1,619 @@
+{
+  "status": "verified",
+  "studentDigest": "a6c2a3165a9cb2fd394a937d2d9182cbf86b1fe44c75f84c450bbd534f8ee15a",
+  "candidateDigest": "627739fd82bf6809efca3070e606a354df0aca4b0b8e305249ffdad6768c78fb",
+  "assetDigest": "481ea4702885cbc16cafa05ec9bd7cfd5df4e430c812dc6cbc07a19f3bbf87bf",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-source-identity-20261008",
+  "solveDigest": "2d07c690eed3f4200a23762fae77c7b6d3c891b2a403c954b1e47277419f8e70",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 21,
+    "answerReview": "독립 풀이의8cm와 저자 답$8 cm$는 동일한 길이이다. 같은 접선 길이와 피타고라스로4x(25/8)=100에서 x=8을 얻는다. 정답은 제곱근 부호 선택이나 원문 답 일치로 정하지 않았다.",
+    "solutionReview": "DE=DA,CE=CB, E의 내부 조건으로 CD=AD+BC를 세운다. 저자의H는 독립 풀이의F와 같은 보조선 발이며 ABCH 직사각형에서HC=10,AH=25/8, DH=x-25/8을 얻는다. (x+25/8)²=100+(x-25/8)²의 전개는(25/2)x=100을 올바르게 준다. x=8과8>25/8>0도 확인한다. 모든 핵심 단계가 독립 풀이와 같다.",
+    "existenceUniquenessReview": "x=8,b=25/8에서CD=89/8,높이차39/8이며 양변 제곱길이는7921/64로 같다. 실제 접선 존재는 OD²=89,OC²=2225/64에서 O의CD수선 발까지의DE=8,OE²=25를 두 피타고라스 식으로 계산해 확인했다. 반지름5이고0<8<89/8이므로 접점은 위쪽 반원과CD내부에 있다. 일차식 계수25/2≠0이라 해는 하나이다.",
+    "choicesReview": "서술형이고 입력 choices가 빈 배열이다. 객관식 보기 검사는 비해당으로 choicesCorrect=true를 기록한다. answer 형식과 양수 길이·유일성 검사는 별도로 실제 수행했다.",
+    "figureReview": "spec의 A(30,180),B(210,180),O(120,180),D(30,36),C(210,123.75)는 반지름90과AB180,AD144,BC56.25를 이룬다. E=(159.43820224719101,99.10112359550561)는 원 위CD접점이고 두 끝점 사이이다. 실제SVG/r2미리보기는 A/B직각·BC의25/8cm만 표시하며 AD 답의 치수나 보조선H를 미리 제공하지 않는다. 반올림된SVG E오차는 앞선 독립 검산의 허용치 안이다.",
+    "coreAndDeltaReview": "출처는 지름과 왼쪽 접선 높이에서 오른쪽 접선 길이를 구한다. 새 문제는 지름과 오른쪽 높이를 측정 기록으로 주고 빠진 왼쪽 높이를 역으로 구하며 서술형 풀이를 요구한다. 좌우·같은 반평면·E내부·높이 순서가 새 조건 조직에 명시된다. 같은 외부점의 접선길이→높이합/차→직각삼각형→피타고라스의 핵심 절차를 유지한다.",
+    "naturalKoreanReview": "‘측정한 기록에서 왼쪽 높이만 빠져 있다’가 두 측정 항목과 질문 대상을 연결한다. 반원쪽 위에 있는C,D, E가 두 끝점 사이, AD>BC>0이라는 설명은 보조선과 길이합/차 해석을 명확하게 한다. 길이는cm, 접점은A,B,E로 일관된다. 문장은 자세하지만 무관한 생활 소재나 추가 읽기 개념이 없다.",
+    "unitFamilyReview": "Unit635abab8-4a87-452b-ad6c-d59065822f29는 중3/원의 성질/원의 접선/2학기이고 seed485·registry11·live46을 확인했다. m3Tangent.ts:260-289는 지름 양끝의 접선과 위쪽 공통 접선을 만들고:1081-1123의mode3는 지름과 한 높이에서 다른 높이를 접선길이와 피타고라스로 구한다. 새 문제는 구할 높이의 좌우가 바뀌지만 반원과세접선·같은지배관계라 semanticfamily11에 맞는다. 현재정수T11조합과 정확한 새 수치/좌측목표 출력 지원은 별도 확인 대상이다.",
+    "difficultyReview": {
+      "status": "passed",
+      "authorProposal": "응용",
+      "reviewedRecommendation": "응용",
+      "basis": "접선 길이와 직각삼각형을 결합하고 보조선 하나를 그어야 하므로 직접 계산형보다 추론 부담이 있다. 그러나 사용할 접선 성질·피타고라스를 문제에서 지정하고, E가 선분 내부에 있으며 AD>BC>0임을 명시해 합/차와 보조선의 위치에 대한 경우 분류를 없앴다. 미지수는 하나이고 식은 일차식으로 소거되어 8을 준다. 이 후보의 범위는 안내된 두 성질의 결합 응용으로 판단한다. family11의 심화하 descriptor나 서술형 8점 자체를 난이도 판정으로 대체하지 않았다.",
+      "limit": "실제 학생 응답자료에 의한 통계적 난이도는 아니다. 방법 안내, 경우 수, 미지수 수, 보조선 수와 연산 부담을 근거로 한 후보별 판단이다."
+    },
+    "problemTypeReview": {
+      "status": "passed",
+      "authorProposal": "서술형",
+      "basis": "문제에서 접선 성질과피타고라스 이용의 풀이과정을 쓰도록 명시하며 객관식 보기가 없다."
+    },
+    "scoreReview": "학생·후보·v2 및 question-only출처 보고서에서8점을 확인했다. 새 문제는 접선 등식,CD합, 보조선·직사각형, 길이차, 피타고라스식과 해의 조건을 설명해야 해4점 선택형들보다 여러 채점 가능한 추론을 요구한다. 이 상대 부담과 요구된 서술로8점을 타당하게 본다. 공식 부분점수 배분표는 제공되지 않아 만들거나 승인하지 않았다.",
+    "curriculumDecision": {
+      "sourceEraSuitability": "passed: 2025 middle3 / 2015 mathematics",
+      "allSevenStudentSurfaces": "passed",
+      "materialUnverifiedMathematicalOrGradePrerequisiteProvision": null,
+      "materialAmendmentUncertaintyIdentified": [],
+      "basis": "Actual source date/grade + official 2015/2022 grade-specific phase-in + redecoded 2015-74/2020-236 mathematics standards + exact Unit/seeds/prerequisite order and legitimate student solution. No unrelated whole-policy completeness gate.",
+      "publicationAndFutureEdition": "Separate from source-era suitability; rights/provenance/loading remain pending, and republication targeting 2022 requires a new target-edition review."
+    },
+    "generatorCoverage": {
+      "procedureCoverage": "passed",
+      "exactAuthoredTargetAndNumbersCoverage": "pending",
+      "basis": "mode3는한높이와지름→다른높이를같은Pythagorean소거로 구한다. T11은[9,4,6]등정수셋만포함하고새[8,25/8,5]는없다. 정확한 좌측높이 목표/분수 조합과기록형 발문을 실행검증하지 않았으며 기존지원으로 보고하지 않는다."
+    },
+    "holds": [
+      "새분수조합·좌측목표 직접출력 지원, 취득/변환 이력·권리·공유 적재는별도pending이다."
+    ],
+    "metadataPromotionPerformed": false,
+    "originalAnswersReadThisReview": false,
+    "reviewedAtUtc": "2026-10-07T19:15:40.901529+00:00",
+    "binding": {
+      "packageDigest": "3b6706318763917e3b65f257031823643748034df3e44bd1f2c2633c8c72e906",
+      "verificationInputsSha256": "64decaf1ca991d3ddfd72165e0cdcf7e544a2a583d92b242323638c674e2510f",
+      "givenSolveDigest": "2d07c690eed3f4200a23762fae77c7b6d3c891b2a403c954b1e47277419f8e70",
+      "independentSolveFileSha256": "3b7c4c29f4929193267bcc6122cdabb41136670a5dc35903cf3fd619384df3be",
+      "originalBlindCommit": "041af22f85f4292d0db01f2848e35e0a5583e407",
+      "parentSolveCopyByteIdentical": true,
+      "embeddedSolveEqualsImmutableFile": true,
+      "candidateStudentFieldsEqualBlindStudentFields": true,
+      "allFourGivenDigestsCopiedUnchanged": true,
+      "blindSolveEdited": false
+    },
+    "independentCalculation": {
+      "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+      "executedCode": "from fractions import Fraction as F\nw = F(10)\nb = F(25,8)\nx = w*w/(4*b)\ncd = x+b\ndf = x-b\nassert x==8 and x>b>0\nassert cd*cd == w*w+df*df\nr = w/2\nod2 = x*x+r*r\noc2 = b*b+r*r\nde = (od2-oc2+cd*cd)/(2*cd)\nce = cd-de\noe2 = od2-de*de\nassert 0<de<cd and de==x and ce==b and oe2==r*r\nprint(x, b, cd, df, cd*cd, w*w+df*df, od2, oc2, de, ce, oe2, de/cd)",
+      "actualResults": {
+        "ADCm": "8",
+        "BCCm": "25/8",
+        "diameterCm": "10",
+        "radiusCm": "5",
+        "CDCm": "89/8",
+        "DFCm": "39/8",
+        "CDSquaredCm2": "7921/64",
+        "CFSquaredPlusDFSquaredCm2": "7921/64",
+        "fourTimesADTimesBCCm2": "100",
+        "linearCoefficientForX": "25/2",
+        "ODSquaredCm2": "89",
+        "OCSquaredCm2": "2225/64",
+        "DECmFromTwoPythagoreanEquations": "8",
+        "CECm": "25/8",
+        "OESquaredCm2": "25",
+        "fractionOfCDFromDToE": "64/89"
+      }
+    },
+    "actualIndependentChoiceChecks": [],
+    "sourceEditionReview": {
+      "documentaryIdentity": "confirmed for selected question only",
+      "actualExamYear": 2025,
+      "actualExamDate": "2025-09-23",
+      "grade": 3,
+      "sourceSemester": 2,
+      "referenceCurriculum": "2015",
+      "phaseInBasis": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "scopeLimit": "Phase-in and documentary identity establish the reference; they do not grant rights or attest all later consolidated policy. No original answer/solution was read for this review."
+    },
+    "curriculumEvidenceFileSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+    "standardsChecked": [
+      {
+        "code": "9수04-19",
+        "text": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+        "hwpSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+        "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4353,
+          "record_offset_in_uncompressed_stream": 219558,
+          "extracted_paragraph_1based": 894
+        },
+        "hwpOffsetRedecodedMatches": true,
+        "pdfSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "pdfSha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "pdfPhysicalPages": [
+          38
+        ],
+        "pdfTextReadMatches": true,
+        "supplementedByVerifier": false
+      },
+      {
+        "code": "9수04-16",
+        "text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+        "hwpSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+        "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4333,
+          "record_offset_in_uncompressed_stream": 218866,
+          "extracted_paragraph_1based": 889
+        },
+        "hwpOffsetRedecodedMatches": true,
+        "pdfSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "pdfSha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "pdfPhysicalPages": [
+          38
+        ],
+        "pdfTextReadMatches": true,
+        "supplementedByVerifier": false
+      },
+      {
+        "code": "9수04-12",
+        "text": "사각형의 성질을 이해하고 설명할 수 있다.",
+        "hwpSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+        "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4308,
+          "record_offset_in_uncompressed_stream": 217962,
+          "extracted_paragraph_1based": 883
+        },
+        "hwpOffsetRedecodedMatches": true,
+        "pdfSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "pdfSha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "pdfPhysicalPages": [
+          38
+        ],
+        "pdfTextReadMatches": true,
+        "supplementedByVerifier": false
+      },
+      {
+        "code": "9수02-05",
+        "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "hwpSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+        "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "hwpOffsetRedecodedMatches": true,
+        "pdfSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "pdfSha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "pdfPhysicalPages": [
+          34
+        ],
+        "pdfTextReadMatches": true,
+        "supplementedByVerifier": false
+      },
+      {
+        "code": "9수02-12",
+        "text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+        "hwpSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+        "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3956,
+          "record_offset_in_uncompressed_stream": 201534,
+          "extracted_paragraph_1based": 807
+        },
+        "hwpOffsetRedecodedMatches": true,
+        "pdfSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "pdfSha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "pdfPhysicalPages": [
+          34
+        ],
+        "pdfTextReadMatches": true,
+        "supplementedByVerifier": true
+      }
+    ],
+    "actualClassificationRecords": {
+      "unit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "liveFamily": {
+        "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "family_key": "mid:3-2|원과 직선|11",
+        "live_count": 46
+      },
+      "registryEntry": {
+        "key": "3-2|원과 직선|11",
+        "grade": "중3",
+        "unitSection": "원의 접선",
+        "rpmBook": "3-2",
+        "rpmMinor": "원과 직선",
+        "rpmType": "11",
+        "rpmTitle": "반원에서의 접선"
+      },
+      "bankCapturedAt": "2026-10-07 15:57:15.290971+00",
+      "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+      "bankSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "livePresenceDoesNotProveFit": true,
+      "candidateMetadataLeftProposed": true
+    },
+    "generationRulesRead": [
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "lines1Based": [
+          260,
+          289
+        ],
+        "method": "source read only; no generation/DB execution"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "lines1Based": [
+          753,
+          760
+        ],
+        "method": "source read only; no generation/DB execution"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Tangent.ts",
+        "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+        "lines1Based": [
+          1081,
+          1123
+        ],
+        "method": "source read only; no generation/DB execution"
+      }
+    ],
+    "schoolNameSurfaceCheck": {
+      "status": "passed",
+      "studentSurfaceOriginalOrAliasOccurrences": 0,
+      "checkedSurfaces": [
+        "content",
+        "choices",
+        "tables embedded in content",
+        "answer",
+        "studentSolution",
+        "figure labels"
+      ],
+      "namesRemainInternalMetadataOnly": true
+    },
+    "assetsHashChecked": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package\\private\\q21\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package\\private\\q21\\figure-1.svg",
+        "specSha256": "e1eb1787df56f758f8336984dd8826f954681530ecec1f75fc235aa9bdac106a",
+        "svgSha256": "ad84c6b289eef08dd2679624c2d7eb4279e97becb5e9cbe50c1921f06e573861",
+        "intendedWidthMm": 62,
+        "studentPath": "figures/q21-1.svg"
+      }
+    ],
+    "readonlyInputReferences": [
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\VERIFY-BRIEF.md",
+        "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\verification-inputs.json",
+        "sha256": "64decaf1ca991d3ddfd72165e0cdcf7e544a2a583d92b242323638c674e2510f"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\verification-manifest.json",
+        "sha256": "bb383574163ae18210badf68077bb04124357d96ed8b2b486aedd1b0d559d3b6"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+        "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+        "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\preparation.json",
+        "sha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\source-identity\\source-review.json",
+        "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\source-identity\\SOURCE-REVIEW.md",
+        "sha256": "b0aaa6ed5fcfbd36a35a9765b70fcd5b14bdb765625fa11a7c8213ae26cfc682"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\prisma\\seed-data\\units.ts",
+        "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\curriculum\\unitSemester.ts",
+        "sha256": "d5df49e1ac37434bc48446512b0740a6bdc7e2089fd43db9d22c80bb41a3ca85"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\generate.ts",
+        "sha256": "4bdb90431cdb94a3023da05ad3731aa721d0a5ddcbf284bf3e2d7be1540faaab"
+      }
+    ],
+    "typesafeGuidance": {
+      "projectSkill": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.agents\\skills\\typesafe-ai\\SKILL.md",
+      "projectSkillRead": true,
+      "liveDocsRead": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
+        "https://docs.typesafe.ai/primitives/noul",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "application": "Separate propositions and evidence; code handles exact calculations/hash bindings; unknown checks remain false/pending. No weighted approval or probability as proof.",
+      "modelApiCalls": 0,
+      "fabricatedProbabilities": false
+    },
+    "publicationGates": {
+      "rights": "pending",
+      "acquisitionAndExportProvenance": "pending",
+      "loading": "pending",
+      "outsideGradeRequiredMethodFound": false,
+      "newAuthorAnswersReadOnlyAfterOriginalBlindCommitAndParentManifestBinding": true
+    },
+    "boundedEditionReview": {
+      "status": "passed for mathematical/grade prerequisite provisions of these four source-era candidates",
+      "mathematicalProvisionsStillUnverified": [],
+      "sourceYear": 2025,
+      "referenceEdition": "2015",
+      "officialPhaseIn": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "directOfficialSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "localPath": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-60747.html",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "cacheHashVerified": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "localPath": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-93458.html",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "cacheHashVerified": true
+        },
+        {
+          "id": "moe-2015-74-math-pdf",
+          "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+          "localPath": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+          "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+          "cacheHashVerified": true
+        },
+        {
+          "id": "moe-2020-236-math-hwp",
+          "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+          "localPath": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+          "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "cacheHashVerified": true
+        }
+      ],
+      "laterNoticeUrl": "https://ncic.re.kr/board/B0033.cs?act=read&bwrId=2114&m=34&pageIndex=1&pageUnit=15&searchCondition=&searchEndDt=&searchKeyword=&searchStartDt=",
+      "laterNoticeObservation": "2024-1 is effective 2025-03-01 and enumerates amended booklets including middle-school booklet3; mathematics booklet8 is not among them. No provision affecting the eleven mathematics standards/prerequisites used here was identified. This observation does not claim a complete amendment-chain audit.",
+      "fullPolicyChainAuditPerformed": false,
+      "whyNoWholePolicyHold": "The historical setup limit identified no specific missing 2025-effective mathematical/grade prerequisite provision that could invalidate these four actual student solutions. The present review checks those provisions directly; unrelated policy completeness is not a candidate grade gate.",
+      "currentOrFutureRepublication": {
+        "2026_middle3_2015_target": "Same grade-specific rollout supports continued 2015 target; this report checks the named candidate math, not permission to publish.",
+        "2027_middle3_or_any_2022_target": "pending separate target-edition standards/prerequisite review; 2022 phase-in for middle3 starts 2027-03-01.",
+        "new_stem_solution_assets_or_grade": "new digest-bound review required"
+      }
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "지름,세 접선,같은 반평면,접점순서,양수높이는9수04-19의접선 성질이다. 중3Unit485및family11에서동일 기하구성을확인했다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "서술형으로보기없음. 다른해/단위는존재유일성과answer검사에서확인하였다. 비해당을모르는보기통과로보고하지않는다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "반원·수평지름·양끝의접선·공통접선·직각·분수치수와두측정기록만있다. 원과비례/접선할선곱/일반삼각함수는필요없다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "선분막대,분수25/8,cm,접점기호,선분길이의양수비교는읽은중학교기하/대수학습요소안이다. ‘선분AD 내부’와수선의발H는기초기하용어이다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "8cm는주어진길이조건8>25/8>0에맞는다. 길이를양의수와단위로표현하며상위해형식을요구하지않는다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "9수04-19접선,9수04-12직사각형,9수04-16피타고라스,9수02-12전개,9수02-05일차방정식으로완결된다. 원의거듭제곱공식을외워적용하거나좌표거리공식/미분을쓰지않는다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "사각형과피타고라스는중2선수,전개는중3seed472로접선485보다앞선다. 실제official수학문서9수04-12/16,9수02-12/05및현재접선family11을확인했다. 원과비례금지조항에해당하는방법은학생풀이에없다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    }
+  }
+}

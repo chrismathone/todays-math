@@ -469,6 +469,28 @@ export function renderRecallHtml(
 ): string {
   const recall: RecallBlock = block;
   const semantic = recall.semantic;
+  if (recall.questionRows) {
+    const title = labelHtml(semantic?.title ?? "개념 질문");
+    const tasks = recall.questionRows
+      .map(({ entryId, prompt, answer, requiredIdeas }) => {
+        const body = revealed(recall)
+          ? `<div class="tb-recall-text"><p>참고 답</p>${md(answer ?? "")}${requiredIdeas?.length ? `<p>확인할 내용 · 한 항목 안의 표현은 대안입니다.</p><ul>${requiredIdeas.map((idea) => `<li>${md(idea.anyOf.join(" / "))}</li>`).join("")}</ul>` : ""}</div>`
+          : writingLines(8, "물음에 대한 답 쓰기");
+        return `<div class="tb-question-task" data-question-id="${esc(entryId)}"><div class="tb-recall-text">${md(prompt)}</div>${body}</div>`;
+      })
+      .join("");
+    const instruction =
+      semantic?.activity === "explainActivity"
+        ? "앞에서 풀었던 물음이라면 다시 답한 뒤 친구와 답을 비교해 보세요."
+        : semantic?.activity === "conceptMap"
+          ? "같은 단원의 물음을 묶었습니다. 다른 활동에서 풀었다면 다시 답을 써서 확인하세요."
+          : semantic?.activity === "preparation"
+            ? "지금 알고 있는 내용으로 답해 보세요. 아직 배우지 않았다면 ‘아직 모르겠어요’라고 적어도 됩니다."
+            : semantic?.activity === "sentenceRecall"
+              ? "앞에서 같은 물음을 풀었다면 책 없이 다시 답해 보세요."
+              : "각 물음을 읽고 책 없이 답을 떠올려 쓰세요.";
+    return `<section class="tb-recall tb-concept-questions" data-activity="${esc(semantic?.activity ?? "termRecall")}" data-question-version="1"><div class="tb-recall-checkbar"><b>${title}${recall.continuation ? " · 계속" : ""}</b>${NAME_DATE}</div>${recall.continuation ? "" : `<p>${instruction}</p>`}${tasks}</section>`;
+  }
   if (semantic?.activity === "errorCheck") return errorCheckHtml(recall);
   if (semantic?.activity === "termRecall") return termRecallHtml(recall);
   const node = semantic?.node;

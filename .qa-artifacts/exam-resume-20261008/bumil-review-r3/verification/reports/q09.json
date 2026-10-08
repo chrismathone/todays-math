@@ -1,0 +1,388 @@
+{
+  "status": "verified",
+  "studentDigest": "eec76a7cd7525161485e0b7d51731dc7ab027d287c0bcc4d838d074f1829bb70",
+  "candidateDigest": "be899f4423c4add9bc677013e190a78dadca66f2841d96effeed02009a0ce644",
+  "assetDigest": "739706ee201c80df5b14a5947bf122a55a6c7cb42fe9f0d4c231d2841a58ea69",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "solveDigest": "ce017a1d59249f594db2fb28cfae94449b62b24ddfec109208522245376d7612",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 9,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q09",
+    "reviewedAtKst": "2026-10-08",
+    "independence": {
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "verifierIsDifferentAuthor": true,
+      "blindSolveCommit": "c998ea12a6447970c71679e6dd97d06d0fa3dc6b",
+      "answerExposure": "only after parent copied/hash-fixed this solver independent result",
+      "solveRawFileSha256": "68530856dfb1d284c4079739559ec8a82e660b95632c0aa7da42de459a7369c8",
+      "solveRawBytesMatchParent": true,
+      "solveFileUneditedSinceCommit": true,
+      "originalAnswersOrSolutionsRead": false,
+      "geometryAuthorCandidatesReviewed": false
+    },
+    "binding": {
+      "contract": "parent scripts/import/exam-twin/candidatePack.mjs bindCandidate(candidate.json); digest(independentSolve)",
+      "candidateObjectAndAssetBindingsRecomputed": true,
+      "allFourProvidedDigestsMatch": true,
+      "candidateFileSha256": "f5ef434096b7edb76ddcc688fcf151779a2c7eb8a29506768e210ac50291b2da",
+      "verificationInputsPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\verification\\verification-inputs.json",
+      "verificationInputsSha256": "7a65c7e1dafec63917ad2ce53b0ba6e88dd1d70c58fe86640976fce44142c145",
+      "manifestInputHashMatched": true,
+      "alteredBytesPolicy": "fail closed; no altered candidate/student/spec/svg/solve detected",
+      "contractFileSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59"
+    },
+    "checkEvidence": {
+      "answerCorrect": {
+        "authorAnswer": "②",
+        "sealedIndependentAnswer": "②",
+        "codeChoiceMatches": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "calculation": {
+          "unrounded": "0.6399",
+          "rounded": "0.64",
+          "printedApproximationsUsedOnly": true
+        }
+      },
+      "solutionCorrect": "OP=OA=1인 두 직각삼각형에서 PH=sin54, OH=cos54, AQ=tan54를 각각 정의로 얻는다. 인쇄된 근삿값만 사용해 (1.38-0.59)×0.81=0.6399→0.64로 반올림한다. 근삿값을 정확한 항등식으로 재계산하지 않았다.",
+      "existenceUniqueness": "54°는 예각이며 0<OH<OA=1, PH>0, AQ>0이다. Q는 반직선 OP 위에서 P보다 먼 점이고 A에서 OA에 수직인 선 위에 있다. 표는 근삿값이므로 그 값들에 정확한 삼각비 항등식을 강요하지 않았다. 그림과 본문에 길이 단위가 없어 임의의 cm 단위를 추가하지 않았다.",
+      "choicesCorrect": {
+        "allFiveChecked": true,
+        "details": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "표의 값으로 계산한 0.6399를 반올림한 수가 아니다."
+          },
+          {
+            "choice": 2,
+            "matches": true,
+            "reason": "정확한 표 계산 결과 0.6399를 두 자리로 반올림하면 0.64이다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "0.79는 AQ−OH의 값만 계산하고 PH를 곱하지 않은 수이다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "표 계산 및 지정된 반올림 결과와 다르다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "표 계산 및 지정된 반올림 결과와 다르다."
+          }
+        ],
+        "codeMatchesSealedBlindChoiceChecks": true
+      },
+      "figureConsistent": "새 SVG는 사분원, O-A 수평 반지름, P의 수선 PH, A의 수직 AQ, 같은 반직선 O-P-Q, 두 직각 및 O의 54°를 표시한다. H는 OA 내부이고 Q는 원 밖이다. 표의 sin/cos/tan 길이 대응과 일치한다.",
+      "sameCoreConceptAndProcedure": "원본은 사분원의 세 길이를 삼각비로 읽어 (tan-cos)×sin을 계산한다. 새 문항은 삼각비 근삿값을 받아 동일 세 길이를 복구하고 같은 차·곱을 계산하는 역방향이다.",
+      "distinctPresentation": "세 길이가 그림에 주어진 원본에서 새 근삿값 표를 입력으로 주고 선분 식을 목표로 바꿨다. 수선과 반직선의 점 관계를 본문에서 명시한다. 55→54 숫자 교체를 넘는 입력/표현 역전이다.",
+      "naturalKorean": "근삿값으로 계산 및 반올림 지시가 분명하고 O,P,H,A,Q를 본문과 그림에서 같은 뜻으로 사용한다.",
+      "curriculumAppropriate": "반지름 1의 사분원에 있는 두 직각삼각형에서 54°의 삼각비 정의와 주어진 표를 이용한다. 일반 단위원 함수로 확대하지 않는다. 식의 값, 소수 사칙계산과 소수점 아래 셋째 자리 반올림. 추가 삼각비 관계가 없어도 직접 정의로 충분하다. 학교·AI·family 존재가 아니라 아래 공식 문구 및 실제 요구 절차로 판정했다.",
+      "allStudentSurfacesInScope": {
+        "stem": "반지름 1의 사분원에 있는 두 직각삼각형에서 54°의 삼각비 정의와 주어진 표를 이용한다. 일반 단위원 함수로 확대하지 않는다.",
+        "choices": "두 자리 양의 소수 다섯 개이며 표 계산과 지정 반올림을 만족하는 것은 ②뿐이다.",
+        "figuresAndTables": "새 SVG는 사분원, O-A 수평 반지름, P의 수선 PH, A의 수직 AQ, 같은 반직선 O-P-Q, 두 직각 및 O의 54°를 표시한다. H는 OA 내부이고 Q는 원 밖이다. 표의 sin/cos/tan 길이 대응과 일치한다.",
+        "notation": "54°, sin/cos/tan, 선분 길이의 차·곱, 근삿값 소수와 반올림이다. 호의 라디안이나 원의 비례 정리는 없다.",
+        "answer": "소수 0.64 및 ②. 길이 단위가 주어지지 않아 임의 cm를 붙이지 않는다.",
+        "studentSolution": "OP=OA=1인 두 직각삼각형에서 PH=sin54, OH=cos54, AQ=tan54를 각각 정의로 얻는다. 인쇄된 근삿값만 사용해 (1.38-0.59)×0.81=0.6399→0.64로 반올림한다. 근삿값을 정확한 항등식으로 재계산하지 않았다.",
+        "prerequisites": "식의 값, 소수 사칙계산과 소수점 아래 셋째 자리 반올림. 추가 삼각비 관계가 없어도 직접 정의로 충분하다."
+      },
+      "unitFamilyFit": "live 삼각비12에 반지름1, 수선의 발, 반지름 끝의 수직선과 같은 반직선의 교점 및 세 비와 세 길이의 직접 대응이 있다. 새 값→길이의 역방향과 차·곱이라는 조직 변화에도 이 대응 절차가 주 개념으로 그대로 남는다.",
+      "scoreAppropriate": "기본~응용 하단의 직접 활용 부담으로 4점 적정. 세 비를 세 길이에 대응시키고 소수 뺄셈·곱셈·반올림 한 번씩 수행한다. 새 수선 구성은 이미 주어져 복잡한 도형 추론이 아니다."
+    },
+    "deterministicMath": {
+      "tool": "Python fractions.Fraction / decimal.Decimal / exact sign and symbolic-side classifications",
+      "executed": true,
+      "sourceOfInputs": "already blinded student statement/figures, not author facts or old answers",
+      "calculationCode": "(Decimal('1.38')-Decimal('0.59'))*Decimal('0.81'); quantize(Decimal('.01'), ROUND_HALF_UP)",
+      "results": {
+        "unrounded": "0.6399",
+        "rounded": "0.64",
+        "printedApproximationsUsedOnly": true
+      },
+      "choiceMatches": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "matchesPreExposureSolve": true
+    },
+    "studentRenderReview": {
+      "localChromium": true,
+      "networkRequestsBlocked": true,
+      "katexThrowOnError": true,
+      "mathSpanCount": 28,
+      "reviewerViewedFullStemChoicesTablesFiguresAndNewSolution": true,
+      "inspectionPngSha256": "564d2001ef13fc09f5bb816f176ee46c3736a206190513fdbe95d962e43b95a9",
+      "inspectionArtifactRetained": false,
+      "layoutScope": "temporary neutral local review layout; no claim to parent production pagination",
+      "observations": "새 SVG는 사분원, O-A 수평 반지름, P의 수선 PH, A의 수직 AQ, 같은 반직선 O-P-Q, 두 직각 및 O의 54°를 표시한다. H는 OA 내부이고 Q는 원 밖이다. 표의 sin/cos/tan 길이 대응과 일치한다.",
+      "assets": [
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q09\\figure-1.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q09\\figure-1.svg",
+          "specSha256": "fe31c5f3ded3ca3a9b591acf68b8647cc9a002e35f17e9554c6839e937f54e78",
+          "svgSha256": "34bd3dbd562aeb1bdf50ea5655d61b8638dea90e01ee4e7f6b4f39fb5dcb821b",
+          "intendedWidthMm": 75,
+          "studentPath": "figures/q09-1.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        }
+      ]
+    },
+    "sourceComparison": {
+      "referencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\problems.json",
+      "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "questionNumber": 9,
+      "contentSha256": "6addbf376a1d0bae2f1d667e7692722f528d8a2d4877d555f2ed003d9a4d6ceb",
+      "contentHashMatched": true,
+      "redactedAnswerFree": true,
+      "originalAnswerOrSolutionNotAccessed": true,
+      "figures": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\figures\\q09.png",
+          "sha256": "60fcc7ac70ee60255c520c187d15cafc14eccbb8d43a57d8e4957b618a96c84a",
+          "purpose": "answer-free reference, no copied stem/choice asset",
+          "visuallyReviewed": true
+        }
+      ],
+      "sameProcedure": "원본은 사분원의 세 길이를 삼각비로 읽어 (tan-cos)×sin을 계산한다. 새 문항은 삼각비 근삿값을 받아 동일 세 길이를 복구하고 같은 차·곱을 계산하는 역방향이다.",
+      "substantiveDelta": "세 길이가 그림에 주어진 원본에서 새 근삿값 표를 입력으로 주고 선분 식을 목표로 바꿨다. 수선과 반직선의 점 관계를 본문에서 명시한다. 55→54 숫자 교체를 넘는 입력/표현 역전이다."
+    },
+    "curriculum": {
+      "targetGrade": "중3",
+      "targetEdition": "2015",
+      "status": "independently-reviewed-selected-student-surfaces",
+      "official2015Pdf": {
+        "id": "moe-2015-74-math-pdf",
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+        "archive_member": "별책8_수학과 교육과정.pdf",
+        "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "bytes": 2533289,
+        "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "primary": true,
+        "retrieved_date_kst": "2026-10-08",
+        "format": "pdf"
+      },
+      "evidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardRefs": [
+        {
+          "code": "9수04-17",
+          "verifiedText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "physicalPages1Based": [
+            38
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수02-02",
+          "verifiedText": "식의 값을 구할 수 있다.",
+          "physicalPages1Based": [
+            34
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        }
+      ],
+      "restrictionsVerified": [
+        {
+          "id": "no_vieta",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_ratio_identities",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "angle_range",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "real_quadratic_roots",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_function_applications",
+          "physicalPages1Based": [
+            37
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        }
+      ],
+      "surfaceEvidence": {
+        "stem": "반지름 1의 사분원에 있는 두 직각삼각형에서 54°의 삼각비 정의와 주어진 표를 이용한다. 일반 단위원 함수로 확대하지 않는다.",
+        "choices": "두 자리 양의 소수 다섯 개이며 표 계산과 지정 반올림을 만족하는 것은 ②뿐이다.",
+        "figuresAndTables": "새 SVG는 사분원, O-A 수평 반지름, P의 수선 PH, A의 수직 AQ, 같은 반직선 O-P-Q, 두 직각 및 O의 54°를 표시한다. H는 OA 내부이고 Q는 원 밖이다. 표의 sin/cos/tan 길이 대응과 일치한다.",
+        "notation": "54°, sin/cos/tan, 선분 길이의 차·곱, 근삿값 소수와 반올림이다. 호의 라디안이나 원의 비례 정리는 없다.",
+        "answer": "소수 0.64 및 ②. 길이 단위가 주어지지 않아 임의 cm를 붙이지 않는다.",
+        "studentSolution": "OP=OA=1인 두 직각삼각형에서 PH=sin54, OH=cos54, AQ=tan54를 각각 정의로 얻는다. 인쇄된 근삿값만 사용해 (1.38-0.59)×0.81=0.6399→0.64로 반올림한다. 근삿값을 정확한 항등식으로 재계산하지 않았다.",
+        "prerequisites": "식의 값, 소수 사칙계산과 소수점 아래 셋째 자리 반올림. 추가 삼각비 관계가 없어도 직접 정의로 충분하다."
+      },
+      "rolloutSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "phaseInTextChecked": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "phaseInTextChecked": true
+        }
+      ],
+      "phaseInConclusion": "2015 중3 적용은 2020-03-01, 2022 중3 적용은 2027-03-01. 자료의 2025/2026 출처 연도 차이는 이 범위의 2015 적용 결론을 바꾸지 않는다. 출처 확정은 별도 보류.",
+      "normalization": "PDF 추출의 공백/줄바꿈/U+0001 제어 구분자만 제거하여 제공된 2020 HWP 추출 증거의 해당 문구와 2015 PDF를 대조했다. 새 HWP 추출을 수행했다고 주장하지 않는다.",
+      "amendmentReviewBoundary": "선택 문항의 기준·각도 범위·금지 방법·복잡도 제한 및 시행 시점에 한정했다. 관련 문구에서 실질 변경/불확실성은 발견되지 않았다. 전체 2015 개정 고시 연혁을 감사하거나 2022 재출판을 승인한 결과는 아니다.",
+      "specificForbiddenMethodsAvoided": "미분, 근과 계수 관계, 삼각비 항등식, 90° 밖 삼각비, 사인/코사인 법칙, 일반 삼각형 사인 넓이 암기식, 원과 비례/원의 거듭제곱, 라디안, 정사영/벡터 없음. q12 수선 높이와 q13 명시 단면만 사용."
+    },
+    "taxonomy": {
+      "unitSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+      "unitSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotScope": "parent supplied read-only 2026-10-07 snapshot; no DB call or claim of later live recapture",
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "unitAppropriate": true,
+      "familyKey": "mid:3-2|삼각비|12",
+      "registryMatch": {
+        "key": "3-2|삼각비|12",
+        "grade": "중3",
+        "unitSection": "삼각비의 값",
+        "rpmBook": "3-2",
+        "rpmMinor": "삼각비",
+        "rpmType": "12",
+        "rpmTitle": "사분원을 이용하여 삼각비의 값 구하기"
+      },
+      "liveCount": 20,
+      "liveFamilySnapshotMatch": true,
+      "generator": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "mode": "read-only relevant family source, no generator execution or edits",
+        "relevantLines1Based": [
+          1351,
+          1377
+        ]
+      },
+      "semanticDecision": "matched",
+      "reason": "live 삼각비12에 반지름1, 수선의 발, 반지름 끝의 수직선과 같은 반직선의 교점 및 세 비와 세 길이의 직접 대응이 있다. 새 값→길이의 역방향과 차·곱이라는 조직 변화에도 이 대응 절차가 주 개념으로 그대로 남는다."
+    },
+    "objectiveDifficultyAndScore": {
+      "authorDifficultyProposal": "기본",
+      "reviewerDifficultyBand": "기본~응용 하단",
+      "candidateScore": 4,
+      "scoreAppropriate": true,
+      "candidateQuestionType": "객관식",
+      "authorProblemTypeProposal": "활용",
+      "reviewerProblemType": "활용",
+      "reason": "기본~응용 하단의 직접 활용 부담으로 4점 적정. 세 비를 세 길이에 대응시키고 소수 뺄셈·곱셈·반올림 한 번씩 수행한다. 새 수선 구성은 이미 주어져 복잡한 도형 추론이 아니다.",
+      "empiricalCalibrationClaimed": false,
+      "sourceOrGeneratorDifficultyAutoApplied": false
+    },
+    "holds": [],
+    "nonblockingSuggestions": [],
+    "releaseBoundary": {
+      "reviewStatusCovers": "only these selected independent mathematics, full student-surface curriculum, presentation/language, difficulty/score and taxonomy dimensions",
+      "nativeProvenance": "blocked-parent-owned",
+      "rights": "blocked-parent-owned",
+      "sourceIdentity": "pending-parent-attestation",
+      "productionUseApproved": false,
+      "DBWrites": false,
+      "paidCalls": false,
+      "pushes": false,
+      "inferenceAPICalls": false
+    },
+    "consumerValidation": {
+      "module": "parent candidatePack.mjs evaluateReview",
+      "executed": true,
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "productionWrites": false,
+      "selectedReviewReasons": [],
+      "effect": "technical dimensions preserved separately; no production approval"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  }
+}
