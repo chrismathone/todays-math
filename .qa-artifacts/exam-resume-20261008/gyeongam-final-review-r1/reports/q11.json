@@ -1,0 +1,843 @@
+{
+  "schemaVersion": 1,
+  "status": "pending",
+  "questionNumber": 11,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q11",
+  "studentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc",
+  "candidateDigest": "91d95f504ab6515b22125988b9700c2467fd1ddf2ce0377ffb0289f72fb01f5c",
+  "assetDigest": "38da377ceeb6a359b4d1bfec9fc2787abc3e59ceae12bc067d2be19970c27d88",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "solveDigest": "d93c02bab07d742231764ba21da584d7e4007ac44915a0f90ed08f538806bd5f",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": null
+  },
+  "evidence": {
+    "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+    "independentSolverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+    "blindCommit": "53fcf61aa9f30885813befbbab3bccd47a7eae79",
+    "originalSolveFileSha256": "b60803cacbdb7919877a98b134e0f4e8a3bb50a969490635741c3007a18f0440",
+    "rawSolveUnchanged": true,
+    "currentCandidateFileSha256": "96c6a488775b157fb50ad05e7f7a63a36e434aab041762b8b7b33b34974ed785",
+    "verificationInputsSha256": "67d74e7537fdc355f733675e74f12e936c0cae3846824128426a4ad0263f27c9",
+    "verificationManifestSha256": "0e3806133ef66d3418070e73cbb4fea97c334328c195374e1622faa83a95dfad",
+    "inputAssetAuditSha256": "91e0c265075829783df752e7b70074b2b95563c08219b937334d3adf4225d1a3",
+    "reviewFindingsSha256": "adc685c70bf1d778dfe344a0e907736aa405df08287f22c48055f44911f5a999",
+    "answerEquivalence": {
+      "method": "circled-choice-number-after-independent-five-option-calculation",
+      "blindChoice": "③",
+      "authorChoice": "③",
+      "passed": true,
+      "allOptions": [
+        {
+          "index": 1,
+          "pair": [
+            5.656854249492381,
+            0.8164965809277259
+          ],
+          "correct": false
+        },
+        {
+          "index": 2,
+          "pair": [
+            6.928203230275509,
+            0.5773502691896257
+          ],
+          "correct": false
+        },
+        {
+          "index": 3,
+          "pair": [
+            5.656854249492381,
+            0.5773502691896257
+          ],
+          "correct": true
+        },
+        {
+          "index": 4,
+          "pair": [
+            4,
+            0.7071067811865476
+          ],
+          "correct": false
+        },
+        {
+          "index": 5,
+          "pair": [
+            8,
+            0.3333333333333333
+          ],
+          "correct": false
+        }
+      ]
+    },
+    "solutionReview": {
+      "passed": true,
+      "independentMath": "정육면체면대각선BD=4√2,실제직각BFD의FD=4√3,cosθ=BF/FD=√3/3. 두번의피타고라스와인접변선택이정확하다.",
+      "completeStudentSteps": "명시된실제직각삼각형에피타고라스와cos정의만쓴다. 공간벡터/정사영/직선-평면수직정리를증명할필요가없다.",
+      "allWrittenPartsReviewed": false,
+      "rubric": [],
+      "reasoningNotReplacedByLiteralAnswerMatch": true
+    },
+    "existenceUniquenessAndDomain": {
+      "passed": true,
+      "independentCodeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+      "conditions": [
+        {
+          "claim": "정육면체 모서리4와 대각선은 양수이고 두 번째 그림의 직각이 본문에서 주어졌다. theta는 예각이고cos는0과1사이이다.",
+          "passed": true
+        }
+      ],
+      "calculation": {
+        "edge": 4,
+        "BD": 5.656854249492381,
+        "FD": 6.928203230275509,
+        "cosTheta": 0.5773502691896258,
+        "thetaDegrees": 54.735610317245346,
+        "perpendicularGivenExplicitly": true
+      },
+      "finiteSamplesAreSupplementaryOnly": false
+    },
+    "choiceReview": {
+      "passed": true,
+      "allFiveChecked": true,
+      "notApplicable": false,
+      "independentOptionChecks": [
+        {
+          "index": 1,
+          "pair": [
+            5.656854249492381,
+            0.8164965809277259
+          ],
+          "correct": false
+        },
+        {
+          "index": 2,
+          "pair": [
+            6.928203230275509,
+            0.5773502691896257
+          ],
+          "correct": false
+        },
+        {
+          "index": 3,
+          "pair": [
+            5.656854249492381,
+            0.5773502691896257
+          ],
+          "correct": true
+        },
+        {
+          "index": 4,
+          "pair": [
+            4,
+            0.7071067811865476
+          ],
+          "correct": false
+        },
+        {
+          "index": 5,
+          "pair": [
+            8,
+            0.3333333333333333
+          ],
+          "correct": false
+        }
+      ]
+    },
+    "figureReview": {
+      "passed": true,
+      "exactPublicStudentSvgBindings": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q11\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q11\\figure-1.svg",
+          "specSha256": "3395004e0e551644d9c713fb63e37b0dcb1da0d6fc857ee851edf66864568596",
+          "svgSha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+          "intendedWidthMm": 55,
+          "studentPath": "figures/q11-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+          "numericRelation": {
+            "passed": true,
+            "projectedParallelEdgesConsistent": true,
+            "metricAnglesOrLengthsInferredFromProjection": false,
+            "reason": "The labelled cube is an affine placement projection with consistent parallel edges. The separate exact BFD triangle supplies the mathematical lengths/angle; projected C/FD overlap is not a space collinearity claim."
+          }
+        },
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q11\\figure-2.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q11\\figure-2.svg",
+          "specSha256": "c446305e3a51b4c8fe6c065e48025c9f8ffca0ca6cf1241a92c6942a133ee2bc",
+          "svgSha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+          "intendedWidthMm": 55,
+          "studentPath": "figures/q11-2.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerCm": 25,
+            "reason": "The separate exact BFD triangle has BF=4 and BD=4sqrt2 at one scale; B is right. The cube is a projected placement diagram."
+          }
+        }
+      ],
+      "independentPreExposureVisualBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q11-1.svg",
+          "sha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+          "intendedWidthMm": 55,
+          "svgFileSha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+          "viewedStudentPreview": "student-figure-preview/q11-1.png",
+          "viewedStudentPreviewSha256": "80299c632d4335da4c5b5c648412464bf4b275c54c063eede6cb87f460821642",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        },
+        {
+          "role": "stem",
+          "svgPath": "figures/q11-2.svg",
+          "sha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+          "intendedWidthMm": 55,
+          "svgFileSha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+          "viewedStudentPreview": "student-figure-preview/q11-2.png",
+          "viewedStudentPreviewSha256": "e453868fcbb85982b860a29669cbbda77d9a18e751876ac5fe7573cf80ee2cbe",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "actualFiguresViewed": true,
+      "notApplicable": false,
+      "strictLocalReproduction": true,
+      "bankCapMm": 70,
+      "physicalPaperApproval": false,
+      "nativeFrameSerializerApproval": false,
+      "sourceCropsReferenceOnly": true,
+      "sourceQuestionOnlyImageReferences": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q11-part1.png",
+          "sha256": "a6b0c5a8d896159334f7e125d434afae8cd4ba66f11a89cd34fb374d8f0bc304",
+          "referenceOnly": true
+        }
+      ]
+    },
+    "sourceCoreAndDelta": {
+      "passed": true,
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-11",
+      "sourceContentDigest": "092997340d10540760a1abc046ecb5b09fe1bf62437924ff423d6def6185464b",
+      "sourceRecordDigest": "4401b7dadfeab3e95f890ee919b886afca00ddea532f05771310387d7f39c4a1",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceQuestionOnly": true,
+      "originalAnswersUsed": false,
+      "sameCore": "원문과동일한정육면체의면/공간대각선→직각삼각비관계를보존한다.",
+      "substantiveChange": "입체배치와실제직각삼각형을55mm자산두개로분리하고면대각선/cos의두기록을완성한다. sin만cos로치환한것이아니며제시조건과표현/답기록이바뀌었다.",
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "정육면체 투시도에서 면/공간 대각선으로 sin을 구한다.",
+        "after": "입체와 실제 직각 단면을 분리하여 면대각선/cos의 기록을 완성한다.",
+        "sharedConcept": "정육면체의 면/공간 대각선과 직각삼각비",
+        "sharedProcedure": "윗면 정사각형 피타고라스→제시된 직각삼각형 피타고라스→cos 정의."
+      },
+      "variantDeltaDigest": "a8cb53ba8f6d290833755f25936ac780570b8c2d0c2c80934166ab82bdf29bef"
+    },
+    "koreanReview": {
+      "passed": true,
+      "evidence": "본문이첫그림은배치,둘째는실제직각삼각형임을명시했다. 투영에서FD와C의겹침은공간공선조건으로읽지않는다.",
+      "sourceSchoolInStudentSurfaces": false
+    },
+    "curriculumReview": {
+      "status": "passed-for-seven-student-surfaces-and-actual-methods",
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standards": [
+        {
+          "code": "9수04-07",
+          "verified_text": "다면체의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4284,
+            "record_offset_in_uncompressed_stream": 217096,
+            "extracted_paragraph_1based": 877
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-12",
+          "verified_text": "사각형의 성질을 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4308,
+            "record_offset_in_uncompressed_stream": 217962,
+            "extracted_paragraph_1based": 883
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-16",
+          "verified_text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4333,
+            "record_offset_in_uncompressed_stream": 218866,
+            "extracted_paragraph_1based": 889
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수01-10",
+          "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "rolloutBasis": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "officialRestrictions": [
+        {
+          "id": "no_vieta",
+          "exact_text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4075,
+            "record_offset_in_uncompressed_stream": 207128,
+            "extracted_paragraph_1based": 833
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_ratio_identities",
+          "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4440,
+            "record_offset_in_uncompressed_stream": 224820,
+            "extracted_paragraph_1based": 908
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "angle_range",
+          "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4444,
+            "record_offset_in_uncompressed_stream": 224946,
+            "extracted_paragraph_1based": 909
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "no_circle_proportionality",
+          "exact_text": "원과 비례에 관한 성질은 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4452,
+            "record_offset_in_uncompressed_stream": 225374,
+            "extracted_paragraph_1based": 911
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "real_quadratic_roots",
+          "exact_text": "이차방정식은 해가 실수인 경우만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4059,
+            "record_offset_in_uncompressed_stream": 206372,
+            "extracted_paragraph_1based": 829
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4071,
+            "record_offset_in_uncompressed_stream": 206968,
+            "extracted_paragraph_1based": 832
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_function_applications",
+          "exact_text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4221,
+            "record_offset_in_uncompressed_stream": 214313,
+            "extracted_paragraph_1based": 863
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ]
+          }
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4472,
+            "record_offset_in_uncompressed_stream": 226554,
+            "extracted_paragraph_1based": 916
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        }
+      ],
+      "actualMethod": "명시된실제직각삼각형에피타고라스와cos정의만쓴다. 공간벡터/정사영/직선-평면수직정리를증명할필요가없다.",
+      "bandCodeAndSourceSchoolNotPermission": true,
+      "lowerGradePrerequisitesAllowedAndReviewed": true,
+      "applied2015NotAutomatic2022": true,
+      "familyGateSeparateAndHeld": true
+    },
+    "unitAndFamilyReview": {
+      "unitPurposeFit": true,
+      "targetPurpose": "실제직각삼각형의변역할·삼각비정의/길이",
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "bankSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "bankSnapshotSha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "observationOnly": {
+        "unitCount": 22,
+        "liveFamilyCount": 302,
+        "currentDatabaseFreshnessClaim": false,
+        "semanticApprovalFromLiveCount": false,
+        "databaseAccessByVerifier": false
+      },
+      "registryPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "comparedFullRules": [
+        {
+          "registryEntry": {
+            "key": "3-2|삼각비|07",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "07",
+            "rpmTitle": "입체도형에서 삼각비의 값 구하기"
+          },
+          "observedLiveFamily": {
+            "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+            "family_key": "mid:3-2|삼각비|07",
+            "live_count": 24
+          },
+          "rule": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+            "lineStart": 1162,
+            "lineEnd": 1199,
+            "fileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "observedRule": "직육면체세변/정수피타고라스쌍8갈래/대각선각의한비,심화하. 무리수정육면체쌍기록/별도단면갈래없음."
+          },
+          "semanticFit": "not-established-for-full-new-input-target-procedure",
+          "familyAssignmentApproved": false
+        }
+      ],
+      "authorComparisonNotSoleEvidence": true,
+      "familyKey": null,
+      "familyStatus": "held-unknown"
+    },
+    "scoreDifficultyReview": {
+      "status": "pending",
+      "sourceParentScore": 4,
+      "candidateParentScore": 4,
+      "blindCountedParentScore": 4,
+      "scorePreserved": true,
+      "parentCountedOnce": true,
+      "sourceParts": [],
+      "authorParts": [],
+      "partScoreTotals": null,
+      "authorDifficultyProposal": "응용",
+      "objectiveRationale": "부모4점은그대로이나실제직각BFD/BF⊥BD를직접제공해원문입체에서단면을선택하는부하가줄었다. 두근호대각선/쌍답이추가되어도원4점목표난이도와응용라벨의대응은추가교육검토가필요하다.",
+      "measuredEmpiricalDifficultyClaim": false
+    },
+    "typeSafeDesignEvidence": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "skillSha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+      "liveDocsRead": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "mathAndHashesInCode": true,
+      "semanticJudgmentsSeparatelyBound": true,
+      "unknownFamilyNull": true,
+      "inferenceApiCalls": 0,
+      "confidenceNotUsedAsApproval": true
+    },
+    "parentIntegrationHistory": {
+      "sidecarSha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848",
+      "priorReportCRLFDifferencesNotRewritten": true
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "evidence": "정육면체의 윗면 정사각형과 실제 단면 직각을 명시적으로 주었다.",
+      "official2015StandardCodes": [
+        "9수04-07",
+        "9수04-12",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc"
+    },
+    "choices": {
+      "status": "passed",
+      "evidence": "대각선 길이와cos 값을 모두 검사한다.",
+      "official2015StandardCodes": [
+        "9수04-07",
+        "9수04-12",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "evidence": "55mm 입체 배치 그림과55mm 실제 BFD 그림을 모두 보았다. 공간 투영의 겹침으로 길이를 측정하지 않는다.",
+      "official2015StandardCodes": [
+        "9수04-07",
+        "9수04-12",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc"
+    },
+    "notation": {
+      "status": "passed",
+      "evidence": "실제 표시 수·도·근호·선분·유한 x_i/삼각비/편차는 아래 중학교 방법에서 필요하다. 라디안·벡터·행렬·시그마/확률변수 기호를 학생 표면에 요구하지 않는다.",
+      "official2015StandardCodes": [
+        "9수04-07",
+        "9수04-12",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc"
+    },
+    "answer": {
+      "status": "passed",
+      "evidence": "정육면체면대각선BD=4√2,실제직각BFD의FD=4√3,cosθ=BF/FD=√3/3. 두번의피타고라스와인접변선택이정확하다.",
+      "official2015StandardCodes": [
+        "9수04-07",
+        "9수04-12",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "evidence": "명시된실제직각삼각형에피타고라스와cos정의만쓴다. 공간벡터/정사영/직선-평면수직정리를증명할필요가없다.",
+      "official2015StandardCodes": [
+        "9수04-07",
+        "9수04-12",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "evidence": "중2 피타고라스·정사각형, 중3 삼각비. 공간 직선/평면 수직 정리는 추가로 요구하지 않는다.",
+      "official2015StandardCodes": [
+        "9수04-07",
+        "9수04-12",
+        "9수04-16",
+        "9수04-17",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc"
+    }
+  },
+  "dimensionStatus": {
+    "mathematics": "passed",
+    "sevenSurface2015Middle3": "passed",
+    "sameCoreConceptAndProcedure": "passed",
+    "substantiveDelta": "passed",
+    "naturalKorean": "passed",
+    "figure": "passed",
+    "unitPurpose": "passed-within-historical-snapshot",
+    "liveFamily": "pending",
+    "difficultyScore": "pending",
+    "rights": "held",
+    "custody": "held",
+    "native": "held",
+    "loadable": false
+  },
+  "holds": [
+    {
+      "dimension": "unitFamilyFit",
+      "status": "pending",
+      "reason": "Unit purpose is semantically appropriate in the04:53UTC snapshot, but familyKey remains null. Compared actual current rules do not establish support for this whole new input/target/procedure. No closest-title assignment.",
+      "specificComparedRules": [
+        "3-2|삼각비|07"
+      ],
+      "reopenCriteria": "A specific existing live family with full input/target/steps/rubric and objective difficulty correspondence, or separately authorized metadata rule work."
+    },
+    {
+      "dimension": "scoreAppropriate-objectiveDifficulty",
+      "status": "pending",
+      "reason": "부모4점은그대로이나실제직각BFD/BF⊥BD를직접제공해원문입체에서단면을선택하는부하가줄었다. 두근호대각선/쌍답이추가되어도원4점목표난이도와응용라벨의대응은추가교육검토가필요하다.",
+      "reopenCriteria": "Independent education review of the source spatial-recognition load versus the newly supplied exact right triangle, two-answer record and4-point/rubric target."
+    }
+  ],
+  "rightsApproval": false,
+  "custodyApproval": false,
+  "nativeApproval": false,
+  "directUseAllowed": false,
+  "loadable": false
+}

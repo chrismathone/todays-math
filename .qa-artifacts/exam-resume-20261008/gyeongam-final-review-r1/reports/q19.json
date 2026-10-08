@@ -1,0 +1,802 @@
+{
+  "schemaVersion": 1,
+  "status": "pending",
+  "questionNumber": 19,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q19",
+  "studentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff",
+  "candidateDigest": "130b25e72cd524bd769d886337071c0bb816230d002f9a15b411f65fd29ac5ed",
+  "assetDigest": "de259aa8a4b80f406def1a1f462118e961b6660fd0ce3dec87f58c6e847237fd",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "solveDigest": "1648335049655f9a9b8600230b0a3f83498167ae5ada9fba876ed79c4347f06d",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+    "independentSolverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+    "blindCommit": "53fcf61aa9f30885813befbbab3bccd47a7eae79",
+    "originalSolveFileSha256": "914fddf352f91886905c21ec958a6475bd32f1f591295f23b7754a5f95e99aea",
+    "rawSolveUnchanged": true,
+    "currentCandidateFileSha256": "7a1ed212709efc1d3845d2aaa465a5c430fe573ce4677ad04580d4e05b78b7ce",
+    "verificationInputsSha256": "67d74e7537fdc355f733675e74f12e936c0cae3846824128426a4ad0263f27c9",
+    "verificationManifestSha256": "0e3806133ef66d3418070e73cbb4fea97c334328c195374e1622faa83a95dfad",
+    "inputAssetAuditSha256": "91e0c265075829783df752e7b70074b2b95563c08219b937334d3adf4225d1a3",
+    "reviewFindingsSha256": "adc685c70bf1d778dfe344a0e907736aa405df08287f22c48055f44911f5a999",
+    "answerEquivalence": {
+      "method": "faithful-role-unit-exact-number-or-surd-components-plus-separate-reasoning-review",
+      "blindRawAnswer": "사분원의 반지름은 $4\\,\\mathrm{cm}$이다.",
+      "authorRawAnswer": "$4\\,\\mathrm{cm}$",
+      "faithfulAuthorParts": [
+        {
+          "role": "radius",
+          "value": 4,
+          "unit": "cm"
+        }
+      ],
+      "roleComparisons": [
+        {
+          "role": "radius",
+          "blindValue": 4,
+          "authorValue": 4,
+          "unit": "cm",
+          "passed": true
+        }
+      ],
+      "authorPartExtraction": "New verifier evidence transcribed from exposed author answer/solution; raw solve bytes unchanged.",
+      "reasoningProofReviewed": "OC=r/2,AC=r√3/2,BD=r√3,CB=r/2. 평행변사다리꼴넓이3√3r²/8=6√3에서양의r4cm. 두직각삼각형면적차로도확인했다.",
+      "literalNormalizedAlgebraMatcherUsed": false,
+      "passed": true
+    },
+    "solutionReview": {
+      "passed": true,
+      "independentMath": "OC=r/2,AC=r√3/2,BD=r√3,CB=r/2. 평행변사다리꼴넓이3√3r²/8=6√3에서양의r4cm. 두직각삼각형면적차로도확인했다.",
+      "completeStudentSteps": "실제특수각직각삼각형과초등사다리꼴넓이6수03-06,중3제곱근/근호계산이다.대각선곱sin넓이/원거듭제곱은쓰지않는다.",
+      "allWrittenPartsReviewed": true,
+      "rubric": [
+        {
+          "criterion": "r와OC/AC/CB",
+          "score": 3
+        },
+        {
+          "criterion": "BD와tan60",
+          "score": 2
+        },
+        {
+          "criterion": "평행변/높이와넓이식",
+          "score": 3
+        },
+        {
+          "criterion": "양의반지름복구와단위",
+          "score": 2
+        }
+      ],
+      "reasoningNotReplacedByLiteralAnswerMatch": true
+    },
+    "existenceUniquenessAndDomain": {
+      "passed": true,
+      "independentCodeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+      "conditions": [
+        {
+          "claim": "반지름/각변/넓이는양수이고계수3√3/8>0에서양의반지름4가유일하다.",
+          "passed": true
+        },
+        {
+          "claim": "큰직각삼각형OBD넓이에서작은OCA넓이를뺀결과도공급음영사각형의넓이와같다.",
+          "passed": true
+        }
+      ],
+      "calculation": {
+        "radius": 4,
+        "OC": 2,
+        "AC": 3.4641016151377544,
+        "BD": 6.928203230275509,
+        "CB": 2,
+        "area": 10.392304845413264,
+        "requestedArea": 10.392304845413264,
+        "comparisonOuterTriangle": 13.856406460551018,
+        "comparisonSmallTriangle": 3.4641016151377544
+      },
+      "finiteSamplesAreSupplementaryOnly": false
+    },
+    "choiceReview": {
+      "passed": true,
+      "allFiveChecked": false,
+      "notApplicable": true,
+      "independentOptionChecks": []
+    },
+    "figureReview": {
+      "passed": true,
+      "exactPublicStudentSvgBindings": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q19\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q19\\figure-1.svg",
+          "specSha256": "763d7eb50509c73afae026ee59a03a1fa5a8cef874354838c6d404ff4ae6a6d5",
+          "svgSha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q19-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerCm": 25,
+            "polygonAreaCm2": 10.392304845413264,
+            "reason": "The actual shaded trapezoid equals6sqrt3cm² at radius4, with ray/foot/right-angle and60degree conditions satisfied."
+          }
+        }
+      ],
+      "independentPreExposureVisualBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q19-1.svg",
+          "sha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+          "viewedStudentPreview": "student-figure-preview/q19-1.png",
+          "viewedStudentPreviewSha256": "e9f39ec2cf32c24be540bc0557b88ef1a9cac87323c70596b22acefc5197bb35",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "actualFiguresViewed": true,
+      "notApplicable": false,
+      "strictLocalReproduction": true,
+      "bankCapMm": 70,
+      "physicalPaperApproval": false,
+      "nativeFrameSerializerApproval": false,
+      "sourceCropsReferenceOnly": true,
+      "sourceQuestionOnlyImageReferences": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q19-part1.png",
+          "sha256": "31aa5758e81628241391a04c1dbe601f91218ef2c48728686aaab0752110312a",
+          "referenceOnly": true
+        }
+      ]
+    },
+    "sourceCoreAndDelta": {
+      "passed": true,
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-19",
+      "sourceContentDigest": "f903574a21863dd5d39ef74e2626173f763980a755a8480c25939532aa681b44",
+      "sourceRecordDigest": "b4ccdd918b1f372f1003f1fa47e31218d040354e34c324344f2a60f6ad2562b4",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceQuestionOnly": true,
+      "originalAnswersUsed": false,
+      "sameCore": "원문반지름1/60도/수선에서부분사다리꼴넓이를구하는관계를보존하고반지름을역산한다.",
+      "substantiveChange": "원그림의D가OA연장선이라는관계를명시하고새부분넓이기록에서양의반지름을복원한다.",
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation",
+          "inverse-target"
+        ],
+        "before": "반지름1과60도/수선으로 사다리꼴 부분넓이를 구한다.",
+        "after": "부분넓이 기록으로 양의 반지름을 역으로 복구하며 D의반직선교점을 명시한다.",
+        "sharedConcept": "특수각 직각삼각형의 길이와사다리꼴 넓이",
+        "sharedProcedure": "r로세길이구성→수평 차→평행변/높이의사다리꼴넓이→양의제곱근."
+      },
+      "variantDeltaDigest": "8b46921d3c65279caf07bf4d0793165fa2d70d47e1b1c2b1864d31a713c841fe"
+    },
+    "koreanReview": {
+      "passed": true,
+      "evidence": "호위A/수평OB/수선발C/반직선교점D/면적단위를명시해표면의기하역할이완결된다.",
+      "sourceSchoolInStudentSurfaces": false
+    },
+    "curriculumReview": {
+      "status": "passed-for-seven-student-surfaces-and-actual-methods",
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standards": [
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-18",
+          "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-02",
+          "verified_text": "평행선에서 동위각과 엇각의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4252,
+            "record_offset_in_uncompressed_stream": 215902,
+            "extracted_paragraph_1based": 869
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "6수03-06",
+          "verified_text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3433,
+            "record_offset_in_uncompressed_stream": 176573,
+            "extracted_paragraph_1based": 690
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "elementary_grade_band"
+        },
+        {
+          "code": "9수01-07",
+          "verified_text": "제곱근의 뜻을 알고, 그 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3776,
+            "record_offset_in_uncompressed_stream": 192865,
+            "extracted_paragraph_1based": 768
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수01-10",
+          "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "rolloutBasis": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "officialRestrictions": [
+        {
+          "id": "no_vieta",
+          "exact_text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4075,
+            "record_offset_in_uncompressed_stream": 207128,
+            "extracted_paragraph_1based": 833
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_ratio_identities",
+          "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4440,
+            "record_offset_in_uncompressed_stream": 224820,
+            "extracted_paragraph_1based": 908
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "angle_range",
+          "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4444,
+            "record_offset_in_uncompressed_stream": 224946,
+            "extracted_paragraph_1based": 909
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "no_circle_proportionality",
+          "exact_text": "원과 비례에 관한 성질은 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4452,
+            "record_offset_in_uncompressed_stream": 225374,
+            "extracted_paragraph_1based": 911
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "real_quadratic_roots",
+          "exact_text": "이차방정식은 해가 실수인 경우만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4059,
+            "record_offset_in_uncompressed_stream": 206372,
+            "extracted_paragraph_1based": 829
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4071,
+            "record_offset_in_uncompressed_stream": 206968,
+            "extracted_paragraph_1based": 832
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_function_applications",
+          "exact_text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4221,
+            "record_offset_in_uncompressed_stream": 214313,
+            "extracted_paragraph_1based": 863
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ]
+          }
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4472,
+            "record_offset_in_uncompressed_stream": 226554,
+            "extracted_paragraph_1based": 916
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        }
+      ],
+      "actualMethod": "실제특수각직각삼각형과초등사다리꼴넓이6수03-06,중3제곱근/근호계산이다.대각선곱sin넓이/원거듭제곱은쓰지않는다.",
+      "bandCodeAndSourceSchoolNotPermission": true,
+      "lowerGradePrerequisitesAllowedAndReviewed": true,
+      "applied2015NotAutomatic2022": true,
+      "familyGateSeparateAndHeld": true
+    },
+    "unitAndFamilyReview": {
+      "unitPurposeFit": true,
+      "targetPurpose": "삼각비정의·기하길이/각/넓이활용",
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "bankSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "bankSnapshotSha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "observationOnly": {
+        "unitCount": 22,
+        "liveFamilyCount": 302,
+        "currentDatabaseFreshnessClaim": false,
+        "semanticApprovalFromLiveCount": false,
+        "databaseAccessByVerifier": false
+      },
+      "registryPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "comparedFullRules": [
+        {
+          "registryEntry": {
+            "key": "3-2|삼각비의 활용|12",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "12",
+            "rpmTitle": "사각형의 넓이"
+          },
+          "observedLiveFamily": {
+            "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "family_key": "mid:3-2|삼각비의 활용|12",
+            "live_count": 24
+          },
+          "rule": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+            "lineStart": 2363,
+            "lineEnd": 2421,
+            "fileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "observedRule": "두대각선/끼인각→넓이 또는넓이→미지대각선. 두갈래모두대각선곱sin공식이며사분원/수선/사다리꼴반지름역산과다르다."
+          },
+          "semanticFit": "not-established-for-full-new-input-target-procedure",
+          "familyAssignmentApproved": false
+        }
+      ],
+      "authorComparisonNotSoleEvidence": true,
+      "familyKey": null,
+      "familyStatus": "held-unknown"
+    },
+    "scoreDifficultyReview": {
+      "status": "passed-by-qualitative-objective-task-and-rubric-review",
+      "sourceParentScore": 10,
+      "candidateParentScore": 10,
+      "blindCountedParentScore": 10,
+      "scorePreserved": true,
+      "parentCountedOnce": true,
+      "sourceParts": [],
+      "authorParts": [],
+      "partScoreTotals": null,
+      "authorDifficultyProposal": "응용",
+      "objectiveRationale": "원10점의세길이·수평차·사다리꼴넓이관계를유지하고양의제곱근역산을한다.3+2+3+2rubric이논증과맞다.",
+      "measuredEmpiricalDifficultyClaim": false
+    },
+    "typeSafeDesignEvidence": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "skillSha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+      "liveDocsRead": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "mathAndHashesInCode": true,
+      "semanticJudgmentsSeparatelyBound": true,
+      "unknownFamilyNull": true,
+      "inferenceApiCalls": 0,
+      "confidenceNotUsedAsApproval": true
+    },
+    "parentIntegrationHistory": {
+      "sidecarSha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848",
+      "priorReportCRLFDifferencesNotRewritten": true
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "evidence": "실제사분원·수선·60도·면적에서반지름을구한다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-02",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff"
+    },
+    "choices": {
+      "status": "passed",
+      "evidence": "서술형양의반지름과변/넓이관계를분리한다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-02",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "evidence": "공급음영은ACBD이고C수선발/B접선수직/A호위/D반직선위와60도를확인했다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-02",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff"
+    },
+    "notation": {
+      "status": "passed",
+      "evidence": "실제 표시 수·도·근호·선분·유한 x_i/삼각비/편차는 아래 중학교 방법에서 필요하다. 라디안·벡터·행렬·시그마/확률변수 기호를 학생 표면에 요구하지 않는다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-02",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff"
+    },
+    "answer": {
+      "status": "passed",
+      "evidence": "OC=r/2,AC=r√3/2,BD=r√3,CB=r/2. 평행변사다리꼴넓이3√3r²/8=6√3에서양의r4cm. 두직각삼각형면적차로도확인했다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-02",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "evidence": "실제특수각직각삼각형과초등사다리꼴넓이6수03-06,중3제곱근/근호계산이다.대각선곱sin넓이/원거듭제곱은쓰지않는다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-02",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "evidence": "중3삼각비활용·근호·단순이차방정식,초등사다리꼴넓이",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-02",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff"
+    }
+  },
+  "dimensionStatus": {
+    "mathematics": "passed",
+    "sevenSurface2015Middle3": "passed",
+    "sameCoreConceptAndProcedure": "passed",
+    "substantiveDelta": "passed",
+    "naturalKorean": "passed",
+    "figure": "passed",
+    "unitPurpose": "passed-within-historical-snapshot",
+    "liveFamily": "pending",
+    "difficultyScore": "passed",
+    "rights": "held",
+    "custody": "held",
+    "native": "held",
+    "loadable": false
+  },
+  "holds": [
+    {
+      "dimension": "unitFamilyFit",
+      "status": "pending",
+      "reason": "Unit purpose is semantically appropriate in the04:53UTC snapshot, but familyKey remains null. Compared actual current rules do not establish support for this whole new input/target/procedure. No closest-title assignment.",
+      "specificComparedRules": [
+        "3-2|삼각비의 활용|12"
+      ],
+      "reopenCriteria": "A specific existing live family with full input/target/steps/rubric and objective difficulty correspondence, or separately authorized metadata rule work."
+    }
+  ],
+  "rightsApproval": false,
+  "custodyApproval": false,
+  "nativeApproval": false,
+  "directUseAllowed": false,
+  "loadable": false
+}

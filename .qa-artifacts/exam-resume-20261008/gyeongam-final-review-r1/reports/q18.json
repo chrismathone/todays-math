@@ -1,0 +1,846 @@
+{
+  "schemaVersion": 1,
+  "status": "pending",
+  "questionNumber": 18,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q18",
+  "studentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341",
+  "candidateDigest": "6949d5bb54bd87c8e00842b8f8390a13e264465762aa289437cf6b6f2faef65e",
+  "assetDigest": "32f69bdaf8080fc81016e6becd05661327f0392df67799ec197711cf81fee937",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "solveDigest": "6bc6081697ea33ab0c3b4740beaa07b63de10a9291b62e62103361b76833bef4",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+    "independentSolverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+    "blindCommit": "53fcf61aa9f30885813befbbab3bccd47a7eae79",
+    "originalSolveFileSha256": "b0e0dd9fe4b9c9ad36d87a6374a4b003dab04e0a74f78f9b1e2174d50db79b68",
+    "rawSolveUnchanged": true,
+    "currentCandidateFileSha256": "a88ed0fce1e47c058c96cae23a2b5ca6f5e7d8b28e508b80169f2ac93c9981ad",
+    "verificationInputsSha256": "67d74e7537fdc355f733675e74f12e936c0cae3846824128426a4ad0263f27c9",
+    "verificationManifestSha256": "0e3806133ef66d3418070e73cbb4fea97c334328c195374e1622faa83a95dfad",
+    "inputAssetAuditSha256": "91e0c265075829783df752e7b70074b2b95563c08219b937334d3adf4225d1a3",
+    "reviewFindingsSha256": "adc685c70bf1d778dfe344a0e907736aa405df08287f22c48055f44911f5a999",
+    "answerEquivalence": {
+      "method": "faithful-role-unit-exact-number-or-surd-components-plus-separate-reasoning-review",
+      "blindRawAnswer": "$BC=5\\,\\mathrm{cm}$, $\\tan\\angle CAB=\\sqrt2-1$, $\\angle CAB=22.5^\\circ$.",
+      "authorRawAnswer": "$\\overline{\\mathrm{BC}}=5\\,\\mathrm{cm}$, $\\angle\\mathrm{CAB}=22.5^\\circ$, $\\tan\\angle\\mathrm{CAB}=\\sqrt2-1$",
+      "faithfulAuthorParts": [
+        {
+          "role": "BC-length",
+          "value": 5,
+          "unit": "cm"
+        },
+        {
+          "role": "CAB-angle",
+          "value": 22.5,
+          "unit": "degree"
+        },
+        {
+          "role": "tan-CAB",
+          "value": {
+            "kind": "exact-quadratic-surd",
+            "rational": -1,
+            "radicalCoefficient": 1,
+            "radicand": 2
+          },
+          "unit": null
+        }
+      ],
+      "roleComparisons": [
+        {
+          "role": "BC-length",
+          "blindValue": 5,
+          "authorValue": 5,
+          "unit": "cm",
+          "passed": true
+        },
+        {
+          "role": "CAB-angle",
+          "blindValue": 22.5,
+          "authorValue": 22.5,
+          "unit": "degree",
+          "passed": true
+        },
+        {
+          "role": "tan-CAB",
+          "blindValue": {
+            "kind": "exact-quadratic-surd",
+            "rational": -1,
+            "radicalCoefficient": 1,
+            "radicand": 2
+          },
+          "authorValue": {
+            "kind": "exact-quadratic-surd",
+            "rational": -1,
+            "radicalCoefficient": 1,
+            "radicand": 2
+          },
+          "unit": null,
+          "passed": true
+        }
+      ],
+      "authorPartExtraction": "New verifier evidence transcribed from exposed author answer/solution; raw solve bytes unchanged.",
+      "reasoningProofReviewed": "DB=BC=t,CD=AD=t√2,AB=t(1+√2)에서t5cm. ADC135의같은밑각22.5,실제BC/AB=√2-1. 세역할/단위의답과모든증명단계가raw와맞다.",
+      "literalNormalizedAlgebraMatcherUsed": false,
+      "passed": true
+    },
+    "solutionReview": {
+      "passed": true,
+      "independentMath": "DB=BC=t,CD=AD=t√2,AB=t(1+√2)에서t5cm. ADC135의같은밑각22.5,실제BC/AB=√2-1. 세역할/단위의답과모든증명단계가raw와맞다.",
+      "completeStudentSteps": "반각공식이나bare tan22.5암기를쓰지않는다. 원의비례/사인법칙없이실제주어진D와변을통해구한다.135도는내각보조이며그삼각비를계산하지않는다.",
+      "allWrittenPartsReviewed": true,
+      "rubric": [
+        {
+          "criterion": "45도 삼각형의 DB와CD",
+          "score": 3
+        },
+        {
+          "criterion": "AD=CD와AB기록으로 BC 복구",
+          "score": 3
+        },
+        {
+          "criterion": "이등변삼각형과각의합으로22.5도",
+          "score": 3
+        },
+        {
+          "criterion": "tan 정의와분모유리화",
+          "score": 3
+        }
+      ],
+      "reasoningNotReplacedByLiteralAnswerMatch": true
+    },
+    "existenceUniquenessAndDomain": {
+      "passed": true,
+      "independentCodeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+      "conditions": [
+        {
+          "claim": "두길이조건은양의t5를유일하게정하고D는AB내부이며실제삼각형이존재한다.",
+          "passed": true
+        },
+        {
+          "claim": "실제각CAB22.5는예각이며tan값은실제변비로구했다.",
+          "passed": true
+        }
+      ],
+      "calculation": {
+        "AB": 12.071067811865476,
+        "DB": 5,
+        "BC": 5,
+        "CD": 7.0710678118654755,
+        "AD": 7.0710678118654755,
+        "tanCAB": 0.41421356237309503,
+        "exactTan": {
+          "rational": -1,
+          "radicalCoefficient": 1,
+          "radicand": 2
+        },
+        "CABDegrees": 22.5,
+        "ADC": 135,
+        "angleProof": "Supplement atD then equal base angles of actual isosceles ADC.",
+        "noHalfAngleIdentityUsed": true
+      },
+      "finiteSamplesAreSupplementaryOnly": false
+    },
+    "choiceReview": {
+      "passed": true,
+      "allFiveChecked": false,
+      "notApplicable": true,
+      "independentOptionChecks": []
+    },
+    "figureReview": {
+      "passed": true,
+      "exactPublicStudentSvgBindings": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q18\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q18\\figure-1.svg",
+          "specSha256": "acdab1a1e9d202f2790ef16b7e2af044e2994529aa9ad5d9a8fcdb88241ee527",
+          "svgSha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q18-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerCm": 14,
+            "reason": "Internal D, equal AD/CD,45 degree atD,rightB and actual22.5degree atA all hold geometrically."
+          }
+        }
+      ],
+      "independentPreExposureVisualBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q18-1.svg",
+          "sha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+          "viewedStudentPreview": "student-figure-preview/q18-1.png",
+          "viewedStudentPreviewSha256": "fee24f51b06f0f2f524272783a5a8d06ba0cb2dda633db4a974c0a593eee5ae3",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "actualFiguresViewed": true,
+      "notApplicable": false,
+      "strictLocalReproduction": true,
+      "bankCapMm": 70,
+      "physicalPaperApproval": false,
+      "nativeFrameSerializerApproval": false,
+      "sourceCropsReferenceOnly": true,
+      "sourceQuestionOnlyImageReferences": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q18-part1.png",
+          "sha256": "1bdf2c01b9afa15d5e1302987b17e6ff719ebe17e9961ea4b4a266c2475f019f",
+          "referenceOnly": true
+        }
+      ]
+    },
+    "sourceCoreAndDelta": {
+      "passed": true,
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-18",
+      "sourceContentDigest": "c694c06df5e2bed974a7fa9aac31864b4badca8f91779aa65f01447b0cbcc686",
+      "sourceRecordDigest": "e5bbd94cbaced17f813d086d3e216b667e08fc22250e2403ccb1a5bc5340c304",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceQuestionOnly": true,
+      "originalAnswersUsed": false,
+      "sameCore": "원문BC=1과45도/등변조건으로각22.5와tan의실제변비를도출하는기하핵심을보존한다.",
+      "substantiveChange": "전체AB길이를입력으로주고지워진BC를복구한후각/비기록을확인한다. 양의길이역산이원정방향변구성앞에들어간다.",
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation",
+          "inverse-target"
+        ],
+        "before": "주어진 BC와45도/이등변 조건으로 tan22.5를 구하는 과정을 쓴다.",
+        "after": "AB의 전체 길이를 입력으로 지워진 직각변을 복구한 뒤 각/직각 비의 기록을 설명한다.",
+        "sharedConcept": "45도 직각삼각형, 이등변삼각형과 특정각의 tan 정의",
+        "sharedProcedure": "DB=BC→CD 피타고라스→AD=CD와길이합으로BC→삼각형각의합→유한직각 비/분모유리화."
+      },
+      "variantDeltaDigest": "ebfd5c43c3b15826bfd2360c17f26e273fa2df12586492360bfb35c541448963"
+    },
+    "koreanReview": {
+      "passed": true,
+      "evidence": "D내부와AD=CD/주어진AB,복구할BC/tan및각확인목적을명시했다.",
+      "sourceSchoolInStudentSurfaces": false
+    },
+    "curriculumReview": {
+      "status": "passed-for-seven-student-surfaces-and-actual-methods",
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standards": [
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-18",
+          "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-16",
+          "verified_text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4333,
+            "record_offset_in_uncompressed_stream": 218866,
+            "extracted_paragraph_1based": 889
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-10",
+          "verified_text": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4300,
+            "record_offset_in_uncompressed_stream": 217636,
+            "extracted_paragraph_1based": 881
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-05",
+          "verified_text": "다각형의 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4272,
+            "record_offset_in_uncompressed_stream": 216602,
+            "extracted_paragraph_1based": 874
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수01-10",
+          "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "rolloutBasis": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "officialRestrictions": [
+        {
+          "id": "no_vieta",
+          "exact_text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4075,
+            "record_offset_in_uncompressed_stream": 207128,
+            "extracted_paragraph_1based": 833
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_ratio_identities",
+          "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4440,
+            "record_offset_in_uncompressed_stream": 224820,
+            "extracted_paragraph_1based": 908
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "angle_range",
+          "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4444,
+            "record_offset_in_uncompressed_stream": 224946,
+            "extracted_paragraph_1based": 909
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "no_circle_proportionality",
+          "exact_text": "원과 비례에 관한 성질은 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4452,
+            "record_offset_in_uncompressed_stream": 225374,
+            "extracted_paragraph_1based": 911
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "real_quadratic_roots",
+          "exact_text": "이차방정식은 해가 실수인 경우만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4059,
+            "record_offset_in_uncompressed_stream": 206372,
+            "extracted_paragraph_1based": 829
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4071,
+            "record_offset_in_uncompressed_stream": 206968,
+            "extracted_paragraph_1based": 832
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_function_applications",
+          "exact_text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4221,
+            "record_offset_in_uncompressed_stream": 214313,
+            "extracted_paragraph_1based": 863
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ]
+          }
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4472,
+            "record_offset_in_uncompressed_stream": 226554,
+            "extracted_paragraph_1based": 916
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        }
+      ],
+      "actualMethod": "반각공식이나bare tan22.5암기를쓰지않는다. 원의비례/사인법칙없이실제주어진D와변을통해구한다.135도는내각보조이며그삼각비를계산하지않는다.",
+      "bandCodeAndSourceSchoolNotPermission": true,
+      "lowerGradePrerequisitesAllowedAndReviewed": true,
+      "applied2015NotAutomatic2022": true,
+      "familyGateSeparateAndHeld": true
+    },
+    "unitAndFamilyReview": {
+      "unitPurposeFit": true,
+      "targetPurpose": "삼각비정의·기하길이/각/넓이활용",
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "bankSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "bankSnapshotSha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "observationOnly": {
+        "unitCount": 22,
+        "liveFamilyCount": 302,
+        "currentDatabaseFreshnessClaim": false,
+        "semanticApprovalFromLiveCount": false,
+        "databaseAccessByVerifier": false
+      },
+      "registryPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "comparedFullRules": [
+        {
+          "registryEntry": {
+            "key": "3-2|삼각비의 활용|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "01",
+            "rpmTitle": "직각삼각형의 변의 길이 구하기"
+          },
+          "observedLiveFamily": {
+            "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "family_key": "mid:3-2|삼각비의 활용|01",
+            "live_count": 24
+          },
+          "rule": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+            "lineStart": 1865,
+            "lineEnd": 1944,
+            "fileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "observedRule": "실제두갈래는30/45/60특수각과빗변한변에서두직각변을계산한뒤넓이또는둘레를구하는정방향문제이다. 제목의변의길이만으로판정하지않았다. 내부D/등변/22.5도각증명과전체AB역복원서술을함께지원하지않는다."
+          },
+          "semanticFit": "not-established-for-full-new-input-target-procedure",
+          "familyAssignmentApproved": false
+        }
+      ],
+      "authorComparisonNotSoleEvidence": true,
+      "familyKey": null,
+      "familyStatus": "held-unknown"
+    },
+    "scoreDifficultyReview": {
+      "status": "passed-by-qualitative-objective-task-and-rubric-review",
+      "sourceParentScore": 12,
+      "candidateParentScore": 12,
+      "blindCountedParentScore": 12,
+      "scorePreserved": true,
+      "parentCountedOnce": true,
+      "sourceParts": [],
+      "authorParts": [],
+      "partScoreTotals": null,
+      "authorDifficultyProposal": "심화하",
+      "objectiveRationale": "원12점의45도직각·등변삼각형각·길이합·분모유리화서술을유지했다. 새네3점rubric은실제논증의네단계다.",
+      "measuredEmpiricalDifficultyClaim": false
+    },
+    "typeSafeDesignEvidence": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "skillSha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+      "liveDocsRead": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "mathAndHashesInCode": true,
+      "semanticJudgmentsSeparatelyBound": true,
+      "unknownFamilyNull": true,
+      "inferenceApiCalls": 0,
+      "confidenceNotUsedAsApproval": true
+    },
+    "parentIntegrationHistory": {
+      "sidecarSha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848",
+      "priorReportCRLFDifferencesNotRewritten": true
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "evidence": "실제직각삼각형·등변변조건·한변의근호길이에서누락길이와각을복구한다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-16",
+        "9수04-10",
+        "9수04-05",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341"
+    },
+    "choices": {
+      "status": "passed",
+      "evidence": "서술형의길이·tan·각도세부분을정확수치와이유로분리한다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-16",
+        "9수04-10",
+        "9수04-05",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "evidence": "실제그림의D내부·B직각·D45°·AD/CD같음표시를직접보았다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-16",
+        "9수04-10",
+        "9수04-05",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341"
+    },
+    "notation": {
+      "status": "passed",
+      "evidence": "실제 표시 수·도·근호·선분·유한 x_i/삼각비/편차는 아래 중학교 방법에서 필요하다. 라디안·벡터·행렬·시그마/확률변수 기호를 학생 표면에 요구하지 않는다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-16",
+        "9수04-10",
+        "9수04-05",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341"
+    },
+    "answer": {
+      "status": "passed",
+      "evidence": "DB=BC=t,CD=AD=t√2,AB=t(1+√2)에서t5cm. ADC135의같은밑각22.5,실제BC/AB=√2-1. 세역할/단위의답과모든증명단계가raw와맞다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-16",
+        "9수04-10",
+        "9수04-05",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "evidence": "반각공식이나bare tan22.5암기를쓰지않는다. 원의비례/사인법칙없이실제주어진D와변을통해구한다.135도는내각보조이며그삼각비를계산하지않는다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-16",
+        "9수04-10",
+        "9수04-05",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "evidence": "중2피타고라스·등변삼각형,중1내각/평각,중3삼각비정의·근호",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수04-16",
+        "9수04-10",
+        "9수04-05",
+        "9수01-10"
+      ],
+      "exactStudentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341"
+    }
+  },
+  "dimensionStatus": {
+    "mathematics": "passed",
+    "sevenSurface2015Middle3": "passed",
+    "sameCoreConceptAndProcedure": "passed",
+    "substantiveDelta": "passed",
+    "naturalKorean": "passed",
+    "figure": "passed",
+    "unitPurpose": "passed-within-historical-snapshot",
+    "liveFamily": "pending",
+    "difficultyScore": "passed",
+    "rights": "held",
+    "custody": "held",
+    "native": "held",
+    "loadable": false
+  },
+  "holds": [
+    {
+      "dimension": "unitFamilyFit",
+      "status": "pending",
+      "reason": "Unit purpose is semantically appropriate in the04:53UTC snapshot, but familyKey remains null. Compared actual current rules do not establish support for this whole new input/target/procedure. No closest-title assignment.",
+      "specificComparedRules": [
+        "3-2|삼각비의 활용|01"
+      ],
+      "reopenCriteria": "A specific existing live family with full input/target/steps/rubric and objective difficulty correspondence, or separately authorized metadata rule work."
+    }
+  ],
+  "rightsApproval": false,
+  "custodyApproval": false,
+  "nativeApproval": false,
+  "directUseAllowed": false,
+  "loadable": false
+}
