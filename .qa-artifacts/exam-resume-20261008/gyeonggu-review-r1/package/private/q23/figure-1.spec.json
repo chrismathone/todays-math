@@ -1,0 +1,120 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "angle_label_distance": 26,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "O": [
+      0.0,
+      0.0
+    ],
+    "P": [
+      -166.27687752661222,
+      0.0
+    ],
+    "A": [
+      -41.569219381653056,
+      -71.99999999999999
+    ],
+    "B": [
+      -41.569219381653056,
+      71.99999999999999
+    ]
+  },
+  "segments": {
+    "PA": [
+      "P",
+      "A"
+    ],
+    "PB": [
+      "P",
+      "B"
+    ],
+    "OA": {
+      "points": [
+        "O",
+        "A"
+      ],
+      "dash": "4 3"
+    },
+    "OB": {
+      "points": [
+        "O",
+        "B"
+      ],
+      "dash": "4 3"
+    },
+    "OP": {
+      "points": [
+        "O",
+        "P"
+      ],
+      "dash": "4 3"
+    }
+  },
+  "labels": {
+    "O": "O",
+    "P": "P",
+    "A": "A",
+    "B": "B"
+  },
+  "circles": {
+    "c": {
+      "center": "O",
+      "radius": 83.13843876330611
+    }
+  },
+  "angles": {
+    "angle_A": {
+      "vertex": "A",
+      "points": [
+        "O",
+        "P"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_B": {
+      "vertex": "B",
+      "points": [
+        "O",
+        "P"
+      ],
+      "right": true,
+      "radius": 8
+    }
+  },
+  "regions": {
+    "outside": {
+      "fill": "#eeeeee",
+      "boundary": [
+        {
+          "seg": [
+            "P",
+            "A"
+          ]
+        },
+        {
+          "arc": {
+            "circle": "c",
+            "from": "A",
+            "to": "B",
+            "dir": "ccw"
+          }
+        },
+        {
+          "seg": [
+            "B",
+            "P"
+          ]
+        }
+      ]
+    }
+  }
+}

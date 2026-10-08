@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "angle_label_distance": 26,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "A": [
+      0.0,
+      0.0
+    ],
+    "H": [
+      114.55129855222071,
+      0.0
+    ],
+    "O": [
+      114.55129855222071,
+      -66.1362230551458
+    ]
+  },
+  "segments": {
+    "AH": [
+      "A",
+      "H"
+    ],
+    "HO": [
+      "H",
+      "O"
+    ],
+    "OA": [
+      "O",
+      "A"
+    ]
+  },
+  "labels": {
+    "A": "A",
+    "H": "H",
+    "O": "O"
+  },
+  "angles": {
+    "angle_H": {
+      "vertex": "H",
+      "points": [
+        "A",
+        "O"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_A": {
+      "vertex": "A",
+      "points": [
+        "H",
+        "O"
+      ],
+      "label": "$30^\\circ$"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "kind": "root-checkpoint-verification/v1",
+  "contractTests": {
+    "passed": 19,
+    "failed": 0,
+    "syntheticControlsAreActualQuestionReviews": false
+  },
+  "eslint": "render-preview.ts passed",
+  "prettier": "render-preview.ts passed",
+  "current20LayoutProof": "bumil-current20-student-bankcap-r2/visual-inspection.json",
+  "gyeongguAuthored": 22,
+  "gyeongguFrozenDryRun": "passed, db350725d50ca24691f0ce2472ecf29a210008857378a0477662fd237e1c7080",
+  "independentGyeongguReview": "new worker started; no result yet",
+  "sourceContainment": "23 crops:12same/11expanded; all prior RGB exact subset; all11 expansions viewed; no mathematical oracle",
+  "generatedWhitespaceExceptions": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/blind/figures/q11-1.svg",
+      "sha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374",
+      "reason": "exact preserved strict-engine q11 empty g; author/new SVG not edited"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q11/figure-1.svg",
+      "sha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374",
+      "reason": "exact preserved strict-engine q11 empty g; author/new SVG not edited"
+    }
+  ],
+  "fullVerified": 0,
+  "loadable": 0,
+  "dbWrites": 0,
+  "mainWritten": false,
+  "pushed": false
+}

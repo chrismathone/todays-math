@@ -1,0 +1,4568 @@
+{
+  "kind": "independent-parent-held-family-purpose-audit/v1",
+  "createdAt": "2026-10-08T04:57:29.851Z",
+  "reviewerId": "orca-codex-exam-extraction-parent-metadata-20261008",
+  "exactFamilyAssignmentsSupported": 0,
+  "pending": 5,
+  "priorCurrent20CountsUnchanged": true,
+  "newCalculations": {
+    "q11": {
+      "AC": 3,
+      "AD": 6,
+      "BD": 6,
+      "DC": 5.196152422706632,
+      "BC": 11.196152422706632
+    },
+    "q14": {
+      "width": 3,
+      "horizontal": 9,
+      "AP": 5,
+      "reflectedB": [
+        7.2,
+        -2.4
+      ]
+    },
+    "q15": {
+      "radius": 7.5,
+      "halfChord": 6,
+      "centerDistance": 4.5,
+      "shortHeight": 3,
+      "otherBranch": 12
+    },
+    "q17": {
+      "width": 9,
+      "height": 6,
+      "radius": 3,
+      "BM": 4.5,
+      "area": 13.5
+    },
+    "q20": {
+      "centralDegrees": 120,
+      "triangleHeight": 5.196152422706632,
+      "triangleArea": 15.588457268119896,
+      "semicirclePiCoefficient": 18,
+      "sectorPiCoefficient": 12,
+      "complementPiCoefficient": 6,
+      "complementArea": 34.438013189658655
+    }
+  },
+  "calculationsAreSupplementalNotNewBlindSolves": true,
+  "references": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-final-review-summary-r1.json",
+      "sha256": "0e91894ed42b93f79a9f8ec8185d267e5803ac2d96c894d8b0436b14b7b64cbe"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1"
+    }
+  ],
+  "judgments": {
+    "skill": ".agents/skills/typesafe-ai/SKILL.md",
+    "liveDocs": [
+      "https://docs.typesafe.ai/confidence",
+      "https://docs.typesafe.ai/cookbooks/citation_check"
+    ],
+    "apiCalls": 0,
+    "scope": "Manual scoped semantic judgments; exact lookup/generation/calculation/hash in code, no confidence-based permission"
+  },
+  "observations": [
+    {
+      "n": 11,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q11",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q11.json",
+        "sha256": "814ba14f64d2fe3dfb5ad83b36fbf20f0d38fb33f5ac2757e4e3dfb2d15969ba"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r4/package/private/q11/candidate.json",
+        "sha256": "76954f39d6c50d116a8186b867f931a221392ae35c2559057ba8d2fdf8545a3d"
+      },
+      "candidateDigest": "961080f2067eb9678490212d04904e0689418e2780768c21e682fa483148cbbd",
+      "studentDigest": "570ab4369989cd77285dad0e26313d0e9282f0cec12e2b9568525bf8c728c2e4",
+      "assetDigest": "c0b12b89505f32f2756fd468f05da7b2a5862c6b1dcf67a8eee0634623266fed",
+      "report": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r4/verification/reports/q11.json",
+        "sha256": "477aac2273616c48ecfc1b563761535a4bf1914b00dc916e82bcc5a4b3c5b53f"
+      },
+      "priorIndependentStatus": "pending",
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-11",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 11,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "6a46ae922a34c384d8a24c6b9567f3518bb55930ba97644c8d6a0a1494102e3c",
+        "sourceObservation": "직각삼각형 ABC에 B-D-C가 일직선이며 ∠ABD=15°, ∠ADC=30°, BD=4다.",
+        "sharedConceptProcedure": "각의 관계로 △ABD의 같은 변 관계를 찾고 30° 직각삼각형에서 변 길이를 표현한 뒤 tan 15°의 변의 비를 만든다.",
+        "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q11",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+        "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "answerFreeContentSha256": "6a46ae922a34c384d8a24c6b9567f3518bb55930ba97644c8d6a0a1494102e3c",
+        "referenceFigures": [
+          {
+            "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q11.png",
+            "sha256": "0d3eb2208792322477a39549fa0da6221e16fc8bdb3bcfc5bfaa1aec6bbb2ed6",
+            "role": "source-reference-only"
+          }
+        ],
+        "sourceAnswersSolutionsAccessed": false,
+        "geometryInterpretationNote": "각의 합으로 얻는 올바른 같은 변 관계는 AD=BD이다. AB=BD로 해석하지 않는다. 원본 답은 읽지 않았다."
+      },
+      "exactFamilyAssignment": null,
+      "decision": "pending",
+      "reason": "Use15-degree isosceles auxiliary relation before30-degree right-triangle side recovery; direct15-degree trig is excluded",
+      "candidateRules": [
+        {
+          "key": "3-2|삼각비|10",
+          "exactRegistry": {
+            "key": "3-2|삼각비|10",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "10",
+            "rpmTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기"
+          },
+          "actualUnit": {
+            "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 값",
+            "semester": 2,
+            "orderIndex": 482,
+            "problemCodePrefix": "J30502"
+          },
+          "familyKey": "mid:3-2|삼각비|10",
+          "liveCount": 20,
+          "scopeObservedAt": "2026-10-08 04:53:45.769124+00",
+          "generatedSeeds": 100,
+          "difficultyCounts": {
+            "응용": 100
+          },
+          "generatedSampleDigest": "18fd611ebd4157dbf5e2e2da4aa89ba71c4a81125cfbaed8b2e60d7fec91e6a9",
+          "samples": [
+            {
+              "seed": 1,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 값",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비",
+                "rpmType": "10",
+                "rpmTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기",
+                "difficulty": "응용",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=45^\\circ$이고 $\\overline{AB}=24\\,\\mathrm{cm}$일 때, $\\overline{AC}$의 길이를 구하시오.",
+                "answer": "$24\\sqrt{2}\\,\\mathrm{cm}$",
+                "solution": "$\\cos 45^\\circ=\\dfrac{\\overline{AB}}{\\overline{AC}}$이고 $\\cos 45^\\circ=\\dfrac{\\sqrt{2}}{2}$이다.\n따라서 $\\overline{AC}=\\dfrac{24}{\\dfrac{\\sqrt{2}}{2}}=24\\sqrt{2}\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "theta": 45,
+                  "gi": 0,
+                  "wi": 2,
+                  "given": 24,
+                  "an": 24,
+                  "ar": 2
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      22
+                    ],
+                    "C": [
+                      168,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "24 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "45°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 값",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비",
+                "rpmType": "10",
+                "rpmTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기",
+                "difficulty": "응용",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AB}=12\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+                "answer": "$12\\sqrt{3}\\,\\mathrm{cm}$",
+                "solution": "$\\tan 60^\\circ=\\dfrac{\\overline{BC}}{\\overline{AB}}$이고 $\\tan 60^\\circ=\\sqrt{3}$이다.\n따라서 $\\overline{BC}=12\\times\\sqrt{3}=12\\sqrt{3}\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "theta": 60,
+                  "gi": 0,
+                  "wi": 1,
+                  "given": 12,
+                  "an": 12,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.37
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "12 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 값",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비",
+                "rpmType": "10",
+                "rpmTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기",
+                "difficulty": "응용",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AB}=4\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+                "answer": "$4\\sqrt{3}\\,\\mathrm{cm}$",
+                "solution": "$\\tan 60^\\circ=\\dfrac{\\overline{BC}}{\\overline{AB}}$이고 $\\tan 60^\\circ=\\sqrt{3}$이다.\n따라서 $\\overline{BC}=4\\times\\sqrt{3}=4\\sqrt{3}\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "theta": 60,
+                  "gi": 0,
+                  "wi": 1,
+                  "given": 4,
+                  "an": 4,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.41
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "4 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 값",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비",
+                "rpmType": "10",
+                "rpmTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기",
+                "difficulty": "응용",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AB}=4\\,\\mathrm{cm}$일 때, $\\overline{BC}$의 길이를 구하시오.",
+                "answer": "$4\\sqrt{3}\\,\\mathrm{cm}$",
+                "solution": "$\\tan 60^\\circ=\\dfrac{\\overline{BC}}{\\overline{AB}}$이고 $\\tan 60^\\circ=\\sqrt{3}$이다.\n따라서 $\\overline{BC}=4\\times\\sqrt{3}=4\\sqrt{3}\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "theta": 60,
+                  "gi": 0,
+                  "wi": 1,
+                  "given": 4,
+                  "an": 4,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.41
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "4 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 값",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비",
+                "rpmType": "10",
+                "rpmTitle": "의 삼각비의 값을 이용하여 변의 길이 구하기",
+                "difficulty": "응용",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AC}=16\\,\\mathrm{cm}$일 때, $\\overline{AB}$의 길이를 구하시오.",
+                "answer": "$8\\,\\mathrm{cm}$",
+                "solution": "$\\cos 60^\\circ=\\dfrac{\\overline{AB}}{\\overline{AC}}$이고 $\\cos 60^\\circ=\\dfrac{1}{2}$이다.\n따라서 $\\overline{AB}=16\\times\\dfrac{1}{2}=8\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "theta": 60,
+                  "gi": 2,
+                  "wi": 0,
+                  "given": 16,
+                  "an": 8,
+                  "ar": 1
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.41
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "16 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "generatedSampleDoesNotApproveCurrentCandidate": true
+        },
+        {
+          "key": "3-2|삼각비의 활용|01",
+          "exactRegistry": {
+            "key": "3-2|삼각비의 활용|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "01",
+            "rpmTitle": "직각삼각형의 변의 길이 구하기"
+          },
+          "actualUnit": {
+            "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 활용",
+            "semester": 2,
+            "orderIndex": 483,
+            "problemCodePrefix": "J30503"
+          },
+          "familyKey": "mid:3-2|삼각비의 활용|01",
+          "liveCount": 24,
+          "scopeObservedAt": "2026-10-08 04:53:45.769124+00",
+          "generatedSeeds": 100,
+          "difficultyCounts": {
+            "기본": 100
+          },
+          "generatedSampleDigest": "2da3d8d3f1e3beb36d5109cadd25e317f3e6d7bc650c05a014b93f873c546073",
+          "samples": [
+            {
+              "seed": 1,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=45^\\circ$이고 $\\overline{AC}=4\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 둘레의 길이를 구하시오.",
+                "answer": "$(4+4\\sqrt{2})\\,\\mathrm{cm}$",
+                "solution": "$\\overline{AB}=4\\times\\cos 45^\\circ=2\\sqrt{2}\\,(\\mathrm{cm})$, $\\overline{BC}=4\\times\\sin 45^\\circ=2\\sqrt{2}\\,(\\mathrm{cm})$이다.\n따라서 (둘레)$=4+2\\sqrt{2}+2\\sqrt{2}=4+4\\sqrt{2}\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "theta": 45,
+                  "given": 4,
+                  "mode": 1,
+                  "c0": 4,
+                  "c1": 4,
+                  "root": 2
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      22
+                    ],
+                    "C": [
+                      168,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "4 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "45°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AC}=8\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.",
+                "answer": "$8\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "$\\overline{AB}=8\\times\\cos 60^\\circ=4\\,(\\mathrm{cm})$, $\\overline{BC}=8\\times\\sin 60^\\circ=4\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 (넓이)$=\\dfrac{1}{2}\\times4\\times4\\sqrt{3}=8\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "theta": 60,
+                  "given": 8,
+                  "mode": 0,
+                  "an": 8,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.38
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "8 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AC}=4\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.",
+                "answer": "$2\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "$\\overline{AB}=4\\times\\cos 60^\\circ=2\\,(\\mathrm{cm})$, $\\overline{BC}=4\\times\\sin 60^\\circ=2\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 (넓이)$=\\dfrac{1}{2}\\times2\\times2\\sqrt{3}=2\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "theta": 60,
+                  "given": 4,
+                  "mode": 0,
+                  "an": 2,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.38
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "4 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AC}=8\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.",
+                "answer": "$8\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "$\\overline{AB}=8\\times\\cos 60^\\circ=4\\,(\\mathrm{cm})$, $\\overline{BC}=8\\times\\sin 60^\\circ=4\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 (넓이)$=\\dfrac{1}{2}\\times4\\times4\\sqrt{3}=8\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "theta": 60,
+                  "given": 8,
+                  "mode": 0,
+                  "an": 8,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.38
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "8 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AC}=16\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.",
+                "answer": "$32\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "$\\overline{AB}=16\\times\\cos 60^\\circ=8\\,(\\mathrm{cm})$, $\\overline{BC}=16\\times\\sin 60^\\circ=8\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 (넓이)$=\\dfrac{1}{2}\\times8\\times8\\sqrt{3}=32\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "theta": 60,
+                  "given": 16,
+                  "mode": 0,
+                  "an": 32,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.38
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "16 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "generatedSampleDoesNotApproveCurrentCandidate": true
+        }
+      ],
+      "currentRuleModules": [
+        {
+          "path": "src/lib/middle/m3Trig.ts",
+          "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+        }
+      ],
+      "educationalScope": "Current independent20 review remains valid. Samples only describe existing generators; no extra grade approval is inferred",
+      "metadataOrFrozenEvidenceEdited": false,
+      "reopenWhen": "A distinct external reviewer confirms entire new purpose/core method and appropriate difficulty for an existing live family, or implement/review an allowed template and resolve live metadata separately"
+    },
+    {
+      "n": 14,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q14",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.json",
+        "sha256": "8c4ad928e6910539d29a3bbecede5dd701132dc35243daee57409761ee3f19b5"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r4/package/private/q14/candidate.json",
+        "sha256": "9ef5fc96554851abe101c9ecfdf3fabeae5b91a799e48b33c4f09bac10420fc0"
+      },
+      "candidateDigest": "6e454ec679de4c789ed4f12afd2801ababc93fe4bc8435b727f4b08bc1351755",
+      "studentDigest": "122a3917ecccd86d1f12da18984bbedec0fe1f22e1eeca58e55212f4d90fdb83",
+      "assetDigest": "84082131910c3fd5db77cdc5da13c5f5d70393a411c8d5798b2f2a2213f8a702",
+      "report": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r4/verification/reports/q14.json",
+        "sha256": "6b0e2650c61447d35d9b29a67511da95424d474f3315d43def4eab1500b390e7"
+      },
+      "priorIndependentStatus": "pending",
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-14",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 14,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "d85d7968d03bd611708edd8a7a8a8e41f21d66a76aa480cd9f2fe29d6f4b8eec",
+        "sourceObservation": "AB=2, AP=6인 직사각형 종이띠를 PQ로 접어 A와 C가 겹치며 ∠CPQ=x다.",
+        "sharedConceptProcedure": "접기 전후의 같은 길이·각을 이용해 보조 길이와 각 관계를 만든 뒤 tan x의 변의 비를 구한다.",
+        "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q14",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+        "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "answerFreeContentSha256": "d85d7968d03bd611708edd8a7a8a8e41f21d66a76aa480cd9f2fe29d6f4b8eec",
+        "referenceFigures": [
+          {
+            "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q14.png",
+            "sha256": "4e557c5919d0f2c08d3a75adf2ba3e37f6876ffd305bd00ccd9296757e6fa2b7",
+            "role": "source-reference-only"
+          }
+        ],
+        "sourceAnswersSolutionsAccessed": false
+      },
+      "exactFamilyAssignment": null,
+      "decision": "pending",
+      "reason": "Fold congruence/perpendicular-bisector angle reconstruction and inverse fold location are required; generic right-triangle length does not cover the whole target",
+      "candidateRules": [
+        {
+          "key": "3-2|삼각비의 활용|01",
+          "exactRegistry": {
+            "key": "3-2|삼각비의 활용|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "01",
+            "rpmTitle": "직각삼각형의 변의 길이 구하기"
+          },
+          "actualUnit": {
+            "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 활용",
+            "semester": 2,
+            "orderIndex": 483,
+            "problemCodePrefix": "J30503"
+          },
+          "familyKey": "mid:3-2|삼각비의 활용|01",
+          "liveCount": 24,
+          "scopeObservedAt": "2026-10-08 04:53:45.769124+00",
+          "generatedSeeds": 100,
+          "difficultyCounts": {
+            "기본": 100
+          },
+          "generatedSampleDigest": "2da3d8d3f1e3beb36d5109cadd25e317f3e6d7bc650c05a014b93f873c546073",
+          "samples": [
+            {
+              "seed": 1,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=45^\\circ$이고 $\\overline{AC}=4\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 둘레의 길이를 구하시오.",
+                "answer": "$(4+4\\sqrt{2})\\,\\mathrm{cm}$",
+                "solution": "$\\overline{AB}=4\\times\\cos 45^\\circ=2\\sqrt{2}\\,(\\mathrm{cm})$, $\\overline{BC}=4\\times\\sin 45^\\circ=2\\sqrt{2}\\,(\\mathrm{cm})$이다.\n따라서 (둘레)$=4+2\\sqrt{2}+2\\sqrt{2}=4+4\\sqrt{2}\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "theta": 45,
+                  "given": 4,
+                  "mode": 1,
+                  "c0": 4,
+                  "c1": 4,
+                  "root": 2
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      22
+                    ],
+                    "C": [
+                      168,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "4 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "45°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AC}=8\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.",
+                "answer": "$8\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "$\\overline{AB}=8\\times\\cos 60^\\circ=4\\,(\\mathrm{cm})$, $\\overline{BC}=8\\times\\sin 60^\\circ=4\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 (넓이)$=\\dfrac{1}{2}\\times4\\times4\\sqrt{3}=8\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "theta": 60,
+                  "given": 8,
+                  "mode": 0,
+                  "an": 8,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.38
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "8 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AC}=4\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.",
+                "answer": "$2\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "$\\overline{AB}=4\\times\\cos 60^\\circ=2\\,(\\mathrm{cm})$, $\\overline{BC}=4\\times\\sin 60^\\circ=2\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 (넓이)$=\\dfrac{1}{2}\\times2\\times2\\sqrt{3}=2\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "theta": 60,
+                  "given": 4,
+                  "mode": 0,
+                  "an": 2,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.38
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "4 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AC}=8\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.",
+                "answer": "$8\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "$\\overline{AB}=8\\times\\cos 60^\\circ=4\\,(\\mathrm{cm})$, $\\overline{BC}=8\\times\\sin 60^\\circ=4\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 (넓이)$=\\dfrac{1}{2}\\times4\\times4\\sqrt{3}=8\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "theta": 60,
+                  "given": 8,
+                  "mode": 0,
+                  "an": 8,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.38
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "8 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "01",
+                "rpmTitle": "직각삼각형의 변의 길이 구하기",
+                "difficulty": "기본",
+                "content": "직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=60^\\circ$이고 $\\overline{AC}=16\\,\\mathrm{cm}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.",
+                "answer": "$32\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "$\\overline{AB}=16\\times\\cos 60^\\circ=8\\,(\\mathrm{cm})$, $\\overline{BC}=16\\times\\sin 60^\\circ=8\\sqrt{3}\\,(\\mathrm{cm})$이다.\n따라서 (넓이)$=\\dfrac{1}{2}\\times8\\times8\\sqrt{3}=32\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "theta": 60,
+                  "given": 16,
+                  "mode": 0,
+                  "an": 32,
+                  "ar": 3
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "A": [
+                      22,
+                      66.38
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  },
+                  "dimensions": {
+                    "d_CA": {
+                      "points": [
+                        "C",
+                        "A"
+                      ],
+                      "label": "16 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "r_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "right": true
+                    },
+                    "a_A": {
+                      "vertex": "A",
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "60°"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "generatedSampleDoesNotApproveCurrentCandidate": true
+        }
+      ],
+      "currentRuleModules": [
+        {
+          "path": "src/lib/middle/m3Trig.ts",
+          "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+        },
+        {
+          "path": "src/lib/middle/m3Figures.ts",
+          "sha256": "d59394e3085a7f8e5ffe6c3bb0787fcc7c855051e3c7d5142c92427e8dede4f1"
+        }
+      ],
+      "educationalScope": "Current independent20 review remains valid. Samples only describe existing generators; no extra grade approval is inferred",
+      "metadataOrFrozenEvidenceEdited": false,
+      "reopenWhen": "A distinct external reviewer confirms entire new purpose/core method and appropriate difficulty for an existing live family, or implement/review an allowed template and resolve live metadata separately"
+    },
+    {
+      "n": 15,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q15",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.json",
+        "sha256": "6e948da15efef5177bf65592bbd9099e1a78b404a63a637b342aacfe09908aeb"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r1/package/private/q15/candidate.json",
+        "sha256": "b4d324fa7e19fbf82ac5faeecffdb51eb60a110e11eab868fcefc6805f7dad62"
+      },
+      "candidateDigest": "9e8ed64b44fb0c74137b22cbb7288f8e14b831a87c83fd455efd05f25ffa6b2e",
+      "studentDigest": "bc3bd97b90cec786cce08661bc8312b7b160ca9997115ba07c151ba8745dd71d",
+      "assetDigest": "efa7180539b3c8f4676f94d093466464fff9d82dfdee835b8a0d9e647c94a2f1",
+      "report": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r1/verification/reports/q15.json",
+        "sha256": "01c3ed7ba1eeeabba246fb7614a8fed6a819f5a89ca3dc938662a342b4173897"
+      },
+      "priorIndependentStatus": "pending",
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-15",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 15,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "6336b2123cb52285fe64a62a0bf54ccefcd8f45f198719b6a47e22857693ae4a",
+        "sourceObservation": "깨진 접시에서 현 8cm와 현 중앙부터 원둘레까지 수직거리 2cm가 표시된다.",
+        "sharedConceptProcedure": "현의 수직이등분선이 중심을 지나는 성질과 피타고라스 관계로 반지름을 정한 뒤 원주를 계산한다.",
+        "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q15",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+        "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "answerFreeContentSha256": "6336b2123cb52285fe64a62a0bf54ccefcd8f45f198719b6a47e22857693ae4a",
+        "referenceFigures": [
+          {
+            "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q15.png",
+            "sha256": "b1fd19b4d59c54ac4973f26232872282637f4c3092219d305248f7497215e1d7",
+            "role": "source-reference-only"
+          }
+        ],
+        "sourceAnswersSolutionsAccessed": false
+      },
+      "exactFamilyAssignment": null,
+      "decision": "pending",
+      "reason": "Known radius/circumference and chord -> short arc height.03 asks radius from chord/height;19A asks center-to-chord distance with an additional subtraction needed here",
+      "candidateRules": [
+        {
+          "key": "3-2|원과 직선|03",
+          "exactRegistry": {
+            "key": "3-2|원과 직선|03",
+            "grade": "중3",
+            "unitSection": "원과 현",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "03",
+            "rpmTitle": "현의 수직이등분선 원의 일부분이 주어진 경우"
+          },
+          "actualUnit": {
+            "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원과 현",
+            "semester": 2,
+            "orderIndex": 484,
+            "problemCodePrefix": "J30601"
+          },
+          "familyKey": "mid:3-2|원과 직선|03",
+          "liveCount": 16,
+          "scopeObservedAt": "2026-10-08 04:53:45.769124+00",
+          "generatedSeeds": 100,
+          "difficultyCounts": {
+            "심화하": 100
+          },
+          "generatedSampleDigest": "6e9f5f3049ea89e503e41c46a122ba3009a891abdf00c7bb3058c7687ed0f08f",
+          "samples": [
+            {
+              "seed": 1,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "03",
+                "rpmTitle": "현의 수직이등분선 원의 일부분이 주어진 경우",
+                "difficulty": "심화하",
+                "content": "원 $O$ 위의 두 점 $A$, $B$에 대하여 현 $AB$의 중점을 $M$, 짧은 호 $AB$의 중점을 $C$라 하자. $\\overline{AB}=48\\,\\mathrm{cm}$, $\\overline{CM}=18\\,\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.",
+                "answer": "$25\\,\\mathrm{cm}$",
+                "solution": "세 점 $O$, $M$, $C$는 한 직선 위에 있고 $\\overline{OM}\\perp\\overline{AB}$이다.\n반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{OM}=(r-18)\\,\\mathrm{cm}$, $\\overline{AM}=24\\,\\mathrm{cm}$이다.\n직각삼각형 $OAM$에서 $r^2=24^2+(r-18)^2$을 풀면 $r=25$이다.\n따라서 반지름의 길이는 $25\\,\\mathrm{cm}$이다.",
+                "facts": {
+                  "ab": 48,
+                  "h": 24,
+                  "c": 18,
+                  "r": 25
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": [
+                      47.04,
+                      116.28
+                    ],
+                    "B": [
+                      192.96,
+                      116.28
+                    ],
+                    "M": [
+                      120,
+                      116.28
+                    ],
+                    "C": [
+                      120,
+                      171
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "CM": [
+                      "C",
+                      "M"
+                    ],
+                    "OM": {
+                      "points": [
+                        "O",
+                        "M"
+                      ],
+                      "dash": "5 4"
+                    },
+                    "OA": {
+                      "points": [
+                        "O",
+                        "A"
+                      ],
+                      "dash": "5 4"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "M": "M"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "03",
+                "rpmTitle": "현의 수직이등분선 원의 일부분이 주어진 경우",
+                "difficulty": "심화하",
+                "content": "원 $O$ 위의 두 점 $A$, $B$에 대하여 현 $AB$의 중점을 $M$, 짧은 호 $AB$의 중점을 $C$라 하자. $\\overline{AB}=40\\,\\mathrm{cm}$, $\\overline{CM}=10\\,\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.",
+                "answer": "$25\\,\\mathrm{cm}$",
+                "solution": "세 점 $O$, $M$, $C$는 한 직선 위에 있고 $\\overline{OM}\\perp\\overline{AB}$이다.\n반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{OM}=(r-10)\\,\\mathrm{cm}$, $\\overline{AM}=20\\,\\mathrm{cm}$이다.\n직각삼각형 $OAM$에서 $r^2=20^2+(r-10)^2$을 풀면 $r=25$이다.\n따라서 반지름의 길이는 $25\\,\\mathrm{cm}$이다.",
+                "facts": {
+                  "ab": 40,
+                  "h": 20,
+                  "c": 10,
+                  "r": 25
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": [
+                      59.2,
+                      140.6
+                    ],
+                    "B": [
+                      180.8,
+                      140.6
+                    ],
+                    "M": [
+                      120,
+                      140.6
+                    ],
+                    "C": [
+                      120,
+                      171
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "CM": [
+                      "C",
+                      "M"
+                    ],
+                    "OM": {
+                      "points": [
+                        "O",
+                        "M"
+                      ],
+                      "dash": "5 4"
+                    },
+                    "OA": {
+                      "points": [
+                        "O",
+                        "A"
+                      ],
+                      "dash": "5 4"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "M": "M"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "03",
+                "rpmTitle": "현의 수직이등분선 원의 일부분이 주어진 경우",
+                "difficulty": "심화하",
+                "content": "원 $O$ 위의 두 점 $A$, $B$에 대하여 현 $AB$의 중점을 $M$, 짧은 호 $AB$의 중점을 $C$라 하자. $\\overline{AB}=40\\,\\mathrm{cm}$, $\\overline{CM}=10\\,\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.",
+                "answer": "$25\\,\\mathrm{cm}$",
+                "solution": "세 점 $O$, $M$, $C$는 한 직선 위에 있고 $\\overline{OM}\\perp\\overline{AB}$이다.\n반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{OM}=(r-10)\\,\\mathrm{cm}$, $\\overline{AM}=20\\,\\mathrm{cm}$이다.\n직각삼각형 $OAM$에서 $r^2=20^2+(r-10)^2$을 풀면 $r=25$이다.\n따라서 반지름의 길이는 $25\\,\\mathrm{cm}$이다.",
+                "facts": {
+                  "ab": 40,
+                  "h": 20,
+                  "c": 10,
+                  "r": 25
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": [
+                      59.2,
+                      140.6
+                    ],
+                    "B": [
+                      180.8,
+                      140.6
+                    ],
+                    "M": [
+                      120,
+                      140.6
+                    ],
+                    "C": [
+                      120,
+                      171
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "CM": [
+                      "C",
+                      "M"
+                    ],
+                    "OM": {
+                      "points": [
+                        "O",
+                        "M"
+                      ],
+                      "dash": "5 4"
+                    },
+                    "OA": {
+                      "points": [
+                        "O",
+                        "A"
+                      ],
+                      "dash": "5 4"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "M": "M"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "03",
+                "rpmTitle": "현의 수직이등분선 원의 일부분이 주어진 경우",
+                "difficulty": "심화하",
+                "content": "원 $O$ 위의 두 점 $A$, $B$에 대하여 현 $AB$의 중점을 $M$, 짧은 호 $AB$의 중점을 $C$라 하자. $\\overline{AB}=42\\,\\mathrm{cm}$, $\\overline{CM}=9\\,\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.",
+                "answer": "$29\\,\\mathrm{cm}$",
+                "solution": "세 점 $O$, $M$, $C$는 한 직선 위에 있고 $\\overline{OM}\\perp\\overline{AB}$이다.\n반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{OM}=(r-9)\\,\\mathrm{cm}$, $\\overline{AM}=21\\,\\mathrm{cm}$이다.\n직각삼각형 $OAM$에서 $r^2=21^2+(r-9)^2$을 풀면 $r=29$이다.\n따라서 반지름의 길이는 $29\\,\\mathrm{cm}$이다.",
+                "facts": {
+                  "ab": 42,
+                  "h": 21,
+                  "c": 9,
+                  "r": 29
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": [
+                      64.97,
+                      147.41
+                    ],
+                    "B": [
+                      175.03,
+                      147.41
+                    ],
+                    "M": [
+                      120,
+                      147.41
+                    ],
+                    "C": [
+                      120,
+                      171
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "CM": [
+                      "C",
+                      "M"
+                    ],
+                    "OM": {
+                      "points": [
+                        "O",
+                        "M"
+                      ],
+                      "dash": "5 4"
+                    },
+                    "OA": {
+                      "points": [
+                        "O",
+                        "A"
+                      ],
+                      "dash": "5 4"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "M": "M"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "03",
+                "rpmTitle": "현의 수직이등분선 원의 일부분이 주어진 경우",
+                "difficulty": "심화하",
+                "content": "원 $O$ 위의 두 점 $A$, $B$에 대하여 현 $AB$의 중점을 $M$, 짧은 호 $AB$의 중점을 $C$라 하자. $\\overline{AB}=48\\,\\mathrm{cm}$, $\\overline{CM}=18\\,\\mathrm{cm}$일 때, 원 $O$의 반지름의 길이를 구하시오.",
+                "answer": "$25\\,\\mathrm{cm}$",
+                "solution": "세 점 $O$, $M$, $C$는 한 직선 위에 있고 $\\overline{OM}\\perp\\overline{AB}$이다.\n반지름의 길이를 $r\\,\\mathrm{cm}$라 하면 $\\overline{OM}=(r-18)\\,\\mathrm{cm}$, $\\overline{AM}=24\\,\\mathrm{cm}$이다.\n직각삼각형 $OAM$에서 $r^2=24^2+(r-18)^2$을 풀면 $r=25$이다.\n따라서 반지름의 길이는 $25\\,\\mathrm{cm}$이다.",
+                "facts": {
+                  "ab": 48,
+                  "h": 24,
+                  "c": 18,
+                  "r": 25
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": [
+                      47.04,
+                      116.28
+                    ],
+                    "B": [
+                      192.96,
+                      116.28
+                    ],
+                    "M": [
+                      120,
+                      116.28
+                    ],
+                    "C": [
+                      120,
+                      171
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "CM": [
+                      "C",
+                      "M"
+                    ],
+                    "OM": {
+                      "points": [
+                        "O",
+                        "M"
+                      ],
+                      "dash": "5 4"
+                    },
+                    "OA": {
+                      "points": [
+                        "O",
+                        "A"
+                      ],
+                      "dash": "5 4"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "M": "M"
+                  }
+                }
+              }
+            }
+          ],
+          "generatedSampleDoesNotApproveCurrentCandidate": true
+        },
+        {
+          "key": "3-2|원과 직선|19A",
+          "exactRegistry": {
+            "key": "3-2|원과 직선|19A",
+            "grade": "중3",
+            "unitSection": "원과 현",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "19A",
+            "rpmTitle": "중심에서 현까지의 거리"
+          },
+          "actualUnit": {
+            "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원과 현",
+            "semester": 2,
+            "orderIndex": 484,
+            "problemCodePrefix": "J30601"
+          },
+          "familyKey": "mid:3-2|원과 직선|19A",
+          "liveCount": 16,
+          "scopeObservedAt": "2026-10-08 04:53:45.769124+00",
+          "generatedSeeds": 100,
+          "difficultyCounts": {
+            "응용": 100
+          },
+          "generatedSampleDigest": "dce56554eb69b5c2e3c4f968c73f9c4b1f4f4dcf862a7ade7256b9bbe59ac7b2",
+          "samples": [
+            {
+              "seed": 1,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "19A",
+                "rpmTitle": "중심에서 현까지의 거리",
+                "difficulty": "응용",
+                "content": "반지름의 길이가 $25\\,\\mathrm{cm}$인 원 $O$에서 현 $AB$의 길이가 $48\\,\\mathrm{cm}$일 때, 원의 중심 $O$에서 현 $AB$까지의 거리를 구하시오.",
+                "answer": "$7\\,\\mathrm{cm}$",
+                "solution": "중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times48=24\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{OM}=\\sqrt{25^2-24^2}=7\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "r": 25,
+                  "h": 24,
+                  "d": 7,
+                  "ab": 48
+                },
+                "figureSpec": null
+              }
+            },
+            {
+              "seed": 2,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "19A",
+                "rpmTitle": "중심에서 현까지의 거리",
+                "difficulty": "응용",
+                "content": "반지름의 길이가 $25\\,\\mathrm{cm}$인 원 $O$에서 현 $AB$의 길이가 $40\\,\\mathrm{cm}$일 때, 원의 중심 $O$에서 현 $AB$까지의 거리를 구하시오.",
+                "answer": "$15\\,\\mathrm{cm}$",
+                "solution": "중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times40=20\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{OM}=\\sqrt{25^2-20^2}=15\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "r": 25,
+                  "h": 20,
+                  "d": 15,
+                  "ab": 40
+                },
+                "figureSpec": null
+              }
+            },
+            {
+              "seed": 3,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "19A",
+                "rpmTitle": "중심에서 현까지의 거리",
+                "difficulty": "응용",
+                "content": "반지름의 길이가 $25\\,\\mathrm{cm}$인 원 $O$에서 현 $AB$의 길이가 $40\\,\\mathrm{cm}$일 때, 원의 중심 $O$에서 현 $AB$까지의 거리를 구하시오.",
+                "answer": "$15\\,\\mathrm{cm}$",
+                "solution": "중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times40=20\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{OM}=\\sqrt{25^2-20^2}=15\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "r": 25,
+                  "h": 20,
+                  "d": 15,
+                  "ab": 40
+                },
+                "figureSpec": null
+              }
+            },
+            {
+              "seed": 4,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "19A",
+                "rpmTitle": "중심에서 현까지의 거리",
+                "difficulty": "응용",
+                "content": "반지름의 길이가 $29\\,\\mathrm{cm}$인 원 $O$에서 현 $AB$의 길이가 $42\\,\\mathrm{cm}$일 때, 원의 중심 $O$에서 현 $AB$까지의 거리를 구하시오.",
+                "answer": "$20\\,\\mathrm{cm}$",
+                "solution": "중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times42=21\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{OM}=\\sqrt{29^2-21^2}=20\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "r": 29,
+                  "h": 21,
+                  "d": 20,
+                  "ab": 42
+                },
+                "figureSpec": null
+              }
+            },
+            {
+              "seed": 5,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원과 현",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "19A",
+                "rpmTitle": "중심에서 현까지의 거리",
+                "difficulty": "응용",
+                "content": "반지름의 길이가 $25\\,\\mathrm{cm}$인 원 $O$에서 현 $AB$의 길이가 $14\\,\\mathrm{cm}$일 때, 원의 중심 $O$에서 현 $AB$까지의 거리를 구하시오.",
+                "answer": "$24\\,\\mathrm{cm}$",
+                "solution": "중심 $O$에서 현 $AB$에 내린 수선의 발을 $M$이라 하면 $\\overline{AM}=\\dfrac{1}{2}\\times14=7\\,(\\mathrm{cm})$이다.\n직각삼각형 $OAM$에서 $\\overline{OM}=\\sqrt{25^2-7^2}=24\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "r": 25,
+                  "h": 7,
+                  "d": 24,
+                  "ab": 14
+                },
+                "figureSpec": null
+              }
+            }
+          ],
+          "generatedSampleDoesNotApproveCurrentCandidate": true
+        }
+      ],
+      "currentRuleModules": [
+        {
+          "path": "src/lib/middle/m3.ts",
+          "sha256": "aebe6db83ef404352029de1bbbd4607733fcb2a6ca4345dfd59109795d9d69e3"
+        },
+        {
+          "path": "src/lib/middle/m3Figures.ts",
+          "sha256": "d59394e3085a7f8e5ffe6c3bb0787fcc7c855051e3c7d5142c92427e8dede4f1"
+        }
+      ],
+      "educationalScope": "Current independent20 review remains valid. Samples only describe existing generators; no extra grade approval is inferred",
+      "metadataOrFrozenEvidenceEdited": false,
+      "reopenWhen": "A distinct external reviewer confirms entire new purpose/core method and appropriate difficulty for an existing live family, or implement/review an allowed template and resolve live metadata separately"
+    },
+    {
+      "n": 17,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q17",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q17.json",
+        "sha256": "052fa81ae4898d93046815527aa9341bd0b3e65e0f58dfb4dc65c0323f1819f3"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/package/private/q17/candidate.json",
+        "sha256": "edbb44f08eaca5ab18d958e35c42be92cfc4c72c3813108fa8ae83d62a9faefe"
+      },
+      "candidateDigest": "fde456694057f3794674322cf12b9fe47635349290e4c9f6d57319a6247beff8",
+      "studentDigest": "0c25f73a7384f79f9e43e21d6aab87b38e0678dcc569534b36f9fe1880c4a1ad",
+      "assetDigest": "ec8864f488728687631d38c5fa6a88f3df3337f13ee0a0a906263dda22c5e203",
+      "report": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q17.json",
+        "sha256": "7c057042a688c840ef74959dcfbda7c495b465316b942ba3a3440257a3d6e3bf"
+      },
+      "priorIndependentStatus": "pending",
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-17",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 17,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "2b007899a695221616d16af68f17a9987f1a9d6b6f61646713e51db1c1d6aa90",
+        "sourceObservation": "AB=6cm, BC=8cm인 직사각형 안의 원이 AD,DC,BC 및 AM에 접하고 E,F,G,H가 접점이다.",
+        "sharedConceptProcedure": "같은 외부점의 접선 길이를 연결하고 직각삼각형 관계로 필요한 밑변을 정한 뒤 △ABM의 넓이를 계산한다.",
+        "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q17",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+        "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "answerFreeContentSha256": "2b007899a695221616d16af68f17a9987f1a9d6b6f61646713e51db1c1d6aa90",
+        "referenceFigures": [
+          {
+            "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q17.png",
+            "sha256": "1f3602f52712f4548c5f17cec6cf2abeb62d390929d0ac307cccfad770149f52",
+            "role": "source-reference-only"
+          }
+        ],
+        "sourceAnswersSolutionsAccessed": false
+      },
+      "exactFamilyAssignment": null,
+      "decision": "pending",
+      "reason": "Existing16 core tangent/Pythagorean linear relation is relevant; triangle-area target and candidate 응용 versus family 심화하 need explicit purpose/difficulty adjudication",
+      "candidateRules": [
+        {
+          "key": "3-2|원과 직선|16",
+          "exactRegistry": {
+            "key": "3-2|원과 직선|16",
+            "grade": "중3",
+            "unitSection": "원의 접선",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "16",
+            "rpmTitle": "원에 외접하는 사각형의 응용"
+          },
+          "actualUnit": {
+            "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원의 접선",
+            "semester": 2,
+            "orderIndex": 485,
+            "problemCodePrefix": "J30602"
+          },
+          "familyKey": "mid:3-2|원과 직선|16",
+          "liveCount": 42,
+          "scopeObservedAt": "2026-10-08 04:53:45.769124+00",
+          "generatedSeeds": 100,
+          "difficultyCounts": {
+            "심화하": 100
+          },
+          "generatedSampleDigest": "94578aca0ba021b88cfbbfa71262fe0339517dbde7aef897489d61f6d3ca6ccc",
+          "samples": [
+            {
+              "seed": 1,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원의 접선",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "16",
+                "rpmTitle": "원에 외접하는 사각형의 응용",
+                "difficulty": "심화하",
+                "content": "반지름의 길이가 $2\\,\\mathrm{cm}$인 원 $O$에 외접하는 사다리꼴 $ABCD$에서 $\\angle A=\\angle B=90^\\circ$이고 $\\overline{CD}=5\\,\\mathrm{cm}$일 때, 사다리꼴 $ABCD$의 둘레의 길이를 구하시오.",
+                "answer": "$18\\,\\mathrm{cm}$",
+                "solution": "$\\angle A=\\angle B=90^\\circ$이므로 $\\overline{AB}=2\\times2=4\\,(\\mathrm{cm})$이다.\n외접하는 사각형의 성질에서 $\\overline{AD}+\\overline{BC}=\\overline{AB}+\\overline{CD}=4+5=9\\,(\\mathrm{cm})$이다.\n둘레의 길이는 $\\overline{AB}+\\overline{CD}+(\\overline{AD}+\\overline{BC})=4+5+9=18\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "mode": 3,
+                  "sub": 1,
+                  "r": 2,
+                  "tD": 1,
+                  "tC": 4,
+                  "cd": 5,
+                  "x": 18
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      81.33,
+                      128.67
+                    ],
+                    "A": [
+                      42,
+                      89.33
+                    ],
+                    "B": [
+                      42,
+                      168
+                    ],
+                    "C": [
+                      160,
+                      168
+                    ],
+                    "D": [
+                      101,
+                      89.33
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 39.33
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ]
+                  },
+                  "angles": {
+                    "rtA": {
+                      "vertex": "A",
+                      "points": [
+                        "D",
+                        "B"
+                      ],
+                      "label": "90°"
+                    },
+                    "rtB": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "90°"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D"
+                  },
+                  "dimensions": {
+                    "d_CD": {
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "5 cm",
+                      "side": "auto"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원의 접선",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "16",
+                "rpmTitle": "원에 외접하는 사각형의 응용",
+                "difficulty": "심화하",
+                "content": "반지름의 길이가 $4\\,\\mathrm{cm}$인 원 $O$에 외접하는 사다리꼴 $ABCD$에서 $\\angle A=\\angle B=90^\\circ$이고 $\\overline{CD}=10\\,\\mathrm{cm}$일 때, 사다리꼴 $ABCD$의 넓이를 구하시오.",
+                "answer": "$72\\,\\mathrm{cm}^2$",
+                "solution": "$\\angle A=\\angle B=90^\\circ$이므로 $\\overline{AB}=2\\times4=8\\,(\\mathrm{cm})$이다.\n외접하는 사각형의 성질에서 $\\overline{AD}+\\overline{BC}=\\overline{AB}+\\overline{CD}=8+10=18\\,(\\mathrm{cm})$이다.\n넓이는 $\\dfrac{1}{2}\\times(\\overline{AD}+\\overline{BC})\\times\\overline{AB}=\\dfrac{1}{2}\\times18\\times8=72\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "mode": 3,
+                  "sub": 0,
+                  "r": 4,
+                  "tD": 2,
+                  "tC": 8,
+                  "cd": 10,
+                  "x": 72
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      81.33,
+                      128.67
+                    ],
+                    "A": [
+                      42,
+                      89.33
+                    ],
+                    "B": [
+                      42,
+                      168
+                    ],
+                    "C": [
+                      160,
+                      168
+                    ],
+                    "D": [
+                      101,
+                      89.33
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 39.33
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ]
+                  },
+                  "angles": {
+                    "rtA": {
+                      "vertex": "A",
+                      "points": [
+                        "D",
+                        "B"
+                      ],
+                      "label": "90°"
+                    },
+                    "rtB": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "90°"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D"
+                  },
+                  "dimensions": {
+                    "d_CD": {
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "10 cm",
+                      "side": "auto"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원의 접선",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "16",
+                "rpmTitle": "원에 외접하는 사각형의 응용",
+                "difficulty": "심화하",
+                "content": "반지름의 길이가 $2\\,\\mathrm{cm}$인 원 $O$에 외접하는 사다리꼴 $ABCD$에서 $\\angle A=\\angle B=90^\\circ$이고 $\\overline{CD}=5\\,\\mathrm{cm}$일 때, 사다리꼴 $ABCD$의 넓이를 구하시오.",
+                "answer": "$18\\,\\mathrm{cm}^2$",
+                "solution": "$\\angle A=\\angle B=90^\\circ$이므로 $\\overline{AB}=2\\times2=4\\,(\\mathrm{cm})$이다.\n외접하는 사각형의 성질에서 $\\overline{AD}+\\overline{BC}=\\overline{AB}+\\overline{CD}=4+5=9\\,(\\mathrm{cm})$이다.\n넓이는 $\\dfrac{1}{2}\\times(\\overline{AD}+\\overline{BC})\\times\\overline{AB}=\\dfrac{1}{2}\\times9\\times4=18\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "mode": 3,
+                  "sub": 0,
+                  "r": 2,
+                  "tD": 1,
+                  "tC": 4,
+                  "cd": 5,
+                  "x": 18
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      81.33,
+                      128.67
+                    ],
+                    "A": [
+                      42,
+                      89.33
+                    ],
+                    "B": [
+                      42,
+                      168
+                    ],
+                    "C": [
+                      160,
+                      168
+                    ],
+                    "D": [
+                      101,
+                      89.33
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 39.33
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ]
+                  },
+                  "angles": {
+                    "rtA": {
+                      "vertex": "A",
+                      "points": [
+                        "D",
+                        "B"
+                      ],
+                      "label": "90°"
+                    },
+                    "rtB": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "90°"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D"
+                  },
+                  "dimensions": {
+                    "d_CD": {
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "5 cm",
+                      "side": "auto"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원의 접선",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "16",
+                "rpmTitle": "원에 외접하는 사각형의 응용",
+                "difficulty": "심화하",
+                "content": "원 $O$가 직사각형 $ABCD$의 세 변 $AB$, $BC$, $DA$에 접하고, 꼭짓점 $D$에서 원 $O$에 그은 접선이 변 $BC$와 만나는 점을 $E$라 하자. $\\overline{AB}=12\\,\\mathrm{cm}$, $\\overline{AD}=15\\,\\mathrm{cm}$일 때, $\\overline{BE}$의 길이를 구하시오.",
+                "answer": "$10\\,\\mathrm{cm}$",
+                "solution": "$\\overline{CE}=e\\,\\mathrm{cm}$라 하면 원 $O$는 사각형 $ABED$의 네 변에 접하므로 $\\overline{DE}=(18-e)\\,\\mathrm{cm}$이다.\n직각삼각형 $DEC$에서 $(18-e)^2=e^2+12^2$을 풀면 $e=5$이다.\n따라서 $\\overline{BE}=15-5=10\\,(\\mathrm{cm})$이다.",
+                "facts": {
+                  "mode": 4,
+                  "w": 12,
+                  "t": 5,
+                  "d": 13,
+                  "L": 15,
+                  "x": 10
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      98,
+                      96
+                    ],
+                    "A": [
+                      46,
+                      44
+                    ],
+                    "B": [
+                      46,
+                      148
+                    ],
+                    "C": [
+                      176,
+                      148
+                    ],
+                    "D": [
+                      176,
+                      44
+                    ],
+                    "E": [
+                      132.67,
+                      148
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 52
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ],
+                    "DE": [
+                      "D",
+                      "E"
+                    ]
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D",
+                    "E": "E"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "12 cm",
+                      "side": "auto"
+                    },
+                    "d_AD": {
+                      "points": [
+                        "A",
+                        "D"
+                      ],
+                      "label": "15 cm",
+                      "side": "auto"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원의 접선",
+                "rpmBook": "3-2",
+                "rpmMinor": "원과 직선",
+                "rpmType": "16",
+                "rpmTitle": "원에 외접하는 사각형의 응용",
+                "difficulty": "심화하",
+                "content": "반지름의 길이가 $6\\,\\mathrm{cm}$인 원 $O$에 외접하는 사다리꼴 $ABCD$에서 $\\angle A=\\angle B=90^\\circ$이고 $\\overline{CD}=15\\,\\mathrm{cm}$일 때, 사다리꼴 $ABCD$의 넓이를 구하시오.",
+                "answer": "$162\\,\\mathrm{cm}^2$",
+                "solution": "$\\angle A=\\angle B=90^\\circ$이므로 $\\overline{AB}=2\\times6=12\\,(\\mathrm{cm})$이다.\n외접하는 사각형의 성질에서 $\\overline{AD}+\\overline{BC}=\\overline{AB}+\\overline{CD}=12+15=27\\,(\\mathrm{cm})$이다.\n넓이는 $\\dfrac{1}{2}\\times(\\overline{AD}+\\overline{BC})\\times\\overline{AB}=\\dfrac{1}{2}\\times27\\times12=162\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "mode": 3,
+                  "sub": 0,
+                  "r": 6,
+                  "tD": 3,
+                  "tC": 12,
+                  "cd": 15,
+                  "x": 162
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      81.33,
+                      128.67
+                    ],
+                    "A": [
+                      42,
+                      89.33
+                    ],
+                    "B": [
+                      42,
+                      168
+                    ],
+                    "C": [
+                      160,
+                      168
+                    ],
+                    "D": [
+                      101,
+                      89.33
+                    ]
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 39.33
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ]
+                  },
+                  "angles": {
+                    "rtA": {
+                      "vertex": "A",
+                      "points": [
+                        "D",
+                        "B"
+                      ],
+                      "label": "90°"
+                    },
+                    "rtB": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "90°"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D"
+                  },
+                  "dimensions": {
+                    "d_CD": {
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "15 cm",
+                      "side": "auto"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "generatedSampleDoesNotApproveCurrentCandidate": true
+        }
+      ],
+      "currentRuleModules": [
+        {
+          "path": "src/lib/middle/m3Tangent.ts",
+          "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa"
+        }
+      ],
+      "educationalScope": "Current independent20 review remains valid. Samples only describe existing generators; no extra grade approval is inferred",
+      "metadataOrFrozenEvidenceEdited": false,
+      "reopenWhen": "A distinct external reviewer confirms entire new purpose/core method and appropriate difficulty for an existing live family, or implement/review an allowed template and resolve live metadata separately"
+    },
+    {
+      "n": 20,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q20",
+      "currentCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q20.json",
+        "sha256": "c6afd84bd14c5b2b9ff48b23524b13e6fc8f4718af3e3a1ea45e08d729a368c6"
+      },
+      "frozenCandidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/package/private/q20/candidate.json",
+        "sha256": "2eff78dc4ff77ca6d5e765b243ea3db0bb78be45be97dd10bdb734c36d81a382"
+      },
+      "candidateDigest": "0ed9faa1f19680d76a59e80e96d2b84d18d4f0448278297b649473800cd23600",
+      "studentDigest": "06788db5de931162daba02380191c669e768016ab2279a63fed039814378b94f",
+      "assetDigest": "3dc03367ac8af81399639781664334d7e94e08bf7a8a10e0e0b3f2deac8add6e",
+      "report": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q20.json",
+        "sha256": "a01cfda9a84ada8cb7b39f88669b11e324cc2f56b10a618744cfcf581a1399e3"
+      },
+      "priorIndependentStatus": "pending",
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-20",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 20,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "79e3387af8eda6fe66ce2e9702721e383ba01baedc6b004676c6089e39ea6693",
+        "sourceObservation": "반지름 8cm인 반원에 지름 AB와 ∠ABC=30°가 있으며 호 CB와 현 CB 사이가 색칠되어 있다.",
+        "sharedConceptProcedure": "원주각과 중심각 관계로 호에 대응하는 부채꼴을 정하고 중심 삼각형 넓이를 빼서 활꼴 넓이를 만든다.",
+        "preparedBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparedTwinExternalId": "exam-twin-bumil-2025-2-mid-v2-q20",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35",
+        "answerFreeReferencePath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "answerFreeReferenceSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "answerFreeContentSha256": "79e3387af8eda6fe66ce2e9702721e383ba01baedc6b004676c6089e39ea6693",
+        "referenceFigures": [
+          {
+            "path": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q20.png",
+            "sha256": "ecad083252c704406ee0775d6555ac2937eacff0de6b6036972867bbb5ac877f",
+            "role": "source-reference-only"
+          }
+        ],
+        "sourceAnswersSolutionsAccessed": false
+      },
+      "exactFamilyAssignment": null,
+      "decision": "pending",
+      "reason": "Semicircle minus minor segment requires sector-minus-triangle and complement area; exact family purpose and 기본/7point label unresolved",
+      "candidateRules": [
+        {
+          "key": "3-2|원주각|06",
+          "exactRegistry": {
+            "key": "3-2|원주각|06",
+            "grade": "중3",
+            "unitSection": "원주각",
+            "rpmBook": "3-2",
+            "rpmMinor": "원주각",
+            "rpmType": "06",
+            "rpmTitle": "원주각의 성질과 삼각비의 값"
+          },
+          "actualUnit": {
+            "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각",
+            "semester": 2,
+            "orderIndex": 486,
+            "problemCodePrefix": "J30603"
+          },
+          "familyKey": "mid:3-2|원주각|06",
+          "liveCount": 26,
+          "scopeObservedAt": "2026-10-08 04:53:45.769124+00",
+          "generatedSeeds": 100,
+          "difficultyCounts": {
+            "심화하": 100
+          },
+          "generatedSampleDigest": "4663d818fa607118b54257b63b6a01e225112351b123651a6ba32138170d8dde",
+          "samples": [
+            {
+              "seed": 1,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "06",
+                "rpmTitle": "원주각의 성질과 삼각비의 값",
+                "difficulty": "심화하",
+                "content": "반지름의 길이가 $17\\,\\mathrm{cm}$인 원 $O$에 내접하는 삼각형 $ABC$에서 $\\overline{BC}=30\\,\\mathrm{cm}$일 때, $\\sin A$의 값을 구하시오.",
+                "answer": "$\\dfrac{15}{17}$",
+                "solution": "지름 $BA'$을 그으면 $\\overline{BA'}$이 지름이므로 $\\angle BCA'=90^\\circ$이고, $\\angle BA'C$와 $\\angle BAC$는 호 $BC$에 대한 원주각이므로 $\\angle BA'C=\\angle A$이다.\n직각삼각형 $A'BC$에서 $\\sin A=\\sin A'=\\dfrac{\\overline{BC}}{\\overline{BA'}}=\\dfrac{30}{34}=\\dfrac{15}{17}$이다.",
+                "facts": {
+                  "r": 17,
+                  "bc": 30,
+                  "num": 15,
+                  "den": 17
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 90
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 331.93
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 208.07
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "06",
+                "rpmTitle": "원주각의 성질과 삼각비의 값",
+                "difficulty": "심화하",
+                "content": "반지름의 길이가 $17\\,\\mathrm{cm}$인 원 $O$에 내접하는 삼각형 $ABC$에서 $\\overline{BC}=30\\,\\mathrm{cm}$일 때, $\\sin A$의 값을 구하시오.",
+                "answer": "$\\dfrac{15}{17}$",
+                "solution": "지름 $BA'$을 그으면 $\\overline{BA'}$이 지름이므로 $\\angle BCA'=90^\\circ$이고, $\\angle BA'C$와 $\\angle BAC$는 호 $BC$에 대한 원주각이므로 $\\angle BA'C=\\angle A$이다.\n직각삼각형 $A'BC$에서 $\\sin A=\\sin A'=\\dfrac{\\overline{BC}}{\\overline{BA'}}=\\dfrac{30}{34}=\\dfrac{15}{17}$이다.",
+                "facts": {
+                  "r": 17,
+                  "bc": 30,
+                  "num": 15,
+                  "den": 17
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 90
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 331.93
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 208.07
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "06",
+                "rpmTitle": "원주각의 성질과 삼각비의 값",
+                "difficulty": "심화하",
+                "content": "반지름의 길이가 $17\\,\\mathrm{cm}$인 원 $O$에 내접하는 삼각형 $ABC$에서 $\\overline{BC}=30\\,\\mathrm{cm}$일 때, $\\sin A$의 값을 구하시오.",
+                "answer": "$\\dfrac{15}{17}$",
+                "solution": "지름 $BA'$을 그으면 $\\overline{BA'}$이 지름이므로 $\\angle BCA'=90^\\circ$이고, $\\angle BA'C$와 $\\angle BAC$는 호 $BC$에 대한 원주각이므로 $\\angle BA'C=\\angle A$이다.\n직각삼각형 $A'BC$에서 $\\sin A=\\sin A'=\\dfrac{\\overline{BC}}{\\overline{BA'}}=\\dfrac{30}{34}=\\dfrac{15}{17}$이다.",
+                "facts": {
+                  "r": 17,
+                  "bc": 30,
+                  "num": 15,
+                  "den": 17
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 90
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 331.93
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 208.07
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "06",
+                "rpmTitle": "원주각의 성질과 삼각비의 값",
+                "difficulty": "심화하",
+                "content": "반지름의 길이가 $25\\,\\mathrm{cm}$인 원 $O$에 내접하는 삼각형 $ABC$에서 $\\overline{BC}=14\\,\\mathrm{cm}$일 때, $\\sin A$의 값을 구하시오.",
+                "answer": "$\\dfrac{7}{25}$",
+                "solution": "지름 $BA'$을 그으면 $\\overline{BA'}$이 지름이므로 $\\angle BCA'=90^\\circ$이고, $\\angle BA'C$와 $\\angle BAC$는 호 $BC$에 대한 원주각이므로 $\\angle BA'C=\\angle A$이다.\n직각삼각형 $A'BC$에서 $\\sin A=\\sin A'=\\dfrac{\\overline{BC}}{\\overline{BA'}}=\\dfrac{14}{50}=\\dfrac{7}{25}$이다.",
+                "facts": {
+                  "r": 25,
+                  "bc": 14,
+                  "num": 7,
+                  "den": 25
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 90
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 286.26
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 253.74
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "06",
+                "rpmTitle": "원주각의 성질과 삼각비의 값",
+                "difficulty": "심화하",
+                "content": "반지름의 길이가 $17\\,\\mathrm{cm}$인 원 $O$에 내접하는 삼각형 $ABC$에서 $\\overline{BC}=30\\,\\mathrm{cm}$일 때, $\\sin A$의 값을 구하시오.",
+                "answer": "$\\dfrac{15}{17}$",
+                "solution": "지름 $BA'$을 그으면 $\\overline{BA'}$이 지름이므로 $\\angle BCA'=90^\\circ$이고, $\\angle BA'C$와 $\\angle BAC$는 호 $BC$에 대한 원주각이므로 $\\angle BA'C=\\angle A$이다.\n직각삼각형 $A'BC$에서 $\\sin A=\\sin A'=\\dfrac{\\overline{BC}}{\\overline{BA'}}=\\dfrac{30}{34}=\\dfrac{15}{17}$이다.",
+                "facts": {
+                  "r": 17,
+                  "bc": 30,
+                  "num": 15,
+                  "den": 17
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 90
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 331.93
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 208.07
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CA": [
+                      "C",
+                      "A"
+                    ]
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C"
+                  }
+                }
+              }
+            }
+          ],
+          "generatedSampleDoesNotApproveCurrentCandidate": true
+        },
+        {
+          "key": "3-2|원주각|10",
+          "exactRegistry": {
+            "key": "3-2|원주각|10",
+            "grade": "중3",
+            "unitSection": "원주각",
+            "rpmBook": "3-2",
+            "rpmMinor": "원주각",
+            "rpmType": "10",
+            "rpmTitle": "반원에 대한 원주각의 크기의 응용"
+          },
+          "actualUnit": {
+            "id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+            "grade": "중3",
+            "chapter": "6. 원의 성질",
+            "section": "원주각",
+            "semester": 2,
+            "orderIndex": 486,
+            "problemCodePrefix": "J30603"
+          },
+          "familyKey": "mid:3-2|원주각|10",
+          "liveCount": 28,
+          "scopeObservedAt": "2026-10-08 04:53:45.769124+00",
+          "generatedSeeds": 100,
+          "difficultyCounts": {
+            "심화하": 100
+          },
+          "generatedSampleDigest": "d3856315b3f75bba894f8513152c5db2373a035d953d51b2c1b2e8580cb959bc",
+          "samples": [
+            {
+              "seed": 1,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "10",
+                "rpmTitle": "반원에 대한 원주각의 크기의 응용",
+                "difficulty": "심화하",
+                "content": "$\\overline{AB}$는 원 $O$의 지름이고, 원 위에 네 점 $A$, $D$, $C$, $B$가 이 순서대로 있다. 두 현 $AC$와 $BD$는 점 $P$에서 만나고 $\\angle CAD=31^\\circ$일 때, $\\angle APB$의 크기를 구하시오.",
+                "answer": "$121^\\circ$",
+                "solution": "$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ADB=90^\\circ$이다.\n삼각형 $APD$에서 $\\angle APD=180^\\circ-90^\\circ-31^\\circ=59^\\circ$이다.\n따라서 $\\angle APB=180^\\circ-59^\\circ=121^\\circ$이다.",
+                "facts": {
+                  "a": 31,
+                  "x": 121
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 180
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 0
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 60
+                    },
+                    "D": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 122
+                    },
+                    "P": {
+                      "type": "intersection",
+                      "segments": [
+                        "AC",
+                        "BD"
+                      ]
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ],
+                    "BD": [
+                      "B",
+                      "D"
+                    ],
+                    "AD": [
+                      "A",
+                      "D"
+                    ]
+                  },
+                  "angles": {
+                    "angA": {
+                      "vertex": "A",
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "31°"
+                    },
+                    "angP": {
+                      "vertex": "P",
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "x"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D",
+                    "P": "P"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "10",
+                "rpmTitle": "반원에 대한 원주각의 크기의 응용",
+                "difficulty": "심화하",
+                "content": "$\\overline{AB}$는 원 $O$의 지름이고, 원 위에 네 점 $A$, $D$, $C$, $B$가 이 순서대로 있다. 두 현 $AC$와 $BD$는 점 $P$에서 만나고 $\\angle CAD=34^\\circ$일 때, $\\angle APB$의 크기를 구하시오.",
+                "answer": "$124^\\circ$",
+                "solution": "$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ADB=90^\\circ$이다.\n삼각형 $APD$에서 $\\angle APD=180^\\circ-90^\\circ-34^\\circ=56^\\circ$이다.\n따라서 $\\angle APB=180^\\circ-56^\\circ=124^\\circ$이다.",
+                "facts": {
+                  "a": 34,
+                  "x": 124
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 180
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 0
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 60
+                    },
+                    "D": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 128
+                    },
+                    "P": {
+                      "type": "intersection",
+                      "segments": [
+                        "AC",
+                        "BD"
+                      ]
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ],
+                    "BD": [
+                      "B",
+                      "D"
+                    ],
+                    "AD": [
+                      "A",
+                      "D"
+                    ]
+                  },
+                  "angles": {
+                    "angA": {
+                      "vertex": "A",
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "34°"
+                    },
+                    "angP": {
+                      "vertex": "P",
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "x"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D",
+                    "P": "P"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "10",
+                "rpmTitle": "반원에 대한 원주각의 크기의 응용",
+                "difficulty": "심화하",
+                "content": "$\\overline{AB}$는 원 $O$의 지름이고, 원 위에 네 점 $A$, $D$, $C$, $B$가 이 순서대로 있다. 두 현 $AC$와 $BD$는 점 $P$에서 만나고 $\\angle CAD=33^\\circ$일 때, $\\angle APB$의 크기를 구하시오.",
+                "answer": "$123^\\circ$",
+                "solution": "$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ADB=90^\\circ$이다.\n삼각형 $APD$에서 $\\angle APD=180^\\circ-90^\\circ-33^\\circ=57^\\circ$이다.\n따라서 $\\angle APB=180^\\circ-57^\\circ=123^\\circ$이다.",
+                "facts": {
+                  "a": 33,
+                  "x": 123
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 180
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 0
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 60
+                    },
+                    "D": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 126
+                    },
+                    "P": {
+                      "type": "intersection",
+                      "segments": [
+                        "AC",
+                        "BD"
+                      ]
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ],
+                    "BD": [
+                      "B",
+                      "D"
+                    ],
+                    "AD": [
+                      "A",
+                      "D"
+                    ]
+                  },
+                  "angles": {
+                    "angA": {
+                      "vertex": "A",
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "33°"
+                    },
+                    "angP": {
+                      "vertex": "P",
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "x"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D",
+                    "P": "P"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "10",
+                "rpmTitle": "반원에 대한 원주각의 크기의 응용",
+                "difficulty": "심화하",
+                "content": "$\\overline{AB}$는 원 $O$의 지름이고, 원 위에 네 점 $A$, $D$, $C$, $B$가 이 순서대로 있다. 두 현 $AC$와 $BD$는 점 $P$에서 만나고 $\\angle CAD=39^\\circ$일 때, $\\angle APB$의 크기를 구하시오.",
+                "answer": "$129^\\circ$",
+                "solution": "$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ADB=90^\\circ$이다.\n삼각형 $APD$에서 $\\angle APD=180^\\circ-90^\\circ-39^\\circ=51^\\circ$이다.\n따라서 $\\angle APB=180^\\circ-51^\\circ=129^\\circ$이다.",
+                "facts": {
+                  "a": 39,
+                  "x": 129
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 180
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 0
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 60
+                    },
+                    "D": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 138
+                    },
+                    "P": {
+                      "type": "intersection",
+                      "segments": [
+                        "AC",
+                        "BD"
+                      ]
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ],
+                    "BD": [
+                      "B",
+                      "D"
+                    ],
+                    "AD": [
+                      "A",
+                      "D"
+                    ]
+                  },
+                  "angles": {
+                    "angA": {
+                      "vertex": "A",
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "39°"
+                    },
+                    "angP": {
+                      "vertex": "P",
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "x"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D",
+                    "P": "P"
+                  }
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "원주각",
+                "rpmBook": "3-2",
+                "rpmMinor": "원주각",
+                "rpmType": "10",
+                "rpmTitle": "반원에 대한 원주각의 크기의 응용",
+                "difficulty": "심화하",
+                "content": "$\\overline{AB}$는 원 $O$의 지름이고, 원 위에 네 점 $A$, $D$, $C$, $B$가 이 순서대로 있다. 두 현 $AC$와 $BD$는 점 $P$에서 만나고 $\\angle CAD=32^\\circ$일 때, $\\angle APB$의 크기를 구하시오.",
+                "answer": "$122^\\circ$",
+                "solution": "$\\overline{AB}$가 지름이므로 반원에 대한 원주각 $\\angle ADB=90^\\circ$이다.\n삼각형 $APD$에서 $\\angle APD=180^\\circ-90^\\circ-32^\\circ=58^\\circ$이다.\n따라서 $\\angle APB=180^\\circ-58^\\circ=122^\\circ$이다.",
+                "facts": {
+                  "a": 32,
+                  "x": 122
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "style": {
+                    "show_points": true
+                  },
+                  "points": {
+                    "O": [
+                      120,
+                      95
+                    ],
+                    "A": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 180
+                    },
+                    "B": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 0
+                    },
+                    "C": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 60
+                    },
+                    "D": {
+                      "type": "on_circle",
+                      "circle": "c",
+                      "angle": 124
+                    },
+                    "P": {
+                      "type": "intersection",
+                      "segments": [
+                        "AC",
+                        "BD"
+                      ]
+                    }
+                  },
+                  "circles": {
+                    "c": {
+                      "center": "O",
+                      "radius": 76
+                    }
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ],
+                    "BD": [
+                      "B",
+                      "D"
+                    ],
+                    "AD": [
+                      "A",
+                      "D"
+                    ]
+                  },
+                  "angles": {
+                    "angA": {
+                      "vertex": "A",
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "32°"
+                    },
+                    "angP": {
+                      "vertex": "P",
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "x"
+                    }
+                  },
+                  "labels": {
+                    "O": "O",
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D",
+                    "P": "P"
+                  }
+                }
+              }
+            }
+          ],
+          "generatedSampleDoesNotApproveCurrentCandidate": true
+        },
+        {
+          "key": "3-2|삼각비의 활용|10",
+          "exactRegistry": {
+            "key": "3-2|삼각비의 활용|10",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "10",
+            "rpmTitle": "다각형의 넓이"
+          },
+          "actualUnit": {
+            "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 활용",
+            "semester": 2,
+            "orderIndex": 483,
+            "problemCodePrefix": "J30503"
+          },
+          "familyKey": "mid:3-2|삼각비의 활용|10",
+          "liveCount": 18,
+          "scopeObservedAt": "2026-10-08 04:53:45.769124+00",
+          "generatedSeeds": 100,
+          "difficultyCounts": {
+            "심화하": 100
+          },
+          "generatedSampleDigest": "6d6fe1a4d5ede6631dff1a659b21b416e72041a8f25f6bb8d7e9b523b39109a3",
+          "samples": [
+            {
+              "seed": 1,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "10",
+                "rpmTitle": "다각형의 넓이",
+                "difficulty": "심화하",
+                "content": "사각형 $ABCD$에서 $\\overline{AB}=16\\,\\mathrm{cm}$, $\\overline{BC}=30\\,\\mathrm{cm}$, $\\overline{AD}=14\\,\\mathrm{cm}$, $\\overline{DC}=16\\,\\mathrm{cm}$이고 $\\angle B=60^\\circ$, $\\angle D=120^\\circ$일 때, 사각형 $ABCD$의 넓이를 구하시오.",
+                "answer": "$176\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "대각선 $AC$를 그으면 삼각형 $ABC$의 넓이는 $\\dfrac{1}{2}\\times16\\times30\\times\\sin 60^\\circ=120\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n삼각형 $ACD$의 넓이는 $\\dfrac{1}{2}\\times14\\times16\\times\\sin(180^\\circ-120^\\circ)=56\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n따라서 사각형 $ABCD$의 넓이는 $120\\sqrt{3}+56\\sqrt{3}=176\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "ab": 16,
+                  "bc": 30,
+                  "angB": 60,
+                  "ad": 14,
+                  "dc": 16,
+                  "angD": 120,
+                  "ac": 26,
+                  "s1": 120,
+                  "s2": 56,
+                  "total": 176
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "A": [
+                      68.93,
+                      86.69
+                    ],
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ],
+                    "D": [
+                      151.07,
+                      86.69
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "16 cm",
+                      "side": "auto"
+                    },
+                    "d_BC": {
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "30 cm",
+                      "side": "auto"
+                    },
+                    "d_CD": {
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "16 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "a_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "60°"
+                    },
+                    "a_D": {
+                      "vertex": "D",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "120°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 2,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "10",
+                "rpmTitle": "다각형의 넓이",
+                "difficulty": "심화하",
+                "content": "사각형 $ABCD$에서 $\\overline{AB}=10\\,\\mathrm{cm}$, $\\overline{BC}=42\\,\\mathrm{cm}$, $\\overline{AD}=10\\,\\mathrm{cm}$, $\\overline{DC}=32\\,\\mathrm{cm}$이고 $\\angle B=60^\\circ$, $\\angle D=120^\\circ$일 때, 사각형 $ABCD$의 넓이를 구하시오.",
+                "answer": "$185\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "대각선 $AC$를 그으면 삼각형 $ABC$의 넓이는 $\\dfrac{1}{2}\\times10\\times42\\times\\sin 60^\\circ=105\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n삼각형 $ACD$의 넓이는 $\\dfrac{1}{2}\\times10\\times32\\times\\sin(180^\\circ-120^\\circ)=80\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n따라서 사각형 $ABCD$의 넓이는 $105\\sqrt{3}+80\\sqrt{3}=185\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "ab": 10,
+                  "bc": 42,
+                  "angB": 60,
+                  "ad": 10,
+                  "dc": 32,
+                  "angD": 120,
+                  "ac": 38,
+                  "s1": 105,
+                  "s2": 80,
+                  "total": 185
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "A": [
+                      42.95,
+                      131.71
+                    ],
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ],
+                    "D": [
+                      77.82,
+                      108.5
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "10 cm",
+                      "side": "auto"
+                    },
+                    "d_BC": {
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "42 cm",
+                      "side": "auto"
+                    },
+                    "d_CD": {
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "32 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "a_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "60°"
+                    },
+                    "a_D": {
+                      "vertex": "D",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "120°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 3,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "10",
+                "rpmTitle": "다각형의 넓이",
+                "difficulty": "심화하",
+                "content": "사각형 $ABCD$에서 $\\overline{AB}=10\\,\\mathrm{cm}$, $\\overline{BC}=42\\,\\mathrm{cm}$, $\\overline{AD}=10\\,\\mathrm{cm}$, $\\overline{DC}=32\\,\\mathrm{cm}$이고 $\\angle B=60^\\circ$, $\\angle D=120^\\circ$일 때, 사각형 $ABCD$의 넓이를 구하시오.",
+                "answer": "$185\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "대각선 $AC$를 그으면 삼각형 $ABC$의 넓이는 $\\dfrac{1}{2}\\times10\\times42\\times\\sin 60^\\circ=105\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n삼각형 $ACD$의 넓이는 $\\dfrac{1}{2}\\times10\\times32\\times\\sin(180^\\circ-120^\\circ)=80\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n따라서 사각형 $ABCD$의 넓이는 $105\\sqrt{3}+80\\sqrt{3}=185\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "ab": 10,
+                  "bc": 42,
+                  "angB": 60,
+                  "ad": 10,
+                  "dc": 32,
+                  "angD": 120,
+                  "ac": 38,
+                  "s1": 105,
+                  "s2": 80,
+                  "total": 185
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "A": [
+                      42.95,
+                      131.71
+                    ],
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ],
+                    "D": [
+                      77.82,
+                      108.5
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "10 cm",
+                      "side": "auto"
+                    },
+                    "d_BC": {
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "42 cm",
+                      "side": "auto"
+                    },
+                    "d_CD": {
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "32 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "a_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "60°"
+                    },
+                    "a_D": {
+                      "vertex": "D",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "120°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 4,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "10",
+                "rpmTitle": "다각형의 넓이",
+                "difficulty": "심화하",
+                "content": "사각형 $ABCD$에서 $\\overline{AB}=32\\,\\mathrm{cm}$, $\\overline{BC}=42\\,\\mathrm{cm}$, $\\overline{AD}=10\\,\\mathrm{cm}$, $\\overline{DC}=32\\,\\mathrm{cm}$이고 $\\angle B=60^\\circ$, $\\angle D=120^\\circ$일 때, 사각형 $ABCD$의 넓이를 구하시오.",
+                "answer": "$416\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "대각선 $AC$를 그으면 삼각형 $ABC$의 넓이는 $\\dfrac{1}{2}\\times32\\times42\\times\\sin 60^\\circ=336\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n삼각형 $ACD$의 넓이는 $\\dfrac{1}{2}\\times10\\times32\\times\\sin(180^\\circ-120^\\circ)=80\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n따라서 사각형 $ABCD$의 넓이는 $336\\sqrt{3}+80\\sqrt{3}=416\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "ab": 32,
+                  "bc": 42,
+                  "angB": 60,
+                  "ad": 10,
+                  "dc": 32,
+                  "angD": 120,
+                  "ac": 38,
+                  "s1": 336,
+                  "s2": 80,
+                  "total": 416
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "A": [
+                      89.05,
+                      51.88
+                    ],
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ],
+                    "D": [
+                      130.95,
+                      51.88
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "32 cm",
+                      "side": "auto"
+                    },
+                    "d_BC": {
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "42 cm",
+                      "side": "auto"
+                    },
+                    "d_CD": {
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "32 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "a_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "60°"
+                    },
+                    "a_D": {
+                      "vertex": "D",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "120°"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "seed": 5,
+              "problem": {
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "10",
+                "rpmTitle": "다각형의 넓이",
+                "difficulty": "심화하",
+                "content": "사각형 $ABCD$에서 $\\overline{AB}=10\\,\\mathrm{cm}$, $\\overline{BC}=42\\,\\mathrm{cm}$, $\\overline{AD}=10\\,\\mathrm{cm}$, $\\overline{DC}=32\\,\\mathrm{cm}$이고 $\\angle B=60^\\circ$, $\\angle D=120^\\circ$일 때, 사각형 $ABCD$의 넓이를 구하시오.",
+                "answer": "$185\\sqrt{3}\\,\\mathrm{cm}^2$",
+                "solution": "대각선 $AC$를 그으면 삼각형 $ABC$의 넓이는 $\\dfrac{1}{2}\\times10\\times42\\times\\sin 60^\\circ=105\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n삼각형 $ACD$의 넓이는 $\\dfrac{1}{2}\\times10\\times32\\times\\sin(180^\\circ-120^\\circ)=80\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n따라서 사각형 $ABCD$의 넓이는 $105\\sqrt{3}+80\\sqrt{3}=185\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.",
+                "facts": {
+                  "ab": 10,
+                  "bc": 42,
+                  "angB": 60,
+                  "ad": 10,
+                  "dc": 32,
+                  "angD": 120,
+                  "ac": 38,
+                  "s1": 105,
+                  "s2": 80,
+                  "total": 185
+                },
+                "figureSpec": {
+                  "version": 2,
+                  "points": {
+                    "A": [
+                      42.95,
+                      131.71
+                    ],
+                    "B": [
+                      22,
+                      168
+                    ],
+                    "C": [
+                      198,
+                      168
+                    ],
+                    "D": [
+                      77.82,
+                      108.5
+                    ]
+                  },
+                  "segments": {
+                    "AB": [
+                      "A",
+                      "B"
+                    ],
+                    "BC": [
+                      "B",
+                      "C"
+                    ],
+                    "CD": [
+                      "C",
+                      "D"
+                    ],
+                    "DA": [
+                      "D",
+                      "A"
+                    ],
+                    "AC": [
+                      "A",
+                      "C"
+                    ]
+                  },
+                  "labels": {
+                    "A": "A",
+                    "B": "B",
+                    "C": "C",
+                    "D": "D"
+                  },
+                  "dimensions": {
+                    "d_AB": {
+                      "points": [
+                        "A",
+                        "B"
+                      ],
+                      "label": "10 cm",
+                      "side": "auto"
+                    },
+                    "d_BC": {
+                      "points": [
+                        "B",
+                        "C"
+                      ],
+                      "label": "42 cm",
+                      "side": "auto"
+                    },
+                    "d_CD": {
+                      "points": [
+                        "C",
+                        "D"
+                      ],
+                      "label": "32 cm",
+                      "side": "auto"
+                    }
+                  },
+                  "angles": {
+                    "a_B": {
+                      "vertex": "B",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "60°"
+                    },
+                    "a_D": {
+                      "vertex": "D",
+                      "points": [
+                        "A",
+                        "C"
+                      ],
+                      "label": "120°"
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "generatedSampleDoesNotApproveCurrentCandidate": true
+        }
+      ],
+      "currentRuleModules": [
+        {
+          "path": "src/lib/middle/m3.ts",
+          "sha256": "aebe6db83ef404352029de1bbbd4607733fcb2a6ca4345dfd59109795d9d69e3"
+        },
+        {
+          "path": "src/lib/middle/m3Trig.ts",
+          "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+        }
+      ],
+      "educationalScope": "Current independent20 review remains valid. Samples only describe existing generators; no extra grade approval is inferred",
+      "metadataOrFrozenEvidenceEdited": false,
+      "reopenWhen": "A distinct external reviewer confirms entire new purpose/core method and appropriate difficulty for an existing live family, or implement/review an allowed template and resolve live metadata separately"
+    }
+  ],
+  "productionWrites": 0,
+  "nativeOrRightsApproval": false
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "exact-worker-report-byte-preservation/v1",
+  "files": [
+    {
+      "path": "docs/planning/tracks/reports/bumil-q07-curriculum-adjudication-r1-20261008.md",
+      "workerCapturedWorkingBytesSha256": "306c719fd6e628fa0257bd9ccb9b63d7781d5545957337f5f7884048d528c73a",
+      "priorGitNormalizedBlobSha256": "a0d335c4412125f4563d5f700df28605e80bb7f6344897e55a493b1b3b770314",
+      "difference": "CRLF/LF only; preserve worker-captured report bytes and add scoped -text attribute; no content change"
+    },
+    {
+      "path": "docs/planning/tracks/reports/exam-twin-next-five-extraction-r1-20261008.md",
+      "workerCapturedWorkingBytesSha256": "c2ddf597b5b79fc7aced8004ec90b3a6bd80f91409e8a146d7831f104a361ba7",
+      "priorGitNormalizedBlobSha256": "1ad4599b7a16782ca19de5bba905ed21d92b7de102537241ad120a024361f84f",
+      "difference": "CRLF/LF only; preserve worker-captured report bytes and add scoped -text attribute; no content change"
+    }
+  ],
+  "q07ManifestAllBoundFilesExact": true,
+  "q07ManifestFilesChecked": 21,
+  "sourceFilesEdited": false
+}

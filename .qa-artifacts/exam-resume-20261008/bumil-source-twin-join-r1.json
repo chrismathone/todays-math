@@ -1,0 +1,1416 @@
+{
+  "kind": "current-twin-original-source-join/v1",
+  "createdAt": "2026-10-08T05:34:04.801Z",
+  "sourceQuestionCount": 21,
+  "currentTwinCount": 20,
+  "originalExamScore": 100,
+  "currentAuthoredScore": 92,
+  "scoreFormatChanged": [
+    {
+      "n": 5,
+      "scoreBefore": 5,
+      "scoreAfter": 4,
+      "formatBefore": "객관식",
+      "formatAfter": "객관식"
+    },
+    {
+      "n": 18,
+      "scoreBefore": 7,
+      "scoreAfter": 4,
+      "formatBefore": "서술형",
+      "formatAfter": "객관식"
+    }
+  ],
+  "preservedSourceWithoutCandidate": {
+    "n": 7,
+    "sourceIdentityConfirmed": true,
+    "curriculumStatus": "preauthor-hold; independent adjudication underway",
+    "oldHoldEvidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/CURRICULUM-HOLD-q07.md",
+      "sha256": "4a49ce137eea1fbc1cde99f9d1993e27ed6b5909ae4660aa5d6938e58c3ad371"
+    }
+  },
+  "noPaperScoreForcedTo100": true,
+  "questions": [
+    {
+      "n": 1,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q01",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q01.json",
+        "sha256": "d8e2aaa7022f4e240ab571f397da0e13c8675d68765c6e85b20a21ce3953d025"
+      },
+      "studentDigest": "540ba2b796fa20c6fe9b0a14562a0b6ac52e8bafef917928f6a995b9f18c81a0",
+      "candidateDigest": "8485473a9cc1806b28f41041cb2591a69499671eb592f7b1b59a0bc56776d0dc",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q01.json",
+        "sha256": "f137abe0309ee53bee1c2e885f5d442d1292ac995df5ed2cf9f2169a9f7fd6c4"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-1",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q01/normalized-question.json",
+        "sha256": "2fc0cb45fce477078be8456d97cb760b8a1fceb690e439b38d8b64ed29f68619"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q01-source-evidence.json",
+        "sha256": "55fe5fe59acfa59df7610d4487de3286c81f880d3687e6497ae3092d30f6fd15"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure"
+        ],
+        "before": "다섯 이차함수식에 대한 설명 목록에서 옳은 설명 하나를 고른다.",
+        "after": "함수 카드를 조건 대응표로 옮기고, 증감 조건과 폭 비교 조건을 함께 만족하는 두 카드를 순서쌍 보기로 고른다. 각 조건 하나만으로는 카드가 여러 개 남지만 두 조건을 함께 적용하면 각 빈칸이 하나로 정해진다.",
+        "sharedConcept": "y=ax^2에서 계수의 부호에 따른 x>0 구간의 증감과 계수의 절댓값에 따른 그래프의 폭",
+        "sharedProcedure": "계수의 부호와 절댓값을 그래프의 성질에 연결하여 각 조건의 참·거짓을 판정한다.",
+        "preparationAdjustment": "v2의 계수 제안은 유지하되 두 조건이 각각 여러 카드를 남기고 그 교집합이 한 카드인 조건표를 실제로 설계했다. 일반적인 직선-포물선 교점 판단은 요구하지 않는다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 2,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q02",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q02.json",
+        "sha256": "284ac58025af5c19583519be412f9f66e6e57dcf17e6b2b80c175b3f92f496ea"
+      },
+      "studentDigest": "1c8ac8bd281d8f547e8db86ec1e3f8671e37a21d79ca707d9c4b57b81b63ffa4",
+      "candidateDigest": "dcbb3d2ca3b945c8a0cfabb9c70793981123d6d57b82993c172bc20559ff7ed4",
+      "assetDigest": "d2dc51a1825bf305e102f3fdc5015b2e908a9ee243d5d7fe9820d22778019e4b",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r1/verification/reports/q02.json",
+        "sha256": "50a600abf5b5c98495c864c8f598d389c11606da6b159b7aab7074ddd780f1d8"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-2",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/source-review.json",
+        "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "이동 후 그림에서 얻은 이동량을 사용하여 점의 미지 y좌표를 구하는 구성이다.",
+        "after": "원래 그래프와 이동 후 점의 좌표 기록을 분리해 제시하고, 빈 이동 방향·거리 기록을 선택지로 완성한다. 이동 후 그래프와 꼭짓점 눈금은 제시하지 않는다.",
+        "sharedConcept": "이차함수의 y축 방향 평행이동과 그래프 위 점의 좌표",
+        "sharedProcedure": "수직 평행이동한 그래프의 식을 y=ax^2+q로 놓고 점의 좌표를 대입한다. 원문과 달리 y좌표를 조건으로 주어 q를 역으로 결정한다.",
+        "preparationAdjustment": "v2의 두 포물선 계획 대신 원래 y=2x^2 그래프만 새로 그렸다. 이동 후 점 (-2,5)는 본문의 별도 표에 두어 이동량이나 이동 후 꼭짓점이 그림에서 드러나지 않게 했다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 3,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q03",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q03.json",
+        "sha256": "2dce4f52a2b3c57d71710a7d797ff00d6132344a1c843d037cb1d96ebef1e1cc"
+      },
+      "studentDigest": "d6095c275426e8f3728660cc3bb6d4f33a9cddb3014a708455585c5e159e82a9",
+      "candidateDigest": "4b763285173adb0385e1854674722bc90e619ce6b3e317104f2a8cf3959cea3d",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r1/verification/reports/q03.json",
+        "sha256": "242e6c80977eee0808cea01151e89e226d91f12227ef849dfa1fcf2be6decaad"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-3",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/source-review.json",
+        "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "축·x축 위 꼭짓점·다른 점의 좌표를 글머리표로 주고 y축과 만나는 점의 좌표를 묻는다.",
+        "after": "축·꼭짓점 위치·y절편 (0,20)을 기록표에 주고, x=-3일 때 빠진 y좌표 t를 묻는다.",
+        "sharedConcept": "이차함수의 축·꼭짓점과 한 점으로 이차함수의 식을 정하기",
+        "sharedProcedure": "축과 꼭짓점에서 y=a(x+2)^2를 세우고 알려진 점을 대입해 a를 정한 뒤 다른 x에서 y를 계산한다. 원문의 조건인 다른 점과 질문 대상인 y절편의 역할을 뒤집는다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 4,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q04",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q04.json",
+        "sha256": "018ce9d854cd4c399f2f9535704fdc21894f322f223d6f336da2876d681062de"
+      },
+      "studentDigest": "e594be5d73a48300b0f7ae14f07eb8d09e05c90999b8437e04a2a0497fc2e219",
+      "candidateDigest": "ba79b61e1d200e68bbfde9477c9a4e451bde91db82406ef5d3fbf51eda2790ad",
+      "assetDigest": "48e6d07ad6907d9a1f33bf085b8eba8e12d49d64b12edc00d9e2be7bf9684885",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q04.json",
+        "sha256": "6aa9d497b1185ec4e3d16a78a2cc7a7a72efc9b32572b8a158bfc4eedb5c9e7b"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-4",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q04/normalized-question.json",
+        "sha256": "6edb12e3dd0d72ac0046349114e8f0e3d23d2d11ed4e07195c55ffbd788fbd7a"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q04-source-evidence.json",
+        "sha256": "984dad3ed781ad2625c8a31a3eeae81d50c7983ca54e7ccb6ebdeb1928b84071"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "포물선의 그림에서 계수의 부호를 읽고 직선이 지나지 않는 사분면의 이름을 고른다.",
+        "after": "포물선의 개략적인 모양에서 계수의 부호를 읽고, 기울기·y절편의 두 부호를 모두 만족하는 직선 그림을 다섯 개 중 고른다. 사분면 이름 보기 대신 양·음·0 절편을 포함한 새 그래프 보기를 쓴다.",
+        "sharedConcept": "이차함수의 볼록 방향·y절편에서 계수의 부호를 읽어 일차함수의 기울기·절편에 연결하기",
+        "sharedProcedure": "포물선에서 a>0과 -b>0을 구한 뒤 -a<0, b<0을 직선의 방향과 축 교차 위치로 해석한다.",
+        "preparationAdjustment": "숫자 눈금 없는 graph-1 사양으로 포물선과 다섯 직선을 모두 새로 그렸다. 본문에서 그림의 역할을 부호를 나타내는 개략 그래프로 한정하여 렌더용 계수 값을 주어진 조건으로 강제하지 않는다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 5,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q05",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q05.json",
+        "sha256": "2221faec82674818c0a13fbcc7d6254ad88dca5d22298ec18ab45b357295b1d8"
+      },
+      "studentDigest": "8e74b40b3a420a33dd4cbff54fc95e8479fb59b096c8fc61d0dbf6e2b2cda962",
+      "candidateDigest": "f09ee6672bef661f8b4204a07fb86a7b91a4e1d3a66b37880c7cf431a2f7da58",
+      "assetDigest": "6cb5046ecd9c4bf7df0dcdbe11b4f10ee8664c6cfa51282776b4259b6159dd7d",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q05.json",
+        "sha256": "3d7b02070bfcafac16fa34355cf36f547494241c5678e23483a598f48c2f23d2"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-5",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q05/normalized-question.json",
+        "sha256": "d29e941e5e30d1840615afa567b9cefbed8b992704e8df1dfc3c8e3695a5b9dd"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q05-source-evidence.json",
+        "sha256": "cb61f96a7b09afdbf59a62b8ed66329d44b6dc64d2353a5f674d9bfd2bc16ae9"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 5,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": true,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "아래로 향하는 포물선의 꼭짓점과 x축 위 두 점이 만드는 삼각형에 대해 넓이 하나를 고른다.",
+        "after": "위로 향하는 포물선의 꼭짓점을 x축 아래에 두고, 두 교점에서 구하는 밑변·꼭짓점에서 구하는 양수 높이·넓이의 세 기록을 대응시킨다. A·B는 밑변의 양 끝점, C는 꼭짓점으로 점의 역할을 다시 정의했다.",
+        "sharedConcept": "이차함수의 꼭짓점·x축 교점과 삼각형의 밑변·높이·넓이",
+        "sharedProcedure": "인수분해로 x축 두 교점을 구하고 완전제곱식으로 꼭짓점을 구한 뒤 좌표에서 밑변·높이를 읽어 삼각형 넓이를 계산한다.",
+        "preparationAdjustment": "v2 제안의 아래로 볼록한 y=-x^2+4x+5 대신 y=x^2-2x-3을 채택했다. 음수인 꼭짓점의 y좌표와 양수인 높이를 구분하도록 하되, 새 선수 개념이나 최댓값·최솟값 문제는 추가하지 않았다. 원문 5점에서 이번 후보 계약의 4점으로 제안한다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "separate-original/new-score-format-review-required; previous-report-not-edited",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 6,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q06",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q06.json",
+        "sha256": "86810cd98db029a500ad514a71510dcbc895f6ed8a88d074910ad531514c5a79"
+      },
+      "studentDigest": "2bd42ccd5098fb0d9b9349e2d815b7d447a11625be456fa23aa8f30bfc533dd8",
+      "candidateDigest": "47ebed960014bc5409cb8152f8c3c73ed920bb23d23ad25ab7a7b4f745164f7e",
+      "assetDigest": "e6887d771941784d10e83857bb099cbf68e25bc9d91725c71bef9a87d4d85598",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification/reports/q06.json",
+        "sha256": "f868560788f6fb1a8e465f8a79ea23b2dded20d6429094c3604b0aeee4c22f4a"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-6",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q06/normalized-question.json",
+        "sha256": "774966a388f9f040d99494dd51be7e09d95bbdb8ff8175517b3653d4a228abc8"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q06-source-evidence.json",
+        "sha256": "d92be526cd5e2d1df2844021487fbc6e02bb1109b3b426ad515fdfd3e7d9c47b"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "하나의 공통 꼭짓점을 가진 세 직각삼각형과 개별 등식에서 옳은 것 하나를 고른다.",
+        "after": "방향을 바꾼 세 직각삼각형에 같은 예각을 따로 표시하고 각 그림에서 서로 다른 삼각비를 읽어 세 열의 기록을 완성한다.",
+        "sharedConcept": "동일한 예각을 기준으로 빗변·대변·이웃변을 식별하는 삼각비의 정의",
+        "sharedProcedure": "그림에서 직각의 위치와 표시한 예각을 확인하고 sin·cos·tan의 정의를 각 삼각형에 직접 적용한다. 삼각비 사이의 관계식은 사용하지 않는다.",
+        "preparationAdjustment": "세 삼각형을 한 공통 꼭짓점에 겹치지 않고 서로 다른 방향으로 분리해 그렸다. 하나의 등식을 고르는 대신 세 정의의 비를 동시에 대응시키며 수치 길이를 학생에게 주지 않는다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 8,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q08",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q08.json",
+        "sha256": "41c8315b0fcc45971ad3f2c943d20528d92e2c45f90529baaa17c462a8108dfc"
+      },
+      "studentDigest": "d8c1897e23b4400046a65e85765d617f744337da6fd43ede0a5b0522ca8ae41c",
+      "candidateDigest": "7e62c0ac7c94734332108f1330dfd00a7d1c7f7860bb85543a57de21336b5619",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification/reports/q08.json",
+        "sha256": "6a3c311445acfde01d33f757f30e1cb7fffe05956e13ba44b2ff48df2b721682"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-8",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q08/normalized-question.json",
+        "sha256": "3f6cebddf01b5154020d56a89e8e095ec3d64c7741f010c47ca505efaa7388c4"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q08-source-evidence.json",
+        "sha256": "a78b6523d11f2c7c0386fd9859dbd19b6d6b42664c38bca30098f9284c5bab12"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "다섯 삼각비 계산식 중 계산값이 가장 큰 식의 번호를 고른다.",
+        "after": "계산식 카드를 수치 크기 순서로 배치하여 가운데 순위의 카드와 계산값을 복구한다. 모든 보기의 카드와 값 자체는 올바르게 연결되어 있으므로 순위를 판단해야 한다.",
+        "sharedConcept": "특수각과 경계각의 삼각비 대입, 근호 식 계산과 양수의 크기 비교",
+        "sharedProcedure": "정의 가능한 0°·30°·45°·60°·90° 삼각비 값을 각각 대입해 다섯 식을 계산하고 근호의 크기를 비교한다.",
+        "preparationAdjustment": "v2의 최댓값 카드·값 대응에서 세 번째 순위의 카드·값 대응으로 질문 대상을 바꾸었다. 원문의 계산·비교 절차와 기본 난이도 제안을 유지하되 최종 난이도 판정은 보류한다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 9,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q09",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q09.json",
+        "sha256": "6c3d3785bfa60c763656bb0601721f7387ddcacdaa14db6a7447d04476c8cf38"
+      },
+      "studentDigest": "eec76a7cd7525161485e0b7d51731dc7ab027d287c0bcc4d838d074f1829bb70",
+      "candidateDigest": "be899f4423c4add9bc677013e190a78dadca66f2841d96effeed02009a0ce644",
+      "assetDigest": "739706ee201c80df5b14a5947bf122a55a6c7cb42fe9f0d4c231d2841a58ea69",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification/reports/q09.json",
+        "sha256": "80dcf97f6855c69016c7b9cfa006abdbd259172818416a0ac7a8dc7b782b38db"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-9",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q09/normalized-question.json",
+        "sha256": "73b2c0b7a10f31d06a1b063d4cb2671ce20c68ee701e3430ef6780a8439d0ce9"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q09-source-evidence.json",
+        "sha256": "5970aa514819b3666d8cdf6c35da93b0f2e41b1c963c607abe18532d059ffc6d"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "사분원에 표시된 길이로 sin·cos·tan 값을 읽어 주어진 삼각비 식을 계산한다.",
+        "after": "삼각비 근삿값을 표로 주고, 사분원의 수선과 수직선에서 대응하는 선분 길이를 복구하여 길이의 차와 곱을 계산한다. 학생에게 주는 계산식은 삼각비 식이 아닌 선분 길이 식이다.",
+        "sharedConcept": "반지름 1 사분원과 두 직각삼각형에서 sin·cos·tan에 대응하는 선분 길이",
+        "sharedProcedure": "sin·cos·tan의 정의로 길이를 대응시킨 후 주어진 근삿값으로 차·곱과 반올림을 수행한다.",
+        "preparationAdjustment": "v2의 54°·소수 둘째 자리 근삿값 제안을 채택했다. 계산은 표 값 기준임을 명시하고 도형의 내부 좌표는 반올림하지 않은 54° 자료로 만들었다. 수직선을 구성으로 정의하여 일반 접선 이론을 추가하지 않는다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 10,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/image-context/q10.json",
+        "sha256": "75e82d33f3d27ad9084a084f8168fcaa0930c21857cd4fd59740a4c4067003dc"
+      },
+      "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+      "candidateDigest": "a44d112ea0647bc9858e5f9199da0d23718e833fab7ee1339f70cbbb050089f8",
+      "assetDigest": "6e051c4bd40203816b3208f73cf93dd6be3f212357583d69bd906b6f379640f4",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r5/verification/reports/q10.json",
+        "sha256": "395c2c781bcd26008bb255f10eaca466a3a03cc0f46564b9e05471bdf5d2e428"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-10",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q10/normalized-question.json",
+        "sha256": "a01b2dce96c63bdcb69274197b42c03ee219c15aa5ed5a56d6afd14340c8b8b8"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q10-source-evidence.json",
+        "sha256": "a1a52b7fff7076da0e26cd458573fc94f485dad1d381596e8254f66ca9e4019d"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "context",
+          "structure",
+          "inverse-target"
+        ],
+        "before": "수평거리 5.5m, 눈높이 1.7m, 올려본각 58°와 sin/cos/tan 표가 제시된다.",
+        "after": "석탑 높이를 구하는 직접 계산에서 체육관 환기창의 관측 위치를 정하는 거리 역산으로 바꾸고 두 기록표로 자료를 제시한다.",
+        "sharedConcept": "표에서 필요한 삼각비를 골라 눈높이 위 높이를 계산한 뒤 눈높이를 합한다.",
+        "sharedProcedure": "표에서 필요한 직각삼각형의 삼각비를 선택하고 눈높이 보정과 비의 관계를 사용한다. 미지 대상을 총높이에서 거리로 전환한다.",
+        "printRevision": "Split previously composed95mm scene/diagram into two separate70mm authored assets matching the bank cap; enlarge engine labels; numeric conditions regenerated and new independent solve required. Substantive delta from original exam remains context/structure/inverse target."
+      },
+      "methodClarification": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/variant-method-links-r2.json",
+        "sha256": "6316e4e23761b1570236ea00553351fd120269cced4cea3a90ca5c0bf0a0f491"
+      },
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 11,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q11",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q11.json",
+        "sha256": "814ba14f64d2fe3dfb5ad83b36fbf20f0d38fb33f5ac2757e4e3dfb2d15969ba"
+      },
+      "studentDigest": "570ab4369989cd77285dad0e26313d0e9282f0cec12e2b9568525bf8c728c2e4",
+      "candidateDigest": "961080f2067eb9678490212d04904e0689418e2780768c21e682fa483148cbbd",
+      "assetDigest": "c0b12b89505f32f2756fd468f05da7b2a5862c6b1dcf67a8eee0634623266fed",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r4/verification/reports/q11.json",
+        "sha256": "477aac2273616c48ecfc1b563761535a4bf1914b00dc916e82bcc5a4b3c5b53f"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-11",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q11/normalized-question.json",
+        "sha256": "92eac07e4f22b30f56ffb46cfcc3967ee89926df79e4c9d9ecb2d1eaebab5a76"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q11-source-evidence.json",
+        "sha256": "61009153a0c9db31d67a35820431b1277be2dd037bca5b505823ee2c6eb7f9d3"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target",
+          "representation"
+        ],
+        "before": "BD를 주고 이등변 관계와 30° 직각삼각형에서 tan15°의 값을 구한다.",
+        "after": "측정 기록에서 AC만을 알려진 길이로 두고 밑변 BC를 복구한다. 주는 길이를 BD에서 AC로, 질문을 각의 삼각비에서 선분의 실제 길이로 역전하였다.",
+        "sharedConcept": "각의 관계, 이등변삼각형, 30° 직각삼각형의 삼각비, 공선인 선분 길이의 합",
+        "sharedProcedure": "∠ADB=150° → ∠BAD=∠ABD=15° → AD=BD → 30° 삼각형에서 AD와 DC → BC=BD+DC. 올바른 이등변 관계는 AD=BD이며 AB=BD가 아니다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 12,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q12",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q12.json",
+        "sha256": "da7200b72e0cd8153d25a620e7024292a1d3383d9e696b7d6bb0a63b645e19c9"
+      },
+      "studentDigest": "1d18d08c21c4e4cf632f9d43d194ba86c0e84d6e536daa0a94468657146965ad",
+      "candidateDigest": "0a6e78f8d11c57baf2525b9c93cd4fb8d04e8adaec7f405f2947f49de3de110e",
+      "assetDigest": "e276997e862902248020eb679caf83a9f5eb714ef2f660bdd37b7ba2dc438173",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification/reports/q12.json",
+        "sha256": "3f8b26e026752e41098be611f8bf500e5d20cb8d21321dd327a6c81e621e1f5a"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-12",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q12/normalized-question.json",
+        "sha256": "73a67be3346a9551271840080155f6b0a5f209010db915dd6dce2aca975e32dd"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q12-source-evidence.json",
+        "sha256": "d1e9b5ff42d1cdcb0160740f2fd00345234d0a6ef44215a7f321a74ace1510cb"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "사각형의 두 변 길이와 각을 주고 대각선으로 나눈 두 삼각형의 넓이를 더하여 전체 넓이를 구한다.",
+        "after": "전체 넓이는 복원 자료로 알려 주고 한 변 DC의 길이를 누락시킨다. 첫 삼각형의 넓이를 뺀 나머지 넓이에서 높이를 복구한 뒤 DC를 역으로 구한다.",
+        "sharedConcept": "직각삼각형의 삼각비·공통 대각선·삼각형의 밑변과 높이·사각형 넓이의 분할",
+        "sharedProcedure": "45°인 직각삼각형에서 대각선 길이를 구하고 다른 삼각형에 수선을 내려 60°의 삼각비를 사용한다. 두 영역의 넓이가 전체 넓이를 이루는 관계를 역으로 적용한다.",
+        "preparationAdjustment": "v2의 단순 부분 넓이 대응표 대신 BC=8과 전체 넓이를 주고 DC를 복원하는 역방향을 채택했다. D에서 AC로 수선을 내려 발이 선분 안에 놓이도록 구성했으며 일반 삼각형의 사인 넓이 암기식은 쓰지 않는다. 응용 난이도 제안과 4점은 유지하고 최종 난이도 검토는 보류한다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 13,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q13",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q13.json",
+        "sha256": "0ea9cb1bcf7776540523ab56207ec282be1ad22c7e9344278ed7a18ecb35eaf2"
+      },
+      "studentDigest": "239e5959efba640245ef5e016922b2c3d1ba465a4a47affdd121846d8ac6aa5c",
+      "candidateDigest": "028c686938d29d7e19b53cf6b4593578a2921752edc4d087ecd3b40906ce5f64",
+      "assetDigest": "ef7943638f592ebf74764764a3980d97860864995af79ffd539bc1ca0ebc8c08",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification/reports/q13.json",
+        "sha256": "e9f5589e5165d1d53af0a0a43248099db5b40c877c640745ca9b007b252557eb"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-13",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q13/normalized-question.json",
+        "sha256": "b98d492e2e5f2800ab0239d11ed9a137b5673cd2ead8c53636fe02dab2f73e72"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q13-source-evidence.json",
+        "sha256": "98b221e41dfae87c3efe631ab2f31c5fe60e6eda71940b274132c3a0b298d99c"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "원뿔의 모선과 밑면이 이루는 각에서 원뿔의 부피 하나를 구한다.",
+        "after": "원뿔과 축을 포함하는 단면의 절반을 함께 제시하고 모선·단면의 예각을 반지름·높이·부피의 세 기록에 대응시킨다. 반지름과 높이를 바꿔 기록하거나 지름을 반지름으로 기록하는 선택지를 구별해야 한다.",
+        "sharedConcept": "원뿔의 축 단면에서 직각삼각형의 두 변을 삼각비로 구하고 원뿔 부피를 계산하기",
+        "sharedProcedure": "30°의 sin·cos를 모선에 적용해 높이와 반지름을 구한 뒤 중학교 원뿔 부피식에 대입한다.",
+        "preparationAdjustment": "v2의 모선 8 cm·30° 제안을 사용했다. 수치가 드러나지 않는 기존 로컬 cone kind와 모선·30°만 표시한 v2 단면을 함께 사용하여 반지름·높이를 그림에 답으로 적지 않는다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 14,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q14",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.json",
+        "sha256": "8c4ad928e6910539d29a3bbecede5dd701132dc35243daee57409761ee3f19b5"
+      },
+      "studentDigest": "122a3917ecccd86d1f12da18984bbedec0fe1f22e1eeca58e55212f4d90fdb83",
+      "candidateDigest": "6e454ec679de4c789ed4f12afd2801ababc93fe4bc8435b727f4b08bc1351755",
+      "assetDigest": "84082131910c3fd5db77cdc5da13c5f5d70393a411c8d5798b2f2a2213f8a702",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r4/verification/reports/q14.json",
+        "sha256": "6b0e2650c61447d35d9b29a67511da95424d474f3315d43def4eab1500b390e7"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-14",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q14/normalized-question.json",
+        "sha256": "e63cb075485612cbc9dcfb6b0ee217382ae11d8457a013a9c920dd227c4de7b2"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q14-source-evidence.json",
+        "sha256": "cc6e3f9e1f88f9853fec3f9bbfbeeceb4e3e4dc04d88f4feec732b3b7991f9d2"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 5,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 5,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target",
+          "representation"
+        ],
+        "before": "접힌 한 도형에서 폭과 AP를 주고 tan x를 고른다.",
+        "after": "접기 전후의 두 도형과 기록을 주고 폭·tan x에서 빠진 AP를 복구한다. 접기 전 대각선 AC를 보이게 하여 보조 관계를 추적하고 계산의 방향을 뒤집었다.",
+        "sharedConcept": "접기 합동의 길이·각 보존, 수직이등분선, 직각삼각형의 예각 삼각비와 피타고라스 정리",
+        "sharedProcedure": "접기에서 PA=PC와 ∠APQ=∠CPQ → 접는 선과 대각선의 수직 관계 → 직각삼각형의 삼각비 → 피타고라스와 일차방정식. 같은 폭·접는 위치·tan x의 관계를 역으로 사용한다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 15,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q15",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.json",
+        "sha256": "6e948da15efef5177bf65592bbd9099e1a78b404a63a637b342aacfe09908aeb"
+      },
+      "studentDigest": "bc3bd97b90cec786cce08661bc8312b7b160ca9997115ba07c151ba8745dd71d",
+      "candidateDigest": "9e8ed64b44fb0c74137b22cbb7288f8e14b831a87c83fd455efd05f25ffa6b2e",
+      "assetDigest": "efa7180539b3c8f4676f94d093466464fff9d82dfdee835b8a0d9e647c94a2f1",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r1/verification/reports/q15.json",
+        "sha256": "01c3ed7ba1eeeabba246fb7614a8fed6a819f5a89ca3dc938662a342b4173897"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-15",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/source-review.json",
+        "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "context",
+          "structure",
+          "inverse-target"
+        ],
+        "before": "깨진 접시 조각에서 현의 길이와 작은 호 쪽 높이를 측정하여 원래 접시의 둘레를 구한다.",
+        "after": "원형 전시 안내판의 둘레와 장식 경계선인 현의 길이를 주고, 작은 장식 부분의 수직 높이 MP를 복구한다. 짧은 호와 짧은 양의 높이를 본문에서 제한한다.",
+        "sharedConcept": "현의 수직이등분선과 원의 중심, 반지름과 원주, 직각삼각형의 길이 관계",
+        "sharedProcedure": "현을 이등분하는 수선과 반지름으로 직각삼각형을 만들고 피타고라스 정리를 적용한다. 같은 원주·현·높이 관계를 역방향으로 사용한다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 16,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q16",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q16.json",
+        "sha256": "fe028ae29ccaa7e3f749ba4b4c498f16122576e7eb27e50ab4076b5e153391f0"
+      },
+      "studentDigest": "818b8d74b4affcc33f5212e0e16936724f1732080c8ac4819ee3e7a09595790a",
+      "candidateDigest": "c422c4c43a5478a04fbc5cb9a3ae7412640cabbc26951e4a512bb87f5c765a5c",
+      "assetDigest": "28966973dc2a33441bec3dc01fb60c465a3a5c33a24b0917e4f26a4cf6227337",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q16.json",
+        "sha256": "d7907d002f6a9478f141c67d94f48a81751b0691d0fd54ad5e8066fe002a2bc8"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-16",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q16/normalized-question.json",
+        "sha256": "12de9c06aefe5e3057f535bc47061613b7aa5d9f22c17a27e4ab2c8f3370c627"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q16-source-evidence.json",
+        "sha256": "f7ba24f34ff9b4ac30d5b84c3a3971fb2c70dcf3c0a6ef31dd34367ac33f2bf6"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 4,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure"
+        ],
+        "before": "같은 중심거리인 두 현과 한 밑각을 주고 꼭지각의 값 하나를 고른다.",
+        "after": "수선 검사 기록으로부터 현의 길이 관계와 꼭지각을 동시에 기록한 행을 고른다. 단순 각도 목록을 관계·각도의 짝으로 바꾸었다.",
+        "sharedConcept": "중심에서 같은 거리에 있는 두 현, 이등변삼각형의 밑각, 삼각형의 내각의 합",
+        "sharedProcedure": "OM=ON → AB=AC → ∠ABC=∠ACB → 내각 합으로 ∠BAC 계산"
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 17,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q17",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q17.json",
+        "sha256": "052fa81ae4898d93046815527aa9341bd0b3e65e0f58dfb4dc65c0323f1819f3"
+      },
+      "studentDigest": "0c25f73a7384f79f9e43e21d6aab87b38e0678dcc569534b36f9fe1880c4a1ad",
+      "candidateDigest": "fde456694057f3794674322cf12b9fe47635349290e4c9f6d57319a6247beff8",
+      "assetDigest": "ec8864f488728687631d38c5fa6a88f3df3337f13ee0a0a906263dda22c5e203",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q17.json",
+        "sha256": "7c057042a688c840ef74959dcfbda7c495b465316b942ba3a3440257a3d6e3bf"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-17",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q17/normalized-question.json",
+        "sha256": "3a06429313a0275c9e3b065f24b176bdbd1c69427c9fd10c9b55e1d107800815"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q17-source-evidence.json",
+        "sha256": "793539578cb63baa0800c5279468624e5088a4c761ab60ebd3f2e1f6dd3e6934"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 5,
+      "originalSourceQuestionType": "객관식",
+      "newScore": 5,
+      "newQuestionType": "객관식",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "context",
+          "structure"
+        ],
+        "before": "직사각형 안의 원과 사선 접선의 조건으로 △ABM의 넓이를 묻는 기하 문항.",
+        "after": "9cm×6cm 창틀 모형에 원형 장식을 끼우고 접선 지지대로 구분한 왼쪽 영역을 구한다. 소재·설치 행동·접점 기록과 위치 조건을 명시한 작업 도면으로 구성한다.",
+        "sharedConcept": "접선과 반지름의 수직 관계, 한 외부점의 접선 길이, 피타고라스 정리와 삼각형 넓이",
+        "sharedProcedure": "세 변 접촉에서 반지름·수평 접선 길이 계산 → AF=AE, MF=MG → AM과 BM의 관계 → 피타고라스 → △ABM 넓이"
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 18,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q18",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q18.json",
+        "sha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6"
+      },
+      "studentDigest": "7560f9f6c5dcf51efcb593ccc24873d941d6d7fb26339aada218c7eba6af98ac",
+      "candidateDigest": "0360d1fcae6d467e221d669743cadf3d60f560b7943da51d082f0d045f572e82",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q18.json",
+        "sha256": "d1e9d098d22427be3e90884cc5073cdae5e81ec17960c17893b9be7ca797fd1f"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-18",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q18/normalized-question.json",
+        "sha256": "b131ef5413738f4f3df3c0fd3aefb1d9bc1722e757a20cf0a0ad80f2c05cb06d"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q18-source-evidence.json",
+        "sha256": "ec61ea1d1b5d4c177a948374b9ecc2996fba3d5311391f4884247a2c9dd4cee0"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 7,
+      "originalSourceQuestionType": "서술형",
+      "newScore": 4,
+      "newQuestionType": "객관식",
+      "scoreChanged": true,
+      "formatChanged": true,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "점 조건과 꼭짓점이 주어진 직선 위에 있다는 조건으로 계수의 합 a+b를 서술형으로 구한다.",
+        "after": "점 조건과 계수의 합을 기록표에 주고 꼭짓점이 놓일 직선의 미지 y절편 c를 복구한다. 주어진 계수의 합과 미지 직선 절편의 역할을 바꾸고 객관식 다섯 보기로 제시한다.",
+        "sharedConcept": "이차함수의 완전제곱식·꼭짓점, 점의 대입 조건과 연립일차방정식",
+        "sharedProcedure": "주어진 점과 다른 계수 조건에서 두 일차식을 풀고 완전제곱식의 꼭짓점을 직선에 대입한다. 포물선과 직선의 일반적인 교점 개수나 접선 관계는 다루지 않는다.",
+        "preparationAdjustment": "v2의 점 (-1,14) 제안을 사용하고 직선의 절편 8을 묻는 대상으로 바꾸었다. 계수 합 10을 알려 주어 해를 유일하게 정했다. 원문 서술형 7점에서 이번 후보 계약의 객관식 4점으로 제안하며 family는 보류한다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "separate-original/new-score-format-review-required; previous-report-not-edited",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 19,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/image-context/q19.json",
+        "sha256": "4189ede185564ff2de94bac1c8ef7d6ca96f9f1b13d8073e4818d86d91d5ce62"
+      },
+      "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+      "candidateDigest": "4241865fd9d1676dbe7dd30ea55459f4da6d8fa98f2bb8c7cb64bcb13964354e",
+      "assetDigest": "26cfe0d9c548d205dc6650a634e29df73e8d605b0b53743022d5eae9d9d889e5",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r5/verification/reports/q19.json",
+        "sha256": "ad41a206b9593d662ad4f03fd3ad3f819e39e2bada8366bdba373566b40cd195"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-19",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q19/normalized-question.json",
+        "sha256": "468e031b27e696564c5caac35a24a1919c984b2c111072b4ea7907388be8cd32"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q19-source-evidence.json",
+        "sha256": "7d79b0965cb0ddb0d023655c0a8822abbba7eabe8ff2d1e078f8329ad0dddc63"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 7,
+      "originalSourceQuestionType": "서술형",
+      "newScore": 7,
+      "newQuestionType": "서술형",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "context",
+          "structure",
+          "inverse-target"
+        ],
+        "before": "AB=70m, ∠A=45°, ∠B=75°인 삼각형 ABC에서 BC를 묻는다.",
+        "after": "캠핑장의 두 텐트 사이 거리에서 시설까지 거리 구하기를, 공원 시설까지 거리로 빠진 표지 사이 거리를 복구하는 기록표로 전환한다.",
+        "sharedConcept": "나머지 각을 구하고 높이를 보조선으로 삼아 알려진 변·특수각의 삼각비로 필요한 변을 표현한다.",
+        "sharedProcedure": "내각의 합과 보조 수선으로 45°·60° 직각삼각형을 만들고 삼각비로 선분 길이를 구한다. 미지 선분을 역으로 전환한다.",
+        "printRevision": "Split previously composed95mm scene/diagram into two separate70mm authored assets matching the bank cap; enlarge engine labels; numeric conditions regenerated and new independent solve required. Substantive delta from original exam remains context/structure/inverse target."
+      },
+      "methodClarification": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/variant-method-links-r2.json",
+        "sha256": "6316e4e23761b1570236ea00553351fd120269cced4cea3a90ca5c0bf0a0f491"
+      },
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 20,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q20",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q20.json",
+        "sha256": "c6afd84bd14c5b2b9ff48b23524b13e6fc8f4718af3e3a1ea45e08d729a368c6"
+      },
+      "studentDigest": "06788db5de931162daba02380191c669e768016ab2279a63fed039814378b94f",
+      "candidateDigest": "0ed9faa1f19680d76a59e80e96d2b84d18d4f0448278297b649473800cd23600",
+      "assetDigest": "3dc03367ac8af81399639781664334d7e94e08bf7a8a10e0e0b3f2deac8add6e",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q20.json",
+        "sha256": "a01cfda9a84ada8cb7b39f88669b11e324cc2f56b10a618744cfcf581a1399e3"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-20",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+        "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+      },
+      "normalizedSource": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q20/normalized-question.json",
+        "sha256": "3026e4eee0b1f0f38b283510a5d36e48919f4dc09eda938d4eed689135632883"
+      },
+      "fullSourceComparison": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q20-source-evidence.json",
+        "sha256": "12d23478fb51f2d5cfdbd284d662c9c2c513fed3bc42119baafcdb9f46290682"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 7,
+      "originalSourceQuestionType": "서술형",
+      "newScore": 7,
+      "newQuestionType": "서술형",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation",
+          "inverse-target"
+        ],
+        "before": "반원 안에서 호 CB와 현 CB 사이에 색칠된 활꼴의 넓이를 바로 구한다.",
+        "after": "영역 기록으로 CB의 작은 활꼴 경계를 확정한 뒤 색칠하지 않은 나머지 넓이를 구한다. 색칠은 같은 CB 활꼴에만 두고 질문 대상을 반원의 여집합 넓이로 바꾸었다.",
+        "sharedConcept": "반지름이 같은 중심 삼각형의 각, 부채꼴 넓이, 수선과 60° 삼각비, 삼각형 넓이",
+        "sharedProcedure": "OBC의 밑각 → 중심각 → 도 단위 부채꼴 넓이 → C에서 지름에 수선 → 60° 삼각비로 높이 → 밑변×높이÷2 → 부채꼴에서 삼각형을 빼 활꼴 계산; 마지막에 반원에서 활꼴을 뺀다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    },
+    {
+      "n": 21,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q21",
+      "candidate": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q21.json",
+        "sha256": "8f3489c6e162d8df86c0978a8942b26ced1c53ee28d67c542c1d628513bcecea"
+      },
+      "studentDigest": "a6c2a3165a9cb2fd394a937d2d9182cbf86b1fe44c75f84c450bbd534f8ee15a",
+      "candidateDigest": "627739fd82bf6809efca3070e606a354df0aca4b0b8e305249ffdad6768c78fb",
+      "assetDigest": "481ea4702885cbc16cafa05ec9bd7cfd5df4e430c812dc6cbc07a19f3bbf87bf",
+      "independentReport": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-review-r1/verification/reports/q21.json",
+        "sha256": "eac9740b74ad7ec8658e16f8fec72ac1ef11e8f373f0fd87608d25a9ebfa11ca"
+      },
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-21",
+      "originalSourceReview": {
+        "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/source-review.json",
+        "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+      },
+      "originalSourceIdentity": {
+        "school_full_name": "범일중학교",
+        "school_normalized": "범일중",
+        "grade": 3,
+        "subject": "수학",
+        "year": 2025,
+        "semester": 2,
+        "round": "중간",
+        "administration_date": "2025-09-23",
+        "period": 3,
+        "subject_code": "05",
+        "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+        "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+        "named_completed_label": "범일중 3학년 수학",
+        "edited_completed_label": "BI중 3학년 수학",
+        "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+        "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+      },
+      "originalSourceScore": 8,
+      "originalSourceQuestionType": "서술형",
+      "newScore": 8,
+      "newQuestionType": "서술형",
+      "scoreChanged": false,
+      "formatChanged": false,
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "반원의 지름과 왼쪽 접선 높이를 주고 오른쪽 접선 길이를 구한다.",
+        "after": "측정 기록의 지름과 오른쪽 접선 높이를 주고 빠진 왼쪽 높이를 복구한다. 좌우 위치·같은 반평면·높이 순서·선분 CD 내부의 접점을 본문에서 명시한다.",
+        "sharedConcept": "한 외부점에서 그은 두 접선의 길이, 접선과 반지름의 수직 관계, 직사각형과 피타고라스 정리",
+        "sharedProcedure": "DE=DA, CE=CB와 E의 내부 조건으로 CD=AD+BC를 먼저 세운다. 두 접선 높이의 차와 지름으로 만든 직각삼각형에 피타고라스 정리를 적용해 일차방정식으로 미지의 높이를 구한다."
+      },
+      "methodClarification": null,
+      "sourceContentAndIdentity": "confirmed-in-bounded-original-question-comparison",
+      "sourceCustodyExportPublisherRights": "pending",
+      "differenceReview": "unchanged-original/new-score-format",
+      "gateEffect": "Metadata join only. Frozen package gates remain historical; no mathematical/grade/report reuse for changed content, rights/native approval or writer",
+      "overallVerified": false,
+      "loadable": false
+    }
+  ],
+  "currentFrozenProof": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-final-review-summary-r1.json",
+    "sha256": "0e91894ed42b93f79a9f8ec8185d267e5803ac2d96c894d8b0436b14b7b64cbe"
+  },
+  "priorSourceVerificationsNeverApproveNewTwins": true,
+  "sourceQuestionScopeEntireSelectedPaper21": true,
+  "selectedFileEquivalenceNotGlobalNInventoryCertification": true,
+  "overallVerified": 0,
+  "loadable": 0,
+  "productionWrites": 0
+}

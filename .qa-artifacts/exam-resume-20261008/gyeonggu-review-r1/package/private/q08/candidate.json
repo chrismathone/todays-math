@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q08",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "삼각형 받침대 $\\mathrm{ABC}$에서 $\\mathrm{BC}$는 수평이고, $\\mathrm{A}$에서 $\\mathrm{BC}$에 내린 수선의 발 $\\mathrm{H}$는 선분 $\\mathrm{BC}$의 내부에 있다.\n$\\overline{\\mathrm{AH}}=9\\,\\mathrm{cm}$, $\\angle\\mathrm{ABH}=45^\\circ$, $\\angle\\mathrm{CAH}=35^\\circ$이다. 받침대의 수평 부분 $\\overline{\\mathrm{BC}}$의 길이를 삼각비로 나타낸 것은?",
+  "choices": [
+    "$9\\tan35^\\circ\\,\\mathrm{cm}$",
+    "$9(1+2\\tan35^\\circ)\\,\\mathrm{cm}$",
+    "$9(1+\\tan35^\\circ)\\,\\mathrm{cm}$",
+    "$9(2+\\tan35^\\circ)\\,\\mathrm{cm}$",
+    "$18(1+\\tan35^\\circ)\\,\\mathrm{cm}$"
+  ],
+  "answer": "③",
+  "solution": "직각삼각형 $\\mathrm{ABH}$에서 $\\tan45^\\circ=\\frac{\\overline{\\mathrm{AH}}}{\\overline{\\mathrm{BH}}}=1$이므로 $\\overline{\\mathrm{BH}}=9\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{ACH}$에서는 표시한 $35^\\circ$에 대한 대변이 $\\mathrm{CH}$이므로 $\\tan35^\\circ=\\frac{\\overline{\\mathrm{CH}}}{\\overline{\\mathrm{AH}}}$이다. 따라서 $\\overline{\\mathrm{CH}}=9\\tan35^\\circ\\,\\mathrm{cm}$이다.\n$\\mathrm{H}$가 $\\mathrm{BC}$ 내부에 있으므로 $\\overline{\\mathrm{BC}}=\\overline{\\mathrm{BH}}+\\overline{\\mathrm{HC}}=9(1+\\tan35^\\circ)\\,\\mathrm{cm}$이다. 정답은 ③이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "AH": 9,
+      "ABHdeg": 45,
+      "CAHdeg": 35,
+      "HInsideBC": true,
+      "unit": "cm"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q08.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "context",
+      "inverse-target"
+    ],
+    "before": "두 밑각과 전체 밑변이 주어지고 높이를 삼각비 식으로 구한다.",
+    "after": "받침대의 높이를 주고 두 밑변 부분을 복구해 전체 길이 식을 정하는 역목표다.",
+    "sharedConcept": "수선으로 나눈 두 직각삼각형의 tan 정의",
+    "sharedProcedure": "각 직각삼각형에서 필요한 수평/수직 길이 비를 세운 뒤 밑변 두 부분을 합한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-18",
+      "9수04-17"
+    ],
+    "allowedProcedure": "각 직각삼각형에서 필요한 수평/수직 길이 비를 세운 뒤 밑변 두 부분을 합한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "35도는 실제ACH의 A각으로 주어지므로 여각 삼각비 관계식을 쓰지 않는다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": []
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 1개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "각 직각삼각형에서 필요한 수평/수직 길이 비를 세운 뒤 밑변 두 부분을 합한다.",
+      "risk": "35도는 실제ACH의 A각으로 주어지므로 여각 삼각비 관계식을 쓰지 않는다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-18",
+          "text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 8,
+    "sourceContentSha256": "85d2e5b47cef8f771a9dbf68759ceaf6bf8c4caa61ba04df6120a2000f5205f7",
+    "sourceDigest": "7acbe1392f4cb0dc7db370af06bf3b91234332ac1e61325aff3aeb34eb55ba5c",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/7",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q08-part1.png",
+        "sha256": "7ab067d55381f8ecbf7ffda3190a2de7b1ff67442f68ebe4b4f81329d7a879dc",
+        "page": 2,
+        "column": 1
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unitSection": "삼각비의 활용",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 483,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비의 활용|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "01",
+            "rpmTitle": "직각삼각형의 변의 길이 구하기"
+          },
+          {
+            "key": "3-2|삼각비의 활용|06",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "06",
+            "rpmTitle": "삼각형의 높이 구하기 주어진 각이 모두 예각인 경우"
+          }
+        ],
+        "fullRuleComparison": "01/06은 다른 변/높이를 목표로 한다. 주어진 높이에서 45도 쪽 밑변과35도 쪽 밑변을 복구하여 합의 표현을 묻는 갈래 확인이 없다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

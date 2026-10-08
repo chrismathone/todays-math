@@ -1,0 +1,107 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "angle_label_distance": 26,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "B": [
+      0.0,
+      0.0
+    ],
+    "A": [
+      0.0,
+      -110.85125168440814
+    ],
+    "E": [
+      110.85125168440814,
+      0.0
+    ],
+    "C": [
+      174.85125168440814,
+      0.0
+    ],
+    "D": [
+      174.85125168440814,
+      -110.85125168440814
+    ],
+    "F": [
+      174.85125168440814,
+      -64.0
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "BC": [
+      "B",
+      "C"
+    ],
+    "CD": [
+      "C",
+      "D"
+    ],
+    "DA": [
+      "D",
+      "A"
+    ],
+    "AE": [
+      "A",
+      "E"
+    ],
+    "AF": [
+      "A",
+      "F"
+    ],
+    "EF": [
+      "E",
+      "F"
+    ]
+  },
+  "labels": {
+    "B": "B",
+    "A": "A",
+    "E": "E",
+    "C": "C",
+    "D": "D",
+    "F": "F"
+  },
+  "angles": {
+    "angle_a1": {
+      "vertex": "A",
+      "points": [
+        "B",
+        "E"
+      ],
+      "label": "$45^\\circ$",
+      "radius": 24,
+      "label_distance": 36
+    },
+    "angle_a2": {
+      "vertex": "A",
+      "points": [
+        "E",
+        "F"
+      ],
+      "label": "$30^\\circ$",
+      "radius": 36,
+      "label_distance": 48
+    },
+    "angle_E": {
+      "vertex": "E",
+      "points": [
+        "A",
+        "F"
+      ],
+      "right": true,
+      "radius": 8
+    }
+  }
+}

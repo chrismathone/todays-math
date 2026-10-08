@@ -15,3 +15,5 @@
 검사: `node --test scripts/import/exam-twin/candidatePack.test.mjs scripts/import/exam-twin/reviewWorkflow.test.mjs`. 합성 제어 시험은 실제 문항 독립 검산과 별도다.
 
 `summarize-reviewed-batch.mjs <현재후보인덱스> <새결과JSON> <검수폴더...>`는 현재 저자 ID와 원본 바이트 해시로 정확히 한 검수를 선택한다. 같은 문항 번호의 이전 버전을 통과 집계에 섞지 않는다. 수집 시에도 블라인드 본문/그림과 답 공개 전 풀이 해시를 재확인한다. 동결 시 바뀐 자산 파일명은 따로 비교하고 내용·그림·자료 바이트는 같아야 한다. 결과는 수학/학년/내용·분류 보류와 전체 승인/적재0을 구분한다.
+
+`render-preview.ts <새폴더> student|review --bank-cap <후보들...>`는 기존 `figurePrintWidthMm`의70mm 상한으로 새 로컬 지면을 검토한다. 저자의 요청 폭/본문/그림 바이트는 보존하며 실제 표시 폭은 별도 기록한다. 그림 전용 선택지는 소유 SVG를 한 번만 배치하고 내부 저자 파일 경로를 문장처럼 렌더하지 않는다. 선택지 그림을3열로 묶어 큰 문제의 본문/보기가 갈라지는 것을 줄인다. 이 로컬 지면은 운영 inlineSVG/API/serializer/인쇄 전체의 호환 승인이 아니다.

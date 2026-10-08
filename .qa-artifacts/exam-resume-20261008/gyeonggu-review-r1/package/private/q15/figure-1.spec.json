@@ -1,0 +1,100 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "angle_label_distance": 26,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "O": [
+      0.0,
+      0.0
+    ],
+    "A": [
+      -90.0,
+      0.0
+    ],
+    "B": [
+      39.45340321101697,
+      -80.89146416692503
+    ],
+    "C": [
+      39.45340321101697,
+      80.89146416692503
+    ],
+    "M": [
+      -25.273298394491515,
+      -40.44573208346252
+    ],
+    "N": [
+      -25.273298394491515,
+      40.44573208346252
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "AC": [
+      "A",
+      "C"
+    ],
+    "BC": [
+      "B",
+      "C"
+    ],
+    "OM": {
+      "points": [
+        "O",
+        "M"
+      ],
+      "ticks": 1
+    },
+    "ON": {
+      "points": [
+        "O",
+        "N"
+      ],
+      "ticks": 1
+    }
+  },
+  "labels": {
+    "O": "O",
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "M": "M",
+    "N": "N"
+  },
+  "circles": {
+    "c": {
+      "center": "O",
+      "radius": 90
+    }
+  },
+  "angles": {
+    "angle_M": {
+      "vertex": "M",
+      "points": [
+        "O",
+        "A"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_N": {
+      "vertex": "N",
+      "points": [
+        "O",
+        "A"
+      ],
+      "right": true,
+      "radius": 8
+    }
+  }
+}

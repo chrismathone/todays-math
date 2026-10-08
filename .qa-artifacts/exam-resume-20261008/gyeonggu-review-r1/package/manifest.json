@@ -1,0 +1,463 @@
+{
+  "kind": "authored-exam-twin-review/v1",
+  "version": 1,
+  "createdAt": "2026-10-08T07:07:05.078Z",
+  "questionNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    21,
+    22,
+    23
+  ],
+  "packageDigest": "db350725d50ca24691f0ce2472ecf29a210008857378a0477662fd237e1c7080",
+  "scope": "authored-subset; no source exam completeness or production authorization implied",
+  "bindings": [
+    {
+      "privateCandidatePath": "private/q01/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q01\\q01.json",
+        "sha256": "8ac489d037ebe4271f346e8048d7a3c8293246f869c2192a0f6b2660e8f9a288"
+      },
+      "candidateFileSha256": "60576fb50f762bfe959b0301e00bf3e17596547d9247a47dc0431f3729761a48",
+      "candidateDigest": "213e488556d9702d95832e2bd348dc16b2d85cf4c25e9cce35791dff82aef9af",
+      "studentDigest": "2a5d89e15f071d3cb081c22c717bd8fbd7261670952bd572d31d5db7d8fe7606",
+      "assetDigest": "5697dcfd1c2ca67c0aad7f26ca2024638725d278561d90128ca9643eb82e80e8",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "22977a72ef5022a642b5c24dfbd13448649a33b4cd6875b58911b88f8531ba03",
+          "svgSha256": "7e2109d2ce1b75bb2268a845cb7afb6e2499a954075d5c59faa45fb328b4f579",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q01-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q02/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q02\\q02.json",
+        "sha256": "fc62c4423ac051fb3b1d1a0aac506aded25d91e5e95134796949a7a239679157"
+      },
+      "candidateFileSha256": "7b5e553742b790e686cafe848a4c021ece085bf290ab841354f537514bd56e06",
+      "candidateDigest": "b8fedf7eef0a9a9d041e9d78f6c8c7101f3d8c581fa12d9e116843dcc0384b1a",
+      "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    },
+    {
+      "privateCandidatePath": "private/q03/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q03\\q03.json",
+        "sha256": "20ac358951caa221e805e20d156538f479788542a160accfbe3da13b8b015e45"
+      },
+      "candidateFileSha256": "9556e176b40bd962a37475406027ff7344168b7d8ba923b624dc0084b0d68f7d",
+      "candidateDigest": "680e8ca90916cdfd6323cbb06d4760cf35b93a1be25d524e8fc711fe5ee4e8ad",
+      "studentDigest": "411df1ff3c4ed5806b377b8798b025167153f1a785d77fc60e02abf45087702e",
+      "assetDigest": "78b7c2c093de77a430dc399b4a0a4b112bd20875fcc372b84b8a060838e48476",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "0220a1c4df40af37173b25706d6e21ebc4067f3a350861fbf1010991872b2ea3",
+          "svgSha256": "a25d811ce63ff6ad83e6b8906e9a1247be9a350bf830259d3372f7422a9f9f76",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q03-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q04/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q04\\q04.json",
+        "sha256": "01005d538ebceacc7f09d23a5ecfe5b7b22a7804f691146aa2be68ca7f152ca5"
+      },
+      "candidateFileSha256": "51f27647f03f2567a1e3f869c507e7b647afce7439aaad9e7b4df5ac16c5c112",
+      "candidateDigest": "06e173ffb20c46a21baaa87e483accfa4ae89aa6cafe63355110a2d5f0f9b240",
+      "studentDigest": "297db22d9b30a39d5722c0c910a92a726ec7a7a88fd7d7bd773979e5a19aad8c",
+      "assetDigest": "f8a75266ea55e69c13631959f044cae8731e8f5706dff1d527ec27c3a95048cf",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "006379f0b113f333b2151b3de03d7e589f8deb9bcf20a36645fe731b8ca66322",
+          "svgSha256": "8204cc211b93e03757a4adda13cffd9f5896d0b81522954e31de3f09a802bf7a",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q04-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q05/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q05\\q05.json",
+        "sha256": "810b5be2da7bce70b69648ad60c8a46ad0ed8cd148d37c1722a23a362d694a10"
+      },
+      "candidateFileSha256": "d2404cc2e164e3a800b772f93cbbf63d36542accb671459a6286ebe55f74a998",
+      "candidateDigest": "28bc0ff2bab3447adaeda3abbf3b7953315ba251d39abe6a497f8d1b31d5379d",
+      "studentDigest": "1b71f79d7da85aef72e90951e0cf45b5c4964e565709cf7525fadf48163add41",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    },
+    {
+      "privateCandidatePath": "private/q06/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q06\\q06.json",
+        "sha256": "e8dd72f59abaa134c45ab1390d7a261e966e4f54f162533e5d27572c08a607e1"
+      },
+      "candidateFileSha256": "201c97b08bdba3cdd49fa2f57c163cd3d7fd56370baeada54276b8443ca0da7a",
+      "candidateDigest": "26029687a7829e0f1a93383c9c34e10b436ef26cdf8193d3303be4e997353011",
+      "studentDigest": "0bf55c36df942a46769045279a42f7c97e4b00c173dd7e50f458b26268343bc5",
+      "assetDigest": "192b1e29859f41fb335b3afe0098349faeb5d283a055df66669b70c31ff8b60a",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "fd8e3a9f4e6701292b9db0067ba1cac1eb582538fe68627d46c6cf2de805cb10",
+          "svgSha256": "de5887d92121ba0ccb6d4d2d700592ca4c40730404dadc779db990e99c95221b",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q06-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q07/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q07\\q07.json",
+        "sha256": "c2083ea8c80bdfb55a9296909378e4ef805da7177fe1b93e710fba90a72caa7c"
+      },
+      "candidateFileSha256": "019c28f2ced7eb2a1cf1b0f2d2591972f0a66a1a750c1ee1fc9d990bd5ccefdf",
+      "candidateDigest": "5d33aab18d4462f9cfd78c1bc24db31da5e1fa86cca310c70ed1db27de87f5b6",
+      "studentDigest": "4a6c9fde8d5b6bbd3d96233ad6b61ed6202c06fbc6cec638c5491eb6b19fec44",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assets": []
+    },
+    {
+      "privateCandidatePath": "private/q08/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q08\\q08.json",
+        "sha256": "5e1558b0c7051824c397f723f309d8c23352d742a2fe420a898f0e2ae58b9c2f"
+      },
+      "candidateFileSha256": "04a80927843fb5cca7c164c54108384b67dcf8b629b01d50ced1a3c6390633bc",
+      "candidateDigest": "12f5bb203bf90bb79957b79e151225c89c0a727db7eda2a5be31dc9c6764d93f",
+      "studentDigest": "f05d647e2defce842751a47b7cfd06a2cdde812f6ba53d4232d10cbdefe50fe1",
+      "assetDigest": "090718aeaaad3ed37513d33b35b9e22cc2586d9096dd58bc431da1ee7e9746e6",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "f503be90469e4253d1c580de6224eb08bd1d4a510826121b3e5fe80079e1dca0",
+          "svgSha256": "0b7c69d510f68e1da6b15ea8da72ebf0ef4096bf0aa27d9aec55a7026bc08733",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q08-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q09/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q09\\q09.json",
+        "sha256": "964b671bbf557d10737fc98d3491332ebd8d8c9c26ffee0ef963617e0b42fa80"
+      },
+      "candidateFileSha256": "680ec9673b3bd0cf6285181fab6b031c5f1826f2ae922ad1e79aff8c964aae63",
+      "candidateDigest": "fb528a8b595aaad2b0a39ec11be6a1c088129cbe7e9180b57cbc5060975eee80",
+      "studentDigest": "ec923ff716c42c8337fd99a5fa5ab699afd9e5715b236d8f54f5d0bf777ba37c",
+      "assetDigest": "1db0b5ef0127fbf52c59c79d3307707e9ed67f019a5b4c9ddee1c3c36a7c20b5",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "4e796fac23bf222bc4c210297dc6cebb3fa00819b3ef3ac31166db4b02f58f78",
+          "svgSha256": "daa5c4c7e4b484122a7fbf5e635b57691613d27189037576683a558080d44a7b",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q09-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q10/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q10\\q10.json",
+        "sha256": "c940ac48a457db8968e9cd932dcb2f9654a53e3f35ad98f49d062f1f466f1758"
+      },
+      "candidateFileSha256": "107dd01882b4f2339659835f8f18e20b7e314bba0d40e42b06c8fd8d319c5774",
+      "candidateDigest": "ff3854f62d48279720fc4804aa2fff384d9a28756488c266283727c55c453a09",
+      "studentDigest": "c957094979a869ba5a4b4158d96e9517c67e45823153ad704130771bde179af7",
+      "assetDigest": "ef45f97e3195a3c21610fd25205919c75973b29d7b0a0652516d2318e3cf7c3a",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "2b7a0583065e7d83a7bf2308f5c89d4dc8a5df3c1ae35ffd5a24fd2afc681b49",
+          "svgSha256": "87cb8b976c4b4ff1bcc93ce5cf82cd90facef0ad74be233d5d62d62089ad393f",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q10-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q11/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q11\\q11.json",
+        "sha256": "5f9db1e534e8a6a3a6eaff90484a04bf3c5ac8c0adecc685cd7c0cafbe4486a6"
+      },
+      "candidateFileSha256": "6b0be14d23e2d6e4150297224ef3240bd8c04f4d6c244a86ca748172f66784bb",
+      "candidateDigest": "b6f8e52285cec55096d65c58643065d966c1265b0f7d8757d683d8d1e68163a7",
+      "studentDigest": "522306fe1543b4bae6ad8b0fe2ba86084df12a5fc24a7e377333b58e157f4631",
+      "assetDigest": "31c1079e340bdbb74dd5f81b7e88685df7bc322543f63921b861481ea665f0e6",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "e17941ff2e5230dfe61f71d1314f537bd2949caf19c3e08fb8f6ac19c50b676e",
+          "svgSha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374",
+          "intendedWidthMm": 55,
+          "studentPath": "figures/q11-1.svg"
+        },
+        {
+          "role": "stem",
+          "specSha256": "82efca4ef7af9f27dc92ab3c2731ca60b82f8c5bd23d047b3e1913c5eda51dab",
+          "svgSha256": "9005125d53af14796b39cc9650aad3f070adfde50e87be9816941f13cc418bb6",
+          "intendedWidthMm": 55,
+          "studentPath": "figures/q11-2.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q12/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q12\\q12.json",
+        "sha256": "7252904b13203394eb0a2ca42f0abe8a0c70ca930f04859d1ef4a6a0d7d18d09"
+      },
+      "candidateFileSha256": "235024ffb2a8f97824e972edb6a494a37ca22f099da73dba8cb7793d401cfa0c",
+      "candidateDigest": "26997964081ec452c9e59f5c763b7d1c5fa3d942e8ea6d3f8a59e0ed4ac4eb73",
+      "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203",
+      "assetDigest": "a236a826ba15723108757c058aad183f0401b4786960e6b272188dda8aaaa17a",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "3ec103a2953a58e0a04ae0d5b38398309925dabe823d94a48bbd008f4d2bb774",
+          "svgSha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q12-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q13/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q13\\q13.json",
+        "sha256": "5972c220ab7e2be1dd6cc8612051e5240cdd49be7fff6cbc4efffe00a79355fa"
+      },
+      "candidateFileSha256": "25e7248f00cab322d2adc1325dc3e56db751b13940b41bbc7cf5746a4aefc5c5",
+      "candidateDigest": "baf574f9079f0c1268392511749195560bb20f7e1bdb2fd71aea2748bef03fe0",
+      "studentDigest": "40dd6419c48a9e36d598953b0c1603c3ddfab826ae1875d1a3a570303b9927d6",
+      "assetDigest": "98c8303604e6473c53e4b240a2478a18b9d514123ad3796f1ea19fbd622d42d2",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "7fc2a2ddb25d62b4355f5103cb2b5a7dad127e2a7990334dd68822f9f3cdfb8d",
+          "svgSha256": "9e9df471c7173c01a876a57280ca7bbb7e1d50da6ec020975320f75a8150b32f",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q13-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q14/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q14\\q14.json",
+        "sha256": "f70582756c9e551fb39b7b04512ee4abdcd357e7629b523342f6f860f6f369b1"
+      },
+      "candidateFileSha256": "b292fbf50255e2d76d6d65a5302c3d1a51bc5657ca0e81d0b78aa9b77583b1e2",
+      "candidateDigest": "6f964c5fd504db5403c09c12371a235e32e70b1de53218116d438bec8246f1e4",
+      "studentDigest": "12a1eb7e685efcbe2d82058a84720701caed9fdf50365c0bce0bd0c65a790eac",
+      "assetDigest": "861bae5db3a71c3eb9e4e85e0f7cc70bd873ff8f90ede7143a29f366b83d9e5b",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "d08e329143c8f8782d6934f5eb55990d5f7fbb7baa59a6c7213577609c4c56b8",
+          "svgSha256": "737459562b14522af802c0440ded60d46470731810652edd859423f6204f2b16",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q14-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q15/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q15\\q15.json",
+        "sha256": "fe43a0a024d83529079ebe05979f1f7f022571e6aa45467af83fd637d7efda73"
+      },
+      "candidateFileSha256": "9c09a5c2f56c528337a9026a26e4f3f636cbbf7665d49af142b3a2b9eb00fca1",
+      "candidateDigest": "fd1a237ca46c5e9c39f8bb8fbea945a41f4ecc811bbf5192be21e24b7ecc57fb",
+      "studentDigest": "7b61a50898da19a33394b5240e64cfca1f8bf0b226e351289d7cc4ad5b2f2df8",
+      "assetDigest": "2d02b8507f5fb738a3ecaad0cc6c1a68417f04d43a2d98ec17ee4a50445b33bb",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "826160f03f51d66693079fbf1809fa3a30e277e769e58fb468dd1069681bfc69",
+          "svgSha256": "e43be1edbb198d4209f09f98fbb084c6102f499d2e857aa07052c48c3a599396",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q15-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q16/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q16\\q16.json",
+        "sha256": "c864051b55dff67a2a8d476908505779acaece3c0274e34855f562f18a5cdc1d"
+      },
+      "candidateFileSha256": "a8b5b724095e59469224a324ab18441ba38ef35579bc97514cf5dd171e20d3c3",
+      "candidateDigest": "098ab641f23e1acc249dbb0f9d52cb1e9f4d1f720fb974b4152412a0b18ea23a",
+      "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f",
+      "assetDigest": "e4610b5fb5c6fdf78471c1d708dd011d4cdebb5d7ae5bf5c7717c17d0b98140b",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "45d73b8804d456ecd263bf8f5072cdcce64ad591e4b1badd4d09fc74077790f2",
+          "svgSha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q16-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q17/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q17\\q17.json",
+        "sha256": "38304b1310ecb86a6978888e2061ba2bc050995a8e29c55d4dbd262bd9af7bbc"
+      },
+      "candidateFileSha256": "efbb216fb478373f5cca01a372ab5c1c5d80f4ed4c77082f02a48c2659505907",
+      "candidateDigest": "4aa88bb769318c63185e52ec0682f9c2adcf22edbc455c59089bfa80dba66785",
+      "studentDigest": "b7a97db53d0f8ebab88a31174afd8395f5899416fed9b2e975e6bcc553de9f24",
+      "assetDigest": "f4d72efae37820a8efe255eb7cfa494463f8e4842de6a7ea232bb0c177feb11d",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "8f0605be9920598e7b43de57d474e66b678b53decaf43797a0a01ea9d3eaf7d7",
+          "svgSha256": "0634afd15ee79eace48bc124efe5329560864412d2d92df373bf179db0d2b2d1",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q17-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q18/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q18\\q18.json",
+        "sha256": "49d7ef70c49f431817a930f68b772fdd44fd60b99bea95c8d7950049db452bdd"
+      },
+      "candidateFileSha256": "a43625ce22872d0bf473fd0abeab8dfe05d8cb5b3da346f50f8f1b3124e0598a",
+      "candidateDigest": "738308ce085a5341d3ddcfe121bbc4fc369d5245872a5ed9ebff343be6c0acba",
+      "studentDigest": "bd5d03ea26191f246c2f704c4c8376716487d9ae0ab8e815266a6115dde372b7",
+      "assetDigest": "3e512605dc7468bb50041b50a21b0dff16043de22727b0b56410e16896a4ceb8",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "f164e60740278b34a83338f2d55cccb7fb74acd9bb5672a6d42f16014976ddbe",
+          "svgSha256": "4e9b91d170a01bcf07c4d6818446082c4b081d7558076eec1eeb1204c81c56e2",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q18-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q19/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q19\\q19.json",
+        "sha256": "a7ce4ed5ca1d48a2a62637707c8ea2b88d0416e3f78f226cfdc0691ede4b089c"
+      },
+      "candidateFileSha256": "0ead403652d24eb77234932f73f7c4b6a49eba42d0e91ce59f5e3277bc1ed093",
+      "candidateDigest": "4aa9efe8adda1c0d3c05b63c9547385eec9fafd7703749f108f13a0644a1119d",
+      "studentDigest": "5091e73711bc83b3582e682f1cd10c2f6156985759fcdc7cc2203e5bc4ca7b3a",
+      "assetDigest": "0c7d86535ee01ec3e4afe5ce6ffda3455e10712a8ca8af20fa328c714cee586b",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "17e28b8591c821b89b1d637e709cf13f893635f3f0d48f2210c8d53fb7d83f13",
+          "svgSha256": "0792bf34fd9213c6d946f3789a5b8baca8ddf8a30f01bee84e2b3f4e64ec8767",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q19-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q21/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q21\\q21.json",
+        "sha256": "f6786d6d000909be51b28ea879859c0963819ba2cde6da92ff60adf946af66bf"
+      },
+      "candidateFileSha256": "6a1a26a58de3af07174d4d165b0184db5266948909256c6b0a482ad3cd19c2de",
+      "candidateDigest": "e34b096f340d4d3bd77d74ddff69ae283e6f1cf40984ab55ad4e50f0be8667ea",
+      "studentDigest": "5d198a08b208a6cb2f331632a436a1fb98befb7f1060e0e48c2e0da7a47291c6",
+      "assetDigest": "2e5f1b55d264bcc05bc8e589dab7295d610eb1f78024141a65d580025ca190db",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "e8a725014cf33845a029f86aeff558f23e1639410dccd599137ed6698c1c18c2",
+          "svgSha256": "ea23ffe8b6b6ffb72f99717f0934d4c8418e690119c09d5bf4958847fb89c4c1",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q21-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q22/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q22\\q22.json",
+        "sha256": "00369f519960428bfcb55f709f2d96abe2be9221b80bad549e542b170cdcced9"
+      },
+      "candidateFileSha256": "7fba172ea6b25421aeeac7197341bb44378040bd73e85ae9ce6b9811729fb16d",
+      "candidateDigest": "41dc5aa5d6a91db713c2433462ac3eaacf51236ee7eda27a17877289ae593ab7",
+      "studentDigest": "cc29ffdc073ac83afa04d2bfcfca6ac0af6c45fec0c63aa5dd707bb5d6890aa9",
+      "assetDigest": "370fc410f752fccc834d8e279be93f74d23e48051aa83338f66580598c72cb70",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "665b084ebe063b4e715deb692002e377a613c75ff49b661c3f85252f9d5e8315",
+          "svgSha256": "25c7c8585e15514d91f02484df88a87b3687e6d2c714345f63874624fb30be8d",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q22-1.svg"
+        }
+      ]
+    },
+    {
+      "privateCandidatePath": "private/q23/candidate.json",
+      "authoredInput": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q23\\q23.json",
+        "sha256": "acc89aa2c0a75427945778b1a28681a749142c6b018db936674d354c6df0dd38"
+      },
+      "candidateFileSha256": "ae1253ff097d85f55961b4d1afb671ab37a6f79ea158ca31a713aaf22bdfaf66",
+      "candidateDigest": "ac42fb71ec64803686a91ebb2e9aaf04213926cb381855c3b74e28e8de95d018",
+      "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6",
+      "assetDigest": "ff6e28b980343582365b3edcbdbb1f1dcfaf77eb12a27c46ebfa49edd3bfb48b",
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "9b8f0f09d24c0d5fd81090b5e2de69a44a8bd714f899c13160e97fb164951d4e",
+          "svgSha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q23-1.svg"
+        }
+      ]
+    }
+  ],
+  "independentReports": "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
+  "gates": {
+    "sourceIdentity": "pending",
+    "taxonomy": "pending",
+    "rights": "pending",
+    "similarity": "pending"
+  }
+}

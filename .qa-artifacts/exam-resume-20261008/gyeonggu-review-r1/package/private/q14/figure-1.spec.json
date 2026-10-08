@@ -1,0 +1,71 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "angle_label_distance": 26,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "O": [
+      0.0,
+      0.0
+    ],
+    "M": [
+      0.0,
+      64.0
+    ],
+    "A": [
+      -48.0,
+      64.0
+    ],
+    "B": [
+      48.0,
+      64.0
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "OM": [
+      "O",
+      "M"
+    ],
+    "OA": [
+      "O",
+      "A"
+    ]
+  },
+  "labels": {
+    "O": "O",
+    "A": "A",
+    "B": "B",
+    "M": {
+      "text": "M",
+      "dx": 14,
+      "dy": -12
+    }
+  },
+  "circles": {
+    "c": {
+      "center": "O",
+      "radius": 80
+    }
+  },
+  "angles": {
+    "angle_M": {
+      "vertex": "M",
+      "points": [
+        "O",
+        "A"
+      ],
+      "right": true,
+      "radius": 8
+    }
+  }
+}

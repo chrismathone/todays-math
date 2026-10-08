@@ -1,6 +1,6 @@
 {
-  "version": 4,
-  "createdAt": "2026-10-08T04:38:50.112Z",
+  "version": 6,
+  "createdAt": "2026-10-08T06:56:30.388Z",
   "branch": "chrismathone/exam-extraction-resume-20261008",
   "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-3.md",
   "latestDirectiveSha256": "679641b872a0eac3a277a36d329b77d1b2e0d004b66e9dfb20d359684105ed11",
@@ -31,9 +31,7 @@
     "wholeQuestionReviewPassed": 12,
     "verifiedTwins": 0,
     "loadableTwins": 0,
-    "heldBeforeAuthoring": [
-      7
-    ],
+    "heldBeforeAuthoring": [],
     "taxonomyInitiallyProposed": 16,
     "taxonomyInitiallyHeld": [
       10,
@@ -60,7 +58,12 @@
       17,
       20
     ],
-    "currentSourceQuestionIdentityConfirmed": 4
+    "currentSourceQuestionIdentityConfirmed": 21,
+    "excludedBeforeAuthoring": [
+      7
+    ],
+    "originalPaperScore": 100,
+    "currentDraftScore": 92
   },
   "stages": [
     {
@@ -70,12 +73,30 @@
     },
     {
       "id": "source-extraction-content-dedup",
-      "status": "incomplete",
-      "evidence": "Source4 prior content links retained; worker executing remaining17. Next5 worker performing question-only source extraction, neither stage complete"
+      "status": "Bumil21 original question content/identity confirmed; next5 source106 extracted105all-component-paired; allN scope incomplete",
+      "evidence": {
+        "questions": 21,
+        "scope": "first4 + new17 whole printed question content and original2025school/date comparison",
+        "remainingContentIdentityHolds": 0,
+        "originalReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/source-review.json",
+          "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+        },
+        "remainingReview": {
+          "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+          "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+        },
+        "new17Commit": "c348f0277",
+        "sourceCurrentTwinJoin": {
+          "path": ".qa-artifacts/exam-resume-20261008/bumil-source-twin-join-r2.json",
+          "sha256": "567cc941c2a76f28a70f0a9ba0c8bb5b51fbf777d6da736196ee2ea7181ea4dd"
+        },
+        "rightsCustodyNative": "still pending; not cleared by content/identity"
+      }
     },
     {
       "id": "new-twin-authoring",
-      "status": "20-current-authored-22-historical-versions-1-preauthor-curriculum-hold",
+      "status": "Bumil20current-authored-1-curriculum-excluded; Gyeonggu/Gyeongsan-authoring-underway",
       "evidence": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/candidate-index-r2.json"
     },
     {
@@ -135,16 +156,20 @@
     }
   ],
   "currentReadScope": {
-    "capturedAt": "2026-10-07 15:57:15.290971+00",
+    "capturedAt": "2026-10-08 04:53:45.769124+00",
     "readOnly": "on",
+    "isolation": "repeatable read",
     "unitCount": 22,
     "eligibleFamilyCount": 302,
-    "registryCount": 299,
     "protectedRows": 82,
     "unlocked": 0,
+    "identityMismatches": 0,
     "correctionsMismatch": 0,
     "globallyDeduplicated": false,
-    "observationIsNotCurrentDatabase": true
+    "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+    "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+    "priorSnapshotPreserved": true,
+    "semanticClassificationNotInferred": true
   },
   "nextFive": {
     "examCount": 5,
@@ -177,7 +202,41 @@
     ],
     "sourceIdentityYearHold": [
       "경신중"
-    ]
+    ],
+    "actualNewSourceExtraction": {
+      "parentQuestions": 106,
+      "multipleChoiceParents": 87,
+      "writtenParents": 19,
+      "nestedSubquestions": 15,
+      "leafAssessmentItems": 116,
+      "verifiedQuestionContent": 106,
+      "selectedHwpPdfQuestionAllComponentsMatched": 105,
+      "selectedPairScoreExceptionQuestions": 1,
+      "entireExamPairCertified": 0,
+      "fullGradeApprovals": 0,
+      "rightsApprovals": 0,
+      "newTwinsAuthored": 0,
+      "verifiedTwins": 0,
+      "questionsWithUniversalGradeMappingRenderRightsHolds": 106,
+      "sourceIdentityHoldQuestions": 17,
+      "specificGradeMethodRiskQuestions": 33,
+      "independentSolvingConflictHoldQuestions": 1,
+      "sourceLiteralNumericalAccuracyHoldQuestions": 1,
+      "currentDbDedupCompleted": false,
+      "workerDbReads": 0,
+      "legacyDraftsReferenceOnly": 48,
+      "legacySolutionsReferenceOnly": 43,
+      "legacyCropsReferenceOnly": 71,
+      "selectedPairParentScoreSum": 495,
+      "originalReferenceParentScoreSum": 500
+    },
+    "actualSourceIndex": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/extraction-index-r1.json",
+      "sha256": "b2c6f1486d502a0d6a201d5968aec1657b9f50ceab826504fccf80dee07454d9"
+    },
+    "actualSourceCommit": "4cc9278da",
+    "legacyFiguresAndDraftsStillReference": true,
+    "authoringUnderwayButNotCountedBeforeFrozenCommit": true
   },
   "upgradeImplementationLedger": [
     {
@@ -1001,24 +1060,39 @@
     "ref": "origin/main",
     "sha": "6ecf0ee9942924f0b345b2d87f7674caea75be5b",
     "divergence": "47\t86",
-    "integrationStatus": "pending-after-preserved-owned-commit",
-    "noCachedRefAsCurrent": true
+    "integrationStatus": "integrated-into-feature",
+    "noCachedRefAsCurrent": true,
+    "upstreamIntegrated": "6ecf0ee99",
+    "mergeCommit": "7e1e8080a",
+    "ownedFinalizationCommit": "59c827e42",
+    "postIntegrationTestsPassed": 19,
+    "postIntegrationReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-final-review-summary-r2-after-main.json",
+      "sha256": "596efafc5e73b56340e4138e4b85fc904e6a489c5d0f41c3a280ec6f7eb841ae"
+    },
+    "mainWorktreeWritten": false,
+    "pushed": false
   },
   "activeWork": [
     {
+      "worktree": "exam-twin-author-geometry-20261008",
+      "scope": "Gyeonggu23 source items; author reports22 new/20 newSVG/1 excluded20, awaiting final frozen commit",
+      "status": "working; not current verified tally"
+    },
+    {
+      "worktree": "exam-twin-author-algebra-20261008",
+      "scope": "Gyeongsan25 new twins after final source packet, strong function-range grade gate and source23 target semantics",
+      "status": "working"
+    },
+    {
       "worktree": "exam-twin-source-identity-20261008",
-      "scope": "remaining17 Bumil original content identity audit",
-      "status": "turn-started"
+      "scope": "q07 rejection complete9f3a31596; available for independent fresh blind review",
+      "status": "completed independent scoped task; whole goal continues"
     },
     {
       "worktree": "exam-twin-next-five-20261008",
-      "scope": "actual5-paper question-only extraction and HWP/PDF comparison",
-      "status": "turn-started"
-    },
-    {
-      "worktree": "exam-twin-author-geometry-20261008",
-      "scope": "independent q05/q10/q18 classification proposals/holds",
-      "status": "turn-started"
+      "scope": "actual106 source-parent extraction complete4cc9278da; individual source/grade/rights holds remain",
+      "status": "completed independent scoped task; whole goal continues"
     }
   ],
   "continuationWatch": {
@@ -1026,5 +1100,87 @@
     "automationId": "358474c8-24be-49ee-b3c9-55fbebf68de4",
     "state": "active; primary working; no stop/complete/blocked marker",
     "role": "read-only continuity monitor, not author"
-  }
+  },
+  "taxonomyAudit": {
+    "peerCommit": "58f7adb26",
+    "parentMerge": "88bc25633",
+    "geometryPeer": {
+      "scope": [
+        5,
+        10,
+        18
+      ],
+      "supportedFullAssignments": 0,
+      "held": 3,
+      "inputs": ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/input-bindings.json",
+      "reports": [
+        ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/q05.classification.json",
+        ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/q10.classification.json",
+        ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/q18.classification.json"
+      ]
+    },
+    "parentPeer": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/parent-peer/audit-r1.json",
+      "sha256": "7773dc4c57aad2d43a45e1034498971feccbde5110b809a91ccd865ffff43ad2",
+      "scope": [
+        11,
+        14,
+        15,
+        17,
+        20
+      ],
+      "supportedFullAssignments": 0,
+      "held": 5,
+      "existingRuleSeedObservations": 900,
+      "notUpgradedRulesOrGradeApproval": true
+    }
+  },
+  "bumilSourceIdentity": {
+    "questions": 21,
+    "scope": "first4 + new17 whole printed question content and original2025school/date comparison",
+    "remainingContentIdentityHolds": 0,
+    "originalReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/source-review.json",
+      "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+    },
+    "remainingReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+      "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+    },
+    "new17Commit": "c348f0277",
+    "sourceCurrentTwinJoin": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-source-twin-join-r2.json",
+      "sha256": "567cc941c2a76f28a70f0a9ba0c8bb5b51fbf777d6da736196ee2ea7181ea4dd"
+    },
+    "rightsCustodyNative": "still pending; not cleared by content/identity"
+  },
+  "bumilQ07": {
+    "status": "rejected",
+    "scope": "Faithful original assessment/core relationship cannot enter2015-middle3 authoring",
+    "adjudication": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/adjudication.json",
+      "sha256": "2b350b644d391486e9ca66c8995366ad1ad13e351ff6dfc910b2f61a8337bd77"
+    },
+    "workerCommit": "9f3a31596",
+    "historicalHoldUnchanged": true,
+    "newCandidateCount": 0,
+    "parentMerge": "7851b1316"
+  },
+  "current20Print": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-current20-student-bankcap-r2/student-paper.pdf",
+    "sha256": "3d9109de6a074651d250ce0011fd1c0d73b860f37b8a38520d3fa4ea7c07e5db",
+    "visualInspection": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-current20-student-bankcap-r2/visual-inspection.json",
+      "sha256": "2fdc20e561d4be7f64bec88673e5987c9e3048f1d7ef9ffee0f3624524bea346"
+    },
+    "questionCount": 20,
+    "pointTotal": 92,
+    "localA4Pages": 18,
+    "allPagePngsViewed": true,
+    "bankImageWidthCapMm": 70,
+    "nativeReaderParity": false,
+    "physicalPaperPrintApproved": false,
+    "firstAttemptPreservedAsFailedLayout": true
+  },
+  "reportSha256": "5d5176279ce185cececf8731e203d7eaef326cb5192149d8749bf99cd70c6036"
 }

@@ -9,6 +9,10 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
+import {
+  FIGURE_MAX_WIDTH_MM,
+  figurePrintWidthMm,
+} from "../../../src/lib/figurePrintSize";
 import { UI_KATEX_OPTIONS } from "../../../src/lib/math/katexRender";
 import { preprocessMarkdown } from "../../../src/lib/math/markdownPreprocess";
 import { checkPaperRender } from "../../../src/lib/testchanger/mathRenderQa";
@@ -63,7 +67,11 @@ function markdown(text: string): string {
 }
 
 async function main() {
-  const [newOutputDirectory, mode, ...files] = process.argv.slice(2);
+  const [newOutputDirectory, mode, ...argumentsAfterMode] =
+    process.argv.slice(2);
+  const bankCap = argumentsAfterMode.includes("--bank-cap");
+  const files = argumentsAfterMode.filter((arg) => arg !== "--bank-cap");
+  assert(!files.some((arg) => arg.startsWith("--")), "Unknown preview flag");
   assert(
     newOutputDirectory && ["student", "review"].includes(mode) && files.length,
   );
@@ -94,16 +102,19 @@ async function main() {
       const figure = (a: (typeof b.assets)[number]) => {
         const file = path.basename(a.studentPath);
         fs.copyFileSync(a.sourceSvgPath, path.join(output, "figures", file));
-        return `<figure style="width:${a.intendedWidthMm}mm"><img src="figures/${file}" alt="새 도형 ${c.questionNumber}"></figure>`;
+        const widthMm = bankCap
+          ? figurePrintWidthMm(a.intendedWidthMm)
+          : a.intendedWidthMm;
+        return `<figure style="width:${widthMm}mm"><img src="figures/${file}" alt="새 도형 ${c.questionNumber}"></figure>`;
       };
       const figures = b.assets
         .filter((a) => a.role === "stem")
         .map(figure)
         .join("");
-      const choices = c.choices
+      const choices = b.student.choices
         .map(
           (v: string, i: number) =>
-            `<li><span class="mark">${marks[i]}</span><div>${markdown(v)}${b.assets
+            `<li><span class="mark">${marks[i]}</span><div>${b.assets.some((a) => a.role === `choice:${i + 1}`) && /^!\[[^\]]*\]\([^\n]+\)$/.test(v.trim()) ? "" : markdown(v)}${b.assets
               .filter((a) => a.role === `choice:${i + 1}`)
               .map(figure)
               .join("")}</div></li>`,
@@ -121,7 +132,7 @@ async function main() {
   const htmlPath = path.join(output, "preview.html");
   const finalHtml = html.replace(
     "</style>",
-    ".graph-choices{grid-template-columns:1fr 1fr}.graph-choices li{break-inside:avoid}.stem-figures{display:flex;justify-content:center;gap:4mm;align-items:center;flex-wrap:wrap}.stem-figures figure{margin:14px 0}@media print{.title{display:none}article{padding:14px 0}table{margin:10px 0}th,td{padding:4px 10px}p{margin:7px 0}.choices{break-inside:avoid}}</style>",
+    ".graph-choices{grid-template-columns:repeat(3,minmax(0,1fr))}.graph-choices li{break-inside:avoid}.graph-choices li>div{min-width:0;flex:1}.graph-choices figure{max-width:100%}.stem-figures{display:flex;justify-content:center;gap:4mm;align-items:center;flex-wrap:wrap}.stem-figures figure{margin:14px 0}@media print{.title{display:none}article{padding:14px 0}table{margin:10px 0}th,td{padding:4px 10px}p{margin:7px 0}.choices{break-inside:avoid}}</style>",
   );
   fs.writeFileSync(htmlPath, finalHtml, { flag: "wx" });
   const browser = await chromium.launch({ headless: true });
@@ -200,6 +211,18 @@ async function main() {
       JSON.stringify(
         {
           mode,
+          bankImageWidthCapMm: bankCap ? FIGURE_MAX_WIDTH_MM : null,
+          nativeReaderParity: false,
+          effectiveFigureWidths: bindings.flatMap((b) =>
+            b.assets.map((a) => ({
+              n: b.candidate.questionNumber,
+              role: a.role,
+              requestedWidthMm: a.intendedWidthMm,
+              displayedWidthMm: bankCap
+                ? figurePrintWidthMm(a.intendedWidthMm)
+                : a.intendedWidthMm,
+            })),
+          ),
           questionCount: bindings.length,
           productMathRendererSafe: true,
           redOrRawMathCount: 0,

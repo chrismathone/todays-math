@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 19,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q19",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "정사각형 $\\mathrm{ABCD}$의 둘레는 $20\\,\\mathrm{cm}$이다. $\\mathrm{BC}$를 지름으로 하는 반원은 정사각형 안쪽에 있고, 중심을 O라 한다. $\\mathrm{E}$는 선분 $\\mathrm{CD}$의 내부에 있고, $\\mathrm{AE}$는 반원에 점 $\\mathrm{F}$에서 접한다. F는 선분 AE의 내부에 있다.\n모서리 $\\mathrm{D}$에서 접선의 끝점 $\\mathrm{E}$까지의 길이 $\\overline{\\mathrm{DE}}$는?",
+  "choices": [
+    "$\\frac54\\,\\mathrm{cm}$",
+    "$\\frac52\\,\\mathrm{cm}$",
+    "$\\frac{15}{4}\\,\\mathrm{cm}$",
+    "$5\\,\\mathrm{cm}$",
+    "$\\frac{25}{4}\\,\\mathrm{cm}$"
+  ],
+  "answer": "③",
+  "solution": "정사각형의 한 변은 $20\\div4=5\\,\\mathrm{cm}$이다. $\\overline{\\mathrm{CE}}=x$라 하자.\n점 A에서의 두 접선 길이가 같아 $\\overline{\\mathrm{AF}}=\\overline{\\mathrm{AB}}=5$이고, 점 E에서도 $\\overline{\\mathrm{EF}}=\\overline{\\mathrm{EC}}=x$이다. 따라서 $\\overline{\\mathrm{AE}}=5+x$이다.\n한편 $\\overline{\\mathrm{DE}}=5-x$이므로 직각삼각형 $\\mathrm{ADE}$의 피타고라스 정리는 $(5+x)^2=5^2+(5-x)^2$이다.\n식을 전개하여 같은 항을 없애면 $20x=25$이므로 $x=\\frac54$이다. 따라서 $\\overline{\\mathrm{DE}}=5-\\frac54=\\frac{15}{4}\\,\\mathrm{cm}$이고 정답은 ③이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "squarePerimeter": 20,
+      "BC": "interior semicircle diameter",
+      "EInsideCD": true,
+      "AE": "tangent at F",
+      "FInsideAE": true,
+      "unit": "cm"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q19.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "사각형안의반원에접한AE길이로정사각형변을구한다.",
+    "after": "프레임둘레로변을정한뒤접선끝점이모서리에서떨어진DE길이를복구한다.",
+    "sharedConcept": "두점의접선길이와정사각형속피타고라스",
+    "sharedProcedure": "두접선길이합→정사각형변에서남는높이→피타고라스전개→양의내부길이."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-16",
+      "9수02-12",
+      "9수04-12",
+      "9수02-05"
+    ],
+    "allowedProcedure": "두접선길이합→정사각형변에서남는높이→피타고라스전개→양의내부길이.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "E와F의내부조건을명시한다. 원의거듭제곱이나원과비례가필요없다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": []
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 1개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "두접선길이합→정사각형변에서남는높이→피타고라스전개→양의내부길이.",
+      "risk": "E와F의내부조건을명시한다. 원의거듭제곱이나원과비례가필요없다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-19",
+          "text": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-16",
+          "text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-12",
+          "text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-12",
+          "text": "사각형의 성질을 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-05",
+          "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 19,
+    "sourceContentSha256": "cd523207621358b6b210ed65d8fdec2611f64de14a0e86910ac446df473f1d10",
+    "sourceDigest": "38ecdedb7b1cafb5a4c3161bfb67a47cae104d068606fdf4ac5dcbdcf9adf3a0",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/18",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q19-part1.png",
+        "sha256": "3a790f496210e36577a74028b48fd14011c1505bcdeb9f88ccc70fb72586f4d2",
+        "page": 6,
+        "column": 0
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "unitSection": "원의 접선",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 485,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|원과 직선|11",
+            "grade": "중3",
+            "unitSection": "원의 접선",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "11",
+            "rpmTitle": "반원에서의 접선"
+          },
+          {
+            "key": "3-2|원과 직선|16",
+            "grade": "중3",
+            "unitSection": "원의 접선",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "16",
+            "rpmTitle": "원에 외접하는 사각형의 응용"
+          }
+        ],
+        "fullRuleComparison": "11은 반원 양끝 높이/지름을 주는 사다리꼴,16은 전체원과 직사각형세변 접촉이다. 새 정사각형 둘레에서 내부접선점의 모서리거리 DE를 구하는 전체반원 규칙은 확인되지 않는다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}
