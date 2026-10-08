@@ -217,6 +217,30 @@
 .eqp-head > button {
   flex-shrink: 0;
 }
+.eqp-dialog.eqp-replace {
+  overflow-wrap: anywhere;
+}
+.eqp-replace
+  :is(.eqp-head, .eqp-footer, .eqp-result-head, .eqp-meta, .eqp-pagination) {
+  flex-wrap: wrap;
+}
+.eqp-replace :is(.eqp-head > div, .eqp-footer p) {
+  flex: 1 1 160px;
+  min-width: 0;
+}
+.eqp-replace .eqp-search {
+  flex: 1 1 100%;
+  flex-wrap: wrap;
+}
+.eqp-replace .eqp-search label {
+  flex-basis: 100%;
+}
+.eqp-replace .eqp-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+.eqp-replace :is(button, input, select) {
+  max-width: 100%;
+}
 @media (max-width: 860px) {
   .eqp-dialog {
     width: calc(100vw - 32px);
