@@ -26,23 +26,31 @@
  * ## 재시도 상한
  *
  * 재료를 `MAX_DRAWS` 번 뽑아도 다섯을 못 채우면 **사유를 달고 던진다** — 모자란 문항을 조용히 내지 않는다.
+ *
+ * ## 2단계(2026-10-08) — 보기 다섯을 짓는 고리는 `calcJudge.ts` 로 갔다
+ *
+ * 곱셈 · 나눗셈 · 식의 값이 같은 문형을 쓰게 되어 짓기(같은 꼴 모으기 · 틀린 값의 세 갈래 · 부호 상한 · 오른쪽 값
+ * 겹침 · 재시도 상한)를 한 벌로 뽑았다. 여기 남은 것은 **덧셈 · 뺄셈의 사정**이다 — 식의 글 · 풀이 · 이 계산의
+ * 실제 실수 · 원천 어댑터. 🔴 산출물은 한 글자도 안 바뀐다(`judgeStep1Pin.test.ts` 가 실린 36행을 얼려 두었다).
  */
-import { numericMistakes } from "../../engine/deriveFormats";
-import { intBetween, pick } from "../../elementary/rng";
+import { intBetween } from "../../elementary/rng";
 import type { Rng } from "../../elementary/types";
 import { generateMiddleProblem } from "../generate";
 import { m1Rational, type M1Q as Q } from "../m1Calc";
 
-import type {
-  JudgeAsk,
-  JudgeBody,
-  JudgeDefinition,
-  JudgeOption,
-} from "./contract";
+import {
+  buildTruthBody,
+  CALC_STYLE,
+  sameValue,
+  type Material,
+  type Mistake,
+} from "./calcJudge";
+import type { JudgeBody, JudgeDefinition, TruthAsk } from "./contract";
 import { signedSumTruth } from "./signedSum";
 
-const { q, addQ, subQ, negQ, nice, lcm, texQ, texSigned, texRawFrac } =
-  m1Rational;
+export { MAX_DRAWS } from "./calcJudge";
+
+const { q, addQ, subQ, negQ, lcm, texQ, texSigned, texRawFrac } = m1Rational;
 
 const GRADE = "중1";
 const SECTION = "유리수의 덧셈과 뺄셈";
@@ -51,9 +59,6 @@ const SRC = {
   뺄셈: "1-1|정수와 유리수의 계산|03",
   혼합: "1-1|정수와 유리수의 계산|04",
 } as const;
-
-/** 재료를 이만큼 뽑아도 다섯을 못 채우면 멈춘다. */
-export const MAX_DRAWS = 120;
 
 export type Term = { op: "+" | "-"; v: Q };
 /** 보기 하나의 재료 — 왼쪽 식과 그 **정확한 값**. */
@@ -75,12 +80,7 @@ function evalTerms(terms: readonly Term[]): Q {
   );
 }
 
-/** 교차곱으로 같은 값인가 — 약분 여부에 기대지 않는다. */
-function sameValue(a: Q, b: Q): boolean {
-  return a.n * b.d === b.n * a.d;
-}
-
-function lhsTex(terms: readonly Term[]): string {
+export function lhsTex(terms: readonly Term[]): string {
   return terms
     .map((t, i) => (i === 0 ? texSigned(t.v) : `${t.op}${texSigned(t.v)}`))
     .join("");
@@ -93,7 +93,7 @@ function lhsTex(terms: readonly Term[]): string {
  * 정답지 한 쪽(8문항 · 2단)에 들어가야 해서 짧게 쓴다(`JudgeBody` 머리말).
  * 앞 단계와 글자가 같은 단계는 빼고, 딱 떨어지는 모은 분수는 안 적는다(`=-8=-8` 이 찍힌 전례 — m1Calc `addSolution`).
  */
-function workTex(terms: readonly Term[], value: Q): string {
+export function workTex(terms: readonly Term[], value: Q): string {
   const flipped = terms.some((t) => t.op === "-");
   const added = terms.map((t) => (t.op === "-" ? negQ(t.v) : t.v));
   const lcd = added.reduce((acc, v) => lcm(acc, v.d), 1);
@@ -119,18 +119,6 @@ function workTex(terms: readonly Term[], value: Q): string {
 }
 
 // ── 틀린 값의 후보 ─────────────────────────────────────────────────────────
-
-/**
- * 틀린 값 하나 — 갈래가 셋이다.
- *   `실수`  이 계산에서 학생이 실제로 하는 실수로 계산한 값(까닭 문장이 그 값에 대해 참이다)
- *   `부호`  계산 결과의 부호만 반대로 — 한 문항에 **하나까지**(넷이 다 부호면 부호만 보고 지워 낸다)
- *   `공용`  공용 오답 자리 `numericMistakes` 가 흔든 값(정답 ±1 · 분자 +1 …) — 계산해 봐야 갈린다
- */
-type MistakeKind = "실수" | "부호" | "공용";
-type Mistake = { value: Q; reason: string; kind: MistakeKind };
-
-/** 공용 후보에는 «어디서 틀렸나»를 지어내지 않는다 — 틀린 자리는 오른쪽 값이다. */
-const GENERIC_REASON = "계산 결과와 다름";
 
 /**
  * 이 계산에서 학생이 실제로 하는 실수 — **그 실수로 계산한 값**이다(까닭 문장이 그 값에 대해 참이어야 한다).
@@ -184,197 +172,28 @@ function domainMistakes(e: Expr): Mistake[] {
   return out;
 }
 
-/** 공용 오답 자리의 값 — `\frac` 로 찍혀 오므로 수로 읽어 둔다(지면에는 `\dfrac` 로 다시 찍는다). */
-function readMistakeValue(tex: string): Q | null {
-  const m = /^\$(-)?(?:\\d?frac\{(\d+)\}\{(\d+)\}|(\d+))\$$/.exec(tex.trim());
-  if (!m) return null;
-  const [, minus, fn, fd, int] = m;
-  const n = Number(fn ?? int);
-  const d = Number(fd ?? "1");
-  if (!Number.isSafeInteger(n) || !Number.isSafeInteger(d) || d === 0)
-    return null;
-  return q(minus ? -n : n, d);
-}
-
-/** `numericMistakes` 가운데 자릿수를 통째로 바꾸는 둘은 뺀다 — 학생이 크기만 보고 지워 낸다. */
-const WEAK_TAGS = new Set(["times-ten", "div-ten"]);
-
-function genericMistakes(e: Expr): Mistake[] {
-  const out: Mistake[] = [];
-  for (const m of numericMistakes(`$${texQ(e.value)}$`)) {
-    if (WEAK_TAGS.has(m.tag)) continue;
-    const v = readMistakeValue(m.value);
-    if (v) out.push({ value: v, reason: GENERIC_REASON, kind: "공용" });
-  }
-  return out;
-}
-
-const digits = (v: Q) => `${Math.abs(v.n)}${v.d === 1 ? "" : v.d}`.length;
-
-/** 틀린 값으로 쓸 수 있나 — 참값과 다르고 · 같은 종류 · 비슷한 자릿수 · 지면에 낼 만큼 깔끔. */
-function usable(e: Expr, wrong: Q, kindIsInt: boolean): boolean {
-  if (sameValue(wrong, e.value)) return false;
-  if ((wrong.d === 1) !== kindIsInt) return false;
-  if (!nice(wrong, 300, 60)) return false;
-  return Math.abs(digits(wrong) - digits(e.value)) <= 1;
-}
-
-/** 갈래를 고르는 무게 — 실제 실수를 가장 많이, 부호 반대는 가장 적게. */
-const KIND_WEIGHT: Record<MistakeKind, number> = { 실수: 5, 공용: 3, 부호: 2 };
-
-/**
- * 재료 하나에 붙일 틀린 값 — 쓸 수 있는 후보가 있는 갈래 가운데 무게대로 하나, 그 안에서 하나. 못 고르면 null.
- * `allowSign` 이 거짓이면 부호 반대를 안 쓴다(한 문항에 하나까지). 공용 후보의 부호 반대는 `부호` 갈래와 같은 값이라 뺀다.
- */
-function chooseMistake(
-  rng: Rng,
-  e: Expr,
-  kindIsInt: boolean,
-  allowSign: boolean,
-): Mistake | null {
-  const ok = (m: Mistake) => usable(e, m.value, kindIsInt);
-  const flipped = negQ(e.value);
-  const pools: Record<MistakeKind, Mistake[]> = {
-    실수: domainMistakes(e).filter((m) => m.kind === "실수" && ok(m)),
-    부호: allowSign
-      ? domainMistakes(e).filter((m) => m.kind === "부호" && ok(m))
-      : [],
-    // 공용 후보는 실제 실수가 아니라 정답을 흔든 값이다 — 분모가 항들의 최소공배수의 약수가 아니면
-    // «나올 수 없는 분모»라 계산 없이 지워 낸다(2026-10-08 표본 — 분모 5 · 2 · 5 인 식에 $-\frac{19}{11}$).
-    공용: genericMistakes(e).filter(
-      (m) =>
-        ok(m) &&
-        !sameValue(m.value, flipped) &&
-        e.terms.reduce((acc, t) => lcm(acc, t.v.d), 1) % m.value.d === 0,
-    ),
-  };
-  const kinds = (Object.keys(pools) as MistakeKind[]).filter(
-    (k) => pools[k].length > 0,
-  );
-  if (kinds.length === 0) return null;
-  const total = kinds.reduce((acc, k) => acc + KIND_WEIGHT[k], 0);
-  let roll = rng() * total;
-  let kind = kinds[kinds.length - 1]!;
-  for (const k of kinds) {
-    roll -= KIND_WEIGHT[k];
-    if (roll < 0) {
-      kind = k;
-      break;
-    }
-  }
-  return pick(rng, pools[kind]);
-}
-
-// ── 보기 다섯 ─────────────────────────────────────────────────────────────
-
-/**
- * 보기 하나와 그 해설 조각 — 판단 근거(`brief` = 왼쪽을 계산한 값) · 정답일 때의 풀이(`detail` = 계산 과정 전체) ·
- * 거짓이면 «어디가 틀렸나»(`why`). 해설을 짜는 것은 등록부다(`JudgeBody` 머리말 — 정답지 한 쪽에 8문항).
- */
-function option(e: Expr, shown: Q, mistake: Mistake | null): JudgeOption {
-  const work = workTex(e.terms, e.value);
+/** 덧셈 · 뺄셈 식 하나 → 공용 짓기의 재료. 공용 후보의 분모는 항들의 최소공배수의 약수일 때만 쓴다. */
+export function addSubMaterial(e: Expr): Material {
   return {
-    text: `$${lhsTex(e.terms)}=${texQ(shown)}$`,
-    claimedTrue: mistake === null,
-    brief: `$${texQ(e.value)}$`,
-    detail:
-      mistake === null
-        ? `${work}이므로 옳다.`
-        : `${work}이므로 옳지 않다(${mistake.reason}).`,
-    why: mistake === null ? null : mistake.reason,
+    left: lhsTex(e.terms),
+    value: e.value,
+    shape: shapeOf(e),
+    work: () => workTex(e.terms, e.value),
+    mistakes: () => domainMistakes(e),
+    denominatorBound: e.terms.reduce((acc, t) => lcm(acc, t.v.d), 1),
   };
 }
 
 /**
- * 보기 다섯을 짓는다 — 첫째가 «다른 하나»다(차례는 등록부가 섞는다).
+ * 보기 다섯을 짓는다 — 짓기 고리는 `calcJudge.ts` 의 `buildTruthBody` 다(첫째가 «다른 하나» · 차례는 등록부가 섞는다).
  * `draw` 를 밖에서 받는 까닭은 재시도 상한을 시험이 직접 재게 하려는 것이다.
  */
 export function buildCalcJudgeBody(
   rng: Rng,
-  ask: JudgeAsk,
+  ask: TruthAsk,
   draw: Draw,
 ): JudgeBody {
-  /**
-   * 꼴마다 따로 모은다 — **먼저 다섯이 차는 꼴**을 쓴다. 첫 재료의 꼴로 못 박으면 드문 꼴
-   * («네 항 모두 분수인데 결과는 정수»)에 걸린 씨앗이 상한까지 헛돈다(2026-10-08 실측 — mix4).
-   */
-  type Build = {
-    lefts: Set<string>;
-    rights: Set<string>;
-    options: JudgeOption[];
-    facts: Record<string, number>;
-    /** 부호 반대를 이미 썼나 — 한 문항에 하나까지 */
-    signUsed: boolean;
-  };
-  const builds = new Map<string, Build>();
-  let draws = 0;
-  for (;;) {
-    if (draws >= MAX_DRAWS) {
-      const best = Math.max(
-        0,
-        ...[...builds.values()].map((b) => b.options.length),
-      );
-      throw new Error(
-        `보기 다섯을 같은 꼴로 못 채웠다 — 재료 ${MAX_DRAWS}번 뽑기 초과(가장 많이 찬 꼴이 ${best}개까지)`,
-      );
-    }
-    draws += 1;
-    const e = draw(rng);
-    const shape = shapeOf(e);
-    let b = builds.get(shape);
-    if (!b) {
-      b = {
-        lefts: new Set(),
-        rights: new Set(),
-        options: [],
-        facts: {},
-        signUsed: false,
-      };
-      builds.set(shape, b);
-    }
-    const left = lhsTex(e.terms);
-    if (b.lefts.has(left)) continue;
-    // 첫째는 «다른 하나» — «옳지 않은 것» 물음이면 거짓, «옳은 것» 물음이면 참.
-    const odd = b.options.length === 0;
-    const wantTrue = ask === "옳지 않은 것" ? !odd : odd;
-    const mistake = wantTrue
-      ? null
-      : chooseMistake(rng, e, e.value.d === 1, !b.signUsed);
-    if (!wantTrue && mistake === null) continue;
-    const shown = mistake ? mistake.value : e.value;
-    const right = texQ(shown);
-    // 오른쪽 값이 겹치는 보기는 안 둔다 — 식이 달라도 같은 값이 둘이면 보기 다섯이 덜 갈린다.
-    if (b.rights.has(right)) continue;
-    b.lefts.add(left);
-    b.rights.add(right);
-    if (mistake?.kind === "부호") b.signUsed = true;
-    const i = b.options.length;
-    b.facts[`s${i}n`] = e.value.n;
-    b.facts[`s${i}d`] = e.value.d;
-    b.facts[`w${i}n`] = shown.n;
-    b.facts[`w${i}d`] = shown.d;
-    b.options.push(option(e, shown, mistake));
-    if (b.options.length === 5) {
-      b.facts.draws = draws;
-      return finish(ask, b.options, b.facts);
-    }
-  }
-}
-
-function finish(
-  ask: JudgeAsk,
-  options: JudgeOption[],
-  facts: Record<string, number>,
-): JudgeBody {
-  return {
-    lead:
-      ask === "옳지 않은 것"
-        ? "다음 중 계산이 옳지 않은 것은?"
-        : "다음 중 계산이 옳은 것은?",
-    briefLead: "계산하면",
-    options,
-    facts,
-  };
+  return buildTruthBody(rng, ask, (r) => addSubMaterial(draw(r)), CALC_STYLE);
 }
 
 // ── 원천 유형 → 재료 (어댑터) ────────────────────────────────────────────────

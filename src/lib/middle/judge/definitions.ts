@@ -9,8 +9,8 @@
  * | 1 | ① 중1 유리수의 덧셈과 뺄셈 — 계산 판정 셋(`addSub.ts`) | 2026-10-08 |
  */
 import { ADD_SUB_JUDGES } from "./addSub";
-import type { JudgeDefinition } from "./contract";
+import type { AnyJudgeDefinition } from "./contract";
 
-export const JUDGE_DEFINITIONS: readonly JudgeDefinition[] = [
+export const JUDGE_DEFINITIONS: readonly AnyJudgeDefinition[] = [
   ...ADD_SUB_JUDGES,
 ];

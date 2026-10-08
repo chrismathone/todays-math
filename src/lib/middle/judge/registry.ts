@@ -27,12 +27,20 @@ import {
   JUDGE_FAMILY_ID,
   judgeFamilyKey,
   judgeKeyOf,
+  type AnyJudgeDefinition,
+  type CompareAsk,
+  type CompareBody,
+  type CompareJudgeDefinition,
   type JudgeAsk,
   type JudgeBody,
   type JudgeDefinition,
   type JudgeProblem,
+  type JudgeReadContext,
+  type JudgeValue,
+  type TruthAsk,
 } from "./contract";
 import { JUDGE_DEFINITIONS } from "./definitions";
+import { compareFrac, fracText, sameFrac } from "./texArith";
 
 /** 등록부가 밖에 보이는 모양 — 생성기 함수는 빼고 메타만. */
 export type JudgeEntry = {
@@ -42,6 +50,8 @@ export type JudgeEntry = {
   unitSection: string;
   familyId: string;
   title: string;
+  /** 문형 — 참거짓(«옳지 않은 것» · «옳은 것») · 비교(«나머지 넷과 다른 하나» · «가장 큰/작은 것») */
+  form: "truth" | "compare";
   asks: readonly JudgeAsk[];
   sources: readonly string[];
   difficulty: JudgeDefinition["difficulty"];
@@ -89,8 +99,21 @@ function printedChoices(content: string): string[] {
     .map((l) => [...l].slice(1).join("").trim());
 }
 
+/** 지면 본문의 발문 줄 — 다시 재는 함수에 넘기는 문맥(대입값이 여기 있다). */
+function printedContext(content: string): JudgeReadContext {
+  return { lead: content.split("\n")[0] ?? "" };
+}
+
+/** 해설 끝줄의 몸통 — 발문에서 «다음 중»과 물음표를 뗀다(«$x=-3$일 때, 다음 중 …»처럼 가운데 있어도). */
+function conclusionOf(lead: string): string {
+  return lead
+    .trim()
+    .replace(/다음 중\s*/, "")
+    .replace(/\?$/, "");
+}
+
 /** «옳지 않은 것» 물음에서 고를 보기는 거짓인 것 — 그 보기가 «다른 하나»다. */
-function isOdd(ask: JudgeAsk, truth: boolean): boolean {
+function isOdd(ask: TruthAsk, truth: boolean): boolean {
   return ask === "옳지 않은 것" ? !truth : truth;
 }
 
@@ -105,7 +128,7 @@ function isOdd(ask: JudgeAsk, truth: boolean): boolean {
  */
 export function assembleJudge(
   def: JudgeDefinition,
-  ask: JudgeAsk,
+  ask: TruthAsk,
   body: JudgeBody,
   rng: Rng,
 ): Omit<JudgeProblem, "kind" | "judgeKey" | "familyKey"> {
@@ -145,8 +168,9 @@ export function assembleJudge(
   const printed = printedChoices(content);
   if (printed.length !== OPTION_COUNT)
     throw new Error(`${where}: 지면에서 보기를 ${printed.length}개 읽었다`);
+  const ctx = printedContext(content);
   const truths = printed.map((text, i) => {
-    const t = def.truthOf(text);
+    const t = def.truthOf(text, ctx);
     if (t === null)
       throw new Error(
         `${where}: ${CHOICE_MARKS[i]} 보기를 다시 재지 못했다 — ${text}`,
@@ -166,10 +190,7 @@ export function assembleJudge(
     );
   const answer = CHOICE_MARKS[odd[0]!]!;
 
-  const conclusion = body.lead
-    .trim()
-    .replace(/^다음 중\s*/, "")
-    .replace(/\?$/, "");
+  const conclusion = conclusionOf(body.lead);
   // 해설 넉 줄(`JudgeBody` 머리말) — 보기 차례(`order`)를 그대로 따라간다. 정답지 한 쪽에 8문항이 들어가야 한다.
   // 정답이 아닌 거짓 보기(«옳은 것» 물음의 넷)의 까닭 — **같은 까닭끼리 묶어** 한 줄에. 번호 차례는 보기 차례다.
   const byWhy = new Map<string, string[]>();
@@ -200,6 +221,7 @@ export function assembleJudge(
     unitSection: def.unitSection,
     familyId: def.familyId,
     ruleVersion: def.ruleVersion,
+    form: "truth",
     ask,
     content,
     answer,
@@ -207,17 +229,186 @@ export function assembleJudge(
     difficulty: def.difficulty,
     facts: body.facts,
     truths,
+    values: [],
   };
 }
+
+// ── 비교 문형 (2026-10-08 엔진 보강 2단계) ─────────────────────────────────────
+
+/** 같은 값끼리 묶는다 — 묶음마다 자리(0~4) 목록. 큰 묶음이 앞에 온다. */
+function groupByValue(values: readonly JudgeValue[]): number[][] {
+  const groups: number[][] = [];
+  values.forEach((v, i) => {
+    const g = groups.find((members) => sameFrac(values[members[0]!]!, v));
+    if (g) g.push(i);
+    else groups.push([i]);
+  });
+  return groups.sort((a, b) => b.length - a.length);
+}
+
+/** 묶음의 크기를 사람이 읽게 — `4+1` · `3+2` · `5+0`(전부 같은 값). */
+function shapeText(groups: readonly number[][]): string {
+  const sizes = groups.map((g) => g.length);
+  return sizes.length === 1 ? `${sizes[0]}+0` : sizes.join("+");
+}
+
+/**
+ * 값 다섯에서 정답 자리를 고른다 — **문형마다 값의 중복 규칙이 다르다**(합의안 §3-2).
+ *   4+1   같은 값이 정확히 넷, 혼자인 하나가 정답. 3+2 · 5+0 · 2+2+1 은 던진다.
+ *   극값  다섯 값이 서로 다르다. 동점이 하나라도 있으면 던진다(극값이 아닌 자리의 동점도).
+ * `who` 는 사유의 머리 — «생성기가 주장한» · «다시 재니».
+ */
+function answerIndex(
+  ask: CompareAsk,
+  values: readonly JudgeValue[],
+  where: string,
+  who: string,
+): number {
+  const groups = groupByValue(values);
+  if (ask === "나머지 넷과 다른 하나") {
+    if (groups.length !== 2 || groups[0]!.length !== 4)
+      throw new Error(
+        `${where}: ${who} 값의 묶음이 ${shapeText(groups)} 이다 — 정확히 4+1 이어야 한다(${values.map(fracText).join(" · ")})`,
+      );
+    return groups[1]![0]!;
+  }
+  const tied = groups.filter((g) => g.length > 1);
+  if (tied.length > 0)
+    throw new Error(
+      `${where}: ${who} 값에 동점이 있다 — ${tied.map((g) => `${g.map((i) => CHOICE_MARKS[i]).join("·")} ${fracText(values[g[0]!]!)}`).join(", ")}. 다섯 값이 서로 달라야 한다`,
+    );
+  let best = 0;
+  for (let i = 1; i < values.length; i += 1) {
+    const c = compareFrac(values[i]!, values[best]!);
+    if (ask === "가장 큰 것" ? c > 0 : c < 0) best = i;
+  }
+  return best;
+}
+
+/**
+ * 비교 문형의 생성기 산출 → 지면 문항. **시험이 직접 부른다**(4+1 을 3+2 로 · 동점을 넣은 산출물을 먹인다).
+ *
+ * 문형별로 따로 본다 — 참거짓 문형의 «값이 같은 보기 금지»를 그대로 옮기지 않는다:
+ *   · **식의 중복** — 어느 문형이든 금지(보기 글이 겹치면 던진다)
+ *   · **값의 중복** — 4+1 은 정확히 넷이 같다 · 극값은 하나도 없다
+ *   · **정답의 유일성** — 4+1 은 혼자인 하나 · 극값은 가장 큰(작은) 하나
+ *
+ * 던지는 자리(전부 사유를 적는다):
+ *   · 보기가 다섯이 아니다 · 보기 글이 겹친다 · 발문 끝이 문형과 다르다
+ *   · 생성기가 주장한 값의 묶음이 문형에 안 맞는다(3+2 · 5+0 · 동점)
+ *   · 지면 글을 다시 재니 못 읽었다 · 주장한 값과 다르다 · 묶음이 문형에 안 맞는다
+ *   · 해설 첫 줄에 서는 값(`brief`)이 그 보기의 값과 다르다
+ */
+export function assembleCompare(
+  def: CompareJudgeDefinition,
+  ask: CompareAsk,
+  body: CompareBody,
+  rng: Rng,
+): Omit<JudgeProblem, "kind" | "judgeKey" | "familyKey"> {
+  const where = `판정형 ${judgeKeyOf(def)} (${ask})`;
+  if (body.options.length !== OPTION_COUNT)
+    throw new Error(
+      `${where}: 보기가 ${body.options.length}개다 — ${OPTION_COUNT}개여야 한다`,
+    );
+  const texts = body.options.map((o) => norm(o.text));
+  if (new Set(texts).size !== OPTION_COUNT)
+    throw new Error(`${where}: 보기 글이 겹친다 — ${texts.join(" · ")}`);
+  const oddAsk = ask === "나머지 넷과 다른 하나";
+  if (!(oddAsk ? /하나는\?$/ : /것은\?$/).test(body.lead.trim()))
+    throw new Error(
+      `${where}: 발문이 «…${oddAsk ? "하나는?" : "것은?"}» 으로 끝나지 않는다 — ${body.lead}`,
+    );
+  // 주장부터 본다 — 지면을 짓기 전에 생성기의 산출이 문형에 맞는지.
+  answerIndex(
+    ask,
+    body.options.map((o) => o.claimed),
+    where,
+    "생성기가 주장한",
+  );
+
+  const order = shuffled(rng, body.options);
+  const content = [
+    body.lead.trim(),
+    ...order.map((o, i) => `${CHOICE_MARKS[i]} ${o.text.trim()}`),
+  ].join("\n");
+
+  // ── 🔴 지면 글을 다시 잰다 — 생성기의 셈을 다시 부르지 않는다 ──────────────────
+  const printed = printedChoices(content);
+  if (printed.length !== OPTION_COUNT)
+    throw new Error(`${where}: 지면에서 보기를 ${printed.length}개 읽었다`);
+  const ctx = printedContext(content);
+  const values = printed.map((text, i) => {
+    const v = def.valueOf(text, ctx);
+    if (v === null)
+      throw new Error(
+        `${where}: ${CHOICE_MARKS[i]} 보기를 다시 재지 못했다 — ${text}`,
+      );
+    if (!sameFrac(v, order[i]!.claimed))
+      throw new Error(
+        `${where}: ${CHOICE_MARKS[i]} 보기 — 생성기는 값이 ${fracText(order[i]!.claimed)} 이라는데 다시 재니 ${fracText(v)} 이다 · ${text}`,
+      );
+    // 해설 첫 줄에 서는 값도 같은 자로 읽는다 — 정답지가 보기와 다른 값을 싣지 않게.
+    const shown = def.valueOf(order[i]!.brief, ctx);
+    if (shown === null || !sameFrac(shown, v))
+      throw new Error(
+        `${where}: ${CHOICE_MARKS[i]} 보기 — 해설에 적을 값(${order[i]!.brief})이 보기의 값 ${fracText(v)} 과 다르다`,
+      );
+    return v;
+  });
+  const at = answerIndex(ask, values, where, "다시 재니");
+  const answer = CHOICE_MARKS[at]!;
+
+  const bare = (brief: string) => brief.trim().replace(/^\$|\$$/g, "");
+  const third = oddAsk
+    ? `나머지 넷은 모두 ${order[at === 0 ? 1 : 0]!.brief.trim()}이다.`
+    : `크기를 비교하면 $${order
+        .map((o, i) => ({ o, v: values[i]! }))
+        .sort((a, b) => compareFrac(a.v, b.v))
+        .map((x) => bare(x.o.brief))
+        .join("<")}$이다.`;
+  const solution = [
+    `${body.briefLead.trim()} ${order.map((o, i) => `${CHOICE_MARKS[i]} ${o.brief.trim()}`).join(", ")}이다.`,
+    `${answer} ${order[at]!.work.trim()}이다.`,
+    third,
+    `따라서 ${conclusionOf(body.lead)} ${answer}이다.`,
+  ].join("\n");
+
+  assertChoiceCount(content, where);
+  assertChoiceMarks(content, where);
+  assertChooseAllAnswerCount(content, answer, where);
+
+  return {
+    grade: def.grade,
+    unitSection: def.unitSection,
+    familyId: def.familyId,
+    ruleVersion: def.ruleVersion,
+    form: "compare",
+    ask,
+    content,
+    answer,
+    solution,
+    difficulty: def.difficulty,
+    facts: body.facts,
+    truths: [],
+    values: values.map(fracText),
+  };
+}
+
+const TRUTH_ASKS: readonly JudgeAsk[] = ["옳지 않은 것", "옳은 것"];
+const COMPARE_ASKS: readonly JudgeAsk[] = [
+  "나머지 넷과 다른 하나",
+  "가장 큰 것",
+  "가장 작은 것",
+];
 
 /**
  * 등록부를 짓는다 — 모양이 틀린 등록은 **지을 때** 던진다(부를 때 가서 알면 늦다).
  * 시험은 픽스처 등록부를 지어 배선을 잰다(살아 있는 등록부만 보면 «도장»이다).
  */
 export function createJudgeRegistry(
-  defs: readonly JudgeDefinition[],
+  defs: readonly AnyJudgeDefinition[],
 ): JudgeRegistry {
-  const byKey = new Map<string, JudgeDefinition>();
+  const byKey = new Map<string, AnyJudgeDefinition>();
   for (const d of defs) {
     const key = judgeKeyOf(d);
     if (!/^중[123]$/.test(d.grade))
@@ -234,6 +425,14 @@ export function createJudgeRegistry(
       );
     if (d.asks.length === 0 || d.sources.length === 0)
       throw new Error(`판정형 물음·원천이 비었다: ${key}`);
+    const allowed = d.form === "compare" ? COMPARE_ASKS : TRUTH_ASKS;
+    const stray = (d.asks as readonly JudgeAsk[]).filter(
+      (a) => !allowed.includes(a),
+    );
+    if (stray.length > 0)
+      throw new Error(
+        `판정형 물음이 문형(${d.form ?? "truth"})과 안 맞는다: ${key} — ${stray.join(" · ")}`,
+      );
     if (d.difficultyBasis.trim().length === 0)
       throw new Error(`판정형 난이도 근거가 비었다: ${key}`);
     if (byKey.has(key)) throw new Error(`판정형 키가 겹친다: ${key}`);
@@ -247,6 +446,7 @@ export function createJudgeRegistry(
     unitSection: d.unitSection,
     familyId: d.familyId,
     title: d.title,
+    form: d.form ?? "truth",
     asks: d.asks,
     sources: d.sources,
     difficulty: d.difficulty,
@@ -264,22 +464,34 @@ export function createJudgeRegistry(
           `등록되지 않은 판정형입니다: ${key} — judgementDefinitions() 로 먼저 확인`,
         );
       const rng = createRng(seed + keySalt(key) + variant * 0x9e37);
+      // 🔴 재시도 상한에 걸리면 **사유를 달고 멈춘다** — 조용히 모자란 문항을 내지 않는다.
+      const failed = (ask: JudgeAsk, e: unknown) =>
+        new Error(
+          `판정형 ${key} (씨앗 ${seed} · v${variant} · ${ask}) 를 못 만들었다 — ${e instanceof Error ? e.message : String(e)}`,
+        );
+      const head = {
+        kind: "judge" as const,
+        judgeKey: key,
+        familyKey: judgeFamilyKey(key),
+      };
+      if (def.form === "compare") {
+        const ask = def.asks[variant % def.asks.length]!;
+        let body: CompareBody;
+        try {
+          body = def.generate(rng, ask);
+        } catch (e) {
+          throw failed(ask, e);
+        }
+        return { ...head, ...assembleCompare(def, ask, body, rng) };
+      }
       const ask = def.asks[variant % def.asks.length]!;
       let body: JudgeBody;
       try {
         body = def.generate(rng, ask);
       } catch (e) {
-        // 🔴 재시도 상한에 걸리면 **사유를 달고 멈춘다** — 조용히 모자란 문항을 내지 않는다.
-        throw new Error(
-          `판정형 ${key} (씨앗 ${seed} · v${variant} · ${ask}) 를 못 만들었다 — ${e instanceof Error ? e.message : String(e)}`,
-        );
+        throw failed(ask, e);
       }
-      return {
-        kind: "judge",
-        judgeKey: key,
-        familyKey: judgeFamilyKey(key),
-        ...assembleJudge(def, ask, body, rng),
-      };
+      return { ...head, ...assembleJudge(def, ask, body, rng) };
     },
   };
 }
