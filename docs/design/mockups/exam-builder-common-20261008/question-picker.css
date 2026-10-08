@@ -233,7 +233,7 @@
   flex-wrap: wrap;
 }
 .eqp-replace .eqp-search label {
-  flex-basis: 100%;
+  flex: 1 1 240px;
 }
 .eqp-replace .eqp-grid {
   grid-template-columns: minmax(0, 1fr);
