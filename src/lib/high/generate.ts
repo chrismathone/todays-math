@@ -67,33 +67,6 @@ const HOLDS: HighHold[] = [
   ...H1_COMB_HOLD,
 ];
 
-const BY_KEY = new Map<string, HighTypeEntry>();
-for (const e of ALL) {
-  if (BY_KEY.has(e.key)) {
-    throw new Error(`고등 유형 키가 겹칩니다: ${e.key}`);
-  }
-  BY_KEY.set(e.key, e);
-}
-
-export function registeredHighTypes(): HighTypeEntry[] {
-  return ALL;
-}
-
-for (const h of HOLDS) {
-  if (BY_KEY.has(h.key)) {
-    throw new Error(`고등 유형이 등록과 보류에 같이 있습니다: ${h.key}`);
-  }
-}
-
-/** 이번 물결에 못 만든 유형 — `highRegistry.test.ts` 가 「등록 ∪ 보류 = 색인」을 본다. */
-export function registeredHighHolds(): HighHold[] {
-  return HOLDS;
-}
-
-export function highTypesForSection(unitSection: string): HighTypeEntry[] {
-  return ALL.filter((e) => e.unitSection === unitSection);
-}
-
 /** 유형 키마다 rng 흐름을 가르는 소금 — 키 문자열에서 결정적으로 만든다. */
 function keySalt(key: string): number {
   let h = 0;
@@ -126,34 +99,104 @@ export function assertDistractors(p: HighProblem, where: string): void {
   }
 }
 
+/**
+ * 고등 등록부 — 등록 유형 · 보류 · 생성을 한 묶음으로.
+ *
+ * 적재기 · 미적재 검사 · 제자리 갱신이 **이 모양**을 받는다(`scripts/import/load-engine-problems.ts` 의
+ * `buildHighRows`). 시험이 픽스처 등록부를 넣어 «등록부 누락 · 비슷한 키»의 양쪽을 직접 대려고 연 자리다 —
+ * 살아 있는 등록부만 보면 세는 능력을 잃어도 답이 같다.
+ */
+export type HighRegistry = {
+  types(): HighTypeEntry[];
+  holds(): HighHold[];
+  typesForSection(unitSection: string): HighTypeEntry[];
+  generate(key: string, seed: number, variant?: number): HighProblem;
+};
+
+/** 등록 목록으로 등록부를 세운다 — 키가 겹치거나 등록과 보류에 같이 있으면 던진다. */
+export function createHighRegistry(
+  entries: readonly HighTypeEntry[],
+  holds: readonly HighHold[] = [],
+): HighRegistry {
+  const all = [...entries];
+  const held = [...holds];
+  const byKey = new Map<string, HighTypeEntry>();
+  for (const e of all) {
+    if (byKey.has(e.key)) {
+      throw new Error(`고등 유형 키가 겹칩니다: ${e.key}`);
+    }
+    byKey.set(e.key, e);
+  }
+  for (const h of held) {
+    if (byKey.has(h.key)) {
+      throw new Error(`고등 유형이 등록과 보류에 같이 있습니다: ${h.key}`);
+    }
+  }
+  return {
+    types: () => all,
+    holds: () => held,
+    typesForSection: (unitSection) =>
+      all.filter((e) => e.unitSection === unitSection),
+    generate(key, seed, variant = 0) {
+      const entry = byKey.get(key);
+      if (!entry) {
+        throw new Error(
+          `등록되지 않은 고등 유형입니다: ${key} — registeredHighTypes() 로 먼저 확인`,
+        );
+      }
+      const p = entry.handler(
+        createRng(seed + keySalt(key) + variant * 0x9e37),
+      );
+      const where = `고등 유형 ${key}`;
+      const solution = tidySolution(p.solution);
+      const content = wrapDanClause(p.content);
+      const difficulty = resolveMiddleTier(
+        p.difficulty,
+        content,
+        !!p.figureSpec,
+      );
+      assertChooseAllAnswerCount(content, p.answer, where);
+      assertChoiceCount(content, where);
+      assertChoiceMarks(content, where);
+      assertDistractors(p, where);
+      if (
+        solution === p.solution &&
+        content === p.content &&
+        difficulty === p.difficulty
+      ) {
+        return p;
+      }
+      return { ...p, solution, content, difficulty };
+    },
+  };
+}
+
+const LIVE = createHighRegistry(ALL, HOLDS);
+
+/** 살아 있는 등록부 — 적재기 · 미적재 검사의 기본값. */
+export function defaultHighRegistry(): HighRegistry {
+  return LIVE;
+}
+
+export function registeredHighTypes(): HighTypeEntry[] {
+  return LIVE.types();
+}
+
+/** 이번 물결에 못 만든 유형 — `highRegistry.test.ts` 가 「등록 ∪ 보류 = 색인」을 본다. */
+export function registeredHighHolds(): HighHold[] {
+  return LIVE.holds();
+}
+
+export function highTypesForSection(unitSection: string): HighTypeEntry[] {
+  return LIVE.typesForSection(unitSection);
+}
+
 export function generateHighProblem(
   key: string,
   seed: number,
   variant = 0,
 ): HighProblem {
-  const entry = BY_KEY.get(key);
-  if (!entry) {
-    throw new Error(
-      `등록되지 않은 고등 유형입니다: ${key} — registeredHighTypes() 로 먼저 확인`,
-    );
-  }
-  const p = entry.handler(createRng(seed + keySalt(key) + variant * 0x9e37));
-  const where = `고등 유형 ${key}`;
-  const solution = tidySolution(p.solution);
-  const content = wrapDanClause(p.content);
-  const difficulty = resolveMiddleTier(p.difficulty, content, !!p.figureSpec);
-  assertChooseAllAnswerCount(content, p.answer, where);
-  assertChoiceCount(content, where);
-  assertChoiceMarks(content, where);
-  assertDistractors(p, where);
-  if (
-    solution === p.solution &&
-    content === p.content &&
-    difficulty === p.difficulty
-  ) {
-    return p;
-  }
-  return { ...p, solution, content, difficulty };
+  return LIVE.generate(key, seed, variant);
 }
 
 /**

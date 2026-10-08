@@ -120,9 +120,9 @@ describe("㉡ 분기 함수 — 적재기와 제자리 갱신이 같은 것을 �
   });
 
   it("🔴 모르는 engine · 빠진 engine 은 던진다 — 중등 유형으로 흘려보내지 않는다", () => {
-    expect(() => buildTargetRows({ engine: "high" } as never, SEED)).toThrow(
-      /모르는 적재 대상/,
-    );
+    expect(() =>
+      buildTargetRows({ engine: "없는엔진" } as never, SEED),
+    ).toThrow(/모르는 적재 대상/);
     expect(() =>
       buildTargetRows({ unitSection: "유리수의 덧셈과 뺄셈" } as never, SEED),
     ).toThrow(/모르는 적재 대상/);
@@ -220,7 +220,7 @@ describe("㉣ 제자리 갱신 — 적재기와 같은 분기 함수로 되만�
   });
 
   it("🔴 모르는 target 은 «던진 대상»으로 센다 — 중등 유형으로 잘못 되만들지 않는다", () => {
-    const file = plan("unknown.json", [{ engine: "high", keys: [] }]);
+    const file = plan("unknown.json", [{ engine: "없는엔진", keys: [] }]);
     const { made, failures } = rebuild([file], { judges: registry });
     expect(made.size).toBe(0);
     expect(failures).toHaveLength(1);

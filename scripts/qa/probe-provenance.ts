@@ -88,6 +88,9 @@ function legacyProxyOrigin(row: Row): string {
   }
   if (row.problemCode.startsWith("E")) return "elem_engine";
   if (row.problemCode.startsWith("J")) return "middle_engine";
+  // 고등 유형 엔진(2026-10-08) — 코드가 `H…`(고등 과목)다. 출처 갈래는 `[중]` 과 같이 쓴다(provenance.ts).
+  // 안 적으면 고등 문항을 싣는 날 이 대조가 전량 «갈림»으로 운다.
+  if (row.problemCode.startsWith("H")) return "middle_engine";
   return "unknown";
 }
 

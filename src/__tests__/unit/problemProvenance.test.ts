@@ -83,6 +83,11 @@ const SHAPES = {
   /** 659건 — 중등 엔진. */
   중등: { ...BLANK, familyKey: "mid:3-1|근호를 포함한 식의 계산|06" },
   /**
+   * 고등 유형 엔진(2026-10-08 배선 · 2026-08-25 실측에는 없던 표지) — 갈래는 `[중]` 과 **같이 쓴다**.
+   * 배지의 글자 · 색을 하나 더 만드는 것은 원장님 결정(D-07)이라 갈래를 새로 두지 않았다.
+   */
+  고등: { ...BLANK, familyKey: "high:공통수학1|항등식과 나머지정리|03" },
+  /**
    * 764건 — `manual` 인데 엔진 표지가 없는 옛 행(전량 격리). **양성 대조군**이다.
    * 실제 행: `problemCode = "E30104-3EGR"`, 본문 `724 - 358 = ?`.
    */
@@ -103,6 +108,7 @@ describe("[출처] 문항 출처 판정 — 기록된 컬럼으로 가른다", (
     ["AI생성", SHAPES.AI생성, "ai"],
     ["초등", SHAPES.초등, "elem_engine"],
     ["중등", SHAPES.중등, "middle_engine"],
+    ["고등", SHAPES.고등, "middle_engine"],
     ["옛수동", SHAPES.옛수동, "unknown"],
     ["손등록", SHAPES.손등록, "unknown"],
   ] as const)("%s → %s", (_name, input, expected) => {
@@ -124,7 +130,7 @@ describe("[출처] 문항 출처 판정 — 기록된 컬럼으로 가른다", (
   });
 
   // 반대쪽 모집단: **분류가 되는 갈래에서 미분류가 나오면 안 된다.**
-  it("분류되는 일곱 모양에서 미분류가 나오지 않는다", () => {
+  it("분류되는 여덟 모양에서 미분류가 나오지 않는다", () => {
     const 분류됨 = [
       SHAPES.기출,
       SHAPES.문제집,
@@ -133,8 +139,26 @@ describe("[출처] 문항 출처 판정 — 기록된 컬럼으로 가른다", (
       SHAPES.AI생성,
       SHAPES.초등,
       SHAPES.중등,
+      SHAPES.고등,
     ];
     expect(분류됨.map(classifyOrigin)).not.toContain("unknown");
+  });
+
+  // 🔴 고등 엔진 문항은 `[?]` 로 떨어지지 않고, **새 배지도 만들지 않는다** — 글자 · 이름 · 색이 `[중]` 그대로다.
+  //    접두사를 목록에서 빼면 미분류가 되고, 갈래를 새로 지으면 배지 표 · 색 토큰 · 실측표가 같이 늘어야 한다
+  //    (그때는 아래 «이름 붙은 열세 갈래»가 열넷이 된다 — 형태를 정하는 일이라 원장님 확정이 먼저다).
+  it("고등 엔진 표지는 [중] 배지를 같이 쓴다 — 미분류도 새 배지도 아니다", () => {
+    expect(classifyOrigin(SHAPES.고등)).toBe("middle_engine");
+    expect(provenanceBadges(SHAPES.고등)[0]).toEqual(
+      provenanceBadges(SHAPES.중등)[0],
+    );
+    // 표지는 «앞머리»다 — 다른 값 뒤에 붙은 `high:` 는 엔진이 아니다
+    expect(
+      classifyOrigin({ ...BLANK, familyKey: "solo:high:공통수학1|x|03" }),
+    ).toBe("unknown");
+    expect(classifyOrigin({ ...BLANK, familyKey: "highschool|x|03" })).toBe(
+      "unknown",
+    );
   });
 
   // 양성 대조군: 미분류가 **실제로 나온다**. 이게 없으면 「0」이 무슨 뜻인지 모른다.

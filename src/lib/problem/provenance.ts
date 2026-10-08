@@ -165,10 +165,19 @@ export type ProvenanceInput = FormatInput & {
   figureSvg: string | null;
 };
 
-/** 엔진이 `familyKey` 앞에 붙이는 표지. 엔진 말고는 아무도 이 접두사를 안 쓴다(D-105). */
+/**
+ * 엔진이 `familyKey` 앞에 붙이는 표지. 엔진 말고는 아무도 이 접두사를 안 쓴다(D-105).
+ *
+ * ⚠️ `high:`(고등 유형 엔진 — `src/lib/high/loadKey.ts`)는 **갈래를 새로 만들지 않고 `[중]` 과 같이 쓴다**
+ *    (2026-10-08 엔진 보강 ③-0). 갈래를 하나 더하면 배지의 글자와 색이 하나 더 생기는데(아래
+ *    `ORIGIN_BADGE` — 이름 붙은 갈래는 색이 전부 달라야 한다), 그것은 형태를 정하는 일이라 원장님 확정
+ *    없이 짓지 않는다(D-07). 접두사를 안 넣으면 고등 문항이 `[?]` 미분류로 떨어지고, 형식 판정에서도
+ *    엔진 문항으로 안 읽힌다. `[고]` 를 따로 두기로 정해지면 여기 한 줄과 배지 표 · 색 토큰을 같이 더한다.
+ */
 const ENGINE_PREFIX: ReadonlyArray<readonly [string, ProblemOrigin]> = [
   ["elem:", "elem_engine"],
   ["mid:", "middle_engine"],
+  ["high:", "middle_engine"],
 ];
 
 /** 저장소가 그림 파일을 두는 뿌리. 실측(2026-08-25) 이 둘 말고는 없다. */

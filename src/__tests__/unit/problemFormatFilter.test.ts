@@ -79,9 +79,11 @@ const FAMILY_KEYS = [
   "solo:abc",
   "elem:초6|2-5-1|연산",
   "mid:3-1|근호|06",
+  // 고등 유형 엔진(2026-10-08) — 접두사 목록에 든 것은 전부 입력 공간에 둔다
+  "high:공통수학1|항등식과 나머지정리|03",
 ] as const;
 
-/** 입력 공간 전수 — 4 × 2 × 5 × 5 × 4 = 800 조합. */
+/** 입력 공간 전수 — 4 × 2 × 5 × 5 × 5 = 1,000 조합. */
 function everyEvidence(): FormatEvidence[] {
   const rows: FormatEvidence[] = [];
   for (const answer of ANSWERS) {
@@ -280,7 +282,17 @@ describe("[형식 필터] 판정이 **실제로 무엇을 내나** — 기대값
       },
       "descriptive",
     ],
-    // 엔진 표지 — **접두사 둘 다** 단답형이어야 한다(목록에서 하나를 빼면 여기가 빨개진다)
+    // 엔진 표지 — **접두사 셋 다** 단답형이어야 한다(목록에서 하나를 빼면 여기가 빨개진다)
+    [
+      0,
+      {
+        answer: "7",
+        questionType: null,
+        problemType: "계산",
+        familyKey: "high:공통수학1|x|03",
+      },
+      "short_answer",
+    ],
     [
       0,
       {
@@ -373,8 +385,12 @@ describe("[형식 필터] 판정이 **실제로 무엇을 내나** — 기대값
   });
 
   it("후보 집합도 손으로 적은 기대값과 맞는다", () => {
-    // 엔진 표지 둘이 **모두** 단답형 후보여야 한다 — 목록이 줄면 여기가 빨개진다.
-    for (const familyKey of ["elem:초6|x|연산", "mid:3-1|y|06"]) {
+    // 엔진 표지 셋이 **모두** 단답형 후보여야 한다 — 목록이 줄면 여기가 빨개진다.
+    for (const familyKey of [
+      "elem:초6|x|연산",
+      "mid:3-1|y|06",
+      "high:공통수학1|x|03",
+    ]) {
       const ev: FormatEvidence = {
         answer: "7",
         questionType: null,

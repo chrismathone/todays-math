@@ -27,7 +27,7 @@
  *
  * 2026-08-30 에 «쓰는 쪽»과 «되짚는 쪽»의 형식이 갈려 4,640건이 조용히 안 걸린 적이 있다.
  * 여기서는 형식을 옮겨 적지 않는다 — 적재 계획을 적재기의 분기 함수 `buildTargetRows`(초등 · 중등 · 결합형 ·
- * 판정형)로 **그대로 다시 돌려** 나온 `externalId` 로 맞댄다. 못 맞댄 행 수는 반드시 찍는다.
+ * 판정형 · 고등 유형)로 **그대로 다시 돌려** 나온 `externalId` 로 맞댄다. 못 맞댄 행 수는 반드시 찍는다.
  *
  * ## 원장은 DB 보다 먼저 · 누적만 · 되돌릴 때는 «지금 값이 내가 쓴 값일 때만»
  */
@@ -49,6 +49,7 @@ import {
   type Target as PlanTarget,
 } from "../import/load-engine-problems";
 import type { JudgeRegistry } from "../../src/lib/middle/judge/registry";
+import type { HighRegistry } from "../../src/lib/high/generate";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 import { deadBackslashHits } from "./probe-middle-raw-latex";
 import {
@@ -127,11 +128,11 @@ async function mapLimit<T, R>(
  *
  * 🔴 target 은 **적재기의 분기 함수(`buildTargetRows`)** 로 되만든다 — 적재기와 같은 함수다. 종전에는 여기서
  *    `elem ? … : combo ? … : buildMiddleRows` 를 따로 적어, 모르는 target 이 중등 유형으로 흘러갔다.
- *    `deps` 는 시험이 픽스처 판정형 등록부를 넣는 자리다(`loadJudgeRows.test.ts`).
+ *    `deps` 는 시험이 픽스처 등록부를 넣는 자리다(판정형 `loadJudgeRows.test.ts` · 고등 `loadHighRows.test.ts`).
  */
 export function rebuild(
   planFiles: string[],
-  deps: { judges?: JudgeRegistry } = {},
+  deps: { judges?: JudgeRegistry; highs?: HighRegistry } = {},
 ): {
   made: Map<string, Made>;
   failures: string[];

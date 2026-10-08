@@ -42,6 +42,10 @@
  * ㉣ **판정형**(`src/lib/middle/judge/` — 2026-10-08)도 `registeredTypes()` 밖이라 따로 센다. 유형 · 결합형과
  *    달리 **정확한 키**로 댄다(`loadedJudgeKeys`) — 포함으로 대면 비슷한 키가 «나갔다»로 읽힌다.
  *    그 읽기가 갈리지 않았는지 실행마다 스스로 대 본다(`judgeKeyProbe` — ㉠ 의 판정형 몫).
+ * ㉤ **고등 유형**(`src/lib/high/` — 2026-10-08 배선)도 `registeredTypes()` 밖이다. 등록부는 2026-09-13 에 섰는데
+ *    이 자가 안 세어 공통수학1 168유형이 «엔진에만» 살았다. 판정형과 같이 **정확한 키**로 댄다(`loadedHighKeys`) —
+ *    번호 `03` 은 확장 번호 `03A` 의 일부다. 자기 점검은 `highKeyProbe`. 스크립트는 `unloadedAll` 한 함수로
+ *    네 등록부를 같이 센다 — 따로 부르다 한쪽을 빠뜨리면 그 등록부가 구조적으로 0 이 된다.
  */
 import { readFileSync, writeFileSync } from "node:fs";
 
@@ -54,6 +58,11 @@ import {
   parseJudgeExternalId,
 } from "../../src/lib/middle/judge/contract";
 import { judgementDefinitions } from "../../src/lib/middle/judge/registry";
+import { registeredHighTypes } from "../../src/lib/high/generate";
+import {
+  highExternalId,
+  parseHighExternalId,
+} from "../../src/lib/high/loadKey";
 
 import { isDirectScript } from "../import/isDirectScript";
 
@@ -160,6 +169,90 @@ export function judgeKeyProbe(): string | null {
   return null;
 }
 
+/** 고등 등록 한 건 — `registeredHighTypes()` 의 모양 그대로(`src/lib/high/`). */
+export type HighRow = { key: string; grade: string; unitSection: string };
+
+/**
+ * 적재본에서 **고등 유형 키**를 정확히 뽑는다 — `parseHighExternalId` 가 읽는 열쇠만.
+ *
+ * 🔴 포함으로 대지 않는다. `공통수학1|…|03` 은 `공통수학1|…|03A` 의 일부라, 확장 번호만 실려도 본 번호가
+ *    «나갔다»가 된다. 읽는 함수는 적재기가 열쇠를 짓는 `highExternalId` 의 짝이다(같은 파일).
+ */
+export function loadedHighKeys(fragments: ReadonlySet<string>): Set<string> {
+  const out = new Set<string>();
+  for (const f of fragments) {
+    const parts = parseHighExternalId(f);
+    if (parts) out.add(parts.typeKey);
+  }
+  return out;
+}
+
+/** ㉤ 고등 등록부에서 적재본에 한 행도 없는 유형 — 대조는 **정확한 키**다. */
+export function unloadedHigh(
+  fragments: ReadonlySet<string>,
+  highs: readonly HighRow[] = registeredHighTypes(),
+): Entry[] {
+  const keys = loadedHighKeys(fragments);
+  const out: Entry[] = [];
+  for (const h of highs) {
+    if (!keys.has(h.key))
+      out.push({
+        key: h.key,
+        grade: h.grade,
+        where: `${h.unitSection} (고등 유형)`,
+      });
+  }
+  return out.sort((a, b) => a.key.localeCompare(b.key));
+}
+
+/**
+ * ㉠ 의 고등 몫 — 고등 열쇠를 **정확히** 읽는지 실행할 때마다 스스로 대 본다(`judgeKeyProbe` 와 같은 까닭).
+ * 짓는 함수와 읽는 함수가 갈리면 실린 고등 유형이 전부 «안 나감»으로 울고(시끄럽다), 비슷한 키를 받으면
+ * 빚이 조용히 숨는다. 문제가 없으면 null.
+ */
+export function highKeyProbe(): string | null {
+  const key = "없는과목|없는 중단원|98";
+  const id = highExternalId({
+    typeKey: key,
+    seed: 1,
+    variant: 0,
+    questionType: "단답형",
+  });
+  if (!loadedHighKeys(loadedFragments([id])).has(key))
+    return "고등 열쇠를 짓는 함수와 읽는 함수가 갈렸다 — 실린 고등 유형을 «안 나감»으로 센다";
+  const similar = loadedFragments([id.replace("|98|", "|98A|")]);
+  if (loadedHighKeys(similar).has(key))
+    return "비슷한 고등 유형 키를 «나갔다»로 읽는다 — 거짓 적재가 빚을 숨긴다";
+  return null;
+}
+
+/**
+ * 🔴 **스크립트가 부르는 한 함수** — 중등 유형 · 결합형 · 판정형 · 고등 유형을 같이 센다.
+ *
+ * `unloaded`(앞 셋)와 `unloadedHigh` 를 부르는 쪽이 따로 이으면, 한 줄을 빠뜨리는 날 그 등록부가
+ * 구조적으로 0 이 된다 — 이 자가 태어난 까닭 그대로다. 그래서 잇는 자리를 여기 하나로 두고 시험이
+ * 살아 있는 네 등록부의 합(분모)을 댄다. `registries` 는 시험이 픽스처를 넣는 자리다.
+ */
+export function unloadedAll(
+  fragments: ReadonlySet<string>,
+  registries: {
+    types?: readonly TypeRow[];
+    combos?: readonly ComboRow[];
+    judges?: readonly JudgeRow[];
+    highs?: readonly HighRow[];
+  } = {},
+): Entry[] {
+  return [
+    ...unloaded(
+      fragments,
+      registries.types,
+      registries.combos,
+      registries.judges,
+    ),
+    ...unloadedHigh(fragments, registries.highs),
+  ].sort((a, b) => a.key.localeCompare(b.key));
+}
+
 async function main(): Promise<void> {
   const prisma = new PrismaClient();
   try {
@@ -186,13 +279,13 @@ async function main(): Promise<void> {
       );
       process.exit(2);
     }
-    const probe = judgeKeyProbe();
+    const probe = judgeKeyProbe() ?? highKeyProbe();
     if (probe) {
       console.error(`🔴 양성 대조 실패 — ${probe}. 판정을 거부한다.`);
       process.exit(2);
     }
 
-    const now = unloaded(frags);
+    const now = unloadedAll(frags);
     const nowKeys = new Set(now.map((e) => e.key));
 
     if (process.argv.includes("--write")) {

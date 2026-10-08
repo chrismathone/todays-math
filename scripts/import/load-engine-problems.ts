@@ -1,9 +1,10 @@
 /**
- * **엔진이 낸 문항을 공유 DB 에 적재한다** — 초등 4단(D-71/72) · 중등 873유형 · 결합형 · 판정형.
+ * **엔진이 낸 문항을 공유 DB 에 적재한다** — 초등 4단(D-71/72) · 중등 873유형 · 결합형 · 판정형 · 고등 유형.
  *
- * 계획의 target 은 `engine` 으로 갈린다 — `elem` · `middle` · `combo` · `judge`(`buildTargetRows` 한 곳).
+ * 계획의 target 은 `engine` 으로 갈린다 — `elem` · `middle` · `combo` · `judge` · `high`(`buildTargetRows` 한 곳).
  *
  *   npx tsx scripts/import/load-engine-problems.ts --plan <계획.json>              # 드라이런(기본)
+ *   npx tsx scripts/import/load-engine-problems.ts --plan <계획.json> --table      # 드라이런 + 차시별 · 난이도별 · 형식별 표
  *   ALLOW_SHARED_IMPORT=1 npx tsx scripts/import/load-engine-problems.ts --plan <계획.json> --apply
  *   ALLOW_SHARED_IMPORT=1 npx tsx scripts/import/load-engine-problems.ts --revert <원장.json>
  *
@@ -75,6 +76,16 @@ import {
   defaultJudgeRegistry,
   type JudgeRegistry,
 } from "../../src/lib/middle/judge/registry";
+import {
+  defaultHighRegistry,
+  type HighRegistry,
+} from "../../src/lib/high/generate";
+import {
+  HIGH_EXTERNAL_PREFIX,
+  highExternalId,
+  highFamilyKey,
+  highVariantKey,
+} from "../../src/lib/high/loadKey";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 // 판정 규칙은 관문 판정기가 유일한 자리다 — 옮겨 적지 않는다.
 import { deadBackslashHits } from "../qa/probe-middle-raw-latex";
@@ -155,7 +166,33 @@ type JudgeTarget = {
   variants?: number;
 };
 
-export type Target = ElemTarget | MiddleTarget | ComboTarget | JudgeTarget;
+/**
+ * 🔴 **고등 유형** — RPM 고등(2022) 색인을 뼈대로 한 등록부(`src/lib/high/` · 2026-09-13).
+ *
+ * 등록부는 2026-09-13 에 섰는데 적재기에 target 이 없어 공통수학1 168유형이 **문제은행에 한 행도 없었다**
+ * (2026-10-08 공유 DB 실측 `family_key LIKE 'high:%'` 0 — 3자 합의 §6-1). 결합형 · 판정형이 밟은 «엔진에만
+ * 사는» 자리다. 모양은 중등 유형(`MiddleTarget`)을 그대로 따른다 — 차시 하나에 target 하나.
+ *
+ * ⚠️ `externalId` · `familyKey` 는 `src/lib/high/loadKey.ts` 로만 짓는다 — 미적재 검사가 `parseHighExternalId`
+ *    로 **정확히** 읽는다(같은 파일의 짝). 여기서 모양을 따로 적으면 넣고도 빚이 안 줄어든다.
+ */
+type HighTarget = {
+  engine: "high";
+  /** 과목 — 단원 시드의 과목명 그대로(`공통수학1`) */
+  grade: string;
+  unitSection: string;
+  /**
+   * 이 차시에서 실을 유형 키 — 비우면 그 차시의 등록 유형 전부.
+   * 변형 공간이 좁은 유형만 변형 수를 낮출 때 쓴다(그 차시를 target 둘로 가른다). 이 차시의 유형이 아닌
+   * 키가 섞이면 던진다 — 조용히 빼면 «전부 넣었다»로 읽힌다.
+   */
+  keys?: string[];
+  /** 유형마다 몇 벌 (기본 3) */
+  variants?: number;
+};
+
+export type Target =
+  ElemTarget | MiddleTarget | ComboTarget | JudgeTarget | HighTarget;
 
 type Plan = {
   label: string;
@@ -525,16 +562,109 @@ export function buildJudgeRows(
 }
 
 /**
+ * 고등 유형을 행으로 — `src/lib/high/` 의 등록부를 **적재기가 부르는 자리**.
+ *
+ * 형식은 단답 · 객관 둘이다(원장님 확정 2026-09-13 — 서술형 파생 금지는 2026-08-27 그대로). 파생은 초등 · 중등과
+ * **같은 `expandFamily`** 를 탄다. 정답이 식이면 생성기가 낸 오답 넷(`distractors`)을 그대로 넘긴다 — 공용 수
+ * 오답 경로는 정답 속 첫 수(지수일 때가 있다)를 흔들어 `$-x^{1}+2x+2$` 같은 보기를 낸다(`deriveFormats.ts`).
+ *
+ * 난이도는 **변형마다** 다르다(«한 문항류에 칸 여럿» — `high-engine-plan.md` §1-4). 그래서 행의 칸은 그 변형이
+ * 낸 값이고, 유형 하나에 칸 하나로 접지 않는다.
+ *
+ * `registry` 는 시험이 픽스처 등록부를 넣으려고 연 자리다 — 기본은 살아 있는 등록부.
+ */
+export function buildHighRows(
+  t: HighTarget,
+  seedBase: number,
+  registry: HighRegistry = defaultHighRegistry(),
+): Row[] {
+  const inSection = registry
+    .typesForSection(t.unitSection)
+    .filter((e) => e.grade === t.grade);
+  const want = t.keys ? new Set(t.keys) : null;
+  const types = want ? inSection.filter((e) => want.has(e.key)) : inSection;
+  if (want && types.length !== want.size)
+    throw new Error(
+      `고등 유형 ${want.size}개를 물었는데 ${t.grade} / ${t.unitSection} 에서 ${types.length}개만 찾았다 — 멈춘다` +
+        ` (그 차시의 유형이 아닌 키: ${[...want].filter((k) => !types.some((e) => e.key === k)).join(" · ")})`,
+    );
+  if (types.length === 0)
+    throw new Error(
+      `고등 유형을 못 찾았다: ${t.grade} / ${t.unitSection}` +
+        ` — registeredHighTypes() 로 과목 · 차시 이름을 확인하라(차시 이름은 단원 시드 글자 그대로다)`,
+    );
+  const variants = t.variants ?? 3;
+  const rows: Row[] = [];
+  for (const entry of types) {
+    // 고등의 문항류 = **RPM 유형 키** 그 자체(중등과 같다). 변형(v0·v1·…)은 같은 유형의 아류다.
+    const familyKey = highFamilyKey(entry.key);
+    const got = expandFamily((v) => {
+      const p = registry.generate(entry.key, seedBase, v);
+      return {
+        content: p.content,
+        answer: p.answer,
+        solution: p.solution,
+        ...(p.distractors === undefined ? {} : { distractors: p.distractors }),
+        familyKey,
+        // 중등 유형과 같은 어림이다 — 밑 두 칸은 계산, 위는 활용(`buildMiddleRows`).
+        problemType:
+          p.difficulty === "연산" || p.difficulty === "기본" ? "계산" : "활용",
+        difficulty: p.difficulty,
+        figureSpec: (p.figureSpec as Record<string, unknown> | null) ?? null,
+        variant: v,
+      };
+    }, variants);
+    highSkippedMcq += got.skippedMcq;
+    for (const item of got.items) {
+      const it = item as typeof item & {
+        difficulty: Difficulty;
+        figureSpec: Record<string, unknown> | null;
+        variant: number;
+      };
+      rows.push({
+        externalId: highExternalId({
+          typeKey: entry.key,
+          seed: seedBase,
+          variant: it.variant,
+          questionType: it.questionType,
+        }),
+        variantKey: highVariantKey({
+          typeKey: entry.key,
+          seed: seedBase,
+          variant: it.variant,
+        }),
+        familyKey,
+        unitKey: `${entry.grade} / ${entry.unitSection}`,
+        grade: entry.grade,
+        section: entry.unitSection,
+        content: it.content,
+        answer: it.answer,
+        solution: it.solution,
+        difficulty: it.difficulty,
+        problemType: it.problemType,
+        questionType: it.questionType,
+        figureSpec: it.figureSpec,
+        origin: `고등 ${entry.key} ${entry.rpmTitle}`,
+      });
+    }
+  }
+  return rows;
+}
+
+/** 고등에서 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. 생성기가 오답을 안 낸 식 정답이 여기 걸린다. */
+let highSkippedMcq = 0;
+
+/**
  * 🔴 **계획의 target 하나 → 행.** 적재기와 제자리 갱신(`scripts/qa/refresh-engine-content.ts`)이 **이 함수 하나**를 부른다.
  *
  * 종전에는 두 파일이 저마다 `elem ? … : combo ? … : buildMiddleRows` 를 적었다 — 모르는 target 이
  * **중등 유형으로 흘러가** «중등 유형을 못 찾았다»로 죽거나, 그 모양이 우연히 맞으면 엉뚱한 행을 냈다.
- * 판정형을 더하며 한 곳으로 모으고, 모르는 것은 던진다.
+ * 판정형을 더하며 한 곳으로 모으고, 모르는 것은 던진다. 고등(`high`)도 여기에 묶었다(2026-10-08).
  */
 export function buildTargetRows(
   t: Target,
   seedBase: number,
-  deps: { judges?: JudgeRegistry } = {},
+  deps: { judges?: JudgeRegistry; highs?: HighRegistry } = {},
 ): Row[] {
   switch (t.engine) {
     case "elem":
@@ -545,14 +675,150 @@ export function buildTargetRows(
       return buildComboRows(t, seedBase);
     case "judge":
       return buildJudgeRows(t, seedBase, deps.judges);
+    case "high":
+      return buildHighRows(t, seedBase, deps.highs);
     default: {
       const unknown: never = t;
       throw new Error(
         `모르는 적재 대상이다: ${JSON.stringify(unknown).slice(0, 120)}` +
-          ` — engine 은 elem · middle · combo · judge 넷뿐이다`,
+          ` — engine 은 elem · middle · combo · judge · high 다섯뿐이다`,
       );
     }
   }
+}
+
+/**
+ * 이 적재기가 넣은 행의 `externalId` 인가 — 되돌리기(`--revert`)가 «자기가 넣은 것만» 지우려고 묻는다.
+ *
+ * 접두사는 행 생성 함수 다섯이 짓는 것과 같아야 한다. 하나라도 빠지면 그 엔진의 원장을 «우리 것이 아닌
+ * 행이 있다»로 읽어 되돌리기가 통째로 멈춘다(결합형 · 판정형이 그렇게 멈췄었다).
+ */
+export function isOwnExternalId(externalId: string): boolean {
+  return (
+    /^engine-(?:elem|mid|mid-combo|mid-judge):/.test(externalId) ||
+    externalId.startsWith(HIGH_EXTERNAL_PREFIX)
+  );
+}
+
+/**
+ * 과목(학년) + 차시 이름만으로 단원을 찾는 행(중등 · 결합형 · 판정형 · 고등)이 **단원 둘 이상**에 걸리는 자리.
+ *
+ * 단원 연결은 `과목|차시` → 단원 하나인 표로 한다. 같은 과목에 같은 이름의 차시가 둘이면 표가 뒤엣것으로
+ * 덮여, 문항이 **조용히 다른 대단원의 차시에 붙는다**(에러가 없다). 고등 시드는 `(1)` · `(2)` 로 갈린 차시가
+ * 많아 처음 싣기 전에 이 물음을 따로 둔다. 걸리는 자리가 없으면 빈 배열.
+ */
+export function ambiguousUnitKeys(
+  rows: readonly Pick<Row, "grade" | "section" | "chapter">[],
+  units: readonly { grade: string; section: string }[],
+): string[] {
+  const count = new Map<string, number>();
+  for (const u of units) {
+    const k = `${u.grade}|${u.section}`;
+    count.set(k, (count.get(k) ?? 0) + 1);
+  }
+  const out = new Set<string>();
+  for (const r of rows) {
+    if (r.chapter) continue;
+    const k = `${r.grade}|${r.section}`;
+    if ((count.get(k) ?? 0) > 1) out.add(k);
+  }
+  return [...out].sort();
+}
+
+/** 드라이런이 찍는 표 — 차시별 · 난이도별 · 형식별 행 수. `rowTable` 이 만든다. */
+export type RowTable = {
+  total: number;
+  byDifficulty: Record<string, number>;
+  byFormat: Record<string, number>;
+  bySection: {
+    /** `과목 / 차시` — 행의 `unitKey` */
+    section: string;
+    rows: number;
+    /** 그 차시에 실리는 문항류(유형) 수 */
+    families: number;
+    byDifficulty: Record<string, number>;
+    byFormat: Record<string, number>;
+  }[];
+};
+
+/**
+ * 행 → 차시별 · 난이도별 · 형식별 표. 차시는 **행이 처음 나온 차례**(계획의 차례)로 둔다.
+ * 세기만 한다 — 판정은 하지 않는다. 합이 전체와 같은지는 시험이 본다.
+ */
+export function rowTable(
+  rows: readonly Pick<
+    Row,
+    "unitKey" | "difficulty" | "questionType" | "familyKey"
+  >[],
+): RowTable {
+  const bump = (m: Record<string, number>, k: string) => {
+    m[k] = (m[k] ?? 0) + 1;
+  };
+  const byDifficulty: Record<string, number> = {};
+  const byFormat: Record<string, number> = {};
+  const sections = new Map<
+    string,
+    RowTable["bySection"][number] & { seen: Set<string> }
+  >();
+  for (const r of rows) {
+    bump(byDifficulty, r.difficulty);
+    bump(byFormat, r.questionType);
+    let s = sections.get(r.unitKey);
+    if (!s) {
+      s = {
+        section: r.unitKey,
+        rows: 0,
+        families: 0,
+        byDifficulty: {},
+        byFormat: {},
+        seen: new Set(),
+      };
+      sections.set(r.unitKey, s);
+    }
+    s.rows += 1;
+    s.seen.add(r.familyKey);
+    s.families = s.seen.size;
+    bump(s.byDifficulty, r.difficulty);
+    bump(s.byFormat, r.questionType);
+  }
+  return {
+    total: rows.length,
+    byDifficulty,
+    byFormat,
+    bySection: [...sections.values()].map((s) => ({
+      section: s.section,
+      rows: s.rows,
+      families: s.families,
+      byDifficulty: s.byDifficulty,
+      byFormat: s.byFormat,
+    })),
+  };
+}
+
+/** 난이도 칸의 차례 — 표를 읽기 좋게 낮은 칸부터 찍는다(모르는 값은 뒤에 그대로 붙는다). */
+const TIER_ORDER = ["연산", "기본", "응용", "심화하", "심화중", "심화상"];
+
+function printRowTable(table: RowTable): void {
+  const tiers = [
+    ...TIER_ORDER.filter((t) => t in table.byDifficulty),
+    ...Object.keys(table.byDifficulty).filter((t) => !TIER_ORDER.includes(t)),
+  ];
+  const formats = Object.keys(table.byFormat).sort();
+  const cells = (m: Record<string, number>, keys: string[]) =>
+    keys.map((k) => String(m[k] ?? 0).padStart(5)).join(" ");
+  console.log(
+    `\n표 — 넣을 것 ${table.total}행 · 차시 ${table.bySection.length}`,
+  );
+  console.log(
+    `   ${"행".padStart(5)} ${"유형".padStart(4)} | ${tiers.map((t) => t.padStart(4)).join(" ")} | ${formats.join(" ")} | 차시`,
+  );
+  for (const s of table.bySection)
+    console.log(
+      `   ${String(s.rows).padStart(5)} ${String(s.families).padStart(4)} | ${cells(s.byDifficulty, tiers)} | ${cells(s.byFormat, formats)} | ${s.section}`,
+    );
+  console.log(
+    `   ${String(table.total).padStart(5)} ${"".padStart(4)} | ${cells(table.byDifficulty, tiers)} | ${cells(table.byFormat, formats)} | 합`,
+  );
 }
 
 /** 중등에서 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. */
@@ -645,7 +911,9 @@ async function apply(planFile: string, doApply: boolean) {
             ? `결합형 ${(t.ids ?? middleComboDefinitions().map((d) => d.id)).length}개`
             : t.engine === "judge"
               ? `판정형 ${new Set(made.map((r) => r.familyKey)).size}개`
-              : `${t.grade} ${t.unitSection}`
+              : t.engine === "high"
+                ? `${t.grade} ${t.unitSection} (고등 유형 ${new Set(made.map((r) => r.familyKey)).size}개)`
+                : `${t.grade} ${t.unitSection}`
       } → ${made.length}문항`,
     );
     rows.push(...made);
@@ -726,6 +994,10 @@ async function apply(planFile: string, doApply: boolean) {
     console.log(
       `   ⚠️ 객관식을 못 만든 변형 ${elemSkippedMcq}건 (정답이 수·분수·소수가 아니다) — 무작위 수로 안 채운다`,
     );
+  if (highSkippedMcq > 0)
+    console.log(
+      `   ⚠️ 고등에서 객관식을 못 만든 변형 ${highSkippedMcq}건 (정답이 «식»인데 생성기가 오답 넷을 안 냈다 — 형식은 단답 · 객관 둘 다여야 한다)`,
+    );
   // 🔴 **말없는 상한을 막는다.** `allowShort` 로 덜 낸 문형을 반드시 찍는다.
   //    안 찍으면 「전부 넣었다」로 읽히고, 변할 수 있던 문형이 못 변하게 된 회귀도
   //    같은 모양으로 조용히 지나간다. 목록 자체는 시험이 못 박는다
@@ -747,6 +1019,16 @@ async function apply(planFile: string, doApply: boolean) {
     units.map((u) => [`${u.grade}|${u.chapter}|${u.section}`, u.id]),
   );
   const byMid = new Map(units.map((u) => [`${u.grade}|${u.section}`, u.id]));
+  // 🔴 고등 행은 `과목|차시` 가 단원 **하나**를 가리킬 때만 싣는다 — 둘이면 위 표가 뒤엣것으로 덮여
+  //    문항이 조용히 다른 대단원에 붙는다. (중등 쪽 동작은 그대로 둔다 — 이번에 처음 싣는 고등만 본다.)
+  const ambiguous = ambiguousUnitKeys(
+    rows.filter((r) => r.externalId.startsWith(HIGH_EXTERNAL_PREFIX)),
+    units,
+  );
+  if (ambiguous.length > 0)
+    throw new Error(
+      `고등 차시 이름이 단원 둘 이상에 걸린다 — 어느 단원에 붙일지 모른다: ${ambiguous.join(" · ")}`,
+    );
 
   const ready: (Row & { unitId: string })[] = [];
   const unmatched: string[] = [];
@@ -987,6 +1269,10 @@ async function apply(planFile: string, doApply: boolean) {
     );
   }
 
+  // ── 표 — «넣을 것»을 차시별 · 난이도별 · 형식별로 (`--table`) ───────────────
+  // 「넣을 것 N」 한 줄로는 어느 차시가 얇은지 · 칸이 한쪽으로 쏠렸는지 안 보인다. 세기만 한다.
+  if (process.argv.includes("--table")) printRowTable(rowTable(fresh));
+
   if (!doApply) {
     const withFig = fresh.filter((r) => r.figureSpec).length;
     console.log(
@@ -1161,9 +1447,8 @@ async function revert(ledgerFile: string) {
   // 자기가 넣은 것만 지운다 — externalId 가 우리 접두사인지 한 번 더 본다.
   // ⚠️ 결합형(`engine-mid-combo:`)·판정형(`engine-mid-judge:`)도 이 적재기가 넣는다 — 종전 식
   //    `^engine-(elem|mid):` 는 그 둘을 «우리 것이 아니다»로 읽어 되돌리기를 통째로 멈췄다.
-  const mine = led.rows.filter((r) =>
-    /^engine-(?:elem|mid|mid-combo|mid-judge):/.test(r.externalId),
-  );
+  //    고등(`engine-high:`)도 같다 — 판정은 `isOwnExternalId` 한 곳이고 시험이 접두사 다섯을 댄다.
+  const mine = led.rows.filter((r) => isOwnExternalId(r.externalId));
   if (mine.length !== led.rows.length)
     throw new Error(
       `원장에 우리 것이 아닌 행이 ${led.rows.length - mine.length}건 있다 — 멈춘다`,

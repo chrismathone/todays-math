@@ -73,9 +73,57 @@ function pageParts(p: HighProblem): [string, string][] {
 }
 
 describe("고등 등록부 — 색인과 단원", () => {
+  /**
+   * 🔴 **과목별 보존** — 등록 · 보류 수를 과목마다 따로 못 박는다(2026-10-08 엔진 보강 ③-0).
+   *
+   * 종전에는 `expect(entries).toHaveLength(168)` 하나였다. 공통수학2 가 붙으면 그 수가 345 가 되는데, 그때
+   * 「전체 수」만 고치면 공통수학1 에서 한 유형이 빠지고 공통수학2 에서 하나가 더 붙어도 초록이다. 그래서 과목마다
+   * 「등록 + 보류 = 색인」과 함께 **등록 수 · 보류 수 자체**를 적는다 — 유형을 보류로 내리거나 되살리면 여기서
+   * 빨개지고, 그 까닭을 커밋에 남기며 숫자를 고친다. 새 과목은 **여기 한 줄을 더해야** 등록할 수 있다(표에 없는
+   * 과목이 등록부에 있으면 빨강 — 조용히 늘지 않는다).
+   */
+  const PRESERVED: Record<
+    string,
+    { registered: number; held: number; catalog: number }
+  > = {
+    공통수학1: { registered: 168, held: 2, catalog: 170 },
+  };
+
+  it("HIGH-COUNT: 과목마다 등록 · 보류 수가 보존된다 — 다른 과목이 붙어도 공통수학1 의 168 을 지킨다", () => {
+    const count = (keys: readonly string[]) => {
+      const out = new Map<string, number>();
+      for (const k of keys) {
+        const book = k.split("|")[0]!;
+        out.set(book, (out.get(book) ?? 0) + 1);
+      }
+      return out;
+    };
+    const registered = count(entries.map((e) => e.key));
+    const held = count(holds.map((h) => h.key));
+    const books = new Set([...registered.keys(), ...held.keys()]);
+    expect(
+      [...books].filter((b) => !(b in PRESERVED)),
+      "표에 없는 과목이 등록부에 있다 — PRESERVED 에 그 과목의 수를 적어라",
+    ).toEqual([]);
+    for (const [book, want] of Object.entries(PRESERVED)) {
+      expect(highCatalog(book), `${book}: 색인`).toHaveLength(want.catalog);
+      expect(
+        {
+          registered: registered.get(book) ?? 0,
+          held: held.get(book) ?? 0,
+        },
+        book,
+      ).toEqual({ registered: want.registered, held: want.held });
+      expect(want.registered + want.held, `${book}: 등록 + 보류 = 색인`).toBe(
+        want.catalog,
+      );
+    }
+    // 키의 과목 토막과 `grade` 가 어긋나면 위 셈이 다른 과목으로 샌다
+    for (const e of entries) expect(e.key.split("|")[0], e.key).toBe(e.grade);
+  });
+
   it("HIGH-META: OCR 잔재가 없는 표시 제목 18개와 원래 유형 키를 보존한다", () => {
     expect(Object.keys(HIGH_TITLE_CORRECTIONS)).toHaveLength(18);
-    expect(entries).toHaveLength(168);
     const byKey = new Map(entries.map((e) => [e.key, e]));
     for (const [key, title] of Object.entries(HIGH_TITLE_CORRECTIONS)) {
       expect(byKey.get(key)?.rpmTitle, key).toBe(title);
