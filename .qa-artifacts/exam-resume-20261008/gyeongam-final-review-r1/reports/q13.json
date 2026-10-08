@@ -1,0 +1,724 @@
+{
+  "schemaVersion": 1,
+  "status": "pending",
+  "questionNumber": 13,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q13",
+  "studentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5",
+  "candidateDigest": "b3336003b0ecb1cd757e783d24231c5aad90e036530dc36a01b0d482309a0d1e",
+  "assetDigest": "759fd6bc87eff2a381e7c27a00aedf4da1f4b8228fa422151223af127c813529",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "solveDigest": "b11e8d00b94c6ea5994ca0a585a9f60ec3413c69e2d425e8f2542eb3fe6d966d",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+    "independentSolverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+    "blindCommit": "53fcf61aa9f30885813befbbab3bccd47a7eae79",
+    "originalSolveFileSha256": "511ee499c3f7cf853dfa320f6798309d9f41b1268fe428a67d32c75cfc9e8220",
+    "rawSolveUnchanged": true,
+    "currentCandidateFileSha256": "b669f0128d128a6ff8f49262436b4a6ffcfa536d231fc1d996d4a1ded1e10515",
+    "verificationInputsSha256": "67d74e7537fdc355f733675e74f12e936c0cae3846824128426a4ad0263f27c9",
+    "verificationManifestSha256": "0e3806133ef66d3418070e73cbb4fea97c334328c195374e1622faa83a95dfad",
+    "inputAssetAuditSha256": "91e0c265075829783df752e7b70074b2b95563c08219b937334d3adf4225d1a3",
+    "reviewFindingsSha256": "adc685c70bf1d778dfe344a0e907736aa405df08287f22c48055f44911f5a999",
+    "answerEquivalence": {
+      "method": "circled-choice-number-after-independent-five-option-calculation",
+      "blindChoice": "①",
+      "authorChoice": "①",
+      "passed": true,
+      "allOptions": [
+        {
+          "index": 1,
+          "changes": [
+            "증가",
+            "감소",
+            "증가"
+          ],
+          "correct": true
+        },
+        {
+          "index": 2,
+          "changes": [
+            "증가",
+            "증가",
+            "감소"
+          ],
+          "correct": false
+        },
+        {
+          "index": 3,
+          "changes": [
+            "감소",
+            "증가",
+            "증가"
+          ],
+          "correct": false
+        },
+        {
+          "index": 4,
+          "changes": [
+            "감소",
+            "감소",
+            "증가"
+          ],
+          "correct": false
+        },
+        {
+          "index": 5,
+          "changes": [
+            "증가",
+            "감소",
+            "감소"
+          ],
+          "correct": false
+        }
+      ]
+    },
+    "solutionReview": {
+      "passed": true,
+      "independentMath": "같은예각범위에서Q가P보다위/왼쪽,QK>PH,OK<OH,AU>AT. 저자해설은같은반지름/같은수직선에서기하위치순서를설명한다.",
+      "completeStudentSteps": "0<P각<Q각<90의위치순서이며도함수/일반삼각함수그래프/삼각비사이항등식은없다.",
+      "allWrittenPartsReviewed": false,
+      "rubric": [],
+      "reasoningNotReplacedByLiteralAnswerMatch": true
+    },
+    "existenceUniquenessAndDomain": {
+      "passed": true,
+      "independentCodeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+      "conditions": [
+        {
+          "claim": "그림의 실제 점/수선/접선 높이 순서와 임의 예각의 기하 위치 관계가 일치한다. 수치 표본은 증명의 보조다.",
+          "passed": true
+        }
+      ],
+      "calculation": {
+        "radius": 1,
+        "angleDomain": "0<P angle<Q angle<90 degrees",
+        "geometricOrder": [
+          "QK>PH",
+          "OK<OH",
+          "AU>AT"
+        ],
+        "numericSupplementSamples": 3916,
+        "geometricProof": "A quarter-arc moves up/left as its central acute angle increases; higher rays hit the same vertical line higher."
+      },
+      "finiteSamplesAreSupplementaryOnly": true
+    },
+    "choiceReview": {
+      "passed": true,
+      "allFiveChecked": true,
+      "notApplicable": false,
+      "independentOptionChecks": [
+        {
+          "index": 1,
+          "changes": [
+            "증가",
+            "감소",
+            "증가"
+          ],
+          "correct": true
+        },
+        {
+          "index": 2,
+          "changes": [
+            "증가",
+            "증가",
+            "감소"
+          ],
+          "correct": false
+        },
+        {
+          "index": 3,
+          "changes": [
+            "감소",
+            "증가",
+            "증가"
+          ],
+          "correct": false
+        },
+        {
+          "index": 4,
+          "changes": [
+            "감소",
+            "감소",
+            "증가"
+          ],
+          "correct": false
+        },
+        {
+          "index": 5,
+          "changes": [
+            "증가",
+            "감소",
+            "감소"
+          ],
+          "correct": false
+        }
+      ]
+    },
+    "figureReview": {
+      "passed": true,
+      "exactPublicStudentSvgBindings": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q13\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q13\\figure-1.svg",
+          "specSha256": "8992c0aed99737c494cd27fe542485d63f6de8dd24c82a1fbbaf951aad0b419a",
+          "svgSha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q13-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerUnit": 135,
+            "reason": "Both points lie on radius1, both projections and both rays are exact, with Q higher/left and U higher."
+          }
+        }
+      ],
+      "independentPreExposureVisualBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q13-1.svg",
+          "sha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+          "viewedStudentPreview": "student-figure-preview/q13-1.png",
+          "viewedStudentPreviewSha256": "0b90035c2d92bfcaa3a4bdf86b0b868e8ccfafb1f07f2c86344eedd3eb20fc8e",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "actualFiguresViewed": true,
+      "notApplicable": false,
+      "strictLocalReproduction": true,
+      "bankCapMm": 70,
+      "physicalPaperApproval": false,
+      "nativeFrameSerializerApproval": false,
+      "sourceCropsReferenceOnly": true,
+      "sourceQuestionOnlyImageReferences": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q13-part1.png",
+          "sha256": "7f0aafcefecd1a462feac091912648893d1e2f59a7c19357be68a2705b09a67a",
+          "referenceOnly": true
+        }
+      ]
+    },
+    "sourceCoreAndDelta": {
+      "passed": true,
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-13",
+      "sourceContentDigest": "c39e112bb53847669a7615e2f9060b3e1d775448213d6dcaf47fc3b0c1126c62",
+      "sourceRecordDigest": "5a8c4ebd20ef36c9483ccb66a36644d50d2bb4af5dafc73049c9f5b2a4565622",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceQuestionOnly": true,
+      "originalAnswersUsed": false,
+      "sameCore": "원문의주된평가인각변화에따른sin/cos/tan의길이의미와증감방향을보존했다. 원보기의0°값은직접목표에서제외된범위차이로기록한다.",
+      "substantiveChange": "한위치의추상적변화주장/틀린보기에서두실제점·두수선·같은수직선의세길이기록비교로바뀌었다.",
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "사분원에서 sin/cos/tan의 각도 변화 주장 중 틀린 것을 찾는다.",
+        "after": "두 실제 위치/수선/접선 높이의 변화 기록 세 개를 비교한다.",
+        "sharedConcept": "사분원에서 sin/cos/tan의 각도별 길이 의미",
+        "sharedProcedure": "예각 범위 두 위치의 수직/수평 길이→같은 밑변에서 두 ray높이→세 변화 기록."
+      },
+      "variantDeltaDigest": "29a64301dcfecad2af84c2e9c18a9f8651cc0766e55d9fdc9154b9ac2884b703"
+    },
+    "koreanReview": {
+      "passed": true,
+      "evidence": "P/Q순서,두수선발H/K,같은수직선교점T/U와세기록을명확히대응시켰다.",
+      "sourceSchoolInStudentSurfaces": false
+    },
+    "curriculumReview": {
+      "status": "passed-for-seven-student-surfaces-and-actual-methods",
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standards": [
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "rolloutBasis": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "officialRestrictions": [
+        {
+          "id": "no_vieta",
+          "exact_text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4075,
+            "record_offset_in_uncompressed_stream": 207128,
+            "extracted_paragraph_1based": 833
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_ratio_identities",
+          "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4440,
+            "record_offset_in_uncompressed_stream": 224820,
+            "extracted_paragraph_1based": 908
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "angle_range",
+          "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4444,
+            "record_offset_in_uncompressed_stream": 224946,
+            "extracted_paragraph_1based": 909
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "no_circle_proportionality",
+          "exact_text": "원과 비례에 관한 성질은 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4452,
+            "record_offset_in_uncompressed_stream": 225374,
+            "extracted_paragraph_1based": 911
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "real_quadratic_roots",
+          "exact_text": "이차방정식은 해가 실수인 경우만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4059,
+            "record_offset_in_uncompressed_stream": 206372,
+            "extracted_paragraph_1based": 829
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4071,
+            "record_offset_in_uncompressed_stream": 206968,
+            "extracted_paragraph_1based": 832
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_function_applications",
+          "exact_text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4221,
+            "record_offset_in_uncompressed_stream": 214313,
+            "extracted_paragraph_1based": 863
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ]
+          }
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4472,
+            "record_offset_in_uncompressed_stream": 226554,
+            "extracted_paragraph_1based": 916
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        }
+      ],
+      "actualMethod": "0<P각<Q각<90의위치순서이며도함수/일반삼각함수그래프/삼각비사이항등식은없다.",
+      "bandCodeAndSourceSchoolNotPermission": true,
+      "lowerGradePrerequisitesAllowedAndReviewed": true,
+      "applied2015NotAutomatic2022": true,
+      "familyGateSeparateAndHeld": true
+    },
+    "unitAndFamilyReview": {
+      "unitPurposeFit": true,
+      "targetPurpose": "사분원의각도별길이의미·특수각값의대입",
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "bankSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "bankSnapshotSha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "observationOnly": {
+        "unitCount": 22,
+        "liveFamilyCount": 302,
+        "currentDatabaseFreshnessClaim": false,
+        "semanticApprovalFromLiveCount": false,
+        "databaseAccessByVerifier": false
+      },
+      "registryPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "comparedFullRules": [
+        {
+          "registryEntry": {
+            "key": "3-2|삼각비|12",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "12",
+            "rpmTitle": "사분원을 이용하여 삼각비의 값 구하기"
+          },
+          "observedLiveFamily": {
+            "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "family_key": "mid:3-2|삼각비|12",
+            "live_count": 20
+          },
+          "rule": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+            "lineStart": 1350,
+            "lineEnd": 1390,
+            "fileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "observedRule": "한사분원각의표시소수길이→한비또는두비의합 수치값."
+          },
+          "semanticFit": "not-established-for-full-new-input-target-procedure",
+          "familyAssignmentApproved": false
+        },
+        {
+          "registryEntry": {
+            "key": "3-2|삼각비|14",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "14",
+            "rpmTitle": "삼각비의 값의 대소 관계"
+          },
+          "observedLiveFamily": {
+            "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "family_key": "mid:3-2|삼각비|14",
+            "live_count": 20
+          },
+          "rule": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+            "lineStart": 1410,
+            "lineEnd": 1443,
+            "fileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "observedRule": "같은각에서서로다른sin/cos/tan중최대/최소하나. 두각의같은길이변화기록이아니다."
+          },
+          "semanticFit": "not-established-for-full-new-input-target-procedure",
+          "familyAssignmentApproved": false
+        }
+      ],
+      "authorComparisonNotSoleEvidence": true,
+      "familyKey": null,
+      "familyStatus": "held-unknown"
+    },
+    "scoreDifficultyReview": {
+      "status": "passed-by-qualitative-objective-task-and-rubric-review",
+      "sourceParentScore": 4,
+      "candidateParentScore": 4,
+      "blindCountedParentScore": 4,
+      "scorePreserved": true,
+      "parentCountedOnce": true,
+      "sourceParts": [],
+      "authorParts": [],
+      "partScoreTotals": null,
+      "authorDifficultyProposal": "응용",
+      "objectiveRationale": "원4점의세변화방향을그림/정의에연결하는응용목표이다. 단지함수값한개를읽는문제가아니다.",
+      "measuredEmpiricalDifficultyClaim": false
+    },
+    "typeSafeDesignEvidence": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "skillSha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+      "liveDocsRead": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "mathAndHashesInCode": true,
+      "semanticJudgmentsSeparatelyBound": true,
+      "unknownFamilyNull": true,
+      "inferenceApiCalls": 0,
+      "confidenceNotUsedAsApproval": true
+    },
+    "parentIntegrationHistory": {
+      "sidecarSha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848",
+      "priorReportCRLFDifferencesNotRewritten": true
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "evidence": "0~90°의 실제 사분원 위치 변화만 평가한다.",
+      "official2015StandardCodes": [
+        "9수04-17"
+      ],
+      "exactStudentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5"
+    },
+    "choices": {
+      "status": "passed",
+      "evidence": "증가/감소 세 기록을 호/동일 수직선의 순서로 검사한다.",
+      "official2015StandardCodes": [
+        "9수04-17"
+      ],
+      "exactStudentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "evidence": "실제 Q가P보다 위/왼쪽, K가H보다 왼쪽, U가T보다 위에 있는 공급 그림을 보았다.",
+      "official2015StandardCodes": [
+        "9수04-17"
+      ],
+      "exactStudentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5"
+    },
+    "notation": {
+      "status": "passed",
+      "evidence": "실제 표시 수·도·근호·선분·유한 x_i/삼각비/편차는 아래 중학교 방법에서 필요하다. 라디안·벡터·행렬·시그마/확률변수 기호를 학생 표면에 요구하지 않는다.",
+      "official2015StandardCodes": [
+        "9수04-17"
+      ],
+      "exactStudentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5"
+    },
+    "answer": {
+      "status": "passed",
+      "evidence": "같은예각범위에서Q가P보다위/왼쪽,QK>PH,OK<OH,AU>AT. 저자해설은같은반지름/같은수직선에서기하위치순서를설명한다.",
+      "official2015StandardCodes": [
+        "9수04-17"
+      ],
+      "exactStudentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "evidence": "0<P각<Q각<90의위치순서이며도함수/일반삼각함수그래프/삼각비사이항등식은없다.",
+      "official2015StandardCodes": [
+        "9수04-17"
+      ],
+      "exactStudentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "evidence": "중1 각·수선, 중3 0~90° 삼각비 그림과 값의 변화",
+      "official2015StandardCodes": [
+        "9수04-17"
+      ],
+      "exactStudentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5"
+    }
+  },
+  "dimensionStatus": {
+    "mathematics": "passed",
+    "sevenSurface2015Middle3": "passed",
+    "sameCoreConceptAndProcedure": "passed",
+    "substantiveDelta": "passed",
+    "naturalKorean": "passed",
+    "figure": "passed",
+    "unitPurpose": "passed-within-historical-snapshot",
+    "liveFamily": "pending",
+    "difficultyScore": "passed",
+    "rights": "held",
+    "custody": "held",
+    "native": "held",
+    "loadable": false
+  },
+  "holds": [
+    {
+      "dimension": "unitFamilyFit",
+      "status": "pending",
+      "reason": "Unit purpose is semantically appropriate in the04:53UTC snapshot, but familyKey remains null. Compared actual current rules do not establish support for this whole new input/target/procedure. No closest-title assignment.",
+      "specificComparedRules": [
+        "3-2|삼각비|12",
+        "3-2|삼각비|14"
+      ],
+      "reopenCriteria": "A specific existing live family with full input/target/steps/rubric and objective difficulty correspondence, or separately authorized metadata rule work."
+    }
+  ],
+  "rightsApproval": false,
+  "custodyApproval": false,
+  "nativeApproval": false,
+  "directUseAllowed": false,
+  "loadable": false
+}

@@ -1,0 +1,757 @@
+{
+  "schemaVersion": 1,
+  "method": "independent-solve-then-review",
+  "verificationInputsPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\verification-inputs.json",
+  "verificationInputsSha256": "67d74e7537fdc355f733675e74f12e936c0cae3846824128426a4ad0263f27c9",
+  "verificationManifestSha256": "0e3806133ef66d3418070e73cbb4fea97c334328c195374e1622faa83a95dfad",
+  "verifyBriefSha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3",
+  "blindCommit": "53fcf61aa9f30885813befbbab3bccd47a7eae79",
+  "blindBindingsSha256": "e53eee9a8fe3d31cf690a536bbdb5118900b94fb0fd47fd5e06f8c89d1981401",
+  "authorAnswersReadOnlyAfterBlindCommit": true,
+  "answerExposureJsonPresent": false,
+  "exposureAuthority": "Explicit user authorization and actual verify-pack manifest/inputs binding all18 original solve file hashes; no separate answer-exposure.json in supplied directory at read time.",
+  "sourceQuestionOnlyPacket": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\questions.json",
+  "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+  "parentIntegrationSidecarSha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848",
+  "questions": [
+    {
+      "questionNumber": 1,
+      "studentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5",
+      "candidateDigest": "442b7e5c89af6264675a768dbb8a546a29b54e132ddeddd351c41539c1eb04b8",
+      "assetDigest": "acf7128bcda01933448a0fe55d4e8621f329e957b889fe6c20bf8f761a1eb574",
+      "solveDigest": "56b15457ac924585b8de525c5febd46001cfc7623a084d82636019da136728d2",
+      "originalSolveFileSha256": "3457650d85658a8c05d85403c93eb01d1c2b7a6a2a34ef709d649a4e46734836",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q01.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q01\\candidate.json",
+      "candidateFileSha256": "bc59424880da3578ee0d3ccc860a08bce7d630c431570ed72c449e9e67da7d95",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-1",
+      "sourceContentDigest": "320fdf237818030c85a3e178c90b4ba3cd9771c387c0eea5d9c2b48df2180d39",
+      "sourceRecordDigest": "8a744ec0fbd1ab6af5f1ffeac82d2aa71874067827893f3f3a1b3f4a8d30e81b",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 3,
+      "candidateScore": 3,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q01\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q01\\figure-1.svg",
+          "specSha256": "d273f0b4396cb0fe103c243c7016a89da67b119004b448c99a3c3920d41aa412",
+          "svgSha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q01-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+          "numericRelation": {
+            "passed": true,
+            "reason": "Printed category/axis values directly inspected in frozen student SVG."
+          }
+        }
+      ],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q01-part1.png",
+          "sha256": "49e50d50cf2beefcd765944eb9400cc813fe9b272e8108fe44a2f92c0811eefe",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 2,
+      "studentDigest": "27ec87cab738c64d677012c8d6f7fc7fb8129eb174622eee102f33f9c6361479",
+      "candidateDigest": "df2f2e9e10750c9c9467bdc8f48456e6d69b37841eb6aae493677d27b40884c7",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "0e0272cac4c43cd01783c0c29bbb0304baca14fa16b45e9ead839c51ef35f492",
+      "originalSolveFileSha256": "c7921087ef2ccc4663a712f20586a5090f5e0c1c02845a09cec8a184534d1042",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q02.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q02\\candidate.json",
+      "candidateFileSha256": "f0c65b57cb3939ad95e0a14c9bb141d77cf60aea2ceebe0cc2acaf4e29c5c8c3",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-2",
+      "sourceContentDigest": "0405aae43843a2d8b13b0bdc4d57564201aa05cc9262dc4bf22c80fabb498e45",
+      "sourceRecordDigest": "8d861d0003eb043cc38cf0ebd5303a64b0ed85100af5ba23093783cd00a64a21",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q02-part1.png",
+          "sha256": "b10ce6d1200a8ca27d7734e5d2cdd84e6d7e70eebe98693b898be80112fdd856",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 3,
+      "studentDigest": "8d876ea3ae7bd6f303dccba8c6a234a5e516e94f69290fc3ba4d42b2b0e32a4c",
+      "candidateDigest": "6234d90231e4d149c3a7eefcb388c91f85b0bd77622720afe81b3536291711b2",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "1ed9ca23a1be7fbd0cc64004700caf114ea9d582fe82c0ccfd0e2e37cdcabb38",
+      "originalSolveFileSha256": "7c2d27a81b4c75e62101bbde74a2992f80cbbed891e18cfce39906ee036b5999",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q03.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q03\\candidate.json",
+      "candidateFileSha256": "031131feccdb6229ce51162c0b9fc2792485bd597e7196f72b89ad7270b1256f",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-3",
+      "sourceContentDigest": "6e0b5177207b284e125a02e531044b306e1342f187f2e1dda9bb83d286412301",
+      "sourceRecordDigest": "857c04b5d9953993739eeb4c1e8bdc00514e0c202420c547b0a9d508fa125b09",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q03-part1.png",
+          "sha256": "b20674924062d850e990101a7535af80e194cb347fa3b95ecd74ec9115f750b1",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 4,
+      "studentDigest": "e62189798c2656dc78ea39bf2049fcec4b594695ca8fb930c8e6084bc32308a8",
+      "candidateDigest": "a6cd85210fee1dd84c3845775d36c603bc75ce6ed4e36cf228a9a47ef9ca747a",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "4d944400a8357862874bf96ffab1be9061c0ebb10a176a81529dc856b0b525e2",
+      "originalSolveFileSha256": "d03e2a530510452ba576b4abf8564b32072eafaf80126e9fdddc0c9ddb8c1e85",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q04.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q04\\candidate.json",
+      "candidateFileSha256": "efe61d5e5df4ba6249a95286011776312bf3e306afb7735db3bc59d2e89028db",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-4",
+      "sourceContentDigest": "6e6c5ffa3af092015ca327ac93327d00749c148c0b84810e3e76410bf448e42d",
+      "sourceRecordDigest": "413c4bf93cac24c1d0ae53d5f3ed531512a0cf55f9ab24ecf1452bec100e8358",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q04-part1.png",
+          "sha256": "2852f6677f965a3b7ddcab943244e88245432ba0d15dde3754308ee4f1a1823b",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 5,
+      "studentDigest": "9230c29fa2035a201ba81bfceded6d2915e2fc75142b29c82c64d9a1be070765",
+      "candidateDigest": "86f4325e0386831bc02719dbdbe903f1ed7b88326a961c0730044dab94fab32b",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "c8a8b8b6fe1903b645ea851bd567c7eb7c28ac8b282a2927d617f8a301776a6e",
+      "originalSolveFileSha256": "b23aa11977cbbe92059171a0fa8a7d83a124b5102d5eb7e87366e0936d2b734e",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q05.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q05\\candidate.json",
+      "candidateFileSha256": "0d4ee572672f60e91a464eab3d3c48459863b0477b0e90c3db947f1a9be09b5a",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-5",
+      "sourceContentDigest": "9b91aeaca5f015bfaf57a52a96b20d0a5bac98aaa9696c4b234b9b7fcb88d50a",
+      "sourceRecordDigest": "b7cb3b783dbbc6b7f060f1d8ec875e8d1336c32513fb706aa1d97da7d4a5ebb1",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q05-part1.png",
+          "sha256": "e5e886bf83dc7e92d988b91b4db3fd042e009ac16df22d0d6e8fb7b22d2d8277",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 6,
+      "studentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498",
+      "candidateDigest": "69d6a70843b1f00e3f403b2ae5a730c794dcfe33cc60bcaa4be070667a7190f6",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "f02ed000e3b4f8f11df2cf573cf084defe0e07afec6ba2f534fd2fac412bea2a",
+      "originalSolveFileSha256": "ece02550dbdbd77e1e4f11e06038cbd2fe924bb4cbd594c13b85651033c749e1",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q06.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q06\\candidate.json",
+      "candidateFileSha256": "0a1d6a34839a07937ea40ab8533a98dc8ebd3f6b0586c4687e4464ebd0bcdf3f",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-6",
+      "sourceContentDigest": "4df5256dac02491164e7faeb0d8615a27ab26063d82adecc31e2ad2a3ed1b434",
+      "sourceRecordDigest": "32321823bd1dce1912bd53a0f397756f22329b4a7515d2c7d8b2dc261b242510",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q06-part1.png",
+          "sha256": "21c8dee6fcc6124a2c71a26adcecdbd6aa7d1646bf37a914da56ae36d8269aa6",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 7,
+      "studentDigest": "eb0cd4a7591db651ba96c56d0cd84198ed7913be2b1d9e218d7b74b95cc916bf",
+      "candidateDigest": "e26611abce7bc0772d8d031eb21b549b12bdff44c6a78bf6280d46ccc0fc9cc5",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "82bd0554fa4b4420bb70e2b576fe3a57dd8d08c7b8082e205e9316d1f8515978",
+      "originalSolveFileSha256": "a31298111c0bf8c09741a3838f81af71ee10cf0ba3b80c20a6d841344db4c8b1",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q07.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q07\\candidate.json",
+      "candidateFileSha256": "9cbc91f94449a19d1417d38e3daefe28b689b82223773024e11de231df5fd5f9",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-7",
+      "sourceContentDigest": "a6f3dbd7bc68108e6ed1d289f04fb1fc14412ebd10068688cb2091ab6aeaba96",
+      "sourceRecordDigest": "03abc154840e64f99ebd1fe6fb43a343dd828ec41b997751e917d2b38191a99b",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 5,
+      "candidateScore": 5,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q07-part1.png",
+          "sha256": "018c44b87619e6c4ab8aa10c93be04686e0de397c07a127beeba2c9db017c79e",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 8,
+      "studentDigest": "13413d9efcc365a8c802d0da9974273a4c9f9502ce59740593b1e091120cae66",
+      "candidateDigest": "dbe8467d91b5440125cff6def5a36fcc9483f32a36261b318f75cc65b0f6ba42",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "8f75fddad8ab1452d4256836f07fd4000cabaffa3cdfbade3f9437919756480d",
+      "originalSolveFileSha256": "a4eddda219fb4b7927c484ee33ade10fa13156320ac1e4963bd12d2a0800cfc1",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q08.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q08\\candidate.json",
+      "candidateFileSha256": "7574fb0723bde72841715254857882ff54951fd44c12a481939ed0fdc11774ba",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-8",
+      "sourceContentDigest": "d1cb244a5a17c8f95ab3edd2e355df964c4675bb758ba17a4ad3d590eb0e56a3",
+      "sourceRecordDigest": "16828d0bf8e2f8014c3a74acdf562134764896fc62b8408154be3ee8878a57be",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 5,
+      "candidateScore": 5,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q08-part1.png",
+          "sha256": "f8882bd83a7c4ba775200de983e1d6952dbb2ceb340c4b3b70cda1faeb7825df",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 9,
+      "studentDigest": "aae404817e043d121db73f24b3c1ce382d7230c1c802e3cb4e8bdd63377da712",
+      "candidateDigest": "dca530f1d0b4b7137b0901e9d8d21c4bd300aeba818f2ccf72d92968ab361326",
+      "assetDigest": "08d807e611a1bddbce961f753d8d4c691fe9a8a98f49b88bbeadedab9cc0a2c4",
+      "solveDigest": "229ead4331e7ee9f70357df3bf94ffc85a6ac3da194c69cfd6130d29a01500ca",
+      "originalSolveFileSha256": "6cbe527932a940e641d543eaedecabc5854cc56f1d016fd549e0899f9f06a9b6",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q09.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q09\\candidate.json",
+      "candidateFileSha256": "f27dc952c04d4e6e84105e6863a41c2ffc185da7e23db153ac3053d01d55bb13",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-9",
+      "sourceContentDigest": "0ca70fdb538424c553d4d73f568078c7c2755721cb9b9191442088c42979cc62",
+      "sourceRecordDigest": "83f68474d716b6ac97190d2adca250cc7777a1eee121ae80cf0a50ff741dcbe6",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 3,
+      "candidateScore": 3,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q09\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q09\\figure-1.svg",
+          "specSha256": "b42e9178ede5acdfd29083fa00dc6bba82745954c6eea874cc2b7ae3f4acd9bb",
+          "svgSha256": "cd22dfa3852b209389749ee665d4ecdb44956e7f1a8166192195eb75b6ea5fff",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q09-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "cd22dfa3852b209389749ee665d4ecdb44956e7f1a8166192195eb75b6ea5fff",
+          "numericRelation": {
+            "passed": true,
+            "reason": "All12 specified scatter points equal independent visual readings, including the50 boundary."
+          }
+        }
+      ],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q09-part1.png",
+          "sha256": "32d87776889d0fe6ca15ef49cfa5ff13cba1ed28bb1dc068f787c8d08c74112f",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 10,
+      "studentDigest": "840ff70deb1a4eac4cf504f5c2a802b0917c9c1a671b37fd1bd9def090cdf03a",
+      "candidateDigest": "8da9b8ced71a6b4f385ff0c022a153c1269736fe7873f615a260d5dd3d447fee",
+      "assetDigest": "6b98fb018044a487b957bd071ff1c417c0cffb4442277248a6c94a2b537359a9",
+      "solveDigest": "efc3d4b4389856dcf479530e77d3b3383eee26c7e28f16e03c5ada79ec3f0b76",
+      "originalSolveFileSha256": "5250bc85f6419dda40d1f899e82beda1c8a57ecc20dbfcdace3ef7520c7845ae",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q10.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q10\\candidate.json",
+      "candidateFileSha256": "2fbe61c4f49cdabc7b85a53765368cb175308cca4356ef12033484bec2912687",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-10",
+      "sourceContentDigest": "485761e8b9850d604e790ec22759c914cabdf3e54c7741af6702c09ae15a0eb2",
+      "sourceRecordDigest": "ef4422c9ab8209820f3728b2a382ea064eae07a00080c683e3fe2d54d16b33d6",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 3,
+      "candidateScore": 3,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q10\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q10\\figure-1.svg",
+          "specSha256": "e921594bd209e9feb0c5bc1d625f19d888952152edd7be53bd4ac04dc82fdb3b",
+          "svgSha256": "a64c8e2f2c1f5b398f6d900681fa4fb9880f7dcc2a59bf6e9d7da72067bcd574",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q10-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "a64c8e2f2c1f5b398f6d900681fa4fb9880f7dcc2a59bf6e9d7da72067bcd574",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerCm": 10,
+            "reason": "All3 sides share the same numeric scale and R is actually right."
+          }
+        }
+      ],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q10-part1.png",
+          "sha256": "198e89eedec180ecc2b6efb2b467026fa408ee0131cba7a24b31a33970610c5b",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 11,
+      "studentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc",
+      "candidateDigest": "91d95f504ab6515b22125988b9700c2467fd1ddf2ce0377ffb0289f72fb01f5c",
+      "assetDigest": "38da377ceeb6a359b4d1bfec9fc2787abc3e59ceae12bc067d2be19970c27d88",
+      "solveDigest": "d93c02bab07d742231764ba21da584d7e4007ac44915a0f90ed08f538806bd5f",
+      "originalSolveFileSha256": "b60803cacbdb7919877a98b134e0f4e8a3bb50a969490635741c3007a18f0440",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q11.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q11\\candidate.json",
+      "candidateFileSha256": "96c6a488775b157fb50ad05e7f7a63a36e434aab041762b8b7b33b34974ed785",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-11",
+      "sourceContentDigest": "092997340d10540760a1abc046ecb5b09fe1bf62437924ff423d6def6185464b",
+      "sourceRecordDigest": "4401b7dadfeab3e95f890ee919b886afca00ddea532f05771310387d7f39c4a1",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q11\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q11\\figure-1.svg",
+          "specSha256": "3395004e0e551644d9c713fb63e37b0dcb1da0d6fc857ee851edf66864568596",
+          "svgSha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+          "intendedWidthMm": 55,
+          "studentPath": "figures/q11-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+          "numericRelation": {
+            "passed": true,
+            "projectedParallelEdgesConsistent": true,
+            "metricAnglesOrLengthsInferredFromProjection": false,
+            "reason": "The labelled cube is an affine placement projection with consistent parallel edges. The separate exact BFD triangle supplies the mathematical lengths/angle; projected C/FD overlap is not a space collinearity claim."
+          }
+        },
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q11\\figure-2.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q11\\figure-2.svg",
+          "specSha256": "c446305e3a51b4c8fe6c065e48025c9f8ffca0ca6cf1241a92c6942a133ee2bc",
+          "svgSha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+          "intendedWidthMm": 55,
+          "studentPath": "figures/q11-2.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerCm": 25,
+            "reason": "The separate exact BFD triangle has BF=4 and BD=4sqrt2 at one scale; B is right. The cube is a projected placement diagram."
+          }
+        }
+      ],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q11-part1.png",
+          "sha256": "a6b0c5a8d896159334f7e125d434afae8cd4ba66f11a89cd34fb374d8f0bc304",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 12,
+      "studentDigest": "0b3a68064ec73ea0a26892e5d719014123bef5bbc6212508a9c02b04ea76304e",
+      "candidateDigest": "42fff141afb78bb5be4943a3a7a0083929b4369097d669193d99b104dcdfa42b",
+      "assetDigest": "6c1d145fffaf412d22d2d1fd12b5dc64f0004650c9cb4e7afd3cbbb2d49bba72",
+      "solveDigest": "af2876190c956e6f35588c10bb9fed43b2ca01a6a4f9ea06e30d60bbf049ca90",
+      "originalSolveFileSha256": "20eec31adf29a3ac6c7e4430eeaa92a361875ce95a7f5b87e41e4a1b9b34b0aa",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q12.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q12\\candidate.json",
+      "candidateFileSha256": "400aefb8ade16d7670f0635a526c47dbfe15aac9473f527c0d75af57a317cd13",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-12",
+      "sourceContentDigest": "e163659c2ce2d1439862348f43b5457314763ca821be46ac3c95693c33276334",
+      "sourceRecordDigest": "4edf8c3dbf5e4b18f2ce01f618e6b8ed2c5742db539f6cd916aff2beefbefa60",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q12\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q12\\figure-1.svg",
+          "specSha256": "20917209d13d415f4ae631c79317d8c698a622b96d958f81e60235cfa065cd1f",
+          "svgSha256": "ae14b4bc481a4e4db967133384a2f7810322d1415f73ebdf920f7f6378250257",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q12-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "ae14b4bc481a4e4db967133384a2f7810322d1415f73ebdf920f7f6378250257",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerCm": 9,
+            "reason": "Actual PR/QR are2:1 and scale-consistent with independent18cm/9cm."
+          }
+        }
+      ],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q12-part1.png",
+          "sha256": "0bdc0b96742e95266c25f855ba2f985b386cd5d80607ff713e821c18861ad7fc",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 13,
+      "studentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5",
+      "candidateDigest": "b3336003b0ecb1cd757e783d24231c5aad90e036530dc36a01b0d482309a0d1e",
+      "assetDigest": "759fd6bc87eff2a381e7c27a00aedf4da1f4b8228fa422151223af127c813529",
+      "solveDigest": "b11e8d00b94c6ea5994ca0a585a9f60ec3413c69e2d425e8f2542eb3fe6d966d",
+      "originalSolveFileSha256": "511ee499c3f7cf853dfa320f6798309d9f41b1268fe428a67d32c75cfc9e8220",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q13.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q13\\candidate.json",
+      "candidateFileSha256": "b669f0128d128a6ff8f49262436b4a6ffcfa536d231fc1d996d4a1ded1e10515",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-13",
+      "sourceContentDigest": "c39e112bb53847669a7615e2f9060b3e1d775448213d6dcaf47fc3b0c1126c62",
+      "sourceRecordDigest": "5a8c4ebd20ef36c9483ccb66a36644d50d2bb4af5dafc73049c9f5b2a4565622",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q13\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q13\\figure-1.svg",
+          "specSha256": "8992c0aed99737c494cd27fe542485d63f6de8dd24c82a1fbbaf951aad0b419a",
+          "svgSha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q13-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerUnit": 135,
+            "reason": "Both points lie on radius1, both projections and both rays are exact, with Q higher/left and U higher."
+          }
+        }
+      ],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q13-part1.png",
+          "sha256": "7f0aafcefecd1a462feac091912648893d1e2f59a7c19357be68a2705b09a67a",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 14,
+      "studentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd",
+      "candidateDigest": "247580323f9675f99cbfae7b0c7447cd300c0392418b08b474634c7810197e83",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "e6c63c9cdb778617cc65c8e6c42bb6440b2cb8a5c967dfd8860f3e7244672ab4",
+      "originalSolveFileSha256": "cac066e6c2c052f6cc6e0f9d79eade1b782f476ebd267184255cee075274b431",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q14.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q14\\candidate.json",
+      "candidateFileSha256": "92cf2575b4d7ea5b6d4b8c7c75a18eaba170326b977ea5c4a48144ed83b0139e",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-14",
+      "sourceContentDigest": "c8bee5ef4841113c7f14610f4c0b8df48c7223b0a3a61a56e1fd38fefc61f46a",
+      "sourceRecordDigest": "8126f25f31d87947c942cffa5cfc146a53611d5fc24178a7535744454b23843a",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q14-part1.png",
+          "sha256": "54f6abb12f94bd25496cf9410b8bffa89ba13290aade5a8633b05ecec1d92749",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": true,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 16,
+      "studentDigest": "622fbe2eeac514d357a9e5d89740fcf74995e53cb7e7d380ca5c9db4c1196228",
+      "candidateDigest": "735d251f2fb963db4ce15a64b50a0700664558c520a9d282fd2237ccf18342fa",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "b88d15978372df696e95d1e46f64db0b0545d62640cef36a3ecc1e06d74b614e",
+      "originalSolveFileSha256": "b94d4a1cf2c1eff79ead449dc57a88e2a6832208707816c1be9b0286d19673a1",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q16.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q16\\candidate.json",
+      "candidateFileSha256": "22ec8a5b243733d4e154f85caceb65e038ce42ff64f822ac9241b434302a8c38",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-16",
+      "sourceContentDigest": "fa31a0897884b6fa3e19555814071c3c0043aa5f4b732c5e07021422d8fa580c",
+      "sourceRecordDigest": "80af8c1d9bc342b14a2d564d14ea929384c47dfe2abb07b064ea1330929b67c3",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 8,
+      "candidateScore": 8,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q16-part1.png",
+          "sha256": "d4f0050c791448c28af9c38719b786b2501c21cc2ac89845d51c8a39a9e38101",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": false,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 17,
+      "studentDigest": "75422a301a173ecd7b8d6fe84e460dc4ec74c2aba11714aab46468d608b50bce",
+      "candidateDigest": "f594b6bfbd9a8ee539548871987d7b5ea09091daea388b7b2b8a8db9043437d4",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "a35efd4de40186e4712f0088bb06b15addb276416979729ba7da458fc47dbdd7",
+      "originalSolveFileSha256": "e28f267f9867727caf527f75062ad402b718f975e78c76dd0313eb7eb718d1d5",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q17.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q17\\candidate.json",
+      "candidateFileSha256": "4ec814ea3b8c10d9de67d80a4435f1e67b5ceeaa9ff0227cf6f759bd47d6a2b9",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-17",
+      "sourceContentDigest": "1a805e77b9739c85c8f0d05ad9533d4f7abe40670c02678abd0ad359d625430a",
+      "sourceRecordDigest": "2b3e49d5f240f91e098c10391717b54c8d409301eb8237972b815b1a15c5b849",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 10,
+      "candidateScore": 10,
+      "sourceParts": [
+        {
+          "number": 1,
+          "stem": "$(1)$ 현수네 모둠의 저축 횟수의 평균은 현수의 저축 횟수보다 몇 회 더 많은지 구하시오. [$5$점]",
+          "score": 5,
+          "parentSharedFigure": true
+        },
+        {
+          "number": 2,
+          "stem": "$(2)$ 저축 횟수의 표준편차를 구하시오. [$5$점]",
+          "score": 5,
+          "parentSharedFigure": true
+        }
+      ],
+      "authorParts": [
+        {
+          "number": 1,
+          "score": 5,
+          "target": "reference-student count"
+        },
+        {
+          "number": 2,
+          "score": 5,
+          "target": "actual standard deviation"
+        }
+      ],
+      "assets": [],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q17-part1.png",
+          "sha256": "4ae11816785b36ff9457054b6fa08429d589921f9c3dc4b1ad29ede14b8a2719",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": false,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 18,
+      "studentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341",
+      "candidateDigest": "6949d5bb54bd87c8e00842b8f8390a13e264465762aa289437cf6b6f2faef65e",
+      "assetDigest": "32f69bdaf8080fc81016e6becd05661327f0392df67799ec197711cf81fee937",
+      "solveDigest": "6bc6081697ea33ab0c3b4740beaa07b63de10a9291b62e62103361b76833bef4",
+      "originalSolveFileSha256": "b0e0dd9fe4b9c9ad36d87a6374a4b003dab04e0a74f78f9b1e2174d50db79b68",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q18.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q18\\candidate.json",
+      "candidateFileSha256": "a88ed0fce1e47c058c96cae23a2b5ca6f5e7d8b28e508b80169f2ac93c9981ad",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-18",
+      "sourceContentDigest": "c694c06df5e2bed974a7fa9aac31864b4badca8f91779aa65f01447b0cbcc686",
+      "sourceRecordDigest": "e5bbd94cbaced17f813d086d3e216b667e08fc22250e2403ccb1a5bc5340c304",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 12,
+      "candidateScore": 12,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q18\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q18\\figure-1.svg",
+          "specSha256": "acdab1a1e9d202f2790ef16b7e2af044e2994529aa9ad5d9a8fcdb88241ee527",
+          "svgSha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q18-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerCm": 14,
+            "reason": "Internal D, equal AD/CD,45 degree atD,rightB and actual22.5degree atA all hold geometrically."
+          }
+        }
+      ],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q18-part1.png",
+          "sha256": "1bdf2c01b9afa15d5e1302987b17e6ff719ebe17e9961ea4b4a266c2475f019f",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": false,
+      "independentConditionsPassed": true
+    },
+    {
+      "questionNumber": 19,
+      "studentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff",
+      "candidateDigest": "130b25e72cd524bd769d886337071c0bb816230d002f9a15b411f65fd29ac5ed",
+      "assetDigest": "de259aa8a4b80f406def1a1f462118e961b6660fd0ce3dec87f58c6e847237fd",
+      "solveDigest": "1648335049655f9a9b8600230b0a3f83498167ae5ada9fba876ed79c4347f06d",
+      "originalSolveFileSha256": "914fddf352f91886905c21ec958a6475bd32f1f591295f23b7754a5f95e99aea",
+      "originalSolvePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q19.json",
+      "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "candidateFile": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q19\\candidate.json",
+      "candidateFileSha256": "7a1ed212709efc1d3845d2aaa465a5c430fe573ce4677ad04580d4e05b78b7ce",
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-19",
+      "sourceContentDigest": "f903574a21863dd5d39ef74e2626173f763980a755a8480c25939532aa681b44",
+      "sourceRecordDigest": "b4ccdd918b1f372f1003f1fa47e31218d040354e34c324344f2a60f6ad2562b4",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceScore": 10,
+      "candidateScore": 10,
+      "sourceParts": [],
+      "authorParts": [],
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q19\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q19\\figure-1.svg",
+          "specSha256": "763d7eb50509c73afae026ee59a03a1fa5a8cef874354838c6d404ff4ae6a6d5",
+          "svgSha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q19-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+          "numericRelation": {
+            "passed": true,
+            "scalePxPerCm": 25,
+            "polygonAreaCm2": 10.392304845413264,
+            "reason": "The actual shaded trapezoid equals6sqrt3cm² at radius4, with ray/foot/right-angle and60degree conditions satisfied."
+          }
+        }
+      ],
+      "sourceImages": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q19-part1.png",
+          "sha256": "31aa5758e81628241391a04c1dbe601f91218ef2c48728686aaab0752110312a",
+          "referenceOnly": true
+        }
+      ],
+      "allFiveOptionsFromIndependentCode": false,
+      "independentConditionsPassed": true
+    }
+  ],
+  "totalFigures": 9,
+  "all18FrozenBindingsPassed": true,
+  "rightsApproved": false,
+  "nativeApproved": false,
+  "loadable": false
+}

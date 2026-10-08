@@ -1,0 +1,664 @@
+{
+  "schemaVersion": 1,
+  "status": "pending",
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q01",
+  "studentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5",
+  "candidateDigest": "442b7e5c89af6264675a768dbb8a546a29b54e132ddeddd351c41539c1eb04b8",
+  "assetDigest": "acf7128bcda01933448a0fe55d4e8621f329e957b889fe6c20bf8f761a1eb574",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "solveDigest": "56b15457ac924585b8de525c5febd46001cfc7623a084d82636019da136728d2",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+    "independentSolverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+    "blindCommit": "53fcf61aa9f30885813befbbab3bccd47a7eae79",
+    "originalSolveFileSha256": "3457650d85658a8c05d85403c93eb01d1c2b7a6a2a34ef709d649a4e46734836",
+    "rawSolveUnchanged": true,
+    "currentCandidateFileSha256": "bc59424880da3578ee0d3ccc860a08bce7d630c431570ed72c449e9e67da7d95",
+    "verificationInputsSha256": "67d74e7537fdc355f733675e74f12e936c0cae3846824128426a4ad0263f27c9",
+    "verificationManifestSha256": "0e3806133ef66d3418070e73cbb4fea97c334328c195374e1622faa83a95dfad",
+    "inputAssetAuditSha256": "91e0c265075829783df752e7b70074b2b95563c08219b937334d3adf4225d1a3",
+    "reviewFindingsSha256": "adc685c70bf1d778dfe344a0e907736aa405df08287f22c48055f44911f5a999",
+    "answerEquivalence": {
+      "method": "circled-choice-number-after-independent-five-option-calculation",
+      "blindChoice": "④",
+      "authorChoice": "④",
+      "passed": true,
+      "allOptions": [
+        {
+          "index": 1,
+          "value": "소설",
+          "correct": false
+        },
+        {
+          "index": 2,
+          "value": "과학",
+          "correct": false
+        },
+        {
+          "index": 3,
+          "value": "역사",
+          "correct": false
+        },
+        {
+          "index": 4,
+          "value": "만화",
+          "correct": true
+        },
+        {
+          "index": 5,
+          "value": "예술",
+          "correct": false
+        }
+      ]
+    },
+    "solutionReview": {
+      "passed": true,
+      "independentMath": "네 도수 합20/총30으로 누락10명, 유일 최빈 범주 만화. 새 해설은 모든 범주의 도수를 비교한다.",
+      "completeStudentSteps": "도수 합/차와 최빈값 정의만 사용한다.",
+      "allWrittenPartsReviewed": false,
+      "rubric": [],
+      "reasoningNotReplacedByLiteralAnswerMatch": true
+    },
+    "existenceUniquenessAndDomain": {
+      "passed": true,
+      "independentCodeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+      "conditions": [
+        {
+          "claim": "도수는 양의 정수이고 합30, 최대 도수는 만화 하나이다.",
+          "passed": true
+        }
+      ],
+      "calculation": {
+        "graphReading": {
+          "소설": 8,
+          "과학": 5,
+          "역사": 4,
+          "예술": 3
+        },
+        "total": 30,
+        "frequencies": [
+          8,
+          5,
+          4,
+          10,
+          3
+        ]
+      },
+      "finiteSamplesAreSupplementaryOnly": false
+    },
+    "choiceReview": {
+      "passed": true,
+      "allFiveChecked": true,
+      "notApplicable": false,
+      "independentOptionChecks": [
+        {
+          "index": 1,
+          "value": "소설",
+          "correct": false
+        },
+        {
+          "index": 2,
+          "value": "과학",
+          "correct": false
+        },
+        {
+          "index": 3,
+          "value": "역사",
+          "correct": false
+        },
+        {
+          "index": 4,
+          "value": "만화",
+          "correct": true
+        },
+        {
+          "index": 5,
+          "value": "예술",
+          "correct": false
+        }
+      ]
+    },
+    "figureReview": {
+      "passed": true,
+      "exactPublicStudentSvgBindings": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q01\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\package\\private\\q01\\figure-1.svg",
+          "specSha256": "d273f0b4396cb0fe103c243c7016a89da67b119004b448c99a3c3920d41aa412",
+          "svgSha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q01-1.svg",
+          "strictLocalSvgReproduction": true,
+          "reproducedSvgSha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+          "numericRelation": {
+            "passed": true,
+            "reason": "Printed category/axis values directly inspected in frozen student SVG."
+          }
+        }
+      ],
+      "independentPreExposureVisualBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q01-1.svg",
+          "sha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+          "viewedStudentPreview": "student-figure-preview/q01-1.png",
+          "viewedStudentPreviewSha256": "b32c2bfddd57d18a2800d9053042d6e27ce618050af861d25a0e5daa06abb65f",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "actualFiguresViewed": true,
+      "notApplicable": false,
+      "strictLocalReproduction": true,
+      "bankCapMm": 70,
+      "physicalPaperApproval": false,
+      "nativeFrameSerializerApproval": false,
+      "sourceCropsReferenceOnly": true,
+      "sourceQuestionOnlyImageReferences": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q01-part1.png",
+          "sha256": "49e50d50cf2beefcd765944eb9400cc813fe9b272e8108fe44a2f92c0811eefe",
+          "referenceOnly": true
+        }
+      ]
+    },
+    "sourceCoreAndDelta": {
+      "passed": true,
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-1",
+      "sourceContentDigest": "320fdf237818030c85a3e178c90b4ba3cd9771c387c0eea5d9c2b48df2180d39",
+      "sourceRecordDigest": "8a744ec0fbd1ab6af5f1ffeac82d2aa71874067827893f3f3a1b3f4a8d30e81b",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceQuestionOnly": true,
+      "originalAnswersUsed": false,
+      "sameCore": "원문은 완전한 음료 도수표의 최빈 범주이다. 새 본문은 책 장르의 일부 도수를 그래프로 주고 총인원에서 누락 범주를 먼저 복구한다. 도수→가장 잦은 범주라는 원 평가 관계를 유지한다.",
+      "substantiveChange": "새 그래프에서 만화는 아예 도수 표시가 없고 총30이 필요하다. 최대 막대만 읽어서는 답을 얻을 수 없어 소재/숫자 변경 이상의 정보 복원이 있다.",
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation",
+          "inverse-target",
+          "material"
+        ],
+        "before": "완전한 음료 도수표에서 가장 잦은 범주를 고른다.",
+        "after": "한 범주의 기록이 빠진 새 도수 그래프를 총인원으로 복구한 후 최빈 범주를 기록한다.",
+        "sharedConcept": "범주형 자료의 도수와 최빈값",
+        "sharedProcedure": "총도수−알려진 도수합→누락 범주 도수→최댓도수의 범주."
+      },
+      "variantDeltaDigest": "49bd540db2684fec57f93d8654ace369b1a9d535e4ac74891c98934aa524b2c3"
+    },
+    "koreanReview": {
+      "passed": true,
+      "evidence": "다섯 종류뿐/한 가지씩/총30의 문구가 누락 도수와 범주형 최빈값의 의미를 충분히 정한다.",
+      "sourceSchoolInStudentSurfaces": false
+    },
+    "curriculumReview": {
+      "status": "passed-for-seven-student-surfaces-and-actual-methods",
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standards": [
+        {
+          "code": "9수05-06",
+          "verified_text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4531,
+            "record_offset_in_uncompressed_stream": 229385,
+            "extracted_paragraph_1based": 929
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "rolloutBasis": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "officialRestrictions": [
+        {
+          "id": "no_vieta",
+          "exact_text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4075,
+            "record_offset_in_uncompressed_stream": 207128,
+            "extracted_paragraph_1based": 833
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_ratio_identities",
+          "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4440,
+            "record_offset_in_uncompressed_stream": 224820,
+            "extracted_paragraph_1based": 908
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "angle_range",
+          "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4444,
+            "record_offset_in_uncompressed_stream": 224946,
+            "extracted_paragraph_1based": 909
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "no_circle_proportionality",
+          "exact_text": "원과 비례에 관한 성질은 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4452,
+            "record_offset_in_uncompressed_stream": 225374,
+            "extracted_paragraph_1based": 911
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "real_quadratic_roots",
+          "exact_text": "이차방정식은 해가 실수인 경우만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4059,
+            "record_offset_in_uncompressed_stream": 206372,
+            "extracted_paragraph_1based": 829
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4071,
+            "record_offset_in_uncompressed_stream": 206968,
+            "extracted_paragraph_1based": 832
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_function_applications",
+          "exact_text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4221,
+            "record_offset_in_uncompressed_stream": 214313,
+            "extracted_paragraph_1based": 863
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ]
+          }
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4472,
+            "record_offset_in_uncompressed_stream": 226554,
+            "extracted_paragraph_1based": 916
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        }
+      ],
+      "actualMethod": "도수 합/차와 최빈값 정의만 사용한다.",
+      "bandCodeAndSourceSchoolNotPermission": true,
+      "lowerGradePrerequisitesAllowedAndReviewed": true,
+      "applied2015NotAutomatic2022": true,
+      "familyGateSeparateAndHeld": true
+    },
+    "unitAndFamilyReview": {
+      "unitPurposeFit": true,
+      "targetPurpose": "대표값/중앙값/분산/표준편차의 실제 유한자료 정의와 역복원",
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "bankSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "bankSnapshotSha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "observationOnly": {
+        "unitCount": 22,
+        "liveFamilyCount": 302,
+        "currentDatabaseFreshnessClaim": false,
+        "semanticApprovalFromLiveCount": false,
+        "databaseAccessByVerifier": false
+      },
+      "registryPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "comparedFullRules": [
+        {
+          "registryEntry": {
+            "key": "3-2|산포도|05",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "05",
+            "rpmTitle": "자료의 이해"
+          },
+          "observedLiveFamily": {
+            "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "family_key": "mid:3-2|산포도|05",
+            "live_count": 24
+          },
+          "rule": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Stat2.ts",
+            "lineStart": 347,
+            "lineEnd": 363,
+            "fileSha256": "e1528f63fb2fa4b26ad04287f3a0c748063a63823bbcc75c7ef26ca2426ce353",
+            "observedRule": "서로다른5수치자료를완전히주고평균단일값."
+          },
+          "semanticFit": "not-established-for-full-new-input-target-procedure",
+          "familyAssignmentApproved": false
+        }
+      ],
+      "authorComparisonNotSoleEvidence": true,
+      "familyKey": null,
+      "familyStatus": "held-unknown"
+    },
+    "scoreDifficultyReview": {
+      "status": "passed-by-qualitative-objective-task-and-rubric-review",
+      "sourceParentScore": 3,
+      "candidateParentScore": 3,
+      "blindCountedParentScore": 3,
+      "scorePreserved": true,
+      "parentCountedOnce": true,
+      "sourceParts": [],
+      "authorParts": [],
+      "partScoreTotals": null,
+      "authorDifficultyProposal": "기본",
+      "objectiveRationale": "원문3점의 최빈값 판단에 초등 합/차를 연결한 기본 문제로 적정하다. 측정된 난이도 동등성은 주장하지 않는다.",
+      "measuredEmpiricalDifficultyClaim": false
+    },
+    "typeSafeDesignEvidence": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "skillSha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+      "liveDocsRead": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "mathAndHashesInCode": true,
+      "semanticJudgmentsSeparatelyBound": true,
+      "unknownFamilyNull": true,
+      "inferenceApiCalls": 0,
+      "confidenceNotUsedAsApproval": true
+    },
+    "parentIntegrationHistory": {
+      "sidecarSha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848",
+      "priorReportCRLFDifferencesNotRewritten": true
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "evidence": "정해진 다섯 범주의 전체 도수와 네 도수에서 하나를 복원한다.",
+      "official2015StandardCodes": [
+        "9수05-06"
+      ],
+      "exactStudentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5"
+    },
+    "choices": {
+      "status": "passed",
+      "evidence": "범주형 최빈값 다섯 후보를 도수로 비교한다.",
+      "official2015StandardCodes": [
+        "9수05-06"
+      ],
+      "exactStudentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "evidence": "공급 그래프의 숫자8/5/4/3, 범주와 도수(명)를 직접 읽었다.",
+      "official2015StandardCodes": [
+        "9수05-06"
+      ],
+      "exactStudentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5"
+    },
+    "notation": {
+      "status": "passed",
+      "evidence": "실제 표시 수·도·근호·선분·유한 x_i/삼각비/편차는 아래 중학교 방법에서 필요하다. 라디안·벡터·행렬·시그마/확률변수 기호를 학생 표면에 요구하지 않는다.",
+      "official2015StandardCodes": [
+        "9수05-06"
+      ],
+      "exactStudentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5"
+    },
+    "answer": {
+      "status": "passed",
+      "evidence": "네 도수 합20/총30으로 누락10명, 유일 최빈 범주 만화. 새 해설은 모든 범주의 도수를 비교한다.",
+      "official2015StandardCodes": [
+        "9수05-06"
+      ],
+      "exactStudentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "evidence": "도수 합/차와 최빈값 정의만 사용한다.",
+      "official2015StandardCodes": [
+        "9수05-06"
+      ],
+      "exactStudentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "evidence": "초등 도수 그래프·덧셈, 중3 최빈값",
+      "official2015StandardCodes": [
+        "9수05-06"
+      ],
+      "exactStudentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5"
+    }
+  },
+  "dimensionStatus": {
+    "mathematics": "passed",
+    "sevenSurface2015Middle3": "passed",
+    "sameCoreConceptAndProcedure": "passed",
+    "substantiveDelta": "passed",
+    "naturalKorean": "passed",
+    "figure": "passed",
+    "unitPurpose": "passed-within-historical-snapshot",
+    "liveFamily": "pending",
+    "difficultyScore": "passed",
+    "rights": "held",
+    "custody": "held",
+    "native": "held",
+    "loadable": false
+  },
+  "holds": [
+    {
+      "dimension": "unitFamilyFit",
+      "status": "pending",
+      "reason": "Unit purpose is semantically appropriate in the04:53UTC snapshot, but familyKey remains null. Compared actual current rules do not establish support for this whole new input/target/procedure. No closest-title assignment.",
+      "specificComparedRules": [
+        "3-2|산포도|05"
+      ],
+      "reopenCriteria": "A specific existing live family with full input/target/steps/rubric and objective difficulty correspondence, or separately authorized metadata rule work."
+    }
+  ],
+  "rightsApproval": false,
+  "custodyApproval": false,
+  "nativeApproval": false,
+  "directUseAllowed": false,
+  "loadable": false
+}

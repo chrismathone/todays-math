@@ -1,0 +1,699 @@
+{
+  "schemaVersion": 1,
+  "status": "pending",
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q14",
+  "studentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd",
+  "candidateDigest": "247580323f9675f99cbfae7b0c7447cd300c0392418b08b474634c7810197e83",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "solveDigest": "e6c63c9cdb778617cc65c8e6c42bb6440b2cb8a5c967dfd8860f3e7244672ab4",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+    "independentSolverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+    "blindCommit": "53fcf61aa9f30885813befbbab3bccd47a7eae79",
+    "originalSolveFileSha256": "cac066e6c2c052f6cc6e0f9d79eade1b782f476ebd267184255cee075274b431",
+    "rawSolveUnchanged": true,
+    "currentCandidateFileSha256": "92cf2575b4d7ea5b6d4b8c7c75a18eaba170326b977ea5c4a48144ed83b0139e",
+    "verificationInputsSha256": "67d74e7537fdc355f733675e74f12e936c0cae3846824128426a4ad0263f27c9",
+    "verificationManifestSha256": "0e3806133ef66d3418070e73cbb4fea97c334328c195374e1622faa83a95dfad",
+    "inputAssetAuditSha256": "91e0c265075829783df752e7b70074b2b95563c08219b937334d3adf4225d1a3",
+    "reviewFindingsSha256": "adc685c70bf1d778dfe344a0e907736aa405df08287f22c48055f44911f5a999",
+    "answerEquivalence": {
+      "method": "circled-choice-number-after-independent-five-option-calculation",
+      "blindChoice": "③",
+      "authorChoice": "③",
+      "passed": true,
+      "allOptions": [
+        {
+          "index": 1,
+          "k": 1,
+          "computedValue": 1.0606601717798214,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "k": 2,
+          "computedValue": 1.4142135623730951,
+          "correct": false
+        },
+        {
+          "index": 3,
+          "k": 3,
+          "computedValue": 1.7677669529663689,
+          "correct": true
+        },
+        {
+          "index": 4,
+          "k": 4,
+          "computedValue": 2.121320343559643,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "k": 5,
+          "computedValue": 2.4748737341529163,
+          "correct": false
+        }
+      ]
+    },
+    "solutionReview": {
+      "passed": true,
+      "independentMath": "cos60=1/2,sin45=cos45=√2/2,tan45=1을각각대입하여k√2/4+√2/2=5√2/4,k=3. 계수가양수여서유일하다.",
+      "completeStudentSteps": "특수각값을각각대입한숫자계산이지삼각비사이관계식평가가아니다.",
+      "allWrittenPartsReviewed": false,
+      "rubric": [],
+      "reasoningNotReplacedByLiteralAnswerMatch": true
+    },
+    "existenceUniquenessAndDomain": {
+      "passed": true,
+      "independentCodeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+      "conditions": [
+        {
+          "claim": "계수 sqrt2/4가 양수이고 구한k3이 양수이므로 해가 유일하다.",
+          "passed": true
+        }
+      ],
+      "calculation": {
+        "cos60": 0.5,
+        "sin45": 0.7071067811865476,
+        "cos45": 0.7071067811865476,
+        "tan45": 1,
+        "k": 3,
+        "target": 1.7677669529663689
+      },
+      "finiteSamplesAreSupplementaryOnly": false
+    },
+    "choiceReview": {
+      "passed": true,
+      "allFiveChecked": true,
+      "notApplicable": false,
+      "independentOptionChecks": [
+        {
+          "index": 1,
+          "k": 1,
+          "computedValue": 1.0606601717798214,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "k": 2,
+          "computedValue": 1.4142135623730951,
+          "correct": false
+        },
+        {
+          "index": 3,
+          "k": 3,
+          "computedValue": 1.7677669529663689,
+          "correct": true
+        },
+        {
+          "index": 4,
+          "k": 4,
+          "computedValue": 2.121320343559643,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "k": 5,
+          "computedValue": 2.4748737341529163,
+          "correct": false
+        }
+      ]
+    },
+    "figureReview": {
+      "passed": true,
+      "exactPublicStudentSvgBindings": [],
+      "independentPreExposureVisualBindings": [],
+      "actualFiguresViewed": false,
+      "notApplicable": true,
+      "strictLocalReproduction": true,
+      "bankCapMm": 70,
+      "physicalPaperApproval": false,
+      "nativeFrameSerializerApproval": false,
+      "sourceCropsReferenceOnly": true,
+      "sourceQuestionOnlyImageReferences": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q14-part1.png",
+          "sha256": "54f6abb12f94bd25496cf9410b8bffa89ba13290aade5a8633b05ecec1d92749",
+          "referenceOnly": true
+        }
+      ]
+    },
+    "sourceCoreAndDelta": {
+      "passed": true,
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-14",
+      "sourceContentDigest": "c8bee5ef4841113c7f14610f4c0b8df48c7223b0a3a61a56e1fd38fefc61f46a",
+      "sourceRecordDigest": "8126f25f31d87947c942cffa5cfc146a53611d5fc24178a7535744454b23843a",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceQuestionOnly": true,
+      "originalAnswersUsed": false,
+      "sameCore": "원문의특수각두곱의합과근호계산을보존하고누락계수를역산한다.",
+      "substantiveChange": "전체계산결과를기록으로주고첫곱에쓴양수계수k를복구한다. 각도/수만바꾼정방향계산이아니다.",
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation",
+          "inverse-target"
+        ],
+        "before": "두 특수각 곱의 합을 계산한다.",
+        "after": "전체 계산값을 기록으로 주고 첫 곱에 쓰인 양의 계수를 역으로 복구한다.",
+        "sharedConcept": "유한 특수각 값 대입과 무리수 사칙계산",
+        "sharedProcedure": "30/45/60 범위의 해당 특수값→두 곱→합 기록의 일차식→양의 계수."
+      },
+      "variantDeltaDigest": "9ee4244ae973b53d487371089f050f26283d3fbf9c46af610f23b74345d59d98"
+    },
+    "koreanReview": {
+      "passed": true,
+      "evidence": "지워진양수k와복구할값을일관되게쓴다.",
+      "sourceSchoolInStudentSurfaces": false
+    },
+    "curriculumReview": {
+      "status": "passed-for-seven-student-surfaces-and-actual-methods",
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standards": [
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수01-10",
+          "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3788,
+            "record_offset_in_uncompressed_stream": 193301,
+            "extracted_paragraph_1based": 771
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수02-05",
+          "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3916,
+            "record_offset_in_uncompressed_stream": 199888,
+            "extracted_paragraph_1based": 797
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "rolloutBasis": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "officialRestrictions": [
+        {
+          "id": "no_vieta",
+          "exact_text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4075,
+            "record_offset_in_uncompressed_stream": 207128,
+            "extracted_paragraph_1based": 833
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_ratio_identities",
+          "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4440,
+            "record_offset_in_uncompressed_stream": 224820,
+            "extracted_paragraph_1based": 908
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "angle_range",
+          "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4444,
+            "record_offset_in_uncompressed_stream": 224946,
+            "extracted_paragraph_1based": 909
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "no_circle_proportionality",
+          "exact_text": "원과 비례에 관한 성질은 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4452,
+            "record_offset_in_uncompressed_stream": 225374,
+            "extracted_paragraph_1based": 911
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "real_quadratic_roots",
+          "exact_text": "이차방정식은 해가 실수인 경우만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4059,
+            "record_offset_in_uncompressed_stream": 206372,
+            "extracted_paragraph_1based": 829
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4071,
+            "record_offset_in_uncompressed_stream": 206968,
+            "extracted_paragraph_1based": 832
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_function_applications",
+          "exact_text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4221,
+            "record_offset_in_uncompressed_stream": 214313,
+            "extracted_paragraph_1based": 863
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ]
+          }
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4472,
+            "record_offset_in_uncompressed_stream": 226554,
+            "extracted_paragraph_1based": 916
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        }
+      ],
+      "actualMethod": "특수각값을각각대입한숫자계산이지삼각비사이관계식평가가아니다.",
+      "bandCodeAndSourceSchoolNotPermission": true,
+      "lowerGradePrerequisitesAllowedAndReviewed": true,
+      "applied2015NotAutomatic2022": true,
+      "familyGateSeparateAndHeld": true
+    },
+    "unitAndFamilyReview": {
+      "unitPurposeFit": true,
+      "targetPurpose": "사분원의각도별길이의미·특수각값의대입",
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "bankSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "bankSnapshotSha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "observationOnly": {
+        "unitCount": 22,
+        "liveFamilyCount": 302,
+        "currentDatabaseFreshnessClaim": false,
+        "semanticApprovalFromLiveCount": false,
+        "databaseAccessByVerifier": false
+      },
+      "registryPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "comparedFullRules": [
+        {
+          "registryEntry": {
+            "key": "3-2|삼각비|08",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "08",
+            "rpmTitle": "의 삼각비의 값"
+          },
+          "observedLiveFamily": {
+            "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "family_key": "mid:3-2|삼각비|08",
+            "live_count": 20
+          },
+          "rule": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+            "lineStart": 1203,
+            "lineEnd": 1230,
+            "fileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "observedRule": "특수각값두개의한연산,단일계산결과. 두곱합의미지계수역산없음."
+          },
+          "semanticFit": "not-established-for-full-new-input-target-procedure",
+          "familyAssignmentApproved": false
+        }
+      ],
+      "authorComparisonNotSoleEvidence": true,
+      "familyKey": null,
+      "familyStatus": "held-unknown"
+    },
+    "scoreDifficultyReview": {
+      "status": "passed-by-qualitative-objective-task-and-rubric-review",
+      "sourceParentScore": 4,
+      "candidateParentScore": 4,
+      "blindCountedParentScore": 4,
+      "scorePreserved": true,
+      "parentCountedOnce": true,
+      "sourceParts": [],
+      "authorParts": [],
+      "partScoreTotals": null,
+      "authorDifficultyProposal": "응용",
+      "objectiveRationale": "원문4점의대입/두곱/합에간단한일차역산을붙인응용목표이다.",
+      "measuredEmpiricalDifficultyClaim": false
+    },
+    "typeSafeDesignEvidence": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "skillSha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+      "liveDocsRead": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "mathAndHashesInCode": true,
+      "semanticJudgmentsSeparatelyBound": true,
+      "unknownFamilyNull": true,
+      "inferenceApiCalls": 0,
+      "confidenceNotUsedAsApproval": true
+    },
+    "parentIntegrationHistory": {
+      "sidecarSha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848",
+      "priorReportCRLFDifferencesNotRewritten": true
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "evidence": "특수각 값을 따로 대입한 숫자 식의 누락 양수계수이다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "exactStudentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd"
+    },
+    "choices": {
+      "status": "passed",
+      "evidence": "다섯 k를 식에 직접 넣는다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "exactStudentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "evidence": "본문 기록식만 있다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "exactStudentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd"
+    },
+    "notation": {
+      "status": "passed",
+      "evidence": "실제 표시 수·도·근호·선분·유한 x_i/삼각비/편차는 아래 중학교 방법에서 필요하다. 라디안·벡터·행렬·시그마/확률변수 기호를 학생 표면에 요구하지 않는다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "exactStudentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd"
+    },
+    "answer": {
+      "status": "passed",
+      "evidence": "cos60=1/2,sin45=cos45=√2/2,tan45=1을각각대입하여k√2/4+√2/2=5√2/4,k=3. 계수가양수여서유일하다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "exactStudentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "evidence": "특수각값을각각대입한숫자계산이지삼각비사이관계식평가가아니다.",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "exactStudentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "evidence": "중3 특수각·근호 계산, 중1일차방정식",
+      "official2015StandardCodes": [
+        "9수04-17",
+        "9수01-10",
+        "9수02-05"
+      ],
+      "exactStudentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd"
+    }
+  },
+  "dimensionStatus": {
+    "mathematics": "passed",
+    "sevenSurface2015Middle3": "passed",
+    "sameCoreConceptAndProcedure": "passed",
+    "substantiveDelta": "passed",
+    "naturalKorean": "passed",
+    "figure": "passed",
+    "unitPurpose": "passed-within-historical-snapshot",
+    "liveFamily": "pending",
+    "difficultyScore": "passed",
+    "rights": "held",
+    "custody": "held",
+    "native": "held",
+    "loadable": false
+  },
+  "holds": [
+    {
+      "dimension": "unitFamilyFit",
+      "status": "pending",
+      "reason": "Unit purpose is semantically appropriate in the04:53UTC snapshot, but familyKey remains null. Compared actual current rules do not establish support for this whole new input/target/procedure. No closest-title assignment.",
+      "specificComparedRules": [
+        "3-2|삼각비|08"
+      ],
+      "reopenCriteria": "A specific existing live family with full input/target/steps/rubric and objective difficulty correspondence, or separately authorized metadata rule work."
+    }
+  ],
+  "rightsApproval": false,
+  "custodyApproval": false,
+  "nativeApproval": false,
+  "directUseAllowed": false,
+  "loadable": false
+}

@@ -1,0 +1,780 @@
+{
+  "schemaVersion": 1,
+  "status": "pending",
+  "questionNumber": 6,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q06",
+  "studentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498",
+  "candidateDigest": "69d6a70843b1f00e3f403b2ae5a730c794dcfe33cc60bcaa4be070667a7190f6",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "solveDigest": "f02ed000e3b4f8f11df2cf573cf084defe0e07afec6ba2f534fd2fac412bea2a",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+    "independentSolverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+    "blindCommit": "53fcf61aa9f30885813befbbab3bccd47a7eae79",
+    "originalSolveFileSha256": "ece02550dbdbd77e1e4f11e06038cbd2fe924bb4cbd594c13b85651033c749e1",
+    "rawSolveUnchanged": true,
+    "currentCandidateFileSha256": "0a1d6a34839a07937ea40ab8533a98dc8ebd3f6b0586c4687e4464ebd0bcdf3f",
+    "verificationInputsSha256": "67d74e7537fdc355f733675e74f12e936c0cae3846824128426a4ad0263f27c9",
+    "verificationManifestSha256": "0e3806133ef66d3418070e73cbb4fea97c334328c195374e1622faa83a95dfad",
+    "inputAssetAuditSha256": "91e0c265075829783df752e7b70074b2b95563c08219b937334d3adf4225d1a3",
+    "reviewFindingsSha256": "adc685c70bf1d778dfe344a0e907736aa405df08287f22c48055f44911f5a999",
+    "answerEquivalence": {
+      "method": "circled-choice-number-after-independent-five-option-calculation",
+      "blindChoice": "②",
+      "authorChoice": "②",
+      "passed": true,
+      "allOptions": [
+        {
+          "index": 1,
+          "k": 2,
+          "m": 6,
+          "predictedMean": 6,
+          "predictedStandardDeviation": 4,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "k": 3,
+          "m": 11,
+          "predictedMean": 11,
+          "predictedStandardDeviation": 6,
+          "correct": true
+        },
+        {
+          "index": 3,
+          "k": 3,
+          "m": 15,
+          "predictedMean": 11,
+          "predictedStandardDeviation": 6,
+          "correct": false
+        },
+        {
+          "index": 4,
+          "k": 6,
+          "m": 26,
+          "predictedMean": 26,
+          "predictedStandardDeviation": 12,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "k": 1,
+          "m": 1,
+          "predictedMean": 1,
+          "predictedStandardDeviation": 2,
+          "correct": false
+        }
+      ]
+    },
+    "solutionReview": {
+      "passed": true,
+      "independentMath": "새 편차=k×원편차로 새분산4k²=36. 양수k=3이 유일하고 평균11. 다섯k/평균 기록의 두 조건을 모두 검사했다.",
+      "completeStudentSteps": "세 편차와 제곱의 평균에서 유도한다. 상위 통계 공식을 외워 쓰지 않는다. 실수인 실제 세 자료도 구성 가능하다.",
+      "allWrittenPartsReviewed": false,
+      "rubric": [],
+      "reasoningNotReplacedByLiteralAnswerMatch": true
+    },
+    "existenceUniquenessAndDomain": {
+      "passed": true,
+      "independentCodeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+      "conditions": [
+        {
+          "claim": "원래 자료는 실제 존재하고 양수 k에서 표준편차6 조건의 해는3뿐이다.",
+          "passed": true
+        }
+      ],
+      "calculation": {
+        "originalMean": 5,
+        "originalVariance": 4,
+        "k": 3,
+        "newMean": 11,
+        "newVariance": 36,
+        "existenceWitness": [
+          2.550510257216822,
+          5,
+          7.449489742783178
+        ]
+      },
+      "finiteSamplesAreSupplementaryOnly": false
+    },
+    "choiceReview": {
+      "passed": true,
+      "allFiveChecked": true,
+      "notApplicable": false,
+      "independentOptionChecks": [
+        {
+          "index": 1,
+          "k": 2,
+          "m": 6,
+          "predictedMean": 6,
+          "predictedStandardDeviation": 4,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "k": 3,
+          "m": 11,
+          "predictedMean": 11,
+          "predictedStandardDeviation": 6,
+          "correct": true
+        },
+        {
+          "index": 3,
+          "k": 3,
+          "m": 15,
+          "predictedMean": 11,
+          "predictedStandardDeviation": 6,
+          "correct": false
+        },
+        {
+          "index": 4,
+          "k": 6,
+          "m": 26,
+          "predictedMean": 26,
+          "predictedStandardDeviation": 12,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "k": 1,
+          "m": 1,
+          "predictedMean": 1,
+          "predictedStandardDeviation": 2,
+          "correct": false
+        }
+      ]
+    },
+    "figureReview": {
+      "passed": true,
+      "exactPublicStudentSvgBindings": [],
+      "independentPreExposureVisualBindings": [],
+      "actualFiguresViewed": false,
+      "notApplicable": true,
+      "strictLocalReproduction": true,
+      "bankCapMm": 70,
+      "physicalPaperApproval": false,
+      "nativeFrameSerializerApproval": false,
+      "sourceCropsReferenceOnly": true,
+      "sourceQuestionOnlyImageReferences": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeongam\\packet\\images\\q06-part1.png",
+          "sha256": "21c8dee6fcc6124a2c71a26adcecdbd6aa7d1646bf37a914da56ae36d8269aa6",
+          "referenceOnly": true
+        }
+      ]
+    },
+    "sourceCoreAndDelta": {
+      "passed": true,
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-6",
+      "sourceContentDigest": "4df5256dac02491164e7faeb0d8615a27ab26063d82adecc31e2ad2a3ed1b434",
+      "sourceRecordDigest": "32321823bd1dce1912bd53a0f397756f22329b4a7515d2c7d8b2dc261b242510",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceQuestionOnly": true,
+      "originalAnswersUsed": false,
+      "sameCore": "원문의 배율/이동에 따른 표준편차를 편차 정의로 계산하는 관계를 보존한다. 새표준편차에서양수배율을 역산한다.",
+      "substantiveChange": "배율k를 입력에서 지우고 새표준편차를 결과 기록으로 제공했으며 복구된 배율과 새평균의쌍을 묻는다.",
+      "declaredVariantDelta": {
+        "modes": [
+          "structure",
+          "representation",
+          "inverse-target"
+        ],
+        "before": "분산과 배율/이동량으로 새 표준편차를 구한다.",
+        "after": "새 표준편차 기록에서 양의 배율을 복구하고 새 평균을 구한다.",
+        "sharedConcept": "배율에 따른 편차/편차제곱과 평균",
+        "sharedProcedure": "새 평균 식→새 편차=k×원편차→새 분산→표준편차 제곱→양의 배율→새 평균."
+      },
+      "variantDeltaDigest": "a80b10d018455bd8759e94ad7f22fb78a3a7ce68b847b8153c677eb71aef7b20"
+    },
+    "koreanReview": {
+      "passed": true,
+      "evidence": "k의양수 조건이부호의두해를배제하며새평균과배율을차례로묻는다.",
+      "sourceSchoolInStudentSurfaces": false
+    },
+    "curriculumReview": {
+      "status": "passed-for-seven-student-surfaces-and-actual-methods",
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standards": [
+        {
+          "code": "9수05-06",
+          "verified_text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4531,
+            "record_offset_in_uncompressed_stream": 229385,
+            "extracted_paragraph_1based": 929
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수05-07",
+          "verified_text": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4535,
+            "record_offset_in_uncompressed_stream": 229561,
+            "extracted_paragraph_1based": 930
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수01-07",
+          "verified_text": "제곱근의 뜻을 알고, 그 성질을 이해한다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3776,
+            "record_offset_in_uncompressed_stream": 192865,
+            "extracted_paragraph_1based": 768
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수02-12",
+          "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3956,
+            "record_offset_in_uncompressed_stream": 201534,
+            "extracted_paragraph_1based": 807
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "rolloutBasis": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "officialRestrictions": [
+        {
+          "id": "no_vieta",
+          "exact_text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4075,
+            "record_offset_in_uncompressed_stream": 207128,
+            "extracted_paragraph_1based": 833
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_ratio_identities",
+          "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4440,
+            "record_offset_in_uncompressed_stream": 224820,
+            "extracted_paragraph_1based": 908
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "angle_range",
+          "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4444,
+            "record_offset_in_uncompressed_stream": 224946,
+            "extracted_paragraph_1based": 909
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "no_circle_proportionality",
+          "exact_text": "원과 비례에 관한 성질은 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4452,
+            "record_offset_in_uncompressed_stream": 225374,
+            "extracted_paragraph_1based": 911
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        },
+        {
+          "id": "real_quadratic_roots",
+          "exact_text": "이차방정식은 해가 실수인 경우만 다룬다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4059,
+            "record_offset_in_uncompressed_stream": 206372,
+            "extracted_paragraph_1based": 829
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4071,
+            "record_offset_in_uncompressed_stream": 206968,
+            "extracted_paragraph_1based": 832
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              35
+            ],
+            "printed_pages": [
+              31
+            ]
+          }
+        },
+        {
+          "id": "no_complex_function_applications",
+          "exact_text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4221,
+            "record_offset_in_uncompressed_stream": 214313,
+            "extracted_paragraph_1based": 863
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ]
+          }
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "record_1based": 4472,
+            "record_offset_in_uncompressed_stream": 226554,
+            "extracted_paragraph_1based": 916
+          },
+          "original_2015_pdf_locator": {
+            "physical_pages_1based": [
+              39
+            ],
+            "printed_pages": [
+              35
+            ]
+          }
+        }
+      ],
+      "actualMethod": "세 편차와 제곱의 평균에서 유도한다. 상위 통계 공식을 외워 쓰지 않는다. 실수인 실제 세 자료도 구성 가능하다.",
+      "bandCodeAndSourceSchoolNotPermission": true,
+      "lowerGradePrerequisitesAllowedAndReviewed": true,
+      "applied2015NotAutomatic2022": true,
+      "familyGateSeparateAndHeld": true
+    },
+    "unitAndFamilyReview": {
+      "unitPurposeFit": true,
+      "targetPurpose": "대표값/중앙값/분산/표준편차의 실제 유한자료 정의와 역복원",
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "bankSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "bankSnapshotSha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "observationOnly": {
+        "unitCount": 22,
+        "liveFamilyCount": 302,
+        "currentDatabaseFreshnessClaim": false,
+        "semanticApprovalFromLiveCount": false,
+        "databaseAccessByVerifier": false
+      },
+      "registryPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "comparedFullRules": [
+        {
+          "registryEntry": {
+            "key": "3-2|산포도|04",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "04",
+            "rpmTitle": "평균과 분산을 이용하여 식의 값 구하기"
+          },
+          "observedLiveFamily": {
+            "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "family_key": "mid:3-2|산포도|04",
+            "live_count": 24
+          },
+          "rule": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Stat2.ts",
+            "lineStart": 326,
+            "lineEnd": 345,
+            "fileSha256": "e1528f63fb2fa4b26ad04287f3a0c748063a63823bbcc75c7ef26ca2426ce353",
+            "observedRule": "분산과알려진배율/이동량에서새분산을정방향으로구한다."
+          },
+          "semanticFit": "not-established-for-full-new-input-target-procedure",
+          "familyAssignmentApproved": false
+        },
+        {
+          "registryEntry": {
+            "key": "3-2|산포도|07",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "07",
+            "rpmTitle": "변화된 변량의 평균 분산 표준편차"
+          },
+          "observedLiveFamily": {
+            "unit_id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "family_key": "mid:3-2|산포도|07",
+            "live_count": 24
+          },
+          "rule": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Stat2.ts",
+            "lineStart": 397,
+            "lineEnd": 426,
+            "fileSha256": "e1528f63fb2fa4b26ad04287f3a0c748063a63823bbcc75c7ef26ca2426ce353",
+            "observedRule": "원표준편차→알려진이동또는배율의새표준편차. 역계수/평균복원없음."
+          },
+          "semanticFit": "not-established-for-full-new-input-target-procedure",
+          "familyAssignmentApproved": false
+        }
+      ],
+      "authorComparisonNotSoleEvidence": true,
+      "familyKey": null,
+      "familyStatus": "held-unknown"
+    },
+    "scoreDifficultyReview": {
+      "status": "passed-by-qualitative-objective-task-and-rubric-review",
+      "sourceParentScore": 4,
+      "candidateParentScore": 4,
+      "blindCountedParentScore": 4,
+      "scorePreserved": true,
+      "parentCountedOnce": true,
+      "sourceParts": [],
+      "authorParts": [],
+      "partScoreTotals": null,
+      "authorDifficultyProposal": "응용",
+      "objectiveRationale": "4점의 배율-편차제곱 관계를 유지하며k²=9의양의해 선택을 추가한 응용 목표다.",
+      "measuredEmpiricalDifficultyClaim": false
+    },
+    "typeSafeDesignEvidence": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "skillSha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+      "liveDocsRead": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "mathAndHashesInCode": true,
+      "semanticJudgmentsSeparatelyBound": true,
+      "unknownFamilyNull": true,
+      "inferenceApiCalls": 0,
+      "confidenceNotUsedAsApproval": true
+    },
+    "parentIntegrationHistory": {
+      "sidecarSha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848",
+      "priorReportCRLFDifferencesNotRewritten": true
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "evidence": "평균·분산 및 양수 계수의 변경을 구한다.",
+      "official2015StandardCodes": [
+        "9수05-06",
+        "9수05-07",
+        "9수01-07",
+        "9수02-12"
+      ],
+      "exactStudentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498"
+    },
+    "choices": {
+      "status": "passed",
+      "evidence": "모든 k/평균 쌍의 새 편차 제곱 평균을 검사한다.",
+      "official2015StandardCodes": [
+        "9수05-06",
+        "9수05-07",
+        "9수01-07",
+        "9수02-12"
+      ],
+      "exactStudentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "evidence": "알려진 분산을 표준편차로 혼동하지 않는다.",
+      "official2015StandardCodes": [
+        "9수05-06",
+        "9수05-07",
+        "9수01-07",
+        "9수02-12"
+      ],
+      "exactStudentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498"
+    },
+    "notation": {
+      "status": "passed",
+      "evidence": "실제 표시 수·도·근호·선분·유한 x_i/삼각비/편차는 아래 중학교 방법에서 필요하다. 라디안·벡터·행렬·시그마/확률변수 기호를 학생 표면에 요구하지 않는다.",
+      "official2015StandardCodes": [
+        "9수05-06",
+        "9수05-07",
+        "9수01-07",
+        "9수02-12"
+      ],
+      "exactStudentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498"
+    },
+    "answer": {
+      "status": "passed",
+      "evidence": "새 편차=k×원편차로 새분산4k²=36. 양수k=3이 유일하고 평균11. 다섯k/평균 기록의 두 조건을 모두 검사했다.",
+      "official2015StandardCodes": [
+        "9수05-06",
+        "9수05-07",
+        "9수01-07",
+        "9수02-12"
+      ],
+      "exactStudentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "evidence": "세 편차와 제곱의 평균에서 유도한다. 상위 통계 공식을 외워 쓰지 않는다. 실수인 실제 세 자료도 구성 가능하다.",
+      "official2015StandardCodes": [
+        "9수05-06",
+        "9수05-07",
+        "9수01-07",
+        "9수02-12"
+      ],
+      "exactStudentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "evidence": "중3 분산/표준편차·근호, 중3 단순 이차방정식",
+      "official2015StandardCodes": [
+        "9수05-06",
+        "9수05-07",
+        "9수01-07",
+        "9수02-12"
+      ],
+      "exactStudentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498"
+    }
+  },
+  "dimensionStatus": {
+    "mathematics": "passed",
+    "sevenSurface2015Middle3": "passed",
+    "sameCoreConceptAndProcedure": "passed",
+    "substantiveDelta": "passed",
+    "naturalKorean": "passed",
+    "figure": "passed",
+    "unitPurpose": "passed-within-historical-snapshot",
+    "liveFamily": "pending",
+    "difficultyScore": "passed",
+    "rights": "held",
+    "custody": "held",
+    "native": "held",
+    "loadable": false
+  },
+  "holds": [
+    {
+      "dimension": "unitFamilyFit",
+      "status": "pending",
+      "reason": "Unit purpose is semantically appropriate in the04:53UTC snapshot, but familyKey remains null. Compared actual current rules do not establish support for this whole new input/target/procedure. No closest-title assignment.",
+      "specificComparedRules": [
+        "3-2|산포도|04",
+        "3-2|산포도|07"
+      ],
+      "reopenCriteria": "A specific existing live family with full input/target/steps/rubric and objective difficulty correspondence, or separately authorized metadata rule work."
+    }
+  ],
+  "rightsApproval": false,
+  "custodyApproval": false,
+  "nativeApproval": false,
+  "directUseAllowed": false,
+  "loadable": false
+}
