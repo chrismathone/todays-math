@@ -180,3 +180,7 @@ python scripts/import/textbook/report_load.py 'E:\todays-math-textbook-import' d
 
 🔴 **한글로 그리기** — 지운 구역을 가리키는 곳(`content.hpf` · `container.rdf` · 머리의 `secCnt`)을 다 걷어야 한글이 연다(하나라도 남으면 «Open 실패»).
 `zipfile.writestr` 는 받은 ZipInfo 를 고쳐 쓴다 — 원본의 항목 정보를 새로 지어 넘긴다. 표 1,167개 · 묶음 1,006개, 실패 0.
+
+**게시 · 적재 끝(2026-10-08 오후 — 10-handoff §0-ZT)** — 그림 4,461장을 외부 저장소에 올리려다 옛 저장소(mathgen 프로젝트)가 사라진 것을 찾았다. 원장님 결정으로 **앱 Supabase 프로젝트**에
+같은 이름의 공개 버킷을 만들어 옛 그림까지 23,288장을 다시 올리고(git 의 원본 · 한 장씩 되읽어 바이트 대조), 목록 · 영수증 · `SHARED_FIGURE_CDN_BASE_URL` 을 바꿔 main `9ab1fc7fc` 로 배포했다.
+그 뒤 `load/sets.json --apply`(그림 문항 3,911) · `--refresh --apply`(44 — 그림이 붙어 풀린 5 · 그림 글자가 본문에 섞여 잠긴 3). **DB 교과서 12,281 · 출제 가능 11,808 · 잠금 473 · 그림 3,783** · 재드라이런 0.
