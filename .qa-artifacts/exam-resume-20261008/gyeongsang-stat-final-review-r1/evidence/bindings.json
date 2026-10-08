@@ -1,0 +1,275 @@
+{
+  "method": "exact parent candidatePack.mjs bindCandidate and digest(independentSolve);never Python object digest",
+  "allBindingsMatch": true,
+  "parentHelperSha256": "19958b0382e5ebca739aceba87a9357944d4cdb8921cc19d3ce413918905f079",
+  "requiredChecks": [
+    "answerCorrect",
+    "solutionCorrect",
+    "existenceUniqueness",
+    "choicesCorrect",
+    "figureConsistent",
+    "sameCoreConceptAndProcedure",
+    "distinctPresentation",
+    "naturalKorean",
+    "curriculumAppropriate",
+    "allStudentSurfacesInScope",
+    "unitFamilyFit",
+    "scoreAppropriate"
+  ],
+  "requiredSurfaces": [
+    "stem",
+    "choices",
+    "figuresAndTables",
+    "notation",
+    "answer",
+    "studentSolution",
+    "prerequisites"
+  ],
+  "rows": [
+    {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q10",
+      "studentDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+      "candidateDigest": "b019e92b1f998ac36ed64964a71dd927e0486568755f6ad904ca4efb8df18fd5",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "87df5b07b0d0b0387da18873076fba11a38219921d1c988a63b48a44c9f93fb0",
+      "solveDigest": "6ed98a25ad7ca6e4ae194e0f87691c418899cd801c789cf08592602cb4fe0e18",
+      "rawSolveSha256": "d69b7a42044521f2c8aecd33d728625a6fbbde599f45ad31e5e801b72a25ead5",
+      "sourceQuestionCanonicalDigest": "145260f1f0dc1b2268d908613c33ebe0263762b55ae63bacfffd9fff99e805f7",
+      "sourceStemRawSha256": "439d6b4484b305ebb9201a0230c7ebfbcd19b55399efa58717462b045d378166",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "e653748db554435ab47c34130aa2d9ccfe633426f4183698f2b5bf4e9694d2dd",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q10-part1.png",
+          "sha256": "1231101d6df7d03bc775e01a8425e1cc14d2790046530fdecc70f7fb2b1f5bde",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            613.6576538085938,
+            688,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q10\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 11,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q11",
+      "studentDigest": "0a86ca61b7a556c9aae15a71eb852e0ea531eb2d08cdf3a1d9b5366f25352c2a",
+      "candidateDigest": "229ae498ae158a767ef66ec752e1a1ff0c69f1863f9498e53e48533cb9e93378",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "f36cfd23c68c0aec40faf131d95c3ada2f2313f348381f1b9f9eeb68213b6e4d",
+      "solveDigest": "f95d5c14c7c888c8c99ff8c87e769d35ec7b91293656e9525503cd866cb273bd",
+      "rawSolveSha256": "f0dbf0f186970161d03f37ad8fab6be148559a7243caa23bf5ecdbf58067a194",
+      "sourceQuestionCanonicalDigest": "290d944e38ffb260644c44f36edcd23ef84c7d1cfef31dc46abaa13c9e3de204",
+      "sourceStemRawSha256": "699a60c65479274a8048fb817b5bd87264b92611126a7bfa162b9bf2dd9f2a70",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "004e84058bf5062d558d00efec38f297a11d863118847ed54656579f0620784e",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q11-part1.png",
+          "sha256": "f8be5acf653a72d71f1c98489ebd3240a76128853daeac8a0324e48ad11c99d9",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            467.6004333496094
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q11\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q12",
+      "studentDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+      "candidateDigest": "71195ddad2cf9fb0be72ec578ea8fc4b97878d7ac11ca0c7cfa44fc71cad3585",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "adf4c838de0fb5abd69fb9c381991b7f9586352ba715bcd2308f257a4db7e6c8",
+      "solveDigest": "4c9c3f9eb3e3da7879aca739282379c5b575bc2723d928b92778f8c5ab774a19",
+      "rawSolveSha256": "bad01eadd33df7333660d2a078e0ac10ad989d36862fe37347d43affbc4af09a",
+      "sourceQuestionCanonicalDigest": "f5bd8eaefd882495823e3981e9ef32f9d69758092fca413d7a07fa361ed99ce8",
+      "sourceStemRawSha256": "b6e02f8cb1de0ddb98e04fede12d224580752f53716093d7092e354be41509dd",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "3fc1eda84a41908ab58dba7be0553c7c8f77f12627d86a51a9d4bcf5b7098950",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q12-part1.png",
+          "sha256": "7e5a9bd81868fd5a9086a20b3647b990aabc8d22a499a5bbfdec55208472bede",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            473.6004333496094,
+            375,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q12\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 13,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q13",
+      "studentDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+      "candidateDigest": "d6808f6dfdba3783e887ad3256863f8c4fd31849f608207fd32ef7395974e6b6",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "ebf337193dd2ba93a6e7a984cd25022be7ad57c99c2ffd8105fa8a7ca1df1aa0",
+      "solveDigest": "5f1a83e0197dd8df5e7b5e1c0c016dc9dbaf3dd3b6454bc4f2fc1e874ee9bb02",
+      "rawSolveSha256": "f7aae38337a3daaabe52118501e678213ab7c5d2af16785cfb55499d7151f12d",
+      "sourceQuestionCanonicalDigest": "5f8653d80a2ffdb87dd84deec11eb6b9464d37e92b5a14f58c92a61a77e1e9c9",
+      "sourceStemRawSha256": "33331b439182c9e4c1a34b29ec4deb72e1e1db38d26a83f5ff80c1612399c3f3",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "5648e84477a770c91bb4c74378ceb984af22bfa7342b6e3a2eb171802291d769",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q13-part1.png",
+          "sha256": "9e479177d922d81a89467d4d0c3ddb76beb71c549b1eca96771a83bdc338a6f7",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688,
+            465.4420166015625
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q13\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 14,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q14",
+      "studentDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+      "candidateDigest": "d7e20582d4f3887deb1c756b47310d2058854f4eeb5cb5b548d1999133c3b795",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "113b4512fe9fb93c802a208ce60163144f0d324ea75eedf0e1e7cee38d332330",
+      "solveDigest": "c2c219f06dfa6eecdac55c9f0d51391e5a508553c2bc8ff7220f50e666b6924c",
+      "rawSolveSha256": "d43540a3e6e1958436995f2e12c4282dd7d7fe059b3b18df3ab1711c3c0017e5",
+      "sourceQuestionCanonicalDigest": "bacbd1ce98e80d028c3f692f87992ec5e55022ee24b6e3dfa7091eb9706df275",
+      "sourceStemRawSha256": "dccf9c86cf59d0d2009b3fd697e8dd204715bf1f6b9dd0cae1d7b78db587a9d9",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "0be676b98bbfac946e30d5f28b1377128484f3ea895a2c5aa78d760c09cde6a5",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q14-part1.png",
+          "sha256": "551a03fcd5a0767e021186f851ab1db7819582fb980b9e88fb7912ba3bf2b528",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            471.4420166015625,
+            688,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q14\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 15,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q15",
+      "studentDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+      "candidateDigest": "d50439d436a4c41e87f34dbec233f1c69d88d2bbb5f89593944f8386ee085ac9",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "179ae63d5e8448909b63e78d27b6ca3309efe4a13c9eb1acb502fe3838b3b0ed",
+      "solveDigest": "014ce1f60a5772b896dbc78d462d7155e542d52c7af6ff2209c5833f5a265190",
+      "rawSolveSha256": "d4e5d09caf6fca560a82bb4068a4ab6031622a6b60df15f682641b8034f19b67",
+      "sourceQuestionCanonicalDigest": "1d5e6988067d194592b3893f7bb00ca1d1037c9dce4899aa9628112a4dfdb50b",
+      "sourceStemRawSha256": "6a1fe3857dc1f3af0aaa4a36213918c63d157dc5c6ee59f596808f64cf31356a",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "cfd8411fb4ee839b4585d91b0c7ab3ba60b97355013e57dc6ce7dc4e88ca9d5a",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q15-part1.png",
+          "sha256": "2ad56e1ea936ccd9cb6cdfcead0f5ddeffdbcc689e8c68a223093f56566d0c6f",
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            478.75225830078125
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q15\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 22,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q22",
+      "studentDigest": "35abb187117cd33449fbe896fc3e9770041122fa5d4062335085eeb81c96d368",
+      "candidateDigest": "46bda015c5a8305d0516a42de8b07626461de988e6d7925b6630f60d332180e8",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "5a443d98fd9e78452d53ca906a19fa526cf3ef920e432fc4bac2ddb4a93d8a4c",
+      "solveDigest": "9115ea17850fed40aeda2f670a1b67672b722b25854589f64d5f956e96a0bb71",
+      "rawSolveSha256": "85c969d3f94ae9e47e04ee314e318693ac4ee1d9954f0c52f317a605bd7290f4",
+      "sourceQuestionCanonicalDigest": "2dcca1de77292cbb8fb07cf0edb7475ff76619e5e169286d0cc36ebf59a16a65",
+      "sourceStemRawSha256": "eb686c8cd87c58ddd3ea2d091246e1417695a5ffb1f5f7b2831f660f396111eb",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "1214f4c6c3b5a367725e066972f68635a542c1960fb4da1ffde36b8ebf3f81d1",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q22-part1.png",
+          "sha256": "f28e26c8ff8d368043a3e6a0bca76b6cd009a330c9c6c50c0e10e9575378c938",
+          "page": 6,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q22\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    }
+  ]
+}

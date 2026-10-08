@@ -1,0 +1,578 @@
+{
+  "schemaVersion": 1,
+  "sealedAtUtc": "2026-10-08T13:42:08.211701+00:00",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "preExposureSolveCommit": "cd14f37024e3eb872ddfe9a685db7b4da78f98a0",
+  "counts": {
+    "reviewed": 7,
+    "mathematicsAndSevenStudentSurfacesPassed": 7,
+    "verified": 0,
+    "pending": 7,
+    "rejected": 0,
+    "familyAssignments": 0,
+    "rightsCleared": 0,
+    "nativeApproved": 0,
+    "loadable": 0
+  },
+  "rawSolvesAndOld680Unchanged": true,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "bytes": 8
+    },
+    {
+      "path": "bootstrap.py",
+      "sha256": "8898bf3b6c20ff14e0d03bd3cdb8961adb8583cd1d5cc91fa400d953f18a3037",
+      "bytes": 3243
+    },
+    {
+      "path": "check-bindings.mjs",
+      "sha256": "af0fb4635c81e96614b85b12498c47460fc59d598ff574801d5920edf38aad9a",
+      "bytes": 3747
+    },
+    {
+      "path": "evidence/bank-read-fresh-r3-20261008.json",
+      "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+      "bytes": 78216
+    },
+    {
+      "path": "evidence/bindings.json",
+      "sha256": "a14d2d1bf15ef98266b554fdcbb7ea3e4a5e8e664aaecddce36a98d59be3e13f",
+      "bytes": 14694
+    },
+    {
+      "path": "evidence/curriculum.json",
+      "sha256": "798615a0b24d4cc624b254ba11f6419f21f8774fc6f12d6cd813c2673c310553",
+      "bytes": 2851
+    },
+    {
+      "path": "evidence/family-rule-comparison.json",
+      "sha256": "2af35f4de03102032ad70d05f7f026dfbf7b46b0d3ea4b46103371ceb69b426c",
+      "bytes": 3276
+    },
+    {
+      "path": "evidence/input-receipt.json",
+      "sha256": "000ddb5f01dce9d058e79cbee51da8d06b8db6734ff41127a033a9981f5a1da9",
+      "bytes": 10322
+    },
+    {
+      "path": "evidence/instructions/addendum-6.md",
+      "sha256": "d6cb4b6d9eac55c0d71ad9f4f67302804aca7247f3a20386f14f8e82b9bf623e",
+      "bytes": 2083
+    },
+    {
+      "path": "evidence/instructions/AGENTS.md",
+      "sha256": "5ae255a2bff8a0de1ceb26ee2b57b088733fd976184fbc5448aaa6895968b598",
+      "bytes": 12206
+    },
+    {
+      "path": "evidence/instructions/katexRender.ts.txt",
+      "sha256": "ebec50206600f3b1da0a1c5031dff57746b278cc3c9e0e35496e1d6063a7a8da",
+      "bytes": 6438
+    },
+    {
+      "path": "evidence/judgment-design.json",
+      "sha256": "c62dafba98bfbd7c71081304fc04296848af3feb7b46893c0861975322a2d9c5",
+      "bytes": 1070
+    },
+    {
+      "path": "evidence/math-and-review-results.json",
+      "sha256": "665cb60d26f0743c8447c75361341b6b4cdbfb459407fa2211461c182e8c95a4",
+      "bytes": 6544
+    },
+    {
+      "path": "evidence/package/private/q10/candidate.json",
+      "sha256": "87df5b07b0d0b0387da18873076fba11a38219921d1c988a63b48a44c9f93fb0",
+      "bytes": 8719
+    },
+    {
+      "path": "evidence/package/private/q11/candidate.json",
+      "sha256": "f36cfd23c68c0aec40faf131d95c3ada2f2313f348381f1b9f9eeb68213b6e4d",
+      "bytes": 8789
+    },
+    {
+      "path": "evidence/package/private/q12/candidate.json",
+      "sha256": "adf4c838de0fb5abd69fb9c381991b7f9586352ba715bcd2308f257a4db7e6c8",
+      "bytes": 14130
+    },
+    {
+      "path": "evidence/package/private/q13/candidate.json",
+      "sha256": "ebf337193dd2ba93a6e7a984cd25022be7ad57c99c2ffd8105fa8a7ca1df1aa0",
+      "bytes": 10243
+    },
+    {
+      "path": "evidence/package/private/q14/candidate.json",
+      "sha256": "113b4512fe9fb93c802a208ce60163144f0d324ea75eedf0e1e7cee38d332330",
+      "bytes": 10463
+    },
+    {
+      "path": "evidence/package/private/q15/candidate.json",
+      "sha256": "179ae63d5e8448909b63e78d27b6ca3309efe4a13c9eb1acb502fe3838b3b0ed",
+      "bytes": 10387
+    },
+    {
+      "path": "evidence/package/private/q22/candidate.json",
+      "sha256": "5a443d98fd9e78452d53ca906a19fa526cf3ef920e432fc4bac2ddb4a93d8a4c",
+      "bytes": 11751
+    },
+    {
+      "path": "evidence/preservation-before-main.json",
+      "sha256": "9fadd8fa14b23fe4fb06086d765619412cd3f40aab9dd26b087d22403eb3bfd6",
+      "bytes": 134699
+    },
+    {
+      "path": "evidence/registry.json",
+      "sha256": "588c5c82783f7170d81871ef1b01743f5f10f9dfc3a8b93417639c347ca7d368",
+      "bytes": 5340
+    },
+    {
+      "path": "evidence/repository/.agents/skills/typesafe-ai/SKILL.md",
+      "sha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+      "bytes": 10189
+    },
+    {
+      "path": "evidence/repository/prisma/seed-data/units.ts.txt",
+      "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+      "bytes": 112584
+    },
+    {
+      "path": "evidence/repository/scripts/import/exam-paper/solver_rules.json",
+      "sha256": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab",
+      "bytes": 2322
+    },
+    {
+      "path": "evidence/repository/scripts/import/exam-twin/candidatePack.mjs",
+      "sha256": "19958b0382e5ebca739aceba87a9357944d4cdb8921cc19d3ce413918905f079",
+      "bytes": 16698
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/generate.ts.txt",
+      "sha256": "4bdb90431cdb94a3023da05ad3731aa721d0a5ddcbf284bf3e2d7be1540faaab",
+      "bytes": 8598
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/m3Stat2.ts.txt",
+      "sha256": "e1528f63fb2fa4b26ad04287f3a0c748063a63823bbcc75c7ef26ca2426ce353",
+      "bytes": 57999
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/m3Top.ts.txt",
+      "sha256": "b4c2565fc682d67f1bec68013eea8155cc493766c0328bc8c9f9ac398e335142",
+      "bytes": 29160
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/types.ts.txt",
+      "sha256": "bd95a101d93599998fcffc441c738f7c32599774030cb99ba8e3874993091a3c",
+      "bytes": 1703
+    },
+    {
+      "path": "evidence/source/images/q10-part1.png",
+      "sha256": "1231101d6df7d03bc775e01a8425e1cc14d2790046530fdecc70f7fb2b1f5bde",
+      "bytes": 20929
+    },
+    {
+      "path": "evidence/source/images/q11-part1.png",
+      "sha256": "f8be5acf653a72d71f1c98489ebd3240a76128853daeac8a0324e48ad11c99d9",
+      "bytes": 15509
+    },
+    {
+      "path": "evidence/source/images/q12-part1.png",
+      "sha256": "7e5a9bd81868fd5a9086a20b3647b990aabc8d22a499a5bbfdec55208472bede",
+      "bytes": 36609
+    },
+    {
+      "path": "evidence/source/images/q13-part1.png",
+      "sha256": "9e479177d922d81a89467d4d0c3ddb76beb71c549b1eca96771a83bdc338a6f7",
+      "bytes": 34080
+    },
+    {
+      "path": "evidence/source/images/q14-part1.png",
+      "sha256": "551a03fcd5a0767e021186f851ab1db7819582fb980b9e88fb7912ba3bf2b528",
+      "bytes": 29809
+    },
+    {
+      "path": "evidence/source/images/q15-part1.png",
+      "sha256": "2ad56e1ea936ccd9cb6cdfcead0f5ddeffdbcc689e8c68a223093f56566d0c6f",
+      "bytes": 47773
+    },
+    {
+      "path": "evidence/source/images/q22-part1.png",
+      "sha256": "f28e26c8ff8d368043a3e6a0bca76b6cd009a330c9c6c50c0e10e9575378c938",
+      "bytes": 39311
+    },
+    {
+      "path": "evidence/source/questions.json",
+      "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "bytes": 195095
+    },
+    {
+      "path": "evidence/verification/verification-inputs.json",
+      "sha256": "562bc994195a6a94a63a5ba614af0c75a45de67a175ee2e2a11a945b239b05f2",
+      "bytes": 126885
+    },
+    {
+      "path": "evidence/verification/verification-manifest.json",
+      "sha256": "4bed27db8c8876b29aaa1bc768ea17cf4e084a337ccd9a535baddf1f463e1adb",
+      "bytes": 1902
+    },
+    {
+      "path": "evidence/verification/VERIFY-BRIEF.md",
+      "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3",
+      "bytes": 1238
+    },
+    {
+      "path": "finalize.py",
+      "sha256": "1997c83fee1c1d8c9523c542fa01ccdf9b0a6cfb495b0280e1dd9fca08837a07",
+      "bytes": 12929
+    },
+    {
+      "path": "inspection/layout.json",
+      "sha256": "e146f6220503efab80a238d5d567ac6160c08b082791e20dce35d32dcc22b440",
+      "bytes": 3874
+    },
+    {
+      "path": "inspection/q10-expanded.png",
+      "sha256": "38957877cb57d59f45fd52a29dcfd454c07102cbf193e88b2e34276bf54c15ea",
+      "bytes": 35615
+    },
+    {
+      "path": "inspection/q11-expanded.png",
+      "sha256": "40a01548c0627b91d73491c4fa0ca7e6a97ac46856feb7449c9f11a64dca6ee9",
+      "bytes": 38424
+    },
+    {
+      "path": "inspection/q12-expanded.png",
+      "sha256": "e28a64b98cd9402a4a185044745cb9545f2be170c2f98fac31f97dd55458198b",
+      "bytes": 55334
+    },
+    {
+      "path": "inspection/q13-expanded.png",
+      "sha256": "d7daf5d6fe9c082e4293a74365c131b7cb66ba6980ab7d14394081ce97154d8d",
+      "bytes": 54011
+    },
+    {
+      "path": "inspection/q14-expanded.png",
+      "sha256": "e64e71432e23e2dced9f3fc2b2e1b478912e152d17f3130b968dce886388e410",
+      "bytes": 49583
+    },
+    {
+      "path": "inspection/q15-expanded.png",
+      "sha256": "526b320614693ed0baeea9d9ea56b363608a25c30c1b76db159f0c90adfb4a9a",
+      "bytes": 48750
+    },
+    {
+      "path": "inspection/q22-expanded.png",
+      "sha256": "8b0ab6f0549f43af752a6b7ae31c172b355dcb7b8c86e56d571d52131f3ef3a3",
+      "bytes": 76707
+    },
+    {
+      "path": "registry.mts",
+      "sha256": "ddb73a5a489b72eb3c838fc32bbb433eac30de8382948f9fe567126895a9807a",
+      "bytes": 2387
+    },
+    {
+      "path": "render-review.mjs",
+      "sha256": "57eea7f8416c617a3dcb880910db4b616c302cc4e2a748eaf256abfb3bd8857c",
+      "bytes": 4907
+    },
+    {
+      "path": "reports/q10.json",
+      "sha256": "9f4a56b68f2762cddcb267507217a5bfa60553049cb39c6f35aa1e504e673dfe",
+      "bytes": 8045
+    },
+    {
+      "path": "reports/q11.json",
+      "sha256": "24dd3e4ce75b88239b1d54e6605ef67bd671ae661c1b678f4b037f418e467aba",
+      "bytes": 8010
+    },
+    {
+      "path": "reports/q12.json",
+      "sha256": "0a0bc660f1ca2e04218cfe25468d0366033561bff0e5da67cc56fc089b3efcbe",
+      "bytes": 8148
+    },
+    {
+      "path": "reports/q13.json",
+      "sha256": "25cbcf6c3a3e803ab90ea47bcb3c83f4d9d87c5bd9a78a83b4bd41b7454bc7a5",
+      "bytes": 8877
+    },
+    {
+      "path": "reports/q14.json",
+      "sha256": "19425b8816aab7a9de8d7cd0c88723ced5189551690dc6fe98873ba783d00df8",
+      "bytes": 8358
+    },
+    {
+      "path": "reports/q15.json",
+      "sha256": "8795eb4bee52006fa2d5d180a1355e459ebf4ed5e101b5297c180595b587cacf",
+      "bytes": 8264
+    },
+    {
+      "path": "reports/q22.json",
+      "sha256": "a8e21c8e44e2ead0635576ec3a50280349e0a0d226fe37904df791164d805958",
+      "bytes": 9409
+    },
+    {
+      "path": "REVIEW.md",
+      "sha256": "2f7facdcb8d6a6d6d6778779116e9f188952edb10e2748f99c21e5ed5443f22d",
+      "bytes": 2235
+    },
+    {
+      "path": "seal.py",
+      "sha256": "6038d232baec9ff7b9a8427e0be01c25347d959696cd4f7e3daf9e721a8a2dec",
+      "bytes": 3100
+    },
+    {
+      "path": "validate.py",
+      "sha256": "10d32bad2cf614f7a78f9c9f6180be760a836b4795bbdb0651bc045ae2fe8c45",
+      "bytes": 884
+    }
+  ],
+  "bindings": [
+    {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q10",
+      "studentDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+      "candidateDigest": "b019e92b1f998ac36ed64964a71dd927e0486568755f6ad904ca4efb8df18fd5",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "87df5b07b0d0b0387da18873076fba11a38219921d1c988a63b48a44c9f93fb0",
+      "solveDigest": "6ed98a25ad7ca6e4ae194e0f87691c418899cd801c789cf08592602cb4fe0e18",
+      "rawSolveSha256": "d69b7a42044521f2c8aecd33d728625a6fbbde599f45ad31e5e801b72a25ead5",
+      "sourceQuestionCanonicalDigest": "145260f1f0dc1b2268d908613c33ebe0263762b55ae63bacfffd9fff99e805f7",
+      "sourceStemRawSha256": "439d6b4484b305ebb9201a0230c7ebfbcd19b55399efa58717462b045d378166",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "e653748db554435ab47c34130aa2d9ccfe633426f4183698f2b5bf4e9694d2dd",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q10-part1.png",
+          "sha256": "1231101d6df7d03bc775e01a8425e1cc14d2790046530fdecc70f7fb2b1f5bde",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            613.6576538085938,
+            688,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q10\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 11,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q11",
+      "studentDigest": "0a86ca61b7a556c9aae15a71eb852e0ea531eb2d08cdf3a1d9b5366f25352c2a",
+      "candidateDigest": "229ae498ae158a767ef66ec752e1a1ff0c69f1863f9498e53e48533cb9e93378",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "f36cfd23c68c0aec40faf131d95c3ada2f2313f348381f1b9f9eeb68213b6e4d",
+      "solveDigest": "f95d5c14c7c888c8c99ff8c87e769d35ec7b91293656e9525503cd866cb273bd",
+      "rawSolveSha256": "f0dbf0f186970161d03f37ad8fab6be148559a7243caa23bf5ecdbf58067a194",
+      "sourceQuestionCanonicalDigest": "290d944e38ffb260644c44f36edcd23ef84c7d1cfef31dc46abaa13c9e3de204",
+      "sourceStemRawSha256": "699a60c65479274a8048fb817b5bd87264b92611126a7bfa162b9bf2dd9f2a70",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "004e84058bf5062d558d00efec38f297a11d863118847ed54656579f0620784e",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q11-part1.png",
+          "sha256": "f8be5acf653a72d71f1c98489ebd3240a76128853daeac8a0324e48ad11c99d9",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            467.6004333496094
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q11\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q12",
+      "studentDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+      "candidateDigest": "71195ddad2cf9fb0be72ec578ea8fc4b97878d7ac11ca0c7cfa44fc71cad3585",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "adf4c838de0fb5abd69fb9c381991b7f9586352ba715bcd2308f257a4db7e6c8",
+      "solveDigest": "4c9c3f9eb3e3da7879aca739282379c5b575bc2723d928b92778f8c5ab774a19",
+      "rawSolveSha256": "bad01eadd33df7333660d2a078e0ac10ad989d36862fe37347d43affbc4af09a",
+      "sourceQuestionCanonicalDigest": "f5bd8eaefd882495823e3981e9ef32f9d69758092fca413d7a07fa361ed99ce8",
+      "sourceStemRawSha256": "b6e02f8cb1de0ddb98e04fede12d224580752f53716093d7092e354be41509dd",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "3fc1eda84a41908ab58dba7be0553c7c8f77f12627d86a51a9d4bcf5b7098950",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q12-part1.png",
+          "sha256": "7e5a9bd81868fd5a9086a20b3647b990aabc8d22a499a5bbfdec55208472bede",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            473.6004333496094,
+            375,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q12\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 13,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q13",
+      "studentDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+      "candidateDigest": "d6808f6dfdba3783e887ad3256863f8c4fd31849f608207fd32ef7395974e6b6",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "ebf337193dd2ba93a6e7a984cd25022be7ad57c99c2ffd8105fa8a7ca1df1aa0",
+      "solveDigest": "5f1a83e0197dd8df5e7b5e1c0c016dc9dbaf3dd3b6454bc4f2fc1e874ee9bb02",
+      "rawSolveSha256": "f7aae38337a3daaabe52118501e678213ab7c5d2af16785cfb55499d7151f12d",
+      "sourceQuestionCanonicalDigest": "5f8653d80a2ffdb87dd84deec11eb6b9464d37e92b5a14f58c92a61a77e1e9c9",
+      "sourceStemRawSha256": "33331b439182c9e4c1a34b29ec4deb72e1e1db38d26a83f5ff80c1612399c3f3",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "5648e84477a770c91bb4c74378ceb984af22bfa7342b6e3a2eb171802291d769",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q13-part1.png",
+          "sha256": "9e479177d922d81a89467d4d0c3ddb76beb71c549b1eca96771a83bdc338a6f7",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688,
+            465.4420166015625
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q13\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 14,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q14",
+      "studentDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+      "candidateDigest": "d7e20582d4f3887deb1c756b47310d2058854f4eeb5cb5b548d1999133c3b795",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "113b4512fe9fb93c802a208ce60163144f0d324ea75eedf0e1e7cee38d332330",
+      "solveDigest": "c2c219f06dfa6eecdac55c9f0d51391e5a508553c2bc8ff7220f50e666b6924c",
+      "rawSolveSha256": "d43540a3e6e1958436995f2e12c4282dd7d7fe059b3b18df3ab1711c3c0017e5",
+      "sourceQuestionCanonicalDigest": "bacbd1ce98e80d028c3f692f87992ec5e55022ee24b6e3dfa7091eb9706df275",
+      "sourceStemRawSha256": "dccf9c86cf59d0d2009b3fd697e8dd204715bf1f6b9dd0cae1d7b78db587a9d9",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "0be676b98bbfac946e30d5f28b1377128484f3ea895a2c5aa78d760c09cde6a5",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q14-part1.png",
+          "sha256": "551a03fcd5a0767e021186f851ab1db7819582fb980b9e88fb7912ba3bf2b528",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            471.4420166015625,
+            688,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q14\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 15,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q15",
+      "studentDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+      "candidateDigest": "d50439d436a4c41e87f34dbec233f1c69d88d2bbb5f89593944f8386ee085ac9",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "179ae63d5e8448909b63e78d27b6ca3309efe4a13c9eb1acb502fe3838b3b0ed",
+      "solveDigest": "014ce1f60a5772b896dbc78d462d7155e542d52c7af6ff2209c5833f5a265190",
+      "rawSolveSha256": "d4e5d09caf6fca560a82bb4068a4ab6031622a6b60df15f682641b8034f19b67",
+      "sourceQuestionCanonicalDigest": "1d5e6988067d194592b3893f7bb00ca1d1037c9dce4899aa9628112a4dfdb50b",
+      "sourceStemRawSha256": "6a1fe3857dc1f3af0aaa4a36213918c63d157dc5c6ee59f596808f64cf31356a",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "cfd8411fb4ee839b4585d91b0c7ab3ba60b97355013e57dc6ce7dc4e88ca9d5a",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q15-part1.png",
+          "sha256": "2ad56e1ea936ccd9cb6cdfcead0f5ddeffdbcc689e8c68a223093f56566d0c6f",
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            478.75225830078125
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q15\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 22,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q22",
+      "studentDigest": "35abb187117cd33449fbe896fc3e9770041122fa5d4062335085eeb81c96d368",
+      "candidateDigest": "46bda015c5a8305d0516a42de8b07626461de988e6d7925b6630f60d332180e8",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "5a443d98fd9e78452d53ca906a19fa526cf3ef920e432fc4bac2ddb4a93d8a4c",
+      "solveDigest": "9115ea17850fed40aeda2f670a1b67672b722b25854589f64d5f956e96a0bb71",
+      "rawSolveSha256": "85c969d3f94ae9e47e04ee314e318693ac4ee1d9954f0c52f317a605bd7290f4",
+      "sourceQuestionCanonicalDigest": "2dcca1de77292cbb8fb07cf0edb7475ff76619e5e169286d0cc36ebf59a16a65",
+      "sourceStemRawSha256": "eb686c8cd87c58ddd3ea2d091246e1417695a5ffb1f5f7b2831f660f396111eb",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "1214f4c6c3b5a367725e066972f68635a542c1960fb4da1ffde36b8ebf3f81d1",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q22-part1.png",
+          "sha256": "f28e26c8ff8d368043a3e6a0bca76b6cd009a330c9c6c50c0e10e9575378c938",
+          "page": 6,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q22\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    }
+  ]
+}

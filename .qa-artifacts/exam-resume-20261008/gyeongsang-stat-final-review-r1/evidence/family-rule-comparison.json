@@ -1,0 +1,44 @@
+{
+  "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+  "unitUuid": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+  "unitSeedExactMatch": true,
+  "allLiveActualRules": {
+    "01": "five complete scores with given mean; calculate one selected deviation; 기본",
+    "02": "five already-given deviations with one missing; sum deviations zero; target missing deviation; 응용",
+    "03": "five already-mean-centered deviations; squared sum /5 then square root; 응용",
+    "04": "given variance, affine scale/shift; calculate new variance; 응용",
+    "05": "five DISTINCT complete values40..90; target direct mean; 기본",
+    "06": "two group sizes/means; weighted overall mean; 응용",
+    "07": "given SD and affine change; new SD; 응용",
+    "08": "five DISTINCT complete scores40..95; mean -> deviations -> variance only; 응용",
+    "09": "given sum of squared deviations/count, or variance, or SD; one variance/SD conversion; 연산",
+    "10": "five scores including a,b with given mean and b-a; recover a,b then variance only; 심화하",
+    "11T": "four sorted known values plus natural x; mean=median; three insertion intervals; solve and validate all possible x; five observations; written; 심화상"
+  },
+  "ruleSourceSha256": [
+    {
+      "path": "src/lib/middle/m3Stat2.ts",
+      "sha256": "e1528f63fb2fa4b26ad04287f3a0c748063a63823bbcc75c7ef26ca2426ce353"
+    },
+    {
+      "path": "src/lib/middle/m3Top.ts",
+      "sha256": "b4c2565fc682d67f1bec68013eea8155cc493766c0328bc8c9f9ac398e335142"
+    },
+    {
+      "path": "prisma/seed-data/units.ts",
+      "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e"
+    }
+  ],
+  "selectedExistingFamilyCount": 0,
+  "all7FamilyKeyRemainsNull": true,
+  "perQuestion": {
+    "10": "01·02는 편차 목표,05는 완전한5개 자료의 직접 평균,06은 두 집단 합산. 알려진 평균→7개 중 누락값을 구하는 전체 조건/목적과 일치하는 live 규칙 없음.",
+    "11": "11T는5개 자료의 평균=중앙값을 세 구간으로 풀어 모든 x를 찾는 서술형. 본문7개/고정 중앙값/단일 x MC와 전체 목적·절차·난도가 다름.",
+    "12": "11개 live 산포도 규칙에 최빈값 또는 동률을 깨는 빈도 역문제 없음.",
+    "13": "02는 편차만 구하며 본문5개; 본문4개, 실제 점수78에서 평균을 복원하는 마지막 필수 단계 미지원.01은 평균이 주어지고 편차를 구함.",
+    "14": "08은5개 DISTINCT 완전 관측값, 목표 분산 하나.03은 이미 평균중심 편차가 주어짐.09는 제곱편차합 등이 이미 주어짐.10회 도수→평균→분산/SD 두 목표 전체를 지원하지 않음.",
+    "15": "03/07/09는 SD 계산/변환. 서로 다른5개 프로그램의 SD 비교와 엄격한 최소 조건에 해당하는 live 규칙 없음.",
+    "22": "05는5개 직접 평균;11T는 평균=중앙값의 미지값 문제.20개 도수표, 평균+중앙값, 맥락에 맞는 대푯값 설명과6점 서술형을 지원하는 규칙 없음."
+  },
+  "reopen": "Supply an actually registered live generation rule supporting each complete givens/target/core sequence and compatible format/difficulty; separately reviewed rule change needs new binding. No title-only substitute."
+}

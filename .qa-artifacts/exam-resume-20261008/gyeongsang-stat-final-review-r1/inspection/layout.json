@@ -1,0 +1,96 @@
+{
+  "method": "reviewer local student+new author solution render;70mm;supplied assets unchanged;raw TeX preserved;nonfatal unicode warnings recorded",
+  "networkRequests": [],
+  "texWarnings": [
+    {
+      "questionNumber": 22,
+      "code": "unicodeTextInMathMode",
+      "message": "Unicode text character \"분\" used in math mode"
+    },
+    {
+      "questionNumber": 22,
+      "code": "unicodeTextInMathMode",
+      "message": "Unicode text character \"분\" used in math mode"
+    }
+  ],
+  "strictModeObservation": "q22 answer\\mathrm{분} raised unicodeTextInMathMode under strict:error;no candidate repair;lenient view permits actual glyph inspection",
+  "results": [
+    {
+      "questionNumber": 10,
+      "studentDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+      "candidateDigest": "b019e92b1f998ac36ed64964a71dd927e0486568755f6ad904ca4efb8df18fd5",
+      "columnWidthMm": 70,
+      "png": "inspection/q10-expanded.png",
+      "pngSha256": "38957877cb57d59f45fd52a29dcfd454c07102cbf193e88b2e34276bf54c15ea",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0
+    },
+    {
+      "questionNumber": 11,
+      "studentDigest": "0a86ca61b7a556c9aae15a71eb852e0ea531eb2d08cdf3a1d9b5366f25352c2a",
+      "candidateDigest": "229ae498ae158a767ef66ec752e1a1ff0c69f1863f9498e53e48533cb9e93378",
+      "columnWidthMm": 70,
+      "png": "inspection/q11-expanded.png",
+      "pngSha256": "40a01548c0627b91d73491c4fa0ca7e6a97ac46856feb7449c9f11a64dca6ee9",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0
+    },
+    {
+      "questionNumber": 12,
+      "studentDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+      "candidateDigest": "71195ddad2cf9fb0be72ec578ea8fc4b97878d7ac11ca0c7cfa44fc71cad3585",
+      "columnWidthMm": 70,
+      "png": "inspection/q12-expanded.png",
+      "pngSha256": "e28a64b98cd9402a4a185044745cb9545f2be170c2f98fac31f97dd55458198b",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0
+    },
+    {
+      "questionNumber": 13,
+      "studentDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+      "candidateDigest": "d6808f6dfdba3783e887ad3256863f8c4fd31849f608207fd32ef7395974e6b6",
+      "columnWidthMm": 70,
+      "png": "inspection/q13-expanded.png",
+      "pngSha256": "d7daf5d6fe9c082e4293a74365c131b7cb66ba6980ab7d14394081ce97154d8d",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0
+    },
+    {
+      "questionNumber": 14,
+      "studentDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+      "candidateDigest": "d7e20582d4f3887deb1c756b47310d2058854f4eeb5cb5b548d1999133c3b795",
+      "columnWidthMm": 70,
+      "png": "inspection/q14-expanded.png",
+      "pngSha256": "e64e71432e23e2dced9f3fc2b2e1b478912e152d17f3130b968dce886388e410",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0
+    },
+    {
+      "questionNumber": 15,
+      "studentDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+      "candidateDigest": "d50439d436a4c41e87f34dbec233f1c69d88d2bbb5f89593944f8386ee085ac9",
+      "columnWidthMm": 70,
+      "png": "inspection/q15-expanded.png",
+      "pngSha256": "526b320614693ed0baeea9d9ea56b363608a25c30c1b76db159f0c90adfb4a9a",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0
+    },
+    {
+      "questionNumber": 22,
+      "studentDigest": "35abb187117cd33449fbe896fc3e9770041122fa5d4062335085eeb81c96d368",
+      "candidateDigest": "46bda015c5a8305d0516a42de8b07626461de988e6d7925b6630f60d332180e8",
+      "columnWidthMm": 70,
+      "png": "inspection/q22-expanded.png",
+      "pngSha256": "8b0ab6f0549f43af752a6b7ae31c172b355dcb7b8c86e56d571d52131f3ef3a3",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0
+    }
+  ]
+}

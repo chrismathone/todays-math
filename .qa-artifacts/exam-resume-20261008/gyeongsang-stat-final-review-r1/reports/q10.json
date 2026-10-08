@@ -1,0 +1,195 @@
+{
+  "questionNumber": 10,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q10",
+  "status": "pending",
+  "studentDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+  "candidateDigest": "b019e92b1f998ac36ed64964a71dd927e0486568755f6ad904ca4efb8df18fd5",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "6ed98a25ad7ca6e4ae194e0f87691c418899cd801c789cf08592602cb4fe0e18",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "완전한 주사위 기록의 평균 계산에서 도서 반납 기록의 평균을 주고 빠진 관측값을 찾는 역문제로 변경. 평균=총합/개수 원리를 유지. 요청 개념과 조건이 2015 범위.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q10-expanded.png"
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "MC 다섯 값과 오답을 전부 검산; 조건을 만족하는 선택 하나.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q10-expanded.png"
+      ]
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "숫자열7개; 빈칸이 하나. 별도 그림/표 없음.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q10-expanded.png"
+      ]
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "정수·소수·통상 빈칸·편차·도수·제곱근 표기만 사용; 상위 통계 기호 없음.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q10-expanded.png"
+      ]
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "35−28=7; 7일 자료의 평균 재확인.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q10-expanded.png"
+      ]
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "35−28=7; 7일 자료의 평균 재확인. 공개 새 저자 풀이의 모든 단계가 정의·기초 산술만 사용.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q10-expanded.png"
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "평균 정의와 정수의 합·차.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q10-expanded.png"
+      ]
+    }
+  },
+  "evidence": {
+    "math": "35−28=7; 7일 자료의 평균 재확인.",
+    "newSolutionIndividuallyRead": true,
+    "exactCodeOutput": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\blind\\calculation-output.json",
+    "independentCodeOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "independentInputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "bindingRecord": {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q10",
+      "studentDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+      "candidateDigest": "b019e92b1f998ac36ed64964a71dd927e0486568755f6ad904ca4efb8df18fd5",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "87df5b07b0d0b0387da18873076fba11a38219921d1c988a63b48a44c9f93fb0",
+      "solveDigest": "6ed98a25ad7ca6e4ae194e0f87691c418899cd801c789cf08592602cb4fe0e18",
+      "rawSolveSha256": "d69b7a42044521f2c8aecd33d728625a6fbbde599f45ad31e5e801b72a25ead5",
+      "sourceQuestionCanonicalDigest": "145260f1f0dc1b2268d908613c33ebe0263762b55ae63bacfffd9fff99e805f7",
+      "sourceStemRawSha256": "439d6b4484b305ebb9201a0230c7ebfbcd19b55399efa58717462b045d378166",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "e653748db554435ab47c34130aa2d9ccfe633426f4183698f2b5bf4e9694d2dd",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q10-part1.png",
+          "sha256": "1231101d6df7d03bc775e01a8425e1cc14d2790046530fdecc70f7fb2b1f5bde",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            613.6576538085938,
+            688,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q10\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "unitMeaningChecked": true,
+      "choiceNumber": 5
+    },
+    "coreAndSubstantiveDelta": "완전한 주사위 기록의 평균 계산에서 도서 반납 기록의 평균을 주고 빠진 관측값을 찾는 역문제로 변경. 평균=총합/개수 원리를 유지.",
+    "naturalKorean": "조건·대상·단위가 자연스럽고 실제 학교 노출 없음. 실제70mm 확대 학생+풀이 화면을 사람이 확인.",
+    "scoreReview": {
+      "score": 3,
+      "proposedDifficulty": "기본",
+      "reviewerDifficultyProposal": "기본",
+      "basis": "35−28=7; 7일 자료의 평균 재확인. 3점은 원문 점수와 같고 필요한 단계 수에 과도한 새 구성을 추가하지 않음; 측정 난도 주장 없음."
+    },
+    "actualVisualReview": {
+      "image": "inspection/q10-expanded.png",
+      "sha256": "38957877cb57d59f45fd52a29dcfd454c07102cbf193e88b2e34276bf54c15ea",
+      "intendedWidthMm": 70,
+      "personallyViewed": true,
+      "overflow": false,
+      "tablesTextBound": true
+    },
+    "unitFamily": {
+      "unitUuidSupported": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "actualUnitSeedMatch": true,
+      "familyKey": null,
+      "status": "held",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "notCurrentDbAssertion": true,
+      "basis": "01·02는 편차 목표,05는 완전한5개 자료의 직접 평균,06은 두 집단 합산. 알려진 평균→7개 중 누락값을 구하는 전체 조건/목적과 일치하는 live 규칙 없음."
+    },
+    "nonStudentMetadataFindings": []
+  },
+  "holds": [
+    {
+      "code": "live-family-unassigned",
+      "basis": "01·02는 편차 목표,05는 완전한5개 자료의 직접 평균,06은 두 집단 합산. 알려진 평균→7개 중 누락값을 구하는 전체 조건/목적과 일치하는 live 규칙 없음.",
+      "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "nativeCompatibility": "pending",
+    "similarity": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0
+  }
+}

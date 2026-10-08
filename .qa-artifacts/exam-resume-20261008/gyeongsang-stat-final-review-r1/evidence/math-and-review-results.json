@@ -1,0 +1,176 @@
+{
+  "rawIndependentSolvesUnedited": true,
+  "mathPass": 7,
+  "gradeSevenSurfacesPass": 7,
+  "verified": 0,
+  "pending": 7,
+  "rejected": 0,
+  "familyAssignments": 0,
+  "results": [
+    {
+      "questionNumber": 10,
+      "status": "pending",
+      "mathAndSevenSurfaces": "passed",
+      "holds": [
+        {
+          "code": "live-family-unassigned",
+          "basis": "01·02는 편차 목표,05는 완전한5개 자료의 직접 평균,06은 두 집단 합산. 알려진 평균→7개 중 누락값을 구하는 전체 조건/목적과 일치하는 live 규칙 없음.",
+          "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+        }
+      ],
+      "answerComparison": {
+        "literalEqual": true,
+        "semanticEqual": true,
+        "unitMeaningChecked": true,
+        "choiceNumber": 5
+      }
+    },
+    {
+      "questionNumber": 11,
+      "status": "pending",
+      "mathAndSevenSurfaces": "passed",
+      "holds": [
+        {
+          "code": "live-family-unassigned",
+          "basis": "11T는5개 자료의 평균=중앙값을 세 구간으로 풀어 모든 x를 찾는 서술형. 본문7개/고정 중앙값/단일 x MC와 전체 목적·절차·난도가 다름.",
+          "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+        }
+      ],
+      "answerComparison": {
+        "literalEqual": true,
+        "semanticEqual": true,
+        "unitMeaningChecked": true,
+        "choiceNumber": 3
+      }
+    },
+    {
+      "questionNumber": 12,
+      "status": "pending",
+      "mathAndSevenSurfaces": "passed",
+      "holds": [
+        {
+          "code": "live-family-unassigned",
+          "basis": "11개 live 산포도 규칙에 최빈값 또는 동률을 깨는 빈도 역문제 없음.",
+          "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+        }
+      ],
+      "answerComparison": {
+        "literalEqual": true,
+        "semanticEqual": true,
+        "unitMeaningChecked": true,
+        "choiceNumber": 2
+      }
+    },
+    {
+      "questionNumber": 13,
+      "status": "pending",
+      "mathAndSevenSurfaces": "passed",
+      "holds": [
+        {
+          "code": "live-family-unassigned",
+          "basis": "02는 편차만 구하며 본문5개; 본문4개, 실제 점수78에서 평균을 복원하는 마지막 필수 단계 미지원.01은 평균이 주어지고 편차를 구함.",
+          "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+        },
+        {
+          "code": "metadata-deviation-definition-sign",
+          "basis": "평균에서 각 관측값을 뺀 차이라는 문구는 통상 편차 부호와 반대. 학생 새 풀이의 점수−평균은 정확.",
+          "reopen": "저자 새 버전에서 관측값에서 평균을 뺀 차이로 고치고 재바인딩. 봉인본은 수정하지 않음."
+        }
+      ],
+      "answerComparison": {
+        "literalEqual": true,
+        "semanticEqual": true,
+        "unitMeaningChecked": true,
+        "choiceNumber": 4
+      }
+    },
+    {
+      "questionNumber": 14,
+      "status": "pending",
+      "mathAndSevenSurfaces": "passed",
+      "holds": [
+        {
+          "code": "live-family-unassigned",
+          "basis": "08은5개 DISTINCT 완전 관측값, 목표 분산 하나.03은 이미 평균중심 편차가 주어짐.09는 제곱편차합 등이 이미 주어짐.10회 도수→평균→분산/SD 두 목표 전체를 지원하지 않음.",
+          "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+        }
+      ],
+      "answerComparison": {
+        "literalEqual": true,
+        "semanticEqual": true,
+        "unitMeaningChecked": true,
+        "choiceNumber": 2
+      }
+    },
+    {
+      "questionNumber": 15,
+      "status": "pending",
+      "mathAndSevenSurfaces": "passed",
+      "holds": [
+        {
+          "code": "live-family-unassigned",
+          "basis": "03/07/09는 SD 계산/변환. 서로 다른5개 프로그램의 SD 비교와 엄격한 최소 조건에 해당하는 live 규칙 없음.",
+          "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+        }
+      ],
+      "answerComparison": {
+        "literalEqual": true,
+        "semanticEqual": true,
+        "unitMeaningChecked": true,
+        "choiceNumber": 1
+      }
+    },
+    {
+      "questionNumber": 22,
+      "status": "pending",
+      "mathAndSevenSurfaces": "passed",
+      "holds": [
+        {
+          "code": "live-family-unassigned",
+          "basis": "05는5개 직접 평균;11T는 평균=중앙값의 미지값 문제.20개 도수표, 평균+중앙값, 맥락에 맞는 대푯값 설명과6점 서술형을 지원하는 규칙 없음.",
+          "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+        }
+      ],
+      "answerComparison": {
+        "literalEqual": false,
+        "semanticEqual": true,
+        "unitMeaningChecked": true,
+        "typedParts": [
+          {
+            "role": "reportA.mean",
+            "value": "159/20",
+            "unit": "분"
+          },
+          {
+            "role": "reportB.median",
+            "value": "9/2",
+            "unit": "분"
+          },
+          {
+            "role": "representativeReport",
+            "value": "B",
+            "unit": null
+          }
+        ],
+        "authorPartsReviewed": [
+          {
+            "role": "reportA.mean",
+            "value": "7.95",
+            "unit": "분"
+          },
+          {
+            "role": "reportB.median",
+            "value": "4.5",
+            "unit": "분"
+          },
+          {
+            "role": "representativeReport",
+            "value": "B",
+            "unit": null
+          }
+        ],
+        "rubric": "mean2+median2+contextual B explanation2=6; all requested parts covered; never bare literal normalization"
+      }
+    }
+  ]
+}

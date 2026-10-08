@@ -1,0 +1,2855 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q10",
+      "authorId": "root-codex-exam-extraction-resume-20261008",
+      "content": "작은 도서관에서 일주일 동안 반납된 책 수를 날짜 순서대로 적은 기록이다. 하루 평균 반납된 책 수가 $5$권일 때, 빈칸에 들어갈 수는?\n\n$4,7,3,\\square,6,5,3$",
+      "choices": [
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$",
+        "$7$"
+      ],
+      "answer": "⑤",
+      "solution": "일주일 동안 반납된 책은 모두 $5\\times7=35$권이다. 빈칸을 제외한 합은 $4+7+3+6+5+3=28$이므로 빈칸은 $35-28=7$이다.",
+      "score": 3,
+      "questionType": "객관식",
+      "facts": {
+        "unknown": {
+          "numerator": "7",
+          "denominator": "1"
+        },
+        "values": [
+          4,
+          7,
+          3,
+          7,
+          6,
+          5,
+          3
+        ],
+        "mean": {
+          "numerator": "5",
+          "denominator": "1"
+        },
+        "unique": true,
+        "calculationOnly": true
+      },
+      "figureArtifacts": [],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "context",
+          "inverse-target"
+        ],
+        "before": "다음은 주사위를 $7$번 던져 나온 눈의 수를 나타낸 것이다. 이 자료의 평균은? [$3$점]\n$1,~~2,~~2,~~4,~~3,~~3,~~6$",
+        "after": "평균 직접 계산→주어진 평균에서 누락 관측값 역추론",
+        "sharedConcept": "평균과 자료의 총합",
+        "sharedProcedure": "평균×자료 수로 총합을 구하고 알려진 관측값의 합을 뺀다.",
+        "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+        "sourceTableReplaced": "new Markdown data organization; no original crop used",
+        "scoreDelta": {
+          "source": 3,
+          "authored": 3,
+          "changed": false
+        }
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수05-06"
+        ],
+        "status": "author-proposed",
+        "allowedProcedure": "평균×자료 수로 총합을 구하고 알려진 관측값의 합을 뺀다.",
+        "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+        "surfaces": {
+          "stem": {
+            "status": "author-proposed",
+            "evidence": "평균과 자료의 총합: 평균×자료 수로 총합을 구하고 알려진 관측값의 합을 뺀다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "평균과 자료의 총합: 평균×자료 수로 총합을 구하고 알려진 관측값의 합을 뺀다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "figuresAndTables": {
+            "status": "author-proposed",
+            "evidence": "평균과 자료의 총합: 평균×자료 수로 총합을 구하고 알려진 관측값의 합을 뺀다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "notation": {
+            "status": "author-proposed",
+            "evidence": "평균과 자료의 총합: 평균×자료 수로 총합을 구하고 알려진 관측값의 합을 뺀다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "평균과 자료의 총합: 평균×자료 수로 총합을 구하고 알려진 관측값의 합을 뺀다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "studentSolution": {
+            "status": "author-proposed",
+            "evidence": "평균과 자료의 총합: 평균×자료 수로 총합을 구하고 알려진 관측값의 합을 뺀다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "평균과 자료의 총합: 평균×자료 수로 총합을 구하고 알려진 관측값의 합을 뺀다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          }
+        },
+        "exactGradeApproval": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-10",
+        "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+        "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+        "school": "경상중",
+        "questionNumber": 10,
+        "sourceContentSha256": "e653748db554435ab47c34130aa2d9ccfe633426f4183698f2b5bf4e9694d2dd",
+        "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "sourceQuestionScore": 3,
+        "sourceQuestionType": "객관식",
+        "originalAnswersOrSolutionsUsed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 3,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "pending-independent-review",
+        "problemTypeProposal": "평균과 자료의 총합",
+        "problemTypeStatus": "pending-independent-review",
+        "hasFigure": false,
+        "hasRecreatedTable": false,
+        "assignment": {
+          "status": "pending",
+          "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+          "familyKey": null,
+          "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+          "unitProposal": {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          },
+          "bankReadAt": "2026-10-08 04:53:45.769124+00",
+          "liveFamilyDecision": "held"
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수05-06",
+            "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "sourceIdentityReview": {
+          "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+          "custody": "held",
+          "rights": "held",
+          "fullPair": "held"
+        },
+        "answerFormat": "single circled choice",
+        "authorEvidence": {
+          "calculationPath": "author-calculations.json",
+          "scriptSha256": "88183fe6562f5c9c37671089df4871ae3226e42c748de655f727b43bd6ba7e53",
+          "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+          "calculationOnly": true,
+          "independentApproval": false
+        },
+        "bankEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+          "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+        }
+      },
+      "schoolNamePolicy": {
+        "actual": "경상중",
+        "display": "해솔누리중학교",
+        "actualSchoolRetainedInternally": true,
+        "visibleOriginalSchoolOccurrences": 0,
+        "review": "author-proposed"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "mathematicalCorrectness": "pending-independent-blind-solve",
+        "gradeCurriculum": "pending-independent-review",
+        "equivalentConceptAndMethod": "pending-independent-review",
+        "distinctPresentation": "pending-independent-review",
+        "rights": "pending",
+        "similarity": "pending",
+        "nativeCompatibility": "pending",
+        "physicalPaper": "not-approved"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [],
+    "studentDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+    "candidateDigest": "b019e92b1f998ac36ed64964a71dd927e0486568755f6ad904ca4efb8df18fd5",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "status": "solved",
+      "answer": "⑤",
+      "solution": "평균은 자료의 합을 자료의 개수로 나눈 값이다. 일주일의 합은 7×5=35권이다. 알려진 여섯 날의 합은 4+7+3+6+5+3=28권이므로 빈칸은 35−28=7이다. 정답은 ⑤이다. 이때 일곱 값의 합이35이므로 평균5가 실제로 성립하며, 빠진 값은 하나이므로 유일하다.",
+      "evidence": {
+        "method": "blind-student-only-independent-solve",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q10",
+        "questionNumber": 10,
+        "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+        "authorAnswersSolutionsOpened": false,
+        "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+        "inputQuestionDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+        "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+        "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+        "calculationCodePath": "calculation.py",
+        "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+        "calculationOutputPath": "calculation-output.json",
+        "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+        "exactCalculation": {
+          "knownValuesFromStudent": [
+            4,
+            7,
+            3,
+            6,
+            5,
+            3
+          ],
+          "sumKnown": 28,
+          "count": 7,
+          "total": 35,
+          "missing": 7,
+          "completed": [
+            4,
+            7,
+            3,
+            7,
+            6,
+            5,
+            3
+          ],
+          "meanRecheck": "5",
+          "proof": "Sum=7*mean; one missing scalar has nonzero coefficient1 and is uniquely7.",
+          "allFiveDisplayedChoiceValues": [
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"
+          ],
+          "choiceCorrectness": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "correctChoiceNumber": 5,
+          "choiceDistinct": true
+        },
+        "studentPreview": {
+          "path": "inspection/q10.png",
+          "sha256": "ac7d4b72e30f7eb4674a86814548148149e4aa101cf9236205c4d0d1add4e3d5",
+          "columnWidthMm": 70,
+          "personallyViewed": true
+        },
+        "suppliedFigures": [],
+        "curriculumSurfaces": {
+          "stem": {
+            "status": "in-scope-student-input",
+            "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+            "standardCodes": [
+              "9수05-06"
+            ]
+          },
+          "choices": {
+            "status": "independently-checked",
+            "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+            "evidence": [
+              false,
+              false,
+              false,
+              false,
+              true
+            ]
+          },
+          "figuresAndTables": {
+            "status": "independently-inspected",
+            "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+            "previewPath": "inspection/q10.png",
+            "previewSha256": "ac7d4b72e30f7eb4674a86814548148149e4aa101cf9236205c4d0d1add4e3d5"
+          },
+          "notation": {
+            "status": "in-scope-student-input",
+            "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+          },
+          "answer": {
+            "status": "independently-derived",
+            "basis": "새 독립 답만 확인; 저자 답 미노출"
+          },
+          "studentSolution": {
+            "status": "independently-derived",
+            "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+          },
+          "prerequisites": {
+            "status": "in-scope-independent-method",
+            "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+            "standardCodes": [
+              "9수05-06"
+            ]
+          }
+        },
+        "curriculumGate": {
+          "grade": "중3",
+          "edition": "2015",
+          "independentStudentMethod": "in-scope-proposed",
+          "outOfGradeMethodRequired": false,
+          "unknownScopeHold": false,
+          "authorAnswerSolutionGradeReview": "not-yet-exposed",
+          "finalGradeApproval": false
+        },
+        "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+      }
+    },
+    "solveDigest": "6ed98a25ad7ca6e4ae194e0f87691c418899cd801c789cf08592602cb4fe0e18"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 11,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q11",
+      "authorId": "root-codex-exam-extraction-resume-20261008",
+      "content": "다음 일곱 수의 중앙값은 $7$이다. $x$가 $1$ 이상 $12$ 이하인 자연수일 때, $x$의 값은?\n\n$8, 3, 5, x, 12, 10, 2$",
+      "choices": [
+        "$5$",
+        "$6$",
+        "$7$",
+        "$8$",
+        "$9$"
+      ],
+      "answer": "③",
+      "solution": "$x$를 제외한 수를 작은 순서로 놓으면 $2,3,5,8,10,12$이다. 일곱 수의 중앙값은 네 번째 수이다. 네 번째 수가 $7$이 되려면 $5$와 $8$ 사이에 놓이는 $x$가 $7$이어야 한다. 따라서 $x=7$이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "solutions": [
+          7
+        ],
+        "unique": true,
+        "calculationOnly": true
+      },
+      "figureArtifacts": [],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "다음 자료의 중앙값은? [$4$점]\n$2,~~3,~~9,~~6,~~7,~~6,~~4$",
+        "after": "주어진 자료의 중앙값 계산→중앙값을 만족시키는 하나의 관측값 결정",
+        "sharedConcept": "홀수 개 자료의 중앙값",
+        "sharedProcedure": "일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.",
+        "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+        "sourceTableReplaced": "new Markdown data organization; no original crop used",
+        "scoreDelta": {
+          "source": 4,
+          "authored": 4,
+          "changed": false
+        }
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수05-06"
+        ],
+        "status": "author-proposed",
+        "allowedProcedure": "일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.",
+        "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+        "surfaces": {
+          "stem": {
+            "status": "author-proposed",
+            "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "figuresAndTables": {
+            "status": "author-proposed",
+            "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "notation": {
+            "status": "author-proposed",
+            "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "studentSolution": {
+            "status": "author-proposed",
+            "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          }
+        },
+        "exactGradeApproval": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-11",
+        "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+        "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+        "school": "경상중",
+        "questionNumber": 11,
+        "sourceContentSha256": "004e84058bf5062d558d00efec38f297a11d863118847ed54656579f0620784e",
+        "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "sourceQuestionScore": 4,
+        "sourceQuestionType": "객관식",
+        "originalAnswersOrSolutionsUsed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-independent-review",
+        "problemTypeProposal": "홀수 개 자료의 중앙값",
+        "problemTypeStatus": "pending-independent-review",
+        "hasFigure": false,
+        "hasRecreatedTable": false,
+        "assignment": {
+          "status": "pending",
+          "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+          "familyKey": null,
+          "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+          "unitProposal": {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          },
+          "bankReadAt": "2026-10-08 04:53:45.769124+00",
+          "liveFamilyDecision": "held"
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수05-06",
+            "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "sourceIdentityReview": {
+          "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+          "custody": "held",
+          "rights": "held",
+          "fullPair": "held"
+        },
+        "answerFormat": "single circled choice",
+        "authorEvidence": {
+          "calculationPath": "author-calculations.json",
+          "scriptSha256": "88183fe6562f5c9c37671089df4871ae3226e42c748de655f727b43bd6ba7e53",
+          "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+          "calculationOnly": true,
+          "independentApproval": false
+        },
+        "bankEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+          "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+        }
+      },
+      "schoolNamePolicy": {
+        "actual": "경상중",
+        "display": "해솔누리중학교",
+        "actualSchoolRetainedInternally": true,
+        "visibleOriginalSchoolOccurrences": 0,
+        "review": "author-proposed"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "mathematicalCorrectness": "pending-independent-blind-solve",
+        "gradeCurriculum": "pending-independent-review",
+        "equivalentConceptAndMethod": "pending-independent-review",
+        "distinctPresentation": "pending-independent-review",
+        "rights": "pending",
+        "similarity": "pending",
+        "nativeCompatibility": "pending",
+        "physicalPaper": "not-approved"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [],
+    "studentDigest": "0a86ca61b7a556c9aae15a71eb852e0ea531eb2d08cdf3a1d9b5366f25352c2a",
+    "candidateDigest": "229ae498ae158a767ef66ec752e1a1ff0c69f1863f9498e53e48533cb9e93378",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "0a86ca61b7a556c9aae15a71eb852e0ea531eb2d08cdf3a1d9b5366f25352c2a",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "status": "solved",
+      "answer": "③",
+      "solution": "일곱 수의 중앙값은 작은 것부터 정렬했을 때 네 번째 수이므로 자료의 실제 수 중 하나이다. 알려진 8,3,5,12,10,2 중에는7이 없으므로 중앙값7은 x여야 한다. 따라서 x=7이다. 정렬하면2,3,5,7,8,10,12이므로 중앙값이7이고,1≤x≤12인 자연수 조건도 만족한다. 정답은 ③이다.",
+      "evidence": {
+        "method": "blind-student-only-independent-solve",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q11",
+        "questionNumber": 11,
+        "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+        "authorAnswersSolutionsOpened": false,
+        "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+        "inputQuestionDigest": "0a86ca61b7a556c9aae15a71eb852e0ea531eb2d08cdf3a1d9b5366f25352c2a",
+        "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+        "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+        "calculationCodePath": "calculation.py",
+        "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+        "calculationOutputPath": "calculation-output.json",
+        "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+        "exactCalculation": {
+          "knownValuesFromStudent": [
+            8,
+            3,
+            5,
+            12,
+            10,
+            2
+          ],
+          "domain": "natural1..12",
+          "allDomainCases": [
+            {
+              "x": 1,
+              "median": "5"
+            },
+            {
+              "x": 2,
+              "median": "5"
+            },
+            {
+              "x": 3,
+              "median": "5"
+            },
+            {
+              "x": 4,
+              "median": "5"
+            },
+            {
+              "x": 5,
+              "median": "5"
+            },
+            {
+              "x": 6,
+              "median": "6"
+            },
+            {
+              "x": 7,
+              "median": "7"
+            },
+            {
+              "x": 8,
+              "median": "8"
+            },
+            {
+              "x": 9,
+              "median": "8"
+            },
+            {
+              "x": 10,
+              "median": "8"
+            },
+            {
+              "x": 11,
+              "median": "8"
+            },
+            {
+              "x": 12,
+              "median": "8"
+            }
+          ],
+          "validX": [
+            7
+          ],
+          "proof": "Odd median is an actual datum;7 is absent from six fixed values,so x must7; completed sorted data confirm existence.",
+          "allFiveDisplayedChoiceValues": [
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "choiceCorrectness": [
+            false,
+            false,
+            true,
+            false,
+            false
+          ],
+          "correctChoiceNumber": 3,
+          "choiceDistinct": true
+        },
+        "studentPreview": {
+          "path": "inspection/q11.png",
+          "sha256": "6b8bd6d5ac6e12c58c32f0a9aaa1cd5b9b51b67b0993d0415ffff5465f5361c4",
+          "columnWidthMm": 70,
+          "personallyViewed": true
+        },
+        "suppliedFigures": [],
+        "curriculumSurfaces": {
+          "stem": {
+            "status": "in-scope-student-input",
+            "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+            "standardCodes": [
+              "9수05-06"
+            ]
+          },
+          "choices": {
+            "status": "independently-checked",
+            "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+            "evidence": [
+              false,
+              false,
+              true,
+              false,
+              false
+            ]
+          },
+          "figuresAndTables": {
+            "status": "independently-inspected",
+            "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+            "previewPath": "inspection/q11.png",
+            "previewSha256": "6b8bd6d5ac6e12c58c32f0a9aaa1cd5b9b51b67b0993d0415ffff5465f5361c4"
+          },
+          "notation": {
+            "status": "in-scope-student-input",
+            "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+          },
+          "answer": {
+            "status": "independently-derived",
+            "basis": "새 독립 답만 확인; 저자 답 미노출"
+          },
+          "studentSolution": {
+            "status": "independently-derived",
+            "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+          },
+          "prerequisites": {
+            "status": "in-scope-independent-method",
+            "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+            "standardCodes": [
+              "9수05-06"
+            ]
+          }
+        },
+        "curriculumGate": {
+          "grade": "중3",
+          "edition": "2015",
+          "independentStudentMethod": "in-scope-proposed",
+          "outOfGradeMethodRequired": false,
+          "unknownScopeHold": false,
+          "authorAnswerSolutionGradeReview": "not-yet-exposed",
+          "finalGradeApproval": false
+        },
+        "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+      }
+    },
+    "solveDigest": "f95d5c14c7c888c8c99ff8c87e769d35ec7b91293656e9525503cd866cb273bd"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q12",
+      "authorId": "root-codex-exam-extraction-resume-20261008",
+      "content": "수 카드 $15$장 중 $14$장에 적힌 수를 세어 다음 표에 기록했다. 남은 한 장의 수는 $20,25,30,35,40$ 중 하나이다. 모든 카드에 적힌 수의 최빈값이 $25$ 하나뿐이라면, 남은 카드에 적힌 수는?\n\n|수|$20$|$25$|$30$|$35$|$40$|\n|:---:|:---:|:---:|:---:|:---:|:---:|\n|카드 수(장)|$4$|$4$|$3$|$2$|$1$|",
+      "choices": [
+        "$20$",
+        "$25$",
+        "$30$",
+        "$35$",
+        "$40$"
+      ],
+      "answer": "②",
+      "solution": "현재 $20$과 $25$가 각각 $4$장으로 가장 많다. $25$를 한 장 더하면 $25$가 $5$장이 되어 유일한 최빈값이다. $20$을 더하면 최빈값은 $20$이고, 나머지 수를 더하면 $25$만 유일한 최빈값이 되지 않는다. 따라서 남은 카드의 수는 $25$이다.",
+      "score": 3,
+      "questionType": "객관식",
+      "facts": {
+        "knownCounts": [
+          4,
+          4,
+          3,
+          2,
+          1
+        ],
+        "cases": [
+          {
+            "added": 20,
+            "result": {
+              "count": 15,
+              "total": "400",
+              "squareTotal": "11250",
+              "mean": {
+                "numerator": "80",
+                "denominator": "3"
+              },
+              "median": {
+                "numerator": "25",
+                "denominator": "1"
+              },
+              "variance": {
+                "numerator": "350",
+                "denominator": "9"
+              },
+              "standardDeviationSquared": {
+                "numerator": "350",
+                "denominator": "9"
+              },
+              "middlePositions": [
+                8,
+                8
+              ],
+              "maxFrequency": 5,
+              "maximalFrequencyValues": [
+                20
+              ],
+              "uniqueModalValue": 20,
+              "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+              "approval": "calculation-only"
+            }
+          },
+          {
+            "added": 25,
+            "result": {
+              "count": 15,
+              "total": "405",
+              "squareTotal": "11475",
+              "mean": {
+                "numerator": "27",
+                "denominator": "1"
+              },
+              "median": {
+                "numerator": "25",
+                "denominator": "1"
+              },
+              "variance": {
+                "numerator": "36",
+                "denominator": "1"
+              },
+              "standardDeviationSquared": {
+                "numerator": "36",
+                "denominator": "1"
+              },
+              "middlePositions": [
+                8,
+                8
+              ],
+              "maxFrequency": 5,
+              "maximalFrequencyValues": [
+                25
+              ],
+              "uniqueModalValue": 25,
+              "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+              "approval": "calculation-only"
+            }
+          },
+          {
+            "added": 30,
+            "result": {
+              "count": 15,
+              "total": "410",
+              "squareTotal": "11750",
+              "mean": {
+                "numerator": "82",
+                "denominator": "3"
+              },
+              "median": {
+                "numerator": "25",
+                "denominator": "1"
+              },
+              "variance": {
+                "numerator": "326",
+                "denominator": "9"
+              },
+              "standardDeviationSquared": {
+                "numerator": "326",
+                "denominator": "9"
+              },
+              "middlePositions": [
+                8,
+                8
+              ],
+              "maxFrequency": 4,
+              "maximalFrequencyValues": [
+                20,
+                25,
+                30
+              ],
+              "uniqueModalValue": null,
+              "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+              "approval": "calculation-only"
+            }
+          },
+          {
+            "added": 35,
+            "result": {
+              "count": 15,
+              "total": "415",
+              "squareTotal": "12075",
+              "mean": {
+                "numerator": "83",
+                "denominator": "3"
+              },
+              "median": {
+                "numerator": "25",
+                "denominator": "1"
+              },
+              "variance": {
+                "numerator": "356",
+                "denominator": "9"
+              },
+              "standardDeviationSquared": {
+                "numerator": "356",
+                "denominator": "9"
+              },
+              "middlePositions": [
+                8,
+                8
+              ],
+              "maxFrequency": 4,
+              "maximalFrequencyValues": [
+                20,
+                25
+              ],
+              "uniqueModalValue": null,
+              "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+              "approval": "calculation-only"
+            }
+          },
+          {
+            "added": 40,
+            "result": {
+              "count": 15,
+              "total": "420",
+              "squareTotal": "12450",
+              "mean": {
+                "numerator": "28",
+                "denominator": "1"
+              },
+              "median": {
+                "numerator": "25",
+                "denominator": "1"
+              },
+              "variance": {
+                "numerator": "46",
+                "denominator": "1"
+              },
+              "standardDeviationSquared": {
+                "numerator": "46",
+                "denominator": "1"
+              },
+              "middlePositions": [
+                8,
+                8
+              ],
+              "maxFrequency": 4,
+              "maximalFrequencyValues": [
+                20,
+                25
+              ],
+              "uniqueModalValue": null,
+              "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+              "approval": "calculation-only"
+            }
+          }
+        ],
+        "unique": true,
+        "calculationOnly": true
+      },
+      "figureArtifacts": [],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "context",
+          "inverse-target"
+        ],
+        "before": "다음은 어느 신발 가게에서 하루 동안 판매된 $15$켤레 운동화의 치수를 조사하여 나타낸 것이다. 이 자료의 최빈값은? [$3$점]\n하루 동안 판매된 운동차의 치수 (단위:$\\mathrm{m}m$)\n\n$230$\n\n$230$\n\n$235$\n\n$235$\n\n$235$\n\n$240$\n\n$240$\n\n$240$\n\n$245$\n\n$245$\n\n$245$\n\n$245$\n\n$245$\n\n$250$\n\n$255$",
+        "after": "15개 관측값에서 최빈값 찾기→최빈값 조건으로 마지막 카드의 수 찾기",
+        "sharedConcept": "최빈값의 뜻과 유일성",
+        "sharedProcedure": "알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.",
+        "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+        "sourceTableReplaced": "new Markdown data organization; no original crop used",
+        "scoreDelta": {
+          "source": 3,
+          "authored": 3,
+          "changed": false
+        }
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수05-06"
+        ],
+        "status": "author-proposed",
+        "allowedProcedure": "알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.",
+        "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+        "surfaces": {
+          "stem": {
+            "status": "author-proposed",
+            "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "figuresAndTables": {
+            "status": "author-proposed",
+            "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "notation": {
+            "status": "author-proposed",
+            "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "studentSolution": {
+            "status": "author-proposed",
+            "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          }
+        },
+        "exactGradeApproval": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-12",
+        "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+        "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+        "school": "경상중",
+        "questionNumber": 12,
+        "sourceContentSha256": "3fc1eda84a41908ab58dba7be0553c7c8f77f12627d86a51a9d4bcf5b7098950",
+        "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "sourceQuestionScore": 3,
+        "sourceQuestionType": "객관식",
+        "originalAnswersOrSolutionsUsed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 3,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "pending-independent-review",
+        "problemTypeProposal": "최빈값의 뜻과 유일성",
+        "problemTypeStatus": "pending-independent-review",
+        "hasFigure": false,
+        "hasRecreatedTable": true,
+        "assignment": {
+          "status": "pending",
+          "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+          "familyKey": null,
+          "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+          "unitProposal": {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          },
+          "bankReadAt": "2026-10-08 04:53:45.769124+00",
+          "liveFamilyDecision": "held"
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수05-06",
+            "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "sourceIdentityReview": {
+          "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+          "custody": "held",
+          "rights": "held",
+          "fullPair": "held"
+        },
+        "answerFormat": "single circled choice",
+        "authorEvidence": {
+          "calculationPath": "author-calculations.json",
+          "scriptSha256": "88183fe6562f5c9c37671089df4871ae3226e42c748de655f727b43bd6ba7e53",
+          "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+          "calculationOnly": true,
+          "independentApproval": false
+        },
+        "bankEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+          "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+        }
+      },
+      "schoolNamePolicy": {
+        "actual": "경상중",
+        "display": "해솔누리중학교",
+        "actualSchoolRetainedInternally": true,
+        "visibleOriginalSchoolOccurrences": 0,
+        "review": "author-proposed"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "mathematicalCorrectness": "pending-independent-blind-solve",
+        "gradeCurriculum": "pending-independent-review",
+        "equivalentConceptAndMethod": "pending-independent-review",
+        "distinctPresentation": "pending-independent-review",
+        "rights": "pending",
+        "similarity": "pending",
+        "nativeCompatibility": "pending",
+        "physicalPaper": "not-approved"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [],
+    "studentDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+    "candidateDigest": "71195ddad2cf9fb0be72ec578ea8fc4b97878d7ac11ca0c7cfa44fc71cad3585",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "status": "solved",
+      "answer": "②",
+      "solution": "알려진14장에서는20과25가 각각4장으로 가장 많다. 25가 유일한 최빈값이 되려면 남은 카드는25여야 하며, 이때25는5장,20은4장이다. 20을 추가하면20이 유일한 최빈값이 되고,30을 추가하면20,25,30이 각각4장으로 동률이다. 35 또는40을 추가해도20과25의4장 동률이 남는다. 따라서 유일한 선택은25, 정답은 ②이다.",
+      "evidence": {
+        "method": "blind-student-only-independent-solve",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q12",
+        "questionNumber": 12,
+        "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+        "authorAnswersSolutionsOpened": false,
+        "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+        "inputQuestionDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+        "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+        "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+        "calculationCodePath": "calculation.py",
+        "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+        "calculationOutputPath": "calculation-output.json",
+        "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+        "exactCalculation": {
+          "cardValuesFromStudent": [
+            20,
+            25,
+            30,
+            35,
+            40
+          ],
+          "knownFrequenciesFromStudent": [
+            4,
+            4,
+            3,
+            2,
+            1
+          ],
+          "totalKnown": 14,
+          "finalCount": 15,
+          "allFiveCases": [
+            {
+              "added": 20,
+              "counts": {
+                "20": 5,
+                "25": 4,
+                "30": 3,
+                "35": 2,
+                "40": 1
+              },
+              "modes": [
+                20
+              ],
+              "soleMode25": false
+            },
+            {
+              "added": 25,
+              "counts": {
+                "20": 4,
+                "25": 5,
+                "30": 3,
+                "35": 2,
+                "40": 1
+              },
+              "modes": [
+                25
+              ],
+              "soleMode25": true
+            },
+            {
+              "added": 30,
+              "counts": {
+                "20": 4,
+                "25": 4,
+                "30": 4,
+                "35": 2,
+                "40": 1
+              },
+              "modes": [
+                20,
+                25,
+                30
+              ],
+              "soleMode25": false
+            },
+            {
+              "added": 35,
+              "counts": {
+                "20": 4,
+                "25": 4,
+                "30": 3,
+                "35": 3,
+                "40": 1
+              },
+              "modes": [
+                20,
+                25
+              ],
+              "soleMode25": false
+            },
+            {
+              "added": 40,
+              "counts": {
+                "20": 4,
+                "25": 4,
+                "30": 3,
+                "35": 2,
+                "40": 2
+              },
+              "modes": [
+                20,
+                25
+              ],
+              "soleMode25": false
+            }
+          ],
+          "strictTiesChecked": true,
+          "allFiveDisplayedChoiceValues": [
+            "20",
+            "25",
+            "30",
+            "35",
+            "40"
+          ],
+          "choiceCorrectness": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "correctChoiceNumber": 2,
+          "choiceDistinct": true,
+          "allFiveCasesChecked": true
+        },
+        "studentPreview": {
+          "path": "inspection/q12.png",
+          "sha256": "7b87fffcf2d9d7f77ce4479506cc10fd33ab9779d33a797dce3f5789eace755a",
+          "columnWidthMm": 70,
+          "personallyViewed": true
+        },
+        "suppliedFigures": [],
+        "curriculumSurfaces": {
+          "stem": {
+            "status": "in-scope-student-input",
+            "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+            "standardCodes": [
+              "9수05-06"
+            ]
+          },
+          "choices": {
+            "status": "independently-checked",
+            "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+            "evidence": [
+              false,
+              true,
+              false,
+              false,
+              false
+            ]
+          },
+          "figuresAndTables": {
+            "status": "independently-inspected",
+            "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+            "previewPath": "inspection/q12.png",
+            "previewSha256": "7b87fffcf2d9d7f77ce4479506cc10fd33ab9779d33a797dce3f5789eace755a"
+          },
+          "notation": {
+            "status": "in-scope-student-input",
+            "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+          },
+          "answer": {
+            "status": "independently-derived",
+            "basis": "새 독립 답만 확인; 저자 답 미노출"
+          },
+          "studentSolution": {
+            "status": "independently-derived",
+            "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+          },
+          "prerequisites": {
+            "status": "in-scope-independent-method",
+            "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+            "standardCodes": [
+              "9수05-06"
+            ]
+          }
+        },
+        "curriculumGate": {
+          "grade": "중3",
+          "edition": "2015",
+          "independentStudentMethod": "in-scope-proposed",
+          "outOfGradeMethodRequired": false,
+          "unknownScopeHold": false,
+          "authorAnswerSolutionGradeReview": "not-yet-exposed",
+          "finalGradeApproval": false
+        },
+        "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+      }
+    },
+    "solveDigest": "4c9c3f9eb3e3da7879aca739282379c5b575bc2723d928b92778f8c5ab774a19"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 13,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q13",
+      "authorId": "root-codex-exam-extraction-resume-20261008",
+      "content": "표는 다은이가 네 차례의 연습 시험에서 받은 점수의 편차이다. 세 번째 시험의 실제 점수는 $78$점이다. 네 점수의 평균은? (각 시험은 $100$점 만점이다.)\n\n|시험|1회|2회|3회|4회|\n|:---:|:---:|:---:|:---:|:---:|\n|편차(점)|$6$|$-5$|빈칸|$7$|",
+      "choices": [
+        "$78\\text{점}$",
+        "$80\\text{점}$",
+        "$84\\text{점}$",
+        "$86\\text{점}$",
+        "$90\\text{점}$"
+      ],
+      "answer": "④",
+      "solution": "평균을 네 번 더한 값이 네 점수의 합과 같으므로, 네 편차의 합은 $0$이다. 세 번째 편차를 $d$라 하면 $6-5+d+7=0$에서 $d=-8$이다. 편차는 점수에서 평균을 뺀 값이므로 $78-\\text{평균}=-8$이다. 따라서 평균은 $86$점이다. 실제 네 점수는 $92,81,78,93$으로 모두 $100$점 이내이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "missingDeviation": {
+          "numerator": "-8",
+          "denominator": "1"
+        },
+        "scores": [
+          92,
+          81,
+          78,
+          93
+        ],
+        "stats": {
+          "count": 4,
+          "total": "344",
+          "squareTotal": "29758",
+          "mean": {
+            "numerator": "86",
+            "denominator": "1"
+          },
+          "median": {
+            "numerator": "173",
+            "denominator": "2"
+          },
+          "variance": {
+            "numerator": "87",
+            "denominator": "2"
+          },
+          "standardDeviationSquared": {
+            "numerator": "87",
+            "denominator": "2"
+          },
+          "middlePositions": [
+            2,
+            3
+          ],
+          "maxFrequency": 1,
+          "maximalFrequencyValues": [
+            78,
+            81,
+            92,
+            93
+          ],
+          "uniqueModalValue": null,
+          "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+          "approval": "calculation-only"
+        },
+        "unique": true,
+        "calculationOnly": true
+      },
+      "figureArtifacts": [],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "표는 화진이의 $4$회에 걸친 수학 성적의 편차를 조사하여 나타낸 것이다. $4$회까지의 수학 성적의 평균이 $92$점일 때, $3$회의 수학 성적은? [$4$점]\n\n수학 성적의 편차\n\n$1$회\n\n$2$회\n\n$3$회\n\n$4$회\n\n편차(점)\n\n$7$\n\n$-6$\n\n$8$",
+        "after": "평균+편차에서 누락 점수 찾기→실제 점수+편차에서 평균 역추론",
+        "sharedConcept": "편차의 뜻과 편차 합",
+        "sharedProcedure": "평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.",
+        "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+        "sourceTableReplaced": "new Markdown data organization; no original crop used",
+        "scoreDelta": {
+          "source": 4,
+          "authored": 4,
+          "changed": false
+        }
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수05-07"
+        ],
+        "status": "author-proposed",
+        "allowedProcedure": "평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.",
+        "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+        "surfaces": {
+          "stem": {
+            "status": "author-proposed",
+            "evidence": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "figuresAndTables": {
+            "status": "author-proposed",
+            "evidence": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "notation": {
+            "status": "author-proposed",
+            "evidence": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "studentSolution": {
+            "status": "author-proposed",
+            "evidence": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          }
+        },
+        "exactGradeApproval": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-13",
+        "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+        "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+        "school": "경상중",
+        "questionNumber": 13,
+        "sourceContentSha256": "5648e84477a770c91bb4c74378ceb984af22bfa7342b6e3a2eb171802291d769",
+        "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "sourceQuestionScore": 4,
+        "sourceQuestionType": "객관식",
+        "originalAnswersOrSolutionsUsed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-independent-review",
+        "problemTypeProposal": "편차의 뜻과 편차 합",
+        "problemTypeStatus": "pending-independent-review",
+        "hasFigure": false,
+        "hasRecreatedTable": true,
+        "assignment": {
+          "status": "pending",
+          "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+          "familyKey": null,
+          "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+          "unitProposal": {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          },
+          "bankReadAt": "2026-10-08 04:53:45.769124+00",
+          "liveFamilyDecision": "held"
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수05-07",
+            "officialStatement": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "sourceIdentityReview": {
+          "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+          "custody": "held",
+          "rights": "held",
+          "fullPair": "held"
+        },
+        "answerFormat": "single circled choice",
+        "authorEvidence": {
+          "calculationPath": "author-calculations.json",
+          "scriptSha256": "88183fe6562f5c9c37671089df4871ae3226e42c748de655f727b43bd6ba7e53",
+          "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+          "calculationOnly": true,
+          "independentApproval": false
+        },
+        "bankEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+          "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+        }
+      },
+      "schoolNamePolicy": {
+        "actual": "경상중",
+        "display": "해솔누리중학교",
+        "actualSchoolRetainedInternally": true,
+        "visibleOriginalSchoolOccurrences": 0,
+        "review": "author-proposed"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "mathematicalCorrectness": "pending-independent-blind-solve",
+        "gradeCurriculum": "pending-independent-review",
+        "equivalentConceptAndMethod": "pending-independent-review",
+        "distinctPresentation": "pending-independent-review",
+        "rights": "pending",
+        "similarity": "pending",
+        "nativeCompatibility": "pending",
+        "physicalPaper": "not-approved"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [],
+    "studentDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+    "candidateDigest": "d6808f6dfdba3783e887ad3256863f8c4fd31849f608207fd32ef7395974e6b6",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "status": "solved",
+      "answer": "④",
+      "solution": "편차는 점수에서 평균을 뺀 값이며 모든 편차의 합은0이다. 세 번째 편차를 d라 하면6−5+d+7=0이므로 d=−8이다. 세 번째 실제 점수78은 평균보다8점 작으므로 평균은78+8=86점이다. 정답은 ④이다. 실제 네 점수는92,81,78,93점이며 모두0~100점이고 평균도86점이다.",
+      "evidence": {
+        "method": "blind-student-only-independent-solve",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q13",
+        "questionNumber": 13,
+        "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+        "authorAnswersSolutionsOpened": false,
+        "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+        "inputQuestionDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+        "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+        "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+        "calculationCodePath": "calculation.py",
+        "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+        "calculationOutputPath": "calculation-output.json",
+        "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+        "exactCalculation": {
+          "knownDeviationsFromStudent": [
+            6,
+            -5,
+            7
+          ],
+          "thirdScoreFromStudent": 78,
+          "missingThirdDeviation": -8,
+          "actualScores": [
+            "92",
+            "81",
+            78,
+            "93"
+          ],
+          "meanRecheck": "86",
+          "scoreDomain": "0..100;all four valid",
+          "proof": "Four deviations sum0; third deviation−8; score=mean+deviation.",
+          "allFiveDisplayedChoiceValues": [
+            "78",
+            "80",
+            "84",
+            "86",
+            "90"
+          ],
+          "choiceCorrectness": [
+            false,
+            false,
+            false,
+            true,
+            false
+          ],
+          "correctChoiceNumber": 4,
+          "choiceDistinct": true
+        },
+        "studentPreview": {
+          "path": "inspection/q13.png",
+          "sha256": "62d1b295fed0c8f38717731de0668b925377f528b1a8bac67e3b802b5d01ba57",
+          "columnWidthMm": 70,
+          "personallyViewed": true
+        },
+        "suppliedFigures": [],
+        "curriculumSurfaces": {
+          "stem": {
+            "status": "in-scope-student-input",
+            "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+            "standardCodes": [
+              "9수05-06",
+              "9수05-07"
+            ]
+          },
+          "choices": {
+            "status": "independently-checked",
+            "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+            "evidence": [
+              false,
+              false,
+              false,
+              true,
+              false
+            ]
+          },
+          "figuresAndTables": {
+            "status": "independently-inspected",
+            "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+            "previewPath": "inspection/q13.png",
+            "previewSha256": "62d1b295fed0c8f38717731de0668b925377f528b1a8bac67e3b802b5d01ba57"
+          },
+          "notation": {
+            "status": "in-scope-student-input",
+            "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+          },
+          "answer": {
+            "status": "independently-derived",
+            "basis": "새 독립 답만 확인; 저자 답 미노출"
+          },
+          "studentSolution": {
+            "status": "independently-derived",
+            "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+          },
+          "prerequisites": {
+            "status": "in-scope-independent-method",
+            "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+            "standardCodes": [
+              "9수05-06",
+              "9수05-07"
+            ]
+          }
+        },
+        "curriculumGate": {
+          "grade": "중3",
+          "edition": "2015",
+          "independentStudentMethod": "in-scope-proposed",
+          "outOfGradeMethodRequired": false,
+          "unknownScopeHold": false,
+          "authorAnswerSolutionGradeReview": "not-yet-exposed",
+          "finalGradeApproval": false
+        },
+        "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+      }
+    },
+    "solveDigest": "5f1a83e0197dd8df5e7b5e1c0c016dc9dbaf3dd3b6454bc4f2fc1e874ee9bb02"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 14,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q14",
+      "authorId": "root-codex-exam-extraction-resume-20261008",
+      "content": "표는 열 번의 미니 퀴즈에서 맞힌 문항 수와 그 횟수이다. 이 자료의 분산과 표준편차를 순서대로 옳게 나타낸 것은?\n\n|맞힌 문항 수(개)|$1$|$4$|$5$|$6$|$7$|$8$|$11$|\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n|횟수(회)|$1$|$1$|$1$|$4$|$1$|$1$|$1$|",
+      "choices": [
+        "$4,\\ 2$",
+        "$6,\\ \\sqrt6$",
+        "$6,\\ 6$",
+        "$10,\\ \\sqrt{10}$",
+        "$60,\\ 2\\sqrt{15}$"
+      ],
+      "answer": "②",
+      "solution": "횟수의 합은 $10$이고 맞힌 문항 수의 합은 $1+4+5+6\\times4+7+8+11=60$이므로 평균은 $6$이다. 편차 제곱의 총합은 $25+4+1+0\\times4+1+4+25=60$이다. 따라서 분산은 $60\\div10=6$, 표준편차는 $\\sqrt6$이다.",
+      "score": 5,
+      "questionType": "객관식",
+      "facts": {
+        "rows": [
+          {
+            "value": 1,
+            "frequency": 1
+          },
+          {
+            "value": 4,
+            "frequency": 1
+          },
+          {
+            "value": 5,
+            "frequency": 1
+          },
+          {
+            "value": 6,
+            "frequency": 4
+          },
+          {
+            "value": 7,
+            "frequency": 1
+          },
+          {
+            "value": 8,
+            "frequency": 1
+          },
+          {
+            "value": 11,
+            "frequency": 1
+          }
+        ],
+        "stats": {
+          "count": 10,
+          "total": "60",
+          "squareTotal": "420",
+          "mean": {
+            "numerator": "6",
+            "denominator": "1"
+          },
+          "median": {
+            "numerator": "6",
+            "denominator": "1"
+          },
+          "variance": {
+            "numerator": "6",
+            "denominator": "1"
+          },
+          "standardDeviationSquared": {
+            "numerator": "6",
+            "denominator": "1"
+          },
+          "middlePositions": [
+            5,
+            6
+          ],
+          "maxFrequency": 4,
+          "maximalFrequencyValues": [
+            6
+          ],
+          "uniqueModalValue": 6,
+          "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+          "approval": "calculation-only"
+        },
+        "unique": true,
+        "calculationOnly": true
+      },
+      "figureArtifacts": [],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "context",
+          "representation"
+        ],
+        "before": "다음은 볼링 공을 $10$번 던졌을 때 넘어진 핀의 수이다. 이 자료의 분산과 표준편차를 옳게 짝지은 것은?\n[$5$점]\n$4,~~4,~~9,~~6,~~6,~~9,~~3,~~8,~~6,~~5$\n\n분산\n\n표준편차",
+        "after": "볼링의 나열 자료→퀴즈 기록의 도수 표로 자료를 조직하고 분산·표준편차 산출",
+        "sharedConcept": "분산과 표준편차",
+        "sharedProcedure": "도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.",
+        "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+        "sourceTableReplaced": "new Markdown data organization; no original crop used",
+        "scoreDelta": {
+          "source": 5,
+          "authored": 5,
+          "changed": false
+        }
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수05-07"
+        ],
+        "status": "author-proposed",
+        "allowedProcedure": "도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.",
+        "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+        "surfaces": {
+          "stem": {
+            "status": "author-proposed",
+            "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "figuresAndTables": {
+            "status": "author-proposed",
+            "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "notation": {
+            "status": "author-proposed",
+            "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "studentSolution": {
+            "status": "author-proposed",
+            "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          }
+        },
+        "exactGradeApproval": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-14",
+        "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+        "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+        "school": "경상중",
+        "questionNumber": 14,
+        "sourceContentSha256": "0be676b98bbfac946e30d5f28b1377128484f3ea895a2c5aa78d760c09cde6a5",
+        "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "sourceQuestionScore": 5,
+        "sourceQuestionType": "객관식",
+        "originalAnswersOrSolutionsUsed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 5,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-independent-review",
+        "problemTypeProposal": "분산과 표준편차",
+        "problemTypeStatus": "pending-independent-review",
+        "hasFigure": false,
+        "hasRecreatedTable": true,
+        "assignment": {
+          "status": "pending",
+          "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+          "familyKey": null,
+          "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+          "unitProposal": {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          },
+          "bankReadAt": "2026-10-08 04:53:45.769124+00",
+          "liveFamilyDecision": "held"
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수05-07",
+            "officialStatement": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "sourceIdentityReview": {
+          "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+          "custody": "held",
+          "rights": "held",
+          "fullPair": "held"
+        },
+        "answerFormat": "single circled choice",
+        "authorEvidence": {
+          "calculationPath": "author-calculations.json",
+          "scriptSha256": "88183fe6562f5c9c37671089df4871ae3226e42c748de655f727b43bd6ba7e53",
+          "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+          "calculationOnly": true,
+          "independentApproval": false
+        },
+        "bankEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+          "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+        }
+      },
+      "schoolNamePolicy": {
+        "actual": "경상중",
+        "display": "해솔누리중학교",
+        "actualSchoolRetainedInternally": true,
+        "visibleOriginalSchoolOccurrences": 0,
+        "review": "author-proposed"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "mathematicalCorrectness": "pending-independent-blind-solve",
+        "gradeCurriculum": "pending-independent-review",
+        "equivalentConceptAndMethod": "pending-independent-review",
+        "distinctPresentation": "pending-independent-review",
+        "rights": "pending",
+        "similarity": "pending",
+        "nativeCompatibility": "pending",
+        "physicalPaper": "not-approved"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [],
+    "studentDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+    "candidateDigest": "d7e20582d4f3887deb1c756b47310d2058854f4eeb5cb5b548d1999133c3b795",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "status": "solved",
+      "answer": "②",
+      "solution": "전체 횟수는1+1+1+4+1+1+1=10회이다. 맞힌 문항 수의 합은1+4+5+6×4+7+8+11=60이므로 평균은6개이다. 편차 제곱의 합은(1−6)²+(4−6)²+(5−6)²+4×(6−6)²+(7−6)²+(8−6)²+(11−6)²=25+4+1+0+1+4+25=60이다. 분산은 편차 제곱의 평균이므로60÷10=6, 표준편차는 그 양의 제곱근이므로√6이다. 정답은 ②이다. 표준편차 단위는 문항 수의 단위인 개이다.",
+      "evidence": {
+        "method": "blind-student-only-independent-solve",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q14",
+        "questionNumber": 14,
+        "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+        "authorAnswersSolutionsOpened": false,
+        "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+        "inputQuestionDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+        "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+        "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+        "calculationCodePath": "calculation.py",
+        "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+        "calculationOutputPath": "calculation-output.json",
+        "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+        "exactCalculation": {
+          "valuesFromStudent": [
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            11
+          ],
+          "frequenciesFromStudent": [
+            1,
+            1,
+            1,
+            4,
+            1,
+            1,
+            1
+          ],
+          "expanded": [
+            1,
+            4,
+            5,
+            6,
+            6,
+            6,
+            6,
+            7,
+            8,
+            11
+          ],
+          "count": 10,
+          "sum": 60,
+          "mean": "6",
+          "deviations": [
+            "-5",
+            "-2",
+            "-1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "2",
+            "5"
+          ],
+          "squaredDeviationSum": "60",
+          "variance": "6",
+          "standardDeviation": "sqrt(6)",
+          "method": "Each deviation squared;frequency weighting; divide by10; positive square root.",
+          "allFiveDisplayedChoiceValues": [
+            [
+              "4",
+              "2"
+            ],
+            [
+              "6",
+              "sqrt(6)"
+            ],
+            [
+              "6",
+              "6"
+            ],
+            [
+              "10",
+              "sqrt(10)"
+            ],
+            [
+              "60",
+              "2*sqrt(15)"
+            ]
+          ],
+          "choiceCorrectness": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "correctChoiceNumber": 2,
+          "choiceDistinct": true
+        },
+        "studentPreview": {
+          "path": "inspection/q14.png",
+          "sha256": "b144f43fc2871a3151f67c4f06a3f06b9b57bfd918dbdffda1c6516f147f6b3c",
+          "columnWidthMm": 70,
+          "personallyViewed": true
+        },
+        "suppliedFigures": [],
+        "curriculumSurfaces": {
+          "stem": {
+            "status": "in-scope-student-input",
+            "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+            "standardCodes": [
+              "9수05-07",
+              "9수01-07"
+            ]
+          },
+          "choices": {
+            "status": "independently-checked",
+            "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+            "evidence": [
+              false,
+              true,
+              false,
+              false,
+              false
+            ]
+          },
+          "figuresAndTables": {
+            "status": "independently-inspected",
+            "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+            "previewPath": "inspection/q14.png",
+            "previewSha256": "b144f43fc2871a3151f67c4f06a3f06b9b57bfd918dbdffda1c6516f147f6b3c"
+          },
+          "notation": {
+            "status": "in-scope-student-input",
+            "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+          },
+          "answer": {
+            "status": "independently-derived",
+            "basis": "새 독립 답만 확인; 저자 답 미노출"
+          },
+          "studentSolution": {
+            "status": "independently-derived",
+            "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+          },
+          "prerequisites": {
+            "status": "in-scope-independent-method",
+            "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+            "standardCodes": [
+              "9수05-07",
+              "9수01-07"
+            ]
+          }
+        },
+        "curriculumGate": {
+          "grade": "중3",
+          "edition": "2015",
+          "independentStudentMethod": "in-scope-proposed",
+          "outOfGradeMethodRequired": false,
+          "unknownScopeHold": false,
+          "authorAnswerSolutionGradeReview": "not-yet-exposed",
+          "finalGradeApproval": false
+        },
+        "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+      }
+    },
+    "solveDigest": "c2c219f06dfa6eecdac55c9f0d51391e5a508553c2bc8ff7220f50e666b6924c"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 15,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q15",
+      "authorId": "root-codex-exam-extraction-resume-20261008",
+      "content": "동아리의 다섯 연습 프로그램에서 각각 다섯 번씩 걸린 시간을 조사했다. 단위는 분이다. 프로그램 A의 기록이 다른 모든 프로그램보다 더 고를 때, 빈칸에 들어갈 수 있는 값은?\n\n|프로그램|A|B|C|D|E|\n|:---:|:---:|:---:|:---:|:---:|:---:|\n|평균(분)|$12$|$13$|$11$|$14$|$10$|\n|표준편차(분)|빈칸|$0.8$|$0.9$|$1.1$|$1.3$|",
+      "choices": [
+        "$0.7$",
+        "$0.8$",
+        "$0.9$",
+        "$1.0$",
+        "$1.1$"
+      ],
+      "answer": "①",
+      "solution": "같은 단위의 시간을 비교할 때 표준편차가 작을수록 기록이 고르다. A가 다른 모든 프로그램보다 더 고르려면 A의 표준편차가 $0.8$보다 작아야 한다. 보기 중 이를 만족하는 값은 $0.7$뿐이다. $0.8$이면 B와 같아 조건을 만족하지 않는다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "minimumCheck": {
+          "matchingOptionIndexes": [
+            0
+          ],
+          "unique": true,
+          "calculationOnly": true
+        },
+        "standardDeviationDataExistence": {
+          "construction": "For five observations at mean m, use m-s*sqrt(5/2),m,m,m,m+s*sqrt(5/2). Population variance s². Private existence certificate only; students only compare given standard deviations.",
+          "allTimesPositive": true,
+          "means": [
+            12,
+            13,
+            11,
+            14,
+            10
+          ],
+          "standardDeviations": [
+            0.7,
+            0.8,
+            0.9,
+            1.1,
+            1.3
+          ]
+        },
+        "unique": true,
+        "calculationOnly": true
+      },
+      "figureArtifacts": [],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "context",
+          "inverse-target"
+        ],
+        "before": "표는 명연이가 $5$번의 대회에서 받은 종목별 점수의 평균과 표준편차를 조사하여 나타낸 것이다. 성적이 가장 고른 종목은? [$4$점]\n종목별 점수의 평균과 표준편차 (단위:점)\n\n종목\n\n평균\n\n표준편차\n\n마루운동\n\n$12.550$\n\n$0.83$\n\n도마\n\n$12.283$\n\n$0.93$\n\n안마\n\n$14.050$\n\n$0.84$\n\n링\n\n$13.050$\n\n$0.97$\n\n평행봉\n\n$15.050$\n\n$0.79$",
+        "after": "다섯 종목 중 가장 고른 기록 선택→가장 고른 조건을 만족하는 미지의 표준편차 선택",
+        "sharedConcept": "표준편차로 자료의 고름 비교",
+        "sharedProcedure": "같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.",
+        "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+        "sourceTableReplaced": "new Markdown data organization; no original crop used",
+        "scoreDelta": {
+          "source": 4,
+          "authored": 4,
+          "changed": false
+        }
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수05-07"
+        ],
+        "status": "author-proposed",
+        "allowedProcedure": "같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.",
+        "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+        "surfaces": {
+          "stem": {
+            "status": "author-proposed",
+            "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "figuresAndTables": {
+            "status": "author-proposed",
+            "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "notation": {
+            "status": "author-proposed",
+            "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "studentSolution": {
+            "status": "author-proposed",
+            "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          }
+        },
+        "exactGradeApproval": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-15",
+        "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+        "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+        "school": "경상중",
+        "questionNumber": 15,
+        "sourceContentSha256": "cfd8411fb4ee839b4585d91b0c7ab3ba60b97355013e57dc6ce7dc4e88ca9d5a",
+        "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "sourceQuestionScore": 4,
+        "sourceQuestionType": "객관식",
+        "originalAnswersOrSolutionsUsed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-independent-review",
+        "problemTypeProposal": "표준편차로 자료의 고름 비교",
+        "problemTypeStatus": "pending-independent-review",
+        "hasFigure": false,
+        "hasRecreatedTable": true,
+        "assignment": {
+          "status": "pending",
+          "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+          "familyKey": null,
+          "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+          "unitProposal": {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          },
+          "bankReadAt": "2026-10-08 04:53:45.769124+00",
+          "liveFamilyDecision": "held"
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수05-07",
+            "officialStatement": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "sourceIdentityReview": {
+          "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+          "custody": "held",
+          "rights": "held",
+          "fullPair": "held"
+        },
+        "answerFormat": "single circled choice",
+        "authorEvidence": {
+          "calculationPath": "author-calculations.json",
+          "scriptSha256": "88183fe6562f5c9c37671089df4871ae3226e42c748de655f727b43bd6ba7e53",
+          "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+          "calculationOnly": true,
+          "independentApproval": false
+        },
+        "bankEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+          "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+        }
+      },
+      "schoolNamePolicy": {
+        "actual": "경상중",
+        "display": "해솔누리중학교",
+        "actualSchoolRetainedInternally": true,
+        "visibleOriginalSchoolOccurrences": 0,
+        "review": "author-proposed"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "mathematicalCorrectness": "pending-independent-blind-solve",
+        "gradeCurriculum": "pending-independent-review",
+        "equivalentConceptAndMethod": "pending-independent-review",
+        "distinctPresentation": "pending-independent-review",
+        "rights": "pending",
+        "similarity": "pending",
+        "nativeCompatibility": "pending",
+        "physicalPaper": "not-approved"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [],
+    "studentDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+    "candidateDigest": "d50439d436a4c41e87f34dbec233f1c69d88d2bbb5f89593944f8386ee085ac9",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "status": "solved",
+      "answer": "①",
+      "solution": "같은 단위의 기록에서는 표준편차가 작을수록 평균 주변에 더 고르게 모여 있다. A가 다른 모든 프로그램보다 더 고르려면 A의 표준편차는0.8,0.9,1.1,1.3보다 각각 작아야 하므로0.8보다 작아야 한다. 보기 중0.7만 이를 만족한다. 0.8은 B와 동률이어서 더 고르다는 조건을 만족하지 않는다. 나머지 값들도 B보다 작지 않다. 정답은 ①이다.",
+      "evidence": {
+        "method": "blind-student-only-independent-solve",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q15",
+        "questionNumber": 15,
+        "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+        "authorAnswersSolutionsOpened": false,
+        "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+        "inputQuestionDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+        "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+        "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+        "calculationCodePath": "calculation.py",
+        "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+        "calculationOutputPath": "calculation-output.json",
+        "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+        "exactCalculation": {
+          "programMeansFromStudent": [
+            "12",
+            "13",
+            "11",
+            "14",
+            "10"
+          ],
+          "otherStandardDeviationsFromStudent": [
+            "4/5",
+            "9/10",
+            "11/10",
+            "13/10"
+          ],
+          "strictRequirement": "A sd < min(other sd)=4/5; equality excluded",
+          "minimumOther": "4/5",
+          "positiveFiveObservationWitnesses": [
+            {
+              "mean": "12",
+              "sd": "7/10",
+              "fivePositiveDurations": [
+                "12 - 7*sqrt(10)/20",
+                "12",
+                "12",
+                "12",
+                "7*sqrt(10)/20 + 12"
+              ],
+              "varianceRecheck": "49/100"
+            },
+            {
+              "mean": "13",
+              "sd": "4/5",
+              "fivePositiveDurations": [
+                "13 - 2*sqrt(10)/5",
+                "13",
+                "13",
+                "13",
+                "2*sqrt(10)/5 + 13"
+              ],
+              "varianceRecheck": "16/25"
+            },
+            {
+              "mean": "11",
+              "sd": "9/10",
+              "fivePositiveDurations": [
+                "11 - 9*sqrt(10)/20",
+                "11",
+                "11",
+                "11",
+                "9*sqrt(10)/20 + 11"
+              ],
+              "varianceRecheck": "81/100"
+            },
+            {
+              "mean": "14",
+              "sd": "11/10",
+              "fivePositiveDurations": [
+                "14 - 11*sqrt(10)/20",
+                "14",
+                "14",
+                "14",
+                "11*sqrt(10)/20 + 14"
+              ],
+              "varianceRecheck": "121/100"
+            },
+            {
+              "mean": "10",
+              "sd": "13/10",
+              "fivePositiveDurations": [
+                "10 - 13*sqrt(10)/20",
+                "10",
+                "10",
+                "10",
+                "13*sqrt(10)/20 + 10"
+              ],
+              "varianceRecheck": "169/100"
+            }
+          ],
+          "units": "mean/minutes;SD/minutes",
+          "notMeanRanking": true,
+          "allFiveDisplayedChoiceValues": [
+            "7/10",
+            "4/5",
+            "9/10",
+            "1",
+            "11/10"
+          ],
+          "choiceCorrectness": [
+            true,
+            false,
+            false,
+            false,
+            false
+          ],
+          "correctChoiceNumber": 1,
+          "choiceDistinct": true,
+          "strictChoiceComparisons": [
+            {
+              "value": "7/10",
+              "strictlyBelowAllOthers": true,
+              "tiesMinimum": false
+            },
+            {
+              "value": "4/5",
+              "strictlyBelowAllOthers": false,
+              "tiesMinimum": true
+            },
+            {
+              "value": "9/10",
+              "strictlyBelowAllOthers": false,
+              "tiesMinimum": false
+            },
+            {
+              "value": "1",
+              "strictlyBelowAllOthers": false,
+              "tiesMinimum": false
+            },
+            {
+              "value": "11/10",
+              "strictlyBelowAllOthers": false,
+              "tiesMinimum": false
+            }
+          ]
+        },
+        "studentPreview": {
+          "path": "inspection/q15.png",
+          "sha256": "d746bcf78dfad9e4a3920683d81da86d977e5d9637323ffe1adf60aafb0ec384",
+          "columnWidthMm": 70,
+          "personallyViewed": true
+        },
+        "suppliedFigures": [],
+        "curriculumSurfaces": {
+          "stem": {
+            "status": "in-scope-student-input",
+            "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+            "standardCodes": [
+              "9수05-07"
+            ]
+          },
+          "choices": {
+            "status": "independently-checked",
+            "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+            "evidence": [
+              true,
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          "figuresAndTables": {
+            "status": "independently-inspected",
+            "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+            "previewPath": "inspection/q15.png",
+            "previewSha256": "d746bcf78dfad9e4a3920683d81da86d977e5d9637323ffe1adf60aafb0ec384"
+          },
+          "notation": {
+            "status": "in-scope-student-input",
+            "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+          },
+          "answer": {
+            "status": "independently-derived",
+            "basis": "새 독립 답만 확인; 저자 답 미노출"
+          },
+          "studentSolution": {
+            "status": "independently-derived",
+            "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+          },
+          "prerequisites": {
+            "status": "in-scope-independent-method",
+            "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+            "standardCodes": [
+              "9수05-07"
+            ]
+          }
+        },
+        "curriculumGate": {
+          "grade": "중3",
+          "edition": "2015",
+          "independentStudentMethod": "in-scope-proposed",
+          "outOfGradeMethodRequired": false,
+          "unknownScopeHold": false,
+          "authorAnswerSolutionGradeReview": "not-yet-exposed",
+          "finalGradeApproval": false
+        },
+        "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+      }
+    },
+    "solveDigest": "014ce1f60a5772b896dbc78d462d7155e542d52c7af6ff2209c5833f5a265190"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 22,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q22",
+      "authorId": "root-codex-exam-extraction-resume-20261008",
+      "content": "퍼즐 동아리에서 $20$명이 퍼즐을 완성하는 데 걸린 시간을 조사했다.\n\n|시간(분)|$1$|$2$|$3$|$4$|$5$|$6$|$7$|$8$|$9$|$11$|$12$|$60$|\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n|인원(명)|$1$|$2$|$3$|$4$|$2$|$2$|$1$|$1$|$1$|$1$|$1$|$1$|\n\n보고서 A는 평균으로, 보고서 B는 중앙값으로 동아리원의 보통 완료 시간을 소개하려 한다. 각 보고서에 적힐 시간을 구하고, 두 보고서 중 이 자료의 보통 완료 시간을 소개하기에 더 알맞은 것을 골라 이유를 서술하시오.",
+      "choices": [],
+      "answer": "$7.95\\,\\mathrm{분}$, $4.5\\,\\mathrm{분}$, B",
+      "solution": "인원 수는 $20$명이고 시간의 합은 $1+2\\times2+3\\times3+4\\times4+5\\times2+6\\times2+7+8+9+11+12+60=159$분이다. 따라서 평균은 $159\\div20=7.95$분이다. 작은 순서로 놓았을 때 열 번째는 $4$분, 열한 번째는 $5$분이므로 중앙값은 $(4+5)\\div2=4.5$분이다. 다른 기록은 모두 $12$분 이하인데 한 명의 $60$분 기록이 평균을 크게 높인다. 이 자료의 보통 완료 시간을 소개하려면 큰 한 값의 영향을 덜 받는 중앙값을 쓰는 보고서 B가 더 알맞다.",
+      "score": 6,
+      "questionType": "서술형",
+      "facts": {
+        "values": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          5,
+          5,
+          6,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          60
+        ],
+        "stats": {
+          "count": 20,
+          "total": "159",
+          "squareTotal": "4281",
+          "mean": {
+            "numerator": "159",
+            "denominator": "20"
+          },
+          "median": {
+            "numerator": "9",
+            "denominator": "2"
+          },
+          "variance": {
+            "numerator": "60339",
+            "denominator": "400"
+          },
+          "standardDeviationSquared": {
+            "numerator": "60339",
+            "denominator": "400"
+          },
+          "middlePositions": [
+            10,
+            11
+          ],
+          "maxFrequency": 4,
+          "maximalFrequencyValues": [
+            4
+          ],
+          "uniqueModalValue": 4,
+          "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+          "approval": "calculation-only"
+        },
+        "writtenRubric": [
+          {
+            "score": 2,
+            "basis": "count20,total159,mean7.95분"
+          },
+          {
+            "score": 2,
+            "basis": "10th4,11th5,median4.5분"
+          },
+          {
+            "score": 2,
+            "basis": "B with explanation of single high observation and typical value, not simply “always median”"
+          }
+        ],
+        "uniqueRepresentativeChoiceWithinAskedTwo": "B with contextual justification; not a universal theorem",
+        "calculationOnly": true
+      },
+      "figureArtifacts": [],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "context",
+          "representation"
+        ],
+        "before": "[서술형 $4$] 다음은 어느 야구 팀에서 타율이 높은 $20$명 선수의 도루 개수를 조사하여 나타낸 줄기와 잎 그림이다. 이 자료의 평균과 중앙값을 각각 구하고, 어떤 값이 대푯값으로 더 적절한지 서술하시오.\n[$6$점, 부분점수 있음]\n도루개수\n\n줄기\n\n잎\n\n$0$\n\n$0$\n\n$0$\n\n$1$\n\n$1$\n\n$2$\n\n$2$\n\n$2$\n\n$4$\n\n$4$\n\n$4$\n\n$7$\n\n$8$\n\n$1$\n\n$0$\n\n$1$\n\n$2$\n\n$5$\n\n$7$\n\n$2$\n\n$0$\n\n$5$\n\n$4$\n\n$5$",
+        "after": "선수의 도루 줄기·잎 그림→퍼즐 완료 시간 도수 표와 서로 다른 두 대표값 보고 비교",
+        "sharedConcept": "평균·중앙값과 대표값의 맥락 선택",
+        "sharedProcedure": "도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.",
+        "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+        "sourceTableReplaced": "new Markdown data organization; no original crop used",
+        "scoreDelta": {
+          "source": 6,
+          "authored": 6,
+          "changed": false
+        }
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수05-06"
+        ],
+        "status": "author-proposed",
+        "allowedProcedure": "도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.",
+        "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+        "surfaces": {
+          "stem": {
+            "status": "author-proposed",
+            "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "figuresAndTables": {
+            "status": "author-proposed",
+            "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "notation": {
+            "status": "author-proposed",
+            "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "studentSolution": {
+            "status": "author-proposed",
+            "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+          }
+        },
+        "exactGradeApproval": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsang-3-2-mid-22",
+        "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+        "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+        "school": "경상중",
+        "questionNumber": 22,
+        "sourceContentSha256": "1214f4c6c3b5a367725e066972f68635a542c1960fb4da1ffde36b8ebf3f81d1",
+        "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+        "sourceQuestionScore": 6,
+        "sourceQuestionType": "서술형",
+        "originalAnswersOrSolutionsUsed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "서술형",
+        "score": 6,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-independent-review",
+        "problemTypeProposal": "평균·중앙값과 대표값의 맥락 선택",
+        "problemTypeStatus": "pending-independent-review",
+        "hasFigure": false,
+        "hasRecreatedTable": true,
+        "assignment": {
+          "status": "pending",
+          "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+          "familyKey": null,
+          "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+          "unitProposal": {
+            "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+            "grade": "중3",
+            "chapter": "7. 통계",
+            "section": "대푯값과 산포도",
+            "semester": 2,
+            "orderIndex": 488,
+            "problemCodePrefix": "J30701"
+          },
+          "bankReadAt": "2026-10-08 04:53:45.769124+00",
+          "liveFamilyDecision": "held"
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수05-06",
+            "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "sourceIdentityReview": {
+          "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+          "custody": "held",
+          "rights": "held",
+          "fullPair": "held"
+        },
+        "answerFormat": "mean and median in minutes, A/B selection plus written reasoning",
+        "authorEvidence": {
+          "calculationPath": "author-calculations.json",
+          "scriptSha256": "88183fe6562f5c9c37671089df4871ae3226e42c748de655f727b43bd6ba7e53",
+          "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+          "calculationOnly": true,
+          "independentApproval": false
+        },
+        "bankEvidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+          "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+        }
+      },
+      "schoolNamePolicy": {
+        "actual": "경상중",
+        "display": "해솔누리중학교",
+        "actualSchoolRetainedInternally": true,
+        "visibleOriginalSchoolOccurrences": 0,
+        "review": "author-proposed"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "mathematicalCorrectness": "pending-independent-blind-solve",
+        "gradeCurriculum": "pending-independent-review",
+        "equivalentConceptAndMethod": "pending-independent-review",
+        "distinctPresentation": "pending-independent-review",
+        "rights": "pending",
+        "similarity": "pending",
+        "nativeCompatibility": "pending",
+        "physicalPaper": "not-approved"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [],
+    "studentDigest": "35abb187117cd33449fbe896fc3e9770041122fa5d4062335085eeb81c96d368",
+    "candidateDigest": "46bda015c5a8305d0516a42de8b07626461de988e6d7925b6630f60d332180e8",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "35abb187117cd33449fbe896fc3e9770041122fa5d4062335085eeb81c96d368",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "status": "solved",
+      "answer": "평균 7.95분, 중앙값 4.5분; 보고서 B",
+      "solution": "표의 인원 합은20명이다. 시간의 합은1×1+2×2+3×3+4×4+5×2+6×2+7+8+9+11+12+60=159분이므로 평균은159÷20=7.95분이다. 따라서 보고서 A에는7.95분을 적는다. 작은 것부터 정렬하면1~3분인 학생이6명이고,4분인 학생4명까지 합쳐10명이다. 그다음5분인 학생이11번째와12번째에 있으므로 중앙값은(4+5)÷2=4.5분이다. 보고서 B에는4.5분을 적는다. 다른19명은1~12분에 모여 있고, 한 학생의60분이라는 매우 큰 값이 평균을 높인다. 중앙값은 가운데 두 관측값으로 정해져 이 극단값의 영향을 덜 받으므로 동아리원의 보통 완료 시간을 소개할 때 보고서 B가 더 알맞다.",
+      "answerParts": [
+        {
+          "role": "reportA.mean",
+          "value": "159/20",
+          "unit": "분"
+        },
+        {
+          "role": "reportB.median",
+          "value": "9/2",
+          "unit": "분"
+        },
+        {
+          "role": "representativeReport",
+          "value": "B",
+          "unit": null
+        }
+      ],
+      "evidence": {
+        "method": "blind-student-only-independent-solve",
+        "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q22",
+        "questionNumber": 22,
+        "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+        "authorAnswersSolutionsOpened": false,
+        "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+        "inputQuestionDigest": "35abb187117cd33449fbe896fc3e9770041122fa5d4062335085eeb81c96d368",
+        "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+        "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+        "calculationCodePath": "calculation.py",
+        "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+        "calculationOutputPath": "calculation-output.json",
+        "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+        "exactCalculation": {
+          "timesFromStudent": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            60
+          ],
+          "frequenciesFromStudent": [
+            1,
+            2,
+            3,
+            4,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "count": 20,
+          "weightedSum": 159,
+          "expandedSorted": [
+            1,
+            2,
+            2,
+            3,
+            3,
+            3,
+            4,
+            4,
+            4,
+            4,
+            5,
+            5,
+            6,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            60
+          ],
+          "middlePositions": {
+            "10": 4,
+            "11": 5
+          },
+          "mean": "159/20",
+          "median": "9/2",
+          "reportChosen": "B",
+          "other19Sum": 99,
+          "other19MeanForEvidenceOnly": "99/19",
+          "countAtMost6": 14,
+          "max": 60,
+          "positiveTimes": true,
+          "reason": "One60-minute observation raises mean;14of20 times<=6;median4.5 describes central observed completion better. No trimmed-statistic method required."
+        },
+        "studentPreview": {
+          "path": "inspection/q22.png",
+          "sha256": "3c3c4fb11831df3cc614dd5797e1fda7a89b6d49e81bb7ef062812305c96ad15",
+          "columnWidthMm": 70,
+          "personallyViewed": true
+        },
+        "suppliedFigures": [],
+        "curriculumSurfaces": {
+          "stem": {
+            "status": "in-scope-student-input",
+            "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+            "standardCodes": [
+              "9수05-06"
+            ]
+          },
+          "choices": {
+            "status": "not-applicable",
+            "basis": "서술형,choices=[]",
+            "evidence": null
+          },
+          "figuresAndTables": {
+            "status": "independently-inspected",
+            "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+            "previewPath": "inspection/q22.png",
+            "previewSha256": "3c3c4fb11831df3cc614dd5797e1fda7a89b6d49e81bb7ef062812305c96ad15"
+          },
+          "notation": {
+            "status": "in-scope-student-input",
+            "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+          },
+          "answer": {
+            "status": "independently-derived",
+            "basis": "새 독립 답만 확인; 저자 답 미노출"
+          },
+          "studentSolution": {
+            "status": "independently-derived",
+            "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+          },
+          "prerequisites": {
+            "status": "in-scope-independent-method",
+            "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+            "standardCodes": [
+              "9수05-06"
+            ]
+          }
+        },
+        "curriculumGate": {
+          "grade": "중3",
+          "edition": "2015",
+          "independentStudentMethod": "in-scope-proposed",
+          "outOfGradeMethodRequired": false,
+          "unknownScopeHold": false,
+          "authorAnswerSolutionGradeReview": "not-yet-exposed",
+          "finalGradeApproval": false
+        },
+        "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+      }
+    },
+    "solveDigest": "9115ea17850fed40aeda2f670a1b67672b722b25854589f64d5f956e96a0bb71"
+  }
+]
