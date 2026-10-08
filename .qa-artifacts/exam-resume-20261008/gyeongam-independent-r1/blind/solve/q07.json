@@ -1,0 +1,293 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 7,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q07",
+  "studentDigest": "eb0cd4a7591db651ba96c56d0cd84198ed7913be2b1d9e218d7b74b95cc916bf",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "③",
+  "solution": "아홉 개 자료의 중앙값은 크기순으로 다섯 번째 값이다. 확인된 다섯 값은 $2,5,5,8,13$이다. $2$보다 작은 값은 지워진 네 값에서만 나올 수 있어 최대 네 개이므로 중앙값은 $2$보다 작을 수 없다. 확인된 다섯 값이 모두 $13$ 이하이므로 중앙값은 $13$보다 클 수도 없다.\n\n반대로 $2\\le t\\le13$인 정수 $t$를 지워진 네 칸에 모두 적자. 확인된 값 중 $t$보다 작은 값도, 큰 값도 각각 최대 네 개이므로 크기순 다섯 번째는 $t$이다. 따라서 모든 정수 $2$ 이상 $13$ 이하가 가능하다. 정답은 ③이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "f875e446747862ece3100b5ad10f9e317e31f454b1a0b59f4284efa048b07050",
+    "studentSurfaceCanonicalSha256": "eb0cd4a7591db651ba96c56d0cd84198ed7913be2b1d9e218d7b74b95cc916bf",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "known": [
+          2,
+          5,
+          5,
+          8,
+          13
+        ],
+        "attainableIntegerRange": [
+          2,
+          13
+        ],
+        "witnesses": [
+          {
+            "t": 2,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              2,
+              2,
+              2,
+              2
+            ],
+            "median": 2
+          },
+          {
+            "t": 3,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              3,
+              3,
+              3,
+              3
+            ],
+            "median": 3
+          },
+          {
+            "t": 4,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              4,
+              4,
+              4,
+              4
+            ],
+            "median": 4
+          },
+          {
+            "t": 5,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              5,
+              5,
+              5,
+              5
+            ],
+            "median": 5
+          },
+          {
+            "t": 6,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              6,
+              6,
+              6,
+              6
+            ],
+            "median": 6
+          },
+          {
+            "t": 7,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              7,
+              7,
+              7,
+              7
+            ],
+            "median": 7
+          },
+          {
+            "t": 8,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              8,
+              8,
+              8,
+              8
+            ],
+            "median": 8
+          },
+          {
+            "t": 9,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              9,
+              9,
+              9,
+              9
+            ],
+            "median": 9
+          },
+          {
+            "t": 10,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              10,
+              10,
+              10,
+              10
+            ],
+            "median": 10
+          },
+          {
+            "t": 11,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              11,
+              11,
+              11,
+              11
+            ],
+            "median": 11
+          },
+          {
+            "t": 12,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              12,
+              12,
+              12,
+              12
+            ],
+            "median": 12
+          },
+          {
+            "t": 13,
+            "data": [
+              2,
+              5,
+              5,
+              8,
+              13,
+              13,
+              13,
+              13,
+              13
+            ],
+            "median": 13
+          }
+        ],
+        "proofBelow": "Only four missing values can be below2.",
+        "proofAbove": "Five known values are at most13."
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "range": [
+            2,
+            8
+          ],
+          "correct": false
+        },
+        {
+          "index": 2,
+          "range": [
+            5,
+            13
+          ],
+          "correct": false
+        },
+        {
+          "index": 3,
+          "range": [
+            2,
+            13
+          ],
+          "correct": true
+        },
+        {
+          "index": 4,
+          "range": [
+            0,
+            13
+          ],
+          "correct": false
+        },
+        {
+          "index": 5,
+          "range": [
+            2,
+            14
+          ],
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "각 허용 정수에 실제 자료를 구성했고 양 끝2/13도 포함된다. 전 범위 한계는 순위 개수로 증명했다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 5,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "정수 자료의 순위 중앙값과 네 누락 값이다.",
+    "choices": "모든 범위가 빠뜨리거나 잘못 포함하는 정수를 확인한다.",
+    "figuresAndTables": "도수 표1+2+1+1=5와 누락4로 전체9를 읽는다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "순위의 개수 제한과 실제 네 t의 구성으로 양방향을 증명한다.",
+    "prerequisites": "중3 중앙값·정수 순서와 초등 개수 세기",
+    "standardCodes": [
+      "9수05-06"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

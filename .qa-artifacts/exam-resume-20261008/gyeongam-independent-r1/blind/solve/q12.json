@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q12",
+  "studentDigest": "0b3a68064ec73ea0a26892e5d719014123bef5bbc6212508a9c02b04ea76304e",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "②",
+  "solution": "$QR=t\\,\\mathrm{cm}$라 하자. 각 $P$에서 $\\tan P=\\dfrac{QR}{PR}=\\dfrac12$이므로 $PR=2t$이다. 피타고라스 정리에서 $(2t)^2+t^2=(9\\sqrt5)^2=405$이므로 $5t^2=405$, $t^2=81$이다. 길이는 양수이므로 $t=9$이다. 따라서 $(PR,QR)=(18,9)\\,\\mathrm{cm}$이며 정답은 ②이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "c4203a6c90b45e23335b8f49cde5b65742ef495a4e5a2f0ff3da6623cf80e3a4",
+    "studentSurfaceCanonicalSha256": "0b3a68064ec73ea0a26892e5d719014123bef5bbc6212508a9c02b04ea76304e",
+    "figureBindings": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q12-1.svg",
+        "sha256": "ae14b4bc481a4e4db967133384a2f7810322d1415f73ebdf920f7f6378250257",
+        "intendedWidthMm": 70,
+        "svgFileSha256": "ae14b4bc481a4e4db967133384a2f7810322d1415f73ebdf920f7f6378250257",
+        "viewedStudentPreview": "student-figure-preview/q12-1.png",
+        "viewedStudentPreviewSha256": "f6a0f7cde16569da82cb4750cb6242910f12180c65a358942a3949d7dee136e9",
+        "actualFigureViewed": true,
+        "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+      }
+    ],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "PR": 18,
+        "QR": 9,
+        "PQ": 20.12461179749811,
+        "tanP": 0.5
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "PR": 9,
+          "QR": 18,
+          "predictedTanP": 2,
+          "predictedHypotenuse": 20.12461179749811,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "PR": 18,
+          "QR": 9,
+          "predictedTanP": 0.5,
+          "predictedHypotenuse": 20.12461179749811,
+          "correct": true
+        },
+        {
+          "index": 3,
+          "PR": 20.12461179749811,
+          "QR": 18,
+          "predictedTanP": 0.8944271909999159,
+          "predictedHypotenuse": 27,
+          "correct": false
+        },
+        {
+          "index": 4,
+          "PR": 18,
+          "QR": 18,
+          "predictedTanP": 1,
+          "predictedHypotenuse": 25.455844122715714,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "PR": 12,
+          "QR": 6,
+          "predictedTanP": 0.5,
+          "predictedHypotenuse": 13.416407864998739,
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "양의 길이 비2:1과 빗변의 조건에서 t=9가 유일하며 실제 삼각형이 존재한다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 4,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "하나의 실제 삼각형 빗변과tan값을 주어 두 변을 복구한다.",
+    "choices": "다섯 변쌍을 비와 피타고라스 두 조건에 모두 넣는다.",
+    "figuresAndTables": "새 공급 그림에서R의 직각과P의 위치를 확인했다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "삼각비 정의에서 실제 변 비를 세워 피타고라스로 길이를 구한다. 다른 삼각비의 변환은 하지 않는다.",
+    "prerequisites": "중2 피타고라스, 중3tan정의·양의제곱근",
+    "standardCodes": [
+      "9수04-16",
+      "9수04-17",
+      "9수02-13"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

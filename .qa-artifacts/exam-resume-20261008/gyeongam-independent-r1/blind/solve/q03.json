@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q03",
+  "studentDigest": "8d876ea3ae7bd6f303dccba8c6a234a5e516e94f69290fc3ba4d42b2b0e32a4c",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "②",
+  "solution": "자료Ⅰ의 중앙값 $6$은 실제 변량 중 하나이다. 이미 알려진 $2,3,8$에는 $6$이 없으므로 카드 중 하나가 $6$이다. 만일 $b=6$이면 $a<b$에 따라 $2,3,a$가 모두 $6$보다 작아 중앙값은 $6$이 될 수 없다. 따라서 $a=6$이고 $b>6$이다.\n\n자료Ⅱ의 값은 $6,b,10,18$이다. $b\\ge10$이면 가운데 두 값의 평균이 $10$ 이상이어서 기록 $9$와 맞지 않는다. 그러므로 $6<b<10$이고, 가운데 두 값 $b,10$의 평균이 $9$이므로 $\\dfrac{b+10}{2}=9$에서 $b=8$이다. 정답은 ②이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "90bbc990f0b9cea67754b412654e40ccb65b6f7e6e0e0f0059338d43da34427f",
+    "studentSurfaceCanonicalSha256": "8d876ea3ae7bd6f303dccba8c6a234a5e516e94f69290fc3ba4d42b2b0e32a4c",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "a": 6,
+        "b": 8,
+        "boundedCrossCheck": [
+          [
+            6,
+            8
+          ]
+        ],
+        "unboundedUniquenessProof": "Odd median6 forces a=6 via a<b; even median9 forces 6<b<10 then b=8."
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "pair": [
+            4,
+            8
+          ],
+          "medians": [
+            4,
+            9
+          ],
+          "correct": false
+        },
+        {
+          "index": 2,
+          "pair": [
+            6,
+            8
+          ],
+          "medians": [
+            6,
+            9
+          ],
+          "correct": true
+        },
+        {
+          "index": 3,
+          "pair": [
+            6,
+            12
+          ],
+          "medians": [
+            6,
+            11
+          ],
+          "correct": false
+        },
+        {
+          "index": 4,
+          "pair": [
+            8,
+            10
+          ],
+          "medians": [
+            8,
+            10
+          ],
+          "correct": false
+        },
+        {
+          "index": 5,
+          "pair": [
+            5,
+            10
+          ],
+          "medians": [
+            5,
+            10
+          ],
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "순위 증명에서 유일한 자연수 쌍6/8을 얻으며 두 중앙값6/9와 a<b를 만족한다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 4,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "두 자연수 카드·순서와 중앙값의 기록이다.",
+    "choices": "각 다섯 카드쌍으로 두 자료를 실제 정렬해 모두 확인한다.",
+    "figuresAndTables": "표의 변량·중앙값 두 조건만 사용한다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "홀수 중앙값이 실제 변량임을 이용하고 짝수 중앙값의 두 값을 선택한다.",
+    "prerequisites": "중3 중앙값과 중1 일차방정식",
+    "standardCodes": [
+      "9수05-06",
+      "9수02-05"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

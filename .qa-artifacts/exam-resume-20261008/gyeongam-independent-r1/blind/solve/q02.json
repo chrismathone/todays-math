@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q02",
+  "studentDigest": "27ec87cab738c64d677012c8d6f7fc7fb8129eb174622eee102f33f9c6361479",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "③",
+  "solution": "자료Ⅰ을 크기순으로 놓았을 때 세 번째가 $18$이다. $a<18$이면 $18$ 앞에 $6,12,a$의 세 값이 있어 중앙값이 $18$보다 작아지므로 $a\\ge18$이다.\n\n자료Ⅱ에서 $18\\le a\\le20$이면 가운데 두 값은 $a,20$이다. $a>20$이면 가운데 값들의 평균도 $20$ 이상이므로 중앙값 $19$가 될 수 없다. 따라서 $\\dfrac{a+20}{2}=19$에서 $a=18$이다. 자료Ⅰ의 중앙값도 $18$이 맞다.\n\n두 자료의 합은 $(6+12+18+18+30)+(10+18+18+20+30+40)=84+136=220$이다. $11$개 변량의 평균은 $\\dfrac{220}{11}=20$이다. 정답은 ③이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "abb4e254e9e99c810f828647bc706c8df4bb32e70eb516fcad045b24a407a3f4",
+    "studentSurfaceCanonicalSha256": "27ec87cab738c64d677012c8d6f7fc7fb8129eb174622eee102f33f9c6361479",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "a": 18,
+        "I": [
+          6,
+          12,
+          18,
+          18,
+          30
+        ],
+        "II": [
+          10,
+          18,
+          18,
+          20,
+          30,
+          40
+        ],
+        "medians": [
+          18,
+          19
+        ],
+        "sumI": 84,
+        "sumII": 136,
+        "boundedCalculationCrossCheck": [
+          18
+        ],
+        "unboundedUniquenessProof": "I requires a>=18; II median19 forces a<=20 then (a+20)/2=19.",
+        "target": 20
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "value": 18,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "value": 19,
+          "correct": false
+        },
+        {
+          "index": 3,
+          "value": 20,
+          "correct": true
+        },
+        {
+          "index": 4,
+          "value": 21,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "value": 22,
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "산출 값은 유한하며 다섯 보기 가운데 유일하게 일치한다.",
+          "passed": true
+        },
+        {
+          "claim": "자연수18이두중앙값을만족한다. 범위밖배제는순위증명으로했고유한탐색을증명의대신으로삼지않았다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 4,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "동일한자연수를사용한홀수/짝수자료의중앙값과평균기록이다.",
+    "choices": "평균보기다섯개를실제11개값의합과비교한다.",
+    "figuresAndTables": "학생표의변량과기록만사용한다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "순위경우구분과중앙값/평균정의,일차방정식으로끝난다.",
+    "prerequisites": "중3중앙값/평균과중1일차방정식",
+    "standardCodes": [
+      "9수05-06",
+      "9수02-05"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

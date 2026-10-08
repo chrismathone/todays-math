@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 1,
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+  "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+  "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+  "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+  "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+  "questions": [
+    {
+      "questionNumber": 1,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q01",
+      "studentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5",
+      "studentRecordSha256": "ccd79e3ff76be211eee1ad8aab7225445e8f9cc4152a197069f43225a68078b0",
+      "solvePath": "solve/q01.json",
+      "rawSolveSha256": "3457650d85658a8c05d85403c93eb01d1c2b7a6a2a34ef709d649a4e46734836",
+      "canonicalSolveDigest": "56b15457ac924585b8de525c5febd46001cfc7623a084d82636019da136728d2",
+      "figureBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q01-1.svg",
+          "sha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+          "viewedStudentPreview": "student-figure-preview/q01-1.png",
+          "viewedStudentPreviewSha256": "b32c2bfddd57d18a2800d9053042d6e27ce618050af861d25a0e5daa06abb65f",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 3,
+      "partScores": []
+    },
+    {
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q02",
+      "studentDigest": "27ec87cab738c64d677012c8d6f7fc7fb8129eb174622eee102f33f9c6361479",
+      "studentRecordSha256": "abb4e254e9e99c810f828647bc706c8df4bb32e70eb516fcad045b24a407a3f4",
+      "solvePath": "solve/q02.json",
+      "rawSolveSha256": "c7921087ef2ccc4663a712f20586a5090f5e0c1c02845a09cec8a184534d1042",
+      "canonicalSolveDigest": "0e0272cac4c43cd01783c0c29bbb0304baca14fa16b45e9ead839c51ef35f492",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 4,
+      "partScores": []
+    },
+    {
+      "questionNumber": 3,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q03",
+      "studentDigest": "8d876ea3ae7bd6f303dccba8c6a234a5e516e94f69290fc3ba4d42b2b0e32a4c",
+      "studentRecordSha256": "90bbc990f0b9cea67754b412654e40ccb65b6f7e6e0e0f0059338d43da34427f",
+      "solvePath": "solve/q03.json",
+      "rawSolveSha256": "7c2d27a81b4c75e62101bbde74a2992f80cbbed891e18cfce39906ee036b5999",
+      "canonicalSolveDigest": "1ed9ca23a1be7fbd0cc64004700caf114ea9d582fe82c0ccfd0e2e37cdcabb38",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 4,
+      "partScores": []
+    },
+    {
+      "questionNumber": 4,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q04",
+      "studentDigest": "e62189798c2656dc78ea39bf2049fcec4b594695ca8fb930c8e6084bc32308a8",
+      "studentRecordSha256": "32444e8fea9980d1bef96e19d02adbe8c5eb353d8e4e344994491732c9cc13e4",
+      "solvePath": "solve/q04.json",
+      "rawSolveSha256": "d03e2a530510452ba576b4abf8564b32072eafaf80126e9fdddc0c9ddb8c1e85",
+      "canonicalSolveDigest": "4d944400a8357862874bf96ffab1be9061c0ebb10a176a81529dc856b0b525e2",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 4,
+      "partScores": []
+    },
+    {
+      "questionNumber": 5,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q05",
+      "studentDigest": "9230c29fa2035a201ba81bfceded6d2915e2fc75142b29c82c64d9a1be070765",
+      "studentRecordSha256": "b9b37daf2298bb1c0264190d6ae069e2c875eaedc77b55b1e550e7d2b5956224",
+      "solvePath": "solve/q05.json",
+      "rawSolveSha256": "b23aa11977cbbe92059171a0fa8a7d83a124b5102d5eb7e87366e0936d2b734e",
+      "canonicalSolveDigest": "c8a8b8b6fe1903b645ea851bd567c7eb7c28ac8b282a2927d617f8a301776a6e",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 4,
+      "partScores": []
+    },
+    {
+      "questionNumber": 6,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q06",
+      "studentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498",
+      "studentRecordSha256": "03280cacd996c89b9f14d71dfb5d59c3b9fd3f2dc4bc1eb9936b3105d17fd00f",
+      "solvePath": "solve/q06.json",
+      "rawSolveSha256": "ece02550dbdbd77e1e4f11e06038cbd2fe924bb4cbd594c13b85651033c749e1",
+      "canonicalSolveDigest": "f02ed000e3b4f8f11df2cf573cf084defe0e07afec6ba2f534fd2fac412bea2a",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 4,
+      "partScores": []
+    },
+    {
+      "questionNumber": 7,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q07",
+      "studentDigest": "eb0cd4a7591db651ba96c56d0cd84198ed7913be2b1d9e218d7b74b95cc916bf",
+      "studentRecordSha256": "f875e446747862ece3100b5ad10f9e317e31f454b1a0b59f4284efa048b07050",
+      "solvePath": "solve/q07.json",
+      "rawSolveSha256": "a31298111c0bf8c09741a3838f81af71ee10cf0ba3b80c20a6d841344db4c8b1",
+      "canonicalSolveDigest": "82bd0554fa4b4420bb70e2b576fe3a57dd8d08c7b8082e205e9316d1f8515978",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 5,
+      "partScores": []
+    },
+    {
+      "questionNumber": 8,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q08",
+      "studentDigest": "13413d9efcc365a8c802d0da9974273a4c9f9502ce59740593b1e091120cae66",
+      "studentRecordSha256": "06ce8a3878275fa4fe469cbdd7a4ae5002528e47b957466c57e36b9eb32e9e6f",
+      "solvePath": "solve/q08.json",
+      "rawSolveSha256": "a4eddda219fb4b7927c484ee33ade10fa13156320ac1e4963bd12d2a0800cfc1",
+      "canonicalSolveDigest": "8f75fddad8ab1452d4256836f07fd4000cabaffa3cdfbade3f9437919756480d",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 5,
+      "partScores": []
+    },
+    {
+      "questionNumber": 9,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q09",
+      "studentDigest": "aae404817e043d121db73f24b3c1ce382d7230c1c802e3cb4e8bdd63377da712",
+      "studentRecordSha256": "130235f6aee5599ca3e51100ff4a7c30ebac4f5e21e42936c7fee3b719b27fd6",
+      "solvePath": "solve/q09.json",
+      "rawSolveSha256": "6cbe527932a940e641d543eaedecabc5854cc56f1d016fd549e0899f9f06a9b6",
+      "canonicalSolveDigest": "229ead4331e7ee9f70357df3bf94ffc85a6ac3da194c69cfd6130d29a01500ca",
+      "figureBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q09-1.svg",
+          "sha256": "cd22dfa3852b209389749ee665d4ecdb44956e7f1a8166192195eb75b6ea5fff",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "cd22dfa3852b209389749ee665d4ecdb44956e7f1a8166192195eb75b6ea5fff",
+          "viewedStudentPreview": "student-figure-preview/q09-1.png",
+          "viewedStudentPreviewSha256": "3de93d58a56bc79b5f4104cc32814ee77d7c23c2e836e5acd38ec117325d3d0f",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 3,
+      "partScores": []
+    },
+    {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q10",
+      "studentDigest": "840ff70deb1a4eac4cf504f5c2a802b0917c9c1a671b37fd1bd9def090cdf03a",
+      "studentRecordSha256": "565301bd5b66d14e11edfff57e98f318c1d4e97581615ff2a72aa396981ea075",
+      "solvePath": "solve/q10.json",
+      "rawSolveSha256": "5250bc85f6419dda40d1f899e82beda1c8a57ecc20dbfcdace3ef7520c7845ae",
+      "canonicalSolveDigest": "efc3d4b4389856dcf479530e77d3b3383eee26c7e28f16e03c5ada79ec3f0b76",
+      "figureBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q10-1.svg",
+          "sha256": "a64c8e2f2c1f5b398f6d900681fa4fb9880f7dcc2a59bf6e9d7da72067bcd574",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "a64c8e2f2c1f5b398f6d900681fa4fb9880f7dcc2a59bf6e9d7da72067bcd574",
+          "viewedStudentPreview": "student-figure-preview/q10-1.png",
+          "viewedStudentPreviewSha256": "5f957aa6a54867e3e85ba2cbf86fd5426b31b4d69075c0586efee9fdc860fb9e",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 3,
+      "partScores": []
+    },
+    {
+      "questionNumber": 11,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q11",
+      "studentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc",
+      "studentRecordSha256": "106a67512f65dcd2710d81cc08acc2083a23d4a088f4d0eebe502928a1f15f54",
+      "solvePath": "solve/q11.json",
+      "rawSolveSha256": "b60803cacbdb7919877a98b134e0f4e8a3bb50a969490635741c3007a18f0440",
+      "canonicalSolveDigest": "d93c02bab07d742231764ba21da584d7e4007ac44915a0f90ed08f538806bd5f",
+      "figureBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q11-1.svg",
+          "sha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+          "intendedWidthMm": 55,
+          "svgFileSha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+          "viewedStudentPreview": "student-figure-preview/q11-1.png",
+          "viewedStudentPreviewSha256": "80299c632d4335da4c5b5c648412464bf4b275c54c063eede6cb87f460821642",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        },
+        {
+          "role": "stem",
+          "svgPath": "figures/q11-2.svg",
+          "sha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+          "intendedWidthMm": 55,
+          "svgFileSha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+          "viewedStudentPreview": "student-figure-preview/q11-2.png",
+          "viewedStudentPreviewSha256": "e453868fcbb85982b860a29669cbbda77d9a18e751876ac5fe7573cf80ee2cbe",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 4,
+      "partScores": []
+    },
+    {
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q12",
+      "studentDigest": "0b3a68064ec73ea0a26892e5d719014123bef5bbc6212508a9c02b04ea76304e",
+      "studentRecordSha256": "c4203a6c90b45e23335b8f49cde5b65742ef495a4e5a2f0ff3da6623cf80e3a4",
+      "solvePath": "solve/q12.json",
+      "rawSolveSha256": "20eec31adf29a3ac6c7e4430eeaa92a361875ce95a7f5b87e41e4a1b9b34b0aa",
+      "canonicalSolveDigest": "af2876190c956e6f35588c10bb9fed43b2ca01a6a4f9ea06e30d60bbf049ca90",
+      "figureBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q12-1.svg",
+          "sha256": "ae14b4bc481a4e4db967133384a2f7810322d1415f73ebdf920f7f6378250257",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "ae14b4bc481a4e4db967133384a2f7810322d1415f73ebdf920f7f6378250257",
+          "viewedStudentPreview": "student-figure-preview/q12-1.png",
+          "viewedStudentPreviewSha256": "f6a0f7cde16569da82cb4750cb6242910f12180c65a358942a3949d7dee136e9",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 4,
+      "partScores": []
+    },
+    {
+      "questionNumber": 13,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q13",
+      "studentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5",
+      "studentRecordSha256": "d128d4e88e9bf28e6e3b8db2f1349ca1be493840c2ac61c7548190ae85d029d3",
+      "solvePath": "solve/q13.json",
+      "rawSolveSha256": "511ee499c3f7cf853dfa320f6798309d9f41b1268fe428a67d32c75cfc9e8220",
+      "canonicalSolveDigest": "b11e8d00b94c6ea5994ca0a585a9f60ec3413c69e2d425e8f2542eb3fe6d966d",
+      "figureBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q13-1.svg",
+          "sha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+          "viewedStudentPreview": "student-figure-preview/q13-1.png",
+          "viewedStudentPreviewSha256": "0b90035c2d92bfcaa3a4bdf86b0b868e8ccfafb1f07f2c86344eedd3eb20fc8e",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 4,
+      "partScores": []
+    },
+    {
+      "questionNumber": 14,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q14",
+      "studentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd",
+      "studentRecordSha256": "3ff8bdfd6cda6f32d2c55ca879940dba42f29b71c51671ff049e9db7b24bbe72",
+      "solvePath": "solve/q14.json",
+      "rawSolveSha256": "cac066e6c2c052f6cc6e0f9d79eade1b782f476ebd267184255cee075274b431",
+      "canonicalSolveDigest": "e6c63c9cdb778617cc65c8e6c42bb6440b2cb8a5c967dfd8860f3e7244672ab4",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 4,
+      "partScores": []
+    },
+    {
+      "questionNumber": 16,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q16",
+      "studentDigest": "622fbe2eeac514d357a9e5d89740fcf74995e53cb7e7d380ca5c9db4c1196228",
+      "studentRecordSha256": "343f200aba6adf8b700da3ebc72b82060ff4b987e536eed569a546e3fc84a9a2",
+      "solvePath": "solve/q16.json",
+      "rawSolveSha256": "b94d4a1cf2c1eff79ead449dc57a88e2a6832208707816c1be9b0286d19673a1",
+      "canonicalSolveDigest": "b88d15978372df696e95d1e46f64db0b0545d62640cef36a3ecc1e06d74b614e",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 8,
+      "partScores": []
+    },
+    {
+      "questionNumber": 17,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q17",
+      "studentDigest": "75422a301a173ecd7b8d6fe84e460dc4ec74c2aba11714aab46468d608b50bce",
+      "studentRecordSha256": "e075d745a0e96d5c52566c64cc99d091c561c9b83ccbd5dc86d5248cd65faff7",
+      "solvePath": "solve/q17.json",
+      "rawSolveSha256": "e28f267f9867727caf527f75062ad402b718f975e78c76dd0313eb7eb718d1d5",
+      "canonicalSolveDigest": "a35efd4de40186e4712f0088bb06b15addb276416979729ba7da458fc47dbdd7",
+      "figureBindings": [],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 10,
+      "partScores": [
+        5,
+        5
+      ]
+    },
+    {
+      "questionNumber": 18,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q18",
+      "studentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341",
+      "studentRecordSha256": "3f815d25e6a7aee91274a3de7c9dc23cb21e3ddd0eb0a8a92f48f6b0fd7e17da",
+      "solvePath": "solve/q18.json",
+      "rawSolveSha256": "b0e0dd9fe4b9c9ad36d87a6374a4b003dab04e0a74f78f9b1e2174d50db79b68",
+      "canonicalSolveDigest": "6bc6081697ea33ab0c3b4740beaa07b63de10a9291b62e62103361b76833bef4",
+      "figureBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q18-1.svg",
+          "sha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+          "viewedStudentPreview": "student-figure-preview/q18-1.png",
+          "viewedStudentPreviewSha256": "fee24f51b06f0f2f524272783a5a8d06ba0cb2dda633db4a974c0a593eee5ae3",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 12,
+      "partScores": []
+    },
+    {
+      "questionNumber": 19,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q19",
+      "studentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff",
+      "studentRecordSha256": "e70b444bd6f47c97259cbff7a4b90d14c6f07e88743b241c6bfaf5b78c3bba32",
+      "solvePath": "solve/q19.json",
+      "rawSolveSha256": "914fddf352f91886905c21ec958a6475bd32f1f591295f23b7754a5f95e99aea",
+      "canonicalSolveDigest": "1648335049655f9a9b8600230b0a3f83498167ae5ada9fba876ed79c4347f06d",
+      "figureBindings": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q19-1.svg",
+          "sha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+          "intendedWidthMm": 70,
+          "svgFileSha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+          "viewedStudentPreview": "student-figure-preview/q19-1.png",
+          "viewedStudentPreviewSha256": "e9f39ec2cf32c24be540bc0557b88ef1a9cac87323c70596b22acefc5197bb35",
+          "actualFigureViewed": true,
+          "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+        }
+      ],
+      "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+      "status": "solved",
+      "parentScore": 10,
+      "partScores": []
+    }
+  ],
+  "counts": {
+    "assigned": 18,
+    "rawSolved": 18,
+    "pending": 0,
+    "objective": 14,
+    "openResponse": 4,
+    "studentFigures": 9,
+    "parentScoreTotal": 95,
+    "finalMathApprovals": 0,
+    "finalGradeApprovals": 0,
+    "rightsApprovals": 0,
+    "fullApprovals": 0
+  },
+  "authorAnswersExposed": false,
+  "originalAnswersExposed": false,
+  "directUseAllowed": false
+}

@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q14",
+  "studentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "③",
+  "solution": "각 특수각의 값을 따로 대입하면\n$k\\cdot\\dfrac12\\cdot\\dfrac{\\sqrt2}{2}+\\dfrac{\\sqrt2}{2}\\cdot1=\\dfrac{5\\sqrt2}{4}$이다. 즉 $\\dfrac{k\\sqrt2}{4}+\\dfrac{2\\sqrt2}{4}=\\dfrac{5\\sqrt2}{4}$이다. 양변을 양수 $\\dfrac{\\sqrt2}{4}$로 나누면 $k+2=5$이므로 $k=3$이다. 정답은 ③이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "3ff8bdfd6cda6f32d2c55ca879940dba42f29b71c51671ff049e9db7b24bbe72",
+    "studentSurfaceCanonicalSha256": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "cos60": 0.5,
+        "sin45": 0.7071067811865476,
+        "cos45": 0.7071067811865476,
+        "tan45": 1,
+        "k": 3,
+        "target": 1.7677669529663689
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "k": 1,
+          "computedValue": 1.0606601717798214,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "k": 2,
+          "computedValue": 1.4142135623730951,
+          "correct": false
+        },
+        {
+          "index": 3,
+          "k": 3,
+          "computedValue": 1.7677669529663689,
+          "correct": true
+        },
+        {
+          "index": 4,
+          "k": 4,
+          "computedValue": 2.121320343559643,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "k": 5,
+          "computedValue": 2.4748737341529163,
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "계수 sqrt2/4가 양수이고 구한k3이 양수이므로 해가 유일하다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 4,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "특수각 값을 따로 대입한 숫자 식의 누락 양수계수이다.",
+    "choices": "다섯 k를 식에 직접 넣는다.",
+    "figuresAndTables": "본문 기록식만 있다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "sin/cos/tan의 알려진값을 각각 대입한 근호 계산·일차방정식이다. 관계식은 쓰지 않는다.",
+    "prerequisites": "중3 특수각·근호 계산, 중1일차방정식",
+    "standardCodes": [
+      "9수04-17",
+      "9수01-10",
+      "9수02-05"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

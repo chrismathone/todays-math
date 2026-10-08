@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 4,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q04",
+  "studentDigest": "e62189798c2656dc78ea39bf2049fcec4b594695ca8fb930c8e6084bc32308a8",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "③",
+  "solution": "추가 전 변량의 합은 $7\\times6=42$이고, 추가 후 합은 $10\\times7=70$이다. 따라서 추가한 세 변량의 합은 $70-42=28$이다. $8+9+m=28$에서 $m=11$이다. 정답은 ③이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "32444e8fea9980d1bef96e19d02adbe8c5eb353d8e4e344994491732c9cc13e4",
+    "studentSurfaceCanonicalSha256": "e62189798c2656dc78ea39bf2049fcec4b594695ca8fb930c8e6084bc32308a8",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "oldSum": 42,
+        "newSum": 70,
+        "addedSum": 28,
+        "existenceWitness": [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          8,
+          9,
+          11
+        ],
+        "target": 11
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "value": 9,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "value": 10,
+          "correct": false
+        },
+        {
+          "index": 3,
+          "value": 11,
+          "correct": true
+        },
+        {
+          "index": 4,
+          "value": 12,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "value": 13,
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "산출 값은 유한하며 다섯 보기 가운데 유일하게 일치한다.",
+          "passed": true
+        },
+        {
+          "claim": "합의 차로 m이 유일하며 실제 자료의 추가 전후 평균6/7을 구성할 수 있다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 4,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "추가 전후의 개수와 평균이다.",
+    "choices": "모든 m에 대해 새 전체 합의 조건을 검사한다.",
+    "figuresAndTables": "학생 표의 두 행에서 합을 복구한다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "평균×개수와 합의 차로 일차 역산한다.",
+    "prerequisites": "평균·사칙·일차방정식",
+    "standardCodes": [
+      "9수05-06",
+      "9수02-05"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

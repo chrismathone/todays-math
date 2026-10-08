@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 18,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q18",
+  "studentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "$BC=5\\,\\mathrm{cm}$, $\\tan\\angle CAB=\\sqrt2-1$, $\\angle CAB=22.5^\\circ$.",
+  "solution": "D가 AB 위에 있고 $\\angle B=90^\\circ$, $\\angle CDB=45^\\circ$이므로 직각삼각형 $DBC$의 나머지 예각도 $45^\\circ$이다. 따라서 $DB=BC=t\\,\\mathrm{cm}$라 하면 피타고라스 정리로 $CD=t\\sqrt2\\,\\mathrm{cm}$이다.\n\n$AD=CD$이므로 $AB=AD+DB=t\\sqrt2+t=t(1+\\sqrt2)$이다. 주어진 $AB=5+5\\sqrt2=5(1+\\sqrt2)$와 비교하면 $t=5$이다. 따라서 $BC=5\\,\\mathrm{cm}$이다.\n\n실제 직각삼각형 $ABC$에서 $\\tan\\angle CAB=\\dfrac{BC}{AB}=\\dfrac{5}{5+5\\sqrt2}=\\dfrac1{1+\\sqrt2}=\\sqrt2-1$이다.\n\n각도도 도형으로 확인할 수 있다. DA와 DB가 반대 방향이므로 $\\angle ADC=180^\\circ-45^\\circ=135^\\circ$이다. 이등변삼각형 $ADC$에서 $AD=CD$이므로 밑각 $\\angle DAC=\\angle ACD=\\dfrac{180^\\circ-135^\\circ}{2}=22.5^\\circ$이다. D가AB위에 있으므로 $\\angle CAB=22.5^\\circ$이다.",
+  "answerParts": [
+    {
+      "role": "BC-length",
+      "value": 5,
+      "unit": "cm"
+    },
+    {
+      "role": "tan-CAB",
+      "value": {
+        "kind": "exact-quadratic-surd",
+        "rational": -1,
+        "radicalCoefficient": 1,
+        "radicand": 2
+      },
+      "unit": null
+    },
+    {
+      "role": "CAB-angle",
+      "value": 22.5,
+      "unit": "degree"
+    }
+  ],
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "3f815d25e6a7aee91274a3de7c9dc23cb21e3ddd0eb0a8a92f48f6b0fd7e17da",
+    "studentSurfaceCanonicalSha256": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341",
+    "figureBindings": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q18-1.svg",
+        "sha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+        "intendedWidthMm": 70,
+        "svgFileSha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+        "viewedStudentPreview": "student-figure-preview/q18-1.png",
+        "viewedStudentPreviewSha256": "fee24f51b06f0f2f524272783a5a8d06ba0cb2dda633db4a974c0a593eee5ae3",
+        "actualFigureViewed": true,
+        "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+      }
+    ],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "AB": 12.071067811865476,
+        "DB": 5,
+        "BC": 5,
+        "CD": 7.0710678118654755,
+        "AD": 7.0710678118654755,
+        "tanCAB": 0.41421356237309503,
+        "exactTan": {
+          "rational": -1,
+          "radicalCoefficient": 1,
+          "radicand": 2
+        },
+        "CABDegrees": 22.5,
+        "ADC": 135,
+        "angleProof": "Supplement atD then equal base angles of actual isosceles ADC.",
+        "noHalfAngleIdentityUsed": true
+      },
+      "optionChecks": [],
+      "conditions": [
+        {
+          "claim": "두길이조건은양의t5를유일하게정하고D는AB내부이며실제삼각형이존재한다.",
+          "passed": true
+        },
+        {
+          "claim": "실제각CAB22.5는예각이며tan값은실제변비로구했다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": false,
+    "choicesNotApplicable": true,
+    "questionScore": 12,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "실제직각삼각형·등변변조건·한변의근호길이에서누락길이와각을복구한다.",
+    "choices": "서술형의길이·tan·각도세부분을정확수치와이유로분리한다.",
+    "figuresAndTables": "실제그림의D내부·B직각·D45°·AD/CD같음표시를직접보았다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "DB/BC/AD/CD를구하고tan은실제변비로계산한다.22.5도는등변삼각형내각이며반각삼각비공식이아니다.",
+    "prerequisites": "중2피타고라스·등변삼각형,중1내각/평각,중3삼각비정의·근호",
+    "standardCodes": [
+      "9수04-16",
+      "9수04-10",
+      "9수04-17",
+      "9수01-10"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

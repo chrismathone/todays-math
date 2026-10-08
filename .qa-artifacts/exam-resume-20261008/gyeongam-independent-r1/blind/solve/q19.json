@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 19,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q19",
+  "studentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "사분원의 반지름은 $4\\,\\mathrm{cm}$이다.",
+  "solution": "반지름을 $r\\,\\mathrm{cm}$라 하자. 직각삼각형 $OCA$에서 $OC=r\\cos60^\\circ=\\dfrac r2$, $AC=r\\sin60^\\circ=\\dfrac{r\\sqrt3}{2}$이다. 또 직각삼각형 $OBD$에서 $OB=r$, $BD=r\\tan60^\\circ=r\\sqrt3$이다. 따라서 $CB=OB-OC=\\dfrac r2$이다.\n\n사각형 $ACBD$는 평행한 두 변 $AC,BD$를 가진 사다리꼴이며 두 평행변 사이 거리는 $CB$이다. 넓이는 $\\dfrac12(AC+BD)CB=\\dfrac12\\left(\\dfrac{r\\sqrt3}{2}+r\\sqrt3\\right)\\dfrac r2=\\dfrac{3r^2\\sqrt3}{8}$이다.\n\n기록과 비교하면 $\\dfrac{3r^2\\sqrt3}{8}=6\\sqrt3$이다. 양수 $\\sqrt3$로 나누어 $r^2=16$을 얻고, 반지름은 양수이므로 $r=4\\,\\mathrm{cm}$이다.",
+  "answerParts": [
+    {
+      "role": "radius",
+      "value": 4,
+      "unit": "cm"
+    }
+  ],
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "e70b444bd6f47c97259cbff7a4b90d14c6f07e88743b241c6bfaf5b78c3bba32",
+    "studentSurfaceCanonicalSha256": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff",
+    "figureBindings": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q19-1.svg",
+        "sha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+        "intendedWidthMm": 70,
+        "svgFileSha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+        "viewedStudentPreview": "student-figure-preview/q19-1.png",
+        "viewedStudentPreviewSha256": "e9f39ec2cf32c24be540bc0557b88ef1a9cac87323c70596b22acefc5197bb35",
+        "actualFigureViewed": true,
+        "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+      }
+    ],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "radius": 4,
+        "OC": 2,
+        "AC": 3.4641016151377544,
+        "BD": 6.928203230275509,
+        "CB": 2,
+        "area": 10.392304845413264,
+        "requestedArea": 10.392304845413264,
+        "comparisonOuterTriangle": 13.856406460551018,
+        "comparisonSmallTriangle": 3.4641016151377544
+      },
+      "optionChecks": [],
+      "conditions": [
+        {
+          "claim": "반지름/각변/넓이는양수이고계수3√3/8>0에서양의반지름4가유일하다.",
+          "passed": true
+        },
+        {
+          "claim": "큰직각삼각형OBD넓이에서작은OCA넓이를뺀결과도공급음영사각형의넓이와같다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": false,
+    "choicesNotApplicable": true,
+    "questionScore": 10,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "실제사분원·수선·60도·면적에서반지름을구한다.",
+    "choices": "서술형양의반지름과변/넓이관계를분리한다.",
+    "figuresAndTables": "공급음영은ACBD이고C수선발/B접선수직/A호위/D반직선위와60도를확인했다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "두실제직각삼각형에서특수각값을각각써사다리꼴넓이와양의제곱근을구한다.",
+    "prerequisites": "중3삼각비활용·근호·단순이차방정식,초등사다리꼴넓이",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-18",
+      "9수02-13",
+      "9수01-10"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

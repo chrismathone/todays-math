@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 11,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q11",
+  "studentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "③",
+  "solution": "윗면 정사각형의 대각선은 피타고라스 정리로 $BD=\\sqrt{4^2+4^2}=4\\sqrt2\\,\\mathrm{cm}$이다. 주어진 실제 직각삼각형 $BFD$에서 $BF=4\\,\\mathrm{cm}$이고 $BF\\perp BD$이므로 $FD=\\sqrt{4^2+(4\\sqrt2)^2}=4\\sqrt3\\,\\mathrm{cm}$이다.\n\n각 $\\theta=\\angle BFD$의 이웃한 직각변은 $BF$, 빗변은 $FD$이다. 따라서 $\\cos\\theta=\\dfrac{4}{4\\sqrt3}=\\dfrac{\\sqrt3}{3}$이다. 정답은 ③이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "106a67512f65dcd2710d81cc08acc2083a23d4a088f4d0eebe502928a1f15f54",
+    "studentSurfaceCanonicalSha256": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc",
+    "figureBindings": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q11-1.svg",
+        "sha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+        "intendedWidthMm": 55,
+        "svgFileSha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+        "viewedStudentPreview": "student-figure-preview/q11-1.png",
+        "viewedStudentPreviewSha256": "80299c632d4335da4c5b5c648412464bf4b275c54c063eede6cb87f460821642",
+        "actualFigureViewed": true,
+        "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+      },
+      {
+        "role": "stem",
+        "svgPath": "figures/q11-2.svg",
+        "sha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+        "intendedWidthMm": 55,
+        "svgFileSha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+        "viewedStudentPreview": "student-figure-preview/q11-2.png",
+        "viewedStudentPreviewSha256": "e453868fcbb85982b860a29669cbbda77d9a18e751876ac5fe7573cf80ee2cbe",
+        "actualFigureViewed": true,
+        "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+      }
+    ],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "edge": 4,
+        "BD": 5.656854249492381,
+        "FD": 6.928203230275509,
+        "cosTheta": 0.5773502691896258,
+        "thetaDegrees": 54.735610317245346,
+        "perpendicularGivenExplicitly": true
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "pair": [
+            5.656854249492381,
+            0.8164965809277259
+          ],
+          "correct": false
+        },
+        {
+          "index": 2,
+          "pair": [
+            6.928203230275509,
+            0.5773502691896257
+          ],
+          "correct": false
+        },
+        {
+          "index": 3,
+          "pair": [
+            5.656854249492381,
+            0.5773502691896257
+          ],
+          "correct": true
+        },
+        {
+          "index": 4,
+          "pair": [
+            4,
+            0.7071067811865476
+          ],
+          "correct": false
+        },
+        {
+          "index": 5,
+          "pair": [
+            8,
+            0.3333333333333333
+          ],
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "정육면체 모서리4와 대각선은 양수이고 두 번째 그림의 직각이 본문에서 주어졌다. theta는 예각이고cos는0과1사이이다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 4,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "정육면체의 윗면 정사각형과 실제 단면 직각을 명시적으로 주었다.",
+    "choices": "대각선 길이와cos 값을 모두 검사한다.",
+    "figuresAndTables": "55mm 입체 배치 그림과55mm 실제 BFD 그림을 모두 보았다. 공간 투영의 겹침으로 길이를 측정하지 않는다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "피타고라스 두 번과 실제 직각삼각형의 cos 정의이다.",
+    "prerequisites": "중2 피타고라스·정사각형, 중3 삼각비. 공간 직선/평면 수직 정리는 추가로 요구하지 않는다.",
+    "standardCodes": [
+      "9수04-16",
+      "9수04-17"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

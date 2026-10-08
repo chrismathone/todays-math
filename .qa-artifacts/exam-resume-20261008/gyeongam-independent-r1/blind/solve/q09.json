@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 9,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q09",
+  "studentDigest": "aae404817e043d121db73f24b3c1ce382d7230c1c802e3cb4e8bdd63377da712",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "③",
+  "solution": "두 점수가 모두 $50$점 이상인 점은 $(50,50)$, $(50,70)$, $(60,60)$, $(70,50)$의 네 개이다. 경계인 $50$도 포함한다. 전체 학생이 $12$명이므로 나머지는 $12-4=8$명이다. 정답은 ③이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "130235f6aee5599ca3e51100ff4a7c30ebac4f5e21e42936c7fee3b719b27fd6",
+    "studentSurfaceCanonicalSha256": "aae404817e043d121db73f24b3c1ce382d7230c1c802e3cb4e8bdd63377da712",
+    "figureBindings": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q09-1.svg",
+        "sha256": "cd22dfa3852b209389749ee665d4ecdb44956e7f1a8166192195eb75b6ea5fff",
+        "intendedWidthMm": 70,
+        "svgFileSha256": "cd22dfa3852b209389749ee665d4ecdb44956e7f1a8166192195eb75b6ea5fff",
+        "viewedStudentPreview": "student-figure-preview/q09-1.png",
+        "viewedStudentPreviewSha256": "3de93d58a56bc79b5f4104cc32814ee77d7c23c2e836e5acd38ec117325d3d0f",
+        "actualFigureViewed": true,
+        "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+      }
+    ],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "pointsReadFromSuppliedTicks": [
+          [
+            10,
+            30
+          ],
+          [
+            20,
+            40
+          ],
+          [
+            30,
+            20
+          ],
+          [
+            30,
+            60
+          ],
+          [
+            40,
+            40
+          ],
+          [
+            40,
+            70
+          ],
+          [
+            50,
+            30
+          ],
+          [
+            50,
+            50
+          ],
+          [
+            50,
+            70
+          ],
+          [
+            60,
+            40
+          ],
+          [
+            60,
+            60
+          ],
+          [
+            70,
+            50
+          ]
+        ],
+        "removed": [
+          [
+            50,
+            50
+          ],
+          [
+            50,
+            70
+          ],
+          [
+            60,
+            60
+          ],
+          [
+            70,
+            50
+          ]
+        ],
+        "remaining": 8,
+        "serializedMarkerCount": 12,
+        "serializedTickPositionsMatched": true,
+        "target": 8
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "value": 6,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "value": 7,
+          "correct": false
+        },
+        {
+          "index": 3,
+          "value": 8,
+          "correct": true
+        },
+        {
+          "index": 4,
+          "value": 9,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "value": 10,
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "산출 값은 유한하며 다섯 보기 가운데 유일하게 일치한다.",
+          "passed": true
+        },
+        {
+          "claim": "산점도의12점/학생과 표기 축에서 읽은 점들의 대응 및50경계를 확인했다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 3,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "서로 다른 두 점수의 산점도에서 조건을 만족하는 학생을 제외한다.",
+    "choices": "다섯 인원 보기와 전체12명의 부분 집합을 비교한다.",
+    "figuresAndTables": "실제 공급 그림의 눈금과12개 점을 읽었고50 경계 점 두 종류를 포함했다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "두 조건의 교집합에 있는 점을 세고 전체에서 뺀다.",
+    "prerequisites": "중3 산점도 읽기와 부등호 이상의 의미",
+    "standardCodes": [
+      "9수05-08"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}
