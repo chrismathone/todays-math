@@ -1,0 +1,69 @@
+{
+  "method": "deterministic exact-text/locator checks then contextual reviewer judgment; no inference API",
+  "skill": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.agents/skills/typesafe-ai/SKILL.md",
+    "sha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d"
+  },
+  "liveDocumentationReadDateKst": "2026-10-08",
+  "liveDocumentation": [
+    {
+      "url": "https://docs.typesafe.ai/llms.txt",
+      "use": "Targeted documentation discovery; no integration or SDK invocation."
+    },
+    {
+      "url": "https://docs.typesafe.ai/confidence",
+      "use": "Confidence summarizes an output distribution. No model probability or confidence is curriculum permission; none was calculated here."
+    },
+    {
+      "url": "https://docs.typesafe.ai/cookbooks/citation_check",
+      "use": "Text presence and contextual support are separate checks; retain observed clauses separately from the reviewer application."
+    }
+  ],
+  "claims": [
+    {
+      "id": "explicit_exclusion",
+      "source": "official-provisions.json#no_trig_ratio_relationships",
+      "textPresent": true,
+      "contextSupports": true,
+      "finding": "Official wording excludes relationships between trig ratios, under geometry teaching/learning cautions; it is not a statement prohibiting Pythagoras.",
+      "type": "observed"
+    },
+    {
+      "id": "definitions_allowance",
+      "source": "official-provisions.json#9수04-17",
+      "textPresent": true,
+      "contextSupports": true,
+      "finding": "Simple trig-ratio values and the meaning of trig ratios are in scope. The same section contains the separate relationship exclusion; the standard is not an exception to it.",
+      "type": "observed_plus_contextual_application"
+    },
+    {
+      "id": "q07_is_relation_assessment",
+      "source": "question-observation.json + official-provisions.json",
+      "textPresent": true,
+      "contextSupports": true,
+      "finding": "The known quantity is one same-angle sine value; the asked quantity is a quotient of cosine and tangent. Its intended assessment transfers one trig ratio to other same-angle trig ratios and combines them.",
+      "type": "reviewer_application_of_official_exclusion",
+      "officialWorkedQ07RulingClaim": false
+    },
+    {
+      "id": "geometric_exception",
+      "source": "official-provisions.json#9수04-16/#9수04-17/#no_trig_ratio_relationships",
+      "textPresent": false,
+      "contextSupports": false,
+      "finding": "No examined clause grants a geometric/Pythagorean exception for retaining this ratio-to-compound-ratio assessment. Individual permitted steps do not waive the assessment exclusion.",
+      "type": "bounded_no_support_not_exhaustive_nonexistence_claim"
+    },
+    {
+      "id": "live_family_permission",
+      "source": "unit-family-evidence.json",
+      "textPresent": false,
+      "contextSupports": false,
+      "finding": "Unit/family metadata and the generator purpose are observed. They are product classification data, not official curricular allowance.",
+      "type": "unsupported_as_permission"
+    }
+  ],
+  "semanticRulingBy": "orca-codex-exam-twin-source-identity-20261008",
+  "confidence": null,
+  "modelProbability": null,
+  "inferenceApiCalls": 0
+}

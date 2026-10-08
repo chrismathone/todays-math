@@ -1,0 +1,53 @@
+{
+  "purpose": "Supplemental exact math and assessment dependency only. Not grade permission, a student candidate, or an original answer key check.",
+  "engine": "Python standard-library Fraction; deterministic code",
+  "factorization": {
+    "polynomialCoefficients": [
+      9,
+      -12,
+      4
+    ],
+    "expandedSquaredLinear": [
+      3,
+      -2
+    ],
+    "expansionCoefficients": [
+      9,
+      -12,
+      4
+    ],
+    "identityChecked": true
+  },
+  "root": {
+    "distinctRealRoots": [
+      "2/3"
+    ],
+    "multiplicity": 2,
+    "polynomialAtRoot": "0",
+    "acuteSineRangeCheck": true
+  },
+  "scaledRightTriangle": {
+    "hypotenuse": "3",
+    "opposite": "2",
+    "adjacentSquared": "5",
+    "positiveLengths": true,
+    "scaleNotActualGivenLength": true
+  },
+  "ratios": {
+    "sine": "2/3",
+    "cosine": "sqrt(5)/3",
+    "tangent": "2/sqrt(5)",
+    "cosineSquared": "5/9",
+    "tangentSquared": "4/5",
+    "compoundRatio": "5/6"
+  },
+  "dependency": {
+    "geometricExpression": "adjacent^2/(hypotenuse*opposite)",
+    "sameAngleRatioExpression": "(1-sine^2)/sine",
+    "statement": "These equivalent expressions are reviewer analysis of the preserved target, not formulas proposed for middle3 instruction.",
+    "squaredQuotientCheck": true
+  },
+  "choicesCompared": false,
+  "originalKeyOrSolutionRead": false,
+  "curriculumPermissionFromCalculation": false
+}

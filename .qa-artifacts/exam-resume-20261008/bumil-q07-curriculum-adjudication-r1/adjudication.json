@@ -1,0 +1,286 @@
+{
+  "schema": "bumil-q07-curriculum-adjudication.v1",
+  "createdDateKst": "2026-10-08",
+  "questionNumber": 7,
+  "verifierId": "orca-codex-exam-twin-source-identity-20261008",
+  "method": "confirmed-question-only-source-then-primary-curriculum-adjudication",
+  "status": "rejected",
+  "eligibleFor2015FaithfulTwinAuthoring": false,
+  "decisionType": "preauthor_curriculum_gate_only",
+  "affectedQuestionNumbers": [
+    7
+  ],
+  "reference": {
+    "examYear": 2025,
+    "grade": "middle3",
+    "applicableCurriculum": "2015_revision",
+    "normalizedQuestionSha256": "992c1fa793f27afa1cd6fdf1d94e7486e7a2d32cc552a3f3581f5efbd4772607",
+    "retainedSourceAuditCommit": "c348f02772f8d8eb4b698a61417c3a681e337b3e",
+    "printedScore": 4
+  },
+  "governingGate": "Known out-of-grade assessment, notation, or necessary student procedure excluded; genuinely unresolved material scope held. Same assessment/core principle required for a faithful twin.",
+  "materialConflict": {
+    "restrictionId": "no_trig_ratio_relationships",
+    "parentEvidenceAlias": "no_ratio_identities",
+    "officialText": "삼각비 사이의 관계는 다루지 않는다.",
+    "hwpLocator": {
+      "stream": "BodyText/Section0",
+      "tag": 67,
+      "level": 1,
+      "record_1based": 4440,
+      "paragraph_1based": 908,
+      "offset_in_uncompressed_stream": 224820,
+      "text": "삼각비 사이의 관계는 다루지 않는다."
+    },
+    "pdfPhysicalPage1based": 39,
+    "pdfPrintedPage": 35,
+    "assessedDependency": "Root of a quadratic fixes sin A, then determine cos A/tan A at the same acute angle.",
+    "finding": "This is an assessment of a relationship among trig ratios. Retaining it conflicts with the explicit exclusion under the user's strongest grade gate.",
+    "findingType": "reasoned_application_of_official_provision_to_confirmed_question",
+    "officialDocumentExplicitlyNamesQ07": false,
+    "permissibleIndividualStepsDoNotOverrideAssessmentExclusion": true,
+    "identityMemorizationOnlyExceptionFound": false
+  },
+  "definitionsScope": {
+    "standard": "9수04-17",
+    "hwpLocator": {
+      "stream": "BodyText/Section0",
+      "tag": 67,
+      "level": 3,
+      "record_1based": 4341,
+      "paragraph_1based": 891,
+      "offset_in_uncompressed_stream": 219120,
+      "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+    },
+    "pdfPhysicalPage1based": 38,
+    "pdfPrintedPage": 34,
+    "individualDefinitionsAndSimpleValuesAllowed": true,
+    "blanketBanOnMultipleDefinitionsOrPythagoras": false,
+    "definitionRouteGrantsExceptionToRetainedAssessment": false
+  },
+  "sevenStudentSurfaces": [
+    {
+      "surface": "stem",
+      "gradeAllowed": false,
+      "status": "rejected",
+      "evidence": "9x²−12x+4 fixes sin A; the target cos A÷tan A deliberately assesses a relation among same-angle trig ratios. The real quadratic alone is allowed. Exact source content confirmed in retained source audit."
+    },
+    {
+      "surface": "choices",
+      "gradeAllowed": true,
+      "status": "numeric_forms_in_scope_not_an_eligibility_override",
+      "evidence": "The five options are ordinary positive rational numbers. They introduce no extra notation or prerequisite. Choosing one still answers the rejected compound-ratio assessment. No original key or option agreement used."
+    },
+    {
+      "surface": "figure_and_graph_semantics",
+      "gradeAllowed": true,
+      "status": "not_applicable_to_printed_source",
+      "evidence": "No printed figure or graph in normalized q07. The original handwritten triangle was excluded by the completed source audit. Adding a right-triangle representation cannot remove the retained ratio-conversion target."
+    },
+    {
+      "surface": "notation",
+      "gradeAllowed": true,
+      "status": "symbols_individually_in_scope",
+      "evidence": "sin A, cos A, tan A are visible learning elements on PDF physical p38/printed34. x², fractions, division and 0°<A<90° are in scope. Rejection concerns the assessed dependency, not a blanket syntactic ban on division or these symbols."
+    },
+    {
+      "surface": "answer_format",
+      "gradeAllowed": true,
+      "status": "rational_numeric_format_in_scope_not_an_eligibility_override",
+      "evidence": "A rational-number response is age-appropriate as a format. Its requested mathematical meaning is still the compound ratio; an ordinary number does not erase that meaning. No new candidate answer field was authored."
+    },
+    {
+      "surface": "student_solution",
+      "gradeAllowed": false,
+      "status": "rejected_for_preserved_assessment",
+      "evidence": "Direct trig identities assess the excluded relationship. A geometric route uses permitted factorization, root, Pythagoras and definitions, but it still converts the known sine into cosine/tangent and their quotient. Individually allowed steps do not make this faithful target eligible."
+    },
+    {
+      "surface": "necessary_procedure",
+      "gradeAllowed": false,
+      "status": "rejected_for_preserved_ratio_transfer",
+      "evidence": "Any faithful target retains the information flow one known ratio -> reconstruct other same-angle ratios -> combine them (or algebraically equivalent side expression). Replacing the target with a side length removes that flow and changes the assessment. This is not a claim that elementary geometric calculations themselves are out of grade."
+    }
+  ],
+  "prerequisites": [
+    {
+      "standard": "9수02-12",
+      "allowedIndividualStep": true,
+      "unitOrderIndices": [
+        472,
+        473
+      ],
+      "step": "Recognize/expand (3x−2)²; solve the factorized real quadratic."
+    },
+    {
+      "standard": "9수02-13",
+      "allowedIndividualStep": true,
+      "unitOrderIndices": [
+        475
+      ],
+      "step": "Solve this elementary repeated-root quadratic. No Vieta or discriminant is required."
+    },
+    {
+      "standard": "9수01-07",
+      "allowedIndividualStep": true,
+      "unitOrderIndices": [
+        469
+      ],
+      "step": "Use positive square-root length when interpreting a right triangle."
+    },
+    {
+      "standard": "9수01-10",
+      "allowedIndividualStep": true,
+      "unitOrderIndices": [
+        471
+      ],
+      "step": "Elementary radical arithmetic; not a new grade exception."
+    },
+    {
+      "standard": "9수04-16",
+      "allowedIndividualStep": true,
+      "unitOrderIndices": [
+        463,
+        464
+      ],
+      "step": "Pythagoras for a missing leg, already placed at middle2 by actual project seed."
+    },
+    {
+      "standard": "9수04-13/14",
+      "allowedIndividualStep": true,
+      "unitOrderIndices": [],
+      "step": "Similar scaling of a right triangle makes opposite2/hypotenuse3 a representation of a ratio, not actual given side lengths; middle-band source verified."
+    },
+    {
+      "standard": "9수04-17",
+      "allowedIndividualStep": true,
+      "unitOrderIndices": [
+        481
+      ],
+      "step": "Define each individual trig ratio from a right triangle; read with separate no-relationship restriction."
+    }
+  ],
+  "representationCases": [
+    {
+      "case": "Keep equation->sin A and cos A÷tan A; add a drawn/scaled right triangle",
+      "faithfulAssessment": true,
+      "avoidsExcludedRelationship": false,
+      "eligibility": "rejected",
+      "reason": "Geometry changes the representation/route, not the one-ratio-to-other-ratios assessment."
+    },
+    {
+      "case": "Keep equivalent relation target but write it as adjacent²/(hypotenuse×opposite)",
+      "faithfulAssessment": true,
+      "avoidsExcludedRelationship": false,
+      "eligibility": "rejected",
+      "reason": "Algebraically disguising the same information dependency is not a curricular change."
+    },
+    {
+      "case": "Supply actual right-triangle side lengths and ask only for an unknown side, length, or single direct side-ratio value",
+      "faithfulAssessment": false,
+      "avoidsExcludedRelationship": "possible_if_rewritten_task_is_independently_in_scope",
+      "eligibility": "different_task_requires_separate_authorization_and_full_review",
+      "reason": "It removes the source's known-trig-ratio -> compound other-trig-ratio assessment. No candidate, exact wording, numerical twin, or figure was created."
+    }
+  ],
+  "faithfulGeometricRestatementAvoidingConflictEstablished": false,
+  "mathematicalExistenceAndPositiveRatiosChecked": true,
+  "supplementalMathIsGradePermission": false,
+  "originalAnswerAgreementUsed": false,
+  "actualUnitFamily": {
+    "unit": {
+      "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "grade": "중3",
+      "chapter": "5. 삼각비",
+      "section": "삼각비의 뜻",
+      "semester": 2,
+      "orderIndex": 481,
+      "problemCodePrefix": "J30501"
+    },
+    "family": {
+      "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "family_key": "mid:3-2|삼각비|03",
+      "live_count": 24
+    },
+    "observedRulePurpose": "One same-angle ratio -> a different same-angle ratio, using Pythagoras",
+    "exactCompoundQuotientInFamily03Rule": false,
+    "purposeRiskFor2015": true,
+    "inverseSupportIsBasisOfRejection": false,
+    "productClassificationIsCurricularPermission": false,
+    "noProductOrDbChange": true
+  },
+  "pending": {
+    "materialQ07CurriculumScopeUnknowns": [],
+    "generalPolicyCompletenessAdditionalHold": false,
+    "copyrightCustodyPublisherAuthorizationNativeProvenance": "not_adjudicated_and_retained_pending_or_blocked_by_parent",
+    "future2022Republication": "not_adjudicated; new exact target-grade/edition scope check required",
+    "newCandidateReview": "not_applicable; no q07 candidate authored or approved"
+  },
+  "reopeningCriteria": [
+    {
+      "condition": "Direct applicable official clarification or amendment addresses the exact retained assessment under the 2015 exclusion",
+      "requiredCheck": "Provide clause/page/record and effective date explicitly permitting one known same-angle sine value -> cosine/tangent compound quotient through definitions/Pythagoras, or changing/removing the relationship restriction. Recheck the actual entire proposed student method and seven surfaces; a standard title, school original, publisher exercise, live family or probability is insufficient."
+    },
+    {
+      "condition": "Target cohort/curriculum actually changes",
+      "requiredCheck": "Bind actual rollout and exact 2022 or later mathematical scope/restrictions to the target cohort, then independently review the full assessment. The 2027 rollout alone is not permission."
+    }
+  ],
+  "differentSideLengthTask": {
+    "canBeConsideredSeparately": true,
+    "reopensFaithfulQ07Twin": false,
+    "requirement": "Explicitly acknowledge changed assessment and authorize/review it as a distinct task; do not relabel it an allowed representation-only faithful twin."
+  },
+  "evidenceFiles": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/question-observation.json",
+      "sha256": "a8ba8438f5e0168ede412cbb537c24017b2537a4a0f7349cfd6c4ee037c44a84"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+      "sha256": "c01d053fee29d98087c6366a9ccb2136a15a12e5c0f6c0c2ef27d9be8bc755dc"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/rollout.json",
+      "sha256": "71bcf05922809772c13fbab3d2be29c5f58d5d3cb4098ee4024e625dba1597f1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/policy-application.json",
+      "sha256": "3c925e8d30e54ca9a4af41c5887a52ab3ea8080207e3e8e826b947e2e0605067"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/supplemental-math.json",
+      "sha256": "1a062bd8bcf3860be09e7190f29a0bba6f1fb4bc19e572c6d550fa632bc93fe7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/unit-family-evidence.json",
+      "sha256": "7205af605755602952c3b55b61f15c1c0215b0ddb127c416625311fe02ad8b24"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/citation-review.json",
+      "sha256": "40e933d35e81ee1a2c1e24a611560c51952a0c59eaf535402ca201206375253b"
+    }
+  ],
+  "preservation": {
+    "oldQ07Hold": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/CURRICULUM-HOLD-q07.md",
+      "sha256": "4a49ce137eea1fbc1cde99f9d1993e27ed6b5909ae4660aa5d6938e58c3ad371"
+    },
+    "oldHoldEdited": false,
+    "priorAnnotationsExposureDisclosed": true,
+    "blindOriginalAnswerReviewClaim": false
+  },
+  "actions": {
+    "sourceAuditRepeated": false,
+    "candidateAuthoring": false,
+    "inferenceApiCalls": 0,
+    "dbReads": 0,
+    "dbWrites": 0,
+    "productCodeEdits": 0,
+    "sourceWrites": 0,
+    "parentWrites": 0,
+    "installs": 0,
+    "pushes": 0,
+    "deploys": 0
+  }
+}
