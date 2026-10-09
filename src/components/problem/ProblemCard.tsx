@@ -16,6 +16,7 @@ import { solutionForDisplay } from "@/lib/solutionSteps";
 
 import { REVIEW_STATUS_LABEL } from "./labels";
 import { ProblemTransformPanel } from "./ProblemTransformPanelLazy";
+import { ProblemSourceReference } from "./ProblemSourceReference";
 
 /** 지면 서체·잉크색 변수. `.problemText` 가 이 변수를 읽는다 —
     정답·해설은 `.paperParity` 틀 밖이라 여기서 직접 얹어야 발문과 서체가 같아진다. */
@@ -226,6 +227,7 @@ export const ProblemCard = memo(function ProblemCard({
             {REVIEW_STATUS_LABEL[problem.reviewStatus]}
           </span>
         </span>
+        <ProblemSourceReference problem={problem} />
       </div>
 
       <div className="flex flex-1 flex-col overflow-x-auto p-6 print:block print:px-0">
