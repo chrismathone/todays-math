@@ -92,7 +92,7 @@ export function recoveryDraftIssues(candidate: RecoveryCandidate): string[] {
     // Some app paths repair this, but Markdown export can read it as one invalid formula.
     if (/(?<!\$)\$[^$\n]+\$\$[^$\n]+\$(?!\$)/.test(value))
       issues.push(`${field}: 인접한 인라인 수식 구분자`);
-    if (/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value))
+    if (/[\u0000-\u0009\u000b\u000c\u000e-\u001f]/.test(value))
       issues.push(`${field}: 제어문자`);
     for (const segment of tokenizeMath(value)) {
       if (segment.type === "text") {

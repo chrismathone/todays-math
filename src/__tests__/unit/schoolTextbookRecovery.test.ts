@@ -151,6 +151,23 @@ describe("교과서 복구 적용 경계", () => {
     }
     expect(recoveryDraftIssues(candidate)).toEqual([]);
   });
+  it.each(["content", "answer", "solution"] as const)(
+    "%s에서 JSON 역슬래시가 탭으로 변한 곱셈식을 거부한다",
+    (field) => {
+      const broken = JSON.parse(String.raw`"$8\times2=16$"`);
+      const draft = { ...candidate, [field]: broken };
+      expect(recoveryDraftIssues(draft)).toContain(`${field}: 제어문자`);
+      expect(() => prepareRecovery(before, draft, new Map())).toThrow(
+        "제어문자",
+      );
+      expect(
+        recoveryDraftIssues({
+          ...candidate,
+          [field]: String.raw`$8\times2=16$`,
+        }),
+      ).toEqual([]);
+    },
+  );
   it("그림을 재배치할 때 실제 치수·원본 폭·보기 연결을 함께 재배치한다", () => {
     const original = {
       ...before,
