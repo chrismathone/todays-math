@@ -1,0 +1,50 @@
+교과서 잠금 475문항 복구 결과 — 2026-10-09
+
+공유 DB 적용 완료
+  기존 문항 교정 394건: 원래 ID·문항 번호·단원·문항류·출처 연결 유지
+  독립 변형본 생성 79건: 원본 보존, originProblemId로 연결, pending
+  원문 유지 2건
+  미해결 0건
+  새 인라인 SVG 도형 11개
+
+출제 상태
+  원본 475건과 새 변형본 79건의 directUseAllowed=false 유지.
+  기존 출제 가능 교과서 문항 11,806건 유지.
+  사람의 검수 로그를 생성하거나 통과 판정을 대신하지 않았다.
+  scripts/import/textbook/hold-school-textbook.ts의 기존 직접 검수 규칙:
+  “사람이 검수 화면에서 «통과»를 준” 문항에만 --release-passed를 적용한다.
+  변형본은 교정 전 원본과 구분하여 새 문항 번호로 검수해야 한다.
+
+검증
+  475문항 전부 수식·보기·그림 연결 검사 통과.
+  실제 PaperProblemView 출력 HTML 475건: 수식 오류, 그림 표지 노출,
+  보기 연결 경고 0건. CSS 모듈은 이 DOM 검사에서 대체했으므로
+  전체 앱 화면이나 최종 PDF의 시각 검수를 대신하는 검사는 아니다.
+  비교 화면 1440px·390px에서 그림 514개 로드, 본문 가로 넘침 0건.
+  새 SVG 11개를 실제 렌더로 열어 확인.
+  기존 그림 222개의 CDN 응답 바이트를 로컬 SHA256과 대조: 모두 일치.
+  수정 전후 원본 475건의 ID·코드·출처 등 불변 메타데이터 차이 0건.
+  저장 후 교정본·변형본의 모든 적용 필드 불일치 0건.
+  관련 Vitest 3파일 37개 테스트, TypeScript 검사, 커밋 훅 검사 통과.
+  변형/그림 복구 106건과 추가 조건 모순 변형 1건은 별도 작업자가 재검토.
+  발견한 해설 통계량 불일치·잔여 그림 참조·수식 경계·보기 연결을 수정.
+
+자료
+  verification.json: 문항별 원본 코드/ID, 결과 코드/ID, 내용 지문과 검증 결과
+  before.json.gz: DB 적용 전 475건 전체 백업(해제 후 JSON)
+  scripts/import/textbook/recovery-20261009/: 최종 문안·정답·해설·그림과 검토 근거
+  scripts/import/textbook/recovery-20261009/peer-review-rewrites.json: 독립 검토 보고서
+  .qa-artifacts/textbook-recovery-packet/recovery.html: 검색 가능한 원본·수정본 비교 화면
+  .qa-artifacts/textbook-recovery-apply-20261009/: 계획, 저장 영수증, 저장 후 스냅샷
+
+재생성(저장소 루트에서 실행)
+  npx tsx scripts/import/textbook/recovery-review.ts --out .qa-artifacts/textbook-recovery-packet/recovery.html
+  npx tsx scripts/import/textbook/recover-held.ts
+  두 명령의 기본 동작은 로컬 문서 생성/검사이며 DB에 쓰지 않는다.
+  적용 도구는 원본 지문이 바뀌면 덮어쓰지 않고 충돌로 기록한다.
+  이미 적용된 건은 동일 내용 여부를 확인해 중복 생성하지 않는다.
+
+작업 방식
+  AGENTS.md의 Orca 작업트리 병렬 검토를 따랐다.
+  완료된 세 작업트리는 main에 병합한 뒤 제거했고 Git 브랜치는 보존했다.
+  사용한 협업 스킬: C:/Users/user/.agents/skills/orchestration/SKILL.md
