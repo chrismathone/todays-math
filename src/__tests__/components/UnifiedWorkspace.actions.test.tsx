@@ -8,6 +8,7 @@ import {
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import UnifiedWorkspace from "@/components/unified/UnifiedWorkspace";
+import type { StudioProblem } from "@/components/unified/types";
 import {
   createWorkspaceDraftStore,
   DRAFT_STORE_KEY,
@@ -34,18 +35,30 @@ vi.mock("@/components/unified/useDevAi", () => ({
 vi.mock("@/components/unified/DevAiStatusPanel", () => ({
   default: () => null,
 }));
-vi.mock("@/components/unified/BankView", () => ({
-  default: ({ onToggle }: { onToggle: (problem: object) => void }) => (
+vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
+  default: ({
+    editor,
+    onQuestionsChange,
+  }: {
+    editor: { selected: StudioProblem[] };
+    onQuestionsChange: (problems: StudioProblem[]) => void;
+  }) => (
     <>
       <h2>문제은행 열림</h2>
+      <output aria-label="시험지 구성 문항">
+        {editor.selected.map((item) => item.id).join(",")}
+      </output>
       <button
         onClick={() =>
-          onToggle({
-            id: "locked",
-            content: "출제 잠금",
-            eligible: false,
-            ineligibleReason: "출제가 잠긴 문항입니다.",
-          })
+          onQuestionsChange([
+            ...editor.selected,
+            {
+              id: "locked",
+              content: "출제 잠금",
+              eligible: false,
+              ineligibleReason: "출제가 잠긴 문항입니다.",
+            },
+          ])
         }
       >
         잠긴 문제 담기 검증
@@ -126,7 +139,7 @@ describe("workspace action wiring", () => {
     fireEvent.click(
       await screen.findByRole("button", { name: "잠긴 문제 담기 검증" }),
     );
-    expect(await screen.findByText("출제가 잠긴 문항입니다.")).toBeVisible();
+    expect(screen.getByLabelText("시험지 구성 문항")).toBeEmptyDOMElement();
     // 옆 메뉴에 «시험지 · 내보내기» 줄이 없다(원장님 2026-10-01) — 옆 «현재 시험지 · 편집 이어가기»로
     fireEvent.click(screen.getByRole("button", { name: /편집 이어가기/ }));
     expect(

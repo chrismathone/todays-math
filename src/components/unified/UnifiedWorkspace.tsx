@@ -67,7 +67,8 @@ const MathExamBuilder = dynamic(loadMathBuilder, {
     />
   ),
 });
-const StudioView = dynamic(() => import("./StudioView"), {
+const loadStudioView = () => import("./StudioView");
+const StudioView = dynamic(loadStudioView, {
   ssr: false,
   loading: () => (
     <WorkProgress
@@ -477,6 +478,13 @@ function UnifiedWorkspaceContent({
       (worksheetView || (product === "math" && view === "home")),
     branchId,
   );
+  // The editor still waits for a validated draft, but its code can load while
+  // restoration is in flight (also covers direct #bank / #studio entry).
+  useEffect(() => {
+    if (!navigationReady) return;
+    if (view === "bank") void loadMathBuilder().catch(() => {});
+    if (view === "studio") void loadStudioView().catch(() => {});
+  }, [navigationReady, view]);
   /**
    * `removed` — 이 시험지에서 뺀 문항과 그 자리. 어느 화면에서 뺐든(④·문제은행·작업실 목록) 여기 남는다.
    * 작업실이 받아 «담은 문항» 목록에 흐린 줄(«다시 담기»)로 남기고, 한꺼번에 담기가 건너뛴다
@@ -1056,6 +1064,8 @@ function UnifiedWorkspaceContent({
   }
   async function startNew(next: "bank" | "studio" | "export") {
     if (!can(next)) return;
+    if (next === "bank") void loadMathBuilder().catch(() => {});
+    if (next === "studio") void loadStudioView().catch(() => {});
     await prepareDrafts();
     if (!permissionsRef.current.has(next)) return;
     if (!(await createDraft())) return;
@@ -1394,17 +1404,25 @@ function UnifiedWorkspaceContent({
                 aria-current={view === item.id ? "page" : undefined}
                 className={view === item.id ? s.navActive : ""}
                 onPointerEnter={
-                  item.id === "bank"
+                  item.id === "bank" || item.id === "studio"
                     ? () => {
-                        void loadMathBuilder().catch(() => {});
+                        void (
+                          item.id === "bank"
+                            ? loadMathBuilder()
+                            : loadStudioView()
+                        ).catch(() => {});
                         void prepareDrafts();
                       }
                     : undefined
                 }
                 onFocus={
-                  item.id === "bank"
+                  item.id === "bank" || item.id === "studio"
                     ? () => {
-                        void loadMathBuilder().catch(() => {});
+                        void (
+                          item.id === "bank"
+                            ? loadMathBuilder()
+                            : loadStudioView()
+                        ).catch(() => {});
                         void prepareDrafts();
                       }
                     : undefined
