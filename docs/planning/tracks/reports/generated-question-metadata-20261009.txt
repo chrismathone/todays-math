@@ -1,0 +1,62 @@
+Generated question metadata strengthening — 2026-10-09
+
+Behavior
+- Engine import plans can explicitly map an exact generated externalId to an
+  original originProblemId. The generated row keeps its engine family, seeded
+  identity, unit, difficulty, question type and solution. Original school/exam
+  membership is not copied onto a newly authored question.
+- New engine rows with an explicit original enter pending review with
+  directUseAllowed=false. Existing approved rows remain approved on a matching
+  rerun. Missing, private, mismatched or conflicting originals fail preflight.
+- API list, detail, bank preview/selection, review and AI adoption responses can
+  include a read-only sourceReference with the recorded original's code, source,
+  school, exam year/semester/round/number and textbook publisher/author/material.
+  An absent or inaccessible recorded origin remains unknown; matching a family
+  or unit never creates attribution. No schema migration was needed.
+- Legacy Problem.examId does not always equal normalized Exam.externalExamId.
+  The resolver uses the explicit ExamQuestion.problemId association first and
+  refuses to select an arbitrary exam when several ambiguous links exist.
+- Source lookup is batched per page/selection. Unlinked questions add no source
+  query; the card/detail components add no network requests. Legacy origin
+  chains are bounded to eight reads and cycles are rejected.
+- Teacher problem cards and bank detail display the supplied original source.
+  Example: 기출 변형 · 정화중 2025년 2학기 중간 2번 기반.
+  Legacy workbook originals remain labeled 문제집, distinct from 교과서.
+  The additional source paragraph is hidden in printed output.
+- AI adoption now records AI solution provenance and engine-rendered figure
+  provenance when those artifacts exist. Original-reference resolution occurs
+  before insertion so a failed metadata read cannot encourage duplicate retries.
+
+Evidence
+- Final merged Vitest run: 15 files, 291 tests passed. Includes loader preflight,
+  persistence/readback, metadata batching, access boundaries, ambiguous exam
+  references, adoption/API integration and teacher card/detail regressions.
+- Final merged TypeScript check (tsc --noEmit, 8 GB heap) passed after client
+  regeneration. git diff --check passed.
+- Read-only live probe: all 84 currently linked rows resolved their original
+  source (79 school_textbook and 5 ai_generated origins). The normalized-exam
+  case above was separately confirmed through its explicit question link.
+  This is not a backfill or a complete audit of all unlinked historical rows.
+- Browser fixture harness using the actual card/detail components: 320, 390 and
+  1280 px, no document/source overflow, no page errors or added API calls, and
+  print hiding verified. This was not an authenticated production end-to-end run.
+  Evidence: .qa-artifacts/generated-source-display-20261009/.
+- Engine plan instructions and its 71-test sub-suite are documented in
+  engine-source-provenance-20261009.txt alongside this report.
+
+Integration and environment
+- Engine implementation 48c4f30c0 and UI implementation cfd90ad5e were merged
+  into local main through c54c51792 and 33c4e0844, respectively. API commits are
+  5bdd9adaa and 136386f6b. Finished worker branches were preserved; their clean,
+  merged worktrees were removed and their worker terminals released.
+- Orca cleanup of the first worktree traversed its node_modules junction and
+  removed main's dependencies. npm ci restored the exact lockfile and prisma
+  generate restored the generated client. The first checks after npm ci failed
+  only because that generated client was still missing; the final test run above
+  is after regeneration. Sources, lockfile and prior recovery evidence survived.
+  The remaining worktree junction was unlinked without recursion before removal;
+  main dependencies were verified intact afterward.
+- No shared database writes, historical provenance backfill, schema migration,
+  push or deployment were performed for this metadata task. New engine source
+  links require explicit plan mappings; unit/family similarity alone is not proof
+  that a generated question was derived from a particular original.
