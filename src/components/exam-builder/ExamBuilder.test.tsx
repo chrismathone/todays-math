@@ -111,6 +111,10 @@ describe("shared exam builder workflow", () => {
   it("keeps a long scope catalog paged, cancels safely and composes only selected scopes", async () => {
     const adapter = source();
     render(<Harness adapter={adapter} />);
+    expect(screen.getByRole("button", { name: "1 범위 설정" })).toHaveAttribute(
+      "aria-current",
+      "step",
+    );
     expect(screen.getByRole("button", { name: "2 문항 검토" })).toBeDisabled();
     await waitFor(() =>
       expect(screen.getByRole("button", { name: "범위 선택" })).toBeEnabled(),
@@ -140,6 +144,26 @@ describe("shared exam builder workflow", () => {
       expect.any(AbortSignal),
     );
     expect(screen.getByText(/요청한 5문항 중 3문항/)).toBeInTheDocument();
+  });
+  it("starts at scope with restored questions and keeps them when continuing review", async () => {
+    const adapter = source();
+    render(<Harness adapter={adapter} initial={questions} />);
+    expect(screen.getByRole("button", { name: "1 범위 설정" })).toHaveAttribute(
+      "aria-current",
+      "step",
+    );
+    expect(
+      screen.getByRole("button", { name: "2 문항 검토" }),
+    ).not.toHaveAttribute("aria-current");
+    await screen.findByRole("button", { name: "범위 변경" });
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
+    expect(adapter.compose).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
+    expect(screen.getByRole("button", { name: "2 문항 검토" })).toHaveAttribute(
+      "aria-current",
+      "step",
+    );
+    expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
   });
   it("moves, deletes, undoes and keeps edits across output and scope navigation", async () => {
     render(<Harness adapter={source()} initial={questions} />);

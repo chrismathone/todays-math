@@ -31,9 +31,9 @@ export default function ExamBuilder<T>({
   status,
 }: ExamBuilderProps<T>) {
   const uid = useId();
-  const [step, setStep] = useState<ExamBuilderStep>(
-    questions.length ? "review" : "scope",
-  );
+  // Restored questions belong to the shared draft; they do not mean that this
+  // visit has already completed scope selection. Keep them while starting here.
+  const [step, setStep] = useState<ExamBuilderStep>("scope");
   const [loaded, setLoaded] = useState<{
     source: typeof source;
     scopes: ExamScope[];
