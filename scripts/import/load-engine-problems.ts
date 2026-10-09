@@ -81,6 +81,16 @@ import { deadBackslashHits } from "../qa/probe-middle-raw-latex";
 // 「그림이 없는데 발문이 가리키나」도 마찬가지다 — 규칙은 `figurelessRow` 한 곳이고
 // 잠그는 쪽(`scripts/qa/lockFigurelessLoadedRows.ts`)이 **같은 함수**를 부른다.
 import { figurelessPointer } from "../../src/lib/engine/figurelessRow";
+import {
+  assertSourceReferencesRetained,
+  engineProvenanceSelect,
+  engineSourceReviewState,
+  matchesEngineImportReadback,
+  parseEngineSourceReferences,
+  resolveEngineSourceReferences,
+  type EngineSourceReference,
+  type ExpectedEngineImport,
+} from "./engine-source-references";
 
 // 관리용 스크립트는 **자기 클라이언트**를 쓴다 — `src/lib/db` 의 바깥벽 확장은
 // 읽기를 `pool='shared'` 로 좁혀서, 「내가 넣은 행이 정말 shared 인가」를 물을 때
@@ -161,6 +171,8 @@ type Plan = {
   label: string;
   seedBase?: number;
   targets: Target[];
+  /** Explicit original IDs only; a unit/family match never assigns a source. */
+  sourceReferences?: EngineSourceReference[];
 };
 
 type Row = {
@@ -591,6 +603,8 @@ type LedgerRow = {
   problemId: string;
   origin: string;
   unitKey: string;
+  /** Optional for compatibility with historical ledgers. */
+  originProblemId?: string;
 };
 type Ledger = {
   runs: { label: string; at: string; count: number }[];
@@ -622,7 +636,16 @@ function arg(name: string): string | undefined {
   return i >= 0 ? process.argv[i + 1] : undefined;
 }
 
-async function apply(planFile: string, doApply: boolean) {
+type EngineImportClient = {
+  unit: Pick<PrismaClient["unit"], "findMany">;
+  problem: Pick<PrismaClient["problem"], "findMany" | "create">;
+};
+
+export async function applyEnginePlan(
+  planFile: string,
+  doApply: boolean,
+  client: EngineImportClient = prisma,
+) {
   const plan = JSON.parse(readFileSync(planFile, "utf-8")) as Plan;
   const seedBase = plan.seedBase ?? 20260825;
   const ledgerFile = path.join(
@@ -651,6 +674,11 @@ async function apply(planFile: string, doApply: boolean) {
     rows.push(...made);
   }
   console.log(`\n생성 ${rows.length}문항`);
+  // Validate against the complete generation result, before either deduper.
+  const sourceReferences = parseEngineSourceReferences(
+    plan.sourceReferences,
+    rows,
+  );
 
   // ── 🔴 **같은 문항이 다른 번호를 받는 것**을 여기서 막는다 ────────────────────
   // 원장님 2026-08-25: 「같은 문제가 사실상 생성되었는데 문제번호가 다름」.
@@ -687,6 +715,10 @@ async function apply(planFile: string, doApply: boolean) {
     (d) => `${d.stem.origin} ← ${d.against} 과 같음`,
   );
   const unique = run.kept;
+  assertSourceReferencesRetained(
+    sourceReferences,
+    unique.map((r) => r.externalId),
+  );
   const droppedRows = rows.length - unique.length;
   if (dropped.length > 0) {
     console.log(
@@ -740,7 +772,7 @@ async function apply(planFile: string, doApply: boolean) {
   }
 
   // 단원 연결 — 못 찾은 것은 **세어서 찍는다**. 조용히 빼면 「전부 넣었다」로 읽힌다.
-  const units = await prisma.unit.findMany({
+  const units = await client.unit.findMany({
     select: { id: true, grade: true, chapter: true, section: true },
   });
   const byElem = new Map(
@@ -764,15 +796,28 @@ async function apply(planFile: string, doApply: boolean) {
     throw new Error("단원 연결이 새면 적재하지 않는다 — 이름부터 맞춰라");
   }
 
-  // 이미 들어간 것은 건너뛴다 (멱등).
-  const existing = new Set(
-    (
-      await prisma.problem.findMany({
-        where: { externalId: { in: ready.map((r) => r.externalId) } },
-        select: { externalId: true },
-      })
-    ).map((p) => p.externalId!),
+  // Existing IDs are immutable: a requested source must already match exactly.
+  const existingRows = await client.problem.findMany({
+    where: { externalId: { in: ready.map((r) => r.externalId) } },
+    select: engineProvenanceSelect,
+  });
+  await resolveEngineSourceReferences(
+    sourceReferences,
+    ready,
+    existingRows,
+    (ids) =>
+      client.problem.findMany({
+        where: { id: { in: ids } },
+        select: {
+          id: true,
+          unitId: true,
+          source: true,
+          originProblemId: true,
+          pool: true,
+        },
+      }),
   );
+  const existing = new Set(existingRows.map((p) => p.externalId!));
   const fresh = ready.filter((r) => !existing.has(r.externalId));
   console.log(
     `단원 연결 ${ready.length} · 이미 있음 ${existing.size} · **넣을 것 ${fresh.length}**`,
@@ -863,7 +908,7 @@ async function apply(planFile: string, doApply: boolean) {
   //    세어 찍는다** — 뒤엣것이 이번 고침으로 되살아나는 몫이고, 조용하면
   //    다음 사람이 「원래 그만큼이었다」고 읽는다.
   const families = [...new Set(fresh.map((r) => r.familyKey))];
-  const already = await prisma.problem.findMany({
+  const already = await client.problem.findMany({
     where: { familyKey: { in: families } },
     select: {
       familyKey: true,
@@ -919,6 +964,10 @@ async function apply(planFile: string, doApply: boolean) {
     if (seenInDbNoFig.has(`${norm(stem.content)}||${norm(stem.answer)}`))
       rescuedByFigure += 1;
   const kept = dbRun.kept;
+  assertSourceReferencesRetained(sourceReferences, [
+    ...existing,
+    ...kept.map((r) => r.externalId),
+  ]);
   if (kept.length !== beforeDbDedupe)
     console.log(
       `   DB 중복 ${beforeDbDedupe - kept.length}건을 뺐다 · 남은 것 ${kept.length}`,
@@ -984,6 +1033,15 @@ async function apply(planFile: string, doApply: boolean) {
     throw new Error(
       "엔진 소스에서 `String.raw` 를 쓰거나 `\\\\angle` 로 적은 뒤 다시 돌려라. " +
         "여기서 넣으면 **엔진을 고쳐도 이 행은 안 고쳐진다.**",
+    );
+  }
+
+  for (const [externalId, originProblemId] of sourceReferences) {
+    console.log(
+      `   출처 참조 ${externalId} → ${originProblemId} · ` +
+        (existing.has(externalId)
+          ? "이미 있음 (출처 일치 · 변경 없음)"
+          : "새 문항 pending · directUseAllowed=false (사람 검토 필요)"),
     );
   }
 
@@ -1054,7 +1112,7 @@ async function apply(planFile: string, doApply: boolean) {
   let lockedFigureless = 0;
   const lockedSamples: string[] = [];
   /** 넣기를 **요청한** 값. 되읽기는 「전부 참인가」가 아니라 이것과 견준다. */
-  const wantDirect = new Map<string, boolean>();
+  const expected = new Map<string, ExpectedEngineImport>();
 
   for (const r of fresh) {
     const svg = svgs.get(r.externalId) ?? null;
@@ -1065,12 +1123,14 @@ async function apply(planFile: string, doApply: boolean) {
       if (lockedSamples.length < 3)
         lockedSamples.push(`${r.externalId} — 「${pointer}」`);
     }
-    // exam-wiring: 기출아님 — 우리 엔진이 낸 **자작** 문항이다(`source=manual`).
-    // 원본 시험지가 아예 없으므로 `Exam` 을 세울 것도, 되돌릴 링크도 없다.
-    const made = await prisma.problem.create({
+    // Referencing an original does not make this synthetic row an exam/book item.
+    const originProblemId = sourceReferences.get(r.externalId) ?? null;
+    const review = engineSourceReviewState(originProblemId, figureless);
+    const made = await client.problem.create({
       data: {
         unitId: r.unitId,
         source: "manual", // 자작 — 우리 엔진이 낸 결정론적 문항이다 (AI 아님)
+        originProblemId,
         difficulty: r.difficulty,
         problemType: r.problemType,
         questionType: r.questionType,
@@ -1083,19 +1143,25 @@ async function apply(planFile: string, doApply: boolean) {
         // 문항류 (D-105) — 트리거가 이 값으로 `J30103-A01-001` 의 `A01` 자리와
         // 아류 번호를 정한다. 비워 두면 문항마다 혼자 한 무리가 된다.
         familyKey: r.familyKey,
-        reviewStatus: "approved",
-        directUseAllowed: !figureless,
+        ...review,
         pool: "shared",
         solutionSource: "none",
       },
       select: { id: true },
     });
-    wantDirect.set(made.id, !figureless);
+    expected.set(made.id, {
+      externalId: r.externalId,
+      unitId: r.unitId,
+      familyKey: r.familyKey,
+      originProblemId,
+      ...review,
+    });
     created.push({
       externalId: r.externalId,
       problemId: made.id,
       origin: r.origin,
       unitKey: r.unitKey,
+      ...(originProblemId ? { originProblemId } : {}),
     });
     if (created.length % FLUSH_EVERY === 0) flush();
   }
@@ -1104,23 +1170,20 @@ async function apply(planFile: string, doApply: boolean) {
   console.log(`적재 ${created.length}건 · 원장 ${ledgerFile}`);
 
   // 🔴 **믿지 않고 잰다** — 넣은 값 그대로인가. 트리거가 뒤집으면 여기서 잡힌다.
-  const back = await prisma.problem.findMany({
+  const back = await client.problem.findMany({
     where: { id: { in: created.map((c) => c.problemId) } },
     select: {
+      ...engineProvenanceSelect,
       id: true,
       pool: true,
       reviewStatus: true,
       directUseAllowed: true,
     },
   });
-  const bad = back.filter(
-    (p) =>
-      p.pool !== "shared" ||
-      p.reviewStatus !== "approved" ||
-      // ⚠️ 「전부 참인가」가 아니라 **요청한 값과 같은가**를 본다. 전자로 두면 위
-      //    그림 가드가 잠근 행이 여기서 «바깥벽이 물었다»로 오진된다.
-      p.directUseAllowed !== wantDirect.get(p.id),
-  );
+  const bad = back.filter((p) => {
+    const wanted = expected.get(p.id);
+    return !wanted || !matchesEngineImportReadback(p, wanted);
+  });
   if (back.length !== created.length)
     throw new Error(`되읽은 행이 ${back.length}/${created.length} 다 — 멈춘다`);
   if (bad.length > 0) {
@@ -1132,9 +1195,10 @@ async function apply(planFile: string, doApply: boolean) {
     return;
   }
   const allowed = back.filter((p) => p.directUseAllowed).length;
+  const pending = back.filter((p) => p.reviewStatus === "pending").length;
   console.log(
-    `✅ ${back.length}건 전부 shared · approved · 요청한 출제허용 그대로 — 앱이 볼 수 있다` +
-      ` (출제허용 ${allowed})`,
+    `✅ ${back.length}건 전부 shared · 요청한 출처/엔진 식별자/검토 상태 그대로` +
+      ` (approved ${back.length - pending} · pending ${pending} · 출제허용 ${allowed})`,
   );
   // 🔴 **말없는 상한을 만들지 않는다** — 잠근 것이 있으면 반드시 찍는다.
   if (lockedFigureless > 0) {
@@ -1192,7 +1256,8 @@ async function main() {
   const planFile = arg("--plan");
   const revertFile = arg("--revert");
   if (revertFile) await revert(revertFile);
-  else if (planFile) await apply(planFile, process.argv.includes("--apply"));
+  else if (planFile)
+    await applyEnginePlan(planFile, process.argv.includes("--apply"));
   else {
     console.log("--plan <계획.json> 또는 --revert <원장.json> 이 필요하다");
     process.exitCode = 1;
