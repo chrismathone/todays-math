@@ -41,10 +41,11 @@ export default function ExamBuilder<T>({
   }>();
   const [retry, setRetry] = useState(0);
   const scopes = useMemo(
-    () => (loaded?.source === source ? loaded.scopes : []),
+    () =>
+      loaded?.source === source ? loaded.scopes : (source.initialScopes ?? []),
     [loaded, source],
   );
-  const scopeLoading = loaded?.source !== source;
+  const scopeLoading = loaded?.source !== source && !source.initialScopes;
   const [allocations, setAllocations] = useState<ExamAllocation[]>(() => {
     const counts = new Map<string, number>();
     questions.forEach((item) => {

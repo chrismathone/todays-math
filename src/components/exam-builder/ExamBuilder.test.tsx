@@ -165,6 +165,30 @@ describe("shared exam builder workflow", () => {
     );
     expect(screen.getByLabelText("문항 순서")).toHaveTextContent("a,b,c");
   });
+  it("shows provided scopes before the asynchronous refresh settles", () => {
+    const pendingRefresh = () => new Promise<never>(() => {});
+    const baseline = source({ loadScopes: vi.fn(pendingRefresh) });
+    const before = render(<Harness adapter={baseline} initial={questions} />);
+    expect(
+      screen.getByText("출제 범위를 불러오는 중입니다…"),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "범위 변경" })).toBeDisabled();
+    before.unmount();
+
+    const adapter = source({
+      initialScopes: scopes,
+      loadScopes: vi.fn(pendingRefresh),
+    });
+    render(<Harness adapter={adapter} initial={questions} />);
+
+    expect(
+      screen.queryByText("출제 범위를 불러오는 중입니다…"),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "범위 변경" })).toBeEnabled();
+    expect(screen.getAllByText("범위 1").length).toBeGreaterThan(0);
+    fireEvent.click(screen.getByRole("button", { name: "범위 변경" }));
+    expect(screen.getByRole("dialog")).toBeInTheDocument();
+  });
   it("moves, deletes, undoes and keeps edits across output and scope navigation", async () => {
     render(<Harness adapter={source()} initial={questions} />);
     await screen.findByRole("button", { name: "범위 변경" });

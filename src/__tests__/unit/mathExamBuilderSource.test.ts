@@ -46,6 +46,12 @@ describe("Math exam builder source", () => {
       initialUnits: MOCK_UNITS,
       fetch: fetcher,
     });
+    expect(source.initialScopes?.[0]).toEqual({
+      id: unit.id,
+      group: unit.grade,
+      label: unit.section,
+      detail: unit.chapter,
+    });
     const scopes = await source.loadScopes(signal);
     expect(fetcher).not.toHaveBeenCalled();
     expect(scopes[0]).toEqual({
