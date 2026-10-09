@@ -8,6 +8,7 @@ import { deriveQuestionType } from "@/lib/ai/questionType";
 import { tokenizeMath } from "@/lib/math/segments";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
 import { figureSvgViewBox } from "@/lib/figure/figureSvgFrame";
+import { checkPaperRender } from "@/lib/testchanger/mathRenderQa";
 import {
   choiceIndexOf,
   countMarkers,
@@ -85,6 +86,11 @@ export function recoveryDraftIssues(candidate: RecoveryCandidate): string[] {
     issues.push("검증 근거가 없다");
   for (const field of ["content", "answer", "solution"] as const) {
     const value = candidate[field] ?? "";
+    const paper = checkPaperRender(value);
+    if (!paper.safe) issues.push(`${field}: 운영 지면 ${paper.why.join(", ")}`);
+    // Some app paths repair this, but Markdown export can read it as one invalid formula.
+    if (/(?<!\$)\$[^$\n]+\$\$[^$\n]+\$(?!\$)/.test(value))
+      issues.push(`${field}: 인접한 인라인 수식 구분자`);
     if (/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(value))
       issues.push(`${field}: 제어문자`);
     for (const segment of tokenizeMath(value)) {

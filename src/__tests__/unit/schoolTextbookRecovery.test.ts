@@ -143,6 +143,7 @@ describe("교과서 복구 적용 경계", () => {
       "$\\frac{}{2}$",
       "두 직선이 \\parallel 이다",
       "$\\badcommand{x}$",
+      "$x$$y$",
     ]) {
       expect(
         recoveryDraftIssues({ ...candidate, content }).length,
