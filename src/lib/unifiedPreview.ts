@@ -247,23 +247,24 @@ export function toBankProblem({
   };
 }
 
-/** Read-only shared-bank inspection. Issuance eligibility remains a separate rule. */
-export async function loadUnifiedBank(
-  params = new URLSearchParams(),
-): Promise<BankData> {
-  const {
+export type UnifiedBankBootstrap = Pick<
+  BankData,
+  "total" | "grades" | "chapters" | "units"
+>;
+
+async function loadUnifiedBankMetadata(
+  {
     where,
-    format,
     visibility,
     grade,
     semester,
-    requestedPage,
-    pageSize,
-  } = await resolveUnifiedBankQuery(params);
-  const orderBy = PROBLEM_BANK_ORDER_BY;
-  const formatIds = await findProblemIdsByFormat(format, where, orderBy);
+  }: Awaited<ReturnType<typeof resolveUnifiedBankQuery>>,
+  totalOverride?: number,
+): Promise<UnifiedBankBootstrap> {
   const [total, units] = await Promise.all([
-    formatIds === null ? db.problem.count({ where }) : formatIds.length,
+    totalOverride === undefined
+      ? db.problem.count({ where })
+      : Promise.resolve(totalOverride),
     db.unit.findMany({
       select: {
         id: true,
@@ -277,29 +278,6 @@ export async function loadUnifiedBank(
       orderBy: { orderIndex: "asc" },
     }),
   ]);
-  const page = Math.min(
-    requestedPage,
-    Math.max(1, Math.ceil(total / pageSize)),
-  );
-  const rows = await db.problem.findMany({
-    where:
-      formatIds === null
-        ? where
-        : {
-            AND: [
-              where,
-              {
-                id: {
-                  in: formatIds.slice((page - 1) * pageSize, page * pageSize),
-                },
-              },
-            ],
-          },
-    ...(formatIds === null ? { skip: (page - 1) * pageSize } : {}),
-    take: pageSize,
-    orderBy,
-    select: UNIFIED_PROBLEM_SELECT,
-  });
   const counts = new Map<string, number>();
   for (const unit of units)
     counts.set(
@@ -307,11 +285,7 @@ export async function loadUnifiedBank(
       (counts.get(unit.grade) ?? 0) + unit._count.problems,
     );
   return {
-    problems: (await withProblemSourceReferences(rows)).map(toBankProblem),
     total,
-    page,
-    pageSize,
-    // 학기 칸은 단원 목록을 좁히는 데만 쓰고 싣지 않는다 — 범위 고르개가 받는 꼴은 `UnitEntity` 그대로다.
     units: units.map(({ id, grade, chapter, section, orderIndex }) => ({
       id,
       grade,
@@ -334,5 +308,68 @@ export async function loadUnifiedBank(
           .map((unit) => unit.chapter),
       ),
     ],
+  };
+}
+
+/** Metadata for the authenticated workspace shell; intentionally omits problem payloads. */
+export async function loadUnifiedBankBootstrap(): Promise<UnifiedBankBootstrap> {
+  return loadUnifiedBankMetadata(await resolveUnifiedBankQuery());
+}
+
+/** Read-only shared-bank inspection. Issuance eligibility remains a separate rule. */
+export async function loadUnifiedBank(
+  params = new URLSearchParams(),
+): Promise<BankData> {
+  const {
+    where,
+    format,
+    visibility,
+    grade,
+    semester,
+    requestedPage,
+    pageSize,
+  } = await resolveUnifiedBankQuery(params);
+  const orderBy = PROBLEM_BANK_ORDER_BY;
+  const formatIds = await findProblemIdsByFormat(format, where, orderBy);
+  const metadata = await loadUnifiedBankMetadata(
+    {
+      where,
+      format,
+      visibility,
+      grade,
+      semester,
+      requestedPage,
+      pageSize,
+    },
+    formatIds === null ? undefined : formatIds.length,
+  );
+  const page = Math.min(
+    requestedPage,
+    Math.max(1, Math.ceil(metadata.total / pageSize)),
+  );
+  const rows = await db.problem.findMany({
+    where:
+      formatIds === null
+        ? where
+        : {
+            AND: [
+              where,
+              {
+                id: {
+                  in: formatIds.slice((page - 1) * pageSize, page * pageSize),
+                },
+              },
+            ],
+          },
+    ...(formatIds === null ? { skip: (page - 1) * pageSize } : {}),
+    take: pageSize,
+    orderBy,
+    select: UNIFIED_PROBLEM_SELECT,
+  });
+  return {
+    problems: (await withProblemSourceReferences(rows)).map(toBankProblem),
+    page,
+    pageSize,
+    ...metadata,
   };
 }

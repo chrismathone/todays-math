@@ -1,6 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { db } from "@/lib/db";
-import { loadUnifiedBank, UnifiedBankQueryError } from "@/lib/unifiedPreview";
+import {
+  loadUnifiedBank,
+  loadUnifiedBankBootstrap,
+  UnifiedBankQueryError,
+} from "@/lib/unifiedPreview";
 import { GET } from "@/app/api/dev/unified/problems/route";
 import { MOCK_UNITS, USER_TEACHER_ID } from "@/mocks/data";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
@@ -103,6 +107,37 @@ const tierCounts = (counts: Partial<DifficultyRatio> = {}): DifficultyRatio =>
   ) as DifficultyRatio;
 
 describe("Math exam builder scoped bank access", () => {
+  it("bootstraps curriculum and counts without loading rows, then pages actual candidates", async () => {
+    const candidate = await plant();
+    const problemRows = vi.mocked(db.problem.findMany);
+    problemRows.mockClear();
+
+    const bootstrap = await loadUnifiedBankBootstrap();
+    expect(problemRows).not.toHaveBeenCalled();
+    expect(bootstrap.total).toBeGreaterThan(0);
+    const selectedGrade = bootstrap.grades.find(
+      ({ grade }) => grade === MOCK_UNITS[0].grade,
+    );
+    expect(selectedGrade?.count).toBeGreaterThan(0);
+    expect(bootstrap.chapters).toContain(MOCK_UNITS[0].chapter);
+    expect(bootstrap.units?.[0]).toEqual(
+      expect.objectContaining({
+        id: MOCK_UNITS[0].id,
+        grade: MOCK_UNITS[0].grade,
+        chapter: MOCK_UNITS[0].chapter,
+        section: MOCK_UNITS[0].section,
+      }),
+    );
+
+    const candidates = await loadUnifiedBank(query({ pageSize: "12" }));
+    expect(problemRows).toHaveBeenCalledOnce();
+    expect(problemRows.mock.calls[0][0]).toMatchObject({ take: 12 });
+    expect(candidates.problems.map(({ id }) => id)).toContain(candidate.id);
+    expect(candidates.units).toEqual(bootstrap.units);
+    expect(candidates.grades).toEqual(bootstrap.grades);
+    expect(candidates.chapters).toEqual(bootstrap.chapters);
+  });
+
   it("counts and pages exact disjoint scopes after exclusions and difficulty filtering", async () => {
     const units = [MOCK_UNITS[0], MOCK_UNITS[2]];
     const matching = await Promise.all(
