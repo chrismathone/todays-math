@@ -463,6 +463,67 @@ describe("cloud extraction sessions", () => {
       ),
     ).not.toContain("blob:");
   });
+  it("starts original and crop asset restoration in parallel within the client transfer limit", async () => {
+    const server = privateServer();
+    const writer = new PrivateStudioSessionStore(
+      "owner-a",
+      undefined,
+      undefined,
+      new PrivateCloudClient("owner-a", server.transport),
+      memoryRecovery(),
+    );
+    await writer.load();
+    const crop = {
+      id: "crop",
+      sourceId: "source1",
+      sourceLabel: "원본",
+      page: 1,
+      rect: { x: 0, y: 0, width: 1, height: 1 },
+      image: "data:image/png;base64,aGVsbG8=",
+      content: "문제",
+      answer: "1",
+      solution: "",
+      level: "secondary" as const,
+      grade: "중1",
+      mode: "image" as const,
+      added: false,
+    };
+    await writer.save(
+      { ...sessionData(), crops: [crop] },
+      new Map([["source1", new Blob(["PDF"], { type: "application/pdf" })]]),
+    );
+
+    let assetFetches = 0;
+    let bothStarted!: () => void;
+    const started = new Promise<void>((resolve) => {
+      bothStarted = resolve;
+    });
+    let release!: () => void;
+    const gate = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    const transport: typeof fetch = async (input, init) => {
+      if (String(input).includes("/api/library/assets/") && !init?.method) {
+        if (++assetFetches === 2) bothStarted();
+        await gate;
+      }
+      return server.transport(input, init);
+    };
+    const reader = new PrivateStudioSessionStore(
+      "owner-a",
+      writer.documentId,
+      undefined,
+      new PrivateCloudClient("owner-a", transport),
+      memoryRecovery(),
+    );
+    const loading = reader.load();
+    await started;
+    expect(assetFetches).toBe(2);
+    release();
+    const restored = await loading;
+    expect(await restored!.originals.get("source1")!.text()).toBe("PDF");
+    expect(restored!.data.crops[0].image).toMatch(/^blob:/);
+  });
   it("retains each session after start over and reopens originals by stable ID on another device", async () => {
     const server = privateServer();
     const client = () => new PrivateCloudClient("owner-a", server.transport);
