@@ -43,7 +43,9 @@ export function createMathExamBuilderSource(
       };
     });
   }
-  if (options.initialUnits) toScopes(options.initialUnits);
+  const initialScopes = options.initialUnits
+    ? toScopes(options.initialUnits)
+    : undefined;
 
   async function request<T>(
     url: string,
@@ -73,6 +75,7 @@ export function createMathExamBuilderSource(
   }
 
   return {
+    ...(initialScopes ? { initialScopes } : {}),
     async loadScopes(signal) {
       if (options.initialUnits) return toScopes(options.initialUnits);
       // The bank already returns the full ordered curriculum. Only one question
