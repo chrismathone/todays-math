@@ -1,0 +1,1722 @@
+{
+  "version": 1,
+  "batch": "peer-review-rewrites",
+  "status": "complete",
+  "source": {
+    "path": "C:/Users/user/orca/workspaces/testautocreator/textbook-repair-rewrites/scripts/import/textbook/recovery-20261009/rewrites.json",
+    "sha256": "4fa53acfb551d4e86a0d134560964292ff0845673d39905a455418045684fd0e",
+    "initialSnapshotSha256": "c183f3e32a1bc4bab02213c3456e73b0c13dff3b509a8d83dfa612b74ca9dad3",
+    "entryCount": 106,
+    "matchesMergedMain": true,
+    "candidateCommit": "14a406ab5"
+  },
+  "reviewedCodes": [
+    "HAL0206-A03-001",
+    "HAL0208-A10-001",
+    "HC10111-A05-001",
+    "HC10112-A09-001",
+    "HC10202-A08-001",
+    "HC10226-A06-001",
+    "HC10301-A14-001",
+    "HC10301-A46-001",
+    "HC10301-A61-001",
+    "HC10302-A16-001",
+    "HC10302-A18-001",
+    "HC10303-A09-001",
+    "HC10402-A19-001",
+    "HC10402-A20-001",
+    "HC10402-A21-001",
+    "HC10403-A02-001",
+    "HC10403-A15-001",
+    "HC20209-A08-001",
+    "HC20309-A03-001",
+    "HC20311-A04-001",
+    "HC20312-A03-001",
+    "HGE0303-A07-001",
+    "HGE0304-A18-001",
+    "HM10101-A15-001",
+    "HM10105-A32-001",
+    "HM10105-A44-001",
+    "HM10206-A08-001",
+    "HPS0101-A27-001",
+    "HPS0202-A15-001",
+    "HPS0203-A26-001",
+    "HPS0304-A30-001",
+    "J10102-A90-001",
+    "J10202-B14-001",
+    "J10202-B31-001",
+    "J10203-C67-001",
+    "J10203-D26-001",
+    "J10205-C06-001",
+    "J10205-C11-001",
+    "J10301-D27-001",
+    "J10303-B58-001",
+    "J10305-A31-001",
+    "J10308-A29-001",
+    "J10401-A75-001",
+    "J10401-A76-001",
+    "J10401-A77-001",
+    "J10401-A98-001",
+    "J10403-A71-001",
+    "J10403-A74-001",
+    "J10403-A75-001",
+    "J10404-B86-001",
+    "J10404-C33-001",
+    "J10404-C67-001",
+    "J10404-C78-001",
+    "J10501-A26-001",
+    "J10505-A20-001",
+    "J10505-A22-001",
+    "J10505-B11-001",
+    "J10506-A55-001",
+    "J10506-A84-001",
+    "J10506-A85-001",
+    "J10506-A86-001",
+    "J10507-A22-001",
+    "J10507-A83-001",
+    "J10605-A33-001",
+    "J10605-B26-001",
+    "J10703-A25-001",
+    "J10703-A26-001",
+    "J10704-B09-001",
+    "J10705-A38-001",
+    "J10705-A39-001",
+    "J10705-A98-001",
+    "J10803-A34-001",
+    "J10805-A14-001",
+    "J10805-A15-001",
+    "J10806-A33-001",
+    "J20101-A97-001",
+    "J20101-B28-001",
+    "J20103-A91-001",
+    "J20108-A94-001",
+    "J20108-A95-001",
+    "J20201-A97-001",
+    "J20201-A98-001",
+    "J20201-A99-001",
+    "J20201-B02-001",
+    "J20301-A84-001",
+    "J20303-A32-001",
+    "J20305-A29-001",
+    "J20401-A93-001",
+    "J20403-A31-001",
+    "J20404-A84-001",
+    "J20408-A80-001",
+    "J20504-B11-001",
+    "J20507-B01-001",
+    "J20602-A79-001",
+    "J20602-B04-001",
+    "J20602-B13-001",
+    "J20701-A58-001",
+    "J20703-A34-001",
+    "J20705-A82-001",
+    "J20706-A49-001",
+    "J20901-A48-001",
+    "J20903-A18-001",
+    "J20903-A83-001",
+    "J20903-B39-001",
+    "J20904-A85-001",
+    "J20904-B28-001"
+  ],
+  "methods": [
+    "원답·보류이유·작성자의 validation을 정답의 근거로 삼지 않고 새 본문과 도형에서 수량·조건을 읽어 독립 계산함.",
+    "106개 전체에서 답과 해설을 직접 검토하고 객관식의 다른 보기, 정의역, 끝점, 확률의 표본공간·독립성, 기하 조건의 존재와 요청값의 유일성을 확인함.",
+    "Python/SymPy 1.14.0 및 정확분수 연산으로77개 등식·전수열거·좌표 검사를43개 코드(추가 루트A80 포함)에 실행함.",
+    "현재 후보의 기존 이미지59개와 새 SVG10개를 전부 직접 시각 판독하고, 추가 루트A80 SVG1개도 확인함. SVG는 로컬 Edge/Playwright로 PNG 렌더링하여 검토함.",
+    "318개 본문·답·해설 필드를 remark-parse+remark-math로 파싱한 뒤 각 수식을 KaTeX throwOnError로 검사함. 오류는 즉시 작성자 dispatch와 루트 Run으로 전달하고 최종 변경분을 다시 대조함.",
+    "최초106개 코드 순서와 최종파일을 비교하고 최종파일 원시바이트 SHA256을 기록함."
+  ],
+  "issues": [
+    {
+      "code": "J10403-A74-001",
+      "severity": "medium",
+      "reason": "최고 기온 그래프·본문에 대해 해설이 평균 기온을 비교하여 통계량이 불일치함.",
+      "independentCalculation": "6월 최고 기온 점은9월 점보다 높으므로 답③은 맞으나 평균 기온의 비교는 이 그래프에서 추론할 수 없다.",
+      "status": "resolved",
+      "resolution": "최종 해설은 최고 기온으로 고치고 나머지 보기까지 설명함."
+    },
+    {
+      "code": "J10205-C11-001",
+      "severity": "low",
+      "reason": "그림을 제거하고 기호를 본문에서 정의했지만 해설에 그림의 기호라는 참조가 남음.",
+      "independentCalculation": "괄호와 곱셈 우선순위로 ㉣㉢㉡㉤㉠이며 그림 없이 본문 정의로 완결된다.",
+      "status": "resolved",
+      "resolution": "본문에서 정한 기호로 참조 수정."
+    },
+    {
+      "code": "J10605-B26-001",
+      "severity": "low",
+      "reason": "그림을 제거하고 길이를 본문으로 전사한 뒤 해설이 그림⑴⑵를 참조함.",
+      "independentCalculation": "rl/2로2π,60π이며 모든 입력은 본문에 있다.",
+      "status": "resolved",
+      "resolution": "⑴⑵의 조건으로 참조 수정."
+    },
+    {
+      "code": "J10705-A98-001",
+      "severity": "low",
+      "reason": "그림을 제거한 후보의 해설 두 곳에 그림에서라는 참조가 남음.",
+      "independentCalculation": "(6·4/2)·5/3=20,(12·10/2)·16/3=320으로 본문만으로 계산 가능.",
+      "status": "resolved",
+      "resolution": "주어진 조건에서로 수정."
+    },
+    {
+      "code": "HC10403-A02-001",
+      "severity": "medium",
+      "reason": "해설의 인접한 수식 경계 $$가 수학 모드 내부에 남아 remark-math→KaTeX 검사에서 파싱 오류3건 발생.",
+      "independentCalculation": "A=[[4,2],[−1,0]]이므로 A(−3,1)=(−10,3),성분곱−30.",
+      "status": "resolved",
+      "resolution": "작성자가 최종 해설의 수식 경계를 다시 작성했다. 변경된 해설을 독립 재검산하고 최종 전체318필드·1425수식의 KaTeX 오류0건으로 해결 확인."
+    },
+    {
+      "code": "HC20309-A03-001",
+      "severity": "medium",
+      "reason": "해설의 인접한 수식 경계 $$가 수학 모드 내부에 남아 remark-math→KaTeX 검사에서 파싱 오류1건 발생.",
+      "independentCalculation": "첫 식은3/((x+2)(x−4))이며 나머지 세 식도 원식·답의 차가0.",
+      "status": "resolved",
+      "resolution": "작성자가 최종 해설의 수식 경계를 다시 작성했다. 변경된 해설을 독립 재검산하고 최종 전체318필드·1425수식의 KaTeX 오류0건으로 해결 확인."
+    },
+    {
+      "code": "J10308-A29-001",
+      "severity": "medium",
+      "reason": "해설의 인접한 수식 경계 $$가 수학 모드 내부에 남아 remark-math→KaTeX 검사에서 파싱 오류1건 발생.",
+      "independentCalculation": "십자 다섯 날짜 합5x=115에서x23.",
+      "status": "resolved",
+      "resolution": "작성자가 최종 해설의 수식 경계를 다시 작성했다. 변경된 해설을 독립 재검산하고 최종 전체318필드·1425수식의 KaTeX 오류0건으로 해결 확인."
+    },
+    {
+      "code": "J10704-B09-001",
+      "severity": "medium",
+      "reason": "해설의 인접한 수식 경계 $$가 수학 모드 내부에 남아 remark-math→KaTeX 검사에서 파싱 오류6건 발생.",
+      "independentCalculation": "삼각기둥 겉넓이216,원기둥 겉넓이104π.",
+      "status": "resolved",
+      "resolution": "작성자가 최종 해설의 수식 경계를 다시 작성했다. 변경된 해설을 독립 재검산하고 최종 전체318필드·1425수식의 KaTeX 오류0건으로 해결 확인."
+    },
+    {
+      "code": "J20108-A95-001",
+      "severity": "medium",
+      "reason": "해설의 인접한 수식 경계 $$가 수학 모드 내부에 남아 remark-math→KaTeX 검사에서 파싱 오류1건 발생.",
+      "independentCalculation": "나눗셈 결과3a+5,−4x+2,3a−2b,−9x³+5xy.",
+      "status": "resolved",
+      "resolution": "작성자가 최종 해설의 수식 경계를 다시 작성했다. 변경된 해설을 독립 재검산하고 최종 전체318필드·1425수식의 KaTeX 오류0건으로 해결 확인."
+    }
+  ],
+  "perEntryReview": [
+    {
+      "code": "HAL0206-A03-001",
+      "kind": "rewrite",
+      "independentCalculation": "cos(π/3)=1/2, cos(4π/3)=−1/2를 대입하면 B−k/12=16, B+k/12=20. 따라서 k=24, B=18이고 주기60분으로 조건 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HAL0208-A10-001",
+      "kind": "rewrite",
+      "independentCalculation": "tanθ=1/3 및 0<θ<π에서 θ는 제1사분면. 식=sinθ tanθ=(1/√10)/3=√10/30. 다섯 보기 중①만 같다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10111-A05-001",
+      "kind": "rewrite",
+      "independentCalculation": "네 제시 인수를 각각 전개하여 원래 다항식과의 차0을 확인. 첫 이차인수의 판별식20은 유리수 제곱이 아니어서 유리수 범위 인수분해가 완료된다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10112-A09-001",
+      "kind": "rewrite",
+      "independentCalculation": "t=x²−2x이면 (t−3)(t+1)=(x−3)(x+1)(x−1)². 보기의 근0,−1,−2,−3,−4를 전수 대입하면 −1만 근이므로②.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10202-A08-001",
+      "kind": "rewrite",
+      "independentCalculation": "i²=−1로 직접 계산한 네 결과는 3+i, 3+6i, 3−i, (−6+8i)/5. 켤레복소수 곱으로 분모5 확인.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10226-A06-001",
+      "kind": "rewrite",
+      "independentCalculation": "P+2x+3의 부호 구간[0,1]로 P+2x+3=ax(x−1),a<0. 두 번째 방정식 판별식(a+1)²=0으로 a=−1, P(−1)=−3. 중근 x=1도 확인.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10301-A14-001",
+      "kind": "rewrite",
+      "independentCalculation": "144=2⁴·3²,300=2²·3·5²이므로 양의 약수15개,18개. 실제 약수 집합 생성 결과와 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10301-A46-001",
+      "kind": "rewrite",
+      "independentCalculation": "홀수 개수가1개이면 합은 홀수·곱은 짝수;3개이면 합과 곱이 모두 홀수여서 불가. 3·3³=81이며216개 순서쌍 전수열거와 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10301-A61-001",
+      "kind": "rewrite",
+      "independentCalculation": "그림을 양의 길이 경계로 판독한 인접쌍 AB,AC,AE,BC,BD,CD,CE,CF,DF,EF의10개. SVG 사각형 좌표로 독립 산출 후 각쌍의 조사원 배정5!=120, 합1200.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "HC10302-A16-001",
+      "kind": "rewrite",
+      "independentCalculation": "서로 다른 순서쌍 생성으로 P(3,2)=6,P(7,3)=210,P(5,4)=120,P(10,1)=10 확인.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10302-A18-001",
+      "kind": "rewrite",
+      "independentCalculation": "4명과6가지 음식은 각각 구별되므로 4!=24,6!=720.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10303-A09-001",
+      "kind": "rewrite",
+      "independentCalculation": "조합 실제 생성으로 C(4,2)=6,C(6,3)=20,C(6,6)=C(10,0)=1.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10402-A19-001",
+      "kind": "rewrite",
+      "independentCalculation": "네 행렬을 성분별로 더한 결과 (1,7),[[6,2],[8,−3]],[[-4,8],[5,−6]],[[4,−7,7],[3,6,−6]]. 모든 성분을 정확정수로 대조.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10402-A20-001",
+      "kind": "rewrite",
+      "independentCalculation": "네 행렬을 성분별로 뺀 결과 (3,−7),[[2,2],[3,2]],[[-2,−3],[1,9]],[[3,−4,−5],[−7,0,−2]]. 모든 성분을 정확정수로 대조.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10402-A21-001",
+      "kind": "rewrite",
+      "independentCalculation": "A의 모든 성분에3,−2,0,1/2를 곱하여 네 답행렬의16개 성분 일치 확인. 특히 (1/2)A의 오른쪽 위는−1/2.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10403-A02-001",
+      "kind": "rewrite",
+      "independentCalculation": "표준기저의 상이 A의 두 열을 결정하므로 A=[[4,2],[−1,0]]. A(−3,1)=(-10,3), 성분곱−30으로①.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC10403-A15-001",
+      "kind": "rewrite",
+      "independentCalculation": "행·열 내적으로 직접 곱한 결과 (2),(18,−9),[[12,3],[10,−1]],[[22,−1],[11,−9]]. CAS 행렬곱도 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC20209-A08-001",
+      "kind": "rewrite",
+      "independentCalculation": "실수 제곱합이0이면 세 차가 모두0, 곧 x=y=z. 부정은 세 부등 중 적어도 하나이므로⑤. 모두 서로 다를 필요는 없다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC20309-A03-001",
+      "kind": "rewrite",
+      "independentCalculation": "네 유리식의 차를 통분해 각각0 확인. 약분 후에도 원식 제외값은 (1){−2,2,4},(2){−1,4},(3){−3,2,3},(4){−4,−1,1,2}이며 본문의 원식 분모·제수 조건이 이를 유지한다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC20311-A04-001",
+      "kind": "rewrite",
+      "independentCalculation": "x≥1 부분의 치역은(−∞,2]이고 일대일이므로 x<1 부분은 정확히(2,4)이어야 한다. 양 끝 극한 a,b−a가2,4이며 a>3으로 a=4,b=6. 첫 부분4+2/(x−2)는 엄격감소하고 치역(2,4)로 실현 가능.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HC20312-A03-001",
+      "kind": "rewrite",
+      "independentCalculation": "통분 분자는2, 분모(√(x+1)−1)(√(x+1)+1)=x. x>0이므로 나눗셈이 유효하고 항등식은2/x,⑤. 다른 보기는 전 구간 항등식이 아니다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HGE0303-A07-001",
+      "kind": "rewrite",
+      "independentCalculation": "A를 원점으로 놓으면 P=(2B+C)/3,Q=C/2. AP+BQ=−B/3+5C/6이므로 p+q=1/2. 삼각형의 AB,AC는 독립이므로 계수 유일.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "HGE0304-A18-001",
+      "kind": "rewrite",
+      "independentCalculation": "O를 원점으로 G=(a+b)/3. 방향 b−a를 모든 실수배한 집합이 목표직선. ①⑤는 평행하지만 계수합이 각각1,2라 G를 안 지나고③④는 방향이 달라②만 해당.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "HM10101-A15-001",
+      "kind": "rewrite",
+      "independentCalculation": "각 함수가 접근점에서 연속이며 분모도0이 아니다. 직접 대입/극한 계산으로5,−2,1,3.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HM10105-A32-001",
+      "kind": "rewrite",
+      "independentCalculation": "a=0은 분모1. a≠0이면 판별식 a²−4a<0,즉0<a<4. 정수0,1,2,3의4개이며 원분수의 분모0을 약분으로 허용하지 않았다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HM10105-A44-001",
+      "kind": "correction",
+      "independentCalculation": "그림(1)은 f(0)=0, 좌우극한0과2로ㄴ. (2)는 극한1이지만 원점 높이1이 빈 점이고 f(0)없어ㄱ. (3)은 극한1과 채운점 f(0)=2가 달라ㄷ.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "HM10206-A08-001",
+      "kind": "rewrite",
+      "independentCalculation": "도함수의 전역부호를 완전제곱으로 판정: (1)(x+a)²+4−a²≥0→|a|≤2, (2)3(x−1/3)²+a−1/3≥0→a≥1/3, (3)−3(x−a/3)²+a²/3−a≤0→0≤a≤3. 경계의 한 점 정지는 엄격한 증가·감소를 깨지 않는다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HPS0101-A27-001",
+      "kind": "rewrite",
+      "independentCalculation": "중복순열 정의대로4²+2⁴=32,③.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HPS0202-A15-001",
+      "kind": "rewrite",
+      "independentCalculation": "a,c>0이므로 전 실수에서 이차식≥0 iff b²≤4ac. 64개 (a,b,c)를 전부 열거하여56개 확인,56/64=7/8. b별16,16,13,11.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HPS0203-A26-001",
+      "kind": "rewrite",
+      "independentCalculation": "백합2개 확률은3/C(n+3,2)=3/10. (n+3)(n+2)=20의 근2,−7 중 꽃송이 수는2만 가능. 적어도 장미1개 확률7/10 재대입 확인.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "HPS0304-A30-001",
+      "kind": "rewrite",
+      "independentCalculation": "(12p)²=24p(1−p)의 근0,1/7 중0<p<1이0을 제외하여1/7 유일.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10102-A90-001",
+      "kind": "rewrite",
+      "independentCalculation": "11,16=2⁴,23은 서로 다른 소인수가1개이고12와18은2개. 합3개,③.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10202-B14-001",
+      "kind": "rewrite",
+      "independentCalculation": "다섯 비교를 공통분모 또는 정수 차로 판단하면 >,<,<,<,<. ①만 다르다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10202-B31-001",
+      "kind": "rewrite",
+      "independentCalculation": "한국어 경계를 그대로 적용하면 a≤−1/6,b≥−4,2<c≤5. 끝점 포함 여부까지 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10203-C67-001",
+      "kind": "rewrite",
+      "independentCalculation": "가상자료의 연속 증가량을 더하면6+11+9=26,③. 실제 연도 기후 통계로 해석하지 않았다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10203-D26-001",
+      "kind": "correction",
+      "independentCalculation": "네 합을 정확분수로 계산하면−3,4,31/10,−2. 제시 우변과 맞는 것은ㄴ,ㄷ.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10205-C06-001",
+      "kind": "rewrite",
+      "independentCalculation": "나눗셈은 교환 불가: 원식(−3/4)/2·(−4)=3/2이고㉠의2/(−3/4)·(−4)=32/3. 최초오류㉠가 확정된다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10205-C11-001",
+      "kind": "rewrite",
+      "independentCalculation": "연산 트리를 안쪽부터 읽으면 소괄호 덧셈㉣→나눗셈㉢→중괄호 덧셈㉡→곱셈㉤→바깥 덧셈㉠. 분수선과 단항 음수는 지정된 이항기호에 세지 않는다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10301-D27-001",
+      "kind": "rewrite",
+      "independentCalculation": "a=−2,b=4를 직접 대입한 값은14,−19,−5/2,12. 두 분모도0이 아니다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10303-B58-001",
+      "kind": "rewrite",
+      "independentCalculation": "안쪽 중괄호=−3x−9, 대괄호=3x+6이므로 전체=−6. a=0,b=−6에서2b−3a=−12,①.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10305-A31-001",
+      "kind": "rewrite",
+      "independentCalculation": "실제 그림을 세면 왼쪽 머핀9·도넛4, 오른쪽 머핀5·도넛6. 가격 같음으로4M=2D,따라서 도넛은 머핀2배.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10308-A29-001",
+      "kind": "rewrite",
+      "independentCalculation": "십자 다섯 칸 합=(x−7)+(x−1)+x+(x+1)+(x+7)=5x=115에서23. 실제 달력에는16,22,23,24,30이 모두 있고23은 가장자리 열이 아니므로 배치 가능.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10401-A75-001",
+      "kind": "correction",
+      "independentCalculation": "그림의 점은(2,6),(5,3),(7,2),(3,4),(9,6). 표의 마지막은(9,5)이므로⑤만 다르다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10401-A76-001",
+      "kind": "correction",
+      "independentCalculation": "그림의 세 번째 점은(4,8)이고 표에서는(8,4). 나머지 네 점은 각각(1,6),(4,3),(6,5),(10,7)로 일치하므로③.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10401-A77-001",
+      "kind": "correction",
+      "independentCalculation": "그림의 세 번째 점은(2,2), 표에서는(2,3). 다른 네 점(3,2),(7,4),(9,6),(6,5)이 일치하므로③.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10401-A98-001",
+      "kind": "rewrite",
+      "independentCalculation": "축과 눈금을 읽으면 A=(−3,2),B=(1,−1). 네 좌표의 합−1이고 중복 없는 보기 중①.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10403-A71-001",
+      "kind": "rewrite",
+      "independentCalculation": "단면적A,기둥단면적B에서 기둥 위로 오르기 전 높이기울기 q/(A−B),이후 q/A. 0<B<A로 양의 기울기가 한 번 감소한다. 실제 보기④만 원점부터 두 직선으로 그 조건을 만족.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10403-A74-001",
+      "kind": "rewrite",
+      "independentCalculation": "그림에서6월 점은9월 점보다 높다. 최저1월·최고8월이고8~12월 점은 엄격감소한다. 월별 최고 기온으로 일별 기온을 확정할 수 없으므로③만 거짓.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10403-A75-001",
+      "kind": "rewrite",
+      "independentCalculation": "단면적A가 일정하면 채울 때 기울기 q_in/A,뺄 때−q_out/A인 연속 꺾은선. 처음과 마지막 높이0인 실제③만 맞고 채움·배출 속도가 같다는 불필요한 조건은 요구하지 않는다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10404-B86-001",
+      "kind": "rewrite",
+      "independentCalculation": "x<0에서 y<0이 되는 것은3x/4와6/x. 나머지 세 식은 양수이므로③⑤.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10404-C33-001",
+      "kind": "correction",
+      "independentCalculation": "두 직선이 원점을 지나므로 기울기는 각각3/4와−2/3. SVG의 표시점(4,3),(3,−2),기울기방향,정답 두 식이 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "J10404-C67-001",
+      "kind": "rewrite",
+      "independentCalculation": "시간이2배이면7x에서 거리도2배이므로 절반이라는③이 거짓. 실제 표1~5시간의7,14,21,28,35 및5시간35·7시간49는 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10404-C78-001",
+      "kind": "rewrite",
+      "independentCalculation": "정사각형 네 변의 합 y=4x. x=1,2,3,4,5에 대한 빈 표 값4,8,12,16,20이고 정비례.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10501-A26-001",
+      "kind": "rewrite",
+      "independentCalculation": "SVG 화살표를 직접 확인: (1)양끝 연장인 직선AB,(2)A에서 시작해B 방향인 반직선AB,(3)B에서 시작해A 방향인 반직선BA,(4)끝점A,B인 선분AB.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "J10505-A20-001",
+      "kind": "correction",
+      "independentCalculation": "각 위치를 읽어①은110+70=180,②는140+40=180,③은130+50=180,④는동위각45=45. ⑤는65+105=170으로 평행 조건에 어긋나므로⑤.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10505-A22-001",
+      "kind": "rewrite",
+      "independentCalculation": "본문의 수직조건으로 a=90−62=28. 아래의45°는 수직선과 사선 사이이므로 사선과 수평선 사이도45°,평행한 위 직선에서 b=45. a+b=73.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10505-B11-001",
+      "kind": "rewrite",
+      "independentCalculation": "꺾인 점에 수평선을 넣으면 위아래 각이 엇각30°,35°이므로 x=65°. SVG의 사선 방향과 표시각의 위치도 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "J10506-A55-001",
+      "kind": "rewrite",
+      "independentCalculation": "①SAS,③ASA,④나머지각을 구한 ASA,⑤SSS로 유일. ②SSA의 반례 AB=4,A=30°,BC=3에서 sinC=2/3은 두 각 C를 주고 둘 다 A+C<180°라 두 비합동 삼각형 존재.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10506-A84-001",
+      "kind": "correction",
+      "independentCalculation": "눈금 없는 자는 두 점을 잇거나 선을 연장하는ㄱㄷ,컴퍼스는 원을 그리거나 길이를 옮기는ㄴㄹ.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10506-A85-001",
+      "kind": "correction",
+      "independentCalculation": "최대변과 나머지합 비교:2+3=5,3+4>6,3+6>8,4+5<10. 비퇴화 삼각형을 만들 수 없는ㄱㄹ.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10506-A86-001",
+      "kind": "rewrite",
+      "independentCalculation": "A가 주어졌을 때ㄴSAS,ㄷASA,ㄹ각합으로C를 구한 ASA. ㄱ은 AB=4,A=30°,BC=3의 SSA 반례로 보장 불가. 정답ㄴㄷㄹ.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10507-A22-001",
+      "kind": "correction",
+      "independentCalculation": "기준의 길이9인 변 양끝각40°,75°. ⑤의 나머지각40°로 같은 대응을 갖는다. ①의9는75°대변,②는한변한각뿐,③의최대각 arccos(2/7)≈73.40°≠75°,④의각집합60°,75°,45°라 다른 네 보기는 합동을 보장하지 못함.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10507-A83-001",
+      "kind": "rewrite",
+      "independentCalculation": "AB=DE와B=E에 BC=EF를 더하면SAS, A=D이면ASA,C=F이면나머지A=D로ASA. AC=DF만 더하는 SSA는 B=30°,AB=4,AC=3의 두해 반례가 있어ㄴㄷㄹ만 보장.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10605-A33-001",
+      "kind": "correction",
+      "independentCalculation": "그림(1)r7,l2π에서 면적7π. (2)S20π,l8π에서 r=2S/l=5. 두 중심각2π/7,8π/5는 실제 부채꼴 범위이고 그림의 작은/큰 부채꼴 방향과 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10605-B26-001",
+      "kind": "correction",
+      "independentCalculation": "S=rl/2를 적용하여2π,60π. 각 l/r=π/4,5π/6가(0,2π)에 있으므로 길이조건 실현 가능.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10703-A25-001",
+      "kind": "rewrite",
+      "independentCalculation": "③의 외부 경계는 회전축과 평행해 바깥 원기둥,안쪽 경계는 아래 수직·위 경사여서 아래 원기둥 구멍과 위 원뿔대 구멍을 만든다. 다른 네 단면은 바깥 경사 또는 축 접촉 때문에 일치하지 않는다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10703-A26-001",
+      "kind": "rewrite",
+      "independentCalculation": "②의 바깥 경계가 기울어 원뿔대가 되고 안쪽 변은 아래 축 위 한점에서 위로 멀어져 위쪽 원뿔 구멍을 만든다. 나머지 보기의 구멍 방향·관통 여부·바깥 원통 조건은 실제 회전체와 다르다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10704-B09-001",
+      "kind": "correction",
+      "independentCalculation": "첫 그림의 밑면6·8·10은 직각삼각형,기둥높이7. 겉넓이2·24+24·7=216. 두 번째r4,h9는2π·16+2π·4·9=104π. 두 소문항이 남은 한 자산에 모두 있다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10705-A38-001",
+      "kind": "rewrite",
+      "independentCalculation": "정사각뿔의 밑변7과 옆면높이10이므로 밑넓이49,네 옆면140,합189. 공간높이√(100−49/4)>0로 조건 일관됨.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10705-A39-001",
+      "kind": "rewrite",
+      "independentCalculation": "그림은 지름12와 모선10이므로 r6,높이8. 밑넓이36π,옆넓이60π,겉넓이96π.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10705-A98-001",
+      "kind": "correction",
+      "independentCalculation": "밑면 삼각형넓이는12와60이고 뿔높이는5와16. 각각V=Sh/3으로20,320. 밑면높이와 공간높이를 혼동하지 않았다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10803-A34-001",
+      "kind": "rewrite",
+      "independentCalculation": "분포 구간은 서로 겹치지 않고 도수합25. 30분 이상은6+4=10명이므로40%.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J10805-A14-001",
+      "kind": "rewrite",
+      "independentCalculation": "그래프의 계급값16,18의 도수가2,8이므로 누적2,10. 10번째는17이상19미만 계급이며 도수8,③.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10805-A15-001",
+      "kind": "rewrite",
+      "independentCalculation": "다섯 계급도수2,8,14,10,6의 합40. 21이상은10+6=16으로40%,③.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J10806-A33-001",
+      "kind": "rewrite",
+      "independentCalculation": "계급값5의 상대도수A1/4,B3/20에서 전체500,400명. 계급값9·11의 학생150,220으로 차70. 가중 평균 A=33/5=6.6,B=81/10=8.1로 B가 큼. 실제 개별원자료 평균을 추정평균과 혼동하지 않는다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "J20101-A97-001",
+      "kind": "rewrite",
+      "independentCalculation": "서로소 조건으로 약분이 없고 유한소수 분모는2,5만 가능. 24와 서로소여서n=5^k,k≥1. 2~1000 전수검사 결과5,25,125,625의4개.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20101-B28-001",
+      "kind": "rewrite",
+      "independentCalculation": "생략점 없는 네 소수는 유한소수. 끝없는2의 반복과π만 무한소수이므로2개,②. 0.999를0.999…로 바꾸지 않았다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20103-A91-001",
+      "kind": "rewrite",
+      "independentCalculation": "9/10,22/9,254/99,−317/50인㉠㉢㉣㉤은 유리수. ㉥은1이 무한히 나오면서0의 연속길이가 무계여서 결국 주기적일 수 없고 무리수. π도 무리수.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20108-A94-001",
+      "kind": "rewrite",
+      "independentCalculation": "분배법칙으로 네 결과6a²+a,−2x²+8xy,−9a²−13ab,11x²+18xy. 원식과 답의 차를 기호 전개하여 모두0 확인.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20108-A95-001",
+      "kind": "rewrite",
+      "independentCalculation": "영 아닌 제수 조건 아래 각 항을 나누면3a+5,−4x+2,3a−2b,−9x³+5xy. 기약화 차가 모두0이며 취소한 인수의 영값은 원조건에서 제외됨.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20201-A97-001",
+      "kind": "correction",
+      "independentCalculation": "비교기호가 있는ㄴㄷㅂ가 부등식. ㄴ의9>10이 거짓이어도 부등식이라는 형식에는 해당.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20201-A98-001",
+      "kind": "correction",
+      "independentCalculation": "a<b로부터 양수 곱/덧셈은 방향유지,음수곱은 반전. ㄱ과ㄴ은 참,ㄷ은 실제>,ㄹ은 실제<라 거짓.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20201-A99-001",
+      "kind": "correction",
+      "independentCalculation": "ㄷ의≤와ㄹㅂ의<가 부등식. ㄹ이 거짓인7<2인 점은 분류에 영향을 주지 않음. ㄱㅁ는 수식,ㄴ은 등식.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20201-B02-001",
+      "kind": "correction",
+      "independentCalculation": "독립적으로 여섯 항목의 비교기호를 확인한 결과ㄷㄹㅂ. 앞 문항과 내용이 같아도 별도 코드로 검토·보존.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20301-A84-001",
+      "kind": "correction",
+      "independentCalculation": "(2,−1)을 대입한 좌변3,4,1,5 중ㄱㄷ만 등식 성립. 두 계수행렬식5≠0이므로 이 쌍의 유일해도(2,−1),②.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20303-A32-001",
+      "kind": "rewrite",
+      "independentCalculation": "정수계수화한 네 연립식의 행렬식8,18,15,4는 모두 비영. 정확해(3,2),(4,−6),(1,2),(10,3)를 원래 분수·소수식에 대입해 양쪽 등식 확인.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20305-A29-001",
+      "kind": "correction",
+      "independentCalculation": "ㄱ과ㄹ의 행렬식−3,2로 유일해. ㄴ은 같은4x−3y가−1과1이어야 해 불가능,ㄷ은첫식이둘째의2배여서 무수해. 따라서(1)ㄴ,(2)ㄷ.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20401-A93-001",
+      "kind": "correction",
+      "independentCalculation": "기울기 비영인 일차식은−4x+3과(2/5)x−1/2. 상수와 이차식은 제외하므로ㄴㄹ,③.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20403-A31-001",
+      "kind": "correction",
+      "independentCalculation": "SVG의 (0,−3),(3,0)에서 기울기1. (0,3),(4,1)에서−2/4=−1/2. x증가 방향과 직선의 실제 기울기가 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "J20404-A84-001",
+      "kind": "correction",
+      "independentCalculation": "x<0에서ㄹ의−ax−b는 양수+양수라 제3사분면이 없다. ㄱ은 항상음수,ㄴ은 충분히 음의x,ㄷ은0에 가까운 음의x에서 y<0 가능. ㄹ 유일.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20408-A80-001",
+      "kind": "correction",
+      "independentCalculation": "y=x/2−2의 절편은(4,0),(0,−2). 실제 다섯 그림에서⑤만 두 절편과 양의 기울기를 함께 만족.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J20504-B11-001",
+      "kind": "rewrite",
+      "independentCalculation": "△OBC 내심각으로160=90+∠BOC/2,중심각140°. 예각△ABC의 A는 B,C의 큰 호에 놓이므로 작은호의 원주각70°. 다른 분기의110°는 본문의 예각조건이 배제.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J20507-B01-001",
+      "kind": "correction",
+      "independentCalculation": "직사각형 변 u,v>0에서ㄱ은u=v. 두 대각선 방향(u,v),(u,−v)의 내적u²−v²=0인ㄹ도u=v. 대각선 길이 같음과직각인ㄴㄷ는 임의 직사각형에서도 성립하므로ㄱㄹ,②.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J20602-A79-001",
+      "kind": "rewrite",
+      "independentCalculation": "(1)B(0,0),C(8,0),A(11/4,3√15/4)로 AB4,AC6. D(2,0)이면 AD3이고 직각조건은 없음. (2)AB20,AC25,AD15,AE12의 교차대응 SAS비3/5로 DE18. 독립 정확좌표로 BC30,DE18 재확인.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "J20602-B04-001",
+      "kind": "rewrite",
+      "independentCalculation": "정사각형을 A(0,8),B(0,0),C(8,0),D(8,8)로 놓으면 CE10→E(0,6). 직선CE의 y=8 교점 F(−8/3,8)은 반직선DA 위. 넓이는 AE2·AF(8/3)/2=8/3으로 유일.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "J20602-B13-001",
+      "kind": "rewrite",
+      "independentCalculation": "그림자 공통끝점까지 기둥25m,막대10m. 동일 태양광 방향과 수직조건으로 h/25=4/10, h10. 두 윗점과 끝점이 한 직선에 놓이는 SVG도 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "J20701-A58-001",
+      "kind": "correction",
+      "independentCalculation": "그림을 각각 읽어①AD/AB=8/12=6/9=AE/AC,⑤AD/DB=9/9=5/5=AE/EC. ②4/2≠5/3,③4/7≠3/6,④3/8≠4/7이므로①⑤만 평행.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J20703-A34-001",
+      "kind": "correction",
+      "independentCalculation": "세 수평 평행선 사이 세 가로지름선에서 같은 위/아래 비3/4. x/6=y/8=3/4이므로 x9/2,y6,곱27. SVG에서 숫자가 위·아래 선분에 올바르게 배치됨.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "새 SVG를 Edge에서 렌더링하여 점·선·레이블·보기와 계산을 대조함"
+    },
+    {
+      "code": "J20705-A82-001",
+      "kind": "rewrite",
+      "independentCalculation": "D가BC중점이므로ㄱ,무게중심의2:1 내분으로ㄴ. GAB,GAC는 각전체넓이1/3로ㄹ. A(0,9),B(0,0),C(6,0)에서 GD=√10,GF=5/2여서ㄷ은 항상참이 아니다.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J20706-A49-001",
+      "kind": "correction",
+      "independentCalculation": "AB=4+8=12,AD6. 각A공통,B=D이므로 △ADE:△ABC 닮음비1/2,면적비1/4. 34/4=17/2. 대응으로 AC8이며 sinA=68/(12·8)=17/24<1이라 면적34 조건도 실현 가능.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "public의 최종 연결 이미지 전부를 직접 열어 숫자·각도·보기 순서와 대조함"
+    },
+    {
+      "code": "J20901-A48-001",
+      "kind": "rewrite",
+      "independentCalculation": "3배수{3,6,9,12,15,18}와20약수{1,2,4,5,10,20}는 서로소 집합. 합집합12개,③.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20903-A18-001",
+      "kind": "rewrite",
+      "independentCalculation": "동전 표본공간 전체,주사위1~6<7 및>0,수요일 다음 목요일의 네 경우는확률1. 양의두눈곱이0일 사건은공집합이므로③확률0.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20903-A83-001",
+      "kind": "rewrite",
+      "independentCalculation": "차는0~8이고9의 양의약수 중 가능한 것은1,3. 서로 구분되는81개쌍 중차1인16개,차3인12개로28/81,④. 전수열거와 일치.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20903-B39-001",
+      "kind": "rewrite",
+      "independentCalculation": "서로 다른 두 카드로 만든 두자리 양의정수를 직접 열거하면16개,짝수10개. 명시된 균등선택에서10/16=5/8.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20904-A85-001",
+      "kind": "rewrite",
+      "independentCalculation": "독립조건이 있으므로 A성공·B성공·C실패 확률(2/5)(1/2)(2/3)=2/15.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    },
+    {
+      "code": "J20904-B28-001",
+      "kind": "rewrite",
+      "independentCalculation": "독립한 두 실패의 확률(2/3)(2/5)=4/15. 적어도 한 성공은 여사건으로11/15,④.",
+      "answerAndUniqueness": "통과: 최종 답과 조건의 충분성·정의역·요청한 값의 유일성을 독립 검토",
+      "visualVerification": "최종 후보는 그림 없이 필요한 조건·보기를 본문에 제공하며 그 텍스트 기준으로 검산함"
+    }
+  ],
+  "computerChecks": {
+    "engine": "Python 3 / SymPy 1.14.0",
+    "assertions": 77,
+    "passed": 77,
+    "checks": [
+      {
+        "code": "HAL0206-A03-001",
+        "check": "두 온도 연립식",
+        "result": "{a: 24, b: 18}",
+        "passed": true
+      },
+      {
+        "code": "HAL0208-A10-001",
+        "check": "tanθ=1/3의 주각 직접대입",
+        "result": "sqrt(10)/30",
+        "passed": true
+      },
+      {
+        "code": "HC10111-A05-001",
+        "check": "다항식1 차 전개",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "HC10111-A05-001",
+        "check": "다항식2 차 전개",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "HC10111-A05-001",
+        "check": "다항식3 차 전개",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "HC10111-A05-001",
+        "check": "다항식4 차 전개",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "HC10112-A09-001",
+        "check": "인수 후보 근 전수대입",
+        "result": "[2]",
+        "passed": true
+      },
+      {
+        "code": "HC10202-A08-001",
+        "check": "복소수1",
+        "result": "3 + I",
+        "passed": true
+      },
+      {
+        "code": "HC10202-A08-001",
+        "check": "복소수2",
+        "result": "3 + 6*I",
+        "passed": true
+      },
+      {
+        "code": "HC10202-A08-001",
+        "check": "복소수3",
+        "result": "(1 - I)*(2 + I)",
+        "passed": true
+      },
+      {
+        "code": "HC10202-A08-001",
+        "check": "복소수4",
+        "result": "(-4 + 2*I)*(2 - I)/5",
+        "passed": true
+      },
+      {
+        "code": "HC10226-A06-001",
+        "check": "중근 판별식",
+        "result": "a**2 + 2*a + 1",
+        "passed": true
+      },
+      {
+        "code": "HC10301-A14-001",
+        "check": "약수 실제 생성 개수",
+        "result": "[15, 18]",
+        "passed": true
+      },
+      {
+        "code": "HC10301-A46-001",
+        "check": "216개 주사위 순서쌍 전수검사",
+        "result": "81",
+        "passed": true
+      },
+      {
+        "code": "HC10301-A61-001",
+        "check": "SVG 사각형 좌표로 경계길이 양수인 인접쌍 자동계산",
+        "result": "['AB', 'AC', 'AE', 'BC', 'BD', 'CD', 'CE', 'CF', 'DF', 'EF']",
+        "passed": true
+      },
+      {
+        "code": "HC10301-A61-001",
+        "check": "인접쌍 및 조사원 전체 배정수",
+        "result": "1200",
+        "passed": true
+      },
+      {
+        "code": "HC10302-A16-001",
+        "check": "서로 다른 순열 직접생성",
+        "result": "[6, 210, 120, 10]",
+        "passed": true
+      },
+      {
+        "code": "HC10302-A18-001",
+        "check": "전체순열",
+        "result": "[24, 720]",
+        "passed": true
+      },
+      {
+        "code": "HC10303-A09-001",
+        "check": "조합 직접생성",
+        "result": "[6, 20, 1, 1]",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A19-001",
+        "check": "행렬 덧셈1",
+        "result": "Matrix([[1, 7]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A19-001",
+        "check": "행렬 덧셈2",
+        "result": "Matrix([[6, 2], [8, -3]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A19-001",
+        "check": "행렬 덧셈3",
+        "result": "Matrix([[-4, 8], [5, -6]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A19-001",
+        "check": "행렬 덧셈4",
+        "result": "Matrix([[4, -7, 7], [3, 6, -6]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A20-001",
+        "check": "행렬 뺄셈1",
+        "result": "Matrix([[3], [-7]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A20-001",
+        "check": "행렬 뺄셈2",
+        "result": "Matrix([[2, 2], [3, 2]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A20-001",
+        "check": "행렬 뺄셈3",
+        "result": "Matrix([[-2, -3], [1, 9]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A20-001",
+        "check": "행렬 뺄셈4",
+        "result": "Matrix([[3, -4, -5], [-7, 0, -2]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A21-001",
+        "check": "스칼라곱1",
+        "result": "Matrix([[18, -3], [-12, 6]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A21-001",
+        "check": "스칼라곱2",
+        "result": "Matrix([[-12, 2], [8, -4]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A21-001",
+        "check": "스칼라곱3",
+        "result": "Matrix([[0, 0], [0, 0]])",
+        "passed": true
+      },
+      {
+        "code": "HC10402-A21-001",
+        "check": "스칼라곱4",
+        "result": "Matrix([[3, -1/2], [-2, 1]])",
+        "passed": true
+      },
+      {
+        "code": "HC10403-A02-001",
+        "check": "A(-3,1) 성분곱",
+        "result": "-30",
+        "passed": true
+      },
+      {
+        "code": "HC10403-A15-001",
+        "check": "행렬곱1",
+        "result": "Matrix([[2]])",
+        "passed": true
+      },
+      {
+        "code": "HC10403-A15-001",
+        "check": "행렬곱2",
+        "result": "Matrix([[18], [-9]])",
+        "passed": true
+      },
+      {
+        "code": "HC10403-A15-001",
+        "check": "행렬곱3",
+        "result": "Matrix([[12, 3], [10, -1]])",
+        "passed": true
+      },
+      {
+        "code": "HC10403-A15-001",
+        "check": "행렬곱4",
+        "result": "Matrix([[22, -1], [11, -9]])",
+        "passed": true
+      },
+      {
+        "code": "HC20309-A03-001",
+        "check": "유리식1 기약화 차",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "HC20309-A03-001",
+        "check": "유리식2 기약화 차",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "HC20309-A03-001",
+        "check": "유리식3 기약화 차",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "HC20309-A03-001",
+        "check": "유리식4 기약화 차",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "HC20312-A03-001",
+        "check": "무리식 유리화 차",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "HM10101-A15-001",
+        "check": "네 극한",
+        "result": "[5, -2, 1, 3]",
+        "passed": true
+      },
+      {
+        "code": "HM10105-A32-001",
+        "check": "실근 없는 분모의 정수 a",
+        "result": "[0, 1, 2, 3]",
+        "passed": true
+      },
+      {
+        "code": "HPS0202-A15-001",
+        "check": "64개 카드 순서쌍 전수검사",
+        "result": "7/8",
+        "passed": true
+      },
+      {
+        "code": "HPS0203-A26-001",
+        "check": "장미수 음수근 제외",
+        "result": "[2]",
+        "passed": true
+      },
+      {
+        "code": "HPS0304-A30-001",
+        "check": "이항분포 p의 모든 해",
+        "result": "[0, 1/7]",
+        "passed": true
+      },
+      {
+        "code": "J10102-A90-001",
+        "check": "서로 다른 소인수 개수",
+        "result": "[11, 16, 23]",
+        "passed": true
+      },
+      {
+        "code": "J10203-D26-001",
+        "check": "네 보기 유리수 합",
+        "result": "[-3, 4, Fraction(31, 10), Fraction(-2, 1)]",
+        "passed": true
+      },
+      {
+        "code": "J10205-C06-001",
+        "check": "원식 왼쪽부터 연산",
+        "result": "3/2",
+        "passed": true
+      },
+      {
+        "code": "J10303-B58-001",
+        "check": "다항식 전개",
+        "result": "-6",
+        "passed": true
+      },
+      {
+        "code": "J10308-A29-001",
+        "check": "달력 5일 합",
+        "result": "115",
+        "passed": true
+      },
+      {
+        "code": "J10806-A33-001",
+        "check": "도수 기반 추정평균",
+        "result": "[33/5, 81/10]",
+        "passed": true
+      },
+      {
+        "code": "J20101-A97-001",
+        "check": "2~1000 전수검사",
+        "result": "[5, 25, 125, 625]",
+        "passed": true
+      },
+      {
+        "code": "J20108-A94-001",
+        "check": "분배전개1",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "J20108-A94-001",
+        "check": "분배전개2",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "J20108-A94-001",
+        "check": "분배전개3",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "J20108-A94-001",
+        "check": "분배전개4",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "J20108-A95-001",
+        "check": "다항식 나눗셈1",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "J20108-A95-001",
+        "check": "다항식 나눗셈2",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "J20108-A95-001",
+        "check": "다항식 나눗셈3",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "J20108-A95-001",
+        "check": "다항식 나눗셈4",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "J20303-A32-001",
+        "check": "연립방정식 정확해1",
+        "result": "{x: 3, y: 2}",
+        "passed": true
+      },
+      {
+        "code": "J20303-A32-001",
+        "check": "연립방정식 정확해2",
+        "result": "{x: 4, y: -6}",
+        "passed": true
+      },
+      {
+        "code": "J20303-A32-001",
+        "check": "연립방정식 정확해3",
+        "result": "{x: 1, y: 2}",
+        "passed": true
+      },
+      {
+        "code": "J20303-A32-001",
+        "check": "연립방정식 정확해4",
+        "result": "{x: 10, y: 3}",
+        "passed": true
+      },
+      {
+        "code": "J20602-A79-001",
+        "check": "(1) 좌표 거리 AB,AC,AD",
+        "result": "[4, 6, 3]",
+        "passed": true
+      },
+      {
+        "code": "J20602-A79-001",
+        "check": "(2) 독립 좌표 BC,DE",
+        "result": "[30, 18]",
+        "passed": true
+      },
+      {
+        "code": "J20602-B04-001",
+        "check": "CE 및 △AEF 넓이",
+        "result": "[10, 8/3]",
+        "passed": true
+      },
+      {
+        "code": "J20706-A49-001",
+        "check": "삼각형 실현가능한 sinA",
+        "result": "17/24",
+        "passed": true
+      },
+      {
+        "code": "J20901-A48-001",
+        "check": "합집합 직접생성 개수",
+        "result": "12",
+        "passed": true
+      },
+      {
+        "code": "J20903-A83-001",
+        "check": "81개 공 쌍 전수검사",
+        "result": "28/81",
+        "passed": true
+      },
+      {
+        "code": "J20903-B39-001",
+        "check": "양의 두자리 정수 전수생성",
+        "result": "[16, 10]",
+        "passed": true
+      },
+      {
+        "code": "J20904-A85-001",
+        "check": "독립 명중 사건 곱",
+        "result": "2/15",
+        "passed": true
+      },
+      {
+        "code": "J20904-B28-001",
+        "check": "여사건의 독립 곱",
+        "result": "11/15",
+        "passed": true
+      },
+      {
+        "code": "J20705-A80-001",
+        "check": "좌표로 아홉 거리",
+        "result": "[28, 28, 16, 18, 12, 7, 9, 7, 8]",
+        "passed": true
+      },
+      {
+        "code": "J20705-A80-001",
+        "check": "DF와BE 벡터의 외적",
+        "result": "0",
+        "passed": true
+      },
+      {
+        "code": "J20705-A80-001",
+        "check": "FDC 둘레",
+        "result": "24",
+        "passed": true
+      }
+    ]
+  },
+  "renderChecks": {
+    "sourceSha256": "4fa53acfb551d4e86a0d134560964292ff0845673d39905a455418045684fd0e",
+    "rows": 106,
+    "fields": 318,
+    "formulas": 1425,
+    "errors": [],
+    "leaks": []
+  },
+  "additionalReviews": [
+    {
+      "code": "J20705-A80-001",
+      "sourcePath": "C:/Creative/testautocreator/.qa-artifacts/textbook-recovery-root-followup.json",
+      "sourceSha256": "6ff5a06ece51822e89d1a9859655617d2ed4aaa427602c2e479d48b18097f37b",
+      "status": "pass",
+      "independentCalculation": "A=(0,12√5),B=(−8,0),C=(8,0)으로 AB=AC=28,BC=16. D=(0,0),E=(4,6√5),F=(6,3√5),G=(0,4√5). 직접거리로 BE18,BG12,EF7,DF9,CF7,DC8이며 DF벡터=(6,3√5)는 BE벡터=(12,6√5)의1/2. 원삼각형 둘레72,목표 둘레7+9+8=24. 세 변7,8,9도 삼각부등식을 만족하므로 조건 모순이 해소되고 답이 유일하다.",
+      "visualVerification": "추가 SVG를 Edge에서 직접 렌더링. A~G 위치,중점·중선 교차,DF∥BE,BG12·EF7 표기가 정확 좌표와 일치함."
+    }
+  ],
+  "scopeAndGate": [
+    "후보 rewrites.json과 원본 데이터는 수정하지 않았고 DB·외부 AI API·하위작업자는 사용하지 않았다.",
+    "이 보고서는 독립 수학·그림 검토이며 원문 복원 인증이나 실제 앱/인쇄 레이아웃의 전체 통합검사를 대신하지 않는다.",
+    "새 조건을 가진78개 rewrite와 추가 루트A80은 원본과 별도의 변형 후보로 유지해야 한다. 최종 저장·노출 여부는 기존 pending/잠금 및 사람 검토 게이트를 유지한다."
+  ],
+  "reviewedAtUtc": "2026-10-09T05:40:59.593835+00:00",
+  "summary": {
+    "reviewedMainEntries": 106,
+    "rewrite": 78,
+    "correction": 28,
+    "additionalRootEntries": 1,
+    "totalReviewed": 107,
+    "mathematicalAnswerErrorsFound": 0,
+    "issuesFound": 9,
+    "resolvedIssues": 9,
+    "openIssues": 0,
+    "semanticIssuesResolved": 1,
+    "staleFigureReferenceIssuesResolved": 3,
+    "renderIssueCodesResolved": 5,
+    "originalRenderErrorCount": 12,
+    "exactArithmeticAssertionsPassed": 77,
+    "exactArithmeticCodes": 43,
+    "finalMathFormulaCount": 1425,
+    "finalMathParseErrors": 0,
+    "existingCandidateImageReferencesInspected": 59,
+    "candidateSvgInspected": 10,
+    "additionalRootSvgInspected": 1,
+    "humanReviewGate": "유지: 검토 통과는 자동 노출·승인 권한이 아니다."
+  },
+  "finalStructuralChecks": {
+    "uniqueCodes": 106,
+    "sourceOrderPreserved": true,
+    "everyEntryHasIndependentCalculation": true,
+    "allFigurePlaceholdersMapped": true,
+    "allLocalFigureFilesPresent": true,
+    "svgReferencesResolved": true,
+    "svgPixelsUnchangedAfterFinalIdentifierRename": [
+      "HC10301-A61-001",
+      "J10404-C33-001",
+      "J10501-A26-001",
+      "J10505-B11-001",
+      "J10806-A33-001",
+      "J20403-A31-001",
+      "J20602-A79-001",
+      "J20602-B04-001",
+      "J20602-B13-001",
+      "J20703-A34-001"
+    ],
+    "changedFieldsRechecked": [
+      {
+        "code": "HC10301-A61-001",
+        "fields": [
+          "figureSvg"
+        ]
+      },
+      {
+        "code": "HC10403-A02-001",
+        "fields": [
+          "solution"
+        ]
+      },
+      {
+        "code": "HC20309-A03-001",
+        "fields": [
+          "solution"
+        ]
+      },
+      {
+        "code": "J10205-C11-001",
+        "fields": [
+          "solution"
+        ]
+      },
+      {
+        "code": "J10308-A29-001",
+        "fields": [
+          "solution"
+        ]
+      },
+      {
+        "code": "J10403-A71-001",
+        "fields": [
+          "content"
+        ]
+      },
+      {
+        "code": "J10403-A74-001",
+        "fields": [
+          "solution"
+        ]
+      },
+      {
+        "code": "J10403-A75-001",
+        "fields": [
+          "content"
+        ]
+      },
+      {
+        "code": "J10404-C33-001",
+        "fields": [
+          "figureSvg"
+        ]
+      },
+      {
+        "code": "J10501-A26-001",
+        "fields": [
+          "figureSvg"
+        ]
+      },
+      {
+        "code": "J10505-A20-001",
+        "fields": [
+          "content"
+        ]
+      },
+      {
+        "code": "J10505-B11-001",
+        "fields": [
+          "figureSvg"
+        ]
+      },
+      {
+        "code": "J10507-A22-001",
+        "fields": [
+          "content",
+          "solution"
+        ]
+      },
+      {
+        "code": "J10605-B26-001",
+        "fields": [
+          "solution"
+        ]
+      },
+      {
+        "code": "J10703-A25-001",
+        "fields": [
+          "content"
+        ]
+      },
+      {
+        "code": "J10703-A26-001",
+        "fields": [
+          "content"
+        ]
+      },
+      {
+        "code": "J10704-B09-001",
+        "fields": [
+          "solution"
+        ]
+      },
+      {
+        "code": "J10705-A98-001",
+        "fields": [
+          "solution"
+        ]
+      },
+      {
+        "code": "J10806-A33-001",
+        "fields": [
+          "figureSvg"
+        ]
+      },
+      {
+        "code": "J20108-A95-001",
+        "fields": [
+          "solution"
+        ]
+      },
+      {
+        "code": "J20403-A31-001",
+        "fields": [
+          "figureSvg"
+        ]
+      },
+      {
+        "code": "J20408-A80-001",
+        "fields": [
+          "content"
+        ]
+      },
+      {
+        "code": "J20602-A79-001",
+        "fields": [
+          "figureSvg"
+        ]
+      },
+      {
+        "code": "J20602-B04-001",
+        "fields": [
+          "figureSvg"
+        ]
+      },
+      {
+        "code": "J20602-B13-001",
+        "fields": [
+          "figureSvg"
+        ]
+      },
+      {
+        "code": "J20701-A58-001",
+        "fields": [
+          "content"
+        ]
+      },
+      {
+        "code": "J20703-A34-001",
+        "fields": [
+          "figureSvg"
+        ]
+      }
+    ]
+  },
+  "initialRenderFindings": [
+    {
+      "code": "HC10403-A02-001",
+      "field": "solution",
+      "expression": "\\begin{pmatrix} a & ~~b \\\\ c & ~~d \\end{pmatrix}$$\\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}=\\begin{pmatrix} ~~4 \\\\ -1 \\end{pmatrix}",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 49: …d \\end{pmatrix}$̲$\\begin{pmatrix…"
+    },
+    {
+      "code": "HC10403-A02-001",
+      "field": "solution",
+      "expression": "\\begin{pmatrix} a & ~~b \\\\ c & ~~d \\end{pmatrix}$$\\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}=\\begin{pmatrix} 2 \\\\ 0 \\end{pmatrix}",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 49: …d \\end{pmatrix}$̲$\\begin{pmatrix…"
+    },
+    {
+      "code": "HC10403-A02-001",
+      "field": "solution",
+      "expression": "A\\begin{pmatrix} -3 \\\\ ~~1 \\end{pmatrix}$$=\\begin{pmatrix} ~~4 & ~~2 \\\\ -1 & ~~0 \\end{pmatrix}$$\\begin{pmatrix} -3 \\\\ ~~1 \\end{pmatrix}$$=\\begin{pmatrix} -10 \\\\ ~~3 \\end{pmatrix}",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 41: …1 \\end{pmatrix}$̲$=\\begin{pmatri…"
+    },
+    {
+      "code": "HC20309-A03-001",
+      "field": "solution",
+      "expression": "=\\frac{2(x-4)}{(x+2)(x-2)(x-4)}$$+\\frac{x+2}{(x+2)(x-2)(x-4)}",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 32: …x+2)(x-2)(x-4)}$̲$+\\frac{x+2}{(x…"
+    },
+    {
+      "code": "J10308-A29-001",
+      "field": "solution",
+      "expression": "x+(x-1)+(x+1)+(x-7)+(x+7)$$=5x",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 26: …+1)+(x-7)+(x+7)$̲$=5x"
+    },
+    {
+      "code": "J10704-B09-001",
+      "field": "solution",
+      "expression": "=\\frac{1}{2}\\times 8\\times 6$$=24$$\\left( \\mathrm{cm}^{2}\\right)",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 29: …times 8\\times 6$̲$=24$$\\left( \\m…"
+    },
+    {
+      "code": "J10704-B09-001",
+      "field": "solution",
+      "expression": "=\\left( 8+6+10\\right) \\times 7$$=168$$\\left( \\mathrm{cm}^{2}\\right)",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 31: …right) \\times 7$̲$=168$$\\left( \\…"
+    },
+    {
+      "code": "J10704-B09-001",
+      "field": "solution",
+      "expression": "=24\\times 2+168$$=216$$\\left( \\mathrm{cm}^{2}\\right)",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 16: =24\\times 2+168$̲$=216$$\\left( \\…"
+    },
+    {
+      "code": "J10704-B09-001",
+      "field": "solution",
+      "expression": "=\\pi \\times 4^{2}$$=16\\pi$$\\left( \\mathrm{cm}^{2}\\right)",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 18: …pi \\times 4^{2}$̲$=16\\pi$$\\left(…"
+    },
+    {
+      "code": "J10704-B09-001",
+      "field": "solution",
+      "expression": "=\\left( 2\\pi \\times 4\\right) \\times 9$$=72\\pi$$\\left( \\mathrm{cm}^{2}\\right)",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 38: …right) \\times 9$̲$=72\\pi$$\\left(…"
+    },
+    {
+      "code": "J10704-B09-001",
+      "field": "solution",
+      "expression": "=16\\pi \\times 2+72\\pi$$=104\\pi$$\\left( \\mathrm{cm}^{2}\\right)",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 22: … \\times 2+72\\pi$̲$=104\\pi$$\\left…"
+    },
+    {
+      "code": "J20108-A95-001",
+      "field": "solution",
+      "expression": "=\\frac{8x^{3}-4x^{2}}{-2x^{2}}$$=\\frac{8x^{3}}{-2x^{2}}-\\frac{4x^{2}}{-2x^{2}}",
+      "error": "KaTeX parse error: Can't use function '$' in math mode at position 31: …x^{2}}{-2x^{2}}$̲$=\\frac{8x^{3}}…"
+    }
+  ]
+}
