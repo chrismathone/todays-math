@@ -27,6 +27,7 @@ import { db } from "@/lib/db";
 import { requireAccessibleProblem } from "@/lib/ownership";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeProblem } from "@/lib/serializers";
+import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -53,7 +54,9 @@ async function handleGet(request: NextRequest, { params }: RouteContext) {
   if (!accessible.ok) return accessible.response;
 
   return jsonOk(problemResponseSchema, {
-    data: serializeProblem(accessible.data),
+    data: serializeProblem(
+      (await withProblemSourceReferences([accessible.data]))[0]!,
+    ),
   });
 }
 
@@ -95,7 +98,9 @@ async function handlePatch(request: NextRequest, { params }: RouteContext) {
     }
     throw error;
   }
-  return jsonOk(problemResponseSchema, { data: serializeProblem(updated) });
+  return jsonOk(problemResponseSchema, {
+    data: serializeProblem((await withProblemSourceReferences([updated]))[0]!),
+  });
 }
 
 // DELETE /api/problems/{id} — 문제 삭제

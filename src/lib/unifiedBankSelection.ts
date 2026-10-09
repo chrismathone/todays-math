@@ -10,6 +10,7 @@ import { problemEligibleWhere } from "@/lib/problemEligibility";
 import { findProblemIdsByFormat } from "@/lib/problem/formatQuery";
 import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import { classifyFormat } from "@/lib/problem/provenance";
+import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
 import {
   resolveUnifiedBankQuery,
   toBankProblem,
@@ -102,7 +103,7 @@ export async function composeUnifiedBankProblems(input: unknown) {
     : [];
   // A row moved to another unit between reads must not consume that unit's quota.
   const byId = new Map(
-    rows
+    (await withProblemSourceReferences(rows))
       .filter((row) => reservoirs.get(row.unitId)?.ids.includes(row.id))
       .map((row) => [row.id, toBankProblem(row)]),
   );
@@ -170,7 +171,7 @@ export async function selectUnifiedBankProblems(input: unknown) {
         select: UNIFIED_PROBLEM_SELECT,
       })
     : [];
-  const problems = rows
+  const problems = (await withProblemSourceReferences(rows))
     .filter(
       (row) =>
         chosen[row.difficulty]?.includes(row.id) &&

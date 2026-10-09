@@ -15,6 +15,8 @@ import { MISSING_ANSWER } from "@/lib/missingAnswer";
 import { findProblemIdsByFormat } from "@/lib/problem/formatQuery";
 import { classifyFormat } from "@/lib/problem/provenance";
 import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
+import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
+import type { ProblemSourceReference } from "@/contracts/problemSourceReference.contract";
 import type {
   BankData,
   BankProblem,
@@ -207,7 +209,9 @@ export function toBankProblem({
   directUseAllowed,
   questionType,
   ...problem
-}: UnifiedProblemRow): BankProblem {
+}: UnifiedProblemRow & {
+  sourceReference?: ProblemSourceReference | null;
+}): BankProblem {
   const questionTypes: Record<string, StudioProblem["questionType"]> = {
     multiple_choice: "multiple-choice",
     short_answer: "short-answer",
@@ -303,7 +307,7 @@ export async function loadUnifiedBank(
       (counts.get(unit.grade) ?? 0) + unit._count.problems,
     );
   return {
-    problems: rows.map(toBankProblem),
+    problems: (await withProblemSourceReferences(rows)).map(toBankProblem),
     total,
     page,
     pageSize,
