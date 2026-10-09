@@ -184,6 +184,12 @@ describe("교과서 복구 적용 경계", () => {
     expect(
       recoveryDraftIssues({ ...draft, content: "그림을 보시오." }),
     ).toContain("그림 표지와 파일 수 불일치");
+    expect(
+      recoveryDraftIssues({
+        ...draft,
+        content: "그림에서 답을 고르시오.\n① $1$\n② $2$\n[그림]",
+      }),
+    ).toContain("발문 그림 표지가 보기 안으로 흘러 들어갔다");
   });
   it("변경 없음 표시에 숨은 본문 변경과 기존 인라인 그림 소실을 거부한다", () => {
     expect(() =>

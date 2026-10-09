@@ -33,7 +33,7 @@
     {
       "problemCode": "HAL0202-A23-001",
       "kind": "correction",
-      "content": "그림과 같이 중심이 $\\mathrm{O}\\,$이고 $\\angle \\mathrm{AOB}=\\frac{\\pi }{3},~\\overset{\\frown}{\\mathrm{AB}}=2\\pi \\,$인 부채꼴 $\\mathrm{OAB}\\,$가 있다. 점 $\\mathrm{B}\\,$에서 선분 $\\mathrm{OA}\\,$에 내린 수선의 발을 $\\mathrm{H}\\,$라 할 때, 호 $\\mathrm{AB}\\,$와 두 선분 $\\mathrm{BH}\\,$, $\\mathrm{HA}\\,$로 둘러싸인 부분의 넓이는?\n① $6\\pi -\\frac{9}{2}\\sqrt{3}$\n② $6\\pi -3\\sqrt{3}$\n③ $6\\pi -\\frac{3}{2}\\sqrt{3}$\n④ $12\\pi -\\frac{9}{2}\\sqrt{3}$\n⑤ $12\\pi -3\\sqrt{3}$\n[그림]",
+      "content": "그림과 같이 중심이 $\\mathrm{O}\\,$이고 $\\angle \\mathrm{AOB}=\\frac{\\pi }{3},~\\overset{\\frown}{\\mathrm{AB}}=2\\pi \\,$인 부채꼴 $\\mathrm{OAB}\\,$가 있다. 점 $\\mathrm{B}\\,$에서 선분 $\\mathrm{OA}\\,$에 내린 수선의 발을 $\\mathrm{H}\\,$라 할 때, 호 $\\mathrm{AB}\\,$와 두 선분 $\\mathrm{BH}\\,$, $\\mathrm{HA}\\,$로 둘러싸인 부분의 넓이는?\n[그림]\n① $6\\pi -\\frac{9}{2}\\sqrt{3}$\n② $6\\pi -3\\sqrt{3}$\n③ $6\\pi -\\frac{3}{2}\\sqrt{3}$\n④ $12\\pi -\\frac{9}{2}\\sqrt{3}$\n⑤ $12\\pi -3\\sqrt{3}$",
       "answer": "①",
       "solution": "호 $\\mathrm{AB}\\,$의 길이가 $r\\theta =2\\pi \\,$이므로 반지름의 길이는 $6\\,$ 부채꼴 $\\mathrm{OAB}\\,$의 넓이는 $\\frac{1}{2}\\times 6^{2}\\times \\frac{\\pi}{3}=6\\pi \\,$ $\\overline{OH}=3,~\\overline{BH}=3\\sqrt{3}\\,$이므로 삼각형 $\\mathrm{BOH}\\,$의 넓이는\n$\\frac{1}{2}\\times 3\\times 3\\sqrt{3}=\\frac{9}{2}\\sqrt{3}\\,$\n따라서 구하고자 하는 부분의 넓이는 $6\\pi -\\frac{9}{2}\\sqrt{3}\\,$",
       "figureUrls": [
@@ -42,7 +42,7 @@
       "notes": "그림에 이미 있는 경계 HA를 누락 표기에 복원. 사람의 최종 출제 검토 전 잠금 유지.",
       "validation": {
         "math": "r=6, OH=3, BH=3√3. 부채꼴−삼각형=6π−9√3/2로 ①.",
-        "visual": "원본 PNG 확인: BHA 색칠 경계와 O,H,A 순서 일치. 그림 보존. 전체 원문 Markdown 및 운영 전처리 렌더 검사 통과; Chromium 90/180mm 폭에서 잘림·이미지 로드 오류 없음."
+        "visual": "원본 PNG 확인: BHA 색칠 경계와 O,H,A 순서 일치. 그림 보존. 전체 원문 Markdown 및 운영 전처리 렌더 검사 통과; Chromium 90/180mm 폭에서 잘림·이미지 로드 오류 없음. 최종 PaperProblemView 통합 검사에서 보기 뒤 본문 그림 표지를 발견하여 첫 보기 앞으로 이동했다."
       },
       "remainingIssues": []
     },
@@ -2370,7 +2370,7 @@
     {
       "problemCode": "J10505-A21-001",
       "kind": "correction",
-      "content": "다음 그림에서 $l\\parallel m$일 때, $∠x$의 크기는?\n① $25°$\n② $30°$\n③ $35°$\n④ $40°$\n⑤ $45°$\n[그림]",
+      "content": "다음 그림에서 $l\\parallel m$일 때, $∠x$의 크기는?\n[그림]\n① $25°$\n② $30°$\n③ $35°$\n④ $40°$\n⑤ $45°$",
       "answer": "②",
       "solution": "그림에서 꺾인 점을 지나고 $l$에 평행한 두 직선을 그으면 평행선의 엇각의 크기가 같다.\n직각의 한쪽은 $90^\\circ-40^\\circ=50^\\circ$이고, 이 각의 엇각이 $m$ 쪽에서 $2x+20^\\circ$ 가운데 $50^\\circ$ 부분이므로 $2x+20^\\circ=50^\\circ+x^\\circ$이다.\n$x=30^\\circ$이므로 답은 ②이다.",
       "figureUrls": [
@@ -2379,7 +2379,7 @@
       "notes": "코디네이터가 두 번째 PNG의 A22 소속을 확인하고 제거를 명시 승인(msg_f0714e9c95d8). 첫 그림 보존, 수식 밖 parallel과 그림 위치 표현 교정. 사람의 최종 출제 검토 전 잠금 유지.",
       "validation": {
         "math": "첫 그림에서는 직각으로50°가 생기고 2x+20=50+x ⇒ x=30°, 정답②.",
-        "visual": "두 PNG를 직접 확인: 첫째40°·직각·2x+20°·x가 본문과 일치, 둘째a·b·62°·45°는 다른 문항. 승인에 따라 둘째만 제거. 승인 반영 후 원문·운영 렌더, 루트 recoveryDraftIssues 검사 및 Chromium 화면 직접 확인 통과."
+        "visual": "두 PNG를 직접 확인: 첫째40°·직각·2x+20°·x가 본문과 일치, 둘째a·b·62°·45°는 다른 문항. 승인에 따라 둘째만 제거. 승인 반영 후 원문·운영 렌더, 루트 recoveryDraftIssues 검사 및 Chromium 화면 직접 확인 통과. 최종 PaperProblemView 통합 검사에서 보기 뒤 본문 그림 표지를 발견하여 첫 보기 앞으로 이동했다."
       },
       "remainingIssues": []
     },

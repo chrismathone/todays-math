@@ -9,6 +9,7 @@ import { tokenizeMath } from "@/lib/math/segments";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
 import { figureSvgViewBox } from "@/lib/figure/figureSvgFrame";
 import { checkPaperRender } from "@/lib/testchanger/mathRenderQa";
+import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import {
   choiceIndexOf,
   countMarkers,
@@ -163,6 +164,14 @@ export function recoveryDraftIssues(candidate: RecoveryCandidate): string[] {
     choiceIndexOf(candidate.content),
   );
   if (note) issues.push(note);
+  const associations = choiceIndexOf(candidate.content) ?? [];
+  if (
+    parseProblemContent(candidate.content).choices.some(
+      (choice, index) =>
+        countMarkers(choice) > 0 && !associations.includes(index + 1),
+    )
+  )
+    issues.push("발문 그림 표지가 보기 안으로 흘러 들어갔다");
   return [...new Set(issues)];
 }
 
