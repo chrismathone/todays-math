@@ -1,0 +1,17 @@
+Authenticated workspace bank bootstrap — 2026-10-09
+
+Change
+WorkspacePage now calls loadUnifiedBankBootstrap for authorized bank accounts. The helper returns total eligible count, ordered curriculum metadata, grade counts and chapters without fetching problem rows or resolving source references. WorkspacePage supplies an empty first page with that metadata; existing no-bank and error fallbacks remain intact. The existing loadUnifiedBank stays the full query for API, development, legacy and candidate selection consumers.
+
+Query evidence
+A deterministic Prisma test-double regression resets the problem-row query spy, calls the bootstrap and verifies zero problem.findMany calls while the expected unit, grade and chapter metadata remains. It then calls the full scoped bank loader and verifies one page query (take 12) includes the planted candidate and returns the same curriculum metadata. The WorkspacePage test verifies metadata reaches UnifiedWorkspace with problems empty, page 1 and pageSize 12. This confirms the initial 12 full rows and their figure/source payload processing are removed from authenticated SSR bootstrap; it is not a production latency benchmark.
+
+Validation
+- `src/__tests__/api/unifiedBankFilters.test.ts`: 37 passed.
+- WorkspaceEntry, LoginLanding and fadingTeacherWorkspaceEntry: 21 passed.
+- Scoped exam-builder TypeScript check: 0 diagnostics.
+- Scoped ESLint, Prettier and `git diff --check` passed.
+- Test double only; no real or shared database writes, network calls, deployment or push.
+
+Preserved behavior
+Candidate selection continues through the existing full bank/API query with its exact scope, filter, exclusion, eligibility and pagination rules. API/dev consumers still call loadUnifiedBank and receive problem rows. The bootstrap is only used after the existing account access check and bank-menu gate.
