@@ -142,7 +142,10 @@ export async function withProblemSourceReferences<
     if (!row.originProblemId) return row;
     const source = roots.get(row.originProblemId);
     if (!source) return { ...row, sourceReference: null };
-    const exam = source.examId ? examById.get(source.examId) : undefined;
+    const exam =
+      source.source === "past_exam" && source.examId
+        ? examById.get(source.examId)
+        : undefined;
     const material = source.sourceMaterial;
     const reference: ProblemSourceReference = {
       problemId: source.id,

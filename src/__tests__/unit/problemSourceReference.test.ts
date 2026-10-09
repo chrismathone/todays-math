@@ -41,6 +41,19 @@ beforeEach(() => {
 });
 
 describe("generated problem source references", () => {
+  it("does not borrow another source's exam metadata for an AI/engine original", async () => {
+    findMany.mockResolvedValue([
+      original,
+      { ...original, id: "engine-original", source: "manual" },
+    ]);
+    findExams.mockResolvedValue([exam]);
+    const results = await withProblemSourceReferences([
+      { originProblemId: original.id },
+      { originProblemId: "engine-original" },
+    ]);
+    expect(results[0].sourceReference?.exam?.year).toBe(2025);
+    expect(results[1].sourceReference?.exam).toBeNull();
+  });
   it("batches shared origins, reads normalized exams, and keeps synthetic metadata untouched", async () => {
     findMany.mockResolvedValue([original]);
     findExams.mockResolvedValue([exam]);
