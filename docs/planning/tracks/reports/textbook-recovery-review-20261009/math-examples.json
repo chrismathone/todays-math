@@ -85,7 +85,7 @@
     },
     {
       "problemCode": "HAL0206-A03-001",
-      "path": "correction",
+      "path": "rewrite",
       "change": "설명에서 기본 주기를1시간으로 명시",
       "content": "난방기를 가동하면 실내 온도가 기본 주기1시간으로 변한다. 설정 온도를 $B\\,({}^\\circ\\mathrm C)$, 가동한 지 $t$분 후의 실내 온도를 $T\\,({}^\\circ\\mathrm C)$라 할 때 $T=B-\\dfrac{k}{6}\\cos\\left(\\dfrac{\\pi t}{30}\\right)$이다. 단, B,k는 양의 상수이다. 10분 후 온도는16°C, 40분 후 온도는20°C일 때 k의 값은?",
       "options": [

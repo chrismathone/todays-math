@@ -55,5 +55,18 @@
     "generatedImageLoaded": true,
     "screenshotsVisuallyInspected": true,
     "productionAppTested": false
+  },
+  "triageInventory": {
+    "total": 475,
+    "uniqueIds": 475,
+    "missing": 0,
+    "extra": 0,
+    "counts": {
+      "correction": 369,
+      "rewrite": 61,
+      "source_or_diagram_review": 45
+    },
+    "snapshotSha256Match": true,
+    "sourceReasonsMatch": true
   }
 }
