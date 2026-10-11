@@ -37,8 +37,18 @@ import { createCodexJsonRunner } from "../../../scripts/import/textbook/codex-re
 vi.mock("openai", () => {
   throw new Error("paid-provider-imported");
 });
-vi.mock("@prisma/client", () => {
-  throw new Error("database-imported");
+vi.mock("@prisma/client", async (importOriginal) => {
+  // The repository's global test harness imports Prisma's error/SQL values.
+  // Permit that metadata while rejecting every real database client constructor.
+  const actual = await importOriginal<typeof import("@prisma/client")>();
+  return {
+    ...actual,
+    PrismaClient: class {
+      constructor() {
+        throw new Error("database-client-created");
+      }
+    },
+  };
 });
 vi.mock("@/lib/ai/client", () => {
   throw new Error("paid-client-imported");

@@ -2,6 +2,66 @@ import { describe, expect, it } from "vitest";
 import { dbRetryAnswersAgree } from "@/lib/import/schoolTextbook/dbRetryReviewBinding";
 const roots = "다음 거듭제곱근 중 실수인 것을 모두 구하시오.";
 describe("Exact imported root answer notation", () => {
+  it("keeps requested order and ordinary words containing 근 or 해", () => {
+    expect(
+      dbRetryAnswersAgree(
+        "-4,4",
+        "4,-4",
+        "단답형",
+        "거듭제곱근 중 실수인 것을 양수, 음수 순서로 구하시오.",
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "1,2",
+        "2,1",
+        "단답형",
+        "두 실수의 근삿값을 각각 구하시오.",
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "1,2",
+        "2,1",
+        "단답형",
+        "실수에 대한 해설의 빈칸을 각각 채우시오.",
+      ),
+    ).toBe(false);
+  });
+  it("preserves radical index when translating display glyphs", () => {
+    expect(
+      dbRetryAnswersAgree(
+        "4\\sqrt[3]{3}",
+        "4∛3",
+        "단답형",
+        "다음 값을 구하시오.",
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "2\\sqrt[4]{5}",
+        "2∜5",
+        "단답형",
+        "다음 값을 구하시오.",
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "4\\sqrt[3]{3}",
+        "4∜3",
+        "단답형",
+        "다음 값을 구하시오.",
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "4\\sqrt[3]{3}",
+        "∛12",
+        "단답형",
+        "다음 값을 구하시오.",
+      ),
+    ).toBe(false);
+  });
   it("compares every real value requested by an explicit one-variable equation", () => {
     const content =
       "다음 방정식을 만족시키는 실수 $x$의 값을 모두 구하시오. (1) $x^4=625$";

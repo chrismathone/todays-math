@@ -250,6 +250,15 @@ function mathKey(text: string, numericRootSet = false): string | null {
     .replace(/\s+/g, "")
     .replace(/\^\{([+-]?\d+|[a-zA-Z])\}/g, "^$1")
     .replace(
+      /\\sqrt\[(\d+)\]\{(\d+)\}/g,
+      (_all, degree: string, radicand: string) =>
+        degree === "2" ? `sqrt(${radicand})` : `root(${degree},${radicand})`,
+    )
+    .replace(
+      /[∛∜](\d+)/g,
+      (all, radicand: string) => `root(${all[0] === "∛" ? 3 : 4},${radicand})`,
+    )
+    .replace(
       /\\sqrt\{(\d+)\}|√(\d+)/g,
       (_all, latex: string | undefined, unicode: string | undefined) =>
         `sqrt(${latex ?? unicode})`,
@@ -320,9 +329,12 @@ export function dbRetryAnswersAgree(
   if (dbRetryUnknownAnswer(stored) || dbRetryUnknownAnswer(blind)) return false;
   if (questionType !== "객관식") {
     const numericRootSet =
-      /제곱근[^\n]{0,50}실수|실수[^\n]{0,50}(?:제곱근|근|해)|실수\s*\$?[a-z]\$?의\s*값을\s*모두/.test(
+      /제곱근[^\n]{0,50}실수|실수(?:인)?\s*(?:근|해)(?:을|를|\s|[,.])|실수\s*\$?[a-z]\$?의\s*값을\s*모두/.test(
         content,
-      ) && !/개수|몇\s*개|순서쌍|좌표/.test(content);
+      ) &&
+      !/개수|몇\s*개|순서|순으로|좌표|오름차순|내림차순|작은[^\n.]{0,10}부터|큰[^\n.]{0,10}부터/.test(
+        content,
+      );
     const key = mathKey(stored, numericRootSet);
     return key !== null && key === mathKey(blind, numericRootSet);
   }
