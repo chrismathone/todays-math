@@ -128,6 +128,13 @@ interface DbRetryFigureModule {
   ): Promise<{ svg: string; figures: DbRetryFigures }>;
 }
 export function safeDbRetryReason(error: unknown): string {
+  if (
+    error instanceof Error &&
+    "code" in error &&
+    typeof error.code === "string" &&
+    /^[a-z][a-z-]{1,100}$/.test(error.code)
+  )
+    return error.code;
   return error instanceof DbRetryGenerationError
     ? error.code
     : error instanceof Error && /^[a-z][a-z-]{1,100}$/.test(error.message)
@@ -308,6 +315,15 @@ export async function runDbRetryCli(
             ),
           }),
         );
+        if (entry.reason === "provider-balance-insufficient") {
+          atomicDbRetryJson(join(store.root, "provider-blocked.json"), {
+            sourceId: entry.sourceId,
+            checkedAt: new Date().toISOString(),
+            reason: entry.reason,
+            httpStatus: 402,
+          });
+          throw new DbRetryGenerationError("provider-balance-insufficient");
+        }
       });
     }
     const summary = {

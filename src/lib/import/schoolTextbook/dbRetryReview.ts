@@ -20,7 +20,7 @@ import type {
 import { reviewDigest } from "./qualification";
 import { textbookVariantSourceDigest } from "./variants";
 
-export const DB_RETRY_REVIEW_VERSION = "db-retry-blind-review-v1";
+export const DB_RETRY_REVIEW_VERSION = "db-retry-blind-review-v2";
 const TEXT_MODEL = "deepseek-v4-pro";
 const VISION_MODEL = "deepseek-flash";
 const SEMANTIC_MODEL = "jev-latest";
@@ -28,7 +28,7 @@ const SEMANTIC_MODEL = "jev-latest";
 export const DB_RETRY_SEMANTIC_THRESHOLDS = Object.freeze({
   sameLearningGoal: 0.95,
   sameLevel: 0.9,
-  complete: 0.95,
+  complete: 0.9,
 });
 type ProblemId = DbRetryBlindProblem["id"];
 type CandidateId = DbRetrySolutionReview["id"];
@@ -339,7 +339,29 @@ function scalarKey(text: string): string | null {
 function mathKey(text: string): string | null {
   const bare = unwrap(text);
   if (unknownAnswer(bare) || bare.length > 4000) return null;
-  const compact = bare.replace(/\s+/g, "");
+  // Sequential subpart labels preserve every answer and its position. Only
+  // punctuation between subparts is formatting; a missing/reordered part fails.
+  const parts = [...bare.matchAll(/\((\d+)\)\s*/g)];
+  if (/^\(1\)/.test(bare) && parts.length >= 2) {
+    if (parts.some((part, index) => Number(part[1]) !== index + 1)) return null;
+    const keys = parts.map((part, index) =>
+      mathKey(
+        bare
+          .slice(part.index! + part[0].length, parts[index + 1]?.index)
+          .trim()
+          .replace(/[,;，；]+$/, ""),
+      ),
+    );
+    return keys.every((key) => key !== null) ? `parts:${keys.join("|")}` : null;
+  }
+  const compact = bare
+    .replace(/\s+/g, "")
+    .replace(/\^\{([+-]?\d+|[a-zA-Z])\}/g, "^$1")
+    .replace(
+      /\\sqrt\{(\d+)\}|√(\d+)/g,
+      (_all, latex: string | undefined, unicode: string | undefined) =>
+        `sqrt(${latex ?? unicode})`,
+    );
   if (
     /(?:^|[=,({])(?:NaN|undefined|null|unknown|미상)(?:$|[,)}])/i.test(
       compact,
@@ -398,6 +420,26 @@ export function dbRetryAnswersAgree(
   }
   const choices = choicesOf(content);
   if (!choices) return false;
+  if (/모두\s*(?:고르|선택)|(?:고르|선택)[^\n?]{0,12}모두/.test(content)) {
+    const indexes = (answer: string): number[] | null => {
+      const pieces = unwrap(answer).split(/\s*[,，;、]\s*/);
+      const values = pieces.map(choiceIndex);
+      if (
+        !values.length ||
+        values.some((value) => value === null || value > choices.length) ||
+        new Set(values).size !== values.length
+      )
+        return null;
+      return (values as number[]).sort((a, b) => a - b);
+    };
+    const expected = indexes(stored),
+      actual = indexes(blind);
+    return (
+      expected !== null &&
+      actual !== null &&
+      reviewDigest(expected) === reviewDigest(actual)
+    );
+  }
   const resolve = (answer: string): number | null => {
     const index = choiceIndex(answer);
     if (index !== null) return index <= choices.length ? index : null;
@@ -912,10 +954,17 @@ export async function reviewDbRetryPair(
       communication.outputTokens = tokens(inference.usage?.outputTokens);
       communication.status = "succeeded";
       return structuredClone(inference);
-    } catch {
+    } catch (error) {
       // Do not copy arbitrary SDK errors, headers, credentials, provider bodies or image base64 into evidence.
+      if (
+        error instanceof Error &&
+        "status" in error &&
+        typeof error.status === "number" &&
+        Number.isInteger(error.status)
+      )
+        communication.httpStatus = error.status;
       result.issues.push(
-        `${phase}:${controller.signal.aborted ? "aborted-or-timeout" : "service-or-response-failure"}`,
+        `${phase}:${communication.httpStatus === 402 ? "provider-balance-insufficient" : controller.signal.aborted ? "aborted-or-timeout" : "service-or-response-failure"}`,
       );
       return null;
     } finally {

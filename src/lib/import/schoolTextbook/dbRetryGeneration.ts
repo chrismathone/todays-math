@@ -57,6 +57,7 @@ export interface DbRetryCall {
   } | null;
   finishReason: string | null;
   status: "received" | "transport-failed";
+  httpStatus?: number;
 }
 export interface DbRetryGeneratedPair {
   version: typeof DB_RETRY_GENERATION_VERSION;
@@ -204,6 +205,9 @@ export function buildDbRetryPrompts(
       required
         ? `이 요청에는 DB에서 실제 읽은 그림 ${figures.images.length}장이 원래 순서로 첨부됩니다. 원본 그림을 직접 보고 조건을 확인하십시오. 새 숫자에 맞는 figureSpec을 작성하고 본문에는 [그림] 표지 하나를 넣으십시오. 필요한 도형을 확정할 수 없으면 figureSpec=null로 남기십시오. 없는 조건이나 치수를 지어내지 마십시오.`
         : "원문은 그림이 없는 문항입니다. 그림 조건을 추가하지 마십시오.",
+      required
+        ? "FigureSpec 좌표는 픽셀 좌표가 아니라 장면 단위입니다. 보통 -10부터 10 사이의 작은 좌표를 쓰고 400, 800 같은 화면 픽셀값을 좌표로 넣지 마십시오. 원의 반지름도 같은 장면 단위입니다. 분기·표·배열을 그릴 때 본문의 개수 조건과 실제 점·연결선·칸 개수를 일치시키십시오."
+        : "",
       previousContent
         ? `앞서 만든 변형과도 달라야 합니다: ${previousContent}`
         : "",
@@ -389,7 +393,14 @@ export async function generateDbRetryPair(
             ...prompts,
             figures: structuredClone(figureEvidence),
           });
-        } catch {
+        } catch (error) {
+          const httpStatus =
+            error instanceof Error &&
+            "status" in error &&
+            typeof error.status === "number" &&
+            Number.isInteger(error.status)
+              ? error.status
+              : undefined;
           calls.push({
             slot,
             attempt,
@@ -400,8 +411,14 @@ export async function generateDbRetryPair(
             usage: null,
             finishReason: null,
             status: "transport-failed",
+            ...(httpStatus === undefined ? {} : { httpStatus }),
           });
-          throw new DbRetryGenerationError("generation-transport", calls);
+          throw new DbRetryGenerationError(
+            httpStatus === 402
+              ? "provider-balance-insufficient"
+              : "generation-transport",
+            calls,
+          );
         }
         calls.push({
           slot,

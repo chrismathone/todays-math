@@ -216,6 +216,21 @@ describe("DB retry source image evidence", () => {
       ),
     ).rejects.toMatchObject({ code: "missing-evidence" });
   });
+  it("allows a fully stated text-only geometric definition for independent solving", async () => {
+    const content =
+      "초점이 F인 포물선 위의 점 A에서 준선에 내린 수선의 발을 H라 할 때, FA=3이면 AH의 길이를 구하시오.";
+    for (const source of ["school_textbook", "transformed"])
+      expect(await loadDbRetryFigures({ source, content })).toEqual({
+        images: [],
+        digest: reviewDigest([]),
+      });
+    await expect(
+      loadDbRetryFigures({
+        source: "school_textbook",
+        content: "다음 표에서 AH의 길이를 구하시오.",
+      }),
+    ).rejects.toMatchObject({ code: "missing-evidence" });
+  });
 
   it("rejects a missing image without returning partial evidence", async () => {
     vi.stubEnv("SHARED_FIGURE_CDN_BASE_URL", "");

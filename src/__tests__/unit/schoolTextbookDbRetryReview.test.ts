@@ -155,6 +155,24 @@ const png = (
 };
 
 describe("DB retry independent reasoning gate", () => {
+  it("keeps balance-blocked review pending and records only the HTTP status", async () => {
+    const input = fixture();
+    input.deps.solveBlind = vi.fn(async () => {
+      throw Object.assign(new Error("SECRET_PROVIDER_BODY"), { status: 402 });
+    });
+    const review = await run(input);
+    expect(review.passed).toBe(false);
+    expect(review.issues).toContain(
+      "blind-solve:provider-balance-insufficient",
+    );
+    expect(review.communications).toHaveLength(1);
+    expect(review.communications[0]).toMatchObject({
+      httpStatus: 402,
+      status: "failed",
+    });
+    expect(JSON.stringify(review)).not.toContain("SECRET_PROVIDER_BODY");
+    expect(input.deps.reviewSolutions).not.toHaveBeenCalled();
+  });
   it("records three independent answers, two worked-solution reviews, six Noul probabilities and model usage", async () => {
     const input = fixture();
     const before = structuredClone(input.candidates);
@@ -669,6 +687,9 @@ describe("conservative answer equality", () => {
     ["$x=2,\\;y=3$", "$(x,y)=(2,3)$"],
     ["y=3,x=2", "x=2,y=3"],
     ["0", "\\frac{0}{-2}"],
+    ["x^2+2x+1", "x^{2}+2x+1"],
+    ["$7x^{2}-10xy-2y^{2}$", "7x^2 - 10xy - 2y^2"],
+    ["(1) $5$ (2) $\\sqrt{6}$ (3) $\\frac{1}{4}$", "(1) 5, (2) √6, (3) 1/4"],
   ])("normalizes only supported formats: %s versus %s", (stored, blind) => {
     expect(
       dbRetryAnswersAgree(stored, blind, "단답형", "변수의 값을 구하시오."),
@@ -692,7 +713,10 @@ describe("conservative answer equality", () => {
     ["\\frac{1}{0}", "\\frac{1}{0}"],
     ["1/0", "1/0"],
     ["x=NaN", "x=NaN"],
-    ["x^2+2x+1", "x^{2}+2x+1"],
+    ["x^{2+1}", "x^2+1"],
+    ["(1) $5$ (2) $4$", "(1) 5 (2) 3"],
+    ["(1) $5$ (2) $4$", "(1) 5"],
+    ["(1) $5$ (2) $4$", "(2) 4 (1) 5"],
   ])("does not erase meaning: %s versus %s", (stored, blind) =>
     expect(dbRetryAnswersAgree(stored, blind, "단답형", "문제")).toBe(false),
   );
@@ -741,6 +765,14 @@ describe("conservative answer equality", () => {
     expect(dbRetryAnswersAgree("2", "2", "객관식", "보기가 누락되었다.")).toBe(
       false,
     );
+  });
+  it("compares all selected labels only when the question explicitly requests all choices", () => {
+    const content =
+      "다음 중 옳은 것을 모두 고르면?\n① $1$\n② $2$\n③ $3$\n④ $4$";
+    expect(dbRetryAnswersAgree("③, ④", "④,③", "객관식", content)).toBe(true);
+    for (const wrong of ["③", "③,②", "③,④,④", "③,⑥"])
+      expect(dbRetryAnswersAgree("③,④", wrong, "객관식", content)).toBe(false);
+    expect(dbRetryAnswersAgree("③,④", "③,④", "객관식", mc)).toBe(false);
   });
   it("asks six separate Noul questions whose meaning includes their state path", () => {
     const questions = buildDbRetrySemanticQuestions();

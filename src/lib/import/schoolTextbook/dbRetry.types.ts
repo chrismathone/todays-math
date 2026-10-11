@@ -78,6 +78,7 @@ export interface DbRetryReviewCommunication {
   outputTokens: number | null;
   latencyMs: number;
   status: "succeeded" | "failed";
+  httpStatus?: number;
 }
 export interface DbRetryPairReview {
   version: string;

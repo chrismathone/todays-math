@@ -6,7 +6,7 @@ import sharp from "sharp";
 
 import { validDevAiSvg } from "../../dev-ai/svg";
 import { figureFabricationReason } from "../../figure/figureMatchesContent";
-import { pointsAtPrintedFigure } from "../../figure/missingFigureRule";
+import { classifyFigure, PRESENTS_GRAPH } from "../../figure/missingFigureRule";
 import { renderFigureSpec } from "../../figure/renderFigureSpec";
 import {
   createSharedFigureAssetHandler,
@@ -355,12 +355,15 @@ export async function loadDbRetryFigures(
     images.push(
       await svgImage(svg, 0, generated ? "generated-svg" : "database-svg"),
     );
+  // Named points can be fully defined in text. The blind solver must check
+  // completeness; a geometry-label census alone cannot prove missing bytes.
   if (
     !images.length &&
     !urls.length &&
     (options.requireFigures ||
       /\[그림\]/.test(source.content ?? "") ||
-      pointsAtPrintedFigure(source.content ?? ""))
+      classifyFigure(source.content ?? "") === "유실" ||
+      PRESENTS_GRAPH.test(source.content ?? ""))
   )
     reject("missing-evidence", "본문에 필요한 그림 근거가 없습니다.");
 

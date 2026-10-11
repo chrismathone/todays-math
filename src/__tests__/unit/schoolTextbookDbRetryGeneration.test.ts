@@ -81,6 +81,25 @@ export const retryTransport = () =>
     .mockResolvedValueOnce(retryCompletion(2));
 
 describe("DB-source generation is a pending draft, not approval", () => {
+  it("records an insufficient-balance status without provider bodies or credentials", async () => {
+    const error = Object.assign(new Error("SECRET_PROVIDER_HEADERS"), {
+      status: 402,
+    });
+    try {
+      await generateDbRetryPair(retryOrigin, noRetryFigures, {
+        complete: async () => {
+          throw error;
+        },
+      });
+      throw new Error("expected failure");
+    } catch (caught) {
+      expect(caught).toMatchObject({
+        code: "provider-balance-insufficient",
+        calls: [{ httpStatus: 402, status: "transport-failed" }],
+      });
+      expect(JSON.stringify(caught)).not.toContain("SECRET_PROVIDER_HEADERS");
+    }
+  });
   it("preserves every parent link, exact slots, source file and immutable source digest", async () => {
     const origin = structuredClone(retryOrigin);
     const before = structuredClone(origin);
@@ -336,15 +355,13 @@ describe("DB-source generation is a pending draft, not approval", () => {
           figureSpec: { version: 2 },
         }),
       );
-    const renderFigure = vi
-      .fn()
-      .mockResolvedValue({
-        svg: '<svg viewBox="0 0 100 100"><line x1="0" y1="0" x2="50" y2="50"/></svg>',
-        figures: {
-          images: [{ ...image, origin: "generated-svg" }],
-          digest: "generated",
-        },
-      });
+    const renderFigure = vi.fn().mockResolvedValue({
+      svg: '<svg viewBox="0 0 100 100"><line x1="0" y1="0" x2="50" y2="50"/></svg>',
+      figures: {
+        images: [{ ...image, origin: "generated-svg" }],
+        digest: "generated",
+      },
+    });
     const pair = await generateDbRetryPair(origin, figures, {
       complete,
       renderFigure,
