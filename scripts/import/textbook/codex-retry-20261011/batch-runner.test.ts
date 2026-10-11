@@ -446,11 +446,18 @@ describe("bounded grouped runner", () => {
       fake = fakeGeneration((items) => {
         items[0]!.sourceDigest = "f".repeat(64);
       });
-    expect(
-      await runCodexGroupedBatch(options, { ...dependencies, run: fake.run }),
-    ).toEqual({ selected: 2, generated: 0, failed: 2, modelCalls: 1 });
-    for (const o of origins)
+    // Per-source literal bindings now reject the forged digest in the transport
+    // schema itself, before a successful grouped result can be claimed.
+    await expect(
+      runCodexGroupedBatch(options, { ...dependencies, run: fake.run }),
+    ).rejects.toThrow("grouped-batch-stopped");
+    expect(existsSync(join(options.out, ".run.lock"))).toBe(false);
+    for (const o of origins) {
       expect(saved(options.out, o.problem.id).pair).toBeUndefined();
+      expect(saved(options.out, o.problem.id).reason).toBe(
+        "grouped-transport-failed",
+      );
+    }
   });
   it("stops scheduling after a transport failure and removes the lock without leaking upstream details", async () => {
     const { options, origins } = await fixture(6);
@@ -609,7 +616,7 @@ describe("bounded grouped runner", () => {
         ...dependencies,
         run: fake.run,
         loadFigures: async (p) => {
-            Object.assign(p, { extraMutatedField: "changed" });
+          Object.assign(p, { extraMutatedField: "changed" });
           return emptyFigures;
         },
       }),
