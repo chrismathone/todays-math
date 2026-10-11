@@ -394,11 +394,12 @@
   min-width: 0;
 }
 .dialog {
+  margin: auto;
   color: var(--learn-ink);
   padding: 0;
   width: calc(100vw - 40px);
   max-width: calc(100vw - 40px);
-  max-height: calc(100dvh - 40px);
+  max-height: min(760px, calc(100dvh - 64px));
   border: 1px solid var(--learn-track);
   border-radius: 18px;
   background: var(--learn-surface);

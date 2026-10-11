@@ -108,6 +108,31 @@ beforeAll(() => {
 });
 afterEach(cleanup);
 describe("shared exam builder workflow", () => {
+  it("marks empty curriculum scopes unavailable and caps requests to actual bank counts", async () => {
+    const available = [
+      { ...scopes[0], count: 0 },
+      { ...scopes[1], count: 2 },
+    ];
+    const adapter = source({
+      loadScopes: vi.fn().mockResolvedValue(available),
+    });
+    render(<Harness adapter={adapter} />);
+    await screen.findByRole("button", { name: "범위 선택" });
+    fireEvent.click(screen.getByRole("button", { name: "범위 선택" }));
+    const dialog = screen.getByRole("dialog");
+    expect(
+      within(dialog).getByRole("checkbox", { name: /범위 1/ }),
+    ).toBeDisabled();
+    expect(within(dialog).getByText("출제 가능 문항 없음")).toBeInTheDocument();
+    fireEvent.click(within(dialog).getByRole("checkbox", { name: /범위 2/ }));
+    fireEvent.click(
+      within(dialog).getByRole("button", { name: "1개 범위 적용" }),
+    );
+    expect(
+      screen.getByRole("spinbutton", { name: "범위 2 구성 수" }),
+    ).toHaveValue(2);
+    expect(screen.getByText(/출제 가능 2문항/)).toBeInTheDocument();
+  });
   it("keeps a long scope catalog paged, cancels safely and composes only selected scopes", async () => {
     const adapter = source();
     render(<Harness adapter={adapter} />);

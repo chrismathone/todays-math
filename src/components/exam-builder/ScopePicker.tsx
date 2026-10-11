@@ -19,7 +19,14 @@ export default function ScopePicker({
   onClose: () => void;
   onApply: (ids: string[]) => void;
 }) {
-  const [chosen, setChosen] = useState(() => new Set(selected));
+  const [chosen, setChosen] = useState(
+    () =>
+      new Set(
+        selected.filter(
+          (id) => scopes.find((scope) => scope.id === id)?.count !== 0,
+        ),
+      ),
+  );
   const [group, setGroup] = useState(initialGroup ?? "");
   const [detail, setDetail] = useState("");
   const [query, setQuery] = useState("");
@@ -59,8 +66,11 @@ export default function ScopePicker({
     (currentPage - 1) * PAGE_SIZE,
     currentPage * PAGE_SIZE,
   );
+  const selectable = filtered.filter(
+    (row) => row.count === undefined || row.count > 0,
+  );
   const allVisible =
-    filtered.length > 0 && filtered.every((row) => chosen.has(row.id));
+    selectable.length > 0 && selectable.every((row) => chosen.has(row.id));
   const toggle = (id: string) =>
     setChosen((current) => {
       const next = new Set(current);
@@ -69,7 +79,7 @@ export default function ScopePicker({
       return next;
     });
   return (
-    <BuilderDialog title="출제 범위 선택" onClose={onClose}>
+    <BuilderDialog title="출제 범위 선택" onClose={onClose} width={880}>
       <div className={s.dialogFilters}>
         <label>
           학년·과정
@@ -133,11 +143,11 @@ export default function ScopePicker({
           <input
             type="checkbox"
             checked={allVisible}
-            disabled={!rows.length}
+            disabled={!selectable.length}
             onChange={() =>
               setChosen((current) => {
                 const next = new Set(current);
-                filtered.forEach((row) =>
+                selectable.forEach((row) =>
                   allVisible ? next.delete(row.id) : next.add(row.id),
                 );
                 return next;
@@ -166,6 +176,7 @@ export default function ScopePicker({
                   <input
                     type="checkbox"
                     checked={chosen.has(scope.id)}
+                    disabled={scope.count === 0}
                     onChange={() => toggle(scope.id)}
                   />
                   <span>
@@ -175,7 +186,11 @@ export default function ScopePicker({
                     </small>
                   </span>
                   {scope.count !== undefined && (
-                    <small>{scope.count}문항</small>
+                    <small>
+                      {scope.count
+                        ? `${scope.count}문항`
+                        : "출제 가능 문항 없음"}
+                    </small>
                   )}
                 </label>
               </li>

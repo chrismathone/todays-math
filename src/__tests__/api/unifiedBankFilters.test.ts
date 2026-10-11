@@ -120,6 +120,10 @@ describe("Math exam builder scoped bank access", () => {
     );
     expect(selectedGrade?.count).toBeGreaterThan(0);
     expect(bootstrap.chapters).toContain(MOCK_UNITS[0].chapter);
+    expect(bootstrap.unitCounts?.[MOCK_UNITS[0].id]).toBeGreaterThan(0);
+    expect(Object.keys(bootstrap.unitCounts ?? {})).toHaveLength(
+      bootstrap.units?.length ?? 0,
+    );
     expect(bootstrap.units?.[0]).toEqual(
       expect.objectContaining({
         id: MOCK_UNITS[0].id,

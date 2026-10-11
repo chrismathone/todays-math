@@ -249,7 +249,7 @@ export function toBankProblem({
 
 export type UnifiedBankBootstrap = Pick<
   BankData,
-  "total" | "grades" | "chapters" | "units"
+  "total" | "grades" | "chapters" | "units" | "unitCounts"
 >;
 
 async function loadUnifiedBankMetadata(
@@ -286,6 +286,9 @@ async function loadUnifiedBankMetadata(
     );
   return {
     total,
+    unitCounts: Object.fromEntries(
+      units.map((unit) => [unit.id, unit._count.problems]),
+    ),
     units: units.map(({ id, grade, chapter, section, orderIndex }) => ({
       id,
       grade,

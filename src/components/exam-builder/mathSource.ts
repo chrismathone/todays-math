@@ -9,6 +9,7 @@ export const MATH_EXAM_MAX_QUESTIONS = 100;
 
 interface MathSourceOptions {
   initialUnits?: readonly UnitEntity[];
+  initialUnitCounts?: Readonly<Record<string, number>>;
   /** Omit in the workspace to retain the existing production/development routing. */
   problemsUrl?: string;
   fetch?: typeof fetch;
@@ -31,7 +32,10 @@ export function createMathExamBuilderSource(
     item.eligible === undefined &&
     Boolean(item.studioCrop || item.croppedImage || item.ocr);
 
-  function toScopes(units: readonly UnitEntity[]) {
+  function toScopes(
+    units: readonly UnitEntity[],
+    counts?: Readonly<Record<string, number>>,
+  ) {
     scopeIds.clear();
     return units.map((unit) => {
       scopeIds.set(unitKey(unit), unit.id);
@@ -40,11 +44,12 @@ export function createMathExamBuilderSource(
         label: unit.section,
         group: unit.grade,
         detail: unit.chapter,
+        ...(counts && unit.id in counts ? { count: counts[unit.id] } : {}),
       };
     });
   }
   const initialScopes = options.initialUnits
-    ? toScopes(options.initialUnits)
+    ? toScopes(options.initialUnits, options.initialUnitCounts)
     : undefined;
 
   async function request<T>(
@@ -77,12 +82,13 @@ export function createMathExamBuilderSource(
   return {
     ...(initialScopes ? { initialScopes } : {}),
     async loadScopes(signal) {
-      if (options.initialUnits) return toScopes(options.initialUnits);
+      if (options.initialUnits)
+        return toScopes(options.initialUnits, options.initialUnitCounts);
       // The bank already returns the full ordered curriculum. Only one question
       // is fetched alongside it; no full-bank download or per-unit request.
       const data = await request<BankData>(`${endpoint()}?pageSize=1`, signal);
       if (!data.units) throw new Error("단원 목록을 불러오지 못했습니다.");
-      return toScopes(data.units);
+      return toScopes(data.units, data.unitCounts);
     },
     async list(input, signal) {
       if (!input.scopeIds.length) return { items: [], total: 0 };
