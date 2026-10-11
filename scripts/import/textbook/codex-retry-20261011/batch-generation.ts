@@ -45,7 +45,7 @@ import { groupedFigureInstruction } from "./figure-prompt";
 
 // Same persisted contract as dbRetryGeneration, without importing its paid-provider default.
 export const GROUPED_PAIR_VERSION = "db-retry-generation-v1";
-export const GROUPED_PROMPT_VERSION = `${TRANSFORM_PROMPT_VERSION}:codex-grouped-v4-engine-catalog`;
+export const GROUPED_PROMPT_VERSION = `${TRANSFORM_PROMPT_VERSION}:codex-grouped-v5-paper-wrap`;
 export const GROUPED_REQUESTED_MODEL = "codex-account-default";
 export const GROUPED_UUID =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -448,6 +448,7 @@ export async function generateCodexGroupedPairs(
         ? groupedFigureInstruction()
         : "",
       "그림 없는 source에는 그림을 추가하지 마십시오. 주어진 상용로그나 반올림 값을 사용하는 풀이는 근삿값에 = 대신 \\approx를 쓰고, 요구된 자리에서만 반올림하십시오. 근사 계산으로 얻은 수치를 정확한 값이라고 주장하지 마십시오.",
+      "종이 지면 폭을 고려하십시오. 긴 수열·항 나열을 하나의 $...$ 수식에 쉼표까지 모두 넣지 말고, 각 항을 별도 $...$로 감싸 쉼표와 공백에서 자연스럽게 줄바꿈되게 하십시오. 항과 계산 조건은 생략하거나 바꾸지 마십시오.",
       "출력 형식 최우선: JSON 배열 대신 지정 strict schema의 {items:[...]} 한 객체를 반환하십시오. sourceId/sourceDigest/originDigest/sourceFigureDigest를 자기 source에서 정확히 복사하고 slot을 숫자 1 또는 2로 쓰십시오. figureSpec 대신 JSON 문자열 figureSpecJson 또는 null을 쓰십시오. 출력 순서는 자유이나 누락, 중복, 추가 source/slot은 금지합니다.",
       `SOURCE_DATA_JSON\n${JSON.stringify(sourceData)}`,
     ]

@@ -401,6 +401,7 @@ describe("grouped subscription generation", () => {
     ).toBe(true);
     expect(request.prompt).toContain("둘 다 수치 변형도 허용");
     expect(request.prompt).toContain("독립 검증이 아닙니다");
+    expect(request.prompt).toContain("각 항을 별도 $...$로 감싸");
   });
 
   it.each([
