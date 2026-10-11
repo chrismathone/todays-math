@@ -672,6 +672,24 @@ describe("actual ordered PNG source binding and generated vector validation", ()
     ).rejects.toThrow();
     expect(fake.mock).not.toHaveBeenCalled();
   });
+  it("requires both figure specifications in a figured source schema", async () => {
+    const fake = runner();
+    await generateCodexGroupedPairs([await figured()], {
+      ...options,
+      run: fake.run,
+      renderFigure: render,
+    });
+    const request = fake.mock.mock.calls[0]![0];
+    const schema = z.fromJSONSchema(request.schema);
+    const value = output(request);
+    expect(schema.safeParse(value).success).toBe(true);
+    for (const item of value.items) {
+      const missing = structuredClone(value);
+      missing.items.find((other) => other.slot === item.slot)!.figureSpecJson =
+        null;
+      expect(schema.safeParse(missing).success).toBe(false);
+    }
+  });
   it("rejects actual receipt PNG reordering", async () => {
     const fake = runner(undefined, (r) => {
       r.receipt.images[0]!.sha256 = "1".repeat(64);

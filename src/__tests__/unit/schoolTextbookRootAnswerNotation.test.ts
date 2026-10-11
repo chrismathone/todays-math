@@ -2,6 +2,54 @@ import { describe, expect, it } from "vitest";
 import { dbRetryAnswersAgree } from "@/lib/import/schoolTextbook/dbRetryReviewBinding";
 const roots = "다음 거듭제곱근 중 실수인 것을 모두 구하시오.";
 describe("Exact imported root answer notation", () => {
+  it("preserves domain and range roles through set and interval notation", () => {
+    const content =
+      "다음 함수의 정의역과 치역을 구하시오.\n⑴ $y=\\left( \\frac{1}{2}\\right) ^{x}-1$\n⑵ $y=\\log _{2}(1-3x)+1$";
+    const stored =
+      "⑴ 정의역: 실수 전체의 집합, 치역: $\\{y\\mid y>-1\\}$ ⑵ 정의역: $\\left\\{x\\mid x<\\frac{1}{3}\\right\\}$, 치역: 실수 전체의 집합";
+    const blind =
+      "(1) 정의역: ℝ, 치역: (-1, ∞)\n(2) 정의역: (-∞, 1/3), 치역: ℝ";
+    expect(dbRetryAnswersAgree(stored, blind, "단답형", content)).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        stored,
+        blind.replace("(-1, ∞)", "[-1, ∞)"),
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        stored,
+        blind.replace("1/3", "2/3"),
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+  });
+  it("accepts the count suffix only for a nonnegative integer count request", () => {
+    const content =
+      "방정식이 서로 다른 두 양의 실근을 갖도록 하는 모든 정수 k의 개수를 구하시오.";
+    expect(dbRetryAnswersAgree("$48$개", "48", "서술형", content)).toBe(true);
+    expect(dbRetryAnswersAgree("$48$개", "3", "서술형", content)).toBe(false);
+    expect(dbRetryAnswersAgree("$48$cm", "48", "서술형", content)).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "$48$개",
+        "48",
+        "서술형",
+        "다음 실근의 값을 모두 구하시오.",
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "(1) 48개 (2) 3개",
+        "(1) 48 (2) 4",
+        "서술형",
+        content,
+      ),
+    ).toBe(false);
+  });
   it("preserves logarithm base, argument and comparison direction across numeric subscripts", () => {
     const content =
       "다음 두 수의 크기를 비교하시오.\n⑴ $0.3^{3/4},0.3^{4/5}$\n⑵ $\\log_3 7,\\log_3 5$";

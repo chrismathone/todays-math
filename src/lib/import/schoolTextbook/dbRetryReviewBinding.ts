@@ -4,6 +4,7 @@ import { z } from "zod";
 import { intervalAnswerKey } from "./intervalAnswerNotation";
 import { compareScalarAnswerNotation } from "./scalarAnswerNotation";
 import { positiveRadicalAnswerKey } from "./positiveRadicalAnswerNotation";
+import { compareDomainRangeAnswerNotation } from "./domainRangeAnswerNotation";
 import type {
   DbRetryCandidate,
   DbRetryFigures,
@@ -372,8 +373,17 @@ function answersHaveSameNotation(
 ): boolean {
   const key = mathKey(stored, numericRootSet);
   if (key !== null && key === mathKey(blind, numericRootSet)) return true;
+  if (compareDomainRangeAnswerNotation(stored, blind, content) === true)
+    return true;
   const left = unwrap(stored),
     right = unwrap(blind);
+  if (/개수(?:를|을|는|가)|몇\s*개/.test(content)) {
+    const count = (value: string) =>
+      /^([0-9]{1,100})\s*(?:개)?$/.exec(value)?.[1];
+    const a = count(left),
+      b = count(right);
+    if (a !== undefined && b !== undefined) return BigInt(a) === BigInt(b);
+  }
   const leftParts = [...left.matchAll(/\((\d+)\)\s*/g)];
   const rightParts = [...right.matchAll(/\((\d+)\)\s*/g)];
   if (/^\(1\)/.test(left) || /^\(1\)/.test(right)) {

@@ -356,10 +356,10 @@ const itemSchema = z.strictObject({
   figureSpecJson: z.string().nullable(),
 });
 function groupedSchema(
-  sources: readonly Pick<
+  sources: readonly (Pick<
     z.infer<typeof itemSchema>,
     "sourceId" | "sourceDigest" | "originDigest" | "sourceFigureDigest"
-  >[],
+  > & { requiresFigure: boolean })[],
 ) {
   // Keep each binding in one strict object branch; independent enums allow mixed digests.
   const boundItems = sources.map((source) =>
@@ -368,6 +368,9 @@ function groupedSchema(
       sourceDigest: z.literal(source.sourceDigest),
       originDigest: z.literal(source.originDigest),
       sourceFigureDigest: z.literal(source.sourceFigureDigest),
+      figureSpecJson: source.requiresFigure
+        ? z.string().min(2)
+        : itemSchema.shape.figureSpecJson,
     }),
   );
   return z.strictObject({
