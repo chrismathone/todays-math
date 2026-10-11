@@ -182,6 +182,181 @@ function runner(
 const options = { outDir: "unused-injected-output" };
 
 describe("grouped subscription generation", () => {
+  it.each([1, 2, 16])(
+    "emits one strict literal binding branch per source for a %i-source group",
+    async (count) => {
+      const sources = Array.from({ length: count }, source);
+      const fake = runner((value) => value.items.reverse());
+      const result = await generateCodexGroupedPairs(sources, {
+        ...options,
+        run: fake.run,
+      });
+      const request = fake.mock.mock.calls[0]![0];
+      expect(request.schema).not.toHaveProperty("anyOf");
+      expect(request.schema).toMatchObject({
+        $schema: "https://json-schema.org/draft/2020-12/schema",
+        type: "object",
+        additionalProperties: false,
+        required: ["items"],
+        properties: {
+          items: {
+            type: "array",
+            minItems: count * 2,
+            maxItems: count * 2,
+            items: {
+              anyOf: sources.map(({ origin, figures }) => ({
+                type: "object",
+                additionalProperties: false,
+                required: Object.keys(output(request).items[0]!),
+                properties: {
+                  sourceId: { type: "string", const: origin.problem.id },
+                  sourceDigest: {
+                    type: "string",
+                    const: textbookVariantSourceDigest(origin.problem),
+                  },
+                  originDigest: { type: "string", const: reviewDigest(origin) },
+                  sourceFigureDigest: { type: "string", const: figures.digest },
+                  slot: {
+                    anyOf: [
+                      { type: "number", const: 1 },
+                      { type: "number", const: 2 },
+                    ],
+                  },
+                },
+              })),
+            },
+          },
+        },
+      });
+      expect(
+        z.fromJSONSchema(request.schema).safeParse(output(request)).success,
+      ).toBe(true);
+      expect(result.pairs).toHaveLength(count);
+      expect(
+        result.pairs.map((pair) => pair.candidates.map((c) => c.slot)),
+      ).toEqual(sources.map(() => [1, 2]));
+      expect(result.receipt.schemaSha256).toBe(
+        codexSha256(JSON.stringify(request.schema)),
+      );
+    },
+  );
+
+  it.each([
+    "sourceId",
+    "sourceDigest",
+    "originDigest",
+    "sourceFigureDigest",
+    "all digests",
+  ] as const)(
+    "rejects another source's %s without repairing raw output",
+    async (field) => {
+      // Real local SVG/PNG evidence makes the two figure digests distinct too.
+      const sources = [await figured(), source()];
+      let rawJson = "";
+      const fake = runner((value) => {
+        const first = value.items[0]!,
+          other = value.items[2]!;
+        const fields =
+          field === "all digests"
+            ? (["sourceDigest", "originDigest", "sourceFigureDigest"] as const)
+            : [field];
+        for (const key of fields) {
+          expect(first[key]).not.toBe(other[key]);
+          first[key] = other[key];
+        }
+        rawJson = JSON.stringify(value);
+        value.items.forEach(Object.freeze);
+        Object.freeze(value.items);
+        Object.freeze(value);
+      });
+      const renderFigure = vi.fn(async () => {
+        throw new Error("invalid bindings must fail before rendering");
+      });
+      await expect(
+        generateCodexGroupedPairs(sources, {
+          ...options,
+          run: fake.run,
+          renderFigure,
+        }),
+      ).rejects.toMatchObject({ code: "grouped-output-schema" });
+      expect(fake.mock).toHaveBeenCalledTimes(1);
+      expect(renderFigure).not.toHaveBeenCalled();
+      const request = fake.mock.mock.calls[0]![0];
+      const raw = await fake.mock.mock.results[0]!.value;
+      expect(
+        z.fromJSONSchema(request.schema).safeParse(raw.value).success,
+      ).toBe(false);
+      expect(raw.receipt.schemaValid).toBe(true); // Untrusted runner claims cannot bypass local parsing.
+      expect(JSON.stringify(raw.value)).toBe(rawJson);
+      expect(raw.receipt.outputSha256).toBe(codexSha256(rawJson));
+    },
+  );
+
+  it.each(["source pair", "slot"])(
+    "keeps the local uniqueness gate for a repeated valid %s binding",
+    async (kind) => {
+      const fake = runner((value, request) => {
+        if (kind === "source pair")
+          value.items.splice(2, 2, ...value.items.slice(0, 2));
+        else value.items[1]!.slot = 1;
+        // Per-item alternatives and total length cannot guarantee source/slot coverage.
+        expect(z.fromJSONSchema(request.schema).safeParse(value).success).toBe(
+          true,
+        );
+      });
+      await expect(
+        generateCodexGroupedPairs([source(), source()], {
+          ...options,
+          run: fake.run,
+        }),
+      ).rejects.toMatchObject({ code: "grouped-output-duplicate-slot" });
+    },
+  );
+
+  it("retains raw item and output hashes while normalizing only candidate text", async () => {
+    const fake = runner(
+      (value) => {
+        for (const item of value.items) {
+          item.content = `  ${item.content}  `;
+          item.solution = `  ${item.solution}  `;
+          Object.freeze(item);
+        }
+        Object.freeze(value.items);
+        Object.freeze(value);
+      },
+      (raw) => {
+        // Transport hashes original output bytes, which need not be compact JSON.
+        raw.receipt.outputSha256 = codexSha256(
+          JSON.stringify(raw.value, null, 2),
+        );
+      },
+    );
+    const result = await generateCodexGroupedPairs([source(), source()], {
+      ...options,
+      run: fake.run,
+    });
+    const raw = await fake.mock.mock.results[0]!.value;
+    const rawItems = (raw.value as { items: OutputItem[] }).items;
+    expect(result.receipt).toBe(raw.receipt);
+    expect(result.receipt.outputSha256).toBe(
+      codexSha256(JSON.stringify(raw.value, null, 2)),
+    );
+    expect(result.receipt.outputSha256).not.toBe(
+      codexSha256(JSON.stringify(raw.value)),
+    );
+    for (const item of result.items) {
+      const rawItem = rawItems.find(
+        (r) => r.sourceId === item.sourceId && r.slot === item.slot,
+      )!;
+      const candidate = result.pairs.find((p) => p.sourceId === item.sourceId)!
+        .candidates[item.slot - 1]!;
+      expect(item.rawItemDigest).toBe(reviewDigest(rawItem));
+      expect(item.candidateDigest).toBe(reviewDigest(candidate));
+      expect(rawItem.content).toBe(`  ${candidate.content}  `);
+      expect(rawItem.solution).toBe(`  ${candidate.solution}  `);
+    }
+  });
+
   it("attributes shuffled output by source and slot, with complete hashes and no per-source shared usage", async () => {
     const sources = [source(), source(), source()];
     sources[0]!.origin.problem.extraRawProvenance = {
@@ -390,6 +565,7 @@ describe("grouped subscription generation", () => {
     "wrong provenance",
     "missing figure",
     "duplicate source",
+    "no sources",
     "too many sources",
   ])("fails closed before inference for %s", async (kind) => {
     const sources = [source()],
@@ -401,6 +577,7 @@ describe("grouped subscription generation", () => {
     if (kind === "missing figure")
       sources[0]!.origin.problem.content += " [그림]";
     if (kind === "duplicate source") sources.push(sources[0]!);
+    if (kind === "no sources") sources.length = 0;
     if (kind === "too many sources")
       sources.push(...Array.from({ length: 16 }, source));
     await expect(
