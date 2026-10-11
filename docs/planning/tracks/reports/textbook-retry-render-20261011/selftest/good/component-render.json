@@ -1,0 +1,335 @@
+{
+  "version": "textbook-production-render-v1",
+  "passed": true,
+  "rows": 3,
+  "sourceCount": 3,
+  "input": "C:\\Users\\user\\orca\\workspaces\\testautocreator\\textbook-supplement-20261011\\docs\\planning\\tracks\\reports\\textbook-retry-render-20261011\\selftest\\runtime\\good.json",
+  "inputSha256": "745ea66adfaa77882e243c1f2e02f4ab97cf9a1bc108f7d86d9b5ac173fba631",
+  "payloadSha256": "91f3c3c3bc41d60c8501cb3779636cd916c72913e659342dcceee810c9f0fd2f",
+  "candidatePayloadSha256": "aa693241a1b3c59cfb0c7f1a3085276c98fa8172b493bf912a745eef40b92d74",
+  "component": "PaperProblemView",
+  "productionCss": true,
+  "eagerPrintFigures": true,
+  "columnWidth": "calc((210mm - 100px - 14px) * 1.15 / 2.15)",
+  "repoRoot": "C:\\Creative\\testautocreator",
+  "productionCommit": "5bd4ba1b2875a706cd8a64a485708140a833846b",
+  "productionFiles": [
+    {
+      "file": "node_modules/tailwindcss/index.css",
+      "sha256": "175f88737ecb7e033059eac4a3b22a3b5f971d5a05d9fd50811610a0714633b2"
+    },
+    {
+      "file": "public/fonts/NotoSerifKR-subset.woff2",
+      "sha256": "884d962a3fabfdfbd14ae317a047bc7676f678035a23f4544c2ddcbef2c431a4"
+    },
+    {
+      "file": "public/fonts/PretendardVariable.woff2",
+      "sha256": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4"
+    },
+    {
+      "file": "src/app/globals.css",
+      "sha256": "28f1ab227872f6ee1e735c8b6ff4046e6e1879c700788563c31ac50a3e925248"
+    },
+    {
+      "file": "src/components/math/BoxQuoteCard.tsx",
+      "sha256": "89c68ccb62ef87cf827e338c5c2a53d6b3dbc7b9a20e3129305e9bebd4c1e258"
+    },
+    {
+      "file": "src/components/math/MarkdownRenderer.tsx",
+      "sha256": "6dc778ec8572c89868fb5e46840e7b157b2c38b07aed9970bee85a146b61fd46"
+    },
+    {
+      "file": "src/components/math/practice-problem-text.module.css",
+      "sha256": "fba6bf310298c3f7306242228742cf5b89cc36aec7b79ee93f6233daeeaabd19"
+    },
+    {
+      "file": "src/components/math/PracticeProblemText.tsx",
+      "sha256": "40f46c7f07c5489eb2178c99ffd4f3694a44fa6ab2aa0da229a829631c1fe793"
+    },
+    {
+      "file": "src/components/math/ProblemContent.tsx",
+      "sha256": "52a176a4315c79059593a3bc3a50c6483dd30e99bfb4fe4b963d63d0718fc3d4"
+    },
+    {
+      "file": "src/components/math/remarkNativeContent.ts",
+      "sha256": "079dabf582d8589a6e9c7b332907efdad70ea9781492ce44538bef6652ff2525"
+    },
+    {
+      "file": "src/components/print/PaperProblemView.tsx",
+      "sha256": "d8b3ce4e43f80887d4677ef41bb382e66545fcbbae28abce88c922a49381f540"
+    },
+    {
+      "file": "src/components/print/TestPrint.module.css",
+      "sha256": "4256c0681dd4a4918650a2117a0d960e8b7dae1dda37f6df8925b51e55d2c1af"
+    },
+    {
+      "file": "src/components/print/tokens.ts",
+      "sha256": "9168bc4deb0d0f5f395406ab472a2fdaa22fd432c073947ff432e56bbb637586"
+    },
+    {
+      "file": "src/lib/figure/figureSvgFrame.ts",
+      "sha256": "4c076778ff480799bd40655d115d56a7e8e1fb0084fce7ea20382c3dc0f6fe09"
+    },
+    {
+      "file": "src/lib/figurePrintSize.ts",
+      "sha256": "54a7ba44de9e1daa68ae3fd4229da95b021d7ec209dcfe2b48a3ccfff1110c27"
+    },
+    {
+      "file": "src/lib/import/schoolTextbook/qualification.ts",
+      "sha256": "57348942924cd7e492b2f9503125baa3bc30aafeedafc847bf8623247b9cc7bf"
+    },
+    {
+      "file": "src/lib/math/blankAnswerSlot.ts",
+      "sha256": "ad97c06f5cb62f1b5eb07a5372d545b48f5fa5523ea023adeacf19a75e3f46c6"
+    },
+    {
+      "file": "src/lib/math/boxBlock.ts",
+      "sha256": "24ced7f1f1e8ee86dc5a1aedd573a5243a4f27c67d851cabdde3217d2ddd32c0"
+    },
+    {
+      "file": "src/lib/math/boxFit.ts",
+      "sha256": "319159bfdf4d9d94e53396edc595dcfc90cd5993160e095abb33f51a5f5efbad"
+    },
+    {
+      "file": "src/lib/math/boxHeader.ts",
+      "sha256": "d8772a23cdc32ff02ce007c860db38ede85a8bd381a22e944da66e4f8e7d5371"
+    },
+    {
+      "file": "src/lib/math/boxLayout.ts",
+      "sha256": "0531b25bf54c50b14da65a6e26aa330c0120db811c163b42b411fea95526080c"
+    },
+    {
+      "file": "src/lib/math/choiceLayout.ts",
+      "sha256": "cb0453cbf6f4c7a4b397ee6db8c34ea77bd02a76f20aedc986233f1e32f8f49c"
+    },
+    {
+      "file": "src/lib/math/circledNumber.ts",
+      "sha256": "c6b13a84b2e026d6f320f81e2077737731dffb74b0ace6e240a81e759eeb94ce"
+    },
+    {
+      "file": "src/lib/math/displayWidth.ts",
+      "sha256": "12d5be50ed88bfcebd4c70ed42d1b8bf8d1d06ac0244fde7e8a8c91c7abf71cb"
+    },
+    {
+      "file": "src/lib/math/equationChain.ts",
+      "sha256": "7d7898166840e72fc3a9f3ec286bacc05ef83619215b9c389b88c09b01251a7b"
+    },
+    {
+      "file": "src/lib/math/escapedStyleLeak.ts",
+      "sha256": "29ededbe4707748d3dafe3d484c81f7e8f9d72e7db64f0ac01006c558e6e0630"
+    },
+    {
+      "file": "src/lib/math/hardBreaks.ts",
+      "sha256": "d6d252421453be4d3c7564952266c2ba264b843e8ab20861d396cae1a0eeace7"
+    },
+    {
+      "file": "src/lib/math/katexCommands.generated.ts",
+      "sha256": "550fce06ca30eeb42ebc240c0878288251466af73257208ada49b7946eda4998"
+    },
+    {
+      "file": "src/lib/math/katexRender.ts",
+      "sha256": "ebec50206600f3b1da0a1c5031dff57746b278cc3c9e0e35496e1d6063a7a8da"
+    },
+    {
+      "file": "src/lib/math/markdownPreprocess.ts",
+      "sha256": "087b4cb065b510dd84e214f9143b85e2f4e4ca621cbd96aa1424eb8a603db1c7"
+    },
+    {
+      "file": "src/lib/math/normalizeMathgenText.ts",
+      "sha256": "36fd0321677236f4accd19d65a0214db18c4de35e26571d1b9476791a74b365c"
+    },
+    {
+      "file": "src/lib/math/practiceProblemLayout.ts",
+      "sha256": "1990501eece14ee2a5dd41adcc4537a10abbd6e9639c556cfdd7490ea75b785d"
+    },
+    {
+      "file": "src/lib/math/segments.ts",
+      "sha256": "07d0f15e468044ab764c65ed0ef97e1d74aac9ea4f9963670e693672042ffb5a"
+    },
+    {
+      "file": "src/lib/math/subQuestion.ts",
+      "sha256": "fa381fd6a8b0c19f48f9f75203cb43ea4087c211b64787202b20efcbea70e79b"
+    },
+    {
+      "file": "src/lib/math/textPreprocess.ts",
+      "sha256": "a50cc88ae0dee4ad0822b13d3d1ced3bab4693fe4d7c5abeea70814cf6f0eddb"
+    },
+    {
+      "file": "src/lib/printGeometry.ts",
+      "sha256": "35ea57ed8602a8ce115d067ffc473f65d4cd3c61cd2b666e9e642f6cc52206fa"
+    },
+    {
+      "file": "src/lib/problem/choiceFigureIndex.ts",
+      "sha256": "44d71ff5d93499520243a4614936c76c28495dea346c245c7f11f30c7e6e2216"
+    },
+    {
+      "file": "src/lib/problem/choiceRepairRules.ts",
+      "sha256": "c9f955b5ef066fb227cc6e99ccdd378b174266846401474161e791aca8f0b973"
+    },
+    {
+      "file": "src/lib/problem/figureMarker.ts",
+      "sha256": "6fece6b60aed9894e014fcd764bb65189fe27da3c313037e5259e7fe337e3295"
+    },
+    {
+      "file": "src/lib/problem/parseProblemContent.ts",
+      "sha256": "3d8a3c7b5e1fd3abb9ea8cf4982cdb5681b1d3ba49766f03f85dcf9dce85d547"
+    }
+  ],
+  "productionSourceSha256": "03a623396436b74448d07f4f3c06697ad810fa9b7bc9810c56084414daffa544",
+  "cssFile": "runtime/production.css",
+  "cssSha256": "a4a2afd85a9dcc20fc23ef1220b30d45c9e5476de42f725daa120947fa9dbcc0",
+  "chunks": [
+    {
+      "file": "runtime/chunks/chunk-001.html",
+      "start": 0,
+      "endExclusive": 2,
+      "rows": 2,
+      "htmlSha256": "2f8ff40fc952edee50af196fd1d22e5fcd8b9c956813d7d502b1a2d290527905"
+    },
+    {
+      "file": "runtime/chunks/chunk-002.html",
+      "start": 2,
+      "endExclusive": 3,
+      "rows": 1,
+      "htmlSha256": "fc5c1d83984bddba126de5fe9061b780026955d4cc92954b6bda8413712d1f1b"
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "id": "fixture:svg:1",
+      "sourceId": "svg",
+      "slot": 1,
+      "candidateSha256": "ce883f6db77101ac9803f1ebc5ca86cfdb60bec4f873862047baaf7e21de91a7",
+      "payloadSha256": "cc5b45c20bb889516dd477124740c4d31b0c35b82ec74449d2e51af17c54bcd7",
+      "parts": {
+        "content": {
+          "htmlSha256": "1a5553974233931aeff1bee7622bfa3cb518c33248f02775bd7d749165f4ea72",
+          "katexCount": 1
+        },
+        "answer": {
+          "htmlSha256": "e76b4d6d6033d72a69ee6234167bd0f0157f3b195c4b6a399730a1ababf879ab",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "29e0a097a262de04a2b2623dc97bd6e1fe9f5751c02a5a178cac635889649bcf",
+          "katexCount": 1
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [
+            "A"
+          ],
+          "ids": [],
+          "svgCount": 1
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 1,
+      "id": "fixture:choice-grid:1",
+      "sourceId": "choice-grid",
+      "slot": 1,
+      "candidateSha256": "5b13e369dccd17bbf548a321de5f42077b1e7cf5ceb4d5fdfde2c11daf77e906",
+      "payloadSha256": "474d85279ffc3e2dd6361715fe1841305bc3a0ca182e1895a5a99869a765affe",
+      "parts": {
+        "content": {
+          "htmlSha256": "cdadabba1626244c7b7b5392bc1d7c7b8138a22b93ae0a7bb547db219b07efd6",
+          "katexCount": 0
+        },
+        "answer": {
+          "htmlSha256": "8e73822bbf86fa5f73740be4e4e50d5b5dadcfa93b0b76dda0c9dac3d6402178",
+          "katexCount": 0
+        },
+        "solution": {
+          "htmlSha256": "29e0a097a262de04a2b2623dc97bd6e1fe9f5751c02a5a178cac635889649bcf",
+          "katexCount": 1
+        }
+      },
+      "expected": {
+        "urls": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij5maXJzdDwvdGV4dD48L3N2Zz4=",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij5zZWNvbmQ8L3RleHQ+PC9zdmc+"
+        ],
+        "choiceFigureIndex": [
+          1,
+          2
+        ],
+        "choiceCount": 2,
+        "figureMode": {
+          "mode": "grid",
+          "plan": {
+            "stem": [],
+            "byChoice": {
+              "1": 0,
+              "2": 1
+            }
+          }
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 2,
+      "id": "fixture:choice-loose:1",
+      "sourceId": "choice-loose",
+      "slot": 1,
+      "candidateSha256": "9e48714218522841d6d4a0372984e2ef168cb4850efdbbb0a2b198a20c01a87b",
+      "payloadSha256": "80bab83f0b2bd69572fc2888c9eb4a344a66ff708b2fc68838392cc0064a6955",
+      "parts": {
+        "content": {
+          "htmlSha256": "dc021489cc0b84a7754b9141fcf7908bfe6f4bbce37f226b7b02e749d3b8d126",
+          "katexCount": 2
+        },
+        "answer": {
+          "htmlSha256": "0fc1f1305ceb5dd3c7755dfe7d696d3c5d1013b7bd0201d7be97c7b0c7d5d59d",
+          "katexCount": 0
+        },
+        "solution": {
+          "htmlSha256": "29e0a097a262de04a2b2623dc97bd6e1fe9f5751c02a5a178cac635889649bcf",
+          "katexCount": 1
+        }
+      },
+      "expected": {
+        "urls": [
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij5zdGVtPC90ZXh0Pjwvc3ZnPg==",
+          "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij5jaG9pY2UgdHdvPC90ZXh0Pjwvc3ZnPg=="
+        ],
+        "choiceFigureIndex": [
+          0,
+          2
+        ],
+        "choiceCount": 2,
+        "figureMode": {
+          "mode": "loose"
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    }
+  ],
+  "failures": [],
+  "visualReviewApproved": false,
+  "databaseWrites": 0
+}
