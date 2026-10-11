@@ -17,8 +17,14 @@
  *    다시 내고 그 사실을 이유로 남긴다. 조용히 빼면 그 유형은 영영 복습이 안 된다.
  */
 import { describe, expect, it } from "vitest";
+import { MISSING_ANSWER } from "@/lib/missingAnswer";
+import { selectProblems } from "@/lib/generator/selectProblems";
 
-import { planRetry, type RetryCandidate } from "@/lib/generator/planRetry";
+import {
+  planRetry,
+  retryRequestedCount,
+  type RetryCandidate,
+} from "@/lib/generator/planRetry";
 
 const p = (
   id: string,
@@ -31,6 +37,258 @@ const p = (
   familyKey,
   difficulty,
   directUseAllowed: true,
+});
+
+const textbook = (
+  id = "original",
+  familyKey = `solo:${id}`,
+): RetryCandidate => ({
+  ...p(id, "U1", familyKey),
+  source: "school_textbook",
+  originProblemId: null,
+});
+const variant = (
+  original: RetryCandidate,
+  slot: number,
+  id = `${original.id}-${slot}`,
+): RetryCandidate => ({
+  ...p(id, original.unitId, original.familyKey ?? null),
+  source: "transformed",
+  originProblemId: original.id,
+  externalId: `tb-retry-v1:${original.id}:${slot}`,
+});
+
+describe("교과서 원문별 지정 변형 두 문항", () => {
+  it("동일한 교과서 원문·변형 쌍도 일반 시험에서는 한 갈래 한 문항이다", () => {
+    const original = textbook();
+    const pool = [original, variant(original, 1), variant(original, 2)].map(
+      (candidate) => ({
+        ...candidate,
+        problemType: "계산" as const,
+      }),
+    );
+    const exam = selectProblems({
+      pool,
+      count: 3,
+      recentProblemIds: [],
+      seed: "exam",
+      difficultyRatio: {
+        연산: 0,
+        기본: 3,
+        응용: 0,
+        심화하: 0,
+        심화중: 0,
+        심화상: 0,
+      },
+    });
+    expect(exam.problems).toHaveLength(1);
+    expect(exam.shortfall).toEqual([
+      {
+        unitId: original.unitId,
+        difficulty: "기본",
+        required: 3,
+        available: 1,
+      },
+    ]);
+    expect(
+      planRetry({ wrong: [original], pool, seed: "retry" }).picked,
+    ).toHaveLength(2);
+  });
+  it("일반 시험과 같은 갈래의 지정 변형 두 문항을 원문에 직접 연결해 낸다", () => {
+    const original = textbook();
+    const result = planRetry({
+      wrong: [original],
+      pool: [original, variant(original, 1), variant(original, 2)],
+      seed: "pair",
+    });
+    expect(result.requestedCount).toBe(2);
+    expect(
+      result.picked.map((seat) => [
+        seat.problem.id,
+        seat.wrongProblemId,
+        seat.origin,
+      ]),
+    ).toEqual([
+      ["original-1", "original", "형제"],
+      ["original-2", "original", "형제"],
+    ]);
+    expect(result.shortfall).toBe(0);
+    expect(result.textbookShortfalls).toEqual([]);
+  });
+
+  it("같은 갈래의 서로 다른 교과서 원문 오답을 접지 않고 각각 두 문항을 낸다", () => {
+    const wrong = [textbook("a", "F"), textbook("b", "F")];
+    const result = planRetry({
+      wrong,
+      pool: wrong.flatMap((w) => [w, variant(w, 1), variant(w, 2)]),
+      seed: "pair",
+    });
+    expect(result.requestedCount).toBe(4);
+    expect(result.picked.map((seat) => seat.wrongProblemId)).toEqual([
+      "a",
+      "a",
+      "b",
+      "b",
+    ]);
+    expect(result.foldedWrong).toBe(0);
+    expect(new Set(result.picked.map((seat) => seat.problem.id)).size).toBe(4);
+  });
+
+  it.each([0, 1])(
+    "사용 가능한 지정 변형이 %i개면 원문으로 메우지 않고 실제 부족을 낸다",
+    (available) => {
+      const original = textbook();
+      const result = planRetry({
+        wrong: [original],
+        pool: [
+          original,
+          ...Array.from({ length: available }, (_, i) =>
+            variant(original, i + 1),
+          ),
+        ],
+        seed: "pair",
+      });
+      expect(result.picked).toHaveLength(available);
+      expect(result.shortfall).toBe(2 - available);
+      expect(result.textbookShortfalls).toEqual([
+        { wrongProblemId: original.id, required: 2, available },
+      ]);
+      expect(
+        result.picked.some((seat) => seat.problem.id === original.id),
+      ).toBe(false);
+    },
+  );
+
+  it("같은 단원·갈래라도 다른 부모, 원문, 과거 복구 자식, 잘못된 슬롯을 대신 쓰지 않는다", () => {
+    const original = textbook();
+    const result = planRetry({
+      wrong: [original],
+      pool: [
+        original,
+        textbook("other", original.familyKey!),
+        { ...variant(original, 1), originProblemId: "other" },
+        {
+          ...variant(original, 1, "original-as-variant"),
+          source: "school_textbook",
+        },
+        {
+          ...variant(original, 1, "legacy"),
+          externalId: "textbook-recovery:old",
+        },
+        { ...variant(original, 1, "missing-slot"), externalId: null },
+        { ...variant(original, 1, "wrong-unit"), unitId: "U2" },
+        variant(original, 3),
+      ],
+      seed: "pair",
+    });
+    expect(result.picked).toEqual([]);
+    expect(result.shortfall).toBe(2);
+  });
+
+  it.each([
+    { directUseAllowed: false },
+    { reviewStatus: "pending" },
+    { reviewStatus: "rejected" },
+    { pool: "private" },
+    { answer: MISSING_ANSWER },
+  ])("변형의 출제 자격이 없으면 부족으로 남긴다: %o", (override) => {
+    const original = textbook();
+    const result = planRetry({
+      wrong: [original],
+      pool: [{ ...variant(original, 1), ...override }, variant(original, 2)],
+      seed: "pair",
+    });
+    expect(result.picked.map((seat) => seat.problem.id)).toEqual([
+      "original-2",
+    ]);
+    expect(result.shortfall).toBe(1);
+  });
+
+  it("중복 후보·중복 오답을 세지 않고 제외한 슬롯은 부족으로 남긴다", () => {
+    const original = textbook();
+    const child = variant(original, 1);
+    const result = planRetry({
+      wrong: [original, original],
+      pool: [child, child, variant(original, 2)],
+      excludeIds: ["original-2"],
+      seed: "pair",
+    });
+    expect(result.requestedCount).toBe(2);
+    expect(result.picked).toHaveLength(1);
+    expect(result.foldedWrong).toBe(0);
+    expect(result.shortfall).toBe(1);
+  });
+
+  it("다른 오답 원문의 id로 위장한 변형을 재출제하지 않는다", () => {
+    const wrong = [textbook("a"), textbook("b")];
+    const result = planRetry({
+      wrong,
+      pool: [variant(wrong[0]!, 1, "b")],
+      seed: "pair",
+    });
+    expect(result.picked).toEqual([]);
+    expect(result.shortfall).toBe(4);
+  });
+
+  it("일반 오답은 한 갈래 한 자리·원문 대체를 유지하며 교과서만 두 자리로 늘린다", () => {
+    const original = textbook();
+    const wrong = [
+      p("ordinary1", "U1", "ordinary"),
+      p("ordinary2", "U1", "ordinary"),
+      original,
+    ];
+    const result = planRetry({
+      wrong,
+      pool: [variant(original, 1), variant(original, 2)],
+      seed: "pair",
+    });
+    expect(result.requestedCount).toBe(4);
+    expect(result.picked.map((seat) => seat.origin)).toEqual([
+      "원문",
+      "형제",
+      "형제",
+    ]);
+    expect(result.foldedWrong).toBe(1);
+    expect(result.shortfall).toBe(1);
+  });
+
+  it("명시된 전체 자리 상한과 시험지 순서를 지킨다", () => {
+    const wrong = [textbook("a"), textbook("b")];
+    const result = planRetry({
+      wrong,
+      pool: wrong.flatMap((w) => [variant(w, 1), variant(w, 2)]),
+      count: 3,
+      seed: "pair",
+    });
+    expect(result.requestedCount).toBe(3);
+    expect(result.picked.map((seat) => seat.problem.id)).toEqual([
+      "a-1",
+      "a-2",
+      "b-1",
+    ]);
+    expect(result.shortfall).toBe(0);
+  });
+
+  it("일반 복습 자리가 교과서 지정 쌍을 먼저 소비하지 않는다", () => {
+    const original = textbook("original", "F");
+    const result = planRetry({
+      wrong: [p("ordinary", "U1", "F"), original],
+      pool: [variant(original, 1), variant(original, 2)],
+      seed: "pair",
+    });
+    expect(result.picked.map((seat) => seat.problem.id)).toEqual([
+      "ordinary",
+      "original-1",
+      "original-2",
+    ]);
+  });
+
+  it("요청 수는 오답 id 중복을 빼고 출처별 할당을 합산한다", () => {
+    const original = textbook();
+    expect(
+      retryRequestedCount([original, original, p("ordinary", "U1", "F")]),
+    ).toBe(3);
+  });
 });
 
 describe("오답 복습 계획 — 같은 갈래의 다른 문항", () => {
