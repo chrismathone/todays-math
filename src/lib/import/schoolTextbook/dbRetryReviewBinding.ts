@@ -255,6 +255,17 @@ function mathKey(text: string, numericRootSet = false): string | null {
   if (positiveRadical !== null) return positiveRadical;
   const interval = intervalAnswerKey(bare);
   if (interval !== null) return interval;
+  const unitText = bare.replace(
+    /\\(?:mathrm|text)\{(W|dB|cm|mm|km|kg|mL|min|m|g|s|h|L)\}/g,
+    "$1",
+  );
+  const quantity = /^(.+?)\s*(W|dB|cm|mm|km|kg|mL|min|m|g|s|h|L)$/.exec(
+    unitText,
+  );
+  if (quantity) {
+    const value = scalarKey(quantity[1]);
+    if (value !== null) return `quantity:${quantity[2]}:${value}`;
+  }
   const unitRangeText = bare.replace(
     /\\(?:mathrm|text)\{(W|dB|m|cm|mm|km|g|kg|s|min|h|L|mL)\}/g,
     "$1",
@@ -377,6 +388,38 @@ function answersHaveSameNotation(
     return true;
   const left = unwrap(stored),
     right = unwrap(blind);
+  if (/몇\s*년\s*후/.test(content)) {
+    const duration = (value: string) =>
+      /^([0-9]{1,100})\s*년(?:\s*후)?$/.exec(value)?.[1];
+    const a = duration(left),
+      b = duration(right);
+    if (a !== undefined && b !== undefined) return BigInt(a) === BigInt(b);
+  }
+  const extrema =
+    /(최댓값|최솟값)과\s*(최댓값|최솟값)[^.!?\n]{0,20}각각[^.!?\n]{0,20}구하/.exec(
+      content,
+    );
+  if (extrema && extrema[1] !== extrema[2]) {
+    const values = (value: string): (string | null)[] | null => {
+      const labels = new RegExp(
+        `^${extrema[1]}\\s*:?\\s*(.+?)\\s*,?\\s*${extrema[2]}\\s*:?\\s*(.+)$`,
+      ).exec(value);
+      const numbered = /^\(1\)\s*(.+?)\s*,?\s*\(2\)\s*(.+)$/.exec(value);
+      const matched = labels ?? numbered;
+      return matched
+        ? [scalarKey(matched[1].trim()), scalarKey(matched[2].trim())]
+        : null;
+    };
+    const a = values(left),
+      b = values(right);
+    if (
+      a &&
+      b &&
+      a.every((key) => key !== null) &&
+      b.every((key) => key !== null)
+    )
+      return reviewDigest(a) === reviewDigest(b);
+  }
   if (/개수(?:를|을|는|가)|몇\s*개/.test(content)) {
     const count = (value: string) =>
       /^([0-9]{1,100})\s*(?:개)?$/.exec(value)?.[1];

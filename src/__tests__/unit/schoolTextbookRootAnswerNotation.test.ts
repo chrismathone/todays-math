@@ -2,6 +2,55 @@ import { describe, expect, it } from "vitest";
 import { dbRetryAnswersAgree } from "@/lib/import/schoolTextbook/dbRetryReviewBinding";
 const roots = "다음 거듭제곱근 중 실수인 것을 모두 구하시오.";
 describe("Exact imported root answer notation", () => {
+  it("keeps numeric quantities and their units together", () => {
+    const content = "수심은 몇 m인지 구하시오.";
+    expect(
+      dbRetryAnswersAgree("$12\\,\\mathrm{m}$", "12 m", "단답형", content),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree("$12\\,\\mathrm{m}$", "12 cm", "단답형", content),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree("$12\\,\\mathrm{m}$", "12", "단답형", content),
+    ).toBe(false);
+    const duration = "가격이 이하가 되는 것은 최소 몇 년 후인지 구하시오.";
+    expect(dbRetryAnswersAgree("$4$년 후", "4년", "단답형", duration)).toBe(
+      true,
+    );
+    expect(
+      dbRetryAnswersAgree("$4$년 후", "4년", "단답형", "나이를 구하시오."),
+    ).toBe(false);
+  });
+  it("maps both extremum values only in the explicitly requested order", () => {
+    const content = "함수의 최댓값과 최솟값을 각각 구하시오.";
+    expect(
+      dbRetryAnswersAgree(
+        "최댓값 $3$, 최솟값 $0$",
+        "(1) 3, (2) 0",
+        "단답형",
+        content,
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "최댓값 $3$, 최솟값 $0$",
+        "(1) 0, (2) 3",
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree("최댓값 $3$, 최솟값 $0$", "(1) 3", "단답형", content),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "최댓값 $3$, 최솟값 $0$",
+        "(1) 3, (2) 0",
+        "단답형",
+        "두 값의 차이를 구하시오.",
+      ),
+    ).toBe(false);
+  });
   it("preserves domain and range roles through set and interval notation", () => {
     const content =
       "다음 함수의 정의역과 치역을 구하시오.\n⑴ $y=\\left( \\frac{1}{2}\\right) ^{x}-1$\n⑵ $y=\\log _{2}(1-3x)+1$";
