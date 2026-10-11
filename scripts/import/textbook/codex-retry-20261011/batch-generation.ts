@@ -11,7 +11,6 @@ import {
 import { verifiesOriginalReproduction } from "../../../../src/lib/ai/originalReproduction";
 import {
   buildTransformSystemPrompt,
-  buildTransformUserPrompt,
   TRANSFORM_PROMPT_VERSION,
 } from "../../../../src/lib/ai/prompts/transform";
 import { speakWordyOperators } from "../../../../src/lib/ai/wordyOperators";
@@ -42,10 +41,11 @@ import {
   type CodexJsonResult,
   type CodexReceipt,
 } from "./transport";
+import { groupedFigureInstruction } from "./figure-prompt";
 
 // Same persisted contract as dbRetryGeneration, without importing its paid-provider default.
 export const GROUPED_PAIR_VERSION = "db-retry-generation-v1";
-export const GROUPED_PROMPT_VERSION = `${TRANSFORM_PROMPT_VERSION}:codex-grouped-v1`;
+export const GROUPED_PROMPT_VERSION = `${TRANSFORM_PROMPT_VERSION}:codex-grouped-v2-figures`;
 export const GROUPED_REQUESTED_MODEL = "codex-account-default";
 export const GROUPED_UUID =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -369,7 +369,10 @@ function groupedSchema(
       originDigest: z.literal(source.originDigest),
       sourceFigureDigest: z.literal(source.sourceFigureDigest),
       figureSpecJson: source.requiresFigure
-        ? z.string().min(2)
+        ? z
+            .string()
+            .min(2)
+            .regex(/^\s*\{[\s\S]*\}\s*$/)
         : itemSchema.shape.figureSpecJson,
     }),
   );
@@ -441,19 +444,9 @@ export async function generateCodexGroupedPairs(
       "두 slot 모두 의미 있는 수치 변경(numbers), 조건 변경(conditions), 풀이 방법 변경(method) 중 하나를 쓸 수 있습니다. 둘 다 수치 변형도 허용합니다. 각 변형은 원문 및 같은 쌍의 다른 변형과 달라야 하고, 이름·말투·순서만 바꾸는 외형 변경은 금지합니다. changeSummary에 실제로 바꾼 수치 또는 조건/방법을 구체적으로 적으십시오.",
       "각 source의 grade/chapter/section, 학습 목표, 난이도와 questionType을 유지하십시오. 객관식은 모든 보기와 올바른 정답 번호를 포함하십시오. solution은 계산과 결론까지 필수입니다. 원문 정답/풀이는 생성용 근거일 뿐 독립 검증이 아닙니다. 승인·검증 완료를 주장하지 마십시오.",
       sourceData.some((s) => s.requiresFigure)
-        ? buildTransformUserPrompt({
-            originContent: "각 source 블록을 참조",
-            originAnswer: "각 source 블록을 참조",
-            originSolution: null,
-            problemType: "계산",
-            difficulty: "기본",
-            count: 2,
-            mode: "conditions",
-            difficultyShift: "keep",
-            figureRequired: true,
-          })
+        ? groupedFigureInstruction()
         : "",
-      "위 공통 예시는 FigureSpec 문법 참고용입니다. 예시의 유형·난이도·변형 방식 대신 source별 실제 유형·난이도와 두 slot 모두 수치/조건/방법 변경 허용 규칙이 우선합니다. 그림 없는 source에는 그림을 추가하지 마십시오. 그림 source는 자신의 attachment 번호를 실제로 보고 새로운 FigureSpec을 만드십시오. 원본 래스터, URL, SVG를 복사하지 마십시오. 좌표와 반지름은 픽셀이 아닌 -10..10 정도 장면 단위입니다. 확정 못할 그림은 null로 두십시오(해당 그룹은 저장되지 않습니다).",
+      "그림 없는 source에는 그림을 추가하지 마십시오. 주어진 상용로그나 반올림 값을 사용하는 풀이는 근삿값에 = 대신 \\approx를 쓰고, 요구된 자리에서만 반올림하십시오. 근사 계산으로 얻은 수치를 정확한 값이라고 주장하지 마십시오.",
       "출력 형식 최우선: JSON 배열 대신 지정 strict schema의 {items:[...]} 한 객체를 반환하십시오. sourceId/sourceDigest/originDigest/sourceFigureDigest를 자기 source에서 정확히 복사하고 slot을 숫자 1 또는 2로 쓰십시오. figureSpec 대신 JSON 문자열 figureSpecJson 또는 null을 쓰십시오. 출력 순서는 자유이나 누락, 중복, 추가 source/slot은 금지합니다.",
       `SOURCE_DATA_JSON\n${JSON.stringify(sourceData)}`,
     ]

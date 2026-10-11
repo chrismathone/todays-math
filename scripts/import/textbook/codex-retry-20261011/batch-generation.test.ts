@@ -684,11 +684,20 @@ describe("actual ordered PNG source binding and generated vector validation", ()
     const value = output(request);
     expect(schema.safeParse(value).success).toBe(true);
     for (const item of value.items) {
-      const missing = structuredClone(value);
-      missing.items.find((other) => other.slot === item.slot)!.figureSpecJson =
-        null;
-      expect(schema.safeParse(missing).success).toBe(false);
+      for (const invalid of [null, "null", "[]", "42", '"text"', "<svg/>"]) {
+        const missing = structuredClone(value);
+        missing.items.find(
+          (other) => other.slot === item.slot,
+        )!.figureSpecJson = invalid;
+        expect(schema.safeParse(missing).success).toBe(false);
+      }
     }
+    expect(request.prompt).toContain('"kind":"table"');
+    expect(request.prompt).toContain('"kind":"boxedList"');
+    expect(request.prompt).toContain('"version":"graph-1"');
+    expect(request.prompt).not.toContain("위 스키마로 표현할 수 없는");
+    expect(request.prompt).not.toContain("아래 스키마로 표현할 수 없는");
+    expect(request.prompt).not.toContain("확정 못할 그림은 null");
   });
   it("rejects actual receipt PNG reordering", async () => {
     const fake = runner(undefined, (r) => {
@@ -803,6 +812,10 @@ it("production import graph cannot reach default paid providers or a database cl
       const base = spec.startsWith("@/")
         ? resolve(root, "src", spec.slice(2))
         : resolve(dirname(file), spec);
+      if (base.endsWith(".json")) {
+        expect(() => JSON.parse(readFileSync(base, "utf8"))).not.toThrow();
+        continue; // JSON data has no executable transitive imports.
+      }
       const target = [
         base,
         `${base}.ts`,
