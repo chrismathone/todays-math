@@ -29,6 +29,10 @@ import {
 } from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
 interface Props {
+  /** Saved retry plans preserve both designated slots and cannot add, remove, or reorder. */
+  fixedComposition?: boolean;
+  /** Read-only plans have no workspace draft storage actions. */
+  draftActions?: boolean;
   /** Subject-specific acknowledgement/revision/content guard, for every output path. */
   beforeOutput?: (kind: "print" | "pdf" | "hwpx") => Promise<void>;
   outputNotice?: ReactNode;
@@ -69,6 +73,8 @@ interface Props {
   onEditSource?: (problem: StudioProblem) => void;
 }
 export default function WorksheetEditor({
+  fixedComposition = false,
+  draftActions = true,
   beforeOutput,
   outputNotice,
   headerTitle,
@@ -280,14 +286,16 @@ export default function WorksheetEditor({
           onGoToStep?.(next);
         }}
       >
-        <button
-          className={s.secondaryButton}
-          onClick={save}
-          disabled={!selected.length}
-        >
-          <Icon name="save" size={18} />{" "}
-          {libraryLabel ? `${libraryLabel}에 저장` : "작업 저장"}
-        </button>
+        {draftActions && (
+          <button
+            className={s.secondaryButton}
+            onClick={save}
+            disabled={!selected.length}
+          >
+            <Icon name="save" size={18} />{" "}
+            {libraryLabel ? `${libraryLabel}에 저장` : "작업 저장"}
+          </button>
+        )}
         <button
           className={s.primaryButton}
           disabled={!selected.length || !printReady || exporting}
@@ -367,9 +375,11 @@ export default function WorksheetEditor({
               </button>
             )}
           </div>
-          <button className={s.textButton} onClick={restore}>
-            저장한 작업 불러오기
-          </button>
+          {draftActions && (
+            <button className={s.textButton} onClick={restore}>
+              저장한 작업 불러오기
+            </button>
+          )}
         </div>
       ) : (
         <div className={s.exportGrid}>
@@ -458,14 +468,16 @@ export default function WorksheetEditor({
               <div className={s.orderHeading}>
                 <h3>문제 순서</h3>
                 <span>{selected.length}문항</span>
-                <button
-                  type="button"
-                  className={`${s.secondaryButton} ${s.orderReset}`}
-                  disabled={sourceOrdered}
-                  onClick={() => reorder(sortBySourceOrder(selected))}
-                >
-                  순서 초기화
-                </button>
+                {!fixedComposition && (
+                  <button
+                    type="button"
+                    className={`${s.secondaryButton} ${s.orderReset}`}
+                    disabled={sourceOrdered}
+                    onClick={() => reorder(sortBySourceOrder(selected))}
+                  >
+                    순서 초기화
+                  </button>
+                )}
               </div>
               <ol className={s.orderList} ref={orderListRef}>
                 {selected.map((p, i) => {
@@ -478,66 +490,73 @@ export default function WorksheetEditor({
                       <div>
                         <strong title={row.title}>{row.text}</strong>
                         <small>
-                          {p.grade} · {p.difficulty || "내 자료"}
+                          {p.grade ? `${p.grade} · ` : ""}
+                          {p.difficulty || "내 자료"}
                         </small>
                       </div>
-                      <div className={s.orderActions}>
-                        {can("studio") && p.studioCrop && onEditSource && (
+                      {!fixedComposition && (
+                        <div className={s.orderActions}>
+                          {can("studio") && p.studioCrop && onEditSource && (
+                            <button
+                              type="button"
+                              className={`${s.secondaryButton} ${s.orderEdit}`}
+                              aria-label={`${i + 1}번 원본 편집`}
+                              onClick={() => onEditSource(p)}
+                            >
+                              <span>원본 편집</span>
+                            </button>
+                          )}
                           <button
                             type="button"
-                            className={`${s.secondaryButton} ${s.orderEdit}`}
-                            aria-label={`${i + 1}번 원본 편집`}
-                            onClick={() => onEditSource(p)}
+                            className={s.orderStep}
+                            disabled={i === 0}
+                            aria-label={`${i + 1}번 문제 위로`}
+                            onClick={() => move(i, -1)}
                           >
-                            <span>원본 편집</span>
+                            ↑
                           </button>
-                        )}
-                        <button
-                          type="button"
-                          className={s.orderStep}
-                          disabled={i === 0}
-                          aria-label={`${i + 1}번 문제 위로`}
-                          onClick={() => move(i, -1)}
-                        >
-                          ↑
-                        </button>
-                        <button
-                          type="button"
-                          className={s.orderStep}
-                          disabled={i === selected.length - 1}
-                          aria-label={`${i + 1}번 문제 아래로`}
-                          onClick={() => move(i, 1)}
-                        >
-                          ↓
-                        </button>
-                        <button
-                          type="button"
-                          className={s.orderStep}
-                          aria-label={`${i + 1}번 문제 빼기`}
-                          onClick={() => removeProblem(p, i)}
-                        >
-                          ×
-                        </button>
-                      </div>
+                          <button
+                            type="button"
+                            className={s.orderStep}
+                            disabled={i === selected.length - 1}
+                            aria-label={`${i + 1}번 문제 아래로`}
+                            onClick={() => move(i, 1)}
+                          >
+                            ↓
+                          </button>
+                          <button
+                            type="button"
+                            className={s.orderStep}
+                            aria-label={`${i + 1}번 문제 빼기`}
+                            onClick={() => removeProblem(p, i)}
+                          >
+                            ×
+                          </button>
+                        </div>
+                      )}
                     </li>
                   );
                 })}
               </ol>
             </div>
-            <div className={s.bottomActions}>
-              {can("bank") && (
-                <button
-                  className={s.addMore}
-                  ref={addFromBankRef}
-                  onClick={() => navigate("bank")}
-                >
-                  <Icon name="plus" size={16} /> 문제 더 담기
-                </button>
-              )}
-              <button className={s.secondaryButton} onClick={download}>
-                <Icon name="save" size={18} /> 작업 파일 내보내기
-              </button>
-            </div>
+            {(can("bank") || draftActions) && (
+              <div className={s.bottomActions}>
+                {can("bank") && (
+                  <button
+                    className={s.addMore}
+                    ref={addFromBankRef}
+                    onClick={() => navigate("bank")}
+                  >
+                    <Icon name="plus" size={16} /> 문제 더 담기
+                  </button>
+                )}
+                {draftActions && (
+                  <button className={s.secondaryButton} onClick={download}>
+                    <Icon name="save" size={18} /> 작업 파일 내보내기
+                  </button>
+                )}
+              </div>
+            )}
             {cloudSaveStatus ? (
               <p role="status">{cloudSaveStatus}</p>
             ) : (
