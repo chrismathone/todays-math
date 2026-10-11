@@ -188,6 +188,128 @@ describe("source-matched textbook variant pairs", () => {
   });
 });
 
+describe("further source-specific methods", () => {
+  it("extracts the requested monomial coefficient without changing the requested term", () => {
+    const [a] = pair(
+      source(
+        "$(x-2y+3)(2x-y+1)$을 전개한 식에서 $xy$의 계수를 구하시오.",
+        "$-5$",
+      ),
+    );
+    expect(a.recipe).toBe("exact-polynomial-coefficient");
+    expect(a.answer).toBe("$-10$");
+    expect(a.content).toContain("$xy$의 계수를");
+  });
+  it("checks coefficient questions and alternatives exactly", () => {
+    const [a] = pair(
+      source(
+        "$(x+2)(x^{2}+x+3)$의 전개식에서 $x^{2}$의 계수는?\n① $1$\n② $2$\n③ $3$\n④ $4$\n⑤ $5$",
+        "③",
+        { question_type: "객관식" },
+      ),
+    );
+    expect(a.content).toContain("③ $12$");
+    expect(a.answer).toBe("③");
+  });
+  it("accepts equivalent numeric subquestion label styles without changing either source style", () => {
+    const [a] = pair(
+      source("다음을 계산하시오.\n(1) $2+3$\n(2) $4-7$", "⑴ $5$ ⑵ $-3$"),
+    );
+    expect(a.content).toContain("(1) ");
+    expect(a.answer).toContain("⑴ ");
+  });
+  it("substitutes multiple assignments and keeps every target calculation", () => {
+    const [a] = pair(
+      source(
+        "$a=2,~b=-3$일 때, 다음 식의 값을 구하시오.\n⑴ $a^{2}+2b$\n⑵ $ab$",
+        "⑴ $-2$ ⑵ $-6$",
+      ),
+    );
+    expect(a.content).toContain("$a=4,\\,b=-1$");
+    expect(a.answer).toBe("⑴ $14$ ⑵ $-4$");
+  });
+  it("rejects duplicate or symbolic assignments", () => {
+    unresolved(
+      source("$a=2,a=3$일 때, $a+2$의 값을 구하시오.", "$5$"),
+      "duplicate-assignment",
+    );
+    unresolved(source("$a=b$일 때, $a+2$의 값을 구하시오.", "$5$"));
+  });
+  it("differentiates a product under a consistent variable change", () => {
+    const [a] = pair(
+      source("다음 함수를 미분하시오.\n$y=(x-3)(2x+5)$", "$4x-1$"),
+    );
+    expect(a.recipe).toBe("exact-derivative");
+    expect(a.answer).toBe("$16x-2$");
+    expect(a.content).toContain("y=((2x)-3)(2(2x)+5)");
+  });
+  it("evaluates finite removable limits and preserves the cancellation order", () => {
+    const [a] = pair(
+      source(
+        "$\\lim_{x\\to 2}\\frac{x^{3}-8}{x^{2}-x-2}$의 값을 구하시오.",
+        "$4$",
+      ),
+    );
+    expect(a.recipe).toBe("exact-polynomial-limit");
+    expect(a.content).toContain("\\lim_{x\\to 4}");
+    expect(a.answer).toBe("$8$");
+    expect(a.solution).toContain("$1$번 약분");
+  });
+  it("checks repeated removable factors and direct polynomial limits", () => {
+    const [a] = pair(
+      source(
+        "다음 극한값을 구하시오.\n⑴ $\\lim_{x\\to 3}\\frac{(x-3)^{2}}{(x-3)^{2}}$\n⑵ $\\lim_{x\\to 2}(x^{2}+1)$",
+        "⑴ $1$ ⑵ $5$",
+      ),
+    );
+    expect(a.answer).toBe("⑴ $2$ ⑵ $10$");
+    expect(a.solution).toContain("$2$번 약분");
+  });
+  it("never converts a divergent limit into a finite answer", () => {
+    unresolved(
+      source("$\\lim_{x\\to 2}\\frac{1}{x-2}$의 값을 구하시오.", "$0$"),
+      "non-finite-limit",
+    );
+  });
+  it("integrates polynomials and verifies the primitive derivative", () => {
+    const [a] = pair(
+      source("정적분 $\\int_{0}^{2}(3x^{2}+1)dx$의 값을 구하시오.", "$10$"),
+    );
+    expect(a.recipe).toBe("exact-polynomial-integral");
+    expect(a.answer).toBe("$34$");
+  });
+  it("preserves oriented integral bounds", () => {
+    const [a] = pair(
+      source("다음 정적분의 값을 구하시오.\n$\\int_{2}^{0}3x^{2}dx$", "$-8$"),
+    );
+    expect(a.answer).toBe("$-32$");
+  });
+  it("matches gcd/lcm with separate source fragments and factored choices", () => {
+    const [a] = pair(
+      source(
+        "두 수 $2^{2}\\times3$, $2\\times3^{2}$의 최대공약수는?\n① $2$\n② $3$\n③ $2\\times3$\n④ $2\\times5$\n⑤ $2^{2}\\times3$",
+        "③",
+        { question_type: "객관식" },
+      ),
+    );
+    expect(a.recipe).toBe("exact-gcd");
+    expect(a.content).toContain("$2^{3}\\times 3$");
+    expect(a.answer).toBe("③");
+    const [b] = pair(source("$12$과 $18$의 최소공배수를 구하시오.", "$36$"));
+    expect(b.answer).toBe("$72$");
+  });
+  it("retains x= option format for equation multiple choice", () => {
+    const [a] = pair(
+      source("일차방정식 $2x+3=7$의 해는?\n① $x=1$\n② $x=2$\n③ $x=3$", "②", {
+        question_type: "객관식",
+      }),
+    );
+    expect(a.recipe).toBe("exact-linear-equation");
+    expect(a.content).toContain("② $x=1$");
+    expect(a.answer).toBe("②");
+  });
+});
+
 describe("adversarial source and write-boundary guards", () => {
   it.each([{ direct_use_allowed: false }, { review_status: "pending" }])(
     "does not manufacture eligibility for held originals: %j",
