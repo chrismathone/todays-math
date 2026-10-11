@@ -444,12 +444,42 @@ describe("bounded completed-cohort adoption", () => {
     ];
     expect(parseCodexBatchAdoptOptions(flags)).toEqual(f.options);
     expect(parseCodexBatchAdoptOptions([...flags, "--apply"]).apply).toBe(true);
+    expect(
+      parseCodexBatchAdoptOptions([...flags, "--omit-batches", "1,3"])
+        .omitBatches,
+    ).toEqual([1, 3]);
     for (const extra of [
       ["--generate"],
       ["--apply", "--apply"],
       ["--snapshot", "oops"],
+      ["--omit-batches", "0"],
+      ["--omit-batches", "1,1"],
+      ["--omit-batches", "1.5"],
     ])
       expect(() => parseCodexBatchAdoptOptions([...flags, ...extra])).toThrow();
+  });
+  it("can omit an entire reviewed batch while retaining its immutable proof", async () => {
+    const f = fixture(2, 0);
+    const runProcess = vi.fn(() => {
+      throw new Error("process-forbidden");
+    });
+    const options = { ...f.options, omitBatches: [1] };
+    const result = await runCodexBatchAdopt(options, { runProcess, env: {} });
+    expect(result.status).toBe("empty");
+    expect(result.plan).toMatchObject({ pairs: 0, omittedBatches: [1] });
+    expect(read(join(options.out, "cohort-reviews.json"))).toEqual({
+      batches: [f.review],
+    });
+    expect(read(join(options.out, "full-reviews.json"))).toEqual({
+      batches: [],
+    });
+    expect(runProcess).not.toHaveBeenCalled();
+    await expect(
+      runCodexBatchAdopt(
+        { ...f.options, out: join(f.root, "invalid"), omitBatches: [2] },
+        { runProcess, env: {} },
+      ),
+    ).rejects.toThrow("omit-batches-out-of-range");
   });
   it("plans without a process, DB, model or network and preserves the full held sibling proof", async () => {
     const f = fixture(),

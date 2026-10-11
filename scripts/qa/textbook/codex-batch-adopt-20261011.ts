@@ -59,9 +59,11 @@ export interface CodexBatchAdoptOptions {
   reviewDir: string;
   out: string;
   apply: boolean;
+  /** Whole reviewed batches to leave out when a production render fails. */
+  omitBatches?: number[];
 }
 export const CODEX_BATCH_ADOPT_USAGE =
-  "tsx scripts/qa/textbook/codex-batch-adopt-20261011.ts --snapshot <local.json> --generation-dir <completed-generation> --review-dir <completed-review> --out <new-adoption-directory> [--apply]";
+  "tsx scripts/qa/textbook/codex-batch-adopt-20261011.ts --snapshot <local.json> --generation-dir <completed-generation> --review-dir <completed-review> --out <new-adoption-directory> [--omit-batches <one-based-comma-list>] [--apply]";
 export function parseCodexBatchAdoptOptions(
   args: string[],
 ): CodexBatchAdoptOptions {
@@ -74,9 +76,13 @@ export function parseCodexBatchAdoptOptions(
       apply = true;
     } else {
       requireThat(
-        ["--snapshot", "--generation-dir", "--review-dir", "--out"].includes(
-          key,
-        ),
+        [
+          "--snapshot",
+          "--generation-dir",
+          "--review-dir",
+          "--out",
+          "--omit-batches",
+        ].includes(key),
         "unknown-option",
       );
       requireThat(
@@ -86,13 +92,30 @@ export function parseCodexBatchAdoptOptions(
       values.set(key, args[++i]);
     }
   }
-  requireThat(values.size === 4, "required-option-missing");
+  requireThat(
+    ["--snapshot", "--generation-dir", "--review-dir", "--out"].every((key) =>
+      values.has(key),
+    ),
+    "required-option-missing",
+  );
+  const omitRaw = values.get("--omit-batches");
+  const omitBatches = omitRaw?.split(",").map((value) => Number(value));
+  if (omitBatches)
+    requireThat(
+      omitBatches.length > 0 &&
+        omitBatches.every(
+          (value) => Number.isSafeInteger(value) && value > 0,
+        ) &&
+        new Set(omitBatches).size === omitBatches.length,
+      "omit-batches-invalid",
+    );
   return {
     snapshot: resolve(values.get("--snapshot")!),
     generationDir: resolve(values.get("--generation-dir")!),
     reviewDir: resolve(values.get("--review-dir")!),
     out: resolve(values.get("--out")!),
     apply,
+    ...(omitBatches ? { omitBatches } : {}),
   };
 }
 
@@ -677,7 +700,27 @@ export async function runCodexBatchAdopt(
   };
   if (options.apply) quiet();
   const cohort = collect(options);
-  const { selected, candidates, reviews, entries, captured, summary } = cohort;
+  const { entries, captured, summary } = cohort;
+  const omitted = new Set(options.omitBatches ?? []);
+  requireThat(
+    omitted.size === (options.omitBatches ?? []).length &&
+      [...omitted].every(
+        (index) =>
+          Number.isSafeInteger(index) &&
+          index > 0 &&
+          index <= cohort.reviews.length,
+      ),
+    "omit-batches-out-of-range",
+  );
+  const reviews = cohort.reviews.filter((_, index) => !omitted.has(index + 1));
+  const selected = cohort.selected.filter((id) =>
+    reviews.some((review) =>
+      review.cases.some((item) => item.sourceId === id && item.passed),
+    ),
+  );
+  const candidates = selected.flatMap(
+    (id) => entries.get(id)!.pair!.candidates,
+  );
   // A wholly held batch may have stopped before phase three. Archive it, but only
   // submit batches containing selected cases to the existing qualification gate.
   // Each submitted batch remains whole, including all of its held siblings.
@@ -695,6 +738,7 @@ export async function runCodexBatchAdopt(
     pairs: selected.length,
     rows: candidates.length,
     held: summary.held,
+    omittedBatches: [...omitted].sort((a, b) => a - b),
     sourceIds: selected,
     modelCalls: 0,
     planDatabaseOperations: 0,
@@ -733,7 +777,7 @@ export async function runCodexBatchAdopt(
     preserve(join(out, "plan.json"), bytes(plan));
     preserve(packet, bytes({ candidates }));
     preserve(reviewFile, bytes({ batches: qualificationReviews }));
-    preserve(allReviewsFile, bytes({ batches: reviews }));
+    preserve(allReviewsFile, bytes({ batches: cohort.reviews }));
     preserve(idsFile, bytes(selected));
     preserve(preload, Buffer.from(ADOPTION_CHILD_PRELOAD));
     for (const [index, input] of [...captured.values()].entries())
@@ -751,7 +795,8 @@ export async function runCodexBatchAdopt(
         hashFile(packet) === sha(bytes({ candidates })) &&
           hashFile(reviewFile) ===
             sha(bytes({ batches: qualificationReviews })) &&
-          hashFile(allReviewsFile) === sha(bytes({ batches: reviews })) &&
+          hashFile(allReviewsFile) ===
+            sha(bytes({ batches: cohort.reviews })) &&
           hashFile(idsFile) === sha(bytes(selected)) &&
           hashFile(preload) === sha(ADOPTION_CHILD_PRELOAD),
         "adoption-payload-changed",

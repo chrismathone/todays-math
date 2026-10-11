@@ -197,16 +197,16 @@ export const spawnCodex: CodexProcessRunner = async (input) => {
     };
     child.stdout
       .setEncoding("utf8")
-      .on("data", (chunk: string) => collect(chunk, "stdout"));
+      .on("data", (chunk: string) => collect(chunk, "stdout"))
+      .on("error", () => stop("spawn-failed"));
     child.stderr
       .setEncoding("utf8")
-      .on("data", (chunk: string) => collect(chunk, "stderr"));
+      .on("data", (chunk: string) => collect(chunk, "stderr"))
+      .on("error", () => stop("spawn-failed"));
     child.stdin.on("error", () => {
       /* Early CLI failure is recorded by close. */
     });
-    child.on("error", () => {
-      stopped = "spawn-failed";
-    });
+    child.on("error", () => stop("spawn-failed"));
     child.on("close", (exitCode, signal) => {
       clearTimeout(timer);
       input.signal?.removeEventListener("abort", abort);
