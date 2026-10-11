@@ -84,6 +84,8 @@ export interface DbRetryRequest {
   figures: DbRetryFigures;
 }
 export interface DbRetryGenerationOptions {
+  /** Offline transports can record their own requested model without changing app defaults. */
+  requestedModel?: string;
   complete?: (request: DbRetryRequest) => Promise<DbRetryCompletion>;
   renderFigure?: (
     spec: Record<string, unknown>,
@@ -382,7 +384,9 @@ export async function generateDbRetryPair(
         figureEvidence,
         candidates[0]?.content,
       );
-      const model = required ? DB_RETRY_VISION_MODEL : DEEPSEEK_MODEL;
+      const model =
+        options.requestedModel ??
+        (required ? DB_RETRY_VISION_MODEL : DEEPSEEK_MODEL);
       let item: z.infer<typeof itemSchema> | undefined;
       for (let attempt = 1; attempt <= 2; attempt++) {
         const start = now();
