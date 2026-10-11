@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "productionCandidates": false,
+  "positiveFixtures": 3,
+  "negativeFixtures": 7,
+  "checks": [
+    "pair/flat normalization equivalence",
+    "source ID mismatch rejected",
+    "empty packet rejected",
+    "SVG actually drawn with visible labels",
+    "grid and loose choice association",
+    "dimensions and sourceMm forwarded",
+    "eager images",
+    "all four viewport/media checks including final chunk",
+    "each seeded failure detected",
+    "HTML tamper rejected"
+  ],
+  "observedFailureCodes": [
+    "broken_or_hidden_asset",
+    "choice_diagram_correspondence",
+    "choice_figure_index",
+    "clipped_svg_label",
+    "full_body_overflow",
+    "invisible_svg_label",
+    "math_render_error",
+    "paper_content_overflow",
+    "raw_marker",
+    "unlinked_choice_figures",
+    "unresolved_svg_id"
+  ]
+}

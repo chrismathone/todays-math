@@ -1,0 +1,2688 @@
+{
+  "version": "textbook-production-browser-v1",
+  "passed": false,
+  "rows": 7,
+  "inspectedCandidates": 7,
+  "candidateViewportChecks": 28,
+  "componentRenderSha256": "2fc6b2f2d4acd5a0b76deb5f097694b5072204fd7e4ad94a0de052af7c977952",
+  "inputSha256": "099a0c557b78d27fabffbd9b08567d69774f4432e57c694836d4221b15628400",
+  "payloadSha256": "1edd7ba4c25adb95c7937beff51a77ce40ab41f1bed000533b2cb791488cb07d",
+  "productionSourceSha256": "03a623396436b74448d07f4f3c06697ad810fa9b7bc9810c56084414daffa544",
+  "cssSha256": "fdf3db948fa0978e09354d2789200e53bd49b56cb04a28ff155fb9289770b850",
+  "browser": "151.0.7922.34",
+  "candidatePayloadSha256": "7139c2acdfb240c4b7a27bb7ba5640fbca15e6ad27b6d487b8bb3a251d0e3102",
+  "checks": [
+    {
+      "width": 1440,
+      "media": "screen",
+      "rows": 7,
+      "chunks": 4,
+      "mathErrors": 2,
+      "documentOverflow": false,
+      "brokenImages": 1,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "media": "screen",
+      "rows": 7,
+      "chunks": 4,
+      "mathErrors": 2,
+      "documentOverflow": true,
+      "brokenImages": 1,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "media": "print",
+      "rows": 7,
+      "chunks": 4,
+      "mathErrors": 2,
+      "documentOverflow": false,
+      "brokenImages": 1,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "media": "print",
+      "rows": 7,
+      "chunks": 4,
+      "mathErrors": 2,
+      "documentOverflow": true,
+      "brokenImages": 1,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ]
+    }
+  ],
+  "chunkChecks": [
+    {
+      "width": 1440,
+      "media": "screen",
+      "chunk": "runtime/chunks/chunk-001.html",
+      "start": 0,
+      "endExclusive": 2,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 2,
+      "brokenImages": 0,
+      "contentOverflow": []
+    },
+    {
+      "width": 1440,
+      "media": "screen",
+      "chunk": "runtime/chunks/chunk-002.html",
+      "start": 2,
+      "endExclusive": 4,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": []
+    },
+    {
+      "width": 1440,
+      "media": "screen",
+      "chunk": "runtime/chunks/chunk-003.html",
+      "start": 4,
+      "endExclusive": 6,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 1,
+      "contentOverflow": []
+    },
+    {
+      "width": 1440,
+      "media": "screen",
+      "chunk": "runtime/chunks/chunk-004.html",
+      "start": 6,
+      "endExclusive": 7,
+      "rows": 1,
+      "paperViews": 3,
+      "documentOverflow": false,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "media": "screen",
+      "chunk": "runtime/chunks/chunk-001.html",
+      "start": 0,
+      "endExclusive": 2,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 2,
+      "brokenImages": 0,
+      "contentOverflow": []
+    },
+    {
+      "width": 390,
+      "media": "screen",
+      "chunk": "runtime/chunks/chunk-002.html",
+      "start": 2,
+      "endExclusive": 4,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": []
+    },
+    {
+      "width": 390,
+      "media": "screen",
+      "chunk": "runtime/chunks/chunk-003.html",
+      "start": 4,
+      "endExclusive": 6,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 1,
+      "contentOverflow": []
+    },
+    {
+      "width": 390,
+      "media": "screen",
+      "chunk": "runtime/chunks/chunk-004.html",
+      "start": 6,
+      "endExclusive": 7,
+      "rows": 1,
+      "paperViews": 3,
+      "documentOverflow": true,
+      "documentWidth": 411,
+      "bodyWidth": 411,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "media": "print",
+      "chunk": "runtime/chunks/chunk-001.html",
+      "start": 0,
+      "endExclusive": 2,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 2,
+      "brokenImages": 0,
+      "contentOverflow": []
+    },
+    {
+      "width": 1440,
+      "media": "print",
+      "chunk": "runtime/chunks/chunk-002.html",
+      "start": 2,
+      "endExclusive": 4,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": []
+    },
+    {
+      "width": 1440,
+      "media": "print",
+      "chunk": "runtime/chunks/chunk-003.html",
+      "start": 4,
+      "endExclusive": 6,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 1,
+      "contentOverflow": []
+    },
+    {
+      "width": 1440,
+      "media": "print",
+      "chunk": "runtime/chunks/chunk-004.html",
+      "start": 6,
+      "endExclusive": 7,
+      "rows": 1,
+      "paperViews": 3,
+      "documentOverflow": false,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "media": "print",
+      "chunk": "runtime/chunks/chunk-001.html",
+      "start": 0,
+      "endExclusive": 2,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 2,
+      "brokenImages": 0,
+      "contentOverflow": []
+    },
+    {
+      "width": 390,
+      "media": "print",
+      "chunk": "runtime/chunks/chunk-002.html",
+      "start": 2,
+      "endExclusive": 4,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": []
+    },
+    {
+      "width": 390,
+      "media": "print",
+      "chunk": "runtime/chunks/chunk-003.html",
+      "start": 4,
+      "endExclusive": 6,
+      "rows": 2,
+      "paperViews": 6,
+      "documentOverflow": false,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 1,
+      "contentOverflow": []
+    },
+    {
+      "width": 390,
+      "media": "print",
+      "chunk": "runtime/chunks/chunk-004.html",
+      "start": 6,
+      "endExclusive": 7,
+      "rows": 1,
+      "paperViews": 3,
+      "documentOverflow": true,
+      "documentWidth": 411,
+      "bodyWidth": 411,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "id": "fixture:missing-figure:1",
+      "sourceId": "missing-figure",
+      "slot": 1,
+      "payloadSha256": "9ed4ed16536af757220a07bb5bdb49b7fe8db2c1432bc2c576e635d2c12b9384",
+      "checks": [
+        {
+          "width": 1440,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-001.html",
+          "index": 0,
+          "sourceId": "missing-figure",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 0,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "raw_marker",
+              "detail": {
+                "kind": "content",
+                "markers": [
+                  "[그림]"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-001.html",
+          "index": 0,
+          "sourceId": "missing-figure",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 0,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "raw_marker",
+              "detail": {
+                "kind": "content",
+                "markers": [
+                  "[그림]"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "width": 1440,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-001.html",
+          "index": 0,
+          "sourceId": "missing-figure",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 0,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "raw_marker",
+              "detail": {
+                "kind": "content",
+                "markers": [
+                  "[그림]"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-001.html",
+          "index": 0,
+          "sourceId": "missing-figure",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 0,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "raw_marker",
+              "detail": {
+                "kind": "content",
+                "markers": [
+                  "[그림]"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "id": "fixture:math-error:1",
+      "sourceId": "math-error",
+      "slot": 1,
+      "payloadSha256": "b947f599d47178b7e3d0fc636fe9f45e5599776b068c847b24b256fcb0c7559a",
+      "checks": [
+        {
+          "width": 1440,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-001.html",
+          "index": 1,
+          "sourceId": "math-error",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 2
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "math_render_error",
+              "detail": {
+                "kind": "content",
+                "errors": [
+                  "\\notARealCommand",
+                  "\\notARealCommand"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-001.html",
+          "index": 1,
+          "sourceId": "math-error",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 2
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "math_render_error",
+              "detail": {
+                "kind": "content",
+                "errors": [
+                  "\\notARealCommand",
+                  "\\notARealCommand"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "width": 1440,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-001.html",
+          "index": 1,
+          "sourceId": "math-error",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 2
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "math_render_error",
+              "detail": {
+                "kind": "content",
+                "errors": [
+                  "\\notARealCommand",
+                  "\\notARealCommand"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-001.html",
+          "index": 1,
+          "sourceId": "math-error",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 2
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "math_render_error",
+              "detail": {
+                "kind": "content",
+                "errors": [
+                  "\\notARealCommand",
+                  "\\notARealCommand"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "id": "fixture:unresolved-svg-id:1",
+      "sourceId": "unresolved-svg-id",
+      "slot": 1,
+      "payloadSha256": "41f8732ed86253fed10c557ffb78cd768cbe068916441b6f9ae51dae0b814127",
+      "checks": [
+        {
+          "width": 1440,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-002.html",
+          "index": 2,
+          "sourceId": "unresolved-svg-id",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 1,
+          "labels": [
+            "B"
+          ],
+          "labelBounds": [
+            {
+              "text": "B",
+              "bbox": {
+                "x": 80,
+                "y": 3.8604650497436523,
+                "width": 8.186046600341797,
+                "height": 17.86046600341797
+              },
+              "visible": true
+            }
+          ],
+          "issues": [
+            {
+              "code": "unresolved_svg_id",
+              "detail": "missing"
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-002.html",
+          "index": 2,
+          "sourceId": "unresolved-svg-id",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 1,
+          "labels": [
+            "B"
+          ],
+          "labelBounds": [
+            {
+              "text": "B",
+              "bbox": {
+                "x": 80,
+                "y": 3.8604650497436523,
+                "width": 8.186046600341797,
+                "height": 17.86046600341797
+              },
+              "visible": true
+            }
+          ],
+          "issues": [
+            {
+              "code": "unresolved_svg_id",
+              "detail": "missing"
+            }
+          ]
+        },
+        {
+          "width": 1440,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-002.html",
+          "index": 2,
+          "sourceId": "unresolved-svg-id",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 1,
+          "labels": [
+            "B"
+          ],
+          "labelBounds": [
+            {
+              "text": "B",
+              "bbox": {
+                "x": 80,
+                "y": 3.8604650497436523,
+                "width": 8.186046600341797,
+                "height": 17.86046600341797
+              },
+              "visible": true
+            }
+          ],
+          "issues": [
+            {
+              "code": "unresolved_svg_id",
+              "detail": "missing"
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-002.html",
+          "index": 2,
+          "sourceId": "unresolved-svg-id",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 1,
+          "labels": [
+            "B"
+          ],
+          "labelBounds": [
+            {
+              "text": "B",
+              "bbox": {
+                "x": 80,
+                "y": 3.8604650497436523,
+                "width": 8.186046600341797,
+                "height": 17.86046600341797
+              },
+              "visible": true
+            }
+          ],
+          "issues": [
+            {
+              "code": "unresolved_svg_id",
+              "detail": "missing"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "id": "fixture:bad-choice:1",
+      "sourceId": "bad-choice",
+      "slot": 1,
+      "payloadSha256": "cebe7959eb9dfc2ba3bf449f23d0380abf4e961c07e1ea7ff6a0a0852ee06692",
+      "checks": [
+        {
+          "width": 1440,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-002.html",
+          "index": 3,
+          "sourceId": "bad-choice",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 0,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 1,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "raw_marker",
+              "detail": {
+                "kind": "content",
+                "markers": [
+                  "[그림]",
+                  "[그림]"
+                ]
+              }
+            },
+            {
+              "code": "choice_diagram_correspondence",
+              "detail": {
+                "figureIndex": 0,
+                "choice": 3,
+                "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij53cm9uZzwvdGV4dD48L3N2Zz4="
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-002.html",
+          "index": 3,
+          "sourceId": "bad-choice",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 0,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 1,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "raw_marker",
+              "detail": {
+                "kind": "content",
+                "markers": [
+                  "[그림]",
+                  "[그림]"
+                ]
+              }
+            },
+            {
+              "code": "choice_diagram_correspondence",
+              "detail": {
+                "figureIndex": 0,
+                "choice": 3,
+                "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij53cm9uZzwvdGV4dD48L3N2Zz4="
+              }
+            }
+          ]
+        },
+        {
+          "width": 1440,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-002.html",
+          "index": 3,
+          "sourceId": "bad-choice",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 0,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 1,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "raw_marker",
+              "detail": {
+                "kind": "content",
+                "markers": [
+                  "[그림]",
+                  "[그림]"
+                ]
+              }
+            },
+            {
+              "code": "choice_diagram_correspondence",
+              "detail": {
+                "figureIndex": 0,
+                "choice": 3,
+                "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij53cm9uZzwvdGV4dD48L3N2Zz4="
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-002.html",
+          "index": 3,
+          "sourceId": "bad-choice",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 0,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 1,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "raw_marker",
+              "detail": {
+                "kind": "content",
+                "markers": [
+                  "[그림]",
+                  "[그림]"
+                ]
+              }
+            },
+            {
+              "code": "choice_diagram_correspondence",
+              "detail": {
+                "figureIndex": 0,
+                "choice": 3,
+                "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij53cm9uZzwvdGV4dD48L3N2Zz4="
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "id": "fixture:hidden-label:1",
+      "sourceId": "hidden-label",
+      "slot": 1,
+      "payloadSha256": "3b4f897e6913a11884a2f95920ab02cd8c5f58966650495aa02ee6b34a4a06be",
+      "checks": [
+        {
+          "width": 1440,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-003.html",
+          "index": 4,
+          "sourceId": "hidden-label",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 1,
+          "labels": [
+            "C",
+            "hidden"
+          ],
+          "labelBounds": [
+            {
+              "text": "C",
+              "bbox": {
+                "x": 80,
+                "y": 3.8604650497436523,
+                "width": 8.290698051452637,
+                "height": 17.86046600341797
+              },
+              "visible": true
+            },
+            {
+              "text": "hidden",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": false
+            }
+          ],
+          "issues": [
+            {
+              "code": "invisible_svg_label",
+              "detail": "hidden"
+            },
+            {
+              "code": "clipped_svg_label",
+              "detail": {
+                "text": "hidden",
+                "label": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "viewport": {
+                  "x": 599.046875,
+                  "y": 131.3125,
+                  "width": 241.875,
+                  "height": 134.375
+                }
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-003.html",
+          "index": 4,
+          "sourceId": "hidden-label",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 1,
+          "labels": [
+            "C",
+            "hidden"
+          ],
+          "labelBounds": [
+            {
+              "text": "C",
+              "bbox": {
+                "x": 80,
+                "y": 3.8604650497436523,
+                "width": 8.290698051452637,
+                "height": 17.86046600341797
+              },
+              "visible": true
+            },
+            {
+              "text": "hidden",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": false
+            }
+          ],
+          "issues": [
+            {
+              "code": "invisible_svg_label",
+              "detail": "hidden"
+            },
+            {
+              "code": "clipped_svg_label",
+              "detail": {
+                "text": "hidden",
+                "label": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "viewport": {
+                  "x": 74.046875,
+                  "y": 131.3125,
+                  "width": 241.875,
+                  "height": 134.375
+                }
+              }
+            }
+          ]
+        },
+        {
+          "width": 1440,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-003.html",
+          "index": 4,
+          "sourceId": "hidden-label",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 1,
+          "labels": [
+            "C",
+            "hidden"
+          ],
+          "labelBounds": [
+            {
+              "text": "C",
+              "bbox": {
+                "x": 80,
+                "y": 3.8604650497436523,
+                "width": 8.290698051452637,
+                "height": 17.86046600341797
+              },
+              "visible": true
+            },
+            {
+              "text": "hidden",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": false
+            }
+          ],
+          "issues": [
+            {
+              "code": "invisible_svg_label",
+              "detail": "hidden"
+            },
+            {
+              "code": "clipped_svg_label",
+              "detail": {
+                "text": "hidden",
+                "label": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "viewport": {
+                  "x": 599.046875,
+                  "y": 131.3125,
+                  "width": 241.875,
+                  "height": 134.375
+                }
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-003.html",
+          "index": 4,
+          "sourceId": "hidden-label",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 1,
+          "labels": [
+            "C",
+            "hidden"
+          ],
+          "labelBounds": [
+            {
+              "text": "C",
+              "bbox": {
+                "x": 80,
+                "y": 3.8604650497436523,
+                "width": 8.290698051452637,
+                "height": 17.86046600341797
+              },
+              "visible": true
+            },
+            {
+              "text": "hidden",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 0,
+                "height": 0
+              },
+              "visible": false
+            }
+          ],
+          "issues": [
+            {
+              "code": "invisible_svg_label",
+              "detail": "hidden"
+            },
+            {
+              "code": "clipped_svg_label",
+              "detail": {
+                "text": "hidden",
+                "label": {
+                  "x": 0,
+                  "y": 0,
+                  "width": 0,
+                  "height": 0
+                },
+                "viewport": {
+                  "x": 74.046875,
+                  "y": 131.3125,
+                  "width": 241.875,
+                  "height": 134.375
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "id": "fixture:broken-image:1",
+      "sourceId": "broken-image",
+      "slot": 1,
+      "payloadSha256": "f508f27e2754a21416a9b8b20998079ae2d3c47770e376ede72f6303c8084bb2",
+      "checks": [
+        {
+          "width": 1440,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-003.html",
+          "index": 5,
+          "sourceId": "broken-image",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 1,
+          "brokenImages": 1,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "broken_or_hidden_asset",
+              "detail": [
+                "/figures/qa-does-not-exist.png"
+              ]
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-003.html",
+          "index": 5,
+          "sourceId": "broken-image",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 1,
+          "brokenImages": 1,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "broken_or_hidden_asset",
+              "detail": [
+                "/figures/qa-does-not-exist.png"
+              ]
+            }
+          ]
+        },
+        {
+          "width": 1440,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-003.html",
+          "index": 5,
+          "sourceId": "broken-image",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 1,
+          "brokenImages": 1,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "broken_or_hidden_asset",
+              "detail": [
+                "/figures/qa-does-not-exist.png"
+              ]
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-003.html",
+          "index": 5,
+          "sourceId": "broken-image",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 1,
+          "brokenImages": 1,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "broken_or_hidden_asset",
+              "detail": [
+                "/figures/qa-does-not-exist.png"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "id": "fixture:overflow-last:1",
+      "sourceId": "overflow-last",
+      "slot": 1,
+      "payloadSha256": "a12b7b0534a24d6f11f499b8e85d5b6b9e2a8a1db120a814e932d5dad6ef84f8",
+      "checks": [
+        {
+          "width": 1440,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-004.html",
+          "index": 6,
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 398,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "paper_content_overflow",
+              "detail": {
+                "kind": "answer",
+                "nodes": [
+                  {
+                    "tag": "DIV",
+                    "class": "qa-paper-column",
+                    "scrollWidth": 398,
+                    "clientWidth": 364
+                  },
+                  {
+                    "tag": "DIV",
+                    "class": "",
+                    "scrollWidth": 398,
+                    "clientWidth": 364
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "screen",
+          "chunk": "runtime/chunks/chunk-004.html",
+          "index": 6,
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 398,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "paper_content_overflow",
+              "detail": {
+                "kind": "answer",
+                "nodes": [
+                  {
+                    "tag": "DIV",
+                    "class": "qa-paper-column",
+                    "scrollWidth": 398,
+                    "clientWidth": 364
+                  },
+                  {
+                    "tag": "DIV",
+                    "class": "",
+                    "scrollWidth": 398,
+                    "clientWidth": 364
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "width": 1440,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-004.html",
+          "index": 6,
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 398,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "paper_content_overflow",
+              "detail": {
+                "kind": "answer",
+                "nodes": [
+                  {
+                    "tag": "DIV",
+                    "class": "qa-paper-column",
+                    "scrollWidth": 398,
+                    "clientWidth": 364
+                  },
+                  {
+                    "tag": "DIV",
+                    "class": "",
+                    "scrollWidth": 398,
+                    "clientWidth": 364
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "width": 390,
+          "media": "print",
+          "chunk": "runtime/chunks/chunk-004.html",
+          "index": 6,
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "passed": false,
+          "parts": [
+            {
+              "kind": "content",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "answer",
+              "width": 363.546875,
+              "scrollWidth": 398,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            },
+            {
+              "kind": "solution",
+              "width": 363.546875,
+              "scrollWidth": 364,
+              "paperViews": 1,
+              "katexCount": 1,
+              "mathErrors": 0
+            }
+          ],
+          "imageCount": 0,
+          "brokenImages": 0,
+          "svgCount": 0,
+          "labels": [],
+          "labelBounds": [],
+          "issues": [
+            {
+              "code": "paper_content_overflow",
+              "detail": {
+                "kind": "answer",
+                "nodes": [
+                  {
+                    "tag": "DIV",
+                    "class": "qa-paper-column",
+                    "scrollWidth": 398,
+                    "clientWidth": 364
+                  },
+                  {
+                    "tag": "DIV",
+                    "class": "",
+                    "scrollWidth": 398,
+                    "clientWidth": 364
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": [
+    {
+      "sourceId": "missing-figure",
+      "slot": 1,
+      "width": 1440,
+      "media": "screen",
+      "code": "raw_marker",
+      "detail": {
+        "kind": "content",
+        "markers": [
+          "[그림]"
+        ]
+      }
+    },
+    {
+      "sourceId": "math-error",
+      "slot": 1,
+      "width": 1440,
+      "media": "screen",
+      "code": "math_render_error",
+      "detail": {
+        "kind": "content",
+        "errors": [
+          "\\notARealCommand",
+          "\\notARealCommand"
+        ]
+      }
+    },
+    {
+      "sourceId": "unresolved-svg-id",
+      "slot": 1,
+      "width": 1440,
+      "media": "screen",
+      "code": "unresolved_svg_id",
+      "detail": "missing"
+    },
+    {
+      "sourceId": "bad-choice",
+      "slot": 1,
+      "width": 1440,
+      "media": "screen",
+      "code": "raw_marker",
+      "detail": {
+        "kind": "content",
+        "markers": [
+          "[그림]",
+          "[그림]"
+        ]
+      }
+    },
+    {
+      "sourceId": "bad-choice",
+      "slot": 1,
+      "width": 1440,
+      "media": "screen",
+      "code": "choice_diagram_correspondence",
+      "detail": {
+        "figureIndex": 0,
+        "choice": 3,
+        "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij53cm9uZzwvdGV4dD48L3N2Zz4="
+      }
+    },
+    {
+      "sourceId": "hidden-label",
+      "slot": 1,
+      "width": 1440,
+      "media": "screen",
+      "code": "invisible_svg_label",
+      "detail": "hidden"
+    },
+    {
+      "sourceId": "hidden-label",
+      "slot": 1,
+      "width": 1440,
+      "media": "screen",
+      "code": "clipped_svg_label",
+      "detail": {
+        "text": "hidden",
+        "label": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "x": 599.046875,
+          "y": 131.3125,
+          "width": 241.875,
+          "height": 134.375
+        }
+      }
+    },
+    {
+      "sourceId": "broken-image",
+      "slot": 1,
+      "width": 1440,
+      "media": "screen",
+      "code": "broken_or_hidden_asset",
+      "detail": [
+        "/figures/qa-does-not-exist.png"
+      ]
+    },
+    {
+      "sourceId": "overflow-last",
+      "slot": 1,
+      "width": 1440,
+      "media": "screen",
+      "code": "paper_content_overflow",
+      "detail": {
+        "kind": "answer",
+        "nodes": [
+          {
+            "tag": "DIV",
+            "class": "qa-paper-column",
+            "scrollWidth": 398,
+            "clientWidth": 364
+          },
+          {
+            "tag": "DIV",
+            "class": "",
+            "scrollWidth": 398,
+            "clientWidth": 364
+          }
+        ]
+      }
+    },
+    {
+      "sourceId": "missing-figure",
+      "slot": 1,
+      "width": 390,
+      "media": "screen",
+      "code": "raw_marker",
+      "detail": {
+        "kind": "content",
+        "markers": [
+          "[그림]"
+        ]
+      }
+    },
+    {
+      "sourceId": "math-error",
+      "slot": 1,
+      "width": 390,
+      "media": "screen",
+      "code": "math_render_error",
+      "detail": {
+        "kind": "content",
+        "errors": [
+          "\\notARealCommand",
+          "\\notARealCommand"
+        ]
+      }
+    },
+    {
+      "sourceId": "unresolved-svg-id",
+      "slot": 1,
+      "width": 390,
+      "media": "screen",
+      "code": "unresolved_svg_id",
+      "detail": "missing"
+    },
+    {
+      "sourceId": "bad-choice",
+      "slot": 1,
+      "width": 390,
+      "media": "screen",
+      "code": "raw_marker",
+      "detail": {
+        "kind": "content",
+        "markers": [
+          "[그림]",
+          "[그림]"
+        ]
+      }
+    },
+    {
+      "sourceId": "bad-choice",
+      "slot": 1,
+      "width": 390,
+      "media": "screen",
+      "code": "choice_diagram_correspondence",
+      "detail": {
+        "figureIndex": 0,
+        "choice": 3,
+        "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij53cm9uZzwvdGV4dD48L3N2Zz4="
+      }
+    },
+    {
+      "sourceId": "hidden-label",
+      "slot": 1,
+      "width": 390,
+      "media": "screen",
+      "code": "invisible_svg_label",
+      "detail": "hidden"
+    },
+    {
+      "sourceId": "hidden-label",
+      "slot": 1,
+      "width": 390,
+      "media": "screen",
+      "code": "clipped_svg_label",
+      "detail": {
+        "text": "hidden",
+        "label": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "x": 74.046875,
+          "y": 131.3125,
+          "width": 241.875,
+          "height": 134.375
+        }
+      }
+    },
+    {
+      "sourceId": "broken-image",
+      "slot": 1,
+      "width": 390,
+      "media": "screen",
+      "code": "broken_or_hidden_asset",
+      "detail": [
+        "/figures/qa-does-not-exist.png"
+      ]
+    },
+    {
+      "code": "full_body_overflow",
+      "width": 390,
+      "media": "screen",
+      "chunk": "runtime/chunks/chunk-004.html",
+      "start": 6,
+      "endExclusive": 7,
+      "rows": 1,
+      "paperViews": 3,
+      "documentOverflow": true,
+      "documentWidth": 411,
+      "bodyWidth": 411,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ],
+      "candidates": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1
+        }
+      ]
+    },
+    {
+      "sourceId": "overflow-last",
+      "slot": 1,
+      "width": 390,
+      "media": "screen",
+      "code": "paper_content_overflow",
+      "detail": {
+        "kind": "answer",
+        "nodes": [
+          {
+            "tag": "DIV",
+            "class": "qa-paper-column",
+            "scrollWidth": 398,
+            "clientWidth": 364
+          },
+          {
+            "tag": "DIV",
+            "class": "",
+            "scrollWidth": 398,
+            "clientWidth": 364
+          }
+        ]
+      }
+    },
+    {
+      "sourceId": "missing-figure",
+      "slot": 1,
+      "width": 1440,
+      "media": "print",
+      "code": "raw_marker",
+      "detail": {
+        "kind": "content",
+        "markers": [
+          "[그림]"
+        ]
+      }
+    },
+    {
+      "sourceId": "math-error",
+      "slot": 1,
+      "width": 1440,
+      "media": "print",
+      "code": "math_render_error",
+      "detail": {
+        "kind": "content",
+        "errors": [
+          "\\notARealCommand",
+          "\\notARealCommand"
+        ]
+      }
+    },
+    {
+      "sourceId": "unresolved-svg-id",
+      "slot": 1,
+      "width": 1440,
+      "media": "print",
+      "code": "unresolved_svg_id",
+      "detail": "missing"
+    },
+    {
+      "sourceId": "bad-choice",
+      "slot": 1,
+      "width": 1440,
+      "media": "print",
+      "code": "raw_marker",
+      "detail": {
+        "kind": "content",
+        "markers": [
+          "[그림]",
+          "[그림]"
+        ]
+      }
+    },
+    {
+      "sourceId": "bad-choice",
+      "slot": 1,
+      "width": 1440,
+      "media": "print",
+      "code": "choice_diagram_correspondence",
+      "detail": {
+        "figureIndex": 0,
+        "choice": 3,
+        "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij53cm9uZzwvdGV4dD48L3N2Zz4="
+      }
+    },
+    {
+      "sourceId": "hidden-label",
+      "slot": 1,
+      "width": 1440,
+      "media": "print",
+      "code": "invisible_svg_label",
+      "detail": "hidden"
+    },
+    {
+      "sourceId": "hidden-label",
+      "slot": 1,
+      "width": 1440,
+      "media": "print",
+      "code": "clipped_svg_label",
+      "detail": {
+        "text": "hidden",
+        "label": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "x": 599.046875,
+          "y": 131.3125,
+          "width": 241.875,
+          "height": 134.375
+        }
+      }
+    },
+    {
+      "sourceId": "broken-image",
+      "slot": 1,
+      "width": 1440,
+      "media": "print",
+      "code": "broken_or_hidden_asset",
+      "detail": [
+        "/figures/qa-does-not-exist.png"
+      ]
+    },
+    {
+      "sourceId": "overflow-last",
+      "slot": 1,
+      "width": 1440,
+      "media": "print",
+      "code": "paper_content_overflow",
+      "detail": {
+        "kind": "answer",
+        "nodes": [
+          {
+            "tag": "DIV",
+            "class": "qa-paper-column",
+            "scrollWidth": 398,
+            "clientWidth": 364
+          },
+          {
+            "tag": "DIV",
+            "class": "",
+            "scrollWidth": 398,
+            "clientWidth": 364
+          }
+        ]
+      }
+    },
+    {
+      "sourceId": "missing-figure",
+      "slot": 1,
+      "width": 390,
+      "media": "print",
+      "code": "raw_marker",
+      "detail": {
+        "kind": "content",
+        "markers": [
+          "[그림]"
+        ]
+      }
+    },
+    {
+      "sourceId": "math-error",
+      "slot": 1,
+      "width": 390,
+      "media": "print",
+      "code": "math_render_error",
+      "detail": {
+        "kind": "content",
+        "errors": [
+          "\\notARealCommand",
+          "\\notARealCommand"
+        ]
+      }
+    },
+    {
+      "sourceId": "unresolved-svg-id",
+      "slot": 1,
+      "width": 390,
+      "media": "print",
+      "code": "unresolved_svg_id",
+      "detail": "missing"
+    },
+    {
+      "sourceId": "bad-choice",
+      "slot": 1,
+      "width": 390,
+      "media": "print",
+      "code": "raw_marker",
+      "detail": {
+        "kind": "content",
+        "markers": [
+          "[그림]",
+          "[그림]"
+        ]
+      }
+    },
+    {
+      "sourceId": "bad-choice",
+      "slot": 1,
+      "width": 390,
+      "media": "print",
+      "code": "choice_diagram_correspondence",
+      "detail": {
+        "figureIndex": 0,
+        "choice": 3,
+        "url": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiPjxyZWN0IHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMTUiIHk9IjQwIiBmb250LXNpemU9IjE4Ij53cm9uZzwvdGV4dD48L3N2Zz4="
+      }
+    },
+    {
+      "sourceId": "hidden-label",
+      "slot": 1,
+      "width": 390,
+      "media": "print",
+      "code": "invisible_svg_label",
+      "detail": "hidden"
+    },
+    {
+      "sourceId": "hidden-label",
+      "slot": 1,
+      "width": 390,
+      "media": "print",
+      "code": "clipped_svg_label",
+      "detail": {
+        "text": "hidden",
+        "label": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "viewport": {
+          "x": 74.046875,
+          "y": 131.3125,
+          "width": 241.875,
+          "height": 134.375
+        }
+      }
+    },
+    {
+      "sourceId": "broken-image",
+      "slot": 1,
+      "width": 390,
+      "media": "print",
+      "code": "broken_or_hidden_asset",
+      "detail": [
+        "/figures/qa-does-not-exist.png"
+      ]
+    },
+    {
+      "code": "full_body_overflow",
+      "width": 390,
+      "media": "print",
+      "chunk": "runtime/chunks/chunk-004.html",
+      "start": 6,
+      "endExclusive": 7,
+      "rows": 1,
+      "paperViews": 3,
+      "documentOverflow": true,
+      "documentWidth": 411,
+      "bodyWidth": 411,
+      "loadedPaperFont": true,
+      "blockedExternalRequests": [],
+      "mathErrors": 0,
+      "brokenImages": 0,
+      "contentOverflow": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1,
+          "kind": "answer"
+        }
+      ],
+      "candidates": [
+        {
+          "sourceId": "overflow-last",
+          "slot": 1
+        }
+      ]
+    },
+    {
+      "sourceId": "overflow-last",
+      "slot": 1,
+      "width": 390,
+      "media": "print",
+      "code": "paper_content_overflow",
+      "detail": {
+        "kind": "answer",
+        "nodes": [
+          {
+            "tag": "DIV",
+            "class": "qa-paper-column",
+            "scrollWidth": 398,
+            "clientWidth": 364
+          },
+          {
+            "tag": "DIV",
+            "class": "",
+            "scrollWidth": 398,
+            "clientWidth": 364
+          }
+        ]
+      }
+    }
+  ],
+  "assets": [],
+  "scope": "All candidate content/answer/solution in production PaperProblemView SSR, real print column, local production CSS/modules and data URL fonts; screen and print media at 1440/390; no pagination, paper printer, mathematics or human approval",
+  "databaseWrites": 0
+}

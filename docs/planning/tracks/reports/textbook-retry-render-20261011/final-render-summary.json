@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "cohorts": [
+    {
+      "name": "final-core-1656",
+      "passed": true,
+      "sourceCount": 828,
+      "candidates": 1656,
+      "candidateViewportChecks": 6624,
+      "inputSha256": "337b65fb23dcd67493c6563198c7fa64e07d3526860bb0c99163a198bf3705ba",
+      "candidatePayloadSha256": "658726410f18a0efe49ab8938dd8808c125e090aa4d6810f4be950a09eb28759",
+      "componentRender": "final-core-1656/component-render.json",
+      "browserQa": "final-core-1656/browser-qa.json",
+      "browserQaSha256": "4c862cb9acbf73a45434d5dd27be9d455d0958e62a9d05b28a41c3a7c4830669"
+    },
+    {
+      "name": "final-geometry-78",
+      "passed": true,
+      "sourceCount": 39,
+      "candidates": 78,
+      "candidateViewportChecks": 312,
+      "inputSha256": "82aa3413c2d969ed7dd4f574230ae53d8ed60a84cda61c2f97be3e143c751963",
+      "candidatePayloadSha256": "5170643c7374a6011aa1821683d748b67a178b5cbe30afa10e8de10f0a2c401f",
+      "componentRender": "final-geometry-78/component-render.json",
+      "browserQa": "final-geometry-78/browser-qa.json",
+      "browserQaSha256": "8d26e47d93a6c59806c314383d8a2549fa41413005a1d13a2b80f7cdb5433487"
+    },
+    {
+      "name": "calculus-54",
+      "passed": true,
+      "sourceCount": 27,
+      "candidates": 54,
+      "candidateViewportChecks": 216,
+      "inputSha256": "cb203a954d431e3659c6b794165db9a8c7efa5efa0833ae6a5baf172426995a6",
+      "candidatePayloadSha256": "3e0fdec15e871f3e906378c9d5c5e8c89d0f6ce53aaad47eddb28c88689fb041",
+      "componentRender": "calculus-54/component-render.json",
+      "browserQa": "calculus-54/browser-qa.json",
+      "browserQaSha256": "38634cd5093de63d2abc6e689f0938c2b527972893b97a804fe82db2901a4dfd"
+    }
+  ],
+  "scope": "Separate exact-payload rendering receipts; source cohort selection, mathematical proof and database qualification remain coordinator-owned",
+  "originalFailurePreserved": "deterministic-1656/browser-qa.json"
+}
