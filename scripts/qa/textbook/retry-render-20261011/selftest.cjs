@@ -36,7 +36,7 @@ async function main() {
   const good = [
     row("svg", {
       content: "그림의 점 $A$를 확인하시오. [그림]",
-      figureSvg: svg("A"),
+      figureSvg: svg("A", '<text x="0" y="0"></text><text> </text>'),
     }),
     row("choice-grid", {
       content: "알맞은 그림을 고르시오.\n① [그림]\n② [그림]",
@@ -108,6 +108,7 @@ async function main() {
       ),
     }),
     row("broken-image", { figureUrls: ["/figures/qa-does-not-exist.png"] }),
+    row("raw-svg-math", { figureSvg: svg("$\\frac{1}{2}$") }),
     row("overflow-last", {
       answer: "$51537752073201133103646112976562127270210752200100x^{99}$",
     }),
@@ -132,6 +133,7 @@ async function main() {
     "unresolved_svg_id",
     "choice_figure_index",
     "invisible_svg_label",
+    "untypeset_svg_math",
     "broken_or_hidden_asset",
     "paper_content_overflow",
   ])

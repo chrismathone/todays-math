@@ -456,6 +456,24 @@ export async function renderDbRetryFigure(
   // Never retry by deleting a dimension or repairing geometry behind the caller.
   const rendered = await renderFigureSpec(spec, { strict: true });
   if (!rendered.ok) reject("figure-render", rendered.error);
+  // Successful SVG serialization is not successful mathematical typesetting.
+  // Inspect visible text only; MathJax paths may retain source TeX in metadata.
+  const visibleLabels = [
+    ...rendered.svg.matchAll(/<text\b[^>]*>([\s\S]*?)<\/text\s*>/gi),
+  ];
+  if (
+    visibleLabels.some(([, label]) =>
+      /\\[a-zA-Z]+/.test(
+        label
+          .replace(/<[^>]*>/g, "")
+          .replace(/&#(?:0*92|x0*5c);|&bsol;/gi, "\\"),
+      ),
+    )
+  )
+    reject(
+      "untypeset-math",
+      "새 그림에 조판되지 않은 LaTeX 수식이 남아 있습니다.",
+    );
   if (rendered.droppedDimensions?.length)
     reject(
       "dropped-dimensions",

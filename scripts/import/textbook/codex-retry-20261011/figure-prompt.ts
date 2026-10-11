@@ -11,6 +11,7 @@ export function groupedFigureInstruction(): string {
     "표의 실제 숫자 셀과 행·열 제목은 모두 보존하십시오. 생략 표시 ⋯/⋮만 들어 있는 장식용 연속 행·열은 생략할 수 있습니다. 숫자 데이터를 지우거나 작은 글씨로 숨겨 너비 제한을 피하지 마십시오. 복잡한 분수·로그 수식은 고정 폭의 boxedList 대신 graph-1의 $...$ labels로 충분한 간격을 두어 조판하십시오. JSON 문자열을 두 번 해석한 최종 수식에는 LaTeX 명령 앞 역슬래시가 한 개여야 합니다.",
     'TABLE_EXAMPLE {"version":"elem-1","kind":"table","headers":["수","0","1"],"rows":[["2.0",".3010",".3032"],["2.1",".3222",".3243"]]}',
     'BOX_EXAMPLE {"version":"elem-1","kind":"boxedList","items":["a > 0","b > 1"],"marks":["(가)","(나)"]}',
+    "boxedList는 짧은 일반 문자 조건에만 쓰십시오. LaTeX 역슬래시 명령 또는 $수식$은 boxedList에서 조판되지 않습니다. 선분 길이 조건은 '선분 OA의 길이 : 선분 AB의 길이 = 1 : 2'처럼 쓸 수 있으며, 길면 graph-1 labels에 줄을 나누어 배치하십시오.",
     "실제 엔진에서 생성한 계약(이 목록 밖의 키나 함수를 만들지 마십시오):",
     JSON.stringify({
       "graph-1": catalog["graph-1"],

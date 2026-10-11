@@ -358,6 +358,11 @@ async function runBrowser({
                     );
                   const viewBox = svg.viewBox.baseVal;
                   for (const text of svg.querySelectorAll("text")) {
+                    // Empty table cells do not contain a label to make visible.
+                    // Nonempty labels must still match the source SVG and pass every check.
+                    if (!text.textContent.trim()) continue;
+                    if (/\\[a-zA-Z]+/.test(text.textContent))
+                      fail("untypeset_svg_math", text.textContent);
                     const bbox = text.getBBox();
                     labelBounds.push({
                       text: text.textContent.trim(),

@@ -436,6 +436,32 @@ describe("DB retry source image evidence", () => {
 });
 
 describe("new vector figure generation", () => {
+  it("rejects visible raw TeX in a boxed condition instead of approving a serialized SVG", async () => {
+    await expect(
+      renderDbRetryFigure(
+        {
+          version: "elem-1",
+          kind: "boxedList",
+          items: ["$\\overline{OA}:\\overline{AB}=1:2$"],
+          marks: ["(가)"],
+        },
+        "선분 OA와 AB의 길이의 비는 1:2이다.",
+      ),
+    ).rejects.toMatchObject({ code: "untypeset-math" });
+  });
+  it("accepts the same math after graph labels are actually typeset", async () => {
+    const result = await renderDbRetryFigure(
+      {
+        version: "graph-1",
+        xRange: [0, 6],
+        yRange: [0, 3],
+        axes: false,
+        labels: [{ at: [1, 1.5], text: "$\\frac{1}{2}$", anchor: "start" }],
+      },
+      "비율은 1/2이다.",
+    );
+    expect(result.figures.images).toHaveLength(1);
+  });
   const spec = {
     version: 2,
     points: { A: [40, 40], B: [220, 40], C: [220, 160] },
