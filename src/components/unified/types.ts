@@ -79,6 +79,8 @@ export interface BankData {
   chapters: string[];
   /** Full curriculum for the same range picker used by ProblemBank. */
   units?: UnitEntity[];
+  /** Issuable problem counts keyed by curriculum unit ID. */
+  unitCounts?: Record<string, number>;
   error?: string;
 }
 

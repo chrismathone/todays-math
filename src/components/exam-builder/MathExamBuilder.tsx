@@ -32,8 +32,12 @@ export default function MathExamBuilder({
   canOutput: boolean;
 }) {
   const source = useMemo(
-    () => createMathExamBuilderSource({ initialUnits: initialData.units }),
-    [initialData.units],
+    () =>
+      createMathExamBuilderSource({
+        initialUnits: initialData.units,
+        initialUnitCounts: initialData.unitCounts,
+      }),
+    [initialData.units, initialData.unitCounts],
   );
   return (
     <ExamBuilder

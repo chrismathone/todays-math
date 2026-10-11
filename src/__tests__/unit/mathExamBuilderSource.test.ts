@@ -69,6 +69,22 @@ describe("Math exam builder source", () => {
     });
   });
 
+  it("carries bank availability into curriculum scopes", async () => {
+    const counts = { [unit.id]: 3, [MOCK_UNITS[1].id]: 0 };
+    const initial = createMathExamBuilderSource({
+      initialUnits: MOCK_UNITS,
+      initialUnitCounts: counts,
+    });
+    expect(initial.initialScopes?.[0].count).toBe(3);
+    expect(initial.initialScopes?.[1].count).toBe(0);
+
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(reply({ units: MOCK_UNITS, unitCounts: counts }));
+    const remote = createMathExamBuilderSource({ fetch: fetcher });
+    expect((await remote.loadScopes(signal))[1].count).toBe(0);
+  });
+
   it.each([
     { environment: "production", path: "/dev/unified", base: "/api/studio" },
     { environment: "development", path: "/", base: "/api/studio" },

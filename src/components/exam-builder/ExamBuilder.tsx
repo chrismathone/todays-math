@@ -116,7 +116,10 @@ export default function ExamBuilder<T>({
     !!selectedScopes.length &&
     requested > 0 &&
     requested <= maxQuestions &&
-    allocations.every((row) => scopeMap.has(row.scopeId));
+    allocations.every((row) => {
+      const scope = scopeMap.get(row.scopeId);
+      return !!scope && (scope.count === undefined || row.count <= scope.count);
+    });
   const counts = new Map<string, number>();
   questions.forEach((item) => {
     const id = source.info(item).scopeId;
@@ -356,7 +359,7 @@ export default function ExamBuilder<T>({
                       <tr>
                         <th>선택한 출제 범위</th>
                         <th>구성 수</th>
-                        <th>현재</th>
+                        <th>구성됨</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -374,6 +377,9 @@ export default function ExamBuilder<T>({
                                   {[scope?.group, scope?.detail]
                                     .filter(Boolean)
                                     .join(" · ")}
+                                  {scope?.count !== undefined
+                                    ? ` · 출제 가능 ${scope.count}문항`
+                                    : ""}
                                 </small>
                               </td>
                               <td>
@@ -688,13 +694,12 @@ export default function ExamBuilder<T>({
             setAllocations(
               ids.map((scopeId) => ({
                 scopeId,
-                count:
+                count: Math.min(
                   allocations.find((row) => row.scopeId === scopeId)?.count ??
-                  Math.min(
                     5,
-                    scopeMap.get(scopeId)?.count ?? maxQuestions,
-                    Math.floor(maxQuestions / Math.max(ids.length, 1)),
-                  ),
+                  scopeMap.get(scopeId)?.count ?? maxQuestions,
+                  Math.floor(maxQuestions / Math.max(ids.length, 1)),
+                ),
               })),
             );
             setScopePage(1);
