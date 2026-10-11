@@ -1,0 +1,79 @@
+{
+  "snapshotSha256": "0328ed69db13e4a5c0d3fb258ebf520e82e0a5c18983b287654fd83660cbd0f4",
+  "originals": 12281,
+  "geometryMatched": 39,
+  "geometryCandidates": 78,
+  "geometryUnresolved": 12242,
+  "baseMatched": 679,
+  "overlap": 0,
+  "combinedMatched": 718,
+  "combinedUnresolved": 11563,
+  "existingChildren": 79,
+  "byGrade": {
+    "대수": {
+      "originals": 749,
+      "matched": 0,
+      "unresolved": 749
+    },
+    "공통수학1": {
+      "originals": 960,
+      "matched": 6,
+      "unresolved": 954
+    },
+    "공통수학2": {
+      "originals": 705,
+      "matched": 20,
+      "unresolved": 685
+    },
+    "기하": {
+      "originals": 225,
+      "matched": 4,
+      "unresolved": 221
+    },
+    "미적분1": {
+      "originals": 585,
+      "matched": 0,
+      "unresolved": 585
+    },
+    "확률과 통계": {
+      "originals": 555,
+      "matched": 9,
+      "unresolved": 546
+    },
+    "중1": {
+      "originals": 4943,
+      "matched": 0,
+      "unresolved": 4943
+    },
+    "중2": {
+      "originals": 3559,
+      "matched": 0,
+      "unresolved": 3559
+    }
+  },
+  "byRecipe": {
+    "exact-finite-count": 15,
+    "exact-point-distance": 6,
+    "exact-section-point": 4,
+    "exact-point-midpoint": 3,
+    "exact-point-centroid": 2,
+    "exact-point-line-distance": 5,
+    "exact-parallel-line-distance": 1,
+    "exact-coordinate-translation": 1,
+    "exact-coordinate-reflection": 2
+  },
+  "byReason": {
+    "answer-syntax": 1359,
+    "no-exact-geometry-template": 6749,
+    "rational-required": 57,
+    "figure-dependent": 3573,
+    "power-range": 1,
+    "source-held": 475,
+    "subquestion-label-order": 5,
+    "degenerate-triangle": 1,
+    "choice-shape": 5,
+    "choice-answer-shape": 8,
+    "duplicate-choice": 8,
+    "coordinate-range": 1
+  }
+}
