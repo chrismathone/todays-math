@@ -1225,7 +1225,18 @@ function build(
       if (!modified.changed) throw new Error("no-changeable-data");
       next.push(fn.prefix + modified.text);
       changed += modified.changed;
-      const answer = polyLatex(derivative(evaluate(parse(modified.text).ast)));
+      const derived = derivative(evaluate(parse(modified.text).ast));
+      let answer = polyLatex(derived);
+      // Retain exact powers instead of a many-digit expanded coefficient on paper.
+      // This is limited to a source monomial, and checked against the full polynomial.
+      const monomial = /^x\^\{(\d+)\}$/.exec(fn.body.trim());
+      if (monomial && /^\d{21,}/.test(answer)) {
+        const degree = Number(monomial[1]);
+        const factored = `${degree}\\cdot ${delta}^{${degree}}x^{${degree - 1}}`;
+        if (!samePoly(derived, evaluate(parse(factored).ast)))
+          throw new Error("compact-derivative-mismatch");
+        answer = factored;
+      }
       answers.push(answer);
       proofs.push(
         `각 항에 미분 공식 $\\frac{d}{dx}(cx^{n})=cnx^{n-1}$을 적용하면 도함수는 $${answer}$이다.`,

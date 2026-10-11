@@ -191,9 +191,16 @@ def actual_answers(row):
     return result
 
 
-path, output = map(Path, sys.argv[1:])
+path, output = map(Path, sys.argv[1:3])
 bytes_ = path.read_bytes()
 evidence = json.loads(bytes_)
+candidate_path = Path(sys.argv[3]) if len(sys.argv) > 3 else None
+if candidate_path:
+    candidates_bytes = candidate_path.read_bytes()
+    candidates = json.loads(candidates_bytes)["candidates"]
+    expected = [candidate for pair in evidence["evidence"] for candidate in pair["candidates"]]
+    assert len({c["externalId"] for c in candidates}) == len(candidates)
+    assert sorted(candidates, key=lambda c: c["externalId"]) == sorted(expected, key=lambda c: c["externalId"]), "exact candidate/evidence mismatch"
 failures = []
 checked_sources = checked_candidates = checked_values = 0
 for pair in evidence["evidence"]:
@@ -215,6 +222,10 @@ for pair in evidence["evidence"]:
 result = {"sympyVersion": sp.__version__, "snapshotSha256": evidence["snapshotSha256"], "evidenceSha256": hashlib.sha256(bytes_).hexdigest(),
           "checkedSources": checked_sources, "checkedCandidates": checked_candidates, "checkedValues": checked_values, "failures": failures,
           "independent": "Own Python question/answer parser and SymPy geometry/integer computations; no TS imports or computedAnswers."}
+if candidate_path:
+    result.update(candidateFileSha256=hashlib.sha256(candidates_bytes).hexdigest(),
+                  candidates=len(candidates), failedCandidates=sum(f["kind"] == "candidate" for f in failures))
+    assert checked_candidates + result["failedCandidates"] == len(candidates)
 output.write_text(json.dumps(result, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
 print(json.dumps(result, ensure_ascii=False, indent=2))
 sys.exit(bool(failures))

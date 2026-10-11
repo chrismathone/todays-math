@@ -55,6 +55,20 @@ function unresolved(input: TextbookVariantSource, reason?: string): void {
 }
 
 describe("source-matched textbook variant pairs", () => {
+  it("keeps high-degree derivative coefficients exact and compact on paper", () => {
+    const [a, b] = pair(
+      source("다음 함수의 도함수를 구하시오.\n$y=x^{100}$", "$100x^{99}$"),
+    );
+    expect(a.content).toContain("(2x)^{100}");
+    expect(b.content).toContain("(3x)^{100}");
+    expect(a.answer).toBe("$100\\cdot 2^{100}x^{99}$");
+    expect(b.answer).toBe("$100\\cdot 3^{100}x^{99}$");
+    expect(b.solution).toContain(b.answer);
+    const low = pair(
+      source("다음 함수의 도함수를 구하시오.\n$y=x^{3}$", "$3x^{2}$"),
+    );
+    expect(low[1].answer).toBe("$81x^{2}$");
+  });
   it("produces exact integer calculations, two distinct siblings and reproducible provenance", () => {
     const input = source("다음을 계산하시오.\n$2+3\\times4$", "$14$");
     const before = structuredClone(input),

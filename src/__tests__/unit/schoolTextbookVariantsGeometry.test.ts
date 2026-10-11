@@ -54,6 +54,18 @@ function rejects(s: TextbookVariantSource, reason?: string): void {
 }
 
 describe("complete-template textbook geometry and finite counting", () => {
+  it("separates inherited adjacent inline delimiters in new candidates", () => {
+    const s = source(
+      "좌표평면 위의 다음 두 점 $A, B$를 이은 선분 $AB$의 중점 $M$의 좌표를 구하시오.\n⑴ $A(-4,-3)$$, B(-8,1)$",
+      "⑴ $(-6,-1)$",
+    );
+    const before = s.content,
+      [a, b] = pair(s);
+    expect(a.content).not.toContain("$$");
+    expect(b.content).not.toContain("$$");
+    expect(a.answer).toBe("⑴ $(-12,\\,-2)$");
+    expect(s.content).toBe(before);
+  });
   it("checks unary minus after exponentiation when verifying a source answer", () => {
     const s = source(
       "다음 두 점 사이의 거리를 구하시오.\n⑴ $A(0),B(4)$",

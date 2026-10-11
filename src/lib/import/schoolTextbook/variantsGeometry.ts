@@ -1027,7 +1027,9 @@ export function generateTextbookGeometryPair(
     if (mcq && matched.recipe !== "exact-finite-count")
       throw new Error("geometry-numeric-choices-unsupported");
     for (const scale of [2, 3]) {
-      let content = matched.content(scale);
+      let content = matched
+        .content(scale)
+        .replace(/(\$[^$\n]+\$)(?=\$[^$\n]+\$)/g, (inline) => `${inline} `);
       if (
         content === source.content ||
         result.some((c) => c.content === content)

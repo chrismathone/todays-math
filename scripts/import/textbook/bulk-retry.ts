@@ -3,12 +3,14 @@ import { Prisma, PrismaClient, type Problem } from "@prisma/client";
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, resolve } from "node:path";
 import {
-  generateTextbookVariantPair,
-  validateTextbookVariantPair,
   TEXTBOOK_VARIANT_VERSION,
   type TextbookVariantSource,
-  type TextbookVariantCandidate,
 } from "../../../src/lib/import/schoolTextbook/variants";
+import {
+  generateReviewedTextbookPair,
+  validateReviewedTextbookPair,
+  type ReviewedTextbookCandidate,
+} from "../../../src/lib/import/schoolTextbook/variantPairGenerators";
 import {
   prepareTextbookRetryPair,
   textbookRetrySourceFingerprint,
@@ -53,9 +55,9 @@ function sourceRecord(p: TextbookVariantSource): TextbookRetrySource {
 }
 function insertionPair(
   source: TextbookVariantSource,
-  candidates: TextbookVariantCandidate[],
+  candidates: ReviewedTextbookCandidate[],
 ) {
-  const verified = validateTextbookVariantPair(source, candidates);
+  const verified = validateReviewedTextbookPair(source, candidates);
   if (!verified.valid) throw new Error(verified.issues.join(" · "));
   const original = sourceRecord(source);
   return prepareTextbookRetryPair(
@@ -99,7 +101,7 @@ async function main() {
   const seen = new Set<string>();
   const matched: {
     source: TextbookVariantSource;
-    candidates: TextbookVariantCandidate[];
+    candidates: ReviewedTextbookCandidate[];
   }[] = [];
   const unresolved: {
     sourceId: string;
@@ -111,7 +113,7 @@ async function main() {
     if (seen.has(source.id))
       throw new Error("스냅샷에 같은 원문 ID가 반복된다");
     seen.add(source.id);
-    const result = generateTextbookVariantPair(source);
+    const result = generateReviewedTextbookPair(source);
     if (result.status === "unresolved") {
       unresolved.push({
         sourceId: source.id,
