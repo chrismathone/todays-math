@@ -1,6 +1,9 @@
 /** Stateless review validation and content/image bindings. No inference or provider imports. */
 import { createHash } from "node:crypto";
 import { z } from "zod";
+import { intervalAnswerKey } from "./intervalAnswerNotation";
+import { compareScalarAnswerNotation } from "./scalarAnswerNotation";
+import { positiveRadicalAnswerKey } from "./positiveRadicalAnswerNotation";
 import type {
   DbRetryCandidate,
   DbRetryFigures,
@@ -230,6 +233,24 @@ function scalarKey(text: string): string | null {
 function mathKey(text: string, numericRootSet = false): string | null {
   const bare = unwrap(text);
   if (dbRetryUnknownAnswer(bare) || bare.length > 4000) return null;
+  const positiveRadical = positiveRadicalAnswerKey(bare);
+  if (positiveRadical !== null) return positiveRadical;
+  const interval = intervalAnswerKey(bare);
+  if (interval !== null) return interval;
+  const unitRangeText = bare.replace(
+    /\\(?:mathrm|text)\{(W|dB|m|cm|mm|km|g|kg|s|min|h|L|mL)\}/g,
+    "$1",
+  );
+  const unitRange =
+    /^(.+?)\s*(W|dB|cm|mm|km|kg|mL|min|m|g|s|h|L)\s*(이상|초과)\s*(.+?)\s*\2\s*(이하|미만)$/.exec(
+      unitRangeText,
+    );
+  if (unitRange) {
+    const lower = scalarKey(unitRange[1]),
+      upper = scalarKey(unitRange[4]);
+    if (lower !== null && upper !== null)
+      return `unit-range:${unitRange[2]}:${unitRange[3]}:${lower}:${unitRange[5]}:${upper}`;
+  }
   // Sequential subpart labels preserve every answer and its position. Only
   // punctuation between subparts is formatting; a missing/reordered part fails.
   const parts = [...bare.matchAll(/\((\d+)\)\s*/g)];
@@ -326,6 +347,52 @@ function choiceIndex(answer: string): number | null {
     /^(?:(?:정답\s*[:：]?\s*)?(?:보기\s*)?([1-9]|10)(?:번|[.)])?)$/.exec(bare);
   return match ? Number(match[1]) : null;
 }
+function answersHaveSameNotation(
+  stored: string,
+  blind: string,
+  content: string,
+  numericRootSet: boolean,
+): boolean {
+  const key = mathKey(stored, numericRootSet);
+  if (key !== null && key === mathKey(blind, numericRootSet)) return true;
+  const left = unwrap(stored),
+    right = unwrap(blind);
+  const leftParts = [...left.matchAll(/\((\d+)\)\s*/g)];
+  const rightParts = [...right.matchAll(/\((\d+)\)\s*/g)];
+  if (/^\(1\)/.test(left) || /^\(1\)/.test(right)) {
+    if (
+      leftParts.length < 2 ||
+      leftParts.length !== rightParts.length ||
+      leftParts.some((part, i) => Number(part[1]) !== i + 1) ||
+      rightParts.some((part, i) => Number(part[1]) !== i + 1)
+    )
+      return false;
+    // Strip only line-leading part labels from the classifier context. The
+    // actual questions, ordered answers and hashed review inputs stay intact.
+    const scalarContext = content.replace(
+      /(^|\n)\s*(?:\(\d+\)|[⑴-⒇])\s*/g,
+      "$1",
+    );
+    return leftParts.every((part, i) =>
+      answersHaveSameNotation(
+        left
+          .slice(part.index! + part[0].length, leftParts[i + 1]?.index)
+          .trim()
+          .replace(/[,;，；]+$/, ""),
+        right
+          .slice(
+            rightParts[i].index! + rightParts[i][0].length,
+            rightParts[i + 1]?.index,
+          )
+          .trim()
+          .replace(/[,;，；]+$/, ""),
+        scalarContext,
+        numericRootSet,
+      ),
+    );
+  }
+  return compareScalarAnswerNotation(left, right, content) === true;
+}
 /** Equality evidence only: this does not solve the question or prove the worked solution. */
 export function dbRetryAnswersAgree(
   stored: string,
@@ -342,8 +409,7 @@ export function dbRetryAnswersAgree(
       !/개수|몇\s*개|순서|순으로|좌표|오름차순|내림차순|작은[^\n.]{0,10}부터|큰[^\n.]{0,10}부터/.test(
         content,
       );
-    const key = mathKey(stored, numericRootSet);
-    return key !== null && key === mathKey(blind, numericRootSet);
+    return answersHaveSameNotation(stored, blind, content, numericRootSet);
   }
   const choices = choicesOf(content);
   if (!choices) return false;

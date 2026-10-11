@@ -111,19 +111,21 @@ export interface AdoptProcessResult {
 }
 export interface CodexBatchAdoptDependencies {
   runProcess: (request: AdoptProcessRequest) => Promise<AdoptProcessResult>;
-  env: NodeJS.ProcessEnv;
+  env: Readonly<Record<string, string | undefined>>;
   log?: (value: unknown) => void;
 }
 
 /** Allowlist: unknown provider keys/routes, NODE_OPTIONS, proxies and dotenv settings never survive. */
-export function adoptionChildEnv(env: NodeJS.ProcessEnv): NodeJS.ProcessEnv {
+export function adoptionChildEnv(
+  env: Readonly<Record<string, string | undefined>>,
+): NodeJS.ProcessEnv {
   const allowed =
     /^(PATH|PATHEXT|SYSTEMROOT|WINDIR|COMSPEC|TEMP|TMP|TMPDIR|HOME|USERPROFILE|LOCALAPPDATA|APPDATA|PROGRAMFILES|PROGRAMFILES\(X86\)|LANG|LC_ALL|TZ|NODE_ENV|DATABASE_URL|DIRECT_URL|DIRECT_DATABASE_URL|SHADOW_DATABASE_URL|POSTGRES_URL|POSTGRES_PRISMA_URL|POSTGRES_URL_NON_POOLING|PGHOST|PGPORT|PGUSER|PGPASSWORD|PGDATABASE|PGSSLMODE|ALLOW_SHARED_IMPORT|SHARED_FIGURE_CDN_BASE_URL|PLAYWRIGHT_BROWSERS_PATH|CHROME_PATH|PUPPETEER_EXECUTABLE_PATH)$/i;
   return Object.fromEntries(
     Object.entries(env).filter(
       ([key, value]) => allowed.test(key) && value !== undefined,
     ),
-  );
+  ) as NodeJS.ProcessEnv;
 }
 
 /** Prisma's generated client loads .env even without a CLI --env-file. Installed before any imports. */

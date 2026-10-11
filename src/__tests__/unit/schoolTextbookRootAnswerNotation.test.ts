@@ -2,6 +2,98 @@ import { describe, expect, it } from "vitest";
 import { dbRetryAnswersAgree } from "@/lib/import/schoolTextbook/dbRetryReviewBinding";
 const roots = "다음 거듭제곱근 중 실수인 것을 모두 구하시오.";
 describe("Exact imported root answer notation", () => {
+  it("compares ordered scalar subparts without losing terms or denominators", () => {
+    const question =
+      "$\\log_{10}3=a,\\log_{10}5=b$일 때 다음을 a,b에 대한 식으로 나타내시오.\n⑴ $\\log_{10}45$\n⑵ $\\log_{10}12$\n⑶ $\\log_{10}\\sqrt[4]{0.75}$";
+    const stored = "⑴ $2a+b$ ⑵ $a-2b+2$ ⑶ $\\frac{a+2b-2}{4}$";
+    expect(
+      dbRetryAnswersAgree(
+        stored,
+        "(1) 2a+b (2) a+2-2b (3) (a+2b-2)/4",
+        "단답형",
+        question,
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        stored,
+        "(1) 2a+b (2) a+2-2b (3) (a+2b-2)/5",
+        "단답형",
+        question,
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        stored,
+        "(1) a+2-2b (2) 2a+b (3) (a+2b-2)/4",
+        "단답형",
+        question,
+      ),
+    ).toBe(false);
+  });
+  it("preserves an excluded log-base value in every domain subpart", () => {
+    const question =
+      "다음 로그가 정의되는 실수 x의 범위를 구하시오.\n(1) $\\log_x(2x-1)$\n(2) $\\log_{x-2}(x^2-2x-15)$";
+    expect(
+      dbRetryAnswersAgree(
+        "(1) $\\frac{1}{2}<x<1$ 또는 $x>1$ (2) $x>5$",
+        "(1) x>1/2,x!=1 (2) x>5",
+        "단답형",
+        question,
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "(1) $\\frac{1}{2}<x<1$ 또는 $x>1$ (2) $x>5$",
+        "(1) x>1/2 (2) x>5",
+        "단답형",
+        question,
+      ),
+    ).toBe(false);
+  });
+  it("preserves both units and endpoint inclusions in explicit numeric verbal ranges", () => {
+    const content = "음향출력의 범위를 W 단위로 구하시오.";
+    expect(
+      dbRetryAnswersAgree(
+        "$\\frac{1}{10}\\,\\mathrm{W}$ 이상 $100\\,\\mathrm{W}$ 이하",
+        "0.1 W 이상 100 W 이하",
+        "단답형",
+        content,
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "0.1 W 이상 100 W 이하",
+        "0.1 이상 100 이하",
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "0.1 W 이상 100 W 이하",
+        "0.1 dB 이상 100 dB 이하",
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "0.1 W 이상 100 W 이하",
+        "0.1 W 초과 100 W 이하",
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "0.1 W 이상 100 W 이하",
+        "0.1 W 이상 100 W 미만",
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+  });
   it("preserves literal superscripts and rational exponent notation", () => {
     expect(
       dbRetryAnswersAgree(
