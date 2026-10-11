@@ -16,6 +16,18 @@ describe("bounded angle and numeric notation", () => {
     expect(agree(named, numbered, "단답형", triplet)).toBe(true);
     expect(agree(numbered, named, "단답형", triplet)).toBe(true);
   });
+  it("checks both the numbering and function names when both are supplied", () => {
+    const both = "(1) sinθ = -3√13/13 (2) cosθ = -2√13/13 (3) tanθ = 3/2";
+    expect(agree(named, both, "단답형", triplet)).toBe(true);
+    expect(agree(both, named, "단답형", triplet)).toBe(true);
+    for (const wrong of [
+      both.replace("sinθ", "cosθ"),
+      both.replace("cosθ", "cosx"),
+      both.replace("tanθ = ", ""),
+      both.replace("(2)", "(3)"),
+    ])
+      expect(agree(named, wrong, "단답형", triplet)).toBe(false);
+  });
   it.each([
     numbered.replace("-3√13/13", "3√13/13"),
     numbered.replace("-3√13/13; (2) -2√13/13", "-2√13/13; (2) -3√13/13"),

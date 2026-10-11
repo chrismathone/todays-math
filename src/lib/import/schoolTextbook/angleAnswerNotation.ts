@@ -119,12 +119,12 @@ function trigTriplet(left: string, right: string, question: string): boolean {
   if (new Set(names).size !== 3) return false;
   const values = (s: string): string[] | null => {
     const numbered = parts(s);
-    if (numbered) return numbered.length === 3 ? numbered : null;
-    const assignments = s.split(/\s*,\s*/);
+    const assignments = numbered ?? s.split(/\s*,\s*/);
     if (assignments.length !== 3) return null;
     const matches = assignments.map((v) =>
       /^((?:sin|cos|tan)\s*(?:θ|[a-z]))\s*=\s*(.+)$/.exec(v),
     );
+    if (numbered && matches.every((m) => m === null)) return numbered;
     if (matches.some((m, i) => !m || m[1].replace(/\s/g, "") !== names[i]))
       return null;
     return matches.map((m) => m![2]);
