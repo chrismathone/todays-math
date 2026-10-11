@@ -1,0 +1,634 @@
+[
+ {
+  "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+  "familyKey": "mid:3-2|삼각비|03",
+  "source": "past_exam",
+  "difficulty": "기본",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "$\\cos A=\\frac{3}{5}$일 때, $\\sin A$의 값을 구하면? \n(단, $0\\,°<\\mathrm{A}<90\\,°$이다.)\n\n1. $\\frac{4}{5}$\n2. $\\frac{3}{4}$\n3. $\\frac{4}{3}$\n4. $\\frac{5}{4}$\n5. $\\frac{5}{3}$",
+  "answer": "①",
+  "solution": "$\\cos A=\\frac{3}{5}$이므로 빗변이 $5$, 인접변이 $3$인 직각삼각형으로 볼 수 있다.\n대변은 $\\sqrt{5^{2}-3^{2}}=4$이다.\n$0^\\circ<A<90^\\circ$이므로 $\\sin A=\\frac{4}{5}$이다.\n따라서 답은 ①이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [],
+  "figureDims": [],
+  "figureSourceMm": [],
+  "figureSvg": null,
+  "figureSource": null,
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-1",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 1,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+  "familyKey": "mid:3-2|삼각비|02",
+  "source": "past_exam",
+  "difficulty": "기본",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림과 같은 직각삼각형 $\\mathrm{ABC}$에서 $\\sin A=\\frac{2}{3},$ $\\overline{\\mathrm{A}B}=6\\,cm$일 때, $\\overline{AC}=a,~\\overline{BC}=b$라 할 때, $a+b$의 값을 구하면?\n\n1. $2+\\sqrt{5}\\,\\mathrm{c}m$\n2. $2+2\\sqrt{5}\\,\\mathrm{cm}$\n3. $3+\\sqrt{5}\\,\\mathrm{cm}$\n4. $4+2\\sqrt{5}\\,\\mathrm{cm}$\n5. $4+3\\sqrt{5}\\,\\mathrm{cm}$",
+  "answer": "④",
+  "solution": "그림에서 $\\angle C=90^\\circ$이고 $\\overline{AB}=6$이므로 빗변은 $\\overline{AB}$이다.\n$\\sin A=\\frac{\\overline{BC}}{\\overline{AB}}=\\frac{2}{3}$이므로 $\\overline{BC}=6\\times\\frac{2}{3}=4$이다.\n$\\overline{AC}=\\sqrt{6^{2}-4^{2}}=\\sqrt{20}=2\\sqrt{5}$이다.\n$a+b=2\\sqrt{5}+4$이다.\n따라서 답은 ④이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q02.png"
+  ],
+  "figureDims": [
+   305,
+   245
+  ],
+  "figureSourceMm": [
+   40.78
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-2",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 2,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+  "familyKey": "mid:3-2|삼각비|07",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림과 같이 한 모서리의 길이가 $4\\,\\mathrm{c}m$인 정육면체에서 $\\angle \\mathrm{BHF}=x$일 때, $\\tan \\,x$의 값을 구하면?\n\n1. $\\frac{1}{2}$\n2. $\\frac{\\sqrt{2}}{2}$\n3. $\\frac{\\sqrt{3}}{3}$\n4. $\\frac{\\sqrt{3}}{2}$\n5. $1$",
+  "answer": "②",
+  "solution": "정육면체의 한 모서리가 $4$이므로 $\\overline{BF}=4$이다.\n$F$와 $H$는 밑면의 마주 보는 꼭짓점이므로 $\\overline{FH}=\\sqrt{4^{2}+4^{2}}=4\\sqrt{2}$이다.\n$\\overline{BF}$는 밑면에 수직이므로 $\\angle BFH=90^\\circ$이다.\n직각삼각형 $BFH$에서 $\\tan x=\\frac{\\overline{BF}}{\\overline{FH}}=\\frac{4}{4\\sqrt{2}}=\\frac{\\sqrt{2}}{2}$이다.\n따라서 답은 ②이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q03.png"
+  ],
+  "figureDims": [
+   315,
+   293
+  ],
+  "figureSourceMm": [
+   49.49
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-3",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 3,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+  "familyKey": "mid:3-2|삼각비|15",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "$0\\,°<\\mathrm{A}<45\\,°$일 때, $\\sqrt{\\left( \\sin \\,A-\\cos A\\right) ^{2}}+\\sqrt{\\left( \\cos A-\\sin \\,A\\right) ^{2}}$을 간단히 하면?\n\n1. $2\\sin \\,A$\n2. $2\\cos \\,A$\n3. $0$\n4. $2\\sin \\,A+2\\cos \\,A$\n5. $-2\\sin \\,A+2\\cos \\,A$",
+  "answer": "⑤",
+  "solution": "$0^\\circ<A<45^\\circ$이면 $\\sin A<\\cos A$이므로 $\\sin A-\\cos A$는 음수, $\\cos A-\\sin A$는 양수이다.\n제곱근 안의 제곱은 음이 아닌 값이므로 앞 근호는 $\\cos A-\\sin A$, 뒤 근호는 $\\cos A-\\sin A$이다.\n따라서 식은 $2(\\cos A-\\sin A)=-2\\sin A+2\\cos A$이다.\n따라서 답은 ⑤이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [],
+  "figureDims": [],
+  "figureSourceMm": [],
+  "figureSvg": null,
+  "figureSource": null,
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-4",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 4,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+  "familyKey": "mid:3-2|삼각비의 활용|13",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림과 같이 $45\\,\\mathrm{m}$ 떨어진 두 건물 $\\mathrm{P},~Q$가 있다. 건물 $\\mathrm{P}$의 옥상 $\\mathrm{A}$지점에서 건물 $\\mathrm{Q}$의 꼭대기를 올려다본 각의 크기가 $45\\,°$이고, 건물 $\\mathrm{Q}$의 아래 끝 지점을 내려다본 각의 크기가 $30\\,°$일 때, 건물 $\\mathrm{Q}$의 높이를 구하면?\n\n1. $45\\,\\mathrm{m}$\n2. $15\\sqrt{3}\\,\\mathrm{m}$\n3. $45+15\\sqrt{3}\\,\\mathrm{m}$\n4. $15+45\\sqrt{3}\\,\\mathrm{m}$\n5. $90\\,\\mathrm{m}$",
+  "answer": "③",
+  "solution": "두 건물이 수직이므로 수평선 $\\overline{AH}$의 길이는 두 건물 사이 거리와 같아 $\\overline{AH}=45$이다.\n직각삼각형 $ABH$에서 $\\overline{BH}=45\\tan 45^\\circ=45$이다.\n직각삼각형 $AHC$에서 $\\overline{HC}=45\\tan 30^\\circ=45\\times\\frac{1}{\\sqrt{3}}=15\\sqrt{3}$이다.\n건물 $Q$의 높이는 $\\overline{BH}+\\overline{HC}=45+15\\sqrt{3}$이다.\n따라서 답은 ③이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q05.png"
+  ],
+  "figureDims": [
+   363,
+   291
+  ],
+  "figureSourceMm": [
+   62.31
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-5",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 5,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+  "familyKey": "mid:3-2|삼각비의 활용|12",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림과 같이 두 대각선의 길이가 $3\\,\\mathrm{c}m,~6\\,\\mathrm{c}m$인 사각형 $\\mathrm{ABCD}$의 넓이가 $2\\sqrt{3}\\mathrm{cm}^{2}$이다. $\\angle \\mathrm{AOD}=x$라 할 때, $\\sin \\,x$의 값을 구하면? (단, $0\\,°<x<90\\,°$이다.)\n\n1. $0$\n2. $\\frac{\\sqrt{3}}{3}$\n3. $1$\n4. $\\sqrt{3}$\n5. $\\frac{2\\sqrt{3}}{9}$",
+  "answer": "⑤",
+  "solution": "두 대각선은 $\\overline{AC}=3$, $\\overline{BD}=6$이고 교점 $O$에서 $\\angle AOD=x$이다.\n맞꼭지각이므로 $\\angle BOC=x$이다.\n$A$에서 $\\overline{BD}$에 내린 수선의 발을 $H$라 하면 $\\overline{AH}=\\overline{AO}\\sin x$이다.\n$C$에서 $\\overline{BD}$에 내린 수선의 발을 $K$라 하면 $\\overline{CK}=\\overline{CO}\\sin x$이다.\n볼록사각형이므로 $A$와 $C$는 $\\overline{BD}$의 반대쪽에 있고 넓이는 $\\frac{1}{2}\\times 6\\times(\\overline{AH}+\\overline{CK})=\\frac{1}{2}\\times 6\\times 3\\sin x=9\\sin x$이다.\n$9\\sin x=2\\sqrt{3}$이므로 $\\sin x=\\frac{2\\sqrt{3}}{9}$이다.\n따라서 답은 ⑤이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q06.png"
+  ],
+  "figureDims": [
+   412,
+   260
+  ],
+  "figureSourceMm": [
+   51.91
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-6",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 6,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+  "familyKey": "mid:3-2|삼각비의 활용|11",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림과 같은 마름모 $\\mathrm{ABCD}$에서 $\\overline{AB}=4\\,cm,$ $\\angle \\mathrm{B}=45\\,°$이고 $\\overline{BC}$와 $\\overline{CD}$의 중점을 각각 $\\mathrm{M},~N$이라 할 때, $\\triangle \\mathrm{AMN}$의 넓이를 구하면?\n\n1. $\\frac{\\sqrt{2}}{3}$\n2. $\\sqrt{2}$\n3. $3$\n4. $3\\sqrt{2}$\n5. $8\\sqrt{2}$",
+  "answer": "④",
+  "solution": "마름모의 모든 변의 길이는 $4$이고 $\\angle B=45^\\circ$이므로 $A$에서 $\\overline{BC}$에 내린 수선의 길이는 $4\\sin 45^\\circ=2\\sqrt{2}$이다.\n마름모의 넓이는 $4\\times 2\\sqrt{2}=8\\sqrt{2}$이다.\n$\\overline{CM}=\\frac{1}{2}\\overline{CB}$, $\\overline{CN}=\\frac{1}{2}\\overline{CD}$이고 끼인각 $C$가 같으므로 $\\triangle CMN$과 $\\triangle CBD$는 닮음이고 닮음비는 $1:2$이다.\n대각선 $\\overline{BD}$가 마름모를 이등분하므로 $\\triangle BCD$의 넓이는 $4\\sqrt{2}$이고, $\\triangle CMN$의 넓이는 $\\frac{1}{4}\\times 4\\sqrt{2}=\\sqrt{2}$이다.\n$\\triangle ABM$의 넓이는 $\\frac{1}{2}\\times 2\\times 2\\sqrt{2}=2\\sqrt{2}$이고, $\\angle D=\\angle B=45^\\circ$이므로 $\\triangle ADN$의 넓이는 $\\frac{1}{2}\\times 4\\times 2\\times\\sin 45^\\circ=2\\sqrt{2}$이다.\n따라서 $\\triangle AMN$의 넓이는 $8\\sqrt{2}-2\\sqrt{2}-2\\sqrt{2}-\\sqrt{2}=3\\sqrt{2}$이다.\n따라서 답은 ④이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q07.png"
+  ],
+  "figureDims": [
+   433,
+   206
+  ],
+  "figureSourceMm": [
+   75.77
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-7",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 7,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+  "familyKey": "mid:3-2|원주각의 활용|E02",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림과 같이 지름의 길이가 $\\mathrm{8}\\,cm$인 원 $\\mathrm{O}$에 내접하는 $\\triangle \\mathrm{ABC}$에서 $\\angle \\mathrm{CAB}=30\\,°$일 때, 색칠한 부분의 넓이를 구하면?\n\n1. $3\\pi -2\\sqrt{3}$\n2. $\\frac{8}{3}\\pi -4\\sqrt{3}$\n3. $\\frac{10}{3}\\pi -3\\sqrt{3}$\n4. $4\\pi -2\\sqrt{3}$\n5. $5\\pi -4\\sqrt{3}$",
+  "answer": "②",
+  "solution": "지름이 $8$이므로 반지름은 $4$이고, $\\overline{AB}$가 지름이므로 $\\angle ACB=90^\\circ$이다.\n$\\angle CAB=30^\\circ$이므로 삼각형 $ABC$는 $30^\\circ$-$60^\\circ$-$90^\\circ$이다.\n호 $CB$에 대한 원주각이 $30^\\circ$이므로 중심각 $\\angle COB=60^\\circ$이다.\n$\\overline{OC}=\\overline{OB}=4$이고 $\\angle COB=60^\\circ$이므로 삼각형 $COB$는 정삼각형이고 넓이는 $\\frac{\\sqrt{3}}{4}\\times 4^{2}=4\\sqrt{3}$이다.\n부채꼴 $COB$의 넓이는 $\\frac{60}{360}\\pi\\times 4^{2}=\\frac{8}{3}\\pi$이다.\n색칠한 활꼴의 넓이는 $\\frac{8}{3}\\pi-4\\sqrt{3}$이다.\n따라서 답은 ②이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q08.png"
+  ],
+  "figureDims": [
+   342,
+   273
+  ],
+  "figureSourceMm": [
+   58.97
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-8",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 8,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+  "familyKey": "mid:3-2|원주각의 활용|E03",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림에서 $\\overline{\\mathrm{B}C}$는 반원 $\\mathrm{O}$의 지름이고, $\\angle \\mathrm{E}=43\\,°$일 때, $\\angle \\mathrm{AOD}$의 크기를 구하면?\n\n1. $47\\,°$\n2. $53\\,°$\n3. $65\\,°$\n4. $83\\,°$\n5. $94\\,°$",
+  "answer": "⑤",
+  "solution": "현 $AC$를 그으면, 점 $A$는 지름 $\\overline{BC}$인 반원 위에 있으므로 $\\angle BAC=90^\\circ$이다.\n점 $B$, $A$, $E$가 한 직선이므로 $\\angle EAC=90^\\circ$이다.\n직각삼각형 $EAC$에서 $\\angle AEC=43^\\circ$이므로 $\\angle ACE=47^\\circ$이다.\n점 $D$가 선분 $EC$ 위에 있으므로 $\\angle ACD=47^\\circ$이고, 이 각은 호 $AD$에 대한 원주각이다.\n따라서 중심각 $\\angle AOD=2\\times 47^\\circ=94^\\circ$이다.\n따라서 답은 ⑤이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q09.png"
+  ],
+  "figureDims": [
+   295,
+   328
+  ],
+  "figureSourceMm": [
+   53.01
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-9",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 9,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+  "familyKey": "mid:3-2|원주각|09",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림에서 $\\overset{\\frown}{\\mathrm{A}B}$는 원의 둘레의 길이의 $\\frac{1}{3}$이고 $\\overset{\\frown}{\\mathrm{C}D}$는 원의 둘레의 길이의 $\\frac{1}{5}$일 때, $\\angle \\mathrm{APB}$의 크기를 구하면?\n\n1. $88\\,°$\n2. $92\\,°$\n3. $96\\,°$\n4. $98\\,°$\n5. $102\\,°$",
+  "answer": "③",
+  "solution": "호 $AB$는 둘레의 $\\frac{1}{3}$이므로 중심각은 $120^\\circ$이다.\n호 $CD$는 둘레의 $\\frac{1}{5}$이므로 중심각은 $72^\\circ$이다.\n현 $AD$를 그으면 $\\angle ADB$는 호 $AB$에 대한 원주각이므로 $\\frac{120^\\circ}{2}=60^\\circ$이다.\n$\\angle DAC$는 호 $CD$에 대한 원주각이므로 $\\frac{72^\\circ}{2}=36^\\circ$이다.\n삼각형 $ADP$에서 $\\angle APD=180^\\circ-60^\\circ-36^\\circ=84^\\circ$이다.\n$B$, $P$, $D$가 한 직선이므로 $\\angle APB=180^\\circ-84^\\circ=96^\\circ$이다.\n따라서 답은 ③이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q10.png"
+  ],
+  "figureDims": [
+   273,
+   263
+  ],
+  "figureSourceMm": [
+   51.57
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-10",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 10,
+  "score": 4,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+  "familyKey": "mid:3-2|원주각의 활용|09",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림에서 직선 $\\mathrm{T}A$가 원 $\\mathrm{O}$의 접선이고 $\\angle \\mathrm{C}=110\\,°,$ $\\angle \\mathrm{DAT}=67\\,°$일 때,$\\angle \\mathrm{ADB}$의 크기를 구하면?\n\n1. $43\\,°$\n2. $45\\,°$\n3. $47\\,°$\n4. $48\\,°$\n5. $51\\,°$",
+  "answer": "①",
+  "solution": "네 점 $A$, $D$, $C$, $B$가 원 위에 있으므로 사각형 $ADCB$의 대각의 합은 $180^\\circ$이다.\n따라서 $\\angle DAB=180^\\circ-110^\\circ=70^\\circ$이다.\n접선과 현 $AD$가 이루는 각은 그 현이 만드는 다른 쪽 원주각과 같으므로 $\\angle ABD=67^\\circ$이다.\n삼각형 $ABD$에서 $\\angle ADB=180^\\circ-70^\\circ-67^\\circ=43^\\circ$이다.\n따라서 답은 ①이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q11.png"
+  ],
+  "figureDims": [
+   283,
+   252
+  ],
+  "figureSourceMm": [
+   57.15
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-11",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 11,
+  "score": 5,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+  "familyKey": "mid:3-2|원과 직선|10",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림과 같이 원 $\\mathrm{O}$는 직사각형 $\\mathrm{ABCD}$의 세 변과 $\\overline{\\mathrm{P}C}$에 접하고, 네 점 $\\mathrm{E},~F,~G,~H$는 각각 원 $\\mathrm{O}$의 접점이다. 이때 $\\overline{\\mathrm{P}C}$의 길이를 구하면?\n\n1. $\\frac{13}{2}\\,\\mathrm{c}m$\n2. $\\frac{19}{3}\\,\\mathrm{cm}$\n3. $7\\,\\mathrm{cm}$\n4. $\\frac{20}{3}\\,\\mathrm{cm}$\n5. $\\frac{15}{2}\\,\\mathrm{cm}$",
+  "answer": "④",
+  "solution": "직사각형의 세로가 $4$이고 원이 윗변과 아랫변에 접하므로 반지름은 $\\frac{4}{2}=2$이다.\n밑변의 접점 $F$는 $B$에서 $2$만큼 떨어져 있으므로 $\\overline{CF}=8-2=6$이다.\n점 $C$에서 그은 두 접선의 길이가 같으므로 $\\overline{CG}=6$이다.\n점 $P$에서 그은 두 접선의 길이가 같으므로 $\\overline{PH}=\\overline{PG}=t$라 하면 $\\overline{PC}=t+6$이다.\n윗변의 접점 $H$는 $A$에서 $2$만큼 떨어져 있으므로 $P$와 $C$를 잇는 직각삼각형의 밑변은 $8-(2+t)=6-t$, 높이는 $4$이다.\n$(t+6)^{2}=(6-t)^{2}+4^{2}$에서 $24t=16$, $t=\\frac{2}{3}$이므로 $\\overline{PC}=\\frac{20}{3}$이다.\n따라서 답은 ④이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q12.png"
+  ],
+  "figureDims": [
+   444,
+   270
+  ],
+  "figureSourceMm": [
+   74.03
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-12",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 12,
+  "score": 5,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+  "familyKey": "mid:3-2|원과 직선|14",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림에서 $□\\mathrm{ABCD}$는 반지름의 길이가 $5\\,\\mathrm{cm}$인 원 $\\mathrm{O}$에 외접하고 네 점 $\\mathrm{P},~Q,~R,~S$는 그 접점이다. $\\angle \\mathrm{B}=90\\,°$이고 $\\overline{AD}=9\\,cm,~\\overline{BC}=14\\,cm,~\\overline{CD}=13\\,cm$일 때, $\\overline{AP}$의 길이를 구하면?\n\n1. $3\\,\\mathrm{c}m$\n2. $\\frac{9}{2}\\,\\mathrm{cm}$\n3. $5\\,\\mathrm{cm}$\n4. $\\frac{11}{2}\\,\\mathrm{cm}$\n5. $6\\,\\mathrm{cm}$",
+  "answer": "③",
+  "solution": "한 점에서 그은 두 접선의 길이가 같으므로 $\\overline{AB}+\\overline{CD}=\\overline{AD}+\\overline{BC}$이다.\n따라서 $\\overline{AB}+13=9+14$에서 $\\overline{AB}=10$이다.\n$\\angle B=90^\\circ$이므로 중심에서 두 변 $\\overline{AB}$, $\\overline{BC}$에 내린 수선과 점 $B$는 한 변의 길이가 $5$인 정사각형을 이룬다.\n따라서 접점 $P$에 대하여 $\\overline{BP}=5$이다.\n$\\overline{AP}=10-5=5$이다.\n따라서 답은 ③이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q13.png"
+  ],
+  "figureDims": [
+   330,
+   279
+  ],
+  "figureSourceMm": [
+   59.44
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-13",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 13,
+  "score": 5,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+  "familyKey": "mid:3-2|원주각의 활용|E04",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "개념",
+  "questionType": "객관식",
+  "content": "다음 그림과 같이 서로 중심을 지나고 반지름의 길이가 같은 두 원 $\\mathrm{O},~O'$이 두 점 $\\mathrm{P},~Q$에서 만난다. $\\angle AQP=48\\,°$일 때, $\\angle APQ$의 크기를 구하면?\n\n1. $70\\,°$\n2. $72\\,°$\n3. $74\\,°$\n4. $76\\,°$\n5. $78\\,°$",
+  "answer": "②",
+  "solution": "두 원의 반지름이 같고 서로의 중심을 지나므로 $\\overline{OO'}$의 길이는 반지름과 같고, 삼각형 $OO'P$와 $OO'Q$는 정삼각형이다.\n따라서 $\\angle POQ=60^\\circ+60^\\circ=120^\\circ$이다.\n점 $A$, $P$, $Q$가 원 $O$ 위에 있으므로 $\\angle AQP=48^\\circ$는 호 $AP$에 대한 원주각이고, 호 $AP$의 중심각은 $96^\\circ$이다.\n호 $PQ$ 중 $A$를 지나지 않는 쪽의 중심각은 $\\angle POQ=120^\\circ$이다.\n호 $AQ$ 중 $P$를 지나지 않는 쪽의 중심각은 $360^\\circ-96^\\circ-120^\\circ=144^\\circ$이다.\n$\\angle APQ$는 그 호 $AQ$에 대한 원주각이므로 $\\frac{144^\\circ}{2}=72^\\circ$이다.\n따라서 답은 ②이다.\n",
+  "solutionSource": "ai",
+  "figureUrls": [
+   "/figures/exam/c697019501/q14.png"
+  ],
+  "figureDims": [
+   321,
+   247
+  ],
+  "figureSourceMm": [
+   53.68
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-14",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 14,
+  "score": 5,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+  "familyKey": "mid:3-2|삼각비|02",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "서술형",
+  "questionType": "서술형",
+  "content": "[서술형 $1$] 다음 그림의 직각삼각형 $\\mathrm{ABC}$에서 점 $\\mathrm{D}$는 변 $\\mathrm{A}C$의 중점이고 $\\cos \\,x\\,°=\\frac{2}{3}$일 때, $\\mathrm{\\sin }\\,A$의 크기를 구하시오.",
+  "answer": "$\\frac{\\sqrt{6}}{6}$",
+  "solution": "$\\cos \\,x°=\\frac{2}{3}$이므로 $\\overline{BD}=3k,~\\overline{BC}=2k$라 하자. $\\overline{CD}=\\sqrt{5}k$이므로 $\\overline{AC}=2\\sqrt{5}k,~\\overline{AB}=2\\sqrt{6}k$이다.따라서 $\\sin A=\\frac{2k}{2\\sqrt{6}k}=\\frac{\\sqrt{6}}{6}$",
+  "solutionSource": "original",
+  "figureUrls": [
+   "/figures/exam/c697019501/q15.png"
+  ],
+  "figureDims": [
+   287,
+   277
+  ],
+  "figureSourceMm": [
+   47.8
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-15",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 15,
+  "score": 8,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+  "familyKey": "mid:3-2|삼각비의 활용|04",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "서술형",
+  "questionType": "서술형",
+  "content": "[서술형 $2$] 다음 그림과 같은 평행사변형 $\\mathrm{ABCD}$에서 $\\overline{AB}=4\\,cm$, $\\overline{BC}=8\\,cm$, $\\angle \\mathrm{A}=120\\,°$일 때, 대각선 $\\mathrm{B}D$의 길이를 구하시오.",
+  "answer": "$4\\sqrt{7}$",
+  "solution": "점 $\\mathrm{D}$와 변 $\\mathrm{B}C$의 연장선에 그은 수선의 발을 $\\mathrm{H}$라 하자.직각삼각형 $\\mathrm{CDH}$에서$\\overline{CD}=4$이므로 $\\overline{CH}=2,~\\overline{DH}=2\\sqrt{3}$ 이다.직각삼각형 $\\mathrm{BDH}$에서 피타고라스 정리에 의해 $\\overline{BD}=\\sqrt{10^{2}+\\left( 2\\sqrt{3}\\right) ^{2}}=4\\sqrt{7}$",
+  "solutionSource": "original",
+  "figureUrls": [
+   "/figures/exam/c697019501/q16.png"
+  ],
+  "figureDims": [
+   354,
+   258
+  ],
+  "figureSourceMm": [
+   56.14
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-16",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 16,
+  "score": 8,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+  "familyKey": "mid:3-2|삼각비의 활용|E01",
+  "source": "past_exam",
+  "difficulty": "심화하",
+  "problemType": "서술형",
+  "questionType": "서술형",
+  "content": "[서술형 $3$] 다음 그림과 같은 정사각형 $\\mathrm{ABCD}$에서 $\\overline{AB},~\\overline{BC}$의 중점을 각각 $\\mathrm{M},~N$이라 하자. $\\angle MDN=x\\,°$일 때, $\\tan \\,x\\,°$의 값을 구하시오.",
+  "answer": "$\\frac{3}{4}$",
+  "solution": "$\\triangle DMN=□ABCD-\\left( \\triangle DAM+\\triangle MBN+\\triangle NCD\\right) =\\frac{3}{2}$$\\overline{MD}=\\sqrt{5}$이므로$\\frac{1}{2}\\times \\sqrt{5}\\times \\sqrt{5}\\times \\mathrm{\\sin }\\,x\\,°=\\frac{3}{2}$이고 $\\sin \\,x\\,°=\\frac{3}{5}$따라서 $\\tan \\,x\\,°=\\frac{3}{4}$",
+  "solutionSource": "original",
+  "figureUrls": [
+   "/figures/exam/c697019501/q17.png"
+  ],
+  "figureDims": [
+   299,
+   281
+  ],
+  "figureSourceMm": [
+   45.6
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-17",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 17,
+  "score": 8,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "b6d4dc2e-0db8-44fe-a763-7214284d9bea",
+  "familyKey": "mid:3-2|원주각의 활용|08",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "서술형",
+  "questionType": "서술형",
+  "content": "[서술형 $4$] 다음 그림에서 두 직선 $\\mathrm{P}A,~PB$는 원 $\\mathrm{O}$의 접선이다. $\\overset{\\frown}{AC}:\\overset{\\frown}{CB}=2:3$이고 $\\angle APB=30\\,°$일 때, $\\angle ABC$의 크기를 구하시오.",
+  "answer": "$42\\,°$",
+  "solution": "사각형 $\\mathrm{PAOB}$에서 $\\angle AOB=150\\,°$이므로 원주각 $\\angle ACB=75\\,°$이다.삼각형 $\\mathrm{ABC}$에서 $\\angle A+\\angle B=105\\,°$ $\\overset{\\frown}{AC}:\\overset{\\frown}{CB}=2:3$이므로 $\\angle ABC:\\angle BAC=2:3$따라서 $\\angle \\mathrm{APC}=105\\,°\\times \\frac{2}{5}=42\\,°$",
+  "solutionSource": "original",
+  "figureUrls": [
+   "/figures/exam/c697019501/q18.png"
+  ],
+  "figureDims": [
+   527,
+   246
+  ],
+  "figureSourceMm": [
+   68.57
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-18",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 18,
+  "score": 8,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ },
+ {
+  "unitId": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+  "familyKey": "mid:3-2|원주각|132X",
+  "source": "past_exam",
+  "difficulty": "응용",
+  "problemType": "서술형",
+  "questionType": "서술형",
+  "content": "[서술형 $5$] 다음 그림은 원 위의 $5$개의 점을 잡고, 점 $\\mathrm{A}$에서부터 $1$개의 점을 건너뛰어 가면서 두 점을 연결하며 그린 별 모양의 도형이다. $\\angle A+\\angle B+\\angle C+\\angle D+\\angle E$의 값을 구하시오.",
+  "answer": "$180\\,°$",
+  "solution": "호 $\\mathrm{A}B$에 대한 원주각이 $\\angle \\mathrm{D}$호 $\\mathrm{BC}$에 대한 원주각이 $\\angle \\mathrm{E}$호 $\\mathrm{CD}$에 대한 원주각이 $\\angle \\mathrm{A}$호 $\\mathrm{DE}$에 대한 원주각이 $\\angle \\mathrm{B}$호 $\\mathrm{EA}$에 대한 원주각이 $\\angle \\mathrm{C}$모든 다섯 개의 호의 합이 원주이므로 원주각의 합은 $180\\,°$이다.",
+  "solutionSource": "original",
+  "figureUrls": [
+   "/figures/exam/c697019501/q19.png"
+  ],
+  "figureDims": [
+   281,
+   268
+  ],
+  "figureSourceMm": [
+   58.17
+  ],
+  "figureSvg": null,
+  "figureSource": "source",
+  "externalId": "2025-hyeopseonggyeongbok-3-2-mid-19",
+  "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중2/[협성경복중][3][25-2-중간][지학사] (완료).PDF",
+  "school": "협성경복중",
+  "subject": "수학",
+  "examId": "2025-hyeopseonggyeongbok-3-2-mid",
+  "questionNumber": 19,
+  "score": 8,
+  "reviewStatus": "approved",
+  "directUseAllowed": true,
+  "pool": "shared"
+ }
+]
