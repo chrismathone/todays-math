@@ -139,7 +139,7 @@ describe("[T3.0] 기출 변환", () => {
     );
     expect(drafts).toHaveLength(1);
     expect(drafts[0]?.source).toBe("past_exam");
-    expect(drafts[0]?.directUseAllowed).toBe(true);
+    expect(drafts[0]?.directUseAllowed).toBe(false);
     expect(drafts[0]?.answer).toBe("⑤");
     expect(drafts[0]?.content).toContain("1. $3$");
   });
