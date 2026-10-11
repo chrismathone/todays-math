@@ -2,6 +2,37 @@ import { describe, expect, it } from "vitest";
 import { dbRetryAnswersAgree } from "@/lib/import/schoolTextbook/dbRetryReviewBinding";
 const roots = "다음 거듭제곱근 중 실수인 것을 모두 구하시오.";
 describe("Exact imported root answer notation", () => {
+  it("supports single numeric TeX arguments while preserving degree and every digit", () => {
+    const content = "실수 a,b에 대하여 다음 값과 범위를 구하시오.";
+    expect(
+      dbRetryAnswersAgree(
+        "$\\frac{2\\sqrt{3}}{3}$",
+        "$\\frac{2\\sqrt3}{3}$",
+        "단답형",
+        content,
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree("$\\sqrt{2}$", "$\\sqrt2$", "단답형", content),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "$0<a<1$ 또는 $1<a<\\frac{3}{2}$",
+        "$0<a<1$ 또는 $1<a<\\frac32$",
+        "단답형",
+        content,
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree("$\\frac{3}{2}$", "$\\frac23$", "단답형", content),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree("$\\sqrt{23}$", "$\\sqrt23$", "단답형", content),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree("$\\sqrt[3]{2}$", "$\\sqrt2$", "단답형", content),
+    ).toBe(false);
+  });
   it("compares ordered scalar subparts without losing terms or denominators", () => {
     const question =
       "$\\log_{10}3=a,\\log_{10}5=b$일 때 다음을 a,b에 대한 식으로 나타내시오.\n⑴ $\\log_{10}45$\n⑵ $\\log_{10}12$\n⑶ $\\log_{10}\\sqrt[4]{0.75}$";

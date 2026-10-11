@@ -200,6 +200,8 @@ function unwrap(text: string): string {
     .replace(/\\pm\b/g, "±")
     .replace(/~/g, " ")
     .replace(/\\(?:dfrac|tfrac)\b/g, "\\frac")
+    .replace(/\\frac([0-9])([0-9])(?![0-9])/g, "\\frac{$1}{$2}")
+    .replace(/\\sqrt(\[\d{1,2}\])?([0-9])(?![0-9])/g, "\\sqrt$1{$2}")
     .replace(/\\(?:left|right)\b/g, "")
     .replace(/\\(?:[,;:!]|quad\b|qquad\b| )/g, " ")
     .replace(/\s+/g, " ");
