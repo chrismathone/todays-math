@@ -3,6 +3,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import BackLink from "@/components/ui/BackLink";
+import type { GradeSheetResponse } from "@/contracts/testresult.contract";
+import SavedRetryPanel from "./SavedRetryPanel";
+import s from "./SavedRetryPanel.module.css";
 
 import { Button } from "@/components/ui/Button";
 
@@ -34,32 +37,7 @@ import { Button } from "@/components/ui/Button";
  * 전 문항 오답은 0점이고, 결시는 **점수가 없다**(23 §4 ③). 누르면 그 줄의 칸은 잠긴다.
  */
 
-type SheetProblem = {
-  problemId: string;
-  no: number;
-  problemCode: string;
-};
-
-type SheetMark = {
-  absent: boolean;
-  wrongProblemIds: string[];
-} | null;
-
-type SheetStudent = {
-  studentId: string;
-  name: string;
-  latest: SheetMark;
-};
-
-type Sheet = {
-  testId: string;
-  className: string;
-  studentName: string | null;
-  testType: "daily" | "review";
-  testDate: string;
-  problems: SheetProblem[];
-  students: SheetStudent[];
-};
+type Sheet = GradeSheetResponse["data"];
 
 type ScoreLine = {
   studentId: string;
@@ -107,6 +85,8 @@ export function GradeSheet({ testId }: { testId: string }) {
   const [saving, setSaving] = useState(false);
   const [actionError, setActionError] = useState<string | null>(null);
   const [result, setResult] = useState<ScoreLine[] | null>(null);
+  const [retryOutput, setRetryOutput] = useState(false);
+  const [savedReadError, setSavedReadError] = useState<string | null>(null);
   const [loadAttempt, setLoadAttempt] = useState(0);
   const loadId = useRef(0);
 
@@ -133,7 +113,11 @@ export function GradeSheet({ testId }: { testId: string }) {
               s.studentId,
               s.latest
                 ? {
-                    done: !s.latest.absent,
+                    done:
+                      !s.latest.absent &&
+                      s.latest.correctCount +
+                        s.latest.wrongProblemIds.length ===
+                        parsed.data.problems.length,
                     absent: s.latest.absent,
                     wrong: new Set(s.latest.wrongProblemIds),
                   }
@@ -142,6 +126,7 @@ export function GradeSheet({ testId }: { testId: string }) {
           ),
         );
         setState({ status: "ready", sheet: parsed.data });
+        setSavedReadError(null);
       } catch {
         if (controller.signal.aborted || loadId.current !== id) return;
         setState({ status: "error", message: "채점표를 불러오지 못했습니다." });
@@ -205,6 +190,44 @@ export function GradeSheet({ testId }: { testId: string }) {
     });
   }, [sheet, markOf]);
 
+  const blockedStudentIds = useMemo(
+    () =>
+      new Set(
+        (sheet?.students ?? [])
+          .filter((student) => {
+            if (saving || savedReadError) return true;
+            const mark = markOf(student.studentId);
+            const latest = student.latest;
+            return (
+              !latest ||
+              mark.absent !== latest.absent ||
+              (!mark.absent && !mark.done) ||
+              mark.wrong.size !== latest.wrongProblemIds.length ||
+              latest.wrongProblemIds.some((id) => !mark.wrong.has(id))
+            );
+          })
+          .map((student) => student.studentId),
+      ),
+    [sheet, markOf, saving, savedReadError],
+  );
+
+  const refreshSavedRecords = useCallback(async () => {
+    try {
+      const response = await fetch(`/api/tests/${testId}/grade`, {
+        cache: "no-store",
+      });
+      if (!response.ok) throw new Error(await readError(response));
+      const { gradeSheetResponseSchema } = await contract();
+      const parsed = gradeSheetResponseSchema.parse(await response.json());
+      setState({ status: "ready", sheet: parsed.data });
+      setSavedReadError(null);
+    } catch {
+      setSavedReadError(
+        "채점은 저장됐지만 저장된 기록을 다시 읽지 못했습니다. 기록을 확인한 뒤 복습할 수 있습니다.",
+      );
+    }
+  }, [testId]);
+
   const save = useCallback(async () => {
     if (!sheet || pending.length > 0 || saving) return;
     setSaving(true);
@@ -235,12 +258,13 @@ export function GradeSheet({ testId }: { testId: string }) {
       const { gradeSubmitResponseSchema } = await contract();
       const parsed = gradeSubmitResponseSchema.parse(await res.json());
       setResult(parsed.data.scores);
+      await refreshSavedRecords();
     } catch {
       setActionError("채점을 저장하지 못했습니다.");
     } finally {
       setSaving(false);
     }
-  }, [sheet, pending.length, saving, markOf]);
+  }, [sheet, pending.length, saving, markOf, refreshSavedRecords]);
 
   if (state.status === "loading") {
     return (
@@ -270,7 +294,7 @@ export function GradeSheet({ testId }: { testId: string }) {
 
   return (
     <div className="flex min-h-[calc(100vh-52px)] flex-col">
-      <main className="flex-1 pb-20">
+      <main hidden={retryOutput} className={`${s.grading} flex-1 pb-6`}>
         <div className="flex items-baseline justify-between px-4 py-4 sm:px-8">
           <div>
             <h1 className="text-[22px] font-bold text-[var(--learn-ink,#172b4d)]">
@@ -370,7 +394,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                             <td key={p.problemId} className="p-0.5 text-center">
                               <button
                                 type="button"
-                                disabled={m.absent}
+                                disabled={m.absent || saving}
                                 onClick={() =>
                                   toggleWrong(s.studentId, p.problemId)
                                 }
@@ -406,7 +430,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                             */}
                             <button
                               type="button"
-                              disabled={m.absent}
+                              disabled={m.absent || saving}
                               onClick={() => toggleDone(s.studentId)}
                               aria-pressed={m.done}
                               className={`min-h-10 min-w-16 rounded-lg border px-2 py-1 text-[13px] whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--learn-focus,#82a1ff)] disabled:cursor-not-allowed disabled:border-divider disabled:bg-side disabled:text-text-3 ${
@@ -421,6 +445,7 @@ export function GradeSheet({ testId }: { testId: string }) {
                             </button>
                             <button
                               type="button"
+                              disabled={saving}
                               onClick={() => toggleAbsent(s.studentId)}
                               aria-pressed={m.absent}
                               className={`min-h-10 cursor-pointer rounded-lg border px-2 py-1 text-[13px] whitespace-nowrap focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--learn-focus,#82a1ff)] ${
@@ -445,7 +470,30 @@ export function GradeSheet({ testId }: { testId: string }) {
         )}
       </main>
 
-      <footer className="sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-[var(--learn-track,#dde3ec)] bg-[var(--learn-soft,#edf2ff)] px-4 py-3 sm:px-8">
+      {savedReadError ? (
+        <div className="mx-4 sm:mx-8">
+          <p role="alert">{savedReadError}</p>
+          <Button
+            variant="secondary"
+            disabled={saving}
+            onClick={() => void refreshSavedRecords()}
+          >
+            저장된 기록 다시 확인
+          </Button>
+        </div>
+      ) : null}
+      {students.length > 0 ? (
+        <SavedRetryPanel
+          sheet={state.sheet}
+          blockedStudentIds={blockedStudentIds}
+          onOutputChange={setRetryOutput}
+        />
+      ) : null}
+
+      <footer
+        hidden={retryOutput}
+        className={`${s.grading} sticky bottom-0 flex flex-wrap items-center gap-3 border-t border-[var(--learn-track,#dde3ec)] bg-[var(--learn-soft,#edf2ff)] px-4 py-3 sm:px-8`}
+      >
         {/*
           🔴 미채점 행이 남은 채로 저장하지 못하게 막고, **누가** 남았는지 댄다.
              「N명 남음」만 적으면 원장님이 명단을 다시 훑어야 한다.

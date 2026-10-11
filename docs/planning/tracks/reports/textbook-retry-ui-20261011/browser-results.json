@@ -1,0 +1,344 @@
+{
+  "source": "synthetic isolated browser; no shared DB or paid APIs",
+  "results": [
+    {
+      "width": 1440,
+      "printed": 1,
+      "exportCalls": 2,
+      "overflow": 0,
+      "scenarios": [
+        "explicit-student",
+        "unreviewed",
+        "absent",
+        "no-wrong",
+        "incomplete",
+        "pair",
+        "fixed-output",
+        "preflight-content-change",
+        "missing-slot-1",
+        "missing-entire-pair",
+        "403-and-recovery",
+        "dirty-block",
+        "save-and-read-new-result"
+      ]
+    },
+    {
+      "width": 390,
+      "printed": 1,
+      "exportCalls": 0,
+      "overflow": 0,
+      "scenarios": [
+        "explicit-student",
+        "unreviewed",
+        "absent",
+        "no-wrong",
+        "incomplete",
+        "pair",
+        "fixed-output",
+        "preflight-content-change",
+        "missing-slot-1",
+        "missing-entire-pair",
+        "403-and-recovery",
+        "dirty-block",
+        "save-and-read-new-result"
+      ]
+    },
+    {
+      "width": 320,
+      "printed": 1,
+      "exportCalls": 0,
+      "overflow": 0,
+      "scenarios": [
+        "explicit-student",
+        "unreviewed",
+        "absent",
+        "no-wrong",
+        "incomplete",
+        "pair",
+        "fixed-output",
+        "preflight-content-change",
+        "missing-slot-1",
+        "missing-entire-pair",
+        "403-and-recovery",
+        "dirty-block",
+        "save-and-read-new-result"
+      ]
+    }
+  ],
+  "errors": [],
+  "requests": [
+    {
+      "width": 1440,
+      "method": "GET",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/grade",
+      "body": null
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/exports/hwpx",
+      "body": null
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/exports/pdf",
+      "body": null
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/grade",
+      "body": null
+    },
+    {
+      "width": 1440,
+      "method": "GET",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/grade",
+      "body": null
+    },
+    {
+      "width": 1440,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "91000000-0000-4000-8000-000000000000"
+      }
+    },
+    {
+      "width": 390,
+      "method": "GET",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/grade",
+      "body": null
+    },
+    {
+      "width": 390,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 390,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 390,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 390,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 390,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 390,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 390,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/grade",
+      "body": null
+    },
+    {
+      "width": 390,
+      "method": "GET",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/grade",
+      "body": null
+    },
+    {
+      "width": 390,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "91000000-0000-4000-8000-000000000000"
+      }
+    },
+    {
+      "width": 320,
+      "method": "GET",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/grade",
+      "body": null
+    },
+    {
+      "width": 320,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 320,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 320,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 320,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 320,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 320,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "90000000-0000-4000-8000-000000000300"
+      }
+    },
+    {
+      "width": 320,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/grade",
+      "body": null
+    },
+    {
+      "width": 320,
+      "method": "GET",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/grade",
+      "body": null
+    },
+    {
+      "width": 320,
+      "method": "POST",
+      "path": "/api/tests/90000000-0000-4000-8000-000000000001/retry",
+      "body": {
+        "studentId": "90000000-0000-4000-8000-000000000200",
+        "testResultId": "91000000-0000-4000-8000-000000000000"
+      }
+    }
+  ]
+}
