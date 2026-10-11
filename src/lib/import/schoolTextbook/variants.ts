@@ -33,6 +33,10 @@ export type TextbookVariantRecipe =
   | "exact-calculation"
   | "exact-factorization"
   | "exact-substitution"
+  | "exact-derivative"
+  | "exact-polynomial-limit"
+  | "exact-polynomial-integral"
+  | "exact-polynomial-coefficient"
   | "exact-linear-equation"
   | "exact-prime-factorization"
   | "exact-gcd"
@@ -447,6 +451,188 @@ function substitute(ast: Ast, name: string, value: Rational): Ast {
   return ast;
 }
 
+function derivative(p: Poly): Poly {
+  if ([...p.keys()].some((key) => /[^x]/.test(key)))
+    throw new Error("not-polynomial-in-x");
+  return new Map(
+    [...p]
+      .filter(([key]) => key.length)
+      .map(([key, value]) => [key.slice(1), mul(value, int(key.length))]),
+  );
+}
+function at(p: Poly, point: Rational): Rational {
+  if ([...p.keys()].some((key) => /[^x]/.test(key)))
+    throw new Error("not-polynomial-in-x");
+  let result = int(0);
+  for (const [key, value] of p) {
+    let term = value;
+    for (let i = 0; i < key.length; i++) term = mul(term, point);
+    result = plus(result, term);
+  }
+  return result;
+}
+function functionExpression(math: string): { prefix: string; body: string } {
+  const normalized = normalizedMath(math),
+    match = /^(\s*(?:y|f\s*\(\s*x\s*\))\s*=\s*)(.+)$/.exec(normalized);
+  if (!match) throw new Error("function-shape");
+  return { prefix: match[1]!, body: match[2]! };
+}
+function braceGroup(
+  text: string,
+  start: number,
+): { body: string; end: number } {
+  while (/\s/.test(text[start] ?? "") && start < text.length) start++;
+  if (text[start] !== "{") throw new Error("bound-needs-braces");
+  let depth = 1,
+    end = start + 1;
+  while (end < text.length && depth) {
+    if (text[end] === "{") depth++;
+    if (text[end] === "}") depth--;
+    end++;
+  }
+  if (depth) throw new Error("unbalanced-bound");
+  return { body: text.slice(start + 1, end - 1), end };
+}
+function scalar(math: string): Rational {
+  const p = evaluate(parse(math).ast);
+  if ([...p.keys()].some((key) => key !== ""))
+    throw new Error("not-rational-constant");
+  return p.get("") ?? int(0);
+}
+type RationalFunction = { numerator: Poly; denominator: Poly };
+function rationalFunction(ast: Ast): RationalFunction {
+  if (ast.kind === "negative") {
+    const p = rationalFunction(ast.child);
+    return { ...p, numerator: scale(p.numerator, int(-1)) };
+  }
+  if (ast.kind !== "binary")
+    return { numerator: evaluate(ast), denominator: constant(int(1)) };
+  const a = rationalFunction(ast.left),
+    b = rationalFunction(ast.right);
+  if (ast.op === "+" || ast.op === "-")
+    return {
+      numerator: addPoly(
+        multiplyPoly(a.numerator, b.denominator),
+        scale(
+          multiplyPoly(b.numerator, a.denominator),
+          int(ast.op === "+" ? 1 : -1),
+        ),
+      ),
+      denominator: multiplyPoly(a.denominator, b.denominator),
+    };
+  if (ast.op === "*")
+    return {
+      numerator: multiplyPoly(a.numerator, b.numerator),
+      denominator: multiplyPoly(a.denominator, b.denominator),
+    };
+  if (ast.op === "/") {
+    if (!b.numerator.size) throw new Error("zero-denominator");
+    return {
+      numerator: multiplyPoly(a.numerator, b.denominator),
+      denominator: multiplyPoly(a.denominator, b.numerator),
+    };
+  }
+  const power = scalar(polyLatex(evaluate(ast.right)));
+  if (power.d !== ONE || abs(power.n) > BigInt(10))
+    throw new Error("exponent-limit");
+  let numerator = constant(int(1)),
+    denominator = constant(int(1));
+  for (let i = ZERO; i < abs(power.n); i++) {
+    numerator = multiplyPoly(
+      numerator,
+      power.n < ZERO ? a.denominator : a.numerator,
+    );
+    denominator = multiplyPoly(
+      denominator,
+      power.n < ZERO ? a.numerator : a.denominator,
+    );
+  }
+  if (!denominator.size) throw new Error("zero-denominator");
+  return { numerator, denominator };
+}
+function polynomialLimit(math: string): {
+  body: string;
+  point: Rational;
+  value: Rational;
+  order: number;
+  shape: string;
+  proof: string;
+} {
+  const text = normalizedMath(math),
+    prefix = /^\s*\\lim\s*_/.exec(text);
+  if (!prefix) throw new Error("limit-shape");
+  const bound = braceGroup(text, prefix[0].length),
+    target = /^\s*x\s*\\to\s*(.+)$/.exec(bound.body);
+  if (!target) throw new Error("limit-shape");
+  const point = scalar(target[1]!),
+    body = text.slice(bound.end).trim(),
+    ast = parse(body).ast;
+  const fn = rationalFunction(ast);
+  if (!fn.denominator.size) throw new Error("zero-denominator");
+  let numerator = fn.numerator,
+    denominator = fn.denominator,
+    order = 0;
+  while (at(denominator, point).n === ZERO) {
+    if (at(numerator, point).n !== ZERO) throw new Error("non-finite-limit");
+    numerator = derivative(numerator);
+    denominator = derivative(denominator);
+    order++;
+    if (!denominator.size || order > 20) throw new Error("non-finite-limit");
+  }
+  const value = div(at(numerator, point), at(denominator, point));
+  return {
+    body,
+    point,
+    value,
+    order,
+    shape: `${structure(ast)};order=${order}`,
+    proof: order
+      ? `$x=${latexR(point)}$에서 분자와 분모에 공통으로 있는 $(x-(${latexR(point)}))$의 인수를 $${order}$번 약분한다. 남은 식에 대입하면 극한값은 $${latexR(value)}$이다.`
+      : `분모가 $x=${latexR(point)}$에서 $0$이 아니므로 직접 대입한다. 극한값은 $${latexR(value)}$이다.`,
+  };
+}
+function translateX(math: string, delta: number): string {
+  const text = parse(math).text.replace(/\\[a-z]+|x/g, (token) =>
+    token === "x" ? `(x-${delta})` : token,
+  );
+  return `${delta}(${text})`;
+}
+function polynomialIntegral(math: string): {
+  lower: Rational;
+  upper: Rational;
+  body: string;
+  primitive: Poly;
+  value: Rational;
+  shape: string;
+} {
+  const text = normalizedMath(math),
+    prefix = /^\s*\\int\s*_/.exec(text);
+  if (!prefix) throw new Error("integral-shape");
+  const lowerBound = braceGroup(text, prefix[0].length),
+    upperPrefix = /^\s*\^/.exec(text.slice(lowerBound.end));
+  if (!upperPrefix) throw new Error("integral-shape");
+  const upperBound = braceGroup(text, lowerBound.end + upperPrefix[0].length);
+  const lower = scalar(lowerBound.body),
+    upper = scalar(upperBound.body);
+  const tail = text.slice(upperBound.end).trim(),
+    body = tail.replace(/\s*(?:d\s*x|\\mathrm\s*\{d\}\s*x)\s*$/, "");
+  if (body === tail) throw new Error("integral-needs-dx");
+  const parsed = parse(body),
+    polynomial = evaluate(parsed.ast);
+  if ([...polynomial.keys()].some((key) => /[^x]/.test(key)))
+    throw new Error("not-polynomial-in-x");
+  const primitive: Poly = new Map(
+    [...polynomial].map(([key, value]) => [
+      key + "x",
+      div(value, int(key.length + 1)),
+    ]),
+  );
+  const value = plus(at(primitive, upper), neg(at(primitive, lower)));
+  if (!samePoly(derivative(primitive), polynomial))
+    throw new Error("primitive-derivative-mismatch");
+  return { lower, upper, body, primitive, value, shape: structure(parsed.ast) };
+}
+
 type MathPart = { start: number; end: number; math: string };
 const mathParts = (text: string): MathPart[] =>
   [...text.matchAll(/\$([^$\n]+)\$/g)].map((m) => ({
@@ -455,6 +641,20 @@ const mathParts = (text: string): MathPart[] =>
     math: m[1]!,
   }));
 const LABEL = /(?:\([1-9]\d?\)|[⑴-⒇㉠-㉻])/g;
+const labelOrdinal = (label: string) =>
+  label.startsWith("(")
+    ? `number:${Number(label.slice(1, -1))}`
+    : /^[⑴-⒇]$/.test(label)
+      ? `number:${label.charCodeAt(0) - "⑴".charCodeAt(0) + 1}`
+      : label;
+function coefficientMonomial(math: string): string {
+  const polynomial = evaluate(parse(math).ast);
+  if (polynomial.size !== 1) throw new Error("coefficient-target-shape");
+  const [key, value] = [...polynomial][0]!;
+  if (!key || key.includes("i") || !eq(value, int(1)))
+    throw new Error("coefficient-target-shape");
+  return key;
+}
 function frameOnly(text: string): boolean {
   return text.replace(LABEL, "").replace(/[\s,，:：.;。]/g, "").length === 0;
 }
@@ -475,7 +675,7 @@ function sourceAnswers(source: TextbookVariantSource, expected: Poly[]): void {
   if (parts.length !== expected.length || !frameOnly(stripMath(source.answer)))
     throw new Error("source-answer-shape");
   for (let i = 0; i < parts.length; i++) {
-    const answer = parts[i]!.math.replace(/^[abcxyz]\s*=\s*/, "");
+    const answer = parts[i]!.math.replace(/^(?:[abcxyz]'?|f'\(x\))\s*=\s*/, "");
     if (!samePoly(evaluate(parse(answer).ast), expected[i]!))
       throw new Error("source-answer-mismatch");
   }
@@ -506,7 +706,7 @@ const factorsLatex = (n: bigint) =>
   factor(n)
     .map(([p, power]) => `${p}${power > 1 ? `^{${power}}` : ""}`)
     .join("\\times ");
-function numberList(math: string): string[] {
+function numberList(math: string, allowSingle = false): string[] {
   // Only commas at top level: fractions and parentheses cannot be split blindly.
   let depth = 0,
     from = 0;
@@ -521,7 +721,7 @@ function numberList(math: string): string[] {
     }
   }
   values.push(text.slice(from));
-  if (values.length < 2 || values.length > 3)
+  if (values.length < (allowSingle ? 1 : 2) || values.length > 3)
     throw new Error("number-list-shape");
   return values;
 }
@@ -574,7 +774,10 @@ type Match = {
   shape: string;
   answers: Poly[];
   factors?: string[];
-  substitution?: { name: string; value: Rational };
+  substitutions?: { name: string; value: Rational; part: number }[];
+  assignmentParts?: number;
+  groupedNumbers?: string[][];
+  coefficientKey?: string;
   mcq?: {
     labels: string[];
     offsets: Rational[];
@@ -597,23 +800,82 @@ function matchSource(source: TextbookVariantSource): Match {
     const values = all.filter((m) => m.start >= start),
       parts = all.filter((m) => m.start < start);
     if (
-      parts.length !== 1 ||
       values.length !== markers.length ||
       !frameOnly(stripMath(source.content.slice(start)).replace(/[①-⑩]/g, ""))
     )
       throw new Error("no-exact-template");
     const skeleton = stripMath(stem).replace(/\s/g, "");
+    let recipe: TextbookVariantRecipe,
+      answer: Poly,
+      shape: string,
+      groupedNumbers: string[][] | undefined,
+      coefficientKey: string | undefined;
     if (
-      !/^(?:다음식)?(?:의값은\?|을계산한값은\?|을계산하면\?|를계산하면\?|의값을구하면\?)$/.test(
+      /^(?:다음중)?(?:두|세)수[,과와]*의(?:최대공약수|최소공배수)는\?$/.test(
         skeleton,
       )
-    )
-      throw new Error("no-exact-template");
-    const parsed = parse(parts[0]!.math),
-      answer = evaluate(parsed.ast);
+    ) {
+      recipe = skeleton.includes("최대공약수") ? "exact-gcd" : "exact-lcm";
+      groupedNumbers = parts.map((p) => numberList(p.math, true));
+      const numbers = groupedNumbers.flat().map(integerValue);
+      if (numbers.length < 2 || numbers.length > 3)
+        throw new Error("number-list-shape");
+      answer = constant(
+        int(
+          numbers.reduce((a, b) =>
+            recipe === "exact-gcd" ? gcd(a, b) : (a / gcd(a, b)) * b,
+          ),
+        ),
+      );
+      shape = groupedNumbers
+        .map((group) => group.map((s) => structure(parse(s).ast)).join(","))
+        .join(";");
+    } else if (
+      parts.length === 2 &&
+      /^(?:다항식)?(?:의전개식에서|을전개한식에서)의계수는\?$/.test(skeleton)
+    ) {
+      recipe = "exact-polynomial-coefficient";
+      coefficientKey = coefficientMonomial(parts[1]!.math);
+      const parsed = parse(parts[0]!.math);
+      answer = constant(evaluate(parsed.ast).get(coefficientKey) ?? int(0));
+      shape = structure(parsed.ast);
+      parts.pop();
+    } else if (
+      parts.length === 1 &&
+      /^(?:일차)?방정식의해(?:는\?|를구하시오\.)$/.test(skeleton)
+    ) {
+      recipe = "exact-linear-equation";
+      const result = equation(parts[0]!.math);
+      answer = result.answer;
+      shape = result.shape;
+    } else if (
+      parts.length === 1 &&
+      /^(?:다음식)?(?:의값은\?|을계산한값은\?|을계산하면\?|를계산하면\?|의값을구하면\?)$/.test(
+        skeleton,
+      )
+    ) {
+      if (/^\s*\\lim/.test(parts[0]!.math)) {
+        const result = polynomialLimit(parts[0]!.math);
+        recipe = "exact-polynomial-limit";
+        answer = constant(result.value);
+        shape = result.shape;
+      } else if (/^\s*\\int/.test(parts[0]!.math)) {
+        const result = polynomialIntegral(parts[0]!.math);
+        recipe = "exact-polynomial-integral";
+        answer = constant(result.value);
+        shape = result.shape;
+      } else {
+        const parsed = parse(parts[0]!.math);
+        recipe = "exact-calculation";
+        answer = evaluate(parsed.ast);
+        shape = structure(parsed.ast);
+      }
+    } else throw new Error("no-exact-template");
     if ([...answer.keys()].some((k) => k !== ""))
       throw new Error("mcq-nonnumeric");
-    const numeric = values.map((p) => evaluate(parse(p.math).ast));
+    const numeric = values.map((p) =>
+      evaluate(parse(p.math.replace(/^\s*x\s*=\s*/, "")).ast),
+    );
     if (numeric.some((p) => [...p.keys()].some((k) => k !== "")))
       throw new Error("mcq-nonnumeric");
     const correct = numeric.findIndex((p) => samePoly(p, answer));
@@ -627,10 +889,12 @@ function matchSource(source: TextbookVariantSource): Match {
       throw new Error("source-answer-mismatch");
     const target = answer.get("") ?? int(0);
     return {
-      recipe: "exact-calculation",
+      recipe,
       parts,
-      shape: structure(parsed.ast),
+      shape,
       answers: [answer],
+      ...(groupedNumbers ? { groupedNumbers } : {}),
+      ...(coefficientKey ? { coefficientKey } : {}),
       mcq: {
         labels: markers.map((m) => m[0]),
         offsets: numeric.map((p) => plus(p.get("") ?? int(0), neg(target))),
@@ -645,36 +909,97 @@ function matchSource(source: TextbookVariantSource): Match {
   const skeleton = stripMath(source.content)
     .replace(LABEL, "")
     .replace(/\s/g, "");
-  if (/^일때[,，]?의값을구하시오\.$/.test(skeleton) && all.length === 2) {
-    const assignment = /^([abcxyz])\s*=\s*(.+)$/.exec(
-      normalizedMath(all[0]!.math),
-    );
-    if (!assignment) throw new Error("no-exact-template");
-    const value = evaluate(parse(assignment[2]!).ast);
-    if ([...value.keys()].some((key) => key !== ""))
-      throw new Error("no-exact-template");
-    const target = parse(all[1]!.math).ast,
-      v = value.get("") ?? int(0);
-    const answer = evaluate(substitute(target, assignment[1]!, v));
-    if ([...answer.keys()].some((key) => key !== ""))
-      throw new Error("no-exact-template");
+  if (
+    all.length === 2 &&
+    /^(?:다항식)?(?:의전개식에서|을전개한식에서)의계수를구하시오\.$/.test(
+      skeleton,
+    )
+  ) {
+    const parsed = parse(all[0]!.math),
+      coefficientKey = coefficientMonomial(all[1]!.math);
+    const answer = constant(evaluate(parsed.ast).get(coefficientKey) ?? int(0));
     sourceAnswers(source, [answer]);
     return {
-      recipe: "exact-substitution",
-      parts: all,
+      recipe: "exact-polynomial-coefficient",
+      parts: [all[0]!],
       answers: [answer],
-      shape: structure(target),
-      substitution: { name: assignment[1]!, value: v },
+      shape: structure(parsed.ast),
+      coefficientKey,
     };
   }
   if (
-    /^(?:(?:곱셈공식을|이항정리를|파스칼의삼각형을)이용하여)?다음(?:식|을|식을|다항식을|다항식)?(?:계산|간단히|전개)하시오\.[,.;]*$/.test(
+    /^,*일때[,，]?(?:다음(?:식의|식|값의|값)|식)?(?:의)?값을구하시오\.$/.test(
+      skeleton,
+    ) &&
+    all.length >= 2
+  ) {
+    const substitutions: NonNullable<Match["substitutions"]> = [];
+    let assignmentParts = 0;
+    for (const [part, info] of all.entries()) {
+      const assignments = normalizedMath(info.math)
+        .replace(/~/g, " ")
+        .split(",");
+      if (!assignments.every((s) => /^\s*[abcxyz]\s*=/.test(s))) break;
+      for (const text of assignments) {
+        const assignment = /^\s*([abcxyz])\s*=\s*(.+)$/.exec(text)!;
+        const value = evaluate(parse(assignment[2]!).ast);
+        if ([...value.keys()].some((key) => key !== ""))
+          throw new Error("no-exact-template");
+        if (substitutions.some((s) => s.name === assignment[1]))
+          throw new Error("duplicate-assignment");
+        substitutions.push({
+          name: assignment[1]!,
+          value: value.get("") ?? int(0),
+          part,
+        });
+      }
+      assignmentParts++;
+    }
+    if (!assignmentParts || assignmentParts === all.length)
+      throw new Error("no-exact-template");
+    const targets = all.slice(assignmentParts).map((p) => parse(p.math).ast);
+    const answers = targets.map((target) => {
+      let ast = target;
+      for (const info of substitutions)
+        ast = substitute(ast, info.name, info.value);
+      const answer = evaluate(ast);
+      if ([...answer.keys()].some((key) => key !== ""))
+        throw new Error("no-exact-template");
+      return answer;
+    });
+    sourceAnswers(source, answers);
+    return {
+      recipe: "exact-substitution",
+      parts: all,
+      answers,
+      shape: targets.map(structure).join(";"),
+      substitutions,
+      assignmentParts,
+    };
+  }
+  if (
+    /^(?:다음극한값을구하시오|의값을구하시오)\.$/.test(skeleton) &&
+    all.every((p) => /^\s*\\lim/.test(p.math))
+  )
+    recipe = "exact-polynomial-limit";
+  else if (
+    /^(?:다음정적분의값을구하시오|정적분의값을구하시오|의값을구하시오)\.$/.test(
+      skeleton,
+    ) &&
+    all.every((p) => /^\s*\\int/.test(p.math))
+  )
+    recipe = "exact-polynomial-integral";
+  else if (
+    /^(?:(?:곱셈공식을|이항정리를|파스칼의삼각형을|분배법칙을)이용하여)?다음(?:식|을|식을|다항식을|다항식)?(?:계산|간단히|전개)하시오\.?[,.;]*$/.test(
       skeleton,
     ) ||
-    /^(?:다음값을구하시오\.|의값을구하시오\.|을계산하시오\.|를계산하시오\.|를전개하시오\.|을전개하시오\.)[,.;]*$/.test(
+    /^(?:다음(?:식의)?값을구하시오\.|의값을구하시오\.|을계산하시오\.|를계산하시오\.|를전개하시오\.|을전개하시오\.)[,.;]*$/.test(
       skeleton,
     ) ||
-    /^다음식을이항정리를이용하여전개하시오\.$/.test(skeleton)
+    /^다음식을이항정리를이용하여전개하시오\.$/.test(skeleton) ||
+    /^다음(?:식을(?:곱셈|나눗셈|곱셈기호와나눗셈)기호를생략하여나타내시오|을거듭제곱을사용하여나타내시오)\.$/.test(
+      skeleton,
+    )
   )
     recipe = "exact-calculation";
   else if (
@@ -683,6 +1008,11 @@ function matchSource(source: TextbookVariantSource): Match {
     )
   )
     recipe = "exact-linear-equation";
+  else if (
+    /^다음함수를미분하시오\.$/.test(skeleton) ||
+    /^다음함수의도함수를구하시오\.$/.test(skeleton)
+  )
+    recipe = "exact-derivative";
   else if (
     /^(?:다음(?:식|다항식)을|(?:다항식)?(?:을|를))인수분해하시오\.[,.;]*$/.test(
       skeleton,
@@ -696,21 +1026,64 @@ function matchSource(source: TextbookVariantSource): Match {
   )
     recipe = "exact-prime-factorization";
   else if (
-    /^(?:다음(?:두|세)?수의|(?:두|세)수의|(?:과|와|,)*)최대공약수를구하시오\.[,.;]*$/.test(
+    /^(?:다음(?:두|세)?수의|(?:두|세)수의|(?:과|와|,)*의?)최대공약수를구하시오\.[,.;]*$/.test(
       skeleton,
     )
   )
     recipe = "exact-gcd";
   else if (
-    /^(?:다음(?:두|세)?수의|(?:두|세)수의|(?:과|와|,)*)최소공배수를구하시오\.[,.;]*$/.test(
+    /^(?:다음(?:두|세)?수의|(?:두|세)수의|(?:과|와|,)*의?)최소공배수를구하시오\.[,.;]*$/.test(
       skeleton,
     )
   )
     recipe = "exact-lcm";
   else throw new Error("no-exact-template");
+  if (
+    (recipe === "exact-gcd" || recipe === "exact-lcm") &&
+    all.length > 1 &&
+    !source.content.match(LABEL) &&
+    mathParts(source.answer).length === 1
+  ) {
+    const groupedNumbers = all.map((p) => numberList(p.math, true)),
+      numbers = groupedNumbers.flat().map(integerValue);
+    if (numbers.length < 2 || numbers.length > 3)
+      throw new Error("number-list-shape");
+    const answer = constant(
+      int(
+        numbers.reduce((a, b) =>
+          recipe === "exact-gcd" ? gcd(a, b) : (a / gcd(a, b)) * b,
+        ),
+      ),
+    );
+    sourceAnswers(source, [answer]);
+    return {
+      recipe,
+      parts: all,
+      answers: [answer],
+      shape: groupedNumbers
+        .map((group) => group.map((s) => structure(parse(s).ast)).join(","))
+        .join(";"),
+      groupedNumbers,
+    };
+  }
   const shapes: string[] = [];
   const factorParts = mathParts(source.answer);
   const answers = all.map((part) => {
+    if (recipe === "exact-derivative") {
+      const fn = functionExpression(part.math);
+      shapes.push(structure(parse(fn.body).ast));
+      return derivative(evaluate(parse(fn.body).ast));
+    }
+    if (recipe === "exact-polynomial-limit") {
+      const limit = polynomialLimit(part.math);
+      shapes.push(limit.shape);
+      return constant(limit.value);
+    }
+    if (recipe === "exact-polynomial-integral") {
+      const integral = polynomialIntegral(part.math);
+      shapes.push(integral.shape);
+      return constant(integral.value);
+    }
     if (recipe === "exact-linear-equation") {
       const e = equation(part.math);
       shapes.push(e.shape);
@@ -752,7 +1125,9 @@ function matchSource(source: TextbookVariantSource): Match {
     answerLabels = stripMath(source.answer).match(LABEL) ?? [];
   if (
     sourceLabels.length !== answerLabels.length ||
-    sourceLabels.some((v, i) => v !== answerLabels[i])
+    sourceLabels.some(
+      (v, i) => labelOrdinal(v) !== labelOrdinal(answerLabels[i]!),
+    )
   )
     throw new Error("source-answer-labels");
   return {
@@ -777,23 +1152,111 @@ function build(
     answers: string[] = [],
     proofs: string[] = [];
   for (const part of match.parts) {
+    if (match.recipe === "exact-polynomial-coefficient") {
+      const modified = scaleVariables(part.math, delta);
+      if (!modified.changed) throw new Error("no-changeable-data");
+      const polynomial = evaluate(parse(modified.text).ast),
+        value = polynomial.get(match.coefficientKey!) ?? int(0);
+      next.push(modified.text);
+      answers.push(latexR(value));
+      changed += modified.changed;
+      proofs.push(
+        `식을 전개하면 $${polyLatex(polynomial)}$이다. 이 식에서 물은 항의 계수는 $${latexR(value)}$이다.`,
+      );
+      continue;
+    }
+    if (match.groupedNumbers) {
+      const revised = match.groupedNumbers.map((group) =>
+        group.map((text) => {
+          const value = integerValue(text) * BigInt(delta);
+          if (value > BigInt(1000000)) throw new Error("integer-range");
+          return {
+            value,
+            text: /\\times|×|\^/.test(text)
+              ? factorsLatex(value)
+              : value.toString(),
+          };
+        }),
+      );
+      const values = revised.flat().map((v) => v.value);
+      const result = values.reduce((a, b) =>
+        match.recipe === "exact-gcd" ? gcd(a, b) : (a / gcd(a, b)) * b,
+      );
+      next.push(
+        ...revised.map((group) => group.map((v) => v.text).join(",\\,")),
+      );
+      answers.push(result.toString());
+      changed += values.length;
+      proofs.push(
+        `각 수를 소인수분해하면 ${values.map((n) => `$${n}=${factorsLatex(n)}$`).join(", ")}이다. ${match.recipe === "exact-gcd" ? "공통 소인수의 최소 지수로 최대공약수" : "모든 소인수의 최대 지수로 최소공배수"}를 구하면 $${result}$이다.`,
+      );
+      break;
+    }
     if (match.recipe === "exact-substitution") {
-      if (next.length === 0) {
-        const info = match.substitution!,
-          value = plus(info.value, int(delta));
-        next.push(`${info.name}=${latexR(value)}`);
-        changed++;
+      if (next.length < match.assignmentParts!) {
+        const assignments = match.substitutions!.filter(
+          (info) => info.part === next.length,
+        );
+        next.push(
+          assignments
+            .map(
+              (info) => `${info.name}=${latexR(plus(info.value, int(delta)))}`,
+            )
+            .join(",\\,"),
+        );
+        changed += assignments.length;
         continue;
       }
-      const info = match.substitution!,
-        value = plus(info.value, int(delta));
-      const result = polyLatex(
-        evaluate(substitute(parse(part.math).ast, info.name, value)),
-      );
+      let ast = parse(part.math).ast;
+      for (const info of match.substitutions!)
+        ast = substitute(ast, info.name, plus(info.value, int(delta)));
+      const result = polyLatex(evaluate(ast));
       next.push(part.math);
       answers.push(result);
       proofs.push(
-        `$${info.name}=${latexR(value)}$을 식에 대입하여 계산하면 $${result}$이다.`,
+        `${match.substitutions!.map((info) => `$${info.name}=${latexR(plus(info.value, int(delta)))}$`).join(", ")}을 식에 대입하여 계산하면 $${result}$이다.`,
+      );
+      continue;
+    }
+    if (match.recipe === "exact-derivative") {
+      const fn = functionExpression(part.math),
+        revised = scaleVariables(fn.body, delta);
+      const modified = revised.changed ? revised : mutate(fn.body, delta);
+      if (!modified.changed) throw new Error("no-changeable-data");
+      next.push(fn.prefix + modified.text);
+      changed += modified.changed;
+      const answer = polyLatex(derivative(evaluate(parse(modified.text).ast)));
+      answers.push(answer);
+      proofs.push(
+        `각 항에 미분 공식 $\\frac{d}{dx}(cx^{n})=cnx^{n-1}$을 적용하면 도함수는 $${answer}$이다.`,
+      );
+      continue;
+    }
+    if (match.recipe === "exact-polynomial-limit") {
+      const original = polynomialLimit(part.math),
+        point = plus(original.point, int(delta));
+      const expression = translateX(original.body, delta);
+      const text = `\\lim_{x\\to ${latexR(point)}}${expression}`;
+      const verified = polynomialLimit(text);
+      if (verified.order !== original.order)
+        throw new Error("limit-method-changed");
+      next.push(text);
+      answers.push(latexR(verified.value));
+      changed++;
+      proofs.push(verified.proof);
+      continue;
+    }
+    if (match.recipe === "exact-polynomial-integral") {
+      const original = polynomialIntegral(part.math),
+        revised = scaleVariables(original.body, delta);
+      if (!revised.changed) throw new Error("no-changeable-data");
+      const text = `\\int_{${latexR(original.lower)}}^{${latexR(original.upper)}} ${revised.text}\\,dx`;
+      const verified = polynomialIntegral(text);
+      next.push(text);
+      answers.push(latexR(verified.value));
+      changed += revised.changed;
+      proofs.push(
+        `다항식의 각 항을 적분하면 한 원시함수는 $${polyLatex(verified.primitive)}$이다. 적분의 위끝과 아래끝에서의 차를 구하면 $${latexR(verified.value)}$이다.`,
       );
       continue;
     }
@@ -896,10 +1359,21 @@ function build(
   let content = applyParts(source.content, match.parts, next);
   let answer: string;
   if (match.mcq) {
-    const correctValue = evaluate(parse(answers[0]!).ast).get("") ?? int(0);
-    const alternatives = match.mcq.offsets.map((offset) =>
-      latexR(plus(correctValue, offset)),
-    );
+    const correctValue =
+      evaluate(parse(answers[0]!.replace(/^x=/, "")).ast).get("") ?? int(0);
+    const alternatives = match.mcq.offsets.map((offset, index) => {
+      const value = plus(correctValue, offset),
+        original = match.mcq!.values[index]!.math;
+      const text =
+        (match.recipe === "exact-gcd" || match.recipe === "exact-lcm") &&
+        /\\times|×|\^/.test(original) &&
+        value.d === ONE &&
+        value.n >= BigInt(2) &&
+        value.n <= BigInt(1000000)
+          ? factorsLatex(value.n)
+          : latexR(value);
+      return /^\s*x\s*=/.test(original) ? `x=${text}` : text;
+    });
     content = applyParts(
       content,
       mathParts(content).filter(
