@@ -45,7 +45,7 @@ import { groupedFigureInstruction } from "./figure-prompt";
 
 // Same persisted contract as dbRetryGeneration, without importing its paid-provider default.
 export const GROUPED_PAIR_VERSION = "db-retry-generation-v1";
-export const GROUPED_PROMPT_VERSION = `${TRANSFORM_PROMPT_VERSION}:codex-grouped-v2-figures`;
+export const GROUPED_PROMPT_VERSION = `${TRANSFORM_PROMPT_VERSION}:codex-grouped-v3-figure-placement`;
 export const GROUPED_REQUESTED_MODEL = "codex-account-default";
 export const GROUPED_UUID =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
