@@ -146,16 +146,43 @@ async function main() {
     stagedReviewStatus: "pending",
     directUseAllowed: false,
   };
-  json("summary.json", summary);
+  const selectedFile = option("--source-ids");
+  let selected = matched;
+  if (selectedFile) {
+    const selectedIds = JSON.parse(
+      readFileSync(selectedFile, "utf8"),
+    ) as unknown;
+    if (
+      !Array.isArray(selectedIds) ||
+      !selectedIds.length ||
+      selectedIds.some(
+        (id) => typeof id !== "string" || !/^[a-f0-9-]{36}$/.test(id),
+      ) ||
+      new Set(selectedIds).size !== selectedIds.length
+    )
+      throw new Error("--source-ids must contain unique original UUIDs");
+    selected = matched.filter((packet) =>
+      selectedIds.includes(packet.source.id),
+    );
+    if (selected.length !== selectedIds.length)
+      throw new Error(
+        "Every selected original must have a complete verified pair",
+      );
+  }
+  const selection = {
+    selectedOriginals: selected.length,
+    selectedCandidateRows: selected.length * 2,
+  };
+  json("summary.json", { ...summary, ...selection });
   json("unresolved.json", unresolved);
   json(
     "pairs.json",
-    matched.map(({ source, candidates }) => ({
+    selected.map(({ source, candidates }) => ({
       sourceId: source.id,
       candidates,
     })),
   );
-  console.log(JSON.stringify(summary));
+  console.log(JSON.stringify({ ...summary, ...selection }));
   if (!apply) {
     console.log("드라이런: DB 변경 없음");
     return;
@@ -176,7 +203,7 @@ async function main() {
     ? JSON.parse(readFileSync(receiptPath, "utf8"))
     : { startedAt: new Date().toISOString(), outcomes: [] };
   // A pair transaction is all-or-nothing. Sharing locks prevent concurrent source edits while inserting.
-  for (const packet of matched) {
+  for (const packet of selected) {
     try {
       const outcome = await prisma.$transaction(
         async (tx) => {
