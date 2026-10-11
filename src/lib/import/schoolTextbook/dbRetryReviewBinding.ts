@@ -202,6 +202,21 @@ function unwrap(text: string): string {
     .replace(/\\(?:dfrac|tfrac)\b/g, "\\frac")
     .replace(/\\frac([0-9])([0-9])(?![0-9])/g, "\\frac{$1}{$2}")
     .replace(/\\sqrt(\[\d{1,2}\])?([0-9])(?![0-9])/g, "\\sqrt$1{$2}")
+    .replace(
+      /log([₀₁₂₃₄₅₆₇₈₉]+)(?=[0-9{])/g,
+      (_all, index: string) =>
+        `\\log_{${[...index].map((char) => "₀₁₂₃₄₅₆₇₈₉".indexOf(char)).join("")}}`,
+    )
+    .replace(
+      /\\log\s*_\s*(?:\{(\d{1,6})\}|(\d))\s*(?:\{(\d{1,6})\}|(\d{1,6}))/g,
+      (
+        _all,
+        bracedBase: string | undefined,
+        singleBase: string | undefined,
+        bracedArg: string | undefined,
+        plainArg: string | undefined,
+      ) => `\\log_{${bracedBase ?? singleBase}}{${bracedArg ?? plainArg}}`,
+    )
     .replace(/\\(?:left|right)\b/g, "")
     .replace(/\\(?:[,;:!]|quad\b|qquad\b| )/g, " ")
     .replace(/\s+/g, " ");

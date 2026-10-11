@@ -87,6 +87,26 @@ function divide(left: Node, right: Node): Node {
   if (left.kind === "number" && right.kind === "number") {
     return rational(bounded(left.n * right.d), bounded(left.d * right.n));
   }
+  // A unary minus may sit before a fraction or its numerator. Move only the
+  // numeric sign; keep the entire symbolic denominator and all operands.
+  const coefficient =
+    left.kind === "number"
+      ? left
+      : left.kind === "product"
+        ? left.children.find(
+            (node): node is Rational => node.kind === "number" && node.n < ZERO,
+          )
+        : undefined;
+  if (coefficient && coefficient.n < ZERO) {
+    const positive = rational(-coefficient.n, coefficient.d);
+    const numerator =
+      left.kind === "product"
+        ? left.children
+            .map((node) => (node === coefficient ? positive : node))
+            .reduce((a, b) => combine("product", a, b))
+        : positive;
+    return negate(divide(numerator, right));
+  }
   // Retain every denominator and its position; no cancellation or hole removal.
   return { kind: "division", key: `div(${left.key},${right.key})` };
 }

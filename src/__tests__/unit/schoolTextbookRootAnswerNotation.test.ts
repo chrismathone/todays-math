@@ -2,6 +2,55 @@ import { describe, expect, it } from "vitest";
 import { dbRetryAnswersAgree } from "@/lib/import/schoolTextbook/dbRetryReviewBinding";
 const roots = "다음 거듭제곱근 중 실수인 것을 모두 구하시오.";
 describe("Exact imported root answer notation", () => {
+  it("preserves logarithm base, argument and comparison direction across numeric subscripts", () => {
+    const content =
+      "다음 두 수의 크기를 비교하시오.\n⑴ $0.3^{3/4},0.3^{4/5}$\n⑵ $\\log_3 7,\\log_3 5$";
+    const stored =
+      "⑴ $0.3^{\\frac{3}{4}}>0.3^{\\frac{4}{5}}$ ⑵ $\\log_{3}7>\\log_{3}5$";
+    expect(
+      dbRetryAnswersAgree(
+        stored,
+        "(1) 0.3^(3/4)>0.3^(4/5) (2) log₃7>log₃5",
+        "단답형",
+        content,
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree("$\\log_{49}7$", "log₄97", "단답형", content),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree("$\\log_{4}97$", "log₄₉7", "단답형", content),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        stored,
+        "(1) 0.3^(3/4)>0.3^(4/5) (2) log₃7<log₃5",
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+  });
+  it("compares a numerator sign without canceling its denominator", () => {
+    const content =
+      "log2 3=a, log2 5=b일 때 다음을 a,b로 나타내시오.\n(1) log2 45\n(2) log2 20\n(3) log(1/5) 60";
+    const stored = "(1) $2a+b$ (2) $b+2$ (3) $-\\frac{a+b+2}{b}$";
+    expect(
+      dbRetryAnswersAgree(
+        stored,
+        "(1) 2a+b (2) 2+b (3) -(2+a+b)/b",
+        "단답형",
+        content,
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        stored,
+        "(1) 2a+b (2) 2+b (3) -(2+a+b)/a",
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+  });
   it("supports single numeric TeX arguments while preserving degree and every digit", () => {
     const content = "실수 a,b에 대하여 다음 값과 범위를 구하시오.";
     expect(
