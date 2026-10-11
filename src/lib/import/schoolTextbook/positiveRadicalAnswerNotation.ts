@@ -14,12 +14,21 @@ export function positiveRadicalAnswerKey(input: string): string | null {
     .replace(/\s+/g, "")
     .replace(/\\(?:dfrac|tfrac)\b/g, "\\frac")
     .replace(/\\[,;:!]/g, "");
-  const root = /^(\d{1,7})?\\sqrt(?:\[(\d{1,2})\])?\{(\d{1,7})\}$/.exec(text);
+  // A single positive numeric radical over an integer has an exact prime-power
+  // key, even when the blind solver uses √3/5 and the book uses \frac{\sqrt3}{5}.
+  const fractionForm = /^\\frac\{(.+)\}\{(\d{1,7})\}$/.exec(text);
+  const slashForm = fractionForm ? null : /^(.+)\/(\d{1,7})$/.exec(text);
+  const numerator = fractionForm?.[1] ?? slashForm?.[1] ?? text;
+  const denominator = fractionForm?.[2] ?? slashForm?.[2];
+  const root =
+    /^(\d{1,7})?(?:\\sqrt(?:\[(\d{1,2})\])?(?:\{(\d{1,7})\}|(\d{1,7}))|√(\d{1,7}))$/.exec(
+      numerator,
+    );
   const power =
     /^(\d{1,7})\^\{(?:\\frac\{([+-]?\d{1,4})\}\{(\d{1,2})\}|([+-]?\d{1,4})\/(\d{1,2}))\}$/.exec(
       text,
     );
-  if (!root && !power) return null;
+  if (!root && (!power || denominator)) return null;
   const factors = new Map<number, Fraction>();
   const add = (prime: number, exponent: Fraction) => {
     const old = factors.get(prime) ?? { n: BigInt(0), d: BigInt(1) };
@@ -51,7 +60,12 @@ export function positiveRadicalAnswerKey(input: string): string | null {
       degree < 2 ||
       degree > 64 ||
       !factor(Number(root[1] ?? 1), { n: BigInt(1), d: BigInt(1) }) ||
-      !factor(Number(root[3]), { n: BigInt(1), d: BigInt(degree) })
+      !factor(Number(root[3] ?? root[4] ?? root[5]), {
+        n: BigInt(1),
+        d: BigInt(degree),
+      }) ||
+      (denominator !== undefined &&
+        !factor(Number(denominator), { n: BigInt(-1), d: BigInt(1) }))
     )
       return null;
   } else {
