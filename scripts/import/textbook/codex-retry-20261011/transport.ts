@@ -94,7 +94,7 @@ export const codexSha256 = (bytes: string | Buffer) =>
 
 /** Keep saved CLI auth location and ordinary OS configuration, strip credentials and API routing. */
 export function codexChildEnvironment(
-  source: NodeJS.ProcessEnv,
+  source: Readonly<Record<string, string | undefined>>,
 ): NodeJS.ProcessEnv {
   return Object.fromEntries(
     Object.entries(source).filter(
@@ -103,7 +103,7 @@ export function codexChildEnvironment(
           key,
         ),
     ),
-  );
+  ) as NodeJS.ProcessEnv;
 }
 
 /** npm's Windows .cmd/.ps1 wrappers need a shell; invoke their JS entrypoint with argv instead. */

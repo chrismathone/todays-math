@@ -190,7 +190,12 @@ function unwrap(text: string): string {
     result = result.slice(2, -2);
   return result
     .trim()
+    .replace(/\$([^$\n]*)\$/g, "$1")
+    .replace(/\\text\{\s*\((\d+)\)\s*\}/g, "($1)")
+    .replace(/[⑴-⒇]/g, (label) => `(${label.charCodeAt(0) - 0x2474 + 1})`)
     .replace(/−/g, "-")
+    .replace(/\\pm\b/g, "±")
+    .replace(/~/g, " ")
     .replace(/\\(?:dfrac|tfrac)\b/g, "\\frac")
     .replace(/\\(?:left|right)\b/g, "")
     .replace(/\\(?:[,;:!]|quad\b|qquad\b| )/g, " ")
@@ -222,7 +227,7 @@ function scalarKey(text: string): string | null {
   while (b !== BigInt(0)) [a, b] = [b, a % b];
   return `r:${numerator / a}/${denominator / a}`;
 }
-function mathKey(text: string): string | null {
+function mathKey(text: string, numericRootSet = false): string | null {
   const bare = unwrap(text);
   if (dbRetryUnknownAnswer(bare) || bare.length > 4000) return null;
   // Sequential subpart labels preserve every answer and its position. Only
@@ -236,6 +241,7 @@ function mathKey(text: string): string | null {
           .slice(part.index! + part[0].length, parts[index + 1]?.index)
           .trim()
           .replace(/[,;，；]+$/, ""),
+        numericRootSet,
       ),
     );
     return keys.every((key) => key !== null) ? `parts:${keys.join("|")}` : null;
@@ -256,6 +262,18 @@ function mathKey(text: string): string | null {
     /\/[+-]?0+(?:\.0+)?(?:$|[,)}])/.test(compact)
   )
     return null;
+  // Only a question explicitly asking for real roots, without counts/tuples,
+  // permits an unordered numeric root set. Counts, variable assignments and
+  // coordinates retain order and identity. This does not solve an equation.
+  if (numericRootSet) {
+    if (/^(?:없다|없음|\\varnothing|\\emptyset)$/.test(compact))
+      return "real-roots:empty";
+    const pm = /^±(.+)$/.exec(compact);
+    const values = pm ? [pm[1], `-${pm[1]}`] : compact.split(",");
+    const keys = values.map(scalarKey);
+    if (keys.every((key) => key !== null))
+      return `real-roots:${[...new Set(keys)].sort().join(",")}`;
+  }
   const scalar = scalarKey(bare);
   if (scalar) return scalar;
   // Labeled tuple and labeled individual assignments preserve variable identity and all values.
@@ -301,8 +319,12 @@ export function dbRetryAnswersAgree(
 ): boolean {
   if (dbRetryUnknownAnswer(stored) || dbRetryUnknownAnswer(blind)) return false;
   if (questionType !== "객관식") {
-    const key = mathKey(stored);
-    return key !== null && key === mathKey(blind);
+    const numericRootSet =
+      /제곱근[^\n]{0,50}실수|실수[^\n]{0,50}(?:제곱근|근|해)|실수\s*\$?[a-z]\$?의\s*값을\s*모두/.test(
+        content,
+      ) && !/개수|몇\s*개|순서쌍|좌표/.test(content);
+    const key = mathKey(stored, numericRootSet);
+    return key !== null && key === mathKey(blind, numericRootSet);
   }
   const choices = choicesOf(content);
   if (!choices) return false;
@@ -329,6 +351,16 @@ export function dbRetryAnswersAgree(
   const resolve = (answer: string): number | null => {
     const index = choiceIndex(answer);
     if (index !== null) return index <= choices.length ? index : null;
+    const labeled = /^([①②③④⑤⑥⑦⑧⑨⑩])\s*(.+)$/.exec(unwrap(answer));
+    if (labeled) {
+      const selected = CIRCLED.indexOf(labeled[1]) + 1;
+      const value = mathKey(labeled[2]);
+      return selected <= choices.length &&
+        value !== null &&
+        value === mathKey(choices[selected - 1])
+        ? selected
+        : null;
+    }
     const key = mathKey(answer);
     const matched = choices
       .map((choice, i) => ({ key: mathKey(choice), i: i + 1 }))
