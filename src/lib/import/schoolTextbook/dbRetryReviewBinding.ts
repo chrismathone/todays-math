@@ -5,6 +5,7 @@ import { intervalAnswerKey } from "./intervalAnswerNotation";
 import { compareScalarAnswerNotation } from "./scalarAnswerNotation";
 import { positiveRadicalAnswerKey } from "./positiveRadicalAnswerNotation";
 import { compareDomainRangeAnswerNotation } from "./domainRangeAnswerNotation";
+import { compareAngleAnswerNotation } from "./angleAnswerNotation";
 import type {
   DbRetryCandidate,
   DbRetryFigures,
@@ -381,9 +382,15 @@ function answersHaveSameNotation(
   blind: string,
   content: string,
   numericRootSet: boolean,
+  compareStructuredNotation = true,
 ): boolean {
   const key = mathKey(stored, numericRootSet);
   if (key !== null && key === mathKey(blind, numericRootSet)) return true;
+  if (
+    compareStructuredNotation &&
+    compareAngleAnswerNotation(stored, blind, content)
+  )
+    return true;
   if (compareDomainRangeAnswerNotation(stored, blind, content) === true)
     return true;
   const left = unwrap(stored),
@@ -468,6 +475,8 @@ function answersHaveSameNotation(
           .replace(/[,;，；]+$/, ""),
         scalarContext,
         numericRootSet,
+        // Unit/label mappings require the complete, unflattened question.
+        false,
       ),
     );
   }
