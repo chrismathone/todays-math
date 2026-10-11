@@ -34,6 +34,22 @@ describe("Exact imported root answer notation", () => {
     expect(
       dbRetryAnswersAgree(
         "최댓값 $3$, 최솟값 $0$",
+        "(1) 최댓값 3, (2) 최솟값 0",
+        "단답형",
+        content,
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "최댓값 $3$, 최솟값 $0$",
+        "(1) 최솟값 0, (2) 최댓값 3",
+        "단답형",
+        content,
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "최댓값 $3$, 최솟값 $0$",
         "(1) 0, (2) 3",
         "단답형",
         content,

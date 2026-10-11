@@ -406,9 +406,19 @@ function answersHaveSameNotation(
       ).exec(value);
       const numbered = /^\(1\)\s*(.+?)\s*,?\s*\(2\)\s*(.+)$/.exec(value);
       const matched = labels ?? numbered;
-      return matched
-        ? [scalarKey(matched[1].trim()), scalarKey(matched[2].trim())]
-        : null;
+      if (!matched) return null;
+      const parts = [matched[1].trim(), matched[2].trim()];
+      if (!labels && numbered) {
+        const first = new RegExp(`^${extrema[1]}\\s*:?\\s*(.+)$`).exec(
+          parts[0],
+        );
+        const second = new RegExp(`^${extrema[2]}\\s*:?\\s*(.+)$`).exec(
+          parts[1],
+        );
+        if (Boolean(first) !== Boolean(second)) return null;
+        if (first && second) return [scalarKey(first[1]), scalarKey(second[1])];
+      }
+      return parts.map(scalarKey);
     };
     const a = values(left),
       b = values(right);
