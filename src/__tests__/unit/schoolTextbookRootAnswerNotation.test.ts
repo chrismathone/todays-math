@@ -2,6 +2,48 @@ import { describe, expect, it } from "vitest";
 import { dbRetryAnswersAgree } from "@/lib/import/schoolTextbook/dbRetryReviewBinding";
 const roots = "다음 거듭제곱근 중 실수인 것을 모두 구하시오.";
 describe("Exact imported root answer notation", () => {
+  it("preserves literal superscripts and rational exponent notation", () => {
+    expect(
+      dbRetryAnswersAgree(
+        "a^{2}b^{\\frac{5}{2}}",
+        "a²b^(5/2)",
+        "단답형",
+        "식을 간단히 하시오.",
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "a^{\\frac{3}{2}}b",
+        "a^(3/2)b",
+        "단답형",
+        "식을 간단히 하시오.",
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "a^{-2}b^{20}",
+        "a⁻²b²⁰",
+        "단답형",
+        "식을 간단히 하시오.",
+      ),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree(
+        "a^{2}b^{\\frac{5}{2}}",
+        "a²b^(2/5)",
+        "단답형",
+        "식을 간단히 하시오.",
+      ),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree(
+        "a^{2}b^{\\frac{5}{2}}",
+        "b²a^(5/2)",
+        "단답형",
+        "식을 간단히 하시오.",
+      ),
+    ).toBe(false);
+  });
   it("keeps requested order and ordinary words containing 근 or 해", () => {
     expect(
       dbRetryAnswersAgree(
@@ -86,6 +128,15 @@ describe("Exact imported root answer notation", () => {
     ).toBe(false);
     expect(
       dbRetryAnswersAgree("① $\\frac{1}{8}$", "②", "객관식", content),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree("① ($\\frac{1}{8}$)", "①", "객관식", content),
+    ).toBe(true);
+    expect(
+      dbRetryAnswersAgree("① ($\\frac{1}{4}$)", "①", "객관식", content),
+    ).toBe(false);
+    expect(
+      dbRetryAnswersAgree("② ($\\frac{1}{8}$)", "②", "객관식", content),
     ).toBe(false);
   });
   it.each([

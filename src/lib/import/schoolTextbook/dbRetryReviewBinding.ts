@@ -248,6 +248,13 @@ function mathKey(text: string, numericRootSet = false): string | null {
   }
   const compact = bare
     .replace(/\s+/g, "")
+    .replace(
+      /[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+/g,
+      (exponent) =>
+        `^${[...exponent].map((char) => (char === "⁺" ? "+" : char === "⁻" ? "-" : "⁰¹²³⁴⁵⁶⁷⁸⁹".indexOf(char))).join("")}`,
+    )
+    .replace(/\^\{\\frac\{([+-]?\d+)\}\{([+-]?\d+)\}\}/g, "^($1/$2)")
+    .replace(/\^\{([+-]?\d+\/[+-]?\d+)\}/g, "^($1)")
     .replace(/\^\{([+-]?\d+|[a-zA-Z])\}/g, "^$1")
     .replace(
       /\\sqrt\[(\d+)\]\{(\d+)\}/g,
@@ -367,9 +374,13 @@ export function dbRetryAnswersAgree(
     if (labeled) {
       const selected = CIRCLED.indexOf(labeled[1]) + 1;
       const value = mathKey(labeled[2]);
-      return selected <= choices.length &&
-        value !== null &&
-        value === mathKey(choices[selected - 1])
+      const wrapped = /^\((.*)\)$/.exec(labeled[2]);
+      const unwrappedValue = wrapped ? mathKey(wrapped[1]) : null;
+      const selectedValue =
+        selected <= choices.length ? mathKey(choices[selected - 1]) : null;
+      return selectedValue !== null &&
+        ((value !== null && value === selectedValue) ||
+          (unwrappedValue !== null && unwrappedValue === selectedValue))
         ? selected
         : null;
     }
