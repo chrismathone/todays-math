@@ -12,6 +12,7 @@ export function groupedFigureInstruction(): string {
     'TABLE_EXAMPLE {"version":"elem-1","kind":"table","headers":["수","0","1"],"rows":[["2.0",".3010",".3032"],["2.1",".3222",".3243"]]}',
     'BOX_EXAMPLE {"version":"elem-1","kind":"boxedList","items":["a > 0","b > 1"],"marks":["(가)","(나)"]}',
     "boxedList는 짧은 일반 문자 조건에만 쓰십시오. LaTeX 역슬래시 명령 또는 $수식$은 boxedList에서 조판되지 않습니다. 선분 길이 조건은 '선분 OA의 길이 : 선분 AB의 길이 = 1 : 2'처럼 쓸 수 있으며, 길면 graph-1 labels에 줄을 나누어 배치하십시오.",
+    "graph-1의 수식 labels에서 부등호는 원시 < 또는 > 문자 대신 반드시 LaTeX \\lt 또는 \\gt를 사용하십시오. 예: $x_1\\lt\\sqrt{2}-1$. 한국어 항목 이름(가, 나, ㄱ 등)은 수식과 분리된 일반 텍스트 label로 배치하십시오.",
     "실제 엔진에서 생성한 계약(이 목록 밖의 키나 함수를 만들지 마십시오):",
     JSON.stringify({
       "graph-1": catalog["graph-1"],

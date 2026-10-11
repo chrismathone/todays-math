@@ -45,7 +45,7 @@ import { groupedFigureInstruction } from "./figure-prompt";
 
 // Same persisted contract as dbRetryGeneration, without importing its paid-provider default.
 export const GROUPED_PAIR_VERSION = "db-retry-generation-v1";
-export const GROUPED_PROMPT_VERSION = `${TRANSFORM_PROMPT_VERSION}:codex-grouped-v3-figure-placement`;
+export const GROUPED_PROMPT_VERSION = `${TRANSFORM_PROMPT_VERSION}:codex-grouped-v4-engine-catalog`;
 export const GROUPED_REQUESTED_MODEL = "codex-account-default";
 export const GROUPED_UUID =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -442,6 +442,7 @@ export async function generateCodexGroupedPairs(
       ),
       "독립된 원문마다 정확히 slot 1과 slot 2를 한 개씩 만드십시오. 각 변형은 오직 자기 sourceId의 원문, 정답, 풀이, 첨부 그림에서만 파생해야 합니다. 다른 source의 수치, 조건, 답, 그림을 섞지 마십시오.",
       "두 slot 모두 의미 있는 수치 변경(numbers), 조건 변경(conditions), 풀이 방법 변경(method) 중 하나를 쓸 수 있습니다. 둘 다 수치 변형도 허용합니다. 각 변형은 원문 및 같은 쌍의 다른 변형과 달라야 하고, 이름·말투·순서만 바꾸는 외형 변경은 금지합니다. changeSummary에 실제로 바꾼 수치 또는 조건/방법을 구체적으로 적으십시오.",
+      "transformation 분류: 본문에서 숫자 문자열의 순서가 원문 또는 다른 slot과 같으면 numbers로 표시하지 마십시오. 예를 들어 계수의 위치 교환, 사인항의 +1을 -1로 바꾸는 부호 변경, 삼각함수 식의 조건 변경은 conditions로 표시하고 실제 달라진 조건과 풀이상의 차이를 changeSummary에 설명하십시오. 분류만 바꾼 동일 문항이나 말투 변경은 여전히 금지합니다.",
       "각 source의 grade/chapter/section, 학습 목표, 난이도와 questionType을 유지하십시오. 객관식은 모든 보기와 올바른 정답 번호를 포함하십시오. solution은 계산과 결론까지 필수입니다. 원문 정답/풀이는 생성용 근거일 뿐 독립 검증이 아닙니다. 승인·검증 완료를 주장하지 마십시오.",
       sourceData.some((s) => s.requiresFigure)
         ? groupedFigureInstruction()
