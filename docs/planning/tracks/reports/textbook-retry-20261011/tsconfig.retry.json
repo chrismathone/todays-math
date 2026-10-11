@@ -1,0 +1,14 @@
+{
+  "extends": "../../../../../tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "include": [
+    "../../../../../next-env.d.ts",
+    "../../../../../src/lib/generator/planRetry.ts",
+    "../../../../../src/lib/tests/retryCandidates.ts",
+    "../../../../../src/lib/tests/planTestRetry.ts",
+    "../../../../../src/contracts/retry.contract.ts",
+    "../../../../../src/app/api/tests/[id]/retry/route.ts",
+    "../../../../../src/__tests__/unit/planRetry.test.ts",
+    "../../../../../src/__tests__/api/testRetry.test.ts"
+  ]
+}

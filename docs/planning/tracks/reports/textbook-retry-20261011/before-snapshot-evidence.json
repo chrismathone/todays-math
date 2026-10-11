@@ -1,0 +1,59 @@
+{
+  "scope": "Read-only supplied snapshot; not a live database or deployment check",
+  "capturedAt": "2026-10-11T04:10:37.231Z",
+  "snapshotSha256": "0328ed69db13e4a5c0d3fb258ebf520e82e0a5c18983b287654fd83660cbd0f4",
+  "originalCount": 12281,
+  "uniqueOriginalIds": 12281,
+  "uniqueOriginalFamilies": 12281,
+  "soloFamilyCount": 12281,
+  "oldChildCount": 79,
+  "designatedSlotChildren": 0,
+  "requestedCount": 24562,
+  "pickedCount": 0,
+  "shortfall": 24562,
+  "foldedWrong": 0,
+  "originalsWithShortfall": 12281,
+  "sample": {
+    "original": {
+      "id": "9955c525-c106-49c4-b837-ee59289bedae",
+      "unitId": "22895018-f9af-4cd8-8724-fc18e46f7580",
+      "familyKey": "solo:06c66196-976b-4f1c-a8bc-23b3cc22c16e",
+      "difficulty": "응용",
+      "directUseAllowed": false,
+      "source": "school_textbook",
+      "originProblemId": null,
+      "externalId": "tb-58724422b897f7fa-0-20",
+      "pool": "shared",
+      "reviewStatus": "approved",
+      "answer": "⑤"
+    },
+    "oldChildren": [
+      {
+        "id": "bf69247c-dc51-44d8-a0ef-ff9269d8c955",
+        "unitId": "22895018-f9af-4cd8-8724-fc18e46f7580",
+        "familyKey": "solo:06c66196-976b-4f1c-a8bc-23b3cc22c16e",
+        "difficulty": "응용",
+        "directUseAllowed": false,
+        "source": "transformed",
+        "originProblemId": "9955c525-c106-49c4-b837-ee59289bedae",
+        "externalId": "textbook-recovery:20261009:9955c525-c106-49c4-b837-ee59289bedae:148319053e927194",
+        "pool": "shared",
+        "reviewStatus": "pending",
+        "answer": "⑤ 24"
+      }
+    ],
+    "plan": {
+      "picked": [],
+      "requestedCount": 2,
+      "shortfall": 2,
+      "foldedWrong": 0,
+      "textbookShortfalls": [
+        {
+          "wrongProblemId": "9955c525-c106-49c4-b837-ee59289bedae",
+          "required": 2,
+          "available": 0
+        }
+      ]
+    }
+  }
+}
