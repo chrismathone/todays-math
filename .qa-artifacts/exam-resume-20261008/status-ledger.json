@@ -1,41 +1,43 @@
 {
-  "kind": "execution-status-ledger/v10",
-  "version": 10,
-  "createdAt": "2026-10-08T14:38:30.250Z",
-  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-6.md",
+  "kind": "execution-status-ledger/v11",
+  "version": 11,
+  "createdAt": "2026-10-12T04:47:44.769Z",
+  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261012-addendum-7.md",
   "previousLedger": {
-    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v9.json",
-    "sha256": "2383c0dd0627e7960927d7735564e73ddc6e87dd0f8f9e8f980ac241592955e4"
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v10.json",
+    "sha256": "70c007bb61ecce91bc208d3998708a601c68c25a0ddf0b2fe593ce2c73d7f9b0"
   },
   "report": {
-    "path": "docs/planning/tracks/reports/exam-twin-checkpoint-v10-20261008.md",
-    "sha256": "46de9eeab483769834114654a957a89ad8ef023677cfd268a843e1fd52aa6ef9"
+    "path": "docs/planning/tracks/reports/exam-twin-checkpoint-v11-20261012.md",
+    "sha256": "051b7a9379547f37a6b2330411f1feaac9b66980fad438995cb28a0435eb7ae3"
   },
   "counts": {
     "authoredCurrentCandidates": 106,
     "currentFigureInstances": 84,
     "recreatedStatTables": 5,
     "builtinImagegenRasters": 2,
-    "preExposureRawSolvesBoundToCurrentCandidates": 90,
-    "preExposureRawSolvesIncludingSupersededR1": 91,
-    "independentMathReviewed": 90,
-    "independentFullGradeReviewed": 90,
+    "preExposureRawSolvesBoundToCurrentCandidates": 106,
+    "preExposureRawSolvesIncludingSupersededR1": 107,
+    "independentMathReviewed": 91,
+    "independentFullGradeReviewed": 91,
     "contentReviewPassed": 15,
-    "contentReviewHeld": 75,
-    "awaitingCollectedIndependentReview": 16,
+    "contentReviewHeld": 76,
+    "awaitingCollectedIndependentReview": 15,
     "fullVerified": 0,
     "loadable": 0,
-    "dbWrites": 0
+    "dbWrites": 0,
+    "currentRawSolved": 105,
+    "currentRawPending": 1
   },
   "currentIndex": {
-    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v10.json",
-    "sha256": "6d1e5845ecda46507a238e7c59b4a8da2fc21249c2178e00c57871be95e58e6c"
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v11.json",
+    "sha256": "a5caa40744db56ab221a2f1b086769e2103e2d6f1013f4b7050ff1a6d6abc2a7"
   },
   "currentSemanticReviewSummary": {
     "path": ".qa-artifacts/exam-resume-20261008/current-final-semantic-review-summary-r2.json",
     "sha256": "8c9c0af488991a05c500352df46a0cb98fc296bf566c929b7ac9837ff23090c6"
   },
-  "semanticReviewClarification": "90 actually bound math/grade reports; 15 content passes and75 holds. GS22-r1 is excluded from current r2 review. Author code, raw pending work and legacy literal comparisons are not approvals.",
+  "semanticReviewClarification": "90 prior current reviewed plus fresh r2 q22=91 math/grade; content15 passed76held. GF15 raw14solved1pending is not final grade approval.",
   "newSourceAttempts": {
     "entries": [
       {
@@ -72,9 +74,15 @@
       "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-review-r2/blind/blind-manifest.json",
       "sha256": "c4d07c05691a639250882dac780dbb8b9ed9eccc0db5b8a34a0e42019d0c254e"
     },
-    "freshIndependentSolvePending": true,
+    "freshIndependentSolvePending": false,
     "priorR1RawAndReviewPreserved": true,
-    "currentSelectionUnchanged": true
+    "currentSelectionUnchanged": true,
+    "newFinalMathAndGradePassed": true,
+    "contentFamilyStillHeld": true,
+    "currentBinding": {
+      "path": ".qa-artifacts/exam-resume-20261008/current-q22-r2-semantic-binding-r1.json",
+      "sha256": "5edc286c04bd6c169c29575e9ebb89c711b37a28b8b782abcea2be1df71f23ec"
+    }
   },
   "metadataCorrection": {
     "exam": "Gyeongsang-stat",
@@ -94,9 +102,8 @@
   },
   "relatedTests": {
     "corePassed": 33,
-    "mainChangedEnginePassed": 65,
-    "mainChangedRenderPassed": 21,
-    "actualReviewCountsNotInferredFromTests": true
+    "eligibilityFigureSourceBasketPredictionPassed": 90,
+    "operationalTestsWereMocked": true
   },
   "remoteIntegration": {
     "ref": "origin/main",
@@ -111,30 +118,19 @@
   },
   "activeWork": [
     {
-      "worktree": "exam-twin-source-identity-20261008",
-      "originalSessionId": "01a1177f-954e-7343-9cfb-e803c179ed85",
-      "scope": "fresh q22-r2 student-only solve; seal before private exposure",
-      "request": "ba4eae89-eeac-4f6c-b781-734a26aca470",
-      "status": "actual work observed; not yet collected"
-    },
-    {
       "worktree": "exam-twin-author-geometry-20261008",
       "originalSessionId": "01a1177e-fbb2-7822-a7e2-51c40b39e38f",
-      "scope": "fresh GF15 student-only solve; q18 complexity hold separate",
-      "request": "03c81516-794f-4787-8b5a-0ab1efd45125",
-      "status": "actual student figures and code work observed; not yet collected"
+      "scope": "final14 GF reports after rawseal; q18 held and excluded from exposure"
     },
     {
       "worktree": "exam-twin-author-algebra-20261008",
       "originalSessionId": "01a1177d-e52b-7511-944f-c2d4edd47c82",
-      "scope": "whole new KI/KSE/NB67 source identity/components and question-only whitelist",
-      "request": "e9d34086-ee4f-4818-8514-9b35394b3ba6",
-      "status": "resumed same session after capacity interruption; prior views/dirty evidence preserved"
+      "scope": "cached source67 whole-component identity/grade-risk whitelist"
     },
     {
-      "worktree": "exam-extraction-resume-20261008",
-      "scope": "current report joins, source59 quarantine audit, metadata correction, intermediate commit/push and continued production",
-      "status": "working"
+      "worktree": "exam-twin-source-identity-20261008",
+      "originalSessionId": "01a1177f-954e-7343-9cfb-e803c179ed85",
+      "scope": "q22 final completed and integrated; next independent/cache scope to be assigned"
     }
   ],
   "freshBankRead": {
@@ -202,5 +198,52 @@
   "integrationAudit": {
     "path": ".qa-artifacts/exam-resume-20261008/final31-integration-audit-r1/audit.json",
     "sha256": "620d679f8c29e52c918ca75ae2bd4b5040014b6fbb34c79c8bb5d06e466140ef"
+  },
+  "currentQ22SemanticBinding": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-q22-r2-semantic-binding-r1.json",
+    "sha256": "5edc286c04bd6c169c29575e9ebb89c711b37a28b8b782abcea2be1df71f23ec"
+  },
+  "rawGF15": {
+    "summary": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-review-r1/blind/solve-summary.json",
+      "sha256": "5e4f4b621dd9044bb371e9875f58623ee2f4f384f90e13450de05d3b3fbcd515"
+    },
+    "rawCommit": "ebc4e14137ba351cf4b4f1f65cafd536271a821b",
+    "parents": 15,
+    "solved": 14,
+    "pending": 1,
+    "q18GradeComplexityStillHeld": true,
+    "final14ExposedOnlyAfterSeal": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/selection-receipt.json",
+      "sha256": "154ac6b15037aa2bdcaad3121e37631f19d53d84e3cca641e7c288b386423c5b"
+    }
+  },
+  "rawPastExamClosure": {
+    "inventory": {
+      "path": ".qa-artifacts/exam-resume-20261008/past-exam-closure-inventory-20261012.json",
+      "sha256": "9d1f79744e9d2bc79b17b20510a98f26f5fe18858eba84944f1f66ac38841c5f"
+    },
+    "capturedAt": "2026-10-12 04:23:29.48492+00",
+    "total": 101,
+    "directlyAvailable": 0,
+    "alreadyClosed": 101,
+    "changed": 0,
+    "protected82Unchanged": true,
+    "dbWrites": 0
+  },
+  "worktreeCleanup": {
+    "path": ".qa-artifacts/exam-resume-20261008/worktree-cleanup-receipt-20261012-r1.json",
+    "sha256": "6d0e00faf42b47d54239eeac82750c3939aa0583a83bb6a760be1bd3825b9d3a"
+  },
+  "sourceAccess": {
+    "observedAt": "2026-10-12T04:47:44.769Z",
+    "nDriveMounted": false,
+    "evidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/closure-cleanup-support-receipt-20261012-r1.json",
+      "sha256": "619ae58c765b74b482e2a73ec5e447ac81e841471671c17b266a12dba6a4bef7"
+    },
+    "newSourceParsingBlocked": true,
+    "wholeGoalBlocked": false,
+    "cachedSourceAndReviewEngineWorkContinue": true
   }
 }

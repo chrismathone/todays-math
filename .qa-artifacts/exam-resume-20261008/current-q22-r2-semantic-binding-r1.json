@@ -1,0 +1,68 @@
+{
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r2-q22",
+  "authoredCandidate": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-repair-r2/candidate.json",
+    "sha256": "740279ebac2db406f98c789a4567c2ee6ef96b4e360736b7551eb8efee81a97a"
+  },
+  "packageCandidate": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsan-q22-final-review-r2\\inputs\\package\\private\\q22\\candidate.json",
+    "sha256": "5a4259c758c83f19a2b2bc444e2b5d46784ecd97cb797fcc629c92aa77c37eac"
+  },
+  "packageCandidateDigest": "5e17e4292dcb7a51f3c17faab9eb4afe014c085c30d50b799d8d49159c17f006",
+  "studentDigest": "b5461ade7464e5e10e30d83f391d25e53590ff1ba7b1e450cdb249510172e109",
+  "assetDigest": "07cd7a6cec5b99919d1f136521416f05e7c372c5d95df7389e45dcfb8aa1fb50",
+  "solve": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-final-review-r2/inputs/blind/solve/q22.json",
+    "sha256": "c59e4b8e2d3a0d9751c4ddf753e7f7410f74f3f4becaea4bef6343c800547104"
+  },
+  "solveDigest": "ea3c4166d87f758d41739406f73d329b7031c9c727b42423a3e0630c90d788d4",
+  "report": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-final-review-r2/reports/q22.json",
+    "sha256": "7f46b1bc8cb188b47fa7f862a6dd4ece70bf409fb7582ff221c782b7fa880e57"
+  },
+  "mathPassed": true,
+  "allSevenStudentSurfacesPassed": true,
+  "contentReviewPassed": false,
+  "holds": [
+    {
+      "dimension": "unitFamilyFit",
+      "status": "pending",
+      "affectedQuestionNumbers": [
+        22
+      ],
+      "frozenUnitId": null,
+      "frozenFamilyKey": null,
+      "actualNearbyRule": "mid:3-2|삼각비|12",
+      "actualNearbyLiveCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "actualNearbyLiveCount": 20,
+      "reason": "family12 uses unit-radius quadrant, numeric ang25..65, given rounded BH/OH/AT, and numeric one-ratio or two-ratio sum at the center angle. This candidate uses radius2, no numeric alpha, parallel-angle transfer atT and a symbolic length expression for beta. Shared figure/concept is observed, whole assessed procedure/output branch is not present.",
+      "scope": "Exact selected Unit plus full-purpose family/rule mapping, separate from math/curriculum/source-core judgments",
+      "reopeningCriteria": "Select actual target Unit and prove an exact whole-purpose live family/rule mapping, or separately approve a new family. Inverse helper existence/title/numeric proximity is not sufficient. No currentDB read required by this scoped review.",
+      "currentDBApprovalOrNewLabelInvented": false
+    },
+    {
+      "dimension": "problemType",
+      "status": "pending",
+      "affectedQuestionNumbers": [
+        22
+      ],
+      "reason": "Frozen problemTypeProposal=null; exact product classification not supplied/approved. No core-description label invented."
+    }
+  ],
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "fullVerified": 0,
+  "loadable": 0
+}

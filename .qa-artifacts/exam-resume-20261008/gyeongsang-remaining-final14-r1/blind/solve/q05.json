@@ -1,0 +1,170 @@
+{
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q05",
+  "studentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "④",
+  "solution": "표에 적힌 근삿값을 그대로 사용한다. 가의 값은0.5150+0.8290=1.3440이고,나의 값은0.5299+0.8387=1.3686이다. 따라서 요청한 차는1.3440−1.3686=−0.0246이므로④이다. 실수 삼각비를 새로 계산하거나 가와 나의 순서를 바꾸지 않는다.",
+  "evidence": {
+    "studentInputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+    "givenStudentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+    "blindManifestRawSha256": "721033947e4c133ae39d5d899c58520d5fc9c385aeadbcc74cc52fd746bb4b92",
+    "opaquePackageDigestProvided": "bda294bd79bfa03f3d3975c0178101f0a193582c78c28bd9026079301ea7f61a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputRawSha256": "f01723e56a2f0a67f540fe3a8c23ba69b83d6bed6e309d0f0157e13b626bfe64",
+    "exactCalculation": {
+      "givenAngles": [
+        "31",
+        "32",
+        "33",
+        "34"
+      ],
+      "givenSinRecords": [
+        "103/200",
+        "5299/10000",
+        "2723/5000",
+        "699/1250"
+      ],
+      "givenCosRecords": [
+        "2143/2500",
+        "106/125",
+        "8387/10000",
+        "829/1000"
+      ],
+      "ga": "168/125",
+      "na": "6843/5000",
+      "orderedDifferenceGaMinusNa": "-123/5000",
+      "integerTenThousandths": [
+        13440,
+        13686,
+        -246
+      ],
+      "tableNotTrueUnroundedValuesIsInput": true,
+      "allFiveDisplayedChoices": [
+        "168/125",
+        "123/5000",
+        "13563/5000",
+        "-123/5000",
+        "6843/5000"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "correctChoiceNumber": 4,
+      "semanticDuplicateChoices": [],
+      "uniqueCorrectChoice": true,
+      "choiceTargetUnits": null
+    },
+    "knownHolds": [],
+    "actualStudentPreview": {
+      "questionNumber": 5,
+      "studentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+      "png": "inspection/q05.png",
+      "pngSha256": "e8277b8865c383991bcf74f127d36c897c85053d091fc430eab0170d84e5236b",
+      "columnWidthMm": 70,
+      "overflow": [],
+      "figureCount": 0
+    },
+    "suppliedFigures": [],
+    "figureObservations": null,
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 학생 입력의 전체 요청을 본 독립 해법으로2015 조항에 대응한다. 원학교·저자·분류로 승인하지 않는다. 주어진 표의 열 읽기와 소수 덧셈/뺄셈",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제5보기를 전부 독립 계산/동치/참거짓 검사;정답 하나이고 동치 중복 없음.",
+        "independentChoiceEvidence": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "duplicates": []
+      },
+      "figuresAndTables": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 문자 표 전체를 행·열·단위에 맞춰 읽었다. 별도 그림 없음.",
+        "actualStudentPreview": {
+          "questionNumber": 5,
+          "studentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+          "png": "inspection/q05.png",
+          "pngSha256": "e8277b8865c383991bcf74f127d36c897c85053d091fc430eab0170d84e5236b",
+          "columnWidthMm": 70,
+          "overflow": [],
+          "figureCount": 0
+        },
+        "personallyViewed": true,
+        "suppliedFigureHashes": []
+      },
+      "notation": {
+        "status": "in-scope-independent-proposal",
+        "basis": "통상 선분·각·도·좌표·근호·비·삼각비·빈칸 기록. 벡터·라디안·고교 항등식/삼각형의 법칙 표기 없음."
+      },
+      "answer": {
+        "status": "independently-derived-math-only",
+        "basis": "제공 학생 입력에서만 계산했다. q18은 수학 답이 명확해도 복잡성 gate가 pending이다.",
+        "target": "-123/5000"
+      },
+      "studentSolution": {
+        "status": "in-scope-independent-proposal",
+        "basis": "주어진 표의 열 읽기와 소수 덧셈/뺄셈 완전한 새 독립 학생 해법은 solution 필드에 있다. 저자 답/해법은 읽지 않았다."
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-proposal",
+        "basis": "주어진 표의 열 읽기와 소수 덧셈/뺄셈",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceRawSha256": "fdb33efde81204b068456eedd22954614fe02e5e752b9f53e94f33604d45f9cc",
+    "freshNewAuthorAnswerExposure": false,
+    "priorOriginalSourceConceptKnowledgeSeparatelyDisclosed": "input-audit.json",
+    "authorAnswerAndNewSolutionReview": "not-exposed;pending Root authorization after raw commit",
+    "mathematicalTargetUnique": true,
+    "calculationOnlyNotFinalGradeApproval": true,
+    "rightsAndNativeApproval": false
+  },
+  "curriculumGate": {
+    "grade": "중3",
+    "edition": "2015",
+    "wholeStudentScope": "in-scope-independent-proposal",
+    "requiredUpperGradeMethodDetected": false,
+    "materialComplexityHold": false,
+    "finalGradeApproval": false,
+    "finalAuthorReviewPending": true
+  },
+  "gates": {
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "loadable": false,
+    "directUseAllowed": false,
+    "modelCalls": 0,
+    "dbAccess": 0
+  }
+}

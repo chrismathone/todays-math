@@ -1,0 +1,181 @@
+{
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q08",
+  "studentDigest": "c858d84e85ac38c9e0abf8128b07be51d4742244e6030ad8ebed15c3fa7f2887",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "⑤",
+  "solution": "특수각의 값을 각각 대입한다. 가는 sin60°×tan45°=(√3/2)×1=√3/2이다. 나는 k×sin45°×tan30°=k×(√2/2)×(√3/3)=k√6/6이다. 두 값이 같으므로 k√6/6=√3/2에서 k=3√3/√6=3√2/2이다. 이 값은 양수이고⑤이다. 일반적인 삼각비 사이의 관계식은 사용하지 않고 네 특수각 값을 각각 대입했다.",
+  "evidence": {
+    "studentInputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+    "givenStudentDigest": "c858d84e85ac38c9e0abf8128b07be51d4742244e6030ad8ebed15c3fa7f2887",
+    "blindManifestRawSha256": "721033947e4c133ae39d5d899c58520d5fc9c385aeadbcc74cc52fd746bb4b92",
+    "opaquePackageDigestProvided": "bda294bd79bfa03f3d3975c0178101f0a193582c78c28bd9026079301ea7f61a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputRawSha256": "f01723e56a2f0a67f540fe3a8c23ba69b83d6bed6e309d0f0157e13b626bfe64",
+    "exactCalculation": {
+      "specialAngleIndependentValues": {
+        "sin60": "sqrt(3)/2",
+        "tan45": 1,
+        "sin45": "sqrt(2)/2",
+        "tan30": "sqrt(3)/3"
+      },
+      "ga": "sqrt(3)/2",
+      "positiveCoefficientOfK": "sqrt(6)/6",
+      "uniquePositiveK": "3*sqrt(2)/2",
+      "method": "substitute four specific special-angle values;one linear equation,no ratio identity",
+      "allFiveDisplayedChoices": [
+        "sqrt(2)/2",
+        "sqrt(2)",
+        "sqrt(6)/2",
+        "3",
+        "3*sqrt(2)/2"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "correctChoiceNumber": 5,
+      "semanticDuplicateChoices": [],
+      "uniqueCorrectChoice": true,
+      "choiceTargetUnits": null
+    },
+    "knownHolds": [],
+    "actualStudentPreview": {
+      "questionNumber": 8,
+      "studentDigest": "c858d84e85ac38c9e0abf8128b07be51d4742244e6030ad8ebed15c3fa7f2887",
+      "png": "inspection/q08.png",
+      "pngSha256": "7415e2ffc620102992287885471042ec628e651f27202dab1e7b0b44d5e21751",
+      "columnWidthMm": 70,
+      "overflow": [],
+      "figureCount": 0
+    },
+    "suppliedFigures": [],
+    "figureObservations": null,
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 학생 입력의 전체 요청을 본 독립 해법으로2015 조항에 대응한다. 원학교·저자·분류로 승인하지 않는다. 네 특수각 값 각각 대입과 근호/일차방정식",
+        "standards": [
+          {
+            "code": "9수01-10",
+            "exactText": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+            "physicalPage1based": 33,
+            "printedPage": 29,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수02-05",
+            "exactText": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+            "physicalPage1based": 34,
+            "printedPage": 30,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제5보기를 전부 독립 계산/동치/참거짓 검사;정답 하나이고 동치 중복 없음.",
+        "independentChoiceEvidence": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "duplicates": []
+      },
+      "figuresAndTables": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 문자 표 전체를 행·열·단위에 맞춰 읽었다. 별도 그림 없음.",
+        "actualStudentPreview": {
+          "questionNumber": 8,
+          "studentDigest": "c858d84e85ac38c9e0abf8128b07be51d4742244e6030ad8ebed15c3fa7f2887",
+          "png": "inspection/q08.png",
+          "pngSha256": "7415e2ffc620102992287885471042ec628e651f27202dab1e7b0b44d5e21751",
+          "columnWidthMm": 70,
+          "overflow": [],
+          "figureCount": 0
+        },
+        "personallyViewed": true,
+        "suppliedFigureHashes": []
+      },
+      "notation": {
+        "status": "in-scope-independent-proposal",
+        "basis": "통상 선분·각·도·좌표·근호·비·삼각비·빈칸 기록. 벡터·라디안·고교 항등식/삼각형의 법칙 표기 없음."
+      },
+      "answer": {
+        "status": "independently-derived-math-only",
+        "basis": "제공 학생 입력에서만 계산했다. q18은 수학 답이 명확해도 복잡성 gate가 pending이다.",
+        "target": "3*sqrt(2)/2"
+      },
+      "studentSolution": {
+        "status": "in-scope-independent-proposal",
+        "basis": "네 특수각 값 각각 대입과 근호/일차방정식 완전한 새 독립 학생 해법은 solution 필드에 있다. 저자 답/해법은 읽지 않았다."
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-proposal",
+        "basis": "네 특수각 값 각각 대입과 근호/일차방정식",
+        "standards": [
+          {
+            "code": "9수01-10",
+            "exactText": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+            "physicalPage1based": 33,
+            "printedPage": 29,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수02-05",
+            "exactText": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+            "physicalPage1based": 34,
+            "printedPage": 30,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceRawSha256": "fdb33efde81204b068456eedd22954614fe02e5e752b9f53e94f33604d45f9cc",
+    "freshNewAuthorAnswerExposure": false,
+    "priorOriginalSourceConceptKnowledgeSeparatelyDisclosed": "input-audit.json",
+    "authorAnswerAndNewSolutionReview": "not-exposed;pending Root authorization after raw commit",
+    "mathematicalTargetUnique": true,
+    "calculationOnlyNotFinalGradeApproval": true,
+    "rightsAndNativeApproval": false
+  },
+  "curriculumGate": {
+    "grade": "중3",
+    "edition": "2015",
+    "wholeStudentScope": "in-scope-independent-proposal",
+    "requiredUpperGradeMethodDetected": false,
+    "materialComplexityHold": false,
+    "finalGradeApproval": false,
+    "finalAuthorReviewPending": true
+  },
+  "gates": {
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "loadable": false,
+    "directUseAllowed": false,
+    "modelCalls": 0,
+    "dbAccess": 0
+  }
+}

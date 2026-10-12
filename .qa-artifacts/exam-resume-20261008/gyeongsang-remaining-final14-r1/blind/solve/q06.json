@@ -1,0 +1,169 @@
+{
+  "questionNumber": 6,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+  "studentDigest": "e8e2cd65469c93106cf535a49b233675fa1b741a3fea60e9d5fbf636208a61ad",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "④",
+  "solution": "표에서 tan의 기록0.7813은38° 열에 있으므로 x=38이다. cos의 기록0.7771은39° 열에 있으므로 y=39이다. 따라서 y−x=39−38=1이고④이다. x,y가 주어진 네 각도 수 중 하나라는 조건에서 두 기록이 각각 한 열에만 있으므로 값은 유일하다.",
+  "evidence": {
+    "studentInputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+    "givenStudentDigest": "e8e2cd65469c93106cf535a49b233675fa1b741a3fea60e9d5fbf636208a61ad",
+    "blindManifestRawSha256": "721033947e4c133ae39d5d899c58520d5fc9c385aeadbcc74cc52fd746bb4b92",
+    "opaquePackageDigestProvided": "bda294bd79bfa03f3d3975c0178101f0a193582c78c28bd9026079301ea7f61a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputRawSha256": "f01723e56a2f0a67f540fe3a8c23ba69b83d6bed6e309d0f0157e13b626bfe64",
+    "exactCalculation": {
+      "givenAngles": [
+        "37",
+        "38",
+        "39",
+        "40"
+      ],
+      "givenCosRecords": [
+        "3993/5000",
+        "197/250",
+        "7771/10000",
+        "383/500"
+      ],
+      "givenTanRecords": [
+        "471/625",
+        "7813/10000",
+        "4049/5000",
+        "8391/10000"
+      ],
+      "uniqueTableX": [
+        "38"
+      ],
+      "uniqueTableY": [
+        "39"
+      ],
+      "difference": "1",
+      "domain": "x,y are numbers in the4 displayed angle columns,not arbitrary angle roots",
+      "allFiveDisplayedChoices": [
+        "-2",
+        "-1",
+        "0",
+        "1",
+        "2"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "correctChoiceNumber": 4,
+      "semanticDuplicateChoices": [],
+      "uniqueCorrectChoice": true,
+      "choiceTargetUnits": null
+    },
+    "knownHolds": [],
+    "actualStudentPreview": {
+      "questionNumber": 6,
+      "studentDigest": "e8e2cd65469c93106cf535a49b233675fa1b741a3fea60e9d5fbf636208a61ad",
+      "png": "inspection/q06.png",
+      "pngSha256": "e25d7c451096b66971d548c53e3fb9794ff3f945b61e17fec81a5125dd27f499",
+      "columnWidthMm": 70,
+      "overflow": [],
+      "figureCount": 0
+    },
+    "suppliedFigures": [],
+    "figureObservations": null,
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 학생 입력의 전체 요청을 본 독립 해법으로2015 조항에 대응한다. 원학교·저자·분류로 승인하지 않는다. 유한 표의 열 찾기와 정수 차;역삼각함수 없음",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제5보기를 전부 독립 계산/동치/참거짓 검사;정답 하나이고 동치 중복 없음.",
+        "independentChoiceEvidence": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "duplicates": []
+      },
+      "figuresAndTables": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 문자 표 전체를 행·열·단위에 맞춰 읽었다. 별도 그림 없음.",
+        "actualStudentPreview": {
+          "questionNumber": 6,
+          "studentDigest": "e8e2cd65469c93106cf535a49b233675fa1b741a3fea60e9d5fbf636208a61ad",
+          "png": "inspection/q06.png",
+          "pngSha256": "e25d7c451096b66971d548c53e3fb9794ff3f945b61e17fec81a5125dd27f499",
+          "columnWidthMm": 70,
+          "overflow": [],
+          "figureCount": 0
+        },
+        "personallyViewed": true,
+        "suppliedFigureHashes": []
+      },
+      "notation": {
+        "status": "in-scope-independent-proposal",
+        "basis": "통상 선분·각·도·좌표·근호·비·삼각비·빈칸 기록. 벡터·라디안·고교 항등식/삼각형의 법칙 표기 없음."
+      },
+      "answer": {
+        "status": "independently-derived-math-only",
+        "basis": "제공 학생 입력에서만 계산했다. q18은 수학 답이 명확해도 복잡성 gate가 pending이다.",
+        "target": "1"
+      },
+      "studentSolution": {
+        "status": "in-scope-independent-proposal",
+        "basis": "유한 표의 열 찾기와 정수 차;역삼각함수 없음 완전한 새 독립 학생 해법은 solution 필드에 있다. 저자 답/해법은 읽지 않았다."
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-proposal",
+        "basis": "유한 표의 열 찾기와 정수 차;역삼각함수 없음",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceRawSha256": "fdb33efde81204b068456eedd22954614fe02e5e752b9f53e94f33604d45f9cc",
+    "freshNewAuthorAnswerExposure": false,
+    "priorOriginalSourceConceptKnowledgeSeparatelyDisclosed": "input-audit.json",
+    "authorAnswerAndNewSolutionReview": "not-exposed;pending Root authorization after raw commit",
+    "mathematicalTargetUnique": true,
+    "calculationOnlyNotFinalGradeApproval": true,
+    "rightsAndNativeApproval": false
+  },
+  "curriculumGate": {
+    "grade": "중3",
+    "edition": "2015",
+    "wholeStudentScope": "in-scope-independent-proposal",
+    "requiredUpperGradeMethodDetected": false,
+    "materialComplexityHold": false,
+    "finalGradeApproval": false,
+    "finalAuthorReviewPending": true
+  },
+  "gates": {
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "loadable": false,
+    "directUseAllowed": false,
+    "modelCalls": 0,
+    "dbAccess": 0
+  }
+}
