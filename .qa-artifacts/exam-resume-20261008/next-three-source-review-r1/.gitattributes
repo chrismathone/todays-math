@@ -1,3 +1,2 @@
-*.json text eol=lf
-*.py text eol=lf
-*.md text eol=lf
+# Preserve byte-bound evidence across Windows checkouts; no newline conversion.
+* -text
