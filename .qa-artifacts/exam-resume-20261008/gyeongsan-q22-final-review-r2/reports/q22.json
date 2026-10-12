@@ -1,0 +1,1098 @@
+{
+  "status": "pending",
+  "questionNumber": 22,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r2-q22",
+  "studentDigest": "b5461ade7464e5e10e30d83f391d25e53590ff1ba7b1e450cdb249510172e109",
+  "candidateDigest": "5e17e4292dcb7a51f3c17faab9eb4afe014c085c30d50b799d8d49159c17f006",
+  "assetDigest": "07cd7a6cec5b99919d1f136521416f05e7c372c5d95df7389e45dcfb8aa1fb50",
+  "solveDigest": "ea3c4166d87f758d41739406f73d329b7031c9c727b42423a3e0630c90d788d4",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-source-identity-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "checkEvidence": {
+    "answerCorrect": "Sealed independent answer chooses④ and exact SQ/2; authored answer④ selects actual option4 SQ/2. Same role/unit/exact numerator and denominator verified in new code, no string-as-algebra shortcut.",
+    "solutionCorrect": "Authored two paragraphs checked step-by-step: perpendiculars -> parallel; directed ray order -> same beta; adjacentSQ/hypotenuse2 -> cosine. Matches independent right-triangle angle-sum route and exact length calculations.",
+    "existenceUniqueness": "For all0<k<1,Q=(2/w,2k/w),S=(2/w,0),U=(2,0),T=(2,2k),w=√(1+k²)>1 realizes every legal acute ray. All lengths positive;O-Q-T/O-S-U order. Exactly option4, no exceptional legal angle. Unique expression, continuously many numeric configurations.",
+    "choicesCorrect": "Actual five expressions parsed as physical lengths in fresh code. Differences(1-k)/w,(ell-1)k/w,1/(kw),0,(w-k²)/(kw); four strictly positive across full domain.45 endpoint exclusion is material. No sample-only approval.",
+    "figureConsistent": "Original and new topologies viewed; new raw spec10 geometry checks, strict engine pass/dropped0 and SVG byte-identical.70mm supplied layout and full new solution inspected; no mathematical pixel inference.",
+    "sameCoreConceptAndProcedure": "Observed source asks which mixed trig/segment statement is correct in the quadrant with projection/tangent angles. New question uses same two-perpendicular/ray correspondence to identify one actual angle and actual adjacent/hypotenuse definition. A->O,B->S,C->Q,D->U,E->T topology preserved; no original answer solved or key used.",
+    "distinctPresentation": "Whole assessment organization changes from five complete mixed sin/tan/cos claims across x/y/z to one explicit cosbeta target with five competing segment fractions. Text adds legal open angle domain/ray order; nonunit radius requires a denominator. This is substantive target/choice representation structure; radius/name substitution alone would be insufficient. Claimed inverse-target mode is not independently established and is not needed for the observed structure/representation delta.",
+    "naturalKorean": "Actual rendered stem naturally identifies center/radius, order, foot, perpendicular and both angles before asking a single expression. Actual two-paragraph solution uses standard Korean terms and matches figure labels. Pure math has no forced story; source school appears only internal metadata.",
+    "curriculumAppropriate": "Source-era2015 rollout rechecked directly official onOct12; six standards and five restrictions reextracted from official HWP and full matched PDF clauses. Method uses same geometric angle and one cosine definition, not forbidden complementary/inter-ratio trig identities. Bounded amendment check found no material applicable-math uncertainty; future2027 requires2022 review.",
+    "allStudentSurfacesInScope": "All seven actual surfaces independently passed with explicit whole-method/choice/notation/solution/prerequisite bases; author-proposed statuses were not reused as approval.",
+    "unitFamilyFit": "Select actual target Unit and prove an exact whole-purpose live family/rule mapping, or separately approve a new family. Inverse helper existence/title/numeric proximity is not sufficient. No currentDB read required by this scoped review.",
+    "scoreAppropriate": "Source question-only crop and JSON both print4 points, candidate4 once, MC type preserved. Objective route has noncentral-angle correspondence, actual adjacent/hypotenuse identification and nonunit-radius normalization; modest応用 proposal is plausible, no measured difficulty/registry-descriptor proof asserted."
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "9수04-01/02/17/18; radius2, arcQ, O-Q-T order, perpendicularS/UT and open0..45 bound specify an elementary same-angle length-ratio task. beta stays45..90. The intended assessment is one cosine definition after geometric angle correspondence; no ratio relationship is demanded.",
+      "officialProvisions": [
+        {
+          "id": "9수04-01",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4248,
+            "paragraph1based": 925,
+            "offset": 215704,
+            "text": "[9수04-01]\u001e점, 선, 면, 각을 이해하고, 점, 직선, 평면의 위치 관계를 설명할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-02",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4252,
+            "paragraph1based": 926,
+            "offset": 215902,
+            "text": "[9수04-02]\u001e평행선에서 동위각과 엇각의 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 949,
+            "offset": 219292,
+            "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "restrictionsReviewed": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 966,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 967,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 969,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 974,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 975,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "gradeSource": "actual2025 middle3 ->2015",
+      "permissionFromSchoolRegistryOrProbability": false
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "All five are ratios of actual positive lengths or the common radius2. Exact physical-length differences are positive for options1/2/3/5 throughout0<k<1,ell>1. The optional45-degree right-isosceles comparison uses9수04-10; no general trig identity/addition formula or advanced inequality is required from students.",
+      "officialProvisions": [
+        {
+          "id": "9수04-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4300,
+            "paragraph1based": 938,
+            "offset": 217636,
+            "text": "[9수04-10]\u001e이등변삼각형의 성질을 이해하고 설명할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "restrictionsReviewed": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 966,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 967,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 969,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 974,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 975,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "gradeSource": "actual2025 middle3 ->2015",
+      "permissionFromSchoolRegistryOrProbability": false
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "One quadrant, projection and perpendicular at its endpoint. Two right triangles/parallel lines are9수04-01/02 prerequisites. Actual strict v2 geometry satisfies the given order and angles; illustrative alpha40 is not an added student datum. No table, proportional-circle theorem, complex measurement or external bitmap is needed.",
+      "officialProvisions": [
+        {
+          "id": "9수04-01",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4248,
+            "paragraph1based": 925,
+            "offset": 215704,
+            "text": "[9수04-01]\u001e점, 선, 면, 각을 이해하고, 점, 직선, 평면의 위치 관계를 설명할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-02",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4252,
+            "paragraph1based": 926,
+            "offset": 215902,
+            "text": "[9수04-02]\u001e평행선에서 동위각과 엇각의 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "restrictionsReviewed": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 966,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 967,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 969,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 974,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 975,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "gradeSource": "actual2025 middle3 ->2015",
+      "permissionFromSchoolRegistryOrProbability": false
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "O,Q,S,T,U line labels, alpha/beta angle names, degree open interval, cos and simple length fractions. No coordinate/vector/radical notation in actual student stem/options/answer/new solution. All denominators are positive; beta is within the official0..90 range.",
+      "officialProvisions": [
+        {
+          "id": "9수04-01",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4248,
+            "paragraph1based": 925,
+            "offset": 215704,
+            "text": "[9수04-01]\u001e점, 선, 면, 각을 이해하고, 점, 직선, 평면의 위치 관계를 설명할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "restrictionsReviewed": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 966,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 967,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 969,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 974,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 975,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "gradeSource": "actual2025 middle3 ->2015",
+      "permissionFromSchoolRegistryOrProbability": false
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "One MC mark④. Its selected value SQ/2 is a dimensionless adjacent-leg/hypotenuse ratio at beta in triangleOQS under9수04-17. Raw answer also states that value and is unchanged. No numeric angle is invented.",
+      "officialProvisions": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "restrictionsReviewed": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 966,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 967,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 969,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 974,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 975,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "gradeSource": "actual2025 middle3 ->2015",
+      "permissionFromSchoolRegistryOrProbability": false
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Actual authored solution states QS andUT both perpendicular toOU, hence parallel; O-Q-T then makes angleOQS=angleUTQ=beta. It identifies adjacentSQ,hypotenuseOQ2 and applies one cosine definition. Equal-angle transfer under9수04-02 avoids a complementary/inter-ratio trig identity; two short reasoning paragraphs do not require complex formal deduction.",
+      "officialProvisions": [
+        {
+          "id": "9수04-02",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4252,
+            "paragraph1based": 926,
+            "offset": 215902,
+            "text": "[9수04-02]\u001e평행선에서 동위각과 엇각의 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "restrictionsReviewed": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 966,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 967,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 969,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 974,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 975,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "gradeSource": "actual2025 middle3 ->2015",
+      "permissionFromSchoolRegistryOrProbability": false
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "Current seed records include middle1 평행선 and 삼각형의 내각과 외각, middle2 이등변삼각형의 성질 and middle3 삼각비의 뜻/값. Official9수04-01/02/05/10/17/18 supply line relation, angle correspondence, triangle angle/45 comparison and cosine definition. Developer SymPy/Pythagorean parameterization/coordinate witness is supplemental proof, not required student procedure; no upper-grade prerequisite introduced.",
+      "officialProvisions": [
+        {
+          "id": "9수04-01",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4248,
+            "paragraph1based": 925,
+            "offset": 215704,
+            "text": "[9수04-01]\u001e점, 선, 면, 각을 이해하고, 점, 직선, 평면의 위치 관계를 설명할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-02",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4252,
+            "paragraph1based": 926,
+            "offset": 215902,
+            "text": "[9수04-02]\u001e평행선에서 동위각과 엇각의 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 931,
+            "offset": 216602,
+            "text": "[9수04-05]\u001e다각형의 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4300,
+            "paragraph1based": 938,
+            "offset": 217636,
+            "text": "[9수04-10]\u001e이등변삼각형의 성질을 이해하고 설명할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 949,
+            "offset": 219292,
+            "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "restrictionsReviewed": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 966,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 967,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 969,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 974,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 975,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePDFMatch": true
+        }
+      ],
+      "gradeSource": "actual2025 middle3 ->2015",
+      "permissionFromSchoolRegistryOrProbability": false,
+      "actualSeedRecords": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 1438,
+          "endLine1based": 1443,
+          "section": "2-2-2 이등변삼각형의 성질",
+          "text": "{\n    grade: \"초4\",\n    chapter: \"2-2 삼각형\",\n    section: \"2-2-2 이등변삼각형의 성질\",\n    orderIndex: 224,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 1512,
+          "endLine1based": 1517,
+          "section": "2-4-2 평행과 평행선",
+          "text": "{\n    grade: \"초4\",\n    chapter: \"2-4 사각형\",\n    section: \"2-4-2 평행과 평행선\",\n    orderIndex: 236,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 1518,
+          "endLine1based": 1523,
+          "section": "2-4-3 평행선 사이의 거리",
+          "text": "{\n    grade: \"초4\",\n    chapter: \"2-4 사각형\",\n    section: \"2-4-3 평행선 사이의 거리\",\n    orderIndex: 237,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2483,
+          "endLine1based": 2483,
+          "section": "평행선",
+          "text": "{ grade: \"중1\", chapter: \"5. 기본 도형\", section: \"평행선\", orderIndex: 393 }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2488,
+          "endLine1based": 2493,
+          "section": "삼각형의 내각과 외각",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"삼각형의 내각과 외각\",\n    orderIndex: 397,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2745,
+          "endLine1based": 2750,
+          "section": "이등변삼각형의 성질",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"이등변삼각형의 성질\",\n    orderIndex: 446,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2793,
+          "endLine1based": 2798,
+          "section": "평행선과 삼각형의 넓이",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"평행선과 삼각형의 넓이\",\n    orderIndex: 454,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2813,
+          "endLine1based": 2818,
+          "section": "삼각형에서 평행선 사이의 선분의 길이의 비",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"7. 닮음의 활용\",\n    section: \"삼각형에서 평행선 사이의 선분의 길이의 비\",\n    orderIndex: 457,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2825,
+          "endLine1based": 2830,
+          "section": "평행선 사이의 선분의 길이의 비",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"7. 닮음의 활용\",\n    section: \"평행선 사이의 선분의 길이의 비\",\n    orderIndex: 459,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2955,
+          "endLine1based": 2960,
+          "section": "삼각비의 뜻",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2961,
+          "endLine1based": 2966,
+          "section": "삼각비의 값",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2967,
+          "endLine1based": 2972,
+          "section": "삼각비의 활용",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  }"
+        }
+      ]
+    }
+  },
+  "evidence": {
+    "sealedRawCommit": "383a5f7634ce3dc8979afd35cc9e058dc0d4c4fa",
+    "rawSolveSha256": "c59e4b8e2d3a0d9751c4ddf753e7f7410f74f3f4becaea4bef6343c800547104",
+    "rawUnedited": true,
+    "newAuthorExposureAuthorizedOnlyAfterRawBinding": true,
+    "noPriorAnswerPrivateFactsOrHelperTargetBeforeRawCommit": true,
+    "bindingValidation": {
+      "path": "binding-validation.json",
+      "sha256": "98db19ecec17e749b841700d5e7d3882f768ea0da82428dc263c50851013bc04"
+    },
+    "freshAnswerEquivalenceAndMath": {
+      "path": "answer-equivalence-and-math.json",
+      "sha256": "f58a050deca0d4b7c88830a4cc9597f94bc4465ff6927566c1daf91b36517246"
+    },
+    "freshReviewCode": {
+      "path": "review_calculations.py",
+      "sha256": "1698556a302ebd215eef91f837a8d58e8891c4d34272b08f406fec9713b1ee59"
+    },
+    "originalRawCodeHashRetained": "242bd74e7f930c45d94830b327689a9f36783f27ac487565bae0be96c546385d",
+    "officialCurriculum": {
+      "path": "curriculum-evidence.json",
+      "sha256": "dbbac206e9000a35d86d73db69da23eef7198127278060b97fc7be0b3eeac6f7"
+    },
+    "visualAndSourceCore": {
+      "path": "visual-review.json",
+      "sha256": "53ff38993e27936cacf0848d23e52575b47176835c2f270980519c5193c001e4"
+    },
+    "strictEngine": {
+      "path": "strict-engine-check.json",
+      "sha256": "f0cbf21bfb57bad05145218046e1384bfd6bbecd0f5000a405c1b82ba8c74777"
+    },
+    "expandedRender": {
+      "path": "render-preview-check.json",
+      "sha256": "dabf5692f67dd7ccafa9398bc5a2ccd74d785c0c52cf2a7ca66b3bc2e615f808"
+    },
+    "taxonomy": {
+      "path": "taxonomy-evidence.json",
+      "sha256": "000c7a5fc0b8f43bb2e2ddd159645ba8825a1544054a3b71044704c3e7dc2be7"
+    },
+    "sourceQuestionOnly": {
+      "path": "inputs/source-question-only.json",
+      "sha256": "e7492cb4e140003207bf09040959312a84ba35d8bc1fc05a9bab249eeca85294"
+    },
+    "sourceProvidedDigest": "392220d015d572d27b2784214b0935d38440d4686945c0442a0409a3484e14d0",
+    "sourceCanonicalDigest": "acf02f0934ba10ef6c54d42dd7fba833d2d6699599d1ed40f37cd1b2a962ba59",
+    "sourceStatementDoesNotApproveCustody": "Source crop compares question concept/score/figure only; no exam header/custody/publisher permission asserted from this crop.",
+    "sourceAnnotationDisclosure": "No original answer/key annotation seen in this clean supplied crop; older other-exam incidental exposure already disclosed and unused.",
+    "answerFormatLimit": "A comparator expecting only a circled mark may reject the raw worked-value suffix. Preserve bytes; use this typed role/index/physical-length evidence. No global answer string normalization is an algebra proof.",
+    "rawAndAuthorLiteralTextEqual": false,
+    "typedRoleUnitExactAnswerMeaningEquivalent": true,
+    "noLiteralOverrideOrRawNormalizationPerformed": true,
+    "authorPrivateFactsEvaluatedAsSupplementalNotIndependentProof": true,
+    "futureRepublication": "2015 source-era/content suitability only;2027 middle3 applicability requires fresh2022 review.",
+    "difficulty": {
+      "proposal": "응용",
+      "assessmentOperations": [
+        "same-angle geometric transfer",
+        "adjacent/hypotenuse choice",
+        "radius normalization",
+        "distinguish five segment expressions"
+      ],
+      "objectiveTaskJudgment": "응용 proposal reasonable for this modest geometry-definition combination; independent observed task, not registry descriptor or measured student performance.",
+      "measuredDifficultyClaim": false
+    },
+    "inferenceApiCalls": 0,
+    "databaseCalls": 0,
+    "mathProbabilityApproval": false
+  },
+  "dimensionResults": {
+    "mathematics": "passed",
+    "sevenSurfaceGrade": "passed",
+    "sourceCoreAndProcedure": "passed",
+    "substantiveStructureAndRepresentation": "passed",
+    "naturalKorean": "passed",
+    "scoreAndObjectiveDifficulty": "passed",
+    "exactUnitFamily": "pending",
+    "problemTypeClassification": "pending-null",
+    "sourceIdentityFullCustody": "held",
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "fullReview": "pending",
+    "loadable": false
+  },
+  "holds": [
+    {
+      "dimension": "unitFamilyFit",
+      "status": "pending",
+      "affectedQuestionNumbers": [
+        22
+      ],
+      "frozenUnitId": null,
+      "frozenFamilyKey": null,
+      "actualNearbyRule": "mid:3-2|삼각비|12",
+      "actualNearbyLiveCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "actualNearbyLiveCount": 20,
+      "reason": "family12 uses unit-radius quadrant, numeric ang25..65, given rounded BH/OH/AT, and numeric one-ratio or two-ratio sum at the center angle. This candidate uses radius2, no numeric alpha, parallel-angle transfer atT and a symbolic length expression for beta. Shared figure/concept is observed, whole assessed procedure/output branch is not present.",
+      "scope": "Exact selected Unit plus full-purpose family/rule mapping, separate from math/curriculum/source-core judgments",
+      "reopeningCriteria": "Select actual target Unit and prove an exact whole-purpose live family/rule mapping, or separately approve a new family. Inverse helper existence/title/numeric proximity is not sufficient. No currentDB read required by this scoped review.",
+      "currentDBApprovalOrNewLabelInvented": false
+    },
+    {
+      "dimension": "problemType",
+      "status": "pending",
+      "affectedQuestionNumbers": [
+        22
+      ],
+      "reason": "Frozen problemTypeProposal=null; exact product classification not supplied/approved. No core-description label invented."
+    }
+  ],
+  "outsideGradeRejected": false,
+  "materialGradeHold": null,
+  "unrelatedWholePolicyCompletenessGateAdded": false,
+  "rightsApproved": false,
+  "custodyApproved": false,
+  "nativeProvenanceApproved": false,
+  "overallVerified": false,
+  "loadable": false,
+  "completedScopedReview": true,
+  "reviewedAtUtc": "2026-10-12T04:26:19.144675+00:00"
+}
