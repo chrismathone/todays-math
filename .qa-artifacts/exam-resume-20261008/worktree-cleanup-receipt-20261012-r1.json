@@ -1,0 +1,67 @@
+{
+  "kind": "user-directed-worktree-cleanup/v1",
+  "utc": "2026-10-12T04:39:40.325852+00:00",
+  "archive": "C:\\Users\\user\\orca\\artifacts\\outputs\\worktree-cleanup-20261012-r1",
+  "rows": [
+    {
+      "name": "bank-source-h1",
+      "directoryRemoved": true,
+      "branchPreserved": true,
+      "head": "a0c62c5c01a425dd784ab343ab1e9efb0349a321",
+      "evidenceFilesArchived": 29,
+      "evidenceBytesArchived": 2027284
+    },
+    {
+      "name": "engine-judge-2",
+      "directoryRemoved": true,
+      "branchPreserved": true,
+      "head": "bbeafa958dc6fde98f3b75394b35ac450991aa29",
+      "evidenceFilesArchived": 119,
+      "evidenceBytesArchived": 11882439
+    },
+    {
+      "name": "todayenglish-hifi",
+      "directoryRemoved": true,
+      "branchPreserved": true,
+      "head": "94051e7808cfd768babef55b3bf2ebd7da353328",
+      "evidenceFilesArchived": 135,
+      "evidenceBytesArchived": 13464687
+    },
+    {
+      "name": "exam-twin-contracts-20261008",
+      "directoryRemoved": true,
+      "branchPreserved": true,
+      "head": "5a56d5ba72353db0741b2d4435b2974a0f51eb52",
+      "evidenceFilesArchived": 0,
+      "evidenceBytesArchived": 0
+    },
+    {
+      "name": "exam-twin-curriculum-20261008",
+      "directoryRemoved": true,
+      "branchPreserved": true,
+      "head": "1b590efbc190dc9c1a51ae813cf058421c30f409",
+      "evidenceFilesArchived": 22,
+      "evidenceBytesArchived": 65922780
+    },
+    {
+      "name": "exam-twin-next-five-20261008",
+      "directoryRemoved": true,
+      "branchPreserved": true,
+      "head": "4cc9278da2803f10090eb5043758ed7d19d2cfdc",
+      "evidenceFilesArchived": 0,
+      "evidenceBytesArchived": 0
+    }
+  ],
+  "fullyRemoved": 6,
+  "branchesPreserved": 6,
+  "activeExamWorktreesRetained": 4,
+  "unmergedOrDirtyOtherWorktreesRetained": [
+    "engine-judge",
+    "high-wiring",
+    "student-clear-e3e4-20261006",
+    "student-clear-e5e6-20261006"
+  ],
+  "sharedNextDependencySHA256": "6da8fc4823b66b8f2906d150002618e3f3e0d2446ebf3823b2a2f7efe73a46a4",
+  "noSharedDependencyMutation": true,
+  "originalSourceAndCodexLogsNotRemoved": true
+}

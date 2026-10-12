@@ -1,0 +1,35 @@
+{
+  "createdAt": "2026-10-12T04:40:36.696476+00:00",
+  "readerRelocation": {
+    "fromDeletedWorktree": "exam-twin-next-five-20261008",
+    "retainedReader": ".qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\extract_source.py",
+    "sha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb",
+    "byteExactWithOriginalBeforeRemoval": true,
+    "newAdapter": ".qa-artifacts\\exam-resume-20261008\\extract-next-three-source-r3.py",
+    "capturedOldAdaptersUnchanged": true
+  },
+  "actualR3ImportAndDependencyContextSucceeded": true,
+  "attemptOutput": "reader-context-after-cleanup-r3-neungin",
+  "extractionReachedOriginalRead": true,
+  "extractionBlockedReason": "N:/ is not mounted in current process; FileNotFoundError on unchanged inventoried original HWP path",
+  "newParsedParents": 0,
+  "previous253NotIncremented": true,
+  "originalFilesModified": false,
+  "knownFailuresPreserved": [
+    {
+      "attempt": "gyeongsan-q22-bound-final-r2",
+      "failure": "Copied blind already contained empty solve directory; mkdir EEXIST"
+    },
+    {
+      "attempt": "gyeongsan-q22-bound-final-r2-attempt2",
+      "failure": "Original source uses number/sourceQuestionId, not questionNumber/externalId; source-only row lookup failed"
+    },
+    {
+      "attempt": "gyeongsan-q22-bound-final-r2-attempt3",
+      "result": "sealed raw bytes bound successfully; source-only22/images supplied after verification"
+    }
+  ],
+  "globalGoalBlocked": false,
+  "availableWorkContinues": "Cached source67/59 audit, fresh q22 final and GF15 review, metadata/code work",
+  "dbWrites": 0
+}

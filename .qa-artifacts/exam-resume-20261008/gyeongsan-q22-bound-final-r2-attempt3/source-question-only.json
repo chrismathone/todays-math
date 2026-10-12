@@ -1,0 +1,131 @@
+{
+  "number": 22,
+  "stem": "반지름의 길이가 $1$인 사분원에서 옳은 것은? [$4$점]",
+  "choices": [
+    "$\\sin x=\\overline{DE}$",
+    "$\\tan x=\\overline{BC}$",
+    "$\\sin y=\\overline{BC}$",
+    "$\\cos z=\\overline{BC}$",
+    "$\\tan z=\\overline{DE}$"
+  ],
+  "hwpScriptStem": "반지름의 길이가 $1$인 사분원에서 옳은 것은? [$4$점]",
+  "hwpScriptChoices": [
+    "$sinx= rm {bar{DE}} it$",
+    "$tanx= rm {bar{BC}} it$",
+    "$siny= rm {bar{BC}} it$",
+    "$cosz= rm {bar{BC}} it$",
+    "$tanz= rm {bar{DE}} it$"
+  ],
+  "scoreEvidence": {
+    "selectedHwpPdfPrintedParentScore": 4,
+    "selectedPairScoreStatus": "literal_match",
+    "originalPrintedParentScore": 4,
+    "referenceParentScore": 4,
+    "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+    "parentCountedOnce": true,
+    "childScores": [],
+    "subquestionCount": 0,
+    "parentAndChildrenMustNotBeAddedTogether": false
+  },
+  "subQuestions": [],
+  "structuredGivenData": {},
+  "figureGivenObservation": "반지름 1 사분원; A,F,E,D,B,C 점과 x,y,z 각 대응.",
+  "curriculum": {
+    "sourceGrade": "중3",
+    "expectedAppliedCurriculum": "2015",
+    "status": "hold_full_item_review",
+    "fullApproval": false,
+    "conceptCandidate": "삼각비의 정의·값·활용",
+    "coreMethodCandidate": "사분원 안의 점/수선/접선에서 각과 해당 선분의 대응을 비교한다.",
+    "officialStandardsCandidates": [
+      {
+        "code": "9수04-18",
+        "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+        "pdfPage": 38,
+        "printedPage": 34,
+        "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+        "notPerQuestionApproval": true
+      }
+    ],
+    "localUnitCandidate": {
+      "grade": "중3",
+      "chapter": "5. 삼각비",
+      "seedFile": "prisma/seed-data/units.ts",
+      "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+      "liveUnitId": null
+    },
+    "liveFamilyId": null,
+    "generatorRuleId": null,
+    "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+    "specificRisk": null,
+    "decisionIfNoLegalGradeMethod": "reject",
+    "decisionIfUnclear": "hold",
+    "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+    "requiredReview": [
+      "stem",
+      "all choices",
+      "figure meaning",
+      "notation",
+      "answer format",
+      "new answer",
+      "student solution",
+      "required steps",
+      "prerequisites"
+    ],
+    "signDomainUnitsGate": [
+      "signs and radicals",
+      "angle range 0-90 degrees",
+      "nonzero denominators",
+      "positive lengths/areas",
+      "units",
+      "existence",
+      "uniqueness"
+    ],
+    "sourceSchoolOrAIConfidenceCannotApprove": true
+  },
+  "sourceContentDigest": "392220d015d572d27b2784214b0935d38440d4686945c0442a0409a3484e14d0",
+  "sourceQuestionId": "2025-gyeongsan-3-2-mid-22",
+  "status": "source_reference_reviewed_all_final_approval_gates_held",
+  "sourceAmbiguityHolds": [
+    "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+    "source_custody_rights_permission_pending",
+    "canonical_text_product_render_review_pending"
+  ],
+  "sharedContext": null,
+  "images": [
+    {
+      "file": "images/q22-part1.png",
+      "sha256": "c7797cf295e4b5b0d07d3b63433995720b07fd6ba96e0ef0f36541273a9a89f9",
+      "page": 6,
+      "column": 0,
+      "bbox": [
+        55,
+        83,
+        375,
+        570.0053100585938
+      ]
+    }
+  ],
+  "subquestionNumbers": [],
+  "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+  "selectedHwpAnchor": {
+    "stream": "BodyText/Section0",
+    "recordIndex": 2202,
+    "inflatedByteOffset": 95016,
+    "tag": 71,
+    "level": 1,
+    "payloadSha256": "9c1555df5b4d6e307cf492eb061a397645e07c0404c3d4ecb4916b9400b63543"
+  },
+  "selectedPdfRegions": [
+    {
+      "page": 6,
+      "column": 0,
+      "bbox": [
+        55,
+        83,
+        375,
+        570.0053100585938
+      ]
+    }
+  ]
+}

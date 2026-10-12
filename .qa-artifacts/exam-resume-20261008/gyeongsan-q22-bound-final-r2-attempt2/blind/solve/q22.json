@@ -1,0 +1,262 @@
+{
+  "studentDigest": "b5461ade7464e5e10e30d83f391d25e53590ff1ba7b1e450cdb249510172e109",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "answer": "④, $\\cos\\beta=\\dfrac{SQ}{2}$",
+  "solution": "삼각형 $OUT$는 $U$에서 직각이다. $O,Q,T$가 이 순서로 한 직선 위에 있으므로 $TQ$와 $TO$는 같은 반직선이다. 따라서 $\\angle UTQ=\\angle UTO=\\beta$이고, 삼각형 $OUT$의 두 예각에서 $\\alpha+\\beta=90^\\circ$이다.\n\n삼각형 $OQS$는 $S$에서 직각이고 $\\angle QOS=\\alpha$이므로 $\\angle OQS=90^\\circ-\\alpha=\\beta$이다. 이 삼각형에서 각 $OQS$의 이웃변은 $QS$, 빗변은 반지름 $QO=2$이다. 코사인의 정의에 따라 $\\cos\\beta=\\frac{QS}{QO}=\\frac{SQ}{2}$이다. 따라서 정답은 ④이다.\n\n다른 네 식도 주어진 전체 각 범위에서 일치하지 않는다. $0^\\circ<\\alpha<45^\\circ$이므로 $0<SQ<OS$이다. 이를 도형으로 확인하려면 $O$에서 $OU$와 $45^\\circ$를 이루는 반직선과 직선 $SQ$의 교점을 $V$라 한다. 삼각형 $OSV$는 직각이등변삼각형이어서 $SV=OS$이고, $S,Q,V$가 이 순서로 놓이므로 $SQ<SV=OS$이다. 또 $SQ$는 빗변 $OQ=2$보다 짧아 $0<SQ<2$이다.\n\n① $\\frac{OS}{2}>\\frac{SQ}{2}$이므로 다르다. 두 식이 같으려면 두 직각변이 같고 $\\alpha=45^\\circ$여야 하므로 주어진 범위에서도 제외된다.\n\n② 큰 직각삼각형에서는 $\\cos\\beta=\\frac{UT}{OT}$이다. $O,Q,T$의 순서 때문에 $OT>OQ=2$이고 $UT>0$이므로 $\\frac{UT}{2}>\\frac{UT}{OT}=\\cos\\beta$이다.\n\n③ $\\frac{2}{SQ}>1$인 반면 $\\frac{SQ}{2}<1$이므로 다르다.\n\n⑤ $\\frac{OS}{SQ}>1$인 반면 $\\frac{SQ}{2}<1$이므로 다르다.\n\n④만 모든 허용된 각에서 맞는다. 답은 같은 길이 단위끼리 나눈 비이므로 단위가 없다. 각이나 길이 하나의 숫자값을 결정할 필요는 없다.",
+  "evidence": {
+    "stage": "blind-solve-before-new-author-answer-exposure",
+    "solverIndependentOfThisCandidateAuthor": true,
+    "accessDisclosure": {
+      "path": "access-disclosure.json",
+      "sha256": "64d6463665b9c74726e77b7c15227b9f6e2906b328c0d4fb6bef36d9539b946b"
+    },
+    "priorExposureToThisR2AuthorAnswersOrPrivateFacts": false,
+    "newHelperTestTargetAccess": false,
+    "inputReceipt": {
+      "path": "input-receipt.json",
+      "sha256": "b64b3f0248139acb1afdb594f9ce56f81439da5006da50957a82d719af21eb64"
+    },
+    "studentDigestRecomputedFromExactStudentPayload": true,
+    "rawInputHashes": {
+      "studentProblems": "970403506c97e1a108ee4e5570e67e0605667fb25b7d2a8decfa0cc6519ad09b",
+      "manifest": "c4d07c05691a639250882dac780dbb8b9ed9eccc0db5b8a34a0e42019d0c254e",
+      "brief": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+      "figure": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111"
+    },
+    "freshCode": {
+      "path": "calculate.py",
+      "sha256": "242bd74e7f930c45d94830b327689a9f36783f27ac487565bae0be96c546385d"
+    },
+    "exactProof": {
+      "path": "proofs/q22-exact-calculations.json",
+      "sha256": "039173db38d246f9cc1ced0617b4360507da95f5bdf03657e77eff3c23e148e1"
+    },
+    "chosenChoiceIndex1based": 4,
+    "requestedRole": "cos beta expressed by drawn line lengths",
+    "exactRequestedExpression": "\\frac{SQ}{2}",
+    "allFiveChoices": [
+      {
+        "index1based": 1,
+        "choiceMark": "①",
+        "actualStudentExpression": "$\\dfrac{OS}{2}$",
+        "exactExpressionFromActualLengths": "1/sqrt(k**2 + 1)",
+        "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+        "differenceFromTarget": "(1 - k)/sqrt(k**2 + 1)",
+        "positiveOrZeroCertificate": {
+          "difference": "(1-k)/sqrt(1+k²)",
+          "positiveFactors": [
+            "1-k>0",
+            "sqrt(1+k²)>0"
+          ],
+          "domainProof": "0<k<1"
+        },
+        "equalOnEntireLegalDomain": false,
+        "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+        "units": "dimensionless"
+      },
+      {
+        "index1based": 2,
+        "choiceMark": "②",
+        "actualStudentExpression": "$\\dfrac{UT}{2}$",
+        "exactExpressionFromActualLengths": "ell*k/sqrt(k**2 + 1)",
+        "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+        "differenceFromTarget": "k*(ell - 1)/sqrt(k**2 + 1)",
+        "positiveOrZeroCertificate": {
+          "difference": "(ell-1)*k/sqrt(1+k²)",
+          "positiveFactors": [
+            "ell-1>0",
+            "k>0",
+            "sqrt(1+k²)>0"
+          ],
+          "domainProof": "ell=OT/OQ>1 by O-Q-T ordering"
+        },
+        "equalOnEntireLegalDomain": false,
+        "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+        "units": "dimensionless"
+      },
+      {
+        "index1based": 3,
+        "choiceMark": "③",
+        "actualStudentExpression": "$\\dfrac{2}{SQ}$",
+        "exactExpressionFromActualLengths": "sqrt(k**2 + 1)/k",
+        "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+        "differenceFromTarget": "1/(k*sqrt(k**2 + 1))",
+        "positiveOrZeroCertificate": {
+          "difference": "1/(k*sqrt(1+k²))",
+          "positiveFactors": [
+            "1>0",
+            "k>0",
+            "sqrt(1+k²)>0"
+          ],
+          "domainProof": "0<k<1"
+        },
+        "equalOnEntireLegalDomain": false,
+        "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+        "units": "dimensionless"
+      },
+      {
+        "index1based": 4,
+        "choiceMark": "④",
+        "actualStudentExpression": "$\\dfrac{SQ}{2}$",
+        "exactExpressionFromActualLengths": "k/sqrt(k**2 + 1)",
+        "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+        "differenceFromTarget": "0",
+        "positiveOrZeroCertificate": {
+          "difference": "0",
+          "domainProof": "identically equal for the whole legal domain"
+        },
+        "equalOnEntireLegalDomain": true,
+        "thisAlternativeHasNoEqualityAtAnyLegalAngle": false,
+        "units": "dimensionless"
+      },
+      {
+        "index1based": 5,
+        "choiceMark": "⑤",
+        "actualStudentExpression": "$\\dfrac{OS}{SQ}$",
+        "exactExpressionFromActualLengths": "1/k",
+        "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+        "differenceFromTarget": "-k/sqrt(k**2 + 1) + 1/k",
+        "positiveOrZeroCertificate": {
+          "difference": "(sqrt(1+k²)-k²)/(k*sqrt(1+k²))",
+          "positiveFactors": [
+            "sqrt(1+k²)>1>k²",
+            "k>0",
+            "sqrt(1+k²)>0"
+          ],
+          "domainProof": "0<k<1 implies k²<1"
+        },
+        "equalOnEntireLegalDomain": false,
+        "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+        "units": "dimensionless"
+      }
+    ],
+    "fullDomain": {
+      "alpha": "0°<alpha<45°",
+      "beta": "45°<beta<90°",
+      "k": "0<k=SQ/OS<1",
+      "ell": "OT/OQ>1",
+      "allFiveExpressionsDefined": true,
+      "SQDenominatorsStrictlyPositive": true,
+      "boundaryCasesExcluded": [
+        "alpha0 makes SQ0 and a degenerate T angle; reciprocal options undefined",
+        "alpha45 permits the two equal legs, but is outside the stated domain"
+      ]
+    },
+    "existenceAndUniqueness": "Unique expression④ on the full legal domain; no single numerical angle, cos value or all lengths are fixed by the input.",
+    "positiveLengthsAndOrder": {
+      "parameters": {
+        "k": "actual SQ/OS, 0<k<1",
+        "ell": "actual OT/OQ>1, hence UT=ell*SQ by similar right triangles",
+        "w": "sqrt(1+k²)>1"
+      },
+      "exactExistenceWitnessForEveryLegalK": {
+        "O": [
+          "0",
+          "0"
+        ],
+        "S": [
+          "2/sqrt(k**2 + 1)",
+          "0"
+        ],
+        "Q": [
+          "2/sqrt(k**2 + 1)",
+          "2*k/sqrt(k**2 + 1)"
+        ],
+        "U": [
+          "2",
+          "0"
+        ],
+        "T": [
+          "2",
+          "2*k"
+        ]
+      },
+      "exactWitnessLengths": {
+        "OQ": "2",
+        "OU": "2",
+        "OS": "2/sqrt(k**2 + 1)",
+        "SQ": "2*k/sqrt(k**2 + 1)",
+        "OT": "2*sqrt(k**2 + 1)",
+        "UT": "2*k",
+        "QT": "2*sqrt(k**2 + 1) - 2",
+        "SU": "2 - 2/sqrt(k**2 + 1)"
+      },
+      "witnessChecks": [
+        "OQ=OU=2",
+        "Q lies on the quadrant, both coordinates positive",
+        "OS²+SQ²=4",
+        "O,Q,T collinear with T=w*Q and w>1",
+        "QS and UT vertical, OU and OS horizontal; both right angles verified",
+        "OS>0,SQ>0,UT>0,QT=2(w-1)>0,SU=2(1-1/w)>0",
+        "O-S-U and O-Q-T order are nondegenerate",
+        "alpha between0 and45 follows 0<SQ/OS=k<1; beta=90-alpha lies between45 and90",
+        "UT/OT=SQ/OQ=SQ/2 by the two corresponding right-triangle cosine definitions"
+      ],
+      "angleCorrespondenceStudentProof": "TQ is the same ray as TO because O-Q-T; triangleOUT right atU gives beta+alpha=90. TriangleOQS right atS has angleOQS=beta, so adjacent leg is QS and hypotenuse is QO.",
+      "fullDomainProofIsNotNumericalSampling": true,
+      "actualSVGCoordinatesOrPixelsAsOracle": false
+    },
+    "unit": "dimensionless",
+    "figureView": {
+      "inputSvg": {
+        "path": "blind/figures/q22-1.svg",
+        "sha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111"
+      },
+      "png": {
+        "path": "figures-view/q22-1-70mm.png",
+        "sha256": "8780daad77993d4d10eb787287c30673f4c2f894400d35a6189256b327cbd5a9"
+      },
+      "intendedWidthMm": 70,
+      "actualSvgWidthMm": 69.998828125,
+      "actualCssBounds": {
+        "x": 0,
+        "y": 0,
+        "width": 264.5625,
+        "height": 244.03125
+      },
+      "deviceScaleFactor": 2,
+      "method": "Existing local headless Playwright displays only supplied student SVG at70mm; no new math drawing or PDF",
+      "priorAttempt": {
+        "library": "installed cairosvg Python module",
+        "result": "cairo shared library absent; no render or input writes before failure; no install attempted"
+      },
+      "networkRequests": [],
+      "coordinatesOrPixelsUsedAsMathematicalOracle": false,
+      "actualViewImageInspectionPending": false,
+      "noSourceFigureOrOriginalSolutionRead": true,
+      "directViewImageCompleted": true,
+      "observations": "All O,Q,S,T,U and alpha,beta labels and both right-angle marks legible. Beta is at T between TU/TQ; O-Q-T collinearity and O-S-U order visible. Q and U are on the drawn quadrant. No pixel-derived angle or length used."
+    },
+    "actualFigureObservation": "Direct view_image of only the supplied student SVG rendered at70mm: Q lies on the arc, O-Q-T line, S and U right-angle marks, alpha atO and beta atT, U at quadrant endpoint, O-S-U order. All labels readable; beta arc belongs to TU/TQ. No coordinates/pixel distance used to derive math.",
+    "sevenStudentSurfaces": {
+      "stem": "Quarter-circle radius2, line order and two perpendiculars determine the equal angle in triangleOQS. The open angle bound keeps both triangles nondegenerate.",
+      "choices": "All five actual expressions checked symbolically over 0<k<1 and ell>1; exactly④ is equal. Four alternatives strictly larger, no exceptional legal alpha.",
+      "figuresAndTables": "One supplied SVG; actual70mm view has all O,Q,S,T,U and alpha,beta/right marks. No table or extra student asset.",
+      "notation": "Only Greek angle names, acute-degree bound and elementary length ratios; no general trig function identities/addition or upper-grade notation needed.",
+      "answer": "One circled option④ with exact length-ratio value SQ/2; dimensionless, not an invented numerical cos value.",
+      "studentSolution": "Two right-triangle angle sums/line correspondence and the cosine adjacent/hypotenuse definition. Optional45-degree isosceles construction checks the four alternatives without a trig identity.",
+      "prerequisites": "Middle1 triangle angles/right angles, middle2 right-isosceles triangle property, middle3 trigonometric ratio definition. Developer algebra/coordinate witness is supplemental, not a demanded student method."
+    },
+    "curriculumBoundedObservation": {
+      "basis": "2015 middle3",
+      "previouslyReadOfficialDefinitions": [
+        "9수04-05 polygon/triangle angle properties",
+        "9수04-10 isosceles properties",
+        "9수04-17 simple trigonometric ratio definitions"
+      ],
+      "generalInterRatioOrComplementaryTrigIdentityUsed": false,
+      "sineCosineLawOrAdditionFormulaUsed": false,
+      "outsideGradeRequiredMethodDetected": false,
+      "authorSolutionOrSevenSurfaceFinalGradeNotYetSeen": true,
+      "fullContentFamilyRightsNativeLoadingApproval": false
+    },
+    "limits": [
+      "The supplied author answer/solution/private figure spec/facts and helper target were not read; these remain for a later authorized review.",
+      "This stage proves only the supplied student problem and fresh solver answer; no source/core/family/custody/rights/native/loading approval.",
+      "Allowed angles/configurations form a continuum; requested expression has a unique correct choice, not a unique numeric value."
+    ],
+    "originalAnswerApproval": false,
+    "inferenceApiCalls": 0
+  },
+  "status": "solved"
+}
