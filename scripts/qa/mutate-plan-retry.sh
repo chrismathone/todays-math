@@ -89,11 +89,11 @@ mutate "① 단원을 무시하고 키만 본다" \
   'const fid = String(w.familyKey ?? w.id);'
 
 mutate "② 원문 자신을 형제에서 안 뺀다" \
-  '(p) => p.id !== w.id,' \
+  '(p) => p.id !== w.id && !usedProblemIds.has(p.id),' \
   '() => true,'
 
 mutate "③ 격리 문항(D-26)을 형제로 쓴다" \
-  'if (!p.directUseAllowed) continue; // D-26' \
+  'if (!eligible(p)) continue; // 공용 · 승인 · D-26 · 정답 자격' \
   '// D-26 가드를 뺐다'
 
 mutate "④ 부족을 늘 0으로 보고한다" \
@@ -116,10 +116,22 @@ mutate "⑧ 자리가 찼는데도 계속 넣는다" \
   'if (picked.length >= count) {' \
   'if (false) {'
 
+mutate "⑨ 교과서 원문도 일반 갈래로 접는다" \
+  'if (w.source === "school_textbook") {' \
+  'if (false) {'
+
+mutate "⑩ 변형 출처 확인 없이 교과서 쌍으로 쓴다" \
+  'p.source === "transformed" &&' \
+  'true &&'
+
+mutate "⑪ 다른 오답 원문 id를 변형으로 재출제한다" \
+  'slots.includes(p.externalId ?? "") && !wrongIds.has(p.id)' \
+  'slots.includes(p.externalId ?? "")'
+
 echo
 restore
 if [ $FAIL -eq 0 ]; then
-  echo "🟢 변이 8개 전부 빨강 — 가드가 실제로 문다."
+  echo "🟢 변이 11개 전부 빨강 — 가드가 실제로 문다."
 else
   echo "🔴 초록이거나 판정을 거부한 변이가 있다 — 위를 볼 것."
 fi

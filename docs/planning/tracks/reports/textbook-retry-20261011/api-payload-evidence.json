@@ -1,0 +1,149 @@
+{
+  "fixture": "In-memory synthetic fixture; not production IDs, content or approvals",
+  "request": {
+    "method": "POST",
+    "path": "/api/tests/90000000-0000-4000-8000-000000000050/retry",
+    "body": {
+      "studentId": "30000000-0000-4000-8000-000000000001",
+      "testResultId": "ebd66d1a-1741-4cff-bc7b-d541dc6bcfc4"
+    }
+  },
+  "response": {
+    "status": 200,
+    "data": {
+      "testId": "90000000-0000-4000-8000-000000000050",
+      "studentId": "30000000-0000-4000-8000-000000000001",
+      "testResultId": "ebd66d1a-1741-4cff-bc7b-d541dc6bcfc4",
+      "wrongProblemIds": [
+        "5466e1c1-3181-48da-bbd1-46ceb124d42c",
+        "f954aee9-2ee3-4583-af0a-8cbc6dc46e11"
+      ],
+      "requestedCount": 4,
+      "picked": [
+        {
+          "problem": {
+            "id": "cbc0c04d-a746-4517-9b74-00b1322087ee",
+            "problemCode": "J20101-22ZM",
+            "userId": "10000000-0000-4000-8000-000000000001",
+            "unitId": "40000000-0000-4000-8000-000000000001",
+            "source": "transformed",
+            "originProblemId": "5466e1c1-3181-48da-bbd1-46ceb124d42c",
+            "familyKey": "retry-fixture-F",
+            "difficulty": "기본",
+            "problemType": "개념",
+            "questionType": null,
+            "content": "$4+2$의 값은?",
+            "answer": "$6$",
+            "solution": null,
+            "reviewStatus": "approved",
+            "directUseAllowed": true,
+            "pool": "shared",
+            "figureUrls": [],
+            "choiceFigureIndex": [],
+            "figureSvg": null,
+            "createdAt": "2026-10-11T04:22:40.294Z",
+            "updatedAt": "2026-10-11T04:22:40.294Z",
+            "figureDims": [],
+            "figureSourceMm": [],
+            "externalId": "tb-retry-v1:5466e1c1-3181-48da-bbd1-46ceb124d42c:1"
+          },
+          "wrongProblemId": "5466e1c1-3181-48da-bbd1-46ceb124d42c",
+          "origin": "형제"
+        },
+        {
+          "problem": {
+            "id": "54bc4f21-8a43-4c56-bd4e-1be56e9d1798",
+            "problemCode": "J20101-22ZN",
+            "userId": "10000000-0000-4000-8000-000000000001",
+            "unitId": "40000000-0000-4000-8000-000000000001",
+            "source": "transformed",
+            "originProblemId": "5466e1c1-3181-48da-bbd1-46ceb124d42c",
+            "familyKey": "retry-fixture-F",
+            "difficulty": "기본",
+            "problemType": "개념",
+            "questionType": null,
+            "content": "$5+2$의 값은?",
+            "answer": "$7$",
+            "solution": null,
+            "reviewStatus": "approved",
+            "directUseAllowed": true,
+            "pool": "shared",
+            "figureUrls": [],
+            "choiceFigureIndex": [],
+            "figureSvg": null,
+            "createdAt": "2026-10-11T04:22:40.294Z",
+            "updatedAt": "2026-10-11T04:22:40.294Z",
+            "figureDims": [],
+            "figureSourceMm": [],
+            "externalId": "tb-retry-v1:5466e1c1-3181-48da-bbd1-46ceb124d42c:2"
+          },
+          "wrongProblemId": "5466e1c1-3181-48da-bbd1-46ceb124d42c",
+          "origin": "형제"
+        },
+        {
+          "problem": {
+            "id": "e3e98c81-74c2-4896-af5f-03c945af99e4",
+            "problemCode": "J20101-22ZK",
+            "userId": "10000000-0000-4000-8000-000000000001",
+            "unitId": "40000000-0000-4000-8000-000000000001",
+            "source": "transformed",
+            "originProblemId": "f954aee9-2ee3-4583-af0a-8cbc6dc46e11",
+            "familyKey": "retry-fixture-F",
+            "difficulty": "기본",
+            "problemType": "개념",
+            "questionType": null,
+            "content": "$4+2$의 값은?",
+            "answer": "$6$",
+            "solution": null,
+            "reviewStatus": "approved",
+            "directUseAllowed": true,
+            "pool": "shared",
+            "figureUrls": [],
+            "choiceFigureIndex": [],
+            "figureSvg": null,
+            "createdAt": "2026-10-11T04:22:40.294Z",
+            "updatedAt": "2026-10-11T04:22:40.294Z",
+            "figureDims": [],
+            "figureSourceMm": [],
+            "externalId": "tb-retry-v1:f954aee9-2ee3-4583-af0a-8cbc6dc46e11:1"
+          },
+          "wrongProblemId": "f954aee9-2ee3-4583-af0a-8cbc6dc46e11",
+          "origin": "형제"
+        },
+        {
+          "problem": {
+            "id": "442c29ce-8c3b-451f-a971-99d5b8740f32",
+            "problemCode": "J20101-22ZL",
+            "userId": "10000000-0000-4000-8000-000000000001",
+            "unitId": "40000000-0000-4000-8000-000000000001",
+            "source": "transformed",
+            "originProblemId": "f954aee9-2ee3-4583-af0a-8cbc6dc46e11",
+            "familyKey": "retry-fixture-F",
+            "difficulty": "기본",
+            "problemType": "개념",
+            "questionType": null,
+            "content": "$5+2$의 값은?",
+            "answer": "$7$",
+            "solution": null,
+            "reviewStatus": "approved",
+            "directUseAllowed": true,
+            "pool": "shared",
+            "figureUrls": [],
+            "choiceFigureIndex": [],
+            "figureSvg": null,
+            "createdAt": "2026-10-11T04:22:40.294Z",
+            "updatedAt": "2026-10-11T04:22:40.294Z",
+            "figureDims": [],
+            "figureSourceMm": [],
+            "externalId": "tb-retry-v1:f954aee9-2ee3-4583-af0a-8cbc6dc46e11:2"
+          },
+          "wrongProblemId": "f954aee9-2ee3-4583-af0a-8cbc6dc46e11",
+          "origin": "형제"
+        }
+      ],
+      "shortfall": 0,
+      "foldedWrong": 0,
+      "textbookShortfalls": []
+    }
+  }
+}

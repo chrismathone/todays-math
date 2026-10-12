@@ -1,0 +1,52 @@
+Question reorder module QA — 2026-10-08
+
+Scope: question-reorder.js and question-reorder.css, based on main 5171fcd5f.
+No prototype HTML, application component, dependency or persistence changes.
+
+Contract
+- ExamReorder.create({ container, itemSelector, getIds, onReorder, announce? })
+  returns { destroy() }. Initialize once on the stable root.
+- Selected cards have data-reorder-id; their DOM order matches getIds().
+  Handles are button.reorder-handle[data-reorder-handle], type=button, with
+  caller-supplied Korean aria-labels. Existing arrow buttons remain independent.
+- Mouse/touch pointer capture belongs to the stable container, so replacing
+  cards during a gesture is supported. Cards remain in their original order
+  until drop; a fixed insertion marker adds no layout space.
+- Only an actual changed drop/keyboard commit invokes onReorder, once, with a
+  fresh ordered array. The caller rerenders; synchronous renders retain focus.
+- Space/Enter picks up or commits, arrows choose a position, Escape cancels.
+  Pointer cancellation, loss of capture, blur and keyboard focus departure
+  cancel. A changed ID list cancels rather than overwriting newer state.
+- Nested passage groups and side-by-side groups use card rectangles, not
+  sibling insertion. Edge scrolling is capped at 650px/s, with bounded frame
+  time; the marker respects clipped scroll areas. destroy removes listeners,
+  animation frames, marker, live region and temporary visual/ARIA state.
+- Handles are at least 44x44px. Only handles disable native touch scrolling.
+  CSS uses shared DESIGN.md tokens with standalone prototype fallbacks.
+
+Verification
+An ephemeral Playwright fixture ran with the existing root installation at
+C:/Creative/testautocreator/node_modules/playwright; no dependencies rebuilt
+and no development server started. Chromium widths: 1280 and 390, height 850.
+20 scenario groups passed with zero page errors, including:
+- Mouse cross-group moves and first/last insertion; marker and stable pointer
+  capture; unchanged DOM before drop; exactly one callback and unique IDs.
+- No movement, return to original position, Escape, content-only gestures.
+- Space and Enter pickup/commit, both arrows, boundary/no-op, cancellation,
+  focus restoration after rerender, visible 3px keyboard focus, Tab cancel.
+- Same-order rerender during capture, concurrent order-change cancellation,
+  duplicate create() cleanup, malformed duplicate-ID input rejection.
+- Side-by-side passage groups and two-column question grids (pointer X and Y,
+  across rows/columns and before/after within a row), independent arrow buttons.
+- Chromium CDP touch gestures: reorder, touchCancel, no-movement tap, native
+  page scroll outside handles; computed 44px sizing and scoped touch-action.
+- Nested edge auto-scroll, stopping on Escape, destroy during an active drag,
+  no interaction after destroy, fallback live announcements and cleanup.
+Mobile drag screenshot inspected: clear source outline and insertion line,
+with no cloned card or reserved drag space. Node syntax, Prettier and ESLint
+checks pass using the root's executables. The staged-file rules match no files
+in this docs-only change; their CLI was run directly from the root installation.
+
+Limits: this is an isolated module check, not the five-prototype integration
+review owned by the coordinator; physical devices, Safari, Firefox and assistive
+technology were not tested. The temporary harness/screenshots are not committed.

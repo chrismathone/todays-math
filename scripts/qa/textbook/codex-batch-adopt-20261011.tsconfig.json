@@ -1,0 +1,10 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": { "incremental": false, "strict": true },
+  "include": [
+    "./codex-batch-adopt-20261011.ts",
+    "./codex-batch-adopt-20261011.test.ts",
+    "./codex-batch-adopt-20261011.vitest.config.mts"
+  ],
+  "exclude": ["../../../node_modules"]
+}

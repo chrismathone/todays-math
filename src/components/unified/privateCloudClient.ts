@@ -501,11 +501,22 @@ export class PrivateCloudClient {
     return this.walk(value, async (text) => {
       let out = "";
       let at = 0;
-      for (const match of text.matchAll(
-        /\/api\/library\/assets\/([a-f0-9]{64})\b(?:\?ownerId=[A-Za-z0-9%_-]+&documentId=[A-Za-z0-9%_-]+)?/g,
-      )) {
+      const matches = [
+        ...text.matchAll(
+          /\/api\/library\/assets\/([a-f0-9]{64})\b(?:\?ownerId=[A-Za-z0-9%_-]+&documentId=[A-Za-z0-9%_-]+)?/g,
+        ),
+      ];
+      // Start independent images together, including several in one markdown
+      // string. download() deduplicates paths; transfer() still caps reads at 3.
+      // Apply replacements in source order so legacy SVG tail repair is intact.
+      const downloads = await Promise.allSettled(
+        matches.map((match) => this.download(match[0], match[1])),
+      );
+      for (const [index, match] of matches.entries()) {
         if (match.index < at) continue;
-        const { url, truncated } = await this.download(match[0], match[1]);
+        const downloaded = downloads[index];
+        if (downloaded.status === "rejected") throw downloaded.reason;
+        const { url, truncated } = downloaded.value;
         const end = match.index + match[0].length;
         const repaired =
           truncated === undefined

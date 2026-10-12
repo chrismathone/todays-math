@@ -13,6 +13,60 @@ afterEach(() => {
   vi.restoreAllMocks();
 });
 describe("private cloud transport", () => {
+  it("loads inline images in parallel with at most three fenced reads and preserves replacement order", async () => {
+    vi.useFakeTimers();
+    try {
+      let active = 0;
+      let maximum = 0;
+      let nextUrl = 0;
+      vi.spyOn(URL, "createObjectURL").mockImplementation(
+        () => `blob:inline-${++nextUrl}`,
+      );
+      vi.spyOn(URL, "revokeObjectURL").mockImplementation(() => {});
+      const paths = Array.from(
+        { length: 7 },
+        (_, index) =>
+          `/api/library/assets/${(index + 1).toString(16).padStart(64, "0")}`,
+      );
+      const transport = vi.fn<typeof fetch>(async (url, init) => {
+        maximum = Math.max(maximum, ++active);
+        expect(new Headers(init?.headers).get("x-workspace-owner")).toBe(
+          "owner-a",
+        );
+        expect(init).toMatchObject({
+          credentials: "same-origin",
+          cache: "no-store",
+          redirect: "error",
+        });
+        await new Promise((resolve) => setTimeout(resolve, 80));
+        active--;
+        return new Response(new Blob([String(url)], { type: "image/png" }));
+      });
+      const client = new PrivateCloudClient("owner-a", transport);
+      const original = {
+        content: [...paths, paths[0]]
+          .map((path) => `![그림](${path})`)
+          .join("\n"),
+      };
+      const started = Date.now();
+      let readyAt = 0;
+      const materializing = client.materialize(original).then((result) => {
+        readyAt = Date.now() - started;
+        return result;
+      });
+      await vi.runAllTimersAsync();
+      const displayed = await materializing;
+      expect(readyAt).toBe(240);
+      expect(maximum).toBe(3);
+      expect(transport).toHaveBeenCalledTimes(7);
+      expect(await client.externalize(displayed)).toEqual(original);
+      client.dispose();
+    } finally {
+      vi.clearAllTimers();
+      vi.useRealTimers();
+    }
+  });
+
   it("acknowledges a committed save whose response was lost without writing it twice", async () => {
     const server = privateServer();
     let loseResponse = true;

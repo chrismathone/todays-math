@@ -69,8 +69,11 @@ describe("그림 없는데 지면을 가리키는 행", () => {
 
   it("적재기가 그 판정을 **출제허용에 실제로 건다**", () => {
     const src = read("scripts/import/load-engine-problems.ts");
+    const review = read("scripts/import/engine-source-references.ts");
     // 세기만 하고 안 걸면 이 결함이 그대로 돌아온다 — 그것이 2026-09-04 의 모양이었다.
-    expect(src).toContain("directUseAllowed: !figureless");
+    expect(src).toContain("engineSourceReviewState(originProblemId, figureless)");
+    expect(src).toContain("...review,");
+    expect(review).toContain("directUseAllowed: originProblemId === null && !figureless");
     // 그리고 잠근 수를 **찍는다**(말없는 상한을 만들지 않는다).
     // 🔴 낱말 하나(`lockedFigureless`)만 보면 안 된다 — 그 이름은 세는 자리에도
     //    있어서, **찍는 줄을 통째로 지워도** 초록이었다(변이로 확인했다).

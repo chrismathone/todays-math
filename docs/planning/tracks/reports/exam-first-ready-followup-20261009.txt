@@ -1,0 +1,22 @@
+Math exam first-ready follow-up — 2026-10-09
+
+Scope
+MathExamBuilder already receives the ordered unit list from the workspace bank data. The Math source mapped those units into a private scope lookup, but ExamBuilder withheld them until its loadScopes effect and returned Promise completed. No bank request was required for this path; initialUnits already prevents it.
+
+Change and controlled evidence
+ExamBuilderSource can now provide initialScopes. MathExamBuilder's source exposes the supplied curriculum synchronously, and ExamBuilder uses that snapshot for the first render while retaining its existing async load/retry/error handling. No scope IDs, selection rules, bank query filters, draft gates, or storage behavior changed.
+
+A component regression test holds loadScopes unresolved to isolate the first-render behavior. Baseline: scope loading message visible, range control disabled, and no scopes visible until promise settlement. Updated: loading message absent, supplied scopes visible, and the range dialog opens while the same promise remains unresolved. This is a deterministic readiness comparison, not a millisecond benchmark. The network request count for scopes is zero in both cases when initial units are provided; the improvement removes the async wait from scope readiness.
+
+Separate SSR finding
+WorkspacePage calls loadUnifiedBank() for every authorized bank account before UnifiedWorkspace renders. That function fetches 12 full problem rows as well as curriculum metadata, including on home or exam-builder entry, although MathExamBuilder only consumes units. Avoiding those rows needs a metadata-only bootstrap and a first-page request when BankView becomes active; those edits cross WorkspacePage and BankView ownership. Finding and proposed boundary were sent to the coordinator; no SSR or shell files were changed here.
+
+Validation
+- Prisma client generated locally.
+- ExamBuilder component suite: 7 passed.
+- mathExamBuilderSource + privateDraftLoading suites: 21 passed.
+- Scoped exam-builder TypeScript check: 0 diagnostics.
+- Scoped ESLint and Prettier checks run; see task completion summary for final status.
+
+Limitations
+No integrated browser/network timing, production data access, database writes, or API query changes were performed. Existing lazy private draft hydration remains as documented in exam-loading-perf-20261008.md.

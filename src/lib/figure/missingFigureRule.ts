@@ -168,6 +168,17 @@ export function classifyFigureNeed(content: string): FigureVerdict {
   const c = content.replace(/\s+/g, " ");
   if (STRONG_DEICTIC.test(c)) return "유실";
   if (NOT_A_FIGURE.test(c)) return "불필요";
+  // A painting's annual price growth names an asset, not a printed diagram.
+  // Any additional diagram reference still wins; attached bytes are separately
+  // required by originNeedsFigure before this no-image classifier is consulted.
+  if (
+    /화가|화백|미술품|명화/.test(c) &&
+    /그림의\s*가격.{0,40}매(?:년|월|일).{0,30}(?:%|퍼센트)/.test(c) &&
+    !c.includes(CONTAMINATION) &&
+    !PRESENTS_GRAPH.test(c) &&
+    !WEAK_DEICTIC.test(c.replace(/그림의\s*가격/g, "작품 가격"))
+  )
+    return "불필요";
   if (/줄기와\s*잎\s*그림/.test(c)) {
     return hasStemLeafTable(c) ? "불필요" : "유실";
   }

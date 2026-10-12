@@ -30,6 +30,24 @@ beforeEach(() => {
 afterEach(() => vi.unstubAllEnvs());
 
 describe("worksheet export routes", () => {
+  it("allows English library output only at the two shared POST endpoints", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    mocks.session.mockResolvedValue({
+      id: "owner",
+      menus: ["english-library"],
+    });
+    expect(await authorizeExport(request())).toBeNull();
+    const pdf = new Request("http://localhost:3000/api/exports/pdf", request());
+    expect(await authorizeExport(pdf)).toBeNull();
+    const other = new Request(
+      "http://localhost:3000/api/exports/other",
+      request(),
+    );
+    expect((await authorizeExport(other))?.status).toBe(403);
+    expect(
+      (await authorizeExport(request("{}", "https://evil.example")))?.status,
+    ).toBe(403);
+  });
   it.each(["development", "production"])(
     "caps authenticated owners and highest admins in %s",
     async (environment) => {

@@ -18,7 +18,7 @@ import {
 
 vi.mock("server-only", () => ({}));
 
-const mocks = vi.hoisted(() => ({ auth: vi.fn(), bank: vi.fn() }));
+const mocks = vi.hoisted(() => ({ auth: vi.fn(), bootstrap: vi.fn() }));
 vi.mock("@/lib/auth", () => ({ auth: mocks.auth }));
 vi.mock("next/server", () => ({ connection: async () => {} }));
 vi.mock("next/navigation", () => ({
@@ -26,7 +26,9 @@ vi.mock("next/navigation", () => ({
     throw new Error(`redirect:${url}`);
   },
 }));
-vi.mock("@/lib/unifiedPreview", () => ({ loadUnifiedBank: mocks.bank }));
+vi.mock("@/lib/unifiedPreview", () => ({
+  loadUnifiedBankBootstrap: mocks.bootstrap,
+}));
 vi.mock("@/components/landing/LandingPage", () => ({
   default: "landing-page",
 }));
@@ -92,7 +94,12 @@ const entry = (value?: string) =>
 
 beforeEach(() => {
   vi.clearAllMocks();
-  mocks.bank.mockResolvedValue({ problems: [], total: 0 });
+  mocks.bootstrap.mockResolvedValue({
+    total: 0,
+    grades: [],
+    chapters: [],
+    units: [],
+  });
 });
 
 describe("landingAfterLogin — 로그인 직후 첫 화면", () => {

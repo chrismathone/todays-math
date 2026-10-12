@@ -59,6 +59,9 @@ async function main(): Promise<void> {
         await rows(`SELECT count(DISTINCT p.source_material_id) AS n ${FROM}`)
       )[0].n,
     ),
+    문항이_붙은_차시: Number(
+      (await rows(`SELECT count(DISTINCT p.unit_id) AS n ${FROM}`))[0].n,
+    ),
     출판사: await by("b.publisher"),
     과목: await by("u.grade"),
     학기: await by("coalesce(u.semester::text, '정해지지 않음')", "1"),
@@ -73,6 +76,17 @@ async function main(): Promise<void> {
       ),
     ),
     어긋남: {
+      책_학년_불일치: Number(
+        (await rows(`SELECT count(*) AS n ${FROM} AND b.grade <> u.grade`))[0]
+          .n,
+      ),
+      명시_학기_불일치: Number(
+        (
+          await rows(
+            `SELECT count(*) AS n ${FROM} AND m.semester IS NOT NULL AND u.semester IS NOT NULL AND m.semester <> u.semester`,
+          )
+        )[0].n,
+      ),
       자료_없음: Number(
         (
           await rows(

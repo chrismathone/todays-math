@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-09T04:12:18.308Z",
+  "checks": [
+    {
+      "name": "positive-divisors",
+      "result": "pass"
+    },
+    {
+      "name": "negation-options-125-triples",
+      "result": "pass"
+    },
+    {
+      "name": "rational-branch-endpoints",
+      "result": "pass"
+    },
+    {
+      "name": "quadratic-root-and-evaluation",
+      "result": "pass"
+    },
+    {
+      "name": "rationalization-numeric-support",
+      "result": "pass"
+    },
+    {
+      "name": "temperature-observations",
+      "result": "pass"
+    },
+    {
+      "name": "tank-volume-height",
+      "result": "pass"
+    },
+    {
+      "name": "six-cans-straight-and-arcs",
+      "result": "pass"
+    },
+    {
+      "name": "draft-katex-expressions",
+      "result": "pass"
+    }
+  ],
+  "katexExpressions": 26,
+  "note": "Sample checks support, but do not replace, the general mathematical arguments in math-examples.json. No production import, unlocking, or full 475-question proof was performed.",
+  "browserReview": {
+    "engine": "Playwright Chromium",
+    "artifact": "review.html",
+    "desktop": {
+      "viewportWidth": 1280,
+      "documentWidth": 1280
+    },
+    "mobile": {
+      "viewportWidth": 390,
+      "documentWidth": 390
+    },
+    "mathmlElements": 26,
+    "generatedImageLoaded": true,
+    "screenshotsVisuallyInspected": true,
+    "productionAppTested": false
+  },
+  "triageInventory": {
+    "total": 475,
+    "uniqueIds": 475,
+    "missing": 0,
+    "extra": 0,
+    "counts": {
+      "correction": 369,
+      "rewrite": 61,
+      "source_or_diagram_review": 45
+    },
+    "snapshotSha256Match": true,
+    "sourceReasonsMatch": true
+  }
+}

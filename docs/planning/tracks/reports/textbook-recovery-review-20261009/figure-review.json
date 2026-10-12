@@ -1,0 +1,132 @@
+{
+  "status": "feasibility_review_only",
+  "reviewedAt": "2026-10-09",
+  "databaseChanged": false,
+  "sourceSnapshot": ".qa-artifacts/textbook-holds-20261009.json",
+  "snapshotSha256": "6fc2b34d9a8bc1382ee160573a0d765d4cf0ce0e5e7c5a5795f511dd545fdd8c",
+  "inventory": {
+    "lockedRows": 475,
+    "rowsWithFigures": 234,
+    "distinctFigureUrls": 281,
+    "localFigureFilesFound": 281,
+    "originalSourcePathsFound": 0,
+    "scope": "Paths stored in this snapshot only; originals may exist elsewhere. File existence is not a visual or correctness check.",
+    "distinctOriginalSourcePaths": 338
+  },
+  "inspected": [
+    {
+      "problemCode": "HC20212-A09-001",
+      "finding": "실제 그림의 ㄱ·ㄴ·ㄷ 세 문장이 본문과 정확히 중복된다.",
+      "action": "본문 세 문장을 유지하고 중복 그림과 표지만 제거하는 교정 후보. 정답 ㄴ·ㄷ 유지.",
+      "evidence": "public/figures/tb/0e0e0df046a56e1e/tb-0e0e0df046a56e1e-0-1-1.png"
+    },
+    {
+      "problemCode": "J10703-A33-001",
+      "finding": "한 장짜리 보기 그림 안에 ①~⑤ 번호가 이미 있으며 ① 직각삼각형의 한 변이 회전축에 있다.",
+      "action": "본문의 흩어진 빈 번호 줄을 제거하고 번호가 있는 전체 보기를 한 번 배치. 기존 정답 ①을 독립 확인.",
+      "evidence": "public/figures/tb/39c9fefd46d20c45/tb-39c9fefd46d20c45-0-2-2.png"
+    },
+    {
+      "problemCode": "J10605-A77-001",
+      "finding": "그림은 반지름 4cm 원 6개가 가로 3개·세로 2개로 붙은 배치이다. 기존 검토의 직선 길이 80 계산이 잘못되었다.",
+      "action": "정답 (48+8π)cm 유지. 중심 사이 직선 길이 16×2+8×2=48, 네 모서리 호의 합 8π라는 해설 보완. 기존 검토 기록을 재심사.",
+      "evidence": "public/figures/tb/4f0b850e1b54305e/tb-4f0b850e1b54305e-0-4-1.png"
+    },
+    {
+      "problemCode": "J20504-B25-001",
+      "finding": "두 번째 그림은 '삼각형의 외심과 내심 124쪽' 정답표이며 답 40°가 직접 표시된다.",
+      "action": "정답표 이미지와 해당 표지를 제거하고 첫 도형만 유지하는 교정 후보. 학생 출력에 해설·정답표가 남지 않는지 확인.",
+      "evidence": "public/figures/tb/a6a00528ed4eb8d3/tb-a6a00528ed4eb8d3-0-5-2.png"
+    },
+    {
+      "problemCode": "J20602-B13-001",
+      "finding": "유일한 그림이 도형이 아닌 교재 정답·해설 페이지 전체이다. 본문에는 높이 4m, 거리 15m, 그림자 10m가 있다.",
+      "action": "기존 이미지를 학생 출력에서 제외. 햇빛에 의한 그림자인지 가로등 빛인지 모호한 상황도 명확히 하여 평행한 광선 아래 수직 기둥 두 개로 재서술하고 새 닮음 도형 제작. 4/10=H/25에서 H=10m.",
+      "evidence": "public/figures/tb/4f277d28f84575e7/tb-4f277d28f84575e7-0-4-1.png"
+    },
+    {
+      "problemCode": "J10505-A22-001",
+      "finding": "이 문항에 필요한 62°·45° 그림은 앞 문항 J10505-A21-001의 두 번째 파일에 붙어 있다. 현재 연결 파일은 다른 작도 그림이다.",
+      "action": "재연결 후보를 찾았지만 그림에 수직 표시가 없어 73°를 보장하려면 두 평행선에 대한 수선 조건을 명시해야 한다. 원본 확인 전에는 조건을 보강한 새 문안으로 취급.",
+      "evidence": [
+        "public/figures/tb/821fa144d9d59418/tb-821fa144d9d59418-0-10-2.png",
+        "public/figures/tb/821fa144d9d59418/tb-821fa144d9d59418-0-11-1.png"
+      ]
+    },
+    {
+      "problemCode": "J10403-A71-001",
+      "finding": "실제 그림은 외부 원기둥 물통 바닥에 낮은 내부 원기둥이 있는 모습이다. 내부가 속이 찬 기둥인지 문장으로 고정할 필요가 있다.",
+      "action": "새 문항은 속이 찬 기둥·균일한 유입량·단면적·높이를 본문에 명시하고 보기나 그래프를 새로 작성한다.",
+      "evidence": "public/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-10-1.png"
+    },
+    {
+      "problemCode": "J10403-A75-001",
+      "finding": "물통 그림은 일정한 단면적의 기둥이다. 기존 해설은 바닥 구멍으로 배수할 때도 높이가 일정하게 줄어든다고 가정한다.",
+      "action": "일정한 배수량이 본문에서 보장되지 않으므로 '펌프로 매초 일정량을 빼낸다'로 재작성하거나 배수 설명을 삭제한 별도 문항으로 만든다.",
+      "evidence": "public/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-10-1.png"
+    }
+  ],
+  "generatedDraft": {
+    "draftId": "review-tank-solid-block-001",
+    "inspiredBy": "J10403-A71-001",
+    "relationship": "same concept, newly authored situation and values; not a reconstruction of the source",
+    "status": "draft_not_imported",
+    "title": "일정한 양의 물을 넣을 때 높이의 변화",
+    "content": "그림과 같이 안쪽 밑면의 넓이가 100cm²이고 높이가 20cm인 직육면체 모양의 물통이 있다. 밑면의 넓이가 40cm²이고 높이가 10cm인 속이 찬 직육면체 기둥이 물통 바닥에 고정되어 있다. 기둥의 옆면과 물통의 벽 사이에는 물이 들어갈 공간이 있다. 처음에 물이 없는 이 물통에 매초 30cm³의 물을 일정하게 넣는다. 물이 새거나 기둥에 흡수되지 않을 때, 30초 후 물의 높이는 물통 바닥에서 몇 cm인가? (그림은 모식도이다.)",
+    "options": [
+      "11cm",
+      "12cm",
+      "13cm",
+      "14cm",
+      "15cm"
+    ],
+    "answer": "③ 13cm",
+    "solution": "물이 기둥의 윗면 높이인 10cm에 이르기까지 필요한 부피는 (100−40)×10=600cm³이고, 걸리는 시간은 600÷30=20초이다. 이후 10초 동안 300cm³가 더 들어오며, 이때 물이 차는 단면적은 100cm²이므로 높이가 3cm 더 올라간다. 따라서 높이는 13cm이다.",
+    "graphContract": {
+      "axes": {
+        "horizontal": "시간 t(초)",
+        "vertical": "물의 높이 h(cm)"
+      },
+      "pieces": [
+        {
+          "domain": "0≤t≤20",
+          "formula": "h=t/2"
+        },
+        {
+          "domain": "20≤t≤160/3",
+          "formula": "h=10+3(t−20)/10"
+        }
+      ],
+      "joins": [
+        [
+          0,
+          0
+        ],
+        [
+          20,
+          10
+        ],
+        [
+          30,
+          13
+        ],
+        [
+          "160/3",
+          20
+        ]
+      ],
+      "validation": "At t=20 formulas agree at10; heights increase; slope drops from0.5 to0.3; t=30 is before overflow."
+    },
+    "image": "assets/tank-solid-block-draft.png",
+    "generationMethod": "built-in image_gen",
+    "promptFile": "image-generation-prompt.txt",
+    "imageReview": "외부 개방형 물통 1개, 닫힌 윗면을 가진 고정 기둥 1개, 주변 빈 공간, 유입관 확인. 숫자·문자·정답 노출 없음. 축척 측정용으로 사용하지 않음."
+  },
+  "acceptanceBeforeImport": [
+    "교정·변형 문안과 정답·해설을 함께 확정하고 독립 풀이로 정답 유일성을 확인한다.",
+    "그림에서 필요한 점·길이·각·축·보기 번호가 본문과 일치하는지 확인한다. 이미지 생성 결과를 수학적 사실의 근거로 사용하지 않는다.",
+    "학생용 출력에서 해설·정답표·다른 문항 그림·출처 바닥글이 보이지 않는지 화면과 인쇄 지면을 확인한다.",
+    "변형 문항은 새 식별자와 원본 참조를 갖는다. 원본 데이터와 학습 기록을 덮어쓰지 않는다.",
+    "실제 적용 시 현재 행과 검토한 텍스트·그림 지문을 다시 대조한다. 이 검토는 잠금 해제나 전체 출제 승인 기록이 아니다."
+  ]
+}

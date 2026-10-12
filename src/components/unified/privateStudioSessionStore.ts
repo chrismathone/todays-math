@@ -220,17 +220,28 @@ export class PrivateStudioSessionStore {
     const assets = document.payload.assets as Record<string, string>;
     if (!assets || typeof assets !== "object" || Array.isArray(assets))
       throw new Error("원본 파일 목록을 읽지 못했습니다.");
-    const originals = new Map<string, Blob>();
-    for (const source of data.sources) {
-      if (source.kind !== "sample")
-        originals.set(source.id, await this.client.original(assets[source.id]));
-    }
+    // Source originals and crop images are independent assets. Start both restore
+    // paths together; PrivateCloudClient keeps network transfers bounded to 3.
+    const [originalEntries, displayed] = await Promise.all([
+      Promise.all(
+        data.sources
+          .filter((source) => source.kind !== "sample")
+          .map(
+            async (source) =>
+              [
+                source.id,
+                await this.client.original(assets[source.id]),
+              ] as const,
+          ),
+      ),
+      this.client.materialize(data),
+    ]);
+    const originals = new Map(originalEntries);
     this.revision = document.revision;
     this.visibility = document.visibility ?? "private";
     this.sharedBranchId = document.sharedBranchId ?? null;
     this.title = document.title;
     this.assets = assets;
-    const displayed = await this.client.materialize(data);
     this.lastSaved = JSON.stringify(displayed);
     if (!this.released) await this.recovery.put("current", { id: this.id });
     return { data: displayed, originals };

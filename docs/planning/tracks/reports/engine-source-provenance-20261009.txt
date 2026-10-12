@@ -1,0 +1,61 @@
+Engine import explicit source provenance — 2026-10-09
+
+Scope: scripts/import/load-engine-problems.ts, the new engine-source-references.ts
+helper and engineSourceReferences.test.ts; no schema/API/UI changes.
+
+Plan contract
+Keep label, seedBase and targets unchanged. Optionally add:
+  "sourceReferences": [
+    { "externalId": "<exact seeded generated externalId>",
+      "originProblemId": "<existing original problem UUID>" }
+  ]
+Use the exact output of buildTargetRows for this plan/seed. Each mapping applies
+to that row only, not its sibling format or every row in the same engine family.
+Omitted/empty sourceReferences retains the existing unlinked loader behavior.
+
+Preflight and invariants
+- Validate the array/object shape and UUIDs (normalize UUID case); reject duplicate
+  or conflicting references, unknown IDs, and duplicate generated IDs when links
+  are requested. No school/source inference from unit, family or similar content.
+- Resolve distinct original IDs in one DB query before any inserts/ledger writes.
+  Require an existing shared-pool original with no originProblemId, source
+  past_exam, school_textbook, or the legacy workbook encoding transformed, and the
+  exact generated row's unitId. Reject all other sources and transformed chains.
+  Legacy RPM source=transformed with a null parent is a workbook original per
+  src/lib/problem/provenance.ts; workbook is not a ProblemSource enum value.
+  Private-pool references fail rather than attach metadata hidden from shared UI.
+- Existing externalIds are immutable. Requested provenance must match origin,
+  unit, engine family and manual source, with examId/school/questionNumber/
+  sourceMaterialId still null; otherwise fail rather than silently skip/update.
+  Matching reruns retain the existing human review state, including approval.
+- Either deduper discarding an explicitly referenced new row is a pre-write error.
+  The operator must revise the plan; the loader cannot silently lose the request.
+- New linked rows remain source=manual, retain native content/answer/solution,
+  difficulty/type/format, seeded externalId and engine familyKey, and enter
+  pending + directUseAllowed=false until human review. No Exam or source-material
+  membership is created/copied. New unlinked rows retain approved and the existing
+  figureless direct-use guard.
+- Dry-run prints every explicit externalId -> originProblemId and new/existing
+  state. Newly created linked ledger rows carry originProblemId; old ledgers stay
+  readable. Readback verifies origin, engine identity, empty exam/book fields,
+  pool and the requested review/direct-use states; mismatch reports failure.
+
+Validation
+- Focused Vitest: engineSourceReferences, loadJudgeRows, loadComboRows,
+  loaderFigureCache and engineVariants (5 files, 71 tests).
+- New helper/import flow suite: 43 tests, including rejected provenance before
+  writes, actual local ledger output, dry-run, linked/unlinked mixed inserts,
+  idempotent post-review reruns, dedupe rejection and corrupted readback.
+  All DB calls use an injected in-memory double; unique local test files are removed.
+- TypeScript: tsc --noEmit --incremental false --pretty false, followed by a
+  final tsc --noEmit --incremental --pretty false after the eligibility correction.
+- ESLint on the three TS files: no errors; two pre-existing unused-symbol warnings
+  in the loader (generateElementaryProblem and TIER_PROBLEM_TYPE).
+- git diff --check.
+
+Limits/remaining integration
+No shared DB reads or writes were performed, and no production import, migration
+or push was run. API contracts, source resolution and UI integration belong to the
+coordinator. This validates explicit provenance structure, not mathematical
+equivalence or historical authorship; the new-row human review gate remains
+necessary. No historical rows are retroactively linked or re-reviewed.

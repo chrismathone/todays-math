@@ -1,0 +1,10 @@
+{
+  "extends": "../../../../tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "include": [
+    "../../../../src/lib/import/schoolTextbook/variantsCalculus.ts",
+    "../../../../src/__tests__/unit/schoolTextbookVariantsCalculus.test.ts",
+    "./*.ts"
+  ],
+  "exclude": ["../../../../node_modules"]
+}

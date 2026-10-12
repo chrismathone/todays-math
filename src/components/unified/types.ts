@@ -1,10 +1,18 @@
 import type { UnitEntity } from "@/contracts/unit.contract";
+import type { ProblemSourceReference } from "@/contracts/problemSourceReference.contract";
 import type { MathgenProblemData } from "@/lib/mathgen/contracts";
 import type { StudioCrop } from "./studioHelpers";
+import type { EnglishBankQuestion } from "@/contracts/englishQuestionBank.contract";
 
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
+  /** Lossless English output adapter. Never feed English prose through the math parser. */
+  english?: {
+    item: EnglishBankQuestion;
+    displayNumber: number;
+    includePassage: boolean;
+  };
   ocr?: MathgenProblemData;
   /** Full, nonrecursive source/edit snapshot; printable URLs remain derived output. */
   studioCrop?: StudioCrop;
@@ -35,6 +43,7 @@ export interface StudioProblem {
 }
 
 export interface BankProblem extends StudioProblem {
+  sourceReference?: ProblemSourceReference | null;
   source?: string;
   /**
    * 출처 배지(`provenanceBadges`)의 판정 근거 — 엔진이 적는 자기 유형 정체(D-105).
@@ -70,6 +79,8 @@ export interface BankData {
   chapters: string[];
   /** Full curriculum for the same range picker used by ProblemBank. */
   units?: UnitEntity[];
+  /** Issuable problem counts keyed by curriculum unit ID. */
+  unitCounts?: Record<string, number>;
   error?: string;
 }
 

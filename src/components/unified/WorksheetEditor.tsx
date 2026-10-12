@@ -1,6 +1,12 @@
 "use client";
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
-import StudioStepBar from "./StudioStepBar";
+import {
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import StudioStepBar, { type StudioStepNavigation } from "./StudioStepBar";
 import WorkProgress from "./WorkProgress";
 import { PrintOptionsPanel } from "./print/PrintOptionsPanel";
 import { WorksheetPrint } from "./print/WorksheetPrint";
@@ -23,6 +29,15 @@ import {
 } from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
 interface Props {
+  /** Saved retry plans preserve both designated slots and cannot add, remove, or reorder. */
+  fixedComposition?: boolean;
+  /** Read-only plans have no workspace draft storage actions. */
+  draftActions?: boolean;
+  /** Subject-specific acknowledgement/revision/content guard, for every output path. */
+  beforeOutput?: (kind: "print" | "pdf" | "hwpx") => Promise<void>;
+  outputNotice?: ReactNode;
+  headerTitle?: string;
+  stepNavigation?: StudioStepNavigation;
   libraryLabel?: string;
   cloudSaveStatus?: string;
   allowedMenus?: WorkspaceMenu[];
@@ -58,6 +73,12 @@ interface Props {
   onEditSource?: (problem: StudioProblem) => void;
 }
 export default function WorksheetEditor({
+  fixedComposition = false,
+  draftActions = true,
+  beforeOutput,
+  outputNotice,
+  headerTitle,
+  stepNavigation,
   selected,
   title,
   columns,
@@ -90,6 +111,7 @@ export default function WorksheetEditor({
   const [exportProgress, setExportProgress] = useState("");
   const [exportError, setExportError] = useState("");
   const [exporting, setExporting] = useState(false);
+  const outputBusy = useRef(false);
   const orderListRef = useRef<HTMLOListElement>(null);
   const addFromBankRef = useRef<HTMLButtonElement>(null);
   const removedIndexRef = useRef<number | null>(null);
@@ -118,6 +140,58 @@ export default function WorksheetEditor({
     prepared.title === title &&
     prepared.options === options &&
     prepared.meta === meta;
+  const currentOutput = useRef({
+    selected,
+    title,
+    options,
+    meta,
+    printReady,
+    beforeOutput,
+  });
+  useLayoutEffect(() => {
+    currentOutput.current = {
+      selected,
+      title,
+      options,
+      meta,
+      printReady,
+      beforeOutput,
+    };
+  });
+  async function preflight(kind: "print" | "pdf" | "hwpx") {
+    const snapshot = currentOutput.current;
+    await beforeOutput?.(kind);
+    const current = currentOutput.current;
+    if (
+      !editorRef.current ||
+      !current.printReady ||
+      snapshot.selected !== current.selected ||
+      snapshot.title !== current.title ||
+      snapshot.options !== current.options ||
+      snapshot.beforeOutput !== current.beforeOutput ||
+      snapshot.meta !== current.meta
+    )
+      throw new Error(
+        "시험지 구성이 변경되었습니다. 미리보기가 준비되면 다시 출력해 주세요.",
+      );
+  }
+  async function printDocument() {
+    if (!printReady || outputBusy.current) return;
+    outputBusy.current = true;
+    setExporting(true);
+    setExportError("");
+    try {
+      await preflight("print");
+      window.print();
+    } catch (error) {
+      setExportError(
+        error instanceof Error ? error.message : "인쇄 전 확인에 실패했습니다.",
+      );
+    } finally {
+      outputBusy.current = false;
+      setExporting(false);
+    }
+  }
   const setPrintReady = useCallback(
     (ready: boolean) =>
       setPrepared(ready ? { selected, title, options, meta } : null),
@@ -158,11 +232,13 @@ export default function WorksheetEditor({
     const document = editorRef.current?.querySelector<HTMLElement>(
       "[data-mathgen-document]",
     );
-    if (!document || !printReady || exporting) return;
+    if (!document || !printReady || outputBusy.current) return;
+    outputBusy.current = true;
     setExporting(true);
     setExportError("");
     setExportProgress(`${kind.toUpperCase()} 문서를 준비하고 있습니다…`);
     try {
+      await preflight(kind);
       const { exportPreviewHwpx, downloadExport } =
         await import("@/lib/export/hwpxClient");
       const blob =
@@ -181,6 +257,7 @@ export default function WorksheetEditor({
         error instanceof Error ? error.message : "파일 생성에 실패했습니다.",
       );
     } finally {
+      outputBusy.current = false;
       setExporting(false);
     }
   }
@@ -195,6 +272,8 @@ export default function WorksheetEditor({
         셈을 모를 수 있고(작업실이 아직 안 떴다), 셈으로 막으면 돌아가는 길이 막힌다.
       */}
       <StudioStepBar
+        headerTitle={headerTitle}
+        stepNavigation={stepNavigation}
         step="export"
         cropCount={cropCount}
         pickedCount={selected.length}
@@ -207,19 +286,21 @@ export default function WorksheetEditor({
           onGoToStep?.(next);
         }}
       >
-        <button
-          className={s.secondaryButton}
-          onClick={save}
-          disabled={!selected.length}
-        >
-          <Icon name="save" size={18} />{" "}
-          {libraryLabel ? `${libraryLabel}에 저장` : "작업 저장"}
-        </button>
+        {draftActions && (
+          <button
+            className={s.secondaryButton}
+            onClick={save}
+            disabled={!selected.length}
+          >
+            <Icon name="save" size={18} />{" "}
+            {libraryLabel ? `${libraryLabel}에 저장` : "작업 저장"}
+          </button>
+        )}
         <button
           className={s.primaryButton}
           disabled={!selected.length || !printReady || exporting}
           aria-busy={selected.length > 0 && !printReady}
-          onClick={() => window.print()}
+          onClick={() => void printDocument()}
         >
           {selected.length > 0 && !printReady ? (
             <WorkProgress variant="inline" label="인쇄 준비 중…" />
@@ -245,6 +326,7 @@ export default function WorksheetEditor({
           PDF 내려받기
         </button>
       </StudioStepBar>
+      {outputNotice}
       {(exportProgress || exportError) && (
         <div className={s.exportNotification} data-error={Boolean(exportError)}>
           {exportError ? (
@@ -293,9 +375,11 @@ export default function WorksheetEditor({
               </button>
             )}
           </div>
-          <button className={s.textButton} onClick={restore}>
-            저장한 작업 불러오기
-          </button>
+          {draftActions && (
+            <button className={s.textButton} onClick={restore}>
+              저장한 작업 불러오기
+            </button>
+          )}
         </div>
       ) : (
         <div className={s.exportGrid}>
@@ -384,14 +468,16 @@ export default function WorksheetEditor({
               <div className={s.orderHeading}>
                 <h3>문제 순서</h3>
                 <span>{selected.length}문항</span>
-                <button
-                  type="button"
-                  className={`${s.secondaryButton} ${s.orderReset}`}
-                  disabled={sourceOrdered}
-                  onClick={() => reorder(sortBySourceOrder(selected))}
-                >
-                  순서 초기화
-                </button>
+                {!fixedComposition && (
+                  <button
+                    type="button"
+                    className={`${s.secondaryButton} ${s.orderReset}`}
+                    disabled={sourceOrdered}
+                    onClick={() => reorder(sortBySourceOrder(selected))}
+                  >
+                    순서 초기화
+                  </button>
+                )}
               </div>
               <ol className={s.orderList} ref={orderListRef}>
                 {selected.map((p, i) => {
@@ -404,66 +490,73 @@ export default function WorksheetEditor({
                       <div>
                         <strong title={row.title}>{row.text}</strong>
                         <small>
-                          {p.grade} · {p.difficulty || "내 자료"}
+                          {p.grade ? `${p.grade} · ` : ""}
+                          {p.difficulty || "내 자료"}
                         </small>
                       </div>
-                      <div className={s.orderActions}>
-                        {can("studio") && p.studioCrop && onEditSource && (
+                      {!fixedComposition && (
+                        <div className={s.orderActions}>
+                          {can("studio") && p.studioCrop && onEditSource && (
+                            <button
+                              type="button"
+                              className={`${s.secondaryButton} ${s.orderEdit}`}
+                              aria-label={`${i + 1}번 원본 편집`}
+                              onClick={() => onEditSource(p)}
+                            >
+                              <span>원본 편집</span>
+                            </button>
+                          )}
                           <button
                             type="button"
-                            className={`${s.secondaryButton} ${s.orderEdit}`}
-                            aria-label={`${i + 1}번 원본 편집`}
-                            onClick={() => onEditSource(p)}
+                            className={s.orderStep}
+                            disabled={i === 0}
+                            aria-label={`${i + 1}번 문제 위로`}
+                            onClick={() => move(i, -1)}
                           >
-                            <span>원본 편집</span>
+                            ↑
                           </button>
-                        )}
-                        <button
-                          type="button"
-                          className={s.orderStep}
-                          disabled={i === 0}
-                          aria-label={`${i + 1}번 문제 위로`}
-                          onClick={() => move(i, -1)}
-                        >
-                          ↑
-                        </button>
-                        <button
-                          type="button"
-                          className={s.orderStep}
-                          disabled={i === selected.length - 1}
-                          aria-label={`${i + 1}번 문제 아래로`}
-                          onClick={() => move(i, 1)}
-                        >
-                          ↓
-                        </button>
-                        <button
-                          type="button"
-                          className={s.orderStep}
-                          aria-label={`${i + 1}번 문제 빼기`}
-                          onClick={() => removeProblem(p, i)}
-                        >
-                          ×
-                        </button>
-                      </div>
+                          <button
+                            type="button"
+                            className={s.orderStep}
+                            disabled={i === selected.length - 1}
+                            aria-label={`${i + 1}번 문제 아래로`}
+                            onClick={() => move(i, 1)}
+                          >
+                            ↓
+                          </button>
+                          <button
+                            type="button"
+                            className={s.orderStep}
+                            aria-label={`${i + 1}번 문제 빼기`}
+                            onClick={() => removeProblem(p, i)}
+                          >
+                            ×
+                          </button>
+                        </div>
+                      )}
                     </li>
                   );
                 })}
               </ol>
             </div>
-            <div className={s.bottomActions}>
-              {can("bank") && (
-                <button
-                  className={s.addMore}
-                  ref={addFromBankRef}
-                  onClick={() => navigate("bank")}
-                >
-                  <Icon name="plus" size={16} /> 문제 더 담기
-                </button>
-              )}
-              <button className={s.secondaryButton} onClick={download}>
-                <Icon name="save" size={18} /> 작업 파일 내보내기
-              </button>
-            </div>
+            {(can("bank") || draftActions) && (
+              <div className={s.bottomActions}>
+                {can("bank") && (
+                  <button
+                    className={s.addMore}
+                    ref={addFromBankRef}
+                    onClick={() => navigate("bank")}
+                  >
+                    <Icon name="plus" size={16} /> 문제 더 담기
+                  </button>
+                )}
+                {draftActions && (
+                  <button className={s.secondaryButton} onClick={download}>
+                    <Icon name="save" size={18} /> 작업 파일 내보내기
+                  </button>
+                )}
+              </div>
+            )}
             {cloudSaveStatus ? (
               <p role="status">{cloudSaveStatus}</p>
             ) : (

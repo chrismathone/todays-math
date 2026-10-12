@@ -1,0 +1,39 @@
+{
+  "version": "codex-chatgpt-json-v1",
+  "id": "cd621fb1-702f-4846-b317-01b36910df44",
+  "phase": "smoke",
+  "auth": "chatgpt",
+  "cliVersion": "codex-cli 0.162.1",
+  "requestedModel": "codex-account-default",
+  "model": null,
+  "modelObserved": false,
+  "threadId": "01a129cb-cc78-7950-ad67-6c3fd78eb222",
+  "usage": {
+    "inputTokens": 16663,
+    "cachedInputTokens": 0,
+    "outputTokens": 39
+  },
+  "startedAt": "2026-10-11T07:09:43.190Z",
+  "elapsedMs": 16995,
+  "exitCode": 0,
+  "signal": null,
+  "status": "succeeded",
+  "reason": null,
+  "turnCompleted": true,
+  "schemaValid": true,
+  "promptSha256": "4d962d7be28c529b6c491d089bef0c2c38642c8b283f0b8696ed2f868e951838",
+  "schemaSha256": "f72ac8a4cf8a96dc2a4d80402de397107814728c7f5bd3571cf5186929ea44c5",
+  "images": [
+    {
+      "sha256": "388efda5e67648402ce08dcdaad8d9fc394d7414033940fdb5cca1577e30b347",
+      "bytes": 103,
+      "width": 16,
+      "height": 16
+    }
+  ],
+  "outputSha256": "960a0afc15244eac4eb5549e493472ce83bce3a73cbb78be3b3800368b385450",
+  "stdoutSha256": "4361bd57b68d649cde69308130daa76c7c5c8ed7f125ac9584bfa7df02a87c2a",
+  "stderrSha256": "3e75d28a6681c31400a3f0fcb564c7613fd42796fb83294e4d53fea86bcbd401",
+  "receiptPath": "C:\\Users\\user\\orca\\workspaces\\testautocreator\\textbook-codex-transport-20261011\\.qa-artifacts\\codex-transport-smoke-20261011\\smoke-cd621fb1-702f-4846-b317-01b36910df44\\receipt.json",
+  "outputPath": "C:\\Users\\user\\orca\\workspaces\\testautocreator\\textbook-codex-transport-20261011\\.qa-artifacts\\codex-transport-smoke-20261011\\smoke-cd621fb1-702f-4846-b317-01b36910df44\\output.json"
+}

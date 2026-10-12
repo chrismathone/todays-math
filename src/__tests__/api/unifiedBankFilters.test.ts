@@ -1,11 +1,18 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { db } from "@/lib/db";
-import { loadUnifiedBank, UnifiedBankQueryError } from "@/lib/unifiedPreview";
+import {
+  loadUnifiedBank,
+  loadUnifiedBankBootstrap,
+  UnifiedBankQueryError,
+} from "@/lib/unifiedPreview";
 import { GET } from "@/app/api/dev/unified/problems/route";
 import { MOCK_UNITS, USER_TEACHER_ID } from "@/mocks/data";
 import { MISSING_ANSWER } from "@/lib/missingAnswer";
 import { provenanceBadges } from "@/lib/problem/provenance";
-import { selectUnifiedBankProblems } from "@/lib/unifiedBankSelection";
+import {
+  composeUnifiedBankProblems,
+  selectUnifiedBankProblems,
+} from "@/lib/unifiedBankSelection";
 import {
   DIFFICULTY_LADDER,
   type DifficultyRatio,
@@ -98,6 +105,187 @@ const tierCounts = (counts: Partial<DifficultyRatio> = {}): DifficultyRatio =>
   Object.fromEntries(
     DIFFICULTY_LADDER.map((tier) => [tier, counts[tier] ?? 0]),
   ) as DifficultyRatio;
+
+describe("Math exam builder scoped bank access", () => {
+  it("bootstraps curriculum and counts without loading rows, then pages actual candidates", async () => {
+    const candidate = await plant();
+    const problemRows = vi.mocked(db.problem.findMany);
+    problemRows.mockClear();
+
+    const bootstrap = await loadUnifiedBankBootstrap();
+    expect(problemRows).not.toHaveBeenCalled();
+    expect(bootstrap.total).toBeGreaterThan(0);
+    const selectedGrade = bootstrap.grades.find(
+      ({ grade }) => grade === MOCK_UNITS[0].grade,
+    );
+    expect(selectedGrade?.count).toBeGreaterThan(0);
+    expect(bootstrap.chapters).toContain(MOCK_UNITS[0].chapter);
+    expect(bootstrap.unitCounts?.[MOCK_UNITS[0].id]).toBeGreaterThan(0);
+    expect(Object.keys(bootstrap.unitCounts ?? {})).toHaveLength(
+      bootstrap.units?.length ?? 0,
+    );
+    expect(bootstrap.units?.[0]).toEqual(
+      expect.objectContaining({
+        id: MOCK_UNITS[0].id,
+        grade: MOCK_UNITS[0].grade,
+        chapter: MOCK_UNITS[0].chapter,
+        section: MOCK_UNITS[0].section,
+      }),
+    );
+
+    const candidates = await loadUnifiedBank(query({ pageSize: "12" }));
+    expect(problemRows).toHaveBeenCalledOnce();
+    expect(problemRows.mock.calls[0][0]).toMatchObject({ take: 12 });
+    expect(candidates.problems.map(({ id }) => id)).toContain(candidate.id);
+    expect(candidates.units).toEqual(bootstrap.units);
+    expect(candidates.grades).toEqual(bootstrap.grades);
+    expect(candidates.chapters).toEqual(bootstrap.chapters);
+  });
+
+  it("counts and pages exact disjoint scopes after exclusions and difficulty filtering", async () => {
+    const units = [MOCK_UNITS[0], MOCK_UNITS[2]];
+    const matching = await Promise.all(
+      Array.from({ length: 5 }, (_, index) =>
+        plant({ unitId: units[index % 2].id }),
+      ),
+    );
+    await plant({ unitId: MOCK_UNITS[1].id });
+    await plant({ difficulty: "응용" });
+    await plant({ reviewStatus: "pending" });
+    const params = {
+      unitIds: units.map((unit) => unit.id).join(","),
+      excludeIds: matching[0].id,
+      difficulty: "기본",
+      pageSize: "2",
+    };
+    const first = await loadUnifiedBank(query(params));
+    const second = await loadUnifiedBank(query({ ...params, page: "2" }));
+    expect(first.total).toBe(4);
+    expect(second.total).toBe(4);
+    expect(first.problems).toHaveLength(2);
+    expect(second.problems).toHaveLength(2);
+    expect(
+      new Set([...first.problems, ...second.problems].map((row) => row.id)),
+    ).toEqual(new Set(matching.slice(1).map((row) => row.id)));
+  });
+
+  it.each([
+    "unitIds=",
+    "unitIds=bad",
+    "ids=",
+    "excludeIds=bad",
+    "pageSize=0",
+    "pageSize=101",
+  ])("rejects invalid builder bounds without widening: %s", async (params) => {
+    await expect(
+      loadUnifiedBank(new URLSearchParams(params)),
+    ).rejects.toBeInstanceOf(UnifiedBankQueryError);
+  });
+
+  it("resolves only requested, still eligible IDs and preserves native figure/type evidence", async () => {
+    const row = await plant({
+      figureUrls: ["/native.svg"],
+      figureDims: [240, 180],
+      figureSourceMm: [50, 40],
+      choiceFigureIndex: [0],
+      questionType: "서술형",
+    });
+    const locked = await plant({ directUseAllowed: false });
+    await plant();
+    const result = await loadUnifiedBank(
+      new URLSearchParams({ ids: `${row.id},${locked.id}`, pageSize: "100" }),
+    );
+    expect(result.total).toBe(1);
+    expect(result.problems[0]).toMatchObject({
+      id: row.id,
+      unitId: row.unitId,
+      questionType: "descriptive",
+      questionTypeRaw: "서술형",
+      figureUrls: ["/native.svg"],
+      figureDims: [240, 180],
+      figureSourceMm: [50, 40],
+      choiceFigureIndex: [0],
+      eligible: true,
+    });
+  });
+
+  it("composes all unit quotas in two problem reads and never borrows for shortages", async () => {
+    const baseline = await db.problem.findMany({
+      select: { id: true },
+      where: { unitId: { in: [MOCK_UNITS[0].id, MOCK_UNITS[2].id] } },
+    });
+    const first = await plant();
+    const excluded = await plant();
+    const second = await plant({
+      unitId: MOCK_UNITS[2].id,
+      difficulty: "응용",
+    });
+    await plant({ unitId: MOCK_UNITS[1].id });
+    await plant({ unitId: MOCK_UNITS[2].id, pool: "private" });
+    await plant({ unitId: MOCK_UNITS[2].id, reviewStatus: "pending" });
+    await plant({ unitId: MOCK_UNITS[2].id, directUseAllowed: false });
+    const find = vi.mocked(db.problem.findMany);
+    find.mockClear();
+    const result = await composeUnifiedBankProblems({
+      allocations: [
+        { unitId: MOCK_UNITS[0].id, count: 3 },
+        { unitId: MOCK_UNITS[2].id, count: 2 },
+      ],
+      excludeIds: [...baseline.map((row) => row.id), excluded.id],
+    });
+    expect(find).toHaveBeenCalledTimes(2);
+    expect(result.problems.map((row) => row.id)).toEqual([first.id, second.id]);
+    expect(result.allocations).toEqual([
+      { unitId: MOCK_UNITS[0].id, requested: 3, available: 1, actual: 1 },
+      { unitId: MOCK_UNITS[2].id, requested: 2, available: 1, actual: 1 },
+    ]);
+  });
+
+  it("uses a deterministic reservoir draw within each allocation without duplicate questions", async () => {
+    const baseline = await db.problem.findMany({
+      select: { id: true },
+      where: { unitId: MOCK_UNITS[0].id },
+    });
+    const rows = await Promise.all(Array.from({ length: 6 }, () => plant()));
+    vi.spyOn(Math, "random").mockReturnValue(0);
+    const result = await composeUnifiedBankProblems({
+      allocations: [{ unitId: MOCK_UNITS[0].id, count: 2 }],
+      excludeIds: baseline.map((row) => row.id),
+    });
+    expect(result.problems.map((row) => row.id)).toEqual([
+      rows[5].id,
+      rows[1].id,
+    ]);
+    expect(result.allocations[0]).toMatchObject({
+      requested: 2,
+      available: 6,
+      actual: 2,
+    });
+  });
+
+  it.each(
+    [
+      [],
+      [{ unitId: MOCK_UNITS[0].id, count: 0 }],
+      [{ unitId: MOCK_UNITS[0].id, count: 101 }],
+      [
+        { unitId: MOCK_UNITS[0].id, count: 1 },
+        { unitId: MOCK_UNITS[0].id, count: 1 },
+      ],
+      [
+        { unitId: MOCK_UNITS[0].id, count: 60 },
+        { unitId: MOCK_UNITS[1].id, count: 60 },
+      ],
+    ].map((allocations) => ({ allocations })),
+  )(
+    "rejects invalid or duplicate unit allocations",
+    async ({ allocations }) => {
+      await expect(
+        composeUnifiedBankProblems({ allocations }),
+      ).rejects.toBeInstanceOf(UnifiedBankQueryError);
+    },
+  );
+});
 
 describe("difficulty-based selection across the shared bank", () => {
   it("selects beyond one displayed page, excludes existing questions, and reports exact-tier shortages", async () => {
