@@ -1,0 +1,83 @@
+{
+  "questionNumber": 21,
+  "newSourceReferenceId": "source-ref-2025-gyeongilyeo-3-2-mid-r1-q21",
+  "stem": "[서술형 $4$] 그림에서 두 점 $\\mathrm{A}$와 $\\mathrm{B}$는 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 두 접선의 접점이다. $\\overline{OA}\\,=7\\,cm$이고, $\\mathrm{\\angle }APB:\\angle AOB\\,=\\,2\\,:\\,3$일 때, <탄젠트표>를 이용하여 색칠한 부분의 넓이를 구하고 그 과정을 <조건>에 맞게 서술하시오. [$7$점, 부분점수 있음]\n\n<조건>\n\n• $\\mathrm{\\angle }APB$의 크기를 구하여 적을 것\n\n• $\\overline{PA}$의 길이를 구하여 적을 것\n\n• 사각형 $\\mathrm{APBO}$의 넓이를 구하여 적을 것\n\n• 부채꼴 $\\mathrm{AOB}$의 넓이를 구하여 적을 것\n\n각도\n\n탄젠트($\\tan$)\n\n$32°$\n\n$0.60$\n\n$34°$\n\n$0.65$\n\n$36°$\n\n$0.70$\n\n$38°$\n\n$0.75$\n\n$40°$\n\n$0.80$",
+  "choices": [],
+  "questionType": "written",
+  "score": {
+    "parentScore": 7,
+    "printedOccurrences": [
+      {
+        "printed": "[$7$점, 부분점수 있음]",
+        "value": 7.0,
+        "parentTotalMarked": false,
+        "textOffset": 171
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 7,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "not separately printed"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "gyeongilyeo\\quarantined-question-crops\\q21-part1.png",
+        "sha256": "ff200bceb29ed85ba1cfb914f212caa02107d8d2777d48c3205221d2ff8f1bfc",
+        "page": 6,
+        "column": 0,
+        "bbox": [
+          55,
+          83,
+          375,
+          943.0
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "[서술형 $4$] 그림에서 두 점 $rmA$와 $rmB$는 점 $rmP$에서 원 $rmO$에 그은 두 접선의 접점이다. $rmbarOA`=7`cm$이고, $rmangleAPB:angleAOB`=`2`:`3$일 때, <탄젠트표>를 이용하여 색칠한 부분의 넓이를 구하고 그 과정을 <조건>에 맞게 서술하시오. [$7$점, 부분점수 있음]\n\n<조건>\n\n• $rmangleAPB$의 크기를 구하여 적을 것\n\n• $rmbarPA$의 길이를 구하여 적을 것\n\n• 사각형 $rmAPBO$의 넓이를 구하여 적을 것\n\n• 부채꼴 $rmAOB$의 넓이를 구하여 적을 것\n\n각도\n\n탄젠트($tan$)\n\n$32°$\n\n$0.60$\n\n$34°$\n\n$0.65$\n\n$36°$\n\n$0.70$\n\n$38°$\n\n$0.75$\n\n$40°$\n\n$0.80$",
+  "rawHwpChoices": [],
+  "tables": [
+    {
+      "headers": [
+        "각도",
+        "tan"
+      ],
+      "rows": [
+        [
+          32,
+          ".60"
+        ],
+        [
+          34,
+          ".65"
+        ],
+        [
+          36,
+          ".70"
+        ],
+        [
+          38,
+          ".75"
+        ],
+        [
+          40,
+          ".80"
+        ]
+      ],
+      "approximationPolicy": "use supplied table values; source rounding instruction unspecified"
+    }
+  ],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

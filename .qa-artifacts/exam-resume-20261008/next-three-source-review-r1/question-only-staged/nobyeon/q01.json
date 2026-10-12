@@ -1,0 +1,65 @@
+{
+  "questionNumber": 1,
+  "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q01",
+  "stem": "그림과 같이 $\\angle \\mathrm{C}=90°$인 직각삼각형 $\\mathrm{ABC}$에서 $\\overline{\\mathrm{A}C}\\,\\,:\\,\\,\\overline{\\mathrm{B}C}=1\\,\\,:\\,\\,2$일 때, $\\cos B\\times \\mathrm{\\tan }\\mathit{A}$의 값은? [$3$점]",
+  "choices": [
+    "$\\frac{\\sqrt{5}}{10}$",
+    "$\\frac{\\sqrt{5}}{5}$",
+    "$\\frac{2\\sqrt{5}}{5}$",
+    "$\\frac{4\\sqrt{5}}{5}$",
+    "$\\frac{8\\sqrt{5}}{5}$"
+  ],
+  "questionType": "multiple-choice",
+  "score": {
+    "parentScore": 3,
+    "printedOccurrences": [
+      {
+        "printed": "[$3$점]",
+        "value": 3.0,
+        "parentTotalMarked": false,
+        "textOffset": 117
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 3,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "single MC item"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "nobyeon\\quarantined-question-crops\\q01-part1.png",
+        "sha256": "5652aa3f9f8bbdfeb0304ad014909f7f451abc598ca319119ff94c314c40b271",
+        "page": 1,
+        "column": 0,
+        "bbox": [
+          55,
+          99,
+          375,
+          515.9249877929688
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "그림과 같이 $anglermC=90°$인 직각삼각형 $rmABC$에서 $bar {rmAC} `` : `` bar {rmBC} =1 `` : `` 2$일 때, $cos B times rmtan itA$의 값은? [$3$점]",
+  "rawHwpChoices": [
+    "${ sqrt { 5} } over { 10}$",
+    "${ sqrt { 5} } over { 5}$",
+    "${ 2 sqrt { 5} } over { 5}$",
+    "${ 4 sqrt { 5} } over { 5}$",
+    "${ 8 sqrt { 5} } over { 5}$"
+  ],
+  "tables": [],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

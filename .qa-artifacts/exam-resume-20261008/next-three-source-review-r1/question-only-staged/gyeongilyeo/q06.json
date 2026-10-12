@@ -1,0 +1,65 @@
+{
+  "questionNumber": 6,
+  "newSourceReferenceId": "source-ref-2025-gyeongilyeo-3-2-mid-r1-q06",
+  "stem": "그림과 같이 반지름의 길이가 $1$인 사분원에서 다음 중 $\\overline{BC}$의 길이와 그 값이 항상 같은 것은? [$4$점]",
+  "choices": [
+    "$\\frac{1}{\\sin \\,x°}$",
+    "$\\frac{1}{\\cos \\,x°}$",
+    "$\\tan \\,x°$",
+    "$\\sin \\,x°$",
+    "$\\cos \\,x°$"
+  ],
+  "questionType": "multiple-choice",
+  "score": {
+    "parentScore": 4,
+    "printedOccurrences": [
+      {
+        "printed": "[$4$점]",
+        "value": 4.0,
+        "parentTotalMarked": false,
+        "textOffset": 62
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 4,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "single MC item"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "gyeongilyeo\\quarantined-question-crops\\q06-part1.png",
+        "sha256": "b952b5a16fe7d69a9c414803c3dac8bc974befe68237d504c36a4ed2344997b0",
+        "page": 2,
+        "column": 0,
+        "bbox": [
+          55,
+          83,
+          375,
+          525.5179443359375
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "그림과 같이 반지름의 길이가 $1$인 사분원에서 다음 중 $rmbarBC$의 길이와 그 값이 항상 같은 것은? [$4$점]",
+  "rawHwpChoices": [
+    "${1} over {sin`x°}$",
+    "${1} over {cos`x°}$",
+    "$tan`x°$",
+    "$sin`x°$",
+    "$cos`x°$"
+  ],
+  "tables": [],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

@@ -1,0 +1,651 @@
+{
+  "schoolKey": "nobyeon",
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "method": "independent-source-component-comparison",
+  "manifestBinding": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+    "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454",
+    "bytes": 1999785
+  },
+  "selectedInputBinding": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\selected-source-inputs.json",
+    "sha256": "76e8ef7e8d688722b144e29c5cd603e5c75b4af20e311bf20e4217077d23439a",
+    "bytes": 2812
+  },
+  "identity": {
+    "printedYear": 2025,
+    "printedGrade": 3,
+    "printedSemester": 2,
+    "printedRound": "중간고사",
+    "printedSchool": "노변중학교",
+    "printedDate": "2025-09-25",
+    "printedPeriod": 3,
+    "status": "printed-identity-observed-not-whole-pair-certified",
+    "basis": "Original02/03/04 printed cover names 노변중학교 and6pages=cover+5questionpages. Other alternatives omit cover but printed footer/last copyright join school.17MC+5written22."
+  },
+  "counts": {
+    "newlyParsedParents": 22,
+    "originalPrintedParentsObserved": 22,
+    "identitySupportedPrintedParents": 22,
+    "formalSourceCertifiedParents": 0,
+    "newTwins": 0,
+    "gradeApprovals": 0,
+    "rightsApprovals": 0,
+    "familyApprovals": 0,
+    "nativeApprovals": 0
+  },
+  "scores": {
+    "printedQuestionScoresObserved": [
+      3,
+      4,
+      4,
+      5,
+      4,
+      4,
+      5,
+      4,
+      5,
+      5,
+      4,
+      3,
+      4,
+      3,
+      4,
+      4,
+      5,
+      4,
+      5,
+      5,
+      5,
+      11
+    ],
+    "printedParentScoreSumCalculated": 100,
+    "completedParentScoreSumCalculated": 100.0,
+    "missingParentScoreQuestions": [],
+    "ambiguousPerSubpartAllocation": [
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "scoreApproval": false,
+    "printedExamTotal": null,
+    "mcScoreSumCalculated": 70,
+    "writtenScoreSumCalculated": 30
+  },
+  "originalAlternatives": [
+    {
+      "alternative": 1,
+      "source": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[노변중][3][25-2-중간](원본)(아잉).pdf",
+        "sha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+        "bytes": 2170116
+      },
+      "pageCount": 5,
+      "pageRoles": {
+        "1": "questions1-5-printed-page2",
+        "2": "questions6-11-printed-page3",
+        "3": "questions12-17-printed-page4",
+        "4": "questions18-21-printed-page5",
+        "5": "question22-printed-page6"
+      },
+      "viewed": "direct visual unique pages; byte/pixel-identical duplicate pages inherited only after exact code comparison",
+      "questionContentComparison": "Same printed item conditions/math/options/figures/tables/scores within this school; incidental manuscript layers differ. KI10 option-label sequence disagreement is with completed pair, not a key comparison.",
+      "authorDistributionAllowed": false,
+      "reviewerOnly": true,
+      "previewBindings": [
+        {
+          "school": "nobyeon",
+          "alternative": 1,
+          "page": 1,
+          "path": "reviewer-only/nobyeon/original-01-page-01-r2.png",
+          "sha256": "0c40f9bdb2cd8f468ef0b7c303a0845d7660332d67f9e1137d8201a7baa157fe",
+          "pixelSha256": "fb95330e32f27539d6cc0d85cbfc2f8bf6edb4a6be13b0a0d53072bfce90cabf",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 1,
+          "page": 2,
+          "path": "reviewer-only/nobyeon/original-01-page-02-r2.png",
+          "sha256": "ec5fcae9c74a1b8aa4d5c0de63533fb2c2e1023732ea032db952b3bc03735379",
+          "pixelSha256": "b7a90e1634788290166f74ea55c14976e8b34dc54f77ed212225be6fb7af90b6",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 1,
+          "page": 3,
+          "path": "reviewer-only/nobyeon/original-01-page-03-r2.png",
+          "sha256": "4dc38cab6d66ff03f057d754ba21e5d1805c4911da15cf565b2cdaec40f50ebb",
+          "pixelSha256": "4b3142639fe72145ff2d6568ca8a588805ab1b766519adcf9bb891202ad03c2a",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 1,
+          "page": 4,
+          "path": "reviewer-only/nobyeon/original-01-page-04-r2.png",
+          "sha256": "f91e714e06c1c744d3f5495d5fb3b40c50232c77011a699c348ef703e55e17d8",
+          "pixelSha256": "3bd5cc019b4196c21d194497ed5ab57f340ad0fbd0bf07bea77b46bde6d9d0b8",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 1,
+          "page": 5,
+          "path": "reviewer-only/nobyeon/original-01-page-05-r2.png",
+          "sha256": "3bc34b267147dfcf467ce4683ebd9a71981e2e172020c2377d72983169e43ea5",
+          "pixelSha256": "90f83d9d4f152a5b60bf36e3fdbcdad84e3fd8e88d6938bc409156a7136ccb78",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        }
+      ]
+    },
+    {
+      "alternative": 2,
+      "source": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간] (원본) (데부) (1).pdf",
+        "sha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+        "bytes": 1815373
+      },
+      "pageCount": 6,
+      "pageRoles": {
+        "1": "cover-identity-copyright-only",
+        "2": "questions1-5",
+        "3": "questions6-11",
+        "4": "questions12-17",
+        "5": "questions18-21",
+        "6": "question22"
+      },
+      "viewed": "direct visual unique pages; byte/pixel-identical duplicate pages inherited only after exact code comparison",
+      "questionContentComparison": "Same printed item conditions/math/options/figures/tables/scores within this school; incidental manuscript layers differ. KI10 option-label sequence disagreement is with completed pair, not a key comparison.",
+      "authorDistributionAllowed": false,
+      "reviewerOnly": true,
+      "previewBindings": [
+        {
+          "school": "nobyeon",
+          "alternative": 2,
+          "page": 1,
+          "path": "reviewer-only/nobyeon/original-02-page-01-r2.png",
+          "sha256": "6975212ffb509073355879da8a6d0ec65d494fcc01a863b5cee37fce3951a2a5",
+          "pixelSha256": "5bb34c8e1ff8f70cb3767d922e944e5eeef4518e9e7194e2505b2c8ee9863193",
+          "width": 1400,
+          "height": 1993,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 2,
+          "page": 2,
+          "path": "reviewer-only/nobyeon/original-02-page-02-r2.png",
+          "sha256": "b27fda947229f9b30961f2794d65a0be3df015532ca2ad20a2b0e384c4349e14",
+          "pixelSha256": "a499fc24a9e3acc876da509a73f332ce827e7c3d333e7a920cc4e60c9d0dcae3",
+          "width": 1400,
+          "height": 1993,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 2,
+          "page": 3,
+          "path": "reviewer-only/nobyeon/original-02-page-03-r2.png",
+          "sha256": "13ad31532b25b4a67863ae7b44b18badad2df85d84712d00b67707d81b48ade5",
+          "pixelSha256": "4708b504cfaec64b969480586f96fc256f5d4200ef85a40b3d6a613039b7cc5a",
+          "width": 1400,
+          "height": 1996,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 2,
+          "page": 4,
+          "path": "reviewer-only/nobyeon/original-02-page-04-r2.png",
+          "sha256": "2492b5001b2dd631972acace37df109ce469d9cb72808d68576eb520891741c1",
+          "pixelSha256": "217848cacf77a7488dbf416adaed9bfc1c1e939a18a6d5909f6a08f22c647577",
+          "width": 1400,
+          "height": 1996,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 2,
+          "page": 5,
+          "path": "reviewer-only/nobyeon/original-02-page-05-r2.png",
+          "sha256": "65ffa1a8ca8905fae8ddbaccfbef3c8fa2e219b1c5a85d58c428c7dceca9382d",
+          "pixelSha256": "be9dfc7fbb702497d8f38cd3fc42831c9d68e42e2ec9d22fae1b97df32aab865",
+          "width": 1400,
+          "height": 1997,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 2,
+          "page": 6,
+          "path": "reviewer-only/nobyeon/original-02-page-06-r2.png",
+          "sha256": "f73fa08a4f59a3faf9e4ab73bd3856b4ecfb785ddbe11c34387fd2339a9d9cc1",
+          "pixelSha256": "220c78fd0cc92ce0774779459848db375ef949c292f2c6ad5062fd94e9ab3136",
+          "width": 1400,
+          "height": 1997,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        }
+      ]
+    },
+    {
+      "alternative": 3,
+      "source": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간] (원본) (데부) (2).pdf",
+        "sha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+        "bytes": 1815373
+      },
+      "pageCount": 6,
+      "pageRoles": {
+        "1": "cover-identity-copyright-only",
+        "2": "questions1-5",
+        "3": "questions6-11",
+        "4": "questions12-17",
+        "5": "questions18-21",
+        "6": "question22"
+      },
+      "viewed": "direct visual unique pages; byte/pixel-identical duplicate pages inherited only after exact code comparison",
+      "questionContentComparison": "Same printed item conditions/math/options/figures/tables/scores within this school; incidental manuscript layers differ. KI10 option-label sequence disagreement is with completed pair, not a key comparison.",
+      "authorDistributionAllowed": false,
+      "reviewerOnly": true,
+      "previewBindings": [
+        {
+          "school": "nobyeon",
+          "alternative": 3,
+          "page": 1,
+          "path": "reviewer-only/nobyeon/original-03-page-01-r2.png",
+          "sha256": "6975212ffb509073355879da8a6d0ec65d494fcc01a863b5cee37fce3951a2a5",
+          "pixelSha256": "5bb34c8e1ff8f70cb3767d922e944e5eeef4518e9e7194e2505b2c8ee9863193",
+          "width": 1400,
+          "height": 1993,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 3,
+          "page": 2,
+          "path": "reviewer-only/nobyeon/original-03-page-02-r2.png",
+          "sha256": "b27fda947229f9b30961f2794d65a0be3df015532ca2ad20a2b0e384c4349e14",
+          "pixelSha256": "a499fc24a9e3acc876da509a73f332ce827e7c3d333e7a920cc4e60c9d0dcae3",
+          "width": 1400,
+          "height": 1993,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 3,
+          "page": 3,
+          "path": "reviewer-only/nobyeon/original-03-page-03-r2.png",
+          "sha256": "13ad31532b25b4a67863ae7b44b18badad2df85d84712d00b67707d81b48ade5",
+          "pixelSha256": "4708b504cfaec64b969480586f96fc256f5d4200ef85a40b3d6a613039b7cc5a",
+          "width": 1400,
+          "height": 1996,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 3,
+          "page": 4,
+          "path": "reviewer-only/nobyeon/original-03-page-04-r2.png",
+          "sha256": "2492b5001b2dd631972acace37df109ce469d9cb72808d68576eb520891741c1",
+          "pixelSha256": "217848cacf77a7488dbf416adaed9bfc1c1e939a18a6d5909f6a08f22c647577",
+          "width": 1400,
+          "height": 1996,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 3,
+          "page": 5,
+          "path": "reviewer-only/nobyeon/original-03-page-05-r2.png",
+          "sha256": "65ffa1a8ca8905fae8ddbaccfbef3c8fa2e219b1c5a85d58c428c7dceca9382d",
+          "pixelSha256": "be9dfc7fbb702497d8f38cd3fc42831c9d68e42e2ec9d22fae1b97df32aab865",
+          "width": 1400,
+          "height": 1997,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 3,
+          "page": 6,
+          "path": "reviewer-only/nobyeon/original-03-page-06-r2.png",
+          "sha256": "f73fa08a4f59a3faf9e4ab73bd3856b4ecfb785ddbe11c34387fd2339a9d9cc1",
+          "pixelSha256": "220c78fd0cc92ce0774779459848db375ef949c292f2c6ad5062fd94e9ab3136",
+          "width": 1400,
+          "height": 1997,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        }
+      ]
+    },
+    {
+      "alternative": 4,
+      "source": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간] (원본) (데부).pdf",
+        "sha256": "d81f6a6c2742a2df20e3e83eb8e9ed17a0d30a72d165a3582d1db48b95bfc6fc",
+        "bytes": 1809568
+      },
+      "pageCount": 6,
+      "pageRoles": {
+        "1": "cover-identity-copyright-only",
+        "2": "questions1-5",
+        "3": "questions6-11",
+        "4": "questions12-17",
+        "5": "questions18-21",
+        "6": "question22"
+      },
+      "viewed": "direct visual unique pages; byte/pixel-identical duplicate pages inherited only after exact code comparison",
+      "questionContentComparison": "Same printed item conditions/math/options/figures/tables/scores within this school; incidental manuscript layers differ. KI10 option-label sequence disagreement is with completed pair, not a key comparison.",
+      "authorDistributionAllowed": false,
+      "reviewerOnly": true,
+      "previewBindings": [
+        {
+          "school": "nobyeon",
+          "alternative": 4,
+          "page": 1,
+          "path": "reviewer-only/nobyeon/original-04-page-01-r2.png",
+          "sha256": "fa3aecf5f0d16f9c9b788340afcd5d86eb42ae1670ebc58b5311e62e0df1430b",
+          "pixelSha256": "3db167ca05144281c3d1b3f939d4cb7b2675eb202c84067f633a052f5b520458",
+          "width": 1400,
+          "height": 1993,
+          "pdfSha256": "d81f6a6c2742a2df20e3e83eb8e9ed17a0d30a72d165a3582d1db48b95bfc6fc",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 4,
+          "page": 2,
+          "path": "reviewer-only/nobyeon/original-04-page-02-r2.png",
+          "sha256": "b27fda947229f9b30961f2794d65a0be3df015532ca2ad20a2b0e384c4349e14",
+          "pixelSha256": "a499fc24a9e3acc876da509a73f332ce827e7c3d333e7a920cc4e60c9d0dcae3",
+          "width": 1400,
+          "height": 1993,
+          "pdfSha256": "d81f6a6c2742a2df20e3e83eb8e9ed17a0d30a72d165a3582d1db48b95bfc6fc",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 4,
+          "page": 3,
+          "path": "reviewer-only/nobyeon/original-04-page-03-r2.png",
+          "sha256": "13ad31532b25b4a67863ae7b44b18badad2df85d84712d00b67707d81b48ade5",
+          "pixelSha256": "4708b504cfaec64b969480586f96fc256f5d4200ef85a40b3d6a613039b7cc5a",
+          "width": 1400,
+          "height": 1996,
+          "pdfSha256": "d81f6a6c2742a2df20e3e83eb8e9ed17a0d30a72d165a3582d1db48b95bfc6fc",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 4,
+          "page": 4,
+          "path": "reviewer-only/nobyeon/original-04-page-04-r2.png",
+          "sha256": "2492b5001b2dd631972acace37df109ce469d9cb72808d68576eb520891741c1",
+          "pixelSha256": "217848cacf77a7488dbf416adaed9bfc1c1e939a18a6d5909f6a08f22c647577",
+          "width": 1400,
+          "height": 1996,
+          "pdfSha256": "d81f6a6c2742a2df20e3e83eb8e9ed17a0d30a72d165a3582d1db48b95bfc6fc",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 4,
+          "page": 5,
+          "path": "reviewer-only/nobyeon/original-04-page-05-r2.png",
+          "sha256": "65ffa1a8ca8905fae8ddbaccfbef3c8fa2e219b1c5a85d58c428c7dceca9382d",
+          "pixelSha256": "be9dfc7fbb702497d8f38cd3fc42831c9d68e42e2ec9d22fae1b97df32aab865",
+          "width": 1400,
+          "height": 1997,
+          "pdfSha256": "d81f6a6c2742a2df20e3e83eb8e9ed17a0d30a72d165a3582d1db48b95bfc6fc",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 4,
+          "page": 6,
+          "path": "reviewer-only/nobyeon/original-04-page-06-r2.png",
+          "sha256": "f73fa08a4f59a3faf9e4ab73bd3856b4ecfb785ddbe11c34387fd2339a9d9cc1",
+          "pixelSha256": "220c78fd0cc92ce0774779459848db375ef949c292f2c6ad5062fd94e9ab3136",
+          "width": 1400,
+          "height": 1997,
+          "pdfSha256": "d81f6a6c2742a2df20e3e83eb8e9ed17a0d30a72d165a3582d1db48b95bfc6fc",
+          "notAuthorInput": true
+        }
+      ]
+    },
+    {
+      "alternative": 5,
+      "source": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간] (원본) (주니쌤).pdf",
+        "sha256": "595c843a9b147d2882ce88886744566b2ffefe944e8a3bbd9254f3f35ff518ff",
+        "bytes": 2185132
+      },
+      "pageCount": 5,
+      "pageRoles": {
+        "1": "questions1-5-printed-page2",
+        "2": "questions6-11-printed-page3",
+        "3": "questions12-17-printed-page4",
+        "4": "questions18-21-printed-page5",
+        "5": "question22-printed-page6"
+      },
+      "viewed": "direct visual unique pages; byte/pixel-identical duplicate pages inherited only after exact code comparison",
+      "questionContentComparison": "Same printed item conditions/math/options/figures/tables/scores within this school; incidental manuscript layers differ. KI10 option-label sequence disagreement is with completed pair, not a key comparison.",
+      "authorDistributionAllowed": false,
+      "reviewerOnly": true,
+      "previewBindings": [
+        {
+          "school": "nobyeon",
+          "alternative": 5,
+          "page": 1,
+          "path": "reviewer-only/nobyeon/original-05-page-01-r2.png",
+          "sha256": "4047102b4f01dc8243d0f9076f165c5461e1a192ccb93f8f1c366be64e09e555",
+          "pixelSha256": "ad312a78710af10b12d2877e856f7b1381e7595e643ad617b649f33fff41c91b",
+          "width": 1400,
+          "height": 989,
+          "pdfSha256": "595c843a9b147d2882ce88886744566b2ffefe944e8a3bbd9254f3f35ff518ff",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 5,
+          "page": 2,
+          "path": "reviewer-only/nobyeon/original-05-page-02-r2.png",
+          "sha256": "0e528c5cff35624951b5b297c85c426ba9962cf7defc0c7e38676b0207829ea5",
+          "pixelSha256": "fa816ec49c285be81d37884b9ed9963c60ce65804bbfbe5d8d17ec3ef228133c",
+          "width": 1400,
+          "height": 989,
+          "pdfSha256": "595c843a9b147d2882ce88886744566b2ffefe944e8a3bbd9254f3f35ff518ff",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 5,
+          "page": 3,
+          "path": "reviewer-only/nobyeon/original-05-page-03-r2.png",
+          "sha256": "c20a41d4e4486e78517cdefd015f8ad4ee8d84a3067e1874baf2fd8dad1e617f",
+          "pixelSha256": "26d3057781ca3740946b6532bf03f8d134a380b7c716df6ea93a5c4c7a7949ec",
+          "width": 1400,
+          "height": 989,
+          "pdfSha256": "595c843a9b147d2882ce88886744566b2ffefe944e8a3bbd9254f3f35ff518ff",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 5,
+          "page": 4,
+          "path": "reviewer-only/nobyeon/original-05-page-04-r2.png",
+          "sha256": "c4322aeb048625a44b56452e7324ea3a868a4a10e6febc12efb89f81ee187856",
+          "pixelSha256": "41c73a43408a7c3c13d69c2de301b29fb0c0492214fe02eba183236dd9bc245a",
+          "width": 1400,
+          "height": 989,
+          "pdfSha256": "595c843a9b147d2882ce88886744566b2ffefe944e8a3bbd9254f3f35ff518ff",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 5,
+          "page": 5,
+          "path": "reviewer-only/nobyeon/original-05-page-05-r2.png",
+          "sha256": "7dac0963c8e025a580ae3b05e8c32e781a73d4a6d675de5bda04de2a899064c9",
+          "pixelSha256": "b981f94c2b724b59e58e5c6bda4777f544df4a78c7f069edb7811caefcc2bd82",
+          "width": 1400,
+          "height": 989,
+          "pdfSha256": "595c843a9b147d2882ce88886744566b2ffefe944e8a3bbd9254f3f35ff518ff",
+          "notAuthorInput": true
+        }
+      ]
+    },
+    {
+      "alternative": 6,
+      "source": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간](원본)(엘프리모).pdf",
+        "sha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+        "bytes": 2170116
+      },
+      "pageCount": 5,
+      "pageRoles": {
+        "1": "questions1-5-printed-page2",
+        "2": "questions6-11-printed-page3",
+        "3": "questions12-17-printed-page4",
+        "4": "questions18-21-printed-page5",
+        "5": "question22-printed-page6"
+      },
+      "viewed": "direct visual unique pages; byte/pixel-identical duplicate pages inherited only after exact code comparison",
+      "questionContentComparison": "Same printed item conditions/math/options/figures/tables/scores within this school; incidental manuscript layers differ. KI10 option-label sequence disagreement is with completed pair, not a key comparison.",
+      "authorDistributionAllowed": false,
+      "reviewerOnly": true,
+      "previewBindings": [
+        {
+          "school": "nobyeon",
+          "alternative": 6,
+          "page": 1,
+          "path": "reviewer-only/nobyeon/original-06-page-01-r2.png",
+          "sha256": "0c40f9bdb2cd8f468ef0b7c303a0845d7660332d67f9e1137d8201a7baa157fe",
+          "pixelSha256": "fb95330e32f27539d6cc0d85cbfc2f8bf6edb4a6be13b0a0d53072bfce90cabf",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 6,
+          "page": 2,
+          "path": "reviewer-only/nobyeon/original-06-page-02-r2.png",
+          "sha256": "ec5fcae9c74a1b8aa4d5c0de63533fb2c2e1023732ea032db952b3bc03735379",
+          "pixelSha256": "b7a90e1634788290166f74ea55c14976e8b34dc54f77ed212225be6fb7af90b6",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 6,
+          "page": 3,
+          "path": "reviewer-only/nobyeon/original-06-page-03-r2.png",
+          "sha256": "4dc38cab6d66ff03f057d754ba21e5d1805c4911da15cf565b2cdaec40f50ebb",
+          "pixelSha256": "4b3142639fe72145ff2d6568ca8a588805ab1b766519adcf9bb891202ad03c2a",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 6,
+          "page": 4,
+          "path": "reviewer-only/nobyeon/original-06-page-04-r2.png",
+          "sha256": "f91e714e06c1c744d3f5495d5fb3b40c50232c77011a699c348ef703e55e17d8",
+          "pixelSha256": "3bd5cc019b4196c21d194497ed5ab57f340ad0fbd0bf07bea77b46bde6d9d0b8",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        {
+          "school": "nobyeon",
+          "alternative": 6,
+          "page": 5,
+          "path": "reviewer-only/nobyeon/original-06-page-05-r2.png",
+          "sha256": "3bc34b267147dfcf467ce4683ebd9a71981e2e172020c2377d72983169e43ea5",
+          "pixelSha256": "90f83d9d4f152a5b60bf36e3fdbcdad84e3fd8e88d6938bc409156a7136ccb78",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        }
+      ]
+    }
+  ],
+  "originalAlternativeDedup": {
+    "byteIdenticalGroups": [
+      [
+        1,
+        6
+      ],
+      [
+        2,
+        3
+      ]
+    ],
+    "pixelIdenticalQuestionPageGroups": {
+      "2/3/4": "pages2-6 identical at saved render dimensions;4cover has manuscript personal data"
+    },
+    "semanticQuestionContentGroups": [
+      [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    ],
+    "crossSchoolExamDedupCertified": false,
+    "currentBankDedupPerformed": false
+  },
+  "completedPairHeaderFooterCaveat": "Completed PDF nominal2025secondsemester and HWP preparation footer26년2학기 are not original identity evidence.",
+  "originalAnswersUsed": false,
+  "gates": {
+    "sourceIdentityApproval": false,
+    "wholePairApproval": false,
+    "gradeApproval": false,
+    "familyApproval": false,
+    "difficultyApproval": false,
+    "rightsApproval": false,
+    "custodyApproval": false,
+    "nativeApproval": false,
+    "loadable": false,
+    "directUseAllowed": false
+  }
+}

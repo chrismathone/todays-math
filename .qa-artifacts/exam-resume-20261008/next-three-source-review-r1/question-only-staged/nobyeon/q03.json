@@ -1,0 +1,65 @@
+{
+  "questionNumber": 3,
+  "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q03",
+  "stem": "그림은 반지름의 길이가 $1$인 사분원이다. $\\angle \\mathrm{AOB}=\\mathit{x}$, $\\angle \\mathrm{ODC}=\\mathit{y}$일 때, 옳지 않은 것은? [$4$점]",
+  "choices": [
+    "$\\sin \\,x=\\cos \\,y$",
+    "$\\sin \\,y=\\overline{\\mathrm{O}B}$",
+    "$\\tan \\,x\\times \\mathrm{\\tan }\\,\\mathit{y}=1$",
+    "$x$의 크기가 커지면 $\\tan \\,x$의 값도 커진다.",
+    "$x$의 크기가 커지면 $\\sin \\,x$의 값은 작아진다."
+  ],
+  "questionType": "multiple-choice",
+  "score": {
+    "parentScore": 4,
+    "printedOccurrences": [
+      {
+        "printed": "[$4$점]",
+        "value": 4.0,
+        "parentTotalMarked": false,
+        "textOffset": 76
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 4,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "single MC item"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "nobyeon\\quarantined-question-crops\\q03-part1.png",
+        "sha256": "58fd3cd34d8efa958c27db1a74fb26e2056ea2222eaa72a5e1c41901756ec2f7",
+        "page": 1,
+        "column": 1,
+        "bbox": [
+          370,
+          99,
+          688.0,
+          496.2593994140625
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "그림은 반지름의 길이가 $1$인 사분원이다. $angle rmAOB=itx$, $angle rmODC=ity$일 때, 옳지 않은 것은? [$4$점]",
+  "rawHwpChoices": [
+    "$sin `x=cos`y$",
+    "$sin`y=bar{rmOB}$",
+    "$tan `x times rmtan`ity=1$",
+    "$x$의 크기가 커지면 $tan`x$의 값도 커진다.",
+    "$x$의 크기가 커지면 $sin `x$의 값은 작아진다."
+  ],
+  "tables": [],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

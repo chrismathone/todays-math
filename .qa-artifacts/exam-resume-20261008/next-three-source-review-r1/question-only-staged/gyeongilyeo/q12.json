@@ -1,0 +1,65 @@
+{
+  "questionNumber": 12,
+  "newSourceReferenceId": "source-ref-2025-gyeongilyeo-3-2-mid-r1-q12",
+  "stem": "그림과 같이 $\\angle \\mathrm{BAC}=90°$인 직각삼각형 $\\mathrm{ABC}$의 꼭짓점 $\\mathrm{A}$에서 $\\overline{BC}$에 내린 수선의 발을 $\\mathrm{D}$, 점 $\\mathrm{D}$에서 $\\overline{AC}$에 내린 수선의 발을 $\\mathrm{E}$라 하자. $\\angle \\mathrm{DAC}=\\mathit{x}$라 할 때, 다음 중 $\\tan \\,x$를 나타내는 것의 개수는? [$4$점]\n\n$\\mathrm{\\overline{D}}\\frac{E}{\\overline{AE}}$\n\n$\\frac{\\overline{AC}}{\\overline{AB}}$\n\n$\\frac{\\overline{BD}}{\\overline{AD}}$\n\n$\\frac{\\overline{CE}}{\\overline{DE}}$\n\n$\\frac{\\overline{AD}}{\\overline{CD}}$",
+  "choices": [
+    "$1$개",
+    "$2$개",
+    "$3$개",
+    "$4$개",
+    "$5$개"
+  ],
+  "questionType": "multiple-choice",
+  "score": {
+    "parentScore": 4,
+    "printedOccurrences": [
+      {
+        "printed": "[$4$점]",
+        "value": 4.0,
+        "parentTotalMarked": false,
+        "textOffset": 175
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 4,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "single MC item"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "gyeongilyeo\\quarantined-question-crops\\q12-part1.png",
+        "sha256": "344da7b058a7fa34b82838093039d0c0298e5846aa0100f0702e4cc961efa495",
+        "page": 3,
+        "column": 1,
+        "bbox": [
+          370,
+          83,
+          688.0,
+          554.6565551757812
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "그림과 같이 $angle rmBAC=90°$인 직각삼각형 $rmABC$의 꼭짓점 $rmA$에서 $rmbarBC$에 내린 수선의 발을 $rmD$, 점 $rmD$에서 $rmbarAC$에 내린 수선의 발을 $rmE$라 하자. $anglermDAC={itx}$라 할 때, 다음 중 $tan`x$를 나타내는 것의 개수는? [$4$점]\n\n$rm barDE OVERBARAE$\n\n$RMBARAC OVERBARAB$\n\n$RMBARBD OVERBARAD$\n\n$RMBARCE OVERBARDE$\n\n$rmBAR{ AD}OVERBARCD$",
+  "rawHwpChoices": [
+    "$1$개",
+    "$2$개",
+    "$3$개",
+    "$4$개",
+    "$5$개"
+  ],
+  "tables": [],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

@@ -1,0 +1,65 @@
+{
+  "questionNumber": 5,
+  "newSourceReferenceId": "source-ref-2025-gyeseong-3-2-mid-r1-q05",
+  "stem": "$\\triangle \\mathrm{ABC}$의 넓이는? [$3$점]",
+  "choices": [
+    "$\\frac{15}{4}$",
+    "$\\frac{15\\sqrt{2}}{4}$",
+    "$\\frac{15\\sqrt{3}}{4}$",
+    "$\\frac{15}{2}$",
+    "$15$"
+  ],
+  "questionType": "multiple-choice",
+  "score": {
+    "parentScore": 3,
+    "printedOccurrences": [
+      {
+        "printed": "[$3$점]",
+        "value": 3.0,
+        "parentTotalMarked": false,
+        "textOffset": 24
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 3,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "single MC item"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "gyeseong\\quarantined-question-crops\\q05-part1.png",
+        "sha256": "60f2c857cf3ce893b6b7555f128c4720e11360691d7569bf332abb9945f5f269",
+        "page": 1,
+        "column": 1,
+        "bbox": [
+          370,
+          387.38372802734375,
+          688.0,
+          648.3078002929688
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "$TRIANGLE rm ABC$의 넓이는? [$3$점]",
+  "rawHwpChoices": [
+    "$15  over4$",
+    "${15 root2 }over4$",
+    "${15 root3 }over4$",
+    "$15 over2$",
+    "$15$"
+  ],
+  "tables": [],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

@@ -1,0 +1,59 @@
+{
+  "questionNumber": 21,
+  "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q21",
+  "stem": "[서술형 $4$] 다음 표는 어느 반 남학생과 여학생의 수학 점수의 평균과 표준편차를 나타낸 것이다. 반 전체 학생의 수학 점수의 분산을 구하고 그 과정을 서술하시오. [총 $5$점, 부분 점수 있음]\n학생\n\n남학생\n\n여학생\n\n학생수(명)\n\n$12$\n\n$18$\n\n평균(점)\n\n$65$\n\n$65$\n\n표준편차(점)\n\n$\\sqrt{10}$\n\n$3$",
+  "choices": [],
+  "questionType": "written",
+  "score": {
+    "parentScore": 5,
+    "printedOccurrences": [
+      {
+        "printed": "[총 $5$점, 부분 점수 있음]",
+        "value": 5.0,
+        "parentTotalMarked": true,
+        "textOffset": 94
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 5,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "not separately printed"
+  },
+  "sourceFigureReferences": [],
+  "rawHwpStem": "[서술형 $4$] 다음 표는 어느 반 남학생과 여학생의 수학 점수의 평균과 표준편차를 나타낸 것이다. 반 전체 학생의 수학 점수의 분산을 구하고 그 과정을 서술하시오. [총 $5$점, 부분 점수 있음]\n학생\n\n남학생\n\n여학생\n\n학생수(명)\n\n$12$\n\n$18$\n\n평균(점)\n\n$65$\n\n$65$\n\n표준편차(점)\n\n$sqrt { 10}$\n\n$3$",
+  "rawHwpChoices": [],
+  "tables": [
+    {
+      "headers": [
+        "학생",
+        "남학생",
+        "여학생"
+      ],
+      "rows": [
+        [
+          "학생수(명)",
+          12,
+          18
+        ],
+        [
+          "평균(점)",
+          65,
+          65
+        ],
+        [
+          "표준편차(점)",
+          "sqrt(10)",
+          3
+        ]
+      ]
+    }
+  ],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}
