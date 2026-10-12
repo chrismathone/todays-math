@@ -1,0 +1,44 @@
+{
+  "utc": "2026-10-12T04:32:00.849143+00:00",
+  "ownedMainIntegrationHead": "1c358b7dced4f8091cd24cf9adfb4119568b709f",
+  "fetchedMain": "bd5df240edbcd821a8a8f5806f378efaef4c675f",
+  "ownedRemoteBeforePush": "940c2407345e5c3e0c6c0f42a552c638e7ffe587",
+  "blindRawCommit": "383a5f7634ce3dc8979afd35cc9e058dc0d4c4fa",
+  "finalReviewCommit": "a25bb26f4f46be400bfc823d054ad5810e8f7933",
+  "final44AndRaw20GitBlobsUnedited": true,
+  "freshDeterministicExactProofRerunWithoutWrites": true,
+  "family12BlockAndQuadrantHelperUnchangedAfterLatestMain": true,
+  "currentM3TrigFileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+  "historicalCapturedM3TrigSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+  "family12RegistryEntryUnchanged": true,
+  "strictEngineCapturedFilesUnchanged": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\renderFigureSpec.ts",
+      "capturedSha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb",
+      "currentSha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\render_spec.py",
+      "capturedSha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627",
+      "currentSha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\figure\\engine_path.py",
+      "capturedSha256": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375",
+      "currentSha256": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\figure\\mathjaxSubstitute.ts",
+      "capturedSha256": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21",
+      "currentSha256": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21"
+    }
+  ],
+  "noChangedInputsOrReportsAfterIntegration": true,
+  "postIntegrationValidation": {
+    "path": "validation-after-integration.json",
+    "sha256": "9624b9fcbcb1398bcc22a8a4f1b9a459eed604c2dfe6e54494c2b41a318c9f62"
+  },
+  "scopeResultStillPendingOnlyClassificationAndExternalGates": true,
+  "unitOrFamilyApprovalPromoted": false,
+  "pushAuthorization": "parent addendum6 owned feature only; latest target/main fetch required again immediately before push"
+}

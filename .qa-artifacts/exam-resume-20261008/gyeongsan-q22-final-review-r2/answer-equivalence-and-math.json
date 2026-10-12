@@ -1,0 +1,195 @@
+{
+  "codeSha256": "1698556a302ebd215eef91f837a8d58e8891c4d34272b08f406fec9713b1ee59",
+  "sealedRawSolveSha256": "c59e4b8e2d3a0d9751c4ddf753e7f7410f74f3f4becaea4bef6343c800547104",
+  "method": "Meaning comparison of separately declared target role, chosen mark/index and exact numerator/denominator; whole-domain physical geometry calculation. No normalized-string-as-algebra comparison.",
+  "rawAnswerPreserved": "④, $\\cos\\beta=\\dfrac{SQ}{2}$",
+  "authoredAnswerPreserved": "④",
+  "requestedRole": "cosBeta",
+  "rawChosenMarks": [
+    "④"
+  ],
+  "rawChosenIndex": 4,
+  "authoredChosenMark": "④",
+  "authoredChosenIndex": 4,
+  "selectedExpressionRoleUnitValue": {
+    "role": "cosBeta",
+    "unit": "dimensionless",
+    "exactNumerator": "SQ",
+    "exactDenominator": 2,
+    "geometryReason": "parallel QS/UT, O-Q-T same ray, angleOQS=angleUTQ=beta; QO=radius2"
+  },
+  "sameMarkAndExactRequestedValue": true,
+  "literalRawAnswerAndAuthoredAnswerEqual": false,
+  "formatLimit": "A comparator expecting only a circled mark may reject the raw worked-value suffix. Preserve bytes; use this typed role/index/physical-length evidence. No global answer string normalization is an algebra proof.",
+  "allFiveActualExpressions": [
+    {
+      "choiceIndex1based": 1,
+      "actualText": "$\\dfrac{OS}{2}$",
+      "physicalLengthNumerator": "OS",
+      "physicalLengthDenominator": "2",
+      "exactPhysicalLengthExpression": "1/sqrt(k**2 + 1)",
+      "exactDifferenceFromCosBeta": "(1 - k)/sqrt(k**2 + 1)",
+      "wholeDomainSignProof": "1-k>0 and w>0",
+      "equalForEveryLegalAngle": false,
+      "strictlyGreaterAtEveryLegalAngle": true
+    },
+    {
+      "choiceIndex1based": 2,
+      "actualText": "$\\dfrac{UT}{2}$",
+      "physicalLengthNumerator": "UT",
+      "physicalLengthDenominator": "2",
+      "exactPhysicalLengthExpression": "ell*k/sqrt(k**2 + 1)",
+      "exactDifferenceFromCosBeta": "k*(ell - 1)/sqrt(k**2 + 1)",
+      "wholeDomainSignProof": "ell-1>0,k>0,w>0",
+      "equalForEveryLegalAngle": false,
+      "strictlyGreaterAtEveryLegalAngle": true
+    },
+    {
+      "choiceIndex1based": 3,
+      "actualText": "$\\dfrac{2}{SQ}$",
+      "physicalLengthNumerator": "2",
+      "physicalLengthDenominator": "SQ",
+      "exactPhysicalLengthExpression": "sqrt(k**2 + 1)/k",
+      "exactDifferenceFromCosBeta": "1/(k*sqrt(k**2 + 1))",
+      "wholeDomainSignProof": "k>0,w>0",
+      "equalForEveryLegalAngle": false,
+      "strictlyGreaterAtEveryLegalAngle": true
+    },
+    {
+      "choiceIndex1based": 4,
+      "actualText": "$\\dfrac{SQ}{2}$",
+      "physicalLengthNumerator": "SQ",
+      "physicalLengthDenominator": "2",
+      "exactPhysicalLengthExpression": "k/sqrt(k**2 + 1)",
+      "exactDifferenceFromCosBeta": "0",
+      "wholeDomainSignProof": "exact zero",
+      "equalForEveryLegalAngle": true,
+      "strictlyGreaterAtEveryLegalAngle": false
+    },
+    {
+      "choiceIndex1based": 5,
+      "actualText": "$\\dfrac{OS}{SQ}$",
+      "physicalLengthNumerator": "OS",
+      "physicalLengthDenominator": "SQ",
+      "exactPhysicalLengthExpression": "1/k",
+      "exactDifferenceFromCosBeta": "-k/sqrt(k**2 + 1) + 1/k",
+      "wholeDomainSignProof": "w>1>k² and k,w>0",
+      "equalForEveryLegalAngle": false,
+      "strictlyGreaterAtEveryLegalAngle": true
+    }
+  ],
+  "allDomain": {
+    "alpha": "0<alpha<45 degrees",
+    "beta": "45<beta<90 degrees",
+    "k": "0<SQ/OS<1",
+    "ell": "OT/OQ>1",
+    "nonzeroDenominators": true,
+    "positiveLengths": true,
+    "boundary45ExcludedForUniqueChoice": true
+  },
+  "authorStudentSolutionStepReview": [
+    {
+      "claim": "QS and UT perpendicular to OU imply parallel",
+      "checked": "Same two perpendicular directions in plane; middle1 line relation"
+    },
+    {
+      "claim": "angleOQS=angleUTQ=beta",
+      "checked": "QO and TQ are same directed down-left direction by O-Q-T; QS and TU are both toward baseline and parallel. Thus same angle, not its supplement."
+    },
+    {
+      "claim": "In right triangleOSQ the adjacent side atQ isSQ and hypotenuseOQ is2",
+      "checked": "S is right-angle vertex; Q lies on radius2 arc; target angle atQ isbeta"
+    },
+    {
+      "claim": "cosbeta=SQ/OQ=SQ/2 and option4",
+      "checked": "One cosine definition in actual right triangle; all five expressions checked over full domain"
+    }
+  ],
+  "existenceForEachLegalAngle": "Original sealed proof constructs Q=(2/w,2k/w),S=(2/w,0),U=(2,0),T=(2,2k). All0<k<1;OQ2,T=wQ,w>1. This review recomputes physical ratio expressions, signs and spec geometry independently.",
+  "requestedUniqueExpressionButNumericalConfigurationNotUnique": true,
+  "formalTrigIdentitiesSineCosineLawAdditionFormulaUsed": false,
+  "pixelCoordinatesAsQuestionValueUsed": false,
+  "originalKeyUsed": false,
+  "rawSpecGeometryChecks": {
+    "specSha256": "c281d4be98045dc36a54bd393e70f3c197139b7ba2434d6134887cd0e0bff675",
+    "checks": [
+      {
+        "condition": "Q on circle",
+        "computedFromRawSpec": 179.99999999999997,
+        "expected": 180,
+        "tolerance": 1e-09,
+        "passed": true
+      },
+      {
+        "condition": "U endpoint on circle",
+        "computedFromRawSpec": 180.0,
+        "expected": 180,
+        "tolerance": 1e-09,
+        "passed": true
+      },
+      {
+        "condition": "V endpoint on circle",
+        "computedFromRawSpec": 180.0,
+        "expected": 180,
+        "tolerance": 1e-09,
+        "passed": true
+      },
+      {
+        "condition": "quadrantUOV right",
+        "computedFromRawSpec": 90.0,
+        "expected": 90,
+        "tolerance": 1e-09,
+        "passed": true
+      },
+      {
+        "condition": "right atS",
+        "computedFromRawSpec": 90.0,
+        "expected": 90,
+        "tolerance": 1e-09,
+        "passed": true
+      },
+      {
+        "condition": "right atU",
+        "computedFromRawSpec": 90.0,
+        "expected": 90,
+        "tolerance": 1e-09,
+        "passed": true
+      },
+      {
+        "condition": "O,Q,T collinear",
+        "computedFromRawSpec": 0.0,
+        "expected": 0,
+        "tolerance": 1e-08,
+        "passed": true
+      },
+      {
+        "condition": "beta same atQ/T",
+        "computedFromRawSpec": 50.0,
+        "expected": 50.000000000000014,
+        "tolerance": 1e-09,
+        "passed": true
+      },
+      {
+        "condition": "complement within actual right triangles",
+        "computedFromRawSpec": 90.00000000000003,
+        "expected": 90,
+        "tolerance": 1e-09,
+        "passed": true
+      },
+      {
+        "condition": "cos of actual illustrative beta = SQ/OQ",
+        "computedFromRawSpec": 0.6427876096865391,
+        "expected": 0.6427876096865394,
+        "tolerance": 1e-09,
+        "passed": true
+      }
+    ],
+    "illustrativeAlphaDegrees": 40.00000000000001,
+    "illustrativeBetaDegrees": 50.000000000000014,
+    "OQToOTScale": 1.3054072893322788,
+    "OQToOUToPhysicalRadiusScale": 90,
+    "interpretation": "Spec is one legal illustrative configuration; alpha40 is not an extra numeric given or an oracle for full-domain proof.",
+    "circleProportionalityTheoremRequired": false,
+    "noNewRawSpecOrStudentAssetCreatedForMath": true
+  }
+}

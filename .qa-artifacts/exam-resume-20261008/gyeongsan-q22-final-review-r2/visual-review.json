@@ -1,0 +1,39 @@
+{
+  "method": "view_image at original resolution of source question-only crop, current expanded student+solution PNG, student-only PNG and strict rerendered figure",
+  "sourceCrop": {
+    "path": "inputs/source-images/q22-part1.png",
+    "sha256": "c7797cf295e4b5b0d07d3b63433995720b07fd6ba96e0ef0f36541273a9a89f9"
+  },
+  "expandedStudentSolution": {
+    "path": "qa/q22-expanded.png",
+    "sha256": "eff33108b9a7e65fcc318e9ea81f7e19e65e8b271665a67b2871be044725143b"
+  },
+  "studentOnly": {
+    "path": "qa/q22-student.png",
+    "sha256": "66f37dcd840f89d9a55b71e8c8b87400fb1b9f49d882381d8847bfdbb009dbcf"
+  },
+  "strictRerenderView": {
+    "path": "qa/q22-rerendered-figure.png",
+    "sha256": "4ac00c0986c7394f404c6f601bda44caafdcab159745cb464e4b489785fddb5a"
+  },
+  "actualColumnWidthMm": 69.998828125,
+  "actualSvgWidthsMm": [
+    69.998828125
+  ],
+  "newLayoutObservation": "O,Q,S,T,U, alpha and beta all legible; beta arc is inside TU/TQ. Both right-angle marks are clear. Fractions in all five options and full new two-paragraph solution have no clipping or overflow.",
+  "sourceLayoutObservation": "Clean question22 crop: radius1, four-point baseline/projection/tangent configuration, A-C-E ray, x atA,y atC,z atE and mixed ratio statements. Printed4-point score observed. No circled key/answer/solution annotation seen in supplied crop.",
+  "sourcePointCorrespondence": {
+    "A": "O",
+    "B": "S",
+    "C": "Q",
+    "D": "U",
+    "E": "T",
+    "F": "unlabeled upper quadrant endpoint V"
+  },
+  "figureGivenRelationsCompared": "Source C is arc point, B projection foot, D quadrant endpoint and DE vertical; new Q/S/U/T reproduces that topology with text-explicit ray order and two perpendiculars.",
+  "standaloneRerenderPngNote": "PNG includes a wider white viewport; its actual embedded SVG is70mm as separately measured, not stretched.",
+  "pixelsUsedToInferMathematicalValues": false,
+  "originalAnswerExposureInThisSourceCrop": false,
+  "oldAnswerAgreementAsApproval": false,
+  "nativeOrPhysicalPrinterParityApproved": false
+}

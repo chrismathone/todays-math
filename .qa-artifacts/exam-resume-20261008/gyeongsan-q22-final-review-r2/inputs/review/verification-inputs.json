@@ -1,0 +1,548 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 22,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r2-q22",
+      "authorId": "root-codex-exam-extraction-resume-20261008",
+      "content": "그림은 중심이 $O$, 반지름의 길이가 $2$인 사분원이다. $Q$는 호 위의 점이고, $O,Q,T$는 이 순서로 한 직선 위에 있다. $S$는 $Q$에서 $OU$에 내린 수선의 발이며, $UT$는 $OU$에 수직이다. $\\angle QOU=\\alpha$, $\\angle UTQ=\\beta$이고 $0^\\circ<\\alpha<45^\\circ$이다. 두 각과 선분의 대응을 이용하여 $\\cos\\beta$를 나타낸 식으로 옳은 것은?",
+      "choices": [
+        "$\\dfrac{OS}{2}$",
+        "$\\dfrac{UT}{2}$",
+        "$\\dfrac{2}{SQ}$",
+        "$\\dfrac{SQ}{2}$",
+        "$\\dfrac{OS}{SQ}$"
+      ],
+      "answer": "④",
+      "solution": "$QS$와 $UT$는 모두 $OU$에 수직이므로 서로 평행하다. $O,Q,T$는 이 순서로 한 직선 위에 있으므로 $\\angle OQS=\\angle UTQ=\\beta$이다.\n\n직각삼각형 $OSQ$에서 각 $\\angle OQS$에 이웃한 변은 $SQ$이고 빗변은 $OQ=2$이다. 따라서 삼각비의 정의로 $\\cos\\beta=\\dfrac{SQ}{OQ}=\\dfrac{SQ}{2}$이다. 정답은 ④이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "radius": 2,
+        "angleDomain": "0<alpha<45 degrees",
+        "targetRole": "cosBeta",
+        "targetFromWithinGradeRightTriangle": "SQ/OQ=SQ/2",
+        "exactModel": "s=SQ, r=OS; r^2+s^2=4; 0<s<r<2; UT=2s/r from similar right triangles",
+        "correctAnswerDerivedFromModel": true,
+        "pixelsAreNotCalculationInputs": true
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "representation",
+          "inverse-target"
+        ],
+        "before": "반지름 1 사분원의 여러 각과 길이 대응을 비교하여 올바른 삼각비 표현을 고른다.",
+        "after": "반지름 2와 명시적 각 범위를 사용하고 접선 쪽 각의 cos를 수선 삼각형의 길이 비로 복원한다. 단위 길이를 그냥 답으로 읽을 수 없도록 분모를 확인해야 한다.",
+        "sharedConcept": "사분원 수선/접선에서 평행선의 같은 각과 실제 직각삼각형의 변 비 대응",
+        "sharedProcedure": "두 수선의 평행과 일직선 조건으로 실제 같은 각을 찾고 그 각에서 이웃변/빗변의 정의를 적용한다.",
+        "objectiveDifficulty": "원문 4점의 각-변 대응 판정을 유지한다. 반지름으로 나누는 조건과 실제 평행각 확인이 필요하다.",
+        "scoreDelta": {
+          "source": 4,
+          "authored": 4,
+          "changed": false
+        },
+        "revision": {
+          "priorId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q22",
+          "priorCandidateFileSha256": "b9e4c5bce4e222a03e5a8e7a6be7df30b60ab5a3333ee67faedc11a76f141683",
+          "reason": "Independent raw review identified globally equivalent distractors UT/2 and SQ/OS. Replace the latter with2/SQ; original core/delta remains separately subject to review.",
+          "changedChoice": 3,
+          "oldChoice": "$\\dfrac{SQ}{OS}$",
+          "newChoice": "$\\dfrac{2}{SQ}$",
+          "newAnswerSolutionAndStrictFigureRequired": true,
+          "noPriorMathGradeOrContentApprovalReused": true
+        }
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-17",
+          "9수04-18"
+        ],
+        "allowedProcedure": "두 수선의 평행과 일직선 조건으로 실제 같은 각을 찾고 그 각에서 이웃변/빗변의 정의를 적용한다.",
+        "forbiddenAvoided": [
+          "삼각비 사이의 항등식",
+          "사인·코사인 법칙",
+          "각의 덧셈정리",
+          "미분·최적화",
+          "좌표 벡터·행렬"
+        ],
+        "status": "author-proposed",
+        "surfaces": {
+          "stem": {
+            "status": "author-proposed",
+            "evidence": "반지름·점 순서·수선·각의 범위를 명시하여 45°에서 다른 보기와 값이 겹치는 경우를 제외한다."
+          },
+          "choices": {
+            "status": "author-proposed",
+            "evidence": "예각 전 범위에서는 OS>S Q, UT>S Q이고 분모가 양수이므로 정답 외 식은 다르다. 코드는 여러 각에서 추가 확인한다."
+          },
+          "figuresAndTables": {
+            "status": "author-proposed",
+            "evidence": "새 호의 반지름은 실제 2를 정규화한 180px이며 α/β는 실제 서로 다른 꼭짓점의 각이다."
+          },
+          "notation": {
+            "status": "author-proposed",
+            "evidence": "선분·삼각형·각·도·근호·좌표와 삼각비를 중학교 정의대로 사용한다."
+          },
+          "answer": {
+            "status": "author-proposed",
+            "evidence": "새 조건에서 계산한 유일한 객관식 답이다. 원본 답이나 해설을 읽지 않았다."
+          },
+          "studentSolution": {
+            "status": "author-proposed",
+            "evidence": "평행선의 각에서 β를 옮겨 인접변 SQ와 빗변2를 선택한다."
+          },
+          "prerequisites": {
+            "status": "author-proposed",
+            "evidence": "중1 평행선의 각, 중3 삼각비 정의"
+          }
+        },
+        "gradeBasis": "삼각비 사이의 보각/여각 항등식을 이용하지 않는다. 같은 각을 도형의 평행선에서 확인한 뒤 하나의 직각삼각형에서 cos 정의를 쓴다.",
+        "exactGradeApproval": false
+      },
+      "sourceReference": {
+        "externalId": "2025-gyeongsan-3-2-mid-22",
+        "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+        "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+        "school": "경산중",
+        "questionNumber": 22,
+        "sourceContentSha256": "392220d015d572d27b2784214b0935d38440d4686945c0442a0409a3484e14d0",
+        "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+        "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+        "sourceQuestionScore": 4,
+        "sourceQuestionType": "객관식",
+        "sourceQuestionParts": [],
+        "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+        "sourceObservation": "반지름 1 사분원의 여러 각과 길이 대응을 비교하여 올바른 삼각비 표현을 고른다.",
+        "originalAnswersOrSolutionsUsed": false
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-independent-review",
+        "problemTypeProposal": null,
+        "problemTypeStatus": "pending-independent-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "pending",
+          "unitId": null,
+          "familyKey": null,
+          "currentUnit": null,
+          "currentRegistryMatch": null,
+          "liveCount": null,
+          "checkedAt": "2026-10-08 04:53:45.769124+00",
+          "evidence": "반지름 2의 사분원과 접선 각을 수선 삼각형으로 옮겨 읽는 새 표현의 live family 정확 규칙은 null로 보류한다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-17",
+            "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "source_id": "moe-2020-236-math-hwp",
+            "hwp_locator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "original_2015_pdf_locator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "scope": "middle_school_grades_1_to_3_band"
+          },
+          {
+            "code": "9수04-18",
+            "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "source_id": "moe-2020-236-math-hwp",
+            "hwp_locator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "original_2015_pdf_locator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "scope": "middle_school_grades_1_to_3_band"
+          }
+        ],
+        "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+        "sourceIdentityReview": {
+          "status": "source-packet-identity-supported-full-custody-held",
+          "sourceSchool": "경산중",
+          "sourceYear": 2025,
+          "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+          "fullPairCertification": "held",
+          "custody": "held",
+          "rights": "held"
+        },
+        "bankEvidence": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+          "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+          "capturedAt": "2026-10-08 04:53:45.769124+00",
+          "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+          "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "databaseAccessByAuthor": false
+        },
+        "authorEvidence": {
+          "authoringScriptSha256": "3c185856c87266c7e9d7481df01d331b47a03e9fa4f8da1a0171e9ff85f49875",
+          "calculationsPath": "author-controls.json",
+          "mathematicalReview": "author-self-check-only; fresh independent review required",
+          "visualReview": "pending-new-r2-expanded-preview",
+          "computedChoiceHelper": {
+            "path": "scripts/import/exam-twin/computedChoiceChecks.mjs",
+            "sha256": "2ca6128f01b4d0419952132d0b3f7a8a6d22948c23971a92cb6adc1a73b5ab3d"
+          }
+        },
+        "revisionRisk": "Changing the distractor does not resolve source-core fidelity, seven-surface grade, exact family, rights, similarity or native reader holds."
+      },
+      "schoolNamePolicy": {
+        "actual": "경산중",
+        "display": "해솔누리중학교",
+        "role": "fictional-display-alias-only",
+        "originalOccurrencesInStem": 0,
+        "surfaces": [
+          "content",
+          "choices",
+          "tables",
+          "figureLabels",
+          "solution"
+        ],
+        "review": "author-proposed"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "mathematicalCorrectness": "pending-independent-blind-solve",
+        "gradeCurriculum": "pending-independent-review",
+        "equivalentConceptAndMethod": "pending-independent-review",
+        "distinctPresentation": "pending-independent-review",
+        "naturalKorean": "pending-independent-review",
+        "figure": "pending-independent-review",
+        "rights": "pending",
+        "similarity": "pending",
+        "nativeCompatibility": "pending",
+        "physicalPaper": "not-approved"
+      },
+      "directUseAllowed": false
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsan-q22-review-r2\\package\\private\\q22\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsan-q22-review-r2\\package\\private\\q22\\figure-1.svg",
+        "specSha256": "c281d4be98045dc36a54bd393e70f3c197139b7ba2434d6134887cd0e0bff675",
+        "svgSha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q22-1.svg"
+      }
+    ],
+    "studentDigest": "b5461ade7464e5e10e30d83f391d25e53590ff1ba7b1e450cdb249510172e109",
+    "candidateDigest": "5e17e4292dcb7a51f3c17faab9eb4afe014c085c30d50b799d8d49159c17f006",
+    "assetDigest": "07cd7a6cec5b99919d1f136521416f05e7c372c5d95df7389e45dcfb8aa1fb50",
+    "independentSolve": {
+      "studentDigest": "b5461ade7464e5e10e30d83f391d25e53590ff1ba7b1e450cdb249510172e109",
+      "solverId": "orca-codex-exam-twin-source-identity-20261008",
+      "answer": "④, $\\cos\\beta=\\dfrac{SQ}{2}$",
+      "solution": "삼각형 $OUT$는 $U$에서 직각이다. $O,Q,T$가 이 순서로 한 직선 위에 있으므로 $TQ$와 $TO$는 같은 반직선이다. 따라서 $\\angle UTQ=\\angle UTO=\\beta$이고, 삼각형 $OUT$의 두 예각에서 $\\alpha+\\beta=90^\\circ$이다.\n\n삼각형 $OQS$는 $S$에서 직각이고 $\\angle QOS=\\alpha$이므로 $\\angle OQS=90^\\circ-\\alpha=\\beta$이다. 이 삼각형에서 각 $OQS$의 이웃변은 $QS$, 빗변은 반지름 $QO=2$이다. 코사인의 정의에 따라 $\\cos\\beta=\\frac{QS}{QO}=\\frac{SQ}{2}$이다. 따라서 정답은 ④이다.\n\n다른 네 식도 주어진 전체 각 범위에서 일치하지 않는다. $0^\\circ<\\alpha<45^\\circ$이므로 $0<SQ<OS$이다. 이를 도형으로 확인하려면 $O$에서 $OU$와 $45^\\circ$를 이루는 반직선과 직선 $SQ$의 교점을 $V$라 한다. 삼각형 $OSV$는 직각이등변삼각형이어서 $SV=OS$이고, $S,Q,V$가 이 순서로 놓이므로 $SQ<SV=OS$이다. 또 $SQ$는 빗변 $OQ=2$보다 짧아 $0<SQ<2$이다.\n\n① $\\frac{OS}{2}>\\frac{SQ}{2}$이므로 다르다. 두 식이 같으려면 두 직각변이 같고 $\\alpha=45^\\circ$여야 하므로 주어진 범위에서도 제외된다.\n\n② 큰 직각삼각형에서는 $\\cos\\beta=\\frac{UT}{OT}$이다. $O,Q,T$의 순서 때문에 $OT>OQ=2$이고 $UT>0$이므로 $\\frac{UT}{2}>\\frac{UT}{OT}=\\cos\\beta$이다.\n\n③ $\\frac{2}{SQ}>1$인 반면 $\\frac{SQ}{2}<1$이므로 다르다.\n\n⑤ $\\frac{OS}{SQ}>1$인 반면 $\\frac{SQ}{2}<1$이므로 다르다.\n\n④만 모든 허용된 각에서 맞는다. 답은 같은 길이 단위끼리 나눈 비이므로 단위가 없다. 각이나 길이 하나의 숫자값을 결정할 필요는 없다.",
+      "evidence": {
+        "stage": "blind-solve-before-new-author-answer-exposure",
+        "solverIndependentOfThisCandidateAuthor": true,
+        "accessDisclosure": {
+          "path": "access-disclosure.json",
+          "sha256": "64d6463665b9c74726e77b7c15227b9f6e2906b328c0d4fb6bef36d9539b946b"
+        },
+        "priorExposureToThisR2AuthorAnswersOrPrivateFacts": false,
+        "newHelperTestTargetAccess": false,
+        "inputReceipt": {
+          "path": "input-receipt.json",
+          "sha256": "b64b3f0248139acb1afdb594f9ce56f81439da5006da50957a82d719af21eb64"
+        },
+        "studentDigestRecomputedFromExactStudentPayload": true,
+        "rawInputHashes": {
+          "studentProblems": "970403506c97e1a108ee4e5570e67e0605667fb25b7d2a8decfa0cc6519ad09b",
+          "manifest": "c4d07c05691a639250882dac780dbb8b9ed9eccc0db5b8a34a0e42019d0c254e",
+          "brief": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+          "figure": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111"
+        },
+        "freshCode": {
+          "path": "calculate.py",
+          "sha256": "242bd74e7f930c45d94830b327689a9f36783f27ac487565bae0be96c546385d"
+        },
+        "exactProof": {
+          "path": "proofs/q22-exact-calculations.json",
+          "sha256": "039173db38d246f9cc1ced0617b4360507da95f5bdf03657e77eff3c23e148e1"
+        },
+        "chosenChoiceIndex1based": 4,
+        "requestedRole": "cos beta expressed by drawn line lengths",
+        "exactRequestedExpression": "\\frac{SQ}{2}",
+        "allFiveChoices": [
+          {
+            "index1based": 1,
+            "choiceMark": "①",
+            "actualStudentExpression": "$\\dfrac{OS}{2}$",
+            "exactExpressionFromActualLengths": "1/sqrt(k**2 + 1)",
+            "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+            "differenceFromTarget": "(1 - k)/sqrt(k**2 + 1)",
+            "positiveOrZeroCertificate": {
+              "difference": "(1-k)/sqrt(1+k²)",
+              "positiveFactors": [
+                "1-k>0",
+                "sqrt(1+k²)>0"
+              ],
+              "domainProof": "0<k<1"
+            },
+            "equalOnEntireLegalDomain": false,
+            "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+            "units": "dimensionless"
+          },
+          {
+            "index1based": 2,
+            "choiceMark": "②",
+            "actualStudentExpression": "$\\dfrac{UT}{2}$",
+            "exactExpressionFromActualLengths": "ell*k/sqrt(k**2 + 1)",
+            "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+            "differenceFromTarget": "k*(ell - 1)/sqrt(k**2 + 1)",
+            "positiveOrZeroCertificate": {
+              "difference": "(ell-1)*k/sqrt(1+k²)",
+              "positiveFactors": [
+                "ell-1>0",
+                "k>0",
+                "sqrt(1+k²)>0"
+              ],
+              "domainProof": "ell=OT/OQ>1 by O-Q-T ordering"
+            },
+            "equalOnEntireLegalDomain": false,
+            "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+            "units": "dimensionless"
+          },
+          {
+            "index1based": 3,
+            "choiceMark": "③",
+            "actualStudentExpression": "$\\dfrac{2}{SQ}$",
+            "exactExpressionFromActualLengths": "sqrt(k**2 + 1)/k",
+            "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+            "differenceFromTarget": "1/(k*sqrt(k**2 + 1))",
+            "positiveOrZeroCertificate": {
+              "difference": "1/(k*sqrt(1+k²))",
+              "positiveFactors": [
+                "1>0",
+                "k>0",
+                "sqrt(1+k²)>0"
+              ],
+              "domainProof": "0<k<1"
+            },
+            "equalOnEntireLegalDomain": false,
+            "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+            "units": "dimensionless"
+          },
+          {
+            "index1based": 4,
+            "choiceMark": "④",
+            "actualStudentExpression": "$\\dfrac{SQ}{2}$",
+            "exactExpressionFromActualLengths": "k/sqrt(k**2 + 1)",
+            "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+            "differenceFromTarget": "0",
+            "positiveOrZeroCertificate": {
+              "difference": "0",
+              "domainProof": "identically equal for the whole legal domain"
+            },
+            "equalOnEntireLegalDomain": true,
+            "thisAlternativeHasNoEqualityAtAnyLegalAngle": false,
+            "units": "dimensionless"
+          },
+          {
+            "index1based": 5,
+            "choiceMark": "⑤",
+            "actualStudentExpression": "$\\dfrac{OS}{SQ}$",
+            "exactExpressionFromActualLengths": "1/k",
+            "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+            "differenceFromTarget": "-k/sqrt(k**2 + 1) + 1/k",
+            "positiveOrZeroCertificate": {
+              "difference": "(sqrt(1+k²)-k²)/(k*sqrt(1+k²))",
+              "positiveFactors": [
+                "sqrt(1+k²)>1>k²",
+                "k>0",
+                "sqrt(1+k²)>0"
+              ],
+              "domainProof": "0<k<1 implies k²<1"
+            },
+            "equalOnEntireLegalDomain": false,
+            "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+            "units": "dimensionless"
+          }
+        ],
+        "fullDomain": {
+          "alpha": "0°<alpha<45°",
+          "beta": "45°<beta<90°",
+          "k": "0<k=SQ/OS<1",
+          "ell": "OT/OQ>1",
+          "allFiveExpressionsDefined": true,
+          "SQDenominatorsStrictlyPositive": true,
+          "boundaryCasesExcluded": [
+            "alpha0 makes SQ0 and a degenerate T angle; reciprocal options undefined",
+            "alpha45 permits the two equal legs, but is outside the stated domain"
+          ]
+        },
+        "existenceAndUniqueness": "Unique expression④ on the full legal domain; no single numerical angle, cos value or all lengths are fixed by the input.",
+        "positiveLengthsAndOrder": {
+          "parameters": {
+            "k": "actual SQ/OS, 0<k<1",
+            "ell": "actual OT/OQ>1, hence UT=ell*SQ by similar right triangles",
+            "w": "sqrt(1+k²)>1"
+          },
+          "exactExistenceWitnessForEveryLegalK": {
+            "O": [
+              "0",
+              "0"
+            ],
+            "S": [
+              "2/sqrt(k**2 + 1)",
+              "0"
+            ],
+            "Q": [
+              "2/sqrt(k**2 + 1)",
+              "2*k/sqrt(k**2 + 1)"
+            ],
+            "U": [
+              "2",
+              "0"
+            ],
+            "T": [
+              "2",
+              "2*k"
+            ]
+          },
+          "exactWitnessLengths": {
+            "OQ": "2",
+            "OU": "2",
+            "OS": "2/sqrt(k**2 + 1)",
+            "SQ": "2*k/sqrt(k**2 + 1)",
+            "OT": "2*sqrt(k**2 + 1)",
+            "UT": "2*k",
+            "QT": "2*sqrt(k**2 + 1) - 2",
+            "SU": "2 - 2/sqrt(k**2 + 1)"
+          },
+          "witnessChecks": [
+            "OQ=OU=2",
+            "Q lies on the quadrant, both coordinates positive",
+            "OS²+SQ²=4",
+            "O,Q,T collinear with T=w*Q and w>1",
+            "QS and UT vertical, OU and OS horizontal; both right angles verified",
+            "OS>0,SQ>0,UT>0,QT=2(w-1)>0,SU=2(1-1/w)>0",
+            "O-S-U and O-Q-T order are nondegenerate",
+            "alpha between0 and45 follows 0<SQ/OS=k<1; beta=90-alpha lies between45 and90",
+            "UT/OT=SQ/OQ=SQ/2 by the two corresponding right-triangle cosine definitions"
+          ],
+          "angleCorrespondenceStudentProof": "TQ is the same ray as TO because O-Q-T; triangleOUT right atU gives beta+alpha=90. TriangleOQS right atS has angleOQS=beta, so adjacent leg is QS and hypotenuse is QO.",
+          "fullDomainProofIsNotNumericalSampling": true,
+          "actualSVGCoordinatesOrPixelsAsOracle": false
+        },
+        "unit": "dimensionless",
+        "figureView": {
+          "inputSvg": {
+            "path": "blind/figures/q22-1.svg",
+            "sha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111"
+          },
+          "png": {
+            "path": "figures-view/q22-1-70mm.png",
+            "sha256": "8780daad77993d4d10eb787287c30673f4c2f894400d35a6189256b327cbd5a9"
+          },
+          "intendedWidthMm": 70,
+          "actualSvgWidthMm": 69.998828125,
+          "actualCssBounds": {
+            "x": 0,
+            "y": 0,
+            "width": 264.5625,
+            "height": 244.03125
+          },
+          "deviceScaleFactor": 2,
+          "method": "Existing local headless Playwright displays only supplied student SVG at70mm; no new math drawing or PDF",
+          "priorAttempt": {
+            "library": "installed cairosvg Python module",
+            "result": "cairo shared library absent; no render or input writes before failure; no install attempted"
+          },
+          "networkRequests": [],
+          "coordinatesOrPixelsUsedAsMathematicalOracle": false,
+          "actualViewImageInspectionPending": false,
+          "noSourceFigureOrOriginalSolutionRead": true,
+          "directViewImageCompleted": true,
+          "observations": "All O,Q,S,T,U and alpha,beta labels and both right-angle marks legible. Beta is at T between TU/TQ; O-Q-T collinearity and O-S-U order visible. Q and U are on the drawn quadrant. No pixel-derived angle or length used."
+        },
+        "actualFigureObservation": "Direct view_image of only the supplied student SVG rendered at70mm: Q lies on the arc, O-Q-T line, S and U right-angle marks, alpha atO and beta atT, U at quadrant endpoint, O-S-U order. All labels readable; beta arc belongs to TU/TQ. No coordinates/pixel distance used to derive math.",
+        "sevenStudentSurfaces": {
+          "stem": "Quarter-circle radius2, line order and two perpendiculars determine the equal angle in triangleOQS. The open angle bound keeps both triangles nondegenerate.",
+          "choices": "All five actual expressions checked symbolically over 0<k<1 and ell>1; exactly④ is equal. Four alternatives strictly larger, no exceptional legal alpha.",
+          "figuresAndTables": "One supplied SVG; actual70mm view has all O,Q,S,T,U and alpha,beta/right marks. No table or extra student asset.",
+          "notation": "Only Greek angle names, acute-degree bound and elementary length ratios; no general trig function identities/addition or upper-grade notation needed.",
+          "answer": "One circled option④ with exact length-ratio value SQ/2; dimensionless, not an invented numerical cos value.",
+          "studentSolution": "Two right-triangle angle sums/line correspondence and the cosine adjacent/hypotenuse definition. Optional45-degree isosceles construction checks the four alternatives without a trig identity.",
+          "prerequisites": "Middle1 triangle angles/right angles, middle2 right-isosceles triangle property, middle3 trigonometric ratio definition. Developer algebra/coordinate witness is supplemental, not a demanded student method."
+        },
+        "curriculumBoundedObservation": {
+          "basis": "2015 middle3",
+          "previouslyReadOfficialDefinitions": [
+            "9수04-05 polygon/triangle angle properties",
+            "9수04-10 isosceles properties",
+            "9수04-17 simple trigonometric ratio definitions"
+          ],
+          "generalInterRatioOrComplementaryTrigIdentityUsed": false,
+          "sineCosineLawOrAdditionFormulaUsed": false,
+          "outsideGradeRequiredMethodDetected": false,
+          "authorSolutionOrSevenSurfaceFinalGradeNotYetSeen": true,
+          "fullContentFamilyRightsNativeLoadingApproval": false
+        },
+        "limits": [
+          "The supplied author answer/solution/private figure spec/facts and helper target were not read; these remain for a later authorized review.",
+          "This stage proves only the supplied student problem and fresh solver answer; no source/core/family/custody/rights/native/loading approval.",
+          "Allowed angles/configurations form a continuum; requested expression has a unique correct choice, not a unique numeric value."
+        ],
+        "originalAnswerApproval": false,
+        "inferenceApiCalls": 0
+      },
+      "status": "solved"
+    },
+    "solveDigest": "ea3c4166d87f758d41739406f73d329b7031c9c727b42423a3e0630c90d788d4"
+  }
+]

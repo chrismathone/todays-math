@@ -1,0 +1,76 @@
+{
+  "kind": "post-seal-final-review-exposure/v1",
+  "rawCommit": "383a5f7634ce3dc8979afd35cc9e058dc0d4c4fa",
+  "rawUnedited": true,
+  "onlyQ22R2": true,
+  "files": [
+    {
+      "path": "inputs\\binding-receipt.json",
+      "sha256": "6386a666dfd71794f9a87a7b7204e2a78ddb6f9129740d2734f24ddf9a35befb"
+    },
+    {
+      "path": "inputs\\blind\\blind-manifest.json",
+      "sha256": "c4d07c05691a639250882dac780dbb8b9ed9eccc0db5b8a34a0e42019d0c254e"
+    },
+    {
+      "path": "inputs\\blind\\figures\\q22-1.svg",
+      "sha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111"
+    },
+    {
+      "path": "inputs\\blind\\solve\\q22.json",
+      "sha256": "c59e4b8e2d3a0d9751c4ddf753e7f7410f74f3f4becaea4bef6343c800547104"
+    },
+    {
+      "path": "inputs\\blind\\SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    {
+      "path": "inputs\\blind\\student-problems.json",
+      "sha256": "970403506c97e1a108ee4e5570e67e0605667fb25b7d2a8decfa0cc6519ad09b"
+    },
+    {
+      "path": "inputs\\evidence\\bank-read-fresh-r3-20261008.json",
+      "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26"
+    },
+    {
+      "path": "inputs\\evidence\\source-context-r1.json",
+      "sha256": "a935a55c569d163786444bfeca910329554b7622e2fd0bec40206dca848ce5f9"
+    },
+    {
+      "path": "inputs\\package\\manifest.json",
+      "sha256": "eb6b858b98f9a224202972e99ffa5818878ebcbd0fb92fe146493469a172fa08"
+    },
+    {
+      "path": "inputs\\package\\private\\q22\\candidate.json",
+      "sha256": "5a4259c758c83f19a2b2bc444e2b5d46784ecd97cb797fcc629c92aa77c37eac"
+    },
+    {
+      "path": "inputs\\package\\private\\q22\\figure-1.spec.json",
+      "sha256": "c281d4be98045dc36a54bd393e70f3c197139b7ba2434d6134887cd0e0bff675"
+    },
+    {
+      "path": "inputs\\package\\private\\q22\\figure-1.svg",
+      "sha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111"
+    },
+    {
+      "path": "inputs\\review\\verification-inputs.json",
+      "sha256": "7d85e604657b59b15e0c0c0de95d00f04ad4838b71d872bce2337918aa35fcf6"
+    },
+    {
+      "path": "inputs\\review\\verification-manifest.json",
+      "sha256": "9ecc55ca27d98208c80977d3e59a527638734a0a2a73bc5cd7f13d17feb4d6a8"
+    },
+    {
+      "path": "inputs\\review\\VERIFY-BRIEF.md",
+      "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3"
+    },
+    {
+      "path": "inputs\\source-images\\q22-part1.png",
+      "sha256": "c7797cf295e4b5b0d07d3b63433995720b07fd6ba96e0ef0f36541273a9a89f9"
+    },
+    {
+      "path": "inputs\\source-question-only.json",
+      "sha256": "e7492cb4e140003207bf09040959312a84ba35d8bc1fc05a9bab249eeca85294"
+    }
+  ]
+}
