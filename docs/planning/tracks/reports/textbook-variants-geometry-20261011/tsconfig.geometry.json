@@ -1,0 +1,10 @@
+{
+  "extends": "../../../../../tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "include": [
+    "../../../../../src/lib/import/schoolTextbook/variantsGeometry.ts",
+    "../../../../../src/__tests__/unit/schoolTextbookVariantsGeometry.test.ts",
+    "../../../../../scripts/import/textbook/variants-geometry-20261011/coverage.ts",
+    "../../../../../scripts/import/textbook/variants-geometry-20261011/render_math.ts"
+  ]
+}

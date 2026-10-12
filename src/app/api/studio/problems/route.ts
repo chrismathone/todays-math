@@ -4,12 +4,17 @@ import {
   STUDIO_HEADERS as headers,
 } from "@/lib/studio-ai/guard";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { readUnifiedBankQueryBody } from "@/lib/unifiedBankQueryBody";
 async function handleGet(request: Request) {
   try {
     const access = await authorizeStudio(request);
     if (access.response) return access.response;
     return Response.json(
-      await loadUnifiedBank(new URL(request.url).searchParams),
+      await loadUnifiedBank(
+        request.method === "POST"
+          ? await readUnifiedBankQueryBody(request)
+          : new URL(request.url).searchParams,
+      ),
       { headers },
     );
   } catch (error) {
@@ -26,3 +31,4 @@ async function handleGet(request: Request) {
 }
 
 export const GET = withErrorLog("/api/studio/problems", handleGet);
+export const POST = withErrorLog("/api/studio/problems", handleGet);

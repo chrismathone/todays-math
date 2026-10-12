@@ -246,6 +246,7 @@ interface SourceMaterialRow {
   kind: string;
   kindRaw: string;
   title: string;
+  unitRaw?: string | null;
 }
 
 /** 역추적 컬럼의 DB 기본값(전부 NULL). 픽스처·create 가 안 주면 이 값이다. */
@@ -1838,6 +1839,7 @@ const prismaModels = {
         id: randomUUID(),
         kindRaw: data.kind,
         title: data.kind,
+        unitRaw: null,
         ...data,
       };
       sourceMaterialRows.push(row);
@@ -2022,6 +2024,32 @@ const prismaModels = {
           take,
         ),
         select,
+        {
+          sourceMaterial: (row, spec) => {
+            const material = sourceMaterialRows.find(
+              (item) => item.id === row.sourceMaterialId,
+            );
+            if (!material) return null;
+            return applySelect(
+              [material],
+              (spec as { select?: Record<string, unknown> }).select,
+              {
+                book: (item, bookSpec) => {
+                  const book = sourceBookRows.find(
+                    (candidate) => candidate.id === item.bookId,
+                  );
+                  return book
+                    ? applySelect(
+                        [book],
+                        (bookSpec as { select?: Record<string, unknown> })
+                          .select,
+                      )[0]
+                    : null;
+                },
+              },
+            )[0];
+          },
+        },
       );
     },
     async count({ where }: { where?: Record<string, unknown> } = {}) {
@@ -2697,8 +2725,28 @@ const prismaModels = {
     },
   },
   examQuestion: {
-    async findMany({ where }: { where?: Record<string, unknown> } = {}) {
-      return examQuestionRows.filter((row) => matchesWhere(row, where));
+    async findMany({
+      where,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      select?: Record<string, unknown>;
+    } = {}) {
+      return applySelect(
+        examQuestionRows.filter((row) => matchesWhere(row, where)),
+        select,
+        {
+          exam: (row, spec) => {
+            const exam = examRows.find((item) => item.id === row.examId);
+            return exam
+              ? applySelect(
+                  [exam],
+                  (spec as { select?: Record<string, unknown> }).select,
+                )[0]
+              : null;
+          },
+        },
+      );
     },
     async count({ where }: { where?: Record<string, unknown> } = {}) {
       return examQuestionRows.filter((row) => matchesWhere(row, where)).length;

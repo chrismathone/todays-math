@@ -1,0 +1,424 @@
+/* DESIGN.md: shared workspace tokens, 44px controls, progressive disclosure. */
+:root {
+  --learn-ink: #172b4d;
+  --learn-muted: #596c86;
+  --learn-accent: #3159df;
+  --learn-accent-hover: #2448bd;
+  --learn-bg: #f4f6fa;
+  --learn-surface: #fff;
+  --learn-soft: #edf2ff;
+  --learn-track: #dde3ec;
+  --learn-control: #b8c4d6;
+  --learn-warning: #8a5a06;
+  --learn-warning-bg: #fff4df;
+  --learn-on-accent: #fff;
+}
+.scope-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+  padding: 16px 0;
+  border-block: 1px solid var(--learn-track);
+}
+.scope-summary > div {
+  min-width: 0;
+}
+.scope-summary strong {
+  display: block;
+  font-size: 14px;
+  color: var(--learn-ink);
+}
+.scope-summary strong span {
+  color: var(--learn-accent);
+  margin-left: 8px;
+  font-weight: 500;
+}
+.scope-summary p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--learn-muted);
+  overflow-wrap: anywhere;
+}
+.scope-summary button {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 10px 16px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  cursor: pointer;
+}
+.scope-help,
+.scope-coverage {
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 8px 0 16px;
+  color: var(--learn-muted);
+}
+.scope-coverage {
+  padding: 12px;
+  color: var(--learn-warning);
+  background: var(--learn-warning-bg);
+  border-radius: 8px;
+}
+dialog.scope-dialog {
+  box-sizing: border-box;
+  width: calc(100vw - 40px);
+  max-width: none;
+  max-height: calc(100dvh - 48px);
+  height: 800px;
+  padding: 0;
+  border: 1px solid var(--learn-track);
+  border-radius: 18px;
+  color: var(--learn-ink);
+  background: var(--learn-surface);
+  box-shadow: 0 25px 100px #10203f33;
+  overflow: hidden;
+}
+.scope-dialog::backdrop {
+  background: #10203f55;
+  backdrop-filter: blur(3px);
+}
+.scope-dialog * {
+  box-sizing: border-box;
+}
+.scope-dialog-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+.scope-dialog h2 {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.4;
+}
+.scope-dialog h3 {
+  margin: 0;
+  font-size: 14px;
+}
+.scope-dialog p {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--learn-muted);
+  line-height: 1.6;
+}
+.scope-dialog button,
+.scope-dialog select,
+.scope-dialog input[type="search"] {
+  min-height: 44px;
+  height: auto;
+  padding: 10px 12px;
+  border: 1px solid var(--learn-control);
+  border-radius: 8px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  max-width: 100%;
+}
+.scope-dialog button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.scope-dialog button:enabled:hover,
+.scope-summary button:hover {
+  background: var(--learn-soft);
+}
+.scope-dialog :is(button, select, input, summary, [tabindex]):focus-visible,
+.scope-summary button:focus-visible {
+  outline: 3px solid var(--learn-accent);
+  outline-offset: 2px;
+}
+.scope-dialog input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-height: 18px;
+  accent-color: var(--learn-accent);
+  flex-shrink: 0;
+  margin: 0;
+}
+.scope-dialog-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.scope-dialog-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(240px, 1fr);
+  min-height: 0;
+}
+.scope-browser {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 12px;
+  min-width: 0;
+  min-height: 0;
+}
+.scope-filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.scope-filters label,
+.scope-search-label {
+  display: grid;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.scope-dialog select,
+.scope-dialog input[type="search"] {
+  width: 100%;
+  min-width: 0;
+}
+.scope-result-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+}
+.scope-result-tools button {
+  padding-inline: 8px;
+  font-size: 12px;
+}
+.scope-results {
+  flex: 1;
+  overflow: auto;
+  min-height: 100px;
+  overscroll-behavior: contain;
+  padding: 2px;
+}
+.scope-group {
+  border-bottom: 1px solid var(--learn-track);
+}
+.scope-group summary {
+  min-height: 52px;
+  cursor: pointer;
+  padding: 12px 4px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.scope-group summary span {
+  display: block;
+  margin-left: 16px;
+  font-size: 12px;
+  color: var(--learn-muted);
+}
+.scope-group-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 12px;
+  color: var(--learn-accent);
+  background: var(--learn-soft);
+  cursor: pointer;
+}
+.scope-leaf {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  min-height: 52px;
+  border-bottom: 1px solid var(--learn-track);
+  cursor: pointer;
+}
+.scope-leaf:has(input:checked) {
+  background: var(--learn-soft);
+}
+.scope-leaf > span {
+  flex: 1;
+  min-width: 0;
+}
+.scope-leaf b,
+.scope-selected-row b {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.scope-leaf small,
+.scope-selected-row small {
+  display: block;
+  font-size: 12px;
+  color: var(--learn-muted);
+  line-height: 1.5;
+  margin-top: 4px;
+  overflow-wrap: anywhere;
+}
+.scope-leaf em {
+  font-size: 12px;
+  color: var(--learn-muted);
+  font-style: normal;
+  flex-shrink: 0;
+}
+.scope-selection {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  min-height: 0;
+  min-width: 0;
+  border-left: 1px solid var(--learn-track);
+  background: var(--learn-bg);
+}
+.scope-selection-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.scope-selection-head h3 span {
+  color: var(--learn-accent);
+}
+.scope-selection-head button {
+  font-size: 12px;
+  padding-inline: 8px;
+}
+.scope-selected-list {
+  flex: 1;
+  min-height: 80px;
+  overflow: auto;
+  margin-top: 12px;
+  overscroll-behavior: contain;
+}
+.scope-selected-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--learn-track);
+}
+.scope-selected-row > div {
+  min-width: 0;
+}
+.scope-selected-row button {
+  flex-shrink: 0;
+  font-size: 12px;
+  padding-inline: 8px;
+}
+.scope-pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 12px;
+}
+.scope-pager:empty {
+  display: none;
+}
+.scope-evidence {
+  padding: 12px 24px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--learn-muted);
+  border-top: 1px solid var(--learn-track);
+}
+.scope-dialog-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-top: 1px solid var(--learn-track);
+  font-size: 14px;
+}
+.scope-dialog-foot > div {
+  display: flex;
+  gap: 8px;
+}
+.scope-dialog button.scope-primary {
+  background: var(--learn-accent);
+  border-color: var(--learn-accent);
+  color: var(--learn-on-accent);
+}
+.scope-dialog button.scope-primary:hover {
+  background: var(--learn-accent-hover);
+}
+.scope-empty {
+  padding: 24px 8px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--learn-muted);
+}
+@media (max-width: 860px) {
+  dialog.scope-dialog {
+    width: calc(100vw - 32px);
+  }
+  .scope-summary {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  dialog.scope-dialog {
+    height: calc(100dvh - 32px);
+    max-height: calc(100dvh - 32px);
+  }
+  .scope-dialog-head {
+    padding: 16px;
+  }
+  .scope-dialog h2 {
+    font-size: 18px;
+  }
+  .scope-dialog-head > button {
+    flex-shrink: 0;
+  }
+  .scope-dialog-body {
+    display: block;
+    overflow: auto;
+  }
+  .scope-browser {
+    padding: 16px;
+  }
+  .scope-results {
+    flex: none;
+    max-height: 280px;
+  }
+  .scope-selection {
+    border-left: 0;
+    border-top: 1px solid var(--learn-track);
+    padding: 16px;
+  }
+  .scope-selected-list {
+    max-height: 180px;
+    flex: none;
+  }
+  .scope-evidence {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+  .scope-dialog-foot {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
+  .scope-dialog-foot > div {
+    margin-left: auto;
+  }
+  .scope-leaf {
+    padding-inline: 4px;
+  }
+  .scope-leaf em {
+    display: none;
+  }
+}
+@media print {
+  .scope-summary,
+  .scope-help,
+  .scope-coverage,
+  .scope-dialog {
+    display: none !important;
+  }
+}

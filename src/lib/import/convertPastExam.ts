@@ -95,7 +95,8 @@ export function convertPastExamQuestion(
   return {
     externalId: `${paper.meta?.exam_id ?? "exam"}-${question.number}`,
     source: "past_exam",
-    directUseAllowed: true,
+    // 원본 기출은 이관·분석용으로 보존하고, 학생 출제에는 직접 사용하지 않는다.
+    directUseAllowed: false,
     difficulty: mapDifficultyLabel(
       question.difficulty || answer?.difficulty,
       question.score,

@@ -549,7 +549,8 @@ async function main(): Promise<void> {
       questionNumber: n,
       score: d.score,
       reviewStatus: "approved",
-      directUseAllowed: !unlinked,
+      // 원본 기출은 패턴 확인용이다. 학생 출제에는 별도 자작 엔진 문항을 쓴다.
+      directUseAllowed: false,
       pool: "shared",
     });
   }

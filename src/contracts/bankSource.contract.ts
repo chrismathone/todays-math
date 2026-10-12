@@ -12,6 +12,7 @@
 import { z } from "zod";
 
 import type { ProblemSource } from "./common.contract";
+import { uuidSchema } from "./common.contract";
 import { problemFilterQuerySchema } from "./problem.contract";
 import { sourceMaterialKindSchema } from "./sourceMaterial.contract";
 
@@ -87,6 +88,12 @@ export const bankMaterialKindsParamSchema = splitComma.pipe(
  * 🔴 책 · 자료 종류는 **출처가 교과서일 때만** 받는다. 다른 출처와 섞이면 질의가 조용히 0건이 되고,
  *    화면은 «조건에 맞는 문제가 없어요»만 말한다 — 원인을 못 짚는 0 보다 400 이 낫다.
  */
+const idList = (max: number) =>
+  z
+    .string()
+    .transform((value) => value.split(","))
+    .pipe(z.array(uuidSchema).min(1).max(max));
+
 export const unifiedBankQuerySchema = problemFilterQuerySchema
   .pick({
     q: true,
@@ -106,6 +113,10 @@ export const unifiedBankQuerySchema = problemFilterQuerySchema
     page: true,
   })
   .extend({
+    unitIds: idList(1000).optional(),
+    excludeIds: idList(100).optional(),
+    ids: idList(100).optional(),
+    pageSize: z.coerce.number().int().min(1).max(100).default(12),
     semester: bankSemesterSchema.optional(),
     sourceGroup: bankSourceGroupSchema.optional(),
     books: bankBookIdsParamSchema.optional(),

@@ -1,0 +1,53 @@
+D blueprint output stage — 2026-10-08
+
+Scope
+- Development-only /dev/exam-builder-output; no production route rollout,
+  account API writes, installs, dependency junctions or push.
+- Root owns static D and docs/design/mockups/exam-builder-common-20261008/
+  output-bridge.js/css. This worker changes only the output route and optional
+  shared editor/header props with scoped styles.
+
+Implementation
+- ConceptPayload.flow accepts only optional "blueprint". Omitted flow keeps the
+  original UI and original back-message shape; unsupported flow values fail
+  validation alongside all existing bounded field/origin/source validation.
+- WorksheetEditor passes optional headerTitle and stepNavigation to the real
+  StudioStepBar. Navigation is { label, items: [{ id, label, current, disabled?,
+  onSelect }] }; existing extraction callers, availability gates and print/export
+  action children retain their default behavior.
+- Blueprint displays h1 시험지 만들기 and 1 범위 설정 / 2 문항 검토 /
+  3 양식 구성·출력. Output is aria-current="step" and aria-pressed=true;
+  other steps are aria-pressed=false. Scope/review send exam-concept:back with
+  payload { title, questionIds, step: "scope" | "review" }.
+- Escape and authenticated close default to review. The current output button
+  stays enabled but does not navigate, including when the last item is removed.
+- The blueprint note has min-height 44px and retains temporary restore; stage
+  navigation replaces its redundant return button. Invalid/unloaded input still
+  permits cancellation without returning an empty selection.
+- The heading and steps use the actual editor header. Scoped alternate-navigation
+  CSS keeps the heading visible, uses existing shared tokens, wraps action text,
+  and gives the three steps equal columns at <=760px. Print descendants retain
+  their existing six-template/A4/pagination rules.
+- Valid reentry retains print options and non-title form metadata, applies the
+  parent title/question order and clears the old bundle snapshot as before.
+  Blueprint can reenter with zero items, and omitted flow resets the original UI.
+
+Verification after integration in main
+- PASS: targeted tsc dependency graph with tsconfig.check.json against root
+  dependencies. This is not a whole-repository typecheck.
+- PASS: dedicated Vitest config, 15 tests across bridge, page and UI suites.
+  Includes optional-flow validation, bounded text conversion, exact parent
+  origin/source and dev-only page guard.
+- PASS: ESLint for the output route, WorksheetEditor and StudioStepBar;
+  Prettier for changed TS/TSX/CSS and git diff --check.
+- UI suite covers all six real template renderers in legacy and blueprint,
+  stage markers and scope/review/latest-edit return, Escape/close review fallback,
+  saved template/form metadata across reentry, parent title/order, empty return,
+  blueprint-to-default reset, plus unchanged extraction title/four-stage gates.
+- PASS: real D browser round trips for math/English at 1440/390/320px (six cases).
+  Scope/review/output markers, returned title/order/deletions, retained modern
+  template and one-column setting, return to either earlier stage, Escape,
+  print readiness and horizontal overflow were checked. The legacy A return UI
+  also passed. Browser errors and account API writes: zero.
+- Evidence: docs/design/mockups/exam-builder-common-20261008/flow-validation.json
+  and previews/d-output-{1440,390}.png. Real paper printing was not performed.

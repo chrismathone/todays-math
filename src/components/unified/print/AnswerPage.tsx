@@ -4,6 +4,7 @@ import { A4_DIM } from "./tokens";
 import { printPagePadding, scaledItemStyle } from "./geometry";
 import { BodyContainer } from "./templates/BodyContainer";
 import type { PrintTemplateProps } from "./types";
+import { EnglishWorksheetAnswer } from "@/components/english/print/EnglishWorksheetQuestion";
 
 /** Answers share measured pagination; long solutions and quick keys never truncate. */
 export function AnswerPage({
@@ -34,15 +35,24 @@ export function AnswerPage({
           ),
         }}
       >
-        <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
-          <strong style={{ color: options.color }}>
-            {startingNumber + index}.
-          </strong>
-          <MathText text={shown(p.answer || "정답 미입력")} />
-        </div>
-        {!options.quickAnswerOnly && p.solution && (
-          // 해설은 한 조합(`SolutionText` — 줄 나눔 → MathText)만 지난다. 화면·정답지와 같은 줄.
-          <SolutionText text={shown(p.solution)} />
+        {p.english ? (
+          <EnglishWorksheetAnswer
+            content={p.english}
+            quick={options.quickAnswerOnly}
+          />
+        ) : (
+          <>
+            <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+              <strong style={{ color: options.color }}>
+                {startingNumber + index}.
+              </strong>
+              <MathText text={shown(p.answer || "정답 미입력")} />
+            </div>
+            {!options.quickAnswerOnly && p.solution && (
+              // 해설은 한 조합(`SolutionText` — 줄 나눔 → MathText)만 지난다. 화면·정답지와 같은 줄.
+              <SolutionText text={shown(p.solution)} />
+            )}
+          </>
         )}
       </section>
     );

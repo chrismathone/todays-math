@@ -29,6 +29,7 @@ vi.mock("@/lib/ai/transformer", () => ({
 }));
 
 import { POST as adoptRoute } from "@/app/api/problems/transform/adopt/route";
+import { GET as getProblem } from "@/app/api/problems/[id]/route";
 import { deriveQuestionType } from "@/lib/ai/questionType";
 import { POST as transformRoute } from "@/app/api/problems/transform/route";
 import { AI_BUSY_MESSAGE, resetAiAdmission } from "@/lib/aiAdmission";
@@ -515,6 +516,105 @@ describe("POST /api/problems/transform/adopt — 채택분만 넣는다", () => 
     expect(saved.unitId).toBe(origin.unitId);
     expect(saved.problemType).toBe(origin.problemType);
     expect(saved.difficulty).toBe(origin.difficulty);
+    expect(saved.sourceReference).toMatchObject({
+      problemId: origin.id,
+      problemCode: origin.problemCode,
+      source: origin.source,
+    });
+  });
+
+  it("변형 해설의 출처를 남기고 원본 시험 소속은 복사하지 않는다", async () => {
+    const origin = MOCK_PROBLEMS[0]!;
+    await prismaTestDouble.problem.update({
+      where: { id: origin.id },
+      data: {
+        source: "past_exam",
+        school: "가람중",
+        examId: "garam-2025-1-mid",
+        questionNumber: 12,
+      },
+    });
+    const exam = await prismaTestDouble.exam.upsert({
+      where: { externalExamId: "가람중|중1|2025-1-중간" },
+      update: {},
+      create: {
+        externalExamId: "가람중|중1|2025-1-중간",
+        school: "가람중",
+        level: "중",
+        grade: 1,
+        subject: "중1",
+        subjectRaw: "수학",
+        year: 2025,
+        semester: 1,
+        round: "중간",
+        totalScore: 100,
+        questionCount: 20,
+        sourceFile: null,
+      },
+    });
+    await prismaTestDouble.examQuestion.createMany({
+      data: [
+        {
+          examId: exam.id,
+          number: 12,
+          score: 5,
+          qtype: "단답형",
+          difficultyLabel: null,
+          topicRaw: null,
+          unitId: origin.unitId,
+          answer: origin.answer,
+          hasFigure: false,
+          problemId: origin.id,
+        },
+      ],
+    });
+    const response = await adoptRoute(
+      jsonRequest("http://localhost/api/problems/transform/adopt", {
+        originProblemId: origin.id,
+        items: [
+          {
+            ...adoptItem("해설이 있는 새 변형"),
+            solution: "계산하면 2입니다.",
+          },
+        ],
+      }),
+    );
+    expect(response.status).toBe(201);
+    const { data } = problemTransformAdoptResponseSchema.parse(
+      await response.json(),
+    );
+    expect(data[0].sourceReference).toMatchObject({
+      school: "가람중",
+      questionNumber: 12,
+      exam: {
+        school: "가람중",
+        year: 2025,
+        semester: 1,
+        round: "중간",
+        number: 12,
+      },
+    });
+    const saved = await prismaTestDouble.problem.findUnique({
+      where: { id: data[0].id },
+    });
+    expect(saved).toMatchObject({
+      solutionSource: "ai",
+      school: null,
+      examId: null,
+      questionNumber: null,
+      reviewStatus: "pending",
+    });
+    const fetched = await getProblem(
+      new NextRequest(`http://localhost/api/problems/${data[0].id}`),
+      {
+        params: Promise.resolve({ id: data[0].id }),
+      },
+    );
+    expect(fetched.status).toBe(200);
+    expect((await fetched.json()).data.sourceReference).toEqual(
+      data[0].sourceReference,
+    );
+    expect(await prismaTestDouble.examQuestion.count()).toBe(1);
   });
 
   /**

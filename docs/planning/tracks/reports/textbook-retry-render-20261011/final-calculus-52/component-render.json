@@ -1,0 +1,2171 @@
+{
+  "version": "textbook-production-render-v1",
+  "passed": true,
+  "rows": 52,
+  "sourceCount": 26,
+  "input": "C:\\Creative\\testautocreator\\.qa-artifacts\\textbook-variants-final-calculus-20261011\\candidates.json",
+  "inputSha256": "fd5e610821199585edf01b945038f29b407c5cf2823f8476dcc6e3a40abacc5b",
+  "payloadSha256": "284f36ecae8b7de4bb4b17ebb43d11d62260fe70e68adadb7d38c7276ad6ff2c",
+  "candidatePayloadSha256": "86813ac5d9b18f2996290dd420558009068bef08059ae5c94acf74d3de6ad12f",
+  "component": "PaperProblemView",
+  "productionCss": true,
+  "eagerPrintFigures": true,
+  "columnWidth": "calc((210mm - 100px - 14px) * 1.15 / 2.15)",
+  "repoRoot": "C:\\Creative\\testautocreator",
+  "productionCommit": "f0a902b4d594321b8a404c61f5c463a0d15c34bf",
+  "productionFiles": [
+    {
+      "file": "node_modules/tailwindcss/index.css",
+      "sha256": "175f88737ecb7e033059eac4a3b22a3b5f971d5a05d9fd50811610a0714633b2"
+    },
+    {
+      "file": "public/fonts/NotoSerifKR-subset.woff2",
+      "sha256": "884d962a3fabfdfbd14ae317a047bc7676f678035a23f4544c2ddcbef2c431a4"
+    },
+    {
+      "file": "public/fonts/PretendardVariable.woff2",
+      "sha256": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4"
+    },
+    {
+      "file": "src/app/globals.css",
+      "sha256": "28f1ab227872f6ee1e735c8b6ff4046e6e1879c700788563c31ac50a3e925248"
+    },
+    {
+      "file": "src/components/math/BoxQuoteCard.tsx",
+      "sha256": "89c68ccb62ef87cf827e338c5c2a53d6b3dbc7b9a20e3129305e9bebd4c1e258"
+    },
+    {
+      "file": "src/components/math/MarkdownRenderer.tsx",
+      "sha256": "6dc778ec8572c89868fb5e46840e7b157b2c38b07aed9970bee85a146b61fd46"
+    },
+    {
+      "file": "src/components/math/practice-problem-text.module.css",
+      "sha256": "fba6bf310298c3f7306242228742cf5b89cc36aec7b79ee93f6233daeeaabd19"
+    },
+    {
+      "file": "src/components/math/PracticeProblemText.tsx",
+      "sha256": "40f46c7f07c5489eb2178c99ffd4f3694a44fa6ab2aa0da229a829631c1fe793"
+    },
+    {
+      "file": "src/components/math/ProblemContent.tsx",
+      "sha256": "52a176a4315c79059593a3bc3a50c6483dd30e99bfb4fe4b963d63d0718fc3d4"
+    },
+    {
+      "file": "src/components/math/remarkNativeContent.ts",
+      "sha256": "079dabf582d8589a6e9c7b332907efdad70ea9781492ce44538bef6652ff2525"
+    },
+    {
+      "file": "src/components/print/PaperProblemView.tsx",
+      "sha256": "d8b3ce4e43f80887d4677ef41bb382e66545fcbbae28abce88c922a49381f540"
+    },
+    {
+      "file": "src/components/print/TestPrint.module.css",
+      "sha256": "4256c0681dd4a4918650a2117a0d960e8b7dae1dda37f6df8925b51e55d2c1af"
+    },
+    {
+      "file": "src/components/print/tokens.ts",
+      "sha256": "9168bc4deb0d0f5f395406ab472a2fdaa22fd432c073947ff432e56bbb637586"
+    },
+    {
+      "file": "src/lib/figure/figureSvgFrame.ts",
+      "sha256": "4c076778ff480799bd40655d115d56a7e8e1fb0084fce7ea20382c3dc0f6fe09"
+    },
+    {
+      "file": "src/lib/figurePrintSize.ts",
+      "sha256": "54a7ba44de9e1daa68ae3fd4229da95b021d7ec209dcfe2b48a3ccfff1110c27"
+    },
+    {
+      "file": "src/lib/import/schoolTextbook/qualification.ts",
+      "sha256": "57348942924cd7e492b2f9503125baa3bc30aafeedafc847bf8623247b9cc7bf"
+    },
+    {
+      "file": "src/lib/math/blankAnswerSlot.ts",
+      "sha256": "ad97c06f5cb62f1b5eb07a5372d545b48f5fa5523ea023adeacf19a75e3f46c6"
+    },
+    {
+      "file": "src/lib/math/boxBlock.ts",
+      "sha256": "24ced7f1f1e8ee86dc5a1aedd573a5243a4f27c67d851cabdde3217d2ddd32c0"
+    },
+    {
+      "file": "src/lib/math/boxFit.ts",
+      "sha256": "319159bfdf4d9d94e53396edc595dcfc90cd5993160e095abb33f51a5f5efbad"
+    },
+    {
+      "file": "src/lib/math/boxHeader.ts",
+      "sha256": "d8772a23cdc32ff02ce007c860db38ede85a8bd381a22e944da66e4f8e7d5371"
+    },
+    {
+      "file": "src/lib/math/boxLayout.ts",
+      "sha256": "0531b25bf54c50b14da65a6e26aa330c0120db811c163b42b411fea95526080c"
+    },
+    {
+      "file": "src/lib/math/choiceLayout.ts",
+      "sha256": "cb0453cbf6f4c7a4b397ee6db8c34ea77bd02a76f20aedc986233f1e32f8f49c"
+    },
+    {
+      "file": "src/lib/math/circledNumber.ts",
+      "sha256": "c6b13a84b2e026d6f320f81e2077737731dffb74b0ace6e240a81e759eeb94ce"
+    },
+    {
+      "file": "src/lib/math/displayWidth.ts",
+      "sha256": "12d5be50ed88bfcebd4c70ed42d1b8bf8d1d06ac0244fde7e8a8c91c7abf71cb"
+    },
+    {
+      "file": "src/lib/math/equationChain.ts",
+      "sha256": "7d7898166840e72fc3a9f3ec286bacc05ef83619215b9c389b88c09b01251a7b"
+    },
+    {
+      "file": "src/lib/math/escapedStyleLeak.ts",
+      "sha256": "29ededbe4707748d3dafe3d484c81f7e8f9d72e7db64f0ac01006c558e6e0630"
+    },
+    {
+      "file": "src/lib/math/hardBreaks.ts",
+      "sha256": "d6d252421453be4d3c7564952266c2ba264b843e8ab20861d396cae1a0eeace7"
+    },
+    {
+      "file": "src/lib/math/katexCommands.generated.ts",
+      "sha256": "550fce06ca30eeb42ebc240c0878288251466af73257208ada49b7946eda4998"
+    },
+    {
+      "file": "src/lib/math/katexRender.ts",
+      "sha256": "ebec50206600f3b1da0a1c5031dff57746b278cc3c9e0e35496e1d6063a7a8da"
+    },
+    {
+      "file": "src/lib/math/markdownPreprocess.ts",
+      "sha256": "087b4cb065b510dd84e214f9143b85e2f4e4ca621cbd96aa1424eb8a603db1c7"
+    },
+    {
+      "file": "src/lib/math/normalizeMathgenText.ts",
+      "sha256": "36fd0321677236f4accd19d65a0214db18c4de35e26571d1b9476791a74b365c"
+    },
+    {
+      "file": "src/lib/math/practiceProblemLayout.ts",
+      "sha256": "1990501eece14ee2a5dd41adcc4537a10abbd6e9639c556cfdd7490ea75b785d"
+    },
+    {
+      "file": "src/lib/math/segments.ts",
+      "sha256": "07d0f15e468044ab764c65ed0ef97e1d74aac9ea4f9963670e693672042ffb5a"
+    },
+    {
+      "file": "src/lib/math/subQuestion.ts",
+      "sha256": "fa381fd6a8b0c19f48f9f75203cb43ea4087c211b64787202b20efcbea70e79b"
+    },
+    {
+      "file": "src/lib/math/textPreprocess.ts",
+      "sha256": "a50cc88ae0dee4ad0822b13d3d1ced3bab4693fe4d7c5abeea70814cf6f0eddb"
+    },
+    {
+      "file": "src/lib/printGeometry.ts",
+      "sha256": "35ea57ed8602a8ce115d067ffc473f65d4cd3c61cd2b666e9e642f6cc52206fa"
+    },
+    {
+      "file": "src/lib/problem/choiceFigureIndex.ts",
+      "sha256": "44d71ff5d93499520243a4614936c76c28495dea346c245c7f11f30c7e6e2216"
+    },
+    {
+      "file": "src/lib/problem/choiceRepairRules.ts",
+      "sha256": "c9f955b5ef066fb227cc6e99ccdd378b174266846401474161e791aca8f0b973"
+    },
+    {
+      "file": "src/lib/problem/figureMarker.ts",
+      "sha256": "6fece6b60aed9894e014fcd764bb65189fe27da3c313037e5259e7fe337e3295"
+    },
+    {
+      "file": "src/lib/problem/parseProblemContent.ts",
+      "sha256": "3d8a3c7b5e1fd3abb9ea8cf4982cdb5681b1d3ba49766f03f85dcf9dce85d547"
+    }
+  ],
+  "productionSourceSha256": "03a623396436b74448d07f4f3c06697ad810fa9b7bc9810c56084414daffa544",
+  "cssFile": "runtime/production.css",
+  "cssSha256": "e589419608066500f7b445db8f478ae20824ff6044c9a8e93464f2c4615f712f",
+  "chunks": [
+    {
+      "file": "runtime/chunks/chunk-001.html",
+      "start": 0,
+      "endExclusive": 52,
+      "rows": 52,
+      "htmlSha256": "4f12b66b7af020844ab4884f46715b438415128dfedc442fa9190f8f3a2a23b4"
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "id": "tb-retry-v1:c9bc3ae5-8631-401f-aa51-0362ed4c9739:1",
+      "sourceId": "c9bc3ae5-8631-401f-aa51-0362ed4c9739",
+      "slot": 1,
+      "candidateSha256": "d8092215f63bd7ab74017438ad1e3f6dbd1c2bec0aaa30af045fdff446ea7b6e",
+      "payloadSha256": "81667aeb04e1bee1a78653f8abdd3c4fee3a3229cd0e7f4cde2b9afe3f851a27",
+      "parts": {
+        "content": {
+          "htmlSha256": "e1d486d5ce20eb4594dce58f5aeb9fd43d560687a0723ea6b109a70f01c68964",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "42206bd39d239c91b6cf7003549427175e874fbb9557d1746be12631aa2949ef",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "4ed9a27b1104b73b3170d3e11b80dfb2504a1511338fd7da8d3ff452059f89fc",
+          "katexCount": 6
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 1,
+      "id": "tb-retry-v1:c9bc3ae5-8631-401f-aa51-0362ed4c9739:2",
+      "sourceId": "c9bc3ae5-8631-401f-aa51-0362ed4c9739",
+      "slot": 2,
+      "candidateSha256": "73c293fbf17d0045ab912dfe2af176010756f429bcac6556461416dccefd0f8c",
+      "payloadSha256": "22c7b661186feec2c4ea73f39c0b2c0f5e1242534846379aef01fa0b4686e5da",
+      "parts": {
+        "content": {
+          "htmlSha256": "70048488931a607a987502fe0e38a9119492e70c19a06dd47a0cc9607593b51a",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "b5060bf5e53a93b5b5a67a17ea5c297d1ae8a2defa62cf5b60c5455b0e90a558",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "46ae3949c3c9489c7b2724adda65ae935b34d5abcd274783d6a85499382cd503",
+          "katexCount": 6
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 2,
+      "id": "tb-retry-v1:b425144e-155b-4881-a2b2-57daea2bfdd6:1",
+      "sourceId": "b425144e-155b-4881-a2b2-57daea2bfdd6",
+      "slot": 1,
+      "candidateSha256": "d37a2b03a660fa962e060afca82658ecb05be31ac3f0eba9512ba88b5fed2764",
+      "payloadSha256": "642278a37b00a9d95c0d99e49cdcc9e3195414f7203a2957f851cc8e4f2a49fc",
+      "parts": {
+        "content": {
+          "htmlSha256": "19a7b3f8c53885d3f06f64c27d86686ccc665ef318440458ab6ecd11ba7abaed",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "157f066112133ca8ef4d227e430bc01a4ccc7294978502068d1c2f605f4aceda",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "983a0ac90e8e3756b3e80c316bb12d2256e7eb66944c06ad4cc7687a2860d7f9",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 3,
+      "id": "tb-retry-v1:b425144e-155b-4881-a2b2-57daea2bfdd6:2",
+      "sourceId": "b425144e-155b-4881-a2b2-57daea2bfdd6",
+      "slot": 2,
+      "candidateSha256": "aa58df533e9990beef9c9ffb3929c562b13b99f1ce8f9dea2ad49b4b08eb9c40",
+      "payloadSha256": "baae4e73ef141217caceb362a5060307b0d101cc1a6c62ffdd57accc5fba67c9",
+      "parts": {
+        "content": {
+          "htmlSha256": "b23d47b2fc0253487591f3f4d316bb39b0630bac6f578a29062431e43d93d99d",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "dc2ede92c07c0669656e9d45593ed800e22dcdd25113a028d81a5d24d45c6d55",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "12b736b8f844a9c3b1349c61b07ee5c87bbb44d1574107cfac9f5171d0096a74",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 4,
+      "id": "tb-retry-v1:51cbae37-b73d-418a-ae8c-01198db74d47:1",
+      "sourceId": "51cbae37-b73d-418a-ae8c-01198db74d47",
+      "slot": 1,
+      "candidateSha256": "c6b7af862f8acd921acee218c751471d35d370fd8fe5f951af60447c543bcabc",
+      "payloadSha256": "e5f6e4478cc287050a02f92651eda2baad191ecfab997e851bdb5a9dc6bbf2a6",
+      "parts": {
+        "content": {
+          "htmlSha256": "673428f385e82268d423b8825adbd2f82ff36fcbfcbf6da7f47f15d091d6754d",
+          "katexCount": 2
+        },
+        "answer": {
+          "htmlSha256": "df11eefc014655ec155da6bc797bcd9e0075b653abdc0fadcd2b8888159e801f",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "b125a450035cd84eaa735b289cff104f7714b12f33c891dfbad96196e249d581",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 5,
+      "id": "tb-retry-v1:51cbae37-b73d-418a-ae8c-01198db74d47:2",
+      "sourceId": "51cbae37-b73d-418a-ae8c-01198db74d47",
+      "slot": 2,
+      "candidateSha256": "1e6d8db807d5defed3e28233e585f23c45ad33d0c3ef8d91f10885dd37b8b0ab",
+      "payloadSha256": "5318ebeb6e926ce36302ada97ec35b46a1751aab5f753a0938b0766e4ecc7e67",
+      "parts": {
+        "content": {
+          "htmlSha256": "6b2ea1f2c9573f366d6a66e4f0797f8ea249364b1c5e56d0acf09ad0e5b9a195",
+          "katexCount": 2
+        },
+        "answer": {
+          "htmlSha256": "982050b2bb74c5da4f48dd9e5134a01eb455a324de100c0c74baef4b8fa841a2",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "3b043f4cf6e3fc2bbb9726e2d529a3575b7e6c5f45d7686208780ebd0436caac",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 6,
+      "id": "tb-retry-v1:b8fdaba8-cfe2-4076-a4bc-c7a9ebaaa59d:1",
+      "sourceId": "b8fdaba8-cfe2-4076-a4bc-c7a9ebaaa59d",
+      "slot": 1,
+      "candidateSha256": "bdd530f92f2bc39c8a24e588e65a88c85889444139bc9201635f6c927a5581d0",
+      "payloadSha256": "88e655ddd0a98b8163ded1a89002084ad327e8dc760633f13b8dc732248e98d1",
+      "parts": {
+        "content": {
+          "htmlSha256": "fd6afa2126cb2215e7a0110d6ec89abb85b29efb420eb2055a7655de8ea475da",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "6a270e5d8e2bb02bdba30925874a43e0a8f8dd2466b0dd86c16d32e7a5203a16",
+          "katexCount": 2
+        },
+        "solution": {
+          "htmlSha256": "db227068ee82d95608349ac50d8b7486d9b4228febbe1d44b05b2690608f3755",
+          "katexCount": 10
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 7,
+      "id": "tb-retry-v1:b8fdaba8-cfe2-4076-a4bc-c7a9ebaaa59d:2",
+      "sourceId": "b8fdaba8-cfe2-4076-a4bc-c7a9ebaaa59d",
+      "slot": 2,
+      "candidateSha256": "be6c4f7af20085e5628d590f64f444ebfb149e1899bb1066420fda367348b0ad",
+      "payloadSha256": "009bd6ecde7a1546acba4b2dd00a6bd37e0ffa635a41b20179fc5472419e3d3e",
+      "parts": {
+        "content": {
+          "htmlSha256": "dcd3ec957e622945c2716e83062ab5b73242e0d33e4675b14b31b144f81a0871",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "6999d55fe4a360f901d193b9c36b197698d8d0bea8c1c8829de49a3238ce1666",
+          "katexCount": 2
+        },
+        "solution": {
+          "htmlSha256": "d6711824a3710e2aad3b01ab94b4abf2889a56a89ac7fac280276effb667bc8e",
+          "katexCount": 10
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 8,
+      "id": "tb-retry-v1:01de9da1-2305-42ed-93cb-7f6bf7aad44a:1",
+      "sourceId": "01de9da1-2305-42ed-93cb-7f6bf7aad44a",
+      "slot": 1,
+      "candidateSha256": "5f21e0df96c604d620087c9c4b9bc55505ca0e4d3b2618323594f8bda480a87e",
+      "payloadSha256": "240a87e2136a4f59e5b019cc669def7f7a3faa4ab73b6ed6b19323786b198510",
+      "parts": {
+        "content": {
+          "htmlSha256": "9610bf5a0de23b41a72fff39c5cebd023762499fa38cb79fd00f913c8ba35aab",
+          "katexCount": 8
+        },
+        "answer": {
+          "htmlSha256": "d11beef4ca18ecef0c9c376310e58bc225e79459005fb3f200d78bef1c6523b3",
+          "katexCount": 4
+        },
+        "solution": {
+          "htmlSha256": "13b435e5db10958bfb37f9c05284b973f74748a78eaa2b54774e79eb81954ae2",
+          "katexCount": 20
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 9,
+      "id": "tb-retry-v1:01de9da1-2305-42ed-93cb-7f6bf7aad44a:2",
+      "sourceId": "01de9da1-2305-42ed-93cb-7f6bf7aad44a",
+      "slot": 2,
+      "candidateSha256": "e03225fb11cac181e7c1429b3910184d9b8daf646f9f276445b557899b99a854",
+      "payloadSha256": "188dd67f35e5399ce2e88e7ee06f0af00986f88b4c6cf3d7e172ab0fc1b6bd95",
+      "parts": {
+        "content": {
+          "htmlSha256": "3d5a45430a09db6de035bb467aa6a111b6c9bdfbae2883b296b883c65f65778e",
+          "katexCount": 8
+        },
+        "answer": {
+          "htmlSha256": "a1a03718a54f574f9ba9f189c0e38e3a0e32022687d2281421c95294bda2d3fc",
+          "katexCount": 4
+        },
+        "solution": {
+          "htmlSha256": "070ee38f73a9a2e9298d4998b27aae17b6e7d4b1a5ab44aef142db8b3f4f9504",
+          "katexCount": 20
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 10,
+      "id": "tb-retry-v1:c9823bb2-d1f1-476c-a430-1b9652f3959c:1",
+      "sourceId": "c9823bb2-d1f1-476c-a430-1b9652f3959c",
+      "slot": 1,
+      "candidateSha256": "ad8ebbadbba2d5cd45e71e41252611247690a545027dd9bb936c448318dc7808",
+      "payloadSha256": "8d625bc8ca295bd357adba96ab782ea220f209380bfb92906cbf8e6915f1fce9",
+      "parts": {
+        "content": {
+          "htmlSha256": "c51a2a81a9c32981fcb2bfc870e4ae626af4415c1a00fd5d187187934b2ab564",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "3588723c0b24452c5d13dd20658f429864ab2edd2450aafd2eabb5804479ed16",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "2b784faf3fb03be4b6cbfd185190c76769a7273ed4f26218b261d323c2909863",
+          "katexCount": 7
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 11,
+      "id": "tb-retry-v1:c9823bb2-d1f1-476c-a430-1b9652f3959c:2",
+      "sourceId": "c9823bb2-d1f1-476c-a430-1b9652f3959c",
+      "slot": 2,
+      "candidateSha256": "ac26d4d78736fbbbe99526e1992c43a83648171f63ea450002301f1542197f4f",
+      "payloadSha256": "7ca89959d87b1ed9f9390eb5062fdc057050970aa7fcb1a20572b766a4dddc56",
+      "parts": {
+        "content": {
+          "htmlSha256": "f095bf7d792ecb35c95e58dd1df913927c551b7e9db9aae2de3ecc17258b31c5",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "5f3c9e26c212c457ba10cf7f6370798e7429935914750cd0e62b08787b0ac407",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "16c3677be3e74fde68f9bd33859ccf44fd56d6ad51b68b3469a58ebe07d7b703",
+          "katexCount": 7
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 12,
+      "id": "tb-retry-v1:50a15ad1-eb70-4392-84aa-2cdbbcdf50f1:1",
+      "sourceId": "50a15ad1-eb70-4392-84aa-2cdbbcdf50f1",
+      "slot": 1,
+      "candidateSha256": "1e43c6402748450a062da4fe223862abbb8f48e14bdda2c9f56ac5ef3e436940",
+      "payloadSha256": "dfbcfe23120fef4d746906dd90a3ecebb1d068e5f4ed7013c32e21bc1849167b",
+      "parts": {
+        "content": {
+          "htmlSha256": "27ebd2940104cbba384ca7f7c577b33c86401534b30c0f5d831d85e0c75457d4",
+          "katexCount": 5
+        },
+        "answer": {
+          "htmlSha256": "df1d278f052ab65b4b0521130fb66a0a33fdb9ba0fdd3033e099c6018bf9350f",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "efdad0d5d9e03878403da682324d52752dcac5bc7c7c0ad759e78d9f664a22e0",
+          "katexCount": 14
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 13,
+      "id": "tb-retry-v1:50a15ad1-eb70-4392-84aa-2cdbbcdf50f1:2",
+      "sourceId": "50a15ad1-eb70-4392-84aa-2cdbbcdf50f1",
+      "slot": 2,
+      "candidateSha256": "0893d67afe2448fabe752e1fc5be91fecb0ec8256052c78620d78c29a8bfe13b",
+      "payloadSha256": "bb2712ea68c6ec29df0151a21b1a47fc03d4166e6e9627e4172eee373fa45b21",
+      "parts": {
+        "content": {
+          "htmlSha256": "649c8f69917107b6ece1fee99d8af9289530d5d51fb5f65a7c45ca7eb09e53aa",
+          "katexCount": 5
+        },
+        "answer": {
+          "htmlSha256": "7cf34557825a5c980b45814b177cf458f735f86e21fa3104ddd561c5e922f2ee",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "f378829728069a12858529eb7a92a237ede551c70346669bad35d76773669704",
+          "katexCount": 14
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 14,
+      "id": "tb-retry-v1:f3caffd0-e752-4a25-bf3b-7cf67864b68d:1",
+      "sourceId": "f3caffd0-e752-4a25-bf3b-7cf67864b68d",
+      "slot": 1,
+      "candidateSha256": "932b9aa5ec031aaebe4d912d91612453d310a879ba611eb4f41160b2c886c242",
+      "payloadSha256": "9ff696b8eaead5163bdcf13815ca0c2ab032cce2a185f3893835d6d780085c0c",
+      "parts": {
+        "content": {
+          "htmlSha256": "8db46b185f1f49855a31577036727fd25f6ea21193a56cabfdb1af926fa665fd",
+          "katexCount": 6
+        },
+        "answer": {
+          "htmlSha256": "e01d3111667c171280ac6dea7781cd71175b52b1118a21de39b945156e84972c",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "e665f0b1b8a1eccb7922285b57a8f5acad5aa15e7c5da363390d032f2381d261",
+          "katexCount": 7
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 15,
+      "id": "tb-retry-v1:f3caffd0-e752-4a25-bf3b-7cf67864b68d:2",
+      "sourceId": "f3caffd0-e752-4a25-bf3b-7cf67864b68d",
+      "slot": 2,
+      "candidateSha256": "eda991098abf0e16aec8448824fdde34baaddb2171bbe318b7f3e82919aa20d3",
+      "payloadSha256": "71085308f6e1f97ef1ffaa6fb29e6786395df776a7dfefaaeeafc4b9b958744b",
+      "parts": {
+        "content": {
+          "htmlSha256": "c47764e94c3928d37af0faae599ede2897f95d866feab47ba463c250201a41f3",
+          "katexCount": 6
+        },
+        "answer": {
+          "htmlSha256": "0b346030948757352dedb980ae66c8c6383772d7f01284bd727c34fb89ef6da6",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "26ee8cbfb13673c30f5783a4b29e18e86771f3e8a19a83d801a0cef9997c5344",
+          "katexCount": 7
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 16,
+      "id": "tb-retry-v1:da988df9-afc7-4d08-a3fa-c3c24d76a5ab:1",
+      "sourceId": "da988df9-afc7-4d08-a3fa-c3c24d76a5ab",
+      "slot": 1,
+      "candidateSha256": "923b99e69f826e9b0c50e981e9531c5d81a74c7650a5f8737feb2bb5a74062e6",
+      "payloadSha256": "15903ae8644f66fa8ab69f92061e19c911eb69a3ef415a55024e1b73cd342009",
+      "parts": {
+        "content": {
+          "htmlSha256": "9986b0bdb6c5310560804760603ce5d2d1d4ef918a511080f979465d3cebb861",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "e93ccb48356b1af94c6b56cbc662f73d00f7003a9d78cab39a5c5ae0294d32bb",
+          "katexCount": 2
+        },
+        "solution": {
+          "htmlSha256": "06bfdf0a17998a33f3620b82c6b62fceb3d65c34b378187c98d4023bfa05a153",
+          "katexCount": 10
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 17,
+      "id": "tb-retry-v1:da988df9-afc7-4d08-a3fa-c3c24d76a5ab:2",
+      "sourceId": "da988df9-afc7-4d08-a3fa-c3c24d76a5ab",
+      "slot": 2,
+      "candidateSha256": "6a0f0a99d13dc46fc6e7e91b34f653302bb3069ce0c24398e75544d025b5f09e",
+      "payloadSha256": "0d75efd5856e2541cc44020700917981f80452d1c1ecad51986c3df41c1d922d",
+      "parts": {
+        "content": {
+          "htmlSha256": "d6bd67904a86c43213b5f85779821be3c53d820ee9eb1bc15bf4dcd9adb52040",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "23973d6527799309fc05fb11b925defb8b5c8ea09766cf6f8a6e2e808f31beff",
+          "katexCount": 2
+        },
+        "solution": {
+          "htmlSha256": "b3d17b1c8e6aa9d5db297c7a51257b464e54be0deb1f9196a93600c885a2f22b",
+          "katexCount": 10
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 18,
+      "id": "tb-retry-v1:c88ba4b9-90fc-485b-afc1-e4a143178642:1",
+      "sourceId": "c88ba4b9-90fc-485b-afc1-e4a143178642",
+      "slot": 1,
+      "candidateSha256": "3019d10d646b84fa5b7413533d133c1fa18614165483be8d084894f8098e5b87",
+      "payloadSha256": "e173fa439b6472769780351fef626393f7e1cfbb009eb4cdaabb18777b90a904",
+      "parts": {
+        "content": {
+          "htmlSha256": "7c8d4d419a4f22c57c5839f81fe2ef81c6b281c70184f4d9706bccde18f41622",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "6f2524283532b530a6f90808b138a5ee96f3c3d997cc981368bed2e9fba38350",
+          "katexCount": 3
+        },
+        "solution": {
+          "htmlSha256": "c7a5a164f26221f6ec8694bcfd9e2cd8d974bb72a8a691ec1bef872a775012c3",
+          "katexCount": 16
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 19,
+      "id": "tb-retry-v1:c88ba4b9-90fc-485b-afc1-e4a143178642:2",
+      "sourceId": "c88ba4b9-90fc-485b-afc1-e4a143178642",
+      "slot": 2,
+      "candidateSha256": "4356b8ee49dbe4d537f3b74de24ec913c2e3a4721687de92b8dd804bcbea979d",
+      "payloadSha256": "3518e992e6cd3e6c7dcc4fe833df640c7d30d127360bbccb2a41549f4471d101",
+      "parts": {
+        "content": {
+          "htmlSha256": "10ccd96b77b9b3234d17de4ed39c59e2fccacb7b755aea43e35c36ac8f211a34",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "20edbd54971b95654f11729d2f9fd17517593cdf1a443e065740e5f2bb3821f6",
+          "katexCount": 3
+        },
+        "solution": {
+          "htmlSha256": "5ee971c9814968c6aac7baea769c59d942e8023d7d355947ba181a7d743dcb31",
+          "katexCount": 16
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 20,
+      "id": "tb-retry-v1:4a9dc81f-7a26-482a-ae17-1488a45ef8dc:1",
+      "sourceId": "4a9dc81f-7a26-482a-ae17-1488a45ef8dc",
+      "slot": 1,
+      "candidateSha256": "1094e2f63529232b695266e0e6c6f2bdf5fdda0acb2dd55152bfb2c8fd23f9bb",
+      "payloadSha256": "248881c30ed72586d8ba3ddb76bc8990935c24d529aeae8793cdfa532b1db445",
+      "parts": {
+        "content": {
+          "htmlSha256": "eaa85815c787568090ff8bbbebf8e3a85527e499e70624a2756b9511f50cee62",
+          "katexCount": 2
+        },
+        "answer": {
+          "htmlSha256": "8272e802264fbdb03ca996291e95338b5c602fc9c1b26dfd7c3868e907dca689",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "a4924e270614fdac1d18fa5c583f3d0b9112b9efc647d76966383d1a84f85670",
+          "katexCount": 7
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 21,
+      "id": "tb-retry-v1:4a9dc81f-7a26-482a-ae17-1488a45ef8dc:2",
+      "sourceId": "4a9dc81f-7a26-482a-ae17-1488a45ef8dc",
+      "slot": 2,
+      "candidateSha256": "676f8e135b738dc763d6af8197154c85bc968e0739429caaef12d25a38a2c929",
+      "payloadSha256": "444fcc48eb41d9de4e57ede90d7b7f0e84725f28be4ec53cd42d8c8cae82d766",
+      "parts": {
+        "content": {
+          "htmlSha256": "99bb77b96baa927bea5b5321f12f41657e24922958588b41cd14ca32f23bd580",
+          "katexCount": 2
+        },
+        "answer": {
+          "htmlSha256": "c695222579db7792ddf285383434d5385301d90287a007eedb44c29ff25faa90",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "9c5a61776539e27049e3b81a885a46fefea7ac511ab679921841350a354ccf1c",
+          "katexCount": 7
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 22,
+      "id": "tb-retry-v1:c7666788-c66f-47de-9866-b92b62bf82ef:1",
+      "sourceId": "c7666788-c66f-47de-9866-b92b62bf82ef",
+      "slot": 1,
+      "candidateSha256": "638e94dafe222cc9aabcfb5436ee46f1bc44fd2e3e09ccfee58544e858fdbd88",
+      "payloadSha256": "a644cc39a83627a6e8974a335f5dba4319a769aea7fd8285bc5b029bc73aa7cb",
+      "parts": {
+        "content": {
+          "htmlSha256": "841367c2d2542efdfa7056f3154842029dd097b69a7b5af46ec9e4620ce527e8",
+          "katexCount": 6
+        },
+        "answer": {
+          "htmlSha256": "2711cd225d8f215024cb14de45160cd7b53c5a7c22516da88d326de6415b2daa",
+          "katexCount": 3
+        },
+        "solution": {
+          "htmlSha256": "2ec67587f65b9e27f1fd458cddc9ecc468f01c7d05bc8b364c97506410294a3d",
+          "katexCount": 15
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 23,
+      "id": "tb-retry-v1:c7666788-c66f-47de-9866-b92b62bf82ef:2",
+      "sourceId": "c7666788-c66f-47de-9866-b92b62bf82ef",
+      "slot": 2,
+      "candidateSha256": "404fa8f92e196a4ef96e2827cbbd968b63bf1a3c6144c35ddd6788fd1e46e461",
+      "payloadSha256": "f17048159aad5be89264e73656edbfb62f0ae68d4ebc17e6552060cb51ed7411",
+      "parts": {
+        "content": {
+          "htmlSha256": "3ad719aa84b4e05230c768d287cae108a2deabb487d27e5b72f6b202bbb292f8",
+          "katexCount": 6
+        },
+        "answer": {
+          "htmlSha256": "801451b989c34e6455fbf92f0edd80462379a2a1c3ac4abe0033a4d0d5044da2",
+          "katexCount": 3
+        },
+        "solution": {
+          "htmlSha256": "352716ccf104ef96a093a5f8341bee004495a89767adc64ac6d6d34cd26b0325",
+          "katexCount": 15
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 24,
+      "id": "tb-retry-v1:eb12f0b8-9eb2-40b3-957a-c0be6c61a6e9:1",
+      "sourceId": "eb12f0b8-9eb2-40b3-957a-c0be6c61a6e9",
+      "slot": 1,
+      "candidateSha256": "b73ec8c8c4d34bfb70f888f389ea29f8a88a0312f21ea6c06ddf278f41c9df0f",
+      "payloadSha256": "338337c53b6f1f532b01b7bbc93b8de66d068635cc4fe312bfedd9efcc0f1418",
+      "parts": {
+        "content": {
+          "htmlSha256": "d3d23be38913f16a78fb5d2b8a7d57a8f47f925fbf167deddc77027f5e64424e",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "a44f39f23920e92376553dd918a31896afd970b8a77cb2c6b71a5597e3695531",
+          "katexCount": 3
+        },
+        "solution": {
+          "htmlSha256": "2b101d50e070f3d3eff6a6793211f89044a95ad26eb0db2b4cb3678806c7c146",
+          "katexCount": 16
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 25,
+      "id": "tb-retry-v1:eb12f0b8-9eb2-40b3-957a-c0be6c61a6e9:2",
+      "sourceId": "eb12f0b8-9eb2-40b3-957a-c0be6c61a6e9",
+      "slot": 2,
+      "candidateSha256": "e87cea3aa1b4d4acaf16263491aca4b1c23a41975c618f78a72e847a0a4e0221",
+      "payloadSha256": "f224359d808b7b6f26b9f67935976511d1b39e8d4654d6b14dcb5107c7c75718",
+      "parts": {
+        "content": {
+          "htmlSha256": "6806290cf34fa345902b795631deb3d355e56b2dac146f87daf501898579672e",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "a99b1cf289e1d4fc1d9c0cf3c34810f7f0792b59dfe5100dc1d2bf7eebd6fc1b",
+          "katexCount": 3
+        },
+        "solution": {
+          "htmlSha256": "4f84ad1f427df76242ef47fa1f2730e466ebc3da7d0027bba02b6290ca4683de",
+          "katexCount": 16
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 26,
+      "id": "tb-retry-v1:6d30440a-0ba5-4e75-bf06-c976eaf562c8:1",
+      "sourceId": "6d30440a-0ba5-4e75-bf06-c976eaf562c8",
+      "slot": 1,
+      "candidateSha256": "1a53626e6d01c48dceaa62bef71b7ed7e7c2a312f8b8acb45a6b00639474f797",
+      "payloadSha256": "3c831b973bd14ae701b2787f56f4c311fe14fddb7a9f51dcccc7c3a7e309c134",
+      "parts": {
+        "content": {
+          "htmlSha256": "f9645facb8ac41a7fd634b070e49af87a8dd67a131d0dcd58e1b81d0b50261ba",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "647395c8ea52b0616baf87bfb39f8783c06511b90270c2d5cc7c801bf3faa648",
+          "katexCount": 3
+        },
+        "solution": {
+          "htmlSha256": "b64d9411bd38c2704228841fbef51a4bdefc35296f3924209f6cfdfd659bf1e3",
+          "katexCount": 16
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 27,
+      "id": "tb-retry-v1:6d30440a-0ba5-4e75-bf06-c976eaf562c8:2",
+      "sourceId": "6d30440a-0ba5-4e75-bf06-c976eaf562c8",
+      "slot": 2,
+      "candidateSha256": "5352609733a0a11af6240a2af8739b7fdc6f84b2e55ef4a9d98c58f2f531155b",
+      "payloadSha256": "01fa0d1f54ecab005c2c9bacf34bf2af4e215dea31895ca3720c73d894244ada",
+      "parts": {
+        "content": {
+          "htmlSha256": "92194476143faa0b95e7f3d2bef4d78d7444413b386c65614497e986bb66ff66",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "a6943c297027bb9ebff8690cf5efa9f6f567d8dcc39665d0db09c8b088ba6d12",
+          "katexCount": 3
+        },
+        "solution": {
+          "htmlSha256": "6ad293ecb5588f2482cf918b5effcaa64b18ec27622914124302955d3a9f0679",
+          "katexCount": 16
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 28,
+      "id": "tb-retry-v1:0f7e1604-852b-4db8-8136-390d5fbe4e89:1",
+      "sourceId": "0f7e1604-852b-4db8-8136-390d5fbe4e89",
+      "slot": 1,
+      "candidateSha256": "55f9b339f47bd894ea678e6965f74aba4955c7148656084ea0ef86111f8487d7",
+      "payloadSha256": "78a5f9ab2468f396bb8f400fad6c3b480f1d4c3da35d25138b899e82351c7547",
+      "parts": {
+        "content": {
+          "htmlSha256": "e8fdda61a0b03be9838b4d2484835f0995e20dfec08b3f8b17a2957658b4c7db",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "7380406b787607cccfbd1f8c57cfdd2b60e697607013c8c0c1d375d68507c4b2",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "0baf92d2ace886e2f6ea57612167fc73bacf9d1d29476b46dde0b0fff281702a",
+          "katexCount": 11
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 29,
+      "id": "tb-retry-v1:0f7e1604-852b-4db8-8136-390d5fbe4e89:2",
+      "sourceId": "0f7e1604-852b-4db8-8136-390d5fbe4e89",
+      "slot": 2,
+      "candidateSha256": "6ce5a32f12eebabe50c3e77e441ef7f414bb635b577b87b256fbb011e8e8e9f3",
+      "payloadSha256": "f9b7c5a50b14e57ba089603c0424192c614cd960bbb074ddbf4e12978fd5ad6c",
+      "parts": {
+        "content": {
+          "htmlSha256": "88b6ebb841e91c7973ee9c0aa28a47ba96133e33dc5023b77bfb2ce4cce04ca9",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "92fafca5ae781023bdb1f72a263c48fba3d5d38ec96e693981180ab50eb1198e",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "8ef4440e1e2b0da4786271219f197796402f9bed320a85a74809c7e966e0936d",
+          "katexCount": 11
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 30,
+      "id": "tb-retry-v1:efb7273a-7e38-4aa2-9ef2-9c2bddac9e4c:1",
+      "sourceId": "efb7273a-7e38-4aa2-9ef2-9c2bddac9e4c",
+      "slot": 1,
+      "candidateSha256": "51803936d798bf29efc56011a39b0b8934c63fb5d85d78b2358dc52c82503be5",
+      "payloadSha256": "c92216778ebeb952b89dcbace329acf2ecc95ea33a3293de5094f475184a9bfa",
+      "parts": {
+        "content": {
+          "htmlSha256": "4d69c0c98b340269f9c7a226c8927fe4fe8ff1e8e9d2907cf6aec1edd9c07a46",
+          "katexCount": 7
+        },
+        "answer": {
+          "htmlSha256": "003a0064a5e26ba09023bd66465ef73af91f9b71af3868adfca0636e072b99b3",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "df57a1c41b58d59e6f598f71ac44cc70682f1ec3fd8fe4db4b6e7ee5d87d20b0",
+          "katexCount": 9
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 31,
+      "id": "tb-retry-v1:efb7273a-7e38-4aa2-9ef2-9c2bddac9e4c:2",
+      "sourceId": "efb7273a-7e38-4aa2-9ef2-9c2bddac9e4c",
+      "slot": 2,
+      "candidateSha256": "fabab9d3673956c965c078c769e04f2d1e00f7132025d881d03bfab84833568a",
+      "payloadSha256": "2e769cd545a53ccad20a480a7b9764dc772f0f618840c19508b5c4aaf47cbbba",
+      "parts": {
+        "content": {
+          "htmlSha256": "aa2f73171bd2d90bdd934ab0c08917d94459fd732b1016ce5306c254000430ec",
+          "katexCount": 7
+        },
+        "answer": {
+          "htmlSha256": "003a0064a5e26ba09023bd66465ef73af91f9b71af3868adfca0636e072b99b3",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "41f52e00209eff994e43f034e086b919e8e035da4700eb32e44673732251a02c",
+          "katexCount": 9
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 32,
+      "id": "tb-retry-v1:4cb82cdc-f93d-4e19-acde-089667c5f394:1",
+      "sourceId": "4cb82cdc-f93d-4e19-acde-089667c5f394",
+      "slot": 1,
+      "candidateSha256": "aa10fe6d3b110c2e73e31065a4990d95d937ba2a5d3bbd3a6e9045ab824d7490",
+      "payloadSha256": "dd7baa5e9a04b6ba864d7008de0579fe04fbb8dc935eb6ba6afad549dcd36c0a",
+      "parts": {
+        "content": {
+          "htmlSha256": "242634dc74aedeced3f6251cca8b0613f98dfa849971c3fdbc1c6e2598e34077",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "38431846ea22f9ad21b2bf16bda0cad7d1b003a3df75126779dc8a9a5f87b21b",
+          "katexCount": 2
+        },
+        "solution": {
+          "htmlSha256": "955dfead56a50ebf2fc357a688f1c15c85449e852afd1b8fe7818c5c90bf8d00",
+          "katexCount": 12
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 33,
+      "id": "tb-retry-v1:4cb82cdc-f93d-4e19-acde-089667c5f394:2",
+      "sourceId": "4cb82cdc-f93d-4e19-acde-089667c5f394",
+      "slot": 2,
+      "candidateSha256": "48cef29be77057cef8bfba9ddab29bd32e2d2f3b7f8888e39fd47d8e32c975c6",
+      "payloadSha256": "bb0fd24bfdaf84feac78615a6289ea9de0208de25e31d6b311017b3f01da4271",
+      "parts": {
+        "content": {
+          "htmlSha256": "16e919326be12209a4ec3668597c5992ead33d464a963b5bb595f07f1334b97a",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "e2b321d9ce0185a676cc867b9398422726fcebe8c7d4aaea7d885e29afb644fc",
+          "katexCount": 2
+        },
+        "solution": {
+          "htmlSha256": "627295c8dc07f77cff62fcacb6c68e9e1a4f56ae1d3dd76eb124a2b5aea330f0",
+          "katexCount": 12
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 34,
+      "id": "tb-retry-v1:b5de41a3-712f-4bb5-8c74-bfffab00cf53:1",
+      "sourceId": "b5de41a3-712f-4bb5-8c74-bfffab00cf53",
+      "slot": 1,
+      "candidateSha256": "7529582f32e3af3b3f84e12c84d155bf40a4788dbfd301a26d62352199af6371",
+      "payloadSha256": "07220ceb488d7eee6276530461695445956300826ffb73d3fa1e8f70de828a70",
+      "parts": {
+        "content": {
+          "htmlSha256": "b2c8ab64c10b993afe0c3a41e708418579e6e5d8339b52e40d7afa857acf73e8",
+          "katexCount": 5
+        },
+        "answer": {
+          "htmlSha256": "fedf29884abd068c16444a1ba3079702feb2e4a385547593abbf3b60b84fdce4",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "fddc6f7ea38be00d02a85a63bb42b26d69fc08249701d293165aeabf3d39e759",
+          "katexCount": 11
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 35,
+      "id": "tb-retry-v1:b5de41a3-712f-4bb5-8c74-bfffab00cf53:2",
+      "sourceId": "b5de41a3-712f-4bb5-8c74-bfffab00cf53",
+      "slot": 2,
+      "candidateSha256": "4f039b8f13342820a4d5037d39d51d039e71056c5758575c53fee669b7d56901",
+      "payloadSha256": "b6179bc674d52bd9f137a4f1440ee93ae233ba7bfc784ddc1caa5a2b04ee8e0a",
+      "parts": {
+        "content": {
+          "htmlSha256": "ffde6e7bdaaba2d0fadd410a9d5260f8c013f70b5d1742c572833acaea59142f",
+          "katexCount": 5
+        },
+        "answer": {
+          "htmlSha256": "3b2790196fe3b2aa702758dd44c81d7172e672e404773e8d3c105c733b215144",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "12292c377e82272988099f6110cf27d2627052ac4b1ef674a8dfe7f865adb9d6",
+          "katexCount": 11
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 36,
+      "id": "tb-retry-v1:bb995945-edb6-4971-a234-9b9552dd514a:1",
+      "sourceId": "bb995945-edb6-4971-a234-9b9552dd514a",
+      "slot": 1,
+      "candidateSha256": "38c593a015cdefda51de7b754a3bdbe0eae92ca38b5222199966d366b1bbdc80",
+      "payloadSha256": "6a4629b2f6c2895d89057ee85fe34d9a9a1d83a25aba964c1eb2278769714a2e",
+      "parts": {
+        "content": {
+          "htmlSha256": "5b76e6abfab594401ff628478bf5518f8188fafbc9760eabd784eb99fdb57a6c",
+          "katexCount": 5
+        },
+        "answer": {
+          "htmlSha256": "fedf29884abd068c16444a1ba3079702feb2e4a385547593abbf3b60b84fdce4",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "2c9c8b5d9a1f40e57bb11c1d29d33f975bf1cc4d6e099e48221122a912efe893",
+          "katexCount": 8
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 37,
+      "id": "tb-retry-v1:bb995945-edb6-4971-a234-9b9552dd514a:2",
+      "sourceId": "bb995945-edb6-4971-a234-9b9552dd514a",
+      "slot": 2,
+      "candidateSha256": "ecad9a9e6dc622b9cf2a8060e07500c9bbe42cfc545819d14049da10c97d9b25",
+      "payloadSha256": "1e04153208888ed52e75d24c96fc1b808bac9407724191a9bd5eaa3c3afa1f34",
+      "parts": {
+        "content": {
+          "htmlSha256": "eccaf56d3e2364c5f63c9ac251896b725429a030fef7bbf25b18d484a6f3baed",
+          "katexCount": 5
+        },
+        "answer": {
+          "htmlSha256": "6a646b12a5e23117a1212385f5051967ff01027b57aa550fd2d7580ed113b28f",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "1da0c677e749c53220bacbf936e4416fcb72e03e9d1657f6b4f86182650ee4f4",
+          "katexCount": 8
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 38,
+      "id": "tb-retry-v1:b1393079-1d4b-4ec6-a37e-9288b0eda0f0:1",
+      "sourceId": "b1393079-1d4b-4ec6-a37e-9288b0eda0f0",
+      "slot": 1,
+      "candidateSha256": "f26a71477ca100835f099d70eea47e1cd0f0160b8715b33d3396ba9c0f570596",
+      "payloadSha256": "45056915a78b6d6d81f5c05bd6b4e488402190f493f197e29a39a0d7112ed839",
+      "parts": {
+        "content": {
+          "htmlSha256": "eda9af52c38d1a3b246794abd0a57bc514f2fc450166fc34210930ab3767d190",
+          "katexCount": 8
+        },
+        "answer": {
+          "htmlSha256": "7af0e39d1cc29069a41dd653618fac1536f749cec14007b4d28e5e6418a52c23",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "bd72906da2d66f6af78c52d5c440c90fc6b17003e0517d6d953c3b0a94fc2deb",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 39,
+      "id": "tb-retry-v1:b1393079-1d4b-4ec6-a37e-9288b0eda0f0:2",
+      "sourceId": "b1393079-1d4b-4ec6-a37e-9288b0eda0f0",
+      "slot": 2,
+      "candidateSha256": "ae4f926ded12bd6d1724a22cc649728987dbdaa646485ae8a50f8ba392828d57",
+      "payloadSha256": "fed75099094927ba5a9128f577c730795971cd7e9047e3848f3ba554352b3175",
+      "parts": {
+        "content": {
+          "htmlSha256": "981f54158724687d3b2c4faa1d10f6eaf8789189e3adf9155eb30815fd8d8d8d",
+          "katexCount": 8
+        },
+        "answer": {
+          "htmlSha256": "baaba74b73b0db32ea2aaffad2c4dd70af031206c921c0a8196355601d9cc629",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "6a0607f110656b37f5bcd0b209ff30df00bc7f9ca2fbca004563117094922028",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 40,
+      "id": "tb-retry-v1:7f31a6c4-1898-4c1b-8641-dba95af3d863:1",
+      "sourceId": "7f31a6c4-1898-4c1b-8641-dba95af3d863",
+      "slot": 1,
+      "candidateSha256": "1b081f7e5e4287d50aaf3ce07c6d275df56ea88071780fb7264936c9b93dba71",
+      "payloadSha256": "2e8cb1f24a594a1bc7378275cedb330e1eeefd2629eb4df7ac633ce0d895df0d",
+      "parts": {
+        "content": {
+          "htmlSha256": "3cb05d3b32613a92f0a7dae2a5dc83a9425fe35b50d5f025702edf25d964511b",
+          "katexCount": 6
+        },
+        "answer": {
+          "htmlSha256": "a22582cc082802167949973a3017580968d96fe73b9189ad545e72e66e19206a",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "591f1ab01694b21a2202c5455c2832e6f417085a1526f768235ebb13460c65c8",
+          "katexCount": 8
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 41,
+      "id": "tb-retry-v1:7f31a6c4-1898-4c1b-8641-dba95af3d863:2",
+      "sourceId": "7f31a6c4-1898-4c1b-8641-dba95af3d863",
+      "slot": 2,
+      "candidateSha256": "a88df41b0ca667d649cc6633e04c6118aee704c69c500bf650bc1b0f9dfa4a51",
+      "payloadSha256": "9c7901051059597b773fcc978b6494b06af11751b3ac2832ce752f9743b900b3",
+      "parts": {
+        "content": {
+          "htmlSha256": "3246208f1e2c0652d85d6b347292279147ddfccc3acc5337f5a2b7cdfb1883b1",
+          "katexCount": 6
+        },
+        "answer": {
+          "htmlSha256": "9fc729c85ca33083b6ff6d2e77665547ca5847e5e68056cd889bfc1b43353759",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "8d8ba6d33fe3ee6d4bd631ee473bbf7b8afe25c4ce1dcdfe9eb8bff66454afd1",
+          "katexCount": 8
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 42,
+      "id": "tb-retry-v1:abb89561-202d-4b19-bae9-2c2b190c673d:1",
+      "sourceId": "abb89561-202d-4b19-bae9-2c2b190c673d",
+      "slot": 1,
+      "candidateSha256": "8e966bca39e508ec3195588ee0c4e0f68dc9cc9fcfb1e5dae7e82dea732fc82d",
+      "payloadSha256": "059e3a879b26a926baba1e43726090e4537630d84709b25e80434a552b7c24bf",
+      "parts": {
+        "content": {
+          "htmlSha256": "6789ce9f5e5fe64d08eb737627de596795d91978d404ac7e78460683e01a4c73",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "c2e877cfa48d4e3fa85c5f11eb7685452e99a3fe9bebf4b1ba8a6842b2e08688",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "69d0ab33fd8a42e4d5038c850cccc2b188cb3958b10f90831f6a1ed4929b4e75",
+          "katexCount": 3
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 43,
+      "id": "tb-retry-v1:abb89561-202d-4b19-bae9-2c2b190c673d:2",
+      "sourceId": "abb89561-202d-4b19-bae9-2c2b190c673d",
+      "slot": 2,
+      "candidateSha256": "9a778d6d63c4a828d035fbfc12fd75d1be377f9782b9fceaae2d20ce29090977",
+      "payloadSha256": "4fd0cf2211ffbfa3fe988e95a66877ff77dcede89a6034b0b690073ca5f7034d",
+      "parts": {
+        "content": {
+          "htmlSha256": "3f4161842a08d404dc601f72fc714f571fd6ec1c1ae79171c62e0b8b45b7fa85",
+          "katexCount": 3
+        },
+        "answer": {
+          "htmlSha256": "58e2afc970a4acb2ec91ac821eb200982bf556c835626aa38aef791025b806bb",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "c280c370e8aa516f2439a24321b247897efa942fe307c174e7cbc7c864d58d33",
+          "katexCount": 3
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 44,
+      "id": "tb-retry-v1:9e18a685-dc8d-4ce6-82bf-9734306170e0:1",
+      "sourceId": "9e18a685-dc8d-4ce6-82bf-9734306170e0",
+      "slot": 1,
+      "candidateSha256": "705aeffc432ce8fe12811a0b90dc5683f6be3aa363af28917864255a0af8be73",
+      "payloadSha256": "7dad453b82883f1a37701c62ffdd96ed4c56da96554bd8d2965f24e14c571d7e",
+      "parts": {
+        "content": {
+          "htmlSha256": "0a8fe174bc55b8fea76ece61782853abd0081d95586807c4424a550ab9bc804a",
+          "katexCount": 9
+        },
+        "answer": {
+          "htmlSha256": "255e9cb1bfd96160c785eea9406f079ea274ac9060c53540858ba670391262fe",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "85b1a762b30891d7b28be7534a03e2db3200b44f5740b202ae66765654eb2782",
+          "katexCount": 8
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 45,
+      "id": "tb-retry-v1:9e18a685-dc8d-4ce6-82bf-9734306170e0:2",
+      "sourceId": "9e18a685-dc8d-4ce6-82bf-9734306170e0",
+      "slot": 2,
+      "candidateSha256": "898e70bc38c0119004e459fd137b5cce47f03d54b9c5f690c219a6010b8f68d9",
+      "payloadSha256": "9c2cff2cd291734854e546f03e349bf39555441477de5eeafb8987dd5f8582ad",
+      "parts": {
+        "content": {
+          "htmlSha256": "e92a14b68bc389a3dafbfcc9c39a8c262820cb2ddb442283f6076579c2d4e123",
+          "katexCount": 9
+        },
+        "answer": {
+          "htmlSha256": "fdfa9b127bc629bb70f1e487858556cc2ea640e79610206a384e493cb9528d27",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "04a133394c7513b0a823be5dc50361ded1330dbedaa9542b65c3ca67d1eba944",
+          "katexCount": 8
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 46,
+      "id": "tb-retry-v1:bf97a0d9-f7fa-46f0-8d16-12abb0ae7c66:1",
+      "sourceId": "bf97a0d9-f7fa-46f0-8d16-12abb0ae7c66",
+      "slot": 1,
+      "candidateSha256": "3a534d2d7a3764c69364ce3ece2b3bb29b1b25b5db35518bbd8cfa5dc4660475",
+      "payloadSha256": "563a527eb5586370b5b281005aa5959508105ed81743b30e247434091ad641a6",
+      "parts": {
+        "content": {
+          "htmlSha256": "311bdce57804c2549e53d789d5354b8783de8a81f7a72e1ee540475edb918a31",
+          "katexCount": 2
+        },
+        "answer": {
+          "htmlSha256": "a5cc9507ca0fcc1ce060491a321f98a256e487fde4a1768bb6575def7e0506ac",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "0f93d0dd7614ddc5efd2203d08f24335751db1e1f5a44e238c16000fdc99abdb",
+          "katexCount": 6
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 47,
+      "id": "tb-retry-v1:bf97a0d9-f7fa-46f0-8d16-12abb0ae7c66:2",
+      "sourceId": "bf97a0d9-f7fa-46f0-8d16-12abb0ae7c66",
+      "slot": 2,
+      "candidateSha256": "fc3df9c3fce43ddc82284e7508b1f90b36accb96f82823e06a0faa698ab52aee",
+      "payloadSha256": "51c9d9cf270cd419894563c9fa6dddac8292f136fd1ec06e128f3055a89c9dc8",
+      "parts": {
+        "content": {
+          "htmlSha256": "bd30c1258976490c329ee1e42dabf997997822fab8adc8df64e7351f7b4aed5e",
+          "katexCount": 2
+        },
+        "answer": {
+          "htmlSha256": "df1d278f052ab65b4b0521130fb66a0a33fdb9ba0fdd3033e099c6018bf9350f",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "36ea2a6d39697c1fa4e774cd05ac78177d465339e6082369489e4b7dcc7772a5",
+          "katexCount": 6
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 48,
+      "id": "tb-retry-v1:3bc20e88-c522-4102-9c6c-c5d90f9dd4a2:1",
+      "sourceId": "3bc20e88-c522-4102-9c6c-c5d90f9dd4a2",
+      "slot": 1,
+      "candidateSha256": "e176dd0bf2e604d83df3190760b3178a8297a1c165cace25d150f16d9b20677f",
+      "payloadSha256": "d3b1d9a6a8b14b2eac72484e1c6d538e5405ebb98179cea10a97d6234e2657f8",
+      "parts": {
+        "content": {
+          "htmlSha256": "5396e48116662a74ca8e611011ac83e59451e68b501ba9fc83ce9995618a8a1c",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "9ab5bd16abfdb2fdaffa77172aa178e058d88851ab2dfd5d638c4623b6762805",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "c0d8c4832205339dfb83cb71e3cc73fc0ab9bf3f2f60cf1cf5e8fc70c3f77755",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 49,
+      "id": "tb-retry-v1:3bc20e88-c522-4102-9c6c-c5d90f9dd4a2:2",
+      "sourceId": "3bc20e88-c522-4102-9c6c-c5d90f9dd4a2",
+      "slot": 2,
+      "candidateSha256": "9676a9426dfc934cf2ec09c205a77e01e3ae3a2e70cb6437d3012a97a36f3d31",
+      "payloadSha256": "8d7eac7df1d82251fb4c0b8ddb65da27be6f026bd8aeb92d17b729e1eacdab01",
+      "parts": {
+        "content": {
+          "htmlSha256": "e19fc67221178bb161e1edb90f42525a91f6a26b901f878d8ac020757dc1bac8",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "2ed4fb31c5b479dfc96c6394ee7faf8ed31b5a4873122adaa2f357fb673d2138",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "d26dd9e263f830fa8d7000345ecbffc90bb1f64b91e0346bb65146e122cc6720",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 50,
+      "id": "tb-retry-v1:8a122827-87da-4dcf-8f7d-eaccd190cb4b:1",
+      "sourceId": "8a122827-87da-4dcf-8f7d-eaccd190cb4b",
+      "slot": 1,
+      "candidateSha256": "52975dab4ed1dbf1e933c1d88a313530d675cbf98bd0e3a6a759584302948a09",
+      "payloadSha256": "181cdcdc47852c0a390b476a70181b42322733ac7f08f74f7f193b776d2c69dc",
+      "parts": {
+        "content": {
+          "htmlSha256": "1f41f0d8e2a3130a1ac1c7eac957785527bed38837c04e1b76b9a530d2a3de3e",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "df1d278f052ab65b4b0521130fb66a0a33fdb9ba0fdd3033e099c6018bf9350f",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "4aec9c7a26a75ef10b6be47c4e7413daa0d79ab825bbfba01d723c227ae7f5f4",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    },
+    {
+      "index": 51,
+      "id": "tb-retry-v1:8a122827-87da-4dcf-8f7d-eaccd190cb4b:2",
+      "sourceId": "8a122827-87da-4dcf-8f7d-eaccd190cb4b",
+      "slot": 2,
+      "candidateSha256": "c6eb1f54a2e38c9d336da6e2c4dbe8d015bf4146e2db0f14b279621d925f1c13",
+      "payloadSha256": "f3d39da9b9bed1e7bea319037d5976a965e7c45942255059548838a1ec311f51",
+      "parts": {
+        "content": {
+          "htmlSha256": "f5946b1feab84f0e69f5f6f474180a8b6b68b6117fc0d93f80462a4edf10f6cd",
+          "katexCount": 4
+        },
+        "answer": {
+          "htmlSha256": "c2f4bc410a77ed8829488d7041eefc8e12f549302d39e09cd613597eca39774e",
+          "katexCount": 1
+        },
+        "solution": {
+          "htmlSha256": "b7b2836420b5419b580daa6b4c2d64c5c8c7e8b2b87c8aa0f15171d88380dbe8",
+          "katexCount": 5
+        }
+      },
+      "expected": {
+        "urls": [],
+        "choiceFigureIndex": [],
+        "choiceCount": 0,
+        "figureMode": {
+          "mode": "none",
+          "unlinkedFigureChoices": false
+        },
+        "svg": {
+          "labels": [],
+          "ids": [],
+          "svgCount": 0
+        }
+      },
+      "passed": true,
+      "issues": []
+    }
+  ],
+  "failures": [],
+  "visualReviewApproved": false,
+  "databaseWrites": 0
+}

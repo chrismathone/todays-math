@@ -61,17 +61,25 @@ const bankProblem = vi.hoisted(() => ({
   figureDims: [],
   figureSourceMm: [],
 }));
-vi.mock("@/components/unified/BankView", () => ({
+vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
   default: ({
-    selected,
-    onToggle,
+    editor: { selected },
+    onQuestionsChange,
   }: {
-    selected: StudioProblem[];
-    onToggle: (problem: object) => void;
+    editor: { selected: StudioProblem[] };
+    onQuestionsChange: (problems: StudioProblem[]) => void;
   }) => (
     <section aria-label="문제은행 대역">
       <p>문제은행 담은 문제 {selected.length}</p>
-      <button onClick={() => onToggle(bankProblem)}>
+      <button
+        onClick={() =>
+          onQuestionsChange(
+            selected.some((problem) => problem.id === bankProblem.id)
+              ? selected.filter((problem) => problem.id !== bankProblem.id)
+              : [...selected, bankProblem],
+          )
+        }
+      >
         {selected.some((problem) => problem.id === bankProblem.id)
           ? "담기 완료"
           : "문제 담기"}

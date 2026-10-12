@@ -1,0 +1,22 @@
+Problem extraction first-load performance evidence
+Date: 2026-10-09
+Scope: PrivateStudioSessionStore restore after the extraction document payload is read.
+
+Critical path observed
+1. Read current document ID from recovery storage.
+2. Fetch the extraction document from the private library API.
+3. Fetch original source files one at a time.
+4. Materialize embedded crop images from the private library API.
+5. Restore the session into StudioView; existing save-before-ready and edit handling remain in place.
+
+Change
+Source-file restoration and crop-image materialization now start together. Both use PrivateCloudClient, whose transfer queue limits network asset transfers to three concurrent requests. A failure in either path still rejects restore, so the existing ready gate is not bypassed.
+
+Deterministic before/after evidence
+Fixture: one PDF source asset plus one embedded crop image asset, with responses held until both requests start. Before: source restoration awaited the PDF response before crop-image materialization began, requiring two sequential asset waves. After: the regression test observes both asset requests started before releasing either response, overlapping the work into one wave. The existing client caps concurrent transfers at three. This is a scheduling proof, not a production latency benchmark.
+
+Checks
+The targeted privateWorkspacePersistence suite passed (16 tests) for the changed restore behavior, including concurrent request start, original Blob preservation, and crop image materialization.
+
+Limitations
+Route cold compilation and initial StudioView JavaScript loading are separate from this restore wait. No browser session or production timing was measured. Shared shell, builder, bank, and AI behavior were not modified.

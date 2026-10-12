@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { idParamSchema } from "@/contracts/common.contract";
 import { problemVisibleWhere } from "@/lib/problemPool";
 import { UNIFIED_PROBLEM_SELECT, toBankProblem } from "@/lib/unifiedPreview";
+import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
 import {
   authorizeStudio,
   STUDIO_HEADERS as headers,
@@ -29,7 +30,12 @@ async function handleGet(
       { error: "조회 가능한 문항을 찾을 수 없습니다." },
       { status: 404, headers },
     );
-  return Response.json({ data: toBankProblem(row) }, { headers });
+  return Response.json(
+    {
+      data: toBankProblem((await withProblemSourceReferences([row]))[0]!),
+    },
+    { headers },
+  );
 }
 
 export const GET = withErrorLog("/api/studio/problems/[id]", handleGet);
