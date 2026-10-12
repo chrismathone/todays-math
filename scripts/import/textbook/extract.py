@@ -99,7 +99,10 @@ def resolve_answer(doc: Segmented, key: tuple[int, int], has_choices: bool, prob
         if lines:
             return "\n".join(lines), "solution-short"
         return None, "none"
-    derived = derive_from_solution(solution)
+    # An equation is the answer to an equation-writing question. Taking only
+    # the RHS would turn e.g. y=12x-16 into an expression rather than a line.
+    equation_answer = bool(re.search(r"(?:접선|직선)의\s*방정식(?:을\s*구(?:하|하여)|\s*$)", problem_text, re.M))
+    derived = derive_from_solution(solution, equation_answer=equation_answer)
     if derived:
         return derived, "solution-last"
     return None, "none"
@@ -154,20 +157,72 @@ def problem_suspicious(problem_text: str, answer: str, answer_from: str, solutio
 _PART = re.compile(r"(?:^|\n)\s*(\(\d\)|[⑴⑵⑶⑷⑸⑹⑺⑻])\s*")
 
 
-def final_value(text: str) -> str | None:
+def final_equations(text: str) -> str | None:
+    """Read explicit final y= equations, retaining every '또는' alternative.
+
+    Observed in 천재 미적분1 홍진곤 기초력 UP 접선의 방정식 (2026-10-11).
+    Conditional cases ('a=0일 때 ...') are deliberately left for review.
+    """
+    lines = [line.strip() for line in text.splitlines() if line.strip()]
+    if not lines:
+        return None
+    tail = lines[-1]
+    # The source sometimes wraps an alternative onto a second paragraph.
+    cursor = len(lines) - 1
+    while cursor > 0 and lines[cursor - 1].endswith("또는"):
+        cursor -= 1
+        tail = lines[cursor] + " " + tail
+    spans = re.findall(r"\$([^$]+)\$", tail)
+    outside = re.sub(r"\$[^$]+\$", "", tail)
+    if re.sub(r"즉|또는|[\s,.]", "", outside) or not spans:
+        return None
+    if any(not re.match(r"^\s*y\s*=", span) or span.count("=") != 1 for span in spans):
+        return None
+    if "즉" in outside:
+        # 'original form, 즉 final form' describes one equation; a leading
+        # '즉' followed by alternatives describes all of those equations.
+        position = tail.find("즉")
+        spans = re.findall(r"\$([^$]+)\$", tail[position:])
+    if len(spans) > 1 and "또는" not in outside:
+        return None
+    return " 또는 ".join(f"${span.strip()}$" for span in spans)
+
+
+def final_value(text: str, *, equation_answer: bool = False) -> str | None:
     """풀이 마지막 줄이 **식 하나뿐**이면 그 마지막 «=» 의 오른쪽(없으면 식 전체). 글이 섞인 줄은 «따라서 … 는 $X$이다» 꼴만."""
     lines = [line.strip() for line in text.splitlines() if line.strip()]
     if not lines:
         return None
+    if equation_answer:
+        return final_equations(text)
     last = lines[-1]
+    # An explicitly solved variable after '에서', with no other prose/branch,
+    # is a final result, rather than an arbitrary equation inside the proof.
+    solved = re.fullmatch(r"\$[^$]+\$에서\s*\$[a-zA-Z]\s*=\s*([^$=]+)\$", last)
+    if solved:
+        return f"${solved[1].strip()}$"
     spans = re.findall(r"\$([^$]+)\$", last)
     rest = re.sub(r"\$[^$]+\$", "", last)
+    conclusion = bool(re.match(r"^(?:따라서|즉[,，]?)\s*\$", last))
+    if conclusion:
+        # The reacquired source also ends with '따라서 $k=-6$' and
+        # '따라서 $f(x)=...$이므로 $f(4)=8+3=11$'. A list of independent
+        # assignments is not one answer and must not silently lose its prefix.
+        if len(spans) > 1 and not re.search(r"이므로|즉", rest.removeprefix("즉")):
+            return None
+        rest = re.sub(r"^(?:따라서|즉[,，]?)\s*", "", rest)
     rest = re.sub(r"[\s`.,…➊➋➌➍①②③④⑤]|이다|입니다|이고|이므로", "", rest)
     if spans and not rest:
         expr = spans[-1].strip().rstrip("`").strip()
         value = expr.rsplit("=", 1)[1].strip() if "=" in expr else (expr if last.lstrip("$ ").startswith("=") else None)
         if value is None and len(spans) == 1 and len(lines) == 1:
             value = expr
+        if value is None and len(spans) == 1 and len(lines) > 1:
+            # Explicit conclusion cue on the preceding paragraph, e.g.
+            # '... 즉' / '구하는 실수 k의 값의 범위는' then '$2<k<12$'.
+            cue = re.sub(r"\$[^$]+\$", "", lines[-2])
+            if re.search(r"(?:즉[,，]?|구하는.{0,60}(?:범위|값)(?:은|는))\s*$", cue):
+                value = expr
         if value and not re.search(r"cdots|LEFT|left\s*\{$", value):
             return f"${value}$"
         return None
@@ -178,19 +233,19 @@ def final_value(text: str) -> str | None:
     return None
 
 
-def derive_from_solution(solution: str) -> str | None:
+def derive_from_solution(solution: str, *, equation_answer: bool = False) -> str | None:
     """풀이에서 답을 뽑는다 — 소문항(⑴ · (1))이 있으면 소문항마다, 없으면 풀이 끝에서. 하나라도 못 뽑으면 `None`."""
     marks = list(_PART.finditer(solution))
     if len(marks) >= 2:
         values = []
         for i, mark in enumerate(marks):
             end = marks[i + 1].start() if i + 1 < len(marks) else len(solution)
-            value = final_value(solution[mark.end():end])
+            value = final_value(solution[mark.end():end], equation_answer=equation_answer)
             if not value:
                 return None
             values.append(f"{mark.group(1)} {value}")
         return " ".join(values)
-    return final_value(solution)
+    return final_value(solution, equation_answer=equation_answer)
 
 
 def main() -> None:

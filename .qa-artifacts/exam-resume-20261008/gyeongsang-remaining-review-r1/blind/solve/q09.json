@@ -1,0 +1,216 @@
+{
+  "questionNumber": 9,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+  "studentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "⑤",
+  "solution": "직각삼각형의 두 예각 합은90°이다. 각 Q가 각 P의2배이므로 ∠P+2∠P=90°에서 ∠P=30°,∠Q=60°이다. sin60°=√3/2,cos60°=1/2,tan60°=√3을 각각 대입하면 곱은(√3/2)×(1/2)×√3=3/4이다. 따라서 두 기록은(60°,3/4)로⑤이다. 일반 각에 대한 항등식으로 바꾸지 않았다.",
+  "evidence": {
+    "studentInputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+    "givenStudentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+    "blindManifestRawSha256": "721033947e4c133ae39d5d899c58520d5fc9c385aeadbcc74cc52fd746bb4b92",
+    "opaquePackageDigestProvided": "bda294bd79bfa03f3d3975c0178101f0a193582c78c28bd9026079301ea7f61a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputRawSha256": "f01723e56a2f0a67f540fe3a8c23ba69b83d6bed6e309d0f0157e13b626bfe64",
+    "exactCalculation": {
+      "angleP": "30",
+      "angleQ": "60",
+      "angleR": 90,
+      "finiteValuesForQ": {
+        "sin60": "sqrt(3)/2",
+        "cos60": "1/2",
+        "tan60": "sqrt(3)"
+      },
+      "directProduct": "3/4",
+      "positiveTriangleExistenceWitness": {
+        "PQ": 2,
+        "PR": "sqrt(3)",
+        "QR": 1
+      },
+      "noGeneralSinCosTanIdentity": true,
+      "allFiveDisplayedChoices": [
+        [
+          "30",
+          "1/4"
+        ],
+        [
+          "60",
+          "1/4"
+        ],
+        [
+          "30",
+          "3/4"
+        ],
+        [
+          "60",
+          "sqrt(3)/4"
+        ],
+        [
+          "60",
+          "3/4"
+        ]
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "correctChoiceNumber": 5,
+      "semanticDuplicateChoices": [],
+      "uniqueCorrectChoice": true,
+      "choiceTargetUnits": [
+        "degree",
+        null
+      ]
+    },
+    "knownHolds": [],
+    "actualStudentPreview": {
+      "questionNumber": 9,
+      "studentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+      "png": "inspection/q09.png",
+      "pngSha256": "da5d81b69f22b81f2de2df16a66a45ededf907a23c08d792395b45ccaadd100b",
+      "columnWidthMm": 70,
+      "overflow": [],
+      "figureCount": 1
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q09-1.svg",
+        "sha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureObservations": "R 직각,Q는 위,P는 왼쪽. 각Q가 P의2배라는 조건은 본문에 명시되어 있다.",
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 학생 입력의 전체 요청을 본 독립 해법으로2015 조항에 대응한다. 원학교·저자·분류로 승인하지 않는다. 삼각형 내각의 합과 비,60°의 구체적인 값 대입",
+        "standards": [
+          {
+            "code": "9수01-10",
+            "exactText": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+            "physicalPage1based": 33,
+            "printedPage": 29,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-05",
+            "exactText": "다각형의 성질을 이해한다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제5보기를 전부 독립 계산/동치/참거짓 검사;정답 하나이고 동치 중복 없음.",
+        "independentChoiceEvidence": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "duplicates": []
+      },
+      "figuresAndTables": {
+        "status": "in-scope-independent-proposal",
+        "basis": "R 직각,Q는 위,P는 왼쪽. 각Q가 P의2배라는 조건은 본문에 명시되어 있다.",
+        "actualStudentPreview": {
+          "questionNumber": 9,
+          "studentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+          "png": "inspection/q09.png",
+          "pngSha256": "da5d81b69f22b81f2de2df16a66a45ededf907a23c08d792395b45ccaadd100b",
+          "columnWidthMm": 70,
+          "overflow": [],
+          "figureCount": 1
+        },
+        "personallyViewed": true,
+        "suppliedFigureHashes": [
+          "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a"
+        ]
+      },
+      "notation": {
+        "status": "in-scope-independent-proposal",
+        "basis": "통상 선분·각·도·좌표·근호·비·삼각비·빈칸 기록. 벡터·라디안·고교 항등식/삼각형의 법칙 표기 없음."
+      },
+      "answer": {
+        "status": "independently-derived-math-only",
+        "basis": "제공 학생 입력에서만 계산했다. q18은 수학 답이 명확해도 복잡성 gate가 pending이다.",
+        "target": [
+          "60",
+          "3/4"
+        ]
+      },
+      "studentSolution": {
+        "status": "in-scope-independent-proposal",
+        "basis": "삼각형 내각의 합과 비,60°의 구체적인 값 대입 완전한 새 독립 학생 해법은 solution 필드에 있다. 저자 답/해법은 읽지 않았다."
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-proposal",
+        "basis": "삼각형 내각의 합과 비,60°의 구체적인 값 대입",
+        "standards": [
+          {
+            "code": "9수01-10",
+            "exactText": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+            "physicalPage1based": 33,
+            "printedPage": 29,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-05",
+            "exactText": "다각형의 성질을 이해한다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceRawSha256": "fdb33efde81204b068456eedd22954614fe02e5e752b9f53e94f33604d45f9cc",
+    "freshNewAuthorAnswerExposure": false,
+    "priorOriginalSourceConceptKnowledgeSeparatelyDisclosed": "input-audit.json",
+    "authorAnswerAndNewSolutionReview": "not-exposed;pending Root authorization after raw commit",
+    "mathematicalTargetUnique": true,
+    "calculationOnlyNotFinalGradeApproval": true,
+    "rightsAndNativeApproval": false
+  },
+  "curriculumGate": {
+    "grade": "중3",
+    "edition": "2015",
+    "wholeStudentScope": "in-scope-independent-proposal",
+    "requiredUpperGradeMethodDetected": false,
+    "materialComplexityHold": false,
+    "finalGradeApproval": false,
+    "finalAuthorReviewPending": true
+  },
+  "gates": {
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "loadable": false,
+    "directUseAllowed": false,
+    "modelCalls": 0,
+    "dbAccess": 0
+  }
+}

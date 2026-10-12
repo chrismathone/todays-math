@@ -17,6 +17,7 @@ import { jsonOk, unauthorizedError, validationError } from "@/lib/apiResponse";
 import { db } from "@/lib/db";
 import { requireAccessibleProblem } from "@/lib/ownership";
 import { serializeProblem } from "@/lib/serializers";
+import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -42,7 +43,9 @@ async function handlePatch(request: NextRequest, { params }: RouteContext) {
     where: { id },
     data: { reviewStatus: parsed.data.reviewStatus },
   });
-  return jsonOk(problemResponseSchema, { data: serializeProblem(updated) });
+  return jsonOk(problemResponseSchema, {
+    data: serializeProblem((await withProblemSourceReferences([updated]))[0]!),
+  });
 }
 
 export const PATCH = withErrorLog(

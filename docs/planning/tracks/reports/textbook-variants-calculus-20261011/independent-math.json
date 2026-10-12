@@ -1,0 +1,1255 @@
+{
+  "engine": "SymPy 1.14.0",
+  "kind": "independent recomputation from complete question conditions; no human verdict",
+  "inputSha256": "cb203a954d431e3659c6b794165db9a8c7efa5efa0833ae6a5baf172426995a6",
+  "candidateFileSha256": "cb203a954d431e3659c6b794165db9a8c7efa5efa0833ae6a5baf172426995a6",
+  "candidates": 54,
+  "failedCandidates": 0,
+  "sourcesChecked": 27,
+  "candidatesChecked": 54,
+  "answersChecked": 82,
+  "failures": [],
+  "sourceChecks": [
+    {
+      "sourceId": "c9bc3ae5-8631-401f-aa51-0362ed4c9739",
+      "sourceExternalId": "tb-855f74a7a4c95fd5-0-6",
+      "checkedAnswers": 1,
+      "facts": {
+        "cancelledPolynomial": "x + 2",
+        "nonzeroLimitFactor": "-1"
+      }
+    },
+    {
+      "sourceId": "b425144e-155b-4881-a2b2-57daea2bfdd6",
+      "sourceExternalId": "tb-beba382c1b0cc7fd-0-4",
+      "checkedAnswers": 1,
+      "facts": {
+        "openDomain": [
+          "1",
+          "3"
+        ],
+        "monotoneCriticalRoots": [
+          "-1/2"
+        ]
+      }
+    },
+    {
+      "sourceId": "51cbae37-b73d-418a-ae8c-01198db74d47",
+      "sourceExternalId": "tb-8efe3eab86adf1ee-0-3",
+      "checkedAnswers": 1,
+      "facts": {
+        "onCurveContacts": [
+          "-1"
+        ]
+      }
+    },
+    {
+      "sourceId": "b8fdaba8-cfe2-4076-a4bc-c7a9ebaaa59d",
+      "sourceExternalId": "tb-78b714135ee75557-0-4",
+      "checkedAnswers": 2,
+      "facts": {
+        "onCurveContacts": [
+          "1",
+          "2"
+        ]
+      }
+    },
+    {
+      "sourceId": "01de9da1-2305-42ed-93cb-7f6bf7aad44a",
+      "sourceExternalId": "tb-0d614b6b2ab97c0e-0-3",
+      "checkedAnswers": 4,
+      "facts": {
+        "onCurveContacts": [
+          "3",
+          "1",
+          "-1",
+          "2"
+        ]
+      }
+    },
+    {
+      "sourceId": "c9823bb2-d1f1-476c-a430-1b9652f3959c",
+      "sourceExternalId": "tb-76694c0a07294a0b-0-8",
+      "checkedAnswers": 1,
+      "facts": {
+        "actualSymmetricLimit": "12*a - 12"
+      }
+    },
+    {
+      "sourceId": "50a15ad1-eb70-4392-84aa-2cdbbcdf50f1",
+      "sourceExternalId": "tb-a8b0ac48f251ea1b-0-4",
+      "checkedAnswers": 1,
+      "facts": {
+        "uniqueQuadratic": "x**2/2 + 3"
+      }
+    },
+    {
+      "sourceId": "f3caffd0-e752-4a25-bf3b-7cf67864b68d",
+      "sourceExternalId": "tb-76694c0a07294a0b-0-10",
+      "checkedAnswers": 1,
+      "facts": {
+        "gAtPoint": "2",
+        "gPrimeAtPoint": "19/3",
+        "rationalFactorDerivative": "(x**2 + 4*x + 8)/(x + 2)**2"
+      }
+    },
+    {
+      "sourceId": "da988df9-afc7-4d08-a3fa-c3c24d76a5ab",
+      "sourceExternalId": "tb-51f73cb8e605cd4b-0-1",
+      "checkedAnswers": 2,
+      "facts": {
+        "onCurveContacts": [
+          "2",
+          "0"
+        ]
+      }
+    },
+    {
+      "sourceId": "c88ba4b9-90fc-485b-afc1-e4a143178642",
+      "sourceExternalId": "tb-51f73cb8e605cd4b-0-2",
+      "checkedAnswers": 3,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "2"
+          ],
+          [
+            "-1",
+            "1"
+          ]
+        ]
+      }
+    },
+    {
+      "sourceId": "05965996-b3fd-4ab5-a0d1-22f5f9f8f48b",
+      "sourceExternalId": "tb-d829a30f9a1296d3-0-1",
+      "checkedAnswers": 1,
+      "facts": {
+        "onCurveContacts": [
+          "1"
+        ]
+      }
+    },
+    {
+      "sourceId": "4a9dc81f-7a26-482a-ae17-1488a45ef8dc",
+      "sourceExternalId": "tb-ddd78a867901887b-0-1",
+      "checkedAnswers": 1,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "3"
+          ]
+        ]
+      }
+    },
+    {
+      "sourceId": "c7666788-c66f-47de-9866-b92b62bf82ef",
+      "sourceExternalId": "tb-f84c254aaee88ed5-0-1",
+      "checkedAnswers": 3,
+      "facts": {
+        "onCurveContacts": [
+          "2",
+          "-1",
+          "-2"
+        ]
+      }
+    },
+    {
+      "sourceId": "eb12f0b8-9eb2-40b3-957a-c0be6c61a6e9",
+      "sourceExternalId": "tb-f84c254aaee88ed5-0-2",
+      "checkedAnswers": 3,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "1"
+          ],
+          [
+            "-1",
+            "1/3"
+          ]
+        ]
+      }
+    },
+    {
+      "sourceId": "6d30440a-0ba5-4e75-bf06-c976eaf562c8",
+      "sourceExternalId": "tb-f84c254aaee88ed5-0-3",
+      "checkedAnswers": 3,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "1"
+          ],
+          [
+            "-2",
+            "2"
+          ]
+        ]
+      }
+    },
+    {
+      "sourceId": "0f7e1604-852b-4db8-8136-390d5fbe4e89",
+      "sourceExternalId": "tb-68cd4a93b5c6bfa1-0-4",
+      "checkedAnswers": 1,
+      "facts": {
+        "allRealContacts": [
+          "-1"
+        ],
+        "tangent": "4*x + 5"
+      }
+    },
+    {
+      "sourceId": "efb7273a-7e38-4aa2-9ef2-9c2bddac9e4c",
+      "sourceExternalId": "tb-5e59c02795c04cf9-0-4",
+      "checkedAnswers": 1,
+      "facts": {
+        "equalityResidual": "3*h**2*(2*k - 1)",
+        "hPositive": true,
+        "kInOpenUnitInterval": true
+      }
+    },
+    {
+      "sourceId": "4cb82cdc-f93d-4e19-acde-089667c5f394",
+      "sourceExternalId": "tb-11bbd0ad2b6798f4-0-4",
+      "checkedAnswers": 2,
+      "facts": {
+        "derivativeDiscriminants": [
+          "16*a**2 - 48",
+          "16*a**2 + 48*a"
+        ],
+        "boundaryIncluded": true
+      }
+    },
+    {
+      "sourceId": "b5de41a3-712f-4bb5-8c74-bfffab00cf53",
+      "sourceExternalId": "tb-ccfc7256c368fb59-0-5",
+      "checkedAnswers": 1,
+      "facts": {
+        "uniqueMonicCubic": "x**3 + 3*x**2 - 1",
+        "secondDerivativeAtMaximum": "-6"
+      }
+    },
+    {
+      "sourceId": "bb995945-edb6-4971-a234-9b9552dd514a",
+      "sourceExternalId": "tb-31300a3c654d244c-0-2",
+      "checkedAnswers": 1,
+      "facts": {
+        "allRealCriticalPoints": [
+          "0",
+          "3"
+        ],
+        "domainPoints": [
+          "-1",
+          "0",
+          "2"
+        ],
+        "domainValues": [
+          "27",
+          "0",
+          "24"
+        ]
+      }
+    },
+    {
+      "sourceId": "b1393079-1d4b-4ec6-a37e-9288b0eda0f0",
+      "sourceExternalId": "tb-eecf688bd7d0c30c-0-2",
+      "checkedAnswers": 1,
+      "facts": {
+        "velocity": "2*k*t + 6*t**2",
+        "nonnegativeTime": "1"
+      }
+    },
+    {
+      "sourceId": "7f31a6c4-1898-4c1b-8641-dba95af3d863",
+      "sourceExternalId": "tb-8f346039a6d28ad3-0-10",
+      "checkedAnswers": 1,
+      "facts": {
+        "firstPositiveStop": "5",
+        "acceleration": "-16",
+        "distance": "200"
+      }
+    },
+    {
+      "sourceId": "abb89561-202d-4b19-bae9-2c2b190c673d",
+      "sourceExternalId": "tb-ccb968bff05e34f7-0-2",
+      "checkedAnswers": 1,
+      "facts": {
+        "differentiatedPrimitive": "2*x - 8"
+      }
+    },
+    {
+      "sourceId": "9e18a685-dc8d-4ce6-82bf-9734306170e0",
+      "sourceExternalId": "tb-6ecb67c37ab48c18-0-6",
+      "checkedAnswers": 1,
+      "facts": {
+        "primitive": "12*x**2 + x - 1",
+        "allRealRoots": [
+          "-1/3",
+          "1/4"
+        ],
+        "vietaRootSum": "-1/12"
+      }
+    },
+    {
+      "sourceId": "bf97a0d9-f7fa-46f0-8d16-12abb0ae7c66",
+      "sourceExternalId": "tb-6ecb67c37ab48c18-0-4",
+      "checkedAnswers": 1,
+      "facts": {
+        "orientedTwoIntegralDifference": "52 - 8*k"
+      }
+    },
+    {
+      "sourceId": "3bc20e88-c522-4102-9c6c-c5d90f9dd4a2",
+      "sourceExternalId": "tb-1f59f8726f20495b-0-1",
+      "checkedAnswers": 1,
+      "facts": {
+        "ftcFromActualIntegral": "2*x**2 + x + 7",
+        "parameter": "7"
+      }
+    },
+    {
+      "sourceId": "8a122827-87da-4dcf-8f7d-eaccd190cb4b",
+      "sourceExternalId": "tb-1f59f8726f20495b-0-2",
+      "checkedAnswers": 1,
+      "facts": {
+        "basepointZero": "1",
+        "f": "3*x**2 - 3"
+      }
+    }
+  ],
+  "entries": [
+    {
+      "externalId": "tb-retry-v1:c9bc3ae5-8631-401f-aa51-0362ed4c9739:1",
+      "sourceId": "c9bc3ae5-8631-401f-aa51-0362ed4c9739",
+      "sourceDigest": "55a131d6cd9c7245c7023e9102d386b136210659e6c35b56508dd76fdc6606e7",
+      "questionSha256": "70060c24ece5da17fac530264b868baeaa7f7bc5fa6e12d99867cfa45cef0af4",
+      "answerSha256": "7fd311cd695f748db8dfc9bf925679bfc5829adc2aa597344e0d82632065051b",
+      "solutionSha256": "a3a36a3ce3de128d121db3a3087b82ef051fa2e91809fbcb55ce5e4b07f2056b",
+      "recipe": "calculus-continuity-cancel-limit",
+      "checkedAnswers": 1,
+      "facts": {
+        "cancelledPolynomial": "2*x + 2",
+        "nonzeroLimitFactor": "-2"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:c9bc3ae5-8631-401f-aa51-0362ed4c9739:2",
+      "sourceId": "c9bc3ae5-8631-401f-aa51-0362ed4c9739",
+      "sourceDigest": "55a131d6cd9c7245c7023e9102d386b136210659e6c35b56508dd76fdc6606e7",
+      "questionSha256": "c774303270b88bdf1c98d1bba5ddcddd8e3b271229ea1c56960764e4f3a2aabc",
+      "answerSha256": "9a774df9fbf65d8fa4949ae98b029072d0a4e13ee4172b063633e34737490856",
+      "solutionSha256": "e3ff203b258c50159d6e8dbd105676edd3e28b61cb6a07d5e3e7a427eb86eb88",
+      "recipe": "calculus-continuity-cancel-limit",
+      "checkedAnswers": 1,
+      "facts": {
+        "cancelledPolynomial": "3*x",
+        "nonzeroLimitFactor": "-3"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:b425144e-155b-4881-a2b2-57daea2bfdd6:1",
+      "sourceId": "b425144e-155b-4881-a2b2-57daea2bfdd6",
+      "sourceDigest": "a471c03c0170de1447298ce045c784074f165555b4a82e8eb3848a42202906b2",
+      "questionSha256": "60e4fc5c10be93a9747bf84ab0c46d3c3a5138b5ee98d9d483d2dff377b569af",
+      "answerSha256": "77e9dd1d7ba40fa4c361a7e7a3cbe826a2f34965ff4d5aff0576a2cc0f537eb0",
+      "solutionSha256": "e053ec835f86714f19633f2771cf23853499a9ad80ae951bb566d9f1f147aa34",
+      "recipe": "calculus-interval-root-parameter",
+      "checkedAnswers": 1,
+      "facts": {
+        "openDomain": [
+          "2",
+          "4"
+        ],
+        "monotoneCriticalRoots": [
+          "1/2"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:b425144e-155b-4881-a2b2-57daea2bfdd6:2",
+      "sourceId": "b425144e-155b-4881-a2b2-57daea2bfdd6",
+      "sourceDigest": "a471c03c0170de1447298ce045c784074f165555b4a82e8eb3848a42202906b2",
+      "questionSha256": "f450cc155a5d16dbcf3fa5b22d9a906a8ae1788b6cea76842665b78103020fc4",
+      "answerSha256": "f0a3bd10f2ad1253321ec5082be82d44b3e85aee10bac8fa174fab1585636055",
+      "solutionSha256": "3757202856ebc8626d964157c946392ebe1ccc3fcc510a993c972dd48c3c42f3",
+      "recipe": "calculus-interval-root-parameter",
+      "checkedAnswers": 1,
+      "facts": {
+        "openDomain": [
+          "3",
+          "5"
+        ],
+        "monotoneCriticalRoots": [
+          "3/2"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:51cbae37-b73d-418a-ae8c-01198db74d47:1",
+      "sourceId": "51cbae37-b73d-418a-ae8c-01198db74d47",
+      "sourceDigest": "df35fe30f24cd7dcdc7024f8cba6325666c5a1eb3618086be78cc560a7e2d71d",
+      "questionSha256": "822bbe0fc33554ddc5833727eaeb671e9bc51a11052a36868ef9cb6e7772afc1",
+      "answerSha256": "5a90938e6853af88b1e79cd15b7a8a8f0d80584d535842fd0ecc28ac03677ed2",
+      "solutionSha256": "4f612fb6ee6e89b27b72fd53dd20b48a122b32d058904c98b7ce949883ffdae3",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 1,
+      "facts": {
+        "onCurveContacts": [
+          "0"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:51cbae37-b73d-418a-ae8c-01198db74d47:2",
+      "sourceId": "51cbae37-b73d-418a-ae8c-01198db74d47",
+      "sourceDigest": "df35fe30f24cd7dcdc7024f8cba6325666c5a1eb3618086be78cc560a7e2d71d",
+      "questionSha256": "d6648b92fa4d4c12ecea9d81e9b3293c5dbbd2c81ee21624b1b97dc3cf63c5dd",
+      "answerSha256": "85d749be318a120bb90cd21f9336e1234501cb3f43cea0661f1fd4b15b81b75e",
+      "solutionSha256": "49161e82868f4249fddd56476cd524a36f6d180d80aae8c2c1605c4f53193916",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 1,
+      "facts": {
+        "onCurveContacts": [
+          "1"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:b8fdaba8-cfe2-4076-a4bc-c7a9ebaaa59d:1",
+      "sourceId": "b8fdaba8-cfe2-4076-a4bc-c7a9ebaaa59d",
+      "sourceDigest": "747680a8cb5f94f6df6c4d802323db2b530eab45533a69418d773a1a6a3f9954",
+      "questionSha256": "efb72b693bf46bc4de8690f8cb8b86dea916fab6e0229250a60ffd0b44516cfe",
+      "answerSha256": "b0c98782f94b20c562ab2d9996409b5e7ee7f9a990e85b8fb8a63dc39fc44ff3",
+      "solutionSha256": "cf9690e60e385561b8ae881f89e7790f49ac7f2c5f6b6e12813f8839cf44d475",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 2,
+      "facts": {
+        "onCurveContacts": [
+          "2",
+          "3"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:b8fdaba8-cfe2-4076-a4bc-c7a9ebaaa59d:2",
+      "sourceId": "b8fdaba8-cfe2-4076-a4bc-c7a9ebaaa59d",
+      "sourceDigest": "747680a8cb5f94f6df6c4d802323db2b530eab45533a69418d773a1a6a3f9954",
+      "questionSha256": "6fd740aa0d366cb80f0cddf593e653d9b084f1e80fcc63aedab58f687e2a4be7",
+      "answerSha256": "9db74302daff53310b46b733c2bc34a9161e021d525ca988d6ddd6f147fcf5c6",
+      "solutionSha256": "7f114d6f23ea82df1b872fb028031e60f7cbdc952e847ae6312a2a90c7fc7d0f",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 2,
+      "facts": {
+        "onCurveContacts": [
+          "3",
+          "4"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:01de9da1-2305-42ed-93cb-7f6bf7aad44a:1",
+      "sourceId": "01de9da1-2305-42ed-93cb-7f6bf7aad44a",
+      "sourceDigest": "a15e39812d3aec6caecbb19b0a6c06b3bb274086194ff0e85e6f2a1ce2cfe4ea",
+      "questionSha256": "512946b7cec1704d5fbd8019fbc2511a85fa694dbaaa102d4e2f3c3ba0e2239d",
+      "answerSha256": "cb22080823849c367e51b42a9841ba09010cd8a528383fa53c27fabb244d7e69",
+      "solutionSha256": "4ad616a7919abddbd25f240c46547e473bc07af01acdce4664b381bd80ac1519",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 4,
+      "facts": {
+        "onCurveContacts": [
+          "4",
+          "2",
+          "0",
+          "3"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:01de9da1-2305-42ed-93cb-7f6bf7aad44a:2",
+      "sourceId": "01de9da1-2305-42ed-93cb-7f6bf7aad44a",
+      "sourceDigest": "a15e39812d3aec6caecbb19b0a6c06b3bb274086194ff0e85e6f2a1ce2cfe4ea",
+      "questionSha256": "f8fa3f04a0ed5c253a6b8eada05ea8fa86f2e896f5b5f0c0dfd126dc144946b7",
+      "answerSha256": "48814154d2a9a8d0cbba90cdb6980875cc9765177e0a1c772639cd8a2bb97ae7",
+      "solutionSha256": "030ffe05ed281c93b78b8ee4fd4264c537a50a16ab88a6dfbc34a5372a9d55d0",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 4,
+      "facts": {
+        "onCurveContacts": [
+          "5",
+          "3",
+          "1",
+          "4"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:c9823bb2-d1f1-476c-a430-1b9652f3959c:1",
+      "sourceId": "c9823bb2-d1f1-476c-a430-1b9652f3959c",
+      "sourceDigest": "416c7d497c9aa8d11976aa8ae670b8c493ea3f86e8ff4f2590989aa3cb056bf2",
+      "questionSha256": "b6468be2d1bb11a37fc593abb1943294869ec857c75c588c7bac02090483c52e",
+      "answerSha256": "3c81db67d3f7633bfacaa9f1cbb1d8265ab9275c339d544fea6947012a6d185a",
+      "solutionSha256": "8abc38635be16b92c76e6f8c4ade6ffc27a418088aa4a8407d0ce17b21c00b6f",
+      "recipe": "calculus-symmetric-difference",
+      "checkedAnswers": 1,
+      "facts": {
+        "actualSymmetricLimit": "24*a - 48"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:c9823bb2-d1f1-476c-a430-1b9652f3959c:2",
+      "sourceId": "c9823bb2-d1f1-476c-a430-1b9652f3959c",
+      "sourceDigest": "416c7d497c9aa8d11976aa8ae670b8c493ea3f86e8ff4f2590989aa3cb056bf2",
+      "questionSha256": "e4b5e888b3aa2352d294b6ad1597544115ff5688826dae810c1dae441dd689f4",
+      "answerSha256": "38067046bd61c23252ab6d085d2b923ea62a35774d3e406d3b3d0985da6be813",
+      "solutionSha256": "44b0d90b7eea056ccda34a8b9508e0b694629068954e04afe2a7d3c3d05f3486",
+      "recipe": "calculus-symmetric-difference",
+      "checkedAnswers": 1,
+      "facts": {
+        "actualSymmetricLimit": "36*a - 108"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:50a15ad1-eb70-4392-84aa-2cdbbcdf50f1:1",
+      "sourceId": "50a15ad1-eb70-4392-84aa-2cdbbcdf50f1",
+      "sourceDigest": "ab31ffb44ec4e6f0c65fb13a636ff5d4a73cb2f817f8b45348975492df85bc77",
+      "questionSha256": "af40e9c812e2b32ea5597df2522104e822f009ecb4e347e26b0252c5b7ca7b2d",
+      "answerSha256": "f08498a9a5356d9da74008e006f6894b8867b5d6398be05f9b5da2ce34da2d78",
+      "solutionSha256": "dc6c893b16d67e7eebf26e8bc3e8644a8e8262acef3d4f208645b4a6fa8555e5",
+      "recipe": "calculus-functional-identity",
+      "checkedAnswers": 1,
+      "facts": {
+        "uniqueQuadratic": "x**2/2 + 11/2"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:50a15ad1-eb70-4392-84aa-2cdbbcdf50f1:2",
+      "sourceId": "50a15ad1-eb70-4392-84aa-2cdbbcdf50f1",
+      "sourceDigest": "ab31ffb44ec4e6f0c65fb13a636ff5d4a73cb2f817f8b45348975492df85bc77",
+      "questionSha256": "ac42618d16ac8409d7590c9b013eb07e0c13099e61b6dac1de275d6056e2950b",
+      "answerSha256": "3ea17d63452fbaf17d4962892f6ec9e50be6336101242c218595b0b1109dbedd",
+      "solutionSha256": "abb2a7e473d1479ebcfaa33f09dd8e0709a732613f23bd4b42463a9bf4890f0a",
+      "recipe": "calculus-functional-identity",
+      "checkedAnswers": 1,
+      "facts": {
+        "uniqueQuadratic": "x**2/2 + 7"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:f3caffd0-e752-4a25-bf3b-7cf67864b68d:1",
+      "sourceId": "f3caffd0-e752-4a25-bf3b-7cf67864b68d",
+      "sourceDigest": "10792f7318403c839f54f52a7912f8bb28a4e42306b45daea9767b6ae421a1f7",
+      "questionSha256": "b6826962aeb345f826702267968ee603e405e9b24ecb00f5df3804a3806a6eec",
+      "answerSha256": "cd46fb3f955b12e9ee8f147bf26b505d1b3737f7f6aafc1bf96f6467fd1d8b76",
+      "solutionSha256": "ee07e056cd4625dbaccfa522980184ee1acc4687369a1e43a11e3077f2ad297c",
+      "recipe": "calculus-product-identity-derivative",
+      "checkedAnswers": 1,
+      "facts": {
+        "gAtPoint": "4",
+        "gPrimeAtPoint": "38/3",
+        "rationalFactorDerivative": "2*(x**2 + 2*x + 5)/(x + 1)**2"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:f3caffd0-e752-4a25-bf3b-7cf67864b68d:2",
+      "sourceId": "f3caffd0-e752-4a25-bf3b-7cf67864b68d",
+      "sourceDigest": "10792f7318403c839f54f52a7912f8bb28a4e42306b45daea9767b6ae421a1f7",
+      "questionSha256": "b188eba3605606ade217cc6e1ced15ad1aa2823ebdceff3280ffcea95a036ea5",
+      "answerSha256": "93a513923161b912611d14f0923e2b0cae7d4ede869aeb89fae545a966818c31",
+      "solutionSha256": "eb951035cff50fad1c308120a0a24df2d445836ca0358f4eb4135f108407ca7a",
+      "recipe": "calculus-product-identity-derivative",
+      "checkedAnswers": 1,
+      "facts": {
+        "gAtPoint": "6",
+        "gPrimeAtPoint": "19",
+        "rationalFactorDerivative": "3*(x**2 + 4)/x**2"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:da988df9-afc7-4d08-a3fa-c3c24d76a5ab:1",
+      "sourceId": "da988df9-afc7-4d08-a3fa-c3c24d76a5ab",
+      "sourceDigest": "edff3ec19b681f544d6635c39aae1d0ea864c854433ca5cc552fa9d629871e43",
+      "questionSha256": "02508adb62b7a60461cb3d884565f91806e018ec902031df360f9cfec3fa2bb3",
+      "answerSha256": "02343ad8d27d8521538ceff01cc5669093cdc49b6cabb54d471855f5701e2308",
+      "solutionSha256": "d527ac081bfb1f2fefbac0455eb20f6b6937919c0b034f8507337f4c80d779ac",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 2,
+      "facts": {
+        "onCurveContacts": [
+          "3",
+          "1"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:da988df9-afc7-4d08-a3fa-c3c24d76a5ab:2",
+      "sourceId": "da988df9-afc7-4d08-a3fa-c3c24d76a5ab",
+      "sourceDigest": "edff3ec19b681f544d6635c39aae1d0ea864c854433ca5cc552fa9d629871e43",
+      "questionSha256": "e5f230a8b1ab4946b9da45ccd43f06c1af278f9e95f090e2f7da847c4bff4eae",
+      "answerSha256": "dc0648b3bec651d2fe4707c94a5414650e980c6212d57bf608602266e183620e",
+      "solutionSha256": "51a54cafbab3c7edd89d1fd0e692747c47033e50f850d18dcaf3629610bc2332",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 2,
+      "facts": {
+        "onCurveContacts": [
+          "4",
+          "2"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:c88ba4b9-90fc-485b-afc1-e4a143178642:1",
+      "sourceId": "c88ba4b9-90fc-485b-afc1-e4a143178642",
+      "sourceDigest": "e0f240f0ac4eaa15fe022f34123f2ed970fb3817bdebad5ef460b27e560a3d14",
+      "questionSha256": "10aefec27c51b52e73d518e90c4d65337e54652175907f690a7e77f3b5c5a6d4",
+      "answerSha256": "aedfba16565582f3e06aa82a77a5f3023c96ba6de696bc9a795cc65896b2eb7a",
+      "solutionSha256": "f53c19fd3c24fb10b4d58dac010eabf458f329d21f91afa4951cf7ce763db755",
+      "recipe": "calculus-tangent-given-slope",
+      "checkedAnswers": 3,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "3"
+          ],
+          [
+            "0",
+            "2"
+          ]
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:c88ba4b9-90fc-485b-afc1-e4a143178642:2",
+      "sourceId": "c88ba4b9-90fc-485b-afc1-e4a143178642",
+      "sourceDigest": "e0f240f0ac4eaa15fe022f34123f2ed970fb3817bdebad5ef460b27e560a3d14",
+      "questionSha256": "cd3d28384b7d6640e36c82316c1b912f9915cafb9168a292d868f8a8fdf03d4d",
+      "answerSha256": "5c2e3fe8c7216e78a568543eda5be03c83bef74db1b1d7bb7bc239ac9428efa5",
+      "solutionSha256": "201752fdb7191a35e475198174b7ddd78432e888c2f3d28d6d2c72bc5057e777",
+      "recipe": "calculus-tangent-given-slope",
+      "checkedAnswers": 3,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "4"
+          ],
+          [
+            "1",
+            "3"
+          ]
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:05965996-b3fd-4ab5-a0d1-22f5f9f8f48b:1",
+      "sourceId": "05965996-b3fd-4ab5-a0d1-22f5f9f8f48b",
+      "sourceDigest": "f7067cceebf409f638894faf6b49719351d5fd4cb5a870391caaaaa95fede86e",
+      "questionSha256": "08e2a63554176829245206d4cb89e130707ca7e85b4190213f84f6e17fd73332",
+      "answerSha256": "5b42577e51e07a52a6feb661069fa012b54edfeef41c5f58d22e5f4c43076add",
+      "solutionSha256": "0f94e8c6797bc4e0bccc2e517012b0f0343d72c700ebcc656bfde75e76e5ca14",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 1,
+      "facts": {
+        "onCurveContacts": [
+          "2"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:05965996-b3fd-4ab5-a0d1-22f5f9f8f48b:2",
+      "sourceId": "05965996-b3fd-4ab5-a0d1-22f5f9f8f48b",
+      "sourceDigest": "f7067cceebf409f638894faf6b49719351d5fd4cb5a870391caaaaa95fede86e",
+      "questionSha256": "9023a3ac1a4558a3dbcfe68143543fad4dcc8c5a4d672761cd87c163f1053120",
+      "answerSha256": "23995bf9f6d0c1c3a5e8b149e0ccf8ff9e8ce9f3fb0d3e0cf856276664cf994b",
+      "solutionSha256": "47a5b8b6d60aa3d5b60f3a91b2aecdd72c0b828943a9624e14e8a5b4d4879840",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 1,
+      "facts": {
+        "onCurveContacts": [
+          "3"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:4a9dc81f-7a26-482a-ae17-1488a45ef8dc:1",
+      "sourceId": "4a9dc81f-7a26-482a-ae17-1488a45ef8dc",
+      "sourceDigest": "51dffd3cc709bc3b8ed481ad6b45ae856db338ce634df24527cc567040ef7815",
+      "questionSha256": "6f78d10937eb6e6b3d0b2fef516135929ddaf3e52d86abe44701ae83465b9f4e",
+      "answerSha256": "4d30a9e45df709434ae7f7d51ad0ceabb7b2c1a648c6199d624096975aaa98a9",
+      "solutionSha256": "2c4bccf3ff9efb15df81aa32443a473d0b2f4cbec52aa0104e3fdec4e6b1fe58",
+      "recipe": "calculus-tangent-given-slope",
+      "checkedAnswers": 1,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "4"
+          ]
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:4a9dc81f-7a26-482a-ae17-1488a45ef8dc:2",
+      "sourceId": "4a9dc81f-7a26-482a-ae17-1488a45ef8dc",
+      "sourceDigest": "51dffd3cc709bc3b8ed481ad6b45ae856db338ce634df24527cc567040ef7815",
+      "questionSha256": "d1634699ae7f021084bb6612f4021f0573b036fe1a910371225c748433a156b4",
+      "answerSha256": "c9a00ea8b4318fe77825a29b16f7db0d6a1ff11c2741481fedc12991d6b02e3d",
+      "solutionSha256": "8344deb340d46d38536126d025713eeec30fda8080cc6bf1a0b9a3dc4cbb2b8f",
+      "recipe": "calculus-tangent-given-slope",
+      "checkedAnswers": 1,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "5"
+          ]
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:c7666788-c66f-47de-9866-b92b62bf82ef:1",
+      "sourceId": "c7666788-c66f-47de-9866-b92b62bf82ef",
+      "sourceDigest": "ec0352374140e4e8a60c36c3275e5d9f4ccadd5fb75dd9d9b1671b0e16ddfb96",
+      "questionSha256": "f9130fea08ec2b383d05915f21bddba3bbf4cbfc142f11ca11b6ed94899dedfa",
+      "answerSha256": "fe9b8ec382b6a0022ef9420aa536e9e3669b5c66764ebe1348bf989999fd020c",
+      "solutionSha256": "9123a4094fe985e4fe7f60763409a8bd187205b6e2e5fd298f235e50f352ea2f",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 3,
+      "facts": {
+        "onCurveContacts": [
+          "3",
+          "0",
+          "-1"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:c7666788-c66f-47de-9866-b92b62bf82ef:2",
+      "sourceId": "c7666788-c66f-47de-9866-b92b62bf82ef",
+      "sourceDigest": "ec0352374140e4e8a60c36c3275e5d9f4ccadd5fb75dd9d9b1671b0e16ddfb96",
+      "questionSha256": "dec15809dc20dc7b214762c166bc3e722853a7c6d29cb2fc40f30abb03b145a9",
+      "answerSha256": "da5f80ed6027458477b87c6af40a3639c576aaa4f64c17e852ca5b209b5ddb9e",
+      "solutionSha256": "7dbab9083c80c29110ed7af6eba1b54f52f52b938f4ee09ec7a0a63a300f054d",
+      "recipe": "calculus-tangent-at-point",
+      "checkedAnswers": 3,
+      "facts": {
+        "onCurveContacts": [
+          "4",
+          "1",
+          "0"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:eb12f0b8-9eb2-40b3-957a-c0be6c61a6e9:1",
+      "sourceId": "eb12f0b8-9eb2-40b3-957a-c0be6c61a6e9",
+      "sourceDigest": "d409779f82fc868d3173b3ce047a841747b95bd8e6a3f0cfb5b97536894c8b1f",
+      "questionSha256": "cdf0867eb14fe324fab632c2fda807988a9d67d55d7b4c2032c02a952c054669",
+      "answerSha256": "f10a1a4111812a9d1a223bdb09c1b8e918fe76c160effddb6c886571f8934144",
+      "solutionSha256": "7f368a72bd91ff7359cbf267b1bb94640a5f0c6ba114a73b231e05fdf05bdee6",
+      "recipe": "calculus-tangent-given-slope",
+      "checkedAnswers": 3,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "2"
+          ],
+          [
+            "0",
+            "4/3"
+          ]
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:eb12f0b8-9eb2-40b3-957a-c0be6c61a6e9:2",
+      "sourceId": "eb12f0b8-9eb2-40b3-957a-c0be6c61a6e9",
+      "sourceDigest": "d409779f82fc868d3173b3ce047a841747b95bd8e6a3f0cfb5b97536894c8b1f",
+      "questionSha256": "6cdb6cb33f66b2b7efac10a504bbc887fc67e16a065f8913151e36aba3f53b76",
+      "answerSha256": "7fe47d5570dc5b87a5dfaaf5c032c54abbe39d30507f9041cdf79ff0e25fe7cb",
+      "solutionSha256": "631ef94ab3768be09d5e03033e00cabc7146e3767e3f1be0ee8770fce51f00ba",
+      "recipe": "calculus-tangent-given-slope",
+      "checkedAnswers": 3,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "3"
+          ],
+          [
+            "1",
+            "7/3"
+          ]
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:6d30440a-0ba5-4e75-bf06-c976eaf562c8:1",
+      "sourceId": "6d30440a-0ba5-4e75-bf06-c976eaf562c8",
+      "sourceDigest": "ca6ff87d39f64ed68099d1c552af7d124664e70da48cad238078d7bb707f8737",
+      "questionSha256": "d7e62e9cc9a596e16eecdc3657574e48193e386929c172d7fb10089b0dc2c9a5",
+      "answerSha256": "5f8222d1d002b43cd42e92d8a62548b0585fd1bd80ec832b5c3391f85514f6fb",
+      "solutionSha256": "30719ef110eece00490c41790bb96a62384a69256da22b653c489e965b7a3220",
+      "recipe": "calculus-tangent-parallel",
+      "checkedAnswers": 3,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "2"
+          ],
+          [
+            "-1",
+            "3"
+          ]
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:6d30440a-0ba5-4e75-bf06-c976eaf562c8:2",
+      "sourceId": "6d30440a-0ba5-4e75-bf06-c976eaf562c8",
+      "sourceDigest": "ca6ff87d39f64ed68099d1c552af7d124664e70da48cad238078d7bb707f8737",
+      "questionSha256": "fee080323c66435c9b49bd98ab901b2318adc0f07c01b10d6d0f9ae98b2133d3",
+      "answerSha256": "eab2ccc314e869f20806004318871547b8fe5b3006b7118936771820e19287d2",
+      "solutionSha256": "ffba03082128f0c33eea21cc70b89a9a15f9d879d8b3b674aec807aca33f50eb",
+      "recipe": "calculus-tangent-parallel",
+      "checkedAnswers": 3,
+      "facts": {
+        "allRealContactGroups": [
+          [
+            "3"
+          ],
+          [
+            "0",
+            "4"
+          ]
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:0f7e1604-852b-4db8-8136-390d5fbe4e89:1",
+      "sourceId": "0f7e1604-852b-4db8-8136-390d5fbe4e89",
+      "sourceDigest": "c682753fafb3bf6e70343195baa4b9051a120c8fa35dda087f5f9c2ff408adc7",
+      "questionSha256": "a479cabf89f172ee27f0c51540c646f24f6224d82357fca41e6bd7aa4dd9945c",
+      "answerSha256": "c7489ee95cb0e8989f8aa950c1e5461f8bd51c33fc34e7867e18db03f62dbaaa",
+      "solutionSha256": "10d68114d34613002e61eb2974c76ac3e0ad3b444fbd68a35ad9bccbeee81a88",
+      "recipe": "calculus-tangent-through-point",
+      "checkedAnswers": 1,
+      "facts": {
+        "allRealContacts": [
+          "0"
+        ],
+        "tangent": "8*x + 2"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:0f7e1604-852b-4db8-8136-390d5fbe4e89:2",
+      "sourceId": "0f7e1604-852b-4db8-8136-390d5fbe4e89",
+      "sourceDigest": "c682753fafb3bf6e70343195baa4b9051a120c8fa35dda087f5f9c2ff408adc7",
+      "questionSha256": "9bec7c72810465e99c9301091b00b5b62156e46a12c15e09f286116cb9d1843f",
+      "answerSha256": "56d7c74c4f33094c549ec4804929ffb38d6b646e8233940b6f452d7879b9472c",
+      "solutionSha256": "99e76c45eb6475c0e9dd33cf6a954f86754d968df3df5bfba356c2c3a651ec91",
+      "recipe": "calculus-tangent-through-point",
+      "checkedAnswers": 1,
+      "facts": {
+        "allRealContacts": [
+          "1"
+        ],
+        "tangent": "12*x - 9"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:efb7273a-7e38-4aa2-9ef2-9c2bddac9e4c:1",
+      "sourceId": "efb7273a-7e38-4aa2-9ef2-9c2bddac9e4c",
+      "sourceDigest": "cbe50805077b81540b62ff2c5e2b1d5b4ff7bf21099c8d084e00be9d4557fce4",
+      "questionSha256": "48136529c19fe0fb3fd9f39b446abbe627bcfbaaeb3d15721d8b978c11c316bc",
+      "answerSha256": "b61def0872c567fe4a5c111d62ecce0549ddff8807079d8d5ec8465a4787c2fa",
+      "solutionSha256": "e33d34dc385279728f9e46b0717ba2bf55116a0b71bc8623983748e0564208f4",
+      "recipe": "calculus-quadratic-mvt",
+      "checkedAnswers": 1,
+      "facts": {
+        "equalityResidual": "6*h**2*(2*k - 1)",
+        "hPositive": true,
+        "kInOpenUnitInterval": true
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:efb7273a-7e38-4aa2-9ef2-9c2bddac9e4c:2",
+      "sourceId": "efb7273a-7e38-4aa2-9ef2-9c2bddac9e4c",
+      "sourceDigest": "cbe50805077b81540b62ff2c5e2b1d5b4ff7bf21099c8d084e00be9d4557fce4",
+      "questionSha256": "aca7cd758626df13a6d051c7b7e6e8eac60d77183400a730f6209a71d05c54b6",
+      "answerSha256": "b61def0872c567fe4a5c111d62ecce0549ddff8807079d8d5ec8465a4787c2fa",
+      "solutionSha256": "03fe74da31888c76f933cfa9a20f70b22162202ee5aa5d89ed724723b6f61691",
+      "recipe": "calculus-quadratic-mvt",
+      "checkedAnswers": 1,
+      "facts": {
+        "equalityResidual": "9*h**2*(2*k - 1)",
+        "hPositive": true,
+        "kInOpenUnitInterval": true
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:4cb82cdc-f93d-4e19-acde-089667c5f394:1",
+      "sourceId": "4cb82cdc-f93d-4e19-acde-089667c5f394",
+      "sourceDigest": "8c9029257477774b8677941f7786f93d316ab315ac5e1c1795d80d6e7b8cbd80",
+      "questionSha256": "d7ebd15e08a62a2c9f1b348f6b19a8a18c4e058a104475b3acbbd18fdb7e0b32",
+      "answerSha256": "40092473c5e3bb59ee34c89ac877219856c7b618fd538f94368854e1f8982d19",
+      "solutionSha256": "eaf94fdf17a1c65614a8c4e433d3ab3b2b726eed9a9fae61edbf181c18367938",
+      "recipe": "calculus-cubic-no-extrema",
+      "checkedAnswers": 2,
+      "facts": {
+        "derivativeDiscriminants": [
+          "64*a**2 - 48",
+          "64*a**2 + 96*a"
+        ],
+        "boundaryIncluded": true
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:4cb82cdc-f93d-4e19-acde-089667c5f394:2",
+      "sourceId": "4cb82cdc-f93d-4e19-acde-089667c5f394",
+      "sourceDigest": "8c9029257477774b8677941f7786f93d316ab315ac5e1c1795d80d6e7b8cbd80",
+      "questionSha256": "e6bb33f5916af58f796cfd83599c3a2a1faffc8337058781806e9852cc3294de",
+      "answerSha256": "6f7656faae5984d96a2abe08c90cb526e9474743d81f9b01cac739f1f2ff747a",
+      "solutionSha256": "cf80207cd025133249eae74e739e0cb575546540786cbb583409fda1a293ef8a",
+      "recipe": "calculus-cubic-no-extrema",
+      "checkedAnswers": 2,
+      "facts": {
+        "derivativeDiscriminants": [
+          "144*a**2 - 48",
+          "144*a**2 + 144*a"
+        ],
+        "boundaryIncluded": true
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:b5de41a3-712f-4bb5-8c74-bfffab00cf53:1",
+      "sourceId": "b5de41a3-712f-4bb5-8c74-bfffab00cf53",
+      "sourceDigest": "8315adb3559536968fc86ce3f984885e0ca4f50074f6a689aab3663b78742a26",
+      "questionSha256": "322fcf4d1b2e165d9d509975bdae3f95f669165bd208af2ec9e99a4be5d70003",
+      "answerSha256": "d799f1165fb80865912097c6578b122eda5077eb80e21d3c5df6e889220f26d1",
+      "solutionSha256": "49b9ed24e0cbf4b54fbacfdeb9d00c7fb7f945f735f644bbc8bca5374837689d",
+      "recipe": "calculus-monic-cubic-limit-extremum",
+      "checkedAnswers": 1,
+      "facts": {
+        "uniqueMonicCubic": "x**3 - 3*x + 2",
+        "secondDerivativeAtMaximum": "-6"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:b5de41a3-712f-4bb5-8c74-bfffab00cf53:2",
+      "sourceId": "b5de41a3-712f-4bb5-8c74-bfffab00cf53",
+      "sourceDigest": "8315adb3559536968fc86ce3f984885e0ca4f50074f6a689aab3663b78742a26",
+      "questionSha256": "061405faedcd1e432af9ca376f0f766199252abcdd2559600574527347b5c154",
+      "answerSha256": "a0982e27bbe252f4b88f4f811173e8b927c55bc6d6f6b3a61bd210fc7eded58f",
+      "solutionSha256": "afe9e43245dd3db56528fd43e99153e0e560825651d33da3ab4f81118688c758",
+      "recipe": "calculus-monic-cubic-limit-extremum",
+      "checkedAnswers": 1,
+      "facts": {
+        "uniqueMonicCubic": "x**3 - 3*x**2 + 5",
+        "secondDerivativeAtMaximum": "-6"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:bb995945-edb6-4971-a234-9b9552dd514a:1",
+      "sourceId": "bb995945-edb6-4971-a234-9b9552dd514a",
+      "sourceDigest": "5a21606f932ba4e23333606f89a71a8757c8a319aff1c399300ea1924c965773",
+      "questionSha256": "d8d321ab2c78a175f3cb4c1d89eaf5876d5ac1279700e8592b1bdcdeeb018877",
+      "answerSha256": "d799f1165fb80865912097c6578b122eda5077eb80e21d3c5df6e889220f26d1",
+      "solutionSha256": "f8df34bfee41a5e66547daa41f174369940775b05d71c27b3476efc36756d95e",
+      "recipe": "calculus-closed-interval-extrema",
+      "checkedAnswers": 1,
+      "facts": {
+        "allRealCriticalPoints": [
+          "1",
+          "4"
+        ],
+        "domainPoints": [
+          "0",
+          "1",
+          "3"
+        ],
+        "domainValues": [
+          "54",
+          "0",
+          "48"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:bb995945-edb6-4971-a234-9b9552dd514a:2",
+      "sourceId": "bb995945-edb6-4971-a234-9b9552dd514a",
+      "sourceDigest": "5a21606f932ba4e23333606f89a71a8757c8a319aff1c399300ea1924c965773",
+      "questionSha256": "fb6a28fde6368d25a1d2fa4e3964a4048ff4d6cf7726bc51b449b7c0d99edb33",
+      "answerSha256": "b7f6e5db456bcf69c52ccfcf727140fc80bb1046878bc5430191f5b926288587",
+      "solutionSha256": "77b4e71a325773b5cd8f984b8d7ed4a2b13f24b8393da5a752d396748b8bab60",
+      "recipe": "calculus-closed-interval-extrema",
+      "checkedAnswers": 1,
+      "facts": {
+        "allRealCriticalPoints": [
+          "2",
+          "5"
+        ],
+        "domainPoints": [
+          "1",
+          "2",
+          "4"
+        ],
+        "domainValues": [
+          "81",
+          "0",
+          "72"
+        ]
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:b1393079-1d4b-4ec6-a37e-9288b0eda0f0:1",
+      "sourceId": "b1393079-1d4b-4ec6-a37e-9288b0eda0f0",
+      "sourceDigest": "4311a6482b82afb106ac6b57f8e5d4c83b17eac7f320202fbb2ee442a9e4d608",
+      "questionSha256": "f981619ad169f810b7734f8e298834b5b36603276282cbfb586ae833d9dd8647",
+      "answerSha256": "28dc8cfdc13a42714228bc8a2d12ec8ef22a28ddd7707956b87d5e885d9d7ef7",
+      "solutionSha256": "f99aee5041ee259960ec0bf33bccdc68e74343ea0af6132e4830aceb83ab8ed1",
+      "recipe": "calculus-velocity-parameter",
+      "checkedAnswers": 1,
+      "facts": {
+        "velocity": "2*k*t + 12*t**2",
+        "nonnegativeTime": "2"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:b1393079-1d4b-4ec6-a37e-9288b0eda0f0:2",
+      "sourceId": "b1393079-1d4b-4ec6-a37e-9288b0eda0f0",
+      "sourceDigest": "4311a6482b82afb106ac6b57f8e5d4c83b17eac7f320202fbb2ee442a9e4d608",
+      "questionSha256": "4cceb4caf5244a75743f3bfccbf77110814e00c495f4aff1a2826ff98a21ac25",
+      "answerSha256": "1bcf914d11b3a290bc1ef64e8b50ff2cc4565a4f75212eb09e40fc76e444086a",
+      "solutionSha256": "652f04d3ee89549f8139b03f3351170e89ca23183abeafef025f466c19e8a377",
+      "recipe": "calculus-velocity-parameter",
+      "checkedAnswers": 1,
+      "facts": {
+        "velocity": "2*k*t + 18*t**2",
+        "nonnegativeTime": "3"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:7f31a6c4-1898-4c1b-8641-dba95af3d863:1",
+      "sourceId": "7f31a6c4-1898-4c1b-8641-dba95af3d863",
+      "sourceDigest": "65ea60ad3c0c249b93ae231eb31e7e52a076f14ce90fdae64bdd51c3d58a202d",
+      "questionSha256": "06b7a31bef8c2db5a729142b8763619686b1503ef8582e7985254e86edf35f39",
+      "answerSha256": "9e508eb0453024ec1e9cc1d881508389db234b826566943bdb5eb74bbdb1beaf",
+      "solutionSha256": "fd84814179595c81052fa46f049370daaef84f96cf443bf19695f2db944bddce",
+      "recipe": "calculus-braking-distance",
+      "checkedAnswers": 1,
+      "facts": {
+        "firstPositiveStop": "5",
+        "acceleration": "-32",
+        "distance": "400"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:7f31a6c4-1898-4c1b-8641-dba95af3d863:2",
+      "sourceId": "7f31a6c4-1898-4c1b-8641-dba95af3d863",
+      "sourceDigest": "65ea60ad3c0c249b93ae231eb31e7e52a076f14ce90fdae64bdd51c3d58a202d",
+      "questionSha256": "f52ca994fa030137072f3dbacbb4d1ffe9cdd15ae917d5eabee64e851dcf4ca4",
+      "answerSha256": "1f678a50e5c7b9d5d52805bc4ababeb77b0043cabca242b26b6fb8159b45fadd",
+      "solutionSha256": "f02a2a6d2387cc0b0ca8a170d2e6a3633150e30ac598f7c1d15c9a1d10407ff2",
+      "recipe": "calculus-braking-distance",
+      "checkedAnswers": 1,
+      "facts": {
+        "firstPositiveStop": "5",
+        "acceleration": "-48",
+        "distance": "600"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:abb89561-202d-4b19-bae9-2c2b190c673d:1",
+      "sourceId": "abb89561-202d-4b19-bae9-2c2b190c673d",
+      "sourceDigest": "9195f00e71d40e9ca1c661e64eb5ad2bf0de48ced6b9d256aa95844af63bc374",
+      "questionSha256": "9eb5c0403fcc2be7ab5869d5ddcf438f89ccae99ce5b3a8f6578b3feb18fe5db",
+      "answerSha256": "7d1ebd74a93e9ff710a9f1c1e5b6df25f17e04d07dffcbda8c5f0b372249d4f8",
+      "solutionSha256": "0fd59e7d88b07b1d32635228033e2e3a66afeb991f3fe1f2312e278a6747b49a",
+      "recipe": "calculus-antiderivative",
+      "checkedAnswers": 1,
+      "facts": {
+        "differentiatedPrimitive": "4*x - 20"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:abb89561-202d-4b19-bae9-2c2b190c673d:2",
+      "sourceId": "abb89561-202d-4b19-bae9-2c2b190c673d",
+      "sourceDigest": "9195f00e71d40e9ca1c661e64eb5ad2bf0de48ced6b9d256aa95844af63bc374",
+      "questionSha256": "1e56a396ca633c108bd0b2f9d6a74e084d7a50a1a785f6d7ffc1a187b47ba796",
+      "answerSha256": "8e2c79b90ea83fc1d2b230e71931ea30265a144af5097f110c8951c01c886ddf",
+      "solutionSha256": "9f84039841ff89d704dcafe1f4bfabe769647a90eed1c07995de48094d593475",
+      "recipe": "calculus-antiderivative",
+      "checkedAnswers": 1,
+      "facts": {
+        "differentiatedPrimitive": "6*x - 36"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:9e18a685-dc8d-4ce6-82bf-9734306170e0:1",
+      "sourceId": "9e18a685-dc8d-4ce6-82bf-9734306170e0",
+      "sourceDigest": "e52487ea98ec708b64e71187e8382e7c766a08d6a9a779ca46f2d31ba7abff12",
+      "questionSha256": "32e9376257bd6cd2103a3901871c4aa236328eeba850c3302c56a759548c4a5d",
+      "answerSha256": "686c9f5b8613959c49f6fb7fd159042ff0cedb1463354cdd5f3738af616e0ac6",
+      "solutionSha256": "3270c450f3a88febe47e5224514b3dc87f4669a235aa92923eb44feefd26faaa",
+      "recipe": "calculus-primitive-root-sum",
+      "checkedAnswers": 1,
+      "facts": {
+        "primitive": "24*x**2 - 22*x - 2",
+        "allRealRoots": [
+          "-1/12",
+          "1"
+        ],
+        "vietaRootSum": "11/12"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:9e18a685-dc8d-4ce6-82bf-9734306170e0:2",
+      "sourceId": "9e18a685-dc8d-4ce6-82bf-9734306170e0",
+      "sourceDigest": "e52487ea98ec708b64e71187e8382e7c766a08d6a9a779ca46f2d31ba7abff12",
+      "questionSha256": "d5ee41d575586e68e1ebca731dd25adab55cf4671580c6282b1f78057b9f24d5",
+      "answerSha256": "6d534247b914db3cc8e15fe1824da3b0291b95f10fe59ce08ad7dc75156d63bb",
+      "solutionSha256": "4ab5ee6d968fa2bff459146a0a09b88521fc720e50df6040e883825e5e6f07e3",
+      "recipe": "calculus-primitive-root-sum",
+      "checkedAnswers": 1,
+      "facts": {
+        "primitive": "36*x**2 - 69*x - 3",
+        "allRealRoots": [
+          "23/24 - sqrt(577)/24",
+          "23/24 + sqrt(577)/24"
+        ],
+        "vietaRootSum": "23/12"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:bf97a0d9-f7fa-46f0-8d16-12abb0ae7c66:1",
+      "sourceId": "bf97a0d9-f7fa-46f0-8d16-12abb0ae7c66",
+      "sourceDigest": "4ba30a3d363057fd0ee72037ae6059c2bbdfcb2cd758755b756a9e618e034c2d",
+      "questionSha256": "b282961c45c915cf3a33ffa2d8bf1e4b63db744c014236278d1aaa02f01008a9",
+      "answerSha256": "9e4c09b0a278b31ebcd0e36dbf98c8ee6cb45af4989b32adfe3e092bed3a4623",
+      "solutionSha256": "a3ed00bd30a2729b0474a2b2bce1740a1c2e941c8209f28303ddcd76da7188cc",
+      "recipe": "calculus-reverse-bound-integral",
+      "checkedAnswers": 1,
+      "facts": {
+        "orientedTwoIntegralDifference": "104 - 8*k"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:bf97a0d9-f7fa-46f0-8d16-12abb0ae7c66:2",
+      "sourceId": "bf97a0d9-f7fa-46f0-8d16-12abb0ae7c66",
+      "sourceDigest": "4ba30a3d363057fd0ee72037ae6059c2bbdfcb2cd758755b756a9e618e034c2d",
+      "questionSha256": "31d1be6bf042f158e31c22203b6415e86709c4495e4025ab9499fb4c1e989144",
+      "answerSha256": "f08498a9a5356d9da74008e006f6894b8867b5d6398be05f9b5da2ce34da2d78",
+      "solutionSha256": "3206647618d584a7b46eed7f75eaccfb7a40f3e022513dabf46424b7fc80a4be",
+      "recipe": "calculus-reverse-bound-integral",
+      "checkedAnswers": 1,
+      "facts": {
+        "orientedTwoIntegralDifference": "156 - 8*k"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:3bc20e88-c522-4102-9c6c-c5d90f9dd4a2:1",
+      "sourceId": "3bc20e88-c522-4102-9c6c-c5d90f9dd4a2",
+      "sourceDigest": "b4f9cfbc76bb3b9e91ee91c1f4c812dc4ce29f7c022a66effefc929caa87efaf",
+      "questionSha256": "4b52c20d14ef64f1b2cb1dd416ad4e1dc538944352e7710041dcfa5a0bf396bd",
+      "answerSha256": "a8788eceadf8960a56454be8277bc220f1517185200141bf97f3f650ad729bbd",
+      "solutionSha256": "4e1b0051904c00598f252fd09f429fc0552753269f3011cfe613ad771374ca4f",
+      "recipe": "calculus-ftc-parameter",
+      "checkedAnswers": 1,
+      "facts": {
+        "ftcFromActualIntegral": "4*x**2 - 6*x + 17",
+        "parameter": "15"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:3bc20e88-c522-4102-9c6c-c5d90f9dd4a2:2",
+      "sourceId": "3bc20e88-c522-4102-9c6c-c5d90f9dd4a2",
+      "sourceDigest": "b4f9cfbc76bb3b9e91ee91c1f4c812dc4ce29f7c022a66effefc929caa87efaf",
+      "questionSha256": "712976ed3f9685628b8808dc1059027712dfef048349f2ee98b44cda10cf3627",
+      "answerSha256": "6019ecc8129cd304db425168563de8d9b35e27db91aac296ecc111cb73374673",
+      "solutionSha256": "83f73e11c7b9e28666b93c662488529995d7e7f10df67eb75f8b24b6d0e31d93",
+      "recipe": "calculus-ftc-parameter",
+      "checkedAnswers": 1,
+      "facts": {
+        "ftcFromActualIntegral": "6*x**2 - 21*x + 41",
+        "parameter": "23"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:8a122827-87da-4dcf-8f7d-eaccd190cb4b:1",
+      "sourceId": "8a122827-87da-4dcf-8f7d-eaccd190cb4b",
+      "sourceDigest": "3ce4211d78fbe6db87a20c4a04e7a709ee03e23aa4ecdc07c7a4f86260b33fd4",
+      "questionSha256": "0e3961b031cfee42e4f9d65d9624f7c3f5ee994852607030ec739c1b9d4250e5",
+      "answerSha256": "f08498a9a5356d9da74008e006f6894b8867b5d6398be05f9b5da2ce34da2d78",
+      "solutionSha256": "0e9bec4062e16ce30bf8bdcbe0fc9b4921cecc19ea08083b89d51471dc023016",
+      "recipe": "calculus-integral-identity",
+      "checkedAnswers": 1,
+      "facts": {
+        "basepointZero": "2",
+        "f": "6*x**2 - 12*x"
+      },
+      "matched": true
+    },
+    {
+      "externalId": "tb-retry-v1:8a122827-87da-4dcf-8f7d-eaccd190cb4b:2",
+      "sourceId": "8a122827-87da-4dcf-8f7d-eaccd190cb4b",
+      "sourceDigest": "3ce4211d78fbe6db87a20c4a04e7a709ee03e23aa4ecdc07c7a4f86260b33fd4",
+      "questionSha256": "0db77e7ee67aa76082a4ed6fe760e658e3c8bfe3d0fef382f653ea45d0ddd2b0",
+      "answerSha256": "2bec7bb7f6b43379e3e371e7a5971a1db9e319f968908ebb72627f05bc9819d2",
+      "solutionSha256": "5a0f7ef198a9d07a695e7900829775db567d77a7bdeb9a54e97c299ae0998181",
+      "recipe": "calculus-integral-identity",
+      "checkedAnswers": 1,
+      "facts": {
+        "basepointZero": "3",
+        "f": "9*x**2 - 36*x + 27"
+      },
+      "matched": true
+    }
+  ]
+}

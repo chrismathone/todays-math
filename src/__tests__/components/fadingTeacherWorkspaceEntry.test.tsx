@@ -1,9 +1,11 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import WorkspacePage from "@/components/unified/WorkspacePage";
 
-const mocks = vi.hoisted(() => ({ account: vi.fn(), bank: vi.fn() }));
+const mocks = vi.hoisted(() => ({ account: vi.fn(), bootstrap: vi.fn() }));
 vi.mock("@/lib/accountAccess", () => ({ getAccountAccess: mocks.account }));
-vi.mock("@/lib/unifiedPreview", () => ({ loadUnifiedBank: mocks.bank }));
+vi.mock("@/lib/unifiedPreview", () => ({
+  loadUnifiedBankBootstrap: mocks.bootstrap,
+}));
 vi.mock("@/components/unified/UnifiedWorkspace", () => ({
   default: "workspace",
 }));
@@ -31,7 +33,7 @@ describe("작업실 서버 문 전달", () => {
         gate === "unknown" ? "off" : (gate ?? "on"),
       );
       expect(page.props.allowedMenus).toEqual([]);
-      expect(mocks.bank).not.toHaveBeenCalled();
+      expect(mocks.bootstrap).not.toHaveBeenCalled();
     },
   );
 });

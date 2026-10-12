@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import type { StudioAiProvider, StudioAiMode } from "@/lib/dev-ai/contracts";
-import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 import { useDevAi } from "./useDevAi";
 import Icon from "./WorkspaceIcon";
 import s from "./DevAiStatusPanel.module.css";
@@ -16,6 +15,17 @@ const STATUS_LABELS = {
   error: "연결 오류",
 };
 export default function DevAiStatusPanel({
+  collapsed,
+  onExpand,
+}: {
+  collapsed: boolean;
+  onExpand: () => void;
+}) {
+  if (process.env.NODE_ENV === "production") return null;
+  return <DevAiStatusPanelContent collapsed={collapsed} onExpand={onExpand} />;
+}
+
+function DevAiStatusPanelContent({
   collapsed,
   onExpand,
 }: {
@@ -51,76 +61,6 @@ export default function DevAiStatusPanel({
         AI
       </button>
     );
-  // 운영 빌드는 연결 상태만(원장님 2026-09-18) — 개발 모드는 어느 화면이든 기존 칸 그대로.
-  // 모델은 자동(원본 기본 모델)으로 고정이다(`useDevAi` 가 운영 빌드에서 저장된 고르기를 복원하지 않는다).
-  if (getStudioEndpoints().productionBuild) {
-    const state: "ready" | "pending" | "error" =
-      ai.statusError ||
-      (!ai.checking &&
-        (!selected ||
-          (selected.status !== "ready" && selected.status !== "unverified")))
-        ? "error"
-        : selected?.status === "ready"
-          ? "ready"
-          : "pending";
-    const label =
-      state === "ready"
-        ? "AI 연결됨"
-        : state === "error"
-          ? "AI 연결 오류"
-          : ai.checking
-            ? "AI 연결 확인 중"
-            : "AI 연결 확인 전";
-    return (
-      <section
-        className={s.panel}
-        aria-label="AI 상태판"
-        data-dev-ai-panel
-        data-compact
-      >
-        <div
-          className={s.connection}
-          data-ready={state === "ready"}
-          data-state={state}
-          title={ai.statusError || selected?.detail}
-        >
-          <span aria-hidden="true" />
-          {label}
-          {state === "error" && (
-            <button
-              className={s.retry}
-              disabled={ai.checking}
-              onClick={() => void ai.refresh()}
-            >
-              다시 확인
-            </button>
-          )}
-        </div>
-        {running && ai.activity && (
-          <div
-            className={s.activity}
-            role="status"
-            data-state={ai.activity.state}
-          >
-            <strong title={ai.activity.message}>
-              {ai.activeCount > 1
-                ? `AI 작업 ${ai.activeCount}개 진행 중`
-                : ai.activity.message}
-            </strong>
-            <span>{elapsed}초</span>
-            <button
-              className={s.cancel}
-              onClick={() => ai.cancel()}
-              aria-label="AI 작업 취소"
-              title="AI 작업 취소"
-            >
-              <Icon name="close" size={14} />
-            </button>
-          </div>
-        )}
-      </section>
-    );
-  }
   return (
     <section className={s.panel} aria-label="AI 상태판" data-dev-ai-panel>
       <div className={s.heading}>

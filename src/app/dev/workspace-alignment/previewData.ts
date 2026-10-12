@@ -1,6 +1,10 @@
 import type { EnglishExam, EnglishSet } from "@/contracts/english.contract";
 import type { EnglishListeningDocument } from "@/contracts/englishListening.contract";
 import type { EnglishPassageDetail } from "@/contracts/englishBank.contract";
+import {
+  englishExamCandidatesSchema,
+  englishExamComposeSchema,
+} from "@/contracts/englishExamBuilder.contract";
 
 // Authored examples for visual review; never copied from an exam or user account.
 const stamp = "2026-10-08T00:00:00.000Z";
@@ -106,6 +110,74 @@ export async function previewFetch(
   const method = init?.method?.toUpperCase() ?? "GET";
   const json = (value: unknown, status = 200) =>
     Response.json(value, { status });
+  if (method === "GET" && path === "/api/english/questions/scopes") {
+    const page = Math.max(1, Number(url.searchParams.get("page") ?? 1));
+    const scopes = sets.map((item) => ({
+      id: item.id,
+      label: item.title,
+      group: exam.grade,
+      detail: `${exam.school} · ${exam.title}`,
+      count: item.questions.length,
+    }));
+    return json({
+      data: {
+        items: scopes.slice((page - 1) * 100, page * 100),
+        total: scopes.length,
+      },
+    });
+  }
+  if (method === "POST" && path === "/api/english/questions/compose") {
+    const parsed = englishExamComposeSchema.safeParse(
+      JSON.parse(String(init?.body)),
+    );
+    if (!parsed.success)
+      return json({ error: { message: "출제 범위를 확인해 주세요." } }, 400);
+    const items = parsed.data.allocations.flatMap(({ scopeId, count }) =>
+      questions.filter((q) => q.setId === scopeId).slice(0, count),
+    );
+    if (
+      items.length !==
+      parsed.data.allocations.reduce((sum, row) => sum + row.count, 0)
+    )
+      return json(
+        { error: { message: "해당 범위의 문항이 부족합니다." } },
+        404,
+      );
+    return json({ data: items });
+  }
+  if (method === "POST" && path === "/api/english/questions/candidates") {
+    const parsed = englishExamCandidatesSchema.safeParse(
+      JSON.parse(String(init?.body)),
+    );
+    if (!parsed.success)
+      return json(
+        { error: { message: "문항 검색 조건을 확인해 주세요." } },
+        400,
+      );
+    const input = parsed.data;
+    const items = questions.filter(
+      (q) =>
+        input.scopeIds.includes(q.setId) &&
+        (!input.difficulty ||
+          input.difficulty === (q.difficulty ?? "미지정")) &&
+        `${q.title} ${q.passage} ${q.question.prompt} ${q.question.options.join(" ")}`
+          .toLocaleLowerCase()
+          .includes(input.query.toLocaleLowerCase()) &&
+        !input.exclude.some(
+          (ref) =>
+            ref.setId === q.setId && ref.questionIndex === q.questionIndex,
+        ),
+    );
+    return json({
+      data: {
+        items: items.slice(
+          (input.page - 1) * input.pageSize,
+          input.page * input.pageSize,
+        ),
+        total: items.length,
+      },
+    });
+  }
   if (method === "POST" && path === "/api/english/questions/resolve") {
     const body = JSON.parse(String(init?.body)) as {
       items: { setId: string; revision: number; questionIndex: number }[];

@@ -79,6 +79,9 @@ export function serializeProblem(
   > & {
     // 은행 행은 `number[]`, 교재 스냅샷 행은 원소에 `null` 이 섞인다. 없으면 «모른다»(빈 배열).
     choiceFigureIndex?: readonly (number | null)[] | null;
+    sourceReference?:
+      | import("@/contracts/problemSourceReference.contract").ProblemSourceReference
+      | null;
   },
 ): ProblemEntity {
   // 은행 계약은 `number[]` 다. `null` 이 섞인 배열(교재 스냅샷)은 여기서 «모른다»(빈 배열)로 내고,
@@ -94,6 +97,9 @@ export function serializeProblem(
     unitId: row.unitId,
     source: row.source,
     originProblemId: row.originProblemId,
+    ...(row.sourceReference !== undefined
+      ? { sourceReference: row.sourceReference }
+      : {}),
     // 엔진이 적은 «자기 유형 정체». 화면의 출처 라벨이 **이 값으로** 엔진을 가른다
     // (`src/lib/problem/provenance.ts`) — 빠뜨리면 엔진 문항이 통째로 미분류가 된다.
     familyKey: row.familyKey,

@@ -29,6 +29,7 @@ import type { Difficulty } from "./common.contract";
 // 딸려 들어와 초기 JS 가 무거워진다(성능 수리 C-1 이 279KB 를 덜어 낸 그 자리).
 import type { FilterableFormat } from "@/lib/problem/provenance";
 import { problemCodeSchema } from "./problemCode.contract";
+import { problemSourceReferenceSchema } from "./problemSourceReference.contract";
 import {
   dataResponseSchema,
   DIFFICULTY_LADDER,
@@ -133,6 +134,7 @@ export const problemSchema = z.strictObject({
   unitId: uuidSchema,
   source: problemSourceSchema,
   originProblemId: uuidSchema.nullable(),
+  sourceReference: problemSourceReferenceSchema.nullable().optional(),
   /**
    * **이 문항이 어느 «문항류»인가** — 엔진이 적는 자기 유형 정체 (D-105).
    * `elem:초6|2-5-1 원주와 원주율 알아보기|연산` · `mid:3-1|근호를 포함한 식의 계산|06`.

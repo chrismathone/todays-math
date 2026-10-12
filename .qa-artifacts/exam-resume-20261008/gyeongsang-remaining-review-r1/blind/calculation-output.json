@@ -1,0 +1,792 @@
+{
+  "method": "fresh independent exact SymPy computations from supplied student-onlyJSON;no author/private/source inputs",
+  "inputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+  "codeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+  "calculationOnlyNotApproval": true,
+  "results": [
+    {
+      "questionNumber": 1,
+      "target": "7",
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "hypotenuseFromTable": "25",
+        "sinPFromTable": "7/25",
+        "oppositeQR": "7",
+        "adjacentPR": "24",
+        "rightTriangleExistence": [
+          "7",
+          "24",
+          "25"
+        ],
+        "definition": "sinP=QR/PQ",
+        "allFiveDisplayedChoices": [
+          "24",
+          "175",
+          "7",
+          "25",
+          "18"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": "cm"
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 2,
+      "target": "16",
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "hypotenuseFromTable": "20",
+        "cosQPRFromTable": "4/5",
+        "a": "16",
+        "b": "12",
+        "positiveCoordinateExistence": {
+          "R": [
+            0,
+            0
+          ],
+          "P": [
+            "16",
+            0
+          ],
+          "Q": [
+            0,
+            "12"
+          ]
+        },
+        "definition": "cosQPR=PR/PQ=a/20;no inverse trig needed",
+        "allFiveDisplayedChoices": [
+          "12",
+          "4",
+          "20",
+          "16",
+          "25"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": null
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 3,
+      "target": [
+        "sqrt(69)",
+        "sqrt(69)/10"
+      ],
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "hypotenuse": "13",
+        "adjacentPR": "10",
+        "oppositeQRSquared": "69",
+        "positiveQR": "sqrt(69)",
+        "tanP": "sqrt(69)/10",
+        "lengthAndDimensionlessOrderChecked": true,
+        "allFiveDisplayedChoices": [
+          [
+            "sqrt(69)",
+            "10*sqrt(69)/69"
+          ],
+          [
+            "sqrt(69)",
+            "sqrt(69)/10"
+          ],
+          [
+            "3",
+            "3/10"
+          ],
+          [
+            "sqrt(159)",
+            "sqrt(159)/10"
+          ],
+          [
+            "sqrt(69)",
+            "sqrt(69)/13"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": [
+          "cm",
+          null
+        ]
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 4,
+      "target": [
+        "383/500",
+        "8391/10000"
+      ],
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "radiusFromStudent": "10",
+        "PH_OH_ADRecorded": [
+          "64279/10000",
+          "19151/2500",
+          "8391/1000"
+        ],
+        "ratioBeforeOutputRounding": [
+          "19151/25000",
+          "8391/10000"
+        ],
+        "targetFourDecimals": [
+          "383/500",
+          "8391/10000"
+        ],
+        "method": "actual triangles OPH/ODA:cos=OH/OP,tan=AD/OA;divide each record by10 then round4",
+        "supplementalCalculatorOnly": {
+          "trueLengthN35": [
+            "6.4278760968653932632264340990726343",
+            "7.6604444311897803520239265055541667",
+            "8.3909963117728001176312729812318137"
+          ],
+          "givenLengthRoundingVerified": true
+        },
+        "notRadianStudentMethod": true,
+        "allFiveDisplayedChoices": [
+          [
+            "1607/2500",
+            "383/500"
+          ],
+          [
+            "383/500",
+            "8391/1000"
+          ],
+          [
+            "19151/2500",
+            "8391/10000"
+          ],
+          [
+            "383/500",
+            "8391/10000"
+          ],
+          [
+            "1607/2500",
+            "8391/10000"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": [
+          null,
+          null
+        ]
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 5,
+      "target": "-123/5000",
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "givenAngles": [
+          "31",
+          "32",
+          "33",
+          "34"
+        ],
+        "givenSinRecords": [
+          "103/200",
+          "5299/10000",
+          "2723/5000",
+          "699/1250"
+        ],
+        "givenCosRecords": [
+          "2143/2500",
+          "106/125",
+          "8387/10000",
+          "829/1000"
+        ],
+        "ga": "168/125",
+        "na": "6843/5000",
+        "orderedDifferenceGaMinusNa": "-123/5000",
+        "integerTenThousandths": [
+          13440,
+          13686,
+          -246
+        ],
+        "tableNotTrueUnroundedValuesIsInput": true,
+        "allFiveDisplayedChoices": [
+          "168/125",
+          "123/5000",
+          "13563/5000",
+          "-123/5000",
+          "6843/5000"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": null
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 6,
+      "target": "1",
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "givenAngles": [
+          "37",
+          "38",
+          "39",
+          "40"
+        ],
+        "givenCosRecords": [
+          "3993/5000",
+          "197/250",
+          "7771/10000",
+          "383/500"
+        ],
+        "givenTanRecords": [
+          "471/625",
+          "7813/10000",
+          "4049/5000",
+          "8391/10000"
+        ],
+        "uniqueTableX": [
+          "38"
+        ],
+        "uniqueTableY": [
+          "39"
+        ],
+        "difference": "1",
+        "domain": "x,y are numbers in the4 displayed angle columns,not arbitrary angle roots",
+        "allFiveDisplayedChoices": [
+          "-2",
+          "-1",
+          "0",
+          "1",
+          "2"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": null
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 7,
+      "target": "24 - 12*sqrt(2)",
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "hypotenuse": "12*sqrt(2)",
+        "bothLegsBy45DegreeRatios": "12",
+        "sumLegs": "24",
+        "sumMinusHypotenuse": "24 - 12*sqrt(2)",
+        "positiveDifference": true,
+        "triangleExists": true,
+        "allFiveDisplayedChoices": [
+          "12",
+          "24 - 12*sqrt(2)",
+          "12*sqrt(2)",
+          "12*sqrt(2) + 24",
+          "24"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": "cm"
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 8,
+      "target": "3*sqrt(2)/2",
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "specialAngleIndependentValues": {
+          "sin60": "sqrt(3)/2",
+          "tan45": 1,
+          "sin45": "sqrt(2)/2",
+          "tan30": "sqrt(3)/3"
+        },
+        "ga": "sqrt(3)/2",
+        "positiveCoefficientOfK": "sqrt(6)/6",
+        "uniquePositiveK": "3*sqrt(2)/2",
+        "method": "substitute four specific special-angle values;one linear equation,no ratio identity",
+        "allFiveDisplayedChoices": [
+          "sqrt(2)/2",
+          "sqrt(2)",
+          "sqrt(6)/2",
+          "3",
+          "3*sqrt(2)/2"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "correctChoiceNumber": 5,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": null
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 9,
+      "target": [
+        "60",
+        "3/4"
+      ],
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "angleP": "30",
+        "angleQ": "60",
+        "angleR": 90,
+        "finiteValuesForQ": {
+          "sin60": "sqrt(3)/2",
+          "cos60": "1/2",
+          "tan60": "sqrt(3)"
+        },
+        "directProduct": "3/4",
+        "positiveTriangleExistenceWitness": {
+          "PQ": 2,
+          "PR": "sqrt(3)",
+          "QR": 1
+        },
+        "noGeneralSinCosTanIdentity": true,
+        "allFiveDisplayedChoices": [
+          [
+            "30",
+            "1/4"
+          ],
+          [
+            "60",
+            "1/4"
+          ],
+          [
+            "30",
+            "3/4"
+          ],
+          [
+            "60",
+            "sqrt(3)/4"
+          ],
+          [
+            "60",
+            "3/4"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "correctChoiceNumber": 5,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": [
+          "degree",
+          null
+        ]
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 16,
+      "target": "12",
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "PQ": "12",
+        "angleQ": "60",
+        "area": "36*sqrt(3)",
+        "heightPH": "6*sqrt(3)",
+        "QH": "6",
+        "RH": "6",
+        "baseQR": "12",
+        "footInsideBase": true,
+        "areaRecheck": "36*sqrt(3)",
+        "coordinateExistence": {
+          "Q": [
+            0,
+            0
+          ],
+          "H": [
+            "6",
+            0
+          ],
+          "P": [
+            "6",
+            "6*sqrt(3)"
+          ],
+          "R": [
+            "12",
+            0
+          ]
+        },
+        "method": "one dropped perpendicular already given,sin60 height,elementary base-height area",
+        "allFiveDisplayedChoices": [
+          "6",
+          "12*sqrt(3)",
+          "12",
+          "18",
+          "24"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": "cm"
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 17,
+      "target": "101/10",
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "heightQH": "27/10",
+        "providedApproxRecords": [
+          "15",
+          "647/2500",
+          "9659/10000",
+          "2679/10000"
+        ],
+        "exactQuotientOfRecords": "9000/893",
+        "decimalQuotient": "10.0783874580067189249720044793",
+        "roundedFirstDecimal": "101/10",
+        "positive": true,
+        "distractorHypotenuseApprox": "1/5",
+        "method": "tan15=QH/PH,provided record .2679;no sin15 closed-form identity",
+        "allFiveDisplayedChoices": [
+          "13/5",
+          "26/5",
+          "52/5",
+          "101/10",
+          "51/10"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": "m"
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 18,
+      "target": "4",
+      "mathStatus": "independently-derived",
+      "solverStatus": "pending",
+      "evidence": {
+        "CFFrom45RightDCF": "8",
+        "EHeightEH": "-4 + 4*sqrt(3)",
+        "HC": "sqrt(3)*(-4 + 4*sqrt(3))",
+        "triangleFCEArea": "-16 + 16*sqrt(3)",
+        "givenShadedQuadrilateralArea": "8*sqrt(3) + 16",
+        "triangleABCArea": "24*sqrt(3)",
+        "BCSquared": "144",
+        "positiveBC": "12",
+        "BF": "4",
+        "areaAsFunctionOfPositiveBF": "sqrt(3)*(b + 8)**2/6 - 16*sqrt(3) + 16",
+        "allPositiveSolutions": [
+          "4"
+        ],
+        "exactCoordinateExistencePrivateOnly": {
+          "A": [
+            "0",
+            "4*sqrt(3)"
+          ],
+          "B": [
+            "0",
+            "0"
+          ],
+          "F": [
+            "4",
+            "0"
+          ],
+          "C": [
+            "12",
+            "0"
+          ],
+          "D": [
+            "12",
+            "8"
+          ],
+          "H": [
+            "4*sqrt(3)",
+            "0"
+          ],
+          "E": [
+            "4*sqrt(3)",
+            "-4 + 4*sqrt(3)"
+          ]
+        },
+        "shadedPolygonAreaRecheck": "8*sqrt(3) + 16",
+        "allTextPointOrdersSatisfied": true,
+        "EInteriorACandFD": true,
+        "HInteriorFC": true,
+        "mathUnique": true,
+        "method": "DCF45 determines CF; C angle30 and F45 yield EH using FH=EH,HC=√3EH; subtract triangleFCE from triangleABC; inverse area to positive base",
+        "allFiveDisplayedChoices": [
+          "2",
+          "3",
+          "4",
+          "6",
+          "8"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "uniqueCorrectChoice": true,
+        "choiceTargetUnits": "cm"
+      },
+      "knownHolds": [
+        {
+          "kind": "whole-curriculum-material-complexity",
+          "basis": "User explicitly retains author-material-complexity hold. Official2015 physical39/printed35 excludes complex transformed plane area/perimeter problems. This item needs overlapping triangles,auxiliary height,area subtraction and positive square-root inverse. All operators can be middle-school,which does not clear overall complexity.",
+          "reopen": "Independent final grade/material-complexity review of complete source/new purpose and actual student sequence after authorized exposure;or separately simplified/rebound new student version. No approval from correct answer/school/confidence."
+        }
+      ]
+    },
+    {
+      "questionNumber": 19,
+      "target": [
+        "3*x/5",
+        "4*x/5",
+        "10",
+        "6",
+        "8"
+      ],
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "positiveHypotenuseSymbol": "x",
+        "QRExpression": "3*x/5",
+        "PRExpressionByPythagorasAndPositiveRoot": "4*x/5",
+        "actualTrianglePythagorasIdentity": "0",
+        "areaExpression": "6*x**2/25",
+        "areaGiven": 24,
+        "uniquePositiveHypotenuse": "10",
+        "QR": "6",
+        "PR": "8",
+        "cosQRecheck": "3/5",
+        "areaRecheck": "24",
+        "all3WrittenSubpartsCovered": true,
+        "partScoreAllocation": [
+          2,
+          4,
+          2
+        ],
+        "noGeneralCosSinIdentity": true,
+        "orderedWrittenTargetComponents": [
+          "3*x/5",
+          "4*x/5",
+          "10",
+          "6",
+          "8"
+        ],
+        "orderedTargetUnits": [
+          "cm",
+          "cm",
+          "cm",
+          "cm",
+          "cm"
+        ]
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 20,
+      "target": [
+        "30",
+        "5*sqrt(3)",
+        "1/2",
+        "sqrt(3)/2",
+        "sqrt(3)/3"
+      ],
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "equalSides": "10",
+        "QH_HR": "5",
+        "SSSCongruence": "PQ=PR=10,QH=HR=5,PH common",
+        "perpendicularProof": "Corresponding angles PHQ and PHR equal and supplementary;both90",
+        "apexAngleBisected": 60,
+        "alpha": "30",
+        "positiveHeightPH": "5*sqrt(3)",
+        "sinAlphaSideRatio": "QH/PQ",
+        "cosAlphaSideRatio": "PH/PQ",
+        "tanAlphaSideRatio": "QH/PH",
+        "actualRatios": [
+          "1/2",
+          "sqrt(3)/2",
+          "sqrt(3)/3"
+        ],
+        "heightPythagorasRecheck": true,
+        "all3WrittenSubpartsAndProofAnd3SideRatiosCovered": true,
+        "partScoreAllocation": [
+          2,
+          3,
+          3
+        ],
+        "orderedWrittenTargetComponents": [
+          "30",
+          "5*sqrt(3)",
+          "1/2",
+          "sqrt(3)/2",
+          "sqrt(3)/3"
+        ],
+        "orderedTargetUnits": [
+          "degree",
+          "cm",
+          null,
+          null,
+          null
+        ]
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 21,
+      "target": [
+        "9",
+        "9*sqrt(3)",
+        "15",
+        "24"
+      ],
+      "mathStatus": "independently-derived",
+      "solverStatus": "solved",
+      "evidence": {
+        "OP": "18",
+        "PQ": "6*sqrt(13)",
+        "OHByCos60": "9",
+        "PHBySin60": "9*sqrt(3)",
+        "HQSquaredByActualPythagoras": "225",
+        "positiveHQ": "15",
+        "OQ": "24",
+        "pointOrder": "O-H-Q;sum OH+HQ forced by supplied foot condition",
+        "alternateDifferenceExcluded": "-6",
+        "coordinatesPrivateExistenceOnly": {
+          "O": [
+            0,
+            0
+          ],
+          "H": [
+            "9",
+            0
+          ],
+          "P": [
+            "9",
+            "9*sqrt(3)"
+          ],
+          "Q": [
+            "24",
+            0
+          ]
+        },
+        "all3WrittenSubpartsCovered": true,
+        "partScoreAllocation": [
+          3,
+          3,
+          2
+        ],
+        "noCosineLawOrGeneralTrigIdentity": true,
+        "orderedWrittenTargetComponents": [
+          "9",
+          "9*sqrt(3)",
+          "15",
+          "24"
+        ],
+        "orderedTargetUnits": [
+          "m",
+          "m",
+          "m",
+          "m"
+        ]
+      },
+      "knownHolds": []
+    }
+  ]
+}

@@ -1,0 +1,211 @@
+{
+  "questionNumber": 4,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q04",
+  "studentDigest": "7573787736f2193f4671a6f5d5ba596c08813d348e6070457f2e9073ecd1f167",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "④",
+  "solution": "OP=OA=10이다. 직각삼각형 OPH에서 cos40°=OH/OP이므로 표의 기록값으로 계산하면7.6604÷10=0.76604이고 소수 넷째 자리까지 반올림하면0.7660이다. 직각삼각형 OAD에서 tan40°=AD/OA이므로8.3910÷10=0.83910으로 기록값은0.8391이다. 두 기록을 차례로 짝지으면④이다. PH는 cos의 이웃변이 아니며 반지름10으로 나누어야 한다.",
+  "evidence": {
+    "studentInputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+    "givenStudentDigest": "7573787736f2193f4671a6f5d5ba596c08813d348e6070457f2e9073ecd1f167",
+    "blindManifestRawSha256": "721033947e4c133ae39d5d899c58520d5fc9c385aeadbcc74cc52fd746bb4b92",
+    "opaquePackageDigestProvided": "bda294bd79bfa03f3d3975c0178101f0a193582c78c28bd9026079301ea7f61a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputRawSha256": "f01723e56a2f0a67f540fe3a8c23ba69b83d6bed6e309d0f0157e13b626bfe64",
+    "exactCalculation": {
+      "radiusFromStudent": "10",
+      "PH_OH_ADRecorded": [
+        "64279/10000",
+        "19151/2500",
+        "8391/1000"
+      ],
+      "ratioBeforeOutputRounding": [
+        "19151/25000",
+        "8391/10000"
+      ],
+      "targetFourDecimals": [
+        "383/500",
+        "8391/10000"
+      ],
+      "method": "actual triangles OPH/ODA:cos=OH/OP,tan=AD/OA;divide each record by10 then round4",
+      "supplementalCalculatorOnly": {
+        "trueLengthN35": [
+          "6.4278760968653932632264340990726343",
+          "7.6604444311897803520239265055541667",
+          "8.3909963117728001176312729812318137"
+        ],
+        "givenLengthRoundingVerified": true
+      },
+      "notRadianStudentMethod": true,
+      "allFiveDisplayedChoices": [
+        [
+          "1607/2500",
+          "383/500"
+        ],
+        [
+          "383/500",
+          "8391/1000"
+        ],
+        [
+          "19151/2500",
+          "8391/10000"
+        ],
+        [
+          "383/500",
+          "8391/10000"
+        ],
+        [
+          "1607/2500",
+          "8391/10000"
+        ]
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "correctChoiceNumber": 4,
+      "semanticDuplicateChoices": [],
+      "uniqueCorrectChoice": true,
+      "choiceTargetUnits": [
+        null,
+        null
+      ]
+    },
+    "knownHolds": [],
+    "actualStudentPreview": {
+      "questionNumber": 4,
+      "studentDigest": "7573787736f2193f4671a6f5d5ba596c08813d348e6070457f2e9073ecd1f167",
+      "png": "inspection/q04.png",
+      "pngSha256": "634c92716bf30c461dbfb28a805c2d11af0ba95f9b0f3cebc4770a7a223edbe8",
+      "columnWidthMm": 70,
+      "overflow": [],
+      "figureCount": 1
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q04-1.svg",
+        "sha256": "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureObservations": "O는 중심,P는 호 위,O-P-D는 일직선,H는 수선의 발. A 직각,40°와 세 길이 표가 명확하다.",
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 학생 입력의 전체 요청을 본 독립 해법으로2015 조항에 대응한다. 원학교·저자·분류로 승인하지 않는다. 두 실제 직각삼각형의 변 비·주어진 근사 기록·소수 나눗셈과 반올림",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제5보기를 전부 독립 계산/동치/참거짓 검사;정답 하나이고 동치 중복 없음.",
+        "independentChoiceEvidence": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "duplicates": []
+      },
+      "figuresAndTables": {
+        "status": "in-scope-independent-proposal",
+        "basis": "O는 중심,P는 호 위,O-P-D는 일직선,H는 수선의 발. A 직각,40°와 세 길이 표가 명확하다.",
+        "actualStudentPreview": {
+          "questionNumber": 4,
+          "studentDigest": "7573787736f2193f4671a6f5d5ba596c08813d348e6070457f2e9073ecd1f167",
+          "png": "inspection/q04.png",
+          "pngSha256": "634c92716bf30c461dbfb28a805c2d11af0ba95f9b0f3cebc4770a7a223edbe8",
+          "columnWidthMm": 70,
+          "overflow": [],
+          "figureCount": 1
+        },
+        "personallyViewed": true,
+        "suppliedFigureHashes": [
+          "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a"
+        ]
+      },
+      "notation": {
+        "status": "in-scope-independent-proposal",
+        "basis": "통상 선분·각·도·좌표·근호·비·삼각비·빈칸 기록. 벡터·라디안·고교 항등식/삼각형의 법칙 표기 없음."
+      },
+      "answer": {
+        "status": "independently-derived-math-only",
+        "basis": "제공 학생 입력에서만 계산했다. q18은 수학 답이 명확해도 복잡성 gate가 pending이다.",
+        "target": [
+          "383/500",
+          "8391/10000"
+        ]
+      },
+      "studentSolution": {
+        "status": "in-scope-independent-proposal",
+        "basis": "두 실제 직각삼각형의 변 비·주어진 근사 기록·소수 나눗셈과 반올림 완전한 새 독립 학생 해법은 solution 필드에 있다. 저자 답/해법은 읽지 않았다."
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-proposal",
+        "basis": "두 실제 직각삼각형의 변 비·주어진 근사 기록·소수 나눗셈과 반올림",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceRawSha256": "fdb33efde81204b068456eedd22954614fe02e5e752b9f53e94f33604d45f9cc",
+    "freshNewAuthorAnswerExposure": false,
+    "priorOriginalSourceConceptKnowledgeSeparatelyDisclosed": "input-audit.json",
+    "authorAnswerAndNewSolutionReview": "not-exposed;pending Root authorization after raw commit",
+    "mathematicalTargetUnique": true,
+    "calculationOnlyNotFinalGradeApproval": true,
+    "rightsAndNativeApproval": false
+  },
+  "curriculumGate": {
+    "grade": "중3",
+    "edition": "2015",
+    "wholeStudentScope": "in-scope-independent-proposal",
+    "requiredUpperGradeMethodDetected": false,
+    "materialComplexityHold": false,
+    "finalGradeApproval": false,
+    "finalAuthorReviewPending": true
+  },
+  "gates": {
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "loadable": false,
+    "directUseAllowed": false,
+    "modelCalls": 0,
+    "dbAccess": 0
+  }
+}

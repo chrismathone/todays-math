@@ -44,6 +44,7 @@ function Controls() {
     <>
       <DevAiStatusPanel collapsed={false} onExpand={() => {}} />
       <button
+        disabled={!ai.status?.enabled}
         onClick={() =>
           void ai.run({ action: "solution", grade: "중1", content: "1+1" })
         }
@@ -66,6 +67,49 @@ afterEach(() => {
   window.history.replaceState(null, "", "/");
 });
 describe("Studio transport selection", () => {
+  it("keeps production generation on the automatic provider without a status panel", async () => {
+    vi.stubEnv("NODE_ENV", "production");
+    window.history.replaceState(null, "", "/studio");
+    localStorage.setItem("today-math-dev-ai-provider-model-api", "gemini");
+    const fetcher = vi.fn<typeof fetch>(async (_url, init) =>
+      Response.json(
+        init?.method === "POST"
+          ? {
+              provider: "auto",
+              action: "solution",
+              result: {
+                answer: "2",
+                solution: "1+1=2",
+                content: "",
+                warnings: [],
+              },
+            }
+          : api,
+      ),
+    );
+    vi.stubGlobal("fetch", fetcher);
+    render(
+      <DevAiProvider>
+        <Controls />
+      </DevAiProvider>,
+    );
+    await waitFor(() => expect(screen.getByText("해설 실행")).toBeEnabled());
+    expect(screen.queryByLabelText("AI 상태판")).toBeNull();
+    fireEvent.click(screen.getByText("해설 실행"));
+    await waitFor(() =>
+      expect(
+        fetcher.mock.calls.some(([, init]) => init?.method === "POST"),
+      ).toBe(true),
+    );
+    const post = fetcher.mock.calls.find(
+      ([, init]) => init?.method === "POST",
+    )!;
+    expect(post[0]).toBe("/api/studio/ai");
+    expect(JSON.parse(String(post[1]?.body))).toMatchObject({
+      provider: "auto",
+      action: "solution",
+    });
+  });
   it("offers explicit API mode in dev and posts to the selected transport with its own provider", async () => {
     const fetcher = vi
       .fn()

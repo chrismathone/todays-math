@@ -1,0 +1,92 @@
+Textbook complete-template geometry / finite counting expansion — 2026-10-11
+
+Result
+  39 additional original problems produce two distinct siblings each: 78 candidates.
+  No overlap with the initial 679-original / 1,358-candidate tranche on main cce35b440.
+  Snapshot denominator: all 12,281 original rows, including held and unsupported rows.
+  Geometry-only unresolved: 12,242; initial base plus this module unresolved: 11,563.
+  This is a supported-recipe expansion, not complete 12,281-original coverage.
+  No DB writes, schema changes, deployment, push, paid API, UI or original edits.
+
+Integration
+  src/lib/import/schoolTextbook/variantsGeometry.ts
+  generateTextbookGeometryPair(source: TextbookVariantSource): TextbookGeometryResult
+  validateTextbookGeometryPair(source: TextbookVariantSource,
+    candidates: readonly TextbookGeometryCandidate[]): { valid: boolean; issues: string[] }
+  TextbookGeometryCandidate = Omit<TextbookVariantCandidate, "recipe"> &
+    { recipe: TextbookGeometryRecipe }.
+  Result follows the existing status: matched/unresolved discriminant and source digest.
+  Shared digest function and TEXTBOOK_VARIANT_VERSION are imported from variants.ts.
+  Slot external IDs remain tb-retry-v1:<original UUID>:1 and :2.
+  Exact original parent, family, source material, source file, source external ID and unit
+  are carried forward; original question type and complete subquestion count/order remain.
+  Root can call this after the base generator returns unresolved, then use this validator
+  for geometry/counting recipes. The closed base recipe union was not edited.
+
+Matched census
+  공통수학2: 20 originals / 40 candidates
+  기하: 4 / 8
+  공통수학1: 6 / 12
+  확률과 통계: 9 / 18
+  대수, 미적분1, 중1, 중2: no newly supported matches in this snapshot.
+  Exact-point-distance: 6 originals (1D, 2D and 3D coordinate formulas)
+  Exact-point-midpoint: 3
+  Exact-point-centroid: 2 (spatial centroid and missing vertex from centroid/midpoint)
+  Exact-section-point: 4 (shared/per-item endpoints and preserved positive ratios)
+  Exact-point-line-distance: 5 (affine, horizontal and vertical lines; origin supported)
+  Exact-parallel-line-distance: 1 (proportional coefficients normalized)
+  Exact-coordinate-reflection: 2
+  Exact-coordinate-translation: 1
+  Exact-finite-count: 15 (notation, independent choices, factorials, unrestricted gifts)
+
+Correctness boundary
+  Full anchored templates consume all original conditions; no unit-based fallback exists.
+  Source answers are recomputed from the original question and compared exactly before
+  generation. Original solution text is not used as the answer oracle or copied.
+  Coordinate homothety is applied only to parsed coordinates and affine constants.
+  Section ratios, axis/reflection targets and translation amounts stay as authored.
+  Finite population changes are specific to a completely matched counting template;
+  explicit recipient lists must agree with their written count.
+  MCQ support here is finite counting with five unique numeric choices, preserving their
+  offsets from the recalculated answer. Geometry MCQ with radicals is not claimed.
+  Every generated question is reparsed to compute its own answer and complete solution.
+  Validator regenerates both siblings against the current digest and compares all fields.
+  Held originals and all original figures/rasters remain unresolved; no SVG was invented.
+  Subquestion 2 of source 23c1d084-2331-4a47-a611-bd09cf75028a has collinear vertices
+  (4,2), (-1,7), (3,3), although its premise calls them a triangle. Its whole source is
+  excluded as degenerate-triangle; no premise, original or old tranche was changed.
+
+Verification
+  New test file: 30 math, adversarial and provenance tests passed.
+  Together with unchanged base and pair-plan suites: 68 tests / 3 files passed.
+  Scoped TypeScript compilation and ESLint passed.
+  Independent SymPy 1.14.0: own Python parser and geometry/integer calculations verified
+  all 39 source originals and 78 candidates, 459 scalar/coordinate values, zero failures.
+  It does not import the TypeScript generator or trust candidate computedAnswers.
+  KaTeX syntax census: all 78 candidates, 1,102 math blocks across content/answer/solution,
+  zero failures. This is not a final printed PDF review or a human publication approval.
+
+Actual source and evidence
+  Input: C:/Creative/testautocreator/.qa-artifacts/textbook-followup-20261011/source-snapshot.json
+  Input SHA256: 0328ed69db13e4a5c0d3fb258ebf520e82e0a5c18983b287654fd83660cbd0f4
+  Full candidates, source/candidate math evidence and per-original unresolved IDs are at:
+  C:/Creative/testautocreator/.qa-artifacts/textbook-variants-geometry-20261011/
+    candidates.json, math-evidence.json, unresolved.json, summary.json,
+    independent-math.json, render-math.json.
+  Small durable summary/check receipts and exact output hashes are copied beside this file.
+
+Reproduce without database access
+  node node_modules/tsx/dist/cli.mjs scripts/import/textbook/variants-geometry-20261011/coverage.ts <snapshot.json> <out>
+  python scripts/import/textbook/variants-geometry-20261011/independent_math.py <out>/math-evidence.json <out>/independent-math.json
+  node node_modules/tsx/dist/cli.mjs scripts/import/textbook/variants-geometry-20261011/render_math.ts <out>/candidates.json <out>/render-math.json
+  node node_modules/vitest/vitest.mjs run src/__tests__/unit/schoolTextbookVariantsGeometry.test.ts src/__tests__/unit/schoolTextbookVariants.test.ts src/__tests__/unit/schoolTextbookRetryPairPlan.test.ts
+  node node_modules/typescript/bin/tsc -p docs/planning/tracks/reports/textbook-variants-geometry-20261011/tsconfig.geometry.json --noEmit
+
+Remaining
+  Root owns composition and pending/held staging. This worker's candidates are offline only.
+  Geometry module excludes 12,242 rows; every row has a reason and source digest in the full
+  unresolved artifact. Source-held: 475, figure-dependent: 3,573, degenerate triangle: 1;
+  the remainder needs another complete-template implementation or source recovery.
+  This census does not include the separately acquired recovered20 outside its snapshot.
+  No claim is made about unsupported conics, vector conditions, circle intersections,
+  geometric MCQs, constrained counting or diagrams. They require source-specific work.

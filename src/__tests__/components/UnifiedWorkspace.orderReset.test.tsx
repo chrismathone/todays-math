@@ -24,7 +24,9 @@ vi.mock("@/components/unified/useDevAi", () => ({
 vi.mock("@/components/unified/DevAiStatusPanel", () => ({
   default: () => null,
 }));
-vi.mock("@/components/unified/BankView", () => ({ default: () => null }));
+vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
+  default: () => null,
+}));
 vi.mock("@/components/unified/StudioView", () => ({ default: () => null }));
 vi.mock("@/components/unified/print/WorksheetPrint", () => ({
   WorksheetPrint: () => <p>시험지 미리보기</p>,

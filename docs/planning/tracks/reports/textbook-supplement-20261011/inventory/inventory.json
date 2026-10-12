@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "basis": "retained_reports_2026-10-08",
+  "currentDatabaseCensus": false,
+  "reports": [
+    {
+      "path": "docs\\planning\\tracks\\reports\\textbook-import-20261007\\unmapped.md",
+      "sha256": "a7c27bd58541668abc68120077cdee4af279dd193245fdeeabaf29d79a89b631"
+    },
+    {
+      "path": "docs\\planning\\tracks\\reports\\textbook-import-20261007\\not-loaded.md",
+      "sha256": "5c25438496bea4da912e7d9ab917dda1911192de9c65cd2989a4dd701d34abd8"
+    }
+  ],
+  "observations": {
+    "unmapped": 6528,
+    "reviewSkipped": 997
+  },
+  "byReason": {
+    "unmapped": {
+      "정답 칸에 번호 없음": 1792,
+      "풀이만 있음": 2537,
+      "정답이 그림": 9,
+      "정답 없음": 1675,
+      "정답 짝 의심": 494,
+      "보기 번호 없음": 21
+    },
+    "reviewSkipped": {
+      "실을 수 없는 문항": 421,
+      "검토자가 풀지 못했다": 26,
+      "둘째 검토: 정답지가 이 문항의 답이 아니다": 481,
+      "둘째 검토: 가를 수 없다": 20,
+      "차시가 없다": 48,
+      "본문: 죽은 역슬래시": 1
+    }
+  },
+  "unresolvedExternalIds": 7525,
+  "omittedSectionObservations": 5056,
+  "reportedAggregatesWithoutIdentities": {
+    "deferred": 677,
+    "renderFailed": 90,
+    "textbookBodyChunks": 2605,
+    "deferredByReason": {
+      "그림": 56,
+      "한글 도형": 246,
+      "자료 표": 12,
+      "그림을 가리키는 말": 98,
+      "붙은 문항": 132,
+      "본문이 너무 길다": 2,
+      "답이 «풀이 참조»": 131
+    }
+  },
+  "excludedAlreadyLoadedHeld": {
+    "reported": 475,
+    "laterRecoveryReport": "docs/planning/tracks/reports/textbook-recovery-applied-20261009/result.txt"
+  },
+  "blockers": [
+    {
+      "code": "EXTRACTION_BASELINE_MISSING",
+      "required": [
+        "extract6/problems.jsonl",
+        "extract6/files.jsonl",
+        "manifest*.jsonl",
+        "triage.json"
+      ],
+      "action": "Restore the old import workspace, or acquire originals with verified legacy paths."
+    },
+    {
+      "code": "DEFERRED_AND_RENDER_FAILURE_IDS_MISSING",
+      "reportedCount": 767,
+      "required": [
+        "figures8/meta.jsonl",
+        "prepared*/prepared.jsonl",
+        "load/plan.json"
+      ],
+      "action": "Reconstruct row-level reasons before claiming these aggregates are recoverable identities."
+    },
+    {
+      "code": "RETAINED_SUMMARY_DOES_NOT_RECONCILE",
+      "reportedLoaded": 12281,
+      "subtraction": "13771 - 677 - 90 - 997",
+      "subtractionResult": 12007,
+      "difference": 274,
+      "action": "Use a single extraction/prepared/plan snapshot to resolve scope or overlap."
+    }
+  ],
+  "loadReadyCandidates": 0
+}

@@ -7,13 +7,17 @@
 
   python convert_batch.py <일꾼 번호> <일꾼 수> <출력 폴더> <triage.json>
 """
-import hashlib
 import json
 import pathlib
 import re
 import shutil
 import sys
 import time
+
+from source_input import conversion_input
+
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 REPO = pathlib.Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(REPO / "scripts" / "qa"))
@@ -40,8 +44,11 @@ for path in out_root.glob("manifest*.jsonl"):
         if item.get("ok"):
             done.add(item["path"])
 
-targets = [row["path"] for row in rows if row["kind"] in KINDS]
-targets = [p for i, p in enumerate(sorted(targets)) if i % workers == worker and p not in done]
+targets = [row for row in rows if row["kind"] in KINDS]
+targets = [row for i, row in enumerate(sorted(targets, key=lambda row: row["path"])) if i % workers == worker and row["path"] not in done]
+# Validate identity before creating any COM object. localPath changes where bytes
+# are read; it must never change the legacy path hash or manifest path.
+targets = [conversion_input(row) for row in targets]
 print(f"일꾼 {worker}/{workers} — 할 것 {len(targets)}", flush=True)
 
 if not quiet.isolate_desktop(f"tbconv{worker}"):
@@ -50,10 +57,6 @@ if not quiet.isolate_desktop(f"tbconv{worker}"):
 from core import hwp_com  # noqa: E402
 hwp_com.ensure_com_initialized()
 import win32com.client  # noqa: E402
-
-
-def key_of(path: str) -> str:
-    return hashlib.sha1(path.encode("utf-8")).hexdigest()[:16]
 
 
 def start():
@@ -81,13 +84,11 @@ def stop(app):
 app = start()
 used = 0
 with manifest.open("a", encoding="utf-8") as log:
-    for index, src in enumerate(targets):
-        source = pathlib.Path(src)
-        key = key_of(src)
+    for index, (src, source, key) in enumerate(targets):
         local = work_dir / f"{key}{source.suffix.lower()}"
         out = hwpx_dir / f"{key}.hwpx"
         started = time.time()
-        entry = {"path": src, "key": key}
+        entry = {"path": src, "key": key, "localPath": str(source.resolve())}
         try:
             with source.open("rb") as head:
                 is_zip = head.read(2) == b"PK"

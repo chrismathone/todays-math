@@ -2,13 +2,15 @@
   "graph-1": {
     "version": "graph-1",
     "coordinates": "Mathematical x right, y UP. Explicit xRange/yRange, each [min,max]. No eval/code.",
+    "nativeSampling": "Native curves use deterministic screen-space subdivision, probing quarter/mid/three-quarter chord errors at 0.15 pixels. Maximum 400 segments per curve and 48 segments per band boundary; exceeding the sampling budget or numeric resolution fails instead of dropping samples or drawing a coarse substitute. These are render approximations of analytic equations, not numerical integration or proof of answers.",
     "fields": {
       "xRange": "required [min,max]",
       "yRange": "required [min,max]",
       "width": "optional 240..640 default 520",
       "height": "optional 200..640 default 460",
       "axes": "optional boolean default true; arrows + x,y labels only, NO automatic ticks or O label",
-      "curves": "list of {coefficients:[a,b,c,...],domain:[xmin,xmax]} for polynomial a*x^n+b*x^(n-1)+...; OR {type:\"inverse\",k:number,domain:[xmin,xmax]}; optional dashed:boolean",
+      "curves": "list of {coefficients:[a,b,c,...],domain:[xmin,xmax]} for polynomial a*x^n+b*x^(n-1)+...; OR {type:\"inverse\",k:number,domain:[xmin,xmax]}; OR {type:\"exponential\"|\"logarithm\",base:number,domain:[xmin,xmax],amplitude?:1,xScale?:1,xShift?:0,yShift?:0}. Exponential: y=amplitude*base^(xScale*(x-xShift))+yShift. Logarithm: y=amplitude*log_base(xScale*(x-xShift))+yShift. Base must be positive and not 1; amplitude and xScale nonzero; every number finite with absolute value <=10000. Native exp/log domain is required, strictly increasing, wholly inside xRange, wholly valid (log argument >0), and its entire curve must fit yRange; choose visible endpoints explicitly, never cross an asymptote. No automatic clipping, expressions, eval, sampled point substitute or silent omission. Optional dashed:boolean for all curve types.",
+      "horizontalBands": "list of {leftCurve:integer,rightCurve:integer,yRange:[ymin,ymax],fill?:\"#eeeeee\"}. Indexes reference two distinct exponential entries in curves, zero-based, in left-to-right order at every height. The engine analytically inverts their equations and fills the exact curve-bounded horizontal band, with horizontal end edges; no rectangle/polygon approximation supplied by the caller. Both heights must be inside graph yRange and both curve domains must cover the full band. Invalid, crossing, offscreen, degenerate or unsupported boundaries fail. Maximum 100 bands; deterministic bounded sampling is rendering only.",
       "segments": "list of {from:[x,y],to:[x,y],dashed?:boolean,arrow?:boolean}; finite visible segments only",
       "polygons": "list of {points:[[x,y],...],fill?:\"#eeeeee\",dashed?:boolean}; optional shading",
       "circles": "list of {center:[x,y],radius:number,dashed?:boolean}; a geometric circle in DATA units (stretches to an ellipse when x/y scales differ) — never use it for printed dots; use points",
@@ -96,7 +98,94 @@
           "dy": -8
         }
       ]
-    }
+    },
+    "nativeExamples": [
+      {
+        "version": "graph-1",
+        "xRange": [
+          -3,
+          3
+        ],
+        "yRange": [
+          -1,
+          17
+        ],
+        "curves": [
+          {
+            "type": "exponential",
+            "base": 0.25,
+            "domain": [
+              -2,
+              2
+            ]
+          }
+        ]
+      },
+      {
+        "version": "graph-1",
+        "xRange": [
+          -3,
+          5
+        ],
+        "yRange": [
+          -4,
+          7
+        ],
+        "curves": [
+          {
+            "type": "logarithm",
+            "base": 2,
+            "xScale": 8,
+            "xShift": -2,
+            "domain": [
+              -1.99,
+              4
+            ]
+          }
+        ]
+      },
+      {
+        "version": "graph-1",
+        "xRange": [
+          -4.5,
+          4
+        ],
+        "yRange": [
+          -1,
+          11
+        ],
+        "curves": [
+          {
+            "type": "exponential",
+            "base": 2,
+            "xShift": -3,
+            "domain": [
+              -4,
+              0.3
+            ]
+          },
+          {
+            "type": "exponential",
+            "base": 2,
+            "domain": [
+              -1,
+              3.3
+            ]
+          }
+        ],
+        "horizontalBands": [
+          {
+            "leftCurve": 0,
+            "rightCurve": 1,
+            "yRange": [
+              1,
+              8
+            ],
+            "fill": "#eeeeee"
+          }
+        ]
+      }
+    ]
   },
   "curveGraph_contract": "curves quadratic uses {type:\"quadratic\",a,p,q,label?} for y=a(x-p)^2+q, NEVER b/c; inverse uses {type:\"inverse\",k,label?}. lines uses slope/yIntercept/label and cannot be horizontal; marks is [[x,y],...] integers on graph. For annotated curves, horizontal segments, inscribed shapes or custom labels use graph-1 instead.",
   "v2": "Compile a strict declarative v2 FigureSpec mapping.\n\nSupported construction objects are deliberately small and deterministic::\n\n    {\n      \"version\": 2,\n      \"theme\": \"exam-thin\",\n      \"points\": {\n        \"O\": {\"type\": \"raw\", \"x\": 94, \"y\": 78},\n        \"A\": {\"type\": \"on_circle\", \"circle\": \"omega\", \"angle\": 130},\n        \"P\": {\"type\": \"intersection\", \"segments\": [\"AC\", \"BD\"]}\n      },\n      \"circles\": {\"omega\": {\"center\": \"O\", \"radius\": 68}},\n      \"segments\": {\"AC\": [\"A\", \"C\"], \"BD\": [\"B\", \"D\"]},\n      \"angles\": {\"x\": {\"vertex\": \"P\", \"points\": [\"D\", \"C\"],\n                          \"label\": \"x°\"}},\n\nMark grammar (합동·평행·직각 표기)::\n\n    \"segments\": {\n      \"AB\": [\"A\", \"B\"],                              // 기존 배열형 그대로\n      \"AC\": {\"points\": [\"A\", \"C\"], \"ticks\": 2},      // 같음 표시 1~3\n      \"l1\": {\"points\": [\"P\", \"Q\"], \"parallel\": 1}    // 평행 » 1~2 (p1→p2 방향)\n    },\n    \"angles\": {\n      \"a\": {\"vertex\": \"C\", \"points\": [\"A\", \"D\"], \"arcs\": 2},   // 이중 호\n      \"r\": {\"vertex\": \"T\", \"points\": [\"O\", \"P\"], \"right\": true} // 직각기호\n    }\n\n``right: true`` replaces the arc with the small square (호와 함께 못 쓴다)\nand doubles as a check — the rays must actually be perpendicular.\n      \"dimensions\": {\"AC_len\": {\"points\": [\"A\", \"C\"],\n                                   \"label\": \"12 cm\", \"side\": \"auto\"}},\n      \"labels\": {\"A\": \"A\", \"B\": \"B\"}\n    }\n\nShaded-region figures add ``arcs`` (stroked arc pieces), ``regions``\n(light fills bounded by a closed seg/arc chain), and construction circles\nwith ``draw: false``::\n\n    {\n      \"circles\": {\"c\": {\"center\": \"O\", \"radius\": 60, \"draw\": false}},\n      \"arcs\": {\"arcAB\": {\"circle\": \"c\", \"from\": \"A\", \"to\": \"B\",\n                         \"dir\": \"ccw\"}},\n      \"regions\": {\"shade\": {\"boundary\": [\n          {\"seg\": [\"O\", \"A\"]},\n          {\"arc\": {\"circle\": \"c\", \"from\": \"A\", \"to\": \"B\", \"dir\": \"ccw\"}},\n          {\"seg\": [\"B\", \"O\"]}],\n        \"fill\": \"#f2d5c8\"}}\n    }\n\nRegion boundaries must connect end-to-start by point name and close; a\nbroken chain raises.  Fills must be light (:data:`REGION_MIN_LUMINANCE`).\nUnknown fields and references are errors; no placeholder geometry is made.",
@@ -661,7 +750,9 @@
         "h",
         "w"
       ],
-      "optional": [],
+      "optional": [
+        "showDimensions"
+      ],
       "help": ""
     },
     "prism": {

@@ -279,6 +279,17 @@ def roman_escapes(script: str) -> str:
     return re.sub(r"\\([A-Za-z]+)", lambda m: "{rm " + m.group(1) + "}", script)
 
 
+def roman_unit_spacing(script: str) -> str:
+    """Keep source roman-unit scope when rm is followed by HWP spacing controls.
+
+    Source 8f346039a6d28ad3 q10 uses `x rm`m` and `p rm``m/s^2`.
+    The converter otherwise loses the first roman scope and prints italic xm.
+    Move the existing spacing outside an explicit roman unit group.
+    """
+    return re.sub(r"(?<![A-Za-z])rm([`~]+)(mm|cm|km|m|kg|g|s)(/s)?(?![A-Za-z])",
+                  lambda m: m[1] + "{rm " + m[2] + "}" + ("/{rm s}" if m[3] else ""), script)
+
+
 #: 앞뒤 글자에 붙어 버린 나눗셈 · 곱셈 낱말 — `(4a-6)div2` · `3times4`. 변환 정본은 띄어 쓴 낱말만 안다
 _GLUED_OPERATOR = re.compile(r"(?<=[0-9)\]}])(div|DIV|times|TIMES)(?=[0-9(\[{\\-])")
 
@@ -307,7 +318,17 @@ def pre_convert(text: str) -> str:
     🔴 차례가 있다 — 몫을 묶는 셋(첨자 · 제곱근 · 분수)이 **먼저**, 붙은 낱말 띄우기가 **나중**이다.
     몫은 원문의 띄어쓰기로 정해진다: `1 over 3times5` 의 분모는 `3times5` 한 덩이다. 먼저 띄우면 분모가 `3` 이 된다
     (셋째 묶음의 검토자가 «분모 3×5 가 1/3 × 5 로 뽑혔다»로 짚었다 — 띄우기를 앞에 둔 지 한 시간 만이다)."""
-    return re.sub(r"\$([^$]*)\$", lambda m: "$" + unglue_operators(brace_over(brace_roots(brace_scripts(roman_escapes(unglue_geometry(m.group(1))))))) + "$", text)
+    return re.sub(r"\$([^$]*)\$", lambda m: "$" + unglue_operators(brace_over(brace_roots(brace_scripts(roman_escapes(roman_unit_spacing(unglue_geometry(m.group(1)))))))) + "$", text)
+
+
+def separate_inline_math(text: str) -> str:
+    """Separate adjacent inline spans without changing either span's contents."""
+    spans = list(re.finditer(r"\$[^$]*\$", text))
+    boundaries = [before.end() for before, after in zip(spans, spans[1:])
+                  if before.end() == after.start() and before.group() != "$$" and after.group() != "$$"]
+    for boundary in reversed(boundaries):
+        text = text[:boundary] + " " + text[boundary:]
+    return text
 
 
 #: 줄 머리의 사용자 영역 글자 — 기호 글꼴의 «답» 표시 · 글머리표(뜻을 가진 글자가 아니다). 줄 가운데 것은 남긴다(뒤에서 걸린다)
@@ -331,7 +352,7 @@ def post_convert(text: str) -> str:
         body = re.sub(r"\\mathit\{([^{}]*)\}", r"\1", body)
         return f"${body}$"
 
-    return re.sub(r"\$([^$]*)\$", fix, text)
+    return separate_inline_math(re.sub(r"\$([^$]*)\$", fix, text))
 
 
 def run(command: list[str], log: Path, *, allow_failure: bool = False) -> None:

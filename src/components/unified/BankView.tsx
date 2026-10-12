@@ -44,6 +44,8 @@ import {
 import { provenanceBadges } from "@/lib/problem/provenance";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import { ProblemTransformPanel } from "@/components/problem/ProblemTransformPanelLazy";
+import { ProblemSourceReference } from "@/components/problem/ProblemSourceReference";
+import { sourceReferenceLabel } from "@/lib/problem/sourceReferenceLabel";
 import UnifiedProblem from "./UnifiedProblem";
 import { fractionViewFor } from "./fractionDisplay";
 import type {
@@ -261,7 +263,9 @@ function ProblemRow({
     <article
       className={`${styles.problemRow} ${selected ? styles.selectedRow : ""}`}
     >
-      <div className={styles.cardHeader}>
+      <div
+        className={`${styles.cardHeader} ${problem.sourceReference ? styles.cardHeaderWithReference : ""}`}
+      >
         <label className={styles.rowSelect}>
           <input
             type="checkbox"
@@ -329,6 +333,7 @@ function ProblemRow({
             </span>
           ) : null}
         </div>
+        <ProblemSourceReference problem={problem} />
       </div>
       <div className={styles.rowMain}>
         {problem.section ? (
@@ -441,6 +446,7 @@ function DetailModal({
    * 목록에 안 나타난다. 그건 거짓이 아니라 사실이고, 그래서 **말로 알린다.**
    */
   const [transformNotice, setTransformNotice] = useState<string | null>(null);
+  const referenceLabel = sourceReferenceLabel(problem);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -556,6 +562,12 @@ function DetailModal({
                   ] || "미정"}
                 </dd>
               </div>
+              {referenceLabel ? (
+                <div>
+                  <dt>원문 출처</dt>
+                  <dd className={styles.sourceReference}>{referenceLabel}</dd>
+                </div>
+              ) : null}
             </dl>
             <div className={styles.answer}>
               <span className={styles.answerLabel}>정답</span>

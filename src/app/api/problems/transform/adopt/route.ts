@@ -38,6 +38,7 @@ import { db } from "@/lib/db";
 import { requireAccessibleProblem } from "@/lib/ownership";
 import { pickFamilyMain } from "@/lib/problem/familyMainProblem";
 import { serializeProblem } from "@/lib/serializers";
+import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -121,6 +122,12 @@ async function handlePost(request: NextRequest) {
     parsed.data.difficultyShift,
   );
 
+  // Resolve before INSERT so a failed metadata read cannot make a saved adoption
+  // look unsuccessful and encourage a duplicate retry.
+  const [provenance] = await withProblemSourceReferences([
+    { originProblemId: origin.id },
+  ]);
+
   // 생성 쪽과 같은 이유로 `createManyAndReturn`(=INSERT ... RETURNING) 한 문장이다.
   // 문장이 하나뿐이므로 트랜잭션 래퍼 없이도 전부 아니면 전무다 — 채택 묶음이 반쯤
   // 저장되는 일이 없다. 반환 순서는 입력 순서라 응답 순서도 화면이 보낸 그대로다.
@@ -165,14 +172,23 @@ async function handlePost(request: NextRequest) {
       content: item.content,
       answer: item.answer,
       solution: item.solution,
+      solutionSource: item.solution?.trim() ? "ai" : "none",
       figureSvg: figureSvgs[at],
+      figureSource: figureSvgs[at] ? "engine" : null,
       reviewStatus: "pending",
     })),
   });
 
   return jsonOk(
     problemTransformAdoptResponseSchema,
-    { data: created.map(serializeProblem) },
+    {
+      data: created.map((row) =>
+        serializeProblem({
+          ...row,
+          sourceReference: provenance?.sourceReference ?? null,
+        }),
+      ),
+    },
     { status: 201 },
   );
 }

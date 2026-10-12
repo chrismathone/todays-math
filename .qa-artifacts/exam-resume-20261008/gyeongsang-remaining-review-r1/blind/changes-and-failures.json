@@ -1,0 +1,29 @@
+{
+  "scope": "GF15 independent raw blind calculation only",
+  "records": [
+    {
+      "stage": "earlier uninterrupted pre-exposure calculation",
+      "issue": "Unit-stripping parser originally left the exponent from cm^2 and could interpret an area record incorrectly.",
+      "correction": "Strip the entire unit and its exponent before exact expression parsing; assert q16 area=36*sqrt(3), q18 area=16+8*sqrt(3), q19 area=24.",
+      "impact": "Independent harness defect corrected before sealing. No supplied student or prior frozen file was changed. Not attributed to the author.",
+      "historicalExactTimestampOrOldBytes": "not claimed; preserved session history is the basis"
+    },
+    {
+      "stage": "resume before raw seal, 2026-10-12",
+      "issue": "q17 supplemental evidence labeled height/cos15 as a hypotenuse distractor.",
+      "correction": "Hypotenuse distractor uses height/sin15=2.7/0.2588, rounded to10.4; requested horizontal distance remains height/tan15 rounded to10.1.",
+      "impact": "Correct answer and student proof were unchanged. Only owned supplemental calculation evidence and its dependent hashes refreshed."
+    },
+    {
+      "stage": "earlier pre-exposure finalization",
+      "issue": "q18 complexity commentary was removed from the student answer/proof wording so answer comparison remains typed and mathematical.",
+      "correction": "Keep answer③ and complete mathematical proof; keep status pending and precise official complexity/reopen basis in separate evidence and curriculum gate.",
+      "impact": "The hold remains unchanged; mathematical correctness is not counted as permission."
+    }
+  ],
+  "newGF15AuthorAnswerExposure": false,
+  "prior917FilesEdited": 0,
+  "suppliedStudentInputsEdited": 0,
+  "modelCalls": 0,
+  "dbAccess": 0
+}

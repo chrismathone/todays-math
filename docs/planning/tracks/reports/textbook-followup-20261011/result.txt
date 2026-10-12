@@ -1,0 +1,87 @@
+교과서 미적재 보강 · 원문당 두 변형 — 2026-10-11 실제 반영 기록
+
+사용자 범위
+  미적재 교과서 문항을 보강해 적재하고, 원문마다 숫자/방법 변형 두 개로 복습한다.
+  E 작업 폴더와 G 원본이 연결되지 않아 사용자는 현재 있는 자료만 마무리하도록 지시했다.
+  추가 대형 원본 다운로드는 중지했다.
+
+공유 DB 반영 완료
+  천재 미적분1 홍진곤 HWP에서 정답/조건을 확인한 원문 20개 신규 적재.
+  교과서 원문 12,281 → 12,301개. 사용 가능 11,826개, 기존 보류 475개.
+  원문 893개에 연결된 새 변형 1,786개를 적재하고 검증 후 사용 가능 상태로 반영.
+  기본 계산/다항식 828쌍 + 좌표/유한 경우의 수 39쌍 + 미적분 26쌍 = 893쌍.
+  복구한 원문 20개는 전부 위 26쌍에 포함되며 각각 두 변형이 있다.
+  미적분 초안 27쌍 중 기존 보류 원문 한 쌍은 사용 대상에서 제외했다.
+  transformed, 직접 원문의 originProblemId, 기존 familyKey/단원/출처 자료를 보존한다.
+  externalId=tb-retry-v1:<원문 UUID>:1|2로 두 자리와 재실행 중복을 확인한다.
+  신규 행은 pending/직접 사용 불가로 저장하고, 검산/지면 검사 후 approved/직접 사용 가능으로 반영했다.
+  자동 검증 영수증을 남겼으며 교사/원장의 검수 로그를 만들지 않았다.
+
+전체 완료는 아님
+  전체 12,301개 중 아직 두 지정 변형이 없는 원문 11,408개.
+  그중 기존 검수 보류 475개, 사용 가능 원문 10,933개.
+  아직 읽지 못하는 문항 조건과 그림 의존 문항을 같은 단원 문항으로 대체하지 않았다.
+  미적재 전체 또는 전 원문 두 변형 생성이 완료되었다고 표현하지 않는다.
+  확보한 원본의 추가 정답 22개 중 실제 그림/자료 표가 필요한 2개는 적재 보류.
+  이 책의 나머지 정답 미매핑 124개도 해결되지 않았다.
+  다른 책의 E 추출 작업물/G 원본은 현재 없다. 과거 6,528개는 보고서 관측치이며 현재 고유 누락 수가 아니다.
+
+수학·지면 검증
+  원문의 전체 조건/정답을 읽는 결정적 계산과 별도 Python/SymPy 계산을 함께 사용했다.
+  기본 변형 1,656개/소문항 3,184개, 좌표 변형 78개/원문 포함 계산값 459개,
+  사용 가능 미적분 52개/답 표현 80개 모두 실패 0.
+  신규 원문 20개도 원문 조건에서 별도 계산해 출판사 풀이의 결론과 대조했다.
+  생산용 PaperProblemView, CSS, KaTeX 글꼴로 본문·답·풀이를 모두 렌더했다.
+  변형 1,786개 × 1440/390px × 화면/인쇄 = 7,144개 문항 검사 통과.
+  수식 오류·본문/문서 넘침·깨진 그림 0. SVG/격자 긍정 및 오류/변조 부정 사례도 확인했다.
+  큰 거듭제곱 미분의 한 쌍은 정확한 거듭제곱 표기로 수정하고 재검산/재출력했다.
+  수정은 소유한 대기 행 두 개의 답/풀이만, 이전 저장 내용과 원문 잠금 확인 후 적용했다.
+  최종 인쇄 PDF 전수 검수 또는 사람의 직접 검수를 주장하지 않는다.
+  원문/계산/출력/저장 지문이 바뀌면 이전 증거로 자동 반영하지 않는다.
+
+최종 실제 저장 대조
+  기존 원문 12,281개와 연결된 단원/출처 자료/책의 모든 조회 필드는 그대로다.
+  기존 복구 변형 79개도 모든 저장 필드가 그대로다.
+  신규 원문 20개와 변형 1,786개의 내용/답/풀이/그림 메타데이터가 검증 패킷과 일치한다.
+  실제 planRetry를 893개 원문에 각각 실행해 정확한 두 자식, 부족 0을 확인했다.
+  미완성 원문은 부족한 두 자리를 반환하며 원문/다른 갈래로 채우지 않는다.
+  scripts/qa/textbook/verify-retry-census-20261011.ts로 대조를 재현한다.
+
+채점 → 복습지 화면 연결
+  /tests/{id}/grade에서 저장된 응시 결과와 학생을 명시적으로 선택한다.
+  실제 저장된 결과 ID의 오답을 읽고 교과서 원문마다 지정된 두 자리의 변형을 보여 준다.
+  아직 안 봄/결시/오답 없음/불완전한 기록/저장하지 않은 수정은 각각 구분한다.
+  빠진 변형은 원문별 부족 상태로 표시하고, 하나라도 부족하면 출력을 막는다.
+  기존 WorksheetEditor 및 인쇄/PDF/HWPX 양식을 재사용하며 두 자리의 구성과 순서를 보존한다.
+  출력 직전 같은 결과를 다시 조회해 권한 실패/문안 변경을 확인한다. 채점/학생 기록을 자동 변경하지 않는다.
+  화면 테스트 53개, 1440/390/320px 독립 브라우저 사례, 로컬 PDF/HWPX 산출물을 검증했다.
+  main 통합 뒤 UI/복습 API/계획 관련 107개 테스트도 통과했다.
+  통합된 main의 전체 TypeScript 검사도 통과했다.
+  원문/변형 작성 관련 118개 테스트와 추출 Python 109개 테스트도 통과했다.
+  docs/planning/tracks/reports/textbook-retry-ui-20261011/report.md에 화면/출력 근거와 실계정 검증의 한계를 기록했다.
+
+재현 근거
+  .qa-artifacts/textbook-followup-20261011/source-snapshot.json — 최초 DB 스냅샷
+  .qa-artifacts/textbook-followup-20261011/final-qualified/source-snapshot.json — 최종 DB 재조회
+  final-verification.json — 전체 원문 불변 및 실제 893쌍 선택 검사
+  .qa-artifacts/textbook-retry-stage-20261011/receipt.json — 첫 679쌍 삽입
+  .qa-artifacts/textbook-retry-stage2-20261011/receipt.json — 다음 149쌍 삽입
+  .qa-artifacts/textbook-retry-final-20261011/receipt.json — 추가 65쌍 삽입
+  .qa-artifacts/textbook-supplement-load-20261011/receipt.json — 원문 20개 삽입
+  .qa-artifacts/textbook-{supplement,core,geometry,calculus}-qualify-20261011/receipt.json — 검증 반영 영수증
+  .qa-artifacts/textbook-variants-final-{core,geometry,calculus}-20261011/ — 후보/독립 계산
+  docs/planning/tracks/reports/textbook-retry-render-20261011/ — 지면 검사, 최초 실패와 수정 후 증거
+  docs/planning/tracks/reports/textbook-supplement-20261011/ — 원본 바이트/정답 결론 대응
+  C:/Creative/testautocreator-data/textbook-recovery-20261011/textbook-supplement-20261011/ — 원본 ZIP/HWP/변환 보존
+  원본 ZIP SHA256=85566a6f568a4123bb8ea58baff321fcd81f531a631aaed38ecd5dee9dbd832b.
+
+소스/운영 구분
+  공유 DB 적재/검증 반영은 위 영수증의 실제 실행 결과다.
+  Orca 작업트리의 Codex 세션을 검증해 로컬 main에 통합했다.
+  원격 main을 시작/진행 중 fetch해 확인했으며 새 원격 커밋은 없었다.
+  현재 원격 push와 운영 배포를 수행한 것으로 표현하지 않는다.
+  완료/병합/청결/정지를 확인한 계산 작업트리는 정리하고 Git 브랜치를 보존했다.
+  원본 작업트리는 기존 package-lock 변경 때문에 보존했고 원본 증거를 별도 경로에도 보존했다.
+  정리 도중 Orca가 공유 node_modules 대상을 삭제했다. npm ci/Prisma 재생성으로 복구했고 lock 변경은 없다.
+  남은 작업트리 정리는 공유 연결을 먼저 확인하고 대상 디렉터리를 재귀 삭제하지 않는다.
+  협업 스킬: C:/Users/user/.agents/skills/orca-cli/SKILL.md 및 C:/Users/user/.agents/skills/orchestration/SKILL.md.

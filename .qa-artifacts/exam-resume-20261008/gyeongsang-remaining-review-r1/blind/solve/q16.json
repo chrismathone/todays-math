@@ -1,0 +1,208 @@
+{
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q16",
+  "studentDigest": "91c18fc29aa9f2d61ff05d5ce0e024c4a6fdb962cdb69204c73a33c438afc4c5",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "③",
+  "solution": "주어진 수선의 발 H를 이용한다. 직각삼각형 PQH에서 PH=PQ sin60°=12×√3/2=6√3cm이다. QR의 길이를 b라고 하면 삼각형의 넓이는 b×6√3÷2=3√3b이다. 넓이가36√3이므로3√3b=36√3에서 b=12cm이고③이다. 또한 QH=12 cos60°=6cm이고 HR=12−6=6cm이므로 H가 밑변 내부에 있다는 조건도 만족한다. 사인 넓이 공식을 사용하지 않고 밑변과 실제 높이로 계산했다.",
+  "evidence": {
+    "studentInputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+    "givenStudentDigest": "91c18fc29aa9f2d61ff05d5ce0e024c4a6fdb962cdb69204c73a33c438afc4c5",
+    "blindManifestRawSha256": "721033947e4c133ae39d5d899c58520d5fc9c385aeadbcc74cc52fd746bb4b92",
+    "opaquePackageDigestProvided": "bda294bd79bfa03f3d3975c0178101f0a193582c78c28bd9026079301ea7f61a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputRawSha256": "f01723e56a2f0a67f540fe3a8c23ba69b83d6bed6e309d0f0157e13b626bfe64",
+    "exactCalculation": {
+      "PQ": "12",
+      "angleQ": "60",
+      "area": "36*sqrt(3)",
+      "heightPH": "6*sqrt(3)",
+      "QH": "6",
+      "RH": "6",
+      "baseQR": "12",
+      "footInsideBase": true,
+      "areaRecheck": "36*sqrt(3)",
+      "coordinateExistence": {
+        "Q": [
+          0,
+          0
+        ],
+        "H": [
+          "6",
+          0
+        ],
+        "P": [
+          "6",
+          "6*sqrt(3)"
+        ],
+        "R": [
+          "12",
+          0
+        ]
+      },
+      "method": "one dropped perpendicular already given,sin60 height,elementary base-height area",
+      "allFiveDisplayedChoices": [
+        "6",
+        "12*sqrt(3)",
+        "12",
+        "18",
+        "24"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "correctChoiceNumber": 3,
+      "semanticDuplicateChoices": [],
+      "uniqueCorrectChoice": true,
+      "choiceTargetUnits": "cm"
+    },
+    "knownHolds": [],
+    "actualStudentPreview": {
+      "questionNumber": 16,
+      "studentDigest": "91c18fc29aa9f2d61ff05d5ce0e024c4a6fdb962cdb69204c73a33c438afc4c5",
+      "png": "inspection/q16.png",
+      "pngSha256": "53b70eaf0904680c886a0642e24bdcd309487d35b453a1f3d57492327bbe9ebd",
+      "columnWidthMm": 70,
+      "overflow": [],
+      "figureCount": 1
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q16-1.svg",
+        "sha256": "d7914810a8b49c895a08d3ec9ebda0e76f48575b346be96a0ac350be59fd98b1",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureObservations": "H는 밑변 내부,P-H 수선과 Q60°. 밑변 QR과 높이 PH를 구별했다.",
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 학생 입력의 전체 요청을 본 독립 해법으로2015 조항에 대응한다. 원학교·저자·분류로 승인하지 않는다. 주어진 수선의 발과 실제60°삼각형,높이와 초등 밑변높이 넓이",
+        "standards": [
+          {
+            "code": "6수03-06",
+            "exactText": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관 련된 문제를 해결할 수 있다.",
+            "physicalPage1based": 29,
+            "printedPage": 25,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제5보기를 전부 독립 계산/동치/참거짓 검사;정답 하나이고 동치 중복 없음.",
+        "independentChoiceEvidence": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "duplicates": []
+      },
+      "figuresAndTables": {
+        "status": "in-scope-independent-proposal",
+        "basis": "H는 밑변 내부,P-H 수선과 Q60°. 밑변 QR과 높이 PH를 구별했다.",
+        "actualStudentPreview": {
+          "questionNumber": 16,
+          "studentDigest": "91c18fc29aa9f2d61ff05d5ce0e024c4a6fdb962cdb69204c73a33c438afc4c5",
+          "png": "inspection/q16.png",
+          "pngSha256": "53b70eaf0904680c886a0642e24bdcd309487d35b453a1f3d57492327bbe9ebd",
+          "columnWidthMm": 70,
+          "overflow": [],
+          "figureCount": 1
+        },
+        "personallyViewed": true,
+        "suppliedFigureHashes": [
+          "d7914810a8b49c895a08d3ec9ebda0e76f48575b346be96a0ac350be59fd98b1"
+        ]
+      },
+      "notation": {
+        "status": "in-scope-independent-proposal",
+        "basis": "통상 선분·각·도·좌표·근호·비·삼각비·빈칸 기록. 벡터·라디안·고교 항등식/삼각형의 법칙 표기 없음."
+      },
+      "answer": {
+        "status": "independently-derived-math-only",
+        "basis": "제공 학생 입력에서만 계산했다. q18은 수학 답이 명확해도 복잡성 gate가 pending이다.",
+        "target": "12"
+      },
+      "studentSolution": {
+        "status": "in-scope-independent-proposal",
+        "basis": "주어진 수선의 발과 실제60°삼각형,높이와 초등 밑변높이 넓이 완전한 새 독립 학생 해법은 solution 필드에 있다. 저자 답/해법은 읽지 않았다."
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-proposal",
+        "basis": "주어진 수선의 발과 실제60°삼각형,높이와 초등 밑변높이 넓이",
+        "standards": [
+          {
+            "code": "6수03-06",
+            "exactText": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관 련된 문제를 해결할 수 있다.",
+            "physicalPage1based": 29,
+            "printedPage": 25,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceRawSha256": "fdb33efde81204b068456eedd22954614fe02e5e752b9f53e94f33604d45f9cc",
+    "freshNewAuthorAnswerExposure": false,
+    "priorOriginalSourceConceptKnowledgeSeparatelyDisclosed": "input-audit.json",
+    "authorAnswerAndNewSolutionReview": "not-exposed;pending Root authorization after raw commit",
+    "mathematicalTargetUnique": true,
+    "calculationOnlyNotFinalGradeApproval": true,
+    "rightsAndNativeApproval": false
+  },
+  "curriculumGate": {
+    "grade": "중3",
+    "edition": "2015",
+    "wholeStudentScope": "in-scope-independent-proposal",
+    "requiredUpperGradeMethodDetected": false,
+    "materialComplexityHold": false,
+    "finalGradeApproval": false,
+    "finalAuthorReviewPending": true
+  },
+  "gates": {
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "loadable": false,
+    "directUseAllowed": false,
+    "modelCalls": 0,
+    "dbAccess": 0
+  }
+}

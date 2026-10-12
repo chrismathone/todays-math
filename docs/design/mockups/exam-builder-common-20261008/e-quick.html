@@ -138,7 +138,7 @@
       }
       .shell {
         display: grid;
-        grid-template-columns: 212px minmax(0, 1fr);
+        grid-template-columns: 240px minmax(0, 1fr);
         min-height: calc(100vh - 38px);
       }
       .nav {
@@ -185,13 +185,13 @@
         font-size: 12px;
       }
       .topbar {
-        min-height: 56px;
+        min-height: 52px;
         background: white;
         border-bottom: 1px solid var(--learn-track);
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 12px 28px;
+        padding: 8px 20px;
         gap: 16px;
       }
       .avatar {
@@ -212,16 +212,18 @@
         font-size: 12px;
       }
       .main {
-        max-width: 1440px;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
         margin: auto;
-        padding: 28px;
+        padding: 16px 20px;
       }
       .heading {
         display: flex;
         justify-content: space-between;
         gap: 20px;
         align-items: center;
-        margin-bottom: 24px;
+        margin-bottom: 16px;
       }
       .heading p {
         margin-top: 7px;
@@ -238,7 +240,7 @@
         background: white;
         border: 1px solid var(--learn-track);
         border-radius: 12px;
-        padding: 24px;
+        padding: 20px;
       }
       .section-top {
         display: flex;
@@ -296,7 +298,7 @@
       }
       .fields {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
         gap: 16px;
         margin-bottom: 24px;
       }
@@ -722,23 +724,17 @@
         line-height: 1.7;
         margin-bottom: 12px;
       }
-      @media (min-width: 1500px) {
-        .main {
-          padding: 32px 40px;
-        }
-      }
       @media (max-width: 1150px) {
-        .shell {
-          grid-template-columns: 176px minmax(0, 1fr);
-        }
-        .main {
-          padding: 24px 20px;
-        }
         .review-grid {
           grid-template-columns: minmax(0, 1fr) 210px;
         }
         .questions {
           grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 1050px) {
+        .shell {
+          grid-template-columns: 212px minmax(0, 1fr);
         }
       }
       @media (max-width: 860px) {
@@ -748,6 +744,14 @@
         .nav {
           display: none;
         }
+        .main {
+          padding: 14px 16px;
+        }
+        .panel {
+          padding: 16px;
+        }
+      }
+      @media (max-width: 860px) {
         .review-grid {
           grid-template-columns: 1fr;
         }
@@ -758,21 +762,31 @@
           grid-template-columns: repeat(8, 1fr);
         }
         .summary .primary {
-          width: auto;
+          width: 100%;
         }
         .fields {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
         .questions {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
+          grid-template-columns: minmax(0, 1fr);
         }
         .topbar {
-          padding: 12px 20px;
+          padding: 12px 16px;
+        }
+        .setup-bottom {
+          align-items: stretch;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .welcome-note {
+          grid-template-columns: minmax(0, 1fr);
+          gap: 16px;
+          padding: 24px 4px;
         }
       }
       @media (max-width: 600px) {
         .main {
-          padding: 20px 14px;
+          padding: 14px 16px;
         }
         .demo {
           padding: 9px 14px;
@@ -793,7 +807,7 @@
           display: none;
         }
         .panel {
-          padding: 18px 16px;
+          padding: 16px;
         }
         .presets {
           gap: 8px;
@@ -899,6 +913,7 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="scope-picker.css" />
   </head>
   <body>
     <div class="demo">
@@ -907,7 +922,9 @@
     </div>
     <div class="shell">
       <aside class="nav">
-        <div class="brand">교사 작업실<small>TEACHER WORKSPACE</small></div>
+        <div class="brand">
+          <span id="product-brand"></span><small>TEACHER WORKSPACE</small>
+        </div>
         <div class="nav-label">공통 제작 흐름</div>
         <a href="index.html">시안 모아보기</a
         ><a href="e-quick.html" class="active" aria-current="page"
@@ -918,16 +935,16 @@
         ><a href="b-workbench.html">B · 조건과 초안</a
         ><a href="c-paper.html">C · 시험지 중심</a
         ><a href="d-blueprint.html">D · 단원별 구성표</a>
-        <div class="nav-foot">과목이 달라도<br />만드는 방법은 같습니다.</div>
+        <div class="nav-foot">범위를 고르고<br />문항을 다듬으세요.</div>
       </aside>
       <div>
         <div class="topbar">
           <span class="caption muted"
-            >수업 준비 &nbsp; / &nbsp;
+            ><span id="product-crumb"></span> &nbsp; / &nbsp;
             <b style="color: var(--learn-ink)">시험지 만들기</b></span
           >
           <div class="top-right">
-            <span>공통 과목 작업실</span>
+            <span id="product-context"></span>
             <div class="avatar">T</div>
           </div>
         </div>
@@ -949,48 +966,15 @@
       <span id="toast-text"></span><button id="undo">되돌리기</button
       ><button id="dismiss" aria-label="알림 닫기">닫기</button>
     </div>
-    <dialog id="picker" aria-labelledby="picker-title">
-      <div class="dialog-inner">
-        <div class="dialog-head">
-          <div>
-            <h2 id="picker-title">문항 교체</h2>
-            <p class="caption muted" id="picker-help"></p>
-          </div>
-          <button class="quiet" data-close="picker" aria-label="문항 선택 닫기">
-            닫기
-          </button>
-        </div>
-        <div id="picker-list" class="candidates"></div>
-      </div>
-    </dialog>
-    <dialog id="output" class="preview-dialog" aria-labelledby="output-title">
-      <div class="dialog-inner">
-        <div class="dialog-head">
-          <h2 id="output-title">출력 미리보기</h2>
-          <button
-            class="quiet"
-            data-close="output"
-            aria-label="출력 미리보기 닫기"
-          >
-            닫기
-          </button>
-        </div>
-        <div class="dialog-controls">
-          <label class="field" style="flex: 1; min-width: 150px"
-            >시험지 제목<input
-              type="text"
-              id="paper-title"
-              maxlength="80" /></label
-          ><label class="scope" style="border: 0"
-            ><input id="paper-answer" type="checkbox" />정답 포함</label
-          ><button class="primary" id="print">인쇄</button>
-        </div>
-        <p class="caption muted preview-note" style="margin-top: 12px">
-          예시 문항으로 만든 시안입니다. 저장 없이 인쇄 미리보기를 확인합니다.
-        </p>
-        <div id="paper" class="paper"></div>
-      </div>
-    </dialog>
+    <script src="scope-data.js"></script>
+    <script src="scope-picker.js"></script>
+    <link rel="stylesheet" href="output-bridge.css" />
+    <link rel="stylesheet" href="question-picker.css" />
+    <link rel="stylesheet" href="question-reorder.css" />
+    <link rel="stylesheet" href="editing-layout.css" />
+    <script src="question-picker.js"></script>
+    <script src="question-reorder.js"></script>
+    <script src="output-bridge.js"></script>
     <script>
       "use strict";
       const SUBJECTS = {
@@ -1251,8 +1235,40 @@
               "'": "&#39;",
             })[c],
         );
+      const scopeController = ExamScope.create({
+        sampleUnits: SUBJECTS[ExamScope.subject].units.map((name) => ({
+          name,
+          count: 6,
+        })),
+        onApply: ({ ids, sampleIndices }) => {
+          snapshot();
+          state.scopeIds = ids;
+          state.scope = sampleIndices;
+          state.grade =
+            [
+              ...new Set(
+                scopeController.catalog
+                  .filter((row) => ids.includes(row.id))
+                  .map((row) => row.grade),
+              ),
+            ].join(" · ") || "학년 미선택";
+          renderSetup();
+        },
+      });
+      $("product-brand").textContent = ExamScope.productName;
+      $("product-context").textContent = ExamScope.productName;
+      $("product-crumb").textContent = ExamScope.productName;
+      document
+        .querySelectorAll('a[href$=".html"]')
+        .forEach(
+          (a) =>
+            (a.href +=
+              "?subject=" +
+              (ExamScope.subject === "영어" ? "english" : "math")),
+        );
       let state = {
-          subject: "수학",
+          subject: ExamScope.subject,
+          scopeIds: [...scopeController.defaultIds],
           grade: "중1",
           scope: [0, 1],
           count: 6,
@@ -1260,11 +1276,11 @@
           preset: "수업 복습",
           questions: [],
           composed: false,
+          applied: null,
           title: "",
           answers: false,
         },
         history = [],
-        pickMode = null,
         returnFocus = null,
         lastNotice = "";
       function snapshot() {
@@ -1284,13 +1300,12 @@
             (state.level === "고르게" || q.level === state.level),
         );
       }
-      function scopeText() {
-        return state.scope
-          .map((u) => SUBJECTS[state.subject].units[u])
-          .join(" · ");
+      function scopeText(applied = false) {
+        return scopeController.describe(
+          applied && state.applied ? state.applied.scopeIds : state.scopeIds,
+        );
       }
       function renderSetup() {
-        const meta = SUBJECTS[state.subject];
         $("setup").innerHTML =
           `<section class="panel" aria-labelledby="setup-title"><div class="section-top"><h2 id="setup-title"><span class="number">1</span>어떤 시험지를 만들까요?</h2><span class="caption muted">구성 방식 선택</span></div><div class="presets">${[
             ["단원 확인", "핵심 내용을 짧게 확인", "4문항 · 기본"],
@@ -1303,27 +1318,9 @@
             )
             .join(
               "",
-            )}</div><div class="fields"><label class="field">과목<select id="subject">${Object.keys(
-            SUBJECTS,
-          )
-            .map(
-              (s) =>
-                `<option${s === state.subject ? " selected" : ""}>${s}</option>`,
-            )
-            .join(
-              "",
-            )}</select></label><label class="field">학년<select id="grade"><option>중1</option></select></label><label class="field">문항 수<select id="count">${[4, 6, 8].map((n) => `<option value="${n}"${n === state.count ? " selected" : ""}>${n}문항</option>`).join("")}</select></label><label class="field">난이도<select id="level">${["고르게", "기본", "보통", "심화"].map((v) => `<option${v === state.level ? " selected" : ""}>${v}</option>`).join("")}</select></label></div><fieldset><legend>출제 범위 <span class="muted" style="font-weight:400">· 여러 개 선택 가능</span></legend><div class="scopes">${meta.units.map((u, i) => `<label class="scope"><input type="checkbox" name="scope" value="${i}"${state.scope.includes(i) ? " checked" : ""}><span>${escapeHtml(u)}<em>${state.subject === "영어" || state.subject === "국어" ? "공통 지문 · 6개 예시 문항" : "6개 예시 문항"}</em></span></label>`).join("")}</div></fieldset><div class="setup-bottom"><div><strong id="availability">${state.scope.length}개 범위 · 조건에 맞는 예시 ${configuredPool().length}문항</strong><p>구성한 뒤 문항을 교체하거나 추가·삭제할 수 있습니다.</p></div><button id="compose" class="primary"${!state.scope.length ? " disabled" : ""}>${state.composed ? "변경한 조건으로 다시 구성" : state.count + "문항 구성하기"} →</button></div></section>${state.composed ? "" : `<div class="welcome-note"><div><strong>01 &nbsp; 범위만 정하세요</strong><p>선택한 조건 안에서 문항 초안을 구성합니다.</p></div><div><strong>02 &nbsp; 필요한 부분만 수정하세요</strong><p>문제 옆에서 교체·추가·삭제를 할 수 있습니다.</p></div><div><strong>03 &nbsp; 바로 수업에 사용하세요</strong><p>제목과 정답 표시를 정한 뒤 출력합니다.</p></div></div>`}`;
-        $("subject").onchange = (e) => {
-          snapshot();
-          state.subject = e.target.value;
-          state.scope = [0, 1];
-          state.questions = [];
-          state.composed = false;
-          state.title = "";
-          state.answers = false;
-          render();
-          notify("과목을 바꾸었습니다. 이전 초안은 되돌릴 수 있습니다.");
-        };
+            )}</div><div class="fields"><label class="field">문항 수<select id="count">${[4, 6, 8].map((n) => `<option value="${n}"${n === state.count ? " selected" : ""}>${n}문항</option>`).join("")}</select></label><label class="field">난이도<select id="level">${["고르게", "기본", "보통", "심화"].map((v) => `<option${v === state.level ? " selected" : ""}>${v}</option>`).join("")}</select></label></div>${scopeController.summaryHTML(state.scopeIds)}<div class="setup-bottom"><div><strong id="availability">${state.scopeIds.length}개 범위 · 조건에 맞는 예시 ${configuredPool().length}문항</strong><p>구성한 뒤 문항을 교체하거나 추가·삭제할 수 있습니다.</p></div><button id="compose" class="primary"${!state.scope.length ? " disabled" : ""}>${state.composed ? "변경한 조건으로 다시 구성" : state.count + "문항 구성하기"} →</button></div></section>${state.composed ? "" : `<div class="welcome-note"><div><strong>01 &nbsp; 범위만 정하세요</strong><p>선택한 조건 안에서 문항 초안을 구성합니다.</p></div><div><strong>02 &nbsp; 필요한 부분만 수정하세요</strong><p>문제 옆에서 교체·추가·삭제를 할 수 있습니다.</p></div><div><strong>03 &nbsp; 바로 수업에 사용하세요</strong><p>제목과 정답 표시를 정한 뒤 출력합니다.</p></div></div>`}`;
+        document.querySelector("[data-scope-open]").onclick = () =>
+          scopeController.open(state.scopeIds);
         $("count").onchange = (e) => {
           state.count = Number(e.target.value);
           state.preset = "직접 설정";
@@ -1334,16 +1331,6 @@
           state.preset = "직접 설정";
           renderSetup();
         };
-        document.querySelectorAll("[name=scope]").forEach(
-          (el) =>
-            (el.onchange = () => {
-              state.scope = Array.from(
-                document.querySelectorAll("[name=scope]:checked"),
-                (e) => Number(e.value),
-              );
-              renderSetup();
-            }),
-        );
         document.querySelectorAll("[data-preset]").forEach(
           (el) =>
             (el.onclick = () => {
@@ -1367,6 +1354,13 @@
             if (q) ordered.push(q);
           }
         state.questions = ordered.slice(0, state.count);
+        state.applied = {
+          scopeIds: [...state.scopeIds],
+          scope: [...state.scope],
+          grade: state.grade,
+          level: state.level,
+          count: state.count,
+        };
         state.composed = true;
         state.title = `${state.subject} ${state.preset === "직접 설정" ? "단원 학습" : state.preset}`;
         render();
@@ -1378,13 +1372,15 @@
         $("review").querySelector("h2").focus();
       }
       function qCard(q, index) {
-        return `<article class="question" id="q-${q.id}"><div class="q-top"><span class="q-no">${String(index + 1).padStart(2, "0")}</span><span class="badge">${q.level}</span></div>${SUBJECTS[state.subject].passages[q.unit] ? `<details style="margin-bottom:12px"><summary style="min-height:44px;padding:10px 0;cursor:pointer;font-size:12px;color:var(--learn-accent)">지문 · ${SUBJECTS[state.subject].units[q.unit]}</summary><p class="paper-passage">${escapeHtml(SUBJECTS[state.subject].passages[q.unit])}</p></details>` : ""}<p class="q-body">${escapeHtml(q.body)}</p>${state.answers ? `<p class="answer">정답 · ${escapeHtml(q.answer)}</p>` : ""}<div class="q-actions"><button data-replace="${q.id}">교체</button><button class="danger" data-remove="${q.id}">삭제</button><button class="move" data-move="${q.id}" data-direction="-1" aria-label="${index + 1}번 문항 앞으로"${index === 0 ? " disabled" : ""}>↑</button><button data-move="${q.id}" data-direction="1" aria-label="${index + 1}번 문항 뒤로"${index === state.questions.length - 1 ? " disabled" : ""}>↓</button></div></article>`;
+        return `<article class="question" id="q-${q.id}" data-reorder-id="${q.id}"><div class="q-top"><button type="button" class="reorder-handle" data-reorder-handle aria-label="${index + 1}번 문항 순서 이동"><span aria-hidden="true">⠿</span></button><span class="q-no">${String(index + 1).padStart(2, "0")}</span><span class="badge">${q.level}</span></div>${SUBJECTS[state.subject].passages[q.unit] ? `<details style="margin-bottom:12px"><summary style="min-height:44px;padding:10px 0;cursor:pointer;font-size:12px;color:var(--learn-accent)">지문 · ${SUBJECTS[state.subject].units[q.unit]}</summary><p class="paper-passage">${escapeHtml(SUBJECTS[state.subject].passages[q.unit])}</p></details>` : ""}<p class="q-body">${escapeHtml(q.body)}</p>${state.answers ? `<p class="answer">정답 · ${escapeHtml(q.answer)}</p>` : ""}<div class="q-actions"><button data-replace="${q.id}">교체</button><button class="danger" data-remove="${q.id}">삭제</button><button class="move" data-move="${q.id}" data-direction="-1" aria-label="${index + 1}번 문항 앞으로"${index === 0 ? " disabled" : ""}>↑</button><button data-move="${q.id}" data-direction="1" aria-label="${index + 1}번 문항 뒤로"${index === state.questions.length - 1 ? " disabled" : ""}>↓</button></div></article>`;
       }
       function renderReview() {
         const qs = state.questions;
         const meta = SUBJECTS[state.subject];
+        const applied = state.applied;
+        const uncovered = applied.scopeIds.length - applied.scope.length;
         $("review").innerHTML =
-          `<div class="scope-bar"><div><strong>${state.subject} · ${state.grade}</strong><span>${escapeHtml(scopeText())} / ${state.level}</span></div><button class="quiet" id="edit-scope">조건 수정</button></div><div class="review-grid"><div class="review-main"><div class="review-tools"><h2 tabindex="-1">문항 검토 <span>${qs.length}</span></h2><div class="actions"><label class="caption"><input id="answers" type="checkbox"${state.answers ? " checked" : ""}> 정답 보기</label><button id="add">＋ 문항 추가</button></div></div>${qs.length < state.count ? `<div class="alert">목표 ${state.count}문항 · 현재 ${qs.length}문항입니다. 문항을 추가하거나 조건을 조정할 수 있습니다.</div>` : ""}${qs.length ? `<div class="questions">${qs.map(qCard).join("")}</div>` : `<div class="empty"><h3>구성된 문항이 없습니다.</h3><p class="muted">문항 추가 또는 조건 수정으로 이어가세요.</p></div>`}${meta.passages.length ? `<details style="margin-top:20px"><summary style="cursor:pointer;min-height:44px;padding:10px 0">공통 지문 확인 · 출력 시 문항과 함께 표시</summary>${[...new Set(qs.map((q) => q.unit))].map((u) => `<div class="passage"><strong>${meta.units[u]}</strong>${escapeHtml(meta.passages[u])}</div>`).join("")}</details>` : ""}</div><aside class="summary panel"><h3>시험지 구성</h3><div class="metric"><span>전체 문항</span><strong>${qs.length}문항</strong></div>${["기본", "보통", "심화"].map((l) => `<div class="metric"><span>${l}</span><strong>${qs.filter((q) => q.level === l).length}</strong></div>`).join("")}<div class="distribution" aria-hidden="true">${["기본", "보통", "심화"].map((l, i) => `<span style="flex:${qs.filter((q) => q.level === l).length};opacity:${1 - i * 0.25}"></span>`).join("")}</div><nav class="numbers" aria-label="구성된 문항으로 이동">${qs.map((q, i) => `<a href="#q-${q.id}" aria-label="${i + 1}번 문항으로 이동">${i + 1}</a>`).join("")}</nav><button id="open-output" class="primary"${!qs.length ? " disabled" : ""}>출력 미리보기 →</button><p>제목 · 학생용 · 정답 포함 설정</p></aside></div>`;
+          `<div class="scope-bar"><div><strong>${state.subject} · ${applied.grade}</strong><span>${escapeHtml(scopeText(true))} / ${applied.level}</span></div><button class="quiet" id="edit-scope">조건 수정</button></div>${uncovered ? `<p class="scope-coverage">선택한 범위 중 ${uncovered}개는 문항이 연결되지 않았습니다. 아래 초안은 선택한 시안 문항 범위에서만 구성했습니다.</p>` : ""}<div class="review-grid"><div class="review-main"><div class="review-tools"><h2 tabindex="-1">문항 검토 <span>${qs.length}</span></h2><div class="actions"><label class="caption"><input id="answers" type="checkbox"${state.answers ? " checked" : ""}> 정답 보기</label><button id="add">＋ 문항 추가</button></div></div>${qs.length < applied.count ? `<div class="alert">목표 ${applied.count}문항 · 현재 ${qs.length}문항입니다. 문항을 추가하거나 조건을 조정할 수 있습니다.</div>` : ""}${qs.length ? `<div class="questions">${qs.map(qCard).join("")}</div>` : `<div class="empty"><h3>구성된 문항이 없습니다.</h3><p class="muted">문항 추가 또는 조건 수정으로 이어가세요.</p></div>`}${meta.passages.length ? `<details style="margin-top:20px"><summary style="cursor:pointer;min-height:44px;padding:10px 0">공통 지문 확인 · 출력 시 문항과 함께 표시</summary>${[...new Set(qs.map((q) => q.unit))].map((u) => `<div class="passage"><strong>${meta.units[u]}</strong>${escapeHtml(meta.passages[u])}</div>`).join("")}</details>` : ""}</div><aside class="summary panel"><h3>시험지 구성</h3><div class="metric"><span>전체 문항</span><strong>${qs.length}문항</strong></div>${["기본", "보통", "심화"].map((l) => `<div class="metric"><span>${l}</span><strong>${qs.filter((q) => q.level === l).length}</strong></div>`).join("")}<div class="distribution" aria-hidden="true">${["기본", "보통", "심화"].map((l, i) => `<span style="flex:${qs.filter((q) => q.level === l).length};opacity:${1 - i * 0.25}"></span>`).join("")}</div><nav class="numbers" aria-label="구성된 문항으로 이동">${qs.map((q, i) => `<a href="#q-${q.id}" aria-label="${i + 1}번 문항으로 이동">${i + 1}</a>`).join("")}</nav><button id="open-output" class="primary"${!qs.length ? " disabled" : ""}>양식 구성 · 출력 →</button><p>양식 선택 · 단 수 · 풀이 공간 · 정답지</p></aside></div>`;
         $("edit-scope").onclick = () => {
           $("setup").hidden = false;
           $("review").hidden = true;
@@ -1436,68 +1432,84 @@
         if (state.composed) renderReview();
       }
       function openPicker(mode) {
-        pickMode = mode;
-        returnFocus = document.activeElement;
         const current = state.questions.find((q) => q.id === mode);
-        const selected = new Set(state.questions.map((q) => q.id));
-        let candidates = poolFor(state.subject).filter(
-          (q) => !selected.has(q.id) && state.scope.includes(q.unit),
-        );
-        if (current)
-          candidates = candidates.filter((q) => q.unit === current.unit);
-        $("picker-title").textContent = current ? "문항 교체" : "문항 추가";
-        $("picker-help").textContent = current
-          ? `${SUBJECTS[state.subject].units[current.unit]} · 번호와 나머지 문항은 유지됩니다.`
-          : `${scopeText()} · 이미 구성한 문항 제외`;
-        $("picker-list").innerHTML = candidates.length
-          ? candidates
-              .map(
-                (q) =>
-                  `<button class="candidate" data-pick="${q.id}"><span>${SUBJECTS[state.subject].units[q.unit]} · ${q.level}</span>${escapeHtml(q.body)}<b>${current ? "이 문항으로 교체" : "이 문항 추가"} →</b></button>`,
-              )
-              .join("")
-          : '<p class="alert">현재 범위에서 선택할 수 있는 다른 예시 문항이 없습니다. 조건 수정에서 범위를 넓혀주세요.</p>';
-        document.querySelectorAll("[data-pick]").forEach(
-          (el) =>
-            (el.onclick = () => {
-              const q = poolFor(state.subject).find(
-                (q) => q.id === el.dataset.pick,
-              );
-              snapshot();
-              if (current)
-                state.questions[
-                  state.questions.findIndex((q) => q.id === mode)
-                ] = q;
-              else state.questions.push(q);
-              $("picker").close();
-              renderReview();
-              notify(current ? "문항을 교체했습니다." : "문항을 추가했습니다.");
-              const focus = current
-                ? document.querySelector(`[data-replace="${q.id}"]`)
-                : $("add");
-              focus?.focus();
-            }),
-        );
-        $("picker").showModal();
+        let chosenId;
+        const available = () =>
+          poolFor(state.subject).filter(
+            (q) =>
+              !state.questions.some((selected) => selected.id === q.id) &&
+              state.applied.scope.includes(q.unit) &&
+              (!current || current.unit === q.unit),
+          );
+        ExamQuestionPicker.open({
+          mode: current ? "replace" : "add",
+          levels: poolFor(state.subject).map((q) => q.level),
+          scopeLabel: scopeText(true),
+          units: state.applied.scope
+            .filter((u) => !current || u === current.unit)
+            .map((u) => ({
+              value: u,
+              label: SUBJECTS[state.subject].units[u],
+            })),
+          getCandidates: () =>
+            available().map((q) => ({
+              ...q,
+              prompt: q.body,
+              unitName: SUBJECTS[state.subject].units[q.unit],
+              passage: SUBJECTS[state.subject].passages[q.unit],
+            })),
+          getCount: () => state.questions.length,
+          onChoose: (id) => {
+            const q = available().find((q) => q.id === id);
+            if (!q) return false;
+            snapshot();
+            if (current)
+              state.questions[
+                state.questions.findIndex((q) => q.id === current.id)
+              ] = q;
+            else state.questions.push(q);
+            chosenId = id;
+            renderReview();
+            notify(current ? "문항을 교체했습니다." : "문항을 추가했습니다.");
+          },
+          onClose: () =>
+            current
+              ? document
+                  .querySelector(`[data-replace="${chosenId || current.id}"]`)
+                  ?.focus({ preventScroll: true })
+              : $("add")?.focus({ preventScroll: true }),
+        });
       }
       function preview() {
-        returnFocus = document.activeElement;
-        $("paper-title").value = state.title;
-        $("paper-answer").checked = state.answers;
-        renderPaper();
-        $("output").showModal();
-      }
-      function renderPaper() {
         const meta = SUBJECTS[state.subject];
-        $("paper").innerHTML =
-          `<h2>${escapeHtml($("paper-title").value || "시험지")}</h2><div class="paper-meta"><span>${state.grade} ${state.subject} · ${state.questions.length}문항</span><span>이름 __________________</span></div><div class="paper-list">${state.questions.map((q, i) => `<div class="paper-q">${meta.passages[q.unit] ? `<div class="paper-passage">${escapeHtml(meta.passages[q.unit])}</div>` : ""}<b>${i + 1}.</b> ${escapeHtml(q.body)}${$("paper-answer").checked ? `<p class="answer">정답 · ${escapeHtml(q.answer)}</p>` : ""}</div>`).join("")}</div>`;
+        ExamOutput.open(
+          {
+            subject: state.subject === "영어" ? "english" : "math",
+            title: state.title,
+            questions: state.questions.map((q) => ({
+              id: q.id,
+              prompt: q.body,
+              answer: q.answer,
+              passage: meta.passages[q.unit] || "",
+              grade: state.applied.grade,
+              unit: meta.units[q.unit],
+              level: q.level,
+            })),
+          },
+          ({ title, questionIds }) => {
+            if (
+              title !== state.title ||
+              questionIds.join() !== state.questions.map((q) => q.id).join()
+            )
+              snapshot();
+            const byId = new Map(state.questions.map((q) => [q.id, q]));
+            state.questions = questionIds.map((id) => byId.get(id));
+            state.title = title;
+            renderReview();
+            $("open-output")?.focus({ preventScroll: true });
+          },
+        );
       }
-      $("paper-title").oninput = () => {
-        state.title = $("paper-title").value;
-        renderPaper();
-      };
-      $("paper-answer").onchange = renderPaper;
-      $("print").onclick = () => window.print();
       document
         .querySelectorAll("[data-close]")
         .forEach((el) => (el.onclick = () => $(el.dataset.close).close()));
@@ -1516,6 +1528,18 @@
         $("toast").hidden = true;
       };
       render();
+      ExamReorder.create({
+        container: $("review"),
+        itemSelector: ".question[data-reorder-id]",
+        getIds: () => state.questions.map((q) => q.id),
+        onReorder: (ids) => {
+          snapshot();
+          const byId = new Map(state.questions.map((q) => [q.id, q]));
+          state.questions = ids.map((id) => byId.get(id));
+          renderReview();
+        },
+        announce: notify,
+      });
     </script>
   </body>
 </html>

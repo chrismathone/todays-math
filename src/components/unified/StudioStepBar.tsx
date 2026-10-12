@@ -10,6 +10,18 @@ import styles from "./StudioView.module.css";
 
 export type StudioStep = "upload" | "crop" | "review" | "export";
 
+/** Optional navigation for callers that share output but own another workflow. */
+export interface StudioStepNavigation {
+  label: string;
+  items: readonly {
+    id: string;
+    label: string;
+    current: boolean;
+    disabled?: boolean;
+    onSelect: () => void;
+  }[];
+}
+
 /**
  * 자료 제작 네 단계의 제목 줄 — 원장님 2026-09-21 «4단계 헤더 구성 일치화 시킬것.
  * 단계마다 헤더 구조가 바뀌는 치명적인 ux 고칠것» → 안 A 확정.
@@ -34,6 +46,8 @@ export default function StudioStepBar({
   onStep,
   barRef,
   children,
+  headerTitle,
+  stepNavigation,
 }: {
   step: StudioStep;
   /**
@@ -61,49 +75,72 @@ export default function StudioStepBar({
   onStep: (next: StudioStep) => void;
   barRef?: Ref<HTMLDivElement>;
   children?: ReactNode;
+  headerTitle?: string;
+  stepNavigation?: StudioStepNavigation;
 }) {
   return (
-    <div ref={barRef} className={styles.editorBar} data-studio-band>
+    <div
+      ref={barRef}
+      className={`${styles.editorBar}${stepNavigation ? ` ${styles.customSteps}` : ""}`}
+      data-studio-band
+    >
       <div className={styles.editorTabs}>
-        <h1>{canStudio ? "문제 추출" : "시험지 구성"}</h1>
-        <nav className={styles.stepTabs} aria-label="제작 단계 이동">
-          {canStudio && (
-            <>
+        <h1>{headerTitle ?? (canStudio ? "문제 추출" : "시험지 구성")}</h1>
+        {stepNavigation ? (
+          <nav className={styles.stepTabs} aria-label={stepNavigation.label}>
+            {stepNavigation.items.map((item) => (
               <button
+                key={item.id}
                 type="button"
-                aria-pressed={step === "upload"}
-                onClick={() => onStep("upload")}
+                aria-current={item.current ? "step" : undefined}
+                aria-pressed={item.current}
+                disabled={item.disabled}
+                onClick={item.onSelect}
               >
-                원본 가져오기
+                {item.label}
               </button>
-              <button
-                type="button"
-                aria-pressed={step === "crop"}
-                disabled={!canCrop}
-                onClick={() => onStep("crop")}
-              >
-                문제&amp;도형 잘라내기
-              </button>
-              <button
-                type="button"
-                aria-pressed={step === "review"}
-                disabled={!canReview}
-                onClick={() => onStep("review")}
-              >
-                OCR · 디지털화{" "}
-                {typeof cropCount === "number" && <b>{cropCount}</b>}
-              </button>
-            </>
-          )}
-          <button
-            type="button"
-            aria-pressed={step === "export"}
-            disabled={!canExport || !pickedCount}
-            onClick={() => onStep("export")}
-          >
-            시험지 구성 <b>{pickedCount}</b>
-          </button>
-        </nav>
+            ))}
+          </nav>
+        ) : (
+          <nav className={styles.stepTabs} aria-label="제작 단계 이동">
+            {canStudio && (
+              <>
+                <button
+                  type="button"
+                  aria-pressed={step === "upload"}
+                  onClick={() => onStep("upload")}
+                >
+                  원본 가져오기
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={step === "crop"}
+                  disabled={!canCrop}
+                  onClick={() => onStep("crop")}
+                >
+                  문제&amp;도형 잘라내기
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={step === "review"}
+                  disabled={!canReview}
+                  onClick={() => onStep("review")}
+                >
+                  OCR · 디지털화{" "}
+                  {typeof cropCount === "number" && <b>{cropCount}</b>}
+                </button>
+              </>
+            )}
+            <button
+              type="button"
+              aria-pressed={step === "export"}
+              disabled={!canExport || !pickedCount}
+              onClick={() => onStep("export")}
+            >
+              시험지 구성 <b>{pickedCount}</b>
+            </button>
+          </nav>
+        )}
       </div>
       {children && <div className={styles.editorTools}>{children}</div>}
     </div>

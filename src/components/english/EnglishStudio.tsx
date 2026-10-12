@@ -45,7 +45,7 @@ import EnglishDialog from "./EnglishDialog";
 import EnglishEditor, { type EnglishEditorHandle } from "./EnglishEditor";
 import EnglishExamPicker from "./EnglishExamPicker";
 import EnglishLibraryView from "./EnglishLibraryView";
-import EnglishQuestionBank from "./EnglishQuestionBank";
+import EnglishExamBuilder from "./EnglishExamBuilder";
 import EnglishMakerView from "./EnglishMakerView";
 import EnglishPrepView from "./EnglishPrepView";
 import {
@@ -457,7 +457,7 @@ export default function EnglishStudio({
     <div className={s.studio}>
       {canLibrary && (
         <PersistentView active={view === "english-questions"}>
-          <EnglishQuestionBank
+          <EnglishExamBuilder
             exams={examList}
             refreshKey={bankVersion}
             onMake={canMake ? () => onNavigate("english-maker") : undefined}

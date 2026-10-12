@@ -1,0 +1,95 @@
+.reorder-handle[data-reorder-handle] {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px;
+  border: 1px solid var(--learn-control, #b8c4d6);
+  border-radius: 8px;
+  background: var(--learn-surface, #fff);
+  color: var(--learn-muted, #596c86);
+  font: inherit;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.reorder-handle[data-reorder-handle]:enabled:hover,
+.reorder-handle[data-reorder-handle][aria-pressed="true"] {
+  border-color: var(--learn-accent, #3159df);
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent, #3159df);
+}
+
+.reorder-handle[data-reorder-handle]:focus-visible {
+  outline: 3px solid var(--learn-accent, #3159df);
+  outline-offset: 3px;
+}
+
+.reorder-handle[data-reorder-handle][aria-pressed="true"] {
+  cursor: grabbing;
+}
+
+.reorder-handle[data-reorder-handle]:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.exam-reorder-source {
+  outline: 2px dashed var(--learn-accent, #3159df);
+  outline-offset: 2px;
+}
+
+.exam-reorder-marker {
+  position: fixed;
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--learn-accent, #3159df);
+  border-radius: 8px;
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent, #3159df);
+  font-family: inherit;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  transform: translateY(-50%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.exam-reorder-marker[hidden] {
+  display: none;
+}
+
+.exam-reorder-live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media print {
+  .reorder-handle[data-reorder-handle],
+  .exam-reorder-marker,
+  .exam-reorder-live {
+    display: none;
+  }
+  .exam-reorder-source {
+    outline: none;
+  }
+}

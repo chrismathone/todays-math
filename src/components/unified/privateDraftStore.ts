@@ -13,6 +13,7 @@ import {
 } from "./privateCloudClient";
 import type {
   PrivateDocument,
+  PrivateDocumentSummary,
   DocumentSharing,
   DocumentVisibility,
 } from "@/contracts/privateWorkspace.contract";
@@ -46,6 +47,8 @@ export function createPrivateDraftStore(
   let pending = 0;
   let tail: Promise<unknown> = Promise.resolve();
   let hydration: Promise<void> | undefined;
+  let remoteSummaries: PrivateDocumentSummary[] = [];
+  let opening = 0;
   let lifecycle = 0;
   const queued = new Map<string, string>();
   const conflicts = new Set<string>();
@@ -74,8 +77,25 @@ export function createPrivateDraftStore(
   let snapshot: WorkspaceDraftSnapshot = initial;
   const publish = () => {
     const state = local.getSnapshot();
+    // The library needs metadata, not every worksheet's payload and images.
+    const recent = new Map(
+      remoteSummaries.map((item) => [
+        item.id,
+        {
+          id: item.id,
+          title: item.title,
+          problemCount: item.problemCount,
+          updatedAt: item.updatedAt,
+        },
+      ]),
+    );
+    for (const item of state.recent) recent.set(item.id, item);
+    for (const id of deleted) recent.delete(id);
     snapshot = {
       ...state,
+      recent: [...recent.values()].sort(
+        (a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt),
+      ),
       hydrated: !initializing && state.hydrated,
       saveStatus: initializing
         ? "loading"
@@ -192,32 +212,29 @@ export function createPrivateDraftStore(
           ? parseEnvelope(raw)
           : { version: 1 as const, activeId: null, drafts: [] };
         const summaries = await client.list("draft");
-        const documents: PrivateDocument[] = [];
-        // Bound payload downloads: libraries can contain many large worksheets.
-        for (let offset = 0; offset < summaries.length; offset += 4) {
-          documents.push(
-            ...(await Promise.all(
-              summaries
-                .slice(offset, offset + 4)
-                .map((item) => client.get(item.id)),
-            )),
-          );
-        }
+        remoteSummaries = summaries;
         const merged = new Map<string, WorkspaceDraft>();
-        for (const document of documents) {
-          const draft = fromDocument(document);
-          const recovery = recovered.drafts.find(
-            (item) => item.id === draft.id,
-          );
+        for (const draft of recovered.drafts) {
           const base = bases[draft.id];
-          if (
-            recovery &&
-            (!base || base.acknowledged !== fingerprint(recovery))
-          ) {
-            // Preserve unsent edits with their ORIGINAL revision, even when another device saved.
-            const displayed = await client.materialize(recovery);
-            merged.set(draft.id, displayed);
+          // Keep every unsent recovery with its ORIGINAL revision. Inactive
+          // images stay portable; saving them does not require downloading them.
+          // Clean cached copies (including remote deletions) need no local payload.
+          if (!base || base.acknowledged !== fingerprint(draft))
+            merged.set(draft.id, draft);
+        }
+        const activeId =
+          recovered.activeId &&
+          (merged.has(recovered.activeId) ||
+            summaries.some((item) => item.id === recovered.activeId))
+            ? recovered.activeId
+            : (summaries[0]?.id ?? merged.keys().next().value ?? null);
+        if (activeId) {
+          const recovery = merged.get(activeId);
+          if (recovery) {
+            merged.set(activeId, await client.materialize(recovery));
           } else {
+            const document = await client.get(activeId);
+            const draft = fromDocument(document);
             const displayed = await client.materialize(draft);
             merged.set(draft.id, displayed);
             bases[draft.id] = {
@@ -228,19 +245,10 @@ export function createPrivateDraftStore(
             };
           }
         }
-        for (const draft of recovered.drafts) {
-          if (merged.has(draft.id)) continue;
-          const base = bases[draft.id];
-          // Clean cached copies of remotely deleted documents stay deleted.
-          if (!base || base.acknowledged !== fingerprint(draft))
-            merged.set(draft.id, await client.materialize(draft));
-        }
         const drafts = [...merged.values()];
         raw = JSON.stringify({
           version: 1,
-          activeId: drafts.some((item) => item.id === recovered.activeId)
-            ? recovered.activeId
-            : (drafts[0]?.id ?? null),
+          activeId,
           drafts,
         });
       } catch (cause) {
@@ -333,12 +341,21 @@ export function createPrivateDraftStore(
     }
   };
   const openDraft = async (id: string) => {
+    const request = ++opening;
     if (!(await saveNow())) return false;
+    const outgoing = fingerprint(local.getSnapshot().draft);
     try {
       const document = await client.get(id);
       if (document.kind !== "draft")
         throw new Error("시험지 형식을 확인해 주세요.");
       const draft = await client.materialize(fromDocument(document));
+      if (request !== opening || deleted.has(id)) return false;
+      // Lazy payload/image reads may finish after a newer editor action. Never
+      // replace recovery or the optimistic base with that stale response.
+      if (fingerprint(local.getSnapshot().draft) !== outgoing)
+        throw new Error(
+          "불러오는 동안 작업이 변경되었습니다. 현재 작업을 저장한 뒤 다시 열어 주세요.",
+        );
       const envelope = raw
         ? parseEnvelope(raw)
         : { version: 1, activeId: null, drafts: [] };
@@ -356,6 +373,7 @@ export function createPrivateDraftStore(
       persist();
       return local.openDraft(id);
     } catch (cause) {
+      if (request !== opening || deleted.has(id)) return false;
       error = cloudError(cause);
       publish();
       return false;
@@ -396,6 +414,11 @@ export function createPrivateDraftStore(
     forgetDraft: (id: string) => {
       // Called only after the API confirms deletion; queued saves keep their old revision.
       deleted.add(id);
+      if (!raw || !parseEnvelope(raw).drafts.some((item) => item.id === id)) {
+        remoteSummaries = remoteSummaries.filter((item) => item.id !== id);
+        publish();
+        return true;
+      }
       const removed = local.forgetDeletedDraft(id);
       if (removed) {
         if (

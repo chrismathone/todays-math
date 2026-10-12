@@ -1,0 +1,243 @@
+{
+  "questionNumber": 21,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+  "studentDigest": "f1b9e9f5a3138cc5b9f702c6f3f2ecf50b21aed02cd5f518d3a5066955d4284c",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "(1) OH=9m, PH=9√3m; (2) HQ=15m; (3) OQ=24m",
+  "solution": "(1) H가 O와 Q 사이에 있으므로 ∠POH=∠POQ=60°이다. 직각삼각형 OPH에서 OH=OP cos60°=18×1/2=9m이고,PH=OP sin60°=18×√3/2=9√3m이다. (2) 직각삼각형 PHQ에서 HQ²=PQ²−PH²=(6√13)²−(9√3)²=468−243=225이다. 길이는 양수이므로 HQ=15m이다. (3) O,H,Q가 이 순서로 있으므로 OQ=OH+HQ=9+15=24m이다. 9<24이므로 H가 선분 내부에 있고,18²=9²+(9√3)² 및(6√13)²=15²+(9√3)²로 두 직각삼각형 조건을 확인한다. 두 길이의 차를 택하거나 일반 코사인 법칙을 사용하지 않았다.",
+  "evidence": {
+    "studentInputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+    "givenStudentDigest": "f1b9e9f5a3138cc5b9f702c6f3f2ecf50b21aed02cd5f518d3a5066955d4284c",
+    "blindManifestRawSha256": "721033947e4c133ae39d5d899c58520d5fc9c385aeadbcc74cc52fd746bb4b92",
+    "opaquePackageDigestProvided": "bda294bd79bfa03f3d3975c0178101f0a193582c78c28bd9026079301ea7f61a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputRawSha256": "f01723e56a2f0a67f540fe3a8c23ba69b83d6bed6e309d0f0157e13b626bfe64",
+    "exactCalculation": {
+      "OP": "18",
+      "PQ": "6*sqrt(13)",
+      "OHByCos60": "9",
+      "PHBySin60": "9*sqrt(3)",
+      "HQSquaredByActualPythagoras": "225",
+      "positiveHQ": "15",
+      "OQ": "24",
+      "pointOrder": "O-H-Q;sum OH+HQ forced by supplied foot condition",
+      "alternateDifferenceExcluded": "-6",
+      "coordinatesPrivateExistenceOnly": {
+        "O": [
+          0,
+          0
+        ],
+        "H": [
+          "9",
+          0
+        ],
+        "P": [
+          "9",
+          "9*sqrt(3)"
+        ],
+        "Q": [
+          "24",
+          0
+        ]
+      },
+      "all3WrittenSubpartsCovered": true,
+      "partScoreAllocation": [
+        3,
+        3,
+        2
+      ],
+      "noCosineLawOrGeneralTrigIdentity": true,
+      "orderedWrittenTargetComponents": [
+        "9",
+        "9*sqrt(3)",
+        "15",
+        "24"
+      ],
+      "orderedTargetUnits": [
+        "m",
+        "m",
+        "m",
+        "m"
+      ]
+    },
+    "knownHolds": [],
+    "actualStudentPreview": {
+      "questionNumber": 21,
+      "studentDigest": "f1b9e9f5a3138cc5b9f702c6f3f2ecf50b21aed02cd5f518d3a5066955d4284c",
+      "png": "inspection/q21.png",
+      "pngSha256": "ab22838e282706a194c6079afb34683fc708b71c22ad4ce08fe3fa95ea3b2a7a",
+      "columnWidthMm": 70,
+      "overflow": [],
+      "figureCount": 1
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q21-1.svg",
+        "sha256": "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureObservations": "O-H-Q 순서,H 직각,O60°. PH 점선과 OH/HQ 두 분할 길이를 확인했다.",
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 학생 입력의 전체 요청을 본 독립 해법으로2015 조항에 대응한다. 원학교·저자·분류로 승인하지 않는다. 주어진 수선의 발·실제60°길이·다른 직각삼각형의 피타고라스·점 순서;코사인 법칙 없음",
+        "standards": [
+          {
+            "code": "9수01-10",
+            "exactText": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+            "physicalPage1based": 33,
+            "printedPage": 29,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "in-scope-independent-proposal",
+        "basis": "보기 없음. 세 번호 부분의 순서·증명·변의 비를 모두 포함했다.",
+        "independentChoiceEvidence": null,
+        "duplicates": null
+      },
+      "figuresAndTables": {
+        "status": "in-scope-independent-proposal",
+        "basis": "O-H-Q 순서,H 직각,O60°. PH 점선과 OH/HQ 두 분할 길이를 확인했다.",
+        "actualStudentPreview": {
+          "questionNumber": 21,
+          "studentDigest": "f1b9e9f5a3138cc5b9f702c6f3f2ecf50b21aed02cd5f518d3a5066955d4284c",
+          "png": "inspection/q21.png",
+          "pngSha256": "ab22838e282706a194c6079afb34683fc708b71c22ad4ce08fe3fa95ea3b2a7a",
+          "columnWidthMm": 70,
+          "overflow": [],
+          "figureCount": 1
+        },
+        "personallyViewed": true,
+        "suppliedFigureHashes": [
+          "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d"
+        ]
+      },
+      "notation": {
+        "status": "in-scope-independent-proposal",
+        "basis": "통상 선분·각·도·좌표·근호·비·삼각비·빈칸 기록. 벡터·라디안·고교 항등식/삼각형의 법칙 표기 없음."
+      },
+      "answer": {
+        "status": "independently-derived-math-only",
+        "basis": "제공 학생 입력에서만 계산했다. q18은 수학 답이 명확해도 복잡성 gate가 pending이다.",
+        "target": [
+          "9",
+          "9*sqrt(3)",
+          "15",
+          "24"
+        ]
+      },
+      "studentSolution": {
+        "status": "in-scope-independent-proposal",
+        "basis": "주어진 수선의 발·실제60°길이·다른 직각삼각형의 피타고라스·점 순서;코사인 법칙 없음 완전한 새 독립 학생 해법은 solution 필드에 있다. 저자 답/해법은 읽지 않았다."
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-proposal",
+        "basis": "주어진 수선의 발·실제60°길이·다른 직각삼각형의 피타고라스·점 순서;코사인 법칙 없음",
+        "standards": [
+          {
+            "code": "9수01-10",
+            "exactText": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+            "physicalPage1based": 33,
+            "printedPage": 29,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceRawSha256": "fdb33efde81204b068456eedd22954614fe02e5e752b9f53e94f33604d45f9cc",
+    "freshNewAuthorAnswerExposure": false,
+    "priorOriginalSourceConceptKnowledgeSeparatelyDisclosed": "input-audit.json",
+    "authorAnswerAndNewSolutionReview": "not-exposed;pending Root authorization after raw commit",
+    "mathematicalTargetUnique": true,
+    "calculationOnlyNotFinalGradeApproval": true,
+    "rightsAndNativeApproval": false
+  },
+  "curriculumGate": {
+    "grade": "중3",
+    "edition": "2015",
+    "wholeStudentScope": "in-scope-independent-proposal",
+    "requiredUpperGradeMethodDetected": false,
+    "materialComplexityHold": false,
+    "finalGradeApproval": false,
+    "finalAuthorReviewPending": true
+  },
+  "gates": {
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "loadable": false,
+    "directUseAllowed": false,
+    "modelCalls": 0,
+    "dbAccess": 0
+  },
+  "answerParts": [
+    {
+      "role": "part1.OH",
+      "value": "9",
+      "unit": "m"
+    },
+    {
+      "role": "part1.PH",
+      "value": "9*sqrt(3)",
+      "unit": "m"
+    },
+    {
+      "role": "part2.HQ",
+      "value": "15",
+      "unit": "m"
+    },
+    {
+      "role": "part3.OQ",
+      "value": "24",
+      "unit": "m"
+    }
+  ]
+}

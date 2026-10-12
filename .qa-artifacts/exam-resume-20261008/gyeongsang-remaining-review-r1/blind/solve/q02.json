@@ -1,0 +1,199 @@
+{
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+  "studentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "④",
+  "solution": "좌표와 a>0,b>0 조건에서 PR=a,QR=b이고 R에서 두 좌표축이 수직이므로 PQ가 빗변이다. 각 QPR의 이웃한 직각변은 PR이다. 따라서 cos∠QPR=PR/PQ=a/20=4/5이므로 a=16이다. 피타고라스 정리로 b=√(20²−16²)=12>0이므로 주어진 좌표 조건도 만족한다. 정답은④이다.",
+  "evidence": {
+    "studentInputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+    "givenStudentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+    "blindManifestRawSha256": "721033947e4c133ae39d5d899c58520d5fc9c385aeadbcc74cc52fd746bb4b92",
+    "opaquePackageDigestProvided": "bda294bd79bfa03f3d3975c0178101f0a193582c78c28bd9026079301ea7f61a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputRawSha256": "f01723e56a2f0a67f540fe3a8c23ba69b83d6bed6e309d0f0157e13b626bfe64",
+    "exactCalculation": {
+      "hypotenuseFromTable": "20",
+      "cosQPRFromTable": "4/5",
+      "a": "16",
+      "b": "12",
+      "positiveCoordinateExistence": {
+        "R": [
+          0,
+          0
+        ],
+        "P": [
+          "16",
+          0
+        ],
+        "Q": [
+          0,
+          "12"
+        ]
+      },
+      "definition": "cosQPR=PR/PQ=a/20;no inverse trig needed",
+      "allFiveDisplayedChoices": [
+        "12",
+        "4",
+        "20",
+        "16",
+        "25"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "correctChoiceNumber": 4,
+      "semanticDuplicateChoices": [],
+      "uniqueCorrectChoice": true,
+      "choiceTargetUnits": null
+    },
+    "knownHolds": [],
+    "actualStudentPreview": {
+      "questionNumber": 2,
+      "studentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+      "png": "inspection/q02.png",
+      "pngSha256": "7019f6e5b1b700f417d3ed961c1ef6f9cc5f67b3f0c5de2414bf382be5e25b36",
+      "columnWidthMm": 70,
+      "overflow": [],
+      "figureCount": 1
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q02-1.svg",
+        "sha256": "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureObservations": "R은 원점,P는 양의 x축,Q는 양의 y축. 두 축과 R 직각이 a,b 양수 조건과 일치한다.",
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 학생 입력의 전체 요청을 본 독립 해법으로2015 조항에 대응한다. 원학교·저자·분류로 승인하지 않는다. 좌표·두 축의 수직과 cos 정의",
+        "standards": [
+          {
+            "code": "9수03-01",
+            "exactText": "순서쌍과 좌표를 이해한다.",
+            "physicalPage1based": 36,
+            "printedPage": 32,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제5보기를 전부 독립 계산/동치/참거짓 검사;정답 하나이고 동치 중복 없음.",
+        "independentChoiceEvidence": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "duplicates": []
+      },
+      "figuresAndTables": {
+        "status": "in-scope-independent-proposal",
+        "basis": "R은 원점,P는 양의 x축,Q는 양의 y축. 두 축과 R 직각이 a,b 양수 조건과 일치한다.",
+        "actualStudentPreview": {
+          "questionNumber": 2,
+          "studentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+          "png": "inspection/q02.png",
+          "pngSha256": "7019f6e5b1b700f417d3ed961c1ef6f9cc5f67b3f0c5de2414bf382be5e25b36",
+          "columnWidthMm": 70,
+          "overflow": [],
+          "figureCount": 1
+        },
+        "personallyViewed": true,
+        "suppliedFigureHashes": [
+          "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7"
+        ]
+      },
+      "notation": {
+        "status": "in-scope-independent-proposal",
+        "basis": "통상 선분·각·도·좌표·근호·비·삼각비·빈칸 기록. 벡터·라디안·고교 항등식/삼각형의 법칙 표기 없음."
+      },
+      "answer": {
+        "status": "independently-derived-math-only",
+        "basis": "제공 학생 입력에서만 계산했다. q18은 수학 답이 명확해도 복잡성 gate가 pending이다.",
+        "target": "16"
+      },
+      "studentSolution": {
+        "status": "in-scope-independent-proposal",
+        "basis": "좌표·두 축의 수직과 cos 정의 완전한 새 독립 학생 해법은 solution 필드에 있다. 저자 답/해법은 읽지 않았다."
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-proposal",
+        "basis": "좌표·두 축의 수직과 cos 정의",
+        "standards": [
+          {
+            "code": "9수03-01",
+            "exactText": "순서쌍과 좌표를 이해한다.",
+            "physicalPage1based": 36,
+            "printedPage": 32,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceRawSha256": "fdb33efde81204b068456eedd22954614fe02e5e752b9f53e94f33604d45f9cc",
+    "freshNewAuthorAnswerExposure": false,
+    "priorOriginalSourceConceptKnowledgeSeparatelyDisclosed": "input-audit.json",
+    "authorAnswerAndNewSolutionReview": "not-exposed;pending Root authorization after raw commit",
+    "mathematicalTargetUnique": true,
+    "calculationOnlyNotFinalGradeApproval": true,
+    "rightsAndNativeApproval": false
+  },
+  "curriculumGate": {
+    "grade": "중3",
+    "edition": "2015",
+    "wholeStudentScope": "in-scope-independent-proposal",
+    "requiredUpperGradeMethodDetected": false,
+    "materialComplexityHold": false,
+    "finalGradeApproval": false,
+    "finalAuthorReviewPending": true
+  },
+  "gates": {
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "loadable": false,
+    "directUseAllowed": false,
+    "modelCalls": 0,
+    "dbAccess": 0
+  }
+}

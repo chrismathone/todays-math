@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": { "incremental": false },
+  "files": ["../../../node_modules/next/types/global.d.ts"],
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "./**/*.mts",
+    "../unified/UnifiedWorkspace.tsx",
+    "../english/EnglishStudio.tsx"
+  ]
+}
