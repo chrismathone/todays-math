@@ -1,0 +1,272 @@
+{
+  "questionNumber": 20,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+  "studentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "(1) PH⊥QR, α=30°; (2) PH=5√3cm; (3) sinα=1/2, cosα=√3/2, tanα=√3/3",
+  "solution": "(1) 정삼각형이므로 PQ=PR=10cm이고,H가 중점이므로 QH=RH=5cm이다. PH는 공통인 변이어서 삼각형 PQH와 PRH는 SSS 합동이다. 따라서 ∠PHQ=∠PHR이다. Q,H,R가 일직선 위에 있으므로 두 각의 합은180°이고,각각90°이다. 그러므로 PH⊥QR이다. 또한 합동에서 ∠QPH=∠HPR이고 정삼각형의 꼭짓각60°를 반으로 나누므로 α=30°이다. (2) 직각삼각형 PQH에서 PH²=PQ²−QH²=10²−5²=75이다. 양의 길이 PH=5√3cm이다. (3) 같은 직각삼각형 PQH에서 α의 맞은편 변은 QH,이웃한 직각변은 PH,빗변은 PQ이다. 따라서 sinα=QH/PQ=5/10=1/2,cosα=PH/PQ=5√3/10=√3/2,tanα=QH/PH=5/(5√3)=√3/3이다. 각 값과 해당 선분의 비를 모두 기록했다.",
+  "evidence": {
+    "studentInputRawSha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af",
+    "givenStudentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+    "blindManifestRawSha256": "721033947e4c133ae39d5d899c58520d5fc9c385aeadbcc74cc52fd746bb4b92",
+    "opaquePackageDigestProvided": "bda294bd79bfa03f3d3975c0178101f0a193582c78c28bd9026079301ea7f61a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeRawSha256": "deb6910e03cc78a62704bf0d5dcae31f1cc830995c8533f4cf34194f3db5932b",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputRawSha256": "f01723e56a2f0a67f540fe3a8c23ba69b83d6bed6e309d0f0157e13b626bfe64",
+    "exactCalculation": {
+      "equalSides": "10",
+      "QH_HR": "5",
+      "SSSCongruence": "PQ=PR=10,QH=HR=5,PH common",
+      "perpendicularProof": "Corresponding angles PHQ and PHR equal and supplementary;both90",
+      "apexAngleBisected": 60,
+      "alpha": "30",
+      "positiveHeightPH": "5*sqrt(3)",
+      "sinAlphaSideRatio": "QH/PQ",
+      "cosAlphaSideRatio": "PH/PQ",
+      "tanAlphaSideRatio": "QH/PH",
+      "actualRatios": [
+        "1/2",
+        "sqrt(3)/2",
+        "sqrt(3)/3"
+      ],
+      "heightPythagorasRecheck": true,
+      "all3WrittenSubpartsAndProofAnd3SideRatiosCovered": true,
+      "partScoreAllocation": [
+        2,
+        3,
+        3
+      ],
+      "orderedWrittenTargetComponents": [
+        "30",
+        "5*sqrt(3)",
+        "1/2",
+        "sqrt(3)/2",
+        "sqrt(3)/3"
+      ],
+      "orderedTargetUnits": [
+        "degree",
+        "cm",
+        null,
+        null,
+        null
+      ]
+    },
+    "knownHolds": [],
+    "actualStudentPreview": {
+      "questionNumber": 20,
+      "studentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+      "png": "inspection/q20.png",
+      "pngSha256": "6c676a7a06f0ca8e11db846adea14ad81af6319ab5df88271e66b6c1c169d0ff",
+      "columnWidthMm": 70,
+      "overflow": [],
+      "figureCount": 1
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q20-1.svg",
+        "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureObservations": "H는 QR의 중점,PH는 점선. 수직은 측정으로 판단하지 않고 요청대로 증명한다. α는 본문의 ∠QPH 정의로 읽는다.",
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-independent-proposal",
+        "basis": "실제 학생 입력의 전체 요청을 본 독립 해법으로2015 조항에 대응한다. 원학교·저자·분류로 승인하지 않는다. SSS 합동·이웃한 두 각 합180°·정삼각형60°·피타고라스·실제 변의 비",
+        "standards": [
+          {
+            "code": "9수01-10",
+            "exactText": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+            "physicalPage1based": 33,
+            "printedPage": 29,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-04",
+            "exactText": "삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-05",
+            "exactText": "다각형의 성질을 이해한다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-10",
+            "exactText": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "in-scope-independent-proposal",
+        "basis": "보기 없음. 세 번호 부분의 순서·증명·변의 비를 모두 포함했다.",
+        "independentChoiceEvidence": null,
+        "duplicates": null
+      },
+      "figuresAndTables": {
+        "status": "in-scope-independent-proposal",
+        "basis": "H는 QR의 중점,PH는 점선. 수직은 측정으로 판단하지 않고 요청대로 증명한다. α는 본문의 ∠QPH 정의로 읽는다.",
+        "actualStudentPreview": {
+          "questionNumber": 20,
+          "studentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+          "png": "inspection/q20.png",
+          "pngSha256": "6c676a7a06f0ca8e11db846adea14ad81af6319ab5df88271e66b6c1c169d0ff",
+          "columnWidthMm": 70,
+          "overflow": [],
+          "figureCount": 1
+        },
+        "personallyViewed": true,
+        "suppliedFigureHashes": [
+          "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c"
+        ]
+      },
+      "notation": {
+        "status": "in-scope-independent-proposal",
+        "basis": "통상 선분·각·도·좌표·근호·비·삼각비·빈칸 기록. 벡터·라디안·고교 항등식/삼각형의 법칙 표기 없음."
+      },
+      "answer": {
+        "status": "independently-derived-math-only",
+        "basis": "제공 학생 입력에서만 계산했다. q18은 수학 답이 명확해도 복잡성 gate가 pending이다.",
+        "target": [
+          "30",
+          "5*sqrt(3)",
+          "1/2",
+          "sqrt(3)/2",
+          "sqrt(3)/3"
+        ]
+      },
+      "studentSolution": {
+        "status": "in-scope-independent-proposal",
+        "basis": "SSS 합동·이웃한 두 각 합180°·정삼각형60°·피타고라스·실제 변의 비 완전한 새 독립 학생 해법은 solution 필드에 있다. 저자 답/해법은 읽지 않았다."
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-proposal",
+        "basis": "SSS 합동·이웃한 두 각 합180°·정삼각형60°·피타고라스·실제 변의 비",
+        "standards": [
+          {
+            "code": "9수01-10",
+            "exactText": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+            "physicalPage1based": 33,
+            "printedPage": 29,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-04",
+            "exactText": "삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-05",
+            "exactText": "다각형의 성질을 이해한다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-10",
+            "exactText": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceRawSha256": "fdb33efde81204b068456eedd22954614fe02e5e752b9f53e94f33604d45f9cc",
+    "freshNewAuthorAnswerExposure": false,
+    "priorOriginalSourceConceptKnowledgeSeparatelyDisclosed": "input-audit.json",
+    "authorAnswerAndNewSolutionReview": "not-exposed;pending Root authorization after raw commit",
+    "mathematicalTargetUnique": true,
+    "calculationOnlyNotFinalGradeApproval": true,
+    "rightsAndNativeApproval": false
+  },
+  "curriculumGate": {
+    "grade": "중3",
+    "edition": "2015",
+    "wholeStudentScope": "in-scope-independent-proposal",
+    "requiredUpperGradeMethodDetected": false,
+    "materialComplexityHold": false,
+    "finalGradeApproval": false,
+    "finalAuthorReviewPending": true
+  },
+  "gates": {
+    "rights": "held",
+    "nativeCompatibility": "pending",
+    "loadable": false,
+    "directUseAllowed": false,
+    "modelCalls": 0,
+    "dbAccess": 0
+  },
+  "answerParts": [
+    {
+      "role": "part1.perpendicularProof",
+      "value": "PH perpendicular QR by SSS congruence and equal supplementary angles",
+      "unit": null
+    },
+    {
+      "role": "part1.alpha",
+      "value": "30",
+      "unit": "degree"
+    },
+    {
+      "role": "part2.PH",
+      "value": "5*sqrt(3)",
+      "unit": "cm"
+    },
+    {
+      "role": "part3.sinAlpha",
+      "value": "1/2",
+      "unit": null
+    },
+    {
+      "role": "part3.cosAlpha",
+      "value": "sqrt(3)/2",
+      "unit": null
+    },
+    {
+      "role": "part3.tanAlpha",
+      "value": "sqrt(3)/3",
+      "unit": null
+    }
+  ]
+}
