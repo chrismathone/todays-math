@@ -7,6 +7,7 @@ import type {
   GradeSheetStudent,
 } from "@/contracts/testresult.contract";
 import { MathText } from "@/components/math/MathText";
+import { solutionForDisplay } from "@/lib/solutionSteps";
 import UnifiedProblem from "@/components/unified/UnifiedProblem";
 import {
   DEFAULT_PRINT_META,
@@ -356,7 +357,13 @@ function StudentRetry({
                             <summary>정답 · 해설 보기</summary>
                             <MathText as="div" text={seat.problem.answer} />
                             {seat.problem.solution ? (
-                              <MathText as="div" text={seat.problem.solution} />
+                              <MathText
+                                as="div"
+                                text={
+                                  solutionForDisplay(seat.problem.solution) ??
+                                  ""
+                                }
+                              />
                             ) : (
                               <p>해설이 없습니다.</p>
                             )}

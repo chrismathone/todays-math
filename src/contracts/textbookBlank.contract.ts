@@ -73,6 +73,7 @@ export const textbookBlankSheetSchema = z
     z.strictObject({
       form: z.literal("map"),
       header: headerSchema,
+      questionMode: z.literal(true).optional(),
       maps: z
         .array(
           z.strictObject({
