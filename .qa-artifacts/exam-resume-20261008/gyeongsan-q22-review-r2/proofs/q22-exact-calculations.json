@@ -1,0 +1,214 @@
+{
+  "method": "fresh exact length geometry and actual-five-expression comparison",
+  "studentDigest": "b5461ade7464e5e10e30d83f391d25e53590ff1ba7b1e450cdb249510172e109",
+  "inputSHA256": "970403506c97e1a108ee4e5570e67e0605667fb25b7d2a8decfa0cc6519ad09b",
+  "svgSHA256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111",
+  "codeSHA256": "242bd74e7f930c45d94830b327689a9f36783f27ac487565bae0be96c546385d",
+  "fullDomain": {
+    "alpha": "0°<alpha<45°",
+    "beta": "45°<beta<90°",
+    "k": "0<k=SQ/OS<1",
+    "ell": "OT/OQ>1",
+    "allFiveExpressionsDefined": true,
+    "SQDenominatorsStrictlyPositive": true,
+    "boundaryCasesExcluded": [
+      "alpha0 makes SQ0 and a degenerate T angle; reciprocal options undefined",
+      "alpha45 permits the two equal legs, but is outside the stated domain"
+    ]
+  },
+  "geometry": {
+    "parameters": {
+      "k": "actual SQ/OS, 0<k<1",
+      "ell": "actual OT/OQ>1, hence UT=ell*SQ by similar right triangles",
+      "w": "sqrt(1+k²)>1"
+    },
+    "exactExistenceWitnessForEveryLegalK": {
+      "O": [
+        "0",
+        "0"
+      ],
+      "S": [
+        "2/sqrt(k**2 + 1)",
+        "0"
+      ],
+      "Q": [
+        "2/sqrt(k**2 + 1)",
+        "2*k/sqrt(k**2 + 1)"
+      ],
+      "U": [
+        "2",
+        "0"
+      ],
+      "T": [
+        "2",
+        "2*k"
+      ]
+    },
+    "exactWitnessLengths": {
+      "OQ": "2",
+      "OU": "2",
+      "OS": "2/sqrt(k**2 + 1)",
+      "SQ": "2*k/sqrt(k**2 + 1)",
+      "OT": "2*sqrt(k**2 + 1)",
+      "UT": "2*k",
+      "QT": "2*sqrt(k**2 + 1) - 2",
+      "SU": "2 - 2/sqrt(k**2 + 1)"
+    },
+    "witnessChecks": [
+      "OQ=OU=2",
+      "Q lies on the quadrant, both coordinates positive",
+      "OS²+SQ²=4",
+      "O,Q,T collinear with T=w*Q and w>1",
+      "QS and UT vertical, OU and OS horizontal; both right angles verified",
+      "OS>0,SQ>0,UT>0,QT=2(w-1)>0,SU=2(1-1/w)>0",
+      "O-S-U and O-Q-T order are nondegenerate",
+      "alpha between0 and45 follows 0<SQ/OS=k<1; beta=90-alpha lies between45 and90",
+      "UT/OT=SQ/OQ=SQ/2 by the two corresponding right-triangle cosine definitions"
+    ],
+    "angleCorrespondenceStudentProof": "TQ is the same ray as TO because O-Q-T; triangleOUT right atU gives beta+alpha=90. TriangleOQS right atS has angleOQS=beta, so adjacent leg is QS and hypotenuse is QO.",
+    "fullDomainProofIsNotNumericalSampling": true,
+    "actualSVGCoordinatesOrPixelsAsOracle": false
+  },
+  "allFiveActualChoices": [
+    {
+      "index1based": 1,
+      "choiceMark": "①",
+      "actualStudentExpression": "$\\dfrac{OS}{2}$",
+      "exactExpressionFromActualLengths": "1/sqrt(k**2 + 1)",
+      "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+      "differenceFromTarget": "(1 - k)/sqrt(k**2 + 1)",
+      "positiveOrZeroCertificate": {
+        "difference": "(1-k)/sqrt(1+k²)",
+        "positiveFactors": [
+          "1-k>0",
+          "sqrt(1+k²)>0"
+        ],
+        "domainProof": "0<k<1"
+      },
+      "equalOnEntireLegalDomain": false,
+      "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+      "units": "dimensionless"
+    },
+    {
+      "index1based": 2,
+      "choiceMark": "②",
+      "actualStudentExpression": "$\\dfrac{UT}{2}$",
+      "exactExpressionFromActualLengths": "ell*k/sqrt(k**2 + 1)",
+      "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+      "differenceFromTarget": "k*(ell - 1)/sqrt(k**2 + 1)",
+      "positiveOrZeroCertificate": {
+        "difference": "(ell-1)*k/sqrt(1+k²)",
+        "positiveFactors": [
+          "ell-1>0",
+          "k>0",
+          "sqrt(1+k²)>0"
+        ],
+        "domainProof": "ell=OT/OQ>1 by O-Q-T ordering"
+      },
+      "equalOnEntireLegalDomain": false,
+      "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+      "units": "dimensionless"
+    },
+    {
+      "index1based": 3,
+      "choiceMark": "③",
+      "actualStudentExpression": "$\\dfrac{2}{SQ}$",
+      "exactExpressionFromActualLengths": "sqrt(k**2 + 1)/k",
+      "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+      "differenceFromTarget": "1/(k*sqrt(k**2 + 1))",
+      "positiveOrZeroCertificate": {
+        "difference": "1/(k*sqrt(1+k²))",
+        "positiveFactors": [
+          "1>0",
+          "k>0",
+          "sqrt(1+k²)>0"
+        ],
+        "domainProof": "0<k<1"
+      },
+      "equalOnEntireLegalDomain": false,
+      "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+      "units": "dimensionless"
+    },
+    {
+      "index1based": 4,
+      "choiceMark": "④",
+      "actualStudentExpression": "$\\dfrac{SQ}{2}$",
+      "exactExpressionFromActualLengths": "k/sqrt(k**2 + 1)",
+      "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+      "differenceFromTarget": "0",
+      "positiveOrZeroCertificate": {
+        "difference": "0",
+        "domainProof": "identically equal for the whole legal domain"
+      },
+      "equalOnEntireLegalDomain": true,
+      "thisAlternativeHasNoEqualityAtAnyLegalAngle": false,
+      "units": "dimensionless"
+    },
+    {
+      "index1based": 5,
+      "choiceMark": "⑤",
+      "actualStudentExpression": "$\\dfrac{OS}{SQ}$",
+      "exactExpressionFromActualLengths": "1/k",
+      "targetCosBetaFromRightTriangle": "k/sqrt(k**2 + 1)",
+      "differenceFromTarget": "-k/sqrt(k**2 + 1) + 1/k",
+      "positiveOrZeroCertificate": {
+        "difference": "(sqrt(1+k²)-k²)/(k*sqrt(1+k²))",
+        "positiveFactors": [
+          "sqrt(1+k²)>1>k²",
+          "k>0",
+          "sqrt(1+k²)>0"
+        ],
+        "domainProof": "0<k<1 implies k²<1"
+      },
+      "equalOnEntireLegalDomain": false,
+      "thisAlternativeHasNoEqualityAtAnyLegalAngle": true,
+      "units": "dimensionless"
+    }
+  ],
+  "supplementalExactSamples": [
+    {
+      "kExact": "1/1000",
+      "targetExact": "sqrt(1000001)/1000001",
+      "allChoiceDifferencesExact": [
+        "999*sqrt(1000001)/1000001",
+        "1/1000 - sqrt(1000001)/1000001",
+        "1000000*sqrt(1000001)/1000001",
+        "0",
+        "1000 - sqrt(1000001)/1000001"
+      ],
+      "onlySupplementalSanityCheckNotDomainProof": true
+    },
+    {
+      "kExact": "1/2",
+      "targetExact": "sqrt(5)/5",
+      "allChoiceDifferencesExact": [
+        "sqrt(5)/5",
+        "1/2 - sqrt(5)/5",
+        "4*sqrt(5)/5",
+        "0",
+        "2 - sqrt(5)/5"
+      ],
+      "onlySupplementalSanityCheckNotDomainProof": true
+    },
+    {
+      "kExact": "999/1000",
+      "targetExact": "999*sqrt(1998001)/1998001",
+      "allChoiceDifferencesExact": [
+        "sqrt(1998001)/1998001",
+        "999/1000 - 999*sqrt(1998001)/1998001",
+        "1000000*sqrt(1998001)/1996002999",
+        "0",
+        "1000/999 - 999*sqrt(1998001)/1998001"
+      ],
+      "onlySupplementalSanityCheckNotDomainProof": true
+    }
+  ],
+  "requestedUniqueness": "Unique expression④ on the full legal domain; no single numerical angle, cos value or all lengths are fixed by the input.",
+  "dimensionlessAnswer": true,
+  "noExplicitLengthUnitSupplied": "Radius2 and all drawn lengths use one common unit; no cm/m invented.",
+  "originalKeyAgreementUsed": false,
+  "authorPrivateFactsUsed": false,
+  "newHelperTestTargetUsed": false,
+  "studentMethodRequiresTrigRatioIdentities": false,
+  "calculationAPIOrInferenceCalls": 0
+}

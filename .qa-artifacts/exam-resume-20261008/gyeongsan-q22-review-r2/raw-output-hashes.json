@@ -1,0 +1,25 @@
+{
+  "studentDigest": "b5461ade7464e5e10e30d83f391d25e53590ff1ba7b1e450cdb249510172e109",
+  "rawSolve": {
+    "path": "solve/q22.json",
+    "sha256": "c59e4b8e2d3a0d9751c4ddf753e7f7410f74f3f4becaea4bef6343c800547104"
+  },
+  "exactProof": {
+    "path": "proofs/q22-exact-calculations.json",
+    "sha256": "039173db38d246f9cc1ced0617b4360507da95f5bdf03657e77eff3c23e148e1"
+  },
+  "freshCode": {
+    "path": "calculate.py",
+    "sha256": "242bd74e7f930c45d94830b327689a9f36783f27ac487565bae0be96c546385d"
+  },
+  "studentInput": {
+    "path": "blind/student-problems.json",
+    "sha256": "970403506c97e1a108ee4e5570e67e0605667fb25b7d2a8decfa0cc6519ad09b"
+  },
+  "studentFigure": {
+    "path": "blind/figures/q22-1.svg",
+    "sha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111"
+  },
+  "answerExposureBeforeRawCommit": false,
+  "rawFilesMustNotBeReformattedAfterExposure": true
+}
