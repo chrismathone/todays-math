@@ -1,7 +1,7 @@
 import UnifiedWorkspace from "./UnifiedWorkspace";
 import type { BankData } from "./types";
 import type { SessionUser } from "@/lib/session";
-import { loadUnifiedBank } from "@/lib/unifiedPreview";
+import { loadUnifiedBankBootstrap } from "@/lib/unifiedPreview";
 import { getAccountAccess } from "@/lib/accountAccess";
 import { fadingGate } from "@/lib/fading/enabled";
 
@@ -10,16 +10,24 @@ export default async function WorkspacePage({ user }: { user: SessionUser }) {
   const account = await getAccountAccess();
   let initialData: BankData;
   try {
-    initialData = account?.menus.includes("bank")
-      ? await loadUnifiedBank()
-      : {
-          problems: [],
-          total: 0,
-          page: 1,
-          pageSize: 12,
-          grades: [],
-          chapters: [],
-        };
+    if (account?.menus.includes("bank")) {
+      const metadata = await loadUnifiedBankBootstrap();
+      initialData = {
+        ...metadata,
+        problems: [],
+        page: 1,
+        pageSize: 12,
+      };
+    } else {
+      initialData = {
+        problems: [],
+        total: 0,
+        page: 1,
+        pageSize: 12,
+        grades: [],
+        chapters: [],
+      };
+    }
   } catch {
     initialData = {
       problems: [],

@@ -15,11 +15,13 @@ HANGUL = re.compile('[%s-%s%s-%s%s-%s]' % tuple(map(chr, (0x1100, 0x11FF, 0x3130
 CONTRACT = {
     'version': 'graph-1',
     'coordinates': 'Mathematical x right, y UP. Explicit xRange/yRange, each [min,max]. No eval/code.',
+    'nativeSampling': 'Native curves use deterministic screen-space subdivision, probing quarter/mid/three-quarter chord errors at 0.15 pixels. Maximum 400 segments per curve and 48 segments per band boundary; exceeding the sampling budget or numeric resolution fails instead of dropping samples or drawing a coarse substitute. These are render approximations of analytic equations, not numerical integration or proof of answers.',
     'fields': {
         'xRange': 'required [min,max]', 'yRange': 'required [min,max]',
         'width': 'optional 240..640 default 520', 'height': 'optional 200..640 default 460',
         'axes': 'optional boolean default true; arrows + x,y labels only, NO automatic ticks or O label',
-        'curves': 'list of {coefficients:[a,b,c,...],domain:[xmin,xmax]} for polynomial a*x^n+b*x^(n-1)+...; OR {type:"inverse",k:number,domain:[xmin,xmax]}; optional dashed:boolean',
+        'curves': 'list of {coefficients:[a,b,c,...],domain:[xmin,xmax]} for polynomial a*x^n+b*x^(n-1)+...; OR {type:"inverse",k:number,domain:[xmin,xmax]}; OR {type:"exponential"|"logarithm",base:number,domain:[xmin,xmax],amplitude?:1,xScale?:1,xShift?:0,yShift?:0}. Exponential: y=amplitude*base^(xScale*(x-xShift))+yShift. Logarithm: y=amplitude*log_base(xScale*(x-xShift))+yShift. Base must be positive and not 1; amplitude and xScale nonzero; every number finite with absolute value <=10000. Native exp/log domain is required, strictly increasing, wholly inside xRange, wholly valid (log argument >0), and its entire curve must fit yRange; choose visible endpoints explicitly, never cross an asymptote. No automatic clipping, expressions, eval, sampled point substitute or silent omission. Optional dashed:boolean for all curve types.',
+        'horizontalBands': 'list of {leftCurve:integer,rightCurve:integer,yRange:[ymin,ymax],fill?:"#eeeeee"}. Indexes reference two distinct exponential entries in curves, zero-based, in left-to-right order at every height. The engine analytically inverts their equations and fills the exact curve-bounded horizontal band, with horizontal end edges; no rectangle/polygon approximation supplied by the caller. Both heights must be inside graph yRange and both curve domains must cover the full band. Invalid, crossing, offscreen, degenerate or unsupported boundaries fail. Maximum 100 bands; deterministic bounded sampling is rendering only.',
         'segments': 'list of {from:[x,y],to:[x,y],dashed?:boolean,arrow?:boolean}; finite visible segments only',
         'polygons': 'list of {points:[[x,y],...],fill?:"#eeeeee",dashed?:boolean}; optional shading',
         'circles': 'list of {center:[x,y],radius:number,dashed?:boolean}; a geometric circle in DATA units (stretches to an ellipse when x/y scales differ) — never use it for printed dots; use points',
@@ -33,12 +35,23 @@ CONTRACT = {
         'labels':[{'at':[0,9],'text':'9','dx':-16,'dy':-3}, {'at':[-3,0],'text':'−3','dy':22},
             {'at':[3,0],'text':'3','dy':22},{'at':[0,0],'text':'O','dx':-16,'dy':22},
             {'at':[1.5,9],'text':'y = 9 − x²','dx':22,'dy':-8}]},
+    'nativeExamples': [
+        {'version':'graph-1', 'xRange':[-3,3], 'yRange':[-1,17],
+         'curves':[{'type':'exponential','base':0.25,'domain':[-2,2]}]},
+        {'version':'graph-1', 'xRange':[-3,5], 'yRange':[-4,7],
+         'curves':[{'type':'logarithm','base':2,'xScale':8,'xShift':-2,'domain':[-1.99,4]}]},
+        {'version':'graph-1', 'xRange':[-4.5,4], 'yRange':[-1,11],
+         'curves':[{'type':'exponential','base':2,'xShift':-3,'domain':[-4,0.3]},
+                   {'type':'exponential','base':2,'domain':[-1,3.3]}],
+         'horizontalBands':[{'leftCurve':0,'rightCurve':1,'yRange':[1,8],'fill':'#eeeeee'}]},
+    ],
 }
 
 # 엔진이 받는 칸 — **정본**. 모델에게 가는 설명(CONTRACT['fields'])은 사람이 쓴 글이라 따로 논다.
 # build_catalog.py 가 둘을 견줘, 여기 있는데 설명에 없는 칸이 있으면 카탈로그를 안 만든다(설명서에만 없는 기능).
 FIELDS = {
-    'curves': {'coefficients', 'domain', 'type', 'k', 'dashed'},
+    'curves': {'coefficients', 'domain', 'type', 'k', 'dashed', 'base', 'amplitude', 'xScale', 'xShift', 'yShift'},
+    'horizontalBands': {'leftCurve', 'rightCurve', 'yRange', 'fill'},
     'segments': {'from', 'to', 'dashed', 'arrow'},
     'polygons': {'points', 'fill', 'dashed'},
     'circles': {'center', 'radius', 'dashed'},
@@ -101,6 +114,7 @@ def axis_break_path(cx, cy, axis, size, width):
 
 def render_graph(spec):
     from core.figure_svg import line as engine_line, curve_path, txt
+    from graph_native import NativeCurve, NATIVE_TYPES, band_boundaries, sample_screen
     fields = FIELDS
     if not isinstance(spec, dict) or spec.get('version') != 'graph-1':
         raise ValueError('graph-1 도형 스펙이 필요합니다.')
@@ -142,6 +156,29 @@ def render_graph(spec):
                 ux=(x2-x1)/length;uy=(y2-y1)/length
                 points=f'{x2:.3f},{y2:.3f} {x2-8*ux+3*uy:.3f},{y2-8*uy-3*ux:.3f} {x2-8*ux-3*uy:.3f},{y2-8*uy+3*ux:.3f}'
                 out.append(f'<polygon points="{points}" fill="#111"/>')
+    curves = items('curves')
+    native = [NativeCurve.parse(c, (xlo, xhi), (ylo, yhi))
+              if c.get('type') in NATIVE_TYPES else None for c in curves]
+
+    def sampled_path(points, fill='none', dashed=False, close=False, dash_offset=0):
+        # Short paths stay below the sanitizer's attribute limit. Unlike the
+        # legacy curve_path helper, these never discard intermediate samples.
+        d = 'M ' + ' L '.join(f'{x:.3f} {y:.3f}' for x, y in points) + (' Z' if close else '')
+        stroke = 'none' if close else '#111'
+        dash = f' stroke-dasharray="6 4" stroke-dashoffset="{-dash_offset:.3f}"' if dashed else ''
+        out.append(f'<path d="{d}" fill="{fill}" stroke="{stroke}" stroke-width="2"{dash}/>')
+
+    # Fill before axes/curves/labels, as one path (tiles leave antialias seams).
+    # Horizontal edges are the only added strokes; referenced curves draw sides.
+    band_edges = []
+    for band in items('horizontalBands'):
+        left, right, (blo, bhi), fill = band_boundaries(band, native, (ylo, yhi))
+        samples = sample_screen(lambda y: (screen([left.inverse(y), y]), screen([right.inverse(y), y])),
+                                blo, bhi, max_segments=48)
+        left_points = [pair[0] for pair in samples]
+        right_points = [pair[1] for pair in samples]
+        sampled_path(left_points + right_points[::-1], fill, close=True)
+        band_edges.extend(([left.inverse(y), y], [right.inverse(y), y]) for y in (blo, bhi))
     if spec.get('axes',True):
         if ylo<=0<=yhi: line([xlo,0],[xhi,0],{'arrow':True},1.4)
         if xlo<=0<=xhi: line([0,ylo],[0,yhi],{'arrow':True},1.4)
@@ -151,7 +188,22 @@ def render_graph(spec):
         fill=polygon.get('fill','none')
         if fill!='none' and (not isinstance(fill,str) or len(fill)!=7 or not fill.startswith('#') or any(c not in '0123456789abcdefABCDEF' for c in fill[1:])): raise ValueError('채우기 색은 #RRGGBB여야 합니다.')
         out.append(f'<polygon points="{" ".join(xy(p) for p in points)}" fill="{fill}" stroke="#111" stroke-width="1.7"{style(polygon)}/>')
-    for curve in items('curves'):
+    for a, b in band_edges:
+        line(a, b)
+    for curve, analytic in zip(curves, native):
+        if analytic is not None:
+            samples = sample_screen(lambda x: (screen([x, analytic.value(x)]),), *analytic.domain)
+            points = [sample[0] for sample in samples]
+            dash_offset = 0
+            for start in range(0, len(points) - 1, 64):
+                chunk = points[start:start+65]
+                sampled_path(chunk, dashed=curve.get('dashed', False), dash_offset=dash_offset)
+                dash_offset += sum(math.hypot(b[0]-a[0], b[1]-a[1]) for a, b in zip(chunk, chunk[1:]))
+            continue
+        allowed = ({'type', 'k', 'domain', 'dashed'} if curve.get('type') == 'inverse'
+                   else {'type', 'coefficients', 'domain', 'dashed'})
+        if set(curve) - allowed:
+            raise ValueError('곡선 종류와 맞지 않는 필드가 있습니다.')
         lo,hi=point(curve.get('domain',[xlo,xhi]));lo=max(lo,xlo);hi=min(hi,xhi)
         if hi <= lo: raise ValueError('곡선 구간은 그래프 범위 안의 증가하는 구간이어야 합니다.')
         coeff=curve.get('coefficients')

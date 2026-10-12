@@ -13,6 +13,9 @@ vi.mock("@/lib/unifiedPreview", () => ({
 vi.mock("@/lib/unifiedBankSelection", () => ({
   randomBankResponse: vi.fn(),
 }));
+vi.mock("@/lib/bankSourceCounts", () => ({
+  loadBankSourceCounts: vi.fn(),
+}));
 vi.mock("@/lib/db", () => ({
   db: {
     class: { count: vi.fn(), findMany: vi.fn() },
@@ -24,9 +27,14 @@ import { getSessionUser } from "@/lib/session";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { loadUnifiedBank } from "@/lib/unifiedPreview";
-import { GET as bank } from "@/app/api/studio/problems/route";
+import {
+  GET as bank,
+  POST as scopedBank,
+} from "@/app/api/studio/problems/route";
 import { POST as randomBank } from "@/app/api/studio/problems/random/route";
 import { randomBankResponse } from "@/lib/unifiedBankSelection";
+import { GET as bankSources } from "@/app/api/studio/problems/sources/route";
+import { loadBankSourceCounts } from "@/lib/bankSourceCounts";
 import { GET as overview } from "@/app/api/studio/overview/route";
 import { GET as teaching } from "@/app/api/studio/teaching/route";
 import { GET as worker } from "@/app/api/studio/pdf-worker/route";
@@ -60,6 +68,64 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllEnvs());
 describe("production workspace resources", () => {
+  it("uses the same login and origin gate for large scope reads and bounds the body", async () => {
+    vi.stubEnv("AUTH_URL", "https://math.example");
+    const post = (body: string, origin = "https://math.example") =>
+      new Request("https://math.example/api/studio/problems", {
+        method: "POST",
+        headers: { origin, "content-type": "application/json" },
+        body,
+      });
+    vi.mocked(getSessionUser).mockResolvedValueOnce(null);
+    expect((await scopedBank(post("{}"))).status).toBe(401);
+    expect(
+      (await scopedBank(post("{}", "https://elsewhere.example"))).status,
+    ).toBe(403);
+    expect(loadUnifiedBank).not.toHaveBeenCalled();
+    const unitIds = Array.from(
+      { length: 735 },
+      (_, i) => `30000000-0000-4000-8000-${String(i).padStart(12, "0")}`,
+    ).join(",");
+    expect(
+      (await scopedBank(post(JSON.stringify({ unitIds, pageSize: "10" }))))
+        .status,
+    ).toBe(200);
+    expect(
+      vi.mocked(loadUnifiedBank).mock.calls.at(-1)?.[0]?.get("unitIds"),
+    ).toBe(unitIds);
+    expect(
+      (await scopedBank(post(JSON.stringify({ unitIds: "x".repeat(66_000) }))))
+        .status,
+    ).toBe(400);
+  });
+  it("guards the source-picker counts with the same bank gate before counting", async () => {
+    vi.mocked(getSessionUser).mockResolvedValueOnce(null);
+    expect((await bankSources(request("problems/sources"))).status).toBe(401);
+    expect(loadBankSourceCounts).not.toHaveBeenCalled();
+    // 검수자도 문제은행 목록의 관문과 같은 답을 받는다(같은 `/api/studio/problems` 아래)
+    const asReviewer = async (get: typeof bank, path: string) => {
+      vi.mocked(auth as () => Promise<unknown>).mockResolvedValueOnce({
+        user: { id: "owner-17", role: "reviewer" },
+      });
+      return (await get(request(path))).status;
+    };
+    expect(await asReviewer(bankSources, "problems/sources")).toBe(
+      await asReviewer(bank, "problems"),
+    );
+    vi.mocked(loadBankSourceCounts).mockResolvedValueOnce({
+      sources: {
+        total: 0,
+        engine: 0,
+        school_textbook: 0,
+        past_exam: 0,
+        other: 0,
+      },
+      textbook: { total: 0, grades: [], kinds: [], books: [] },
+    });
+    const allowed = await bankSources(request("problems/sources"));
+    expect(allowed.status).toBe(200);
+    expect(allowed.headers.get("Cache-Control")).toContain("no-store");
+  });
   it("guards random selection by login and same-origin before loading the pool", async () => {
     vi.stubEnv("AUTH_URL", "https://math.example");
     const post = (origin: string) =>

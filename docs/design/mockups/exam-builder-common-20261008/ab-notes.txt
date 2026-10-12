@@ -1,31 +1,46 @@
-All-subject exam builder prototypes A/B — 2026-10-08
+Product-context exam builder prototypes A/B — 2026-10-08
 
-Files
-- a-guided.html: scope/count, composed-question review, and output preview are three separate wizard screens.
-- b-workbench.html: compact scope controls remain beside composed questions; changed conditions apply only after an explicit compose action. The controls stick on sufficiently tall desktop screens and stack above the review on mobile. Mobile composition moves to the result heading.
+Owned files
+- a-guided.html: scope/count, composed-question review, and output preview remain three separate guided screens.
+- b-workbench.html: scope/count stays beside composed questions on desktop and stacks above review on mobile; draft conditions apply only after explicit composition confirmation.
+- ab-notes.txt: this integration and verification record.
 
-Both formats use the workspace navy/cobalt/white tokens, local Pretendard, 24/18/14/12 typography, 44px controls, visible keyboard focus, native checkbox/pressed-button semantics, and a native dialog with explicit Tab/Shift+Tab containment, Escape, and trigger-focus restoration.
+Context and scope integration
+- Entering 오늘의 수학 or 오늘의 영어 determines the subject. ExamScope.subject and ExamScope.productName own the context; ?subject=english selects English, otherwise Math. The gallery link preserves ?subject=english/math.
+- There is no subject selector, subject change handler, or subject-selector CSS. Unreachable Korean, Science, and Social Studies sample banks were removed from these two variants.
+- The first screen opens directly on scope/count. The three-unit checkbox controls are replaced by ExamScope.summaryHTML and its searchable hierarchical dialog.
+- Both files load scope-picker.css, scope-data.js, and scope-picker.js. Those shared files are coordinator-owned; local untracked copies were used for verification and are excluded from this commit.
+- draft.scopeIds retains actual selected IDs. draft.units mirrors scopeController.sampleIndices; question pools are resolved from scope IDs. Applied state and undo snapshots preserve the full scope selection.
+- Review gives a compact summary and an expandable full path list, including grade, source, chapter, section, and whether each selection has connected questions. This includes selected actual curriculum/library entries, not only example-bank indices.
+- Shared Math catalog: 735 repository curriculum rows plus 3 separately identified authored-example rows. English: 216 illustrative library rows plus 3 authored-example rows. Only the 3 authored-example rows per subject connect to questions (4 each, 12 total).
+- Defaults select sample rows 0 and 1: 8 available examples, 6 requested questions. Counts remain 4/6/8.
+- Empty selection, unsupported-only selection, and insufficient example coverage disable compose with a specific explanation. A function-level guard also prevents invalid composition or a fallback to unrelated questions.
+- Mixed selection explicitly reports the number of unconnected scopes in configuration and review. Composition uses only the selected connected examples; unconnected scopes remain visible in the applied summary and are explicitly excluded from question coverage.
 
-Data and behavior
-- Math, English, Korean, Science, and Social Studies each have 3 scopes containing 4 authored sample questions each: 12 unique examples per subject.
-- Scope selection controls the actual candidate pool. Initial selection is 2 scopes / 8 available questions, with 6 questions requested. The requested count can be 4, 6, or 8; insufficient scope disables composition with a reason.
-- Review supports numbered full question bodies, answer/explanation disclosure, replacement using unused candidates, addition, deletion, up/down ordering, and snapshot undo including Ctrl/Cmd+Z outside text fields.
-- English and Korean display the appropriate shared passage for each consecutive question group, including after editing and reordering.
-- Output has an editable title, actual question count, student name field, and student-only question content; answer/explanation controls are omitted. The print action opens browser printing.
-- In-memory state only. No API, remote request, storage, production integration, server, or deployment. Reload resets the prototype. Samples do not claim official curriculum alignment.
-- index.html is the coordinator-owned gallery link. No gallery or sibling variant was edited here.
+Preserved behavior and design
+- Full question bodies, replacement from unused candidates, addition, deletion, ordering, answer/explanation disclosure, snapshot undo, and keyboard undo remain available.
+- English passage groups remain linked after editing and ordering. Output retains an editable title and student-only questions; answers, editing controls, shell, and scope dialog are excluded from print.
+- DESIGN.md, workspace-ui-rules-20261008.md, AGENTS.md, and the installed Next CSS guide were read before changes. Existing navy/cobalt/white workspace tokens, local Pretendard, 24/18/14/12 typography, 44px controls, focus indication, and responsive A/B differences are retained.
+- Redundant scope headings and editing instructions were removed from the first condition screen.
+- Prototype state remains in memory. No application API, account data, persistent storage, production code, deployment, or push was used. These authored examples do not claim curriculum alignment or full question-bank coverage.
 
-Verification
-- Headless Chromium via installed Playwright, using file URLs without a server.
-- 18 scenario groups passed: five subjects on each format, three responsive widths on each format, and empty/full-pool recovery on each format.
-- For every subject: selection of all scopes, 8-question composition, correct subject content, candidate count, replacement/undo, reorder both directions, delete/undo, add to 9, editable title, matching preview count, absence of preview answers, print invocation, and return to review.
-- B also verified that changing scope does not mutate composed questions until confirmation, and cancellation preserves the current composition.
-- At 1440, 390, and 320px: initial scope, composed review, replacement dialog, and preview had no document horizontal overflow; dialog content had no horizontal overflow; local font availability and modal keyboard containment were checked.
-- Empty selection prevents compose; full selected pool prevents duplicate additions; deleting every question disables preview; candidate addition recovers; keyboard undo and reload reset work.
-- No page errors or HTTP(S) requests occurred.
-- Screenshots were captured for both variants at all three widths and all four states. Desktop A scope/preview, mobile A scope/dialog, desktop B scope/review, and mobile B scope were visually inspected. B's condition panel was shortened after inspection and the full checks rerun.
-- Local evidence (not committed): C:/Users/user/AppData/Local/Temp/exam-ab-evidence/
-- Reproducible local check script (not committed): C:/Users/user/AppData/Local/Temp/exam-ab-check.cjs
+Verification of final files
+- Chromium through root-installed Playwright, with local file URLs and the coordinator's shared files.
+- 12 end-to-end scenario groups passed: A/B × Math/English × 1440/390/320px.
+- Each group verified inherited brand/context, subject-selector absence, gallery context, default six-question composition, subject-correct unique questions, candidate replacement/undo, ordering, deletion/undo, addition, editable preview title, student-only preview, print invocation, print CSS, return navigation, and scope dialog Escape/focus restoration.
+- Each group also selected a real curriculum/illustrative-library range alongside defaults, verified all 3 actual paths in review and explicit coverage limits, then checked unsupported-only and empty selection disablement plus the invalid-composition guard.
+- B verified draft scope changes preserve edited questions, the pending-condition notice appears, and cancelling recomposition preserves the current composition.
+- Four additional 390px large-selection scenarios passed: each A/B variant selected all 738 Math or 219 English rows, retained every selected path in review, explicitly reported 735/216 unconnected scopes, and composed only six connected sample questions.
+- No document or dialog horizontal overflow in checked states, page errors, or HTTP(S) requests occurred. Local font loaded. Preview, configuration, review, replacement, and shared picker screenshots were captured.
+- Visually inspected desktop A/B initial conditions, mobile A conditions/preview, mobile shared picker, and the B mobile all-scope review. This is prototype verification, not full accessibility certification or production integration testing.
+- git diff --check and Prettier checks passed for the owned HTML files.
+
+Evidence (local, not committed)
+- C:/Users/user/AppData/Local/Temp/exam-context-ab-evidence/results.json
+- C:/Users/user/AppData/Local/Temp/exam-context-ab-evidence/large-results.json
+- C:/Users/user/AppData/Local/Temp/exam-context-ab-evidence/ contains 64 screenshots.
+- C:/Users/user/AppData/Local/Temp/exam-context-ab-check.cjs
+- C:/Users/user/AppData/Local/Temp/exam-context-ab-large-check.cjs
 
 Integration boundary
-Only the two assigned standalone HTML files and this note are part of the change. The coordinator owns gallery integration, final cross-variant review, merging, and any later publishing decision.
+Only A/B and this note belong to this change. The coordinator owns shared assets, the gallery, other variants, final integration, and any later publishing decision. No production files were changed.

@@ -196,13 +196,13 @@ vi.mock("@/components/unified/useDevAi", () => ({
 vi.mock("@/components/unified/DevAiStatusPanel", () => ({
   default: () => <button>AI 연결 설정</button>,
 }));
-vi.mock("@/components/unified/BankView", () => ({
+vi.mock("@/components/exam-builder/MathExamBuilder", () => ({
   default: function BankProbe({
-    onExport,
-    canExport,
+    editor,
+    canOutput,
   }: {
-    onExport: () => void;
-    canExport: boolean;
+    editor: { navigate: (view: "export") => void };
+    canOutput: boolean;
   }) {
     useEffect(() => {
       mocks.bankMount();
@@ -210,8 +210,10 @@ vi.mock("@/components/unified/BankView", () => ({
     return (
       <>
         <h2>은행 패널</h2>
-        <button onClick={onExport}>내보내기 우회 검증</button>
-        <span data-testid="bank-export-access">{String(canExport)}</span>
+        <button onClick={() => editor.navigate("export")}>
+          내보내기 우회 검증
+        </button>
+        <span data-testid="bank-export-access">{String(canOutput)}</span>
       </>
     );
   },
@@ -577,7 +579,7 @@ describe("per-account workspace menu access", () => {
   });
 
   it.each(["home", "teaching", "concept", "srs"] as const)(
-    "does not load or save worksheets when entering %s directly",
+    "only warms worksheets from home and never saves on direct %s entry",
     async (tab) => {
       const cloud = privateServer();
       cloud.switchAccount("teacher-one");
@@ -625,10 +627,25 @@ describe("per-account workspace menu access", () => {
       ).toBeInTheDocument();
       expect(fireEvent.keyDown(window, { key: "s", ctrlKey: true })).toBe(true);
       act(() => window.dispatchEvent(new Event("pagehide")));
-      expect(cloud.transport).not.toHaveBeenCalled();
+      if (tab === "home") {
+        await waitFor(() =>
+          expect(
+            cloud.transport.mock.calls.some(([url]) =>
+              String(url).endsWith("/saved-draft"),
+            ),
+          ).toBe(true),
+        );
+        expect(
+          cloud.transport.mock.calls.every(
+            ([, init]) => !init?.method || init.method === "GET",
+          ),
+        ).toBe(true);
+      } else {
+        expect(cloud.transport).not.toHaveBeenCalled();
+      }
       expect(
         get.mock.calls.some(([key]) => key.startsWith(DRAFT_STORE_KEY)),
-      ).toBe(false);
+      ).toBe(tab === "home");
       expect(screen.queryByText("계정에 저장됨")).not.toBeInTheDocument();
       expect(
         screen.queryByText(/저장한 시험지를 불러오고/),

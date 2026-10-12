@@ -1,0 +1,72 @@
+{
+  "reportVersion": "textbook-codex-review-worker-b-v1",
+  "date": "2026-10-11",
+  "taskId": "task_3720bfd96d4a",
+  "dispatchId": "ctx_e9a7a68a15f0",
+  "scope": "Offline Codex subscription review contract, deterministic helper extraction, injected tests; no database writes or live inference by B",
+  "implementation": {
+    "entrypoint": "src/lib/import/schoolTextbook/codexRetryReview.ts:reviewCodexDbRetryPair",
+    "types": "src/lib/import/schoolTextbook/codexRetry.types.ts",
+    "kind": "machine-codex-blind-review",
+    "version": "codex-db-retry-blind-review-v1",
+    "runner": "Required injected runCodexJson matching A transport.ts; no default provider, fixed model, API credentials or dynamic paid imports",
+    "options": ["runCodexJson", "outDir", "cwd", "timeoutMs", "signal"],
+    "stages": [
+      "Fresh blind-solve session sees only whitelisted original/two-child question text, question types and actual ordered images/choice associations; no source IDs, stored answers, proposed answers, explanations, validation or author method labels",
+      "Freeze and digest every blind answer/solution; deterministically reconcile original and both candidates using unchanged dbRetryAnswersAgree; stop on missing roots/subparts/units, disagreement, ambiguity or missing evidence",
+      "Fresh solution-review session checks every proposed solution step and conclusion against the frozen solutions and actual questions/images; evidence strings required; incorrect intermediate steps fail even when the final answer agrees",
+      "Fresh semantic-review session independently judges sameLearningGoal, comparableMethod, comparableGrade, complete and actualChange with boolean passed plus original/candidate/reason evidence; no proposed solutions or author method labels are supplied"
+    ],
+    "semanticChangeCriteria": {
+      "slot-1": "A real numerical change, beyond rewording, renamed characters, reordered choices or cosmetic diagrams",
+      "slot-2": "A real change in conditions or method-facing structure, with concrete before/after evidence and effect on solving steps"
+    },
+    "bindings": [
+      "Stateless dbRetryReviewBinding.ts binds the entire raw source (including extra fields), full candidate DTOs, curriculum and actual image bytes",
+      "Communications bind prompt plus ordered image hashes, JSON schema, parsed output, full runner receipt and frozen blind solutions",
+      "Whitelisted CLI receipt metadata retains receipt/output paths, CLI version, actual observed model or null, session ID, completed-turn/schema flags, successful exit, prompt/schema/output byte hashes and image dimensions/byte lengths/hashes",
+      "Receipt prompt/schema hashes and ordered image hashes/byte lengths must match the submitted input; three thread IDs must be distinct",
+      "Final input recheck rejects mutation during review; returned evidence and frozen blind outputs cannot be mutated through retained runner objects"
+    ],
+    "legacyCompatibility": "Existing dbRetryReview.ts re-exports moved answer/digest/binding helpers and uses the extracted preflight; existing webapp provider/model defaults and Noul gate are unchanged",
+    "failureBehavior": "Missing runner/artifact directory, malformed responses, missing or inconsistent subscription/receipt provenance, repeated sessions, timeout, cancellation or any failed judgment yields passed=false; arbitrary error bodies are not copied into evidence"
+  },
+  "verification": {
+    "injectedTests": {
+      "command": "node node_modules/vitest/vitest.mjs run src/__tests__/unit/schoolTextbookCodexRetryReview.test.ts src/__tests__/unit/schoolTextbookDbRetryReview.test.ts src/__tests__/unit/schoolTextbookDbRetryQualification.test.ts src/__tests__/unit/dbRetryFigures.test.ts",
+      "result": "230 tests passed across 4 files",
+      "newCodexTests": 47,
+      "coverage": ["hidden-answer input whitelist", "full raw/DTO/actual-image binding", "all three answer comparisons", "missing roots/subparts/units", "ambiguous or missing evidence", "all proposed-solution booleans", "all five semantic dimensions", "missing or fake boolean evidence", "duplicate response IDs", "ChatGPT authentication", "fresh session IDs", "CLI receipt inconsistencies", "timeout and AbortSignal propagation", "input mutation", "retained output mutation", "error redaction", "missing pictures", "forged image hashes", "stale source binding", "paid import graph guards"]
+    },
+    "typecheck": {
+      "result": "Focused strict TypeScript check passed",
+      "command": "node node_modules/typescript/bin/tsc --noEmit --pretty false --project .qa-artifacts/codex-review-worker-b/tsconfig.json",
+      "config": {
+        "extends": "../../tsconfig.json",
+        "compilerOptions": { "incremental": false },
+        "include": ["../../src/lib/import/schoolTextbook/codexRetry.types.ts", "../../src/lib/import/schoolTextbook/codexRetryReview.ts", "../../src/lib/import/schoolTextbook/dbRetryReviewBinding.ts", "../../src/lib/import/schoolTextbook/dbRetryReview.ts", "../../src/__tests__/unit/schoolTextbookCodexRetryReview.test.ts"],
+        "exclude": ["../../node_modules"]
+      },
+      "fullRepositoryCheck": "Started but stopped after several minutes without output; no full-repository pass claimed"
+    },
+    "lint": "ESLint passed for the five changed TypeScript files after removing the extracted reviewer's unused import",
+    "liveTransport": "Not executed by B; coordinator message msg_54317eeb7e1a reports A's real saved-ChatGPT schema/PNG CLI 0.162.1 call passed, with a real thread and usage, and model not exposed (null)",
+    "liveMathematics": "B did not access C's hidden-answer task or claim real textbook problem verification; test responses are deliberately injected fixtures",
+    "paidCalls": 0,
+    "databaseWrites": 0
+  },
+  "handoff": {
+    "integration": "Inject A's runCodexJson into options; provide an artifact directory. The transport's generic result is structurally compatible. B validates and preserves receipt metadata while the full receipt/output remain in A's durable files.",
+    "rootOwns": ["separate Codex qualification gate", "production layout checks", "actual three-session review of candidates", "C evidence reconciliation", "shared database apply", "merging this branch and cleanup"],
+    "limits": ["Model judgments remain fallible; boolean evidence is neither calibrated Noul probability nor human signoff", "dbRetryAnswersAgree remains conservative formatting/equality evidence, not a general algebraic proof engine", "CLI session separation is checked through distinct authenticated transport thread IDs; prompt instructions additionally prohibit external answer lookups", "B binds the raw output byte hash recorded by A and independently hashes parsed JSON; root can reread the durable output/receipt files before promotion"]
+  },
+  "referencesRead": [
+    "AGENTS.md",
+    "docs/planning/tracks/brief-textbook-codex-plan-20261011.md",
+    "node_modules/next/dist/docs/01-app/02-guides/backend-for-frontend.md",
+    ".agents/skills/typesafe-ai/SKILL.md",
+    "https://docs.typesafe.ai/llms.txt",
+    "https://docs.typesafe.ai/concepts/state",
+    "https://docs.typesafe.ai/cookbooks/citation_check"
+  ]
+}

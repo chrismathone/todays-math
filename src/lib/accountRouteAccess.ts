@@ -43,6 +43,12 @@ export function englishRouteAllowed(
   const listeningMaterial = listening || bank;
   const read = method === "GET" || method === "HEAD";
   if (path === "/api/english/questions") return library && read;
+  if (path === "/api/english/questions/scopes") return library && read;
+  if (
+    path === "/api/english/questions/candidates" ||
+    path === "/api/english/questions/compose"
+  )
+    return library && method === "POST";
   if (path === "/api/english/questions/resolve")
     return library && method === "POST";
   if (path === "/api/english/passages")
@@ -220,12 +226,18 @@ export function accountRouteAllowed(
       "/exam",
       "/api/tests",
       "/api/basket",
-      "/api/exports",
       "/api/exam",
       "/api/predictions",
     ].some((base) => under(path, base))
   )
     return any("export");
+  if (under(path, "/api/exports"))
+    return (
+      any("export") ||
+      (method === "POST" &&
+        ["/api/exports/pdf", "/api/exports/hwpx"].includes(path) &&
+        any("english-library"))
+    );
   // 오늘의 개념(D-124) — 읽기는 메뉴가 켜진 계정, 쓰기는 라우트가 isAdmin 을 따로 막는다.
   if (under(path, "/api/concept")) return any("concept");
   if (path === "/api/metrics") return any("home");

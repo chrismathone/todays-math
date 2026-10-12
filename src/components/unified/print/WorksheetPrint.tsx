@@ -81,8 +81,16 @@ export function WorksheetPrint({
     meta,
     true,
   );
+  const scaled =
+    questions.pages.some((page) => page.scales.some((scale) => scale < 1)) ||
+    answers.pages.some((page) => page.scales.some((scale) => scale < 1));
+  // EnglishBankPrint blocked oversized blocks. Keep that guard for native English
+  // output instead of silently shrinking a complete passage into unreadable type.
+  const oversizedEnglish =
+    scaled && selected.some((problem) => problem.english);
   const ready =
     questions.ready &&
+    !oversizedEnglish &&
     !questions.layoutError &&
     (!options.showAnswers || (answers.ready && !answers.layoutError));
   useEffect(() => {
@@ -119,16 +127,15 @@ export function WorksheetPrint({
     if (!ready) return;
     scrollToPage(Math.min(visiblePage.current, Math.max(0, total - 1)));
   }, [scale, viewportWidth, total, ready]);
-  const scaled =
-    questions.pages.some((page) => page.scales.some((scale) => scale < 1)) ||
-    answers.pages.some((page) => page.scales.some((scale) => scale < 1));
   const notice = [
     questions.fontError || answers.fontError
       ? "선택한 웹 글꼴을 불러오지 못해 대체 글꼴로 표시합니다. 네트워크를 확인하거나 시스템 글꼴을 선택해 주세요."
       : "",
-    scaled
-      ? "한 쪽보다 긴 문제는 내용이 잘리지 않도록 해당 문제만 축소했습니다."
-      : "",
+    oversizedEnglish
+      ? "한 쪽에 들어가지 않는 영어 지문 또는 문항이 있어 출력을 멈췄습니다. 1단·좁은 여백으로 바꾸거나 원본 세트의 분량을 조정해 주세요."
+      : scaled
+        ? "한 쪽보다 긴 문제는 내용이 잘리지 않도록 해당 문제만 축소했습니다."
+        : "",
   ]
     .filter(Boolean)
     .join("\n");

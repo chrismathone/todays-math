@@ -217,8 +217,36 @@ interface ProblemRow {
    * 컬럼을 늘릴 때 대역을 같이 안 늘리면 라우트 시험만 빨개진다 — 화면은 멀쩡해 보인다.
    */
   solutionSource: "none" | "original" | "ai";
+  /**
+   * 교과서 · 문제집 문항이 실려 있던 자료(D-161). 문제은행의 «출처 고르기»가 이것을 따라
+   * 책 · 자료 종류로 거른다 — 넣지 않은 행은 `undefined`(자료 없음)로 읽힌다.
+   */
+  sourceMaterialId?: string | null;
   createdAt: Date;
   updatedAt: Date;
+}
+
+/** 출처 책(D-161 `source_book`) — 문제은행 «출처 고르기»가 읽는 칸만. */
+interface SourceBookRow {
+  id: string;
+  externalKey: string;
+  kind: string;
+  publisher: string;
+  author: string | null;
+  title: string;
+  grade: string;
+  curriculum: string;
+}
+
+/** 출처 자료(D-161 `source_material`) — 문제은행 «출처 고르기»가 읽는 칸만. */
+interface SourceMaterialRow {
+  id: string;
+  externalKey: string;
+  bookId: string;
+  kind: string;
+  kindRaw: string;
+  title: string;
+  unitRaw?: string | null;
 }
 
 /** 역추적 컬럼의 DB 기본값(전부 NULL). 픽스처·create 가 안 주면 이 값이다. */
@@ -654,6 +682,8 @@ let autoDraftRunRows: AutoDraftRunRow[] = [];
 let userRows: UserRow[] = [];
 let progressRows: ProgressRow[] = [];
 let problemRows: ProblemRow[] = [];
+let sourceBookRows: SourceBookRow[] = [];
+let sourceMaterialRows: SourceMaterialRow[] = [];
 let testRows: TestRow[] = [];
 let testProblemRows: TestProblemRow[] = [];
 let basketItemRows: BasketItemRow[] = [];
@@ -709,6 +739,9 @@ export function resetPrismaTestDouble() {
     ...extraEligibleProblems(),
   ].map(toProblemRow);
   problemRows.push(...MOCK_TEST_RESULT_PROBLEMS.map(toFixtureProblemRow));
+  // 출처 책 · 자료는 **빈 것이 정상**이다 — 교과서 거르기 시험이 제 책을 심는다.
+  sourceBookRows = [];
+  sourceMaterialRows = [];
   testRows = MOCK_TESTS.map(toTestRow);
   testProblemRows = Object.entries(MOCK_TEST_PROBLEMS_BY_TEST_ID).flatMap(
     ([testId, items]) => items.map((item) => toTestProblemRow(testId, item)),
@@ -1038,7 +1071,49 @@ const PROBLEM_RELATIONS = {
   /** 검수 대기열이 「내가 아직 안 본 것」을 `{ none: { reviewerId } }` 로 묻는다. */
   reviewLogs: (row: { id: string }) =>
     problemReviewLogRows.filter((log) => log.problemId === row.id),
+  /**
+   * 문제은행 «출처 고르기»(D-161)가 `{ sourceMaterial: { bookId: { in } } }` · `{ kind: { in } }` 로 거른다.
+   * 자료가 없는 문항은 `null` — 실제 Prisma 처럼 그 조건에 안 걸린다.
+   */
+  sourceMaterial: (row: { sourceMaterialId?: string | null }) =>
+    row.sourceMaterialId
+      ? (sourceMaterialRows.find((m) => m.id === row.sourceMaterialId) ?? null)
+      : null,
 };
+
+/**
+ * `groupBy` — 실제 Prisma 처럼 `by` 의 값 묶음마다 `_count._all` 을 낸다. 문제은행 «출처 고르기»의 수가 쓴다.
+ * `_count: { _all: true }` 밖의 집계(`_sum` …)는 아직 아무도 안 써서 **던진다**(조용히 빈 값을 내지 않는다).
+ */
+function groupRows<T extends object>(
+  rows: T[],
+  {
+    by,
+    _count,
+    ...rest
+  }: { by: string[]; _count?: { _all?: boolean } } & Record<string, unknown>,
+) {
+  const unknown = Object.keys(rest).filter((key) => key !== "where");
+  if (unknown.length || !_count?._all)
+    throw new Error(
+      `prismaTestDouble: groupBy 는 by · where · _count._all 만 안다 — '${unknown.join(",")}'`,
+    );
+  const groups = new Map<string, { key: Record<string, unknown>; n: number }>();
+  for (const row of rows) {
+    const record = row as Record<string, unknown>;
+    const key = Object.fromEntries(
+      by.map((field) => [field, record[field] ?? null]),
+    );
+    const id = JSON.stringify(by.map((field) => key[field]));
+    const group = groups.get(id) ?? { key, n: 0 };
+    group.n += 1;
+    groups.set(id, group);
+  }
+  return [...groups.values()].map(({ key, n }) => ({
+    ...key,
+    _count: { _all: n },
+  }));
+}
 
 function paginate<T>(rows: T[], skip = 0, take?: number): T[] {
   return take === undefined ? rows.slice(skip) : rows.slice(skip, skip + take);
@@ -1704,6 +1779,84 @@ const prismaModels = {
         orderBy,
       );
     },
+    /** 시험이 차시의 학기(D-161 `unit.semester`)를 바꿔 심는다 — 발췌 차시는 전부 1학기다. */
+    async update({
+      where,
+      data,
+    }: {
+      where: { id: string };
+      data: Partial<Omit<UnitRow, "id">>;
+    }) {
+      const row = unitRows.find((unit) => unit.id === where.id);
+      if (!row) throw new Error(`unit not found: ${where.id}`);
+      Object.assign(row, data);
+      return row;
+    },
+  },
+  /** 출처 책(D-161). 문제은행 «출처 고르기»가 부르는 것만 — 심기(`create`)와 읽기(`findMany`). */
+  sourceBook: {
+    async create({
+      data,
+    }: {
+      data: Omit<SourceBookRow, "id" | "curriculum"> &
+        Partial<Pick<SourceBookRow, "id" | "curriculum">>;
+    }) {
+      const row: SourceBookRow = {
+        id: randomUUID(),
+        curriculum: "2022",
+        ...data,
+      };
+      sourceBookRows.push(row);
+      return row;
+    },
+    async findMany({
+      where,
+      orderBy,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      orderBy?: unknown;
+      select?: Record<string, unknown>;
+    } = {}) {
+      return applySelect(
+        applyOrder(
+          sourceBookRows.filter((row) => matchesWhere(row, where)),
+          orderBy,
+        ),
+        select,
+      );
+    },
+  },
+  /** 출처 자료(D-161). 문제은행 «출처 고르기»가 부르는 것만 — 심기(`create`)와 읽기(`findMany`). */
+  sourceMaterial: {
+    async create({
+      data,
+    }: {
+      data: Omit<SourceMaterialRow, "id" | "kindRaw" | "title"> &
+        Partial<Pick<SourceMaterialRow, "id" | "kindRaw" | "title">>;
+    }) {
+      const row: SourceMaterialRow = {
+        id: randomUUID(),
+        kindRaw: data.kind,
+        title: data.kind,
+        unitRaw: null,
+        ...data,
+      };
+      sourceMaterialRows.push(row);
+      return row;
+    },
+    async findMany({
+      where,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      select?: Record<string, unknown>;
+    } = {}) {
+      return applySelect(
+        sourceMaterialRows.filter((row) => matchesWhere(row, where)),
+        select,
+      );
+    },
   },
   progress: {
     async create({
@@ -1871,12 +2024,51 @@ const prismaModels = {
           take,
         ),
         select,
+        {
+          sourceMaterial: (row, spec) => {
+            const material = sourceMaterialRows.find(
+              (item) => item.id === row.sourceMaterialId,
+            );
+            if (!material) return null;
+            return applySelect(
+              [material],
+              (spec as { select?: Record<string, unknown> }).select,
+              {
+                book: (item, bookSpec) => {
+                  const book = sourceBookRows.find(
+                    (candidate) => candidate.id === item.bookId,
+                  );
+                  return book
+                    ? applySelect(
+                        [book],
+                        (bookSpec as { select?: Record<string, unknown> })
+                          .select,
+                      )[0]
+                    : null;
+                },
+              },
+            )[0];
+          },
+        },
       );
     },
     async count({ where }: { where?: Record<string, unknown> } = {}) {
       return problemRows.filter((row) =>
         matchesWhere(row, where, PROBLEM_RELATIONS),
       ).length;
+    },
+    async groupBy(
+      args: { by: string[]; where?: Record<string, unknown> } & Record<
+        string,
+        unknown
+      >,
+    ) {
+      return groupRows(
+        problemRows.filter((row) =>
+          matchesWhere(row, args.where, PROBLEM_RELATIONS),
+        ),
+        args,
+      );
     },
     async findUnique({ where }: { where: { id: string } }) {
       return problemRows.find((row) => row.id === where.id) ?? null;
@@ -2533,8 +2725,28 @@ const prismaModels = {
     },
   },
   examQuestion: {
-    async findMany({ where }: { where?: Record<string, unknown> } = {}) {
-      return examQuestionRows.filter((row) => matchesWhere(row, where));
+    async findMany({
+      where,
+      select,
+    }: {
+      where?: Record<string, unknown>;
+      select?: Record<string, unknown>;
+    } = {}) {
+      return applySelect(
+        examQuestionRows.filter((row) => matchesWhere(row, where)),
+        select,
+        {
+          exam: (row, spec) => {
+            const exam = examRows.find((item) => item.id === row.examId);
+            return exam
+              ? applySelect(
+                  [exam],
+                  (spec as { select?: Record<string, unknown> }).select,
+                )[0]
+              : null;
+          },
+        },
+      );
     },
     async count({ where }: { where?: Record<string, unknown> } = {}) {
       return examQuestionRows.filter((row) => matchesWhere(row, where)).length;
@@ -2842,6 +3054,8 @@ function snapshotRows() {
     autoDraftRunRows,
     userRows,
     problemRows,
+    sourceBookRows,
+    sourceMaterialRows,
     testRows,
     testProblemRows,
     basketItemRows,
@@ -2872,6 +3086,8 @@ function restoreRows(snapshot: ReturnType<typeof snapshotRows>) {
   autoDraftRunRows = snapshot.autoDraftRunRows;
   userRows = snapshot.userRows;
   problemRows = snapshot.problemRows;
+  sourceBookRows = snapshot.sourceBookRows;
+  sourceMaterialRows = snapshot.sourceMaterialRows;
   testRows = snapshot.testRows;
   testProblemRows = snapshot.testProblemRows;
   basketItemRows = snapshot.basketItemRows;

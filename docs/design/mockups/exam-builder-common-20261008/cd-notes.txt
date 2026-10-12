@@ -1,51 +1,90 @@
-Exam builder C/D prototypes — 2026-10-08
+Exam builder C/D context and curriculum-scope update — 2026-10-08
 
-Files
-- c-paper.html: compact scope setup, then a paper editing surface with contextual
-  question actions and a separate question navigator / output inspector.
-- d-blueprint.html: unit allocation table, then grouped unit sections with
-  contextual question actions and unit reordering; output settings below.
+Owned files
+- c-paper.html: selected-scope summary followed by quantity/compose, then the
+  existing paper editor and output inspector.
+- d-blueprint.html: selected-scope summary followed by allocation rows for only
+  the selected authored example banks, then grouped editing and output settings.
+- cd-notes.txt: this handoff and validation record.
 
-Shared behavior
-- First entry and every subject change require explicit "시험지 구성".
-- Five subjects: 수학, 영어, 국어, 과학, 사회; 3 meaningful units and 4 authored
-  questions per unit, totaling 60 examples in each standalone file.
-- Identical operation labels across subjects; no production bank data, API,
-  generated network content, storage, CDN or external runtime dependencies.
-- Locally authored Korean and English passages remain attached to their units.
-  The paper repeats a passage when reordered questions create separate runs.
-- Add defaults to the configured scope; the candidate selector explicitly allows
-  choosing another unit or all units. Replacement uses the same unit.
-- Composition, replacement, addition, deletion, question reordering, D unit
-  reordering, title edits, print settings and undo operate on in-memory arrays.
-- A4 browser print styles hide editing controls and include answers only when
-  requested. Screen preview is continuous; actual pagination belongs to print.
-- Local Pretendard: ../../../../public/fonts/PretendardVariable.woff2.
-- index.html belongs to the coordinator and is intentionally not created here.
+Current behavior
+- Inherit window.ExamScope.subject/productName: ?subject=english opens today's
+  English context; other/default values use math. There is no subject chooser
+  or subject-switch handler in either builder. Gallery links preserve the query.
+- Load scope-picker.css, then scope-data.js and scope-picker.js before inline JS.
+  Shared dialog/catalog implementation belongs to the coordinator; it is not
+  duplicated or committed by this worker.
+- Initial scopeIds contain all three explicitly separate authored sample ranges.
+  Each has four example questions, and the initial allocation composes six only
+  after the teacher presses 시험지 구성. No automatic composition occurs.
+- Store selected catalog IDs independently from bank indices. onApply uses only
+  sampleIndices to update selected banks and counts; actual curriculum IDs never
+  substitute unrelated authored sample questions.
+- The shared scope summary limits visible paths/counts. Full choices, search,
+  hierarchy, selected-list pagination and bulk selection stay in the shared
+  dialog. Main-page D allocation is bounded by the three available example banks.
+- Math catalog: 735 actual seed rows plus three separately labeled authored sample
+  ranges. English: 216 illustrative library rows plus three authored sample ranges.
+  Only the explicit sample ranges connect to this prototype's questions.
+- Selecting actual/illustrative catalog ranges alone displays the shared
+  unconnected-question notice, zero available examples and a disabled compose
+  action. D displays no allocation rows for these unsupported scopes.
+- Scope changes preserve the current edited paper until explicit composition.
+  Newly selected sample banks default to two questions; retained banks keep their
+  quantity, and deselected banks allocate zero. Undo includes scopeIds and counts.
+- Add candidates come only from selected example scopes; replacement retains the
+  current question's explicit example bank. Existing paper edits, D unit moves,
+  title edits, output settings and undo remain available.
+- Rename the pre-existing C inspector's scope-summary class to question-summary
+  to avoid applying shared picker layout styles to question type counts.
+- Use DESIGN.md tokens, 16/20px desktop and 14/16px mobile page padding, 20px
+  panel padding and minimum 44px controls. Print keeps its independent A4 layout.
 
-Validation
-- Read AGENTS.md, DESIGN.md and the menu implementation map.
-- The worktree has no local node_modules; read installed Next server/client and
-  CSS guides from C:/Creative/testautocreator/node_modules/next/dist/docs.
-  These artifacts are plain HTML, with no Next integration.
-- Chromium through C:/Creative/testautocreator/node_modules/playwright.
-- For both variants and all 5 subjects: explicit composition, truthful counts,
-  replacement and undo, addition, deletion and undo, reorder and undo, escaped
-  editable title, output preview, answers, solution space, print invocation.
-- D unit reorder/undo; C insufficient scope; candidate scope restriction and
-  explicit broadening; deleting every item and restoring it; print-only DOM.
-- Widths 1440, 390 and 320: all subjects, candidate dialogs and output preview;
-  no document overflow or browser page errors. Final initial and composed states
-  checked at all 3 widths; visible buttons are at least 44px high and the local
-  Pretendard font loads.
-- Inspected desktop C/D, mobile C/D, passage grouping and 320px preview captures.
-- Functional report and screenshots (local, not committed):
-  C:/Users/user/AppData/Local/Temp/exam-cd-evidence/
-- Reproducible local validation scripts (not committed):
-  C:/Users/user/AppData/Local/Temp/exam-cd-functional.cjs
-  C:/Users/user/AppData/Local/Temp/exam-cd-final.cjs
+Validation performed for this update
+- Read AGENTS.md, current root DESIGN.md (including D-162), menu implementation
+  map and the installed Next scripts guide at
+  C:/Creative/testautocreator/node_modules/next/dist/docs/01-app/02-guides/scripts.md.
+  These are plain HTML artifacts; no Next application code changed.
+- Chromium via the installed Playwright, local file URLs with both subjects.
+- Four passing combinations: C/math, C/English, D/math, D/English.
+- Initial state: inherited brand/subject; no subject controls; three selected
+  sample scopes; zero composed questions; gallery query preserved.
+- Explicit six-question composition, replacement/undo, addition/undo,
+  deletion/undo, question reorder/undo and D unit reorder/undo.
+- Escaped title edits, answer and solution-space toggles, preview and print-call
+  interception. No physical printer or production output integration tested.
+- Shared dialog selection of a real/illustrative-only range: compose disabled,
+  zero D allocation rows, no add candidates, and current paper preserved.
+- Adding only sample index 1 alongside the unsupported range: selected/counts
+  map exclusively to that bank; D renders one allocation row; composing produces
+  only that sample's questions. Cancel/Escape preserves the applied selection.
+- Select all 738 math / 219 English entries: only ten selected dialog rows per
+  page, bounded compact summary, and at most three D allocation rows.
+- Desktop 1440 and mobile 390/320px: main page and scope dialog have no document
+  overflow or page errors. Inspected desktop initial C/D, D mobile composition,
+  and English mobile scope dialog screenshots.
+- Prettier formatted both HTML files; git diff --check passed.
 
-Scope limits
-- No real save, API integration, account permissions or official achievement
-  standard alignment is claimed. No physical printer was used.
-- The coordinator will merge the branch and verify the shared gallery link.
+Evidence (local; not committed)
+- C:/Users/user/AppData/Local/Temp/exam-context-cd-evidence/validation.json
+- Same directory: 24 initial, bulk-selection, mobile and dialog screenshots.
+- Reproducible script:
+  C:/Users/user/AppData/Local/Temp/exam-context-cd-validate.cjs
+- Shared files were copied from the root checkout only for local QA and remain
+  untracked; the worker commit contains only the three owned files above.
+
+Limits and integration
+- No production edits, push, account API, persistence, generation, actual question
+  bank connection, or official achievement-standard alignment claim.
+- The coordinator owns shared-file integration, gallery/server changes, merge and
+  final combined preview review. Existing unused subject bank literals are not
+  exposed by the inherited math/English context.
+
+Coordinator integration addendum
+- D allocation table now includes every selected catalog row, eight per page,
+  including unconnected rows marked 문항 미연결 with zero current questions.
+- This supersedes the earlier report statements that D omits unsupported rows
+  and remains bounded by only the three sample banks. Real samples alone retain
+  quantity controls; no question content or count is invented for other ranges.
+- Integrated Chromium validation covers 738 math / 219 English selections,
+  eight-row paging, next/previous controls and both contexts at seven widths.

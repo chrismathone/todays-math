@@ -22,6 +22,18 @@
 | 10. 세기 · 보고 | `census.ts` · `report_load.py` · `hold-school-textbook.ts` | DB 에 들어간 것을 다시 센다 · 못 실은 · 잠가 둔 문항의 보고서(`not-loaded.md`) · 전부 잠그기 / 목록으로 풀기 |
 | 개발용 | `peek.py` · `stats.py` | 한 파일을 가른 모양 · 책별 요약 |
 
+### 그림 문항 (2026-10-08 — 원장님 «그림부터 싹 마무리»)
+
+| 단계 | 도구 | 하는 일 |
+|---|---|---|
+| 정답 그림 | `answer_pictures.py build · collect · merge` · `READ-ANSWERS.md` | 정답 칸이 그림뿐인 자료 — 구독 모델이 «번호: 답»을 옮기고 추출에 붙인다(`answerFrom: picture` — 검토가 대조한다) |
+| 표 · 묶음 그리기 | `render_objects.py [--kind groups]` | 작은 HWPX → 창 없는 한글로 PDF → 잉크 둘레로 오리기. `objects/` · `objects-groups/` |
+| 그림 갈래 | `figures.py --extract … --objects objects --groups objects-groups --export` | 그림의 처분 · 문항의 갈래 · 본문의 `[그림]` · 그림 파일(`img/`) · `meta.jsonl` |
+| 준비 | `prepare.py <figures>/figure <out> --all --tidy` · 글은 `--decor <figures>/meta.jsonl` | 그림 문항 · 장식뿐인 글 문항 |
+| 검토 | `review/BRIEF-FIG.md` · `JUDGE-FIG.md` · `build_batches.py --figures … --only …` | 그림을 열고 푼다 · key 에 그림 지문(`figureKeys`) |
+| 지면 검토 | `final-check/BRIEF-FIG.md` · `check_batches.py --only-figures` | 지문은 꺼낸 파일의 바이트(`imgSha`) |
+| 적재 | `load-school-textbook.ts --sets load/sets.json [--copy-figures]` | 🔴 그림은 외부 저장소 목록을 거쳐야 배포된다 — `docs/planning/10-handoff.md` §0-ZS |
+
 ```bash
 python scripts/import/textbook/triage.py E:/todays-math-textbook-import/triage.json
 # 변환 — 일꾼 둘(번호 · 수 · 출력 · 고른 목록). 원장님 화면에 창이 안 뜬다

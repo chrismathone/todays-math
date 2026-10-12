@@ -17,6 +17,12 @@ export interface RefreshColumns {
   solution: string | null;
   solutionSource: "original" | "ai" | "none";
   directUseAllowed: boolean;
+  /** 그림 문항의 칸 다섯 — 그림이 없는 문항은 비어 있다(지문도 이 칸이 생기기 전과 같은 값이다) */
+  figureUrls?: string[];
+  figureDims?: number[];
+  figureSourceMm?: number[];
+  choiceFigureIndex?: number[];
+  figureSource?: string | null;
 }
 
 export interface SavedRow extends RefreshColumns {
@@ -43,21 +49,34 @@ const columnsOf = (row: RefreshColumns): RefreshColumns => ({
   solution: row.solution,
   solutionSource: row.solutionSource,
   directUseAllowed: row.directUseAllowed,
+  figureUrls: row.figureUrls ?? [],
+  figureDims: row.figureDims ?? [],
+  figureSourceMm: row.figureSourceMm ?? [],
+  choiceFigureIndex: row.choiceFigureIndex ?? [],
+  figureSource: row.figureSource ?? null,
 });
 
 /** 다섯 칸의 지문 — 글자 하나 · 빈칸 하나가 달라도 다른 값이다(사람이 빈칸만 고쳐도 만진 것이다) */
 export function fingerprintOf(row: RefreshColumns): string {
   const columns = columnsOf(row);
+  const parts: unknown[] = [
+    columns.content,
+    columns.answer,
+    columns.solution,
+    columns.solutionSource,
+    columns.directUseAllowed,
+  ];
+  // 그림이 있을 때만 그림의 칸을 넣는다 — 글 문항의 지문은 전과 같다(이미 쥐고 있는 지문 원장이 그대로 맞는다)
+  if ((columns.figureUrls ?? []).length > 0)
+    parts.push([
+      columns.figureUrls,
+      columns.figureDims,
+      columns.figureSourceMm,
+      columns.choiceFigureIndex,
+      columns.figureSource,
+    ]);
   return createHash("sha1")
-    .update(
-      JSON.stringify([
-        columns.content,
-        columns.answer,
-        columns.solution,
-        columns.solutionSource,
-        columns.directUseAllowed,
-      ]),
-    )
+    .update(JSON.stringify(parts))
     .digest("hex")
     .slice(0, 16);
 }

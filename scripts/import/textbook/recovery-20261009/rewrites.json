@@ -1,0 +1,1697 @@
+{
+  "version": 1,
+  "batch": "rewrites",
+  "entries": [
+    {
+      "problemCode": "HAL0206-A03-001",
+      "kind": "rewrite",
+      "content": "난방기를 가동하면 실내 온도가 기본 주기1시간으로 변한다. 설정 온도를 $B\\,({}^\\circ\\mathrm C)$, 가동한 지 $t$분 후의 실내 온도를 $T\\,({}^\\circ\\mathrm C)$라 할 때 $T=B-\\dfrac{k}{6}\\cos\\left(\\dfrac{\\pi t}{30}\\right)$이다. 단, B,k는 양의 상수이다. 10분 후 온도는16°C, 40분 후 온도는20°C일 때 k의 값은?\n① 16\n② 18\n③ 20\n④ 22\n⑤ 24",
+      "answer": "⑤ 24",
+      "solution": "16=B−k/12, 20=B+k/12이므로4=k/6, k=24이고 B=18이다. 기본 주기는2π/(π/30)=60분이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "설명에서 기본 주기를1시간으로 명시; 원본 복원으로 주장하지 않는 새 문안. 기존 설명이2시간 주기라고 되어 있으나 주어진 식의 기본 주기는1시간이다.",
+      "validation": {
+        "math": "16=B−k/12, 20=B+k/12이므로4=k/6, k=24이고 B=18이다. 기본 주기는2π/(π/30)=60분이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HAL0208-A10-001",
+      "kind": "rewrite",
+      "content": "직선 $x-3y+3=0$이 $x$축의 양의 방향과 이루는 각을 $\\theta$ ($0<\\theta<\\pi$)라고 할 때,\n$\\cos (\\pi +\\theta )+\\sin \\left( \\frac{\\pi}{2}-\\theta \\right)+\\cos \\left( \\frac{\\pi}{2}+\\theta \\right) \\tan (-\\theta )$\n의 값은?\n① $\\frac{\\sqrt{10}}{30}$\n② $\\frac{\\sqrt{10}}{15}$\n③ $\\frac{\\sqrt{10}}{10}$\n④ $\\frac{2\\sqrt{10}}{15}$\n⑤ $\\frac{\\sqrt{10}}{6}$",
+      "answer": "①",
+      "solution": "직선 $x-3y+3=0$에서 $y=\\frac{1}{3}x+1$이므로\n$\\tan \\,\\theta =\\frac{1}{3}$\n$\\sin \\,\\theta =\\frac{1}{\\sqrt{10}},~\\cos \\,\\theta =\\frac{3}{\\sqrt{10}}$\n따라서\n$\\cos (\\pi +\\theta )+\\sin \\left( \\frac{\\pi}{2}-\\theta \\right) +\\cos \\left( \\frac{\\pi}{2}+\\theta \\right) \\tan (-\\theta )$\n$=-\\cos \\,\\theta +\\cos \\,\\theta +(-\\sin \\,\\theta )\\times (-\\tan \\,\\theta )$\n$=\\sin \\,\\theta \\tan \\,\\theta$\n$=\\frac{1}{\\sqrt{10}}\\times \\frac{1}{3}=\\frac{\\sqrt{10}}{30}$",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "④를 별개의 오답으로 새 작성하고 각의 범위를 명시했다. 원래 ④의 복원이라고 주장하지 않는다.",
+      "validation": {
+        "math": "기울기 1/3과 0<θ<π에서 θ는 예각이다. 앞의 두 항이 상쇄되고 나머지는 sinθ tanθ=(1/√10)(1/3)=√10/30이다. 새 ④=2√10/15를 포함한 나머지 네 보기는 이 값과 다르다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10111-A05-001",
+      "kind": "rewrite",
+      "content": "다음 다항식을 유리수 범위에서 인수분해하시오.\n(1) $x^{3}+2x^{2}-9x+2$\n(2) $x^{3}-x^{2}-5x-3$\n(3) $x^{4}+5x^{3}+5x^{2}-5x-6$\n(4) $x^{4}-2x^{3}-7x^{2}+8x+12$",
+      "answer": "(1) $(x-2)(x^{2}+4x-1)$ (2) $(x+1)^{2}(x-3)$ (3) $(x-1)(x+1)(x+2)(x+3)$ (4) $(x+1)(x-2)(x+2)(x-3)$",
+      "solution": "인수정리로 $P(\\alpha)=0$이 되는 $\\alpha$를 찾고 조립제법으로 나눈다.\n(1)은 $P(2)=0$이고 몫이 $x^{2}+4x-1$이다. (2)는 $P(-1)=0$이고 몫 $x^{2}-2x-3=(x+1)(x-3)$이다.\n(3)은 $P(1)=0$이고 몫 $x^{3}+6x^{2}+11x+6$에서 $x=-1$을 넣으면 $0$이어서 $(x+1)(x+2)(x+3)$이다.\n(4)는 $P(2)=0$이고 몫 $x^{3}-7x-6$에서 $x=-1$을 넣으면 $0$이어서 $(x+1)(x-3)(x+2)$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "빠진 지시문을 새 작성하고 유리수 계수 인수분해로 범위를 고정했다.",
+      "validation": {
+        "math": "전개 검산: (x−2)(x²+4x−1)=x³+2x²−9x+2; (x+1)²(x−3)=x³−x²−5x−3; (x²−1)(x²+5x+6)=x⁴+5x³+5x²−5x−6; (x²−x−6)(x²−x−2)=x⁴−2x³−7x²+8x+12. 첫 몫의 판별식 20은 유리수 제곱이 아니다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10112-A09-001",
+      "kind": "rewrite",
+      "content": "다음 중 다항식\n$\\left( x^{2}-2x\\right) \\left( x^{2}-2x-2\\right) -3$\n의 인수인 것은?\n① $x$\n② $x+1$\n③ $x+2$\n④ $x+3$\n⑤ $x+4$",
+      "answer": "②",
+      "solution": "$x^{2}-2x=t$로 놓으면 $t(t-2)-3=t^{2}-2t-3=(t-3)(t+1)$이다.\n다시 $x$로 바꾸면 $(x^{2}-2x-3)(x^{2}-2x+1)=(x-3)(x+1)(x-1)^{2}$이다.\n따라서 인수인 것은 $x+1$이고 답은 ②이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "중복 ⑤를 새 오답 x+4로 교체했다.",
+      "validation": {
+        "math": "t=x²−2x로 치환하면 (t−3)(t+1)=(x−3)(x+1)(x−1)²이다. 후보의 근 0,−1,−2,−3,−4 중 −1만 다항식의 근이므로 ②만 인수이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10202-A08-001",
+      "kind": "rewrite",
+      "content": "다음을 계산하시오. (단, $i^2=-1$이다.)\n(1) $(2+4i)+(1-3i)$\n(2) $(6+2i)-(3-4i)$\n(3) $(1-i)(2+i)$\n(4) $\\frac{-4+2i}{2+i}$",
+      "answer": "(1) $3+i$\n(2) $3+6i$\n(3) $3-i$\n(4) $-\\frac{6}{5}+\\frac{8}{5}i$",
+      "solution": "(1) $(2+1)+(4-3)i=3+i$이다.\n(2) $(6-3)+(2+4)i=3+6i$이다.\n(3) $(1-i)(2+i)=2+i-2i-i^2=3-i$이다.\n(4) $\\dfrac{(-4+2i)(2-i)}{(2+i)(2-i)}=\\dfrac{-6+8i}{5}=-\\dfrac{6}{5}+\\dfrac{8}{5}i$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "관련 없는 a,b 조건을 삭제하고 계산 발문과 허수단위를 명시했다.",
+      "validation": {
+        "math": "실수부·허수부를 각각 계산하면 3+i, 3+6i이다. 곱은 2−i−i²=3−i, 몫은 (−4+2i)(2−i)/5=(−6+8i)/5이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10226-A06-001",
+      "kind": "rewrite",
+      "content": "이차다항식 $P(x)$가 다음 조건을 만족시킬 때, $P(-1)$의 값은?\n(가) 부등식 $P(x)\\ge-2x-3$의 해는 $0\\le x\\le1$이다.\n(나) 방정식 $P(x)=-3x-2$는 중근을 가진다.\n① −7\n② −6\n③ −5\n④ −4\n⑤ −3",
+      "answer": "⑤ −3",
+      "solution": "(가)로부터 P(x)+2x+3=ax(x−1), a<0이다. (나)는 ax²+(1−a)x−1=0이며 판별식은(a+1)². 따라서 a=−1, P(x)=−x²−x−3, P(−1)=−3이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "이차다항식으로 용어 교정, 빠진⑤를 독립 풀이 결과로 새 작성; 원본 복원으로 주장하지 않는 새 문안. 기존⑤가 빠져 있으며 원래 인쇄된⑤ 내용은 확인되지 않았다.",
+      "validation": {
+        "math": "(가)로부터 P(x)+2x+3=ax(x−1), a<0이다. (나)는 ax²+(1−a)x−1=0이며 판별식은(a+1)². 따라서 a=−1, P(x)=−x²−x−3, P(−1)=−3이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10301-A14-001",
+      "kind": "rewrite",
+      "content": "다음 자연수의 양의 약수의 개수를 각각 구하시오.\n(1) $144$\n(2) $300$",
+      "answer": "(1)15개 (2)18개",
+      "solution": "144=2⁴×3²이므로(4+1)(2+1)=15개, 300=2²×3×5²이므로(2+1)(1+1)(2+1)=18개이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "본문과 해설의 두 수에 대해 양의 약수 개수를 묻는 새 발문 작성; 원본 복원으로 주장하지 않는 새 문안. 기존 본문에 무엇을 구하는지 발문이 없다. 해설에서 추론한 새 발문이며 원본 복원으로 단정하지 않는다.",
+      "validation": {
+        "math": "144=2⁴×3²이므로(4+1)(2+1)=15개, 300=2²×3×5²이므로(2+1)(1+1)(2+1)=18개이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10301-A46-001",
+      "kind": "rewrite",
+      "content": "서로 구별되는 주사위 3개를 동시에 던져 나온 눈의 수를 각각 $a,b,c$라 하자. $a+b+c+abc$가 홀수가 되는 경우의 수를 구하시오. (각 주사위의 눈은 1부터 6까지이다.)",
+      "answer": "$81$",
+      "solution": "서로 다른 $3$개의 주사위를 동시에 던질 때 나오는 눈의 수를 각각 $a,~b,~c$라고 할 때\n(ⅰ) $a+b+c$의 값이 짝수인 경우\n$(a,~b,~c)=$(짝, 짝, 짝), (짝, 홀, 홀), (홀, 짝, 홀), (홀, 홀, 짝)\n이므로 $abc$의 값은 모두 짝수이다.\n이때 $a+b+c+abc$의 값이 짝수이므로 조건을 만족시키는 경우는 없다.\n(ⅱ) $a+b+c$의 값이 홀수인 경우\n$(a,~b,~c)=$(짝, 짝, 홀), (짝, 홀, 짝), (홀, 짝, 짝), (홀, 홀, 홀)\n이므로 $a+b+c+abc$의 값이 홀수가 되는 경우는 $(a,~b,~c)=$(짝, 짝, 홀), (짝, 홀, 짝), (홀, 짝, 짝)이다.\n이때 $(a,~b,~c)=$(짝, 짝, 홀)인 경우의 수는\n$3\\times 3\\times 3=27$\n이고, (짝, 홀, 짝), (홀, 짝, 짝)인 경우의 수도 각각 $27$이므로 $27\\times 3=81$\n(ⅰ), (ⅱ)에서 구하는 경우의 수는 $81$",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "누락된 단계 지시문을 추정하지 않고 최종 경우의 수를 묻는 문항으로 정리했다.",
+      "validation": {
+        "math": "홀수 눈 개수를 k라 하면 a+b+c의 홀짝은 k의 홀짝이고 abc가 홀수인 경우는 k=3뿐이다. 따라서 전체 식은 k=1일 때만 홀수이며 3×3³=81가지이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10301-A61-001",
+      "kind": "rewrite",
+      "content": "그림과 같이 6개 지역 A, B, C, D, E, F가 있다. 서로 구별되는 조사원 5명 중 1명은 이웃한 2개 지역을 맡고 나머지 4명은 남은 지역을 하나씩 맡는다. 담당 지역을 정하는 경우의 수는? (두 지역이 길이가 0보다 큰 경계선을 공유할 때 이웃한다고 한다.)\n[그림]\n① $720$\n② $840$\n③ $960$\n④ $1080$\n⑤ $1200$",
+      "answer": "⑤",
+      "solution": "이웃한 지역의 쌍은 AB, AC, AE, BC, BD, CD, CE, CF, DF, EF의 10개이다. 두 지역을 맡을 조사원은 5가지로 정하고 나머지 지역의 담당자는 $4!=24$가지로 정한다. 따라서 $10\\times5\\times24=1200$이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "잘린 외곽의 원모양을 복원했다고 주장하지 않고, 같은 6지역·10인접쌍 구조의 완결된 새 분할도를 작성했다.",
+      "validation": {
+        "math": "새 분할 좌표를 각 쌍의 공통 경계 길이로 검사하면 이웃 쌍은 AB,AC,AE,BC,BD,CD,CE,CF,DF,EF의 10개이다. 2개 담당자는 유일하므로 각 배정은 10×5×4!에서 중복 계산되지 않는다.",
+        "visual": "새 SVG의 닫힌 외곽·6개 내부 영역·A~F를 렌더링하여 확인했다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"560\" height=\"390\" viewBox=\"0 0 560 390\" role=\"img\" aria-labelledby=\"regions-title\"><title id=\"regions-title\">경계가 완결된 여섯 지역 A, B, C, D, E, F</title><defs><marker id=\"regions-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"560\" height=\"390\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><rect x=\"60\" y=\"45\" width=\"440\" height=\"300\" fill=\"#f8f8f8\" stroke=\"#222\" stroke-width=\"2.5\"/><line x1=\"170\" y1=\"45\" x2=\"170\" y2=\"245\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"390\" y1=\"45\" x2=\"390\" y2=\"245\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"170\" y1=\"145\" x2=\"390\" y2=\"145\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"60\" y1=\"245\" x2=\"500\" y2=\"245\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"280\" y1=\"245\" x2=\"280\" y2=\"345\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"108\" y=\"150\" >A</text><text x=\"273\" y=\"100\" >B</text><text x=\"273\" y=\"200\" >C</text><text x=\"438\" y=\"150\" >D</text><text x=\"163\" y=\"302\" >E</text><text x=\"383\" y=\"302\" >F</text></g></svg>"
+    },
+    {
+      "problemCode": "HC10302-A16-001",
+      "kind": "rewrite",
+      "content": "다음을 계산하시오.\n(1) $\\,_{3}\\mathrm{P}_{2}$ (2) $\\,_{7}\\mathrm{P}_{3}\\,$\n(3) $\\,_{5}\\mathrm{P}_{4}$ (4) $\\,_{10}\\mathrm{P}_{1}$",
+      "answer": "(1) $6$\n(2) $210$\n(3) $120$\n(4) $10$",
+      "solution": "$_{n}\\mathrm{P}_{r}=n(n-1)\\cdots(n-r+1)$이다.\n(1) $_{3}\\mathrm{P}_{2}=3\\times2=6$이고 (2) $_{7}\\mathrm{P}_{3}=7\\times6\\times5=210$이다.\n(3) $_{5}\\mathrm{P}_{4}=5\\times4\\times3\\times2=120$이고 (4) $_{10}\\mathrm{P}_{1}=10$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "빠진 계산 지시문을 새 작성했다.",
+      "validation": {
+        "math": "순열을 곱으로 계산: 3×2=6, 7×6×5=210, 5×4×3×2=120, 10=10.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10302-A18-001",
+      "kind": "rewrite",
+      "content": "다음 경우의 수를 각각 구하시오.\n(1) 서로 다른 학생 4명을 일렬로 세우는 경우의 수\n(2) 서로 다른 음식 6가지를 일렬로 배열하는 경우의 수",
+      "answer": "(1) $24$\n(2) $720$",
+      "solution": "$n$개를 일렬로 나열하는 경우의 수는 $n!$이다.\n(1) $4!=24$이다.\n(2) $6!=720$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "누락 발문을 새 작성하고 학생의 구별 가능성을 명시했다.",
+      "validation": {
+        "math": "서로 다른 n개의 전체 순열은 n!이다. 4!=24, 6!=720이며 두 경우 모두 같은 물건으로 인한 중복이 없다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10303-A09-001",
+      "kind": "rewrite",
+      "content": "다음을 계산하시오.\n(1) $\\,_{4}\\mathrm{C}_{2}$ (2) $\\,_{6}\\mathrm{C}_{3}$\n(3) $\\,_{6}\\mathrm{C}_{6}$ (4) $\\,_{10}\\mathrm{C}_{0}$",
+      "answer": "(1) $6$\n(2) $20$\n(3) $1$\n(4) $1$",
+      "solution": "$_{n}\\mathrm{C}_{r}=\\dfrac{n!}{r!(n-r)!}$이다.\n(1) $_{4}\\mathrm{C}_{2}=\\dfrac{4\\times3}{2}=6$이고 (2) $_{6}\\mathrm{C}_{3}=\\dfrac{6\\times5\\times4}{3\\times2}=20$이다.\n(3) $_{6}\\mathrm{C}_{6}=1$이고 (4) $_{10}\\mathrm{C}_{0}=1$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "빠진 계산 지시문을 새 작성했다.",
+      "validation": {
+        "math": "조합 공식으로 4C2=6, 6C3=20이며 전체 선택과 공집합 선택은 각 1가지이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10402-A19-001",
+      "kind": "rewrite",
+      "content": "다음을 계산하시오.\n(1) $(-3~~2)+(4~~5)$ (2) $\\begin{pmatrix} 4 & -1 \\\\ 5 & ~~3 \\end{pmatrix}+\\begin{pmatrix} 2 & ~~3 \\\\ 3 & -6 \\end{pmatrix}$\n(3) $\\begin{pmatrix} -1 & ~~7 \\\\ ~~3 & -2 \\end{pmatrix}+\\begin{pmatrix} -3 & ~~1 \\\\ ~~2 & -4 \\end{pmatrix}$ (4) $\\begin{pmatrix} 3 & -2 & 4 \\\\ 2 & ~~0 & 1 \\end{pmatrix}+\\begin{pmatrix} 1 & -5 & ~~3 \\\\ 1 & ~~6 & -7 \\end{pmatrix}$",
+      "answer": "(1) $(1~~7)$ (2) $\\begin{pmatrix} 6 & 2 \\\\ 8 & -3 \\end{pmatrix}$ (3) $\\begin{pmatrix} -4 & 8 \\\\ 5 & -6 \\end{pmatrix}$ (4) $\\begin{pmatrix} 4 & -7 & 7 \\\\ 3 & 6 & -6 \\end{pmatrix}$",
+      "solution": "같은 꼴의 행렬은 같은 위치의 성분끼리 더한다.\n(1) $(-3+4~~2+5)=(1~~7)$이다.\n(2) $\\begin{pmatrix} 6 & 2 \\\\ 8 & -3 \\end{pmatrix}$이고 (3) $\\begin{pmatrix} -4 & 8 \\\\ 5 & -6 \\end{pmatrix}$이다.\n(4) $\\begin{pmatrix} 4 & -7 & 7 \\\\ 3 & 6 & -6 \\end{pmatrix}$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "빠진 계산 지시문을 새 작성했다. 행렬의 비어 있는 중간 열 표기를 없애 실제 성분 수와 맞췄다.",
+      "validation": {
+        "math": "성분별 합: (1,7), [[6,2],[8,−3]], [[−4,8],[5,−6]], [[4,−7,7],[3,6,−6]]. 각 입력 행렬의 행·열 수가 같다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10402-A20-001",
+      "kind": "rewrite",
+      "content": "다음을 계산하시오.\n(1) $\\begin{pmatrix} ~~1 \\\\ -5 \\end{pmatrix}-\\begin{pmatrix} -2 \\\\ ~~2 \\end{pmatrix}$ (2) $\\begin{pmatrix} -1 & ~~3 \\\\ ~~2 & -2 \\end{pmatrix}-\\begin{pmatrix} -3 & ~~1 \\\\ -1 & -4 \\end{pmatrix}$\n(3) $\\begin{pmatrix} 5 & -1 \\\\ 0 & ~~3 \\end{pmatrix}-\\begin{pmatrix} ~~7 & ~~2 \\\\ -1 & -6 \\end{pmatrix}$ (4) $\\begin{pmatrix} ~~4 & -1 & 3 \\\\ -2 & ~~2 & 1 \\end{pmatrix}-\\begin{pmatrix} 1 & 3 & 8 \\\\ 5 & 2 & 3 \\end{pmatrix}$",
+      "answer": "(1) $\\begin{pmatrix} 3 \\\\ -7 \\end{pmatrix}$ (2) $\\begin{pmatrix} 2 & 2 \\\\ 3 & 2 \\end{pmatrix}$ (3) $\\begin{pmatrix} -2 & -3 \\\\ 1 & 9 \\end{pmatrix}$ (4) $\\begin{pmatrix} 3 & -4 & -5 \\\\ -7 & 0 & -2 \\end{pmatrix}$",
+      "solution": "같은 위치의 성분끼리 뺀다.\n(1) $\\begin{pmatrix} 1+2 \\\\ -5-2 \\end{pmatrix}=\\begin{pmatrix} 3 \\\\ -7 \\end{pmatrix}$이다.\n(2) $\\begin{pmatrix} 2 & 2 \\\\ 3 & 2 \\end{pmatrix}$이고 (3) $\\begin{pmatrix} -2 & -3 \\\\ 1 & 9 \\end{pmatrix}$이다.\n(4) $\\begin{pmatrix} 3 & -4 & -5 \\\\ -7 & 0 & -2 \\end{pmatrix}$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "빠진 계산 지시문을 새 작성했다. 행렬의 비어 있는 중간 열 표기를 없애 실제 성분 수와 맞췄다.",
+      "validation": {
+        "math": "성분별 차: [[3],[−7]], [[2,2],[3,2]], [[−2,−3],[1,9]], [[3,−4,−5],[−7,0,−2]].",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10402-A21-001",
+      "kind": "rewrite",
+      "content": "행렬 $A=\\begin{pmatrix}6&-1\\\\-4&2\\end{pmatrix}$에 대하여 다음을 계산하시오.\n(1) $3A$ (2) $-2A$\n(3) $0A$ (4) $\\frac{1}{2}A$",
+      "answer": "(1) $\\begin{pmatrix} 18 & -3 \\\\ -12 & 6 \\end{pmatrix}$ (2) $\\begin{pmatrix} -12 & 2 \\\\ 8 & -4 \\end{pmatrix}$ (3) $\\begin{pmatrix} 0 & 0 \\\\ 0 & 0 \\end{pmatrix}$ (4) $\\begin{pmatrix} 3 & -\\frac{1}{2} \\\\ -2 & 1 \\end{pmatrix}$",
+      "solution": "각 성분에 주어진 수를 곱한다. (1) $3A=\\begin{pmatrix}18&-3\\\\-12&6\\end{pmatrix}$, (2) $-2A=\\begin{pmatrix}-12&2\\\\8&-4\\end{pmatrix}$, (3) $0A=\\begin{pmatrix}0&0\\\\0&0\\end{pmatrix}$, (4) $\\frac12A=\\begin{pmatrix}3&-\\frac12\\\\-2&1\\end{pmatrix}$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "빠진 A를 저장 답으로부터 유추해 새 조건으로 채택했다. 원래 A를 복원했다고 주장하지 않는다.",
+      "validation": {
+        "math": "A의 네 성분 6,−1,−4,2에 3,−2,0,1/2을 각각 곱하면 저장 답의 네 행렬을 얻는다. 하나의 명시된 A에서 모두 일관되게 성립한다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10403-A02-001",
+      "kind": "rewrite",
+      "content": "이차 정사각행렬 $A$에 대하여 $A\\begin{pmatrix} 1 \\\\ 0 \\end{pmatrix}=\\begin{pmatrix} ~~4 \\\\ -1 \\end{pmatrix}$, $A\\begin{pmatrix} 0 \\\\ 1 \\end{pmatrix}=\\begin{pmatrix} 2 \\\\ 0 \\end{pmatrix}$일 때, $A\\begin{pmatrix} -3 \\\\ ~~1 \\end{pmatrix}$의 모든 성분의 곱은?\n① $-30$\n② $-10$\n③ $10$\n④ $20$\n⑤ $30$",
+      "answer": "①",
+      "solution": "주어진 두 행렬 곱은 $A$의 첫째 열이 $\\begin{pmatrix}4\\\\-1\\end{pmatrix}$, 둘째 열이 $\\begin{pmatrix}2\\\\0\\end{pmatrix}$임을 뜻한다. 따라서 $A\\begin{pmatrix}-3\\\\1\\end{pmatrix}=-3\\begin{pmatrix}4\\\\-1\\end{pmatrix}+\\begin{pmatrix}2\\\\0\\end{pmatrix}=\\begin{pmatrix}-10\\\\3\\end{pmatrix}$이다. 성분의 곱은 $(-10)\\times3=-30$이므로 ①이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "중복 ④를 새 오답 20으로 교체했다.",
+      "validation": {
+        "math": "주어진 두 곱은 A의 열이 (4,−1),(2,0)임을 뜻한다. A(−3,1)=−3(4,−1)+(2,0)=(−10,3), 성분의 곱은 −30이다. 새 ④=20과 다른 보기들은 모두 다르다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC10403-A15-001",
+      "kind": "rewrite",
+      "content": "다음을 계산하시오.\n(1) $(4~~-2)\\begin{pmatrix} 3 \\\\ 5 \\end{pmatrix}$ (2) $\\begin{pmatrix} ~~2 & ~~6 \\\\ -1 & -3 \\end{pmatrix}\\begin{pmatrix} 3 \\\\ 2 \\end{pmatrix}$\n(3) $\\begin{pmatrix} ~~3 & 2 \\\\ -1 & 4 \\end{pmatrix}\\begin{pmatrix} 2 & 1 \\\\ 3 & 0 \\end{pmatrix}$ (4) $\\begin{pmatrix} ~~1 & 4 \\\\ -2 & 3 \\end{pmatrix}\\begin{pmatrix} 2 & ~~3 \\\\ 5 & -1 \\end{pmatrix}$",
+      "answer": "(1) $(2)$ (2) $\\begin{pmatrix} 18 \\\\ -9 \\end{pmatrix}$ (3) $\\begin{pmatrix} 12 & 3 \\\\ 10 & -1 \\end{pmatrix}$ (4) $\\begin{pmatrix} 22 & -1 \\\\ 11 & -9 \\end{pmatrix}$",
+      "solution": "(행)과 (열)의 성분을 차례로 곱해 더한다.\n(1) $4\\times3+(-2)\\times5=2$이다.\n(2) $\\begin{pmatrix} 6+12 \\\\ -3-6 \\end{pmatrix}=\\begin{pmatrix} 18 \\\\ -9 \\end{pmatrix}$이고 (3) $\\begin{pmatrix} 6+6 & 3 \\\\ -2+12 & -1 \\end{pmatrix}=\\begin{pmatrix} 12 & 3 \\\\ 10 & -1 \\end{pmatrix}$이다.\n(4) $\\begin{pmatrix} 2+20 & 3-4 \\\\ -4+15 & -6-3 \\end{pmatrix}=\\begin{pmatrix} 22 & -1 \\\\ 11 & -9 \\end{pmatrix}$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "빠진 계산 지시문을 새 작성했다. 행렬의 비어 있는 중간 열 표기를 없애 실제 성분 수와 맞췄다.",
+      "validation": {
+        "math": "행·열 내적: 12−10=2; (6+12,−3−6)=(18,−9); [[6+6,3+0],[−2+12,−1+0]]=[[12,3],[10,−1]]; [[2+20,3−4],[−4+15,−6−3]]=[[22,−1],[11,−9]].",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC20209-A08-001",
+      "kind": "rewrite",
+      "content": "실수 $x,y,z$에 대한 조건 $p:(x-y)^2+(y-z)^2+(z-x)^2=0$의 부정과 동치인 조건은?\n① x,y,z는 모두0이 아니다.\n② x,y,z는 모두 서로 다른 수이다.\n③ x,y,z 중 적어도 하나는0이다.\n④ x,y,z 중 적어도 하나는0이 아니다.\n⑤ $x\\ne y$ 또는 $y\\ne z$ 또는 $z\\ne x$이다.",
+      "answer": "⑤",
+      "solution": "실수의 제곱은 음수가 아니므로 p는 x=y=z와 동치이다. 그 부정은 세 수가 모두 같지는 않다는 뜻이며⑤이다. ④는 x=y=z=1일 때 참이지만 부정은 거짓이므로 동치가 아니다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "발문을 부정과 동치인 조건으로 한정하고 ⑤를 논리합으로 명시; 원본 복원으로 주장하지 않는 새 문안. 원래 발문의 단순 필요조건 질문에는④도 참이다.",
+      "validation": {
+        "math": "실수의 제곱은 음수가 아니므로 p는 x=y=z와 동치이다. 그 부정은 세 수가 모두 같지는 않다는 뜻이며⑤이다. ④는 x=y=z=1일 때 참이지만 부정은 거짓이므로 동치가 아니다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC20309-A03-001",
+      "kind": "rewrite",
+      "content": "다음 식을 간단히 하시오. 단, 각 원식의 분모와 나누는 식의 값은 0이 아니다.\n⑴ $\\frac{2}{x^{2}-4}+\\frac{1}{x^{2}-6x+8}$\n⑵ $\\frac{3}{x^{2}-3x-4}-\\frac{2}{x-4}$\n⑶ $\\frac{x-3}{x^{2}+6x+9}\\times \\frac{x^{2}+4x+3}{x^{2}-5x+6}$\n⑷ $\\frac{x^{2}+4x-5}{x^{2}+5x+4}\\div \\frac{x^{2}-3x+2}{x+4}$",
+      "answer": "⑴ $\\frac{3}{x^{2}-2x-8}$ ⑵ $\\frac{-2x+1}{x^{2}-3x-4}$ ⑶ $\\frac{x+1}{x^{2}+x-6}$ ⑷ $\\frac{x+5}{x^{2}-x-2}$",
+      "solution": "⑴ 분모를 인수분해하여 통분하면 $\\frac{2(x-4)+(x+2)}{(x+2)(x-2)(x-4)}=\\frac3{(x+2)(x-4)}=\\frac3{x^2-2x-8}$이다.\n⑵ $\\frac{3-2(x+1)}{(x+1)(x-4)}=\\frac{1-2x}{x^2-3x-4}$이다.\n⑶ $\\frac{x-3}{(x+3)^2}\\times\\frac{(x+3)(x+1)}{(x-2)(x-3)}=\\frac{x+1}{x^2+x-6}$이다.\n⑷ $\\frac{(x+5)(x-1)}{(x+4)(x+1)}\\times\\frac{x+4}{(x-1)(x-2)}=\\frac{x+5}{x^2-x-2}$이다. 모든 소거는 원식이 정의되는 범위에서 한다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "계산 발문과 원식 정의역 조건을 새 작성했다.",
+      "validation": {
+        "math": "공통인수를 소거하면 차례로 3/((x+2)(x−4)), (1−2x)/((x+1)(x−4)), (x+1)/((x+3)(x−2)), (x+5)/((x+1)(x−2))이다. 원식 제외값은 각각 {−2,2,4}, {−1,4}, {−3,2,3}, {−4,−1,1,2}로 유지한다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC20311-A04-001",
+      "kind": "rewrite",
+      "content": "실수 a,b에 대하여 a>3이다. 함수 $f(x)=\\begin{cases}\\dfrac{ax-b}{x-2}&(x<1)\\\\2-\\sqrt{2x-2}&(x\\ge1)\\end{cases}$가 치역이 $\\{y\\mid y<4\\}$인 일대일 함수일 때, $a+b$의 값은?\n① 1\n② 4\n③ 7\n④ 10\n⑤ 13",
+      "answer": "④ 10",
+      "solution": "x≥1에서 치역은 (−∞,2]이므로 x<1인 부분은 정확히 (2,4)를 채워야 한다. (ax−b)/(x−2)=a+(2a−b)/(x−2)의 두 끝 극한은 a, b−a이다. 따라서 {a,b−a}={2,4}. 새 조건 a>3에 따라 a=4, b=6, 합은10이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "실수 a,b에 대해 a>3 조건을 추가; 원본 복원으로 주장하지 않는 새 문안. 새 조건이 없으면 (a,b)=(2,6),(4,6)이 모두 성립하여 합이8 또는10이다.",
+      "validation": {
+        "math": "x≥1에서 치역은 (−∞,2]이므로 x<1인 부분은 정확히 (2,4)를 채워야 한다. (ax−b)/(x−2)=a+(2a−b)/(x−2)의 두 끝 극한은 a, b−a이다. 따라서 {a,b−a}={2,4}. 새 조건 a>3에 따라 a=4, b=6, 합은10이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HC20312-A03-001",
+      "kind": "rewrite",
+      "content": "모든 양의 실수 $x$에 대하여 다음 식과 항상 같은 값을 갖는 식은?\n$\\dfrac{1}{\\sqrt{x+1}-1}-\\dfrac{1}{\\sqrt{x+1}+1}$\n① $\\dfrac1{\\sqrt{x}}$\n② $\\dfrac1{x+1}$\n③ $\\dfrac2{\\sqrt{x}+1}$\n④ $\\dfrac1x$\n⑤ $\\dfrac2x$",
+      "answer": "⑤",
+      "solution": "통분하면 분자는2, 분모는(√(x+1)−1)(√(x+1)+1)=x이므로2/x이다. x>0에서 원식과 모든 보기가 정의된다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "정의역 x>0 및 항등적 동치를 명시하고 깨진②를 새 오답으로 작성; 원본 복원으로 주장하지 않는 새 문안. ②의 근호 표기가 깨졌다. 새②는 원본 보기 복원이라고 주장하지 않는다.",
+      "validation": {
+        "math": "통분하면 분자는2, 분모는(√(x+1)−1)(√(x+1)+1)=x이므로2/x이다. x>0에서 원식과 모든 보기가 정의된다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HGE0303-A07-001",
+      "kind": "rewrite",
+      "content": "삼각형 $\\mathrm{ABC}$에서 선분 $\\mathrm{BC}$를 $1:\\,2$로 내분하는 점을 $\\mathrm{P}$, 선분 $\\mathrm{AC}$의 중점을 $\\mathrm{Q}$라고 할 때, $\\overrightarrow{AP}+\\overrightarrow{BQ}=p\\mathrm{\\overrightarrow{AB}}+q\\mathrm{\\overrightarrow{AC}}$를 만족시키는 두 실수 $p$, $q$에 대하여 $p+q$의 값은?\n[그림]\n① $-\\frac{3}{2}$\n② $-\\frac{1}{2}$\n③ $\\frac{1}{2}$\n④ $1$\n⑤ $\\frac{3}{2}$",
+      "answer": "③",
+      "solution": "점 $\\mathrm{P}$는 선분 $\\mathrm{BC}$를 $1:2$로 내분하므로 $\\overrightarrow{\\mathrm{AP}}=\\dfrac{2}{3}\\overrightarrow{\\mathrm{AB}}+\\dfrac{1}{3}\\overrightarrow{\\mathrm{AC}}$이다. 점 $\\mathrm{Q}$는 선분 $\\mathrm{AC}$의 중점이므로 $\\overrightarrow{\\mathrm{BQ}}=\\overrightarrow{\\mathrm{AQ}}-\\overrightarrow{\\mathrm{AB}}=-\\overrightarrow{\\mathrm{AB}}+\\dfrac{1}{2}\\overrightarrow{\\mathrm{AC}}$이다. 두 식을 더하면 $\\overrightarrow{\\mathrm{AP}}+\\overrightarrow{\\mathrm{BQ}}=-\\dfrac{1}{3}\\overrightarrow{\\mathrm{AB}}+\\dfrac{5}{6}\\overrightarrow{\\mathrm{AC}}$이므로 $p=-\\dfrac{1}{3}$, $q=\\dfrac{5}{6}$이다. 따라서 $p+q=\\dfrac{1}{2}$이고 답은 ③이다.",
+      "figureUrls": [
+        "/figures/tb/1995663943d39102/tb-1995663943d39102-0-8-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "실제 그림은 AP와 BQ를 가리킨다. 본문 벡터도 BQ로 바꾼 변형으로 작성했다.",
+      "validation": {
+        "math": "A를 원점으로 두면 P=(2B+C)/3, Q=C/2이다. AP+BQ=(2B+C)/3+(C/2−B)=−B/3+5C/6, 따라서 p+q=−1/3+5/6=1/2이다.",
+        "visual": "실제 로컬 이미지의 AP·BQ 화살표와 P∈BC,Q∈AC를 확인했다. 비와 중점은 본문 조건으로 고정한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HGE0304-A18-001",
+      "kind": "rewrite",
+      "content": "삼각형 $OAB$에서 $\\overrightarrow{OA}=\\vec a$, $\\overrightarrow{OB}=\\vec b$이다. 무게중심 $G$를 지나고 변 $AB$에 평행한 직선 위를 움직이는 점 $X$의 위치벡터를 $\\overrightarrow{OX}=\\vec x$라 할 때, 이 직선의 모든 점을 나타내는 식은? (단, $t$는 모든 실수 값을 갖는다.)\n[그림]\n① $\\vec x=\\frac{\\vec a+\\vec b}{2}+t(\\vec b-\\vec a)$\n② $\\vec x=\\frac{\\vec a+\\vec b}{3}+t(\\vec b-\\vec a)$\n③ $\\vec x=(\\vec b-\\vec a)+t\\frac{\\vec a+\\vec b}{2}$\n④ $\\vec x=\\frac{\\vec a+\\vec b}{3}+t(\\vec a+\\vec b)$\n⑤ $\\vec x=\\vec a+\\vec b+t(\\vec b-\\vec a)$",
+      "answer": "②",
+      "solution": "삼각형 $\\mathrm{OAB}$의 무게중심은 $\\overrightarrow{OG}=\\dfrac{\\vec{a}+\\vec{b}}{3}$이다.\n점 $\\mathrm{G}$를 지나고 $\\overrightarrow{AB}=\\vec{b}-\\vec{a}$에 평행한 직선 위의 점 $\\mathrm{X}$는 $\\vec{x}=\\overrightarrow{OG}+t\\overrightarrow{AB}$로 나타낼 수 있다.\n따라서 $\\vec{x}=\\dfrac{\\vec{a}+\\vec{b}}{3}+t(\\vec{b}-\\vec{a})$이므로 답은 ②이다.",
+      "figureUrls": [
+        "/figures/tb/1995663943d39102/tb-1995663943d39102-0-14-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "중복 ④를 새 오답으로 작성하고 모든 점의 자취를 묻는 표현으로 명확히 했다.",
+      "validation": {
+        "math": "삼각형이므로 a,b는 독립이다. 정답 직선의 a,b 계수 합은 항상 2/3이고 방향 계수는 (−1,1)이다. ①은 합 1, ⑤는 합 2이며 ③④는 방향 (1,1)이므로 서로 다른 직선이다. 무게중심 (a+b)/3을 지나는 ②만 성립한다.",
+        "visual": "원본 로컬 그림의 점·수치·배치와 최종 본문을 대조하였다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HM10101-A15-001",
+      "kind": "rewrite",
+      "content": "다음 극한값을 구하시오.\n(1) $\\lim _{x\\,\\to \\,3}\\,5$ (2) $\\lim _{x\\,\\to \\,-2}\\,\\left( x^{2}+5x+4\\right)$\n(3) $\\lim _{x\\,\\to \\,4}\\,\\frac{1}{x-3}$ (4) $\\lim _{x\\,\\to \\,4}\\,\\sqrt{x+5}$",
+      "answer": "(1) $5$ (2) $-2$ (3) $1$ (4) $3$",
+      "solution": "(1) 상수함수이므로 극한값은 $5$이다.\n(2) $x\\to-2$일 때 $4-10+4=-2$이다.\n(3) $x\\to4$일 때 $\\dfrac{1}{4-3}=1$이다.\n(4) $\\sqrt{4+5}=3$이다. 따라서 답은 (1) $5$ (2) $-2$ (3) $1$ (4) $3$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "없는 그래프를 참조하는 풀이 방식 제한을 삭제한 변형이다.",
+      "validation": {
+        "math": "네 함수 모두 해당 접근점에서 연속이다. 대입값은 5, 4−10+4=−2, 1/(4−3)=1, √(4+5)=3이다. 분모는 접근점에서 1로 0이 아니다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HM10105-A32-001",
+      "kind": "rewrite",
+      "content": "함수 $f\\left( x\\right) =\\frac{x^{3}-2x+4}{ax^{2}+ax+1}$가 실수 전체의 집합에서 연속이 되도록 하는 모든 정수 $a$의 개수는?\n① $1$\n② $2$\n③ $3$\n④ $4$\n⑤ $5$",
+      "answer": "④",
+      "solution": "분모 $ax^{2}+ax+1$이 모든 실수 $x$에서 $0$이 아니어야 한다.\n$a=0$이면 분모가 $1$이므로 가능하다.\n$a\\ne0$이면 판별식 $a^{2}-4a<0$에서 $0<a<4$이므로 $a=1,\\,2,\\,3$이다.\n따라서 정수 $a$는 $0,\\,1,\\,2,\\,3$의 $4$개이므로 답은 ④이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "빠진 ①을 새 오답 1로 작성했다.",
+      "validation": {
+        "math": "명시된 유리함수가 실수 전체에서 정의되려면 분모 실근이 없어야 한다. a=0 가능; a≠0일 때 D=a²−4a<0 ⇔0<a<4. 정수는 0,1,2,3 네 개이다. 분모 근에서 약분하더라도 원식은 정의되지 않는다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HM10105-A44-001",
+      "kind": "correction",
+      "content": "다음 각 그래프의 함수 $f(x)$가 $x=0$에서 불연속인 이유를 보기에서 고르시오.\n<보기>\nㄱ. $f(0)$이 정의되어 있지 않다.\nㄴ. $\\lim_{x\\to0}f(x)$가 존재하지 않는다.\nㄷ. $f(0)$과 $\\lim_{x\\to0}f(x)$가 존재하지만 서로 다르다.\n(1)\n[그림]\n(2)\n[그림]\n(3)\n[그림]",
+      "answer": "(1) ㄴ (2) ㄱ (3) ㄷ",
+      "solution": "(1) 그림에서 $f(0)=0$이고 $x\\to0-$일 때 $f(x)\\to0$, $x\\to0+$일 때 $f(x)\\to2$이므로 $\\displaystyle\\lim_{x\\to0}f(x)$의 값이 존재하지 않는다. 따라서 ㄴ이다.\n(2) 그림에서 $x=0$인 점이 비어 있어 $f(0)$이 정의되어 있지 않다. 따라서 ㄱ이다.\n(3) 그림에서 $f(0)=2$이고 $x\\to0$일 때 $f(x)\\to1$이므로 극한값과 함숫값이 존재하지만 서로 다르다. 따라서 ㄷ이다.",
+      "figureUrls": [
+        "/figures/tb/8758459243b552c2/tb-8758459243b552c2-0-1-1.png",
+        "/figures/tb/8758459243b552c2/tb-8758459243b552c2-0-1-2.png",
+        "/figures/tb/8758459243b552c2/tb-8758459243b552c2-0-1-3.png"
+      ],
+      "questionType": "단답형",
+      "notes": "실제 3개 그래프 순서를 고정하고 각 앞에 번호를 배치했다. 네 번째 보기 이미지는 정확히 문자로 전사했다.",
+      "validation": {
+        "math": "첫 그림 좌극한 0,우극한 2로 양측 극한이 없다(ㄴ). 둘째는 (0,1)이 빈 점이며 x=0의 채워진 점이 없어 f(0) 미정의(ㄱ). 셋째는 좌우극한 1,채워진 점 (0,2)로 극한≠함숫값(ㄷ).",
+        "visual": "그림 1: (0,0) 채운 점/(0,2) 빈 점, 그림 2: (0,1) 빈 점, 그림 3: (0,1) 빈 점/(0,2) 채운 점을 대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HM10206-A08-001",
+      "kind": "rewrite",
+      "content": "다음 함수가 실수 전체에서 (1), (2)는 증가하고, (3)은 감소하도록 하는 실수 $a$의 범위를 각각 구하시오.\n(1) $f\\left( x\\right) =\\frac{1}{3}x^{3}+ax^{2}+4x+3$\n(2) $f\\left( x\\right) =x^{3}-x^{2}+ax$\n(3) $f\\left( x\\right) =-x^{3}+ax^{2}-ax+5$",
+      "answer": "(1) $-2\\le a\\le 2$ (2) $a\\ge\\frac{1}{3}$ (3) $0\\le a\\le 3$",
+      "solution": "(1) $f\\prime(x)=x^2+2ax+4$가 항상 0 이상이어야 하므로 $4a^2-16\\le0$, 즉 $-2\\le a\\le2$이다. (2) $f\\prime(x)=3x^2-2x+a$에서 $4-12a\\le0$, 즉 $a\\ge\\frac13$이다. (3) $f\\prime(x)=-3x^2+2ax-a$가 항상 0 이하여야 하므로 $4a^2-12a\\le0$, 즉 $0\\le a\\le3$이다. 경계값에서도 도함수가 한 점에서만 0이므로 각 함수는 요구한 방향으로 증가 또는 감소한다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "(3)의 최고차항이 음수임을 확인하고 감소 조건으로 새 작성했다.",
+      "validation": {
+        "math": "각 도함수 이차식의 최솟값·최댓값 부호를 판별식으로 검사한다. 결과는 a²≤4, a≥1/3, a(a−3)≤0이다. 도함수는 영다항식이 아니고 고립된 영점만 가지므로 경계에서도 엄격 단조성이 유지된다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HPS0101-A27-001",
+      "kind": "rewrite",
+      "content": "중복순열 ${}_n\\Pi_r=n^r$의 표기를 사용한다. ${}_4\\Pi_2+{}_2\\Pi_4$의 값은?\n① $28$\n② $30$\n③ $32$\n④ $34$\n⑤ $36$",
+      "answer": "③",
+      "solution": "${}_4\\Pi_2=4^2=16$이다.\n${}_2\\Pi_4=2^4=16$이므로 합은 $32$이다.\n따라서 답은 ③이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "깨진 편집기 표기를 저장 해설의 두 중복순열로 새 작성했다. 원본 수식 복원 주장은 하지 않는다.",
+      "validation": {
+        "math": "중복순열 정의에서 4²+2⁴=16+16=32이다. 다섯 보기 중 ③만 일치한다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HPS0202-A15-001",
+      "kind": "rewrite",
+      "content": "1, 2, 3, 4가 각각 하나씩 적힌 카드 4장에서 매번 임의로 1장을 뽑고 다시 넣는 시행을 독립적으로 3번 반복한다. 뽑힌 수를 차례로 $a,b,c$라 할 때, 이차부등식 $ax^2-bx+c\\ge0$이 모든 실수 $x$에서 성립할 확률을 구하시오.",
+      "answer": "$\\frac{7}{8}$",
+      "solution": "$4$장의 카드를 $1$장씩 $3$번 뽑을 때 나오는 경우의 수는\n $4^{3}=64$\n세 수 $a$, $b$, $c$는 $b^{2}-4ac\\leq 0$, 즉 $4ac\\geq b^{2}$을 만족시켜야 한다.\n$b=1$일 때, 즉 $4ac\\geq 1$을 만족시키는 순서쌍 $(a,\\,c)$는 $(1,\\,1)$, $(1,\\,2)$, $(1,\\,3)$, $(1,\\,4)$, ..., $(4,\\,4)$의 $16$개 $b=2$일 때, 즉 $ac\\geq 1$을 만족시키는 순서쌍 $(a,\\,c)$는 $(1,\\,1)$, $(1,\\,2)$, $(1,\\,3)$, $(1,\\,4)$, ..., $(4,\\,4)$의 $16$개 $b=3$일 때, 즉 $4ac\\geq 9$를 만족시키는 순서쌍 $(a,\\,c)$는 $(1,\\,3)$, $(1,\\,4)$, $(2,\\,2)$, $(2,\\,3)$, $(2,\\,4)$, $(3,\\,1)$, $(3,\\,2)$, $(3,\\,3)$, $(3,\\,4)$, $(4,\\,1)$, $(4,\\,2)$, $(4,\\,3)$, $(4,\\,4)$의 $13$개 $b=4$일 때, 즉 $ac\\geq 4$를 만족시키는 순서쌍 $(a,\\,c)$는 $(1,\\,4)$, $(2,\\,2)$, $(2,\\,3)$, $(2,\\,4)$, $(3,\\,2)$, $(3,\\,3)$, $(3,\\,4)$, $(4,\\,1)$, $(4,\\,2)$, $(4,\\,3)$, $(4,\\,4)$의 $11$개 즉, $b^{2}-4ac\\leq 0$을 만족시키는 경우의 수는\n $16+16+13+11=56$\n따라서 구하는 확률은 $\\frac{56}{64}=\\frac{7}{8}$",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "카드 문장을 완성하고 복원추출·독립·균등 선택을 명시하여 표본공간 64개를 보장했다.",
+      "validation": {
+        "math": "a>0이므로 필요충분조건은 b²≤4ac이다. b=1,2에서는 각16개, b=3에서는 ac≤2인 (1,1),(1,2),(2,1)만 제외하여13개, b=4에서는 추가로 (1,3),(3,1)을 제외하여11개. 합56/64=7/8.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HPS0203-A26-001",
+      "kind": "rewrite",
+      "content": "백합 $3$송이와 장미 $n$송이가 꽂힌 꽃병에서 임의로 $2$송이를 동시에 꺼낼 때, 적어도 $1$송이는 장미가 나올 확률이 $\\frac{7}{10}$이다. 이때, $n$의 값은?\n① $2$\n② $3$\n③ $4$\n④ $5$\n⑤ $6$",
+      "answer": "①",
+      "solution": "적어도 $1$송이가 장미일 확률이 $\\dfrac{7}{10}$이므로 모두 백합일 확률은 $\\dfrac{3}{10}$이다.\n$\\dfrac{{}_{3}\\mathrm{C}_{2}}{{}_{n+3}\\mathrm{C}_{2}}=\\dfrac{6}{(n+3)(n+2)}=\\dfrac{3}{10}$이므로 $(n+3)(n+2)=20$이다.\n따라서 $n=2$이고 답은 ①이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "빈 ⑤를 새 오답 6으로 채웠다.",
+      "validation": {
+        "math": "여사건 백합만 2송이의 확률은 3/C(n+3,2)=3/10이므로 (n+3)(n+2)=20. n²+5n−14=(n+7)(n−2)=0에서 자연수 n=2만 가능하다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "HPS0304-A30-001",
+      "kind": "rewrite",
+      "content": "확률변수 $X$가 이항분포 $\\mathrm B(12,p)$를 따른다. $0<p<1$이고 $\\{\\mathrm E(X)\\}^2=2\\mathrm V(X)$일 때, $p$를 구하시오.",
+      "answer": "$\\frac{1}{7}$",
+      "solution": "$\\mathrm{E}(X)=12p$, $\\mathrm{V}(X)=12p(1-p)$이다.\n$(12p)^2=2\\times12p(1-p)$에서 $0<p<1$이므로 $12p=2(1-p)$이다.\n따라서 $14p=2$이므로 $p=\\dfrac{1}{7}$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "수식 괄호를 고치고 퇴화분포 p=0을 배제하는 새 조건 0<p<1을 명시했다.",
+      "validation": {
+        "math": "144p²=24p(1−p) ⇔24p(7p−1)=0. 새 조건 p>0에서 p=0을 제외하고 p=1/7만 남으며 0<p<1을 만족한다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10102-A90-001",
+      "kind": "rewrite",
+      "content": "다음 다섯 자연수 중 서로 다른 소인수의 개수가 1개인 수는 모두 몇 개인가?\n$11,\\ 12,\\ 16,\\ 18,\\ 23$\n① 1개\n② 2개\n③ 3개\n④ 4개\n⑤ 5개",
+      "answer": "③",
+      "solution": "•$11$의 약수는 $1$, $11$이므로 소인수는 $11$의 $1$개이다.\n•$12=2^{2}\\times 3$이므로 소인수는 $2$, $3$의 $2$개이다.\n•$16=2^{4}$이므로 소인수는 $2$의 $1$개이다.\n•$18=2\\times 3^{2}$이므로 소인수는 $2$, $3$의 $2$개이다.\n•$23$의 약수는 $1$, $23$이므로 소인수는 $23$의 $1$개이다.\n따라서 소인수가 하나인 수는 $11$, $16$, $23$의 $3$개이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "누락된 다섯 수를 저장 해설에서 취해 새 본문 조건으로 작성했다.",
+      "validation": {
+        "math": "11과23은 소수,16=2⁴이다.12=2²×3,18=2×3²는 서로 다른 소인수가2개이다. 따라서11,16,23의3개이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10202-B14-001",
+      "kind": "rewrite",
+      "content": "각 ○ 안에 $>$ 또는 $<$를 넣을 때 나머지 넷과 다른 부등호가 들어가는 것은?\n① $-\\frac12\\;\\bigcirc\\;-\\frac34$\n② $-7\\;\\bigcirc\\;-5$\n③ $-4\\;\\bigcirc\\;0$\n④ $-\\frac15\\;\\bigcirc\\;+\\frac13$\n⑤ $-3\\;\\bigcirc\\;-2$",
+      "answer": "①",
+      "solution": "각 보기의 두 수를 비교한다.\n①은 $-\\dfrac{1}{2}>-\\dfrac{3}{4}$이고 나머지는 모두 앞의 수가 더 작아 $<$이다.\n따라서 답은 ①이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "누락된 ⑤의 뒤 수를 −2로 새 작성했다. 빈 비교 칸과 무관한 단원 제목을 정리했다.",
+      "validation": {
+        "math": "−1/2=−0.5>−0.75이므로①은 >. −7<−5,−4<0,−1/5<1/3,−3<−2이므로②~⑤는 <이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10202-B31-001",
+      "kind": "rewrite",
+      "content": "다음 문장을 부등호를 사용하여 나타내시오.\n(1) $a$는 $-\\frac16$보다 작거나 같다.\n(2) $b$는 $-4$보다 크거나 같다.\n(3) $c$는 $2$보다 크고 $5$보다 작거나 같다.",
+      "answer": "⑴ $a\\leq -\\frac{1}{6}$ ⑵ $b\\geq -4$ ⑶ $2<c\\leq 5$",
+      "solution": "(1) 작거나 같다는 $\\le$이므로 $a\\le-\\frac16$이다. (2) 크거나 같다는 $\\ge$이므로 $b\\ge-4$이다. (3) 두 조건을 함께 나타내면 $2<c\\le5$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "원그림 (1)의 모순된 문장을 작거나 같다로 바꾼 새 조건이다. 보기 그림을 본문으로 옮겨 제거했다.",
+      "validation": {
+        "math": "각 부등호의 뜻을 직접 대조: ≤는 < 또는 =, ≥는 > 또는 =. (3)은 교집합 (2,∞)∩(−∞,5]=(2,5]이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10203-C67-001",
+      "kind": "rewrite",
+      "content": "다음 가상의 대화를 읽고, $2024$년도의 열대야 일수를 구하시오.\n상은: $2014$년의 열대야 일수는 $6$일이었대.\n지호: 그래? $2017$년은 $2014$년보다 열대야 일수가 $11$일 더 많았다고 들었어.\n상은: 그리고 열대야 일수가 점점 늘어서 $2024$년은 $2017$년보다 열대야 일수가 $9$일 더 늘었다고 했어.\n① $22$일\n② $24$일\n③ $26$일\n④ $28$일\n⑤ $30$일",
+      "answer": "③",
+      "solution": "$2017$년의 열대야 일수는 $6+11=17$일이다.\n$2024$년의 열대야 일수는 $17+9=26$일이다.\n따라서 답은 ③이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "중복 ⑤를 새 오답 30일로 작성하고 실제 기상 통계로 오인되지 않도록 가상 상황임을 명시했다.",
+      "validation": {
+        "math": "2017년은 6+11=17일,2024년은17+9=26일이다.22,24,26,28,30 중26이 유일하다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10203-D26-001",
+      "kind": "correction",
+      "content": "다음 보기에서 계산 결과가 옳은 것을 모두 고르시오.\nㄱ. $(+8)+(-4)+(-7)=-2$\nㄴ. $(-6)+(-11)+(+21)=+4$\nㄷ. $(-1.4)+(+3.7)+(+0.8)=+3.1$\nㄹ. $(-\\frac52)+(+\\frac35)+(-\\frac1{10})=+2$",
+      "answer": "ㄴ, ㄷ",
+      "solution": "ㄱ. $(+8)+(-4)+(-7)=-3$이므로 옳지 않다.\nㄴ. $(-6)+(-11)+(+21)=+4$이므로 옳다.\nㄷ. $(-1.4)+(+3.7)+(+0.8)=+3.1$이므로 옳다.\nㄹ. $\\left(-\\dfrac{5}{2}\\right)+\\left(+\\dfrac{3}{5}\\right)+\\left(-\\dfrac{1}{10}\\right)=\\dfrac{-25+6-1}{10}=-2$이므로 옳지 않다.\n따라서 답은 ㄴ, ㄷ이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제 보기 이미지의 네 계산식을 그대로 전사하고 파일명·날짜·쪽수 포함 이미지를 제거했다.",
+      "validation": {
+        "math": "왼쪽 값을 재계산하면 ㄱ=−3≠−2,ㄴ=4,ㄷ=3.1,ㄹ=(−25+6−1)/10=−2≠2이다. ㄴ,ㄷ만 참이다.",
+        "visual": "원본 보기의 결과 −2,+4,+3.1,+2를 확대 대조하여 전사했다. 바닥글을 학생 본문에서 제외했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10205-C06-001",
+      "kind": "rewrite",
+      "content": "다음 계산에서 ㉠, ㉡, ㉢은 각각 바로 앞 줄에서 해당 줄로 바꾸는 단계를 뜻한다. 처음으로 잘못된 단계를 쓰고, 원식을 바르게 계산한 값을 구하시오.\n원식: $\\left(-\\frac34\\right)\\div(+2)\\times(-4)$\n㉠ $=(+2)\\div\\left(-\\frac34\\right)\\times(-4)$\n㉡ $=(+2)\\div(+3)$\n㉢ $=+\\frac23$",
+      "answer": "㉠, $\\frac{3}{2}$",
+      "solution": "나눗셈에서는 교환법칙이 성립하지 않으므로 처음으로 잘못된 부분은 ㉠이고, 바르게 계산하면\n$\\left( -\\frac{3}{4}\\right) \\div (+2)\\times (-4)$\n$=\\left( -\\frac{3}{4}\\right) \\times \\left( +\\frac{1}{2}\\right) \\times (-4)$\n$=\\left( -\\frac{3}{8}\\right) \\times (-4)=+\\frac{3}{2}$",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "떨어진 화살표 대신 각 계산 줄에 단계 번호를 직접 붙였다. 첫 식의 마침표를 제거했다.",
+      "validation": {
+        "math": "원식=(−3/4)×(1/2)×(−4)=3/2이다. ㉠의 오른쪽은 2×(−4/3)×(−4)=32/3으로 원식과 달라 이미 첫 단계에서 틀렸다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10205-C11-001",
+      "kind": "rewrite",
+      "content": "다음 식에서 다섯 이항 연산 기호를 왼쪽부터 차례로 ㉠, ㉡, ㉢, ㉣, ㉤이라 한다. 계산 순서대로 그 기호를 쓰시오. (음수의 부호는 연산 기호로 세지 않는다.)\n$3+\\left\\{\\frac32+\\left(-\\frac14\\right)\\div\\left(-\\frac54+\\frac23\\right)\\right\\}\\times\\frac85$",
+      "answer": "㉣, ㉢, ㉡, ㉤, ㉠",
+      "solution": "본문에서 정한 기호 ㉠~㉤은 식의 연산 기호 $+$, $+$, $\\div$, $+$, $\\times$를 왼쪽부터 차례로 가리킨다.\n소괄호 안의 덧셈 ㉣이 먼저이고, 이어서 나눗셈 ㉢, 중괄호 안의 덧셈 ㉡, 곱셈 ㉤, 맨 앞의 덧셈 ㉠ 순서로 계산한다.\n따라서 답은 ㉣, ㉢, ㉡, ㉤, ㉠이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "연산 기호의 번호를 문장으로 명확히 정의하고 떨어진 화살표 그림을 제거했다.",
+      "validation": {
+        "math": "괄호 안 −5/4+2/3의 덧셈㉣, 나눗셈㉢, 중괄호 덧셈㉡, 바깥 곱셈㉤, 마지막 덧셈㉠ 순이다. 원래 순서대로 +,+,÷,+,×와 일대일 대응한다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10301-D27-001",
+      "kind": "rewrite",
+      "content": "$a=-2$, $b=4$일 때, 다음 식의 값을 구하시오.\n⑴ $3b-a$\n⑵ $2ab-3$\n⑶ $\\frac{a}{b}+\\frac{b}{a}$\n⑷ $a^2+2b$",
+      "answer": "⑴ $14$ ⑵ $-19$ ⑶ $-\\frac{5}{2}$ ⑷ $12$",
+      "solution": "(1) $3b-a=3\\times4-(-2)=12+2=14$이다.\n(2) $2ab-3=2\\times(-2)\\times4-3=-16-3=-19$이다.\n(3) $\\dfrac{a}{b}+\\dfrac{b}{a}=\\dfrac{-2}{4}+\\dfrac{4}{-2}=-\\dfrac{1}{2}-2=-\\dfrac{5}{2}$이다.\n(4) $a^2+2b=(-2)^2+2\\times4=4+8=12$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "저장 해설의 a²+2b를 새 소문항 ⑷로 채택했다. 원문 복원이라고 주장하지 않는다.",
+      "validation": {
+        "math": "a=−2,b=4 대입:12+2=14,−16−3=−19,−1/2−2=−5/2,4+8=12이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10303-B58-001",
+      "kind": "rewrite",
+      "content": "$3x-\\left[ x-\\frac{2}{3}\\left\\{ -2-x-(2x+7)\\right\\} \\right]$을 간단히 나타내면 $ax+b$가 된다. $2b-3a$의 값을 구하시오.\n① $-12$\n② $-6$\n③ $0$\n④ $6$\n⑤ $12$",
+      "answer": "①",
+      "solution": "괄호를 안쪽부터 풀면 $-2-x-(2x+7)=-3x-9$이다.\n$x-\\dfrac{2}{3}(-3x-9)=x+2x+6=3x+6$이므로 주어진 식은 $3x-(3x+6)=-6$이다.\n따라서 $a=0$, $b=-6$이고 $2b-3a=-12$이므로 답은 ①이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "다른 발문의 보기를 추정 복원하지 않고 다섯 수치 선택지를 새 작성했다.",
+      "validation": {
+        "math": "가장 안은 −3x−9, 대괄호는 x−(2/3)(−3x−9)=3x+6이다. 원식=−6=0x−6이므로 a=0,b=−6,2b−3a=−12이다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10305-A31-001",
+      "kind": "rewrite",
+      "content": "은우와 윤서는 그림처럼 머핀과 도넛을 사서 같은 금액을 냈다. 그림에서 컵 모양 빵은 머핀이고 가운데 구멍이 있는 고리 모양 빵은 도넛이다. 머핀과 도넛의 한 개 가격은 각각 일정한 양수일 때, 도넛 한 개의 가격은 머핀 몇 개의 가격과 같은가?\n[그림]",
+      "answer": "$2$개",
+      "solution": "그림에서 한쪽 상자에는 머핀 $9$개와 도넛 $4$개, 다른 쪽 상자에는 머핀 $5$개와 도넛 $6$개가 있다.\n머핀 한 개의 가격을 $m$, 도넛 한 개의 가격을 $d$라 하면 $9m+4d=5m+6d$이다.\n양쪽에서 $5m+4d$를 빼면 $4m=2d$이다.\n양쪽을 $2$로 나누면 $d=2m$이므로 도넛 한 개는 머핀 $2$개의 가격과 같다.",
+      "figureUrls": [
+        "/figures/tb/3ab9712a5daf992a/tb-3ab9712a5daf992a-0-5-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "빈 괄호의 아이콘을 대신해 두 빵 모양을 말로 명시했다. 같은 상품의 가격 일정·양수 조건을 보완했다.",
+      "validation": {
+        "math": "실제 그림 왼쪽 머핀9·도넛4,오른쪽 머핀5·도넛6을 세었다.9m+4d=5m+6d에서4m=2d,따라서 d/m=2이다. m>0이어서 비가 정의된다.",
+        "visual": "왼쪽 컵빵5+4=9,고리4; 오른쪽 컵빵5,고리5+1=6을 실제 그림에서 확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10308-A29-001",
+      "kind": "rewrite",
+      "content": "다음 달력에서 가운데 한 칸과 그 칸의 바로 위·아래·왼쪽·오른쪽 칸을 골라 십자(+) 모양의 다섯 칸을 선택하였다. 다섯 날짜의 합이 115일 때 가운데 날짜를 구하시오.\n[그림]",
+      "answer": "$23$일",
+      "solution": "가운데 날짜를 $x$라 하면 바로 왼쪽과 오른쪽은 $x-1,x+1$, 위와 아래는 $x-7,x+7$이다. 따라서 $x+(x-1)+(x+1)+(x-7)+(x+7)=5x=115$에서 $x=23$이다. 실제 달력에서도 주변 네 날짜는 16, 30, 22, 24이므로 합이 115가 된다.",
+      "figureUrls": [
+        "/figures/tb/7d4e68b21a08ff24/tb-7d4e68b21a08ff24-1-4-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "누락된 선택 모양을 새 문장으로 명시했다.",
+      "validation": {
+        "math": "가운데 x에서 좌우는 x±1,상하는 x±7이므로 합5x=115,x=23이다. 실제 달력의23 주변은16,30,22,24로 모두 존재하며 합115이다.",
+        "visual": "실제 달력에서23이 월요일이고 위16·아래30·좌22·우24가 존재함을 확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10401-A75-001",
+      "kind": "correction",
+      "content": "다윤이가 걸은 코스 번호 $x$와 걸린 시간 $y$시간을 표로 나타냈다. 표의 다섯 순서쌍을 좌표평면에 나타낼 때, 잘못 표시한 점의 번호를 고르시오.\n$\\begin{array}{c|ccccc}x&2&5&7&3&9\\\\\\hline y&6&3&2&4&5\\end{array}$\n[그림]",
+      "answer": "⑤",
+      "solution": "그래프 위에 나타낸 좌표를 순서쌍 $(x,~y)$로 나타내면 다음과 같다.\n① $(2,~6)$ ② $(5,~3)$ ③ $(7,~2)$\n④ $(3,~4)$ ⑤ $(9,~6)$\n따라서 점의 좌표를 잘못 나타낸 것은 ⑤이다.",
+      "figureUrls": [
+        "/figures/tb/826de169c15e4ea7/tb-826de169c15e4ea7-0-1-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "풀려 있던 두 표 행을 같은 순서의 열로 재조합했다. 번호는 그림 자체에 있으므로 빈 번호 줄을 삭제했다.",
+      "validation": {
+        "math": "표의 다섯 순서쌍은 [(2, 6), (5, 3), (7, 2), (3, 4), (9, 5)]이다. 실제 그림에서 5번은 (9, 6)로 표시되어 표의 (9, 5)와 다르며 다른 네 점은 표와 일치한다.",
+        "visual": "실제 좌표 격자를 읽어 5번 점의 좌표 (9, 6) 및 나머지 네 점을 표와 대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10401-A76-001",
+      "kind": "correction",
+      "content": "다윤이가 걸은 코스 번호 $x$와 걸린 시간 $y$시간을 표로 나타냈다. 표의 다섯 순서쌍을 좌표평면에 나타낼 때, 잘못 표시한 점의 번호를 고르시오.\n$\\begin{array}{c|ccccc}x&1&4&8&6&10\\\\\\hline y&6&3&4&5&7\\end{array}$\n[그림]",
+      "answer": "③",
+      "solution": "그래프 위에 나타낸 좌표를 순서쌍 $(x,~y)$로 나타내면 다음과 같다.\n① $(1,~6)$ ② $(4,~3)$ ③ $(4,~8)$\n④ $(6,~5)$ ⑤ $(10,~7)$\n따라서 점의 좌표를 잘못 나타낸 것은 ③이다.",
+      "figureUrls": [
+        "/figures/tb/826de169c15e4ea7/tb-826de169c15e4ea7-0-2-1.jpg"
+      ],
+      "questionType": "객관식",
+      "notes": "풀려 있던 두 표 행을 같은 순서의 열로 재조합했다. 번호는 그림 자체에 있으므로 빈 번호 줄을 삭제했다.",
+      "validation": {
+        "math": "표의 다섯 순서쌍은 [(1, 6), (4, 3), (8, 4), (6, 5), (10, 7)]이다. 실제 그림에서 3번은 (4, 8)로 표시되어 표의 (8, 4)와 다르며 다른 네 점은 표와 일치한다.",
+        "visual": "실제 좌표 격자를 읽어 3번 점의 좌표 (4, 8) 및 나머지 네 점을 표와 대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10401-A77-001",
+      "kind": "correction",
+      "content": "다윤이가 걸은 코스 번호 $x$와 걸린 시간 $y$시간을 표로 나타냈다. 표의 다섯 순서쌍을 좌표평면에 나타낼 때, 잘못 표시한 점의 번호를 고르시오.\n$\\begin{array}{c|ccccc}x&3&7&2&9&6\\\\\\hline y&2&4&3&6&5\\end{array}$\n[그림]",
+      "answer": "③",
+      "solution": "그래프 위의 점을 순서쌍 $(x,~y)$로 나타내면 ① $(3,~2)$ ② $(7,~4)$ ③ $(2,~2)$ ④ $(9,~6)$ ⑤ $(6,~5)$이다.\n표와 비교하면 ③은 표에서 $(2,~3)$인데 그래프에서는 $(2,~2)$이므로 좌표를 잘못 나타냈다.\n따라서 답은 ③이다.",
+      "figureUrls": [
+        "/figures/tb/826de169c15e4ea7/tb-826de169c15e4ea7-0-3-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "풀려 있던 두 표 행을 같은 순서의 열로 재조합했다. 번호는 그림 자체에 있으므로 빈 번호 줄을 삭제했다.",
+      "validation": {
+        "math": "표의 다섯 순서쌍은 [(3, 2), (7, 4), (2, 3), (9, 6), (6, 5)]이다. 실제 그림에서 3번은 (2, 2)로 표시되어 표의 (2, 3)와 다르며 다른 네 점은 표와 일치한다.",
+        "visual": "실제 좌표 격자를 읽어 3번 점의 좌표 (2, 2) 및 나머지 네 점을 표와 대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10401-A98-001",
+      "kind": "rewrite",
+      "content": "다음 좌표평면 위에 점 $A$의 좌표를 $(a,\\,b)$, $B$의 좌표를 $(c,\\,d)$라고 할 때, $a+b+c+d$의 값을 구하시오.\n[그림]\n① $-1$\n② $1$\n③ $-3$\n④ $3$\n⑤ $5$",
+      "answer": "①",
+      "solution": "그림에서 점 $A$의 좌표는 $(-3,\\,2)$, 점 $B$의 좌표는 $(1,\\,-1)$이므로 $a=-3$, $b=2$, $c=1$, $d=-1$이다.\n따라서 $a+b+c+d=-3+2+1-1=-1$이므로 답은 ①이다.",
+      "figureUrls": [
+        "/figures/tb/38adf6825484b4c9/tb-38adf6825484b4c9-0-1-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "중복 ④를 새 오답3으로 교체했다.",
+      "validation": {
+        "math": "그림에서 A=(−3,2),B=(1,−1)이므로 a+b+c+d=−3+2+1−1=−1이다. 새 ④=3을 포함해 중복 없는 다섯 수 중①만 일치한다.",
+        "visual": "A의 격자(−3,2),B의 격자(1,−1)를 실제 그림에서 확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10403-A71-001",
+      "kind": "rewrite",
+      "content": "그림의 큰 원기둥 모양 물통 바닥에는 물통보다 낮은 속이 찬 원기둥이 고정되어 있다. 안쪽 원기둥 주위에는 물이 들어갈 공간이 있다. 처음에 비어 있는 물통에 매초 일정한 부피의 물을 넣을 때, 물통이 가득 차기 전까지 시간에 따른 물의 높이를 나타낸 그래프는? (물은 새거나 기둥에 흡수되지 않는다.)\n[그림]\n① [그림]\n② [그림]\n③ [그림]\n④ [그림]\n⑤ [그림]",
+      "answer": "④",
+      "solution": "유입량을 $q$, 큰 물통의 단면적을 $A$, 속이 찬 기둥의 단면적을 $B$라 하면 기둥 높이까지 물의 높이는 초당 $q/(A-B)$씩 증가한다. 그 위에서는 초당 $q/A$씩 증가한다. $0<B<A$이므로 처음에 기울기가 큰 직선이었다가 기울기가 작은 직선으로 이어지는 ④가 맞다.",
+      "figureUrls": [
+        "/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-10-1.png",
+        "/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-10-2.png",
+        "/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-10-3.png",
+        "/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-10-4.png",
+        "/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-10-5.png",
+        "/figures/tb/4bfd7d98e6edc6d6/tb-4bfd7d98e6edc6d6-0-10-6.png"
+      ],
+      "questionType": "객관식",
+      "notes": "속이 찬 고정 기둥·빈 초기 상태·누수 없음·넘치기 전 조건을 새로 명시했다. 실제 파일 순서의 5개 그래프에 번호를 각각 결합했다.",
+      "validation": {
+        "math": "기둥 높이를 H라 하면 t₀=(A−B)H/q. h(t)=qt/(A−B) (0≤t≤t₀), h(t)=H+q(t−t₀)/A (t≥t₀,넘치기전). 두 식은 t₀에서 같고 기울기는 양수이며 감소한다. 실제 ④만 이 두 직선 조건과 원점을 만족한다.",
+        "visual": "물통1장과 보기5장을 전부 대조했다. ④는 원점에서 시작해 중간에서 기울기가 감소하는 꺾은선이며,③은 매끈한 곡선,⑤는 기울기 증가이다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10403-A74-001",
+      "kind": "rewrite",
+      "content": "다음 그래프는 한 지역의 2024년 월별 최고 기온을 가상으로 나타낸 것이다. 그래프에 대한 설명으로 옳지 않은 것은?\n[그림]\n① 가장 최고 기온이 낮은 월은 $1$월이다.\n② 가장 최고 기온이 높은 월은 $8$월이다.\n③ $2024$년의 $6$월과 $9$월의 최고 기온은 같다.\n④ $2024$년에는 $8$월부터 $12$월까지 최고 기온은 계속 떨어졌다.\n⑤ 그래프를 보면 월별 기온의 변화를 알 수 있지만 매일 매일 기온을 정확하게 예측할 수 없다.",
+      "answer": "③",
+      "solution": "그래프에서 6월의 최고 기온은 9월의 최고 기온보다 높으므로 두 값이 같다는 ③은 옳지 않다. 최고 기온이 가장 낮은 달은 1월, 가장 높은 달은 8월이며, 8월부터 12월까지는 매달 낮아진다. 월별 최고 기온만으로 매일의 기온을 정확히 알 수는 없다.",
+      "figureUrls": [
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-9-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "실제 세로축 최고 기온과 본문·보기의 통계량을 일치시켰다. 실측 출처가 없어 가상 자료로 명시했다.",
+      "validation": {
+        "math": "그림의 최저 점은1월,최고 점은8월이다.6월 점은약28,9월 점은약26으로 서로 다르다.8→9→10→11→12월 점은 계속 낮아지고 월별최고값만으로 일별기온은 결정되지 않으므로③만 틀리다.",
+        "visual": "로컬 그림의 세로축 최고 기온, 6·9월의 다른 점 높이와 8월 이후 감소를 확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10403-A75-001",
+      "kind": "rewrite",
+      "content": "수평 단면적이 높이에 관계없이 일정한 기둥 모양 물통이 처음에는 비어 있다. 매초 일정한 부피의 물을 넣다가 물통이 가득 찬 순간 유입을 멈추고, 펌프로 매초 일정한 부피의 물을 빼내어 물통을 비웠다. 처음부터 완전히 빌 때까지 물의 높이를 시간에 따라 나타낸 그래프는?\n[그림]\n① [그림]\n② [그림]\n③ [그림]\n④ [그림]\n⑤ [그림]",
+      "answer": "③",
+      "solution": "물통의 수평 단면적이 일정하므로 일정한 유입량에서는 물의 높이가 일정한 속도로 높아진다. 가득 찬 뒤 일정한 배수량으로 펌프를 작동하면 물의 높이가 일정한 속도로 낮아진다. 원점에서 직선으로 증가했다가 직선으로 감소하여 높이 0이 되는 ③이 맞다.",
+      "figureUrls": [
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-10-1.png",
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-10-3.png",
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-10-4.png",
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-10-5.png",
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-10-6.png",
+        "/figures/tb/0220eaa1ff88b4c8/tb-0220eaa1ff88b4c8-0-10-7.png"
+      ],
+      "questionType": "객관식",
+      "notes": "바닥 구멍의 불확정 배수를 일정량 펌프 배수라는 새 조건으로 바꿨다. 중복 물통 그림을 제거하고 5개 그래프를 각각 번호와 결합했다.",
+      "validation": {
+        "math": "단면적 A,유입량 q₁,배수량 q₂,전체높이 H에서 채움시간 T=AH/q₁이다. h=q₁t/A (0≤t≤T), h=H−q₂(t−T)/A (T≤t≤T+AH/q₂). 연속인 두 직선의 기울기 부호가 +,−이고 양 끝 높이0이므로 실제③에 대응한다.",
+        "visual": "원통 아닌 육각기둥 그림이므로 기둥 모양으로 표현했다. 첫 두 파일의 중복을 확인했고, 남은 보기 세 번째는 두 직선으로 된 증가·감소 그래프이다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10404-B86-001",
+      "kind": "rewrite",
+      "content": "다음 중 $x$와 $y$의 관계를 나타내는 그래프가 제3사분면을 지나는 것을 모두 고르시오. (정답 2개)\n① $y=-3x$\n② $y=-\\frac12x$\n③ $y=\\frac34x$\n④ $y=-\\frac{10}{x}$\n⑤ $y=\\frac6x$",
+      "answer": "③, ⑤",
+      "solution": "①, ②, ④ 그래프가 제$2$사분면과 제$4$사분면을 지난다.\n③, ⑤ 그래프가 제$1$사분면과 제$3$사분면을 지난다.\n따라서 그래프가 제$3$사분면을 지나는 것은 ③, ⑤이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "빠진 ⑤를 양의 반비례 y=6/x로 새 작성하고 무관한 머리글을 삭제했다.",
+      "validation": {
+        "math": "제3사분면은 x<0,y<0이다. x<0을 대입하면①②④는 y>0,③⑤는 y<0이다. 따라서③⑤만 해당한다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10404-C33-001",
+      "kind": "correction",
+      "content": "다음 그림에 나타낸 두 정비례 관계의 식을 각각 구하시오.\n[그림]",
+      "answer": "$y=\\frac{3}{4}x$, $y=-\\frac{2}{3}x$",
+      "solution": "정비례의 그래프이므로 $y=ax$의 꼴이다.\n오른쪽 위로 향하는 그래프는 $(4,\\,3)$을 지나기 때문에 $y=ax$에 대입하면 $4a=3$, $a=\\frac{3}{4}$이다. 즉, $y=\\frac{3}{4}x$이다.\n오른쪽 아래를 향하는 그래프는 $(3,\\,-2)$를 지나므로 대입하면 $3a=-2$, $a=-\\frac{2}{3}$이다. 즉, $y=-\\frac{2}{3}x$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "검은 얼룩이 있는 원그림의 두 관계를 좌표(4,3),(3,−2)로 확인한 뒤 깨끗한 결정적 SVG로 다시 그렸다.",
+      "validation": {
+        "math": "원점을 지나는 직선의 기울기는 y/x이다. 위로 향하는 직선은(4,3)에서3/4,아래로 향하는 직선은(3,−2)에서−2/3이다. 따라서 y=3x/4,y=−2x/3이다.",
+        "visual": "원그림의 원점·(4,3)·(3,−2)와 새 그래프를 대조했다. 새 그림에는 관계식 정답을 쓰지 않는다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"640\" height=\"500\" viewBox=\"0 0 640 500\" role=\"img\" aria-labelledby=\"proportional-lines-title\"><title id=\"proportional-lines-title\">원점을 지나는 두 직선과 점 (4,3), (3,-2)</title><defs><marker id=\"proportional-lines-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"640\" height=\"500\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><line x1=\"60\" y1=\"450\" x2=\"60\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"60\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">-5</text><line x1=\"110\" y1=\"450\" x2=\"110\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"110\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">-4</text><line x1=\"160\" y1=\"450\" x2=\"160\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"160\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">-3</text><line x1=\"210\" y1=\"450\" x2=\"210\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"210\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">-2</text><line x1=\"260\" y1=\"450\" x2=\"260\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"260\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">-1</text><line x1=\"360\" y1=\"450\" x2=\"360\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"360\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">1</text><line x1=\"410\" y1=\"450\" x2=\"410\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"410\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">2</text><line x1=\"460\" y1=\"450\" x2=\"460\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"460\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">3</text><line x1=\"510\" y1=\"450\" x2=\"510\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"510\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">4</text><line x1=\"560\" y1=\"450\" x2=\"560\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"560\" y=\"270\" font-size=\"14\" text-anchor=\"middle\">5</text><line x1=\"60\" y1=\"450\" x2=\"560\" y2=\"450\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"301\" y=\"455\" font-size=\"14\" text-anchor=\"end\">-4</text><line x1=\"60\" y1=\"400\" x2=\"560\" y2=\"400\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"301\" y=\"405\" font-size=\"14\" text-anchor=\"end\">-3</text><line x1=\"60\" y1=\"350\" x2=\"560\" y2=\"350\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"301\" y=\"355\" font-size=\"14\" text-anchor=\"end\">-2</text><line x1=\"60\" y1=\"300\" x2=\"560\" y2=\"300\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"301\" y=\"305\" font-size=\"14\" text-anchor=\"end\">-1</text><line x1=\"60\" y1=\"200\" x2=\"560\" y2=\"200\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"301\" y=\"205\" font-size=\"14\" text-anchor=\"end\">1</text><line x1=\"60\" y1=\"150\" x2=\"560\" y2=\"150\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"301\" y=\"155\" font-size=\"14\" text-anchor=\"end\">2</text><line x1=\"60\" y1=\"100\" x2=\"560\" y2=\"100\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"301\" y=\"105\" font-size=\"14\" text-anchor=\"end\">3</text><line x1=\"60\" y1=\"50\" x2=\"560\" y2=\"50\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"301\" y=\"55\" font-size=\"14\" text-anchor=\"end\">4</text><line x1=\"60\" y1=\"250\" x2=\"572\" y2=\"250\" stroke=\"#222\" stroke-width=\"2\" marker-end=\"url(#proportional-lines-arrow)\"/><line x1=\"310\" y1=\"450\" x2=\"310\" y2=\"38\" stroke=\"#222\" stroke-width=\"2\" marker-end=\"url(#proportional-lines-arrow)\"/><text x=\"577\" y=\"256\" >x</text><text x=\"318\" y=\"38\" >y</text><text x=\"293\" y=\"271\" font-size=\"15\">O</text><line x1=\"60\" y1=\"437.5\" x2=\"560\" y2=\"62.5\" stroke=\"#222\" stroke-width=\"3\"/><line x1=\"60\" y1=\"83.3333\" x2=\"560\" y2=\"416.667\" stroke=\"#222\" stroke-width=\"3\"/><circle cx=\"510\" cy=\"100\" r=\"4\" fill=\"#222\"/><text x=\"478\" y=\"81\" font-size=\"18\">(4, 3)</text><circle cx=\"460\" cy=\"350\" r=\"4\" fill=\"#222\"/><text x=\"484\" y=\"343\" font-size=\"18\">(3, -2)</text></g></svg>"
+    },
+    {
+      "problemCode": "J10404-C67-001",
+      "kind": "rewrite",
+      "content": "성진이가 일정한 속도로 자전거를 타고 있다. 출발한 뒤 $x$시간 동안 이동한 거리 $y\\,\\mathrm{km}$가 다음 표와 같을 때, 옳지 않은 것은?\n[그림]\n① 2시간 동안 이동한 거리는 $14\\,\\mathrm{km}$이다.\n② $x$와 $y$는 정비례한다.\n③ 시간이 2배가 되면 이동 거리는 $\\frac12$배가 된다.\n④ 관계식은 $y=7x$이다.\n⑤ 5시간 동안 $35\\,\\mathrm{km}$, 7시간 동안 $49\\,\\mathrm{km}$를 이동한다.",
+      "answer": "③",
+      "solution": "표에서 매시간 $7\\,\\mathrm{km}$씩 이동하므로 $y=7x$이다. 따라서 시간이 2배가 되면 거리도 2배가 되므로 ③이 틀리다. 나머지 보기는 모두 $y=7x$와 일치한다.",
+      "figureUrls": [
+        "/figures/tb/d53f5f2082c972f9/tb-d53f5f2082c972f9-0-16-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "누락된 ③④는 원문을 복원하지 않고 새 보기로 작성했다. 실제 표의 수치는 유지했다.",
+      "validation": {
+        "math": "표의 (1,7),(2,14),(3,21),(4,28),(5,35)는 y/x=7이다. 일정속도 조건으로 모든 x≥0에서 y=7x이며 2x에서는2y이므로③의1/2배는 거짓이다.5시간35,7시간49도 대입 확인.",
+        "visual": "실제 표의 x=1,2,3,4,5와 y=7,14,21,28,35를 대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10404-C78-001",
+      "kind": "rewrite",
+      "content": "정사각형의 한 변의 길이를 $x\\,\\mathrm{cm}$, 둘레의 길이를 $y\\,\\mathrm{cm}$라 하자.\n(1) 표의 빈칸을 채우시오.\n[그림]\n(2) $x$와 $y$는 어떤 관계인가?\n(3) $x$와 $y$의 관계식을 쓰시오.",
+      "answer": "⑴ $4,\\,8,\\,12,\\,16,\\,20$ ⑵ 정비례 관계 ⑶ $y=4x$",
+      "solution": "⑴ 한 변의 길이가 $x\\,\\mathrm{cm}$인 정사각형의 둘레의 길이는 $y=4x$이므로 $x=1,\\,2,\\,3,\\,4,\\,5$일 때 $y=4,\\,8,\\,12,\\,16,\\,20$이다.\n⑵ $x$의 값이 $2$배, $3$배, $4$배, ...가 될 때 $y$의 값도 $2$배, $3$배, $4$배, ...가 되므로 정비례 관계이다.\n⑶ $y$의 값이 $x$의 값의 $4$배이므로 $y=4x$이다.",
+      "figureUrls": [
+        "/figures/tb/7e6f0172b7ac46e6/tb-7e6f0172b7ac46e6-0-1-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "없는 점판을 참조하는 문장을 삭제하고 표와 일치하는 직접 발문으로 새 작성했다.",
+      "validation": {
+        "math": "정사각형 네 변이 모두 x이므로 y=4x이다. x=1,2,3,4,5 대입으로4,8,12,16,20,비 y/x=4 일정이므로 정비례이다.",
+        "visual": "남은 실제 그림은 x행1~5,y행빈칸인 표이다. 본문 소문항과 표가 대응한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10501-A26-001",
+      "kind": "rewrite",
+      "content": "다음 그림의 (1)~(4)를 각각 두 점 A, B를 이용한 기호로 나타내시오. 화살표는 그 방향으로 끝없이 뻗음을 뜻한다.\n[그림]",
+      "answer": "⑴ $\\overleftrightarrow{AB}$ ⑵ $\\overrightarrow{AB}$ ⑶ $\\overrightarrow{BA}$ ⑷ $\\overline{AB}$",
+      "solution": "그림에서 ⑴은 양쪽으로 끝없이 뻗은 직선이므로 $\\overleftrightarrow{AB}$이다.\n⑵는 점 $\\mathrm{A}$에서 시작하여 점 $\\mathrm{B}$ 쪽으로 뻗은 반직선이므로 $\\overrightarrow{AB}$이다.\n⑶은 점 $\\mathrm{B}$에서 시작하여 점 $\\mathrm{A}$ 쪽으로 뻗은 반직선이므로 $\\overrightarrow{BA}$이다.\n⑷는 두 점 $\\mathrm{A}$, $\\mathrm{B}$ 사이의 선분이므로 $\\overline{AB}$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "번호 없는 원그림을 추정하여 잘라 쓰지 않고, 네 유형을 같은 순서의 새 SVG로 명확하게 작성했다.",
+      "validation": {
+        "math": "(1)은 양끝 화살표이므로 직선AB; (2)는 A를 끝점으로 B방향의 화살표이므로 반직선AB; (3)는 B를 끝점으로 A방향의 화살표이므로 반직선BA; (4)는 A,B 두 끝점만 있으므로 선분AB이다.",
+        "visual": "새 SVG에서 화살표 방향·끝점·번호와 기호를 대조했다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"520\" height=\"395\" viewBox=\"0 0 520 395\" role=\"img\" aria-labelledby=\"line-ray-segment-title\"><title id=\"line-ray-segment-title\">두 점 A, B로 표시한 네 도형</title><defs><marker id=\"line-ray-segment-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"520\" height=\"395\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><text x=\"28\" y=\"71\" >(1)</text><line x1=\"105\" y1=\"65\" x2=\"465\" y2=\"65\" stroke=\"#222\" stroke-width=\"2\" marker-start=\"url(#line-ray-segment-arrow)\" marker-end=\"url(#line-ray-segment-arrow)\"/><circle cx=\"170\" cy=\"65\" r=\"4\" fill=\"#222\"/><text x=\"170\" y=\"93\" text-anchor=\"middle\">A</text><circle cx=\"390\" cy=\"65\" r=\"4\" fill=\"#222\"/><text x=\"390\" y=\"93\" text-anchor=\"middle\">B</text><text x=\"28\" y=\"161\" >(2)</text><line x1=\"170\" y1=\"155\" x2=\"465\" y2=\"155\" stroke=\"#222\" stroke-width=\"2\" marker-end=\"url(#line-ray-segment-arrow)\"/><circle cx=\"170\" cy=\"155\" r=\"4\" fill=\"#222\"/><text x=\"170\" y=\"183\" text-anchor=\"middle\">A</text><circle cx=\"390\" cy=\"155\" r=\"4\" fill=\"#222\"/><text x=\"390\" y=\"183\" text-anchor=\"middle\">B</text><text x=\"28\" y=\"251\" >(3)</text><line x1=\"105\" y1=\"245\" x2=\"390\" y2=\"245\" stroke=\"#222\" stroke-width=\"2\" marker-start=\"url(#line-ray-segment-arrow)\"/><circle cx=\"170\" cy=\"245\" r=\"4\" fill=\"#222\"/><text x=\"170\" y=\"273\" text-anchor=\"middle\">A</text><circle cx=\"390\" cy=\"245\" r=\"4\" fill=\"#222\"/><text x=\"390\" y=\"273\" text-anchor=\"middle\">B</text><text x=\"28\" y=\"341\" >(4)</text><line x1=\"170\" y1=\"335\" x2=\"390\" y2=\"335\" stroke=\"#222\" stroke-width=\"2\" /><circle cx=\"170\" cy=\"335\" r=\"4\" fill=\"#222\"/><text x=\"170\" y=\"363\" text-anchor=\"middle\">A</text><circle cx=\"390\" cy=\"335\" r=\"4\" fill=\"#222\"/><text x=\"390\" y=\"363\" text-anchor=\"middle\">B</text></g></svg>"
+    },
+    {
+      "problemCode": "J10505-A20-001",
+      "kind": "correction",
+      "content": "다음 중 두 직선 $l,m$이 서로 평행하지 않은 것은? 각 그림에 표시한 각을 사용하시오. 첫 번째 그림의 왼쪽과 오른쪽은 각각 1번, 2번이고, 두 번째 그림의 왼쪽과 오른쪽은 각각 3번, 4번이며, 세 번째 그림은 5번이다.\n[그림]\n[그림]\n[그림]",
+      "answer": "⑤",
+      "solution": "①은 $110°$의 동위각이 $180°-70°=110°$이다. ②는 $140°$의 엇각이 $180°-40°=140°$이다. ③은 $130°$와 엇각인 각이 $180°-50°=130°$이다. ④는 동위각이 모두 $45°$이다. ⑤는 위 교점의 $65°$와 동위각인 아래 각이 $180°-105°=75°$로 다르므로 평행하지 않다.",
+      "figureUrls": [
+        "/figures/tb/821fa144d9d59418/tb-821fa144d9d59418-0-9-1.png",
+        "/figures/tb/821fa144d9d59418/tb-821fa144d9d59418-0-9-2.png",
+        "/figures/tb/821fa144d9d59418/tb-821fa144d9d59418-0-9-3.png"
+      ],
+      "questionType": "객관식",
+      "notes": "실제 두 칸·두 칸·한 칸 보기의 위치를 번호와 명시적으로 연결했다.",
+      "validation": {
+        "math": "각쌍을 맞꼭지각·보각으로 같은 위치에 옮기면①110=180−70,②140=180−40,③130=180−50,④45=45로 평행.⑤위65와 아래오른쪽위75가 불일치하여 유일하게 비평행이다.",
+        "visual": "실제 세 파일의 각쌍은110/70,140/40;130/50,45/45;65/105이다. 줄마다 왼쪽·오른쪽 번호를 명시했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10505-A22-001",
+      "kind": "rewrite",
+      "content": "그림에서 $l\\parallel m$이고, 그림의 세로로 그어진 직선은 $l,m$에 모두 수직이다. 표시된 두 각의 합 $\\angle a+\\angle b$는?\n[그림]\n① $70°$\n② $71°$\n③ $72°$\n④ $73°$\n⑤ $74°$",
+      "answer": "④",
+      "solution": "그림에서 $62^\\circ$의 맞꼭지각이 오른쪽 위에 있으므로 수직선과 이 직선 사이의 각은 $\\angle a=90^\\circ-62^\\circ=28^\\circ$이다.\n그림에서 오른쪽 아래의 직선은 수직선과 $45^\\circ$를 이루므로 $m$과도 $45^\\circ$를 이루고, $l\\parallel m$이므로 동위각에 의해 $\\angle b=45^\\circ$이다.\n따라서 $\\angle a+\\angle b=28^\\circ+45^\\circ=73^\\circ$이므로 답은 ④이다.",
+      "figureUrls": [
+        "/figures/tb/821fa144d9d59418/tb-821fa144d9d59418-0-10-2.png"
+      ],
+      "questionType": "객관식",
+      "notes": "기존 연결 그림은 작도 문제 그림이다. 앞 문항 A21 두 번째 자산에서 해당62°·45° 그림을 찾아 재연결하고 수직 조건을 새로 명시했다.",
+      "validation": {
+        "math": "62°의 맞꼭지각은 m의 오른쪽 반직선과 오른쪽위 사선 사이62°이다. 세로선⊥m이므로 a=90−62=28°. 아래45°의 사선은 m과도45°를 이루며 l∥m이므로 b=45°. 합73°.",
+        "visual": "교체 자산에서 l,m,a,b,62°,45°를 실제 확인했다. 그림 자체에 없는 수직성은 본문에 명시했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10505-B11-001",
+      "kind": "rewrite",
+      "content": "그림에서 $l\\parallel m$이다. 꺾인 선분이 $l,m$과 이루는 표시된 각이 각각 $30°$, $35°$일 때, $\\angle x$의 크기는?\n[그림]\n① $45°$\n② $55°$\n③ $65°$\n④ $75°$\n⑤ $85°$",
+      "answer": "③",
+      "solution": "꺾인 점을 지나고 $l,m$에 평행한 직선을 그으면 엇각에 의해 위쪽 사선과 그 직선 사이의 각은 $30°$, 아래쪽 사선과 그 직선 사이의 각은 $35°$이다. 두 각을 합하면 $x=30°+35°=65°$이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "현재 자산은 x도 꺾인 점도 없는 다른 문항이다. 평행선의 각 개념·정답 난이도를 유지한 새 30°·35° 조건과 새 SVG를 작성했다.",
+      "validation": {
+        "math": "꺾인 점 기준 두 반직선 방향각을 +30°,−35°로 구성하였다. 사이각은30−(−35)=65°이며 평행선의 엇각으로 같은 계산을 할 수 있다.⑤보기 중③만65°.",
+        "visual": "새 SVG의 평행한 두 수평선·꺾인점·30°·35°·x 위치를 렌더링 대조했다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"595\" height=\"335\" viewBox=\"0 0 595 335\" role=\"img\" aria-labelledby=\"parallel-kink-title\"><title id=\"parallel-kink-title\">평행선 l,m과 30도,35도를 이루는 꺾인 선분, 꺾인 점의 각 x</title><defs><marker id=\"parallel-kink-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"595\" height=\"335\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><line x1=\"65\" y1=\"80\" x2=\"530\" y2=\"80\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"65\" y1=\"280\" x2=\"530\" y2=\"280\" stroke=\"#222\" stroke-width=\"2\" /><polyline points=\"398.205,80 225,180 367.815,280\" fill=\"none\" stroke=\"#222\" stroke-width=\"2.5\" /><text x=\"545\" y=\"87\" >l</text><text x=\"545\" y=\"287\" >m</text><text x=\"310\" y=\"104\" >30°</text><text x=\"288\" y=\"274\" >35°</text><text x=\"270\" y=\"186\" >x</text><path d=\"M363.205,80 A35,35 0 0 0 367.894,97.5\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\"/><path d=\"M335.815,280 A32,32 0 0 1 341.602,261.646\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\"/><path d=\"M261.373,159 A42,42 0 0 1 259.404,204.09\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.4\"/></g></svg>"
+    },
+    {
+      "problemCode": "J10506-A55-001",
+      "kind": "rewrite",
+      "content": "선분 $AB$의 길이가 주어져 있다. 다음 중 어느 조건을 추가하여도 삼각형 $ABC$가 항상 하나로 정해진다고 보장할 수 없는 것은? (각 조건을 만족하는 삼각형은 존재하며, 서로 합동인 삼각형은 같은 것으로 본다.)\n① $\\angle A$의 크기와 $AC$의 길이\n② $\\angle A$의 크기와 $BC$의 길이\n③ $\\angle A$와 $\\angle B$의 크기\n④ $\\angle B$와 $\\angle C$의 크기\n⑤ $BC$와 $CA$의 길이",
+      "answer": "②",
+      "solution": "①은 두 변과 끼인각(SAS), ③은 한 변과 양 끝각(ASA), ④는 나머지 각을 구한 뒤 ASA, ⑤는 세 변(SSS)으로 하나로 정해진다. ②는 끼인각이 아닌 각을 주는 경우여서 두 개의 합동이 아닌 삼각형이 가능하다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "다른 문제의 각 그림을 제거했다. SSA가 모든 수치에서 두 해인 것처럼 읽히지 않도록 항상 보장할 수 없는 조건으로 한정했다.",
+      "validation": {
+        "math": "SSA 반례: AB=4,∠A=30°,BC=3이면 사인법칙으로 sinC=2/3. C≈41.81° 또는138.19°이고 각각 B≈108.19°,11.81°>0이므로 둘 다 가능하다. 다른 보기는 존재 전제 아래 SAS/ASA/SSS.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10506-A84-001",
+      "kind": "correction",
+      "content": "다음 보기의 작업을 할 때 사용하는 도구를 고르시오.\nㄱ. 두 점을 이어 선분을 그린다.\nㄴ. 원을 그린다.\nㄷ. 주어진 선분을 연장한다.\nㄹ. 주어진 선분의 길이를 재어 옮긴다.\n(1) 눈금 없는 자\n(2) 컴퍼스",
+      "answer": "(1) ㄱ, ㄷ (2) ㄴ, ㄹ",
+      "solution": "(1) 눈금 없는 자는 두 점을 이어 선분을 그리거나 선분을 연장하는 데 사용한다.\n(2) 컴퍼스는 원을 그리거나 주어진 선분의 길이를 재어 옮기는 데 사용한다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제 보기 네 문장을 전사하여 하단 파일명·날짜·쪽수 이미지를 없앴다.",
+      "validation": {
+        "math": "눈금 없는 자는 두 점을 지나는 직선과 그 연장선을 정하므로ㄱㄷ. 컴퍼스는 일정 반지름의 원 및 벌린 두 끝 사이의 길이를 옮기는 데 쓰이므로ㄴㄹ.",
+        "visual": "원본의 ㄱ두점연결,ㄴ원,ㄷ연장,ㄹ길이이동 네 항목을 확대 대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10506-A85-001",
+      "kind": "correction",
+      "content": "다음 보기에서 삼각형의 세 변의 길이가 될 수 없는 것을 모두 고르시오.\nㄱ. $2\\,\\mathrm{cm},\\ 3\\,\\mathrm{cm},\\ 5\\,\\mathrm{cm}$\nㄴ. $3\\,\\mathrm{cm},\\ 4\\,\\mathrm{cm},\\ 6\\,\\mathrm{cm}$\nㄷ. $3\\,\\mathrm{cm},\\ 6\\,\\mathrm{cm},\\ 8\\,\\mathrm{cm}$\nㄹ. $4\\,\\mathrm{cm},\\ 5\\,\\mathrm{cm},\\ 10\\,\\mathrm{cm}$",
+      "answer": "ㄱ, ㄹ",
+      "solution": "삼각형에서 가장 긴 변의 길이는 나머지 두 변의 길이의 합보다 작다.\nㄱ. $2+3=5$이므로 삼각형의 세 변의 길이가 될 수 없다.\nㄹ. $4+5<10$이므로 삼각형의 세 변의 길이가 될 수 없다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제 보기의 네 길이 묶음을 전사하고 쪽 전체 이미지를 제거했다.",
+      "validation": {
+        "math": "가장 긴 변과 나머지 합 비교:ㄱ5=2+3 불가,ㄴ6<3+4 가능,ㄷ8<3+6 가능,ㄹ10>4+5 불가. 따라서ㄱㄹ.",
+        "visual": "실제 그림 수치 (2,3,5),(3,4,6),(3,6,8),(4,5,10)을 전사했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10506-A86-001",
+      "kind": "rewrite",
+      "content": "다음 보기의 조건에 $\\angle A$의 크기가 추가로 주어진다. 항상 삼각형 $ABC$가 하나로 정해지는 것을 모두 고르시오. (조건을 만족하는 삼각형은 존재하며 합동인 삼각형은 같은 것으로 본다.)\nㄱ. $AB$의 길이와 $BC$의 길이\nㄴ. $AB$의 길이와 $AC$의 길이\nㄷ. $\\angle B$의 크기와 $AB$의 길이\nㄹ. $\\angle B$의 크기와 $BC$의 길이",
+      "answer": "ㄴ, ㄷ, ㄹ",
+      "solution": "ㄱ. $\\angle A$는 $\\overline{AB}$, $\\overline{BC}$의 끼인각이 아니므로 삼각형이 하나로 정해지지 않는다.\nㄴ. $\\overline{AB}$, $\\overline{AC}$와 그 끼인각 $\\angle A$를 알게 되므로 삼각형이 하나로 정해진다.\nㄷ. 한 변 $\\overline{AB}$와 그 양 끝각 $\\angle A$, $\\angle B$를 알게 되므로 삼각형이 하나로 정해진다.\nㄹ. 두 각 $\\angle A$, $\\angle B$를 알면 $\\angle C$도 정해지므로 한 변 $\\overline{BC}$와 그 양 끝각을 아는 것과 같아 삼각형이 하나로 정해진다.\n따라서 답은 ㄴ, ㄷ, ㄹ이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제 보기를 전사하고 삼각형 존재·합동의 처리와 항상의 뜻을 명시했다. 쪽 전체 그림을 제거했다.",
+      "validation": {
+        "math": "ㄴ은 SAS,ㄷ은 ASA,ㄹ은 C=180−A−B를 구해 BC의 양끝각 B,C를 아는 ASA이다.ㄱ의 AB4,A30°,BC3이면 sinC=2/3인 예각·둔각 두 삼각형이 모두 존재하므로 유일성을 보장하지 못한다.",
+        "visual": "로컬 보기에 기재된 AB·BC,AB·AC,∠B·AB,∠B·BC를 전사했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10507-A22-001",
+      "kind": "correction",
+      "content": "주어진 조건만으로 다음 기준 삼각형과 합동임을 알 수 있는 것을 아래 보기에서 고르시오.\n[그림]\n보기 그림의 위 줄은 왼쪽부터 1번, 2번, 3번이고 아래 줄은 왼쪽부터 4번, 5번이다.\n[그림]",
+      "answer": "⑤",
+      "solution": "기준 삼각형에서 길이가 9 cm인 변의 양 끝각은 40°와 75°이다. ⑤의 삼각형은 나머지 한 각이 $180°-65°-75°=40°$이고, 길이가 9 cm인 변의 양 끝각이 75°와 40°이다. 따라서 한 변과 양 끝각이 각각 같으므로 두 삼각형은 합동이다. ②의 한 변과 한 각만으로는 합동을 확정할 수 없으며, 나머지 보기의 조건은 기준 삼각형과 다르다.",
+      "figureUrls": [
+        "/figures/tb/0398b650ab183147/tb-0398b650ab183147-0-2-1.png",
+        "/figures/tb/0398b650ab183147/tb-0398b650ab183147-0-2-2.png"
+      ],
+      "questionType": "객관식",
+      "notes": "보기 그림의 3개·2개 위치를 번호로 고정하여 빈 번호 줄을 제거했다.",
+      "validation": {
+        "math": "기준은40°,75°,65°이고 길이9인 변의 양끝각은40°,75°이다.⑤는65°,75°에서 나머지40°이고9의 양끝각이75°,40°여서ASA합동.①9의 맞은편각75°로 다름;②각75와한변9만주어불충분;③은변7,8,9이며 cos(최대각)=(49+64−81)/112=2/7로 최대각약73.4°≠75°;④는각60°,75°,45°라다름.",
+        "visual": "기준9cm는40°와75°사이 변이다. 마지막 보기의9cm는75°와미표시40°사이 변임을 확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10507-A83-001",
+      "kind": "rewrite",
+      "content": "그림의 두 삼각형 $ABC,DEF$에서 $AB=DE$, $\\angle B=\\angle E$이다. 다음 보기 중 하나를 추가했을 때 두 삼각형이 항상 합동임을 보장하는 조건을 모두 고르시오.\n[그림]\nㄱ. $AC=DF$\nㄴ. $BC=EF$\nㄷ. $\\angle A=\\angle D$\nㄹ. $\\angle C=\\angle F$",
+      "answer": "ㄴ, ㄷ, ㄹ",
+      "solution": "$\\overline{AB}=\\overline{DE}$, $\\angle B=\\angle E$이므로 $\\overline{BC}=\\overline{EF}$를 더하면 SAS 합동이다.\n$\\angle A=\\angle D$를 더하면 한 변과 양 끝각이 같으므로 ASA 합동이다.\n$\\angle C=\\angle F$를 더하면 $\\angle A=\\angle D$도 되므로 합동이다.\n$\\overline{AC}=\\overline{DF}$는 끼인각이 아닌 두 변과 한 각이라 합동 조건이 아니다.\n따라서 답은 ㄴ, ㄷ, ㄹ이다.",
+      "figureUrls": [
+        "/figures/tb/c4ee4b1feb413a09/tb-c4ee4b1feb413a09-3-3-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "보기 페이지를 정확히 전사하고 무관한 바닥글을 제거했다. 유일성의 항상 조건을 명확히 했다.",
+      "validation": {
+        "math": "ㄴ은끼인각B/E와두변으로SAS,ㄷ은변AB/DE의양끝각으로ASA.ㄹ에서는A=180−B−C=D를얻어ASA.ㄱ은SSA이며예컨대B=30°,AB=4,AC=3이면sinC=2/3의예각·둔각두해가가능해합동이보장되지않는다.",
+        "visual": "첫 도형의 AB/DE 눈금과B/E각 표시, 두 번째 이미지의 AC=DF,BC=EF,∠A=∠D,∠C=∠F를 대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10605-A33-001",
+      "kind": "correction",
+      "content": "다음 부채꼴에서 $x,y$의 값을 각각 구하시오.\n(1)\n[그림]\n(2)\n[그림]",
+      "answer": "⑴ $x=7\\pi$ ⑵ $y=5$",
+      "solution": "$x$를 구하는 부채꼴은 반지름이 $7\\,\\mathrm{cm}$, 호의 길이가 $2\\pi\\,\\mathrm{cm}$이므로 $x=\\dfrac{1}{2}\\times7\\times2\\pi=7\\pi$이다.\n$y$를 구하는 부채꼴은 호의 길이가 $8\\pi\\,\\mathrm{cm}$, 넓이가 $20\\pi\\,\\mathrm{cm}^2$이므로 $20\\pi=\\dfrac{1}{2}\\times y\\times8\\pi$에서 $y=5$이다.\n따라서 $x=7\\pi$, $y=5$이다.",
+      "figureUrls": [
+        "/figures/tb/8ed8d09001636583/tb-8ed8d09001636583-0-3-2.png",
+        "/figures/tb/8ed8d09001636583/tb-8ed8d09001636583-0-3-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "소문항 번호와 답의 x,y순서에 맞게 실제 두 그림의 배열을 바꿨다.",
+      "validation": {
+        "math": "면적S=rl/2. x의그림은r7,l2π여서x=7π. y의그림은l8π,S20π여서y=2×20π/(8π)=5. 실제그림은원래 y,x순서였으므로x,y로재배치한다.",
+        "visual": "새(1)에반지름7·호2π·면적x,(2)에반지름y·호8π·면적20π를 배치했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10605-B26-001",
+      "kind": "correction",
+      "content": "다음 부채꼴의 넓이를 각각 구하시오.\n(1) 반지름 $4\\,\\mathrm{cm}$, 호의 길이 $\\pi\\,\\mathrm{cm}$\n(2) 반지름 $12\\,\\mathrm{cm}$, 호의 길이 $10\\pi\\,\\mathrm{cm}$",
+      "answer": "⑴ $2\\pi \\,\\mathrm{cm}\\,^{2}$\n⑵ $60\\pi \\,\\mathrm{cm}\\,^{2}$",
+      "solution": "부채꼴의 넓이는 $S=\\dfrac{1}{2}rl$이다.\n⑴의 조건에서 $r=4$, $l=\\pi$이므로 $S=\\dfrac{1}{2}\\times4\\times\\pi=2\\pi\\,(\\mathrm{cm}^2)$이다.\n⑵의 조건에서 $r=12$, $l=10\\pi$이므로 $S=\\dfrac{1}{2}\\times12\\times10\\pi=60\\pi\\,(\\mathrm{cm}^2)$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제 그림의반지름·호길이를 본문으로 전사했다. 잘린 cm단위를 의미에 맞게 완성하고 그림을 제거했다.",
+      "validation": {
+        "math": "S=rl/2에대입하면(1)4π/2=2π,(2)12×10π/2=60π. 중심각은π/4,5π/6으로 각각0과2π사이에 있어 실제 부채꼴로 가능하다.",
+        "visual": "원그림에서4cm·πcm,12cm·10πcm를 확인했으며 잘린 부분은 첫 호 단위의 끝이다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10703-A25-001",
+      "kind": "rewrite",
+      "content": "아래 회전체는 위쪽이 원뿔대 모양으로 파이고 아래쪽까지 원기둥 모양의 구멍이 이어져 있다. 직선 $l$을 축으로 한 바퀴 회전시켜 이 회전체를 만들 수 있는 도형은?\n[그림]\n보기 그림의 위 줄은 왼쪽부터 1번, 2번, 3번이고 아래 줄은 왼쪽부터 4번, 5번이다.\n[그림]",
+      "answer": "③",
+      "solution": "그림의 회전체는 바깥 옆면이 원기둥이고, 위쪽이 원뿔대 모양으로 파이고 아래쪽이 원기둥 모양으로 뚫린 입체이다.\n따라서 회전축에서 떨어진 도형으로, 바깥쪽 변이 회전축과 평행하고 안쪽 위가 비스듬히 잘린 ③을 회전시킨 것이다.\n따라서 답은 ③이다.",
+      "figureUrls": [
+        "/figures/tb/2fd4f43265218684/tb-2fd4f43265218684-0-3-1.png",
+        "/figures/tb/2fd4f43265218684/tb-2fd4f43265218684-0-3-2.png"
+      ],
+      "questionType": "객관식",
+      "notes": "번호 없는 3+2보기의 위치를 명시했다. 점선으로 보이는 내부 구조를 문장으로 명확히 했다.",
+      "validation": {
+        "math": "③은축에서더먼왼쪽변이수직이므로바깥반지름일정. 안쪽변은아래수직구간과위비스듬한구간으로되어내부가아래원기둥구멍·위원뿔대구멍이된다.①은바깥반지름변동,②는안쪽반지름일정·바깥변동,④⑤는축에닿아아래관통구멍없음.",
+        "visual": "회전체의바깥수직면·아래원통구멍·위경사구멍과③의단면윤곽을 실제로대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10703-A26-001",
+      "kind": "rewrite",
+      "content": "다음 회전체는 바깥이 원뿔대 모양이고, 위쪽에서 아래쪽 축 위의 한 점까지 원뿔 모양의 구멍이 나 있다. 직선 $l$을 축으로 한 바퀴 회전시켜 이 회전체를 만들 수 있는 도형은?\n[그림]\n아래 보기 그림에서 세 도형이 있는 줄은 왼쪽부터 1번, 2번, 3번이고, 두 도형이 있는 줄은 왼쪽부터 4번, 5번이다.\n[그림]\n[그림]",
+      "answer": "②",
+      "solution": "그림의 회전체는 위쪽이 열린 원뿔 모양의 구멍이 있고 그 꼭짓점이 아래쪽 회전축 위에 있는 원뿔대 모양이다.\n이는 윗변이 회전축에서 떨어져 있고, 오른쪽 변이 아래쪽 한 점에서만 회전축에 닿으며 위로 갈수록 축에서 멀어지는 사다리꼴을 회전시킨 것이다.\n따라서 답은 ②이다.",
+      "figureUrls": [
+        "/figures/tb/957495739655e8c2/tb-957495739655e8c2-0-5-1.png",
+        "/figures/tb/957495739655e8c2/tb-957495739655e8c2-0-5-2.png",
+        "/figures/tb/957495739655e8c2/tb-957495739655e8c2-0-5-3.png"
+      ],
+      "questionType": "객관식",
+      "notes": "실제 자산은 첫 파일이회전체, 둘째가①~③, 셋째가④⑤이다. triage의 파일순서 서술과 달라 실제 열람 결과를 우선했다. 각보기 위치를명시했다.",
+      "validation": {
+        "math": "②의사다리꼴은바깥경계가위로갈수록축에가까워져원뿔대외면을만든다. 안쪽경계는아래에서축에닿고위에서떨어지므로원뿔구멍.①⑤는아래에도빈원통공간이있고,③은위끝이축에닿아구멍방향이반대,④는원통이므로②만가능.",
+        "visual": "세 파일을 실제로 열어 회전체→세도형→두도형 순서임을 확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10704-B09-001",
+      "kind": "correction",
+      "content": "다음 그림 (1), (2)의 기둥의 겉넓이를 각각 구하시오.\n[그림]",
+      "answer": "⑴ $216\\,\\mathrm{cm}^{2}$ ⑵ $104\\pi \\,\\mathrm{cm}^{2}$",
+      "solution": "(1) 직각삼각형 밑면의 넓이는 $\\frac12\\times6\\times8=24\\,\\mathrm{cm}^2$이고, 옆넓이는 $(6+8+10)\\times7=168\\,\\mathrm{cm}^2$이다. 따라서 겉넓이는 $2\\times24+168=216\\,\\mathrm{cm}^2$이다.\n(2) 원기둥의 반지름은 4 cm, 높이는 9 cm이므로 겉넓이는 $2\\pi\\times4^2+2\\pi\\times4\\times9=104\\pi\\,\\mathrm{cm}^2$이다.",
+      "figureUrls": [
+        "/figures/tb/d1dad10e29471bf7/tb-d1dad10e29471bf7-0-1-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "첫 번째 이미지에 (1)직각삼각기둥과(2)원기둥이 모두 들어 있음을 확인했다. 무관한 사다리꼴기둥 두 번째 이미지만 제거했다.",
+      "validation": {
+        "math": "첫파일에두도형모두있다. (1)밑면6·8·10직각삼각형,기둥높이7이므로2×(6×8/2)+(6+8+10)×7=48+168=216. (2)r4,h9이므로2πr²+2πrh=32π+72π=104π.",
+        "visual": "첫그림 실제 (1)6,8,10,7과직각표시,(2)4,9를읽었다. 무관한2,3,5,6,h 도형을제외했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10705-A38-001",
+      "kind": "rewrite",
+      "content": "그림과 같은 정사각뿔에서 다음을 구하시오.\n[그림]\n(1) 밑넓이\n(2) 옆넓이\n(3) 겉넓이",
+      "answer": "(1) $49\\,\\mathrm{cm}^{2}$ (2) $140\\,\\mathrm{cm}^{2}$ (3) $189\\,\\mathrm{cm}^{2}$",
+      "solution": "그림에서 사각뿔의 밑면은 한 변이 $7\\,\\mathrm{cm}$인 정사각형이고, 옆면인 삼각형의 높이는 $10\\,\\mathrm{cm}$이다.\n(1) 밑넓이는 $7\\times7=49\\,(\\mathrm{cm}^{2})$이다.\n(2) 옆넓이는 $\\dfrac{1}{2}\\times7\\times10\\times4=140\\,(\\mathrm{cm}^{2})$이다.\n(3) 겉넓이는 $49+140=189\\,(\\mathrm{cm}^{2})$이다.",
+      "figureUrls": [
+        "/figures/tb/b1f14cb8045407fc/tb-b1f14cb8045407fc-0-33-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "빠진 발문에 정사각뿔임을 명시하여 같은 옆면4개를 보장했다.",
+      "validation": {
+        "math": "밑면한변7인정사각형의넓이49. 옆면4개는밑변7,높이10인삼각형이므로합4×7×10/2=140. 겉넓이49+140=189. 옆면높이10>밑변절반3.5로 정사각뿔존재가능.",
+        "visual": "실제그림7cm 두 밑변과 옆면높이10cm 및 수선 표시를대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10705-A39-001",
+      "kind": "rewrite",
+      "content": "그림과 같은 원뿔에서 다음을 구하시오.\n[그림]\n(1) 밑넓이\n(2) 옆넓이\n(3) 겉넓이",
+      "answer": "(1) $36\\pi \\,\\mathrm{cm}^{2}$ (2) $60\\pi \\,\\mathrm{cm}^{2}$ (3) $96\\pi \\,\\mathrm{cm}^{2}$",
+      "solution": "그림에서 원뿔의 밑면의 지름이 $12\\,\\mathrm{cm}$이므로 반지름은 $6\\,\\mathrm{cm}$이고, 모선의 길이는 $10\\,\\mathrm{cm}$이다.\n(1) 밑넓이는 $\\pi\\times6^{2}=36\\pi\\,(\\mathrm{cm}^{2})$이다.\n(2) 옆넓이는 $\\pi\\times6\\times10=60\\pi\\,(\\mathrm{cm}^{2})$이다.\n(3) 겉넓이는 $36\\pi+60\\pi=96\\pi\\,(\\mathrm{cm}^{2})$이다.",
+      "figureUrls": [
+        "/figures/tb/b1f14cb8045407fc/tb-b1f14cb8045407fc-0-35-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "빠진 구하기 발문을 새 작성했다.",
+      "validation": {
+        "math": "밑면지름12→r6,모선10. 밑넓이36π,옆넓이πrl=60π,합96π. 높이√(100−36)=8로실제원뿔가능.",
+        "visual": "실제 그림은 밑면지름12cm·모선10cm이며 높이가10인 것이 아님을 확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10705-A98-001",
+      "kind": "correction",
+      "content": "다음 조건의 삼각뿔의 부피를 각각 구하시오.\n(1) 밑면인 삼각형의 한 변은 $6\\,\\mathrm{cm}$이고 그 변에 대한 높이는 $4\\,\\mathrm{cm}$이다. 삼각뿔의 높이는 $5\\,\\mathrm{cm}$이다.\n(2) 밑면인 삼각형의 한 변은 $12\\,\\mathrm{cm}$이고 그 변에 대한 높이는 $10\\,\\mathrm{cm}$이다. 삼각뿔의 높이는 $16\\,\\mathrm{cm}$이다.",
+      "answer": "⑴ $20\\,\\mathrm{cm}\\,^{3}$\n⑵ $320\\,\\mathrm{cm}\\,^{3}$",
+      "solution": "(1) 주어진 조건에서 밑면은 밑변이 $6\\,\\mathrm{cm}$, 높이가 $4\\,\\mathrm{cm}$인 삼각형이므로 밑넓이는 $\\dfrac{1}{2}\\times6\\times4=12\\,(\\mathrm{cm}^2)$이다.\n뿔의 높이가 $5\\,\\mathrm{cm}$이므로 부피는 $\\dfrac{1}{3}\\times12\\times5=20\\,(\\mathrm{cm}^3)$이다.\n(2) 주어진 조건에서 밑넓이는 $\\dfrac{1}{2}\\times12\\times10=60\\,(\\mathrm{cm}^2)$이고 높이는 $16\\,\\mathrm{cm}$이므로 부피는 $\\dfrac{1}{3}\\times60\\times16=320\\,(\\mathrm{cm}^3)$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제 그림의 길이와 직각관계를 본문에 전사했다. (2)에서 잘린 10cm 단위를 완성하고 그림을 제거했다.",
+      "validation": {
+        "math": "V=밑넓이×높이/3. (1)(6×4/2)×5/3=20. (2)(12×10/2)×16/3=320. 밑면삼각형높이와공간에서의뿔높이를서로구분하였다.",
+        "visual": "그림의직각표시로밑면직각삼각형6·4,12·10과뿔높이5,16을확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10803-A34-001",
+      "kind": "rewrite",
+      "content": "다음은 학생 25명의 통학 시간을 조사한 도수분포표이다. 통학 시간이 30분 이상인 학생은 전체의 몇 %인가?\n$\\begin{array}{c|r}\\text{통학 시간(분)}&\\text{학생 수(명)}\\\\\\hline 0\\text{ 이상 }10\\text{ 미만}&2\\\\10\\text{ 이상 }20\\text{ 미만}&3\\\\20\\text{ 이상 }30\\text{ 미만}&10\\\\30\\text{ 이상 }40\\text{ 미만}&6\\\\40\\text{ 이상 }50\\text{ 미만}&4\\\\\\hline\\text{합계}&25\\end{array}$",
+      "answer": "$40\\,\\%$",
+      "solution": "통학 시간이 $30$분 이상인 학생은 $6+4=10$(명)이므로 전체의 $\\frac{10}{25}\\times 100=40\\,(\\%)$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "겹친 세 번째 계급을20이상30미만으로 새 설정하여 분포표를 완성했다. 도수는실제그림수치유지.",
+      "validation": {
+        "math": "도수합2+3+10+6+4=25. 30분이상은6+4=10명이므로10/25×100=40%. 구간은0,10,20,30,40,50연속의중복없는반열린구간이다.",
+        "visual": "실제표의도수2,3,10,6,4와합25를대조했다. 세번째구간의수정은notes에별도명시했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10805-A14-001",
+      "kind": "rewrite",
+      "content": "다음은 한 반 학생들의 한 뼘 길이를 조사한 도수분포다각형이다. 계급의 크기는 $2\\,\\mathrm{cm}$이며 첫 계급은 $15\\,\\mathrm{cm}$ 이상 $17\\,\\mathrm{cm}$ 미만이다.\n[그림]\n한 뼘의 길이가 $10$번째로 짧은 학생이 속하는 계급의 도수는?\n① $2$명\n② $6$명\n③ $8$명\n④ $10$명\n⑤ $14$명",
+      "answer": "③",
+      "solution": "한 뼘의 길이가 $17~\\mathrm{cm}$ 미만인 학생은 $2$명이고 한 뼘의 길이가 $19~\\mathrm{cm}$ 미만인 학생은 $2+8=10$(명)이므로 한 뼘의 길이가 $10$번째로 짧은 학생이 속하는 계급은 $17~\\mathrm{cm}$ 이상 $19~\\mathrm{cm}$ 미만이고 이 계급의 도수는 $8$명이다.",
+      "figureUrls": [
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-0-9-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "끊긴머리문장을한뼘길이분포에대한새문장으로완성하고계급경계를명시했다.",
+      "validation": {
+        "math": "첫두계급의도수는2,8로누적2,10이다. 따라서10번째학생은17이상19미만계급에속하고그계급도수8명이다.",
+        "visual": "실제도수다각형의계급값16,18,20,22,24와도수2,8,14,10,6을모두확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10805-A15-001",
+      "kind": "rewrite",
+      "content": "다음은 한 반 학생들의 한 뼘 길이를 조사한 도수분포다각형이다. 계급의 크기는 $2\\,\\mathrm{cm}$이며 첫 계급은 $15\\,\\mathrm{cm}$ 이상 $17\\,\\mathrm{cm}$ 미만이다.\n[그림]\n한 뼘의 길이가 $21\\,\\mathrm{cm}$ 이상인 학생은 전체의 몇 % 인가?\n① $15$ %\n② $20$ %\n③ $40$ %\n④ $60$ %\n⑤ $75$ %",
+      "answer": "③",
+      "solution": "유나네 반 전체 학생 수는\n$2+8+14+10+6=40$(명)\n이고 한 뼘의 길이가 $21~\\mathrm{cm}$ 이상인 학생은 $10+6=16$(명)이다.\n따라서 $\\frac{16}{40}\\times 100=40$이므로 전체의 $40$ %이다.",
+      "figureUrls": [
+        "/figures/tb/fed37c01de4ef158/tb-fed37c01de4ef158-0-10-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "끊긴머리문장을한뼘길이분포에대한새문장으로완성하고계급경계를명시했다.",
+      "validation": {
+        "math": "전체도수2+8+14+10+6=40. 21이상인두계급은10+6=16으로비율16/40=0.4=40%.",
+        "visual": "실제도수다각형의계급값16,18,20,22,24와도수2,8,14,10,6을모두확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J10806-A33-001",
+      "kind": "rewrite",
+      "content": "다음 그래프는 A, B 두 학교 학생들이 방학 동안 읽은 책의 권수를 조사한 상대도수의 분포다각형이다. 계급의 크기는 2권이며, 첫 계급은 2권 이상 4권 미만이다. 4권 이상 6권 미만인 학생은 A 학교가 125명, B 학교가 60명이다.\n[그림]\n(1) 책을 8권 이상 읽은 학생 수의 두 학교 간 차를 구하시오.\n(2) 각 계급에 속한 학생이 그 계급의 계급값만큼 책을 읽었다고 보고 평균을 추정할 때, 어느 학교의 평균이 더 큰가?",
+      "answer": "(1) 70명 (2) B 학교",
+      "solution": "(1) 4~6권 계급의 상대도수는 A가 0.25, B가 0.15이므로 전체 학생은 각각 $125/0.25=500$명, $60/0.15=400$명이다. 8권 이상은 A가 $(0.25+0.05)\\times500=150$명, B가 $(0.30+0.25)\\times400=220$명이므로 차는 70명이다. (2) 계급값3,5,7,9,11을 사용한 추정 평균은 A가 $6.6$권, B가 $8.1$권이므로 B 학교가 더 크다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "작은원그림을확대하여모든점값을읽고결정적SVG로새로그렸다. (2)는모호한많이읽는다를계급값평균추정으로명확히한새질문이다.",
+      "validation": {
+        "math": "복원한상대도수 A=[.15,.25,.30,.25,.05], B=[.05,.15,.25,.30,.25]는각합1. N_A=500,N_B=400. 8권이상150,220 차70. 추정평균A=.45+1.25+2.1+2.25+.55=6.6,B=.15+.75+1.75+2.7+2.75=8.1. 개별원자료평균을단정하지않는다.",
+        "visual": "확대한원그림에서검은A(.15,.25,.30,.25,.05),회색B(.05,.15,.25,.30,.25)를대조했다. 새SVG는A실선·B점선과범례를사용했다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"700\" height=\"440\" viewBox=\"0 0 700 440\" role=\"img\" aria-labelledby=\"relative-frequency-title\"><title id=\"relative-frequency-title\">A 학교 실선, B 학교 점선의 상대도수분포다각형</title><defs><marker id=\"relative-frequency-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"700\" height=\"440\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><text x=\"20\" y=\"40\" >상대도수</text><text x=\"571\" y=\"411\" font-size=\"17\">책의 권수(권)</text><line x1=\"80\" y1=\"355\" x2=\"640\" y2=\"355\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"68\" y=\"360\" text-anchor=\"end\" font-size=\"16\">0</text><line x1=\"80\" y1=\"315\" x2=\"640\" y2=\"315\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"68\" y=\"320\" text-anchor=\"end\" font-size=\"16\">0.05</text><line x1=\"80\" y1=\"275\" x2=\"640\" y2=\"275\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"68\" y=\"280\" text-anchor=\"end\" font-size=\"16\">0.1</text><line x1=\"80\" y1=\"235\" x2=\"640\" y2=\"235\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"68\" y=\"240\" text-anchor=\"end\" font-size=\"16\">0.15</text><line x1=\"80\" y1=\"195\" x2=\"640\" y2=\"195\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"68\" y=\"200\" text-anchor=\"end\" font-size=\"16\">0.2</text><line x1=\"80\" y1=\"155\" x2=\"640\" y2=\"155\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"68\" y=\"160\" text-anchor=\"end\" font-size=\"16\">0.25</text><line x1=\"80\" y1=\"115\" x2=\"640\" y2=\"115\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"68\" y=\"120\" text-anchor=\"end\" font-size=\"16\">0.3</text><line x1=\"80\" y1=\"75\" x2=\"640\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"68\" y=\"80\" text-anchor=\"end\" font-size=\"16\">0.35</text><line x1=\"120\" y1=\"355\" x2=\"120\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"160\" y1=\"355\" x2=\"160\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"200\" y1=\"355\" x2=\"200\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"240\" y1=\"355\" x2=\"240\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"280\" y1=\"355\" x2=\"280\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"320\" y1=\"355\" x2=\"320\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"360\" y1=\"355\" x2=\"360\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"400\" y1=\"355\" x2=\"400\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"440\" y1=\"355\" x2=\"440\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"480\" y1=\"355\" x2=\"480\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"520\" y1=\"355\" x2=\"520\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"560\" y1=\"355\" x2=\"560\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><line x1=\"600\" y1=\"355\" x2=\"600\" y2=\"75\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"160\" y=\"382\" text-anchor=\"middle\" font-size=\"17\">2</text><text x=\"240\" y=\"382\" text-anchor=\"middle\" font-size=\"17\">4</text><text x=\"320\" y=\"382\" text-anchor=\"middle\" font-size=\"17\">6</text><text x=\"400\" y=\"382\" text-anchor=\"middle\" font-size=\"17\">8</text><text x=\"480\" y=\"382\" text-anchor=\"middle\" font-size=\"17\">10</text><text x=\"560\" y=\"382\" text-anchor=\"middle\" font-size=\"17\">12</text><line x1=\"80\" y1=\"355\" x2=\"640\" y2=\"355\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"80\" y1=\"355\" x2=\"80\" y2=\"75\" stroke=\"#222\" stroke-width=\"2\" /><polyline points=\"120,355 200,235 280,155 360,115 440,155 520,315 600,355\" fill=\"none\" stroke=\"#222\" stroke-width=\"2.5\" /><circle cx=\"120\" cy=\"355\" r=\"4\" fill=\"#222\"/><circle cx=\"200\" cy=\"235\" r=\"4\" fill=\"#222\"/><circle cx=\"280\" cy=\"155\" r=\"4\" fill=\"#222\"/><circle cx=\"360\" cy=\"115\" r=\"4\" fill=\"#222\"/><circle cx=\"440\" cy=\"155\" r=\"4\" fill=\"#222\"/><circle cx=\"520\" cy=\"315\" r=\"4\" fill=\"#222\"/><circle cx=\"600\" cy=\"355\" r=\"4\" fill=\"#222\"/><polyline points=\"120,355 200,315 280,235 360,155 440,115 520,155 600,355\" fill=\"none\" stroke=\"#222\" stroke-width=\"2.5\" stroke-dasharray=\"8 5\"/><rect x=\"116\" y=\"351\" width=\"8\" height=\"8\" fill=\"white\" stroke=\"#222\" stroke-width=\"2\"/><rect x=\"196\" y=\"311\" width=\"8\" height=\"8\" fill=\"white\" stroke=\"#222\" stroke-width=\"2\"/><rect x=\"276\" y=\"231\" width=\"8\" height=\"8\" fill=\"white\" stroke=\"#222\" stroke-width=\"2\"/><rect x=\"356\" y=\"151\" width=\"8\" height=\"8\" fill=\"white\" stroke=\"#222\" stroke-width=\"2\"/><rect x=\"436\" y=\"111\" width=\"8\" height=\"8\" fill=\"white\" stroke=\"#222\" stroke-width=\"2\"/><rect x=\"516\" y=\"151\" width=\"8\" height=\"8\" fill=\"white\" stroke=\"#222\" stroke-width=\"2\"/><rect x=\"596\" y=\"351\" width=\"8\" height=\"8\" fill=\"white\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"305\" y1=\"26\" x2=\"350\" y2=\"26\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"360\" y=\"32\" font-size=\"18\">A 학교</text><line x1=\"470\" y1=\"26\" x2=\"515\" y2=\"26\" stroke=\"#222\" stroke-width=\"2\" stroke-dasharray=\"8 5\"/><text x=\"525\" y=\"32\" font-size=\"18\">B 학교</text></g></svg>"
+    },
+    {
+      "problemCode": "J20101-A97-001",
+      "kind": "rewrite",
+      "content": "다음 세 조건을 만족시키는 자연수 $n$의 개수를 구하시오.\n㈎ $n$과 $24$는 서로소이다.\n㈏ $\\frac{24}{n}$는 유한소수로 나타낼 수 있다.\n㈐ $2\\leq n\\leq 1000$이다.",
+      "answer": "$4$",
+      "solution": "24와 서로소이므로 $24/n$은 기약분수이다. 유한소수가 되려면 분모의 소인수는 2 또는 5뿐이어야 한다. 24와 서로소이므로 2는 제외되고 $n=5^k$이다. $2\\le n\\le1000$에서 $n=5,25,125,625$의 4개이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "정수24도유한소수로표현할수있어n=1이원조건에포함된다. 하한을2로바꾼변형으로답4를유일하게보장했다.",
+      "validation": {
+        "math": "gcd(n,24)=1에서2·3인수금지. 유한소수기약분모는2^a5^b이므로n=5^b. n≥2로b≥1,5⁴=625≤1000<3125=5⁵이므로b=1,2,3,4.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20101-B28-001",
+      "kind": "rewrite",
+      "content": "다음 보기 중 무한소수는 모두 몇 개인가? (말줄임표가 없는 소수는 적힌 자리에서 끝난다.)\nㄱ. $0.123456789$\nㄴ. $0.999$\nㄷ. $1.222\\cdots$ (소수점 아래의 2가 끝없이 반복됨)\nㄹ. $\\pi$\nㅁ. $123.123123$\nㅂ. $-0.815$\n① 1개\n② 2개\n③ 3개\n④ 4개\n⑤ 5개",
+      "answer": "②",
+      "solution": "보기에서 $0.123456789$, $0.999$, $123.123123$, $-0.815$는 소수점 아래의 0이 아닌 숫자가 끝이 있는 유한소수이다.\n$1.222\\cdots$는 소수점 아래 2가 끝없이 계속되므로 무한소수이고, $\\pi$도 무한소수이다.\n따라서 무한소수는 ㄷ, ㄹ의 2개이므로 답은 ②이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "떨어진π를ㄹ에결합하여실제보기6개를전사했다. 생략점유무의뜻을명시했다.",
+      "validation": {
+        "math": "ㄱㄴㅁㅂ는표시된자리에서끝나는유한소수이다. ㄷ은2가무한반복되는순환소수,ㄹπ는무한소수이므로2개. 0.999는0.999…와구별했다.",
+        "visual": "실제보기에서ㄱ0.123456789,ㄴ0.999,ㄷ1.222…,ㄹπ,ㅁ123.123123,ㅂ−0.815를확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20103-A91-001",
+      "kind": "rewrite",
+      "content": "다음 보기 중 유리수인 것을 모두 고르시오.\n㉠ $0.9$\n㉡ $\\pi$\n㉢ $2.444\\cdots$ (4가 끝없이 반복됨)\n㉣ $2.565656\\cdots$ (56이 끝없이 반복됨)\n㉤ $-6.34$\n㉥ $0.101001000100001\\cdots$ (이웃한 1 사이에 놓인 0의 개수가 1개, 2개, 3개, …로 계속 늘어남)",
+      "answer": "㉠, ㉢, ㉣, ㉤",
+      "solution": "유한소수와 순환소수는 유리수이다. $0.9=9/10$, $2.444\\cdots=22/9$, $2.565656\\cdots=254/99$, $-6.34=-317/50$이므로 ㉠, ㉢, ㉣, ㉤이 유리수이다. $\\pi$와 ㉥의 순환하지 않는 무한소수는 무리수이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "단원 머리글을 제거했다. 원래㉥3.141592…는 뒤자리 규칙이 없어 유리수 여부 미정이므로 0의 개수가 늘어나는 비순환 소수를 새 보기로 작성했다.",
+      "validation": {
+        "math": "㉠9/10,㉢2+4/9=22/9,㉣2+56/99=254/99,㉤−317/50이다. ㉥에는 1이 무한히 나오면서 0의 연속 길이가 끝없이 커진다. 유한한 길이의 순환마디에 1이 포함되면 0의 연속 길이는 유계여야 하므로 모순이며, 전부 0인 순환마디도 무한한 1의 존재와 모순이다. 따라서㉥은 비순환 무한소수이다. π의 무리수성도 학습 사실에 따라 적용한다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20108-A94-001",
+      "kind": "rewrite",
+      "content": "다음을 계산하시오.\n⑴ $a(2a-3)+4a(a+1)$\n⑵ $2x(5x+y)-3x(4x-2y)$\n⑶ $3a(a-b)+(6a+5b)\\times (-2a)$\n⑷ $-4x(x-3y)+3x(5x+2y)$",
+      "answer": "⑴ $6a^{2}+a$ ⑵ $-2x^{2}+8xy$ ⑶ $-9a^{2}-13ab$ ⑷ $11x^{2}+18xy$",
+      "solution": "⑴ $a(2a-3)+4a(a+1)=2a^{2}-3a+4a^{2}+4a$\n$=2a^{2}+4a^{2}-3a+4a$\n$=6a^{2}+a$\n⑵ $2x(5x+y)-3x(4x-2y)$\n$=10x^{2}+2xy-12x^{2}+6xy$\n$=10x^{2}-12x^{2}+2xy+6xy$\n$=-2x^{2}+8xy$\n⑶ $3a(a-b)+(6a+5b)\\times (-2a)$\n$=3a^{2}-3ab-12a^{2}-10ab$\n$=3a^{2}-12a^{2}-3ab-10ab$\n$=-9a^{2}-13ab$\n⑷ $-4x(x-3y)+3x(5x+2y)$\n$=-4x^{2}+12xy+15x^{2}+6xy$\n$=-4x^{2}+15x^{2}+12xy+6xy$\n$=11x^{2}+18xy$",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "해설에있는식을새소문항⑷로채택했다. 원문복원주장없이무관한설명머리글을제거했다.",
+      "validation": {
+        "math": "각항분배전개: (2a²−3a)+(4a²+4a)=6a²+a; (10x²+2xy)−(12x²−6xy)=−2x²+8xy; (3a²−3ab)−12a²−10ab=−9a²−13ab; −4x²+12xy+15x²+6xy=11x²+18xy.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20108-A95-001",
+      "kind": "rewrite",
+      "content": "다음을 계산하시오.\n⑴ $(3a^{2}+5a)\\div a$\n⑵ $(8x^{3}-4x^{2})\\div (-2x^{2})$\n⑶ $(18a^{2}b-12ab^{2})\\div 6ab$\n⑷ $(-27x^4y^2+15x^2y^3)\\div3xy^2$\n단, 나누는 단항식의 값은 0이 아니다.",
+      "answer": "⑴ $3a+5$ ⑵ $-4x+2$ ⑶ $3a-2b$ ⑷ $-9x^{3}+5xy$",
+      "solution": "나누는 단항식이 0이 아니므로 각 항을 나눈 뒤 간단히 한다.\n⑴ $3a^2/a+5a/a=3a+5$\n⑵ $8x^3/(-2x^2)-4x^2/(-2x^2)=-4x+2$\n⑶ $18a^2b/(6ab)-12ab^2/(6ab)=3a-2b$\n⑷ $-27x^4y^2/(3xy^2)+15x^2y^3/(3xy^2)=-9x^3+5xy$",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "해설식을새소문항⑷로채택하고나누는식이0이아님을명시했다.",
+      "validation": {
+        "math": "각항을나누면 (1)3a+5(a≠0),(2)−4x+2(x≠0),(3)3a−2b(ab≠0),(4)−9x³+5xy(xy≠0). 마지막두항의지수는4−1=3,2−2=0 및2−1=1,3−2=1.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20201-A97-001",
+      "kind": "correction",
+      "content": "다음 보기에서 부등식인 것을 모두 고르시오.\nㄱ. $3-5$\nㄴ. $4+5>10$\nㄷ. $2x+3\\ge6$\nㄹ. $4x+7=11$\nㅁ. $3x+2=5x$\nㅂ. $x-2<3(x+1)$",
+      "answer": "ㄴ, ㄷ, ㅂ",
+      "solution": "부등식은 부등호가 있는 식이다.\n따라서 부등식인 것은 ㄴ, ㄷ, ㅂ이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제보기의순서와식을본문에전사하여떨어진ㄴ을연결했다.",
+      "validation": {
+        "math": "부등호를사용하여두양을비교한식은ㄴ의>,ㄷ의≥,ㅂ의<이다. ㄴ이수치적으로거짓이라는사실은부등식이라는형식을바꾸지않는다. ㄱ은수식,ㄹㅁ는등식.",
+        "visual": "실제그림6개항목의부등호>,≥,<와등호를각각대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20201-A98-001",
+      "kind": "correction",
+      "content": "$-3a>-3b$일 때 다음 보기에서 항상 옳은 것을 모두 고르시오.\nㄱ. $a+2<b+2$\nㄴ. $-a-7>-b-7$\nㄷ. $4-5a<4-5b$\nㄹ. $\\frac a3-1>\\frac b3-1$",
+      "answer": "ㄱ, ㄴ",
+      "solution": "$-3a>-3b$의 양변을 $-3$으로 나누면 $a<b$\nㄷ. $a<b$의 양변에 $-5$를 곱하면 $-5a>-5b$ $-5a>-5b$의 양변에 $4$를 더하면 $4-5a>4-5b$\nㄹ. $a<b$의 양변을 $3$으로 나누면 $\\frac{a}{3}<\\frac{b}{3}$ $\\frac{a}{3}<\\frac{b}{3}$의 양변에서 $1$을 빼면 $\\frac{a}{3}-1<\\frac{b}{3}-1$ 따라서 옳은 것은 ㄱ, ㄴ이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제보기의ㄴ을다시결합하고네항목을전사했다.",
+      "validation": {
+        "math": "음수−3으로나누면a<b. 같은수더하기는부등호유지하여ㄱ참. −1곱하고−7더하면−a−7>−b−7로ㄴ참. −5곱하면부등호>여서ㄷ거짓,양수3나누기는<유지하여ㄹ거짓.",
+        "visual": "실제그림의ㄱ<,ㄴ>,ㄷ<,ㄹ>부등호를그대로전사했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20201-A99-001",
+      "kind": "correction",
+      "content": "다음 보기에서 부등식을 모두 고르시오.\nㄱ. $2-4x$\nㄴ. $5x+2=7$\nㄷ. $x-1\\le4$\nㄹ. $7<2$\nㅁ. $6x-(3x+1)$\nㅂ. $0<2$",
+      "answer": "ㄷ, ㄹ, ㅂ",
+      "solution": "부등식은 부등호가 있는 식이다.\n따라서 부등식인 것은 ㄷ, ㄹ, ㅂ이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제보기6개를전사하고떨어진ㄴ항목의식을결합했다.",
+      "validation": {
+        "math": "부등호≤,<,<가있는ㄷㄹㅂ가부등식이다. ㄹ7<2는거짓이지만부등식형식이다. ㄱㅁ는비교기호가없고ㄴ은등식이다.",
+        "visual": "서로다른경로의두원본그림을각각확인했고동일한6개보기와순서이다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20201-B02-001",
+      "kind": "correction",
+      "content": "다음 보기에서 부등식을 모두 고르시오.\nㄱ. $2-4x$\nㄴ. $5x+2=7$\nㄷ. $x-1\\le4$\nㄹ. $7<2$\nㅁ. $6x-(3x+1)$\nㅂ. $0<2$",
+      "answer": "ㄷ, ㄹ, ㅂ",
+      "solution": "부등식은 부등호가 있는 식이다.\n따라서 부등식인 것은 ㄷ, ㄹ, ㅂ이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제보기6개를전사하고떨어진ㄴ항목의식을결합했다.",
+      "validation": {
+        "math": "부등호≤,<,<가있는ㄷㄹㅂ가부등식이다. ㄹ7<2는거짓이지만부등식형식이다. ㄱㅁ는비교기호가없고ㄴ은등식이다.",
+        "visual": "서로다른경로의두원본그림을각각확인했고동일한6개보기와순서이다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20301-A84-001",
+      "kind": "correction",
+      "content": "다음 보기의 일차방정식 중 두 개를 골라 만든 연립방정식의 해가 $x=2,y=-1$인 것은?\nㄱ. $x-y=3$\nㄴ. $x-2y=3$\nㄷ. $2x+3y=1$\nㄹ. $3x+y=7$\n① ㄱ과 ㄴ\n② ㄱ과 ㄷ\n③ ㄱ과 ㄹ\n④ ㄴ과 ㄷ\n⑤ ㄴ과 ㄹ",
+      "answer": "②",
+      "solution": "$x=2$, $y=-1$을 보기의 일차방정식에 대입하면\nㄱ. $2-(-1)=3$\nㄴ. $2-2\\times (-1)\\neq 3$\nㄷ. $2\\times 2+3\\times (-1)=1$\nㄹ. $3\\times 2+(-1)\\neq 7$\n따라서 짝 지어 만든 연립방정식의 해가 $x=2$, $y=-1$인 것은 ㄱ과 ㄷ이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "떨어진ㄴㄹ을각식과연결하여실제보기를전사했다.",
+      "validation": {
+        "math": "(2,−1)대입좌변은3,4,1,5이므로ㄱ과ㄷ만만족. 계수행렬[[1,−1],[2,3]]의행렬식5≠0이어서이둘의유일해가(2,−1)이다.",
+        "visual": "실제그림의4개방정식x−y3,x−2y3,2x+3y1,3x+y7과맞췄다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20303-A32-001",
+      "kind": "rewrite",
+      "content": "다음 연립방정식을 각각 푸시오.\n(1) $\\begin{cases}0.2x-0.1y=0.4\\\\0.2x+0.3y=1.2\\end{cases}$\n(2) $\\begin{cases}\\frac12x-\\frac13y=4\\\\\\frac14x+\\frac13y=-1\\end{cases}$\n(3) $\\begin{cases}\\frac{x-1}{3}=\\frac{y-2}{4}\\\\x+3y=7\\end{cases}$\n(4) $\\begin{cases}\\frac x4-\\frac y3=\\frac32\\\\-0.2x+0.4y=-0.8\\end{cases}$",
+      "answer": "⑴ $x=3$, $y=2$ ⑵ $x=4$, $y=-6$ ⑶ $x=1$, $y=2$ ⑷ $x=10$, $y=3$",
+      "solution": "⑴ 두 식의 양변에 $10$을 곱하면 $2x-y=4$, $2x+3y=12$이다.\n두 식을 변끼리 빼면 $-4y=-8$이므로 $y=2$이다.\n$y=2$를 $2x-y=4$에 대입하면 $2x=6$이므로 $x=3$이다.\n⑵ 첫째 식에 $6$, 둘째 식에 $12$를 곱하면 $3x-2y=24$, $3x+4y=-12$이다.\n두 식을 변끼리 빼면 $-6y=36$이므로 $y=-6$이다.\n$y=-6$을 $3x-2y=24$에 대입하면 $3x=12$이므로 $x=4$이다.\n⑶ 첫째 식의 양변에 $12$를 곱하면 $4(x-1)=3(y-2)$, 즉 $4x-3y=-2$이다.\n이 식과 $x+3y=7$을 변끼리 더하면 $5x=5$이므로 $x=1$이다.\n$x=1$을 $x+3y=7$에 대입하면 $3y=6$이므로 $y=2$이다.\n⑷ 첫째 식에 $12$, 둘째 식에 $10$을 곱하면 $3x-4y=18$, $-2x+4y=-8$이다.\n두 식을 변끼리 더하면 $x=10$이다.\n$x=10$을 $3x-4y=18$에 대입하면 $-4y=-12$이므로 $y=3$이다.\n따라서 ⑴ $x=3$, $y=2$ ⑵ $x=4$, $y=-6$ ⑶ $x=1$, $y=2$ ⑷ $x=10$, $y=3$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "유도풀이빈칸을없애고4개방정식만묻는형태로새작성했다.",
+      "validation": {
+        "math": "정수계수화후(1)[[2,−1],[2,3]]해(3,2),det8;(2)[[3,−2],[3,4]]해(4,−6),det18;(3)[[4,−3],[1,3]]해(1,2),det15;(4)[[3,−4],[−2,4]]해(10,3),det4. 각해를원식에대입해두등식모두성립하고행렬식비영으로유일하다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20305-A29-001",
+      "kind": "correction",
+      "content": "다음 보기에서 (1) 해가 없는 연립방정식, (2) 해가 무수히 많은 연립방정식을 각각 고르시오.\nㄱ. $\\begin{cases}x+2y+3=0\\\\2x+y-3=0\\end{cases}$\nㄴ. $\\begin{cases}4x-3y+1=0\\\\4x-3y-1=0\\end{cases}$\nㄷ. $\\begin{cases}4x+2y+8=0\\\\2x+y+4=0\\end{cases}$\nㄹ. $\\begin{cases}x-y+1=0\\\\3x-y=0\\end{cases}$",
+      "answer": "(1) ㄴ (2) ㄷ",
+      "solution": "ㄱ. $\\begin{cases} y=-\\frac{1}{2}x-\\frac{3}{2} & \\, \\\\ y=-2x+3 & \\, \\end{cases}$에서 두 일차방정식의 그래프의 기울기가 다르므로 해는 하나이다.\nㄴ. $\\begin{cases} y=\\frac{4}{3}x+\\frac{1}{3} & \\, \\\\ y=\\frac{4}{3}x-\\frac{1}{3} & \\, \\end{cases}$에서 두 일차방정식의 그래프의 기울기가 같고 $y$절편이 다르므로 해가 없다.\nㄷ. $\\begin{cases} y=-2x-4 & \\, \\\\ y=-2x-4 & \\, \\end{cases}$에서 두 일차방정식의 그래프의 기울기와 $y$절편이 일치하므로 해가 무수히 많다.\nㄹ. $\\begin{cases} y=x+1 & \\, \\\\ y=3x & \\, \\end{cases}$에서 두 일차방정식의 그래프의 기울기가 다르므로 해는 하나이다.\n(1) 해가 없는 것은 ㄴ이다.\n(2) 해가 무수히 많은 것은 ㄷ이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "실제보기에서줄밀린ㄴ을분리하고4개연립방정식을그대로전사했다.",
+      "validation": {
+        "math": "ㄱdet=1−4=−3≠0,ㄹdet=−1+3=2≠0이므로각유일해.ㄴ의좌변4x−3y는동시에−1,1이되어야해불가능.ㄷ첫식은둘째의2배여서하나의직선위무수히많은해.",
+        "visual": "ㄴ상수+1/−1,ㄷ4x+2y+8와2x+y+4까지실제그림과대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20401-A93-001",
+      "kind": "correction",
+      "content": "다음 보기에서 $y$가 $x$에 대한 일차함수인 것을 모두 고른 것은?\nㄱ. $y=-2$\nㄴ. $y=-4x+3$\nㄷ. $y=2x^2+3$\nㄹ. $y=\\frac25x-\\frac12$\n① ㄱ, ㄴ\n② ㄱ, ㄹ\n③ ㄴ, ㄹ\n④ ㄱ, ㄴ, ㄹ\n⑤ ㄴ, ㄷ, ㄹ",
+      "answer": "③",
+      "solution": "ㄱ, ㄷ은 $y$가 $x$에 대한 일차식이 아니다.\n따라서 $y$가 $x$에 대한 일차함수인 것은 ㄴ, ㄹ이다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "실제보기에서밀린ㄴㄹ을각식과결합해본문으로전사했다.",
+      "validation": {
+        "math": "일차함수는y=ax+b,a≠0이다.ㄴa=−4,ㄹa=2/5로해당.ㄱ상수는a=0,ㄷ는x²항계수2라비해당.③이유일.",
+        "visual": "상수−2,일차−4x+3,이차2x²+3,일차2x/5−1/2를원그림에서확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20403-A31-001",
+      "kind": "correction",
+      "content": "다음 두 일차함수의 그래프의 기울기를 각각 구하시오.\n[그림]",
+      "answer": "(1) $1$ (2) $-\\frac12$",
+      "solution": "(1) 두 점 $(0,-3),(3,0)$을 지나므로 기울기는 $\\frac{0-(-3)}{3-0}=1$이다. (2) 두 점 $(0,3),(4,1)$을 지나므로 기울기는 $\\frac{1-3}{4-0}=-\\frac12$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "잘못된변화량−3표시와불필요한빈칸을제거한두좌표그래프를새SVG로작성했다. 발문이묻지않는변화량을답에서제거했다.",
+      "validation": {
+        "math": "기울기정의Δy/Δx로(1)3/3=1,(2)−2/4=−1/2. 원그림(1)의−3가로변화량은오류로제거했으며그래프두직선자체의절편과점은유지했다.",
+        "visual": "새(1)(0,−3),(3,0),새(2)(0,3),(4,1)을좌표와대조했다. −3은오직y절편으로만표시했다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"900\" height=\"395\" viewBox=\"0 0 900 395\" role=\"img\" aria-labelledby=\"slopes-title\"><title id=\"slopes-title\">(1) 두 점 (0,-3),(3,0)을 지나는 직선, (2) 두 점 (0,3),(4,1)을 지나는 직선</title><defs><marker id=\"slopes-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"900\" height=\"395\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><text x=\"35\" y=\"33\" >(1)</text><line x1=\"51\" y1=\"350\" x2=\"51\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"51\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">-2</text><line x1=\"83\" y1=\"350\" x2=\"83\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"83\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">-1</text><line x1=\"147\" y1=\"350\" x2=\"147\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"147\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">1</text><line x1=\"179\" y1=\"350\" x2=\"179\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"179\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">2</text><line x1=\"211\" y1=\"350\" x2=\"211\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"211\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">3</text><line x1=\"243\" y1=\"350\" x2=\"243\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"243\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">4</text><line x1=\"275\" y1=\"350\" x2=\"275\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"275\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">5</text><line x1=\"307\" y1=\"350\" x2=\"307\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"307\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">6</text><line x1=\"339\" y1=\"350\" x2=\"339\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"339\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">7</text><line x1=\"51\" y1=\"350\" x2=\"339\" y2=\"350\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"106\" y=\"355\" font-size=\"14\" text-anchor=\"end\">-4</text><line x1=\"51\" y1=\"318\" x2=\"339\" y2=\"318\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"106\" y=\"323\" font-size=\"14\" text-anchor=\"end\">-3</text><line x1=\"51\" y1=\"286\" x2=\"339\" y2=\"286\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"106\" y=\"291\" font-size=\"14\" text-anchor=\"end\">-2</text><line x1=\"51\" y1=\"254\" x2=\"339\" y2=\"254\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"106\" y=\"259\" font-size=\"14\" text-anchor=\"end\">-1</text><line x1=\"51\" y1=\"190\" x2=\"339\" y2=\"190\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"106\" y=\"195\" font-size=\"14\" text-anchor=\"end\">1</text><line x1=\"51\" y1=\"158\" x2=\"339\" y2=\"158\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"106\" y=\"163\" font-size=\"14\" text-anchor=\"end\">2</text><line x1=\"51\" y1=\"126\" x2=\"339\" y2=\"126\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"106\" y=\"131\" font-size=\"14\" text-anchor=\"end\">3</text><line x1=\"51\" y1=\"94\" x2=\"339\" y2=\"94\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"106\" y=\"99\" font-size=\"14\" text-anchor=\"end\">4</text><line x1=\"51\" y1=\"62\" x2=\"339\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"106\" y=\"67\" font-size=\"14\" text-anchor=\"end\">5</text><line x1=\"51\" y1=\"222\" x2=\"351\" y2=\"222\" stroke=\"#222\" stroke-width=\"2\" marker-end=\"url(#slopes-arrow)\"/><line x1=\"115\" y1=\"350\" x2=\"115\" y2=\"50\" stroke=\"#222\" stroke-width=\"2\" marker-end=\"url(#slopes-arrow)\"/><text x=\"356\" y=\"228\" >x</text><text x=\"123\" y=\"50\" >y</text><text x=\"98\" y=\"243\" font-size=\"15\">O</text><line x1=\"83\" y1=\"350\" x2=\"339\" y2=\"94\" stroke=\"#222\" stroke-width=\"3\"/><circle cx=\"115\" cy=\"318\" r=\"4\" fill=\"#222\"/><circle cx=\"211\" cy=\"222\" r=\"4\" fill=\"#222\"/><text x=\"485\" y=\"33\" >(2)</text><line x1=\"501\" y1=\"350\" x2=\"501\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"501\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">-2</text><line x1=\"533\" y1=\"350\" x2=\"533\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"533\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">-1</text><line x1=\"597\" y1=\"350\" x2=\"597\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"597\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">1</text><line x1=\"629\" y1=\"350\" x2=\"629\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"629\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">2</text><line x1=\"661\" y1=\"350\" x2=\"661\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"661\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">3</text><line x1=\"693\" y1=\"350\" x2=\"693\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"693\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">4</text><line x1=\"725\" y1=\"350\" x2=\"725\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"725\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">5</text><line x1=\"757\" y1=\"350\" x2=\"757\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"757\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">6</text><line x1=\"789\" y1=\"350\" x2=\"789\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"789\" y=\"242\" font-size=\"14\" text-anchor=\"middle\">7</text><line x1=\"501\" y1=\"350\" x2=\"789\" y2=\"350\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"556\" y=\"355\" font-size=\"14\" text-anchor=\"end\">-4</text><line x1=\"501\" y1=\"318\" x2=\"789\" y2=\"318\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"556\" y=\"323\" font-size=\"14\" text-anchor=\"end\">-3</text><line x1=\"501\" y1=\"286\" x2=\"789\" y2=\"286\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"556\" y=\"291\" font-size=\"14\" text-anchor=\"end\">-2</text><line x1=\"501\" y1=\"254\" x2=\"789\" y2=\"254\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"556\" y=\"259\" font-size=\"14\" text-anchor=\"end\">-1</text><line x1=\"501\" y1=\"190\" x2=\"789\" y2=\"190\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"556\" y=\"195\" font-size=\"14\" text-anchor=\"end\">1</text><line x1=\"501\" y1=\"158\" x2=\"789\" y2=\"158\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"556\" y=\"163\" font-size=\"14\" text-anchor=\"end\">2</text><line x1=\"501\" y1=\"126\" x2=\"789\" y2=\"126\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"556\" y=\"131\" font-size=\"14\" text-anchor=\"end\">3</text><line x1=\"501\" y1=\"94\" x2=\"789\" y2=\"94\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"556\" y=\"99\" font-size=\"14\" text-anchor=\"end\">4</text><line x1=\"501\" y1=\"62\" x2=\"789\" y2=\"62\" stroke=\"#222\" stroke-opacity=\"0.18\" stroke-width=\"1\"/><text x=\"556\" y=\"67\" font-size=\"14\" text-anchor=\"end\">5</text><line x1=\"501\" y1=\"222\" x2=\"801\" y2=\"222\" stroke=\"#222\" stroke-width=\"2\" marker-end=\"url(#slopes-arrow)\"/><line x1=\"565\" y1=\"350\" x2=\"565\" y2=\"50\" stroke=\"#222\" stroke-width=\"2\" marker-end=\"url(#slopes-arrow)\"/><text x=\"806\" y=\"228\" >x</text><text x=\"573\" y=\"50\" >y</text><text x=\"548\" y=\"243\" font-size=\"15\">O</text><line x1=\"501\" y1=\"94\" x2=\"789\" y2=\"238\" stroke=\"#222\" stroke-width=\"3\"/><circle cx=\"565\" cy=\"126\" r=\"4\" fill=\"#222\"/><circle cx=\"693\" cy=\"190\" r=\"4\" fill=\"#222\"/></g></svg>"
+    },
+    {
+      "problemCode": "J20404-A84-001",
+      "kind": "correction",
+      "content": "$a>0,b<0$일 때 다음 보기에서 그래프가 제3사분면을 지나지 않는 일차함수를 모두 고르시오.\nㄱ. $y=ax+b$\nㄴ. $y=ax-b$\nㄷ. $y=-ax+b$\nㄹ. $y=-ax-b$",
+      "answer": "ㄹ",
+      "solution": "ㄱ. $a>0$, $b<0$이므로 제$1$, $3$, $4$사분면을 지난다.\nㄴ. $a>0$, $-b>0$이므로 제$1$, $2$, $3$사분면을 지난다.\nㄷ. $-a<0$, $b<0$이므로 제$2$, $3$, $4$사분면을 지난다.\nㄹ. $-a<0$, $-b>0$이므로 제$1$, $2$, $4$사분면을 지난다.\n따라서 그래프가 제$3$사분면을 지나지 않는 일차함수는 ㄹ뿐이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "떨어진ㄴㄹ과식을일대일로전사했다.",
+      "validation": {
+        "math": "x<0일때ㄱ은ax<0,b<0이므로항상y<0;ㄴ은충분히작은x에서y<0;ㄷ은0에충분히가까운음의x에서b의음수성으로y<0.ㄹ은−ax>0,−b>0이므로항상y>0.따라서ㄹ만제3사분면없음.",
+        "visual": "네식의ax,−ax,b,−b부호를실제그림에서확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20408-A80-001",
+      "kind": "correction",
+      "content": "일차방정식 $x-2y-4=0$의 그래프는?\n① [그림]\n② [그림]\n③ [그림]\n④ [그림]\n⑤ [그림]",
+      "answer": "⑤",
+      "solution": "$x-2y-4=0$에서 $y=\\frac{1}{2}x-2$\n따라서 $x-2y-4=0$의 그래프의 $x$절편은 $4$, $y$절편은 $-2$이므로 그 그래프는 ⑤이다.",
+      "figureUrls": [
+        "/figures/tb/9631d96ae64e7d9b/tb-9631d96ae64e7d9b-0-1-1.png",
+        "/figures/tb/9631d96ae64e7d9b/tb-9631d96ae64e7d9b-0-1-2.png",
+        "/figures/tb/9631d96ae64e7d9b/tb-9631d96ae64e7d9b-0-1-3.png",
+        "/figures/tb/9631d96ae64e7d9b/tb-9631d96ae64e7d9b-0-1-4.png",
+        "/figures/tb/9631d96ae64e7d9b/tb-9631d96ae64e7d9b-0-1-5.png"
+      ],
+      "questionType": "객관식",
+      "notes": "실제5개그래프를각각정확한번호와결합하고잘못놓인본문그림표지를제거했다.",
+      "validation": {
+        "math": "방정식정리y=x/2−2에서절편(4,0),(0,−2),기울기+1/2.실제보기①절편4,2;②−2,4;③2,4;④−4,2;⑤4,−2여서⑤만일치한다.",
+        "visual": "5개이미지를모두열어x·y절편및직선기울기부호를읽었다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20504-B11-001",
+      "kind": "rewrite",
+      "content": "그림에서 $O$는 예각삼각형 $ABC$의 외심이고, $I$는 삼각형 $OBC$의 내심이다. $\\angle BIC=160°$일 때, $\\angle BAC$의 크기를 구하시오.\n[그림]",
+      "answer": "$70^\\circ$",
+      "solution": "삼각형 $OBC$의 내심 성질에서 $\\angle BIC=90°+\\frac12\\angle BOC$이므로 $\\angle BOC=2(160°-90°)=140°$이다. $ABC$가 예각삼각형이므로 외심 $O$와 $A$가 직선 $BC$의 같은 쪽에 있고, $\\angle BOC=2\\angle BAC$이다. 따라서 $\\angle BAC=70°$이다.",
+      "figureUrls": [
+        "/figures/tb/712f8902c730586b/tb-712f8902c730586b-1-20-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "끊긴발문과I의정의·160°·물음을새작성했다. 외심관계의예각분기를본문조건으로명시해70°의유일성을보장했다.",
+      "validation": {
+        "math": "내각이등분선으로∠IBC=B/2,∠ICB=C/2이어서BIC=180−(B+C)/2=90+O/2. O=140. 원주각은작은호BC를보는예각A=O/2=70. 예각조건없이반대편A의110°가능성을배제할수없으므로새조건으로명시했다.",
+        "visual": "실제그림의A,B,C,O,I와160°표시를확인했다. 예각형상은그림측정이아닌본문조건이다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20507-B01-001",
+      "kind": "correction",
+      "content": "그림의 직사각형 $ABCD$가 정사각형이 되도록 하는 조건을 보기에서 모두 고른 것은? (점 $O$는 두 대각선의 교점이다.)\n[그림]\nㄱ. $AB=BC$\nㄴ. $AC=BD$\nㄷ. $\\angle ADC=90°$\nㄹ. $AC\\perp BD$\n① ㄱ, ㄴ\n② ㄱ, ㄹ\n③ ㄴ, ㄷ\n④ ㄴ, ㄹ\n⑤ ㄷ, ㄹ",
+      "answer": "②",
+      "solution": "직사각형이 정사각형이 되기 위해서는 이웃하는 두 변의 길이가 같거나 (ㄱ)\n두 대각선이 서로 수직이어야 한다. (ㄹ)",
+      "figureUrls": [
+        "/figures/tb/edbcb44353cb7662/tb-edbcb44353cb7662-0-14-1.png"
+      ],
+      "questionType": "객관식",
+      "notes": "두번째보기이미지를문자전사하고첫직사각형도형만남겼다.",
+      "validation": {
+        "math": "직사각형변길이를u,v>0이라하면ㄱ은u=v로정사각형.대각선방향(u,v),(u,−v)의내적u²−v²이0이면u=v라ㄹ도충분.ㄴ대각선길이같음과ㄷ직각은모든직사각형에서이미성립하여정사각형강제못함.②.",
+        "visual": "실제보기의AB=BC,AC=BD,∠ADC90°,AC⊥BD를대조했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20602-A79-001",
+      "kind": "rewrite",
+      "content": "다음 그림에서 $x$의 값을 각각 구하시오. (길이의 단위는 cm이며, 각 점은 표시된 변 위에 있다.)\n[그림]",
+      "answer": "⑴ $3$ ⑵ $18$",
+      "solution": "(1) $AB=4,BC=8,BD=2$이고 $\\angle ABC=\\angle DBA$이다. $AB:DB=BC:BA=2:1$이므로 $\\triangle ABC\\sim\\triangle DBA$이다. 따라서 $AC:DA=2:1$에서 $6:x=2:1$, $x=3$이다. (2) $AB=20,AC=25,AD=15,AE=12$이므로 $AB:AE=AC:AD=5:3$이고 끼인각 $A$가 같다. 따라서 $\\triangle ABC\\sim\\triangle AED$이고 $BC:ED=5:3$에서 $30:x=5:3$, $x=18$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "(1)의잘못된수직표시를제거한새도형을좌표로작성했다. (2)의교차대응SAS도모든부분길이를명시했다. 수학조건이달라져원본복원아닌변형으로관리한다.",
+      "validation": {
+        "math": "(1)B=(0,0),C=(8,0),A=(11/4,3√15/4),D=(2,0)이면AB4,AC6,AD3이고AD·BC≠0. (2)AB20,AC25,BC30는삼각부등식만족. AD/AC=15/25=3/5,AE/AB=12/20=3/5로끼인각닮음에서ED=18. 두도형의점좌표로각길이도재검산한다.",
+        "visual": "새(1)에직각표시가없으며AB4,AC6,BD2,BC8. 새(2)에AD15,DB5,AE12,EC13,BC30을표시했다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"920\" height=\"430\" viewBox=\"0 0 920 430\" role=\"img\" aria-labelledby=\"similar-triangles-title\"><title id=\"similar-triangles-title\">두 SAS 닮음 문제: 첫 그림에는 수직 표시가 없고 둘째 그림의 D,E는 AB,AC 위에 있다</title><defs><marker id=\"similar-triangles-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"920\" height=\"430\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><text x=\"25\" y=\"35\" >(1)</text><polyline points=\"177.5,169.763 40,315 440,315 177.5,169.763\" fill=\"none\" stroke=\"#222\" stroke-width=\"2.5\" /><line x1=\"177.5\" y1=\"169.763\" x2=\"140\" y2=\"315\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"177.5\" y=\"154.763\" >A</text><text x=\"18\" y=\"319\" >B</text><text x=\"452\" y=\"319\" >C</text><text x=\"133\" y=\"340\" >D</text><text x=\"70\" y=\"227\" >4</text><text x=\"317\" y=\"219\" >6</text><text x=\"141\" y=\"246\" >x</text><text x=\"77\" y=\"339\" >2</text><line x1=\"40\" y1=\"369\" x2=\"440\" y2=\"369\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"40\" y1=\"361\" x2=\"40\" y2=\"377\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"440\" y1=\"361\" x2=\"440\" y2=\"377\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"230\" y=\"394\" >8</text><text x=\"520\" y=\"35\" >(2)</text><polyline points=\"672.5,149.641 560,315 860,315 672.5,149.641\" fill=\"none\" stroke=\"#222\" stroke-width=\"2.5\" /><line x1=\"588.125\" y1=\"273.66\" x2=\"762.5\" y2=\"229.013\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"667.5\" y=\"132.641\" >A</text><text x=\"538\" y=\"323\" >B</text><text x=\"870\" y=\"323\" >C</text><text x=\"563.125\" y=\"277.66\" >D</text><text x=\"775.5\" y=\"222.013\" >E</text><text x=\"607\" y=\"190\" >15</text><text x=\"534\" y=\"302\" >5</text><text x=\"735\" y=\"178\" >12</text><text x=\"824\" y=\"269\" >13</text><text x=\"687\" y=\"273\" >x</text><text x=\"704\" y=\"347\" >30</text></g></svg>"
+    },
+    {
+      "problemCode": "J20602-B04-001",
+      "kind": "rewrite",
+      "content": "한 변이 $8\\,\\mathrm{cm}$인 정사각형 $ABCD$에서 점 $E$는 변 $AB$ 위에 있다. 직선 $CE$와 반직선 $DA$의 교점을 $F$라 하고, $CE=10\\,\\mathrm{cm}$라 하자. 삼각형 $AEF$의 넓이를 구하시오.\n[그림]",
+      "answer": "$\\frac{8}{3}\\,\\mathrm{cm}^{2}$",
+      "solution": "$\\overline{BC}=8\\,\\mathrm{cm}$이고 $\\triangle EBC$는 직각삼각형이므로 $\\overline{BE}^{2}=10^{2}-8^{2}=36$이고 $\\overline{BE}=6\\,\\mathrm{cm}$이다.\n따라서 $\\overline{AE}=8-6=2\\,(\\mathrm{cm})$이다.\n$\\triangle AEF$와 $\\triangle BEC$에서 $\\angle EAF=\\angle EBC=90°$, $\\angle AEF=\\angle BEC$ (맞꼭지각)이므로 $\\triangle AEF\\backsim\\triangle BEC$ (AA 닮음)이다.\n$\\overline{AE}:\\overline{BE}=\\overline{AF}:\\overline{BC}$에서 $2:6=\\overline{AF}:8$이므로 $\\overline{AF}=\\dfrac{8}{3}\\,(\\mathrm{cm})$이다.\n따라서 $\\triangle AEF=\\dfrac{1}{2}\\times\\dfrac{8}{3}\\times2=\\dfrac{8}{3}\\,(\\mathrm{cm}^{2})$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "원그림의E/F명칭이본문과반대로되어있어본문명칭을유지한정확한새SVG로교체했다. 선분CE연장이F를지남을명확히했다.",
+      "validation": {
+        "math": "BC8,CE10에서BE=√(100−64)=6,AE2. E에서두직선교차하므로△AEF∼△BEC,AE/BE=AF/BC=1/3여서AF8/3.넓이=2×(8/3)/2=8/3. 좌표A(0,8),B(0,0),C(8,0),D(8,8),E(0,6),F(−8/3,8)에서도CE10이다.",
+        "visual": "새E는AB위,F는DA를A너머연장한곳이며10cm는CE에만대응한다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"470\" height=\"405\" viewBox=\"0 0 470 405\" role=\"img\" aria-labelledby=\"square-extension-title\"><title id=\"square-extension-title\">정사각형 ABCD, AB 위 E, DA의 연장 위 F, CE 길이10cm</title><defs><marker id=\"square-extension-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"470\" height=\"405\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><polyline points=\"160,125 160,349 384,349 384,125 160,125\" fill=\"none\" stroke=\"#222\" stroke-width=\"2.5\" /><line x1=\"85.3333\" y1=\"125\" x2=\"384\" y2=\"349\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"85.3333\" y1=\"125\" x2=\"160\" y2=\"125\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"145\" y=\"108\" >A</text><text x=\"141\" y=\"376\" >B</text><text x=\"393\" y=\"370\" >C</text><text x=\"393\" y=\"130\" >D</text><text x=\"135\" y=\"191\" >E</text><text x=\"61\" y=\"123\" >F</text><text x=\"243\" y=\"106\" >8 cm</text><text x=\"290\" y=\"263\" >10 cm</text><polyline points=\"160,138 173,138 173,125\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.2\"/></g></svg>"
+    },
+    {
+      "problemCode": "J20602-B13-001",
+      "kind": "rewrite",
+      "content": "수평인 땅에 수직으로 세운 막대와 기둥이 15 m 떨어져 있고 두 밑점은 같은 직선 위에 있다. 평행한 햇빛에 의해 두 그림자가 같은 방향으로 생겨 끝점이 일치한다. 높이 4 m인 막대가 기둥과 그림자 끝점 사이에 있고, 막대의 그림자 길이가 10 m일 때 기둥의 높이를 구하시오.\n[그림]",
+      "answer": "$10\\,\\mathrm{m}$",
+      "solution": "기둥의 그림자 길이는 $15+10=25$ m이다. 두 물체는 지면에 수직이고 햇빛은 평행하므로 높이와 그림자 길이로 만든 두 직각삼각형이 닮음이다. 기둥의 높이를 $h$ m라 하면 $h/25=4/10$이므로 $h=10$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "연결된정답해설페이지를제거하고빛의상황을평행한햇빛으로새작성했다. 길이15,10과높이4를유지한새SVG이다.",
+      "validation": {
+        "math": "두밑점과공통끝점을수평선에배치해그림자길이25,10. 평행광선및수직기둥으로AA닮음,높이비25:10=5:2.4×5/2=10. 새도형좌표의윗점들이공통빛직선위에있음을확인한다.",
+        "visual": "새그림에수직두기둥과공통그림자끝점,거리15m·10m,막대4m만표시하고정답높이는표시하지않는다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"660\" height=\"420\" viewBox=\"0 0 660 420\" role=\"img\" aria-labelledby=\"shadows-title\"><title id=\"shadows-title\">수직 기둥과 높이4m 막대의 그림자가 공통 끝점에 도달하며 밑점간15m,막대그림자10m</title><defs><marker id=\"shadows-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"660\" height=\"420\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><line x1=\"40\" y1=\"310\" x2=\"610\" y2=\"310\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"80\" y1=\"310\" x2=\"80\" y2=\"110\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"380\" y1=\"310\" x2=\"380\" y2=\"230\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"80\" y1=\"110\" x2=\"580\" y2=\"310\" stroke=\"#222\" stroke-width=\"2\" /><polyline points=\"80,294 96,294 96,310\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.2\"/><polyline points=\"380,294 396,294 396,310\" fill=\"none\" stroke=\"#222\" stroke-width=\"1.2\"/><text x=\"27\" y=\"100\" >기둥</text><text x=\"359\" y=\"219\" >막대</text><text x=\"393\" y=\"273\" >4 m</text><text x=\"534\" y=\"289\" font-size=\"17\">그림자 끝</text><line x1=\"80\" y1=\"350\" x2=\"380\" y2=\"350\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"80\" y1=\"343\" x2=\"80\" y2=\"357\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"380\" y1=\"343\" x2=\"380\" y2=\"357\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"230\" y=\"380\" text-anchor=\"middle\">15 m</text><line x1=\"380\" y1=\"350\" x2=\"580\" y2=\"350\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"380\" y1=\"343\" x2=\"380\" y2=\"357\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"580\" y1=\"343\" x2=\"580\" y2=\"357\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"480\" y=\"380\" text-anchor=\"middle\">10 m</text></g></svg>"
+    },
+    {
+      "problemCode": "J20701-A58-001",
+      "kind": "correction",
+      "content": "다음 중 $BC\\parallel DE$인 것을 모두 고르시오. (정답 2개, 길이의 단위는 모두 같다.)\n① [그림]\n② [그림]\n③ [그림]\n④ [그림]\n⑤ [그림]",
+      "answer": "①, ⑤",
+      "solution": "그림에서 ①은 $\\overline{AD}:\\overline{AB}=8:12=2:3$, $\\overline{AE}:\\overline{AC}=6:9=2:3$이므로 $\\overline{BC}\\parallel\\overline{DE}$이다.\n②는 $4:2\\neq5:3$, ③은 $4:7\\neq3:6$, ④는 $3:8\\neq4:7$이므로 평행하지 않다.\n⑤는 $\\overline{AD}=\\overline{DB}=9$, $\\overline{AE}=\\overline{EC}=5$이므로 $\\overline{BC}\\parallel\\overline{DE}$이다.\n따라서 답은 ①, ⑤이다.",
+      "figureUrls": [
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-3-5-1.png",
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-3-5-2.png",
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-3-5-3.png",
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-3-5-4.png",
+        "/figures/tb/4e0a7d27e6ec54f7/tb-4e0a7d27e6ec54f7-3-5-5.png"
+      ],
+      "questionType": "객관식",
+      "notes": "실제5장도형을각선택지번호바로뒤에결합하고무관한4회표시를삭제했다.",
+      "validation": {
+        "math": "①AD/AB=8/12=AE/AC=6/9.②AD/DB=4/2≠AE/EC=5/3.③AD/AB=4/7≠AE/AC=3/6.④AB/BD=3/8≠AC/CE=4/7.⑤AD/DB=9/9=AE/EC=5/5.평행선과선분비의역에의해①⑤만평행이다.",
+        "visual": "①8/12·6/9,②4/2·5/3,③4/7·3/6,④3/8·4/7,⑤9/9·5/5를각이미지에서읽었다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20703-A34-001",
+      "kind": "correction",
+      "content": "그림에서 $l\\parallel m\\parallel n$이다. 표시된 길이의 단위가 모두 cm일 때, $xy$의 값을 구하시오.\n[그림]",
+      "answer": "$27$",
+      "solution": "그림에서 세 직선 $l$, $m$, $n$이 평행하므로 평행선 사이의 선분의 길이의 비는 같다.\n$3:4=x:6$에서 $4x=18$이므로 $x=\\dfrac{9}{2}$이다.\n$3:4=y:8$에서 $4y=24$이므로 $y=6$이다.\n따라서 $xy=\\dfrac{9}{2}\\times 6=27$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "원그림상단의평행선도형을실제로확대확인했다. 다른문항도형·쪽조각을제거하고같은수치관계의새SVG만제공한다.",
+      "validation": {
+        "math": "평행선사이대응선분비가3:4이므로x/6=3/4,y/8=3/4.따라서x=9/2,y=6,xy=27. 모든값양수이며그림에서위간격과아래간격에각각대응한다.",
+        "visual": "원상단의수직선위3·아래4,내려가는선위x·아래6,올라가는선위y·아래8을새도형에반영했다. 완성 SVG를 PNG로 렌더링해 글자 잘림·선과의 겹침·표시 위치를 직접 검수했다."
+      },
+      "remainingIssues": [],
+      "figureSvg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"800\" height=\"330\" viewBox=\"0 0 800 330\" role=\"img\" aria-labelledby=\"three-parallels-title\"><title id=\"three-parallels-title\">세 평행선 l,m,n 사이 수직길이3와4, 사선길이x와6 및 y와8</title><defs><marker id=\"three-parallels-arrow\" markerWidth=\"8\" markerHeight=\"8\" refX=\"7\" refY=\"4\" orient=\"auto-start-reverse\"><path d=\"M0,0 L8,4 L0,8 Z\" fill=\"#222\"/></marker></defs><rect width=\"800\" height=\"330\" fill=\"white\"/><g font-family=\"Arial, Malgun Gothic, sans-serif\" font-size=\"20\" fill=\"#171717\"><line x1=\"45\" y1=\"65\" x2=\"745\" y2=\"65\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"760\" y=\"72\" >l</text><line x1=\"45\" y1=\"155\" x2=\"745\" y2=\"155\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"760\" y=\"162\" >m</text><line x1=\"45\" y1=\"275\" x2=\"745\" y2=\"275\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"760\" y=\"282\" >n</text><line x1=\"90\" y1=\"40\" x2=\"90\" y2=\"300\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"110.213\" y1=\"65\" x2=\"345\" y2=\"275\" stroke=\"#222\" stroke-width=\"2\" /><line x1=\"345\" y1=\"275\" x2=\"708.731\" y2=\"65\" stroke=\"#222\" stroke-width=\"2\" /><text x=\"22\" y=\"117\" >3 cm</text><text x=\"22\" y=\"224\" >4 cm</text><text x=\"165\" y=\"100\" >x cm</text><text x=\"205\" y=\"245\" >6 cm</text><text x=\"590\" y=\"92\" >y cm</text><text x=\"472\" y=\"230\" >8 cm</text></g></svg>"
+    },
+    {
+      "problemCode": "J20705-A82-001",
+      "kind": "rewrite",
+      "content": "삼각형 $ABC$의 세 중선 $AD,BE,CF$가 만나는 점 $G$는 무게중심이다. 다음 보기에서 항상 옳은 것을 모두 고르시오. (삼각형 기호 뒤의 넓이는 해당 삼각형의 넓이를 뜻한다.)\n[그림]\nㄱ. $BD=DC$\nㄴ. $AG=2GD$\nㄷ. $GD=GF$\nㄹ. 삼각형 $GAB$의 넓이와 삼각형 $GAC$의 넓이가 같다.",
+      "answer": "ㄱ, ㄴ, ㄹ",
+      "solution": "ㄱ. 점 $\\mathrm{D}$는 $\\overline{BC}$의 중점이므로 $\\overline{BD}=\\overline{DC}$\nㄴ. $\\overline{AG}:\\,\\overline{GD}=2:\\,1$이므로 $\\overline{AG}=2\\overline{GD}$\nㄷ. $\\overline{GD}=\\overline{GF}$인지는 알 수 없다.\nㄹ. 점 $\\mathrm{D}$는 $\\overline{BC}$의 중점이고, $\\overline{AG}:\\,\\overline{GD}=2:\\,1$이므로 $△\\mathrm{GAB}=△ABC\\times \\frac{1}{2}\\times \\frac{2}{3}=\\frac{1}{3}△ABC$\n$\\mathrm{△}GAC=△ABC\\times \\frac{1}{2}\\times \\frac{2}{3}=\\frac{1}{3}△ABC$\n즉, $\\mathrm{△}GAB=\\mathrm{△}GAC$이다.\n따라서 옳은 것은 ㄱ, ㄴ, ㄹ이다.",
+      "figureUrls": [
+        "/figures/tb/0d6675ea8ae47883/tb-0d6675ea8ae47883-0-1-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "실제보기를문자전사하고D,E,F의중점정의를본문에명시했다. 넓이와삼각형자체를혼동하지않게ㄹ을서술했다.",
+      "validation": {
+        "math": "D는중점이므로ㄱ참. 무게중심의중선내분2:1로ㄴ참. 세삼각형GAB,GBC,GCA는각전체1/3여서ㄹ참. ㄷ반례A(0,9),B(0,0),C(6,0):G(2,3),D(3,0),F(0,4.5)에서GD=√10,GF=2.5로다르다.",
+        "visual": "첫그림의A상단·B좌하·C우하,D∈BC,E∈AC,F∈AB와세중선을확인했다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20706-A49-001",
+      "kind": "correction",
+      "content": "그림에서 $E$는 변 $AB$ 위, $D$는 변 $AC$ 위의 점이다. $AE=4\\,\\mathrm{cm}$, $EB=8\\,\\mathrm{cm}$, $AD=6\\,\\mathrm{cm}$이고 $\\angle ABC=\\angle ADE$이다. 삼각형 $ABC$의 넓이가 $34\\,\\mathrm{cm}^2$일 때 삼각형 $ADE$의 넓이를 구하시오.\n[그림]",
+      "answer": "$\\frac{17}{2}\\,\\mathrm{cm}^{2}$",
+      "solution": "$\\mathrm{△}ADE$와 $\\mathrm{△}ABC$에서\n$\\mathrm{∠}A$는 공통, $\\mathrm{∠}B=∠ADE$이므로\n$\\mathrm{△}ADE\\backsim △ABC$($\\mathrm{AA}$ 닮음)\n$\\mathrm{△}ADE$와 $\\mathrm{△}ABC$의 닮음비는 $\\overline{AD}:\\overline{AB}=1:2$이므로 넓이의 비는 $1^{2}:2^{2}=1:4$이다.\n$\\mathrm{△}ADE:34=1:4$\n$4△ADE=34$\n따라서 $\\mathrm{△}ADE=34×\\frac{1}{4}=\\frac{17}{2}$($\\mathrm{cm}^{2}$)",
+      "figureUrls": [
+        "/figures/tb/ada9546260b1b4d2/tb-ada9546260b1b4d2-1-2-1.png"
+      ],
+      "questionType": "단답형",
+      "notes": "triage는길이누락이라고했으나실제자산에AE4,EB8,AD6이있다. 새로운중점조건을추가하지않고그림의조건을본문에정확히명시했다.",
+      "validation": {
+        "math": "A각공통과B=ADE로△ADE∼△ABC이며대응은A↔A,D↔B,E↔C.실제AD6,AB=4+8=12여서닮음비1/2.넓이비1/4이므로34/4=17/2. D가AC,E가AB이므로중점조건을추가하지않는다.",
+        "visual": "실제로컬그림에서4cm·8cm·6cm와B,D의같은각표시를확인했다. 60°숫자는해당자산에없다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20901-A48-001",
+      "kind": "rewrite",
+      "content": "주머니에 $1$부터 $\\,20$까지 자연수가 각각 하나씩 적힌 구슬 $\\,20$개가 들어 있다. 이 중에서 한 개를 꺼낼 때, $\\,3$의 배수 또는 $\\,20$의 약수가 적힌 구슬이 나오는 경우의 수는?\n① $10$\n② $11$\n③ $12$\n④ $13$\n⑤ $14$",
+      "answer": "③",
+      "solution": "$\\,3$의 배수가 적힌 구슬이 나오는 경우는 $3,\\,6,\\,9,\\,12,\\,15,\\,18$의 $6$가지 $\\,20$의 약수가 적힌 구슬이 나오는 경우는 $\\,1,\\,2,\\,4,\\,5,\\,10,\\,20$의 $6$가지 따라서 구하는 경우의 수는\n$\\,6+6=12$",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "중복⑤를새오답14로교체했다.",
+      "validation": {
+        "math": "1~20의3배수집합{3,6,9,12,15,18},20약수{1,2,4,5,10,20}.교집합없어합집합원소6+6=12개.보기10,11,12,13,14중③.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20903-A18-001",
+      "kind": "rewrite",
+      "content": "동전은 앞면 또는 뒷면이 나오고, 주사위의 눈은 1부터 6까지이다. 다음 중 확률이 $1$이 아닌 것은?\n① 동전 한 개를 던질 때, 앞면 또는 뒷면이 나올 확률\n② 주사위 한 개를 던질 때, $7$ 미만의 눈이 나올 확률\n③ 서로 다른 주사위 두 개를 던질 때, 나오는 두 눈의 수의 곱이 $0$일 확률\n④ 주사위 한 개를 던질 때, $0$보다 큰 눈이 나올 확률\n⑤ 수요일 다음 날이 목요일일 확률",
+      "answer": "③",
+      "solution": "③ 두 수의 곱이 $0$이려면 두 수 중 한 수가 $0$이거나 두 수 모두 $0$이어야 한다. 주사위의 눈에는 $0$이 없으므로 $0$이 나올 수 없다.",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "④를0보다큰눈으로새작성하여확률1이아닌보기를③하나로고정했다.",
+      "validation": {
+        "math": "①표본공간전체,②모든주사위눈<7,④모든눈>0,⑤달력상수요일다음목요일로각확률1.③은두눈이모두양수이므로곱0인경우없어확률0.따라서③만조건만족.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20903-A83-001",
+      "kind": "rewrite",
+      "content": "두 상자 $\\mathrm{A}$, $\\mathrm{B}$에 각각 $1$부터 $9$까지의 자연수가 각각 적힌 공이 $9$개씩 들어 있다. 두 상자에서 공을 각각 한 개씩 임의로 뽑을 때, 공에 적힌 두 수 중 큰 수에서 작은 수를 뺀 차가 $9$의 약수일 확률은?\n① $\\frac{25}{81}$\n② $\\frac{26}{81}$\n③ $\\frac{27}{81}$\n④ $\\frac{28}{81}$\n⑤ $\\frac{29}{81}$",
+      "answer": "④",
+      "solution": "모든 경우의 수는 $9\\times 9=81$\n공에 적힌 두 수의 차는 $0$ 이상 $8$ 이하이므로 공에 적힌 두 수의 차가 $9$의 약수인 경우는 차가 $1$ 또는 $3$인 경우를 찾으면 된다.\n(ⅰ) 두 수의 차가 $1$인 경우\n$(1$, $2)$, $(2$, $1)$, $(2$, $3)$, $(3$, $2)$, $(3$, $4)$, $(4$, $3)$, $(4$, $5)$, $(5$, $4)$, $(5$, $6)$, $(6$, $5)$, $(6$, $7)$, $(7$, $6)$, $(7$, $8)$, $(8$, $7)$, $(8$, $9)$, $(9$, $8)$의 $16$가지이므로 이 경우의 확률은 $\\frac{16}{81}$\n(ⅱ) 두 수의 차가 $3$인 경우\n$(1$, $4)$, $(4$, $1)$, $(2$, $5)$, $(5$, $2)$, $(3$, $6)$, $(6$, $3)$, $(4$, $7)$, $(7$, $4)$, $(5$, $8)$, $(8$, $5)$, $(6$, $9)$, $(9$, $6)$의 $12$가지이므로 이 경우의 확률은 $\\frac{12}{81}$\n(ⅰ), (ⅱ)에서 구하는 확률은 $\\frac{16}{81}+\\frac{12}{81}=\\frac{28}{81}$",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "차를절댓값으로명시했다. 원③3/4도오답으로가능하므로오기라고단정하지않고27/81이라는새오답을작성했다.",
+      "validation": {
+        "math": "표본공간81쌍.차는|a−b|∈{0,…,8};9의양의약수1,3,9중가능한차1,3.차1은2(9−1)=16,차3은2(9−3)=12로서28/81.0은약수아니며두사건은배반.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20903-B39-001",
+      "kind": "rewrite",
+      "content": "0, 1, 2, 3, 4가 각각 하나씩 적힌 카드 5장으로 서로 다른 두 장을 사용하여 만들 수 있는 모든 두 자리 양의 정수 중 하나를 같은 확률로 고른다. 고른 정수가 짝수일 확률을 구하시오.",
+      "answer": "$\\frac{5}{8}$",
+      "solution": "서로 다른 카드로 만들 수 있는 두 자리 양의 정수는 십의 자리 4가지와 일의 자리 4가지로 $4\\times4=16$개이다. 짝수는 일의 자리가 0일 때 4개, 2일 때 3개, 4일 때 3개이므로 $4+3+3=10$개이다. 모든 정수를 같은 확률로 고르므로 구하는 확률은 $10/16=5/8$이다.",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "앞문항번호조각을삭제하고완성된16개정수의균등선택을명시하여확률실험을새정의했다.",
+      "validation": {
+        "math": "십의자리1~4중4개,일의자리는남은4개로16개를균등선택.짝수는일의자리0이면4개,2이면3개,4이면3개로10개.10/16=5/8.고르는방법을명시해카드조합선택후배열편향을배제했다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20904-A85-001",
+      "kind": "rewrite",
+      "content": "세 사격 선수 A, B, C가 각각 한 발씩 쏜다. 각 선수의 명중 여부는 서로 독립이고 명중률은 차례대로 $\\frac25$, $\\frac12$, $\\frac13$이다. A와 B는 명중시키고 C는 명중시키지 못할 확률을 구하시오.",
+      "answer": "$\\frac{2}{15}$",
+      "solution": "$C$가 명중시키지 못할 확률은 $1-\\frac{1}{3}=\\frac{2}{3}$이므로 구하는 확률은 $\\frac{2}{5}\\times \\frac{1}{2}\\times \\frac{2}{3}=\\frac{2}{15}$",
+      "figureUrls": [],
+      "questionType": "단답형",
+      "notes": "문항번호조각을삭제하고독립조건을명시했다.",
+      "validation": {
+        "math": "독립사건의곱으로P(A명중∩B명중∩C실패)=(2/5)(1/2)(1−1/3)=2/15.독립없이는세주변확률만으로교집합확률이정해지지않으므로새조건필수.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    },
+    {
+      "problemCode": "J20904-B28-001",
+      "kind": "rewrite",
+      "content": "제니와 유민이가 다트를 던져 풍선을 터뜨릴 확률은 각각 $\\frac{1}{3}$, $\\frac{3}{5}$이다. 두 사람의 성공 여부는 서로 독립이다. 두 사람이 각각 한 번씩 다트를 던질 때, 적어도 한 명은 풍선을 터뜨릴 확률은?\n① $\\frac{4}{15}$\n② $\\frac{7}{15}$\n③ $\\frac{3}{5}$\n④ $\\frac{11}{15}$\n⑤ $\\frac{4}{5}$",
+      "answer": "④",
+      "solution": "제니와 유민이 모두 풍선을 터뜨리지 못할 확률은\n$\\left( 1-\\frac{1}{3}\\right) \\times \\left( 1-\\frac{3}{5}\\right) =\\frac{2}{3}\\times \\frac{2}{5}=\\frac{4}{15}$\n따라서 적어도 한 명은 풍선을 터뜨릴 확률은\n$1-\\frac{4}{15}=\\frac{11}{15}$",
+      "figureUrls": [],
+      "questionType": "객관식",
+      "notes": "무관한단답형머리글을제거하고독립조건을명시했다.",
+      "validation": {
+        "math": "둘다실패확률=(2/3)(2/5)=4/15.여사건인적어도한명성공은1−4/15=11/15이며④와일치한다.",
+        "visual": "그림 없이 필요한 조건과 보기를 본문에 모두 제공한다."
+      },
+      "remainingIssues": []
+    }
+  ]
+}

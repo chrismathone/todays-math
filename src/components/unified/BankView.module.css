@@ -668,6 +668,15 @@ label.rowSelect {
   margin: 0;
   font-size: var(--text-caption, 12px);
 }
+.cardHeaderWithReference {
+  flex-wrap: wrap;
+  row-gap: 8px;
+}
+.sourceReference {
+  line-height: 1.5;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
 .detail h4 {
   margin: 0 0 10px;
   font-size: var(--text-section, 18px);

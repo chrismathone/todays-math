@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "ownerScope": "finish_available_material_only_2026-10-11",
+  "mountedDrives": [
+    "C:",
+    "D:",
+    "F:",
+    "N:"
+  ],
+  "missingOriginalMounts": [
+    "E:/todays-math-textbook-import",
+    "G:/중등교과서",
+    "G:/고등교과서"
+  ],
+  "localSearchScope": "Task-specific project, retained Orca worktree, archive/temp and education folders only; unrelated private file contents not read.",
+  "availableArchive": {
+    "schemaVersion": 1,
+    "driveFileId": "1KXwcRdE2WuzmObiZUG2keF1fg2nql3id",
+    "archiveName": "chunjae-calculus1-hong.zip",
+    "archiveBytes": 240132791,
+    "archiveSha256": "85566a6f568a4123bb8ea58baff321fcd81f531a631aaed38ecd5dee9dbd832b",
+    "logicalRoot": "G:\\고등교과서\\미적분1\\천재교육 미적분1 (22개정) (홍진곤)",
+    "memberPrefix": "평가자료/",
+    "snapshotSha256": "0328ed69db13e4a5c0d3fb258ebf520e82e0a5c18983b287654fd83660cbd0f4",
+    "verifiedLoadedSourcePaths": 61,
+    "stagedFiles": 114,
+    "identityPolicy": "Exact legacy path hash, verified against captured source_material keys; local bytes have separate paths."
+  },
+  "newAnswerRecoveries": 22,
+  "preparedTextCandidates": 20,
+  "loadPerformedByWorker": false,
+  "stillUnmappedInAcquiredBook": 124,
+  "knownExistingReviewSkippedInAcquiredBook": 3,
+  "visualSourceBlockers": [
+    {
+      "id": "tb-b8f8e88c3f395263-0-2",
+      "sourcePath": "G:\\고등교과서\\미적분1\\천재교육 미적분1 (22개정) (홍진곤)\\평가자료\\소단원 평가 문제\\소단원 평가 문제_Ⅲ-2-01 넓이.hwp",
+      "section": 0,
+      "number": 2,
+      "status": "answer_recovered_preparation_blocked",
+      "beforeAnswer": null,
+      "afterAnswer": "$1 over 7$",
+      "answerFrom": "solution-last",
+      "preparationBlocker": "그림",
+      "figureRoute": "figure",
+      "beforeRowSha256": "d7edce3b1d990dc1b1d9bafcde8a23706cf348a640512fa7c6369a03759d19c6",
+      "afterRowSha256": "a57c462547802ac298ffd1a03ce0f261ea9efb5a1c1f49f5fad544cd13c098ff",
+      "sourceSha256": "79628b5aa176e8b0cadd6047ccca85bb3ef17e6963118db03d286bc1ebc50d7c",
+      "archiveMember": "평가자료/소단원 평가 문제/소단원 평가 문제_Ⅲ-2-01 넓이.hwp",
+      "reviewApproved": false,
+      "directUseAllowed": false,
+      "figureEvidence": {
+        "id": "tb-b8f8e88c3f395263-0-2",
+        "key": "b8f8e88c3f395263",
+        "route": "figure",
+        "figures": [
+          {
+            "n": 1,
+            "k": 0,
+            "file": "b8f8e88c3f395263/tb-b8f8e88c3f395263-0-2-1.png",
+            "mm": 27.56,
+            "sha": "9a895b66bee488a5",
+            "grouped": false,
+            "px": [
+              347,
+              406
+            ],
+            "imgSha": "a071366733cff08d"
+          }
+        ],
+        "dropped": []
+      }
+    },
+    {
+      "id": "tb-f7cf1cee1ee2b598-0-12",
+      "sourcePath": "G:\\고등교과서\\미적분1\\천재교육 미적분1 (22개정) (홍진곤)\\평가자료\\중단원 평가 문제\\중단원 평가 문제_Ⅰ-1 함수의 극한.hwp",
+      "section": 0,
+      "number": 12,
+      "status": "answer_recovered_preparation_blocked",
+      "beforeAnswer": null,
+      "afterAnswer": "$-4$",
+      "answerFrom": "solution-last",
+      "preparationBlocker": "자료 표",
+      "figureRoute": "table",
+      "beforeRowSha256": "6fff603093326ea40435babc0cc1933bc964b15e9ad868864cd99c369db011d5",
+      "afterRowSha256": "113d5ac665a8a963108ddff50bc889496bff3b09c427ccc84919da9f77e00d56",
+      "sourceSha256": "db8d51a6abd4243c0d5e102b501d0f57a3daa3bfe29264964cbc47ee25c7efb7",
+      "archiveMember": "평가자료/중단원 평가 문제/중단원 평가 문제_Ⅰ-1 함수의 극한.hwp",
+      "reviewApproved": false,
+      "directUseAllowed": false,
+      "figureEvidence": {
+        "id": "tb-f7cf1cee1ee2b598-0-12",
+        "key": "f7cf1cee1ee2b598",
+        "route": "table",
+        "figures": [],
+        "dropped": [
+          {
+            "k": 0,
+            "fate": "shared"
+          },
+          {
+            "k": 1,
+            "fate": "shared"
+          }
+        ]
+      }
+    }
+  ],
+  "otherCorpus": {
+    "historicalReportUnmapped": 6528,
+    "reportObservationsOutsideAcquiredBook": 6382,
+    "currentUnimportedUniqueIds": null,
+    "action": "Restore previous extraction/prepared/plan artifacts or make a specifically authorized original subset available."
+  },
+  "originalDownloadLimit": {
+    "driveFileId": "1aYgn-_MiH8rPEnrbVe8cz9nDjop3dMnC",
+    "archiveBytes": 450035221,
+    "connectorLimitBytes": 268435456,
+    "observedError": "HTTP 413: File too large to download",
+    "furtherAcquisition": "stopped_by_owner_scope"
+  },
+  "remainingGates": [
+    "coordinator independent proof receipt",
+    "final page review",
+    "fresh DB ID exclusion",
+    "coordinator pending/held load"
+  ],
+  "baselineReproductionMatchesFinalExtraction": true
+}

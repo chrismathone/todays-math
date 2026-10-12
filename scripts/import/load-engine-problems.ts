@@ -1,5 +1,7 @@
 /**
- * **엔진이 낸 문항을 공유 DB 에 적재한다** — 초등 4단(D-71/72) · 중등 873유형.
+ * **엔진이 낸 문항을 공유 DB 에 적재한다** — 초등 4단(D-71/72) · 중등 873유형 · 결합형 · 판정형.
+ *
+ * 계획의 target 은 `engine` 으로 갈린다 — `elem` · `middle` · `combo` · `judge`(`buildTargetRows` 한 곳).
  *
  *   npx tsx scripts/import/load-engine-problems.ts --plan <계획.json>              # 드라이런(기본)
  *   ALLOW_SHARED_IMPORT=1 npx tsx scripts/import/load-engine-problems.ts --plan <계획.json> --apply
@@ -65,12 +67,30 @@ import {
   generateMiddleComboProblem,
   middleComboDefinitions,
 } from "../../src/lib/middle/combo";
+import {
+  judgeExternalId,
+  judgeFamilyKey,
+} from "../../src/lib/middle/judge/contract";
+import {
+  defaultJudgeRegistry,
+  type JudgeRegistry,
+} from "../../src/lib/middle/judge/registry";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 // 판정 규칙은 관문 판정기가 유일한 자리다 — 옮겨 적지 않는다.
 import { deadBackslashHits } from "../qa/probe-middle-raw-latex";
 // 「그림이 없는데 발문이 가리키나」도 마찬가지다 — 규칙은 `figurelessRow` 한 곳이고
 // 잠그는 쪽(`scripts/qa/lockFigurelessLoadedRows.ts`)이 **같은 함수**를 부른다.
 import { figurelessPointer } from "../../src/lib/engine/figurelessRow";
+import {
+  assertSourceReferencesRetained,
+  engineProvenanceSelect,
+  engineSourceReviewState,
+  matchesEngineImportReadback,
+  parseEngineSourceReferences,
+  resolveEngineSourceReferences,
+  type EngineSourceReference,
+  type ExpectedEngineImport,
+} from "./engine-source-references";
 
 // 관리용 스크립트는 **자기 클라이언트**를 쓴다 — `src/lib/db` 의 바깥벽 확장은
 // 읽기를 `pool='shared'` 로 좁혀서, 「내가 넣은 행이 정말 shared 인가」를 물을 때
@@ -129,10 +149,30 @@ type ComboTarget = {
   variants?: number;
 };
 
+/**
+ * 🔴 **판정형** — «다음 중 계산이 옳지 않은 것은?» (2026-10-08 엔진 보강 · `src/lib/middle/judge/`).
+ * RPM 등록부에도 결합형에도 없다 — 그래서 target 이 따로다. 결합형이 «시험에서만 생성되던» 자리를
+ * 다시 만들지 않으려고 등록부 · 미적재 검사 · 제자리 갱신을 처음부터 이 target 하나에 묶는다.
+ *
+ * ⚠️ `externalId` 는 `judgeExternalId` 로만 짓는다 — 미적재 검사가 `parseJudgeExternalId` 로 **정확히**
+ *    읽는다(같은 파일의 짝). 여기서 모양을 따로 적으면 넣고도 빚이 안 줄어든다.
+ */
+type JudgeTarget = {
+  engine: "judge";
+  /** 비우면 등록된 판정형 전부 */
+  keys?: string[];
+  /** 판정형마다 몇 벌 (기본 3) */
+  variants?: number;
+};
+
+export type Target = ElemTarget | MiddleTarget | ComboTarget | JudgeTarget;
+
 type Plan = {
   label: string;
   seedBase?: number;
-  targets: (ElemTarget | MiddleTarget | ComboTarget)[];
+  targets: Target[];
+  /** Explicit original IDs only; a unit/family match never assigns a source. */
+  sourceReferences?: EngineSourceReference[];
 };
 
 type Row = {
@@ -419,6 +459,114 @@ export function buildComboRows(t: ComboTarget, seedBase: number): Row[] {
   return rows;
 }
 
+/**
+ * 판정형을 행으로 — `src/lib/middle/judge/` 의 등록부를 **적재기가 부르는 자리**.
+ *
+ * 등록부가 이미 객관식(보기 ①~⑤ · 번호 정답)을 낸다. `expandFamily` 는 그런 발문을 파생하지 않고
+ * 그대로 객관식으로 내므로(«이미 객관식인 발문은 파생하지 않는다») 형식은 객관식 하나다.
+ * 중복 제거 · 변형 공간 검사는 초등 · 중등 · 결합형과 **같은 `expandFamily`** 를 탄다.
+ *
+ * `registry` 는 시험이 픽스처 등록부를 넣으려고 연 자리다 — 기본은 살아 있는 등록부.
+ */
+export function buildJudgeRows(
+  t: JudgeTarget,
+  seedBase: number,
+  registry: JudgeRegistry = defaultJudgeRegistry(),
+): Row[] {
+  const defs = registry.definitions();
+  const want = t.keys ? new Set(t.keys) : null;
+  const picked = want ? defs.filter((d) => want.has(d.key)) : defs;
+  if (picked.length === 0)
+    throw new Error(
+      `판정형을 못 찾았다: ${t.keys ? JSON.stringify(t.keys) : "(등록된 것 전부 — 0개)"}` +
+        ` — judgementDefinitions() 로 키를 확인하라`,
+    );
+  if (want && picked.length !== want.size)
+    throw new Error(
+      `판정형 ${want.size}개를 물었는데 ${picked.length}개만 찾았다 — 멈춘다`,
+    );
+  const variants = t.variants ?? 3;
+  const rows: Row[] = [];
+  for (const def of picked) {
+    const familyKey = judgeFamilyKey(def.key);
+    const got = expandFamily((v) => {
+      const p = registry.generate(def.key, seedBase, v);
+      return {
+        content: p.content,
+        answer: p.answer,
+        solution: p.solution,
+        familyKey,
+        // 중등 유형과 같은 어림이다 — 밑 두 칸은 계산, 위는 활용(`buildMiddleRows`).
+        problemType:
+          p.difficulty === "연산" || p.difficulty === "기본" ? "계산" : "활용",
+        difficulty: p.difficulty,
+        variant: v,
+      };
+    }, variants);
+    midSkippedMcq += got.skippedMcq;
+    for (const item of got.items) {
+      const it = item as typeof item & {
+        difficulty: Difficulty;
+        variant: number;
+      };
+      rows.push({
+        externalId: judgeExternalId({
+          judgeKey: def.key,
+          ruleVersion: def.ruleVersion,
+          seed: seedBase,
+          variant: it.variant,
+          questionType: it.questionType,
+        }),
+        variantKey: `mid-judge:${def.key}|r${def.ruleVersion}|s${seedBase}|v${it.variant}`,
+        familyKey,
+        unitKey: `${def.grade} / ${def.unitSection}`,
+        grade: def.grade,
+        section: def.unitSection,
+        content: it.content,
+        answer: it.answer,
+        solution: it.solution,
+        difficulty: it.difficulty,
+        problemType: it.problemType,
+        questionType: it.questionType,
+        figureSpec: null,
+        origin: `중등 판정형 ${def.key} r${def.ruleVersion}`,
+      });
+    }
+  }
+  return rows;
+}
+
+/**
+ * 🔴 **계획의 target 하나 → 행.** 적재기와 제자리 갱신(`scripts/qa/refresh-engine-content.ts`)이 **이 함수 하나**를 부른다.
+ *
+ * 종전에는 두 파일이 저마다 `elem ? … : combo ? … : buildMiddleRows` 를 적었다 — 모르는 target 이
+ * **중등 유형으로 흘러가** «중등 유형을 못 찾았다»로 죽거나, 그 모양이 우연히 맞으면 엉뚱한 행을 냈다.
+ * 판정형을 더하며 한 곳으로 모으고, 모르는 것은 던진다.
+ */
+export function buildTargetRows(
+  t: Target,
+  seedBase: number,
+  deps: { judges?: JudgeRegistry } = {},
+): Row[] {
+  switch (t.engine) {
+    case "elem":
+      return buildElemRows(t, seedBase);
+    case "middle":
+      return buildMiddleRows(t, seedBase);
+    case "combo":
+      return buildComboRows(t, seedBase);
+    case "judge":
+      return buildJudgeRows(t, seedBase, deps.judges);
+    default: {
+      const unknown: never = t;
+      throw new Error(
+        `모르는 적재 대상이다: ${JSON.stringify(unknown).slice(0, 120)}` +
+          ` — engine 은 elem · middle · combo · judge 넷뿐이다`,
+      );
+    }
+  }
+}
+
 /** 중등에서 객관식을 못 만들어 건너뛴 수 — 계획 보고에 찍는다. */
 let midSkippedMcq = 0;
 
@@ -455,6 +603,8 @@ type LedgerRow = {
   problemId: string;
   origin: string;
   unitKey: string;
+  /** Optional for compatibility with historical ledgers. */
+  originProblemId?: string;
 };
 type Ledger = {
   runs: { label: string; at: string; count: number }[];
@@ -486,7 +636,16 @@ function arg(name: string): string | undefined {
   return i >= 0 ? process.argv[i + 1] : undefined;
 }
 
-async function apply(planFile: string, doApply: boolean) {
+type EngineImportClient = {
+  unit: Pick<PrismaClient["unit"], "findMany">;
+  problem: Pick<PrismaClient["problem"], "findMany" | "create">;
+};
+
+export async function applyEnginePlan(
+  planFile: string,
+  doApply: boolean,
+  client: EngineImportClient = prisma,
+) {
   const plan = JSON.parse(readFileSync(planFile, "utf-8")) as Plan;
   const seedBase = plan.seedBase ?? 20260825;
   const ledgerFile = path.join(
@@ -500,24 +659,26 @@ async function apply(planFile: string, doApply: boolean) {
 
   const rows: Row[] = [];
   for (const t of plan.targets) {
-    const made =
-      t.engine === "elem"
-        ? buildElemRows(t, seedBase)
-        : t.engine === "combo"
-          ? buildComboRows(t, seedBase)
-          : buildMiddleRows(t, seedBase);
+    const made = buildTargetRows(t, seedBase);
     console.log(
       `   · ${
         t.engine === "elem"
           ? `${t.grade} ${t.chapter}`
           : t.engine === "combo"
             ? `결합형 ${(t.ids ?? middleComboDefinitions().map((d) => d.id)).length}개`
-            : `${t.grade} ${t.unitSection}`
+            : t.engine === "judge"
+              ? `판정형 ${new Set(made.map((r) => r.familyKey)).size}개`
+              : `${t.grade} ${t.unitSection}`
       } → ${made.length}문항`,
     );
     rows.push(...made);
   }
   console.log(`\n생성 ${rows.length}문항`);
+  // Validate against the complete generation result, before either deduper.
+  const sourceReferences = parseEngineSourceReferences(
+    plan.sourceReferences,
+    rows,
+  );
 
   // ── 🔴 **같은 문항이 다른 번호를 받는 것**을 여기서 막는다 ────────────────────
   // 원장님 2026-08-25: 「같은 문제가 사실상 생성되었는데 문제번호가 다름」.
@@ -554,6 +715,10 @@ async function apply(planFile: string, doApply: boolean) {
     (d) => `${d.stem.origin} ← ${d.against} 과 같음`,
   );
   const unique = run.kept;
+  assertSourceReferencesRetained(
+    sourceReferences,
+    unique.map((r) => r.externalId),
+  );
   const droppedRows = rows.length - unique.length;
   if (dropped.length > 0) {
     console.log(
@@ -607,7 +772,7 @@ async function apply(planFile: string, doApply: boolean) {
   }
 
   // 단원 연결 — 못 찾은 것은 **세어서 찍는다**. 조용히 빼면 「전부 넣었다」로 읽힌다.
-  const units = await prisma.unit.findMany({
+  const units = await client.unit.findMany({
     select: { id: true, grade: true, chapter: true, section: true },
   });
   const byElem = new Map(
@@ -631,15 +796,28 @@ async function apply(planFile: string, doApply: boolean) {
     throw new Error("단원 연결이 새면 적재하지 않는다 — 이름부터 맞춰라");
   }
 
-  // 이미 들어간 것은 건너뛴다 (멱등).
-  const existing = new Set(
-    (
-      await prisma.problem.findMany({
-        where: { externalId: { in: ready.map((r) => r.externalId) } },
-        select: { externalId: true },
-      })
-    ).map((p) => p.externalId!),
+  // Existing IDs are immutable: a requested source must already match exactly.
+  const existingRows = await client.problem.findMany({
+    where: { externalId: { in: ready.map((r) => r.externalId) } },
+    select: engineProvenanceSelect,
+  });
+  await resolveEngineSourceReferences(
+    sourceReferences,
+    ready,
+    existingRows,
+    (ids) =>
+      client.problem.findMany({
+        where: { id: { in: ids } },
+        select: {
+          id: true,
+          unitId: true,
+          source: true,
+          originProblemId: true,
+          pool: true,
+        },
+      }),
   );
+  const existing = new Set(existingRows.map((p) => p.externalId!));
   const fresh = ready.filter((r) => !existing.has(r.externalId));
   console.log(
     `단원 연결 ${ready.length} · 이미 있음 ${existing.size} · **넣을 것 ${fresh.length}**`,
@@ -730,7 +908,7 @@ async function apply(planFile: string, doApply: boolean) {
   //    세어 찍는다** — 뒤엣것이 이번 고침으로 되살아나는 몫이고, 조용하면
   //    다음 사람이 「원래 그만큼이었다」고 읽는다.
   const families = [...new Set(fresh.map((r) => r.familyKey))];
-  const already = await prisma.problem.findMany({
+  const already = await client.problem.findMany({
     where: { familyKey: { in: families } },
     select: {
       familyKey: true,
@@ -786,6 +964,10 @@ async function apply(planFile: string, doApply: boolean) {
     if (seenInDbNoFig.has(`${norm(stem.content)}||${norm(stem.answer)}`))
       rescuedByFigure += 1;
   const kept = dbRun.kept;
+  assertSourceReferencesRetained(sourceReferences, [
+    ...existing,
+    ...kept.map((r) => r.externalId),
+  ]);
   if (kept.length !== beforeDbDedupe)
     console.log(
       `   DB 중복 ${beforeDbDedupe - kept.length}건을 뺐다 · 남은 것 ${kept.length}`,
@@ -851,6 +1033,15 @@ async function apply(planFile: string, doApply: boolean) {
     throw new Error(
       "엔진 소스에서 `String.raw` 를 쓰거나 `\\\\angle` 로 적은 뒤 다시 돌려라. " +
         "여기서 넣으면 **엔진을 고쳐도 이 행은 안 고쳐진다.**",
+    );
+  }
+
+  for (const [externalId, originProblemId] of sourceReferences) {
+    console.log(
+      `   출처 참조 ${externalId} → ${originProblemId} · ` +
+        (existing.has(externalId)
+          ? "이미 있음 (출처 일치 · 변경 없음)"
+          : "새 문항 pending · directUseAllowed=false (사람 검토 필요)"),
     );
   }
 
@@ -921,7 +1112,7 @@ async function apply(planFile: string, doApply: boolean) {
   let lockedFigureless = 0;
   const lockedSamples: string[] = [];
   /** 넣기를 **요청한** 값. 되읽기는 「전부 참인가」가 아니라 이것과 견준다. */
-  const wantDirect = new Map<string, boolean>();
+  const expected = new Map<string, ExpectedEngineImport>();
 
   for (const r of fresh) {
     const svg = svgs.get(r.externalId) ?? null;
@@ -932,12 +1123,14 @@ async function apply(planFile: string, doApply: boolean) {
       if (lockedSamples.length < 3)
         lockedSamples.push(`${r.externalId} — 「${pointer}」`);
     }
-    // exam-wiring: 기출아님 — 우리 엔진이 낸 **자작** 문항이다(`source=manual`).
-    // 원본 시험지가 아예 없으므로 `Exam` 을 세울 것도, 되돌릴 링크도 없다.
-    const made = await prisma.problem.create({
+    // Referencing an original does not make this synthetic row an exam/book item.
+    const originProblemId = sourceReferences.get(r.externalId) ?? null;
+    const review = engineSourceReviewState(originProblemId, figureless);
+    const made = await client.problem.create({
       data: {
         unitId: r.unitId,
         source: "manual", // 자작 — 우리 엔진이 낸 결정론적 문항이다 (AI 아님)
+        originProblemId,
         difficulty: r.difficulty,
         problemType: r.problemType,
         questionType: r.questionType,
@@ -950,19 +1143,25 @@ async function apply(planFile: string, doApply: boolean) {
         // 문항류 (D-105) — 트리거가 이 값으로 `J30103-A01-001` 의 `A01` 자리와
         // 아류 번호를 정한다. 비워 두면 문항마다 혼자 한 무리가 된다.
         familyKey: r.familyKey,
-        reviewStatus: "approved",
-        directUseAllowed: !figureless,
+        ...review,
         pool: "shared",
         solutionSource: "none",
       },
       select: { id: true },
     });
-    wantDirect.set(made.id, !figureless);
+    expected.set(made.id, {
+      externalId: r.externalId,
+      unitId: r.unitId,
+      familyKey: r.familyKey,
+      originProblemId,
+      ...review,
+    });
     created.push({
       externalId: r.externalId,
       problemId: made.id,
       origin: r.origin,
       unitKey: r.unitKey,
+      ...(originProblemId ? { originProblemId } : {}),
     });
     if (created.length % FLUSH_EVERY === 0) flush();
   }
@@ -971,23 +1170,20 @@ async function apply(planFile: string, doApply: boolean) {
   console.log(`적재 ${created.length}건 · 원장 ${ledgerFile}`);
 
   // 🔴 **믿지 않고 잰다** — 넣은 값 그대로인가. 트리거가 뒤집으면 여기서 잡힌다.
-  const back = await prisma.problem.findMany({
+  const back = await client.problem.findMany({
     where: { id: { in: created.map((c) => c.problemId) } },
     select: {
+      ...engineProvenanceSelect,
       id: true,
       pool: true,
       reviewStatus: true,
       directUseAllowed: true,
     },
   });
-  const bad = back.filter(
-    (p) =>
-      p.pool !== "shared" ||
-      p.reviewStatus !== "approved" ||
-      // ⚠️ 「전부 참인가」가 아니라 **요청한 값과 같은가**를 본다. 전자로 두면 위
-      //    그림 가드가 잠근 행이 여기서 «바깥벽이 물었다»로 오진된다.
-      p.directUseAllowed !== wantDirect.get(p.id),
-  );
+  const bad = back.filter((p) => {
+    const wanted = expected.get(p.id);
+    return !wanted || !matchesEngineImportReadback(p, wanted);
+  });
   if (back.length !== created.length)
     throw new Error(`되읽은 행이 ${back.length}/${created.length} 다 — 멈춘다`);
   if (bad.length > 0) {
@@ -999,9 +1195,10 @@ async function apply(planFile: string, doApply: boolean) {
     return;
   }
   const allowed = back.filter((p) => p.directUseAllowed).length;
+  const pending = back.filter((p) => p.reviewStatus === "pending").length;
   console.log(
-    `✅ ${back.length}건 전부 shared · approved · 요청한 출제허용 그대로 — 앱이 볼 수 있다` +
-      ` (출제허용 ${allowed})`,
+    `✅ ${back.length}건 전부 shared · 요청한 출처/엔진 식별자/검토 상태 그대로` +
+      ` (approved ${back.length - pending} · pending ${pending} · 출제허용 ${allowed})`,
   );
   // 🔴 **말없는 상한을 만들지 않는다** — 잠근 것이 있으면 반드시 찍는다.
   if (lockedFigureless > 0) {
@@ -1026,7 +1223,11 @@ async function revert(ledgerFile: string) {
   const led = readLedger(ledgerFile);
   console.log(`원장 ${led.rows.length}행 · 회차 ${led.runs.length}`);
   // 자기가 넣은 것만 지운다 — externalId 가 우리 접두사인지 한 번 더 본다.
-  const mine = led.rows.filter((r) => /^engine-(elem|mid):/.test(r.externalId));
+  // ⚠️ 결합형(`engine-mid-combo:`)·판정형(`engine-mid-judge:`)도 이 적재기가 넣는다 — 종전 식
+  //    `^engine-(elem|mid):` 는 그 둘을 «우리 것이 아니다»로 읽어 되돌리기를 통째로 멈췄다.
+  const mine = led.rows.filter((r) =>
+    /^engine-(?:elem|mid|mid-combo|mid-judge):/.test(r.externalId),
+  );
   if (mine.length !== led.rows.length)
     throw new Error(
       `원장에 우리 것이 아닌 행이 ${led.rows.length - mine.length}건 있다 — 멈춘다`,
@@ -1055,7 +1256,8 @@ async function main() {
   const planFile = arg("--plan");
   const revertFile = arg("--revert");
   if (revertFile) await revert(revertFile);
-  else if (planFile) await apply(planFile, process.argv.includes("--apply"));
+  else if (planFile)
+    await applyEnginePlan(planFile, process.argv.includes("--apply"));
   else {
     console.log("--plan <계획.json> 또는 --revert <원장.json> 이 필요하다");
     process.exitCode = 1;

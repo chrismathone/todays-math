@@ -1,0 +1,77 @@
+{
+  "scope": "Read-only supplied snapshot; not a live database or deployment check",
+  "capturedAt": "2026-10-11T04:25:37.069Z",
+  "snapshotSha256": "d979dc5e560ed06e0d82796e05b29915ba2f02096ca0cd30c976e9620ef3c036",
+  "originalCount": 12281,
+  "uniqueOriginalIds": 12281,
+  "uniqueOriginalFamilies": 12281,
+  "soloFamilyCount": 12281,
+  "childCountTotal": 1437,
+  "oldChildCount": 79,
+  "designatedSlotChildren": 1358,
+  "designatedParents": 679,
+  "pendingDesignatedChildren": 1358,
+  "lockedDesignatedChildren": 1358,
+  "requestedCount": 24562,
+  "pickedCount": 0,
+  "shortfall": 24562,
+  "foldedWrong": 0,
+  "originalsWithShortfall": 12281,
+  "sample": {
+    "original": {
+      "id": "49f76a12-02e2-4c36-9275-1c098c02d411",
+      "unitId": "04a476ce-7155-44ae-8757-58db0ecbbc5b",
+      "familyKey": "solo:e0112714-cc57-4b69-a705-b7b96285dc97",
+      "difficulty": "연산",
+      "directUseAllowed": true,
+      "source": "school_textbook",
+      "originProblemId": null,
+      "externalId": "tb-9cb9b786c5317209-0-3",
+      "pool": "shared",
+      "reviewStatus": "approved",
+      "answer": "⑴ $1$ ⑵ $\\frac{1}{9}$\n⑶ $\\frac{1}{16}$ ⑷ $-\\frac{8}{27}$"
+    },
+    "oldChildren": [],
+    "designatedChildren": [
+      {
+        "id": "5500f3bf-a901-4edc-92bd-830746911463",
+        "unitId": "04a476ce-7155-44ae-8757-58db0ecbbc5b",
+        "familyKey": "solo:e0112714-cc57-4b69-a705-b7b96285dc97",
+        "difficulty": "연산",
+        "directUseAllowed": false,
+        "source": "transformed",
+        "originProblemId": "49f76a12-02e2-4c36-9275-1c098c02d411",
+        "externalId": "tb-retry-v1:49f76a12-02e2-4c36-9275-1c098c02d411:2",
+        "pool": "shared",
+        "reviewStatus": "pending",
+        "answer": "⑴ $1$ ⑵ $\\frac{1}{36}$\n⑶ $\\frac{1}{625}$ ⑷ $-\\frac{125}{216}$"
+      },
+      {
+        "id": "affe7040-6f03-4592-ad0a-cd06b5a21acf",
+        "unitId": "04a476ce-7155-44ae-8757-58db0ecbbc5b",
+        "familyKey": "solo:e0112714-cc57-4b69-a705-b7b96285dc97",
+        "difficulty": "연산",
+        "directUseAllowed": false,
+        "source": "transformed",
+        "originProblemId": "49f76a12-02e2-4c36-9275-1c098c02d411",
+        "externalId": "tb-retry-v1:49f76a12-02e2-4c36-9275-1c098c02d411:1",
+        "pool": "shared",
+        "reviewStatus": "pending",
+        "answer": "⑴ $1$ ⑵ $\\frac{1}{25}$\n⑶ $\\frac{1}{256}$ ⑷ $-\\frac{64}{125}$"
+      }
+    ],
+    "plan": {
+      "picked": [],
+      "requestedCount": 2,
+      "shortfall": 2,
+      "foldedWrong": 0,
+      "textbookShortfalls": [
+        {
+          "wrongProblemId": "49f76a12-02e2-4c36-9275-1c098c02d411",
+          "required": 2,
+          "available": 0
+        }
+      ]
+    }
+  }
+}

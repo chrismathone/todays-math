@@ -50,6 +50,8 @@ def main() -> None:
                 "key": key["answer"],
                 "bookSolution": key.get("solution"),
                 "needSolution": bool(key["needSolution"]),
+                # 그림 문항 — 첫 검토자가 «이 문항의 그림이 아니다»라고 한 것도 그대로 준다(둘째 검토자가 직접 본다)
+                **({"figures": item["figures"]} if item.get("figures") else {}),
             })
             index.append({"judge": name, "i": i, "id": row["id"]})
         (root / "judge" / "batch" / f"{name}.json").write_text(json.dumps(items, ensure_ascii=False, indent=1), encoding="utf-8")

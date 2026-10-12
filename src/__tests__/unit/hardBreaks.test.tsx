@@ -49,6 +49,36 @@ describe("[지면] 홑 줄바꿈은 줄바꿈으로 그린다", () => {
     expect(out).toContain("$$a\nb$$"); // 안 → 그대로
   });
 
+  // 2026-10-08: 수식 블록 **바로 뒤**의 홑 줄바꿈이 빠져 있었다 — 블록 뒤 조각이 줄바꿈으로 시작하면 «앞 글자 + 줄바꿈»
+  // 규칙이 앞 글자를 못 본다. 행렬 · 연립식으로 끝나는 해설 줄이 다음 줄과 붙어 «…=E A+A²+A³=…» 로 읽혔다
+  // (공유 DB 의 교과서 문항 219행 · 고등 엔진 표본 36 중 3 — 고등 배선 작업자가 지면에서 찾았다).
+  it("🔴 수식 블록으로 끝나는 줄 뒤의 홑 줄바꿈도 줄바꿈이다", () => {
+    const src = `따라서 $$A^{2}=E$$\n$A+A^{2}=A+E$이다.`;
+    const out = applyHardBreaks(src);
+    expect(out).toBe(`따라서 $$A^{2}=E$$  \n$A+A^{2}=A+E$이다.`);
+    const { container } = render(<MarkdownRenderer content={src} />);
+    expect(container.querySelectorAll("br").length).toBe(1);
+  });
+
+  it("블록 뒤가 빈 줄(문단)이거나 이미 하드 브레이크면 그대로다", () => {
+    for (const src of [
+      `앞이다. $$a$$\n\n뒤 문단이다.`,
+      `앞이다. $$a$$  \n뒷줄`,
+      `$$a$$`,
+      `$$a$$\n`,
+    ])
+      expect(applyHardBreaks(src)).toBe(src);
+  });
+
+  it("블록 뒤에 글이 이어지면 그 줄 끝의 줄바꿈만 본다(전부터 되던 것)", () => {
+    const src = `$$a$$이므로 $b$\n뒷줄`;
+    expect(applyHardBreaks(src)).toBe(`$$a$$이므로 $b$  \n뒷줄`);
+  });
+
+  it("블록 둘이 줄바꿈 하나로 이어져도 사이에 줄바꿈이 선다", () => {
+    expect(applyHardBreaks(`$$a$$\n$$b$$`)).toBe(`$$a$$  \n$$b$$`);
+  });
+
   it("이미 하드 브레이크인 줄에 공백을 또 붙이지 않는다", () => {
     const src = "앞줄  \n뒷줄";
     expect(applyHardBreaks(src)).toBe(src);

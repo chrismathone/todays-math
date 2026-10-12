@@ -43,6 +43,19 @@ function hardBreakOutsideMath(text: string): string {
 }
 
 /**
+ * 수식 블록 **바로 뒤**의 홑 줄바꿈 — 블록 뒤 조각이 줄바꿈으로 시작하면 위 규칙이 «앞 글자»를 못 본다
+ * (앞 글자는 블록의 닫는 `$$` 다). 행렬 · 연립식으로 끝나는 줄이 다음 줄과 붙어 나갔다(2026-10-08 — 공유 DB 의
+ * 교과서 문항 219행). 빈 줄(문단) · 이미 하드 브레이크(공백 둘)는 그대로 둔다.
+ */
+function hardBreakAfterBlock(tail: string, atEnd: boolean): string {
+  const lead = /^([ \t]*)\n(?![ \t]*\n)/.exec(tail);
+  if (!lead || lead[1]!.length >= 2) return tail;
+  // 글의 맨 끝 줄바꿈 뒤에는 이을 줄이 없다 — 붙이지 않는다(다음 블록이 이어지는 사이 조각은 붙인다)
+  if (atEnd && tail.length === lead[0].length) return tail;
+  return `  \n${tail.slice(lead[0].length)}`;
+}
+
+/**
  * 홑 줄바꿈 → 하드 브레이크. `$$…$$` 는 통째로 건너뛴다.
  *
  * ⚠️ 순수 함수다. 같은 입력이면 같은 출력 — `MarkdownRenderer` 의 전처리 캐시가
@@ -56,10 +69,16 @@ export function applyHardBreaks(content: string): string {
   MATH_BLOCK.lastIndex = 0;
   let m: RegExpExecArray | null;
   while ((m = MATH_BLOCK.exec(content)) !== null) {
-    out += hardBreakOutsideMath(content.slice(last, m.index));
+    const between = content.slice(last, m.index);
+    out += hardBreakOutsideMath(
+      last === 0 ? between : hardBreakAfterBlock(between, false),
+    );
     out += m[0]; // 수식 블록은 **그대로**
     last = m.index + m[0].length;
   }
-  out += hardBreakOutsideMath(content.slice(last));
+  const tail = content.slice(last);
+  out += hardBreakOutsideMath(
+    last === 0 ? tail : hardBreakAfterBlock(tail, true),
+  );
   return out;
 }

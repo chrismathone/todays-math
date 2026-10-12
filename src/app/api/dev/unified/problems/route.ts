@@ -1,12 +1,17 @@
 import { loadUnifiedBank, UnifiedBankQueryError } from "@/lib/unifiedPreview";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
+import { readUnifiedBankQueryBody } from "@/lib/unifiedBankQueryBody";
 
 async function handleGet(request: Request) {
   if (process.env.NODE_ENV !== "development")
     return new Response(null, { status: 404 });
   try {
     return Response.json(
-      await loadUnifiedBank(new URL(request.url).searchParams),
+      await loadUnifiedBank(
+        request.method === "POST"
+          ? await readUnifiedBankQueryBody(request)
+          : new URL(request.url).searchParams,
+      ),
       { headers: { "Cache-Control": "no-store" } },
     );
   } catch (error) {
@@ -20,3 +25,4 @@ async function handleGet(request: Request) {
 }
 
 export const GET = withErrorLog("/api/dev/unified/problems", handleGet);
+export const POST = withErrorLog("/api/dev/unified/problems", handleGet);

@@ -1,0 +1,5 @@
+# Source receipts and rendered artifacts are hashed by exact bytes.
+*.json -text whitespace=cr-at-eol
+*.jsonl -text whitespace=cr-at-eol
+*.html -text whitespace=cr-at-eol
+*.md text eol=lf

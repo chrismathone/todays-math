@@ -31,6 +31,7 @@ import { DEFAULT_PROBLEM_POOL, problemVisibleWhere } from "@/lib/problemPool";
 import { PROBLEM_BANK_ORDER_BY } from "@/lib/problem/problemOrder";
 import { isPrismaErrorCode } from "@/lib/prismaErrors";
 import { serializeProblem } from "@/lib/serializers";
+import { withProblemSourceReferences } from "@/lib/problem/sourceReference";
 import { getSessionUser } from "@/lib/session";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 
@@ -278,7 +279,7 @@ async function handleGet(request: NextRequest) {
   ]);
 
   return jsonOk(problemListResponseSchema, {
-    data: rows.map(serializeProblem),
+    data: (await withProblemSourceReferences(rows)).map(serializeProblem),
     meta: { page, pageSize, total },
   });
 }
