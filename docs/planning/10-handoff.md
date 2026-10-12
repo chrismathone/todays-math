@@ -50,6 +50,16 @@
   🔴 main 에 올리려면 **적재(DB)가 먼저**다(안 실으면 `checkUnloadedTypes` 가 168자리로 빨강) — 그 전에 원장님 결정 셋: 고등 엔진 배지(지금은 `[중]` «중등 엔진 생성»으로 나온다) · 적재 시점 · 공통수학1 개방(`SUPPORTED_GRADES`).
   ⑹ 인쇄 쪽 잔고(원장님께 올릴 것): 보기 열 수의 폭 자(`choiceLayout.ts:105` · `displayWidth.ts:163` — 괄호 분수를 좁게 본다) · 정답지 해설의 큰 분수 줄 맞닿음 · 긴 식이 괄호 안에서 끊김 · 빠른 정답 칸에서 식 답이 접힘.
   다음: 3단계(② 설명 판정 — 문장 보기의 지면 관문을 따로 정해야 한다 · ○× 은행 재료는 여섯 조건) → ③-n 공통수학2.
+- **이 세션의 마무리(2026-10-12 — 원장님 «여긴 마무리해»)** — 새 일은 띄우지 않고 닫았다.
+  - 다시 잰 것(2026-10-12 · 다른 세션의 159커밋 뒤): 교과서 문항 **12,301** · 출제 가능 11,826 · 잠금 475 · 그림이 붙은 3,779 · `--refresh` 드라이런 «고칠 문항 0» · 푸시 관문(`check:figure-choices` · `checkUnloadedTypes`) 초록.
+  - 오르카 실행 묶음 `run_5e2cd4076e28` 의 일감은 전부 정리됐다. 작업트리 `bank-source-h1` · `engine-judge-2` 는 없어졌고, `engine-judge` 와 `high-wiring`(오르카 workspaces)은 남아 있다.
+    `engine-judge` 의 미완 하네스(`e2e/answer-key-overlap/` — 정답지 줄 겹침 검사 · 미커밋)는 저장소 밖 `E:\todays-math-textbook-import\leftover\answer-key-overlap\` 에 옮겨 뒀다.
+  - **안 닫힌 것 — 다음 사람이 이어받을 것**:
+    ① **고등 배선 가지 `chrismathone/high-wiring`(`5173dfe8d` · main 에 없는 커밋 넷)** — 원장님 결정 셋(고등 엔진 배지 · 공통수학1 4,026행 적재 · 공통수학1 개방)을 여쭙다가 세션이 끊겨 **답을 못 받았다.**
+       병합 차례: (배지 결정) → 그 가지의 적재기로 적재(DB 먼저) → main 을 합쳐 푸시. main 이 159커밋 앞서 있으니 합친 뒤 제자리 갱신 드라이런을 다시 본다.
+    ② 인쇄 쪽 잔고 넷(보기 열 수의 폭 자 · 정답지 큰 분수 줄 맞닿음 · 긴 식 끊김 · 빠른 정답 칸) — 시안을 만들지 여쭙지 못했다. `calc-pow` 등록과 `calc-mix4` 12문항의 잠금 풀기가 여기에 묶여 있다.
+    ③ 원장님 확인 대기 — 판정형 표본과 난이도(`engine-judge-step01.md` · `engine-judge-step2.md` §8.2) · 거르기 화면의 자료 종류 차례와 «단원 범위 선택» 칸 잘림 · 실물 인쇄 검수 `math-block-tail-break`.
+    ④ 엔진 3단계(② 설명 판정) · ③-n 공통수학2 는 시작하지 않았다. 교과서 잔고(짝 모르는 그림 보기 6 · `not-loaded.md` §1 · `unmapped.md`)도 그대로다.
   🔴 실측: 고등 과목 문항은 교과서 3,250 뿐 · 엔진 `high:` 0 · `SUPPORTED_GRADES` 는 초3 ~ 중3 — 고등 교과서 문항은 출제 범위 고르개에 안 보인다(고등을 열지는 원장님 결정 대기).
 - 🔴 main 의 빨간 시험(H1 작업자가 origin/main 으로 되돌려도 빨갛다고 보고): `ProblemBank` 출처 기대값 · english/questions `withErrorLog` · 교재 백지 `questionMode` · 보기 그림 해시 — 4파일 5건. pre-push 는 전체 vitest 를 안 돌려 안 막힌다.
 
