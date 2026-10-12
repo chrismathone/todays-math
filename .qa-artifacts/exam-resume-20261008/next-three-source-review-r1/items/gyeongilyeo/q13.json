@@ -1,0 +1,903 @@
+{
+  "schemaVersion": 1,
+  "schoolKey": "gyeongilyeo",
+  "questionNumber": 13,
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "method": "independent-source-component-comparison",
+  "status": "review-complete-with-individual-holds",
+  "newAuthorAnswersRead": false,
+  "originalAnswerSheetViewedOnlyForClassification": false,
+  "originalKeysUsed": false,
+  "sourceIdentity": {
+    "printedYear": 2025,
+    "printedGrade": 3,
+    "printedSemester": 1,
+    "printedRound": "중간고사",
+    "printedSchool": null,
+    "nominalCompletedSemester": 2,
+    "status": "held-printed-term-conflict-school-unbound",
+    "basis": "All four original footers print 2025학년도 3학년 1학기 중간고사, 수학 code02,4쪽. No printed school name found on any supplied original page. Filename/completed header cannot resolve this."
+  },
+  "sourcePrintedQuestionPage": 2,
+  "bindings": {
+    "manifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\source-manifest.json",
+      "sha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6",
+      "bytes": 2039751
+    },
+    "sourceInputs": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경일여중][3][25-2-중간][미래엔] (완료).hwp",
+        "sha256": "bf151df38d36b470528756d206a4bae7f6c6fe694f869b882d9c5903feea8293",
+        "bytes": 1754112
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경일여중][3][25-2-중간][미래엔] (완료).PDF",
+        "sha256": "6f698bac5f3a331c186d4251a7d66774e861e0efafcb5dcba03947bd34660733",
+        "bytes": 15055109
+      }
+    ],
+    "originalPrintedComparisons": [
+      {
+        "alternative": 1,
+        "originalPdfSha256": "54fe74eaef9354c6e1e15ae6008f6c750ba7b49c08d6db6cce92a61d7a985b3c",
+        "pdfPage": 2,
+        "printedPage": 2,
+        "preview": {
+          "school": "gyeongilyeo",
+          "alternative": 1,
+          "page": 2,
+          "path": "reviewer-only/gyeongilyeo/original-01-page-02-r2.png",
+          "sha256": "c59a415bb99531504d1ae2c58bb8db0e6190f163f94c65043fda2719db193cdd",
+          "pixelSha256": "73bc15f26a907cc9416525583dfc8e8df1e03f2391889c5af01f0c10b8240ed2",
+          "width": 1400,
+          "height": 1867,
+          "pdfSha256": "54fe74eaef9354c6e1e15ae6008f6c750ba7b49c08d6db6cce92a61d7a985b3c",
+          "notAuthorInput": true
+        },
+        "reviewerOnly": true,
+        "handwrittenAnnotationsIgnored": true,
+        "answerSheetPageUsed": false
+      }
+    ],
+    "quarantinedQuestionCrops": [
+      {
+        "path": "gyeongilyeo\\quarantined-question-crops\\q13-part1.png",
+        "sha256": "0a938b1137986844d4d09c84a603945b1331a1ad79eebbc3c8e38edb593e9104",
+        "page": 3,
+        "column": 1,
+        "bbox": [
+          370,
+          552.3786010742188,
+          688.0,
+          943.0
+        ]
+      }
+    ],
+    "sourceContentDigestFromParser": "374c0b00babc47daae27adc7b89f109a83fd75e492e17694f2a0b1019437bc9c",
+    "reviewQuestionOnlyDigest": "4fde6d3d7dddd843c8cd529cd0a2076b4134a373f1e8ec3f6cd2c23a05ddcd8f",
+    "positionedCharactersDigest": "ab54d68fd0cc44c01d46ae9c4d3657c7ccf69b1ab0aad4e0552e3d6e70f154e0",
+    "rawHwpScriptsDigest": "ceda14b40af72aa1beaedf483577dc8029cd364ac4411c3a91988170001f0106",
+    "mathExpressionsDigest": "4271f99cae5597e68bb56ce3f176e1474d0e314350f4dda2437e1fb6fe63bace",
+    "figureRecordsDigest": "6154501fd2f36c22537e884566aa829092f560bf9ff7b7f79595d0b01881afd9",
+    "figureCorrespondenceDigest": "5d830893a34dfbb9d4ecef846f92040e64f4a3ae773f1fda956335d33957e830",
+    "tableDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "scoreAndPartsDigest": "05534ed9e055764751929a427a1a0fed4eb1e6f3e57c0939e036992af1a61efd",
+    "reviewObservationDigest": "0ba0ab177d0dd914fae42c3a1c1ebc48cedfbb7ccfd23ca1f42a094be0eea554"
+  },
+  "componentComparison": {
+    "actualViews": "all completed crop contact sheets and corresponding original printed question page(s)",
+    "hwpRecordAndMathAnchors": [
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1413,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1410,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1424,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1423,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1410,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1426,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1425,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1410,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1428,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1427,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1410,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1430,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1429,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1410,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1410,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1437,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1435,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1432,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1439,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1443,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1442,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1439,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1439,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1445,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1444,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1439,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1447,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1451,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1450,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1447,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1447,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1453,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1452,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1447,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1455,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1459,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1458,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1455,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1461,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1461,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1466,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1466,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1424,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1423,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1426,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1425,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1428,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1427,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1430,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1429,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1443,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1442,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1445,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1444,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1451,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1450,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1453,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1452,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1459,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1458,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1437,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1435,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      }
+    ],
+    "allAnchorChecksPass": true,
+    "sourceMathScriptsPreserved": true,
+    "mathExpressionCount": 9,
+    "fiveChoicesOrWrittenObserved": true,
+    "figureFactsObserved": "AB22,BC16,CD12,DE8,EF4 cm; AC/AD/AE 공통 접선, AF 목표",
+    "hwpFigureRecords": [
+      {
+        "kind": "figure",
+        "binId": 9,
+        "source": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1437,
+          "inflatedByteOffset": 65622,
+          "tag": 85,
+          "level": 3,
+          "payloadSha256": "c7a93c1b835dcb37f361987d2dbb70d538715f7a6c412243473630fee972e95f"
+        },
+        "controlSource": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1435,
+          "inflatedByteOffset": 65222,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "0283d7aa4b868b3a106f02c63db7bbd31f251f728fec2a91b21579ca7f0d4e92"
+        },
+        "binStream": "BinData/BIN0009.bmp",
+        "binReferenceExists": true
+      }
+    ],
+    "pdfFigureCorrespondence": [
+      {
+        "pdfPage": 3,
+        "xref": 25,
+        "rectangles": [
+          [
+            418.3810119628906,
+            623.06103515625,
+            628.2310180664062,
+            762.6380615234375
+          ]
+        ],
+        "pdfImageBytesSha256": "68a7d294d9378a3d32c18753e21835fcd1bc0884e32f3347786159cdf269c422",
+        "pdfPixelRgbSha256": "246d7b8f1eedfddf730cc9c518c8311a8c9a3d9ffd02be555d153338ef58046f",
+        "pixelSize": [
+          990,
+          659
+        ],
+        "sameSizeHwpCandidates": [
+          {
+            "binId": 9,
+            "stream": "BinData/BIN0009.bmp",
+            "hwpPixelRgbSha256": "db5dca4ea25e4ea537508d629a0dd5e5074474fd4437d4d832c5d53e30b54e03",
+            "meanChannelAbsoluteDifference": 1.189301206296654,
+            "threshold200PixelEquality": false
+          }
+        ],
+        "certifiedByPixelsAlone": false
+      }
+    ],
+    "tables": [],
+    "providedScaffold": null,
+    "score": {
+      "parentScore": 4,
+      "printedOccurrences": [
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 129
+        }
+      ],
+      "parentCountedOnce": true,
+      "originalPrintedScoreObserved": 4,
+      "originalTotalCertification": false,
+      "parts": null,
+      "partsAllocationStatus": "single MC item"
+    },
+    "canonicalIssues": [],
+    "newBoundaryAmendments": [],
+    "unknownControlsCount": 0,
+    "countOrNoUnknownsIsApproval": false
+  },
+  "curriculumCoreMethodProposal": {
+    "grade": "중3",
+    "edition": "2015",
+    "appliedSourceEditionBasis": "2025middle3→2015;2022middle3 rollout2027. KI2025/grade observed but school/term conflict remains.",
+    "standardCodes": [
+      "9수04-19"
+    ],
+    "coreConceptProposal": "연속된 원들의 접선 길이",
+    "procedureProposal": "각 원의 두 접선 길이를 유한하게 이어 같은 길이를 소거한다. 원과 비례 공식은 사용하지 않는다.",
+    "status": "method-hold",
+    "gradeApproved": false,
+    "hardExclusionGround": null,
+    "restrictions": [
+      "no arbitrary trig identities",
+      "angles0..90 for ratio values",
+      "no circle proportionality",
+      "no sine/cosine law,Heron,vector,addition formula",
+      "no overly complicated transformed geometry assessment"
+    ],
+    "sevenStudentSurfaces": {
+      "stem": {
+        "sourceObserved": true,
+        "risk": "method-hold"
+      },
+      "choices": {
+        "sourceObserved": true,
+        "risk": "source observed; final twin choices pending"
+      },
+      "figuresAndNotation": {
+        "sourceObserved": true,
+        "risk": "AB22,BC16,CD12,DE8,EF4 cm; AC/AD/AE 공통 접선, AF 목표",
+        "tablesIncluded": false
+      },
+      "answerFormat": {
+        "sourceObserved": "MC5choices",
+        "risk": "source answer not read/exported; future format must remain within grade"
+      },
+      "studentSolution": {
+        "status": "not-exposed-not-reviewed",
+        "risk": "No original solution used. New author solution and independent grade review are required."
+      },
+      "requiredProcedure": {
+        "status": "proposal-only",
+        "risk": "각 원의 두 접선 길이를 유한하게 이어 같은 길이를 소거한다. 원과 비례 공식은 사용하지 않는다."
+      },
+      "prerequisites": {
+        "status": "proposal-only",
+        "risk": "Use actual perpendicular heights,triangle congruence/similarity,Pythagorean and ratio definitions; never import prohibited higher methods."
+      }
+    },
+    "curriculumEvidenceBinding": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "bytes": 114892
+    }
+  },
+  "metadataProposal": {
+    "unit": {
+      "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "grade": "중3",
+      "chapter": "6. 원의 성질",
+      "section": "원의 접선",
+      "semester": 2,
+      "orderIndex": 485,
+      "problemCodePrefix": "J30602"
+    },
+    "unitStatus": "historical UUID/section match proposal by observed core; not target permission",
+    "familyKey": null,
+    "familyStatus": "held-no-semantic-live-family-assignment",
+    "liveBankSnapshotBinding": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r3-20261008.json",
+      "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+      "bytes": 78216
+    },
+    "liveBankSnapshotCapturedAt": "2026-10-08 13:00:16.891043+00",
+    "freshNow": false,
+    "registryBinding": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "bytes": 85170
+    },
+    "sourceTopicLabel": "원과 직선",
+    "sourceDifficultyLabel": "중",
+    "difficultyStatus": "source preparation label not original printed difficulty or measured target equivalence; pending",
+    "score": 4
+  },
+  "questionOnlyWhitelist": {
+    "selected": false,
+    "scope": "question-only source access for staged author planning; not author/policy release",
+    "blockers": [
+      "KI printed first semester conflicts with nominal second semester; school unbound"
+    ],
+    "rawOriginalsAllowed": false,
+    "answerSheetAllowed": false,
+    "sourceCropMayNeverBeFinalTwinFigure": true,
+    "independentApproval": false
+  },
+  "gates": {
+    "sourceIdentityApproval": false,
+    "wholePairApproval": false,
+    "gradeApproval": false,
+    "familyApproval": false,
+    "difficultyApproval": false,
+    "rightsApproval": false,
+    "custodyApproval": false,
+    "nativeApproval": false,
+    "loadable": false,
+    "directUseAllowed": false
+  }
+}

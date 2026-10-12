@@ -1,0 +1,65 @@
+{
+  "questionNumber": 1,
+  "newSourceReferenceId": "source-ref-2025-gyeseong-3-2-mid-r1-q01",
+  "stem": "직각삼각형 $\\mathrm{ABC}$에서 $\\angle \\mathrm{A},~\\angle \\mathrm{B}$의 삼각비의 값으로 옳지 않은 것은? [$3$점]",
+  "choices": [
+    "$\\sin \\,A=\\frac{a}{c}$",
+    "$\\sin \\,B=\\frac{b}{c}$",
+    "$\\cos \\,A=\\frac{b}{c}$",
+    "$\\cos \\,B=\\frac{a}{c}$",
+    "$\\tan \\,B=\\frac{a}{b}$"
+  ],
+  "questionType": "multiple-choice",
+  "score": {
+    "parentScore": 3,
+    "printedOccurrences": [
+      {
+        "printed": "[$3$점]",
+        "value": 3.0,
+        "parentTotalMarked": false,
+        "textOffset": 58
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 3,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "single MC item"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "gyeseong\\quarantined-question-crops\\q01-part1.png",
+        "sha256": "48813166b86e8c2806ec72f28013703eb6c24ee8ab003df6b0ee33e7df233d47",
+        "page": 1,
+        "column": 0,
+        "bbox": [
+          55,
+          99,
+          375,
+          428.6290283203125
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "직각삼각형 $rmABC$에서 $anglermA,~anglerm B$의 삼각비의 값으로 옳지 않은 것은? [$3$점]",
+  "rawHwpChoices": [
+    "$sin`A = a over c$",
+    "$sin`B = b over c$",
+    "$cos`A = b over c$",
+    "$cos`B = a over c$",
+    "$tan`B = a overb $"
+  ],
+  "tables": [],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

@@ -1,0 +1,180 @@
+{
+  "schoolKey": "gyeongilyeo",
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "method": "independent-source-component-comparison",
+  "manifestBinding": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\source-manifest.json",
+    "sha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6",
+    "bytes": 2039751
+  },
+  "selectedInputBinding": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\selected-source-inputs.json",
+    "sha256": "85c118c2ddfa2676cfa5c5b91b57a65a5638e40b8b805073ce4ca1ea4a6da02e",
+    "bytes": 1425
+  },
+  "identity": {
+    "printedYear": 2025,
+    "printedGrade": 3,
+    "printedSemester": 1,
+    "printedRound": "중간고사",
+    "printedSchool": null,
+    "nominalCompletedSemester": 2,
+    "status": "held-printed-term-conflict-school-unbound",
+    "basis": "All four original footers print 2025학년도 3학년 1학기 중간고사, 수학 code02,4쪽. No printed school name found on any supplied original page. Filename/completed header cannot resolve this."
+  },
+  "counts": {
+    "newlyParsedParents": 22,
+    "originalPrintedParentsObserved": 22,
+    "identitySupportedPrintedParents": 0,
+    "formalSourceCertifiedParents": 0,
+    "newTwins": 0,
+    "gradeApprovals": 0,
+    "rightsApprovals": 0,
+    "familyApprovals": 0,
+    "nativeApprovals": 0
+  },
+  "scores": {
+    "printedQuestionScoresObserved": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      6,
+      7,
+      7,
+      7,
+      8
+    ],
+    "printedParentScoreSumCalculated": 100,
+    "completedParentScoreSumCalculated": 100.0,
+    "missingParentScoreQuestions": [],
+    "ambiguousPerSubpartAllocation": [
+      18,
+      19,
+      21,
+      22
+    ],
+    "scoreApproval": false,
+    "priorRootReportedRawScoreSum": 96,
+    "conflict": "Prior 96 remains an unresolved competing observation. Direct item-by-item printed scores read as 100; no 100 total is printed on supplied original. No invented four-point adjustment or source certification.",
+    "parentSubparts": {
+      "20": {
+        "parent": 7,
+        "parts": [
+          4,
+          3
+        ],
+        "countParentOnce": true
+      }
+    }
+  },
+  "originalAlternatives": [
+    {
+      "alternative": 1,
+      "source": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경일여중][3][25-2-중간](원본)(삼동).pdf",
+        "sha256": "54fe74eaef9354c6e1e15ae6008f6c750ba7b49c08d6db6cce92a61d7a985b3c",
+        "bytes": 13056847
+      },
+      "pageCount": 4,
+      "pageRoles": {
+        "1": "questions1-7",
+        "2": "questions8-13",
+        "3": "questions14-18",
+        "4": "questions19-22"
+      },
+      "viewed": "direct visual unique pages; byte/pixel-identical duplicate pages inherited only after exact code comparison",
+      "questionContentComparison": "Same printed item conditions/math/options/figures/tables/scores within this school; incidental manuscript layers differ. KI10 option-label sequence disagreement is with completed pair, not a key comparison.",
+      "authorDistributionAllowed": false,
+      "reviewerOnly": true,
+      "previewBindings": [
+        {
+          "school": "gyeongilyeo",
+          "alternative": 1,
+          "page": 1,
+          "path": "reviewer-only/gyeongilyeo/original-01-page-01-r2.png",
+          "sha256": "6ed0630b2a72b042fbaa3eed1e9beec7179b2a5fc1bd70891e5f6c9d64d2a57e",
+          "pixelSha256": "60ec7e76b50d71c14e2d10e132599967898b9498ad48c51a15dcdbeb1c9ba460",
+          "width": 1400,
+          "height": 1867,
+          "pdfSha256": "54fe74eaef9354c6e1e15ae6008f6c750ba7b49c08d6db6cce92a61d7a985b3c",
+          "notAuthorInput": true
+        },
+        {
+          "school": "gyeongilyeo",
+          "alternative": 1,
+          "page": 2,
+          "path": "reviewer-only/gyeongilyeo/original-01-page-02-r2.png",
+          "sha256": "c59a415bb99531504d1ae2c58bb8db0e6190f163f94c65043fda2719db193cdd",
+          "pixelSha256": "73bc15f26a907cc9416525583dfc8e8df1e03f2391889c5af01f0c10b8240ed2",
+          "width": 1400,
+          "height": 1867,
+          "pdfSha256": "54fe74eaef9354c6e1e15ae6008f6c750ba7b49c08d6db6cce92a61d7a985b3c",
+          "notAuthorInput": true
+        },
+        {
+          "school": "gyeongilyeo",
+          "alternative": 1,
+          "page": 3,
+          "path": "reviewer-only/gyeongilyeo/original-01-page-03-r2.png",
+          "sha256": "e1222fd4fff3c5b130742f113b82c2d83bcbdaf0f4cc475ae6d53c0ab85ded3d",
+          "pixelSha256": "896d0dac662d790fca457bcd460a22a12440e7847b97a17f5086cee8db5fcdbd",
+          "width": 1400,
+          "height": 1867,
+          "pdfSha256": "54fe74eaef9354c6e1e15ae6008f6c750ba7b49c08d6db6cce92a61d7a985b3c",
+          "notAuthorInput": true
+        },
+        {
+          "school": "gyeongilyeo",
+          "alternative": 1,
+          "page": 4,
+          "path": "reviewer-only/gyeongilyeo/original-01-page-04-r2.png",
+          "sha256": "d85ff8547b4a00b21fe83e433c750182bafa5bd0d9fe971b0a119854b12eb500",
+          "pixelSha256": "f6cc9f8115b546585842f34263913f35b202b25cbea987e9e9d7465ab78a0d62",
+          "width": 1400,
+          "height": 1867,
+          "pdfSha256": "54fe74eaef9354c6e1e15ae6008f6c750ba7b49c08d6db6cce92a61d7a985b3c",
+          "notAuthorInput": true
+        }
+      ]
+    }
+  ],
+  "originalAlternativeDedup": {
+    "byteIdenticalGroups": [],
+    "pixelIdenticalQuestionPageGroups": {},
+    "semanticQuestionContentGroups": [
+      [
+        1
+      ]
+    ],
+    "crossSchoolExamDedupCertified": false,
+    "currentBankDedupPerformed": false
+  },
+  "completedPairHeaderFooterCaveat": "Completed PDF nominal2025secondsemester and HWP preparation footer26년2학기 are not original identity evidence.",
+  "originalAnswersUsed": false,
+  "gates": {
+    "sourceIdentityApproval": false,
+    "wholePairApproval": false,
+    "gradeApproval": false,
+    "familyApproval": false,
+    "difficultyApproval": false,
+    "rightsApproval": false,
+    "custodyApproval": false,
+    "nativeApproval": false,
+    "loadable": false,
+    "directUseAllowed": false
+  }
+}

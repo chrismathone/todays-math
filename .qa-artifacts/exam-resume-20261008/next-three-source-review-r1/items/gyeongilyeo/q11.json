@@ -1,0 +1,905 @@
+{
+  "schemaVersion": 1,
+  "schoolKey": "gyeongilyeo",
+  "questionNumber": 11,
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "method": "independent-source-component-comparison",
+  "status": "review-complete-with-individual-holds",
+  "newAuthorAnswersRead": false,
+  "originalAnswerSheetViewedOnlyForClassification": false,
+  "originalKeysUsed": false,
+  "sourceIdentity": {
+    "printedYear": 2025,
+    "printedGrade": 3,
+    "printedSemester": 1,
+    "printedRound": "중간고사",
+    "printedSchool": null,
+    "nominalCompletedSemester": 2,
+    "status": "held-printed-term-conflict-school-unbound",
+    "basis": "All four original footers print 2025학년도 3학년 1학기 중간고사, 수학 code02,4쪽. No printed school name found on any supplied original page. Filename/completed header cannot resolve this."
+  },
+  "sourcePrintedQuestionPage": 2,
+  "bindings": {
+    "manifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\source-manifest.json",
+      "sha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6",
+      "bytes": 2039751
+    },
+    "sourceInputs": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경일여중][3][25-2-중간][미래엔] (완료).hwp",
+        "sha256": "bf151df38d36b470528756d206a4bae7f6c6fe694f869b882d9c5903feea8293",
+        "bytes": 1754112
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경일여중][3][25-2-중간][미래엔] (완료).PDF",
+        "sha256": "6f698bac5f3a331c186d4251a7d66774e861e0efafcb5dcba03947bd34660733",
+        "bytes": 15055109
+      }
+    ],
+    "originalPrintedComparisons": [
+      {
+        "alternative": 1,
+        "originalPdfSha256": "54fe74eaef9354c6e1e15ae6008f6c750ba7b49c08d6db6cce92a61d7a985b3c",
+        "pdfPage": 2,
+        "printedPage": 2,
+        "preview": {
+          "school": "gyeongilyeo",
+          "alternative": 1,
+          "page": 2,
+          "path": "reviewer-only/gyeongilyeo/original-01-page-02-r2.png",
+          "sha256": "c59a415bb99531504d1ae2c58bb8db0e6190f163f94c65043fda2719db193cdd",
+          "pixelSha256": "73bc15f26a907cc9416525583dfc8e8df1e03f2391889c5af01f0c10b8240ed2",
+          "width": 1400,
+          "height": 1867,
+          "pdfSha256": "54fe74eaef9354c6e1e15ae6008f6c750ba7b49c08d6db6cce92a61d7a985b3c",
+          "notAuthorInput": true
+        },
+        "reviewerOnly": true,
+        "handwrittenAnnotationsIgnored": true,
+        "answerSheetPageUsed": false
+      }
+    ],
+    "quarantinedQuestionCrops": [
+      {
+        "path": "gyeongilyeo\\quarantined-question-crops\\q11-part1.png",
+        "sha256": "5aefe9e448cf286f26b3a519f1cf7039ada8b5a9d67e08378025d23e433dbeae",
+        "page": 3,
+        "column": 0,
+        "bbox": [
+          55,
+          522.1620483398438,
+          375,
+          943.0
+        ]
+      }
+    ],
+    "sourceContentDigestFromParser": "310d4e3eefdcd3580bdb9b6325c6ec5c35fcb57d303ea7a3860122b05e4ddf0a",
+    "reviewQuestionOnlyDigest": "ea13a44b1e8faaf44aa0b997561c16bfac4fe6e2ad08362adbfcd91be9b427df",
+    "positionedCharactersDigest": "c0d1f74f04b666f530b686ce35756c7b381fae6060113ca214e28c4b0c5aa037",
+    "rawHwpScriptsDigest": "5a985fec8f87bfe9ffcfbd534cda85868e19a83746f23f2e965856fca05fac71",
+    "mathExpressionsDigest": "5ce582d3759841bed183419ba0db155785e933ff85265abbc3563b64287f773b",
+    "figureRecordsDigest": "6ea26514ce723d3947c04703265d5a04fb90d9d1afd0e42899c81e0e0c4f0e17",
+    "figureCorrespondenceDigest": "084089506cc12b942541bfbbf41e92e20626c75d2c6235bcc80e9a8c0f77cc50",
+    "tableDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "scoreAndPartsDigest": "7b19ed159c43df7dda5eeec78150ff184bbe1eb770cd54779eef59bdd48af6fe",
+    "reviewObservationDigest": "2554f623cd0f9f228186ab5c4c10581e8feffae792cfb0891e0aba1d5fd95fd7"
+  },
+  "componentComparison": {
+    "actualViews": "all completed crop contact sheets and corresponding original printed question page(s)",
+    "hwpRecordAndMathAnchors": [
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1210,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1207,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1218,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1217,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1207,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1220,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1219,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1207,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1222,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1221,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1207,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1224,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1223,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1207,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1207,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1231,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1229,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1226,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1233,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1237,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1236,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1233,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1233,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1239,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1238,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1233,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1241,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1245,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1244,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1241,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1241,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1247,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1246,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1241,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1249,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1253,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1252,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1249,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1255,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1255,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1260,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1260,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1218,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1217,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1220,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1219,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1222,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1221,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1224,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1223,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1237,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1236,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1239,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1238,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1245,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1244,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1247,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1246,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1253,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1252,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1231,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1229,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      }
+    ],
+    "allAnchorChecksPass": true,
+    "sourceMathScriptsPreserved": true,
+    "mathExpressionCount": 9,
+    "fiveChoicesOrWrittenObserved": true,
+    "figureFactsObserved": "대각선 BD=20 cm, APB=60도, 전체 넓이75√3 cm²",
+    "hwpFigureRecords": [
+      {
+        "kind": "figure",
+        "binId": 15,
+        "source": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1231,
+          "inflatedByteOffset": 55313,
+          "tag": 85,
+          "level": 3,
+          "payloadSha256": "2568acc7ef90ff61c3fb714aa4e3d39ccff8f26205401aa2cccd000c4d11c357"
+        },
+        "controlSource": {
+          "stream": "BodyText/Section0",
+          "recordIndex": 1229,
+          "inflatedByteOffset": 54913,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "3ff7c0c7293fd1b93267b05de2fc79167d0709e3ef3af28cbca36307042f37a2"
+        },
+        "binStream": "BinData/BIN000F.bmp",
+        "binReferenceExists": true
+      }
+    ],
+    "pdfFigureCorrespondence": [
+      {
+        "pdfPage": 3,
+        "xref": 23,
+        "rectangles": [
+          [
+            130.3470001220703,
+            567.9010009765625,
+            278.9210205078125,
+            686.4940185546875
+          ]
+        ],
+        "pdfImageBytesSha256": "23c7c1a7e852a9dce77eb61ea0264cdbd6c8b35f0341665417650b2d89522c34",
+        "pdfPixelRgbSha256": "26e449841d47023d173388e3fa9ea2ddfc0e704cf8f23415e59f3ad13e8b72aa",
+        "pixelSize": [
+          587,
+          469
+        ],
+        "sameSizeHwpCandidates": [
+          {
+            "binId": 15,
+            "stream": "BinData/BIN000F.bmp",
+            "hwpPixelRgbSha256": "7d4c7ecca0dbabb44ded3a6efb038912091bc119ad478dc1969a451ce23b8863",
+            "meanChannelAbsoluteDifference": 1.0420663777728538,
+            "threshold200PixelEquality": false
+          }
+        ],
+        "certifiedByPixelsAlone": false
+      }
+    ],
+    "tables": [],
+    "providedScaffold": null,
+    "score": {
+      "parentScore": 4,
+      "printedOccurrences": [
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 60
+        }
+      ],
+      "parentCountedOnce": true,
+      "originalPrintedScoreObserved": 4,
+      "originalTotalCertification": false,
+      "parts": null,
+      "partsAllocationStatus": "single MC item"
+    },
+    "canonicalIssues": [],
+    "newBoundaryAmendments": [],
+    "unknownControlsCount": 0,
+    "countOrNoUnknownsIsApproval": false
+  },
+  "curriculumCoreMethodProposal": {
+    "grade": "중3",
+    "edition": "2015",
+    "appliedSourceEditionBasis": "2025middle3→2015;2022middle3 rollout2027. KI2025/grade observed but school/term conflict remains.",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-18",
+      "6수03-06"
+    ],
+    "coreConceptProposal": "대각선 사이 각과 사각형 넓이",
+    "procedureProposal": "대각선을 공통 밑변으로 하여 실제60도 수선 높이를 더한다. 일반 사인 넓이 공식은 사용하지 않는다.",
+    "status": "method-hold",
+    "gradeApproved": false,
+    "hardExclusionGround": null,
+    "restrictions": [
+      "no arbitrary trig identities",
+      "angles0..90 for ratio values",
+      "no circle proportionality",
+      "no sine/cosine law,Heron,vector,addition formula",
+      "no overly complicated transformed geometry assessment"
+    ],
+    "sevenStudentSurfaces": {
+      "stem": {
+        "sourceObserved": true,
+        "risk": "method-hold"
+      },
+      "choices": {
+        "sourceObserved": true,
+        "risk": "source observed; final twin choices pending"
+      },
+      "figuresAndNotation": {
+        "sourceObserved": true,
+        "risk": "대각선 BD=20 cm, APB=60도, 전체 넓이75√3 cm²",
+        "tablesIncluded": false
+      },
+      "answerFormat": {
+        "sourceObserved": "MC5choices",
+        "risk": "source answer not read/exported; future format must remain within grade"
+      },
+      "studentSolution": {
+        "status": "not-exposed-not-reviewed",
+        "risk": "No original solution used. New author solution and independent grade review are required."
+      },
+      "requiredProcedure": {
+        "status": "proposal-only",
+        "risk": "대각선을 공통 밑변으로 하여 실제60도 수선 높이를 더한다. 일반 사인 넓이 공식은 사용하지 않는다."
+      },
+      "prerequisites": {
+        "status": "proposal-only",
+        "risk": "Use actual perpendicular heights,triangle congruence/similarity,Pythagorean and ratio definitions; never import prohibited higher methods."
+      }
+    },
+    "curriculumEvidenceBinding": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "bytes": 114892
+    }
+  },
+  "metadataProposal": {
+    "unit": {
+      "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "grade": "중3",
+      "chapter": "5. 삼각비",
+      "section": "삼각비의 활용",
+      "semester": 2,
+      "orderIndex": 483,
+      "problemCodePrefix": "J30503"
+    },
+    "unitStatus": "historical UUID/section match proposal by observed core; not target permission",
+    "familyKey": null,
+    "familyStatus": "held-no-semantic-live-family-assignment",
+    "liveBankSnapshotBinding": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r3-20261008.json",
+      "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+      "bytes": 78216
+    },
+    "liveBankSnapshotCapturedAt": "2026-10-08 13:00:16.891043+00",
+    "freshNow": false,
+    "registryBinding": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "bytes": 85170
+    },
+    "sourceTopicLabel": "삼각비의 활용",
+    "sourceDifficultyLabel": "중",
+    "difficultyStatus": "source preparation label not original printed difficulty or measured target equivalence; pending",
+    "score": 4
+  },
+  "questionOnlyWhitelist": {
+    "selected": false,
+    "scope": "question-only source access for staged author planning; not author/policy release",
+    "blockers": [
+      "KI printed first semester conflicts with nominal second semester; school unbound"
+    ],
+    "rawOriginalsAllowed": false,
+    "answerSheetAllowed": false,
+    "sourceCropMayNeverBeFinalTwinFigure": true,
+    "independentApproval": false
+  },
+  "gates": {
+    "sourceIdentityApproval": false,
+    "wholePairApproval": false,
+    "gradeApproval": false,
+    "familyApproval": false,
+    "difficultyApproval": false,
+    "rightsApproval": false,
+    "custodyApproval": false,
+    "nativeApproval": false,
+    "loadable": false,
+    "directUseAllowed": false
+  }
+}

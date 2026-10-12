@@ -1,0 +1,72 @@
+{
+  "questionNumber": 22,
+  "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q22",
+  "stem": "[서술형 $5$] 그림과 같이 $\\angle \\mathrm{ABC}=90°$, $\\overline{\\mathrm{A}B}=10$, $\\overline{\\mathrm{B}C}=18$인 직각삼각형 $\\mathrm{ABC}$가 있다. $\\overline{\\mathrm{A}C}$와 $\\overline{\\mathrm{B}C}$의 삼등분점 중 점 $\\mathrm{C}$에 가까운 점을 각각 $\\mathrm{P}$, $\\mathrm{Q}$라 하고, $\\overline{\\mathrm{P}Q}$의 연장선 위에 $\\overline{\\mathrm{Q}D}=8$이 되도록 점 $\\mathrm{D}$를 잡는다. $\\angle \\mathrm{ADB}=\\mathit{x}$일 때, $\\sin \\,x=\\frac{q}{p}$이다. 다음은 $p+q$를 구하는 과정이다. (가)~(마)에 들어갈 알맞은 것을 구하고, (중략)부분에 들어갈 과정을 서술하시오. \n(단, $\\overline{\\mathrm{P}D}>\\overline{QD}$이고, $p$와 $q$는 서로소인 자연수이다.) \n[총 $11$점, 부분 점수 있음]\n\n점 $\\mathrm{D}$에서 $\\overline{\\mathrm{A}B}$의 연장선에 내린 수선의 발을 $\\mathrm{H}$라 하자. $\\triangle \\mathrm{ABC}$∽(가)\n\n이므로 $\\angle \\mathrm{PQC}=$(나)\n\n이다.\n\n즉, 사각형 $\\mathrm{BHDQ}$는 (다)\n\n이다.\n\n따라서 $\\overline{\\mathrm{Q}D}=\\overline{\\mathrm{B}H}=8$이므로 $\\overline{\\mathrm{A}H}=$\n, $\\overline{\\mathrm{D}H}=\\overline{\\mathrm{Q}B}=$(라)\n\n이다.\n\n⦙\n\n(중략)\n\n⦙\n\n$\\therefore$ $p=$\n, $q=$\n이므로 $p+q=$(마)",
+  "choices": [],
+  "questionType": "written",
+  "score": {
+    "parentScore": 11,
+    "printedOccurrences": [
+      {
+        "printed": "[총 $11$점, 부분 점수 있음]",
+        "value": 11.0,
+        "parentTotalMarked": true,
+        "textOffset": 378
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 11,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "not separately printed"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "nobyeon\\quarantined-question-crops\\q22-part1.png",
+        "sha256": "bc8423d924085f86416be41375754797ce32be9a1fbddd025388807e61f98a3b",
+        "page": 6,
+        "column": 0,
+        "bbox": [
+          55,
+          83,
+          375,
+          943.0
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "[서술형 $5$] 그림과 같이 $angle rmABC=90°$, $bar{rmAB}=10$, $bar{rmBC}=18$인 직각삼각형 $rmABC$가 있다. $bar{rmAC$와 $bar{rmBC$의 삼등분점 중 점 $rmC$에 가까운 점을 각각 $rmP$, $rmQ$라 하고, $bar{rmPQ$의 연장선 위에 $bar{rmQD}=8$이 되도록 점 $rmD$를 잡는다. $angle rmADB=itx$일 때, $sin `x= { q} over { p}$이다. 다음은 $p+q$를 구하는 과정이다. (가)~(마)에 들어갈 알맞은 것을 구하고, (중략)부분에 들어갈 과정을 서술하시오. \n(단, $bar{rmPD}>bar{QD}$이고, $p$와 $q$는 서로소인 자연수이다.) \n[총 $11$점, 부분 점수 있음]\n\n점 $rmD$에서 $bar{rmAB}$의 연장선에 내린 수선의 발을 $rmH$라 하자. $triangle rmABC $∽(가)\n\n이므로 $angle rmPQC=$(나)\n\n이다.\n\n즉, 사각형 $rmBHDQ$는 (다)\n\n이다.\n\n따라서 $bar{rmQD}=bar{rmBH}=8$이므로 $bar{rmAH}=$\n, $bar{rmDH}=bar{rmQB}=$(라)\n\n이다.\n\n⦙\n\n(중략)\n\n⦙\n\n$THEREFORE$ $p=$\n, $q=$\n이므로 $p+q=$(마)",
+  "rawHwpChoices": [],
+  "tables": [],
+  "providedScaffold": {
+    "namedBlanks": [
+      "가",
+      "나",
+      "다",
+      "라",
+      "마"
+    ],
+    "additionalEmptyBlanks": [
+      "AH",
+      "p",
+      "q"
+    ],
+    "omittedReasoningRequired": true,
+    "parentScore": 11,
+    "perBlankScores": null,
+    "ratioOrientation": "sinx=q/p, confirmed in original print and completed visual; do not reverse by textlayer fraction order",
+    "providedReasoningIsStudentQuestion": true,
+    "originalAnswerNotIncluded": true
+  },
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

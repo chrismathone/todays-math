@@ -1,0 +1,1456 @@
+{
+  "schemaVersion": 1,
+  "schoolKey": "nobyeon",
+  "questionNumber": 15,
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "method": "independent-source-component-comparison",
+  "status": "review-complete-with-individual-holds",
+  "newAuthorAnswersRead": false,
+  "originalAnswerSheetViewedOnlyForClassification": false,
+  "originalKeysUsed": false,
+  "sourceIdentity": {
+    "printedYear": 2025,
+    "printedGrade": 3,
+    "printedSemester": 2,
+    "printedRound": "중간고사",
+    "printedSchool": "노변중학교",
+    "printedDate": "2025-09-25",
+    "printedPeriod": 3,
+    "status": "printed-identity-observed-not-whole-pair-certified",
+    "basis": "Original02/03/04 printed cover names 노변중학교 and6pages=cover+5questionpages. Other alternatives omit cover but printed footer/last copyright join school.17MC+5written22."
+  },
+  "sourcePrintedQuestionPage": 4,
+  "bindings": {
+    "manifest": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454",
+      "bytes": 1999785
+    },
+    "sourceInputs": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "7d90e6b374469e3d4a32d31a9085d526a6935af970f66f5b8e293885391731ab",
+        "bytes": 1736704
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "5d068b76205f5690b2ea1ecf98ff6ecff8f74e33ed41b866fda54ef6048d27aa",
+        "bytes": 14857959
+      }
+    ],
+    "originalPrintedComparisons": [
+      {
+        "alternative": 1,
+        "originalPdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+        "pdfPage": 3,
+        "printedPage": 4,
+        "preview": {
+          "school": "nobyeon",
+          "alternative": 1,
+          "page": 3,
+          "path": "reviewer-only/nobyeon/original-01-page-03-r2.png",
+          "sha256": "4dc38cab6d66ff03f057d754ba21e5d1805c4911da15cf565b2cdaec40f50ebb",
+          "pixelSha256": "4b3142639fe72145ff2d6568ca8a588805ab1b766519adcf9bb891202ad03c2a",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        "reviewerOnly": true,
+        "handwrittenAnnotationsIgnored": true,
+        "answerSheetPageUsed": false
+      },
+      {
+        "alternative": 2,
+        "originalPdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+        "pdfPage": 4,
+        "printedPage": 4,
+        "preview": {
+          "school": "nobyeon",
+          "alternative": 2,
+          "page": 4,
+          "path": "reviewer-only/nobyeon/original-02-page-04-r2.png",
+          "sha256": "2492b5001b2dd631972acace37df109ce469d9cb72808d68576eb520891741c1",
+          "pixelSha256": "217848cacf77a7488dbf416adaed9bfc1c1e939a18a6d5909f6a08f22c647577",
+          "width": 1400,
+          "height": 1996,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        "reviewerOnly": true,
+        "handwrittenAnnotationsIgnored": true,
+        "answerSheetPageUsed": false
+      },
+      {
+        "alternative": 3,
+        "originalPdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+        "pdfPage": 4,
+        "printedPage": 4,
+        "preview": {
+          "school": "nobyeon",
+          "alternative": 3,
+          "page": 4,
+          "path": "reviewer-only/nobyeon/original-03-page-04-r2.png",
+          "sha256": "2492b5001b2dd631972acace37df109ce469d9cb72808d68576eb520891741c1",
+          "pixelSha256": "217848cacf77a7488dbf416adaed9bfc1c1e939a18a6d5909f6a08f22c647577",
+          "width": 1400,
+          "height": 1996,
+          "pdfSha256": "32799a1ea6a59695fb08d34f11fc62efefcc50ea366caf4ecb258459706bb173",
+          "notAuthorInput": true
+        },
+        "reviewerOnly": true,
+        "handwrittenAnnotationsIgnored": true,
+        "answerSheetPageUsed": false
+      },
+      {
+        "alternative": 4,
+        "originalPdfSha256": "d81f6a6c2742a2df20e3e83eb8e9ed17a0d30a72d165a3582d1db48b95bfc6fc",
+        "pdfPage": 4,
+        "printedPage": 4,
+        "preview": {
+          "school": "nobyeon",
+          "alternative": 4,
+          "page": 4,
+          "path": "reviewer-only/nobyeon/original-04-page-04-r2.png",
+          "sha256": "2492b5001b2dd631972acace37df109ce469d9cb72808d68576eb520891741c1",
+          "pixelSha256": "217848cacf77a7488dbf416adaed9bfc1c1e939a18a6d5909f6a08f22c647577",
+          "width": 1400,
+          "height": 1996,
+          "pdfSha256": "d81f6a6c2742a2df20e3e83eb8e9ed17a0d30a72d165a3582d1db48b95bfc6fc",
+          "notAuthorInput": true
+        },
+        "reviewerOnly": true,
+        "handwrittenAnnotationsIgnored": true,
+        "answerSheetPageUsed": false
+      },
+      {
+        "alternative": 5,
+        "originalPdfSha256": "595c843a9b147d2882ce88886744566b2ffefe944e8a3bbd9254f3f35ff518ff",
+        "pdfPage": 3,
+        "printedPage": 4,
+        "preview": {
+          "school": "nobyeon",
+          "alternative": 5,
+          "page": 3,
+          "path": "reviewer-only/nobyeon/original-05-page-03-r2.png",
+          "sha256": "c20a41d4e4486e78517cdefd015f8ad4ee8d84a3067e1874baf2fd8dad1e617f",
+          "pixelSha256": "26d3057781ca3740946b6532bf03f8d134a380b7c716df6ea93a5c4c7a7949ec",
+          "width": 1400,
+          "height": 989,
+          "pdfSha256": "595c843a9b147d2882ce88886744566b2ffefe944e8a3bbd9254f3f35ff518ff",
+          "notAuthorInput": true
+        },
+        "reviewerOnly": true,
+        "handwrittenAnnotationsIgnored": true,
+        "answerSheetPageUsed": false
+      },
+      {
+        "alternative": 6,
+        "originalPdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+        "pdfPage": 3,
+        "printedPage": 4,
+        "preview": {
+          "school": "nobyeon",
+          "alternative": 6,
+          "page": 3,
+          "path": "reviewer-only/nobyeon/original-06-page-03-r2.png",
+          "sha256": "4dc38cab6d66ff03f057d754ba21e5d1805c4911da15cf565b2cdaec40f50ebb",
+          "pixelSha256": "4b3142639fe72145ff2d6568ca8a588805ab1b766519adcf9bb891202ad03c2a",
+          "width": 1400,
+          "height": 1982,
+          "pdfSha256": "3b793dab708d852100dbdc3c4cb33a77f93bb287dc4aa8031133d36e7e2b024a",
+          "notAuthorInput": true
+        },
+        "reviewerOnly": true,
+        "handwrittenAnnotationsIgnored": true,
+        "answerSheetPageUsed": false
+      }
+    ],
+    "quarantinedQuestionCrops": [
+      {
+        "path": "nobyeon\\quarantined-question-crops\\q15-part1.png",
+        "sha256": "523893afa9493efaa936b9555d38c77e9f1c69e93f8e36dd31d96e43f1da7bec",
+        "page": 4,
+        "column": 0,
+        "bbox": [
+          55,
+          470.6026306152344,
+          375,
+          943.0
+        ]
+      },
+      {
+        "path": "nobyeon\\quarantined-question-crops\\q15-part2.png",
+        "sha256": "8cf8e837f7b325f2c6e97ec904f4c2c45240336aa0cc6284966c1ab7957b82ff",
+        "page": 4,
+        "column": 1,
+        "bbox": [
+          370,
+          83,
+          688.0,
+          295.76654052734375
+        ]
+      }
+    ],
+    "sourceContentDigestFromParser": "baac14c208b3125a8b7a129efb0ceaa6871d66c4e1a94b4e5bc15e51205d03f5",
+    "reviewQuestionOnlyDigest": "4fefe1869f6ff4e6b387a91b2ac55e913c77d7dc518f4830434fa5e8b0f543ef",
+    "positionedCharactersDigest": "4af6bf7d512df91f1cb17a470a4592674458a3a1e99ef32f74d7c4583623b40b",
+    "rawHwpScriptsDigest": "e00bb89b38ce28c1ad0e1232fa37308106a733de7d4bc3e558e45db8f3c0bc3b",
+    "mathExpressionsDigest": "6071a477780f5eabe4480524b18207c4fdcd75050300aa90dbedfb78fae3ea3b",
+    "figureRecordsDigest": "a185290986718a41ae48f5b94b219023adcf09ff24b363292cd02bd541e3c4cb",
+    "figureCorrespondenceDigest": "03ecf8dacd686dacf5195eb642caac1bc489eb4e5013aa814727164fcde07b08",
+    "tableDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "scoreAndPartsDigest": "9e9162c6b34473d818e9bad146f48efd7196032d2e4b54c640c8c928b067619e",
+    "reviewObservationDigest": "642c98b780f093fdc3a021bf46f4814e2e25d17747775a7b76a9882ed070ca19"
+  },
+  "componentComparison": {
+    "actualViews": "all completed crop contact sheets and corresponding original printed question page(s)",
+    "hwpRecordAndMathAnchors": [
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 98,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 95,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 106,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 105,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 95,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 108,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 107,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 95,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 110,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 109,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 95,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 112,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 111,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 95,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 114,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 113,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 95,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 95,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 121,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 119,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 116,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 123,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 127,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 126,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 123,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 129,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 128,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 123,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 123,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 131,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 135,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 134,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 131,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 131,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 137,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 141,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 140,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 137,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 137,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 143,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 143,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 147,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 151,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 150,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 147,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 153,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 152,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 147,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 155,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 154,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 147,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 157,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 156,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 147,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 159,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 158,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 147,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 147,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 161,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 161,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 166,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 166,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 186,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 190,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 189,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 186,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 186,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 197,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 195,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 192,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 106,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 105,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 108,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 107,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 110,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 109,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 112,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 111,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 114,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 113,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 127,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 126,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 129,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 128,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 135,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 134,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 141,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 140,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 151,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 150,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 153,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 152,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 155,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 154,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 157,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 156,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 159,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 158,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 190,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 189,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 121,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 119,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 197,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      },
+      {
+        "stream": "BodyText/Section1",
+        "recordIndex": 195,
+        "checks": {
+          "tag": true,
+          "level": true,
+          "payloadSha256": true,
+          "offset": true
+        }
+      }
+    ],
+    "allAnchorChecksPass": true,
+    "sourceMathScriptsPreserved": true,
+    "mathExpressionCount": 15,
+    "fiveChoicesOrWrittenObserved": true,
+    "figureFactsObserved": "소득x,지출y,직원A/B/C/D; canonical보기⑤에[16~17]공통조건이 붙고 두 번째 도형이 잘못 귀속됨.",
+    "hwpFigureRecords": [
+      {
+        "kind": "figure",
+        "binId": 10,
+        "source": {
+          "stream": "BodyText/Section1",
+          "recordIndex": 121,
+          "inflatedByteOffset": 4577,
+          "tag": 85,
+          "level": 3,
+          "payloadSha256": "c0655bb8f4863700cbbd6cb023cb161a58d95ba09a05ebe6152162bdeb484fa9"
+        },
+        "controlSource": {
+          "stream": "BodyText/Section1",
+          "recordIndex": 119,
+          "inflatedByteOffset": 4177,
+          "tag": 71,
+          "level": 1,
+          "payloadSha256": "86eef00e0465660a5710b6f5cec338e6809e3c5467112d01611c92e5a66baf1f"
+        },
+        "binStream": "BinData/BIN000A.bmp",
+        "binReferenceExists": true
+      }
+    ],
+    "pdfFigureCorrespondence": [
+      {
+        "pdfPage": 4,
+        "xref": 25,
+        "rectangles": [
+          [
+            137.54200744628906,
+            528.5700073242188,
+            271.60601806640625,
+            658.9140014648438
+          ]
+        ],
+        "pdfImageBytesSha256": "504cdc02454ccda377466b5499d8e2f0bf02cdc1573956d51c69ba5edf17677b",
+        "pdfPixelRgbSha256": "a0120bdcb385f46d1dba4f361be9cb5765dc4411b4f10682440d903804cd428c",
+        "pixelSize": [
+          340,
+          330
+        ],
+        "sameSizeHwpCandidates": [
+          {
+            "binId": 10,
+            "stream": "BinData/BIN000A.bmp",
+            "hwpPixelRgbSha256": "bcbba7660168194602a6ce9bed40d8852b00a778ac23d7d9c868d12f32114a2b",
+            "meanChannelAbsoluteDifference": 4.135662507427213,
+            "threshold200PixelEquality": false
+          }
+        ],
+        "certifiedByPixelsAlone": false
+      }
+    ],
+    "tables": [],
+    "providedScaffold": null,
+    "score": {
+      "parentScore": 4,
+      "printedOccurrences": [
+        {
+          "printed": "[$4$점]",
+          "value": 4.0,
+          "parentTotalMarked": false,
+          "textOffset": 89
+        }
+      ],
+      "parentCountedOnce": true,
+      "originalPrintedScoreObserved": 4,
+      "originalTotalCertification": false,
+      "parts": null,
+      "partsAllocationStatus": "single MC item"
+    },
+    "canonicalIssues": [
+      "Manifest sharedSourceContext null; the [16~17] common text/scatter is wrongly swallowed by q15, only incidentally present in q16 crop, absent from q17 binding."
+    ],
+    "newBoundaryAmendments": [
+      {
+        "field": "choices[4]",
+        "beforeSha256": "50fa3823b77f037951f2e9da1eb5176d39bc9418ed94ad3e8825cae5ba492faf",
+        "after": "$\\mathrm{A}$, $\\mathrm{B}$, $\\mathrm{C}$ 중에서 $\\mathrm{D}$와 소득이 가장 비슷한 직원은 $\\mathrm{C}$이다.",
+        "basis": "Original printed q15 choice ends before [16~17]; completed visual source places new context in right column."
+      },
+      {
+        "field": "figureOwnership",
+        "before": "two figures owned by15",
+        "after": "income scatter belongs15; examination scatter belongs common16-17",
+        "basis": "Original printed heading and source figure record197/PDFxref26."
+      }
+    ],
+    "unknownControlsCount": 0,
+    "countOrNoUnknownsIsApproval": false
+  },
+  "curriculumCoreMethodProposal": {
+    "grade": "중3",
+    "edition": "2015",
+    "appliedSourceEditionBasis": "2025middle3→2015;2022middle3 rollout2027. KI2025/grade observed but school/term conflict remains.",
+    "standardCodes": [
+      "9수05-08"
+    ],
+    "coreConceptProposal": "산점도의 가로·세로·추세 읽기",
+    "procedureProposal": "직원4명의 소득·지출 위치와 전체 경향을 읽는다. 임의 회귀선·상관계수 사용 금지.",
+    "status": "source-hold",
+    "gradeApproved": false,
+    "hardExclusionGround": null,
+    "restrictions": [
+      "no arbitrary trig identities",
+      "angles0..90 for ratio values",
+      "no circle proportionality",
+      "no sine/cosine law,Heron,vector,addition formula",
+      "no overly complicated transformed geometry assessment"
+    ],
+    "sevenStudentSurfaces": {
+      "stem": {
+        "sourceObserved": true,
+        "risk": "source-hold"
+      },
+      "choices": {
+        "sourceObserved": true,
+        "risk": "source observed; final twin choices pending"
+      },
+      "figuresAndNotation": {
+        "sourceObserved": true,
+        "risk": "소득x,지출y,직원A/B/C/D; canonical보기⑤에[16~17]공통조건이 붙고 두 번째 도형이 잘못 귀속됨.",
+        "tablesIncluded": false
+      },
+      "answerFormat": {
+        "sourceObserved": "MC5choices",
+        "risk": "source answer not read/exported; future format must remain within grade"
+      },
+      "studentSolution": {
+        "status": "not-exposed-not-reviewed",
+        "risk": "No original solution used. New author solution and independent grade review are required."
+      },
+      "requiredProcedure": {
+        "status": "proposal-only",
+        "risk": "직원4명의 소득·지출 위치와 전체 경향을 읽는다. 임의 회귀선·상관계수 사용 금지."
+      },
+      "prerequisites": {
+        "status": "proposal-only",
+        "risk": "Use actual perpendicular heights,triangle congruence/similarity,Pythagorean and ratio definitions; never import prohibited higher methods."
+      }
+    },
+    "curriculumEvidenceBinding": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "bytes": 114892
+    }
+  },
+  "metadataProposal": {
+    "unit": {
+      "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "grade": "중3",
+      "chapter": "7. 통계",
+      "section": "산점도와 상관관계",
+      "semester": 2,
+      "orderIndex": 489,
+      "problemCodePrefix": "J30702"
+    },
+    "unitStatus": "historical UUID/section match proposal by observed core; not target permission",
+    "familyKey": null,
+    "familyStatus": "held-no-semantic-live-family-assignment",
+    "liveBankSnapshotBinding": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r3-20261008.json",
+      "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+      "bytes": 78216
+    },
+    "liveBankSnapshotCapturedAt": "2026-10-08 13:00:16.891043+00",
+    "freshNow": false,
+    "registryBinding": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "bytes": 85170
+    },
+    "sourceTopicLabel": "상관관계",
+    "sourceDifficultyLabel": "하",
+    "difficultyStatus": "source preparation label not original printed difficulty or measured target equivalence; pending",
+    "score": 4
+  },
+  "questionOnlyWhitelist": {
+    "selected": true,
+    "scope": "question-only source access for staged author planning; not author/policy release",
+    "blockers": [
+      "Manifest sharedSourceContext null; the [16~17] common text/scatter is wrongly swallowed by q15, only incidentally present in q16 crop, absent from q17 binding."
+    ],
+    "rawOriginalsAllowed": false,
+    "answerSheetAllowed": false,
+    "sourceCropMayNeverBeFinalTwinFigure": true,
+    "independentApproval": false
+  },
+  "gates": {
+    "sourceIdentityApproval": false,
+    "wholePairApproval": false,
+    "gradeApproval": false,
+    "familyApproval": false,
+    "difficultyApproval": false,
+    "rightsApproval": false,
+    "custodyApproval": false,
+    "nativeApproval": false,
+    "loadable": false,
+    "directUseAllowed": false
+  }
+}

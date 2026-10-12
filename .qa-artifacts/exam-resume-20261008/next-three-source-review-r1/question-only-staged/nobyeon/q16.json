@@ -1,0 +1,183 @@
+{
+  "questionNumber": 16,
+  "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q16",
+  "stem": "중간고사 점수가 기말고사 점수보다 높은 학생은 전체의 몇 $%$인가? [$4$점]",
+  "choices": [
+    "$32%$",
+    "$33%$",
+    "$34%$",
+    "$35%$",
+    "$36%$"
+  ],
+  "questionType": "multiple-choice",
+  "score": {
+    "parentScore": 4,
+    "printedOccurrences": [
+      {
+        "printed": "[$4$점]",
+        "value": 4.0,
+        "parentTotalMarked": false,
+        "textOffset": 39
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 4,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "single MC item"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "nobyeon\\quarantined-question-crops\\q16-part1.png",
+        "sha256": "ae7b3dae1988f33b4d02b98b0c175d7ba56432dcf4240f4534a5bdfef75a940d",
+        "page": 4,
+        "column": 1,
+        "bbox": [
+          370,
+          83,
+          688.0,
+          579.7181396484375
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    },
+    {
+      "role": "shared-stem16-17",
+      "crop": {
+        "path": "nobyeon\\quarantined-question-crops\\q15-part2.png",
+        "sha256": "8cf8e837f7b325f2c6e97ec904f4c2c45240336aa0cc6284966c1ab7957b82ff",
+        "page": 4,
+        "column": 1,
+        "bbox": [
+          370,
+          83,
+          688.0,
+          295.76654052734375
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false,
+      "owner": "NB-original-printed-16-17"
+    }
+  ],
+  "rawHwpStem": "중간고사 점수가 기말고사 점수보다 높은 학생은 전체의 몇 $%$인가? [$4$점]",
+  "rawHwpChoices": [
+    "$32%$",
+    "$33%$",
+    "$34%$",
+    "$35%$",
+    "$36%$"
+  ],
+  "tables": [],
+  "providedScaffold": null,
+  "sharedSourceContext": {
+    "id": "NB-original-printed-16-17",
+    "questionNumbers": [
+      16,
+      17
+    ],
+    "content": "[16~17] 그림은 학생 20명의 중간고사와 기말고사의 국어 점수를 조사하여 나타낸 산점도이다. 물음에 답하시오.",
+    "axes": {
+      "x": "중간고사(점)",
+      "y": "기말고사(점)"
+    },
+    "points": [
+      [
+        30,
+        30
+      ],
+      [
+        40,
+        50
+      ],
+      [
+        40,
+        60
+      ],
+      [
+        50,
+        40
+      ],
+      [
+        50,
+        60
+      ],
+      [
+        50,
+        80
+      ],
+      [
+        60,
+        50
+      ],
+      [
+        60,
+        60
+      ],
+      [
+        60,
+        70
+      ],
+      [
+        60,
+        80
+      ],
+      [
+        70,
+        50
+      ],
+      [
+        70,
+        60
+      ],
+      [
+        70,
+        70
+      ],
+      [
+        70,
+        90
+      ],
+      [
+        80,
+        50
+      ],
+      [
+        80,
+        70
+      ],
+      [
+        80,
+        90
+      ],
+      [
+        80,
+        100
+      ],
+      [
+        90,
+        70
+      ],
+      [
+        90,
+        100
+      ]
+    ],
+    "pointCount": 20,
+    "gradeProposalCodes": [
+      "9수05-08"
+    ],
+    "notAnAnswer": true,
+    "contentDigest": "f6abbc98ddcf8cd8c64020ead4f301ff852dd8d5142b4339740d94b64e8c7575"
+  },
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

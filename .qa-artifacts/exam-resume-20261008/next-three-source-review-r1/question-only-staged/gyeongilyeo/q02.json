@@ -1,0 +1,65 @@
+{
+  "questionNumber": 2,
+  "newSourceReferenceId": "source-ref-2025-gyeongilyeo-3-2-mid-r1-q02",
+  "stem": "그림에서 두 점 $\\mathrm{A}$와 $\\mathrm{B}$는 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 두 접선의 접점이다. $x$의 값은? [$3$점]",
+  "choices": [
+    "$5$",
+    "$\\frac{11}{2}$",
+    "$6$",
+    "$\\frac{13}{2}$",
+    "$7$"
+  ],
+  "questionType": "multiple-choice",
+  "score": {
+    "parentScore": 3,
+    "printedOccurrences": [
+      {
+        "printed": "[$3$점]",
+        "value": 3.0,
+        "parentTotalMarked": false,
+        "textOffset": 66
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 3,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "single MC item"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "gyeongilyeo\\quarantined-question-crops\\q02-part1.png",
+        "sha256": "bc483b858be58ddd3d4bf01bd7547e01c09b074a9b129d4654627085c6631f46",
+        "page": 1,
+        "column": 0,
+        "bbox": [
+          55,
+          333.1835021972656,
+          375,
+          650.9458618164062
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "그림에서 두 점 $RMA$와 $rmB$는 점 $rmP$에서 원 $rmO$에 그은 두 접선의 접점이다. $x$의 값은? [$3$점]",
+  "rawHwpChoices": [
+    "$5$",
+    "$11over2$",
+    "$6$",
+    "$13over2$",
+    "$7$"
+  ],
+  "tables": [],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

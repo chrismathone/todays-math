@@ -1,0 +1,65 @@
+{
+  "questionNumber": 5,
+  "newSourceReferenceId": "source-ref-2025-gyeongilyeo-3-2-mid-r1-q05",
+  "stem": "그림에서 $x$의 값은? [$3$점]",
+  "choices": [
+    "$8$",
+    "$9$",
+    "$10$",
+    "$11$",
+    "$12$"
+  ],
+  "questionType": "multiple-choice",
+  "score": {
+    "parentScore": 3,
+    "printedOccurrences": [
+      {
+        "printed": "[$3$점]",
+        "value": 3.0,
+        "parentTotalMarked": false,
+        "textOffset": 14
+      }
+    ],
+    "parentCountedOnce": true,
+    "originalPrintedScoreObserved": 3,
+    "originalTotalCertification": false,
+    "parts": null,
+    "partsAllocationStatus": "single MC item"
+  },
+  "sourceFigureReferences": [
+    {
+      "role": "source-question-reference",
+      "crop": {
+        "path": "gyeongilyeo\\quarantined-question-crops\\q05-part1.png",
+        "sha256": "98789b8d1337a1a8e0d2aec9496d4705bf38a93df37b71376e9752771022839d",
+        "page": 1,
+        "column": 1,
+        "bbox": [
+          370,
+          452.7357482910156,
+          688.0,
+          943.0
+        ]
+      },
+      "quarantined": true,
+      "finalTwinAssetAllowed": false,
+      "rawOriginalScan": false
+    }
+  ],
+  "rawHwpStem": "그림에서 $x$의 값은? [$3$점]",
+  "rawHwpChoices": [
+    "$8$",
+    "$9$",
+    "$10$",
+    "$11$",
+    "$12$"
+  ],
+  "tables": [],
+  "providedScaffold": null,
+  "sharedSourceContext": null,
+  "originalAnswersOmitted": true,
+  "originalSolutionsOmitted": true,
+  "canonicalConversionCertified": false,
+  "sourceAssetsQuarantined": true,
+  "authoringRelease": false
+}

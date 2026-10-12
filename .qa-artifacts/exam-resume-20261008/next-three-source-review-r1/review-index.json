@@ -1,0 +1,644 @@
+{
+  "schemaVersion": 1,
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "method": "independent-source-component-comparison",
+  "finalizedAtUtc": "2026-10-12T04:42:55.735509+00:00",
+  "scope": {
+    "newParsedParents": 67,
+    "schools": {
+      "KI": 22,
+      "KSE": 23,
+      "NB": 22
+    },
+    "originalParentsVisuallyCompared": 67,
+    "formalSourceCertifiedParents": 0,
+    "identitySupportedPrintedParentsObserved": 45,
+    "newTwins": 0,
+    "questionOnlyPlanningWhitelist": 42,
+    "hardExclusionProposals": [
+      {
+        "schoolKey": "gyeongilyeo",
+        "questionNumber": 18
+      },
+      {
+        "schoolKey": "gyeseong",
+        "questionNumber": 2
+      },
+      {
+        "schoolKey": "gyeseong",
+        "questionNumber": 8
+      },
+      {
+        "schoolKey": "nobyeon",
+        "questionNumber": 3
+      }
+    ],
+    "independentMathGradeApprovals": 0,
+    "rightsApprovals": 0,
+    "familyApprovals": 0,
+    "nativeApprovals": 0,
+    "fullApprovals": 0
+  },
+  "manifestBindings": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\source-manifest.json",
+      "sha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6",
+      "bytes": 2039751
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeseong\\source-manifest.json",
+      "sha256": "97ebf0fdf3ca4f6b3eab4b5737083410b94f57bf53863a4be568635618b4f4f9",
+      "bytes": 1452132
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+      "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454",
+      "bytes": 1999785
+    }
+  ],
+  "runtimeProbe": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\runtime-probe-resume-20261012.json",
+    "sha256": "32b345f4873309799282221768ac66f46321d73b6b8c95f9287a474f85f84312",
+    "bytes": 282
+  },
+  "rawAuditBinding": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\custody-record-audit.json",
+    "sha256": "a319c5830dd4364f23e6b557e2e66b34501cab7a00ff209a018c44ce6f4a5410",
+    "bytes": 1569909
+  },
+  "rawPreviewBindings": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-source-review-r1\\preview-bindings.json",
+    "sha256": "84f4f8ccdd38e56198360ff9e3daf3338d5bc246fda71dd60e2a771a105a9076",
+    "bytes": 23877
+  },
+  "currentOriginalAvailability": [
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경일여중][3][25-2-중간][미래엔] (완료).hwp",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경일여중][3][25-2-중간][미래엔] (완료).PDF",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경일여중][3][25-2-중간](원본)(삼동).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[계성중][3][25-2-중간][신사고] (완료).hwp",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[계성중][3][25-2-중간][신사고] (완료).PDF",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[계성중][3][25-2-중간](원본+답)(어수마러).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[계성중][3][25-2-중간] (원본)(플라이).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[계성중][3][25-2-중간](원본)(준희T).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[노변중][3][25-2-중간][동아강] (완료).hwp",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[노변중][3][25-2-중간][동아강] (완료).PDF",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[노변중][3][25-2-중간](원본)(아잉).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간] (원본) (데부) (1).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간] (원본) (데부) (2).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간] (원본) (데부).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간] (원본) (주니쌤).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[노변중][3][25-2-중간](원본)(엘프리모).pdf",
+      "existsAtFinalization": false,
+      "priorBoundReadSucceeded": true
+    }
+  ],
+  "capacityHistory": {
+    "selectedModelCapacityInterruptions": "reported by user during this task; exact provider payload not accessible, no model replacement or duplicate writer",
+    "currentExecution": "commands/writes/readback successful; work resumed",
+    "sourceMountAvailabilityHold": "N: unavailable at finalization; prior actual byte/record audit and all captured views retained"
+  },
+  "gates": {
+    "sourceIdentityApproval": false,
+    "wholePairApproval": false,
+    "gradeApproval": false,
+    "familyApproval": false,
+    "difficultyApproval": false,
+    "rightsApproval": false,
+    "custodyApproval": false,
+    "nativeApproval": false,
+    "loadable": false,
+    "directUseAllowed": false
+  },
+  "itemReports": [
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 1,
+      "path": "items/gyeongilyeo/q01.json",
+      "sha256": "53985ad0ec74d039aed48ef27f601e3b8882882270f193afd6288b065574413b",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 2,
+      "path": "items/gyeongilyeo/q02.json",
+      "sha256": "4dbfbfaec4adbbddafa3bacdb639732c674b1c652618d10b978295349ce112e6",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 3,
+      "path": "items/gyeongilyeo/q03.json",
+      "sha256": "e02de58f17e8e7446cd1d8198b2b498e75974cd19c7cc572104fa15d3930bd27",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 4,
+      "path": "items/gyeongilyeo/q04.json",
+      "sha256": "401574176306716ca1e73b4688acdd66027b81991f84c61e2a890ca75004cf4f",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 5,
+      "path": "items/gyeongilyeo/q05.json",
+      "sha256": "891700ab593de80f8107d7c67cfaefdb1ad98a6a77a86f895d8f19066bbb917e",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 6,
+      "path": "items/gyeongilyeo/q06.json",
+      "sha256": "30212d0ec05c1888615dd8830c22a1bee62330e856344bfec0b8aaca1c7bb6e8",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 7,
+      "path": "items/gyeongilyeo/q07.json",
+      "sha256": "f8bce4fb797e77b1fd632993247ac1717d14c99cf40414d60a020253c09eda51",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 8,
+      "path": "items/gyeongilyeo/q08.json",
+      "sha256": "b63e62ecb232b654372f268359996a0f6e9d3eba8261bfcf827bd3d0502bf0af",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 9,
+      "path": "items/gyeongilyeo/q09.json",
+      "sha256": "f2a3c7763ce7e19284e04fd01c20541160e61c5f6f1a7c2458bb011e21a3ab46",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 10,
+      "path": "items/gyeongilyeo/q10.json",
+      "sha256": "7bb82548f0dcb695e60bdff72fae7e00d962818bcbaba58d8ba377eaf90d58c6",
+      "status": "source-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 11,
+      "path": "items/gyeongilyeo/q11.json",
+      "sha256": "652c8a750b293d8d7aa559d6d6f7734d687f2c91f772d6de5d0d3699f1ec6c95",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 12,
+      "path": "items/gyeongilyeo/q12.json",
+      "sha256": "43cae339dca04f1cf0a1beb351d2d637c8bb41792e27ebbc1ae625fe17d4c93c",
+      "status": "source-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 13,
+      "path": "items/gyeongilyeo/q13.json",
+      "sha256": "ecc2ccba50bd08b2c5741b2776603f5ae0240294949e4157bbd181d32b4578da",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 14,
+      "path": "items/gyeongilyeo/q14.json",
+      "sha256": "9808c7135f72bcf3c62a39ae0991505dc5ed81c9306795813dfd1388a172314b",
+      "status": "source-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 15,
+      "path": "items/gyeongilyeo/q15.json",
+      "sha256": "49a4b5c06b240923c11b81ae845f4fd5803935d2850284f59ecb9d752d251bd8",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 16,
+      "path": "items/gyeongilyeo/q16.json",
+      "sha256": "61ca136aa93b7f9daf76b35d689f29de85c6279183cea02af66a5d7f91e0d534",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 17,
+      "path": "items/gyeongilyeo/q17.json",
+      "sha256": "7a300dda5f7e5981f875aad9e12e7a63a6f984f737fde1a111cff237945a23e6",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 18,
+      "path": "items/gyeongilyeo/q18.json",
+      "sha256": "515bc35b22428620c03a0d99a0e4eddab3e57d5fa37bb0429654d6d249665d0d",
+      "status": "hard-exclude-proposed"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 19,
+      "path": "items/gyeongilyeo/q19.json",
+      "sha256": "6fd0a58c9eafe691585c38df86daeddb6ac0105e73eb02845fc7f847e6249fa7",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 20,
+      "path": "items/gyeongilyeo/q20.json",
+      "sha256": "288e0d7c420e5eb89162c07be931898f9f58cc1c85cf13fe3a04afc44acec810",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 21,
+      "path": "items/gyeongilyeo/q21.json",
+      "sha256": "66dca9e46b60ffdd21de2c988ea8164b722e03375f58045a772878b4f5381715",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeongilyeo",
+      "questionNumber": 22,
+      "path": "items/gyeongilyeo/q22.json",
+      "sha256": "b91cc23b0fe14e724de8e1f91d4f0ca300871191014dee8c2cab46fc3f001355",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 1,
+      "path": "items/gyeseong/q01.json",
+      "sha256": "047b45b9039c2fac81bd7aa265cde39c47ef54c47f1df4a5aa56970267756d13",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 2,
+      "path": "items/gyeseong/q02.json",
+      "sha256": "4783b49ea05f0da09a82f01a5c76fd9b480091a5ed9bc7457aab5eb1a11c7707",
+      "status": "hard-exclude-proposed"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 3,
+      "path": "items/gyeseong/q03.json",
+      "sha256": "a55c2886dc28d10f6cbf2d38a97e2595c7a5dc82ed44dabf8bc0689aa1aa5189",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 4,
+      "path": "items/gyeseong/q04.json",
+      "sha256": "31190c6c661caa15d3e8b4b4956d20838d714358294b4fd3b49ac9aab90ce828",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 5,
+      "path": "items/gyeseong/q05.json",
+      "sha256": "9014a987ec057eb9a2e5bec0c5970060779108e364decc8c57ce9fe24c07895b",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 6,
+      "path": "items/gyeseong/q06.json",
+      "sha256": "565b781b764a2d321729d1816147b98e84717cedcdea2dc20152a8a40d063e7b",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 7,
+      "path": "items/gyeseong/q07.json",
+      "sha256": "77f711044a067fa6044a4f9faeba57a1949bfe84bbccceee161e4e47e4e32123",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 8,
+      "path": "items/gyeseong/q08.json",
+      "sha256": "d97797ff1d6a2b453fbffaa9b3b198d21ec03ed8ccd6d3223a821b244cc5d8b5",
+      "status": "hard-exclude-proposed"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 9,
+      "path": "items/gyeseong/q09.json",
+      "sha256": "a7fa0de75925b4c7fa944343a11c3326758a24451eed7292ed853b8ae6642f12",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 10,
+      "path": "items/gyeseong/q10.json",
+      "sha256": "b14f4eec5373e586ef00124cf1469e8ee522b4da3e807348f3902d514618a482",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 11,
+      "path": "items/gyeseong/q11.json",
+      "sha256": "492c9c17360e49f460fa6faa7731fc04ab0abf1d1124dd70990d91c4f096ee9d",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 12,
+      "path": "items/gyeseong/q12.json",
+      "sha256": "98ac034cec6f984aa69776ce877a58122706832dc081e8fbc953ea5ede919e49",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 13,
+      "path": "items/gyeseong/q13.json",
+      "sha256": "300bc225f5c4d3886ed61b010bc59c30e7bd30ff8ddb3715e290df236c543f76",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 14,
+      "path": "items/gyeseong/q14.json",
+      "sha256": "86aa516d1fba5a882785f639f55b6aa1e2d48626978cdf9933c03569abdf5e95",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 15,
+      "path": "items/gyeseong/q15.json",
+      "sha256": "1e1e10edb969f3e386ee0184a4a9457fc1f39245dbd1220de61e42c99bbf619f",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 16,
+      "path": "items/gyeseong/q16.json",
+      "sha256": "380f9daca5f6083ffe0a7441edb67386fcd1d279780fcad4a8d6baafe1b287af",
+      "status": "source-hold"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 17,
+      "path": "items/gyeseong/q17.json",
+      "sha256": "8682f231bb78810dad164a2dc16e98ace7887ca23e42ca27bf0016090d318cad",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 18,
+      "path": "items/gyeseong/q18.json",
+      "sha256": "b4dc8e26064f41ee625e645b8fff0cc5f5d2c0a1489ac4e55d89079b58de2fab",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 19,
+      "path": "items/gyeseong/q19.json",
+      "sha256": "5ffd9419058942b57b908313e78d416a24137cb9c5df67c80e3522566acc45b7",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 20,
+      "path": "items/gyeseong/q20.json",
+      "sha256": "f930313c26365f80e8b283defe879b6d101d23762d1fecd1625e1ef37ccddf55",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 21,
+      "path": "items/gyeseong/q21.json",
+      "sha256": "81062030d91eb5a3f0df1e8fb7adf3cf61af3110667a8ef73da2d8241d5fc06c",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 22,
+      "path": "items/gyeseong/q22.json",
+      "sha256": "a0fe5de2336c116067320288cbc6255e5361e631dccfe7936a6fa942e7f975b2",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "gyeseong",
+      "questionNumber": 23,
+      "path": "items/gyeseong/q23.json",
+      "sha256": "db24ac7f1f0c6e838f594feb68237d5c75c061218147058f7927c25da92ec4b1",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 1,
+      "path": "items/nobyeon/q01.json",
+      "sha256": "5cd942425084b4b1fcb2e50c9d3dcbe45802d783939fb2ee1f8fc00a17e6d5fc",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 2,
+      "path": "items/nobyeon/q02.json",
+      "sha256": "6eb94deb7840d2c0d5eca227271b1b75e7a314d03e1404777927cced28c55adf",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 3,
+      "path": "items/nobyeon/q03.json",
+      "sha256": "ade5ad8f73b6c6f98eca5c9843fb9a486f254e9e59cf2754b1d3b0d45cf5929c",
+      "status": "hard-exclude-proposed"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 4,
+      "path": "items/nobyeon/q04.json",
+      "sha256": "1c134f1ebcc41adc8c8aeac4aea267174f6fbccb2658439fb0316dc99d2e1246",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 5,
+      "path": "items/nobyeon/q05.json",
+      "sha256": "201eb0996211cf131764b7ec06bff2576c9869e785aa1cb39c13388da163fa03",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 6,
+      "path": "items/nobyeon/q06.json",
+      "sha256": "bdf43f047230fb2a2283c59a03a59eafc40f83bfaec6791c843a8f7957b344ef",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 7,
+      "path": "items/nobyeon/q07.json",
+      "sha256": "a46768cb24a21aec92413e908be35bd08d254a21c0c0db4b999261311edaa880",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 8,
+      "path": "items/nobyeon/q08.json",
+      "sha256": "252cb105ce5c122670a31483944ddeba0e2f3b1f53c9b4cdca7d9ab7c906582e",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 9,
+      "path": "items/nobyeon/q09.json",
+      "sha256": "e1dc725839522ae8cd113ee092aeeee25217c22751b8d29a091f5879c88a0cc8",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 10,
+      "path": "items/nobyeon/q10.json",
+      "sha256": "40072ee770932063801ac7b048461a44ef274cdb6280902b637627c5508d1248",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 11,
+      "path": "items/nobyeon/q11.json",
+      "sha256": "43e4f99d49de388e8da8e2d4041d3171e3e435437f7974898f17adb06e404c94",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 12,
+      "path": "items/nobyeon/q12.json",
+      "sha256": "1e906e60779b090f7743509860818fdc05ac93654470c254e4bb8c9b8b33c13f",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 13,
+      "path": "items/nobyeon/q13.json",
+      "sha256": "8ed79de82ed7be9942cd3459ca1b29e315d621fcaf30049c48ed007a5132c181",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 14,
+      "path": "items/nobyeon/q14.json",
+      "sha256": "cb374403d2cbd8f59fcfe1dc2965dc599f772137ea79ca8cf2f74bfcac690717",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 15,
+      "path": "items/nobyeon/q15.json",
+      "sha256": "66428b5e8693783a3a14fa78e544e296a76db1488d72097b0216e569e2f16875",
+      "status": "source-hold"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 16,
+      "path": "items/nobyeon/q16.json",
+      "sha256": "1f7028b4c1a49fa0c5df6be179bb376105ebc4d20ccd2fc64ca681372b089355",
+      "status": "source-hold"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 17,
+      "path": "items/nobyeon/q17.json",
+      "sha256": "80daba47dd3a3dd549ff6d5fc9c32f02204ba705b7e135c6822708d20a902b3e",
+      "status": "source-hold"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 18,
+      "path": "items/nobyeon/q18.json",
+      "sha256": "100d86c0e184e009cb0eff2db65159f41d46dcee73899e54276dffab0be94e20",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 19,
+      "path": "items/nobyeon/q19.json",
+      "sha256": "6ae5c7dae0cef4c18a6a666637345a32b1d5ea4c87ef3847b9964432bef5d78d",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 20,
+      "path": "items/nobyeon/q20.json",
+      "sha256": "b141c774c4322751a1a37fe1b1ec502c906eacb8bfcf5f82ad009d8830db460f",
+      "status": "candidate"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 21,
+      "path": "items/nobyeon/q21.json",
+      "sha256": "fa934c8a04a4e263ead0cd9fe5e9d4ab3c746cd545d43ec9fdbe1839d864dc43",
+      "status": "method-hold"
+    },
+    {
+      "schoolKey": "nobyeon",
+      "questionNumber": 22,
+      "path": "items/nobyeon/q22.json",
+      "sha256": "2781bf796a4f2cd93c9254d05c27e79245f2b9144dce2ed695c8fdf43ba4d256",
+      "status": "method-hold"
+    }
+  ]
+}

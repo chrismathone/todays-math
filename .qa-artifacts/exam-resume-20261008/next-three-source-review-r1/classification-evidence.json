@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "projectTypeSafeSkill": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.agents\\skills\\typesafe-ai\\SKILL.md",
+    "sha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+    "bytes": 10189
+  },
+  "liveDocsReadOn": "2026-10-12",
+  "liveDocs": [
+    "https://docs.typesafe.ai/llms.txt",
+    "https://docs.typesafe.ai/confidence",
+    "https://docs.typesafe.ai/cookbooks/citation_check"
+  ],
+  "markdownPathsFailedNormalPagesSucceeded": true,
+  "inferenceApiCalls": 0,
+  "design": "Independent dimensions for printed identity, component transcription, curriculum core/procedure, family, difficulty, rights, native; unknown and exclusion are separate. Counts/hashes are deterministic code, not semantic approval. No API integration changed.",
+  "officialCurriculumEvidence": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+    "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+    "bytes": 114892
+  },
+  "restrictions": [
+    {
+      "id": "no_vieta",
+      "exact_text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4075,
+        "record_offset_in_uncompressed_stream": 207128,
+        "extracted_paragraph_1based": 833
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          35
+        ],
+        "printed_pages": [
+          31
+        ]
+      }
+    },
+    {
+      "id": "no_ratio_identities",
+      "exact_text": "삼각비 사이의 관계는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4440,
+        "record_offset_in_uncompressed_stream": 224820,
+        "extracted_paragraph_1based": 908
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ]
+      }
+    },
+    {
+      "id": "angle_range",
+      "exact_text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4444,
+        "record_offset_in_uncompressed_stream": 224946,
+        "extracted_paragraph_1based": 909
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ]
+      }
+    },
+    {
+      "id": "no_circle_proportionality",
+      "exact_text": "원과 비례에 관한 성질은 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4452,
+        "record_offset_in_uncompressed_stream": 225374,
+        "extracted_paragraph_1based": 911
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ]
+      }
+    },
+    {
+      "id": "real_quadratic_roots",
+      "exact_text": "이차방정식은 해가 실수인 경우만 다룬다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4059,
+        "record_offset_in_uncompressed_stream": 206372,
+        "extracted_paragraph_1based": 829
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          35
+        ],
+        "printed_pages": [
+          31
+        ]
+      }
+    },
+    {
+      "id": "no_complex_equation_applications",
+      "exact_text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4071,
+        "record_offset_in_uncompressed_stream": 206968,
+        "extracted_paragraph_1based": 832
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          35
+        ],
+        "printed_pages": [
+          31
+        ]
+      }
+    },
+    {
+      "id": "no_complex_function_applications",
+      "exact_text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4221,
+        "record_offset_in_uncompressed_stream": 214313,
+        "extracted_paragraph_1based": 863
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          37
+        ],
+        "printed_pages": [
+          33
+        ]
+      }
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "exact_text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+      "source_id": "moe-2020-236-math-hwp",
+      "hwp_locator": {
+        "stream": "BodyText/Section0",
+        "record_1based": 4472,
+        "record_offset_in_uncompressed_stream": 226554,
+        "extracted_paragraph_1based": 916
+      },
+      "original_2015_pdf_locator": {
+        "physical_pages_1based": [
+          39
+        ],
+        "printed_pages": [
+          35
+        ]
+      }
+    }
+  ],
+  "solverRules": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008\\scripts\\import\\exam-paper\\solver_rules.json",
+    "sha256": "fc1854b4891d54d8967c90368001e3872aa4b7407c17a48345e03c83bdd8e8ab",
+    "bytes": 2322
+  },
+  "rulesCaveat": "Keyword/shape detection is bounded. Official no_ratio_identities and whole-choice surface restrictions override legacy regex omissions.",
+  "bankSnapshot": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r3-20261008.json",
+    "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+    "bytes": 78216
+  },
+  "bankSnapshotScope": "historical2026-10-08T13:00:16.891043Z,22Units/302families; no freshDBread, no semantic family approval, protected82 unchanged",
+  "registry": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+    "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+    "bytes": 85170
+  },
+  "gates": {
+    "sourceIdentityApproval": false,
+    "wholePairApproval": false,
+    "gradeApproval": false,
+    "familyApproval": false,
+    "difficultyApproval": false,
+    "rightsApproval": false,
+    "custodyApproval": false,
+    "nativeApproval": false,
+    "loadable": false,
+    "directUseAllowed": false
+  }
+}
