@@ -1,0 +1,65 @@
+{
+  "kind": "user-requested-memory-pause/v1",
+  "utc": "2026-10-12T05:05:42.668158+00:00",
+  "status": "PAUSED",
+  "reason": "User requested all related sessions pause to reclaim memory",
+  "root": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008",
+    "originalSessionId": "01a11702-baf1-7343-b2bc-64cf304bbcc5",
+    "head": "28ce9974e74f1d854e586009e161926482edd69b",
+    "branch": "chrismathone/exam-extraction-resume-20261008",
+    "trackedDirtyStatus": "M src/__tests__/api/problem.test.ts\n M src/app/api/problems/route.ts\n M src/contracts/problem.contract.ts",
+    "lastConfirmedRemoteCheckpoint": "439094fe9d4aced0497c88ec32b816dd9917a448",
+    "lastRemoteMainIntegrated": "3f4d27f97fa358aa129436ec19f08bccb3ee85fd",
+    "unpublishedSource67MergePreserved": true,
+    "ownManualPastExamLockCodeTests": {
+      "files": 3,
+      "passed": 93,
+      "mockOnly": true
+    },
+    "primaryTerminalClosePending": true
+  },
+  "workers": [
+    {
+      "scope": "geometry",
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-geometry-20261008",
+      "originalSessionId": "01a1177e-fbb2-7822-a7e2-51c40b39e38f",
+      "head": "d68b5f2c87f6039af879817ef1a9c9fb159c4a8f",
+      "trackedDirtyStatus": "",
+      "ptyClosedAndStopped": 3,
+      "worktreeAndEvidencePreserved": true
+    },
+    {
+      "scope": "source-identity",
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008",
+      "originalSessionId": "01a1177f-954e-7343-9cfb-e803c179ed85",
+      "head": "b9324223ce7051095537e4b80e4ab550276169cf",
+      "trackedDirtyStatus": "",
+      "ptyClosedAndStopped": 3,
+      "worktreeAndEvidencePreserved": true
+    },
+    {
+      "scope": "algebra",
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-author-algebra-20261008",
+      "originalSessionId": "01a1177d-e52b-7511-944f-c2d4edd47c82",
+      "head": "b2de0fe07d248557f2344f4dd8a383a795d7f138",
+      "trackedDirtyStatus": "",
+      "ptyClosedAndStopped": 2,
+      "worktreeAndEvidencePreserved": true
+    }
+  ],
+  "workerPtyStopped": 8,
+  "continuationScheduledTask": "Disabled verified by schtasks.exe",
+  "pausedMarker": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\continuation-watch\\PAUSED",
+  "fullGoalComplete": false,
+  "operationalWrites": 0,
+  "resumeOnlyOnUserRequest": true,
+  "unfinishedWork": [
+    "root manual past_exam registration lock code3 files verified but uncommitted",
+    "source67 integrated and local reviewer-only131 exact-byte copies validated; merge not pushed",
+    "GF14 final review in progress; raw15 frozen14solved1pendingq18 preserved",
+    "GSq13r5 fresh blind solve/preview calculated, not yet raw sealed or final reviewed; r5 remains unselected",
+    "NB5 new authoring request accepted and begun, no completed draft batch yet",
+    "N source unavailable, cached tasks remain possible"
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "kind": "claude-ownership-receipt/v1",
+  "utc": "2026-10-13T15:58:00Z",
+  "owner": {
+    "agent": "Claude Code (Opus 5.5)",
+    "sessionId": "3cb74c18-8a42-447d-b2ab-8c4d87c0111b",
+    "worktree": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
+    "branch": "chrismathone/exam-extraction-resume-20261008",
+    "headAtTakeover": "28ce9974e74f1d854e586009e161926482edd69b"
+  },
+  "instruction": {
+    "text": "기출 이어받아 진행. (+ 같은 턴의 지시문 — exam-twin-handoff-claude-20261012.md 를 읽고 같은 워크트리에서 이어서)",
+    "arrivedIn": "Claude terminal user turn, 2026-10-14 KST",
+    "provenanceNote": "The same bytes are in claude-transfer-prompt-20261014.txt and claude-transfer-receipt-20261014-r1.json (orca terminal send from the Codex session). The Codex terminal (term_fb0bd4f2…, this worktree) shows the owner's own input «클로드에게 진행 넘겨서 계속 진행» and the Codex reply «저는 중복 작업 없이 멈춥니다» at 12:53 AM KST — read with orca terminal read --screen. No other writer is active in this worktree. The owner can stop the run at any time.",
+    "scopeLimits": [
+      "feature branch only — fast-forward push after fetch/compare/integrate/related checks",
+      "no main push, no merge to main, no deploy",
+      "no production DB write, delete, reload or lock release",
+      "preserve sources, existing 82 locks, Gyeongsanyeo q19 permanent exclusion, 3 correction ledgers, others' changes, shared deps (no npm install / prisma generate on the junction)"
+    ]
+  },
+  "pausedStatePreserved": {
+    "pauseReceipt": ".qa-artifacts/exam-resume-20261008/pause-receipt-20261012-r1.json",
+    "pausedMarker": ".qa-artifacts/exam-resume-20261008/continuation-watch/PAUSED",
+    "scheduledTask": "TodaysMath-ExamContinuation — Disabled (schtasks.exe /Query, read-only); not re-enabled",
+    "codexWorkers": "geometry / source-identity / algebra stay stopped; not relaunched",
+    "ledgerExecutionState": "PAUSED entries in continuation-index.json / status-ledger.json are kept as history; this file records the Claude run separately"
+  },
+  "ledgerLineEndings": {
+    "note": "Both owner ledgers are tracked -text with LF at HEAD; the pause write left CRLF. Restored LF with identical JSON so the commit carries only the appended executionState.",
+    "files": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-index.json",
+        "pausedBytesSha256": "5c9842b4f98e402ab9fdafc6694563b9ae625bcad15b59f5ac9f16d567753b98",
+        "lfSha256": "7a9fdfd27535dd479316388815ec920c92ec1b615937a7a371fe54238a28ff9c",
+        "jsonEqual": true
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/status-ledger.json",
+        "pausedBytesSha256": "4dfdc652f6c3f35e07c41fc058c1b930b86e09801fd51d2f7011a4e0bbf60517",
+        "lfSha256": "7d9b65d38b369b41e79679d438b333674c78b79059a2b82e87127a09dbe3c807",
+        "jsonEqual": true
+      }
+    ]
+  },
+  "verifiedAtTakeover": {
+    "manualPastExamLockCode": {
+      "files": [
+        "src/app/api/problems/route.ts",
+        "src/contracts/problem.contract.ts",
+        "src/__tests__/api/problem.test.ts"
+      ],
+      "vitest": "problem.test.ts + contracts.smoke.test.ts + mockHandlers.contract.test.ts — 3 files / 124 passed",
+      "mutation": "route.ts reverted to HEAD → the new past_exam lock test fails (expected true to be false); restored byte-identical (sha256 fb1870469a04518de06548a2dba57d70d7965b32a1602e04d4a2fd7318110434)",
+      "mockOnly": true
+    },
+    "source67": {
+      "integratedWorkerCommit": "b2de0fe07d248557f2344f4dd8a383a795d7f138",
+      "validateReview": "{reports:67, parentsUnique:67, questionOnlyPlanningWhitelist:42, hardExclusionProposals:4, allBindingsValid:true, gradeFamilyRightsNativeFullApprovals:0, sourceCertifiedParents:0}",
+      "reviewerOnlyLocalCopies": "131 / 131 sha256 match parent-local-evidence-copy-r1.json (not committed; originals stay out of Git)"
+    }
+  },
+  "countsCarriedOver": {
+    "authored": 106,
+    "independentMathAndGradeReviewed": 91,
+    "contentClassificationPass": 15,
+    "contentClassificationHold": 76,
+    "finalApprovedOrLoaded": 0,
+    "rawSolved": 105,
+    "rawPending": 1,
+    "source": "continuation-index-v11.json / status-ledger-v11.json"
+  },
+  "dbWrites": 0,
+  "wholeGoalComplete": false
+}
