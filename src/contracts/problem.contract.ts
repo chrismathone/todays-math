@@ -12,7 +12,8 @@
  *   POST   /api/problems/transform           — 기존 문제 변형 → **후보만** 반환(DB 미적재)
  *   POST   /api/problems/transform/adopt     — 미리보기에서 채택한 후보만 DB 적재
  *
- * Problem.directUseAllowed — T3.0/D-26. RPM 원본은 false, 그 외 기본 true.
+ * Problem.directUseAllowed — T3.0/D-26. RPM 원본·수동 등록 원본 기출은 false.
+ * 수동 자작 등록은 true이며, 원본 기출의 검수 상태 승격은 직접 출제 잠금을 풀지 않는다.
  * Problem.pool — D-31. 기본 shared. 특별 지시가 없으면 전부 공용 풀.
  *
  * ⚠️ reviewStatus는 등록/수정 요청에 포함하지 않는다 — 검수 승격은 반드시 전용 엔드포인트

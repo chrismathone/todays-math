@@ -87,6 +87,7 @@ describe("[T3.1] POST /api/problems — LaTeX 본문 무손실 저장", () => {
     expect(res.status).toBe(201);
     const body = problemResponseSchema.parse(await res.json());
     expect(body.data.content).toBe(content);
+    expect(body.data.directUseAllowed).toBe(true);
   });
 
   it("등록 요청 출처(source)로 ai_generated/transformed는 거부한다(계약 강제)", async () => {
@@ -130,7 +131,7 @@ describe("[T3.1] POST /api/problems — LaTeX 본문 무손실 저장", () => {
     expect(body.error.code).toBe("NOT_FOUND");
   });
 
-  it("source=past_exam 기출 등록은 201을 반환한다", async () => {
+  it("원본 기출은 잠금 상태로 등록되고 검수 승격 후에도 출제 풀에 들어가지 않는다", async () => {
     const res = await createProblem(
       jsonRequest("http://localhost/api/problems", "POST", {
         unitId: MOCK_PROBLEM_WITH_FRACTION.unitId,
@@ -146,6 +147,20 @@ describe("[T3.1] POST /api/problems — LaTeX 본문 무손실 저장", () => {
     expect(body.data.source).toBe("past_exam");
     expect(body.data.reviewStatus).toBe("pending");
     expect(body.data.pool).toBe("shared");
+    expect(body.data.directUseAllowed).toBe(false);
+
+    const reviewed = await patchReviewStatus(
+      jsonRequest("http://localhost/api/problems/review-status", "PATCH", {
+        reviewStatus: "approved",
+      }),
+      withId(body.data.id),
+    );
+    expect(reviewed.status).toBe(200);
+    const approved = problemResponseSchema.parse(await reviewed.json()).data;
+    expect(approved.reviewStatus).toBe("approved");
+    expect(approved.directUseAllowed).toBe(false);
+    const eligible = await findEligibleProblems({ unitIds: [approved.unitId] });
+    expect(eligible.some((row) => row.id === approved.id)).toBe(false);
   });
 
   it("등록 시 pool을 생략하면 공용 풀이다(D-31)", async () => {

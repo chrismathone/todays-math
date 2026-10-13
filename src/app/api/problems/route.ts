@@ -57,6 +57,9 @@ async function handlePost(request: NextRequest) {
         userId: session.id,
         unitId: parsed.data.unitId,
         source: parsed.data.source,
+        // 원본 기출은 개념·출처 참고용이다. 검수 승격으로 직접 출제 잠금이 풀리지 않게
+        // DB의 일반 기본값(true)에 기대지 않고 등록할 때부터 닫는다.
+        directUseAllowed: parsed.data.source !== "past_exam",
         difficulty: parsed.data.difficulty,
         problemType: parsed.data.problemType,
         // 형식을 **여기서도** 적는다. 문항을 만드는 자리가 셋인데(생성·변형 채택·이 손등록)
