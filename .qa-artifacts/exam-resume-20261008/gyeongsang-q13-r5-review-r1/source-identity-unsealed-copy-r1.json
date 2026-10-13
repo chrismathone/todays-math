@@ -1,0 +1,125 @@
+{
+  "kind": "source-identity-unsealed-q13-r5-copy/v1",
+  "utc": "2026-10-13T16:10:03.111856+00:00",
+  "from": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-q13-r5-review-r1",
+  "sourceIdentityHead": "b9324223ce7051095537e4b80e4ab550276169cf",
+  "copiedTo": "source-identity-unsealed-r1",
+  "files": [
+    {
+      "path": "blind/blind-manifest.json",
+      "sha256": "722257b96dce3fa2b522fa70d351f829ea8e41c7556eed06775c2c29e9c09a0e",
+      "matchesParentBlind": true
+    },
+    {
+      "path": "blind/SOLVE-BRIEF.md",
+      "sha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+      "matchesParentBlind": true
+    },
+    {
+      "path": "blind/student-problems.json",
+      "sha256": "eef1ce2192f37febbd4bd8b54a00a9a960f20072619f589f238d6f08f024b7c2",
+      "matchesParentBlind": true
+    },
+    {
+      "path": "exact_calculation.py",
+      "sha256": "c59132c8ed317af37de10a2231f7518a7c29af43da7e7781fb8d85acc2622275",
+      "bytes": 4788,
+      "localOnly": false
+    },
+    {
+      "path": "exposure-declaration.json",
+      "sha256": "e31adf33e7f4abe4132a307851b23dabbe6b81994e5a8d9409a1c5d37fb814d5",
+      "bytes": 1388,
+      "localOnly": false
+    },
+    {
+      "path": "input-receipt.json",
+      "sha256": "3b82e073d893ddf3e268698286dfa5fa453898c4b5504cba77149fd736a62661",
+      "bytes": 770,
+      "localOnly": false
+    },
+    {
+      "path": "instruction-receipt.json",
+      "sha256": "2e608b854419aa7e00d1e8b71529a6309a805eec641eac0a137dc6d8e7c75f90",
+      "bytes": 1089,
+      "localOnly": false
+    },
+    {
+      "path": "official/moe-2015-74-book8-math.pdf",
+      "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+      "bytes": 2533289,
+      "localOnly": true
+    },
+    {
+      "path": "official/moe-2020-236-book8-math.hwp",
+      "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "bytes": 4598784,
+      "localOnly": true
+    },
+    {
+      "path": "official-curriculum-receipt.json",
+      "sha256": "2159cb42d70941e9de1bb7365d464831cb93f4cc0fa37b1ede3e62a1df2d8b74",
+      "bytes": 3169,
+      "localOnly": false
+    },
+    {
+      "path": "official_curriculum.py",
+      "sha256": "d866b7174680b64ce062b87b9e148dec2a959db0edb0c6055b74988f748c607a",
+      "bytes": 4007,
+      "localOnly": false
+    },
+    {
+      "path": "prepare_blind.py",
+      "sha256": "af9ab3494790ccf0718495c9b09d2595e39311ae888997cd42a2db21be7fd19a",
+      "bytes": 4845,
+      "localOnly": false
+    },
+    {
+      "path": "preservation-baseline.json",
+      "sha256": "b923362773246a7734a879eaeb65358f2cc2943a6509e1f0349888131fb7b1a0",
+      "bytes": 199958,
+      "localOnly": false
+    },
+    {
+      "path": "proofs/q13-exact-calculations.json",
+      "sha256": "6867677076f7e425d6fc0da53c434fe11a4c5e52adc42fa8ccb8fa1a13389afd",
+      "bytes": 4764,
+      "localOnly": false
+    },
+    {
+      "path": "qa/q13-student.html",
+      "sha256": "73c581850823b94dcbc3fefc170fe62717f6ff39654693a18a564b9da4830e89",
+      "bytes": 1464188,
+      "localOnly": false
+    },
+    {
+      "path": "qa/q13-student.png",
+      "sha256": "207c33e31c12283106e3149dc524ed21b5de1f2f33ad912d7caaddf754008fcc",
+      "bytes": 31133,
+      "localOnly": false
+    },
+    {
+      "path": "student-preview-receipt.json",
+      "sha256": "cfb566e6784348e650864d5e37d5f9a86ceec6aa0d1ab9fd586c0e098695f7c5",
+      "bytes": 748,
+      "localOnly": false
+    },
+    {
+      "path": "student_preview.mjs",
+      "sha256": "00da26bfd86154d485000ebd6f4b35420c0e3f7993d867b600f174fd4acf26fc",
+      "bytes": 4188,
+      "localOnly": false
+    },
+    {
+      "path": "tool-ready-r4.json",
+      "sha256": "d6b31941a033d37121e7ee683eafc2f11f168ea7f596490483e08825808ae3b1",
+      "bytes": 452,
+      "localOnly": false
+    }
+  ],
+  "rawSolveFileWritten": false,
+  "sealedByCommit": false,
+  "disposition": "Kept as an unsealed second calculation. The q13 r5 approval path uses a new sealed blind solve (claude-review-r1); this copy is cross-check evidence only.",
+  "sourceIdentityWorktreeUnchanged": true,
+  "dbWrites": 0
+}

@@ -1,0 +1,59 @@
+{
+  "questionNumber": 20,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+  "studentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+  "solverId": "claude-opus-5-5-gf14-r1-q20",
+  "status": "solved",
+  "answer": "(1) △PQH≡△PRH(SSS) → ∠PHQ=∠PHR=90°, α=30° (2) PH=5√3 cm (3) ㉠ 1/2 (=QH/PQ) ㉡ √3/2 (=PH/PQ) ㉢ √3/3 (=QH/PH)",
+  "parts": [
+    {
+      "label": "(1)",
+      "points": 2,
+      "answer": "PQ=PR, QH=RH, PH 공통 → △PQH≡△PRH (SSS 합동). ∠PHQ=∠PHR 이고 합이 180° 이므로 각각 90°, 즉 PH⊥QR. ∠QPH=∠RPH, 합이 ∠QPR=60° 이므로 α=30°."
+    },
+    {
+      "label": "(2)",
+      "points": 3,
+      "answer": "PH = √(10² − 5²) = √75 = 5√3 cm"
+    },
+    {
+      "label": "(3)",
+      "points": 3,
+      "answer": "㉠ sin α = QH/PQ = 5/10 = 1/2 · ㉡ cos α = PH/PQ = 5√3/10 = √3/2 · ㉢ tan α = QH/PH = 5/(5√3) = √3/3 (= 1/√3)"
+    }
+  ],
+  "solution": "(1) 두 삼각형 PQH 와 PRH 에서\n· PQ = PR (정삼각형의 두 변)\n· QH = RH (H 는 QR 의 중점)\n· PH 는 공통인 변\n이므로 △PQH ≡ △PRH (SSS 합동)이다.\n대응각이므로 ∠PHQ = ∠PHR 이고, 두 각을 더하면 평각이므로 ∠PHQ + ∠PHR = 180°, 따라서 ∠PHQ = ∠PHR = 90° 이다. 즉 PH ⊥ QR 이다.\n또 대응각이므로 ∠QPH = ∠RPH 이고 ∠QPH + ∠RPH = ∠QPR = 60° 이므로 α = ∠QPH = 30° 이다.\n(△PQH 에서 ∠PQH = 60°, ∠PHQ = 90° 이므로 α = 180° − 60° − 90° = 30° 로 구해도 된다.)\n\n(2) QH = 10 ÷ 2 = 5 (cm) 이고 △PQH 는 ∠PHQ = 90° 인 직각삼각형이므로 피타고라스 정리에 의해\nPH² = PQ² − QH² = 10² − 5² = 75, PH > 0 이므로 PH = √75 = 5√3 (cm) 이다.\n\n(3) 직각삼각형 PQH 에서 α = ∠QPH 의 빗변은 PQ = 10, 높이(대변)는 QH = 5, 밑변(이웃변)은 PH = 5√3 이다.\n㉠ sin α = QH/PQ = 5/10 = 1/2\n㉡ cos α = PH/PQ = 5√3/10 = √3/2\n㉢ tan α = QH/PH = 5/(5√3) = 1/√3 = √3/3",
+  "evidence": {
+    "choiceChecks": [],
+    "partChecks": [
+      {
+        "part": "(1)",
+        "value": "α = 30°",
+        "verdict": "SSS 합동의 세 조건(PQ=PR, QH=RH, PH 공통)이 모두 본문에서 주어진다. ∠PHQ+∠PHR=180° 에서 직각, ∠QPH+∠RPH=60° 에서 30°. sympy 로 PH·QR 내적 0, cos∠QPH=√3/2 → 30° 확인."
+      },
+      {
+        "part": "(2)",
+        "value": "5√3 cm",
+        "verdict": "(1)의 직각을 써서 피타고라스 정리. 10²−5²=75, 양의 제곱근만 길이. 단위 cm."
+      },
+      {
+        "part": "(3)",
+        "value": "1/2, √3/2, √3/3",
+        "verdict": "직각삼각형 PQH 의 변의 비로 직접 구한다(삼각비 사이의 관계를 쓰지 않음). sin30°, cos30°, tan30° 와 차가 0. tan 은 1/√3 과 √3/3 이 같은 값 — 표기 차이는 오답이 아님."
+      }
+    ],
+    "existenceUniqueness": "한 변이 10 cm 인 정삼각형과 QR 의 중점 H 는 (합동인 것을 빼면) 하나로 정해지고, PH 와 α 도 하나로 정해진다. α=30° 는 0°~90° 범위 안의 예각이며 △PQH 는 ∠H=90° 인 직각삼각형이라 삼각비의 정의(직각삼각형의 변의 비)가 그대로 적용된다. 길이 PH=5√3>0. 소문항 배점 2+3+3=8 은 문항 배점 8점과 맞는다.",
+    "figureReading": "SVG 좌표: P(119.942, 39.474), Q(39.942, 178.038), R(199.942, 178.038), H(119.942, 178.038). PQ=PR=QR=160(눈금 단위)으로 정삼각형, QH=RH=80 으로 H 는 QR 의 중점, PH 는 세로 점선(x 좌표 같음)이라 QR 에 수직, 그림에서 잰 ∠QPH=30.0°, PH/PQ=0.86603=√3/2. 라벨 P(위 꼭짓점) · Q(왼쪽 아래) · R(오른쪽 아래) · H(밑변 가운데) 이 문장과 맞는다. 그림에는 길이 10 cm 표기와 직각 표시가 없다 — 길이는 본문에서 주어지고, 직각은 (1)에서 증명할 대상이므로 표시가 없는 것이 맞다. α 표시도 그림에 없지만 본문이 α=∠QPH 로 정의하므로 모자람은 없다.",
+    "gradeMethod": "쓴 개념: 삼각형의 SSS 합동 조건(중1 — 2015 [9수04-04] 후보), 평각 180°·정삼각형 한 내각 60°, 피타고라스 정리(중2 — [9수04-16] 후보), 삼각비의 뜻과 30° 의 삼각비 값을 직각삼각형의 변의 비로 구하기(중3 — [9수04-17] 후보). 삼각비 사이의 관계(sin²+cos²=1, tan=sin/cos, 여각 관계)는 쓰지 않았다. 학년 밖 방법 필요 없음. (성취기준 번호는 기억에 따른 후보 — 2단계에서 official-provisions.json 으로 대조할 것.)",
+    "calculation": {
+      "code": "import sympy as sp\n# exact model: PQR equilateral side 10, H midpoint of QR\ns = sp.Integer(10)\nQ = sp.Matrix([0, 0]); R = sp.Matrix([s, 0])\nP = sp.Matrix([s/2, sp.sqrt(s**2 - (s/2)**2)])\nH = (Q + R) / 2\nd = lambda A, B: sp.sqrt(((A - B).T * (A - B))[0])\nPQ, PR, QH, RH, PH = d(P,Q), d(P,R), d(Q,H), d(R,H), d(P,H)\nprint(\"PQ,PR,QR =\", PQ, PR, d(Q,R))\nprint(\"QH,RH =\", QH, RH, \" PH =\", sp.nsimplify(PH))\nprint(\"PH.QR dot =\", ((P-H).T*(R-Q))[0])\n# angle QPH\nv1, v2 = Q-P, H-P\ncosA = sp.simplify((v1.T*v2)[0]/(d(P,Q)*d(P,H)))\nalpha = sp.acos(cosA)\nprint(\"cos(alpha) =\", cosA, \" alpha(deg) =\", sp.simplify(alpha*180/sp.pi))\nprint(\"sin =\", sp.simplify(QH/PQ), \" cos =\", sp.simplify(PH/PQ), \" tan =\", sp.radsimp(QH/PH))\nprint(\"check vs sin30,cos30,tan30:\", sp.simplify(QH/PQ - sp.sin(sp.pi/6)), sp.simplify(PH/PQ - sp.cos(sp.pi/6)), sp.simplify(QH/PH - sp.tan(sp.pi/6)))\nprint(\"pythagoras 10^2-5^2 =\", s**2-(s/2)**2, \"-> sqrt =\", sp.sqrt(s**2-(s/2)**2))\n# figure: SVG coordinates\nimport math\nPf=(119.942,39.474); Qf=(39.942,178.038); Rf=(199.942,178.038); Hf=(119.942,178.038)\ndf=lambda a,b: math.hypot(a[0]-b[0],a[1]-b[1])\nprint(\"SVG PQ,PR,QR =\", round(df(Pf,Qf),3), round(df(Pf,Rf),3), round(df(Qf,Rf),3))\nprint(\"SVG QH,RH =\", df(Qf,Hf), df(Rf,Hf), \" PH vertical dx =\", Pf[0]-Hf[0])\nprint(\"SVG PH/PQ =\", round(df(Pf,Hf)/df(Pf,Qf),5), \" sqrt3/2 =\", round(math.sqrt(3)/2,5))\nprint(\"SVG angle QPH (deg) =\", round(math.degrees(math.atan2(Hf[0]-Qf[0], Hf[1]-Pf[1])),4))\nprint(\"parts score sum =\", 2+3+3)\n",
+      "output": "PQ,PR,QR = 10 10 10\nQH,RH = 5 5  PH = 5*sqrt(3)\nPH.QR dot = 0\ncos(alpha) = sqrt(3)/2  alpha(deg) = 30\nsin = 1/2  cos = sqrt(3)/2  tan = sqrt(3)/3\ncheck vs sin30,cos30,tan30: 0 0 0\npythagoras 10^2-5^2 = 75 -> sqrt = 5*sqrt(3)\nSVG PQ,PR,QR = 160.0 160.0 160.0\nSVG QH,RH = 80.0 80.00000000000001  PH vertical dx = 0.0\nSVG PH/PQ = 0.86603  sqrt3/2 = 0.86603\nSVG angle QPH (deg) = 30.0\nparts score sum = 8\n"
+    },
+    "notes": [
+      "(3)의 «각 값이 나오는 선분의 비»는 sin α = QH/PQ, cos α = PH/PQ, tan α = QH/PH. 같은 값을 △PRH 의 RH/PR 등으로 써도 ∠RPH=α 이므로 수학적으로 같지만, α=∠QPH 로 정의했으므로 △PQH 의 변이 자연스러운 답이다.",
+      "㉢ 은 √3/3 과 1/√3 모두 같은 값이다. 채점 기준이 분모의 유리화를 요구하는지는 본문에 없다.",
+      "문장의 «새로운 기준각 … 삼각비를 기록하려고 한다» 와 «기록표» 는 수학적 조건에 영향이 없다 — 표현의 자연스러움은 2단계에서 따로 본다."
+    ]
+  },
+  "pendingReason": null
+}

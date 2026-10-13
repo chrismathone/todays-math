@@ -1,0 +1,30 @@
+{
+  "questionNumber": 9,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+  "studentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+  "solverId": "claude-opus-5-5-gf14-r1-q09",
+  "status": "solved",
+  "answer": "⑤",
+  "parts": [
+    { "label": "㉠", "answer": "60°" },
+    { "label": "㉡", "answer": "3/4" }
+  ],
+  "solution": "삼각형의 세 내각의 크기의 합은 180°이고 ∠R=90°이므로 ∠P+∠Q=90°이다. ∠Q=2∠P 이므로 ∠P+2∠P=90°, 3∠P=90°, ∠P=30° 이고 ∠Q=60° 이다. 따라서 ㉠은 60°이다.\n\n∠P=30°, ∠Q=60°, ∠R=90° 인 직각삼각형에서 세 변의 길이의 비는 QR : PR : PQ = 1 : √3 : 2 이다. QR=1, PR=√3, PQ=2 로 두면 ∠Q 에 대하여 빗변은 PQ, 높이(대변)는 PR, 밑변(이웃변)은 QR 이므로\nsin Q = PR/PQ = √3/2, cos Q = QR/PQ = 1/2, tan Q = PR/QR = √3 이다.\n\n따라서 sin Q × cos Q × tan Q = (√3/2) × (1/2) × √3 = 3/4 이고, ㉡은 3/4 이다.\n\n㉠, ㉡을 차례로 짝지으면 60°, 3/4 이므로 답은 ⑤이다.",
+  "evidence": {
+    "choiceChecks": [
+      { "choice": "①", "value": "30°, 1/4", "verdict": "false — 30°는 ∠Q 가 아니라 ∠P 의 크기이고, 1/4 은 30°에서의 sin×cos×tan 값(1/2×√3/2×1/√3)이다. 두 칸 모두 틀림" },
+      { "choice": "②", "value": "60°, 1/4", "verdict": "false — ㉠은 맞지만 ㉡은 3/4 이다(1/4 은 ∠P 쪽 값)" },
+      { "choice": "③", "value": "30°, 3/4", "verdict": "false — ㉡은 맞지만 ㉠은 60° 이다(30°는 ∠P)" },
+      { "choice": "④", "value": "60°, √3/4", "verdict": "false — ㉠은 맞지만 √3/4 은 sin Q×cos Q 까지만 곱한 값이다. tan Q=√3 을 더 곱하면 3/4" },
+      { "choice": "⑤", "value": "60°, 3/4", "verdict": "true — ∠Q=60°, sin Q×cos Q×tan Q=(√3/2)(1/2)(√3)=3/4" }
+    ],
+    "existenceUniqueness": "∠P+∠Q=90°, ∠Q=2∠P 의 해는 ∠P=30°, ∠Q=60° 하나뿐이고 둘 다 0°와 90° 사이이므로 그런 직각삼각형이 존재한다. 삼각비 값은 각의 크기만으로 정해지므로(닮음) 변의 길이가 주어지지 않아도 ㉡은 3/4 하나로 정해진다. 다섯 보기 가운데 (60°, 3/4)는 ⑤ 하나뿐이다.",
+    "figureReading": "SVG 꼭짓점: P(39.069, 123.268) 왼쪽 아래, R(189.069, 123.268) 오른쪽 아래, Q(189.069, 36.666) 오른쪽 위. R 에 직각 표시(작은 꺾인 선)가 있고 RP·RQ 의 내적은 0 이다. PR=150, QR=86.602, PQ=173.205 → PR:QR:PQ = √3:1:2, ∠P=30.000°, ∠Q=60.000° 로 본문 조건(∠R=90°, ∠Q=2∠P)과 정확히 맞는다. 라벨 P·Q·R 셋뿐이고 길이·각 수치 라벨은 없다(답을 그림에 드러내지 않음). 그림이 30°-60°-90° 비율로 정확히 그려져 있어 각을 눈으로 짐작하게 하지만, 본문 조건만으로 풀리므로 그림 의존은 없다. 표기 메모: 발문의 «다음 두 기록을 완성하려고 한다»는 표에 «기록» 행이 하나이고 칸이 둘(㉠, ㉡)이라 «두 칸»에 가까운 뜻 — 읽는 데 지장은 없으나 2단계에서 문장 자연스러움을 본다.",
+    "gradeMethod": "삼각형 내각의 합(중1·중2 선수), 30°·60°·90° 직각삼각형의 변의 비 또는 특수각(30°, 45°, 60°)의 삼각비 값(중3 2015 «삼각비의 뜻과 간단한 삼각비의 값» 성취기준 — 키트 표기로 9수04-17 후보, 2단계에서 official-provisions.json 으로 확인), 근호의 곱셈(√3×√3=3, 중3). 풀이는 sin Q, cos Q, tan Q 를 실제 직각삼각형의 변의 비로 각각 구해 곱한 것이며, tan=sin/cos 로 바꿔 sin²Q 로 묶는 등 «삼각비 사이의 관계»는 쓰지 않았다. 학년 밖 방법 불필요.",
+    "calculation": {
+      "code": "import sympy as sp\nP = sp.symbols('P')\nPsol = sp.solve(sp.Eq(P + 2*P, 90), P)[0]   # P + Q = 90, Q = 2P\nQ = 2*Psol\nprint('P =', Psol, ' Q =', Q)\nPQ, QR, PR = sp.Integer(2), sp.Integer(1), sp.sqrt(3)\nassert sp.simplify(QR**2 + PR**2 - PQ**2) == 0\nsinQ, cosQ, tanQ = PR/PQ, QR/PQ, PR/QR\nprodQ = sp.nsimplify(sinQ*cosQ*tanQ)\nprint('sinQ, cosQ, tanQ =', sinQ, cosQ, tanQ, ' product =', prodQ)\nsinP, cosP, tanP = QR/PQ, PR/PQ, QR/PR\nprint('product at P (30 deg) =', sp.nsimplify(sinP*cosP*tanP))\nprint('sinQ*cosQ only =', sp.nsimplify(sinQ*cosQ))\nchoices = {'①': (30, sp.Rational(1,4)), '②': (60, sp.Rational(1,4)), '③': (30, sp.Rational(3,4)), '④': (60, sp.sqrt(3)/4), '⑤': (60, sp.Rational(3,4))}\nfor k,(a,v) in choices.items():\n    print(k, a, v, 'angle ok' if a==Q else 'angle X', 'value ok' if sp.simplify(v-prodQ)==0 else 'value X')\nimport math\nPx, Py = 39.069, 123.268; Rx, Ry = 189.069, 123.268; Qx, Qy = 189.069, 36.666\nPRl = math.hypot(Rx-Px, Ry-Py); QRl = math.hypot(Rx-Qx, Ry-Qy); PQl = math.hypot(Qx-Px, Qy-Py)\nangP = math.degrees(math.atan2(QRl, PRl)); angQ = math.degrees(math.atan2(PRl, QRl))\ndot = (Px-Rx)*(Qx-Rx) + (Py-Ry)*(Qy-Ry)\nprint(f'PR={PRl:.3f} QR={QRl:.3f} PQ={PQl:.3f} angP={angP:.3f} angQ={angQ:.3f} dot_at_R={dot:.3f}')",
+      "output": "P = 30  Q = 60\nsinQ, cosQ, tanQ = sqrt(3)/2 1/2 sqrt(3)  product = 3/4\nproduct at P (30 deg) = 1/4\nsinQ*cosQ only = sqrt(3)/4\n① 30 1/4 angle X value X\n② 60 1/4 angle ok value X\n③ 30 3/4 angle X value ok\n④ 60 sqrt(3)/4 angle ok value X\n⑤ 60 3/4 angle ok value ok\nPR=150.000 QR=86.602 PQ=173.205 angP=30.000 angQ=60.000 dot_at_R=-0.000\n(콘솔 코드페이지 탓에 보기 기호 ①~⑤ 가 깨져 찍혔다 — 출력 순서는 사전 순서 그대로라 기호를 되살려 적었다)"
+    }
+  },
+  "pendingReason": null
+}

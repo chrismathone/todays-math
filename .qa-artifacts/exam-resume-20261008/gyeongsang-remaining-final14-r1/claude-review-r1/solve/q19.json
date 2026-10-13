@@ -1,0 +1,59 @@
+{
+  "questionNumber": 19,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q19",
+  "studentDigest": "8a288ba524f8e0508bca7471f09f5ee7284677aa0e4a0150ac5e45c71e088254",
+  "solverId": "claude-opus-5-5-gf14-r1-q19",
+  "status": "solved",
+  "answer": "(1) QR = (3/5)x cm, PR = (4/5)x cm  (2) PQ = 10 cm  (3) QR = 6 cm, PR = 8 cm",
+  "parts": [
+    {
+      "label": "(1)",
+      "points": 2,
+      "answer": "$\\overline{QR}=\\dfrac35x\\,\\mathrm{cm}$, $\\overline{PR}=\\dfrac45x\\,\\mathrm{cm}$"
+    },
+    {
+      "label": "(2)",
+      "points": 4,
+      "answer": "$\\overline{PQ}=x=10\\,\\mathrm{cm}$"
+    },
+    {
+      "label": "(3)",
+      "points": 2,
+      "answer": "$\\overline{QR}=6\\,\\mathrm{cm}$, $\\overline{PR}=8\\,\\mathrm{cm}$"
+    }
+  ],
+  "solution": "(1) 직각삼각형 $PQR$에서 $\\angle R=90^\\circ$이므로 $\\angle Q$의 이웃변은 $\\overline{QR}$, 빗변은 $\\overline{PQ}$이다.\n$\\cos Q=\\dfrac{\\overline{QR}}{\\overline{PQ}}=\\dfrac{\\overline{QR}}{x}=\\dfrac35$ 이므로 $\\overline{QR}=\\dfrac35x\\,\\mathrm{cm}$\n피타고라스 정리에 의하여 $\\overline{PR}^2=\\overline{PQ}^2-\\overline{QR}^2=x^2-\\dfrac{9}{25}x^2=\\dfrac{16}{25}x^2$\n$\\overline{PR}>0$, $x>0$ 이므로 $\\overline{PR}=\\dfrac45x\\,\\mathrm{cm}$\n\n(2) $\\triangle PQR$의 넓이는 $\\dfrac12\\times\\overline{QR}\\times\\overline{PR}=\\dfrac12\\times\\dfrac35x\\times\\dfrac45x=\\dfrac{6}{25}x^2$ 이다.\n넓이가 $24\\,\\mathrm{cm}^2$이므로 $\\dfrac{6}{25}x^2=24$, $x^2=100$\n$x>0$ 이므로 $x=10$, 즉 $\\overline{PQ}=10\\,\\mathrm{cm}$\n\n(3) $\\overline{QR}=\\dfrac35\\times10=6\\,(\\mathrm{cm})$, $\\overline{PR}=\\dfrac45\\times10=8\\,(\\mathrm{cm})$\n(검산: $6^2+8^2=100=10^2$, $\\dfrac12\\times6\\times8=24$, $\\cos Q=\\dfrac{6}{10}=\\dfrac35$)",
+  "evidence": {
+    "choiceChecks": [],
+    "partChecks": [
+      {
+        "part": "(1)",
+        "value": "QR = 3x/5, PR = 4x/5",
+        "verdict": "true — cos Q 의 뜻(이웃변/빗변)으로 QR, 피타고라스 정리로 PR. PR^2/x^2 = 1 - 9/25 = 16/25 정확값 확인"
+      },
+      {
+        "part": "(2)",
+        "value": "x = 10",
+        "verdict": "true — 6x^2/25 = 24 → x^2 = 100 → x = ±10, x>0 조건으로 10 하나"
+      },
+      {
+        "part": "(3)",
+        "value": "QR = 6, PR = 8",
+        "verdict": "true — (1)에 x=10 대입. 6^2+8^2=10^2, 넓이 24, cos Q = 6/10 = 3/5 모두 성립"
+      },
+      {
+        "part": "배점",
+        "value": "2 + 4 + 2 = 8",
+        "verdict": "true — 소문항 배점 합이 문항 배점 score=8 과 같다"
+      }
+    ],
+    "existenceUniqueness": "x=10 일 때 세 변 6, 8, 10 cm 의 직각삼각형(∠R=90°)이 실제로 있고 cos Q=6/10=3/5, 넓이 ½·6·8=24 cm² 로 조건을 모두 만족한다. 넓이 조건이 x^2=100 을 주고 x>0 이므로 x 는 10 하나 — 음수 근 −10 은 문장의 (x>0) 로 제외된다. 길이 6, 8, 10 모두 양수. 조건 부족·과잉(서로 모순되는 조건) 없음.",
+    "figureReading": "SVG(viewBox 238.633×187.616) 꼭짓점: P(39.069,156.666) 왼쪽 아래, R(199.069,156.666) 오른쪽 아래, Q(199.069,36.666) 오른쪽 위. 선분 세 개 PR(가로)·RQ(세로)·PQ(빗변). 직각 표시 path 가 R 안쪽(194.669~199.069, 152.266~156.666)에 있어 ∠R=90° 와 일치(벡터 RP·RQ 내적 0). 그림 길이 PR=160, QR=120, PQ=200 → PR:QR:PQ=4:3:5, 그림의 QR/PQ=0.6=cos Q=3/5 로 본문과 일치(빗변 PQ, ∠Q 의 이웃변 QR). 그림에는 길이·각 라벨이 없고 꼭짓점 라벨 P·Q·R 셋뿐 — 수치와 충돌할 것이 없다. 라벨 위치: P 는 꼭짓점 왼쪽(x 22.0~34.3), R 은 오른쪽(x 203.4~216.6, 직각 표시 x≤199.07 와 떨어짐), Q 는 꼭짓점 오른쪽 위(글자 상자 왼쪽 199.80, Q 글리프 왼쪽 잉크 ≈200.8 — 변 QR 선의 오른쪽 가장자리 ≈200.0 와 겹치지 않으나 가깝다; 70mm 지면 확인은 2단계). 참고: 그림이 실제 비 3:4:5 로 그려져 있어 답의 비를 암시하지만 수치를 주지는 않는다.",
+    "gradeMethod": "삼각비의 뜻(cos = 이웃변/빗변 — 2015 9수04-17 후보), 피타고라스 정리(중2, 9수04-16 후보 — 선수), 직각삼각형 넓이 ½×밑변×높이(초등), x^2=100 의 양의 해(중3 제곱근의 뜻 · 이차방정식 — 수와 연산/문자와 식 영역), 삼각비를 활용한 길이 구하기(9수04-18 후보). 삼각비 사이의 관계(sin^2+cos^2=1, tan=sin/cos, 여각 관계)는 쓰지 않았다 — PR 은 피타고라스 정리로 변의 길이로 직접 구했다. ½ab sin C 공식도 쓰지 않았다(직각삼각형의 두 직각변으로 넓이). 0°~90° 범위 안. 학년 밖 필수 방법 없음. 성취기준 번호는 기억에 기댄 후보 — official-provisions.json 은 1단계에서 열지 않았다. 문장 관찰(2단계용 메모): «다음 기록을 복구하고 풀이를 쓰시오.» 는 복구할 «기록»이 지면에 보이지 않아 어색하다 — 풀이에는 영향 없음.",
+    "calculation": {
+      "code": "from fractions import Fraction as F\nimport math\n\nP=(39.069,156.666); R=(199.069,156.666); Q=(199.069,36.666)\nd=lambda a,b: math.hypot(a[0]-b[0],a[1]-b[1])\nPR,QR,PQ=d(P,R),d(Q,R),d(P,Q)\ndot=(P[0]-R[0])*(Q[0]-R[0])+(P[1]-R[1])*(Q[1]-R[1])\nprint(\"fig PR,QR,PQ =\",PR,QR,PQ,\" angle R dot =\",dot,\" QR/PQ =\",QR/PQ, \" PR:QR:PQ =\",PR/40,QR/40,PQ/40)\n\nc=F(3,5)\nqr_coef=c\npr_coef2=1-qr_coef**2\nprint(\"PR^2/x^2 =\",pr_coef2)\npr_coef=F(4,5); assert pr_coef**2==pr_coef2\n\narea_coef=F(1,2)*qr_coef*pr_coef\nprint(\"area = \",area_coef,\"x^2\")\nx2=F(24)/area_coef\nprint(\"x^2 =\",x2)\nx=F(int(math.isqrt(x2.numerator)),int(math.isqrt(x2.denominator)))\nassert x*x==x2 and x>0\nprint(\"x =\",x, \"(root -10 rejected since x>0)\")\nQRv,PRv=qr_coef*x,pr_coef*x\nprint(\"QR =\",QRv,\" PR =\",PRv)\n\nassert QRv**2+PRv**2==x**2\nassert F(1,2)*QRv*PRv==24\nassert QRv/x==F(3,5)\nprint(\"check: QR^2+PR^2 =\",QRv**2+PRv**2,\"= PQ^2 =\",x**2,\"; area =\",F(1,2)*QRv*PRv,\"; cosQ =\",QRv/x)\n\nprint(\"points:\",2+4+2)\n",
+      "output": "fig PR,QR,PQ = 160.0 120.0 200.0  angle R dot = -0.0  QR/PQ = 0.6  PR:QR:PQ = 4.0 3.0 5.0\nPR^2/x^2 = 16/25\narea =  6/25 x^2\nx^2 = 100\nx = 10 (root -10 rejected since x>0)\nQR = 6  PR = 8\ncheck: QR^2+PR^2 = 100 = PQ^2 = 100 ; area = 24 ; cosQ = 3/5\npoints: 8\n"
+    }
+  },
+  "pendingReason": null
+}

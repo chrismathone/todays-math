@@ -1,0 +1,27 @@
+{
+  "questionNumber": 17,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q17",
+  "studentDigest": "6d6742ec5d913f57b328eac371e82666284f907bf5778af5c1c7624225953f94",
+  "solverId": "claude-opus-5-5-gf14-r1-q17",
+  "status": "solved",
+  "answer": "④",
+  "parts": [],
+  "solution": "삼각형 PQH 에서 Q 에서 지면에 내린 수선의 발이 H 이므로 ∠QHP = 90° 인 직각삼각형이다. ∠QPH = 15° 에 대하여 QH 는 대변, PH 는 이웃변이므로 tan 15° = QH/PH 이다. 따라서 PH = QH ÷ tan 15° = 2.7 ÷ 0.2679 = 10.078… (m) 이고, 소수 첫째 자리까지 나타내면 10.1 m 이다. 답은 ④ 이다. (참고: 빗변 PQ = 2.7 ÷ sin 15° ≈ 10.43 m 를 먼저 구한 뒤 PH = PQ × cos 15° ≈ 10.08 m 로 구해도 10.1 m 로 같다.)",
+  "evidence": {
+    "choiceChecks": [
+      { "choice": "①", "value": "2.6 m", "verdict": "false — 2.7 × cos 15° = 2.608… 로, 높이에 cos 를 곱한 잘못된 계산값이다. PH 는 10.078… 이다." },
+      { "choice": "②", "value": "5.2 m", "verdict": "false — (2.7 ÷ sin 15°) ÷ 2 = 5.216… 꼴의 값으로 PH(10.078…)와 다르다." },
+      { "choice": "③", "value": "10.4 m", "verdict": "false — 2.7 ÷ sin 15° = 10.432… 은 경사판 길이 PQ(빗변)이지 수평 거리 PH 가 아니다." },
+      { "choice": "④", "value": "10.1 m", "verdict": "true — PH = 2.7 ÷ 0.2679 = 9000/893 = 10.0783… → 소수 첫째 자리까지 10.1 m. 10.05 ≤ PH < 10.15 이므로 반올림 경계에서도 안전하다." },
+      { "choice": "⑤", "value": "5.1 m", "verdict": "false — PH = 10.078… 과 다르다(PH 의 절반도 5.04… 로 5.0 이다)." }
+    ],
+    "existenceUniqueness": "∠QHP = 90°, ∠QPH = 15°, QH = 2.7 m 로 직각삼각형이 합동 조건(ASA)으로 하나로 정해진다. 0° < 15° < 90° 이고 길이는 모두 양수. PH 는 2.7/0.2679 = 9000/893 하나로 정해지고, 표의 근삿값을 쓰는 다른 길(PQ = 2.7/sin15°, PH = PQ·cos15° = 10.0770…)이나 참값(tan15° = 2 − √3, PH = 2.7(2+√3) = 10.0765…)도 모두 10.1 m 로 반올림되어 답이 흔들리지 않는다. 보기 가운데 10.1 m 는 ④ 하나뿐이다. 단위는 본문·보기 모두 m 로 일치.",
+    "figureReading": "SVG 좌표: P(45.95, 79.538), H(205.95, 79.538), Q(205.95, 36.666). PH 는 수평선, QH 는 수직선이고 H 에 직각 표시(작은 꺾은선)가 있다. P 에 각호와 15° 라벨(지시선으로 연결). 그림의 ∠P 는 atan(42.872/160) = 15.00004° (tan = 0.26795) 로 본문 15° 와 일치한다. 라벨 P·H·Q 는 각 꼭짓점 옆에 있고 본문(경사판 PQ, 지면 PH, 수선의 발 H, 높이 QH)과 맞다. 그림에 2.7 m 라벨은 없고 길이는 본문에서만 주어진다(모순 없음).",
+    "gradeMethod": "직각삼각형에서 삼각비(tan)의 뜻으로 변의 길이를 구하는 것 — 9수04-17(삼각비의 뜻) · 9수04-18(삼각비를 활용하여 여러 가지 문제 해결) 후보. 표에 주어진 근삿값을 써서 나눗셈하고 소수 첫째 자리까지 반올림. 삼각비 사이의 관계(tan = sin/cos 등)는 쓰지 않는다 — 참고 풀이도 sin, cos 의 뜻(변의 비)을 각각 직접 쓴 것이다. 각은 0°~90° 범위. 학년 밖 방법 없음.",
+    "calculation": {
+      "code": "from fractions import Fraction as F\nimport math\nQH = F(27,10); s=F(2588,10000); c=F(9659,10000); t=F(2679,10000)\nPH = QH/t\nprint(\"PH = 2.7/0.2679 =\", PH, \"=\", float(PH))\nprint(\"rounded to 0.1 :\", round(float(PH),1))\nprint(\"exact 2.7(2+sqrt3) =\", 2.7*(2+math.sqrt(3)))\nprint(\"QH*cos =\", float(QH*c), \"| QH/sin (PQ) =\", float(QH/s), \"| PQ*cos =\", float(QH/s*c))\nprint(\"QH*tan =\", float(QH*t), \"| QH/sin/2 =\", float(QH/s/2), \"| PH/2 =\", float(PH/2))\nprint(\"10.05<=PH<10.15:\", F(1005,100) <= PH < F(1015,100))\ndx=205.95-45.95; dy=79.538-36.666\nprint(\"figure angle at P (deg):\", math.degrees(math.atan2(dy,dx)), \"tan:\", dy/dx)",
+      "output": "PH = 2.7/0.2679 = 9000/893 = 10.078387458006718\nrounded to 0.1 : 10.1\nexact 2.7(2+sqrt3) = 10.076537180435968\nQH*cos = 2.60793 | QH/sin (PQ) = 10.432766615146832 | PQ*cos = 10.077009273570324\nQH*tan = 0.72333 | QH/sin/2 = 5.216383307573416 | PH/2 = 5.039193729003359\n10.05<=PH<10.15: True\nfigure angle at P (deg): 15.00004317075802 tan: 0.26795"
+    }
+  },
+  "pendingReason": null
+}

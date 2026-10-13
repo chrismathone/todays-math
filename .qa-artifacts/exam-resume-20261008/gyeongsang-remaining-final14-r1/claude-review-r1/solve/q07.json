@@ -1,0 +1,47 @@
+{
+  "questionNumber": 7,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q07",
+  "studentDigest": "e50a69925cee1b85a85af824a2f35617704372861ee872f7f8f60d4e866b4100",
+  "solverId": "claude-opus-5-5-gf14-r1-q07",
+  "status": "solved",
+  "answer": "②",
+  "parts": [],
+  "solution": "직각삼각형 PQR 에서 ∠R=90°, ∠P=45° 이므로 ∠Q=180°−90°−45°=45° 이다. 따라서 △PQR 는 ∠P=∠Q 인 직각이등변삼각형이고, 두 직각변의 길이가 같다. PR=RQ=a cm 라 하자.\n피타고라스 정리에서 a²+a²=(12√2)²=288, 2a²=288, a²=144, a>0 이므로 a=12.\n(삼각비로 구해도 된다: cos45°=PR/PQ 이므로 PR=12√2×(√2/2)=12, sin45°=RQ/PQ 이므로 RQ=12.)\n그러므로 PR+RQ−PQ=12+12−12√2=24−12√2 (cm).\n24²=576>288=(12√2)² 이므로 24>12√2 이고 값은 양수(약 7.03 cm)이다. 답은 ② (24−12√2) cm.",
+  "evidence": {
+    "choiceChecks": [
+      {
+        "choice": "①",
+        "value": "12 cm",
+        "verdict": "false — 한 직각변의 길이(PR 또는 RQ)일 뿐 구하는 값이 아니다. 24−12√2≈7.03 과 다르다."
+      },
+      {
+        "choice": "②",
+        "value": "(24−12√2) cm ≈ 7.03 cm",
+        "verdict": "true — PR+RQ−PQ=12+12−12√2 와 정확히 같다(sympy simplify 차 0)."
+      },
+      {
+        "choice": "③",
+        "value": "12√2 cm ≈ 16.97 cm",
+        "verdict": "false — 빗변 PQ 자체의 길이다."
+      },
+      {
+        "choice": "④",
+        "value": "(24+12√2) cm ≈ 40.97 cm",
+        "verdict": "false — 세 변의 합(둘레)이다. 빗변을 빼지 않고 더한 값."
+      },
+      {
+        "choice": "⑤",
+        "value": "24 cm",
+        "verdict": "false — 두 직각변의 길이 합 PR+RQ 이며 빗변을 빼지 않았다."
+      }
+    ],
+    "existenceUniqueness": "∠R=90°, ∠P=45° 이면 ∠Q=45° 로 세 각의 합이 180° 라 삼각형이 존재한다. 빗변 12√2 cm 와 한 예각이 정해졌으므로 (RHA) 삼각형은 합동을 빼고 하나로 정해지고, 직각변은 a²=144 의 양수 해 a=12 하나뿐이다. 구하는 값 24−12√2 는 하나로 정해지며 삼각형의 변의 조건(PR+RQ>PQ)과 맞게 양수다. 단위는 cm 로 보기와 일치.",
+    "figureReading": "SVG data-label: P(45.95,115.84) 왼쪽 아래, Q(198.69,115.84) 오른쪽 아래, R(122.32,39.47) 위 꼭짓점. 좌표로 잰 각: ∠R=90.0°, ∠P=45.0°, ∠Q=45.0°, PR/PQ=RQ/PQ=0.70711=1/√2 — 본문 조건(∠R=90°, ∠P=45°)과 맞는다. R 의 직각 표시(두 다리 방향 (−1,1)·(1,1), 한 변 약 4.4)가 있고, P 의 각 호(반지름 23, 0°~45°)와 그 호의 가운데(22.5°)에서 나간 지시선이 삼각형 아래의 라벨 '45°'(83.5,143.0)로 이어진다. 변의 길이 라벨은 그림에 없고 12√2 cm 는 본문에만 있다. ∠Q 에는 표시가 없다(학생이 ∠Q=45° 를 각의 합으로 구한다). 그림과 문장 사이 모순 없음.",
+    "gradeMethod": "쓴 개념: 삼각형의 내각의 합(중1), 이등변삼각형의 성질(두 밑각이 같으면 두 변이 같다 — 중2, 9수04-10), 피타고라스 정리(중2, 9수04-16, 선수 학습), 또는 특수각 45° 의 삼각비 값으로 직각삼각형의 변 구하기(중3, 9수04-17·9수04-18 후보), 근호의 계산(제곱근의 대소 비교 24>12√2). 삼각비 사이의 관계(sin²+cos²=1, tan=sin/cos, 여각 관계)는 쓰지 않는다. 학년 밖일 수 있는 방법 없음. 성취기준 코드는 2015 개정 기하 영역 번호 기억에 따른 후보이며 2단계에서 official-provisions.json 으로 대조할 것.",
+    "calculation": {
+      "code": "from sympy import sqrt, cos, pi, simplify, N, symbols, solve\nimport math\n\n# 1) exact solve\na = symbols('a', positive=True)\nPQ = 12*sqrt(2)\nleg = solve(a**2 + a**2 - PQ**2, a)        # isosceles right triangle, Pythagoras\nprint(\"legs (Pythagoras):\", leg)\nleg_trig = simplify(PQ*cos(pi/4))           # cos45 = PR/PQ\nprint(\"PR via cos45:\", leg_trig)\nPR = RQ = leg[0]\nval = simplify(PR + RQ - PQ)\nprint(\"PR+RQ-PQ =\", val, \"~\", N(val, 8))\nchoices = {\"①\": 12, \"②\": 24-12*sqrt(2), \"③\": 12*sqrt(2), \"④\": 24+12*sqrt(2), \"⑤\": 24}\nfor k, v in choices.items():\n    print(k, v, \"~\", N(v, 8), \"match\" if simplify(v - val) == 0 else \"no\")\nprint(\"positive? 24^2 > (12*sqrt2)^2:\", 24**2 > (12*sqrt(2))**2, \"->\", N(val) > 0)\n\n# 2) figure check (SVG coordinates, y grows downward)\nP = (45.95, 115.842); Q = (198.685, 115.842); R = (122.318, 39.474)\ndef vec(A, B): return (B[0]-A[0], B[1]-A[1])\ndef ang(A, B, C):\n    u, v = vec(B, A), vec(B, C)\n    return math.degrees(math.acos((u[0]*v[0]+u[1]*v[1])/math.hypot(*u)/math.hypot(*v)))\nprint(\"angle R =\", round(ang(P, R, Q), 3), \" angle P =\", round(ang(Q, P, R), 3), \" angle Q =\", round(ang(P, Q, R), 3))\npr, rq, pq = math.dist(P, R), math.dist(R, Q), math.dist(P, Q)\nprint(\"PR/PQ =\", round(pr/pq, 5), \" RQ/PQ =\", round(rq/pq, 5), \" 1/sqrt2 =\", round(1/math.sqrt(2), 5))\n# 45-degree arc at P: endpoints (69.0,115.8), (62.2,99.6); leader start (67.199,107.04)\nfor pt in [(69.0, 115.8), (62.2, 99.6), (67.199, 107.04)]:\n    d = vec(P, pt)\n    print(\"from P:\", pt, \"r=%.2f\" % math.hypot(*d), \"dir=%.1f deg (up)\" % math.degrees(math.atan2(-d[1], d[0])))\n# right-angle mark at R\nfor pt in [(119.206, 42.585), (122.318, 45.697), (125.429, 42.585)]:\n    d = vec(R, pt)\n    print(\"from R:\", pt, (round(d[0], 3), round(d[1], 3)))\n",
+      "output": "legs (Pythagoras): [12]\nPR via cos45: 12\nPR+RQ-PQ = 24 - 12*sqrt(2) ~ 7.0294373\n① 12 ~ 12.000000 no\n② 24 - 12*sqrt(2) ~ 7.0294373 match\n③ 12*sqrt(2) ~ 16.970563 no\n④ 12*sqrt(2) + 24 ~ 40.970563 no\n⑤ 24 ~ 24.000000 no\npositive? 24^2 > (12*sqrt2)^2: True -> True\nangle R = 90.0  angle P = 45.0  angle Q = 45.0\nPR/PQ = 0.70711  RQ/PQ = 0.70711  1/sqrt2 = 0.70711\nfrom P: (69.0, 115.8) r=23.05 dir=0.1 deg (up)\nfrom P: (62.2, 99.6) r=22.98 dir=45.0 deg (up)\nfrom P: (67.199, 107.04) r=23.00 dir=22.5 deg (up)\nfrom R: (119.206, 42.585) (-3.112, 3.111)\nfrom R: (122.318, 45.697) (0.0, 6.223)\nfrom R: (125.429, 42.585) (3.111, 3.111)\n"
+    }
+  },
+  "pendingReason": null
+}

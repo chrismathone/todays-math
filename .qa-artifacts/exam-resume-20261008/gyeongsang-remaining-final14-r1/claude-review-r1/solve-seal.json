@@ -1,0 +1,152 @@
+{
+  "kind": "claude-blind-solve-seal/v1",
+  "utc": "2026-10-13T16:24:26.732672+00:00",
+  "reviewFolder": "gyeongsang-remaining-final14-r1",
+  "method": "independent-solve-then-review",
+  "blindStudentProblemsSha256": "e2e08c7cf6e5bc46b4e7ecb962f10e386c53030f7ea61a6d59255970bd4b109d",
+  "solves": [
+    {
+      "questionNumber": 1,
+      "path": "claude-review-r1/solve/q01.json",
+      "sha256": "6c6b9c482e6723b1f09f6325da49c630d4a6cce6fc0b4b440d8647c5cd24c8ac",
+      "solveDigest": "37b4a864f67d300203e4c7390a9f78ae15156c80f6a5bcff2bd027fd09502d60",
+      "studentDigest": "2943693cd61755fa2623c43bab6afc0ca7af4022dc19a1deecc299cfdfb59347",
+      "solverId": "claude-opus-5-5-gf14-r1-q01",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 2,
+      "path": "claude-review-r1/solve/q02.json",
+      "sha256": "7e42a2f2fa0ab0a8d1d47bc398f10721aa9f0bf3786b3d1a1a9339c5361293b2",
+      "solveDigest": "7ef4fa7a39fe68f78cc94da035b5e4a2ed545a2fa0e69af05aab43b267a8ec2b",
+      "studentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+      "solverId": "claude-opus-5-5-gf14-r1-q02",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 3,
+      "path": "claude-review-r1/solve/q03.json",
+      "sha256": "d9a8098d138403f5fe0ccf586b8bf614ca9699e75c3cbc7200b5c4cdc2ac81b4",
+      "solveDigest": "e04d4a13a569e70b7a57a951a0d8c4efc91811d07cdc9699fe83b7a2fdefd7d8",
+      "studentDigest": "77c7086a0c79113ec148fdd060350757db2d2eaa960d67f071d66ac3485cefba",
+      "solverId": "claude-opus-5-5-gf14-r1-q03",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 4,
+      "path": "claude-review-r1/solve/q04.json",
+      "sha256": "fcef3ad67b258df9ca1c22d92b819683840e4affccf425225bcf04c26a63c381",
+      "solveDigest": "739626431a7e4d2921cd6875e7dbc4acb41b781d2684cecc0293bc0ee5902eae",
+      "studentDigest": "7573787736f2193f4671a6f5d5ba596c08813d348e6070457f2e9073ecd1f167",
+      "solverId": "claude-opus-5-5-gf14-r1-q04",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 5,
+      "path": "claude-review-r1/solve/q05.json",
+      "sha256": "1504368ddd1c4608493706a45e81f17461399aca288e9fd0ab97a318b4bf3069",
+      "solveDigest": "6d555b5dd821e69c3c8ffd44df43c0585c5fae3da1812015e12e9c34a6c59203",
+      "studentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+      "solverId": "claude-opus-5-5-gf14-r1-q05",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 6,
+      "path": "claude-review-r1/solve/q06.json",
+      "sha256": "19e3ccdfbcc74907d6f7993d829484150c889b790b54f2709cf69faaee3f206b",
+      "solveDigest": "2c24e4df69fd07a62fe559403b35e1a0ebe4326eeadfd2a6a1f6f78fb38148a9",
+      "studentDigest": "e8e2cd65469c93106cf535a49b233675fa1b741a3fea60e9d5fbf636208a61ad",
+      "solverId": "claude-opus-5-5-gf14-r1-q06",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 7,
+      "path": "claude-review-r1/solve/q07.json",
+      "sha256": "eed3601585ce82471775f2f17ea65e80433abca2d9a1b1a88c4cde5e29e9ecab",
+      "solveDigest": "3d4503f007c81c65baf034514a4c07cabe464ba6ced5ef6df35fd5b15e505b34",
+      "studentDigest": "e50a69925cee1b85a85af824a2f35617704372861ee872f7f8f60d4e866b4100",
+      "solverId": "claude-opus-5-5-gf14-r1-q07",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 8,
+      "path": "claude-review-r1/solve/q08.json",
+      "sha256": "8d45fdb18302d62247024e1a6d86eca70cea92c2a814c1052014925f846937d6",
+      "solveDigest": "6da81144fd403f795874c4470c08f30bb188b1b60004a2edae1088efd2c435b3",
+      "studentDigest": "c858d84e85ac38c9e0abf8128b07be51d4742244e6030ad8ebed15c3fa7f2887",
+      "solverId": "claude-opus-5-5-gf14-r1-q08",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 9,
+      "path": "claude-review-r1/solve/q09.json",
+      "sha256": "2a6b9f5a07e059b9835561d98f10350af897324972ac7c885deee96615547637",
+      "solveDigest": "3bbcaeae5e37ef3511be5ed4ad58a7231e918c25902ab773c54756d5cbf63075",
+      "studentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+      "solverId": "claude-opus-5-5-gf14-r1-q09",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 16,
+      "path": "claude-review-r1/solve/q16.json",
+      "sha256": "bfc3087fba6780561e9b2e0d11b772414b2951884252eb491f520ed14f2dd5bb",
+      "solveDigest": "01abd2ab3cb4edecc24dc95186abc50f6180a738d46ef0f9d751e2c32aa6b301",
+      "studentDigest": "91c18fc29aa9f2d61ff05d5ce0e024c4a6fdb962cdb69204c73a33c438afc4c5",
+      "solverId": "claude-opus-5-5-gf14-r1-q16",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 17,
+      "path": "claude-review-r1/solve/q17.json",
+      "sha256": "72d283f765a415c28bd0f39a864bfb57de384229081943e092614f7e7348939f",
+      "solveDigest": "371b7677542305ac3572e2a5e0419f3358447b5f6ee3fd45bb9d859d8aa7a58b",
+      "studentDigest": "6d6742ec5d913f57b328eac371e82666284f907bf5778af5c1c7624225953f94",
+      "solverId": "claude-opus-5-5-gf14-r1-q17",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 19,
+      "path": "claude-review-r1/solve/q19.json",
+      "sha256": "2c63791d25208d3b1c34b5ef92c17c9d36005858ed3891df522d87358b5b395a",
+      "solveDigest": "4ab1c8fbdda1d7dd625eb5560a198d221573030b07150564bb55ab7c8a061007",
+      "studentDigest": "8a288ba524f8e0508bca7471f09f5ee7284677aa0e4a0150ac5e45c71e088254",
+      "solverId": "claude-opus-5-5-gf14-r1-q19",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 20,
+      "path": "claude-review-r1/solve/q20.json",
+      "sha256": "c6fda53ace7662c9279e292f09bcc5b7668102c6eefd09507698eb6e1d5ab4c1",
+      "solveDigest": "37fb15f3500cdcc883e9e34955532f3ce7cc27204e06f849befd02e0041ed51d",
+      "studentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+      "solverId": "claude-opus-5-5-gf14-r1-q20",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 21,
+      "path": "claude-review-r1/solve/q21.json",
+      "sha256": "14f3ef7e1338509cc858f117562942017ab0104c75dae3d7a72f381ef99246f4",
+      "solveDigest": "1feed7239d58ec6bdec88c6f03921786227c83775f181e35abc2396080c125b7",
+      "studentDigest": "f1b9e9f5a3138cc5b9f702c6f3f2ecf50b21aed02cd5f518d3a5066955d4284c",
+      "solverId": "claude-opus-5-5-gf14-r1-q21",
+      "status": "solved"
+    }
+  ],
+  "kit": [
+    {
+      "path": "claude-review-r1/REVIEW-KIT.md",
+      "sha256": "37033ca204f5a19e64c0885e297bfa6ee06f96db4316214f161dd87e8648c135"
+    },
+    {
+      "path": "claude-review-r1/official-provisions.json",
+      "sha256": "7c5bf338229aab4424d9bffc723fb8526c0a9e94f927859612faae0da738e6a7"
+    },
+    {
+      "path": "claude-review-r1/build-provisions.py",
+      "sha256": "0a45d458110058f119ff7ec2afb127b8e0a9415497c72af903f19feb8f44b2fa"
+    }
+  ],
+  "candidatesShownToSolvers": false,
+  "previousVerifierSolvesReadBySolvers": false,
+  "dbWrites": 0
+}

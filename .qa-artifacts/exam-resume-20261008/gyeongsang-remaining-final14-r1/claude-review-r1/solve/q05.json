@@ -1,0 +1,27 @@
+{
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q05",
+  "studentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+  "solverId": "claude-opus-5-5-gf14-r1-q05",
+  "status": "solved",
+  "answer": "④",
+  "parts": [],
+  "solution": "삼각비의 표에서 필요한 값을 읽는다.\nsin31° = 0.5150, cos34° = 0.8290 이므로\n(가의 값) = sin31° + cos34° = 0.5150 + 0.8290 = 1.3440\nsin32° = 0.5299, cos33° = 0.8387 이므로\n(나의 값) = sin32° + cos33° = 0.5299 + 0.8387 = 1.3686\n따라서 (가의 값) − (나의 값) = 1.3440 − 1.3686 = −0.0246\n답: ④",
+  "evidence": {
+    "choiceChecks": [
+      { "choice": "①", "value": "1.3440", "verdict": "false — (가의 값) 자체이다. 차가 아니다" },
+      { "choice": "②", "value": "0.0246", "verdict": "false — (나의 값)−(가의 값)이다. 빼는 차례(부호)가 뒤집혔다" },
+      { "choice": "③", "value": "2.7126", "verdict": "false — 두 값의 합 1.3440 + 1.3686 이다" },
+      { "choice": "④", "value": "-0.0246", "verdict": "true — 1.3440 − 1.3686 = −0.0246 (정확히 −123/5000)" },
+      { "choice": "⑤", "value": "1.3686", "verdict": "false — (나의 값) 자체이다" }
+    ],
+    "existenceUniqueness": "표의 네 값만 읽어 더하고 빼는 유한 소수 계산이라 값이 하나로 정해진다(−0.0246). 다섯 보기는 서로 다르고 −0.0246 과 같은 것은 ④ 하나뿐이다. 표의 여덟 값은 모두 실제 삼각비를 소수 넷째 자리로 반올림한 값과 맞다(아래 계산). 참고: 반올림 전 실제 값으로 계산하면 차는 −0.024514… 로 넷째 자리 반올림 시 −0.0245 가 되어 표값 계산 −0.0246 과 0.0001 어긋나지만, 문장이 «표에 적힌 수로 계산한»이라고 못박아 답은 −0.0246 하나다. 표에 쓰지 않는 값(sin33°, sin34°, cos31°, cos32°)은 방해 정보로만 있다.",
+    "figureReading": "그림 없음(figures 빈 배열). 표 둘: 삼각비 표(31°~34° 의 sin·cos, 소수 넷째 자리)와 기록 표(가: sin31°+cos34°, 나: sin32°+cos33°). 발문의 «두 계산 기록»·«(가의 값)−(나의 값)»과 기록 표의 이름 가·나가 맞고, 빼는 차례가 문장에 명시돼 있다.",
+    "gradeMethod": "삼각비의 값을 삼각비의 표에서 읽어 계산(9수04-17 삼각비의 뜻·값, 삼각비의 표 이용). 삼각비 사이의 관계(sin²+cos²=1, tan=sin/cos, sin(90°−x)=cos x)를 쓰지 않는다 — 표에서 직접 읽어 더하고 뺄 뿐이다. 각은 0°~90° 범위 안. 학년 밖 방법 없음.",
+    "calculation": {
+      "code": "from fractions import Fraction as F\nimport math\nt={'sin':{31:'0.5150',32:'0.5299',33:'0.5446',34:'0.5592'},'cos':{31:'0.8572',32:'0.8480',33:'0.8387',34:'0.8290'}}\nfor f in t:\n  for a,v in t[f].items():\n    r=getattr(math,f)(math.radians(a)); print(f,a,v,round(r,6),'ok' if abs(r-float(v))<=0.00005 else 'BAD')\nga=F(t['sin'][31])+F(t['cos'][34]); na=F(t['sin'][32])+F(t['cos'][33])\nprint('ga',float(ga),'na',float(na),'diff',ga-na,float(ga-na))\nch=['1.3440','0.0246','2.7126','-0.0246','1.3686']\nfor i,c in enumerate(ch,1): print(i,c,F(c)==ga-na)\nprint('sum',float(ga+na))\n# 반올림 전 실제 값\ns=lambda a:math.sin(math.radians(a)); c=lambda a:math.cos(math.radians(a))\nprint(s(31)+c(34)-(s(32)+c(33)))",
+      "output": "sin 31 0.5150 0.515038 ok\nsin 32 0.5299 0.529919 ok\nsin 33 0.5446 0.544639 ok\nsin 34 0.5592 0.559193 ok\ncos 31 0.8572 0.857167 ok\ncos 32 0.8480 0.848048 ok\ncos 33 0.8387 0.838671 ok\ncos 34 0.8290 0.829038 ok\nga 1.344 na 1.3686 diff -123/5000 -0.0246\n1 1.3440 False\n2 0.0246 False\n3 2.7126 False\n4 -0.0246 True\n5 1.3686 False\nsum 2.7126\n-0.02451418471353306"
+    }
+  },
+  "pendingReason": null
+}

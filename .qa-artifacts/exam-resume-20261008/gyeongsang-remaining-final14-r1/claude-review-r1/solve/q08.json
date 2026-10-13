@@ -1,0 +1,47 @@
+{
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q08",
+  "studentDigest": "c858d84e85ac38c9e0abf8128b07be51d4742244e6030ad8ebed15c3fa7f2887",
+  "solverId": "claude-opus-5-5-gf14-r1-q08",
+  "status": "solved",
+  "answer": "⑤",
+  "parts": [],
+  "solution": "기록 가의 값은 sin60°×tan45° = (√3/2)×1 = √3/2 이다.\n기록 나에서 sin45°×tan30° = (√2/2)×(√3/3) = √6/6 이므로 기록 나의 값은 k×√6/6 이다.\n두 값이 같으므로 k×√6/6 = √3/2, k = (√3/2)×(6/√6) = 3√3/√6 = 3/√2 = 3√2/2 이다.\nk = 3√2/2 는 양수이므로 조건을 만족한다. 따라서 답은 ⑤ 이다.\n(검산: (3√2/2)×(√2/2)×(√3/3) = (6/4)×(√3/3) = √3/2 로 기록 가의 값과 같다.)",
+  "evidence": {
+    "choiceChecks": [
+      {
+        "choice": "①",
+        "value": "k=√2/2 → 나 = √2/2×√6/6 = √3/6",
+        "verdict": "false — √3/6 ≠ √3/2 (가 − 나 = √3/3)"
+      },
+      {
+        "choice": "②",
+        "value": "k=√2 → 나 = √2×√6/6 = √3/3",
+        "verdict": "false — √3/3 ≠ √3/2 (가 − 나 = √3/6)"
+      },
+      {
+        "choice": "③",
+        "value": "k=√6/2 → 나 = √6/2×√6/6 = 1/2",
+        "verdict": "false — 1/2 ≠ √3/2 (가 − 나 = (√3−1)/2)"
+      },
+      {
+        "choice": "④",
+        "value": "k=3 → 나 = 3×√6/6 = √6/2",
+        "verdict": "false — √6/2 ≠ √3/2 (가 − 나 = (√3−√6)/2 < 0)"
+      },
+      {
+        "choice": "⑤",
+        "value": "k=3√2/2 → 나 = 3√2/2×√6/6 = √3/2",
+        "verdict": "true — 가의 값 √3/2 와 같다"
+      }
+    ],
+    "existenceUniqueness": "나의 값은 k 에 대한 일차식 k×(√6/6) 이고 계수 √6/6 ≠ 0 이므로 가 = 나 를 만족하는 k 는 정확히 하나, k = 3√2/2 이다. 이 값은 양수이므로 «양수 k» 조건과 맞는다. 보기 다섯 가운데 이 값과 같은 것은 ⑤ 하나뿐이다(①≈0.707, ②≈1.414, ③≈1.225, ④=3, ⑤≈2.121 로 모두 다른 값).",
+    "figureReading": "그림 없음(figures: []). 본문의 표는 기록 가·나 두 줄의 계산식뿐이고, 각은 30°·45°·60° 특수각만 쓰여 0°~90° 범위 안이다. 단위가 필요한 양은 없다.",
+    "gradeMethod": "중3(2015) 삼각비 단원: 특수각 30°·45°·60° 의 삼각비 값(직각삼각형의 변의 비에서 구한 값)과 근호의 곱셈·나눗셈·분모의 유리화(중3 제곱근과 실수). 성취기준 후보 9수04-17(삼각비의 뜻을 알고 간단한 삼각비의 값을 구할 수 있다). 삼각비 사이의 관계(sin²+cos²=1, tan=sin/cos, 여각 관계)는 쓰지 않았다 — 각 값을 따로 대입해 곱했을 뿐이다. 학년 밖 방법은 필요 없다.",
+    "calculation": {
+      "code": "from sympy import sqrt, Rational, simplify, nsimplify, sin, tan, pi, radsimp\nA = sin(pi/3)*tan(pi/4)\ns45t30 = sin(pi/4)*tan(pi/6)\nprint(\"A =\", simplify(A))\nprint(\"sin45*tan30 =\", radsimp(simplify(s45t30)))\nk = radsimp(simplify(A/s45t30))\nprint(\"k =\", k, float(k))\nchoices = {\"c1\": sqrt(2)/2, \"c2\": sqrt(2), \"c3\": sqrt(6)/2, \"c4\": Rational(3), \"c5\": 3*sqrt(2)/2}\nfor c, v in choices.items():\n    nb = radsimp(simplify(v*s45t30))\n    print(c, v, \"B =\", nb, \"A-B =\", simplify(A-nb), \"match\" if simplify(A-nb)==0 else \"no\")\n",
+      "output": "A = sqrt(3)/2\nsin45*tan30 = sqrt(6)/6\nk = 3*sqrt(2)/2 2.1213203435596424\nc1 sqrt(2)/2 B = sqrt(3)/6 A-B = sqrt(3)/3 no\nc2 sqrt(2) B = sqrt(3)/3 A-B = sqrt(3)/6 no\nc3 sqrt(6)/2 B = 1/2 A-B = -1/2 + sqrt(3)/2 no\nc4 3 B = sqrt(6)/2 A-B = -sqrt(6)/2 + sqrt(3)/2 no\nc5 3*sqrt(2)/2 B = sqrt(3)/2 A-B = 0 match\n"
+    }
+  },
+  "pendingReason": null
+}

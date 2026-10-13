@@ -1,0 +1,27 @@
+{
+  "kind": "claude-blind-solve-seal/v1",
+  "utc": "2026-10-13T16:24:26.737247+00:00",
+  "reviewFolder": "gyeongsang-q13-r5-review-r1",
+  "method": "independent-solve-then-review",
+  "blindStudentProblemsSha256": "eef1ce2192f37febbd4bd8b54a00a9a960f20072619f589f238d6f08f024b7c2",
+  "solves": [
+    {
+      "questionNumber": 13,
+      "path": "claude-review-r1/solve/q13.json",
+      "sha256": "0c373274b02e292da943872c7f6d6c2b7988ec31bf714d1872aa63a4e6e5cd88",
+      "solveDigest": "01b2c0ecd299e07881e5015151dabfb63d729410e13ea98cc9e84c2c7163206d",
+      "studentDigest": "f1a61ecf81fe35ca13f5d2ad0f13fa24802284ef35b453f57681272bbdb0a1ce",
+      "solverId": "claude-opus-5-5-q13r5-r1",
+      "status": "solved"
+    }
+  ],
+  "kit": [
+    {
+      "path": "claude-review-r1/REVIEW-KIT.md",
+      "sha256": "336e349280c27bc7324d50e8ccf6af9b329a145f11d1fc857dfc253a37052c51"
+    }
+  ],
+  "candidatesShownToSolvers": false,
+  "previousVerifierSolvesReadBySolvers": false,
+  "dbWrites": 0
+}

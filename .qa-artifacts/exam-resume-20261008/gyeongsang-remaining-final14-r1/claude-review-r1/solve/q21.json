@@ -1,0 +1,54 @@
+{
+  "questionNumber": 21,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+  "studentDigest": "f1b9e9f5a3138cc5b9f702c6f3f2ecf50b21aed02cd5f518d3a5066955d4284c",
+  "solverId": "claude-opus-5-5-gf14-r1-q21",
+  "status": "solved",
+  "answer": "(1) OH = 9 m, PH = 9√3 m  (2) HQ = 15 m  (3) OQ = 24 m",
+  "parts": [
+    {
+      "label": "(1)",
+      "answer": "OH = 9 m, PH = 9√3 m",
+      "points": 3
+    },
+    {
+      "label": "(2)",
+      "answer": "HQ = 15 m",
+      "points": 3
+    },
+    {
+      "label": "(3)",
+      "answer": "OQ = 24 m",
+      "points": 2
+    }
+  ],
+  "solution": "(1) H 는 P 에서 직선 OQ 에 내린 수선의 발이므로 △OHP 는 ∠OHP = 90° 인 직각삼각형이고, ∠POH = ∠POQ = 60°, 빗변 OP = 18 m 이다.\ncos 60° = OH/OP 이므로 OH = 18 × cos 60° = 18 × 1/2 = 9 (m).\nsin 60° = PH/OP 이므로 PH = 18 × sin 60° = 18 × √3/2 = 9√3 (m).\n답: OH = 9 m, PH = 9√3 m\n\n(2) △PHQ 도 ∠PHQ = 90° 인 직각삼각형이고 빗변 PQ = 6√13 m 이다. 피타고라스 정리에 의하여\nHQ² = PQ² − PH² = (6√13)² − (9√3)² = 468 − 243 = 225.\nHQ > 0 이므로 HQ = 15 (m).\n답: HQ = 15 m\n\n(3) H 가 O 와 Q 사이에 있으므로 OQ = OH + HQ = 9 + 15 = 24 (m).\n답: OQ = 24 m\n\n(검산) O 를 원점, 직선 OQ 를 x축으로 두면 P(9, 9√3), Q(24, 0) 이고 OP = √(81+243) = 18, PQ = √(15² + (9√3)²) = √468 = 6√13 으로 주어진 조건과 맞는다.",
+  "evidence": {
+    "choiceChecks": [],
+    "partChecks": [
+      {
+        "part": "(1)",
+        "value": "OH = 9, PH = 9√3",
+        "verdict": "직각삼각형 OHP 에서 60° 의 코사인·사인 값(1/2, √3/2)으로 직접 구함. 좌표 검산 OP = 18 일치. 배점 3점 — 두 길이를 차례로 묻는 구조와 맞다"
+      },
+      {
+        "part": "(2)",
+        "value": "HQ = 15",
+        "verdict": "468 − 243 = 225 = 15² 로 완전제곱 — 근호가 남지 않는다. 양수 길이 15 채택. 배점 3점"
+      },
+      {
+        "part": "(3)",
+        "value": "OQ = 24",
+        "verdict": "H 가 O, Q 사이라는 조건으로 OQ = OH + HQ. 배점 2점. 세 소문항 합 3 + 3 + 2 = 8 = 문항 배점 8 일치"
+      }
+    ],
+    "existenceUniqueness": "존재: O(0,0), Q(24,0), P(9, 9√3) 이 OP = 18, PQ = 6√13, ∠POQ = 60° 를 모두 만족하므로 삼각형이 존재한다(세 변 18, 24, 6√13≈21.63 — 삼각형 부등식 성립). 유일성: 반직선 OP 가 정해지면 Q 는 직선 OQ 위의 점 x 로 (x−9)² + 243 = 468 을 만족해야 하고 해는 x = 24 또는 x = −6. x = −6 은 Q 가 O 의 반대쪽에 놓여 ∠POQ = 120° 가 되어 조건과 어긋나고, '수선의 발 H 가 O 와 Q 사이'(x > 9) 조건으로도 배제된다. 따라서 OQ = 24 하나. 조건 일관성: H 가 변 OQ 위에 있으려면 ∠O, ∠Q 가 예각이어야 하는데 ∠O = 60°, tan Q = 9√3/15 = 3√3/5 (∠Q ≈ 46.1°), ∠P ≈ 73.9° 로 예각삼각형이라 'H 가 O 와 Q 사이' 조건은 실제 상황과 모순 없다(정보로서는 여분이지만 학생이 OQ = OH + HQ 로 더하는 근거를 준다).",
+    "figureReading": "SVG 좌표: O(45.95, 195.359), P(135.95, 39.474), Q(285.95, 195.359), H(135.95, 195.359). 실선 OP, PQ, QO, 점선 PH(수직). H 에 직각 표시(작은 꺾쇠), O 에 반지름 23 의 각 호와 라벨 '60°'(data-label=\"$60^\\circ$\", 각 OP–OQ 사이 안쪽). 라벨 O, P, Q, H 가 각 점 옆에 있다. 그림에 길이 라벨은 없다(18, 6√13 은 본문에만). 축척 10.000 px/m 로 재면 OH = 9.000, PH = 15.588 (= 9√3), HQ = 15.000, OQ = 24.000, PQ = 21.633 (= 6√13), ∠O = 60.000° — 그림이 답과 정확히 같은 비율로 그려져 있고, H 도 O 와 Q 사이에 있어 본문과 일치한다. Edge 헤드리스로 렌더해 본 결과(scratchpad fig.png) '60°' 라벨의 흰 테두리(halo)가 각 호 가운데를 끊어 호가 라벨 위아래 두 조각으로 보인다 — 읽는 데 지장은 없으나 2단계 지면 검토에서 볼 만한 시각 메모. 그림이 정확한 축척이라 OQ = 24 를 그림 자로 잴 수 있다는 점도 참고(서술형이라 풀이를 요구하므로 큰 문제는 아님).",
+    "gradeMethod": "쓴 개념: (1) 직각삼각형에서 삼각비의 뜻과 특수각 60° 의 삼각비 값(cos 60° = 1/2, sin 60° = √3/2) — 중3 2015 '삼각비의 뜻·값' 성취기준; 수선을 내려 직각삼각형으로 나눠 변의 길이를 구하는 것 — 중3 '삼각비의 활용' 성취기준(일반 삼각형의 변의 길이). (2) 피타고라스 정리 — 2015 개정에서 중2 학습(선수). 근호 계산 (6√13)² = 468, (9√3)² = 243 — 중3 제곱근과 실수. (3) 선분의 덧셈. 성취기준 코드는 2단계에서 official-provisions.json 의 id 로 확인한다(1단계에서는 열지 않음). 삼각비 사이의 관계(sin²+cos²=1, tan = sin/cos, 여각 관계)는 쓰지 않았다 — 각 값은 직각삼각형 OHP 의 변의 비로 직접 읽는다(또는 30°-60°-90° 삼각형의 변의 비 1 : √3 : 2). 코사인법칙(고등)을 쓰면 OQ² − 18·OQ − 144 = 0 으로 한 번에 나오지만 필요 없다 — 소문항 순서가 중3 방법(수선 + 삼각비 + 피타고라스)으로 이끈다. 학년 밖 필수 방법 없음.",
+    "calculation": {
+      "code": "from sympy import sqrt, Rational, symbols, solve, nsimplify, simplify, atan2, deg, pi, N\nOP = 18; PQ = 6*sqrt(13)\ncos60 = Rational(1,2); sin60 = sqrt(3)/2   # 직각삼각형 OHP 에서 변의 비로 읽는 특수각 값\nOH = OP*cos60; PH = OP*sin60\nHQ = sqrt(PQ**2 - PH**2)\nOQ = OH + HQ\nprint(\"OH =\", OH, \" PH =\", PH)\nprint(\"PQ^2 =\", PQ**2, \" PH^2 =\", PH**2, \" HQ^2 =\", PQ**2-PH**2, \" HQ =\", HQ)\nprint(\"OQ =\", OQ)\n# 검산: 좌표 O(0,0), Q(OQ,0), P(OH,PH)\nimport sympy as sp\nO=sp.Point(0,0); Q=sp.Point(OQ,0); P=sp.Point(OH,PH)\nprint(\"OP =\", simplify(O.distance(P)), \" PQ =\", simplify(P.distance(Q)), \" (6*sqrt13 =\", PQ, \")\")\nprint(\"angle POQ =\", sp.deg(sp.atan2(PH,OH)))\n# 유일성: Q 를 직선 위 x 좌표로 두고 PQ=6√13 이 되는 x\nx=symbols('x', real=True)\nprint(\"x solutions:\", solve((x-OH)**2+PH**2-PQ**2, x))\n# 각 Q 예각 확인 (H 가 O,Q 사이 => 각 O, 각 Q 예각)\nprint(\"tan Q = PH/HQ =\", simplify(PH/HQ), \"~\", N(PH/HQ), \"-> angle Q deg ~\", N(sp.deg(sp.atan(PH/HQ))))\nprint(\"angle P deg ~\", N(180-60-sp.deg(sp.atan(PH/HQ))))\n# 그림 좌표 대조\nOs=(45.95,195.359); Ps=(135.95,39.474); Qs=(285.95,195.359); Hs=(135.95,195.359)\nimport math\nd=lambda a,b: math.dist(a,b)\ns=d(Os,Ps)/18\nprint(\"scale px/m =\", s)\nprint(\"fig OH, PH, HQ, OQ, PQ (m) =\", d(Os,Hs)/s, d(Ps,Hs)/s, d(Hs,Qs)/s, d(Os,Qs)/s, d(Ps,Qs)/s, \" 6sqrt13=\", 6*math.sqrt(13))\nprint(\"fig angle O =\", math.degrees(math.atan2(Os[1]-Ps[1], Ps[0]-Os[0])))\n",
+      "output": "OH = 9  PH = 9*sqrt(3)\nPQ^2 = 468  PH^2 = 243  HQ^2 = 225  HQ = 15\nOQ = 24\nOP = 18  PQ = 6*sqrt(13)  (6*sqrt13 = 6*sqrt(13) )\nangle POQ = 60\nx solutions: [-6, 24]\ntan Q = PH/HQ = 3*sqrt(3)/5 ~ 1.03923048454133 -> angle Q deg ~ 46.1021137519860\nangle P deg ~ 73.8978862480140\nscale px/m = 10.000020559392446\nfig OH, PH, HQ, OQ, PQ (m) = 8.999981496584839 15.588467951056979 14.999969160974734 23.999950657559573 21.633293967662983  6sqrt13= 21.633307652783934\nfig angle O = 60.000068009759644\n"
+    }
+  },
+  "pendingReason": null
+}

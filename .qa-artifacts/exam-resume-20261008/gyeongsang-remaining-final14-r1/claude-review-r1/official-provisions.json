@@ -1,0 +1,2488 @@
+{
+  "kind": "official-provisions-collected/v1",
+  "paragraphSource": {
+    "path": "C:/Users/user/orca/artifacts/outputs/worktree-cleanup-20261012-r1/exam-twin-curriculum-20261008/local-evidence/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-paragraphs.json",
+    "sha256": "185fb860e76e42f33bd5f75158681a1f3f44dc5a63b6036db4886eafcd233c95"
+  },
+  "note": "Collected from earlier reviews' extractions of the official 2015 curriculum (MOE notice 2015-74 / 2020-236 book 8, mathematics). Cite by id; the HWP record and PDF page come from those reviews.",
+  "provisions": [
+    {
+      "id": "angle_range",
+      "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 35,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q01.json",
+        "gyeonggu-final-review-r1/reports/q02.json",
+        "gyeonggu-final-review-r1/reports/q03.json",
+        "gyeonggu-final-review-r1/reports/q04.json",
+        "gyeonggu-final-review-r1/reports/q05.json",
+        "gyeonggu-final-review-r1/reports/q06.json",
+        "gyeonggu-final-review-r1/reports/q07.json",
+        "gyeonggu-final-review-r1/reports/q08.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-final-review-r1/reports/q12.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q14.json",
+        "gyeonggu-final-review-r1/reports/q15.json",
+        "gyeonggu-final-review-r1/reports/q16.json",
+        "gyeonggu-final-review-r1/reports/q17.json",
+        "gyeonggu-final-review-r1/reports/q18.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "gyeonggu-final-review-r1/reports/q22.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q01.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q02.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q03.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q04.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q05.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q06.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q07.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q08.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q09.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q16.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q17.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q01/q01.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q05/q05.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q06/q06.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json"
+      ]
+    },
+    {
+      "id": "no_circle_proportionality",
+      "text": "원과 비례에 관한 성질은 다루지 않는다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": 4452,
+      "pdfPrintedPage": 35,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q01.json",
+        "gyeonggu-final-review-r1/reports/q02.json",
+        "gyeonggu-final-review-r1/reports/q03.json",
+        "gyeonggu-final-review-r1/reports/q04.json",
+        "gyeonggu-final-review-r1/reports/q05.json",
+        "gyeonggu-final-review-r1/reports/q06.json",
+        "gyeonggu-final-review-r1/reports/q07.json",
+        "gyeonggu-final-review-r1/reports/q08.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-final-review-r1/reports/q12.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q14.json",
+        "gyeonggu-final-review-r1/reports/q15.json",
+        "gyeonggu-final-review-r1/reports/q16.json",
+        "gyeonggu-final-review-r1/reports/q17.json",
+        "gyeonggu-final-review-r1/reports/q18.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "gyeonggu-final-review-r1/reports/q22.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q01/q01.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q05/q05.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q06/q06.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": 4472,
+      "pdfPrintedPage": 35,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q01.json",
+        "gyeonggu-final-review-r1/reports/q02.json",
+        "gyeonggu-final-review-r1/reports/q03.json",
+        "gyeonggu-final-review-r1/reports/q04.json",
+        "gyeonggu-final-review-r1/reports/q05.json",
+        "gyeonggu-final-review-r1/reports/q06.json",
+        "gyeonggu-final-review-r1/reports/q07.json",
+        "gyeonggu-final-review-r1/reports/q08.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-final-review-r1/reports/q12.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q14.json",
+        "gyeonggu-final-review-r1/reports/q15.json",
+        "gyeonggu-final-review-r1/reports/q16.json",
+        "gyeonggu-final-review-r1/reports/q17.json",
+        "gyeonggu-final-review-r1/reports/q18.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "gyeonggu-final-review-r1/reports/q22.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q01.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q02.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q03.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q04.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q05.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q06.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q07.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q08.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q09.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q16.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q17.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q01/q01.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q05/q05.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q06/q06.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-authoring-r1/dispositions.json",
+        "gyeongsang-remaining-authoring-r1/q18-curriculum-hold.json",
+        "gyeongsang-remaining-final14-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "no_formal_complex_justification",
+      "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": 4476,
+      "pdfPrintedPage": 35,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q01.json",
+        "gyeonggu-final-review-r1/reports/q02.json",
+        "gyeonggu-final-review-r1/reports/q03.json",
+        "gyeonggu-final-review-r1/reports/q04.json",
+        "gyeonggu-final-review-r1/reports/q05.json",
+        "gyeonggu-final-review-r1/reports/q06.json",
+        "gyeonggu-final-review-r1/reports/q07.json",
+        "gyeonggu-final-review-r1/reports/q08.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-final-review-r1/reports/q12.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q14.json",
+        "gyeonggu-final-review-r1/reports/q15.json",
+        "gyeonggu-final-review-r1/reports/q16.json",
+        "gyeonggu-final-review-r1/reports/q17.json",
+        "gyeonggu-final-review-r1/reports/q18.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "gyeonggu-final-review-r1/reports/q22.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q01.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q02.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q03.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q04.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q05.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q06.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q07.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q08.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q09.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q16.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q17.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q01/q01.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q05/q05.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q06/q06.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "no_trig_ratio_relationships",
+      "text": "삼각비 사이의 관계는 다루지 않는다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 35,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q01.json",
+        "gyeonggu-final-review-r1/reports/q02.json",
+        "gyeonggu-final-review-r1/reports/q03.json",
+        "gyeonggu-final-review-r1/reports/q04.json",
+        "gyeonggu-final-review-r1/reports/q05.json",
+        "gyeonggu-final-review-r1/reports/q06.json",
+        "gyeonggu-final-review-r1/reports/q07.json",
+        "gyeonggu-final-review-r1/reports/q08.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-final-review-r1/reports/q12.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q14.json",
+        "gyeonggu-final-review-r1/reports/q15.json",
+        "gyeonggu-final-review-r1/reports/q16.json",
+        "gyeonggu-final-review-r1/reports/q17.json",
+        "gyeonggu-final-review-r1/reports/q18.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "gyeonggu-final-review-r1/reports/q22.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q01.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q02.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q03.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q04.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q05.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q06.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q07.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q08.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q09.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q16.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q17.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q01/q01.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q05/q05.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q06/q06.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "para-4071",
+      "text": "방정식과 부등식에 대한 지나치게 복잡한 활용 문제는 다루지 않는다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": 4071,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "para-4075",
+      "text": "이차방정식의 근과 계수와의 관계는 다루지 않는다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": 4075,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "para-4221",
+      "text": "함수와 관련하여 지나치게 복잡한 활용 문제는 다루지 않는다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": 4221,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "para-4610",
+      "text": "경우의 수는 두 경우의 수를 합하거나 곱하는 경우 정도로만 다루고, 순열과 조합을 이용하면 쉽게 해결되는 등의 복잡한 경우의 수를 구하는 문제는 다루지 않는다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": 4610,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "ratio_application_context",
+      "text": "삼각비를 활용하여 직접 측정하기 어려운 거리나 높이 등을 구해보는 활동을 통해 그 유용성을 인식하게 한다.",
+      "kind": "restriction-or-note",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 35,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json"
+      ]
+    },
+    {
+      "id": "6수03-01",
+      "text": "[6수03-01]실생활 장면에서 이상, 이하, 초과, 미만의 의미와 쓰임을 알고, 이를 활용하여 수의 범위를 나타낼 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3409,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-02",
+      "text": "[6수03-02]어림값을 구하기 위한 방법으로 올림, 버림, 반올림의 의미와 필요성을 알고, 이를 실생활에 활용할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3413,
+      "pdfPrintedPage": 25,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeongsang-remaining-authoring-r1/author-checks/q04.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q17.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-03",
+      "text": "[6수03-03]평면도형의 둘레를 재어보는 활동을 통하여 둘레를 이해하고, 기본적인 평면도형의 둘레의 길이를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3421,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-04",
+      "text": "[6수03-04]넓이를 나타내는 표준 단위의 필요성을 인식하여 1cm², 1m², 1km²의 단위를 알며, 그 관계를 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 3425,
+      "pdfPrintedPage": 25,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeongsang-remaining-authoring-r1/author-checks/q16.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q17.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-05",
+      "text": "[6수03-05]직사각형의 넓이를 구하는 방법을 이해하고, 이를 통하여 직사각형과 정사각형의 넓이를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3429,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-06",
+      "text": "[6수03-06]평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3433,
+      "pdfPrintedPage": 25,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeongsang-remaining-authoring-r1/author-checks/q16.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-07",
+      "text": "[6수03-07]여러 가지 둥근 물체의 원주와 지름을 측정하는 활동을 통하여 원주율을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 3441,
+      "pdfPrintedPage": 25,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q04.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q16.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-08",
+      "text": "[6수03-08]원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3445,
+      "pdfPrintedPage": 25,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q17.json",
+        "gyeonggu-independent-r1/blind/solve/q17.json",
+        "gyeonggu-independent-r1/blind/solve/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q17.json",
+        "gyeonggu-review-r1/blind/solve/q23.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-09",
+      "text": "[6수03-09]직육면체와 정육면체의 겉넓이를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3453,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-10",
+      "text": "[6수03-10]부피를 이해하고, 1cm³, 1m³의 단위를 알며, 그 관계를 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 3457,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "6수03-11",
+      "text": "[6수03-11]직육면체와 정육면체의 부피를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3461,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-01",
+      "text": "[9수01-01]소인수분해의 뜻을 알고, 자연수를 소인수분해할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3740,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-02",
+      "text": "[9수01-02]최대공약수와 최소공배수의 성질을 이해하고, 이를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3744,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-03",
+      "text": "[9수01-03]양수와 음수, 정수와 유리수의 개념을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 3752,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-04",
+      "text": "[9수01-04]정수와 유리수의 대소 관계를 판단할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3756,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-05",
+      "text": "[9수01-05]정수와 유리수의 사칙계산의 원리를 이해하고, 그 계산을 할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3760,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-06",
+      "text": "[9수01-06]순환소수의 뜻을 알고, 유리수와 순환소수의 관계를 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 3768,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-07",
+      "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 29,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q14.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/blind/solve/q02.json",
+        "gyeonggu-independent-r1/blind/solve/q13.json",
+        "gyeonggu-independent-r1/blind/solve/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q02.json",
+        "gyeonggu-review-r1/blind/solve/q13.json",
+        "gyeonggu-review-r1/blind/solve/q23.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q03.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-08",
+      "text": "[9수01-08]무리수의 개념을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 3780,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-09",
+      "text": "[9수01-09]실수의 대소 관계를 판단할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3784,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수01-10",
+      "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 29,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q05.json",
+        "gyeonggu-final-review-r1/reports/q07.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-independent-r1/blind/solve/q02.json",
+        "gyeonggu-independent-r1/blind/solve/q05.json",
+        "gyeonggu-independent-r1/blind/solve/q07.json",
+        "gyeonggu-independent-r1/blind/solve/q10.json",
+        "gyeonggu-independent-r1/blind/solve/q12.json",
+        "gyeonggu-independent-r1/blind/solve/q13.json",
+        "gyeonggu-independent-r1/blind/solve/q21.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q02.json",
+        "gyeonggu-review-r1/blind/solve/q05.json",
+        "gyeonggu-review-r1/blind/solve/q07.json",
+        "gyeonggu-review-r1/blind/solve/q10.json",
+        "gyeonggu-review-r1/blind/solve/q12.json",
+        "gyeonggu-review-r1/blind/solve/q13.json",
+        "gyeonggu-review-r1/blind/solve/q21.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q08.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q09.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-01",
+      "text": "[9수02-01]다양한 상황을 문자를 사용한 식으로 나타낼 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3896,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-02",
+      "text": "[9수02-02]식의 값을 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3900,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-03",
+      "text": "[9수02-03]일차식의 덧셈과 뺄셈의 원리를 이해하고, 그 계산을 할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3904,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-04",
+      "text": "[9수02-04]방정식과 그 해의 의미를 알고, 등식의 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 3912,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-05",
+      "text": "[9수02-05]일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3916,
+      "pdfPrintedPage": 30,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-final-review-r1/reports/q15.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "gyeonggu-independent-r1/blind/solve/q09.json",
+        "gyeonggu-independent-r1/blind/solve/q15.json",
+        "gyeonggu-independent-r1/blind/solve/q19.json",
+        "gyeonggu-independent-r1/blind/solve/q21.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q09.json",
+        "gyeonggu-review-r1/blind/solve/q15.json",
+        "gyeonggu-review-r1/blind/solve/q19.json",
+        "gyeonggu-review-r1/blind/solve/q21.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q08.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q09.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-06",
+      "text": "[9수02-06]지수법칙을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 3924,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-07",
+      "text": "[9수02-07]다항식의 덧셈과 뺄셈의 원리를 이해하고, 그 계산을 할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3928,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-08",
+      "text": "[9수02-08]‘(단항식)×(다항식)’, ‘(다항식)÷(단항식)’과 같은 곱셈과 나눗셈의 원리를 이해하고, 그 계산을 할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3932,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-09",
+      "text": "[9수02-09]부등식과 그 해의 의미를 알고, 부등식의 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 3940,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-10",
+      "text": "[9수02-10]일차부등식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3944,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-11",
+      "text": "[9수02-11]미지수가 2개인 연립일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 3948,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-12",
+      "text": "[9수02-12]다항식의 곱셈과 인수분해를 할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 30,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수02-13",
+      "text": "[9수02-13]이차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 30,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-01",
+      "text": "[9수03-01]순서쌍과 좌표를 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4102,
+      "pdfPrintedPage": 32,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeongsang-remaining-authoring-r1/author-checks/q02.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-02",
+      "text": "[9수03-02]다양한 상황을 그래프로 나타내고, 주어진 그래프를 해석할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4106,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-03",
+      "text": "[9수03-03]정비례, 반비례 관계를 이해하고, 그 관계를 표, 식, 그래프로 나타낼 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4110,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-04",
+      "text": "[9수03-04]함수의 개념을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4118,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-05",
+      "text": "[9수03-05]일차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4122,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-06",
+      "text": "[9수03-06]일차함수의 그래프의 성질을 이해하고, 이를 활용하여 문제를 해결할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4126,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-07",
+      "text": "[9수03-07]일차함수와 미지수가 2개인 일차방정식의 관계를 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4134,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-08",
+      "text": "[9수03-08]두 일차함수의 그래프와 연립일차방정식의 관계를 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4138,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-09",
+      "text": "[9수03-09]이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4146,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수03-10",
+      "text": "[9수03-10]이차함수의 그래프의 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4150,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-01",
+      "text": "[9수04-01]점, 선, 면, 각을 이해하고, 점, 직선, 평면의 위치 관계를 설명할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4248,
+      "pdfPrintedPage": 33,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-independent-r1/blind/solve/q21.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q21.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q02.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-02",
+      "text": "[9수04-02]평행선에서 동위각과 엇각의 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4252,
+      "pdfPrintedPage": 33,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q18.json",
+        "gyeonggu-independent-r1/blind/solve/q21.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q21.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-03",
+      "text": "[9수04-03]삼각형을 작도할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4260,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-04",
+      "text": "[9수04-04]삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4264,
+      "pdfPrintedPage": 33,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-final-review-r1/reports/q22.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/blind/solve/q09.json",
+        "gyeonggu-independent-r1/blind/solve/q22.json",
+        "gyeonggu-independent-r1/blind/solve/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q09.json",
+        "gyeonggu-review-r1/blind/solve/q22.json",
+        "gyeonggu-review-r1/blind/solve/q23.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-05",
+      "text": "[9수04-05]다각형의 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4272,
+      "pdfPrintedPage": 33,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q08.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q15.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/blind/solve/q13.json",
+        "gyeonggu-independent-r1/blind/solve/q15.json",
+        "gyeonggu-independent-r1/blind/solve/q21.json",
+        "gyeonggu-independent-r1/blind/solve/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q13.json",
+        "gyeonggu-review-r1/blind/solve/q15.json",
+        "gyeonggu-review-r1/blind/solve/q21.json",
+        "gyeonggu-review-r1/blind/solve/q23.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q09.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-06",
+      "text": "[9수04-06]부채꼴의 중심각과 호의 관계를 이해하고, 이를 이용하여 부채꼴의 넓이와 호의 길이를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4276,
+      "pdfPrintedPage": 33,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-07",
+      "text": "[9수04-07]다면체의 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4284,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-08",
+      "text": "[9수04-08]회전체의 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4288,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-09",
+      "text": "[9수04-09]입체도형의 겉넓이와 부피를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4292,
+      "pdfPrintedPage": 33,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-independent-r1/blind/solve/q11.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q11.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-10",
+      "text": "[9수04-10]이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4300,
+      "pdfPrintedPage": 33,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q15.json",
+        "gyeonggu-independent-r1/blind/solve/q13.json",
+        "gyeonggu-independent-r1/blind/solve/q15.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q13.json",
+        "gyeonggu-review-r1/blind/solve/q15.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q07.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q07/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-11",
+      "text": "[9수04-11]삼각형의 외심과 내심의 성질을 이해하고 설명할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4304,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-12",
+      "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4308,
+      "pdfPrintedPage": 34,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-independent-r1/blind/solve/q10.json",
+        "gyeonggu-independent-r1/blind/solve/q11.json",
+        "gyeonggu-independent-r1/blind/solve/q18.json",
+        "gyeonggu-independent-r1/blind/solve/q19.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q10.json",
+        "gyeonggu-review-r1/blind/solve/q11.json",
+        "gyeonggu-review-r1/blind/solve/q18.json",
+        "gyeonggu-review-r1/blind/solve/q19.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-13",
+      "text": "[9수04-13]도형의 닮음의 의미와 닮은 도형의 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 34,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-14",
+      "text": "[9수04-14]삼각형의 닮음 조건을 이해하고, 이를 이용하여 두 삼각형이 닮음인지 판별할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 34,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-15",
+      "text": "[9수04-15]평행선 사이의 선분의 길이의 비를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4325,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-16",
+      "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 34,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q01.json",
+        "gyeonggu-final-review-r1/reports/q02.json",
+        "gyeonggu-final-review-r1/reports/q03.json",
+        "gyeonggu-final-review-r1/reports/q04.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-final-review-r1/reports/q14.json",
+        "gyeonggu-final-review-r1/reports/q16.json",
+        "gyeonggu-final-review-r1/reports/q17.json",
+        "gyeonggu-final-review-r1/reports/q18.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-independent-r1/blind/solve/q01.json",
+        "gyeonggu-independent-r1/blind/solve/q02.json",
+        "gyeonggu-independent-r1/blind/solve/q03.json",
+        "gyeonggu-independent-r1/blind/solve/q04.json",
+        "gyeonggu-independent-r1/blind/solve/q09.json",
+        "gyeonggu-independent-r1/blind/solve/q11.json",
+        "gyeonggu-independent-r1/blind/solve/q14.json",
+        "gyeonggu-independent-r1/blind/solve/q16.json",
+        "gyeonggu-independent-r1/blind/solve/q17.json",
+        "gyeonggu-independent-r1/blind/solve/q18.json",
+        "gyeonggu-independent-r1/blind/solve/q19.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q01.json",
+        "gyeonggu-review-r1/blind/solve/q02.json",
+        "gyeonggu-review-r1/blind/solve/q03.json",
+        "gyeonggu-review-r1/blind/solve/q04.json",
+        "gyeonggu-review-r1/blind/solve/q09.json",
+        "gyeonggu-review-r1/blind/solve/q11.json",
+        "gyeonggu-review-r1/blind/solve/q14.json",
+        "gyeonggu-review-r1/blind/solve/q16.json",
+        "gyeonggu-review-r1/blind/solve/q17.json",
+        "gyeonggu-review-r1/blind/solve/q18.json",
+        "gyeonggu-review-r1/blind/solve/q19.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q03.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-17",
+      "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 34,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q01.json",
+        "gyeonggu-final-review-r1/reports/q02.json",
+        "gyeonggu-final-review-r1/reports/q03.json",
+        "gyeonggu-final-review-r1/reports/q04.json",
+        "gyeonggu-final-review-r1/reports/q05.json",
+        "gyeonggu-final-review-r1/reports/q06.json",
+        "gyeonggu-final-review-r1/reports/q07.json",
+        "gyeonggu-final-review-r1/reports/q08.json",
+        "gyeonggu-final-review-r1/reports/q09.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-final-review-r1/reports/q12.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "gyeonggu-final-review-r1/reports/q22.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/blind/solve/q01.json",
+        "gyeonggu-independent-r1/blind/solve/q02.json",
+        "gyeonggu-independent-r1/blind/solve/q03.json",
+        "gyeonggu-independent-r1/blind/solve/q04.json",
+        "gyeonggu-independent-r1/blind/solve/q05.json",
+        "gyeonggu-independent-r1/blind/solve/q06.json",
+        "gyeonggu-independent-r1/blind/solve/q07.json",
+        "gyeonggu-independent-r1/blind/solve/q08.json",
+        "gyeonggu-independent-r1/blind/solve/q09.json",
+        "gyeonggu-independent-r1/blind/solve/q10.json",
+        "gyeonggu-independent-r1/blind/solve/q11.json",
+        "gyeonggu-independent-r1/blind/solve/q12.json",
+        "gyeonggu-independent-r1/blind/solve/q13.json",
+        "gyeonggu-independent-r1/blind/solve/q21.json",
+        "gyeonggu-independent-r1/blind/solve/q22.json",
+        "gyeonggu-independent-r1/blind/solve/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q01.json",
+        "gyeonggu-review-r1/blind/solve/q02.json",
+        "gyeonggu-review-r1/blind/solve/q03.json",
+        "gyeonggu-review-r1/blind/solve/q04.json",
+        "gyeonggu-review-r1/blind/solve/q05.json",
+        "gyeonggu-review-r1/blind/solve/q06.json",
+        "gyeonggu-review-r1/blind/solve/q07.json",
+        "gyeonggu-review-r1/blind/solve/q08.json",
+        "gyeonggu-review-r1/blind/solve/q09.json",
+        "gyeonggu-review-r1/blind/solve/q10.json",
+        "gyeonggu-review-r1/blind/solve/q11.json",
+        "gyeonggu-review-r1/blind/solve/q12.json",
+        "gyeonggu-review-r1/blind/solve/q13.json",
+        "gyeonggu-review-r1/blind/solve/q21.json",
+        "gyeonggu-review-r1/blind/solve/q22.json",
+        "gyeonggu-review-r1/blind/solve/q23.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q01.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q02.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q03.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q04.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q05.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q06.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q07.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q08.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q09.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q16.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q17.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q01/q01.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q05/q05.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q06/q06.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q03/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q05/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q06/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q08/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-18",
+      "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": null,
+      "pdfPrintedPage": 34,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q02.json",
+        "gyeonggu-final-review-r1/reports/q06.json",
+        "gyeonggu-final-review-r1/reports/q08.json",
+        "gyeonggu-final-review-r1/reports/q10.json",
+        "gyeonggu-final-review-r1/reports/q11.json",
+        "gyeonggu-final-review-r1/reports/q12.json",
+        "gyeonggu-final-review-r1/reports/q13.json",
+        "gyeonggu-final-review-r1/reports/q21.json",
+        "gyeonggu-independent-r1/blind/solve/q08.json",
+        "gyeonggu-independent-r1/blind/solve/q12.json",
+        "gyeonggu-independent-r1/blind/solve/q21.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q08.json",
+        "gyeonggu-review-r1/blind/solve/q12.json",
+        "gyeonggu-review-r1/blind/solve/q21.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+        "gyeongsan-q22-final-review-r2/reports/q22.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q01.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q02.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q04.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q07.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q16.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q17.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+        "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q01/q01.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+        "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+        "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+        "gyeongsang-remaining-final14-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+        "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+        "gyeongsang-remaining-review-r1/package/private/q01/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q04/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q07/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+        "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-19",
+      "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4353,
+      "pdfPrintedPage": 34,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+        "gyeonggu-final-review-r1/reports/q14.json",
+        "gyeonggu-final-review-r1/reports/q15.json",
+        "gyeonggu-final-review-r1/reports/q16.json",
+        "gyeonggu-final-review-r1/reports/q17.json",
+        "gyeonggu-final-review-r1/reports/q18.json",
+        "gyeonggu-final-review-r1/reports/q19.json",
+        "gyeonggu-final-review-r1/reports/q22.json",
+        "gyeonggu-final-review-r1/reports/q23.json",
+        "gyeonggu-independent-r1/blind/solve/q14.json",
+        "gyeonggu-independent-r1/blind/solve/q15.json",
+        "gyeonggu-independent-r1/blind/solve/q16.json",
+        "gyeonggu-independent-r1/blind/solve/q17.json",
+        "gyeonggu-independent-r1/blind/solve/q18.json",
+        "gyeonggu-independent-r1/blind/solve/q19.json",
+        "gyeonggu-independent-r1/blind/solve/q22.json",
+        "gyeonggu-independent-r1/blind/solve/q23.json",
+        "gyeonggu-independent-r1/curriculum-method-evidence.json",
+        "gyeonggu-review-r1/blind/solve/q14.json",
+        "gyeonggu-review-r1/blind/solve/q15.json",
+        "gyeonggu-review-r1/blind/solve/q16.json",
+        "gyeonggu-review-r1/blind/solve/q17.json",
+        "gyeonggu-review-r1/blind/solve/q18.json",
+        "gyeonggu-review-r1/blind/solve/q19.json",
+        "gyeonggu-review-r1/blind/solve/q22.json",
+        "gyeonggu-review-r1/blind/solve/q23.json",
+        "gyeonggu-review-r1/verification/verification-inputs.json",
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수04-20",
+      "text": "[9수04-20]원주각의 성질을 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4357,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수05-01",
+      "text": "[9수05-01]자료를 줄기와 잎 그림, 도수분포표, 히스토그램, 도수분포다각형으로 나타내고 해석할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4503,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수05-02",
+      "text": "[9수05-02]상대도수를 구하며, 이를 그래프로 나타내고, 상대도수의 분포를 이해한다.",
+      "kind": "standard",
+      "hwpRecord1based": 4507,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수05-03",
+      "text": "[9수05-03]공학적 도구를 이용하여 실생활과 관련된 자료를 수집하고 표나 그래프로 정리하고 해석할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4511,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수05-04",
+      "text": "[9수05-04]경우의 수를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4519,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수05-05",
+      "text": "[9수05-05]확률의 개념과 그 기본 성질을 이해하고, 확률을 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4523,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수05-06",
+      "text": "[9수05-06]중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4531,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수05-07",
+      "text": "[9수05-07]분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4535,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    },
+    {
+      "id": "9수05-08",
+      "text": "[9수05-08]자료를 산점도로 나타내고, 이를 이용하여 상관관계를 말할 수 있다.",
+      "kind": "standard",
+      "hwpRecord1based": 4543,
+      "pdfPrintedPage": null,
+      "wholeClausePDFMatch": null,
+      "evidenceFiles": [
+        "paragraphs:moe-2020-236"
+      ]
+    }
+  ],
+  "conflicts": [],
+  "scannedEvidenceFiles": [
+    {
+      "path": "bumil-authoring-r1/source-identity/manifest-question-source-excerpts.json",
+      "sha256": "61c70bd0f229301d188c3d6aea20866d5b6f550c7c98c03b568f539fd8403506"
+    },
+    {
+      "path": "bumil-authoring-r1/source-identity/selected-figure-linkage.json",
+      "sha256": "a3d6b2a54b1a41988b4beed778284791e801f67dbc722775bcfecb7da725f372"
+    },
+    {
+      "path": "bumil-authoring-r1/source-identity/source-files.json",
+      "sha256": "b74641da495bc9e914a4fd5a69a0170891e4690d6139db4c37102ca8565e5919"
+    },
+    {
+      "path": "bumil-authoring-r1/source-identity/source-review.json",
+      "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+    },
+    {
+      "path": "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+      "sha256": "c01d053fee29d98087c6366a9ccb2136a15a12e5c0f6c0c2ef27d9be8bc755dc"
+    },
+    {
+      "path": "bumil-source-audit-r2/figure-linkage.json",
+      "sha256": "6c917e5386c94e00f8fec24c6991bc9865d7f8b8d5c8ec322315e0cbd5e876c5"
+    },
+    {
+      "path": "bumil-source-audit-r2/source-files.json",
+      "sha256": "b74641da495bc9e914a4fd5a69a0170891e4690d6139db4c37102ca8565e5919"
+    },
+    {
+      "path": "bumil-source-audit-r2/source-review.json",
+      "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+    },
+    {
+      "path": "continuation-index-before-execution-v3.json",
+      "sha256": "36bea099f44cec22e670722abc34a8d21dafd4c8b4667b5a74af08125e3ea9b5"
+    },
+    {
+      "path": "continuation-index-before-final-review-v4.json",
+      "sha256": "b5a53f634604cea5a580065b4664810cd3e052e005ff8de9a4076219733cd3c7"
+    },
+    {
+      "path": "continuation-index.json",
+      "sha256": "7a9fdfd27535dd479316388815ec920c92ec1b615937a7a371fe54238a28ff9c"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+      "sha256": "fa183df33400ce8f167eda3be05d6ac0d40fed433aff8e1e6431a96022cdf252"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/q13-source-correction-review.json",
+      "sha256": "de13262e5e9bb09fdd71503586ba089be7d5997d5861da552cb82d83f2d18fce"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q01.json",
+      "sha256": "dc89b592d19c2d3f11c76cba2830ebedc7c2863a2609d29c3e4bc67a19dc471c"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q02.json",
+      "sha256": "ed3771e2814c6f7a4b28078faca06518526a8e3b3d1723ed38875d18a2e1edc5"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q03.json",
+      "sha256": "4010a83af769144b29ff191867655c5d6bdbdf781c98547b43d32431902a3781"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q04.json",
+      "sha256": "4234332db229806e462c0e479e1ad400397b5f2468117f9d85ce3fa1ce5b8e80"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q05.json",
+      "sha256": "b83fbd2b78d202c05a729b4fdf7f2731aeb632f5b7e7781095f5bd42f199a7b0"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q06.json",
+      "sha256": "a84b02994ddb28eebefadb1b1735c68b74526ff530b9202c5f5321d4268f83f4"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q07.json",
+      "sha256": "df33da0c5dd77bc4800277bf2c5b11c238cca5e1e4ff9dc81aeb5e640a7a9c8c"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q08.json",
+      "sha256": "bc6e1e3add5c494279a27c1a240022228ac0cbcb4b06f51c75a7cec0ce2ca29b"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q09.json",
+      "sha256": "e6838d866d979aac0ed80e91573e723538fd5a8d14f3b2841a1aa50b38974dbb"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q10.json",
+      "sha256": "77cde8443a4f0a3c40a29809c7560b2750674715bbbb01deac91ae7f3e9274c9"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q11.json",
+      "sha256": "eb64f604d55a27206666c5bca486beea18100b22820a0d6e59fa466872e4b5e4"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q12.json",
+      "sha256": "f1ee476c66ebbfeb567d50419337533b15b936fa2723bbcbb2c6a0f5e36300f1"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q13.json",
+      "sha256": "abd22e1fae8cfa4f8ed27ccf54e92b882ea8df985320e65406a74acf1fffeee9"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q14.json",
+      "sha256": "b197e38975f66cc078f3afe528a0ceb73f3c36a1da57b73e755a8cad4443ec00"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q15.json",
+      "sha256": "c9df5134b4a671eb77d8f6f6cf00aa1af04bbd3c945ef99ffce7f1e5e4fe82d2"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q16.json",
+      "sha256": "803ce0e3b3d7a89fd81bd1519cf363dfba3ba9489f8a0889095ce784162075b5"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q17.json",
+      "sha256": "74f83b2b0f2648e5e7a53eb4bca57e86ea0d4b39363227350df8c1be52364da6"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q18.json",
+      "sha256": "548f822eceda24358dcce1359297af78dff8692f6784a9803bca5072ae1268ca"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q19.json",
+      "sha256": "27117bfe6d314db35504911252e95444e951640af6cc2eb42483da539f74c010"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q21.json",
+      "sha256": "3c4c5f809436bd127c1589b3e607cd82739da02cbd9879405a77a31643fb11bf"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q22.json",
+      "sha256": "a21e77dd990a74d214e4eff2856f808099aa429f73478a8c0c4e481622785312"
+    },
+    {
+      "path": "gyeonggu-final-review-r1/reports/q23.json",
+      "sha256": "7ded461cdba1c3f6f3e3a3ffb70d2e67fc1b9e2693ee5ef22858a95d5f32a62b"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q01.json",
+      "sha256": "e4d89f652d4605e8cbfb7fa7c86524111fe1058188b54dfd60fe56d749a93049"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q02.json",
+      "sha256": "71199eecd9ad07d09663bdddc4ae4d2101b7f8856bf53d1ff770a96555e5e430"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q03.json",
+      "sha256": "a3956995bef070d70931f964d0edd26d901690f8f29c089a37efcc1ffc34f26b"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q04.json",
+      "sha256": "ffd9fbe41d7ca21cad5b85a81740a3f281ff49280e03926cf3119e66ef546154"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q05.json",
+      "sha256": "7e68d54b8ccd76ed66f258d4016500a233801ef630f028b84455e900601e67c2"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q06.json",
+      "sha256": "a5c3fbaf2dd085fdf769e3b25a95100ae351bee726ad19c4b66e6fa30db2777b"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q07.json",
+      "sha256": "e4b95c987e7c1239d7af70a242f9db31ba922217dc958d10d2e7a3ce6cdd9d09"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q08.json",
+      "sha256": "74852e5603a88c69c81f7fe1611146d5001ca69eac91113c0454765a9b082764"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q09.json",
+      "sha256": "7ebe3ab148d173350b7aad4ca0120969ae8e0225bebdba626c939a09ad419c1c"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q10.json",
+      "sha256": "af087948fe38cbb07ebe42331fba97aaeeb618d629df8c3b5694f83d2c938d1f"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q11.json",
+      "sha256": "57ab3761e81b8d63852a321d926450d861079d49ce49c9c5ce90072776be3e1d"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q12.json",
+      "sha256": "bee6be062315378f18a4b6b2d36e9e0e83face37c8ac57970df552dbb25925a4"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q13.json",
+      "sha256": "198672bc46e3279982794279fa1a3dbfac62dd68df8f1a4db593367aa251dcbb"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q14.json",
+      "sha256": "ca0621ec18e080f18eebe7e204a3c624eeb708eaa1772ceaea91a10404df667b"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q15.json",
+      "sha256": "7abf10b157bc485c32d2ca05704c4aad62152b8fe53fea149446dc16d9a56018"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q16.json",
+      "sha256": "16fdcf3539737bc65d878ee03a94baa1a5da885b2ff9ed16009d44a407a0e865"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q17.json",
+      "sha256": "aaa45dba4190a345f978bef63e96ff543a50076b6b62ad72121b5e06c6e60fda"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q18.json",
+      "sha256": "68f0ee409590753f251bab4f49e662abe67e5e19d9ad216a88c15ac0b6b3b293"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q19.json",
+      "sha256": "44fbc78ba7e992e4f1555c24ddff447d0388cb631f760ab6252f93bc591fa06f"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q21.json",
+      "sha256": "c55963a6f311d2bf940a51dde7a9bf34a0a8b191b4f622466236a08d4f117657"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q22.json",
+      "sha256": "cd1cb8cd9a6faac3910b8eaad86483b6ff1a74b9dddd8e72a98fadbca0809fd7"
+    },
+    {
+      "path": "gyeonggu-independent-r1/blind/solve/q23.json",
+      "sha256": "5877b4b431cfb0187c6dfaed885db627db1e0dc5f79223901ae44908938155a3"
+    },
+    {
+      "path": "gyeonggu-independent-r1/curriculum-method-evidence.json",
+      "sha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d"
+    },
+    {
+      "path": "gyeonggu-q13-source-correction-r2/copy-receipt.json",
+      "sha256": "47639eda6d9c4ac09735193c22505b419fd2ab81da89da5cd59c63a74c54b77e"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q01.json",
+      "sha256": "e4d89f652d4605e8cbfb7fa7c86524111fe1058188b54dfd60fe56d749a93049"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q02.json",
+      "sha256": "71199eecd9ad07d09663bdddc4ae4d2101b7f8856bf53d1ff770a96555e5e430"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q03.json",
+      "sha256": "a3956995bef070d70931f964d0edd26d901690f8f29c089a37efcc1ffc34f26b"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q04.json",
+      "sha256": "ffd9fbe41d7ca21cad5b85a81740a3f281ff49280e03926cf3119e66ef546154"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q05.json",
+      "sha256": "7e68d54b8ccd76ed66f258d4016500a233801ef630f028b84455e900601e67c2"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q06.json",
+      "sha256": "a5c3fbaf2dd085fdf769e3b25a95100ae351bee726ad19c4b66e6fa30db2777b"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q07.json",
+      "sha256": "e4b95c987e7c1239d7af70a242f9db31ba922217dc958d10d2e7a3ce6cdd9d09"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q08.json",
+      "sha256": "74852e5603a88c69c81f7fe1611146d5001ca69eac91113c0454765a9b082764"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q09.json",
+      "sha256": "7ebe3ab148d173350b7aad4ca0120969ae8e0225bebdba626c939a09ad419c1c"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q10.json",
+      "sha256": "af087948fe38cbb07ebe42331fba97aaeeb618d629df8c3b5694f83d2c938d1f"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q11.json",
+      "sha256": "57ab3761e81b8d63852a321d926450d861079d49ce49c9c5ce90072776be3e1d"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q12.json",
+      "sha256": "bee6be062315378f18a4b6b2d36e9e0e83face37c8ac57970df552dbb25925a4"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q13.json",
+      "sha256": "198672bc46e3279982794279fa1a3dbfac62dd68df8f1a4db593367aa251dcbb"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q14.json",
+      "sha256": "ca0621ec18e080f18eebe7e204a3c624eeb708eaa1772ceaea91a10404df667b"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q15.json",
+      "sha256": "7abf10b157bc485c32d2ca05704c4aad62152b8fe53fea149446dc16d9a56018"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q16.json",
+      "sha256": "16fdcf3539737bc65d878ee03a94baa1a5da885b2ff9ed16009d44a407a0e865"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q17.json",
+      "sha256": "aaa45dba4190a345f978bef63e96ff543a50076b6b62ad72121b5e06c6e60fda"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q18.json",
+      "sha256": "68f0ee409590753f251bab4f49e662abe67e5e19d9ad216a88c15ac0b6b3b293"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q19.json",
+      "sha256": "44fbc78ba7e992e4f1555c24ddff447d0388cb631f760ab6252f93bc591fa06f"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q21.json",
+      "sha256": "c55963a6f311d2bf940a51dde7a9bf34a0a8b191b4f622466236a08d4f117657"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q22.json",
+      "sha256": "cd1cb8cd9a6faac3910b8eaad86483b6ff1a74b9dddd8e72a98fadbca0809fd7"
+    },
+    {
+      "path": "gyeonggu-review-r1/blind/solve/q23.json",
+      "sha256": "5877b4b431cfb0187c6dfaed885db627db1e0dc5f79223901ae44908938155a3"
+    },
+    {
+      "path": "gyeonggu-review-r1/verification/verification-inputs.json",
+      "sha256": "0bbc60834eea896b87d7678bb96475b68908527edb9eb1a98a55068d06d8f9a9"
+    },
+    {
+      "path": "gyeongsan-q22-final-review-r2/curriculum-evidence.json",
+      "sha256": "dbbac206e9000a35d86d73db69da23eef7198127278060b97fc7be0b3eeac6f7"
+    },
+    {
+      "path": "gyeongsan-q22-final-review-r2/reports/q22.json",
+      "sha256": "7f46b1bc8cb188b47fa7f862a6dd4ece70bf409fb7582ff221c782b7fa880e57"
+    },
+    {
+      "path": "gyeongsang-q13-r5-review-r1/source-identity-unsealed-r1/official-curriculum-receipt.json",
+      "sha256": "2159cb42d70941e9de1bb7365d464831cb93f4cc0fa37b1ede3e62a1df2d8b74"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q01.json",
+      "sha256": "5f4c9bce36d4bebb00dac8a2c66861a5027597d3a1b8212ef92825f8212be2e3"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q02.json",
+      "sha256": "516a006b828c54d25937da0cf06cffe15053f7638950e9f158f274dfed75f977"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q03.json",
+      "sha256": "346d11d740149cde5852ac26aef7eb58041bad531f0430a700719fba70ab0b7d"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q04.json",
+      "sha256": "60aa88ea9fa59c3b5cf0e6f20b43ee1548c3518082869da5b60f8a1d13c99264"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q05.json",
+      "sha256": "f8b7f1dfd0551f6d3f61319ee5b0e4daba8530d1a94708e728fe8dbd7e6fd95b"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q06.json",
+      "sha256": "232f8a3c20ba1ffd6c9e87ba88f0c8e9e14eb60d35a45e9a69477713a0b8bdfa"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q07.json",
+      "sha256": "62c5fb37d72d83472a379aefe20b98bb7a892ecbb42557fc5fc22b1c34cc3d74"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q08.json",
+      "sha256": "8d907d57d3078ff6a24ceb78bd3d2e8b3d8c7ebd5f91506208f4c2ad2d80311d"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q09.json",
+      "sha256": "1e5bcc72a4f9d925b30f54e16f588a14342d0067de0be52f8a4abeeeab628e87"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q16.json",
+      "sha256": "126eb7015e5228d710362de6bd3b3adc64b555fb2ebfcf0a908bf7a16be751f7"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q17.json",
+      "sha256": "7d8fa233865fb1d66671f7431cd469a543ddc6fc6b10772dd0f8e74b24cdd296"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q18.json",
+      "sha256": "82e5e31afd4cbc2765a1502e2a1dc67336c682ccfe9e0d28984ae0520f92fec2"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q19.json",
+      "sha256": "64d7e382f70950cc9d40c180099823c3ce484c1184416a89c1c2a2c4996cdaf0"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q20.json",
+      "sha256": "4a5007a9981ceab612edcb45338e22888a2cb41b93fb8cea26ca68b6bd85ce11"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/author-checks/q21.json",
+      "sha256": "977e7561b992c923f427f7e0eba45224c6d7ff7afbde07e1360d53cf922f9846"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q01/q01.json",
+      "sha256": "deac4937c529b13152428c2ae49a265232a696f8153516ffd690e6c292351d54"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q02/q02.json",
+      "sha256": "8b1da1b11a15d876a5b8b3111ec85bf3030ba6f4b47bc2d420e17df173d54b69"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q03/q03.json",
+      "sha256": "2bb926878937da31e1f3b000fb0fe4625bf6b664e1b23b82038d2c3398722d61"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q04/q04.json",
+      "sha256": "01f6867ac13e983c2d97614dc5a3b48282844d4278e0d4c0aa7a5df36ce9afc7"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q05/q05.json",
+      "sha256": "87c7d44ab970c7d9100609484911326e7a9f69cf3088061dd6ad7e5de9056c7a"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q06/q06.json",
+      "sha256": "7a7695ead84369b43532d093a9eb7eea317b164fdebb78cac79d63b86e1311db"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q07/q07.json",
+      "sha256": "53380d131a689001aaaf0599986609e3da80b0f9a998815d39529e6321c9220a"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q08/q08.json",
+      "sha256": "475f8252eae3cb82c910ffc621dd2a680db5e7e22beb9f389ac417c3643ca2be"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q09/q09.json",
+      "sha256": "91027639f616e2fbe6c532622650aa0411aaf6c5f32c2747d85b41ecd4d90b14"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q16/q16.json",
+      "sha256": "f38c0da233a3887f453b3226dcd8991a8182cbef06a62acac93aa61e6f393905"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q17/q17.json",
+      "sha256": "3f3f2be7983a9fd7e0c7112aaaf8fcb743a672624e53d1c272b6ecf339fd45da"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q18/q18.json",
+      "sha256": "70dcb42397ed9c1cae023e2fae309c460c783956ccb7c2f8eb421318f5fc02b1"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q19/q19.json",
+      "sha256": "f436be0b4e7157ca2ee5db9043e350b353f121f8eb48c3531416d91405a1fd16"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q20/q20.json",
+      "sha256": "d7eb1afb51684cd0cba6665dcf502d610911d0a562b29e8bde13706a915d5d6c"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/candidates/q21/q21.json",
+      "sha256": "cd2ccfa83e50bef390c7397a864ee1b087944c1f06187ef048ed0bf675d69a1a"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/curriculum-author-basis.json",
+      "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/dispositions.json",
+      "sha256": "cd10840ca159c059451792ef3b9f967ca08895969e101e6aa1af72fcb92cb29c"
+    },
+    {
+      "path": "gyeongsang-remaining-authoring-r1/q18-curriculum-hold.json",
+      "sha256": "be45240ee5375a729913fdb234a22dc244f5ed847200c085f86c5f436bdda1cb"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q01/candidate.json",
+      "sha256": "1ee5a36d7423eecf49280e0b1c54525aa30122291665ff266cef6142c32237e5"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q02/candidate.json",
+      "sha256": "9aa5d4ae9a85cee0a1f7119cfe725272a8bd049a9a303e373a11814d5e00fd3c"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q03/candidate.json",
+      "sha256": "27b6cd96c24844665b86cf3cafad3d7e01ad8559cd16895a46b6d6bca1a93c98"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q04/candidate.json",
+      "sha256": "e701bccc37bfc42cd9536575c33e6cfc6fac8b9e9abc5020a0c403b3daa6b640"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q05/candidate.json",
+      "sha256": "82b5e386aaa7b9e947bc9e8b374f6099eeceffe1e7947ca672a20081b0b76a40"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q06/candidate.json",
+      "sha256": "0d7e7d8fe0a7f6ad2c3dbcd05f62ff5f5caa5ceec314a98ef40aa9e29a41176a"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q07/candidate.json",
+      "sha256": "f0acd3fed3a027219dc8a31369ef2795d9e034ed7bef5062ff977d0a5d58f574"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q08/candidate.json",
+      "sha256": "e9df41c8daf3069c24aeda6441543711fcb448bb644a51ee5b96205b03cc412d"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q09/candidate.json",
+      "sha256": "dae04fcd8a8f868be69ef662dcd5313efad8d088242939eb52b41fa4e0a632c9"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q16/candidate.json",
+      "sha256": "b199b483c5f09cec256dd6af27407914b9d2dde3518fad234a26f4f5c96b925f"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q17/candidate.json",
+      "sha256": "ad21b75f5764c6a1192613e8c150ed086869550360655d60ace0d473dea639e9"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q19/candidate.json",
+      "sha256": "ffbd57c62b1fbb26bd26fa311f873eced64134421f3cf8e94e90bddf38acf160"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q20/candidate.json",
+      "sha256": "9f823e4ecf504dc3513fdec3b9766af89552c7970d490f6e96d621145791c2fb"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/package/private/q21/candidate.json",
+      "sha256": "c5a59442c46c226a5186aa8186ec23852334dfa98e41070a690c6b21681ce405"
+    },
+    {
+      "path": "gyeongsang-remaining-final14-r1/review/verification-inputs.json",
+      "sha256": "e797c59d3eab542f90b03375e365915cdd5e688ab905dd36563b1a86df9d76c1"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q01/candidate.json",
+      "sha256": "1ee5a36d7423eecf49280e0b1c54525aa30122291665ff266cef6142c32237e5"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q02/candidate.json",
+      "sha256": "9aa5d4ae9a85cee0a1f7119cfe725272a8bd049a9a303e373a11814d5e00fd3c"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q03/candidate.json",
+      "sha256": "27b6cd96c24844665b86cf3cafad3d7e01ad8559cd16895a46b6d6bca1a93c98"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q04/candidate.json",
+      "sha256": "e701bccc37bfc42cd9536575c33e6cfc6fac8b9e9abc5020a0c403b3daa6b640"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q05/candidate.json",
+      "sha256": "82b5e386aaa7b9e947bc9e8b374f6099eeceffe1e7947ca672a20081b0b76a40"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q06/candidate.json",
+      "sha256": "0d7e7d8fe0a7f6ad2c3dbcd05f62ff5f5caa5ceec314a98ef40aa9e29a41176a"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q07/candidate.json",
+      "sha256": "f0acd3fed3a027219dc8a31369ef2795d9e034ed7bef5062ff977d0a5d58f574"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q08/candidate.json",
+      "sha256": "e9df41c8daf3069c24aeda6441543711fcb448bb644a51ee5b96205b03cc412d"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q09/candidate.json",
+      "sha256": "dae04fcd8a8f868be69ef662dcd5313efad8d088242939eb52b41fa4e0a632c9"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q16/candidate.json",
+      "sha256": "b199b483c5f09cec256dd6af27407914b9d2dde3518fad234a26f4f5c96b925f"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q17/candidate.json",
+      "sha256": "ad21b75f5764c6a1192613e8c150ed086869550360655d60ace0d473dea639e9"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q18/candidate.json",
+      "sha256": "afc3b801e490703bf2fbea087213c9b276eab43043df5b19b85bbb15fd13cc88"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q19/candidate.json",
+      "sha256": "ffbd57c62b1fbb26bd26fa311f873eced64134421f3cf8e94e90bddf38acf160"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q20/candidate.json",
+      "sha256": "9f823e4ecf504dc3513fdec3b9766af89552c7970d490f6e96d621145791c2fb"
+    },
+    {
+      "path": "gyeongsang-remaining-review-r1/package/private/q21/candidate.json",
+      "sha256": "c5a59442c46c226a5186aa8186ec23852334dfa98e41070a690c6b21681ce405"
+    },
+    {
+      "path": "next-five-audit.json",
+      "sha256": "954d506390c2a4470a632b6e5e85ca0c604b231cd1eeb485cb9bf7946a569c9c"
+    }
+  ]
+}

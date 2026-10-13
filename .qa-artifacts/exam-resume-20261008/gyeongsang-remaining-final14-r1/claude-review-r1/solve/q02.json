@@ -1,0 +1,29 @@
+{
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+  "studentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+  "solverId": "claude-opus-5-5-gf14-r1-q02",
+  "status": "solved",
+  "answer": "④",
+  "parts": [
+    { "label": "a", "answer": "16" }
+  ],
+  "solution": "세 점 $R(0,0)$, $P(a,0)$, $Q(0,b)$에서 $\\overline{RP}$는 $x$축 위, $\\overline{RQ}$는 $y$축 위에 있으므로 $\\angle PRQ=90^\\circ$인 직각삼각형이다. 이때 빗변은 $\\overline{PQ}=20$이고, $\\angle QPR$의 이웃변은 $\\overline{RP}=a$($a>0$)이다.\n삼각비의 뜻에 따라 $\\cos\\angle QPR=\\dfrac{\\overline{RP}}{\\overline{PQ}}=\\dfrac{a}{20}$이므로 $\\dfrac{a}{20}=\\dfrac{4}{5}$, 즉 $a=16$이다.\n(확인: 피타고라스 정리에서 $b^2=20^2-16^2=144$, $b>0$이므로 $b=12$로 조건을 만족하는 삼각형이 있다.)\n따라서 답은 ④ $16$이다.",
+  "evidence": {
+    "choiceChecks": [
+      { "choice": "①", "value": "12", "verdict": "false — a=12 이면 cos∠QPR=12/20=3/5 ≠ 4/5. 12 는 b(높이 RQ)의 값으로, 이웃변과 맞변을 바꾼 오답" },
+      { "choice": "②", "value": "4", "verdict": "false — cos 값 4/5 의 분자를 길이로 착각한 값. 4/20=1/5 ≠ 4/5" },
+      { "choice": "③", "value": "20", "verdict": "false — 빗변 PQ 의 길이. a=20 이면 cos=1 이고 b=0 이 되어 삼각형이 생기지 않으며 b>0 에도 어긋난다" },
+      { "choice": "④", "value": "16", "verdict": "true — cos∠QPR=a/20=4/5 에서 a=16, b=12>0" },
+      { "choice": "⑤", "value": "25", "verdict": "false — 20÷(4/5) 로 빗변을 이웃변처럼 나눈 오답. a=25>20 이면 이웃변이 빗변보다 길어 직각삼각형이 될 수 없다(b²=−225)" }
+    ],
+    "existenceUniqueness": "a>0, b>0, ∠R=90°, PQ=20, cos∠QPR=4/5 에서 a=20×4/5=16 로 하나로 정해지고, b²=400−256=144 이므로 b=12>0 인 삼각형이 실제로 존재한다. 다섯 보기 가운데 이 값은 ④ 하나뿐이다.",
+    "figureReading": "SVG 좌표(위로 갈수록 y 감소): R=(39.564,190.136) 은 x축(오른쪽 끝 라벨 x)과 y축(위 끝 라벨 y)의 교점, 즉 원점. P=(199.564,190.136) 은 x축 위(라벨 P 가 아래), Q=(39.564,70.136) 은 y축 위(라벨 Q 가 왼쪽). R 에 직각 표시(작은 꺾은선) 있음. 선분 PQ·PR·QR 이 그려져 있다. 그림 치수 RP=160, RQ=120, PQ=200 → 축척 10 이면 a=16, b=12, PQ=20, cos∠QPR=160/200=0.8=4/5 로 본문과 일치. 그림에 숫자 라벨은 없어 답을 그대로 드러내지 않는다. 원점 표지 O 는 없고 R 이 원점을 대신한다(본문 R(0,0) 과 일치).",
+    "gradeMethod": "삼각비의 뜻(직각삼각형에서 cos = 이웃변/빗변) — 9수04-17 후보. 존재 확인에 피타고라스 정리(중2, 2015) 와 좌표평면(중1). 삼각비 사이의 관계(sin²+cos²=1 등)는 쓰지 않았다. 학년 밖 방법 필요 없음.",
+    "calculation": {
+      "code": "from fractions import Fraction as F\nimport math\nPQ=20; c=F(4,5)\na=c*PQ; b2=PQ**2-a**2\nprint('a=',a,'b^2=',b2,'b=',math.isqrt(int(b2)), math.isqrt(int(b2))**2==b2)\nprint('cos check', F(a,PQ))\nfor ch in [12,4,20,16,25]:\n    print(ch, 'cos=', F(ch,PQ), 'ok' if F(ch,PQ)==c else 'no', 'b^2=', PQ**2-ch**2)\nR=(39.564,190.136);P=(199.564,190.136);Q=(39.564,70.136)\nRP=P[0]-R[0]; RQ=R[1]-Q[1]; pq=math.hypot(RP,RQ)\nprint('fig RP,RQ,PQ',RP,RQ,pq,'cos',RP/pq,'scale',pq/20, RP/(pq/20), RQ/(pq/20))",
+      "output": "a= 16 b^2= 144 b= 12 True\ncos check 4/5\n12 cos= 3/5 no b^2= 256\n4 cos= 1/5 no b^2= 384\n20 cos= 1 no b^2= 0\n16 cos= 4/5 ok b^2= 144\n25 cos= 5/4 no b^2= -225\nfig RP,RQ,PQ 160.0 120.0 200.0 cos 0.8 scale 10.0 16.0 12.0"
+    }
+  },
+  "pendingReason": null
+}

@@ -1,0 +1,56 @@
+{
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q03",
+  "studentDigest": "77c7086a0c79113ec148fdd060350757db2d2eaa960d67f071d66ac3485cefba",
+  "solverId": "claude-opus-5-5-gf14-r1-q03",
+  "status": "solved",
+  "answer": "②",
+  "parts": [
+    {
+      "label": "㉠",
+      "answer": "√69 (cm)"
+    },
+    {
+      "label": "㉡",
+      "answer": "√69/10"
+    }
+  ],
+  "solution": "직각삼각형 PQR 에서 ∠R = 90° 이므로 빗변은 ∠R 의 대변인 PQ 이고, PR 과 QR 이 직각을 낀 두 변이다.\n피타고라스 정리에 의하여 PQ² = PR² + QR² 이므로\nQR² = 13² − 10² = 169 − 100 = 69, QR > 0 이므로 QR = √69 (cm). 따라서 ㉠ = √69.\n∠P 에 대하여 대변은 QR, 이웃한 변(밑변)은 PR 이므로\ntan P = QR / PR = √69 / 10. 따라서 ㉡ = √69/10.\n그러므로 ㉠, ㉡ 을 차례로 바르게 짝지은 것은 ② √69, √69/10 이다.",
+  "evidence": {
+    "choiceChecks": [
+      {
+        "choice": "①",
+        "value": "√69, 10/√69",
+        "verdict": "false — ㉠ 은 맞지만 10/√69 = 10√69/69 는 PR/QR 로 tan Q(tan P 의 역수)이다. √69/10 과 같지 않다."
+      },
+      {
+        "choice": "②",
+        "value": "√69, √69/10",
+        "verdict": "true — QR = √(13²−10²) = √69, tan P = QR/PR = √69/10."
+      },
+      {
+        "choice": "③",
+        "value": "3, 3/10",
+        "verdict": "false — 13 − 10 = 3 처럼 길이를 그냥 뺀 값이다. 3² + 10² = 109 ≠ 169 이므로 QR ≠ 3."
+      },
+      {
+        "choice": "④",
+        "value": "√159, √159/10",
+        "verdict": "false — 13² − 10 = 159 로 10 을 제곱하지 않은 값이다. QR² = 69 이다."
+      },
+      {
+        "choice": "⑤",
+        "value": "√69, √69/13",
+        "verdict": "false — ㉠ 은 맞지만 √69/13 = QR/PQ 는 sin P 이다. tan P 가 아니다."
+      }
+    ],
+    "existenceUniqueness": "빗변 PQ = 13 > PR = 10 이므로 ∠R = 90° 인 직각삼각형이 존재하고, QR² = 69 > 0 에서 양수 길이 QR = √69 가 하나로 정해진다. 따라서 tan P = √69/10 도 하나로 정해지고, 다섯 보기 가운데 두 값이 모두 맞는 것은 ② 하나뿐이다(정확 계산으로 확인). √69 는 69 = 3·23 이라 더 간단히 할 수 없고, √69/10 은 이미 분모가 유리수다. ㉠ 칸에 cm 가 붙어 있어 ㉠ 은 수만 쓰는 것과 맞고, tan P 는 단위가 없는 비다.",
+    "figureReading": "SVG 의 꼭짓점: P(39.069, 152.958), R(179.069, 152.958), Q(179.069, 36.666). R 에 직각 표시가 있고 벡터 RP·RQ 의 내적이 0 이라 ∠R = 90° 와 맞는다. 그림 길이 PR = 140.000, QR = 116.292, PQ = 182.000 으로 PQ/PR = 1.30000 = 13/10, QR/PR = 0.83066 = √69/10 이라 비율까지 본문 조건과 맞다(빗변 PQ 가 ∠R 의 대변). 라벨 P(왼쪽 아래), Q(위 오른쪽), R(오른쪽 아래)은 각 꼭짓점 옆에 있고 viewBox(218.633 × 183.908) 안에 들어온다. 그림에는 길이 라벨이 없고 길이는 본문에서만 주어진다 — 모순 없음. SVG sha256 이 student-problems 의 값(1d8a4b29…)과 같다.",
+    "gradeMethod": "쓴 개념: 피타고라스 정리(2015 중2 기하 성취기준 — 9수04-15·16 근처, 2단계에서 official-provisions 로 id 확인), 삼각비의 뜻 tan P = (대변)/(이웃한 변)(2015 중3, 9수04-17 후보). 근호 계산은 중3 제곱근과 실수. 삼각비 사이의 관계(sin²+cos²=1, tan=sin/cos, 여각 관계)는 쓰지 않았다 — tan P 를 실제 직각삼각형의 변의 비로 직접 구했다. 0°~90° 제한 안. 학년 밖 방법 없음.",
+    "calculation": {
+      "code": "import math, hashlib\nfrom fractions import Fraction\ntry:\n    import sympy as sp\n    HAVE_SP = True\nexcept Exception:\n    HAVE_SP = False\n\nPQ, PR = 13, 10\nQR2 = PQ**2 - PR**2\nprint(\"QR^2 =\", QR2, \"QR = sqrt(%d)\" % QR2, \"squarefree:\", all(QR2 % (k*k) for k in range(2, 9)))\nif HAVE_SP:\n    QR = sp.sqrt(QR2)\n    tanP = sp.nsimplify(QR / PR)\n    cands = {\n        \"1\": (sp.sqrt(69), 10/sp.sqrt(69)),\n        \"2\": (sp.sqrt(69), sp.sqrt(69)/10),\n        \"3\": (sp.Integer(3), sp.Rational(3, 10)),\n        \"4\": (sp.sqrt(159), sp.sqrt(159)/10),\n        \"5\": (sp.sqrt(69), sp.sqrt(69)/13),\n    }\n    print(\"QR =\", QR, \" tanP = QR/PR =\", tanP, \" sinP =\", QR/PQ, \" tanQ = PR/QR =\", sp.radsimp(sp.Integer(PR)/QR))\n    for k, (a, b) in cands.items():\n        print(k, a, b, \"-> QR ok:\", sp.simplify(a - QR) == 0, \" tanP ok:\", sp.simplify(b - tanP) == 0)\n\n# figure reading\nP = (39.069, 152.958); R = (179.069, 152.958); Q = (179.069, 36.666)\nd = lambda A, B: math.hypot(A[0]-B[0], A[1]-B[1])\npr, qr, pq = d(P, R), d(Q, R), d(P, Q)\nv1 = (P[0]-R[0], P[1]-R[1]); v2 = (Q[0]-R[0], Q[1]-R[1])\nprint(\"fig PR=%.3f QR=%.3f PQ=%.3f\" % (pr, qr, pq))\nprint(\"dot at R =\", v1[0]*v2[0] + v1[1]*v2[1])\nprint(\"fig QR/PR = %.5f  vs sqrt69/10 = %.5f\" % (qr/pr, math.sqrt(69)/10))\nprint(\"fig PQ/PR = %.5f  vs 13/10 = %.5f\" % (pq/pr, 1.3))\nsvg = r\"C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-final14-r1/blind/figures/q03-1.svg\"\nprint(\"svg sha256 =\", hashlib.sha256(open(svg, \"rb\").read()).hexdigest())\n",
+      "output": "QR^2 = 69 QR = sqrt(69) squarefree: True\nQR = sqrt(69)  tanP = QR/PR = sqrt(69)/10  sinP = sqrt(69)/13  tanQ = PR/QR = 10*sqrt(69)/69\n1 sqrt(69) 10*sqrt(69)/69 -> QR ok: True  tanP ok: False\n2 sqrt(69) sqrt(69)/10 -> QR ok: True  tanP ok: True\n3 3 3/10 -> QR ok: False  tanP ok: False\n4 sqrt(159) sqrt(159)/10 -> QR ok: False  tanP ok: False\n5 sqrt(69) sqrt(69)/13 -> QR ok: True  tanP ok: False\nfig PR=140.000 QR=116.292 PQ=182.000\ndot at R = -0.0\nfig QR/PR = 0.83066  vs sqrt69/10 = 0.83066\nfig PQ/PR = 1.30000  vs 13/10 = 1.30000\nsvg sha256 = 1d8a4b296cdfae1da1e056ca99636a9bf4b3e1af1bd9261a6a32c3b8655a87da\n"
+    }
+  },
+  "pendingReason": null
+}

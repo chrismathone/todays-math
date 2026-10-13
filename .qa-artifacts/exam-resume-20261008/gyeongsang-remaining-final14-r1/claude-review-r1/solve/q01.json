@@ -1,0 +1,29 @@
+{
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q01",
+  "studentDigest": "2943693cd61755fa2623c43bab6afc0ca7af4022dc19a1deecc299cfdfb59347",
+  "solverId": "claude-opus-5-5-gf14-r1-q01",
+  "status": "solved",
+  "answer": "③",
+  "parts": [
+    { "label": "㉠", "answer": "7" }
+  ],
+  "solution": "직각삼각형 PQR 에서 ∠R=90° 이므로 빗변은 PQ 이고, ∠P 의 대변은 QR, 이웃변은 PR 이다.\n삼각비의 뜻에서 sin P = (∠P 의 대변)/(빗변) = QR/PQ 이다.\n따라서 QR/25 = 7/25 이고 QR = 25 × 7/25 = 7 (cm) 이다.\n(검산: PR = √(25² − 7²) = √576 = 24 cm 이고 7² + 24² = 625 = 25² 이므로 이런 직각삼각형이 실제로 있다.)\n그러므로 ㉠에 들어갈 수는 7 이고, 답은 ③ 이다.",
+  "evidence": {
+    "choiceChecks": [
+      { "choice": "①", "value": "24", "verdict": "false — 24 는 ∠P 의 이웃변 PR 의 길이(25 × 24/25)이다. cos P 로 착각하거나 대변·이웃변을 바꿔 읽은 값" },
+      { "choice": "②", "value": "175", "verdict": "false — 25 × 7 = 175 로 빗변 25 를 분모로 나누지 않은 값. 빗변 25 보다 길어 직각삼각형의 한 변이 될 수 없다" },
+      { "choice": "③", "value": "7", "verdict": "true — QR = PQ × sin P = 25 × 7/25 = 7" },
+      { "choice": "④", "value": "25", "verdict": "false — 빗변 PQ 의 길이. 빗변이 아닌 변 QR 은 빗변보다 짧아야 한다" },
+      { "choice": "⑤", "value": "18", "verdict": "false — 25 − 7 = 18 로 근거 없는 뺄셈. 18² + 24² ≠ 25² 등 어떤 관계로도 맞지 않는다" }
+    ],
+    "existenceUniqueness": "0 < 7/25 < 1 이므로 sin P = 7/25 인 예각 P 가 있다. 빗변 25 와 sin P 가 정해지면 QR = 25 sin P = 7 로 하나로 정해지고, PR = √(625 − 49) = 24 (양수) 로 세 변 7, 24, 25 는 7² + 24² = 25² 를 만족한다. 길이는 모두 양수이고 단위는 cm 로 일관된다. 다섯 보기 중 7 과 같은 것은 ③ 하나뿐이다.",
+    "figureReading": "SVG 라벨: P(39.069, 85.666) 왼쪽 아래, R(207.069, 85.666) 오른쪽 아래, Q(207.069, 36.666) 오른쪽 위. 변 PR 은 수평, QR 은 수직이고 R 꼭짓점에 직각 표시(path M 202.669 85.666 L 202.669 81.266 L 207.069 81.266)가 있어 ∠R=90° 와 맞는다. 그림 길이 PR = 168, QR = 49, PQ = √(168² + 49²) = √30625 = 175 이므로 QR/PQ = 49/175 = 7/25 = sin P, PR:QR = 24:7 로 본문 조건(빗변 25 cm, sin P = 7/25)과 비율까지 일치한다. 그림에는 길이 수치 라벨이 없고 꼭짓점 이름 셋만 있어 답을 직접 드러내지 않는다. SVG sha256 = 596ab0a4…ffe76 로 student-problems 의 값과 같다.",
+    "gradeMethod": "삼각비의 뜻(sin = 대변/빗변) 하나로 푼다 — 성취기준 후보 9수04-17(삼각비의 뜻을 안다). 검산에 피타고라스 정리(중2 기하)를 썼으나 풀이에 필수는 아니다. 삼각비 사이의 관계(sin²+cos²=1, 여각 관계 등)는 쓰지 않았다. 각은 0°~90° 범위의 예각 P 이다. 학년 밖 방법 없음.",
+    "calculation": {
+      "code": "from fractions import Fraction as F\nimport hashlib, math, sys\nPQ = F(25); sinP = F(7, 25)\nQR = PQ * sinP\nPR2 = PQ**2 - QR**2\nPR = math.isqrt(int(PR2)); assert PR*PR == PR2\nprint(\"QR =\", QR, \"PR =\", PR, \"check 7^2+24^2 =\", 7**2 + 24**2, \"= 25^2 =\", 25**2)\nprint(\"0 < sinP < 1:\", 0 < sinP < 1)\n# 보기 판정\nchoices = {\"(1)\": 24, \"(2)\": 175, \"(3)\": 7, \"(4)\": 25, \"(5)\": 18}\nfor k, v in choices.items():\n    print(k, v, \"CORRECT\" if F(v) == QR else \"wrong\")\n# 그림 좌표\nP = (F(\"39.069\"), F(\"85.666\")); R = (F(\"207.069\"), F(\"85.666\")); Q = (F(\"207.069\"), F(\"36.666\"))\npr = R[0]-P[0]; qr = R[1]-Q[1]\npq2 = pr**2 + qr**2\nprint(\"figure PR px =\", pr, \"QR px =\", qr, \"PQ^2 =\", pq2, \"PQ px =\", math.isqrt(int(pq2)) if pq2.denominator == 1 else None)\nprint(\"figure QR/PQ =\", qr / 175, \"PR/PQ =\", pr / 175, \"PR:QR =\", pr/qr)\n# R 에서 PR ⊥ QR (PR 수평, QR 수직)\nprint(\"PR horizontal:\", P[1] == R[1], \"QR vertical:\", Q[0] == R[0])\nprint(\"svg sha256 =\", hashlib.sha256(open(sys.argv[1], \"rb\").read()).hexdigest())",
+      "output": "QR = 7 PR = 24 check 7^2+24^2 = 625 = 25^2 = 625\n0 < sinP < 1: True\n(1) 24 wrong\n(2) 175 wrong\n(3) 7 CORRECT\n(4) 25 wrong\n(5) 18 wrong\nfigure PR px = 168 QR px = 49 PQ^2 = 30625 PQ px = 175\nfigure QR/PQ = 7/25 PR/PQ = 24/25 PR:QR = 24/7\nPR horizontal: True QR vertical: True\nsvg sha256 = 596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76"
+    }
+  },
+  "pendingReason": null
+}
