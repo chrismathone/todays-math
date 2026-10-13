@@ -1,0 +1,88 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "A": [
+      0,
+      0
+    ],
+    "B": [
+      0,
+      100
+    ],
+    "C": [
+      240,
+      100
+    ],
+    "D": [
+      100.8,
+      42.0
+    ],
+    "E": [
+      100.8,
+      100
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "BC": [
+      "B",
+      "C"
+    ],
+    "CA": [
+      "C",
+      "A"
+    ],
+    "DE": [
+      "D",
+      "E"
+    ]
+  },
+  "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D",
+    "E": "E"
+  },
+  "angles": {
+    "rightB": {
+      "vertex": "B",
+      "points": [
+        "A",
+        "C"
+      ],
+      "right": true,
+      "radius": 9
+    },
+    "rightE": {
+      "vertex": "E",
+      "points": [
+        "D",
+        "C"
+      ],
+      "right": true,
+      "radius": 9
+    },
+    "angX": {
+      "vertex": "D",
+      "points": [
+        "C",
+        "E"
+      ],
+      "label": "$x$",
+      "radius": 20,
+      "label_distance": 32
+    }
+  }
+}

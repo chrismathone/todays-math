@@ -1,0 +1,41 @@
+{
+  "questionNumber": 8,
+  "authorId": "claude-opus-5-5-parent-exam-twin-20261014",
+  "authorObservationOnly": true,
+  "surfaces": {
+    "stem": {
+      "observation": "높이는 실제 수선과 사인의 정의로, 넓이는 (밑변)×(높이)로 구한다. «½ab sin C» 넓이 공식을 외워 쓰게 하지 않는다. 본문의 조건만으로 답이 하나로 정해진다(author-calculations.json).",
+      "standards": [
+        "9수04-12",
+        "9수04-17",
+        "9수04-18",
+        "6수03-06"
+      ]
+    },
+    "choices": {
+      "observation": "다섯 보기 모두 정확값으로 계산해 서로 다르고 정답이 하나뿐임을 확인했다. 오답 보기는 흔한 실수에서 나오게 했다.",
+      "distractors": {
+        "①": "OBC 넓이를 평행사변형 넓이로 잘못 보고 구한 값",
+        "②": "OBC 넓이를 평행사변형의 반으로 잘못 보고 구한 값",
+        "④": "높이를 AB·cos60°=3 으로 잘못 잡은 값",
+        "⑤": "넓이 관계를 8배로 잘못 잡은 값"
+      }
+    },
+    "figuresAndTables": {
+      "observation": "엔진 FigureSpec v2 새 그림 — 본문 조건(직각·각·점의 위치)과 좌표를 맞췄다. 원문 그림은 쓰지 않았다."
+    },
+    "notation": {
+      "observation": "선분은 \\overline, 점은 \\mathrm, 각은 \\angle, 단위는 \\mathrm{cm} 로 은행 표기를 따른다. 학년 밖 기호(θ 등)를 쓰지 않았다."
+    },
+    "answer": {
+      "observation": "정답 ③ — 단일 선택."
+    },
+    "studentSolution": {
+      "observation": "해설은 정의·피타고라스 정리·평행선/평행사변형 성질·특수각 값만 쓴다. 삼각비 사이의 관계식(sin²+cos²=1, tan=sin/cos, 여각 관계)을 쓰지 않는다."
+    },
+    "prerequisites": {
+      "observation": "선수: 9수04-12, 9수04-17, 9수04-18, 6수03-06 — 모두 중3(2015)까지 배운다."
+    }
+  },
+  "notApproval": true
+}

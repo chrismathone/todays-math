@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q02",
+  "authorId": "claude-opus-5-5-parent-exam-twin-20261014",
+  "questionType": "객관식",
+  "score": 4,
+  "content": "그림과 같이 $\\angle \\mathrm{B}=90^\\circ$인 직각삼각형 $\\mathrm{ABC}$의 빗변 $\\mathrm{AC}$ 위의 점 $\\mathrm{D}$에서 변 $\\mathrm{BC}$에 내린 수선의 발을 $\\mathrm{E}$라 하고, $\\angle \\mathrm{CDE}=x$라 하자. $\\cos x=\\frac{5}{13}$이고 $\\overline{\\mathrm{AC}}=26$일 때, $\\overline{\\mathrm{BC}}$의 길이는?",
+  "choices": [
+    "$10$",
+    "$12$",
+    "$20$",
+    "$24$",
+    "$25$"
+  ],
+  "answer": "④",
+  "solution": "두 선분 $\\mathrm{DE}$와 $\\mathrm{AB}$는 모두 변 $\\mathrm{BC}$에 수직이므로 서로 평행하다. 따라서 동위각으로 $\\angle \\mathrm{CDE}=\\angle \\mathrm{CAB}$, 즉 $x=\\angle \\mathrm{A}$이다.\n\n직각삼각형 $\\mathrm{ABC}$에서 $\\cos x=\\cos A=\\frac{\\overline{\\mathrm{AB}}}{\\overline{\\mathrm{AC}}}=\\frac{5}{13}$이므로 $\\overline{\\mathrm{AB}}=26\\times\\frac{5}{13}=10$이다.\n\n피타고라스 정리에 의해 $\\overline{\\mathrm{BC}}=\\sqrt{26^2-10^2}=\\sqrt{576}=24$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-nobyeon-3-2-mid-2",
+    "sourceContentSha256": "51349565096767f1b033b493d6a7ff43ea658a4eba7d34e2b5722f3f1d4f2b05",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q02.json",
+      "sha256": "51349565096767f1b033b493d6a7ff43ea658a4eba7d34e2b5722f3f1d4f2b05"
+    },
+    "sourceReviewReport": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q02.json",
+      "sha256": "6eb94deb7840d2c0d5eca227271b1b75e7a314d03e1404777927cced28c55adf"
+    },
+    "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q02",
+    "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+    "sourceManifestOrOriginalAnswerInput": false,
+    "originalAnswersOmittedInInput": true
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure"
+    ],
+    "before": "그림과 같이 $\\angle \\mathrm{C}=90°$인 직각삼각형 $\\mathrm{ABC}$에서 $\\overline{\\mathrm{B}C}=12$, $\\overline{\\mathrm{A}C}=5$이다. 변 $\\mathrm{B}C$ 위의 점 $\\mathrm{D}$에서 변 $\\mathrm{A}B$에 내린 수선의 발을 $\\mathrm{E}$라 하고, $\\angle \\mathrm{BDE}=\\mathit{x}$라 할 때, $\\sin \\,x-2\\cos \\,x$의 값은? [$4$점]",
+    "after": "변의 길이 둘을 주고 수선이 만드는 각의 삼각비 식을 묻던 것을, 수선이 만드는 각의 코사인과 빗변을 주고 다른 변의 길이를 되찾게 바꾸었다. 점도 빗변 위에서 다른 변으로 수선을 내리는 배치로 바꾸었고, 묻는 대상이 삼각비의 값에서 변의 길이로 넘어갔다.",
+    "sharedConcept": "수선이 만드는 작은 직각삼각형과 처음 직각삼각형에서 같은 크기의 각을 찾아, 큰 삼각형의 변으로 그 각의 삼각비를 나타낸다.",
+    "sharedProcedure": "평행선의 동위각(또는 공통인 각과 직각)으로 수선이 만든 각이 처음 삼각형의 한 예각과 같음을 보이고, 그 각의 삼각비 정의와 피타고라스 정리로 길이를 구한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-02",
+      "9수04-16",
+      "9수04-17"
+    ],
+    "legitimateMethodDraft": "평행선의 동위각으로 x=∠A 를 보이고, 코사인의 정의와 피타고라스 정리만 쓴다.",
+    "officialProvisions": [
+      {
+        "id": "9수04-02",
+        "text": "[9수04-02]평행선에서 동위각과 엇각의 성질을 이해한다.",
+        "kind": "standard",
+        "hwpRecord1based": 4252,
+        "pdfPrintedPage": 33,
+        "evidenceFiles": [
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q18.json",
+          "gyeonggu-independent-r1/blind/solve/q21.json"
+        ],
+        "evidenceFileCount": 9
+      },
+      {
+        "id": "9수04-16",
+        "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다.",
+        "kind": "standard",
+        "hwpRecord1based": null,
+        "pdfPrintedPage": 34,
+        "evidenceFiles": [
+          "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json"
+        ],
+        "evidenceFileCount": 56
+      },
+      {
+        "id": "9수04-17",
+        "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "kind": "standard",
+        "hwpRecord1based": null,
+        "pdfPrintedPage": 34,
+        "evidenceFiles": [
+          "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json"
+        ],
+        "evidenceFileCount": 116
+      }
+    ],
+    "restrictionClauses": [
+      {
+        "id": "no_trig_ratio_relationships",
+        "text": "삼각비 사이의 관계는 다루지 않는다.",
+        "kind": "restriction-or-note",
+        "hwpRecord1based": null,
+        "pdfPrintedPage": 35,
+        "evidenceFiles": [
+          "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json"
+        ],
+        "evidenceFileCount": 89
+      },
+      {
+        "id": "angle_range",
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+        "kind": "restriction-or-note",
+        "hwpRecord1based": null,
+        "pdfPrintedPage": 35,
+        "evidenceFiles": [
+          "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json"
+        ],
+        "evidenceFileCount": 88
+      },
+      {
+        "id": "no_complex_geometry_measurement",
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+        "kind": "restriction-or-note",
+        "hwpRecord1based": 4472,
+        "pdfPrintedPage": 35,
+        "evidenceFiles": [
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json",
+          "gyeonggu-final-review-r1/reports/q02.json"
+        ],
+        "evidenceFileCount": 90
+      },
+      {
+        "id": "no_formal_complex_justification",
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다.",
+        "kind": "restriction-or-note",
+        "hwpRecord1based": 4476,
+        "pdfPrintedPage": 35,
+        "evidenceFiles": [
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json",
+          "gyeonggu-final-review-r1/reports/q02.json"
+        ],
+        "evidenceFileCount": 88
+      }
+    ],
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "Actual 2025 middle3 uses 2015; middle3 rollout of 2022 begins 2027; future republication needs its own review.",
+    "preauthorGate": "author-method-proposed-independent-review-pending"
+  },
+  "metadata": {
+    "grade": "중3",
+    "semester": 2,
+    "subject": "수학",
+    "source": "transformed",
+    "originProblemId": null,
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "2027Republication": "requires new 2022 review"
+    },
+    "sourceExamYear": 2025,
+    "sourceSchoolInternal": "노변중학교",
+    "fictionalVisibleSchool": null,
+    "schoolReplacementMap": {},
+    "fictionalSchoolUsedInStudentText": false,
+    "sourceSchoolNamesInStudentSurfaces": false,
+    "sourceQuestionId": "2025-nobyeon-3-2-mid-2",
+    "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q02",
+    "questionType": "객관식",
+    "score": 4,
+    "parentScoreCountedOnce": true,
+    "newSubpartRubric": [],
+    "sourcePrintedScore": {
+      "originalPrintedParentScore": 4,
+      "parentCountedOnce": true
+    },
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed",
+    "difficultyEvidence": "Task operations: 평행선의 동위각(또는 공통인 각과 직각)으로 수선이 만든 각이 처음 삼각형의 한 예각과 같음을 보이고, 그 각의 삼각비 정의와 피타고라스 정리로 길이를 구한다. Original printed points kept; not a measured difficulty.",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending",
+    "problemTypeEvidence": "problemType is a separate bank axis; no rule maps this whole item yet.",
+    "assignment": {
+      "status": "proposed",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unitSection": "삼각비의 뜻",
+      "familyKey": null,
+      "evidence": {
+        "actualCapturedUnit": {
+          "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 뜻",
+          "semester": 2,
+          "orderIndex": 481,
+          "problemCodePrefix": "J30501"
+        },
+        "bankSnapshot": {
+          "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+          "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+          "capturedAt": "2026-10-08 13:00:16.891043+00",
+          "snapshotOnly": true
+        },
+        "registry": {
+          "path": "src/lib/middle/m3Trig.ts",
+          "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+        },
+        "comparedRegistryEntries": [
+          {
+            "registry": {
+              "key": "mid:3-2|삼각비|04",
+              "title": "직각삼각형의 닮음과 삼각비⑴",
+              "section": "뜻",
+              "difficulty": "응용",
+              "line1based": 1061
+            },
+            "liveMatch": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|04",
+              "live_count": 24
+            }
+          },
+          {
+            "registry": {
+              "key": "mid:3-2|삼각비|05",
+              "title": "직각삼각형의 닮음과 삼각비⑵",
+              "section": "뜻",
+              "difficulty": "심화하",
+              "line1based": 1101
+            },
+            "liveMatch": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|05",
+              "live_count": 24
+            }
+          },
+          {
+            "registry": {
+              "key": "mid:3-2|삼각비|02",
+              "title": "삼각비를 이용하여 삼각형의 변의 길이 구하기",
+              "section": "뜻",
+              "difficulty": "기본",
+              "line1based": 982
+            },
+            "liveMatch": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|02",
+              "live_count": 24
+            }
+          }
+        ],
+        "comparison": "04·05(직각삼각형의 닮음과 삼각비)가 가장 가깝지만 주어진 것이 삼각비의 값이고 묻는 것이 변의 길이인 역방향 갈래인지 확인하지 못했다. 02(삼각비를 이용하여 변의 길이 구하기)는 수선·평행 구성이 없다. 배정하지 않는다."
+      }
+    },
+    "authorMathEvidence": {
+      "file": "../../author-calculations.json",
+      "questionNumber": 2
+    },
+    "authorSevenSurfaceEvidence": {
+      "path": "author-checks/q02.json"
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "limits": [
+      "Independent solve and full seven-surface review pending.",
+      "Rights/native/custody/loading remain pending.",
+      "Historical taxonomy snapshot is not a currentDB assertion."
+    ]
+  }
+}

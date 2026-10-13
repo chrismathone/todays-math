@@ -1,0 +1,268 @@
+{
+  "kind": "author-exact-calculations/v1",
+  "author": "claude-opus-5-5-parent-exam-twin-20261014",
+  "tool": "sympy 1.14.0",
+  "rows": [
+    {
+      "questionNumber": 1,
+      "answerExact": "Mul(Rational(9, 10), Pow(Integer(10), Rational(1, 2)))",
+      "answerLatex": "\\frac{9 \\sqrt{10}}{10}",
+      "answerFloat": 2.8460498941515415,
+      "answer": "④",
+      "choices": [
+        {
+          "choice": "①",
+          "latex": "$\\frac{\\sqrt{10}}{30}$",
+          "exact": "\\frac{\\sqrt{10}}{30}",
+          "float": 0.10540925533894598,
+          "equalsAnswer": false,
+          "authorDistractorNote": "cos x 를 QR/PR, tan y 를 QR/PQ 로 둘 다 뒤집은 값"
+        },
+        {
+          "choice": "②",
+          "latex": "$\\frac{\\sqrt{10}}{10}$",
+          "exact": "\\frac{\\sqrt{10}}{10}",
+          "float": 0.31622776601683794,
+          "equalsAnswer": false,
+          "authorDistractorNote": "tan y 만 QR/PQ 로 뒤집은 값"
+        },
+        {
+          "choice": "③",
+          "latex": "$\\frac{3\\sqrt{10}}{10}$",
+          "exact": "\\frac{3 \\sqrt{10}}{10}",
+          "float": 0.9486832980505138,
+          "equalsAnswer": false,
+          "authorDistractorNote": "cos x 를 QR/PR 로 잡은 값"
+        },
+        {
+          "choice": "④",
+          "latex": "$\\frac{9\\sqrt{10}}{10}$",
+          "exact": "\\frac{9 \\sqrt{10}}{10}",
+          "float": 2.8460498941515415,
+          "equalsAnswer": true,
+          "authorDistractorNote": null
+        },
+        {
+          "choice": "⑤",
+          "latex": "$3\\sqrt{10}$",
+          "exact": "3 \\sqrt{10}",
+          "float": 9.486832980505138,
+          "equalsAnswer": false,
+          "authorDistractorNote": "9/√10 을 9√10 으로 잘못 유리화한 뒤 3 으로 나눈 값"
+        }
+      ],
+      "uniqueCorrectChoice": true,
+      "choicesDistinct": true,
+      "choicesAscending": true
+    },
+    {
+      "questionNumber": 2,
+      "answerExact": "Integer(24)",
+      "answerLatex": "24",
+      "answerFloat": 24.0,
+      "answer": "④",
+      "choices": [
+        {
+          "choice": "①",
+          "latex": "$10$",
+          "exact": "10",
+          "float": 10.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "x 를 ∠C 로 잘못 보고 BC=26×5/13 로 구한 값(또는 AB 를 답으로 쓴 값)"
+        },
+        {
+          "choice": "②",
+          "latex": "$12$",
+          "exact": "12",
+          "float": 12.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "BC 를 반으로 잘못 계산한 값"
+        },
+        {
+          "choice": "③",
+          "latex": "$20$",
+          "exact": "20",
+          "float": 20.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "특정 오류를 겨냥하지 않은 값"
+        },
+        {
+          "choice": "④",
+          "latex": "$24$",
+          "exact": "24",
+          "float": 24.0,
+          "equalsAnswer": true,
+          "authorDistractorNote": null
+        },
+        {
+          "choice": "⑤",
+          "latex": "$25$",
+          "exact": "25",
+          "float": 25.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "빗변 26 에 가까운 값 — 특정 오류를 겨냥하지 않음"
+        }
+      ],
+      "uniqueCorrectChoice": true,
+      "choicesDistinct": true,
+      "choicesAscending": true
+    },
+    {
+      "questionNumber": 4,
+      "answerExact": "Integer(24)",
+      "answerLatex": "24",
+      "answerFloat": 24.0,
+      "answer": "③",
+      "choices": [
+        {
+          "choice": "①",
+          "latex": "$12$",
+          "exact": "12",
+          "float": 12.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "½×4×6 — OP 를 비의 4 그대로 잡은 값"
+        },
+        {
+          "choice": "②",
+          "latex": "$18$",
+          "exact": "18",
+          "float": 18.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "½×6×6 — OP 를 OQ 와 같다고 본 값"
+        },
+        {
+          "choice": "③",
+          "latex": "$24$",
+          "exact": "24",
+          "float": 24.0,
+          "equalsAnswer": true,
+          "authorDistractorNote": null
+        },
+        {
+          "choice": "④",
+          "latex": "$36$",
+          "exact": "36",
+          "float": 36.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "6×6 — OP=OQ 로 보고 1/2 도 빠뜨린 값"
+        },
+        {
+          "choice": "⑤",
+          "latex": "$48$",
+          "exact": "48",
+          "float": 48.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "넓이에서 1/2 을 빠뜨린 값"
+        }
+      ],
+      "uniqueCorrectChoice": true,
+      "choicesDistinct": true,
+      "choicesAscending": true
+    },
+    {
+      "questionNumber": 6,
+      "answerExact": "Mul(Integer(18), Pow(Integer(3), Rational(1, 2)))",
+      "answerLatex": "18 \\sqrt{3}",
+      "answerFloat": 31.176914536239792,
+      "answer": "④",
+      "choices": [
+        {
+          "choice": "①",
+          "latex": "$6\\sqrt{3}\\,\\mathrm{cm}^2$",
+          "exact": "6 \\sqrt{3}",
+          "float": 10.392304845413264,
+          "equalsAnswer": false,
+          "authorDistractorNote": "CD 를 BC·tan30° 로 잘못 잡은 값(2√3)으로 넓이를 구한 값"
+        },
+        {
+          "choice": "②",
+          "latex": "$9\\sqrt{3}\\,\\mathrm{cm}^2$",
+          "exact": "9 \\sqrt{3}",
+          "float": 15.588457268119896,
+          "equalsAnswer": false,
+          "authorDistractorNote": "CD 를 BC×sin60°(=3√3) 로 잘못 잡은 값"
+        },
+        {
+          "choice": "③",
+          "latex": "$12\\sqrt{3}\\,\\mathrm{cm}^2$",
+          "exact": "12 \\sqrt{3}",
+          "float": 20.784609690826528,
+          "equalsAnswer": false,
+          "authorDistractorNote": "CD 를 BC÷sin60°(=4√3) 로 잘못 잡은 값"
+        },
+        {
+          "choice": "④",
+          "latex": "$18\\sqrt{3}\\,\\mathrm{cm}^2$",
+          "exact": "18 \\sqrt{3}",
+          "float": 31.176914536239792,
+          "equalsAnswer": true,
+          "authorDistractorNote": null
+        },
+        {
+          "choice": "⑤",
+          "latex": "$36\\sqrt{3}\\,\\mathrm{cm}^2$",
+          "exact": "36 \\sqrt{3}",
+          "float": 62.353829072479584,
+          "equalsAnswer": false,
+          "authorDistractorNote": "넓이에서 1/2 을 빠뜨린 값"
+        }
+      ],
+      "uniqueCorrectChoice": true,
+      "choicesDistinct": true,
+      "choicesAscending": true
+    },
+    {
+      "questionNumber": 8,
+      "answerExact": "Integer(16)",
+      "answerLatex": "16",
+      "answerFloat": 16.0,
+      "answer": "③",
+      "choices": [
+        {
+          "choice": "①",
+          "latex": "$4\\,\\mathrm{cm}$",
+          "exact": "4",
+          "float": 4.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "OBC 넓이를 평행사변형 넓이로 잘못 보고 구한 값"
+        },
+        {
+          "choice": "②",
+          "latex": "$8\\,\\mathrm{cm}$",
+          "exact": "8",
+          "float": 8.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "OBC 넓이를 평행사변형의 반으로 잘못 보고 구한 값"
+        },
+        {
+          "choice": "③",
+          "latex": "$16\\,\\mathrm{cm}$",
+          "exact": "16",
+          "float": 16.0,
+          "equalsAnswer": true,
+          "authorDistractorNote": null
+        },
+        {
+          "choice": "④",
+          "latex": "$16\\sqrt{3}\\,\\mathrm{cm}$",
+          "exact": "16 \\sqrt{3}",
+          "float": 27.712812921102035,
+          "equalsAnswer": false,
+          "authorDistractorNote": "높이를 AB·cos60°=3 으로 잘못 잡은 값"
+        },
+        {
+          "choice": "⑤",
+          "latex": "$32\\,\\mathrm{cm}$",
+          "exact": "32",
+          "float": 32.0,
+          "equalsAnswer": false,
+          "authorDistractorNote": "넓이 관계를 8배로 잘못 잡은 값"
+        }
+      ],
+      "uniqueCorrectChoice": true,
+      "choicesDistinct": true,
+      "choicesAscending": true
+    }
+  ],
+  "notIndependentApproval": true
+}

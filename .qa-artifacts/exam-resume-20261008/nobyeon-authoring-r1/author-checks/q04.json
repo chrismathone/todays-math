@@ -1,0 +1,42 @@
+{
+  "questionNumber": 4,
+  "authorId": "claude-opus-5-5-parent-exam-twin-20261014",
+  "authorObservationOnly": true,
+  "surfaces": {
+    "stem": {
+      "observation": "일차함수의 절편으로 실제 직각삼각형을 만들고 코사인의 정의·피타고라스 정리만 쓴다. «기울기 = tan» 관계나 삼각비 사이의 관계식은 쓰지 않는다. 본문의 조건만으로 답이 하나로 정해진다(author-calculations.json).",
+      "standards": [
+        "9수03-01",
+        "9수03-05",
+        "9수03-06",
+        "9수04-16",
+        "9수04-17"
+      ]
+    },
+    "choices": {
+      "observation": "다섯 보기 모두 정확값으로 계산해 서로 다르고 정답이 하나뿐임을 확인했다. 오답 보기는 흔한 실수에서 나오게 했다.",
+      "distractors": {
+        "①": "½×4×6 — OP 를 비의 4 그대로 잡은 값",
+        "②": "½×6×6 — OP 를 OQ 와 같다고 본 값",
+        "④": "6×6 — OP=OQ 로 보고 1/2 도 빠뜨린 값",
+        "⑤": "넓이에서 1/2 을 빠뜨린 값"
+      }
+    },
+    "figuresAndTables": {
+      "observation": "그림·표 없음 — 원문도 그림이 없다."
+    },
+    "notation": {
+      "observation": "선분은 \\overline, 점은 \\mathrm, 각은 \\angle, 단위는 \\mathrm{cm} 로 은행 표기를 따른다. 학년 밖 기호(θ 등)를 쓰지 않았다."
+    },
+    "answer": {
+      "observation": "정답 ③ — 단일 선택."
+    },
+    "studentSolution": {
+      "observation": "해설은 정의·피타고라스 정리·평행선/평행사변형 성질·특수각 값만 쓴다. 삼각비 사이의 관계식(sin²+cos²=1, tan=sin/cos, 여각 관계)을 쓰지 않는다."
+    },
+    "prerequisites": {
+      "observation": "선수: 9수03-01, 9수03-05, 9수03-06, 9수04-16, 9수04-17 — 모두 중3(2015)까지 배운다."
+    }
+  },
+  "notApproval": true
+}

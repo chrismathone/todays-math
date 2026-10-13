@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q01",
+  "authorId": "claude-opus-5-5-parent-exam-twin-20261014",
+  "questionType": "객관식",
+  "score": 3.0,
+  "content": "가로 $\\overline{\\mathrm{PQ}}$와 세로 $\\overline{\\mathrm{QR}}$의 길이의 비가 $3:1$인 직사각형 모양의 현수막 $\\mathrm{PQRS}$에 대각선 $\\mathrm{PR}$을 그었다. 그림과 같이 $\\angle \\mathrm{QPR}=x$, $\\angle \\mathrm{PRQ}=y$라 할 때, $\\cos x\\times\\tan y$의 값은?",
+  "choices": [
+    "$\\frac{\\sqrt{10}}{30}$",
+    "$\\frac{\\sqrt{10}}{10}$",
+    "$\\frac{3\\sqrt{10}}{10}$",
+    "$\\frac{9\\sqrt{10}}{10}$",
+    "$3\\sqrt{10}$"
+  ],
+  "answer": "④",
+  "solution": "현수막은 직사각형이므로 $\\angle \\mathrm{PQR}=90^\\circ$이다. $\\overline{\\mathrm{PQ}}=3k$, $\\overline{\\mathrm{QR}}=k$ $(k>0)$라 하면 직각삼각형 $\\mathrm{PQR}$에서 피타고라스 정리에 의해 $\\overline{\\mathrm{PR}}=\\sqrt{(3k)^2+k^2}=\\sqrt{10}\\,k$이다.\n\n$\\cos x=\\frac{\\overline{\\mathrm{PQ}}}{\\overline{\\mathrm{PR}}}=\\frac{3k}{\\sqrt{10}\\,k}=\\frac{3}{\\sqrt{10}}$이고, $\\tan y=\\frac{\\overline{\\mathrm{PQ}}}{\\overline{\\mathrm{QR}}}=\\frac{3k}{k}=3$이다.\n\n따라서 $\\cos x\\times\\tan y=\\frac{3}{\\sqrt{10}}\\times3=\\frac{9}{\\sqrt{10}}=\\frac{9\\sqrt{10}}{10}$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-nobyeon-3-2-mid-1",
+    "sourceContentSha256": "d706c715d925bb8f1a07e7501840e2cf579d687aa6c5add12c9f24f9dfb68a8c",
+    "sourceSchoolInternal": "노변중학교",
+    "sourceExamYear": 2025,
+    "questionOnlyStaged": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/question-only-staged/nobyeon/q01.json",
+      "sha256": "d706c715d925bb8f1a07e7501840e2cf579d687aa6c5add12c9f24f9dfb68a8c"
+    },
+    "sourceReviewReport": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-source-review-r1/items/nobyeon/q01.json",
+      "sha256": "5cd942425084b4b1fcb2e50c9d3dcbe45802d783939fb2ee1f8fc00a17e6d5fc"
+    },
+    "newSourceReferenceId": "source-ref-2025-nobyeon-3-2-mid-r1-q01",
+    "sourceIdentityAsProvided": "printed-identity-observed-not-whole-pair-certified",
+    "sourceManifestOrOriginalAnswerInput": false,
+    "originalAnswersOmittedInInput": true
+  },
+  "variantDelta": {
+    "modes": [
+      "context",
+      "representation"
+    ],
+    "before": "그림과 같이 $\\angle \\mathrm{C}=90°$인 직각삼각형 $\\mathrm{ABC}$에서 $\\overline{\\mathrm{A}C}\\,\\,:\\,\\,\\overline{\\mathrm{B}C}=1\\,\\,:\\,\\,2$일 때, $\\cos B\\times \\mathrm{\\tan }\\mathit{A}$의 값은? [$3$점]",
+    "after": "직각을 낀 두 변의 비를 삼각형에 직접 주던 것을, 가로와 세로의 비가 주어진 직사각형 현수막과 그 대각선으로 바꾸었다. 직각은 직사각형의 성질에서 나오고, 묻는 두 삼각비도 서로 다른 꼭짓점의 다른 짝(cos x, tan y)이다.",
+    "sharedConcept": "두 변의 길이의 비가 주어진 직각삼각형에서 빗변을 구하고 삼각비의 정의로 두 각의 삼각비를 구한다.",
+    "sharedProcedure": "비를 k배로 두고 피타고라스 정리로 빗변을 구한 뒤, 정의에 따라 서로 다른 두 각의 삼각비를 각각 구해 곱한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-12",
+      "9수04-16",
+      "9수04-17"
+    ],
+    "legitimateMethodDraft": "직사각형의 한 각이 직각임을 이용해 직각삼각형을 잡고, 피타고라스 정리와 삼각비의 정의만 쓴다. 두 삼각비 사이의 관계식은 쓰지 않는다.",
+    "officialProvisions": [
+      {
+        "id": "9수04-12",
+        "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다.",
+        "kind": "standard",
+        "hwpRecord1based": 4308,
+        "pdfPrintedPage": 34,
+        "evidenceFiles": [
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q10.json",
+          "gyeonggu-final-review-r1/reports/q11.json"
+        ],
+        "evidenceFileCount": 15
+      },
+      {
+        "id": "9수04-16",
+        "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다.",
+        "kind": "standard",
+        "hwpRecord1based": null,
+        "pdfPrintedPage": 34,
+        "evidenceFiles": [
+          "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json"
+        ],
+        "evidenceFileCount": 56
+      },
+      {
+        "id": "9수04-17",
+        "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "kind": "standard",
+        "hwpRecord1based": null,
+        "pdfPrintedPage": 34,
+        "evidenceFiles": [
+          "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json"
+        ],
+        "evidenceFileCount": 116
+      }
+    ],
+    "restrictionClauses": [
+      {
+        "id": "no_trig_ratio_relationships",
+        "text": "삼각비 사이의 관계는 다루지 않는다.",
+        "kind": "restriction-or-note",
+        "hwpRecord1based": null,
+        "pdfPrintedPage": 35,
+        "evidenceFiles": [
+          "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json"
+        ],
+        "evidenceFileCount": 89
+      },
+      {
+        "id": "angle_range",
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.",
+        "kind": "restriction-or-note",
+        "hwpRecord1based": null,
+        "pdfPrintedPage": 35,
+        "evidenceFiles": [
+          "bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json"
+        ],
+        "evidenceFileCount": 88
+      },
+      {
+        "id": "no_complex_geometry_measurement",
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.",
+        "kind": "restriction-or-note",
+        "hwpRecord1based": 4472,
+        "pdfPrintedPage": 35,
+        "evidenceFiles": [
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json",
+          "gyeonggu-final-review-r1/reports/q02.json"
+        ],
+        "evidenceFileCount": 90
+      },
+      {
+        "id": "no_formal_complex_justification",
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다.",
+        "kind": "restriction-or-note",
+        "hwpRecord1based": 4476,
+        "pdfPrintedPage": 35,
+        "evidenceFiles": [
+          "gyeonggu-final-review-r1/curriculum-surface-basis.json",
+          "gyeonggu-final-review-r1/reports/q01.json",
+          "gyeonggu-final-review-r1/reports/q02.json"
+        ],
+        "evidenceFileCount": 88
+      }
+    ],
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "Actual 2025 middle3 uses 2015; middle3 rollout of 2022 begins 2027; future republication needs its own review.",
+    "preauthorGate": "author-method-proposed-independent-review-pending"
+  },
+  "metadata": {
+    "grade": "중3",
+    "semester": 2,
+    "subject": "수학",
+    "source": "transformed",
+    "originProblemId": null,
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "2027Republication": "requires new 2022 review"
+    },
+    "sourceExamYear": 2025,
+    "sourceSchoolInternal": "노변중학교",
+    "fictionalVisibleSchool": null,
+    "schoolReplacementMap": {},
+    "fictionalSchoolUsedInStudentText": false,
+    "sourceSchoolNamesInStudentSurfaces": false,
+    "sourceQuestionId": "2025-nobyeon-3-2-mid-1",
+    "twinExternalId": "exam-twin-nobyeon-2025-2-mid-author-claude-r1-q01",
+    "questionType": "객관식",
+    "score": 3.0,
+    "parentScoreCountedOnce": true,
+    "newSubpartRubric": [],
+    "sourcePrintedScore": {
+      "originalPrintedParentScore": 3,
+      "parentCountedOnce": true
+    },
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed",
+    "difficultyEvidence": "Task operations: 비를 k배로 두고 피타고라스 정리로 빗변을 구한 뒤, 정의에 따라 서로 다른 두 각의 삼각비를 각각 구해 곱한다. Original printed points kept; not a measured difficulty.",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending",
+    "problemTypeEvidence": "problemType is a separate bank axis; no rule maps this whole item yet.",
+    "assignment": {
+      "status": "proposed",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unitSection": "삼각비의 뜻",
+      "familyKey": null,
+      "evidence": {
+        "actualCapturedUnit": {
+          "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 뜻",
+          "semester": 2,
+          "orderIndex": 481,
+          "problemCodePrefix": "J30501"
+        },
+        "bankSnapshot": {
+          "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+          "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+          "capturedAt": "2026-10-08 13:00:16.891043+00",
+          "snapshotOnly": true
+        },
+        "registry": {
+          "path": "src/lib/middle/m3Trig.ts",
+          "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a"
+        },
+        "comparedRegistryEntries": [
+          {
+            "registry": {
+              "key": "mid:3-2|삼각비|01",
+              "title": "삼각비의 값",
+              "section": "뜻",
+              "difficulty": "기본",
+              "line1based": 949
+            },
+            "liveMatch": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|01",
+              "live_count": 24
+            }
+          },
+          {
+            "registry": {
+              "key": "mid:3-2|삼각비|03",
+              "title": "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기",
+              "section": "뜻",
+              "difficulty": "응용",
+              "line1based": 1023
+            },
+            "liveMatch": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|03",
+              "live_count": 24
+            }
+          },
+          {
+            "registry": {
+              "key": "mid:3-2|삼각비|20",
+              "title": "두 삼각비의 값을 이용한 식의 계산",
+              "section": "뜻",
+              "difficulty": "연산",
+              "line1based": 1750
+            },
+            "liveMatch": {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|20",
+              "live_count": 24
+            }
+          }
+        ],
+        "comparison": "01(삼각비의 값)은 세 변이 주어진 직각삼각형, 03은 한 삼각비에서 다른 삼각비를 구하는 갈래, 20은 두 삼각비의 식 계산이다. 비가 주어진 직사각형의 대각선이라는 입력 전체와 맞는 갈래를 확인하지 못해 배정하지 않는다."
+      }
+    },
+    "authorMathEvidence": {
+      "file": "../../author-calculations.json",
+      "questionNumber": 1
+    },
+    "authorSevenSurfaceEvidence": {
+      "path": "author-checks/q01.json"
+    },
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "limits": [
+      "Independent solve and full seven-surface review pending.",
+      "Rights/native/custody/loading remain pending.",
+      "Historical taxonomy snapshot is not a currentDB assertion."
+    ]
+  }
+}

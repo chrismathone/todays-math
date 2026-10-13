@@ -1,0 +1,69 @@
+{
+  "mode": "review",
+  "bankImageWidthCapMm": 70,
+  "nativeReaderParity": false,
+  "effectiveFigureWidths": [
+    {
+      "n": 1,
+      "role": "stem",
+      "requestedWidthMm": 70,
+      "displayedWidthMm": 70
+    },
+    {
+      "n": 2,
+      "role": "stem",
+      "requestedWidthMm": 70,
+      "displayedWidthMm": 70
+    },
+    {
+      "n": 6,
+      "role": "stem",
+      "requestedWidthMm": 70,
+      "displayedWidthMm": 70
+    },
+    {
+      "n": 8,
+      "role": "stem",
+      "requestedWidthMm": 70,
+      "displayedWidthMm": 70
+    }
+  ],
+  "questionCount": 5,
+  "productMathRendererSafe": true,
+  "redOrRawMathCount": 0,
+  "overflowingCards": [],
+  "htmlSha256": "6ad794c07fb8016cc0b8b35d0bae3853c6293bd8c07ba7f80eef4542a4d103a8",
+  "candidates": [
+    {
+      "n": 1,
+      "studentDigest": "bef80b5d050b6d3cebc2e0aa835e27cf13b7cf9cff066ee72f0fdfa32bc969a8",
+      "candidateDigest": "b1fe1480d9056e5e21f079550fe14e039be18404e003e76b2e80c9dcacfe1df7",
+      "assetDigest": "8ad545e55eb3e69b020bd3928e5a9063578d30d0ba73656a45fbdbb0c85994d4"
+    },
+    {
+      "n": 2,
+      "studentDigest": "d7c3cf3497e682a8bef4ceb2a6cf5f64eb873e53fa31597237368ba824d9ffb4",
+      "candidateDigest": "c89541daf3ee8daaa0fd9bd70f4b7a477afe09263fdc2a369b34f8ea2679cea7",
+      "assetDigest": "994f9c6ba3713c3d7e425c055d180090e778201542066639f7e1347c03c6df3b"
+    },
+    {
+      "n": 4,
+      "studentDigest": "3bab64f7e8071bfce6043053aa19c709a2eb5be3e7fdea99f324d7e1e37db9b3",
+      "candidateDigest": "825f9d8ad2d06aeaf3e0a0b29efee776bda06ae5f410c788287213ad4753c828",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "n": 6,
+      "studentDigest": "3b8c0e9f98877934677bb0fb19e80eb1223f4286a02c5fab7b21ef0db503cc06",
+      "candidateDigest": "edcd87e81388ade5f1ade42c062d165439752047b293024aa698d69a629575f6",
+      "assetDigest": "b772ed3034cc6fcadffc0dab255e2fb842233a43c49ab2959e5e36277a8863ca"
+    },
+    {
+      "n": 8,
+      "studentDigest": "f4d55abac0dc18dda489d45d7147a7409de56d6658675b3d00f8e12242e23fa9",
+      "candidateDigest": "ccfde6e0761d86b80f33fdbe505dd28f4db19793c8f68f33d08bb1336493bdc6",
+      "assetDigest": "c9c4bc32290e5ebc9f4e1f550c406513707f0fe4997aca54195cb222c286b303"
+    }
+  ],
+  "visualReviewStatus": "pending-human-agent-image-inspection"
+}

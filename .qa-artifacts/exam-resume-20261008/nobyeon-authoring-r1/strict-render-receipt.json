@@ -1,0 +1,82 @@
+{
+  "method": "current existing server vector engine, strict=true, typeset=true, sanitize boundary",
+  "engineFiles": [
+    {
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "sha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb"
+    },
+    {
+      "path": "scripts/figure/render_spec.py",
+      "sha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627"
+    },
+    {
+      "path": "scripts/figure/engine_path.py",
+      "sha256": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375"
+    },
+    {
+      "path": "src/lib/figure/mathjaxSubstitute.ts",
+      "sha256": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21"
+    }
+  ],
+  "assets": [
+    {
+      "questionNumber": 1,
+      "spec": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q01/stem-1.spec.json",
+        "sha256": "aa48128c7e50058c8fa28b4567de0cd4729d2e2f23b81780eb50f5278883872b"
+      },
+      "svgPath": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q01/stem-1.svg",
+      "strict": true,
+      "typeset": true,
+      "result": "rendered",
+      "droppedDimensions": [],
+      "svgSha256": "67c0329b8f2e36bc17fd2b4c65af1616c53caeafbee1309272cd163edd640450"
+    },
+    {
+      "questionNumber": 2,
+      "spec": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q02/stem-1.spec.json",
+        "sha256": "0dc83ca732db350f966510febb7bd9aa7445727417ca48d3bda0adc44d9ccbe8"
+      },
+      "svgPath": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q02/stem-1.svg",
+      "strict": true,
+      "typeset": true,
+      "result": "rendered",
+      "droppedDimensions": [],
+      "svgSha256": "804a082c61015361b7dd41ce229c1f5a2209712cb4a92d0850c6628a215e8b0b"
+    },
+    {
+      "questionNumber": 6,
+      "spec": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q06/stem-1.spec.json",
+        "sha256": "0e089f4b2cc9363756284fea2e3ed2875125aa7e09a4a1c1fb69e54febb3ecb2"
+      },
+      "svgPath": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q06/stem-1.svg",
+      "strict": true,
+      "typeset": true,
+      "result": "rendered",
+      "droppedDimensions": [],
+      "svgSha256": "f6f47ffb623aa37d38b18fd67147d64f2b2189a8ed4ba7e93b52928fc0563fd8"
+    },
+    {
+      "questionNumber": 8,
+      "spec": {
+        "path": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q08/stem-1.spec.json",
+        "sha256": "70d173b1ac06588b7d941259b9bd7e581e039b49cac2db8647621f33668366a4"
+      },
+      "svgPath": ".qa-artifacts/exam-resume-20261008/nobyeon-authoring-r1/candidates/q08/stem-1.svg",
+      "strict": true,
+      "typeset": true,
+      "result": "rendered",
+      "droppedDimensions": [],
+      "svgSha256": "a9b108595e538294c400c250ec6757b4d1d0a1b59cd4733630d108350d147172"
+    }
+  ],
+  "newVectorCount": 4,
+  "originalCropsUsedAsStudentAssets": false,
+  "pythonBytecodeDisabled": true,
+  "sharedDependenciesWritten": false,
+  "inferenceApiCalls": 0,
+  "nativeReaderParity": false,
+  "independentFigureApproval": false
+}
