@@ -38,20 +38,26 @@ export default function ScopePicker({
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [onlyChosen, setOnlyChosen] = useState(false);
-  const groups = useMemo(
-    () => [...new Set(scopes.map((scope) => scope.group))],
-    [scopes],
-  );
-  const details = useMemo(
-    () => [
-      ...new Set(
-        scopes
-          .filter((scope) => !group || scope.group === group)
-          .map((scope) => scope.detail)
-          .filter((value): value is string => Boolean(value)),
-      ),
-    ],
-    [scopes, group],
+  const groups = useMemo(() => {
+    const byGroup = new Map<string, ExamScope[]>();
+    scopes.forEach((scope) => {
+      const rows = byGroup.get(scope.group) ?? [];
+      rows.push(scope);
+      byGroup.set(scope.group, rows);
+    });
+    return Array.from(byGroup, ([label, rows]) => ({
+      label,
+      selectable: rows.some((scope) => canSelectScope(scope, requireCounts)),
+      confirmedEmpty: rows.every((scope) => scope.count === 0),
+      details: [
+        ...new Set(
+          rows.flatMap((scope) => (scope.detail ? [scope.detail] : [])),
+        ),
+      ],
+    }));
+  }, [scopes, requireCounts]);
+  const detailGroups = groups.filter(
+    (item) => (!group || item.label === group) && item.details.length > 0,
   );
   const filtered = useMemo(
     () =>
@@ -59,7 +65,8 @@ export default function ScopePicker({
         .filter(
           (scope) =>
             (!group || scope.group === group) &&
-            (!detail || scope.detail === detail) &&
+            (!detail ||
+              JSON.stringify([scope.group, scope.detail]) === detail) &&
             (!onlyChosen || chosen.has(scope.id)) &&
             `${scope.label} ${scope.group} ${scope.detail ?? ""}`
               .toLocaleLowerCase()
@@ -85,7 +92,8 @@ export default function ScopePicker({
   );
   const allVisible =
     selectable.length > 0 && selectable.every((row) => chosen.has(row.id));
-  const toggle = (id: string) =>
+  const toggle = (id: string) => {
+    if (chosen.size === 1 && chosen.has(id)) setOnlyChosen(false);
     setChosen((current) => {
       const next = new Set(current);
       if (next.has(id)) next.delete(id);
@@ -98,6 +106,7 @@ export default function ScopePicker({
         next.add(id);
       return next;
     });
+  };
   return (
     <BuilderDialog title="출제 범위 선택" onClose={onClose} width={880}>
       <div className={s.dialogFilters}>
@@ -112,12 +121,23 @@ export default function ScopePicker({
             }}
           >
             <option value="">전체</option>
-            {groups.map((value) => (
-              <option key={value}>{value}</option>
+            {groups.map((item) => (
+              <option
+                key={item.label}
+                value={item.label}
+                disabled={!item.selectable}
+              >
+                {item.label}
+                {!item.selectable
+                  ? item.confirmedEmpty
+                    ? " · 출제 가능 문항 없음"
+                    : " · 출제 가능 수 확인 필요"
+                  : ""}
+              </option>
             ))}
           </select>
         </label>
-        {details.length > 0 && (
+        {detailGroups.length > 0 && (
           <label>
             단원·자료 묶음
             <select
@@ -128,8 +148,21 @@ export default function ScopePicker({
               }}
             >
               <option value="">전체</option>
-              {details.map((value) => (
-                <option key={value}>{value}</option>
+              {detailGroups.map((item) => (
+                <optgroup
+                  key={item.label}
+                  label={item.label}
+                  disabled={!item.selectable}
+                >
+                  {item.details.map((value) => (
+                    <option
+                      key={value}
+                      value={JSON.stringify([item.label, value])}
+                    >
+                      {group ? value : `${item.label} · ${value}`}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </label>
@@ -150,12 +183,13 @@ export default function ScopePicker({
           <input
             type="checkbox"
             checked={onlyChosen}
+            disabled={!chosen.size}
             onChange={(e) => {
               setOnlyChosen(e.target.checked);
               setPage(1);
             }}
           />
-          선택한 범위만
+          담은 범위만 보기
         </label>
       </div>
       <div className={s.scopeActions}>
@@ -164,15 +198,17 @@ export default function ScopePicker({
             type="checkbox"
             checked={allVisible}
             disabled={!selectable.length}
-            onChange={() =>
+            onChange={() => {
+              if (allVisible && chosen.size === selectable.length)
+                setOnlyChosen(false);
               setChosen((current) => {
                 const next = new Set(current);
                 selectable.forEach((row) =>
                   allVisible ? next.delete(row.id) : next.add(row.id),
                 );
                 return next;
-              })
-            }
+              });
+            }}
           />
           현재 결과 전체 선택
         </label>
@@ -182,7 +218,11 @@ export default function ScopePicker({
         <button
           type="button"
           disabled={!chosen.size}
-          onClick={() => setChosen(new Set())}
+          onClick={() => {
+            setChosen(new Set());
+            setOnlyChosen(false);
+            setPage(1);
+          }}
         >
           선택 비우기
         </button>

@@ -345,26 +345,23 @@ export default function ExamBuilder<T>({
           ],
         }}
       >
-        <button
-          type="button"
-          className={s.primary}
-          disabled={
-            actionsDisabled ||
-            (step === "scope" ? !valid : !questions.length || !canOutput)
-          }
-          onClick={() => void run(step === "scope" ? "compose" : "output")}
-        >
-          {busy ? (
-            "준비 중…"
-          ) : step === "scope" ? (
-            "문항 구성 →"
-          ) : (
-            <>
-              <span className={s.longLabel}>다음: 양식 구성·출력 →</span>
-              <span className={s.shortLabel}>다음 단계 →</span>
-            </>
-          )}
-        </button>
+        {step === "review" && (
+          <button
+            type="button"
+            className={s.primary}
+            disabled={actionsDisabled || !questions.length || !canOutput}
+            onClick={() => void run("output")}
+          >
+            {busy ? (
+              "준비 중…"
+            ) : (
+              <>
+                <span className={s.longLabel}>다음: 양식 구성·출력 →</span>
+                <span className={s.shortLabel}>다음 단계 →</span>
+              </>
+            )}
+          </button>
+        )}
       </StudioStepBar>
       {status}
       {error && (
@@ -549,7 +546,30 @@ export default function ExamBuilder<T>({
                                   </button>
                                 </div>
                               </td>
-                              <td>{counts.get(row.scopeId) ?? 0}문항</td>
+                              <td>
+                                <div className={s.scopeRowActions}>
+                                  <span>
+                                    {counts.get(row.scopeId) ?? 0}문항
+                                  </span>
+                                  <button
+                                    type="button"
+                                    className={s.danger}
+                                    disabled={actionsDisabled}
+                                    aria-label={`${scope?.label ?? "선택 범위"} 범위 제거`}
+                                    onClick={() => {
+                                      setAllocations((current) =>
+                                        current.filter(
+                                          (item) =>
+                                            item.scopeId !== row.scopeId,
+                                        ),
+                                      );
+                                      setStep("scope");
+                                    }}
+                                  >
+                                    제거
+                                  </button>
+                                </div>
+                              </td>
                             </tr>
                           );
                         })}
@@ -586,23 +606,24 @@ export default function ExamBuilder<T>({
               </p>
             )}
             <footer className={s.panelFooter}>
-              <strong>합계 {requested}문항</strong>
-              <small>
-                {requested > maxQuestions
-                  ? `최대 ${maxQuestions}문항으로 맞춰 주세요.`
-                  : questions.length
-                    ? "다시 구성하면 현재 문항이 구성표대로 바뀝니다."
-                    : `최대 ${maxQuestions}문항`}
-              </small>
-              {questions.length > 0 && (
-                <button
-                  type="button"
-                  disabled={actionsDisabled || !valid}
-                  onClick={() => void run("compose")}
-                >
-                  문항 다시 구성
-                </button>
-              )}
+              <div className={s.compositionTotal}>
+                <strong>합계 {requested}문항</strong>
+                <small>
+                  {requested > maxQuestions
+                    ? `최대 ${maxQuestions}문항으로 맞춰 주세요.`
+                    : questions.length
+                      ? "다시 구성하면 현재 문항이 구성표대로 바뀝니다."
+                      : `최대 ${maxQuestions}문항`}
+                </small>
+              </div>
+              <button
+                type="button"
+                className={s.primary}
+                disabled={actionsDisabled || !valid}
+                onClick={() => void run("compose")}
+              >
+                {busy ? "준비 중…" : "문항 구성 →"}
+              </button>
             </footer>
           </section>
         </aside>
@@ -664,8 +685,9 @@ export default function ExamBuilder<T>({
                       questions.length >= maxQuestions
                     }
                     onClick={() => setPicker({ scopeId: group.id })}
+                    aria-label={`${group.label} 범위에 문항 추가`}
                   >
-                    + 문항 추가
+                    + 이 범위에 추가
                   </button>
                 </header>
                 <div className={s.questions}>
@@ -783,20 +805,36 @@ export default function ExamBuilder<T>({
           requireCounts={source.requireScopeCounts}
           onClose={() => setScopeOpen(false)}
           onApply={(ids) => {
+            const selectedIds = ids.filter((id) =>
+              canSelectScope(scopeMap.get(id), source.requireScopeCounts),
+            );
+            const retained = new Map(
+              allocations
+                .filter((row) => selectedIds.includes(row.scopeId))
+                .map((row) => [row.scopeId, row]),
+            );
+            const remaining = Math.max(
+              0,
+              maxQuestions -
+                [...retained.values()].reduce((sum, row) => sum + row.count, 0),
+            );
+            const defaultCount = Math.min(
+              5,
+              Math.floor(
+                remaining / Math.max(selectedIds.length - retained.size, 1),
+              ),
+            );
             setAllocations(
-              ids
-                .filter((id) =>
-                  canSelectScope(scopeMap.get(id), source.requireScopeCounts),
-                )
-                .map((scopeId) => ({
-                  scopeId,
-                  count: Math.min(
-                    allocations.find((row) => row.scopeId === scopeId)?.count ??
-                      5,
-                    scopeMap.get(scopeId)?.count ?? maxQuestions,
-                    Math.floor(maxQuestions / Math.max(ids.length, 1)),
-                  ),
-                })),
+              selectedIds.map(
+                (scopeId) =>
+                  retained.get(scopeId) ?? {
+                    scopeId,
+                    count: Math.min(
+                      defaultCount,
+                      scopeMap.get(scopeId)?.count ?? maxQuestions,
+                    ),
+                  },
+              ),
             );
             setScopePage(1);
             setStep("scope");
