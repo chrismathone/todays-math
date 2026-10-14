@@ -1,8 +1,10 @@
 import type { StudioProblem } from "@/components/unified/types";
 import type { ArithmeticSheetPayload } from "@/contracts/arithmeticSheet.contract";
 import type { ArithmeticV2SheetPayload } from "@/contracts/arithmeticV2.contract";
+import type { ArithmeticSkillSelection } from "@/contracts/arithmetic.contract";
 import { listArithmeticSkills } from "@/lib/arithmetic/catalog";
 import { listArithmeticV2Types } from "@/lib/arithmetic-v2";
+import { arithmeticFeatureLabels } from "@/lib/arithmeticPresentation";
 
 export type ArithmeticOutputSheet =
   ArithmeticSheetPayload | ArithmeticV2SheetPayload;
@@ -19,6 +21,7 @@ function vertical(left: number, right: number, operator: string) {
 export function arithmeticToStudioProblems(
   sheet: ArithmeticOutputSheet,
 ): StudioProblem[] {
+  let number = 0;
   const types = new Map(listArithmeticV2Types().map((type) => [type.id, type]));
   const skills = new Map(
     listArithmeticSkills().map((skill) => [skill.skillId, skill]),
@@ -36,7 +39,7 @@ export function arithmeticToStudioProblems(
     return sheet.rounds.flatMap((round) =>
       round.items.map((item) => {
         const type = types.get(item.typeId);
-        const label = `${round.round}회차 · ${item.order}번`;
+        const groupTitle = type?.title ?? item.typeId;
         const formula =
           item.prompt.layout === "vertical"
             ? vertical(
@@ -48,13 +51,19 @@ export function arithmeticToStudioProblems(
         return {
           ...base,
           id: `arithmetic-v2:${sheet.seed}:${round.round}:${item.order}`,
-          content: `${label}\n\n${item.prompt.instruction ? `${item.prompt.instruction}\n\n` : ""}$$${formula}$$`,
+          content: `${item.prompt.instruction ? `${item.prompt.instruction}\n\n` : ""}$$${formula}$$`,
           answer: `$${item.answer.latex}$`,
           grade: type?.grade ?? "",
-          chapter: type?.title ?? item.typeId,
-          section: `${round.round}회차`,
+          chapter: groupTitle,
+          section: groupTitle,
           problemCode: `AR2-R${round.round}-Q${item.order}`,
-          sourceLabel: `${label} · ${type?.title ?? item.typeId}`,
+          sourceLabel: groupTitle,
+          arithmetic: {
+            round: round.round,
+            number: ++number,
+            groupKey: item.typeId,
+            groupTitle,
+          },
           source: {
             kind: "arithmeticSheet",
             payloadVersion: 2,
@@ -68,8 +77,12 @@ export function arithmeticToStudioProblems(
   }
   return sheet.rounds.flatMap((round) =>
     round.items.map((item) => {
-      const label = `${round.round}회차 · ${item.order}번`;
       const skill = skills.get(item.spec.skillId);
+      const groupTitle = [
+        skill?.label ?? item.spec.skillId,
+        // Saved specs have already validated the skill/constraint pairing.
+        ...arithmeticFeatureLabels(item.spec as ArithmeticSkillSelection),
+      ].join(" · ");
       const [left, right] = item.prompt.operands;
       const formula =
         item.prompt.notation === "vertical"
@@ -78,13 +91,19 @@ export function arithmeticToStudioProblems(
       return {
         ...base,
         id: `arithmetic-v1:${sheet.seed}:${round.round}:${item.order}`,
-        content: `${label}\n\n$$${formula}$$`,
+        content: `$$${formula}$$`,
         answer: item.answer,
         grade: "",
         chapter: skill?.label ?? item.spec.skillId,
-        section: `${round.round}회차`,
+        section: groupTitle,
         problemCode: `AR1-R${round.round}-Q${item.order}`,
-        sourceLabel: `${label} · ${skill?.label ?? item.spec.skillId}`,
+        sourceLabel: groupTitle,
+        arithmetic: {
+          round: round.round,
+          number: ++number,
+          groupKey: JSON.stringify([item.spec.skillId, item.spec.constraints]),
+          groupTitle,
+        },
         source: {
           kind: "arithmeticSheet",
           payloadVersion: 1,

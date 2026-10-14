@@ -5,10 +5,12 @@ import { printPagePadding, scaledItemStyle } from "./geometry";
 import { BodyContainer } from "./templates/BodyContainer";
 import type { PrintTemplateProps } from "./types";
 import { EnglishWorksheetAnswer } from "@/components/english/print/EnglishWorksheetQuestion";
+import { ArithmeticRoundHeader } from "./templates/ProblemMeta";
 
 /** Answers share measured pagination; long solutions and quick keys never truncate. */
 export function AnswerPage({
   page,
+  round,
   totalPages,
   problems,
   startingNumber,
@@ -44,7 +46,7 @@ export function AnswerPage({
           <>
             <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
               <strong style={{ color: options.color }}>
-                {startingNumber + index}.
+                {p.arithmetic?.number ?? startingNumber + index}.
               </strong>
               <MathText text={shown(p.answer || "정답 미입력")} />
             </div>
@@ -73,6 +75,7 @@ export function AnswerPage({
         color: "#0E0E10",
       }}
     >
+      <ArithmeticRoundHeader round={round} />
       <header
         style={{
           borderBottom: `2px solid ${options.color}`,

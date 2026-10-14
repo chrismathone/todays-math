@@ -54,6 +54,8 @@ describe.each([
     presentation.printOptions.template = "modern";
     presentation.printOptions.columns = 1;
     presentation.printOptions.showAnswers = true;
+    // Older saved chapter settings remain exact; rendering suppresses per-item metadata.
+    presentation.printOptions.showChapter = true;
     presentation.printMeta.instructorName = "김선생";
     const restored = reopenAnyArithmeticSheet({ ...sheet, presentation });
     expect(restored.presentation).toEqual(presentation);

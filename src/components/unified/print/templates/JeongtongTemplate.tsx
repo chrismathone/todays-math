@@ -8,7 +8,7 @@ import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
 import { ProblemBody } from "./ProblemBody";
-import { ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
 
 import type { PrintTemplateProps } from "../types";
 
@@ -34,6 +34,8 @@ const tdVal = (w?: number, last?: boolean): CSSProperties => ({
 
 export function JeongtongTemplate({
   page,
+  round,
+  firstPage,
   columns,
   meta,
   problems,
@@ -43,7 +45,7 @@ export function JeongtongTemplate({
   itemScales,
   measure,
 }: PrintTemplateProps) {
-  const isFirstPage = page === 1;
+  const isFirstPage = firstPage ?? page === 1;
   const fs = bodyFontSize("jeongtong", columns);
   const gap = Math.max(0, options.spacing);
 
@@ -61,6 +63,7 @@ export function JeongtongTemplate({
         }}
       >
         <ProblemHeader
+          sectionHeading={p.sectionHeading}
           num={num}
           problem={p.variant}
           options={options}
@@ -113,6 +116,7 @@ export function JeongtongTemplate({
         flexDirection: "column",
       }}
     >
+      <ArithmeticRoundHeader round={round} />
       {isFirstPage && (
         <>
           {/* 시험 정보 표 */}

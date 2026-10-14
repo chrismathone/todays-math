@@ -12,71 +12,119 @@ import type { PrintOptions, PrintTemplate, ProblemReview } from "../types";
 export function ProblemHeader({
   num,
   problem,
+  sectionHeading,
   options,
   accent = options.color,
 }: {
   num: number;
   problem: ProblemReview["variant"];
+  sectionHeading?: string;
   options: PrintOptions;
   accent?: string;
 }) {
-  const topic = options.showChapter ? problem.topic : "";
-  const difficulty = options.showDifficulty ? problem.difficulty : "";
+  const topic = options.showChapter && !problem.arithmetic ? problem.topic : "";
+  const difficulty =
+    options.showDifficulty && !problem.arithmetic ? problem.difficulty : "";
   const metadata = [topic, difficulty].filter(Boolean).join(" · ");
   return (
-    <div
-      data-problem-header
-      style={{
-        display: "flex",
-        alignItems: "baseline",
-        gap: 6,
-        marginBottom: 6,
-      }}
-    >
-      <span style={{ flexShrink: 0, whiteSpace: "nowrap" }}>
-        <QuestionNumber
-          template={options.template}
-          num={problem.english?.displayNumber ?? num}
-          accent={accent}
-        />
-      </span>
-      {metadata && (
-        <span
-          data-problem-metadata
-          title={metadata}
+    <>
+      {sectionHeading && (
+        <h3
+          data-arithmetic-type-heading
           style={{
-            display: "flex",
-            alignItems: "baseline",
-            gap: 4,
+            margin: "0 0 10px",
+            paddingBottom: 6,
+            borderBottom: `1px solid ${PAPER_COLORS.ink30}`,
             fontFamily: "var(--paper-font-sans)",
-            fontSize: 10,
-            color: PAPER_COLORS.ink50,
-            minWidth: 0,
-            whiteSpace: "nowrap",
-            lineHeight: 1.4,
+            fontSize: 12,
+            lineHeight: 1.5,
+            fontWeight: 700,
+            color: PAPER_COLORS.ink,
+            overflowWrap: "anywhere",
           }}
         >
-          {topic && (
-            <span
-              style={{
-                minWidth: 0,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-              }}
-            >
-              {topic}
-            </span>
-          )}
-          {topic && difficulty && (
-            <span aria-hidden style={{ flexShrink: 0 }}>
-              {" "}
-              ·{" "}
-            </span>
-          )}
-          {difficulty && <span style={{ flexShrink: 0 }}>{difficulty}</span>}
-        </span>
+          {sectionHeading}
+        </h3>
       )}
-    </div>
+      <div
+        data-problem-header
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          gap: 6,
+          marginBottom: 6,
+        }}
+      >
+        <span style={{ flexShrink: 0, whiteSpace: "nowrap" }}>
+          <QuestionNumber
+            template={options.template}
+            num={
+              problem.arithmetic?.number ??
+              problem.english?.displayNumber ??
+              num
+            }
+            accent={accent}
+          />
+        </span>
+        {metadata && (
+          <span
+            data-problem-metadata
+            title={metadata}
+            style={{
+              display: "flex",
+              alignItems: "baseline",
+              gap: 4,
+              fontFamily: "var(--paper-font-sans)",
+              fontSize: 10,
+              color: PAPER_COLORS.ink50,
+              minWidth: 0,
+              whiteSpace: "nowrap",
+              lineHeight: 1.4,
+            }}
+          >
+            {topic && (
+              <span
+                style={{
+                  minWidth: 0,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                {topic}
+              </span>
+            )}
+            {topic && difficulty && (
+              <span aria-hidden style={{ flexShrink: 0 }}>
+                {" "}
+                ·{" "}
+              </span>
+            )}
+            {difficulty && <span style={{ flexShrink: 0 }}>{difficulty}</span>}
+          </span>
+        )}
+      </div>
+    </>
+  );
+}
+
+/** Round belongs to the sheet header, never to question metadata or body text. */
+export function ArithmeticRoundHeader({ round }: { round?: number }) {
+  if (round === undefined) return null;
+  return (
+    <header
+      data-arithmetic-round
+      style={{
+        flexShrink: 0,
+        marginBottom: 10,
+        fontFamily: "var(--paper-font-sans)",
+        fontSize: 13,
+        lineHeight: 1.5,
+        fontWeight: 700,
+        color: PAPER_COLORS.ink,
+      }}
+    >
+      {round}회차
+    </header>
   );
 }
 

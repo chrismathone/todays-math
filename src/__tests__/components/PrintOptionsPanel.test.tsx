@@ -7,6 +7,30 @@ import {
 } from "@/components/unified/print/types";
 
 describe("Mathgen print spacing presets", () => {
+  it("keeps arithmetic type headings mandatory without offering ineffective per-question metadata toggles", () => {
+    const props = {
+      title: "연산",
+      setTitle: vi.fn(),
+      meta: DEFAULT_PRINT_META,
+      onMeta: vi.fn(),
+      onOptions: vi.fn(),
+      options: {
+        ...DEFAULT_PRINT_OPTIONS,
+        quickAnswerOnly: true,
+        showAnswers: true,
+      },
+    };
+    const { rerender } = render(
+      <PrintOptionsPanel {...props} groupedArithmetic answersOnly />,
+    );
+    expect(screen.queryByRole("checkbox", { name: "문항 단원명" })).toBeNull();
+    expect(screen.queryByRole("checkbox", { name: "난이도 라벨" })).toBeNull();
+    expect(screen.getByRole("checkbox", { name: "정답지 포함" })).toBeChecked();
+    expect(props.onOptions).not.toHaveBeenCalled();
+    rerender(<PrintOptionsPanel {...props} />);
+    expect(screen.getByRole("checkbox", { name: "문항 단원명" })).toBeChecked();
+    expect(screen.getByRole("checkbox", { name: "난이도 라벨" })).toBeChecked();
+  });
   it("defaults score hiding ON and offers a reversible checkbox", () => {
     const onOptions = vi.fn();
     const props = {

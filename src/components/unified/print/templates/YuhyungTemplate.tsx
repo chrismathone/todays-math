@@ -7,13 +7,15 @@ import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
-import { ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
 
 export function YuhyungTemplate({
   page,
+  round,
+  firstPage,
   totalPages,
   totalProblems,
   columns,
@@ -26,7 +28,7 @@ export function YuhyungTemplate({
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentSlate;
-  const isFirstPage = page === 1;
+  const isFirstPage = firstPage ?? page === 1;
   const fs = bodyFontSize("yuhyung", columns);
   const gap = Math.max(0, options.spacing);
 
@@ -43,6 +45,7 @@ export function YuhyungTemplate({
         }}
       >
         <ProblemHeader
+          sectionHeading={p.sectionHeading}
           num={num}
           problem={p.variant}
           options={options}
@@ -89,6 +92,7 @@ export function YuhyungTemplate({
         flexDirection: "column",
       }}
     >
+      <ArithmeticRoundHeader round={round} />
       {isFirstPage && (
         <>
           {/* 유형 배너 */}

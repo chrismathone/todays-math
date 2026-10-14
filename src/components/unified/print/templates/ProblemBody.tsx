@@ -18,13 +18,7 @@ export function ProblemBody({
     <div
       data-problem-body
       style={{
-        fontSize:
-          problem.source !== null &&
-          typeof problem.source === "object" &&
-          "kind" in problem.source &&
-          problem.source.kind === "arithmeticSheet"
-            ? Math.max(fontSize, 20)
-            : fontSize,
+        fontSize,
         lineHeight: compact ? 1.5 : 1.85,
         overflowWrap: "anywhere",
       }}

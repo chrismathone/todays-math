@@ -8,13 +8,15 @@ import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { readablePaperColor } from "../readableColor";
 import { BodyContainer } from "./BodyContainer";
-import { ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
 
 export function ModernTemplate({
   page,
+  round,
+  firstPage,
   totalPages,
   totalProblems,
   columns,
@@ -27,7 +29,7 @@ export function ModernTemplate({
   measure,
 }: PrintTemplateProps) {
   const accent = options.color || PAPER_COLORS.accentNavy;
-  const isFirstPage = page === 1;
+  const isFirstPage = firstPage ?? page === 1;
   const fs = bodyFontSize("modern", columns);
   const gap = Math.max(0, options.spacing);
 
@@ -44,6 +46,7 @@ export function ModernTemplate({
         }}
       >
         <ProblemHeader
+          sectionHeading={p.sectionHeading}
           num={num}
           problem={p.variant}
           options={options}
@@ -92,6 +95,7 @@ export function ModernTemplate({
         flexDirection: "column",
       }}
     >
+      <ArithmeticRoundHeader round={round} />
       {isFirstPage && (
         <>
           <div

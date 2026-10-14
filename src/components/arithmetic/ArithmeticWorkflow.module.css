@@ -1,0 +1,36 @@
+.round {
+  margin-top: 24px;
+  min-width: 0;
+}
+.roundHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--learn-track);
+}
+.roundHeader h2 {
+  margin: 0;
+  color: var(--learn-ink);
+  font-size: var(--text-section, 18px);
+  font-weight: 700;
+}
+.roundHeader span {
+  color: var(--learn-muted);
+  font-size: var(--text-caption, 12px);
+}
+.typeHeading {
+  margin: 16px 0 0;
+  color: var(--learn-ink);
+  font-size: var(--text-body, 14px);
+  line-height: 1.5;
+  font-weight: 650;
+  overflow-wrap: anywhere;
+}
+.questionNumber {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--learn-accent);
+  font-size: var(--text-body, 14px);
+  font-variant-numeric: tabular-nums;
+}

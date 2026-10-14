@@ -7,13 +7,15 @@ import type { ProblemReview } from "../types";
 import { bodyFontSize } from "../geometry";
 import { PAPER_COLORS, A4_DIM } from "../tokens";
 import { BodyContainer } from "./BodyContainer";
-import { ProblemHeader } from "./ProblemMeta";
+import { ArithmeticRoundHeader, ProblemHeader } from "./ProblemMeta";
 import { ProblemBody } from "./ProblemBody";
 import type { PrintTemplateProps } from "../types";
 import { ExamDetails } from "../ExamDetails";
 
 export function PyeonggaTemplate({
   page,
+  round,
+  firstPage,
   meta,
   columns,
   problems,
@@ -23,7 +25,7 @@ export function PyeonggaTemplate({
   itemScales,
   measure,
 }: PrintTemplateProps) {
-  const isFirstPage = page === 1;
+  const isFirstPage = firstPage ?? page === 1;
   const fs = bodyFontSize("pyeongga", columns);
   const gap = Math.max(0, options.spacing);
 
@@ -41,6 +43,7 @@ export function PyeonggaTemplate({
       >
         {/* 배점은 ProblemBody.repositionScore 가 발문 끝에 통일(§45) — 번호 행엔 표시 X. */}
         <ProblemHeader
+          sectionHeading={p.sectionHeading}
           num={num}
           problem={p.variant}
           options={options}
@@ -88,6 +91,7 @@ export function PyeonggaTemplate({
         flexDirection: "column",
       }}
     >
+      <ArithmeticRoundHeader round={round} />
       {/* 헤더 — 첫 페이지만 큰 박스, 이후 페이지는 간소 */}
       {isFirstPage ? (
         <div style={{ padding: "0 0 18px", flexShrink: 0 }}>
