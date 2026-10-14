@@ -6,7 +6,7 @@ import {
   within,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import ArithmeticWorkbench from "@/components/arithmetic/ArithmeticWorkbench";
+import ArithmeticWorkbench from "@/components/arithmetic/LegacyArithmeticWorkbench";
 import { PrivateCloudClient } from "@/components/unified/privateCloudClient";
 import {
   ARITHMETIC_CATALOG_VERSION,

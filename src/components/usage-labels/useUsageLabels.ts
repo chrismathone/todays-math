@@ -14,11 +14,13 @@ import { getStudioEndpoints } from "@/lib/studio-ai/endpoints";
 export function useUsageLabels({
   problemIds = [],
   arithmeticTypes = [],
+  arithmeticV2TypeIds = [],
   enabled = true,
   refreshKey = "",
 }: {
   problemIds?: string[];
   arithmeticTypes?: UsageArithmeticTypeRequest[];
+  arithmeticV2TypeIds?: string[];
   enabled?: boolean;
   refreshKey?: string;
 }) {
@@ -35,6 +37,9 @@ export function useUsageLabels({
   const body = JSON.stringify({
     problemIds: ids,
     arithmeticTypes: types,
+    ...(arithmeticV2TypeIds.length
+      ? { arithmeticV2TypeIds: [...new Set(arithmeticV2TypeIds)].sort() }
+      : {}),
     period: "30d",
   });
   const endpoint = `${getStudioEndpoints().problems}/labels`;
@@ -49,12 +54,22 @@ export function useUsageLabels({
     const request = JSON.parse(body) as {
       problemIds: string[];
       arithmeticTypes: UsageArithmeticTypeRequest[];
+      arithmeticV2TypeIds?: string[];
       period: "30d";
     };
-    if (!request.problemIds.length && !request.arithmeticTypes.length) return;
+    if (
+      !request.problemIds.length &&
+      !request.arithmeticTypes.length &&
+      !request.arithmeticV2TypeIds?.length
+    )
+      return;
     const controller = new AbortController();
     const batches = Math.ceil(
-      Math.max(request.problemIds.length, request.arithmeticTypes.length) / 100,
+      Math.max(
+        request.problemIds.length,
+        request.arithmeticTypes.length,
+        request.arithmeticV2TypeIds?.length ?? 0,
+      ) / 100,
     );
     void Promise.all(
       Array.from({ length: batches }, async (_, index) => {
@@ -74,6 +89,14 @@ export function useUsageLabels({
               index * 100,
               (index + 1) * 100,
             ),
+            ...(request.arithmeticV2TypeIds?.length
+              ? {
+                  arithmeticV2TypeIds: request.arithmeticV2TypeIds.slice(
+                    index * 100,
+                    (index + 1) * 100,
+                  ),
+                }
+              : {}),
           }),
         });
         if (!response.ok) throw new Error("usage-labels-unavailable");
@@ -102,15 +125,24 @@ export function useUsageLabels({
       ),
     ),
     period,
+    arithmeticV2Types: new Map(
+      current?.data?.flatMap((batch) =>
+        (batch.arithmeticV2Types ?? []).map(
+          (item) => [item.typeId, item] as const,
+        ),
+      ),
+    ),
     note: period
       ? `${period.note} 기준 ${new Date(period.to).toLocaleString("ko-KR", { timeZone: "Asia/Seoul" })} (한국 시간)`
       : undefined,
     unavailable: Boolean(
       current?.error ||
       current?.data?.some((batch) =>
-        [...batch.problems, ...batch.arithmeticTypes].some(
-          (item) => item.state === "unavailable",
-        ),
+        [
+          ...batch.problems,
+          ...batch.arithmeticTypes,
+          ...(batch.arithmeticV2Types ?? []),
+        ].some((item) => item.state === "unavailable"),
       ),
     ),
   };

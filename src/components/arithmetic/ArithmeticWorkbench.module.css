@@ -1,5 +1,24 @@
 .root {
   color: var(--learn-ink);
+  min-width: 0;
+}
+.modeSwitch {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.modeSwitch button[aria-pressed="true"] {
+  color: var(--learn-accent);
+  background: var(--learn-soft);
+  border-color: var(--learn-accent);
+}
+.catalogFilters.gradeFilters {
+  grid-template-columns: 90px 120px minmax(0, 1fr);
+}
+.selectionTitle {
+  font-size: 13px;
+  overflow-wrap: anywhere;
 }
 .actions {
   display: flex;
@@ -64,7 +83,7 @@
   cursor: default;
 }
 .root :is(button, input, select):focus-visible {
-  outline: 3px solid var(--learn-focus);
+  outline: 3px solid var(--learn-accent);
   outline-offset: 2px;
 }
 .root .card {
@@ -279,6 +298,12 @@
   }
 }
 @media (max-width: 480px) {
+  .catalogFilters.gradeFilters {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gradeFilters label:last-child {
+    grid-column: 1 / -1;
+  }
   .catalog {
     grid-template-columns: minmax(0, 1fr);
   }

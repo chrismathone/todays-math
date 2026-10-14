@@ -1,5 +1,6 @@
 import type {
   UsageArithmeticLabel,
+  UsageArithmeticV2Label,
   UsageProblemLabel,
 } from "@/contracts/usageLabels.contract";
 import s from "./UsageLabel.module.css";
@@ -9,7 +10,7 @@ export default function UsageLabel({
   kind,
   note,
 }: {
-  item?: UsageArithmeticLabel | UsageProblemLabel;
+  item?: UsageArithmeticLabel | UsageProblemLabel | UsageArithmeticV2Label;
   kind: "problem" | "arithmetic";
   note?: string;
 }) {

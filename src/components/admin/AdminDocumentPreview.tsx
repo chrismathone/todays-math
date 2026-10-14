@@ -11,7 +11,9 @@ import {
   conceptBlankDocumentSchema,
 } from "@/contracts/conceptBlank.contract";
 import { getBlankSection } from "@/lib/concept-blank/sections";
-import { reopenArithmeticSheet } from "@/lib/arithmetic/reopen";
+import { reopenAnyArithmeticSheet } from "@/lib/arithmeticDocument";
+import { listArithmeticV2PrintItems } from "@/lib/arithmetic-v2";
+import { gradeArithmeticPaperPages } from "@/components/arithmetic/GradeArithmeticPaper";
 import { arithmeticPaperPages } from "@/components/arithmetic/ArithmeticPaper";
 import { PaperStrip } from "@/components/paper-strip/PaperStrip";
 import {
@@ -251,12 +253,26 @@ export default function AdminDocumentPreview({
 function ArithmeticPreview({ document }: { document: DocumentDetail }) {
   let pages;
   try {
-    pages = arithmeticPaperPages({
-      sheet: reopenArithmeticSheet(document.payload),
-      title: document.title,
-      mode: "both",
-      density: 24,
-    });
+    const sheet = reopenAnyArithmeticSheet(document.payload);
+    const items =
+      sheet.payloadVersion === 2 ? listArithmeticV2PrintItems(sheet) : [];
+    pages =
+      sheet.payloadVersion === 2
+        ? gradeArithmeticPaperPages({
+            rounds: sheet.rounds.map((round) => ({
+              round: round.round,
+              items: items.filter((item) => item.round === round.round),
+            })),
+            title: document.title,
+            mode: "both",
+            density: 24,
+          })
+        : arithmeticPaperPages({
+            sheet,
+            title: document.title,
+            mode: "both",
+            density: 24,
+          });
   } catch {
     return <p role="alert">저장된 연산 명세와 정답을 확인할 수 없습니다.</p>;
   }
