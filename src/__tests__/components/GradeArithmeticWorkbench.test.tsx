@@ -68,7 +68,9 @@ describe("grade arithmetic user flow", () => {
     const grade = screen.getByLabelText("학년") as HTMLSelectElement;
     expect([...grade.options].map((option) => option.value)).toEqual([
       "전체",
-      ...new Set(types.map((type) => type.grade)),
+      ...["초1", "초2", "초3", "초4", "초5", "초6", "중1", "중2", "중3"].filter(
+        (value) => types.some((type) => type.grade === value),
+      ),
     ]);
     make();
     await screen.findByText(/문항을 생성하고 정답을 확인했습니다/);

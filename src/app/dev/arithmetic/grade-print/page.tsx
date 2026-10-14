@@ -21,6 +21,8 @@ export default async function GradeArithmeticPrintFixture({
     density?: string;
     title?: string;
     grade?: string;
+    type?: string;
+    count?: string;
     stress?: string;
   }>;
 }) {
@@ -28,14 +30,25 @@ export default async function GradeArithmeticPrintFixture({
   if (!(await devPageVisible())) notFound();
   const params = await searchParams;
   const types = listArithmeticV2Types().filter(
-    (type) => !params.grade || type.grade === params.grade,
+    (type) =>
+      (!params.grade || type.grade === params.grade) &&
+      (!params.type || type.id === params.type),
   );
+  if (!types.length) notFound();
+  const requestedCount = Number(params.count);
+  const count =
+    types.length === 1 &&
+    Number.isInteger(requestedCount) &&
+    requestedCount >= 1 &&
+    requestedCount <= 100
+      ? Math.min(requestedCount, types[0].domainSize)
+      : 1;
   const sheet = buildArithmeticV2Sheet({
     engineVersion: ARITHMETIC_V2_ENGINE_VERSION,
     catalogVersion: ARITHMETIC_V2_CATALOG_VERSION,
     seed: "grade-arithmetic-paper-20261014",
     rounds: [
-      { allocations: types.map((type) => ({ typeId: type.id, count: 1 })) },
+      { allocations: types.map((type) => ({ typeId: type.id, count })) },
     ],
   });
   if (params.stress === "1") {

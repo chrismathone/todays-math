@@ -32,7 +32,17 @@ import s from "./ArithmeticWorkbench.module.css";
 
 const catalog = listArithmeticV2Types();
 const byId = new Map(catalog.map((type) => [type.id, type]));
-const grades = [...new Set(catalog.map((type) => type.grade))];
+const grades = [
+  "초1",
+  "초2",
+  "초3",
+  "초4",
+  "초5",
+  "초6",
+  "중1",
+  "중2",
+  "중3",
+].filter((grade) => catalog.some((type) => type.grade === grade));
 const PAGE_SIZE = 12;
 type Allocation = { typeId: string; count: number };
 const message = (error: unknown) =>
