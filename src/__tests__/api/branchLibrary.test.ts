@@ -10,6 +10,7 @@ vi.mock("@/lib/arithmetic-v2/registry", async () => {
   };
 });
 const mocks = vi.hoisted(() => ({
+  workflowQuery: vi.fn(async () => []),
   authorize: vi.fn(),
   user: { findFirst: vi.fn() },
   document: {
@@ -36,7 +37,11 @@ vi.mock("@/lib/db", () => {
     accountAuditLog: mocks.audit,
   };
   return {
-    db: { ...tx, $transaction: (fn: (value: typeof tx) => unknown) => fn(tx) },
+    db: {
+      ...tx,
+      $queryRaw: mocks.workflowQuery,
+      $transaction: (fn: (value: typeof tx) => unknown) => fn(tx),
+    },
   };
 });
 import { listDocuments } from "@/lib/privateDocumentList";

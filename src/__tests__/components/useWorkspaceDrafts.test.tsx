@@ -188,6 +188,15 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
     await act(async () => {
       await vi.advanceTimersByTimeAsync(0);
     });
+    expect(restored.result.current.draft.problems).toEqual([]);
+    expect(restored.result.current.recent).toHaveLength(1);
+    await act(async () => {
+      expect(
+        await restored.result.current.openDraft(
+          restored.result.current.recent[0].id,
+        ),
+      ).toBe(true);
+    });
     expect(restored.result.current.draft.title).toBe("첫 계정 작업");
     expect(
       restored.result.current.draft.problems.map((item) => item.id),
@@ -225,7 +234,7 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
     expect(set).not.toHaveBeenCalled();
   });
 
-  it("recovers once under StrictMode and never overwrites recovery with the initial empty state", () => {
+  it("lists legacy recovery under StrictMode and waits for explicit resume", () => {
     const legacy = JSON.stringify({
       version: 1,
       title: "복원할 작업",
@@ -241,17 +250,21 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
     expect(result.current).toMatchObject({
       hydrated: true,
       saveStatus: "saved",
-      draft: {
-        title: "복원할 작업",
-        columns: 1,
-        answers: true,
-        problems: [problem("a")],
-      },
+      draft: { problems: [] },
     });
     act(() => vi.advanceTimersByTime(2000));
     expect(set).toHaveBeenCalledTimes(1);
     expect(localStorage.getItem(LEGACY_DRAFT_KEY)).toBe(legacy);
     expect(result.current.recent).toHaveLength(1);
+    act(() => {
+      expect(result.current.openDraft(result.current.recent[0].id)).toBe(true);
+    });
+    expect(result.current.draft).toMatchObject({
+      title: "복원할 작업",
+      columns: 1,
+      answers: true,
+      problems: [problem("a")],
+    });
   });
 
   it("debounces edits for 600ms and persists the latest composed functional updates", () => {
@@ -345,12 +358,17 @@ describe("useWorkspaceDrafts browser lifecycle", () => {
     expect(result.current.recent).toHaveLength(2);
   });
 
-  it("flushes on unmount and restores the active draft on remount", () => {
+  it("flushes on unmount and starts blank until explicit resume on remount", () => {
     const first = renderHook(() => useWorkspaceDrafts());
     act(() => first.result.current.setProblems([problem("a")]));
     const id = first.result.current.draft.id;
     first.unmount();
     const second = renderHook(() => useWorkspaceDrafts());
+    expect(second.result.current.draft.problems).toEqual([]);
+    expect(second.result.current.recent).toHaveLength(1);
+    act(() => {
+      expect(second.result.current.openDraft(id)).toBe(true);
+    });
     expect(second.result.current.draft).toMatchObject({
       id,
       problems: [problem("a")],

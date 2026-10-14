@@ -11,6 +11,10 @@ import {
 } from "@/lib/privateWorkspace";
 import { ARITHMETIC_SHEET_KIND } from "@/contracts/arithmetic.contract";
 import { documentKindSchema } from "@/contracts/privateWorkspace.contract";
+import {
+  listDocumentWorkflows,
+  workflowDocumentKey,
+} from "@/lib/privateDocumentWorkflow";
 export async function listDocuments(request: Request, owner?: string) {
   const access = await authorizePrivate(request, owner, true);
   if (access.response) return access.response;
@@ -40,9 +44,15 @@ export async function listDocuments(request: Request, owner?: string) {
     }),
     db.workspaceDocument.count({ where }),
   ]);
+  const workflows = await listDocumentWorkflows(items);
   return Response.json(
     {
-      data: items.map((item) => documentDto(item, access.account!.id)),
+      data: items.map((item) => ({
+        ...documentDto(item, access.account!.id),
+        ...(workflows.has(workflowDocumentKey(item))
+          ? { workflow: workflows.get(workflowDocumentKey(item)) }
+          : {}),
+      })),
       meta: { page, pageSize, total },
     },
     { headers: privateHeaders },

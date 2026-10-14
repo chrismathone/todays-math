@@ -15,12 +15,17 @@ export function useWorkspaceDrafts(
     () =>
       storageScope
         ? enabled
-          ? createPrivateDraftStore(storageScope)
-          : createWorkspaceDraftStore(() => ({
-              getItem: () => null,
-              setItem: () => {},
-            }))
-        : createWorkspaceDraftStore(),
+          ? createPrivateDraftStore(storageScope, undefined, undefined, {
+              autoResume: false,
+            })
+          : createWorkspaceDraftStore(
+              () => ({
+                getItem: () => null,
+                setItem: () => {},
+              }),
+              { autoResume: false },
+            )
+        : createWorkspaceDraftStore(undefined, { autoResume: false }),
     [storageScope, enabled],
   );
   const snapshot = useSyncExternalStore(
@@ -54,9 +59,11 @@ export function useWorkspaceDrafts(
       ? { saveStatus: "disabled" as const, saveError: null }
       : {}),
     prepare: store.hydrate,
+    getCurrentDraft: () => store.getSnapshot().draft,
     setTitle: store.setTitle,
     setProblems: store.setProblems,
     setRemoved: store.setRemoved,
+    setWorkflow: store.setWorkflow,
     setColumns: store.setColumns,
     setAnswers: store.setAnswers,
     setPrintOptions: store.setPrintOptions,

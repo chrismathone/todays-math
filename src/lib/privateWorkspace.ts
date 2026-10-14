@@ -5,6 +5,7 @@ import { authorizeAccount } from "@/lib/accountAccess";
 import { recordAudit } from "@/lib/audit";
 import type { Prisma, WorkspaceDocument } from "@prisma/client";
 import type { AccountAccess } from "@/contracts/accountAccess.contract";
+import { documentWorkflow } from "@/contracts/workspaceWorkflow.contract";
 
 export const privateHeaders = {
   "Cache-Control": "private, no-store",
@@ -33,6 +34,7 @@ export function documentDto(
   },
   viewerId?: string,
 ) {
+  const workflow = documentWorkflow(doc.kind, doc.payload);
   return {
     ownerId: doc.userId,
     ownerName: doc.user?.name ?? "선생님",
@@ -46,6 +48,7 @@ export function documentDto(
     revision: doc.revision,
     createdAt: doc.createdAt.toISOString(),
     updatedAt: doc.updatedAt.toISOString(),
+    ...(workflow ? { workflow } : {}),
     ...("payload" in doc ? { payload: doc.payload } : {}),
   };
 }

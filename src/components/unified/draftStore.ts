@@ -10,6 +10,10 @@ import {
   type PrintMeta,
 } from "./print/types";
 import { parsePrintOptions, parsePrintMeta } from "./print/settings";
+import {
+  parseWorkspaceWorkflow,
+  type WorkspaceWorkflow,
+} from "@/contracts/workspaceWorkflow.contract";
 
 export const DRAFT_STORE_KEY = "today-math-workspace-drafts-v1";
 export const LEGACY_DRAFT_KEY = "today-math-unified-draft-v1";
@@ -17,6 +21,7 @@ export const DEFAULT_DRAFT_TITLE = "오늘 수학 학습지";
 const AUTOSAVE_MS = 600;
 
 export interface WorkspaceDraft {
+  workflow?: WorkspaceWorkflow;
   id: string;
   title: string;
   problems: StudioProblem[];
@@ -36,6 +41,7 @@ export interface WorkspaceDraft {
 }
 
 export interface DraftSummary {
+  workflow?: WorkspaceWorkflow;
   id: string;
   title: string;
   problemCount: number;
@@ -57,6 +63,10 @@ export interface WorkspaceDraftSnapshot {
 }
 
 type StorageAccess = () => Pick<Storage, "getItem" | "setItem">;
+export interface DraftStoreOptions {
+  /** Live workspaces opt out; old direct consumers keep their recovery behavior. */
+  autoResume?: boolean;
+}
 
 class DraftError extends Error {}
 
@@ -409,7 +419,9 @@ export function parseImport(
     answers: value.answers,
   });
   const problems = parseProblems(value.problems);
+  const workflow = parseWorkspaceWorkflow(value.workflow);
   return {
+    ...(workflow ? { workflow } : {}),
     title: value.title,
     problems,
     removed: parseRemovals(value.removed, problems),
@@ -459,11 +471,12 @@ export function parseEnvelope(raw: string): DraftEnvelope {
 
 function summaries(envelope: DraftEnvelope): DraftSummary[] {
   return envelope.drafts
-    .map(({ id, title, problems, updatedAt }) => ({
+    .map(({ id, title, problems, updatedAt, workflow }) => ({
       id,
       title,
       problemCount: problems.length,
       updatedAt,
+      ...(workflow ? { workflow } : {}),
     }))
     .sort((a, b) => Date.parse(b.updatedAt) - Date.parse(a.updatedAt));
 }
@@ -485,6 +498,7 @@ function draftRevision(draft: WorkspaceDraft | undefined): string | undefined {
       draft.printMeta,
       draft.updatedAt,
       draft.problems,
+      draft.workflow,
     ])
   );
 }
@@ -504,6 +518,7 @@ function errorMessage(error: unknown): string {
 /** A per-hook session; browser access starts only at hydrate(), never during SSR. */
 export function createWorkspaceDraftStore(
   storageAccess: StorageAccess = () => window.localStorage,
+  { autoResume = true }: DraftStoreOptions = {},
 ) {
   const initial: WorkspaceDraftSnapshot = {
     draft: blankDraft(),
@@ -666,9 +681,10 @@ export function createWorkspaceDraftStore(
       const raw = storage.getItem(DRAFT_STORE_KEY);
       if (raw !== null) {
         known = parseEnvelope(raw);
-        recovered =
-          known.drafts.find((draft) => draft.id === known.activeId) ??
-          recovered;
+        if (autoResume)
+          recovered =
+            known.drafts.find((draft) => draft.id === known.activeId) ??
+            recovered;
       } else {
         const legacy = storage.getItem(LEGACY_DRAFT_KEY);
         if (legacy !== null) {
@@ -688,7 +704,12 @@ export function createWorkspaceDraftStore(
             throw new DraftError(INVALID_STORE);
           }
           // The source key is deliberately preserved, including when migration cannot fit.
-          dirty = true;
+          if (autoResume) dirty = true;
+          else {
+            known = { version: 1, activeId: null, drafts: [recovered] };
+            recovered = blankDraft(newId());
+            storage.setItem(DRAFT_STORE_KEY, JSON.stringify(known));
+          }
         }
       }
       publish({
@@ -701,7 +722,11 @@ export function createWorkspaceDraftStore(
     } catch (error) {
       recoveryBlocked = true;
       recoveryError = error;
-      publish({ draft: recovered, hydrated: true });
+      publish({
+        draft: autoResume ? recovered : blankDraft(newId()),
+        hydrated: true,
+        recent: summaries(known),
+      });
       fail(error);
     }
   };
@@ -737,6 +762,25 @@ export function createWorkspaceDraftStore(
       edit((draft) => (title === draft.title ? draft : { ...draft, title })),
     setProblems,
     setRemoved,
+    setWorkflow: (workflow: WorkspaceWorkflow | undefined) => {
+      const next = parseWorkspaceWorkflow(workflow);
+      if (workflow !== undefined && !next) return;
+      if (JSON.stringify(next) === JSON.stringify(snapshot.draft.workflow))
+        return;
+      // Seeding a blank editor's stage is not user content and must not create
+      // a phantom saved worksheet. The next real edit includes this metadata.
+      if (
+        !dirty &&
+        !snapshot.draft.updatedAt &&
+        !snapshot.draft.problems.length &&
+        !snapshot.draft.removed.length &&
+        snapshot.draft.title === DEFAULT_DRAFT_TITLE
+      ) {
+        publish({ draft: { ...snapshot.draft, workflow: next } });
+        return;
+      }
+      edit((draft) => ({ ...draft, workflow: next }));
+    },
     setColumns: (columns: number) => {
       if (columns === 1 || columns === 2)
         edit((draft) =>
