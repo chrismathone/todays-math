@@ -1,0 +1,78 @@
+Arithmetic selective regeneration - 2026-10-15
+Base: main 46f9781c8
+Branch: BIGSHOL/arithmetic-selective-regeneration
+
+Implemented
+- New arithmeticRegeneration.ts deterministic finite-domain regeneration for v1 and v2.
+- Target contract: { round, orders }, using saved 1-based item.order values.
+- Unselected items retain their exact original objects/serialized contents. Round order,
+  metadata, title and presentation remain unchanged. The v1 sheet/spec seed stays intact
+  because its stored-snapshot contract requires seed equality; a fresh selection seed is
+  used only for sampling. Empty change results return the original sheet object.
+- Sparse sampling visits each domain index at most once, including domains beyond 2^32.
+  For N selected slots, N unique allowed alternatives per slot suffice: other N-1 slots
+  cannot occupy all N alternatives. Smaller candidate domains are exhausted exactly.
+  Minimum-cost bipartite assignment maximizes changed visible prompts, including swaps
+  and overlapping constrained domains; original prompts are fallback cost 1, changes 0.
+  Retained same-round visible prompts are excluded across v2 type IDs as well.
+- Reports changedOrders and unchangedOrders accurately. UI notices convert unchanged
+  local orders to continuous displayed numbers using preceding-round item counts.
+- Both workbench callbacks preserve undefined -> existing all-regenerate behavior.
+  Targeted preview works locally; account mode uses narrow authorized POST routes:
+  /api/arithmetic/regenerate and /api/arithmetic/v2/regenerate.
+- Routes retain approved account, same-origin mutation and bank-menu checks; proxy policy
+  opens only POST. Strict body limits: 256 KiB, depth 16, 40,000 tokens; v1 string bound
+  4 KiB, v2 64 KiB for immutable geometry SVG packs. Full snapshot reopen/verification
+  remains mandatory. No DB writes, writer-gate activation, environment changes or autosave.
+- Geometry integration: existing sheet-level figures metadata survives both helper and
+  callback merges. Worker reported the frozen pack contains all replacement figure IDs,
+  so no asset refresh is required. Actual geometry code is on the other branch; root must
+  verify combined geometry route/browser behavior after merge.
+- ArithmeticWorkflow.tsx, existing tests, v2 types/contracts and arithmeticOutput.ts untouched.
+
+Validation
+PASS: 220 tests across 8 files in the final combined run (27.60 seconds total run):
+  arithmeticRegeneration.test.ts: 18 tests, including brute-force maximum-change checks
+    over every small overlapping interval fixture, singleton exhaustion, selected swaps,
+    atomic bad-target rejection, byte/reference preservation, partial exhaustion and sparse
+    very-large-domain behavior.
+  arithmeticRegenerationCatalog.test.ts: 84 current production v2 types.
+  workspaceArithmeticRegeneration.test.ts: 26 tests covering both authorized routes,
+    no-store, no DB access, malformed/oversized/duplicate-key input and proxy permissions.
+  ArithmeticSelectiveRegeneration.test.tsx: 10 callback tests, both versions: target request,
+    exact retained references/title/presentation, no autosave, clean no-change, continuous
+    numbering, errors, concurrent-request guard, undefined all-regenerate, local preview.
+  Existing arithmeticEngine.test.ts, arithmeticV2Core.test.ts,
+    workspaceArithmetic.test.ts, workspaceArithmeticV2.test.ts also passed.
+PASS: scoped TypeScript check for changed helpers/routes/workbenches/new tests using root
+  tsconfig and compiler, with @prisma/client mapped to root's generated client.
+PASS: ESLint for all 11 changed/new TypeScript files using root binary/config.
+PASS: Prettier for scoped TypeScript files; git diff --check.
+
+Environment-blocked existing regression
+- ArithmeticManualSave.test.tsx: all 16 cases stopped on missing jest-dom matchers
+  (Invalid Chai property: toHaveValue / toBeDisabled / toBeInTheDocument / toBeEnabled).
+  This was a harness/module-resolution failure, not a failing product assertion.
+  A single root-vitest alias experiment had the same result; no existing tests/config changed.
+- An Orca setup-created real node_modules directory (not a junction, created 02:01:37)
+  appeared during the task and changed package-lock.json. No npm/install/junction command
+  was run by this worker. At root request, only that setup lockfile drift was restored.
+- Initial scoped tsc exposed missing local generated Prisma models; mapping to root's
+  generated Prisma client resolved those environment errors. Final scoped tsc exited 0.
+- Root requested immediate integration rather than further runner workarounds. Full main
+  API/UI/catalog/browser checks and combined geometry checks are assigned to root.
+
+Commands and evidence
+Tests used node C:/Creative/testautocreator/node_modules/vitest/vitest.mjs run
+  --config C:/Creative/testautocreator/vitest.config.mts
+  --root C:/Users/user/orca/workspaces/testautocreator/arithmetic-selective-regeneration
+  [the nine files listed above, including ArithmeticManualSave.test.tsx] --maxWorkers 2
+Root binaries were used for TypeScript, ESLint and Prettier as well.
+Temporary scoped tsc / runner-alias configs preserved outside this worktree at:
+  C:/Creative/testautocreator/.tmp-arithmetic-selective-regeneration-evidence-20261015/
+The tsc config was originally in worktree/tmp, so its relative include paths record that
+original location. No temporary runner/config files are included in the commit.
+
+Read AGENTS.md, DESIGN.md, workspace menu map, installed Next 16.3.8 route handler and
+server/client component docs, Orca CLI skill and React best-practice skills.
+No additional workers, no push/deploy, no DB/env activation. Scoped commit only.
