@@ -42,6 +42,10 @@ import {
 } from "./typeSelection";
 import { useArithmeticTypeSelection } from "./useArithmeticTypeSelection";
 import { arithmeticReviewRounds } from "@/lib/arithmeticOutput";
+import type {
+  ArithmeticRegenerationResult,
+  ArithmeticRegenerationTarget,
+} from "@/lib/arithmeticRegeneration";
 import { arithmeticQuantityIssue } from "@/lib/arithmetic/quantity";
 import {
   defaultArithmeticPresentation,
@@ -366,6 +370,50 @@ export default function LegacyArithmeticWorkbench({
       inFlight.current = false;
     }
   }
+  async function regenerate(target?: ArithmeticRegenerationTarget) {
+    if (!target) return generate(true);
+    if (!sheet || !catalogState.ready || inFlight.current) return;
+    inFlight.current = true;
+    setBusy(true);
+    setError("");
+    setNotice("");
+    try {
+      const {
+        regenerateArithmeticItems,
+        mergeArithmeticRegeneration,
+        arithmeticRegenerationNotice,
+      } = await import("@/lib/arithmeticRegeneration");
+      const seed = crypto.randomUUID();
+      let result: ArithmeticRegenerationResult<ArithmeticSheetPayload>;
+      if (preview) result = regenerateArithmeticItems(sheet, target, seed);
+      else {
+        const response = await fetch("/api/arithmetic/regenerate", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          credentials: "same-origin",
+          body: JSON.stringify({ sheet, target, seed }),
+        });
+        const body = await response.json();
+        if (!response.ok)
+          throw new Error(
+            body.error?.message ?? "선택한 문항의 숫자를 바꾸지 못했습니다.",
+          );
+        result = body.data;
+        reopenArithmeticSheet(result.sheet);
+      }
+      if (!mounted.current) return;
+      const replacements = result.sheet.rounds
+        .find((round) => round.round === target.round)!
+        .items.filter((item) => result.changedOrders.includes(item.order));
+      setSheet(mergeArithmeticRegeneration(sheet, target.round, replacements));
+      setNotice(arithmeticRegenerationNotice(result));
+    } catch (cause) {
+      if (mounted.current) setError(message(cause));
+    } finally {
+      if (mounted.current) setBusy(false);
+      inFlight.current = false;
+    }
+  }
   async function save() {
     if (
       step !== "output" ||
@@ -446,7 +494,9 @@ export default function LegacyArithmeticWorkbench({
         canRegenerate={catalogState.ready}
         dirty={dirty}
         onSave={() => void save()}
-        onRegenerate={() => void generate(true)}
+        onRegenerate={(target?: ArithmeticRegenerationTarget) =>
+          void regenerate(target)
+        }
         actions={
           <button
             disabled={busy}
