@@ -213,17 +213,30 @@ describe("grade arithmetic user flow", () => {
         screen.getByRole("region", { name: "생성한 문항 검토" }),
       ).getAllByRole("listitem"),
     ).toHaveLength(5);
+    expect(save).not.toHaveBeenCalled();
+    expect(
+      screen.queryByRole("button", { name: "내 시험지에 저장" }),
+    ).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "3 양식 구성·출력" }));
+    await screen.findByRole("region", { name: "공통 출력 편집기" });
     fireEvent.click(screen.getByRole("button", { name: "내 시험지에 저장" }));
     await waitFor(() =>
       expect(save).toHaveBeenCalledWith(
         "saved-grade",
         "arithmeticSheet",
         savedDocument.title,
-        expect.objectContaining(payload),
+        expect.objectContaining({
+          ...payload,
+          presentation: expect.objectContaining({ step: "output" }),
+        }),
         4,
       ),
     );
     expect(requests).toHaveLength(0);
+    await waitFor(() =>
+      expect(screen.getByRole("button", { name: "2 문항 검토" })).toBeEnabled(),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
     await waitFor(() =>
       expect(
         screen.getByRole("button", { name: "숫자 바꿔 새로 만들기" }),
