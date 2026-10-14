@@ -1,6 +1,7 @@
 import { createHash } from "node:crypto";
 import type { Prisma, Problem } from "@prisma/client";
 import { z } from "zod";
+import { textbookSlotExternalId } from "@/lib/generator/textbookSlots";
 import { recoveryDraftIssues } from "./recovery";
 
 export const textbookRetryDraftSchema = z.strictObject({
@@ -49,8 +50,9 @@ export function textbookRetrySourceFingerprint(
     .digest("hex");
 }
 
+/** 슬롯 열쇠 — 복습 · 준비 상태와 같은 함수(`generator/textbookSlots.ts`)다. */
 export function textbookRetryExternalId(sourceId: string, slot: 1 | 2): string {
-  return `tb-retry-v1:${sourceId}:${slot}`;
+  return textbookSlotExternalId(sourceId, slot);
 }
 
 const textKey = (value: string) =>

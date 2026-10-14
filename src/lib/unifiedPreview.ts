@@ -160,6 +160,15 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
   const where: Prisma.ProblemWhereInput = { AND: clauses };
   return {
     where,
+    /**
+     * 고르는 조건만 — 보임 · 출제 자격 관문을 뺀 나머지(검수 상태를 골랐으면 그것도 여기 든다).
+     * 가용량(`bankSourceAvailability.ts`)이 «보유»(공용 풀) · «사용 가능»(출제 자격)을 **같은 조건**에 걸어 세려고 쓴다.
+     * 검수 상태를 안 골랐으면 `AND[problemEligibleWhere(), ...selection]` 이 곧 `where` 다.
+     */
+    selection: [
+      ...(reviewStatus ? [{ reviewStatus }] : []),
+      ...clauses.slice(1),
+    ] satisfies Prisma.ProblemWhereInput[],
     format,
     visibility,
     grade,
@@ -323,27 +332,12 @@ export async function loadUnifiedBankBootstrap(): Promise<UnifiedBankBootstrap> 
 export async function loadUnifiedBank(
   params = new URLSearchParams(),
 ): Promise<BankData> {
-  const {
-    where,
-    format,
-    visibility,
-    grade,
-    semester,
-    requestedPage,
-    pageSize,
-  } = await resolveUnifiedBankQuery(params);
+  const resolved = await resolveUnifiedBankQuery(params);
+  const { where, format, requestedPage, pageSize } = resolved;
   const orderBy = PROBLEM_BANK_ORDER_BY;
   const formatIds = await findProblemIdsByFormat(format, where, orderBy);
   const metadata = await loadUnifiedBankMetadata(
-    {
-      where,
-      format,
-      visibility,
-      grade,
-      semester,
-      requestedPage,
-      pageSize,
-    },
+    resolved,
     formatIds === null ? undefined : formatIds.length,
   );
   const page = Math.min(

@@ -1,6 +1,7 @@
 import type { Prisma, Problem } from "@prisma/client";
 
 import type { RetryCandidate } from "@/lib/generator/planRetry";
+import { textbookSlotCandidateWhere } from "@/lib/generator/textbookSlots";
 import type { z } from "zod";
 import type { retryProblemSchema } from "@/contracts/retry.contract";
 import { db } from "@/lib/db";
@@ -64,16 +65,9 @@ export async function findRetryCandidates(wrong: readonly RetryCandidate[]) {
       familyKey: p.familyKey!,
     }));
   const conditions: Prisma.ProblemWhereInput[] = [...families];
+  // 지정 두 슬롯의 신분 조건 — 준비 상태(`textbookSlotReadiness`)와 같은 함수에서 온다.
   if (textbookIds.length)
-    conditions.push({
-      source: "transformed",
-      originProblemId: { in: textbookIds },
-      externalId: {
-        in: textbookIds.flatMap((id) =>
-          [1, 2].map((slot) => `tb-retry-v1:${id}:${slot}`),
-        ),
-      },
-    });
+    conditions.push(textbookSlotCandidateWhere(textbookIds));
   if (!conditions.length) return [];
   const rows = await db.problem.findMany({
     where: { AND: [problemEligibleWhere(), { OR: conditions }] },

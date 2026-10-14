@@ -12,6 +12,7 @@
 import { z } from "zod";
 
 import type { ProblemSource } from "./common.contract";
+import { DIFFICULTY_LADDER, type Difficulty } from "./difficulty";
 import { uuidSchema } from "./common.contract";
 import { problemFilterQuerySchema } from "./problem.contract";
 import { sourceMaterialKindSchema } from "./sourceMaterial.contract";
@@ -183,3 +184,88 @@ export const bankSourceCountsSchema = z.strictObject({
   }),
 });
 export type BankSourceCounts = z.infer<typeof bankSourceCountsSchema>;
+
+// ── 가용량 보기 (`GET|POST …/problems/sources?view=available`) — 문제은행 P0 (2026-10-14) ──────────
+//
+// 위의 `bankSourceCountsSchema` 는 **전역 재고**다(D-161 — 다른 필터와 무관). 그 숫자의 뜻을 바꾸지 않으려고
+// 현재 조건의 가용량은 **따로 부르는 보기**로 둔다(`view=available` · `version=1`). 기본 응답은 그대로다.
+//
+//   held       조건 F + 공용 풀(출제 자격 무관)                — «원문 30»
+//   available  조건 F + 출제 자격(`problemEligibleWhere`)       — «사용 가능 24»
+//              = 목록 total(검수 상태를 고르지 않았을 때) = 랜덤 고르기 풀(난이도 합) = 구성 풀
+//
+// F 는 목록 · 랜덤 · 구성과 **같은 함수**(`resolveUnifiedBankQuery`)가 해석한다. 각 갈래(facet)는 **자기 축만 빼고**
+// 센다 — 고르기 창이 «이것을 고르면 몇 개»를 보이려는 것이다. 축마다 문항당 값이 하나라 갈래의 합은 문항 ID 의 합집합과 같다.
+
+/** 가용량 보기의 판 — 모양을 바꾸면 올린다(옛 화면이 새 모양을 오독하지 않게). */
+export const BANK_SOURCE_AVAILABILITY_VERSION = 1;
+export const BANK_SOURCE_VIEWS = ["available"] as const;
+export const bankSourceViewSchema = z.enum(BANK_SOURCE_VIEWS, {
+  error: "알 수 없는 보기입니다.",
+});
+
+/** 갈래가 빼는 축 — 이 이름들은 목록의 조회 조건(`unifiedBankQuerySchema`) 이름 그대로다. */
+export const BANK_AVAILABILITY_AXES = {
+  units: ["unitIds", "unitFrom", "unitTo"],
+  difficulties: ["difficulty"],
+  sources: ["source", "sourceGroup", "books", "materialKinds"],
+} as const;
+
+/** 한 칸의 두 수 — 사용 가능은 보유를 넘지 않는다. */
+export const bankAvailabilityTallySchema = z
+  .strictObject({ held: countSchema, available: countSchema })
+  .refine((tally) => tally.available <= tally.held, {
+    error: "사용 가능 수가 보유 수보다 클 수 없습니다.",
+  });
+export type BankAvailabilityTally = z.infer<typeof bankAvailabilityTallySchema>;
+
+export const bankAvailabilityBookSchema = z.strictObject({
+  id: z.uuid(),
+  held: countSchema,
+  available: countSchema,
+  /** 자료 종류별 — 책 × 종류는 서로 겹치지 않는다(자료 하나에 책 하나 · 종류 하나). */
+  kinds: z.record(z.string().min(1), bankAvailabilityTallySchema),
+});
+
+export const bankSourceAvailabilitySchema = z.strictObject({
+  view: z.literal("available"),
+  version: z.literal(BANK_SOURCE_AVAILABILITY_VERSION),
+  held: countSchema,
+  available: countSchema,
+  /**
+   * 갈래별 수. 🔴 `null` 은 **세지 않았다**는 뜻이다(문항 형식 `format` 조건은 본문을 읽어 가르므로 갈래를 안 센다) —
+   * 화면은 0 이 아니라 «미확인»으로 둔다.
+   */
+  facets: z
+    .strictObject({
+      /** F 에서 차시 고르기(`unitIds` · `unitFrom` · `unitTo`)만 뺀 차시별. 보유가 0 인 차시는 싣지 않는다(없는 키 = 0). */
+      units: z.record(z.uuid(), bankAvailabilityTallySchema),
+      /** F 에서 난이도만 뺀 난이도별 — 랜덤 고르기의 `available[난이도]` 와 같은 수. 사다리의 칸이 늘 다 있다. */
+      difficulties: z.strictObject(
+        Object.fromEntries(
+          DIFFICULTY_LADDER.map((tier) => [tier, bankAvailabilityTallySchema]),
+        ) as Record<Difficulty, typeof bankAvailabilityTallySchema>,
+      ),
+      /** F 에서 출처 축(`source` · `sourceGroup` · `books` · `materialKinds`)을 뺀 갈래별. `total` 은 갈래 전부. */
+      sources: z.strictObject({
+        total: bankAvailabilityTallySchema,
+        engine: bankAvailabilityTallySchema,
+        school_textbook: bankAvailabilityTallySchema,
+        past_exam: bankAvailabilityTallySchema,
+        other: bankAvailabilityTallySchema,
+      }),
+      /**
+       * 위와 같은 조건 + 출처 = 교과서. `held` · `available` 은 자료가 없는 교과서 문항까지,
+       * `books` 는 자료가 붙은 것만(보유가 0 인 책은 싣지 않는다 — 책의 이름 · 과목은 전역 응답에 있다).
+       */
+      textbook: z.strictObject({
+        held: countSchema,
+        available: countSchema,
+        books: z.array(bankAvailabilityBookSchema),
+      }),
+    })
+    .nullable(),
+});
+export type BankSourceAvailability = z.infer<
+  typeof bankSourceAvailabilitySchema
+>;
